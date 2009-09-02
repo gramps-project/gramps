@@ -850,7 +850,8 @@ class GrampsDbRead(GrampsDbBase, Callback):
                 person = self.get_person_from_gramps_id(min(the_ids))
         return person
 
-    def _validated_id_prefix(self, val, default):
+    @staticmethod
+    def _validated_id_prefix(val, default):
         if isinstance(val, basestring) and val:
             try:
                 str_ = val % 1
@@ -861,7 +862,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
         else:
             prefix_var = default+"%04d" # not a string or empty string
         return prefix_var
-        
+
     def set_person_id_prefix(self, val):
         """
         Set the naming template for GRAMPS Person ID values. 
@@ -871,7 +872,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
         such as I%d or I%04d.
         """
         self.person_prefix = self._validated_id_prefix(val, "I")
-            
+
     def set_source_id_prefix(self, val):
         """
         Set the naming template for GRAMPS Source ID values. 
@@ -1558,3 +1559,8 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         return self._bm_changes > 0
 
+if __name__ == '__main__':
+    x = GrampsDbRead()
+    x.person_prefix = 'foo %s bar'
+    print x.person_prefix
+    

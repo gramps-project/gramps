@@ -59,7 +59,7 @@ class ReferencedProxyDb(ProxyDbBase):
         """
         return handle not in self.unreferenced_places
         
-    def include_object(self, handle):
+    def include_media_object(self, handle):
         """
         Filter for media objects
         """

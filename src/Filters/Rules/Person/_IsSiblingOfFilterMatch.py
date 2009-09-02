@@ -52,8 +52,7 @@ class IsSiblingOfFilterMatch(MatchesFilter):
         self.map = {}
         filt = MatchesFilter(self.list)
         filt.prepare(db)
-        for person_handle in db.iter_person_handles():
-            person = db.get_person_from_handle( person_handle)
+        for person in db.iter_people():
             if filt.apply (db, person):
                 self.init_list (person)
         filt.reset()

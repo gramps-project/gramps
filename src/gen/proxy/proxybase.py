@@ -93,7 +93,7 @@ class ProxyDbBase(GrampsDbBase):
     include_event = \
     include_source = \
     include_place = \
-    include_object = \
+    include_media_object = \
     include_repository = \
     include_note = \
         None
@@ -193,15 +193,6 @@ class ProxyDbBase(GrampsDbBase):
         """
         return ifilter(self.include_person, self.db.iter_person_handles())
         
-    def iter_people(self):
-        """
-        Return an iterator over handles and objects for Persons in the database
-        """
-        for handle, person in self.db.iter_people():
-            if (self.include_person is None or 
-              self.include_person(handle, person)):
-                yield handle, person
-
     def iter_family_handles(self):
         """
         Return an iterator over database handles, one handle for each Family in
@@ -235,7 +226,7 @@ class ProxyDbBase(GrampsDbBase):
         Return an iterator over database handles, one handle for each Media
         Object in the database.
         """
-        return ifilter(self.include_object, self.db.iter_media_object_handles())
+        return ifilter(self.include_media_object, self.db.iter_media_object_handles())
 
     def iter_repository_handles(self):
         """
@@ -250,6 +241,62 @@ class ProxyDbBase(GrampsDbBase):
         the database.
         """
         return ifilter(self.include_note, self.db.iter_note_handles())
+
+    @staticmethod
+    def __iter_object(filter, method):
+        """ Helper function to return an iterator over an object class """
+        return ifilter(lambda obj: (filter is None or filter(obj.handle)),
+                       method())
+
+    def iter_people(self):
+        """
+        Return an iterator over Person objects in the database
+        """
+        return self.__iter_object(self.include_person, self.db.iter_people)
+        
+    def iter_families(self):
+        """
+        Return an iterator over Family objects in the database
+        """
+        return self.__iter_object(self.include_family, self.db.iter_families)    
+        
+    def iter_events(self):
+        """
+        Return an iterator over Event objects in the database
+        """
+        return self.__iter_object(self.include_event, self.db.iter_events)
+        
+    def iter_places(self):
+        """
+        Return an iterator over Place objects in the database
+        """
+        return self.__iter_object(self.include_place, self.db.iter_places)   
+        
+    def iter_sources(self):
+        """
+        Return an iterator over Source objects in the database
+        """
+        return self.__iter_object(self.include_source, self.db.iter_sources)       
+        
+    def iter_media_objects(self):
+        """
+        Return an iterator over Media objects in the database
+        """
+        return self.__iter_object(self.include_media_object,
+                                  self.db.iter_media_objects)      
+        
+    def iter_repositories(self):
+        """
+        Return an iterator over Repositories objects in the database
+        """
+        return self.__iter_object(self.include_repository,
+                                  self.db.iter_repositories)
+        
+    def iter_notes(self):
+        """
+        Return an iterator over Note objects in the database
+        """
+        return self.__iter_object(self.include_note, self.db.iter_notes)       
         
     @staticmethod
     def gfilter(predicate, obj):
@@ -273,6 +320,10 @@ class ProxyDbBase(GrampsDbBase):
             attr = getattr(self.basedb, 'get_' + sname[2] + '_from_handle')
             setattr(self, name, attr)
             return attr
+
+        # Default behaviour: lookup attribute in parent object
+
+        return getattr(self.db, name)
 
     def get_person_from_handle(self, handle):
         """
@@ -319,7 +370,7 @@ class ProxyDbBase(GrampsDbBase):
         Finds an Object in the database from the passed gramps handle.
         If no such Object exists, None is returned.
         """
-        return self.gfilter(self.include_object,
+        return self.gfilter(self.include_media_object,
                     self.db.get_object_from_handle(handle))
 
     def get_repository_from_handle(self, handle):
@@ -383,7 +434,7 @@ class ProxyDbBase(GrampsDbBase):
         Finds a MediaObject in the database from the passed gramps' ID.
         If no such MediaObject exists, None is returned.
         """
-        return self.gfilter(self.include_object,
+        return self.gfilter(self.include_media_object,
                 self.db.get_object_from_gramps_id(val))
 
     def get_repository_from_gramps_id(self, val):
@@ -604,7 +655,7 @@ class ProxyDbBase(GrampsDbBase):
         """
         returns True if the handle exists in the current MediaObjectdatabase.
         """
-        return self.gfilter(self.include_object,
+        return self.gfilter(self.include_media_object,
                 self.db.get_object_from_gramps_id(val)) is not None
 
     def has_repository_handle(self, handle):
@@ -800,7 +851,7 @@ class ProxyDbBase(GrampsDbBase):
         return self.db.get_gramps_ids(obj_key)
 
     def has_gramps_id(self, obj_key, gramps_id):
-        return self.db.has_gramps_ids(obj_key, gramps_id)
+        return self.db.has_gramps_id(obj_key, gramps_id)
 
     def get_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""

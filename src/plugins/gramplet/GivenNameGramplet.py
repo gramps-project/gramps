@@ -58,21 +58,18 @@ class GivenNameCloudGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing...") + "\n")
         yield True
-        people = self.dbstate.db.iter_person_handles()
         givensubnames = {}
         representative_handle = {}
 
-        cnt = 0   
-        for person_handle in people:
-            person = self.dbstate.db.get_person_from_handle(person_handle)
-            if person:
-                cnt += 1
-                allnames = [person.get_primary_name()] + person.get_alternate_names()
-                allnames = set([name.get_first_name().strip() for name in allnames])
-                for givenname in allnames:
-                    for givensubname in givenname.split():
-                        givensubnames[givensubname] = givensubnames.get(givensubname, 0) + 1
-                        representative_handle[givensubname] = person_handle
+        cnt = 0
+        for person in self.dbstate.db.iter_people():
+            allnames = [person.get_primary_name()] + person.get_alternate_names()
+            allnames = set(name.get_first_name().strip() for name in allnames)
+            for givenname in allnames:
+                for givensubname in givenname.split():
+                    givensubnames[givensubname] = givensubnames.get(givensubname, 0) + 1
+                    representative_handle[givensubname] = person.handle
+            cnt += 1
             if not cnt % _YIELD_INTERVAL:
                 yield True
 
@@ -83,22 +80,21 @@ class GivenNameCloudGramplet(Gramplet):
         for givensubname in givensubnames:
             givensubname_sort.append( (givensubnames[givensubname], givensubname) )
             total += givensubnames[givensubname]
+            cnt += 1
             if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
 
         total_givensubnames = cnt
         givensubname_sort.sort(reverse=True)
         cloud_names = []
         cloud_values = []
 
-        for cnt, (count, givensubname) in enumerate(givensubname_sort):
+        for count, givensubname in givensubname_sort:
             cloud_names.append( (count, givensubname) )
             cloud_values.append( count )
 
         cloud_names.sort(key=lambda k: k[1])
-        counts = list(set(cloud_values))
-        counts.sort(reverse=True)
+        counts = sorted(set(cloud_values), reverse=True)
         line = 0
         ### All done!
         # Now, find out how many we can display without going over top_size:

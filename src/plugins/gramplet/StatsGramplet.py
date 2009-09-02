@@ -66,8 +66,7 @@ class StatsGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing..."))
         database = self.dbstate.db
-        personList = database.iter_person_handles()
-        familyList = database.iter_family_handles()
+        personList = database.iter_people()
 
         with_photos = 0
         total_photos = 0
@@ -90,38 +89,35 @@ class StatsGramplet(Gramplet):
             except:
                 notfound.append(photo.get_path())
 
-        for cnt, person_handle in enumerate(personList):
-            person = database.get_person_from_handle(person_handle)
-            if not person:
-                continue
+        for cnt, person in enumerate(personList):
             length = len(person.get_media_list())
             if length > 0:
-                with_photos = with_photos + 1
-                total_photos = total_photos + length
+                with_photos += 1
+                total_photos += length
 
             names = [person.get_primary_name()] + person.get_alternate_names()
             for name in names:
                 if name.get_first_name() == "" or name.get_group_name() == "":
-                    incomp_names = incomp_names + 1
+                    incomp_names += 1
                 if name.get_group_name() not in namelist:
                     namelist.append(name.get_group_name())
                     
-            if ((not person.get_main_parents_family_handle()) and 
-                (not len(person.get_family_handle_list()))):
-                disconnected = disconnected + 1
+            if (not person.get_main_parents_family_handle() and 
+                not len(person.get_family_handle_list())):
+                disconnected += 1
                 
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = database.get_event_from_handle(birth_ref.ref)
                 if not DateHandler.get_date(birth):
-                    missing_bday = missing_bday + 1
+                    missing_bday += 1
             else:
-                missing_bday = missing_bday + 1
+                missing_bday += 1
                 
             if person.get_gender() == gen.lib.Person.FEMALE:
-                females = females + 1
+                females += 1
             elif person.get_gender() == gen.lib.Person.MALE:
-                males = males + 1
+                males += 1
             else:
                 unknowns += 1
             if not cnt % _YIELD_INTERVAL:

@@ -196,8 +196,8 @@ def _find_records(db, filter, callname):
     family_shortest = []
     family_longest = []
 
-    for family_handle in db.iter_family_handles():
-        family = db.get_family_from_handle(family_handle)
+    for family in db.iter_families():
+        #family = db.get_family_from_handle(family_handle)
 
         father_handle = family.get_father_handle()
         if not father_handle:
@@ -220,7 +220,7 @@ def _find_records(db, filter, callname):
 
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),
-                name, 'Family', family_handle)
+                name, 'Family', family.handle)
 
         marriage_date = None
         divorce_date = None
@@ -243,7 +243,7 @@ def _find_records(db, filter, callname):
             if probably_alive(father, db) and probably_alive(mother, db):
                 _record(family_youngestmarried, family_oldestmarried,
                         today_date - marriage_date,
-                        name, 'Family', family_handle)
+                        name, 'Family', family.handle)
         elif (_good_date(divorce_date) or 
               _good_date(father_death_date) or 
               _good_date(mother_death_date)):
@@ -262,7 +262,7 @@ def _find_records(db, filter, callname):
             duration = end - marriage_date
 
             _record(family_shortest, family_longest,
-                    duration, name, 'Family', family_handle)
+                    duration, name, 'Family', family.handle)
 
     return [(text, varname, locals()[varname]) for (text, varname, default) in RECORDS]
 

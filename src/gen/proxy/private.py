@@ -250,7 +250,7 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_place(handle)
         return obj and not obj.get_privacy()
     
-    def include_object(self, handle):
+    def include_media_object(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """

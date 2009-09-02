@@ -434,8 +434,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
         self.name_list = []
 
-        for handle in db.iter_place_handles():
-            place = db.get_place_from_handle(handle)
+        for place in db.iter_places():
             descr = place.get_title()
             loc = place.get_main_location()
             self.progress.step()
@@ -455,7 +454,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
                         new_state = STATE_MAP.get(val.upper())
                         if new_state:
                             self.name_list.append(
-                                (handle, (city, new_state[0], postal, 
+                                (place.handle, (city, new_state[0], postal, 
                                           COUNTRY[new_state[1]])))
                     continue
 
@@ -471,7 +470,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
                         new_state = STATE_MAP.get(val.upper())
                         if new_state:
                             self.name_list.append(
-                                (handle, (city, new_state[0], postal, 
+                                (place.handle, (city, new_state[0], postal, 
                                           COUNTRY[new_state[1]])))
                     continue
                 match = CITY_STATE.match(descr.strip())
@@ -490,7 +489,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
                         new_state = STATE_MAP.get(val.upper())
                         if new_state:
                             self.name_list.append(
-                                (handle, (city, new_state[0], postal, 
+                                (place.handle, (city, new_state[0], postal, 
                                           COUNTRY[new_state[1]])))
                     continue
 
@@ -498,7 +497,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 new_state = STATE_MAP.get(val)
                 if new_state:
                     self.name_list.append(
-                        (handle, (None, new_state[0], None, 
+                        (place.handle, (None, new_state[0], None, 
                                   COUNTRY[new_state[1]])))
         self.progress.close()
 
