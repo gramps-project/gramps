@@ -138,10 +138,10 @@ h3 {
 }
 h4 {
     font:normal 1.2em/1.2em serif;
-    color:#FFF;
+    color: #FFF;
     margin:0;
     padding:.2em 0 .2em 20px;
-    background-color:#453619;
+    background-color: #453619;
     border-bottom:solid 2px #6AF364;
 }
 h5, h6 {
@@ -155,11 +155,11 @@ p#description {
     padding:1em 20px;
 }
 p#description:first-letter {
-    color:#228A22;
+    color: #228A22;
     font-size:xx-large;
 }
 p a {
-    color:#FFF;
+    color: #FFF;
     text-decoration:underline;
 }
 sup {
@@ -172,21 +172,19 @@ ol {
     padding-top:.5em;
     padding-bottom:0;
 }
-ol li a {
-    text-decoration:none;
-}
-ol li a:hover {
-    text-decoration:underline;
-}
 a {
-    color:#542;
+    color: #000;
+    text-decoration: none;
 }
 a:visited {
-    color:#542;
+    color: #000;
+    text-decoration: none;
 }
 a:hover {
-    color:#000;
-    background-color:#C1B398;
+    padding: 2px 10px 2px 0;
+    display: block;
+    color: #000;
+    background-color: #C1B398;
     text-decoration:underline;
 }
 span.preposition {
@@ -195,7 +193,7 @@ span.preposition {
 }
 .grampsid {
     font:normal .8em/1.2em monospace;
-    color:#000;
+    color: #000;
 }
 
 /* Header
@@ -214,13 +212,13 @@ span.preposition {
     margin:0;
     padding:.5em 0 0.5em 10px;
     font-size: 40px;
-    color:#FFF;
+    color: #FFF;
     font-style:italic;
 }
 p#user_header {
     font-size:1.3em;
     text-align:left;
-    color:#6AF364;
+    color: #6AF364;
     margin:0;
     padding:.2em 0 .6em 20px;
 }
@@ -246,10 +244,10 @@ p#user_header {
 }
 #footer a, #footer a:visited {
     text-decoration:none;
-    color:#FFF;
+    color: #FFF;
 }
 #footer a:hover {
-    color:#000;
+    color: #000;
     text-decoration:underline;
 }
 #footer img {
@@ -266,7 +264,7 @@ p#user_header {
 #footer p#copyright {
     float:right;
     text-align:right;
-    color:#FFF;
+    color: #FFF;
     margin: 10px 10px 0px 0px;
 }
 #footer p#copyright img {
@@ -277,7 +275,7 @@ p#user_header {
     width:70%;
     float:left;
     margin:1em;
-     color:#6AF364;
+     color: #6AF364;
 }
 #user_footer p {
     font:normal 1em/1.2em serif;
@@ -299,7 +297,7 @@ div#alphabet ul {
     padding:0 0 0 9px;
     border-top:solid 2px #000;
     border-bottom:solid 4px #000;
-    background-color:#6AF364;
+    background-color: #6AF364;
 }
 div#alphabet ul li:after {
     content:"  |";
@@ -315,14 +313,14 @@ div#alphabet ul li.letters a {
     display:block;
     float:left;
     font:bold 16px/100% sans;
-    color:#000;
+    color: #000;
     margin:0;
     padding:5px 5px;
     text-decoration:none;
 }
 div#alphabet ul li.letters a:hover {
-    background-color:#000;
-    color:#FFF;
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Navigation
@@ -337,7 +335,7 @@ div#alphabet ul li.letters a:hover {
     height:32px;
     margin:0;
     padding:0 0 0 20px;
-    background-color:#FFF;
+    background-color: #FFF;
     border-bottom:solid 2px #000;
 }
 #navigation ul li, #subnavigation ul li {
@@ -348,15 +346,15 @@ div#alphabet ul li.letters a:hover {
     display:block;
     float:left;
     font:normal 16px/100% serif;
-    color:#000;
+    color: #000;
     text-decoration:none;
     margin:0;
     padding:5px 5px;
 
 }
 #navigation ul li a:hover, #subnavigation ul li a:hover {
-    background-color:#C1B398;
-    color:#000;
+    background-color: #C1B398;
+    color: #000;
     border-top:solid 3px #C1B398;
     border-bottom:solid 8px #C1B398;
 }
@@ -366,13 +364,13 @@ div#alphabet ul li.letters a:hover {
     margin-top:-6px;
     padding-top:11px;
     padding-bottom:8px;
-    background-color:#CCC;
-    color:#000;
+    background-color: #CCC;
+    color: #000;
     border-bottom:solid 4px #CCC;
 }
 #navigation ul li.CurrentSection a:hover {
-    background-color:#000;
-    color:#FFF;
+    background-color: #000;
+    color: #FFF;
 }
 #subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
@@ -382,36 +380,24 @@ div#alphabet ul li.letters a:hover {
 ----------------------------------------------------- */
 table.infolist {
     width:100%;
-    margin:0;
+    margin: .5cm 0 .5cm 0;
     padding:0;
 }
 table.infolist thead tr th {
     font:normal 1.1em/1.2em serif;
-    color:#000;
+    color: #000;
     margin:0;
     padding:.2em 10px;
-    background-color:#6AF364;
+    background-color: #6AF364;
     border: solid 2px #5D835F;
-}
-table.infolist thead tr th a {
-    background-color:#6AF364;
-    color:#000;
-}
-table.infolist thead tr th a:hover {
-    background-color:#C1B398;
 }
 table.infolist tr td {
     font:normal 1.1em/1.4em serif;
     vertical-align:middle;
     padding:.1em 10px;
 }
-table.infolist tr td a {
-    display:block;
-    text-decoration:none;
-    color:#000;
-}
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top:solid 1px #453619;
+    border-top:solid 1px #5D835F;
 }
 table.infolist tr td.ColumnLetter {
     width:3%;
@@ -435,15 +421,8 @@ table.infolist tbody tr td.ColumnType {
 }
 table.infolist tbody tr td.ColumnPartner {
     font-size:.9em;
-    background-color:#FFF;
+    background-color: #FFF;
 }
-table.infolist tbody tr td.ColumnPartner a {
-    display:block;
-    padding:.6em 10px;
-    vertical-align:middle;
-}
-table.infolist tbody tr td.ColumnPartner a:hover { }
-
 table.infolist tbody tr td.ColumnParents {
     font-size:.9em;
 }
@@ -482,11 +461,11 @@ table.surnamelist thead tr th.ColumnLetter {
     padding-right:10px;
 }
 table.surnamelist tbody tr td.ColumnSurname {
-    background-color:#FFF;
+    background-color: #FFF;
 }
 table#SortByName thead tr th.ColumnSurname, 
 table#SortByCount thead tr th.ColumnQuantity {
-    background-color:#C1B398;
+    background-color: #C1B398;
 }
 table#SortByName thead tr th.ColumnSurname a:after, 
 table#SortByCount thead tr th.ColumnQuantity a:after {
@@ -503,7 +482,7 @@ table#SortByCount tbody tr td.ColumnQuantity { }
 
 table.surnamelist tbody tr td.ColumnSurname:hover,
  table#SortByName tbody tr td.ColumnSurname:hover {
-    background-color:#C1B398;
+    background-color: #C1B398;
 }
 table.surname {
     border-bottom:solid 1px #000;
@@ -516,7 +495,7 @@ table.surname thead tr th.ColumnName {
     padding-left:20px;
 }
 table.surname tbody tr td.ColumnName {
-    background-color:#FFF;
+    background-color: #FFF;
     width:20%;
     padding:0;
 }
@@ -527,7 +506,7 @@ table.surname tbody tr td.ColumnName a {
 table.surname tbody tr td.ColumnName a span.grampsid { }
 
 table.surname tbody tr td.ColumnName:hover {
-    background-color:#C1B398;
+    background-color: #C1B398;
 }
 table.surname tbody tr td.ColumnPartner {
     background-color: #FFF;
@@ -558,7 +537,7 @@ table.individuallist tbody tr td.ColumnSurname a:active {
 }
 table.individuallist tbody tr td.ColumnName {
     padding:0;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 table.individuallist tbody tr td.ColumnName a {
     display:block;
@@ -569,7 +548,7 @@ table.individuallist tbody tr td.ColumnName a:hover { }
 
 table.individuallist tbody tr td.ColumnPartner {
     padding:0;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 table.individuallist tbody tr td.ColumnPartner a {
     display:block;
@@ -613,7 +592,7 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
@@ -622,52 +601,35 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 
 /* Events
 ----------------------------------------------------- */
-div#EventList (
+div#EventList {
     font-size:10px;
-    color:#000;
-    font-family:Arial, sans, sans-serif, Helvetica;
-)
-div#EventList table.eventlist {
-    margin: .5cm 0 .5cm 0;
-    width: 965px;
-}
-div#EventList table.eventlist thead tr th {
-    font-weight:bold;
-    border:solid 1px #5D835F;
+    color: #000;
 }
 div#EventList table.eventlist tbody tr {
-    border-bottom:solid 1px #000;
+    border-bottom: dashed 1px #5D835F;
 }
 div#EventList table.eventlist tbody tr td {
-    background-color:#D8F3D6;
-    padding: 10px 0px 10px 0px;
+    background-color: #D8F3D6;
+    padding: 4px 0 4px 0;
 }
 div#EventList table.eventlist tbody tr td.ColumnType {
-    background-color:#FFF;
+    background-color: #FFF;
     width: 25%;
-}
-div#EventList table.eventlist tbody tr td.ColumnType a:hover {
-    padding: 10px 10px 10px 0px;
-    display:block;
 }
 div#EventList table.eventlist tbody tr td.ColumnDate {
     width: 18%;
 }
-div#EventList table.eventlist tbody tr td.ColumnDescription {
-    width: 20%;
-}
 div#EventList table.eventlist tbody tr td.ColumnName {
-    background-color:#FFF;
-    width: 75%;
+    background-color: #FFF;
+    width: 40%;
 }
-div#EventList table.eventlist tbody tr td.ColumnName a:hover {
-    padding: 10px 10px 10px 0px;
-    display:block;
+div#EventList table.eventlist tbody tr td.ColumnPartner {
+    background-color: #FFF;
+    width: 30%;
 }
 div#EventDetail {
     font-size:10px;
-    color:#000;
-    font-family:Arial, sans, sans-serif, Helvetica;
+    color: #000;
 }
 div#EventDetail h3 {
     font-size: 40px;
@@ -676,7 +638,7 @@ div#EventDetail table.eventlist tbody tr td {
     border-bottom:dashed 1px #5D835F;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnValue  a:hover {
-    padding: 5px 50px 5px 0px;
+    padding: 2px 5px 2px 0px;
     display:block;
 }
     
@@ -690,7 +652,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnValue  a:hover {
 }
 #Gallery table.infolist tbody tr td.ColumnName {
     padding:0;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 #Gallery table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
@@ -753,7 +715,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnValue  a:hover {
     margin-bottom:0;
     border-style:solid;
     border-width:2px 0 1px 0;
-    border-color:#000;
+    border-color: #000;
 }
 table.exifdata tr td.ColumnAttribute {
     border-top:solid 1px #000;
@@ -821,19 +783,19 @@ table.download {
     margin: 2cm 0 2cm 0;
     border:solid 2px #000;
     width:100%;
-    nackground-color:#D8F3D6;
+    nackground-color: #D8F3D6;
 }
 table.download img {
     float:center;
 }
 table.download thead tr th {
-    background-color:#6AF364;
+    background-color: #6AF364;
     color: #000;
     text-transform:uppercase;
     padding-left:20px;
     padding-top:15px;
     border-style:solid;
-    border-color:#000;
+    border-color: #000;
     border-width:0 2px 2px 2px;
     text-align:left;
 }
@@ -844,7 +806,7 @@ table.download tbody tr td {
     padding-left:20px;
     padding-top:15px;
     border-style:solid;
-    border-color:#000;
+    border-color: #000;
     border-width:0 2px 2px 2px;
     text-align:left;
 }
@@ -857,7 +819,7 @@ table.download td.ColumnLicense {
 }
 table.download td.ColumnFilename {
     width:30%;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 table.download td.ColumnFilename a {
     display:block;
@@ -883,7 +845,7 @@ table.download td.ColumnModified {
 }
 #Sources table.infolist tbody tr td.ColumnName {
     padding:0;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 #Sources table.infolist tbody tr td.ColumnName a {
     font-size:.9em;
@@ -898,7 +860,7 @@ table.download td.ColumnModified {
 /* Repositories
 ------------------------------------------------------ */
 #RepositoryList table.repolist tbody tr td.ColumnName {
-    background-color:#FFF;
+    background-color: #FFF;
 }
 
 /* Subsections
@@ -944,7 +906,7 @@ div#events h4 {
     border:none;
 }
 #IndividualDetail {
-    background-color:#FFF;
+    background-color: #FFF;
 }
 #IndividualDetail div#events table.infolist thead tr th {
     font-weight:bold;
@@ -952,10 +914,10 @@ div#events h4 {
     line-height:12px;
     font-family:sans-serif;
     text-transform:uppercase;
-    color:#542;
+    color: #542;
     padding-top:6px;
     padding-bottom:4px;
-    background-color:#6AF364;
+    background-color: #6AF364;
 }
 #IndividualDetail div#events table.eventtable {
     width:100%;
@@ -976,11 +938,11 @@ div#events h4 {
 }
 table.infolist tbody tr td.ColumnValue p {
     font-family:sans-serif;
-    color:#696969;
+    color: #696969;
     margin:.2em 0 0 2em;
 }
 table.eventtable thead tr th {
-    color:#000;
+    color: #000;
 }
 table.eventtable tbody tr td {
     border-bottom:solid 1px #000;
@@ -991,7 +953,7 @@ div#events table.attrlist {
     width:880px;
 }
 table.attrlist thead tr th {
-    color:#000;
+    color: #000;
 }
 div#events table.attrlist tbody tr td {
     border-bottom:dashed 1px #000;
@@ -1051,7 +1013,7 @@ div#families table.infolist {
     margin-top:.5em;
 }
 div#Families table.infolist tbody tr td {
-    background-color:#FFF;
+    background-color: #FFF;
 }
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top:0;
@@ -1107,7 +1069,7 @@ div#Addresses {
 }
 div#Addresses table.infolist {
     font-size:.35cm;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 div#Addresses table.infolist tbody tr td {
     border-bottom:solid 1px #000;
@@ -1201,12 +1163,12 @@ div#sourcerefs ol li ol {
 /* Subsections : Summary Area
 ----------------------------------------------------- */
 div#summaryarea {
-    background-color:#FFF;
+    background-color: #FFF;
 }
 div#summaryarea table.infolist {
     margin:0;
     padding:0;
-    background:#FFF;
+    background: #FFF;
     border-bottom:solid .7em #FFF;
 }
 div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
@@ -1218,7 +1180,7 @@ div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a
 }
 div#summaryarea table.infolist tbody tr td.ColumnAttribute {
     width:14%;
-    color:#696969;
+    color: #696969;
     padding-left:20px;
 }
 
@@ -1232,7 +1194,7 @@ div#pedigree {
 }
 #pedigree a {
     text-decoration:none;
-    color:#000;
+    color: #000;
 }
 #pedigree a:hover {
     text-decoration:underline;
@@ -1263,7 +1225,7 @@ div#pedigree {
 .spouse a {
     font-weight:normal;
     font-style:normal;
-    color:#000;
+    color: #000;
 }
 .spouse:before {
     content: "+ ";
@@ -1298,12 +1260,12 @@ div#pedigree {
     font:normal .7em/1.4em sans-serif;
     text-align:center;
     text-decoration:none;
-    color:#542;
+    color: #542;
     width:118px;
     padding:5px 20px 7px 20px;
     margin-top:-25px;
     margin-left:16px;
-    background-color:#FFF;
+    background-color: #FFF;
     border:solid 1px #453619;
 }
 #treeContainer div.boxbg a:hover {
@@ -1311,7 +1273,7 @@ div#pedigree {
     z-index:999;
     font-size:1em;
     text-decoration:none;
-    color:#542;
+    color: #542;
     width:190px;
     margin-left:-20px;
     padding:10px 25px 12px 25px;
@@ -1367,8 +1329,8 @@ div#pedigree {
 }
 #treeContainer div.unknown a,
 #treeContainer div.unknown span.unlinked {
-    background-color:#000;
-    color:#FAFAFA;
+    background-color: #000;
+    color: #FAFAFA;
 }
 .shadow {
     display:none;
@@ -1379,7 +1341,7 @@ div#pedigree {
     height:1px;
     margin:0 0 0 16px;
     padding:0;
-    background-color:#453619;
+    background-color: #453619;
 }
 #tree div div.bhline {
     position:absolute;
@@ -1387,7 +1349,7 @@ div#pedigree {
     width:1px;
     margin:0 0 0 16px;
     padding:0;
-    background-color:#453619;
+    background-color: #453619;
 }
 .ghline, .gvline {
     display:none;
@@ -1398,7 +1360,7 @@ div#pedigree {
 /* Calendar : General */
 body#WebCal {
     padding:0 14px;
-    background-color:#542;
+    background-color: #542;
 }
 .calendar {
     empty-cells:show;
@@ -1424,34 +1386,34 @@ body#WebCal {
     font-size:2em;
     line-height:100%;
     text-transform:none;
-    color:#542;
+    color: #542;
     padding:.3em 0 .2em 0;
-    background-color:#FFF;
+    background-color: #FFF;
 }
 #CreatorInfo {
     float:right;
-    color:#FFF;
+    color: #FFF;
     margin:-24px 10px 0 0;
 }
 #CreatorInfo a {
-    color:#FFF;
+    color: #FFF;
 }
 #CreatorInfo a:hover {
-    color:#FFF;
+    color: #FFF;
 }
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
     font-style:italic;
-    color:#000;
-    background-color:#6AF364;
+    color: #000;
+    background-color: #6AF364;
     border:solid 2px #453619;
 }
 .calendar tfoot tr td {
     padding:.7em 5% 1em 5%;
     border-top:solid 2px #000;
     vertical-align:middle;
-    color:#453619;
-    background-color:#D8F3D6;
+    color: #453619;
+    background-color: #D8F3D6;
 }
 
 /* Calendar : Date Numeral */
@@ -1462,10 +1424,10 @@ body#WebCal {
     font-size:1.2em;
     line-height:100%;
     text-align:center;
-    color:#542;
+    color: #542;
     margin:0 0 0 .5em;
     padding:.2em 0;
-    background-color:#D8F3D6;
+    background-color: #D8F3D6;
 }
 
 /* Calendar : Date Container */
@@ -1475,13 +1437,13 @@ body#WebCal {
     padding:0;
     border-width:1px 0 0 1px;
     border-style:solid;
-    border-color:#453619;
+    border-color: #453619;
 }
 .calendar tbody tr td.weekday {
-    background-color:#FFF;
+    background-color: #FFF;
 }
 .calendar tbody tr td.weekend {
-    background-color:#D8F3D6;
+    background-color: #D8F3D6;
 }
 .calendar tbody tr td.saturday {
     border-right:solid 1px #453619;
@@ -1518,16 +1480,16 @@ body#WebCal {
 /* Calendar : Birthday, Anniversary, Highlight */
 .calendar tbody tr td ul li em {
     font-style:normal;
-    color:#0A65B5;
+    color: #0A65B5;
 }
 .calendar tbody tr td ul li span.yearsmarried em {
-    color:#453619;
+    color: #453619;
 }
 .calendar tbody tr td.highlight { }
 
 .calendar tbody tr td.highlight div.date {
-    color:#0A65B5;
-    background-color:#C2E1FE;
+    color: #0A65B5;
+    background-color: #C2E1FE;
 }
 
 /* Calendar : Previous-Next Month */
@@ -1535,8 +1497,8 @@ body#WebCal {
 .calendar tbody tr td.next, 
 .calendar tbody tr td.previous div.date, 
 .calendar tbody tr td.next div.date {
-    color:#333;
-    background-color:#D8F3D6;
+    color: #333;
+    background-color: #D8F3D6;
 }
 
 /* Calendar : Full Year */
