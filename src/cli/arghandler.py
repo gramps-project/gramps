@@ -441,22 +441,7 @@ class ArgHandler(object):
         Command-line action routine. Try to perform specified action.
         """
         pmgr = PluginManager.get_instance()
-        if action == 'check':
-            import Check
-            checker = Check.CheckIntegrity(self.dbstate, None, None)
-            checker.check_for_broken_family_links()
-            checker.cleanup_missing_photos(1)
-            checker.check_parent_relationships()
-            checker.cleanup_empty_families(0)
-            errs = checker.build_report(1)
-            if errs:
-                checker.report(1)
-        elif action == 'summary':
-            ## FIXME, this is broken, Summary no longer has build_report !
-            import Summary
-            text = Summary.build_report(self.dbstate.db, None)
-            print text
-        elif action == "report":
+        if action == "report":
             try:
                 options_str_dict = dict( [ tuple(chunk.split('='))
                     for chunk in options_str.split(',') ] )
