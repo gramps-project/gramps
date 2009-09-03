@@ -380,7 +380,7 @@ div#alphabet ul li.letters a:hover {
 ----------------------------------------------------- */
 table.infolist {
     width:100%;
-    margin: .5cm 0 .5cm 0;
+    margin:0;
     padding:0;
 }
 table.infolist thead tr th {
