@@ -20,8 +20,8 @@
 
 from base import *
 from dbconst import *
-from read import *
 from cursor import *
+from read import *
 from bsddbtxn import *
 from txn import *
 from undoredo import *

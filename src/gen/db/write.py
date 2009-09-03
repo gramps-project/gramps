@@ -249,6 +249,9 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
     # the main index is unique, the others allow duplicate entries.
 
     def get_reference_map_cursor(self):
+        """
+        Returns a reference to a cursor over the reference map
+        """
         try:
             return GrampsDBDirAssocCursor(self.reference_map, self.txn)
         except DBERRS, msg:
@@ -256,6 +259,9 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             raise Errors.DbError(msg)
 
     def get_reference_map_primary_cursor(self):
+        """
+        Returns a reference to a cursor over the reference map primary map
+        """
         try:
             return GrampsDBDirAssocCursor(self.reference_map_primary_map, 
                                         self.txn)
@@ -264,6 +270,9 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             raise Errors.DbError(msg)
 
     def get_reference_map_referenced_cursor(self):
+        """
+        Returns a reference to a cursor over the reference map referenced map
+        """
         try:
             return GrampsDBDirAssocCursor(self.reference_map_referenced_map, 
                                         self.txn)
@@ -696,16 +705,16 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         
         Returns an interator over a list of (class_name, handle) tuples.
 
-        @param handle: handle of the object to search for.
-        @type handle: database handle
-        @param include_classes: list of class names to include in the results.
-                                Default: None means include all classes.
-        @type include_classes: list of class names
+        :param handle: handle of the object to search for.
+        :type handle: database handle
+        :param include_classes: list of class names to include in the results.
+            Default: None means include all classes.
+        :type include_classes: list of class names
 
         Note that this is a generator function, it returns a iterator for
-        use in loops. If you want a list of the results use:
+        use in loops. If you want a list of the results use::
 
-        >       result_list = list(find_backlink_handles(handle))
+            result_list = list(find_backlink_handles(handle))
         """
 
         # Use the secondary index to locate all the reference_map entries
@@ -1210,7 +1219,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                     self.find_next_note_gramps_id if set_gid else None,
                     self.commit_note)
 
-    def do_remove_object(self, handle, transaction, data_map, key):
+    def __do_remove(self, handle, transaction, data_map, key):
         if self.readonly or not handle:
             return
 
@@ -1250,7 +1259,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         Remove the Source specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.do_remove_object(handle, transaction, self.source_map, 
+        self.__do_remove(handle, transaction, self.source_map, 
                               SOURCE_KEY)
 
     def remove_event(self, handle, transaction):
@@ -1258,7 +1267,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         Remove the Event specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.do_remove_object(handle, transaction, self.event_map, 
+        self.__do_remove(handle, transaction, self.event_map, 
                               EVENT_KEY)
 
     def remove_object(self, handle, transaction):
@@ -1266,7 +1275,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         Remove the MediaObjectPerson specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.do_remove_object(handle, transaction, self.media_map, 
+        self.__do_remove(handle, transaction, self.media_map, 
                               MEDIA_KEY)
 
     def remove_place(self, handle, transaction):
@@ -1274,7 +1283,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         Remove the Place specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.do_remove_object(handle, transaction, self.place_map, 
+        self.__do_remove(handle, transaction, self.place_map, 
                               PLACE_KEY)
 
     def remove_family(self, handle, transaction):
@@ -1282,7 +1291,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         Remove the Family specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.do_remove_object(handle, transaction, self.family_map, 
+        self.__do_remove(handle, transaction, self.family_map, 
                               FAMILY_KEY)
 
     def remove_repository(self, handle, transaction):
@@ -1290,7 +1299,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         Remove the Repository specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.do_remove_object(handle, transaction, self.repository_map, 
+        self.__do_remove(handle, transaction, self.repository_map, 
                               REPOSITORY_KEY)
 
     def remove_note(self, handle, transaction):
@@ -1298,7 +1307,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         Remove the Note specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.do_remove_object(handle, transaction, self.note_map, 
+        self.__do_remove(handle, transaction, self.note_map, 
                               NOTE_KEY)
 
     def __set_name_group_mapping(self, name, group):
@@ -1579,30 +1588,6 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             newobj.unserialize(data)
             return newobj
         return None
-
-    def find_from_handle(self, handle, transaction, class_type, dmap, add_func):
-        """
-        Find a object of class_type in the database from the passed handle.
-        
-        If no object exists, a new object is added to the database.
-        
-        @return: Returns a tuple, first the object, second a bool which is True
-                 if the object is new
-        @rtype: tuple
-        """
-        obj = class_type()
-        handle = str(handle)
-        new = True
-        if handle in dmap:
-            data = dmap.get(handle, txn=self.txn)
-            obj.unserialize(data)
-            #references create object with id None before object is really made
-            if obj.gramps_id is not None:
-                new = False
-        else:
-            obj.set_handle(handle)
-            add_func(obj, transaction)
-        return obj, new
 
     def transaction_begin(self, msg="", batch=False, no_magic=False):
         try:

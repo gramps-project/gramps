@@ -92,55 +92,17 @@ class GrampsDbBase(object):
         """
         Return True if database is upgraded
         """
-        raise NotImplementedError        
+        raise NotImplementedError
 
-    def del_person(self, handle):
+    def set_auto_remove(self):
         """
-        Delete a Person object given the handle
+        BSDDB change log settings using new method with renamed attributes
         """
-        raise NotImplementedError        
+        raise NotImplementedError
 
-    def del_source(self, handle):
-        """
-        Delete a Source object given the handle
-        """
-        raise NotImplementedError 
-
-    def del_repository(self, handle):
-        """
-        Delete a Repository object given the handle
-        """
-        raise NotImplementedError 
-
-    def del_note(self, handle):
-        """
-        Delete a Person object given the handle
-        """
-        raise NotImplementedError 
-
-    def del_place(self, handle):
-        """
-        Delete a Place object given the handle
-        """
-        raise NotImplementedError 
-
-    def del_media(self, handle):
-        """
-        Delete a Media object given the handle
-        """
-        raise NotImplementedError 
-
-    def del_family(self, handle):
-        """
-        Delete a Family object given the handle
-        """
-        raise NotImplementedError 
-
-    def del_event(self, handle):
-        """
-        Delete an Event object given the handle
-        """
-        raise NotImplementedError 
+    def write_version(self, name):
+        """Write version number for a newly created DB."""
+        raise NotImplementedError
 
     def create_id(self):
         """
@@ -154,21 +116,9 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError 
 
-    def get_person_cursor_iter(self, msg=None):
-        """
-        Return a reference to a cursor iterator over Person objects
-        """
-        raise NotImplementedError
-
     def get_family_cursor(self):
         """
         Return a reference to a cursor over Family objects
-        """
-        raise NotImplementedError
-
-    def get_family_cursor_iter(self, msg=None):
-        """
-        Return a reference to a cursor iterator over Family objects
         """
         raise NotImplementedError
 
@@ -178,21 +128,9 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError
 
-    def get_event_cursor_iter(self, msg=None):
-        """
-        Return a reference to a cursor iterator over Family objects
-        """
-        raise NotImplementedError
-
     def get_place_cursor(self):
         """
         Return a reference to a cursor over Place objects
-        """
-        raise NotImplementedError
-
-    def get_place_cursor_iter(self, msg=None):
-        """
-        Return a reference to a cursor iterator over Place objects
         """
         raise NotImplementedError
 
@@ -202,21 +140,9 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError
 
-    def get_source_cursor_iter(self, msg=None):
-        """
-        Return a reference to a cursor iterator over Source objects
-        """
-        raise NotImplementedError
-
     def get_media_cursor(self):
         """
         Return a reference to a cursor over Media objects
-        """
-        raise NotImplementedError
-
-    def get_media_cursor_iter(self, msg=None):
-        """
-        Return a reference to a cursor iterator over Media objects
         """
         raise NotImplementedError
 
@@ -226,21 +152,27 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError
 
-    def get_repository_cursor_iter(self, msg=None):
-        """
-        Return a reference to a cursor iterator over Repository objects
-        """
-        raise NotImplementedError
-
     def get_note_cursor(self):
         """
         Return a reference to a cursor over Note objects
         """
         raise NotImplementedError
 
-    def get_note_cursor_iter(self, msg=None):
+    def get_reference_map_cursor(self):
         """
-        Return a reference to a cursor iterator over Note objects
+        Returns a reference to a cursor over the reference map
+        """
+        raise NotImplementedError
+
+    def get_reference_map_primary_cursor(self):
+        """
+        Returns a reference to a cursor over the reference map primary map
+        """
+        raise NotImplementedError
+
+    def get_reference_map_referenced_cursor(self):
+        """
+        Returns a reference to a cursor over the reference map referenced map
         """
         raise NotImplementedError
 
@@ -293,8 +225,7 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError
             
-    def commit_base(self, obj, data_map, key, update_list, add_list, 
-                     transaction, change_time):
+    def commit_base(self, obj, data_map, key, transaction, change_time):
         """
         Commit the specified object to the database, storing the changes as 
         part of the transaction.
@@ -504,9 +435,9 @@ class GrampsDbBase(object):
         
         If no object exists, a new object is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -516,9 +447,9 @@ class GrampsDbBase(object):
         
         If no such Person exists, a new Person is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -528,9 +459,9 @@ class GrampsDbBase(object):
         
         If no such Source exists, a new Source is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -539,10 +470,8 @@ class GrampsDbBase(object):
         Find a Event in the database from the passed handle.
         
         If no such Event exists, a new Event is added to the database.
-        
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
         """
         raise NotImplementedError
 
@@ -552,9 +481,9 @@ class GrampsDbBase(object):
         
         If no such MediaObject exists, a new Object is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -564,9 +493,9 @@ class GrampsDbBase(object):
         
         If no such Place exists, a new Place is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -576,9 +505,9 @@ class GrampsDbBase(object):
         
         If no such Family exists, a new Family is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -588,9 +517,9 @@ class GrampsDbBase(object):
         
         If no such Repository exists, a new Repository is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -600,9 +529,9 @@ class GrampsDbBase(object):
         
         If no such Note exists, a new Note is added to the database.
         
-        @return: Returns a tuple, first the object, second a bool which is True
+        :returns: Returns a tuple, first the object, second a bool which is True
                  if the object is new
-        @rtype: tuple
+
         """
         raise NotImplementedError
 
@@ -927,15 +856,17 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError
 
-    def iter_person_handles(self):
+    def get_family_handles(self):
         """
-        Return an iterator over handles for Persons in the database
+        Return a list of database handles, one handle for each Family in
+        the database.
         """
         raise NotImplementedError
-                
-    def iter_people(self):
+
+    def get_event_handles(self):
         """
-        Return an iterator over handles and objects for Persons in the database
+        Return a list of database handles, one handle for each Event in the 
+        database. 
         """
         raise NotImplementedError
 
@@ -947,13 +878,7 @@ class GrampsDbBase(object):
         If sort_handles is True, the list is sorted by Place title.
         """
         raise NotImplementedError
-        
-    def iter_place_handles(self):
-        """
-        Return an iterator over handles for Places in the database
-        """
-        raise NotImplementedError
-                
+
     def get_source_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Source in
@@ -962,13 +887,7 @@ class GrampsDbBase(object):
         If sort_handles is True, the list is sorted by Source title.
         """
         raise NotImplementedError
-        
-    def iter_source_handles(self):
-        """
-        Return an iterator over handles for Sources in the database
-        """
-        raise NotImplementedError
-                
+
     def get_media_object_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each MediaObject in
@@ -977,49 +896,11 @@ class GrampsDbBase(object):
         If sort_handles is True, the list is sorted by title.
         """
         raise NotImplementedError
-        
-    def iter_media_object_handles(self):
-        """
-        Return an iterator over handles for Media in the database
-        """
-        raise NotImplementedError
-
-    def get_event_handles(self):
-        """
-        Return a list of database handles, one handle for each Event in the 
-        database. 
-        """
-        raise NotImplementedError
-        
-    def iter_event_handles(self):
-        """
-        Return an iterator over handles for Events in the database
-        """
-        raise NotImplementedError
-
-    def get_family_handles(self):
-        """
-        Return a list of database handles, one handle for each Family in
-        the database.
-        """
-        raise NotImplementedError
-        
-    def iter_family_handles(self):
-        """
-        Return an iterator over handles for Families in the database
-        """
-        raise NotImplementedError     
 
     def get_repository_handles(self):
         """
         Return a list of database handles, one handle for each Repository in
         the database.
-        """
-        raise NotImplementedError
-        
-    def iter_repository_handles(self):
-        """
-        Return an iterator over handles for Repositories in the database
         """
         raise NotImplementedError
 
@@ -1029,12 +910,102 @@ class GrampsDbBase(object):
         database.
         """
         raise NotImplementedError
+
+    def iter_person_handles(self):
+        """
+        Return an iterator over handles for Persons in the database
+        """
+        raise NotImplementedError
+        
+    def iter_family_handles(self):
+        """
+        Return an iterator over handles for Families in the database
+        """
+        raise NotImplementedError
+        
+    def iter_event_handles(self):
+        """
+        Return an iterator over handles for Events in the database
+        """
+        raise NotImplementedError
+                
+    def iter_place_handles(self):
+        """
+        Return an iterator over handles for Places in the database
+        """
+        raise NotImplementedError
+
+    def iter_source_handles(self):
+        """
+        Return an iterator over handles for Sources in the database
+        """
+        raise NotImplementedError
+        
+    def iter_media_object_handles(self):
+        """
+        Return an iterator over handles for Media in the database
+        """
+        raise NotImplementedError
+
+    def iter_repository_handles(self):
+        """
+        Return an iterator over handles for Repositories in the database
+        """
+        raise NotImplementedError
         
     def iter_note_handles(self):
         """
         Return an iterator over handles for Notes in the database
         """
         raise NotImplementedError
+
+    def iter_people(self):
+        """
+        Return an iterator over objects for Persons in the database
+        """
+        raise NotImplementedError        
+
+    def iter_families(self):
+        """
+        Return an iterator over objects for Families in the database
+        """
+        raise NotImplementedError        
+
+    def iter_events(self):
+        """
+        Return an iterator over objects for Events in the database
+        """
+        raise NotImplementedError        
+
+    def iter_places(self):
+        """
+        Return an iterator over objects for Places in the database
+        """
+        raise NotImplementedError        
+
+    def iter_sources(self):
+        """
+        Return an iterator over objects for Sources in the database
+        """
+        raise NotImplementedError        
+
+    def iter_media_objects(self):
+        """
+        Return an iterator over objects for MediaObjects in the database
+        """
+        raise NotImplementedError        
+
+    def iter_repositories(self):
+        """
+        Return an iterator over objects for Repositories in the database
+        """
+        raise NotImplementedError        
+
+    def iter_notes(self):
+        """
+        Return an iterator over objects for Notes in the database
+        """
+        raise NotImplementedError        
 
     def get_gramps_ids(self, obj_key):
         """
@@ -1552,6 +1523,12 @@ class GrampsDbBase(object):
         """Return the default media path of the database."""
         raise NotImplementedError
 
+    def set_column_order(self, col_list, name):
+        """
+        Store the display information in the database's metadata.
+        """
+        raise NotImplementedError        
+
     def set_person_column_order(self, col_list):
         """
         Store the Person display common information in the database's metadata.
@@ -1699,23 +1676,24 @@ class GrampsDbBase(object):
         Find all objects that hold a reference to the object handle.
         
         Returns an iterator over a list of (class_name, handle) tuples.
-
-        @param handle: handle of the object to search for.
-        @type handle: database handle
-        @param include_classes: list of class names to include in the results.
-                                Default: None means include all classes.
-        @type include_classes: list of class names
+        
+        :param handle: handle of the object to search for.
+        :type handle: database handle
+        :param include_classes: list of class names to include in the results.
+            Default is None which includes all classes.
+        :type include_classes: list of class names
         
         This default implementation does a sequential scan through all
         the primary object databases and is very slow. Backends can
         override this method to provide much faster implementations that
         make use of additional capabilities of the backend.
-
+        
         Note that this is a generator function, it returns a iterator for
-        use in loops. If you want a list of the results use:
-
-        >    result_list = list(find_backlink_handles(handle))
+        use in loops. If you want a list of the results use::
+        
+            result_list = list(find_backlink_handles(handle))
         """
+
         raise NotImplementedError
 
     def report_bm_change(self):

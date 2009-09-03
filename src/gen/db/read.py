@@ -21,7 +21,7 @@
 # $Id: read.py 12786 2009-07-11 15:32:37Z gburto01 $
 
 """
-Read class for the GRAMPS databases.
+Read classes for the GRAMPS databases.
 """
 from __future__ import with_statement
 #-------------------------------------------------------------------------
@@ -49,9 +49,7 @@ from gen.lib import (MediaObject, Person, Family, Source, Event, Place,
                      Repository, Note, GenderStats, Researcher)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
-from gen.db.cursor import GrampsCursor
-from gen.db.iterator import CursorIterator
-from gen.db.base import GrampsDbBase
+from gen.db import (GrampsCursor, GrampsDbBase)
 from Utils import create_id
 import Errors
 
@@ -107,7 +105,61 @@ class GrampsDbReadCursor(GrampsCursor):
 
 class GrampsDbRead(GrampsDbBase, Callback):
     """
-    GRAMPS database read access object. 
+    Read class for the GRAMPS databases.  Implements methods necessary to read
+    the various object classes. Currently, there are eight (8) classes:
+
+    Person, Family, Event, Place, Source, MediaObject, Repository and Note
+
+    For each object class, there are methods to retrieve data in various ways.
+    In the methods described below, <object> can be one of person, family,
+    event, place, source, media_object, respository or note unless otherwise
+    specified.
+
+    .. method:: get_<object>_from_handle()
+    
+        returns an object given its handle
+
+    .. method:: get_<object>_from_gramps_id()
+
+        returns an object given its gramps id
+
+    .. method:: get_<object>_cursor()
+
+        returns a cursor over an object.  Example use::
+
+            with get_person_cursor() as cursor:
+                for handle, person in cursor:
+                    # process person object pointed to by the handle
+
+    .. method:: get_<object>_handles()
+
+        returns a list of handles for the object type, optionally sorted
+        (for Person, Place, Source and Media objects)
+
+    .. method:: iter_<object>_handles()
+
+        returns an iterator that yields one object handle per call.
+
+    .. method:: iter_<objects>()
+
+        returns an iterator that yields one object per call.
+        The objects available are: people, families, events, places,
+        sources, media_objects, repositories and notes.
+
+    .. method:: get_<object>_event_types()
+
+        returns a list of all Event types assocated with instances of <object>
+        in the database.
+
+    .. method:: get_<object>_attribute_types()
+
+        returns a list of all Event types assocated with instances of <object>
+        in the database.
+
+    .. method:: get_<object>_column_order()
+
+        returns the object's display common information.
+
     """
 
     # This holds a reference to the gramps Config module if
@@ -258,30 +310,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
 
     def get_note_cursor(self):
         return self.__get_cursor(self.note_map)
-
-    def get_person_cursor_iter(self, msg=_("Processing Person records")):
-        return CursorIterator(self, self.get_person_cursor(), msg)
-
-    def get_family_cursor_iter(self, msg=_("Processing Family records")):
-        return CursorIterator(self, self.get_family_cursor(), msg)
-
-    def get_event_cursor_iter(self, msg=_("Processing Event records")):
-        return CursorIterator(self, self.get_event_cursor(), msg)
-
-    def get_place_cursor_iter(self, msg=_("Processing Place records")):
-        return CursorIterator(self, self.get_place_cursor(), msg)
-
-    def get_source_cursor_iter(self, msg=_("Processing Source records")):
-        return CursorIterator(self, self.get_source_cursor(), msg)
-
-    def get_media_cursor_iter(self, msg=_("Processing Media records")):
-        return CursorIterator(self, self.get_media_cursor(), msg)
-
-    def get_repository_cursor_iter(self, msg=_("Processing Repository records")):
-        return CursorIterator(self, self.get_repository_cursor(), msg)
-
-    def get_note_cursor_iter(self, msg=_("Processing Note records")):
-        return CursorIterator(self, self.get_note_cursor(), msg)
 
     def load(self, name, callback, mode=DBMODE_R):
         """
@@ -787,6 +815,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
     iter_media_object_handles = _f(get_media_cursor)
     iter_repository_handles   = _f(get_repository_cursor)
     iter_note_handles         = _f(get_note_cursor)
+    del _f
     
     def _f(curs_, obj_):
         """
@@ -810,6 +839,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
     iter_media_objects = _f(get_media_cursor, MediaObject)
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
+    del _f
 
     def get_gramps_ids(self, obj_key):
         key2table = {
@@ -1483,11 +1513,11 @@ class GrampsDbRead(GrampsDbBase, Callback):
         
         Returns an interator over alist of (class_name, handle) tuples.
 
-        @param handle: handle of the object to search for.
-        @type handle: database handle
-        @param include_classes: list of class names to include in the results.
-                                Default: None means include all classes.
-        @type include_classes: list of class names
+        :param handle: handle of the object to search for.
+        :type handle: database handle
+        :param include_classes: list of class names to include in the results.
+            Defaults to None, which includes all classes.
+        :type include_classes: list of class names
         
         This default implementation does a sequencial scan through all
         the primary object databases and is very slow. Backends can
@@ -1495,9 +1525,9 @@ class GrampsDbRead(GrampsDbBase, Callback):
         make use of additional capabilities of the backend.
 
         Note that this is a generator function, it returns a iterator for
-        use in loops. If you want a list of the results use:
+        use in loops. If you want a list of the results use::
 
-        >    result_list = list(ind_backlink_handles(handle))
+            result_list = list(find_backlink_handles(handle))
         """
         assert False, "read:find_backlink_handles -- shouldn't get here!!!"
         # Make a dictionary of the functions and classes that we need for
