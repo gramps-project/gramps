@@ -30,6 +30,7 @@ undos and redos.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import with_statement
 import time, os
 import cPickle as pickle
 from bsddb import db

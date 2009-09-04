@@ -29,6 +29,7 @@ BSDDBTxn class: Wrapper for BSDDB transaction-oriented methods
 # BSDDBTxn
 #
 #-------------------------------------------------------------------------
+from __future__ import with_statement
 
 class BSDDBTxn(object):
     """
