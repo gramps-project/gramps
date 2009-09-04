@@ -77,14 +77,16 @@ class ProxyDbBase(GrampsDbBase):
         the owner of the database"""
         return self.db.get_researcher()        
         
-    def include_something(self, handle, object=None):
+    def include_something(self, handle, obj=None):
         """
         Model predicate. Returns True if object referred to by handle is to be
         included, otherwise returns False.
         """
-        if object is None:
-            object = self.get_something_from_handle(handle)
-        return object.include()
+        if obj is None:
+            obj = self.get_unfiltered_something(handle)
+
+        # Call function to determine if object should be included or not
+        return obj.include()
         
     # Define default predicates for each object type
     
@@ -304,7 +306,7 @@ class ProxyDbBase(GrampsDbBase):
         Returns obj if predicate is True or not callable, else returns None
         """
         if predicate is not None:
-            return obj if predicate(obj) else None
+            return obj if predicate(obj.handle) else None
         return obj
 
     def __getattr__(self, name):
@@ -675,154 +677,6 @@ class ProxyDbBase(GrampsDbBase):
     def get_mediapath(self):
         """returns the default media path of the database"""
         return self.db.get_mediapath()
-
-    def set_column_order(self, col_list, name):
-        raise NotImplementedError
-
-    def set_person_column_order(self, col_list):
-        """
-        Stores the Person display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_family_list_column_order(self, col_list):
-        """
-        Stores the Person display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_child_column_order(self, col_list):
-        """
-        Stores the Person display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_place_column_order(self, col_list):
-        """
-        Stores the Place display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_source_column_order(self, col_list):
-        """
-        Stores the Source display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_media_column_order(self, col_list):
-        """
-        Stores the Media display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_event_column_order(self, col_list):
-        """
-        Stores the Event display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_repository_column_order(self, col_list):
-        """
-        Stores the Repository display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_note_column_order(self, col_list):
-        """
-        Stores the Note display common information in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_person_column_order(self):
-        """
-        Return the Person display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-        
-    def get_family_list_column_order(self):
-        """
-        Return the Person display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_child_column_order(self):
-        """
-        Return the Person display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_place_column_order(self):
-        """
-        Return the Place display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_source_column_order(self):
-        """
-        Return the Source display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_media_column_order(self):
-        """
-        Return the MediaObject display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_event_column_order(self):
-        """
-        Return the Event display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_repository_column_order(self):
-        """
-        Return the Repository display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def get_note_column_order(self):
-        """
-        Return the Note display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
-    def delete_primary_from_reference_map(self, handle, transaction):
-        """Called each time an object is removed from the database. This can
-        be used by subclasses to update any additional index tables that might
-        need to be changed."""
-        raise NotImplementedError
-
-    def update_reference_map(self, obj, transaction):
-        """Called each time an object is writen to the database. This can
-        be used by subclasses to update any additional index tables that might
-        need to be changed."""
-        raise NotImplementedError
-
-    def reindex_reference_map(self, callback):
-        """
-        Reindex all primary records in the database.
-
-        """
-        raise NotImplementedError
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
