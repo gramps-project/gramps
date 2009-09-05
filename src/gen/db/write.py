@@ -1310,6 +1310,18 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         self.__do_remove(handle, transaction, self.note_map, 
                               NOTE_KEY)
 
+    def set_name_group_mapping(self, name, group):
+        """
+        Make name group under the value of group.
+        
+        If group =None, the old grouping is deleted. 
+        """
+        try:
+            self.__set_name_group_mapping(name, group)
+        except DBERRS, msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+            
     def __set_name_group_mapping(self, name, group):
         if not self.readonly:
             # Start transaction
