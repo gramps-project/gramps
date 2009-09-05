@@ -368,11 +368,34 @@ class BasePage(object):
         # return unordered note list to its callers
         return unordered
 
-    def get_event_data(self, event, evt_ref):
+    def event_link(self, eventtype, handle, gid=None, up=False):
+        """ createsa hyperlink for an event based on its type """
+
+        url = self.report.build_url_fname_html(handle, 'evt', up)
+
+
+        evt_hyper = Html('a', eventtype, href=url, title=eventtype)
+        if not self.noid and gid:
+            evt_hyper += Html('span', ' [%s] ' % gid, class_='grampsid', 
+                inline=True)
+
+        # return event hyper link to its callers
+        return evt_hyper
+
+    def get_event_data(self, event, evt_ref, showdescr=False, showsources=True):
+        """
+        retrieve event data from event and evt_ref
+
+        @param: event = event from database
+        @param: evt_ref = eent reference
+        @param: showdescr = to show the event description or not
+        @param: showsources = to show the event source references or not
+        """
         db = self.report.database
 
         # get event type
-        eventtype = get_event_type(event, evt_ref) 
+        eventtype = get_event_type(event, evt_ref)
+        evt_hyper = self.event_link(eventtype, evt_ref.ref, event.gramps_id, True)
 
         # get place name
         place_handle = event.get_place_handle()
@@ -382,7 +405,7 @@ class BasePage(object):
         if place: 
             place_name = ReportUtils.place_name(db, place_handle)
             place_hyper = self.place_link(place_handle, place_name, 
-                                                            place.gramps_id, True)
+                                          place.gramps_id, True)
 
         # get event and event_ref notes
         notelist = event.get_note_list()
@@ -390,28 +413,24 @@ class BasePage(object):
 
         # wrap it all up and return to its callers
         info = [
-            ['Type',           eventtype],
-            ['Date',           _dd.display(event.get_date_object() )],
-            ['Place',          place_hyper],
-            ['Description',    event.get_description()],
-            ['Notes',          notelist],
-            ['Attributes',     event.get_attribute_list()]
-            ]
+            [THEAD,    evt_hyper],
+            [DHEAD,    _dd.display(event.get_date_object() )],
+            [PHEAD,    place_hyper],
+            [NHEAD,    notelist],
+            [AHEAD,    event.get_attribute_list()] ]
+
+        if showdescr:
+            descr_row = [DESCRHEAD,    event.get_description()]
+            info.insert(3, descr_row)
+
+        if showsources:
+            position = 3
+            if showdescr:
+                position = 4 
+            source_row = [SHEAD, self.get_citation_links(event.get_source_references() ) ]
+            info.insert(position, source_row)
+
         return info                         
-
-    def event_link(self, eventtype, handle, gid=None, up=False):
-        """ createsa hyperlink for an event based on its type """
-
-        url = self.report.build_url_fname_html(handle, 'evt', up)
-
-
-        event_hyper = Html('a', eventtype, href=url, title=eventtype)
-        if not self.noid and gid:
-            event_hyper += Html('span', ' [%s] ' % gid, class_='grampsid', 
-                inline=True)
-
-        # return event hyper link to its callers
-        return event_hyper
 
     def dump_ordinance(self, db, ldsobj, LDSType='Person'):
         """
@@ -671,11 +690,13 @@ class BasePage(object):
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
-    def display_attr_list(self, attrobj):
+    def display_attr_list(self, attrobj, showsources=True):
         """
         will display an object's attributes
 
         @param: attrobj -- object to display it's attributes
+        @param: showsources = True for class IndividualPage
+                            = False for class EventPage
         """
         attrlist = attrobj.get_attribute_list()
         if not attrlist:
@@ -696,13 +717,15 @@ class BasePage(object):
                 trow = Html('tr')
                 thead += trow
                 attr_header_row = [
-                    (THEAD,            'Type'),
-                    (VHEAD,            'Value'),
-                    (SHEAD,           'Source'),
-                    (NHEAD,          'Notes') ]
+                    [THEAD,    'Type'],
+                    [VHEAD,    'Value'],
+                    [NHEAD,    'Notes'] ]
+
+                if showsources:
+                    sourcerow = [SHEAD,    'Sources']
+                    attr_header_row.insert(2, sourcerow)
 
                 for (label, colclass) in attr_header_row:
-
                     trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
                 # begin table body
@@ -713,18 +736,30 @@ class BasePage(object):
                     trow = Html('tr')
                     tbody += trow
 
-                    for (colclass, value) in [
-                        ['Type',         attr.get_type().xml_str()],
-                        ['Value',        attr.get_value()],
-                        ['Sources',    self.get_citation_links(attr.get_source_references() )],
-                        ['Notes',      self.dump_notes(attr.get_note_list() )] ]:
+                    attr_data_row = [
+                        [attr.get_type().xml_str()],
+                        [attr.get_value()],
+                        [self.dump_notes(attr.get_note_list() )] ]
 
-                        trow += Html('td', value, class_='Column%s' % colclass, inline=True)
+                    if showsources:
+                        sourcerefs = [attr.get_source_references()]
+                        attr_data_row.insert(2, sourcerefs)
+
+                    index = 0
+                    for value in attr_data_row:
+                        value = value or '&nbsp;'
+
+                        # get column class from attr_header_row
+                        colclass = attr_header_row[index][1]
+
+                        trow += Html('td', value, class_='Column%s' % colclass, 
+                            inline=True if colclass == 'Type' else False)
+                        index += 1
 
         # return section to its caller
         return section
 
-    def write_footer(self, location):
+    def write_footer(self):
         """
         Will create and display the footer section of each page...
 
@@ -734,9 +769,6 @@ class BasePage(object):
 
         # begin footer division
         with Html('div', id='footer') as footer:
-
-            # specify footer location or not?
-            footer.attr += ' class="location"' if location else ' class="nolocation"' 
 
             footer_note = self.report.options['footernote']
             if footer_note:
@@ -791,7 +823,7 @@ class BasePage(object):
         # return footer to its callers
         return footer
 
-    def write_header(self, title, location):
+    def write_header(self, title):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
@@ -810,10 +842,6 @@ class BasePage(object):
                                      html_escape(title)),
                                     self.report.encoding, xmllang
                                     )
-
-        # if we have set a location for footer, then we must also set 
-        # the class here too to not have the footer padding
-        body.attr = ' class="location"' if location else ' class="nolocation"'
 
         # create additional meta tags
         meta = (Html('meta', attr = _META1) + 
@@ -1170,10 +1198,11 @@ class BasePage(object):
                         confidence = None
 
                     source_data = [
-                                            [DHEAD,                _dd.display(sref.date)],
-                                            [_('Page'),              sref.page],
-                                            [_('Confidence'),    confidence]
-                                            ]
+                                   [DHEAD,                _dd.display(sref.date)],
+                                   [_('Page'),              sref.page],
+                                   [_('Confidence'),    confidence]
+                                   ]
+
                     for (label, data) in source_data:
                         if data:
                             tmp.append("%s: %s" % (label, data))
@@ -1371,13 +1400,8 @@ class IndividualListPage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
-        # determine if we specify the location of footer or not?
-        location = True
-        if len(person_handle_list) > 6:
-            location = False 
-
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_('Individuals'), location)
+        indlistpage, body = self.write_header(_('Individuals'))
 
         # begin Individuals division
         with Html('div', class_='content', id='Individuals') as section:
@@ -1550,7 +1574,7 @@ class IndividualListPage(BasePage):
 
         # create clear line for proper styling
         # create footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1569,14 +1593,9 @@ class SurnamePage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
-        # determine location of footer or not?
-        location = True
-        if len(person_handle_list) > 6:
-            location = False
-
         of = self.report.create_file(name_to_md5(surname), 'srn')
         self.up = True
-        surnamepage, body = self.write_header("%s - %s" % (_('Surname'), surname), location)
+        surnamepage, body = self.write_header("%s - %s" % (_('Surname'), surname))
 
         # begin SurnameDetail division
         with Html('div', id='SurnameDetail', class_='contente') as surnamedetail:
@@ -1711,7 +1730,7 @@ class SurnamePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1725,13 +1744,8 @@ class PlaceListPage(BasePage):
         self.src_list = src_list        # TODO verify that this is correct
         db = report.database
 
-        # determine the location of footer or not?
-        location = True
-        if len(place_handles) > 6: 
-            location = False
-
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_('Places'), location)
+        placelistpage, body = self.write_header(_('Places'))
 
         # begin places division
         with Html('div', class_='content', id='Places') as section:
@@ -1801,7 +1815,7 @@ class PlaceListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1817,11 +1831,10 @@ class PlacePage(BasePage):
         BasePage.__init__(self, report, title, place.gramps_id)
         self.src_list = src_list        # TODO verify that this is correct
 
-        # we are specifying the location of footer
         of = self.report.create_file(place.get_handle(), 'plc')
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        placepage, body = self.write_header(_('Places'), True)
+        placepage, body = self.write_header(_('Places'))
 
         # begin PlaceDetail Division
         with Html('div', class_='content', id='PlaceDetail') as placedetail:
@@ -1898,8 +1911,7 @@ class PlacePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        # we are not specifying the location of footer as there is too much info 
-        footer = self.write_footer(True)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1912,13 +1924,8 @@ class EventListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        # determine if we specify location of footer or not?
-        location = True
-        if len(event_dict) > 6:
-            location = False
-
         of = self.report.create_file("events")
-        eventslistpage, body = self.write_header(_('Events'), location)
+        eventslistpage, body = self.write_header(_('Events'))
 
         # begin events list  division
         with Html('div', class_='content', id='EventList') as eventlist:
@@ -1933,7 +1940,7 @@ class EventListPage(BasePage):
             eventlist += Html('p', msg, id='description')
 
             # begin event list table 
-            with Html('table', class_='eventlist') as table:
+            with Html('table', class_='infolist eventlist') as table:
                 eventlist += table
 
                 # begin table head
@@ -1959,18 +1966,18 @@ class EventListPage(BasePage):
                 for (person, event_list) in event_dict:
 
                     first = True
-                    for (evt_type, sort_name, sort_date, event, evt_ref, 
+                    for (evt_type, sort_date, sort_name, evt, evt_ref, 
                         partner) in event_list:
 
                         # write eent row data
-                        trow = self.write_event_row(person, evt_type, event, 
+                        trow = self.write_event_row(person, evt_type, evt, 
                                                     evt_ref, partner, first)
                         tbody += trow
                         first = False
 
         # and clearline for proper styling
         # and footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page ut for processing
@@ -1980,10 +1987,17 @@ class EventListPage(BasePage):
     def write_event_row(self, person, evt_type, evt, evt_ref, partner, first):
         """
         display the event row for class EventListPage()
+
+        @param: person = person that the event is referenced to
+        @param: evt_type = the type of event
+        @param: evt = event
+        @param: evt_ref = event reference
+        @param: partner = only used when the event is either a Marriage or Divorce
+        @param: first = used for only showing the person once for list of events
         """
 
         # get person's hyperlink 
-        url = self.report.build_url_fname_html(person.handle, 'ppl', True)
+        url = self.report.build_url_fname_html(person.handle, 'ppl', False)
         person_hyper = self.person_link(url, person, True, person.gramps_id)
 
         # event hyperlink
@@ -2010,15 +2024,15 @@ class EventListPage(BasePage):
 
         # display partner if event is either a Marriage or Divorce?
         # partner will not be None
-
         tcell = Html('td', class_='ColumnPartner')
         trow += tcell
 
         # get partner hyperlink 
         if partner is not None:
-            url = self.report.build_url_fname_html(partner.handle, 'ppl', True)
-            partner_hyper = self.person_link(url, partner, False, 
-                                                 partner.gramps_id)
+
+            # get partner hyperlink
+            url = self.report.build_url_fname_html(partner.handle, 'ppl', False)
+            partner_hyper = self.person_link(url, partner, False, partner.gramps_id)
             tcell += partner_hyper
         else:
             tcell += '&nbsp;'
@@ -2027,13 +2041,14 @@ class EventListPage(BasePage):
         return trow
 
 class EventPage(BasePage):
-    def __init__(self, report, title, evt_type, event, evt_ref, person, partner):
-        BasePage.__init__(self, report, '%s - %s' % (title, evt_type))
+
+    def __init__(self, report, title, person, partner, evt_type, event, evt_ref):
+        BasePage.__init__(self, report, title, event.gramps_id)
+        self.up = True
         db = report.database
 
         of = self.report.create_file(evt_ref.ref, 'evt')
-        self.up = True
-        eventpage, body = self.write_header(_('Events'), True)
+        eventpage, body = self.write_header(_('Events'))
 
         # start event page division
         with Html('div', class_='content', id='EventDetail') as eventdetail:
@@ -2046,7 +2061,7 @@ class EventPage(BasePage):
             title = title[0].upper() + title[1:]
             eventdetail += Html('h3', title, inline=True)
 
-            # begin event detail table
+            # begin eventdetail table
             with Html('table', class_='infolist eventlist') as table:
                 eventdetail += table
  
@@ -2054,9 +2069,9 @@ class EventPage(BasePage):
                 table += tbody
 
                 # get event data
-                event_row = self.get_event_data(event, evt_ref)
+                event_row = self.get_event_data(event, evt_ref, True, False)
 
-                # the first four in the list is to be used here, the rest are below 
+                # the first four are listed here, the other two are way below 
                 for index in xrange(4):
                     label = event_row[index][0]
                     data = event_row[index][1] or None 
@@ -2064,7 +2079,7 @@ class EventPage(BasePage):
                     if data is not None:
                         trow = Html('tr') + (
                             Html('td', label, class_= 'ColumnAttribute', inline=True),
-                            Html('td', data, class_='ColumnValue', inline=True)
+                            Html('td', data, class_='ColumnValue')
                             )
                         tbody += trow
 
@@ -2095,12 +2110,11 @@ class EventPage(BasePage):
             # get attribute list
             attrib = event_row[5][1]
             if attrib:
-                eventdetail += self.display_attr_list(event)    
+                eventdetail += self.display_attr_list(event, False)  
 
         # add clearline for proper styling
         # add footer section
-        # specified location of footer 
-        footer = self.write_footer(True)
+        footer = self.write_footer()
         body += (fullclear, footer) 
 
         # send page out for processing
@@ -2198,8 +2212,7 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        # there is usually too much information on these pages?
-        mediapage, body = self.write_header("%s - %s" % (_('Media'), self.page_title), False)
+        mediapage, body = self.write_header("%s - %s" % (_('Media'), self.page_title))
 
         # begin GalleryDetail division
         mediadetail = Html('div', class_='content', id='GalleryDetail')
@@ -2410,7 +2423,7 @@ class MediaPage(BasePage):
             mediadetail += notes
 
         # get media attributes
-        attrib = self.display_attr_list(photo)
+        attrib = self.display_attr_list(photo, False)
         if attrib is not None:
             mediadetail += attrib
 
@@ -2426,9 +2439,7 @@ class MediaPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        # not specifying the location of footer because there is usually
-        # a lot of information on the media pages  
-        footer = self.write_footer(False)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2503,17 +2514,12 @@ class SurnameListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        # determine if we specify location of footer or not?
-        location = True 
-        if len(person_handle_list) > 6:
-            location = False
-
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelistpage, body = self.write_header(_('Surnames'), location)
+            surnamelistpage, body = self.write_header(_('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
-            surnamelistpage, body = self.write_header(_('Surnames by person count'), location)
+            surnamelistpage, body = self.write_header(_('Surnames by person count'))
 
         # begin surnames division
         with Html('div', class_='content', id='surnames') as surnamelist:
@@ -2621,7 +2627,7 @@ class SurnameListPage(BasePage):
 
         # create footer section
         # add clearline for proper styling
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2646,21 +2652,14 @@ class IntroductionPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        # determine if we specify the location of the footer or not on image?
-        location = True
-        introimg = report.add_image('introimg')
-        if introimg: 
-            location = False
-
         of = self.report.create_file(report.intro_fname)
-        # Note. In old NarrativeWeb.py the content_divid depended on filename.
-        intropage, body = self.write_header(_('Introduction'), location)
+        intropage, body = self.write_header(_('Introduction'))
 
         # begin Introduction division
         with Html('div', class_='content', id='Introduction') as section:
             body += section
 
-            # introduction image is identified earlier
+            introimg = report.add_image('introimg')
             if introimg is not None:
                 section += introimg
 
@@ -2674,7 +2673,7 @@ class IntroductionPage(BasePage):
 
         # add clearline for proper styling
         # create footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2690,20 +2689,14 @@ class HomePage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        # determine the location of footer or not by image?
-        homeimg = report.add_image('homeimg')
-        location = True
-        if homeimg:
-            location = False 
-
         of = self.report.create_file("index")
-        homepage, body = self.write_header(_('Home'), location)
+        homepage, body = self.write_header(_('Home'))
 
         # begin home division
         with Html('div', class_='content', id='Home') as section:
             body += section
 
-            # home page image is specified earlier...
+            homeimg = report.add_image('homeimg')
             if homeimg is not None:
                 section += homeimg
 
@@ -2717,7 +2710,7 @@ class HomePage(BasePage):
 
          # create clear line for proper styling
         # create footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2733,13 +2726,8 @@ class SourceListPage(BasePage):
         handle_list = list(handle_set)
         source_dict = {}
 
-        # determine if we specify location of footer or not?
-        location = True
-        if len(handle_list) > 6:
-            location = False 
-
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_('Sources'), location)
+        sourcelistpage, body = self.write_header(_('Sources'))
 
         # begin source list division
         with Html('div', class_='content', id='sources') as section:
@@ -2790,7 +2778,7 @@ class SourceListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2805,10 +2793,9 @@ class SourcePage(BasePage):
         source = db.get_source_from_handle(handle)
         BasePage.__init__(self, report, title, source.gramps_id)
 
-        # possibility of too much information, so no specified footer
         of = self.report.create_file(source.get_handle(), 'src')
         self.up = True
-        sourcepage, body = self.write_header(_('Sources'),False)
+        sourcepage, body = self.write_header(_('Sources'))
 
         # begin source detail division
         with Html('div', class_='content', id='SourceDetail') as section:
@@ -2858,8 +2845,7 @@ class SourcePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        # possibility of too much information, so no specified footer
-        footer = self.write_footer(False)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2872,9 +2858,8 @@ class MediaListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        # no specified footer location
         of = self.report.create_file("media")
-        medialistpage, body = self.write_header(_('Media'), False)
+        medialistpage, body = self.write_header(_('Media'))
 
         # begin gallery division
         with Html('div', class_='content', id='Gallery') as section:
@@ -2929,8 +2914,7 @@ class MediaListPage(BasePage):
 
         # add footer section
         # add clearline for proper styling
-        # no specified footer location
-        footer = self.write_footer(False)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2984,9 +2968,8 @@ class DownloadPage(BasePage):
         if not dlfname1 and not dlfname2:
             return
 
-        # has to be False for some problem with stylesheet
         of = self.report.create_file("download")
-        downloadpage, body = self.write_header(_('Download'), False)
+        downloadpage, body = self.write_header(_('Download'))
 
         # begin download page and table
         with Html('div', class_='content', id='Download') as download:
@@ -3102,8 +3085,7 @@ class DownloadPage(BasePage):
 
         # clear line for proper styling
         # create footer section
-        # a specified footer location
-        footer = self.write_footer(False)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -3117,7 +3099,7 @@ class ContactPage(BasePage):
         db = report.database
 
         of = self.report.create_file("contact")
-        contactpage, body = self.write_header(_('Contact'), False)
+        contactpage, body = self.write_header(_('Contact'))
 
         # begin contact division
         with Html('div', class_='content', id='Contact') as section:
@@ -3127,7 +3109,6 @@ class ContactPage(BasePage):
             with Html('div', id='summaryarea') as summaryarea:
                 section  += summaryarea
 
-                # contact image is specified earlier
                 contactimg = report.add_image('contactimg', 200)
                 if contactimg is not None:
                     summaryarea += contactimg
@@ -3169,7 +3150,7 @@ class ContactPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer(False)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for porcessing
@@ -3194,14 +3175,13 @@ class IndividualPage(BasePage):
         self.src_list = src_list        # Used by get_citation_links()
         self.bibli = Bibliography()
         self.place_list = place_list
-        self.sort_name = self.get_name(self.person)
-        self.name = self.get_name(self.person)
+        self.sort_name = self.get_name(person)
+        self.name = self.get_name(person)
         db = report.database
 
         of = self.report.create_file(person.handle, 'ppl')
         self.up = True
-        # there is way too much information on this page, so False
-        indivdetpage, body = self.write_header(self.get_name(person), False)
+        indivdetpage, body = self.write_header(self.sort_name)
 
         # begin individualdetail division
         with Html('div', class_='content', id='IndividualDetail') as individualdetail:
@@ -3212,9 +3192,8 @@ class IndividualPage(BasePage):
 
             # if there is a thumbnail, add it also?
             if thumbnail is not None:
-                individualdetail += (thumbnail, name, summary)
-            else:
-                individualdetail += (name, summary)
+                individualdetail += thumbnail
+            individualdetail += (name, summary)
 
             # display a person's events
             sect2 = self.display_ind_events()
@@ -3222,7 +3201,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect2
 
             # display attributes
-            sect3 = self.display_attr_list(self.person)
+            sect3 = self.display_attr_list(person)
             if sect3 is not None:
                 individualdetail += sect3
 
@@ -3237,7 +3216,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect5
 
             # display LDS ordinance
-            sect6 = self.display_lds_ordinance(self.person)
+            sect6 = self.display_lds_ordinance(person)
             if sect6 is not None:
                 individualdetail += sect6
 
@@ -3299,8 +3278,7 @@ class IndividualPage(BasePage):
 
         # add clearline for proper styling
         # create footer section
-        # there is way too much information here to gie footer a location...
-        footer = self.write_footer(False)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -4350,12 +4328,11 @@ class IndividualPage(BasePage):
         trow = Html('tr')
 
         for (label, colclass) in [
-            (THEAD,        'Type'),
-            (DHEAD,        'Date'), 
-            (PHEAD,        'Place'),
-            (DESCRHEAD,    'Description'),
-            (SHEAD,        'Sources'),
-            (NHEAD,        'Notes') ]:
+            (THEAD,    'Type'),
+            (DHEAD,    'Date'), 
+            (PHEAD,    'Place'),
+            (SHEAD,    'Sources'),
+            (NHEAD,    'Notes') ]:
             trow += Html('th', label, class_ = 'Column%s' % colclass, inline = True)
 
         # return header row to its caller
@@ -4368,7 +4345,6 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         lnk = (self.report.cur_fname, self.page_title, self.gid)
-        descr = event.get_description()
         place_handle = event.get_place_handle()
         if place_handle:
             if place_handle in self.place_list:
@@ -4414,8 +4390,7 @@ class IndividualPage(BasePage):
             ['Type',           evt_hyper],
             ['Date',           _dd.display(event.get_date_object() )],
             ['Place',          place],
-            ['Description',    event.get_description()],
-            ['Source',         self.get_citation_links(event.get_source_references() )],
+            ['Sources',        self.get_citation_links(event.get_source_references() )],
             ['Notes',          self.dump_notes(notelist)] ]:
             data = data or '&nbsp;'
 
@@ -4472,13 +4447,8 @@ class RepositoryListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        # determine if we specify the location of footer or not?
-        location = True
-        if len(repos_dict) > 6:
-            location = False
-
         of = self.report.create_file('repositories')
-        repolistpage, body = self.write_header(_('Repositories'), location)
+        repolistpage, body = self.write_header(_('Repositories'))
 
         # begin RepositoryList division
         with Html('div', class_='content', id='RepositoryList') as repositorylist:
@@ -4537,7 +4507,7 @@ class RepositoryListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer(location)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -4555,7 +4525,7 @@ class RepositoryPage(BasePage):
 
         of = self.report.create_file(handle, 'repo')
         self.up = True
-        repositorypage, body = self.write_header(_('Repositories'), True)
+        repositorypage, body = self.write_header(_('Repositories'))
 
         # begin RepositoryDetail division and page title
         with Html('div', class_='content', id='RepositoryDetail') as repositorydetail:
@@ -4600,8 +4570,7 @@ class RepositoryPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        # a specified location of footer
-        footer = self.write_footer(True)
+        footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page out for processing
@@ -4937,12 +4906,13 @@ class NavWebReport(Report):
             # get sort name for sorting later
             last_name = person.get_primary_name().get_surname()
             first_name = person.get_primary_name().get_first_name()
-            sort_name = ', '.join([last_name, first_name])  
+            sort_name = ', '.join([last_name, first_name])
 
             partner = None
             for family_handle in person.get_family_handle_list():
                 family = db.get_family_from_handle(family_handle)
 
+                # get partner handle
                 partner_handle = ReportUtils.find_spouse(person, family)
                 if partner_handle:
                     partner = db.get_person_from_handle(partner_handle)
@@ -4961,9 +4931,10 @@ class NavWebReport(Report):
                     sort_date = '%04d/%02d/%02d' % (year, month, day)
 
                     # add event data
-                    event_list.append([evt_type, sort_name, sort_date, event, evt_ref, 
-                        partner])
+                    event_list.append([evt_type, sort_date, sort_name, event, 
+                        evt_ref, partner])
 
+            partner = None 
             for evt_ref in person.get_primary_event_ref_list():
                 event = db.get_event_from_handle(evt_ref.ref)
 
@@ -4978,17 +4949,14 @@ class NavWebReport(Report):
                 sort_date = '%04d/%02d/%02d' % (year, month, day)
 
                 # add event data
-                event_list.append([evt_type, sort_name, sort_date, event, evt_ref, 
-                    partner])
+                event_list.append([evt_type, sort_date, sort_name, event, 
+                    evt_ref, partner])
 
-            # sort the list of an individual's events
+            # sort the event_list
             event_list.sort()
 
             # combine person and their events together
             event_dict.append([person, event_list])
-
-        # sort the events dictionary
-        event_dict.sort()
 
         # set progress meter pass
         self.progress.set_pass(_('Creating event pages'), len(event_dict))
@@ -4999,10 +4967,10 @@ class NavWebReport(Report):
         for (person, event_list) in event_dict:
             self.progress.step()   
 
-            for (evt_type, sort_name, sort_date, event, evt_ref, partner) in event_list:
+            for (evt_type, sort_date, sort_name, event, evt_ref, partner) in event_list:
 
                 # create individual event page 
-                EventPage(self, self.title, evt_type, event, evt_ref, person, partner)
+                EventPage(self, self.title, person, partner, evt_type, event, evt_ref)
 
     def gallery_pages(self, source_list):
         import gc
