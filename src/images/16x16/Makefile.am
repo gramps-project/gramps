@@ -19,6 +19,8 @@ dist_pkgdata_DATA = \
 	gramps-font-color.png \
 	gramps-font.png \
 	gramps-geo.png \
+	gramps-geo-mainmap.png \
+	gramps-geo-altmap.png \
 	gramps-gramplet.png \
 	gramps-lock.png \
 	gramps-media.png \

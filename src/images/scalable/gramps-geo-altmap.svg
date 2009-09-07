@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48px"
+   height="48px"
+   id="svg3906"
+   version="1.1"
+   inkscape:version="0.47pre0 r21549"
+   sodipodi:docname="gramps-geo-altmap.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <title
+     id="title2916">gramps-geo-altmap</title>
+  <defs
+     id="defs3908">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective3914" />
+    <inkscape:perspective
+       id="perspective3891"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3668"
+       id="linearGradient6262"
+       gradientUnits="userSpaceOnUse"
+       x1="288.36801"
+       y1="423.65311"
+       x2="359.15457"
+       y2="423.65311" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3668">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3670" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3672" />
+    </linearGradient>
+    <inkscape:perspective
+       id="perspective4035"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3668-1"
+       id="linearGradient2933"
+       gradientUnits="userSpaceOnUse"
+       x1="288.36801"
+       y1="423.65311"
+       x2="359.15457"
+       y2="423.65311" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3668-1">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3670-0" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3672-6" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7"
+     inkscape:cx="32.471316"
+     inkscape:cy="23.449345"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1078"
+     inkscape:window-height="707"
+     inkscape:window-x="260"
+     inkscape:window-y="117"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3911">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>gramps-geo-altmap</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:date>2009-09-07</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Serge Noiraud</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:description>used to select the proprietary map.</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       d="m 20.680283,39.12631 c 10.271495,2.159013 8.307555,-3.123848 8.307555,-3.123848 l 5.071932,-3.401433 c 0,0 2.637138,0.21373 4.387829,0.09533 0.999233,-0.06758 2.680145,-1.046411 2.357227,-2.201648 -1.218455,-4.359011 -7.427195,-6.950657 -11.550556,-7.138293 -2.033311,-0.09253 -2.952564,0.696822 -2.952564,0.696822 -1.539345,0.969216 0.08748,3.894222 0.08748,3.894222 l -4.049411,4.019562 c -9.725562,-0.791858 -4.950964,4.931448 -4.950964,4.931448 l -9.8557157,9.159757 c 0,0 -0.087216,1.528401 2.7064097,-0.01094 l 10.440776,-6.920977 0,-6e-6 z"
+       id="path2453-3"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.17199267px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="cccssscccccccc" />
+    <g
+       id="g2893-2"
+       style="fill:#ef2929;fill-opacity:1"
+       transform="matrix(0.17199268,0,0,0.17199268,-43.009698,-36.289865)">
+      <path
+         sodipodi:nodetypes="ccccc"
+         style="fill:#ef2929;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3225-0"
+         d="M 319.44354,366.56878 292.72208,469.6616 c -2.1317,22.81794 12.07963,3.30695 12.07963,3.30695 l 50.2167,-93.83671 -35.57487,-12.56306 z" />
+    </g>
+    <path
+       d="m 26.452623,25.877284 c -0.54896,1.377469 -2.093603,2.400406 -4.197855,2.780016 -2.10425,0.37961 -4.742193,0.111221 -7.169094,-0.729399 C 12.658773,27.087284 10.472803,25.68479 9.1448974,24.116365 7.8169918,22.547941 7.3635056,20.832901 7.912465,19.455432 c 0.5489593,-1.37747 2.496221,-2.014627 4.624013,-2.098162 2.502928,-0.09826 4.54825,0.12749 6.413449,0.75797 1.865198,0.630481 3.550276,1.665691 5.332716,3.186344 1.562225,1.33278 2.718939,3.198232 2.16998,4.5757 z"
+       id="path3227-6"
+       style="fill:#ef2929;fill-opacity:1;stroke:#000000;stroke-width:1.03195608000000005;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       sodipodi:nodetypes="csssssssc" />
+    <path
+       d="m 14.977112,10.44911 -3.106086,10.037413 c 0.969617,3.707123 8.377748,6.060349 10.998278,3.660376 l 3.733123,-8.867937"
+       id="path3233-1"
+       style="fill:#ef2929;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.04616748999999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:nodetypes="cccc" />
+    <path
+       d="M 14.235182,3.0499825 12.793997,6.865199 c 0.1135,5.058298 13.043976,10.582035 18.529149,7.01257 l 1.653369,-3.9908943"
+       id="path3231-5"
+       style="fill:#ef2929;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.03195608000000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:nodetypes="cccc" />
+    <path
+       d="M 32.671194,10.721426 C 32.017559,11.57151 30.3835,12.0047 28.23049,11.898659 26.077481,11.792617 23.432054,11.148649 21.041311,10.148622 18.650568,9.1485944 16.543969,7.8048294 15.316445,6.4968233 14.08892,5.1888156 13.585133,4.0179161 14.240144,3.1684081 14.893779,2.3183239 16.698302,1.7999036 18.851311,1.905944 c 2.15301,0.1060421 4.798436,0.7500102 7.189179,1.7500375 2.390743,1.0000274 4.497342,2.3437933 5.724866,3.6517994 1.227526,1.3080077 1.560849,2.5641373 0.905838,3.4136451 z"
+       id="path3229-5"
+       style="fill:#ef2929;fill-opacity:1;stroke:#000000;stroke-width:1.03195608000000005;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       sodipodi:nodetypes="cssscsssc" />
+  </g>
+</svg>

@@ -3,7 +3,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008  Serge Noiraud
+# Copyright (C) 2007-2009  Serge Noiraud
+# Copyright (C) 2009  Helge GRAMPS
+# Copyright (C) 2009  Josip
 # Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
@@ -26,7 +28,6 @@
 """
 Geo View
 """
-
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -37,6 +38,7 @@ import os
 import urlparse
 import const
 import operator
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -51,12 +53,18 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import PageView
 import Utils
 import Config
-from const import TEMP_DIR
 from BasicUtils import name_displayer as _nd
 from PlaceUtils import conv_lat_lon
+
+#-------------------------------------------------------------------------
+#
+# regexp for html title Notes ...
+#
+#-------------------------------------------------------------------------
+import re
+ZOOMANDPOS = re.compile('zoom=([0-9]*) coord=([0-9\.\-\+]*), ([0-9\.\-\+]*):::')
 
 #-------------------------------------------------------------------------
 #
@@ -64,38 +72,15 @@ from PlaceUtils import conv_lat_lon
 #
 #-------------------------------------------------------------------------
 
-NOWEB  = 0
-WEBKIT = 1
-MOZIL  = 2
+URL_SEP = '/'
 
-TOOLKIT = NOWEB
-try:
-    import webkit
-    TOOLKIT = WEBKIT
-except:
-    pass
-
-if TOOLKIT == NOWEB:
-    try:
-        import gtkmozembed
-        TOOLKIT = MOZIL
-    except:
-        pass
-
-#no interfaces present, raise Error so that options for GeoView do not show
-if TOOLKIT == NOWEB :
-    Config.set(Config.GEOVIEW, False)
-    raise ImportError, 'No GTK html plugin found'
+from HtmlRenderer import HtmlView
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-# I think we should set the two following variable in const.py
-# They are used only with gtkmozembed.
-MOZEMBED_PATH = TEMP_DIR
-MOZEMBED_SUBPATH = Utils.get_empty_tempdir('mozembed_gramps')
 GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
 NB_MARKERS_PER_PAGE = 200
 
@@ -118,483 +103,30 @@ def _alternate_map():
         alternate_map = "microsoft"
     return alternate_map
 
-#-------------------------------------------------------------------------
-#
-# Renderer
-#
-#-------------------------------------------------------------------------
-class Renderer():
+def _get_sign(value):
     """
-    Renderer renders the webpage. Several backend implementations are 
-    possible
+    return 1 if we have a negative number, 0 in other case
     """
-    def __init__(self):
-        self.window = None
-        self.fct = ()
+    if value < 0.0:
+        return 1
+    else:
+        return 0
 
-    def get_window(self):
-        """
-        Returns a container class with the widget that contains browser
-        window
-        """
-        return self.window
+def _get_zoom_lat(value):
+    zoomlat = 1
+    for i, x in enumerate([80.0, 40.0, 20.0, 10.0, 3.0,
+                           2.0, 1.0, 0.5, 0.2, 0.1]):
+        if value < x:
+            zoomlat = i+1
+    return zoomlat + 2
 
-    def get_uri(self):
-        """
-        Get the current url
-        """
-        raise NotImplementedError
-
-    def show_all(self):
-        """
-        show all in the main window.
-        """
-        self.window.show_all()
-
-    def open(self, url):
-        """
-        open the webpage at url
-        """
-        raise NotImplementedError
-
-    def refresh(self):
-        """
-        We need to reload the page.
-        """
-        raise NotImplementedError
-
-    def go_back(self):
-        """
-        Go to the previous page.
-        """
-        self.window.go_back()
-
-    def can_go_back(self):
-        """
-        is the browser able to go backward ?
-        """
-        return self.window.can_go_back()
-
-    def go_forward(self):
-        """
-        Go to the next page.
-        """
-        self.window.go_forward()
-
-    def can_go_forward(self):
-        """
-        is the browser able to go forward ?
-        """
-        return self.window.can_go_forward()
-
-    def execute_script(self, url):
-        """
-        execute javascript in the current html page
-        """
-        raise NotImplementedError
-
-    def page_loaded(self, *args):
-        """
-        The page is completely loaded.
-        """
-        raise NotImplementedError
-
-    def set_button_sensitivity(self):
-        """
-        We must set the back and forward button in the HtmlView class.
-        """
-        self.fct()
-
-#-------------------------------------------------------------------------
-#
-# Renderer with WebKit
-#
-#-------------------------------------------------------------------------
-class RendererWebkit(Renderer):
-    """
-    Implementation of Renderer with Webkit
-    """
-    def __init__(self):
-        Renderer.__init__(self)
-        self.window = webkit.WebView()
-        self.browser = WEBKIT
-        self.frame = self.window.get_main_frame()
-        self.frame.connect("load-done", self.page_loaded)
-
-    def page_loaded(self, *args):
-        """
-        We just loaded one page in the browser.
-        Set the button sensitivity 
-        """
-        self.set_button_sensitivity()
-
-    def open(self, url):
-        """
-        We need to load the page in the browser.
-        """
-        self.window.open(url)
-
-    def refresh(self):
-        """
-        We need to reload the page in the browser.
-        """
-        self.window.reload()
-
-    def execute_script(self, url):
-        """
-        We need to execute a javascript function into the browser
-        """
-        self.window.execute_script(url)
-
-    def get_uri(self):
-        """
-        What is the uri loaded in the browser ?
-        """
-        return self.window.get_main_frame().get_uri()
-
-class RendererMozilla(Renderer):
-    """
-    Implementation of Renderer with gtkmozembed
-    """
-    def __init__(self):
-        Renderer.__init__(self)
-        if hasattr(gtkmozembed, 'set_profile_path'):
-            set_profile_path = gtkmozembed.set_profile_path
-        else:
-            set_profile_path = gtkmozembed.gtk_moz_embed_set_profile_path
-        set_profile_path(MOZEMBED_PATH, MOZEMBED_SUBPATH)
-        self.__set_mozembed_proxy()
-        self.window = gtkmozembed.MozEmbed()
-        self.browser = MOZIL
-        self.handler = self.window.connect("net-stop", self.page_loaded)
-
-    def page_loaded(self, *args):
-        """
-        We just loaded one page in the browser.
-        Set the button sensitivity 
-        """
-        self.set_button_sensitivity()
-
-    def open(self, url):
-        """
-        We need to load the page in the browser.
-        """
-        self.window.load_url(url)
-
-    def execute_script(self, url):
-        """
-        We need to execute a javascript function into the browser
-        """
-        self.window.load_url(url)
-
-    def get_uri(self):
-        """
-        What is the uri loaded in the browser ?
-        """
-        return self.window.get_location()
-
-    def refresh(self):
-        """
-        We need to reload the page in the browser.
-        """
-        self.window.reload(0)
-
-    def __set_mozembed_proxy(self):
-        """
-        Try to see if we have some proxy environment variable.
-        http_proxy in our case.
-        The standard format is : http://[user:password@]proxy:port/
-        """
-        try:
-            proxy = os.environ['http_proxy']
-            if proxy:
-                host_port = None
-                prefs = open(MOZEMBED_SUBPATH+"/prefs.js", "w+")
-                parts = urlparse.urlparse(proxy)
-                if not parts[0] or parts[0] == 'http':
-                    host_port = parts[1]
-                    hport = host_port.split(':')
-                    host = hport[0].strip()
-                    if host:
-                        try:
-                            port = int(hport[1])
-                        except:
-                            user = host
-                            uprox = hport[1].split('@')
-                            password = uprox[0]
-                            host = uprox[1]
-                            port = int(hport[2])
-                if port and host:
-                    port = str(port)
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.type", 1);\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.http", "'+host+'");\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.http_port", '+port+');\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.no_proxies_on",')
-                    prefs.write(' "127.0.0.1,localhost,localhost')
-                    prefs.write('.localdomain");\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.share_proxy_settings", true);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.proxy.pipelining", true);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.proxy.keep-alive", true);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.proxy.version", 1.1);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.sendRefererHeader, 0);\r\n')
-                prefs.close()
-        except:
-            try: # trying to remove pref.js in case of proxy change.
-                os.remove(MOZEMBED_SUBPATH+"/prefs.js")
-            except:
-                pass
-
-#-------------------------------------------------------------------------
-#
-# HtmlView
-#
-#-------------------------------------------------------------------------
-class HtmlView(PageView.PageView):
-    """
-    HtmlView is a view showing a top widget with controls, and a bottom part
-    with an embedded webbrowser showing a given URL
-    """
-
-    def __init__(self, dbstate, uistate, title=_('HtmlView')):
-        PageView.PageView.__init__(self, title, dbstate, uistate)
-        self.dbstate = dbstate
-        self.external_url = False
-        self.need_to_resize = False
-        self.back_action = None
-        self.forward_action = None
-        self.renderer = None
-        self.urlfield = ""
-        self.htmlfile = ""
-        self.table = ""
-        self.bootstrap_handler = None
-        self.box = None
-
-    def build_widget(self):
-        """
-        Builds the interface and returns a gtk.Container type that
-        contains the interface. This containter will be inserted into
-        a gtk.Notebook page.
-        """
-        self.box = gtk.VBox(False, 4)
-        #top widget at the top
-        self.box.pack_start(self.top_widget(), False, False, 0 )
-        #web page under it in a scrolled window
-        self.table = gtk.Table(1, 1, False)
-        frame = gtk.ScrolledWindow(None, None)
-        frame.set_shadow_type(gtk.SHADOW_NONE)
-        frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        frame.add_with_viewport(self.table)
-        self.bootstrap_handler = self.box.connect("size-request", 
-                                 self.init_parent_signals_for_map)
-        self.table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
-        self.table.set_row_spacings(1)
-        self.table.set_col_spacings(0)
-        if   (TOOLKIT == WEBKIT) :
-            # We use webkit
-            self.renderer = RendererWebkit()
-        elif (TOOLKIT == MOZIL) :
-            # We use gtkmozembed
-            self.renderer = RendererMozilla()
-        self.table.add(self.renderer.get_window())
-        self.box.pack_start(frame, True, True, 0)
-        # this is used to activate the back and forward button
-        # from the renderer class.
-        self.renderer.fct = self.set_button_sensitivity
-        self.renderer.show_all()
-        #load a welcome html page
-        urlhelp = self._create_start_page()
-        self.open(urlhelp)
-        return self.box
-
-    def top_widget(self):
-        """
-        The default class gives a widget where user can type an url
-        """
-        hbox = gtk.HBox(False, 4)
-        self.urlfield = gtk.Entry()
-        self.urlfield.set_text("http://gramps-project.org")
-        self.urlfield.connect('activate', self._on_activate)
-        hbox.pack_start(self.urlfield, True, True, 4)
-        button = gtk.Button(stock=gtk.STOCK_APPLY)
-        button.connect('clicked', self._on_activate)
-        hbox.pack_start(button, False, False, 4)
-        return hbox
-
-    def set_button_sensitivity(self):
-        """
-        Set the backward and forward button in accordance to the browser.
-        """
-        self.forward_action.set_sensitive(self.renderer.can_go_forward())
-        self.back_action.set_sensitive(self.renderer.can_go_back())
-        
-    def open(self, url):
-        """
-        open an url
-        """
-        self.renderer.open(url)
-
-    def go_back(self, button):
-        """
-        Go to the previous loaded url.
-        """
-        self.renderer.go_back()
-        self.set_button_sensitivity()
-        self.external_uri()
-
-    def go_forward(self, button):
-        """
-        Go to the next loaded url.
-        """
-        self.renderer.go_forward()
-        self.set_button_sensitivity()
-        self.external_uri()
-
-    def refresh(self, button):
-        """
-        Force to reload the page.
-        """
-        self.renderer.refresh()
-
-    def external_uri(self):
-        """
-        used to resize or not resize depending on external or local file.
-        """
-        uri = self.renderer.get_uri()
-        if self.external_url:
-            self.external_url = False
-            self.need_to_resize = True
-        else:
-            try:
-                if uri.find(self.htmlfile) == -1:
-                    # external web page or start_page
-                    self.need_to_resize = True
-                else:
-                    self.need_to_resize = False
-            except:
-                pass
-
-    def _on_activate(self, nobject):
-        """
-        Here when we activate the url button.
-        """
-        url = self.urlfield.get_text()
-        if url.find('://') == -1:
-            url = 'http://'+ url
-        self.external_url = True
-        self.open(url)
-        
-    def build_tree(self):
-        """
-        Rebuilds the current display. Called from ViewManager
-        """
-        pass #htmlview is build on click and startup
-
-    def get_stock(self):
-        """
-        Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered with
-        GNOME as a stock icon.
-        """
-        return 'gramps-geo'
-
-    def ui_definition(self):
-        """
-        Specifies the UIManager XML code that defines the menus and buttons
-        associated with the interface.
-        """
-        return '''<ui>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
-              <toolitem action="Refresh"/>
-            </placeholder>
-          </toolbar>
-        </ui>'''
-
-    def define_actions(self):
-        """
-        Required define_actions function for PageView. Builds the action
-        group information required. 
-        """
-        HtmlView._define_actions_fw_bw(self)
-
-    def _define_actions_fw_bw(self):
-        """
-        prepare the forward and backward buttons.
-        add the Backward action to handle the Backward button
-        accel doesn't work in webkit and gtkmozembed !
-        we must do that ...
-        """
-        self.back_action = gtk.ActionGroup(self.title + '/Back')
-        self.back_action.add_actions([
-            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
-             "<ALT>Left", _("Go to the previous page in the history"), 
-             self.go_back)
-            ])
-        self._add_action_group(self.back_action)
-        # add the Forward action to handle the Forward button
-        self.forward_action = gtk.ActionGroup(self.title + '/Forward')
-        self.forward_action.add_actions([
-            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
-             "<ALT>Right", _("Go to the next page in the history"), 
-             self.go_forward)
-            ])
-        self._add_action_group(self.forward_action)
-        # add the Refresh action to handle the Refresh button
-        self._add_action('Refresh', gtk.STOCK_REFRESH, _("_Refresh"), 
-                          callback=self.refresh,
-                          accel="<Ctl>R",
-                          tip=_("Stop and reload the page."))
-
-    def init_parent_signals_for_map(self, widget, event):
-        """
-        Required to properly bootstrap the signal handlers.
-        This handler is connected by build_widget.
-        After the outside ViewManager has placed this widget we are
-        able to access the parent container.
-        """
-        pass
-
-    def _create_start_page(self):
-        """
-        This command creates a default start page, and returns the URL of
-        this page.
-        """
-        tmpdir = GEOVIEW_SUBPATH
-        data = """
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
-                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml"  >
-         <head>
-          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-          <title>%(title)s</title>
-         </head>
-         <body >
-           <H4>%(content)s</H4>
-         </body>
-        </html>
-        """ % { 'height' : 600,
-                'title'  : _('Start page for the Html View'),
-                'content': _('Type a webpage address at the top, and hit'
-                             ' the execute button to load a webpage in this'
-                             ' page\n<br>\n'
-                             'For example: <b>http://gramps-project.org</p>')
-        }
-        filename = os.path.join(tmpdir, 'startpage')
-        ufd = file(filename, "w+")
-        ufd.write(data)
-        ufd.close()
-        return 'file://'+filename
+def _get_zoom_long(value):
+    zoomlong = 1
+    for i, x in enumerate([120.0, 60.0, 30.0, 15.0, 7.0,
+                           4.0, 2.0, 1.0, .5, .2, .1]):
+        if value < x:
+            zoomlong = i+1
+    return zoomlong + 2
 
 #-------------------------------------------------------------------------
 #
@@ -608,6 +140,7 @@ class GeoView(HtmlView):
 
     def __init__(self, dbstate, uistate):
         HtmlView.__init__(self, dbstate, uistate, title=_('GeoView'))
+        self.dbstate.connect('database-changed', self._new_database)
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
         self.nbmarkers = 0
@@ -625,6 +158,17 @@ class GeoView(HtmlView):
         self.height = 0.0
         self.width = 0.0
         self.zoom = 1
+        self.lock_action = None
+        self.realzoom = 0
+        self.reallatitude = 0.0
+        self.reallongitude = 0.0
+        if Config.get(Config.GEOVIEW_LOCKZOOM):
+            self.realzoom = Config.get(Config.GEOVIEW_ZOOM)
+            self.displaytype = Config.get(Config.GEOVIEW_MAP)
+            self.reallatitude, self.reallongitude = conv_lat_lon(
+                                    Config.get(Config.GEOVIEW_LATITUDE),
+                                    Config.get(Config.GEOVIEW_LONGITUDE),
+                                    "D.D8")
         self.minyear = 1
         self.maxyear = 1
         self.maxgen = 1
@@ -652,8 +196,22 @@ class GeoView(HtmlView):
     def on_delete(self):
         """
         We need to suppress temporary files here.
+        Save the zoom, latitude, longitude and lock
         """
-        pass
+        self._savezoomandposition()
+        Config.set(Config.GEOVIEW_LOCKZOOM,
+                   self.lock_action.get_action('SaveZoom').get_active()
+                   )
+        if self.lock_action.get_action('SaveZoom').get_active():
+            Config.set(Config.GEOVIEW_ZOOM, self.realzoom)
+            Config.set(Config.GEOVIEW_LATITUDE, self.reallatitude)
+            Config.set(Config.GEOVIEW_LONGITUDE, self.reallongitude)
+            Config.set(Config.GEOVIEW_MAP, self.displaytype)
+        else:
+            Config.set(Config.GEOVIEW_ZOOM, 0)
+            Config.set(Config.GEOVIEW_LATITUDE, "0.0")
+            Config.set(Config.GEOVIEW_LONGITUDE, "0.0")
+            Config.set(Config.GEOVIEW_MAP, "person")
 
     def init_parent_signals_for_map(self, widget, event):
         """
@@ -673,11 +231,10 @@ class GeoView(HtmlView):
         gws = widget.get_allocation()
         self.width = gws.width
         self.height = gws.height
-        #uri = self.renderer.get_uri()
         self.external_uri()
         if self.need_to_resize != True:
             try:
-                self._geo_places(self.displaytype)
+                self._geo_places()
             except:
                 pass
 
@@ -695,12 +252,29 @@ class GeoView(HtmlView):
         HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
 
+    def _savezoomandposition(self):
+        """
+        The only way we have to save the zoom and position is to change the title
+        of the html page then to get this title.
+        When the title change, we receive a 'changed-title' signal.
+        Then we can get the new title with the new values.
+        """
+        res = self.dbstate.db.get_researcher()
+        if res: # Don't modify the current values if no db is loaded.
+            start = 0
+            title = ZOOMANDPOS.search(self.renderer.title, start)
+            if title:
+                self.realzoom = title.group(1)
+                self.reallatitude = title.group(2)
+                self.reallongitude = title.group(3)
+
     def _change_map(self, usedmap):
         """
         Tell the browser to change the current map.
         """
         self.renderer.execute_script(
             "javascript:swap_map('"+usedmap+"','"+usedmap+"')")
+        self._savezoomandposition()
 
     def ui_definition(self):
         """
@@ -717,6 +291,7 @@ class GeoView(HtmlView):
             <placeholder name="CommonEdit">
               <toolitem action="OpenStreetMap"/>
               <toolitem action="%s"/>
+              <toolitem action="SaveZoom"/>
               <separator/>
               <toolitem action="PersonMaps"/>
               <toolitem action="FamilyMaps"/>
@@ -734,30 +309,40 @@ class GeoView(HtmlView):
         HtmlView._define_actions_fw_bw(self)
         self.forward_action.set_sensitive(False)
         self.back_action.set_sensitive(False)
-        self._add_action('OpenStreetMap', 'gramps-geoview', 
+        self._add_action('OpenStreetMap', 'gramps-geo-mainmap', 
                          _('_OpenStreetMap'),
                          callback=self._select_openstreetmap_map,
                          tip=_("Select OpenStreetMap Maps"))
         if Config.get(Config.GEOVIEW_GOOGLEMAPS):
-            self._add_action('google', 'gramps-geoview-alt',
+            self._add_action('google', 'gramps-geo-altmap',
                              _('_Google Maps'),
                              callback=self._select_google_map,
                              tip=_("Select Google Maps."))
         elif Config.get(Config.GEOVIEW_OPENLAYERS):
-            self._add_action('openlayers', 'gramps-geoview-alt',
+            self._add_action('openlayers', 'gramps-geo-altmap',
                              _('_OpenLayers Maps'),
                              callback=self._select_openlayers_map,
                              tip=_("Select OpenLayers Maps."))
         elif Config.get(Config.GEOVIEW_YAHOO):
-            self._add_action('yahoo', 'gramps-geoview-alt', 
+            self._add_action('yahoo', 'gramps-geo-altmap', 
                              _('_Yahoo! Maps'),
                              callback=self._select_yahoo_map,
                              tip=_("Select Yahoo Maps."))
         elif Config.get(Config.GEOVIEW_MICROSOFT):
-            self._add_action('microsoft', 'gramps-geoview-alt',
+            self._add_action('microsoft', 'gramps-geo-altmap',
                              _('_Microsoft Maps'),
                              callback=self._select_microsoft_map,
                              tip=_("Select Microsoft Maps"))
+        self.lock_action = gtk.ActionGroup(self.title + '/SaveZoom')
+        self.lock_action.add_toggle_actions([
+            ('SaveZoom', 'gramps-lock', _("_SaveZoom"), "<ALT>L",
+             _("Save the zoom between places map, person map, "
+               "family map and events map"),
+             self._save_zoom,
+             Config.get(Config.GEOVIEW_LOCKZOOM)
+             )
+            ])
+        self._add_action_group(self.lock_action)
         self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_All Places'),
 	    callback=self._all_places, tip=_("Attempt to view all places in "
                                          "the family tree."))
@@ -776,45 +361,64 @@ class GeoView(HtmlView):
         """
         Here when the GeoView page is loaded
         """
-        self._geo_places(self.displaytype)
+        self._geo_places()
 
     def _all_places(self, hanle=None):
         """
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
-        self._geo_places(self.displaytype)
+        self._geo_places()
 
     def _person_places(self, handle=None):
         """
         Specifies the person places.
         """
         self.displaytype = "person"
-        self._geo_places(self.displaytype)
+        self._geo_places()
 
     def _family_places(self, hanle=None):
         """
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
-        self._geo_places(self.displaytype)
+        self._geo_places()
 
     def _event_places(self, hanle=None):
         """
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
-        self._geo_places(self.displaytype)
+        self._geo_places()
 
-    def _geo_places(self, displaytype):
+    def _new_database(self, *args):
+        """
+        We just change the database.
+        Restore the initial config. Is it good ?
+        """
+        if Config.get(Config.GEOVIEW_LOCKZOOM):
+            self.realzoom = Config.get(Config.GEOVIEW_ZOOM)
+            self.displaytype = Config.get(Config.GEOVIEW_MAP)
+            self.reallatitude, self.reallongitude = conv_lat_lon(
+                                    Config.get(Config.GEOVIEW_LATITUDE),
+                                    Config.get(Config.GEOVIEW_LONGITUDE),
+                                    "D.D8")
+
+    def _geo_places(self):
         """
         Specifies the places to display with mapstraction.
         """
+        if self.nbmarkers > 0 :
+            # While the db is not loaded, we have 0 markers.
+            self._savezoomandposition()
         self.external_url = False
         self.nbmarkers = 0
         self.without = 0
-        self._createmapstraction(displaytype)
-        self.open("file://"+self.htmlfile)
+        self._createmapstraction(self.displaytype)
+        self.open(urlparse.urlunsplit(
+                           ('file', '',
+                            URL_SEP.join(self.htmlfile.split(os.sep)),
+                            '', '')))
 
     def _select_openstreetmap_map(self, handle):
         """
@@ -851,6 +455,16 @@ class GeoView(HtmlView):
         self.usedmap = "microsoft"        
         self._change_map("microsoft")
 
+    def _save_zoom(self, button):
+        """
+        Do we change the zoom between maps ?
+        It's not between maps providers, but between people, family,
+        events or places map.
+        When we unlock, we reload the page with our values.
+        """
+        if not button.get_active():
+            self._change_map(self.usedmap)
+
     def _createpageplaceswithoutcoord(self):
         """
         Create a page with the list of all places without coordinates
@@ -865,11 +479,12 @@ class GeoView(HtmlView):
           <title>%(title)s</title>
          </head>
          <body >
-           <H4>%(content)s</H4>
+           <H4>%(content)s<a href="javascript:history.go(-1)">%(back)s</a></H4>
         """ % { 'title'  : _('List of places without coordinates'),
                 'content': _('Here is the list of all places in the family tree'
                              ' for which we have no coordinates.<br>'
-                             ' This means no longitude or latitude.<p>')
+                             ' This means no longitude or latitude.<p>'),
+                'back'   : _('Back to prior page')
         }
         end = """
           </table>
@@ -883,7 +498,7 @@ class GeoView(HtmlView):
         ufd.write("<table border=1 ><th width=10%>NB</th>")
         ufd.write("<th width=20%>Gramps ID</th><th>Place</th>")
         for place in self.places:
-            ufd.write("<tr><td>%d</td><td>%s</td><td>%s</td>"
+            ufd.write("<tr><td>%d</td><td>%s</td><td>%s</td></tr>\n"
                      % ( i, place[0], place[1] ))
             i += 1
         ufd.write(end)
@@ -923,8 +538,13 @@ class GeoView(HtmlView):
                                             maxpages, NB_MARKERS_PER_PAGE))
             self.mapview.write(" <div id='pages' font=-4 >%s<br>\n" % message)
             if curpage != 1:
-                priorfile = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                            (ftype, curpage-1)
+                priorfile = os.path.join(GEOVIEW_SUBPATH,
+                                         "GeoV-%c-%05d.html" % 
+                                                          (ftype, curpage-1))
+                priorfile = urlparse.urlunsplit(
+                                     ('file', '',
+                                      URL_SEP.join(priorfile.split(os.sep)),
+                                      '', ''))
                 self.mapview.write("<a href='%s' >--</a>" % priorfile)
             else:
                 self.mapview.write(" --")
@@ -933,26 +553,39 @@ class GeoView(HtmlView):
                     self.mapview.write(" %d" % page)
                 else:
                     if ( page < curpage + 11 ) and ( page > curpage - 11 ):
-                        nextfile = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                                   (ftype, page)
-                        self.mapview.write(" <a href='%s' >%d</a>" % \
+                        nextfile = os.path.join(GEOVIEW_SUBPATH,
+                                                "GeoV-%c-%05d.html" % \
+                                                 (ftype, page))
+                        nextfile = urlparse.urlunsplit(
+                                       ('file', '',
+                                        URL_SEP.join(nextfile.split(os.sep)),
+                                        '', ''))
+                        self.mapview.write("\n<a href='%s' >%d</a>" %
                                            (nextfile, page))
             if curpage != maxpages:
-                nextfile = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                                           (ftype, curpage+1)
-                self.mapview.write(" <a href='%s' >++</a>" % nextfile)
+                nextfile = os.path.join(GEOVIEW_SUBPATH,
+                                       "GeoV-%c-%05d.html" % (ftype, curpage+1))
+                nextfile = urlparse.urlunsplit(
+                                    ('file', '',
+                                     URL_SEP.join(nextfile.split(os.sep)),
+                                     '', ''))
+                self.mapview.write("\n<a href='%s' >++</a>" % nextfile)
             else:
                 self.mapview.write(" ++")
             self.mapview.write("\n</div>\n")
             if self.without != 0:
-                self.without_coord_file = GEOVIEW_SUBPATH+"/without_coord.html"
+                self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
+                                                       "without_coord.html")
                 self.mapview.write("<div id='coord' font=-4 >You have ")
+                filename = urlparse.urlunsplit(
+                           ('file', '',
+                            URL_SEP.join(self.without_coord_file.split(os.sep)),
+                            '', ''))
                 self.mapview.write("<a href=\"%s\" >%d<a>" % \
-                                   ( self.without_coord_file, self.without ) )
+                                   ( filename, self.without ) )
                 self.mapview.write(" places without coordinates</div>\n" )
                 self._createpageplaceswithoutcoord()
         if self.displaytype != "places":
-            #self.mapview.write(" <Div id='btns' font=-4 >\n")
             self.mapview.write("  <form method='POST' name='btns'>\n")
             self.mapview.write("  <input type='radio' ")
             self.mapview.write("name='years' value='All' checked\n")
@@ -965,7 +598,6 @@ class GeoView(HtmlView):
                 self.mapview.write("   onchange=\"selectmarkers")
                 self.mapview.write("(\'%s\')\"/>%s\n" % ( year, year ))
             self.mapview.write("  </form>\n")
-            #self.mapview.write("</Div>\n")
         self.mapview.write("<H3>%s</H3>" % h3mess)
         if h4mess:
             self.mapview.write("<H4>%s</H4>" % h4mess)
@@ -992,7 +624,10 @@ class GeoView(HtmlView):
         self.mapview.write("<script>\n")
         self.mapview.write("  var gmarkers = [];\n")
         self.mapview.write("  var min = 0;\n")
+        self.mapview.write("  var zoom = 0;\n")
+        self.mapview.write("  var pos = 0;\n")
         self.mapview.write("  var selected = 0;\n")
+        self.mapview.write("  var current_map = '%s';\n" % self.usedmap )
         self.mapview.write("  var selectedmarkers = 'All';\n")
         self.mapview.write("  // shows or hide markers of a ")
         self.mapview.write("particular category\n")
@@ -1018,6 +653,19 @@ class GeoView(HtmlView):
         self.mapview.write("      }\n")
         self.mapview.write("    }\n")
         self.mapview.write("  }\n")
+        self.mapview.write("  function savezoomandposition(mapstraction) {\n")
+        self.mapview.write("    var t=setTimeout(\"savezoomandposition(")
+        self.mapview.write("mapstraction)\",1000);\n")
+        self.mapview.write("    nzoom = mapstraction.getZoom();\n")
+        self.mapview.write("    nposition=mapstraction.getCenter();\n")
+        self.mapview.write("    if ( ( nzoom != zoom ) || ")
+        self.mapview.write("( nposition != pos )) {\n")
+        self.mapview.write("      zoom = nzoom;\n")
+        self.mapview.write("      pos = nposition;\n")
+        self.mapview.write("      document.title = \"zoom=\" + zoom + \" ")
+        self.mapview.write("coord=\" + pos + \":::\";\n")
+        self.mapview.write("    }\n")
+        self.mapview.write("  }\n")
         self.mapview.write("  function removemarkers(mapstraction) {\n")
         self.mapview.write("    for ( m=0; m < gmarkers.length; m++) {\n")
         self.mapview.write("      mapstraction.removeMarker(gmarkers[m]);\n")
@@ -1037,17 +685,20 @@ class GeoView(HtmlView):
         self.mapview.write("    document.btns.years[0].click();\n")
         self.mapview.write("  }\n")
         self.mapview.write("  function swap_map(div,map) {\n")
+        self.mapview.write("    savezoomandposition(mapstraction);\n")
         if self.displaytype != "places":
             self.mapview.write("    get_selected_radio();\n")
         self.mapview.write("    removemarkers(mapstraction);\n")
+        self.mapview.write("    current_map=map;\n")
         self.mapview.write("    mapstraction.swap(div,map);\n")
         if self.displaytype != "places":
             self.mapview.write("    reset_radio();\n")
         self.mapview.write("    setmarkers(mapstraction);\n")
+        self.mapview.write("    mapstraction.enableScrollWheelZoom();\n")
+
         if self.displaytype != "places":
             self.mapview.write("    set_selected_radio();\n")
         self.mapview.write("  }\n")
-        #self._create_needed_javascript(filename)
 
     def _createmapstractionheader(self, filename):
         """
@@ -1058,17 +709,28 @@ class GeoView(HtmlView):
         self.mapview.write(" XHTML 1.0 Strict//EN\" \n")
         self.mapview.write("   \"http://www.w3.org/TR/xhtml1/DTD/")
         self.mapview.write("xhtml1-strict.dtd\">\n")
-        self.mapview.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" >\n")
+        (lang_country, modifier ) = locale.getlocale()
+        self.mapview.write("<html xmlns=\"http://www.w3.org/1999/xhtml\""
+                           " lang=\"%s\" >\n" % lang_country)
         self.mapview.write("<head>\n")
         self.mapview.write(" <meta http-equiv=\"content-type\" ")
         self.mapview.write("content=\"text/html; charset=utf-8\"/>\n")
+        self.mapview.write(" <meta http-equiv=\"Accept-Language\" ")
+        self.mapview.write("content=\"%s\"/>\n" % lang_country.split('_')[0])
+        self.mapview.write(" <meta http-equiv=\"Content-Language\" ")
+        self.mapview.write("content=\"%s\"/>\n" % lang_country.split('_')[0])
         self.mapview.write(" <title>Geo Maps Java Script ")
         self.mapview.write("API for Gramps</title>\n")
         self.mapview.write(" <meta http-equiv=\"Content-Script-Type\" ")
         self.mapview.write("content=\"text/javascript\">\n")
         self.mapview.write("<script type=\"text/javascript\"\n" )
-        self.mapview.write("        src=\"file://"+const.ROOT_DIR+"/")
-        self.mapview.write("mapstraction/mapstraction.js\">\n")
+        fpath = os.path.join(const.ROOT_DIR,
+                             'mapstraction',
+                             'mapstraction.js')
+        upath = urlparse.urlunsplit(('file', '',
+                                     URL_SEP.join(fpath.split(os.sep)),
+                                     '', ''))
+        self.mapview.write("          src=\"%s\">\n" % upath)
         self.mapview.write("</script>\n")
         self.mapview.write("<script id=\"googleapiimport\" \n")
         self.mapview.write("        src=\"http://maps.google.com/")
@@ -1098,6 +760,11 @@ class GeoView(HtmlView):
         """
         self.mapview.write(" setcenterandzoom(mapstraction);\n")
         self.mapview.write(" setmarkers(mapstraction);\n")
+        self.mapview.write(" savezoomandposition(mapstraction);\n")
+        self.mapview.write(" if ( current_map != \"openstreetmap\") {")
+        self.mapview.write(" swap_map(current_map,current_map);")
+        self.mapview.write(" };\n")
+        self.mapview.write(" mapstraction.enableScrollWheelZoom();\n")
         self.mapview.write("</script>\n")
         self.mapview.write("</body>\n")
         self.mapview.write("</html>\n")
@@ -1115,22 +782,10 @@ class GeoView(HtmlView):
         else:
             # Sort by place
             self.sort = sorted(self.place_list)
-        if self.minlon < 0.0:
-            signminlon = 1
-        else:
-            signminlon = 0
-        if self.maxlon < 0.0:
-            signmaxlon = 1
-        else:
-            signmaxlon = 0
-        if self.minlat < 0.0:
-            signminlat = 1
-        else:
-            signminlat = 0
-        if self.maxlat < 0.0:
-            signmaxlat = 1
-        else:
-            signmaxlat = 0
+        signminlon = _get_sign(self.minlon)
+        signminlat = _get_sign(self.minlat)
+        signmaxlon = _get_sign(self.maxlon)
+        signmaxlat = _get_sign(self.maxlat)
         if signminlon == signmaxlon: 
             maxlong = abs(abs(self.minlon)-abs(self.maxlon))
         else:
@@ -1140,50 +795,8 @@ class GeoView(HtmlView):
         else:
             maxlat = abs(abs(self.minlat)+abs(self.maxlat))
         # Calculate the zoom. all places must be displayed on the map.
-        zoomlat = 2
-        if maxlat < 80.0 :
-            zoomlat = 3
-        if maxlat < 40.0 :
-            zoomlat = 4
-        if maxlat < 20.0 :
-            zoomlat = 5
-        if maxlat < 10.0 :
-            zoomlat = 6
-        if maxlat < 3.0 :
-            zoomlat = 7
-        if maxlat < 2.0 :
-            zoomlat = 8
-        if maxlat < 1.0 :
-            zoomlat = 9
-        if maxlat < 0.5 :
-            zoomlat = 10
-        if maxlat < 0.2 :
-            zoomlat = 11
-        if maxlat < 0.1 :
-            zoomlat = 12
-        zoomlong = 2
-        if maxlong < 120.0 :
-            zoomlong = 3
-        if maxlong < 60.0 :
-            zoomlong = 4
-        if maxlong < 30.0 :
-            zoomlong = 5
-        if maxlong < 15.0 :
-            zoomlong = 6
-        if maxlong < 7.0 :
-            zoomlong = 7
-        if maxlong < 4.0 :
-            zoomlong = 8
-        if maxlong < 2.0 :
-            zoomlong = 9
-        if maxlong < 1.0 :
-            zoomlong = 10
-        if maxlong < 0.5 :
-            zoomlong = 11
-        if maxlong < 0.2 :
-            zoomlong = 12
-        if maxlong < 0.1 :
-            zoomlong = 13
+        zoomlat = _get_zoom_lat(maxlat)
+        zoomlong = _get_zoom_long(maxlong)
         if zoomlat < zoomlong:
             self.zoom = zoomlat
         else:
@@ -1254,8 +867,9 @@ class GeoView(HtmlView):
                 ftype = "I"
             else:
                 ftype = "X"
-            filename = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                       (ftype, self.nbpages)
+            filename = os.path.join(GEOVIEW_SUBPATH,
+                                    "GeoV-%c-%05d.html" % 
+                                              (ftype, self.nbpages))
             if self.nbpages == 1:
                 self.htmlfile = filename
             self._createmapstractionheader(filename)
@@ -1282,7 +896,8 @@ class GeoView(HtmlView):
         elif displaytype == "event":
             self._createmapstractionevents(self.dbstate)
         else:
-            self._createmapstractionheader(GEOVIEW_SUBPATH+"/error.html")
+            self._createmapstractionheader(os.path.join(GEOVIEW_SUBPATH,
+                                                       "error.html"))
             self._createmapnotimplemented()
             self._createmapstractiontrailer()
 
@@ -1353,9 +968,16 @@ class GeoView(HtmlView):
         if self.mustcenter:
             self.centered = True
             self.mapview.write("   var point = new LatLonPoint")
-            self.mapview.write("(%s,%s);" % (self.latit, self.longt))
+            if self.lock_action.get_action('SaveZoom').get_active():
+                self.mapview.write("(%s,%s);" % (self.reallatitude,
+                                                 self.reallongitude))
+            else:
+                self.mapview.write("(%s,%s);" % (self.latit, self.longt))
             self.mapview.write("mapstraction.setCenterAndZoom")
-            self.mapview.write("(point, %s);\n" % self.zoom)
+            if self.lock_action.get_action('SaveZoom').get_active():
+                self.mapview.write("(point, %s);\n" % self.realzoom)
+            else:
+                self.mapview.write("(point, %s);\n" % self.zoom)
             self.setattr = False
         self.mapview.write("}\n")
         self.mapview.write("  function setmarkers(mapstraction) {\n")
@@ -1707,6 +1329,10 @@ class GeoView(HtmlView):
                                             'id' : child.gramps_id,
                                             'index': index}
                             self._createpersonmarkers(dbstate, child, comment)
+            else:
+                comment = _("Id : Child : %(id)s has no parents.") % {
+                                'id' : person.gramps_id }
+                self._createpersonmarkers(dbstate, person, comment)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
             if person is not None:

@@ -203,6 +203,11 @@ GEOVIEW_GOOGLEMAPS   = ('preferences', 'googlemap', 0)
 GEOVIEW_OPENLAYERS   = ('preferences', 'openlayers', 0)
 GEOVIEW_YAHOO        = ('preferences', 'yahoo', 0)
 GEOVIEW_MICROSOFT    = ('preferences', 'microsoft', 0)
+GEOVIEW_LOCKZOOM     = ('geoview', 'lock', 0)
+GEOVIEW_ZOOM         = ('geoview', 'zoom', 1)
+GEOVIEW_LATITUDE     = ('geoview', 'latitude', 2)
+GEOVIEW_LONGITUDE    = ('geoview', 'longitude', 2)
+GEOVIEW_MAP          = ('geoview', 'map', 2)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -358,4 +363,9 @@ default_value = {
     GEOVIEW_OPENLAYERS   : False,
     GEOVIEW_YAHOO        : False,
     GEOVIEW_MICROSOFT    : False,
+    GEOVIEW_LOCKZOOM     : False,
+    GEOVIEW_ZOOM         : 0,
+    GEOVIEW_LATITUDE     : "0.0",
+    GEOVIEW_LONGITUDE    : "0.0",
+    GEOVIEW_MAP          : "person",
 }
