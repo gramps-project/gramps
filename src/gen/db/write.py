@@ -1279,18 +1279,6 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                     txn.put(name, group)
             self.emit('person-rebuild')
 
-    def __set_name_group_mapping(self, name, group):
-        if not self.readonly:
-            # Start transaction
-            with BSDDBTxn(self.env, self.name_group) as txn:
-                name = str(name)
-                data = txn.get(name)
-                if data is not None:
-                    txn.delete(name)
-                if group is not None:
-                    txn.put(name, group)
-            self.emit('person-rebuild')
-
     def sort_surname_list(self):
         self.surname_list.sort(key=locale.strxfrm)
 
