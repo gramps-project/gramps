@@ -202,6 +202,20 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         self.secondary_connected = False
         self.has_changed = False
 
+    def catch_db_error(func):
+        """
+        Decorator function for catching database errors.  If *func* throws
+        one of the exceptions in DBERRS, the error is logged and a DbError
+        exception is raised.
+        """
+        def try_(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except DBERRS, msg:
+                self.__log_error()
+                raise Errors.DbError(msg)
+        return try_
+
     def __open_db(self, file_name, table_name, dbtype=db.DB_HASH, flags=0):
         dbmap = db.DB(self.env)
         dbmap.set_pagesize(DBPAGE)
@@ -248,48 +262,34 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
     # the referenced_handle index: the referenced_handle
     # the main index is unique, the others allow duplicate entries.
 
+    @catch_db_error
     def get_reference_map_cursor(self):
         """
         Returns a reference to a cursor over the reference map
         """
-        try:
-            return GrampsDBDirAssocCursor(self.reference_map, self.txn)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
+        return GrampsDBDirAssocCursor(self.reference_map, self.txn)
 
+    @catch_db_error
     def get_reference_map_primary_cursor(self):
         """
         Returns a reference to a cursor over the reference map primary map
         """
-        try:
-            return GrampsDBDirAssocCursor(self.reference_map_primary_map, 
+        return GrampsDBDirAssocCursor(self.reference_map_primary_map, 
                                         self.txn)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
 
+    @catch_db_error
     def get_reference_map_referenced_cursor(self):
         """
         Returns a reference to a cursor over the reference map referenced map
         """
-        try:
-            return GrampsDBDirAssocCursor(self.reference_map_referenced_map, 
+        return GrampsDBDirAssocCursor(self.reference_map_referenced_map, 
                                         self.txn)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
 
     # These are overriding the GrampsDbRead's methods of saving metadata
     # because we now have txn-capable metadata table
-    def set_default_person_handle(self, handle):
-        try:
-            return self.__set_default_person_handle(handle)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
 
-    def __set_default_person_handle(self, handle):
+    @catch_db_error
+    def set_default_person_handle(self, handle):
         """Set the default Person to the passed instance."""
         if not self.readonly:
             # Start transaction
@@ -297,14 +297,8 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                 txn.put('default', str(handle))
             self.emit('home-person-changed')
 
+    @catch_db_error
     def get_default_person(self):
-        try:
-            return self.__get_default_person()
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-
-    def __get_default_person(self):
         """Return the default Person of the database."""
         person = self.get_person_from_handle(self.get_default_handle())
         if person:
@@ -328,33 +322,15 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 txn.put(name, col_list)   
 
+    @catch_db_error
     def version_supported(self):
-        try:
-            dbversion = self.metadata.get('version', default=0)
-            return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-    
+        dbversion = self.metadata.get('version', default=0)
+        return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
+
+    @catch_db_error
     def need_upgrade(self):
-        try:
-            dbversion = self.metadata.get('version', default=0)
-            return not self.readonly and dbversion < _DBVERSION
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-
-    def load(self, name, callback, mode=DBMODE_W):
-        try:
-            if self.__check_readonly(name):
-                mode = DBMODE_R
-            else:
-                write_lock_file(name)
-            return self.__load(name, callback, mode)
-
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
+        dbversion = self.metadata.get('version', default=0)
+        return not self.readonly and dbversion < _DBVERSION
 
     def __check_readonly(self, name):
         """
@@ -376,7 +352,13 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         # All tests passed.  Inform caller that we are NOT read only
         return False
 
-    def __load(self, name, callback, mode=DBMODE_W):
+    @catch_db_error
+    def load(self, name, callback, mode=DBMODE_W):
+
+        if self.__check_readonly(name):
+            mode = DBMODE_R
+        else:
+            write_lock_file(name)        
 
         if self.db_is_open:
             self.close()
@@ -519,17 +501,17 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
 
     def __close_undodb(self):
         if not self.readonly:
-            self.undodb.close()
+            try:
+                self.undodb.close()
+            except db.DBNoSuchFileError:
+                pass                
 
+    @catch_db_error
     def load_from(self, other_database, filename, callback):
-        try:
-            self.load(filename, callback)
-            from gen.utils import db_copy
-            db_copy(other_database, self, callback)
-            return 1
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
+        self.load(filename, callback)
+        from gen.utils import db_copy
+        db_copy(other_database, self, callback)
+        return 1
 
     def __load_metadata(self):
         # name display formats
@@ -645,14 +627,8 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         self.rmap_index = len(self.repository_map)
         self.nmap_index = len(self.note_map)
 
+    @catch_db_error
     def rebuild_secondary(self, callback=None):
-        try:
-            self.__rebuild_secondary(callback)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-
-    def __rebuild_secondary(self, callback=None):
         if self.readonly:
             return
 
@@ -692,14 +668,8 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         if callback:
             callback(12)
 
+    @catch_db_error
     def find_backlink_handles(self, handle, include_classes=None):
-        try:
-            return self.__find_backlink_handles(handle, include_classes)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-
-    def __find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
         
@@ -896,14 +866,8 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             transaction.add(REFERENCE_KEY, TXNADD, str(key), None, data)
             #transaction.reference_add.append((str(key), data))
 
+    @catch_db_error
     def reindex_reference_map(self, callback):
-        try:
-            self.__reindex_reference_map(callback)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-
-    def __reindex_reference_map(self, callback):
         """
         Reindex all primary records in the database.
         
@@ -1035,18 +999,9 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
               "version of GRAMPS.\nPlease upgrade to the "
               "corresponding version or use XML for porting "
               "data between different database versions."))
-
+    
+    @catch_db_error
     def close(self):
-        try:
-            self.__close()
-            clear_lock_file(self.get_save_path())
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-        except IOError:
-            pass
-
-    def __close(self):
         if not self.db_is_open:
             return
 
@@ -1079,11 +1034,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         self.media_map.close()
         self.event_map.close()
         self.env.close()
-
-        try:
-            self.__close_undodb()
-        except db.DBNoSuchFileError:
-            pass
+        self.__close_undodb()
 
         self.person_map     = None
         self.family_map     = None
@@ -1098,6 +1049,11 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False
+
+        try:
+            clear_lock_file(self.get_save_path())
+        except IOError:
+            pass
 
     def create_id(self):
         return "%08x%08x" % ( int(time.time()*10000), 
@@ -1310,18 +1266,19 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         self.__do_remove(handle, transaction, self.note_map, 
                               NOTE_KEY)
 
+    @catch_db_error
     def set_name_group_mapping(self, name, group):
-        """
-        Make name group under the value of group.
-        
-        If group =None, the old grouping is deleted. 
-        """
-        try:
-            self.__set_name_group_mapping(name, group)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-            
+        if not self.readonly:
+            # Start transaction
+            with BSDDBTxn(self.env, self.name_group) as txn:
+                name = str(name)
+                data = txn.get(name)
+                if data is not None:
+                    txn.delete(name)
+                if group is not None:
+                    txn.put(name, group)
+            self.emit('person-rebuild')
+
     def __set_name_group_mapping(self, name, group):
         if not self.readonly:
             # Start transaction
@@ -1337,12 +1294,9 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
     def sort_surname_list(self):
         self.surname_list.sort(key=locale.strxfrm)
 
+    @catch_db_error
     def build_surname_list(self):
-        try:
-            self.surname_list = sorted(map(unicode, set(self.surnames.keys())), key=locale.strxfrm)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
+        self.surname_list = sorted(map(unicode, set(self.surnames.keys())), key=locale.strxfrm)
 
     def add_to_surname_list(self, person, batch_transaction):
         if batch_transaction:
@@ -1355,6 +1309,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         else:
             self.surname_list.insert(i, name)
 
+    @catch_db_error
     def remove_from_surname_list(self, person):
         """
         Check whether there are persons with the same surname left in
@@ -1373,9 +1328,6 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                 del self.surname_list[i-1]
         except ValueError:
             pass
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
         finally:
             cursor.close()
         
@@ -1601,14 +1553,8 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             return newobj
         return None
 
+    @catch_db_error
     def transaction_begin(self, msg="", batch=False, no_magic=False):
-        try:
-            return self.__transaction_begin(msg, batch, no_magic)
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
-
-    def __transaction_begin(self, msg="", batch=False, no_magic=False):
         """
         Create a new Transaction tied to the current UNDO database. 
         
@@ -1638,7 +1584,8 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                 _db = db.DB(self.env)
                 _db.remove(_mkname(self.full_name, REF_REF), REF_REF)
         return transaction
-        
+
+    @catch_db_error
     def transaction_commit(self, transaction, msg):
         if self._LOG_ALL:
             LOG.debug("%s: Transaction commit '%s'\n"
@@ -1647,14 +1594,10 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         if self.readonly:
             return
 
-        try:
-            transaction.commit(msg)
-            self.undodb.commit(transaction, msg)
-            self.__after_commit(transaction, msg)
-            self.has_changed = True
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
+        transaction.commit(msg)
+        self.undodb.commit(transaction, msg)
+        self.__after_commit(transaction, msg)
+        self.has_changed = True
 
     def __after_commit(self, transaction, msg):
         """
@@ -1832,10 +1775,25 @@ def write_lock_file(name):
 
 if __name__ == "__main__":
 
-    import sys
+    import os, sys, pdb
     
     d = GrampsDBDir()
-    d.load(sys.argv[1], lambda x: x)
+    if len(sys.argv) > 1:
+        db_name = sys.argv[1]
+    else:
+        db_home = os.path.join(os.environ['HOME'], '.gramps','grampsdb')
+        for dir in os.listdir(db_home):
+            db_path = os.path.join(db_home, dir)
+            db_fn = os.path.join(db_path, 'name.txt')
+            if os.stat(db_fn):
+                f = open(db_fn)
+                db_name = f.read()
+                if db_name == 'Small Example':
+                    break
+    print "loading", db_path
+    d.load(db_path, lambda x: x)
+
+    print d.get_default_person()
 
     with d.get_person_cursor() as c:
         for key, data in c:
