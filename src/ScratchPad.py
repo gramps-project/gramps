@@ -323,6 +323,8 @@ class ScratchPadNote(ScratchPadWrapper):
         value = self._db.get_note_from_handle(handle)
 
         self._title = value.get_gramps_id()
+        #String must be unicode for truncation to work for non ascii characters
+        note = unicode(note)
         note = value.get().replace('\n', ' ')
         if len(note) > 80:
             self._value = note[:80]+"..."
@@ -494,6 +496,8 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
         text = ""
         if len(srctxtlist) > 0:
             text = " ".join(srctxtlist[0].get().split())
+        #String must be unicode for truncation to work for non ascii characters
+            text = unicode(text)
             if len(text) > 60:
                 text =  text[:60]+"..."
         self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
