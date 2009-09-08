@@ -384,10 +384,10 @@ class NoteEntry(ObjEntry):
 
     def get_label(self, note):
         txt = " ".join(note.get().split())
+        #String must be unicode for truncation to work for non ascii characters
+        txt = unicode(txt)
         if len(txt) > 35:
-            txt = txt[:35]+"..."
-        else:
-            txt = txt
+            txt = txt[:35] + "..."
         return "%s [%s]" % (txt, note.gramps_id)
 
     def call_editor(self, obj=None):
