@@ -428,6 +428,8 @@ class NoteBookmarks(ListBookmarks) :
     def make_label(self, handle):
         obj = self.dbstate.db.get_note_from_handle(handle)
         name = obj.get().replace('\n', ' ')
+        #String must be unicode for truncation to work for non ascii characters
+        name = unicode(name)
         if len(name) > 40:
             name = name[:40]+"..."
         return ("%s [%s]" % (name, obj.gramps_id), obj)
