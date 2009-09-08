@@ -433,6 +433,9 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         text = " ".join(text.split())
 
         # if the note is too long, truncate it
+        # but first set type of text to unicode, otherwise the truncation
+        # might be wrong for non ascii characters
+        text = unicode(text)
         if len(text) > 80:
             text = text[:80] + "..."
 
