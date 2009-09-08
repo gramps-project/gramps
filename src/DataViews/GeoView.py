@@ -262,11 +262,14 @@ class GeoView(HtmlView):
         res = self.dbstate.db.get_researcher()
         if res: # Don't modify the current values if no db is loaded.
             start = 0
-            title = ZOOMANDPOS.search(self.renderer.title, start)
-            if title:
-                self.realzoom = title.group(1)
-                self.reallatitude = title.group(2)
-                self.reallongitude = title.group(3)
+            try:
+                title = ZOOMANDPOS.search(self.renderer.title, start)
+                if title:
+                    self.realzoom = title.group(1)
+                    self.reallatitude = title.group(2)
+                    self.reallongitude = title.group(3)
+            except:
+                pass
 
     def _change_map(self, usedmap):
         """
@@ -737,18 +740,18 @@ class GeoView(HtmlView):
         self.mapview.write("maps?file=api&v=2\"\n")
         self.mapview.write("        type=\"text/javascript\">\n")
         self.mapview.write("</script>\n")
-        if self.usedmap == "microsoft":
+        if _alternate_map() == "microsoft":
             self.mapview.write("<script type=\"text/javascript\"\n")
             self.mapview.write("        src=\"http://dev.virtualearth.net/")
             self.mapview.write("mapcontrol/mapcontrol.ashx?v=6\">\n")
             self.mapview.write("</script>\n")
-        elif self.usedmap == "yahoo":
+        elif _alternate_map() == "yahoo":
             self.mapview.write("<script type=\"text/javascript\"\n")
             self.mapview.write("        src=\"http://api.maps.yahoo.com/")
             self.mapview.write("ajaxymap?v=3.0&appid=MapstractionDemo\" ")
             self.mapview.write("type=\"text/javascript\">\n")
             self.mapview.write("</script>\n")
-        elif self.usedmap == "openlayers":
+        elif _alternate_map() == "openlayers":
             self.mapview.write("<script type=\"text/javascript\"\n")
             self.mapview.write("        src=\"http://openlayers.org/")
             self.mapview.write("api/OpenLayers.js\">\n")
