@@ -688,10 +688,10 @@ class GuiNoteOption(gtk.HBox):
         if note:
             note_id = note.get_gramps_id()
             txt = " ".join(note.get().split())
+            #String must be unicode for truncation to work for non ascii characters
+            txt = unicode(txt)
             if len(txt) > 35:
-                txt = txt[:35]+"..."
-            else:
-                txt = txt
+                txt = txt[:35] + "..."
             txt = "%s [%s]" % (txt, note_id)
 
             self.__note_label.set_text( txt )
