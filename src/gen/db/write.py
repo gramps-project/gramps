@@ -38,6 +38,7 @@ import time
 import locale
 import bisect
 from types import InstanceType
+from functools import wraps
 
 from gettext import gettext as _
 from bsddb import dbshelve, db
@@ -208,6 +209,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         one of the exceptions in DBERRS, the error is logged and a DbError
         exception is raised.
         """
+        @wraps(func)
         def try_(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
@@ -1284,9 +1286,15 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
 
     @catch_db_error
     def build_surname_list(self):
+        """
+        Build surname list for use in autocompletion
+        """
         self.surname_list = sorted(map(unicode, set(self.surnames.keys())), key=locale.strxfrm)
 
     def add_to_surname_list(self, person, batch_transaction):
+        """
+        Add surname to surname list
+        """
         if batch_transaction:
             return
         name = unicode(person.get_primary_name().get_surname())
@@ -1789,3 +1797,4 @@ if __name__ == "__main__":
             print key, person.get_primary_name().get_name(),
 
     print d.surnames.keys()
+    print d.remove_from_surname_list.__doc__
