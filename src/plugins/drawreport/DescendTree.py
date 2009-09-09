@@ -341,12 +341,12 @@ class DescendTree(Report):
 
             bw = (calc_width/(uw/(maxx+1)))
             bh = (self.box_height*(1.25)+self.box_gap)/(self.uh/maxy)
-            
+
             self.scale = max(bw/2, bh)
-            self.box_width = self.box_width/self.scale
-            self.box_height = self.box_height/self.scale
-            self.box_pad_pts = self.box_pad_pts/self.scale
-            self.box_gap = self.box_gap/self.scale
+            self.box_width /= self.scale
+            self.box_height /= self.scale
+            self.box_pad_pts /= self.scale
+            self.box_gap /= self.scale
 
 #        maxh = int((self.uh)/(self.box_height+self.box_gap))
         maxw = int(uw/calc_width) 

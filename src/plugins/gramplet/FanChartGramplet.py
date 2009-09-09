@@ -264,9 +264,9 @@ class FanChartWidget(gtk.Widget):
         stop_rad = stop * math.pi/180
         r,g,b = self.GENCOLOR[generation % len(self.GENCOLOR)]
         if gender == gen.lib.Person.MALE:
-            r -= r * .10
-            g -= g * .10
-            b -= b * .10
+            r *= .9
+            g *= .9
+            b *= .9
         radius = generation * self.pixels_per_generation + self.center
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
@@ -364,7 +364,7 @@ class FanChartWidget(gtk.Widget):
 
     def show_parents(self, generation, selected, angle, slice):
         if generation >= self.generations: return
-        selected = selected * 2
+        selected *= 2
         self.angle[generation][selected][0] = angle
         self.angle[generation][selected][1] = angle + slice
         self.angle[generation][selected][3] = self.NORMAL

@@ -134,7 +134,6 @@ class GenChart(object):
         new_y = 0
         for key, i in self.array.iteritems():
             old_y = key
-            print __name__, i
             if self.not_blank(i.itervalues()):
                 self.compress_map[old_y] = new_y
                 new_array[new_y] = i
@@ -317,11 +316,11 @@ class AncestorTree(Report):
 
             bw = calc_width / (uw/maxx)
             bh = self.box_height / (self.uh/maxy)
-            
+
             self.scale = max(bw ,bh)
-            self.box_width = self.box_width / self.scale
-            self.box_height = self.box_height / self.scale
-            self.box_pad_pts = self.box_pad_pts / self.scale
+            self.box_width /= self.scale
+            self.box_height /= self.scale
+            self.box_pad_pts /= self.scale
 
         maxh = int(self.uh / self.box_height)
         maxw = int(uw / calc_width) 

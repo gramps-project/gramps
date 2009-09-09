@@ -195,8 +195,8 @@ class GVDocBase(BaseDoc, GVDoc):
         xmargin = self._paper.get_left_margin() / 2.54
         ymargin = self._paper.get_top_margin() / 2.54
 
-        sizew = sizew * self.hpages         
-        sizeh = sizeh * self.vpages
+        sizew *= self.hpages         
+        sizeh *= self.vpages
                       
         self.write( 'digraph GRAMPS_graph\n'        )
         self.write( '{\n'                           )
