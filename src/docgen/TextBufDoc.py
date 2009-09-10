@@ -296,10 +296,10 @@ class TextBufDoc(BaseDoc, TextDoc):
 
         self.in_cell = 1
         self.cellnum = self.cellnum + span
-        span = span - 1
+        span -= 1
         while span:
             self.cell_widths[self.cellnum-span] = 0
-            span = span - 1
+            span -= 1
             
     #--------------------------------------------------------------------
     #

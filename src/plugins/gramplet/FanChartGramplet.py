@@ -395,7 +395,7 @@ class FanChartWidget(gtk.Widget):
             self.angle[generation][selected] = [current, current + slice, 
                                                 male,state]
             self.shrink_parents(generation + 1, selected, current)
-            current = current + slice
+            current += slice
         start,stop,male,state = self.angle[generation][selected+1]
         if state in [self.NORMAL, self.EXPANDED]:
             slice = (stop - start) / 2.0

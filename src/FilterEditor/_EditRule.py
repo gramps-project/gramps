@@ -494,7 +494,7 @@ class EditRule(ManagedWindow.ManagedWindow):
                 tlist.append(t)
                 table.attach(l, 1, 2, pos, pos+1, gtk.FILL, 0, 5, 5)
                 table.attach(t, 2, 3, pos, pos+1, gtk.EXPAND|gtk.FILL, 0, 5, 5)
-                pos = pos + 1
+                pos += 1
             self.notebook.append_page(table, gtk.Label(class_obj.name))
             self.class2page[class_obj] = self.page_num
             self.page_num = self.page_num + 1

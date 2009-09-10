@@ -169,7 +169,7 @@ class RecentFiles(object):
         xml_file.write('<RecentFiles>\n')
         index = 0
         for item in self.gramps_recent_files:
-            index = index + 1
+            index += 1
             if index > MAX_GRAMPS_ITEMS:
                 break
             xml_file.write('  <RecentItem>\n')

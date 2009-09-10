@@ -1533,7 +1533,7 @@ def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
             x = centerx + cos(angle) * short_radius
             y = centery + sin(angle) * short_radius
             p.append((x, y))
-            angle = angle - radiansdelta
+            angle -= radiansdelta
     doc.draw_path(style, p)
 
     delta = (eangle - sangle) / 2.0

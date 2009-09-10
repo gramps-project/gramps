@@ -419,7 +419,7 @@ class FamilyGroup(Report):
                 else:
                     spouse_id = family.get_father_handle()
                 if spouse_id:
-                    spouse_count = spouse_count + 1
+                    spouse_count += 1
 
         self.doc.start_row()
         if spouse_count != 0 or self.missingInfo or death is not None or birth is not None:
@@ -462,7 +462,7 @@ class FamilyGroup(Report):
             index = 0
             for family_handle in person.get_family_handle_list():
                 m = None
-                index = index + 1
+                index += 1
                 family = self.database.get_family_from_handle(family_handle)
 
                 for event_ref in family.get_event_ref_list():
@@ -562,7 +562,7 @@ class FamilyGroup(Report):
             index = 1
             for child_ref in family.get_child_ref_list():
                 self.dump_child(index,child_ref.ref)
-                index = index + 1
+                index += 1
             self.doc.end_table()
 
         if self.recursive:

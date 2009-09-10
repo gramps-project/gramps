@@ -85,7 +85,7 @@ class StatsGramplet(Gramplet):
             photo = database.get_object_from_handle(photo_id)
             fullname = media_path_full(database, photo.get_path())
             try:
-                bytes = bytes + posixpath.getsize(fullname)
+                bytes += posixpath.getsize(fullname)
             except:
                 notfound.append(photo.get_path())
 

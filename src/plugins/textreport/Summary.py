@@ -111,32 +111,32 @@ class SummaryReport(Report):
             # Count people with media.
             length = len(person.get_media_list())
             if length > 0:
-                with_media = with_media + 1
+                with_media += 1
             
             # Count people with incomplete names.
             name = person.get_primary_name()
             if name.get_first_name() == "" or name.get_surname() == "":
-                incomp_names = incomp_names + 1
+                incomp_names += 1
                 
             # Count people without families.
             if (not person.get_main_parents_family_handle()) and \
                (not len(person.get_family_handle_list())):
-                disconnected = disconnected + 1
+                disconnected += 1
             
             # Count missing birthdays.
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = self.__db.get_event_from_handle(birth_ref.ref)
                 if not DateHandler.get_date(birth):
-                    missing_bday = missing_bday + 1
+                    missing_bday += 1
             else:
-                missing_bday = missing_bday + 1
+                missing_bday += 1
                 
             # Count genders.
             if person.get_gender() == gen.lib.Person.FEMALE:
-                females = females + 1
+                females += 1
             elif person.get_gender() == gen.lib.Person.MALE:
-                males = males + 1
+                males += 1
             else:
                 unknowns += 1
                 
@@ -212,9 +212,8 @@ class SummaryReport(Report):
         for media_id in self.__db.get_media_object_handles():
             media = self.__db.get_object_from_handle(media_id)
             try:
-                size_in_bytes = size_in_bytes + posixpath.getsize(
-                                                    media_path_full(self.__db, 
-                                                    media.get_path()))
+                size_in_bytes += posixpath.getsize(
+                                 media_path_full(self.__db, media.get_path()))
             except:
                 notfound.append(media.get_path())
                 

@@ -103,11 +103,11 @@ class RTFDoc(BaseDoc,TextDoc):
             if fgcolor not in self.color_map:
                 self.color_map[fgcolor] = index
                 self.f.write('\\red%d\\green%d\\blue%d;' % fgcolor)
-                index = index + 1
+                index += 1
             if bgcolor not in self.color_map:
                 self.f.write('\\red%d\\green%d\\blue%d;' % bgcolor)
                 self.color_map[bgcolor] = index
-                index = index + 1
+                index += 1
         self.f.write('}\n')
         self.f.write('\\kerning0\\cf0\\viewkind1')
         self.f.write('\\paperw%d' % twips(self.paper.get_size().get_width()))

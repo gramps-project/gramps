@@ -220,9 +220,9 @@ class Tooltip(gtk.Window):
 
         if ((y + h + widget.allocation.height + Tooltip.BORDER_WIDTH) >
             monitor.y + monitor.height):
-            y = y - h - Tooltip.BORDER_WIDTH
+            y -= h + Tooltip.BORDER_WIDTH
         else:
-            y = y + widget.allocation.height + Tooltip.BORDER_WIDTH
+            y += widget.allocation.height + Tooltip.BORDER_WIDTH
 
         return x, y
 

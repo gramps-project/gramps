@@ -810,7 +810,7 @@ class GuiGramplet(object):
                 else:
                     markup = text[i+2:i+stop].upper() # close tag
                     markup_pos[markup][-1].append(r)
-                    i = i + stop + 1
+                    i += stop + 1
             elif text[i] == "<":
                 # start of start tag
                 stop = text[i:].find(">")
@@ -821,7 +821,7 @@ class GuiGramplet(object):
                 else:
                     markup, attr = parse_tag_attr(text[i+1:i+stop])
                     markup_pos[markup].append([r, attr])
-                    i = i + stop + 1
+                    i += stop + 1
             elif text[i] == "\\":
                 retval += text[i+1]
                 r += 1

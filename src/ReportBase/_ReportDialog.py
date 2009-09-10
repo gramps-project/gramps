@@ -370,7 +370,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                 else:
                     table.attach(widget, 2, 3, row, row+1,
                                  yoptions=gtk.SHRINK)
-                row = row + 1
+                row += 1
                 
     def setup_main_options(self):
         if "" in self.frames:

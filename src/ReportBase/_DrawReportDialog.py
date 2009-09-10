@@ -70,7 +70,7 @@ class _DrawFormatComboBox(gtk.ComboBox):
             self.store.append(row=[name])
             if plugin.get_extension() == active:
                 active_index = index
-            index = index + 1
+            index += 1
         self.set_active(active_index)
 
     def get_active_plugin(self):

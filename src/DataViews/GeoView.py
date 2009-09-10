@@ -524,10 +524,10 @@ class GeoView(HtmlView):
         modulo = intvl - ( intvl % 10 )
         if modulo == 0:
             modulo = 10
-        self.minyear = ( self.minyear - ( self.minyear % 10 ) )
-        self.maxyear = ( self.maxyear - ( self.maxyear % 10 ) )
+        self.minyear -= self.minyear % 10
+        self.maxyear -= self.maxyear % 10
         self.yearint = (self.maxyear-self.minyear)/self.maxgen
-        self.yearint = ( self.yearint - ( self.yearint % modulo ) )
+        self.yearint -= self.yearint % modulo
         if self.yearint == 0:
             self.yearint = 10
         self.mapview.write("<script>\n")
@@ -929,13 +929,13 @@ class GeoView(HtmlView):
                 if tfc > self.maxyear:
                     self.maxyear = tfc
         if tfa < 0.0:
-            tfa = tfa - 0.00000001
+            tfa -= 0.00000001
         else:
-            tfa = tfa + 0.00000001
+            tfa += 0.00000001
         if tfb < 0.0:
-            tfb = tfb - 0.00000001
+            tfb -= 0.00000001
         else:
-            tfb = tfb + 0.00000001
+            tfb += 0.00000001
         if self.minlat == 0.0:
             self.minlat = tfa
         if tfa < self.minlat:

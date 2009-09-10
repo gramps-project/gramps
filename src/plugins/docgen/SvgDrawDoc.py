@@ -254,7 +254,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         p = style_sheet.get_paragraph_style(para_name)
         font = p.get_font()
         width = self.string_width(font, text) / 72
-        x = x - width
+        x -= width
         self.draw_text(style, text, x, y)
 
 def units(val):

@@ -122,7 +122,7 @@ class StyleListDisplay(object):
             if style == "default":
                 continue
             self.list.add([style])
-            index = index + 1
+            index += 1
 
     def on_add_clicked(self, obj):
         """Called with the ADD button is clicked. Invokes the StyleEditor to

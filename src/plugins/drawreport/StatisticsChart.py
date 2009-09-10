@@ -591,9 +591,9 @@ class StatisticsChart(Report):
     
         # output data...
         radius = middle - 2*margin
-        yoffset = yoffset + margin + radius
+        yoffset += margin + radius
         ReportUtils.draw_pie_chart(self.doc, middle_w, yoffset, radius, chart_data, -90)
-        yoffset = yoffset + radius + 2*margin
+        yoffset += radius + 2*margin
         if middle == middle_h:   # Landscape
             legendx = 1.0
             yoffset = margin

@@ -561,7 +561,7 @@ class Span(object):
                 diff = 0
                 while eDate >> date2 and diff > -60:
                     diff -= 1
-                    eDate = eDate - (0, 0, abs(diff))
+                    eDate -= (0, 0, abs(diff))
                 if diff == -60:
                     return (-1, -1, -1)
                 if self.negative:

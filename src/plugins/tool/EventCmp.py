@@ -275,9 +275,9 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 column.set_sort_column_id(model_index)
                 self.eventlist.append_column(column)
                 # This one numbers the tree columns: increment on new column
-                tree_index = tree_index + 1
+                tree_index += 1
             # This one numbers the model columns: always increment
-            model_index = model_index + 1
+            model_index += 1
 
         model = gtk.ListStore(*mylist)
         self.eventlist.set_model(model)

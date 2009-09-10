@@ -193,7 +193,7 @@ def _get_mem_text(mems, i):
     if i <= 0:
         return ''
 
-    i = i - 1
+    i -= 1
     recno = mems[i][0]
     text = mems[i][1].decode('cp850')
     if recno != 0:

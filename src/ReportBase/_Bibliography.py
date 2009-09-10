@@ -87,11 +87,11 @@ class Citation(object):
         number_of_letters = int(math.log(float(ref_count), float(letter_count)))+1
         # Exclude index for number_of_letters-1
         for n in range(1, number_of_letters-1):
-            ref_count = ref_count - pow(letter_count, n) 
+            ref_count -= pow(letter_count, n) 
         # Adjust number_of_letters for new index
         number_of_letters = int(math.log(float(ref_count), float(letter_count))) +1
         for n in range(1, number_of_letters):
-            x_ref_count = x_ref_count - pow(letter_count, n) 
+            x_ref_count -= pow(letter_count, n) 
         for letter in range(1, number_of_letters):
             index = x_ref_count  / pow(letter_count, letter)  % letter_count
             key += string.ascii_lowercase[ index ]

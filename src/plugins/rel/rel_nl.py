@@ -393,7 +393,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             going sideways in a branch as the nieces/newphews going downward
             from your brother/sisters. This used to be called "kozijn"
         """
-        removed = removed - 1
+        removed -= 1
         if removed > len(_removed_level)-1:
             return "verre %s%sneef (kozijn, %d graden)" % (inlaw, step, 
                                                            removed)
@@ -408,7 +408,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             going sideways in a branch as the nieces/newphews going downward
             from your brother/sisters.  This used to be called "kozijn"
         """
-        removed = removed - 1
+        removed -= 1
         if removed > len(_removed_level)-1:
             return "verre %s%snicht (kozijn, %d graden)" % (inlaw, step, 
                                                            removed)

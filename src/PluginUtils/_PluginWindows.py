@@ -465,7 +465,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
                 else:
                     table.attach(widget, 2, 3, row, row+1,
                                  yoptions=gtk.SHRINK)
-                row = row + 1
+                row += 1
         self.notebook.show_all()
 
     #------------------------------------------------------------------------

@@ -281,7 +281,7 @@ class Bookmarks :
         self.namemodel.remove(the_iter)
         self.modified = True
         if row > 0:
-            row = row - 1
+            row -= 1
         self.namemodel.select_row(row)
 
     def up_clicked(self, obj):

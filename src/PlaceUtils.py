@@ -89,10 +89,7 @@ def __convert_structure_to_float(sign, degs, mins=0, secs=0.0) :
         v += float(mins) / 60.
     if secs is not None:
         v += secs / 3600.
-    if sign == "-":
-        v = v * -1.
-
-    return v
+    return -v if sign == "-" else v
 
 def __convert_using_float_repr(stringValue):
     """ helper function that tries to convert the string using the float

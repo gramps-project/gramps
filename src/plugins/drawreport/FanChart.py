@@ -183,7 +183,7 @@ class FanChart(Report):
                 style_sheet = self.doc.get_style_sheet()
                 fontsize = pt2cm(style_sheet.get_paragraph_style('FC-Title').get_font().get_size())
                 # y is vertical distance to center of circle, move center down 1 fontsize
-                y = y + fontsize
+                y += fontsize
                 # min_XY is the diamter of the circle, subtract two fontsize
                 # so we dont draw outside bottom of the paper
                 min_xy = min(min_xy,y-2*fontsize)

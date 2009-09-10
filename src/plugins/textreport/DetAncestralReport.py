@@ -172,7 +172,7 @@ class DetAncestorReport(Report):
                 mark = IndexMark(text, INDEX_TYPE_TOC, 2)
                 self.doc.write_text(text, mark)
                 self.doc.end_paragraph()
-                generation = generation + 1
+                generation += 1
                 if self.childref:
                     self.prev_gen_handles = self.gen_handles.copy()
                     self.gen_handles.clear()
