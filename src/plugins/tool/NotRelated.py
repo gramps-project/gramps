@@ -233,7 +233,7 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         if rows > 1:
             progress = Utils.ProgressMeter(self.title,_('Starting'))
             #TRANS: no singular form needed, as rows is always > 1
-            progress.set_pass(ngettext("", 'Setting marker for %d people', \
+            progress.set_pass(ngettext("Setting marker for %d person", 'Setting marker for %d people', \
                               rows) % rows, rows)
 
         # start the db transaction
@@ -267,7 +267,7 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
     def findRelatedPeople(self) :
 
         #TRANS: No singular form is needed.
-        self.progress.set_pass(ngettext("", "Finding relationships between %d people",\
+        self.progress.set_pass(ngettext("Finding relationships between %d person", "Finding relationships between %d people",\
                                self.numberOfPeopleInDatabase) \
                                % self.numberOfPeopleInDatabase, \
                                self.numberOfPeopleInDatabase)
