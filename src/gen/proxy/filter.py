@@ -25,7 +25,7 @@
 """
 Proxy class for the GRAMPS databases. Apply filter
 """
-
+import pdb
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
@@ -48,30 +48,29 @@ class FilterProxyDb(ProxyDbBase):
         """
         ProxyDbBase.__init__(self, db)
         self.person_filter = person_filter
-
         if person_filter:
-            self.plist = dict((h, 1) for h in person_filter.apply(
+            self.plist = set(h for h in person_filter.apply(
                     self.db, self.db.iter_person_handles()))
         else:
-            self.plist = dict((h, 1) for h in self.db.iter_person_handles())
+            self.plist = set(self.db.iter_person_handles())
 
         if event_filter:
-            self.elist = dict((h, 1) for h in event_filter.apply(
+            self.elist = set(h for h in event_filter.apply(
                     self.db, self.db.iter_event_handles()))
         else:
-            self.elist = dict((h, 1) for h in self.db.iter_event_handles())
+            self.elist = set(self.db.iter_event_handles())
         
         if note_filter:
-            self.nlist = dict((h, 1) for h in note_filter.apply(
+            self.nlist = set(h for h in note_filter.apply(
                     self.db, self.db.iter_note_handles()))
         else:
-            self.nlist = dict((h, 1) for h in self.db.iter_note_handles())
+            self.nlist = set(self.db.iter_note_handles())
 
-        self.flist = {}
-        for handle in list(self.plist):
+        self.flist = set()
+        for handle in self.plist:
             person = self.db.get_person_from_handle(handle)
             for handle in person.get_family_handle_list():
-                self.flist[handle] = 1
+                self.flist.add(handle)
 
     def get_person_from_handle(self, handle):
         """
@@ -298,7 +297,6 @@ class FilterProxyDb(ProxyDbBase):
         Return an iterator over database handles, one handle for each Person in
         the database. 
         """
-        # FIXME: plist is not a sorted list of handles
         return self.plist
 
     def iter_people(self):
@@ -420,6 +418,7 @@ class FilterProxyDb(ProxyDbBase):
         @param notebase: NoteBase object to clean
         @type event: NoteBase
         """
+        
         note_list = notebase.get_note_list()
         new_note_list = [ note for note in note_list if note in self.nlist ]
         notebase.set_note_list(new_note_list)

@@ -43,12 +43,12 @@ class ReferencedProxyDb(ProxyDbBase):
         Create a new ReferencedProxyDb instance. 
         """
         ProxyDbBase.__init__(self, dbase)
-        self.unreferenced_events = {}
-        self.unreferenced_places = {}
-        self.unreferenced_sources = {}
-        self.unreferenced_repositories = {}
-        self.unreferenced_media_objects = {}
-        self.unreferenced_notes = {}
+        self.unreferenced_events = set()
+        self.unreferenced_places = set()
+        self.unreferenced_sources = set()
+        self.unreferenced_repositories = set()
+        self.unreferenced_media_objects = set()
+        self.unreferenced_notes = set()
 
         # Build lists of unreferenced objects
         self.__find_unreferenced_objects()
@@ -155,7 +155,7 @@ class ReferencedProxyDb(ProxyDbBase):
                 for handle in handle_list:
                     if (handle not in unref_list and
                         not any(self.find_backlink_handles(handle)) ):
-                            unref_list[handle] = True
+                            unref_list.add(handle)
                 current_count += len(unref_list)
 
             if current_count == last_count:
