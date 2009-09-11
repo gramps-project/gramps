@@ -5704,7 +5704,8 @@ def _has_webpage_extension(url):
 
 def alphabet_navigation(db, handle_list, key):
     """
-    Will create the alphabetical navigation bar...
+    Will create the alphabet navigation bar for classes IndividualListPage,
+    SurnameListPage, and PlaceListPage
 
     handle_list -- a list of people's or Places' handles
     key -- _PERSON or _PLACE
@@ -5742,34 +5743,28 @@ def alphabet_navigation(db, handle_list, key):
     # begin alphabet division
     with Html("div", id='alphabet') as section:
 
-        # set up table
-        with Html("table", class_ = "infolist alphabet") as table:
-            section += table
-
-            num_ltrs = len(sorted_alpha_index)
-            nrows = (num_ltrs / 35) + 1
-            index = 0
-            for rows in xrange(nrows):
-                trow = Html("tr")  
-                table += trow
-                unordered = Html('ul') 
-                trow += unordered
-                cols = 0
-                while (cols <= 35 and index < num_ltrs):
-                    ltr = sorted_alpha_index[index]
-                    title_str = _('Surnames')  if key == 0 else _('Places')
-                    if lang_country == "sv_SE" and ltr == u'V':
-                        title_str += _(' starting with %s') % "V,W" 
-                        unordered += (Html('li', class_ = "letters", inline = True) +
-                             Html('a', "V,W", href="#V,W", title=title_str)
-                             )
-                    else:
-                        title_str += _(' starting with %s') % ltr 
-                        unordered += Html('li', class_ = "letters", inline = True) + (
-                            Html('a', ltr, href='#%s' % ltr, title=title_str)
-                            )
-                    cols += 1
-                    index += 1
+        num_ltrs = len(sorted_alpha_index)
+        nrows = (num_ltrs / 35) + 1
+        index = 0
+        for rows in xrange(nrows):
+            unordered = Html('ul') 
+            section += unordered
+            cols = 0
+            while (cols <= 35 and index < num_ltrs):
+                ltr = sorted_alpha_index[index]
+                title_str = _('Surnames')  if key == 0 else _('Places')
+                if lang_country == "sv_SE" and ltr == u'V':
+                    title_str += _(' starting with %s') % "V,W" 
+                    unordered += (Html('li', class_ = "letters", inline = True) +
+                         Html('a', "V,W", href="#V,W", title=title_str)
+                         )
+                else:
+                    title_str += _(' starting with %s') % ltr 
+                    unordered += Html('li', class_ = "letters", inline = True) + (
+                        Html('a', ltr, href='#%s' % ltr, title=title_str)
+                        )
+                cols += 1
+                index += 1
 
     # return alphabet navigation to its callers
     return section
