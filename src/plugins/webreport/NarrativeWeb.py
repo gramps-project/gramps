@@ -4701,13 +4701,9 @@ class NavWebReport(Report):
 
         place_list = {}
         source_list = {}
-        event_dict = []
         attribute_list = []
 
         self.base_pages()
-
-        # build the events dictionary
-        self.build_events(ind_list, event_dict)
 
         # build classes IndividualListPage and IndividualPage
         self.person_pages(ind_list, place_list, source_list)
@@ -4718,9 +4714,11 @@ class NavWebReport(Report):
         # build PlaceListPage and PlacePage
         self.place_pages(place_list, source_list)
 
-        
         # build classes EventListPage and EventPage
+        # build the events list only if event pages are being created?
         if self.inc_events:
+            event_dict = []
+            self.build_events(ind_list, event_dict)
             self.event_pages(event_dict)
 
         # build classes SourceListPage and SourcePage
