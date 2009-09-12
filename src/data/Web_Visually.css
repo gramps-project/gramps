@@ -323,17 +323,11 @@ div#alphabet ul li.letters a:hover {
     height: 52px;
 }
 body#WebCal #navigation, body#fullyearlinked #navigation {
-    position: fixed;
-    top: 100px;
     width: 100%;
-    height: 56px;
+    height: 42px;
 }
 #subnavigation {
-    position: fixed;
-    top: 136px;
     width: 100%;
-    height: 56px;
-    border-top: solid 2px #5D835F;
 }
 #navigation ul, #subnavigation ul {
     list-style:none;
@@ -1389,7 +1383,7 @@ div#pedigree {
 -------------------------------------------------------------------------------------------- */
 /* Calendar : General */
 body#WebCal {
-    padding: 172px 14px 0px 14px;
+    padding: 98px 14px 0px 14px;
     background-color: #542;
 }
 .calendar {
@@ -1533,7 +1527,7 @@ body#WebCal {
 
 /* Calendar : Full Year */
 body#fullyearlinked {
-    padding: 144px 14px 0px 14px;
+    padding: 98px 14px 0px 14px;
 }
 body#fullyearlinked div.content {
     width:963px;

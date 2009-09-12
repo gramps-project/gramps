@@ -77,6 +77,9 @@ from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 # constants
 #
 #------------------------------------------------------------------------
+# full clear line for proper styling
+fullclear = Html("div", class_ = "fullclear", inline = True)
+
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 
@@ -363,10 +366,10 @@ class WebCalReport(Report):
         page, head, body = Html.page(title, self.encoding, xmllang)
 
         # GRAMPS favicon
-        fname1 =  '/'.join([subdirs] + ['images'] + ['favicon.ico'])
+        fname1 = os.path.join(subdirs, "images", "favicon.ico")
 
         # _CALENDARSCREEN stylesheet
-        fname2 = '/'.join([subdirs] + ['styles'] + [_CALENDARSCREEN])
+        fname2 = os.path.join(subdirs, "styles", _CALENDARSCREEN)
 
         # create additional meta tags
         meta = Html("meta", attr = _META1) + (
@@ -382,7 +385,7 @@ class WebCalReport(Report):
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
-            fname = '/'.join([subdirs] + ['styles'] + [_CALENDARPRINT])
+            fname = os.path.join(subdirs, "styles", _CALENDARPRINT)
             links += Html("link",rel="stylesheet", href=fname,type="text/css",
                 media="print",indent = False)
 
@@ -870,13 +873,9 @@ class WebCalReport(Report):
             body += monthly_calendar 
 
             # create blank line for stylesheets
-            body += Html("div", class_ = "fullclear", inline = True)
-
             # create footer division section
             footer = self.write_footer(nr_up)
-
-            # add footer to WebCal
-            body += footer
+            body += (fullclear, footer)
 
             # send calendar page to web output
             mywriter(webcal, of)
@@ -949,13 +948,9 @@ class WebCalReport(Report):
             self.progress.step()
 
         # create blank line for stylesheets
-        body += Html("div", class_ = "fullclear", inline = True)
-
         # write footer section
         footer = self.write_footer(nr_up)
-
-        # add footer to body
-        body += footer
+        body += (fullclear, footer)
 
         # send calendar page to web output
         mywriter(yearglance, of)
@@ -1022,13 +1017,9 @@ class WebCalReport(Report):
         body += ol
 
         # create blank line for stylesheets
-        body += Html("div", class_ = "fullclear", inline = True)
-
         # write footer section
         footer = self.write_footer(nr_up)
-
-        # add footer to WebCal
-        body += footer
+        body += (fullclear, footer)
 
         # send calendar page to web output
         mywriter(oneday, od)
