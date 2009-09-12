@@ -548,12 +548,12 @@ class GuiFamilyOption(gtk.HBox):
             person = self.__db.get_default_person()
             if person:
                 family_list = person.get_family_handle_list()
-                
+
         if not family_list:
             # Finally, take any family you can find.
             for family in self.__db.iter_family_handles():
+                self.__update_family(family)
                 break
-            self.__update_family(family)
 
     def __get_family_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
