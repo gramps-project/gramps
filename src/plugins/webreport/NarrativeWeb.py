@@ -2019,11 +2019,10 @@ class EventListPage(BasePage):
             msg = _("This page contains an index of all the events in the "
                     "database, sorted by their type, date (if one is present), "
                     "and person&#8217;s surname.  Clicking on an event&#8217;s type "
-                    "will take you to that event&#8217;s page.  Clicking on a place "
-                    "will take you to that place&#8217;s page.  Clicking on a "
+                    "will take you to that event&#8217;s page.  Clicking on a "
                     "person&#8217;s name will take you to that person&#8217;s page.  "
-                    "The person will only be shown once for their events.")
-            eventlist += Html('p', msg, id='description')
+                    "The person&#8217;s name will only be shown once for their events.")
+            eventlist += Html("p", msg, id="description")
 
             # begin event list table 
             with Html("table", class_ = "infolist eventlist") as table:
@@ -2040,10 +2039,9 @@ class EventListPage(BasePage):
                 for (label, colclass) in [
                     [THEAD,        'Type'],
                     [DHEAD,        'Date'], 
-                    [PHEAD,        'Place'],    
                     [_('Person'),  'Person'],
                     [_('Partner'), 'Partner'] ]:
-                    trow += Html("th", label, class_ = 'Column%s' % colclass, inline = True)
+                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
 
                 # begin table body
                 tbody = Html("tbody")
@@ -2085,7 +2083,7 @@ class EventListPage(BasePage):
 
         # get person's hyperlink 
         url = self.report.build_url_fname_html(person.handle, 'ppl', subdirs)
-        person_hyper = self.person_link(url, person, True, first, person.gramps_id)
+        person_hyper = self.person_link(url, person, True, first)
 
         # begin table row 
         trow = Html("tr")
@@ -2094,8 +2092,8 @@ class EventListPage(BasePage):
         """
         for more information: see get_event_data()
         """ 
-        event_data = self.get_event_data(evt, evt_ref, True, False, False, 
-            False, subdirs, True, evt.gramps_id)
+        event_data = self.get_event_data(evt, evt_ref, False, False, False, 
+            False, subdirs, True)
 
         for (label, colclass, data) in event_data:
             data = "&nbsp;" if (not data or []) else data
@@ -2110,13 +2108,12 @@ class EventListPage(BasePage):
 
         # get partner hyperlink
         # display partner if event is either a Marriage or Divorce?
-        # partner will not be None
         partner_hyper = "&nbsp;" 
         if partner is not None:
 
             # get partner hyperlink
             url = self.report.build_url_fname_html(partner.handle, 'ppl', subdirs)
-            partner_hyper = self.person_link(url, partner, False, partner.gramps_id)
+            partner_hyper = self.person_link(url, partner, True)
         trow += Html("td", partner_hyper, class_ = "ColumnPartner")
 
         # return EventList row to its caller
@@ -2140,6 +2137,7 @@ class EventPage(BasePage):
             # display page itle
             title = _('%(type)s of %(name)s') % {'type' : evt_type.lower(),
                                                  'name' : self.get_name(person) }
+
             # line is in place for Peter Lundgren
             title = title[0].upper() + title[1:]
             eventdetail += Html('h3', title, inline = True)
@@ -2178,7 +2176,7 @@ class EventPage(BasePage):
 
                 # get person hyperlink
                 url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
-                person_hyper = self.person_link(url, person, True, person.gramps_id)
+                person_hyper = self.person_link(url, person, True, gid=person.gramps_id)
                 trow = Html("tr") + (
                     Html("td", _('Person'), class_ = "ColumnAttribute", inline = True),
                     Html("td", person_hyper, class_ = "ColumnPerson")
@@ -2188,7 +2186,7 @@ class EventPage(BasePage):
                 # display partner if type is either Marriage or Divorce
                 if partner is not None:
                     url = self.report.build_url_fname_html(partner.handle, 'ppl', self.up)
-                    partner_hyper = self.person_link(url, partner, True, partner.gramps_id)
+                    partner_hyper = self.person_link(url, partner, True, gid=partner.gramps_id)
                     trow = Html("tr") + (
                         Html("td", _('Partner'), class_ = "ColumnAttribute", inline = True),
                         Html("td", partner_hyper, class_ = "ColumnPartner")

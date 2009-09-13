@@ -381,8 +381,8 @@ body#WebCal #navigation, body#fullyearlinked #navigation {
 table.infolist {
     width:100%;
     margin: 0;
-    padding:0;
-    font-size: 10px;
+    padding: 0;
+    font-size: 12px;
 }
 table.infolist thead tr th {
     font:normal 1.1em/1.2em serif;
@@ -479,6 +479,9 @@ table.surnamelist tr th:hover { }
 table.surnamelist thead tr th.ColumnLetter {
     padding-left:20px;
     padding-right:10px;
+}
+table.surnamelist tbody tr td {
+    background-color: #D8F3D6;
 }
 table.surnamelist tbody tr td.ColumnSurname {
     background-color: #FFF;
@@ -621,7 +624,7 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 
 /* Events
 ----------------------------------------------------- */
-div#EventList, div#EventDetail {}
+div#EventList, div#EventDetail { }
 
 div#events table.eventlist {
     margin-top: .3cm;
@@ -643,11 +646,11 @@ table.eventlist tbody tr td.ColumnType {
     width: 20%;
 }
 table.eventlist tbody tr td.ColumnDate {
-    width: 9%;
+    width: 16%;
 }
 table.eventlist tbody tr td.ColumnPlace {
     background-color: #FFF;
-    width: 40%;
+    width: 35%;
 }
 table.eventlist tbody tr td.ColumnSources {
     background-color: #FFF;
@@ -659,7 +662,7 @@ table.eventlist tbody tr td.ColumnNotes {
 }
 table.eventlist tbody tr td.ColumnPerson {
     background-color: #FFF;
-    width: 25%;
+    width: 35%;
 }
 table.eventlist tbody tr td.ColumnPartner {
     background-color: #FFF;
@@ -676,6 +679,7 @@ div#EventDetail table.eventlist {
     width: 800px;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
+    border-top: solid 1px #5D835F;
     font-weight: bold;
     text-transform: uppercase;
     width: 20%;
