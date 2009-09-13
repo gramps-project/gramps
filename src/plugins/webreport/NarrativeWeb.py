@@ -463,7 +463,7 @@ class BasePage(object):
             shownote, subdirs, hyp)
 
         for (label, colclass, data) in event_data:
-            data = "&nbsp;" if (not data or []) else data
+            data = data or "&nbsp;"
 
             # determine if information will fit on same line?
             samerow = True if (data == "&nbsp;" or colclass  == "Date") else False
@@ -675,82 +675,93 @@ class BasePage(object):
         # return ordered list to its callers
         return ordered
 
-    def write_out_addresses(self, obj, spec=False):
+    def dump_addresses(self, addrobj, showsrc=True):
         """
         will display an object's addresses, url list, note list, 
         and source references.
 
-        param: spec = True --  repository
-                                 False -- person
+        @param: addrobj = either person or repository address object
+        @param: showsrc = True  --  person
+                          False -- repository
         """
 
-        def write_address_header(spec):
+        def write_address_header(showsrc):
             """ create header row for address """
 
             trow = Html("tr")
             addr_header = [
-                          [DHEAD,              'Date'],
-                          [STREET,            'StreetAddress'],    
-                          [CITY,                 'City'],
-                          [COUNTY,           'County'],
-                          [STATE,              'State'],
-                          [COUNTRY,         'Cntry'],
-                          [POSTAL,            'Postalcode'],
-                          [PHONE,             'Phone'] ]
+                          [DHEAD,      "Date"],
+                          [STREET,     "StreetAddress"],    
+                          [CITY,       "City"],
+                          [COUNTY,     "County"],
+                          [STATE,      "State"],
+                          [COUNTRY,    "Cntry"],
+                          [POSTAL,     "Postalcode"],
+                          [PHONE,      "Phone"] ]
 
-            # if spec = True -- an individual's address else repository
-            if spec:
-                addr_header.append([SHEAD,      'Source'])
+            # if showsrc = True -- an individual's address else repository
+            if showsrc:
+                addr_header.append([SHEAD,      'Sources'])
 
             for (label, colclass) in addr_header:  
-                trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
+                trow += Html("th", label, class_ = "Column%s" % colclass, 
+                    inline = True)
 
             # return table header row back to module
-            return trow 
+            return trow, addr_header
 
         # begin summaryarea division
         with Html("div", id="summaryarea") as summaryarea: 
 
             # begin address table
-            with Html("table", class_ = "infolist repolist") as table:
+            with Html("table") as table:
                 summaryarea += table
+
+                # get table class based on either person or repository
+                table.attr = 'class = "infolist addrlist" ' if showsrc \
+                    else 'class = "infolist repolist" '
 
                 # begin table head
                 thead = Html("thead")
                 table += thead
 
                 # add header row
-                thead += write_address_header(spec)  
+                header_row, addr_header = write_address_header(showsrc)  
+                thead += header_row
                     
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
 
                 # get address list from an object; either repository or person
-                for address in obj.get_address_list():
+                for address in addrobj.get_address_list():
 
                     trow = Html("tr")
                     tbody += trow
 
-                    addrcollist = [
-                        ['Date',    _dd.display(address.get_date_object() )],
-                        ['Street',  address.get_street()],
-                        ['City',    address.get_city()],
-                        ['County',  address.get_county()],
-                        ['State',   address.get_state()],
-                        ['Cntry',   address.get_country()],
-                        ['Postal',  address.get_postal_code()],
-                        ['Phone',   address.get_phone()] ]
+                    addr_data_row = [
+                        [_dd.display(address.get_date_object() )],
+                        [address.get_street()],
+                        [address.get_city()],
+                        [address.get_county()],
+                        [address.get_state()],
+                        [address.get_country()],
+                        [address.get_postal_code()],
+                        [address.get_phone()] ]
 
                     # get source citation list
-                    if spec:
-                        addrcollist.append([SHEAD,    self.get_citation_links(
-                                                                             address.get_source_references())])
+                    if showsrc:
+                        addr_data_row.append([self.get_citation_links(
+                            address.get_source_references() )])
 
-                    for (colclass, value) in addrcollist:
-
+                    index = 0
+                    for value in addr_data_row:
+                        colclass = addr_header[index][1]
                         value = value or "&nbsp;"
-                        trow += Html("td", value, class_ = "Column%s" % colclass, inline = True)
+
+                        trow += Html("td", value, class_ = "Column%s" % colclass, 
+                            inline = True)
+                        index += 1
 
                     # address: note list
                     notelist = self.display_note_list(address.get_note_list())
@@ -2096,7 +2107,7 @@ class EventListPage(BasePage):
             False, subdirs, True)
 
         for (label, colclass, data) in event_data:
-            data = "&nbsp;" if (not data or []) else data
+            data = data or "&nbsp;"
 
             # determine if same row or not?
             samerow = True if (data == "&nbsp;" or colclass == "Date") else False
@@ -3841,7 +3852,7 @@ class IndividualPage(BasePage):
             section += Html('h4', _('Addresses'), inline = True)
 
             # write out addresses()
-            section += self.write_out_addresses(self.person, spec=True)
+            section += self.dump_addresses(self.person)
 
         # return address division to its caller
         return section
@@ -4511,7 +4522,7 @@ class RepositoryPage(BasePage):
                     table += trow
 
             # repository: address(es)
-            addresses = self.write_out_addresses(repo)
+            addresses = self.dump_addresses(repo, False)
             if addresses is not None:
                 repositorydetail += addresses
 
