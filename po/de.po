@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-10 18:28+0200\n"
-"PO-Revision-Date: 2009-09-10 18:40+0200\n"
+"PO-Revision-Date: 2009-09-14 19:16+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2922,7 +2922,7 @@ msgstr "Mit neuer Datenbank verbinden"
 #: ../src/ViewManager.py:367 ../src/ViewManager.py:368
 #: ../src/ViewManager.py:387
 msgid "Manage databases"
-msgstr "Datenbanken verwalten"
+msgstr "Stammbäume verwalten"
 
 #: ../src/ViewManager.py:385
 msgid "_Family Trees"
@@ -23848,7 +23848,7 @@ msgid ""
 msgstr ""
 "Die Funktion &quot;Zusammenfassen&quot; erlaubt es separat gelistete "
 "Personen zu einer zu vereinigen. Dies ist sehr nützlich, wenn man zwei "
-"Datenbanken mit sich überlappenden Personen oder irrtümlicherweise sich "
+"Stammbäume mit sich überlappenden Personen oder irrtümlicherweise sich "
 "unterscheidende Namen angelegt hat und zu einer Person vereinigen will."
 
 #: ../src/data/tips.xml.in.h:60
