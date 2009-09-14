@@ -126,8 +126,7 @@ def _initialize_options(options, dbstate):
                 if family_list:
                     family_handle = family_list[0]
                 else:
-                    for family_handle in dbase.iter_family_handles():
-                        break
+                    family_handle = dbase.iter_family_handles().next()
                 family = dbase.get_family_from_handle(family_handle)
                 option.set_value(family.get_gramps_id())
 

@@ -84,10 +84,9 @@ class AgeStatsGramplet(Gramplet):
         mother_handles = [[] for age in range(self.max_mother_diff)]
         father_handles = [[] for age in range(self.max_father_diff)]
         text = ""
-        handles = self.dbstate.db.iter_person_handles()
-        for h in handles:
+
+        for p in self.dbstate.db.iter_people():
             yield True
-            p = self.dbstate.db.get_person_from_handle(h)
             # if birth_date and death_date, compute age
             birth_ref = p.get_birth_ref()
             birth_date = None
@@ -103,7 +102,7 @@ class AgeStatsGramplet(Gramplet):
                 age = death_date.get_year() - birth_date.get_year()
                 if age >= 0 and age < self.max_age:
                     age_dict[age] = age_dict.get(age, 0) + 1
-                    age_handles[age].append(h)
+                    age_handles[age].append(p.handle)
                 #else:
                 #    print "Age out of range: %d for %s" % (age,
                 #                                           p.get_primary_name().get_first_name()

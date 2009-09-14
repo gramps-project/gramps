@@ -60,16 +60,13 @@ def run(database, document, filter_name, *args, **kwargs):
     matches = 0
     if (filter_name == 'all people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
+        for person in database.iter_people():
             stab.row(person, sdb.birth_date_obj(person),
                      str(person.get_primary_name().get_type()))
             matches += 1
     elif (filter_name == 'males'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.iter_person_handles()
-        for person_handle in people:
+        for person in database.iter_people():
             person = database.get_person_from_handle(person_handle)
             if person.gender == Person.MALE:
                 stab.row(person, sdb.birth_date_obj(person),
@@ -77,27 +74,21 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
     elif (filter_name == 'females'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
+        for person in database.iter_people():
             if person.gender == Person.FEMALE:
                 stab.row(person, sdb.birth_date_obj(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
     elif (filter_name == 'people with unknown gender'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
+        for person in database.iter_people():
             if person.gender not in [Person.FEMALE, Person.MALE]:
                 stab.row(person, sdb.birth_date_obj(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
     elif (filter_name == 'people with incomplete names'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
+        for person in database.iter_people():
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 if name.get_group_name() == "" or name.get_first_name() == "":
                     stab.row(person, sdb.birth_date_obj(person),
@@ -105,48 +96,36 @@ def run(database, document, filter_name, *args, **kwargs):
                     matches += 1
     elif (filter_name == 'people with missing birth dates'):
         stab.columns(_("Person"), _("Type"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
-            if person:
-                birth_ref = person.get_birth_ref()
-                if birth_ref:
-                    birth = database.get_event_from_handle(birth_ref.ref)
-                    if not DateHandler.get_date(birth):
-                        stab.row(person, _("birth event but no date"))
-                        matches += 1
-                else:
-                    stab.row(person, _("missing birth event"))
+        for person in database.iter_people():
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = database.get_event_from_handle(birth_ref.ref)
+                if not DateHandler.get_date(birth):
+                    stab.row(person, _("birth event but no date"))
                     matches += 1
+            else:
+                stab.row(person, _("missing birth event"))
+                matches += 1
     elif (filter_name == 'disconnected people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
-            if person:
-                if ((not person.get_main_parents_family_handle()) and 
-                    (not len(person.get_family_handle_list()))):
-                    stab.row(person, sdb.birth_date_obj(person),
-                             str(person.get_primary_name().get_type()))
-                    matches += 1
-    elif (filter_name == 'all families'):
-        familyList = database.iter_family_handles()
-        stab.columns(_("Family"))
-        for family_handle in familyList:
-            family = database.get_family_from_handle(family_handle)
-            if family:
-                stab.row(family)
+        for person in database.iter_people():
+            if ((not person.get_main_parents_family_handle()) and 
+                (not len(person.get_family_handle_list()))):
+                stab.row(person, sdb.birth_date_obj(person),
+                         str(person.get_primary_name().get_type()))
                 matches += 1
+    elif (filter_name == 'all families'):
+        stab.columns(_("Family"))
+        for family in database.iter_families():
+            stab.row(family)
+            matches += 1
     elif (filter_name == 'unique surnames'):
         namelist = {}
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
-            if person:
-                names = [person.get_primary_name()] + person.get_alternate_names()
-                surnames = list(set([name.get_group_name() for name in names]))
-                for surname in surnames:
-                    namelist[surname] = namelist.get(surname, 0) + 1
+        for person in database.iter_people():
+            names = [person.get_primary_name()] + person.get_alternate_names()
+            surnames = list(set([name.get_group_name() for name in names]))
+            for surname in surnames:
+                namelist[surname] = namelist.get(surname, 0) + 1
         stab.columns(_("Surname"), _("Count"))
         for name in sorted(namelist):
             stab.row(name, namelist[name])
@@ -158,39 +137,27 @@ def run(database, document, filter_name, *args, **kwargs):
                                                          name))
     elif (filter_name == 'people with media'):
         stab.columns(_("Person"), _("Media count"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
-            if not person:
-                continue
+        for person in database.iter_people():
             length = len(person.get_media_list())
             if length > 0:
                 stab.row(person, length)
                 matches += 1
     elif (filter_name == 'media references'):
         stab.columns(_("Person"), _("Reference"))
-        people = database.iter_person_handles()
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
-            if not person:
-                continue
+        for person in database.iter_people():
             medialist = person.get_media_list()
             for item in medialist:
                 stab.row(person, _("media"))
                 matches += 1
     elif (filter_name == 'unique media'):
         stab.columns(_("Unique Media"))
-        pobjects = database.get_media_object_handles()
-        for photo_id in database.get_media_object_handles():
-            photo = database.get_object_from_handle(photo_id)
+        for photo in database.iter_media_objects():
             fullname = media_path_full(database, photo.get_path())
             stab.row(fullname)
             matches += 1
     elif (filter_name == 'missing media'):
         stab.columns(_("Missing Media"))
-        pobjects = database.get_media_object_handles()
-        for photo_id in database.get_media_object_handles():
-            photo = database.get_object_from_handle(photo_id)
+        for photo in database.iter_media_objects():
             fullname = media_path_full(database, photo.get_path())
             try:
                 posixpath.getsize(fullname)
@@ -199,9 +166,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
     elif (filter_name == 'media by size'):
         stab.columns(_("Media"), _("Size in bytes"))
-        pobjects = database.get_media_object_handles()
-        for photo_id in database.get_media_object_handles():
-            photo = database.get_object_from_handle(photo_id)
+        for photo in database.iter_media_objects():
             fullname = media_path_full(database, photo.get_path())
             try:
                 bytes = posixpath.getsize(fullname)
@@ -212,8 +177,7 @@ def run(database, document, filter_name, *args, **kwargs):
     elif (filter_name == 'list of people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         people = kwargs["handles"]
-        for person_handle in people:
-            person = database.get_person_from_handle(person_handle)
+        for person in database.iter_people():
             stab.row(person, sdb.birth_date_obj(person),
                      str(person.get_primary_name().get_type()))
             matches += 1

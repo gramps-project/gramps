@@ -53,10 +53,9 @@ class IsParentOfFilterMatch(MatchesFilter):
         self.map = {}
         filt = MatchesFilter(self.list)
         filt.prepare(db)
-        for person_handle in db.iter_person_handles():
-            person = db.get_person_from_handle(person_handle)
-            if filt.apply (db, person):
-                self.init_list (person)
+        for person in db.iter_people():
+            if filt.apply(db, person):
+                self.init_list(person)
         filt.reset()
 
     def reset(self):
@@ -68,6 +67,6 @@ class IsParentOfFilterMatch(MatchesFilter):
     def init_list(self,person):
         for fam_id in person.get_parent_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
-            for parent_id in [fam.get_father_handle (), fam.get_mother_handle ()]:
+            for parent_id in [fam.get_father_handle(), fam.get_mother_handle()]:
                 if parent_id:
                     self.map[parent_id] = 1

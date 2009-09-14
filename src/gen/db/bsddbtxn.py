@@ -165,29 +165,25 @@ class BSDDBTxn(object):
         """
         Returns the data object associated with key
         """
-        if txn == None: txn = self.txn
-        return self.db.get(key, default, txn, **kwargs)
+        return self.db.get(key, default, txn or self.txn, **kwargs)
 
     def pget(self, key, default=None, txn=None, **kwargs):
         """
         Returns the primary key, given the secondary one, and associated data
         """
-        if txn == None: txn = self.txn
-        return self.db.pget(key, default, txn, **kwargs)
+        return self.db.pget(key, default, txn or self.txn, **kwargs)
 
     def put(self, key, data, txn=None, **kwargs):
         """
         Stores the key/data pair in the database
         """
-        if txn == None: txn = self.txn
-        return self.db.put(key, data, txn, **kwargs)
+        return self.db.put(key, data, txn or self.txn, **kwargs)
 
     def delete(self, key, txn=None, **kwargs):
         """
         Removes a key/data pair from the database
         """
-        if txn == None: txn = self.txn
-        self.db.delete(key, txn, **kwargs)
+        self.db.delete(key, txn or self.txn, **kwargs)
 
 # test code
 if __name__ == "__main__": 

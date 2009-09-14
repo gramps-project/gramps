@@ -161,22 +161,21 @@ class MergePlaces(ManagedWindow.ManagedWindow):
 
         # replace references in other objetcs
         # people
-        for handle in self.db.iter_person_handles():
-            person = self.db.get_person_from_handle(handle)
+        for person in self.db.iter_people():
             if person.has_handle_reference('Place',self.old_handle):
                 person.replace_handle_reference('Place',
                                         self.old_handle,self.new_handle)
                 self.db.commit_person(person,trans)
+
         # families
-        for handle in self.db.iter_family_handles():
-            family = self.db.get_family_from_handle(handle)
+        for family in self.db.iter_families():
             if family.has_handle_reference('Place',self.old_handle):
                 family.replace_handle_reference('Place',
                                         self.old_handle,self.new_handle)
                 self.db.commit_family(family,trans)
+
         # events
-        for handle in self.db.get_event_handles():
-            event = self.db.get_event_from_handle(handle)
+        for event in self.db.iter_events():
             if event.has_handle_reference('Place',self.old_handle):
                 event.replace_handle_reference('Place',
                                         self.old_handle,self.new_handle)

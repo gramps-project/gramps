@@ -283,8 +283,7 @@ class DataEntryGramplet(Gramplet):
 
     def get_or_create_place(self, place_name):
         if place_name == "": return (-1, None)
-        for place_handle in self.dbstate.db.iter_place_handles():
-            place = self.dbstate.db.get_place_from_handle(place_handle)
+        for place in self.dbstate.db.iter_places():
             if place.get_title().strip() == place_name:
                 return (0, place) # (old, object)
         place = gen.lib.Place()

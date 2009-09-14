@@ -100,12 +100,8 @@ class SummaryReport(Report):
         self.doc.write_text(_("Individuals"))
         self.doc.end_paragraph()
         
-        person_list = self.__db.iter_person_handles()
         num_people = 0
-        for person_handle in person_list:
-            person = self.__db.get_person_from_handle(person_handle)
-            if not person:
-                continue
+        for person in self.__db.iter_people():
             num_people += 1
             
             # Count people with media.
@@ -191,7 +187,6 @@ class SummaryReport(Report):
         self.doc.write_text(_("Family Information"))
         self.doc.end_paragraph()
         
-        family_list = self.__db.iter_family_handles()
         self.doc.start_paragraph("SR-Normal")
         self.doc.write_text(_("Number of families: %d") % self.__db.get_number_of_families())
         self.doc.end_paragraph()

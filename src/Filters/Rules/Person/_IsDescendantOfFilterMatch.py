@@ -67,10 +67,9 @@ class IsDescendantOfFilterMatch(IsDescendantOf,MatchesFilter):
 
         filt = MatchesFilter(self.list[0:1])
         filt.prepare(db)
-        for person_handle in db.iter_person_handles():
-            person = db.get_person_from_handle( person_handle)
-            if filt.apply (db, person):
-                self.init_list (person,first)
+        for person in db.iter_people():
+            if filt.apply(db, person):
+                self.init_list(person, first)
         filt.reset()
 
     def reset(self):

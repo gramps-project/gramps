@@ -53,10 +53,8 @@ def run(database, document, *args, **kwargs):
     sdoc.paragraph("")
     matches = 0
     stab.columns(_("Name"), _("Primary Name"), _("Name Type"))
-    people = database.iter_person_handles()
     names = [] # name, person
-    for person_handle in people:
-        person = database.get_person_from_handle(person_handle)
+    for person in database.iter_people():
         primary_name = person.get_primary_name()
         if primary_name:
             names += [(nd.display_name(primary_name), 

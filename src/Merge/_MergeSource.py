@@ -165,48 +165,42 @@ class MergeSources(ManagedWindow.ManagedWindow):
         # replace handles
 
         # people
-        for handle in self.db.iter_person_handles():
-            person = self.db.get_person_from_handle(handle)
+        for person in self.db.iter_people():
             if person.has_source_reference(self.old_handle):
                 person.replace_source_references(self.old_handle,
                                                         self.new_handle)
                 self.db.commit_person(person,trans)
 
         # family
-        for handle in self.db.iter_family_handles():
-            family = self.db.get_family_from_handle(handle)
+        for family in self.db.iter_families():
             if family.has_source_reference(self.old_handle):
                 family.replace_source_references(self.old_handle,
                                                         self.new_handle)
                 self.db.commit_family(family,trans)
 
         # events
-        for handle in self.db.get_event_handles():
-            event = self.db.get_event_from_handle(handle)
+        for event in self.db.iter_events():
             if event.has_source_reference(self.old_handle):
                 event.replace_source_references(self.old_handle,
                                                         self.new_handle)
                 self.db.commit_event(event,trans)
 
         # sources
-        for handle in self.db.get_source_handles():
-            source = self.db.get_source_from_handle(handle)
+        for source in self.db.iter_sources():
             if source.has_source_reference(self.old_handle):
                 source.replace_source_references(self.old_handle,
                                                         self.new_handle)
                 self.db.commit_source(source,trans)
 
         # places
-        for handle in self.iter.get_place_handles():
-            place = self.db.get_place_from_handle(handle) 
+        for place in self.db.iter_places():
             if place.has_source_reference(self.old_handle):
                 place.replace_source_references(self.old_handle,
                                                         self.new_handle)
                 self.db.commit_place(place,trans)
 
         # media
-        for handle in self.db.get_media_object_handles():
-            obj = self.db.get_object_from_handle(handle)
+        for obj in self.db.iter_media_objects():
             if obj.has_source_reference(self.old_handle):
                 obj.replace_source_references(self.old_handle,
                                                         self.new_handle)

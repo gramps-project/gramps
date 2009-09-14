@@ -82,7 +82,7 @@ def _validate_options(options, dbase):
             if not person:
                 person = dbase.get_default_person()
                 if not person:
-                    phandle = dbase.get_person_handles()[0]
+                    phandle = dbase.iter_person_handles().next()
                     person = dbase.get_person_from_handle(phandle)
                     if not person:
                         print "ERROR: Please specify a person"
@@ -101,8 +101,7 @@ def _validate_options(options, dbase):
                 if family_list:
                     family_handle = family_list[0]
                 else:
-                    for family_handle in dbase.iter_family_handles():
-                        break
+                    family_handle = dbase.iter_family_handles().next()
                 if family_handle:
                     family = dbase.get_family_from_handle(family_handle)
                     option.set_value(family.get_gramps_id())
@@ -237,8 +236,7 @@ class CommandLineReport(object):
                 self.options_help[name].append(id_list)
             elif isinstance(option, FamilyOption):
                 id_list = []
-                for fhandle in self.database.iter_family_handles():
-                    family = self.database.get_family_from_handle(fhandle)
+                for family in self.database.iter_families():
                     mname = ""
                     fname = ""
                     mhandle = family.get_mother_handle()
