@@ -25,7 +25,6 @@
 """
 Proxy class for the GRAMPS databases. Apply filter
 """
-import pdb
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
