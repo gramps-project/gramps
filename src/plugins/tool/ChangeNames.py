@@ -234,7 +234,8 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                       for node in self.iter_list
                       if self.model.get_value(node,0)]
 
-        for handle in self.db.iter_person_handles():
+        #for handle in self.db.get_person_handles(sort_handles=False):
+        for handle in self.db.get_person_handles(False):
             change = False
             person = self.db.get_person_from_handle(handle)
             for name in [person.get_primary_name()] + person.get_alternate_names():
