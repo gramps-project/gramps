@@ -122,27 +122,7 @@
     <date name="Fathers' Day" value="*/3/sun/jun" type="secular" />
     <date name="Independence Day" value="*/7/4" type="national" />
     <date name="Parents' Day" value="*/4/sun/jul" type="secular" />
-    <date name="Labor Day" value="1999/9/6" type="national" />
-    <date name="Labor Day" value="2000/9/4" type="national" />
-    <date name="Labor Day" value="2001/9/3" type="national" />
-    <date name="Labor Day" value="2002/9/2" type="national" />
-    <date name="Labor Day" value="2003/9/1" type="national" />
-    <date name="Labor Day" value="2004/9/6" type="national" />
-    <date name="Labor Day" value="2005/9/5" type="national" />
-    <date name="Labor Day" value="2006/9/4" type="national" />
-    <date name="Labor Day" value="2007/9/3" type="national" />
-    <date name="Labor Day" value="2008/9/1" type="national" />
-    <date name="Labor Day" value="2009/9/1" type="national" />
-    <date name="Labor Day" value="2010/9/6" type="national" />
-    <date name="Labor Day" value="2011/9/5" type="national" />
-    <date name="Labor Day" value="2012/9/3" type="national" />
-    <date name="Labor Day" value="2013/9/2" type="national" />
-    <date name="Labor Day" value="2014/9/1" type="national" />
-    <date name="Labor Day" value="2015/9/7" type="national" />
-    <date name="Labor Day" value="2016/9/5" type="national" />
-    <date name="Labor Day" value="2017/9/4" type="national" />
-    <date name="Labor Day" value="2018/9/3" type="national" />
-    <date name="Labor Day" value="2019/9/2" type="national" />
+    <date name="Labor Day" value="*/1/mon/sep" type="national" />
     <date name="Grandparents' Day" value="*/1/mon/sep" offset="6" type="secular" />
     <date name="Daylight Saving ends" value="1999/10/31" type="informational" />
     <date name="Daylight Saving ends" value="2000/10/29" type="informational" />
