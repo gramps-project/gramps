@@ -160,15 +160,13 @@ class HasTextMatchingSubstringOf(Rule):
 
     def cache_repos(self):
         # search all matching repositories
-        for repo_handle in self.db.get_repository_handles():
-            repo = self.db.get_repository_from_handle(repo_handle)
+        for repo in self.db.iter_repositories():
             if( self.match_object(repo)):
-                self.repo_map[repo_handle] = 1
+                self.repo_map[repo.handle] = 1
     
     def cache_sources(self):
         # search all sources and match all referents of a matching source
-        for source_handle in self.db.get_source_handles():
-            source = self.db.get_source_from_handle(source_handle)
+        for source in self.db.iter_sources():
             match = self.match_object(source)
             if not match:
                 for reporef in source.get_reporef_list():
@@ -177,7 +175,7 @@ class HasTextMatchingSubstringOf(Rule):
             if match:
                 (person_list,family_list,event_list,place_list,source_list,
                      media_list,repo_list
-                 ) = get_source_referents(source_handle,self.db)
+                 ) = get_source_referents(source.handle,self.db)
                 for handle in person_list:
                     self.person_map[handle] = 1
                 for handle in family_list:

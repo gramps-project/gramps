@@ -81,15 +81,14 @@ def run(database, document, main_event):
     yeartab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     histab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     
-    for event_handle in database.get_event_handles():
-        event = database.get_event_from_handle(event_handle)
+    for event in database.iter_events():
         date = event.get_date_object()
         if date.get_year() == 0:
             continue
         if (date.get_year() == main_date.get_year() and 
             date.get_month() == main_date.get_month() and
             date.get_day() == main_date.get_day()):
-            for (objclass, handle) in database.find_backlink_handles(event_handle):
+            for (objclass, handle) in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
                 stab.row(date, 
                          sdb.event_type(event), 
@@ -97,13 +96,13 @@ def run(database, document, main_event):
         elif (date.get_month() == main_date.get_month() and
               date.get_day() == main_date.get_day() and
               date.get_month() != 0):
-            for (objclass, handle) in database.find_backlink_handles(event_handle):
+            for (objclass, handle) in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
                 histab.row(date, 
                            sdb.event_type(event), 
                            sdb.event_place(event), ref)
         elif (date.get_year() == main_date.get_year()):
-            for (objclass, handle) in database.find_backlink_handles(event_handle):
+            for (objclass, handle) in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
                 yeartab.row(date, 
                             sdb.event_type(event), 

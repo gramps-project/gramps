@@ -81,12 +81,11 @@ class StatsGramplet(Gramplet):
         notfound = []
 
         pobjects = database.get_number_of_media_objects()
-        for photo_id in database.get_media_object_handles():
-            photo = database.get_object_from_handle(photo_id)
+        for photo in database.iter_media_objects():
             fullname = media_path_full(database, photo.get_path())
             try:
                 bytes += posixpath.getsize(fullname)
-            except:
+            except OSError:
                 notfound.append(photo.get_path())
 
         for cnt, person in enumerate(personList):
@@ -97,7 +96,7 @@ class StatsGramplet(Gramplet):
 
             names = [person.get_primary_name()] + person.get_alternate_names()
             for name in names:
-                if name.get_first_name() == "" or name.get_group_name() == "":
+                if (name.get_first_name() or name.get_group_name()) == "":
                     incomp_names += 1
                 if name.get_group_name() not in namelist:
                     namelist.append(name.get_group_name())

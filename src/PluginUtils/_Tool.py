@@ -196,8 +196,8 @@ class CommandLineTool(object):
         person_id = self.options_dict['id']
         self.person = self.database.get_person_from_gramps_id(person_id)
         id_list = []
-        for person_handle in self.database.get_person_handles():
-            person = self.database.get_person_from_handle(person_handle)
+
+        for person in self.database.iter_people():
             id_list.append("%s\t%s" % (
                 person.get_gramps_id(),
                 name_displayer.display(person)))

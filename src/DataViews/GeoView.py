@@ -1178,9 +1178,8 @@ class GeoView(HtmlView):
         latitude = ""
         longitude = ""
         self.center = True
-        for place_handle in dbstate.db.iter_place_handles():
-            place = dbstate.db.get_place_from_handle( place_handle)
-            if place:
+
+        for place in dbstate.db.iter_places():
                 descr = place.get_title()
                 descr1 = _("Id : %s") % place.gramps_id
                 longitude = place.get_longitude()
@@ -1221,66 +1220,64 @@ class GeoView(HtmlView):
         latitude = ""
         longitude = ""
         self.center = True
-        for event_handle in dbstate.db.get_event_handles():
-            event = dbstate.db.get_event_from_handle( event_handle)
-            if event:
-                place_handle = event.get_place_handle()
-                eventdate = event.get_date_object()
-                eventyear = eventdate.get_year()
-                descr1 = _("Id : %(id)s (%(year)s)") % {
-                                'id' : event.gramps_id,
-                                'year' : eventyear}
-                if place_handle:
-                    place = dbstate.db.get_place_from_handle(place_handle)
-                    if place:
-                        longitude = place.get_longitude()
-                        latitude = place.get_latitude()
-                        latitude, longitude = conv_lat_lon(latitude, longitude, 
-                                                           "D.D8")
-                        city = place.get_main_location().get_city()
-                        country = place.get_main_location().get_country()
-                        descr2 = "%s; %s" % (city, country)
-                        # place.get_longitude and place.get_latitude return
-                        # one string. We have coordinates when the two values
-                        # contains non null string.
-                        if ( longitude and latitude ):
-                            person_list = [
-                                dbstate.db.get_person_from_handle(ref_handle)
-                                for (ref_type, ref_handle) in \
-                                    dbstate.db.find_backlink_handles(
-                                            event_handle)
-                                        if ref_type == 'Person' 
-                                          ]
-                            if person_list:
-                                descr = "<br>"
-                                for person in person_list:
-                                    descr = ("%(description)s%(name)s<br>") % {
-                                                'description' : descr, 
-                                                'name' : _nd.display(person)}
-                                         #) % { 'eventtype': gen.lib.EventType(
-                                descr = ("%(eventtype)s;"+
-                                         " %(place)s%(description)s"
-                                         ) % { 'eventtype': gen.lib.EventType(
-                                                                event.get_type()
-                                                                ),
-                                               'place': place.get_title(), 
-                                               'description': descr}
-                            else:
-                                descr = ("%(eventtype)s; %(place)s<br>") % {
-                                               'eventtype': gen.lib.EventType(
-                                                                event.get_type()
-                                                                ),
-                                               'place': place.get_title()}
-                            self._append_to_places_list(descr1, descr,
-                                                        descr,
-                                                        latitude, longitude,
-                                                        descr2, self.center,
-                                                        eventyear)
-                            self.center = False
+
+        for event in dbstate.db.iter_events():
+            place_handle = event.get_place_handle()
+            eventdate = event.get_date_object()
+            eventyear = eventdate.get_year()
+            descr1 = _("Id : %(id)s (%(year)s)") % {
+                            'id' : event.gramps_id,
+                            'year' : eventyear}
+            if place_handle:
+                place = dbstate.db.get_place_from_handle(place_handle)
+                if place:
+                    longitude = place.get_longitude()
+                    latitude = place.get_latitude()
+                    latitude, longitude = conv_lat_lon(latitude, longitude, 
+                                                       "D.D8")
+                    city = place.get_main_location().get_city()
+                    country = place.get_main_location().get_country()
+                    descr2 = "%s; %s" % (city, country)
+                    # place.get_longitude and place.get_latitude return
+                    # one string. We have coordinates when the two values
+                    # contains non null string.
+                    if ( longitude and latitude ):
+                        person_list = [
+                            dbstate.db.get_person_from_handle(ref_handle)
+                            for (ref_type, ref_handle) in 
+                                dbstate.db.find_backlink_handles(event.handle)
+                                    if ref_type == 'Person' 
+                                      ]
+                        if person_list:
+                            descr = "<br>"
+                            for person in person_list:
+                                descr = ("%(description)s%(name)s<br>") % {
+                                            'description' : descr, 
+                                            'name' : _nd.display(person)}
+                                     #) % { 'eventtype': gen.lib.EventType(
+                            descr = ("%(eventtype)s;"+
+                                     " %(place)s%(description)s"
+                                     ) % { 'eventtype': gen.lib.EventType(
+                                                            event.get_type()
+                                                            ),
+                                           'place': place.get_title(), 
+                                           'description': descr}
                         else:
-                            descr = place.get_title()
-                            self._append_to_places_without_coord(
-                                 place.gramps_id, descr)
+                            descr = ("%(eventtype)s; %(place)s<br>") % {
+                                           'eventtype': gen.lib.EventType(
+                                                            event.get_type()
+                                                            ),
+                                           'place': place.get_title()}
+                        self._append_to_places_list(descr1, descr,
+                                                    descr,
+                                                    latitude, longitude,
+                                                    descr2, self.center,
+                                                    eventyear)
+                        self.center = False
+                    else:
+                        descr = place.get_title()
+                        self._append_to_places_without_coord(
+                             place.gramps_id, descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
         else:
