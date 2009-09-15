@@ -292,23 +292,23 @@ class BasePage(object):
                 tbody += trow
 
                 attr_data_row = [
-                    [str(attr.get_type()) ],
-                    [attr.get_value() ],
-                    [self.dump_notes(attr.get_note_list()) ] ]
+                    [str(attr.get_type() ) ],
+                    [attr.get_value() ] ]
 
                 if showsrc:
-                    source_row = [self.get_citation_links(attr.get_source_references()) ]
-                    attr_data_row.insert(2, source_row)
+                    source_row = self.get_citation_links(attr.get_source_references())
+                    attr_data_row.append(source_row)
+ 
+                attr_data_row.append(self.dump_notes(attr.get_note_list() ) )
 
                 index = 0
                 for value in attr_data_row:
                     colclass = attr_header_row[index][1]
-                    value = value or "&nbsp;"
 
                     # determine if same row or not?
-                    samerow = True if (value == "&nbsp;" or colclass == "Type") else False
+                    samerow = True if (value[0] == "&nbsp;" or colclass == "Type") else False
 
-                    trow += Html("td", value, class_ = "Column%s" % colclass, 
+                    trow += Html("td", value[0], class_ = "Column%s" % colclass, 
                         inline = samerow)
                     index += 1
 
