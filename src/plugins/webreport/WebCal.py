@@ -446,13 +446,13 @@ class WebCalReport(Report):
         # figure out number of rows  
         nrows = get_num_of_rows(num_years, years_in_row)
 
-        # begin year division and table
+        # begin year division
         yearnav = Html("div", id="navigation")
-        year_table = Html("table")
 
-        for rows in range(0, nrows):
-            trow = Html("tr")
+        for row in range(0, (num_years // years_in_row)):
+
             unordered = Html("ul")
+            yearnav += unordered
             cols = 1
             while (cols <= years_in_row and cal_year <= self.end_year):
                 url = ''
@@ -467,7 +467,8 @@ class WebCalReport(Report):
 
                 # Note. We use '/' here because it is a URL, not a OS dependent 
                 # pathname.
-                url = '/'.join(subdirs + [full_month_name]) + self.ext
+                url = os.path.join(subdirs, full_month_name) + self.ext
+#                url = '/'.join(subdirs + [full_month_name]) + self.ext
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
@@ -482,15 +483,6 @@ class WebCalReport(Report):
 
                 # increase calendar year
                 cal_year += 1
-
-            # add unordered list to table row
-            trow += unordered
-
-            # close row and add to table
-            year_table += trow
-
-        # close table and add to year division
-        yearnav += year_table
 
         # return yearnav to its caller
         return yearnav  
