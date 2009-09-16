@@ -86,6 +86,82 @@ NB_MARKERS_PER_PAGE = 200
 
 #-------------------------------------------------------------------------
 #
+# Javascript template
+#
+#-------------------------------------------------------------------------
+
+_JAVASCRIPT = '''<script>
+  var gmarkers = [];
+  var min = 0;
+  var zoom = 0;
+  var pos = 0;
+  var selected = 0;
+  var current_map = '{current_map}';
+  var selectedmarkers = 'All';
+  // shows or hide markers of a particular category
+  function selectmarkers(year) {{
+    selectedmarkers = year;
+    for (var i=0; i<gmarkers.length; i++) {{
+      val = gmarkers[i].getAttribute("year");
+      min = parseInt(year);
+      max = min + step;
+      if ( selectedmarkers == "All" )
+        {{ min = 0; max = 9999; }}
+      gmarkers[i].hide();
+      gmarkers[i].closeBubble();
+      years = val.split(' ');
+      for ( j=0; j < years.length; j++) {{
+        if ( years[j] >= min ) {{
+          if ( years[j] < max ) {{
+            gmarkers[i].show();
+          }}
+        }}
+      }}
+    }}
+  }}
+  function savezoomandposition(mapstraction) {{
+    var t=setTimeout("savezoomandposition(mapstraction)",1000);
+    nzoom = mapstraction.getZoom();
+    nposition=mapstraction.getCenter();
+    if ( ( nzoom != zoom ) || ( nposition != pos )) {{
+      zoom = nzoom;
+      pos = nposition;
+      document.title = "zoom=" + zoom + " coord=" + pos + ":::";
+    }}
+  }}
+  function removemarkers(mapstraction) {{
+    for ( m=0; m < gmarkers.length; m++) {{
+      mapstraction.removeMarker(gmarkers[m]);
+    }}
+  }}
+  function get_selected_radio() {{
+    selected = 0;
+    for ( b=0; b < document.btns.years.length; b++) {{
+      if ( document.btns.years[b].checked == true )
+        selected=b;
+    }}
+  }}
+  function set_selected_radio() {{
+    document.btns.years[selected].click();
+  }}
+  function reset_radio() {{
+    document.btns.years[0].click();
+  }}
+  function swap_map(div,map) {{
+    savezoomandposition(mapstraction);
+    {get_radio}
+    removemarkers(mapstraction);
+    current_map=map;
+    mapstraction.swap(div,map);
+    {reset_radio}
+    setmarkers(mapstraction);
+    mapstraction.enableScrollWheelZoom();
+    {set_radio}
+  }}
+'''
+
+#-------------------------------------------------------------------------
+#
 # Functions
 #
 #-------------------------------------------------------------------------
@@ -182,9 +258,9 @@ class GeoView(HtmlView):
         self.sort = []
         self.without_coord_file = []
         self.place_without_coordinates = []
-        self.minlat = float(0.0)
-        self.maxlat = float(0.0)
-        self.minlon = float(0.0)
+        self.minlat = 0.0
+        self.maxlat = 0.0
+        self.minlon = 0.0
         self.key_active_changed = None
  
     def top_widget(self):
@@ -624,6 +700,18 @@ class GeoView(HtmlView):
         """
         Create the needed javascript functions.
         """
+        not_places = self.displaytype != "places"
+        self.mapview.write(
+            _JAVASCRIPT.format(
+                current_map = self.usedmap,
+                get_radio = "get_selected_radio();\n" if not_places else "",
+                reset_radio = "reset_radio();\n" if not_places else "",
+                set_radio = "set_selected_radio();\n" if not_places else "",
+                )
+            )
+        return
+
+        
         self.mapview.write("<script>\n")
         self.mapview.write("  var gmarkers = [];\n")
         self.mapview.write("  var min = 0;\n")
@@ -761,6 +849,7 @@ class GeoView(HtmlView):
         """
         Add the last directives for the html page.
         """
+
         self.mapview.write(" setcenterandzoom(mapstraction);\n")
         self.mapview.write(" setmarkers(mapstraction);\n")
         self.mapview.write(" savezoomandposition(mapstraction);\n")
@@ -771,6 +860,7 @@ class GeoView(HtmlView):
         self.mapview.write("</script>\n")
         self.mapview.write("</body>\n")
         self.mapview.write("</html>\n")
+
         self.mapview.close()
 
     def _set_center_and_zoom(self, ptype):
@@ -800,18 +890,15 @@ class GeoView(HtmlView):
         # Calculate the zoom. all places must be displayed on the map.
         zoomlat = _get_zoom_lat(maxlat)
         zoomlong = _get_zoom_long(maxlong)
-        if zoomlat < zoomlong:
-            self.zoom = zoomlat
-        else:
-            self.zoom = zoomlong
+        self.zoom = zoomlat if zoomlat < zoomlong else zoomlong
         self.zoom -= 1
         if self.zoom < 2:
             self.zoom = 2
         # We center the map on a point at the center of all markers
         self.centerlat = maxlat/2
         self.centerlon = maxlong/2
-        latit = 0.0
-        longt = 0.0
+        latit = longt = 0.0
+
         for mark in self.sort:
             cent = int(mark[6])
             if cent:
@@ -835,11 +922,11 @@ class GeoView(HtmlView):
                 else:
                     longt = self.minlon+self.centerlon
                 # all maps: 0.0 for longitude and latitude means no location.
-                if latit == 0.0 and longt == 0.0:
-                    latit = 0.00000001
-                    longt = 0.00000001
+                if latit == longt == 0.0:
+                    latit = longt = 0.00000001
+
         self.mustcenter = False
-        if latit != 0.0 or longt != 0.0:
+        if not (latit == longt == 0.0):
             self.latit = latit
             self.longt = longt
             self.mustcenter = True
@@ -860,16 +947,7 @@ class GeoView(HtmlView):
         self._set_center_and_zoom(ptype)
         for page in range(0, pages, 1):
             self.nbpages += 1
-            if   ptype == 1:
-                ftype = "P"
-            elif ptype == 2:
-                ftype = "E"
-            elif ptype == 3:
-                ftype = "F"
-            elif ptype == 4:
-                ftype = "I"
-            else:
-                ftype = "X"
+            ftype = {1:'P', 2:'E', 3:'F', 4:'I'}.get(ptype, 'X')
             filename = os.path.join(GEOVIEW_SUBPATH,
                                     "GeoV-%c-%05d.html" % 
                                               (ftype, self.nbpages))
@@ -928,34 +1006,16 @@ class GeoView(HtmlView):
                     self.minyear = tfc
                 if tfc > self.maxyear:
                     self.maxyear = tfc
-        if tfa < 0.0:
-            tfa -= 0.00000001
-        else:
-            tfa += 0.00000001
-        if tfb < 0.0:
-            tfb -= 0.00000001
-        else:
-            tfb += 0.00000001
-        if self.minlat == 0.0:
+        tfa += 0.00000001 if tfa >= 0 else -0.00000001
+        tfb += 0.00000001 if tfb >= 0 else -0.00000001
+        if self.minlat == 0.0 or 0.0 > tfa < self.minlat:
             self.minlat = tfa
-        if tfa < self.minlat:
-            if tfa < 0.0:
-                self.minlat = tfa
-        if self.maxlat == 0.0:
+        if self.maxlat == 0.0 or 0.0 < tfa > self.maxlat:
             self.maxlat = tfa
-        if tfa > self.maxlat:
-            if tfa > 0.0:
-                self.maxlat = tfa
-        if self.minlon == 0.0:
+        if self.minlon == 0.0 or 0.0 > tfb < self.minlon:
             self.minlon = tfb
-        if tfb < self.minlon:
-            if tfb < 0.0:
-                self.minlon = tfb
-        if self.maxlon == 0.0:
+        if self.maxlon == 0.0 or 0.0 < tfb > self.maxlon:
             self.maxlon = tfb
-        if tfb > self.maxlon:
-            if tfb > 0.0:
-                self.maxlon = tfb
 
     def _create_markers(self, format, firstm, lastm):
         """
@@ -1169,12 +1229,12 @@ class GeoView(HtmlView):
         """
         self.place_list = []
         self.place_without_coordinates = []
-        self.minlat = float(0.0)
-        self.maxlat = float(0.0)
-        self.minlon = float(0.0)
-        self.maxlon = float(0.0)
-        self.minyear = int(9999)
-        self.maxyear = int(0)
+        self.minlat = 0.0
+        self.maxlat = 0.0
+        self.minlon = 0.0
+        self.maxlon = 0.0
+        self.minyear = 9999
+        self.maxyear = 0
         latitude = ""
         longitude = ""
         self.center = True
@@ -1211,12 +1271,12 @@ class GeoView(HtmlView):
         """
         self.place_list = []
         self.place_without_coordinates = []
-        self.minlat = float(0.0)
-        self.maxlat = float(0.0)
-        self.minlon = float(0.0)
-        self.maxlon = float(0.0)
-        self.minyear = int(9999)
-        self.maxyear = int(0)
+        self.minlat = 0.0
+        self.maxlat = 0.0
+        self.minlon = 0.0
+        self.maxlon = 0.0
+        self.minyear = 9999
+        self.maxyear = 0
         latitude = ""
         longitude = ""
         self.center = True
@@ -1293,12 +1353,12 @@ class GeoView(HtmlView):
         """
         self.place_list = []
         self.place_without_coordinates = []
-        self.minlat = float(0.0)
-        self.maxlat = float(0.0)
-        self.minlon = float(0.0)
-        self.maxlon = float(0.0)
-        self.minyear = int(9999)
-        self.maxyear = int(0)
+        self.minlat = 0.0
+        self.maxlat = 0.0
+        self.minlon = 0.0
+        self.maxlon = 0.0
+        self.minyear = 9999
+        self.maxyear = 0
         self.center = True
         person = None
         if dbstate.active:
@@ -1356,12 +1416,12 @@ class GeoView(HtmlView):
         """
         self.place_list = []
         self.place_without_coordinates = []
-        self.minlat = float(0.0)
-        self.maxlat = float(0.0)
-        self.minlon = float(0.0)
-        self.maxlon = float(0.0)
-        self.minyear = int(9999)
-        self.maxyear = int(0)
+        self.minlat = 0.0
+        self.maxlat = 0.0
+        self.minlon = 0.0
+        self.maxlon = 0.0
+        self.minyear = 9999
+        self.maxyear = 0
         latitude = ""
         longitude = ""
         person = None
