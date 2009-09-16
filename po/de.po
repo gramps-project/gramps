@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-14 18:31+0200\n"
-"PO-Revision-Date: 2009-09-14 19:14+0200\n"
+"PO-Revision-Date: 2009-09-16 20:19+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -7734,27 +7734,27 @@ msgstr "Die Hauptperson für den Filter"
 
 #: ../src/plugins/Records.py:460
 msgid "Use call name"
-msgstr "Benutze Rufname"
+msgstr "Rufname"
 
 #: ../src/plugins/Records.py:462
 msgid "Don't use call name"
-msgstr "Rufnamen nicht benutzen"
+msgstr "nicht verwenden"
 
 #: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
-msgstr "Vornamen durch Rufnamen ersetzen"
+msgstr "statt des Vornamens einsetzen"
 
 #: ../src/plugins/Records.py:464
 msgid "Underline call name in first name / add call name to first name"
-msgstr "Rufnamen im Vornamen unterstreichen / Rufnamen zu Vornamen hinzufügen"
+msgstr "im Vornamen unterstreichen / zum Vornamen hinzufügen"
 
 #: ../src/plugins/Records.py:470
 msgid "Person Records"
-msgstr "Person Rekorde"
+msgstr "Rekorde von Personen"
 
 #: ../src/plugins/Records.py:472
 msgid "Family Records"
-msgstr "Familie Rekorde"
+msgstr "Rekorde von Familien"
 
 #: ../src/plugins/Records.py:509 ../src/plugins/drawreport/AncestorTree.py:499
 #: ../src/plugins/drawreport/DescendTree.py:499
@@ -7791,27 +7791,27 @@ msgstr "Älteste lebende Person"
 
 #: ../src/plugins/Records.py:538
 msgid "Person died at youngest age"
-msgstr "Jüngste gestorbene Person"
+msgstr "Geringstes erreichtes Lebensalter"
 
 #: ../src/plugins/Records.py:539
 msgid "Person died at oldest age"
-msgstr "Älteste gestorbene Person"
+msgstr "Höchstes erreichtes Lebensalter"
 
 #: ../src/plugins/Records.py:540
 msgid "Person married at youngest age"
-msgstr "Bei Heirat jüngste Person"
+msgstr "Geringstes Alter bei einer Hochzeit"
 
 #: ../src/plugins/Records.py:541
 msgid "Person married at oldest age"
-msgstr "Bei Heirat älteste Person"
+msgstr "Höchstes Alter bei einer Hochzeit"
 
 #: ../src/plugins/Records.py:542
 msgid "Person divorced at youngest age"
-msgstr "Bei Scheidung jüngste Person"
+msgstr "Geringstes Alter bei einer Scheidung"
 
 #: ../src/plugins/Records.py:543
 msgid "Person divorced at oldest age"
-msgstr "Bei Scheidung älteste Person"
+msgstr "Höchstes Alter bei einer Scheidung"
 
 #: ../src/plugins/Records.py:544
 msgid "Youngest father"
@@ -7835,11 +7835,11 @@ msgstr "Paar mit den meisten Kindern"
 
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
-msgstr "Lebendes Paar, das erst kürzlich geheiratet hat"
+msgstr "Kürzeste noch andauernde Ehe"
 
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most long ago"
-msgstr "Lebendes Paar, das vor langer Zeit geheiratet hat"
+msgstr "Längste noch andauernde Ehe"
 
 #: ../src/plugins/Records.py:551
 msgid "Shortest past marriage"
@@ -7851,15 +7851,15 @@ msgstr "Längste beendete Ehe"
 
 #: ../src/plugins/Records.py:564
 msgid "Records Gramplet"
-msgstr "Rekorde Gramplet"
+msgstr "Rekorde-Gramplet"
 
 #: ../src/plugins/Records.py:576
 msgid "Records Report"
-msgstr "Rekordebericht"
+msgstr "Rekorde-Liste"
 
 #: ../src/plugins/Records.py:581
 msgid "Shows some interesting records about people and families"
-msgstr "Zeigt einige interessante Eintragungen über Personen und Familien"
+msgstr "Zeigt einige interessante Rekorde von Personen und Familien"
 
 #: ../src/plugins/docgen/AsciiDoc.py:378
 msgid "Plain Text"
@@ -8011,7 +8011,7 @@ msgstr "Hauptperson"
 #: ../src/plugins/drawreport/AncestorTree.py:466
 #: ../src/plugins/drawreport/DescendTree.py:467
 msgid "The center person for the tree"
-msgstr "Die Hauptperson Person für den Baum"
+msgstr "Die Hauptperson für den Baum"
 
 #: ../src/plugins/drawreport/AncestorTree.py:469
 #: ../src/plugins/drawreport/DescendTree.py:470
@@ -8167,7 +8167,7 @@ msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 #: ../src/plugins/textreport/KinshipReport.py:340
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:178
 msgid "The center person for the report"
-msgstr "Die Hauptperson Person für den Bericht"
+msgstr "Die Hauptperson für den Bericht"
 
 #: ../src/plugins/drawreport/Calendar.py:408
 #: ../src/plugins/textreport/BirthdayReport.py:364
@@ -8388,7 +8388,7 @@ msgstr "Erstellt eine grafischen Nachkommenbaum"
 #: ../src/plugins/drawreport/FanChart.py:194
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr "%(generations)d Generation Fächergrafik für %(person)s"
+msgstr "%(generations)d Generationen-Fächergrafik für %(person)s"
 
 #: ../src/plugins/drawreport/FanChart.py:351
 #: ../src/plugins/textreport/AncestorReport.py:257
@@ -9729,7 +9729,7 @@ msgstr "Hochzeitereignis fehlt"
 
 #: ../src/plugins/gramplet/WhatsNext.py:312
 msgid "relation type unknown"
-msgstr "Beziehungstyp  unbekannt"
+msgstr "Beziehungstyp unbekannt"
 
 #: ../src/plugins/gramplet/WhatsNext.py:327
 msgid "date unknown"
@@ -9771,11 +9771,11 @@ msgstr ": %s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:424
 msgid "What's Next Gramplet"
-msgstr "Was als nächstes Gramplet"
+msgstr "\"Was nun?\"-Gramplet"
 
 #: ../src/plugins/gramplet/WhatsNext.py:428
 msgid "What's Next?"
-msgstr "Was als nächstes?"
+msgstr "Was nun?"
 
 #. ------------------------------------------------------------------------
 #.
@@ -11275,7 +11275,7 @@ msgstr "Der Stil, der für die Überschriften der Generation verwendet wird."
 
 #: ../src/plugins/textreport/AncestorReport.py:350
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel Bericht"
+msgstr "Ahnentafel-Bericht"
 
 #: ../src/plugins/textreport/AncestorReport.py:352
 msgid "Produces a textual ancestral report"
@@ -11763,12 +11763,12 @@ msgstr "Erstellt eine ausführliche Nachkommenübersicht"
 #: ../src/plugins/textreport/EndOfLineReport.py:139
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Tote Endenbericht für %s"
+msgstr "Sackgassen-Liste für %s"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:145
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "Alle Vorfahren von %s bei denen ein Elternteil fehlt"
+msgstr "Alle Vorfahren von %s, bei denen ein Elternteil fehlt"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:189
 #: ../src/plugins/textreport/KinshipReport.py:310
@@ -11787,11 +11787,11 @@ msgstr "Der Stil, der für die Generationenüberschriften verwendet wird."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:327
 msgid "End of Line Report"
-msgstr "Tote Endenbericht"
+msgstr "Sackgassen-Liste"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:329
 msgid "Produces a textual end of line report"
-msgstr "Erstellt einen schriftlichen Tote Endenbericht"
+msgstr "Erstellt eine schriftliche Sackgassen-Liste"
 
 #: ../src/plugins/textreport/FamilyGroup.py:103
 #, python-format
@@ -11818,7 +11818,7 @@ msgstr "%dU"
 #: ../src/plugins/textreport/FamilyGroup.py:530
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Familien Blockbericht - Generation %d"
+msgstr "Familien-Blockbericht - Generation %d"
 
 #: ../src/plugins/textreport/FamilyGroup.py:532
 #: ../src/plugins/textreport/FamilyGroup.py:581
@@ -11833,7 +11833,7 @@ msgstr "Zentrale Familie"
 
 #: ../src/plugins/textreport/FamilyGroup.py:605
 msgid "The center family for the report"
-msgstr "Die Zentrale Familie für den Bericht"
+msgstr "Die zentrale Familie für den Bericht"
 
 #: ../src/plugins/textreport/FamilyGroup.py:608
 msgid "Recursive"
@@ -12010,7 +12010,7 @@ msgstr "Der Stil, der für den Namen des Partners verwendet wird."
 
 #: ../src/plugins/textreport/IndivComplete.py:644
 msgid "Complete Individual Report"
-msgstr "Alle Daten einer Person Bericht"
+msgstr "Alle Daten einer Person"
 
 #: ../src/plugins/textreport/IndivComplete.py:648
 msgid "Produces a complete report on the selected people"
@@ -12019,7 +12019,7 @@ msgstr "Erstellt einen vollständigen Bericht über die gewählten Personen"
 #: ../src/plugins/textreport/KinshipReport.py:101
 #, python-format
 msgid "Kinship Report for %s"
-msgstr "Verwandschaftsbericht für %s"
+msgstr "Verwandschaftsliste für %s"
 
 #: ../src/plugins/textreport/KinshipReport.py:136
 #, python-format
@@ -12061,11 +12061,11 @@ msgstr "Der Standardstil für Untertitel."
 
 #: ../src/plugins/textreport/KinshipReport.py:410
 msgid "Kinship Report"
-msgstr "Verwandtschaftbericht"
+msgstr "Verwandtschaftsliste"
 
 #: ../src/plugins/textreport/KinshipReport.py:412
 msgid "Produces a textual report of kinship for a given person"
-msgstr "Erstellt einen Textbericht über die Verwandtschaft einer gegeben Person"
+msgstr "Erstellt eine Liste der Verwandten einer gegeben Person"
 
 #: ../src/plugins/textreport/MarkerReport.py:83
 #, python-format
@@ -12120,7 +12120,7 @@ msgstr ""
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:217
 msgid "Number of Ancestors Report"
-msgstr "Anzahl der Vorfahren Bericht"
+msgstr "Anzahl der Vorfahren"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:219
 msgid "Counts number of ancestors of selected person"
@@ -12131,7 +12131,7 @@ msgstr "Zählt die Anzahl der Vorfahren der gewählten Person"
 #: ../src/plugins/textreport/PlaceReport.py:95
 #: ../src/plugins/textreport/PlaceReport.py:404
 msgid "Place Report"
-msgstr "Ort Bericht"
+msgstr "Ortsliste"
 
 #: ../src/plugins/textreport/PlaceReport.py:120
 #, python-format
@@ -12222,7 +12222,7 @@ msgstr "Der Stil, der für Ereignis- und Persondetails verwendet wird."
 
 #: ../src/plugins/textreport/PlaceReport.py:406
 msgid "Produces a textual place report"
-msgstr "Erstellt einen schriftlichen Ortsbericht"
+msgstr "Erstellt eine schriftliche Ortsliste"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:121
 msgid "book|Title"
@@ -14177,7 +14177,7 @@ msgstr "Das Archiv muss eine Datei sein, kein Verzeichnis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4703
 msgid "Narrated Web Site Report"
-msgstr "Kommentierte Webseite Bericht"
+msgstr "Kommentierte Webseite"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4917
 msgid "Creating individual pages"
@@ -14666,7 +14666,7 @@ msgstr "Erstellt mit <a href=\"http://gramps-project.org\">GRAMPS</a> am %(date)
 #. Create progress meter bar
 #: ../src/plugins/webreport/WebCal.py:1221
 msgid "Web Calendar Report"
-msgstr "Webkalenderbericht"
+msgstr "Webkalender"
 
 #: ../src/plugins/webreport/WebCal.py:1305
 msgid "Calendar Title"
