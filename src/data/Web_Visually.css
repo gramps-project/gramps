@@ -205,6 +205,10 @@ span.preposition {
     background-color: #542;
     border-bottom: solid 8px #5D835F;
 }
+body#WebCal #header, body#fullyearlinked #header {
+    width: 100%;
+    height; 90px;
+}
 #SiteTitle {
     margin:0;
     padding:.5em 0 0.5em 10px;
@@ -324,7 +328,7 @@ div#alphabet ul li.letters a:hover {
 }
 body#WebCal #navigation, body#fullyearlinked #navigation {
     width: 100%;
-    height: 42px;
+    height: 52px;
 }
 #subnavigation {
     width: 100%;
@@ -629,10 +633,6 @@ div#EventList, div#EventDetail { }
 div#events table.eventlist {
     margin-top: .3cm;
 }
-table.eventlist thead tr th {
-    font-weight: bold;
-    text-transform: uppercase;
-}
 table.eventlist tbody tr {
     border-bottom: solid 1px #5D835F;
 }
@@ -657,7 +657,6 @@ table.eventlist tbody tr td.ColumnSources {
     width: 12%;
 }
 table.eventlist tbody tr td.ColumnNotes {
-    background-color: #FFF;
     width: 25%;
 }
 table.eventlist tbody tr td.ColumnPerson {
@@ -1015,6 +1014,10 @@ table.attrlist tbody tr td.ColumnSources {
 }
 table.attrlist tbody tr td.ColumnNotes {
     width: 400px;
+}
+div#attributes table.attrlist tbody tr td.ColumnNotes {
+    width: 400px;
+    background-color: #D8F3D6;
 }
 
 /* Subsections : Parents

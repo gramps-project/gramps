@@ -256,64 +256,41 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
 
-    def dump_attributes(self, attrlist, showsrc):
+    def dump_attribute(self, attr, showsrc):
         """
         dump attribute for object presented in display_attr_list()
 
-        @param: attrlist = attribute object list
+        @param: attr = attribute object
         @param: showsrc = show source references or not?
         """
 
-        # begin attributes table
-        with Html("table", class_ = "infolist attrlist") as table:
+        trow = Html("tr")
 
-            thead = Html("thead")
-            table += thead
+        attr_data_row = [
+            ("Type",     attr.get_type().xml_str() ),
+            ("Value",    attr.get_value() ) ]
 
-            trow = Html("tr")
-            thead += trow
-
-            attr_header_row = [
-                [THEAD,    'Type'],
-                [VHEAD,    'Value'],
-                [SHEAD,    'Sources'], 
-                [NHEAD,    'Notes'] ]
-
-            for (label, colclass) in attr_header_row:    
-                trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
-
-            # begin table body
-            tbody = Html("tbody")
-            table += tbody
-
-            for attr in attrlist:
-
-                trow = Html("tr")
-                tbody += trow
-
-                attr_data_row = [
-                    [str(attr.get_type() ) ],
-                    [attr.get_value() ] ]
-
-                if showsrc:
-                    source_row = self.get_citation_links(attr.get_source_references())
-                    attr_data_row.append(source_row)
+        if showsrc:
+            srcrefs = self.get_citation_links(attr.get_source_references() )
+            source_row = ("Sources",    srcrefs)
+            attr_data_row.append(source_row)
  
-                attr_data_row.append(self.dump_notes(attr.get_note_list() ) )
+        # get attribute note list    
+        notelist = attr.get_note_list()
+        notelist = self.display_note_list(notelist) or "&nbsp;"
+        note_row = ("Notes",    notelist)                      
+        attr_data_row.append(note_row)
 
-                index = 0
-                for value in attr_data_row:
-                    colclass = attr_header_row[index][1]
+        # display attribute list
+        for (colclass, value) in attr_data_row:
 
-                    # determine if same row or not?
-                    samerow = True if (value[0] == "&nbsp;" or colclass == "Type") else False
+            # determine if same row or not?
+            samerow = True if (colclass == "Type" or "Sources") else False
 
-                    trow += Html("td", value[0], class_ = "Column%s" % colclass, 
-                        inline = samerow)
-                    index += 1
+            trow += Html("td", value, class_ = "Column%s" % colclass, inline = samerow)
 
-        # return table to its callers
-        return table
+        # return table row to its caller
+        return trow
 
     def get_citation_links(self, source_ref_list):
         self.bibli = Bibliography()
@@ -836,8 +813,32 @@ class BasePage(object):
         with Html("div", class_ = "ubsection", id="attributes") as section:
             section += Html('h4', _('Attributes'),  inline = True)
 
-            # add returned table to section
-            section += self.dump_attributes(attrlist, showsrc)
+            # begin attributes table
+            with Html("table", class_ = "infolist attrlist") as table:
+                section += table
+
+                thead = Html("thead")
+                table += thead
+
+                trow = Html("tr")
+                thead += trow
+
+                for (label, colclass) in [
+                    (THEAD,    "Type"),
+                    (VHEAD,    "Value"),
+                    (SHEAD,    "Sources"),
+                    (NHEAD,    "Notes") ]:
+
+                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
+
+                # begin table body
+                tbody = Html("tbody")
+                table += tbody
+
+
+                for attr in attrlist:
+
+                    tbody += self.dump_attribute(attr, showsrc)
 
         # return section to its caller
         return section
@@ -2206,9 +2207,8 @@ class EventPage(BasePage):
 
             # Narrative subsection
             if shownote: 
-                notelist = event_data[(len(event_data) - 1)][2] or None
-                if notelist is not None:
-                    eventdetail += self.display_note_list(notelist) 
+                notelist = event_data[(len(event_data) - 1)][2]
+                eventdetail += self.display_note_list(notelist)
 
             # get attribute list
             attrlist = event.get_attribute_list()
@@ -2522,17 +2522,13 @@ class MediaPage(BasePage):
             #################################################
 
         # get media notes
-        notes = self.display_note_list(photo.get_note_list())
-        if notes is not None:
-            mediadetail += notes
+        notelist = photo.get_note_list()
+        if notelist: 
+            mediadetail += self.display_note_list(notelist)
 
         # get attribute list
-        attributes = photo.get_attribute_list()
-        if attributes:
-            attrlist = []
-            for attr in attributes:
-                attrlist.append(attr)
-            mediadetail += self.display_attr_list(attrlist, False)  
+        attrlist = photo.get_attribute_list()
+        mediadetail += self.display_attr_list(attrlist, False)  
 
         # get media sources
         sources = self.display_media_sources(photo)
@@ -3310,30 +3306,25 @@ class IndividualPage(BasePage):
             if sect2 is not None:
                 individualdetail += sect2
 
-            # display attributes
-            sect3 = self.display_attr_list(attribute_list, True)
+            # display parents
+            sect3 = self.display_ind_parents()
             if sect3 is not None:
                 individualdetail += sect3
 
-            # display parents
-            sect4 = self.display_ind_parents()
+            # display relationships
+            sect4 = self.display_ind_families()
             if sect4 is not None:
                 individualdetail += sect4
 
-            # display relationships
-            sect5 = self.display_ind_families()
+            # display LDS ordinance
+            sect5 = self.display_lds_ordinance(person)
             if sect5 is not None:
                 individualdetail += sect5
 
-            # display LDS ordinance
-            sect6 = self.display_lds_ordinance(person)
+            # display address(es)
+            sect6 = self.display_addresses()
             if sect6 is not None:
                 individualdetail += sect6
-
-            # display address(es)
-            sect7 = self.display_addresses()
-            if sect7 is not None:
-                individualdetail += sect7 
 
             media_list = []
             photo_list = self.person.get_media_list()
@@ -3351,12 +3342,18 @@ class IndividualPage(BasePage):
                     media_list += event.get_media_list()
 
             # display additional images as gallery
-            sect8 = self.display_additional_images_as_gallery(media_list)
+            sect7 = self.display_additional_images_as_gallery(media_list)
+            if sect7 is not None:
+                individualdetail += sect7
+
+            # display Narrative
+            notelist = person.get_note_list()
+            sect8 = self.display_note_list(notelist)
             if sect8 is not None:
                 individualdetail += sect8
 
-            # display notes
-            sect9 = self.display_note_list(self.person.get_note_list())
+            # display attributes
+            sect9 = self.display_attr_list(attribute_list, True)
             if sect9 is not None:
                 individualdetail += sect9
 
