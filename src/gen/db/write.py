@@ -655,7 +655,10 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         for (database, name) in items:
             database.close()
             _db = db.DB(self.env)
-            _db.remove(_mkname(self.full_name, name), name)
+            try:
+                _db.remove(_mkname(self.full_name, name), name)
+            except db.DBNoSuchFileError:
+                pass
             if callback:
                 callback(index)
             index += 1
@@ -887,7 +890,10 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         for index, (dbmap, dbname) in enumerate(db_maps):
             getattr(self, dbmap).close()
             _db = db.DB(self.env)
-            _db.remove(_mkname(self.full_name, dbname), dbname)
+            try:
+                _db.remove(_mkname(self.full_name, dbname), dbname)
+            except db.DBNoSuchFileError:
+                pass
             callback(index+1)
 
         # Open reference_map and primary map
@@ -1574,11 +1580,17 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                 # Disconnect unneeded secondary indices
                 self.surnames.close()
                 _db = db.DB(self.env)
-                _db.remove(_mkname(self.full_name, SURNAMES), SURNAMES)
+                try:
+                    _db.remove(_mkname(self.full_name, SURNAMES), SURNAMES)
+                except db.DBNoSuchFileError:
+                    pass
 
                 self.reference_map_referenced_map.close()
                 _db = db.DB(self.env)
-                _db.remove(_mkname(self.full_name, REF_REF), REF_REF)
+                try:
+                    _db.remove(_mkname(self.full_name, REF_REF), REF_REF)
+                except db.DBNoSuchFileError:
+                    pass
         return transaction
 
     @catch_db_error
