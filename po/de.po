@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-10 18:28+0200\n"
-"PO-Revision-Date: 2009-09-16 20:19+0200\n"
+"POT-Creation-Date: 2009-09-17 18:33+0200\n"
+"PO-Revision-Date: 2009-09-17 18:39+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6553,7 +6553,7 @@ msgstr ""
 msgid "%s and %s"
 msgstr "%s und %s"
 
-#: ../src/plugins/Records.py:326 ../src/plugins/gramplet/WhatsNext.py:60
+#: ../src/plugins/Records.py:326 ../src/plugins/gramplet/WhatsNext.py:74
 msgid "Double-click name for details"
 msgstr "Namen für Details doppelt-klicken"
 
@@ -6567,7 +6567,7 @@ msgstr "Namen für Details doppelt-klicken"
 #: ../src/plugins/gramplet/StatsGramplet.py:46
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:54
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:39
-#: ../src/plugins/gramplet/WhatsNext.py:61
+#: ../src/plugins/gramplet/WhatsNext.py:75
 msgid "No Family Tree loaded."
 msgstr "Kein Stammbaum geladen."
 
@@ -8620,101 +8620,119 @@ msgstr "Willkommen Gramplet"
 msgid "Welcome to GRAMPS!"
 msgstr "Willkommen zu GRAMPS!"
 
-#: ../src/plugins/gramplet/WhatsNext.py:79
+#: ../src/plugins/gramplet/WhatsNext.py:93
 msgid "No Home Person set."
 msgstr "Hauptperson nicht gesetzt."
 
-#: ../src/plugins/gramplet/WhatsNext.py:245
+#: ../src/plugins/gramplet/WhatsNext.py:258
 msgid "first name unknown"
 msgstr "Vorname unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:248
+#: ../src/plugins/gramplet/WhatsNext.py:261
 msgid "surname unknown"
 msgstr "Familienname unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:252
-#: ../src/plugins/gramplet/WhatsNext.py:283
-#: ../src/plugins/gramplet/WhatsNext.py:290
+#: ../src/plugins/gramplet/WhatsNext.py:265
+#: ../src/plugins/gramplet/WhatsNext.py:296
+#: ../src/plugins/gramplet/WhatsNext.py:322
+#: ../src/plugins/gramplet/WhatsNext.py:329
+#: ../src/plugins/gramplet/WhatsNext.py:369
+#: ../src/plugins/gramplet/WhatsNext.py:376
 msgid "(person with unknown name)"
 msgstr "(Person mit unbekanntem Namen)"
 
-#: ../src/plugins/gramplet/WhatsNext.py:265
+#: ../src/plugins/gramplet/WhatsNext.py:278
 msgid "birth event missing"
 msgstr "Geburtsereignis fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:269
-#: ../src/plugins/gramplet/WhatsNext.py:316
+#: ../src/plugins/gramplet/WhatsNext.py:282
+#: ../src/plugins/gramplet/WhatsNext.py:303
+#: ../src/plugins/gramplet/WhatsNext.py:353
+#: ../src/plugins/gramplet/WhatsNext.py:387
 #, python-format
 msgid ": %(list)s\n"
 msgstr ": %(list)s\n"
 
-#: ../src/plugins/gramplet/WhatsNext.py:270
-#: ../src/plugins/gramplet/WhatsNext.py:317
-#: ../src/plugins/gramplet/WhatsNext.py:338
+#: ../src/plugins/gramplet/WhatsNext.py:283
+#: ../src/plugins/gramplet/WhatsNext.py:304
+#: ../src/plugins/gramplet/WhatsNext.py:354
+#: ../src/plugins/gramplet/WhatsNext.py:388
+#: ../src/plugins/gramplet/WhatsNext.py:409
 msgid ", "
 msgstr ", "
 
-#: ../src/plugins/gramplet/WhatsNext.py:285
-#: ../src/plugins/gramplet/WhatsNext.py:292
+#: ../src/plugins/gramplet/WhatsNext.py:299
+msgid "person not complete"
+msgstr "Person nicht vollständig"
+
+#: ../src/plugins/gramplet/WhatsNext.py:318
+#: ../src/plugins/gramplet/WhatsNext.py:325
+#: ../src/plugins/gramplet/WhatsNext.py:365
+#: ../src/plugins/gramplet/WhatsNext.py:372
 msgid "(unknown person)"
 msgstr "(unbekannte Person)"
 
-#: ../src/plugins/gramplet/WhatsNext.py:294
+#: ../src/plugins/gramplet/WhatsNext.py:331
+#: ../src/plugins/gramplet/WhatsNext.py:378
 #, python-format
 msgid "%(name1)s and %(name2)s"
 msgstr "%(name1)s und %(name2)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:310
+#: ../src/plugins/gramplet/WhatsNext.py:347
 msgid "marriage event missing"
 msgstr "Hochzeitereignis fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:312
+#: ../src/plugins/gramplet/WhatsNext.py:349
 msgid "relation type unknown"
 msgstr "Beziehungstyp unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:327
+#: ../src/plugins/gramplet/WhatsNext.py:383
+msgid "family not complete"
+msgstr "Familie unvollständig"
+
+#: ../src/plugins/gramplet/WhatsNext.py:398
 msgid "date unknown"
 msgstr "Datum unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:329
+#: ../src/plugins/gramplet/WhatsNext.py:400
 msgid "date incomplete"
 msgstr "Datum unvollständig"
 
-#: ../src/plugins/gramplet/WhatsNext.py:333
+#: ../src/plugins/gramplet/WhatsNext.py:404
 msgid "place unknown"
 msgstr "Ort unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:336
+#: ../src/plugins/gramplet/WhatsNext.py:407
 #, python-format
 msgid "%(type)s: %(list)s"
 msgstr "%(type)s: %(list)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:344
+#: ../src/plugins/gramplet/WhatsNext.py:415
 msgid "spouse missing"
 msgstr "Partner(in) fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:348
+#: ../src/plugins/gramplet/WhatsNext.py:419
 msgid "father missing"
 msgstr "Vater fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:352
+#: ../src/plugins/gramplet/WhatsNext.py:423
 msgid "mother missing"
 msgstr "Mutter fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:356
+#: ../src/plugins/gramplet/WhatsNext.py:427
 msgid "parents missing"
 msgstr "Eltern fehlen"
 
-#: ../src/plugins/gramplet/WhatsNext.py:363
+#: ../src/plugins/gramplet/WhatsNext.py:434
 #, python-format
 msgid ": %s\n"
 msgstr ": %s\n"
 
-#: ../src/plugins/gramplet/WhatsNext.py:424
+#: ../src/plugins/gramplet/WhatsNext.py:523
 msgid "What's Next Gramplet"
 msgstr "\"Was nun?\"-Gramplet"
 
-#: ../src/plugins/gramplet/WhatsNext.py:428
+#: ../src/plugins/gramplet/WhatsNext.py:527
 msgid "What's Next?"
 msgstr "Was nun?"
 
@@ -18830,7 +18848,7 @@ msgstr "Stiefkind"
 
 #: ../src/gen/lib/childreftype.py:62
 msgid "Sponsored"
-msgstr "Legitimiert"
+msgstr "Gefördert"
 
 #: ../src/gen/lib/childreftype.py:63
 msgid "Foster"
