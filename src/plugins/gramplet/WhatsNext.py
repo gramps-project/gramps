@@ -26,7 +26,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import EventType, FamilyRelType
+from gen.lib import EventType, FamilyRelType, MarkerType
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from ReportBase import ReportUtils
@@ -55,6 +55,20 @@ class WhatNextGramplet(Gramplet):
     # ancestors of this spouse are processed.
     SPOUSE_DELAY = 1
 
+    # Use COMPLETE marker on a person to indicate that this person has no
+    # further marriages, if COMPLETE marker is not set, warn about this at the
+    # time the marriages for the person are processed.
+    PERSON_NEED_COMPLETE = False
+
+    # Use COMPLETE marker on a family to indicate that there are no further
+    # children in this family, if COMPLETE marker is not set, warn about this
+    # at the time the children of this family are processed.
+    FAMILY_NEED_COMPLETE = False
+
+    # Ignore all people and families with TODO_TYPE marker set. This way,
+    # hopeless cases can be marked separately and don't clutter up the list.
+    IGNORE_TODO = False
+
     def init(self):
 
         self.set_tooltip(_("Double-click name for details"))
@@ -75,15 +89,13 @@ class WhatNextGramplet(Gramplet):
     def main(self):
 
         default_person = self.dbstate.db.get_default_person()
-        if default_person == None:
+        if default_person is None:
             self.set_text(_("No Home Person set."))
             return
 
         self.__counter = 0
-        self.__level = 1
 
         self.set_text("")
-
 
         # List of already processed persons and families, to avoid recursing
         # back down to ourselves or meeting the same person through different
@@ -133,13 +145,12 @@ class WhatNextGramplet(Gramplet):
                 for person in ancestor_group:
                     for family in self.__get_families(person):
                         spouse = self.__get_spouse(person, family)
-                        if spouse:
-                            self.__process_person(spouse)
-                            new_spouses_group.append(spouse)
-                        elif family.get_relationship() == FamilyRelType.MARRIED:
+                        if spouse is UnknownPerson:
                             self.__missing_spouse(person)
-                        self.__process_family(family, person, spouse)
-                        new_family_group.append(family)
+                        elif spouse is not None:
+                            self.__process_person(spouse, new_spouses_group)
+                        self.__process_family(family, person, spouse, new_family_group)
+                    self.__process_person_2(person)
                 if new_family_group:
                     families.append(new_family_group)
                 if new_spouses_group:
@@ -151,21 +162,16 @@ class WhatNextGramplet(Gramplet):
             spouses_queue.append(spouses)
             ancestors += spouses_queue.pop(0)
 
-            # Separator between rounds
-            if self.__counter > 0:
-                self.append_text("\n")
-                self.__level += 1
-
             # Next generation of children
             spouses = []
             for down in range(self.DOWNS_PER_UP):
                 new_families = []
                 for family_group in families:
                     children = []
-                    for family in family_group:
+                    for (family, person, spouse) in family_group:
                         for child in self.__get_children(family):
-                            self.__process_person(child)
-                            children.append(child)
+                            self.__process_person(child, children)
+                        self.__process_family_2(family, person, spouse)
                     if self.__counter >= self.TODOS_WANTED:
                         break
 
@@ -175,13 +181,12 @@ class WhatNextGramplet(Gramplet):
                     for person in children:
                         for family in self.__get_families(person):
                             spouse = self.__get_spouse(person, family)
-                            if spouse:
-                                self.__process_person(spouse)
-                                new_spouses_group.append(spouse)
-                            elif family.get_relationship() == FamilyRelType.MARRIED:
+                            if spouse is UnknownPerson:
                                 self.__missing_spouse(person)
-                            self.__process_family(family, person, spouse)
-                            new_family_group.append(family)
+                            elif spouse is not None:
+                                self.__process_person(spouse, new_spouses_group)
+                            self.__process_family(family, person, spouse, new_family_group)
+                        self.__process_person_2(person)
                     if new_family_group:
                         new_families.append(new_family_group)
                     if new_spouses_group:
@@ -198,27 +203,28 @@ class WhatNextGramplet(Gramplet):
             new_ancestors = []
             new_families = []
             for ancestor_group in ancestors:
-                new_ancestor_group = []
+                new_ancestor_group_1 = []
+                new_ancestor_group_2 = []
                 new_family_group = []
                 for person in ancestor_group:
                     (father, mother, family) = self.__get_parents(person)
-                    if family:
-                        if father:
-                            self.__process_person(father)
-                            new_ancestor_group.append(father)
-                        elif family.get_relationship() == FamilyRelType.MARRIED:
-                            self.__missing_father(person)
-                        if mother:
-                            self.__process_person(mother)
-                            new_ancestor_group.append(mother)
-                        else:
-                            self.__missing_mother(person)
-                        self.__process_family(family, father, mother)
-                        new_family_group.append(family)
-                    else:
+                    if family is UnknownFamily:
                         self.__missing_parents(person)
-                if new_ancestor_group:
-                    new_ancestors.append(new_ancestor_group)
+                    elif family is not None:
+                        if father is UnknownPerson:
+                            self.__missing_father(person)
+                        elif father is not None:
+                            self.__process_person(father, new_ancestor_group_1)
+                        if mother is UnknownPerson:
+                            self.__missing_mother(person)
+                        elif mother is not None:
+                            if father is None:
+                                self.__process_person(mother, new_ancestor_group_1)
+                            else:
+                                self.__process_person(mother, new_ancestor_group_2)
+                        self.__process_family(family, father, mother, new_family_group)
+                if new_ancestor_group_1 or new_ancestor_group_2:
+                    new_ancestors.append(new_ancestor_group_1 + new_ancestor_group_2)
                 if new_family_group:
                     new_families.append(new_family_group)
                 if self.__counter >= self.TODOS_WANTED:
@@ -230,10 +236,17 @@ class WhatNextGramplet(Gramplet):
             if self.__counter >= self.TODOS_WANTED:
                 break
 
+            # Separator between rounds
+            if self.__counter > 0:
+                self.append_text("\n")
+
         self.append_text("", scroll_to='begin')
 
 
-    def __process_person(self, person):
+    def __process_person(self, person, append_list):
+
+        if person.get_handle() in self.__processed_persons:
+            return
 
         self.__processed_persons[person.get_handle()] = True
 
@@ -270,26 +283,50 @@ class WhatNextGramplet(Gramplet):
                 'list': _(", ").join(missingbits)})
             self.__counter += 1
 
+        append_list.append(person)
 
-    def __process_family(self, family, person1, person2):
+
+    def __process_person_2(self, person):
+
+        missingbits = []
+
+        primary_name = person.get_primary_name()
+        name = name_displayer.display_name(primary_name)
+        if not name:
+            name = _("(person with unknown name)")
+
+        if self.PERSON_NEED_COMPLETE and person.get_marker() != MarkerType.COMPLETE:
+            missingbits.append(_("person not complete"))
+
+        if missingbits:
+            self.link(name, 'Person', person.get_handle())
+            self.append_text(_(": %(list)s\n") % {
+                'list': _(", ").join(missingbits)})
+            self.__counter += 1
+
+
+    def __process_family(self, family, person1, person2, append_list):
+
+        if family.get_handle() in self.__processed_families:
+            return
 
         self.__processed_families[family.get_handle()] = True
 
         missingbits = []
 
-        if person1:
+        if person1 is UnknownPerson or person1 is None:
+            name1 = _("(unknown person)")
+        else:
             name1 = name_displayer.display(person1)
             if not name1:
                 name1 = _("(person with unknown name)")
-        else:
-            name1 = _("(unknown person)")
 
-        if person2:
+        if person2 is UnknownPerson or person2 is None:
+            name2 = _("(unknown person)")
+        else:
             name2 = name_displayer.display(person2)
             if not name2:
                 name2 = _("(person with unknown name)")
-        else:
-            name2 = _("(unknown person)")
 
         name = _("%(name1)s and %(name2)s") % {
                 'name1': name1,
@@ -310,6 +347,40 @@ class WhatNextGramplet(Gramplet):
                 missingbits.append(_("marriage event missing"))
         elif family.get_relationship() == FamilyRelType.UNKNOWN:
             missingbits.append(_("relation type unknown"))
+
+        if missingbits:
+            self.link(name, 'Family', family.get_handle())
+            self.append_text(_(": %(list)s\n") % {
+                'list': _(", ").join(missingbits)})
+            self.__counter += 1
+
+        append_list.append((family, person1, person2))
+
+
+    def __process_family_2(self, family, person1, person2):
+
+        missingbits = []
+
+        if person1 is UnknownPerson or person1 is None:
+            name1 = _("(unknown person)")
+        else:
+            name1 = name_displayer.display(person1)
+            if not name1:
+                name1 = _("(person with unknown name)")
+
+        if person2 is UnknownPerson or person2 is None:
+            name2 = _("(unknown person)")
+        else:
+            name2 = name_displayer.display(person2)
+            if not name2:
+                name2 = _("(person with unknown name)")
+
+        name = _("%(name1)s and %(name2)s") % {
+                'name1': name1,
+                'name2': name2}
+
+        if self.FAMILY_NEED_COMPLETE and family.get_marker() != MarkerType.COMPLETE:
+            missingbits.append(_("family not complete"))
 
         if missingbits:
             self.link(name, 'Family', family.get_handle())
@@ -368,18 +439,24 @@ class WhatNextGramplet(Gramplet):
 
         spouse_handle = ReportUtils.find_spouse(person, family)
         if not spouse_handle:
+            if family.get_relationship() == FamilyRelType.MARRIED:
+                return UnknownPerson
+            else:
+                return None
+        spouse = self.dbstate.db.get_person_from_handle(spouse_handle)
+        if self.IGNORE_TODO and spouse.get_marker() == MarkerType.TODO_TYPE:
             return None
-        if spouse_handle in self.__processed_persons:
-            return None
-        return self.dbstate.db.get_person_from_handle(spouse_handle)
+        else:
+            return spouse
 
 
     def __get_children(self, family):
 
         for child_ref in family.get_child_ref_list():
-            if child_ref.ref in self.__processed_persons:
+            child = self.dbstate.db.get_person_from_handle(child_ref.ref)
+            if self.IGNORE_TODO and child.get_marker() == MarkerType.TODO_TYPE:
                 continue
-            yield self.dbstate.db.get_person_from_handle(child_ref.ref)
+            yield child
 
 
     def __get_families(self, person):
@@ -387,31 +464,53 @@ class WhatNextGramplet(Gramplet):
         for family_handle in person.get_family_handle_list():
             if family_handle in self.__processed_families:
                 continue
-            yield self.dbstate.db.get_family_from_handle(family_handle)
+            family = self.dbstate.db.get_family_from_handle(family_handle)
+            if self.IGNORE_TODO and family.get_marker() == MarkerType.TODO_TYPE:
+                continue
+            yield family
 
 
     def __get_parents(self, person):
 
         family_handle = person.get_main_parents_family_handle()
-        if not family_handle or family_handle in self.__processed_families:
+        if not family_handle:
+            return (UnknownPerson, UnknownPerson, UnknownFamily)
+        if family_handle in self.__processed_families:
             return (None, None, None)
 
         family = self.dbstate.db.get_family_from_handle(family_handle)
+        if self.IGNORE_TODO and family.get_marker() == MarkerType.TODO_TYPE:
+            return (None, None, None)
 
         father_handle = family.get_father_handle()
-        if father_handle and father_handle not in self.__processed_persons:
-            father = self.dbstate.db.get_person_from_handle(father_handle)
+        if not father_handle:
+            if family.get_relationship() == FamilyRelType.MARRIED:
+                father = UnknownPerson
+            else:
+                father = None
         else:
-            father = None
+            father = self.dbstate.db.get_person_from_handle(father_handle)
+            if self.IGNORE_TODO and father.get_marker() == MarkerType.TODO_TYPE:
+                father = None
 
         mother_handle = family.get_mother_handle()
-        if mother_handle and mother_handle not in self.__processed_persons:
-            mother = self.dbstate.db.get_person_from_handle(mother_handle)
+        if not mother_handle:
+            mother = UnknownPerson
         else:
-            mother = None
+            mother = self.dbstate.db.get_person_from_handle(mother_handle)
+            if self.IGNORE_TODO and mother.get_marker() == MarkerType.TODO_TYPE:
+                mother = None
 
         return (father, mother, family)
 
+
+class UnknownPersonClass(object):
+    pass
+class UnknownFamilyClass(object):
+    pass
+
+UnknownPerson = UnknownPersonClass()
+UnknownFamily = UnknownFamilyClass()
 
 #------------------------------------------------------------------------
 #
