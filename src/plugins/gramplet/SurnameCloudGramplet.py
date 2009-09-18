@@ -111,7 +111,8 @@ class SurnameCloudGramplet(Gramplet):
             cloud_values.append( count )
 
         cloud_names.sort(key=lambda k:k[1])
-        counts = reversed(set(cloud_values))
+        counts = list(set(cloud_values))
+        counts.sort(reverse=True)
         line = 0
         ### All done!
         # Now, find out how many we can display without going over top_size:
