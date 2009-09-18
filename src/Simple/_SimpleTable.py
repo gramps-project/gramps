@@ -144,6 +144,13 @@ class SimpleTable(object):
                     return True # handled event
                 except Errors.WindowActiveError:
                     pass
+            elif objclass == 'PersonList':
+                from QuickReports import run_quick_report_by_name
+                run_quick_report_by_name(self.simpledoc.doc.dbstate,
+                                         self.simpledoc.doc.uistate, 
+                                         'filterbyname', 
+                                         'list of people',
+                                         handles=handle)
         return False # didn't handle event
 
     def on_table_click(self, obj):
@@ -257,6 +264,9 @@ class SimpleTable(object):
                 text = str(item)
                 retval.append(text)
                 self.row_sort_val(col, item)
+            elif isinstance(item, list): # [text, "PersonList", handle, ...]
+                retval.append(item[0])
+                link = (item[1], item[2:])
             else:
                 raise AttributeError, ("unknown object type: '%s': %s" % 
                                        (item, type(item)))
