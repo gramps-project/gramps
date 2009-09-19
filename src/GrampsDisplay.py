@@ -85,17 +85,10 @@ def run_file(file):
     Open a file or url with the default application. This should work
     on GNOME, KDE, XFCE, ... as we use a freedesktop application
     """
-    import os
-    
-    search = os.environ['PATH'].split(':')
-    
-    xdgopen = 'xdg-open'
-    for path in search:
-        prog = os.path.join(path, xdgopen)
-        if os.path.isfile(prog):
-            os.spawnvpe(os.P_NOWAIT, prog, [prog, file], os.environ)
-            return True
-    
+    prog = find_binary('xdg-open')
+    if prog:
+        os.spawnvpe(os.P_NOWAIT, prog, [prog, file], os.environ)
+        return True
     return False
 
 def run_browser(url):
@@ -108,20 +101,29 @@ def run_browser(url):
         import webbrowser
         webbrowser.open_new_tab(url)
     except ImportError:
-        import os
-
-        search = os.environ['PATH'].split(':')
-
         for browser in ['firefox', 'konqueror', 'epiphany',
                         'galeon', 'mozilla']:
-            for path in search:
-                prog = os.path.join(path,browser)
-                if os.path.isfile(prog):
-                    os.spawnvpe(os.P_NOWAIT, prog, [prog, url], os.environ)
-                    return
+            prog = find_binary(browser)
+            if prog:
+                os.spawnvpe(os.P_NOWAIT, prog, [prog, url], os.environ)
+                return
 
         # If we did not find a browser in the path, try this
         try:
             os.startfile(url)
         except:
             pass
+
+def find_binary(file):
+    """
+    Find the binary (executable) of a filename in the PATH, and return full
+    path if found, else return None.
+    """
+    import os
+    search = os.environ['PATH'].split(':')
+    for path in search:
+        prog = os.path.join(path, file)
+        if os.path.isfile(prog):
+            return prog
+    return None
+
