@@ -176,8 +176,9 @@ def run(database, document, filter_name, *args, **kwargs):
                 pass
     elif (filter_name == 'list of people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = kwargs["handles"]
-        for person in database.iter_people():
+        handles = kwargs["handles"]
+        for person_handle in handles:
+            person = database.get_person_from_handle(person_handle)
             stab.row(person, sdb.birth_date_obj(person),
                      str(person.get_primary_name().get_type()))
             matches += 1
