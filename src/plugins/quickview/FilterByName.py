@@ -67,7 +67,6 @@ def run(database, document, filter_name, *args, **kwargs):
     elif (filter_name == 'males'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
-            person = database.get_person_from_handle(person_handle)
             if person.gender == Person.MALE:
                 stab.row(person, sdb.birth_date_obj(person),
                          str(person.get_primary_name().get_type()))
