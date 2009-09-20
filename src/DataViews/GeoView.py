@@ -4,9 +4,10 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2009  Serge Noiraud
+# Copyright (C) 2008  Benny Malengier
+# Copyright (C) 2009  Gerald Britton
 # Copyright (C) 2009  Helge GRAMPS
 # Copyright (C) 2009  Josip
-# Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -90,6 +91,16 @@ NB_MARKERS_PER_PAGE = 200
 #
 #-------------------------------------------------------------------------
 
+_HTMLHEADER = '''<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" 
+    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+<html xmlns=\"http://www.w3.org/1999/xhtml\" >
+ <head>
+  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>
+  <title>This is used to pass messages between javascript and python</title>
+  <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">
+  <script type=\"text/javascript\"
+'''
+
 _JAVASCRIPT = '''<script>
   var gmarkers = [];
   var min = 0;
@@ -160,6 +171,19 @@ _JAVASCRIPT = '''<script>
   }}
 '''
 
+_HTMLTRAILER = '''
+   setcenterandzoom(mapstraction);
+   setmarkers(mapstraction);
+   savezoomandposition(mapstraction);
+   if ( current_map != \"openstreetmap\") {{
+      swap_map(current_map,current_map);
+   }};
+   mapstraction.enableScrollWheelZoom();
+  </script>
+ </body>
+</html>
+'''
+
 #-------------------------------------------------------------------------
 #
 # Functions
@@ -189,18 +213,24 @@ def _get_sign(value):
         return 0
 
 def _get_zoom_lat(value):
+    """
+    return the zoom value for latitude depending on the distance.
+    """
     zoomlat = 1
-    for i, x in enumerate([80.0, 40.0, 20.0, 10.0, 3.0,
+    for i, distance in enumerate([80.0, 40.0, 20.0, 10.0, 3.0,
                            2.0, 1.0, 0.5, 0.2, 0.1]):
-        if value < x:
+        if value < distance:
             zoomlat = i+1
     return zoomlat + 2
 
 def _get_zoom_long(value):
+    """
+    return the zoom value for longitude depending on the distance.
+    """
     zoomlong = 1
-    for i, x in enumerate([120.0, 60.0, 30.0, 15.0, 7.0,
+    for i, distance in enumerate([120.0, 60.0, 30.0, 15.0, 7.0,
                            4.0, 2.0, 1.0, .5, .2, .1]):
-        if value < x:
+        if value < distance:
             zoomlong = i+1
     return zoomlong + 2
 
@@ -216,6 +246,7 @@ class GeoView(HtmlView):
 
     def __init__(self, dbstate, uistate):
         HtmlView.__init__(self, dbstate, uistate, title=_('GeoView'))
+        self.dbstate = dbstate
         self.dbstate.connect('database-changed', self._new_database)
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
@@ -224,6 +255,7 @@ class GeoView(HtmlView):
         self.nbpages = 0
         self.yearinmarker = []
         self.mustcenter = False
+        self.external_url = False
         self.centerlat = 0.0
         self.centerlon = 0.0
         self.setattr = True
@@ -711,110 +743,16 @@ class GeoView(HtmlView):
             )
         return
 
-        
-        self.mapview.write("<script>\n")
-        self.mapview.write("  var gmarkers = [];\n")
-        self.mapview.write("  var min = 0;\n")
-        self.mapview.write("  var zoom = 0;\n")
-        self.mapview.write("  var pos = 0;\n")
-        self.mapview.write("  var selected = 0;\n")
-        self.mapview.write("  var current_map = '%s';\n" % self.usedmap )
-        self.mapview.write("  var selectedmarkers = 'All';\n")
-        self.mapview.write("  // shows or hide markers of a ")
-        self.mapview.write("particular category\n")
-        self.mapview.write("  function selectmarkers(year) {\n")
-        self.mapview.write("    selectedmarkers = year;\n")
-        self.mapview.write("    for (var i=0; i<gmarkers.length; i++) {\n")
-        self.mapview.write("      val = gmarkers[i].getAttribute")
-        self.mapview.write("(\"year\");\n")
-        self.mapview.write("      min = parseInt(year);\n")
-        self.mapview.write("      max = min + step;\n")
-        self.mapview.write("      if ( selectedmarkers == \"All\" ) ")
-        self.mapview.write("{ min = 0; max = 9999; }\n")
-        self.mapview.write("      gmarkers[i].hide();\n")
-        self.mapview.write("      gmarkers[i].")
-        self.mapview.write("closeBubble();\n")
-        self.mapview.write("      years = val.split(' ');\n")
-        self.mapview.write("      for ( j=0; j < years.length; j++) {\n")
-        self.mapview.write("        if ( years[j] >= min ) {\n")
-        self.mapview.write("          if ( years[j] < max ) {\n")
-        self.mapview.write("            gmarkers[i].show();\n")
-        self.mapview.write("          }\n")
-        self.mapview.write("        }\n")
-        self.mapview.write("      }\n")
-        self.mapview.write("    }\n")
-        self.mapview.write("  }\n")
-        self.mapview.write("  function savezoomandposition(mapstraction) {\n")
-        self.mapview.write("    var t=setTimeout(\"savezoomandposition(")
-        self.mapview.write("mapstraction)\",1000);\n")
-        self.mapview.write("    nzoom = mapstraction.getZoom();\n")
-        self.mapview.write("    nposition=mapstraction.getCenter();\n")
-        self.mapview.write("    if ( ( nzoom != zoom ) || ")
-        self.mapview.write("( nposition != pos )) {\n")
-        self.mapview.write("      zoom = nzoom;\n")
-        self.mapview.write("      pos = nposition;\n")
-        self.mapview.write("      document.title = \"zoom=\" + zoom + \" ")
-        self.mapview.write("coord=\" + pos + \":::\";\n")
-        self.mapview.write("    }\n")
-        self.mapview.write("  }\n")
-        self.mapview.write("  function removemarkers(mapstraction) {\n")
-        self.mapview.write("    for ( m=0; m < gmarkers.length; m++) {\n")
-        self.mapview.write("      mapstraction.removeMarker(gmarkers[m]);\n")
-        self.mapview.write("    }\n")
-        self.mapview.write("  }\n")
-        self.mapview.write("  function get_selected_radio() {\n")
-        self.mapview.write("    selected = 0;\n")
-        self.mapview.write("    for ( b=0; b < document.btns.years.length; ")
-        self.mapview.write("b++) {\n      if ( document.btns.years[b].checked ")
-        self.mapview.write("== true ) selected=b;\n")
-        self.mapview.write("    }\n")
-        self.mapview.write("  }\n")
-        self.mapview.write("  function set_selected_radio() {\n")
-        self.mapview.write("    document.btns.years[selected].click();\n")
-        self.mapview.write("  }\n")
-        self.mapview.write("  function reset_radio() {\n")
-        self.mapview.write("    document.btns.years[0].click();\n")
-        self.mapview.write("  }\n")
-        self.mapview.write("  function swap_map(div,map) {\n")
-        self.mapview.write("    savezoomandposition(mapstraction);\n")
-        if self.displaytype != "places":
-            self.mapview.write("    get_selected_radio();\n")
-        self.mapview.write("    removemarkers(mapstraction);\n")
-        self.mapview.write("    current_map=map;\n")
-        self.mapview.write("    mapstraction.swap(div,map);\n")
-        if self.displaytype != "places":
-            self.mapview.write("    reset_radio();\n")
-        self.mapview.write("    setmarkers(mapstraction);\n")
-        self.mapview.write("    mapstraction.enableScrollWheelZoom();\n")
-
-        if self.displaytype != "places":
-            self.mapview.write("    set_selected_radio();\n")
-        self.mapview.write("  }\n")
-
     def _createmapstractionheader(self, filename):
         """
         Create the html header of the page.
         """
         self.mapview = open(filename, "w+")
-        self.mapview.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD")
-        self.mapview.write(" XHTML 1.0 Strict//EN\" \n")
-        self.mapview.write("   \"http://www.w3.org/TR/xhtml1/DTD/")
-        self.mapview.write("xhtml1-strict.dtd\">\n")
         (lang_country, modifier ) = locale.getlocale()
-        self.mapview.write("<html xmlns=\"http://www.w3.org/1999/xhtml\""
-                           " lang=\"%s\" >\n" % lang_country)
-        self.mapview.write("<head>\n")
-        self.mapview.write(" <meta http-equiv=\"content-type\" ")
-        self.mapview.write("content=\"text/html; charset=utf-8\"/>\n")
-        self.mapview.write(" <meta http-equiv=\"Accept-Language\" ")
-        self.mapview.write("content=\"%s\"/>\n" % lang_country.split('_')[0])
-        self.mapview.write(" <meta http-equiv=\"Content-Language\" ")
-        self.mapview.write("content=\"%s\"/>\n" % lang_country.split('_')[0])
-        self.mapview.write(" <title>Geo Maps Java Script ")
-        self.mapview.write("API for Gramps</title>\n")
-        self.mapview.write(" <meta http-equiv=\"Content-Script-Type\" ")
-        self.mapview.write("content=\"text/javascript\">\n")
-        self.mapview.write("<script type=\"text/javascript\"\n" )
+        self.mapview.write(
+            _HTMLHEADER.format(
+                )
+            )
         fpath = os.path.join(const.ROOT_DIR,
                              'mapstraction',
                              'mapstraction.js')
@@ -850,17 +788,10 @@ class GeoView(HtmlView):
         Add the last directives for the html page.
         """
 
-        self.mapview.write(" setcenterandzoom(mapstraction);\n")
-        self.mapview.write(" setmarkers(mapstraction);\n")
-        self.mapview.write(" savezoomandposition(mapstraction);\n")
-        self.mapview.write(" if ( current_map != \"openstreetmap\") {")
-        self.mapview.write(" swap_map(current_map,current_map);")
-        self.mapview.write(" };\n")
-        self.mapview.write(" mapstraction.enableScrollWheelZoom();\n")
-        self.mapview.write("</script>\n")
-        self.mapview.write("</body>\n")
-        self.mapview.write("</html>\n")
-
+        self.mapview.write(
+            _HTMLTRAILER.format(
+                )
+            )
         self.mapview.close()
 
     def _set_center_and_zoom(self, ptype):
@@ -1017,7 +948,7 @@ class GeoView(HtmlView):
         if self.maxlon == 0.0 or 0.0 < tfb > self.maxlon:
             self.maxlon = tfb
 
-    def _create_markers(self, format, firstm, lastm):
+    def _create_markers(self, formatype, firstm, lastm):
         """
         Create all markers for the specified person.
         """
@@ -1079,20 +1010,20 @@ class GeoView(HtmlView):
                         divclose = False
                         self.mapview.write("my_marker.setInfoBubble(\"<div ")
                         self.mapview.write("style='white-space:nowrap;' >")
-                        if format == 1:
+                        if formatype == 1:
                             self.mapview.write("%s<br>____________<br>" % \
                                                mark[0])
                             self.mapview.write("<br>%s" % mark[5])
-                        elif format == 2:
+                        elif formatype == 2:
                             self.mapview.write("%s____________<br>" % mark[1])
                             self.mapview.write("<br>%s - %s" % (mark[7],
                                                                 mark[5]))
-                        elif format == 3:
+                        elif formatype == 3:
                             self.mapview.write("%s<br>____________<br>" % \
                                                mark[0])
                             self.mapview.write("<br>%s - %s" % (mark[7],
                                                                 mark[5]))
-                        elif format == 4:
+                        elif formatype == 4:
                             self.mapview.write("%s<br>____________<br>" % \
                                                mark[0])
                             self.mapview.write("<br>%s - %s" % (mark[7],
@@ -1240,22 +1171,21 @@ class GeoView(HtmlView):
         self.center = True
 
         for place in dbstate.db.iter_places():
-                descr = place.get_title()
-                descr1 = _("Id : %s") % place.gramps_id
-                longitude = place.get_longitude()
-                latitude = place.get_latitude()
-                latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
-                # place.get_longitude and place.get_latitude return
-                # one string. We have coordinates when the two values
-                # contains non null string.
-                if ( longitude and latitude ):
-                    self._append_to_places_list(descr, None, "",
-                                                latitude, longitude,
-                                                descr1, self.center, None)
-                    self.center = False
-                else:
-                    self._append_to_places_without_coord(place.gramps_id,
-                                                         descr)
+            descr = place.get_title()
+            descr1 = _("Id : %s") % place.gramps_id
+            longitude = place.get_longitude()
+            latitude = place.get_latitude()
+            latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
+            # place.get_longitude and place.get_latitude return
+            # one string. We have coordinates when the two values
+            # contains non null string.
+            if ( longitude and latitude ):
+                self._append_to_places_list(descr, None, "",
+                                            latitude, longitude,
+                                            descr1, self.center, None)
+                self.center = False
+            else:
+                self._append_to_places_without_coord(place.gramps_id, descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
         else:
