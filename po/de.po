@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-17 18:33+0200\n"
-"PO-Revision-Date: 2009-09-17 18:39+0200\n"
+"PO-Revision-Date: 2009-09-20 12:42+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14416,13 +14416,13 @@ msgstr "Er wurde  %(modified_date)s in %(birth_place)s geboren."
 #: ../src/ReportBase/_ReportUtils.py:79
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Sie wurde  %(modified_date)s in %(birth_place)s geboren."
+msgstr "Sie wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:82
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(modified_date)s in %(birth_place)s "
+"%(unknown_gender_name)s wurde %(modified_date)s in %(birth_place)s "
 "geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:83
@@ -14433,7 +14433,7 @@ msgstr "%(male_name)s wurde %(modified_date)s in %(birth_place)s geboren."
 #: ../src/ReportBase/_ReportUtils.py:84
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s wurde am %(modified_date)s in %(birth_place)s geboren."
+msgstr "%(female_name)s wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ../src/ReportBase/_ReportUtils.py:86
 #, python-format
@@ -14543,7 +14543,7 @@ msgstr "%(female_name)s wurde geboren im %(month_year)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:128
 #, python-format
 msgid "Born %(month_year)s in %(birth_place)s."
-msgstr "Geboren %(month_year)s in %(birth_place)s."
+msgstr "Geboren im %(month_year)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:133
 #, python-format
@@ -14578,7 +14578,7 @@ msgstr "%(female_name)s wurde geboren im %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:142
 #, python-format
 msgid "Born %(month_year)s."
-msgstr "Geboren %(month_year)s."
+msgstr "Geboren im %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:147
 #, python-format
@@ -15271,7 +15271,7 @@ msgstr "Er starb im %(month_year)s in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:362
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Er starb un %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:363
 #, python-format
@@ -15402,22 +15402,22 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:393
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s."
-msgstr "Starb %(month_year)s in %(death_place)s."
+msgstr "Starb im %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:394
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d years)."
-msgstr "Starb %(month_year)s in %(death_place)s (mit %(age)d Jahren)."
+msgstr "Starb im %(month_year)s in %(death_place)s (mit %(age)d Jahren)."
 
 #: ../src/ReportBase/_ReportUtils.py:395
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d months)."
-msgstr "Starb %(month_year)s in %(death_place)s (mit %(age)d Monaten)."
+msgstr "Starb im %(month_year)s in %(death_place)s (mit %(age)d Monaten)."
 
 #: ../src/ReportBase/_ReportUtils.py:396
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d days)."
-msgstr "Starb %(month_year)s in %(death_place)s (mit %(age)d Tagen)."
+msgstr "Starb im %(month_year)s in %(death_place)s (mit %(age)d Tagen)."
 
 #: ../src/ReportBase/_ReportUtils.py:402
 #, python-format
@@ -15542,22 +15542,22 @@ msgstr "%(female_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
 #: ../src/ReportBase/_ReportUtils.py:440
 #, python-format
 msgid "Died %(month_year)s."
-msgstr "Starb %(month_year)s."
+msgstr "Starb im %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:441
 #, python-format
 msgid "Died %(month_year)s (age %(age)d years)."
-msgstr "Starb %(month_year)s (mit %(age)d Jahren)."
+msgstr "Starb im %(month_year)s (mit %(age)d Jahren)."
 
 #: ../src/ReportBase/_ReportUtils.py:442
 #, python-format
 msgid "Died %(month_year)s (age %(age)d months)."
-msgstr "Starb %(month_year)s (mit %(age)d Monaten)."
+msgstr "Starb im %(month_year)s (mit %(age)d Monaten)."
 
 #: ../src/ReportBase/_ReportUtils.py:443
 #, python-format
 msgid "Died %(month_year)s (age %(age)d days)."
-msgstr "Starb %(month_year)s (mit %(age)d Tagen)."
+msgstr "Starb im %(month_year)s (mit %(age)d Tagen)."
 
 #: ../src/ReportBase/_ReportUtils.py:450
 #, python-format
@@ -15968,25 +15968,25 @@ msgstr "Begraben im %(month_year)s%(endnotes)s."
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde am %(modified_date)s in %(burial_place)s%(endnotes)s "
+"%(male_name)s wurde %(modified_date)s in %(burial_place)s%(endnotes)s "
 "begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Er wurde am %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
+msgstr "Er wurde %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:618
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde am %(modified_date)s in %(burial_place)s begraben%"
+"%(female_name)s wurde %(modified_date)s in %(burial_place)s begraben%"
 "(endnotes)s ."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Sie wurde am %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
+msgstr "Sie wurde %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:622
 #, python-format
@@ -15994,25 +15994,25 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(modified_date)s in %(burial_place)s%"
+"%(unknown_gender_name)s wurde %(modified_date)s in %(burial_place)s%"
 "(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:623
 #, python-format
 msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Die Person wurde am %(modified_date)s in %(burial_place)s%(endnotes)s "
+"Die Person wurde %(modified_date)s in %(burial_place)s%(endnotes)s "
 "begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Begraben am %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Begraben %(modified_date)s in %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:630
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s wurde am %(modified_date)s%(endnotes)s begraben."
+msgstr "%(male_name)s wurde %(modified_date)s%(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:631
 #, python-format
@@ -16022,7 +16022,7 @@ msgstr "Er wurde %(modified_date)s%(endnotes)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:634
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s wurde am %(modified_date)s begraben%(endnotes)s."
+msgstr "%(female_name)s wurde %(modified_date)s begraben%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:635
 #, python-format
@@ -16032,7 +16032,7 @@ msgstr "Sie wurde %(modified_date)s%(endnotes)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:638
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde am %(modified_date)s%(endnotes)s begraben."
+msgstr "%(unknown_gender_name)s wurde %(modified_date)s%(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:639
 #, python-format
@@ -16247,7 +16247,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:727
 #, python-format
 msgid "Baptised %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Getauft im %(month_year)s in %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
 #, python-format
@@ -16282,7 +16282,7 @@ msgstr "Diese Person wurde im %(month_year)s getauft%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:743
 #, python-format
 msgid "Baptised %(month_year)s%(endnotes)s."
-msgstr "Getauft %(month_year)s%(endnotes)s."
+msgstr "Getauft im %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:748
 #, python-format
@@ -16290,13 +16290,13 @@ msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
 msgstr ""
-"%(male_name)s wurde am %(modified_date)s in %(baptism_place)s getauft%"
+"%(male_name)s wurde %(modified_date)s in %(baptism_place)s getauft%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
 msgid "He was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Er wurde am %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Er wurde %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:752
 #, python-format
@@ -16304,13 +16304,13 @@ msgid ""
 "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(female_name)s wurde am %(modified_date)s in %(baptism_place)s getauft%"
+"%(female_name)s wurde %(modified_date)s in %(baptism_place)s getauft%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
 msgid "She was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde am %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Sie wurde %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:756
 #, python-format
@@ -16318,14 +16318,14 @@ msgid ""
 "%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(modified_date)s in %(baptism_place)s "
+"%(unknown_gender_name)s wurde %(modified_date)s in %(baptism_place)s "
 "getauft%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:757
 #, python-format
 msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Diese Person wurde am %(modified_date)s in %(baptism_place)s getauft%"
+"Diese Person wurde %(modified_date)s in %(baptism_place)s getauft%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:759
@@ -16336,7 +16336,7 @@ msgstr "Getauft %(modified_date)s in %(baptism_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:764
 #, python-format
 msgid "%(male_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s wurde am %(modified_date)s getauft%(endnotes)s."
+msgstr "%(male_name)s wurde %(modified_date)s getauft%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
 #, python-format
@@ -16346,7 +16346,7 @@ msgstr "Er wurde %(modified_date)s getauft%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:768
 #, python-format
 msgid "%(female_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s wurde am %(modified_date)s getauft%(endnotes)s."
+msgstr "%(female_name)s wurde %(modified_date)s getauft%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:769
 #, python-format
@@ -16356,7 +16356,7 @@ msgstr "Sie wurde %(modified_date)s getauft%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:772
 #, python-format
 msgid "%(unknown_gender_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde am %(modified_date)s getauft%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde %(modified_date)s getauft%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:773
 #, python-format
@@ -16581,7 +16581,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:861
 #, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Getauft %(month_year)s in %(christening_place)s%(endnotes)s."
+msgstr "Getauft im %(month_year)s in %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:866
 #, python-format
@@ -16616,7 +16616,7 @@ msgstr "Diese Person wurde getauft im %(month_year)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:877
 #, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr "Getauft %(month_year)s%(endnotes)s."
+msgstr "Getauft im %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:882
 #, python-format
@@ -16778,7 +16778,7 @@ msgstr "Getauft%(endnotes)s."
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Diese Person heiratete %(spouse)s im %(partial_date)s in %(place)s%(endnotes)"
+"Diese Person heiratete %(spouse)s in %(partial_date)s in %(place)s%(endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:953
@@ -16809,7 +16809,7 @@ msgstr "Er heiratete %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:962
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:963
 #, python-format
@@ -16824,12 +16824,12 @@ msgstr "Sie heiratete  %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:967
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Heiratete %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Heiratete %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:968
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Heiratete %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:969
 #, python-format
@@ -16842,7 +16842,7 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Diese Person heiratete auch %(spouse)s im %(partial_date)s in %(place)s%"
+"Diese Person heiratete auch %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:976
@@ -16866,7 +16866,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:980
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:981
 #, python-format
@@ -16881,7 +16881,7 @@ msgstr "Er heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.
 #: ../src/ReportBase/_ReportUtils.py:985
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:986
 #, python-format
@@ -16896,12 +16896,12 @@ msgstr "Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s
 #: ../src/ReportBase/_ReportUtils.py:990
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Heiratete auch %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Heiratete auch %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:991
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Heiratete auch %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:992
 #, python-format
@@ -16911,7 +16911,7 @@ msgstr "Heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:998
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Diese Person heiratete %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:999
 #, python-format
@@ -16926,7 +16926,7 @@ msgstr "Diese Person heiratete%(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1003
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er heiratete %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Er heiratete %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1004
 #, python-format
@@ -16941,7 +16941,7 @@ msgstr "Er heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1008
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sie heiratete %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Sie heiratete %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1009
 #, python-format
@@ -16956,12 +16956,12 @@ msgstr "Sie heiratete%(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1013
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Heiratete %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Heiratete %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1014
 #, python-format
 msgid "Married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Heiratete %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Heiratete %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1015
 #, python-format
@@ -16971,7 +16971,7 @@ msgstr "Heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1021
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1022
 #, python-format
@@ -16986,7 +16986,7 @@ msgstr "Diese Person heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1026
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1027
 #, python-format
@@ -17001,7 +17001,7 @@ msgstr "Er heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1031
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sie heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1032
 #, python-format
@@ -17016,12 +17016,12 @@ msgstr "Sie heiratete auch %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1036
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Heiratete auch %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Heiratete auch %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1037
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Heiratete auch %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Heiratete auch %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1038
 #, python-format
@@ -17168,7 +17168,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
 msgstr ""
-"Sie hatte eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s in %"
+"Sie hatte eine uneheliche Beziehung mit %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1089
@@ -17196,7 +17196,7 @@ msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Uneheliche Beziehung mit %(spouse)s %(partial_date)s in %(place)s%(endnotes)"
+"Uneheliche Beziehung mit %(spouse)s in %(partial_date)s in %(place)s%(endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1094
@@ -17205,7 +17205,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr "Uneheliche Beziehung mit %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Uneheliche Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1095
 #: ../src/ReportBase/_ReportUtils.py:1118
@@ -17250,7 +17250,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
-"Er hatte auch eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s "
+"Er hatte auch eine uneheliche Beziehung mit %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1107
@@ -17277,7 +17277,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
-"Sie hatte auch eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s "
+"Sie hatte auch eine uneheliche Beziehung mit %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1112
@@ -17331,7 +17331,7 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 msgstr ""
-"Er hatte eine uneheliche Beziehung mit%(spouse)s im %(partial_date)s%"
+"Er hatte eine uneheliche Beziehung mit%(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1130
@@ -17358,7 +17358,7 @@ msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 msgstr ""
-"Sie hatte eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s%"
+"Sie hatte eine uneheliche Beziehung mit %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1135
@@ -17382,12 +17382,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1139
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Uneheliche Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Uneheliche Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1140
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Uneheliche Beziehung mit %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Uneheliche Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1141
 #, python-format
@@ -17427,7 +17427,7 @@ msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 msgstr ""
-"Er hatte auch eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s%"
+"Er hatte auch eine uneheliche Beziehung mit %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1153
@@ -17454,7 +17454,7 @@ msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 msgstr ""
-"Sie hatte auch eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s%"
+"Sie hatte auch eine uneheliche Beziehung mit %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1158
@@ -17479,7 +17479,7 @@ msgstr ""
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
-"Auch eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)"
+"Auch eine uneheliche Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1163
@@ -17586,7 +17586,7 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
 msgstr ""
-"Diese Person hatte eine Beziehung mit %(spouse)s im %(partial_date)s in %"
+"Diese Person hatte eine Beziehung mit %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1206
@@ -17640,7 +17640,7 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Sie hatte eine Beziehung mit %(spouse)s im %(partial_date)s in %(place)s%"
+"Sie hatte eine Beziehung mit %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1216
@@ -17664,12 +17664,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1220
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Beziehung mit %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Beziehung mit %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1221
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Beziehung mit %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Beziehung mit %(spouse)s am%(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1222
 #, python-format
@@ -17682,7 +17682,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
 msgstr ""
-"Diese Person hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s in "
+"Diese Person hatte auch eine Beziehung mit %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1229
@@ -17709,7 +17709,7 @@ msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Er hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s in %(place)s%"
+"Er hatte auch eine Beziehung mit %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1234
@@ -17736,7 +17736,7 @@ msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
-"Sie hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s in %(place)s"
+"Sie hatte auch eine Beziehung mit %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1239
@@ -17760,12 +17760,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1243
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Auch eine Beziehung mit %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Auch eine Beziehung mit %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1244
 #, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Auch eine Beziehung mit %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Auch eine Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1245
 #, python-format
@@ -17780,7 +17780,7 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)"
 "s."
 msgstr ""
-"Diese Person hatte eine Beziehung mit %(spouse)s im %(partial_date)s%"
+"Diese Person hatte eine Beziehung mit %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1252
@@ -17800,7 +17800,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1256
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Er hatte eine Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1257
 #, python-format
@@ -17815,7 +17815,7 @@ msgstr "Er hatte eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1261
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sie hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Sie hatte eine Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1262
 #, python-format
@@ -17830,12 +17830,12 @@ msgstr "Sie hatte eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1266
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Beziehung mit %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1267
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Beziehung mit %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1268
 #, python-format
@@ -17848,7 +17848,7 @@ msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 msgstr ""
-"Diese Person hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s%"
+"Diese Person hatte auch eine Beziehung mit %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1275
@@ -17872,7 +17872,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1279
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Er hatte auch eine Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1280
 #, python-format
@@ -17887,7 +17887,7 @@ msgstr "Er hatte auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)
 #: ../src/ReportBase/_ReportUtils.py:1284
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sie hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Sie hatte auch eine Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1285
 #, python-format
@@ -17902,7 +17902,7 @@ msgstr "Sie hatte auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes
 #: ../src/ReportBase/_ReportUtils.py:1289
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Auch eine Beziehung mit %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Auch eine Beziehung mit %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1290
 #, python-format
