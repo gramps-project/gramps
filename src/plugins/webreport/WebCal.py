@@ -432,10 +432,6 @@ class WebCalReport(Report):
         currentsection = proper styling of this navigation bar
         """
 
-        # creating more than one year
-        if not self.multiyear:
-            return
-
         num_years = (self.end_year - self.start_year)
         cal_year = self.start_year
 
@@ -443,49 +439,43 @@ class WebCalReport(Report):
         # otherwise, 18 years in a row 
         years_in_row = 22 if self.css is not 'Web_Visually.css' else 18
 
-        # figure out number of rows  
-        nrows = get_num_of_rows(num_years, years_in_row)
-
         # begin year division
-        yearnav = Html("div", id="navigation")
+        with Html("div", id = "navigation") as section: 
 
-        for row in range(0, (num_years // years_in_row)):
+            for row in xrange((num_years // years_in_row) + 1):
 
-            unordered = Html("ul")
-            yearnav += unordered
-            cols = 1
-            while (cols <= years_in_row and cal_year <= self.end_year):
-                url = ''
+                unordered = Html("ul")
+                section += unordered
 
-                # begin subdir level
-                subdirs = ['..'] * nr_up
-                subdirs.append(str(cal_year))
+                cols = 1
+                while (cols <= years_in_row and cal_year <= self.end_year):
+                    url = ''
 
-                # each year will link to current month.
-                # this will always need an extension added
-                full_month_name = get_full_month_name(self.today.get_month())
+                    # begin subdir level
+                    subdirs = ['..'] * nr_up
+                    subdirs.append(str(cal_year))
 
-                # Note. We use '/' here because it is a URL, not a OS dependent 
-                # pathname.
-                url = os.path.join(subdirs, full_month_name) + self.ext
-#                url = '/'.join(subdirs + [full_month_name]) + self.ext
+                    # each year will link to current month.
+                    # this will always need an extension added
+                    full_month_name = get_full_month_name(self.today.get_month())
 
-                # Figure out if we need <li class="CurrentSection"> or just plain <li>
-                cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                unordered += Html("li", attr=cs , inline = True) + (
+                    # Note. We use '/' here because it is a URL, not a OS dependent 
+                    # pathname.
+                    url = '/'.join(subdirs + [full_month_name]) + self.ext
 
-                    # create hyperlink
-                    Html("a", str(cal_year), href = url, inline = True)
-                    )
+                    # Figure out if we need <li class="CurrentSection"> or just plain <li>
+                    cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
+                    unordered += Html("li", attr=cs , inline = True) + (
 
-                # increase columns
-                cols += 1
+                        # create hyperlink
+                        Html("a", str(cal_year), href = url, title=str(cal_year), inline = True)
+                        )
 
-                # increase calendar year
-                cal_year += 1
+                    cols += 1
+                    cal_year += 1
 
         # return yearnav to its caller
-        return yearnav  
+        return section
 
 # ---------------------------------------------------------------------------------------
 #
@@ -516,49 +506,49 @@ class WebCalReport(Report):
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
 
-        monthnav = Html("div", id="subnavigation")
-        ul = Html("ul")
+        # begin month subnavigation
+        with Html("div", id = "subnavigation") as section:
 
-        navs = [(u, n) for u, n, c in navs if c]
-        for url_fname, nav_text in navs:
+            unordered = Html("ul")
+            section += unordered 
 
-            if type(url_fname) == int:
-                url_fname = get_full_month_name(url_fname)
+            navs = [(u, n) for u, n, c in navs if c]
+            for url_fname, nav_text in navs:
 
-            if type(nav_text) == int:
-                nav_text = get_short_month_name(nav_text)
+                if type(url_fname) == int:
+                    url_fname = get_full_month_name(url_fname)
 
-            # Note. We use '/' here because it is a URL, not a OS dependent pathname
-            # need to leave home link alone, so look for it ...
-            url = url_fname
-            add_subdirs = True
-            if not (url.startswith('http:') or url.startswith('/')):
-                for ext in _WEB_EXT:
-                    if url_fname.endswith(ext):
-                        add_subdirs = False
+                if type(nav_text) == int:
+                    nav_text = get_short_month_name(nav_text)
+
+                # Note. We use '/' here because it is a URL, not a OS dependent pathname
+                # need to leave home link alone, so look for it ...
+                url = url_fname
+                add_subdirs = True
+                if not (url.startswith('http:') or url.startswith('/')):
+                    for ext in _WEB_EXT:
+                        if url_fname.endswith(ext):
+                            add_subdirs = False
                          
-            # whether to add subdirs or not???
-            if add_subdirs: 
-                subdirs = ['..'] * nr_up
-                subdirs.append(str(year)) 
-                url = '/'.join(subdirs + [url_fname])
+                # whether to add subdirs or not???
+                if add_subdirs: 
+                    subdirs = ['..'] * nr_up
+                    subdirs.append(str(year)) 
+                    url = '/'.join(subdirs + [url_fname])
 
-            if not _has_webpage_extension(url):
-                url += self.ext
+                if not _has_webpage_extension(url):
+                    url += self.ext
 
-            # Figure out if we need <li class="CurrentSection"> or just plain <li>
-            cs = url_fname == currentsection and 'class="CurrentSection"' or ''
-            ul += Html("li", attr = cs, inline = True) + (
+                # Figure out if we need <li class="CurrentSection"> or just plain <li>
+                cs = url_fname == currentsection and 'class="CurrentSection"' or ''
+                unordered += Html("li", attr = cs, inline = True) + (
 
-                # create hyperlink
-                Html("a", nav_text, href = url, inline = True)
-                )
-
-        # add ul to monthnav
-        monthnav += ul
+                    # create hyperlink
+                    Html("a", nav_text, href = url, title=url_fname, inline = True)
+                    )
 
         # return monthnav to its caller
-        return monthnav
+        return section
 
 # ---------------------------------------------------------------------------------------
 #
