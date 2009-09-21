@@ -86,7 +86,9 @@ _XMLNS = "http://www.w3.org/1999/xhtml"
 #
 #------------------------------------------------------------------------
 
-_START_CLOSE = (
+# Set of html tags that do not use a complementary closing tag, but close with
+# /> instead
+_START_CLOSE = set([
     'area', 
     'base', 
     'br', 
@@ -97,7 +99,7 @@ _START_CLOSE = (
     'link', 
     'meta', 
     'param'
-    )
+    ])
 
 #------------------------------------------------------------------------
 #
@@ -121,7 +123,7 @@ class Html(list):
     """
     HTML class: Manages a rooted tree of HTML objects
     """
-    __slots__ = ['items', 'indent', 'inline', 'end']
+    __slots__ = ['items', 'indent', 'inline', 'close']
 #
     @staticmethod
     def xmldecl(version=1.0, encoding="UTF-8", standalone="no"):
@@ -271,7 +273,8 @@ class Html(list):
         page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
         """
         super(Html, self).__init__([])                  # instantiate object
-        attr, indent, close, inline = '', True, True, False
+        attr = ''
+        self.indent, self.close, self.inline = True, True, False
 #
 #       Handle keyword arguments passed to this constructor.
 #       Keywords that we process directly are handled. 
@@ -281,7 +284,7 @@ class Html(list):
         for keyw, arg in keywargs.iteritems():
             if (keyw in ['indent', 'close', 'inline'] and
                arg in [True, False, None]):
-                exec '%s = %s' % (keyw, arg)            # keep these settings
+                setattr(self,keyw, arg)
             elif keyw == 'attr':                        # pass attributes along
                 attr += ' ' + arg
             elif keyw[-1] == '_':                       # avoid Python conflicts
@@ -289,24 +292,21 @@ class Html(list):
             else:
                 attr += ' %s="%s"' % (keyw, arg)        # pass keyword arg along
 #
-        self.indent = indent                                
-        self.inline = inline
-        self.end = close
-#
         if tag[0] == '<':               # if caller provided preformatted tag?
             self[0:] = [tag]            #   add it in
-            self.end = None
+            self.close = None           #   caller must close the tag
         else: 
-            if tag in _START_CLOSE:         # if tag in special list
-                self.end = close = False    #   it needs no closing tag
+            if tag in _START_CLOSE:     # if tag in special list
+                self.close = False      #   it needs no closing tag
             begin = '<%s%s%s>' % (      # build opening tag with attributes
                 tag,
                 attr,
-                ('' if close or close is None else ' /')
+                ('' if self.close is not False else ' /')
                 )
 #
+            # Use slice syntax since we don't override slicing
             self[0:] = [begin] + list(args)         # add beginning tag
-            if close:                               # if need closing tab
+            if self.close:                          # if need closing tab
                 self[len(self):] = ['</%s>' % tag]         #   add it on the end
 #
     def __add(self, value):
@@ -322,22 +322,18 @@ class Html(list):
         """
         if isinstance(value, Html) or not hasattr(value, '__iter__'):
             value = [value]
-        index = len(self) - (1 if self.end else 0)
+        index = len(self) - (1 if self.close else 0)
         self[index:index] = value
         return self
 #
-    def __add__(self, value):
-        """
-        Overload method for + and += operators
-        """
-        return self.__add(value)
-    __iadd__ = __add__
+    __iadd__ = __add__ = __add
 #
     def append(self, value):
         """
         Append a new value
         """
         self.__add(value)
+#
     extend = append
 #
     def replace(self, cur_value, value):
@@ -548,7 +544,7 @@ class Html(list):
 #
 #            Register Plugin
 #
-# -------------------------------------------
+# ------------------------------------------
 
 try:
     PluginManager.get_instance().register_plugin( 
@@ -560,3 +556,16 @@ try:
     )
 except NameError:
     print 'Plugin not registered.'
+
+#-------------------------------------------
+#
+#           Unit tests
+#
+#-------------------------------------------
+
+def htmltest():
+    pass
+
+if __name__ == '__main__':
+    from libhtmltest import htmltest
+    htmltest()    
