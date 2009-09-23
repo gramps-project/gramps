@@ -774,24 +774,23 @@ class GeoView(HtmlView):
         self.mapview.write("          src=\"%s\">\n" % upath)
         self.mapview.write("</script>\n")
         self.mapview.write("<script type=\"text/javascript\"")
-        self.mapview.write("        src=\"http://maps.google.com/")
-        self.mapview.write("maps?file=api&v=2\"\n")
+        self.mapview.write(" src=\"http://maps.google.com/")
+        self.mapview.write("maps?file=api&v=2\">")
         self.mapview.write("</script>\n")
         if _alternate_map() == "microsoft":
-            self.mapview.write("<script type=\"text/javascript\"\n")
-            self.mapview.write("        src=\"http://dev.virtualearth.net/")
-            self.mapview.write("mapcontrol/mapcontrol.ashx?v=6\">\n")
+            self.mapview.write("<script type=\"text/javascript\" ")
+            self.mapview.write("src=\"http://dev.virtualearth.net/")
+            self.mapview.write("mapcontrol/mapcontrol.ashx?v=6\">")
             self.mapview.write("</script>\n")
         elif _alternate_map() == "yahoo":
-            self.mapview.write("<script type=\"text/javascript\"\n")
-            self.mapview.write("        src=\"http://api.maps.yahoo.com/")
-            self.mapview.write("ajaxymap?v=3.0&appid=MapstractionDemo\" ")
-            self.mapview.write("type=\"text/javascript\">\n")
+            self.mapview.write("<script type=\"text/javascript\" ")
+            self.mapview.write("src=\"http://api.maps.yahoo.com/")
+            self.mapview.write("ajaxymap?v=3.0&appid=MapstractionDemo\">")
             self.mapview.write("</script>\n")
         elif _alternate_map() == "openlayers":
-            self.mapview.write("<script type=\"text/javascript\"\n")
-            self.mapview.write("        src=\"http://openlayers.org/")
-            self.mapview.write("api/OpenLayers.js\">\n")
+            self.mapview.write("<script type=\"text/javascript\" ")
+            self.mapview.write("src=\"http://openlayers.org/")
+            self.mapview.write("api/OpenLayers.js\">")
             self.mapview.write("</script>\n")
 
     def _createmapstractiontrailer(self):
@@ -1023,7 +1022,6 @@ class GeoView(HtmlView):
                         if ininterval:
                             self.mapview.write("</div>\");")
                             divclose = True
-                            differtype = False
                         years = ""
                         if mark[2]:
                             for year in self.yearinmarker:
@@ -1033,6 +1031,7 @@ class GeoView(HtmlView):
                         self.mapview.write("('year','%s');" % years)
                         self.yearinmarker = []
                         self._set_icon(savetype, differtype, formatype)
+                        differtype = False
                         self.mapview.write("mapstraction.addMarker(my_marker);")
                     indm += 1
                     if ( indm > lastm ):
@@ -1041,8 +1040,6 @@ class GeoView(HtmlView):
                     last = {
                              2 : [mark[3], mark[4]],
                            }.get(formatype, mark[0])
-                    if mark[8]:
-                        savetype = mark[8]
                     if ( indm >= firstm ) and ( indm <= lastm ):
                         self.mapview.write("\n   var point = new LatLonPoint")
                         self.mapview.write("(%s,%s);" % (mark[3], mark[4]))
@@ -1054,12 +1051,13 @@ class GeoView(HtmlView):
                         self.yearinmarker.append(mark[7])
                         divclose = False
                         differtype = False
-                        if mark[8]:
+                        if mark[8] and not differtype:
                             savetype = mark[8]
                         self.mapview.write("my_marker.setInfoBubble(\"<div ")
                         self.mapview.write("id='info' ")
                         self.mapview.write("style='white-space:nowrap;")
-                        self.mapview.write("overflow:auto;max-height:%dpx' >" %
+                        self.mapview.write("overflow:auto;width:103%%;")
+                        self.mapview.write("max-height:%dpx' >" %
                                             ( self.height/5 ) )
                         self.mapview.write("%s<br>" % mark[0])
                         if formatype == 1:
@@ -1283,9 +1281,9 @@ class GeoView(HtmlView):
                                     if ref_type == 'Person' 
                                       ]
                         if person_list:
-                            descr2 = ""
+                            descr2 = event.get_type()
                             for person in person_list:
-                                descr2 = ("%(description)s%(name)s; ") % {
+                                descr2 = ("%(description) - s%(name)s") % {
                                             'description' : descr2, 
                                             'name' : _nd.display(person)}
                             descr = ("%(eventtype)s;"+
