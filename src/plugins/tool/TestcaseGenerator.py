@@ -55,7 +55,7 @@ import LdsUtils
 #
 #
 #-------------------------------------------------------------------------
-class TestcaseGenerator(Tool.Tool):
+class TestcaseGenerator(Tool.BatchTool):
     NUMERIC = 0
     FIRSTNAME = 1
     FIRSTNAME_FEMALE = 2
@@ -69,7 +69,10 @@ class TestcaseGenerator(Tool.Tool):
         if dbstate.db.readonly:
             return
 
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+
+        if self.fail:
+            return
 
         self.person_count = 0
         self.persons_todo = []
