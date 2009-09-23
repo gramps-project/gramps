@@ -142,12 +142,13 @@ def find_referenced_handle(key, data):
 
 #-------------------------------------------------------------------------
 #
-# GrampsDBDirCursor
+# GrampsWriteCursor
 #
 #-------------------------------------------------------------------------
-class GrampsDBDirCursor(GrampsCursor):
+class GrampsWriteCursor(GrampsCursor):
 
-    def __init__(self, source, txn=None):
+    def __init__(self, source, txn=None, **kwargs):
+        GrampsCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.db.cursor(txn)
         self.source = source
         
@@ -158,7 +159,8 @@ class GrampsDBDirCursor(GrampsCursor):
 #-------------------------------------------------------------------------
 class GrampsDBDirAssocCursor(GrampsCursor):
 
-    def __init__(self, source, txn=None):
+    def __init__(self, source, txn=None, **kwargs):
+        GrampsCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.cursor(txn)
         self.source = source
         
@@ -256,6 +258,17 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             pass
 
     _log_error = __log_error
+
+    # Override get_cursor method from the superclass to add udpate
+    # capability
+
+    @catch_db_error
+    def get_cursor(self, table, txn=None, update=False, commit=False):
+        """ Helper function to return a cursor over a table """
+        if update and not txn:
+            txn = self.env.txn_begin(self.txn)
+        return GrampsWriteCursor(table, txn=txn or self.txn,
+                                    update=update, commit=commit)
 
     # cursors for lookups in the reference_map for back reference
     # lookups. The reference_map has three indexes:
@@ -1802,11 +1815,9 @@ if __name__ == "__main__":
     d.load(db_path, lambda x: x)
 
     print d.get_default_person()
-
     with d.get_person_cursor() as c:
         for key, data in c:
             person = Person(data)
             print key, person.get_primary_name().get_name(),
 
     print d.surnames.keys()
-    print d.remove_from_surname_list.__doc__

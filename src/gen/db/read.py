@@ -99,7 +99,8 @@ class GrampsDbBookmarks(object):
 #-------------------------------------------------------------------------
 class GrampsDbReadCursor(GrampsCursor):
 
-    def __init__(self, source, txn=None):
+    def __init__(self, source, txn=None, **kwargs):
+        GrampsCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.db.cursor(txn)
         self.source = source
 
@@ -280,36 +281,36 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """Return True when the file has a supported version."""
         return True
 
-    def __get_cursor(self, table):
+    def get_cursor(self, table, *args, **kwargs):
         try:
             return GrampsDbReadCursor(table, self.txn)
         except DBERRS, msg:
             self.__log_error()
             raise Errors.DbError(msg)
 
-    def get_person_cursor(self):
-        return self.__get_cursor(self.person_map)
+    def get_person_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.person_map, *args, **kwargs)
 
-    def get_family_cursor(self):
-        return self.__get_cursor(self.family_map)
+    def get_family_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.family_map, *args, **kwargs)
 
-    def get_event_cursor(self):
-        return self.__get_cursor(self.event_map)
+    def get_event_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.event_map, *args, **kwargs)
 
-    def get_place_cursor(self):
-        return self.__get_cursor(self.place_map)
+    def get_place_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.place_map, *args, **kwargs)
 
-    def get_source_cursor(self):
-        return self.__get_cursor(self.source_map)
+    def get_source_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.source_map, *args, **kwargs)
 
-    def get_media_cursor(self):
-        return self.__get_cursor(self.media_map)
+    def get_media_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.media_map, *args, **kwargs)
 
-    def get_repository_cursor(self):
-        return self.__get_cursor(self.repository_map)
+    def get_repository_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.repository_map, *args, **kwargs)
 
-    def get_note_cursor(self):
-        return self.__get_cursor(self.note_map)
+    def get_note_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.note_map, *args, **kwargs)
 
     def load(self, name, callback, mode=DBMODE_R):
         """

@@ -30,6 +30,8 @@
 #-------------------------------------------------------------------------
 import gobject
 import gtk
+import cPickle
+from bsddb.db import DB_CURRENT
 
 #-------------------------------------------------------------------------
 #
@@ -40,6 +42,7 @@ import const
 from gui.utils import ProgressMeter
 import GrampsDisplay
 import ManagedWindow
+from gen.lib import Person
 
 from QuestionDialog import OkDialog
 from PluginUtils import Tool
@@ -234,10 +237,10 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                       for node in self.iter_list
                       if self.model.get_value(node,0)]
 
-        #for handle in self.db.get_person_handles(sort_handles=False):
-        for handle in self.db.get_person_handles(False):
+        with self.db.get_person_cursor(update=True, commit=True) as cursor:
+          for handle, data in cursor:
+            person = Person(data)
             change = False
-            person = self.db.get_person_from_handle(handle)
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 sname = name.get_surname()
                 if sname in changelist:
@@ -245,7 +248,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                     sname = self.name_cap(sname)
                     name.set_surname(sname)
             if change:
-                self.db.commit_person(person,self.trans)
+                cursor.update(handle, person.serialize())
 
         self.db.transaction_commit(self.trans,_("Capitalization changes"))
         self.db.enable_signals()

@@ -23,7 +23,8 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import cPickle as pickle
+from cPickle import dumps, loads
+from bsddb import db
 
 #-------------------------------------------------------------------------
 #
@@ -44,12 +45,15 @@ class GrampsCursor(object):
     should be used.
     """
     
-    def __init__(self):
+    def __init__(self, txn=None, update=False, commit=False):
         """
         Instantiate the object. Note, this method should be overridden in
         derived classes that properly set self.cursor and self.source
         """
         self.cursor = self.source = None
+        self.txn = txn
+        self._update = update
+        self.commit = commit
 
     def __getattr__(self, name):
         """
@@ -68,6 +72,8 @@ class GrampsCursor(object):
         Context manager exit method
         """
         self.close()
+        if self.txn and self.commit:
+            self.txn.commit()
         return exc_type is None
         
     def __iter__(self):
@@ -76,74 +82,38 @@ class GrampsCursor(object):
         """
         
         data = self.first()
+        _n = self.next      # Saved attribute lookup in the loop
         while data:
             yield data
-            data = self.next()
+            data = _n()
 
-    def first(self, *args, **kwargs):
-        """
-        Return the first (index, data) pair in the database. 
-        
-        This should be called before the first call to next(). Note that the 
-        data return is in the format of the serialized format stored in the 
-        database, not in the more usable class object. The data should be 
-        converted to a class using the class's unserialize method.
+    def _get(_flags=0):
+        """ Closure that returns a cursor get function """
 
-        If no data is available, None is returned.
-        """
-        
-        data = self.cursor.first(*args, **kwargs)
-        if data:
-            return (data[0], pickle.loads(data[1]))
-        return None
+        def get(self, flags=0, **kwargs):
+            """
+            Issue DBCursor get call (with DB_RMW flag if update requested)
+            Return results to caller
+            """
+            data = self.cursor.get(
+                        _flags | flags | (db.DB_RMW if self._update else 0),
+                        **kwargs)
 
-    def next(self, *args, **kwargs):
-        """
-        Return the next (index, data) pair in the database. 
-        
-        Like the first() method, the data return is in the format of the 
-        serialized format stored in the database, not in the more usable class 
-        object. The data should be converted to a class using the class's 
-        unserialize method.
+            return (data[0], loads(data[1])) if data else None
 
-        None is returned when no more data is available.
-        """
-        
-        data = self.cursor.next(*args, **kwargs)
-        if data:
-            return (data[0], pickle.loads(data[1]))
-        return None
+        return get
 
-    def prev(self, *args, **kwargs):
-        """
-        Return the previous (index, data) pair in the database. 
-        
-        Like the first() method, the data return is in the format of the 
-        serialized format stored in the database, not in the more usable class 
-        object. The data should be converted to a class using the class's 
-        unserialize method.
+    # Use closure to define access methods
 
-        If no data is available, None is returned.
-        """
-        
-        data = self.cursor.prev(*args, **kwargs)
-        if data:
-            return (data[0], pickle.loads(data[1]))
-        return None
+    current = _get(db.DB_CURRENT)
+    first   = _get(db.DB_FIRST)
+    next    = _get(db.DB_NEXT)
+    last    = _get(db.DB_LAST)
+    prev    = _get(db.DB_PREV)
 
-    def last(self, *args, **kwargs):
+    def update(self, key, data, flags=0, **kwargs):
         """
-        Return the last (index, data) pair in the database. 
-        
-        Like the first() method, the data return is in the format of the 
-        serialized format stored in the database, not in the more usable class 
-        object. The data should be converted to a class using the class's 
-        unserialize method.
-
-        None is returned when no more data is available.
+        Write the current key, data pair to the database.
         """
-        
-        data = self.cursor.last(*args, **kwargs)
-        if data:
-            return (data[0], pickle.loads(data[1]))
-        return None
+        self.cursor.put(key, dumps(data), flags=flags | db.DB_CURRENT,
+                        **kwargs)
