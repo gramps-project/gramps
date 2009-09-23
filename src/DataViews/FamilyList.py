@@ -198,13 +198,19 @@ class FamilyListView(PageView.ListView):
             pass
 
     def remove(self, obj):
-        self.uistate.set_busy_cursor(1)
-        import gen.utils
-        
-        for handle in self.selected_handles():
-            gen.utils.remove_family_relationships(self.dbstate.db, handle)
-        self.build_tree()
-        self.uistate.set_busy_cursor(0)
+        from QuestionDialog import QuestionDialog2
+        from Utils import data_recover_msg
+        msg = _('Deleting item will remove it from the database.')
+        msg = msg + '\n' + data_recover_msg
+        q = QuestionDialog2(_('Delete %s?') % _('family'), msg,
+                       _('_Delete Item'), _('Cancel'))
+        if q.run():
+            self.uistate.set_busy_cursor(1)
+            import gen.utils
+            for handle in self.selected_handles():
+                gen.utils.remove_family_relationships(self.dbstate.db, handle)
+            self.build_tree()
+            self.uistate.set_busy_cursor(0)
     
     def edit(self, obj):
         for handle in self.selected_handles():
