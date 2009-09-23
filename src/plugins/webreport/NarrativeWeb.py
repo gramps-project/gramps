@@ -630,33 +630,6 @@ class BasePage(object):
         # return hyperlink to its callers
         return hyper
 
-    def dump_source_references(self, db, sourcelist):
-        """ Dump a list of source references """
-
-        ordered = Html('ol')
-        list = Html('li')
-        ordered += list
-
-        source_dict = {}
-        # Sort the sources
-        for handle in sourcelist:
-
-            # if source is not None, then add it?
-            source = db.get_source_from_handle(handle)
-            if source is not None:
-                key = source.get_title() + str(source.get_gramps_id())
-                source_dict[key] = (source, handle)
-        keys = sorted(source_dict, key=locale.strxfrm)
-
-        for cindex, key in enumerate(keys):
-            (source, handle) = source_dict[key]
-            source_title = source.get_title()
-            
-            list += self.source_link(handle, title, cindex+1, source.gramps_id, True)
-
-        # return ordered list to its callers
-        return ordered
-
     def dump_addresses(self, addrobj, showsrc=True):
         """
         will display an object's addresses, url list, note list, 
@@ -3255,7 +3228,6 @@ class IndividualPage(BasePage):
     """
     This class is used to write HTML for an individual.
     """
-
     gender_map = {
         Person.MALE    : _('male'),
         Person.FEMALE  : _('female'),
@@ -5092,7 +5064,6 @@ class NavWebReport(Report):
         if up:
             subdirs = ['..']*3 + subdirs
         return subdirs
-
 
     def build_path(self, subdir, fname, up=False):
         """

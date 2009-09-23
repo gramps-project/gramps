@@ -34,7 +34,7 @@ Refactoring. This is an ongoing job until this plugin is in a better shape.
 # python modules
 #
 #------------------------------------------------------------------------
-import os, codecs, shutil
+import os, codecs, shutil, re
 import datetime, calendar
 from gettext import gettext as _
 from gettext import ngettext
@@ -59,7 +59,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, \
                        CSS_FILES 
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
-                          DestinationOption
+                          DestinationOption, NoteOption
 import GrampsLocale
 from QuestionDialog import WarningDialog
 from Utils import probably_alive, xml_lang, get_researcher
@@ -72,6 +72,9 @@ import libholiday
 from libhtml import Html
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
+# import styled notes from
+# src/plugins/lib/libhtmlbackend.py
+from libhtmlbackend import HtmlBackend
 #------------------------------------------------------------------------
 #
 # constants
@@ -99,6 +102,9 @@ class WebCalReport(Report):
     def __init__(self, database, options):
         Report.__init__(self, database, options)
         mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
+
+        # class to do conversion of styled notes to html markup
+        self._backend = HtmlBackend()
 
         self.database = database
         self.options = options
@@ -155,11 +161,68 @@ class WebCalReport(Report):
 
         calendar.setfirstweekday(dow_gramps2iso[self.start_dow])
 
-# ---------------------------------------------------------------------------------------
-#
-#                        Copy files to their destination
-#
-# ---------------------------------------------------------------------------------------
+    def get_note_format(self, note):
+        """
+        will get the note from the database, and will return either the 
+        styled text or plain note 
+        """
+
+        # retrieve the body of the note
+        note_text = note.get()
+ 
+        # styled notes
+        htmlnotetext = self.styled_note(note.get_styledtext(),
+                                                               note.get_format())
+        if htmlnotetext:
+            text = htmlnotetext
+        else:
+            text = Html('p', note_text) 
+
+        # return text of the note to its callers
+        return text
+
+    #################################################
+    #
+    # Will produce styled notes for NarrativeWeb by using:
+    # src/plugins/lib/libhtmlbackend.py
+    #
+    #################################################
+
+    def styled_note(self, styledtext, format):
+        """
+         styledtext : assumed a StyledText object to write
+        format : = 0 : Flowed, = 1 : Preformatted
+        style_name : name of the style to use for default presentation
+        """
+        text = str(styledtext)
+
+        if not text:
+            return ''
+
+        s_tags = styledtext.get_tags()
+        #FIXME: following split should be regex to match \n\s*\n instead?
+        markuptext = self._backend.add_markup_from_styled(text, s_tags,
+                                                         split='\n\n')
+        htmllist = Html("div", id="grampsstylednote")
+        if format == 1:
+            #preformatted, retain whitespace.
+            #so use \n\n for paragraph detection
+            #FIXME: following split should be regex to match \n\s*\n instead?
+            htmllist += Html('pre', indent=None, inline = True)
+            for line in markuptext.split('\n\n'):
+                htmllist += Html('p')
+                for realline in line.split('\n'):
+                    htmllist += realline
+                    htmllist += Html('br')
+
+        elif format == 0:
+            #flowed
+            #FIXME: following split should be regex to match \n\s*\n instead?
+            for line in markuptext.split('\n\n'):
+                htmllist += Html('p')
+                htmllist += line
+
+        return htmllist
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """
@@ -375,6 +438,7 @@ class WebCalReport(Report):
         meta = Html("meta", attr = _META1) + (
             Html("meta", attr = _META2, indent=False)
             )
+        head += meta 
 
         # links for GRAMPS favicon and stylesheets
         links = Html("link", rel='shortcut icon', href=fname1, 
@@ -382,97 +446,82 @@ class WebCalReport(Report):
             Html("link",rel="stylesheet", href=fname2, type="text/css", media= "screen",
                 indent = False)
             )
+        head += links
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
             fname = os.path.join(subdirs, "styles", _CALENDARPRINT)
-            links += Html("link",rel="stylesheet", href=fname,type="text/css",
-                media="print",indent = False)
-
-        # add additional meta tags and stylesheet links to head section
-        head += (meta, links)
+            links += Html("link",rel="stylesheet", href=fname,type="text/css", media="print", 
+                indent = False)
 
         # replace standard body element with custom one
         body.attr = 'id="%s"' % body_id    
 
         # start header division section
-        headerdiv = Html("div", id="header") + (
+        header = Html("div", id="header") + (
 
             # page title 
             Html("h1", title, id = "SiteTitle", inline = True)
             )
+        body += header
 
         # Created for ?
-        if self.author:
-            if self.email:  
-                msg = _('Created for <a href="mailto:%(email)s?'
-                               'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
-                                                                                                 'author' : self.author}
-            else:
-                msg = _('Created for %(author)s') % {'author' : self.author}
-            headerdiv += Html("p", msg, id="CreatorInfo")
+        msg = None
+        if self.author and self.email:  
+            msg = _('Created for <a href="mailto:%(email)s?'
+                    'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
+                                                         'author' : self.author}
+        elif self.author:
+            msg = _('Created for %(author)s') % {'author' : self.author}
 
-        # add header division to body
-        body += headerdiv
+        if msg is not None:
+            header += Html("p", msg, id="CreatorInfo")
 
         # return to its caller; either webcalendar(), year_glance(), or one_day()
         return page, body
 
 # ---------------------------------------------------------------------------------------
-#
 #                        Creates year navigation, if multiyear
-#
 # ---------------------------------------------------------------------------------------
-
     def year_navigation(self, nr_up, currentsection):
         """
-        This will create the year navigation menu bar
+        This will create the year navigation menu bar for a total of seventeen (17) years
 
         nr_up = number of directories up to reach root directory
         currentsection = proper styling of this navigation bar
         """
 
-        num_years = (self.end_year - self.start_year)
-        cal_year = self.start_year
+        # limit number of years to eighteen (18) years and only one row of years
+        nyears = ((self.end_year - self.start_year) + 1)
+        num_years = nyears if 0 < nyears < 19 else 18
 
-        # stylesheets other than "Web_Visually.css" will hold 22 years in a row
-        # otherwise, 18 years in a row 
-        years_in_row = 22 if self.css is not 'Web_Visually.css' else 18
+        # begin year division and begin unordered list
+        with Html("div", id = "subnavigation") as section: 
+            unordered = Html("ul")
+            section += unordered
 
-        # begin year division
-        with Html("div", id = "navigation") as section: 
+            for cal_year in xrange(self.start_year, (self.start_year + num_years)):
+                url = ''
 
-            for row in xrange((num_years // years_in_row) + 1):
+                # begin subdir level
+                subdirs = ['..'] * nr_up
+                subdirs.append(str(cal_year))
 
-                unordered = Html("ul")
-                section += unordered
+                # each year will link to current month.
+                # this will always need an extension added
+                full_month_name = get_full_month_name(self.today.get_month())
 
-                cols = 1
-                while (cols <= years_in_row and cal_year <= self.end_year):
-                    url = ''
+                # Note. We use '/' here because it is a URL, not a OS dependent 
+                # pathname.
+                url = '/'.join(subdirs + [full_month_name]) + self.ext
 
-                    # begin subdir level
-                    subdirs = ['..'] * nr_up
-                    subdirs.append(str(cal_year))
+                # Figure out if we need <li class="CurrentSection"> or just plain <li>
+                cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
+                unordered += Html("li", attr=cs, inline = True) + (
 
-                    # each year will link to current month.
-                    # this will always need an extension added
-                    full_month_name = get_full_month_name(self.today.get_month())
-
-                    # Note. We use '/' here because it is a URL, not a OS dependent 
-                    # pathname.
-                    url = '/'.join(subdirs + [full_month_name]) + self.ext
-
-                    # Figure out if we need <li class="CurrentSection"> or just plain <li>
-                    cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                    unordered += Html("li", attr=cs , inline = True) + (
-
-                        # create hyperlink
-                        Html("a", str(cal_year), href = url, title=str(cal_year), inline = True)
-                        )
-
-                    cols += 1
-                    cal_year += 1
+                    # create hyperlink
+                    Html("a", str(cal_year), href = url, title = "Year %04d" % cal_year, inline = True)
+                    )
 
         # return yearnav to its caller
         return section
@@ -507,7 +556,7 @@ class WebCalReport(Report):
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
 
         # begin month subnavigation
-        with Html("div", id = "subnavigation") as section:
+        with Html("div", id = "navigation") as section:
 
             unordered = Html("ul")
             section += unordered 
@@ -590,6 +639,33 @@ class WebCalReport(Report):
         # We slice out the first empty element.
         day_names = GrampsLocale.long_days
 
+        def __get_previous_month_day(year, month, day_col):
+
+            if month == 1:
+                prevmonth = calendar.monthcalendar(year - 1, 12)
+            else:
+                prevmonth = calendar.monthcalendar(year, month-1)
+            num_weeks = len(prevmonth)
+            lastweek_prevmonth = prevmonth[num_weeks - 1]
+            previous_month_day = lastweek_prevmonth[day_col]
+
+            # return previous month day number based on day_col
+            # day_col is based on range(0 - 6)
+            return previous_month_day
+
+        def __get_next_month_day(year, month, day_col):  
+
+            if month == 12:
+                nextmonth = calendar.monthcalendar(year + 1, 1)
+            else:
+                nextmonth = calendar.monthcalendar(year, month + 1)
+            firstweek_nextmonth = nextmonth[0]
+            next_month_day = firstweek_nextmonth[day_col]
+
+            # return next month day number based on day_col
+            # day_col is based on range(0 - 6)
+            return next_month_day
+
         # Begin calendar head. We'll use the capitalized name, because here it 
         # seems appropriate for most countries.
         month_name = full_month_name.capitalize()
@@ -598,35 +674,30 @@ class WebCalReport(Report):
             if not self.multiyear:
                 th_txt = '%s %d' % (month_name, year)
 
-        # begin calendar table
+        # begin calendar table and table head
         cal_table = Html("table", class_ = "calendar", id = month_name)
-
-        # begin table head, <thead>
         thead = Html("thead")
-        tr = Html("tr")
-        th = Html('th', th_txt, class_ ='monthName', colspan=7, inline = True)
+        cal_table += thead 
 
-        # add them together now
-        tr += th
-        thead += tr  
+        trow = Html("tr") + (
+            Html('th', th_txt, class_ ='monthName', colspan=7, inline = True)
+            )
+        thead += trow    
 
         # Calendar weekday names header
-        weekday_names = Html("tr")
+        trow = Html("trow")
+        thead += trow
+  
         for day_col in range(7):
             dayclass = get_class_for_daycol(day_col)
             dayname = get_name_for_daycol(day_col)
-            th = Html('th', class_ =dayclass, inline = True) + (
+            trow += Html('th', class_ =dayclass, inline = True) + (
                 Html('abbr', dayname[0], title=dayname)
                 )
 
-            # now add it all together
-            weekday_names += th
-
-        # add  weekdays names to table body
-        thead += weekday_names
-
         # begin table body
         tbody = Html("tbody")
+        cal_table += tbody
 
         # get first of the month and month information 
         current_date, current_ord, monthinfo = get_first_day_of_month(year, month)
@@ -637,7 +708,8 @@ class WebCalReport(Report):
             week = monthinfo[week_row]
 
             # if you look this up in wikipedia, the first week is called week0
-            tr = Html("tr", class_ = "week%d" % week_row)
+            trow = Html("tr", class_ = "week%02d" % week_row)
+            tbody += trow
 
             # begin calendar day column
             for day_col in range(0, 7):
@@ -647,7 +719,7 @@ class WebCalReport(Report):
                 day = week[day_col]
 
                 # start the beginning variable for <td>, table cell
-                tdid = "%s%02d" % (abbr_month_name, day)
+                tcell_id = "%s%02d" % (abbr_month_name, day)
 
                 # add calendar date division
                 datediv = Html("div", day, class_ = "date", inline = True)
@@ -657,23 +729,21 @@ class WebCalReport(Report):
 
                     # day in previous month
                     if week_row == 0:
-                        specday = get_previous_day(year, month, day_col)
+                        specday = __get_previous_month_day(year, month, day_col)
                         specclass = "previous " + dayclass
 
                     # a day in the next month
                     elif week_row == (nweeks-1):
-                        specday = get_next_day(year, month, day_col)   
+                        specday = __get_next_month_day(year, month, day_col)   
                         specclass = "next " + dayclass
 
                     # continue table cell, <td>, without id tag
-                    td = Html('td', class_ = specclass, inline = True) + (
+                    tcell = Html('td', class_ = specclass, inline = True) + (
 
                         # adds date for previous and next month days
                         Html("div", specday, class_ = "date", inline = True)
-                        ) 
-
-                    # add table cell, <td>, to table row, <tr> 
-                    tr += td
+                        )
+                    trow += tcell
 
                 # normal day number in current month
                 else: 
@@ -695,7 +765,7 @@ class WebCalReport(Report):
                         if day_list: 
 
                             hilightday = 'highlight ' + dayclass
-                            td = Html('td', id=tdid, class_ = hilightday)
+                            tcell = Html('td', id = tcell_id, class_ = hilightday)
 
                             # Year at a Glance
                             if cal == "yg":
@@ -709,10 +779,8 @@ class WebCalReport(Report):
 
                                     # create hyperlink to one_day()
                                     fname_date = full_month_name + '/' + fname_date 
-                                    ahref = Html("a", datediv, href=fname_date, inline = True)
-
-                                    # add hyperlink to table cell, <td>
-                                    td += ahref 
+                                    hyper = Html("a", datediv, href=fname_date, inline = True)
+                                    tcell += hyper
 
                                     # only year_glance() needs this to create the one_day() pages 
                                     self.one_day(event_date, fname_date, day_list)
@@ -721,7 +789,7 @@ class WebCalReport(Report):
                                 else:
 
                                     # continue table cell, <td>, without id tag
-                                    td = Html('td', class_ = hilightday, inline = True) + (
+                                    tcell = Html('td', class_ = hilightday, inline = True) + (
 
                                         # adds date division
                                         Html("div", day, class_ = "date", inline = True)
@@ -730,23 +798,22 @@ class WebCalReport(Report):
                             # WebCal
                             else:
 
-                                # add date to table cell, <td>
-                                td += datediv 
+                                # add date to table cell
+                                tcell += datediv 
 
                                 # list the events
-                                ul = Html("ul")
-                                for nyears, date, text, event in day_list:
-                                    ul += Html("li", text, inline=False if event == 'Anniversary' 
-                                        else True)
+                                unordered = Html("ul")
+                                tcell += unordered
 
-                                # add events to table cell, <td>
-                                td += ul
+                                for nyears, date, text, event in day_list:
+                                    unordered += Html("li", text, inline=False if event == 'Anniversary' 
+                                        else True)
 
                         # no events for this day
                         else: 
 
                             # create empty day with date 
-                            td = Html('td', class_ = dayclass, inline = True) + (
+                            tcell = Html('td', class_ = dayclass, inline = True) + (
 
                                 # adds date division
                                 Html("div", day, class_ = "date", inline = True)
@@ -754,37 +821,31 @@ class WebCalReport(Report):
 
                     # nothing for this month
                     else:
-                        td = Html('td', class_ = dayclass) + (
+                        tcell = Html('td', class_ = dayclass) + (
 
                             # adds date division
                             Html("div", day, class_ = "date", inline = True)
                             ) 
 
-                    # add table cell, <td>, to table row, <tr>
+                    # attach table cell to table row
                     # close the day column
-                    tr += td
+                    trow += tcell
 
                 # change day number
                 current_ord += 1
 
-            # add table row, <tr>, to table body, <tbody>
-            # close the week
-            tbody += tr
-
         if cal == "yg":
             # Fill up till we have 6 rows, so that the months align properly
-            for i in range(nweeks, 6):
-                six_weeks = Html("tr", class_ = "week%d" % (i + 1)) + (
-
-                    # create table cell, <td>
-                    Html('td', colspan=7, inline = True)
-                    )
-
-                # add extra weeks to tbody if needed
+            for weeks in xrange(nweeks, 6):
+                six_weeks = Html("tr", class_ = "week%02d" % (weeks + 1))
                 tbody += six_weeks
 
-        # bring table head and table body back together
-        cal_table += (thead, tbody)
+                for emptydays in xrange(6):
+                    six_weeks += Html("td", class_ = "emptyDays", inline = True)
+
+                # create table cell
+                for col in xrange(6):
+                    six_weeks += Html("td", class_ = "EmptyDays", inline = True)
 
         # return calendar table to its caller
         return cal_table
@@ -823,7 +884,7 @@ class WebCalReport(Report):
             webcal, body = self.write_header(nr_up, 'WebCal', self.title_text)
 
             # create Year Navigation menu
-            if self.multiyear:
+            if (self.multiyear and ((self.end_year - self.start_year) > 0)):
                 body += self.year_navigation(nr_up, str(year))
 
             # Create Month Navigation Menu
@@ -833,26 +894,22 @@ class WebCalReport(Report):
 
             # build the calendar
             monthly_calendar = self.calendar_build("wc", year, month)
+            body += monthly_calendar
 
             # create note section for webcalendar()
             note = self.month_notes[month-1].strip()
-            note = note or "&nbsp;"
+            if note:
+                note = self.database.get_note_from_gramps_id(note)
+                note = self.get_note_format(note)
 
             # table foot  section 
-            cal_note = Html("tfoot")
-            tr = Html("tr")
-            td = Html('td', note, colspan=7, inline = True)
+            cal_foot = Html("tfoot")
+            monthly_calendar += cal_foot
 
-            # add table cell to table row
-            # add table row to table foot section
-            tr += td
-            cal_note += tr
-
-            # add calendar note to calendar
-            monthly_calendar += cal_note
-
-            # add calendar to body
-            body += monthly_calendar 
+            trow = Html("tr") + (
+                Html('td', note, colspan=7, inline = True)
+                ) 
+            cal_foot += trow
 
             # create blank line for stylesheets
             # create footer division section
@@ -869,11 +926,8 @@ class WebCalReport(Report):
             self.progress.step()
 
 # ---------------------------------------------------------------------------------------
-#
 #                    Creates Year At A Glance Calendar
-#
 # ---------------------------------------------------------------------------------------
-
     def year_glance(self, year):
         """
         This method will create the Full Year At A Glance Page...
@@ -892,16 +946,16 @@ class WebCalReport(Report):
         title = _("%(year)d, At A Glance") % {'year' : year}
 
         # Create page header
-            # body has already been added to yearglance  already once
+        # body has already been added to yearglance  already once
         yearglance, body = self.write_header(nr_up, 'fullyearlinked', title, False)
 
         # create Year Navigation menu
-        if self.multiyear:
+        if (self.multiyear and ((self.end_year - self.start_year) > 0)):
             body += self.year_navigation(nr_up, str(year))
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        body += self.month_navigation(nr_up, year, 'fullyearlinked', False)
+        body += self.month_navigation(nr_up, year, "fullyearlinked", True)
 
         msg = (_('This calendar is meant to give you access '
                        'to all your data at a glance compressed into one page. Clicking '
@@ -909,22 +963,17 @@ class WebCalReport(Report):
                        'that date, if there are any!\n'))
 
         # page description 
-        descriptdiv = Html("div", class_ = "content") + (
+        body += Html("div", class_ = "content") + (
 
             # message line
             Html('p', msg, id='description')
             )
 
-        # add description to body
-        body += descriptdiv
-
         for month in range(1, 13):
 
             # build the calendar
             monthly_calendar = self.calendar_build("yg", year, month)
-
-            # add calendar to body
-            body += monthly_calendar 
+            body += monthly_calendar  
 
             # increase progress bar
             self.progress.step()
@@ -961,8 +1010,9 @@ class WebCalReport(Report):
 
         nr_up = 2                    # number of directory levels up to get to root
 
-        # get year from event_date for use in this section
+        # get year and month from event_date for use in this section
         year = event_date.get_year()
+        month = event_date.get_month()
 
         # Name the file, and crate it (see code in calendar_build)
         # chose 'od' as I will be opening and closing more than one file
@@ -977,26 +1027,24 @@ class WebCalReport(Report):
         oneday, body = self.write_header(nr_up, 'OneDay', title)
 
         # create Year Navigation menu
-        if self.multiyear:
+        if (self.multiyear and ((self.end_year - self.start_year) > 0)):
             body += self.year_navigation(nr_up, str(year))
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        # connect it back to year_glance() calendar 
-        body += self.month_navigation(nr_up, year, 'fullyearlinked', False)
+        currentsection = get_full_month_name(month)
+        body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences 
         pg_date = _dd.display(event_date)
         body += Html('h3', pg_date, inline = True)
 
         # list the events
-        ol = Html('ol')
+        ordered = Html('ol')
+        body += ordered  
         for nyears, date, text, event in day_list:
-            ol += Html("li", text, inline=False if event == 'Anniversary' 
+            ordered += Html("li", text, inline=False if event == 'Anniversary' 
             else True)
-
-        # add ordered list to body section
-        body += ol
 
         # create blank line for stylesheets
         # write footer section
@@ -1044,11 +1092,8 @@ class WebCalReport(Report):
         return _nd.display_name(name)
 
 # ---------------------------------------------------------------------------------------
-#
 #        The database slave; Gathers information for calendars
-#
 # ---------------------------------------------------------------------------------------
-
     def collect_data(self, this_year):
         """
         This method runs through the data, and collects the relevant dates
@@ -1061,6 +1106,7 @@ class WebCalReport(Report):
         self.progress.set_pass(_("Reading database..."), len(people))
         for person_handle in people:
             self.progress.step()
+
             person = self.database.get_person_from_handle(person_handle)
             family_list = person.get_family_handle_list()
             birth_ref = person.get_birth_ref()
@@ -1189,11 +1235,8 @@ class WebCalReport(Report):
         return footer
 
 # ---------------------------------------------------------------------------------------
-#
 #             The work horse of this plugin; stages everything
-#
 # ---------------------------------------------------------------------------------------
-
     def write_report(self):
         """
         The short method that runs through each month and creates a page. 
@@ -1209,7 +1252,12 @@ class WebCalReport(Report):
         self.copy_calendar_files()
 
         if self.multiyear:
-            for cal_year in range(self.start_year, (self.end_year + 1)):
+
+            # limit number of years to eighteen (18) years and only one row of years
+            nyears = ((self.end_year - self.start_year) + 1)
+            num_years = nyears if 0 < nyears < 19 else 18
+
+            for cal_year in xrange(self.start_year, (self.start_year + num_years)):
 
                 # initialize the holidays dict to fill:
                 self.holidays = {}
@@ -1403,53 +1451,53 @@ class WebCalOptions(MenuReportOptions):
         """
         category_name = _("Jan - Jun Notes")
 
-        note_jan = StringOption(_('Jan Note'), _('This prints in January'))
+        note_jan = NoteOption(_('January Note'))
         note_jan.set_help(_("The note for the month of January"))
         menu.add_option(category_name, "note_jan", note_jan)
 
-        note_feb = StringOption(_('Feb Note'), _('This prints in February'))
+        note_feb = NoteOption(_('February Note'))
         note_feb.set_help(_("The note for the month of February"))
         menu.add_option(category_name, "note_feb", note_feb)
 
-        note_mar = StringOption(_('Mar Note'), _('This prints in March'))
+        note_mar = NoteOption(_('March Note'))
         note_mar.set_help(_("The note for the month of March"))
         menu.add_option(category_name, "note_mar", note_mar)
 
-        note_apr = StringOption(_('Apr Note'), _('This prints in April'))
+        note_apr = NoteOption(_('April Note'))
         note_apr.set_help(_("The note for the month of April"))
         menu.add_option(category_name, "note_apr", note_apr)
 
-        note_may = StringOption(_('May Note'), _('This prints in May'))
+        note_may = NoteOption(_('May Note'))
         note_may.set_help(_("The note for the month of May"))
         menu.add_option(category_name, "note_may", note_may)
 
-        note_jun = StringOption(_('Jun Note'), _('This prints in June'))
+        note_jun = NoteOption(_('June Note'))
         note_jun.set_help(_("The note for the month of June"))
         menu.add_option(category_name, "note_jun", note_jun)
 
         category_name = _("Jul - Dec Notes")
 
-        note_jul = StringOption(_('Jul Note'), _('This prints in July'))
+        note_jul = NoteOption(_('July Note'))
         note_jul.set_help(_("The note for the month of July"))
         menu.add_option(category_name, "note_jul", note_jul)
 
-        note_aug = StringOption(_('Aug Note'), _('This prints in August'))
+        note_aug = NoteOption(_('August Note'))
         note_aug.set_help(_("The note for the month of August"))
         menu.add_option(category_name, "note_aug", note_aug)
 
-        note_sep = StringOption(_('Sep Note'), _('This prints in September'))
+        note_sep = NoteOption(_('September Note'))
         note_sep.set_help(_("The note for the month of September"))
         menu.add_option(category_name, "note_sep", note_sep)
 
-        note_oct = StringOption(_('Oct Note'), _('This prints in October'))
+        note_oct = NoteOption(_('October Note'))
         note_oct.set_help(_("The note for the month of October"))
         menu.add_option(category_name, "note_oct", note_oct)
 
-        note_nov = StringOption(_('Nov Note'), _('This prints in November'))
+        note_nov = NoteOption(_('November Note'))
         note_nov.set_help(_("The note for the month of November"))
         menu.add_option(category_name, "note_nov", note_nov)
 
-        note_dec = StringOption(_('Dec Note'), _('This prints in December'))
+        note_dec = NoteOption(_('December Note'))
         note_dec.set_help(_("The note for the month of December"))
         menu.add_option(category_name, "note_dec", note_dec)
 
@@ -1600,33 +1648,6 @@ def get_first_day_of_month(year, month):
 
     current_ord = current_date.toordinal() - monthinfo[0].count(0)
     return current_date, current_ord, monthinfo
-
-def get_previous_day(year, month, day_col):
-    """
-    get last month's last week for previous days in the month
-    """
-
-    if month == 1:
-        prevmonth = calendar.monthcalendar(year - 1, 12)
-    else:
-        prevmonth = calendar.monthcalendar(year, month-1)
-    num_weeks = len(prevmonth)
-    lastweek_prevmonth = prevmonth[num_weeks - 1]
-    previous_month_day = lastweek_prevmonth[day_col]
-    return previous_month_day
-
-def get_next_day(year, month, day_col):  
-    """
-    get next month's first week for next days in the month
-    """
-
-    if month == 12:
-        nextmonth = calendar.monthcalendar(year + 1, 1)
-    else:
-        nextmonth = calendar.monthcalendar(year, month + 1)
-    firstweek_nextmonth = nextmonth[0]
-    next_month_day = firstweek_nextmonth[day_col]
-    return next_month_day
 
 def _has_webpage_extension(url):
     """
