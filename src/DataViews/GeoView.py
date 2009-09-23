@@ -128,8 +128,7 @@ _JAVASCRIPT = '''<script>
       val = gmarkers[i].getAttribute("year");
       min = parseInt(year);
       max = min + step;
-      if ( selectedmarkers == "All" )
-        {{ min = 0; max = 9999; }}
+      if ( selectedmarkers == "All" ) {{ min = 0; max = 9999; }}
       gmarkers[i].hide();
       years = val.split(' ');
       for ( j=0; j < years.length; j++) {{
@@ -159,8 +158,7 @@ _JAVASCRIPT = '''<script>
   function get_selected_radio() {{
     selected = 0;
     for ( b=0; b < document.btns.years.length; b++) {{
-      if ( document.btns.years[b].checked == true )
-        selected=b;
+      if ( document.btns.years[b].checked == true ) selected=b;
     }}
   }}
   function set_selected_radio() {{
@@ -1055,10 +1053,14 @@ class GeoView(HtmlView):
                             savetype = mark[8]
                         self.mapview.write("my_marker.setInfoBubble(\"<div ")
                         self.mapview.write("id='info' ")
+                        # perhaps we need css in the futur ...
                         self.mapview.write("style='white-space:nowrap;")
-                        self.mapview.write("overflow:auto;width:103%%;")
-                        self.mapview.write("max-height:%dpx' >" %
-                                            ( self.height/5 ) )
+                        self.mapview.write("overflow:auto;width:105%%;")
+                        self.mapview.write("font-size:10pt;")
+                        divsize = self.height/5
+                        if divsize < 150:
+                            divsize = 150
+                        self.mapview.write("max-height:%dpx' >" % divsize )
                         self.mapview.write("%s<br>" % mark[0])
                         if formatype == 1:
                             self.mapview.write("<br>%s" % mark[5])
@@ -1283,7 +1285,7 @@ class GeoView(HtmlView):
                         if person_list:
                             descr2 = event.get_type()
                             for person in person_list:
-                                descr2 = ("%(description) - s%(name)s") % {
+                                descr2 = ("%(description)s - %(name)s") % {
                                             'description' : descr2, 
                                             'name' : _nd.display(person)}
                             descr = ("%(eventtype)s;"+
