@@ -61,6 +61,16 @@ from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #
+# map icons
+#
+#-------------------------------------------------------------------------
+_icons = {
+    gen.lib.EventType.BIRTH	: 'gramps-geo-birth',
+    gen.lib.EventType.DEATH	: 'gramps-geo-death',
+}
+
+#-------------------------------------------------------------------------
+#
 # regexp for html title Notes ...
 #
 #-------------------------------------------------------------------------
@@ -92,7 +102,7 @@ NB_MARKERS_PER_PAGE = 200
 #-------------------------------------------------------------------------
 
 _HTMLHEADER = '''<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" 
-    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\" {xmllang} >
 <html xmlns=\"http://www.w3.org/1999/xhtml\" >
  <head>
   <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>
@@ -106,8 +116,10 @@ _JAVASCRIPT = '''<script>
   var min = 0;
   var zoom = 0;
   var pos = 0;
+  var regrep = new RegExp(\"default\",\"g\");
   var selected = 0;
   var current_map = '{current_map}';
+  var default_icon;
   var selectedmarkers = 'All';
   // shows or hide markers of a particular category
   function selectmarkers(year) {{
@@ -119,7 +131,6 @@ _JAVASCRIPT = '''<script>
       if ( selectedmarkers == "All" )
         {{ min = 0; max = 9999; }}
       gmarkers[i].hide();
-      gmarkers[i].closeBubble();
       years = val.split(' ');
       for ( j=0; j < years.length; j++) {{
         if ( years[j] >= min ) {{
@@ -751,6 +762,7 @@ class GeoView(HtmlView):
         (lang_country, modifier ) = locale.getlocale()
         self.mapview.write(
             _HTMLHEADER.format(
+                xmllang = "xml:lang=\"%s\"" % lang_country.split('_')[0]
                 )
             )
         fpath = os.path.join(const.ROOT_DIR,
@@ -761,10 +773,9 @@ class GeoView(HtmlView):
                                      '', ''))
         self.mapview.write("          src=\"%s\">\n" % upath)
         self.mapview.write("</script>\n")
-        self.mapview.write("<script id=\"googleapiimport\" \n")
+        self.mapview.write("<script type=\"text/javascript\"")
         self.mapview.write("        src=\"http://maps.google.com/")
         self.mapview.write("maps?file=api&v=2\"\n")
-        self.mapview.write("        type=\"text/javascript\">\n")
         self.mapview.write("</script>\n")
         if _alternate_map() == "microsoft":
             self.mapview.write("<script type=\"text/javascript\"\n")
@@ -801,11 +812,15 @@ class GeoView(HtmlView):
         # Select the center of the map and the zoom
         self.centered = False
         if ptype == 2:
-            # Sort by year for events
-            self.sort = sorted(self.place_list, key=operator.itemgetter(7))
+            # Sort by places and year for events
+            self.sort = sorted(self.place_list,
+                               key=operator.itemgetter(3, 4, 7)
+                              )
         else:
-            # Sort by place
-            self.sort = sorted(self.place_list)
+            # Sort by date in all other cases
+            self.sort = sorted(self.place_list,
+                               key=operator.itemgetter(7)
+                              )
         signminlon = _get_sign(self.minlon)
         signminlat = _get_sign(self.minlat)
         signmaxlon = _get_sign(self.maxlon)
@@ -921,12 +936,12 @@ class GeoView(HtmlView):
         self.without += 1
 
     def _append_to_places_list(self, place, evttype, name, lat, 
-                              longit, descr, center, year):
+                              longit, descr, center, year, icontype):
         """
         Create a list of places with coordinates.
         """
         self.place_list.append([place, name, evttype, lat,
-                                longit, descr, int(center), year])
+                                longit, descr, int(center), year, icontype])
         self.nbmarkers += 1
         tfa = float(lat)
         tfb = float(longit)
@@ -948,11 +963,26 @@ class GeoView(HtmlView):
         if self.maxlon == 0.0 or 0.0 < tfb > self.maxlon:
             self.maxlon = tfb
 
+    def _set_icon(self, markertype, differtype, ptype):
+        if ptype != 1: # for places, we have no event type
+            value = _icons.get(markertype.value, 'gramps-geo-default')
+        else:
+            value = 'gramps-geo-default'
+        if differtype:                   # in case multiple evts
+            value = 'gramps-geo-default' # we use default icon.
+        if ( value == "gramps-geo-default" ):
+            value = value.replace("default","\" + default_icon + \"");
+        ipath = os.path.join(const.ROOT_DIR, 'images/22x22/', '%s.png' % value )
+        upath = urlparse.urlunsplit(('file', '',
+                                     URL_SEP.join(ipath.split(os.sep)), '', ''))
+        self.mapview.write("my_marker.setIcon(\"%s\",[22,22],[0,22]);" % upath)
+
     def _create_markers(self, formatype, firstm, lastm):
         """
         Create all markers for the specified person.
         """
         last = ""
+        current = ""
         indm = 0
         divclose = True
         self.yearinmarker = []
@@ -975,15 +1005,25 @@ class GeoView(HtmlView):
             self.setattr = False
         self.mapview.write("}\n")
         self.mapview.write("  function setmarkers(mapstraction) {\n")
+        self.mapview.write("   if ( current_map != \"openstreetmap\" ) {")
+        self.mapview.write(" default_icon = \"altmap\";")
+        self.mapview.write(" } else { ")
+        self.mapview.write(" default_icon = \"mainmap\"; }\n")
+        differtype = False
+        savetype = None
         for mark in self.sort:
             if ( indm >= firstm ) and ( indm <= lastm ):
                 ininterval = True
             if ininterval:
-                if last != mark[0]:
+                current = {
+                            2 : [mark[3], mark[4]],
+                          }.get(formatype, mark[0])
+                if last != current:
                     if not divclose:
                         if ininterval:
                             self.mapview.write("</div>\");")
                             divclose = True
+                            differtype = False
                         years = ""
                         if mark[2]:
                             for year in self.yearinmarker:
@@ -992,12 +1032,17 @@ class GeoView(HtmlView):
                         self.mapview.write("my_marker.setAttribute")
                         self.mapview.write("('year','%s');" % years)
                         self.yearinmarker = []
+                        self._set_icon(savetype, differtype, formatype)
                         self.mapview.write("mapstraction.addMarker(my_marker);")
                     indm += 1
                     if ( indm > lastm ):
                         if (indm % NB_MARKERS_PER_PAGE) == 0:
                             ininterval = False
-                    last = mark[0]
+                    last = {
+                             2 : [mark[3], mark[4]],
+                           }.get(formatype, mark[0])
+                    if mark[8]:
+                        savetype = mark[8]
                     if ( indm >= firstm ) and ( indm <= lastm ):
                         self.mapview.write("\n   var point = new LatLonPoint")
                         self.mapview.write("(%s,%s);" % (mark[3], mark[4]))
@@ -1008,27 +1053,29 @@ class GeoView(HtmlView):
                         self.mapview.write("(\"%s\");" % mark[0])
                         self.yearinmarker.append(mark[7])
                         divclose = False
+                        differtype = False
+                        if mark[8]:
+                            savetype = mark[8]
                         self.mapview.write("my_marker.setInfoBubble(\"<div ")
-                        self.mapview.write("style='white-space:nowrap;' >")
+                        self.mapview.write("id='info' ")
+                        self.mapview.write("style='white-space:nowrap;")
+                        self.mapview.write("overflow:auto;max-height:%dpx' >" %
+                                            ( self.height/5 ) )
+                        self.mapview.write("%s<br>" % mark[0])
                         if formatype == 1:
-                            self.mapview.write("%s<br>____________<br>" % \
-                                               mark[0])
                             self.mapview.write("<br>%s" % mark[5])
                         elif formatype == 2:
-                            self.mapview.write("%s____________<br>" % mark[1])
                             self.mapview.write("<br>%s - %s" % (mark[7],
                                                                 mark[5]))
                         elif formatype == 3:
-                            self.mapview.write("%s<br>____________<br>" % \
-                                               mark[0])
                             self.mapview.write("<br>%s - %s" % (mark[7],
                                                                 mark[5]))
                         elif formatype == 4:
-                            self.mapview.write("%s<br>____________<br>" % \
-                                               mark[0])
                             self.mapview.write("<br>%s - %s" % (mark[7],
                                                                 mark[5]))
                 else: # This marker already exists. add info.
+                    if ( mark[8] and savetype != mark[8] ):
+                        differtype = True
                     self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
                     ret = 1
                     for year in self.yearinmarker:
@@ -1046,16 +1093,10 @@ class GeoView(HtmlView):
             years += "end"
             self.mapview.write("</div>\");")
             self.mapview.write("my_marker.setAttribute('year','%s');" % years)
+            self._set_icon(savetype, differtype, formatype)
             self.mapview.write("mapstraction.addMarker(my_marker);")
         if self.nbmarkers == 0:
             # We have no valid geographic point to center the map.
-            # So you'll see the street where I live.
-            # I think another place should be better :
-            #          Where is the place where the gramps project began ?
-            #
-            # I think we should put here all gramps developpers.
-            # not only me ...
-            #
             longitude = 0.0
             latitude = 0.0
             self.mapview.write("\nvar point = new LatLonPoint")
@@ -1072,6 +1113,7 @@ class GeoView(HtmlView):
             self.mapview.write("<br>")
             self.mapview.write(_("You are looking at the default map."))
             self.mapview.write("</div>\");\n")
+            self._set_icon(None, True, 1)
             self.mapview.write("   mapstraction.addMarker(my_marker);")
         self.mapview.write("\n}")
         self.mapview.write("\n</script>\n")
@@ -1112,7 +1154,9 @@ class GeoView(HtmlView):
                                                         latitude, longitude,
                                                         descr1,
                                                         int(self.center),
-                                                        birthyear)
+                                                        birthyear,
+                                                        birth.get_type()
+                                                        )
                             self.center = False
                         else:
                             self._append_to_places_without_coord(
@@ -1148,7 +1192,9 @@ class GeoView(HtmlView):
                                                         latitude, longitude,
                                                         descr1,
                                                         int(self.center),
-                                                        deathyear)
+                                                        deathyear,
+                                                        death.get_type()
+                                                        )
                             self.center = False
                         else:
                             self._append_to_places_without_coord(
@@ -1182,7 +1228,8 @@ class GeoView(HtmlView):
             if ( longitude and latitude ):
                 self._append_to_places_list(descr, None, "",
                                             latitude, longitude,
-                                            descr1, self.center, None)
+                                            descr1, self.center, None,
+                                            gen.lib.EventType.UNKNOWN)
                 self.center = False
             else:
                 self._append_to_places_without_coord(place.gramps_id, descr)
@@ -1215,19 +1262,16 @@ class GeoView(HtmlView):
             place_handle = event.get_place_handle()
             eventdate = event.get_date_object()
             eventyear = eventdate.get_year()
-            descr1 = _("Id : %(id)s (%(year)s)") % {
-                            'id' : event.gramps_id,
-                            'year' : eventyear}
             if place_handle:
                 place = dbstate.db.get_place_from_handle(place_handle)
                 if place:
+                    descr1 = place.get_title()
                     longitude = place.get_longitude()
                     latitude = place.get_latitude()
                     latitude, longitude = conv_lat_lon(latitude, longitude, 
                                                        "D.D8")
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
-                    descr2 = "%s; %s" % (city, country)
                     # place.get_longitude and place.get_latitude return
                     # one string. We have coordinates when the two values
                     # contains non null string.
@@ -1239,19 +1283,18 @@ class GeoView(HtmlView):
                                     if ref_type == 'Person' 
                                       ]
                         if person_list:
-                            descr = "<br>"
+                            descr2 = ""
                             for person in person_list:
-                                descr = ("%(description)s%(name)s<br>") % {
-                                            'description' : descr, 
+                                descr2 = ("%(description)s%(name)s; ") % {
+                                            'description' : descr2, 
                                             'name' : _nd.display(person)}
-                                     #) % { 'eventtype': gen.lib.EventType(
                             descr = ("%(eventtype)s;"+
                                      " %(place)s%(description)s"
                                      ) % { 'eventtype': gen.lib.EventType(
                                                             event.get_type()
                                                             ),
                                            'place': place.get_title(), 
-                                           'description': descr}
+                                           'description': descr2}
                         else:
                             descr = ("%(eventtype)s; %(place)s<br>") % {
                                            'eventtype': gen.lib.EventType(
@@ -1262,7 +1305,9 @@ class GeoView(HtmlView):
                                                     descr,
                                                     latitude, longitude,
                                                     descr2, self.center,
-                                                    eventyear)
+                                                    eventyear,
+                                                    event.get_type()
+                                                    )
                         self.center = False
                     else:
                         descr = place.get_title()
@@ -1301,12 +1346,17 @@ class GeoView(HtmlView):
                 handle = fam.get_father_handle()
                 father = dbstate.db.get_person_from_handle(handle)
                 if father:
-                    comment = _("Id : Father : %s") % father.gramps_id
+                    comment = _("Id : Father : %s : %s") % ( father.gramps_id,
+                                                             _nd.display(father)
+                                                            )
                     self._createpersonmarkers(dbstate, father, comment)
                 handle = fam.get_mother_handle()
                 mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
                     comment = _("Id : Mother : %s") % mother.gramps_id
+                    comment = _("Id : Mother : %s : %s") % ( mother.gramps_id,
+                                                             _nd.display(mother)
+                                                            )
                     self._createpersonmarkers(dbstate, mother, comment)
                 index = 0
                 child_ref_list = fam.get_child_ref_list()
@@ -1315,9 +1365,12 @@ class GeoView(HtmlView):
                         child = dbstate.db.get_person_from_handle(child_ref.ref)
                         if child:
                             index += 1
-                            comment = _("Id : Child : %(id)s %(index)d") % {
-                                            'id' : child.gramps_id,
-                                            'index': index}
+                            comment = _("Id : Child : %(id)s - %(index)d "
+                                        ": %(name)s") % {
+                                            'id'    : child.gramps_id,
+                                            'index' : index,
+                                            'name'  : _nd.display(child)
+                                         }
                             self._createpersonmarkers(dbstate, child, comment)
             else:
                 comment = _("Id : Child : %(id)s has no parents.") % {
@@ -1390,7 +1443,9 @@ class GeoView(HtmlView):
                                                         _nd.display(person),
                                                         latitude, longitude,
                                                         descr1, self.center, 
-                                                        eventyear)
+                                                        eventyear,
+                                                        event.get_type()
+                                                        )
                             self.center = False
                         else:
                             self._append_to_places_without_coord(
