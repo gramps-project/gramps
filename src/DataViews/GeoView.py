@@ -644,8 +644,8 @@ class GeoView(HtmlView):
             modulo = 10
         self.minyear -= self.minyear % 10
         self.maxyear -= self.maxyear % 10
-        self.yearint = (self.maxyear-self.minyear)/self.maxgen
-        self.yearint -= self.yearint % modulo
+        self.yearint = ( self.maxyear - self.minyear ) / 10 + 5
+        self.yearint -= ( self.yearint % modulo )
         if self.yearint == 0:
             self.yearint = 10
         self.mapview.write("<script>\n")
@@ -653,11 +653,14 @@ class GeoView(HtmlView):
         self.mapview.write("</script>\n")
         self.mapview.write("</head>\n")
         self.mapview.write("<body >\n")
+        self.mapview.write("<div ")
+        self.mapview.write("id='comment' style='")
+        self.mapview.write("font-size:10pt; height:75px' >\n")
         if maxpages > 1:
             message = _("There are %d markers to display. They are split up "
                         "over %d pages of %d markers : " % (self.nbmarkers, 
                                             maxpages, NB_MARKERS_PER_PAGE))
-            self.mapview.write(" <div id='pages' font=-4 >%s<br>\n" % message)
+            self.mapview.write("%s<br>\n" % message)
             if curpage != 1:
                 priorfile = os.path.join(GEOVIEW_SUBPATH,
                                          "GeoV-%c-%05d.html" % 
@@ -693,7 +696,6 @@ class GeoView(HtmlView):
                 self.mapview.write("\n<a href='%s' >++</a>" % nextfile)
             else:
                 self.mapview.write(" ++")
-            self.mapview.write("\n</div>\n")
             if self.without != 0:
                 self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                        "without_coord.html")
@@ -723,12 +725,15 @@ class GeoView(HtmlView):
         if h4mess:
             self.mapview.write("<H4>%s</H4>" % h4mess)
         margin = 10
-        self.mapview.write("\n<div id=\"openstreetmap\" class=\"Mapstraction\"")
+        self.mapview.write("</div>\n")
+        self.mapview.write("<div id=\"openstreetmap\" class=\"Mapstraction\"")
         self.mapview.write(" style=\"width: %dpx; " % (self.width - margin*4))
+        self.mapview.write("border: 3px coral solid; ")
         self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74))
         self.mapview.write("<div id=\"%s\" class=\"Mapstraction\"" % \
                            _alternate_map())
         self.mapview.write(" style=\"display: none; ")
+        self.mapview.write("border: 3px coral solid; ")
         self.mapview.write("width: %dpx; height: %dpx\"></div>\n" % \
                            ((self.width - margin*4), (self.height * 0.74 )))
         self.mapview.write("<script type=\"text/javascript\">\n")
