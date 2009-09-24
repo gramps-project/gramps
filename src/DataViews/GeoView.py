@@ -67,6 +67,7 @@ from PlaceUtils import conv_lat_lon
 _icons = {
     gen.lib.EventType.BIRTH	: 'gramps-geo-birth',
     gen.lib.EventType.DEATH	: 'gramps-geo-death',
+    gen.lib.EventType.MARRIAGE	: 'gramps-geo-marriage',
 }
 
 #-------------------------------------------------------------------------
@@ -1055,7 +1056,7 @@ class GeoView(HtmlView):
                         self.mapview.write("id='info' ")
                         # perhaps we need css in the futur ...
                         self.mapview.write("style='white-space:nowrap;")
-                        self.mapview.write("overflow:auto;width:105%%;")
+                        self.mapview.write("overflow:auto;width:105%;")
                         self.mapview.write("font-size:10pt;")
                         divsize = self.height/5
                         if divsize < 150:
@@ -1353,7 +1354,6 @@ class GeoView(HtmlView):
                 handle = fam.get_mother_handle()
                 mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
-                    comment = _("Id : Mother : %s") % mother.gramps_id
                     comment = _("Id : Mother : %s : %s") % ( mother.gramps_id,
                                                              _nd.display(mother)
                                                             )
