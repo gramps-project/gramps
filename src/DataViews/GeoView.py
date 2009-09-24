@@ -699,14 +699,17 @@ class GeoView(HtmlView):
             if self.without != 0:
                 self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                        "without_coord.html")
-                self.mapview.write("<div id='coord' font=-4 >You have ")
                 filename = urlparse.urlunsplit(
                            ('file', '',
                             URL_SEP.join(self.without_coord_file.split(os.sep)),
                             '', ''))
-                self.mapview.write("<a href=\"%s\" >%d<a>" % \
-                                   ( filename, self.without ) )
-                self.mapview.write(" places without coordinates</div>\n" )
+                self.mapview.write("<br>%s<a href=\"%s\" >%d<a>%s</div>\n" % (
+                                       _("You have "),
+                                       filename,
+                                       self.without,
+                                       _(" places without coordinates.")
+                                       ) 
+                                  )
                 self._createpageplaceswithoutcoord()
         if self.displaytype != "places":
             self.mapview.write("  <form method='POST' name='btns'>\n")
@@ -714,8 +717,7 @@ class GeoView(HtmlView):
             self.mapview.write("name='years' value='All' checked\n")
             self.mapview.write("   onchange=\"selectmarkers")
             self.mapview.write("(\'All\')\"/>%s\n" % _("All"))
-            for year in range(self.minyear, self.maxyear+self.yearint,
-                              self.yearint):
+            for year in range(self.minyear, self.maxyear+1, self.yearint):
                 self.mapview.write("  <input type='radio' ")
                 self.mapview.write("name='years' value=\'%s\'\n" %year)
                 self.mapview.write("   onchange=\"selectmarkers")
