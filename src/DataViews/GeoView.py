@@ -1290,8 +1290,8 @@ class GeoView(HtmlView):
                                 dbstate.db.find_backlink_handles(event.handle)
                                     if ref_type == 'Person' 
                                       ]
+                        descr2 = event.get_type()
                         if person_list:
-                            descr2 = event.get_type()
                             for person in person_list:
                                 descr2 = ("%(description)s - %(name)s") % {
                                             'description' : descr2, 
