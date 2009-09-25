@@ -147,6 +147,13 @@
                 <child>
                   <object class="GtkComboBox" id="confidence">
                     <property name="visible">True</property>
+                    <property name="model">confidence_model</property>
+                      <child>
+                        <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                        <attributes>
+                          <attribute name="text">0</attribute>
+                        </attributes>
+                    </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -535,5 +542,11 @@
       <action-widget response="-6">cancel</action-widget>
       <action-widget response="-5">ok</action-widget>
     </action-widgets>
+  </object>
+  <object class="GtkListStore" id="confidence_model">
+    <columns>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+    </columns>
   </object>
 </interface>
