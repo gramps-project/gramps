@@ -527,6 +527,7 @@ class GeoView(HtmlView):
                 self.stylesheetlabel.append(lbl)
                 widget.set_label_widget(self.stylesheetlabel[-1])
                 widget.set_stock_id(gtk.STOCK_SELECT_FONT)
+        self._set_lock_unlock_icon()
 
     def __create_styles_menu_actions(self):
         """
@@ -662,6 +663,16 @@ class GeoView(HtmlView):
         self.usedmap = "microsoft"        
         self._change_map("microsoft")
 
+    def _set_lock_unlock_icon(self):
+        actionstyles = self.lock_action.get_action('SaveZoom')
+        widgets = actionstyles.get_proxies()
+        for widget in widgets :
+            if isinstance(widget, gtk.ToggleToolButton):
+                if self.lock_action.get_action('SaveZoom').get_active():
+                    widget.set_stock_id('gramps-lock')
+                else:
+                    widget.set_stock_id('gramps-unlock')
+
     def _save_zoom(self, button):
         """
         Do we change the zoom between maps ?
@@ -671,6 +682,7 @@ class GeoView(HtmlView):
         """
         if not button.get_active():
             self._change_map(self.usedmap)
+        self._set_lock_unlock_icon()
 
     def _createpageplaceswithoutcoord(self):
         """
