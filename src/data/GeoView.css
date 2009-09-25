@@ -1,0 +1,50 @@
+/*
+----------------------------------------------------------------------------
+GeoView Style Sheet
+Style Name: GeoView
+Style Author: Serge Noiraud (2009)
+
+----------------------------------------------------------------------------
+This file was created for the GeoView usage.
+----------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional
+genealogy program, and a wiki open to all. It is a community project, created,
+developed and governed by genealogists.
+
+Go to <http://gramps-project.org/> to learn more!
+
+License
+----------------------------------------------------------------------------
+Copyright 2009 Serge Noiraud
+
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+----------------------------------------------------------------------------
+
+# $Id: Web_Mainz.css 12565 2009-05-23 07:47:59Z robhealey1 $
+
+ GeoView Styles
+----------------------------------------------------- */
+
+/* InfoBull */
+.geo-info {
+  white-space:nowrap;
+  overflow:auto;
+  width:105%;
+  max-height:150px;
+}
+
+/* title and years selection */
+.geo-content {
+  font-size:10pt;
+}

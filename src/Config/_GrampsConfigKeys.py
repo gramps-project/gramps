@@ -208,6 +208,7 @@ GEOVIEW_ZOOM         = ('geoview', 'zoom', 1)
 GEOVIEW_LATITUDE     = ('geoview', 'latitude', 2)
 GEOVIEW_LONGITUDE    = ('geoview', 'longitude', 2)
 GEOVIEW_MAP          = ('geoview', 'map', 2)
+GEOVIEW_STYLESHEET   = ('geoview', 'stylesheet', 2)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -368,4 +369,5 @@ default_value = {
     GEOVIEW_LATITUDE     : "0.0",
     GEOVIEW_LONGITUDE    : "0.0",
     GEOVIEW_MAP          : "person",
+    GEOVIEW_STYLESHEET   : "",
 }

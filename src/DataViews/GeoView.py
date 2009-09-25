@@ -56,6 +56,9 @@ import gtk
 import gen.lib
 import Utils
 import Config
+import PageView
+from gui.utils import add_menuitem
+from ReportBase import CSS_FILES
 from BasicUtils import name_displayer as _nd
 from PlaceUtils import conv_lat_lon
 
@@ -109,6 +112,7 @@ _HTMLHEADER = '''<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"
   <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>
   <title>This is used to pass messages between javascript and python</title>
   <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">
+  {css}
   <script type=\"text/javascript\"
 '''
 
@@ -244,6 +248,9 @@ def _get_zoom_long(value):
             zoomlong = i+1
     return zoomlong + 2
 
+def make_callback(func, val):
+    return lambda x: func(val)
+
 #-------------------------------------------------------------------------
 #
 # GeoView
@@ -287,6 +294,9 @@ class GeoView(HtmlView):
                                     Config.get(Config.GEOVIEW_LATITUDE),
                                     Config.get(Config.GEOVIEW_LONGITUDE),
                                     "D.D8")
+        self.stylesheet = Config.get(Config.GEOVIEW_STYLESHEET)
+        if ( self.stylesheet == "" ):
+            self.stylesheet = CSS_FILES[0][1]
         self.minyear = 1
         self.maxyear = 1
         self.maxgen = 1
@@ -330,6 +340,7 @@ class GeoView(HtmlView):
             Config.set(Config.GEOVIEW_LATITUDE, "0.0")
             Config.set(Config.GEOVIEW_LONGITUDE, "0.0")
             Config.set(Config.GEOVIEW_MAP, "person")
+        Config.set(Config.GEOVIEW_STYLESHEET, self.stylesheet)
 
     def init_parent_signals_for_map(self, widget, event):
         """
@@ -413,6 +424,7 @@ class GeoView(HtmlView):
               <toolitem action="OpenStreetMap"/>
               <toolitem action="%s"/>
               <toolitem action="SaveZoom"/>
+              <toolitem action="StyleSheet"/>
               <separator/>
               <toolitem action="PersonMaps"/>
               <toolitem action="FamilyMaps"/>
@@ -477,6 +489,80 @@ class GeoView(HtmlView):
         self._add_action('EventMaps', 'gramps-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
+        self._add_toolmenu_action('StyleSheet', _('Selecting stylesheet ...'),
+                        _("Reload the map with new style."),
+                        self.gotostyle,
+                        _('Select a StyleSheet'))
+
+    def change_page(self):
+        """
+        Called by viewmanager at end of realization when arriving on the page
+        At this point the Toolbar is created. We need to:
+          1. get the menutoolbutton
+          2. add all possible css styles sheet available
+          3. add the actions that correspond to clicking in this drop down menu
+          4. set icon and label of the menutoolbutton now that it is realized
+          5. store label so it can be changed when selection changes
+        """
+        PageView.PageView.change_page(self)
+        #menutoolbutton actions are stored in PageView class, 
+        # obtain the widgets where we need to add to menu
+        actionstyles = self.action_toolmenu['StyleSheet']
+        widgets = actionstyles.get_proxies()
+        mmenu = self.__create_styles_menu_actions()
+
+        if not self.stylesheetdata:
+            return
+
+        self.stylesheetlabel = []
+
+        #store all gtk labels to be able to update label on selection change
+        for widget in widgets :
+            if isinstance(widget, gtk.MenuToolButton):
+                widget.set_menu(mmenu)
+                if gtk.pygtk_version >= (2, 12, 0):
+                    widget.set_arrow_tooltip_text(actionstyles.arrowtooltip)
+                lbl = gtk.Label(self.mapstyle_label())
+                lbl.show()
+                self.stylesheetlabel.append(lbl)
+                widget.set_label_widget(self.stylesheetlabel[-1])
+                widget.set_stock_id(gtk.STOCK_SELECT_FONT)
+
+    def __create_styles_menu_actions(self):
+        """
+        Function creating a menu and actions that are used as dropdown menu
+        from the menutoolbutton
+        """
+        menu = gtk.Menu()
+        #select the stylesheets to show
+        self.stylesheetdata = {}
+        stylelist = []
+        for style in CSS_FILES:
+            stylelist.append([style[0], style[1]])
+        for i, stylesheet in zip(range(len(stylelist)), stylelist):
+            key = stylesheet[0].replace(' ', '-')
+            add_menuitem(menu, stylesheet[0], stylesheet[1] , 
+                               make_callback(self.set_mapstylesheet, stylesheet[1]))
+            self.stylesheetdata[key] = stylesheet[0]
+        return menu
+
+    def mapstyle_label(self):
+        """
+        return the current label for the menutoolbutton
+        """
+        return self.stylesheet
+
+    def set_mapstylesheet(self, obj):
+        """
+        Set the style of the map view
+        """
+        self.stylesheet = obj
+
+    def gotostyle(self, obj):
+        """
+        Change the style of the map view
+        """
+        self._geo_places()
 
     def goto_active_person(self, handle=None):
         """
@@ -598,6 +684,7 @@ class GeoView(HtmlView):
          <head>
           <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
           <title>%(title)s</title>
+          %(css)s
          </head>
          <body >
            <H4>%(content)s<a href="javascript:history.go(-1)">%(back)s</a></H4>
@@ -605,7 +692,8 @@ class GeoView(HtmlView):
                 'content': _('Here is the list of all places in the family tree'
                              ' for which we have no coordinates.<br>'
                              ' This means no longitude or latitude.<p>'),
-                'back'   : _('Back to prior page')
+                'back'   : _('Back to prior page'),
+                'css'    : self._add_stylesheet()
         }
         end = """
           </table>
@@ -653,8 +741,8 @@ class GeoView(HtmlView):
         self.mapview.write("</script>\n")
         self.mapview.write("</head>\n")
         self.mapview.write("<body >\n")
-        self.mapview.write("<div ")
-        self.mapview.write("id='comment' style='")
+        self.mapview.write("<div id='geo-content' ")
+        self.mapview.write("style='")
         self.mapview.write("font-size:10pt; height:75px' >\n")
         if maxpages > 1:
             message = _("There are %d markers to display. They are split up "
@@ -730,12 +818,12 @@ class GeoView(HtmlView):
         self.mapview.write("</div>\n")
         self.mapview.write("<div id=\"openstreetmap\" class=\"Mapstraction\"")
         self.mapview.write(" style=\"width: %dpx; " % (self.width - margin*4))
-        self.mapview.write("border: 3px coral solid; ")
+        self.mapview.write("margin-left:auto; margin-right:auto;")
         self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74))
         self.mapview.write("<div id=\"%s\" class=\"Mapstraction\"" % \
                            _alternate_map())
         self.mapview.write(" style=\"display: none; ")
-        self.mapview.write("border: 3px coral solid; ")
+        self.mapview.write("margin-left:auto; margin-right:auto;")
         self.mapview.write("width: %dpx; height: %dpx\"></div>\n" % \
                            ((self.width - margin*4), (self.height * 0.74 )))
         self.mapview.write("<script type=\"text/javascript\">\n")
@@ -768,7 +856,8 @@ class GeoView(HtmlView):
         (lang_country, modifier ) = locale.getlocale()
         self.mapview.write(
             _HTMLHEADER.format(
-                xmllang = "xml:lang=\"%s\"" % lang_country.split('_')[0]
+                xmllang = "xml:lang=\"%s\"" % lang_country.split('_')[0],
+                css = self._add_stylesheet()
                 )
             )
         fpath = os.path.join(const.ROOT_DIR,
@@ -782,7 +871,7 @@ class GeoView(HtmlView):
         self.mapview.write("<script type=\"text/javascript\"")
         self.mapview.write(" src=\"http://maps.google.com/")
         self.mapview.write("maps?file=api&v=2\">")
-        self.mapview.write("</script>\n")
+        self.mapview.write("</script>\n%s" % self._add_stylesheet())
         if _alternate_map() == "microsoft":
             self.mapview.write("<script type=\"text/javascript\" ")
             self.mapview.write("src=\"http://dev.virtualearth.net/")
@@ -1060,15 +1149,7 @@ class GeoView(HtmlView):
                         if mark[8] and not differtype:
                             savetype = mark[8]
                         self.mapview.write("my_marker.setInfoBubble(\"<div ")
-                        self.mapview.write("id='info' ")
-                        # perhaps we need css in the futur ...
-                        self.mapview.write("style='white-space:nowrap;")
-                        self.mapview.write("overflow:auto;width:105%;")
-                        self.mapview.write("font-size:10pt;")
-                        divsize = self.height/5
-                        if divsize < 150:
-                            divsize = 150
-                        self.mapview.write("max-height:%dpx' >" % divsize )
+                        self.mapview.write("id='geo-info' >")
                         self.mapview.write("%s<br>" % mark[0])
                         if formatype == 1:
                             self.mapview.write("<br>%s" % mark[5])
@@ -1475,3 +1556,32 @@ class GeoView(HtmlView):
         """
         self.mapview.write("  <H1>%s </H1>" % _("Not yet implemented ..."))
 
+    def _add_stylesheet(self):
+        """
+        return all the css styles sheet needed for GeoView.
+        We use two styles sheets :
+        The first one based on the default used by NarrativeWeb.
+        The second one is specific to GeoView.
+        """
+        # Get the default stylesheet.
+        cpath = os.path.join(const.ROOT_DIR,
+                             'data',
+                             '%s' % self.stylesheet
+                            )
+        dpath = urlparse.urlunsplit(('file', '',
+                                     URL_SEP.join(cpath.split(os.sep)),
+                                     '', ''))
+        dblp = "<link media=\"screen\" "
+        delp = "type=\"text/css\" rel=\"stylesheet\" />\n"
+        dcp = "href=\"%s\" " % dpath
+        # Get the GeoView stylesheet.
+        cpath = os.path.join(const.ROOT_DIR,
+                             'data',
+                             'GeoView.css)'
+                            )
+        gpath = urlparse.urlunsplit(('file', '',
+                                     URL_SEP.join(cpath.split(os.sep)),
+                                     '', ''))
+        gcp = "href=\"%s\" " % gpath
+        return u'%s%s%s%s%s%s' % (dblp, dcp, delp, dblp, gcp, delp)
+    
