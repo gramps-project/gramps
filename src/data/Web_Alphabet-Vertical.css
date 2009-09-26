@@ -14,7 +14,7 @@ and a wiki open to all. It is a community project, created, developed and govern
 Go to http://gramps-project.org to learn more!
 
 --------------------------------------------------------------------------------------------------
-Copyright 2009 Rob G. Healey <robhealey1@gmail.com>
+Copyright (C) 2009 Rob G. Healey <robhealey1@gmail.com>
 
 This file is part of the GRAMPS program.
 
@@ -30,12 +30,12 @@ see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------------------------------
 # $Id: $
 
+ NarrativeWeb
 ------------------------------------------------------------------------------------------------ */
 body#NarrativeWeb {
+    padding: 136px 0px 0px 54px;
     margin: 0;
-    padding: 130px 0px 0px 54px;
     background-color: #FFF;
-    font-family: Arial, sans, sans-serif, Helvetica;
 }
 
 /* Header
@@ -47,7 +47,6 @@ body#NarrativeWeb {
     overflow: auto;
     width: 100%;
     height: 90px;
-    margin: 0;
 }
 
 /* Footer
@@ -65,22 +64,17 @@ body#NarrativeWeb {
 ----------------------------------------------------- */
 #alphabet {
     position: fixed;
-    top: 136px;
     left: 4px;
     width: 44px;
-    height: 408px;
+    height: 416px;
     overflow-x: auto;
     border-width: 2px 4px 2px 4px;
     border-style: solid;
-    border-color: #5D835F;
 }
 #alphabet ul {
     display: inline;
     list-style: none;
     margin: 0;
-}
-#alphabet ul li:first-child {
-    margin-top: 10px;
 }
 #alphabet ul li {
     font: bold 14px/100% sans;
@@ -89,6 +83,12 @@ body#NarrativeWeb {
     margin:0;
     float: left;
     border-bottom: solid 2px #000;
+}
+#alphabet ul li:first-child {
+    border: 0;
+}
+#alphabet ul li:last-child {
+    border: 0;
 }
 #alphabet ul li a {
     text-decoration: none;

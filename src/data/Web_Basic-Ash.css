@@ -48,18 +48,16 @@ white                   #FFF
 # $Id$
 
  NarrativeWeb Styles
------------------------------------------------------------------------------------------------- 
-
- General Elements
------------------------------------------------------ */
-
-body {
+--------------------------------------------------------------------------------------------- */ 
+body#NarrativeWeb {
+    padding-top: 90px;
     font-family:sans-serif;
     color:#000;
-    margin:0;
-    padding:0;
     background-color:#FFF;
 }
+
+/* General Elements
+----------------------------------------------------- */
 div {
     margin:0;
     padding:0;
@@ -163,13 +161,14 @@ a:visited {
 /* Header
 ----------------------------------------------------- */
 #header {
-    padding:15px 15px 2px 15px;
-    margin:0;
     background-color:#EEE;
 }
 #SiteTitle {
-    color:#333;
-    margin:0 0 3px 0;
+    margin:0;
+    padding:.5em 0 0.5em 10px;
+    font-size: 40px;
+    color: #FFF;
+    font-style: italic;
 }
 #header p {
     font-size:1em;
@@ -178,41 +177,13 @@ a:visited {
     margin:0;
 }
 
-/* Alphabet Navigation
+/* Alphabet Navigation bar
 ----------------------------------------------------- */
 #alphabet {
-    padding:0;
-    margin:0;
-}
-#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding:0 0 0 9px;
-    border-top:solid 2px #000;
-    border-bottom:solid 4px #000;
-background-color:#EEE;
-}
-#alphabet ul li.letters {
-    margin:0;
-    float:left;
-}
-.letters:after {
-    content:" |";
-}
-#alphabet ul li.letters a {
-    display:block;
-    float:left;
-    font:bold 16px/100% sans;
-    color:#000;
-    margin:0;
-    padding:5px 5px;
-    text-decoration:none;
-}
-#alphabet ul li.letters a:hover {
-    background-color:#000;
-    color:#FFF;
+    position: fixed;
+    top: 136px;
+    background-color: #EEE;
+    border-color: #000;
 }
 
 /* Navigation
@@ -221,6 +192,11 @@ background-color:#EEE;
     margin:0;
     padding:4px 0 0 0;
     background-color:#EEE;
+}
+body#NarrativeWeb #navigation {
+    position: fixed;
+    top: 104px;
+    left: 0px;
 }
 #navigation ul, #subnavigation ul {
     list-style:none;
@@ -259,6 +235,7 @@ background-color:#EEE;
 }
 #navigation ul li.CurrentSection a:hover {
     background-color:#FFF;
+    border-bottom: solid 1px #000;
 }
 #subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;

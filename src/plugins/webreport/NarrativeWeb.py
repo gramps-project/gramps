@@ -142,7 +142,7 @@ SHEAD = _('Sources')
 ST = _('Status')
 STATE = _('State/ Province')
 STREET = _('Street')
-THEAD = _('Type')
+THEAD = _("Type")
 TMPL = _('Temple')
 VHEAD = _('Value')
 
@@ -785,7 +785,7 @@ class BasePage(object):
                     'year' : year}
         elif 0 < copyright <= len(_CC):
             # Note. This is a URL
-            fname = '/'.join(["images", "somerights20.gif"])
+            fname = "/".join(["images", "somerights20.gif"])
             url = self.report.build_url_fname(fname, None, up=False)
             text = _CC[copyright] % {'gif_fname' : url}
 
@@ -922,7 +922,7 @@ class BasePage(object):
                                'year' : year}
             elif 0 < copy_nr <= len(_CC):
                 # Note. This is a URL
-                fname = '/'.join(["images", "somerights20.gif"])
+                fname = "/".join(["images", "somerights20.gif"])
                 url = self.report.build_url_fname(fname, None, self.up)
                 text = _CC[copy_nr] % {'gif_fname' : url}
             footer += Html('p', text, id='copyright')
@@ -953,31 +953,36 @@ class BasePage(object):
         body.attr = 'id="NarrativeWeb" '
 
         # create additional meta tags
-        meta = (Html('meta', attr = _META1) + 
-                Html('meta', attr = _META2, indent=False)
+        meta = (Html("meta", attr = _META1) + 
+                Html("meta", attr = _META2, indent=False)
                )
 
         # Link to media reference regions behaviour stylesheet
-        fname = '/'.join(["styles", "behaviour.css"])
-        url1= self.report.build_url_fname(fname, None, self.up)
+        fname = "/".join(["styles", "behaviour.css"])
+        url1 = self.report.build_url_fname(fname, None, self.up)
+
+        # link to alphabet navigation bar layout
+        fname = "/".join(["styles", "alphabet-layout.css"])
+        url2 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to _NARRATIVESCREEN  stylesheet
-        fname = '/'.join(["styles", _NARRATIVESCREEN])
+        fname = "/".join(["styles", _NARRATIVESCREEN])
         url3 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to _NARRATIVEPRINT stylesheet
-        fname = '/'.join(["styles", _NARRATIVEPRINT])
+        fname = "/".join(["styles", _NARRATIVEPRINT])
         url4 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to GRAMPS favicon
-        fname = '/'.join(['images', 'favicon.ico'])
+        fname = "/".join(['images', 'favicon.ico'])
         url5 = self.report.build_url_image('favicon.ico', 'images', self.up)
 
         # create stylesheet and favicon links
-        links = [Html('link', href=url5, type='image/x-icon', rel='shortcut icon'),
-             Html('link', href=url1, type='text/css', media='screen', rel='stylesheet'),
-             Html('link', href=url3, type='text/css', media='screen', rel='stylesheet'),
-             Html('link', href=url4, type='text/css', media='print', rel='stylesheet')
+        links = [Html("link", href=url5, type="image/x-icon", rel="shortcut icon"),
+             Html("link", href=url1, type="text/css", media="screen", rel="stylesheet"),
+             Html("link", href = url2, type="text/css", media="screen", rel="stylesheet"),
+             Html("link", href=url3, type="text/css", media="screen", rel="stylesheet"),
+             Html("link", href=url4, type="text/css", media='print', rel="stylesheet")
              ]
 
         # add additional meta and link tags
@@ -1105,9 +1110,9 @@ class BasePage(object):
                     real_path, newpath = self.report.prepare_copy_media(photo)
 
                     # TODO. Check if build_url_fname can be used.
-                    newpath = '/'.join(['..']*3 + [newpath])
+                    newpath = "/".join(['..']*3 + [newpath])
                     if ( Utils.win ):
-                        newpath = newpath.replace('\\','/')
+                        newpath = newpath.replace('\\',"/")
 
                     # begin hyperlink
                     # description is given only for the purpose of the alt tag in img element
@@ -1165,9 +1170,9 @@ class BasePage(object):
                         self.report.add_lnkref_to_photo(photo, lnkref)
                         real_path, newpath = self.report.prepare_copy_media(photo)
                         # TODO. Check if build_url_fname can be used.
-                        newpath = '/'.join(['..']*3 + [newpath])
+                        newpath = "/".join(['..']*3 + [newpath])
                         if ( Utils.win ):
-                            newpath = newpath.replace('\\','/')
+                            newpath = newpath.replace('\\',"/")
  
                         # begin hyperlink
                         section += self.media_link(photo_handle, newpath, descr, True, False)
@@ -1510,16 +1515,16 @@ class IndividualListPage(BasePage):
         with Html("div", class_ = "content", id="Individuals") as individuallist:
             body += individuallist
 
-            # add alphabet navigation
-            alpha_nav = alphabet_navigation(db, person_handle_list, _PERSON) 
-            if alpha_nav is not None:
-                individuallist += alpha_nav
-
             # Individual List page message
             msg = _("This page contains an index of all the individuals in the "
                           "database, sorted by their last names. Selecting the person&#8217;s "
                           "name will take you to that person&#8217;s individual page.")
             individuallist += Html('p', msg, id='description')
+
+            # add alphabet navigation
+            alpha_nav = alphabet_navigation(db, person_handle_list, _PERSON) 
+            if alpha_nav is not None:
+                individuallist += alpha_nav
 
             # begin table and table head
             with Html("table", class_ = "infolist IndividualList") as table:
@@ -1849,16 +1854,16 @@ class PlaceListPage(BasePage):
         with Html("div", class_ = "content", id="Places") as placelist:
             body += placelist
 
-            # begin alphabet navigation
-            alpha_nav = alphabet_navigation(db, place_handles, _PLACE) 
-            if alpha_nav is not None:
-                placelist += alpha_nav
-
             # place list page message
             msg = _("This page contains an index of all the places in the "
                           "database, sorted by their title. Clicking on a place&#8217;s "
                           "title will take you to that place&#8217;s page.")
             placelist += Html('p', msg, id='description')
+
+            # begin alphabet navigation
+            alpha_nav = alphabet_navigation(db, place_handles, _PLACE) 
+            if alpha_nav is not None:
+                placelist += alpha_nav
 
             # begin places table and table head
             with Html("table", class_ = "infolist placelist") as table:
@@ -2611,7 +2616,8 @@ class SurnameListPage(BasePage):
     ORDER_BY_NAME = 0
     ORDER_BY_COUNT = 1
 
-    def __init__(self, report, title, person_handle_list, order_by=ORDER_BY_NAME, filename="surnames"):
+    def __init__(self, report, title, person_handle_list, order_by=ORDER_BY_NAME, 
+                 filename="surnames"):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -2626,19 +2632,19 @@ class SurnameListPage(BasePage):
         with Html("div", class_ = "content", id="surnames") as surnamelist:
             body += surnamelist
 
-            # add alphabet navigation...
-            # only if surname list not surname count
-            if order_by == self.ORDER_BY_NAME:
-                alpha_nav = alphabet_navigation(db, person_handle_list, _PERSON) 
-                if alpha_nav is not None:
-                    surnamelist += alpha_nav
-
             # page message
             msg = _( 'This page contains an index of all the '
                            'surnames in the database. Selecting a link '
                            'will lead to a list of individuals in the '
                            'database with this same surname.')
             surnamelist += Html('p', msg, id='description')
+
+            # add alphabet navigation...
+            # only if surname list not surname count
+            if order_by == self.ORDER_BY_NAME:
+                alpha_nav = alphabet_navigation(db, person_handle_list, _PERSON) 
+                if alpha_nav is not None:
+                    surnamelist += alpha_nav
 
             if order_by == self.ORDER_BY_COUNT:
                 table_id = 'SortByCount'
@@ -3412,9 +3418,9 @@ class IndividualPage(BasePage):
                     mime_type = photo.get_mime_type()
                     if mime_type:
                         (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
-                        thumbnailUrl = '/'.join(['..']*3 + [thumbnailUrl])
+                        thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
                         if ( Utils.win ):
-                            thumbnailUrl = thumbnailUrl.replace('\\','/')
+                            thumbnailUrl = thumbnailUrl.replace('\\',"/")
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
             boxbg += self.person_link(url, person, name_style=True, 
                 thumbnailUrl=thumbnailUrl)
@@ -4424,8 +4430,8 @@ class RepositoryListPage(BasePage):
                 table += thead
 
                 trow = Html("tr") + (
-                    Html("th", "&nbsp;", class_ = "ColumnRowLabel", inline = True),
-                    Html("th", _('Type'), class_ = "ColumnType", inline = True),
+                    Html("th", _("Number"), class_ = "ColumnRowLabel", inline = True),
+                    Html("th", THEAD, class_ = "ColumnType", inline = True),
                     Html("th", _('Name'), class_ = "ColumnName", inline = True)
                     )
                 thead += trow
@@ -4441,8 +4447,9 @@ class RepositoryListPage(BasePage):
                     trow = Html("tr")
                     tbody += trow
 
-                    # index number
-                    tcell = Html("td", index+1, class_ = "ColumnRowLabel", inline = True)
+                    # index number -- lower roman numerals
+                    tcell = Html("td", index + 1class_ = "ColumnRowLabel", 
+                        inline = True)
                     trow += tcell
 
                     # repository type
@@ -4591,6 +4598,9 @@ class NavWebReport(Report):
 
         # include GENDEX page or not?
         self.inc_gendex = self.options['inc_gendex']
+
+        # Specify the layout for the alphabet navigation bar
+        self.alphabar = self.options["alpha_nav_bar"]  
 
         # Download Options Tab
         self.inc_download = self.options['incdownload']
@@ -4765,6 +4775,12 @@ class NavWebReport(Report):
         # copy behaviour stylesheet
         fname = os.path.join(const.DATA_DIR, "behaviour.css")
         self.copy_file(fname, "behaviour.css", "styles")
+
+        # copy alphabet navigation bar layout
+        fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
+        if self.alphabar == "Vertical":
+            fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Vertical.css")
+        self.copy_file(fname, "alphabet-layout.css", "styles")
 
         # copy screen stylesheet
         if self.css:
@@ -5144,9 +5160,9 @@ class NavWebReport(Report):
             subdirs.append(subdir)
         if up:
             subdirs = ['..']*3 + subdirs
-        nname = '/'.join(subdirs + [fname])
+        nname = "/".join(subdirs + [fname])
         if ( Utils.win ):
-            nname = nname.replace('\\','/')
+            nname = nname.replace('\\',"/")
         return nname
 
     def build_url_fname_html(self, fname, subdir=None, up=False):
@@ -5167,9 +5183,9 @@ class NavWebReport(Report):
         see backslashes in the URL.
         """
         if ( Utils.win ):
-            fname = fname.replace('\\','/')
+            fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname, up)
-        return '/'.join(subdirs + [fname])
+        return "/".join(subdirs + [fname])
 
     def create_file(self, fname, subdir=None, ext=None):
         if ext is None:
@@ -5517,6 +5533,18 @@ class NavWebOptions(MenuReportOptions):
             encoding.add_item(eopt[1], eopt[0])
         encoding.set_help( _("The encoding to be used for the web files"))
         menu.add_option(category_name, "encoding", encoding)
+
+        alpha_opts = [
+                     [_("Horizontal"), "Horizontal" ],
+                     [_("Vertical"),   "Vertical"   ],
+                     ]
+
+        alpha_nav_bar = EnumeratedListOption(_("Alphabet Navigation Layout"), alpha_opts[0][1] )
+        for opt in alpha_opts:
+            alpha_nav_bar.add_item(opt[0], opt[1] )
+        alpha_nav_bar.set_help(_("Specify which direction the alphabet "
+                                 "navigation bar is presented.") )
+        menu.add_option(category_name, "alpha_nav_bar", alpha_nav_bar)
 
         linkhome = BooleanOption(_('Include link to home person on every '
                                    'page'), False)

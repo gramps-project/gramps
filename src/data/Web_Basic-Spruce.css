@@ -177,43 +177,6 @@ a:visited {
     margin:0;
 }
 
-/* Alphabet Navigation
------------------------------------------------------ */
-#alphabet {
-    padding:0;
-    margin:0;
-}
-#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding:0 0 0 9px;
-    border-top:solid 2px #000;
-    border-bottom:solid 4px #000;
-    background-color:#EAEEF4;
-}
-#alphabet ul li.letters {
-    margin:0;
-    float:left;
-}
-.letters:after {
-    content:" |";
-}
-#alphabet ul li.letters a {
-    display:block;
-    float:left;
-    font:bold 16px/100% sans;
-    color:#000;
-    margin:0;
-    padding:5px 5px;
-    text-decoration:none;
-}
-#alphabet ul li.letters a:hover {
-    background-color:#000;
-    color:#FFF;
-}
-
 /* Navigation
 ----------------------------------------------------- */
 #navigation, #subnavigation {

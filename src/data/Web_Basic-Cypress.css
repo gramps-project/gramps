@@ -45,16 +45,17 @@ white                   #FFF
 
 # $Id$
 
- General Elements
+ NarrativeWeb Styles
+--------------------------------------------------------------------------------------------  */
+body#NarrativeWeb {
+    font-family: sans-serif;
+    color: #000;
+    background-color: #FFF;
+}
+
+/* General Elements
 ----------------------------------------------------- */
 
-body {
-    font-family:sans-serif;
-    color:#000;
-    margin:0;
-    padding:0;
-    background-color:#FFF;
-}
 div {
     margin:0;
     padding:0;
@@ -156,13 +157,14 @@ a:visited {
 /* Header
 ----------------------------------------------------- */
 #header {
-    padding:15px 15px 2px 15px;
-    margin:0;
     background-color:#454;
 }
 #SiteTitle {
+    margin:0;
+    padding:.5em 0 0.5em 10px;
+    font-size: 40px;
     color:#E0E6E0;
-    margin:0 0 3px 0;
+    font-style: italic;
 }
 #header p {
     font-size:1em;
@@ -171,41 +173,60 @@ a:visited {
     margin:0;
 }
 
-/* Alphabet Navigation
+/* Footer
+----------------------------------------------------- */
+#footer {
+    width:100%;
+    font-size:12px;
+    color:#E0E6E0;
+    background-color:#454;
+    border-top:solid 1px #454;
+}
+#footer a, #footer a:visited {
+    text-decoration:none;
+    color:#E0E6E0;
+}
+#footer a:hover {
+    text-decoration:underline;
+    background:none;
+}
+#footer img {
+    border:0;
+    margin:0 auto;
+    vertical-align:middle;
+}
+#footer p#createdate {
+    float:left;
+    width:40%;
+    text-align:left;
+    margin-left:10px;
+}
+#footer p#copyright {
+    float:right;
+    width:40%;
+    text-align:right;
+    margin-right:10px;
+}
+#footer p#copyright img {
+    margin-right:10px;
+}
+#user_footer {
+    width:70%;
+    float:left;
+    margin:1em;
+}
+#user_footer p {
+    font:normal 1em/1.2em serif;
+    margin:0;
+    padding:0;
+}
+
+/* Alphabet Navigation Bar
 ----------------------------------------------------- */
 #alphabet {
-    padding:0;
-    margin:0;
-}
-#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding:0 0 0 9px;
-    border-top:solid 2px #000;
-    border-bottom:solid 4px #000;
-    background-color:#454;
-}
-#alphabet ul li.letters {
-    margin:0;
-    float:left;
-}
-.letters:after {
-    content:" |";
-}
-#alphabet ul li.letters a {
-    display:block;
-    float:left;
-    font:bold 16px/100% sans;
-    color:#000;
-    margin:0;
-    padding:5px 5px;
-    text-decoration:none;
-}
-#alphabet ul li.letters a:hover {
-    background-color:#000;
-    color:#FFF;
+    position: fixed;
+    top: 122px;
+    background-color: #454;
 }
 
 /* Navigation
@@ -214,6 +235,11 @@ a:visited {
     margin:0;
     padding:4px 0 0 0;
     background-color:#454;
+}
+body#NarrativeWeb #navigation {
+    position: fixed;
+    top: 90px;
+    left: 0px;
 }
 #navigation ul {
     list-style:none;
@@ -1028,58 +1054,6 @@ div#sourcerefs ol li ol {
     margin:0 0 0 14px;
     padding:0;
     background-color:#E0E6E0;
-}
-
-/* Footer
------------------------------------------------------ */
-#footer {
-    clear:both;
-    width:100%;
-    font-size:12px;
-    line-height:130%;
-    color:#E0E6E0;
-    margin:0;
-    padding:0;
-    background-color:#454;
-    border-top:solid 1px #454;
-}
-#footer a, #footer a:visited {
-    text-decoration:none;
-    color:#E0E6E0;
-}
-#footer a:hover {
-    text-decoration:underline;
-    background:none;
-}
-#footer img {
-    border:0;
-    margin:0 auto;
-    vertical-align:middle;
-}
-#footer p#createdate {
-    float:left;
-    width:40%;
-    text-align:left;
-    margin-left:10px;
-}
-#footer p#copyright {
-    float:right;
-    width:40%;
-    text-align:right;
-    margin-right:10px;
-}
-#footer p#copyright img {
-    margin-right:10px;
-}
-#user_footer {
-    width:70%;
-    float:left;
-    margin:1em;
-}
-#user_footer p {
-    font:normal 1em/1.2em serif;
-    margin:0;
-    padding:0;
 }
 
 /* Calendar Styles
