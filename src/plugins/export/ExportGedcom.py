@@ -1239,27 +1239,18 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         +1 <<SOURCE_CITATION>> {0:M} 
         +1 <<NOTE_STRUCTURE>> {0:M} 
         """
+        gedcom_name = name.get_gedcom_name()
+
         firstname = name.get_first_name().strip()
         patron = name.get_patronymic().strip()
         if patron:
             firstname = "%s %s" % (firstname, patron)
-
         surname = name.get_surname().replace('/', '?')
         surprefix = name.get_surname_prefix().replace('/', '?')
         suffix = name.get_suffix()
         title = name.get_title()
-        if suffix == "":
-            if surprefix == "":
-                self.__writeln(1, 'NAME', '%s /%s/' % (firstname, surname))
-            else:
-                self.__writeln(1, 'NAME', '%s /%s %s/' % 
-                               (firstname, surprefix, surname))
-        elif surprefix == "":
-            self.__writeln(1, 'NAME', '%s /%s/ %s' % 
-                           (firstname, surname, suffix))
-        else:
-            self.__writeln(1, 'NAME', '%s /%s %s/ %s' % 
-                           (firstname, surprefix, surname, suffix))
+
+        self.__writeln(1, 'NAME', gedcom_name)
 
         if firstname:
             self.__writeln(2, 'GIVN', firstname)

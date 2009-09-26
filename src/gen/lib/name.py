@@ -397,3 +397,43 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
                                          self.suffix)
             else:
                 return "%s %s, %s" % (first, self.surname, self.suffix)
+
+    def get_gedcom_parts(self):
+        """
+        Returns a GEDCOM-formatted name dictionary.
+        """
+        retval = {}
+        retval['given'] = self.first_name.strip()
+        retval['patronymic'] = self.patronymic.strip()
+        if retval['patronymic']:
+            retval['given'] = "%s %s" % (retval['given'], 
+                                         retval['patronymic'])
+        retval['surname'] = self.surname.replace('/', '?')
+        retval['prefix'] = self.prefix.replace('/', '?')
+        retval['suffix'] = self.suffix
+        retval['title'] = self.title
+        return retval
+
+    def get_gedcom_name(self):
+        """
+        Returns a GEDCOM-formatted name.
+        """
+        firstname = self.first_name.strip()
+        patron = self.patronymic.strip()
+        if patron:
+            firstname = "%s %s" % (firstname, patron)
+        surname = self.surname.replace('/', '?')
+        surprefix = self.prefix.replace('/', '?')
+        suffix = self.suffix
+        title = self.title
+        if suffix == "":
+            if surprefix == "":
+                return '%s /%s/' % (firstname, surname)
+            else:
+                return '%s /%s %s/' % (firstname, surprefix, surname)
+        elif surprefix == "":
+            return '%s /%s/ %s' % (firstname, surname, suffix)
+        else:
+            return '%s /%s %s/ %s' % (firstname, surprefix, surname, suffix)
+    
+    
