@@ -272,7 +272,9 @@ class Html(list):
         For full usage of the Html class with examples, please see the wiki
         page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
         """
-        super(Html, self).__init__([])                  # instantiate object
+        # Replace super(Html, self) with list
+        # Issue with Python 2.6 and reload of plugin
+        list.__init__(self, [])                  # instantiate object
         attr = ''
         self.indent, self.close, self.inline = True, True, False
 #
