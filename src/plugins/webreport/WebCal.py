@@ -685,7 +685,7 @@ class WebCalReport(Report):
         thead += trow    
 
         # Calendar weekday names header
-        trow = Html("trow")
+        trow = Html("tr")
         thead += trow
   
         for day_col in range(7):
