@@ -4913,9 +4913,6 @@ class NavWebReport(Report):
 
         IndividualListPage(self, self.title, ind_list)
 
-        if self.inc_gendex:
-            fp_gendex = self.create_file("gendex", ext=".txt")
-
         for person_handle in ind_list:
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
@@ -4926,11 +4923,14 @@ class NavWebReport(Report):
             IndividualPage(self, self.title, person, ind_list, place_list, source_list,
                 attribute_list)
 
-            if self.inc_gendex:
-                self.write_gendex(fp_gendex, person)
-
         if self.inc_gendex:
-            fp_gendex.close()
+            self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))
+            fp_gendex = self.create_file("gendex", ext=".txt")
+            for person_handle in ind_list:
+                self.progress.step()
+                person = self.database.get_person_from_handle(person_handle)
+                self.write_gendex(fp_gendex, person)
+            self.close_file(fp_gendex)
 
     def write_gendex(self, fp, person):
         """
