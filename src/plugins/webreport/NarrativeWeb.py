@@ -70,7 +70,6 @@ try:
 except ImportError:
     pyexiftaglib = False
 
-from gen.lib.repotype import RepositoryType
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -84,8 +83,11 @@ log = logging.getLogger(".WebPage")
 # GRAMPS module
 #
 #------------------------------------------------------------------------
+import gen.lib
+from gen.lib.repotype import RepositoryType
 from gen.lib import UrlType, EventType, Person, date, Date, ChildRefType, \
                     FamilyRelType, NameType, Name
+from gen.lib.date import make_gedcom_date
 import const
 import Sort
 from gen.plug import PluginManager
@@ -219,6 +221,55 @@ def conf_priv(obj):
         return ' priv="%d"' % obj.get_privacy()
     else:
         return ''
+
+def get_gendex_data(database, event_ref):
+    """
+    Given an event, return the date and place a strings
+    """
+    doe = "" # date of event
+    poe = "" # place of event
+    if event_ref:
+        event = database.get_event_from_handle(event_ref.ref)
+        if event:
+            date = event.get_date_object()
+            doe = format_date(date)
+            if event.get_place_handle():
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    place = database.get_place_from_handle(place_handle)
+                    if place:
+                        location = place.get_main_location()
+                        if location and not location.is_empty():
+                            if location.get_city().strip():
+                                poe = location.get_city().strip()
+                            if location.get_state().strip():
+                                if poe: poe += ", "
+                                poe += location.get_state().strip()
+                            if location.get_country().strip():
+                                if poe: poe += ", "
+                                poe += location.get_country().strip()
+    return doe, poe
+
+def format_date(date):
+    start = date.get_start_date()
+    if start != gen.lib.Date.EMPTY:
+        cal = date.get_calendar()
+        mod = date.get_modifier()
+        quality = date.get_quality()
+        if mod == gen.lib.Date.MOD_SPAN:
+            val = "FROM %s TO %s" % (
+                make_gedcom_date(start, cal, mod, quality), 
+                make_gedcom_date(date.get_stop_date(), cal, mod, quality))
+        elif mod == gen.lib.Date.MOD_RANGE:
+            val = "BET %s AND %s" % (
+                make_gedcom_date(start, cal, mod, quality), 
+                make_gedcom_date(date.get_stop_date(), cal, mod, quality))
+        else:
+            val = make_gedcom_date(start, cal, mod, quality)
+        return val
+    return ""
+
+
 
 class BasePage(object):
     """
@@ -1507,14 +1558,7 @@ class IndividualListPage(BasePage):
             person_handle_list = sort_people(db, person_handle_list)
             for (surname, handle_list) in person_handle_list:
                 first = True
-                if surname:
-                    letter = normalize('NFKC', surname)[0].upper()
-                else:
-                    letter = u' '
-                # See : http://www.gramps-project.org/bugs/view.php?id=2933
-                (lang_country, modifier ) = locale.getlocale()
-                if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
-                    letter = u'V,W'
+                letter = first_letter(surname)
                 for person_handle in handle_list:
                     person = db.get_person_from_handle(person_handle)
 
@@ -1845,11 +1889,7 @@ class PlaceListPage(BasePage):
                     if not place_title:
                         continue
 
-                    letter = normalize('NFKC', place_title)[0].upper()
-                    # See : http://www.gramps-project.org/bugs/view.php?id=2933
-                    (lang_country, modifier ) = locale.getlocale()
-                    if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
-                        letter = u'V,W'
+                    letter = first_letter(place_title)
 
                     trow = Html("tr")
                     tbody += trow
@@ -2651,16 +2691,7 @@ class SurnameListPage(BasePage):
                         if len(surname) == 0:
                             continue
 
-                        # Get a capital normalized version of the first letter of
-                        # the surname
-                        if surname:
-                            letter = normalize('NFKC', surname)[0].upper()
-                        else:
-                            letter = u' '
-                        # See : http://www.gramps-project.org/bugs/view.php?id=2933
-                        (lang_country, modifier ) = locale.getlocale()
-                        if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
-                            letter = u'V,W'
+                        letter = first_letter(surname)
 
                         trow = Html("tr")
                         tbody += trow
@@ -4558,6 +4589,9 @@ class NavWebReport(Report):
         # include repository page or not?
         self.inc_repository = self.options['inc_repository']
 
+        # include GENDEX page or not?
+        self.inc_gendex = self.options['inc_gendex']
+
         # Download Options Tab
         self.inc_download = self.options['incdownload']
         self.downloadnote = self.options['downloadnote']
@@ -4879,6 +4913,9 @@ class NavWebReport(Report):
 
         IndividualListPage(self, self.title, ind_list)
 
+        if self.inc_gendex:
+            fp_gendex = self.create_file("gendex", ext=".txt")
+
         for person_handle in ind_list:
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
@@ -4888,6 +4925,34 @@ class NavWebReport(Report):
 
             IndividualPage(self, self.title, person, ind_list, place_list, source_list,
                 attribute_list)
+
+            if self.inc_gendex:
+                self.write_gendex(fp_gendex, person)
+
+        if self.inc_gendex:
+            fp_gendex.close()
+
+    def write_gendex(self, fp, person):
+        """
+        Reference|SURNAME|given name /SURNAME/|date of birth|place of birth|date of death|
+            place of death|
+        * field 1: file name of web page referring to the individual
+        * field 2: surname of the individual
+        * field 3: full name of the individual
+        * field 4: date of birth or christening (optional)
+        * field 5: place of birth or christening (optional)
+        * field 6: date of death or burial (optional)
+        * field 7: place of death or burial (optional) 
+        """
+        url = self.build_url_fname_html(person.handle, 'ppl')
+        surname = person.get_primary_name().get_surname()
+        fullname = person.get_primary_name().get_gedcom_name()
+        # get birth info:
+        dob, pob = get_gendex_data(self.database, person.get_birth_ref())
+        # get death info:
+        dod, pod = get_gendex_data(self.database, person.get_death_ref())
+        fp.write("%s|%s|%s|%s|%s|%s|%s|\n" % 
+                 (url, surname, fullname, dob, pob, dod, pod))
 
     def surname_pages(self, ind_list):
         """
@@ -5106,12 +5171,14 @@ class NavWebReport(Report):
         subdirs = self.build_subdirs(subdir, fname, up)
         return '/'.join(subdirs + [fname])
 
-    def create_file(self, fname, subdir=None):
+    def create_file(self, fname, subdir=None, ext=None):
+        if ext is None:
+            ext = self.ext
         if subdir:
             subdir = self.build_path(subdir, fname)
-            self.cur_fname = os.path.join(subdir, fname) + self.ext
+            self.cur_fname = os.path.join(subdir, fname) + ext
         else:
-            self.cur_fname = fname + self.ext
+            self.cur_fname = fname + ext
         if self.archive:
             self.string_io = StringIO()
             of = codecs.EncodedFile(self.string_io, 'utf-8',
@@ -5495,6 +5562,10 @@ class NavWebOptions(MenuReportOptions):
         inc_repository.set_help(_('Whether to include the Repository Pages or not?'))
         menu.add_option(category_name, 'inc_repository', inc_repository)
 
+        inc_gendex = BooleanOption(_('Include GENDEX file (/gendex.txt)'), False)
+        inc_gendex.set_help(_('Whether to include a GENDEX file or not'))
+        menu.add_option(category_name, 'inc_gendex', inc_gendex)
+
     def __archive_changed(self):
         """
         Update the change of storage: archive or directory
@@ -5632,6 +5703,17 @@ def get_place_keyname(db, handle):
 
     return ReportUtils.place_name(db, handle)  
 
+def first_letter(string):
+    if string:
+        letter = normalize('NFKC', unicode(string))[0].upper()
+    else:
+        letter = u' '
+    # See : http://www.gramps-project.org/bugs/view.php?id=2933
+    (lang_country, modifier ) = locale.getlocale()
+    if lang_country == "sv_SE" and (letter == u'W' or letter == u'V'):
+        letter = u'V,W'
+    return letter
+
 def get_first_letters(db, handle_list, key):
     """ key is _PLACE or _PERSON ...."""
  
@@ -5642,15 +5724,7 @@ def get_first_letters(db, handle_list, key):
             keyname = get_person_keyname(db, handle)
         else:
             keyname = get_place_keyname(db, handle) 
-
-        if keyname:
-            c = normalize('NFKC', keyname)[0].upper()
-            # See : http://www.gramps-project.org/bugs/view.php?id=2933
-            (lang_country, modifier ) = locale.getlocale()
-            if lang_country == "sv_SE" and ( c == u'W' or c == u'V' ):
-                first_letters.append(u'V')
-            else:
-                first_letters.append(c)
+        first_letters.append(first_letter(keyname))
 
     return first_letters
 
