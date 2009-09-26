@@ -4448,7 +4448,7 @@ class RepositoryListPage(BasePage):
                     tbody += trow
 
                     # index number -- lower roman numerals
-                    tcell = Html("td", index + 1class_ = "ColumnRowLabel", 
+                    tcell = Html("td", index + 1, class_ = "ColumnRowLabel", 
                         inline = True)
                     trow += tcell
 
@@ -5756,18 +5756,6 @@ def get_first_letters(db, handle_list, key):
 
     return first_letters
 
-def _has_webpage_extension(url):
-    """
-    determine if a filename has an extension or not...
-
-    url = filename to be checked
-    """
-
-    for ext in _WEB_EXT:
-        if url.endswith(ext):
-            return True
-    return False
-
 def alphabet_navigation(db, handle_list, key):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
@@ -5807,42 +5795,49 @@ def alphabet_navigation(db, handle_list, key):
         return None
 
     # begin alphabet division
-    with Html("div", id='alphabet') as section:
+    with Html("div", id="alphabet") as alphabet_nav:
 
         num_ltrs = len(sorted_alpha_index)
-        nrows = (num_ltrs / 35) + 1
+        nrows = ((num_ltrs / 34) + 1)
         index = 0
 
-        first_letter = True
         for rows in xrange(nrows):
-            unordered = Html('ul') 
-            section += unordered
+            unordered = Html("ul") 
+            alphabet_nav += unordered
 
             cols = 0
-            while (cols <= 35 and index < num_ltrs):
+            while (cols <= 34 and index < num_ltrs):
                 list = Html("li", inline = True)
                 unordered += list
 
-                if first_letter:
-                    list.attr = 'class = "CurrentSection" '
-
                 ltr = sorted_alpha_index[index]
-                title_str = _('Surnames')  if key == 0 else _('Places')
+                title_str = _("Surnames")  if key == 0 else _("Places")
                 if lang_country == "sv_SE" and ltr == u'V':
-                    title_str += _(' starting with %s') % "V,W" 
-                    hyper = Html('a', "V,W", href="#V,W")
+                    title_str += _(" starting with %s") % "V,W" 
+                    hyper = Html("a", "V,W", href="#V,W")
                 else:
-                    title_str += _(' starting with %s') % ltr 
-                    hyper = Html('a', ltr, href='#%s' % ltr)
-                hyper.attr += "title = %s" % title_str  
+                    title_str += _(" starting with %s") % ltr 
+                    hyper = Html("a", ltr, href="#%s" % ltr)
+                hyper.attr += " title = %s" % title_str  
                 list += hyper
 
-                first_letter = False
                 cols += 1
                 index += 1
 
     # return alphabet navigation to its callers
-    return section
+    return alphabet_nav
+
+def _has_webpage_extension(url):
+    """
+    determine if a filename has an extension or not...
+
+    url = filename to be checked
+    """
+
+    for ext in _WEB_EXT:
+        if url.endswith(ext):
+            return True
+    return False
 
 def add_birthdate(db, childlist):
     """
