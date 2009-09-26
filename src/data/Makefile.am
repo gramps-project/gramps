@@ -12,6 +12,7 @@ dist_pkgdata_DATA = \
 	tips.xml\
 	lds.xml\
 	behaviour.css\
+	GeoView.css \
 	Web_Basic-Ash.css\
 	Web_Basic-Cypress.css\
 	Web_Basic-Lilac.css\
