@@ -13,6 +13,8 @@ dist_pkgdata_DATA = \
 	lds.xml\
 	behaviour.css\
 	GeoView.css \
+	Web_Alphabet-Vertical.css \
+	Web_Alphabet-Horizontal.css \
 	Web_Basic-Ash.css\
 	Web_Basic-Cypress.css\
 	Web_Basic-Lilac.css\

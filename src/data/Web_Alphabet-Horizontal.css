@@ -1,0 +1,92 @@
+﻿
+/*
+ **************************************************************************************************
+Copyright Holder and License
+**************************************************************************************************
+GRAMPS Cascading Style Sheet
+Style Name: Web_Alphabet-Horizontal.css
+**************************************************************************************************
+This website was created with GRAMPS
+http://www.gramps-project.org
+--------------------------------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+
+Go to http://gramps-project.org to learn more!
+
+--------------------------------------------------------------------------------------------------
+Copyright 2009 Rob G. Healey <robhealey1@gmail.com>
+
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with GRAMPS. If not,
+see <http://www.gnu.org/licenses/>.
+--------------------------------------------------------------------------------------------------
+# $Id: $
+
+----------------------------------------------------------------------------------------------- */
+
+/* Header
+----------------------------------------------------- */
+#header  {
+    margin:0;
+    height:1.5cm;
+    padding:0 0 .9em 0;
+}
+
+/* Footer
+----------------------------------------------------- */
+#footer {
+    clear:both;
+    height:1.5cm;
+    width:100%;
+    font-size:12px;
+    line-height:130%;
+    font-family:sans-serif;
+    margin:0;
+    padding:0;
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    padding:0;
+    margin:0;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding:0 0 0 9px;
+    border-top:solid 2px #000;
+    border-bottom:solid 4px #000;
+    background-color:#6AF364;
+}
+div#alphabet ul li:after {
+    content:"  |";
+}
+div#alphabet ul li.letters {
+    margin:0;
+    float:left;
+}
+div#alphabet ul li.letters a {
+    display:block;
+    float:left;
+    font:bold 16px/100% sans;
+    color:#000;
+    margin:0;
+    padding:5px 5px;
+    text-decoration:none;
+}
+div#alphabet ul li.letters a:hover {
+    background-color:#000;
+    color:#FFF;
+}
