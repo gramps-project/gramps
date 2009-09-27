@@ -148,7 +148,7 @@ p {
     margin:0;
 }
 p#description {
-    padding:0 15px 1em 15px;
+    padding:10px 15px 10px 15px;
 }
 p a:link {
     text-decoration:underline;
