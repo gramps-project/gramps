@@ -326,19 +326,11 @@ class RecordsGramplet(Gramplet):
         self.set_tooltip(_("Double-click name for details"))
         self.set_text(_("No Family Tree loaded."))
 
-
     def db_changed(self):
-        self.update()
-        #self.dbstate.db.connect('person-add', self.update)
-        #self.dbstate.db.connect('person-delete', self.update)
-        #self.dbstate.db.connect('person-update', self.update)
-        #self.dbstate.db.connect('family-add', self.update)
-        #self.dbstate.db.connect('family-delete', self.update)
-        #self.dbstate.db.connect('family-update', self.update)
-
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def main(self):
-
         self.set_text(_("Processing...") + "\n")
         yield True
         records = _find_records(self.dbstate.db, None,
