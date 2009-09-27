@@ -829,14 +829,7 @@ class IndividualListPage(BasePage):
 
         for (surname, handle_list) in person_handle_list:
             first = True
-            if surname:
-                letter = normalize('NFKC', surname)[0].upper()
-            else:
-                letter = u' '
-            # See : http://www.gramps-project.org/bugs/view.php?id=2933
-            (lang_country, modifier ) = locale.getlocale()
-            if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
-                letter = u'V,W'
+            letter = first_letter(surname)
             for person_handle in handle_list:
                 person = db.get_person_from_handle(person_handle)
 
@@ -1110,11 +1103,7 @@ class PlaceListPage(BasePage):
             if not place_title:
                 continue
 
-            letter = normalize('NFKC', place_title)[0].upper()
-            # See : http://www.gramps-project.org/bugs/view.php?id=2933
-            (lang_country, modifier ) = locale.getlocale()
-            if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
-                letter = u'V,W'
+            letter = first_letter(place_title)
 
             if letter != last_letter:
                 last_letter = letter
@@ -1556,16 +1545,7 @@ class SurnameListPage(BasePage):
             if len(surname) == 0:
                 continue
 
-            # Get a capital normalized version of the first letter of
-            # the surname
-            if surname:
-                letter = normalize('NFKC', surname)[0].upper()
-            else:
-                letter = u' '
-            # See : http://www.gramps-project.org/bugs/view.php?id=2933
-            (lang_country, modifier ) = locale.getlocale()
-            if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
-                letter = u'V,W'
+            letter = first_letter(surname)
 
             if letter != last_letter:
                 last_letter = letter
@@ -3641,6 +3621,17 @@ def get_place_keyname(db, handle):
 
     return ReportUtils.place_name(db, handle)  
 
+def first_letter(string):
+    if string:
+        letter = normalize('NFKC', unicode(string))[0].upper()
+    else:
+        letter = u' '
+    # See : http://www.gramps-project.org/bugs/view.php?id=2933
+    (lang_country, modifier ) = locale.getlocale()
+    if lang_country == "sv_SE" and (letter == u'W' or letter == u'V'):
+        letter = u'V,W'
+    return letter
+
 def get_first_letters(db, handle_list, key):
     """ key is _PLACE or _PERSON ...."""
  
@@ -3651,15 +3642,7 @@ def get_first_letters(db, handle_list, key):
             keyname = get_person_keyname(db, handle)
         else:
             keyname = get_place_keyname(db, handle) 
-
-        if keyname:
-            c = normalize('NFKC', keyname)[0].upper()
-            # See : http://www.gramps-project.org/bugs/view.php?id=2933
-            (lang_country, modifier ) = locale.getlocale()
-            if lang_country == "sv_SE" and ( c == u'W' or c == u'V' ):
-                first_letters.append(u'V')
-            else:
-                first_letters.append(c)
+        first_letters.append(first_letter(keyname))
 
     return first_letters
 
