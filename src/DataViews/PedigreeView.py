@@ -747,7 +747,8 @@ class PedigreeView(PageView.PersonNavView):
                     ((8,26,3,1),None,None),
                     ((8,28,3,1),None,None),
                     ((8,30,3,1),None,None),)
-        elif self.tree_style == 0:
+        else:
+        #elif self.tree_style == 0:
             pos_2 =(((0,0,1,3),(1,0,3),(2,1,1,1)),
                     ((2,0,1,1),None,None),
                     ((2,2,1,1),None,None))
