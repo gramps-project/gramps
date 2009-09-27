@@ -39,6 +39,7 @@ import os
 import urlparse
 import const
 import operator
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -1002,6 +1003,16 @@ class GeoView(HtmlView):
         if h4mess:
             self.mapview.write("<H4>%s</H4>" % h4mess)
         margin = 10
+        self.mapview.write("\n<div id=\"GOverviewMapControl_Helper\"")
+        self.mapview.write(" style=\"width: %dpx\"\n" % (self.width - margin*4))
+        self.mapview.write("    comment=\"just a work around a GOverview"
+                           "MapControl() behaviour:\n")
+        self.mapview.write("         some time the first non-class object will "
+                           "be used to find the width")
+        self.mapview.write("         because GOverviewMapControl() wants to be "
+                           "most rigth the map jumps")
+        self.mapview.write("         to the left (outside)\"")
+        self.mapview.write("></div>\n")
         self.mapview.write("\n<div id=\"openstreetmap\" class=\"Mapstraction\"")
         self.mapview.write(" style=\"width: %dpx; " % (self.width - margin*4))
         self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74))
@@ -1110,7 +1121,9 @@ class GeoView(HtmlView):
         self.mapview.write("</script>\n")
         self.mapview.write("<script id=\"googleapiimport\" \n")
         self.mapview.write("        src=\"http://maps.google.com/")
-        self.mapview.write("maps?file=api&v=2\"\n")
+        (lang_country, modifier ) = locale.getlocale()
+        lang = lang_country.split('_')[0]
+        self.mapview.write("maps?file=api&v=2&hl=%s\"\n" % lang )
         self.mapview.write("        type=\"text/javascript\">\n")
         self.mapview.write("</script>\n")
         if self.usedmap == "microsoft":
