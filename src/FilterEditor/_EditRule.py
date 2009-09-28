@@ -392,7 +392,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.define_glade('rule_editor', const.RULE_GLADE)
         
         self.set_window(self.get_widget('rule_editor'),
-                        self.get_widget('title'),label)
+                        self.get_widget('rule_editor_title'),label)
         self.window.hide()
         self.valuebox = self.get_widget('valuebox')
         self.rname = self.get_widget('ruletree')
@@ -559,9 +559,9 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.selection.connect('changed', self.on_node_selected)
         self.rname.connect('button-press-event', self._button_press)
         self.rname.connect('key-press-event', self._key_press)
-        self.get_widget('ok').connect('clicked', self.rule_ok)
-        self.get_widget('cancel').connect('clicked', self.close_window)
-        self.get_widget('help').connect('clicked', self.on_help_clicked)
+        self.get_widget('rule_editor_ok').connect('clicked', self.rule_ok)
+        self.get_widget('rule_editor_cancel').connect('clicked', self.close_window)
+        self.get_widget('rule_editor_help').connect('clicked', self.on_help_clicked)
 
         self.show()
 

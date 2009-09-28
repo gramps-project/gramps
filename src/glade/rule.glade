@@ -33,7 +33,7 @@
           <object class="GtkVBox" id="vbox1">
             <property name="visible">True</property>
             <child>
-              <object class="GtkLabel" id="title">
+              <object class="GtkLabel" id="definition_title">
                 <property name="visible">True</property>
                 <property name="ypad">6</property>
                 <property name="justify">center</property>
@@ -57,7 +57,7 @@
                     <property name="visible">True</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkButton" id="add">
+                      <object class="GtkButton" id="definition_add">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="can_default">True</property>
@@ -79,7 +79,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="edit">
+                      <object class="GtkButton" id="definition_edit">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -102,7 +102,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="delete">
+                      <object class="GtkButton" id="definition_delete">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -340,7 +340,7 @@
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="cancel">
+              <object class="GtkButton" id="definition_cancel">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -356,7 +356,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="ok">
+              <object class="GtkButton" id="definition_ok">
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
@@ -373,7 +373,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="help">
+              <object class="GtkButton" id="definition_help">
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -398,9 +398,9 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">cancel</action-widget>
-      <action-widget response="0">ok</action-widget>
-      <action-widget response="-11">help</action-widget>
+      <action-widget response="0">definition_cancel</action-widget>
+      <action-widget response="0">definition_ok</action-widget>
+      <action-widget response="-11">definition_help</action-widget>
     </action-widgets>
   </object>
   <object class="GtkDialog" id="filter_list">
@@ -418,7 +418,7 @@
           <object class="GtkVBox" id="vbox3">
             <property name="visible">True</property>
             <child>
-              <object class="GtkLabel" id="title">
+              <object class="GtkLabel" id="filter_list_title">
                 <property name="visible">True</property>
                 <property name="justify">center</property>
               </object>
@@ -457,7 +457,7 @@
                     <property name="visible">True</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkButton" id="add">
+                      <object class="GtkButton" id="filter_list_add">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="can_default">True</property>
@@ -479,7 +479,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="edit">
+                      <object class="GtkButton" id="filter_list_edit">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -502,7 +502,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="clone">
+                      <object class="GtkButton" id="filter_list_clone">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -525,7 +525,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="test">
+                      <object class="GtkButton" id="filter_list_test">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -546,7 +546,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="delete">
+                      <object class="GtkButton" id="filter_list_delete">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -606,7 +606,7 @@
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="close">
+              <object class="GtkButton" id="filter_list_close">
                 <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -622,7 +622,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="help">
+              <object class="GtkButton" id="filter_list_help">
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -647,8 +647,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-7">close</action-widget>
-      <action-widget response="-11">help</action-widget>
+      <action-widget response="-7">filter_list_close</action-widget>
+      <action-widget response="-11">filter_list_help</action-widget>
     </action-widgets>
   </object>
   <object class="GtkDialog" id="test">
@@ -663,7 +663,7 @@
         <property name="visible">True</property>
         <property name="spacing">8</property>
         <child>
-          <object class="GtkLabel" id="title">
+          <object class="GtkLabel" id="test_title">
             <property name="visible">True</property>
             <property name="ypad">6</property>
           </object>
@@ -696,7 +696,7 @@
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="close">
+              <object class="GtkButton" id="test_close">
                 <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -721,7 +721,7 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">close</action-widget>
+      <action-widget response="0">test_close</action-widget>
     </action-widgets>
   </object>
   <object class="GtkDialog" id="rule_editor">
@@ -738,7 +738,7 @@
             <property name="visible">True</property>
             <property name="border_width">6</property>
             <child>
-              <object class="GtkLabel" id="title">
+              <object class="GtkLabel" id="rule_editor_title">
                 <property name="visible">True</property>
                 <property name="use_markup">True</property>
               </object>
@@ -870,7 +870,7 @@
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="cancel">
+              <object class="GtkButton" id="rule_editor_cancel">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -886,7 +886,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="ok">
+              <object class="GtkButton" id="rule_editor_ok">
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -902,7 +902,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="help">
+              <object class="GtkButton" id="rule_editor_help">
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -927,9 +927,9 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-6">cancel</action-widget>
-      <action-widget response="-5">ok</action-widget>
-      <action-widget response="-11">help</action-widget>
+      <action-widget response="-6">rule_editor_cancel</action-widget>
+      <action-widget response="-5">rule_editor_ok</action-widget>
+      <action-widget response="-11">rule_editor_help</action-widget>
     </action-widgets>
   </object>
 </interface>

@@ -83,10 +83,10 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
         self.define_glade('filter_list', const.RULE_GLADE)
         self.filter_list = self.get_widget('filters')
-        self.edit = self.get_widget('edit')
-        self.clone = self.get_widget('clone')
-        self.delete = self.get_widget('delete')
-        self.test = self.get_widget('test')
+        self.edit = self.get_widget('filter_list_edit')
+        self.clone = self.get_widget('filter_list_clone')
+        self.delete = self.get_widget('filter_list_delete')
+        self.test = self.get_widget('filter_list_test')
 
         self.edit.set_sensitive(False)
         self.clone.set_sensitive(False)
@@ -94,7 +94,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.test.set_sensitive(False)
 
         self.set_window(self.get_widget('filter_list'),
-                        self.get_widget('title'),
+                        self.get_widget('filter_list_title'),
                         _TITLES[self.namespace]) 
 
         self.edit.connect('clicked', self.edit_filter)
@@ -102,9 +102,9 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.test.connect('clicked', self.test_clicked)
         self.delete.connect('clicked', self.delete_filter)
 
-        self.connect_button('help', self.help_clicked)
-        self.connect_button('close', self.close)
-        self.connect_button('add', self.add_new_filter)
+        self.connect_button('filter_list_help', self.help_clicked)
+        self.connect_button('filter_list_close', self.close)
+        self.connect_button('filter_list_add', self.add_new_filter)
         
         self.uistate.connect('filter-name-changed', self.clean_after_rename)
 

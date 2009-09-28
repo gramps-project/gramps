@@ -80,7 +80,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         
         self.set_window(
             self.get_widget('define_filter'),
-            self.get_widget('title'),
+            self.get_widget('definition_title'),
             _('Define filter'))
         
         self.rlist = ListModel.ListModel(
@@ -93,19 +93,19 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.logical = self.get_widget('rule_apply')
         self.logical_not = self.get_widget('logical_not')
         self.comment = self.get_widget('comment')
-        self.ok_btn = self.get_widget('ok')
-        self.edit_btn = self.get_widget('edit')
-        self.del_btn = self.get_widget('delete')
-        self.add_btn = self.get_widget('add')
+        self.ok_btn = self.get_widget('definition_ok')
+        self.edit_btn = self.get_widget('definition_edit')
+        self.del_btn = self.get_widget('definition_delete')
+        self.add_btn = self.get_widget('definition_add')
 
         self.ok_btn.connect('clicked', self.on_ok_clicked)
         self.edit_btn.connect('clicked', self.on_edit_clicked)
         self.del_btn.connect('clicked', self.on_delete_clicked)
         self.add_btn.connect('clicked', self.on_add_clicked)
         
-        self.get_widget('help').connect('clicked',
+        self.get_widget('definition_help').connect('clicked',
                                         self.on_help_clicked)
-        self.get_widget('cancel').connect('clicked',
+        self.get_widget('definition_cancel').connect('clicked',
                                           self.close_window)
         self.fname.connect('changed', self.filter_name_changed)
 

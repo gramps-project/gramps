@@ -74,7 +74,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
         self.define_glade('test', const.RULE_GLADE,)
         self.set_window(
             self.get_widget('test'),
-            self.get_widget('title'),
+            self.get_widget('test_title'),
             _('Filter Test'))
 
         render = gtk.CellRendererText()
@@ -89,7 +89,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
         column_n = gtk.TreeViewColumn(_('ID'), render, text=1)
         tree.append_column(column_n)
 
-        self.get_widget('close').connect('clicked', self.close)
+        self.get_widget('test_close').connect('clicked', self.close)
 
         new_list = sorted(
                         (self.sort_val_from_handle(h) for h in handle_list),
