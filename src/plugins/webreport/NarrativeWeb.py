@@ -487,7 +487,8 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr, showsrc, shownote, subdirs, hyp)
+        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr, showsrc, 
+            shownote, subdirs, hyp)
 
         for (label, colclass, data) in event_data:
             data = data or "&nbsp;"
@@ -558,29 +559,25 @@ class BasePage(object):
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
         info = [
-            [THEAD,    'Type',     evt_hyper],
-            [DHEAD,    'Date',     _dd.display(evt.get_date_object() )] ]
+            [_("Event"), "Event",  evt_hyper],
+            [DHEAD, "Date",  _dd.display(evt.get_date_object() )] ]
 
         if showplc:
-            place_row = [PHEAD,    'Place',    place_hyper]
-            info.append(place_row)
+            info.append([PHEAD, "Place", place_hyper])
 
         if showdescr:
             descr = evt.get_description()
-            descr_row = [DESCRHEAD,    'Description',    descr]
-            info.append(descr_row)
+            info.append([DESCRHEAD, "Description", descr])
 
         if showsrc:
-            srcrefs = self.get_citation_links( evt.get_source_references() ) or "&nbsp;"
-            source_row = [SHEAD, 'Sources',    srcrefs]
-            info.append(source_row)
+            srcrefs = self.get_citation_links(evt.get_source_references() )
+            info.append([SHEAD, "Sources", srcrefs])
 
         if shownote:
             notelist = evt.get_note_list()
             notelist.extend(evt_ref.get_note_list() )
             notelist = self.dump_notes(notelist)
-            note_row = [NHEAD,    'Notes',    notelist]
-            info.append(note_row)
+            info.append([NHEAD, "Notes", notelist])
 
         # return event data information to its callers
         return info                        
@@ -1376,7 +1373,7 @@ class BasePage(object):
         """
 
         # the only place that this will ever equal False
-        # is first there is more than one event for a person for class EventListPage
+        # is first there is more than one event for a person
         if first:
 
             # see above for explanation
@@ -2039,11 +2036,9 @@ class EventListPage(BasePage):
                     "The person&#8217;s name will only be shown once for their events.")
             eventlist += Html("p", msg, id="description")
 
-            # begin event list table 
+            # begin event list table and table head
             with Html("table", class_ = "infolist eventlist") as table:
                 eventlist += table
-
-                # begin table head
                 thead = Html("thead")
                 table += thead
 
@@ -2052,10 +2047,11 @@ class EventListPage(BasePage):
                 thead += trow
 
                 for (label, colclass) in [
-                    [THEAD,        'Type'],
-                    [DHEAD,        'Date'], 
-                    [_('Person'),  'Person'],
-                    [_('Partner'), 'Partner'] ]:
+                    [_("Event"), "Event"],
+                    [DHEAD, "Date"], 
+                    [_("Person"), "Person"],
+                    [_("Partner"), "Partner"] ]:
+
                     trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
 
                 # begin table body
@@ -2069,9 +2065,9 @@ class EventListPage(BasePage):
                         partner) in event_list:
 
                         # write eent row data
-                        trow = self.write_event_row(person, partner, evt_type, evt, 
-                                                    evt_ref, first)
-                        tbody += trow
+                        tbody += self.write_event_row(person, partner, evt_type, evt, 
+                                                      evt_ref, first)
+
                         first = False
 
         # and clearline for proper styling
@@ -2102,6 +2098,9 @@ class EventListPage(BasePage):
 
         # begin table row 
         trow = Html("tr")
+
+        if first:
+            trow.attr = ' class = "BeginName" ' 
 
         # get event data
         """
@@ -2181,7 +2180,8 @@ class EventPage(BasePage):
                     data = event_data[index][2] or "&nbsp;" 
 
                     # determine if we are using the same row or not?
-                    samerow = True if (data == "&nbsp;" or colclass == "Date") else False
+                    samerow = True if (data == "&nbsp;" or (colclass == "Date" or "Event")) \
+                        else False
 
                     trow = Html("tr") + (
                         Html("td", label, class_ = "ColumnAttribute", inline = True),
@@ -4334,24 +4334,20 @@ class IndividualPage(BasePage):
         # position 0 = translatable label, position 1 = column class, and
         # position 2 = data
         event_header_row = [
-            (THEAD,    'Type'),
-            (DHEAD,    'Date') ]
+            (_("Event"), "Event"),
+            (DHEAD, "Date") ]
 
         if showplc:
-            place_row = (PHEAD,    'Place')
-            event_header_row.append(place_row)
+            event_header_row.append((PHEAD, "Place"))
 
         if showdescr:
-            descr_row = (DESCRHEAD,    'Description')
-            event_header_row.append(descr_row)
+            event_header_row.append((DESCRHEAD, "Description"))
 
         if showsrc:
-            source_row = (SHEAD,    'Sources')
-            event_header_row.append(source_row)
+            event_header_row.append((SHEAD, "Sources"))
 
         if shownote:
-            note_row = (NHEAD,    'Notes')
-            event_header_row.append(note_row)
+            event_header_row.append((NHEAD, "Notes"))
 
         trow = Html("tr")
         for (label, colclass) in event_header_row:
@@ -5721,12 +5717,12 @@ def _get_short_name(gender, name):
             short_name = short_name + ", " + suffix
     return short_name
 
-def get_person_keyname(db, handle):
+def __get_person_keyname(db, handle):
     """ .... """ 
     person = db.get_person_from_handle(handle)
-    return person.get_primary_name().surname
+    return person.get_primary_name().get_surname()
 
-def get_place_keyname(db, handle):
+def __get_place_keyname(db, handle):
     """ ... """
 
     return ReportUtils.place_name(db, handle)  
@@ -5749,10 +5745,13 @@ def get_first_letters(db, handle_list, key):
 
     for handle in handle_list:
         if key == _PERSON:
-            keyname = get_person_keyname(db, handle)
+            keyname = __get_person_keyname(db, handle)
         else:
-            keyname = get_place_keyname(db, handle) 
-        first_letters.append(first_letter(keyname))
+            keyname = __get_place_keyname(db, handle) 
+        ltr = first_letter(keyname)
+
+        if ltr is not ",":
+            first_letters.append(ltr)
 
     return first_letters
 
@@ -5780,6 +5779,7 @@ def alphabet_navigation(db, handle_list, key):
     # See : http://www.gramps-project.org/bugs/view.php?id=2933
     #
     (lang_country, modifier ) = locale.getlocale()
+
     for ltr in get_first_letters(db, handle_list, key):
         if ltr in sorted_set:
             sorted_set[ltr] += 1
@@ -5787,8 +5787,7 @@ def alphabet_navigation(db, handle_list, key):
             sorted_set[ltr] = 1
 
     # remove the number of each occurance of each letter
-    sorted_alpha_index = sorted((l for l in sorted_set if l != ','), 
-                                 key=locale.strxfrm)
+    sorted_alpha_index = sorted(sorted_set, key=locale.strxfrm)
 
     # if no letters, return None back to its callers
     if not sorted_alpha_index:
@@ -5798,10 +5797,10 @@ def alphabet_navigation(db, handle_list, key):
     with Html("div", id="alphabet") as alphabet_nav:
 
         num_ltrs = len(sorted_alpha_index)
-        nrows = ((num_ltrs / 34) + 1)
-        index = 0
+        nrows = ((num_ltrs // 34) + 1)
 
-        for rows in xrange(nrows):
+        index = 0
+        for row in xrange(nrows):
             unordered = Html("ul") 
             alphabet_nav += unordered
 

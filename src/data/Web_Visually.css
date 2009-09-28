@@ -304,7 +304,7 @@ body#WebCal div#navigation ul li a {
 }
 #navigation ul li a:hover, #subnavigation ul li a:hover {
     margin-top: -6px;
-    padding: 11px 11px 12px 10px;
+    padding: 11px 11px 12px 1px;
     background-color: #C1B398;
     color: #000;
 }
@@ -581,16 +581,16 @@ div#EventList, div#EventDetail { }
 div#events table.eventlist {
     margin-top: .3cm;
 }
-table.eventlist tbody tr {
+table.eventlist tbody tr.BeginName {
     border-bottom: solid 1px #5D835F;
 }
 table.eventlist tbody tr td {
     background-color: #D8F3D6;
     padding: 4px 0px 4px 0px;
+    border-bottom: dashed 1px #000;
 }
-table.eventlist tbody tr td.ColumnType {
+table.eventlist tbody tr td.ColumnEvent {
     background-color: #FFF;
-    border-top: solid 1px #5D835F;
     width: 20%;
 }
 table.eventlist tbody tr td.ColumnDate {
@@ -615,6 +615,12 @@ table.eventlist tbody tr td.ColumnPartner {
     background-color: #FFF;
     width: 35%;
 }
+div#EventList table.eventlist tbody tr td.ColumnEvent a,
+div#EventList table.eventlist tbody tr td.ColumnPerson a,
+div#EventList table.eventlist tbody tr td.ColumnPartner a {
+    display: block;
+    padding: .9em 10px;
+}
 div#EventDetail h3 {
     font-size: xxx-large;
 }
@@ -631,8 +637,9 @@ div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
     text-transform: uppercase;
     width: 20%;
 }
-div#EventDetail table.eventlist tbody tr td.ColumnType {
+div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     background-color: #D8F3D6;
+    border-top: solid 1px #5D835F;
 }
     
 /* Gallery
