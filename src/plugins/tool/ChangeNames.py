@@ -246,9 +246,6 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             change = False
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 sname = name.get_surname()
-                #if sname == 'ABERNETHY' or sname == 'ABERDY':
-                #    import pdb
-                #    pdb.set_trace()
                 if sname in changelist:
                     change = True
                     sname = self.name_cap(sname)
