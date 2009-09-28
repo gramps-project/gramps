@@ -233,22 +233,29 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def on_ok_clicked(self, obj):
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
-        changelist = [self.model.get_value(node,1)
+        changelist = set(self.model.get_value(node,1)
                       for node in self.iter_list
-                      if self.model.get_value(node,0)]
+                      if self.model.get_value(node,0))
+        print changelist
 
-        with self.db.get_person_cursor(update=True, commit=True) as cursor:
-          for handle, data in cursor:
-            person = Person(data)
+        #with self.db.get_person_cursor(update=True, commit=True) as cursor:
+        #  for handle, data in cursor:
+        for handle in self.db.get_person_handles(False):
+            person = self.db.get_person_from_handle(handle)
+            #person = Person(data)
             change = False
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 sname = name.get_surname()
+                #if sname == 'ABERNETHY' or sname == 'ABERDY':
+                #    import pdb
+                #    pdb.set_trace()
                 if sname in changelist:
                     change = True
                     sname = self.name_cap(sname)
                     name.set_surname(sname)
             if change:
-                cursor.update(handle, person.serialize())
+                #cursor.update(handle, person.serialize())
+                self.db.commit_person(person, transaction=self.trans)
 
         self.db.transaction_commit(self.trans,_("Capitalization changes"))
         self.db.enable_signals()
