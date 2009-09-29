@@ -23755,9 +23755,10 @@ msgstr "DEBUTDUTITRE"
 msgid "TITLE"
 msgstr "TITRE"
 
+# "/" perturbe le regex
 #: PlaceCompletion.py:909 PlaceCompletion.py:912 PlaceCompletion.py:1088
 msgid "STATE"
-msgstr "RÉGION/PROVINCE"
+msgstr "RÉGION OU PROVINCE"
 
 #: PlaceCompletion.py:913 PlaceCompletion.py:916 PlaceCompletion.py:1089
 msgid "PARISH"
