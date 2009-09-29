@@ -718,7 +718,7 @@ class CSVParser(object):
                 if wife:
                     if wife.get_handle() != fam_wife_handle:
                         # this wife is not the same old one! Add her!
-                        family.set_wife_handle(wife.get_handle())
+                        family.set_mother_handle(wife.get_handle())
                 if self.debug: print "   returning existing family"
                 return family
         # if not, create one:
