@@ -387,7 +387,7 @@ class BasePage(object):
         if htmlnotetext:
             text = htmlnotetext
         else:
-            text = Html('p', note_text) 
+            text = Html("p", note_text) 
 
         # return text of the note to its callers
         return text
@@ -421,7 +421,7 @@ class BasePage(object):
             #FIXME: following split should be regex to match \n\s*\n instead?
             htmllist += Html('pre', indent=None, inline = True)
             for line in markuptext.split('\n\n'):
-                htmllist += Html('p')
+                htmllist += Html("p")
                 for realline in line.split('\n'):
                     htmllist += realline
                     htmllist += Html('br')
@@ -430,7 +430,7 @@ class BasePage(object):
             #flowed
             #FIXME: following split should be regex to match \n\s*\n instead?
             for line in markuptext.split('\n\n'):
-                htmllist += Html('p')
+                htmllist += Html("p")
                 htmllist += line
 
         return htmllist
@@ -511,7 +511,7 @@ class BasePage(object):
         if self.inc_events:
             evt_hyper = Html('a', eventtype, href=url, title=eventtype)
             if not self.noid and gid:
-                evt_hyper += Html('span', ' [%s] ' % gid, class_ = "grampsid", 
+                evt_hyper += Html("span", " [%s] " % gid, class_ = "grampsid", 
                     inline = True)
 
             # return event hyper link to its callers
@@ -673,7 +673,7 @@ class BasePage(object):
         # begin hyperlink
         hyper = Html('a', html_escape(name), href=url, title=html_escape(name))
         if not self.noid and gid:
-            hyper += Html('span', '[%s]' % gid, class_ = "grampsid", inline = True)
+            hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
 
         # return hyperlink to its callers
         return hyper
@@ -905,7 +905,7 @@ class BasePage(object):
                                 home_person_url, home_person_name)
 
             # creation date
-            footer += Html('p', msg, id='createdate')
+            footer += Html("p", msg, id='createdate')
 
             # get copyright license for all pages
             copy_nr = self.report.copyright
@@ -922,7 +922,7 @@ class BasePage(object):
                 fname = "/".join(["images", "somerights20.gif"])
                 url = self.report.build_url_fname(fname, None, self.up)
                 text = _CC[copy_nr] % {'gif_fname' : url}
-            footer += Html('p', text, id='copyright')
+            footer += Html("p", text, id='copyright')
 
         # return footer to its callers
         return footer
@@ -1355,13 +1355,12 @@ class BasePage(object):
 
                 # Note. 'path' already has a filename extension
                 url = self.report.build_url_fname(path, None, self.up)
-                list += self.person_link(url, name, None, gid)
+                list += self.person_link(url, name, None, gid=gid)
 
         # return references division to its caller
         return section
 
-    def person_link(self, url, person, name_style, first=True, gid=None, 
-        thumbnailUrl=None):
+    def person_link(self, url, person, name_style, first=True, gid=None, thumbnailUrl=None):
         """
         creates a hyperlink for a person
 
@@ -1389,7 +1388,7 @@ class BasePage(object):
 
             # 2. insert thumbnail if there is one, otherwise insert class = "noThumb"
             if thumbnailUrl:
-                hyper += (Html('span', class_ = "thumbnail") +
+                hyper += (Html("span", class_ = "thumbnail") +
                           Html('img', src= thumbnailUrl, alt = "Image of " + person_name)
                         )
             else:
@@ -1400,7 +1399,7 @@ class BasePage(object):
 
             # 3. insert gramps id if requested and available
             if not self.noid and gid:
-                hyper += Html('span', " [%s]" % gid, class_ = "grampsid", inline = True)
+                hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
 
         else:
             hyper = "&nbsp;"
@@ -1418,7 +1417,7 @@ class BasePage(object):
             # begin hyperlink
             hyper = (Html('a', href=url, title=name) +
                      Html('img', src=img_url, alt=name) +
-                     (Html('p', inline = True) + 
+                     (Html("p", inline = True) + 
                           html_escape(name) if usedescr else '')
                     )
             # add hyperlink and description to thumbnail division
@@ -1439,7 +1438,7 @@ class BasePage(object):
         url = self.report.build_url_image('document.png', 'images', up)
         hyper += Html('img', src=url, alt=html_escape(name))
         if usedescr:
-            descr = Html('p', html_escape(name), inline = True)
+            descr = Html("p", html_escape(name), inline = True)
         else:
             descr = ''
 
@@ -1455,7 +1454,7 @@ class BasePage(object):
         # begin hyperlink
         hyper = Html('a', html_escape(name), href=url, title=name)
         if not self.noid and gid:
-            hyper += Html('span', '[%s]' % gid, class_ = "grampsid", inline = True)
+            hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
 
         # return hyperlink to its callers
         return hyper
@@ -1465,7 +1464,7 @@ class BasePage(object):
 
         hyper = Html('a', html_escape(name), href=url, title=name)
         if not self.noid and gid:
-            hyper += Html('span', ' [%s] ' % gid, class_ = "grampsid", inline = True)
+            hyper += Html("span", " [%s] " % gid, class_ = "grampsid", inline = True)
 
         # return hyperlink to its callers
         return hyper
@@ -1516,7 +1515,7 @@ class IndividualListPage(BasePage):
             msg = _("This page contains an index of all the individuals in the "
                           "database, sorted by their last names. Selecting the person&#8217;s "
                           "name will take you to that person&#8217;s individual page.")
-            individuallist += Html('p', msg, id='description')
+            individuallist += Html("p", msg, id='description')
 
             # add alphabet navigation
             alpha_nav = alphabet_navigation(db, person_handle_list, _PERSON) 
@@ -1532,28 +1531,23 @@ class IndividualListPage(BasePage):
                 trow = Html("tr")
                 thead += trow    
 
-                # Table Header -- Surname and Given name columns
-                tcell1 = Html("th", _('Surname'), class_ = "ColumnSurname", inline = True)
-                tcell2 = Html("th", _('Name'), class_ = "ColumnName", inline = True)
+                # show surname and first name
+                tcell1 = Html("th", _("Surname"), class_ = "ColumnSurname", inline = True)
+                tcell2 = Html("th", _("Name"), class_ = "ColumnName", inline = True)
                 trow += (tcell1, tcell2)
 
-                # table header -- show birth column
                 if showbirth:
-                    trow += Html("th", _('Birth'), class_ = "ColumnBirth", inline = True)
+                    trow += Html("th", _("Birth"), class_ = "ColumnBirth", inline = True)
 
-                # table header -- show death column
                 if showdeath:
-                    trow += Html("th", _('Death'), class_ = "ColumnDeath", inline = True)
+                    trow += Html("th", _("Death"), class_ = "ColumnDeath", inline = True)
 
-                # table header -- show partmer column
                 if showpartner:
-                    trow += Html("th", _('Partner'), class_ = "ColumnPartner", inline = True)
+                    trow += Html("th", _("Partner"), class_ = "ColumnPartner", inline = True)
 
-                # table header -- show parents column
                 if showparents:
-                    trow += Html("th", _('Parents'), class_ = "ColumnParents", inline = True)
+                    trow += Html("th", _("Parents"), class_ = "ColumnParents", inline = True)
 
-            # begin table body
             tbody = Html("tbody")
             table += tbody
 
@@ -1570,10 +1564,10 @@ class IndividualListPage(BasePage):
                     tcell = Html("td", class_ = "ColumnSurname", inline = True)
                     trow += tcell
                     if first:
-                        trow.attr = 'class="BeginSurname"'
+                        trow.attr = 'class="BeginSurname" '
                         if surname:
-                            tcell += Html('a', surname, name=letter, 
-                                title='Surnames starting with letter %s' % letter)
+                            tcell += Html("a", surname, name = letter, 
+                                title = "Letter %s" % letter)
                         else:
                             tcell += "&nbsp;"
                     else:
@@ -1584,7 +1578,7 @@ class IndividualListPage(BasePage):
                     tcell = Html("td", class_ = "ColumnName")
                     trow += tcell
                     url = self.report.build_url_fname_html(person.handle, 'ppl')
-                    tcell += self.person_link(url, person, False, person.gramps_id)
+                    tcell += self.person_link(url, person, False, gid=person.gramps_id)
 
                     # birth column
                     if showbirth:
@@ -1632,10 +1626,12 @@ class IndividualListPage(BasePage):
                                     partner = db.get_person_from_handle(partner_handle)
                                     partner_name = self.get_name(partner)
                                     if not first_family:
-                                        tcell += ', '  
+                                        tcell += ", "  
                                     if partner_handle in report_handle_list:
-                                        url = self.report.build_url_fname_html(partner_handle, 'ppl')
-                                        tcell += self.person_link(url, partner, True, partner.gramps_id)
+                                        url = self.report.build_url_fname_html(
+                                            partner_handle, 'ppl')
+                                        tcell += self.person_link(url, partner, True,
+                                            gid=partner.gramps_id)
                                     else:
                                         tcell += partner_name
                                     first_family = False
@@ -1662,13 +1658,14 @@ class IndividualListPage(BasePage):
                             if mother:
                                 mother_name = self.get_name(mother)
                             if mother and father:
-                                fathercell = Html('span', father_name, class_ = "father fatherNmother")
-                                mothercell = Html('span', mother_name, class_ = "mother")
+                                fathercell = Html("span", father_name, 
+                                    class_ = "father fatherNmother")
+                                mothercell = Html("span", mother_name, class_ = "mother")
                                 tcell += (fathercell, mothercell)
                             elif mother:
-                                tcell += Html('span', mother_name, class_ = "mother")
+                                tcell += Html("span", mother_name, class_ = "mother")
                             elif father:
-                                tcell += Html('span', father_name, class_ = "father")
+                                tcell += Html("span", father_name, class_ = "father")
                         else:
                             tcell += "&nbsp;"
 
@@ -1707,7 +1704,7 @@ class SurnamePage(BasePage):
             msg = _("This page contains an index of all the individuals in the "
                     "database with the surname of %s. Selecting the person&#8217;s name "
                     "will take you to that person&#8217;s individual page.") % surname
-            surnamedetail += Html('p', msg, id='description')
+            surnamedetail += Html("p", msg, id='description')
 
             # begin surname table and thead
             with Html("table", class_ = "infolist surname") as surname_table:
@@ -1743,7 +1740,7 @@ class SurnamePage(BasePage):
                         trow = Html("tr")
                         tcell = Html("td", class_ = "ColumnName")
                         url = self.report.build_url_fname_html(person.handle, 'ppl', True)
-                        tcell += self.person_link(url, person, False, person.gramps_id)
+                        tcell += self.person_link(url, person, False, gid=person.gramps_id)
                         trow += tcell 
 
                         # birth column
@@ -1789,8 +1786,10 @@ class SurnamePage(BasePage):
                                         if not first_family:
                                             tcell += ','
                                         if partner_handle in report_handle_list:
-                                            url = self.report.build_url_fname_html(partner_handle, 'ppl', True) 
-                                            tcell += self.person_link(url, partner, True, partner.gramps_id)
+                                            url = self.report.build_url_fname_html(
+                                                partner_handle, 'ppl', True) 
+                                            tcell += self.person_link(url, partner, True,
+                                                gid=partner.gramps_id)
                                         else:
                                             tcell += partner_name
                                     else:
@@ -1815,14 +1814,14 @@ class SurnamePage(BasePage):
                                 if mother:
                                     mother_name = self.get_name(mother)
                                 if mother and father:
-                                    tcell += Html('span', father_name, 
+                                    tcell += Html("span", father_name, 
                                         class_ = "father fatherNmother") + (
-                                        Html('span', mother_name, class_ = "mother")
+                                        Html("span", mother_name, class_ = "mother")
                                         )
                                 elif mother:
-                                    tcell += Html('span', mother_name, class_ = "mother")
+                                    tcell += Html("span", mother_name, class_ = "mother")
                                 elif father:
-                                    tcell += Html('span', father_name, class_ = "father")
+                                    tcell += Html("span", father_name, class_ = "father")
                             else:
                                 tcell += "&nbsp;"
                             trow += tcell
@@ -1855,7 +1854,7 @@ class PlaceListPage(BasePage):
             msg = _("This page contains an index of all the places in the "
                           "database, sorted by their title. Clicking on a place&#8217;s "
                           "title will take you to that place&#8217;s page.")
-            placelist += Html('p', msg, id='description')
+            placelist += Html("p", msg, id='description')
 
             # begin alphabet navigation
             alpha_nav = alphabet_navigation(db, place_handles, _PLACE) 
@@ -2094,7 +2093,7 @@ class EventListPage(BasePage):
 
         # get person's hyperlink 
         url = self.report.build_url_fname_html(person.handle, 'ppl', subdirs)
-        person_hyper = self.person_link(url, person, True, first)
+        person_hyper = self.person_link(url, person, True, first, gid=person.gramps_id)
 
         # begin table row 
         trow = Html("tr")
@@ -2127,7 +2126,7 @@ class EventListPage(BasePage):
 
             # get partner hyperlink
             url = self.report.build_url_fname_html(partner.handle, 'ppl', subdirs)
-            partner_hyper = self.person_link(url, partner, True)
+            partner_hyper = self.person_link(url, partner, True, gid=partner.gramps_id)
         trow += Html("td", partner_hyper, class_ = "ColumnPartner")
 
         # return EventList row to its caller
@@ -2333,13 +2332,13 @@ class MediaPage(BasePage):
         data = _('<strong id="GalleryCurrent">%(page_number)d</strong> of '
             '<strong id="GalleryTotal">%(total_pages)d</strong>' ) % {
             'page_number' : page_number, 'total_pages' : total_pages }
-        gallerynav += Html('span', data, id='GalleryPages')
+        gallerynav += Html("span", data, id='GalleryPages')
         if next:
             gallerynav += self.gallery_nav_link(next, _('Next'), True)
 
         # missing media error msg
         errormsg = _('The file has been moved or deleted.')
-        missingimage = Html('span', errormsg, class_ = "MissingImage")  
+        missingimage = Html("span", errormsg, class_ = "MissingImage")  
 
         # begin summaryarea division
         summaryarea = Html("div", id='summaryarea')
@@ -2388,7 +2387,7 @@ class MediaPage(BasePage):
                     # TODO. Convert disk path to URL.
                     url = self.report.build_url_fname(initial_image_path, None, self.up)
                     if initial_image_path != newpath:
-                        scalemsg = Html('p', '(%d x %d).' % (width, height), inline = True)
+                        scalemsg = Html("p", '(%d x %d).' % (width, height), inline = True)
                         summaryarea += scalemsg
                     mediadisplay = Html("div", style='width:%dpx; height:%dpx;' % (new_width, new_height))
                     summaryarea += mediadisplay
@@ -2637,7 +2636,7 @@ class SurnameListPage(BasePage):
                            'surnames in the database. Selecting a link '
                            'will lead to a list of individuals in the '
                            'database with this same surname.')
-            surnamelist += Html('p', msg, id='description')
+            surnamelist += Html("p", msg, id='description')
 
             # add alphabet navigation...
             # only if surname list not surname count
@@ -2825,11 +2824,11 @@ class SourceListPage(BasePage):
         source_dict = {}
 
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_('Sources'))
+        sourcelistpage, body = self.write_header(_("Sources"))
 
         # begin source list division
-        with Html("div", class_ = "content", id="sources") as section:
-            body += section
+        with Html("div", class_ = "content", id="Sources") as sourceslist:
+            body += sourceslist
 
             # Sort the sources
             for handle in handle_list:
@@ -2842,14 +2841,14 @@ class SourceListPage(BasePage):
             msg = _("This page contains an index of all the sources in the "
                          "database, sorted by their title. Clicking on a source&#8217;s "
                          "title will take you to that source&#8217;s page.")
-            section += Html('p', msg, id='description')
+            sourceslist += Html("p", msg, id='description')
 
             # begin sourcelist table and table head
             with Html("table", class_ = "infolist sourcelist") as table:
-                section += table 
-
+                sourceslist += table 
                 thead = Html("thead")
                 table += thead
+
                 trow = Html("tr")
                 thead += trow
 
@@ -2973,7 +2972,7 @@ class MediaListPage(BasePage):
                           "the title will take you to that media object&#8217;s page.  "
                           "If you see media size densions above an image, click on the "
                           "image to see the full sized version.  ")
-            section += Html('p', msg, id='description')
+            section += Html("p", msg, id='description')
 
             # begin gallery table and table head
             with Html("table", class_ = "infolist gallerylist") as table:
@@ -3082,7 +3081,7 @@ class DownloadPage(BasePage):
             if downloadnote:
                 note = db.get_note_from_gramps_id(downloadnote)
                 note_text = self.get_note_format(note)
-                download += Html('p', note_text, id="description")
+                download += Html("p", note_text, id="description")
 
             # begin download table
             with Html("table", class_ = "infolist download") as table:
@@ -3226,17 +3225,17 @@ class ContactPage(BasePage):
                         r.name = r.name.replace(',,,', '')
                         researcher += Html('h3', r.name, inline = True)
                     if r.addr:
-                        researcher += Html('span', r.addr, id='streetaddress')
+                        researcher += Html("span", r.addr, id='streetaddress')
                     text = "".join([r.city, r.state, r.postal])
                     if text:
-                        city = Html('span', r.city, id='city', inline = True)
-                        state = Html('span', r.state, id='state', inline = True)
-                        postal = Html('span', r.postal, id='postalcode', inline = True)
+                        city = Html("span", r.city, id='city', inline = True)
+                        state = Html("span", r.state, id='state', inline = True)
+                        postal = Html("span", r.postal, id='postalcode', inline = True)
                         researcher += (city, state, postal)
                     if r.country:
-                        researcher += Html('span', r.country, id='country', inline = True)
+                        researcher += Html("span", r.country, id='country', inline = True)
                     if r.email:
-                        researcher += Html('span', id='email') + (
+                        researcher += Html("span", id='email') + (
                             Html('a', r.email, href='mailto:%s?subject="from GRAMPS Web Site"' 
                                 % r.email, inline = True)
                             )
@@ -3425,7 +3424,7 @@ class IndividualPage(BasePage):
             boxbg += self.person_link(url, person, name_style=True, 
                 thumbnailUrl=thumbnailUrl)
         else:
-            boxbg += Html('span', person_name, class_ = "unlinked", inline = True)
+            boxbg += Html("span", person_name, class_ = "unlinked", inline = True)
         shadow = Html("div", class_ = "shadow", inline = True, style="top: %dpx; left: %dpx;"
             % (top+_SHADOW, xoff+_SHADOW) )
 
@@ -3883,7 +3882,7 @@ class IndividualPage(BasePage):
         list = Html('li')
         if child_handle in self.ind_list:
             url = self.report.build_url_fname_html(child_handle, 'ppl', True)
-            list += self.person_link(url, child, True, gid)
+            list += self.person_link(url, child, True, gid=gid)
 
         else:
             list += self.get_name(child)
@@ -3904,7 +3903,7 @@ class IndividualPage(BasePage):
         gid = person.gramps_id
         if handle in self.ind_list:
             url = self.report.build_url_fname_html(handle, 'ppl', True)
-            tcell2 += self.person_link(url, person, True, gid)
+            tcell2 += self.person_link(url, person, True, gid=gid)
         else:
             person_name = self.get_name(person)
             tcell2 += person_name
@@ -4259,7 +4258,7 @@ class IndividualPage(BasePage):
         if partner_handle:
             if partner_handle in self.ind_list:
                 url = self.report.build_url_fname_html(partner_handle, 'ppl', True)
-                tcell += self.person_link(url, partner, True, partner.gramps_id)
+                tcell += self.person_link(url, partner, True, gid=partner.gramps_id)
             else:
                 tcell += partner_name
 
@@ -4416,7 +4415,7 @@ class RepositoryListPage(BasePage):
             msg = _("This page contains an index of all the repositories in the "
                           "database, sorted by their title. Clicking on a repositories&#8217;s "
                           "title will take you to that repositories&#8217;s page.")
-            repositorylist += Html('p', msg, id='description')
+            repositorylist += Html("p", msg, id='description')
 
             # begin repositories table and table head
             with Html("table", class_ = "infolist repolist") as table:
