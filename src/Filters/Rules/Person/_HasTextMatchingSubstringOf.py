@@ -51,13 +51,13 @@ class HasTextMatchingSubstringOf(Rule):
 
     def prepare(self,db):
         self.db = db
-        self.person_map = {}
-        self.event_map = {}
-        self.source_map = {}
-        self.repo_map = {}
-        self.family_map = {}
-        self.place_map = {}
-        self.media_map = {}
+        self.person_map = set()
+        self.event_map = set()
+        self.source_map = set()
+        self.repo_map = set()
+        self.family_map = set()
+        self.place_map = set()
+        self.media_map = set()
         try:
             if int(self.list[1]):
                 self.case_sensitive = True
@@ -76,27 +76,33 @@ class HasTextMatchingSubstringOf(Rule):
         self.cache_sources()
 
     def reset(self):
-        self.person_map = {}
-        self.event_map = {}
-        self.source_map = {}
-        self.repo_map = {}
-        self.family_map = {}
-        self.place_map = {}
-        self.media_map = {}
+        self.person_map.clear()
+        self.event_map.clear()
+        self.source_map.clear()
+        self.repo_map.clear()
+        self.family_map.clear()
+        self.place_map.clear()
+        self.media_map.clear()
 
     def apply(self,db,person):
         if person.handle in self.person_map:   # Cached by matching Source?
-            return self.person_map[person.handle]
+            return True
         if self.match_object(person):        # first match the person itself
             return True
-        for event_ref in person.get_event_ref_list():
-            if self.search_event(event_ref.ref): # match referenced events
+
+        # Look for matching events
+        if any(self.search_event(event_ref.ref)
+            for event_ref in person.get_event_ref_list()):
                 return True
-        for family_handle in person.get_family_handle_list(): # match families
-            if self.search_family(family_handle):
+
+        # Look for matching families
+        if any(self.search_family(family_handle)
+            for family_handle in person.get_family_handle_list()): 
                 return True
-        for media_ref in person.get_media_list(): # match Media object
-            if self.search_media(media_ref.get_reference_handle()):
+
+        # Look for matching media objects
+        if any(self.search_media(media_ref.get_reference_handle())
+            for media_ref in person.get_media_list()):
                 return True
         return False
     
@@ -104,21 +110,21 @@ class HasTextMatchingSubstringOf(Rule):
         if not family_handle:
             return False
         # search inside the family and cache the result to not search a family twice
-        if not family_handle in self.family_map:
+        if family_handle not in self.family_map:
             match = 0
             family = self.db.get_family_from_handle(family_handle)
             if self.match_object(family):
                 match = 1
             else:
-                for event_ref in family.get_event_ref_list():
-                    if self.search_event(event_ref.ref):
+                if any(self.search_event(event_ref.ref)
+                    for event_ref in family.get_event_ref_list()):
                         match = 1
-                        break
-                for media_ref in family.get_media_list(): # match Media object
-                    if self.search_media(media_ref.get_reference_handle()):
+                if any(self.search_media(media_ref.get_reference_handle())
+                    for media_ref in family.get_media_list()):
                         return True
-            self.family_map[family_handle] = match
-        return self.family_map[family_handle]
+            if match:
+                self.family_map.add(family_handle)
+        return family_handle in self.family_map
 
     def search_event(self,event_handle):
         if not event_handle:
@@ -131,63 +137,63 @@ class HasTextMatchingSubstringOf(Rule):
                 match = 1
             elif event:
                 place_handle = event.get_place_handle()
-                if place_handle:
-                    if self.search_place(place_handle):
-                        match = 1
-                for media_ref in event.get_media_list(): # match Media object
-                    if self.search_media(media_ref.get_reference_handle()):
+                if place_handle and self.search_place(place_handle):
+                    match = 1
+                if any(self.search_media(media_ref.get_reference_handle())
+                    for media_ref in event.get_media_list()):
                         return True
-            self.event_map[event_handle] = match
-        return self.event_map[event_handle]
+            if match:
+                self.event_map.add(event_handle)
+        return event_handle in self.event_map
 
     def search_place(self,place_handle):
         if not place_handle:
             return False
         # search inside the place and cache the result
-        if not place_handle in self.place_map:
+        if place_handle not in self.place_map:
             place = self.db.get_place_from_handle(place_handle)
-            self.place_map[place_handle] = self.match_object(place)
-        return self.place_map[place_handle]
+            if self.match_object(place):
+                self.place_map.add(place_handle)
+        return place_handle in self.place_map
 
     def search_media(self,media_handle):
         if not media_handle:
             return False
-        # search inside the place and cache the result
-        if not media_handle in self.media_map:
+        # search inside the media object and cache the result
+        if media_handle not in self.media_map:
             media = self.db.get_object_from_handle(media_handle)
-            self.media_map[media_handle] = self.match_object(media)
-        return self.media_map[media_handle]
+            if self.match_object(media):
+                self.media_map.add(media_handle)
+        return media_handle in self.media_map
 
     def cache_repos(self):
         # search all matching repositories
-        for repo in self.db.iter_repositories():
-            if( self.match_object(repo)):
-                self.repo_map[repo.handle] = 1
+        self.repo_map.update(
+
+            repo.handle for repo in self.db.iter_repositories()
+                if self.match_object(repo)
+
+            )
     
     def cache_sources(self):
         # search all sources and match all referents of a matching source
         for source in self.db.iter_sources():
             match = self.match_object(source)
             if not match:
-                for reporef in source.get_reporef_list():
-                    if reporef.get_reference_handle() in self.repo_map:
-                        match = 1
-            if match:
-                (person_list,family_list,event_list,place_list,source_list,
-                     media_list,repo_list
-                 ) = get_source_referents(source.handle,self.db)
-                for handle in person_list:
-                    self.person_map[handle] = 1
-                for handle in family_list:
-                    self.family_map[handle] = 1
-                for handle in event_list:
-                    self.event_map[handle] = 1
-                for handle in place_list:
-                    self.place_map[handle] = 1
-                for handle in media_list:
-                    self.media_map[handle] = 1
-                for handle in repo_list:
-                    self.media_map[handle] = 1
+                if any(reporef.get_reference_handle() in self.repo_map
+                            for reporef in source.get_reporef_list()
+                      ):
+
+                    # Update the maps to reflect the reference
+                    (person_list, family_list, event_list, place_list,
+                         source_list, media_list, repo_list
+                    ) = get_source_referents(source.handle,self.db)
+                    self.person_map.update(person_list)
+                    self.family_map.update(family_list)
+                    self.event_map.update(event_list)
+                    self.place_map.update(place_list)
+                    self.media_map.update(media_list)
+                    self.repo_map.update(repo_list)
 
     def match_object(self, obj):
         if not obj:
