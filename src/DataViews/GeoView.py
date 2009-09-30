@@ -67,10 +67,10 @@ from PlaceUtils import conv_lat_lon
 # map icons
 #
 #-------------------------------------------------------------------------
-_icons = {
-    gen.lib.EventType.BIRTH	: 'gramps-geo-birth',
-    gen.lib.EventType.DEATH	: 'gramps-geo-death',
-    gen.lib.EventType.MARRIAGE	: 'gramps-geo-marriage',
+_ICONS = {
+    gen.lib.EventType.BIRTH    : 'gramps-geo-birth',
+    gen.lib.EventType.DEATH    : 'gramps-geo-death',
+    gen.lib.EventType.MARRIAGE    : 'gramps-geo-marriage',
 }
 
 #-------------------------------------------------------------------------
@@ -155,6 +155,9 @@ _JAVASCRIPT = '''<script>
       document.title = "zoom=" + zoom + " coord=" + pos + ":::";
     }}
   }}
+  function placeclick(i) {{
+    gmarkers[i].openBubble();
+  }}
   function removemarkers(mapstraction) {{
     for ( m=0; m < gmarkers.length; m++) {{
       mapstraction.removeMarker(gmarkers[m]);
@@ -183,6 +186,7 @@ _JAVASCRIPT = '''<script>
     mapstraction.enableScrollWheelZoom();
     {set_radio}
   }}
+
 '''
 
 _HTMLTRAILER = '''
@@ -249,6 +253,9 @@ def _get_zoom_long(value):
     return zoomlong + 2
 
 def make_callback(func, val):
+    """
+    return a function
+    """
     return lambda x: func(val)
 
 #-------------------------------------------------------------------------
@@ -266,6 +273,9 @@ class GeoView(HtmlView):
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self._new_database)
         self.usedmap = "openstreetmap"
+        self.placeslist = []
+        self.stylesheetlabel = []
+        self.stylesheetdata = {}
         self.displaytype = "person"
         self.nbmarkers = 0
         self.without = 0
@@ -543,7 +553,8 @@ class GeoView(HtmlView):
         for i, stylesheet in zip(range(len(stylelist)), stylelist):
             key = stylesheet[0].replace(' ', '-')
             add_menuitem(menu, stylesheet[0], stylesheet[1] , 
-                               make_callback(self.set_mapstylesheet, stylesheet[1]))
+                               make_callback(self.set_mapstylesheet,
+                                             stylesheet[1]))
             self.stylesheetdata[key] = stylesheet[0]
         return menu
 
@@ -664,6 +675,9 @@ class GeoView(HtmlView):
         self._change_map("microsoft")
 
     def _set_lock_unlock_icon(self):
+        """
+        Change the lock/unlock icon depending on the button state.
+        """
         actionstyles = self.lock_action.get_action('SaveZoom')
         widgets = actionstyles.get_proxies()
         for widget in widgets :
@@ -754,8 +768,9 @@ class GeoView(HtmlView):
         self.mapview.write("</head>\n")
         self.mapview.write("<body >\n")
         self.mapview.write("<div id='geo-content' ")
-        self.mapview.write("style='")
-        self.mapview.write("font-size:10pt; height:75px' >\n")
+        #self.mapview.write("style='")
+        #self.mapview.write("font-size:10pt; height:75px' >\n")
+        self.mapview.write(">\n")
         if maxpages > 1:
             message = _("There are %d markers to display. They are split up "
                         "over %d pages of %d markers : " % (self.nbmarkers, 
@@ -830,14 +845,21 @@ class GeoView(HtmlView):
         self.mapview.write("</div>\n")
         self.mapview.write("<div id=\"openstreetmap\" class=\"Mapstraction\"")
         self.mapview.write(" style=\"width: %dpx; " % (self.width - margin*4))
-        self.mapview.write("margin-left:auto; margin-right:auto;")
         self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74))
         self.mapview.write("<div id=\"%s\" class=\"Mapstraction\"" % \
                            _alternate_map())
         self.mapview.write(" style=\"display: none; ")
-        self.mapview.write("margin-left:auto; margin-right:auto;")
         self.mapview.write("width: %dpx; height: %dpx\"></div>\n" % \
                            ((self.width - margin*4), (self.height * 0.74 )))
+        self.mapview.write("<div id='geo-theplaces' ><ul id='geo-title' >")
+        self.mapview.write("<li id='geo-thetitle'>%s<ul id='geo-liste' >" %
+                           _("The places list") )
+        self.psort = sorted(self.placeslist, key=operator.itemgetter(0))
+        self.plist = ""
+        for place in self.psort:
+            self.plist += "<li><a href=\"javascript:placeclick" \
+                          "(%d);\">%s</a></li>" % (place[1], place[0])
+        self.mapview.write("%s</ul></li></ul></div>\n" % self.plist)
         self.mapview.write("<script type=\"text/javascript\">\n")
         self.mapview.write(" var mapstraction = new Mapstraction")
         self.mapview.write("('openstreetmap','openstreetmap');\n")
@@ -1041,6 +1063,13 @@ class GeoView(HtmlView):
         self.place_without_coordinates.append([gid, place])
         self.without += 1
 
+    def _append_to_places_list_menu(self, place, idx):
+        """
+        Create a list of places with index for the places list menu.
+        This menu is displayed over the map.
+        """
+        self.placeslist.append([place, idx])
+
     def _append_to_places_list(self, place, evttype, name, lat, 
                               longit, descr, center, year, icontype):
         """
@@ -1070,14 +1099,18 @@ class GeoView(HtmlView):
             self.maxlon = tfb
 
     def _set_icon(self, markertype, differtype, ptype):
+        """
+        Select the good icon depending on events.
+        If we have different events for one place, we use the default icon.
+        """
         if ptype != 1: # for places, we have no event type
-            value = _icons.get(markertype.value, 'gramps-geo-default')
+            value = _ICONS.get(markertype.value, 'gramps-geo-default')
         else:
             value = 'gramps-geo-default'
         if differtype:                   # in case multiple evts
             value = 'gramps-geo-default' # we use default icon.
         if ( value == "gramps-geo-default" ):
-            value = value.replace("default","\" + default_icon + \"");
+            value = value.replace("default","\" + default_icon + \"")
         ipath = os.path.join(const.ROOT_DIR, 'images/22x22/', '%s.png' % value )
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(ipath.split(os.sep)), '', ''))
@@ -1089,7 +1122,8 @@ class GeoView(HtmlView):
         """
         last = ""
         current = ""
-        indm = 0
+        self.placeslist = []
+        indm = ind = 0
         divclose = True
         self.yearinmarker = []
         ininterval = False
@@ -1148,11 +1182,15 @@ class GeoView(HtmlView):
                              2 : [mark[3], mark[4]],
                            }.get(formatype, mark[0])
                     if ( indm >= firstm ) and ( indm <= lastm ):
+                        self._append_to_places_list_menu(mark[0], ind)
+                        ind += 1
                         self.mapview.write("\n   var point = new LatLonPoint")
+
                         self.mapview.write("(%s,%s);" % (mark[3], mark[4]))
                         self.mapview.write("my_marker = new Marker(point);")
                         self.mapview.write("gmarkers[%d]=my_marker;" % \
                                            (( indm - 1 ) % NB_MARKERS_PER_PAGE))
+                        self.mapview.write("my_marker.hover=1;")
                         self.mapview.write("my_marker.setLabel")
                         self.mapview.write("(\"%s\");" % mark[0])
                         self.yearinmarker.append(mark[7])
@@ -1576,24 +1614,28 @@ class GeoView(HtmlView):
         The second one is specific to GeoView.
         """
         # Get the default stylesheet.
-        cpath = os.path.join(const.ROOT_DIR,
-                             'data',
-                             '%s' % self.stylesheet
-                            )
-        dpath = urlparse.urlunsplit(('file', '',
-                                     URL_SEP.join(cpath.split(os.sep)),
-                                     '', ''))
         dblp = "<link media=\"screen\" "
         delp = "type=\"text/css\" rel=\"stylesheet\" />\n"
-        dcp = "href=\"%s\" " % dpath
+        if self.stylesheet != "":
+            cpath = os.path.join(const.ROOT_DIR,
+                                 'data',
+                                 '%s' % self.stylesheet
+                                )
+            dpath = urlparse.urlunsplit(('file', '',
+                                         URL_SEP.join(cpath.split(os.sep)),
+                                         '', ''))
+            dcp = "href=\"%s\" " % dpath
         # Get the GeoView stylesheet.
         cpath = os.path.join(const.ROOT_DIR,
                              'data',
-                             'GeoView.css)'
+                             'GeoView.css'
                             )
         gpath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(cpath.split(os.sep)),
                                      '', ''))
         gcp = "href=\"%s\" " % gpath
-        return u'%s%s%s%s%s%s' % (dblp, dcp, delp, dblp, gcp, delp)
+        if self.stylesheet != "":
+            return u'%s%s%s%s%s%s' % (dblp, dcp, delp, dblp, gcp, delp)
+        else:
+            return u'%s%s%s' % (dblp, gcp, delp)
     

@@ -36,15 +36,106 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  GeoView Styles
 ----------------------------------------------------- */
 
+#openstreetmap
+{
+ position:absolute;
+ border: 3px black solid;
+ margin-left:auto;
+ margin-right:auto;
+}
+
+#google
+{
+ border: 3px black solid;
+ margin-left:auto;
+ margin-right:auto;
+}
+
+#openlayers
+{
+ border: 3px black solid;
+ margin-left:auto;
+ margin-right:auto;
+}
+
+#microsoft
+{
+ border: 3px black solid;
+ margin-left:auto;
+ margin-right:auto;
+}
+
+#yahoo
+{
+ border: 3px black solid;
+ margin-left:auto;
+ margin-right:auto;
+}
+
 /* InfoBull */
-.geo-info {
-  white-space:nowrap;
-  overflow:auto;
-  width:105%;
-  max-height:150px;
+#geo-info {
+ white-space:nowrap;
+ overflow:auto;
+ font-size:10pt;
+ width=105%
+ max-height:2em;
 }
 
 /* title and years selection */
-.geo-content {
-  font-size:10pt;
+#geo-content {
+ font-size:10pt;
+ height:80px;
+ overflow:auto;
+}
+
+#geo-theplaces ul {
+ list-style-type: none; 
+ font-size:16pt;
+ margin: 0;
+ padding: 0;
+}
+#geo-title
+{
+ list-style-type: none;
+ margin-left: 5px;
+}
+
+#geo-thetitle:hover li { display: block; }
+#geo-thetitle li { 
+ display: none; 
+ font-size:12pt;
+ font-weight: bold;
+}
+
+#geo-theplaces
+{
+ position:absolute;
+ opacity:.90;
+ top:90px;
+ right:100px;
+ width: 380px;
+ border: 0px;
+ overflow:auto;
+ max-height:50%;
+}
+
+#geo-theplaces a
+{
+ color: black;
+ display: block;
+}
+
+#geo-theplaces a:visited
+{
+ color: black;
+}
+
+#geo-theplaces a:active
+{
+ color: black;
+}
+
+#geo-theplaces a:hover
+{
+ color: black;
 }
