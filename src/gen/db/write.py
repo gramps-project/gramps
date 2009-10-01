@@ -212,9 +212,9 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         exception is raised.
         """
         @wraps(func)
-        def try_(*args, **kwargs):
+        def try_(self, *args, **kwargs):
             try:
-                return func(*args, **kwargs)
+                return func(self, *args, **kwargs)
             except DBERRS, msg:
                 self.__log_error()
                 raise Errors.DbError(msg)
@@ -1357,16 +1357,15 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         obj.change = int(change_time if change_time else time.time())
         handle = str(obj.handle)
 
+        self.update_reference_map(obj, transaction)
+
         # If this is a batch operation, just write the data
         if transaction.batch:
-            with BSDDBTxn(self.env, data_map) as txn:
-                self.update_reference_map(obj, transaction, txn=txn.txn)
-                txn.put(handle, obj.serialize())
+            data_map.put(handle, obj.serialize())
             old_data = None
 
         # Otherwise, this is a non-batch operation, so queue the transaction
         else:
-            self.update_reference_map(obj, transaction)
             old_data = data_map.get(handle, txn=self.txn)
             new_data = obj.serialize()
             op = TXNUPD if old_data else TXNADD
