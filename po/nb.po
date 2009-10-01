@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-19 09:48+0200\n"
-"PO-Revision-Date: 2009-09-30 21:49+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2009-10-01 19:19+0200\n"
+"Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22418,218 +22418,183 @@ msgstr ""
 
 #: DenominoViso.py:2568
 msgid "Max chart height (px)"
-msgstr ""
+msgstr "Største tavlehøyde (pt)"
 
 #: DenominoViso.py:2569
-#, fuzzy
 msgid "Height of the tree in pixels."
-msgstr "Kommentartekstens størrelse (antall punkt)."
+msgstr "Hlyde for treet i antall punkt."
 
 #: DenominoViso.py:2572
 msgid "Closing remarks"
-msgstr ""
+msgstr "Avsluttende kommentarer"
 
 #: DenominoViso.py:2573
 msgid "List of strings, free text added at the bottom, for example for a copyright notice."
 msgstr ""
 
 #: DenominoViso.py:2576
-#, fuzzy
 msgid "Include Options"
-msgstr "Ta med ektefeller"
+msgstr "Ta med opsjoner"
 
 #: DenominoViso.py:2580
-#, fuzzy
 msgid "Wheater to leave out private data."
-msgstr "Ta med private objekter"
+msgstr "Om private data skal tas med."
 
 #: DenominoViso.py:2583
-#, fuzzy
 msgid "Include Events"
 msgstr "Ta med hendelser"
 
 #: DenominoViso.py:2585
-#, fuzzy
 msgid "Wheather to include a person's events."
-msgstr "Ta med hendelser."
+msgstr "Om en persons hendelser skal tas med."
 
 #: DenominoViso.py:2593
-#, fuzzy
 msgid "Include birth children"
-msgstr "Ta med antall barn"
+msgstr ""
 
 #: DenominoViso.py:2594
-#, fuzzy
 msgid "Whether to include the birth of children in the list of events."
-msgstr "Velge å ta med antall barn for familier med mer enn 1 barn."
+msgstr "Om barnas fødselsdato skal tas med i lista over hendelser."
 
 #: DenominoViso.py:2597
-#, fuzzy
 msgid "Include death relatives"
-msgstr "Ta med datoer"
+msgstr "Ta med døde slektninger"
 
 #: DenominoViso.py:2598
-#, fuzzy
 msgid "Whether to include the death of relatives during the lifetime of person."
-msgstr "Ta med datoer for slektninger (far, mor, ektefelle)."
+msgstr "Om dødsdata om slektninger skal tas med i tidslinjen for en person."
 
 #: DenominoViso.py:2601
-#, fuzzy
 msgid "Include witness note"
-msgstr "Ta med kommentarer"
+msgstr "Ta med vitnenotat"
 
 #: DenominoViso.py:2602
 msgid "Whether to include the note belonging to a witness (if the event_format contains <witnesses>)"
 msgstr ""
 
 #: DenominoViso.py:2606
-#, fuzzy
 msgid "Include Attributes"
 msgstr "Ta med attributter"
 
 #: DenominoViso.py:2607
-#, fuzzy
 msgid "Whether to include a person's attributes"
-msgstr "Ta med egenskaper."
+msgstr "Om en persons attributter skal tas med"
 
 #: DenominoViso.py:2610
-#, fuzzy
 msgid "Include Addresses"
 msgstr "Ta med adresser"
 
 #: DenominoViso.py:2611
-#, fuzzy
 msgid "Whether to include a person's addresses."
-msgstr "Ta med adresser."
+msgstr "Om en persons adresser skal tas med."
 
 #: DenominoViso.py:2614
-#, fuzzy
 msgid "Include Note"
-msgstr "Ta med kommentarer"
+msgstr "Ta med notat"
 
 #: DenominoViso.py:2615
-#, fuzzy
 msgid "Whether to include a person's note."
-msgstr "Ta med notater."
+msgstr "Om en persons notat skal tas med."
 
 #: DenominoViso.py:2618
-#, fuzzy
 msgid "Include URL"
-msgstr "Ta med URL-er (internettadresser)"
+msgstr "Ta med URL"
 
 #: DenominoViso.py:2619
-#, fuzzy
 msgid "Whether to include a person's internet address."
-msgstr "Ta med andre navn."
+msgstr "Om en persons Internettadresse skal tas med."
 
 #: DenominoViso.py:2622
-#, fuzzy
 msgid "Include URL description"
-msgstr "Ta med URL-er (internettadresser)"
+msgstr "Ta med URL-beskrivelse"
 
 #: DenominoViso.py:2623
-#, fuzzy
 msgid "Whether to include the description of the first URL"
-msgstr "Ta med Gramps ID for objekter"
+msgstr "Om beskrivelse av den første URLen skal tas med"
 
 #: DenominoViso.py:2628
-#, fuzzy
 msgid "Include Sources"
 msgstr "Ta med kilder"
 
 #: DenominoViso.py:2629
-#, fuzzy
 msgid "Whether to include a person's sources."
-msgstr "Ta med adresser."
+msgstr "Om en persons kilder skal tas med."
 
 #: DenominoViso.py:2632
-#, fuzzy
 msgid "Image Options"
-msgstr "Papirvalg"
+msgstr "Bildevalg"
 
 #: DenominoViso.py:2634
-#, fuzzy
 msgid "Include Photos/Images from Gallery"
 msgstr "Ta med foto/bilder fra galleriet"
 
 #: DenominoViso.py:2635
-#, fuzzy
 msgid "Whether to include images"
-msgstr "Ta med bilder."
+msgstr "Om bilder skal tas med"
 
 #: DenominoViso.py:2638
-#, fuzzy
 msgid "Copy Image"
-msgstr "Beregn alder"
+msgstr "Kopiere bilde"
 
 #: DenominoViso.py:2639
 msgid "Copy the images to a designated directory."
-msgstr ""
+msgstr "Kopiere bildet til en valgt katalog."
 
 #: DenominoViso.py:2645
-#, fuzzy
 msgid "Images with Attribute"
-msgstr "Ny egenskap"
+msgstr "Bilder med egenskap"
 
 #: DenominoViso.py:2646
 msgid "Determine images with which attributes to in/exclude"
 msgstr ""
 
 #: DenominoViso.py:2649
-#, fuzzy
 msgid "Include Image source references"
-msgstr "Ta med kildehenvisninger."
+msgstr "Ta med kildehenvisninger for bilde"
 
 #: DenominoViso.py:2650
-#, fuzzy
 msgid "Whether to include references for images"
-msgstr "Ta med hendelser for foreldre."
+msgstr "Om bildereferanser skal tas med"
 
 #: DenominoViso.py:2653
-#, fuzzy
 msgid "Source reference attribute"
-msgstr "Notat for kildehenvisning"
+msgstr "Egenskap for kildehenvisning"
 
 #: DenominoViso.py:2654
 msgid "Image attribute that should be used as source reference"
 msgstr ""
 
 #: DenominoViso.py:2660
-#, fuzzy
 msgid "Style Options"
-msgstr "Treopsjoner"
+msgstr "Stilopsjoner"
 
 #: DenominoViso.py:2662
-#, fuzzy
 msgid "Color of active person:"
-msgstr "Ingen aktiv person valgt"
+msgstr "Farge for aktiv person:"
 
 #: DenominoViso.py:2663
 msgid "RGB-color of geometric shape of the activated person."
-msgstr ""
+msgstr "RGB-farge for geometrisk form til den aktive personen."
 
 #: DenominoViso.py:2666
-#, fuzzy
 msgid "Color of found persons:"
-msgstr "Gå til standardperson"
+msgstr "Farge til personer som ble funnet:"
 
 #: DenominoViso.py:2667
 msgid "RGB-color of geometric shape of the persons found."
-msgstr ""
+msgstr "RGB-farge for geometrisk form til de personene som ble funnet."
 
 #: DenominoViso.py:2670
-#, fuzzy
 msgid "Color of male persons:"
-msgstr "Gå til standardperson"
+msgstr "Farge til menn:"
 
 #: DenominoViso.py:2671
 msgid "RGB-color of geometric shape of the male persons."
 msgstr ""
 
 #: DenominoViso.py:2674
-#, fuzzy
 msgid "Colour of female persons:"
-msgstr "Gå til standardperson"
+msgstr "Farge til kvinner:"
 
 #: DenominoViso.py:2675
 msgid "RGB-color of geometric shape of the female persons."
@@ -22637,100 +22602,91 @@ msgstr ""
 
 #: DenominoViso.py:2678
 msgid "Width of rectangle (hrd):"
-msgstr ""
+msgstr "Bredde på rektangel:"
 
 #: DenominoViso.py:2682
 msgid "Height of rectangle (hrd):"
-msgstr ""
+msgstr "Høyde på rektangel:"
 
 #: DenominoViso.py:2686
 msgid "Vertical distance of rectangles (hrd):"
-msgstr ""
+msgstr "Loddrett avstand til rektangel:"
 
 #: DenominoViso.py:2690
 msgid "Extra style settings:"
-msgstr ""
+msgstr "Ekstra stilinnstillinger:"
 
 #: DenominoViso.py:2694
-#, fuzzy
 msgid "Advanced Options"
-msgstr "Papirvalg"
+msgstr "Avanserte opsjoner:"
 
 #: DenominoViso.py:2696
 msgid "Old browser friendly output"
-msgstr ""
+msgstr "Gammel nettleservennlig utskrift"
 
 #: DenominoViso.py:2697
 msgid "Whether to create an ordinary html-file that includes the xhtml-file so that deprecated browsers can be presented with content they can swallow."
 msgstr ""
 
 #: DenominoViso.py:2700
-#, fuzzy
 msgid "Mouse event handler"
-msgstr "Sortere hendelsesendringer"
+msgstr "Hendelsesbehandler for mus"
 
 #: DenominoViso.py:2702
 msgid "Mouse handler used to interact with visitor of webpage."
 msgstr ""
 
 #: DenominoViso.py:2706
-#, fuzzy
 msgid "Birth relationship linestyle"
-msgstr "Endre relasjon"
+msgstr ""
 
 #: DenominoViso.py:2708
 msgid "List of lists where each sublist is a list with information about the dash pattern of lines connecting children to parents."
 msgstr ""
 
 #: DenominoViso.py:2714
-#, fuzzy
 msgid "Source confidence color"
-msgstr "Rediger kilde"
+msgstr "Kildekvalitetsfarge"
 
 #: DenominoViso.py:2716
 msgid "List os lists where each sublist is a list with information on the color to use for a certain confidence level."
 msgstr ""
 
 #: DenominoViso.py:2719
-#, fuzzy
 msgid "Event format"
-msgstr "Hendelsesdato"
+msgstr "Hendelsesformat"
 
 #: DenominoViso.py:2720
-#, fuzzy
 msgid "at"
-msgstr "Dato"
+msgstr "ved"
 
 #: DenominoViso.py:2724
 msgid "List os strings with placeholders for events. Known placeholders: <type>, <role>, <date>, <place>, <description>, <witnesses>, <source> and any <attribute-value>."
 msgstr ""
 
 #: DenominoViso.py:2727
-#, fuzzy
 msgid "Source format"
-msgstr "Kildenotat"
+msgstr "Kildeformat"
 
 #: DenominoViso.py:2728
 msgid "List of strings with placeholders for sources. Known placeholders: <title>, <volume>, <author>, <publication_info> and <abbreviation>."
 msgstr ""
 
 #: DenominoViso.py:2785
-#, fuzzy
 msgid "restricted to:"
-msgstr "estimert"
+msgstr "begrenset til:"
 
 #: DenominoViso.py:2825
-#, fuzzy
 msgid "to directory:"
-msgstr "Velg mediakatalog"
+msgstr "til katalog:"
 
 #: DenominoViso.py:2827
 msgid "Save images in ..."
-msgstr ""
+msgstr "Lagre bilder i ..."
 
 #: DenominoViso.py:2876
 msgid "should be"
-msgstr ""
+msgstr "skulle være"
 
 #: DenominoViso.py:2918
 msgid "Name HTML-wrapper file"
@@ -22741,30 +22697,26 @@ msgid "Save HTML-wrapper file as ..."
 msgstr ""
 
 #: DenominoViso.py:2946
-#, fuzzy
 msgid "Give a filename ..."
-msgstr "Fornavn"
+msgstr "Angi et filnavn ..."
 
 #: DenominoViso.py:3091
-#, fuzzy
 msgid "Relation type"
-msgstr "Relasjonstype:"
+msgstr "Relasjonstype"
 
 #: DenominoViso.py:3096
 msgid "Use dashed linestyle"
-msgstr ""
+msgstr "Bruk stiplet strek"
 
 #: DenominoViso.py:3101
-#, fuzzy
 msgid "Dash length"
-msgstr "Dødsmåned"
+msgstr "Stiplelengde"
 
 #: DenominoViso.py:3105
 msgid "Inter-dash length"
 msgstr ""
 
 #: DenominoViso.py:3158
-#, fuzzy
 msgid "Color"
 msgstr "Farge"
 
@@ -22798,47 +22750,43 @@ msgstr "Etterkommertavle for %(person)s, %(father1)s og %(mother1)s"
 
 #: Descend2.py:632
 msgid "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr ""
+msgstr "Etterkommertavle for %(father1)s, %(father2)s og %(mother1)s, %(mother2)s"
 
 #: Descend2.py:1492 Descend2.py:1496
-#, fuzzy
 msgid "Report for"
-msgstr "Rapporter"
+msgstr "Rapport for"
 
 #: Descend2.py:1493 Descend2.py:1497
-#, fuzzy
 msgid "The main person for the report"
-msgstr "Senterpersonen for denne rapporten"
+msgstr "Hovedpersonen for denne rapporten"
 
 #: Descend2.py:1500
-#, fuzzy
 msgid "Start with the parent(s) of the selected first"
-msgstr "Du har ikke skrivetilgang til den valgte fila."
+msgstr "Start med foreldrene av den valgte personen først"
 
 #: Descend2.py:1501
-#, fuzzy
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr "Teller antall forfedre til den valgte person"
+msgstr "Vil vise foreldre, brødre og søstre til den valgte personen."
 
 #: Descend2.py:1508
-#, fuzzy
 msgid "Level of Spouses"
-msgstr "Bundet til en ektefelle"
+msgstr ""
 
 #: Descend2.py:1509
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr ""
+msgstr "0=ingen ektefelle, 1=ta med ektefeller, 2=ta med ektefeller av ektefeller, osv"
 
 #: Descend2.py:1518
-#, fuzzy
 msgid ""
 "Personal\n"
 "Display Format"
-msgstr "Visningsformat"
+msgstr ""
+"Personlig\n"
+"visningsformat"
 
 #: Descend2.py:1523
 msgid "Co_mpress Personal and Spousal Display Formats"
-msgstr ""
+msgstr "Ko_mprimer personlig og ektesfelles visningsformat"
 
 #: Descend2.py:1524
 msgid "Whether to not print empty lines within the 'Personal Display'."
