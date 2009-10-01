@@ -234,9 +234,8 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         changelist = set(self.model.get_value(node,1)
-                      for node in self.iter_list
-                      if self.model.get_value(node,0))
-        print changelist
+                        for node in self.iter_list
+                            if self.model.get_value(node,0))
 
         #with self.db.get_person_cursor(update=True, commit=True) as cursor:
         #  for handle, data in cursor:
