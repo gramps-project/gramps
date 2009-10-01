@@ -29,7 +29,7 @@
 from bsddb import db as bsddb_db
 from gettext import gettext as _
 from DdTargets import DdTargets
-import pickle
+import cPickle as pickle
 
 #-------------------------------------------------------------------------
 #
