@@ -857,11 +857,11 @@ class GeoView(HtmlView):
         self.mapview.write("</div>\n")
         self.mapview.write("<div id=\"openstreetmap\" class=\"Mapstraction\"")
         self.mapview.write(" style=\"height: %dpx\"></div>\n" % 
-                           (self.height - 128 ))
+                           (self.height - 130 ))
         self.mapview.write("<div id=\"%s\" class=\"Mapstraction\"" % \
                            _alternate_map())
         self.mapview.write(" style=\"display: none; ")
-        self.mapview.write("height: %dpx\"></div>\n" % (self.height - 128 ))
+        self.mapview.write("height: %dpx\"></div>\n" % (self.height - 135 ))
         self.mapview.write("<div id='geo-theplaces' ><ul id='geo-title' >")
         self.mapview.write("<li id='geo-thetitle'>%s<ul id='geo-liste' >" %
                            _("The places list") )
