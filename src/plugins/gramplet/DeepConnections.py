@@ -75,24 +75,31 @@ class DeepConnectionsGramplet(Gramplet):
         family_list = person.get_family_handle_list()
         for family_handle in family_list:
             family = self.dbstate.db.get_family_from_handle(family_handle)
+
             children = family.get_child_ref_list()
-            for child_ref in children:
-                retval += [(child_ref.ref, (path, (_("child"), person_handle)))]
+            retval.extend((child_ref.ref, (path, (_("child"), person_handle)))
+                for child_ref in children)
+
             husband = family.get_father_handle()
             if husband:
                 retval += [(husband, (path, (_("husband"), person_handle)))]
+
             wife = family.get_mother_handle()
             if wife:
                 retval += [(wife, (path, (_("wife"), person_handle)))]
+
         parent_family_list = person.get_parent_family_handle_list()
         for family_handle in parent_family_list:
             family = self.dbstate.db.get_family_from_handle(family_handle)
+
             children = family.get_child_ref_list()
-            for child_ref in children:
-                retval += [(child_ref.ref, (path, (_("sibling"), person_handle)))]
+            retval.extend((child_ref.ref, (path, (_("child"), person_handle)))
+                for child_ref in children)            
+
             husband = family.get_father_handle()
             if husband:
                 retval += [(husband, (path, (_("father"), person_handle)))]
+
             wife = family.get_mother_handle()
             if wife:
                 retval += [(wife, (path, (_("mother"), person_handle)))]
@@ -132,7 +139,7 @@ class DeepConnectionsGramplet(Gramplet):
         if active_person == None:
             self.set_text(_("No Active Person set."))
             return
-        self.cache = {} 
+        self.cache = set() 
         self.queue = [(default_person.handle, (None, (_("self"), default_person.handle)))]
         default_name = default_person.get_primary_name()
         active_name = active_person.get_primary_name()
@@ -160,7 +167,7 @@ class DeepConnectionsGramplet(Gramplet):
                     break
             elif current_handle in self.cache: 
                 continue
-            self.cache[current_handle] = 1
+            self.cache.add(current_handle)
             relatives = self.get_relatives(current_handle, current_path)
             for (person_handle, path) in relatives:
                 if person_handle is not None and person_handle not in self.cache: 

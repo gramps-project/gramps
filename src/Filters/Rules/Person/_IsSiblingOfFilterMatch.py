@@ -49,7 +49,7 @@ class IsSiblingOfFilterMatch(MatchesFilter):
 
     def prepare(self,db):
         self.db = db
-        self.map = {}
+        self.map = set()
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person in db.iter_people():
@@ -58,7 +58,7 @@ class IsSiblingOfFilterMatch(MatchesFilter):
         filt.reset()
 
     def reset(self):
-        self.map = {}
+        self.map.clear()
 
     def apply(self,db,person):
         return person.handle in self.map
@@ -69,6 +69,6 @@ class IsSiblingOfFilterMatch(MatchesFilter):
         fam_id = person.get_main_parents_family_handle()
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
-            for child_ref in fam.get_child_ref_list():
-                if child_ref.ref != person.handle:
-                    self.map[child_ref.ref] = 1
+            self.map.update(child_ref.ref
+                for child_ref in fam.get_child_ref_list()
+                    if child_ref.ref != person.handle)

@@ -51,7 +51,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
 
     def prepare(self,db):
         self.db = db
-        self.map = {}
+        self.map = set()
         try:
             root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
             self.init_ancestor_list(root_handle,0)
@@ -59,7 +59,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
             pass
 
     def reset(self):
-        self.map = {}
+        self.map.clear()
     
     def apply(self,db,person):
         return person.handle in self.map
@@ -70,7 +70,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         if not handle:
             return
         if gen:
-            self.map[handle] = 1
+            self.map.add(handle)
             if gen >= int(self.list[1]):
                 return
         

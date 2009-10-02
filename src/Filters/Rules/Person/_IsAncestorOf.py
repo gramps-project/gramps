@@ -47,15 +47,12 @@ class IsAncestorOf(Rule):
     category    = _("Ancestral filters")
     description = _("Matches people that are ancestors of a specified person")
 
-    def prepare(self,db):
+    def prepare(self, db):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.db = db
-        self.map = {}
+        self.map = set()
         try:
-            if int(self.list[1]):
-                first = 0
-            else:
-                first = 1
+            first = 0 if int(self.list[1]) else 1
         except IndexError:
             first = 1
         try:
@@ -65,16 +62,16 @@ class IsAncestorOf(Rule):
             pass
 
     def reset(self):
-        self.map = {}
+        self.map.clear()
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map
 
-    def init_ancestor_list(self,db,person,first):
+    def init_ancestor_list(self, db, person,first):
         if not person:
             return
         if not first:
-            self.map[person.handle] = 1
+            self.map.add(person.handle)
         
         fam_id = person.get_main_parents_family_handle()
         fam = db.get_family_from_handle(fam_id)

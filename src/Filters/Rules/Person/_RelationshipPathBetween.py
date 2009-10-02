@@ -50,9 +50,9 @@ class RelationshipPathBetween(Rule):
                     "to a common ancestor, producing the relationship "
                     "path between two persons.")
 
-    def prepare(self,db):
+    def prepare(self, db):
         self.db = db
-        self.map = {}
+        self.map = set()
         try:
             root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
             root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
@@ -61,11 +61,11 @@ class RelationshipPathBetween(Rule):
             pass
 
     def reset(self):
-        self.map = {}
+        self.map = ()
 
     def desc_list(self, handle, map, first):
         if not first:
-            map[handle] = 1
+            map.add(handle)
         
         p = self.db.get_person_from_handle(handle)
         for fam_id in p.get_family_handle_list():
@@ -73,61 +73,49 @@ class RelationshipPathBetween(Rule):
             if fam:
                 for child_ref in fam.get_child_ref_list():
                     if child_ref.ref:
-                        self.desc_list(child_ref.ref,map,0)
+                        self.desc_list(child_ref.ref, map, 0)
     
-    def apply_filter(self,rank, handle,plist,pmap):
+    def apply_filter(self, rank, handle, plist, pmap):
         person = self.db.get_person_from_handle(handle)
         if person is None:
             return
-        plist.append(handle)
+        plist.add(handle)
         pmap[person.get_handle()] = rank
         
         fam_id = person.get_main_parents_family_handle()
         family = self.db.get_family_from_handle(fam_id)
         if family is not None:
-            self.apply_filter(rank+1,family.get_father_handle(),plist,pmap)
-            self.apply_filter(rank+1,family.get_mother_handle(),plist,pmap)
+            self.apply_filter(rank+1, family.get_father_handle(), plist, pmap)
+            self.apply_filter(rank+1, family.get_mother_handle(), plist, pmap)
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map
 
-    def init_list(self,p1_handle,p2_handle):
+    def init_list(self, p1_handle, p2_handle):
         firstMap = {}
-        firstList = []
+        firstList = set()
         secondMap = {}
-        secondList = []
+        secondList = set()
         common = []
         rank = 9999999
 
-        self.apply_filter(0,p1_handle,firstList,firstMap)
-        self.apply_filter(0,p2_handle,secondList,secondMap)
+        self.apply_filter(0, p1_handle, firstList, firstMap)
+        self.apply_filter(0, p2_handle ,secondList, secondMap)
         
-        for person_handle in firstList:
-            if person_handle in secondList:
-                new_rank = firstMap[person_handle]
-                if new_rank < rank:
-                    rank = new_rank
-                    common = [ person_handle ]
-                elif new_rank == rank:
-                    common.append(person_handle)
+        for person_handle in firstList & secondList:
+            new_rank = firstMap[person_handle]
+            if new_rank < rank:
+                rank = new_rank
+                common = [person_handle]
+            elif new_rank == rank:
+                common.append(person_handle)
 
-        path1 = { p1_handle : 1}
-        path2 = { p2_handle : 1}
+        path1 = set([p1_handle])
+        path2 = set([p2_handle])
 
         for person_handle in common:
-            new_map = {}
-            self.desc_list(person_handle, new_map,1)
-            self.get_intersection(path1,firstMap, new_map)
-            self.get_intersection(path2,secondMap, new_map)
-
-        for e in path1:
-            self.map[e] = 1
-        for e in path2:
-            self.map[e] = 1
-        for e in common:
-            self.map[e] = 1
-
-    def get_intersection(self,target, map1, map2):
-        for e in map1:
-            if e in map2:
-                target[e] = map2[e]
+            new_map = set()
+            self.desc_list(person_handle, new_map, 1)
+            path1.update(new_map.intersection(firstMap))
+            path2.update(new_map.intersection(secondMap))
+        self.map.update(path1, path2, common)
