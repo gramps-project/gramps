@@ -372,6 +372,10 @@ class GeoView(HtmlView):
         self.width = gws.width
         self.height = gws.height
         self.external_uri()
+        try:
+            self._geo_places()
+        except:
+            pass
 
     def set_active(self):
         """
@@ -853,11 +857,11 @@ class GeoView(HtmlView):
         self.mapview.write("</div>\n")
         self.mapview.write("<div id=\"openstreetmap\" class=\"Mapstraction\"")
         self.mapview.write(" style=\"height: %dpx\"></div>\n" % 
-                           (self.height * 0.74))
+                           (self.height - 128 ))
         self.mapview.write("<div id=\"%s\" class=\"Mapstraction\"" % \
                            _alternate_map())
         self.mapview.write(" style=\"display: none; ")
-        self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74 ))
+        self.mapview.write("height: %dpx\"></div>\n" % (self.height - 128 ))
         self.mapview.write("<div id='geo-theplaces' ><ul id='geo-title' >")
         self.mapview.write("<li id='geo-thetitle'>%s<ul id='geo-liste' >" %
                            _("The places list") )
