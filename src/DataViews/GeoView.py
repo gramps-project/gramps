@@ -276,6 +276,7 @@ class GeoView(HtmlView):
         self.placeslist = []
         self.stylesheetlabel = []
         self.stylesheetdata = {}
+        self.stylesheetlbl = None
         self.displaytype = "person"
         self.nbmarkers = 0
         self.without = 0
@@ -371,11 +372,6 @@ class GeoView(HtmlView):
         self.width = gws.width
         self.height = gws.height
         self.external_uri()
-        if self.need_to_resize != True:
-            try:
-                self._geo_places()
-            except:
-                pass
 
     def set_active(self):
         """
@@ -533,11 +529,13 @@ class GeoView(HtmlView):
                 if gtk.pygtk_version >= (2, 12, 0):
                     widget.set_arrow_tooltip_text(actionstyles.arrowtooltip)
                 lbl = gtk.Label(self.mapstyle_label())
+                self.stylesheetlbl=lbl
                 lbl.show()
                 self.stylesheetlabel.append(lbl)
                 widget.set_label_widget(self.stylesheetlabel[-1])
                 widget.set_stock_id(gtk.STOCK_SELECT_FONT)
         self._set_lock_unlock_icon()
+        self.set_mapstylelabel(self.stylesheet)
 
     def __create_styles_menu_actions(self):
         """
@@ -551,11 +549,14 @@ class GeoView(HtmlView):
         for style in CSS_FILES:
             stylelist.append([style[0], style[1]])
         for i, stylesheet in zip(range(len(stylelist)), stylelist):
-            key = stylesheet[0].replace(' ', '-')
+            key = ""
+            for word in stylesheet[0].split(' '):
+                key += word.capitalize()
+            key = key.replace(' ','')
             add_menuitem(menu, stylesheet[0], stylesheet[1] , 
                                make_callback(self.set_mapstylesheet,
                                              stylesheet[1]))
-            self.stylesheetdata[key] = stylesheet[0]
+            self.stylesheetdata[key] = [stylesheet[0],stylesheet[1]]
         return menu
 
     def mapstyle_label(self):
@@ -569,6 +570,15 @@ class GeoView(HtmlView):
         Set the style of the map view
         """
         self.stylesheet = obj
+        self.set_mapstylelabel(obj)
+
+    def set_mapstylelabel(self, obj):
+        """
+        Set the style label in the selection button.
+        """
+        for stylesheet in self.stylesheetdata.keys():
+            if obj == self.stylesheetdata[stylesheet][1]:
+                self.stylesheetlbl.set_text(self.stylesheetdata[stylesheet][0])
 
     def gotostyle(self, obj):
         """
@@ -768,8 +778,6 @@ class GeoView(HtmlView):
         self.mapview.write("</head>\n")
         self.mapview.write("<body >\n")
         self.mapview.write("<div id='geo-content' ")
-        #self.mapview.write("style='")
-        #self.mapview.write("font-size:10pt; height:75px' >\n")
         self.mapview.write(">\n")
         if maxpages > 1:
             message = _("There are %d markers to display. They are split up "
@@ -844,21 +852,20 @@ class GeoView(HtmlView):
         margin = 10
         self.mapview.write("</div>\n")
         self.mapview.write("<div id=\"openstreetmap\" class=\"Mapstraction\"")
-        self.mapview.write(" style=\"width: %dpx; " % (self.width - margin*4))
-        self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74))
+        self.mapview.write(" style=\"height: %dpx\"></div>\n" % 
+                           (self.height * 0.74))
         self.mapview.write("<div id=\"%s\" class=\"Mapstraction\"" % \
                            _alternate_map())
         self.mapview.write(" style=\"display: none; ")
-        self.mapview.write("width: %dpx; height: %dpx\"></div>\n" % \
-                           ((self.width - margin*4), (self.height * 0.74 )))
+        self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74 ))
         self.mapview.write("<div id='geo-theplaces' ><ul id='geo-title' >")
         self.mapview.write("<li id='geo-thetitle'>%s<ul id='geo-liste' >" %
                            _("The places list") )
         self.psort = sorted(self.placeslist, key=operator.itemgetter(0))
         self.plist = ""
         for place in self.psort:
-            self.plist += "<li><a href=\"javascript:placeclick" \
-                          "(%d);\">%s</a></li>" % (place[1], place[0])
+            self.plist += "<li id='geo-theplace'><a href=\"javascript:" \
+                          "placeclick(%d);\">%s</a></li>" % (place[1], place[0])
         self.mapview.write("%s</ul></li></ul></div>\n" % self.plist)
         self.mapview.write("<script type=\"text/javascript\">\n")
         self.mapview.write(" var mapstraction = new Mapstraction")

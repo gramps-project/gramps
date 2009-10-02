@@ -38,7 +38,6 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 
 #openstreetmap
 {
- position:absolute;
  border: 3px black solid;
  margin-left:auto;
  margin-right:auto;
@@ -72,28 +71,38 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  margin-right:auto;
 }
 
-/* InfoBull */
+/* InfoWindow */
 #geo-info {
- white-space:nowrap;
- overflow:auto;
  font-size:10pt;
- width=105%
- max-height:2em;
+ max-height:200px;
+ max-width: 600px;
+ min-width: 300px;
+ text-align: left;
+ padding-right: 6px;
+ overflow-x: auto;
+ overflow-y: auto; 
 }
 
 /* title and years selection */
 #geo-content {
+ position:relative;
+ top:0;
+ left:0;
  font-size:10pt;
- height:80px;
+ height:100px;
+ width=100%
  overflow:auto;
 }
 
 #geo-theplaces ul {
  list-style-type: none; 
+ color:#2e3436;
  font-size:16pt;
+ opacity:.90;
  margin: 0;
  padding: 0;
 }
+
 #geo-title
 {
  list-style-type: none;
@@ -104,38 +113,71 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 #geo-thetitle li { 
  display: none; 
  font-size:12pt;
- font-weight: bold;
+ color:#2e3436;
+ white-space:nowrap;
+}
+
+#geo-liste li { 
+ display: none; 
+ color:#2e3436;
+ font-size:12pt;
+}
+
+#geo-liste:hover li { 
 }
 
 #geo-theplaces
 {
  position:absolute;
  opacity:.90;
- top:90px;
- right:100px;
- width: 380px;
+ color:#2e3436;
+ top:120px;
+ left:100px;
+ width: 50%;
  border: 0px;
  overflow:auto;
  max-height:50%;
 }
 
-#geo-theplaces a
+#geo-theplace
 {
- color: black;
  display: block;
 }
 
-#geo-theplaces a:visited
+#geo-theplace a
 {
- color: black;
+ color: #2e3436;
+ display: block;
 }
 
-#geo-theplaces a:active
+#geo-theplace a:visited
 {
- color: black;
+ color: #2e3436;
+ background-color: transparent;
+ text-decoration:none;
+ opacity:1.0;
+}
+
+#geo-theplace a:active
+{
+ color: #2e3436;
+ background-color: transparent;
+ text-decoration:none;
+ opacity:1.0;
 }
 
 #geo-theplaces a:hover
 {
- color: black;
+ color: #2e3436;
+ background-color: transparent;
+ text-decoration:none;
+ opacity:1.0;
+}
+
+#geo-theplace a:hover
+{
+ color: #2e3436;
+ background-color: transparent;
+ text-decoration:none;
+ opacity:1.0;
 }

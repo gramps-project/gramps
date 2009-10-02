@@ -423,8 +423,6 @@ class HtmlView(PageView.PageView):
     def __init__(self, dbstate, uistate, title=_('HtmlView')):
         PageView.PageView.__init__(self, title, dbstate, uistate)
         self.dbstate = dbstate
-        self.external_url = False
-        self.need_to_resize = False
         self.back_action = None
         self.forward_action = None
         self.renderer = None
@@ -526,18 +524,6 @@ class HtmlView(PageView.PageView):
         used to resize or not resize depending on external or local file.
         """
         uri = self.renderer.get_uri()
-        if self.external_url:
-            self.external_url = False
-            self.need_to_resize = True
-        else:
-            try:
-                if uri.find(self.htmlfile) == -1:
-                    # external web page or start_page
-                    self.need_to_resize = True
-                else:
-                    self.need_to_resize = False
-            except:
-                pass
 
     def _on_activate(self, nobject):
         """
@@ -546,7 +532,6 @@ class HtmlView(PageView.PageView):
         url = self.urlfield.get_text()
         if url.find('://') == -1:
             url = 'http://'+ url
-        self.external_url = True
         self.open(url)
         
     def build_tree(self):
