@@ -33,62 +33,60 @@ see <http://www.gnu.org/licenses/>.
                               NarrativeWeb
 ----------------------------------------------------------------------------------------------- */
 body#NarrativeWeb {
+    padding: 158px 0px 0px 0px;
     margin: 0;
 }
 
 /* Header
 ----------------------------------------------------- */
-#header  {
+div#header  {
+    position: fixed;
+    top: 0px;
+    left: 0px;
     overflow: auto;
     width: 100%;
-    height: 90px;
     margin: 0;
 }
 
-/* Footer
------------------------------------------------------ */
-#footer {
+/*                       NarrativeWeb Navigation
+--------------------------------------------------------------------------------------- */
+body#NarrativeWeb div#navigation {
+    position: fixed;
+    top: 104px;
+    left: 0px;
     width: 100%;
-    height: 60px;
-    overflow: auto;
-    clear: both;
-    font-size: 12px;
-    margin: 0;
 }
 
 /* Alphabet Navigation
 ----------------------------------------------------- */
-#alphabet {
-    padding:10px;
-    margin:0;
+div#alphabet {
+    position: fixed;
+    top: 130px;
+    left: 0px;
+    width: 100%;
+    margin: 0;
 }
-#alphabet ul {
+div#alphabet ul {
     list-style:none;
     min-width:770px;
     height:24px;
     margin:0;
     padding: 0px 0px 0px 16px;
     border-width: 2px 0px 4px 0px;
-    border-color: #000;
     border-style: solid;
 }
-#alphabet ul li:after {
+div#alphabet ul li:after {
     content:"  |";
 }
-#alphabet ul li {
+div#alphabet ul li {
     margin:0;
     float:left;
 }
-#alphabet ul li a {
+div#alphabet ul li a {
     display:block;
     padding: 4px 8px 4px 8px;
     float:left;
     font:bold 16px/100% sans;
-    color:#000;
     margin:0;
     text-decoration:none;
-}
-#alphabet ul li a:hover {
-    background-color:#000;
-    color:#FFF;
 }

@@ -46,23 +46,19 @@ body#NarrativeWeb {
     left: 0px;
     overflow: auto;
     width: 100%;
-    height: 90px;
 }
 
-/* Footer
------------------------------------------------------ */
-#footer {
-    width: 100%;
-    height: 60px;
-    overflow: auto;
-    clear: both;
-    font-size: 12px;
-    margin: 0;
+/*                         NarrativeWeb Navigation
+------------------------------------------------------------------------------- */
+body#NarrativeWeb div#navigation {
+    position: fixed;
+    top: 104px;
+    left: 0px;
 }
 
 /* Alphabet Navigation
 ----------------------------------------------------- */
-#alphabet {
+div#alphabet {
     position: fixed;
     left: 4px;
     width: 44px;
@@ -71,29 +67,29 @@ body#NarrativeWeb {
     border-width: 2px 4px 2px 4px;
     border-style: solid;
 }
-#alphabet ul {
+div#alphabet ul {
     display: inline;
     list-style: none;
     margin: 0;
 }
-#alphabet ul li {
+div#alphabet ul li {
     font: bold 14px/100% sans;
-    color: #000;
     padding: 10px 0px 10px 10px;
     margin:0;
     float: left;
-    border-bottom: solid 2px #000;
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
 }
-#alphabet ul li:first-child {
+div#alphabet ul li:first-child {
     border: 0;
 }
-#alphabet ul li:last-child {
+div#alphabet ul li:last-child {
     border: 0;
 }
-#alphabet ul li a {
+div#alphabet ul li a {
     text-decoration: none;
 }
-#alphabet ul li a:hover {
+div#alphabet ul li a:hover {
     display: block;
     padding: 6px 10px 6px 10px;
     background-color: #C1B398;

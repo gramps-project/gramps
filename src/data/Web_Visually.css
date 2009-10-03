@@ -193,9 +193,10 @@ span.preposition {
 
 /* Header
 ----------------------------------------------------- */
-#header  {
+div#header  {
     background-color: #542;
     border-bottom: solid 8px #5D835F;
+    height: 90px;
 }
 #SiteTitle {
     margin:0;
@@ -214,37 +215,43 @@ p#user_header {
 
 /* Footer
 ----------------------------------------------------- */
-#footer {
+div#footer {
+    width: 100%;
+    height: 60px;
+    overflow: auto;
+    clear: both;
+    font-size: 12px;
+    margin: 0;
     color: #FFF;
     background-color: #542;
     border-top: solid 8px #5D835F;
 }
-#footer a, #footer a:visited {
+div#footer a, div#footer a:visited {
     text-decoration:none;
     color: #FFF;
 }
-#footer a:hover {
+div#footer a:hover {
     color: #000;
     text-decoration:underline;
 }
-#footer img {
+div#footer img {
     border:0;
     margin:0 auto;
     vertical-align:middle;
 }
-#footer p#createdate {
+div#footer p#createdate {
     float:left;
     width:60%;
     text-align:left;
     margin-left:10px;
 }
-#footer p#copyright {
+div#footer p#copyright {
     float:right;
     text-align:right;
     color: #FFF;
     margin: 10px 10px 0px 0px;
 }
-#footer p#copyright img {
+div#footer p#copyright img {
     float:right;
     margin-right: 10px;
 }
@@ -262,23 +269,29 @@ p#user_header {
 
 /* Alphabet Navigation Bar
 ----------------------------------------------------- */
-#alphabet {
-    position: fixed;
-    top: 136px;
+div#alphabet {
     background-color: #6AF364;
+}
+div#alphabet ul {
+    border-color: #000;
+}
+div#alphabet ul li {
+    border-color: #000;
+}
+div#alphabet ul li a {
+    color: #000;
+}
+div#alphabet ul li a:hover {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation, #subnavigation {
+div#navigation, div#subnavigation {
     width: 100%;
 }
-body#NarrativeWeb #navigation {
-    position: fixed;
-    top: 104px;
-    left: 0px;
-}
-#navigation ul, #subnavigation ul {
+div#navigation ul, div#subnavigation ul {
     list-style:none;
     min-width:770px;
     height:32px;
@@ -286,14 +299,14 @@ body#NarrativeWeb #navigation {
     padding: 0px 0px 0px 20px;
     border-bottom: solid 2px #5D835F;
 }
-#navigation ul li, #subnavigation ul li {
+div#navigation ul li, div#subnavigation ul li {
     margin:0;
     float:left;
 }
-body#WebCal div#navigation ul li a {
+body#WebCal divdiv#navigation ul li a {
     color: #FFF;
 }
-#navigation ul li a, #subnavigation ul li a {
+div#navigation ul li a, div#subnavigation ul li a {
     padding: 6px 10px 8px 1px;
     display:block;
     float:left;
@@ -302,13 +315,13 @@ body#WebCal div#navigation ul li a {
     text-decoration:none;
     margin:0;
 }
-#navigation ul li a:hover, #subnavigation ul li a:hover {
+div#navigation ul li a:hover, div#subnavigation ul li a:hover {
     margin-top: -6px;
     padding: 11px 11px 12px 1px;
     background-color: #C1B398;
     color: #000;
 }
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
+div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     font-weight:bold;
     font-style: italic;
     margin-top:-6px;
@@ -316,11 +329,11 @@ body#WebCal div#navigation ul li a {
     background-color: #CCC;
     color: #000;
 }
-#navigation ul li.CurrentSection a:hover {
+div#navigation ul li.CurrentSection a:hover {
     background-color: #000;
     color: #FFF;
 }
-#subnavigation ul li.CurrentSection a {
+div#subnavigation ul li.CurrentSection a {
     border-width: 0px 0px 2px 0px;
     border-color: #FFF;
 }
