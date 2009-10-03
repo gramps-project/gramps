@@ -46,6 +46,7 @@ Narrative Web Page generator.
 #------------------------------------------------------------------------
 import os
 import re
+import sys
 try:
     from hashlib import md5
 except ImportError:
@@ -3276,7 +3277,11 @@ class NavWebReport(Report):
                 os.makedirs(destdir)
 
             if from_fname != dest:
-                shutil.copyfile(from_fname, dest)
+                try:
+                    shutil.copyfile(from_fname, dest)
+                except:
+                    print "Copying error: %s" % sys.exc_info()[1]
+                    print "Continuing..."
             elif self.warn_dir:
                 WarningDialog(
                     _("Possible destination error") + "\n" +
