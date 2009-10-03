@@ -28,6 +28,9 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
+import sys
+import bsddb
 
 ##import logging
 ##_LOG = logging.getLogger(".GrampsAboutDialog")
@@ -36,7 +39,6 @@ try:
     from xml.sax import make_parser, handler, SAXParseException
 except ImportError:
     from _xmlplus.sax import make_parser, handler, SAXParseException
-
 
 #-------------------------------------------------------------------------
 #
@@ -90,7 +92,7 @@ class GrampsAboutDialog(gtk.AboutDialog):
         except IOError:
             self.set_license("License file is missing")
 
-        self.set_comments(_(const.COMMENTS))
+        self.set_comments(_(const.COMMENTS) + self.get_versions())
         self.set_website_label(_('GRAMPS Homepage'))
         self.set_website(const.URL_HOMEPAGE)
         
@@ -104,6 +106,33 @@ class GrampsAboutDialog(gtk.AboutDialog):
         self.set_documenters(const.DOCUMENTERS)
         self.set_logo(gtk.gdk.pixbuf_new_from_file(const.SPLASH))
         self.set_modal(True)
+
+    def get_versions(self):
+        if hasattr(os, "uname"):
+            operatingsystem = os.uname()[0]
+            distribution = os.uname()[2]
+        else:
+            operatingsystem = sys.platform
+            distribution = " "
+
+        return (("\n\n" +
+                 "GRAMPS: %s \n" +
+                 "Python: %s \n" +
+                 "BSDDB: %s \n" +
+                 "LANG: %s\n" +
+                 "OS: %s\n" +
+                 "Distribution: %s")
+                % (elipses(str(const.VERSION)),
+                   elipses(str(sys.version).replace('\n','')),
+                   elipses(str(bsddb.__version__)),
+                   elipses(os.environ.get('LANG','')),
+                   elipses(operatingsystem),
+                   elipses(distribution)))
+
+def elipses(text):
+    if len(text) > 40:
+        return text[:40] + "..."
+    return text
 
 #-------------------------------------------------------------------------
 #
