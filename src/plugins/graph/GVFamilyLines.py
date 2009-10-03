@@ -789,7 +789,7 @@ class FamilyLinesReport(Report):
                 if (bth_event.private and self._incprivate) or \
                         not bth_event.private:
                     date = bth_event.get_date_object()
-                    if self._just_years:
+                    if self._just_years and date.get_year_valid():
                         birthStr = '%i' % date.get_year()
                     else:
                         birthStr = _dd.display(date)
@@ -815,7 +815,7 @@ class FamilyLinesReport(Report):
                 if (dth_event.private and self._incprivate) or \
                         not dth_event.private:
                     date = dth_event.get_date_object()
-                    if self._just_years:
+                    if self._just_years and date.get_year_valid():
                         deathStr = '%i' % date.get_year()
                     else:
                         deathStr = _dd.display(date)
@@ -938,7 +938,7 @@ class FamilyLinesReport(Report):
                         if (event.private and self._incprivate) or not event.private:
                             if self._incdates:
                                 date = event.get_date_object()
-                                if self._just_years:
+                                if self._just_years and date.get_year_valid():
                                     weddingDate = '%i' % date.get_year()
                                 else:
                                     weddingDate = _dd.display(date)
