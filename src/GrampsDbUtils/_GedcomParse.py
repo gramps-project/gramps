@@ -882,6 +882,8 @@ class GedcomParser(UpdateCallback):
         we create a new family, assign the handle and GRAMPS ID.
         """
         family = gen.lib.Family()
+        # Add a counter for reordering the children later:
+        family.child_ref_count = 0
         intid = self.fid2id.get(gramps_id)
         if self.dbase.has_family_handle(intid):
             family.unserialize(self.dbase.get_raw_family_data(intid))
@@ -2428,12 +2430,14 @@ class GedcomParser(UpdateCallback):
         reflist = [ ref for ref in state.family.get_child_ref_list() \
                     if ref.ref == child.handle ]
 
-        if reflist:
+        if reflist: # The child has been referenced already
             ref = reflist[0]
             if sub_state.frel:
                 ref.set_father_relation(sub_state.frel)
             if sub_state.mrel:
                 ref.set_mother_relation(sub_state.mrel)
+            # then we will set the order now:
+            self.set_child_ref_order(state.family, ref)
         else:
             ref = gen.lib.ChildRef()
             ref.ref = child.handle
@@ -2442,6 +2446,16 @@ class GedcomParser(UpdateCallback):
             if sub_state.mrel:
                 ref.set_mother_relation(sub_state.mrel)
             state.family.add_child_ref(ref)
+
+    def set_child_ref_order(self, family, child_ref):
+        """
+        Sets the child_ref in family.child_ref_list to be in the position
+        family.child_ref_count. This reorders the children to be in the 
+        order given in the FAM section.
+        """
+        family.child_ref_list.remove(child_ref)
+        family.child_ref_list.insert(family.child_ref_count, child_ref)
+        family.child_ref_count += 1
 
     def __family_slgs(self, line, state):
         """
