@@ -159,7 +159,12 @@ date_tests[testset] = dates
 # test for all other different calendars
 testset = "Non-gregorian"
 dates = []
-for calendar in (Date.CAL_JULIAN, Date.CAL_HEBREW, Date.CAL_ISLAMIC, Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_SWEDISH):
+for calendar in (Date.CAL_JULIAN, 
+                 Date.CAL_HEBREW, 
+                 Date.CAL_ISLAMIC, 
+                 Date.CAL_FRENCH, 
+                 Date.CAL_PERSIAN, 
+                 ):
     for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
         for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
             d = Date()
@@ -169,18 +174,52 @@ for calendar in (Date.CAL_JULIAN, Date.CAL_HEBREW, Date.CAL_ISLAMIC, Date.CAL_FR
             d = Date()
             d.set(quality,modifier,calendar,(4,10,1789,False,5,11,1876,False),"Text comment")
             dates.append( d)
+
+# CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
+class Context(object):
+    def __init__(self, retval):
+        self.retval = retval
+    def __enter__(self):
+        return self.retval
+    def __exit__(self, *args, **kwargs):
+        pass
+#with Context(Date.CAL_SWEDISH) as calendar:
+#    for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+#        for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+#            d = Date()
+#            d.set(quality,modifier,calendar,(4,11,1700,False),"Text comment")
+#            dates.append( d)
+#        for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+#            d = Date()
+#            d.set(quality,modifier,calendar,(4,10,1701,False,5,11,1702,False),"Text comment")
+#            dates.append( d)
+
 quality = Date.QUAL_NONE
 modifier = Date.MOD_NONE
-for calendar in (Date.CAL_JULIAN, Date.CAL_ISLAMIC, Date.CAL_PERSIAN, Date.CAL_SWEDISH):
+for calendar in (Date.CAL_JULIAN, 
+                 Date.CAL_ISLAMIC, 
+                 Date.CAL_PERSIAN, 
+                 #Date.CAL_SWEDISH,
+                 ):
     for month in range(1,13):
         d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
+
+## CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
+#with Context(Date.CAL_SWEDISH) as calendar:
+#    for year in range(1701, 1712):
+#        for month in range(1,13):
+#            d = Date()
+#            d.set(quality,modifier,calendar,(4,month,year,False),"Text comment")
+#            dates.append( d)
+
 for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
     for month in range(1,14):
         d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
+
 date_tests[testset] = dates
 
 # now run the tests using all available date formats
@@ -195,11 +234,18 @@ class Eval(unittest.TestCase):
         unittest.TestCase.__init__(self, method_name)
 
 def eval_func(dateval, e1, e2, e3):
+    """
+    e1 is datestr = _dd.display(dateval)
+    e2 is ndate = _dp.parse(datestr)
+    e3 is ntxt = _dd.display(ndate)
+    """
     exec(e1)
     exec(e2)
     exec(e3)
     #print datestr, ndate, ntxt
-    assert(dateval.is_equal(ndate), "dates are not the same")
+    assert dateval.is_equal(ndate), ("date fails is_equal:\n"
+                                     "   '%s' != '%s'" % 
+                                     (datestr, ndate))
 
 def suite3():
     suite = unittest.TestSuite()            
