@@ -846,16 +846,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
     def __family_child_list(self, child_ref_list):
         """
         Write the child XREF values to the GEDCOM file. 
-        
-        Sorts the child list by ID value before writing.
-        
         """
-
-        # sort the childlist by GRAMPS ID
         child_list = [ 
             self.dbase.get_person_from_handle(cref.ref).get_gramps_id()
             for cref in child_ref_list ]
-        child_list.sort()
 
         for gid in child_list:
             self.__writeln(1, 'CHIL', '@%s@' % gid)
