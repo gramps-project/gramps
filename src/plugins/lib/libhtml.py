@@ -126,6 +126,24 @@ class Html(list):
     __slots__ = ['items', 'indent', 'inline', 'close']
 #
     @staticmethod
+    def xmldecl(version=1.0, encoding="UTF-8", standalone="no"):
+        """
+        Build and return an XML declaration statement
+
+        :type  version: decimal number
+        :param version: version of XML to be used. Defaults to 1.0
+        :type  encoding: string
+        :param encoding: encoding method to be used. Defaults to "UTF-8"
+        :type  standalone: string
+        :param standalone: "yes" or "no".  Defaults to "no"
+        """
+        return '<?xml %s %s %s?>' % (
+            'version="%s"' % version,
+            'encoding="%s"' % encoding,
+            'standalone="%s"' % standalone
+            )
+#
+    @staticmethod
     def doctype(name='html', public='PUBLIC', external_id=_XHTML10_STRICT):
         """
         Build and return a DOCTYPE statement
@@ -204,6 +222,7 @@ class Html(list):
                   page, head and body
         """
         page = Html.html(lang=lang, *args, **keywargs)
+        page.addXML(encoding=encoding)
         page.addDOCTYPE()
 #
         head = Html.head(title=title,
@@ -395,6 +414,24 @@ class Html(list):
                     item.write(method=method, indent=indent, tabs=tabs)
                 else:
                     method('%s%s' % (tabs, item))         # else write the line
+#
+    def addXML(self, version=1.0, encoding="UTF-8", standalone="no"):
+        """
+        Add an XML statement to the start of the list for this object
+
+        :type  version: decimal number
+        :param version: version of XML to be used. Defaults to 1.0
+        :type  encoding: string
+        :param encoding: encoding method to be used. Defaults to "UTF-8"
+        :type  standalone: string
+        :param standalone: "yes" or "no".  Defaults to "no"
+        """
+        xmldecl = Html.xmldecl(
+            version=version,
+            encoding=encoding,
+            standalone=standalone
+            )
+        self[0:0] = [xmldecl]
 #
     def addDOCTYPE(self, name='html', external_id=_XHTML10_STRICT, *args):
         """
