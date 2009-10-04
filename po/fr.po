@@ -1945,7 +1945,7 @@ msgstr "la conjointe"
 
 #: ../src/Relationship.py:1657
 msgid "gender unknown,unmarried|spouse"
-msgstr "le conjoint"
+msgstr "le compagnon"
 
 #: ../src/Relationship.py:1660
 msgid "unmarried|ex-husband"
@@ -1957,56 +1957,55 @@ msgstr "l'ancienne conjointe"
 
 #: ../src/Relationship.py:1664
 msgid "gender unknown,unmarried|ex-spouse"
-msgstr "l'ancienne conjointe"
+msgstr "l'ancien compagnon"
 
 #: ../src/Relationship.py:1667
 msgid "male,civil union|partner"
-msgstr "le partenaire"
+msgstr "le concubin"
 
 #: ../src/Relationship.py:1669
 msgid "female,civil union|partner"
-msgstr "la partenaire"
+msgstr "la concubine"
 
 #: ../src/Relationship.py:1671
 msgid "gender unknown,civil union|partner"
-msgstr "le partenaire"
+msgstr "le concubin"
 
 #: ../src/Relationship.py:1674
 msgid "male,civil union|former partner"
-msgstr "le partenaire"
+msgstr "l'ancien concubin"
 
 #: ../src/Relationship.py:1676
 msgid "female,civil union|former partner"
-msgstr "la partenaire"
+msgstr "l'ancienne concubine"
 
 #: ../src/Relationship.py:1678
 msgid "gender unknown,civil union|former partner"
-msgstr "le partenaire"
+msgstr "l'ancien concubin"
 
 #: ../src/Relationship.py:1681
 msgid "male,unknown relation|partner"
-msgstr "le partenaire"
+msgstr "le compagnon"
 
 #: ../src/Relationship.py:1683
 msgid "female,unknown relation|partner"
-msgstr "la partenaire"
+msgstr "la compagne"
 
 #: ../src/Relationship.py:1685
 msgid "gender unknown,unknown relation|partner"
-msgstr "le partenaire"
+msgstr "le compagnon"
 
 #: ../src/Relationship.py:1690
 msgid "male,unknown relation|former partner"
-msgstr "le partenaire"
+msgstr "l'ancien compagnon"
 
 #: ../src/Relationship.py:1692
 msgid "female,unknown relation|former partner"
-msgstr "la partenaire"
+msgstr "l'ancienne compagne"
 
-# Pour cette série de chaîne, doit-on reprendre le même format que l'originale, à savoir "genre inconnu, relation inconnue|ex-partenaire" ?
 #: ../src/Relationship.py:1694
 msgid "gender unknown,unknown relation|former partner"
-msgstr "le partenaire"
+msgstr "l'ancien compagnon"
 
 #: ../src/Reorder.py:31 ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157 ../src/DataViews/FamilyList.py:63
@@ -17814,11 +17813,11 @@ msgstr "Entreprise ou institution"
 
 #: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
-msgstr "Âge du mari / homme / partenaire"
+msgstr "Âge du mari / compagnon"
 
 #: ../src/gen/lib/attrtype.py:75
 msgid "Mother's Age"
-msgstr "Âge de la femme / partenaire"
+msgstr "Âge de la femme / compagne"
 
 #: ../src/gen/lib/attrtype.py:76 ../src/gen/lib/eventroletype.py:65
 msgid "Witness"
