@@ -948,6 +948,10 @@ class BasePage(object):
                                      html_escape(title)),
                                     self.report.encoding, xmllang )
 
+        # temporary fix for .php parsing error
+        if self.ext in [".php", ".php3", ".cgi"]:
+            del page[0]
+
         # add narrative specific body id
         # add alphabet layout direction to NarrativeWeb to allow for proper spacing for
         # each individual stylesheet
