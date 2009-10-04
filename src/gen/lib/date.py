@@ -269,18 +269,25 @@ class Span(object):
         return self._diff(self.date1, self.date2)[pos]
 
     def __int__(self):
+        """
+        Returns the number of months of span.
+        """
         if self.negative:
-            return -self.sort[0]
+            return -(self.sort[0] * 12 + self.sort[1])
         else:
-            return self.sort[0]
+            return  (self.sort[0] * 12 + self.sort[1])
 
     def __cmp__(self, other):
+        """
+        Comparing two Spans for SORTING purposes. 
+        Use cmp(abs(int(span1)), abs(int(span2))) for comparing
+        actual spans of times, as spans have directionality 
+        as indicated by negative values.
+        """
         if other is None:
-            return cmp(self.sort, (-9999, -9999))
-        elif self.negative:
-            return cmp((-self.sort[0], self.sort[1]), other.sort)
+            return cmp(int(self), -9999)
         else:
-            return cmp(self.sort, other.sort)
+            return cmp(int(self), int(other))
 
     def __repr__(self):
         if self.repr is not None:
@@ -446,27 +453,27 @@ class Span(object):
 
     def __eq__(self, other):
         """
-        For comparing of Spans. Uses the sort tuple pair.
+        For comparing of Spans. Uses the integer representation.
         """
         if other is None:
             return False
-        return self.sort == other.sort
+        return int(self) == int(other)
 
     def __lt__(self, other):
         """
-        For less-than comparing of Spans. Uses the sort tuple pair.
+        For less-than comparing of Spans. Uses the integer representation.
         """
         if other is None:
             return False
-        return self.sort < other.sort
+        return int(self) < int(other)
 
     def __gt__(self, other):
         """
-        For greater-than comparing of Spans. Uses the sort tuple pair.
+        For greater-than comparing of Spans. Uses the integer representation.
         """
         if other is None:
             return True
-        return self.sort > other.sort
+        return int(self) > int(other)
 
     def format(self, precision=2):
         """
