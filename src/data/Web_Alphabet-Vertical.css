@@ -30,15 +30,7 @@ see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------------------------------
 # $Id: $
 
- NarrativeWeb
------------------------------------------------------------------------------------------------- */
-body#NarrativeWeb {
-    padding: 136px 0px 0px 54px;
-    margin: 0;
-    background-color: #FFF;
-}
-
-/* Header
+ Header
 ----------------------------------------------------- */
 #header  {
     position: fixed;
@@ -48,21 +40,13 @@ body#NarrativeWeb {
     width: 100%;
 }
 
-/*                         NarrativeWeb Navigation
-------------------------------------------------------------------------------- */
-body#NarrativeWeb div#navigation {
-    position: fixed;
-    top: 104px;
-    left: 0px;
-}
-
 /* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphabet {
     position: fixed;
     left: 4px;
-    width: 44px;
-    height: 416px;
+    width: 40px;
+    height: 326px;
     overflow-x: auto;
     border-width: 2px 4px 2px 4px;
     border-style: solid;
@@ -70,27 +54,28 @@ div#alphabet {
 div#alphabet ul {
     display: inline;
     list-style: none;
+    padding: 0px 9px 0px 9px;
     margin: 0;
 }
 div#alphabet ul li {
     font: bold 14px/100% sans;
-    padding: 10px 0px 10px 10px;
+    padding: 10px 10px 10px 0px;
     margin:0;
     float: left;
     border-width: 0px 0px 2px 0px;
     border-style: solid;
 }
 div#alphabet ul li:first-child {
-    border: 0;
+    border-top: 0;
 }
 div#alphabet ul li:last-child {
-    border: 0;
+    border-bottom: 0;
 }
 div#alphabet ul li a {
     text-decoration: none;
+    display: block;
+    padding: 10px 0px 6px 10px;
 }
 div#alphabet ul li a:hover {
-    display: block;
-    padding: 6px 10px 6px 10px;
     background-color: #C1B398;
 }

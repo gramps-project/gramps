@@ -304,6 +304,7 @@ class BasePage(object):
         # are still required.
         self.html_dir = report.options['target']
         self.ext = report.options['ext']
+        self.alpha_nav_bar = report.options['alpha_nav_bar']
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
@@ -948,7 +949,13 @@ class BasePage(object):
                                     self.report.encoding, xmllang )
 
         # add narrative specific body id
-        body.attr = 'id="NarrativeWeb" '
+        # add alphabet layout direction to NarrativeWeb to allow for proper spacing for
+        # each individual stylesheet
+        alphabet_layout = "Horizontal"
+        if self.alpha_nav_bar == "Vertical":
+            alphabet_layout = "Vertical"
+
+        body.attr = 'id="NarrativeWeb_%s" ' % alphabet_layout
 
         # create additional meta tags
         meta = (Html("meta", attr = _META1) + 
@@ -5792,6 +5799,12 @@ def alphabet_navigation(db, handle_list, key):
 
     # remove the number of each occurance of each letter
     sorted_alpha_index = sorted(sorted_set, key=locale.strxfrm)
+
+    # remove any commas from the letter set
+    sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != ',']
+
+    # remove any single spaces from the letter set also
+    sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != ' ']
 
     # if no letters, return None back to its callers
     if not sorted_alpha_index:
