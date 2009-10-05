@@ -56,26 +56,26 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     description = _("Matches ancestors of the people on the bookmark list "
                     "not more than N generations away")
 
-    def prepare(self,db):
+    def prepare(self, db):
         self.db = db
         bookmarks = db.get_bookmarks().get()
+        self.map = set()
         if len(bookmarks) == 0:
             self.apply = lambda db,p : False
         else:
-            self.map = {}
             self.bookmarks = set(bookmarks)
             self.apply = self.apply_real
             for self.bookmarkhandle in self.bookmarks:
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 
 
-    def init_ancestor_list(self, handle,gen):
+    def init_ancestor_list(self, handle, gen):
 #        if p.get_handle() in self.map:
 #            loop_error(self.orig,p)
         if not handle:
             return
         if gen:
-            self.map[handle] = 1
+            self.map.add(handle)
             if gen >= int(self.list[0]):
                 return
         
@@ -87,12 +87,12 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
             m_id = fam.get_mother_handle()
         
             if f_id:
-                self.init_ancestor_list(f_id,gen+1)
+                self.init_ancestor_list(f_id, gen+1)
             if m_id:
-                self.init_ancestor_list(m_id,gen+1)
+                self.init_ancestor_list(m_id, gen+1)
 
-    def apply_real(self,db,person):
+    def apply_real(self, db, person):
         return person.handle in self.map
 
     def reset(self):
-        self.map = {}
+        self.map.clear()

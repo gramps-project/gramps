@@ -57,7 +57,7 @@ class RelationshipPathBetweenBookmarks(Rule):
 
     def prepare(self,db):
         self.db = db
-        self.map = {}
+        self.map = set()
         bookmarks = db.get_bookmarks().get()
         if len(bookmarks) == 0:
             self.apply = lambda db,p : False
@@ -69,7 +69,7 @@ class RelationshipPathBetweenBookmarks(Rule):
             pass
 
     def reset(self):
-        self.map = {}
+        self.map.clear()
 
     #
     # Returns a name, given a handle.
@@ -90,7 +90,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     # Given a group of individuals, returns all of their parents.
     # The value keyed by the individual handles is the path from
     # the original person up, like generation[gfather]= [son,father,gfather]
-    def parents(self,generation):
+    def parents(self, generation):
         if len(generation) < 1: return None
         prev_generation = {}
         for handle in generation:
@@ -144,30 +144,19 @@ class RelationshipPathBetweenBookmarks(Rule):
         return rel_path
     
     def init_list(self):
-        Map = {}
-        pathmap = {}
-        bmarks = {}
+        self.map.update(self.bookmarks)
+        if len(self.bookmarks) < 2:
+            return
+        bmarks = list(self.bookmarks)
 
-        # Handle having fewer than 2 bookmarks, or unrelated people.
-        nb = 0
-        for handle in self.bookmarks:
-            nb = nb + 1
-            self.map[handle] = 1
-            bmarks[nb] = handle
-            #print "bmarks[", nb, "] = ", handle, self.hnm(handle)
-        if nb <= 1: return
-        #print "bmarks = ", bmarks
-        #
         # Go through all bookmarked individuals, and mark all
         # of the people in each of the paths betweent them.
-        for i in range(1, nb):
-            handle1 = bmarks[i]
-            for j in range(i+1, nb+1):
-                handle2 = bmarks[j]
+        lb = len(bmarks)
+        for i in range(lb-1):
+            for j in range(i+1, lb):
                 try:
-                    pathmap = self.rel_path_for_two(handle1, handle2)	
-                    for handle in pathmap:
-                        self.map[handle] = 1
+                    pathmap = self.rel_path_for_two(bmarks[i], bmarks[j])
+                    self.map.update(pathmap)
                 except:
                     pass
 

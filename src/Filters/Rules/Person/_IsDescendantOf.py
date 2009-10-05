@@ -48,14 +48,11 @@ class IsDescendantOf(Rule):
     category    = _('Descendant filters')
     description = _('Matches all descendants for the specified person')
 
-    def prepare(self,db):
+    def prepare(self, db):
         self.db = db
-        self.map = {}
+        self.map = set()
         try:
-            if int(self.list[1]):
-                first = False
-            else:
-                first = True
+            first = False if int(self.list[1]) else True
         except IndexError:
             first = True
         try:
@@ -65,20 +62,20 @@ class IsDescendantOf(Rule):
             pass
 
     def reset(self):
-        self.map = {}
+        self.map.clear()
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return person.handle in self.map
 
-    def init_list(self,person,first):
+    def init_list(self, person, first):
         if not person:
             return
         if not first:
-            self.map[person.handle] = 1
+            self.map.add(person.handle)
         
         for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 for child_ref in fam.get_child_ref_list():
                     self.init_list(
-                        self.db.get_person_from_handle(child_ref.ref),0)
+                        self.db.get_person_from_handle(child_ref.ref), 0)

@@ -51,7 +51,7 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
 
     def prepare(self,db):
         self.db = db
-        self.map = {}
+        self.map = set()
         try:
             root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
             self.init_ancestor_list(root_handle,0)
@@ -59,18 +59,18 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
             pass
 
     def reset(self):
-        self.map = []
+        self.map.clear()
     
     def apply(self,db,person):
         return person.handle in self.map
 
-    def init_ancestor_list(self, handle,gen):
+    def init_ancestor_list(self, handle, gen):
 #        if p.get_handle() in self.map:
 #            loop_error(self.orig,p)
         if not handle:
             return
         if gen >= int(self.list[1]):
-            self.map[handle] = 1
+            self.map.add(handle)
         
         p = self.db.get_person_from_handle(handle)
         fam_id = p.get_main_parents_family_handle()
@@ -80,6 +80,6 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
             m_id = fam.get_mother_handle()
         
             if f_id:
-                self.init_ancestor_list(f_id,gen+1)
+                self.init_ancestor_list(f_id, gen+1)
             if m_id:
-                self.init_ancestor_list(m_id,gen+1)
+                self.init_ancestor_list(m_id, gen+1)

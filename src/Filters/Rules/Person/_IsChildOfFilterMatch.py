@@ -50,7 +50,7 @@ class IsChildOfFilterMatch(MatchesFilter):
 
     def prepare(self,db):
         self.db = db
-        self.map = {}
+        self.map = set()
         filt = MatchesFilter(self.list)
         filt.prepare(db)
         for person in db.iter_people():
@@ -59,7 +59,7 @@ class IsChildOfFilterMatch(MatchesFilter):
         filt.reset()
 
     def reset(self):
-        self.map = {}
+        self.map.clear()
 
     def apply(self,db,person):
         return person.handle in self.map
@@ -69,5 +69,5 @@ class IsChildOfFilterMatch(MatchesFilter):
             return
         for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
-            for child_ref in fam.get_child_ref_list():
-                self.map[child_ref.ref] = 1
+            self.map.update(child_ref.ref
+                for child_ref in fam.get_child_ref_list())
