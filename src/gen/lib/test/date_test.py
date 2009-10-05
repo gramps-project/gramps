@@ -183,30 +183,31 @@ class Context(object):
         return self.retval
     def __exit__(self, *args, **kwargs):
         pass
-#with Context(Date.CAL_SWEDISH) as calendar:
-#    for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
-#        for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
-#            d = Date()
-#            d.set(quality,modifier,calendar,(4,11,1700,False),"Text comment")
-#            dates.append( d)
-#        for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
-#            d = Date()
-#            d.set(quality,modifier,calendar,(4,10,1701,False,5,11,1702,False),"Text comment")
-#            dates.append( d)
+
+with Context(Date.CAL_SWEDISH) as calendar:
+    for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+        for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,11,1700,False),"Text comment")
+            dates.append( d)
+        for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,10,1701,False,
+                                             5,11,1702,False),"Text comment")
+            dates.append( d)
 
 quality = Date.QUAL_NONE
 modifier = Date.MOD_NONE
 for calendar in (Date.CAL_JULIAN, 
                  Date.CAL_ISLAMIC, 
                  Date.CAL_PERSIAN, 
-                 #Date.CAL_SWEDISH,
                  ):
     for month in range(1,13):
         d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
 
-## CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
+# CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
 #with Context(Date.CAL_SWEDISH) as calendar:
 #    for year in range(1701, 1712):
 #        for month in range(1,13):
@@ -223,8 +224,10 @@ for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
 date_tests[testset] = dates
 
 # now run the tests using all available date formats
-cal_str = [ "CAL_GREGORIAN", "CAL_JULIAN", "CAL_HEBREW", "CAL_FRENCH", "CAL_PERSIAN", "CAL_ISLAMIC", "CAL_SWEDISH"]
-mod_str = ["MOD_NONE", "MOD_BEFORE", "MOD_AFTER", "MOD_ABOUT", "MOD_RANGE", "MOD_SPAN", "MOD_TEXTONLY"]
+cal_str = [ "CAL_GREGORIAN", "CAL_JULIAN", "CAL_HEBREW", "CAL_FRENCH", 
+            "CAL_PERSIAN", "CAL_ISLAMIC", "CAL_SWEDISH"]
+mod_str = ["MOD_NONE", "MOD_BEFORE", "MOD_AFTER", "MOD_ABOUT", "MOD_RANGE", 
+           "MOD_SPAN", "MOD_TEXTONLY"]
 qua_str = ["QUAL_NONE", "QUAL_ESTIMATED", "QUAL_CALCULATED"]
 formats = DateHandler.get_date_formats()
 
@@ -255,7 +258,8 @@ def suite3():
             DateHandler.set_format(format)
             for dateval in date_tests[testset]:
                 if dateval.modifier != Date.MOD_TEXTONLY:
-                    dateval.text = "Comment. Format: %s" % DateHandler.get_date_formats()[format]
+                    dateval.text = ("Comment. Format: %s" % 
+                                    DateHandler.get_date_formats()[format])
                 suite.addTest(Eval("test_eval%04d" % count, dateval, 
                                       "datestr = _dd.display(dateval)", 
                                       "ndate = _dp.parse(datestr)", 
