@@ -34,6 +34,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 # $Id: $
 
  GeoView Styles
+
+ color:#2e3436; # tango color Aluminium
 ----------------------------------------------------- */
 
 #openstreetmap
@@ -41,6 +43,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  border: 3px black solid;
  margin-left:auto;
  margin-right:auto;
+ min-height:400px;
+ min-width: 300px;
 }
 
 #google
@@ -48,6 +52,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  border: 3px black solid;
  margin-left:auto;
  margin-right:auto;
+ min-height:400px;
+ min-width: 300px;
 }
 
 #openlayers
@@ -55,6 +61,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  border: 3px black solid;
  margin-left:auto;
  margin-right:auto;
+ min-height:400px;
+ min-width: 300px;
 }
 
 #microsoft
@@ -62,6 +70,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  border: 3px black solid;
  margin-left:auto;
  margin-right:auto;
+ min-height:400px;
+ min-width: 300px;
 }
 
 #yahoo
@@ -69,6 +79,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  border: 3px black solid;
  margin-left:auto;
  margin-right:auto;
+ min-height:400px;
+ min-width: 300px;
 }
 
 /* InfoWindow */
@@ -89,9 +101,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  top:0;
  left:0;
  font-size:10pt;
- height:100px;
- width=100%
- overflow:auto;
+ height:90px;
+ overflow-y:auto;
 }
 
 #geo-theplaces ul {
@@ -103,8 +114,7 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  padding: 0;
 }
 
-#geo-title
-{
+#geo-title {
  list-style-type: none;
  margin-left: 5px;
 }
@@ -126,10 +136,8 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 #geo-liste:hover li { 
 }
 
-#geo-theplaces
-{
+#geo-theplaces {
  position:absolute;
- opacity:.90;
  color:#2e3436;
  top:120px;
  left:100px;
@@ -137,47 +145,38 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  border: 0px;
  overflow:auto;
  max-height:50%;
+ z-index:800; /* must be greater than 748 to be visible on openlayers */
 }
 
-#geo-theplace
-{
+#geo-theplace {
  display: block;
 }
 
-#geo-theplace a
-{
+#geo-theplace a {
  color: #2e3436;
  display: block;
 }
 
-#geo-theplace a:visited
-{
+#geo-theplace a:visited {
  color: #2e3436;
  background-color: transparent;
  text-decoration:none;
- opacity:1.0;
 }
 
-#geo-theplace a:active
-{
+#geo-theplace a:active {
  color: #2e3436;
  background-color: transparent;
  text-decoration:none;
- opacity:1.0;
 }
 
-#geo-theplaces a:hover
-{
+#geo-theplaces a:hover {
  color: #2e3436;
  background-color: transparent;
  text-decoration:none;
- opacity:1.0;
 }
 
-#geo-theplace a:hover
-{
+#geo-theplace a:hover {
  color: #2e3436;
  background-color: transparent;
  text-decoration:none;
- opacity:1.0;
 }

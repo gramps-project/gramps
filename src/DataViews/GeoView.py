@@ -121,6 +121,7 @@ _JAVASCRIPT = '''<script>
   var min = 0;
   var zoom = 0;
   var pos = 0;
+  var mapstraction;
   var regrep = new RegExp(\"default\",\"g\");
   var selected = 0;
   var current_map = '{current_map}';
@@ -145,10 +146,10 @@ _JAVASCRIPT = '''<script>
       }}
     }}
   }}
-  function savezoomandposition(mapstraction) {{
+  function savezoomandposition(map) {{
     var t=setTimeout("savezoomandposition(mapstraction)",1000);
-    nzoom = mapstraction.getZoom();
-    nposition=mapstraction.getCenter();
+    nzoom = map.getZoom();
+    nposition=map.getCenter();
     if ( ( nzoom != zoom ) || ( nposition != pos )) {{
       zoom = nzoom;
       pos = nposition;
@@ -158,9 +159,9 @@ _JAVASCRIPT = '''<script>
   function placeclick(i) {{
     gmarkers[i].openBubble();
   }}
-  function removemarkers(mapstraction) {{
+  function removemarkers(map) {{
     for ( m=0; m < gmarkers.length; m++) {{
-      mapstraction.removeMarker(gmarkers[m]);
+      map.removeMarker(gmarkers[m]);
     }}
   }}
   function get_selected_radio() {{
@@ -283,7 +284,6 @@ class GeoView(HtmlView):
         self.nbpages = 0
         self.yearinmarker = []
         self.mustcenter = False
-        self.external_url = False
         self.centerlat = 0.0
         self.centerlon = 0.0
         self.setattr = True
@@ -319,6 +319,8 @@ class GeoView(HtmlView):
         self.htmlfile = ""
         self.places = []
         self.sort = []
+        self.psort = []
+        self.plist = ""
         self.without_coord_file = []
         self.place_without_coordinates = []
         self.minlat = 0.0
@@ -371,11 +373,9 @@ class GeoView(HtmlView):
         gws = widget.get_allocation()
         self.width = gws.width
         self.height = gws.height
+        if not self.dbstate.active:
+            return
         self.external_uri()
-        try:
-            self._geo_places()
-        except:
-            pass
 
     def set_active(self):
         """
@@ -515,7 +515,7 @@ class GeoView(HtmlView):
           5. store label so it can be changed when selection changes
         """
         PageView.PageView.change_page(self)
-        #menutoolbutton actions are stored in PageView class, 
+        # menutoolbutton actions are stored in PageView class, 
         # obtain the widgets where we need to add to menu
         actionstyles = self.action_toolmenu['StyleSheet']
         widgets = actionstyles.get_proxies()
@@ -533,7 +533,7 @@ class GeoView(HtmlView):
                 if gtk.pygtk_version >= (2, 12, 0):
                     widget.set_arrow_tooltip_text(actionstyles.arrowtooltip)
                 lbl = gtk.Label(self.mapstyle_label())
-                self.stylesheetlbl=lbl
+                self.stylesheetlbl = lbl
                 lbl.show()
                 self.stylesheetlabel.append(lbl)
                 widget.set_label_widget(self.stylesheetlabel[-1])
@@ -560,7 +560,7 @@ class GeoView(HtmlView):
             add_menuitem(menu, stylesheet[0], stylesheet[1] , 
                                make_callback(self.set_mapstylesheet,
                                              stylesheet[1]))
-            self.stylesheetdata[key] = [stylesheet[0],stylesheet[1]]
+            self.stylesheetdata[key] = [stylesheet[0], stylesheet[1]]
         return menu
 
     def mapstyle_label(self):
@@ -641,10 +641,11 @@ class GeoView(HtmlView):
         """
         Specifies the places to display with mapstraction.
         """
+        if not self.dbstate.active:
+            return
         if self.nbmarkers > 0 :
             # While the db is not loaded, we have 0 markers.
             self._savezoomandposition()
-        self.external_url = False
         self.nbmarkers = 0
         self.without = 0
         self._createmapstraction(self.displaytype)
@@ -781,8 +782,7 @@ class GeoView(HtmlView):
         self.mapview.write("</script>\n")
         self.mapview.write("</head>\n")
         self.mapview.write("<body >\n")
-        self.mapview.write("<div id='geo-content' ")
-        self.mapview.write(">\n")
+        self.mapview.write("<div id='geo-content' >\n")
         if maxpages > 1:
             message = _("There are %d markers to display. They are split up "
                         "over %d pages of %d markers : " % (self.nbmarkers, 
@@ -853,8 +853,7 @@ class GeoView(HtmlView):
         self.mapview.write("<H3>%s</H3>" % h3mess)
         if h4mess:
             self.mapview.write("<H4>%s</H4>" % h4mess)
-        margin = 10
-        self.mapview.write("</div>\n")
+        self.mapview.write("</div>\n") # end geo-content
         self.mapview.write("<div id=\"openstreetmap\" class=\"Mapstraction\"")
         self.mapview.write(" style=\"height: %dpx\"></div>\n" % 
                            (self.height - 130 ))
@@ -872,7 +871,7 @@ class GeoView(HtmlView):
                           "placeclick(%d);\">%s</a></li>" % (place[1], place[0])
         self.mapview.write("%s</ul></li></ul></div>\n" % self.plist)
         self.mapview.write("<script type=\"text/javascript\">\n")
-        self.mapview.write(" var mapstraction = new Mapstraction")
+        self.mapview.write(" mapstraction = new Mapstraction")
         self.mapview.write("('openstreetmap','openstreetmap');\n")
         self.mapview.write(" mapstraction.addControls(")
         self.mapview.write("{ pan: true, zoom: 'large', ")
@@ -899,9 +898,13 @@ class GeoView(HtmlView):
         """
         self.mapview = open(filename, "w+")
         (lang_country, modifier ) = locale.getlocale()
+        if lang_country == None:
+            lang = "en"
+        else:
+            lang = lang_country.split('_')[0]
         self.mapview.write(
             _HTMLHEADER.format(
-                xmllang = "xml:lang=\"%s\"" % lang_country.split('_')[0],
+                xmllang = "xml:lang=\"%s\"" % lang,
                 css = self._add_stylesheet()
                 )
             )
@@ -915,7 +918,7 @@ class GeoView(HtmlView):
         self.mapview.write("</script>\n")
         self.mapview.write("<script type=\"text/javascript\"")
         self.mapview.write(" src=\"http://maps.google.com/")
-        self.mapview.write("maps?file=api&v=2\">")
+        self.mapview.write("maps?file=api&v=2&hl=%s\">" % lang )
         self.mapview.write("</script>\n%s" % self._add_stylesheet())
         if _alternate_map() == "microsoft":
             self.mapview.write("<script type=\"text/javascript\" ")
@@ -1139,7 +1142,7 @@ class GeoView(HtmlView):
         self.yearinmarker = []
         ininterval = False
         self.setattr = True
-        self.mapview.write("  function setcenterandzoom(mapstraction) {\n")
+        self.mapview.write("  function setcenterandzoom(map) {\n")
         if self.mustcenter:
             self.centered = True
             self.mapview.write("   var point = new LatLonPoint")
@@ -1148,14 +1151,14 @@ class GeoView(HtmlView):
                                                  self.reallongitude))
             else:
                 self.mapview.write("(%s,%s);" % (self.latit, self.longt))
-            self.mapview.write("mapstraction.setCenterAndZoom")
+            self.mapview.write("map.setCenterAndZoom")
             if self.lock_action.get_action('SaveZoom').get_active():
                 self.mapview.write("(point, %s);\n" % self.realzoom)
             else:
                 self.mapview.write("(point, %s);\n" % self.zoom)
             self.setattr = False
         self.mapview.write("}\n")
-        self.mapview.write("  function setmarkers(mapstraction) {\n")
+        self.mapview.write("  function setmarkers(map) {\n")
         self.mapview.write("   if ( current_map != \"openstreetmap\" ) {")
         self.mapview.write(" default_icon = \"altmap\";")
         self.mapview.write(" } else { ")
@@ -1184,7 +1187,7 @@ class GeoView(HtmlView):
                         self.yearinmarker = []
                         self._set_icon(savetype, differtype, formatype)
                         differtype = False
-                        self.mapview.write("mapstraction.addMarker(my_marker);")
+                        self.mapview.write("map.addMarker(my_marker);")
                     indm += 1
                     if ( indm > lastm ):
                         if (indm % NB_MARKERS_PER_PAGE) == 0:
@@ -1244,14 +1247,14 @@ class GeoView(HtmlView):
             self.mapview.write("</div>\");")
             self.mapview.write("my_marker.setAttribute('year','%s');" % years)
             self._set_icon(savetype, differtype, formatype)
-            self.mapview.write("mapstraction.addMarker(my_marker);")
+            self.mapview.write("map.addMarker(my_marker);")
         if self.nbmarkers == 0:
             # We have no valid geographic point to center the map.
             longitude = 0.0
             latitude = 0.0
             self.mapview.write("\nvar point = new LatLonPoint")
             self.mapview.write("(%s,%s);\n" % (latitude, longitude))
-            self.mapview.write("   mapstraction.setCenterAndZoom")
+            self.mapview.write("   map.setCenterAndZoom")
             self.mapview.write("(point, %d);\n" % 2)
             self.mapview.write("   my_marker = new Marker(point);\n")
             self.mapview.write("   my_marker.setLabel")
@@ -1264,7 +1267,7 @@ class GeoView(HtmlView):
             self.mapview.write(_("You are looking at the default map."))
             self.mapview.write("</div>\");\n")
             self._set_icon(None, True, 1)
-            self.mapview.write("   mapstraction.addMarker(my_marker);")
+            self.mapview.write("   map.addMarker(my_marker);")
         self.mapview.write("\n}")
         self.mapview.write("\n</script>\n")
 
@@ -1420,8 +1423,6 @@ class GeoView(HtmlView):
                     latitude = place.get_latitude()
                     latitude, longitude = conv_lat_lon(latitude, longitude, 
                                                        "D.D8")
-                    city = place.get_main_location().get_city()
-                    country = place.get_main_location().get_country()
                     # place.get_longitude and place.get_latitude return
                     # one string. We have coordinates when the two values
                     # contains non null string.
