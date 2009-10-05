@@ -2396,9 +2396,8 @@ msgid ""
 msgstr ""
 
 #: ../src/cli/argparser.py:156 ../src/cli/argparser.py:225
-#, fuzzy
 msgid "Error parsing the arguments"
-msgstr "Feil ved lagring av stilark"
+msgstr "Feil ved overføring av argumentene"
 
 #: ../src/cli/argparser.py:158
 #, python-format
@@ -3012,37 +3011,30 @@ msgid "0 days"
 msgstr "0 dager"
 
 #: ../src/gen/lib/date.py:653
-#, fuzzy
 msgid "calendar|Gregorian"
-msgstr "Gregoriansk"
+msgstr "gregoriansk"
 
 #: ../src/gen/lib/date.py:654
-#, fuzzy
 msgid "calendar|Julian"
-msgstr "Kalender"
+msgstr "juliansk"
 
 #: ../src/gen/lib/date.py:655
-#, fuzzy
 msgid "calendar|Hebrew"
-msgstr "Kalender"
+msgstr "hebraisk"
 
 #: ../src/gen/lib/date.py:656
-#, fuzzy
 msgid "calendar|French Republican"
-msgstr "Fransk-republikansk"
+msgstr "fransk-republikansk"
 
 #: ../src/gen/lib/date.py:657
-#, fuzzy
 msgid "calendar|Persian"
 msgstr "persisk"
 
 #: ../src/gen/lib/date.py:658
-#, fuzzy
 msgid "calendar|Islamic"
-msgstr "Islamsk"
+msgstr "islamsk"
 
 #: ../src/gen/lib/date.py:659
-#, fuzzy
 msgid "calendar|Swedish"
 msgstr "svensk"
 
@@ -5375,34 +5367,28 @@ msgid "_Data"
 msgstr "_Data"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:56
-#, fuzzy
 msgid "Family Events"
 msgstr "Familiehendelser"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:57
-#, fuzzy
 msgid "Events father"
-msgstr "Hendelsesdato"
+msgstr "Hendelser til far"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:58
-#, fuzzy
 msgid "Events mother"
-msgstr "Hendelsesnotat"
+msgstr "Hendelser til mor"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:61
-#, fuzzy
 msgid "Add a new family event"
-msgstr "Legg til ny familie"
+msgstr "Legg til ny familiehendelse"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:62
-#, fuzzy
 msgid "Remove the selected family event"
-msgstr "Fjern den valgte hendelsen"
+msgstr "Fjern den valgte familiehendelsen"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:63
-#, fuzzy
 msgid "Edit the selected family event or edit person"
-msgstr "Rediger den valgte familien"
+msgstr "Redigere den valgte familienhendelsen eller redigere personen"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:62
@@ -5437,9 +5423,8 @@ msgstr ""
 "For å endre denne hendelsesreferansen må du lukke hendelsen først."
 
 #: ../src/DisplayTabs/_EventEmbedList.py:232
-#, fuzzy
 msgid "Cannot share this reference"
-msgstr "Klarte ikke å endre denne referansen"
+msgstr "Klarte ikke å dele denne referansen"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:246
 #: ../src/DisplayTabs/_EventEmbedList.py:308
@@ -5449,9 +5434,8 @@ msgid "Cannot edit this reference"
 msgstr "Klarte ikke å endre denne referansen"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:285
-#, fuzzy
 msgid "Cannot change Person"
-msgstr "Kan ikke lagre personen"
+msgstr "Kan ikke endre personen"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:286
 msgid "You cannot change Person events in the Family Editor"
@@ -5565,9 +5549,8 @@ msgid "_Notes"
 msgstr "_Notater"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:54
-#, fuzzy
 msgid "Personal Events"
-msgstr "Personlig hendelse:"
+msgstr "Personlige hendelser"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:55
 #, python-format
@@ -5575,44 +5558,36 @@ msgid "With %(namepartner)s (%(famid)s)"
 msgstr ""
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:56
-#, fuzzy
 msgid "<Unknown>"
-msgstr "Ukjent"
+msgstr "<Ukjent>"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:59
-#, fuzzy
 msgid "Add a new personal event"
-msgstr "Legg til en ny person"
+msgstr "Legg til en ny person hendelse"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:60
-#, fuzzy
 msgid "Remove the selected personal event"
-msgstr "Fjern den valgte hendelsen"
+msgstr "Fjern den valgte personhendelsen"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:61
-#, fuzzy
 msgid "Edit the selected personal event or edit family"
-msgstr "Rediger den valgte familien"
+msgstr "Redigere den valgte personhendelsen eller redigere familie"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:63
-#, fuzzy
 msgid "Move the selected event upwards or change family order"
-msgstr "Flytt den valgte hendelsen oppover"
+msgstr "Flytt den valgte hendelsen oppover eller endre familierekkefølgen"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:64
-#, fuzzy
 msgid "Move the selected event downwards or change family order"
-msgstr "Flytt den valgte hendelsen nedover"
+msgstr "Flytt den valgte hendelsen nedover eller endre familierekkefølgen"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:140
-#, fuzzy
 msgid "Cannot change Family"
-msgstr "Kunne ikke lagre familien"
+msgstr "Kunne ikke endre familie"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:141
-#, fuzzy
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Sortere familiehendelsene for personen"
+msgstr "Du kan ikke endre familiehendelser i personvinduet"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 msgid "Create and add a new association"
