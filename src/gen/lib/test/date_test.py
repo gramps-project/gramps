@@ -208,12 +208,12 @@ for calendar in (Date.CAL_JULIAN,
         dates.append( d)
 
 # CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
-#with Context(Date.CAL_SWEDISH) as calendar:
-#    for year in range(1701, 1712):
-#        for month in range(1,13):
-#            d = Date()
-#            d.set(quality,modifier,calendar,(4,month,year,False),"Text comment")
-#            dates.append( d)
+with Context(Date.CAL_SWEDISH) as calendar:
+    for year in range(1701, 1712):
+        for month in range(1,13):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,month,year,False),"Text comment")
+            dates.append( d)
 
 for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
     for month in range(1,14):
@@ -232,11 +232,12 @@ qua_str = ["QUAL_NONE", "QUAL_ESTIMATED", "QUAL_CALCULATED"]
 formats = DateHandler.get_date_formats()
 
 class Eval(unittest.TestCase):
-    def __init__(self, method_name, dateval, e1, e2, e3):
-        self.__dict__[method_name] = lambda: eval_func(dateval, e1, e2, e3)
+    def __init__(self, method_name, dateval, e1, e2, e3, format):
+        self.__dict__[method_name] = lambda: eval_func(dateval, e1, e2, e3, 
+                                                       format)
         unittest.TestCase.__init__(self, method_name)
 
-def eval_func(dateval, e1, e2, e3):
+def eval_func(dateval, e1, e2, e3, format):
     """
     e1 is datestr = _dd.display(dateval)
     e2 is ndate = _dp.parse(datestr)
@@ -246,9 +247,9 @@ def eval_func(dateval, e1, e2, e3):
     exec(e2)
     exec(e3)
     #print datestr, ndate, ntxt
-    assert dateval.is_equal(ndate), ("date fails is_equal:\n"
+    assert dateval.is_equal(ndate), ("dateval fails is_equal in format %d:\n"
                                      "   '%s' != '%s'" % 
-                                     (datestr, ndate))
+                                     (format, dateval, ndate))
 
 def suite3():
     suite = unittest.TestSuite()            
@@ -263,7 +264,8 @@ def suite3():
                 suite.addTest(Eval("test_eval%04d" % count, dateval, 
                                       "datestr = _dd.display(dateval)", 
                                       "ndate = _dp.parse(datestr)", 
-                                      "ntxt = _dd.display(ndate)"))
+                                      "ntxt = _dd.display(ndate)",
+                                   format))
                 count += 1
     return suite
 
