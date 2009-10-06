@@ -160,7 +160,7 @@ class GenericFilter(object):
                 person = self.find_from_handle(db, handle)
                 if progress:
                     progress.step()
-                val = all(rule.apply(db, person) for rule in flist)
+                val = all(rule.apply(db, person) for rule in flist if person)
                 if val != self.invert:
                     final_list.append(data)
         return final_list
