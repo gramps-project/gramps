@@ -1008,7 +1008,7 @@ class ListView(BookMarkView):
             return
 
     def change_db(self, db):
-        self._cleanup_callbacks()
+        self._change_db(db)
         for sig in self.signal_map:
             self.callman.add_db_signal(sig, self.signal_map[sig])
         self.bookmarks.update_bookmarks(self.get_bookmarks())

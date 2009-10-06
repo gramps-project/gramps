@@ -84,6 +84,8 @@ class DbGUIElement(object):
         Remove all db callbacks. 
         This is done automatically on destruction of the object, but is
         normally needed earlier, calling this method does so.
+        Use _change_db method if you need to remove the callbacks because the
+        database has chaned
         """
         database = self.callman.database
         if database.is_open():
