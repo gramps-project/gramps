@@ -1735,7 +1735,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         if event == 'Birthday':
 
             txt_str = _(text + ', <em>'
-            + (_('%s old') % str(age_str) if nyears else 'birth')
+            + (_('%s old') % str(age_str) if nyears else _('birth'))
             + '</em>')
 
         # an anniversary
