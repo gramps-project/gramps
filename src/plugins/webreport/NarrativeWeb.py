@@ -309,7 +309,7 @@ class BasePage(object):
 
         num_ltrs = len(sorted_first_letter)
         if num_ltrs <= 26:
-            of.write('\t<div id="navigation">\n')
+            of.write('\t<div id="alphabet">\n')
             of.write('\t\t<ul>\n')
             for ltr in  sorted_first_letter:
                 if lang_country == "sv_SE" and ltr == u'V':
@@ -322,7 +322,7 @@ class BasePage(object):
             nrows = (num_ltrs / 26) + 1
             index = 0
             for rows in range(0, nrows):
-                of.write('\t<div id="navigation">\n')
+                of.write('\t<div id="alphabet">\n')
                 of.write('\t\t<ul>\n')
                 cols = 0
                 while (cols <= 26 and index < num_ltrs):

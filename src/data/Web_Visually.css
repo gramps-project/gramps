@@ -284,99 +284,89 @@ p#user_header {
     padding:0;
 }
 
+/* Navigation
+----------------------------------------------------- */
+div#navigation, div#subnavigation {
+    width: 100%;
+}
+div#navigation ul, div#subnavigation ul {
+    list-style:none;
+    min-width:770px;
+    height: 42px;
+    margin:0;
+    padding: 0px 0px 0px 20px;
+    border-bottom: solid 2px #5D835F;
+}
+div#navigation ul li, div#subnavigation ul li {
+    float:left;
+}
+body#WebCal divdiv#navigation ul li a {
+    color: #FFF;
+}
+div#navigation ul li a, div#subnavigation ul li a {
+    display: block;
+    padding: 12px 10px 14px 1px;
+    float:left;
+    font:normal 16px/100% serif;
+    color: #000;
+    text-decoration:none;
+    margin:0;
+}
+div#navigation ul li a:hover, div#subnavigation ul li a:hover {
+    background-color: #C1B398;
+    color: #000;
+}
+div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
+    font-weight:bold;
+    font-style: italic;
+    background-color: #CCC;
+    color: #000;
+}
+div#navigation ul li.CurrentSection a:hover {
+    background-color: #000;
+    color: #FFF;
+}
+div#subnavigation ul li.CurrentSection a {
+    border-width: 0px 0px 2px 0px;
+    border-color: #FFF;
+}
+
 /* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphabet {
-    padding:0;
-    margin:0;
+    width: 100%;
+    margin: 0;
+    background-color: #6AF364;
 }
 div#alphabet ul {
     list-style:none;
     min-width:770px;
     height:24px;
     margin:0;
-    padding:0 0 0 9px;
-    border-top:solid 2px #000;
-    border-bottom:solid 4px #000;
-    background-color:#6AF364;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
+    border-color: #000;
 }
 div#alphabet ul li:after {
     content:"  |";
 }
-div#alphabet ul li:before {
-    content:" ";
-}
-div#alphabet ul li.letters {
+div#alphabet ul li {
     margin:0;
     float:left;
 }
-div#alphabet ul li.letters a {
+div#alphabet ul li a {
     display:block;
+    padding: 4px 8px 4px 8px;
     float:left;
     font:bold 16px/100% sans;
-    color:#000;
     margin:0;
-    padding:5px 5px;
     text-decoration:none;
+    color: #000;
 }
-div#alphabet ul li.letters a:hover {
-    background-color:#000;
-    color:#FFF;
-}
-
-/* Navigation
------------------------------------------------------ */
-#navigation, #subnavigation {
-    margin:0;
-    padding:0;
-}
-#navigation ul, #subnavigation ul {
-    list-style:none;
-    min-width:770px;
-    height:32px;
-    margin:0;
-    padding:0 0 0 9px;
-    background-color:#FFF;
-    border-bottom:solid 2px #000;
-}
-#navigation ul li, #subnavigation ul li {
-    margin:0;
-    float:left;
-}
-#navigation ul li a, #subnavigation ul li a {
-    display:block;
-    float:left;
-    font:normal 16px/100% serif;
-    color:#000;
-    text-decoration:none;
-    margin:0;
-    padding:5px 5px;
-
-}
-#navigation ul li a:hover, #subnavigation ul li a:hover {
-    background-color:#C1B398;
-    color:#000;
-    border-top:solid 3px #C1B398;
-    border-bottom:solid 8px #C1B398;
-}
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
-    font-weight:bold;
-    font-size:16px;
-    margin-top:-6px;
-    padding-top:11px;
-    padding-bottom:8px;
-    border-right:solid 1px #6AF364;
-    border-left:solid 1px #6AF364;
-    border-bottom:solid 4px #000;
-    background-color:#000;
-    color:#FFF;
-}
-#navigation ul li.CurrentSection a:hover {
-    background-color:#228A22;
-    border-bottom:solid 4px #228A22;
-}
-#subnavigation ul li.CurrentSection a {
-    border-width:0 0 1px 0;
+div#alphabet ul li a:hover {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Main Table
