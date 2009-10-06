@@ -22793,9 +22793,8 @@ msgid "Whether to not print empty lines within the 'Personal Display'."
 msgstr ""
 
 #: Descend2.py:1527
-#, fuzzy
 msgid "Bold direct descendants"
-msgstr "Direkte linje til mannlige etterkommere"
+msgstr "Utheve direkte etterkommere"
 
 #: Descend2.py:1528
 msgid "Whether to bold those people that are direct (not step or half) decendants."
@@ -22818,7 +22817,6 @@ msgid "Whether to indent the spouses in the tree."
 msgstr "Om ektefeller skal gis innrykk  i treet."
 
 #: Descend2.py:1541
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -22836,11 +22834,11 @@ msgid ""
 msgstr ""
 
 #: Descend2.py:1558
-#, fuzzy
 msgid ""
 "ie\n"
 "United States of America/U.S.A"
-msgstr "De Forente Stater i Amerika"
+msgstr "f.eks.\n"
+"De Forente Stater i Amerika/USA"
 
 #: Descend2.py:1649
 #, fuzzy
@@ -23128,48 +23126,40 @@ msgid "Examining places"
 msgstr "Undersøker steder"
 
 #: PlaceCompletion.py:707
-#, fuzzy
 msgid "Doing Place changes"
-msgstr "Lager side over steder"
+msgstr "Endrer steder"
 
 #: PlaceCompletion.py:744 PlaceCompletion.py:754
-#, fuzzy
 msgid "Change places"
-msgstr "Endre typer"
+msgstr "Endre steder"
 
 #: PlaceCompletion.py:749
-#, fuzzy
 msgid "No place record was modified."
-msgstr "Ingen hendelser ble endret."
+msgstr "Ingen steder ble endret."
 
 #: PlaceCompletion.py:751
-#, fuzzy
 msgid "1 place record was modified."
-msgstr "Ingen hendelser ble endret."
+msgstr "1 sted ble endret."
 
 #: PlaceCompletion.py:753
-#, fuzzy
 msgid "%d place records were modified."
-msgstr "%d hendelse ble endret."
+msgstr "%d steder ble endret."
 
 #: PlaceCompletion.py:827
-#, fuzzy
 msgid "The selected file is a directory, not a file."
-msgstr "Den valgte fila er en katalog, ikke en fil.\n"
+msgstr "Den valgte fila er en katalog, ikke en fil."
 
 #: PlaceCompletion.py:840
 msgid "The file you want to access is not a regular file."
 msgstr ""
 
 #: PlaceCompletion.py:846
-#, fuzzy
 msgid "The file does not exist."
-msgstr "Fila eksisterer ikke"
+msgstr "Fila eksisterer ikke."
 
 #: PlaceCompletion.py:865
-#, fuzzy
 msgid "Problem reading file"
-msgstr "Feil ved lesing av GEDCOM-fil"
+msgstr "Feil ved lesing av fil"
 
 #: PlaceCompletion.py:895 PlaceCompletion.py:898 PlaceCompletion.py:1085
 msgid "CITY"
@@ -23213,9 +23203,8 @@ msgid "Correct -50° in 50°S"
 msgstr ""
 
 #: PlaceCompletion.py:1071
-#, fuzzy
 msgid "No changes"
-msgstr "Avbryt endringer"
+msgstr "Ingen endringer"
 
 #: PlaceCompletion.py:1072
 msgid "City[, State]"
@@ -23238,9 +23227,8 @@ msgid "City (Country)"
 msgstr "By (Land)"
 
 #: PlaceCompletion.py:1107
-#, fuzzy
 msgid "Don't search"
-msgstr "Forskning"
+msgstr "Ikke søk"
 
 #: PlaceCompletion.py:1110
 msgid "GeoNames country file, city search"
@@ -23284,18 +23272,16 @@ msgid "Interactive place completion"
 msgstr ""
 
 #: PlaceCompletion.py:1346
-#, fuzzy
 msgid "Unstable"
-msgstr "Stabil"
+msgstr "Ustabil"
 
 #: PlaceCompletion.py:1349
 msgid "Provides a browsable list of selected places, with possibility to complete/parse/set the attribute fields"
 msgstr ""
 
 #: PluginManagerGramplet.py:57
-#, fuzzy
 msgid "Reading"
-msgstr "Vurdering"
+msgstr "Leser"
 
 #: PluginManagerGramplet.py:132
 #, fuzzy
@@ -23303,14 +23289,12 @@ msgid "Plugin Manager Gramplet"
 msgstr "Smågramps uten navn"
 
 #: PluginManagerGramplet.py:136
-#, fuzzy
 msgid "Plugin Manager"
-msgstr "Mediabehandler"
+msgstr "Behandler for programtillegg"
 
 #: PythonGramplet.py:47
-#, fuzzy
 msgid "Enter Python expressions"
-msgstr "Regulært utrykk:"
+msgstr "Skriv inn Python-uttrykk"
 
 #: PythonGramplet.py:53
 msgid "class name|Date"
@@ -23374,11 +23358,11 @@ msgstr ""
 "Publiseringsinformasjon: %s"
 
 #: RepositoriesReportAlt.py:236
-#, fuzzy
 msgid ""
 "\n"
 "Data: %s"
-msgstr "Stat: %s"
+msgstr "\n"
+"Data: %s"
 
 #: RepositoriesReportAlt.py:322
 #, fuzzy
