@@ -304,7 +304,6 @@ class BasePage(object):
         # are still required.
         self.html_dir = report.options['target']
         self.ext = report.options['ext']
-        self.alpha_nav_bar = report.options['alpha_nav_bar']
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
@@ -669,11 +668,18 @@ class BasePage(object):
         # return table to its callers
         return table
 
-    def source_link(self, handle, name, gid=None, up=False):
+    def source_link(self, handle, hyper_name, name, gid=None, up=False):
 
         url = self.report.build_url_fname_html(handle, 'src', up)
+
         # begin hyperlink
-        hyper = Html('a', html_escape(name), href=url, title=html_escape(name))
+        hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
+
+        # adding to accomodate display_source_refs()
+        if hyper_name:
+            hyper.attr += ' name="%s" ' % hyper_name
+
+        # add GRAMPS ID
         if not self.noid and gid:
             hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
 
@@ -953,13 +959,7 @@ class BasePage(object):
             del page[0]
 
         # add narrative specific body id
-        # add alphabet layout direction to NarrativeWeb to allow for proper spacing for
-        # each individual stylesheet
-        alphabet_layout = "Horizontal"
-        if self.alpha_nav_bar == "Vertical":
-            alphabet_layout = "Vertical"
-
-        body.attr = 'id="NarrativeWeb_%s" ' % alphabet_layout
+        body.attr = 'id="NarrativeWeb"'
 
         # create additional meta tags
         meta = (Html("meta", attr = _META1) + 
@@ -969,10 +969,6 @@ class BasePage(object):
         # Link to media reference regions behaviour stylesheet
         fname = "/".join(["styles", "behaviour.css"])
         url1 = self.report.build_url_fname(fname, None, self.up)
-
-        # link to alphabet navigation bar layout
-        fname = "/".join(["styles", "alphabet-layout.css"])
-        url2 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to _NARRATIVESCREEN  stylesheet
         fname = "/".join(["styles", _NARRATIVESCREEN])
@@ -989,7 +985,6 @@ class BasePage(object):
         # create stylesheet and favicon links
         links = [Html("link", href=url5, type="image/x-icon", rel="shortcut icon"),
              Html("link", href=url1, type="text/css", media="screen", rel="stylesheet"),
-             Html("link", href = url2, type="text/css", media="screen", rel="stylesheet"),
              Html("link", href=url3, type="text/css", media="screen", rel="stylesheet"),
              Html("link", href=url4, type="text/css", media='print', rel="stylesheet")
              ]
@@ -1280,16 +1275,17 @@ class BasePage(object):
             return None
         db = self.report.database
 
-        # source references division and title
-        with Html("div", class_ = "subsection", id="sourcerefs") as section:
-            section += Html('h4', _('Source References'), inline = True) 
-
-            ordered=Html('ol')
-            section += ordered 
+        with Html("div", id="sourcerefs", class_ = "subsection") as section: 
+            section += Html("h4", _("Source References"), inline = True)
 
             cindex = 0
             for citation in bibli.get_citation_list():
                 cindex += 1
+
+                # begin ordered list
+                ordered1 = Html("ol")
+                section += ordered1
+
                 # Add this source to the global list of sources to be displayed
                 # on each source page.
                 lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -1303,47 +1299,35 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 title = source.get_title()
-                list = Html('li')
-                ordered += list
+                list1 = Html("li") + \
+                    self.source_link(source.handle, "sref%d" % cindex, title, source.gramps_id, True)
+                ordered1 += list1
 
-                hyper = Html('a', name='sref%d' % cindex) + \
-                    self.source_link(source.handle, title, source.gramps_id, True)
-                list += hyper
-
-                ordered1 = Html('ol')
-                list += ordered1
-
+                # begin ordered one
+                ordered2 = Html("ol")
+                list1 += ordered2
+ 
                 for key, sref in citation.get_ref_list():
 
                     tmp = []
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                     if confidence == _('Normal'):
                         confidence = None
-
-                    source_data = [
-                                   [DHEAD,                _dd.display(sref.date)],
-                                   [_('Page'),              sref.page],
-                                   [_('Confidence'),    confidence]
-                                   ]
-
-                    for (label, data) in source_data:
+                    for (label, data) in [(_('Date'), _dd.display(sref.date)),
+                                          (_('Page'), sref.page),
+                                          (_('Confidence'), confidence)]:
                         if data:
                             tmp.append("%s: %s" % (label, data))
-
-                    # get citation note list
                     notelist = sref.get_note_list()
                     for notehandle in notelist:
                         note = db.get_note_from_handle(notehandle)
-
-                        # check if note is styled text or not?
                         note_text = self.get_note_format(note)
                         tmp.append("%s: %s" % (_('Text'), note_text))
-
-                    if len(tmp):
-                        list1 = Html('li') + (
-                            Html('a', '; &nbsp;'.join(tmp), name='sref%d%s' % (cindex, key))
+                    if len(tmp) > 0:
+                        list2 = Html("li") + (
+                            Html("a", '; &nbsp; '.join(tmp), name = "sref%d%s" % (cindex, key), inline = True)
                             )
-                        ordered1 += list1
+                        ordered2 += list2
 
         # return section to its callers
         return section
@@ -2884,7 +2868,7 @@ class SourceListPage(BasePage):
                         )
                     tbody += trow 
                     trow += Html("td", class_ = "ColumnName") + \
-                       self.source_link(handle, source.get_title(), source.gramps_id)
+                       self.source_link(handle, "", source.get_title(), source.gramps_id)
 
         # add clearline for proper styling
         # add footer section
@@ -3068,12 +3052,10 @@ class DownloadPage(BasePage):
 
         dlfname1 = self.report.dl_fname1
         dldescr1 = self.report.dl_descr1
-        dldescr = ''.join(wrapper.wrap(dldescr1))
 
         # download and description #2
         dlfname2 = self.report.dl_fname2
         dldescr2 = self.report.dl_descr2
-        dldescr2 = ''.join(wrapper.wrap(dldescr2))
 
         # download copyright
         dlcopy = self.report.dl_copy
@@ -3095,22 +3077,22 @@ class DownloadPage(BasePage):
                 note_text = self.get_note_format(note)
                 download += Html("p", note_text, id="description")
 
-            # begin download table
+            # begin download table and table head
             with Html("table", class_ = "infolist download") as table:
                 download += table
 
-                # table head
                 thead = Html("thead")
                 table += thead
+
                 trow = Html("tr")
                 thead += trow
 
                 for (label, colclass) in [
-                    (_('File Name'),        'Filename'),
-                    (DESCRHEAD,             'Description'),
-                    (_('License'),          'License'),
-                    (_('Last Modified'),    'Modified') ]:  
-                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
+                    (_("File Name"),        "Filename"),
+                    (DESCRHEAD,             "Description"),
+                    (_("License"),          "License"),
+                    (_("Last Modified"),    "Modified") ]:  
+                    trow += Html("th", label, class_ = colclass, inline = True)
 
                 # if dlfname1 is not None, show it???
                 if dlfname1:
@@ -3118,43 +3100,30 @@ class DownloadPage(BasePage):
                     # table body
                     tbody = Html("tbody")
                     table += tbody
+
                     trow = Html("tr", id='Row01')
                     tbody += trow
 
-                    # table row 1, column 1 -- File
                     fname = os.path.basename(dlfname1)
-                    tcell = Html("td", id='Col03', class_ = "Filename") + (
+                    tcell = Html("td", class_ = "Filename") + (
                         Html('a', fname, href=dlfname1, alt=dldescr1)
                         )
                     trow += tcell
 
-                    # table Row 1, column 2 -- File Description
-                    tcell = Html("td", id='Col01', class_ = "Description", 
-                        inline = True)
-                    if dldescr1:
-                        tcell += dldescr1
-                    else:
-                        tcell += "&nbsp;"
-                    trow += tcell
+                    dldescr1 = dldescr1 or "&nbsp;"
+                    trow += Html("td", dldescr1, class_ = "Description", inline = True)
 
-                    # table row 1, column 3 -- Copyright License
-                    tcell = Html("td", id='Col02', class_ = "License")
-                    copyright = self.get_copyright_license(dlcopy)
-                    if copyright:
-                        tcell += copyright
-                    else:
-                        tcell += "&nbsp;"
-                    trow += tcell
+                    copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
+                    trow += Html("td", copyright, class_ = "License")
 
-                    # table row 1, column 4 -- Last Modified
-                    tcell = Html("td", id='Col04', class_ = "Modified", inline = True)
+                    tcell = Html("td", class_ = "Modified", inline = True)
+                    trow += tcell 
                     if os.path.exists(dlfname1):
                         modified = os.stat(dlfname1).st_mtime
                         last_mod = datetime.datetime.fromtimestamp(modified)
                         tcell += last_mod
                     else:
                         tcell += "&nbsp;"
-                    trow += tcell
 
                 # if download filename #2, show it???
                 if dlfname2:
@@ -3163,40 +3132,26 @@ class DownloadPage(BasePage):
                     trow = Html("tr", id='Row02')
                     tbody += trow
 
-                    # table row 2, column 1 -- File
                     fname = os.path.basename(dlfname2)
-                    tcell = Html("td", id='Col03', class_ = "Filename") + (
+                    tcell = Html("td", class_ = "Filename") + (
                         Html('a', fname, href=dlfname2, alt=dldescr2)
                         )  
                     trow += tcell
 
-                    # table row 2, column 2 -- Description
-                    tcell = Html("td", id='Col01', class_ = "Description", 
-                        inline = True)
-                    if dldescr2:
-                        tcell += dldescr2
-                    else:
-                        tcell += "&nbsp;"
-                    trow += tcell
+                    dldescr2 = dldescr2 or "&nbsp;"
+                    trow += Html("td", dldescr2, class_ = "Description", inline = True)
 
-                    # table row 2, column 3 -- Copyright License
-                    tcell = Html("td", id='Col02', class_ = "License")
-                    copyright = self.get_copyright_license(dlcopy)
-                    if copyright:
-                        tcell += copyright
-                    else:
-                        tcell += "&nbsp;"
-                    trow += tcell
+                    copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
+                    trow += Html("td", copyright, class_ = "License", inline = True)
 
-                    # table row 2, column 4 -- Last Modified
                     tcell = Html("td", id='Col04', class_ = "Modified",  inline = True)
+                    trow += tcell
                     if os.path.exists(dlfname2):
                         modified = os.stat(dlfname2).st_mtime
                         last_mod = datetime.datetime.fromtimestamp(modified)
                         tcell += last_mod
                     else:
                         tcell += "&nbsp;"
-                    trow += tcell
 
         # clear line for proper styling
         # create footer section
@@ -3372,7 +3327,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect10
 
             # display sources
-            sect11 = self.display_ind_sources(self.person.get_source_references() )
+            sect11 = self.display_ind_sources()
             if sect11 is not None:
                 individualdetail += sect11
 
@@ -3537,12 +3492,13 @@ class IndividualPage(BasePage):
                                    new_center, m_center, m_handle)
         return tree
 
-    def display_ind_sources(self, sourcelist):
+    def display_ind_sources(self):
         """
         will create the "Source References" section for a person 
         """
 
-        for sref in sourcelist:
+        for sref in self.person.get_source_references():
+            print sref 
             self.bibli.add_reference(sref)
         sourcerefs = self.display_source_refs(self.bibli)
 
@@ -4606,9 +4562,6 @@ class NavWebReport(Report):
         # include GENDEX page or not?
         self.inc_gendex = self.options['inc_gendex']
 
-        # Specify the layout for the alphabet navigation bar
-        self.alphabar = self.options["alpha_nav_bar"]  
-
         # Download Options Tab
         self.inc_download = self.options['incdownload']
         self.downloadnote = self.options['downloadnote']
@@ -4782,12 +4735,6 @@ class NavWebReport(Report):
         # copy behaviour stylesheet
         fname = os.path.join(const.DATA_DIR, "behaviour.css")
         self.copy_file(fname, "behaviour.css", "styles")
-
-        # copy alphabet navigation bar layout
-        fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
-        if self.alphabar == "Vertical":
-            fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Vertical.css")
-        self.copy_file(fname, "alphabet-layout.css", "styles")
 
         # copy screen stylesheet
         if self.css:
@@ -5544,18 +5491,6 @@ class NavWebOptions(MenuReportOptions):
             encoding.add_item(eopt[1], eopt[0])
         encoding.set_help( _("The encoding to be used for the web files"))
         menu.add_option(category_name, "encoding", encoding)
-
-        alpha_opts = [
-                     [_("Horizontal"), "Horizontal" ],
-                     [_("Vertical"),   "Vertical"   ],
-                     ]
-
-        alpha_nav_bar = EnumeratedListOption(_("Alphabet Navigation Layout"), alpha_opts[0][1] )
-        for opt in alpha_opts:
-            alpha_nav_bar.add_item(opt[0], opt[1] )
-        alpha_nav_bar.set_help(_("Specify which direction the alphabet "
-                                 "navigation bar is presented.") )
-        menu.add_option(category_name, "alpha_nav_bar", alpha_nav_bar)
 
         linkhome = BooleanOption(_('Include link to home person on every '
                                    'page'), False)

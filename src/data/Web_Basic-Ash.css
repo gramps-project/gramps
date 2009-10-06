@@ -45,19 +45,19 @@ gray very light         #EEE
 white                   #FFF
 --------------------------------------------------------------------------------------------------
 
-# $Id$
+# $Id $
 
  NarrativeWeb Styles
---------------------------------------------------------------------------------------------- */ 
-body#NarrativeWeb {
-    padding-top: 90px;
+------------------------------------------------------------------------------------------------ */
+
+/*  General Elements
+----------------------------------------------------- */
+body {
     font-family:sans-serif;
     color:#000;
+    margin:0;
     background-color:#FFF;
 }
-
-/* General Elements
------------------------------------------------------ */
 div {
     margin:0;
     padding:0;
@@ -70,6 +70,7 @@ img {
     background:none;
 }
 .content {
+    padding-top: 1cm;
     background-color:#FFF;
 }
 .content div.snapshot {
@@ -160,45 +161,82 @@ a:visited {
 
 /* Header
 ----------------------------------------------------- */
-#header {
+div#header {
+    padding:15px 15px 2px 15px;
+    margin:0;
     background-color:#EEE;
 }
 #SiteTitle {
-    margin:0;
-    padding:.5em 0 0.5em 10px;
-    font-size: 40px;
-    color: #FFF;
-    font-style: italic;
+    color:#333;
+    margin:0 0 3px 0;
 }
-#header p {
+div#header p {
     font-size:1em;
     font-weight:bold;
     color:#999;
     margin:0;
 }
 
-/* Alphabet Navigation bar
+/* Footer
 ----------------------------------------------------- */
-#alphabet {
-    position: fixed;
-    top: 136px;
-    background-color: #EEE;
-    border-color: #000;
+div#footer {
+    height: 60px;
+    clear:both;
+    width:100%;
+    font-size:12px;
+    line-height:130%;
+    color:#333;
+    margin:0;
+    padding:15px 0 0 0;
+    background-color:#CCC;
+    border-top:solid 1px #333;
+}
+div#footer a, div#footer a:visited {
+    text-decoration:none;
+    color:#333;
+}
+div#footer a:hover {
+    text-decoration:underline;
+}
+div#footer img {
+    border:0;
+    margin:0 auto;
+    vertical-align:middle;
+}
+div#footer p#createdate {
+    float:left;
+    width:40%;
+    text-align:left;
+    margin-left:10px;
+}
+div#footer p#copyright {
+    float:right;
+    width:40%;
+    text-align:right;
+    margin-right:10px;
+}
+div#footer p#copyright img {
+    margin-right:10px;
+}
+#user_footer {
+    width:70%;
+    float:left;
+    margin:1em;
+}
+#user_footer p {
+    font:normal 1em/1.2em serif;
+    margin:0;
+    padding:0;
 }
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation, #subnavigation {
+div#navigation, div#subnavigation {
     margin:0;
     padding:4px 0 0 0;
     background-color:#EEE;
 }
-body#NarrativeWeb #navigation {
-    position: fixed;
-    top: 104px;
-    left: 0px;
-}
-#navigation ul, #subnavigation ul {
+div#navigation ul, div#subnavigation ul {
     list-style:none;
     min-width:770px;
     height:22px;
@@ -206,12 +244,12 @@ body#NarrativeWeb #navigation {
     padding:0 0 0 12px;
     border-bottom:1px solid #999;
 }
-#navigation ul li, #subnavigation ul li {
+div#navigation ul li, div#subnavigation ul li {
     margin:0;
     padding:0;
     float:left;
 }
-#navigation ul li a, #subnavigation ul li a {
+div#navigation ul li a, div#subnavigation ul li a {
     display:block;
     font-size:12px;
     line-height:100%;
@@ -221,11 +259,11 @@ body#NarrativeWeb #navigation {
     padding:5px 5px;
     background-color:#EEE;
 }
-#navigation ul li a:hover, #subnavigation ul li a:hover {
+div#navigation ul li a:hover, div#subnavigation ul li a:hover {
     background-color:#CCC;
     border-bottom:solid 1px #000;
 }
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
+div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     padding-bottom:4px;
     border-top:solid 1px #999;
     border-right:solid 1px #999;
@@ -233,12 +271,49 @@ body#NarrativeWeb #navigation {
     border-bottom:solid 1px #FFF;
     background-color:#FFF;
 }
-#navigation ul li.CurrentSection a:hover {
+div#navigation ul li.CurrentSection a:hover {
     background-color:#FFF;
-    border-bottom: solid 1px #000;
 }
-#subnavigation ul li.CurrentSection a {
+div#subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
+}
+
+/* Alphabet Navigation Bar
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+    background-color: #EEE;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
+    border-color: #000;
+}
+div#alphabet ul li:after {
+    content:"  |";
+}
+div#alphabet ul li {
+    margin:0;
+    float:left;
+}
+div#alphabet ul li a {
+    display:block;
+    padding: 4px 8px 4px 8px;
+    float:left;
+    font:bold 16px/100% sans;
+    margin:0;
+    text-decoration:none;
+    color: #000;
+}
+div#alphabet ul li a:hover {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Main Table
@@ -411,23 +486,10 @@ table.individuallist tbody tr td.ColumnName a {
 table.individuallist tbody tr td.ColumnName a:hover {
     background-color:#CCC;
 }
-#Individuals div table.infolist tr td p {
+#IndividualDetail div table.infolist tr td, #Individuals div table.infolist tr td p {
     vertical-align:top;
 }
-#Individuals div table.infolist tr td p a {
-    display:inline;
-}
-
-/* IndividualDetail
------------------------------------------------------- */
-#IndividualDetail {
-    background-color:#EEE;
-}
-#IndividualDetail div table.infolist tr td {
-    font:normal .9em/1.2em sans-serif;
-    vertical-align:top;
-}
-#IndividualDetail div table.infolist tr td a {
+#IndividualDetail div table.infolist tr td a, #Individuals div table.infolist tr td p a {
     display:inline;
 }
 #IndividualDetail table.infolist tr td a:hover {
@@ -435,10 +497,8 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
-    color:#696969;
-}
-#IndividualDetail div.subsection table tr td:first-child {
-    padding-left:20px;
+    color:#999;
+    padding-left:5px;
 }
 
 /* Sources
@@ -463,6 +523,72 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
+}
+
+/* EventList and EventDetail
+----------------------------------------------------- */
+
+div#EventList, div#EventDetail { }
+
+div#events table.eventlist {
+    margin-top: .3cm;
+}
+table.eventlist tbody tr.BeginName {
+    border-bottom: solid 1px #000;
+}
+table.eventlist tbody tr td {
+    background-color: #CCC;
+    padding: 4px 0px 4px 0px;
+    border-bottom: dashed 1px #000;
+}
+table.eventlist tbody tr td.ColumnEvent {
+    background-color: #FFF;
+    width: 20%;
+}
+table.eventlist tbody tr td.ColumnDate {
+    width: 16%;
+}
+table.eventlist tbody tr td.ColumnPlace {
+    background-color: #FFF;
+    width: 35%;
+}
+table.eventlist tbody tr td.ColumnSources {
+    background-color: #FFF;
+    width: 12%;
+}
+table.eventlist tbody tr td.ColumnNotes {
+    width: 25%;
+}
+table.eventlist tbody tr td.ColumnPerson {
+    background-color: #FFF;
+    width: 35%;
+}
+table.eventlist tbody tr td.ColumnPartner {
+    background-color: #FFF;
+    width: 35%;
+}
+div#EventList table.eventlist tbody tr td.ColumnEvent a,
+div#EventList table.eventlist tbody tr td.ColumnPerson a,
+div#EventList table.eventlist tbody tr td.ColumnPartner a {
+    display: block;
+    padding: .9em 10px;
+}
+div#EventDetail h3 {
+    font-size: xxx-large;
+}
+div#EventDetail table.eventlist {
+    margin: .5cm 0 .3cm 1.5cm;
+    width: 800px;
+}
+div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
+    border-top: solid 1px #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 20%;
+}
+div#EventDetail table.eventlist tbody tr td.ColumnEvent {
+    background-color: #000;
+    border-top: solid 1px #000;
 }
 
 /* Gallery
@@ -542,6 +668,53 @@ table.individuallist tbody tr td.ColumnName a:hover {
     border-color:#CCC;
 }
 
+/* Download 
+----------------------------------------------------- */
+
+#Download {
+    margin: 0;
+    padding: .5em 0 .5em 0;
+}
+table.download {
+    padding: 0;
+    margin: .5em 0 .5em 0;
+    border: solid 1px #000;
+    width: 100%;
+    nackground-color: #CCC;
+}
+table.download img {
+    float:center;
+}
+table.download tbody tr#Row02 {
+    border-bottom:solid 1px #000;
+}
+table.download tbody tr td { 
+    border-style:solid;
+    border-color: #000;
+    border-width: 0px 2px 2px 2px;
+    text-align:left;
+}
+table.download td.ColumnFilename {
+    width:30%;
+    background-color: #FFF;
+}
+table.download td.ColumnFilename a {
+    display:block;
+    padding:10px;
+    font-weight:bold;
+    font-style: italic;
+    text-decoration:none;
+}
+table.download td.ColumnDescription {
+    width:45%;
+}
+table.download td.ColumnLicense {
+    width:6%;
+}
+table.download td.ColumnModified {
+    width:17%;
+}
+
 /* Contact
 ----------------------------------------------------- */
 #Contact #summaryarea {
@@ -587,61 +760,30 @@ table.individuallist tbody tr td.ColumnName a:hover {
     text-decoration:underline;
 }
 
-/* Download 
------------------------------------------------------ */
-#Download { 
-    padding:1cm;
-    height:396px;
+/* Repositories
+------------------------------------------------------ */
+div#RepositoryList { }
+
+div#RepositoryList table.repolist tbody tr td {
+    background-color: #CCC;
 }
-table.download {
-    border:solid 2px #000;
-    width:100%;
+div#RepositoryList table.repolist tbody tr td a {
+    display: block;
+    padding: .3em 10px;
 }
-table.download img {
-    float:center;
+div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
+    width: 9%;
 }
-table.download thead tr th {
-    text-align:center;
-    border:solid 2px #000;
-    color: #000;
-    text-transform:uppercase;
+div#RepositoryList table.repolist tbody tr td.ColumnType {
+    width: 15%;
 }
-table.download tbody tr#Row02 {
-    border-bottom:solid 2px #000;
-}
-table.download thead tr th, table.download tbody tr td { 
-    padding-left:10px;
-    padding-top:20px;
-    border-style:solid;
-    border-color:#000;
-    border-width:0 2px 2px 2px;
-    text-align:left;
-}
-table.download td.Description {
-    width: 50%;
-}
-table.download td.License {
-    width:8%;
-}
-table.download td.Filename {
-    width:30%;
-}
-table.download td.Filename a {
-    font-weight:bold;
-    font-style: italic;
-    text-decoration:none;
-}
-table.download td.Filename a:hover {
-    text-decoration:underline;
-}
-table.download td.Modified {
-    width:12%;
-    font-weight:bold;
+div#RepositoryList table.repolist tbody tr td.ColumnName {
+    background-color: #FFF;
 }
 
 /* Subsections
 ----------------------------------------------------- */
-#Home, #Introduction,  #Contact {
+#Home, #Introduction, #Contact {
     padding:1.5em 0 3em 0;
 }
 #Home p, #Introduction p, #Contact p {
@@ -1009,57 +1151,6 @@ div#sourcerefs ol li ol {
     margin:0 0 0 14px;
     padding:0;
     background-color:#EEE;
-}
-
-/* Footer
------------------------------------------------------ */
-#footer {
-    clear:both;
-    width:100%;
-    font-size:12px;
-    line-height:130%;
-    color:#333;
-    margin:0;
-    padding:15px 0 0 0;
-    background-color:#CCC;
-    border-top:solid 1px #333;
-}
-#footer a, #footer a:visited {
-    text-decoration:none;
-    color:#333;
-}
-#footer a:hover {
-    text-decoration:underline;
-}
-#footer img {
-    border:0;
-    margin:0 auto;
-    vertical-align:middle;
-}
-#footer p#createdate {
-    float:left;
-    width:40%;
-    text-align:left;
-    margin-left:10px;
-}
-#footer p#copyright {
-    float:right;
-    width:40%;
-    text-align:right;
-    margin-right:10px;
-}
-#footer p#copyright img {
-    margin-right:10px;
-}
-#user_footer {
-    width:70%;
-    float:left;
-    margin:1em;
-}
-#user_footer p {
-    font:normal 1em/1.2em serif;
-    margin:0;
-    padding:0;
 }
 
 /* Calendar Styles

@@ -202,6 +202,7 @@ div#header  {
     background-color: #542;
     border-bottom: solid 8px #5D835F;
     height: 90px;
+    width: 100%;
 }
 #SiteTitle {
     margin:0;
@@ -272,58 +273,28 @@ div#footer p#copyright img {
     padding:0;
 }
 
-/* Alphabet Navigation Bar
------------------------------------------------------ */
-div#alphabet {
-    background-color: #6AF364;
-}
-div#alphabet ul {
-    border-color: #000;
-}
-div#alphabet ul li {
-    border-color: #000;
-}
-div#alphabet ul li a {
-    color: #000;
-}
-div#alphabet ul li a:hover {
-    background-color: #000;
-    color: #FFF;
-}
-
 /* Navigation
 ----------------------------------------------------- */
 div#navigation, div#subnavigation {
     width: 100%;
 }
-body#NarrativeWeb_Horizontal div#navigation {
-    position: fixed;
-    top: 104px;
-    left: 0px;
-}
-body#NarrativeWeb_Vertical div#navigation {
-    position: fixed;
-    top: 104px;
-    left: 4px;
-}
 div#navigation ul, div#subnavigation ul {
     list-style:none;
     min-width:770px;
-    height:32px;
+    height: 42px;
     margin:0;
     padding: 0px 0px 0px 20px;
     border-bottom: solid 2px #5D835F;
 }
 div#navigation ul li, div#subnavigation ul li {
-    margin:0;
     float:left;
 }
 body#WebCal divdiv#navigation ul li a {
     color: #FFF;
 }
 div#navigation ul li a, div#subnavigation ul li a {
-    padding: 6px 10px 8px 1px;
-    display:block;
+    display: block;
+    padding: 12px 10px 14px 1px;
     float:left;
     font:normal 16px/100% serif;
     color: #000;
@@ -331,16 +302,12 @@ div#navigation ul li a, div#subnavigation ul li a {
     margin:0;
 }
 div#navigation ul li a:hover, div#subnavigation ul li a:hover {
-    margin-top: -6px;
-    padding: 11px 11px 12px 1px;
     background-color: #C1B398;
     color: #000;
 }
 div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     font-weight:bold;
     font-style: italic;
-    margin-top:-6px;
-    padding: 11px 11px 12px 10px;
     background-color: #CCC;
     color: #000;
 }
@@ -351,6 +318,44 @@ div#navigation ul li.CurrentSection a:hover {
 div#subnavigation ul li.CurrentSection a {
     border-width: 0px 0px 2px 0px;
     border-color: #FFF;
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+    background-color: #6AF364;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
+    border-color: #000;
+}
+div#alphabet ul li:after {
+    content:"  |";
+}
+div#alphabet ul li {
+    margin:0;
+    float:left;
+}
+div#alphabet ul li a {
+    display:block;
+    padding: 4px 8px 4px 8px;
+    float:left;
+    font:bold 16px/100% sans;
+    margin:0;
+    text-decoration:none;
+    color: #000;
+}
+div#alphabet ul li a:hover {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Main Table
@@ -789,56 +794,46 @@ table.exiflist tr td.ColumnValue {
 
 /* Download 
 ----------------------------------------------------- */
-#Download { 
+
+div#Download { 
     margin: 0;
-    padding: .5em 0 .5em 0;
+    padding: 0px 0px .5em 0px;
 }
-table.download {
+div#Download table.download {
     padding: 0;
     margin: .5em 0 .5em 0;
     border: solid 1px #5D835F;
     width: 100%;
     nackground-color: #D8F3D6;
 }
-table.download img {
+div#Download table.download img {
     float:center;
 }
-table.download thead tr th {
-    background-color: #6AF364;
-    color: #000;
-    padding: 15px 0px 0px 20px;
-    border-style:solid;
-    border-color: #000;
-    border-width: 0px 2px 2px 2px;
-    text-align:left;
-}
-table.download tbody tr#Row02 {
+div#Download table.download tbody tr#Row02 {
     border-bottom:solid 2px #000;
 }
-table.download tbody tr td { 
-    border-style:solid;
-    border-color: #000;
-    border-width:0 2px 2px 2px;
+div#Download table.download tbody tr td { 
+    border: solid 1px #000;
     text-align:left;
 }
-table.download td.ColumnFilename {
+div#Download table.download td.Filename {
     width:30%;
     background-color: #FFF;
 }
-table.download td.ColumnFilename a {
-    display:block;
-    padding:10px;
+div#Download table.download td.Filename a {
+    display: block;
+    padding: 10px 10px 14px 6px;
     font-weight:bold;
     font-style: italic;
     text-decoration:none;
 }
-table.download td.ColumnDescription {
+div#Download table.download td.Description {
     width:45%;
 }
-table.download td.ColumnLicense {
+div#Download table.download td.License {
     width:6%;
 }
-table.download td.ColumnModified {
+div#Download table.download td.Modified {
     width:17%;
 }
 
