@@ -808,7 +808,7 @@ class IndividualListPage(BasePage):
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnSurname">%s</th>\n' % _('Surname'))
-        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
+        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Person Firstname|Name'))
         column_count = 2
         if showbirth:
             of.write('\t\t\t<th class="ColumnBirth">%s</th>\n' % _('Birth'))
@@ -960,7 +960,7 @@ class SurnamePage(BasePage):
         of.write('\t<table class="infolist surname">\n')
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
-        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
+        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Person Firstname|Name'))
         if showbirth:
             of.write('\t\t\t<th class="ColumnBirth">%s</th>\n' % _('Birth'))
         if showdeath:
@@ -1087,7 +1087,7 @@ class PlaceListPage(BasePage):
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnLetter">%s</th>\n' % _('Letter'))
-        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
+        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Place name|Name'))
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n\n')
@@ -1663,7 +1663,7 @@ class SourcesPage(BasePage):
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnLabel">&nbsp;</th>\n')
-        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
+        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Source name|Name'))
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n')
@@ -1751,7 +1751,7 @@ class GalleryPage(BasePage):
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnRowLabel">&nbsp;</th>\n')
-        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
+        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Media|Name'))
         of.write('\t\t\t<th class="ColumnDate">%s</th>\n' % _('Date'))
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
@@ -2175,7 +2175,7 @@ class IndividualPage(BasePage):
                 call_name += self.get_citation_links( name.get_source_references() )
                 of.write('\t\t\t<tr>\n')
                 of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n'
-                    % _('Name'))
+                    % _('Person Firstname|Name'))
                 of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n'
                     % call_name)
                 of.write('\t\t\t</tr>\n')
@@ -2186,7 +2186,7 @@ class IndividualPage(BasePage):
             nick_name += self.get_citation_links( self.person.get_source_references() )
             of.write('\t\t\t<tr>\n')
             of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n'
-                % _('Name'))
+                % _('Person Firstname|Name'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n'
                 % nick_name)
             of.write('\t\t\t</tr>\n')
