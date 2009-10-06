@@ -22806,31 +22806,28 @@ msgid "Use seperate display format for spouses"
 msgstr ""
 
 #: Descend2.py:1534
-#, fuzzy
 msgid "Whether spouses can have a different format."
-msgstr "Om ektefeller skal vises i treet."
+msgstr "Om ektefeller kan ha ulikt format."
 
 #: Descend2.py:1537
-#, fuzzy
 msgid "Indent Spouses"
-msgstr "Ta med ektefeller"
+msgstr "Innrykk ved ektefeller"
 
 #: Descend2.py:1538
-#, fuzzy
 msgid "Whether to indent the spouses in the tree."
-msgstr "Om ektefeller skal vises i treet."
+msgstr "Om ektefeller skal gis innrykk  i treet."
 
 #: Descend2.py:1541
 #, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Visningsformat"
+msgstr "Ektefelles\n"
+"visningsformat"
 
 #: Descend2.py:1554
-#, fuzzy
 msgid "Replace"
-msgstr "Erstatt:"
+msgstr "Erstatt"
 
 #: Descend2.py:1556
 msgid ""
@@ -22866,14 +22863,12 @@ msgid "Descendent Count"
 msgstr "Etterkommerrapport"
 
 #: DescendantCountGramplet.py:83
-#, fuzzy
 msgid "Number of Descendants"
-msgstr "Antall generasjoner:"
+msgstr "Antall etterkommere:"
 
 #: DescendantCountGramplet.py:92
-#, fuzzy
 msgid "There are %d people.\n"
-msgstr "Setter markering for %d personer"
+msgstr "Setter er %d personer.\n"
 
 #: DescendantCountGramplet.py:105 DescendantCountGramplet.py:118
 #, fuzzy
@@ -22937,38 +22932,32 @@ msgid "FamilyGroups_1_1"
 msgstr "Familierapport"
 
 #: FamilyGroups_1_1.py:607 Gallery.py:167 SVGMap.py:137 locations.py:259
-#, fuzzy
 msgid "Testing"
-msgstr "Velsignelse"
+msgstr "Testing"
 
 #: FamilyGroups_1_1.py:608
-#, fuzzy
 msgid "FamilyGroups"
-msgstr "Familierapport"
+msgstr "Familiegrupper"
 
 #: FaqGramplet.py:44
-#, fuzzy
 msgid "FAQ Gramplet"
-msgstr "Smågramps"
+msgstr "OSS Smågramps"
 
 #: FaqGramplet.py:47
 msgid "FAQ"
 msgstr "OSS"
 
 #: Gallery.py:140
-#, fuzzy
 msgid "The style used for the name of person."
-msgstr "Stil som brukes på personens navn."
+msgstr "Stilen som brukes på personens navn."
 
 #: Gallery.py:169
-#, fuzzy
 msgid "Produces a gallery"
-msgstr "Lager en grafisk kalender"
+msgstr "Lager en galleri"
 
 #: GoogleEarthWriteKML.py:81 SVGMap.py:54
-#, fuzzy
 msgid "No place description"
-msgstr "Ingen beskrivelse"
+msgstr "Ingen stedsbeskrivelse"
 
 #: GoogleEarthWriteKML.py:114
 msgid "GoogleEarth not installed!"
@@ -22981,14 +22970,12 @@ msgid ""
 msgstr ""
 
 #: GoogleEarthWriteKML.py:125
-#, fuzzy
 msgid "Failure writing to %s"
 msgstr "Det oppsto en feil under skrivingen av %s"
 
 #: GoogleEarthWriteKML.py:126
-#, fuzzy
 msgid "Directory does not exist"
-msgstr "Fila eksisterer ikke"
+msgstr "Katalogen eksisterer ikke"
 
 #: GoogleEarthWriteKML.py:134
 msgid "GoogleEarth file exists!"
@@ -23001,9 +22988,8 @@ msgid ""
 msgstr ""
 
 #: GoogleEarthWriteKML.py:214
-#, fuzzy
 msgid "GoogleEarth"
-msgstr "GoogleKart"
+msgstr "GoogleEarth"
 
 #: GoogleEarthWriteKML.py:216
 msgid "Creates data file for GoogleEarth and opens it"
@@ -23014,18 +23000,16 @@ msgid "Read GRAMPS headline news"
 msgstr ""
 
 #: HeadlineNewsGramplet.py:276
-#, fuzzy
 msgid "Headline News Gramplet"
-msgstr "Anetavlevindu"
+msgstr "Siste nyheter Smågramps"
 
 #: HeadlineNewsGramplet.py:280
 msgid "Headline News"
 msgstr ""
 
 #: NoteGramplet.py:268
-#, fuzzy
 msgid "Note Gramplet"
-msgstr "Smågramps"
+msgstr "Notat Smågramps"
 
 #: PlaceCompletion.py:76
 msgid "Place Completion by parsing, file lookup and batch setting of place attributes"
@@ -23033,38 +23017,32 @@ msgstr ""
 
 #: PlaceCompletion.py:180 PlaceCompletion.py:211 PlaceCompletion.py:250
 #: PlaceCompletion.py:1041 PlaceCompletion.py:1081
-#, fuzzy
 msgid "city"
-msgstr "By"
+msgstr "by"
 
 #: PlaceCompletion.py:180 PlaceCompletion.py:219 PlaceCompletion.py:258
-#, fuzzy
 msgid "street"
-msgstr "Gate"
+msgstr "gate"
 
 #: PlaceCompletion.py:180 PlaceCompletion.py:221 PlaceCompletion.py:260
 #: PlaceCompletion.py:1042
-#, fuzzy
 msgid "parish"
-msgstr " prestegjeld"
+msgstr "prestegjeld"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:213 PlaceCompletion.py:252
 #: PlaceCompletion.py:1038 PlaceCompletion.py:1084
-#, fuzzy
 msgid "country"
-msgstr "Land"
+msgstr "land"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:215 PlaceCompletion.py:254
 #: PlaceCompletion.py:424 PlaceCompletion.py:1040 PlaceCompletion.py:1082
-#, fuzzy
 msgid "county"
-msgstr "Fylke"
+msgstr "fylke"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:217 PlaceCompletion.py:256
 #: PlaceCompletion.py:424 PlaceCompletion.py:1039 PlaceCompletion.py:1083
-#, fuzzy
 msgid "state"
-msgstr " stat"
+msgstr "stat"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:223 PlaceCompletion.py:262
 #: PlaceCompletion.py:1043
@@ -23073,15 +23051,13 @@ msgstr ""
 
 #: PlaceCompletion.py:203 PlaceCompletion.py:239 PlaceCompletion.py:923
 #: PlaceCompletion.py:979 PlaceCompletion.py:981 PlaceCompletion.py:987
-#, fuzzy
 msgid "latitude"
-msgstr "Breddegrad"
+msgstr "breddegrad"
 
 #: PlaceCompletion.py:205 PlaceCompletion.py:241 PlaceCompletion.py:924
 #: PlaceCompletion.py:991 PlaceCompletion.py:993 PlaceCompletion.py:998
-#, fuzzy
 msgid "longitude"
-msgstr "Lengdegrad"
+msgstr "lengdegrad"
 
 #: PlaceCompletion.py:226 PlaceCompletion.py:265
 msgid "Error in PlaceCompletion.py"
@@ -23098,9 +23074,8 @@ msgid "Non existing group used in set"
 msgstr "Ikke-eksisterende person"
 
 #: PlaceCompletion.py:324
-#, fuzzy
 msgid "Places tool"
-msgstr "Stedsnavn"
+msgstr "Verktøy for stedsnavn"
 
 #: PlaceCompletion.py:416
 msgid "Non Valid Title Regex"
@@ -23112,15 +23087,13 @@ msgstr ""
 
 #: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
 #: PlaceCompletion.py:1079
-#, fuzzy
 msgid "lat"
-msgstr "Relatert"
+msgstr "len"
 
 #: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
 #: PlaceCompletion.py:1080
-#, fuzzy
 msgid "lon"
-msgstr "vallonsk"
+msgstr "brd"
 
 #: PlaceCompletion.py:432
 msgid "Missing regex groups in match lat/lon"
@@ -23143,18 +23116,16 @@ msgid "Finding Places and appropriate changes"
 msgstr ""
 
 #: PlaceCompletion.py:504
-#, fuzzy
 msgid "Filtering"
-msgstr "Filter"
+msgstr "Filterer"
 
 #: PlaceCompletion.py:514
 msgid "Loading lat/lon file in Memory..."
 msgstr ""
 
 #: PlaceCompletion.py:519
-#, fuzzy
 msgid "Examining places"
-msgstr "Rediger sted"
+msgstr "Undersøker steder"
 
 #: PlaceCompletion.py:707
 #, fuzzy
