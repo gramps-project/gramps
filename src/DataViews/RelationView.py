@@ -883,7 +883,7 @@ class RelationshipView(PageView.PersonNavView):
                     addchild = widgets.IconButton(self.add_child_to_fam, 
                                                   family.handle, 
                                                   gtk.STOCK_ADD)
-                    addchile.set_tooltip_text(_('Add new child to family'))
+                    addchild.set_tooltip_text(_('Add new child to family'))
                     selchild = widgets.IconButton(self.sel_child_to_fam, 
                                                   family.handle, 
                                                   gtk.STOCK_INDEX)
