@@ -124,7 +124,8 @@ class DescendantReport(Report):
                     'death_date' : death_date
                     })
 
-        self.doc.write_text(')')
+        if birth or death:
+            self.doc.write_text(')')
         
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
