@@ -594,7 +594,7 @@ div#IndividualDetail div.subsection table tr td:first-child {
 }
 #Places table.infolist tbody tr td.ColumnName a:hover { }
 
-/* Events
+/* EventList and EventDetail
 ----------------------------------------------------- */
 div#EventList, div#EventDetail { }
 

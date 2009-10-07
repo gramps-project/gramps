@@ -1278,13 +1278,13 @@ class BasePage(object):
         with Html("div", id="sourcerefs", class_ = "subsection") as section: 
             section += Html("h4", _("Source References"), inline = True)
 
+            # begin ordered list
+            ordered1 = Html("ol")
+            section += ordered1
+
             cindex = 0
             for citation in bibli.get_citation_list():
                 cindex += 1
-
-                # begin ordered list
-                ordered1 = Html("ol")
-                section += ordered1
 
                 # Add this source to the global list of sources to be displayed
                 # on each source page.
@@ -1299,11 +1299,11 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 title = source.get_title()
-                list1 = Html("li") + \
-                    self.source_link(source.handle, "sref%d" % cindex, title, source.gramps_id, True)
+                list1 = Html("li")
                 ordered1 += list1
+                hyper = self.source_link(source.handle, "sref%d" % cindex, title, source.gramps_id, True)
+                list1 += hyper   
 
-                # begin ordered one
                 ordered2 = Html("ol")
                 list1 += ordered2
  
@@ -3498,11 +3498,10 @@ class IndividualPage(BasePage):
         """
 
         for sref in self.person.get_source_references():
-            print sref 
             self.bibli.add_reference(sref)
         sourcerefs = self.display_source_refs(self.bibli)
 
-        # return to its caller
+        # return to its callers
         return sourcerefs
 
     def display_ind_associations(self, assoclist):
