@@ -75,6 +75,7 @@ from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend
+import Utils
 #------------------------------------------------------------------------
 #
 # constants
@@ -152,6 +153,8 @@ class WebCalReport(Report):
         self.today = date.Today()
 
         self.warn_dir = True            # Only give warning once.
+        self.link_to_narweb = mgobn('link_to_narweb')
+        self.narweb_prefix = mgobn('prefix')
 
         # self.calendar is a dict; key is the month number
         # Each entry in the dict is also a dict; key is the day number.
@@ -1057,11 +1060,52 @@ class WebCalReport(Report):
         # close the file  
         self.close_file(od)
 
+    def build_url_fname_html(self, fname, subdir=None, prefix=None):
+        return self.build_url_fname(fname, subdir, prefix) + self.ext
+
+    def build_url_fname(self, fname, subdir, prefix=None):
+        """
+        Create part of the URL given the filename and optionally the subdirectory.
+        If the subdirectory is given, then two extra levels of subdirectory are inserted
+        between 'subdir' and the filename. The reason is to prevent directories with
+        too many entries.
+        If 'prefix' is set, then is inserted in front of the result. 
+
+        The extension is added to the filename as well.
+
+        Notice that we do NOT use os.path.join() because we're creating a URL.
+        Imagine we run gramps on Windows (heaven forbits), we don't want to
+        see backslashes in the URL.
+        """
+        if (Utils.win):
+            fname = fname.replace('\\',"/")
+        subdirs = self.build_subdirs(subdir, fname)
+        if prefix:
+            return prefix + "/".join(subdirs + [fname])
+        else:
+            return "/".join(subdirs + [fname])
+
+    def build_subdirs(self, subdir, fname):
+        """
+        If subdir is given, then two extra levels of subdirectory are inserted
+        between 'subdir' and the filename. The reason is to prevent directories with
+        too many entries.
+
+        For example, this may return ['ppl', '8', '1'] given 'ppl', "aec934857df74d36618"
+        """
+        subdirs = []
+        if subdir:
+            subdirs.append(subdir)
+            subdirs.append(fname[-1].lower())
+            subdirs.append(fname[-2].lower())
+        return subdirs
+
 # ---------------------------------------------------------------------------------------
 #
 #                             Get person's short name
 #
 # ---------------------------------------------------------------------------------------
+
     def get_name(self, person, maiden_name = None):
         """ 
         Return person's name, unless maiden_name given, unless married_name 
@@ -1149,7 +1193,12 @@ class WebCalReport(Report):
                 short_name = self.get_name(person, father_surname)
                 alive = probably_alive(person, self.database, prob_alive_date)
                 if (self.alive and alive) or not self.alive:
-                    text = _('%(short_name)s') % {'short_name' : short_name}
+                    if self.link_to_narweb:
+                        text = Html('a', short_name, 
+                                    href=self.build_url_fname_html(person.handle, 'ppl', 
+                                                                   prefix=self.narweb_prefix))
+                    else:
+                        text = short_name
                     self.add_day_item(text, year, month, day, 'Birthday')
 
             # add anniversary if requested
@@ -1180,10 +1229,17 @@ class WebCalReport(Report):
                             prob_alive_date = Date(this_year, month, day)
 
                             if event_obj.is_valid():
+                                if self.link_to_narweb:
+                                    spouse_name = Html('a', spouse_name,
+                                                       href=self.build_url_fname_html(spouse_handle, 'ppl', 
+                                                                                      prefix=self.narweb_prefix))
+                                    short_name = Html('a', short_name,
+                                                      href=self.build_url_fname_html(person.handle, 'ppl', 
+                                                                                     prefix=self.narweb_prefix))
                                 text = _('%(spouse)s and %(person)s') % {
-                                         'spouse' : spouse_name,
-                                         'person' : short_name}
-
+                                    'spouse' : spouse_name,
+                                    'person' : short_name}
+                                
                                 alive1 = probably_alive(person, self.database, prob_alive_date)
                                 alive2 = probably_alive(spouse, self.database, prob_alive_date)
                                 if ((self.alive and alive1 and alive2) or not self.alive):
@@ -1309,6 +1365,8 @@ class WebCalOptions(MenuReportOptions):
         self.__db = dbase
         self.__pid = None
         self.__filter = None
+        self.__links = None
+        self.__prefix = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -1520,9 +1578,20 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, 'fullyear', fullyear)
 
         makeoneday = BooleanOption(_('Create one day event pages for'
-                                                              ' Year At A Glance calendar'), False)
+                                     ' Year At A Glance calendar'), False)
         makeoneday.set_help(_('Whether to create one day pages or not'))
         menu.add_option(category_name, 'makeoneday', makeoneday)  
+
+        self.__links = BooleanOption(_('Link to Narrated Web Report'), False)
+        self.__links.set_help(_('Whether to link data to web report or not'))
+        menu.add_option(category_name, 'link_to_narweb', self.__links)  
+        self.__links.connect('value-changed', self.__links_changed)
+
+        self.__prefix = StringOption(_('Link prefix'), "file:///home/user/NAVWEB/")
+        self.__prefix.set_help(_("A Prefix on the links to take you to Narrated Web Report"))
+        menu.add_option(category_name, "prefix", self.__prefix)
+
+        self.__links_changed()
 
     def __update_filters(self):
         """
@@ -1556,6 +1625,15 @@ class WebCalOptions(MenuReportOptions):
             self.__end_year.set_available(True)
         else:
             self.__end_year.set_available(False)
+
+    def __links_changed(self):
+        """
+        Handle checkbox change. 
+        """
+        if self.__links.get_value():
+            self.__prefix.set_available(True)
+        else:
+            self.__prefix.set_available(False)
 
 # ---------------------------------------------------------------------------------------
 #
