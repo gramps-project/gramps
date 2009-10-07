@@ -4,15 +4,15 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
-	treemodels \
-	listview.py\
-	navigationview.py\
-	pageview.py
+	treemodels
 
 pkgdatadir = $(datadir)/@PACKAGE@/gui/views
 
 pkgdata_PYTHON = \
-	__init__.py
+	__init__.py \
+	listview.py \
+        navigationview.py \
+	pageview.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/views
 pkgpythondir = @pkgpythondir@/gui/views
