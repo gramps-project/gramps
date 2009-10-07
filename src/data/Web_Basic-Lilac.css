@@ -70,6 +70,7 @@ img {
     background:none;
 }
 .content {
+    padding-top: 1cm;
     background-color:#FAFAFF;
 }
 .content div.snapshot {
@@ -176,43 +177,6 @@ a:visited {
     margin:0;
 }
 
-/* Alphabet Navigation
------------------------------------------------------ */
-#alphabet {
-    padding:0;
-    margin:0;
-}
-#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding:0 0 0 9px;
-    border-top:solid 2px #000;
-    border-bottom:solid 4px #000;
-    background-color:#E0E0E9;
-}
-#alphabet ul li.letters {
-    margin:0;
-    float:left;
-}
-.letters:after {
-    content:" |";
-}
-#alphabet ul li.letters a {
-    display:block;
-    float:left;
-    font:bold 16px/100% sans;
-    color:#000;
-    margin:0;
-    padding:5px 5px;
-    text-decoration:none;
-}
-#alphabet ul li.letters a:hover {
-    background-color:#000;
-    color:#FFF;
-}
-
 /* Navigation
 ----------------------------------------------------- */
 #navigation, #subnavigation {
@@ -260,6 +224,44 @@ a:visited {
 }
 #subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+    background-color: #E0E0E9;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
+    border-color: #000;
+}
+div#alphabet ul li:after {
+    content:"  |";
+}
+div#alphabet ul li {
+    margin:0;
+    float:left;
+}
+div#alphabet ul li a {
+    display:block;
+    padding: 4px 8px 4px 8px;
+    float:left;
+    font:bold 16px/100% sans;
+    margin:0;
+    text-decoration:none;
+    color: #000;
+}
+div#alphabet ul li a:hover {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Main Table

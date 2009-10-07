@@ -67,6 +67,7 @@ img {
     background:none;
 }
 .content {
+    padding-top: 1cm;
     background-color:#FFF;
 }
 .content div.snapshot {
@@ -156,9 +157,10 @@ a:visited {
 /* Header
 ----------------------------------------------------- */
 #header {
-    padding:15px 15px 2px 15px;
+    padding:15px 15px 15px 15px;
     margin:0;
     background-color:#454;
+    height: 1cm;
 }
 #SiteTitle {
     color:#E0E6E0;
@@ -169,43 +171,6 @@ a:visited {
     font-weight:bold;
     color:#E0E6E0;
     margin:0;
-}
-
-/* Alphabet Navigation
------------------------------------------------------ */
-#alphabet {
-    padding:0;
-    margin:0;
-}
-#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding:0 0 0 9px;
-    border-top:solid 2px #000;
-    border-bottom:solid 4px #000;
-    background-color:#454;
-}
-#alphabet ul li.letters {
-    margin:0;
-    float:left;
-}
-.letters:after {
-    content:" |";
-}
-#alphabet ul li.letters a {
-    display:block;
-    float:left;
-    font:bold 16px/100% sans;
-    color:#000;
-    margin:0;
-    padding:5px 5px;
-    text-decoration:none;
-}
-#alphabet ul li.letters a:hover {
-    background-color:#000;
-    color:#FFF;
 }
 
 /* Navigation
@@ -258,6 +223,44 @@ a:visited {
 #navigation ul li.CurrentSection a:hover {
     padding-top:5px;
     background-color:#FFF;
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+    background-color: #454;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
+    border-color: #FFF;
+}
+div#alphabet ul li:after {
+    content:"  |";
+}
+div#alphabet ul li {
+    margin:0;
+    float:left;
+}
+div#alphabet ul li a {
+    display:block;
+    padding: 4px 8px 4px 8px;
+    float:left;
+    font:bold 16px/100% sans;
+    margin:0;
+    text-decoration:none;
+    color: #FFF;
+}
+div#alphabet ul li a:hover {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Main Table
@@ -902,7 +905,7 @@ div#sourcerefs ol li ol {
     page-break-before:always;
     margin:0;
     padding:0;
-    background:none;
+    background-color: #FFF;
 }
 #treeContainer {
     position:relative;
