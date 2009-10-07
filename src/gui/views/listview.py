@@ -530,7 +530,7 @@ class ListView(NavigationView):
             search = (False, self.search_bar.get_value())
 
         # TODO: This line is needed but gives a warning
-        self.list.set_model(None)
+        #self.list.set_model(None)
         
         if same_col:
             self.model.reverse_order()
@@ -587,15 +587,15 @@ class ListView(NavigationView):
         selected_ids = self.selected_handles()
         if len(selected_ids) > 0:
             self.change_active(selected_ids[0])
-            
-        if len(selected_ids) == 1:
-            self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
+        if self.drag_info():    
+            if len(selected_ids) == 1:
+                self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
                                       [self.drag_info().target()], 
                                       gtk.gdk.ACTION_COPY)
                                       
-        # TODO: This needs putting back again
-        #elif len(selected_ids) > 1:
-            #self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
+            # TODO: This needs putting back again
+            #elif len(selected_ids) > 1:
+                #self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
                                       #[DdTargets.PERSON_LINK_LIST.target()], 
                                       #gtk.gdk.ACTION_COPY)
         self.uistate.modify_statusbar(self.dbstate)

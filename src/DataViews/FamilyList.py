@@ -43,7 +43,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import PageView
+from gui.views.listview import ListView
 import DisplayModels
 import Bookmarks
 import Errors
@@ -56,7 +56,7 @@ from ReportBase import CATEGORY_QR_FAMILY
 # FamilyListView
 #
 #-------------------------------------------------------------------------
-class FamilyListView(PageView.ListView):
+class FamilyListView(ListView):
     
     COLUMN_NAMES = [
         _('ID'),
@@ -82,17 +82,17 @@ class FamilyListView(PageView.ListView):
             'family-rebuild' : self.object_build,
             }
 
-        self.func_list = {
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
-            }
-
-        PageView.ListView.__init__(
+        ListView.__init__(
             self, _('Families'), dbstate, uistate,
             FamilyListView.COLUMN_NAMES, len(FamilyListView.COLUMN_NAMES), 
             DisplayModels.FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
             Bookmarks.FamilyBookmarks, filter_class=FamilySidebarFilter)
+
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+            }
 
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
@@ -161,7 +161,7 @@ class FamilyListView(PageView.ListView):
     def define_actions(self):
         """Add the Forward action group to handle the Forward button."""
 
-        PageView.ListView.define_actions(self)
+        ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                         _('_Column Editor...'), callback=self._column_editor)
 

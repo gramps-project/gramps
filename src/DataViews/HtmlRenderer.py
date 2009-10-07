@@ -49,7 +49,7 @@ import gtk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import PageView
+from gui.views.pageview import PageView
 import Utils
 import Config
 from const import TEMP_DIR
@@ -414,14 +414,14 @@ class RendererMozilla(Renderer):
 # HtmlView
 #
 #-------------------------------------------------------------------------
-class HtmlView(PageView.PageView):
+class HtmlView(PageView):
     """
     HtmlView is a view showing a top widget with controls, and a bottom part
     with an embedded webbrowser showing a given URL
     """
 
     def __init__(self, dbstate, uistate, title=_('HtmlView')):
-        PageView.PageView.__init__(self, title, dbstate, uistate)
+        PageView.__init__(self, title, dbstate, uistate)
         self.dbstate = dbstate
         self.back_action = None
         self.forward_action = None

@@ -61,6 +61,7 @@ from gui.utils import add_menuitem
 from ReportBase import CSS_FILES
 from BasicUtils import name_displayer as _nd
 from PlaceUtils import conv_lat_lon
+from gui.views.pageview import PageView
 
 #-------------------------------------------------------------------------
 #
@@ -487,7 +488,7 @@ class GeoView(HtmlView):
             ])
         self._add_action_group(self.lock_action)
         self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_All Places'),
-	    callback=self._all_places, tip=_("Attempt to view all places in "
+        callback=self._all_places, tip=_("Attempt to view all places in "
                                          "the family tree."))
         self._add_action('PersonMaps', 'gramps-person', _('_Person'),
             callback=self._person_places,
@@ -514,7 +515,7 @@ class GeoView(HtmlView):
           4. set icon and label of the menutoolbutton now that it is realized
           5. store label so it can be changed when selection changes
         """
-        PageView.PageView.change_page(self)
+        PageView.change_page(self)
         # menutoolbutton actions are stored in PageView class, 
         # obtain the widgets where we need to add to menu
         actionstyles = self.action_toolmenu['StyleSheet']

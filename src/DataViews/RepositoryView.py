@@ -37,7 +37,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import PageView
+from gui.views.listview import ListView
 import DisplayModels
 import Utils
 import Bookmarks
@@ -61,7 +61,7 @@ from gettext import gettext as _
 # RepositoryView
 #
 #-------------------------------------------------------------------------
-class RepositoryView(PageView.ListView):
+class RepositoryView(ListView):
 
     COLUMN_NAMES = [
         _('Name'),
@@ -99,7 +99,7 @@ class RepositoryView(PageView.ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             }
 
-        PageView.ListView.__init__(
+        ListView.__init__(
             self, _('Repositories'), dbstate, uistate,
             RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
             DisplayModels.RepositoryModel, signal_map,
@@ -120,7 +120,7 @@ class RepositoryView(PageView.ListView):
         return DdTargets.REPO_LINK
 
     def define_actions(self):
-        PageView.ListView.define_actions(self)
+        ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FilterEdit', None, _('Repository Filter Editor'),

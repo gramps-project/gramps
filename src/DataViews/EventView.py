@@ -37,7 +37,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import PageView
+from gui.views.listview import ListView
 import DisplayModels
 import Utils
 import Errors
@@ -61,7 +61,7 @@ from gettext import gettext as _
 # EventView
 #
 #-------------------------------------------------------------------------
-class EventView(PageView.ListView):
+class EventView(ListView):
     """
     EventView class, derived from the ListView
     """
@@ -85,7 +85,6 @@ class EventView(PageView.ListView):
         """
         Create the Event View
         """
-
         signal_map = {
             'event-add'     : self.row_add,
             'event-update'  : self.row_update,
@@ -93,12 +92,7 @@ class EventView(PageView.ListView):
             'event-rebuild' : self.object_build,
             }
 
-        self.func_list = {
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
-            }
-
-        PageView.ListView.__init__(
+        ListView.__init__(
             self, _('Events'), dbstate, uistate,
             EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
             DisplayModels.EventModel,
@@ -106,6 +100,11 @@ class EventView(PageView.ListView):
             Bookmarks.EventBookmarks,
             multiple=True,
             filter_class=EventSidebarFilter)
+            
+        self.func_list = {
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+            }
 
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
@@ -183,7 +182,7 @@ class EventView(PageView.ListView):
         </ui>'''
 
     def define_actions(self):
-        PageView.ListView.define_actions(self)
+        ListView.define_actions(self)
         self._add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,

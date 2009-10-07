@@ -47,7 +47,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-import PageView
+from gui.views.listview import ListView
 import DisplayModels
 import ThumbNails
 import const
@@ -67,7 +67,7 @@ from DdTargets import DdTargets
 # MediaView
 #
 #-------------------------------------------------------------------------
-class MediaView(PageView.ListView):
+class MediaView(ListView):
     """
     Provide the Media View interface on the GRAMPS main window. This allows
     people to manage all media items in their database. This is very similar
@@ -101,7 +101,7 @@ class MediaView(PageView.ListView):
             'media-rebuild' : self.object_build,
             }
 
-        PageView.ListView.__init__(
+        ListView.__init__(
             self, _('Media'), dbstate, uistate, 
             MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
             DisplayModels.MediaModel, 
@@ -212,7 +212,7 @@ class MediaView(PageView.ListView):
         sure that the common List View actions are defined as well, so we
         call the parent function.
         """
-        PageView.ListView.define_actions(self)
+        ListView.define_actions(self)
 
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES, 
                          _('_Column Editor'), callback=self._column_editor)
@@ -260,7 +260,7 @@ class MediaView(PageView.ListView):
         """
         Builds the View from GTK components
         """
-        base = PageView.ListView.build_widget(self)
+        base = ListView.build_widget(self)
         vbox = gtk.VBox()
         vbox.set_border_width(0)
         vbox.set_spacing(4)
@@ -296,7 +296,7 @@ class MediaView(PageView.ListView):
         handle the normal operation, then call row_change to make sure that 
         the thumbnail is updated properly if needed.
         """
-        PageView.ListView.row_update(self, obj)
+        ListView.row_update(self, obj)
         if self.active:
             self.row_change(obj)
 

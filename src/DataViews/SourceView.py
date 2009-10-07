@@ -38,7 +38,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 import Config
-import PageView
+from gui.views.listview import ListView
 import DisplayModels
 import Utils
 import Bookmarks
@@ -61,7 +61,7 @@ from gettext import gettext as _
 # SourceView
 #
 #-------------------------------------------------------------------------
-class SourceView(PageView.ListView):
+class SourceView(ListView):
 
     COLUMN_NAMES = [
         _('Title'),
@@ -91,7 +91,7 @@ class SourceView(PageView.ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             }
 
-        PageView.ListView.__init__(
+        ListView.__init__(
             self, _('Sources'), dbstate, uistate, 
             SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
             DisplayModels.SourceModel, signal_map,
@@ -112,7 +112,7 @@ class SourceView(PageView.ListView):
         return DdTargets.SOURCE_LINK
     
     def define_actions(self):
-        PageView.ListView.define_actions(self)
+        ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FastMerge', None, _('_Merge'),

@@ -36,7 +36,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import PageView
+from gui.views.listview import ListView
 import DisplayModels
 import Utils
 import Errors
@@ -61,7 +61,7 @@ from gettext import gettext as _
 # NoteView
 #
 #-------------------------------------------------------------------------
-class NoteView(PageView.ListView):
+class NoteView(ListView):
     
     COLUMN_NAMES = [
         _('Preview'),
@@ -89,7 +89,7 @@ class NoteView(PageView.ListView):
             '<CONTROL>BackSpace' : self.key_delete,
         }
 
-        PageView.ListView.__init__(
+        ListView.__init__(
             self, _('Notes'), dbstate, uistate, NoteView.COLUMN_NAMES,
             len(NoteView.COLUMN_NAMES), DisplayModels.NoteModel, signal_map,
             dbstate.db.get_note_bookmarks(),
@@ -169,7 +169,7 @@ class NoteView(PageView.ListView):
         </ui>'''
 
     def define_actions(self):
-        PageView.ListView.define_actions(self)
+        ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FilterEdit', None, _('Note Filter Editor'),
