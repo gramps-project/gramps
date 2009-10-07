@@ -1030,7 +1030,7 @@ class BasePage(object):
                 inc_repos = False  
 
         navs = [
-            (self.report.index_fname,   _('Home'),         self.report.use_home),
+            (self.report.index_fname,   _('html|Home'),         self.report.use_home),
             (self.report.intro_fname,   _('Introduction'), self.report.use_intro),
             (self.report.surname_fname, _('Surnames'),     True),
             ('individuals',             _('Individuals'),  True),
@@ -1867,7 +1867,7 @@ class PlaceListPage(BasePage):
 
                 trow = Html("tr")  + (
                     Html("th", _('Letter'), class_ = "ColumnLetter", inline = True),
-                    Html("th", _('Name'), class_ = "ColumnName", inline = True)
+                    Html("th", _('Place name|Name'), class_ = "ColumnName", inline = True)
                     )
                 thead += trow
 
@@ -2783,7 +2783,7 @@ class HomePage(BasePage):
         db = report.database
 
         of = self.report.create_file("index")
-        homepage, body = self.write_header(_('Home'))
+        homepage, body = self.write_header(_('html|Home'))
 
         # begin home division
         with Html("div", class_ = "content", id="Home") as section:
@@ -2850,7 +2850,7 @@ class SourceListPage(BasePage):
 
                 for (label, colclass) in [
                     (None,                        'RowLabel'),
-                    (_('Name'),                 'Name') ]:
+                    (_('Source Name|Name'),                 'Name') ]:
 
                     label = label or "&nbsp;"
                     trow += Html("th", label, class_ = "Column%s" % colclass, 
@@ -2980,7 +2980,7 @@ class MediaListPage(BasePage):
 
                 trow = Html("tr") + (
                     Html("th", "&nbsp;", class_ = "ColumnRowLabel", inline = True),
-                    Html("th", _('Name'), class_ = "ColumnName", inline = True),
+                    Html("th", _('Media|Name'), class_ = "ColumnName", inline = True),
                     Html("th", DHEAD, class_ = "ColumnDate", inline = True)
                     )
                 thead += trow
@@ -4394,7 +4394,7 @@ class RepositoryListPage(BasePage):
                 trow = Html("tr") + (
                     Html("th", _("Number"), class_ = "ColumnRowLabel", inline = True),
                     Html("th", THEAD, class_ = "ColumnType", inline = True),
-                    Html("th", _('Name'), class_ = "ColumnName", inline = True)
+                    Html("th", _('Repository|Name'), class_ = "ColumnName", inline = True)
                     )
                 thead += trow
 
