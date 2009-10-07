@@ -527,8 +527,6 @@ class PedigreeView(PageView.PersonNavView):
         contains the interface. This containter will be inserted into
         a gtk.Notebook page.
         """
-        self.tooltips = gtk.Tooltips()
-        self.tooltips.enable()
         
         self.notebook = gtk.Notebook()
         self.notebook.connect("button-press-event", self.bg_button_press_cb)
@@ -876,7 +874,7 @@ class PedigreeView(PageView.PersonNavView):
                 else:
                     pw = PersonBoxWidget( self, self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
                 if positions[i][0][3] < 7:
-                    self.tooltips.set_tip(pw, self.format_helper.format_person(lst[i][0], 11))
+                    pw.set_tooltip_text(self.format_helper.format_person(lst[i][0], 11))
 
                 pw.connect("button-press-event", self.person_button_press_cb,lst[i][0].get_handle())
                 if positions[i][0][2] > 1:
@@ -944,7 +942,7 @@ class PedigreeView(PageView.PersonNavView):
                 if lst[i] and lst[i][2]:
                     line.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
                     line.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
-                    self.tooltips.set_tip(line, self.format_helper.format_relation(lst[i][2], 11))
+                    line.set_tooltip_text(self.format_helper.format_relation(lst[i][2], 11))
                 if lst[i*2+1]:
                     line.set_data("frela", lst[i*2+1][1])
                 if lst[i*2+2]:
@@ -978,7 +976,7 @@ class PedigreeView(PageView.PersonNavView):
             childlist = find_children(self.dbstate.db,lst[0][0])
             if childlist:
                 l.connect("clicked",self.on_show_child_menu)
-                self.tooltips.set_tip(l, _("Jump to child..."))
+                l.set_tooltip_text(_("Jump to child..."))
             else:
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/2))
@@ -987,7 +985,7 @@ class PedigreeView(PageView.PersonNavView):
             l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[1]:
                 l.connect("clicked",self.on_childmenu_changed,lst[1][0].handle)
-                self.tooltips.set_tip(l, _("Jump to father"))
+                l.set_tooltip_text(("Jump to father"))
             else:
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/4))
@@ -996,7 +994,7 @@ class PedigreeView(PageView.PersonNavView):
             l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[2]:
                 l.connect("clicked",self.on_childmenu_changed,lst[2][0].handle)
-                self.tooltips.set_tip(l, _("Jump to mother"))
+                l.set_tooltip_text(_("Jump to mother"))
             else:
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/4*3))
