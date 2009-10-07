@@ -145,19 +145,17 @@ class MediaMan(Tool.Tool):
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
-        tip = gtk.Tooltips()
-        
         group = None
         for ix in range(len(self.batch_ops)):
             title = self.batch_ops[ix].title
             description= self.batch_ops[ix].description
 
             button = gtk.RadioButton(group,title)
+            button.set_tooltip_text(description)
             if not group:
                 group = button
             self.batch_op_buttons.append(button)
             table.attach(button,0,2,2*ix,2*ix+1,yoptions=0)
-            tip.set_tip(button,description)
         
         box.add(table)
         return box

@@ -91,8 +91,7 @@ class BackRefList(EmbeddedList):
         Method has signature of, and overrides create_buttons from _ButtonTab.py
         """
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
-        self.tooltips = gtk.Tooltips()
-        self.tooltips.set_tip(self.edit_btn, _('Edit reference'))
+        self.edit_btn.set_tooltip_text(_('Edit reference'))
 
         hbox = gtk.HBox()
         hbox.set_spacing(6)
@@ -104,7 +103,6 @@ class BackRefList(EmbeddedList):
         self.del_btn = None
 
         self.track_ref_for_deletion("edit_btn")
-        self.track_ref_for_deletion("tooltips")
         self.track_ref_for_deletion("add_btn")
         self.track_ref_for_deletion("del_btn")
 

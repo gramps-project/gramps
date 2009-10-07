@@ -123,7 +123,6 @@ class PrivacyButton(object):
     def __init__(self, button, obj, readonly=False):
         self.button = button
         self.button.connect('toggled', self._on_toggle)
-        self.tooltips = gtk.Tooltips()
         self.obj = obj
         self.set_active(obj.get_privacy())
         self.button.set_sensitive(not readonly)
@@ -146,12 +145,12 @@ class PrivacyButton(object):
         if obj.get_active():
 #            image.set_from_icon_name('stock_lock', gtk.ICON_SIZE_MENU)
             image.set_from_stock('gramps-lock', gtk.ICON_SIZE_MENU)
-            self.tooltips.set_tip(obj, _('Record is private'))
+            obj.set_tooltip_text(_('Record is private'))
             self.obj.set_privacy(True)
         else:
 #            image.set_from_icon_name('stock_lock-open', gtk.ICON_SIZE_MENU)
             image.set_from_stock('gramps-unlock', gtk.ICON_SIZE_MENU)
-            self.tooltips.set_tip(obj, _('Record is public'))
+            obj.set_tooltip_text(_('Record is public'))
             self.obj.set_privacy(False)
         image.show()
         obj.add(image)
