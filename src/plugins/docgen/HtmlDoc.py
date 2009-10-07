@@ -156,7 +156,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         styles = self.get_style_sheet()
         
-        text = ['<style type="text/css">\n<!--']
+        text = []
 
         for sname in styles.get_cell_style_names():
             style = styles.get_cell_style(sname)
@@ -226,7 +226,6 @@ class HtmlDoc(BaseDoc, TextDoc):
                            top, bottom, left, right,
                            italic, bold))
 
-        text.append('-->\n</style>')
         self.style_declaration = '\n'.join(text)
 
     def close(self):
