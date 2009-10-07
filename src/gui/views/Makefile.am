@@ -4,7 +4,10 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
-	treemodels
+	treemodels \
+	listview.py\
+	navigationview.py\
+	pageview.py
 
 pkgdatadir = $(datadir)/@PACKAGE@/gui/views
 
