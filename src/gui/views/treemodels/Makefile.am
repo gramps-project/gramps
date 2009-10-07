@@ -7,7 +7,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui/views/treemodels
 
 pkgdata_PYTHON = \
 	__init__.py \
-	flatbasemodel.py
+	flatbasemodel.py \
+	treebasemodel.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/views/treemodels
 pkgpythondir = @pkgpythondir@/gui/views/treemodels
