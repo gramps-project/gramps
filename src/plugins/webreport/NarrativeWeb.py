@@ -450,7 +450,7 @@ class BasePage(object):
         """
 
         navs = [
-            (self.report.index_fname,      _('Home'),            self.report.use_home),
+            (self.report.index_fname,      _('html|Home'),            self.report.use_home),
             (self.report.intro_fname,      _('Introduction'),    self.report.use_intro),
             (self.report.surname_fname,    _('Surnames'),        True),
             ('individuals',                _('Individuals'),     True),
@@ -1612,7 +1612,7 @@ class HomePage(BasePage):
 
         db = report.database
         of = self.report.create_file("index")
-        self.write_header(of, _('Home'))
+        self.write_header(of, _('html|Home'))
 
         of.write('<div id="Home" class="content">\n')
 
