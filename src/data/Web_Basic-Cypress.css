@@ -68,6 +68,7 @@ img {
     background:none;
 }
 .content {
+    padding-top: .5cm;
     background-color:#FFF;
 }
 .content div.snapshot {
@@ -175,12 +176,12 @@ a:visited {
 
 /* Footer
 ----------------------------------------------------- */
-#footer {
-    width:100%;
-    font-size:12px;
-    color:#E0E6E0;
-    background-color:#454;
-    border-top:solid 1px #454;
+div#footer {
+    width: 100%;
+    font-size: 12px;
+    color: #E8E6E8;
+    BORDER-TOP: SOLID 1PX #454;
+    BACKGROUND-COLOR: #454;
 }
 #footer a, #footer a:visited {
     text-decoration:none;
@@ -221,25 +222,12 @@ a:visited {
     padding:0;
 }
 
-/* Alphabet Navigation Bar
------------------------------------------------------ */
-#alphabet {
-    position: fixed;
-    top: 122px;
-    background-color: #454;
-}
-
 /* Navigation
 ----------------------------------------------------- */
 #navigation {
     margin:0;
     padding:4px 0 0 0;
     background-color:#454;
-}
-body#NarrativeWeb #navigation {
-    position: fixed;
-    top: 90px;
-    left: 0px;
 }
 #navigation ul {
     list-style:none;
@@ -284,6 +272,45 @@ body#NarrativeWeb #navigation {
 #navigation ul li.CurrentSection a:hover {
     padding-top:5px;
     background-color:#FFF;
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+    background-color: #454;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
+    border-color: #000;
+}
+div#alphabet ul li:after {
+    content:"  |";
+    color: #FFF;
+}
+div#alphabet ul li {
+    margin:0;
+    float:left;
+}
+div#alphabet ul li a {
+    display:block;
+    padding: 4px 8px 4px 8px;
+    float:left;
+    font:bold 16px/100% sans;
+    margin:0;
+    text-decoration:none;
+    color: #FFF;
+}
+div#alphabet ul li a:hover {
+    background-color: #000;
+    color: #FFF;
 }
 
 /* Main Table
@@ -510,6 +537,72 @@ table.individuallist tbody tr td.ColumnName a:hover {
     padding:.1em 10px .3em 10px;
 }
 
+/* EventList and EventDetail
+----------------------------------------------------- */
+div#EventList, div#EventDetail { }
+
+div#events table.eventlist {
+    margin-top: .3cm;
+}
+table.eventlist tbody tr.BeginName {
+    border-bottom: solid 1px #000;
+}
+table.eventlist tbody tr td {
+    padding: 4px 0px 4px 0px;
+    border-bottom: dashed 1px #000;
+}
+table.eventlist tbody tr td.ColumnEvent {
+    background-color: #FFF;
+    width: 20%;
+}
+table.eventlist tbody tr td.ColumnDate {
+    width: 16%;
+}
+table.eventlist tbody tr td.ColumnPlace {
+    background-color: #FFF;
+    width: 35%;
+}
+table.eventlist tbody tr td.ColumnSources {
+    background-color: #FFF;
+    width: 12%;
+}
+table.eventlist tbody tr td.ColumnNotes {
+    width: 25%;
+}
+table.eventlist tbody tr td.ColumnPerson {
+    background-color: #FFF;
+    width: 35%;
+}
+table.eventlist tbody tr td.ColumnPartner {
+    background-color: #FFF;
+    width: 35%;
+}
+div#EventList table.eventlist tbody tr td.ColumnEvent a,
+div#EventList table.eventlist tbody tr td.ColumnPerson a,
+div#EventList table.eventlist tbody tr td.ColumnPartner a {
+    display: block;
+    padding: .9em 10px;
+}
+div#EventDetail h3 {
+    font-size: xxx-large;
+}
+div#EventDetail h3:first-lettr {
+    color: #5D835F;
+}
+div#EventDetail table.eventlist {
+    margin: .5cm 0 .3cm 1.5cm;
+    width: 800px;
+}
+div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
+    border-top: solid 1px #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 20%;
+}
+div#EventDetail table.eventlist tbody tr td.ColumnEvent {
+    border-top: solid 1px #000;
+}
+
 /* Gallery
 ----------------------------------------------------- */
 #Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
@@ -682,6 +775,26 @@ table.download td.Filename a:hover {
 table.download td.Modified {
     width:12%;
     font-weight:bold;
+}
+
+/* Repositories
+------------------------------------------------------ */
+div#RepositoryList { }
+
+div#RepositoryList table.repolist tbody tr td {
+}
+div#RepositoryList table.repolist tbody tr td a {
+    display: block;
+    padding: .3em 10px;
+}
+div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
+    width: 9%;
+}
+div#RepositoryList table.repolist tbody tr td.ColumnType {
+    width: 15%;
+}
+div#RepositoryList table.repolist tbody tr td.ColumnName {
+    background-color: #FFF;
 }
 
 /* Subsections
