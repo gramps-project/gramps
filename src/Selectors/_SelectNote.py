@@ -38,7 +38,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from DisplayModels import NoteModel
 from _BaseSelector import BaseSelector
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +53,8 @@ class SelectNote(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = Config.NOTE_SEL_WIDTH
-        self.height_key = Config.NOTE_SEL_HEIGHT
+        self.width_key = 'interface.note-sel-width'
+        self.height_key = 'interface.note-sel-height'
 
     def get_window_title(self):
         return _("Select Note")

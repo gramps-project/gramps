@@ -43,7 +43,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import gen.lib
 from Editors._EditPrimary import EditPrimary
 from DisplayTabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
@@ -113,8 +113,8 @@ class EditPlace(EditPrimary):
         return gen.lib.Place()
 
     def _local_init(self):
-        self.width_key = Config.PLACE_WIDTH
-        self.height_key = Config.PLACE_HEIGHT
+        self.width_key = 'interface.place-width'
+        self.height_key = 'interface.place-height'
         
         self.top = Glade()
 

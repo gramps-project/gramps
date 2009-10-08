@@ -51,7 +51,7 @@ from BasicUtils import name_displayer
 from Utils import media_path_full, probably_alive
 import DateHandler
 import ThumbNails
-import Config
+import config
 import widgets
 import Errors
 import gen.utils
@@ -121,22 +121,22 @@ class RelationshipView(PageView.PersonNavView):
             }
 
         dbstate.connect('database-changed', self.change_db)
-        self.show_siblings = Config.get(Config.FAMILY_SIBLINGS)
-        self.show_details = Config.get(Config.FAMILY_DETAILS)
+        self.show_siblings = config.get('preferences.family-siblings')
+        self.show_details = config.get('preferences.family-details')
         self.redrawing = False
-        self.use_shade = Config.get(Config.RELATION_SHADE)
-        self.toolbar_visible = Config.get(Config.TOOLBAR_ON)
+        self.use_shade = config.get('preferences.relation-shade')
+        self.toolbar_visible = config.get('interface.toolbar-on')
 
         self.color = gtk.TextView().style.white
         self.child = None
         self.old_handle = None
 
-        Config.client.notify_add("/apps/gramps/preferences/relation-shade",
-                                 self.shade_update)
-        Config.client.notify_add("/apps/gramps/interface/releditbtn",
-                                 self.config_update)
-        Config.client.notify_add("/apps/gramps/interface/toolbar-on",
-                                 self.shade_update)
+        config.connect("preferences.relation-shade",
+                          self.shade_update)
+        config.connect("interface.releditbtn",
+                          self.config_update)
+        config.connect("interface.toolbar-on",
+                          self.shade_update)
         self.reorder_sensitive = False
         self.collapsed_items = {}
 
@@ -168,8 +168,8 @@ class RelationshipView(PageView.PersonNavView):
         self.dbstate.disconnect(self.key_active_changed)
         
     def shade_update(self, client, cnxn_id, entry, data):
-        self.use_shade = Config.get(Config.RELATION_SHADE)
-        self.toolbar_visible = Config.get(Config.TOOLBAR_ON)
+        self.use_shade = config.get('preferences.relation-shade')
+        self.toolbar_visible = config.get('interface.toolbar-on')
         self.uistate.modify_statusbar(self.dbstate)
         self.redraw()
 
@@ -369,12 +369,12 @@ class RelationshipView(PageView.PersonNavView):
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        Config.set(Config.FAMILY_SIBLINGS, self.show_siblings)
+        config.set('preferences.family-siblings', self.show_siblings)
 
     def details_toggle(self, obj):
         self.show_details = obj.get_active()
         self.change_person(self.dbstate.active.handle)
-        Config.set(Config.FAMILY_DETAILS, self.show_details)
+        config.set('preferences.family-details', self.show_details)
 
     def change_db(self, db):
         #reset the connects
@@ -535,7 +535,7 @@ class RelationshipView(PageView.PersonNavView):
         text = fmt % cgi.escape(name)
         label = widgets.DualMarkupLabel(text, _GenderCode[person.gender],
                                         x_align=1, y_align=0)
-        if Config.get(Config.RELEDITBTN):
+        if config.get('interface.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, 
                                         person.handle)
             button.set_tooltip_text(_('Edit %s') % name)
@@ -928,7 +928,7 @@ class RelationshipView(PageView.PersonNavView):
                 link_label = widgets.LinkLabel(name, self._button_press, handle)
                 if self.use_shade:
                     link_label.modify_bg(gtk.STATE_NORMAL, self.color)
-                if Config.get(Config.RELEDITBTN):
+                if config.get('interface.releditbtn'):
                     button = widgets.IconButton(self.edit_button_press, 
                                                 handle)
                     button.set_tooltip_text(_('Edit %s') % name[0])
@@ -954,7 +954,7 @@ class RelationshipView(PageView.PersonNavView):
 
         label = widgets.MarkupLabel(format % cgi.escape(title),
                                     x_align=1, y_align=0)
-        if Config.get(Config.RELEDITBTN):
+        if config.get('interface.releditbtn'):
             label.set_padding(0, 5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
@@ -967,7 +967,7 @@ class RelationshipView(PageView.PersonNavView):
             person = self.dbstate.db.get_person_from_handle(handle)
             parent = len(person.get_parent_family_handle_list()) > 0
             format = ''
-            relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
+            relation_display_theme = config.get('preferences.relation-display-theme')
             if parent:
                 if relation_display_theme == "CLASSIC":
                     format = 'underline="single" weight="heavy" style="italic"'
@@ -982,7 +982,7 @@ class RelationshipView(PageView.PersonNavView):
                                            handle, format)
             if self.use_shade:
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
-            if Config.get(Config.RELEDITBTN):
+            if config.get('interface.releditbtn'):
                 button = widgets.IconButton(self.edit_button_press, handle)
                 button.set_tooltip_text(_('Edit %s') % name[0])
             else:
@@ -1017,7 +1017,7 @@ class RelationshipView(PageView.PersonNavView):
 
         lbl = widgets.MarkupLabel(format % cgi.escape(title),
                                   x_align=1, y_align=.5)
-        if Config.get(Config.RELEDITBTN):
+        if config.get('interface.releditbtn'):
             lbl.set_padding(0, 5)
         return lbl
 
@@ -1040,7 +1040,7 @@ class RelationshipView(PageView.PersonNavView):
                               self.dbstate.db.get_person_from_handle(handle))
 
         format = ''
-        relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
+        relation_display_theme = config.get('preferences.relation-display-theme')
         if child_should_be_linked and parent:
             if relation_display_theme == "CLASSIC":
                 format = 'underline="single" weight="heavy" style="italic"'
@@ -1069,7 +1069,7 @@ class RelationshipView(PageView.PersonNavView):
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
-        if child_should_be_linked and Config.get(Config.RELEDITBTN):
+        if child_should_be_linked and config.get('interface.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, handle)
             button.set_tooltip_text(_('Edit %s') % name[0])
         else:

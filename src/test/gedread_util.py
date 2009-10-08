@@ -11,7 +11,7 @@ from test import test_util as tu
 from GrampsDbUtils import _ReadGedcom as RG
 import DbState
 import gen.db
-import Config
+import config
 
 # extraneous leading newlines do not seem to cause problems
 # (and actually make it convenient reading the test files!)

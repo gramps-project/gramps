@@ -51,8 +51,8 @@ from glade import Glade
 from libmixin import GrampsDbMixin
 
 try:
-    import Config
-    DEFAULT_SOURCE = Config.get(Config.DEFAULT_SOURCE)
+    import config
+    DEFAULT_SOURCE = config.get('preferences.default-source')
 except ImportError:
     LOG.warn("No Config module available using defaults.")
     DEFAULT_SOURCE = False

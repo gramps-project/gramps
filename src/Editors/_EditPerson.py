@@ -58,7 +58,7 @@ from glade import Glade
 from gen.utils import set_birth_death_index
 
 from Editors._EditPrimary import EditPrimary
-import Config
+import config
 from QuestionDialog import ErrorDialog, ICON
 
 from DisplayTabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
@@ -128,8 +128,8 @@ class EditPerson(EditPrimary):
         This is called by the base class of EditPrimary, and overridden here.
         
         """
-        self.width_key = Config.PERSON_WIDTH
-        self.height_key = Config.PERSON_HEIGHT
+        self.width_key = 'interface.person-width'
+        self.height_key = 'interface.person-height'
         self.pname = self.obj.get_primary_name()
         self.should_guess_gender = (not self.obj.get_gramps_id() and
                                     self.obj.get_gender () ==
@@ -276,7 +276,7 @@ class EditPerson(EditPrimary):
                 [_('Prefix'), _('Suffix')],
                 [self.pname.set_surname_prefix, self.pname.set_suffix], 
                 [self.pname.get_surname_prefix, self.pname.get_suffix],
-                default = Config.get(Config.PREFIX_SUFFIX),
+                default = config.get('interface.prefix-suffix'),
                 read_only = self.db.readonly)
         
         self.patro_title = widgets.MonitoredComboSelectedEntry(
@@ -285,7 +285,7 @@ class EditPerson(EditPrimary):
                 [_('Patronymic'), _('Person|Title')],
                 [self.pname.set_patronymic, self.pname.set_title], 
                 [self.pname.get_patronymic, self.pname.get_title],
-                default = Config.get(Config.PATRO_TITLE),
+                default = config.get('interface.patro-title'),
                 read_only = self.db.readonly)
 
         self.call = widgets.MonitoredEntry(
@@ -892,9 +892,9 @@ class EditPerson(EditPrimary):
         return child_ref_list
 
     def _cleanup_on_exit(self):
-        Config.set(Config.PREFIX_SUFFIX, self.prefix_suffix.active_key)
-        Config.set(Config.PATRO_TITLE, self.patro_title.active_key)
-        Config.sync()
+        config.set('interface.prefix-suffix', self.prefix_suffix.active_key)
+        config.set('interface.patro-title', self.patro_title.active_key)
+        config.save()
 
 
 class GenderDialog(gtk.MessageDialog):

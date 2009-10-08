@@ -51,7 +51,7 @@ import gobject
 import Utils
 from gui.utils import ProgressMeter, open_file_with_default_application
 from gen.plug.docgen import BaseDoc, GVDoc 
-import Config
+import config
 from ReportBase import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame

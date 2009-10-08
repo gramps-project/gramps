@@ -49,7 +49,7 @@ import const
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 import Errors
-import Config
+import config
 from glade import Glade
 from DisplayTabs import SourceEmbedList, NoteTab
 from widgets import MonitoredDataType, PrivacyButton
@@ -87,8 +87,8 @@ class EditChildRef(EditSecondary):
                                childref, callback)
 
     def _local_init(self):
-        self.width_key = Config.CHILD_REF_WIDTH
-        self.height_key = Config.CHILD_REF_HEIGHT
+        self.width_key = 'interface.child-ref-width'
+        self.height_key = 'interface.child-ref-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel,

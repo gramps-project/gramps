@@ -44,7 +44,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import gen.lib
 import TreeTips
 import DateHandler
@@ -1210,8 +1210,8 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.database_changed(self.dbstate.db)
         self.dbstate.connect('database-changed', self.database_changed)
 
-        self.width_key = Config.CLIPBOARD_WIDTH
-        self.height_key = Config.CLIPBOARD_HEIGHT
+        self.width_key = 'interface.clipboard-width'
+        self.height_key = 'interface.clipboard-height'
         
         self.top = Glade()
         self.set_window(self.top.toplevel, None, None, msg=_("Clipboard"))

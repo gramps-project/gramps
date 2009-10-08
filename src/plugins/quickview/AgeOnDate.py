@@ -33,7 +33,7 @@ from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_DATE
 import DateHandler
 import gen.lib
-import Config
+import config
 
 def run(database, document, date):
     """
@@ -70,7 +70,7 @@ def run(database, document, date):
                 diff_span = (date - birth_date)
                 if ((death_date is not None) or
                     (death_date is None and 
-                     int(diff_span) <= Config.get(Config.MAX_AGE_PROB_ALIVE) * 365)):
+                     int(diff_span) <= config.get('behavior.max-age-prob-alive') * 365)):
                     birth_str = str(diff_span)
                     birth_sort = int(diff_span)
         if birth_str != "":

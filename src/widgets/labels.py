@@ -47,7 +47,7 @@ import pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -73,7 +73,7 @@ class LinkLabel(gtk.EventBox):
 
     def __init__(self, label, func, handle, decoration=None):
         if decoration is None:
-            relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
+            relation_display_theme = config.get('preferences.relation-display-theme')
             if relation_display_theme == "CLASSIC":
                 decoration = 'underline="single"'
             elif relation_display_theme == "WEBPAGE":
@@ -90,7 +90,7 @@ class LinkLabel(gtk.EventBox):
         if func:
             msg = _('Click to make this person active\n'
                     'Right click to display the edit menu')
-            if not Config.get(Config.RELEDITBTN):
+            if not config.get('interface.releditbtn'):
                 msg += "\n" + _('Edit icons can be enabled in the Preferences dialog')
 
             self.set_tooltip_text(msg)
@@ -116,7 +116,7 @@ class LinkLabel(gtk.EventBox):
         self.label.set_padding(x, y)
         
     def enter_text(self, obj, event, handle):
-        relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
+        relation_display_theme = config.get('preferences.relation-display-theme')
         if relation_display_theme == "CLASSIC":
             text = '<span foreground="blue" %s>%s</span>' % (self.decoration, self.orig_text)
         elif relation_display_theme == "WEBPAGE":

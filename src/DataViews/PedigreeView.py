@@ -61,7 +61,7 @@ from ReportBase import ReportUtils
 from Editors import EditPerson, EditFamily 
 from DdTargets import DdTargets
 import cPickle as pickle
-import Config
+import config
 from QuestionDialog import RunDatabaseRepair, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -472,10 +472,10 @@ class PedigreeView(PageView.PersonNavView):
         self.dbstate = dbstate
         self.dbstate.connect('database-changed',self.change_db)
         #self.dbstate.connect('active-changed',self.goto_active_person)
-        self.force_size = Config.get(Config.PEDVIEW_TREESIZE) # Automatic resize
-        self.tree_style = Config.get(Config.PEDVIEW_LAYOUT) # Nice tree
-        self.show_images = Config.get(Config.PEDVIEW_SHOW_IMAGES) # Show photos of persons
-        self.show_marriage_data = Config.get(Config.PEDVIEW_SHOW_MARRIAGE) # Hide marriage data by default
+        self.force_size = config.get('interface.pedview-tree-size') # Automatic resize
+        self.tree_style = config.get('interface.pedview-layout') # Nice tree
+        self.show_images = config.get('interface.pedview-show-images') # Show photos of persons
+        self.show_marriage_data = config.get('interface.pedview-show-marriage') # Hide marriage data by default
         self.format_helper = FormattingHelper( self.dbstate)
 
     def change_page(self):
@@ -1223,14 +1223,14 @@ class PedigreeView(PageView.PersonNavView):
     
     def change_force_size_cb(self,event,data):
         if data in [0,2,3,4,5]:
-            Config.set(Config.PEDVIEW_TREESIZE,data)
+            config.set('interface.pedview-tree-size',data)
             self.force_size = data
             self.dirty = True
             self.size_request_cb(self.notebook.parent,None) # switch to matching size
 
     def change_tree_style_cb(self,event,data):
         if data in [0,1]:
-            Config.set(Config.PEDVIEW_LAYOUT,data)
+            config.set('interface.pedview-layout',data)
             if self.tree_style != data:
                 self.dirty = True
                 self.tree_style = data
@@ -1241,7 +1241,7 @@ class PedigreeView(PageView.PersonNavView):
 
     def change_show_images_cb(self,event):
         self.show_images = not self.show_images
-        Config.set(Config.PEDVIEW_SHOW_IMAGES,self.show_images)
+        config.set('interface.pedview-show-images',self.show_images)
         self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style
@@ -1250,7 +1250,7 @@ class PedigreeView(PageView.PersonNavView):
 
     def change_show_marriage_cb(self,event):
         self.show_marriage_data = not self.show_marriage_data
-        Config.set(Config.PEDVIEW_SHOW_MARRIAGE,self.show_marriage_data)
+        config.set('interface.pedview-show-marriage', self.show_marriage_data)
         self.dirty = True
         if self.dbstate.active:
             self.rebuild_trees(self.dbstate.active.handle) # Rebuild using new style

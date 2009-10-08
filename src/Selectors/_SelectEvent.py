@@ -35,7 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from DisplayModels import EventModel
 from _BaseSelector import BaseSelector
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +48,8 @@ class SelectEvent(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = Config.EVENT_SEL_WIDTH
-        self.height_key = Config.EVENT_SEL_HEIGHT
+        self.width_key = 'interface.event-sel-width'
+        self.height_key = 'interface.event-sel-height'
 
     def get_window_title(self):
         return _("Select Event")

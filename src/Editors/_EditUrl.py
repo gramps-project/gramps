@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from _EditSecondary import EditSecondary
 from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from glade import Glade
@@ -52,8 +52,8 @@ class EditUrl(EditSecondary):
                                url, callback)
 
     def _local_init(self):
-        self.width_key = Config.URL_WIDTH
-        self.height_key = Config.URL_HEIGHT
+        self.width_key = 'interface.url-width'
+        self.height_key = 'interface.url-height'
         
         self.top = Glade()
         self.jump = self.top.get_object('jump')

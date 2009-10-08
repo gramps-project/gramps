@@ -55,7 +55,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 import Utils
-import Config
+import config
 import PageView
 from gui.utils import add_menuitem
 from ReportBase import CSS_FILES
@@ -213,13 +213,13 @@ def _alternate_map():
     """
     return the alternate name of the map provider.
     """
-    if Config.get(Config.GEOVIEW_GOOGLEMAPS):
+    if config.get('preferences.googlemap'):
         alternate_map = "google"
-    elif Config.get(Config.GEOVIEW_OPENLAYERS):
+    elif config.get('preferences.openlayers'):
         alternate_map = "openlayers"
-    elif Config.get(Config.GEOVIEW_YAHOO):
+    elif config.get('preferences.yahoo'):
         alternate_map = "yahoo"
-    elif Config.get(Config.GEOVIEW_MICROSOFT):
+    elif config.get('preferences.microsoft'):
         alternate_map = "microsoft"
     return alternate_map
 
@@ -299,14 +299,14 @@ class GeoView(HtmlView):
         self.realzoom = 0
         self.reallatitude = 0.0
         self.reallongitude = 0.0
-        if Config.get(Config.GEOVIEW_LOCKZOOM):
-            self.realzoom = Config.get(Config.GEOVIEW_ZOOM)
-            self.displaytype = Config.get(Config.GEOVIEW_MAP)
+        if config.get('geoview.lock'):
+            self.realzoom = config.get('geoview.zoom')
+            self.displaytype = config.get('geoview.map')
             self.reallatitude, self.reallongitude = conv_lat_lon(
-                                    Config.get(Config.GEOVIEW_LATITUDE),
-                                    Config.get(Config.GEOVIEW_LONGITUDE),
+                                    config.get('geoview.latitude'),
+                                    config.get('geoview.longitude'),
                                     "D.D8")
-        self.stylesheet = Config.get(Config.GEOVIEW_STYLESHEET)
+        self.stylesheet = config.get('geoview.stylesheet')
         if ( self.stylesheet == "" ):
             self.stylesheet = CSS_FILES[0][1]
         self.minyear = 1
@@ -341,20 +341,20 @@ class GeoView(HtmlView):
         Save the zoom, latitude, longitude and lock
         """
         self._savezoomandposition()
-        Config.set(Config.GEOVIEW_LOCKZOOM,
+        config.set('geoview.lock',
                    self.lock_action.get_action('SaveZoom').get_active()
                    )
         if self.lock_action.get_action('SaveZoom').get_active():
-            Config.set(Config.GEOVIEW_ZOOM, self.realzoom)
-            Config.set(Config.GEOVIEW_LATITUDE, self.reallatitude)
-            Config.set(Config.GEOVIEW_LONGITUDE, self.reallongitude)
-            Config.set(Config.GEOVIEW_MAP, self.displaytype)
+            config.set('geoview.zoom', self.realzoom)
+            config.set('geoview.latitude', self.reallatitude)
+            config.set('geoview.longitude', self.reallongitude)
+            config.set('geoview.map', self.displaytype)
         else:
-            Config.set(Config.GEOVIEW_ZOOM, 0)
-            Config.set(Config.GEOVIEW_LATITUDE, "0.0")
-            Config.set(Config.GEOVIEW_LONGITUDE, "0.0")
-            Config.set(Config.GEOVIEW_MAP, "person")
-        Config.set(Config.GEOVIEW_STYLESHEET, self.stylesheet)
+            config.set('geoview.zoom', 0)
+            config.set('geoview.latitude', "0.0")
+            config.set('geoview.longitude', "0.0")
+            config.set('geoview.map', "person")
+        config.set('geoview.stylesheet', self.stylesheet)
 
     def init_parent_signals_for_map(self, widget, event):
         """
@@ -457,22 +457,22 @@ class GeoView(HtmlView):
                          _('_OpenStreetMap'),
                          callback=self._select_openstreetmap_map,
                          tip=_("Select OpenStreetMap Maps"))
-        if Config.get(Config.GEOVIEW_GOOGLEMAPS):
+        if config.get('preferences.googlemap'):
             self._add_action('google', 'gramps-geo-altmap',
                              _('_Google Maps'),
                              callback=self._select_google_map,
                              tip=_("Select Google Maps."))
-        elif Config.get(Config.GEOVIEW_OPENLAYERS):
+        elif config.get('preferences.openlayers'):
             self._add_action('openlayers', 'gramps-geo-altmap',
                              _('_OpenLayers Maps'),
                              callback=self._select_openlayers_map,
                              tip=_("Select OpenLayers Maps."))
-        elif Config.get(Config.GEOVIEW_YAHOO):
+        elif config.get('preferences.yahoo'):
             self._add_action('yahoo', 'gramps-geo-altmap', 
                              _('_Yahoo! Maps'),
                              callback=self._select_yahoo_map,
                              tip=_("Select Yahoo Maps."))
-        elif Config.get(Config.GEOVIEW_MICROSOFT):
+        elif config.get('preferences.microsoft'):
             self._add_action('microsoft', 'gramps-geo-altmap',
                              _('_Microsoft Maps'),
                              callback=self._select_microsoft_map,
@@ -483,7 +483,7 @@ class GeoView(HtmlView):
              _("Save the zoom between places map, person map, "
                "family map and events map"),
              self._save_zoom,
-             Config.get(Config.GEOVIEW_LOCKZOOM)
+             config.get('geoview.lock')
              )
             ])
         self._add_action_group(self.lock_action)
@@ -630,12 +630,12 @@ class GeoView(HtmlView):
         We just change the database.
         Restore the initial config. Is it good ?
         """
-        if Config.get(Config.GEOVIEW_LOCKZOOM):
-            self.realzoom = Config.get(Config.GEOVIEW_ZOOM)
-            self.displaytype = Config.get(Config.GEOVIEW_MAP)
+        if config.get('geoview.lock'):
+            self.realzoom = config.get('geoview.zoom')
+            self.displaytype = config.get('geoview.map')
             self.reallatitude, self.reallongitude = conv_lat_lon(
-                                    Config.get(Config.GEOVIEW_LATITUDE),
-                                    Config.get(Config.GEOVIEW_LONGITUDE),
+                                    config.get('geoview.latitude'),
+                                    config.get('geoview.longitude'),
                                     "D.D8")
 
     def _geo_places(self):
@@ -762,7 +762,7 @@ class GeoView(HtmlView):
         This can't be in createmapstractionheader because we need
         to know something which is known only after some work.
         """
-        self.maxgen = Config.get(Config.GENERATION_DEPTH)
+        self.maxgen = config.get('behavior.generation-depth')
         if self.maxyear == 0:
             self.maxyear = 2100
         if self.minyear == 9999:

@@ -59,13 +59,10 @@ except:
 
 # Initialize global displayer
 try:
-    import Config
-    val = Config.get_date_format(LANG_TO_DISPLAY[LANG].formats)
+    import config
+    val = config.get('preferences.date-format')
 except:
-    try:
-        val = Config.get_date_format(LANG_TO_DISPLAY["C"].formats)
-    except:
-        val = 0
+    val = 0
 
 try:
     if LANG in LANG_TO_DISPLAY:

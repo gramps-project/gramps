@@ -55,7 +55,7 @@ import pango
 #-------------------------------------------------------------------------
 import Utils
 import const
-import Config
+import config
 from BasicUtils import name_displayer
 import gen.lib
 import Errors
@@ -212,7 +212,7 @@ class ChildEmbedList(EmbeddedList):
     def add_button_clicked(self, obj):
         from Editors import EditPerson
         person = gen.lib.Person()
-        autoname = Config.get(Config.SURNAME_GUESSING)
+        autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
         #_("None"), 
         #_("Combination of mother's and father's surname"), 
@@ -421,7 +421,7 @@ class EditFamily(EditPrimary):
                self.obj.get_mother_handle() is None and \
                len(self.obj.get_child_ref_list()) == 1:
             self.add_parent = True
-            if not Config.get(Config.FAMILY_WARN):
+            if not config.get('preferences.family-warn'):
                 for i in self.hidden:
                     i.set_sensitive(False)
 
@@ -433,7 +433,7 @@ class EditFamily(EditPrimary):
                       "are available when you create a new family. The "
                       "remaining fields will become available after you "
                       "attempt to select a parent."),
-                    Config.FAMILY_WARN)
+                    'preferences.family-warn')
         else:
             self.add_parent = False
 
@@ -558,8 +558,8 @@ class EditFamily(EditPrimary):
         return (_('Edit Family'), self.get_menu_title())
 
     def build_interface(self):
-        self.width_key = Config.FAMILY_WIDTH
-        self.height_key = Config.FAMILY_HEIGHT
+        self.width_key = 'interface.family-width'
+        self.height_key = 'interface.family-height'
         
         self.top = Glade()
         self.set_window(self.top.toplevel, None, self.get_menu_title())
@@ -588,9 +588,9 @@ class EditFamily(EditPrimary):
         self.mbutton_del = self.top.get_object('mbutton_del')
         self.mbutton_edit = self.top.get_object('mbutton_edit')
 
-        mbutton_index.set_tooltip_text(_("Select a person as the mother"))
-        mbutton_add.set_tooltip_text(_("Add a new person as the mother"))
-        mbutton_del.set_tooltip_text(_("Remove the person as the mother"))
+        self.mbutton_index.set_tooltip_text(_("Select a person as the mother"))
+        self.mbutton_add.set_tooltip_text(_("Add a new person as the mother"))
+        self.mbutton_del.set_tooltip_text(_("Remove the person as the mother"))
 
         self.mbutton_edit.connect('button-press-event', self.edit_mother)
         self.mbutton_edit.connect('key-press-event', self.edit_mother)
@@ -746,7 +746,7 @@ class EditFamily(EditPrimary):
         from Editors import EditPerson
         person = gen.lib.Person()
         person.set_gender(gen.lib.Person.FEMALE)
-        autoname = Config.get(Config.SURNAME_GUESSING)
+        autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
         #_("None"), 
         #_("Combination of mother's and father's surname"), 
@@ -764,7 +764,7 @@ class EditFamily(EditPrimary):
         from Editors import EditPerson
         person = gen.lib.Person()
         person.set_gender(gen.lib.Person.MALE)
-        autoname = Config.get(Config.SURNAME_GUESSING)
+        autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
         #_("None"), 
         #_("Combination of mother's and father's surname"), 

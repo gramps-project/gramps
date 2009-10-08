@@ -35,7 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from DisplayModels import PlaceModel
 from _BaseSelector import BaseSelector
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +48,8 @@ class SelectPlace(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = Config.PLACE_SEL_WIDTH
-        self.height_key = Config.PLACE_SEL_HEIGHT
+        self.width_key = 'interface.place-sel-width'
+        self.height_key = 'interface.place-sel-height'
 
     def get_window_title(self):
         return _("Select Place")

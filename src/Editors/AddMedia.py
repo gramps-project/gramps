@@ -51,7 +51,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import Utils
 import Mime
 import GrampsDisplay
@@ -84,8 +84,8 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.obj = mediaobj
         self.callback = callback
 
-        self.last_directory = Config.get(Config.ADDMEDIA_IMGDIR)
-        self.relative_path  = Config.get(Config.ADDMEDIA_RELPATH)
+        self.last_directory = config.get('behavior.addmedia-image-dir')
+        self.relative_path  = config.get('behavior.addmedia-relative-path')
         
         self.glade = Glade()
         self.set_window(
@@ -204,9 +204,9 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             self.image.set_from_pixbuf(image)
 
     def _cleanup_on_exit(self):
-        Config.set(Config.ADDMEDIA_IMGDIR, self.last_directory)
-        Config.set(Config.ADDMEDIA_RELPATH, self.relative_path)
-        Config.sync()
+        config.set('behavior.addmedia-image-dir', self.last_directory)
+        config.set('behavior.addmedia-relative-path', self.relative_path)
+        config.save()
 
 #-------------------------------------------------------------------------
 #

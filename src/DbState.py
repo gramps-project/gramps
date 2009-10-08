@@ -24,7 +24,7 @@ Provide the database state class
 
 from gen.db import GrampsDbRead
 from gen.utils import Callback
-import Config
+import config
 
 class DbState(Callback):
     """
@@ -92,14 +92,14 @@ class DbState(Callback):
         """
         self.db = database
         self.db.set_prefixes(
-            Config.get(Config.IPREFIX),
-            Config.get(Config.OPREFIX),
-            Config.get(Config.FPREFIX),
-            Config.get(Config.SPREFIX),
-            Config.get(Config.PPREFIX),
-            Config.get(Config.EPREFIX),
-            Config.get(Config.RPREFIX),
-            Config.get(Config.NPREFIX) )
+            config.get('preferences.iprefix'),
+            config.get('preferences.oprefix'),
+            config.get('preferences.fprefix'),
+            config.get('preferences.sprefix'),
+            config.get('preferences.pprefix'),
+            config.get('preferences.eprefix'),
+            config.get('preferences.rprefix'),
+            config.get('preferences.nprefix') )
 
         self.active = None
         self.open = True

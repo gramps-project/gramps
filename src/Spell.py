@@ -70,7 +70,7 @@ if not HAVE_GTKSPELL:
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -211,7 +211,7 @@ class Spell(object):
     def __init__(self, textview):
         self.textview = textview
         
-        if self.lang and Config.get(Config.SPELLCHECK):
+        if self.lang and config.get('behavior.spellcheck'):
             # if LANG is not a correct key (pt_BR or pt_PT),
             #  try only the language part of LANG
             if self.lang not in self._installed_languages:

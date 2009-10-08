@@ -42,7 +42,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
@@ -107,8 +107,8 @@ class EditName(EditSecondary):
                                track, name, callback)
 
     def _local_init(self):
-        self.width_key = Config.NAME_WIDTH
-        self.height_key = Config.NAME_HEIGHT
+        self.width_key = 'interface.name-width'
+        self.height_key = 'interface.name-height'
         
         self.top = Glade()
         

@@ -51,7 +51,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.views.pageview import PageView
 import Utils
-import Config
+import config
 from const import TEMP_DIR
 
 #-------------------------------------------------------------------------
@@ -112,7 +112,7 @@ except:
 
 #no interfaces present, raise Error so that options for GeoView do not show
 if TOOLKIT == NOWEB :
-    Config.set(Config.GEOVIEW, False)
+    config.set('preferences.geoview', False)
     raise ImportError, 'No GTK html plugin found'
 
 #-------------------------------------------------------------------------

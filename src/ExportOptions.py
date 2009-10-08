@@ -36,7 +36,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Config
+import config
 
 from BasicUtils import name_displayer
 from Filters import GenericFilter, Rules
@@ -92,9 +92,9 @@ class WriterOptionBox(object):
         self.unlinked_check = gtk.CheckButton(
             _('_Do not include unlinked records'))
 
-        self.private_check.set_active(Config.get(Config.EXPORT_NO_PRIVATE))
-        self.restrict_check.set_active(Config.get(Config.EXPORT_RESTRICT))
-        self.unlinked_check.set_active(Config.get(Config.EXPORT_NO_UNLINKED))
+        self.private_check.set_active(config.get('export.no-private'))
+        self.restrict_check.set_active(config.get('export.restrict-living'))
+        self.unlinked_check.set_active(config.get('export.no-unlinked'))
         
         table.set_border_width(12)
         table.set_row_spacings(6)
@@ -185,10 +185,10 @@ class WriterOptionBox(object):
         self.private = self.private_check.get_active()
         self.unlinked = self.unlinked_check.get_active()
 
-        Config.set(Config.EXPORT_NO_PRIVATE, self.private)
-        Config.set(Config.EXPORT_RESTRICT, self.restrict)
-        Config.set(Config.EXPORT_NO_UNLINKED, self.unlinked)
-        Config.sync()
+        config.set('export.no-private', self.private)
+        config.set('export.restrict-living', self.restrict)
+        config.set('export.no-unlinked', self.unlinked)
+        config.save()
 
         model = self.filter_obj.get_model()
         node = self.filter_obj.get_active_iter()

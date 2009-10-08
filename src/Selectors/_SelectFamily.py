@@ -35,7 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from DisplayModels import FamilyModel
 from _BaseSelector import BaseSelector
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +48,8 @@ class SelectFamily(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = Config.FAMILY_SEL_WIDTH
-        self.height_key = Config.FAMILY_SEL_HEIGHT
+        self.width_key = 'interface.family-sel-width'
+        self.height_key = 'interface.family-sel-height'
 
     def get_window_title(self):
         return _("Select Family")

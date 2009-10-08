@@ -23,7 +23,7 @@
 
 import ManagedWindow
 import GrampsDisplay
-import Config
+import config
 from gui.dbguielement import DbGUIElement
 
 class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):

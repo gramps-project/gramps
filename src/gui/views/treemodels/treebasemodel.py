@@ -48,7 +48,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Config
+import config
 from gen.utils.longop import LongOpStatus
 from Filters import SearchFilter
 # from Filters import ExactSearchFilter
@@ -361,16 +361,16 @@ class TreeBaseModel(gtk.GenericTreeModel):
         
         self.lru_data  = LRU(TreeBaseModel._CACHE_SIZE)
 
-        Config.client.notify_add("/apps/gramps/preferences/todo-color",
-                                 self.__update_todo)
-        Config.client.notify_add("/apps/gramps/preferences/custom-marker-color",
-                                 self.__update_custom)
-        Config.client.notify_add("/apps/gramps/preferences/complete-color",
-                                 self.__update_complete)
+        config.connect("preferences.todo-color",
+                          self.__update_todo)
+        config.connect("preferences.custom-marker-color",
+                          self.__update_custom)
+        config.connect("preferences.complete-color",
+                          self.__update_complete)
 
-        self.complete_color = Config.get(Config.COMPLETE_COLOR)
-        self.todo_color = Config.get(Config.TODO_COLOR)
-        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
+        self.complete_color = config.get('preferences.complete-color')
+        self.todo_color = config.get('preferences.todo-color')
+        self.custom_color = config.get('preferences.custom-marker-color')
 
         self.mapper = TreeNodeMap()
         self.set_search(search)
@@ -388,13 +388,13 @@ class TreeBaseModel(gtk.GenericTreeModel):
 
 
     def __update_todo(self, *args):
-        self.todo_color = Config.get(Config.TODO_COLOR)
+        self.todo_color = config.get('preferences.todo-color')
         
     def __update_custom(self, *args):
-        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
+        self.custom_color = config.get('preferences.custom-marker-color')
 
     def __update_complete(self, *args):
-        self.complete_color = Config.get(Config.COMPLETE_COLOR)
+        self.complete_color = config.get('preferences.complete-color')
 
     def displayed(self):
         return self.__displayed

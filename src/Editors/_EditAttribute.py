@@ -46,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 from glade import Glade
@@ -76,8 +76,8 @@ class EditAttribute(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.width_key = Config.ATTRIBUTE_WIDTH
-        self.height_key = Config.ATTRIBUTE_HEIGHT
+        self.width_key = 'interface.attribute-width'
+        self.height_key = 'interface.attribute-height'
         self.top = Glade()
         
         self.set_window(self.top.toplevel,

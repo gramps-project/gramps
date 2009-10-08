@@ -41,7 +41,7 @@ import DisplayModels
 import Utils
 import Errors
 import Bookmarks
-import Config
+import config
 import ColumnOrder
 from gen.lib import Note
 from DdTargets import DdTargets
@@ -97,8 +97,8 @@ class NoteView(ListView):
             filter_class=NoteSidebarFilter,
             multiple=True)
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
-                                 self.filter_toggle)
+        config.connect("interface.filter",
+                          self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_note_column_order(clist)

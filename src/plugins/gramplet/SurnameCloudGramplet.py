@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from DataViews import register, Gramplet
 from TransUtils import sgettext as _
-import Config
+import config
 
 #------------------------------------------------------------------------
 #
@@ -134,7 +134,7 @@ class SurnameCloudGramplet(Gramplet):
         for (count, surname) in cloud_names: # surname_sort:
             if count > include_greater_than:
                 if len(surname) == 0:
-                    text = Config.get(Config.NO_SURNAME_TEXT)
+                    text = config.get('preferences.no-surname-text')
                 else:
                     text = surname
                 size = make_tag_size(count, counts)

@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from DataViews import register, Gramplet
 from TransUtils import sgettext as _
-import Config
+import config
 
 #------------------------------------------------------------------------
 #
@@ -93,7 +93,7 @@ class TopSurnamesGramplet(Gramplet):
         line = 0
         ### All done!
         self.set_text("")
-        nosurname = Config.get(Config.NO_SURNAME_TEXT)
+        nosurname = config.get('preferences.no-surname-text')
         for (count, surname) in surname_sort:
             text = "%s, " % (surname if surname else nosurname)
             text += "%d%% (%d)\n" % (int((float(count)/total) * 100), count)

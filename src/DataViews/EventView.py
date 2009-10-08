@@ -42,7 +42,7 @@ import DisplayModels
 import Utils
 import Errors
 import Bookmarks
-import Config
+import config
 from DdTargets import DdTargets
 from Editors import EditEvent, DelEventQuery
 from Filters.SideBar import EventSidebarFilter
@@ -106,8 +106,8 @@ class EventView(ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             }
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
-                                 self.filter_toggle)
+        config.connect("interface.filter",
+                          self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_event_column_order(clist)

@@ -45,7 +45,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import gen.lib
 from BasicUtils import name_displayer
 import LdsUtils
@@ -141,8 +141,8 @@ class EditLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.width_key = Config.LDS_WIDTH
-        self.height_key = Config.LDS_HEIGHT
+        self.width_key = 'interface.lds-width'
+        self.height_key = 'interface.lds-height'
         
         self.top = Glade()
         self.set_window(self.top.toplevel,

@@ -51,7 +51,7 @@ from gui.views.listview import ListView
 import DisplayModels
 import ThumbNails
 import const
-import Config
+import config
 import Utils
 import Bookmarks
 import Mime
@@ -114,8 +114,8 @@ class MediaView(ListView):
             '<CONTROL>BackSpace' : self.key_delete, 
             }
 
-        Config.client.notify_add("/apps/gramps/interface/filter", 
-                                 self.filter_toggle)
+        config.connect("interface.filter", 
+                          self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_media_column_order(clist)

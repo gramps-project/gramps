@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 
 from gen.lib import NoteType
 
@@ -56,8 +56,8 @@ class EditRepoRef(EditReference):
                                source_ref, update)
 
     def _local_init(self):
-        self.width_key = Config.REPO_REF_WIDTH
-        self.height_key = Config.REPO_REF_HEIGHT
+        self.width_key = 'interface.repo-ref-width'
+        self.height_key = 'interface.repo-ref-height'
         
         self.top = Glade()
         self.set_window(self.top.toplevel,

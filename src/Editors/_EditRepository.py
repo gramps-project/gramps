@@ -41,7 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import gen.lib
 
 from widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
@@ -73,8 +73,8 @@ class EditRepository(EditPrimary):
         return title
 
     def _local_init(self):
-        self.width_key = Config.REPO_WIDTH
-        self.height_key = Config.REPO_HEIGHT
+        self.width_key = 'interface.repo-width'
+        self.height_key = 'interface.repo-height'
         
         self.glade = Glade()
         

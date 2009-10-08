@@ -23,7 +23,7 @@
 from gettext import gettext as _
 
 from DataViews import Gramplet, register
-import Config
+import config
 
 _YIELD_INTERVAL = 350
 
@@ -117,7 +117,7 @@ class GivenNameCloudGramplet(Gramplet):
         for (count, givensubname) in cloud_names: # givensubname_sort:
             if count > include_greater_than:
                 if len(givensubname) == 0:
-                    text = Config.get(Config.NO_SURNAME_TEXT)
+                    text = config.get('preferences.no-surname-text')
                 else:
                     text = givensubname
                 size = make_tag_size(count, counts)

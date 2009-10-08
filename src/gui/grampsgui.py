@@ -60,7 +60,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -198,7 +198,7 @@ def _display_welcome_message():
     """
     Display a welcome message to the user.
     """
-    if not Config.get(Config.BETAWARN):
+    if not config.get('behavior.betawarn'):
         from QuestionDialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'), 
@@ -217,9 +217,9 @@ def _display_welcome_message():
               "<b>BACKUP</b> your existing databases before opening "
               "them with this version, and make sure to export your "
               "data to XML every now and then."))
-        Config.set(Config.AUTOLOAD, False)
-#        Config.set(Config.BETAWARN, True)
-        Config.set(Config.BETAWARN, Config.get(Config.BETAWARN))
+        config.set('behavior.autoload', False)
+#        config.set('behavior.betawarn', True)
+        config.set('behavior.betawarn', config.get('behavior.betawarn'))
 
 #-------------------------------------------------------------------------
 #
@@ -257,9 +257,9 @@ class Gramps(object):
         if ah.open or ah.imp_db_path:
             # if we opened or imported something, only show the interface
             self.vm.post_init_interface(show_manager=False)
-        elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
+        elif config.get('paths.recent-file') and config.get('behavior.autoload'):
             # if we need to autoload last seen file, do so
-            filename = Config.get(Config.RECENT_FILE)
+            filename = config.get('paths.recent-file')
             if os.path.isdir(filename) and \
                     os.path.isfile(os.path.join(filename, "name.txt")) and \
                     ah.check_db(filename):
@@ -271,7 +271,7 @@ class Gramps(object):
             # open without fam tree loaded
             self.vm.post_init_interface()
 
-        if Config.get(Config.USE_TIPS):
+        if config.get('behavior.use-tips'):
             TipOfDay.TipOfDay(self.vm.uistate)
 
     def argerrorfunc(self, string):

@@ -62,7 +62,7 @@ from PluginUtils import Tool, PluginWindows, \
 import ReportBase
 import DisplayState
 import const
-import Config
+import config
 import GrampsCfg
 import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
@@ -223,10 +223,10 @@ class ViewManager(CLIManager):
         self.merge_ids = []
         self._key = None
 
-        self.show_sidebar = Config.get(Config.VIEW)
-        self.show_toolbar = Config.get(Config.TOOLBAR_ON)
-        self.show_filter = Config.get(Config.FILTER)
-        self.fullscreen = Config.get(Config.FULLSCREEN)
+        self.show_sidebar = config.get('interface.view')
+        self.show_toolbar = config.get('interface.toolbar-on')
+        self.show_filter = config.get('interface.filter')
+        self.fullscreen = config.get('interface.fullscreen')
 
         self.__build_main_window()
         self.__connect_signals()
@@ -244,8 +244,8 @@ class ViewManager(CLIManager):
         """
         Builds the GTK interface
         """
-        width = Config.get(Config.WIDTH)
-        height = Config.get(Config.HEIGHT)
+        width = config.get('interface.width')
+        height = config.get('interface.height')
 
         self.window = gtk.Window()
         self.window.set_icon_from_file(const.ICON)
@@ -553,10 +553,10 @@ class ViewManager(CLIManager):
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
-        Config.client.notify_add("/apps/gramps/interface/statusbar", 
-                                 self.__statusbar_key_update)
-        Config.client.notify_add("/apps/gramps/interface/filter", 
-                                 self.__filter_signal)
+        config.connect("interface.statusbar", 
+                          self.__statusbar_key_update)
+        config.connect("interface.filter", 
+                          self.__filter_signal)
 
     def __statusbar_key_update(self, client, cnxn_id, entry, data):
         """
@@ -568,8 +568,8 @@ class ViewManager(CLIManager):
         """
         Callback function for statusbar key update
         """
-        if self.filter_menu.get_active() != Config.get(Config.FILTER):
-            self.filter_menu.set_active(Config.get(Config.FILTER))
+        if self.filter_menu.get_active() != config.get('interface.filter'):
+            self.filter_menu.set_active(config.get('interface.filter'))
 
     def post_init_interface(self, show_manager=True):
         """
@@ -601,7 +601,7 @@ class ViewManager(CLIManager):
         error = CLIManager.do_load_plugins(self)
 
         #  get to see if we need to open the plugin status window
-        if error and Config.get(Config.POP_PLUGIN_STATUS):
+        if error and config.get('behavior.pop-plugin-status'):
             self.__plugin_status()
 
         self.uistate.push_message(self.dbstate, _('Ready'))
@@ -622,9 +622,9 @@ class ViewManager(CLIManager):
         
         # save the current window size
         (width, height) = self.window.get_size()
-        Config.set(Config.WIDTH, width)
-        Config.set(Config.HEIGHT, height)
-        Config.sync()
+        config.set('interface.width', width)
+        config.set('interface.height', height)
+        config.save()
         gtk.main_quit()
 
     def __backup(self):
@@ -742,14 +742,14 @@ class ViewManager(CLIManager):
         if obj.get_active():
             self.ebox.show()
             self.notebook.set_show_tabs(False)
-            Config.set(Config.VIEW, True)
+            config.set('interface.view', True)
             self.show_sidebar = True
         else:
             self.ebox.hide()
             self.notebook.set_show_tabs(True)
-            Config.set(Config.VIEW, False)
+            config.set('interface.view', False)
             self.show_sidebar = False
-        Config.sync()
+        config.save()
 
     def toolbar_toggle(self, obj):
         """
@@ -758,11 +758,11 @@ class ViewManager(CLIManager):
         """
         if obj.get_active():
             self.toolbar.show()
-            Config.set(Config.TOOLBAR_ON, True)
+            config.set('interface.toolbar-on', True)
         else:
             self.toolbar.hide()
-            Config.set(Config.TOOLBAR_ON, False)
-        Config.sync()
+            config.set('interface.toolbar-on', False)
+        config.save()
 
     def fullscreen_toggle(self, obj):
         """
@@ -771,11 +771,11 @@ class ViewManager(CLIManager):
         """
         if obj.get_active():
             self.window.fullscreen()
-            Config.set(Config.FULLSCREEN, True)
+            config.set('interface.fullscreen', True)
         else:
             self.window.unfullscreen()
-            Config.set(Config.FULLSCREEN, False)
-        Config.sync()
+            config.set('interface.fullscreen', False)
+        config.save()
 
     def register_view(self, view):
         """
@@ -806,7 +806,7 @@ class ViewManager(CLIManager):
         self.pages = []
         self.prev_nav = PageView.NAVIGATION_NONE
 
-        use_text = Config.get(Config.SIDEBAR_TEXT)
+        use_text = config.get('interface.sidebar-text')
         
         index = 0
         for page_def in self.views:
@@ -846,9 +846,9 @@ class ViewManager(CLIManager):
             button.drag_dest_set(0, [], 0)
             button.connect('drag_motion', self.__switch_page_on_dnd, page_no)
 
-        use_current = Config.get(Config.USE_LAST_VIEW)
+        use_current = config.get('preferences.use-last-view')
         if use_current:
-            current_page = Config.get(Config.LAST_VIEW)
+            current_page = config.get('preferences.last-view')
             if current_page >= len(self.pages):
                 current_page = 0
         else:
@@ -905,7 +905,7 @@ class ViewManager(CLIManager):
         """
         Called when the button causes a page change
         """
-        if Config.get(Config.VIEW):
+        if config.get('interface.view'):
             self.__vb_handlers_block()
             self.notebook.set_current_page(index)
 
@@ -1007,8 +1007,8 @@ class ViewManager(CLIManager):
             if len(self.pages) > 0:
                 self.active_page = self.pages[num]
                 self.active_page.set_active()
-                Config.set(Config.LAST_VIEW, num)
-                Config.sync()
+                config.set('preferences.last-view', num)
+                config.save()
 
                 self.__setup_navigation()
                 self.__connect_active_page()
@@ -1368,8 +1368,8 @@ def filter_toggle(obj):
     """
     Save the filter state to the config settings on change
     """
-    Config.set(Config.FILTER, obj.get_active())
-    Config.sync()
+    config.set('interface.filter', obj.get_active())
+    config.save()
 
 def key_bindings(obj):
     """

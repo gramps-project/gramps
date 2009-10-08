@@ -46,7 +46,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import ManagedWindow
 from QuestionDialog import ErrorDialog
 from glade import Glade
@@ -70,7 +70,7 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         
         self.tip = xml.get_object("tip")
         self.use = xml.get_object('usetips')
-        self.use.set_active(Config.get(Config.USE_TIPS))
+        self.use.set_active(config.get('behavior.use-tips'))
         image = xml.get_object('image')
         image.set_from_file(os.path.join(const.IMAGE_DIR, 'splash.jpg'))
 
@@ -110,7 +110,7 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         self.index = (self.index + 1) % len(self.tip_list)
 
     def close_cb(self, dummy=None):
-        Config.set(Config.USE_TIPS, self.use.get_active())
+        config.set('behavior.use-tips', self.use.get_active())
         self.close()
         
     def build_menu_names(self, obj):

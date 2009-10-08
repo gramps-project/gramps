@@ -43,14 +43,14 @@ import cgi
 #
 #-------------------------------------------------------------------------
 import DateHandler
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
 # Globals
 #
 #-------------------------------------------------------------------------
-invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
+invalid_date_format = config.get('preferences.invalid-date-format')
 
 #-------------------------------------------------------------------------
 #

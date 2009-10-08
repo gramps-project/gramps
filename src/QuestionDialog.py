@@ -41,7 +41,7 @@ from gtk.gdk import pixbuf_new_from_file
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from glade import Glade
 
 try:
@@ -77,7 +77,7 @@ class SaveDialog(object):
         elif response == gtk.RESPONSE_YES:
             self.task2()
 
-        Config.set(Config.DONT_ASK, self.dontask.get_active())
+        config.set('interface.dont-ask', self.dontask.get_active())
         self.top.destroy()
 
 class QuestionDialog(object):
@@ -329,7 +329,7 @@ class MessageHideDialog(object):
         self.top.set_title("%s - GRAMPS" % title)
 
         dont_show = self.xml.get_object('dont_show')
-        dont_show.set_active(Config.get(key))
+        dont_show.set_active(config.get(key))
         title_label = self.xml.get_object('title')
         title_label.set_text(
             '<span size="larger" weight="bold">%s</span>' % title)
@@ -342,5 +342,5 @@ class MessageHideDialog(object):
         self.top.destroy()
 
     def update_checkbox(self, obj, constant):
-        Config.set(constant, obj.get_active())
-        Config.sync()
+        config.set(constant, obj.get_active())
+        config.save()

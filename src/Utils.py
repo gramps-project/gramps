@@ -58,11 +58,11 @@ from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 # cache values; use refresh_constants() if they change
 try:
-    import Config
-    _MAX_AGE_PROB_ALIVE   = Config.get(Config.MAX_AGE_PROB_ALIVE)
-    _MAX_SIB_AGE_DIFF     = Config.get(Config.MAX_SIB_AGE_DIFF)
-    _MIN_GENERATION_YEARS = Config.get(Config.MIN_GENERATION_YEARS)
-    _AVG_GENERATION_GAP   = Config.get(Config.AVG_GENERATION_GAP)
+    import config
+    _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
+    _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
+    _MIN_GENERATION_YEARS = config.get('behavior.min-generation-years')
+    _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
 except ImportError:
     # Utils used as module not part of GRAMPS
     _MAX_AGE_PROB_ALIVE   = 110
@@ -967,16 +967,16 @@ def get_translations():
 #-------------------------------------------------------------------------
 def get_researcher():
     import gen.lib
-    import Config
+    import config
     
-    n  = Config.get(Config.RESEARCHER_NAME)
-    a  = Config.get(Config.RESEARCHER_ADDR)
-    c  = Config.get(Config.RESEARCHER_CITY)
-    s  = Config.get(Config.RESEARCHER_STATE)
-    ct = Config.get(Config.RESEARCHER_COUNTRY)
-    p  = Config.get(Config.RESEARCHER_POSTAL)
-    ph = Config.get(Config.RESEARCHER_PHONE)
-    e  = Config.get(Config.RESEARCHER_EMAIL)
+    n  = config.get('researcher.researcher-name')
+    a  = config.get('researcher.researcher-addr')
+    c  = config.get('researcher.researcher-city')
+    s  = config.get('researcher.researcher-state')
+    ct = config.get('researcher.researcher-country')
+    p  = config.get('researcher.researcher-postal')
+    ph = config.get('researcher.researcher-phone')
+    e  = config.get('researcher.researcher-email')
 
     owner = gen.lib.Researcher()
     owner.set_name(n)
@@ -994,13 +994,13 @@ def update_constants():
     """
     Used to update the constants that are cached in this module.
     """
-    import Config
+    import config
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _MIN_GENERATION_YEARS, \
         _AVG_GENERATION_GAP
-    _MAX_AGE_PROB_ALIVE   = Config.get(Config.MAX_AGE_PROB_ALIVE)
-    _MAX_SIB_AGE_DIFF     = Config.get(Config.MAX_SIB_AGE_DIFF)
-    _MIN_GENERATION_YEARS = Config.get(Config.MIN_GENERATION_YEARS)
-    _AVG_GENERATION_GAP   = Config.get(Config.AVG_GENERATION_GAP)
+    _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
+    _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
+    _MIN_GENERATION_YEARS = config.get('behavior.min-generation-years')
+    _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
 
 #-------------------------------------------------------------------------
 #

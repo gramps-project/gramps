@@ -45,7 +45,7 @@ import pango
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Config
+import config
 import const
 from widgets import StyledTextEditor
 from Editors._EditPrimary import EditPrimary
@@ -164,8 +164,8 @@ class EditNote(EditPrimary):
         and overridden here.
         
         """
-        self.width_key = Config.NOTE_WIDTH
-        self.height_key = Config.NOTE_HEIGHT
+        self.width_key = 'interface.note-width'
+        self.height_key = 'interface.note-height'
         
         self.top = Glade()
 

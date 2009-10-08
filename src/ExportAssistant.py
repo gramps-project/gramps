@@ -52,7 +52,7 @@ import gtk
 #-------------------------------------------------------------------------
 
 import const
-import Config
+import config
 from gen.plug import PluginManager
 import Utils
 import ManagedWindow
@@ -199,7 +199,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         table.set_col_spacings(6)
         
         group = None
-        recent_type = Config.get(Config.RECENT_EXPORT_TYPE)
+        recent_type = config.get('behavior.recent-export-type')
         
         for ix in range(len(self.__exporters)):
             title = self.__exporters[ix].get_name()
@@ -541,9 +541,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         ext = self.__exporters[ix].get_extension()
         
         # Suggested folder: try last export, then last import, then home.
-        default_dir = Config.get(Config.RECENT_EXPORT_DIR)
+        default_dir = config.get('paths.recent-export-dir')
         if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
+            default_dir = config.get('paths.recent-import-dir')
         if len(default_dir)<=1:
             default_dir = const.USER_HOME
 
@@ -563,9 +563,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
         """
         filename = Utils.get_unicode_path(self.chooser.get_filename())
-        Config.set(Config.RECENT_EXPORT_DIR, os.path.split(filename)[0])
+        config.set('paths.recent-export-dir', os.path.split(filename)[0])
         ix = self.get_selected_format_index()
-        Config.set(Config.RECENT_EXPORT_TYPE, ix)
+        config.set('behavior.recent-export-type', ix)
         export_function = self.__exporters[ix].get_export_function()
         success = export_function(self.dbstate.db,
                                   filename,

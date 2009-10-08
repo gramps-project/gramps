@@ -41,7 +41,7 @@ from gen.lib import Name
 from Errors import NameDisplayError
 
 try:
-    import Config
+    import config
     WITH_GRAMPS_CONFIG=True
 except ImportError:
     WITH_GRAMPS_CONFIG=False
@@ -113,10 +113,10 @@ class NameDisplay(object):
         self.set_name_format(self.STANDARD_FORMATS)
         
         if WITH_GRAMPS_CONFIG:
-            self.default_format = Config.get(Config.NAME_FORMAT)
+            self.default_format = config.get('preferences.name-format')
             if self.default_format == 0:
                 self.default_format = Name.LNFN
-                Config.set(Config.NAME_FORMAT, self.default_format)
+                config.set('preferences.name-format', self.default_format)
         else:
             self.default_format = 1
             

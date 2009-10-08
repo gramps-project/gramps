@@ -37,7 +37,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import Config
+import config
 from gui.views.listview import ListView
 import DisplayModels
 import Utils
@@ -99,8 +99,8 @@ class SourceView(ListView):
             Bookmarks.SourceBookmarks, multiple=True,
             filter_class=SourceSidebarFilter)
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
-                                 self.filter_toggle)
+        config.connect("interface.filter",
+                          self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_source_column_order(clist)

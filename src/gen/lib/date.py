@@ -57,7 +57,7 @@ from gen.lib.calendar import (gregorian_sdn, julian_sdn, hebrew_sdn,
                               gregorian_ymd, julian_ymd, hebrew_ymd, 
                               french_ymd, persian_ymd, islamic_ymd,
                               swedish_ymd)
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -82,9 +82,9 @@ class Span(object):
     minmax = (min days, max days)
 
     """
-    BEFORE = Config.get(Config.DATE_BEFORE_RANGE)
-    AFTER  = Config.get(Config.DATE_AFTER_RANGE)
-    ABOUT  = Config.get(Config.DATE_ABOUT_RANGE)
+    BEFORE = config.get('behavior.date-before-range')
+    AFTER  = config.get('behavior.date-after-range')
+    ABOUT  = config.get('behavior.date-about-range')
     def __init__(self, date1, date2):
         self.valid = (date1.sortval != 0 and date2.sortval != 0)
         self.date1 = date1
@@ -934,15 +934,15 @@ class Date(object):
         # if BEFORE, AFTER, or ABOUT/EST, adjust:
         if self.modifier == Date.MOD_BEFORE:
             stopmax = date_offset(startmin, -1)
-            fdiff = Config.get(Config.DATE_BEFORE_RANGE)
+            fdiff = config.get('behavior.date-before-range')
             startmin = (stopmax[0] - fdiff, stopmax[1], stopmax[2])
         elif self.modifier == Date.MOD_AFTER:
             startmin = date_offset(stopmax, 1)
-            fdiff = Config.get(Config.DATE_AFTER_RANGE)
+            fdiff = config.get('behavior.date-after-range')
             stopmax = (startmin[0] + fdiff, startmin[1], startmin[2])
         elif (self.modifier == Date.MOD_ABOUT or
               self.quality == Date.QUAL_ESTIMATED):
-            fdiff = Config.get(Config.DATE_ABOUT_RANGE)
+            fdiff = config.get('behavior.date-about-range')
             startmin = (startmin[0] - fdiff, startmin[1], startmin[2])
             stopmax = (stopmax[0] + fdiff, stopmax[1], stopmax[2])
         # return tuples not lists, for comparisons

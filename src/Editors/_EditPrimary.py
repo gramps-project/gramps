@@ -43,7 +43,7 @@ import gtk
 import ManagedWindow
 import DateHandler
 from BasicUtils import name_displayer
-import Config
+import config
 import GrampsDisplay
 from QuestionDialog import SaveDialog
 import gen.lib
@@ -197,7 +197,7 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
     def close(self, *obj):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if not Config.get(Config.DONT_ASK) and self.data_has_changed():
+        if not config.get('interface.dont-ask') and self.data_has_changed():
             SaveDialog(
                 _('Save Changes?'),
                 _('If you close without saving, the changes you '

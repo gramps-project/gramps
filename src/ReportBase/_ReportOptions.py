@@ -54,7 +54,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from gen.plug.docgen import PAPER_PORTRAIT
 from PluginUtils import _Options, GuiMenuOptions
 
@@ -244,8 +244,8 @@ class OptionListCollection(_Options.OptionListCollection):
     def init_common(self):
         # Default values for common options
         self.default_style_name = "default"
-        self.default_paper_metric = Config.get(Config.PAPER_METRIC)
-        self.default_paper_name = Config.get(Config.PAPER_PREFERENCE)
+        self.default_paper_metric = config.get('preferences.paper-metric')
+        self.default_paper_name = config.get('preferences.paper-preference')
         self.default_orientation = PAPER_PORTRAIT
         self.default_css_filename = ""
         self.default_custom_paper_size = [29.7, 21.0]

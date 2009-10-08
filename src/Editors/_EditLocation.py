@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from _EditSecondary import EditSecondary
 from glade import Glade
 from widgets import MonitoredEntry
@@ -45,8 +45,8 @@ class EditLocation(EditSecondary):
                                location, callback)
 
     def _local_init(self):
-        self.width_key = Config.LOCATION_WIDTH
-        self.height_key = Config.LOCATION_HEIGHT
+        self.width_key = 'interface.location-width'
+        self.height_key = 'interface.location-height'
         self.top = Glade()
         self.set_window(self.top.toplevel, None,
                         _('Location Editor'))

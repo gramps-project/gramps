@@ -41,7 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import gen.lib
 import GrampsDisplay
 from _EditPrimary import EditPrimary
@@ -97,8 +97,8 @@ class EditEvent(EditPrimary):
                self.dbstate.db.get_family_event_types()
 
     def _local_init(self):
-        self.width_key = Config.EVENT_WIDTH
-        self.height_key = Config.EVENT_HEIGHT
+        self.width_key = 'interface.event-width'
+        self.height_key = 'interface.event-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel, None, 

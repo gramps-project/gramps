@@ -55,7 +55,7 @@ from gui.utils import add_menuitem
 from QuestionDialog import ErrorDialog, QuestionDialog
 import TreeTips
 import Errors
-import Config
+import config
 import const
 from TransUtils import sgettext as _
 
@@ -101,8 +101,8 @@ class PersonView(PageView.PersonNavView):
             }
         self.dirty = True
 
-        Config.client.notify_add("/apps/gramps/interface/filter", 
-                                 self.filter_toggle)
+        config.connect("interface.filter", 
+                          self.filter_toggle)
         
     def change_page(self):
         PageView.PersonNavView.change_page(self)
@@ -317,7 +317,7 @@ class PersonView(PageView.PersonNavView):
         return hpaned
 
     def post(self):
-        if Config.get(Config.FILTER):
+        if config.get('interface.filter'):
             self.search_bar.hide()
             self.filter_pane.show()
         else:
@@ -329,7 +329,7 @@ class PersonView(PageView.PersonNavView):
         self.build_tree()
 
     def filter_toggle(self, client, cnxn_id, entry, data):
-        if Config.get(Config.FILTER):
+        if config.get('interface.filter'):
             self.search_bar.hide()
             self.filter_pane.show()
         else:
@@ -519,7 +519,7 @@ class PersonView(PageView.PersonNavView):
         since it can change when rows are unselected when the model is set.
         """
         if self.active:
-            if Config.get(Config.FILTER):
+            if config.get('interface.filter'):
                 filter_info = (PeopleModel.GENERIC, self.generic_filter)
             else:
                 filter_info = (PeopleModel.SEARCH, self.search_bar.get_value())

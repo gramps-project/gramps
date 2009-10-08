@@ -56,7 +56,7 @@ import gobject
 #-------------------------------------------------------------------------
 from cli.grampscli import CLIDbLoader
 import const
-import Config
+import config
 import gen.db
 import Utils
 from gen.plug import PluginManager
@@ -139,7 +139,7 @@ class DbLoader(CLIDbLoader):
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = Config.get(Config.RECENT_IMPORT_DIR)
+        default_dir = config.get('paths.recent-import-dir')
         if len(default_dir)<=1:
             default_dir = get_default_dir()
 
@@ -155,7 +155,7 @@ class DbLoader(CLIDbLoader):
                     continue
 
                 (the_path, the_file) = os.path.split(filename)
-                Config.set(Config.RECENT_IMPORT_DIR, the_path)
+                config.set('paths.recent-import-dir', the_path)
                 
                 extension = type_selector.get_value()
                 if extension == 'auto':
@@ -232,7 +232,7 @@ class DbLoader(CLIDbLoader):
             self.import_info = importer(self.dbstate.db, filename,
                             self.uistate.pulse_progressbar)
             dirname = os.path.dirname(filename) + os.path.sep
-            Config.set(Config.RECENT_IMPORT_DIR, dirname)
+            config.set('paths.recent-import-dir', dirname)
         except UnicodeError, msg:
             ErrorDialog(
                 _("Could not import file: %s") % filename, 
@@ -260,13 +260,13 @@ class DbLoader(CLIDbLoader):
 def get_default_dir():
     # Suggested folder: try last open file, last import, last export, 
     # then home.
-    default_dir = os.path.dirname(Config.get(Config.RECENT_FILE))
+    default_dir = os.path.dirname(config.get('paths.recent-file'))
     if default_dir:
         default_dir += os.path.sep
         if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_IMPORT_DIR)
+            default_dir = config.get('paths.recent-import-dir')
         if len(default_dir)<=1:
-            default_dir = Config.get(Config.RECENT_EXPORT_DIR)
+            default_dir = config.get('paths.recent-export-dir')
         if len(default_dir)<=1:
             default_dir = '~/'
     else:

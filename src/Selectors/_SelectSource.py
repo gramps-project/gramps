@@ -35,7 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from DisplayModels import SourceModel
 from _BaseSelector import BaseSelector
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +48,8 @@ class SelectSource(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = Config.SOURCE_SEL_WIDTH
-        self.height_key = Config.SOURCE_SEL_HEIGHT
+        self.width_key = 'interface.source-sel-width'
+        self.height_key = 'interface.source-sel-height'
 
     def get_window_title(self):
         return _("Select Source")

@@ -46,7 +46,7 @@ LOG = logging.getLogger(".grampscli")
 #
 #-------------------------------------------------------------------------
 from BasicUtils import name_displayer
-import Config
+import config
 import const
 import Errors
 import DbState
@@ -256,14 +256,14 @@ class CLIManager(object):
             self.dbstate.db.set_researcher(owner)
         
         name_displayer.set_name_format(self.dbstate.db.name_formats)
-        fmt_default = Config.get(Config.NAME_FORMAT)
+        fmt_default = config.get('preferences.name-format')
         if fmt_default < 0:
             name_displayer.set_default_format(fmt_default)
 
         self.dbstate.db.enable_signals()
         self.dbstate.signal_change()
 
-        Config.set(Config.RECENT_FILE, filename)
+        config.set('paths.recent-file', filename)
 
         try:
             self.dbstate.change_active_person(

@@ -25,7 +25,7 @@ import gtk
 import pango
 
 import widgets
-import Config
+import config
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
@@ -91,8 +91,8 @@ class SidebarFilter(object):
                           xoptions=gtk.FILL, yoptions=0)
 
     def btn_clicked(self, obj):
-        Config.set(Config.FILTER, False)
-        Config.sync()
+        config.set('interface.filter', False)
+        config.save()
 
     def get_widget(self):
         return self.table

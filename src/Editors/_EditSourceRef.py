@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import gen.lib
 from glade import Glade
 from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList, 
@@ -56,8 +56,8 @@ class EditSourceRef(EditReference):
                                source_ref, update)
 
     def _local_init(self):
-        self.width_key = Config.EVENT_REF_WIDTH
-        self.height_key = Config.EVENT_REF_HEIGHT
+        self.width_key = 'interface.event-ref-width'
+        self.height_key = 'interface.event-ref-height'
         
         self.top = Glade()
         

@@ -35,7 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from DisplayModels import RepositoryModel
 from _BaseSelector import BaseSelector
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +48,8 @@ class SelectRepository(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = Config.REPO_SEL_WIDTH
-        self.height_key = Config.REPO_SEL_HEIGHT
+        self.width_key = 'interface.repo-sel-width'
+        self.height_key = 'interface.repo-sel-height'
 
     def get_window_title(self):
         return _("Select Repository")

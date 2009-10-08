@@ -47,7 +47,7 @@ from gui.views.listview import ListView
 import DisplayModels
 import Bookmarks
 import Errors
-import Config
+import config
 from Filters.SideBar import FamilySidebarFilter
 from ReportBase import CATEGORY_QR_FAMILY
 
@@ -94,8 +94,8 @@ class FamilyListView(ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             }
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
-                                 self.filter_toggle)
+        config.connect("interface.filter",
+                          self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_family_list_column_order(clist)

@@ -43,7 +43,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 import gen.lib
 from Editors._EditPrimary import EditPrimary
 
@@ -79,8 +79,8 @@ class EditSource(EditPrimary):
         return title
 
     def _local_init(self):
-        self.width_key = Config.SOURCE_WIDTH
-        self.height_key = Config.SOURCE_HEIGHT
+        self.width_key = 'interface.source-width'
+        self.height_key = 'interface.source-height'
         assert(self.obj)
         
         self.glade = Glade()

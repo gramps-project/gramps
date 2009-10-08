@@ -29,7 +29,7 @@ from gettext import gettext as _
 
 import gen.lib
 import Errors
-import Config
+import config
 import DateHandler
 
 class SimpleTable(object):
@@ -255,7 +255,7 @@ class SimpleTable(object):
                     # sort before others:
                     self.row_sort_val(col, -1)
                     # give formatted version:
-                    invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
+                    invalid_date_format = config.get('preferences.invalid-date-format')
                     self.set_cell_markup(col, row,
                                          invalid_date_format % text)
                 if (self.__link_col == col or link is None):

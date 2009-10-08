@@ -52,7 +52,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.utils
-import Config
+import config
 from BasicUtils import name_displayer
 import const
 import ManagedWindow
@@ -436,7 +436,7 @@ class DisplayState(gen.utils.Callback):
             if person:
                 pname = name_displayer.display(person)
                 name = "[%s] %s" % (person.get_gramps_id(), pname)
-                if Config.get(Config.STATUSBAR) > 1:
+                if config.get('interface.statusbar') > 1:
                     if person.handle != dbstate.db.get_default_handle():
                         msg = self.display_relationship(dbstate)
                         if msg:

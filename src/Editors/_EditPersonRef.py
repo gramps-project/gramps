@@ -46,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
@@ -74,8 +74,8 @@ class EditPersonRef(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
 
     def _local_init(self):
-        self.width_key = Config.PERSON_REF_WIDTH
-        self.height_key = Config.PERSON_REF_HEIGHT
+        self.width_key = 'interface.person-ref-width'
+        self.height_key = 'interface.person-ref-height'
         
         self.top = Glade()
                 

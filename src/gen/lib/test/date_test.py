@@ -45,7 +45,7 @@ except ValueError:
 from test import test_util
 test_util.path_append_parent() 
 
-import Config
+import config
 import DateHandler
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
@@ -291,9 +291,9 @@ class Tester(unittest.TestCase):
 
 def suite():
     """ interface to automated test runner test/regrtest.py """
-    Config.set(Config.DATE_BEFORE_RANGE, 9999)
-    Config.set(Config.DATE_AFTER_RANGE, 9999)
-    Config.set(Config.DATE_ABOUT_RANGE, 10)
+    config.set('behavior.date-before-range', 9999)
+    config.set('behavior.date-after-range', 9999)
+    config.set('behavior.date-about-range', 10)
     # most are symmetric: #date1, date2, does d1 match d2? does d2 match d1?
     tests = [("before 1960", "before 1961", True),
              ("before 1960", "before 1960", True),
@@ -386,9 +386,9 @@ class Assert(unittest.TestCase):
 
 def suite2():
     """ interface to automated test runner test/regrtest.py """
-    Config.set(Config.DATE_BEFORE_RANGE, 9999)
-    Config.set(Config.DATE_AFTER_RANGE, 9999)
-    Config.set(Config.DATE_ABOUT_RANGE, 10)
+    config.set('behavior.date-before-range', 9999)
+    config.set('behavior.date-after-range', 9999)
+    config.set('behavior.date-about-range', 10)
     tests = [
         # Date +/- int/tuple -> Date
         ("Date(2008, 1, 1) - 1", "Date(2007, 1, 1)"),

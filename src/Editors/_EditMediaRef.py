@@ -43,7 +43,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 import const
-import Config
+import config
 import Mime
 import ThumbNails
 import Utils
@@ -71,8 +71,8 @@ class EditMediaRef(EditReference):
                            self._update_addmedia)
 
     def _local_init(self):
-        self.width_key = Config.MEDIA_REF_WIDTH
-        self.height_key = Config.MEDIA_REF_HEIGHT
+        self.width_key = 'interface.media-ref-width'
+        self.height_key = 'interface.media-ref-height'
         self.top = Glade()
 
         self.set_window(self.top.toplevel,

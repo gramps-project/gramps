@@ -41,7 +41,7 @@ from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                          FilterOption, PersonOption
 import gen.lib
-import Config
+import config
 from BasicUtils import name_displayer
 import Errors
 from ReportBase import ReportUtils
@@ -98,25 +98,25 @@ class CalcEstDateOptions(MenuToolOptions):
         # -----------------------------------------------------
         category_name = _("Config")
         num = NumberOption(_("Maximum age"), 
-                           Config.get(Config.MAX_AGE_PROB_ALIVE),
+                           config.get('behavior.max-age-prob-alive'),
                            0, 200)
         num.set_help(_("Maximum age that one can live to"))
         menu.add_option(category_name, "MAX_AGE_PROB_ALIVE", num)
 
         num = NumberOption(_("Maximum sibling age difference"), 
-                           Config.get(Config.MAX_SIB_AGE_DIFF),
+                           config.get('behavior.max-sib-age-diff'),
                            0, 200)
         num.set_help(_("Maximum age difference between siblings"))
         menu.add_option(category_name, "MAX_SIB_AGE_DIFF", num)
 
         num = NumberOption(_("Minimum years between generations"), 
-                           Config.get(Config.MIN_GENERATION_YEARS),
+                           config.get('behavior.min-generation-years'),
                            0, 200)
         num.set_help(_("Minimum years between two generations"))
         menu.add_option(category_name, "MIN_GENERATION_YEARS", num)
 
         num = NumberOption(_("Average years between generations"), 
-                           Config.get(Config.AVG_GENERATION_GAP),
+                           config.get('behavior.avg-generation-gap'),
                            0, 200)
         num.set_help(_("Average years between two generations"))
         menu.add_option(category_name, "AVG_GENERATION_GAP", num)

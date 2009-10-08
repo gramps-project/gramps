@@ -36,7 +36,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import config
 from Utils import get_researcher
 import GrampsDisplay
 from widgets import MonitoredEntry
@@ -60,14 +60,14 @@ WIKI_HELP_SEC = _('manual|Edit_Database_Owner_Information...')
 #
 #-------------------------------------------------------------------------
 config_keys = (
-    Config.RESEARCHER_NAME,
-    Config.RESEARCHER_ADDR,
-    Config.RESEARCHER_CITY,
-    Config.RESEARCHER_STATE,
-    Config.RESEARCHER_COUNTRY,
-    Config.RESEARCHER_POSTAL,
-    Config.RESEARCHER_PHONE,
-    Config.RESEARCHER_EMAIL,
+    'researcher.researcher-name',
+    'researcher.researcher-addr',
+    'researcher.researcher-city',
+    'researcher.researcher-state',
+    'researcher.researcher-country',
+    'researcher.researcher-postal',
+    'researcher.researcher-phone',
+    'researcher.researcher-email',
 )
 
 #-------------------------------------------------------------------------
@@ -165,7 +165,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
                 
         elif menuitem.name == 'copy_from_db_to_preferences':
             for i in range(len(config_keys)):
-                Config.set(config_keys[i], self.owner.get()[i])
+                config.set(config_keys[i], self.owner.get()[i])
         
 #-------------------------------------------------------------------------
 #

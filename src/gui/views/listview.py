@@ -48,7 +48,7 @@ import pango
 #
 #----------------------------------------------------------------
 from gui.views.navigationview import NavigationView
-import Config
+import config
 import TreeTips
 import Errors
 from Filters import SearchBar
@@ -217,7 +217,7 @@ class ListView(NavigationView):
     def build_tree(self):
         if self.active:
             cput = time.clock()
-            if Config.get(Config.FILTER):
+            if config.get('interface.filter'):
                 filter_info = (True, self.generic_filter)
             else:
                 filter_info = (False, self.search_bar.get_value())
@@ -271,7 +271,7 @@ class ListView(NavigationView):
         return hpaned
 
     def filter_toggle(self, client, cnxn_id, entry, data):
-        if Config.get(Config.FILTER):
+        if config.get('interface.filter'):
             self.search_bar.hide()
             self.filter_pane.show()
         else:
@@ -280,7 +280,7 @@ class ListView(NavigationView):
 
     def post(self):
         if self.filter_class:
-            if Config.get(Config.FILTER):
+            if config.get('interface.filter'):
                 self.search_bar.hide()
                 self.filter_pane.show()
             else:
@@ -300,7 +300,7 @@ class ListView(NavigationView):
             self.search_bar.show()
             self.filter_pane.hide()
             active = False
-        Config.set(Config.FILTER, active)
+        config.set('interface.filter', active)
         self.build_tree()
 
     def filter_editor(self, obj):
@@ -524,7 +524,7 @@ class ListView(NavigationView):
         self.sort_order = order
         handle = self.first_selected()
 
-        if Config.get(Config.FILTER):
+        if config.get('interface.filter'):
             search = (True, self.generic_filter)
         else:
             search = (False, self.search_bar.get_value())

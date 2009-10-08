@@ -42,7 +42,7 @@ import DisplayModels
 import Utils
 import Bookmarks
 import Errors
-import Config
+import config
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
 from Filters.SideBar import RepoSidebarFilter
@@ -107,8 +107,8 @@ class RepositoryView(ListView):
             Bookmarks.RepoBookmarks, multiple=True,
             filter_class=RepoSidebarFilter)
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
-                                 self.filter_toggle)
+        config.connect("interface.filter",
+                          self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_repository_column_order(clist)

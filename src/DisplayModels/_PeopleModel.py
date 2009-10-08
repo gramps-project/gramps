@@ -62,13 +62,13 @@ from BasicUtils import name_displayer
 import DateHandler
 import ToolTips
 import GrampsLocale
-import Config
+import config
 from gen.utils.longop import LongOpStatus
 from Filters import SearchFilter, ExactSearchFilter
 from Lru import LRU
 
 _CACHE_SIZE = 250
-invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
+invalid_date_format = config.get('preferences.invalid-date-format')
 
 class NodeTreeMap(object):
 
@@ -246,16 +246,16 @@ class PeopleModel(gtk.GenericTreeModel):
         self.lru_bdate = LRU(_CACHE_SIZE)
         self.lru_ddate = LRU(_CACHE_SIZE)
 
-        Config.client.notify_add("/apps/gramps/preferences/todo-color",
-                                 self.update_todo)
-        Config.client.notify_add("/apps/gramps/preferences/custom-marker-color",
-                                 self.update_custom)
-        Config.client.notify_add("/apps/gramps/preferences/complete-color",
-                                 self.update_complete)
+        config.connect("preferences.todo-color",
+                          self.update_todo)
+        config.connect("preferences.custom-marker-color",
+                          self.update_custom)
+        config.connect("preferences.complete-color",
+                          self.update_complete)
 
-        self.complete_color = Config.get(Config.COMPLETE_COLOR)
-        self.todo_color = Config.get(Config.TODO_COLOR)
-        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
+        self.complete_color = config.get('preferences.complete-color')
+        self.todo_color = config.get('preferences.todo-color')
+        self.custom_color = config.get('preferences.custom-marker-color')
 
         self.marker_color_column = 10
         self.tooltip_column = 11
@@ -289,13 +289,13 @@ class PeopleModel(gtk.GenericTreeModel):
         self.rebuild_data(data_filter, skip)
 
     def update_todo(self,client,cnxn_id,entry,data):
-        self.todo_color = Config.get(Config.TODO_COLOR)
+        self.todo_color = config.get('preferences.todo-color')
         
     def update_custom(self,client,cnxn_id,entry,data):
-        self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
+        self.custom_color = config.get('preferences.custom-marker-color')
 
     def update_complete(self,client,cnxn_id,entry,data):
-        self.complete_color = Config.get(Config.COMPLETE_COLOR)
+        self.complete_color = config.get('preferences.complete-color')
 
     def rebuild_data(self, data_filter=None, skip=[]):
         """

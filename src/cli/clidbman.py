@@ -50,7 +50,7 @@ LOG = logging.getLogger(".clidbman")
 #-------------------------------------------------------------------------
 import gen.db
 from gen.plug import PluginManager
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -164,7 +164,7 @@ class CLIDbManager(object):
         """ Get the list of current names in the database dir
         """
         # make the default directory if it does not exist
-        dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
+        dbdir = os.path.expanduser(config.get('behavior.database-path'))
         make_dbdir(dbdir)
 
         self.current_names = []
@@ -350,7 +350,7 @@ def find_next_db_dir():
     """
     while True:
         base = "%x" % int(time.time())
-        dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
+        dbdir = os.path.expanduser(config.get('behavior.database-path'))
         new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break

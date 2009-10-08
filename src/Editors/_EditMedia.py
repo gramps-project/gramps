@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 import const
-import Config
+import config
 import gen.lib
 import Mime
 import ThumbNails
@@ -91,8 +91,8 @@ class EditMedia(EditPrimary):
 
     def _local_init(self):
         assert(self.obj)
-        self.width_key = Config.MEDIA_WIDTH
-        self.height_key = Config.MEDIA_HEIGHT
+        self.width_key = 'interface.media-width'
+        self.height_key = 'interface.media-height'
         
         self.glade = Glade()
         self.set_window(self.glade.toplevel, 

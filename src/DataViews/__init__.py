@@ -42,26 +42,26 @@ except:
     geopresent = False
 
 try:
-    import Config
-    dv = Config.get(Config.DATA_VIEWS)
+    import config
+    dv = config.get('interface.data-views')
     #remove GeoView so we do not try to eval it if import fails
     if not geopresent and not dv.find('GeoView') == -1:
         dv = dv.replace('GeoView','').replace(',,',',')
     DATA_VIEWS = eval("["+dv+"]")
     #add or remove GeoView if config says so
-    if geopresent and Config.get(Config.GEOVIEW) and \
+    if geopresent and config.get('preferences.geoview') and \
                 not GeoView in DATA_VIEWS:
         DATA_VIEWS.append(GeoView)
-        Config.set(Config.DATA_VIEWS,
-                Config.get(Config.DATA_VIEWS)+",GeoView")
-    elif geopresent and not Config.get(Config.GEOVIEW) and \
+        config.set('interface.data-views',
+                config.get('interface.data-views')+",GeoView")
+    elif geopresent and not config.get('preferences.geoview') and \
                 GeoView in DATA_VIEWS:
         DATA_VIEWS.remove(GeoView)
-        newval = Config.get(Config.DATA_VIEWS).replace('GeoView','')\
+        newval = config.get('interface.data-views').replace('GeoView','')\
                                                 .replace(',,',',')
         if newval[-1] == ',':
             newval = newval[:-1]
-        Config.set(Config.DATA_VIEWS, newval)
+        config.set('interface.data-views', newval)
 except AttributeError:
     # Fallback if bad config line, or if no Config system
     DATA_VIEWS = [

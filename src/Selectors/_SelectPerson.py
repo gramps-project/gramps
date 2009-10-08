@@ -36,7 +36,7 @@ import gtk
 #-------------------------------------------------------------------------
 from DisplayModels import PeopleModel
 from _BaseSelector import BaseSelector
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -60,8 +60,8 @@ class SelectPerson(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = Config.PERSON_SEL_WIDTH
-        self.height_key = Config.PERSON_SEL_HEIGHT
+        self.width_key = 'interface.person-sel-width'
+        self.height_key = 'interface.person-sel-height'
         self.tree.connect('key-press-event', self._key_press)
         self.showall.connect('toggled',self.show_toggle)
 

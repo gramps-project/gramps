@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Errors
-import Config
+import config
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -516,8 +516,8 @@ class ManagedWindow(object):
         Set the dimensions of the window
         """
         if self.width_key is not None:
-            width = Config.get(self.width_key)
-            height = Config.get(self.height_key)
+            width = config.get(self.width_key)
+            height = config.get(self.height_key)
             self.window.resize(width, height)
 
     def _save_size(self):
@@ -526,9 +526,9 @@ class ManagedWindow(object):
         """
         if self.width_key is not None:
             (width, height) = self.window.get_size()
-            Config.set(self.width_key, width)
-            Config.set(self.height_key, height)
-            Config.sync()
+            config.set(self.width_key, width)
+            config.set(self.height_key, height)
+            config.save()
 
     def track_ref_for_deletion(self, ref):
         """

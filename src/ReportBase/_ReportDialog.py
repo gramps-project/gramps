@@ -45,7 +45,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Config
+import config
 import Errors
 from QuestionDialog import ErrorDialog, OptionDialog
 from ReportBase import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, 
@@ -405,7 +405,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return Config.get(Config.REPORT_DIRECTORY)
+        return config.get('paths.report-directory')
 
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -415,7 +415,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        Config.set(Config.REPORT_DIRECTORY, value)
+        config.set('paths.report-directory', value)
 
     #------------------------------------------------------------------------
     #

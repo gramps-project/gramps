@@ -38,7 +38,7 @@ Proxy class for the GRAMPS databases. Filter out all living people.
 from proxybase import ProxyDbBase
 from gen.lib import Date, Person, Name
 from Utils import probably_alive
-import Config
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -251,7 +251,7 @@ class LivingProxyDb(ProxyDbBase):
         new_name.set_surname_prefix(old_name.get_surname_prefix())
         new_name.set_type(old_name.get_type())
         if self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY:
-            new_name.set_first_name(Config.get(Config.PRIVATE_GIVEN_TEXT))
+            new_name.set_first_name(config.get('preferences.private-given-text'))
         else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
             new_name.set_first_name(old_name.get_first_name())
             new_name.set_suffix(old_name.get_suffix())

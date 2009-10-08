@@ -49,7 +49,7 @@ import DisplayModels
 from gui.utils import add_menuitem
 import Errors
 import Bookmarks
-import Config
+import config
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager
 from DdTargets import DdTargets
@@ -105,7 +105,7 @@ class PlaceView(PageView.ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             }
 
-        self.mapservice = Config.get(Config.MAPSERVICE)
+        self.mapservice = config.get('interface.mapservice')
         self.mapservicedata = {}
 
         PageView.ListView.__init__(
@@ -117,8 +117,8 @@ class PlaceView(PageView.ListView):
             multiple=True,
             filter_class=PlaceSidebarFilter)
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
-                                 self.filter_toggle)
+        config.connect("interface.filter",
+                          self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_place_column_order(clist)
@@ -213,8 +213,8 @@ class PlaceView(PageView.ListView):
         for label in self.mapslistlabel:
             label.set_label(self.mapservice_label())
             label.show()
-        Config.set(Config.MAPSERVICE, mapkey)
-        Config.sync()
+        config.set('interface.mapservice', mapkey)
+        config.save()
     
     def mapservice_label(self):
         """

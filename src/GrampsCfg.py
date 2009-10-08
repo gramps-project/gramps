@@ -44,7 +44,7 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Config
+import config
 import const
 import DateHandler
 from BasicUtils import name_displayer as _nd
@@ -167,14 +167,14 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
-        self.add_entry(table, _('Name'), 0, Config.RESEARCHER_NAME)
-        self.add_entry(table, _('Address'), 1, Config.RESEARCHER_ADDR)
-        self.add_entry(table, _('City'), 2, Config.RESEARCHER_CITY)
-        self.add_entry(table, _('State/Province'), 3, Config.RESEARCHER_STATE)
-        self.add_entry(table, _('Country'), 4, Config.RESEARCHER_COUNTRY)
-        self.add_entry(table, _('ZIP/Postal Code'), 5, Config.RESEARCHER_POSTAL)
-        self.add_entry(table, _('Phone'), 6, Config.RESEARCHER_PHONE)
-        self.add_entry(table, _('Email'), 7, Config.RESEARCHER_EMAIL)
+        self.add_entry(table, _('Name'), 0, 'researcher.researcher-name')
+        self.add_entry(table, _('Address'), 1, 'researcher.researcher-addr')
+        self.add_entry(table, _('City'), 2, 'researcher.researcher-city')
+        self.add_entry(table, _('State/Province'), 3, 'researcher.researcher-state')
+        self.add_entry(table, _('Country'), 4, 'researcher.researcher-country')
+        self.add_entry(table, _('ZIP/Postal Code'), 5, 'researcher.researcher-postal')
+        self.add_entry(table, _('Phone'), 6, 'researcher.researcher-phone')
+        self.add_entry(table, _('Email'), 7, 'researcher.researcher-email')
         return table
 
     def add_prefix_panel(self):
@@ -185,21 +185,21 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
-        self.add_entry(table, _('Person'), 0, Config.IPREFIX, 
+        self.add_entry(table, _('Person'), 0, 'preferences.iprefix', 
                        self.update_idformat_entry)
-        self.add_entry(table, _('Family'), 1, Config.FPREFIX,
+        self.add_entry(table, _('Family'), 1, 'preferences.fprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Place'), 2, Config.PPREFIX,
+        self.add_entry(table, _('Place'), 2, 'preferences.pprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Source'), 3, Config.SPREFIX,
+        self.add_entry(table, _('Source'), 3, 'preferences.sprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Media Object'), 4, Config.OPREFIX,
+        self.add_entry(table, _('Media Object'), 4, 'preferences.oprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Event'), 5, Config.EPREFIX,
+        self.add_entry(table, _('Event'), 5, 'preferences.eprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Repository'), 6, Config.RPREFIX,
+        self.add_entry(table, _('Repository'), 6, 'preferences.rprefix',
                        self.update_idformat_entry)
-        self.add_entry(table, _('Note'), 7, Config.NPREFIX,
+        self.add_entry(table, _('Note'), 7, 'preferences.nprefix',
                        self.update_idformat_entry)
         return table
 
@@ -210,20 +210,20 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_row_spacings(6)
         self.add_checkbox(
             table, _('Suppress warning when adding parents to a child'), 
-            0, Config.FAMILY_WARN)
+            0, 'preferences.family-warn')
         
         self.add_checkbox(
             table, _('Suppress warning when cancelling with changed data'), 
-            1, Config.DONT_ASK)
+            1, 'interface.dont-ask')
         
         self.add_checkbox(
             table, _('Suppress warning about missing researcher when'
                      ' exporting to GEDCOM'), 
-            2, Config.OWNER_WARN)
+            2, 'behavior.owner-warn')
 
         self.add_checkbox(
             table, _('Show plugin status dialog on plugin load error'), 
-            3, Config.POP_PLUGIN_STATUS)
+            3, 'behavior.pop-plugin-status')
         
         return table
 
@@ -234,11 +234,11 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_row_spacings(6)
 
         self.comp_color = self.add_color(table, _("Complete"), 0, 
-                                         Config.COMPLETE_COLOR)
+                                         'preferences.complete-color')
         self.todo_color = self.add_color(table, _("ToDo"), 1, 
-                                         Config.TODO_COLOR)
+                                         'preferences.todo-color')
         self.custom_color = self.add_color(table, _("Custom"), 2, 
-                                           Config.CUSTOM_MARKER_COLOR)
+                                           'preferences.custom-marker-color')
         
         button = gtk.Button(stock=gtk.STOCK_REVERT_TO_SAVED)
         button.connect('clicked', self.reset_colors)
@@ -247,13 +247,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def reset_colors(self, obj):
 
-        def_comp = Config.get_default(Config.COMPLETE_COLOR, '')
-        def_todo = Config.get_default(Config.TODO_COLOR, '')
-        def_cust = Config.get_default(Config.CUSTOM_MARKER_COLOR, '')
+        def_comp = config.get_default('preferences.complete-color')
+        def_todo = config.get_default('preferences.todo-color')
+        def_cust = config.get_default('preferences.custom-marker-color')
         
-        Config.set(Config.COMPLETE_COLOR, def_comp)
-        Config.set(Config.TODO_COLOR, def_todo)
-        Config.set(Config.CUSTOM_MARKER_COLOR, def_cust)
+        config.set('preferences.complete-color', def_comp)
+        config.set('preferences.todo-color', def_todo)
+        config.set('preferences.custom-marker-color', def_cust)
 
         self.comp_color.set_color(gtk.gdk.color_parse(def_comp))
         self.todo_color.set_color(gtk.gdk.color_parse(def_todo))
@@ -275,7 +275,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_checkbox(
             table, _('Add GeoView to GRAMPS showing internet maps based on '
             'your data.'), 
-            1, Config.GEOVIEW)
+            1, 'preferences.geoview')
 
         self.add_text(
             table, _('GeoView uses OpenStreetMap and one other map provider.\n'
@@ -284,19 +284,19 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         maps=self.add_radiobox(
             table, _('Google Maps'), 
-            3, Config.GEOVIEW_GOOGLEMAPS, None, 1)
+            3, 'preferences.googlemap', None, 1)
 
         self.add_radiobox(
             table, _('OpenLayers'), 
-            3, Config.GEOVIEW_OPENLAYERS, maps, 2)
+            3, 'preferences.openlayers', maps, 2)
 
         self.add_radiobox(
             table, _('Yahoo! Maps'), 
-            4, Config.GEOVIEW_YAHOO, maps, 1)
+            4, 'preferences.yahoo', maps, 1)
 
         self.add_radiobox(
             table, _('Microsoft Maps'), 
-            4, Config.GEOVIEW_MICROSOFT, maps, 2)
+            4, 'preferences.microsoft', maps, 2)
 
         self.add_text(
             table, _('You need to restart GRAMPS for above settings to take'
@@ -603,7 +603,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         the_list = obj.get_model()
         the_iter = obj.get_active_iter()
         new_idx = the_list.get_value(the_iter, COL_NUM)
-        Config.set(Config.NAME_FORMAT, new_idx)
+        config.set('preferences.name-format', new_idx)
         _nd.set_default_format(new_idx)
         self.uistate.emit('nameformat-changed')
         
@@ -723,7 +723,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         formats = DateHandler.get_date_formats()
         for item in formats:
             obox.append_text(item)
-        active = Config.get(Config.DATE_FORMAT)
+        active = config.get('preferences.date-format')
         if active >= len(formats):
             active = 0
         obox.set_active(active)
@@ -738,9 +738,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         formats = _surname_styles
         for item in formats:
             obox.append_text(item)
-        obox.set_active(Config.get(Config.SURNAME_GUESSING))
+        obox.set_active(config.get('behavior.surname-guessing'))
         obox.connect('changed', 
-                     lambda obj: Config.set(Config.SURNAME_GUESSING, 
+                     lambda obj: config.set('behavior.surname-guessing', 
                                             obj.get_active()))
         lwidget = BasicLabel("%s: " % _('Surname guessing'))
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
@@ -753,13 +753,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                    _("Relationship to home person")]
         for item in formats:
             obox.append_text(item)
-        active = Config.get(Config.STATUSBAR)
+        active = config.get('interface.statusbar')
         if active < 2:
             obox.set_active(0)
         else:
             obox.set_active(1)
         obox.connect('changed', 
-                     lambda obj: Config.set(Config.STATUSBAR, 2*obj.get_active()))
+                     lambda obj: config.set('interface.statusbar', 2*obj.get_active()))
         lwidget = BasicLabel("%s: " % _('Status bar'))
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
         table.attach(obox,    1, 3, row, row+1, yoptions=0)
@@ -768,7 +768,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # Text in sidebar:
         self.add_checkbox(table, 
                           _("Show text in sidebar buttons (requires restart)"), 
-                          row, Config.SIDEBAR_TEXT, stop=3)
+                          row, 'interface.sidebar-text', stop=3)
         row += 1
         return table
 
@@ -779,22 +779,22 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         self.add_entry(table, _('Missing surname'), row, 
-                       Config.NO_SURNAME_TEXT)
+                       'preferences.no-surname-text')
         row += 1
         self.add_entry(table, _('Missing given name'), row, 
-                       Config.NO_GIVEN_TEXT)
+                       'preferences.no-given-text')
         row += 1
         self.add_entry(table, _('Missing record'), row, 
-                       Config.NO_RECORD_TEXT)
+                       'preferences.no-record-text')
         row += 1
         self.add_entry(table, _('Private surname'), row, 
-                       Config.PRIVATE_SURNAME_TEXT)
+                       'preferences.private-surname-text')
         row += 1
         self.add_entry(table, _('Private given name'), row, 
-                       Config.PRIVATE_GIVEN_TEXT)
+                       'preferences.private-given-text')
         row += 1
         self.add_entry(table, _('Private record'), row, 
-                       Config.PRIVATE_RECORD_TEXT)
+                       'preferences.private-record-text')
         row += 1
         return table
 
@@ -807,7 +807,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
     def date_format_changed(self, obj):
         from QuestionDialog import OkDialog
 
-        Config.set(Config.DATE_FORMAT, obj.get_active())
+        config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the data format will not take '
                    'effect until the next time GRAMPS is started.'))
@@ -820,28 +820,28 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.add_pos_int_entry(table, 
                 _('Date about range'),
-                0, Config.DATE_ABOUT_RANGE, self.update_entry)
+                0, 'behavior.date-about-range', self.update_entry)
         self.add_pos_int_entry(table, 
                 _('Date after range'),
-                1, Config.DATE_AFTER_RANGE, self.update_entry)
+                1, 'behavior.date-after-range', self.update_entry)
         self.add_pos_int_entry(table, 
                 _('Date before range'),
-                2, Config.DATE_BEFORE_RANGE, self.update_entry)
+                2, 'behavior.date-before-range', self.update_entry)
         self.add_pos_int_entry(table, 
                 _('Maximum age probably alive'),
-                3, Config.MAX_AGE_PROB_ALIVE, self.update_entry)
+                3, 'behavior.max-age-prob-alive', self.update_entry)
         self.add_pos_int_entry(table, 
                 _('Maximum sibling age difference'),
-                4, Config.MAX_SIB_AGE_DIFF, self.update_entry)
+                4, 'behavior.max-sib-age-diff', self.update_entry)
         self.add_pos_int_entry(table, 
                 _('Minimum years between generations'),
-                5, Config.MIN_GENERATION_YEARS, self.update_entry)
+                5, 'behavior.min-generation-years', self.update_entry)
         self.add_pos_int_entry(table, 
                 _('Average years between generations'),
-                6, Config.AVG_GENERATION_GAP, self.update_entry)
+                6, 'behavior.avg-generation-gap', self.update_entry)
         self.add_pos_int_entry(table,
                 _('Markup for invalid date format'), 
-                7, Config.INVALID_DATE_FORMAT, self.update_entry)
+                7, 'preferences.invalid-date-format', self.update_entry)
 
         return table
         
@@ -853,25 +853,25 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.add_checkbox(table, 
                 _('Add default source on import'), 
-                0, Config.DEFAULT_SOURCE)
+                0, 'preferences.default-source')
         self.add_checkbox(table, 
                 _('Enable spelling checker'), 
-                1, Config.SPELLCHECK)
+                1, 'behavior.spellcheck')
         self.add_checkbox(table, 
                 _('Display Tip of the Day'), 
-                2, Config.USE_TIPS)
+                2, 'behavior.use-tips')
         self.add_checkbox(table, 
                 _('Use shading in Relationship View'), 
-                3, Config.RELATION_SHADE)
+                3, 'preferences.relation-shade')
         self.add_checkbox(table, 
                 _('Display edit buttons on Relationship View'), 
-                4, Config.RELEDITBTN)
+                4, 'interface.releditbtn')
         self.add_checkbox(table, 
                 _('Remember last view displayed'), 
-                5, Config.USE_LAST_VIEW)
+                5, 'preferences.use-last-view')
         self.add_pos_int_entry(table, 
                 _('Max generations for relationships'),
-                6, Config.GENERATION_DEPTH, self.update_gen_depth)
+                6, 'behavior.generation-depth', self.update_gen_depth)
         self.path_entry = gtk.Entry()
         self.add_path_box(table, 
                 _('Base path for relative media paths'),
@@ -888,22 +888,22 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.add_entry(table, 
                 _('Database path'), 
-                0, Config.DATABASE_PATH)
+                0, 'behavior.database-path')
         self.add_checkbox(table, 
                 _('Automatically load last database'), 
-                1, Config.AUTOLOAD)
+                1, 'behavior.autoload')
                 
         return table
         
     def add_checkbox(self, table, label, index, constant, start=1, stop=9):
         checkbox = gtk.CheckButton(label)
-        checkbox.set_active(Config.get(constant))
+        checkbox.set_active(config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant)
         table.attach(checkbox, start, stop, index, index+1, yoptions=0)
 
     def add_radiobox(self, table, label, index, constant, group, column):
         radiobox = gtk.RadioButton(group,label)
-        if Config.get(constant) == True:
+        if config.get(constant) == True:
             radiobox.set_active(True)
         radiobox.connect('toggled', self.update_radiobox, constant)
         table.attach(radiobox, column, column+1, index, index+1, yoptions=0)
@@ -945,7 +945,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             callback = self.update_entry
         lwidget = BasicLabel("%s: " % label)
         entry = gtk.Entry()
-        entry.set_text(Config.get(constant))
+        entry.set_text(config.get(constant))
         entry.connect('changed', callback, constant)
         table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
                      xoptions=gtk.FILL)
@@ -956,7 +956,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         """
         lwidget = BasicLabel("%s: " % label)
         entry = gtk.Entry()
-        entry.set_text(str(Config.get(constant)))
+        entry.set_text(str(config.get(constant)))
         if callback:
             entry.connect('changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
@@ -965,7 +965,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def add_color(self, table, label, index, constant):
         lwidget = BasicLabel("%s: " % label)
-        hexval = Config.get(constant)
+        hexval = config.get(constant)
         color = gtk.gdk.color_parse(hexval)
         entry = gtk.ColorButton(color=color)
         color_hex_label = BasicLabel(hexval)
@@ -1003,19 +1003,19 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         f.destroy()
 
     def update_entry(self, obj, constant):
-        Config.set(constant, unicode(obj.get_text()))
+        config.set(constant, unicode(obj.get_text()))
 
     def update_idformat_entry(self, obj, constant):
-        Config.set(constant, unicode(obj.get_text()))
+        config.set(constant, unicode(obj.get_text()))
         self.dbstate.db.set_prefixes(
-            Config.get(Config.IPREFIX),
-            Config.get(Config.OPREFIX),
-            Config.get(Config.FPREFIX),
-            Config.get(Config.SPREFIX),
-            Config.get(Config.PPREFIX),
-            Config.get(Config.EPREFIX),
-            Config.get(Config.RPREFIX),
-            Config.get(Config.NPREFIX) )
+            config.get('preferences.iprefix'),
+            config.get('preferences.oprefix'),
+            config.get('preferences.fprefix'),
+            config.get('preferences.sprefix'),
+            config.get('preferences.pprefix'),
+            config.get('preferences.eprefix'),
+            config.get('preferences.rprefix'),
+            config.get('preferences.nprefix') )
 
     def update_gen_depth(self, obj, constant):
         ok = True
@@ -1024,13 +1024,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         try:
             intval = int(obj.get_text())
         except:
-            intval = Config.get(constant)
+            intval = config.get(constant)
             ok = False
         if intval < 0 :
-            intval = Config.get(constant)
+            intval = config.get(constant)
             ok = False
         if ok:
-            Config.set(constant, intval)
+            config.set(constant, intval)
             #immediately use this value in displaystate.
             self.uistate.set_gendepth(intval)
         else:
@@ -1042,13 +1042,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                                     color.green/256, 
                                     color.blue/256)
         color_hex_label.set_text(hexval)
-        Config.set(constant, hexval)
+        config.set(constant, hexval)
 
     def update_checkbox(self, obj, constant):
-        Config.set(constant, obj.get_active())
+        config.set(constant, obj.get_active())
 
     def update_radiobox(self, obj, constant):
-        Config.set(constant, obj.get_active())
+        config.set(constant, obj.get_active())
 
     def build_menu_names(self, obj):
         return (_('Preferences'), None)
