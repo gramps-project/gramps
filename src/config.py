@@ -53,6 +53,33 @@ INIFILE = os.path.join(const.HOME_DIR, "gramps32.ini")
 
 #---------------------------------------------------------------
 #
+# Local functions
+#
+#---------------------------------------------------------------
+def eval_item(setting):
+    """
+    Given a value from an ini file, return it in proper type.
+    May be recursively called, in the case of nested structures.
+    """
+    setting = setting.strip()
+    value = None
+    if setting.startswith("'") and setting.endswith("'"):
+        value = setting[1:-1]
+    elif setting.startswith("[") and setting.endswith("]"):
+        list_data = setting[1:-1]
+        value = [eval_item(item) for item in list_data.split(",")]
+    elif setting == "True":
+        value = True 
+    elif setting == "False":
+        value = False
+    elif "." in setting:
+        value = float(setting)
+    else:
+        value = int(setting)
+    return value
+
+#---------------------------------------------------------------
+#
 # Classes
 #
 #---------------------------------------------------------------
@@ -135,14 +162,17 @@ class ConfigManager(object):
                     self.data[name] = {}
                 for opt in parser.options(sec):
                     setting = parser.get(sec, opt).strip()
-                    ####################### Upgrade from oldstyle < 3.2
                     if oldstyle:
+                    ####################### Upgrade from oldstyle < 3.2
                         # if we know this setting, convert type
                         key = "%s.%s" % (name, opt)
                         if self.has_default(key):
                             vtype = type(self.get_default(key))
                             if vtype == bool:
                                 value = setting in ["1", "True"]
+                            elif vtype == list:
+                                print "WARNING: ignoring old key '%s'" % key
+                                continue # there were no lists in oldstyle
                             else:
                                 value = vtype(setting)
                         else:
@@ -150,17 +180,14 @@ class ConfigManager(object):
                             print "WARNING: ignoring old key '%s'" % key
                             continue # with next setting
                     ####################### End upgrade code
-                    elif setting.startswith("'") and setting.endswith("'"):
-                        value = setting[1:-1]
-                    elif setting == "True":
-                        value = True 
-                    elif setting == "False":
-                        value = False
-                    elif "." in setting:
-                        value = float(setting)
                     else:
-                        value = int(setting)
-                    self.data[name][opt.lower()] = value
+                        value = eval_item(setting)
+                    ####################### Now, let's test and set:
+                    if type(value) == type(self.default[name][opt.lower()]):
+                        self.data[name][opt.lower()] = value
+                    else:
+                        print ("WARNING: ignoring key with wrong type '%s.%s'" 
+                               % (name, opt.lower()))
 
     def save(self, filename = None):
         """
@@ -421,6 +448,8 @@ register('geoview.map', "person")
 register('geoview.stylesheet', "")
 register('geoview.zoom', 0)
 
+register('htmlview.start-url', "http://gramps-project.org")
+
 register('interface.address-height', 450)
 register('interface.address-width', 650)
 register('interface.attribute-height', 350)
@@ -431,9 +460,9 @@ register('interface.clipboard-height', 300)
 register('interface.clipboard-width', 300)
 register('interface.dont-ask', False)
 register('interface.data-views', 
-            'GrampletView,PersonView,RelationshipView,'
-            'FamilyListView,PedigreeView,EventView,SourceView,'
-            'PlaceView,MediaView,RepositoryView,NoteView')
+         ['GrampletView', 'PersonView', 'RelationshipView', 
+          'FamilyListView', 'PedigreeView', 'EventView', 'SourceView',
+          'PlaceView', 'MediaView', 'RepositoryView', 'NoteView'])
 register('interface.event-height', 450)
 register('interface.event-ref-height', 450)
 register('interface.event-ref-width', 600)

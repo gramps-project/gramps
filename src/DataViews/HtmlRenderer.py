@@ -476,7 +476,7 @@ class HtmlView(PageView):
         """
         hbox = gtk.HBox(False, 4)
         self.urlfield = gtk.Entry()
-        self.urlfield.set_text("http://gramps-project.org")
+        self.urlfield.set_text(config.get("htmlview.start-url"))
         self.urlfield.connect('activate', self._on_activate)
         hbox.pack_start(self.urlfield, True, True, 4)
         button = gtk.Button(stock=gtk.STOCK_APPLY)

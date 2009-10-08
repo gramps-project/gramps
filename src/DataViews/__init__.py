@@ -43,25 +43,20 @@ except:
 
 try:
     import config
-    dv = config.get('interface.data-views')
+    dv = config.get('interface.data-views') # list of strings
     #remove GeoView so we do not try to eval it if import fails
-    if not geopresent and not dv.find('GeoView') == -1:
-        dv = dv.replace('GeoView','').replace(',,',',')
-    DATA_VIEWS = eval("["+dv+"]")
+    if not geopresent and dv.count('GeoView') > 0:
+        dv.remove('GeoView')
+    DATA_VIEWS = [eval(view) for view in dv]
     #add or remove GeoView if config says so
     if geopresent and config.get('preferences.geoview') and \
                 not GeoView in DATA_VIEWS:
         DATA_VIEWS.append(GeoView)
-        config.set('interface.data-views',
-                config.get('interface.data-views')+",GeoView")
+        config.get('interface.data-views').append('GeoView')
     elif geopresent and not config.get('preferences.geoview') and \
                 GeoView in DATA_VIEWS:
         DATA_VIEWS.remove(GeoView)
-        newval = config.get('interface.data-views').replace('GeoView','')\
-                                                .replace(',,',',')
-        if newval[-1] == ',':
-            newval = newval[:-1]
-        config.set('interface.data-views', newval)
+        config.get('interface.data-views').remove('GeoView')
 except AttributeError:
     # Fallback if bad config line, or if no Config system
     DATA_VIEWS = [
