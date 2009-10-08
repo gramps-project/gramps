@@ -4,7 +4,6 @@
 SUBDIRS = \
 	BasicUtils \
 	cli \
-	Config \
 	data \
 	DataViews \
 	DateHandler \

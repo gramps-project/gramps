@@ -105,7 +105,6 @@ src/gen/plug/menu/Makefile
 src/gui/Makefile
 src/gui/views/Makefile
 src/gui/views/treemodels/Makefile
-src/Config/Makefile
 src/FilterEditor/Makefile
 src/Mime/Makefile
 src/DisplayTabs/Makefile
