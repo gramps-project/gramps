@@ -65,7 +65,7 @@ body {
     color:#7D5925;
     margin:0;
     padding:0;
-    background:url(../images/Web_Mainz_Bkgd.png) #000 repeat;
+    background:url(../images/Web_Mainz_Bkgd.png) #FFF2C6 repeat;
 }
 div {
     margin:0;
@@ -1116,16 +1116,19 @@ div#sourcerefs ol li ol {
 #footer {
     clear:both;
     width:965px;
+    height: 60px;
     font-size:12px;
     line-height:130%;
     font-family:sans-serif;
     margin:0 auto;
     padding:15px 0 0 0;
+    color: #000;
     background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
     border-top:dashed 1px #7D5925;
 }
 #footer a, #footer a:visited {
     text-decoration:none;
+    color: #000;
 }
 #footer a:hover {
     text-decoration:underline;
@@ -1276,8 +1279,9 @@ div#sourcerefs ol li ol {
 .calendar tbody tr td ul li span.yearsmarried em {
     color:#453619;
 }
-.calendar tbody tr td.highlight {
-
+.calendar tbody tr td.highlight { }
+.calendar tbody tr td.EmptyDays {
+    background-color: #FFF2C6;
 }
 .calendar tbody tr td.highlight div.date {
     color:#767D25;
@@ -1316,4 +1320,7 @@ body#fullyearlinked table.calendar thead tr th.monthName {
 }
 body#fullyearlinked table.calendar tbody tr td {
     height:3em;
+}
+body#OneDay {
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }

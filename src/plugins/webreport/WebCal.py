@@ -153,6 +153,7 @@ class WebCalReport(Report):
         self.today = date.Today()
 
         self.warn_dir = True            # Only give warning once.
+
         self.link_to_narweb = mgobn('link_to_narweb')
         self.narweb_prefix = mgobn('prefix')
 
@@ -809,7 +810,7 @@ class WebCalReport(Report):
                                 tcell += unordered
 
                                 for nyears, date, text, event in day_list:
-                                    unordered += Html("li", text, inline=False if event == 'Anniversary' 
+                                    unordered += Html("li", text, inline = False if event == 'Anniversary' 
                                         else True)
 
                         # no events for this day
@@ -1040,14 +1041,13 @@ class WebCalReport(Report):
 
         # set date display as in user prevferences 
         pg_date = _dd.display(event_date)
-        body += Html('h3', pg_date, inline = True)
+        body += Html("h3", pg_date, inline = True)
 
         # list the events
-        ordered = Html('ol')
+        ordered = Html("ol")
         body += ordered  
         for nyears, date, text, event in day_list:
-            ordered += Html("li", text, inline=False if event == 'Anniversary' 
-            else True)
+            ordered += Html("li", text, inline = False if event == 'Anniversary' else True)
 
         # create blank line for stylesheets
         # write footer section
@@ -1193,6 +1193,8 @@ class WebCalReport(Report):
                 short_name = self.get_name(person, father_surname)
                 alive = probably_alive(person, self.database, prob_alive_date)
                 if (self.alive and alive) or not self.alive:
+
+                    # add link to NarrativeWeb
                     if self.link_to_narweb:
                         text = Html('a', short_name, 
                                     href=self.build_url_fname_html(person.handle, 'ppl', 
@@ -1817,7 +1819,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
             + '</em>')
 
         # an anniversary
-        else:
+        elif event == "Anniversary":
 
             if nyears == 0:
                 txt_str = _('%(couple)s, <em>wedding</em>') % {
@@ -1833,11 +1835,10 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         day_list.append((nyears, date, txt_str, event))
 
     # a holiday
-    # will force holidays to be on top
     nyears = 0
 
     for text, event, date in holiday_list:
-            day_list.append((nyears, date, text, event))
+        day_list.append((nyears, date, text, event))
 
     # sort them based on number of years
     # holidays will always be on top of event list

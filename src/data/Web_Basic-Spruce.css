@@ -1129,6 +1129,7 @@ div#sourcerefs ol li ol {
 #footer {
     clear:both;
     width:100%;
+    height: 60px;
     font-size:12px;
     line-height:130%;
     color:#204D91;

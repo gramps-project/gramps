@@ -157,8 +157,11 @@ a:visited {
 
 /* Header
 ----------------------------------------------------- */
-#header {
+div#header {
     background-color:#454;
+}
+div#header a {
+    color: #FFF;
 }
 #SiteTitle {
     margin:0;
@@ -176,12 +179,14 @@ a:visited {
 
 /* Footer
 ----------------------------------------------------- */
+
 div#footer {
     width: 100%;
     font-size: 12px;
+    height: 60px;
     color: #E8E6E8;
-    BORDER-TOP: SOLID 1PX #454;
-    BACKGROUND-COLOR: #454;
+    border-top: solid 1px #454;
+    background-color: #454;
 }
 #footer a, #footer a:visited {
     text-decoration:none;

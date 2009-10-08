@@ -289,9 +289,6 @@ div#navigation ul, div#subnavigation ul {
 div#navigation ul li, div#subnavigation ul li {
     float:left;
 }
-body#WebCal divdiv#navigation ul li a {
-    color: #FFF;
-}
 div#navigation ul li a, div#subnavigation ul li a {
     display: block;
     padding: 12px 10px 14px 1px;
@@ -1364,8 +1361,7 @@ div#pedigree {
 -------------------------------------------------------------------------------------------- */
 /* Calendar : General */
 body#WebCal {
-    padding: 98px 14px 0px 14px;
-    background-color: #542;
+    background-color: #FFF;
 }
 .calendar {
     empty-cells:show;
@@ -1508,7 +1504,7 @@ body#WebCal {
 
 /* Calendar : Full Year */
 body#fullyearlinked {
-    padding: 98px 0px 0px 0px;
+    background-color: #FFF;
 }
 body#fullyearlinked div.content {
     width:963px;
@@ -1543,9 +1539,4 @@ body#fullyearlinked table.calendar tbody tr td.saturday {
 }
 body#fullyearlinked able.calendar tbody tr td.sunday {
     border:solid 2px #000;
-}
-
-/* Calendar : One Day */
-body#OneDay {
-    padding: 170px 0px 0px 0px;
 }
