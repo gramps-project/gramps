@@ -158,7 +158,7 @@ class GuiStringOption(gtk.Entry):
     """
     This class displays an option that is a simple one-line string.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.StringOption
@@ -168,7 +168,7 @@ class GuiStringOption(gtk.Entry):
         self.__option = option
         self.set_text( self.__option.get_value() )
         self.connect('changed', self.__text_changed)
-        tooltip.set_tip(self, self.__option.get_help())
+        self.set_tooltip_text(self.__option.get_help())
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -195,12 +195,12 @@ class GuiColorOption(gtk.ColorButton):
     """
     This class displays an option that allows the selection of a colour.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         self.__option = option
         value = self.__option.get_value()
         gtk.ColorButton.__init__( self, gtk.gdk.color_parse(value) )
         self.connect('color-set', self.__value_changed)
-        tooltip.set_tip(self, self.__option.get_help())
+        self.set_tooltip_text(self.__option.get_help())
         
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
@@ -223,7 +223,7 @@ class GuiNumberOption(gtk.SpinButton):
     This class displays an option that is a simple number with defined maximum 
     and minimum values.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         self.__option = option
 
         decimals = 0
@@ -243,7 +243,7 @@ class GuiNumberOption(gtk.SpinButton):
 
         self.set_value(self.__option.get_value())
         self.connect('value_changed', self.__value_changed)
-        tooltip.set_tip(self, self.__option.get_help())
+        self.set_tooltip_text(self.__option.get_help())
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -271,7 +271,7 @@ class GuiTextOption(gtk.ScrolledWindow):
     """
     This class displays an option that is a multi-line string.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         self.__option = option
         gtk.ScrolledWindow.__init__(self)
         self.set_shadow_type(gtk.SHADOW_IN)
@@ -287,7 +287,7 @@ class GuiTextOption(gtk.ScrolledWindow):
         # Required for tooltip
         gtext.add_events(gtk.gdk.ENTER_NOTIFY_MASK)
         gtext.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)
-        tooltip.set_tip(gtext, self.__option.get_help())
+        gtext.set_tooltip_text(self.__option.get_help())
         
         self.__buff = gtext.get_buffer()
         self.__buff.connect('changed', self.__value_changed)
@@ -310,12 +310,12 @@ class GuiBooleanOption(gtk.CheckButton):
     """
     This class displays an option that is a boolean (True or False).
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         self.__option = option
         gtk.CheckButton.__init__(self, self.__option.get_label())
         self.set_active(self.__option.get_value())
         self.connect('toggled', self.__value_changed)
-        tooltip.set_tip(self, self.__option.get_help())
+        self.set_tooltip_text(self.__option.get_help())
 
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -343,7 +343,7 @@ class GuiEnumeratedListOption(gtk.HBox):
     This class displays an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         gtk.HBox.__init__(self)
         evtBox = gtk.EventBox()
         self.__option = option
@@ -353,7 +353,7 @@ class GuiEnumeratedListOption(gtk.HBox):
         
         self.__update_options()
 
-        tooltip.set_tip(self, self.__option.get_help())
+        self.set_tooltip_text(self.__option.get_help())
         
         self.__combo.connect('changed', self.__value_changed)
         self.__option.connect('options-changed', self.__update_options)
@@ -407,7 +407,7 @@ class GuiPersonOption(gtk.HBox):
     This class displays an option that allows a person from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.PersonOption
@@ -436,8 +436,8 @@ class GuiPersonOption(gtk.HBox):
             person = self.__db.get_default_person()
         self.__update_person(person)
         
-        tooltip.set_tip(pevt, self.__option.get_help())
-        tooltip.set_tip(person_button,  _('Select a different person'))
+        pevt.set_tooltip_text(self.__option.get_help())
+        person_button.set_tooltip_text(_('Select a different person'))
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -498,7 +498,7 @@ class GuiFamilyOption(gtk.HBox):
     This class displays an option that allows a family from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.FamilyOption
@@ -524,8 +524,8 @@ class GuiFamilyOption(gtk.HBox):
         
         self.__initialize_family()
         
-        tooltip.set_tip(pevt, self.__option.get_help())
-        tooltip.set_tip(family_button,  _('Select a different family'))
+        pevt.set_tooltip_text(self.__option.get_help())
+        family_button.set_tooltip_text(_('Select a different family'))
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -635,7 +635,7 @@ class GuiNoteOption(gtk.HBox):
     This class displays an option that allows a note from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.NoteOption
@@ -664,8 +664,8 @@ class GuiNoteOption(gtk.HBox):
         note = self.__db.get_note_from_gramps_id(nid)
         self.__update_note(note)
         
-        tooltip.set_tip(pevt, self.__option.get_help())
-        tooltip.set_tip(note_button, _('Select an existing note'))
+        pevt.set_tooltip_text(self.__option.get_help())
+        note_button.set_tooltip_text(_('Select an existing note'))
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -717,7 +717,7 @@ class GuiMediaOption(gtk.HBox):
     This class displays an option that allows a media object from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.MediaOption
@@ -746,8 +746,8 @@ class GuiMediaOption(gtk.HBox):
         media = self.__db.get_object_from_gramps_id(mid)
         self.__update_media(media)
         
-        tooltip.set_tip(pevt, self.__option.get_help())
-        tooltip.set_tip(media_button, _('Select an existing media object'))
+        pevt.set_tooltip_text(self.__option.get_help())
+        media_button.set_tooltip_text(_('Select an existing media object'))
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -794,7 +794,7 @@ class GuiPersonListOption(gtk.HBox):
     This class displays a widget that allows multiple people from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.PersonListOption
@@ -847,7 +847,7 @@ class GuiPersonListOption(gtk.HBox):
         self.__vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.pack_end(self.__vbbox, expand=False)
         
-        tooltip.set_tip(self.__tree_view, self.__option.get_help())
+        self.__tree_view.set_tooltip_text(self.__option.get_help())
 
     def __update_value(self):
         """
@@ -934,7 +934,7 @@ class GuiPlaceListOption(gtk.HBox):
     This class displays a widget that allows multiple places from the 
     database to be selected.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.PlaceListOption
@@ -987,7 +987,7 @@ class GuiPlaceListOption(gtk.HBox):
         self.__vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.pack_end(self.__vbbox, expand=False)
         
-        tooltip.set_tip(self.__tree_view, self.__option.get_help())
+        self.__tree_view.set_tooltip_text(self.__option.get_help())
 
     def __update_value(self):
         """
@@ -1046,7 +1046,7 @@ class GuiSurnameColorOption(gtk.HBox):
     selected from the database, and to assign a colour (not necessarily
     unique) to each one.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.SurnameColorOption
@@ -1110,7 +1110,7 @@ class GuiSurnameColorOption(gtk.HBox):
             colour = tmp.pop(0)
             self.__model.append([surname, colour])
             
-        tooltip.set_tip(self.__tree_view, self.__option.get_help())
+        self.__tree_view.set_tooltip_text(self.__option.get_help())
 
     def __value_changed(self):
         """
@@ -1199,7 +1199,7 @@ class GuiDestinationOption(gtk.HBox):
     This class displays an option that allows the user to select a 
     DestinationOption.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.DestinationOption
@@ -1220,7 +1220,7 @@ class GuiDestinationOption(gtk.HBox):
         self.pack_start(self.__entry, True, True)
         self.pack_end(self.__button, False, False)
         
-        tooltip.set_tip(self, self.__option.get_help())
+        self.set_tooltip_text(self.__option.get_help())
         
         self.__option.connect('options-changed', self.__option_changed)
         
@@ -1304,7 +1304,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
     """
     This class displays a StyleOption.
     """
-    def __init__(self, option, dbstate, uistate, track, tooltip):
+    def __init__(self, option, dbstate, uistate, track):
         """
         @param option: The option to display.
         @type option: gen.plug.menu.StyleOption
@@ -1352,7 +1352,6 @@ class GuiMenuOptions(object):
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}
         self.options_help = {}
-        self.__tooltips = gtk.Tooltips()
         self.add_menu_options(self.menu)
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
@@ -1395,8 +1394,8 @@ class GuiMenuOptions(object):
                 if name in self.options_dict:
                     option.set_value(self.options_dict[name])
                     
-                widget, label = make_gui_option(option, self.__tooltips, 
-                                                dialog.dbstate, dialog.uistate, dialog.track)
+                widget, label = make_gui_option(option, dialog.dbstate,
+                                                dialog.uistate, dialog.track)
 
                 if widget is None:
                     print "UNKNOWN OPTION: ", option
@@ -1416,7 +1415,7 @@ class GuiMenuOptions(object):
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
 
-def make_gui_option(option, tooltips, dbstate, uistate, track):
+def make_gui_option(option, dbstate, uistate, track):
     """
     Stand-alone function so that Options can be used in other
     ways, too. Takes an Option and returns a GuiOption.
@@ -1425,51 +1424,41 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
     label = True
     pmgr = gen.plug.PluginManager.get_instance()
     external_options = pmgr.get_external_opt_dict()
-    if tooltips is None:
-        tooltips = gtk.Tooltips()
-    elif type(tooltips) == type(""):
-        msg = tooltips
-        tooltips = gtk.Tooltips()
-        # FIXME: what widget?
-        #tooltips.set_tip(gui.scrolledwindow, msg)
     if isinstance(option, gen.plug.menu.PersonOption):
-        widget = GuiPersonOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiPersonOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.FamilyOption):
-        widget = GuiFamilyOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiFamilyOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.NoteOption):
-        widget = GuiNoteOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiNoteOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.MediaOption):
-        widget = GuiMediaOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiMediaOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.PersonListOption):
-        widget = GuiPersonListOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiPersonListOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.NumberOption):
-        widget = GuiNumberOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiNumberOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.BooleanOption):
-        widget = GuiBooleanOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiBooleanOption(option, dbstate, uistate, track)
         label = False
     elif isinstance(option, gen.plug.menu.DestinationOption):
-        widget = GuiDestinationOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiDestinationOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.StringOption):
-        widget = GuiStringOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiStringOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.StyleOption):
-        widget = GuiStyleOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiStyleOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.EnumeratedListOption):
-        widget = GuiEnumeratedListOption(option, dbstate, uistate, track, 
-                                         tooltips)
+        widget = GuiEnumeratedListOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.TextOption):
-        widget = GuiTextOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiTextOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.ColorOption):
-        widget = GuiColorOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiColorOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.SurnameColorOption):
-        widget = GuiSurnameColorOption(option, dbstate, uistate, track, 
-                                       tooltips)
+        widget = GuiSurnameColorOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.PlaceListOption):
-        widget = GuiPlaceListOption(option, dbstate, uistate, track, tooltips)
+        widget = GuiPlaceListOption(option, dbstate, uistate, track)
     elif option.__class__ in external_options:
         widget = external_options[option.__class__](option, dbstate, uistate,
-                                                    track, tooltips)
+                                                    track)
     else:
         raise AttributeError(
                      "can't make GuiOption: unknown option type: '%s'" % option)
     return widget, label
-
