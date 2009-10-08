@@ -58,7 +58,7 @@ INIFILE = os.path.join(const.HOME_DIR, "gramps32.ini")
 #---------------------------------------------------------------
 def eval_item(setting):
     """
-    Given a value from an ini file, return it in proper type.
+    Given a value from an ini file, return it in its proper type.
     May be recursively called, in the case of nested structures.
     """
     setting = setting.strip()
@@ -121,12 +121,20 @@ class ConfigManager(object):
         self.data = {}
         self.reset()
 
-    def reset(self, section=None, setting=None):
+    def reset(self, key=None):
         """
         Resets one, a section, or all settings values to their defaults.
+        This does not disconnect callbacks.
         """
-        if section is not None and "." in section:
-            section, setting = section.split(".", 1)
+        if key is None:
+            section = None
+            setting = None
+        elif "." in key:
+            section, setting = key.split(".", 1)
+        else: # key is not None and doesn't have a "."
+            section = key
+            setting = None
+        # Now, do the reset on the right parts:
         if section is None:
             self.data = {}
             for section in self.default:
@@ -341,12 +349,32 @@ class ConfigManager(object):
 
     def disconnect(self, callback_id):
         """
+        Removes a callback given its callback ID. The ID is generated and
+        returned when the function is connected to the key (section.setting).
         """
         for section in self.callbacks:
             for setting in self.callbacks[section]:
                 for (cbid, func) in self.callbacks[section][setting]:
                     if callback_id == cbid:
                         self.callbacks[section][setting].remove((cbid, func))
+
+    def emit(self, key):
+        """
+        Emits the signal "key" which will call the callbacks associated
+        with that setting.
+        """
+        if "." in key:
+            section, setting = key.split(".", 1)
+        else:
+            raise AttributeError("Invalid config section.setting name: '%s'" % 
+                                 key)
+        if section not in self.callbacks:
+            raise AttributeError("No such config section name: '%s'" % section)
+        if setting not in self.callbacks[section]:
+            raise AttributeError("No such config setting name: '%s.%s'" % 
+                                 (section, setting))
+        for (cbid, func) in self.callbacks[section][setting]:
+            func(self, 0, str(self.data[section][setting]), None) 
 
     def set(self, key, value):
         """
@@ -720,4 +748,16 @@ if __name__ == "__main__":
     CM.reset("section.setting1")
     assert CM.get("section.setting1") == 1
 
+    # No callback:
+    x = None
+    CM.set("section.setting1", 200)
+    assert x == None
+    # Now, set one:
+    cbid = CM.connect("section.setting1", callback)
+    # Now, call it:
+    CM.emit("section.setting1")
+    assert x == "200"
+
     CM.save("./test2.ini")
+    CM.reset()
+    CM.load("./test2.ini")
