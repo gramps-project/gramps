@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 20:32+0200\n"
-"PO-Revision-Date: 2009-10-07 20:40+0200\n"
+"POT-Creation-Date: 2009-10-08 18:28+0200\n"
+"PO-Revision-Date: 2009-10-08 22:52+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3638,7 +3638,7 @@ msgstr "Keine aktive Person gesetzt."
 #: ../src/DataViews/GeoView.py:1784
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
-msgstr "Alle %(name)s Personen Familien Orte im Stammbaummit Koordinaten."
+msgstr "Alle %(name)s Personen Familien Orte im Stammbaum mit Koordinaten."
 
 #: ../src/DataViews/GeoView.py:1829
 #, python-format
@@ -3818,9 +3818,7 @@ msgstr "Es wurde eine Person gefunden, die ihr eigener Vorfahre ist."
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#. An optional link to a home page
 #: ../src/DataViews/PedigreeView.py:1316 ../src/DataViews/PedigreeView.py:1325
-#: ../src/plugins/webreport/WebCal.py:364
 msgid "Home"
 msgstr "Anfang"
 
@@ -12829,8 +12827,10 @@ msgstr "Erstellt mit <a href=\"http://gramps-project.org\">GRAMPS</a> am %(date)
 msgid "Created for <a href=\"%s\">%s</a>"
 msgstr "Erstellt für <a href=\"%s\">%s</a>"
 
+#. An optional link to a home page
 #: ../src/plugins/webreport/NarrativeWeb.py:453
 #: ../src/plugins/webreport/NarrativeWeb.py:1615
+#: ../src/plugins/webreport/WebCal.py:364
 msgid "html|Home"
 msgstr "Home"
 
