@@ -345,7 +345,7 @@ class GeoView(HtmlView):
                    self.lock_action.get_action('SaveZoom').get_active()
                    )
         if self.lock_action.get_action('SaveZoom').get_active():
-            config.set('geoview.zoom', self.realzoom)
+            config.set('geoview.zoom', int(self.realzoom))
             config.set('geoview.latitude', self.reallatitude)
             config.set('geoview.longitude', self.reallongitude)
             config.set('geoview.map', self.displaytype)
