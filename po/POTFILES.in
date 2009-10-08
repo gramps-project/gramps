@@ -207,9 +207,7 @@ src/BasicUtils/_UpdateCallback.py
 src/BasicUtils/_NameDisplay.py
 
 # Config package
-src/Config/_GrampsConfigKeys.py
-src/Config/_GrampsIniKeys.py
-src/Config/__init__.py
+src/config.py
 
 # Merge package
 src/Merge/__init__.py
