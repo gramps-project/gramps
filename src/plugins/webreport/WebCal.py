@@ -36,7 +36,7 @@ Refactoring. This is an ongoing job until this plugin is in a better shape.
 #------------------------------------------------------------------------
 import os, codecs, shutil, re
 import datetime, calendar
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from gettext import ngettext
 
 #------------------------------------------------------------------------
@@ -551,7 +551,7 @@ class WebCalReport(Report):
         navs = []
 
         # An optional link to a home page
-        navs.append((self.home_link,  _('Home'),  add_home))
+        navs.append((self.home_link,  _('html|Home'),  add_home))
 
         for month in range(1, 13):
             navs.append((month, month, True))
