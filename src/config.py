@@ -121,16 +121,24 @@ class ConfigManager(object):
         self.data = {}
         self.reset()
 
-    def reset(self, section=None):
+    def reset(self, section=None, setting=None):
         """
-        Resets all settings values to their defaults.
+        Resets one, a section, or all settings values to their defaults.
         """
+        if section is not None and "." in section:
+            section, setting = section.split(".", 1)
         if section is None:
             self.data = {}
-            self.data.update(self.default)
-        else:
+            for section in self.default:
+                self.data[section] = {}
+                for setting in self.default[section]:
+                    self.data[section][setting] = self.default[section][setting]
+        elif setting is None:
             self.data[section] = {}
-            self.data[section].update(self.default[section])
+            for setting in self.default[section]:
+                self.data[section][setting] = self.default[section][setting]
+        else:
+            self.data[section][setting] = self.default[section][setting]
         # Callbacks are still connected
 
     def get_sections(self):
@@ -183,11 +191,15 @@ class ConfigManager(object):
                     else:
                         value = eval_item(setting)
                     ####################### Now, let's test and set:
-                    if type(value) == type(self.default[name][opt.lower()]):
-                        self.data[name][opt.lower()] = value
+                    if opt.lower() in self.default[name]:
+                        if type(value) == type(self.default[name][opt.lower()]):
+                            self.data[name][opt.lower()] = value
+                        else:
+                            print ("WARNING: ignoring key with wrong type '%s.%s'" 
+                                   % (name, opt.lower()))
                     else:
-                        print ("WARNING: ignoring key with wrong type '%s.%s'" 
-                               % (name, opt.lower()))
+                        # this could be a third-party setting; add it:
+                        self.data[name][opt.lower()] = value
 
     def save(self, filename = None):
         """
@@ -704,5 +716,8 @@ if __name__ == "__main__":
 
     CM.set("section.setting1", -1)
     assert x == "1024"
+
+    CM.reset("section.setting1")
+    assert CM.get("section.setting1") == 1
 
     CM.save("./test2.ini")
