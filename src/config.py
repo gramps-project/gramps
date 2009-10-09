@@ -203,8 +203,8 @@ class ConfigManager(object):
                         if type(value) == type(self.default[name][opt.lower()]):
                             self.data[name][opt.lower()] = value
                         else:
-                            print ("WARNING: ignoring key with wrong type '%s.%s'" 
-                                   % (name, opt.lower()))
+                            print ("WARNING: ignoring key with wrong type "
+                                   "'%s.%s'" % (name, opt.lower()))
                     else:
                         # this could be a third-party setting; add it:
                         self.data[name][opt.lower()] = value
@@ -425,7 +425,7 @@ class ConfigManager(object):
 
 def register(key, value):
     """ Module shortcut to register key, value """
-    CONFIGMAN.register(key, value)
+    return CONFIGMAN.register(key, value)
 
 def get(key):
     """ Module shortcut to get value from key """
@@ -435,17 +435,52 @@ def get_default(key):
     """ Module shortcut to get default from key """
     return CONFIGMAN.get_default(key)
 
+def has_default(key):
+    """ Module shortcut to get see if there is a default for key """
+    return CONFIGMAN.has_default(key)
+
+def get_sections():
+    """ Module shortcut to get all section names of settings """
+    return CONFIGMAN.get_sections()
+
+def get_section_settings(section):
+    """ Module shortcut to get all settings of a section """
+    return CONFIGMAN.get_section_settings(section)
+
 def set(key, value):
     """ Module shortcut to set value from key """
-    CONFIGMAN.set(key, value)
+    return CONFIGMAN.set(key, value)
+
+def is_set(key):
+    """ Module shortcut to set value from key """
+    return CONFIGMAN.is_set(key)
 
 def save(filename=None):
     """ Module shortcut to save config file """
-    CONFIGMAN.save(filename)
+    return CONFIGMAN.save(filename)
 
 def connect(key, func):
-    """ Module shortcut to callbacks """
+    """ 
+    Module shortcut to connect a key to a callback func.
+    Returns a unique callback ID number.
+    """
     return CONFIGMAN.connect(key, func)
+
+def disconnect(callback_id):
+    """ Module shortcut to remove callback by ID number """
+    return CONFIGMAN.disconnect(callback_id)
+
+def reset(key=None):
+    """ Module shortcut to reset some or all config data """
+    return CONFIGMAN.reset(key)
+
+def load(filename=None, oldstyle=False):
+    """ Module shortcut to load an INI file into config data """
+    return CONFIGMAN.load(filename, oldstyle)
+
+def emit(key):
+    """ Module shortcut to call all callbacks associated with key """
+    return CONFIGMAN.emit(key)
 
 #---------------------------------------------------------------
 #
