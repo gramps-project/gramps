@@ -44,7 +44,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import PageView
+from gui.views.listview import ListView
 import DisplayModels
 from gui.utils import add_menuitem
 import Errors
@@ -69,7 +69,7 @@ from gettext import gettext as _
 # PlaceView
 #
 #-------------------------------------------------------------------------
-class PlaceView(PageView.ListView):
+class PlaceView(ListView):
     
     COLUMN_NAMES = [
         _('Place Name'),
@@ -108,7 +108,7 @@ class PlaceView(PageView.ListView):
         self.mapservice = config.get('interface.mapservice')
         self.mapservicedata = {}
 
-        PageView.ListView.__init__(
+        ListView.__init__(
             self, _('Places'), dbstate, uistate, PlaceView.COLUMN_NAMES,
             len(PlaceView.COLUMN_NAMES), 
             DisplayModels.PlaceModel, signal_map,
@@ -127,7 +127,7 @@ class PlaceView(PageView.ListView):
         return self.dbstate.db.get_place_bookmarks()
 
     def define_actions(self):
-        PageView.ListView.define_actions(self)
+        ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FastMerge', None, _('_Merge...'),
@@ -155,7 +155,7 @@ class PlaceView(PageView.ListView):
           4. set icon and label of the menutoolbutton now that it is realized
           5. store label so it can be changed when selection changes
         """
-        PageView.ListView.change_page(self)
+        ListView.change_page(self)
         #menutoolbutton actions are stored in PageView class, 
         # obtain the widgets where we need to add to menu
         actionservices = self.action_toolmenu['MapsList']
