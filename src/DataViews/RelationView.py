@@ -46,7 +46,8 @@ import pango
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import PageView
+import gui.views.pageview as PageView
+from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
 from Utils import media_path_full, probably_alive
 import DateHandler
@@ -55,6 +56,8 @@ import config
 import widgets
 import Errors
 import gen.utils
+import Bookmarks
+import const
 
 from ReportBase import ReportUtils
 
@@ -109,13 +112,14 @@ class AttachList(object):
         self.max_x = max(self.max_x, x1)
         self.max_y = max(self.max_y, y1)
 
-class RelationshipView(PageView.PersonNavView):
+class RelationshipView(NavigationView):
 
     def __init__(self, dbstate, uistate):
-        
-        PageView.PersonNavView.__init__(
-            self, _('Relationships'), dbstate, uistate)
-        
+        NavigationView.__init__(self, _('Relationships'),
+                                      dbstate, uistate, 
+                                      dbstate.db.get_bookmarks(), 
+                                      Bookmarks.Bookmarks)        
+
         self.func_list = {
             '<CONTROL>J' : self.jump,
             }
@@ -157,16 +161,12 @@ class RelationshipView(PageView.PersonNavView):
 
         self.callman.add_db_signal('person-delete', self.redraw)
 
-    def set_active(self):
-        PageView.PersonNavView.set_active(self)
-        self.key_active_changed = self.dbstate.connect('active-changed',
-                                                       self.redraw)
-        self.build_tree()
-    
-    def set_inactive(self):
-        PageView.PersonNavView.set_inactive(self)
-        self.dbstate.disconnect(self.key_active_changed)
-        
+    def navigation_type(self):
+        return PageView.NAVIGATION_PERSON
+
+    def goto_handle(self, handle):
+        self.redraw()
+
     def shade_update(self, client, cnxn_id, entry, data):
         self.use_shade = config.get('preferences.relation-shade')
         self.toolbar_visible = config.get('interface.toolbar-on')
@@ -225,6 +225,7 @@ class RelationshipView(PageView.PersonNavView):
             self.change_person(None)
 
     def change_page(self):
+        NavigationView.change_page(self)
         self.uistate.clear_filter_results()
             
     def get_stock(self):
@@ -324,7 +325,7 @@ class RelationshipView(PageView.PersonNavView):
         </ui>'''
 
     def define_actions(self):
-        PageView.PersonNavView.define_actions(self)
+        NavigationView.define_actions(self)
 
         self.order_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.order_action.add_actions([
@@ -352,7 +353,10 @@ class RelationshipView(PageView.PersonNavView):
                 _("Add person as child to an existing family"), 
                 self.select_parents),
             ])
-
+            
+        self._add_action('FilterEdit',  None, _('Person Filter Editor'), 
+                        callback=self.filter_editor)
+                        
         self._add_action_group(self.order_action)
         self._add_action_group(self.family_action)
 
@@ -365,6 +369,15 @@ class RelationshipView(PageView.PersonNavView):
 
         self.order_action.set_sensitive(self.reorder_sensitive)
         self.family_action.set_sensitive(False)
+
+    def filter_editor(self, obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor('Person', const.CUSTOM_FILTERS, 
+                         self.dbstate, self.uistate)
+        except Errors.WindowActiveError:
+            return
 
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()

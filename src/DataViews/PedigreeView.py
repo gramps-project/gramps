@@ -51,7 +51,8 @@ except:
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import PageView
+import gui.views.pageview as PageView
+from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
 import Utils
 import DateHandler
@@ -63,6 +64,8 @@ from DdTargets import DdTargets
 import cPickle as pickle
 import config
 from QuestionDialog import RunDatabaseRepair, ErrorDialog
+import Bookmarks
+import const
 
 #-------------------------------------------------------------------------
 #
@@ -460,11 +463,12 @@ class FormattingHelper(object):
 # PedigreeView
 #
 #-------------------------------------------------------------------------
-class PedigreeView(PageView.PersonNavView):
+class PedigreeView(NavigationView):
 
     def __init__(self,dbstate,uistate):
-        PageView.PersonNavView.__init__(self, _('Pedigree'), dbstate, uistate)
-        
+        NavigationView.__init__(self, _('Pedigree'), dbstate, uistate, 
+                                      dbstate.db.get_bookmarks(), 
+                                      Bookmarks.Bookmarks)        
         self.func_list = {
             '<CONTROL>J' : self.jump,
             }
@@ -479,6 +483,7 @@ class PedigreeView(PageView.PersonNavView):
         self.format_helper = FormattingHelper( self.dbstate)
 
     def change_page(self):
+        NavigationView.change_page(self)
         self.uistate.clear_filter_results()
 
     def init_parent_signals_cb(self, widget, event):
@@ -503,16 +508,6 @@ class PedigreeView(PageView.PersonNavView):
             # for PyGtk < 2.4
             self.notebook.append_page(frame,gtk.Label(""))
 
-    def set_active(self):
-        PageView.PersonNavView.set_active(self)
-        self.key_active_changed = self.dbstate.connect('active-changed',
-                                                       self.goto_active_person)
-        self.build_tree()
-    
-    def set_inactive(self):
-        PageView.PersonNavView.set_inactive(self)
-        self.dbstate.disconnect(self.key_active_changed)
-        
     def get_stock(self):
         """
         Return the name of the stock icon to use for the display.
@@ -599,7 +594,19 @@ class PedigreeView(PageView.PersonNavView):
         at the beginning of the history.
         """
 
-        PageView.PersonNavView.define_actions(self)
+        NavigationView.define_actions(self)
+        
+        self._add_action('FilterEdit',  None, _('Person Filter Editor'), 
+                        callback=self.filter_editor)
+
+    def filter_editor(self, obj):
+        from FilterEditor import FilterEditor
+
+        try:
+            FilterEditor('Person', const.CUSTOM_FILTERS, 
+                         self.dbstate, self.uistate)
+        except Errors.WindowActiveError:
+            return
 
     def build_tree(self):
         """
@@ -637,7 +644,10 @@ class PedigreeView(PageView.PersonNavView):
             self.bookmarks.redraw()
         self.build_tree()
 
-    def goto_active_person(self, handle=None):
+    def navigation_type(self):
+        return PageView.NAVIGATION_PERSON
+
+    def goto_handle(self, handle=None):
         self.dirty = True
         if handle:
             self.rebuild_trees(handle)

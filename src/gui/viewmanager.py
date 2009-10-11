@@ -67,7 +67,7 @@ import GrampsCfg
 import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
                             InfoDialog)
-import PageView
+import gui.views.pageview as PageView
 import Navigation
 import RecentFiles
 from BasicUtils import name_displayer

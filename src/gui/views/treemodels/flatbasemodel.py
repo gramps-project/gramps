@@ -73,6 +73,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from Filters import SearchFilter
+from Filters import ExactSearchFilter
 import config
 from Utils import conv_unicode_tosrtkey_ongtk
 
@@ -392,7 +393,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self.set_search(search)
             
         self._reverse = (order == gtk.SORT_DESCENDING)
-        self.tooltip_column = tooltip_column
+        self._tooltip_column = tooltip_column
 
         config.connect("preferences.todo-color",
                           self.__update_todo)
@@ -429,7 +430,10 @@ class FlatBaseModel(gtk.GenericTreeModel):
                     text = search[1][1]
                     inv = search[1][2]
                     func = lambda x: self.on_get_value(x, col) or u""
-                    self.search = SearchFilter(func, text, inv)
+                    if search[2]:
+                        self.search = ExactSearchFilter(func, text, inv)
+                    else:
+                        self.search = SearchFilter(func, text, inv)
                 else:
                     self.search = None
                 self.rebuild_data = self._rebuild_search
@@ -473,6 +477,18 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         self._reverse = not self._reverse
         self.node_map.reverse_order()
+
+    def tooltip_column(self):
+        """
+        Return the column for tooltips.
+        """
+        return self._tooltip_column
+        
+    def marker_column(self):
+        """
+        Return the column for marker colour.
+        """
+        return None
 
     def sort_keys(self):
         """
@@ -606,7 +622,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         See gtk.TreeModel
         """
-        if index == self.tooltip_column:
+        if index == self._tooltip_column:
             return object
         return str
 

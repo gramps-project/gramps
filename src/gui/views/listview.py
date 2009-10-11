@@ -19,6 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id: $
+
 """
 Provide the base classes for GRAMPS' DataView classes
 """
@@ -77,7 +79,7 @@ class ListView(NavigationView):
 
     def __init__(self, title, dbstate, uistate, columns, handle_col, 
                  make_model, signal_map, get_bookmarks, bm_type, 
-                 multiple=False, filter_class=None):
+                 multiple=False, filter_class=None, markup=False):
 
         NavigationView.__init__(self, title, dbstate, uistate, 
                               get_bookmarks, bm_type)
@@ -95,6 +97,7 @@ class ListView(NavigationView):
         self.signal_map = signal_map
         self.multiple_selection = multiple
         self.generic_filter = None
+        self.markup_required = markup
         dbstate.connect('database-changed', self.change_db)
 
     ####################################################################
@@ -192,15 +195,11 @@ class ListView(NavigationView):
 
             column = gtk.TreeViewColumn(name, self.renderer)
             
-            if self.model and \
-               'marker_color_column' in self.model.__dict__ \
-                and self.model.marker_color_column is not None:
-                mcol = self.model.marker_color_column   
+            if self.model and self.model.marker_column() is not None:
+                mcol = self.model.marker_column()
                 column.add_attribute(self.renderer, 'foreground', mcol)
 
-            # TODO: markup is not required for all columns
-            markup_required = True
-            if markup_required and pair[1] != 0:
+            if self.markup_required and pair[1] != 0:
                 column.add_attribute(self.renderer, 'markup', pair[1])
             else:
                 column.add_attribute(self.renderer, 'text', pair[1])
@@ -220,11 +219,12 @@ class ListView(NavigationView):
             if config.get('interface.filter'):
                 filter_info = (True, self.generic_filter)
             else:
-                filter_info = (False, self.search_bar.get_value())
+                if self.search_bar.get_value()[0] in self.exact_search():
+                    filter_info = (False, self.search_bar.get_value(), True)
+                else:
+                    filter_info = (False, self.search_bar.get_value(), False)
 
-            # TODO: Fix this for both flat and tree
-            if self.dirty or self.model is None:
-                    # or not self.model.node_map.full_srtkey_hndl_map():
+            if self.dirty or not self.model:
                 self.model = self.make_model(self.dbstate.db, self.sort_col, 
                                              search=filter_info,
                                              sort_map=self.column_order())
@@ -255,6 +255,12 @@ class ListView(NavigationView):
 
     def search_build_tree(self):
         self.build_tree()
+
+    def exact_search(self):
+        """
+        Returns a tuple indicating columns requiring an exact search
+        """
+        return ()
 
     ####################################################################
     # Filter
@@ -342,7 +348,7 @@ class ListView(NavigationView):
         if not handle or handle in self.selected_handles():
             return
 
-        if self.model.on_get_flags() & gtk.TREE_MODEL_LIST_ONLY:
+        if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
             # Flat
             try:
                 path = self.model.on_get_path(handle)
@@ -385,6 +391,9 @@ class ListView(NavigationView):
     ####################################################################
 
     def drag_info(self):
+        return None
+
+    def drag_list_info(self):
         return None
 
     def drag_begin(self, widget, context):
@@ -476,7 +485,7 @@ class ListView(NavigationView):
             self.uistate.set_busy_cursor(0)
         
     def blist(self, store, path, node, sel_list):
-        if store.on_get_flags() & gtk.TREE_MODEL_LIST_ONLY:
+        if store.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
             handle = store.get_value(node, self.handle_col)
         else:
             handle = store.get_handle(store.on_get_iter(path))
@@ -525,19 +534,19 @@ class ListView(NavigationView):
         handle = self.first_selected()
 
         if config.get('interface.filter'):
-            search = (True, self.generic_filter)
+            filter_info = (True, self.generic_filter)
         else:
-            search = (False, self.search_bar.get_value())
+            if self.search_bar.get_value()[0] in self.exact_search():
+                filter_info = (False, self.search_bar.get_value(), True)
+            else:
+                filter_info = (False, self.search_bar.get_value(), False)
 
-        # TODO: This line is needed but gives a warning
-        #self.list.set_model(None)
-        
         if same_col:
             self.model.reverse_order()
         else:
             self.model = self.make_model(self.dbstate.db, self.sort_col, 
                                          self.sort_order, 
-                                         search=search, 
+                                         search=filter_info, 
                                          sort_map=self.column_order())
         
         self.list.set_model(self.model)
@@ -587,17 +596,18 @@ class ListView(NavigationView):
         selected_ids = self.selected_handles()
         if len(selected_ids) > 0:
             self.change_active(selected_ids[0])
-        if self.drag_info():    
-            if len(selected_ids) == 1:
+
+        if len(selected_ids) == 1:
+            if self.drag_info():
                 self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
                                       [self.drag_info().target()], 
                                       gtk.gdk.ACTION_COPY)
-                                      
-            # TODO: This needs putting back again
-            #elif len(selected_ids) > 1:
-                #self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
-                                      #[DdTargets.PERSON_LINK_LIST.target()], 
-                                      #gtk.gdk.ACTION_COPY)
+        elif len(selected_ids) > 1:
+            if self.drag_list_info():
+                self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
+                                      [self.drag_list_info().target()], 
+                                      gtk.gdk.ACTION_COPY)
+
         self.uistate.modify_statusbar(self.dbstate)
 
     def row_add(self, handle_list):
@@ -777,17 +787,40 @@ class ListView(NavigationView):
         ofile.open(name)
         ofile.start_page()
         ofile.start_row()
+        # Headings
         for name in column_names:
             ofile.write_cell(name)
         ofile.end_row()
 
-        for row in self.model:
-            ofile.start_row()
-            for index in data_cols:
-                ofile.write_cell(row[index])
-            ofile.end_row()
+        if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
+            # Flat model
+            for row in self.model:
+                ofile.start_row()
+                for index in data_cols:
+                    ofile.write_cell(row[index])
+                ofile.end_row()
+        else:
+            # Tree model
+            node = self.model.get_iter_first()
+            self.write_node(node, 0, ofile, data_cols)
+        
         ofile.end_page()
         ofile.close()
+        
+    def write_node(self, node, level, ofile, data_cols):
+        if node is None:
+            return
+        while node is not None:
+            ofile.start_row()
+            for counter in range(level): # Indentation
+                ofile.write_cell('')
+            for index in data_cols:
+                ofile.write_cell(self.model.get_value(node, index))
+            ofile.end_row()
+
+            first_child = self.model.iter_children(node)
+            self.write_node(first_child, level + 1, ofile, data_cols)
+            node = self.model.iter_next(node)
 
     ####################################################################
     # Template functions
