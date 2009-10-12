@@ -144,9 +144,6 @@ class DescendantReport(Report):
         self.dump_dates(person)
         self.doc.end_paragraph()
 
-        if level >= self.max_generations:
-            return
-        
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
 
@@ -159,6 +156,9 @@ class DescendantReport(Report):
                 self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
                 self.dump_dates(spouse)
                 self.doc.end_paragraph()
+
+            if level >= self.max_generations:
+                continue
 
             childlist = family.get_child_ref_list()[:]
             for child_ref in childlist:
