@@ -118,12 +118,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             self.apply_button.set_label(_("_Apply"))
         self.apply_button.set_use_underline(True)
         if tool_tip:
-            try:
-                tttips = gtk.tooltips_data_get(self.apply_button)
-                if tttips:
-                    tttips[0].set_tip(self.apply_button, tool_tip)
-            except AttributeError:
-                pass
+            self.apply_button.set_tooltip_text(tool_tip)
 
         self.item = None
         self.build_plugin_tree(item_list, categories)
