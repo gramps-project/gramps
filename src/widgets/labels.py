@@ -84,7 +84,6 @@ class LinkLabel(gtk.EventBox):
         gtk.EventBox.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
-        self.tooltips = gtk.Tooltips()
         self.decoration = decoration
         text = '<span %s>%s</span>' % (self.decoration, self.orig_text)
 
@@ -94,7 +93,7 @@ class LinkLabel(gtk.EventBox):
             if not Config.get(Config.RELEDITBTN):
                 msg += "\n" + _('Edit icons can be enabled in the Preferences dialog')
 
-            self.tooltips.set_tip(self, msg)
+            self.set_tooltip_text(msg)
         
         self.label = gtk.Label(text)
         self.label.set_use_markup(True)

@@ -98,7 +98,6 @@ class ButtonTab(GrampsTab):
         """
         self.dirty_selection = False
         GrampsTab.__init__(self,dbstate, uistate, track, name)
-        self.tooltips = gtk.Tooltips()
         self.create_buttons(share_button, move_buttons, jump_button)
 
     def create_buttons(self, share_button, move_buttons, jump_button):
@@ -113,22 +112,22 @@ class ButtonTab(GrampsTab):
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
         self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
 
-        self.tooltips.set_tip(self.add_btn, self._MSG['add'])
-        self.tooltips.set_tip(self.edit_btn, self._MSG['edit'])
-        self.tooltips.set_tip(self.del_btn, self._MSG['del'])
+        self.add_btn.set_tooltip_text(self._MSG['add'])
+        self.edit_btn.set_tooltip_text(self._MSG['edit'])
+        self.del_btn.set_tooltip_text(self._MSG['del'])
         
         if share_button:
             self.share_btn = SimpleButton(gtk.STOCK_INDEX, self.share_button_clicked)
-            self.tooltips.set_tip(self.share_btn, self._MSG['share'])
+            self.share_btn.set_tooltip_text(self._MSG['share'])
         else:
             self.share_btn = None
             
         if move_buttons:
             self.up_btn = SimpleButton(gtk.STOCK_GO_UP, self.up_button_clicked)
-            self.tooltips.set_tip(self.up_btn, self._MSG['up'])
+            self.share_btn.set_tooltip_text(self._MSG['up'])
             self.down_btn = SimpleButton(gtk.STOCK_GO_DOWN, 
                                                 self.down_button_clicked)
-            self.tooltips.set_tip(self.down_btn, self._MSG['down'])
+            self.down_btn.set_tooltip_text(self._MSG['down'])
         else:
             self.up_btn = None
             self.down_btn = None
@@ -146,7 +145,7 @@ class ButtonTab(GrampsTab):
 
         if jump_button:
             self.jump_btn = SimpleButton(gtk.STOCK_JUMP_TO, self.jump_button_clicked)
-            self.tooltips.set_tip(self.jump_btn, self._MSG['jump'])
+            self.jump_btn.set_tooltip_text(self._MSG['jump'])
         else:
             self.jump_btn = None
 

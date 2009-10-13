@@ -275,12 +275,10 @@ class MediaView(PageView.ListView):
         ebox = gtk.EventBox()
         ebox.add(self.image)
         ebox.connect('button-press-event', self.button_press_event)
+        ebox.set_tooltip_text(
+            _('Double click image to view in an external viewer'))
         vbox.pack_start(ebox, False)
         vbox.pack_start(base, True)
-
-        self.ttips = gtk.Tooltips()
-        self.ttips.set_tip(
-            ebox, _('Double click image to view in an external viewer'))
 
         self.selection.connect('changed', self.row_change)
         self._set_dnd()
@@ -314,13 +312,11 @@ class MediaView(PageView.ListView):
         handle = self.first_selected()
         if not handle:
             self.image.clear()
-            self.ttips.disable()
         else:
             obj = self.dbstate.db.get_object_from_handle(handle)
             pix = ThumbNails.get_thumbnail_image(
                         Utils.media_path_full(self.dbstate.db, obj.get_path()))
             self.image.set_from_pixbuf(pix)
-            self.ttips.enable()
     
     def ui_definition(self):
         """

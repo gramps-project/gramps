@@ -409,7 +409,6 @@ class EditFamily(EditPrimary):
     
     def __init__(self, dbstate, uistate, track, family):
         
-        self.tooltips = gtk.Tooltips()
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle,
                              dbstate.db.get_family_from_gramps_id)
@@ -543,12 +542,10 @@ class EditFamily(EditPrimary):
         self.mbutton_del = self.top.get_widget('mbutton_del')
         self.mbutton_edit = self.top.get_widget('mbutton_edit')
 
-        self.tooltips.set_tip(self.mbutton_index, 
-                              _("Select a person as the mother"))
-        self.tooltips.set_tip(self.mbutton_add, 
-                              _("Add a new person as the mother"))
-        self.tooltips.set_tip(self.mbutton_del, 
-                              _("Remove the person as the mother"))
+        mbutton_index.set_tooltip_text(_("Select a person as the mother"))
+        mbutton_add.set_tooltip_text(_("Add a new person as the mother"))
+        mbutton_del.set_tooltip_text(_("Remove the person as the mother"))
+
 
         self.mbutton_edit.connect('button-press-event', self.edit_mother)
         self.mbutton_edit.connect('key-press-event', self.edit_mother)
@@ -561,12 +558,9 @@ class EditFamily(EditPrimary):
         self.fbutton_del = self.top.get_widget('fbutton_del')
         self.fbutton_edit = self.top.get_widget('fbutton_edit')
 
-        self.tooltips.set_tip(self.fbutton_index, 
-                              _("Select a person as the father"))
-        self.tooltips.set_tip(self.fbutton_add, 
-                              _("Add a new person as the father"))
-        self.tooltips.set_tip(self.fbutton_del, 
-                              _("Remove the person as the father"))
+        self.fbutton_index.set_tooltip_text(_("Select a person as the father"))
+        self.fbutton_add.set_tooltip_text(_("Add a new person as the father"))
+        self.fbutton_del.set_tooltip_text(_("Remove the person as the father"))
 
         self.fbutton_edit.connect('button-press-event', self.edit_father)
         self.fbutton_edit.connect('key-press-event', self.edit_father)
@@ -856,7 +850,7 @@ class EditFamily(EditPrimary):
             if death and death.get_type() == gen.lib.EventType.BURIAL:
                 death_label.set_label(_("Burial:"))
 
-            self.tooltips.set_tip(btn_edit, _('Edit %s') % name)
+            btn_edit.set_tooltip_text(_('Edit %s') % name)
             btn_index.hide()
             btn_add.hide()
             btn_del.show()

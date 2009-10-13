@@ -41,7 +41,6 @@ class SidebarFilter(object):
         self.table.set_row_spacings(6)
         self.table.set_col_spacing(0, 6)
         self.table.set_col_spacing(1, 6)
-        self.tooltips = gtk.Tooltips()
         self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
         self.clear_btn = gtk.Button()
         
@@ -119,7 +118,7 @@ class SidebarFilter(object):
         self.add_entry(name, widget)
         widget.connect('key-press-event', self.key_press)
         if tooltip:
-            self.tooltips.set_tip(widget, tooltip)
+            widget.set_tooltip_text(tooltip)
 
     def key_press(self, obj, event):
         if not event.state or event.state in (gtk.gdk.MOD2_MASK,):

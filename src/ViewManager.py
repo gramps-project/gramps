@@ -885,7 +885,7 @@ class ViewManager(object):
         button.set_alignment(0, 0.5)
 
         # add the tooltip
-        self.tips.set_tip(button, page_title)
+        button.set_tooltip_text(page_title)
 
         # connect the signal, along with the index as user data
         handler_id = button.connect('clicked', self.__vb_clicked, index)

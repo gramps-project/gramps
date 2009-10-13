@@ -76,13 +76,12 @@ class ExpandCollapseArrow(gtk.EventBox):
         @param pair: user param for onbuttonpress function
         """
         gtk.EventBox.__init__(self)
-        self.tooltips = gtk.Tooltips()
         if collapsed :
             self.arrow = gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_OUT)
-            self.tooltips.set_tip(self, _("Expand this section"))
+            self.set_tooltip_text(_("Expand this section"))
         else:
             self.arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_OUT)
-            self.tooltips.set_tip(self, _("Collapse this section"))
+            self.set_tooltip_text(_("Collapse this section"))
         self.add(self.arrow)
         self.connect('button-press-event', onbuttonpress, pair)
         self.connect('realize', realize_cb)

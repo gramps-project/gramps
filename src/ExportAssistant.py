@@ -197,8 +197,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
-        tip = gtk.Tooltips()
-        
         group = None
         recent_type = Config.get(Config.RECENT_EXPORT_TYPE)
         
@@ -207,11 +205,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             description= self.__exporters[ix].get_description()
 
             button = gtk.RadioButton(group,title)
+            button.set_tooltip_text(description)
             if not group:
                 group = button
             self.format_buttons.append(button)
             table.attach(button,0,2,2*ix,2*ix+1)
-            tip.set_tip(button,description)
             if ix == recent_type :
                 button.set_active(True)
         

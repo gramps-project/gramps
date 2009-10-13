@@ -87,7 +87,6 @@ class ObjEntry(object):
         self.set_val = set_val
         self.uistate = uistate
         self.track = track
-        self.tooltips = gtk.Tooltips()
         
         #connect drag and drop
         self._init_dnd()
@@ -219,25 +218,25 @@ class ObjEntry(object):
             image.set_from_stock(gtk.STOCK_REMOVE, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
-            self.tooltips.set_tip(self.share, self.DEL_STR)
+            self.share.set_tooltip_text(self.DEL_STR)
             if self.add_edt is not None:
                 image = gtk.Image()
                 image.set_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_BUTTON)
                 image.show()
                 self.add_edt.add(image)
-                self.tooltips.set_tip(self.add_edt, self.EDIT_STR)
+                self.add_edt.set_tooltip_text(self.EDIT_STR)
         else:
             image = gtk.Image()
             image.set_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
-            self.tooltips.set_tip(self.share, self.SHARE_STR)
+            self.share.set_tooltip_text(self.SHARE_STR)
             if self.add_edt is not None:
                 image = gtk.Image()
                 image.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON)
                 image.show()
                 self.add_edt.add(image)
-                self.tooltips.set_tip(self.add_edt, self.ADD_STR)
+                self.add_edt.set_tooltip_text(self.ADD_STR)
 
 class PlaceEntry(ObjEntry):
     """

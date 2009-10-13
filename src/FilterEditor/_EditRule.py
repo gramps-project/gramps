@@ -264,10 +264,8 @@ class MyID(gtk.HBox):
         self.button.show()
         self.pack_start(self.entry)
         self.add(self.button)
-        self.tooltips = gtk.Tooltips()
-        self.tooltips.set_tip(self.button, _('Select %s from a list')
-                              % self.obj_name[namespace])
-        self.tooltips.enable()
+        self.button.set_tooltip_text(_('Select %s from a list')
+                               % self.obj_name[namespace])
         self.show()
         self.set_text('')
 
@@ -313,13 +311,13 @@ class MyID(gtk.HBox):
 
     def set_text(self, val):
         if not val:
-            self.tooltips.set_tip(self.entry, self._empty_id_txt)
+            self.entry.set_tooltip_text(self._empty_id_txt)
         else:
             try:
                 name = self.name_from_gramps_id(val)
-                self.tooltips.set_tip(self.entry, name)
+                self.entry.set_tooltip_text(name)
             except AttributeError:
-                self.tooltips.set_tip(self.entry, self._invalid_id_txt)
+                self.entry.set_tooltip_text(self._invalid_id_txt)
         self.entry.set_text(val)
 
 
@@ -334,7 +332,7 @@ class MySource(MyID):
               ' with no source.')
     def __init__(self, dbstate, uistate, track):
         MyID.__init__(self, dbstate, uistate, track, namespace='Source')
-        self.tooltips.set_tip(self.entry, self._empty_id_txt)
+        self.entry.set_tooltip_text(self._empty_id_txt)
 
 #-------------------------------------------------------------------------
 #

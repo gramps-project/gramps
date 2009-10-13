@@ -431,7 +431,6 @@ class RelationshipView(PageView.PersonNavView):
         if self.redrawing:
             return False
         self.redrawing = True
-        self.tooltips = gtk.Tooltips()
 
         for old_child in self.vbox.get_children():
             self.vbox.remove(old_child)
@@ -539,7 +538,7 @@ class RelationshipView(PageView.PersonNavView):
         if Config.get(Config.RELEDITBTN):
             button = widgets.IconButton(self.edit_button_press, 
                                         person.handle)
-            self.tooltips.set_tip(button, _('Edit %s') % name)
+            button.set_tooltip_text(_('Edit %s') % name)
         else:
             button = None
         hbox = widgets.LinkBox(label, button)
@@ -758,28 +757,28 @@ class RelationshipView(PageView.PersonNavView):
                 if self.reorder_sensitive:
                     add = widgets.IconButton(self.reorder_button_press, None, 
                                              gtk.STOCK_SORT_ASCENDING)
-                    self.tooltips.set_tip(add, ord_msg)
+                    add.set_tooltip_text(ord_msg)
                     hbox.pack_start(add, False)
 
                 add = widgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
-                self.tooltips.set_tip(add, add_msg)
+                add.set_tooltip_text(add_msg)
                 hbox.pack_start(add, False)
 
                 if is_parent:
                     add = widgets.IconButton(self.select_family, None,
                                              gtk.STOCK_INDEX)
-                    self.tooltips.set_tip(add, sel_msg)
+                    add.set_tooltip_text(sel_msg)
                     hbox.pack_start(add, False)
 
             if family:
                 edit = widgets.IconButton(self.edit_family, family.handle, 
                                           gtk.STOCK_EDIT)
-                self.tooltips.set_tip(edit, edit_msg)
+                edit.set_tooltip_text(edit_msg)
                 hbox.pack_start(edit, False)
                 if not self.dbstate.db.readonly:
                     delete = widgets.IconButton(del_fcn, family.handle, 
                                                 gtk.STOCK_REMOVE)
-                    self.tooltips.set_tip(delete, del_msg)
+                    delete.set_tooltip_text(del_msg)
                     hbox.pack_start(delete, False)
             self.attach.attach(hbox, _BTN_START, _BTN_STOP, self.row, self.row+1)
         self.row += 1
@@ -884,13 +883,11 @@ class RelationshipView(PageView.PersonNavView):
                     addchild = widgets.IconButton(self.add_child_to_fam, 
                                                   family.handle, 
                                                   gtk.STOCK_ADD)
-                    self.tooltips.set_tip(addchild, 
-                                          _('Add new child to family'))
+                    addchild.set_tooltip_text(_('Add new child to family'))
                     selchild = widgets.IconButton(self.sel_child_to_fam, 
                                                   family.handle, 
                                                   gtk.STOCK_INDEX)
-                    self.tooltips.set_tip(selchild, 
-                                          _('Add existing child to family'))
+                    selchild.set_tooltip_text(_('Add existing child to family'))
                     hbox.pack_start(addchild, False)
                     hbox.pack_start(selchild, False)
 
@@ -934,7 +931,7 @@ class RelationshipView(PageView.PersonNavView):
                 if Config.get(Config.RELEDITBTN):
                     button = widgets.IconButton(self.edit_button_press, 
                                                 handle)
-                    self.tooltips.set_tip(button, _('Edit %s') % name[0])
+                    button.set_tooltip_text(('Edit %s') % name[0])
                 else:
                     button = None
                 vbox.pack_start(widgets.LinkBox(link_label, button),
@@ -987,7 +984,7 @@ class RelationshipView(PageView.PersonNavView):
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
             if Config.get(Config.RELEDITBTN):
                 button = widgets.IconButton(self.edit_button_press, handle)
-                self.tooltips.set_tip(button, _('Edit %s') % name[0])
+                button.set_tooltip_text(_('Edit %s') % name[0])
             else:
                 button = None
             vbox.pack_start(widgets.LinkBox(link_label, button))
@@ -1074,7 +1071,7 @@ class RelationshipView(PageView.PersonNavView):
         link_label.set_padding(3, 0)
         if child_should_be_linked and Config.get(Config.RELEDITBTN):
             button = widgets.IconButton(self.edit_button_press, handle)
-            self.tooltips.set_tip(button, _('Edit %s') % name[0])
+            button.set_tooltip_text(_('Edit %s') % name[0])
         else:
             button = None
 
@@ -1342,13 +1339,11 @@ class RelationshipView(PageView.PersonNavView):
                 addchild = widgets.IconButton(self.add_child_to_fam, 
                                               family.handle, 
                                               gtk.STOCK_ADD)
-                self.tooltips.set_tip(addchild, 
-                                      _('Add new child to family'))
+                addchild.set_tooltip_text(_('Add new child to family'))
                 selchild = widgets.IconButton(self.sel_child_to_fam, 
                                               family.handle, 
                                               gtk.STOCK_INDEX)
-                self.tooltips.set_tip(selchild, 
-                                      _('Add existing child to family'))
+                selchild.set_tooltip_text(_('Add existing child to family'))
                 hbox.pack_start(addchild, False)
                 hbox.pack_start(selchild, False)
                 self.attach.attach(

@@ -174,8 +174,7 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
         if msg is None:
             msg = _("Drag Properties Button to move and click it for setup")
         if msg:
-            gui.tooltips = gtk.Tooltips()
-            gui.tooltips.set_tip(gui.scrolledwindow, msg)
+            gui.scrolledwindow.set_tooltip_text(msg)
             gui.tooltips_text = msg
         gui.make_gui_options()
         gui.gvoptions.hide()
@@ -949,13 +948,10 @@ class GuiGramplet(object):
             else:
                 tag.set_property('underline', pango.UNDERLINE_NONE)
         view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(cursor)
-        if self.tooltips:
-            if ttip:
-                self.tooltips.set_tip(self.scrolledwindow, 
-                                          ttip)
-            else:
-                self.tooltips.set_tip(self.scrolledwindow, 
-                                          self.tooltips_text)
+        if ttip:
+            self.scrolledwindow.set_tooltip_text(ttip)
+        elif self.tooltips_text:
+            self.scrolledwindow.set_tooltip_text(self.tooltips_text)
         return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
@@ -1101,8 +1097,7 @@ class GrampletView(PageView.PersonNavView):
         # build the GUI:
         frame = MyScrolledWindow()
         msg = _("Right click to add gramplets")
-        self.tooltips = gtk.Tooltips()
-        self.tooltips.set_tip(frame, msg)
+        frame.set_tooltip_text(msg)
         frame.viewpage = self
         frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.hbox = gtk.HBox(homogeneous=True)
