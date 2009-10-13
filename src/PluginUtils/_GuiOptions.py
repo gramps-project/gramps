@@ -1311,7 +1311,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
         @return: nothing
         """
         GuiEnumeratedListOption.__init__(self, option, dbstate, 
-                                         uistate, track, tooltip)
+                                         uistate, track)
         self.__option = option
         
         self.__button = gtk.Button("%s..." % _("Style Editor"))
