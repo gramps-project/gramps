@@ -124,7 +124,7 @@ class ButtonTab(GrampsTab):
             
         if move_buttons:
             self.up_btn = SimpleButton(gtk.STOCK_GO_UP, self.up_button_clicked)
-            self.share_btn.set_tooltip_text(self._MSG['up'])
+            self.up_btn.set_tooltip_text(self._MSG['up'])
             self.down_btn = SimpleButton(gtk.STOCK_GO_DOWN, 
                                                 self.down_button_clicked)
             self.down_btn.set_tooltip_text(self._MSG['down'])
