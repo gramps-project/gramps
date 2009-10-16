@@ -674,9 +674,7 @@ def not_too_old(date, current_year=None):
         time_struct = time.localtime(time.time())
         current_year = time_struct[0]
     year = date.get_year()
-    if year > current_year:
-        return False
-    return (year != 0 and current_year - year < _MAX_AGE_PROB_ALIVE)
+    return (year != 0 and abs(current_year - year) < _MAX_AGE_PROB_ALIVE)
 
 def too_old(date, current_year=None):
     if current_year:
@@ -685,9 +683,7 @@ def too_old(date, current_year=None):
         time_struct = time.localtime(time.time())
         the_current_year = time_struct[0]
     year = date.get_year()
-    if year > the_current_year:
-        return True
-    return (year != 0 and the_current_year - year > _MAX_AGE_PROB_ALIVE)
+    return (year != 0 and abs(the_current_year - year) > _MAX_AGE_PROB_ALIVE)
 
 #-------------------------------------------------------------------------
 #
