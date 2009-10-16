@@ -506,7 +506,9 @@ def probably_alive(person, db, current_date=None, limit=0):
             # code above did not look at birth, only at other events
             birth_obj = birth.get_date_object()
             if birth_obj.get_valid():
-                # only if this is a valid birth:
+                # only if this is a valid birth date:
+                if birth_obj.match(current_date,">>"):
+                    return False
                 if too_old(birth_obj, current_date.get_year()):
                     return False
                 if not_too_old(birth_obj, current_date.get_year()):
