@@ -70,13 +70,14 @@ def run(database, document, date):
                 diff_span = (date - birth_date)
                 if ((death_date is not None) or
                     (death_date is None and 
-                     int(diff_span) <= config.get('behavior.max-age-prob-alive') * 365)):
+                     int(diff_span)/12.0 <= config.get('behavior.max-age-prob-alive') * 365)):
                     birth_str = str(diff_span)
                     birth_sort = int(diff_span)
         if birth_str != "":
             stab.row(person, birth_str)
             stab.row_sort_val(1, diff_span)
             matches += 1
+
     sdoc.paragraph(_("\n%d matches.\n") % matches)
     stab.write(sdoc)
     sdoc.paragraph("")
