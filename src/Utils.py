@@ -643,7 +643,9 @@ def probably_alive(person, db, current_date=None, limit=0):
             # code above did not look at birth, only at other events
             birth_obj = birth.get_date_object()
             if birth_obj.get_valid():
-                # only if this is a valid birth:
+                # only if this is a valid birth date:
+                if birth_obj.match(current_date,">>"):
+                    return False
                 if too_old(birth_obj, current_date.get_year()):
                     return False
                 if not_too_old(birth_obj, current_date.get_year()):
@@ -803,9 +805,7 @@ def not_too_old(date, current_year=None):
         time_struct = time.localtime(time.time())
         current_year = time_struct[0]
     year = date.get_year()
-    if year > current_year:
-        return False
-    return (year != 0 and current_year - year < _MAX_AGE_PROB_ALIVE)
+    return (year != 0 and abs(current_year - year) < _MAX_AGE_PROB_ALIVE)
 
 def too_old(date, current_year=None):
     if current_year:
@@ -814,9 +814,7 @@ def too_old(date, current_year=None):
         time_struct = time.localtime(time.time())
         the_current_year = time_struct[0]
     year = date.get_year()
-    if year > the_current_year:
-        return True
-    return (year != 0 and the_current_year - year > _MAX_AGE_PROB_ALIVE)
+    return (year != 0 and abs(the_current_year - year) > _MAX_AGE_PROB_ALIVE)
 
 #-------------------------------------------------------------------------
 #
