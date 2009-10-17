@@ -1271,14 +1271,14 @@ class GrampsParser(UpdateCallback):
     def start_name(self, attrs):
         if not self.in_witness:
             self.name = gen.lib.Name()
-            name_type = attrs['type']
+            name_type = attrs.get('type', "Birth Name")
             # Mapping "Other Name" from gramps 2.0.x to Unknown
             if (self.version_string=='1.0.0') and (name_type=='Other Name'):
                 self.name.set_type(gen.lib.NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
-            self.name.private = bool(attrs.get("priv"))
-            self.alt_name = bool(attrs.get("alt"))
+            self.name.private = bool(attrs.get("priv", 0))
+            self.alt_name = bool(attrs.get("alt", 0))
             try:
                 sort_as = int(attrs["sort"])
                 display_as = int(attrs["display"])
