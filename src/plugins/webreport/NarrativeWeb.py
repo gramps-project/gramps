@@ -125,27 +125,27 @@ from libhtmlbackend import HtmlBackend
 #------------------------------------------------------------------------
 # Translatable strings for variables within this plugin
 # gettext carries a huge footprint with it.
-AHEAD = _('Attributes')
-CITY = _('City')
-COUNTY = _('County')
-COUNTRY = _('Country')
-DHEAD = _('Date')
-DESCRHEAD = _('Description')
-LATITUDE = _('Latitude')
-LOCATIONS = _('Alternate Locations')
-LONGITUDE = _('Longitude')
-NHEAD = _('Notes')
-PARISH = _('Church Parish')
-PHEAD = _('Place')
-PHONE = _('Phone')
-POSTAL = _('Postal Code')
-SHEAD = _('Sources')
-ST = _('Status')
-STATE = _('State/ Province')
-STREET = _('Street')
+AHEAD = _("Attributes")
+CITY = _("City")
+COUNTY = _("County")
+COUNTRY = _("Country")
+DHEAD = _("Date")
+DESCRHEAD = _("Description")
+LATITUDE = _("Latitude")
+LOCATIONS = _("Alternate Locations")
+LONGITUDE = _("Longitude")
+NHEAD = _("Notes")
+PARISH = _("Church Parish")
+PHEAD = _("Place")
+PHONE = _("Phone")
+POSTAL = _("Postal Code")
+SHEAD = _("Sources")
+ST = _("Status")
+STATE = _("State/ Province")
+STREET = _("Street")
 THEAD = _("Type")
-TMPL = _('Temple')
-VHEAD = _('Value')
+TMPL = _("Temple")
+VHEAD = _("Value")
 
 # define clear blank line for proper styling
 fullclear = Html("div", class_ = "fullclear", inline = True)
@@ -415,7 +415,7 @@ class BasePage(object):
         #FIXME: following split should be regex to match \n\s*\n instead?
         markuptext = self._backend.add_markup_from_styled(text, s_tags,
                                                          split='\n\n')
-        htmllist = Html("div", id="grampsstylednote")
+        htmllist = Html("div", id = "grampsstylednote")
         if format == 1:
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
@@ -510,7 +510,7 @@ class BasePage(object):
 
         # if event pages are being created, then hyperlink the event type
         if self.inc_events:
-            evt_hyper = Html('a', eventtype, href=url, title=eventtype)
+            evt_hyper = Html("a", eventtype, href=url, title=eventtype)
             if not self.noid and gid:
                 evt_hyper += Html("span", " [%s] " % gid, class_ = "grampsid", 
                     inline = True)
@@ -603,17 +603,17 @@ class BasePage(object):
             trow = Html("tr")
 
             header_row = [
-                [THEAD,                'LDSType' ],
-                [DHEAD,                'LDSDate' ],
-                [TMPL,                  'LDSTemple' ],
-                [PHEAD,                'LDSPlace' ],
-                [ST,                        'LDSStatus' ],
-                [_('Sealed to '),      'LDSSealed'],
-                [SHEAD,                 'LDSSources']
+                [THEAD,              "LDSType"],
+                [DHEAD,              "LDSDate"],
+                [TMPL,               "LDSTemple"],
+                [PHEAD,              "LDSPlace"],
+                [ST,                 "LDSStatus"],
+                [_("Sealed to "),    "LDSSealed"],
+                [SHEAD,              "LDSSources"]
                ]
 
             # finish the label's missing piece
-            header_row[5][0] += _('Parents') if LDSType == 'Person' else _('Spouse') 
+            header_row[5][0] += _("Parents") if LDSType == "Person" else _("Spouse") 
 
             for (label, colclass) in header_row:    
                 trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
@@ -721,7 +721,7 @@ class BasePage(object):
             return trow
 
         # begin summaryarea division
-        with Html("div", id="summaryarea") as summaryarea: 
+        with Html("div", id = "summaryarea") as summaryarea: 
 
             # begin address table
             with Html("table") as table:
@@ -838,8 +838,8 @@ class BasePage(object):
             return None
 
         # begin attributes division and section title
-        with Html("div", class_ = "ubsection", id="attributes") as section:
-            section += Html('h4', _('Attributes'),  inline = True)
+        with Html("div", class_ = "ubsection", id = "attributes") as section:
+            section += Html("h4", _("Attributes"),  inline = True)
 
             # begin attributes table
             with Html("table", class_ = "infolist attrlist") as table:
@@ -880,7 +880,7 @@ class BasePage(object):
         db = self.report.database
 
         # begin footer division
-        with Html("div", id="footer") as footer:
+        with Html("div", id = "footer") as footer:
 
             footer_note = self.report.options['footernote']
             if footer_note:
@@ -959,7 +959,7 @@ class BasePage(object):
             del page[0]
 
         # add narrative specific body id
-        body.attr = 'id="NarrativeWeb"'
+        body.attr = 'id = "NarrativeWeb"'
 
         # create additional meta tags
         meta = (Html("meta", attr = _META1) + 
@@ -1030,17 +1030,17 @@ class BasePage(object):
                 inc_repos = False  
 
         navs = [
-            (self.report.index_fname,   _('html|Home'),         self.report.use_home),
-            (self.report.intro_fname,   _('Introduction'), self.report.use_intro),
-            (self.report.surname_fname, _('Surnames'),     True),
-            ('individuals',             _('Individuals'),  True),
-            ('places',                  _('Places'),       True),
-            ('events',                 _('Events'),        self.report.inc_events), 
-            ('media',                   _('Media'),        self.create_media),
-            ('download',                _('Download'),     self.report.inc_download),
-            ('contact',                 _('Contact'),      self.report.use_contact),
-            ('sources',                 _('Sources'),      True),
-            ('repositories',            _('Repositories'),  inc_repos), 
+            (self.report.index_fname,   _("Html|Home"),     self.report.use_home),
+            (self.report.intro_fname,   _("Introduction"),  self.report.use_intro),
+            (self.report.surname_fname, _("Surnames"),      True),
+            ('individuals',             _("Individuals"),   True),
+            ('places',                  _("Places"),        True),
+            ('events',                 _("Events"),         self.report.inc_events), 
+            ('media',                   _("Media"),         self.create_media),
+            ('download',                _("Download"),      self.report.inc_download),
+            ('contact',                 _("Contact"),       self.report.use_contact),
+            ('sources',                 SHEAD,              True),
+            ('repositories',            _("Repositories"),  inc_repos), 
                 ]
 
         navigation = Html("div", id='navigation')
@@ -1063,30 +1063,30 @@ class BasePage(object):
             cs = False
             if nav_text == currentsection:
                 cs = True
-            elif nav_text == _('Surnames'):
+            elif nav_text == _("Surnames"):
                 if "srn" in self.report.cur_fname:
                     cs = True
-                elif _('Surnames') in currentsection:
+                elif _("Surnames") in currentsection:
                     cs = True
-            elif nav_text == _('Individuals'):
+            elif nav_text == _("Individuals"):
                 if "ppl" in self.report.cur_fname:
                     cs = True
-            elif nav_text == _('Sources'):
+            elif nav_text == SHEAD:
                 if "src" in self.report.cur_fname:
                     cs = True
-            elif nav_text == _('Places'):
+            elif nav_text == _("Places"):
                 if "plc" in self.report.cur_fname:
                     cs = True
-            elif nav_text == _('Events'):
+            elif nav_text == _("Events"):
                 if 'evt' in self.report.cur_fname:
                     cs = True 
-            elif nav_text == _('Media'):
+            elif nav_text == _("Media"):
                 if "img" in self.report.cur_fname:
                     cs = True
 
             cs = cs and 'class="CurrentSection"' or ''
-            ul += (Html('li', attr=cs, inline = True) +
-                   Html('a', nav_text, href=url)
+            ul += (Html("li", attr = cs, inline = True) +
+                   Html("a", nav_text, href=url)
                   )
 
         navigation += ul
@@ -1150,11 +1150,9 @@ class BasePage(object):
             return None
         db = self.report.database
 
-        # begin individualgallery division
-        with Html("div", class_ = "subsection", id="indivgallery") as section: 
-
-            # begin section title
-            section += Html('h4', _('Gallery'), inline = True)
+        # begin individualgallery division and section title
+        with Html("div", class_ = "subsection", id = "indivgallery") as section: 
+            section += Html("h4", _("Gallery"), inline = True)
 
             displayed = []
             for mediaref in photolist:
@@ -1214,7 +1212,7 @@ class BasePage(object):
         db = self.report.database
 
         # begin narrative division
-        with Html("div", class_ = "subsection", id="narrative") as section:
+        with Html("div", class_ = "subsection", id = "narrative") as section:
 
             for notehandle in notelist:
                 note = db.get_note_from_handle(notehandle)
@@ -1227,7 +1225,7 @@ class BasePage(object):
                         note_text = unicode(str(note_text), errors='replace')
 
                     # add section title
-                    section += Html('h4', _('Narrative'), inline = True)
+                    section += Html("h4", _("Narrative"), inline = True)
 
                     # attach note
                     section += note_text
@@ -1241,10 +1239,10 @@ class BasePage(object):
             return None
 
         # begin web links division
-        with Html("div", class_ = "subsection", id="weblinks") as section:
+        with Html("div", class_ = "subsection", id = "weblinks") as section:
 
             # begin web title
-            title = Html('h4', _('Weblinks'), inline = True)  
+            title = Html("h4", _("Web Links"), inline = True)  
             section += title
 
             # ordered list
@@ -1257,15 +1255,15 @@ class BasePage(object):
                 if not descr:
                     descr = uri
                 if url.get_type() == UrlType.EMAIL and not uri.startswith("mailto:"):
-                    ordered += Html('li') + Html('a',descr,  href='mailto:%s' % url)
+                    ordered += Html("li") + Html("a",descr,  href='mailto:%s' % url)
 
                 elif url.get_type() == UrlType.WEB_HOME and not uri.startswith("http://"):
-                    ordered += Html('li') + Html('a', descr, href='http://%s' % url)
+                    ordered += Html("li") + Html("a", descr, href='http://%s' % url)
 
                 elif url.get_type() == UrlType.WEB_FTP and not uri.startswith("ftp://"):
-                    ordered += Html('li') + Html('a', descr, href='ftp://%s' % url)
+                    ordered += Html("li") + Html("a", descr, href='ftp://%s' % url)
                 else:
-                    ordered += Html('li') + Html('a', descr, href=url)
+                    ordered += Html("li") + Html("a", descr, href=url)
                 
         # return web links to its caller
         return section
@@ -1275,7 +1273,7 @@ class BasePage(object):
             return None
         db = self.report.database
 
-        with Html("div", id="sourcerefs", class_ = "subsection") as section: 
+        with Html("div", id = "sourcerefs", class_ = "subsection") as section: 
             section += Html("h4", _("Source References"), inline = True)
 
             # begin ordered list
@@ -1311,18 +1309,18 @@ class BasePage(object):
 
                     tmp = []
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
-                    if confidence == _('Normal'):
+                    if confidence == _("Normal"):
                         confidence = None
-                    for (label, data) in [(_('Date'), _dd.display(sref.date)),
-                                          (_('Page'), sref.page),
-                                          (_('Confidence'), confidence)]:
+                    for (label, data) in [(DHEAD,            _dd.display(sref.date)),
+                                          (_("Page"),        sref.page),
+                                          (_("Confidence"),  confidence)]:
                         if data:
                             tmp.append("%s: %s" % (label, data))
                     notelist = sref.get_note_list()
                     for notehandle in notelist:
                         note = db.get_note_from_handle(notehandle)
                         note_text = self.get_note_format(note)
-                        tmp.append("%s: %s" % (_('Text'), note_text))
+                        tmp.append("%s: %s" % (_("Text"), note_text))
                     if len(tmp) > 0:
                         list2 = Html("li") + (
                             Html("a", '; &nbsp; '.join(tmp), name = "sref%d%s" % (cindex, key), inline = True)
@@ -1338,15 +1336,15 @@ class BasePage(object):
             return None
 
         # begin references division and title
-        with Html("div", class_ = "subsection", id="references") as section:
-            section += Html('h4', _('References'), inline = True)
+        with Html("div", class_ = "subsection", id = "references") as section:
+            section += Html("h4", _("References"), inline = True)
 
             ordered = Html('ol')
             section += ordered 
             sortlist = sorted(handlelist, key=lambda x:locale.strxfrm(x[1]))
         
             for (path, name, gid) in sortlist:
-                list = Html('li')
+                list = Html("li")
                 ordered += list
 
                 # Note. 'path' already has a filename extension
@@ -1380,7 +1378,7 @@ class BasePage(object):
                 person_name = person
 
             # 1. start building link to image or person
-            hyper = Html('a', href=url)
+            hyper = Html("a", href=url)
 
             # 2. insert thumbnail if there is one, otherwise insert class = "noThumb"
             if thumbnailUrl:
@@ -1411,13 +1409,12 @@ class BasePage(object):
         with Html("div", class_ = "thumbnail") as thumbnail:
 
             # begin hyperlink
-            hyper = (Html('a', href=url, title=name) +
-                     Html('img', src=img_url, alt=name) +
-                     (Html("p", inline = True) + 
-                          html_escape(name) if usedescr else '')
-                    )
-            # add hyperlink and description to thumbnail division
+            hyper = (Html("a", href=url, title=name) +
+                     Html('img', src=img_url, alt=name) )
             thumbnail += hyper
+
+            if usedescr:
+                hyper += Html("p", html_escape(name), inline = True)
 
         # return thumbnail division to its callers
         return thumbnail
@@ -1430,16 +1427,14 @@ class BasePage(object):
         thumbnail = Html("div", class_ = "thumbnail")
 
         # begin hyperlink
-        hyper = Html('a', href=url, title=name)
-        url = self.report.build_url_image('document.png', 'images', up)
-        hyper += Html('img', src=url, alt=html_escape(name))
-        if usedescr:
-            descr = Html("p", html_escape(name), inline = True)
-        else:
-            descr = ''
+        hyper = Html("a", href = url, title = name)
+        thumbnail += hyper
 
-        # add hyperlink and description to thumbnail division
-        thumbnail += (hyper, descr)
+        url = self.report.build_url_image("document.png", "images", up)
+        hyper += Html("img", src = url, alt = html_escape(name))
+
+        if usedescr:
+            hyper += Html("p", html_escape(name), inline = True)
 
         # return thumbnail division to its callers
         return thumbnail
@@ -1448,7 +1443,7 @@ class BasePage(object):
 
         url = self.report.build_url_fname_html(handle, 'repo', up)
         # begin hyperlink
-        hyper = Html('a', html_escape(name), href=url, title=name)
+        hyper = Html("a", html_escape(name), href=url, title=name)
         if not self.noid and gid:
             hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
 
@@ -1458,7 +1453,7 @@ class BasePage(object):
     def place_link(self, handle, name, gid=None, up=False):
         url = self.report.build_url_fname_html(handle, 'plc', up)
 
-        hyper = Html('a', html_escape(name), href=url, title=name)
+        hyper = Html("a", html_escape(name), href=url, title=name)
         if not self.noid and gid:
             hyper += Html("span", " [%s] " % gid, class_ = "grampsid", inline = True)
 
@@ -1501,10 +1496,10 @@ class IndividualListPage(BasePage):
         showparents = report.options['showparents']
 
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_('Individuals'))
+        indlistpage, body = self.write_header(_("Individuals"))
 
         # begin Individuals division
-        with Html("div", class_ = "content", id="Individuals") as individuallist:
+        with Html("div", class_ = "content", id = "Individuals") as individuallist:
             body += individuallist
 
             # Individual List page message
@@ -1688,10 +1683,10 @@ class SurnamePage(BasePage):
 
         of = self.report.create_file(name_to_md5(surname), 'srn')
         self.up = True
-        surnamepage, body = self.write_header("%s - %s" % (_('Surname'), surname))
+        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname))
 
         # begin SurnameDetail division
-        with Html("div", class_ = "content", id="SurnameDetail") as surnamedetail:
+        with Html("div", class_ = "content", id = "SurnameDetail") as surnamedetail:
             body += surnamedetail
 
             # section title
@@ -1840,10 +1835,10 @@ class PlaceListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_('Places'))
+        placelistpage, body = self.write_header(_("Places"))
 
         # begin places division
-        with Html("div", class_ = "content", id="Places") as placelist:
+        with Html("div", class_ = "content", id = "Places") as placelist:
             body += placelist
 
             # place list page message
@@ -1866,8 +1861,8 @@ class PlaceListPage(BasePage):
                 table += thead
 
                 trow = Html("tr")  + (
-                    Html("th", _('Letter'), class_ = "ColumnLetter", inline = True),
-                    Html("th", _('Place name|Name'), class_ = "ColumnName", inline = True)
+                    Html("th", _("Letter"), class_ = "ColumnLetter", inline = True),
+                    Html("th", _("Place name |Name"), class_ = "ColumnName", inline = True)
                     )
                 thead += trow
 
@@ -1894,7 +1889,7 @@ class PlaceListPage(BasePage):
                         last_letter = letter
                         trow.attr = 'class = "BeginLetter" '
                         tcell = Html("td", class_ = "olumnLetter", inline = True) + (
-                            Html('a', last_letter, name=last_letter, 
+                            Html("a", last_letter, name=last_letter, 
                                 title="Places beginning with letter %s" % last_letter)
                             )
                     else:
@@ -1926,10 +1921,10 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), 'plc')
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        placepage, body = self.write_header(_('Places'))
+        placepage, body = self.write_header(_("Places"))
 
         # begin PlaceDetail Division
-        with Html("div", class_ = "content", id="PlaceDetail") as placedetail:
+        with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
             body += placedetail
 
             media_list = place.get_media_list()
@@ -1949,7 +1944,7 @@ class PlacePage(BasePage):
 
                     if not self.noid:
                         trow = Html("tr") + (
-                            Html("td", _('GRAMPS ID'), class_ = "ColumnAttribute", inline = True),
+                            Html("td", _("GRAMPS ID"), class_ = "ColumnAttribute", inline = True),
                             Html("td", place.gramps_id, class_ = "ColumnValue", inline = True)
                             )
                         table += trow
@@ -2017,10 +2012,10 @@ class EventListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("events")
-        eventslistpage, body = self.write_header(_('Events'))
+        eventslistpage, body = self.write_header(_("Events"))
 
         # begin events list  division
-        with Html("div", class_ = "content", id="EventList") as eventlist:
+        with Html("div", class_ = "content", id = "EventList") as eventlist:
             body += eventlist
 
             msg = _("This page contains an index of all the events in the "
@@ -2029,7 +2024,7 @@ class EventListPage(BasePage):
                     "will take you to that event&#8217;s page.  Clicking on a "
                     "person&#8217;s name will take you to that person&#8217;s page.  "
                     "The person&#8217;s name will only be shown once for their events.")
-            eventlist += Html("p", msg, id="description")
+            eventlist += Html("p", msg, id = "description")
 
             # begin event list table and table head
             with Html("table", class_ = "infolist eventlist") as table:
@@ -2137,14 +2132,14 @@ class EventPage(BasePage):
         subdirs = True
 
         of = self.report.create_file(evt_ref.ref, 'evt')
-        eventpage, body = self.write_header(_('Events'))
+        eventpage, body = self.write_header(_("Events"))
 
         # start event page division
-        with Html("div", class_ = "content", id="EventDetail") as eventdetail:
+        with Html("div", class_ = "content", id = "EventDetail") as eventdetail:
             body += eventdetail
 
             # display page itle
-            title = _('%(type)s of %(name)s') % {'type' : evt_type.lower(),
+            title = _("%(type)s of %(name)s") % {'type' : evt_type.lower(),
                                                  'name' : self.get_name(person) }
 
             # line is in place for Peter Lundgren
@@ -2317,7 +2312,7 @@ class MediaPage(BasePage):
         mediapage, body = self.write_header("%s - %s" % (_('Media'), self.page_title))
 
         # begin GalleryDetail division
-        mediadetail = Html("div", class_ = "content", id="GalleryDetail")
+        mediadetail = Html("div", class_ = "content", id = "GalleryDetail")
         body += mediadetail
 
         # gallery navigation
@@ -2325,8 +2320,8 @@ class MediaPage(BasePage):
         mediadetail += gallerynav
         if prev:
             gallerynav += self.gallery_nav_link(prev, _('Previous'), True)
-        data = _('<strong id="GalleryCurrent">%(page_number)d</strong> of '
-            '<strong id="GalleryTotal">%(total_pages)d</strong>' ) % {
+        data = _('<strong id = "GalleryCurrent">%(page_number)d</strong> of '
+            '<strong id = "GalleryTotal">%(total_pages)d</strong>' ) % {
             'page_number' : page_number, 'total_pages' : total_pages }
         gallerynav += Html("span", data, id='GalleryPages')
         if next:
@@ -2396,15 +2391,15 @@ class MediaPage(BasePage):
                         mediadisplay += ordered
                         while len(_region_items) > 0:
                             (name, x, y, w, h, linkurl) = _region_items.pop()
-                            ordered += Html('li', style='left:%d%%; top:%d%%; width:%d%%; height:%d%%;'
+                            ordered += Html("li", style='left:%d%%; top:%d%%; width:%d%%; height:%d%%;'
                                 % (x, y, w, h)) +(
-                                    Html('a', name, href=linkurl)
+                                    Html("a", name, href=linkurl)
                                     )       
 
                     # display the image
                     if initial_image_path != newpath:
                         url = self.report.build_url_fname(newpath, None, self.up)
-                        mediadisplay += Html('a', href=url) + (
+                        mediadisplay += Html("a", href=url) + (
                             Html('img', width=new_width, height=new_height, src=url,
                                 alt=html_escape(self.page_title))
                                 )
@@ -2432,7 +2427,7 @@ class MediaPage(BasePage):
                 if target_exists:
                     # TODO. Convert disk path to URL
                     url = self.report.build_url_fname(newpath, None, self.up)
-                    hyper = Html('a', href=url)
+                    hyper = Html("a", href=url)
                 # TODO. Mixup url and path
                 # path = convert_disk_path_to_url(path)
                 url = self.report.build_url_fname(path, None, self.up)
@@ -2504,7 +2499,7 @@ class MediaPage(BasePage):
                 mediadetail += fullclear
 
                 # add exif title header
-                mediadetail += Html('h4', _('Image Exif Tags'), inline = True)
+                mediadetail += Html("h4", _('Image Exif Tags'), inline = True)
 
                 # begin exif table
                 with Html("table", class_ = "exifdata") as table:
@@ -2551,7 +2546,7 @@ class MediaPage(BasePage):
 
         url = self.report.build_url_fname_html(handle, 'img', up)
         name = html_escape(name)
-        hyper = Html('a', name, id=name, href=url,  title=name, inline = True)
+        hyper = Html("a", name, id=name, href=url,  title=name, inline = True)
 
         # return hyperlink to its callers
         return hyper
@@ -2624,7 +2619,7 @@ class SurnameListPage(BasePage):
             surnamelistpage, body = self.write_header(_('Surnames by person count'))
 
         # begin surnames division
-        with Html("div", class_ = "content", id="surnames") as surnamelist:
+        with Html("div", class_ = "content", id = "surnames") as surnamelist:
             body += surnamelist
 
             # page message
@@ -2661,13 +2656,13 @@ class SurnameListPage(BasePage):
                 fname = self.report.surname_fname + self.ext
                 tcell = Html("th", class_ = "ColumnSurname", inline = True)
                 trow += tcell
-                hyper = Html('a', _('Surname'), href=fname)
+                hyper = Html("a", _('Surname'), href=fname)
                 tcell += hyper
 
                 fname = "surnames_count" + self.ext
                 tcell = Html("th", class_ = "ColumnQuantity", inline = True)
                 trow += tcell
-                hyper = Html('a', _('Number of People'), href=fname)
+                hyper = Html("a", _('Number of People'), href=fname)
                 tcell += hyper
 
                 # begin table body
@@ -2701,7 +2696,7 @@ class SurnameListPage(BasePage):
                             trow.attr = ' class="BeginLetter" '
 
                             tcell = Html("td", class_ = "ColumnLetter", inline = True) + (
-                                Html('a', last_letter, name=last_letter, 
+                                Html("a", last_letter, name=last_letter, 
                                     title="Surnames starting with letter %s" % last_letter) )
                             trow += tcell
 
@@ -2729,7 +2724,7 @@ class SurnameListPage(BasePage):
 
     def surname_link(self, fname, name, opt_val=None, up=False):
         url = self.report.build_url_fname_html(fname, 'srn', up)
-        hyper = Html('a', name, href=url, title=name)
+        hyper = Html("a", name, href=url, title=name)
         if opt_val is not None:
             hyper += opt_val
 
@@ -2749,7 +2744,7 @@ class IntroductionPage(BasePage):
         intropage, body = self.write_header(_('Introduction'))
 
         # begin Introduction division
-        with Html("div", class_ = "content", id="Introduction") as section:
+        with Html("div", class_ = "content", id = "Introduction") as section:
             body += section
 
             introimg = report.add_image('introimg')
@@ -2786,7 +2781,7 @@ class HomePage(BasePage):
         homepage, body = self.write_header(_('html|Home'))
 
         # begin home division
-        with Html("div", class_ = "content", id="Home") as section:
+        with Html("div", class_ = "content", id = "Home") as section:
             body += section
 
             homeimg = report.add_image('homeimg')
@@ -2823,7 +2818,7 @@ class SourceListPage(BasePage):
         sourcelistpage, body = self.write_header(_("Sources"))
 
         # begin source list division
-        with Html("div", class_ = "content", id="Sources") as sourceslist:
+        with Html("div", class_ = "content", id = "Sources") as sourceslist:
             body += sourceslist
 
             # Sort the sources
@@ -2892,7 +2887,7 @@ class SourcePage(BasePage):
         sourcepage, body = self.write_header(_('Sources'))
 
         # begin source detail division
-        with Html("div", class_ = "content", id="SourceDetail") as section:
+        with Html("div", class_ = "content", id = "SourceDetail") as section:
             body += section 
 
             media_list = source.get_media_list()
@@ -2960,7 +2955,7 @@ class MediaListPage(BasePage):
         medialistpage, body = self.write_header(_('Media'))
 
         # begin gallery division
-        with Html("div", class_ = "content", id="Gallery") as section:
+        with Html("div", class_ = "content", id = "Gallery") as section:
             body += section
 
             msg = _("This page contains an index of all the media objects "
@@ -3028,7 +3023,7 @@ class MediaListPage(BasePage):
         name = html_escape(name)
 
         # begin hyper link
-        hyper = Html('a', name, href=url, title=name)
+        hyper = Html("a", name, href=url, title=name)
 
         # return hyperlink to its callers
         return hyper
@@ -3068,14 +3063,14 @@ class DownloadPage(BasePage):
         downloadpage, body = self.write_header(_('Download'))
 
         # begin download page and table
-        with Html("div", class_ = "content", id="Download") as download:
+        with Html("div", class_ = "content", id = "Download") as download:
             body += download
 
             # download page note
             if downloadnote:
                 note = db.get_note_from_gramps_id(downloadnote)
                 note_text = self.get_note_format(note)
-                download += Html("p", note_text, id="description")
+                download += Html("p", note_text, id = "description")
 
             # begin download table and table head
             with Html("table", class_ = "infolist download") as table:
@@ -3106,7 +3101,7 @@ class DownloadPage(BasePage):
 
                     fname = os.path.basename(dlfname1)
                     tcell = Html("td", class_ = "Filename") + (
-                        Html('a', fname, href=dlfname1, alt=dldescr1)
+                        Html("a", fname, href=dlfname1, alt=dldescr1)
                         )
                     trow += tcell
 
@@ -3134,7 +3129,7 @@ class DownloadPage(BasePage):
 
                     fname = os.path.basename(dlfname2)
                     tcell = Html("td", class_ = "Filename") + (
-                        Html('a', fname, href=dlfname2, alt=dldescr2)
+                        Html("a", fname, href=dlfname2, alt=dldescr2)
                         )  
                     trow += tcell
 
@@ -3172,7 +3167,7 @@ class ContactPage(BasePage):
         contactpage, body = self.write_header(_('Contact'))
 
         # begin contact division
-        with Html("div", class_ = "content", id="Contact") as section:
+        with Html("div", class_ = "content", id = "Contact") as section:
             body += section 
 
             # begin summaryarea division
@@ -3203,7 +3198,7 @@ class ContactPage(BasePage):
                         researcher += Html("span", r.country, id='country', inline = True)
                     if r.email:
                         researcher += Html("span", id='email') + (
-                            Html('a', r.email, href='mailto:%s?subject="from GRAMPS Web Site"' 
+                            Html("a", r.email, href='mailto:%s?subject="from GRAMPS Web Site"' 
                                 % r.email, inline = True)
                             )
 
@@ -3443,9 +3438,9 @@ class IndividualPage(BasePage):
         max_size = _HEIGHT*max_in_col + _VGAP*(max_in_col+1)
         center = int(max_size/2)
 
-        with Html("div", id="tree", class_ = "subsection") as tree:
-            tree += Html('h4', _('Ancestors'), inline = True)
-            with Html("div", id="treeContainer",
+        with Html("div", id = "tree", class_ = "subsection") as tree:
+            tree += Html("h4", _('Ancestors'), inline = True)
+            with Html("div", id = "treeContainer",
                     style="width:%dpx; height:%dpx;" %
                         (_XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP, 
                         max_size)
@@ -3510,8 +3505,8 @@ class IndividualPage(BasePage):
         """
 
         # begin Associations division  
-        with Html("div", class_ = "subsection", id="Associations") as section:
-            section += Html('h4', _('Associations'), inline = True)
+        with Html("div", class_ = "subsection", id = "Associations") as section:
+            section += Html("h4", _('Associations'), inline = True)
 
             with Html("table", class_ = "infolist assoclist") as table:
                 section += table
@@ -3571,13 +3566,13 @@ class IndividualPage(BasePage):
                         child_ped(ol)
                     else:
                         child = db.get_person_from_handle(child_handle)
-                        ol += Html('li') + self.pedigree_person(child)
+                        ol += Html("li") + self.pedigree_person(child)
             else:
                 child_ped(ol)
             return ol
                 
         def child_ped(ol):
-            ol += Html('li', class_ = "thisperson", inline = True) + self.name
+            ol += Html("li", class_ = "thisperson", inline = True) + self.name
             family = self.pedigree_family()
             if family:
                 ol += Html('ol', class_ = "spouselist") + family
@@ -3598,25 +3593,25 @@ class IndividualPage(BasePage):
             father = None
             mother = None
 
-        with Html("div", id="pedigree", class_ = "subsection") as ped:
-            ped += Html('h4', _('Pedigree'), inline = True)
+        with Html("div", id = "pedigree", class_ = "subsection") as ped:
+            ped += Html("h4", _('Pedigree'), inline = True)
             with Html('ol', class_ = "pedigreegen") as pedol:
                 ped += pedol
                 if father and mother:
-                    pedfa = Html('li') + self.pedigree_person(father)
+                    pedfa = Html("li") + self.pedigree_person(father)
                     pedol += pedfa
                     with Html('ol') as pedma:
                         pedfa += pedma
-                        pedma += (Html('li', class_ = "spouse") +
+                        pedma += (Html("li", class_ = "spouse") +
                                       self.pedigree_person(mother) +
                                       children_ped(Html('ol'))
                                  )
                 elif father:
-                    pedol += (Html('li') + self.pedigree_person(father) +
+                    pedol += (Html("li") + self.pedigree_person(father) +
                                   children_ped(Html('ol'))
                              )
                 elif mother:
-                    pedol += (Html('li') + self.pedigree_person(mother) +
+                    pedol += (Html("li") + self.pedigree_person(mother) +
                                   children_ped(Html('ol'))
                              )
                 else:
@@ -3758,8 +3753,8 @@ class IndividualPage(BasePage):
         db = self.report.database
             
         # begin events division and section title
-        with Html("div", class_ = "subsection", id="events") as section:
-            section += Html('h4', _('Events'), inline = True)
+        with Html("div", class_ = "subsection", id = "events") as section:
+            section += Html("h4", _('Events'), inline = True)
 
             # begin events table
             with Html("table", class_ = "infolist eventlist") as table:
@@ -3809,8 +3804,8 @@ class IndividualPage(BasePage):
             return None
 
         # begin addresses division and title
-        with Html("div", class_ = "subsection", id="Addresses") as section:
-            section += Html('h4', _('Addresses'), inline = True)
+        with Html("div", class_ = "subsection", id = "Addresses") as section:
+            section += Html("h4", _('Addresses'), inline = True)
 
             # write out addresses()
             section += self.dump_addresses(self.person)
@@ -3829,8 +3824,8 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         # begin LDS Ordinance division and section title
-        with Html("div", class_ = "subsection", id="LDSOrdinance") as section:
-            section += Html('h4', _('Latter-Day Saints (LDS) Ordinance'), inline = True)
+        with Html("div", class_ = "subsection", id = "LDSOrdinance") as section:
+            section += Html("h4", _('Latter-Day Saints (LDS) Ordinance'), inline = True)
 
             # ump individual LDS ordinance list
             section += self.dump_ordinance(db, self.person)
@@ -3846,7 +3841,7 @@ class IndividualPage(BasePage):
 
         child = db.get_person_from_handle(child_handle)
         gid = child.gramps_id
-        list = Html('li')
+        list = Html("li")
         if child_handle in self.ind_list:
             url = self.report.build_url_fname_html(child_handle, 'ppl', True)
             list += self.person_link(url, child, True, gid=gid)
@@ -3894,8 +3889,8 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         # begin parents division
-        with Html("div", class_ = "subsection", id="parents") as section:
-            section += Html('h4', _('Parents'), inline = True)
+        with Html("div", class_ = "subsection", id = "parents") as section:
+            section += Html("h4", _('Parents'), inline = True)
 
             # begin parents table
             with Html("table", class_ = "infolist") as table:
@@ -4134,8 +4129,8 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         # begin families division and section title
-        with Html("div", class_ = "subsection", id="families") as section:
-            section += Html('h4', _('Families'), inline = True)
+        with Html("div", class_ = "subsection", id = "families") as section:
+            section += Html("h4", _('Families'), inline = True)
 
             # begin families table
             with Html("table", class_ = "infolist") as table:
@@ -4270,7 +4265,7 @@ class IndividualPage(BasePage):
             spouse_handle = ReportUtils.find_spouse(self.person, rel_family)
             if spouse_handle:
                 spouse = db.get_person_from_handle(spouse_handle)
-                pedsp = (Html('li', class_ = "spouse") + 
+                pedsp = (Html("li", class_ = "spouse") + 
                          self.pedigree_person(spouse)
                         )
                 ped += [pedsp]
@@ -4282,7 +4277,7 @@ class IndividualPage(BasePage):
                     pedsp += [childol]
                     for child_ref in childlist:
                         child = db.get_person_from_handle(child_ref.ref)
-                        childol += (Html('li') +
+                        childol += (Html("li") +
                                     self.pedigree_person(child)
                                    )
         return ped
@@ -4376,7 +4371,7 @@ class RepositoryListPage(BasePage):
         repolistpage, body = self.write_header(_('Repositories'))
 
         # begin RepositoryList division
-        with Html("div", class_ = "content", id="RepositoryList") as repositorylist:
+        with Html("div", class_ = "content", id = "RepositoryList") as repositorylist:
             body += repositorylist
 
             msg = _("This page contains an index of all the repositories in the "
@@ -4454,7 +4449,7 @@ class RepositoryPage(BasePage):
         repositorypage, body = self.write_header(_('Repositories'))
 
         # begin RepositoryDetail division and page title
-        with Html("div", class_ = "content", id="RepositoryDetail") as repositorydetail:
+        with Html("div", class_ = "content", id = "RepositoryDetail") as repositorydetail:
             body += repositorydetail
 
             # repository name
@@ -5749,7 +5744,7 @@ def alphabet_navigation(db, handle_list, key):
         return None
 
     # begin alphabet division
-    with Html("div", id="alphabet") as alphabet_nav:
+    with Html("div", id = "alphabet") as alphabet_nav:
 
         num_ltrs = len(sorted_alpha_index)
         nrows = ((num_ltrs // 34) + 1)
