@@ -1386,8 +1386,8 @@ class GuiMenuOptions(object):
                 if name in self.options_dict:
                     option.set_value(self.options_dict[name])
                     
-                widget, label = make_gui_option(option, self.__tooltips, 
-                                                dialog.dbstate, dialog.uistate, dialog.track)
+                widget, label = make_gui_option(option, dialog.dbstate, 
+                                                dialog.uistate, dialog.track)
 
                 if widget is None:
                     print "UNKNOWN OPTION: ", option
