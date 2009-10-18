@@ -42,20 +42,13 @@ LOG = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from Mime import mime_type_is_defined
-from TransUtils import set_localedir, set_localedomain, setup_gettext
+import TransUtils
 
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup
 #
 #-------------------------------------------------------------------------
-if "GRAMPSI18N" in os.environ:
-    loc = os.environ["GRAMPSI18N"]
-elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
-    loc = os.path.join(const.ROOT_DIR, "lang")
-else:
-    loc = os.path.join(const.PREFIXDIR, "share/locale")
-
 try:
     locale.setlocale(locale.LC_ALL,'C')
     locale.setlocale(locale.LC_ALL,'')
@@ -65,9 +58,7 @@ except ValueError:
     pass
 
 LOG.debug('Using locale:', locale.getlocale())
-set_localedir(loc)
-set_localedomain("gramps")
-setup_gettext()
+TransUtils.setup_gettext()
 
 #-------------------------------------------------------------------------
 #

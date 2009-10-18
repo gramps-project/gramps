@@ -80,7 +80,7 @@ class Glade(gtk.Builder):
         :returns:  reference to the newly-created Glade instance
         """
         gtk.Builder.__init__(self)
-        self.set_translation_domain(TransUtils.localedomain)
+        self.set_translation_domain(TransUtils.LOCALEDOMAIN)
 
         filename_given = filename is not None
         dirname_given = dirname is not None

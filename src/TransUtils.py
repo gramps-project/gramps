@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,32 +26,31 @@ Provide translation assistance
 """
 
 import gettext
+import os
+import const
 
-localedir = ''
-localedomain = 'gramps'
+if "GRAMPSI18N" in os.environ:
+    LOCALEDIR = os.environ["GRAMPSI18N"]
+elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
+    LOCALEDIR = os.path.join(const.ROOT_DIR, "lang")
+else:
+    LOCALEDIR = os.path.join(const.PREFIXDIR, "share/locale")
 
-def set_localedir(dir):
-    """
-    Set the directory where locale/gettext obtains translation files
-    """
-    global localedir
-    localedir = dir
-
-def set_localedomain(name):
-    """
-    Set the domain that locale/gettext should use
-    """
-    global localedomain
-    localedomain = name
+LOCALEDOMAIN = 'gramps'
 
 def setup_gettext():
-    global localedir, localedomain
-    gettext.bindtextdomain(localedomain, localedir)
-    gettext.textdomain(localedomain)
+    """
+    Setup the gettext environment.
+
+    :returns: Nothing.
+
+    """
+    gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+    gettext.textdomain(LOCALEDOMAIN)
     
     #following installs _ as a python function, we avoid this as TransUtils is
     #used sometimes:
-    #gettext.install(localedomain, localedir, unicode=1)
+    #gettext.install(LOCALEDOMAIN, LOCALEDIR, unicode=1)
 
 def sgettext(msgid, sep='|'):
     """
@@ -97,7 +97,7 @@ def sngettext(singular, plural, n, sep='|'):
     :rtype: unicode
 
     """
-    msgval = gettext.ngettext(singular, plural,n)
+    msgval = gettext.ngettext(singular, plural, n)
     if msgval == singular:
         sep_idx = singular.rfind(sep)
         msgval = singular[sep_idx+1:]
