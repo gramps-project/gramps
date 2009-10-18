@@ -542,9 +542,9 @@ class EditFamily(EditPrimary):
         self.mbutton_del = self.top.get_widget('mbutton_del')
         self.mbutton_edit = self.top.get_widget('mbutton_edit')
 
-        mbutton_index.set_tooltip_text(_("Select a person as the mother"))
-        mbutton_add.set_tooltip_text(_("Add a new person as the mother"))
-        mbutton_del.set_tooltip_text(_("Remove the person as the mother"))
+        self.mbutton_index.set_tooltip_text(_("Select a person as the mother"))
+        self.mbutton_add.set_tooltip_text(_("Add a new person as the mother"))
+        self.mbutton_del.set_tooltip_text(_("Remove the person as the mother"))
 
 
         self.mbutton_edit.connect('button-press-event', self.edit_mother)
