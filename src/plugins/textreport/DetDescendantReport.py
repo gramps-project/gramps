@@ -43,7 +43,8 @@ from BasicUtils import name_displayer as _nd
 from Errors import ReportError
 from gen.lib import FamilyRelType, Person
 from gen.plug import PluginManager
-from gen.plug.menu import BooleanOption, NumberOption, PersonOption
+from gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 
+                           EnumeratedListOption)
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, 
                              FONT_SANS_SERIF, FONT_SERIF, 
                              INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
@@ -92,8 +93,8 @@ class DetDescendantReport(Report):
         blankDate     - Whether to replace missing Dates with ___________.
         calcageflag   - Whether to compute age.
         dubperson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
-        verbose       - Whether to use complete sentences
-        record_num    - Whether to use Record-style numbering instead of Henry-style.
+        verbose       - Whether to use complete sentences.
+        numbering     - The descendency numbering system to be utilized.
         childref      - Whether to add descendant references in child list.
         addimages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
@@ -114,7 +115,7 @@ class DetDescendantReport(Report):
         self.calcageflag   = menu.get_option_by_name('computeage').get_value()
         self.dubperson     = menu.get_option_by_name('omitda').get_value()
         self.verbose       = menu.get_option_by_name('verbose').get_value()
-        self.record_num    = menu.get_option_by_name('record_num').get_value()
+        self.numbering     = menu.get_option_by_name('numbering').get_value()
         self.childref      = menu.get_option_by_name('desref').get_value()
         self.addimages     = menu.get_option_by_name('incphotos').get_value()
         self.inc_names     = menu.get_option_by_name('incnames').get_value()
@@ -168,6 +169,28 @@ class DetDescendantReport(Report):
                                   pid+HENRY[index], cur_gen+1)
                 index += 1
 
+    # Filter for d'Aboville numbering
+    def apply_daboville_filter(self,person_handle, index, pid, cur_gen=1):
+        if (not person_handle) or (cur_gen > self.max_generations):
+            return
+        self.dnumber[person_handle] = pid
+        self.map[index] = person_handle
+
+        if len(self.gen_keys) < cur_gen:
+            self.gen_keys.append([index])
+        else: 
+            self.gen_keys[cur_gen-1].append(index)
+
+        person = self.database.get_person_from_handle(person_handle)
+        index = 1
+        for family_handle in person.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            for child_ref in family.get_child_ref_list():
+                ix = max(self.map)
+                self.apply_daboville_filter(child_ref.ref, ix+1,
+                                  pid+"."+str(index), cur_gen+1)
+                index += 1
+
     # Filter for Record-style (Modified Register) numbering
     def apply_mod_reg_filter_aux(self, person_handle, index, cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
@@ -200,10 +223,14 @@ class DetDescendantReport(Report):
         """
         This function is called by the report system and writes the report.
         """
-        if self.record_num:
+        if self.numbering == "Henry":
+            self.apply_henry_filter(self.center_person.get_handle(), 1, "1")
+        elif self.numbering == "d'Aboville":
+            self.apply_daboville_filter(self.center_person.get_handle(), 1, "1")
+        elif self.numbering == "Record (Modified Register)":
             self.apply_mod_reg_filter(self.center_person.get_handle())
         else:
-            self.apply_henry_filter(self.center_person.get_handle(), 1, "1")
+            raise AttributeError("no such numbering: '%s'" % self.numbering)
 
         name = _nd.display_name(self.center_person.get_primary_name())
 
@@ -502,16 +529,18 @@ class DetDescendantReport(Report):
                 value = str(self.prev_gen_handles.get(child_handle))
                 child_name += " [%s]" % value
 
-            self.doc.start_paragraph("DDR-ChildList",
+            if child_handle in self.dnumber:
+                self.doc.start_paragraph("DDR-ChildList",
+                        str(self.dnumber[child_handle])
+                        + " "
+                        + ReportUtils.roman(cnt).lower()
+                        + ".")
+            else:
+                self.doc.start_paragraph("DDR-ChildList",
                                      ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            if child_handle in self.dnumber:
-                self.doc.write_text("%s [%s]. " % (child_name,
-                                                   self.dnumber[child_handle]),
-                                    child_mark )
-            else:
-                self.doc.write_text("%s. " % child_name, child_mark)
+            self.doc.write_text("%s. " % child_name, child_mark)
                 
             self.doc.write_text(ReportUtils.born_str( self.database, child, 0, 
                           self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
@@ -741,6 +770,15 @@ class DetDescendantOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
+        numbering = EnumeratedListOption(_("Numbering system"), "Henry")
+        numbering.set_items([
+                ("Henry",      _("Henry numbering")), 
+                ("d'Aboville", _("d'Aboville numbering")), 
+                ("Record (Modified Register)", 
+                               _("Record (Modified Register) numbering"))])
+        numbering.set_help(_("The numbering system to be used"))
+        menu.add_option(category_name, "numbering", numbering)
+        
         generations = NumberOption(_("Generations"), 10, 1, 100)
         generations.set_help(_("The number of generations to include in the " \
                                "report"))
@@ -751,13 +789,6 @@ class DetDescendantOptions(MenuReportOptions):
                      _("Whether to start a new page after each generation."))
         menu.add_option(category_name, "pagebbg", pagebbg)
 
-        record_num = BooleanOption(_("Use Record-style (Modified Register) " \
-                                     "numbering"),
-                                   False)
-        record_num.set_help(_("Whether to use Record-style numbering instead" \
-                              " of Henry-style."))
-        menu.add_option(category_name, "record_num", record_num)
-        
         category_name = _("Content")
 
         usecall = BooleanOption(_("Use callname for common name"), False)
@@ -781,7 +812,7 @@ class DetDescendantOptions(MenuReportOptions):
         omitda.set_help(_("Whether to omit duplicate ancestors."))
         menu.add_option(category_name, "omitda", omitda)
         
-        verbose = BooleanOption(_("Use Complete Sentences"), True)
+        verbose = BooleanOption(_("Use complete sentences"), True)
         verbose.set_help(
                  _("Whether to use complete sentences or succinct language."))
         menu.add_option(category_name, "verbose", verbose)
