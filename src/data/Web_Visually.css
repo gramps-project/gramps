@@ -281,7 +281,7 @@ div#navigation, div#subnavigation {
 div#navigation ul, div#subnavigation ul {
     list-style:none;
     min-width:770px;
-    height: 42px;
+    height: 50px;
     margin:0;
     padding: 0px 0px 0px 20px;
     border-bottom: solid 2px #5D835F;
@@ -293,7 +293,7 @@ div#navigation ul li a, div#subnavigation ul li a {
     display: block;
     padding: 12px 10px 14px 1px;
     float:left;
-    font:normal 16px/100% serif;
+    font: 1em/1.5em bold italic small-caps verdana, serif;
     color: #000;
     text-decoration:none;
     margin:0;
