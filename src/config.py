@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -32,6 +34,7 @@ This package implements access to GRAMPS configuration.
 #
 #---------------------------------------------------------------
 import os
+import ast
 import time
 import ConfigParser
 import errno
@@ -50,33 +53,6 @@ import const
 #
 #---------------------------------------------------------------
 INIFILE = os.path.join(const.HOME_DIR, "gramps32.ini")
-
-#---------------------------------------------------------------
-#
-# Local functions
-#
-#---------------------------------------------------------------
-def eval_item(setting):
-    """
-    Given a value from an ini file, return it in its proper type.
-    May be recursively called, in the case of nested structures.
-    """
-    setting = setting.strip()
-    value = None
-    if setting.startswith("'") and setting.endswith("'"):
-        value = setting[1:-1]
-    elif setting.startswith("[") and setting.endswith("]"):
-        list_data = setting[1:-1]
-        value = [eval_item(item) for item in list_data.split(",")]
-    elif setting == "True":
-        value = True 
-    elif setting == "False":
-        value = False
-    elif "." in setting:
-        value = float(setting)
-    else:
-        value = int(setting)
-    return value
 
 #---------------------------------------------------------------
 #
@@ -99,7 +75,11 @@ class ConfigManager(object):
         The value has a type that matches the default. It is an error
         to attempt to set the setting to a different type. To change
         the type, you must re-register the setting, and re-set the
-        value.
+        value. Values can be any simple type in Python (except,
+        currently longs, which are saved as ints to avoid type
+        errors). This includes: str, int, list, tuple, dict, float,
+        etc. Of course, composite types must themselves be composed of
+        simple types.
 
         The default values are given in Python code and stored here
         on start-up:
@@ -197,7 +177,8 @@ class ConfigManager(object):
                             continue # with next setting
                     ####################### End upgrade code
                     else:
-                        value = eval_item(setting)
+                        # a simple eval (does not eval expressions):
+                        value = ast.literal_eval(setting)
                     ####################### Now, let's test and set:
                     if opt.lower() in self.default[name]:
                         if type(value) == type(self.default[name][opt.lower()]):
@@ -793,6 +774,16 @@ if __name__ == "__main__":
     CM.emit("section.setting1")
     assert x == "200"
 
+    CM.register("section2.windows-file", r"c:\drive\path\o'malley\file.pdf")
+    CM.register("section2.list", [1, 2, 3, 4])
+    CM.register("section2.dict", {'a': "apple", "b": "banana"})
+    CM.register("section2.unicode", "Raötröme")
+
     CM.save("./test2.ini")
     CM.reset()
     CM.load("./test2.ini")
+
+    assert CM.get("section2.windows-file") == r"c:\drive\path\o'malley\file.pdf"
+    assert CM.get("section2.list") == [1, 2, 3, 4]
+    assert CM.get("section2.dict") == {'a': "apple", "b": "banana"}
+    assert CM.get("section2.unicode") == "Raötröme"
