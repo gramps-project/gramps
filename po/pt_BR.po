@@ -18804,7 +18804,7 @@ msgstr "%(male_name)s era o filho de %(father)s e %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1350
 #, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr "Filho de %(father)s e %(mother)s"
+msgstr "Filho de %(father)s e %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1354
 #, python-format
