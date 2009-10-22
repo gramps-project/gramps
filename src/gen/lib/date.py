@@ -910,9 +910,10 @@ class Date(object):
             new_date.set_yr_mon_day(*dateval[:3])
             return new_date.offset(offset)
         
-        datecopy = Date(self)
+        datecopy = Date(self) 
         #we do all calculation in Gregorian calendar
         datecopy.convert_calendar(Date.CAL_GREGORIAN)
+
         start     = yr_mon_day(datecopy.get_start_date())
         stop      = yr_mon_day(datecopy.get_stop_date())
 
@@ -1028,11 +1029,28 @@ class Date(object):
         else:
             pref = ""
 
-        if self.calendar != Date.CAL_GREGORIAN:
-            cal = " (%s)" % Date.calendar_names[self.calendar]
+        if self.newyear == Date.NEWYEAR_JAN1:
+            ny = ""
+        elif self.newyear == Date.NEWYEAR_MAR1:
+            ny = "Mar1"
+        elif self.newyear == Date.NEWYEAR_MAR25:
+            ny = "Mar25"
+        elif self.newyear == Date.NEWYEAR_SEP1:
+            ny = "Sep1"
         else:
-            cal = ""
+            ny = "Err"
             
+        if self.calendar != Date.CAL_GREGORIAN:
+            if ny:
+                cal = " (%s,%s)" % (Date.calendar_names[self.calendar], ny)
+            else:
+                cal = " (%s)" % Date.calendar_names[self.calendar]
+        else:
+            if ny:
+                cal = " (%s)" % ny
+            else:
+                cal = ""
+
         if self.modifier == Date.MOD_TEXTONLY:
             val = self.text
         elif self.get_slash():
@@ -1495,7 +1513,7 @@ class Date(object):
         """
         Convert the date from the current calendar to the specified calendar.
         """
-        if calendar == self.calendar:
+        if calendar == self.calendar and self.newyear == 0:
             return
         (year, month, day) = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
