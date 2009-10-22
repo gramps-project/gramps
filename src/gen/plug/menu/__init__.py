@@ -39,3 +39,4 @@ from _placelist import PlaceListOption
 from _surnamecolor import SurnameColorOption
 from _destination import DestinationOption
 from _style import StyleOption
+from _translation import TranslationOption

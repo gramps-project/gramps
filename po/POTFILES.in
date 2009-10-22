@@ -163,6 +163,7 @@ src/gen/plug/menu/_string.py
 src/gen/plug/menu/_style.py
 src/gen/plug/menu/_surnamecolor.py
 src/gen/plug/menu/_text.py
+src/gen/plug/menu/_translation.py
 src/gen/plug/docgen/__init__.py
 src/gen/plug/docgen/basedoc.py
 src/gen/plug/docgen/drawdoc.py
