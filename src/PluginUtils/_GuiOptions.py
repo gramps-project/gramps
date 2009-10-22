@@ -1442,7 +1442,7 @@ def make_gui_option(option, dbstate, uistate, track):
     elif isinstance(option, gen.plug.menu.TextOption):
         widget = GuiTextOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.ColorOption):
-        widget = GuiColorOption(option, dbstate, uistate, tracks)
+        widget = GuiColorOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.SurnameColorOption):
         widget = GuiSurnameColorOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.PlaceListOption):
