@@ -278,25 +278,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             1, 'preferences.geoview')
 
         self.add_text(
-            table, _('GeoView uses OpenStreetMap and one other map provider.\n'
-            'Choose one of the following map providers:'), 
+            table, _('GeoView uses OpenStreetMap and Google maps provider.'),
             2)
-
-        maps=self.add_radiobox(
-            table, _('Google Maps'), 
-            3, 'preferences.googlemap', None, 1)
-
-        self.add_radiobox(
-            table, _('OpenLayers'), 
-            3, 'preferences.openlayers', maps, 2)
-
-        self.add_radiobox(
-            table, _('Yahoo! Maps'), 
-            4, 'preferences.yahoo', maps, 1)
-
-        self.add_radiobox(
-            table, _('Microsoft Maps'), 
-            4, 'preferences.microsoft', maps, 2)
 
         self.add_text(
             table, _('You need to restart GRAMPS for above settings to take'

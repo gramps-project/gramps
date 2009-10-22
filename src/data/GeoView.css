@@ -35,52 +35,14 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 
  GeoView Styles
 
- color:#2e3436; # tango color Aluminium
 ----------------------------------------------------- */
 
-#openstreetmap
+#geo-map
 {
- border: 3px black solid;
  margin-left:auto;
  margin-right:auto;
- min-height:400px;
- min-width: 300px;
-}
-
-#google
-{
- border: 3px black solid;
- margin-left:auto;
- margin-right:auto;
- min-height:400px;
- min-width: 300px;
-}
-
-#openlayers
-{
- border: 3px black solid;
- margin-left:auto;
- margin-right:auto;
- min-height:400px;
- min-width: 300px;
-}
-
-#microsoft
-{
- border: 3px black solid;
- margin-left:auto;
- margin-right:auto;
- min-height:400px;
- min-width: 300px;
-}
-
-#yahoo
-{
- border: 3px black solid;
- margin-left:auto;
- margin-right:auto;
- min-height:400px;
- min-width: 300px;
+ min-height:100px;
+ min-width: 100px;
 }
 
 /* InfoWindow */
@@ -95,88 +57,3 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  overflow-y: auto; 
 }
 
-/* title and years selection */
-#geo-content {
- position:relative;
- top:0;
- left:0;
- font-size:10pt;
- height:90px;
- overflow-y:auto;
-}
-
-#geo-theplaces ul {
- list-style-type: none; 
- color:#2e3436;
- font-size:16pt;
- opacity:.90;
- margin: 0;
- padding: 0;
-}
-
-#geo-title {
- list-style-type: none;
- margin-left: 5px;
-}
-
-#geo-thetitle:hover li { display: block; }
-#geo-thetitle li { 
- display: none; 
- font-size:12pt;
- color:#2e3436;
- white-space:nowrap;
-}
-
-#geo-liste li { 
- display: none; 
- color:#2e3436;
- font-size:12pt;
-}
-
-#geo-liste:hover li { 
-}
-
-#geo-theplaces {
- position:absolute;
- color:#2e3436;
- top:120px;
- left:100px;
- width: 50%;
- border: 0px;
- overflow:auto;
- max-height:50%;
- z-index:800; /* must be greater than 748 to be visible on openlayers */
-}
-
-#geo-theplace {
- display: block;
-}
-
-#geo-theplace a {
- color: #2e3436;
- display: block;
-}
-
-#geo-theplace a:visited {
- color: #2e3436;
- background-color: transparent;
- text-decoration:none;
-}
-
-#geo-theplace a:active {
- color: #2e3436;
- background-color: transparent;
- text-decoration:none;
-}
-
-#geo-theplaces a:hover {
- color: #2e3436;
- background-color: transparent;
- text-decoration:none;
-}
-
-#geo-theplace a:hover {
- color: #2e3436;
- background-color: transparent;
- text-decoration:none;
-}
