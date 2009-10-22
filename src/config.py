@@ -34,11 +34,16 @@ This package implements access to GRAMPS configuration.
 #
 #---------------------------------------------------------------
 import os
-import ast
 import time
 import ConfigParser
 import errno
 from gettext import gettext as _
+
+try:
+    from ast import literal_eval as safe_eval
+except:
+    # not safe, but works:
+    safe_eval = eval
 
 #---------------------------------------------------------------
 #
@@ -177,8 +182,8 @@ class ConfigManager(object):
                             continue # with next setting
                     ####################### End upgrade code
                     else:
-                        # a simple eval (does not eval expressions):
-                        value = ast.literal_eval(setting)
+                        # as safe as we can be:
+                        value = safe_eval(setting)
                     ####################### Now, let's test and set:
                     if opt.lower() in self.default[name]:
                         if type(value) == type(self.default[name][opt.lower()]):
