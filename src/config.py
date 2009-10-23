@@ -153,7 +153,7 @@ class ConfigManager(object):
         if filename is None:
             filename = self.filename
         if filename and os.path.exists(filename):
-            parser = ConfigParser.ConfigParser()
+            parser = ConfigParser.RawConfigParser()
             parser.read(filename)
             for sec in parser.sections():
                 name = sec.lower()
