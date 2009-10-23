@@ -283,7 +283,6 @@ class GeoView(HtmlView):
                                    gobject.TYPE_INT,    # the marker index
                                    gobject.TYPE_INT     # the marker page
                                   )
-        self.plist = []
         self.without_coord_file = []
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
@@ -308,7 +307,6 @@ class GeoView(HtmlView):
             self.pages_selection.pack_start(page, False, False, 0)
         self.nocoord = gtk.Button("Unref") # don't translate
         self.nocoord.connect("clicked", self._show_places_without_coord)
-        #self.box.pack_start(self., False, False, 0)
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
  
@@ -321,17 +319,12 @@ class GeoView(HtmlView):
          - Years selection
         """
         self.box1 = gtk.VBox(False, 1) # pylint: disable-msg=W0201
-        label = gtk.Label(_("Places list"))
-        label.set_alignment(1.0, 0.5)
+        self.label = gtk.Label(_("Places list"))
+        self.label.set_alignment(1.0, 0.5)
         cell = gtk.CellRendererText()
-        self.plist = gtk.ListStore(gobject.TYPE_STRING, # The name
-                                   gobject.TYPE_INT,    # the marker index
-                                   gobject.TYPE_INT     # the marker page
-                                  )
         self.combobox = gtk.ComboBoxEntry(self.plist)# pylint: disable-msg=W0201
         self.combobox.pack_start(cell)
         self.combobox.add_attribute(self.combobox.get_cells()[0], 'text', 0)
-        self.combobox.set_text_column(0)
         completion = gtk.EntryCompletion()
         completion.set_model(self.plist)
         completion.set_minimum_key_length(1)
@@ -341,7 +334,7 @@ class GeoView(HtmlView):
         self.combobox.child.connect('changed', self._entry_selected_place)
         self.combobox.child.set_completion(completion)
         box = gtk.HBox()
-        box.pack_start(label, False, False, padding=2)
+        box.pack_start(self.label, False, False, padding=2)
         box.pack_start(self.combobox, False, False, 0)
         box.pack_start(self.pages_selection, False, False, padding=2)
         box.pack_start(self.nocoord, False, False, padding=2)
@@ -1028,6 +1021,10 @@ class GeoView(HtmlView):
         for place in self.psort:
             self.plist.append([ place[0], int(place[1]), int(curpage)] )
         self.combobox.set_model(self.plist)
+        if self.displaytype == "places":
+            self.label.set_text(_("%d places" % self.nbmarkers))
+        else:
+            self.label.set_text(_("Places list"))
         self.combobox.get_child().set_text('')
         self.mapview.write("<script type=\"text/javascript\">\n")
         self.mapview.write(" args=getArgs();")
@@ -1170,6 +1167,7 @@ class GeoView(HtmlView):
         # pylint: disable-msg=W0612
         nbmarkers = 0
         self.nbpages = 0
+        self.box1.set_sensitive(True)
         self.pages_selection.hide()
         self.last_page = 1
         self.plist.clear()
@@ -1739,6 +1737,7 @@ class GeoView(HtmlView):
                 "with coordinates.</li><li>You have no places.</li>"
                 "<li>You have no active person set.</li>"), 
               )
+            self.box1.set_sensitive(False)
         else:
             mess = ""
             self._create_pages(ptype, message, mess)
