@@ -108,67 +108,67 @@ NB_MARKERS_PER_PAGE = 200
 #-------------------------------------------------------------------------
 
 _HTMLHEADER = '''<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" 
-    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\" {xmllang} >
+    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\" %(xmllang)s >
 <html xmlns=\"http://www.w3.org/1999/xhtml\" >
 <head>
  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>
  <title>This is used to pass messages between javascript and python</title>
  <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">
- {css}<script type=\"text/javascript\"'''
+ %(css)s<script type=\"text/javascript\"'''
 
 _JAVASCRIPT = '''<script>
  var gmarkers = []; var min = 0; var zoom = 0; var uzoom = 0;
  var pos = 0; var mapstraction;
  var regrep = new RegExp(\"default\",\"g\");
  var current_map; var ulat; var ulon; var default_icon;
- function getArgs(){{
+ function getArgs(){
   var args = new Object();
   var query = location.search.substring(1);
   var pairs = query.split("&");
   search_array = query.split("&");
-  for (var i=0; i < pairs.length; i++){{
+  for (var i=0; i < pairs.length; i++){
    var pos = pairs[i].indexOf('=');
    if (pos == -1) continue;
     var argname = pairs[i].substring(0,pos);
     var value = pairs[i].substring(pos+1);
     args[argname] = unescape(value);
-  }}
+  }
   return args;
- }}
+ }
  var selectedmarkers = 'All';
  // shows or hide markers of a particular category
- function selectmarkers(year) {{
+ function selectmarkers(year) {
   selectedmarkers = year;
-  for (var i=0; i<gmarkers.length; i++) {{
+  for (var i=0; i<gmarkers.length; i++) {
    val = gmarkers[i].getAttribute("year");
    min = parseInt(year);
    max = min + step;
-   if ( selectedmarkers == "All" ) {{ min = 0; max = 9999; }}
+   if ( selectedmarkers == "All" ) { min = 0; max = 9999; }
    gmarkers[i].hide();
    years = val.split(' ');
-   for ( j=0; j < years.length; j++) {{
-    if ( years[j] >= min ) {{
-     if ( years[j] < max ) {{
+   for ( j=0; j < years.length; j++) {
+    if ( years[j] >= min ) {
+     if ( years[j] < max ) {
       gmarkers[i].show();
-     }}
-    }}
-   }}
-  }}
- }}
- function savezoomandposition(map) {{
+     }
+    }
+   }
+  }
+ }
+ function savezoomandposition(map) {
   var t=setTimeout("savezoomandposition(mapstraction)",1000);
   // shows or hide markers of a particular category
   nzoom = map.getZoom();
   nposition=map.getCenter();
-  if ( ( nzoom != zoom ) || ( nposition != pos )) {{
+  if ( ( nzoom != zoom ) || ( nposition != pos )) {
    zoom = nzoom;
    pos = nposition;
    document.title = "zoom=" + zoom + " coord=" + pos + ":::";
-  }}
- }}
- function placeclick(i) {{
+  }
+ }
+ function placeclick(i) {
   gmarkers[i].openBubble();
- }}
+ }
 '''
 
 _HTMLTRAILER = '''
@@ -1045,10 +1045,10 @@ class GeoView(HtmlView):
         """
         Create the needed javascript functions.
         """
-        self.mapview.write(
-            _JAVASCRIPT.format(
-                )
-            )
+        self.mapview.write(_JAVASCRIPT)
+        #    _JAVASCRIPT.format(
+        #        )
+        #    )
         return
 
     def _createmapstractionheader(self, filename):
@@ -1064,10 +1064,10 @@ class GeoView(HtmlView):
         else:
             lang = lang_country.split('_')[0]
         self.mapview.write(
-            _HTMLHEADER.format(
-                xmllang = "xml:lang=\"%s\"" % lang,
-                css = self._add_stylesheet()
-                )
+            _HTMLHEADER % {
+                "xmllang" : "xml:lang=\"%s\"" % lang,
+                "css": self._add_stylesheet()
+                }
             )
         fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
                                              #'mxn.js?(openlayers,google)')
@@ -1085,10 +1085,10 @@ class GeoView(HtmlView):
         Add the last directives for the html page.
         """
 
-        self.mapview.write(
-            _HTMLTRAILER.format(
-                )
-            )
+        self.mapview.write(_HTMLTRAILER)
+        #    _HTMLTRAILER.format(
+        #        )
+        #    )
         self.mapview.close()
 
     def _set_center_and_zoom(self, ptype):
