@@ -1513,7 +1513,7 @@ class Date(object):
         """
         Convert the date from the current calendar to the specified calendar.
         """
-        if calendar == self.calendar and self.newyear == 0:
+        if calendar == self.calendar and self.newyear == Date.NEWYEAR_JAN1:
             return
         (year, month, day) = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
@@ -1522,11 +1522,12 @@ class Date(object):
             rday = max(self.dateval[Date._POS_RDAY], 1)
             sdn = Date._calendar_convert[self.calendar](ryear, rmonth, rday)
             (nyear, nmonth, nday) = Date._calendar_change[calendar](sdn)
-            self.dateval = (day, month, year, self.dateval[Date._POS_SL], 
-                            nday, nmonth, nyear, self.dateval[Date._POS_RSL])
+            self.dateval = (day, month, year, False, 
+                            nday, nmonth, nyear, False)
         else:
-            self.dateval = (day, month, year, self.dateval[Date._POS_SL])
+            self.dateval = (day, month, year, False)
         self.calendar = calendar
+        self.newyear = Date.NEWYEAR_JAN1
 
     def set_as_text(self, text):
         """
@@ -1657,7 +1658,23 @@ class Date(object):
         """
         Set to 1 if the date is a slash-date (dual dated).
         """
-        self.dateval[Date._POS_SL] = value
+        temp = list(self.dateval)
+        temp[Date._POS_SL] = value
+        self.dateval = tuple(temp)
+
+    def get_slash2(self):
+        """
+        Return true if the ending date is a slash-date (dual dated).
+        """
+        return self._get_low_item_valid(Date._POS_RSL)
+
+    def set_slash2(self, value):
+        """
+        Set to 1 if the ending date is a slash-date (dual dated).
+        """
+        temp = list(self.dateval)
+        temp[Date._POS_RSL] = value
+        self.dateval = tuple(temp)
 
 def Today():
     """
