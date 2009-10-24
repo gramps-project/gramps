@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -43,8 +42,10 @@ try:
     from ast import literal_eval as safe_eval
 except:
     # PYTHON2.5 COMPATIBILITY: no ast present
-    # not safe, but works:
-    safe_eval = eval
+    # not as safe as literal_eval, but works for python2.5:
+    def safe_eval(exp):
+        # restrict eval to empty environment
+        return eval(exp, {})
 
 #---------------------------------------------------------------
 #
@@ -163,38 +164,40 @@ class ConfigManager(object):
                     # These might be old settings, or third-party settings
                     self.data[name] = {}
                 for opt in parser.options(sec):
-                    setting = parser.get(sec, opt).strip()
+                    raw_value = parser.get(sec, opt).strip()
+                    setting = opt.lower()
                     if oldstyle:
                     ####################### Upgrade from oldstyle < 3.2
+                    # Oldstyle didn't mark setting type, but had it 
+                    # set in preferences. New style gets it from evaling
+                    # the setting's value
+                    #######################
                         # if we know this setting, convert type
-                        key = "%s.%s" % (name, opt)
+                        key = "%s.%s" % (name, setting)
                         if self.has_default(key):
                             vtype = type(self.get_default(key))
                             if vtype == bool:
-                                value = setting in ["1", "True"]
-                            elif vtype == list:
-                                print "WARNING: ignoring old key '%s'" % key
-                                continue # there were no lists in oldstyle
+                                value = raw_value in ["1", "True"]
                             else:
-                                value = vtype(setting)
+                                value = vtype(raw_value)
                         else:
                             # else, ignore it
                             print "WARNING: ignoring old key '%s'" % key
                             continue # with next setting
                     ####################### End upgrade code
                     else:
-                        # as safe as we can be:
-                        value = safe_eval(setting)
+                        value = safe_eval(raw_value)
                     ####################### Now, let's test and set:
-                    if opt.lower() in self.default[name]:
-                        if type(value) == type(self.default[name][opt.lower()]):
-                            self.data[name][opt.lower()] = value
+                    if (name in self.default and 
+                        setting in self.default[name]):
+                        if type(value) == type(self.default[name][setting]):
+                            self.data[name][setting] = value
                         else:
                             print ("WARNING: ignoring key with wrong type "
-                                   "'%s.%s'" % (name, opt.lower()))
+                                   "'%s.%s'" % (name, setting))
                     else:
                         # this could be a third-party setting; add it:
-                        self.data[name][opt.lower()] = value
+                        self.data[name][setting] = value
 
     def save(self, filename = None):
         """
@@ -400,9 +403,7 @@ class ConfigManager(object):
             # Only call callback if the value changed!
             if (section in self.callbacks and 
                 setting in self.callbacks[section]):
-                for (cbid, func) in self.callbacks[section][setting]:
-                    # Call all callbacks for this key:
-                    func(self, 0, str(self.data[section][setting]), None) 
+                self.emit(key)
 
 #---------------------------------------------------------------
 #
@@ -672,119 +673,3 @@ if not os.path.exists(CONFIGMAN.filename):
 #
 #---------------------------------------------------------------
 CONFIGMAN.load()
-
-if __name__ == "__main__":
-    CM = ConfigManager("./temp.ini")
-    CM.register("section.setting1", 1) # int
-    CM.register("section.setting2", 3.1415) # float
-    CM.register("section.setting3", "String") # string
-    CM.register("section.setting4", False) # boolean
-
-    assert CM.get("section.setting1") == 1
-    assert CM.get("section.setting2") == 3.1415
-    assert CM.get("section.setting3") == "String"
-    assert CM.get("section.setting4") == False
-
-    CM.set("section.setting1", 2)
-    CM.set("section.setting2", 8.6)
-    CM.set("section.setting3", "Another String")
-    CM.set("section.setting4", True)
-
-    assert CM.get("section.setting1") == 2
-    assert CM.get("section.setting2") == 8.6
-    assert CM.get("section.setting3") == "Another String"
-    assert CM.get("section.setting4") == True
-
-    try:
-        CM.set("section.setting1", 2.8)
-    except AttributeError:
-        pass
-    else:
-        raise AssertionError
-
-    try:
-        CM.set("section.setting2", 2)
-    except AttributeError:
-        pass
-    else:
-        raise AssertionError
-
-    try:
-        CM.set("section.setting3", 6)
-    except AttributeError:
-        pass
-    else:
-        raise AssertionError
-
-    try:
-        CM.set("section.setting4", 1)
-    except AttributeError:
-        pass
-    else:
-        raise AssertionError
-
-    assert CM.get("section.setting1") == 2
-    assert CM.get("section.setting2") == 8.6
-    assert CM.get("section.setting3") == "Another String"
-    assert CM.get("section.setting4") == True
-
-    # Try to set one that doesn't exist:
-    try:
-        CM.set("section.setting5", 1)
-    except AttributeError:
-        pass
-    else:
-        raise AssertionError
-
-    CM.save()
-
-    CM.reset()
-
-    assert CM.get("section.setting1") == 1
-    assert CM.get("section.setting2") == 3.1415
-    assert CM.get("section.setting3") == "String"
-    assert CM.get("section.setting4") == False
-
-    x = None
-    def callback(*args):
-        # args: self, 0, str(setting), None
-        global x
-        x = args[2]
-
-    cbid = CM.connect("section.setting1", callback)
-    assert x == None
-
-    CM.set("section.setting1", 1024)
-    assert x == "1024"
-
-    CM.disconnect(cbid)
-
-    CM.set("section.setting1", -1)
-    assert x == "1024"
-
-    CM.reset("section.setting1")
-    assert CM.get("section.setting1") == 1
-
-    # No callback:
-    x = None
-    CM.set("section.setting1", 200)
-    assert x == None
-    # Now, set one:
-    cbid = CM.connect("section.setting1", callback)
-    # Now, call it:
-    CM.emit("section.setting1")
-    assert x == "200"
-
-    CM.register("section2.windows-file", r"c:\drive\path\o'malley\file.pdf")
-    CM.register("section2.list", [1, 2, 3, 4])
-    CM.register("section2.dict", {'a': "apple", "b": "banana"})
-    CM.register("section2.unicode", "Raötröme")
-
-    CM.save("./test2.ini")
-    CM.reset()
-    CM.load("./test2.ini")
-
-    assert CM.get("section2.windows-file") == r"c:\drive\path\o'malley\file.pdf"
-    assert CM.get("section2.list") == [1, 2, 3, 4]
-    assert CM.get("section2.dict") == {'a': "apple", "b": "banana"}
-    assert CM.get("section2.unicode") == "Raötröme"
