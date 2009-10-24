@@ -643,6 +643,8 @@ register('researcher.researcher-phone', '')
 register('researcher.researcher-postal', '')
 register('researcher.researcher-state', '')
 
+register('plugin.hiddenplugins', [])
+
 #---------------------------------------------------------------
 #
 # Upgrade Conversions go here.

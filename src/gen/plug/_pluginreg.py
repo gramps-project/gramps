@@ -67,6 +67,19 @@ RELCALC     = 9
 GRAMPLET    = 10
 PTYPE       = [ REPORT , QUICKREPORT, TOOL, IMPORT,
                 EXPORT, DOCGEN, GENERAL, MAPSERVICE, VIEW, RELCALC, GRAMPLET]
+PTYPE_STR   = {
+        REPORT: _('Report') , 
+        QUICKREPORT: _('Quickreport'), 
+        TOOL: _('Tool'), 
+        IMPORT: _('Importer'),
+        EXPORT: _('Exporter'), 
+        DOCGEN: _('Doc creator'), 
+        GENERAL: _('Plugin lib'), 
+        MAPSERVICE: _('Map service'), 
+        VIEW: _('GRAMPS View'), 
+        RELCALC: _('Relationships'), 
+        GRAMPLET: _('Gramplet'),
+        }
 
 #possible report categories
 CATEGORY_TEXT       = 0
@@ -834,7 +847,14 @@ class PluginRegister(object):
             for ind in rmlist:
                 del self.__plugindata[ind]
 
-    def __type_plugins(self, ptype):
+    def get_plugin(self, id):
+        """Return the PluginData for the plugin with id"""
+        for x in self.__plugindata:
+            if x.id == id:
+                return x
+        return None
+
+    def type_plugins(self, ptype):
         """Return a list of PluginData that are of type ptype
         """
         return [x for x in self.__plugindata if x.ptype == ptype]
@@ -844,68 +864,68 @@ class PluginRegister(object):
            :param gui: bool, if True then gui plugin, otherwise cli plugin
         """
         if gui:
-            return [x for x in self.__type_plugins(REPORT) if REPORT_MODE_GUI
+            return [x for x in self.type_plugins(REPORT) if REPORT_MODE_GUI
                                         in x.report_modes]
         else:
-            return [x for x in self.__type_plugins(REPORT) if REPORT_MODE_CLI
+            return [x for x in self.type_plugins(REPORT) if REPORT_MODE_CLI
                                         in x.report_modes]
 
     def tool_plugins(self, gui=True):
         """Return a list of PluginData that are of type TOOL
         """
         if gui:
-            return [x for x in self.__type_plugins(TOOL) if TOOL_MODE_GUI
+            return [x for x in self.type_plugins(TOOL) if TOOL_MODE_GUI
                                         in x.tool_modes]
         else:
-            return [x for x in self.__type_plugins(TOOL) if TOOL_MODE_CLI
+            return [x for x in self.type_plugins(TOOL) if TOOL_MODE_CLI
                                         in x.tool_modes]
 
     
     def bookitem_plugins(self):
         """Return a list of REPORT PluginData that are can be used as bookitem
         """
-        return [x for x in self.__type_plugins(REPORT) if REPORT_MODE_BKI
+        return [x for x in self.type_plugins(REPORT) if REPORT_MODE_BKI
                                         in x.report_modes]
 
     def quickreport_plugins(self):
         """Return a list of PluginData that are of type QUICKREPORT
         """
-        return self.__type_plugins(QUICKREPORT)
+        return self.type_plugins(QUICKREPORT)
 
     def import_plugins(self):
         """Return a list of PluginData that are of type IMPORT
         """
-        return self.__type_plugins(IMPORT)
+        return self.type_plugins(IMPORT)
 
     def export_plugins(self):
         """Return a list of PluginData that are of type EXPORT
         """
-        return self.__type_plugins(EXPORT)
+        return self.type_plugins(EXPORT)
 
     def docgen_plugins(self):
         """Return a list of PluginData that are of type DOCGEN
         """
-        return self.__type_plugins(DOCGEN)
+        return self.type_plugins(DOCGEN)
 
     def general_plugins(self):
         """Return a list of PluginData that are of type GENERAL
         """
-        return self.__type_plugins(GENERAL)
+        return self.type_plugins(GENERAL)
 
     def mapservice_plugins(self):
         """Return a list of PluginData that are of type MAPSERVICE
         """
-        return self.__type_plugins(MAPSERVICE)
+        return self.type_plugins(MAPSERVICE)
 
     def view_plugins(self):
         """Return a list of PluginData that are of type VIEW
         """
-        return self.__type_plugins(RELCALC)
+        return self.type_plugins(VIEW)
 
     def relcalc_plugins(self):
         """Return a list of PluginData that are of type RELCALC
         """
-        return self.__type_plugins(RELCALC)
+        return self.type_plugins(RELCALC)
 
     def filter_load_on_reg(self):
         """Return a list of PluginData that have load_on_reg == True

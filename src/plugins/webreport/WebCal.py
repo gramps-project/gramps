@@ -28,7 +28,7 @@ Web Calendar generator.
 
 Refactoring. This is an ongoing job until this plugin is in a better shape.
 """
-
+from __future__ import with_statement
 #------------------------------------------------------------------------
 #
 # python modules

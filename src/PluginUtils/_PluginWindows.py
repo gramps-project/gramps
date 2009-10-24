@@ -45,8 +45,10 @@ import gobject
 #-------------------------------------------------------------------------
 import ManagedWindow
 import Errors
-from gen.plug import PluginManager
+from gen.plug import PluginManager, PluginRegister, PTYPE_STR
 import _Tool as Tool
+from QuestionDialog import InfoDialog
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -55,6 +57,9 @@ import _Tool as Tool
 #-------------------------------------------------------------------------
 class PluginStatus(ManagedWindow.ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
+    HIDDEN = '<span color="red">%s</span>' % _('Hidden')
+    AVAILABLE = '<span weight="bold" color="blue">%s</span>'\
+                                % _('Visible')
     
     def __init__(self, uistate, track=[]):
         self.__uistate = uistate
@@ -63,6 +68,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                                              self.__class__)
 
         self.__pmgr = PluginManager.get_instance()
+        self.__preg = PluginRegister.get_instance()
         self.set_window(gtk.Dialog("", uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
@@ -70,6 +76,52 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.window.set_size_request(600, 400)
         self.window.connect('response', self.close)
         
+        notebook = gtk.Notebook()
+        
+        #first page with all registered plugins
+        vbox_reg = gtk.VBox()
+        scrolled_window_reg =  gtk.ScrolledWindow()
+        self.list_reg =  gtk.TreeView()
+        #  model: plugintype, hidden, pluginname, plugindescr, pluginid
+        self.model_reg = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
+                gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.selection_reg = self.list_reg.get_selection()
+        self.list_reg.set_model(self.model_reg)
+        self.list_reg.set_rules_hint(True)
+        self.list_reg.connect('button-press-event', self.button_press_reg)
+        col0_reg = gtk.TreeViewColumn(_('Type'), gtk.CellRendererText(), text=0)
+        col0_reg.set_sort_column_id(0)
+        self.list_reg.append_column(col0_reg)
+        self.list_reg.append_column(
+            gtk.TreeViewColumn(_('Hidden'), gtk.CellRendererText(), markup=1))
+        col2_reg = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(), text=2)
+        col2_reg.set_sort_column_id(2)
+        self.list_reg.append_column(col2_reg)
+        self.list_reg.append_column(
+            gtk.TreeViewColumn(_('Description'), gtk.CellRendererText(), text=3))
+        self.list_reg.set_search_column(2)
+
+        scrolled_window_reg.add(self.list_reg)
+        vbox_reg.pack_start(scrolled_window_reg)
+        hbutbox = gtk.HButtonBox()
+        hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.__info_btn = gtk.Button(_("Info"))
+        hbutbox.add(self.__info_btn)
+        self.__info_btn.connect('clicked', self.__info)
+        self.__hide_btn = gtk.Button(_("Hide/Unhide"))
+        hbutbox.add(self.__hide_btn)
+        self.__hide_btn.connect('clicked', self.__hide)
+        if __debug__:
+            self.__load_btn = gtk.Button(_("Load"))
+            hbutbox.add(self.__load_btn)
+            self.__load_btn.connect('clicked', self.__load)
+        vbox_reg.pack_start(hbutbox, expand=False, padding=5)
+        
+        notebook.append_page(vbox_reg, 
+                             tab_label=gtk.Label(_('Registered plugins')))
+        
+        
+        #second page with loaded plugins
         scrolled_window = gtk.ScrolledWindow()
         self.list = gtk.TreeView()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
@@ -91,7 +143,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.list.set_search_column(1)
 
         scrolled_window.add(self.list)
-        self.window.vbox.add(scrolled_window)
+        notebook.append_page(scrolled_window, 
+                             tab_label=gtk.Label(_('Loaded plugins')))
+        self.window.vbox.add(notebook)
         
         if __debug__:
             # Only show the "Reload" button when in debug mode 
@@ -100,11 +154,19 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             self.window.action_area.add(self.__reload_btn)
             self.__reload_btn.connect('clicked', self.__reload)
         
+        #obtain hidden plugins from the pluginmanager
+        self.hidden = self.__pmgr.get_hidden_plugin_ids()
+        
         self.window.show_all()
-        self.__populate_list()
+        self.__populate_lists()
 
-    def __populate_list(self):
-        """ Build the list of plugins """
+    def __populate_lists(self):
+        """ Build the lists of plugins """
+        self.__populate_load_list()
+        self.__populate_reg_list()
+    
+    def __populate_load_list(self):
+        """ Build list of loaded plugins"""
         fail_list = self.__pmgr.get_fail_list()
         
         for i in fail_list:
@@ -126,6 +188,28 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
                 i[0], descr, None])
+        
+    def __populate_reg_list(self):
+        """ Build list of registered plugins"""
+        for (type, typestr) in PTYPE_STR.iteritems():
+            for pdata in self.__preg.type_plugins(type):
+                #  model: plugintype, hidden, pluginname, plugindescr, pluginid
+                hidden = pdata.id in self.hidden
+                if hidden:
+                    hiddenstr = self.HIDDEN
+                else:
+                    hiddenstr = self.AVAILABLE
+                self.model_reg.append(row=[
+                    typestr, hiddenstr, pdata.name, pdata.description, 
+                    pdata.id])
+
+    def __rebuild_load_list(self):
+        self.model.clear()
+        self.__populate_load_list()
+    
+    def __rebuild_reg_list(self):
+        self.model_reg.clear()
+        self.__populate_reg_list()
 
     def button_press(self, obj, event):
         """ Callback function from the user clicking on a line """
@@ -142,9 +226,76 @@ class PluginStatus(ManagedWindow.ManagedWindow):
     def __reload(self, obj):
         """ Callback function from the "Reload" button """
         self.__pmgr.reload_plugins()
-        self.model.clear()
-        self.__populate_list()
-        
+        self.__rebuild_load_list()
+        self.__rebuild_reg_list()
+    
+    def button_press_reg(self, obj, event):
+        """ Callback function from the user clicking on a line in reg plugin
+        """
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.__info(None)
+    
+    def __info(self, obj):
+        """ Callback function from the "Info" button
+        """
+        model, node = self.selection_reg.get_selected()
+        if not node:
+            return
+        id = model.get_value(node, 4)
+        typestr  = model.get_value(node, 0)
+        pdata = self.__preg.get_plugin(id)
+        auth = ' - '.join(pdata.authors)
+        email = ' - '.join(pdata.authors_email)
+        if len(auth) > 60: 
+            auth = auth[:60] + '...'
+        if len(email) > 60: 
+            email = email[:60] + '...'
+        if pdata:
+            infotxt = """Plugin name: %(name)s [%(typestr)s]
+
+Description:  %(descr)s
+Authors:  %(authors)s
+Email:  %(email)s
+Filename:  %(fname)s
+            """ % {
+            'name': pdata.name,
+            'typestr': typestr,
+            'descr': pdata.description,
+            'authors': auth,
+            'email': email,
+            'fname': pdata.fname
+            }
+            InfoDialog('Detailed Info', infotxt, parent=self.window)
+    
+    def __hide(self, obj):
+        """ Callback function from the "Hide" button
+        """
+        model, node = self.selection_reg.get_selected()
+        if not node:
+            return
+        id = model.get_value(node, 4)
+        if id in self.hidden:
+            #unhide
+            self.hidden.remove(id)
+            model.set_value(node, 1, self.AVAILABLE)
+            self.__pmgr.unhide_plugin(id)
+        else:
+            #hide
+            self.hidden.add(id)
+            model.set_value(node, 1, self.HIDDEN)
+            self.__pmgr.hide_plugin(id)
+    
+    def __load(self, obj):
+        """ Callback function from the "Load" button
+        """
+        model, node = self.selection_reg.get_selected()
+        if not node:
+            return
+        id = model.get_value(node, 4)
+        pdata = self.__preg.get_plugin(id)
+        self.__pmgr.load_plugin(pdata)
+        self.__rebuild_load_list()
+
 #-------------------------------------------------------------------------
 #
 # Details for an individual plugin that failed

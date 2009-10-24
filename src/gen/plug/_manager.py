@@ -47,6 +47,7 @@ from gettext import gettext as _
 import gen.utils
 import Relationship
 from gen.plug import PluginRegister
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -97,6 +98,21 @@ class PluginManager(gen.utils.Callback):
         self.__pgr = PluginRegister.get_instance()
         self.__registereddir_set = set()
         self.__loaded_plugins = {}
+        self.__hidden_plugins = set([])
+        for id in config.get('plugin.hiddenplugins'):
+            self.__hidden_plugins.add(id)
+        self.__hidden_changed()
+    
+    def __hidden_changed(self, *args):
+        #if hidden changed, stored data must be emptied as it could contain
+        #something that now must be hidden
+        self.__import_plugins = []
+        self.__export_plugins = []
+        self.__docgen_plugins = []
+        #objects that need to know if the plugins available changed, are 
+        #listening to this signal to update themselves. If a plugin becomes
+        #(un)hidden, this should happen, so we emit.
+        self.emit('plugins-reloaded')
 
     def reg_plugins(self, direct):
         """
@@ -197,6 +213,33 @@ class PluginManager(gen.utils.Callback):
 
         self.emit('plugins-reloaded')
 
+    def get_hidden_plugin_ids(self):
+        """
+        Returns copy of the set hidden plugin ids
+        """
+        return self.__hidden_plugins.copy()
+
+    def hide_plugin(self, id):
+        """ Hide plugin with given id. This will hide the plugin so queries do
+        not return it anymore, and write this change to the config.
+        Note that config will then emit a signal
+        """ 
+        self.__hidden_plugins.add(id)
+        hideset = [x for x in self.__hidden_plugins]
+        config.set('plugin.hiddenplugins', hideset)
+        config.save()
+        self.__hidden_changed()
+    
+    def unhide_plugin(self, id):
+        """ Unhide plugin with given id. This will unhide the plugin so queries
+        return it again, and write this change to the config
+        """
+        self.__hidden_plugins.remove(id)
+        hideset = [x for x in self.__hidden_plugins]
+        config.set('plugin.hiddenplugins', hideset)
+        config.save()
+        self.__hidden_changed()
+
     def get_fail_list(self):
         """ Return the list of failed plugins. """
         return self.__failmsg_list
@@ -206,33 +249,38 @@ class PluginManager(gen.utils.Callback):
         return self.__success_list
 
     def get_reg_reports(self, gui=True):
-        """ Return list of registered reports
+        """ Return list of non hidden registered reports
         :Param gui: bool indicating if GUI reports or CLI reports must be
             returned
         """
-        return self.__pgr.report_plugins(gui)
+        return [plg for plg in self.__pgr.report_plugins(gui) if plg.id not in
+                self.__hidden_plugins]
     
     def get_reg_tools(self, gui=True):
-        """ Return list of registered tools
+        """ Return list of non hidden  registered tools
         :Param gui: bool indicating if GUI reports or CLI reports must be
             returned
         """
-        return self.__pgr.tool_plugins(gui)
+        return [plg for plg in self.__pgr.tool_plugins(gui) if plg.id not in
+                self.__hidden_plugins]
     
     def get_reg_quick_reports(self):
-        """ Return list of registered quick reports
+        """ Return list of non hidden  registered quick reports
         """
-        return self.__pgr.quickreport_plugins()
+        return [plg for plg in self.__pgr.quickreport_plugins() if plg.id not in
+                self.__hidden_plugins]
     
     def get_reg_mapservices(self):
-        """ Return list of registered mapservices
+        """ Return list of non hidden  registered mapservices
         """
-        return self.__pgr.mapservice_plugins()
+        return [plg for plg in self.__pgr.mapservice_plugins() if plg.id not in
+                self.__hidden_plugins]
 
     def get_reg_bookitems(self):
-        """ Return list of reports registered as bookitem
+        """ Return list of non hidden  reports registered as bookitem
         """
-        return self.__pgr.bookitem_plugins()
+        return [plg for plg in self.__pgr.bookitem_plugins() if plg.id not in
+                self.__hidden_plugins]
     
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
@@ -252,7 +300,8 @@ class PluginManager(gen.utils.Callback):
         ## only PluginData, loading from module when importfunction needed?
         if self.__import_plugins == []:
             #The module still needs to be imported
-            imps = self.__pgr.import_plugins()
+            imps = [pdata for pdata in self.__pgr.import_plugins() if pdata.id 
+                                        not in self.__hidden_plugins]
             for pdata in imps:
                 mod = self.load_plugin(pdata)
                 if mod:
@@ -274,7 +323,8 @@ class PluginManager(gen.utils.Callback):
         ## only PluginData, loading from module when export/options needed?
         if self.__export_plugins == []:
             #The modules still need to be imported
-            exps = self.__pgr.export_plugins()
+            exps = [pdata for pdata in self.__pgr.export_plugins() if pdata.id 
+                                        not in self.__hidden_plugins]
             for pdata in exps:
                 mod = self.load_plugin(pdata)
                 if mod:
@@ -299,7 +349,8 @@ class PluginManager(gen.utils.Callback):
         ##       So, only do import when docgen.get_basedoc() is requested
         if self.__docgen_plugins == []:
             #The modules still need to be imported
-            dgdps = self.__pgr.docgen_plugins()
+            dgdps = [pdata for pdata in self.__pgr.docgen_plugins() if pdata.id 
+                                        not in self.__hidden_plugins]
             for pdata in dgdps:
                 mod = self.load_plugin(pdata)
                 if mod:

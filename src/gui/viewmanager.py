@@ -223,6 +223,10 @@ class ViewManager(CLIManager):
         self.buttons = []
         self.merge_ids = []
         self._key = None
+        self.toolactions = None
+        self.tool_menu_ui_id = None
+        self.reportactions = None
+        self.report_menu_ui_id = None
 
         self.show_sidebar = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
@@ -1290,12 +1294,15 @@ class ViewManager(CLIManager):
         """
         Builds a new tools menu
         """
+        if self.toolactions:
+            self.uistate.uimanager.remove_action_group(self.toolactions)
+            self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
         self.toolactions = gtk.ActionGroup('ToolWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ToolsMenu', tool_menu_list, Tool.tool_categories, 
             make_plugin_callback)
         self.toolactions.add_actions(actions)
-        self.uistate.uimanager.add_ui_from_string(uidef)
+        self.tool_menu_ui_id = self.uistate.uimanager.add_ui_from_string(uidef)
         self.uimanager.insert_action_group(self.toolactions, 1)
         self.uistate.uimanager.ensure_update()
     
@@ -1303,12 +1310,15 @@ class ViewManager(CLIManager):
         """
         Builds a new reports menu
         """
+        if self.reportactions:
+            self.uistate.uimanager.remove_action_group(self.reportactions)
+            self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
         self.reportactions = gtk.ActionGroup('ReportWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ReportsMenu', report_menu_list, ReportBase.standalone_categories, 
             make_plugin_callback)
         self.reportactions.add_actions(actions)
-        self.uistate.uimanager.add_ui_from_string(uidef)
+        self.report_menu_ui_id = self.uistate.uimanager.add_ui_from_string(uidef)
         self.uimanager.insert_action_group(self.reportactions, 1)
         self.uistate.uimanager.ensure_update()
 
