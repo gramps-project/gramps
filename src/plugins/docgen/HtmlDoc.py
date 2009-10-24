@@ -399,7 +399,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                     style_name.upper().find('TITLE') != -1:
                 self.__title_written = 0
                 self.htmllist += (Html('div', id="header"),)
-                self.htmllist += (Html('h1', id='SiteTitle'),)
+                self.htmllist += (Html('h1', class_=style_name, id='SiteTitle'),)
             else:
                 self.htmllist += (Html('h1', class_=style_name),)
         elif 2<= level <= 5:
