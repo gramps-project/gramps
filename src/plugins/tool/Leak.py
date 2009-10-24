@@ -48,7 +48,6 @@ import gc
 #
 #------------------------------------------------------------------------
 from PluginUtils import Tool
-from gen.plug import PluginManager
 import ManagedWindow
 from QuestionDialog import InfoDialog
 from glade import Glade
@@ -166,24 +165,3 @@ class LeakOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-
-if __debug__:
-    pmgr = PluginManager.get_instance()
-    pmgr.register_tool(
-        name = 'leak',
-        category = Tool.TOOL_DEBUG,
-        tool_class = Leak,
-        options_class = LeakOptions,
-        modes = PluginManager.TOOL_MODE_GUI,
-        translated_name = _("Show Uncollected Objects"),
-        status = _("Stable"),
-        author_name = "Donald N. Allingham",
-        author_email = "don@gramps-project.org",
-        description=_("Provide a window listing all uncollected objects"),
-        )

@@ -38,7 +38,6 @@ import Sort
 
 from PluginUtils import Tool, MenuToolOptions, PluginWindows
 from ReportBase import ReportUtils
-from gen.plug import PluginManager
 from gen.plug.menu import FilterOption, PersonOption, \
                           EnumeratedListOption, BooleanOption
 from gen.utils import set_birth_death_index
@@ -215,23 +214,3 @@ class SortEventOptions(MenuToolOptions):
         person = self.__db.get_person_from_gramps_id(gid)
         filter_list = ReportUtils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)
-
-        
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'sortevents', 
-    category = Tool.TOOL_DBPROC, 
-    tool_class = SortEvents, 
-    options_class = SortEventOptions, 
-    modes = PluginManager.TOOL_MODE_GUI, 
-    translated_name = _("Sort Events"), 
-    status = _("Stable"), 
-    author_name = "Gary Burton", 
-    author_email = "gary.burton@zen.co.uk", 
-    description = _("Sorts events")
-    )

@@ -30,7 +30,7 @@ import urllib
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from DataViews.GrampletView import AVAILABLE_GRAMPLETS
 from TransUtils import sgettext as _
 
@@ -121,19 +121,3 @@ class PluginManagerGramplet(Gramplet):
                         row_count += 1
 
             self.append_text("\n", scroll_to="begin")
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Plugin Manager Gramplet", 
-         tname=_("Plugin Manager Gramplet"), 
-         height=300,
-         expand=True,
-         content = PluginManagerGramplet,
-         title=_("Plugin Manager"),
-         version="1.0.0",
-         gramps="3.1.0",
-         )

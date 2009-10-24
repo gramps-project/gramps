@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 from BasicUtils import name_displayer
 
@@ -132,19 +132,3 @@ class RelativesGramplet(Gramplet):
                 self.append_text(_("   %d.b Father: ") % (famc))
                 self.append_text(_("Unknown"))
                 self.append_text("\n")
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Relatives Gramplet", 
-         tname=_("Relatives Gramplet"), 
-         height=200,
-         content = RelativesGramplet,
-         title=_("Relatives"),
-         detached_width = 250,
-         detached_height = 300,
-         )
-

@@ -30,7 +30,7 @@ import sys
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 import gen
 
@@ -158,17 +158,3 @@ class PythonGramplet(Gramplet):
             buffer.place_cursor(end)
             return True
         return False
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Python Gramplet", 
-         tname=_("Python Gramplet"), 
-         height=250,
-         content = PythonGramplet,
-         title=_("Python Shell"),
-         )
-

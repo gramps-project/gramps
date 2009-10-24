@@ -26,7 +26,7 @@ This Gramplet shows textual distributions of age breakdowns of various types.
 
 import locale
 
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from gettext import gettext as _
 import gen.lib
 
@@ -279,17 +279,3 @@ class AgeStatsGramplet(Gramplet):
                     stop = int(max_bin/(float(sum(hash.itervalues())))*100)) +
                 "\n\n")
             self.append_text(self.compute_stats(hash))
-            self.append_text("\n")
-    
-register(type="gramplet", 
-         name = "Age Stats Gramplet",
-         tname = _("Age Stats Gramplet"),
-         height=100,
-         expand=True,
-         content = AgeStatsGramplet,
-         title=_("Age Stats"),
-         detached_width = 600,
-         detached_height = 450,
-         )
-    
-    

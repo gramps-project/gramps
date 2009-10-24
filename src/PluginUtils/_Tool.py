@@ -43,19 +43,14 @@ from BasicUtils import name_displayer
 import Errors
 from PluginUtils import (Options, OptionHandler, OptionList, 
                          OptionListCollection)
+from gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, 
+                        TOOL_REVCTL, TOOL_UTILS)
+
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-
-# Tool categories
-TOOL_DEBUG  = -1
-TOOL_ANAL   = 0
-TOOL_DBPROC = 1
-TOOL_DBFIX  = 2
-TOOL_REVCTL = 3
-TOOL_UTILS  = 4
 
 tool_categories = {
     TOOL_DEBUG  : _("Debug"),

@@ -52,7 +52,6 @@ log = logging.getLogger(".ImportCSV")
 import gen.lib
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
-from gen.plug import PluginManager, ImportPlugin
 from Utils import gender as gender_map
 from gui.utils import ProgressMeter
 from Utils import create_id
@@ -834,18 +833,3 @@ class CSVParser(object):
         self.db.add_source(source, self.trans)
         self.db.commit_source(source, self.trans)
         return (1, source)
-
-#-------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#-------------------------------------------------------------------------
-_mime_type = "text/x-comma-separated-values" # CSV Document
-_mime_type_rfc_4180 = "text/csv" # CSV Document   See rfc4180 for mime type
-
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('CSV Spreadheet'), 
-                      description     = _("Import data from CSV files"),
-                      import_function = importData,
-                      extension       = "csv")
-pmgr.register_plugin(plugin)

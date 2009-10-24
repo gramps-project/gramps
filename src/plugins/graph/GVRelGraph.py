@@ -45,10 +45,9 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, EnumeratedListOption, FilterOption, \
                           PersonOption, ColorOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from BasicUtils import name_displayer
 import DateHandler
 import gen.lib
@@ -612,26 +611,3 @@ class RelGraphOptions(MenuReportOptions):
         image location option unavailable.
         """
         self.__image_on_side.set_available(self.__include_images.get_value())
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name            = 'rel_graph',
-    category        = CATEGORY_GRAPHVIZ,
-    report_class    = RelGraphReport,
-    options_class   = RelGraphOptions,
-    modes           = PluginManager.REPORT_MODE_GUI | \
-                      PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Relationship Graph"),
-    status          = _("Stable"),
-    description     = _("Produces relationship graphs using Graphviz"),
-    author_name     = "Brian G. Matherly",
-    author_email    = "brian@gramps-project.org"
-    )
-
-
-

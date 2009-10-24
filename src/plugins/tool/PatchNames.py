@@ -46,7 +46,6 @@ import gobject
 import const
 from gui.utils import ProgressMeter
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
@@ -358,20 +357,3 @@ class PatchNamesOptions(Tool.ToolOptions):
 
     def __init__(self, name, person_id=None):
         Tool.ToolOptions.__init__(self, name, person_id)
-
-
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'patchnames',
-    category = Tool.TOOL_DBPROC,
-    tool_class = PatchNames,
-    options_class = PatchNamesOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Extract Information from Names"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Searches the entire database and attempts to "
-                    "extract titles, nicknames and surname prefixes "
-                    "that may be embedded in a person's given name field.")
-    )

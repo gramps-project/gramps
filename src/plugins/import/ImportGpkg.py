@@ -50,7 +50,6 @@ import const
 import ImportXml
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
-from gen.plug import PluginManager, ImportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -131,20 +130,3 @@ def impData(database, name, cb=None):
     os.remove(imp_db_name)
     
     return info
-
-##     files = os.listdir(tmpdir_path) 
-##     for filename in files:
-##         os.remove(os.path.join(tmpdir_path, filename))
-##     os.rmdir(tmpdir_path)
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('GRAMPS package'), 
-                      description     = _("Import data from GRAMPS packages"),
-                      import_function = impData,
-                      extension       = "gpkg")
-pmgr.register_plugin(plugin)

@@ -39,7 +39,6 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import Tool
-from gen.plug import PluginManager
 import ManagedWindow
 from glade import Glade
 
@@ -105,24 +104,3 @@ class EvalOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-
-if __debug__:
-    pmgr = PluginManager.get_instance()
-    pmgr.register_tool(
-        name = 'eval',
-        category = Tool.TOOL_DEBUG,
-        tool_class = Eval,
-        options_class = EvalOptions,
-        modes = PluginManager.TOOL_MODE_GUI,
-        translated_name = _("Python Evaluation Window"),
-        status = _("Stable"),
-        author_name = "Donald N. Allingham",
-        author_email = "don@gramps-project.org",
-        description = _("Provides a window that can evaluate python code")
-        )

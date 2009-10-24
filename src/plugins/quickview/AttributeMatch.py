@@ -22,9 +22,7 @@
 #
 #
 
-from ReportBase import CATEGORY_QR_MISC
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gen.plug import PluginManager
 from gettext import gettext as _
 
 def run(database, document, attribute, value=None):
@@ -46,15 +44,3 @@ def run(database, document, attribute, value=None):
             matches += 1
     sdoc.paragraph(_("There are %d people with a matching attribute name.\n") % matches)
     stab.write(sdoc)
-
-pmgr = PluginManager.get_instance()
-pmgr.register_quick_report(
-    name = 'attribute_match',
-    category = CATEGORY_QR_MISC, # to run with attribute/value
-    run_func = run,
-    translated_name = _("Attribute Match"),
-    status = _("Stable"),
-    description= _("Display people with same attribute."),
-    author_name="Douglas S. Blank",
-    author_email="dblank@cs.brynmawr.edu"
-    )

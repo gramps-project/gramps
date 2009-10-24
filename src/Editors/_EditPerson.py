@@ -65,7 +65,7 @@ from DisplayTabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList,
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab, 
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList, 
                          PersonBackRefList)
-from ReportBase import CATEGORY_QR_PERSON
+from gen.plug import CATEGORY_QR_PERSON
     
 #-------------------------------------------------------------------------
 #

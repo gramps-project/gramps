@@ -54,10 +54,9 @@ import gtk
 #
 #-------------------------------------------------------------------------
 
-from gen.plug import PluginManager
-from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
-                        CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
-                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
+from gen.plug import (PluginManager, CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
+                      CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
+                      CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
 
 
 def create_quickreport_menu(category,dbstate,uistate, handle) :
@@ -86,56 +85,53 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
     #select the reports to show
     showlst = []
     pmgr = PluginManager.get_instance()
-    for item in pmgr.get_quick_report_list():
-        if not item[8] and item[2] == category :
+    for pdata in pmgr.get_reg_quick_reports():
+        if pdata.supported and pdata.category == category :
             #add tuple function, translated name, name, status
-            showlst.append((item[0], item[1], item[3], item[5]))
+            showlst.append(pdata)
             
     showlst.sort(by_menu_name)
-    for report in showlst:
-        new_key = report[2].replace(' ', '-')
+    for pdata in showlst:
+        new_key = pdata.id.replace(' ', '-')
         ofile.write('<menuitem action="%s"/>' % new_key)
-        actions.append((new_key, None, report[1], None, None, 
-                make_quick_report_callback(report, category, 
+        actions.append((new_key, None, pdata.name, None, None, 
+                make_quick_report_callback(pdata, category, 
                                            dbstate, uistate, handle)))
     ofile.write('</menu>')
     
     return (ofile.getvalue(), actions)
 
 def by_menu_name(first, second):
-    return cmp(first[1], second[1])
+    return cmp(first.name, second.name)
 
-def make_quick_report_callback(lst, category, dbstate, uistate, handle):
-    return lambda x: run_report(dbstate, uistate, category, handle, lst[0])
+def make_quick_report_callback(pdata, category, dbstate, uistate, handle):
+    return lambda x: run_report(dbstate, uistate, category, handle, pdata)
 
 def get_quick_report_list(qv_category=None):
     """
-    Returns a list of quick views: [(translated name, category, name, status)]
+    Returns a list of PluginData of quick views of category qv_category
     CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, 
     CATEGORY_QR_SOURCE, CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
     CATEGORY_QR_REPOSITORY or None for all
     """
     names = []
     pmgr = PluginManager.get_instance()
-    for item in pmgr.get_quick_report_list():
-        if qv_category == item[2] or qv_category is None:
-            names.append(item[1:]) # (see below for item struct)
+    for pdata in pmgr.get_reg_quick_reports():
+        if qv_category == pdata.category or qv_category is None:
+            names.append(pdata) # (see below for item struct)
     return names
 
-def run_quick_report_by_name(dbstate, uistate, report_name, handle, **kwargs):
-    # [0] - function 
-    # [1] - translated name
-    # [2] - category
-    # [3] - name
-    # [5] - status
+def run_quick_report_by_name(dbstate, uistate, report_name, handle, 
+                             container=None):
     report = None
     pmgr = PluginManager.get_instance()
-    for item in pmgr.get_quick_report_list():
-        if item[3] == report_name:
-            report = item
+    for pdata in pmgr.get_reg_quick_reports():
+        if pdata.id == report_name:
+            report = pdata
             break
     if report:
-        return run_report(dbstate, uistate, report[2], handle, report[0], **kwargs)
+        return run_report(dbstate, uistate, report.category, 
+                          handle, report, container=container)
     else:
         raise AttributeError, ("No such quick report '%s'" % report_name)
 
@@ -147,9 +143,9 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
     from Simple import make_basic_stylesheet
     report = None
     pmgr = PluginManager.get_instance()
-    for item in pmgr.get_quick_report_list():
-        if item[3] == report_name:
-            report = item
+    for pdata in pmgr.get_reg_quick_reports():
+        if pdata.id == report_name:
+            report = pdata
             break
     if report:
         # FIXME: allow auto lookup of obj like below?
@@ -157,28 +153,38 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
         d.dbstate = document.dbstate
         d.uistate = document.uistate
         d.open("")
-        retval = report[0](database, d, handle)
-        d.close()
-        return retval
+        mod = pmgr.load_plugin(report)
+        if mod:
+            reportfunc = eval('mod.' +  report.runfunc)
+            retval = reportfunc(database, d, handle)
+            d.close()
+            return retval
+        else:
+            raise ImportError, ("Quick report id = '%s' could not be loaded" 
+                                % report_name)
     else:
-        raise AttributeError, ("No such quick report '%s'" % report_name)
+        raise AttributeError, ("No such quick report id = '%s'" % report_name)
                             
-def run_report(dbstate, uistate, category, handle, func, **kwargs):
+def run_report(dbstate, uistate, category, handle, pdata, container=None):
         """
         Run a Quick Report.
-        kwargs can take an optional document=obj to pass the report
-        the document, rather than putting it in a new window.
+        Optionally container can be passed, rather than putting the report 
+        in a new window. 
         """
         from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
         container = None
+        pmgr = PluginManager.get_instance()
+        mod = pmgr.load_plugin(pdata)
+        if not mod:
+            print "QuickView Error: plugin does not load"
+            return
+        func =  eval('mod.' +  pdata.runfunc)
         if handle:
             d = TextBufDoc(make_basic_stylesheet(), None)
             d.dbstate = dbstate
             d.uistate = uistate
-            if "container" in kwargs:
-                container = kwargs["container"]
-                del kwargs["container"]
+            if container:
                 d.change_active = False
             else:
                 d.change_active = True
@@ -204,11 +210,11 @@ def run_report(dbstate, uistate, category, handle, func, **kwargs):
             if obj:
                 if container:
                     result = d.open("", container=container)
-                    func(dbstate.db, d, obj, **kwargs)
+                    func(dbstate.db, d, obj)
                     return result
                 else:
                     d.open("")
-                    retval = func(dbstate.db, d, obj, **kwargs)
+                    retval = func(dbstate.db, d, obj)
                     d.close()
                     return retval
             else:

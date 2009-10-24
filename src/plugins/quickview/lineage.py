@@ -35,8 +35,6 @@ Display a person's father or mother lineage
 import gen.lib
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from gen.plug import PluginManager
-from ReportBase import CATEGORY_QR_PERSON
 
 __FMT     = "%-30s\t%-12s\t%-12s"
 __FMT_REM = "   %s: %s"
@@ -226,33 +224,3 @@ def add_rem(remark, text):
         return remark + ', ' + text
     else:
         return text
-  
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-
-pmgr.register_quick_report(
-    name = 'father_lineage',
-    category = CATEGORY_QR_PERSON,
-    run_func = run_father,
-    translated_name = _("Father lineage"),
-    status = _("Stable"),
-    description= _("Display father lineage"),
-    author_name="B. Malengier",
-    author_email="benny.malengier@gramps-project.org"
-    )
-
-pmgr.register_quick_report(
-    name = 'mother_lineage',
-    category = CATEGORY_QR_PERSON,
-    run_func = run_mother,
-    translated_name = _("Mother lineage"),
-    status = _("Stable"),
-    description= _("Display mother lineage"),
-    author_name="B. Malengier",
-    author_email="benny.malengier@gramps-project.org"
-    )
-    

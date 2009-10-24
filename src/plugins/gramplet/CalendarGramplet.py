@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 from QuickReports import run_quick_report_by_name
 import gen.lib
@@ -52,17 +52,3 @@ class CalendarGramplet(Gramplet):
                                  self.gui.uistate, 
                                  'onthisday', 
                                  date)
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Calendar Gramplet", 
-         tname=_("Calendar Gramplet"), 
-         height=200,
-         content = CalendarGramplet,
-         title=_("Calendar"),
-         )
-

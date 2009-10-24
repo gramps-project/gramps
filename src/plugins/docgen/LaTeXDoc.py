@@ -40,7 +40,6 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-from gen.plug import PluginManager, DocGenPlugin
 from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF
 from gen.plug.docbackend import DocBackend
 import ImgManip
@@ -657,24 +656,3 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if format == 1:
             self._backend.write('\\end{verbatim}')
         self.end_paragraph()
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _('LaTeX'), 
-                          description = _("Generates documents in LaTeX "
-                                          "format."),
-                          basedoc     = LaTeXDoc,
-                          paper       = True,
-                          style       = False, 
-                          extension   = "tex" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

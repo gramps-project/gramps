@@ -36,12 +36,11 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from Errors import ReportError
-from gen.plug import PluginManager
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                             PARA_ALIGN_CENTER)
 from gen.plug.menu import PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -66,7 +65,6 @@ class EndOfLineReport(Report):
 
         """
         Report.__init__(self, database, options_class)
-        
         menu = options_class.menu
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
@@ -309,24 +307,3 @@ class EndOfLineOptions(MenuReportOptions):
         table.set_column_width(0, 10)
         table.set_column_width(1, 90)
         default_style.add_table_style('EOL-Table', table)
-
-#------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'endofline_report',
-    category = CATEGORY_TEXT,
-    report_class = EndOfLineReport,
-    options_class = EndOfLineOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("End of Line Report"),
-    status = _("Stable"),
-    description = _("Produces a textual end of line report"),
-    author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org"
-    )

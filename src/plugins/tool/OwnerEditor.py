@@ -42,7 +42,6 @@ import GrampsDisplay
 from widgets import MonitoredEntry
 import ManagedWindow
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from TransUtils import sgettext as _
 from glade import Glade
 
@@ -176,22 +175,3 @@ class OwnerEditorOptions(Tool.ToolOptions):
     """Defines options and provides handling interface."""
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-# Register the plugin tool to plugin manager
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'editowner',
-    category = Tool.TOOL_DBPROC,
-    tool_class = OwnerEditor,
-    options_class = OwnerEditorOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Edit Database Owner Information"),
-    status = _("Beta"),
-    author_name = "Zsolt Foldvari",
-    author_email = "zfoldvar@users.sourceforge.net",
-    description = _("Allow editing database owner information.")
-)

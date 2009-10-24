@@ -49,7 +49,6 @@ import ManagedWindow
 import GrampsDisplay
 
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from gui.utils import ProgressMeter
 from glade import Glade
 
@@ -626,23 +625,3 @@ class ExtractCityOptions(Tool.ToolOptions):
     """
     def __init__(self, name, person_id=None):
         Tool.ToolOptions.__init__(self, name, person_id)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'excity', 
-    category = Tool.TOOL_DBPROC, 
-    tool_class = ExtractCity, 
-    options_class = ExtractCityOptions, 
-    modes = PluginManager.TOOL_MODE_GUI, 
-    translated_name = _("Extract Place Data from a Place Title"), 
-    status = _("Stable"), 
-    author_name = "Donald N. Allingham", 
-    author_email = "don@gramps-project.org", 
-    description = _("Attempts to extract city and state/province "
-                    "from a place title")
-    )

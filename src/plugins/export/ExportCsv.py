@@ -51,7 +51,6 @@ import gen.lib
 from Filters import GenericFilter, Rules, build_filter_model
 import Utils
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ExportPlugin
 import gen.proxy
 import DateHandler
 from glade import Glade
@@ -475,20 +474,3 @@ class CSVWriter(object):
     
     def format_date(self, date):
         return DateHandler.get_date(date)
-
-#-------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#-------------------------------------------------------------------------
-_name = _('Comma _Separated Values Spreadsheet (CSV)')
-_description = _('CSV is a common spreadsheet format.')
-_config = (_('CSV spreadsheet options'),CSVWriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _name, 
-                      description     = _description,
-                      export_function = exportData,
-                      extension       = "csv",
-                      config          = _config )
-pmgr.register_plugin(plugin)

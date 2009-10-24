@@ -37,7 +37,6 @@ from gettext import gettext as _
 from gui.utils import open_file_with_default_application
 from gen.plug.docgen import BaseDoc, TextDoc,\
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER
-from gen.plug import PluginManager, DocGenPlugin
 import Errors
 import Utils
 
@@ -364,24 +363,3 @@ class AsciiDoc(BaseDoc,TextDoc):
     #--------------------------------------------------------------------
     def write_text(self,text,mark=None):
         self.text = self.text + text
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _("Plain Text"), 
-                          description = _("Generates documents in plain text "
-                                          "format (.txt)."),
-                          basedoc     = AsciiDoc,
-                          paper       = True,
-                          style       = True, 
-                          extension   = "txt" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

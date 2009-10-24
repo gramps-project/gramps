@@ -54,7 +54,6 @@ import Errors
 from gen.lib import MediaObject
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from Utils import media_path_full, relative_path, media_path
 from TransUtils import sgettext as _
 
@@ -568,22 +567,3 @@ class MediaManOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'mediaman',
-    category = Tool.TOOL_UTILS,
-    tool_class = MediaMan,
-    options_class = MediaManOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Media Manager"),
-    status = _("Beta"),
-    author_name = "Alex Roitman",
-    author_email = "shura@gramps-project.org",
-    description = _("Manages batch operations on media files")
-    )

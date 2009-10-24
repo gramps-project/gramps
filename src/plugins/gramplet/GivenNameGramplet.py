@@ -22,7 +22,7 @@
 #
 from gettext import gettext as _
 
-from DataViews import Gramplet, register
+from DataViews import Gramplet
 import config
 
 _YIELD_INTERVAL = 350
@@ -133,12 +133,3 @@ class GivenNameCloudGramplet(Gramplet):
                          total_givensubnames)
         self.append_text((_("Total given names showing") + ": %d\n") % showing)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")
-
-register(type="gramplet", 
-         name= "Given Name Cloud Gramplet", 
-         tname=_("Given Name Cloud Gramplet"), 
-         height=300,
-         expand=True,
-         content = GivenNameCloudGramplet,
-         title=_("Given Name Cloud"),
-         )

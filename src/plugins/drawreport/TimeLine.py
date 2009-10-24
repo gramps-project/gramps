@@ -37,9 +37,8 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
+from ReportBase import Report, ReportUtils, MenuReportOptions
 pt2cm = ReportUtils.pt2cm
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                     FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)
@@ -449,24 +448,3 @@ class TimeLineOptions(MenuReportOptions):
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         default_style.add_draw_style("TLG-label",g)
-
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'timeline',
-    category = CATEGORY_DRAW,
-    report_class = TimeLine,
-    options_class = TimeLineOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Timeline Chart"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Produces a timeline chart.")
-    )

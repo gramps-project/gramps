@@ -38,7 +38,6 @@ import StringIO
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug import PluginManager, DocGenPlugin
 from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SANS_SERIF
 import Errors
 
@@ -259,24 +258,3 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
 
 def units(val):
     return (val[0]*35.433, val[1]*35.433)
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _("SVG (Scalable Vector Graphics)"), 
-                          description = _("Generates documents in Scalable "
-                                          "Vector Graphics format (.svg)."),
-                          basedoc     = SvgDrawDoc,
-                          paper       = True,
-                          style       = True, 
-                          extension   = "svg" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,8 +22,8 @@
 
 """
 This module provides the base class for plugins.
-"""
-
+""" 
+    
 class Plugin(object):
     """
     This class serves as a base class for all plugins that can be registered

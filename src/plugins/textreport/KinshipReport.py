@@ -42,7 +42,7 @@ from gen.plug import PluginManager
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -392,24 +392,3 @@ class KinshipOptions(MenuReportOptions):
         p.set_left_margin(0.5)
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("KIN-Normal", p)
-
-#------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'kinship_report',
-    category = CATEGORY_TEXT,
-    report_class = KinshipReport,
-    options_class = KinshipOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Kinship Report"),
-    status = _("Stable"),
-    description = _("Produces a textual report of kinship for a given person"),
-    author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org"
-    )

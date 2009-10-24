@@ -39,12 +39,11 @@ from gettext import gettext as _
 from BasicUtils import name_displayer
 from Errors import ReportError
 from gen.lib import ChildRefType
-from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, INDEX_TYPE_TOC, 
                              PARA_ALIGN_CENTER)
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 
 
 #------------------------------------------------------------------------
@@ -332,24 +331,3 @@ class AncestorOptions(MenuReportOptions):
         para.set_bottom_margin(0.125)        
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("AHN-Entry", para)
-
-#------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'ancestor_report',
-    category = CATEGORY_TEXT,
-    report_class = AncestorReport,
-    options_class = AncestorOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Ahnentafel Report"),
-    status = _("Stable"),
-    description = _("Produces a textual ancestral report"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org"
-    )

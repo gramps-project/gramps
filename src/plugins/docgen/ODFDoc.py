@@ -77,7 +77,6 @@ from xml.sax.saxutils import escape
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-from gen.plug import PluginManager, DocGenPlugin
 from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc,
                     FONT_SANS_SERIF, DASHED, PAPER_PORTRAIT,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
@@ -1541,24 +1540,3 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('</text:p>\n')
             self.cntnt.write('</draw:text-box>')
         self.cntnt.write('</draw:frame>\n')
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _('Open Document Text'), 
-                          description = _("Generates documents in Open "
-                                          "Document Text format (.odt)."),
-                          basedoc     = ODFDoc,
-                          paper       = True,
-                          style       = True, 
-                          extension   = "odt" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

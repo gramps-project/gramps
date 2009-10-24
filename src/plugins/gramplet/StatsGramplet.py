@@ -30,7 +30,7 @@ import posixpath
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 from Utils import media_path_full
 import DateHandler
@@ -184,18 +184,3 @@ class StatsGramplet(Gramplet):
                   'Filter', 'missing media')
         self.append_text(" %s\n" % len(notfound))
         self.append_text("", scroll_to="begin")
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Statistics Gramplet", 
-         tname=_("Statistics Gramplet"), 
-         height=230,
-         expand=True,
-         content = StatsGramplet,
-         title=_("Statistics"),
-         )
-

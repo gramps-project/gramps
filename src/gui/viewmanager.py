@@ -58,7 +58,8 @@ import gtk
 #-------------------------------------------------------------------------
 from cli.grampscli import CLIManager
 from PluginUtils import Tool, PluginWindows, \
-    ReportPluginDialog, ToolPluginDialog
+    ReportPluginDialog, ToolPluginDialog, gui_tool
+from gen.plug import PluginManager, REPORT
 import ReportBase
 import DisplayState
 import const
@@ -230,7 +231,7 @@ class ViewManager(CLIManager):
 
         self.__build_main_window()
         self.__connect_signals()
-        self.do_load_plugins()
+        self.do_reg_plugins()
 
     def _errordialog(title, errormessage):
         """
@@ -546,8 +547,8 @@ class ViewManager(CLIManager):
             self.actiongroup.set_visible(False)
             self.readonlygroup.set_visible(False)
         self.fileactions.set_sensitive(False)
-        self.__build_tools_menu(self._pmgr.get_tool_list())
-        self.__build_report_menu(self._pmgr.get_report_list())
+        self.__build_tools_menu(self._pmgr.get_reg_tools())
+        self.__build_report_menu(self._pmgr.get_reg_reports())
         self.uistate.set_relationship_class()
         self._pmgr.connect('plugins-reloaded', 
                              self.__rebuild_report_and_tool_menus)
@@ -599,6 +600,21 @@ class ViewManager(CLIManager):
         # load plugins
         self.uistate.status_text(_('Loading plugins...'))
         error = CLIManager.do_load_plugins(self)
+
+        #  get to see if we need to open the plugin status window
+        if error and config.get('behavior.pop-plugin-status'):
+            self.__plugin_status()
+
+        self.uistate.push_message(self.dbstate, _('Ready'))
+    
+    def do_reg_plugins(self):
+        """
+        Register the plugins at initialization time. The plugin status window  
+        is opened on an error if the user has requested.
+        """
+        # registering plugins
+        self.uistate.status_text(_('Registering plugins...'))
+        error = CLIManager.do_reg_plugins(self)
 
         #  get to see if we need to open the plugin status window
         if error and config.get('behavior.pop-plugin-status'):
@@ -1266,10 +1282,8 @@ class ViewManager(CLIManager):
         """
         Callback that rebuilds the tools and reports menu
         """
-        tool_menu_list = self._pmgr.get_tool_list()
-        report_menu_list = self._pmgr.get_report_list()
-        self.__build_tools_menu(tool_menu_list)
-        self.__build_report_menu(report_menu_list)
+        self.__build_tools_menu(self._pmgr.get_reg_tools())
+        self.__build_report_menu(self._pmgr.get_reg_reports())
         self.uistate.set_relationship_class()
 
     def __build_tools_menu(self, tool_menu_list):
@@ -1279,7 +1293,7 @@ class ViewManager(CLIManager):
         self.toolactions = gtk.ActionGroup('ToolWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ToolsMenu', tool_menu_list, Tool.tool_categories, 
-            make_tool_callback)
+            make_plugin_callback)
         self.toolactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(uidef)
         self.uimanager.insert_action_group(self.toolactions, 1)
@@ -1292,7 +1306,7 @@ class ViewManager(CLIManager):
         self.reportactions = gtk.ActionGroup('ReportWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ReportsMenu', report_menu_list, ReportBase.standalone_categories, 
-            make_report_callback)
+            make_plugin_callback)
         self.reportactions.add_actions(actions)
         self.uistate.uimanager.add_ui_from_string(uidef)
         self.uimanager.insert_action_group(self.reportactions, 1)
@@ -1300,7 +1314,7 @@ class ViewManager(CLIManager):
 
     def build_plugin_menu(self, text, item_list, categories, func):
         """
-        Builds a new XML description for a menu based on the item list
+        Builds a new XML description for a menu based on the list of plugindata
         """
         actions = []
         ofile = StringIO()
@@ -1310,17 +1324,15 @@ class ViewManager(CLIManager):
         menu.show()
     
         hash_data = {}
-        for item in item_list:
-            if item[9]:
+        for pdata in item_list:
+            if not pdata.supported:
                 category = _UNSUPPORTED
             else:
-                category = categories[item[3]]
+                category = categories[pdata.category]
             if category in hash_data:
-                hash_data[category].append(
-                    (item[0], item[1], item[2], item[4], item[3], item[10]))
+                hash_data[category].append(pdata)
             else:
-                hash_data[category] = [
-                    (item[0], item[1], item[2], item[4], item[3], item[10])]
+                hash_data[category] = [pdata]
                 
         # Sort categories, skipping the unsupported
         catlist = [item for item in hash_data
@@ -1330,14 +1342,14 @@ class ViewManager(CLIManager):
             new_key = key.replace(' ', '-')
             ofile.write('<menu action="%s">' % new_key)
             actions.append((new_key, None, key))
-            lst = hash_data[key]
-            lst.sort(by_menu_name)
-            for name in lst:
-                new_key = name[3].replace(' ', '-')
-                menu_name = ("%s...") % name[2]
+            pdatas = hash_data[key]
+            pdatas.sort(by_menu_name)
+            for pdata in pdatas:
+                new_key = pdata.id.replace(' ', '-')
+                menu_name = ("%s...") % pdata.name
                 ofile.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, menu_name, None, None, 
-                                func(name, self.dbstate, self.uistate)))
+                                func(pdata, self.dbstate, self.uistate)))
             ofile.write('</menu>')
 
         # If there are any unsupported items we add separator
@@ -1346,13 +1358,14 @@ class ViewManager(CLIManager):
             ofile.write('<separator/>')
             ofile.write('<menu action="%s">' % _UNSUPPORTED)
             actions.append((_UNSUPPORTED, None, _UNSUPPORTED))
-            lst = hash_data[_UNSUPPORTED]
-            lst.sort(by_menu_name)
-            for name in lst:
-                new_key = name[3].replace(' ', '-')
+            pdatas = hash_data[_UNSUPPORTED]
+            pdatas.sort(by_menu_name)
+            for pdata in pdatas:
+                new_key = pdata.id.replace(' ', '-')
+                menu_name = ("%s...") % pdata.name
                 ofile.write('<menuitem action="%s"/>' % new_key)
-                actions.append((new_key, None, name[2], None, None, 
-                                func(name, self.dbstate, self.uistate)))
+                actions.append((new_key, None, menu_name, None, None, 
+                                func(pdata, self.dbstate, self.uistate)))
             ofile.write('</menu>')
 
         ofile.write('</menu></menubar></ui>')
@@ -1417,20 +1430,40 @@ def by_menu_name(first, second):
     """
     Sorts menu item lists
     """
-    return cmp(first[2], second[2])
+    return cmp(first.name, second.name)
 
-def make_report_callback(lst, dbstate, uistate):
-    """
-    Makes a callback for a report menu item
-    """
-    return lambda x: ReportBase.report(
-        dbstate, uistate, dbstate.get_active_person(), 
-        lst[0], lst[1], lst[2], lst[3], lst[4], lst[5])
+def run_plugin(pdata, dbstate, uistate):
+        """
+        run a plugin based on it's PluginData:
+          1/ load plugin.
+          2/ the report is run
+        """
+        mod = PluginManager.get_instance().load_plugin(pdata)
+        if not mod:
+            #import of plugin failed
+            ErrorDialog(
+                _('Failed Loading Plugin'), 
+                _('The plugin did not load. See Help Menu, Plugin Status'
+                  ' for more info.\nUse http://bugs.gramps-project.org to'
+                  ' submit bugs of official plugins, contact the plugin '
+                  'author otherwise. '))
+            return 
 
-def make_tool_callback(lst, dbstate, uistate):
+        if pdata.ptype == REPORT:
+            ReportBase.report(dbstate, uistate, dbstate.active,
+                   eval('mod.' + pdata.reportclass), 
+                   eval('mod.' + pdata.optionclass), 
+                   pdata.name, pdata.id, 
+                   pdata.category, pdata.require_active)
+        else:
+            gui_tool(dbstate, uistate, 
+                           eval('mod.' + pdata.toolclass), 
+                           eval('mod.' + pdata.optionclass),
+                           pdata.name, pdata.id, pdata.category,
+                           dbstate.db.request_rebuild)
+
+def make_plugin_callback(pdata, dbstate, uistate):
     """
-    Makes a callback for a tool menu item
+    Makes a callback for a report/tool menu item
     """
-    return lambda x: Tool.gui_tool(dbstate, uistate,  
-                                   lst[0], lst[1], lst[2], lst[3], lst[4], 
-                                   dbstate.db.request_rebuild)
+    return lambda x: run_plugin(pdata, dbstate, uistate)

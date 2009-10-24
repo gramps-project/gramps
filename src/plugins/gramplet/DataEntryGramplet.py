@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from BasicUtils import name_displayer
 from ReportBase import ReportUtils
 import DateHandler
@@ -730,22 +730,3 @@ class DataEntryGramplet(Gramplet):
 
     def active_changed(self, handle):
         self.update()
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Data Entry Gramplet", 
-         tname=_("Data Entry Gramplet"), 
-         height=375,
-         expand=False,
-         content = DataEntryGramplet,
-         title=_("Data Entry"),
-         detached_width = 510,
-         detached_height = 480,
-         gramps="3.1.0",
-         version="1.0.0",
-         )
-

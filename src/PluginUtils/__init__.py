@@ -24,6 +24,7 @@
 from _GuiOptions import GuiMenuOptions, make_gui_option
 from _Options import Options, OptionListCollection, OptionList, OptionHandler
 
+from _Tool import gui_tool, cli_tool
 import _Tool as Tool
 from _PluginDialogs import ReportPluginDialog, ToolPluginDialog
 import _PluginWindows as PluginWindows

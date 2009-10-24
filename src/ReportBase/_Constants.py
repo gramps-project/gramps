@@ -35,15 +35,9 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 
-
-
 # Report categories
-CATEGORY_TEXT     = 0
-CATEGORY_DRAW     = 1
-CATEGORY_CODE     = 2
-CATEGORY_WEB      = 3
-CATEGORY_BOOK     = 4
-CATEGORY_GRAPHVIZ = 5
+from gen.plug import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, CATEGORY_WEB,\
+                     CATEGORY_BOOK, CATEGORY_GRAPHVIZ
 
 standalone_categories = {
     CATEGORY_TEXT     : _("Text Reports"),
@@ -58,17 +52,6 @@ book_categories = {
     CATEGORY_TEXT : _("Text"),
     CATEGORY_DRAW : _("Graphics"),
 }
-
-# Quick Report categories
-CATEGORY_QR_MISC       = -1
-CATEGORY_QR_PERSON     = 0
-CATEGORY_QR_FAMILY     = 1
-CATEGORY_QR_EVENT      = 2
-CATEGORY_QR_SOURCE     = 3
-CATEGORY_QR_PLACE      = 4
-CATEGORY_QR_REPOSITORY = 5
-CATEGORY_QR_NOTE       = 6
-CATEGORY_QR_DATE       = 7
 
 #Common data for html reports
 ## TODO: move to a system where css files are registered

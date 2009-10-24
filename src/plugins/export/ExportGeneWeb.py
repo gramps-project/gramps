@@ -50,7 +50,6 @@ from Filters import GenericFilter, Rules, build_filter_model
 #import const
 import Utils
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ExportPlugin
 from glade import Glade
 import config
 
@@ -612,19 +611,3 @@ class GeneWebWriter(object):
 def exportData(database, filename, option_box=None, callback=None):
     gw = GeneWebWriter(database, filename, option_box, callback)
     return gw.export_data()
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_description = _('GeneWeb is a web based genealogy program.')
-_config = (_('GeneWeb export options'), GeneWebWriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _('_GeneWeb'), 
-                      description     = _description,
-                      export_function = exportData,
-                      extension       = "gw",
-                      config          = _config )
-pmgr.register_plugin(plugin)

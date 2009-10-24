@@ -42,7 +42,7 @@ from gettext import gettext as _
 import const
 from ReportBase import report, standalone_categories
 import _Tool
-from gen.plug import PluginManager
+from gen.plug import PluginManager, REPORT, TOOL
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -64,7 +64,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
     Displays the dialog box that allows the user to select the
     plugin that is desired.
     """
-    def __init__(self, state, uistate, track, item_list, categories, msg,
+    def __init__(self, state, uistate, track, categories, msg,
                  label=None, button_label=None, tool_tip=None, 
                  content=_REPORTS):
         """
@@ -76,6 +76,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.imap = {}
         self.msg = msg
         self.content = content
+        self._pmgr = PluginManager.get_instance()
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, 
                                              self.__class__)
@@ -121,7 +122,14 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             self.apply_button.set_tooltip_text(tool_tip)
 
         self.item = None
-        self.build_plugin_tree(item_list, categories)
+        
+        if content == _REPORTS:
+            reg_list = self._pmgr.get_reg_reports()
+        elif content == _TOOLS:
+            reg_list = self._pmgr.get_reg_tools()
+        else:
+            reg_list = []
+        self.build_plugin_tree(reg_list, categories)
         self.show()
 
     def rebuild(self):
@@ -133,19 +141,9 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
     def on_apply_clicked(self, obj):
         """Execute the selected report"""
-        try:
-            (item_class, options_class, title, category,
-             name, require_active) = self.item
-            if self.content == _REPORTS:
-                report(self.state, self.uistate, self.state.active,
-                       item_class, options_class, title, name, 
-                       category, require_active)
-            else:
-                _Tool.gui_tool(self.state, self.uistate, 
-                              item_class, options_class,title, name,category,
-                              self.state.db.request_rebuild)
-        except TypeError:
-            pass # ignore pressing apply without a plugin being selected
+        if not self.item:
+            return
+        self.run_plugin(self.item)
         
     def on_node_selected(self, obj):
         """Updates the informational display on the right hand side of
@@ -156,28 +154,27 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             path = store.get_path(node)
         if not node or path not in self.imap:
             return 
-        data = self.imap[path]
+        pdata = self.imap[path]
 
-        (report_class, options_class, title, category, name,
-         doc,status,author,email,unsupported,require_active) = data
-        self.description.set_text(doc)
-        if unsupported:
+        #(report_class, options_class, title, category, name,
+        # doc,status,author,email,unsupported,require_active) = data
+        self.description.set_text(pdata.description)
+        if not pdata.supported:
             status = _UNSUPPORTED
-        self.status.set_text(status)
+        self.status.set_text(pdata.statustext())
         self.title.set_text('<span weight="bold" size="larger">%s</span>' \
-                            % title)
+                            % pdata.name)
         self.title.set_use_markup(1)
-        self.author_name.set_text(author)
-        self.author_email.set_text(email)
-        self.item = (report_class, options_class, title, category,
-                     name, require_active)
+        self.author_name.set_text(', '.join(pdata.authors))
+        self.author_email.set_text(', '.join(pdata.authors_email))
+        self.item = pdata
 
-    def build_plugin_tree(self, item_list, categories):
+    def build_plugin_tree(self, reg_list, categories):
         """Populates a GtkTree with each menu item associated with a entry
-        in the lists. The list must consist of a tuples with the following
-        format:
+        in the lists. The list consists of PluginData objects for reports or
+        tools.
         
-        (item_class, options_class,title,category, name,
+        old data was (item_class, options_class,title,category, name,
          doc,status,author,email)
 
         Items in the same category are grouped under the same submenu.
@@ -188,11 +185,11 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         # build the tree items and group together based on the category name
         item_hash = {}
-        for plugin in item_list:
-            if plugin[9]:
+        for plugin in reg_list:
+            if not plugin.supported:
                 category = _UNSUPPORTED
             else:
-                category = categories[plugin[3]]
+                category = categories[plugin.category]
             if category in item_hash:
                 item_hash[category].append(plugin)
             else:
@@ -210,24 +207,48 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             node = self.store.insert_after(None, prev)
             self.store.set(node, 0, key)
             next = None
-            data.sort(lambda x, y: cmp(x[2], y[2]))
+            data.sort(lambda x, y: cmp(x.name, y.name))
             for item in data:
                 next = self.store.insert_after(node, next)
                 ilist.append((next, item))
-                self.store.set(next, 0, item[2])
+                self.store.set(next, 0, item.name)
         for key in key_list:
             data = item_hash[key]
             node = self.store.insert_after(None, prev)
             self.store.set(node, 0, key)
             next = None
-            data.sort(key=lambda k:k[2])
+            data.sort(key=lambda k:k.name)
             for item in data:
                 next = self.store.insert_after(node, next)
                 ilist.append((next, item))
-                self.store.set(next, 0, item[2])
+                self.store.set(next, 0, item.name)
         for next, tab in ilist:
             path = self.store.get_path(next)
             self.imap[path] = tab
+    
+    def run_plugin(self, pdata):
+        """
+        run a plugin based on it's PluginData:
+          1/ load plugin.
+          2/ the report is run
+        """
+        mod = self._pmgr.load_plugin(pdata)
+        if not mod:
+            #import of plugin failed
+            return 
+
+        if pdata.ptype == REPORT:
+            report(self.state, self.uistate, self.state.active,
+                   eval('mod.' + pdata.reportclass), 
+                   eval('mod.' + pdata.optionclass), 
+                   pdata.name, pdata.id, 
+                   pdata.category, pdata.require_active)
+        else:
+            _Tool.gui_tool(self.state, self.uistate, 
+                           eval('mod.' + pdata.toolclass), 
+                           eval('mod.' + pdata.optionclass),
+                           pdata.name, pdata.id, pdata.category,
+                           self.state.db.request_rebuild)
 
 #-------------------------------------------------------------------------
 #
@@ -244,24 +265,22 @@ class ReportPluginDialog(PluginDialog):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
-        self.__pmgr = PluginManager.get_instance()
 
         PluginDialog.__init__(
             self,
             dbstate,
             uistate,
             track,
-            self.__pmgr.get_report_list(),
             standalone_categories,
             _("Report Selection"),
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
             _REPORTS)
         
-        self.__pmgr.connect('plugins-reloaded', self.rebuild)
+        self._pmgr.connect('plugins-reloaded', self.rebuild)
 
     def rebuild(self):
-        report_list = self.__pmgr.get_report_list()
+        report_list = self._pmgr.get_reg_reports()
         self.build_plugin_tree(report_list, standalone_categories)
 
 #-------------------------------------------------------------------------
@@ -277,14 +296,12 @@ class ToolPluginDialog(PluginDialog):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
-        self.__pmgr = PluginManager.get_instance()
 
         PluginDialog.__init__(
             self,
             dbstate,
             uistate,
             track,
-            self.__pmgr.get_tool_list(),
             _Tool.tool_categories,
             _("Tool Selection"),
             _("Select a tool from those available on the left."),
@@ -293,5 +310,5 @@ class ToolPluginDialog(PluginDialog):
             _TOOLS)
 
     def rebuild(self):
-        tool_list = self.__pmgr.get_tool_list()
+        tool_list = self._pmgr.get_reg_tools()
         self.build_plugin_tree(tool_list, _Tool.tool_categories)

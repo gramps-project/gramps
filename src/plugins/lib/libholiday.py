@@ -37,7 +37,6 @@ import os
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager, Plugin
 
 #------------------------------------------------------------------------
 #
@@ -377,16 +376,3 @@ class _Holidays:
             if ndate == date:
                 retval.append(rule["name"])
         return retval
-
-#------------------------------------------------------------------------
-#
-# Register the plugins
-#
-#------------------------------------------------------------------------
-PluginManager.get_instance().register_plugin( 
-Plugin(
-    name = __name__, 
-    description = _("Provides holiday information for different countries."),
-    module_name = __name__ 
-      )
-)

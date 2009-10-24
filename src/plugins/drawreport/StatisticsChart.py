@@ -46,10 +46,9 @@ from gen.lib import Person, FamilyRelType, EventType
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                             FONT_SANS_SERIF, FONT_SERIF,
                             PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
-from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
                          FilterOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
+from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
 from gui.utils import ProgressMeter
 
@@ -882,26 +881,3 @@ class StatisticsChartOptions(MenuReportOptions):
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         default_style.add_draw_style("SC-legend",g)
-
-#------------------------------------------------------------------------
-#
-# Register report/options
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'statistics_chart',
-    category = CATEGORY_DRAW,
-    report_class = StatisticsChart,
-    options_class = StatisticsChartOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Statistics Charts"),
-    status = _("Stable"),
-    author_name = "Eero Tamminen",
-    author_email = "",
-    description = _("Produces statistical bar and pie charts of the people "
-                    "in the database"),
-    require_active = False,
-    )

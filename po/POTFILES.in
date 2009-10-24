@@ -377,13 +377,13 @@ src/Selectors/__init__.py
 
 # plugins directory
 src/plugins/BookReport.py
-src/plugins/export/ExportXml.py
-src/plugins/import/ImportGpkg.py
-src/plugins/import/ImportXml.py
+src/plugins/bookreport.gpr.py
+src/plugins/records.gpr.py
 src/plugins/Records.py
 
 # plugins/docgen directory
 src/plugins/docgen/AsciiDoc.py
+src/plugins/docgen/docgen.gpr.py
 src/plugins/docgen/GtkPrint.py
 src/plugins/docgen/HtmlDoc.py
 src/plugins/docgen/LaTeXDoc.py
@@ -396,11 +396,13 @@ src/plugins/docgen/SvgDrawDoc.py
 src/plugins/drawreport/AncestorTree.py
 src/plugins/drawreport/Calendar.py
 src/plugins/drawreport/DescendTree.py
+src/plugins/drawreport/drawplugins.gpr.py
 src/plugins/drawreport/FanChart.py
 src/plugins/drawreport/StatisticsChart.py
 src/plugins/drawreport/TimeLine.py
 
 # plugins/export directory
+src/plugins/export/export.gpr.py
 src/plugins/export/ExportCsv.py
 src/plugins/export/ExportFtree.py
 src/plugins/export/ExportGedcom.py
@@ -409,6 +411,7 @@ src/plugins/export/ExportPkg.py
 #src/plugins/export/ExportSql.py
 src/plugins/export/ExportVCalendar.py
 src/plugins/export/ExportVCard.py
+src/plugins/export/ExportXml.py
 
 # plugins/gramplet directory
 src/plugins/gramplet/AgeOnDateGramplet.py
@@ -418,6 +421,7 @@ src/plugins/gramplet/CalendarGramplet.py
 src/plugins/gramplet/DescendGramplet.py
 src/plugins/gramplet/FanChartGramplet.py
 src/plugins/gramplet/GivenNameGramplet.py
+src/plugins/gramplet/gramplet.gpr.py
 src/plugins/gramplet/PedigreeGramplet.py
 src/plugins/gramplet/QuickViewGramplet.py
 src/plugins/gramplet/RelativeGramplet.py
@@ -430,17 +434,21 @@ src/plugins/gramplet/WelcomeGramplet.py
 src/plugins/gramplet/WhatsNext.py
 
 # plugins/graph directory
+src/plugins/graph/graphplugins.gpr.py
 src/plugins/graph/GVFamilyLines.py
 src/plugins/graph/GVHourGlass.py
 src/plugins/graph/GVRelGraph.py
 
 # plugins/import directory
+src/plugins/import/import.gpr.py
 src/plugins/import/ImportCsv.py
 src/plugins/import/ImportGedcom.py
 src/plugins/import/ImportGeneWeb.py
 src/plugins/import/ImportGrdb.py
 src/plugins/import/ImportProGen.py
 src/plugins/import/ImportVCard.py
+src/plugins/import/ImportGpkg.py
+src/plugins/import/ImportXml.py
 
 # plugins/lib directory
 src/plugins/lib/libcairodoc.py
@@ -450,10 +458,13 @@ src/plugins/lib/libhtml.py
 src/plugins/lib/libhtmlbackend.py
 src/plugins/lib/libhtmlconst.py
 src/plugins/lib/libmapservice.py
+src/plugins/lib/libodfbackend.py
+src/plugins/lib/libplugins.gpr.py
 
 # plugins/mapservices  directory
 src/plugins/mapservices/eniroswedenmap.py
 src/plugins/mapservices/googlemap.py
+src/plugins/mapservices/mapservice.gpr.py
 src/plugins/mapservices/openstreetmap.py
 
 # plugins/quickview directory
@@ -465,12 +476,14 @@ src/plugins/quickview/FilterByName.py
 src/plugins/quickview/lineage.py
 src/plugins/quickview/OnThisDay.py
 #src/plugins/quickview/Query.py
+src/plugins/quickview/quickview.gpr.py
 src/plugins/quickview/References.py
 src/plugins/quickview/Reporef.py
 src/plugins/quickview/SameSurnames.py
 src/plugins/quickview/siblings.py
 
 # plugins/rel directory
+src/plugins/rel/relplugins.gpr.py
 src/plugins/rel/rel_cs.py
 src/plugins/rel/rel_da.py
 src/plugins/rel/rel_de.py
@@ -503,6 +516,7 @@ src/plugins/textreport/NumberOfAncestorsReport.py
 src/plugins/textreport/PlaceReport.py
 src/plugins/textreport/SimpleBookTitle.py
 src/plugins/textreport/Summary.py
+src/plugins/textreport/textplugins.gpr.py
 
 # plugins/tool directory
 src/plugins/tool/CalculateEstimatedDates.py
@@ -527,11 +541,13 @@ src/plugins/tool/RemoveUnused.py
 src/plugins/tool/ReorderIds.py
 src/plugins/tool/SortEvents.py
 src/plugins/tool/SoundGen.py
+src/plugins/tool/tools.gpr.py
 src/plugins/tool/Verify.py
 
 # plugins/webreport directory
 src/plugins/webreport/NarrativeWeb.py
 src/plugins/webreport/WebCal.py
+src/plugins/webreport/webplugins.gpr.py
 
 # PluginUtils package
 src/PluginUtils/_GuiOptions.py

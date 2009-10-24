@@ -37,7 +37,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 from ReportBase import ReportUtils
-from gen.plug import PluginManager, DocGenPlugin
 from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
 from gen.plug.utils import gformat
 import Errors
@@ -350,24 +349,3 @@ class PSDrawDoc(BaseDoc, DrawDoc):
                 self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x+mar, ypos)))
                 self.file.write("(%s) show\n" % lines[i])
         self.file.write('grestore\n')
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _("PostScript"), 
-                          description = _("Generates documents in postscript "
-                                          "format (.ps)."),
-                          basedoc     = PSDrawDoc,
-                          paper       = True,
-                          style       = True, 
-                          extension   = "ps" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

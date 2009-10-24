@@ -52,7 +52,6 @@ import Errors
 import DateHandler
 from QuestionDialog import WarningDialog
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from ReportBase import ReportUtils
 import GrampsDisplay 
 import ManagedWindow
@@ -439,24 +438,3 @@ class EventComparisonOptions(Tool.ToolOptions):
                           [ filt.get_name() for filt in filters ],
                           True ),
         }
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'eventcmp',
-    category = Tool.TOOL_ANAL,
-    tool_class = EventComparison,
-    options_class = EventComparisonOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Compare Individual Events"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Aids in the analysis of data by allowing the "
-                    "development of custom filters that can be applied "
-                    "to the database to find similar events")
-    )

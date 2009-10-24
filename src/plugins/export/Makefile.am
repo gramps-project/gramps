@@ -6,6 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/export
 
 pkgdata_PYTHON = \
+	export.gpr.py \
 	ExportCsv.py \
 	ExportFtree.py \
 	ExportGedcom.py \

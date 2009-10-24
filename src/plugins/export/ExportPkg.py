@@ -36,9 +36,6 @@ import sys
 import tarfile
 from cStringIO import StringIO
 from gettext import gettext as _
-import ExportOptions
-#from BasicUtils import UpdateCallback
-import gen.proxy
 
 #------------------------------------------------------------------------
 #
@@ -60,8 +57,10 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import ExportOptions
+#from BasicUtils import UpdateCallback
+import gen.proxy
 from ExportXml import XmlWriter
-from gen.plug import PluginManager, ExportPlugin
 import Utils
 
 #-------------------------------------------------------------------------
@@ -231,20 +230,3 @@ class PackageWriter(object):
         g.close()
 
         return True
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_description = _('GRAMPS package is an archived XML database together '
-                 'with the media object files.')
-_config = (_('GRAMPS package export options'), ExportOptions.WriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _('GRAM_PS package (portable XML)'), 
-                      description     = _description,
-                      export_function = writeData,
-                      extension       = "gpkg",
-                      config          = _config )
-pmgr.register_plugin(plugin)

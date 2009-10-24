@@ -49,7 +49,6 @@ from Filters import GenericFilter, Rules, build_filter_model
 from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ExportPlugin
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -256,19 +255,3 @@ class CardWriter(object):
 def exportData(database, filename, option_box=None, callback=None):
     cw = CardWriter(database, 0, filename, option_box, callback)
     return cw.export_data(filename)
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_description = _('vCard is used in many addressbook and pim applications.')
-_config = (_('vCard export options'), CardWriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _('_vCard'), 
-                      description     = _description,
-                      export_function = exportData,
-                      extension       = "vcf",
-                      config          = _config )
-pmgr.register_plugin(plugin)

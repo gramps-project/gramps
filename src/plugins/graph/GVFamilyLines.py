@@ -52,8 +52,7 @@ import Utils
 from gui.utils import ProgressMeter
 import ThumbNails
 from DateHandler import displayer as _dd
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
-from gen.plug import PluginManager
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from gen.plug.menu import NumberOption, ColorOption, BooleanOption, \
                           EnumeratedListOption, PersonListOption, \
                           SurnameColorOption
@@ -1036,28 +1035,3 @@ class FamilyLinesReport(Report):
                     child = self._db.get_person_from_handle(childRef.ref)
                     comment = "child:  %s" % child.get_primary_name().get_regular_name()
                     self.doc.add_link(fgid, child.get_gramps_id(), comment=comment)
-
-
-#------------------------------------------------------------------------
-#
-# register_report() is defined in _PluginMgr.py and
-# is used to hook the plugin into GRAMPS so that it
-# appears in the "Reports" menu options
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name            = 'familylines_graph',
-    translated_name = _("Family Lines Graph"),
-    category        = CATEGORY_GRAPHVIZ,
-    report_class    = FamilyLinesReport,
-    options_class   = FamilyLinesOptions,
-    modes           = PluginManager.REPORT_MODE_GUI | \
-                      PluginManager.REPORT_MODE_CLI,
-    status          = _("Stable"),
-    author_name     = "Stephane Charette",
-    author_email    = "stephanecharette@gmail.com",
-    description     = _("Produces family line graphs using GraphViz"),
-    require_active = False
-    )
-

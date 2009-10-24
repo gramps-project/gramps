@@ -42,12 +42,11 @@ import math
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from Errors import ReportError
-from gen.plug import PluginManager
 from gen.plug.menu import PersonOption
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                             INDEX_TYPE_TOC)
-from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_TEXT
+from ReportBase import Report, MenuReportOptions, ReportUtils
 
 #------------------------------------------------------------------------
 #
@@ -199,24 +198,3 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         para.set_font(font)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("NOA-Normal", para)
-
-#-------------------------------------------------------------------------
-#
-# register_report
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'number_of_ancestors_report',
-    category = CATEGORY_TEXT,
-    report_class = NumberOfAncestorsReport,
-    options_class = NumberOfAncestorsOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Number of Ancestors Report"),
-    status = _("Stable"),
-    description = _("Counts number of ancestors of selected person"),
-    author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org"
-    )

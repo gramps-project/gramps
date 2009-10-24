@@ -43,7 +43,6 @@ import AutoComp
 from gen.lib import EventType
 from QuestionDialog import OkDialog
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -181,23 +180,3 @@ class ChangeTypesOptions(Tool.ToolOptions):
             'totype'     : ("=str","New type replacing the old one",
                             "Event type string"),
         }
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'chtype',
-    category = Tool.TOOL_DBPROC,
-    tool_class = ChangeTypes,
-    options_class = ChangeTypesOptions,
-    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-    translated_name = _("Rename Event Types"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Allows all the events of a certain name "
-                    "to be renamed to a new name.")
-    )

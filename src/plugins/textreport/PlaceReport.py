@@ -34,9 +34,8 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from gen.plug.menu import FilterOption, PlaceListOption
-from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
@@ -386,25 +385,3 @@ class PlaceOptions(MenuReportOptions):
         cell = TableCellStyle()
         cell.set_bottom_border(1)
         self.default_style.add_cell_style('PLC-TableColumn', cell)
-
-#------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'place_report',
-    category = CATEGORY_TEXT,
-    report_class = PlaceReport,
-    options_class = PlaceOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Place Report"),
-    status = _("Stable"),
-    description = _("Produces a textual place report"),
-    author_name = "Gary Burton",
-    author_email = "gary.burton@zen.co.uk",
-    require_active = False
-    )

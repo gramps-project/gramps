@@ -91,11 +91,10 @@ from gen.lib import UrlType, EventType, Person, date, Date, ChildRefType, \
 from gen.lib.date import make_gedcom_date
 import const
 import Sort
-from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
                           NoteOption, MediaOption, DestinationOption
-from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB,
+from ReportBase import (Report, ReportUtils, MenuReportOptions,
                         Bibliography, CSS_FILES )
 import Utils
 from gui.utils import ProgressMeter
@@ -5835,23 +5834,3 @@ def get_event_type(event, event_ref):
 
     # return event type to its callers
     return evt_type
-
-# -------------------------------------------
-#
-#            Register Plugin
-#
-# -------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'navwebpage',
-    category = CATEGORY_WEB,
-    report_class = NavWebReport,
-    options_class = NavWebOptions,
-    modes = PluginManager.REPORT_MODE_GUI | PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Narrated Web Site"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Produces web (HTML) pages for individuals, or a set of "
-                    "individuals"),
-  )

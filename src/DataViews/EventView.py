@@ -46,7 +46,7 @@ import config
 from DdTargets import DdTargets
 from Editors import EditEvent, DelEventQuery
 from Filters.SideBar import EventSidebarFilter
-from ReportBase import CATEGORY_QR_EVENT
+from gen.plug import CATEGORY_QR_EVENT
 
 #-------------------------------------------------------------------------
 #

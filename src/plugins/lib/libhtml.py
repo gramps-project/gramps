@@ -41,12 +41,6 @@ __all__ = ['Html']
 #
 #------------------------------------------------------------------------
 
-try:
-    from gettext import gettext as _
-    from gen.plug import PluginManager, Plugin
-except ImportError:
-    print 'Plugin manager not imported.'
-
 #------------------------------------------------------------------------
 #
 # Constants
@@ -541,23 +535,6 @@ class Html(list):
 #
     def __exit__(self, exc_type, exc_val, exc_tb):
         return exc_type is None
-
-# ------------------------------------------
-#
-#            Register Plugin
-#
-# ------------------------------------------
-
-try:
-    PluginManager.get_instance().register_plugin( 
-    Plugin(
-        name = __name__,
-        description = _("Manages an HTML DOM tree."),
-        module_name = __name__ 
-        )
-    )
-except NameError:
-    print 'Plugin not registered.'
 
 #-------------------------------------------
 #

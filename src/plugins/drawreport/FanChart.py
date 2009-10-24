@@ -34,11 +34,10 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from Errors import ReportError
-from gen.plug import PluginManager
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from SubstKeywords import SubstKeywords
 
 #------------------------------------------------------------------------
@@ -430,24 +429,3 @@ class FanChartOptions(MenuReportOptions):
         g.set_fill_color((255,255,255))
         g.set_paragraph_style('FC-Normal')
         default_style.add_draw_style('background_style_white',g)
-
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'fan_chart',
-    category = CATEGORY_DRAW,
-    report_class = FanChart,
-    options_class = FanChartOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Fan Chart"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Produces fan charts")
-    )

@@ -49,7 +49,7 @@ import Bookmarks
 import Errors
 import config
 from Filters.SideBar import FamilySidebarFilter
-from ReportBase import CATEGORY_QR_FAMILY
+from gen.plug import CATEGORY_QR_FAMILY
 
 #-------------------------------------------------------------------------
 #

@@ -39,9 +39,8 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                              TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                              PARA_ALIGN_CENTER)
 import DateHandler
-from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, FilterOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from ReportBase import Bibliography, Endnotes
 from BasicUtils import name_displayer as _nd
 from Utils import media_path_full
@@ -626,24 +625,3 @@ class IndivCompleteOptions(MenuReportOptions):
         default_style.add_cell_style("IDS-ListCell",cell)
         
         Endnotes.add_endnote_styles(default_style)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'indiv_complete',
-    category = CATEGORY_TEXT,
-    report_class = IndivCompleteReport,
-    options_class = IndivCompleteOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Complete Individual Report"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Produces a complete report on the selected people"),
-    )

@@ -38,13 +38,12 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import NumberOption, PersonOption
 from BasicUtils import name_displayer
 from Errors import ReportError
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
 import Sort
 
@@ -227,24 +226,3 @@ class DescendantOptions(MenuReportOptions):
             p.set_description(_("The style used for the "
                                 "spouse level %d display.") % i)
             default_style.add_paragraph_style("DR-Spouse%d" % min(i, 32), p)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'descend_report',
-    category = CATEGORY_TEXT,
-    report_class = DescendantReport,
-    options_class = DescendantOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Descendant Report"),
-    status = _("Stable"),
-    description = _("Produces a list of descendants of the active person"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org"
-    )

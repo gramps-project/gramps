@@ -39,8 +39,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from gen.plug import PluginManager
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from Utils import media_path_full
@@ -283,25 +282,3 @@ class SummaryOptions(MenuReportOptions):
         para.set_bottom_margin(ReportUtils.pt2cm(3))
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("SR-Normal", para)
-
-#-------------------------------------------------------------------------
-#
-# register_report
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'summary',
-    category = CATEGORY_TEXT,
-    report_class = SummaryReport,
-    options_class = SummaryOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Database Summary Report"),
-    status = _("Stable"),
-    description = _("Provides a summary of the current database"),
-    author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org",
-    require_active = False
-    )

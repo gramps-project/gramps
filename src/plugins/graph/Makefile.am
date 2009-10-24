@@ -6,6 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/graph
 
 pkgdata_PYTHON = \
+	graphplugins.gpr.py\
 	GVFamilyLines.py \
 	GVHourGlass.py \
 	GVRelGraph.py

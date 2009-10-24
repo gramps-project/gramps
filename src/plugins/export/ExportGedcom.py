@@ -48,7 +48,6 @@ import BasicUtils
 from Utils import media_path_full
 import gen.proxy
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ExportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -1405,20 +1404,3 @@ def export_data(database, filename, option_box=None, callback=None):
     except:
         ErrorDialog(_("Could not create %s") % filename)
     return ret
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_description = _('GEDCOM is used to transfer data between genealogy programs. '
-                'Most genealogy software will accept a GEDCOM file as input.')
-_config = (_('GEDCOM export options'), ExportOptions.WriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _('GE_DCOM'), 
-                      description     = _description,
-                      export_function = export_data,
-                      extension       = "ged",
-                      config          = _config )
-pmgr.register_plugin(plugin)

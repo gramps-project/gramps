@@ -195,12 +195,12 @@ class PlaceView(ListView):
         
         #select the map services to show
         self.mapservicedata = {}
-        servlist = PluginManager.get_instance().get_mapservice_list()
-        for i, service in zip(range(len(servlist)), servlist):
-            key = service[2].replace(' ', '-')
-            add_menuitem(menu, service[1], None, 
+        servlist = PluginManager.get_instance().get_reg_mapservices()
+        for i, pdata in zip(range(len(servlist)), servlist):
+            key = pdata.id.replace(' ', '-')
+            add_menuitem(menu, pdata.name, None, 
                                make_callback(self.set_mapservice, key))
-            self.mapservicedata[key] = (service[0], service[2], service[3])
+            self.mapservicedata[key] = pdata
 
         return menu
 
@@ -220,7 +220,8 @@ class PlaceView(ListView):
         """
         return the current label for the menutoolbutton
         """
-        return self.mapservicedata[self.mapservice][1]
+        print 'called', self.mapservicedata[self.mapservice].name
+        return self.mapservicedata[self.mapservice].name
 
     def gotomap(self, obj):
         """
@@ -249,7 +250,14 @@ class PlaceView(ListView):
         places = [(x, None) for x in place_handles]
         
         #run the mapservice:
-        self.mapservicedata[self.mapservice][0](self.dbstate.db, places)
+        pmgr = PluginManager.get_instance()
+        serv = self.mapservicedata[self.mapservice]
+        mod = pmgr.load_plugin(serv)
+        if mod:
+            servfunc = eval('mod.' +  serv.mapservice)
+            servfunc()(self.dbstate.db, places)
+        else:
+            print 'Failed to load map plugin, see Plugin Status'
 
     def drag_info(self):
         return DdTargets.PLACE_LINK

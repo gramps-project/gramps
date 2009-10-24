@@ -47,7 +47,6 @@ from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY,
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY)
 from BasicUtils import UpdateCallback
 import const
-from gen.plug import PluginManager, ImportPlugin
 import libgrampsxml
 from libmixin import GrampsDbMixin
 
@@ -2528,18 +2527,3 @@ def version_is_valid(filename, cli):
             WarningDialog(_('Old xml file'), msg)
             return True
     return True
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('GRAMPS XML database'), 
-                      description     = _('The GRAMPS XML database is a text '
-                                          'version of a family tree. It is '
-                                          'read-write compatible with the '
-                                          'present GRAMPS database format.'),
-                      import_function = importData,
-                      extension       = "gramps" )
-pmgr.register_plugin(plugin)

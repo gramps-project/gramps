@@ -31,7 +31,7 @@ import locale
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 from gettext import ngettext
 from BasicUtils import name_displayer
@@ -269,20 +269,3 @@ class PedigreeGramplet(Gramplet):
             start, end = self.gui.buffer.get_bounds()
             self.gui.buffer.apply_tag_by_name("fixed", start, end)
         self.append_text("", scroll_to="begin")
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Pedigree Gramplet", 
-         tname=_("Pedigree Gramplet"), 
-         height=300,
-         content = PedigreeGramplet,
-         title=_("Pedigree"),
-         expand=True,
-         detached_width = 600,
-         detached_height = 400,
-         )
-

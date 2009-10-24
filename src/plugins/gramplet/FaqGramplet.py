@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
@@ -38,14 +38,3 @@ class FAQGramplet(Gramplet):
         self.render_text("Draft of a <a wiki='FAQ'>Frequently Asked Questions</a> Gramplet\n\n")
         self.render_text("  1. <a href='http://bugs.gramps-project.org/'>Test 1</a>\n")
         self.render_text("  2. <a href='http://gramps-project.org//'>Test 2</a>\n")
-
-register(type="gramplet", 
-         name="FAQ Gramplet", 
-         tname=_("FAQ Gramplet"), 
-         height=300,
-         content = FAQGramplet,
-         title=_("FAQ"),
-         gramps="3.1.0",
-         version="1.0.0",
-         )
-

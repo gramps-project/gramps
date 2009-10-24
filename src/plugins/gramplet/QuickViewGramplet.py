@@ -30,10 +30,10 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 from QuickReports import run_quick_report_by_name, get_quick_report_list
-from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
+from gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                          CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, 
                          CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
                          CATEGORY_QR_REPOSITORY)
@@ -101,9 +101,8 @@ class QuickViewGramplet(Gramplet):
         # Add particular lists:
         qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
         list_option = EnumeratedListOption(_("Quick Views"), qv_list[0][2])
-        for item in qv_list:
-            #(title, category, name, status)
-            list_option.add_item(item[2], item[0])
+        for pdata in qv_list:
+            list_option.add_item(pdata.id, pdata.name)
         self.add_option(type_list)
         self.add_option(list_option)
         type_widget = self.get_option_widget(_("View Type"))
@@ -114,18 +113,5 @@ class QuickViewGramplet(Gramplet):
         list_option = self.get_option(_("Quick Views"))
         list_option.clear()
         qv_list = get_quick_report_list(qv_option.get_value())
-        for item in qv_list:
-            #(title, category, name, status)
-            list_option.add_item(item[2], item[0])
-
-register(type="gramplet", 
-         name="Quick View Gramplet", 
-         tname=_("Quick View Gramplet"), 
-         height=300,
-         expand=True,
-         content = QuickViewGramplet,
-         title=_("Quick View"),
-         detached_width = 600,
-         detached_height = 400,
-         )
-
+        for pdata in qv_list:
+            list_option.add_item(pdata.id, pdata.name)

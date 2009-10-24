@@ -39,10 +39,9 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from Errors import ReportError
-from gen.plug import PluginManager
 from gen.plug.menu import (PersonOption, BooleanOption, NumberOption, 
                           EnumeratedListOption)
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
+from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -287,24 +286,3 @@ class HourGlassOptions(MenuReportOptions):
                     _("Use rounded corners to differentiate "
                       "between women and men."))
         menu.add_option(category_name, "roundcorners", roundedcorners)
-        
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name            = 'hourglass_graph',
-    category        = CATEGORY_GRAPHVIZ,
-    report_class    = HourGlassReport,
-    options_class   = HourGlassOptions,
-    modes           = PluginManager.REPORT_MODE_GUI | \
-                      PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Hourglass Graph"),
-    status          = _("Stable"),
-    author_name     = "Brian G. Matherly",
-    author_email    = "brian@gramps-project.org",
-    description     = _("Produces an hourglass graph using Graphviz")
-    )

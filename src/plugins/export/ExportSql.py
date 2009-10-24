@@ -44,7 +44,6 @@ log = logging.getLogger(".ExportSql")
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager, ExportPlugin
 import ExportOptions
 from Utils import create_id
 
@@ -1073,20 +1072,3 @@ def exportData(database, filename, option_box=None, callback=None):
 #   Name formats
 #   Namemaps?
 #   GRAMPS Version #, date, exporter
-
-#-------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#-------------------------------------------------------------------------
-_name = _('SQLite Export')
-_description = _('SQLite is a common local database format')
-_config = (_('SQLite options'), ExportOptions.WriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _name, 
-                      description     = _description,
-                      export_function = exportData,
-                      extension       = "sql",
-                      config          = _config )
-pmgr.register_plugin(plugin)

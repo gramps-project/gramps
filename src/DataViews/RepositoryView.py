@@ -46,7 +46,7 @@ import config
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
 from Filters.SideBar import RepoSidebarFilter
-from ReportBase import CATEGORY_QR_REPOSITORY
+from gen.plug import CATEGORY_QR_REPOSITORY
 
 #-------------------------------------------------------------------------
 #

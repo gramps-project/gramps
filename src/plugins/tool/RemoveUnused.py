@@ -58,7 +58,6 @@ import ManagedWindow
 from DateHandler import displayer as _dd
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -473,22 +472,3 @@ class CheckOptions(Tool.ToolOptions):
                           ["Do not check notes","Check notes"],
                           True),
             }
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'remove_unused',
-    category = Tool.TOOL_DBFIX,
-    tool_class = RemoveUnused,
-    options_class = CheckOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Remove Unused Objects"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Removes unused objects from the database")
-    )

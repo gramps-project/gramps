@@ -37,7 +37,6 @@ import time
 #
 #------------------------------------------------------------------------
 from PluginUtils import Tool, PluginWindows, MenuToolOptions
-from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                          FilterOption, PersonOption
 import gen.lib
@@ -478,22 +477,3 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         # If we can't find any reason to believe that they are dead we
         # must assume they are alive.
         return (None, None)
-
-#-------------------------------------------------------------------------
-#
-# Register the tool
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'calculateestimateddates',
-    category = Tool.TOOL_DBPROC,
-    tool_class = CalcToolManagedWindow,
-    options_class = CalcEstDateOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Calculate Estimated Dates"),
-    status = _("Beta"),
-    author_name = "Douglas S. Blank",
-    author_email = "dblank@cs.brynmawr.edu",
-    description= _("Calculates estimated dates for birth and death.")
-    )

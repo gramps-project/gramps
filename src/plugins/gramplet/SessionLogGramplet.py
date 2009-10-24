@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 from BasicUtils import name_displayer
 
@@ -84,18 +84,3 @@ class LogGramplet(Gramplet):
                 name = _("%s and %s") % (mother_name, father_name)
             self.link(name, ltype, handle)
             self.append_text("\n")
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Session Log Gramplet", 
-         tname=_("Session Log Gramplet"), 
-         height=230,
-         data=['no'],
-         content = LogGramplet,
-         title=_("Session Log"),
-         )
-

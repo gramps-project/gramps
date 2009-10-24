@@ -69,7 +69,7 @@ from DisplayTabs import (EmbeddedList, EventEmbedList, SourceEmbedList,
                          FamilyLdsEmbedList, ChildModel)
 from widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType, 
                      IconButton, LinkBox, BasicLabel)
-from ReportBase import CATEGORY_QR_FAMILY
+from gen.plug import CATEGORY_QR_FAMILY
 from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
 

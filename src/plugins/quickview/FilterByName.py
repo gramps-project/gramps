@@ -28,7 +28,6 @@ Display filtered data
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gen.plug import PluginManager
 from Utils import media_path_full
 from QuickReports import run_quick_report_by_name_direct
 from gen.lib import Person
@@ -189,20 +188,3 @@ def run(database, document, filter_name, *args, **kwargs):
     sdoc.paragraph("")
     if matches > 0:
         stab.write(sdoc)
-                    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_quick_report(
-    name = 'filterbyname',
-    category = -1, # stand-alone
-    run_func = run,
-    translated_name = _("Filter"),
-    status = _("Stable"),
-    description= _("Display filtered data"),
-    author_name="Douglas S. Blank",
-    author_email="dblank@cs.brynmawr.edu"
-    )

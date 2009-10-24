@@ -15,7 +15,8 @@ pkgdata_PYTHON = \
 	libholiday.py\
 	libmapservice.py\
 	libmixin.py\
-        libodfbackend.py
+	libodfbackend.py\
+	libplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
 pkgpythondir = @pkgpythondir@/plugins/lib

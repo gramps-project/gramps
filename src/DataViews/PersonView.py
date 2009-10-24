@@ -837,7 +837,7 @@ class PersonView(PageView.PersonNavView):
             
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             
-            from ReportBase import CATEGORY_QR_PERSON
+            from gen.plug import CATEGORY_QR_PERSON
             from QuickReports import create_quickreport_menu
             
             menu = self.uistate.uimanager.get_widget('/Popup')

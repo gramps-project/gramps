@@ -23,7 +23,6 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register
 from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
@@ -57,17 +56,3 @@ def make_welcome_content(gui):
         'GRAMPS.'
             )
     gui.set_text(text)
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Welcome Gramplet", 
-         tname=_("Welcome Gramplet"), 
-         height=300,
-         expand=True,
-         content = make_welcome_content,
-         title=_("Welcome to GRAMPS!"),
-         )

@@ -34,7 +34,7 @@ on a particular date.
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 import DateHandler
 from QuickReports import run_quick_report_by_name
@@ -96,19 +96,3 @@ class AgeOnDateGramplet(Gramplet):
                                  self.gui.uistate, 
                                  'ageondate', 
                                  date)
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Age on Date Gramplet", 
-         tname=_("Age on Date Gramplet"), 
-         version="2.0.0",
-         gramps="3.1.0",
-         height=200,
-         content = AgeOnDateGramplet,
-         title=_("Age on Date"),
-         )
-

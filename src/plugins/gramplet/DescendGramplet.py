@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from ReportBase import ReportUtils
 from BasicUtils import name_displayer
 import DateHandler
@@ -160,14 +160,3 @@ class DescendantGramplet(Gramplet):
             for child_ref in childlist:
                 child = self.dbstate.db.get_person_from_handle(child_ref.ref)
                 self.dump(level+1,child)
-
-register(type="gramplet", 
-         name = "Descendant Gramplet", 
-         tname=_("Descendant Gramplet"), 
-         height=100,
-         expand=True,
-         content = DescendantGramplet,
-         title=_("Descendants"),
-         detached_width = 500,
-         detached_height = 500,
-         )

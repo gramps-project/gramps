@@ -35,9 +35,8 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                         TableStyle, TableCellStyle, FONT_SANS_SERIF, 
                         INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
@@ -518,25 +517,3 @@ class MarkerOptions(MenuReportOptions):
         table.set_column_width(2, 30)
         table.set_column_width(3, 30)
         default_style.add_table_style('MR-Table',table)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'marker_report',
-    category = CATEGORY_TEXT,
-    report_class = MarkerReport,
-    options_class = MarkerOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Marker Report"),
-    status = _("Stable"),
-    description = _("Produces a list of people with a specified marker"),
-    author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org",
-    require_active = False
-    )

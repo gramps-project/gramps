@@ -7,7 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/textreport
 
 pkgdata_PYTHON = \
 	AncestorReport.py\
-        BirthdayReport.py\
+	BirthdayReport.py\
 	CustomBookText.py\
 	DescendReport.py\
 	DetAncestralReport.py\
@@ -20,7 +20,8 @@ pkgdata_PYTHON = \
 	NumberOfAncestorsReport.py\
 	PlaceReport.py\
 	SimpleBookTitle.py\
-	Summary.py
+	Summary.py\
+	textplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/textreport
 pkgpythondir = @pkgpythondir@/plugins/textreport

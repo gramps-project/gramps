@@ -30,7 +30,6 @@
 
 import gen.lib
 import Relationship
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -538,17 +537,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = self._get_female_cousin(1, typestr, inlaw)
         return rel_str
 
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["nl", "NL", "nl_NL", "nl_BE", "nederlands", "Nederlands", "nl_NL.UTF8",
-     "nl_BE.UTF8","nl_NL@euro", "nl_NL.UTF8@euro","nl_BE@euro",
-     "dutch","Dutch", "nl_NL.UTF-8", "nl_BE.UTF-8","nl_NL.utf-8",
-     "nl_BE.utf-8","nl_NL.utf8", "nl_BE.UTF-8", "nl_BE.UTF8@euro"])
 
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find

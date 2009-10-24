@@ -48,7 +48,6 @@ import Utils
 from Filters import GenericFilter, Rules, build_filter_model
 import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ExportPlugin
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -282,18 +281,3 @@ def get_name(name, count):
            (str(count) if count != -1 else '') +
            (', ' +name.suffix if name.suffix else '')
            )
-    
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_config = (_('Web Family Tree export options'), FtreeWriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _('_Web Family Tree'), 
-                      description     = _('Web Family Tree format.'),
-                      export_function = writeData,
-                      extension       = "wft",
-                      config          = _config )
-pmgr.register_plugin(plugin)

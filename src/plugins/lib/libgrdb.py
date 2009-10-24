@@ -2714,26 +2714,3 @@ class Transaction(object):
         if self.last and self.first:
             return self.last - self.first + 1
         return 0
-
-# ------------------------------------------
-#
-#            Register Plugin
-#
-# -------------------------------------------
-
-try:
-    from gettext import gettext as _
-    from gen.plug import PluginManager, Plugin
-except ImportError:
-    print 'Plugin manager not imported.'
-
-try:
-    PluginManager.get_instance().register_plugin( 
-    Plugin(
-        name = __name__,
-        description = _("Base class for ImportGrdb"),
-        module_name = __name__ 
-        )
-    )
-except NameError:
-    print 'Plugin not registered.'

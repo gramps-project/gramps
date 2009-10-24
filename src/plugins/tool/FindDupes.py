@@ -47,7 +47,6 @@ from Merge import PersonCompare
 import GrampsDisplay
 import ManagedWindow
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from QuestionDialog import ErrorDialog, RunDatabaseRepair
 from TransUtils import sgettext as _
 from glade import Glade
@@ -665,23 +664,3 @@ class MergeOptions(Tool.ToolOptions):
             'threshold' : ("=num","Threshold for tolerance",
                            "Floating point number")
             }
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'dupfind',
-    category = Tool.TOOL_DBPROC,
-    tool_class = Merge,
-    options_class = MergeOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Find Possible Duplicate People"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Searches the entire database, looking for "
-                    "individual entries that may represent the same person.")
-    )

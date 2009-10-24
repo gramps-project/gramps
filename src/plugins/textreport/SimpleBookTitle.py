@@ -33,10 +33,9 @@ from TransUtils import sgettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from gen.plug.menu import StringOption, MediaOption, NumberOption
 from Utils import media_path_full
-from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
@@ -173,22 +172,3 @@ class SimpleBookTitleOptions(MenuReportOptions):
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the footer.'))
         default_style.add_paragraph_style("SBT-Footer", para)
-
-#------------------------------------------------------------------------
-#
-# register_report
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'simple_book_title',
-    category = CATEGORY_TEXT,
-    report_class = SimpleBookTitle,
-    options_class = SimpleBookTitleOptions,
-    modes = PluginManager.REPORT_MODE_BKI,
-    translated_name = _("Title Page"),
-    status = _("Stable"),
-    description = _("Produces a title page for book reports."),
-    author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org"
-    )

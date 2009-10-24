@@ -49,7 +49,6 @@ log = logging.getLogger(".ImportGeneWeb")
 import Errors
 import gen.lib
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ImportPlugin
 from htmlentitydefs import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
@@ -917,14 +916,3 @@ class GeneWebParser(object):
     def debug( self, txt):
         if enable_debug:
             print txt
-#-------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('GeneWeb'), 
-                      description     =  _("Import data from GeneWeb files"),
-                      import_function = importData,
-                      extension       = "gw")
-pmgr.register_plugin(plugin)

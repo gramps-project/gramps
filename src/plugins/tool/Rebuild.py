@@ -50,7 +50,6 @@ log = logging.getLogger(".Rebuild")
 #
 #-------------------------------------------------------------------------
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from QuestionDialog import OkDialog
 from BasicUtils import UpdateCallback
 
@@ -104,22 +103,3 @@ class RebuildOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'rebuild',
-    category = Tool.TOOL_DBFIX,
-    tool_class = Rebuild,
-    options_class = RebuildOptions,
-    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-    translated_name = _("Rebuild Secondary Indices"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Rebuilds secondary indices")
-    )

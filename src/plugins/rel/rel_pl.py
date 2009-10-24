@@ -37,9 +37,6 @@
 
 import gen.lib
 import Relationship
-import types
-from gettext import gettext as _
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -882,19 +879,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         return rel_str            
 
 
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["pl", "PL", "pl_PL", "polski", "Polski", 
-        "pl_PL.UTF-8", "pl_PL.UTF8", "pl_PL.utf-8", "pl_PL.utf8", 
-        "pl_PL.iso-8859-2", "pl_PL.iso8859-2", 
-        "pl_PL.cp1250", "pl_PL.cp-1250"] )
-        
-        
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):

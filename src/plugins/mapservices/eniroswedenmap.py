@@ -35,7 +35,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from libmapservice import MapService
 from QuestionDialog import WarningDialog
 
@@ -176,18 +175,3 @@ class EniroSVMapService(MapService):
         else:
             WarningDialog(_("Eniro map not available for %s") % country, \
                           _("Only for Sweden and Denmark") )
-    
-#------------------------------------------------------------------------
-#
-# Register map service
-#
-#------------------------------------------------------------------------
-PluginManager.get_instance().register_mapservice(
-    name = 'EniroMaps',
-    mapservice = EniroSVMapService(),
-    translated_name = _("EniroMaps"),
-    status = _("Stable"),
-    tooltip= _("Opens on kartor.eniro.se"),
-    author_name="Peter Landgren",
-    author_email="peter.talken@telia.com"
-    )

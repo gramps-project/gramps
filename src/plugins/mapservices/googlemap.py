@@ -35,9 +35,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from libmapservice import MapService
-
 
 class GoogleMapService(MapService):
     """Map  service using http://maps.google.com"""
@@ -66,20 +64,3 @@ class GoogleMapService(MapService):
         titledescr = place.get_title()
         self.url = "http://maps.google.com/maps?q=%s" % \
                                             '+'.join(titledescr.split())
-
-    
-#------------------------------------------------------------------------
-#
-# Register map service
-#
-#------------------------------------------------------------------------
-
-PluginManager.get_instance().register_mapservice(
-    name = 'GoogleMaps',
-    mapservice = GoogleMapService(),
-    translated_name = _("GoogleMaps"),
-    status = _("Stable"),
-    tooltip= _("Open on maps.google.com"),
-    author_name="Benny Malengier",
-    author_email="benny.malengier@gramps-project.org"
-    )

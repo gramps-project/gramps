@@ -31,11 +31,10 @@
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from Errors import ReportError
-from gen.plug import PluginManager
 from gen.plug.docgen import (GraphicsStyle, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
-from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_DRAW
+from ReportBase import Report, MenuReportOptions, ReportUtils
 from SubstKeywords import SubstKeywords
 from TransUtils import sgettext as _
 
@@ -524,24 +523,3 @@ class DescendTreeOptions(MenuReportOptions):
 
         g = GraphicsStyle()
         default_style.add_draw_style("DC2-line", g)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'descend_chart',
-    category = CATEGORY_DRAW,
-    report_class = DescendTree,
-    options_class = DescendTreeOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Descendant Tree"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Produces a graphical descendant tree"),
-    )

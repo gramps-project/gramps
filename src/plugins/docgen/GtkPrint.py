@@ -44,7 +44,6 @@ from math import radians
 #------------------------------------------------------------------------
 from gen.plug.docgen import PAPER_PORTRAIT
 import libcairodoc
-from gen.plug import PluginManager, DocGenPlugin
 import Errors
 from glade import Glade
 
@@ -602,24 +601,3 @@ class GtkPrint(libcairodoc.CairoDoc):
         context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
         
         return True
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _('Print...'), 
-                          description = _("Generates documents and prints them "
-                                          "directly."),
-                          basedoc     = GtkPrint,
-                          paper       = True,
-                          style       = True, 
-                          extension   = "" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

@@ -62,7 +62,6 @@ import const
 from QuestionDialog import ErrorDialog
 import ExportOptions
 import gen.proxy
-from gen.plug import PluginManager, ExportPlugin
 import libgrampsxml
 
 #-------------------------------------------------------------------------
@@ -1210,21 +1209,3 @@ class XmlWriter(GrampsDbXmlWriter):
             (m1,m2) = msg.messages()
             ErrorDialog(m1, m2)
         return ret
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_description = _('GRAMPS XML export is a complete archived XML backup of the' 
-                 ' GRAMPS database without the media object files.'
-                 ' Suitable for backup purposes.' )
-_config = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _('GRAMPS _XML database'), 
-                      description     = _description,
-                      export_function = export_data,
-                      extension       = "gramps",
-                      config          = _config )
-pmgr.register_plugin(plugin)

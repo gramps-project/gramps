@@ -29,9 +29,8 @@
 #
 #------------------------------------------------------------------------
 import gen.lib
-from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, FamilyOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
@@ -785,25 +784,3 @@ class FamilyGroupOptions(MenuReportOptions):
         table.set_column_width(2,35)
         table.set_column_width(3,40)
         default_style.add_table_style('FGR-ChildTable',table)
-
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'family_group',
-    category = CATEGORY_TEXT,
-    report_class = FamilyGroup,
-    options_class = FamilyGroupOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Family Group Report"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Produces a family group report showing information "
-                    "on a set of parents and their children."),
-    )

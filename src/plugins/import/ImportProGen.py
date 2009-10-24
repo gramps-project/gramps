@@ -51,8 +51,6 @@ import Utils
 from gui.utils import ProgressMeter
 import gen.lib
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ImportPlugin
-
 
 class ProgenError(Exception):
     """Error used to report Progen errors."""
@@ -1271,15 +1269,3 @@ class ProgenParser(object):
                     person.add_parent_family_handle(fam.get_handle())
                     self.db.commit_person(person, self.trans)
             self.progress.step()
-                
-#-------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('Pro-Gen'), 
-                      description     = _("Import data from Pro-Gen files"),
-                      import_function = _importData,
-                      extension       = "def")
-pmgr.register_plugin(plugin)

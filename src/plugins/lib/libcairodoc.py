@@ -43,7 +43,6 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
 from ReportBase import ReportUtils
 from Errors import PluginError
-from gen.plug import PluginManager, Plugin
 from gen.plug.docbackend import CairoBackend
 
 #------------------------------------------------------------------------
@@ -1527,20 +1526,3 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             cr.stroke()
 
         self._pages[page_nr].draw(cr, layout, width, dpi_x, dpi_y)
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    PluginManager.get_instance().register_plugin( 
-    Plugin(
-        name = __name__, 
-        description = _("Provides a library for using Cairo to "
-                        "generate documents."),
-        module_name = __name__ 
-          )
-    )
-    
-register_plugin()

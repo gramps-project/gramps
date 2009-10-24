@@ -31,7 +31,6 @@ import ListModel
 import ManagedWindow
 
 from PluginUtils import Tool
-from gen.plug import PluginManager
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
@@ -100,23 +99,3 @@ class DumpGenderStatsOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-
-if __debug__:
-    
-    pmgr = PluginManager.get_instance()
-    pmgr.register_tool(
-        name = 'dgenstats',
-        category = Tool.TOOL_DEBUG,
-        tool_class = DumpGenderStats,
-        options_class = DumpGenderStatsOptions,
-        modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-        translated_name = _("Dump Gender Statistics"),
-        description = _("Will dump the statistics for the gender guessing "
-                        "from the first name.")
-        )

@@ -276,26 +276,3 @@ class GrampsDbMixin(object):
         self.__check_from_handle(handle, transaction, Note, 
                                  self.note_map, self.add_note, 
                                  set_gid=set_gid)
-
-# ------------------------------------------
-#
-#            Register Plugin
-#
-# -------------------------------------------
-
-try:
-    from gettext import gettext as _
-    from gen.plug import PluginManager, Plugin
-except ImportError:
-    print 'Plugin manager not imported.'
-
-try:
-    PluginManager.get_instance().register_plugin( 
-    Plugin(
-        name = __name__,
-        description = _("Additional methods for Import plugins"),
-        module_name = __name__ 
-        )
-    )
-except NameError:
-    print 'Plugin not registered.'

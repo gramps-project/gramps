@@ -41,9 +41,8 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from gen.plug.menu import TextOption
-from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF, 
                              PARA_ALIGN_CENTER)
 
@@ -155,18 +154,3 @@ class CustomTextOptions(MenuReportOptions):
         para.set(pad=0.5)
         para.set_description(_('The style used for the last portion of the custom text.'))
         default_style.add_paragraph_style("CBT-Final",para)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'custom_text',
-    category = CATEGORY_TEXT,
-    report_class = CustomText,
-    options_class = CustomTextOptions,
-    modes = PluginManager.REPORT_MODE_BKI,
-    translated_name = _("Custom Text"),
-    )

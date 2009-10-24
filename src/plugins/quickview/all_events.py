@@ -28,8 +28,6 @@ Display a person's events, both personal and family
 
 from Simple import SimpleAccess, by_date, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from gen.plug import PluginManager
-from ReportBase import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY
 
 def run(database, document, person):
     """
@@ -120,7 +118,7 @@ def run_fam(database, document, family):
                  sdb.event_date_obj(event), 
                  sdb.event_place(event))
     stab.write(sdoc)
-                                
+
 def fam_sort(event1, event2):
     """
     Sort function that will compare two events by their dates.
@@ -134,32 +132,3 @@ def fam_sort(event1, event2):
     @rtype: int
     """
     return by_date(event1[1],event2[1])
-                                
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-
-pmgr.register_quick_report(
-    name = 'all_events',
-    category = CATEGORY_QR_PERSON,
-    run_func = run,
-    translated_name = _("All Events"),
-    status = _("Stable"),
-    description= _("Display a person's events, both personal and family."),
-    author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org"
-    )
-    
-pmgr.register_quick_report(
-    name = 'all_events_fam',
-    category = CATEGORY_QR_FAMILY,
-    run_func = run_fam,
-    translated_name = _("All Events"),
-    status = _("Stable"),
-    description= _("Display the family and family members events."),
-    author_name="B. Malengier",
-    author_email="benny.malengier@gramps-project.org"
-    )

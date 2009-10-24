@@ -274,17 +274,12 @@ class CLIManager(object):
         RecentFiles.recent_files(filename, name)
         self.file_loaded = True
     
-    def do_load_plugins(self):
+    def do_reg_plugins(self):
         """
-        Loads the plugins at initialization time. The plugin status window is 
-        opened on an error if the user has requested.
+        Register the plugins at initialization time.
         """
-        # load plugins
-        
-        error = self._pmgr.load_plugins(const.PLUGINS_DIR)
-        error |= self._pmgr.load_plugins(const.USER_PLUGINS)
-        
-        return error
+        self._pmgr.reg_plugins(const.PLUGINS_DIR)
+        self._pmgr.reg_plugins(const.USER_PLUGINS)
 
 def startcli(errors, argparser):
     """
@@ -309,7 +304,7 @@ def startcli(errors, argparser):
     #we need a manager for the CLI session
     climanager = CLIManager(dbstate, True)
     #load the plugins
-    climanager.do_load_plugins()
+    climanager.do_reg_plugins()
     # handle the arguments
     from arghandler import ArgHandler
     handler = ArgHandler(dbstate, argparser, climanager)

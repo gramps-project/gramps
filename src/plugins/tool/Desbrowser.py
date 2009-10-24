@@ -38,7 +38,6 @@ import gtk
 import const
 from BasicUtils import name_displayer
 from PluginUtils import Tool
-from gen.plug import PluginManager
 import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
@@ -141,22 +140,3 @@ class DesBrowseOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'dbrowse',
-    category = Tool.TOOL_ANAL,
-    tool_class = DesBrowse,
-    options_class = DesBrowseOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Interactive Descendant Browser"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description=_("Provides a browsable hierarchy based on the active person"),
-    )

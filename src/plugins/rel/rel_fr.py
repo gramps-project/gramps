@@ -33,7 +33,6 @@ French-specific classes for relationships.
 
 import gen.lib
 import Relationship
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 
@@ -747,32 +746,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 rel_str = "le demi-frère ou la demi-sœur"
         return rel_str
-
-
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system
-#
-#-------------------------------------------------------------------------
-
-PMGR = PluginManager.get_instance()
-PMGR.register_relcalc(RelationshipCalculator, [
-    "fr",
-    "FR",
-    "fr_FR",
-    "fr_CA",
-    "francais",
-    "Francais",
-    "fr_FR.UTF8",
-    "fr_FR@euro",
-    "fr_FR.UTF8@euro",
-    "french",
-    "French",
-    "fr_FR.UTF-8",
-    "fr_FR.utf-8",
-    "fr_FR.utf8",
-    "fr_CA.UTF-8",
-    ])
 
 if __name__ == "__main__":
 

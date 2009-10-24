@@ -46,13 +46,6 @@ from gen.plug.docbackend import DocBackend
 from libhtml import Html
 from Utils import xml_lang
 
-try:
-    from gen.plug import PluginManager, Plugin
-    from gettext import gettext as _
-except ImportError:
-    print 'Plugin manager not imported.'
-
-
 #------------------------------------------------------------------------
 #
 # Document Backend class for html pages
@@ -179,20 +172,3 @@ class HtmlBackend(DocBackend):
         full path of the datadir directory
         """
         return os.path.join(os.path.dirname(self.getf()), self.datadir())
-
-# ------------------------------------------
-#
-#            Register Plugin
-#
-# -------------------------------------------
-
-try:
-    PluginManager.get_instance().register_plugin( 
-    Plugin(
-        name = __name__,
-        description = _("Manages a HTML file implementing DocBackend."),
-        module_name = __name__ 
-        )
-    )
-except NameError:
-    print 'Plugin not registered.'

@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 import config
 
@@ -105,17 +105,3 @@ class TopSurnamesGramplet(Gramplet):
         self.append_text(("\n" + _("Total unique surnames") + ": %d\n") % 
                          total_surnames)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")
-        
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name= "Top Surnames Gramplet", 
-         tname=_("Top Surnames Gramplet"), 
-         height=230,
-         content = TopSurnamesGramplet,
-         title=_("Top Surnames"),
-         )
-

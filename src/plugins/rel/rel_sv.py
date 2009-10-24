@@ -35,7 +35,6 @@
 
 import gen.lib
 import Relationship
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -520,15 +519,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             rel_str = self._get_cousins_descendant(gender_b, reltocommon_b, reltocommon_a, step, inlaw)
         return rel_str
 
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["sv","SV","sv_SE","swedish","Swedish","sv_SE.UTF8","sv_SE@euro","sv_SE.UTF8@euro",
-            "svenska","Svenska", "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8"])
 
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find

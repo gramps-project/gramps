@@ -29,14 +29,12 @@ Base class for map services. Example: open place in openstreetmap.org
 # python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.plug import PluginManager, Plugin
 from PlaceUtils import conv_lat_lon
 import GrampsDisplay
 
@@ -100,16 +98,3 @@ class MapService():
     def _free(self):
         """Allow garbage collection to do it's work"""
         self.items = None
-
-
-#------------------------------------------------------------------------
-#
-# Register the library
-#
-#------------------------------------------------------------------------
-PluginManager.get_instance().register_plugin( 
-Plugin(
-    name = __name__, 
-    description = _("Provides base functionality for map services."),
-    module_name = __name__ 
-      ))

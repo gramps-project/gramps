@@ -19,7 +19,7 @@
 # $Id: $
 #
 
-from DataViews import Gramplet, register
+from DataViews import Gramplet
 from BasicUtils import name_displayer
 from gettext import gettext as _
 
@@ -52,15 +52,3 @@ class AttributesGramplet(Gramplet):
             self.link(str(attr.type), 'Attribute', str(attr.type)) 
             self.append_text(": %s\n" % attr.get_value())
         self.append_text("\n", scroll_to="begin")
-        
-register(type="gramplet", 
-         name="Attributes Gramplet", 
-         tname=_("Attributes Gramplet"), 
-         height=150,
-         expand=True,
-         content = AttributesGramplet,
-         title=_("Attributes"),
-         detached_width = 325,
-         detached_height = 250,
-         )
-

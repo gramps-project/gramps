@@ -45,7 +45,7 @@ import re
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from const import URL_WIKISTRING
 from TransUtils import sgettext as _
 
@@ -265,19 +265,3 @@ class HeadlineNewsGramplet(Gramplet):
 
     def nice_title(self, title):
         return title.replace("_", " ")
-        
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Headline News Gramplet", 
-         tname=_("Headline News Gramplet"), 
-         height=300,
-         expand=True,
-         content = HeadlineNewsGramplet,
-         title=_("Headline News"),
-         gramps="3.1.0",
-         version="1.0.2",
-         )

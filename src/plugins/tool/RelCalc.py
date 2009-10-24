@@ -45,10 +45,10 @@ import gtk
 from BasicUtils import name_displayer
 import ManagedWindow
 from DisplayModels import PeopleModel
+from gen.plug import PluginManager
 
 from QuestionDialog import ErrorDialog
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -256,22 +256,3 @@ class RelCalcOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'relcalc',
-    category = Tool.TOOL_UTILS,
-    tool_class = RelCalc,
-    options_class = RelCalcOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Relationship Calculator"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Calculates the relationship between two people")
-    )

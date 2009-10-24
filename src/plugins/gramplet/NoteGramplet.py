@@ -31,7 +31,7 @@ import pango
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet, register
+from DataViews import Gramplet
 from BasicUtils import name_displayer
 from TransUtils import sgettext as _
 from const import GLADE_FILE
@@ -257,22 +257,3 @@ class NoteGramplet(Gramplet):
                 msg = _("Edit Note")
             self.dbstate.db.transaction_commit(trans, msg)
         self.dirty = False
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="Note Gramplet", 
-         tname=_("Note Gramplet"), 
-         height=100,
-         expand=True,
-         content = NoteGramplet,
-         title=_("Note"),
-         detached_width = 500,
-         detached_height = 400,
-         gramps="3.1.0",
-         version="1.0.0",
-         )
-

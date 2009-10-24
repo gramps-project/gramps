@@ -7,6 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/docgen
 
 pkgdata_PYTHON = \
 	AsciiDoc.py \
+	docgen.gpr.py\
 	GtkPrint.py \
 	HtmlDoc.py \
 	LaTeXDoc.py \

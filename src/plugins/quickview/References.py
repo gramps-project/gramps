@@ -25,17 +25,9 @@
 """
 Display references for any object
 """
-from ReportBase import (CATEGORY_QR_SOURCE, CATEGORY_QR_PERSON, 
-                        CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, 
-                        CATEGORY_QR_PLACE)
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from gen.plug import PluginManager
-
-# mention so that will be translated for below
-[_('Person'), _('Family'), _('Event'), _('Source'), 
- _('Place')]
 
 def get_ref(db, objclass, handle):
     """
@@ -81,29 +73,9 @@ def run(database, document, object, item, trans):
         sdoc.paragraph("")
     sdoc.paragraph("")
 
-#------------------------------------------------------------------------
-#
-# Register the report
-#
-#------------------------------------------------------------------------
-
-refitems = [(CATEGORY_QR_PERSON, 'person', _("Person")), 
-            (CATEGORY_QR_FAMILY,'family', _("Family")), 
-            (CATEGORY_QR_EVENT, 'event', _("Event")), 
-            (CATEGORY_QR_SOURCE, 'source', _("Source")), 
-            (CATEGORY_QR_PLACE, 'place', _("Place")), 
-            ]
-pmgr = PluginManager.get_instance()
-
-for (category,item,trans) in refitems:
-    pmgr.register_quick_report(
-        name = item + 'refereneces',
-        category = category,
-        run_func = lambda db, doc, obj, item=item, trans=trans: \
-            run(db, doc, obj, item, trans),
-        translated_name = _("%s References") % trans,
-        status = _("Stable"),
-        description= _("Display references for a %s") % trans,
-        author_name="Douglas Blank",
-        author_email="dblank@cs.brynmawr.edu"
-        )
+#functions for the actual quickreports
+run_person = lambda db, doc, obj: run(db, doc, obj, 'person', _("Person"))
+run_family = lambda db, doc, obj: run(db, doc, obj, 'family', _("Family"))
+run_event  = lambda db, doc, obj: run(db, doc, obj, 'event', _("Event"))
+run_source = lambda db, doc, obj: run(db, doc, obj, 'source', _("Source"))
+run_place  = lambda db, doc, obj: run(db, doc, obj, 'place', _("Place"))

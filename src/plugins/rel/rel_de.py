@@ -46,7 +46,6 @@ import re
 
 import gen.lib
 import Relationship
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -277,16 +276,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                              rel, rel,
                                              only_birth, in_law_a, in_law_b)
 
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["de","DE","de_DE","deutsch","Deutsch","de_DE.UTF8","de_DE@euro","de_DE.UTF8@euro",
-            "german","German", "de_DE.UTF-8", "de_DE.utf-8", "de_DE.utf8"])
 
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find

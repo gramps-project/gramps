@@ -41,12 +41,11 @@ from gettext import gettext as _
 from BasicUtils import name_displayer as _nd
 from Errors import ReportError
 from gen.lib import EventType, FamilyRelType, Person
-from gen.plug import PluginManager
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
-from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT,
+from ReportBase import (Report, ReportUtils, MenuReportOptions,
                         Bibliography, Endnotes)
 import DateHandler
 import Utils
@@ -895,24 +894,3 @@ class DetAncestorOptions(MenuReportOptions):
         default_style.add_paragraph_style("DAR-MoreDetails",para)
 
         Endnotes.add_endnote_styles(default_style)
-
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'det_ancestor_report',
-    category = CATEGORY_TEXT,
-    report_class = DetAncestorReport,
-    options_class = DetAncestorOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Detailed Ancestral Report"),
-    status=(_("Stable")),
-    description= _("Produces a detailed ancestral report"),
-    author_name="Bruce DeGrasse",
-    author_email="bdegrasse1@attbi.com"
-    )

@@ -39,7 +39,6 @@ import gobject
 import const
 from gettext import ngettext
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from ReportBase import ReportUtils
 from PluginUtils import Tool
 from Editors import EditPerson, EditFamily
@@ -430,24 +429,3 @@ class NotRelatedOptions(Tool.ToolOptions):
     def __init__(self, name, person_id=None):
         """ Initialize the options class """
         Tool.ToolOptions.__init__(self, name, person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'not_related',
-    category = Tool.TOOL_UTILS,
-    tool_class = NotRelated,
-    options_class = NotRelatedOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Not Related"),
-    status = _("Stable"),
-    author_name = "Stephane Charette",
-    author_email = "stephanecharette@gmail.com",
-    description = _("Find people who are not in any way related to the "
-                    "selected person")
-    )
-

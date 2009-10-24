@@ -60,7 +60,6 @@ from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
 from BasicUtils import name_displayer
-from gen.plug import PluginManager, ImportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -2947,16 +2946,3 @@ def make_peron_name_remapper(other_database, formats_map):
         remap_name(person, formats_map)
         return person
     return new_get_person
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('GRAMPS 2.x database'), 
-                      description     = _("Import data from GRAMPS 2.x "
-                                          "database files"),
-                      import_function = importData,
-                      extension       = "grdb")
-pmgr.register_plugin(plugin)

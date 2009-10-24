@@ -62,7 +62,6 @@ from gui.utils import ProgressMeter
 import ManagedWindow
 
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from QuestionDialog import OkDialog, MissingMediaDialog
 from BasicUtils import name_displayer as _nd
 from glade import Glade
@@ -1649,23 +1648,3 @@ class CheckOptions(Tool.ToolOptions):
 
     def __init__(self, name, person_id=None):
         Tool.ToolOptions.__init__(self, name, person_id)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'check',
-    category = Tool.TOOL_DBFIX,
-    tool_class = Check,
-    options_class = CheckOptions,
-    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-    translated_name = _("Check and Repair Database"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description =_("Checks the database for integrity problems, fixing the "
-                   "problems that it can")
-    )

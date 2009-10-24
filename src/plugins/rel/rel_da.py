@@ -33,8 +33,6 @@
 
 import gen.lib
 import Relationship
-import types
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -198,15 +196,3 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return (self.get_direct_descendant(other_person,firstRel),common)
         else:
             return (self.get_two_way_rel(other_person,firstRel,secondRel),common)
-
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    [ "da", "DA", "da_DK", "danish", "Danish", "da_DK.UTF8",
-      "da_DK@euro", "da_DK.UTF8@euro", "dansk", "Dansk",
-      "da_DK.UTF-8", "da_DK.utf-8", "da_DK.utf8",
-      "da_DK.ISO-8859-1","da_DK.iso-8859-1","da_DK.iso88591" ])

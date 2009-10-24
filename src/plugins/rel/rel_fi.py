@@ -33,8 +33,6 @@
 
 import gen.lib
 import Relationship
-import types
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -215,13 +213,3 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return (self.get_ancestors_cousin(secondRel,firstRel),common)
         else:
             return (self.get_cousins_descendant(other_person,firstRel,secondRel),common)
-
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["fi","FI","fi_FI","finnish","Finnish","fi_FI.UTF8","fi_FI@euro","fi_FI.UTF8@euro",
-            "suomi","Suomi", "fi_FI.UTF-8", "fi_FI.utf-8", "fi_FI.utf8"])

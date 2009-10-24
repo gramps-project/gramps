@@ -69,9 +69,9 @@ import const
 import Utils
 import ListModel
 import Errors
+from gen.plug import PluginManager
 from gen.plug.docgen import StyleSheet, StyleSheetList
 from QuestionDialog import WarningDialog, ErrorDialog
-from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 from glade import Glade
@@ -200,16 +200,18 @@ class BookItem(object):
         self.style_name = "default"
         pmgr = PluginManager.get_instance()
 
-        for item in pmgr.get_book_item_list():
-            if item[4] == name:
-                self.translated_name = item[0]
-                if item[5]:
+        for pdata in pmgr.get_reg_bookitems():
+            if pdata.id == name:
+                self.translated_name = pdata.name
+                if not pdata.supported:
                     self.category = _UNSUPPORTED
                 else:
-                    self.category = book_categories[item[1]]
-                self.write_item = item[2]
-                self.name = item[4]
-                self.option_class = item[3](self.name, self.dbase)
+                    self.category = book_categories[pdata.category]
+                mod = pmgr.load_plugin(pdata)
+                self.write_item = eval('mod.' + pdata.reportclass)
+                self.name = pdata.id
+                oclass = eval('mod.' + pdata.optionclass)
+                self.option_class = oclass(self.name, self.dbase)
                 self.option_class.load_previous_values()
 
     def get_name(self):
@@ -747,16 +749,17 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         The selections are read from the book item registry.
         """
         pmgr = PluginManager.get_instance()
-        if not pmgr.get_book_item_list():
+        regbi = pmgr.get_reg_bookitems()
+        if not regbi:
             return
 
-        for book_item in pmgr.get_book_item_list():
-            if book_item[5]:
+        for pdata in regbi:
+            if not pdata.supported:
                 category = _UNSUPPORTED
             else:
-                category = book_categories[book_item[1]]
+                category = book_categories[pdata.category]
             
-            data = [ book_item[0], category, book_item[4] ] 
+            data = [pdata.name, category, pdata.id ] 
             new_iter = self.avail_model.add(data)
 
         self.avail_model.connect_model()
@@ -1275,22 +1278,3 @@ def write_book_item(database, report_class, options_class):
     except:
         log.error("Failed to write book item.", exc_info=True)
     return None
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'book',
-    category = CATEGORY_BOOK,
-    report_class = BookReportSelector,
-    options_class = cl_report,
-    modes = PluginManager.REPORT_MODE_GUI | PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Book Report"),
-    status = _("Stable"),
-    description = _("Produces a book containing several reports."),
-    author_name = "Alex Roitman",
-    author_email = "shura@gramps-project.org"
-    )

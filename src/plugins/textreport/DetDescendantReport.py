@@ -42,13 +42,12 @@ from gettext import gettext as _
 from BasicUtils import name_displayer as _nd
 from Errors import ReportError
 from gen.lib import FamilyRelType, Person
-from gen.plug import PluginManager
 from gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 
                            EnumeratedListOption)
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, 
                              FONT_SANS_SERIF, FONT_SERIF, 
                              INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT,
+from ReportBase import (Report, ReportUtils, MenuReportOptions,
                         Bibliography, Endnotes)
 import DateHandler
 import Utils
@@ -964,24 +963,3 @@ class DetDescendantOptions(MenuReportOptions):
         default_style.add_paragraph_style("DDR-MoreDetails", para)
 
         Endnotes.add_endnote_styles(default_style)
-
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'det_descendant_report',
-    category = CATEGORY_TEXT,
-    report_class = DetDescendantReport,
-    options_class = DetDescendantOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Detailed Descendant Report"),
-    status = _("Stable"),
-    description = _("Produces a detailed descendant report"),
-    author_name = "Bruce DeGrasse",
-    author_email = "bdegrasse1@attbi.com"
-    )

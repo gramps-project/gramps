@@ -51,7 +51,6 @@ import Utils
 from gen.lib import Date, EventType
 import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ExportPlugin
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -342,19 +341,3 @@ class CalendarWriter(object):
 def exportData(database, filename, option_box=None, callback=None):
     cw = CalendarWriter(database, 0, filename, option_box, callback)
     return cw.export_data(filename)
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_description = _('vCalendar is used in many calendaring and pim applications.')
-_config = (_('vCalendar export options'), CalendarWriterOptionBox)
-
-pmgr = PluginManager.get_instance()
-plugin = ExportPlugin(name            = _('vC_alendar'), 
-                      description     = _description,
-                      export_function = exportData,
-                      extension       = "vcs",
-                      config          = _config )
-pmgr.register_plugin(plugin)

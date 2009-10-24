@@ -7,8 +7,9 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/drawreport
 
 pkgdata_PYTHON = \
 	AncestorTree.py \
-        Calendar.py\
+	Calendar.py\
 	DescendTree.py \
+	drawplugins.gpr.py\
 	FanChart.py \
 	StatisticsChart.py \
 	TimeLine.py

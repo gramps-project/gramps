@@ -49,7 +49,6 @@ log = logging.getLogger(".ImportVCard")
 import Errors
 import gen.lib
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ImportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -214,15 +213,3 @@ class VCardParser(object):
         url = gen.lib.Url()
         url.set_path(data)
         self.person.add_url(url)
-
-#-------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('vCard'), 
-                      description     = _("Import data from vCard files"),
-                      import_function = importData,
-                      extension       = "vcf")
-pmgr.register_plugin(plugin)

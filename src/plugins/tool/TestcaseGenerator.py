@@ -46,7 +46,6 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from PluginUtils import Tool
-from gen.plug import PluginManager
 import Utils
 import LdsUtils
 
@@ -1386,26 +1385,3 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
                                 ["No linebreak","Add line break"],
                                 True),
         }
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-
-if __debug__:
-    pmgr = PluginManager.get_instance()
-    pmgr.register_tool(
-        name = 'testcasegenerator',
-        category = Tool.TOOL_DEBUG,
-        tool_class = TestcaseGenerator,
-        options_class = TestcaseGeneratorOptions,
-        modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-        translated_name = _("Generate Testcases for Persons and Families"),
-        status = _("Beta"),
-        author_name = "Martin Hawlisch",
-        author_email = "martin@hawlisch.de",
-        description = _("The testcase generator will generate some persons "
-                        "and families that have broken links in the database "
-                        "or data that is in conflict to a relation.")
-        )

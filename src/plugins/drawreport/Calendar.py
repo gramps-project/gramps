@@ -44,7 +44,7 @@ from gen.plug.docgen.fontscale import string_trim
 from gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
                          EnumeratedListOption, FilterOption, PersonOption)
 from gui.utils import ProgressMeter
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from Utils import probably_alive
 import GrampsLocale
 import gen.lib
@@ -528,25 +528,3 @@ class CalendarOptions(MenuReportOptions):
                            _('Text at bottom, line 3'), 9)
         self.make_my_style(default_style, "CAL-Border", 
                            _('Borders'), borders=True)
-
-#------------------------------------------------------------------------
-#
-# Register the plugins
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'calendar', 
-    category = CATEGORY_DRAW, 
-    report_class = Calendar, 
-    options_class = CalendarOptions, 
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI, 
-    translated_name = _("Calendar"), 
-    status = _("Stable"), 
-    author_name = "Douglas S. Blank", 
-    author_email = "dblank@cs.brynmawr.edu", 
-    description = _("Produces a graphical calendar"), 
-    )
-

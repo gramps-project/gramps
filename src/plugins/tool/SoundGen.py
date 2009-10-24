@@ -35,7 +35,6 @@ import ManagedWindow
 import AutoComp
 from TransUtils import sgettext as _
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -124,22 +123,3 @@ class SoundGenOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'soundgen',
-    category = Tool.TOOL_UTILS,
-    tool_class = SoundGen,
-    options_class = SoundGenOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Generate SoundEx Codes"),
-    status=(_("Stable")),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Generates SoundEx codes for names")
-    )

@@ -37,8 +37,6 @@
 
 import gen.lib
 import Relationship
-import types
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -504,15 +502,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = 'il fratellastro/sorellastra acquisito/a'
 
         return rel_str
-
-#-------------------------------------------------------------------------
-#
-# Function registration
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["it", "IT", "it_IT", "it_IT@euro", "it_IT.utf8"])
 
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find

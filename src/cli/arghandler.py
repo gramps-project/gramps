@@ -450,13 +450,17 @@ class ArgHandler(object):
                 print "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
-            _cl_list = pmgr.get_cl_list()
+            _cl_list = pmgr.get_reg_reports(gui=False)
             if name:
-                for item in _cl_list:
-                    if name == item[0]:
-                        category = item[1]
-                        report_class = item[2]
-                        options_class = item[3]
+                for pdata in _cl_list:
+                    if name == pdata.id:
+                        mod = pmgr.load_plugin(pdata)
+                        if not mod:
+                            #import of plugin failed
+                            return 
+                        category = pdata.category
+                        report_class = eval('mod.' + pdata.reportclass)
+                        options_class = eval('mod.' + pdata.optionclass)
                         if category in (CATEGORY_BOOK, CATEGORY_CODE):
                             options_class(self.dbstate.db, name, category, 
                                           options_str_dict)
@@ -471,13 +475,14 @@ class ArgHandler(object):
                 msg = "Report name not given. Please use -p name=reportname."
             
             print "%s\n Available names are:" % msg
-            for item in _cl_list:
+            for pdata in _cl_list:
                 # Print cli report name ([item[0]) and GUI report name (item[4])
-                if len(item[0]) <= 25:
-                    print "   %s%s- %s" % (item[0], 
-                                           " " * (26 - len(item[0])), item[4])
+                if len(pdata.id) <= 25:
+                    print "   %s%s- %s" % ( pdata.id, 
+                                            " " * (26 - len(pdata.id)),
+                                            pdata.name)
                 else:
-                    print "   %s\t- %s" % (item[0], item[4])
+                    print "   %s\t- %s" % (pdata.id, pdata.name)
 
         elif action == "tool":
             try:
@@ -488,13 +493,17 @@ class ArgHandler(object):
                 print "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
-            _cli_tool_list = pmgr.get_cl_tool_list()
+            _cli_tool_list = pmgr.get_reg_tools(gui=False)
             if name:
-                for item in _cli_tool_list:
-                    if name == item[0]:
-                        category = item[1]
-                        tool_class = item[2]
-                        options_class = item[3]
+                for pdata in _cli_tool_list:
+                    if name == pdata.id:
+                        mod = pmgr.load_plugin(pdata)
+                        if not mod:
+                            #import of plugin failed
+                            return 
+                        category = pdata.category
+                        tool_class = eval('mod.' + pdata.toolclass)
+                        options_class = eval('mod.' + pdata.optionclass)
                         Tool.cli_tool(self.dbstate, name, category, tool_class, 
                                       options_class, options_str_dict)
                         return
@@ -503,8 +512,14 @@ class ArgHandler(object):
                 msg = "Tool name not given. Please use -p name=toolname."
             
             print "%s\n Available names are:" % msg
-            for item in _cli_tool_list:
-                print "   %s" % item[0]
+            for pdata in _cli_tool_list:
+                # Print cli report name ([item[0]) and GUI report name (item[4])
+                if len(pdata.id) <= 25:
+                    print "   %s%s- %s" % ( pdata.id, 
+                                            " " * (26 - len(pdata.id)),
+                                            pdata.name)
+                else:
+                    print "   %s\t- %s" % (pdata.id, pdata.name)
         else:
             print "Unknown action: %s." % action
             sys.exit(0)

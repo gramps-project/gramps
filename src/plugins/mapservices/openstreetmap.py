@@ -35,7 +35,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
 from libmapservice import MapService
 
 
@@ -70,20 +69,3 @@ class OpensStreetMapService(MapService):
         titledescr = place.get_title()
         self.url = "http://gazetteer.openstreetmap.org/namefinder/"\
                         "?find=%s" % '+'.join(titledescr.split())
-
-    
-#------------------------------------------------------------------------
-#
-# Register map service
-#
-#------------------------------------------------------------------------
-
-PluginManager.get_instance().register_mapservice(
-    name = 'OpenStreetMap',
-    mapservice = OpensStreetMapService(),
-    translated_name = _("OpenStreetMap"),
-    status = _("Stable"),
-    tooltip= _("Open on openstreetmap.org"),
-    author_name="Benny Malengier",
-    author_email="benny.malengier@gramps-project.org"
-    )

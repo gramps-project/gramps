@@ -28,8 +28,6 @@ Display all events on a particular day.
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from gen.plug import PluginManager
-from ReportBase import CATEGORY_QR_EVENT
 import gen.lib
 
 def get_ref(db, objclass, handle):
@@ -133,20 +131,3 @@ def run(database, document, main_event):
                        {"year":main_date.get_year()})
         sdoc.paragraph("")
     sdoc.paragraph("")
-                    
-#------------------------------------------------------------------------
-#
-# Register the report
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_quick_report(
-    name = 'onthisday',
-    category = CATEGORY_QR_EVENT,
-    run_func = run,
-    translated_name = _("On This Day"),
-    status = _("Stable"),
-    description= _("Display events on a particular day"),
-    author_name="Douglas Blank",
-    author_email="dblank@cs.brynmawr.edu"
-    )

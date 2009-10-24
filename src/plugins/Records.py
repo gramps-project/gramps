@@ -37,12 +37,10 @@ from TransUtils import sgettext as _
 from gen.lib import ChildRefType, Date, EventType, Name
 from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from BasicUtils import name_displayer
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from gen.plug.menu import (BooleanOption, EnumeratedListOption, 
                            FilterOption, PersonOption)
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-        CATEGORY_TEXT
-from gen.plug import PluginManager
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from Utils import probably_alive
 
 MODE_GUI = PluginManager.REPORT_MODE_GUI
@@ -542,32 +540,3 @@ RECORDS = [
         (_("Living couple married most long ago"),    'family_oldestmarried',    True),
         (_("Shortest past marriage"),          'family_shortest',         False),
         (_("Longest past marriage"),           'family_longest',          True)]
-
-
-#------------------------------------------------------------------------
-#
-# Register the gramplet and the report
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-register(
-        type="gramplet", 
-        name= "Records Gramplet", 
-        tname=_("Records Gramplet"), 
-        height=230,
-        expand=True,
-        content = RecordsGramplet,
-        title=_("Records"))
-
-pmgr.register_report(
-        name = 'records',
-        category = CATEGORY_TEXT,
-        report_class = RecordsReport,
-        options_class = RecordsReportOptions,
-        modes = MODE_GUI | MODE_BKI | MODE_CLI,
-        translated_name = _("Records Report"),
-        status = _("Stable"),
-        author_name = u"Reinhard Müller",
-        author_email = "reinhard.mueller@bytewise.at",
-        description = _(
-            "Shows some interesting records about people and families"))

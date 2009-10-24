@@ -47,7 +47,6 @@ import gen.lib
 import Utils
 
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from BasicUtils import name_displayer
 from QuestionDialog import OkDialog
 
@@ -160,22 +159,3 @@ class EventNamesOptions(Tool.ToolOptions):
 
     def __init__(self, name, person_id=None):
         Tool.ToolOptions.__init__(self, name, person_id)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'evname', 
-    category = Tool.TOOL_DBPROC, 
-    tool_class = EventNames, 
-    options_class = EventNamesOptions, 
-    modes = PluginManager.TOOL_MODE_GUI, 
-    translated_name = _("Extract Event Descriptions from Event Data"), 
-    status = _("Stable"), 
-    author_name = "Donald N. Allingham", 
-    author_email = "don@gramps-project.org", 
-    description = _("Extracts event descriptions from the event data")
-    )

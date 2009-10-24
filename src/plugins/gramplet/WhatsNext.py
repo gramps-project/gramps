@@ -28,7 +28,7 @@
 #------------------------------------------------------------------------
 from gen.lib import EventType, FamilyRelType, MarkerType
 from BasicUtils import name_displayer
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from ReportBase import ReportUtils
 from TransUtils import sgettext as _
 
@@ -512,17 +512,3 @@ class UnknownFamilyClass(object):
 
 UnknownPerson = UnknownPersonClass()
 UnknownFamily = UnknownFamilyClass()
-
-#------------------------------------------------------------------------
-#
-# Register the gramplet
-#
-#------------------------------------------------------------------------
-register(
-        type = "gramplet", 
-        name = "What's Next Gramplet", 
-        tname =_("What's Next Gramplet"), 
-        height = 230,
-        expand = True,
-        content = WhatNextGramplet,
-        title = _("What's Next?"))

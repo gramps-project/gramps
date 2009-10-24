@@ -30,18 +30,13 @@
 General constants used in different html enabled plugins
 """
 
+from gettext import gettext as _
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-
-try:
-    from gen.plug import PluginManager, Plugin
-    from gettext import gettext as _
-except ImportError:
-    print 'Plugin manager not imported.'
-
 
 #------------------------------------------------------------------------
 #
@@ -120,20 +115,3 @@ _COPY_OPTIONS = [
 
         _('No copyright notice'),
         ]
-
-# ------------------------------------------
-#
-#            Register Plugin
-#
-# -------------------------------------------
-
-try:
-    PluginManager.get_instance().register_plugin( 
-    Plugin(
-        name = __name__,
-        description = _("Common constants for html files."),
-        module_name = __name__ 
-        )
-    )
-except NameError:
-    print 'Plugin not registered.'

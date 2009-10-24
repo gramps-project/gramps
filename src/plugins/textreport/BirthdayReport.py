@@ -45,7 +45,7 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 from gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
                          EnumeratedListOption, FilterOption, PersonOption)
 from gui.utils import ProgressMeter
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from Utils import probably_alive
 import GrampsLocale
 
@@ -489,25 +489,3 @@ class CalendarOptions(MenuReportOptions):
                            _('Text at bottom, line 2'), 12, justified="center")
         self.make_my_style(default_style, "BIR-Text3style", 
                            _('Text at bottom, line 3'), 12, justified="center")
-
-#------------------------------------------------------------------------
-#
-# Register the plugins
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'birthday_report', 
-    category = CATEGORY_TEXT, 
-    report_class = CalendarReport, 
-    options_class = CalendarOptions, 
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI, 
-    translated_name = _("Birthday and Anniversary Report"), 
-    status = _("Stable"), 
-    author_name = "Douglas S. Blank", 
-    author_email = "dblank@cs.brynmawr.edu", 
-    description = _("Produces a report of birthdays and anniversaries"), 
-    )
-

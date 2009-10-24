@@ -45,11 +45,6 @@ import os.path
 #------------------------------------------------------------------------
 from gen.plug.docbackend import DocBackend
 
-try:
-    from gen.plug import PluginManager, Plugin
-    from gettext import gettext as _
-except ImportError:
-    print 'Plugin manager not imported.'
 #------------------------------------------------------------------------
 #
 # Set up logging

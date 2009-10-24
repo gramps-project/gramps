@@ -13,6 +13,7 @@ pkgdata_PYTHON = \
 	FilterByName.py \
 	lineage.py \
 	OnThisDay.py \
+	quickview.gpr.py \
 	References.py \
 	Reporef.py \
 	SameSurnames.py\

@@ -1,4 +1,4 @@
-﻿#
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007          Thom Sturgill
@@ -54,9 +54,7 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 from gen.lib import date, Date, Name, Person, NameType, EventType
 import const
-from gen.plug import PluginManager
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, \
-                       CSS_FILES 
+from ReportBase import Report, ReportUtils, MenuReportOptions, CSS_FILES
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption
@@ -1846,22 +1844,3 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     # return to its caller calendar_build()
     return day_list
-
-# ---------------------------------------------------------------------------------------
-#
-#                                      Register Plugin
-#
-# ---------------------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'WebCal',
-    category = CATEGORY_WEB,
-    report_class = WebCalReport,
-    options_class = WebCalOptions,
-    modes = PluginManager.REPORT_MODE_GUI,
-    translated_name = _("Web Calendar"),
-    status = _("Stable"),
-    author_name = "Thom Sturgill",
-    author_email = "thsturgill@yahoo.com",
-    description = _("Produces web (HTML) calendars."),
-    )

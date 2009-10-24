@@ -30,9 +30,7 @@ Display a people who have a person's same surname or given name.
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from gettext import ngettext
-from gen.plug import PluginManager
 import gen.lib
-from ReportBase import CATEGORY_QR_PERSON, CATEGORY_QR_MISC
 from Filters.Rules import Rule
 from Filters import GenericFilterFactory
 
@@ -170,42 +168,3 @@ def run_given(database, document, person):
                    "There are %d people with a matching name, or alternate name.\n"
                    , matches) % matches)
     stab.write(sdoc)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_quick_report(
-    name = 'samesurnames',
-    category = CATEGORY_QR_PERSON,
-    run_func = run,
-    translated_name = _("Same Surnames"),
-    status = _("Stable"),
-    description= _("Display people with the same surname as a person."),
-    author_name="Douglas S. Blank",
-    author_email="dblank@cs.brynmawr.edu"
-    )
-
-pmgr.register_quick_report(
-    name = 'samegivens',
-    category = CATEGORY_QR_PERSON, # to run with a person object
-    run_func = run_given,
-    translated_name = _("Same Given Names"),
-    status = _("Stable"),
-    description= _("Display people with the same given name as a person."),
-    author_name="Douglas S. Blank",
-    author_email="dblank@cs.brynmawr.edu"
-    )
-
-pmgr.register_quick_report(
-    name = 'samegivens_misc',
-    category = CATEGORY_QR_MISC, # to run with a given name string
-    run_func = run_given,
-    translated_name = _("Same Given Names"),
-    status = _("Stable"),
-    description= _("Display people with the same given name as a person."),
-    author_name="Douglas S. Blank",
-    author_email="dblank@cs.brynmawr.edu"
-    )

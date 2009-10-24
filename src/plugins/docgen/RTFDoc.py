@@ -37,7 +37,6 @@ from gettext import gettext as _
 from gui.utils import open_file_with_default_application
 from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY)
-from gen.plug import PluginManager, DocGenPlugin
 import ImgManip
 import Errors
 import Utils
@@ -433,24 +432,3 @@ class RTFDoc(BaseDoc,TextDoc):
                 self.text = self.text + '\\%s' % i
             else:
                 self.text = self.text + i
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _('RTF document'), 
-                          description = _("Generates documents in Rich Text "
-                                          "format (.rtf)."),
-                          basedoc     = RTFDoc,
-                          paper       = True,
-                          style       = True, 
-                          extension   = "rtf" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

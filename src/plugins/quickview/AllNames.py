@@ -27,15 +27,9 @@ Display all names of all people
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gen.plug import PluginManager
-from Utils import media_path_full
-from QuickReports import run_quick_report_by_name_direct
-from ReportBase import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY
 from BasicUtils import name_displayer as nd
 from gen.lib import Person
-import DateHandler
 
-import posixpath
 from gettext import gettext as _
 from gettext import ngettext
 
@@ -62,7 +56,7 @@ def run(database, document, *args, **kwargs):
                        str(primary_name.get_type()))]
         names += [(nd.display_name(name), 
                    person, 
-                   str(name.get_type())) for name in 
+                   str(name.get_type())) for name in  
                   person.get_alternate_names()]
     names.sort()
     matches = 0
@@ -72,20 +66,3 @@ def run(database, document, *args, **kwargs):
     sdoc.paragraph(_("Total names %d") % matches)
     sdoc.paragraph("")
     stab.write(sdoc)
-                    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_quick_report(
-    name = 'allnames',
-    category = CATEGORY_QR_PERSON,
-    run_func = run,
-    translated_name = _("All Names of All People"),
-    status = _("Stable"),
-    description= _("All names of All people"),
-    author_name="Douglas S. Blank",
-    author_email="doug.blank@gmail.com"
-    )

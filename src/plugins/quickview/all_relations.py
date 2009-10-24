@@ -34,7 +34,6 @@ Display a person's relations to the home person
 from Simple import SimpleAccess, SimpleDoc
 from gettext import gettext as _
 from gen.plug import PluginManager
-from ReportBase import CATEGORY_QR_PERSON
 
 # define the formatting string once as a constant. Since this is reused
 
@@ -342,21 +341,3 @@ class AllRelReport():
                 sdoc.paragraph(msg)
             sdoc.paragraph("")
             sdoc.paragraph("")
-        
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_quick_report(
-    name = 'all_relations',
-    category = CATEGORY_QR_PERSON,
-    run_func = run,
-    translated_name = _("Relation to Home Person"),
-    status = _("Stable"),
-    description= _("Display all relationships between person and home person."),
-    author_name="B. Malengier",
-    author_email="benny.malengier@gramps-project.org"
-    )

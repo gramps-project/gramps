@@ -33,8 +33,6 @@
 
 import gen.lib
 import Relationship
-from gen.plug import PluginManager
-import types
 
 #-------------------------------------------------------------------------
 #
@@ -346,14 +344,3 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_male_cousin(firstRel-1), common)
             else:
                 return (self.get_female_cousin(firstRel-1), common)
-
-
-#-------------------------------------------------------------------------
-#
-# Function registration
-#
-#-------------------------------------------------------------------------
-
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["hu", "HU", "hu_HU", "hu_HU.utf8", "hu_HU.UTF8"])

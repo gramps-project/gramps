@@ -23,14 +23,12 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager, Plugin
 
 #------------------------------------------------------------------------
 #
@@ -39,16 +37,3 @@ from gen.plug import PluginManager, Plugin
 #------------------------------------------------------------------------
 GRAMPS_XML_VERSION = "1.3.0"
 
-#------------------------------------------------------------------------
-#
-# Register the plugins
-#
-#------------------------------------------------------------------------
-PluginManager.get_instance().register_plugin( 
-Plugin(
-    name = __name__, 
-    description = _("Provides common functionality for Gramps XML "
-                    "import/export."),
-    module_name = __name__ 
-      )
-)

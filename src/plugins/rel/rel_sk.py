@@ -30,7 +30,6 @@
 
 import gen.lib
 import Relationship
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -571,16 +570,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 rel_str = "nevlastný brat alebo sestra"
         return rel_str
-
-
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator, 
-    ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak", "sk_SK.UTF8", "sk_SK.UTF-8", "sk_SK.utf-8", "sk_SK.utf8"])
 
 
 if __name__ == "__main__":

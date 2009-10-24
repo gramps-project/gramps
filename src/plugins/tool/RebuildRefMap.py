@@ -52,7 +52,6 @@ log = logging.getLogger(".RebuildRefMap")
 #
 #-------------------------------------------------------------------------
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from QuestionDialog import OkDialog
 from BasicUtils import UpdateCallback
 
@@ -106,22 +105,3 @@ class RebuildRefMapOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'rebuild_refmap',
-    category = Tool.TOOL_DBFIX,
-    tool_class = RebuildRefMap,
-    options_class = RebuildRefMapOptions,
-    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-    translated_name = _("Rebuild Reference Maps"),
-    status= _("Stable"),
-    author_name = "Alex Roitman",
-    author_email = "shura@gramps-project.org",
-    description = _("Rebuilds reference maps")
-    )

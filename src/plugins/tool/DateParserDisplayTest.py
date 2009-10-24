@@ -44,7 +44,6 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from gui.utils import ProgressMeter
 from QuestionDialog import QuestionDialog
 from DateHandler import parser as _dp
@@ -223,27 +222,15 @@ class DateParserDisplayTest(Tool.Tool):
         self.db.request_rebuild()
         self.progress.close()
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# DateParserDisplayTestOptions
 #
-#
-#-------------------------------------------------------------------------
-
-if __debug__:
-    pmgr = PluginManager.get_instance()
-    pmgr.register_tool(
-        name = 'test_for_date_parser_and_displayer',
-        category = Tool.TOOL_DEBUG,
-        tool_class = DateParserDisplayTest,
-        options_class = Tool.ToolOptions,
-        modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-        translated_name = _("Check Localized Date Displayer and Parser"),
-        status = _("Beta"),
-        author_name = "Martin Hawlisch",
-        author_email = "martin@hawlisch.de",
-        description = _("This test tool will create many people showing all"
-                        " different date variants as birth. The death date is"
-                        " created by parsing the result of the date displayer for"
-                        " the birth date. This way you can ensure that dates"
-                        " printed can be parsed back in correctly.")
-        )
+#------------------------------------------------------------------------
+class DateParserDisplayTestOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+    def __init__(self, name, person_id=None):
+        """ Initialize the options class """
+        Tool.ToolOptions.__init__(self, name, person_id)

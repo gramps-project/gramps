@@ -27,9 +27,8 @@ Display a person's siblings in a report window
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
 from gen.plug import PluginManager
-from ReportBase import CATEGORY_QR_PERSON
+from gettext import gettext as _
 
 def run(database, document, person):
     """
@@ -66,20 +65,3 @@ def run(database, document, person):
                      sdb.birth_date_obj(child), 
                      rel_str)
     stab.write(sdoc)
-                    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_quick_report(
-    name = 'siblings',
-    category = CATEGORY_QR_PERSON,
-    run_func = run,
-    translated_name = _("Siblings"),
-    status = _("Stable"),
-    description= _("Display a person's siblings."),
-    author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org"
-    )

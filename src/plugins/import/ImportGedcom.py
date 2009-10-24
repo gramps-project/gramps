@@ -46,7 +46,6 @@ import Errors
 from GrampsDbUtils._GedcomParse import GedcomParser
 from GrampsDbUtils._GedcomStageOne import StageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
-from gen.plug import PluginManager, ImportPlugin
 from glade import Glade
 from libmixin import GrampsDbMixin
 
@@ -136,18 +135,3 @@ def importData(database, filename, callback=None):
     except Errors.GedcomError, msg:
         ErrorDialog(_('Error reading GEDCOM file'), str(msg))
         return
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_description = _('GEDCOM is used to transfer data between genealogy programs. '
-                'Most genealogy software will accept a GEDCOM file as input.')
-
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('GEDCOM'), 
-                      description     = _description,
-                      import_function = importData,
-                      extension       = "ged" )
-pmgr.register_plugin(plugin)

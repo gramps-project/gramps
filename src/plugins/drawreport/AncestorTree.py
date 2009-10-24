@@ -37,11 +37,10 @@ from TransUtils import sgettext as _
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from Errors import ReportError
-from gen.plug import PluginManager
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
-from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions
+from ReportBase import Report, ReportUtils, MenuReportOptions
 from SubstKeywords import SubstKeywords
 
 pt2cm = ReportUtils.pt2cm
@@ -524,24 +523,3 @@ class AncestorTreeOptions(MenuReportOptions):
 
         g = GraphicsStyle()
         default_style.add_draw_style("AC2-line", g)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_report(
-    name = 'ancestor_chart',
-    category = CATEGORY_DRAW,
-    report_class = AncestorTree,
-    options_class = AncestorTreeOptions,
-    modes = PluginManager.REPORT_MODE_GUI | \
-            PluginManager.REPORT_MODE_BKI | \
-            PluginManager.REPORT_MODE_CLI,
-    translated_name = _("Ancestor Tree"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Produces a graphical ancestral tree"),
-    )

@@ -32,8 +32,6 @@
 
 import gen.lib
 import Relationship
-import types
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -328,13 +326,3 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_male_relative(firstRel,secondRel),common)
             else:
                 return (self.get_female_relative(firstRel,secondRel),common)
-
-#-------------------------------------------------------------------------
-#
-# Register this function with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["es","ES","es_ES","espanol","Espanol","es_ES.UTF8","es_ES@euro","es_ES.UTF8@euro",
-            "spanish","Spanish", "es_ES.UTF-8", "es_ES.utf-8", "es_ES.utf8"])

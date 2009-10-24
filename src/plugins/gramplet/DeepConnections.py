@@ -35,7 +35,7 @@ import gtk
 #------------------------------------------------------------------------
 from gen.lib import EventType, FamilyRelType
 from BasicUtils import name_displayer
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
@@ -175,17 +175,3 @@ class DeepConnectionsGramplet(Gramplet):
             yield True
         self.append_text(_("\nSearch completed. %d relations found.") % self.total_relations_found)
         yield False
-        
-#------------------------------------------------------------------------
-#
-# Register the gramplet
-#
-#------------------------------------------------------------------------
-register(
-        type = "gramplet", 
-        name = "Deep Connections Gramplet", 
-        tname =_("Deep Connections Gramplet"), 
-        height = 230,
-        expand = True,
-        content = DeepConnectionsGramplet,
-        title = _("Deep Connections"))

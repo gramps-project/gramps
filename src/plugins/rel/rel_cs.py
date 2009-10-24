@@ -32,7 +32,6 @@
 
 import gen.lib
 import Relationship
-from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -223,12 +222,3 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     return (self.get_female_cousin(firstRel+secondRel),common)
                 else:
                     return ('vzdálená sestřenice',common)
-
-#-------------------------------------------------------------------------
-#
-# Register this class with the Plugins system 
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
-    ["cs", "CZ", "cs_CZ", "česky", "czech", "Czech", "cs_CZ.UTF8", "cs_CZ.UTF-8", "cs_CZ.utf-8", "cs_CZ.utf8"])

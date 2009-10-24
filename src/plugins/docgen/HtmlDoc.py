@@ -43,7 +43,6 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-from gen.plug import PluginManager, DocGenPlugin
 import ImgManip
 import const
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF
@@ -541,24 +540,3 @@ class HtmlDoc(BaseDoc, TextDoc):
         overwrite base method so page break has no effect
         """
         pass
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _('HTML'), 
-                          description = _("Generates documents in HTML "
-                                          "format."),
-                          basedoc     = HtmlDoc,
-                          paper       = False,
-                          style       = True, 
-                          extension   = "html" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

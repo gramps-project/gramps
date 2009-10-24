@@ -42,6 +42,7 @@ from gettext import gettext as _
 try:
     from ast import literal_eval as safe_eval
 except:
+    # PYTHON2.5 COMPATIBILITY: no ast present
     # not safe, but works:
     safe_eval = eval
 

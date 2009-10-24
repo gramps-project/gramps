@@ -46,7 +46,6 @@ log = logging.getLogger(".ImportSql")
 #-------------------------------------------------------------------------
 import gen.lib
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager, ImportPlugin
 from Utils import create_id
 
 #-------------------------------------------------------------------------
@@ -833,19 +832,3 @@ def importData(db, filename, callback=None):
     g = SQLReader(db, filename, callback)
     g.process()
     g.cleanup()
-
-#-------------------------------------------------------------------------
-#
-# Register the plugin
-#
-#-------------------------------------------------------------------------
-_name = _('SQLite Import')
-_description = _('SQLite is a common local database format')
-
-pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('SQLite Database'), 
-                      description     = _("Import data from SQLite database"),
-                      import_function = importData,
-                      extension       = "sql")
-pmgr.register_plugin(plugin)
-

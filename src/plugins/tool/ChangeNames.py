@@ -46,7 +46,6 @@ from gen.lib import Person
 
 from QuestionDialog import OkDialog
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from TransUtils import sgettext as _
 from glade import Glade
 
@@ -274,23 +273,3 @@ class ChangeNamesOptions(Tool.ToolOptions):
 
     def __init__(self, name,person_id=None):
         Tool.ToolOptions.__init__(self, name,person_id)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'chname',
-    category = Tool.TOOL_DBPROC,
-    tool_class = ChangeNames,
-    options_class = ChangeNamesOptions,
-    modes = PluginManager.TOOL_MODE_GUI,
-    translated_name = _("Fix Capitalization of Family Names"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Searches the entire database and attempts to "
-                    "fix capitalization of the names.")
-    )

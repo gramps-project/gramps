@@ -38,7 +38,6 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 import libcairodoc
-from gen.plug import PluginManager, DocGenPlugin
 
 #------------------------------------------------------------------------
 #
@@ -126,24 +125,3 @@ class PdfDoc(libcairodoc.CairoDoc):
         # load the result into an external viewer
         if self.open_req:
             open_file_with_default_application(self._backend.filename) 
-
-#------------------------------------------------------------------------
-#
-# register_plugin
-#
-#------------------------------------------------------------------------
-def register_plugin():
-    """
-    Register the document generator with the GRAMPS plugin system.
-    """
-    pmgr = PluginManager.get_instance()
-    plugin = DocGenPlugin(name        = _('PDF document'), 
-                          description = _("Generates documents in PDF "
-                                          "format (.pdf)."),
-                          basedoc     = PdfDoc,
-                          paper       = True,
-                          style       = True, 
-                          extension   = "pdf" )
-    pmgr.register_plugin(plugin)
-    
-register_plugin()

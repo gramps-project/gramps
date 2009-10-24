@@ -33,8 +33,6 @@ Display RepoRef for sources related to active repository
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from gen.plug import PluginManager
-from ReportBase import CATEGORY_QR_REPOSITORY
 
 def run(database, document, repo):
     """
@@ -75,24 +73,3 @@ def run(database, document, repo):
                 stab.columns(_("Source"), _("Type of media"), _("Call number"))
                 stab.row(src.get_title(), media, call)
     stab.write(sdoc)
-
-
-# ------------------------------------------------------------------------
-#
-#
-#
-# ------------------------------------------------------------------------
-
-PMGR = PluginManager.get_instance()
-
-PMGR.register_quick_report(
-    name='RepoRef',
-    category=CATEGORY_QR_REPOSITORY,
-    run_func=run,
-    translated_name=_('RepoRef'),
-    status=_('Stable'),
-    description=_('Display RepoRef for sources related to active repository'
-                  ),
-    author_name="Jerome Rapinat",
-    author_email="romjerome@yahoo.fr"
-    )

@@ -59,7 +59,6 @@ import GrampsDisplay
 from ManagedWindow import ManagedWindow
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool
-from gen.plug import PluginManager
 from TransUtils import sgettext as _
 from glade import Glade
 
@@ -1512,22 +1511,3 @@ class MarriedRelation(FamilyRule):
 
     def get_message(self):
         return _("Marriage date but not married")
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'verify',
-    category = Tool.TOOL_UTILS,
-    tool_class = Verify,
-    options_class = VerifyOptions,
-    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-    translated_name = _("Verify the Data"),
-    status=(_("Stable")),
-    author_name = "Alex Roitman",
-    author_email = "shura@gramps-project.org",
-    description = _("Verifies the data against user-defined tests")
-    )

@@ -28,6 +28,7 @@ pkgdata_PYTHON = \
 	ReorderIds.py \
 	SortEvents.py \
 	SoundGen.py \
+	tools.gpr.py \
 	Verify.py
 #	DumpGenderStats.py \
 #	PHPGedViewConnector.py \

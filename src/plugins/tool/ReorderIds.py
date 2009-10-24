@@ -42,7 +42,6 @@ from gettext import gettext as _
 from gui.utils import ProgressMeter
 import gen.lib
 from PluginUtils import Tool
-from gen.plug import PluginManager
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
@@ -236,23 +235,3 @@ class ReorderIdsOptions(Tool.ToolOptions):
 
     def __init__(self, name, person_id=None):
         Tool.ToolOptions.__init__(self, name, person_id)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'reorder_ids',
-    category = Tool.TOOL_DBPROC,
-    tool_class = ReorderIds,
-    options_class = ReorderIdsOptions,
-    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-    translated_name = _("Reorder GRAMPS IDs"),
-    status = _("Stable"),
-    author_name = "Donald N. Allingham",
-    author_email = "don@gramps-project.org",
-    description = _("Reorders the gramps IDs "
-                    "according to Gramps' default rules.")
-    )

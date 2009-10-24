@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import register, Gramplet
+from DataViews import Gramplet
 from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
@@ -44,18 +44,3 @@ class TODOGramplet(Gramplet):
     def on_save(self):
         self.gui.data = [] # clear out old data
         self.save_text_to_data()
-
-#------------------------------------------------------------------------
-#
-# Register Gramplet
-#
-#------------------------------------------------------------------------
-register(type="gramplet", 
-         name="TODO Gramplet", 
-         tname=_("TODO Gramplet"), 
-         height=300,
-         expand=True,
-         content = TODOGramplet,
-         title=_("TODO List"),
-         )
-

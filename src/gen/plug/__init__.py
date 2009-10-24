@@ -22,11 +22,27 @@ The "plug" package for handling plugins in Gramps.
 """
 
 from _plugin import Plugin
+from _pluginreg import (PluginData, PluginRegister, REPORT, TOOL, 
+            CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, 
+            CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
+            TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
+            TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON, 
+            CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
+            CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
+            CATEGORY_QR_DATE )
 from _manager import PluginManager
 from _import import ImportPlugin
 from _export import ExportPlugin
 from _docgenplugin import DocGenPlugin
 from utils import *
 
-__all__ = [ "docbackend", "docgen", "menu", Plugin, PluginManager, 
-            ImportPlugin, ExportPlugin, DocGenPlugin ]
+__all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
+            PluginRegister, PluginManager, 
+            ImportPlugin, ExportPlugin, DocGenPlugin,
+            REPORT, TOOL, CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, 
+            CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
+            TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
+            TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON, 
+            CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
+            CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
+            CATEGORY_QR_DATE]

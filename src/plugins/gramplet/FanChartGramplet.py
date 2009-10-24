@@ -54,7 +54,7 @@ if gtk.pygtk_version < (2,3,93):
 #-------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from gettext import gettext as _
-from DataViews import Gramplet, register
+from DataViews import Gramplet
 from DataViews.PedigreeView import (find_children, find_parents, 
                                     find_witnessed_people, FormattingHelper)
 import gen.lib
@@ -885,19 +885,3 @@ class FanChartGramplet(Gramplet):
         menu.append(item)
         menu.popup(None,None,None,event.button,event.time)
         return 1
-
-#-------------------------------------------------------------------------
-#
-# Register the Gramplet
-#
-#-------------------------------------------------------------------------
-register(type="gramplet", 
-         name= "Fan Chart Gramplet", 
-         tname=_("Fan Chart Gramplet"), 
-         height=430,
-         expand=True,
-         content = FanChartGramplet,
-         detached_height = 550,
-         detached_width = 475,
-         title=_("Fan Chart"),
-         )
