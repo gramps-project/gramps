@@ -1220,7 +1220,9 @@ class RelationshipView(NavigationView):
         for event_ref in family.get_event_ref_list():
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
-            if event.get_type() == gen.lib.EventType.MARRIAGE:
+            if event and event.get_type() == gen.lib.EventType.MARRIAGE and \
+            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                 self.write_event_ref(vbox, _('Marriage'), event)
                 value = True
         return value

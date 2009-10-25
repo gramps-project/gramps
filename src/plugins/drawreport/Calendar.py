@@ -326,11 +326,15 @@ class Calendar(Report):
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
                                 if event.type in [gen.lib.EventType.MARRIAGE, 
-                                                             gen.lib.EventType.MARR_ALT]:
+                                                  gen.lib.EventType.MARR_ALT] and \
+                                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+                                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                                     are_married = event
                                 elif event.type in [gen.lib.EventType.DIVORCE, 
-                                                               gen.lib.EventType.ANNULMENT, 
-                                                               gen.lib.EventType.DIV_FILING]:
+                                                    gen.lib.EventType.ANNULMENT, 
+                                                    gen.lib.EventType.DIV_FILING] and \
+                                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+                                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                                     are_married = None
                             if are_married is not None:
                                 for event_ref in fam.get_event_ref_list():

@@ -209,7 +209,9 @@ def get_marriage_date(db,family):
         return 0
     for event_ref in family.get_event_ref_list():
         event = find_event(db,event_ref.ref)
-        if event.get_type() == gen.lib.EventType.MARRIAGE:
+        if event.get_type() == gen.lib.EventType.MARRIAGE and \
+        (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+        event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
             date_obj = event.get_date_object()
             return date_obj.get_sort_value()
     return 0

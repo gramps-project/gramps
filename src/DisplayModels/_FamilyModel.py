@@ -46,6 +46,7 @@ import GrampsLocale
 import DateHandler
 from BasicUtils import name_displayer
 import gen.lib
+from gen.lib import EventRoleType
 import gen.utils
 
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
@@ -130,6 +131,8 @@ class FamilyModel(FlatBaseModel):
 
     def column_marriage(self, data):
         erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]
+        erlist = [x for x in erlist if x.get_role()==EventRoleType.FAMILY or 
+                                       x.get_role()==EventRoleType.PRIMARY]
         event = gen.utils.marriage_from_eventref_list(self.db, erlist)
         if event:
             return DateHandler.displayer.display(event.date)

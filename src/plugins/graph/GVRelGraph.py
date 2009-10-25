@@ -264,7 +264,9 @@ class RelGraphReport(Report):
         label = ""
         for event_ref in fam.get_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
-            if event.type == gen.lib.EventType.MARRIAGE:
+            if event.type == gen.lib.EventType.MARRIAGE and \
+            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                 label = self.get_event_string(event)
                 break
         if self.includeid:
