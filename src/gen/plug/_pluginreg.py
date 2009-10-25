@@ -927,6 +927,11 @@ class PluginRegister(object):
         """
         return self.type_plugins(RELCALC)
 
+    def gramplet_plugins(self):
+        """Return a list of PluginData that are of type GRAMPLET
+        """
+        return self.type_plugins(GRAMPLET)
+
     def filter_load_on_reg(self):
         """Return a list of PluginData that have load_on_reg == True
         """

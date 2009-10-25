@@ -195,6 +195,12 @@ class BasePluginManager(object):
         """ Return the list of succeeded plugins. """
         return self.__success_list
 
+    def get_plugin(self, id):
+        """ 
+        Returns a plugin object from PluginRegister by id.
+        """
+        return self.__pgr.get_plugin(id)
+
     def get_reg_reports(self, gui=True):
         """ Return list of registered reports
         :Param gui: bool indicating if GUI reports or CLI reports must be
@@ -223,6 +229,12 @@ class BasePluginManager(object):
         """ Return list of reports registered as bookitem
         """
         return self.__pgr.bookitem_plugins()
+    
+    def get_reg_gramplets(self):
+        """ Return list of non hidden gramplets.
+        """
+        return [plg for plg in self.__pgr.gramplet_plugins() if plg.id not in
+                self.__hidden_plugins]
     
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """

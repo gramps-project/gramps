@@ -53,6 +53,7 @@ from gui.utils import add_menuitem
 from QuickReports import run_quick_report_by_name
 import GrampsDisplay
 from glade import Glade
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -66,47 +67,35 @@ WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
 # Globals
 #
 #-------------------------------------------------------------------------
-AVAILABLE_GRAMPLETS = {}
+PLUGMAN = PluginManager.get_instance()
+
 GRAMPLET_FILENAME = os.path.join(const.HOME_DIR,"gramplets.ini")
 NL = "\n" 
 
 debug = False
 
-def register_gramplet(data_dict):
-    """
-    Function to register a gramplet. Called from plugin directory.
-    """
-    global AVAILABLE_GRAMPLETS
-    base_opts = {"name":"Unnamed Gramplet",
-                 "tname": _("Unnamed Gramplet"),
-                 "state":"maximized",
-                 "version":"0.0.0",
-                 "gramps":"0.0.0",
-                 "column": -1, "row": -1,
-                 "data": []}
-    base_opts.update(data_dict)
-    if base_opts["name"] not in AVAILABLE_GRAMPLETS:
-        AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
-    else: # go with highest version (or current one in case of tie)
-        # GRAMPS loads system plugins first
-        loaded_version = [int(i) for i in 
-                AVAILABLE_GRAMPLETS[base_opts["name"]]["version"].split(".")]
-        current_version = [int(i) for i in base_opts["version"].split(".")]
-        if current_version >= loaded_version:
-            AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
+def AVAILABLE_GRAMPLETS():
+    return [gplug.id for gplug in PLUGMAN.get_reg_gramplets()]
 
-def register(**data):
-    """
-    Wrapper around register_gramplet to demonstrate a common
-    interface for all plugins.
-    """
-    if "type" in data:
-        if data["type"].lower() == "gramplet":
-            register_gramplet(data)
-        else:
-            print ("Unknown plugin type: '%s'" % data["type"])
-    else:
-        print ("Plugin did not define type.")
+def GET_AVAILABLE_GRAMPLETS(name):
+    for gplug in PLUGMAN.get_reg_gramplets():
+        if gplug.id == name:
+            return {
+                "name":    gplug.id,
+                "tname":   gplug.name,
+                "version": gplug.version,
+                "height":  gplug.height,
+                "title":   gplug.gramplet_title,
+                "content": gplug.gramplet,
+                "detached_width": gplug.detached_width,
+                "detached_height": gplug.detached_height,
+                "state":   "maximized",
+                "gramps":  "0.0.0",
+                "column":  -1, 
+                "row":     -1,
+                "data":    [],
+                }
+    return None
 
 def parse_tag_attr(text):
     """
@@ -131,8 +120,8 @@ def get_gramplet_opts(name, opts):
     Lookup the options for a given gramplet name and update
     the options with provided dictionary, opts.
     """
-    if name in AVAILABLE_GRAMPLETS:
-        data = AVAILABLE_GRAMPLETS[name]
+    if name in AVAILABLE_GRAMPLETS():
+        data = GET_AVAILABLE_GRAMPLETS(name)
         my_data = data.copy()
         my_data.update(opts)
         return my_data
@@ -145,8 +134,8 @@ def get_gramplet_options_by_name(name):
     Get options by gramplet name.
     """
     if debug: print "name:", name
-    if name in AVAILABLE_GRAMPLETS:
-        return AVAILABLE_GRAMPLETS[name].copy()
+    if name in AVAILABLE_GRAMPLETS():
+        return GET_AVAILABLE_GRAMPLETS(name).copy()
     else:
         print ("Unknown gramplet name: '%s'" % name)
         return None
@@ -156,9 +145,9 @@ def get_gramplet_options_by_tname(name):
     get options by translated name.
     """
     if debug: print "name:", name
-    for key in AVAILABLE_GRAMPLETS:
-        if AVAILABLE_GRAMPLETS[key]["tname"] == name:
-            return AVAILABLE_GRAMPLETS[key].copy()
+    for key in AVAILABLE_GRAMPLETS():
+        if GET_AVAILABLE_GRAMPLETS(key)["tname"] == name:
+            return GET_AVAILABLE_GRAMPLETS(key).copy()
     print ("Unknown gramplet name: '%s'" % name)
     return None
 
@@ -166,10 +155,15 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
     """
     Make a GUI gramplet given its name.
     """
-    if name in AVAILABLE_GRAMPLETS:
+    if name in AVAILABLE_GRAMPLETS():
         gui = GuiGramplet(viewpage, dbstate, uistate, **opts)
         if opts.get("content", None):
-            opts["content"](gui)
+            pdata = PLUGMAN.get_plugin(opts["name"])
+            module = PLUGMAN.load_plugin(pdata)
+            if module:
+                getattr(module, opts["content"])(gui)
+            else:
+                print "Unregistered gramplet '%s': skipping content" % opts["name"]
         # now that we have user code, set the tooltips
         msg = gui.tooltip
         if msg is None:
@@ -235,7 +229,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
 
     def handle_response(self, object, response):
         """
-        Callback for tacking care of button clicks.
+        Callback for taking care of button clicks.
         """
         if response in [gtk.RESPONSE_CLOSE, gtk.STOCK_CLOSE]:
             self.close()
@@ -1239,8 +1233,8 @@ class GrampletView(PageView):
         else:
             # give defaults as currently known
             for name in ["Top Surnames Gramplet", "Welcome Gramplet"]:
-                if name in AVAILABLE_GRAMPLETS:
-                    retval.append((name, AVAILABLE_GRAMPLETS[name]))
+                if name in AVAILABLE_GRAMPLETS():
+                    retval.append((name, GET_AVAILABLE_GRAMPLETS(name)))
         return retval
 
     def save(self, *args):
@@ -1519,8 +1513,8 @@ class GrampletView(PageView):
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
                 qr_menu = gtk.Menu()
-                names = [AVAILABLE_GRAMPLETS[key]["tname"] for key 
-                         in AVAILABLE_GRAMPLETS]
+                names = [GET_AVAILABLE_GRAMPLETS(key)["tname"] for key 
+                         in AVAILABLE_GRAMPLETS()]
                 names.sort()
                 for name in names:
                     add_menuitem(qr_menu, name, 
