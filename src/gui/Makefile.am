@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	dbloader.py \
 	dbman.py \
 	grampsgui.py \
+	pluginmanager.py \
 	utils.py \
 	viewmanager.py
 

@@ -186,6 +186,7 @@ src/gui/dbguielement.py
 src/gui/dbloader.py
 src/gui/dbman.py
 src/gui/grampsgui.py
+src/gui/pluginmanager.py
 src/gui/utils.py
 src/gui/viewmanager.py
 
