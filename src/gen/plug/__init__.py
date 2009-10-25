@@ -34,6 +34,7 @@ from _manager import BasePluginManager
 from _import import ImportPlugin
 from _export import ExportPlugin
 from _docgenplugin import DocGenPlugin
+from _gramplet import Gramplet
 from utils import *
 
 __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,

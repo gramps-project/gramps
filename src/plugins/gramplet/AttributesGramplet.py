@@ -19,7 +19,7 @@
 # $Id: $
 #
 
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from BasicUtils import name_displayer
 from gettext import gettext as _
 

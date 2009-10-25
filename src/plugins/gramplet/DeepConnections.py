@@ -35,7 +35,7 @@ import gtk
 #------------------------------------------------------------------------
 from gen.lib import EventType, FamilyRelType
 from BasicUtils import name_displayer
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------

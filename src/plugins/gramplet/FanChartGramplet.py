@@ -54,7 +54,7 @@ if gtk.pygtk_version < (2,3,93):
 #-------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from gettext import gettext as _
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from DataViews.PedigreeView import (find_children, find_parents, 
                                     find_witnessed_people, FormattingHelper)
 import gen.lib

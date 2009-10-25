@@ -31,7 +31,7 @@ import pango
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from BasicUtils import name_displayer
 from TransUtils import sgettext as _
 from const import GLADE_FILE

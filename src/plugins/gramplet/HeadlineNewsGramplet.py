@@ -45,7 +45,7 @@ import re
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from const import URL_WIKISTRING
 from TransUtils import sgettext as _
 

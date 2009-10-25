@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from ReportBase import ReportUtils
 from BasicUtils import name_displayer
 import DateHandler

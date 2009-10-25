@@ -30,7 +30,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 from QuickReports import run_quick_report_by_name, get_quick_report_list
 from gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,

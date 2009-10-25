@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 from BasicUtils import name_displayer
 

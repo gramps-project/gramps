@@ -23,7 +23,7 @@
 Package init for the DataViews package.
 """
 
-from GrampletView import GrampletView, Gramplet
+from GrampletView import GrampletView
 from PersonView import PersonView
 from RelationView import RelationshipView
 from FamilyList import FamilyListView

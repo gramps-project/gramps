@@ -34,7 +34,7 @@ on a particular date.
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 import DateHandler
 from QuickReports import run_quick_report_by_name

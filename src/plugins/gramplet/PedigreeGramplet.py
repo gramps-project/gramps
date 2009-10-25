@@ -31,7 +31,7 @@ import locale
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 from gettext import ngettext
 from BasicUtils import name_displayer

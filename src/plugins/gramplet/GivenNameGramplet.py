@@ -22,7 +22,7 @@
 #
 from gettext import gettext as _
 
-from DataViews import Gramplet
+from gen.plug import Gramplet
 import config
 
 _YIELD_INTERVAL = 350

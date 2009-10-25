@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 from QuickReports import run_quick_report_by_name
 import gen.lib

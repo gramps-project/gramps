@@ -23,7 +23,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from BasicUtils import name_displayer
 from ReportBase import ReportUtils
 import DateHandler

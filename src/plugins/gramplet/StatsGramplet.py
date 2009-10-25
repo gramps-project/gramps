@@ -30,7 +30,7 @@ import posixpath
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 from Utils import media_path_full
 import DateHandler

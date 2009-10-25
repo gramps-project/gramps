@@ -30,8 +30,7 @@ import urllib
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from DataViews import Gramplet
-from DataViews.GrampletView import AVAILABLE_GRAMPLETS
+from gen.plug import Gramplet
 from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
@@ -79,7 +78,7 @@ class PluginManagerGramplet(Gramplet):
         for row in rows:
             types[row[1]] = 1
         self.set_text("")
-        # name, type, ver, desc, gver, use, rating, contact, download
+        # name, type, ver, desc, use, rating, contact, download
         for type in types:
             self.render_text("<b>%s Plugins</b>\n" % _(type))
             row_count = 1
