@@ -53,7 +53,7 @@ from gui.utils import add_menuitem
 from QuickReports import run_quick_report_by_name
 import GrampsDisplay
 from glade import Glade
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +67,7 @@ WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
 # Globals
 #
 #-------------------------------------------------------------------------
-PLUGMAN = PluginManager.get_instance()
+PLUGMAN = GuiPluginManager.get_instance()
 
 GRAMPLET_FILENAME = os.path.join(const.HOME_DIR,"gramplets.ini")
 NL = "\n" 

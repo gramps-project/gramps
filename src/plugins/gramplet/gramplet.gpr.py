@@ -252,7 +252,7 @@ register(GRAMPLET,
          fname="WelcomeGramplet.py",
          height=300,
          expand=True,
-         gramplet = 'make_welcome_gramplet',
+         gramplet = 'make_welcome_content',
          gramplet_title=_("Welcome to GRAMPS!"),
          )
 

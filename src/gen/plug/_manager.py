@@ -233,8 +233,7 @@ class BasePluginManager(object):
     def get_reg_gramplets(self):
         """ Return list of non hidden gramplets.
         """
-        return [plg for plg in self.__pgr.gramplet_plugins() if plg.id not in
-                self.__hidden_plugins]
+        return self.__pgr.gramplet_plugins()
     
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
