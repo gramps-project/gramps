@@ -160,7 +160,7 @@ plg.extension = "rtf"
 
 plg = newplugin()
 plg.id    = 'SVG (Scalable Vector Graphics)'
-plg.name  = _('RTF document')
+plg.name  = _('SVG document')
 plg.description =  _("Generates documents in Scalable "
                      "Vector Graphics format (.svg).")
 plg.version = '1.0'
