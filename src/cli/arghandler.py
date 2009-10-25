@@ -48,7 +48,7 @@ import gen
 from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
 from PluginUtils import Tool
-from gen.plug import PluginManager
+from gen.plug import BasePluginManager
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, cl_report
 
 #-------------------------------------------------------------------------
@@ -146,7 +146,7 @@ class ArgHandler(object):
             # or an empty string.
             family_tree_format = os.path.splitext(fname)[-1][1:].lower()
 
-        pmgr = PluginManager.get_instance()
+        pmgr = BasePluginManager.get_instance()
         plugin_found = False
         for plugin in pmgr.get_import_plugins():
             if family_tree_format == plugin.get_extension():
@@ -189,7 +189,7 @@ class ArgHandler(object):
             # or an empty string.
             family_tree_format = os.path.splitext(fname)[-1][1:].lower()
 
-        pmgr = PluginManager.get_instance()
+        pmgr = BasePluginManager.get_instance()
         plugin_found = False
         for plugin in pmgr.get_export_plugins():
             if family_tree_format == plugin.get_extension():
@@ -403,7 +403,7 @@ class ArgHandler(object):
         """
         Command-line import routine. Try to import filename using the family_tree_format.
         """
-        pmgr = PluginManager.get_instance()
+        pmgr = BasePluginManager.get_instance()
         for plugin in pmgr.get_import_plugins():
             if family_tree_format == plugin.get_extension():
                 import_function = plugin.get_import_function()
@@ -425,7 +425,7 @@ class ArgHandler(object):
         Command-line export routine. 
         Try to write into filename using the family_tree_format.
         """
-        pmgr = PluginManager.get_instance()
+        pmgr = BasePluginManager.get_instance()
         for plugin in pmgr.get_export_plugins():
             if family_tree_format == plugin.get_extension():
                 export_function = plugin.get_export_function()
@@ -440,7 +440,7 @@ class ArgHandler(object):
         """
         Command-line action routine. Try to perform specified action.
         """
-        pmgr = PluginManager.get_instance()
+        pmgr = BasePluginManager.get_instance()
         if action == "report":
             try:
                 options_str_dict = dict( [ tuple(chunk.split('='))

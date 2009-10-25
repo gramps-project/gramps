@@ -42,7 +42,8 @@ from gettext import gettext as _
 import const
 from ReportBase import report, standalone_categories
 import _Tool
-from gen.plug import PluginManager, REPORT, TOOL
+from gen.plug import REPORT, TOOL
+from gui.pluginmanager import GuiPluginManager
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -76,7 +77,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.imap = {}
         self.msg = msg
         self.content = content
-        self._pmgr = PluginManager.get_instance()
+        self._pmgr = GuiPluginManager.get_instance()
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, 
                                              self.__class__)

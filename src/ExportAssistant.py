@@ -53,7 +53,7 @@ import gtk
 
 import const
 import config
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 import Utils
 import ManagedWindow
 
@@ -132,7 +132,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.logo      = gtk.gdk.pixbuf_new_from_file(_gramps_png)
         self.splash    = gtk.gdk.pixbuf_new_from_file(_splash_jpg)
             
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         self.__exporters = pmgr.get_export_plugins()
         
         self.__previous_page = -1

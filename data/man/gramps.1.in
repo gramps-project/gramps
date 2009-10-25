@@ -69,7 +69,7 @@ the format of that file is guessed according to its extension or MIME-type.
 .br
 
 Formats 
-available for output are \fBgramps\-xml\fR (guessed if \fIFILE\fR ends with
+available for export are \fBgramps\-xml\fR (guessed if \fIFILE\fR ends with
 \fB.gramps\fR), \fBgedcom\fR (guessed if \fIFILE\fR ends with \fB.ged\fR), or
 any file export available through the GRAMPS plugin system.
 .br

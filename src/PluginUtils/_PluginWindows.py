@@ -45,7 +45,8 @@ import gobject
 #-------------------------------------------------------------------------
 import ManagedWindow
 import Errors
-from gen.plug import PluginManager, PluginRegister, PTYPE_STR
+from gen.plug import PluginRegister, PTYPE_STR
+from gui.pluginmanager import GuiPluginManager
 import _Tool as Tool
 from QuestionDialog import InfoDialog
 import config
@@ -67,7 +68,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track,
                                              self.__class__)
 
-        self.__pmgr = PluginManager.get_instance()
+        self.__pmgr = GuiPluginManager.get_instance()
         self.__preg = PluginRegister.get_instance()
         self.set_window(gtk.Dialog("", uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,

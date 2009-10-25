@@ -45,7 +45,7 @@ import gtk
 from BasicUtils import name_displayer
 import ManagedWindow
 from DisplayModels import PeopleModel
-from gen.plug import PluginManager
+import Relationship
 
 from QuestionDialog import ErrorDialog
 from PluginUtils import Tool
@@ -86,8 +86,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.dbstate = dbstate
-        pmgr = PluginManager.get_instance()
-        self.relationship = pmgr.get_relationship_calculator()
+        self.relationship = Relationship.get_relationship_calculator()
         self.relationship.connect_db_signals(dbstate)
 
         self.glade = Glade()

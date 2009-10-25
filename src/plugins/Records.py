@@ -43,10 +43,6 @@ from gen.plug.menu import (BooleanOption, EnumeratedListOption,
 from ReportBase import Report, ReportUtils, MenuReportOptions
 from Utils import probably_alive
 
-MODE_GUI = PluginManager.REPORT_MODE_GUI
-MODE_BKI = PluginManager.REPORT_MODE_BKI
-MODE_CLI = PluginManager.REPORT_MODE_CLI
-
 #------------------------------------------------------------------------
 #
 # Global functions

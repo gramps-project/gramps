@@ -38,7 +38,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from Errors import ReportError
-from gen.plug import PluginManager
+import Relationship
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
@@ -85,7 +85,7 @@ class KinshipReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
 
         self.__db = database
-        self.rel_calc = PluginManager.get_instance().get_relationship_calculator()
+        self.rel_calc = Relationship.get_relationship_calculator()
 
         self.kinship_map = {}
         self.spouse_map = {}

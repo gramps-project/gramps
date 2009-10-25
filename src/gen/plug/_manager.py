@@ -45,9 +45,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.utils
-import Relationship
 from gen.plug import PluginRegister
-import config
 
 #-------------------------------------------------------------------------
 #
@@ -58,30 +56,27 @@ _UNAVAILABLE = _("No description was provided")
 
 #-------------------------------------------------------------------------
 #
-# PluginManager
+# BasePluginManager
 #
 #-------------------------------------------------------------------------
-class PluginManager(gen.utils.Callback):
-    """ PluginManager is a Singleton which manages plugins """
+class BasePluginManager(object):
+    """ unique singleton storage class for a PluginManager. """
+
     __instance = None
-    
-    __signals__ = { 'plugins-reloaded' : None }
     
     def get_instance():
         """ Use this function to get the instance of the PluginManager """
-        if PluginManager.__instance is None:
-            PluginManager.__instance = 1 # Set to 1 for __init__()
-            PluginManager.__instance = PluginManager()
-        return PluginManager.__instance
+        if BasePluginManager.__instance is None:
+            BasePluginManager.__instance = 1 # Set to 1 for __init__()
+            BasePluginManager.__instance = BasePluginManager()
+        return BasePluginManager.__instance
     get_instance = staticmethod(get_instance)
-            
+    
     def __init__(self):
         """ This function should only be run once by get_instance() """
-        if PluginManager.__instance is not 1:
+        if BasePluginManager.__instance is not 1:
             raise Exception("This class is a singleton. "
                             "Use the get_instance() method")
-            
-        gen.utils.Callback.__init__(self)
 
         self.__import_plugins    = []
         self.__export_plugins    = []
@@ -91,28 +86,12 @@ class PluginManager(gen.utils.Callback):
         self.__failmsg_list      = []
         self.__external_opt_dict = {}
         self.__success_list      = []
-        self.__relcalc_class = Relationship.RelationshipCalculator
 
         self.__mod2text          = {}
         
         self.__pgr = PluginRegister.get_instance()
         self.__registereddir_set = set()
         self.__loaded_plugins = {}
-        self.__hidden_plugins = set([])
-        for id in config.get('plugin.hiddenplugins'):
-            self.__hidden_plugins.add(id)
-        self.__hidden_changed()
-    
-    def __hidden_changed(self, *args):
-        #if hidden changed, stored data must be emptied as it could contain
-        #something that now must be hidden
-        self.__import_plugins = []
-        self.__export_plugins = []
-        self.__docgen_plugins = []
-        #objects that need to know if the plugins available changed, are 
-        #listening to this signal to update themselves. If a plugin becomes
-        #(un)hidden, this should happen, so we emit.
-        self.emit('plugins-reloaded')
 
     def reg_plugins(self, direct):
         """
@@ -133,16 +112,7 @@ class PluginManager(gen.utils.Callback):
             # registereddir_list list for use on reloading.
             self.__registereddir_set.add(dirpath)
             self.__pgr.scan_dir(dirpath)
-        
-        # set correct relationship calculator based on LANG
-        for plugin in self.__pgr.relcalc_plugins():
-            if os.environ["LANG"] in plugin.lang_list:
-               #the loaded module is put in variable mod
-                mod = self.load_plugin(plugin)
-                if mod:
-                    self.__relcalc_class = eval('mod.' +
-                                                plugin.relcalcclass)
-                    break
+
         # load plugins that request to be loaded on startup
         for plugin in self.__pgr.filter_load_on_reg():
             mod = self.load_plugin(plugin)
@@ -167,6 +137,15 @@ class PluginManager(gen.utils.Callback):
             self.__failmsg_list.append((filename, sys.exc_info()))
         return None
 
+    def empty_managed_plugins(self):
+        """ For some plugins, managed Plugin are used. These are only 
+        reobtained from the registry if this method is called
+        """
+        # TODO: do other lists need to be reset here, too?
+        self.__import_plugins = []
+        self.__export_plugins = []
+        self.__docgen_plugins = []
+        
     def reload_plugins(self):
         """ Reload previously loaded plugins """
         pymod = re.compile(r"^(.*)\.py$")
@@ -175,10 +154,7 @@ class PluginManager(gen.utils.Callback):
         self.__failmsg_list = []
     
         # attempt to reload all plugins that have succeeded in the past
-        # TODO: do other lists need to be reset here, too?
-        self.__import_plugins[:] = []
-        self.__export_plugins[:] = []
-        self.__docgen_plugins[:] = []
+        self.empty_managed_plugins()
 
         for plugin in self.__success_list:
             filename = plugin[0]
@@ -211,35 +187,6 @@ class PluginManager(gen.utils.Callback):
             except:
                 self.__failmsg_list.append((filename, sys.exc_info()))
 
-        self.emit('plugins-reloaded')
-
-    def get_hidden_plugin_ids(self):
-        """
-        Returns copy of the set hidden plugin ids
-        """
-        return self.__hidden_plugins.copy()
-
-    def hide_plugin(self, id):
-        """ Hide plugin with given id. This will hide the plugin so queries do
-        not return it anymore, and write this change to the config.
-        Note that config will then emit a signal
-        """ 
-        self.__hidden_plugins.add(id)
-        hideset = [x for x in self.__hidden_plugins]
-        config.set('plugin.hiddenplugins', hideset)
-        config.save()
-        self.__hidden_changed()
-    
-    def unhide_plugin(self, id):
-        """ Unhide plugin with given id. This will unhide the plugin so queries
-        return it again, and write this change to the config
-        """
-        self.__hidden_plugins.remove(id)
-        hideset = [x for x in self.__hidden_plugins]
-        config.set('plugin.hiddenplugins', hideset)
-        config.save()
-        self.__hidden_changed()
-
     def get_fail_list(self):
         """ Return the list of failed plugins. """
         return self.__failmsg_list
@@ -249,38 +196,33 @@ class PluginManager(gen.utils.Callback):
         return self.__success_list
 
     def get_reg_reports(self, gui=True):
-        """ Return list of non hidden registered reports
+        """ Return list of registered reports
         :Param gui: bool indicating if GUI reports or CLI reports must be
             returned
         """
-        return [plg for plg in self.__pgr.report_plugins(gui) if plg.id not in
-                self.__hidden_plugins]
+        return self.__pgr.report_plugins(gui)
     
     def get_reg_tools(self, gui=True):
-        """ Return list of non hidden  registered tools
+        """ Return list of registered tools
         :Param gui: bool indicating if GUI reports or CLI reports must be
             returned
         """
-        return [plg for plg in self.__pgr.tool_plugins(gui) if plg.id not in
-                self.__hidden_plugins]
+        return self.__pgr.tool_plugins(gui)
     
     def get_reg_quick_reports(self):
-        """ Return list of non hidden  registered quick reports
+        """ Return list of registered quick reports
         """
-        return [plg for plg in self.__pgr.quickreport_plugins() if plg.id not in
-                self.__hidden_plugins]
+        return self.__pgr.quickreport_plugins()
     
     def get_reg_mapservices(self):
-        """ Return list of non hidden  registered mapservices
+        """ Return list of registered mapservices
         """
-        return [plg for plg in self.__pgr.mapservice_plugins() if plg.id not in
-                self.__hidden_plugins]
+        return self.__pgr.mapservice_plugins()
 
     def get_reg_bookitems(self):
-        """ Return list of non hidden  reports registered as bookitem
+        """ Return list of reports registered as bookitem
         """
-        return [plg for plg in self.__pgr.bookitem_plugins() if plg.id not in
-                self.__hidden_plugins]
+        return self.__pgr.bookitem_plugins()
     
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
@@ -289,6 +231,21 @@ class PluginManager(gen.utils.Callback):
     def get_module_description(self, module):
         """ Given a module name, return the module description. """
         return self.__mod2text.get(module, '')
+    
+    def get_reg_importers(self):
+        """ Return list of registered importers
+        """
+        return self.__pgr.import_plugins()
+    
+    def get_reg_exporters(self):
+        """ Return list of registered exporters
+        """
+        return self.__pgr.export_plugins()
+    
+    def get_reg_docgens(self):
+        """ Return list of registered docgen
+        """
+        return self.__pgr.docgen_plugins()
     
     def get_import_plugins(self):
         """
@@ -300,9 +257,7 @@ class PluginManager(gen.utils.Callback):
         ## only PluginData, loading from module when importfunction needed?
         if self.__import_plugins == []:
             #The module still needs to be imported
-            imps = [pdata for pdata in self.__pgr.import_plugins() if pdata.id 
-                                        not in self.__hidden_plugins]
-            for pdata in imps:
+            for pdata in self.get_reg_importers():
                 mod = self.load_plugin(pdata)
                 if mod:
                     imp = gen.plug.ImportPlugin(name=pdata.name, 
@@ -323,9 +278,7 @@ class PluginManager(gen.utils.Callback):
         ## only PluginData, loading from module when export/options needed?
         if self.__export_plugins == []:
             #The modules still need to be imported
-            exps = [pdata for pdata in self.__pgr.export_plugins() if pdata.id 
-                                        not in self.__hidden_plugins]
-            for pdata in exps:
+            for pdata in self.get_reg_exporters():
                 mod = self.load_plugin(pdata)
                 if mod:
                     exp = gen.plug.ExportPlugin(name=pdata.name, 
@@ -349,9 +302,7 @@ class PluginManager(gen.utils.Callback):
         ##       So, only do import when docgen.get_basedoc() is requested
         if self.__docgen_plugins == []:
             #The modules still need to be imported
-            dgdps = [pdata for pdata in self.__pgr.docgen_plugins() if pdata.id 
-                                        not in self.__hidden_plugins]
-            for pdata in dgdps:
+            for pdata in self.get_reg_docgens():
                 mod = self.load_plugin(pdata)
                 if mod:
                     dgp = gen.plug.DocGenPlugin(name=pdata.name, 
@@ -394,9 +345,3 @@ class PluginManager(gen.utils.Callback):
                     if item.get_module_name() not in failed_module_names ][:]
         self.__docgen_plugins[:] = [ item for item in self.__docgen_plugins
                     if item.get_module_name() not in failed_module_names ][:]
-    
-    def get_relationship_calculator(self):
-        """ 
-        Return the relationship calculator for the current language.
-        """
-        return self.__relcalc_class()

@@ -34,7 +34,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 from _Constants import CATEGORY_TEXT
 from _DocReportDialog import DocReportDialog
 
@@ -52,7 +52,7 @@ class _TextFormatComboBox(gtk.ComboBox):
         
         gtk.ComboBox.__init__(self)
         
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         self.__textdoc_plugins = []
         for plugin in pmgr.get_docgen_plugins():
             if plugin.get_text_support():

@@ -69,7 +69,7 @@ import const
 import Utils
 import ListModel
 import Errors
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 from gen.plug.docgen import StyleSheet, StyleSheetList
 from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
@@ -198,7 +198,7 @@ class BookItem(object):
         """
         self.dbase = dbase
         self.style_name = "default"
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
 
         for pdata in pmgr.get_reg_bookitems():
             if pdata.id == name:
@@ -748,7 +748,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         
         The selections are read from the book item registry.
         """
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         regbi = pmgr.get_reg_bookitems()
         if not regbi:
             return
@@ -1061,7 +1061,7 @@ class _BookFormatComboBox(gtk.ComboBox):
 
         gtk.ComboBox.__init__(self)
         
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         self.__bookdoc_plugins = []
         for plugin in pmgr.get_docgen_plugins():
             if plugin.get_text_support() and plugin.get_draw_support():

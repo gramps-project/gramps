@@ -69,7 +69,7 @@ import pango
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog, QuestionDialog
 from gen.db import GrampsDBDir
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
 import GrampsDbUtils
 from DdTargets import DdTargets
@@ -795,7 +795,7 @@ def check_out(dbase, rev, path, callback):
             )
         return 
 
-    pmgr = PluginManager.get_instance()
+    pmgr = GuiPluginManager.get_instance()
     for plugin in pmgr.get_import_plugins():
         if plugin.get_extension() == "gramps":
             rdr = plugin.get_import_function()
@@ -838,7 +838,7 @@ def check_in(dbase, filename, callback, cursor_func = None):
     if cursor_func:
         cursor_func(_("Creating data to be archived..."))
         
-    plugin_manager = PluginManager.get_instance()
+    plugin_manager = GuiPluginManager.get_instance()
     for plugin in plugin_manager.get_export_plugins():
         if plugin.get_extension() == "gramps":
             export_function = plugin.get_export_function()

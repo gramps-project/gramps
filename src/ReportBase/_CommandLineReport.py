@@ -40,7 +40,7 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import Utils
-from gen.plug import PluginManager
+from gen.plug import BasePluginManager
 from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
                              PAPER_PORTRAIT, PAPER_LANDSCAPE)
 from gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
@@ -121,7 +121,7 @@ class CommandLineReport(object):
     def __init__(self, database, name, category, option_class, options_str_dict,
                  noopt=False):
         
-        pmgr = PluginManager.get_instance()
+        pmgr = BasePluginManager.get_instance()
         self.__textdoc_plugins = []
         self.__drawdoc_plugins = []
         self.__bookdoc_plugins = []

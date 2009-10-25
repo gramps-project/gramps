@@ -59,7 +59,9 @@ import gtk
 from cli.grampscli import CLIManager
 from PluginUtils import Tool, PluginWindows, \
     ReportPluginDialog, ToolPluginDialog, gui_tool
-from gen.plug import PluginManager, REPORT
+from gen.plug import REPORT
+from gui.pluginmanager import GuiPluginManager
+import Relationship
 import ReportBase
 import DisplayState
 import const
@@ -215,6 +217,8 @@ class ViewManager(CLIManager):
 
     def __init__(self, dbstate):
         CLIManager.__init__(self, dbstate, False)
+        #set pluginmanager to GUI one
+        self._pmgr = GuiPluginManager.get_instance()
         self.page_is_changing = False
         self.active_page = None
         self.views = []
@@ -235,7 +239,11 @@ class ViewManager(CLIManager):
 
         self.__build_main_window()
         self.__connect_signals()
+        
         self.do_reg_plugins()
+        #plugins loaded now set relationship class
+        self.rel_class = Relationship.get_relationship_calculator()
+        self.uistate.set_relationship_class()
 
     def _errordialog(title, errormessage):
         """
@@ -255,8 +263,6 @@ class ViewManager(CLIManager):
         self.window = gtk.Window()
         self.window.set_icon_from_file(const.ICON)
         self.window.set_default_size(width, height)
-        
-        self.rel_class = self._pmgr.get_relationship_calculator()
 
         vbox = gtk.VBox()
         self.window.add(vbox)
@@ -553,7 +559,6 @@ class ViewManager(CLIManager):
         self.fileactions.set_sensitive(False)
         self.__build_tools_menu(self._pmgr.get_reg_tools())
         self.__build_report_menu(self._pmgr.get_reg_reports())
-        self.uistate.set_relationship_class()
         self._pmgr.connect('plugins-reloaded', 
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
@@ -1448,7 +1453,7 @@ def run_plugin(pdata, dbstate, uistate):
           1/ load plugin.
           2/ the report is run
         """
-        mod = PluginManager.get_instance().load_plugin(pdata)
+        mod = GuiPluginManager.get_instance().load_plugin(pdata)
         if not mod:
             #import of plugin failed
             ErrorDialog(

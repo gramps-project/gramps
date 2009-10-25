@@ -54,10 +54,10 @@ import gtk
 #
 #-------------------------------------------------------------------------
 
-from gen.plug import (PluginManager, CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
+from gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                       CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
-
+from gui.pluginmanager import GuiPluginManager
 
 def create_quickreport_menu(category,dbstate,uistate, handle) :
     """ This functions querries the registered quick reports with 
@@ -84,7 +84,7 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
     
     #select the reports to show
     showlst = []
-    pmgr = PluginManager.get_instance()
+    pmgr = GuiPluginManager.get_instance()
     for pdata in pmgr.get_reg_quick_reports():
         if pdata.supported and pdata.category == category :
             #add tuple function, translated name, name, status
@@ -115,7 +115,7 @@ def get_quick_report_list(qv_category=None):
     CATEGORY_QR_REPOSITORY or None for all
     """
     names = []
-    pmgr = PluginManager.get_instance()
+    pmgr = GuiPluginManager.get_instance()
     for pdata in pmgr.get_reg_quick_reports():
         if qv_category == pdata.category or qv_category is None:
             names.append(pdata) # (see below for item struct)
@@ -124,7 +124,7 @@ def get_quick_report_list(qv_category=None):
 def run_quick_report_by_name(dbstate, uistate, report_name, handle, 
                              container=None):
     report = None
-    pmgr = PluginManager.get_instance()
+    pmgr = GuiPluginManager.get_instance()
     for pdata in pmgr.get_reg_quick_reports():
         if pdata.id == report_name:
             report = pdata
@@ -142,7 +142,7 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
     from docgen import TextBufDoc
     from Simple import make_basic_stylesheet
     report = None
-    pmgr = PluginManager.get_instance()
+    pmgr = GuiPluginManager.get_instance()
     for pdata in pmgr.get_reg_quick_reports():
         if pdata.id == report_name:
             report = pdata
@@ -174,7 +174,7 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None):
         from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
         container = None
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         mod = pmgr.load_plugin(pdata)
         if not mod:
             print "QuickView Error: plugin does not load"

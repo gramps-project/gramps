@@ -56,7 +56,7 @@ import config
 from BasicUtils import name_displayer
 import const
 import ManagedWindow
-from gen.plug import PluginManager
+import Relationship
 from glade import Glade
 
 DISABLED = -1
@@ -345,8 +345,7 @@ class DisplayState(gen.utils.Callback):
         """method that rebinds the relationship to the current rel calc
            Should be called after load or reload of plugins
         """
-        pmgr = PluginManager.get_instance()
-        self.relationship = pmgr.get_relationship_calculator()
+        self.relationship = Relationship.get_relationship_calculator(reinit=True)
 
     def set_gendepth(self, value):
         """ Set the generations we search back for showing relationships

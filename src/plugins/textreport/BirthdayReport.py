@@ -38,7 +38,7 @@ import datetime, time
 from BasicUtils import name_displayer as _nd
 from Errors import ReportError
 from gen.lib import NameType, EventType, Name, Date, Person
-from gen.plug import PluginManager
+import Relationship
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
@@ -200,8 +200,7 @@ class CalendarReport(Report):
         self.progress.set_pass(_('Applying Filter...'), 
             self.database.get_number_of_people())
         people = self.filter.apply(self.database, people, self.progress)
-        pmgr = PluginManager.get_instance()
-        rel_calc = pmgr.get_relationship_calculator()
+        rel_calc = Relationship.get_relationship_calculator()
 
         self.progress.set_pass(_('Reading database...'), len(people))
         for person_handle in people:

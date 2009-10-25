@@ -49,7 +49,7 @@ LOG = logging.getLogger(".clidbman")
 #
 #-------------------------------------------------------------------------
 import gen.db
-from gen.plug import PluginManager
+from gen.plug import BasePluginManager
 import config
 
 #-------------------------------------------------------------------------
@@ -258,7 +258,7 @@ class CLIDbManager(object):
         @return: A tuple of (new_path, name) for the new database
                  or (None, None) if no import was performed.
         """
-        pmgr = PluginManager.get_instance()
+        pmgr = BasePluginManager.get_instance()
         (name, ext) = os.path.splitext(os.path.basename(filename))
         format = ext[1:].lower()
 

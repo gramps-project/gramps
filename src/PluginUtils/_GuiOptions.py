@@ -48,6 +48,7 @@ import gobject
 #-------------------------------------------------------------------------
 import Utils
 from gui.utils import ProgressMeter
+from gui.pluginmanager import GuiPluginManager
 import widgets
 import ManagedWindow
 from QuestionDialog import OptionDialog
@@ -1422,7 +1423,7 @@ def make_gui_option(option, dbstate, uistate, track):
     """
     widget = None
     label = True
-    pmgr = gen.plug.PluginManager.get_instance()
+    pmgr = GuiPluginManager.get_instance()
     external_options = pmgr.get_external_opt_dict()
     if isinstance(option, gen.plug.menu.PersonOption):
         widget = GuiPersonOption(option, dbstate, uistate, track)

@@ -51,7 +51,7 @@ import Errors
 import Bookmarks
 import config
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 from DdTargets import DdTargets
 from Editors import EditPlace, DeletePlaceQuery
 from Filters.SideBar import PlaceSidebarFilter
@@ -195,7 +195,7 @@ class PlaceView(ListView):
         
         #select the map services to show
         self.mapservicedata = {}
-        servlist = PluginManager.get_instance().get_reg_mapservices()
+        servlist = GuiPluginManager.get_instance().get_reg_mapservices()
         for i, pdata in zip(range(len(servlist)), servlist):
             key = pdata.id.replace(' ', '-')
             add_menuitem(menu, pdata.name, None, 
@@ -220,7 +220,6 @@ class PlaceView(ListView):
         """
         return the current label for the menutoolbutton
         """
-        print 'called', self.mapservicedata[self.mapservice].name
         return self.mapservicedata[self.mapservice].name
 
     def gotomap(self, obj):
@@ -250,7 +249,7 @@ class PlaceView(ListView):
         places = [(x, None) for x in place_handles]
         
         #run the mapservice:
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         serv = self.mapservicedata[self.mapservice]
         mod = pmgr.load_plugin(serv)
         if mod:

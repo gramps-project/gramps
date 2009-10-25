@@ -59,7 +59,7 @@ import const
 import config
 import gen.db
 import Utils
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 from QuestionDialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
 import Errors
@@ -113,7 +113,7 @@ class DbLoader(CLIDbLoader):
             if not warn_dialog.run():
                 return False
             
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         
         import_dialog = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
                                        self.uistate.window, 
@@ -323,7 +323,7 @@ def format_maker():
     The auto selection is always added as the first one.
     The returned box contains both the label and the selector.
     """
-    pmgr = PluginManager.get_instance()
+    pmgr = GuiPluginManager.get_instance()
     format_list = [ ('auto', _('Automatically detected')) ]
     
     for plugin in pmgr.get_import_plugins():

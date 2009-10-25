@@ -27,7 +27,7 @@ Display a person's siblings in a report window
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gen.plug import PluginManager
+import Relationship
 from gettext import gettext as _
 
 def run(database, document, person):
@@ -39,8 +39,7 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb)
-    pmgr = PluginManager.get_instance()
-    rel_class = pmgr.get_relationship_calculator()
+    rel_class = Relationship.get_relationship_calculator()
 
     # display the title
     sdoc.title(_("Siblings of %s") % sdb.name(person))

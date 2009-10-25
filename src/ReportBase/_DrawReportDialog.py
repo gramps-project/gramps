@@ -35,7 +35,7 @@ import gobject
 #-------------------------------------------------------------------------
 from _Constants import CATEGORY_DRAW
 from _DocReportDialog import DocReportDialog
-from gen.plug import PluginManager
+from gui.pluginmanager import GuiPluginManager
 
 #-------------------------------------------------------------------------
 #

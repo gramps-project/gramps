@@ -30,14 +30,14 @@ from _pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
             CATEGORY_QR_DATE, PTYPE_STR )
-from _manager import PluginManager
+from _manager import BasePluginManager
 from _import import ImportPlugin
 from _export import ExportPlugin
 from _docgenplugin import DocGenPlugin
 from utils import *
 
 __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
-            PluginRegister, PluginManager, 
+            PluginRegister, BasePluginManager, 
             ImportPlugin, ExportPlugin, DocGenPlugin,
             REPORT, TOOL, CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, 
             CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,

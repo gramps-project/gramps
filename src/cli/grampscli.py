@@ -52,7 +52,7 @@ import Errors
 import DbState
 from gen.db import (GrampsDBDir, FileVersionDeclineToUpgrade)
 import gen.db.exceptions
-from gen.plug import PluginManager
+from gen.plug import BasePluginManager
 from Utils import get_researcher
 import RecentFiles
 
@@ -184,7 +184,7 @@ class CLIManager(object):
         else:
             self.db_loader = None
         self.file_loaded = False
-        self._pmgr = PluginManager.get_instance()
+        self._pmgr = BasePluginManager.get_instance()
     
     def open_activate(self, path):
         """

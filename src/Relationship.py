@@ -22,14 +22,21 @@
 
 #-------------------------------------------------------------------------
 #
+# python modules
+#
+#-------------------------------------------------------------------------
+import os
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
 
 import gen.lib
 from TransUtils import sgettext as _
+from gen.plug import PluginRegister, BasePluginManager
 
-    
 #-------------------------------------------------------------------------
 #
 #
@@ -1740,6 +1747,38 @@ class RelationshipCalculator(object):
         """
         self.dirtymap = True
 
+#-------------------------------------------------------------------------
+#
+# define the default relationshipcalculator
+#
+#-------------------------------------------------------------------------
+
+__RELCALC_CLASS = None
+
+def get_relationship_calculator(reinit=False):
+        """ 
+        Return the relationship calculator for the current language.
+        """
+        global __RELCALC_CLASS
+        
+        if __RELCALC_CLASS is None or reinit:
+            __RELCALC_CLASS = RelationshipCalculator
+            # set correct relationship calculator based on LANG
+            for plugin in PluginRegister.get_instance().relcalc_plugins():
+                if os.environ["LANG"] in plugin.lang_list:
+                    pmgr = BasePluginManager.get_instance()
+                   #the loaded module is put in variable mod
+                    mod = pmgr.load_plugin(plugin)
+                    if mod:
+                        __RELCALC_CLASS = eval('mod.' + plugin.relcalcclass)
+                        break
+        return __RELCALC_CLASS()
+
+#-------------------------------------------------------------------------
+#
+# Tests
+#
+#-------------------------------------------------------------------------
 
 def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     """ this is a generic test suite for the singular relationship
