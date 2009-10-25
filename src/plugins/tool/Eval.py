@@ -32,6 +32,7 @@ Provide a python evaluation window
 import cStringIO
 import sys
 from gettext import gettext as _
+import traceback
 
 #------------------------------------------------------------------------
 #
@@ -60,11 +61,13 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         self.dbuf = self.glade.get_object("display").get_buffer()
         self.ebuf = self.glade.get_object("ebuf").get_buffer()
         self.error = self.glade.get_object("error").get_buffer()
+        self.dbstate = dbstate
 
         self.glade.connect_signals({
             "on_apply_clicked" : self.apply_clicked,
             "on_close_clicked" : self.close,
             "on_clear_clicked" : self.clear_clicked,
+            "on_delete_event"  : self.close,
             })
 
         self.set_window(window,self.glade.get_object('title'),self.title)
@@ -81,7 +84,10 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         errtext = cStringIO.StringIO()
         sys.stdout = outtext
         sys.stderr = errtext
-        exec(text)
+        try:
+            exec(text)
+        except:
+            traceback.print_exc()
         self.dbuf.set_text(outtext.getvalue())
         self.error.set_text(errtext.getvalue())
         sys.stdout = sys.__stdout__
