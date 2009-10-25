@@ -41,7 +41,7 @@ from TransUtils import sgettext as _
 #------------------------------------------------------------------------
 
 # Person and relation types
-from gen.lib import Person, FamilyRelType, EventType
+from gen.lib import Person, FamilyRelType, EventType, EventRoleType
 # gender and report type names
 import BaseDoc
 from gen.plug import PluginManager
@@ -338,7 +338,9 @@ class Extract(object):
             if int(family.get_relationship()) == FamilyRelType.MARRIED:
                 for event_ref in family.get_event_ref_list():
                     event = self.db.get_event_from_handle(event_ref.ref)
-                    if event.type == EventType.MARRIAGE:
+                    if event.get_type() == EventType.MARRIAGE and \
+                    (event_ref.get_role() == EventRoleType.FAMILY or 
+                    event_ref.get_role() == EventRoleType.PRIMARY ):
                         marriages.append(event_ref.ref)
         if marriages:
             return (person, marriages)

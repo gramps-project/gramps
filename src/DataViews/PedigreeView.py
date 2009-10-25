@@ -367,7 +367,9 @@ class FormattingHelper(object):
         text = ""
         for event_ref in family.get_event_ref_list():
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == gen.lib.EventType.MARRIAGE:
+            if event and event.get_type() == gen.lib.EventType.MARRIAGE and \
+            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                 if line_count < 3:
                     return DateHandler.get_date(event)
                 name = str(event.get_type())

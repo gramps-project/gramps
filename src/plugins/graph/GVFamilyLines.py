@@ -933,7 +933,9 @@ class FamilyLinesReport(Report):
             if self._incdates or self._incplaces:
                 for event_ref in family.get_event_ref_list():
                     event = self._db.get_event_from_handle(event_ref.ref)
-                    if event.get_type() == gen.lib.EventType.MARRIAGE:
+                    if event.get_type() == gen.lib.EventType.MARRIAGE and \
+                    (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+                    event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                         # get the wedding date
                         if (event.private and self._incprivate) or not event.private:
                             if self._incdates:
