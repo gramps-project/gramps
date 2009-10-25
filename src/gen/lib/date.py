@@ -971,8 +971,10 @@ class Date(object):
         """
         if (other_date.modifier == Date.MOD_TEXTONLY or
             self.modifier == Date.MOD_TEXTONLY):
-            if comparison in ["=", "=="]:
+            if comparison == "=":
                 return (self.text.upper().find(other_date.text.upper()) != -1)
+            elif comparison == "==":
+                return self.text == other_date.text
             else:
                 return False
         if (self.sortval == 0 or other_date.sortval == 0):
