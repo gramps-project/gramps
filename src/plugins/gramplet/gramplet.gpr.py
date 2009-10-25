@@ -106,13 +106,13 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id= "Given id Cloud Gramplet", 
-         name=_("Given id Cloud Gramplet"), 
+         id= "Given Name Cloud Gramplet", 
+         name=_("Given Name Cloud Gramplet"), 
          fname="GivenNameGramplet.py",
          height=300,
          expand=True,
-         gramplet = 'GivenidCloudGramplet',
-         gramplet_title=_("Given id Cloud"),
+         gramplet = 'GivenNameCloudGramplet',
+         gramplet_title=_("Given Name Cloud"),
          )
 
 register(GRAMPLET, 
@@ -218,13 +218,13 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id= "Surid Cloud Gramplet", 
-         name=_("Surid Cloud Gramplet"), 
+         id= "Surname Cloud Gramplet", 
+         name=_("Surname Cloud Gramplet"), 
          fname="SurnameCloudGramplet.py",
          height=300,
          expand=True,
-         gramplet = 'SuridCloudGramplet',
-         gramplet_title=_("Surid Cloud"),
+         gramplet = 'SurnameCloudGramplet',
+         gramplet_title=_("Surname Cloud"),
          )
 
 register(GRAMPLET, 
@@ -238,12 +238,12 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id= "Top Surids Gramplet", 
-         name=_("Top Surids Gramplet"), 
+         id= "Top Surnames Gramplet", 
+         name=_("Top Surnames Gramplet"), 
          fname="TopSurnamesGramplet.py",
          height=230,
-         gramplet = 'TopSuridsGramplet',
-         gramplet_title=_("Top Surids"),
+         gramplet = 'TopSurnamesGramplet',
+         gramplet_title=_("Top Surnames"),
          )
 
 register(GRAMPLET, 
