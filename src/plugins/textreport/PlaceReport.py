@@ -226,7 +226,9 @@ class PlaceReport(Report):
         place_handles = [] 
         for place_gid in places.split():
             place = self.database.get_place_from_gramps_id(place_gid)
-            place_handles.append(place.get_handle())
+            if place is not None:
+                #place can be None if option is gid of other fam tree
+                place_handles.append(place.get_handle())
 
         return place_handles
     

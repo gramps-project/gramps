@@ -369,7 +369,9 @@ class FamilyLinesReport(Report):
         self._interest_set = set()
         for gid in self._gidlist.split():
             person = self._db.get_person_from_gramps_id(gid)
-            self._interest_set.add(person.get_handle())
+            if person is not None:
+                #option can be from another family tree, so person can be None
+                self._interest_set.add(person.get_handle())
 
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
