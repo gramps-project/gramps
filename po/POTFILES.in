@@ -141,6 +141,7 @@ src/gen/lib/ldsord.py
 src/gen/plug/__init__.py
 src/gen/plug/_docgenplugin.py
 src/gen/plug/_export.py
+src/gen/plug/_gramplet.py
 src/gen/plug/_import.py
 src/gen/plug/_manager.py
 src/gen/plug/_plugin.py

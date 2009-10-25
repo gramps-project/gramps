@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	__init__.py \
 	_docgenplugin.py \
 	_export.py \
+	_gramplet.py \
 	_import.py \
 	_manager.py \
 	_plugin.py \
