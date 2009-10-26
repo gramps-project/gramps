@@ -261,22 +261,6 @@ class KinshipReport(Report):
                 children.append(child_ref.get_reference_handle())
         return children
     
-    def get_sibling_handles(self, person_handle):
-        """
-        Return an array of handles for all the siblings of the 
-        given person handle.
-        """
-        siblings = []
-        person = self.__db.get_person_from_handle(person_handle)
-        family_handle = person.get_main_parents_family_handle()
-        if family_handle:
-            family = self.__db.get_family_from_handle(family_handle)
-            for child_ref in family.get_child_ref_list():
-                sibling_handle = child_ref.get_reference_handle()
-                if sibling_handle != person_handle:
-                    siblings.append(sibling_handle)
-        return siblings
-    
     def write_people(self, title, people_handles):
         """
         Write information about a group of people - including the title.
