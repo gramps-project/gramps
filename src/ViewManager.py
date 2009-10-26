@@ -218,7 +218,6 @@ class ViewManager(object):
         self.button_handlers = []
         self.buttons = []
         self.merge_ids = []
-        self.tips = gtk.Tooltips()
         self._key = None
         self.file_loaded = False
 
@@ -356,17 +355,8 @@ class ViewManager(object):
         openbtn = gtk.MenuToolButton('gramps-db')
         openbtn.connect('clicked', self.__open_activate)
         openbtn.set_sensitive(False)
-        open_tips = gtk.Tooltips()
-        openbtn.set_arrow_tooltip(
-            open_tips, 
-            _("Connect to a recent database"), 
-            _("Connect to a recent database"))
-        
-        openbtn.set_tooltip(
-            open_tips, 
-            _("Manage databases"), 
-            _("Manage databases")
-            )
+        openbtn.set_arrow_tooltip_text(_("Connect to a recent database"))
+        openbtn.set_tooltip_text(_("Manage databases"))
         openbtn.show()
         return openbtn
 
@@ -796,15 +786,6 @@ class ViewManager(object):
             self.notebook.set_current_page(page_no)
         self.__vb_handlers_unblock()
 
-    def __setup_text_tips(self, use_text):
-        """
-        Enable/disable the text tips in the sidebar
-        """
-        if use_text:
-            self.tips.disable()
-        else:
-            self.tips.enable()
-    
     def __delete_pages(self):
         """
         Calls on_delete() for each view
@@ -820,7 +801,6 @@ class ViewManager(object):
         self.prev_nav = PageView.NAVIGATION_NONE
 
         use_text = Config.get(Config.SIDEBAR_TEXT)
-        self.__setup_text_tips(use_text)
         
         index = 0
         for page_def in self.views:
