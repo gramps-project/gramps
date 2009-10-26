@@ -342,13 +342,14 @@ _nephews_nieces_level = [   "",
 
 #-------------------------------------------------------------------------
 #
-#
+# RelationshipCalculator
 #
 #-------------------------------------------------------------------------
-
-
 class RelationshipCalculator(object):
-    
+    """
+    The relationship calculator helps to determine the relationship between
+    two people.
+    """
     REL_MOTHER           = 'm'      # going up to mother
     REL_FATHER           = 'f'      # going up to father
     REL_MOTHER_NOTBIRTH  = 'M'      # going up to mother, not birth relation
@@ -369,10 +370,10 @@ class RelationshipCalculator(object):
     UNKNOWN_SIB  = 4                # insufficient data to draw conclusion
     
     #sibling strings
-    STEP= 'step'
+    STEP = 'step'
     HALF = 'half-'
 
-    INLAW='-in-law'
+    INLAW = '-in-law'
         
     #partner types
     PARTNER_MARRIED        = 1
@@ -413,13 +414,12 @@ class RelationshipCalculator(object):
         """
         return self.depth
     
-
     DIST_FATHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
     
     def _get_father(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_father_level)-1:
+        if level > len(_father_level) - 1:
             return self.DIST_FATHER % {'step': step, 'inlaw': inlaw,
                                        'level': level}
         else:
@@ -430,7 +430,7 @@ class RelationshipCalculator(object):
     def _get_son(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_son_level)-1:
+        if level > len(_son_level) - 1:
             return self.DIST_SON % {'step': step, 'inlaw': inlaw,
                                     'level': level}
         else:
@@ -441,7 +441,7 @@ class RelationshipCalculator(object):
     def _get_mother(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_mother_level)-1:
+        if level > len(_mother_level) - 1:
             return self.DIST_MOTHER % {'step': step, 'inlaw': inlaw,
                                        'level': level}
         else:
@@ -452,7 +452,7 @@ class RelationshipCalculator(object):
     def _get_daughter(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_daughter_level)-1:
+        if level > len(_daughter_level) - 1:
             return self.DIST_DAUGHTER % {'step': step, 'inlaw': inlaw, 
                                          'level': level}
         else:
@@ -483,7 +483,7 @@ class RelationshipCalculator(object):
     def _get_aunt(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_sister_level)-1:
+        if level > len(_sister_level) - 1:
             return self.DIST_AUNT % {'step': step, 'inlaw': inlaw}
         else:
             return _sister_level[level] % {'step': step, 'inlaw': inlaw} 
@@ -493,7 +493,7 @@ class RelationshipCalculator(object):
     def _get_uncle(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_brother_level)-1:
+        if level > len(_brother_level) - 1:
             return self.DIST_UNCLE % {'step': step, 'inlaw': inlaw}
         else:
             return _brother_level[level] % {'step': step, 'inlaw': inlaw} 
@@ -503,7 +503,7 @@ class RelationshipCalculator(object):
     def _get_nephew(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_nephew_level)-1:
+        if level > len(_nephew_level) - 1:
             return self.DIST_NEPHEW % {'step': step, 'inlaw': inlaw}
         else:
             return _nephew_level[level] % {'step': step, 'inlaw': inlaw} 
@@ -513,12 +513,12 @@ class RelationshipCalculator(object):
     def _get_niece(self, level, step='', inlaw=''):
         """Internal english method to create relation string
         """
-        if level>len(_niece_level)-1:
+        if level > len(_niece_level) - 1:
             return self.DIST_NIECE % {'step': step, 'inlaw': inlaw}
         else:
             return _niece_level[level] % {'step': step, 'inlaw': inlaw} 
 
-    def _get_cousin(self, level, removed, dir = '', step='', inlaw=''):
+    def _get_cousin(self, level, removed, dir='', step='', inlaw=''):
         """Internal english method to create relation string
         """
         if removed == 0 and level < len(_level_name):
@@ -635,7 +635,7 @@ class RelationshipCalculator(object):
         #make every person appear only once:
         return list(set(nb_parents))
 
-    def get_spouse_type(self, db, orig, other, all_rel = False):
+    def _get_spouse_type(self, db, orig, other, all_rel = False):
         """ Translation free determination if orig and other are partners.
             The procedure returns partner types, these can be passed to 
             get_partner_relationship_string.
@@ -643,8 +643,8 @@ class RelationshipCalculator(object):
             If all_rel=True, returns a list, empty if no partner
         """
         val = []
-        for f in orig.get_family_handle_list():
-            family = db.get_family_from_handle(f)
+        for family_handle in orig.get_family_handle_list():
+            family = db.get_family_from_handle(family_handle)
             # return first found spouse type
             if family and other.get_handle() in [family.get_father_handle(),
                                                  family.get_mother_handle()]:
@@ -690,9 +690,9 @@ class RelationshipCalculator(object):
     def is_spouse(self, db, orig, other, all_rel=False):
         """ determine the spouse relation
         """
-        type = self.get_spouse_type(db, orig, other, all_rel)
-        if type:
-            return self.get_partner_relationship_string(type, 
+        spouse_type = self._get_spouse_type(db, orig, other, all_rel)
+        if spouse_type:
+            return self.get_partner_relationship_string(spouse_type, 
                         orig.get_gender(), other.get_gender())
         else:
             return None
@@ -764,15 +764,11 @@ class RelationshipCalculator(object):
         
         firstRel   = -1
         secondRel  = -1
-        common_str = []
-        common_fam = []
         self.__msg = []
         
         common = []
         firstMap = {}
-        firstList = []
         secondMap = {}
-        secondList = []
         rank = 9999999
 
         try:
@@ -1090,15 +1086,17 @@ class RelationshipCalculator(object):
                 # first time we see this family path
                 if (posfam is not None and relstrfirst is not None and 
                         relstrsec is not None):
-                    #we already have a common ancestor of this family, just add the
-                    #other, setting correct family relation
+                    # We already have a common ancestor of this family, just 
+                    # add the other, setting correct family relation.
                     tmp = commonnew[posfam]
                     frstcomstr = rela2[-1]
                     scndcomstr = tmp[2][-1]
-                    newcomstra = self.famrel_from_persrel(frstcomstr, scndcomstr)
+                    newcomstra = self._famrel_from_persrel(frstcomstr, 
+                                                            scndcomstr)
                     frstcomstr = rela4[-1]
                     scndcomstr = tmp[4][-1]
-                    newcomstrb = self.famrel_from_persrel(frstcomstr, scndcomstr)
+                    newcomstrb = self._famrel_from_persrel(frstcomstr, 
+                                                            scndcomstr)
 
                     commonnew[posfam] = (tmp[0], tmp[1]+commonhandle, 
                                  rela2[:-1]+newcomstra, 
@@ -1142,7 +1140,7 @@ class RelationshipCalculator(object):
         
         return collapsed
 
-    def famrel_from_persrel(self, persrela, persrelb):
+    def _famrel_from_persrel(self, persrela, persrelb):
         """ Conversion from eg 'f' and 'm' to 'a', so relation to the two 
             persons of a common family is converted to a family relation
         """
@@ -1230,7 +1228,7 @@ class RelationshipCalculator(object):
                 databest.append(rel)
         rel = databest[0]
         dist_orig = len(rel[2])
-        dist_other= len(rel[4])
+        dist_other = len(rel[4])
         if len(databest) == 1:
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
             if dist_orig == dist_other == 1:
@@ -1256,7 +1254,7 @@ class RelationshipCalculator(object):
             orderbest = order.index(self.REL_MOTHER)
             for relother in databest:
                 relbirth = self.only_birth(rel[2]) and self.only_birth(rel[4])
-                if relother[2] == '' or relother[4]== '':
+                if relother[2] == '' or relother[4] == '':
                     #direct relation, take that
                     rel = relother
                     break
@@ -1285,7 +1283,7 @@ class RelationshipCalculator(object):
                     rel = relother
                     continue
             dist_orig = len(rel[2])
-            dist_other= len(rel[4])
+            dist_other = len(rel[4])
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
             if dist_orig == dist_other == 1:
                 rel_str =  self.get_sibling_relationship_string(
@@ -1335,7 +1333,7 @@ class RelationshipCalculator(object):
                 rel4 = rel[4]
                 rel1 = rel[1]
                 dist_orig = len(rel[2])
-                dist_other= len(rel[4])
+                dist_other = len(rel[4])
                 if rel[2] and rel[2][-1] == self.REL_SIBLING:
                     rel2 = rel2[:-1] + self.REL_FAM_BIRTH
                     dist_other += 1
@@ -1756,23 +1754,23 @@ class RelationshipCalculator(object):
 __RELCALC_CLASS = None
 
 def get_relationship_calculator(reinit=False):
-        """ 
-        Return the relationship calculator for the current language.
-        """
-        global __RELCALC_CLASS
-        
-        if __RELCALC_CLASS is None or reinit:
-            __RELCALC_CLASS = RelationshipCalculator
-            # set correct relationship calculator based on LANG
-            for plugin in PluginRegister.get_instance().relcalc_plugins():
-                if os.environ["LANG"] in plugin.lang_list:
-                    pmgr = BasePluginManager.get_instance()
-                   #the loaded module is put in variable mod
-                    mod = pmgr.load_plugin(plugin)
-                    if mod:
-                        __RELCALC_CLASS = eval('mod.' + plugin.relcalcclass)
-                        break
-        return __RELCALC_CLASS()
+    """ 
+    Return the relationship calculator for the current language.
+    """
+    global __RELCALC_CLASS
+    
+    if __RELCALC_CLASS is None or reinit:
+        __RELCALC_CLASS = RelationshipCalculator
+        # set correct relationship calculator based on LANG
+        for plugin in PluginRegister.get_instance().relcalc_plugins():
+            if os.environ["LANG"] in plugin.lang_list:
+                pmgr = BasePluginManager.get_instance()
+                # the loaded module is put in variable mod
+                mod = pmgr.load_plugin(plugin)
+                if mod:
+                    __RELCALC_CLASS = eval('mod.' + plugin.relcalcclass)
+                    break
+    return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
 #
