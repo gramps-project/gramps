@@ -391,7 +391,14 @@ class BasePage(object):
         Note. 'title' is used as currentsection in the navigation links.
         """
 
-        of.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
+        # bug fix for #3262; The extensions other than the html ones do not like having the 
+        # xml declaration statement, so do not add it....
+
+        # a php document begins with '<?'
+        if self.ext not in ['.php', '.php3', '.cgi']:
+            of.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
+ 
+        # continue with the rest of the document...
         of.write('<!DOCTYPE html PUBLIC ')
         of.write('\t"-//W3C//DTD XHTML 1.0 Strict//EN" \n')
         of.write('\t\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
