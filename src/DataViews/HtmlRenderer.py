@@ -220,6 +220,7 @@ class RendererWebkit(Renderer):
     def __init__(self):
         Renderer.__init__(self)
         self.window = webkit.WebView()
+        self.window.set_custom_encoding('utf-8')
         settings = self.window.get_settings()
         try:
             proxy = os.environ['http_proxy']

@@ -245,6 +245,7 @@ class GeoView(HtmlView):
         self.stylesheetlbl = None
         self.displaytype = "person"
         self.nbmarkers = 0
+        self.nbplaces = 0
         self.without = 0
         self.nbpages = 0
         self.yearinmarker = []
@@ -402,14 +403,13 @@ class GeoView(HtmlView):
         if widget == None:
             return
         page = widget.get_label()
-        #ftype = {"<<":'P', ">>":'E', }.get(page, 'X')
-        if ( page == "<<" ):
+        (current, maxp ) = self.pages[1].get_label().split('/', 1)
+        if ( page == "<<" and int(current) > 1):
             cpage = -1
-        elif ( page == ">>" ):
+        elif ( page == ">>" and int(current) < int(maxp)):
             cpage = +1
         else:
             cpage = 0
-        (current, maxp ) = self.pages[1].get_label().split('/', 1)
         cpage += int(current)
         self.last_page = cpage
         ftype = {"places":'P', "event":'E', "family":'F', "person":'I'}.get(
@@ -425,6 +425,7 @@ class GeoView(HtmlView):
         self.open(url)
         self._create_pages_selection(cpage, int(maxp))
         self._savezoomandposition()
+        self.buttons[0].set_active(True)
 
     def _show_places_without_coord(self, widget): # pylint: disable-msg=W0613
         """
@@ -445,12 +446,12 @@ class GeoView(HtmlView):
         for entry in self.combobox.get_model():
             if ( entry[0] == place ):
                 # Is this entry in the current page ?
-                if self.last_page == entry[2]:
+                if self.last_page == int(entry[2]):
                     # Yes, we don't need to load another page.
-                    self.renderer.execute_script(
-                        "javascript:placeclick('%d')" % entry[1])
+                    self._show_place_info_bubble(entry[1])
                 else:
                     # No, we need to load the correct page
+                    self.last_page = int(entry[2])
                     ftype = { "places":'P',
                               "event":'E',
                               "family":'F',
@@ -468,11 +469,18 @@ class GeoView(HtmlView):
                     (current, maxp ) = self.pages[1].get_label().split('/', 1)
                     self._create_pages_selection(entry[2], int(maxp))
                     self._savezoomandposition()
-                    # Now the page is loaded, we can show the info bubble
-                    self.renderer.execute_script(
-                                  "javascript:placeclick('%d')" % entry[1])
+                    self.buttons[0].set_active(True)
+                    # Need to wait the page is loaded to show the markers.
+                    gobject.timeout_add(800, self._show_place_info_bubble, entry[1])
         return
         
+    def _show_place_info_bubble(self, marker_index):
+        """
+        We need to call javascript to show the info bubble.
+        """
+        self.renderer.execute_script("javascript:placeclick('%d')" % 
+                                     marker_index)
+
     def on_delete(self):
         """
         We need to suppress temporary files here.
@@ -601,7 +609,7 @@ class GeoView(HtmlView):
         self.open(url)
         self._savezoomandposition()
         # Need to wait the page is loaded to set the markers.
-        gobject.timeout_add(500, self._set_markersonpage, self.last_radio)
+        gobject.timeout_add(800, self._set_markersonpage, self.last_radio)
 
     def _set_markersonpage(self, widget):
         """
@@ -855,6 +863,7 @@ class GeoView(HtmlView):
             # While the db is not loaded, we have 0 markers.
             self._savezoomandposition()
         self.nbmarkers = 0
+        self.nbplaces = 0
         self.without = 0
         self._createmapstraction(self.displaytype)
         self._do_we_need_to_zoom_between_map()
@@ -1017,15 +1026,6 @@ class GeoView(HtmlView):
             self.mapview.write("display: none; ")
         self.mapview.write("height: %dpx\"></div>\n" % 
                            (self.height - self.header_size ))
-        self.psort = sorted(self.placeslist, key=operator.itemgetter(0))
-        for place in self.psort:
-            self.plist.append([ place[0], int(place[1]), int(curpage)] )
-        self.combobox.set_model(self.plist)
-        if self.displaytype == "places":
-            self.label.set_text(_("%d places" % self.nbmarkers))
-        else:
-            self.label.set_text(_("Places list"))
-        self.combobox.get_child().set_text('')
         self.mapview.write("<script type=\"text/javascript\">\n")
         self.mapview.write(" args=getArgs();")
         self.mapview.write(" if (args.map) current_map=args.map;")
@@ -1165,15 +1165,14 @@ class GeoView(HtmlView):
         """
         # disable-msg=W0612 # page is unused
         # pylint: disable-msg=W0612
-        nbmarkers = 0
         self.nbpages = 0
         self.box1.set_sensitive(True)
         self.pages_selection.hide()
         self.last_page = 1
         self.plist.clear()
         self.buttons[0].set_active(True)
-        pages = ( self.nbmarkers / NB_MARKERS_PER_PAGE ) + 1
-        if (nbmarkers % NB_MARKERS_PER_PAGE) == 0:
+        pages = ( self.nbplaces / NB_MARKERS_PER_PAGE ) + 1
+        if (self.nbplaces % NB_MARKERS_PER_PAGE) == 0:
             try:
                 self._createmapstractiontrailer()
             except: # pylint: disable-msg=W0702
@@ -1183,6 +1182,7 @@ class GeoView(HtmlView):
         if pages > 1:
             self._create_pages_selection(1, pages)
             self.pages_selection.show()
+        self.last_index = 0
         for page in range(0, pages, 1):
             self.nbpages += 1
             ftype = {1:'P', 2:'E', 3:'F', 4:'I'}.get(ptype, 'X')
@@ -1201,6 +1201,7 @@ class GeoView(HtmlView):
             self._createmapstractiontrailer()
             if self.nbpages == 1:
                 self.open(self.htmlfile)
+        self.combobox.set_model(self.plist)
 
     def _createmapstraction(self, displaytype):
         """
@@ -1228,18 +1229,18 @@ class GeoView(HtmlView):
             self.place_without_coordinates.append([gid, place])
             self.without += 1
 
-    def _append_to_places_list_menu(self, place, idx):
-        """
-        Create a list of places with index for the places list menu.
-        This menu is displayed over the map.
-        """
-        self.placeslist.append([place, idx])
-
     def _append_to_places_list(self, place, evttype, name, lat, 
                               longit, descr, center, year, icontype):
         """
         Create a list of places with coordinates.
         """
+        found = 0
+        for place_info in self.place_list:
+            if place_info[0] == place:
+                found = 1
+                break
+        if not found:
+            self.nbplaces += 1
         self.place_list.append([place, name, evttype, lat,
                                 longit, descr, int(center), year, icontype])
         self.nbmarkers += 1
@@ -1280,6 +1281,7 @@ class GeoView(HtmlView):
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(ipath.split(os.sep)), '', ''))
         self.mapview.write("my_marker.setIcon(\"%s\",[22,22],[0,22]);" % upath)
+        self.mapview.write("my_marker.setShadowIcon(\"\");")
 
     def _show_title(self, title):
         """
@@ -1294,7 +1296,7 @@ class GeoView(HtmlView):
         last = ""
         current = ""
         self.placeslist = []
-        indm = ind = 0
+        indm = 0
         divclose = True
         self.yearinmarker = []
         ininterval = False
@@ -1315,7 +1317,12 @@ class GeoView(HtmlView):
         self.mapview.write(" default_icon = \"mainmap\"; }\n")
         differtype = False
         savetype = None
+        index_mark = 0
+        indm = firstm
         for mark in self.sort:
+            index_mark += 1
+            if index_mark < self.last_index:
+                continue
             if ( indm >= firstm ) and ( indm <= lastm ):
                 ininterval = True
             if ininterval:
@@ -1338,22 +1345,22 @@ class GeoView(HtmlView):
                         self._set_icon(savetype, differtype, formatype)
                         differtype = False
                         self.mapview.write("map.addMarker(my_marker);")
-                    indm += 1
                     if ( indm > lastm ):
                         if (indm % NB_MARKERS_PER_PAGE) == 0:
+                            self.last_index = index_mark
                             ininterval = False
                     last = {
                              2 : [mark[3], mark[4]],
                            }.get(formatype, mark[0])
                     if ( indm >= firstm ) and ( indm <= lastm ):
-                        self._append_to_places_list_menu(mark[0], ind)
-                        ind += 1
+                        ind = ( indm - 1 ) % NB_MARKERS_PER_PAGE
+                        self.plist.append([ mark[0], ind, self.nbpages] )
+                        indm += 1
                         self.mapview.write("\n  var point = new LatLonPoint")
 
                         self.mapview.write("(%s,%s);" % (mark[3], mark[4]))
                         self.mapview.write("my_marker = new Marker(point);")
-                        self.mapview.write("gmarkers[%d]=my_marker;" % \
-                                           (( indm - 1 ) % NB_MARKERS_PER_PAGE))
+                        self.mapview.write("gmarkers[%d]=my_marker;" % ind )
                         self.mapview.write("my_marker.setLabel")
                         self.mapview.write("(\"%s\");" % mark[0])
                         self.yearinmarker.append(mark[7])
@@ -1378,7 +1385,10 @@ class GeoView(HtmlView):
                 else: # This marker already exists. add info.
                     if ( mark[8] and savetype != mark[8] ):
                         differtype = True
-                    self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
+                    if indm > last:
+                        divclose = True
+                    else:
+                        self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
                     ret = 1
                     for year in self.yearinmarker:
                         if year == mark[7]:
