@@ -107,6 +107,10 @@ class BasePluginManager(object):
             return False # return value is True for error
         
         for (dirpath, dirnames, filenames) in os.walk(direct):
+            # Skip hidden directories.
+            for dirname in dirnames:
+                if dirname.startswith("."):
+                    dirnames.remove(dirname)
             # add the directory to the python search path
             sys.path.append(dirpath)
             # if the path has not already been loaded, save it in the 
