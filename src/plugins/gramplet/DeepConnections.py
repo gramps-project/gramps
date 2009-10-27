@@ -144,9 +144,9 @@ class DeepConnectionsGramplet(Gramplet):
         default_name = default_person.get_primary_name()
         active_name = active_person.get_primary_name()
         self.set_text("")
-        self.render_text(_("Looking for relationship between\n" +
-                           "  <b>%s</b> (Home Person) and\n" +
-                           "  <b>%s</b> (Active Person)...\n") %
+        self.render_text((_("Looking for relationship between\n") +
+                           _("  <b>%s</b> (Home Person) and\n") +
+                           _("  <b>%s</b> (Active Person)...\n")) %
                          (name_displayer.display_name(default_name), 
                           name_displayer.display_name(active_name)))
         yield True
