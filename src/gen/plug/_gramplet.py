@@ -36,6 +36,7 @@ class Gramplet(object):
         self._generator = None
         self._need_to_update = False
         self.option_dict = {}
+        self._signal = {}
         self.option_order = []
         # links to each other:
         self.gui = gui   # plugin gramplet has link to gui
@@ -45,21 +46,25 @@ class Gramplet(object):
         self.init()
         self.on_load()
         self.build_options()
-        self.dbstate.connect('database-changed', self._db_changed)
-        self.dbstate.connect('active-changed', self._active_changed)
-        self.gui.textview.connect('button-press-event', 
-                                  self.gui.on_button_press) 
-        self.gui.textview.connect('motion-notify-event', 
-                                  self.gui.on_motion)
+        self.connect(self.dbstate, "database-changed", self._db_changed)
+        self.connect(self.dbstate, "active-changed", self._active_changed)
+        self.connect(self.gui.textview, "button-press-event", 
+                     self.gui.on_button_press) 
+        self.connect(self.gui.textview, "motion-notify-event", 
+                     self.gui.on_motion)
         if self.dbstate.active: # already changed
             self._db_changed(self.dbstate.db)
             self._active_changed(self.dbstate.active.handle)
+        self.post_init()
 
     def init(self): # once, constructor
         """
         External constructor for developers to put their initialization
         code. Designed to be overridden.
         """
+        pass
+
+    def post_init(self):
         pass
 
     def build_options(self):
@@ -336,3 +341,14 @@ class Gramplet(object):
 
     def save_options(self):
         pass
+
+    def connect(self, signal_obj, signal, method):
+        id = signal_obj.connect(signal, method)
+        self._signal[signal] = (id, signal_obj)
+
+    def disconnect(self, signal):
+        if signal in self._signal:
+            (id, signal_obj) = self._signal[signal]
+            signal_obj.disconnect(id)
+        else:
+            raise AttributeError("unknown signal: '%s'" % signal)

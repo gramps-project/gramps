@@ -85,6 +85,7 @@ def GET_AVAILABLE_GRAMPLETS(name):
                 "tname":   gplug.name,
                 "version": gplug.version,
                 "height":  gplug.height,
+                "expand":  gplug.expand, 
                 "title":   gplug.gramplet_title,
                 "content": gplug.gramplet,
                 "detached_width": gplug.detached_width,

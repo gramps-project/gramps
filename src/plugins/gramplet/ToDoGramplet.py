@@ -41,6 +41,9 @@ class TODOGramplet(Gramplet):
     def on_load(self):
         self.load_data_to_text()
 
+    def post_init(self):
+        self.disconnect("active-changed")
+
     def on_save(self):
         self.gui.data = [] # clear out old data
         self.save_text_to_data()

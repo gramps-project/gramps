@@ -38,3 +38,6 @@ class FAQGramplet(Gramplet):
         self.render_text("Draft of a <a wiki='FAQ'>Frequently Asked Questions</a> Gramplet\n\n")
         self.render_text("  1. <a href='http://bugs.gramps-project.org/'>Test 1</a>\n")
         self.render_text("  2. <a href='http://gramps-project.org//'>Test 2</a>\n")
+
+    def post_init(self):
+        self.disconnect("active-changed")

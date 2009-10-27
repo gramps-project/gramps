@@ -43,6 +43,9 @@ class CalendarGramplet(Gramplet):
         self.gui.get_container_widget().add_with_viewport(self.gui.calendar)
         self.gui.calendar.show()
 
+    def post_init(self):
+        self.disconnect("active-changed")
+
     def double_click(self, obj):
         # bring up events on this day
         year, month, day = self.gui.calendar.get_date()
