@@ -51,7 +51,7 @@ class _DrawFormatComboBox(gtk.ComboBox):
 
         gtk.ComboBox.__init__(self)
         
-        pmgr = PluginManager.get_instance()
+        pmgr = GuiPluginManager.get_instance()
         self.__drawdoc_plugins = []
         for plugin in pmgr.get_docgen_plugins():
             if plugin.get_draw_support():
