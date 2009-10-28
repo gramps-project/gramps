@@ -1186,7 +1186,6 @@ div#pedigree {
 /* Calendar : General */
 body#WebCal {
     padding:0 14px;
-    background-color:#542;
 }
 .calendar {
     empty-cells:show;

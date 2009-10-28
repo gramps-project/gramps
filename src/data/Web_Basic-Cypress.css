@@ -175,12 +175,12 @@ a:visited {
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation {
+#navigation, #subnavigation {
     margin:0;
     padding:4px 0 0 0;
     background-color:#454;
 }
-#navigation ul {
+#navigation ul, #subnavigation ul {
     list-style:none;
     min-width:770px;
     height:22px;
@@ -188,12 +188,12 @@ a:visited {
     padding:0 0 0 12px;
     border-bottom:1px solid #7C8F7C;
 }
-#navigation ul li {
+#navigation ul li, #subnavigation ul li {
     margin:0;
     padding:0;
     float:left;
 }
-#navigation ul li a {
+#navigation ul li a, #subnavigation ul li a {
     display:block;
     font-size:12px;
     line-height:100%;
@@ -204,14 +204,14 @@ a:visited {
     padding:5px 5px;
     background-color:#454;
 }
-#navigation ul li a:hover {
+#navigation ul li a:hover, #subnavigation ul li a:hover {
     color:#FFF;
     padding-top:4px;
     background-color:#9DBF9D;
     border-top:solid 1px #454;
     border-bottom:solid 1px #000;
 }
-#navigation ul li.CurrentSection a {
+#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     color:#454;
     padding-bottom:4px;
     border-top:solid 1px #7C8F7C;
@@ -220,7 +220,7 @@ a:visited {
     border-bottom:solid 1px #FFF;
     background-color:#FFF;
 }
-#navigation ul li.CurrentSection a:hover {
+#navigation ul li.CurrentSection a:hover, #subnavigation ul li.CurrentSection a:hover {
     padding-top:5px;
     background-color:#FFF;
 }
