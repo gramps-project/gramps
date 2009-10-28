@@ -240,13 +240,13 @@ class DateDisplayFR(DateDisplay):
     """
     French language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( u"", u"Janvier", u"Février", u"Mars", u"Avril", u"Mai", 
+                    u"Juin", u"Juillet", u"Août", u"Septembre", u"Octobre", 
+                    u"Novembre", u"Décember" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    # jun / jul ?
+    short_months = ( u"", u"Jan", u"Fév", u"Mar", u"Avr", u"Mai", u"Jun", 
+                     u"Jul", u"Aou", u"Sep", u"Oct", u"Nov", u"Déc" )
 
     calendar = ("", u" (Julien)", u" (Hébreu)", u" (Révolutionnaire)",
                 u" (Perse)", u" (Islamique)", u" (Suédois)")
