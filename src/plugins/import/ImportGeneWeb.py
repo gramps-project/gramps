@@ -426,46 +426,49 @@ class GeneWebParser(object):
         while idx < len(fields) and not (fields[idx] and fields[idx][0] == "+"):
             if fields[idx]:
                 print "parse_marriage(): Unknown field: '%s' in line %d!" %(fields[idx],self.lineno)
-            idx = idx + 1
+            idx += 1
 
         while idx < len(fields) and mariageDataRe.match(fields[idx]):
             if fields[idx][0] == "+":
                 mar_date = self.parse_date(self.decode(fields[idx]))
                 self.debug(" Married at: %s" % fields[idx])
-                idx = idx + 1
+                idx += 1
             elif fields[idx][0] == "-":
                 div_date = self.parse_date(self.decode(fields[idx]))
                 self.debug(" Div at: %s" % fields[idx])
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == "#mp":
-                idx = idx + 1
-                mar_place = self.get_or_create_place(self.decode(fields[idx]))
-                self.debug(" Marriage place: %s" % fields[idx])
-                idx = idx + 1
+                idx += 1
+                if idx < len(fields):
+                    mar_place = self.get_or_create_place(self.decode(fields[idx]))
+                    self.debug(" Marriage place: %s" % fields[idx])
+                    idx += 1
             elif fields[idx] == "#ms":
-                idx = idx + 1
-                mar_source = self.get_or_create_source(self.decode(fields[idx]))
-                self.debug(" Marriage source: %s" % fields[idx])
-                idx = idx + 1
+                idx += 1
+                if idx < len(fields):
+                    mar_source = self.get_or_create_source(self.decode(fields[idx]))
+                    self.debug(" Marriage source: %s" % fields[idx])
+                    idx += 1
             elif fields[idx] == "#sep":
-                idx = idx + 1
-                sep_date = self.parse_date(self.decode(fields[idx]))
-                self.debug(" Seperated since: %s" % fields[idx])
-                idx = idx + 1
+                idx += 1
+                if idx < len(fields):
+                    sep_date = self.parse_date(self.decode(fields[idx]))
+                    self.debug(" Seperated since: %s" % fields[idx])
+                    idx += 1
             elif fields[idx] == "#nm":
                 self.debug(" Are not married.")
                 married = 0
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == "#noment":
                 self.debug(" Not mentioned.")
-                idx = idx + 1
+                idx += 1
             elif fields[idx] == "#eng":
                 self.debug(" Are engaged.")
                 engaged = 1
-                idx = idx + 1
+                idx += 1
             else:
                 print "parse_marriage(): Unknown field '%s'for mariage in line %d!" % (fields[idx],self.lineno)
-                idx = idx + 1
+                idx += 1
 
         if mar_date or mar_place or mar_source:
             mar = self.create_event(gen.lib.EventType.MARRIAGE, None, mar_date, mar_place, mar_source)
@@ -499,7 +502,7 @@ class GeneWebParser(object):
                 surname =""
             else:
                 surname = self.decode(fields[idx])
-            idx = idx + 1
+            idx += 1
         else:
             surname = father_surname
         
@@ -508,12 +511,12 @@ class GeneWebParser(object):
             firstname = ""
         else:
             firstname = self.decode(fields[idx])
-        idx = idx + 1
+        idx += 1
         if idx < len(fields) and father_surname:
             noSurnameRe = re.compile("^[({\[~><?0-9#].*$")
             if not noSurnameRe.match(fields[idx]):
                 surname = self.decode(fields[idx])
-                idx = idx + 1
+                idx += 1
 
         self.debug("Person: %s %s" % (firstname, surname))
         person = self.get_or_create_person(firstname,surname)
@@ -594,73 +597,86 @@ class GeneWebParser(object):
                 idx += 1
             elif fields[idx] == '#nick':
                 idx += 1
-                self.debug("Nick Name: %s" % fields[idx])
-                nick_names.append(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Nick Name: %s" % fields[idx])
+                    nick_names.append(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#occu':
                 idx += 1
-                self.debug("Occupation: %s" % fields[idx])
-                occu = self.create_event(gen.lib.EventType.OCCUPATION,self.decode(fields[idx]))
-                occu_ref = gen.lib.EventRef()
-                occu_ref.set_reference_handle(occu.get_handle())
-                person.add_event_ref(occu_ref)
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Occupation: %s" % fields[idx])
+                    occu = self.create_event(gen.lib.EventType.OCCUPATION,self.decode(fields[idx]))
+                    occu_ref = gen.lib.EventRef()
+                    occu_ref.set_reference_handle(occu.get_handle())
+                    person.add_event_ref(occu_ref)
+                    idx += 1
             elif fields[idx] == '#alias':
                 idx += 1
-                self.debug("Name Alias: %s" % fields[idx])
-                name_aliases.append(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Name Alias: %s" % fields[idx])
+                    name_aliases.append(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#salias':
                 idx += 1
-                self.debug("Surname Alias: %s" % fields[idx])
-                surname_aliases.append(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Surname Alias: %s" % fields[idx])
+                    surname_aliases.append(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#image':
                 idx += 1
-                self.debug("Image: %s" % fields[idx])
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Image: %s" % fields[idx])
+                    idx += 1
             elif fields[idx] == '#src':
                 idx += 1
-                self.debug("Source: %s" % fields[idx])
-                source = self.get_or_create_source(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Source: %s" % fields[idx])
+                    source = self.get_or_create_source(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#bs':
                 idx += 1
-                self.debug("Birth Source: %s" % fields[idx])
-                birth_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Birth Source: %s" % fields[idx])
+                    birth_source = self.get_or_create_source(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx][0] == '!':
                 self.debug("Baptize at: %s" % fields[idx])
                 bapt_date = self.parse_date(self.decode(fields[idx][1:]))
                 idx += 1
             elif fields[idx] == '#bp':
                 idx += 1
-                self.debug("Birth Place: %s" % fields[idx])
-                birth_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Birth Place: %s" % fields[idx])
+                    birth_place = self.get_or_create_place(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#pp':
                 idx += 1
-                self.debug("Baptize Place: %s" % fields[idx])
-                bapt_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Baptize Place: %s" % fields[idx])
+                    bapt_place = self.get_or_create_place(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#ps':
                 idx += 1
-                self.debug("Baptize Source: %s" % fields[idx])
-                bapt_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Baptize Source: %s" % fields[idx])
+                    bapt_source = self.get_or_create_source(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#dp':
                 idx += 1
-                self.debug("Death Place: %s" % fields[idx])
-                death_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Death Place: %s" % fields[idx])
+                    death_place = self.get_or_create_place(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#ds':
                 idx += 1
-                self.debug("Death Source: %s" % fields[idx])
-                death_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Death Source: %s" % fields[idx])
+                    death_source = self.get_or_create_source(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#buri':
                 idx += 1
-                self.debug("Burial Date: %s" % fields[idx])
+                if idx < len(fields):
+                    self.debug("Burial Date: %s" % fields[idx])
                 try:
                     bur_date = self.parse_date(self.decode(fields[idx]))
                 except IndexError:
@@ -668,19 +684,22 @@ class GeneWebParser(object):
                 idx += 1
             elif fields[idx] == '#crem':
                 idx += 1
-                self.debug("Cremention Date: %s" % fields[idx])
-                crem_date = self.parse_date(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Cremation Date: %s" % fields[idx])
+                    crem_date = self.parse_date(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#rp':
                 idx += 1
-                self.debug("Burial Place: %s" % fields[idx])
-                bur_place = self.get_or_create_place(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Burial Place: %s" % fields[idx])
+                    bur_place = self.get_or_create_place(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#rs':
                 idx += 1
-                self.debug("Burial Source: %s" % fields[idx])
-                bur_source = self.get_or_create_source(self.decode(fields[idx]))
-                idx += 1
+                if idx < len(fields):
+                    self.debug("Burial Source: %s" % fields[idx])
+                    bur_source = self.get_or_create_source(self.decode(fields[idx]))
+                    idx += 1
             elif fields[idx] == '#apubl':
                 self.debug("This is a public record")
                 idx += 1
