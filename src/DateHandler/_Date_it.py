@@ -112,14 +112,13 @@ class DateDisplayIT(DateDisplay):
     """
     Italian language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
-    
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
-    
+    long_months = ( u"", u"gennaio", u"febbraio", u"marzo", u"aprile", 
+                    u"maggio", u"giugno", u"luglio", u"agosto", u"settembre", 
+                    u"ottobre", u"novembre", u"dicembre" )
+
+    short_months = ( u"", u"gen", u"feb", u"mar", u"apr", u"mag", u"giu", 
+                     u"lug", u"ago", u"set", u"ott", u"nov", u"dic" )
+
     calendar = (
         "", u" (Giuliano)", u" (Ebraico)", 
         u" (Rivoluzionario)", u" (Persiano)", u" (Islamico)", 
