@@ -161,6 +161,10 @@ class GrampsType(object):
         if value in self._E2IMAP:
             self.__value = self._E2IMAP[value]
             self.__string = u''
+            if self.__value == self._CUSTOM:
+                #if the custom event is actually 'Custom' then we should save it
+                # with that string value. That is, 'Custom' is in _E2IMAP
+                self.__string = value
         else:
             self.__value = self._CUSTOM
             self.__string = value
