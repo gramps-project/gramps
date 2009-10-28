@@ -392,18 +392,19 @@ class HtmlDoc(BaseDoc, TextDoc):
         level = style.get_header_level()
         if level == 0:
             #a normal paragraph
-            self.htmllist += (Html('p', class_=style_name),)
+            self.htmllist += (Html('p', class_=style_name, inline=True),)
         elif level == 1:
             if self.__title_written == -1 and \
                     style_name.upper().find('TITLE') != -1:
                 self.__title_written = 0
                 self.htmllist += (Html('div', id="header"),)
-                self.htmllist += (Html('h1', class_=style_name, id='SiteTitle'),)
+                self.htmllist += (Html('h1', class_=style_name, id='SiteTitle',
+                                       inline=True),)
             else:
-                self.htmllist += (Html('h1', class_=style_name),)
+                self.htmllist += (Html('h1', class_=style_name, inline=True),)
         elif 2<= level <= 5:
             tag = 'h'+str(level+1)
-            self.htmllist += (Html(tag, class_=style_name),)
+            self.htmllist += (Html(tag, class_=style_name, inline=True),)
         else:
             # a low level header
             self.htmllist += (Html('div', id='grampsheading',
