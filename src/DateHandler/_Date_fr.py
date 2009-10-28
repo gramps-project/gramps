@@ -242,7 +242,7 @@ class DateDisplayFR(DateDisplay):
     """
     long_months = ( u"", u"Janvier", u"Février", u"Mars", u"Avril", u"Mai", 
                     u"Juin", u"Juillet", u"Août", u"Septembre", u"Octobre", 
-                    u"Novembre", u"Décember" )
+                    u"Novembre", u"Décembre" )
     
     # jun / jul ?
     short_months = ( u"", u"Jan", u"Fév", u"Mar", u"Avr", u"Mai", u"Jun", 
