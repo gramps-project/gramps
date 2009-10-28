@@ -57,6 +57,30 @@ class DateParserFR(DateParser):
     """
 
     month_to_int = DateParser.month_to_int
+    month_to_int[u"janvier"] = 1
+    month_to_int[u"février"] = 2
+    month_to_int[u"mars"] = 3
+    month_to_int[u"avril"] = 4
+    month_to_int[u"mai"] = 5
+    month_to_int[u"juin"] = 6
+    month_to_int[u"juillet"] = 7
+    month_to_int[u"août"] = 8
+    month_to_int[u"septembre"] = 9
+    month_to_int[u"octobre"] = 10
+    month_to_int[u"novembre"] = 11
+    month_to_int[u"décembre"] = 12
+    month_to_int[u"janv"] = 1
+    month_to_int[u"févr"] = 2
+    month_to_int[u"mars"] = 3
+    month_to_int[u"avril"] = 4
+    month_to_int[u"mai"] = 5
+    month_to_int[u"juin"] = 6
+    month_to_int[u"juil"] = 7
+    month_to_int[u"août"] = 8
+    month_to_int[u"sept"] = 9
+    month_to_int[u"oct"] = 10
+    month_to_int[u"nov"] = 11
+    month_to_int[u"déc"] = 12
 
     # Add common value
 
@@ -240,13 +264,12 @@ class DateDisplayFR(DateDisplay):
     """
     French language date display class. 
     """
-    long_months = ( u"", u"Janvier", u"Février", u"Mars", u"Avril", u"Mai", 
-                    u"Juin", u"Juillet", u"Août", u"Septembre", u"Octobre", 
-                    u"Novembre", u"Décembre" )
+    long_months = ( u"", u"janvier", u"février", u"mars", u"avril", u"mai", 
+                    u"juin", u"juillet", u"août", u"septembre", u"octobre", 
+                    u"novembre", u"décembre" )
     
-    # jun / jul ?
-    short_months = ( u"", u"Jan", u"Fév", u"Mar", u"Avr", u"Mai", u"Jun", 
-                     u"Jul", u"Aou", u"Sep", u"Oct", u"Nov", u"Déc" )
+    short_months = ( u"", u"janv", u"févr", u"mars", u"avril", u"mai", u"juin", 
+                     u"juil", u"août", u"sept", u"oct", u"nov", u"déc" )
 
     calendar = ("", u" (Julien)", u" (Hébreu)", u" (Révolutionnaire)",
                 u" (Perse)", u" (Islamique)", u" (Suédois)")
