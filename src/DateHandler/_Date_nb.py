@@ -105,13 +105,13 @@ class DateDisplayNb(DateDisplay):
     """
     Norwegian language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+
+    long_months = ( u"", u"januar", u"februar", u"mars", u"april", u"mai", 
+                    u"juni", u"juli", u"august", u"september", u"oktober", 
+                    u"november", u"desember" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"mai", u"jun", 
+                     u"jul", u"aug", u"sep", u"okt", u"nov", u"des" )
 
     formats = (
         u"ÅÅÅÅ-MM-DD (ISO)", 
