@@ -257,6 +257,7 @@ class Gramplet(object):
             self._idle_id = 0
             return False
         except Exception, e:
+            import traceback
             print "Gramplet gave an error"
             traceback.print_exc()
             print "Continuing after gramplet error..."
