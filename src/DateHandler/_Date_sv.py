@@ -111,12 +111,12 @@ class DateDisplaySv(DateDisplay):
     """
     Swedish language date display class. 
     """
-    long_months = ( u"Januari", u"Februari", u"Mars", u"April", u"Maj", 
+    long_months = ( u"", u"Januari", u"Februari", u"Mars", u"April", u"Maj", 
                     u"Juni", u"Juli", u"Augusti", u"September", u"Oktober", 
                     u"November", u"December" )
     
-    short_months = ( u"Jan", u"Feb", u"Mar", u"Apr", u"Maj", u"Jun", u"Jul", 
-                     u"Aug", u"Sep", u"Okt", u"Nov", u"Dec" )
+    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"Maj", u"Jun",
+                      u"Jul", u"Aug", u"Sep", u"Okt", u"Nov", u"Dec" )
     
     formats = (
         u"YYYY-MM-DD (ISO)", 

@@ -140,12 +140,12 @@ class DateDisplayPL(DateDisplay):
     Polish language date display class. 
     """
     # TODO: Translate these month strings:
-    long_months = ( u"January", u"February", u"March", u"April", u"May", 
+    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
                     u"June", u"July", u"August", u"September", u"October", 
                     u"November", u"December" )
     
-    short_months = ( u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", u"Jul", 
-                     u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
+                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
     
     calendar = (
         "", u" (juliański)", u" (hebrajski)", 
