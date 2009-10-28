@@ -50,8 +50,6 @@ from _DateHandler import register_datehandler
 # French parser
 #
 #-------------------------------------------------------------------------
-
-
 class DateParserFR(DateParser):
     """
     Convert a text string into a Date object. If the date cannot be
@@ -238,12 +236,17 @@ class DateParserFR(DateParser):
 # French display
 #
 #-------------------------------------------------------------------------
-
-
 class DateDisplayFR(DateDisplay):
     """
     French language date display class. 
     """
+    # TODO: Translate these month strings:
+    long_months = ( u"January", u"February", u"March", u"April", u"May", 
+                    u"June", u"July", u"August", u"September", u"October", 
+                    u"November", u"December" )
+    
+    short_months = ( u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", u"Jul", 
+                     u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
 
     calendar = ("", u" (Julien)", u" (Hébreu)", u" (Révolutionnaire)",
                 u" (Perse)", u" (Islamique)", u" (Suédois)")
@@ -288,10 +291,10 @@ class DateDisplayFR(DateDisplay):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % ((self._months)[date_val[1]], year)
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % ((self._months)[date_val[1]],
-                        date_val[0], year)
+                value = "%s %d, %s" % (self.long_months[date_val[1]],
+                                       date_val[0], year)
         elif self.format == 3:
 
             # MON Day, Year
@@ -300,10 +303,10 @@ class DateDisplayFR(DateDisplay):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % ((self.MONS)[date_val[1]], year)
+                    value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % ((self.MONS)[date_val[1]],
-                        date_val[0], year)
+                value = "%s %d, %s" % (self.short_months[date_val[1]],
+                                       date_val[0], year)
         elif self.format == 4:
 
             # Day. Month Year
@@ -312,13 +315,15 @@ class DateDisplayFR(DateDisplay):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % ((self._months)[date_val[1]], year)
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
 
                 # base_display :
-                # value = "%d %s %s" % (date_val[0], self._months[date_val[1]], year)
+                # value = "%d %s %s" % (date_val[0], 
+                #                       self.long_months[date_val[1]], year)
 
-                value = "%d. %s %s" % (date_val[0], (self._months)[date_val[1]],
+                value = "%d. %s %s" % (date_val[0], 
+                                       self.long_months[date_val[1]],
                         year)
         elif self.format == 5:
 
@@ -328,14 +333,15 @@ class DateDisplayFR(DateDisplay):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % ((self.MONS)[date_val[1]], year)
+                    value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
 
                 # base_display :
-                # value = "%d %s %s" % (date_val[0], self.MONS[date_val[1]], year)
+                # value = "%d %s %s" % (date_val[0], 
+                #                       self.short_months[date_val[1]], year)
 
-                value = "%d.%s %s" % (date_val[0], (self.MONS)[date_val[1]],
-                        year)
+                value = "%d.%s %s" % (date_val[0], 
+                                      self.short_months[date_val[1]], year)
 
         elif self.format == 6:
 
@@ -345,11 +351,11 @@ class DateDisplayFR(DateDisplay):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % ((self._months)[date_val[1]], year)
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
 
-                value = "%d %s %s" % (date_val[0], (self._months)[date_val[1]],
-                        year)
+                value = "%d %s %s" % (date_val[0], 
+                                      self.long_months[date_val[1]], year)
         else:
 
             # Day MON Year
@@ -358,11 +364,11 @@ class DateDisplayFR(DateDisplay):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % ((self.MONS)[date_val[1]], year)
+                    value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
 
-                value = "%d %s %s" % (date_val[0], (self.MONS)[date_val[1]],
-                        year)
+                value = "%d %s %s" % (date_val[0], 
+                                      self.short_months[date_val[1]], year)
                         
         if date_val[2] < 0:
             return self._bce_str % value

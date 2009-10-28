@@ -201,8 +201,16 @@ class DateParserHR(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayHR(DateDisplay):
     """
-    Croatian date display class
+    Croatian language date display class. 
     """
+    # TODO: Translate these month strings:
+    long_months = ( u"January", u"February", u"March", u"April", u"May", 
+                    u"June", u"July", u"August", u"September", u"October", 
+                    u"November", u"December" )
+    
+    short_months = ( u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", u"Jul", 
+                     u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    
     calendar = (
         "", u" (julijanski)", u" (hebrejski)", 
         u" (francuski republikanski)", u" (perzijski)", u" (islamski)",

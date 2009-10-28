@@ -114,6 +114,16 @@ class DateParserES(DateParser):
 #
 #-------------------------------------------------------------------------
 class DateDisplayES(DateDisplay):
+    """
+    Spanish language date display class. 
+    """
+    # TODO: Translate these month strings:
+    long_months = ( u"enero", u"febrero", u"marzo", u"abril", u"mayo", 
+                    u"junio", u"julio", u"agosto", u"septiembre", u"octubre", 
+                    u"noviembre", u"diciembre" )
+    
+    short_months = ( u"enero", u"feb.", u"marzo", u"abr.", u"mayo", u"jun.", 
+                     u"jul.", u"agosto", u"set.", u"oct.", u"nov.", u"dic" )
 
     calendar = (
         "", u" (Juliano)", u" (Hebreo)", 

@@ -136,16 +136,26 @@ class DateParserPL(DateParser):
 #
 #-------------------------------------------------------------------------
 class DateDisplayPL(DateDisplay):
-
+    """
+    Polish language date display class. 
+    """
+    # TODO: Translate these month strings:
+    long_months = ( u"January", u"February", u"March", u"April", u"May", 
+                    u"June", u"July", u"August", u"September", u"October", 
+                    u"November", u"December" )
+    
+    short_months = ( u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", u"Jul", 
+                     u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    
     calendar = (
         "", u" (juliański)", u" (hebrajski)", 
         u" (francuski republikański)", u" (perski)", u" (islamski)", 
         u" (swedish)" 
         )
 
-    _mod_str = ("",u"przed ",u"po ",u"ok. ","","","")
+    _mod_str = ("", u"przed ", u"po ", u"ok. ", "", "", "")
     
-    _qual_str = ("",u"szacowany ",u"obliczony ")
+    _qual_str = ("", u"szacowany ", u"obliczony ")
     
     _bce_str = "%s p.n.e."
 
@@ -170,8 +180,8 @@ class DateDisplayPL(DateDisplay):
         "XII"
         )
 
-    def _display_gregorian(self,date_val):
-        year = self._slash_year(date_val[2],date_val[3])
+    def _display_gregorian(self, date_val):
+        year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
@@ -181,51 +191,54 @@ class DateDisplayPL(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%m',str(date_val[0]))
-                    value = value.replace('%d',str(date_val[1]))
-                    value = value.replace('%y',str(date_val[2]))
+                    value = self._tformat.replace('%m', str(date_val[0]))
+                    value = value.replace('%d', str(date_val[1]))
+                    value = value.replace('%y', str(date_val[2]))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._months[date_val[1]],year)
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self._months[date_val[1]],date_val[0],year)
+                value = "%s %d, %s" % (self.long_months[date_val[1]], 
+                                       date_val[0], year)
         elif self.format == 3:
             # Day. Month. Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%d.%s" % (date_val[1],year)
+                    value = "%d.%s" % (date_val[1], year)
             else:
-                value = "%d.%d.%s" % (date_val[0],date_val[1],year)
+                value = "%d.%d.%s" % (date_val[0], date_val[1], year)
         elif self.format == 4:
             # Day Month Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._months[date_val[1]],year)
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0],self._months[date_val[1]],year)
+                value = "%d %s %s" % (date_val[0], 
+                                      self.long_months[date_val[1]], year)
         else:
             # Day RomanMon Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self.roman_months[date_val[1]],year)
+                    value = "%s %s" % (self.roman_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0],self.roman_months[date_val[1]],year)
+                value = "%d %s %s" % (date_val[0], 
+                                      self.roman_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:
             return value
 
-    def display(self,date):
+    def display(self, date):
         """
         Return a text string representing the date.
         """
@@ -243,14 +256,17 @@ class DateDisplayPL(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'od',d1,u'do',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str, u'od', d1, u'do', d2, 
+                                        self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str,u'między',d1,u'a',d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str, u'między', d1, u'a', d2, 
+                                        self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
+                                 self.calendar[cal])
 
 #-------------------------------------------------------------------------
 #

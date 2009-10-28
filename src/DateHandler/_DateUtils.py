@@ -80,17 +80,3 @@ def get_date(date_base) :
 def get_date_valid(date_base):
     date_obj = date_base.get_date_object()
     return date_obj.get_valid()
-
-def get_quote_date(date_base):
-    """
-    Return a string representation of the date of the DateBase instance.
-    
-    This representation is based off the default date display format
-    determined by the locale's DateDisplay instance. The date is
-    enclosed in quotes if the Date is not a valid date.
-    
-    @return: Returns a string representing the DateBase date
-    @rtype: str
-    
-    """
-    return displayer.quote_display(date_base.get_date_object())

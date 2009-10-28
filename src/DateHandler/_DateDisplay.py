@@ -47,9 +47,15 @@ import GrampsLocale
 #
 #-------------------------------------------------------------------------
 class DateDisplay(object):
-
-    _months = GrampsLocale.long_months
-    MONS   = GrampsLocale.short_months
+    """
+    Base date display class. 
+    """
+    long_months = ( u"January", u"February", u"March", u"April", u"May", 
+                    u"June", u"July", u"August", u"September", u"October", 
+                    u"November", u"December" )
+    
+    short_months = ( u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", u"Jul", 
+                     u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
 
     _tformat = GrampsLocale.tformat
 
@@ -120,7 +126,6 @@ class DateDisplay(object):
             self._display_islamic, 
             self._display_swedish]
 
-        self.verify_format(format)
         if format is None:
             self.format = 0
         else:
@@ -128,19 +133,6 @@ class DateDisplay(object):
 
     def set_format(self, format):
         self.format = format
-
-    def verify_format(self, format):
-        pass
-
-    def quote_display(self, date):
-        """
-        Similar to the display task, except that if the value is a text only
-        value, it is enclosed in quotes.
-        """
-        if date.get_modifier() == Date.MOD_TEXTONLY:
-            return '"%s"' % self.display(date)
-        else:
-            return self.display(date)
 
     def format_extras(self, cal, newyear):
         """
@@ -243,9 +235,9 @@ class DateDisplay(object):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._months[date_val[1]], year)
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self._months[date_val[1]], 
+                value = "%s %d, %s" % (self.long_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 3:
             # MON Day, Year
@@ -253,9 +245,9 @@ class DateDisplay(object):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self.MONS[date_val[1]], year)
+                    value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.MONS[date_val[1]], 
+                value = "%s %d, %s" % (self.short_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 4:
             # Day Month Year
@@ -263,19 +255,20 @@ class DateDisplay(object):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self._months[date_val[1]], year)
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], self._months[date_val[1]], 
-                                      year)
+                value = "%d %s %s" % (date_val[0], 
+                                      self.long_months[date_val[1]], year)
         else:
             # Day MON Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s %s" % (self.MONS[date_val[1]], year)
+                    value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], self.MONS[date_val[1]], year)
+                value = "%d %s %s" % (date_val[0], 
+                                      self.short_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:
@@ -296,7 +289,8 @@ class DateDisplay(object):
                 else:
                     value = u"%s %d" % (month_list[date_val[1]], year)
             else:
-                value = u"%s %d, %s" % (month_list[date_val[1]], date_val[0], year)
+                value = u"%s %d, %s" % (month_list[date_val[1]], date_val[0], 
+                                        year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:
@@ -313,7 +307,8 @@ class DateDisplay(object):
                 else:
                     value = u"%s %d" % (self.french[date_val[1]], year)
             else:
-                value = u"%d %s %s" % (date_val[0], self.french[date_val[1]], year)
+                value = u"%d %s %s" % (date_val[0], self.french[date_val[1]], 
+                                       year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:

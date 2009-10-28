@@ -30,6 +30,7 @@ Class handling language-specific selection for date parser and displayer.
 #
 #-------------------------------------------------------------------------
 import locale
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -53,6 +54,10 @@ from _DateDisplay import DateDisplay, DateDisplayEn
 #
 #-------------------------------------------------------------------------
 LANG = locale.getlocale(locale.LC_TIME)[0]
+if not LANG:
+    if "LANG" in os.environ:
+        LANG = os.environ["LANG"]
+
 if LANG:
     LANG_SHORT = LANG.split('_')[0]
 else:
