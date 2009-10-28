@@ -593,11 +593,12 @@ class GuiFamilyOption(gtk.HBox):
         family = sel.run()
         self.__update_family(family)
     
-    def __update_family(self, family):
+    def __update_family(self, handle):
         """
         Update the currently selected family.
         """
-        if family:
+        if handle:
+            family = self.__dbstate.db.get_family_from_handle(handle)
             family_id = family.get_gramps_id()
             fhandle = family.get_father_handle()
             mhandle = family.get_mother_handle()
