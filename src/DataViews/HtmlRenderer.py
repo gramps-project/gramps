@@ -220,14 +220,17 @@ class RendererWebkit(Renderer):
     def __init__(self):
         Renderer.__init__(self)
         self.window = webkit.WebView()
-        self.window.set_custom_encoding('utf-8')
+        try:
+            self.window.set_custom_encoding('utf-8') # needs webkit 1.1.10
+        except: # pylint: disable-msg=W0702
+            pass
         settings = self.window.get_settings()
         try:
             proxy = os.environ['http_proxy']
             # webkit use libsoup instead of libcurl.
             #if proxy:
             #    settings.set_property("use-proxy", True)
-        except:
+        except: # pylint: disable-msg=W0702
             pass
         #settings.set_property("ident-string", get_identity())
         # do we need it ? Yes if webkit avoid to use local files for security

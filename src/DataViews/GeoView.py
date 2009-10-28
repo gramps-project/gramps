@@ -1168,6 +1168,7 @@ class GeoView(HtmlView):
         self.nbpages = 0
         self.box1.set_sensitive(True)
         self.pages_selection.hide()
+        self.combobox.child.set_text("")
         self.last_page = 1
         self.plist.clear()
         self.buttons[0].set_active(True)
