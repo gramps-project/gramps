@@ -178,6 +178,9 @@ class ConfigManager(object):
                             vtype = type(self.get_default(key))
                             if vtype == bool:
                                 value = raw_value in ["1", "True"]
+                            elif vtype == list:
+                                print "WARNING: ignoring old key '%s'" % key
+                                continue # there were no lists in oldstyle
                             else:
                                 value = vtype(raw_value)
                         else:
