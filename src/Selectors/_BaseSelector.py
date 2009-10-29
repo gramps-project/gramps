@@ -245,7 +245,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         Builds the selection people see in the Selector
         """
         #search info for the 
-        filter_info = (False, self.search_bar.get_value())
+        filter_info = (False, self.search_bar.get_value(), False)
         #set up cols the first time
         if self.setupcols :
             self.add_columns(self.tree)
