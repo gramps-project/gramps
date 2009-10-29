@@ -34,7 +34,8 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import ChildRefType, Date, EventType, Name
+import gen.lib
+from gen.lib import ChildRefType, Date, EventType, Name, EventRoleType
 import BaseDoc
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
@@ -142,9 +143,13 @@ def _find_records(db, filter, callname):
             divorce_date = None
             for event_ref in family.get_event_ref_list():
                 event = db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == EventType.MARRIAGE:
+                if event.get_type() == gen.lib.EventType.MARRIAGE and \
+                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                     marriage_date = event.get_date_object()
-                elif event.get_type() == EventType.DIVORCE:
+                elif event.get_type() == gen.lib.EventType.DIVORCE and \
+                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                     divorce_date = event.get_date_object()
 
             if _good_date(marriage_date):
@@ -226,9 +231,13 @@ def _find_records(db, filter, callname):
         divorce_date = None
         for event_ref in family.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event.get_type() == EventType.MARRIAGE:
+            if event.get_type() == gen.lib.EventType.MARRIAGE and \
+            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                 marriage_date = event.get_date_object()
-            elif event.get_type() == EventType.DIVORCE:
+            if event and event.get_type() == gen.lib.EventType.DIVORCE and \
+            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
                 divorce_date = event.get_date_object()
 
         father_death_date = _find_death_date(db, father)
