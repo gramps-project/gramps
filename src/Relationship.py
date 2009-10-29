@@ -1760,10 +1760,17 @@ def get_relationship_calculator(reinit=False):
     global __RELCALC_CLASS
     
     if __RELCALC_CLASS is None or reinit:
+        lang = ' '
+        try:
+            lang = os.environ["LANG"]
+        except:
+            import locale
+            lang = locale.getlocale()[0]
+        
         __RELCALC_CLASS = RelationshipCalculator
         # set correct relationship calculator based on LANG
         for plugin in PluginRegister.get_instance().relcalc_plugins():
-            if os.environ["LANG"] in plugin.lang_list:
+            if lang in plugin.lang_list:
                 pmgr = BasePluginManager.get_instance()
                 # the loaded module is put in variable mod
                 mod = pmgr.load_plugin(plugin)
