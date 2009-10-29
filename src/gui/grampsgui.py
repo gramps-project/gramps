@@ -30,7 +30,6 @@ import sys
 import os
 import const
 from gettext import gettext as _
-import platform
 import logging
 
 LOG = logging.getLogger(".grampsgui")
@@ -61,6 +60,7 @@ import gobject
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
 import config
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +75,7 @@ def register_stock_icons ():
     """
         
     #iconpath to the base image. The front of the list has highest priority 
-    if platform.system() == "Windows":
+    if Utils.win():
         iconpaths = [
                     (os.path.join(const.IMAGE_DIR, '48x48'), '.png'), 
                     (const.IMAGE_DIR, '.png'), 
