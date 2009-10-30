@@ -1756,7 +1756,7 @@ class GeoView(HtmlView):
         self.yearsbox.set_model(None)
         self.buttons.clear()
         self._need_to_create_pages(4, self.center, 
-                                   _("All event places for %s." % 
+                                   _("All event places for") + (" %s." % 
                                                          _nd.display(person) ) )
         self.yearsbox.show()
         self.yearsbox.set_model(self.buttons)
