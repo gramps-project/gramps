@@ -3511,7 +3511,6 @@ msgid "Start page for the Html View"
 msgstr "Pagina iniziale per la vista Html"
 
 #: ../src/DataViews/GeoView.py:597
-#, fuzzy
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a "
 "webpage in this page\n"
@@ -3612,7 +3611,7 @@ msgstr ""
 
 #: ../src/DataViews/GeoView.py:888
 msgid "Back to prior page"
-msgstr ""
+msgstr "Torna alla pagina precedente"
 
 #: ../src/DataViews/GeoView.py:937
 #, python-format
@@ -4139,7 +4138,6 @@ msgid "Loading..."
 msgstr "Caricamento..."
 
 #: ../src/DataViews/PlaceView.py:133
-#, fuzzy
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -4156,7 +4154,6 @@ msgid "_Look up with Map Service"
 msgstr "_Ricerca con il servizio di mappe"
 
 #: ../src/DataViews/PlaceView.py:140
-#, fuzzy
 msgid ""
 "Attempt to see this location with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -4169,13 +4166,12 @@ msgid "Place Filter Editor"
 msgstr "Editor filtri luoghi"
 
 #: ../src/DataViews/PlaceView.py:224
-#, fuzzy
 msgid "No map service is available."
-msgstr "Nessuna descrizione disponibile"
+msgstr "Nessuno servizio di mappe disponibile."
 
 #: ../src/DataViews/PlaceView.py:225
 msgid "Check your installation."
-msgstr ""
+msgstr "Verificare la propria installazione."
 
 #: ../src/DataViews/PlaceView.py:233
 msgid "No place selected."
@@ -6559,7 +6555,7 @@ msgstr ""
 "riprovare."
 
 #: ../src/plugins/import/ImportXml.py:2488
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "GRAMPS, while you are running a more recent version %(newgramps)s.\n"
@@ -6571,9 +6567,14 @@ msgid ""
 " for more info."
 msgstr ""
 "Il file .gramps in fase di importazione è stato realizzato con la versione %"
-"s di GRAMPS, mentre quella in esecuzione è la più vecchia %s. Il file non "
-"sarà pertanto importato. Aggiornare all'ultima versione di GRAMPS e "
-"riprovare."
+"(oldgramps)s di GRAMPS, mentre quella in esecuzione è la più recente %"
+"(newgramps)s.\n"
+"\n"
+"Il file non sarà pertanto importato. Usare una versione di GRAMPS più "
+"vecchia che suppori la versione %(xmlversion)s dell'xml.\n"
+"Consultare\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+" per maggiori informazioni."
 
 #: ../src/plugins/import/ImportXml.py:2503
 msgid "The file will not be imported"
@@ -6592,11 +6593,21 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "for more info."
 msgstr ""
+"Il file .gramps in fase di importazione è stato realizzato con la versione %"
+"(oldgramps)s di GRAMPS, mentre quella in esecuzione è la decisamente più "
+"recente %(newgramps)s.\n"
+"\n"
+"Verificare, dopo l'importazione, che tutti i dati siano stati importati "
+"correttamente. In caso di problemi, inviare una segnalazione di bug ed usare "
+"nel frattempo una versione di GRAMPS più vecchia per importare questo file, "
+"che usa la versione %(xmlversion)s dell'xml.\n"
+"Consultare\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+" per maggiori informazioni."
 
 #: ../src/plugins/import/ImportXml.py:2523
-#, fuzzy
 msgid "Old xml file"
-msgstr "Tutti i file"
+msgstr "Vecchio file xml"
 
 #: ../src/plugins/import/ImportXml.py:2533 ../data/gramps.keys.in.h:2
 #: ../data/gramps.xml.in.h:2
@@ -8730,9 +8741,8 @@ msgid ", "
 msgstr ", "
 
 #: ../src/plugins/gramplet/WhatsNext.py:299
-#, fuzzy
 msgid "person not complete"
-msgstr "Persona principale non impostata."
+msgstr "persona non completa"
 
 #: ../src/plugins/gramplet/WhatsNext.py:318
 #: ../src/plugins/gramplet/WhatsNext.py:325
@@ -8756,9 +8766,8 @@ msgid "relation type unknown"
 msgstr "tipo relazione sconosciuto"
 
 #: ../src/plugins/gramplet/WhatsNext.py:383
-#, fuzzy
 msgid "family not complete"
-msgstr "data non completa"
+msgstr "famiglia non completa"
 
 #: ../src/plugins/gramplet/WhatsNext.py:398
 msgid "date unknown"
@@ -12341,10 +12350,10 @@ msgstr "Tutte le persone nel database sono in relazione con %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Setting marker for %d person"
 msgid_plural "Setting marker for %d people"
-msgstr[0] "Impostazione marcatore per %d persone"
+msgstr[0] "Impostazione marcatore per %d persona"
 msgstr[1] "Impostazione marcatore per %d persone"
 
 #. TRANS: No singular form is needed.
@@ -13022,9 +13031,8 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:970
 #: ../src/plugins/webreport/NarrativeWeb.py:2185
 #: ../src/plugins/webreport/NarrativeWeb.py:2196
-#, fuzzy
 msgid "Person Firstname|Name"
-msgstr "Nome filtro persona:"
+msgstr "Nome"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:956
 #, python-format
@@ -13125,7 +13133,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:1673
 #, fuzzy
 msgid "Source name|Name"
-msgstr "Nota fonte"
+msgstr "Nome fonte"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1722
 msgid "Publication information"
@@ -13144,7 +13152,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:1761
 #, fuzzy
 msgid "Media|Name"
-msgstr "Nota oggetto multimediale"
+msgstr "Nome oggetto multimediale"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2019
 msgid "Ancestors"
@@ -13834,7 +13842,7 @@ msgid "The note for the month of December"
 msgstr "Le note per il mese di dicembre"
 
 #: ../src/plugins/webreport/WebCal.py:1453
-#, fuzzy, python-format
+#, python-format
 msgid "%s old"
 msgstr "%s"
 
@@ -14403,14 +14411,13 @@ msgid "Use subgraphs"
 msgstr "Usare sottografici"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1042
-#, fuzzy
 msgid ""
 "Subgraphs can help GraphViz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"I sottografici possono aiutare GraphViz a posizionare alcuni nodi collegati "
-"più vicini tra loro, ma nel caso di grafici non banali il loro uso può "
-"portare a righe più lunghe e grafici più larghi."
+"I sottografici possono aiutare GraphViz a posizionare i coniugi vicini tra "
+"loro, ma nel caso di grafici non banali il loro uso può portare a righe più "
+"lunghe e grafici più larghi."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:1052
@@ -22889,7 +22896,7 @@ msgstr "_Ordina come:"
 #: ../src/glade/gramps.glade.h:180
 #, fuzzy
 msgid "_State/Province:"
-msgstr "_Stato o Provincia:"
+msgstr "_Stato/Provincia:"
 
 #: ../src/glade/gramps.glade.h:181
 msgid "_State:"
@@ -23527,7 +23534,6 @@ msgid "GeneWeb source file"
 msgstr "File sorgente GeneWeb"
 
 #: ../src/data/tips.xml.in.h:1
-#, fuzzy
 msgid ""
 "<b>Adding Children</b>: To add children in GRAMPS make either of the parents "
 "the Active Person then switch to the Family View. If the child is already in "
