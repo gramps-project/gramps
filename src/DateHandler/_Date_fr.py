@@ -57,30 +57,6 @@ class DateParserFR(DateParser):
     """
 
     month_to_int = DateParser.month_to_int
-    month_to_int[u"janvier"] = 1
-    month_to_int[u"février"] = 2
-    month_to_int[u"mars"] = 3
-    month_to_int[u"avril"] = 4
-    month_to_int[u"mai"] = 5
-    month_to_int[u"juin"] = 6
-    month_to_int[u"juillet"] = 7
-    month_to_int[u"août"] = 8
-    month_to_int[u"septembre"] = 9
-    month_to_int[u"octobre"] = 10
-    month_to_int[u"novembre"] = 11
-    month_to_int[u"décembre"] = 12
-    month_to_int[u"janv"] = 1
-    month_to_int[u"févr"] = 2
-    month_to_int[u"mars"] = 3
-    month_to_int[u"avril"] = 4
-    month_to_int[u"mai"] = 5
-    month_to_int[u"juin"] = 6
-    month_to_int[u"juil"] = 7
-    month_to_int[u"août"] = 8
-    month_to_int[u"sept"] = 9
-    month_to_int[u"oct"] = 10
-    month_to_int[u"nov"] = 11
-    month_to_int[u"déc"] = 12
 
     # Add common value
 
@@ -363,7 +339,7 @@ class DateDisplayFR(DateDisplay):
                 # value = "%d %s %s" % (date_val[0], 
                 #                       self.short_months[date_val[1]], year)
 
-                value = "%d.%s %s" % (date_val[0], 
+                value = "%d. %s %s" % (date_val[0], 
                                       self.short_months[date_val[1]], year)
 
         elif self.format == 6:
