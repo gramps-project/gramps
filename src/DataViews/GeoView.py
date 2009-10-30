@@ -377,7 +377,7 @@ class GeoView(HtmlView):
         Creation of the years list for the years comboBox.
         """
         base = 0
-        self.ylabel.set_text(_("Time period : %d years" % step ))
+        self.ylabel.set_text("%s : %d %s" % ( _("Time period"), step, _("years")) )
         self.buttons.append([""])
         self.buttons.append([_("All")])
         for but in range(0, self.maxbut + 1): # pylint: disable-msg=W0612
@@ -1176,7 +1176,7 @@ class GeoView(HtmlView):
         self.placebox.freeze_child_notify()
         self.placebox.set_model(None)
         self.plist.clear()
-        self.label.set_text(_("Places list (%d)" % self.nbplaces ))
+        self.label.set_text("%s (%d)" % ( _("Places list"), self.nbplaces ))
         pages = ( self.nbplaces / NB_MARKERS_PER_PAGE ) + 1
         if (self.nbplaces % NB_MARKERS_PER_PAGE) == 0:
             try:
