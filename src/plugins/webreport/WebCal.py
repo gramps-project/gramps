@@ -1812,9 +1812,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         # a birthday
         if event == 'Birthday':
 
-            txt_str = text + ', <em>'
+            txt_str = (text + ', <em>'
             + (_('%s old') % str(age_str) if nyears else _('birth'))
-            + '</em>'
+            + '</em>')
 
         # an anniversary
         elif event == "Anniversary":
