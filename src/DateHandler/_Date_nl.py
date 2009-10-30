@@ -139,12 +139,12 @@ class DateDisplayNL(DateDisplay):
     Dutch language date display class. 
     """
     # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( u"", u"januari", u"februari", u"maart", u"april", u"mei", 
+                    u"juni", u"juli", u"augustus", u"september", u"oktober", 
+                    u"november", u"december" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"jan", u"feb", u"maa", u"apr", u"mei", u"jun", 
+                     u"jul", u"aug", u"sep", u"okt", u"nov", u"dec" )
     
     calendar = (
         "", u" (juliaans)", u" (hebreeuws)", 
