@@ -48,7 +48,8 @@ from gen.plug.menu import BooleanOption, NumberOption, PersonOption
 from ReportBase import (Report, ReportUtils, MenuReportOptions,
                         Bibliography, Endnotes)
 import DateHandler
-import Utils
+
+from libnarrate import Narrator
 
 #------------------------------------------------------------------------
 #
@@ -126,14 +127,17 @@ class DetAncestorReport(Report):
         self.prev_gen_handles = {}
         
         if blankdate:
-            self.EMPTY_DATE = EMPTY_ENTRY
+            empty_date = EMPTY_ENTRY
         else:
-            self.EMPTY_DATE = ""
+            empty_date = ""
 
         if blankplace:
-            self.EMPTY_PLACE = EMPTY_ENTRY
+            empty_place = EMPTY_ENTRY
         else:
-            self.EMPTY_PLACE = ""
+            empty_place = ""
+            
+        self.__narrator = Narrator(self.database, self.verbose, 
+                                   empty_date, empty_place)
 
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
@@ -242,8 +246,7 @@ class DetAncestorReport(Report):
         if not self.verbose:
             self.write_parents(person, first)
 
-        text = ReportUtils.born_str(self.database, person, first, self.verbose,
-                                    self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.born_str(person, first)
         if text:
             birth_ref = person.get_birth_ref()
             if birth_ref:
@@ -253,19 +256,16 @@ class DetAncestorReport(Report):
             self.doc.write_text_citation(text)
             first = 0
 
-        text = ReportUtils.baptised_str(self.database, person, first, self.verbose,
-                                        self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.baptised_str(person, first, self.endnotes)
         if text:
             self.doc.write_text_citation(text)
             
-        text = ReportUtils.christened_str(self.database, person, first, self.verbose,
-                                        self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.christened_str(person, first, self.endnotes)
         if text:
             self.doc.write_text_citation(text)
 
         span = self.calc_age(person)
-        text = ReportUtils.died_str(self.database, person, first, self.verbose,
-                                    self.EMPTY_DATE, self.EMPTY_PLACE, span)
+        text = self.__narrator.died_str(person, first, span)
         if text:
             death_ref = person.get_death_ref()
             if death_ref:
@@ -275,12 +275,11 @@ class DetAncestorReport(Report):
             self.doc.write_text_citation(text)
             first = 0
 
-        text = ReportUtils.buried_str(self.database, person, first, self.verbose,
-                                        self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.buried_str(person, first, self.endnotes)
         if text:
             self.doc.write_text_citation(text)
 
-        first = ReportUtils.common_name(person,self.usecall)
+        first = ReportUtils.common_name(person, self.usecall)
 
         if self.verbose:
             self.write_parents(person, first)
@@ -458,10 +457,9 @@ class DetAncestorReport(Report):
             else:
                 father_name = ""
                 father_mark = ""
-            alive = Utils.probably_alive(person, self.database)
-            text = ReportUtils.child_str(person, father_name, mother_name,
-                                         not alive,
-                                         firstName,self.verbose)
+
+            text = self.__narrator.child_str(person, father_name, mother_name,
+                                         firstName)
             if text:
                 self.doc.write_text(text)
                 if father_mark:
@@ -481,14 +479,11 @@ class DetAncestorReport(Report):
             text = ""
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             
-            text = ReportUtils.married_str(self.database,person,family,
-                                            self.verbose,
-                                            self.endnotes,
-                                            self.EMPTY_DATE,self.EMPTY_PLACE,
-                                            is_first)
+            text = self.__narrator.married_str(person, family, self.endnotes, 
+                                               is_first)
 
             if text:
-                self.doc.write_text_citation(text,spouse_mark)
+                self.doc.write_text_citation(text, spouse_mark)
                 is_first = False
 
     def write_children(self, family):
@@ -534,12 +529,8 @@ class DetAncestorReport(Report):
             cnt += 1
 
             self.doc.write_text("%s. " % child_name,child_mark)
-            self.doc.write_text(
-                        ReportUtils.born_str(self.database, child, 0, 
-                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
-            self.doc.write_text(
-                        ReportUtils.died_str(self.database, child, 0, 
-                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(self.__narrator.born_str(child))
+            self.doc.write_text(self.__narrator.died_str(child))
             
             self.doc.end_paragraph()
 
@@ -632,37 +623,31 @@ class DetAncestorReport(Report):
                 first_name = ReportUtils.common_name(ind, self.usecall)
                 print_name = first_name
 
-                text = ReportUtils.born_str(self.database, ind, print_name, 
-                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE)
+                text = self.__narrator.born_str(ind, print_name)
                 if text:
                     self.doc.write_text(text)
                     print_name = 0
 
-                text = ReportUtils.baptised_str(self.database, ind, print_name, 
-                            self.verbose, self.endnotes, self.EMPTY_DATE, 
-                            self.EMPTY_PLACE)
+                text = self.__narrator.baptised_str(ind, print_name, 
+                                                    self.endnotes)
                 if text:
                     self.doc.write_text_citation(text)
                     print_name = 0
 
-                text = ReportUtils.christened_str(self.database, ind, print_name, 
-                            self.verbose, self.endnotes, self.EMPTY_DATE, 
-                            self.EMPTY_PLACE)
+                text = self.__narrator.christened_str(ind, print_name, 
+                                                      self.endnotes)
                 if text:
                     self.doc.write_text_citation(text)
                     print_name = 0
 
                 span = self.calc_age(ind)
-                text = ReportUtils.died_str(self.database, ind, print_name, 
-                           self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE,
-                           span)
+                text = self.__narrator.died_str(ind, print_name, span)
                 if text:
                     self.doc.write_text(text)
                     print_name = 0
                 
-                text = ReportUtils.buried_str(self.database, ind, print_name,
-                        self.verbose, self.endnotes, self.EMPTY_DATE, 
-                        self.EMPTY_PLACE)
+                text = self.__narrator.buried_str(ind, print_name, 
+                                                  self.endnotes)
                 
                 if text:
                     self.doc.write_text_citation(text)

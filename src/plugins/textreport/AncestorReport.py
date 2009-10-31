@@ -45,6 +45,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                              PARA_ALIGN_CENTER)
 from ReportBase import Report, ReportUtils, MenuReportOptions
 
+from libnarrate import Narrator
 
 #------------------------------------------------------------------------
 #
@@ -57,6 +58,11 @@ def log2(val):
     """
     return int(math.log10(val)/math.log10(2))
 
+#------------------------------------------------------------------------
+#
+# AncestorReport
+#
+#------------------------------------------------------------------------
 class AncestorReport(Report):
     """
     Ancestor Report class
@@ -91,6 +97,7 @@ class AncestorReport(Report):
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
+        self.__narrator = Narrator(self.database)
 
     def apply_filter(self, person_handle, index, generation=1):
         """
@@ -217,14 +224,10 @@ class AncestorReport(Report):
             primary_name = person.get_primary_name()
             first = primary_name.get_first_name()
 
-            self.doc.write_text( 
-                            ReportUtils.born_str(self.database, person, first))
-            self.doc.write_text(
-                            ReportUtils.baptised_str(self.database, person, 0))
-            self.doc.write_text(
-                            ReportUtils.died_str(self.database, person, 0))
-            self.doc.write_text(
-                            ReportUtils.buried_str(self.database, person, 0))
+            self.doc.write_text(self.__narrator.born_str(person, first))
+            self.doc.write_text(self.__narrator.baptised_str( person, 0))
+            self.doc.write_text(self.__narrator.died_str(person, 0))
+            self.doc.write_text(self.__narrator.buried_str(person, 0))
                         
             self.doc.end_paragraph()
         

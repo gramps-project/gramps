@@ -52,6 +52,8 @@ from ReportBase import (Report, ReportUtils, MenuReportOptions,
 import DateHandler
 import Utils
 
+from libnarrate import Narrator
+
 #------------------------------------------------------------------------
 #
 # Constants
@@ -85,9 +87,9 @@ class DetDescendantReport(Report):
         firstName     - Whether to use first names instead of pronouns.
         fulldate      - Whether to use full dates instead of just year.
         listchildren  - Whether to list children.
-        inc_mates  - Whether to include information about spouses
-        inc_notes  - Whether to include notes.
-        inc_attrs  - Whether to include attributes
+        inc_mates     - Whether to include information about spouses
+        inc_notes     - Whether to include notes.
+        inc_attrs     - Whether to include attributes
         blankPlace    - Whether to replace missing Places with ___________.
         blankDate     - Whether to replace missing Dates with ___________.
         calcageflag   - Whether to compute age.
@@ -136,14 +138,17 @@ class DetDescendantReport(Report):
         self.dnumber = {}
 
         if blankdate:
-            self.EMPTY_DATE = EMPTY_ENTRY
+            empty_date = EMPTY_ENTRY
         else:
-            self.EMPTY_DATE = ""
+            empty_date = ""
 
         if blankplace:
-            self.EMPTY_PLACE = EMPTY_ENTRY
+            empty_place = EMPTY_ENTRY
         else:
-            self.EMPTY_PLACE = ""
+            empty_place = ""
+            
+        self.__narrator = Narrator(self.database, self.verbose, 
+                                   empty_date, empty_place)
 
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
@@ -429,10 +434,8 @@ class DetDescendantReport(Report):
             else:
                 father_name = ""
                 father_mark = ""
-            alive = Utils.probably_alive(person, self.database)
-            text = ReportUtils.child_str(person, father_name, mother_name,
-                                         not alive,
-                                         firstName,self.verbose)
+            text = self.__narrator.child_str(person, father_name, mother_name,
+                                             firstName)
             if text:
                 self.doc.write_text(text)
                 if father_mark:
@@ -452,11 +455,8 @@ class DetDescendantReport(Report):
             text = ""
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             
-            text = ReportUtils.married_str(self.database, person, family,
-                                            self.verbose,
-                                            self.endnotes,
-                                            self.EMPTY_DATE,self.EMPTY_PLACE,
-                                            is_first)
+            text = self.__narrator.married_str(person, family, self.endnotes, 
+                                               is_first)
             
             if text:
                 self.doc.write_text_citation(text, spouse_mark)
@@ -541,10 +541,8 @@ class DetDescendantReport(Report):
 
             self.doc.write_text("%s. " % child_name, child_mark)
                 
-            self.doc.write_text(ReportUtils.born_str( self.database, child, 0, 
-                          self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
-            self.doc.write_text(ReportUtils.died_str( self.database, child, 0, 
-                          self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(self.__narrator.born_str(child, 0))
+            self.doc.write_text(self.__narrator.died_str(child, 0))
             self.doc.end_paragraph()
 
     def __write_family_events(self, family):
@@ -595,8 +593,7 @@ class DetDescendantReport(Report):
         if not self.verbose:
             self.write_parents(person, first)
 
-        text = ReportUtils.born_str(self.database, person, first, self.verbose,
-                                    self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.born_str(person, first)
         if text:
             birth_ref = person.get_birth_ref()
             if birth_ref:
@@ -606,21 +603,16 @@ class DetDescendantReport(Report):
             self.doc.write_text_citation(text)
             first = 0
 
-        text = ReportUtils.baptised_str(self.database, person, first, 
-                                        self.verbose, self.endnotes, 
-                                        self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.baptised_str(person, first, self.endnotes)
         if text:
             self.doc.write_text_citation(text)
             
-        text = ReportUtils.christened_str(self.database, person, first, 
-                                          self.verbose, self.endnotes, 
-                                          self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.christened_str(person, first, self.endnotes)
         if text:
             self.doc.write_text_citation(text)
     
         span = self.calc_age(person)
-        text = ReportUtils.died_str(self.database, person, first, self.verbose,
-                                    self.EMPTY_DATE, self.EMPTY_PLACE, span)
+        text = self.__narrator.died_str(person, first, span)
         if text:
             death_ref = person.get_death_ref()
             if death_ref:
@@ -630,9 +622,7 @@ class DetDescendantReport(Report):
             self.doc.write_text_citation(text)
             first = 0
 
-        text = ReportUtils.buried_str(self.database, person, first, 
-                                      self.verbose, self.endnotes, 
-                                      self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = self.__narrator.buried_str(person, first, self.endnotes)
         if text:
             self.doc.write_text_citation(text)
 

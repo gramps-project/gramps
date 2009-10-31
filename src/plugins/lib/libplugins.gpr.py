@@ -168,6 +168,22 @@ authors_email = ["http://gramps-project.org"],
 
 #------------------------------------------------------------------------
 #
+# libnarrate
+#
+#------------------------------------------------------------------------
+register(GENERAL, 
+id    = 'libnarrate',
+name  = "narration lib",
+description =  _("Provides Textual Narration.") ,
+version = '1.0',
+status = STABLE,
+fname = 'libnarrate.py',
+authors = ["Brian Matherly"],
+authors_email = ["brian@gramps-project.org"],
+)
+
+#------------------------------------------------------------------------
+#
 # libodfbackend
 #
 #------------------------------------------------------------------------

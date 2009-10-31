@@ -20,7 +20,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# To see things still missing, search for "TODO"...
 #
 # $Id$
 
@@ -42,6 +41,7 @@ from TransUtils import sgettext as _
 
 # Person and relation types
 from gen.lib import Person, FamilyRelType, EventType, EventRoleType
+from gen.lib.date import Date
 # gender and report type names
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                             FONT_SANS_SERIF, FONT_SERIF,
@@ -54,10 +54,235 @@ from gui.utils import ProgressMeter
 
 #------------------------------------------------------------------------
 #
+# Private Functions
+#
+#------------------------------------------------------------------------
+def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle, 
+               end_angle,  short_radius=0):
+    from math import pi, cos, sin
+    
+    while end_angle < start_angle:
+        end_angle += 360
+
+    p = []
+    
+    degreestoradians = pi / 180.0
+    radiansdelta = degreestoradians / 2
+    sangle = start_angle * degreestoradians
+    eangle = end_angle * degreestoradians
+    while eangle < sangle:
+        eangle = eangle + 2 * pi
+    angle = sangle
+
+    if short_radius == 0:
+        if (end_angle - start_angle) != 360:
+            p.append((centerx, centery))
+    else:
+        origx = (centerx + cos(angle) * short_radius)
+        origy = (centery + sin(angle) * short_radius)
+        p.append((origx, origy))
+        
+    while angle < eangle:
+        x = centerx + cos(angle) * radius
+        y = centery + sin(angle) * radius
+        p.append((x, y))
+        angle = angle + radiansdelta
+    x = centerx + cos(eangle) * radius
+    y = centery + sin(eangle) * radius
+    p.append((x, y))
+
+    if short_radius:
+        x = centerx + cos(eangle) * short_radius
+        y = centery + sin(eangle) * short_radius
+        p.append((x, y))
+
+        angle = eangle
+        while angle >= sangle:
+            x = centerx + cos(angle) * short_radius
+            y = centery + sin(angle) * short_radius
+            p.append((x, y))
+            angle -= radiansdelta
+    doc.draw_path(style, p)
+
+    delta = (eangle - sangle) / 2.0
+    rad = short_radius + (radius - short_radius) / 2.0
+
+    return ( (centerx + cos(sangle + delta) * rad), 
+             (centery + sin(sangle + delta) * rad))
+
+
+def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
+    """
+    Draws a pie chart in the specified document. The data passed is plotted as
+    a pie chart. The data should consist of the actual data. Percentages of
+    each slice are determined by the routine.
+
+    @param doc: Document to which the pie chart should be added
+    @type doc: BaseDoc derived class
+    @param center_x: x coordinate in centimeters where the center of the pie
+       chart should be. 0 is the left hand edge of the document.
+    @type center_x: float
+    @param center_y: y coordinate in centimeters where the center of the pie
+       chart should be. 0 is the top edge of the document
+    @type center_y: float
+    @param radius: radius of the pie chart. The pie charts width and height
+       will be twice this value.
+    @type radius: float
+    @param data: List of tuples containing the data to be plotted. The values
+       are (graphics_format, value), where graphics_format is a BaseDoc
+       GraphicsStyle, and value is a floating point number. Any other items in
+       the tuple are ignored. This allows you to share the same data list with
+       the L{draw_legend} function.
+    @type data: list
+    @param start: starting point in degrees, where the default of 0 indicates
+       a start point extending from the center to right in a horizontal line.
+    @type start: float
+    """
+
+    total = 0.0
+    for item in data:
+        total += item[1]
+
+    for item in data:
+        incr = 360.0*(item[1]/total)
+        draw_wedge(doc, item[0], center_x, center_y, radius, start, start + incr)
+        start += incr
+
+def draw_legend(doc, start_x, start_y, data, title, label_style):
+    """
+    Draws a legend for a graph in the specified document. The data passed is
+    used to define the legend.  First item style is used for the optional
+    Legend title.
+
+    @param doc: Document to which the legend chart should be added
+    @type doc: BaseDoc derived class
+    @param start_x: x coordinate in centimeters where the left hand corner
+        of the legend is placed. 0 is the left hand edge of the document.
+    @type start_x: float
+    @param start_y: y coordinate in centimeters where the top of the legend
+        should be. 0 is the top edge of the document
+    @type start_y: float
+    @param data: List of tuples containing the data to be used to create the
+       legend. In order to be compatible with the graph plots, the first and
+       third values of the tuple used. The format is (graphics_format, value, 
+       legend_description).
+    @type data: list
+    """
+    style_sheet = doc.get_style_sheet()
+    if title:
+        gstyle = style_sheet.get_draw_style(label_style)
+        pstyle_name = gstyle.get_paragraph_style()
+        pstyle = style_sheet.get_paragraph_style(pstyle_name)
+        size = ReportUtils.pt2cm(pstyle.get_font().get_size())
+        doc.draw_text(label_style, title, start_x + (3*size), start_y - (size*0.25))
+        start_y += size * 1.3
+    
+    for (format, size, legend) in data:
+        gstyle = style_sheet.get_draw_style(format)
+        pstyle_name = gstyle.get_paragraph_style()
+        pstyle = style_sheet.get_paragraph_style(pstyle_name)
+        size = ReportUtils.pt2cm(pstyle.get_font().get_size())
+        doc.draw_box(format, "", start_x, start_y, (2*size), size)
+        doc.draw_text(label_style, legend, start_x + (3*size), start_y - (size*0.25))
+        start_y += size * 1.3
+
+_t = time.localtime(time.time())
+_TODAY = DateHandler.parser.parse("%04d-%02d-%02d" % _t[:3])
+
+def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
+    """
+    Estimates the age of a person based off the birth and death
+    dates of the person. A tuple containing the estimated upper
+    and lower bounds of the person's age is returned. If either
+    the birth or death date is missing, a (-1, -1) is returned.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param person: Person object to calculate the age of
+    @type person: Person
+    @param end_handle: Determines the event handle that determines
+       the upper limit of the age. If None, the death event is used
+    @type end_handle: str
+    @param start_handle: Determines the event handle that determines
+       the lower limit of the event. If None, the birth event is
+       used
+    @type start_handle: str
+    @returns: tuple containing the lower and upper bounds of the
+       person's age, or (-1, -1) if it could not be determined.
+    @rtype: tuple
+    """
+
+    bhandle = None
+    if start_handle:
+        bhandle = start_handle
+    else:
+        bref = person.get_birth_ref()
+        if bref:
+            bhandle = bref.get_reference_handle()
+
+    dhandle = None
+    if end_handle:
+        dhandle = end_handle
+    else:
+        dref = person.get_death_ref()
+        if dref:
+            dhandle = dref.get_reference_handle()
+
+    # if either of the events is not defined, return an error message
+    if not bhandle:
+        return (-1, -1)
+
+    bdata = db.get_event_from_handle(bhandle).get_date_object()
+    if dhandle:
+        ddata = db.get_event_from_handle(dhandle).get_date_object()
+    else:
+        if today is not None:
+            ddata = today
+        else:
+            return (-1, -1)
+
+    # if the date is not valid, return an error message
+    if not bdata.get_valid() or not ddata.get_valid():
+        return (-1, -1)
+
+    # if a year is not valid, return an error message
+    if not bdata.get_year_valid() or not ddata.get_year_valid():
+        return (-1, -1)
+
+    bstart = bdata.get_start_date()
+    bstop  = bdata.get_stop_date()
+
+    dstart = ddata.get_start_date()
+    dstop  = ddata.get_stop_date()
+
+    def _calc_diff(low, high):
+        if (low[1], low[0]) > (high[1], high[0]):
+            return high[2] - low[2] - 1
+        else:
+            return high[2] - low[2]
+
+    if bstop == dstop == Date.EMPTY:
+        lower = _calc_diff(bstart, dstart)
+        age = (lower, lower)
+    elif bstop == Date.EMPTY:
+        lower = _calc_diff(bstart, dstart)
+        upper = _calc_diff(bstart, dstop)
+        age = (lower, upper)
+    elif dstop == Date.EMPTY:
+        lower = _calc_diff(bstop, dstart)
+        upper = _calc_diff(bstart, dstart)
+        age = (lower, upper)
+    else:
+        lower = _calc_diff(bstop, dstart)
+        upper = _calc_diff(bstart, dstop)
+        age = (lower, upper)
+    return age
+
+#------------------------------------------------------------------------
+#
 # Global options and their names
 #
 #------------------------------------------------------------------------
-
 class _options:
     # sort type identifiers
     SORT_VALUE = 0
@@ -180,7 +405,7 @@ class Extract(object):
         if date:
             month = date.get_month()
             if month:
-                return [DateHandler.displayer._months[month]]
+                return [DateHandler.displayer.long_months[month]]
         return [_("Date(s) missing")]
 
     def get_place(self, event):
@@ -284,7 +509,7 @@ class Extract(object):
     def estimate_age(self, person, end=None, begin=None):
         """return estimated age (range) for given person or error message.
            age string is padded with spaces so that it can be sorted"""
-        age = ReportUtils.estimate_age(self.db, person, end, begin)
+        age = estimate_age(self.db, person, end, begin)
         if age[0] < 0 or age[1] < 0:
             # inadequate information
             return _("Date(s) missing")
@@ -593,14 +818,14 @@ class StatisticsChart(Report):
         # output data...
         radius = middle - 2*margin
         yoffset += margin + radius
-        ReportUtils.draw_pie_chart(self.doc, middle_w, yoffset, radius, chart_data, -90)
+        draw_pie_chart(self.doc, middle_w, yoffset, radius, chart_data, -90)
         yoffset += radius + 2*margin
         if middle == middle_h:   # Landscape
             legendx = 1.0
             yoffset = margin
     
         text = _("%s (persons):") % typename
-        ReportUtils.draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
+        draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
 
 
     def output_barchart(self, title, typename, data, lookup):
