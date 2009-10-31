@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: _plugin.py 12559 2009-05-21 17:19:50Z gbritton $
+# $Id$
 
 """
 This module provides the base class for plugin registration. 
