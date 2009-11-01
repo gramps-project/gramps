@@ -74,21 +74,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id="Data Entry Gramplet", 
-         name=_("Data Entry Gramplet"), 
-         fname="DataEntryGramplet.py",
-         status=UNSTABLE,
-         height=375,
-         expand=False,
-         gramplet = 'DataEntryGramplet',
-         gramplet_title=_("Data Entry"),
-         detached_width = 510,
-         detached_height = 480,
-         #gramps="3.1.0",
-         version="1.0.0",
-         )
-
-register(GRAMPLET, 
          id = "Deep Connections Gramplet", 
          name =_("Deep Connections Gramplet"), 
          status = STABLE,
