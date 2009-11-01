@@ -72,6 +72,25 @@ def setup_gettext():
     #following installs _ as a python function, we avoid this as TransUtils is
     #used sometimes:
     #gettext.install(LOCALEDOMAIN, LOCALEDIR, unicode=1)
+
+def get_addon_translator(filename, domain='addon'):
+    """
+    Get a translator for an addon. 
+    Assumes filename_dir/locale/LANG/LC_MESSAGES/addon.mo.
+    """
+    import locale
+    LANG = locale.getlocale()[0]
+    path = os.path.dirname(os.path.abspath(filename))
+    trans = Translator(LANG)
+    try:
+        fallback = gettext.translation(domain, 
+                                       os.path.join(path, "locale"), 
+                                       languages=[LANG])
+        trans.trans.add_fallback(fallback)
+    except:
+        print ("WARN: can't add local '%s' addon translation for '%s'." % 
+               (filename, LANG))
+    return trans
     
 def get_available_translations():
     """
