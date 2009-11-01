@@ -797,6 +797,7 @@ class PluginRegister(object):
                     'TOOL_MODE_GUI': TOOL_MODE_GUI, 
                     'TOOL_MODE_CLI': TOOL_MODE_CLI,
                     'GRAMPSVERSION': GRAMPSVERSION,
+                    '__file__': os.path.join(dir, filename), 
                    },
                    {})
             except ValueError, msg:
