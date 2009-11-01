@@ -316,6 +316,7 @@ class GeoView(HtmlView):
         self.nocoord.connect("clicked", self._show_places_without_coord)
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
+        self.endinit = False
  
     def top_widget(self):
         """
@@ -613,11 +614,17 @@ class GeoView(HtmlView):
         """
         Ask to the renderer to show All or specific markers.
         """
+        if not self.endinit:
+            return
         if widget:
             model = widget.get_model()
             if model:
-                year = model.get_value(widget.get_active_iter(), 0)
-                if year:
+                year = "no"
+                try:
+                    year = model.get_value(widget.get_active_iter(), 0)
+                except:  # pylint: disable-msg=W0704
+                    pass # pylint: disable-msg=W0702
+                if year != "no":
                     if year == _("All"):
                         self.renderer.execute_script(
                             "javascript:selectmarkers('All')")
@@ -749,6 +756,7 @@ class GeoView(HtmlView):
         self._set_lock_unlock_icon()
         self._set_mapstylelabel(self.stylesheet)
         self._savezoomandposition(500) # every 500 millisecondes
+        self.endinit = True
 
     def __create_styles_menu_actions(self):
         """
@@ -1177,8 +1185,11 @@ class GeoView(HtmlView):
         self.placebox.set_model(None)
         self.plist.clear()
         self.label.set_text("%s (%d)" % ( _("Places list"), self.nbplaces ))
-        pages = ( self.nbplaces / NB_MARKERS_PER_PAGE ) + 1
-        if (self.nbplaces % NB_MARKERS_PER_PAGE) == 0:
+        pages = ( self.nbplaces / NB_MARKERS_PER_PAGE )
+        if (self.nbplaces % NB_MARKERS_PER_PAGE ) != 0:
+            pages += 1
+        #if (self.nbplaces % NB_MARKERS_PER_PAGE) == 0:
+        if self.nbplaces == 0:
             try:
                 self._createmapstractiontrailer()
             except:  # pylint: disable-msg=W0704
@@ -1682,8 +1693,10 @@ class GeoView(HtmlView):
                                          }
                             self._createpersonmarkers(dbstate, child, comment)
             else:
-                comment = _("Id : Child : %(id)s has no parents.") % {
-                                'id' : person.gramps_id }
+                comment = _("Id : Person : %(id)s %(name)s has no family.") % {
+                                'id' : person.gramps_id ,
+                                'name' : _nd.display(person)
+                                }
                 self._createpersonmarkers(dbstate, person, comment)
         self.yearsbox.freeze_child_notify()
         self.yearsbox.set_model(None)
