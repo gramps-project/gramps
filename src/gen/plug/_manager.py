@@ -106,7 +106,7 @@ class BasePluginManager(object):
         if not os.path.isdir(direct):
             return False # return value is True for error
         
-        for (dirpath, dirnames, filenames) in os.walk(direct):
+        for (dirpath, dirnames, filenames) in os.walk(direct, followlinks=True):
             # Skip hidden directories.
             for dirname in dirnames:
                 if dirname.startswith("."):
