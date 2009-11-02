@@ -175,10 +175,7 @@ class WebCalReport(Report):
         # styled notes
         htmlnotetext = self.styled_note(note.get_styledtext(),
                                                                note.get_format())
-        if htmlnotetext:
-            text = htmlnotetext
-        else:
-            text = Html('p', note_text) 
+        text = htmlnotetext or Html('p', note_text)
 
         # return text of the note to its callers
         return text
@@ -348,7 +345,7 @@ class WebCalReport(Report):
         # Mainz stylesheet graphics
         # will only be used if Mainz is slected as the stylesheet
         Mainz_images = ["Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
-                                     "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
+                        "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
 
         if self.css == "Web_Mainz.css":
             # Copy Mainz Style Images
@@ -424,8 +421,8 @@ class WebCalReport(Report):
 
         # Header contants
         xmllang = xml_lang()
-        _META1 = 'name="generator" content="%s %s %s"' % (const.PROGRAM_NAME, const.VERSION,
-             const.URL_HOMEPAGE)
+        _META1 = 'name="generator" content="%s %s %s"' % \
+                    (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
         _META2 = 'name="author" content="%s"' % self.author
 
         page, head, body = Html.page(title, self.encoding, xmllang)
@@ -577,9 +574,8 @@ class WebCalReport(Report):
                 url = url_fname
                 add_subdirs = True
                 if not (url.startswith('http:') or url.startswith('/')):
-                    for ext in _WEB_EXT:
-                        if url_fname.endswith(ext):
-                            add_subdirs = False
+                    add_subdirs = not any(url.endswith(ext)
+                                            for ext in _WEB_EXT)
                          
                 # whether to add subdirs or not???
                 if add_subdirs: 
@@ -1078,10 +1074,7 @@ class WebCalReport(Report):
         if (Utils.win):
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname)
-        if prefix:
-            return prefix + "/".join(subdirs + [fname])
-        else:
-            return "/".join(subdirs + [fname])
+        return (prefix or '') + "/".join(subdirs + [fname])
 
     def build_subdirs(self, subdir, fname):
         """
@@ -1116,10 +1109,8 @@ class WebCalReport(Report):
         primary_name = person.primary_name
         married_name = None
         names = [primary_name] + person.get_alternate_names()
-        for name in names:
-            if int(name.get_type()) == NameType.MARRIED:
-                married_name = name
-                break # use first
+        if any(int(name.get_type()) == NameType.MARRIED for name in names):
+            married_name = name
 
         # Now, decide which to use:
         if maiden_name is not None:
@@ -1417,7 +1408,7 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, "name_format", name_format)
 
         ext = EnumeratedListOption(_("File extension"), ".html" )
-        for etype in ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']:
+        for etype in _WEB_EXT:
             ext.add_item(etype, etype)
         ext.set_help( _("The extension to be used for the web files"))
         menu.add_option(category_name, "ext", ext)
@@ -1608,7 +1599,7 @@ class WebCalOptions(MenuReportOptions):
         disable the person option
         """
         filter_value = self.__filter.get_value()
-        if filter_value in [1, 2, 3, 4]:
+        if 1 <= filter_value <= 4:
             # Filters 1, 2, 3 and 4 rely on the center person
             self.__pid.set_available(True)
         else:
@@ -1733,11 +1724,7 @@ def _has_webpage_extension(url):
 
     url = filename to be checked
     """
-
-    for ext in _WEB_EXT:
-        if url.endswith(ext):
-            return True
-    return False
+    return any(url.endswith(ext) for ext in _WEB_EXT)
 
 def get_num_of_rows(num_years, years_in_row):
     """
