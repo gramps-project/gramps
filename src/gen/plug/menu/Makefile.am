@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/plug/menu
 pkgdata_PYTHON = \
 	__init__.py \
 	_boolean.py \
+	_booleanlist.py \
 	_color.py \
 	_destination.py \
 	_enumeratedlist.py \

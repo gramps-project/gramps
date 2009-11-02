@@ -4,6 +4,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2008       Craig J. Anderson
+# Copyright (C) 2009       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1336,6 +1337,63 @@ class GuiStyleOption(GuiEnumeratedListOption):
             new_items.append( (style_name, style_name) )
         self.__option.set_items(new_items)
 
+#-------------------------------------------------------------------------
+#
+# GuiBooleanListOption class
+#
+#-------------------------------------------------------------------------
+class GuiBooleanListOption(gtk.HBox):
+    """
+    This class displays an option that provides a list of check boxes.
+    Each possible value is assigned a value and a description.
+    """
+    def __init__(self, option, dbstate, uistate, track):
+        gtk.HBox.__init__(self)
+        self.__option = option
+        self.__cbutton = []
+
+        COLUMNS = 2 # Number of checkbox columns
+        column = []
+        for i in range(COLUMNS):
+            vbox = gtk.VBox()
+            self.pack_start(vbox, True, True)
+            column.append(vbox)
+            vbox.show()
+
+        counter = 0
+        default = option.get_value().split(',')
+        for description in option.get_descriptions():
+            button = gtk.CheckButton(description)
+            self.__cbutton.append(button)
+            if default[counter] == 'True':
+                button.set_active(True)
+            button.connect("toggled", self.__value_changed)
+            column[counter % COLUMNS].pack_start(button, True, True)
+            button.show()
+            counter += 1
+ 
+        self.set_tooltip_text(self.__option.get_help())
+        
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+        
+    def __value_changed(self, button):
+        """
+        Handle the change of the value.
+        """
+        value = ''
+        for button in self.__cbutton:
+            value = value + str(button.get_active()) + ','
+        value = value[:len(value)-1]
+        self.__option.set_value(value)
+        
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
+
 #------------------------------------------------------------------------
 #
 # GuiMenuOptions class
@@ -1457,6 +1515,8 @@ def make_gui_option(option, dbstate, uistate, track):
         widget = GuiSurnameColorOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.PlaceListOption):
         widget = GuiPlaceListOption(option, dbstate, uistate, track)
+    elif isinstance(option, gen.plug.menu.BooleanListOption):
+        widget = GuiBooleanListOption(option, dbstate, uistate, track)
     elif option.__class__ in external_options:
         widget = external_options[option.__class__](option, dbstate, uistate,
                                                     track)
