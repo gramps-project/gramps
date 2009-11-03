@@ -47,6 +47,7 @@ import gobject
 import ManagedWindow
 import Errors
 from gen.plug import PluginRegister, PTYPE_STR
+from gui.utils import open_file_with_default_application
 from gui.pluginmanager import GuiPluginManager
 import _Tool as Tool
 from QuestionDialog import InfoDialog
@@ -311,12 +312,9 @@ Location: %(fpath)s
             return
         id = model.get_value(node, 4)
         pdata = self.__preg.get_plugin(id)
-        if "EDITOR" in os.environ:
-            os.system("""$EDITOR "%s" &""" % 
-                      os.path.join(pdata.fpath, pdata.fname))
-        else:
-            os.system("""gedit "%s" &""" % 
-                      os.path.join(pdata.fpath, pdata.fname))
+        open_file_with_default_application(
+            os.path.join(pdata.fpath, pdata.fname)
+            )
 
 #-------------------------------------------------------------------------
 #
