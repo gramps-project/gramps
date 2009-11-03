@@ -41,6 +41,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from const import VERSION as GRAMPSVERSION
+from TransUtils import get_addon_translator
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +56,8 @@ STATUS   = [STABLE, UNSTABLE]
 STATUSTEXT = {STABLE: _('Stable'), UNSTABLE: _('Unstable')}
 #possible plugin types
 REPORT      = 0
-QUICKREPORT = 1
+QUICKREPORT = 1 # deprecated
+QUICKVIEW   = 1
 TOOL        = 2
 IMPORT      = 3
 EXPORT      = 4
@@ -752,9 +754,11 @@ class PluginRegister(object):
             if not name[extlen:] == ext:
                 continue
             lenpd = len(self.__plugindata)
+            full_filename = os.path.join(dir, filename)
+            local_gettext = get_addon_translator(full_filename).gettext
             try:
-                execfile(os.path.join(dir, filename), 
-                   {'_': _,
+                execfile(full_filename,
+                   {'_': local_gettext,
                     'newplugin': newplugin,
                     'register': register,
                     'STABLE': STABLE,
@@ -797,7 +801,6 @@ class PluginRegister(object):
                     'TOOL_MODE_GUI': TOOL_MODE_GUI, 
                     'TOOL_MODE_CLI': TOOL_MODE_CLI,
                     'GRAMPSVERSION': GRAMPSVERSION,
-                    '__file__': os.path.join(dir, filename), 
                    },
                    {})
             except ValueError, msg:
