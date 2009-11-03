@@ -88,9 +88,11 @@ def get_addon_translator(filename, domain='addon'):
                                        languages=[LANG])
         trans.trans.add_fallback(fallback)
     except:
-        if LANG and not LANG.startswith("en"):
-            print ("WARN: can't add local '%s' addon translation for '%s'." % 
-                   (filename, LANG))
+        pass
+        # FIXME: perhaps give some feedback when you need it
+        #if LANG and not LANG.startswith("en"):
+        #    print ("WARN: can't add local '%s' addon translation for '%s'." % 
+        #           (filename, LANG))
     return trans
     
 def get_available_translations():
