@@ -38,6 +38,7 @@ import os, codecs, shutil, re
 import datetime, calendar
 from TransUtils import sgettext as _
 from gettext import ngettext
+from itertools import imap
 
 #------------------------------------------------------------------------
 #
@@ -1076,8 +1077,10 @@ class WebCalReport(Report):
         primary_name = person.primary_name
         married_name = None
         names = [primary_name] + person.get_alternate_names()
-        if any(int(name.get_type()) == NameType.MARRIED for name in names):
-            married_name = name
+        for name in names:
+            if int(name.get_type()) == NameType.MARRIED:
+                married_name = name
+                break
 
         # Now, decide which to use:
         if maiden_name is not None:
@@ -1104,10 +1107,9 @@ class WebCalReport(Report):
         people = self.filter.apply(self.database, people, self.progress)
 
         self.progress.set_pass(_("Reading database..."), len(people))
-        for person_handle in people:
+        for person in imap(self.database.get_person_from_handle, people):
             self.progress.step()
 
-            person = self.database.get_person_from_handle(person_handle)
             family_list = person.get_family_handle_list()
             birth_ref = person.get_birth_ref()
             birth_date = None
@@ -1140,7 +1142,7 @@ class WebCalReport(Report):
                             fam = self.database.get_family_from_handle(fhandle)
                             father_handle = fam.get_father_handle()
                             mother_handle = fam.get_mother_handle()
-                            if mother_handle == person_handle:
+                            if mother_handle == person.handle:
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
                                     if father is not None:
