@@ -844,6 +844,7 @@ class PluginRegister(object):
                     continue
                 module = match.groups()[0]
                 plugin.mod_name = module
+                plugin.fpath = dir
             rmlist.reverse()
             for ind in rmlist:
                 del self.__plugindata[ind]

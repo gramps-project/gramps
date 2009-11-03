@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 import traceback
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -113,6 +114,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         hbutbox.add(self.__hide_btn)
         self.__hide_btn.connect('clicked', self.__hide)
         if __debug__:
+            self.__edit_btn = gtk.Button(_("Edit"))
+            hbutbox.add(self.__edit_btn)
+            self.__edit_btn.connect('clicked', self.__edit)
             self.__load_btn = gtk.Button(_("Load"))
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load)
@@ -258,13 +262,15 @@ Description:  %(descr)s
 Authors:  %(authors)s
 Email:  %(email)s
 Filename:  %(fname)s
-            """ % {
+Location: %(fpath)s
+""" % {
             'name': pdata.name,
             'typestr': typestr,
             'descr': pdata.description,
             'authors': auth,
             'email': email,
-            'fname': pdata.fname
+            'fname': pdata.fname,
+            'fpath': pdata.fpath,
             }
             InfoDialog('Detailed Info', infotxt, parent=self.window)
     
@@ -296,6 +302,21 @@ Filename:  %(fname)s
         pdata = self.__preg.get_plugin(id)
         self.__pmgr.load_plugin(pdata)
         self.__rebuild_load_list()
+
+    def __edit(self, obj):
+        """ Callback function from the "Load" button
+        """
+        model, node = self.selection_reg.get_selected()
+        if not node:
+            return
+        id = model.get_value(node, 4)
+        pdata = self.__preg.get_plugin(id)
+        if "EDITOR" in os.environ:
+            os.system("""$EDITOR "%s" &""" % 
+                      os.path.join(pdata.fpath, pdata.fname))
+        else:
+            os.system("""gedit "%s" &""" % 
+                      os.path.join(pdata.fpath, pdata.fname))
 
 #-------------------------------------------------------------------------
 #
