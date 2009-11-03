@@ -79,7 +79,7 @@ def get_addon_translator(filename, domain='addon'):
     Assumes filename_dir/locale/LANG/LC_MESSAGES/addon.mo.
     """
     import locale
-    LANG = locale.getlocale()[0]
+    LANG = locale.getlocale()[0] or "en"
     path = os.path.dirname(os.path.abspath(filename))
     trans = Translator(LANG)
     try:
