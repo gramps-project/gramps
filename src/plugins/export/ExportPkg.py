@@ -31,6 +31,7 @@
 #
 #-------------------------------------------------------------------------
 import time
+import shutil
 import os
 import sys
 import tarfile
@@ -70,6 +71,16 @@ import Utils
 #
 #-------------------------------------------------------------------------
 def writeData(database, filename, option_box=None, callback=None):
+# Rename file, if it exists already, with <filename>.bak
+# as it it for normal XML export.
+
+    if os.path.isfile(filename):
+        try:
+            shutil.copyfile(filename, filename + ".bak")
+            shutil.copystat(filename, filename + ".bak")
+        except:
+            pass
+
     if option_box:
         option_box.parse_options()
     
