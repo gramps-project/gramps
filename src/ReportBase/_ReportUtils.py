@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2008       James Friedmann <jfriedmannj@gmail.com>
 #
 #
@@ -193,37 +193,6 @@ def get_death_or_fallback(database, person):
             and event_ref.role.value == EventRoleType.PRIMARY):
             return event
     return None    
-
-def old_calc_age(database, person):
-    """
-    Calculate age. 
-    
-    Returns a date difference span.
-    """
-    birth_ref = person.get_birth_ref()
-    if birth_ref:
-        birth = database.get_event_from_handle(birth_ref.ref).get_date_object()
-        birth_year_valid = birth.get_year_valid()
-    else:
-        birth_year_valid = None
-    death_ref = person.get_death_ref()
-    if death_ref:
-        death = database.get_event_from_handle(death_ref.ref).get_date_object()
-        death_year_valid = death.get_year_valid()
-    else:
-        death_year_valid = None
-
-    # wihtout at least a year for each event we're clueless
-    if not (birth_year_valid and death_year_valid):
-        return None
-    
-    return death - birth
-    
-def common_name(person, use_call=False):
-    if use_call and person.get_primary_name().get_call_name():
-        return person.get_primary_name().get_call_name()
-    else:
-        return person.get_primary_name().get_first_name()
 
 #-------------------------------------------------------------------------
 #

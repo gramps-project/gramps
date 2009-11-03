@@ -48,10 +48,27 @@ from ReportBase import ReportUtils
 
 #-------------------------------------------------------------------------
 #
-# Support functions
+# Private constants
 #
 #-------------------------------------------------------------------------
-def empty_notes(whatever):
+# In string arrays, the first strings should include the name, the second 
+# strings should not include the name.
+_NAME_INDEX_INCLUDE_NAME = 0
+_NAME_INDEX_EXCLUDE_NAME = 1
+
+# In string arrays, the first strings should not include age.
+# The following strings should include year, month and day units.
+_AGE_INDEX_NO_AGE = 0
+_AGE_INDEX_YEARS  = 1
+_AGE_INDEX_MONTHS = 2
+_AGE_INDEX_DAYS   = 3
+
+#-------------------------------------------------------------------------
+#
+# Private functions
+#
+#-------------------------------------------------------------------------
+def _get_empty_endnote_numbers(obj):
     """
     Empty stab function for when endnotes are not needed
     """
@@ -62,102 +79,101 @@ def empty_notes(whatever):
 # Born strings
 #
 #------------------------------------------------------------------------
-
 born_full_date_with_place = [
+ {
+    Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."), 
+    Person.MALE : _("%(male_name)s was born on %(birth_date)s in %(birth_place)s."), 
+    Person.FEMALE : _("%(female_name)s was born on %(birth_date)s in %(birth_place)s."), 
+  },
   {
     Person.UNKNOWN :  _("This person was born on %(birth_date)s in %(birth_place)s."), 
     Person.MALE :  _("He was born on %(birth_date)s in %(birth_place)s."), 
     Person.FEMALE : _("She was born on %(birth_date)s in %(birth_place)s."), 
   }, 
-  {
-    Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."), 
-    Person.MALE : _("%(male_name)s was born on %(birth_date)s in %(birth_place)s."), 
-    Person.FEMALE : _("%(female_name)s was born on %(birth_date)s in %(birth_place)s."), 
-  },
   _("Born %(birth_date)s in %(birth_place)s."), 
 ]
 
 born_modified_date_with_place = [
   {
-    Person.UNKNOWN :  _("This person was born %(modified_date)s in %(birth_place)s."), 
-    Person.MALE :  _("He was born %(modified_date)s in %(birth_place)s."), 
-    Person.FEMALE : _("She was born %(modified_date)s in %(birth_place)s."), 
-  }, 
-  {
     Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."), 
     Person.MALE : _("%(male_name)s was born %(modified_date)s in %(birth_place)s."), 
     Person.FEMALE : _("%(female_name)s was born %(modified_date)s in %(birth_place)s."), 
   },
+  {
+    Person.UNKNOWN :  _("This person was born %(modified_date)s in %(birth_place)s."), 
+    Person.MALE :  _("He was born %(modified_date)s in %(birth_place)s."), 
+    Person.FEMALE : _("She was born %(modified_date)s in %(birth_place)s."), 
+  }, 
   _("Born %(modified_date)s in %(birth_place)s."), 
 ]
 
 born_full_date_no_place = [
   {
-    Person.UNKNOWN : _("This person was born on %(birth_date)s."), 
-    Person.MALE : _("He was born on %(birth_date)s."), 
-    Person.FEMALE : _("She was born on %(birth_date)s."), 
-  }, 
-  {
     Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s."), 
     Person.MALE : _("%(male_name)s was born on %(birth_date)s."), 
     Person.FEMALE : _("%(female_name)s was born on %(birth_date)s."), 
   },
+  {
+    Person.UNKNOWN : _("This person was born on %(birth_date)s."), 
+    Person.MALE : _("He was born on %(birth_date)s."), 
+    Person.FEMALE : _("She was born on %(birth_date)s."), 
+  }, 
   _("Born %(birth_date)s."), 
 ]  
 
 born_modified_date_no_place = [
   {
-    Person.UNKNOWN : _("This person was born %(modified_date)s."), 
-    Person.MALE : _("He was born %(modified_date)s."), 
-    Person.FEMALE : _("She was born %(modified_date)s."), 
-  }, 
-  {
     Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s."), 
     Person.MALE : _("%(male_name)s was born %(modified_date)s."), 
     Person.FEMALE : _("%(female_name)s was born %(modified_date)s."), 
+  }, 
+  {
+    Person.UNKNOWN : _("This person was born %(modified_date)s."), 
+    Person.MALE : _("He was born %(modified_date)s."), 
+    Person.FEMALE : _("She was born %(modified_date)s."), 
   }, 
    _("Born %(modified_date)s."),
 ]  
 
 born_partial_date_with_place = [
   {
-    Person.UNKNOWN : _("This person was born in %(month_year)s in %(birth_place)s."), 
-    Person.MALE : _("He was born in %(month_year)s in %(birth_place)s."), 
-    Person.FEMALE : _("She was born in %(month_year)s in %(birth_place)s."), 
-  }, 
-  {
     Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."), 
     Person.MALE : _("%(male_name)s was born in %(month_year)s in %(birth_place)s."), 
     Person.FEMALE : _("%(female_name)s was born in %(month_year)s in %(birth_place)s."), 
+  }, 
+  {
+    Person.UNKNOWN : _("This person was born in %(month_year)s in %(birth_place)s."), 
+    Person.MALE : _("He was born in %(month_year)s in %(birth_place)s."), 
+    Person.FEMALE : _("She was born in %(month_year)s in %(birth_place)s."), 
   }, 
   _("Born %(month_year)s in %(birth_place)s."),
 ]  
 
 born_partial_date_no_place = [
   {
-    Person.UNKNOWN : _("This person was born in %(month_year)s."), 
-    Person.MALE : _("He was born in %(month_year)s."), 
-    Person.FEMALE : _("She was born in %(month_year)s."), 
-  }, 
-  {
     Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(month_year)s."), 
     Person.MALE : _("%(male_name)s was born in %(month_year)s."), 
     Person.FEMALE : _("%(female_name)s was born in %(month_year)s."), 
   },
+  {
+    Person.UNKNOWN : _("This person was born in %(month_year)s."), 
+    Person.MALE : _("He was born in %(month_year)s."), 
+    Person.FEMALE : _("She was born in %(month_year)s."), 
+  }, 
   _("Born %(month_year)s."),
 ]  
 
 born_no_date_with_place = [
   {
-    Person.UNKNOWN : _("This person was born in %(birth_place)s."), 
-    Person.MALE : _("He was born in %(birth_place)s."), 
-    Person.FEMALE : _("She was born in %(birth_place)s."), 
-  }, 
-  {
     Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(birth_place)s."), 
     Person.MALE : _("%(male_name)s was born in %(birth_place)s."), 
     Person.FEMALE : _("%(female_name)s was born in %(birth_place)s."), 
   },
+  {
+    Person.UNKNOWN : _("This person was born in %(birth_place)s."), 
+    Person.MALE : _("He was born in %(birth_place)s."), 
+    Person.FEMALE : _("She was born in %(birth_place)s."), 
+  }, 
   _("Born in %(birth_place)s."),
 ]  
 
@@ -166,27 +182,7 @@ born_no_date_with_place = [
 # Died strings
 #
 #------------------------------------------------------------------------
-
 died_full_date_with_place = [
-  { Person.UNKNOWN : [
-    _("This person died on %(death_date)s in %(death_place)s."), 
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    _("He died on %(death_date)s in %(death_place)s."), 
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    _("She died on %(death_date)s in %(death_place)s."), 
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-  }, 
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."), 
     _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
@@ -206,6 +202,25 @@ died_full_date_with_place = [
     _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
     ], 
   },
+  { Person.UNKNOWN : [
+    _("This person died on %(death_date)s in %(death_place)s."), 
+    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    _("He died on %(death_date)s in %(death_place)s."), 
+    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    _("She died on %(death_date)s in %(death_place)s."), 
+    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
   [
   _("Died %(death_date)s in %(death_place)s."),
   _("Died %(death_date)s in %(death_place)s (age %(age)d years)."),
@@ -215,25 +230,6 @@ died_full_date_with_place = [
 ]
 
 died_modified_date_with_place = [
-  { Person.UNKNOWN : [
-    _("This person died %(death_date)s in %(death_place)s."), 
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    _("He died %(death_date)s in %(death_place)s."), 
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    _("She died %(death_date)s in %(death_place)s."), 
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-  }, 
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s."), 
     _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
@@ -253,6 +249,25 @@ died_modified_date_with_place = [
     _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
     ], 
   },
+  { Person.UNKNOWN : [
+    _("This person died %(death_date)s in %(death_place)s."), 
+    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    _("He died %(death_date)s in %(death_place)s."), 
+    _("He died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("He died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("He died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    _("She died %(death_date)s in %(death_place)s."), 
+    _("She died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("She died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("She died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
   [
   _("Died %(death_date)s in %(death_place)s."),
   _("Died %(death_date)s in %(death_place)s (age %(age)d years)."),
@@ -262,25 +277,6 @@ died_modified_date_with_place = [
 ]
 
 died_full_date_no_place = [
-  { Person.UNKNOWN : [
-    _("This person died on %(death_date)s."), 
-    _("This person died on %(death_date)s at the age of %(age)d years."), 
-    _("This person died on %(death_date)s at the age of %(age)d months."), 
-    _("This person died on %(death_date)s at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    _("He died on %(death_date)s."), 
-    _("He died on %(death_date)s at the age of %(age)d years."), 
-    _("He died on %(death_date)s at the age of %(age)d months."), 
-    _("He died on %(death_date)s at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    _("She died on %(death_date)s."), 
-    _("She died on %(death_date)s at the age of %(age)d years."), 
-    _("She died on %(death_date)s at the age of %(age)d months."), 
-    _("She died on %(death_date)s at the age of %(age)d days."), 
-    ], 
-  }, 
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died on %(death_date)s."), 
     _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."), 
@@ -300,6 +296,25 @@ died_full_date_no_place = [
     _("%(female_name)s died on %(death_date)s at the age of %(age)d days."), 
     ], 
   },
+  { Person.UNKNOWN : [
+    _("This person died on %(death_date)s."), 
+    _("This person died on %(death_date)s at the age of %(age)d years."), 
+    _("This person died on %(death_date)s at the age of %(age)d months."), 
+    _("This person died on %(death_date)s at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    _("He died on %(death_date)s."), 
+    _("He died on %(death_date)s at the age of %(age)d years."), 
+    _("He died on %(death_date)s at the age of %(age)d months."), 
+    _("He died on %(death_date)s at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    _("She died on %(death_date)s."), 
+    _("She died on %(death_date)s at the age of %(age)d years."), 
+    _("She died on %(death_date)s at the age of %(age)d months."), 
+    _("She died on %(death_date)s at the age of %(age)d days."), 
+    ], 
+  }, 
   [
   _("Died %(death_date)s."),
   _("Died %(death_date)s (age %(age)d years)."),
@@ -309,25 +324,6 @@ died_full_date_no_place = [
 ]  
 
 died_modified_date_no_place = [
-  { Person.UNKNOWN : [
-    _("This person died %(death_date)s."), 
-    _("This person died %(death_date)s at the age of %(age)d years."), 
-    _("This person died %(death_date)s at the age of %(age)d months."), 
-    _("This person died %(death_date)s at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    _("He died %(death_date)s."), 
-    _("He died %(death_date)s at the age of %(age)d years."), 
-    _("He died %(death_date)s at the age of %(age)d months."), 
-    _("He died %(death_date)s at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    _("She died %(death_date)s."), 
-    _("She died %(death_date)s at the age of %(age)d years."), 
-    _("She died %(death_date)s at the age of %(age)d months."), 
-    _("She died %(death_date)s at the age of %(age)d days."), 
-    ], 
-  }, 
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died %(death_date)s."), 
     _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."), 
@@ -347,6 +343,25 @@ died_modified_date_no_place = [
     _("%(female_name)s died %(death_date)s at the age of %(age)d days."), 
     ], 
   },
+  { Person.UNKNOWN : [
+    _("This person died %(death_date)s."), 
+    _("This person died %(death_date)s at the age of %(age)d years."), 
+    _("This person died %(death_date)s at the age of %(age)d months."), 
+    _("This person died %(death_date)s at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    _("He died %(death_date)s."), 
+    _("He died %(death_date)s at the age of %(age)d years."), 
+    _("He died %(death_date)s at the age of %(age)d months."), 
+    _("He died %(death_date)s at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    _("She died %(death_date)s."), 
+    _("She died %(death_date)s at the age of %(age)d years."), 
+    _("She died %(death_date)s at the age of %(age)d months."), 
+    _("She died %(death_date)s at the age of %(age)d days."), 
+    ], 
+  }, 
   [
   _("Died %(death_date)s."),
   _("Died %(death_date)s (age %(age)d years)."),
@@ -356,25 +371,6 @@ died_modified_date_no_place = [
 ]  
 
 died_partial_date_with_place = [
-  { Person.UNKNOWN : [
-    _("This person died in %(month_year)s in %(death_place)s."), 
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    _("He died in %(month_year)s in %(death_place)s."), 
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    _("She died in %(month_year)s in %(death_place)s."), 
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
-    ]
-  }, 
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."), 
     _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
@@ -394,6 +390,25 @@ died_partial_date_with_place = [
     _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
     ], 
   },
+  { Person.UNKNOWN : [
+    _("This person died in %(month_year)s in %(death_place)s."), 
+    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    _("He died in %(month_year)s in %(death_place)s."), 
+    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    _("She died in %(month_year)s in %(death_place)s."), 
+    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ]
+  }, 
   [
   _("Died %(month_year)s in %(death_place)s."),
   _("Died %(month_year)s in %(death_place)s (age %(age)d years)."),
@@ -403,25 +418,6 @@ died_partial_date_with_place = [
 ]  
 
 died_partial_date_no_place = [
-  { Person.UNKNOWN : [
-    _("This person died in %(month_year)s."), 
-    _("This person died in %(month_year)s at the age of %(age)d years."), 
-    _("This person died in %(month_year)s at the age of %(age)d months."), 
-    _("This person died in %(month_year)s at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    _("He died in %(month_year)s."), 
-    _("He died in %(month_year)s at the age of %(age)d years."), 
-    _("He died in %(month_year)s at the age of %(age)d months."), 
-    _("He died in %(month_year)s at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    _("She died in %(month_year)s."), 
-    _("She died in %(month_year)s at the age of %(age)d years."), 
-    _("She died in %(month_year)s at the age of %(age)d months."), 
-    _("She died in %(month_year)s at the age of %(age)d days."), 
-    ], 
-  }, 
   { Person.UNKNOWN : [
     _("%(unknown_gender_name)s died in %(month_year)s."), 
     _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."), 
@@ -441,6 +437,25 @@ died_partial_date_no_place = [
     _("%(female_name)s died in %(month_year)s at the age of %(age)d days."), 
     ], 
   },
+  { Person.UNKNOWN : [
+    _("This person died in %(month_year)s."), 
+    _("This person died in %(month_year)s at the age of %(age)d years."), 
+    _("This person died in %(month_year)s at the age of %(age)d months."), 
+    _("This person died in %(month_year)s at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    _("He died in %(month_year)s."), 
+    _("He died in %(month_year)s at the age of %(age)d years."), 
+    _("He died in %(month_year)s at the age of %(age)d months."), 
+    _("He died in %(month_year)s at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    _("She died in %(month_year)s."), 
+    _("She died in %(month_year)s at the age of %(age)d years."), 
+    _("She died in %(month_year)s at the age of %(age)d months."), 
+    _("She died in %(month_year)s at the age of %(age)d days."), 
+    ], 
+  }, 
   [
   _("Died %(month_year)s."),
   _("Died %(month_year)s (age %(age)d years)."),
@@ -450,6 +465,25 @@ died_partial_date_no_place = [
 ]  
 
 died_no_date_with_place = [
+  { Person.UNKNOWN : [
+    _("%(unknown_gender_name)s died in %(death_place)s."), 
+    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    _("%(male_name)s died in %(death_place)s."), 
+    _("%(male_name)s died in %(death_place)s at the age of %(age)d years."), 
+    _("%(male_name)s died in %(death_place)s at the age of %(age)d months."), 
+    _("%(male_name)s died in %(death_place)s at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    _("%(female_name)s died in %(death_place)s."), 
+    _("%(female_name)s died in %(death_place)s at the age of %(age)d years."), 
+    _("%(female_name)s died in %(death_place)s at the age of %(age)d months."), 
+    _("%(female_name)s died in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  },
   {
     Person.UNKNOWN : [
     _("This person died in %(death_place)s."), 
@@ -470,25 +504,6 @@ died_no_date_with_place = [
     _("She died in %(death_place)s at the age of %(age)d days."), 
     ], 
   }, 
-  { Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died in %(death_place)s."), 
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."), 
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."), 
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    _("%(male_name)s died in %(death_place)s."), 
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d years."), 
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d months."), 
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    _("%(female_name)s died in %(death_place)s."), 
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d years."), 
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d months."), 
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d days."), 
-    ], 
-  },
   [
   _("Died in %(death_place)s."),
   _("Died in %(death_place)s (age %(age)d years)."),
@@ -498,25 +513,6 @@ died_no_date_with_place = [
 ]  
 
 died_no_date_no_place = [
-  { Person.UNKNOWN : [
-    "", 
-    _("This person died at the age of %(age)d years."), 
-    _("This person died at the age of %(age)d months."), 
-    _("This person died at the age of %(age)d days."), 
-    ], 
-    Person.MALE : [
-    "", 
-    _("He died at the age of %(age)d years."), 
-    _("He died at the age of %(age)d months."), 
-    _("He died at the age of %(age)d days."), 
-    ], 
-    Person.FEMALE : [
-    "", 
-    _("She died at the age of %(age)d years."), 
-    _("She died at the age of %(age)d months."), 
-    _("She died at the age of %(age)d days."), 
-    ], 
-  }, 
   { Person.UNKNOWN : [
     "", 
     _("%(unknown_gender_name)s died at the age of %(age)d years."), 
@@ -536,6 +532,25 @@ died_no_date_no_place = [
     _("%(female_name)s died at the age of %(age)d days."), 
     ], 
   },
+  { Person.UNKNOWN : [
+    "", 
+    _("This person died at the age of %(age)d years."), 
+    _("This person died at the age of %(age)d months."), 
+    _("This person died at the age of %(age)d days."), 
+    ], 
+    Person.MALE : [
+    "", 
+    _("He died at the age of %(age)d years."), 
+    _("He died at the age of %(age)d months."), 
+    _("He died at the age of %(age)d days."), 
+    ], 
+    Person.FEMALE : [
+    "", 
+    _("She died at the age of %(age)d years."), 
+    _("She died at the age of %(age)d months."), 
+    _("She died at the age of %(age)d days."), 
+    ], 
+  }, 
   [
   "",
   _("Died (age %(age)d years)."),
@@ -544,13 +559,11 @@ died_no_date_no_place = [
   ], 
 ]
 
-
 #------------------------------------------------------------------------
 #
 # Buried strings
 #
 #------------------------------------------------------------------------
-
 buried_full_date_place = {
     Person.MALE: [
     _("%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."), 
@@ -684,7 +697,6 @@ buried_no_date_no_place = {
 # Baptised strings
 #
 #------------------------------------------------------------------------
-
 baptised_full_date_place = {
     Person.MALE: [
     _("%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
@@ -818,7 +830,6 @@ baptised_no_date_no_place = {
 # Christened strings
 #
 #------------------------------------------------------------------------
-
 christened_full_date_place = {
     Person.MALE: [
     _("%(male_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."), 
@@ -952,39 +963,38 @@ christened_no_date_no_place = {
 #  child to parent relationships
 #
 #-------------------------------------------------------------------------
-
 child_father_mother = {
     Person.UNKNOWN: [
-      [
-        _("This person is the child of %(father)s and %(mother)s."), 
-        _("This person was the child of %(father)s and %(mother)s."), 
-      ], 
       [
         _("%(male_name)s is the child of %(father)s and %(mother)s."), 
         _("%(male_name)s was the child of %(father)s and %(mother)s."), 
       ],
+      [
+        _("This person is the child of %(father)s and %(mother)s."), 
+        _("This person was the child of %(father)s and %(mother)s."), 
+      ], 
       _("Child of %(father)s and %(mother)s."), 
     ], 
     Person.MALE : [
       [
-        _("He is the son of %(father)s and %(mother)s."), 
-        _("He was the son of %(father)s and %(mother)s."), 
-      ], 
-      [
         _("%(male_name)s is the son of %(father)s and %(mother)s."), 
         _("%(male_name)s was the son of %(father)s and %(mother)s."), 
       ],
+      [
+        _("He is the son of %(father)s and %(mother)s."), 
+        _("He was the son of %(father)s and %(mother)s."), 
+      ], 
       _("Son of %(father)s and %(mother)s."),
     ], 
     Person.FEMALE : [
      [
-        _("She is the daughter of %(father)s and %(mother)s."), 
-        _("She was the daughter of %(father)s and %(mother)s."), 
-     ], 
-     [
         _("%(female_name)s is the daughter of %(father)s and %(mother)s."), 
         _("%(female_name)s was the daughter of %(father)s and %(mother)s."), 
      ],
+     [
+        _("She is the daughter of %(father)s and %(mother)s."), 
+        _("She was the daughter of %(father)s and %(mother)s."), 
+     ], 
      _("Daughter of %(father)s and %(mother)s."), 
     ]
 }
@@ -992,35 +1002,35 @@ child_father_mother = {
 child_father = {
     Person.UNKNOWN : [
       [
-        _("This person is the child of %(father)s."), 
-        _("This person was the child of %(father)s."), 
-      ], 
-      [
         _("%(male_name)s is the child of %(father)s."), 
         _("%(male_name)s was the child of %(father)s."), 
       ],
+      [
+        _("This person is the child of %(father)s."), 
+        _("This person was the child of %(father)s."), 
+      ], 
       _("Child of %(father)s."), 
     ], 
     Person.MALE : [
       [
-        _("He is the son of %(father)s."), 
-        _("He was the son of %(father)s."), 
-      ], 
-      [
         _("%(male_name)s is the son of %(father)s."), 
         _("%(male_name)s was the son of %(father)s."), 
       ],
+      [
+        _("He is the son of %(father)s."), 
+        _("He was the son of %(father)s."), 
+      ], 
       _("Son of %(father)s."), 
     ], 
     Person.FEMALE : [
       [
-        _("She is the daughter of %(father)s."), 
-        _("She was the daughter of %(father)s."), 
-      ],  
-      [
         _("%(female_name)s is the daughter of %(father)s."), 
         _("%(female_name)s was the daughter of %(father)s."), 
       ],
+      [
+        _("She is the daughter of %(father)s."), 
+        _("She was the daughter of %(father)s."), 
+      ],  
       _("Daughter of %(father)s."), 
     ], 
 }
@@ -1028,35 +1038,35 @@ child_father = {
 child_mother = {
     Person.UNKNOWN : [
       [
-        _("This person is the child of %(mother)s."), 
-        _("This person was the child of %(mother)s."), 
-      ], 
-      [
         _("%(male_name)s is the child of %(mother)s."), 
         _("%(male_name)s was the child of %(mother)s."), 
       ],
+      [
+        _("This person is the child of %(mother)s."), 
+        _("This person was the child of %(mother)s."), 
+      ], 
       _("Child of %(mother)s."), 
     ], 
     Person.MALE : [
       [
-        _("He is the son of %(mother)s."), 
-        _("He was the son of %(mother)s."), 
-      ], 
-      [
         _("%(male_name)s is the son of %(mother)s."), 
         _("%(male_name)s was the son of %(mother)s."), 
       ],
+      [
+        _("He is the son of %(mother)s."), 
+        _("He was the son of %(mother)s."), 
+      ], 
       _("Son of %(mother)s."), 
     ], 
     Person.FEMALE : [
       [
-        _("She is the daughter of %(mother)s."), 
-        _("She was the daughter of %(mother)s."), 
-      ], 
-      [
         _("%(female_name)s is the daughter of %(mother)s."), 
         _("%(female_name)s was the daughter of %(mother)s."), 
       ],
+      [
+        _("She is the daughter of %(mother)s."), 
+        _("She was the daughter of %(mother)s."), 
+      ], 
       _("Daughter of %(mother)s."), 
    ], 
 }
@@ -1066,7 +1076,6 @@ child_mother = {
 # Marriage strings - Relationship type MARRIED
 #
 #------------------------------------------------------------------------
-
 marriage_first_date_place = {
     Person.UNKNOWN : [
         _('This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
@@ -1192,7 +1201,6 @@ marriage_also_only = {
 # Marriage strings - Relationship type UNMARRIED
 #
 #------------------------------------------------------------------------
-
 unmarried_first_date_place = {
     Person.UNKNOWN : [
         _('This person had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
@@ -1319,7 +1327,6 @@ unmarried_also_only = {
 #                    i.e. CIVIL UNION or CUSTOM
 #
 #------------------------------------------------------------------------
-
 relationship_first_date_place = {
     Person.UNKNOWN : [
         _('This person had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
@@ -1440,7 +1447,6 @@ relationship_also_only = {
     'succinct' : _('Also relationship with %(spouse)s%(endnotes)s.'), 
     }
 
-
 #------------------------------------------------------------------------
 #
 # Narrator
@@ -1451,66 +1457,110 @@ class Narrator(object):
     Narrator is a class which provides narration text.
     """
 
-    def __init__(self, dbase, verbose=True, empty_date="", empty_place=""):
+    def __init__(self, dbase, verbose=True, use_call_name=False,
+                 empty_date="", empty_place="", 
+                 get_endnote_numbers=_get_empty_endnote_numbers):
         """ 
         Initialize the narrator class.
+        
+        :param dbase: The database that contains the data to be narrated.
+        :type dbase: :class:`~gen.db.base,GrampsDbBase`
+        :param verbose: Specifies whether complete sentences should be used.
+        :type verbose: bool
+        :param use_call_name: Specifies whether a person's call name should be 
+            used for the first name.
+        :type use_call_name: bool
+        :param empty_date: String to use when a date is not known.
+        :type empty_date: str
+        :param empty_place: String to use when a place is not known.
+        :type empty_place: str
+        :param get_endnote_numbers: A callable to use for getting a string 
+            representing endnote numbers. 
+            The function takes a :class:`~gen.lib.srcbase,SourceBase` instance.
+            A typical return value from get_endnote_numbers() would be "2a" and 
+            would represent a reference to an endnote in a document.
+        :type get_endnote_numbers: 
+            callable( :class:`~gen.lib.srcbase,SourceBase` )
         """ 
         self.__db = dbase
         self.__verbose = verbose
+        self.__use_call = use_call_name
         self.__empty_date = empty_date
         self.__empty_place = empty_place
+        self.__get_endnote_numbers = get_endnote_numbers
+        self.__person = None
+        self.__first_name = ""
+        self.__first_name_used = False
 
-    def born_str(self, person, person_name=None ):
-        """ 
-        Check birth record.
-        Statement formats name precedes this
-            was born on Date.
-            was born on Date in Place.
-            was born in Month_Year.
-            was born in Month_Year in Place.
-            was born in Place.
-            ''
+    def set_subject(self, person):
         """
-    
-        name_index = 1
-        if person_name is None:
-            person_name = _nd.display(person)
-        elif person_name == 0:
-            name_index = 0
+        Start a new story about this person. The person's first name will be 
+        used in the first sentence. A pronoun will be used as the subject for 
+        each subsequent sentence.
+        :param person: The person to be the subject of the story.
+        :type dbase: :class:`~gen.lib.person,Person`
+        """ 
+        self.__person = person
+        
+        if self.__use_call and person.get_primary_name().get_call_name():
+            self.__first_name = person.get_primary_name().get_call_name()
+        else:
+            self.__first_name = person.get_primary_name().get_first_name()
+
+        self.__first_name_used = False
+
+    def get_born_string(self):
+        """ 
+        Get a string narrating the birth of the subject.
+        Example sentences:
+            Person was born on Date.
+            Person was born on Date in Place.
+            Person was born in Place.
+            ''
+        
+        :returns: A sentence about the subject's birth.
+        :rtype: unicode
+        """
+        if not self.__first_name_used:
+            name_index = _NAME_INDEX_INCLUDE_NAME
+            self.__first_name_used = True
+        else:
+            name_index = _NAME_INDEX_EXCLUDE_NAME
     
         text = ""
         
         bplace = self.__empty_place
         bdate = self.__empty_date
+        birth_event = None
         bdate_full = False
         bdate_mod = False
     
-        birth_ref = person.get_birth_ref()
+        birth_ref = self.__person.get_birth_ref()
         if birth_ref and birth_ref.ref:
-            birth = self.__db.get_event_from_handle(birth_ref.ref)
-            if birth:
-                bdate = DateHandler.get_date(birth)
-                bplace_handle = birth.get_place_handle()
+            birth_event = self.__db.get_event_from_handle(birth_ref.ref)
+            if birth_event:
+                bdate = DateHandler.get_date(birth_event)
+                bplace_handle = birth_event.get_place_handle()
                 if bplace_handle:
                     place = self.__db.get_place_from_handle(bplace_handle)
                     bplace = place.get_title()
-                bdate_obj = birth.get_date_object()
+                bdate_obj = birth_event.get_date_object()
                 bdate_full = bdate_obj and bdate_obj.get_day_valid()
                 bdate_mod = bdate_obj and \
                             bdate_obj.get_modifier() != Date.MOD_NONE
     
         value_map = {
-            'name'                : person_name, 
-            'male_name'           : person_name, 
-            'unknown_gender_name' : person_name, 
-            'female_name'         : person_name, 
+            'name'                : self.__first_name, 
+            'male_name'           : self.__first_name, 
+            'unknown_gender_name' : self.__first_name, 
+            'female_name'         : self.__first_name, 
             'birth_date'          : bdate, 
             'birth_place'         : bplace, 
             'month_year'          : bdate, 
             'modified_date'       : bdate, 
             }
     
-        gender = person.get_gender()
+        gender = self.__person.get_gender()
     
         if bdate:
             if bdate_mod:
@@ -1547,99 +1597,77 @@ class Narrator(object):
                 text = born_no_date_with_place[2] % value_map
             else:
                 text = ""
+                
+        if text and birth_event:
+            text = text.rstrip(". ")
+            text = text + self.__get_endnote_numbers(birth_event) + ". "
+
         if text:
             text = text + " "
         return text
 
-    #-------------------------------------------------------------------------
-    #
-    # died_str
-    #
-    #-------------------------------------------------------------------------
-    def died_str(self, person, person_name=None, span=None):
+    def get_died_string(self, include_age=False):
         """
-        Write obit sentence.
-            FIRSTNAME died on Date
-            FIRSTNAME died on Date at the age of N Years
-            FIRSTNAME died on Date at the age of N Months
-            FIRSTNAME died on Date at the age of N Days
-            FIRSTNAME died on Date in Place
-            FIRSTNAME died on Date in Place at the age of N Years
-            FIRSTNAME died on Date in Place at the age of N Months
-            FIRSTNAME died on Date in Place at the age of N Days
-            FIRSTNAME died in Month_Year
-            FIRSTNAME died in Month_Year at the age of N Years
-            FIRSTNAME died in Month_Year at the age of N Months
-            FIRSTNAME died in Month_Year at the age of N Days
-            FIRSTNAME died in Month_Year in Place
-            FIRSTNAME died in Month_Year in Place at the age of N Years
-            FIRSTNAME died in Month_Year in Place at the age of N Months
-            FIRSTNAME died in Month_Year in Place at the age of N Days
-            FIRSTNAME died in Place
-            FIRSTNAME died in Place at the age of N Years
-            FIRSTNAME died in Place at the age of N Months
-            FIRSTNAME died in Place at the age of N Days
-            FIRSTNAME died
-            FIRSTNAME died at the age of N Years
-            FIRSTNAME died at the age of N Months
-            FIRSTNAME died at the age of N Days
+        Get a string narrating the death of the subject.
+        Example sentences:
+            Person died on Date
+            Person died on Date at the age of N Years
+            Person died on Date at the age of N Months
+            Person died on Date at the age of N Days
+            Person died on Date in Place
+            Person died on Date in Place at the age of N Years
+            Person died on Date in Place at the age of N Months
+            Person died on Date in Place at the age of N Days
+            Person died in Place
+            Person died in Place at the age of N Years
+            Person died in Place at the age of N Months
+            Person died in Place at the age of N Days
+            Person died
+            ''
+        
+        :returns: A sentence about the subject's death.
+        :rtype: unicode
         """
     
-        name_index = 1
-        if person_name is None:
-            person_name = _nd.display(person)
-        elif person_name == 0:
-            name_index = 0
+        if not self.__first_name_used:
+            name_index = _NAME_INDEX_INCLUDE_NAME
+            self.__first_name_used = True
+        else:
+            name_index = _NAME_INDEX_EXCLUDE_NAME
     
         text = ""
     
         dplace = self.__empty_place
         ddate = self.__empty_date
+        death_event = None
         ddate_full = False
         ddate_mod = False
 
-    
-        death_ref = person.get_death_ref()
+        death_ref = self.__person.get_death_ref()
         if death_ref and death_ref.ref:
-            death = self.__db.get_event_from_handle(death_ref.ref)
-            if death:
-                ddate = DateHandler.get_date(death)
-                dplace_handle = death.get_place_handle()
+            death_event = self.__db.get_event_from_handle(death_ref.ref)
+            if death_event:
+                ddate = DateHandler.get_date(death_event)
+                dplace_handle = death_event.get_place_handle()
                 if dplace_handle:
                     place = self.__db.get_place_from_handle(dplace_handle)
                     dplace = place.get_title()
-                ddate_obj = death.get_date_object()
+                ddate_obj = death_event.get_date_object()
                 ddate_full = ddate_obj and ddate_obj.get_day_valid()
                 ddate_mod = ddate_obj and \
                             ddate_obj.get_modifier() != Date.MOD_NONE
-    
-        # TODO: fixme to let date format itself
-        if span and span.is_valid():
-            YEARS  = 1
-            MONTHS = 2
-            DAYS   = 3
-            if span[0] != 0:
-                age = span[0]
-                age_units = YEARS
-            elif span[1] != 0:
-                age = span[1]
-                age_units = MONTHS
-            elif span[2] != 0:
-                age = span[2]
-                age_units = DAYS
-            else:
-                age = 0
-                age_units = 0
+        
+        if include_age:   
+            age, age_index = self.__get_age_at_death()
         else:
             age = 0
-            age_units = 0
-        # end of todo ----------------------------
-    
+            age_index = _AGE_INDEX_NO_AGE
+
         value_map = {
-            'name'                : person_name, 
-            'unknown_gender_name' : person_name, 
-            'male_name'           : person_name, 
-            'female_name'         : person_name, 
+            'name'                : self.__first_name, 
+            'unknown_gender_name' : self.__first_name, 
+            'male_name'           : self.__first_name, 
+            'female_name'         : self.__first_name, 
             'death_date'          : ddate, 
             'modified_date'       : ddate, 
             'death_place'         : dplace, 
@@ -1647,76 +1675,76 @@ class Narrator(object):
             'month_year'          : ddate, 
             }
     
-        gender = person.get_gender()
+        gender = self.__person.get_gender()
     
         if ddate:
             if ddate_mod:
                 if dplace and self.__verbose:
-                    text = died_modified_date_with_place[name_index][gender][age_units] % value_map
+                    text = died_modified_date_with_place[name_index][gender][age_index] % value_map
                 elif dplace:
-                    text = died_modified_date_with_place[2][age_units] % value_map
+                    text = died_modified_date_with_place[2][age_index] % value_map
                 elif self.__verbose:
-                    text = died_modified_date_no_place[name_index][gender][age_units] % value_map
+                    text = died_modified_date_no_place[name_index][gender][age_index] % value_map
                 else:
-                    text = died_modified_date_no_place[2][age_units] % value_map
+                    text = died_modified_date_no_place[2][age_index] % value_map
             elif ddate_full:
                 if dplace and self.__verbose:
-                    text = died_full_date_with_place[name_index][gender][age_units] % value_map
+                    text = died_full_date_with_place[name_index][gender][age_index] % value_map
                 elif dplace:
-                    text = died_full_date_with_place[2][age_units] % value_map
+                    text = died_full_date_with_place[2][age_index] % value_map
                 elif self.__verbose:
-                    text = died_full_date_no_place[name_index][gender][age_units] % value_map
+                    text = died_full_date_no_place[name_index][gender][age_index] % value_map
                 else:
-                    text = died_full_date_no_place[2][age_units] % value_map
+                    text = died_full_date_no_place[2][age_index] % value_map
             else:
                 if dplace and self.__verbose:
-                    text = died_partial_date_with_place[name_index][gender][age_units] % value_map
+                    text = died_partial_date_with_place[name_index][gender][age_index] % value_map
                 elif dplace:
-                    text = died_partial_date_with_place[2][age_units] % value_map
+                    text = died_partial_date_with_place[2][age_index] % value_map
                 elif self.__verbose:
-                    text = died_partial_date_no_place[name_index][gender][age_units] % value_map
+                    text = died_partial_date_no_place[name_index][gender][age_index] % value_map
                 else:
-                    text = died_partial_date_no_place[2][age_units] % value_map
+                    text = died_partial_date_no_place[2][age_index] % value_map
         else:
             if dplace and self.__verbose:
-                text = died_no_date_with_place[name_index][gender][age_units] % value_map
+                text = died_no_date_with_place[name_index][gender][age_index] % value_map
             elif dplace:
-                text = died_no_date_with_place[2][age_units] % value_map
+                text = died_no_date_with_place[2][age_index] % value_map
             elif self.__verbose:
-                text = died_no_date_no_place[name_index][gender][age_units] % value_map
+                text = died_no_date_no_place[name_index][gender][age_index] % value_map
             else:
-                text = died_no_date_no_place[2][age_units] % value_map
+                text = died_no_date_no_place[2][age_index] % value_map
+                
+        if text and death_event:
+            text = text.rstrip(". ")
+            text = text + self.__get_endnote_numbers(death_event) + ". "
+                
         if text:
             text = text + " "
         return text
-    
-    #-------------------------------------------------------------------------
-    #
-    # buried_str
-    #
-    #-------------------------------------------------------------------------
-    def buried_str(self, person, person_name=None, endnotes=None):
+
+    def get_buried_string(self):
         """ 
-        Check burial record.
-        Statement formats name precedes this
-            was buried on Date.
-            was buried on Date in Place.
-            was buried in Month_Year.
-            was buried in Month_Year in Place.
-            was buried in Place.
+        Get a string narrating the burial of the subject.
+        Example sentences:
+            Person was  buried on Date.
+            Person was  buried on Date in Place.
+            Person was  buried in Month_Year.
+            Person was  buried in Month_Year in Place.
+            Person was  buried in Place.
             ''
+        
+        :returns: A sentence about the subject's burial.
+        :rtype: unicode
         """
     
-        if not endnotes:
-            endnotes = empty_notes
+        if not self.__first_name_used:
+            name_index = _NAME_INDEX_INCLUDE_NAME
+            self.__first_name_used = True
+        else:
+            name_index = _NAME_INDEX_EXCLUDE_NAME
     
-        name_index = 0
-        if person_name is None:
-            person_name = _nd.display(person)
-        elif person_name == 0:
-            name_index = 1
-    
-        gender = person.get_gender()
+        gender = self.__person.get_gender()
             
         text = ""
         
@@ -1726,7 +1754,7 @@ class Narrator(object):
         bdate_mod = False
         
         burial = None
-        for event_ref in person.get_event_ref_list():
+        for event_ref in self.__person.get_event_ref_list():
             event = self.__db.get_event_from_handle(event_ref.ref)
             if event and event.type.value == EventType.BURIAL \
                 and event_ref.role.value == EventRoleType.PRIMARY:
@@ -1746,15 +1774,15 @@ class Narrator(object):
             return text
     
         values = {
-            'unknown_gender_name' : person_name, 
-            'male_name'           : person_name, 
-            'name'                : person_name, 
-            'female_name'         : person_name, 
+            'unknown_gender_name' : self.__first_name, 
+            'male_name'           : self.__first_name, 
+            'name'                : self.__first_name, 
+            'female_name'         : self.__first_name, 
             'burial_date'         : bdate, 
             'burial_place'        : bplace, 
             'month_year'          : bdate, 
             'modified_date'       : bdate,
-            'endnotes'            : endnotes(event), 
+            'endnotes'            : self.__get_endnote_numbers(event), 
             }
     
         if bdate and bdate_mod and self.__verbose:
@@ -1799,34 +1827,29 @@ class Narrator(object):
         if text:
             text = text + " "
         return text
-    
-    #-------------------------------------------------------------------------
-    #
-    # baptised_str
-    #
-    #-------------------------------------------------------------------------
-    def baptised_str(self, person, person_name=None, endnotes=None):
+
+    def get_baptized_string(self):
         """ 
-        Check baptism record.
-        Statement formats name precedes this
-            was baptised on Date.
-            was baptised on Date in Place.
-            was baptised in Month_Year.
-            was baptised in Month_Year in Place.
-            was baptised in Place.
+        Get a string narrating the baptism of the subject.
+        Example sentences:
+            Person was baptised on Date.
+            Person was baptised on Date in Place.
+            Person was baptised in Month_Year.
+            Person was baptised in Month_Year in Place.
+            Person was baptised in Place.
             ''
+        
+        :returns: A sentence about the subject's baptism.
+        :rtype: unicode
         """
+
+        if not self.__first_name_used:
+            name_index = _NAME_INDEX_INCLUDE_NAME
+            self.__first_name_used = True
+        else:
+            name_index = _NAME_INDEX_EXCLUDE_NAME
     
-        if not endnotes:
-            endnotes = empty_notes
-    
-        name_index = 0
-        if person_name is None:
-            person_name = _nd.display(person)
-        elif person_name == 0:
-            name_index = 1
-    
-        gender = person.get_gender()
+        gender = self.__person.get_gender()
         
         text = ""
     
@@ -1836,7 +1859,7 @@ class Narrator(object):
         bdate_mod = False
     
         baptism = None
-        for event_ref in person.get_event_ref_list():
+        for event_ref in self.__person.get_event_ref_list():
             event = self.__db.get_event_from_handle(event_ref.ref)
             if event and event.type.value == EventType.BAPTISM \
                 and event_ref.role.value == EventRoleType.PRIMARY:
@@ -1856,15 +1879,15 @@ class Narrator(object):
             return text
     
         values = {
-            'unknown_gender_name' : person_name, 
-            'male_name'           : person_name, 
-            'name'                : person_name, 
-            'female_name'         : person_name, 
+            'unknown_gender_name' : self.__first_name, 
+            'male_name'           : self.__first_name, 
+            'name'                : self.__first_name, 
+            'female_name'         : self.__first_name, 
             'baptism_date'        : bdate, 
             'baptism_place'       : bplace, 
             'month_year'          : bdate, 
             'modified_date'       : bdate,
-            'endnotes'            : endnotes(event), 
+            'endnotes'            : self.__get_endnote_numbers(event), 
             }
     
         if bdate and bdate_mod and self.__verbose:
@@ -1909,34 +1932,29 @@ class Narrator(object):
         if text:
             text = text + " "
         return text
-    
-    #-------------------------------------------------------------------------
-    #
-    # christened_str
-    #
-    #-------------------------------------------------------------------------
-    def christened_str(self, person, person_name=None, endnotes=None):
+
+    def get_christened_string(self):
         """ 
-        Check christening record.
-        Statement formats name precedes this
-            was christened on Date.
-            was christened on Date in Place.
-            was christened in Month_Year.
-            was christened in Month_Year in Place.
-            was christened in Place.
+        Get a string narrating the christening of the subject.
+        Example sentences:
+            Person was christened on Date.
+            Person was christened on Date in Place.
+            Person was christened in Month_Year.
+            Person was christened in Month_Year in Place.
+            Person was christened in Place.
             ''
+
+        :returns: A sentence about the subject's christening.
+        :rtype: unicode
         """
+
+        if not self.__first_name_used:
+            name_index = _NAME_INDEX_INCLUDE_NAME
+            self.__first_name_used = True
+        else:
+            name_index = _NAME_INDEX_EXCLUDE_NAME
     
-        if not endnotes:
-            endnotes = empty_notes
-    
-        name_index = 0
-        if person_name is None:
-            person_name = _nd.display(person)
-        elif person_name == 0:
-            name_index = 1
-    
-        gender = person.get_gender()
+        gender = self.__person.get_gender()
         
         text = ""
     
@@ -1946,7 +1964,7 @@ class Narrator(object):
         cdate_mod = False
     
         christening = None
-        for event_ref in person.get_event_ref_list():
+        for event_ref in self.__person.get_event_ref_list():
             event = self.__db.get_event_from_handle(event_ref.ref)
             if event and event.type.value == EventType.CHRISTEN \
                 and event_ref.role.value == EventRoleType.PRIMARY:
@@ -1966,15 +1984,15 @@ class Narrator(object):
             return text
     
         values = {
-            'unknown_gender_name' : person_name, 
-            'male_name'           : person_name, 
-            'name'                : person_name, 
-            'female_name'         : person_name, 
+            'unknown_gender_name' : self.__first_name, 
+            'male_name'           : self.__first_name, 
+            'name'                : self.__first_name, 
+            'female_name'         : self.__first_name, 
             'christening_date'    : cdate, 
             'christening_place'   : cplace, 
             'month_year'          : cdate, 
             'modified_date'       : cdate,
-            'endnotes'            : endnotes(event), 
+            'endnotes'            : self.__get_endnote_numbers(event), 
             }
     
         if cdate and cdate_mod and self.__verbose:
@@ -2020,34 +2038,33 @@ class Narrator(object):
             text = text + " "
         return text
 
-    def married_str(self, person, family, endnotes=None, is_first=True):
+    def get_married_string(self, family, is_first=True):
         """
-        Composes a string describing marriage of a person. Missing information 
-        will be omitted without loss of readability. Optional references may be 
-        added to birth and death events.
-        
-        @param database: GRAMPS database to which the Person object belongs
-        @type database: GrampsDbBase
-        @param person: Person instance whose marriage is discussed
-        @type person: Person
-        @param family: Family instance of the "marriage" being discussed
-        @param endnotes: Function to use for reference composition. If None
-        then references will not be added
-        @type endnotes: function
-        @returns: A composed string
-        @rtype: unicode
+        Get a string narrating the marriage of the subject.
+        Example sentences:
+            Person was married to Spouse on Date.
+            Person was married to Spouse.
+            Person was also married to Spouse on Date.
+            Person was also married to Spouse.
+            ""
+            
+        :param family: The family that contains the Spouse for this marriage.
+        :type family: :class:`~gen.lib.family,Family`
+        :param is_first: Indicates whether this sentence represents the first 
+            marriage. If it is not the first marriage, the sentence will 
+            include "also".
+        :type is_first: :class:`~gen.lib.family,Family`
+        :returns: A sentence about the subject's marriage.
+        :rtype: unicode
         """
     
-        spouse_handle = ReportUtils.find_spouse(person, family)
+        spouse_handle = ReportUtils.find_spouse(self.__person, family)
         spouse = self.__db.get_person_from_handle(spouse_handle)
         event = ReportUtils.find_marriage(self.__db, family)
     
         # not all families have a spouse.
         if not spouse:
             return u""
-    
-        if not endnotes:
-            endnotes = empty_notes
     
         date = self.__empty_date
         place = self.__empty_place
@@ -2065,7 +2082,7 @@ class Narrator(object):
     
         values = {
             'spouse'        : spouse_name, 
-            'endnotes'      : endnotes(event), 
+            'endnotes'      : self.__get_endnote_numbers(event), 
             'full_date'     : date, 
             'modified_date' : date, 
             'partial_date'  : date, 
@@ -2082,7 +2099,7 @@ class Narrator(object):
             else:
                 date_full = 0
             
-        gender = person.get_gender()
+        gender = self.__person.get_gender()
     
         # This would be much simpler, excepting for translation considerations
         # Currently support FamilyRelType's:
@@ -2216,43 +2233,41 @@ class Narrator(object):
             text = text + " "
         return text
 
-    def child_str(self, person, father_name="", mother_name="", person_name=0):
+    def get_child_string(self, father_name="", mother_name=""):
         """
-        Composes a string describing person being a child.
-        
-        The string is composed in the following form:
-            'He/She is/was the son/daughter of father_name and mother_name'
+        Get a string narrating the relationship to the parents of the subject.
         Missing information will be omitted without loss of readability.
-        
-        @param person_gender: Person.MALE, Person.FEMALE, or Person.UNKNOWN
-        @type person: Person.MALE, Person.FEMALE, or Person.UNKNOWN~
-        @param father_name: String to use for father's name
-        @type father_name: unicode
-        @param mother_name: String to use for mother's name
-        @type mother_name: unicode
-        @param dead: Whether the person discussed is dead or not
-        @type dead: bool
-        @returns: A composed string
-        @rtype: unicode
+        Example sentences:
+            Person was the son of father_name and mother_name.
+            Person was the daughter of father_name and mother_name.
+            ""
+            
+        :param father_name: The name of the Subjects' father.
+        :type father_name: unicode
+        :param mother_name: The name of the Subjects' mother.
+        :type mother_name: unicode
+        :returns: A sentence about the subject's parents.
+        :rtype: unicode
         """
     
         values = {
             'father'              : father_name, 
             'mother'              : mother_name, 
-            'male_name'           : person_name, 
-            'name'                : person_name, 
-            'female_name'         : person_name, 
-            'unknown_gender_name' : person_name, 
+            'male_name'           : self.__first_name, 
+            'name'                : self.__first_name, 
+            'female_name'         : self.__first_name, 
+            'unknown_gender_name' : self.__first_name, 
             }
         
-        dead = not Utils.probably_alive(person, self.__db)
+        dead = not Utils.probably_alive(self.__person, self.__db)
     
-        if person_name == 0:
-            index = 0
+        if not self.__first_name_used:
+            index = _NAME_INDEX_INCLUDE_NAME
+            self.__first_name_used = True
         else:
-            index = 1
+            index = _NAME_INDEX_EXCLUDE_NAME
     
-        gender = person.get_gender()
+        gender = self.__person.get_gender()
     
         text = ""
         if mother_name and father_name and self.__verbose:
@@ -2270,3 +2285,49 @@ class Narrator(object):
         if text:
             text = text + " "
         return text
+    
+    def __get_age_at_death(self):
+        """
+        Calculate the age the person died. 
+        
+        Returns a tuple representing (age, age_index).
+        """
+        birth_ref = self.__person.get_birth_ref()
+        if birth_ref:
+            birth_event = self.__db.get_event_from_handle(birth_ref.ref)
+            birth = birth_event.get_date_object()
+            birth_year_valid = birth.get_year_valid()
+        else:
+            birth_year_valid = False
+        death_ref = self.__person.get_death_ref()
+        if death_ref:
+            death_event = self.__db.get_event_from_handle(death_ref.ref)
+            death = death_event.get_date_object()
+            death_year_valid = death.get_year_valid()
+        else:
+            death_year_valid = False
+    
+        # wihtout at least a year for each event no age can be calculated
+        if birth_year_valid and death_year_valid:
+            span = death - birth
+            if span and span.is_valid():
+                if span[0] != 0:
+                    age = span[0]
+                    age_index = _AGE_INDEX_YEARS
+                elif span[1] != 0:
+                    age = span[1]
+                    age_index = _AGE_INDEX_MONTHS
+                elif span[2] != 0:
+                    age = span[2]
+                    age_index = _AGE_INDEX_DAYS
+                else:
+                    age = 0
+                    age_index = _AGE_INDEX_NO_AGE
+            else:
+                age = 0
+                age_index = _AGE_INDEX_NO_AGE
+        else:
+            age = 0
+            age_index = _AGE_INDEX_NO_AGE
+            
+        return age, age_index

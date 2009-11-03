@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2009 Brian G. Matherly
 # Copyright (C) 2008      James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 #
@@ -104,7 +104,7 @@ class DetAncestorReport(Report):
         self.fulldate      = menu.get_option_by_name('fulldates').get_value()
         self.listchildren  = menu.get_option_by_name('listc').get_value()
         self.includenotes  = menu.get_option_by_name('incnotes').get_value()
-        self.usecall       = menu.get_option_by_name('usecall').get_value()
+        use_call           = menu.get_option_by_name('usecall').get_value()
         blankplace         = menu.get_option_by_name('repplace').get_value()
         blankdate          = menu.get_option_by_name('repdate').get_value()
         self.calcageflag   = menu.get_option_by_name('computeage').get_value()
@@ -136,12 +136,12 @@ class DetAncestorReport(Report):
         else:
             empty_place = ""
             
-        self.__narrator = Narrator(self.database, self.verbose, 
-                                   empty_date, empty_place)
+        self.__narrator = Narrator(self.database, self.verbose, use_call, 
+                                   empty_date, empty_place, self.endnotes)
 
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
-    def apply_filter(self,person_handle,index):
+    def apply_filter(self, person_handle, index):
         if (not person_handle) or (index >= 2**self.max_generations):
             return
         self.map[index] = person_handle
@@ -150,21 +150,20 @@ class DetAncestorReport(Report):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
-            self.apply_filter(family.get_father_handle(),index*2)
-            self.apply_filter(family.get_mother_handle(),(index*2)+1)
+            self.apply_filter(family.get_father_handle(), index*2)
+            self.apply_filter(family.get_mother_handle(), (index*2)+1)
 
     def write_report(self):
-        self.apply_filter(self.center_person.get_handle(),1)
+        self.apply_filter(self.center_person.get_handle(), 1)
 
         name = _nd.display_name(self.center_person.get_primary_name())
         self.doc.start_paragraph("DAR-Title")
         title = _("Ancestral Report for %s") % name
-        mark = IndexMark(title,INDEX_TYPE_TOC,1)
-        self.doc.write_text(title,mark)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
         generation = 0
-        need_header = 1
 
         for key in sorted(self.map):
             if generation == 0 or key >= 2**generation:
@@ -209,10 +208,11 @@ class DetAncestorReport(Report):
         person_handle = self.map[key]
         person = self.database.get_person_from_handle(person_handle)
         plist = person.get_media_list()
+        self.__narrator.set_subject(person)
         
         if self.addimages and len(plist) > 0:
             photo = plist[0]
-            ReportUtils.insert_image(self.database,self.doc,photo)
+            ReportUtils.insert_image(self.database, self.doc, photo)
 
         self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
@@ -220,7 +220,7 @@ class DetAncestorReport(Report):
         mark = ReportUtils.get_person_mark(self.database, person)
 
         self.doc.start_bold()
-        self.doc.write_text(name,mark)
+        self.doc.write_text(name, mark)
         if name[-1:] == '.':
             self.doc.write_text_citation("%s " % self.endnotes(person))
         else:
@@ -238,51 +238,32 @@ class DetAncestorReport(Report):
                         { 'name' : '', 'id_str' : str(dkey) })
                     self.doc.end_paragraph()
                     return 1    # Duplicate person
-
-        # Check birth record
-
-        first = ReportUtils.common_name(person,self.usecall)
         
         if not self.verbose:
-            self.write_parents(person, first)
+            self.write_parents(person)
 
-        text = self.__narrator.born_str(person, first)
+        text = self.__narrator.get_born_string()
         if text:
-            birth_ref = person.get_birth_ref()
-            if birth_ref:
-                birth = self.database.get_event_from_handle(birth_ref.ref)
-                text = text.rstrip(". ")
-                text = text + self.endnotes(birth) + ". "
             self.doc.write_text_citation(text)
-            first = 0
 
-        text = self.__narrator.baptised_str(person, first, self.endnotes)
+        text = self.__narrator.get_baptized_string()
         if text:
             self.doc.write_text_citation(text)
             
-        text = self.__narrator.christened_str(person, first, self.endnotes)
+        text = self.__narrator.get_christened_string()
         if text:
             self.doc.write_text_citation(text)
 
-        span = self.calc_age(person)
-        text = self.__narrator.died_str(person, first, span)
-        if text:
-            death_ref = person.get_death_ref()
-            if death_ref:
-                death = self.database.get_event_from_handle(death_ref.ref)
-                text = text.rstrip(". ")
-                text = text + self.endnotes(death) + ". "
-            self.doc.write_text_citation(text)
-            first = 0
-
-        text = self.__narrator.buried_str(person, first, self.endnotes)
+        text = self.__narrator.get_died_string(self.calcageflag)
         if text:
             self.doc.write_text_citation(text)
 
-        first = ReportUtils.common_name(person, self.usecall)
+        text = self.__narrator.get_buried_string()
+        if text:
+            self.doc.write_text_citation(text)
 
         if self.verbose:
-            self.write_parents(person, first)
+            self.write_parents(person)
 
         if not key % 2 or key == 1:
             self.write_marriage(person)
@@ -437,7 +418,7 @@ class DetAncestorReport(Report):
                 self.doc.write_styled_note(note.get_styledtext(), 
                                            note.get_format(),"DAR-MoreDetails")
                 
-    def write_parents(self, person, firstName):
+    def write_parents(self, person):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
@@ -458,14 +439,13 @@ class DetAncestorReport(Report):
                 father_name = ""
                 father_mark = ""
 
-            text = self.__narrator.child_str(person, father_name, mother_name,
-                                         firstName)
+            text = self.__narrator.get_child_string(father_name, mother_name)
             if text:
                 self.doc.write_text(text)
                 if father_mark:
-                    self.doc.write_text("",father_mark)
+                    self.doc.write_text("", father_mark)
                 if mother_mark:
-                    self.doc.write_text("",mother_mark)
+                    self.doc.write_text("", mother_mark)
 
     def write_marriage(self, person):
         """ 
@@ -479,8 +459,7 @@ class DetAncestorReport(Report):
             text = ""
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             
-            text = self.__narrator.married_str(person, family, self.endnotes, 
-                                               is_first)
+            text = self.__narrator.get_married_string(family, is_first)
 
             if text:
                 self.doc.write_text_citation(text, spouse_mark)
@@ -519,22 +498,24 @@ class DetAncestorReport(Report):
             child_handle = child_ref.ref
             child = self.database.get_person_from_handle(child_handle)
             child_name = _nd.display(child)
-            child_mark = ReportUtils.get_person_mark(self.database,child)
+            child_mark = ReportUtils.get_person_mark(self.database, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
                 value = str(self.prev_gen_handles.get(child_handle))
                 child_name += " [%s]" % value
 
-            self.doc.start_paragraph("DAR-ChildList",ReportUtils.roman(cnt).lower() + ".")
+            self.doc.start_paragraph("DAR-ChildList",
+                                     ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            self.doc.write_text("%s. " % child_name,child_mark)
-            self.doc.write_text(self.__narrator.born_str(child))
-            self.doc.write_text(self.__narrator.died_str(child))
+            self.__narrator.set_subject(child)
+            self.doc.write_text("%s. " % child_name, child_mark)
+            self.doc.write_text(self.__narrator.get_born_string())
+            self.doc.write_text(self.__narrator.get_died_string())
             
             self.doc.end_paragraph()
 
-    def write_family_events(self,family):
+    def write_family_events(self, family):
         
         if not family.get_event_ref_list():
             return
@@ -620,60 +601,31 @@ class DetAncestorReport(Report):
 
                 self.doc.start_paragraph("DAR-Entry")
 
-                first_name = ReportUtils.common_name(ind, self.usecall)
-                print_name = first_name
+                self.__narrator.set_subject(ind)
 
-                text = self.__narrator.born_str(ind, print_name)
-                if text:
-                    self.doc.write_text(text)
-                    print_name = 0
-
-                text = self.__narrator.baptised_str(ind, print_name, 
-                                                    self.endnotes)
+                text = self.__narrator.get_born_string()
                 if text:
                     self.doc.write_text_citation(text)
-                    print_name = 0
 
-                text = self.__narrator.christened_str(ind, print_name, 
-                                                      self.endnotes)
+                text = self.__narrator.get_baptized_string()
                 if text:
                     self.doc.write_text_citation(text)
-                    print_name = 0
 
-                span = self.calc_age(ind)
-                text = self.__narrator.died_str(ind, print_name, span)
+                text = self.__narrator.get_christened_string()
                 if text:
-                    self.doc.write_text(text)
-                    print_name = 0
+                    self.doc.write_text_citation(text)
+
+                text = self.__narrator.get_died_string(self.calcageflag)
+                if text:
+                    self.doc.write_text_citation(text)
                 
-                text = self.__narrator.buried_str(ind, print_name, 
-                                                  self.endnotes)
-                
+                text = self.__narrator.get_buried_string()
                 if text:
                     self.doc.write_text_citation(text)
-                    print_name = 0
 
-                if print_name == 0:
-                    print_name = first_name
-                self.write_parents(ind, print_name)
+                self.write_parents(ind)
 
                 self.doc.end_paragraph()
-
-    def calc_age(self,ind):
-        """
-        Calulate age. 
-        
-        Returns a tuple (age,units) where units is an integer representing
-        time units:
-            no age info:    0
-            years:          1
-            months:         2
-            days:           3
-        """
-        if self.calcageflag:
-            return ReportUtils.old_calc_age(self.database,ind)
-        else:
-            return None
 
     def endnotes(self, obj):
         if not obj or not self.inc_sources:
@@ -729,8 +681,8 @@ class DetAncestorOptions(MenuReportOptions):
         listc.set_help(_("Whether to list children."))
         menu.add_option(category_name,"listc",listc)
         
-        computeage = BooleanOption(_("Compute age"),True)
-        computeage.set_help(_("Whether to compute age."))
+        computeage = BooleanOption(_("Compute death age"),True)
+        computeage.set_help(_("Whether to compute a person's age at death."))
         menu.add_option(category_name,"computeage",computeage)
         
         omitda = BooleanOption(_("Omit duplicate ancestors"),True)

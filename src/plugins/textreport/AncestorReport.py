@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2009  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -218,16 +218,11 @@ class AncestorReport(Report):
             if self.opt_namebrk:
                 self.doc.write_text('\n')
 
-            # Write the birth, death, and buried strings by calling the standard
-            # functions in ReportUtils
-
-            primary_name = person.get_primary_name()
-            first = primary_name.get_first_name()
-
-            self.doc.write_text(self.__narrator.born_str(person, first))
-            self.doc.write_text(self.__narrator.baptised_str( person, 0))
-            self.doc.write_text(self.__narrator.died_str(person, 0))
-            self.doc.write_text(self.__narrator.buried_str(person, 0))
+            self.__narrator.set_subject(person)
+            self.doc.write_text(self.__narrator.get_born_string())
+            self.doc.write_text(self.__narrator.get_baptized_string())
+            self.doc.write_text(self.__narrator.get_died_string())
+            self.doc.write_text(self.__narrator.get_buried_string())
                         
             self.doc.end_paragraph()
         
