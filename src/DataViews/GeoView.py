@@ -292,6 +292,7 @@ class GeoView(HtmlView):
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         self.last_year = None
+        self.last_selected_year = 0
         self.header_size = 0
         self.years = gtk.HBox()
         self.ylabel = gtk.Label("")
@@ -378,7 +379,12 @@ class GeoView(HtmlView):
         Creation of the years list for the years comboBox.
         """
         base = 0
-        self.ylabel.set_text("%s : %d %s" % ( _("Time period"), step, _("years")) )
+        self.ylabel.set_text("%s : %d %s" % ( _("Time period"),
+                                              step, _("years")) )
+        self.yearsbox.hide()
+        self.yearsbox.freeze_child_notify()
+        self.yearsbox.set_model(None)
+        self.buttons.clear()
         self.buttons.append([""])
         self.buttons.append([_("All")])
         for but in range(0, self.maxbut + 1): # pylint: disable-msg=W0612
@@ -386,6 +392,10 @@ class GeoView(HtmlView):
             if newyear <= maxyear:
                 self.buttons.append([str(newyear)])
             base += step
+        self.yearsbox.set_model(self.buttons)
+        self.yearsbox.set_active(1)
+        self.yearsbox.show()
+        self.yearsbox.thaw_child_notify()
 
     def _ask_year_selection(self, widget, data=None):
         # pylint: disable-msg=W0613
@@ -427,6 +437,20 @@ class GeoView(HtmlView):
         self.open(url)
         self._create_pages_selection(cpage, int(maxp))
         self._savezoomandposition()
+        # Need to wait the page is loaded to show the markers.
+        gobject.timeout_add(1500, self._show_selected_places)
+        self._erase_placebox_selection()
+
+    def _show_selected_places(self):
+        """
+        Here, we synchronize the years combobox with the renderer
+        """
+        index = 0
+        for r_year in self.buttons:
+            if self.last_selected_year == r_year[0]:
+                self.yearsbox.set_active(index)
+                self._call_js_selectmarkers(r_year[0])
+            index += 1
 
     def _show_places_without_coord(self, widget): # pylint: disable-msg=W0613
         """
@@ -448,6 +472,7 @@ class GeoView(HtmlView):
                 if self.last_page == int(entry[2]):
                     # Yes, we don't need to load another page.
                     self._show_place_info_bubble(entry[1])
+                    self._show_selected_places()
                 else:
                     # No, we need to load the correct page
                     self.last_page = int(entry[2])
@@ -468,9 +493,12 @@ class GeoView(HtmlView):
                     (current, maxp ) = self.pages[1].get_label().split('/', 1)
                     self._create_pages_selection(entry[2], int(maxp))
                     self._savezoomandposition()
-                    # Need to wait the page is loaded to show the markers.
-                    gobject.timeout_add(800, self._show_place_info_bubble,
+                    # Need to wait the page is loaded to show the info bubble.
+                    gobject.timeout_add(1500, self._show_place_info_bubble,
                                         entry[1])
+                    # Need to wait the page is loaded to show the markers.
+                    gobject.timeout_add(1600, self._show_selected_places)
+        self._erase_placebox_selection()
         return
         
     def _show_place_info_bubble(self, marker_index):
@@ -479,6 +507,12 @@ class GeoView(HtmlView):
         """
         self.renderer.execute_script("javascript:placeclick('%d')" % 
                                      marker_index)
+
+    def _erase_placebox_selection(self):
+        """
+        We erase the place selected after 2 secondes.
+        """
+        gobject.timeout_add(2000, self.placebox.child.set_text, "")
 
     def on_delete(self):
         """
@@ -608,11 +642,11 @@ class GeoView(HtmlView):
         self._savezoomandposition()
         if self.displaytype != "places":
             # Need to wait the page is loaded to set the markers.
-            gobject.timeout_add(1000, self._set_markersonpage, self.last_year)
+            gobject.timeout_add(1500, self._set_markersonpage, self.last_year)
 
     def _set_markersonpage(self, widget):
         """
-        Ask to the renderer to show All or specific markers.
+        get the year to select then call javascript
         """
         if not self.endinit:
             return
@@ -625,12 +659,19 @@ class GeoView(HtmlView):
                 except:  # pylint: disable-msg=W0704
                     pass # pylint: disable-msg=W0702
                 if year != "no":
-                    if year == _("All"):
-                        self.renderer.execute_script(
-                            "javascript:selectmarkers('All')")
-                    else:
-                        self.renderer.execute_script(
-                            "javascript:selectmarkers('%s')" % year )
+                    self.last_selected_year = year
+                    self._call_js_selectmarkers(year)
+
+    def _call_js_selectmarkers(self, year):
+        """
+        Ask to the renderer to show All or specific markers.
+        """
+        if year == _("All"):
+            self.renderer.execute_script(
+                "javascript:selectmarkers('All')")
+        else:
+            self.renderer.execute_script(
+                "javascript:selectmarkers('%s')" % year )
 
     def ui_definition(self):
         """
@@ -1633,17 +1674,10 @@ class GeoView(HtmlView):
                         descr = place.get_title()
                         self._append_to_places_without_coord(
                              place.gramps_id, descr)
-        self.yearsbox.freeze_child_notify()
-        self.yearsbox.set_model(None)
-        self.buttons.clear()
         self._need_to_create_pages(2, self.center,
                                   _("All events in the family tree with "
                                     "coordinates."),
                                   )
-        self.yearsbox.show()
-        self.yearsbox.set_model(self.buttons)
-        self.yearsbox.thaw_child_notify()
-        self.yearsbox.set_active(1)
 
     def _createmapstractionfamily(self, dbstate):
         """
@@ -1698,18 +1732,11 @@ class GeoView(HtmlView):
                                 'name' : _nd.display(person)
                                 }
                 self._createpersonmarkers(dbstate, person, comment)
-        self.yearsbox.freeze_child_notify()
-        self.yearsbox.set_model(None)
-        self.buttons.clear()
         self._need_to_create_pages(3, self.center,
                                   _("All %(name)s people's family places in the"
                                    " family tree with coordinates.") % {
                                      'name' :_nd.display(person) },
                                   )
-        self.yearsbox.show()
-        self.yearsbox.set_model(self.buttons)
-        self.yearsbox.thaw_child_notify()
-        self.yearsbox.set_active(1)
 
     def _createmapstractionperson(self, dbstate):
         """
@@ -1765,16 +1792,9 @@ class GeoView(HtmlView):
                         else:
                             self._append_to_places_without_coord(
                                                         place.gramps_id, descr)
-        self.yearsbox.freeze_child_notify()
-        self.yearsbox.set_model(None)
-        self.buttons.clear()
         self._need_to_create_pages(4, self.center, 
                                    _("All event places for") + (" %s." % 
                                                          _nd.display(person) ) )
-        self.yearsbox.show()
-        self.yearsbox.set_model(self.buttons)
-        self.yearsbox.thaw_child_notify()
-        self.yearsbox.set_active(1)
 
     def _need_to_create_pages(self, ptype, center, message ):
         """
