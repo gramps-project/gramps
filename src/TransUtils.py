@@ -73,27 +73,35 @@ def setup_gettext():
     #used sometimes:
     #gettext.install(LOCALEDOMAIN, LOCALEDIR, unicode=1)
 
-def get_addon_translator(filename, domain='addon'):
+def get_addon_translator(filename, domain="addon"):
     """
     Get a translator for an addon. 
-    Assumes filename_dir/locale/LANG/LC_MESSAGES/addon.mo.
+       filename - with full path
+       domain - the name of the .mo file under the LANG/LC_MESSAGES dir
+       returns - a gettext.translation object
+
+    The return object has the following properties and methods:
+      .gettext
+      .info
+      .lgettext
+      .lngettext
+      .ngettext
+      .output_charset
+      .plural
+      .set_output_charset
+      .ugettext
+      .ungettext
+
+    Assumes path/filename
+            path/locale/LANG/LC_MESSAGES/addon.mo.
     """
-    import locale
-    LANG = locale.getlocale()[0] or "en"
+    gramps_translator = gettext.translation(LOCALEDOMAIN, LOCALEDIR, 
+                                            fallback=True)
     path = os.path.dirname(os.path.abspath(filename))
-    trans = Translator(LANG)
-    try:
-        fallback = gettext.translation(domain, 
-                                       os.path.join(path, "locale"), 
-                                       languages=[LANG])
-        trans.trans.add_fallback(fallback)
-    except:
-        pass
-        # FIXME: perhaps give some feedback when you need it
-        #if LANG and not LANG.startswith("en"):
-        #    print ("WARN: can't add local '%s' addon translation for '%s'." % 
-        #           (filename, LANG))
-    return trans
+    addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
+                                           fallback=True)
+    gramps_translator.add_fallback(addon_translator)
+    return gramps_translator # with a language fallback
     
 def get_available_translations():
     """
