@@ -723,10 +723,7 @@ class ViewManager(object):
         try:
             PluginWindows.PluginStatus(self.uistate, [])
         except Errors.WindowActiveError:
-            old_win = self.uistate.gwm.get_item_from_id(
-                PluginWindows.PluginStatus)
-            old_win.close()
-            PluginWindows.PluginStatus(self.uistate, [])
+            pass
 
     def sidebar_toggle(self, obj):
         """
