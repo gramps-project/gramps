@@ -148,6 +148,8 @@ class PluginData(object):
        UNSTABLE is only visible in development code, not in release
     .. attribute:: fname
        The python file where the plugin implementation can be found
+    .. attribute:: fpath
+       The python path where the plugin implementation can be found
     .. attribute:: ptype
        The plugin type. One of REPORT , QUICKREPORT, TOOL, IMPORT,
         EXPORT, DOCGEN, GENERAL, MAPSERVICE, VIEW, GRAMPLET
@@ -227,7 +229,7 @@ class PluginData(object):
     
     Attributes for GRAMPLET plugins
     .. attribute:: gramplet
-       The Gramplet that is defined
+       The function or class that defines the gramplet.
     .. attribute:: height
        The height the gramplet should have in a column on GrampletView, 
        default = 200
@@ -239,6 +241,8 @@ class PluginData(object):
        If the attributed should be expanded on start, default False
     .. attribute:: gramplet_title
        Title to use for the gramplet, default = 'Gramplet'
+    .. attribute:: help_url
+       The URL where documentation for the URL can be found
     """
 
     def __init__(self):
@@ -248,6 +252,7 @@ class PluginData(object):
         self._description = None
         self._status = UNSTABLE
         self._fname = None
+        self._fpath = None
         self._ptype = None
         self._authors = []
         self._authors_email = []
@@ -290,6 +295,7 @@ class PluginData(object):
         self._detached_width = 400
         self._expand = False
         self._gramplet_title = _('Gramplet')
+        self._help_url = None
     
     def _set_id(self, id):
        self._id = id
@@ -328,6 +334,12 @@ class PluginData(object):
 
     def _get_fname(self):
         return self._fname
+    
+    def _set_fpath(self, fpath):
+        self._fpath = fpath
+
+    def _get_fpath(self):
+        return self._fpath
     
     def _set_ptype(self, ptype):
         if ptype not in PTYPE:
@@ -385,6 +397,7 @@ class PluginData(object):
     version = property(_get_version, _set_version) 
     status = property(_get_status, _set_status)
     fname = property(_get_fname, _set_fname)
+    fpath = property(_get_fpath, _set_fpath)
     ptype = property(_get_ptype, _set_ptype)
     authors = property(_get_authors, _set_authors)
     authors_email = property(_get_authors_email, _set_authors_email)
@@ -661,12 +674,21 @@ class PluginData(object):
     def _get_gramplet_title(self):
         return self._gramplet_title
 
+    def _set_help_url(self, help_url):
+        if not self._ptype == GRAMPLET:
+            raise ValueError, 'help_url may only be set for GRAMPLET plugins'
+        self._help_url = help_url
+
+    def _get_help_url(self):
+        return self._help_url
+    
     gramplet = property(_get_gramplet, _set_gramplet)
     height = property(_get_height, _set_height)
     detached_height = property(_get_detached_height, _set_detached_height)
     detached_width = property(_get_detached_width, _set_detached_width)
     expand = property(_get_expand, _set_expand)
     gramplet_title = property(_get_gramplet_title, _set_gramplet_title)
+    help_url = property(_get_help_url, _set_help_url)
 
 def newplugin():
     """
