@@ -529,14 +529,14 @@ class BasePage(object):
     def event_link(self, eventtype, handle, gid = None, up = False):
         """ createsa hyperlink for an event based on its type """
 
-        url = self.report.build_url_fname_html(handle, 'evt', up)
+        url = self.report.build_url_fname_html(handle, "evt", up)
 
 
         # if event pages are being created, then hyperlink the event type
         if self.inc_events:
             evt_hyper = Html("a", eventtype, href = url, title = eventtype)
             if not self.noid and gid:
-                evt_hyper += Html("span", " [%s] " % gid, class_ = "grampsid", 
+                evt_hyper += Html("span", " [%s]" % gid, class_ = "grampsid", 
                     inline = True)
 
             # return event hyper link to its callers
@@ -682,7 +682,7 @@ class BasePage(object):
 
     def source_link(self, handle, hyper_name, name, gid = None, up = False):
 
-        url = self.report.build_url_fname_html(handle, 'src', up)
+        url = self.report.build_url_fname_html(handle, "src", up)
 
         # begin hyperlink
         hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
@@ -917,7 +917,7 @@ class BasePage(object):
                 if home_person:
                     home_person_url = self.report.build_url_fname_html(
                         home_person.handle, 
-                        'ppl', 
+                        "ppl", 
                         self.up)
 
                     home_person_name = self.get_name(home_person)
@@ -1042,17 +1042,18 @@ class BasePage(object):
                 inc_repos = False  
 
         navs = [
-            (self.report.index_fname,   _("Html|Home"),     self.report.use_home),
-            (self.report.intro_fname,   _("Introduction"),  self.report.use_intro),
-            (self.report.surname_fname, _("Surnames"),      True),
-            ('individuals',             _("Individuals"),   True),
-            ('places',                  _("Places"),        True),
-            ('events',                 _("Events"),         self.report.inc_events), 
-            ('media',                   _("Media"),         self.create_media),
-            ('download',                _("Download"),      self.report.inc_download),
-            ('contact',                 _("Contact"),       self.report.use_contact),
-            ('sources',                 SHEAD,              True),
-            ('repositories',            _("Repositories"),  inc_repos), 
+            (self.report.index_fname,   _("Html|Home"),             self.report.use_home),
+            (self.report.intro_fname,    _("Introduction"),         self.report.use_intro),
+            (self.report.surname_fname, _("Surnames"),              True),
+            ('individuals',             _("Individuals"),           True),
+            ('places',                  _("Places"),                True),
+            ('events',                  _("Events"),                self.report.inc_events), 
+            ('media',                   _("Media"),                 self.create_media),
+            ('download',                _("Download"),              self.report.inc_download),
+            ('contact',                 _("Contact"),               self.report.use_contact),
+            ('sources',                 SHEAD,                      True),
+            ('repositories',            _("Repositories"),          inc_repos),
+            ("Internet_Address_Book",   _("Internet Address Book"), self.report.add_book)
                 ]
 
         navigation = Html("div", id = 'navigation')
@@ -1090,11 +1091,14 @@ class BasePage(object):
                 if "plc" in self.report.cur_fname:
                     cs = True
             elif nav_text == _("Events"):
-                if 'evt' in self.report.cur_fname:
+                if "evt" in self.report.cur_fname:
                     cs = True 
             elif nav_text == _("Media"):
                 if "img" in self.report.cur_fname:
                     cs = True
+            elif nav_text == _("Internet Address Book"):
+                if "iab" in self.report.cur_fname:
+                    cs = True 
 
             cs = cs and 'class="CurrentSection"' or ''
             ul += (Html("li", attr = cs, inline = True) +
@@ -1254,8 +1258,7 @@ class BasePage(object):
         with Html("div", class_ = "subsection", id = "weblinks") as section:
 
             # begin web title
-            title = Html("h4", _("Web Links"), inline = True)  
-            section += title
+            section += Html("h4", _("Web Links"), inline = True)  
 
             # ordered list
             ordered = Html("ol")
@@ -1463,22 +1466,19 @@ class BasePage(object):
         return hyper
 
     def place_link(self, handle, name, gid = None, up = False):
-        url = self.report.build_url_fname_html(handle, 'plc', up)
+        url = self.report.build_url_fname_html(handle, "plc", up)
 
         hyper = Html("a", html_escape(name), href = url, title = name)
         if not self.noid and gid:
-            hyper += Html("span", " [%s] " % gid, class_ = "grampsid", inline = True)
+            hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
 
         # return hyperlink to its callers
         return hyper
 
 # ---------------------------------------------------------------------------------------
-#
 #              # Web Page Fortmatter and writer                   
-#
 # ---------------------------------------------------------------------------------------
-
-    def mywriter(self, htmlinstance, of):
+    def XHTMLWriter(self, htmlinstance, of):
         """
         Will format, write, and close the file
 
@@ -1578,7 +1578,7 @@ class IndividualListPage(BasePage):
                     first = False
 
                     # firstname column
-                    url = self.report.build_url_fname_html(person.handle, 'ppl')
+                    url = self.report.build_url_fname_html(person.handle, "ppl")
                     trow += Html("td", self.person_link(url, person, False, gid = person.gramps_id), 
                         class_ = "ColumnName")
 
@@ -1634,7 +1634,7 @@ class IndividualListPage(BasePage):
                                     if not first_family:
                                         tcell += ", "  
                                     if partner_handle in report_handle_list:
-                                        url = self.report.build_url_fname_html(partner_handle, 'ppl')
+                                        url = self.report.build_url_fname_html(partner_handle, "ppl")
                                         tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
                                     else:
                                         tcell += partner_name
@@ -1678,9 +1678,12 @@ class IndividualListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(indlistpage, of)
+        self.XHTMLWriter(indlistpage, of)
 
 class SurnamePage(BasePage):
+    """
+    This will create a list of individuals with the same surname
+    """
 
     def __init__(self, report, title, surname, person_handle_list, report_handle_list):
         BasePage.__init__(self, report, title)
@@ -1692,7 +1695,7 @@ class SurnamePage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
-        of = self.report.create_file(name_to_md5(surname), 'srn')
+        of = self.report.create_file(name_to_md5(surname), "srn")
         self.up = True
         surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname))
 
@@ -1743,7 +1746,7 @@ class SurnamePage(BasePage):
                     tbody += trow
 
                     # firstname column
-                    url = self.report.build_url_fname_html(person.handle, 'ppl', True)
+                    url = self.report.build_url_fname_html(person.handle, "ppl", True)
                     trow += Html("td", self.person_link(url, person, False, gid = person.gramps_id),
                         class_ = "ColumnName")  
 
@@ -1795,7 +1798,7 @@ class SurnamePage(BasePage):
                                     if not first_family:
                                         tcell += ','
                                     if partner_handle in report_handle_list:
-                                        url = self.report.build_url_fname_html(partner_handle, 'ppl', True) 
+                                        url = self.report.build_url_fname_html(partner_handle, "ppl", True) 
                                         tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
                                     else:
                                         tcell += partner_name
@@ -1838,7 +1841,7 @@ class SurnamePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(surnamepage, of)  
+        self.XHTMLWriter(surnamepage, of)  
 
 class PlaceListPage(BasePage):
 
@@ -1920,7 +1923,7 @@ class PlaceListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(placelistpage, of)
+        self.XHTMLWriter(placelistpage, of)
 
 class PlacePage(BasePage):
 
@@ -1931,7 +1934,7 @@ class PlacePage(BasePage):
         BasePage.__init__(self, report, title, place.gramps_id)
         self.src_list = src_list        # TODO verify that this is correct
 
-        of = self.report.create_file(place.get_handle(), 'plc')
+        of = self.report.create_file(place.get_handle(), "plc")
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
         placepage, body = self.write_header(_("Places"))
@@ -2016,7 +2019,7 @@ class PlacePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(placepage, of)
+        self.XHTMLWriter(placepage, of)
 
 class EventListPage(BasePage):
 
@@ -2079,7 +2082,7 @@ class EventListPage(BasePage):
 
         # send page ut for processing
         # and close the file
-        self.mywriter(eventslistpage, of)
+        self.XHTMLWriter(eventslistpage, of)
 
     def write_event_row(self, person, partner, evt_type, evt, evt_ref, first):
         """
@@ -2101,7 +2104,7 @@ class EventListPage(BasePage):
             trow.attr = 'class = "BeginName"'
 
         # get person's hyperlink
-        url = self.report.build_url_fname_html(person.handle, 'ppl', subdirs)
+        url = self.report.build_url_fname_html(person.handle, "ppl", subdirs)
         person_hyper = self.person_link(url, person, True, first, gid = person.gramps_id)
 
         # get event data
@@ -2129,7 +2132,7 @@ class EventListPage(BasePage):
         if partner is not None:
 
             # get partner hyperlink
-            url = self.report.build_url_fname_html(partner.handle, 'ppl', subdirs)
+            url = self.report.build_url_fname_html(partner.handle, "ppl", subdirs)
             partner_hyper = self.person_link(url, partner, True, gid = partner.gramps_id)
 
         # determine if same row or not?
@@ -2148,7 +2151,7 @@ class EventPage(BasePage):
         db = report.database
         subdirs = True
 
-        of = self.report.create_file(evt_ref.ref, 'evt')
+        of = self.report.create_file(evt_ref.ref, "evt")
         eventpage, body = self.write_header(_("Events"))
 
         # start event page division
@@ -2197,7 +2200,7 @@ class EventPage(BasePage):
                     tbody += trow
 
                 # get person hyperlink
-                url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
+                url = self.report.build_url_fname_html(person.handle, "ppl", self.up)
                 person_hyper = self.person_link(url, person, True, gid = person.gramps_id)
                 trow = [ Html("tr"),
                     Html("td", _('Person'), class_ = "ColumnAttribute", inline = True),
@@ -2207,7 +2210,7 @@ class EventPage(BasePage):
 
                 # display partner if type is either Marriage or Divorce
                 if partner is not None:
-                    url = self.report.build_url_fname_html(partner.handle, 'ppl', self.up)
+                    url = self.report.build_url_fname_html(partner.handle, "ppl", self.up)
                     partner_hyper = self.person_link(url, partner, True, gid = partner.gramps_id)
                     trow = [ Html("tr"),
                         Html("td", _('Partner'), class_ = "ColumnAttribute", inline = True),
@@ -2233,7 +2236,7 @@ class EventPage(BasePage):
 
         # send page out for processing
         # and close the page
-        self.mywriter(eventpage, of) 
+        self.XHTMLWriter(eventpage, of) 
 
 class MediaPage(BasePage):
 
@@ -2272,7 +2275,7 @@ class MediaPage(BasePage):
                 _name = _obj.get_primary_name().get_call_name()
                 if not _name or _name == "":
                     _name = _obj.get_primary_name().get_first_name()
-                _linkurl = report.build_url_fname_html(_obj.handle, 'ppl', True)
+                _linkurl = report.build_url_fname_html(_obj.handle, "ppl", True)
             elif classname == "Event":
                 _obj = db.get_event_from_handle( newhandle )
                 _name = _obj.get_description()
@@ -2555,7 +2558,7 @@ class MediaPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(mediapage, of)
+        self.XHTMLWriter(mediapage, of)
 
     def gallery_nav_link(self, handle, name, up = False):
 
@@ -2734,10 +2737,10 @@ class SurnameListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(surnamelistpage, of)  
+        self.XHTMLWriter(surnamelistpage, of)  
 
     def surname_link(self, fname, name, opt_val = None, up = False):
-        url = self.report.build_url_fname_html(fname, 'srn', up)
+        url = self.report.build_url_fname_html(fname, "srn", up)
         hyper = Html("a", name, href = url, title = name, inline = True)
         if opt_val is not None:
             hyper += opt_val
@@ -2780,7 +2783,7 @@ class IntroductionPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(intropage, of)
+        self.XHTMLWriter(intropage, of)
 
 class HomePage(BasePage):
     """
@@ -2817,7 +2820,7 @@ class HomePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(homepage, of)  
+        self.XHTMLWriter(homepage, of)  
 
 class SourceListPage(BasePage):
 
@@ -2885,7 +2888,7 @@ class SourceListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(sourcelistpage, of)
+        self.XHTMLWriter(sourcelistpage, of)
 
 class SourcePage(BasePage):
 
@@ -2895,7 +2898,7 @@ class SourcePage(BasePage):
         source = db.get_source_from_handle(handle)
         BasePage.__init__(self, report, title, source.gramps_id)
 
-        of = self.report.create_file(source.get_handle(), 'src')
+        of = self.report.create_file(source.get_handle(), "src")
         self.up = True
         sourcepage, body = self.write_header(_('Sources'))
 
@@ -2956,7 +2959,7 @@ class SourcePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(sourcepage, of)
+        self.XHTMLWriter(sourcepage, of)
 
 class MediaListPage(BasePage):
 
@@ -3025,7 +3028,7 @@ class MediaListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(medialistpage, of)
+        self.XHTMLWriter(medialistpage, of)
 
     def media_ref_link(self, handle, name, up = False):
 
@@ -3168,7 +3171,7 @@ class DownloadPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(downloadpage, of)
+        self.XHTMLWriter(downloadpage, of)
 
 class ContactPage(BasePage):
 
@@ -3233,7 +3236,7 @@ class ContactPage(BasePage):
 
         # send page out for porcessing
         # and close the file
-        self.mywriter(contactpage, of)
+        self.XHTMLWriter(contactpage, of)
 
 class IndividualPage(BasePage):
     """
@@ -3257,7 +3260,7 @@ class IndividualPage(BasePage):
         self.attribute_list = attribute_list
         db = report.database
 
-        of = self.report.create_file(person.handle, 'ppl')
+        of = self.report.create_file(person.handle, "ppl")
         self.up = True
         indivdetpage, body = self.write_header(self.sort_name)
 
@@ -3362,7 +3365,7 @@ class IndividualPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(indivdetpage, of)
+        self.XHTMLWriter(indivdetpage, of)
 
     def draw_box(self, center, col, person):
         db = self.report.database
@@ -3395,7 +3398,7 @@ class IndividualPage(BasePage):
                         thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
                         if ( Utils.win ):
                             thumbnailUrl = thumbnailUrl.replace('\\',"/")
-            url = self.report.build_url_fname_html(person.handle, 'ppl', True)
+            url = self.report.build_url_fname_html(person.handle, "ppl", True)
             boxbg += self.person_link(url, person, name_style = True, 
                 thumbnailUrl=thumbnailUrl)
         else:
@@ -3875,7 +3878,7 @@ class IndividualPage(BasePage):
         gid = child.gramps_id
         list = Html("li")
         if child_handle in self.ind_list:
-            url = self.report.build_url_fname_html(child_handle, 'ppl', True)
+            url = self.report.build_url_fname_html(child_handle, "ppl", True)
             list += self.person_link(url, child, True, gid = gid)
 
         else:
@@ -3896,7 +3899,7 @@ class IndividualPage(BasePage):
 
         gid = person.gramps_id
         if handle in self.ind_list:
-            url = self.report.build_url_fname_html(handle, 'ppl', True)
+            url = self.report.build_url_fname_html(handle, "ppl", True)
             tcell2 += self.person_link(url, person, True, gid = gid)
         else:
             person_name = self.get_name(person)
@@ -4248,7 +4251,7 @@ class IndividualPage(BasePage):
         # display partner's name
         if partner_handle:
             if partner_handle in self.ind_list:
-                url = self.report.build_url_fname_html(partner_handle, 'ppl', True)
+                url = self.report.build_url_fname_html(partner_handle, "ppl", True)
                 tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
             else:
                 tcell += partner_name
@@ -4273,7 +4276,7 @@ class IndividualPage(BasePage):
 
         person_name = self.get_name(person)
         if person.handle in self.ind_list:
-            url = self.report.build_url_fname_html(person.handle, 'ppl', True)
+            url = self.report.build_url_fname_html(person.handle, "ppl", True)
             hyper = self.person_link(url, person, name_style = True)
         else:
             hyper = person_name
@@ -4396,8 +4399,8 @@ class RepositoryListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file('repositories')
-        repolistpage, body = self.write_header(_('Repositories'))
+        of = self.report.create_file("repositories")
+        repolistpage, body = self.write_header(_("Repositories"))
 
         # begin RepositoryList division
         with Html("div", class_ = "content", id = "RepositoryList") as repositorylist:
@@ -4462,14 +4465,14 @@ class RepositoryListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(repolistpage, of)
+        self.XHTMLWriter(repolistpage, of)
 
 class RepositoryPage(BasePage):
     """
     will create the individual Repository Pages
     """
 
-    def __init__(self, report, title, repo, handle):
+    def __init__(self, report, title, repo, handle, gid = None):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -4495,11 +4498,11 @@ class RepositoryPage(BasePage):
                     ]
                 table += trow
 
-                if not self.noid:
+                if not self.noid and gid:
                     # repo gramps id
                     trow = [ Html("tr"),
                         Html("td", _("GRAMPS ID"), class_ = "ColumnType", inline = True),
-                        Html("td", repo.gramps_id, class_ = "ColumnAttribute", inline = True)
+                        Html("td", gid, class_ = "ColumnAttribute", inline = True)
                         ]
                     table += trow
 
@@ -4525,7 +4528,107 @@ class RepositoryPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(repositorypage, of)
+        self.XHTMLWriter(repositorypage, of)
+
+class InternetAddressBook(BasePage):
+    """
+    Will Create an Internet Address Book of people's web sites and email addresses
+    """
+
+    def __init__(self, report, title, ind_list):
+        BasePage.__init__(self, report, title)
+        db = report.database
+
+        # Name the file, and create it
+        of = self.report.create_file("Internet_Address_Book")
+
+        # Add xml, doctype, meta and stylesheets
+        iabpage, body = self.write_header(_("Internet Address Book"))
+
+        # begin page division
+        with Html("div", class_ = "content", id = "InternetAddressBook") as addbook:
+            body += addbook
+
+            # Internet Address Book Page message
+            msg = _("This page contains an index of all the individuals in the "
+                          "database, sorted by their GRAMPS ID. Selecting the person&#8217;s "
+                          "name will take you to that person&#8217;s individual page.  "
+                          "Selecting a link will take you to their website or e-mail address.")
+            addbook += Html("p", msg, id = "description")
+
+            # begin Address Book table
+            with Html("table", class_ = "infolist addressbook") as table:
+                addbook += table
+
+                thead = Html("thead")
+                table += thead
+
+                trow = Html("tr") + (
+                    Html("th", THEAD, class_ = "ColumnType", inline = True),
+                    Html("th", _("Name"), class_ = "ColumnName", inline = True),
+                    Html("th", _("Link"), class_ = "ColumnLink", inline = True)
+                    )
+                thead += trow
+
+                tbody = Html("tbody")
+                table += tbody
+
+                for person_handle in ind_list:
+
+                    person = db.get_person_from_handle(person_handle)
+                    urllist = person.get_url_list()
+
+                    first = True
+                    for url in urllist:
+
+                        trow = Html("tr")
+                        tbody += trow
+
+                        # Internet link type
+                        trow += Html("td", str(url.get_type() ), class_ = "ColumnType", inline = True)
+
+                        if first:
+                            trow.attr = 'class = "BeginName"'
+
+                            person_url = self.report.build_url_fname_html(person.handle, "ppl", False)
+                            person_hyper = self.person_link(person_url, person, True, gid = person.gramps_id)
+                        else:
+                            person_hyper = "&nbsp;"
+                        first = False
+
+                        trow += Html("td", person_hyper, class_ = "ColumnName")
+
+                        uri = url.get_path()
+                        descr = url.get_description()
+                        if not descr:
+                            descr = uri
+
+                        if url.get_type() == UrlType.EMAIL and not uri.startswith("mailto:"):
+                            trow += Html("td", class_ = "ColumnLink") + (
+                                Html("a",descr,  href = 'mailto: %s' % url)
+                                ) 
+
+                        elif url.get_type() == UrlType.WEB_HOME and not uri.startswith("http://"):
+                            trow += Html("td", class_ = "ColumnLink") + (
+                                Html("a", descr, href = 'http://%s' % url)
+                                )
+
+                        elif url.get_type() == UrlType.WEB_FTP and not uri.startswith("ftp://"):
+                            trow += Html("td", class_ = "ColumnLink") + (
+                                Html("a", descr, href = 'ftp://%s' % url)
+                                )
+
+                        else:
+                            trow += Html("td", class_ = "ColumnLink") + (
+                                Html("a", descr, href = url)
+                                )
+
+        # Add footer and clearline
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # write the file and close it
+        self.XHTMLWriter(iabpage, of)   
 
 class NavWebReport(Report):
     
@@ -4609,6 +4712,9 @@ class NavWebReport(Report):
 
         # whether to display children in birthorder or entry order?
         self.birthorder = self.options['birthorder']
+
+        # get option for Internet Address Book
+        self.add_book = self.options["add_book"]
 
         if self.use_home:
             self.index_fname = "index"
@@ -4730,6 +4836,11 @@ class NavWebReport(Report):
         repolist = self.database.get_repository_handles()
         if len(repolist):
             self.repository_pages(repolist)
+
+
+        # build class InternetAddressBook
+        if self.add_book:
+            self.address_book_page(ind_list)
 
         # if an archive is being used, close it?
         if self.archive:
@@ -4937,7 +5048,7 @@ class NavWebReport(Report):
         * field 6: date of death or burial (optional)
         * field 7: place of death or burial (optional) 
         """
-        url = self.build_url_fname_html(person.handle, 'ppl')
+        url = self.build_url_fname_html(person.handle, "ppl")
         surname = person.get_primary_name().get_surname()
         fullname = person.get_primary_name().get_gedcom_name()
 
@@ -5069,14 +5180,17 @@ class NavWebReport(Report):
         # RepositoryListPage Class
         RepositoryListPage(self, self.title, repos_dict, keys)
 
-        index = 0
         for index, key in enumerate(keys):
             (repo, handle) = repos_dict[key]
 
             # RepositoryPage Class
-            RepositoryPage(self, self.title, repo, handle)
+            RepositoryPage(self, self.title, repo, handle, repo.gramps_id)
 
             self.progress.step()
+
+    def address_book_page(self, ind_list):
+
+        InternetAddressBook(self, self.title, ind_list)
 
     def add_image(self, option_name, height=0):
         pic_id = self.options[option_name]
@@ -5561,6 +5675,10 @@ class NavWebOptions(MenuReportOptions):
         inc_gendex = BooleanOption(_('Include GENDEX file (/gendex.txt)'), False)
         inc_gendex.set_help(_('Whether to include a GENDEX file or not'))
         menu.add_option(category_name, 'inc_gendex', inc_gendex)
+
+        add_book = BooleanOption(_("Include an Internet Address Book Page"), True)
+        add_book.set_help(_("Whether to add an Internet Address Book or not?"))
+        menu.add_option(category_name, "add_book", add_book)
 
     def __archive_changed(self):
         """

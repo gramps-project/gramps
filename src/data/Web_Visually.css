@@ -280,10 +280,10 @@ div#navigation, div#subnavigation {
 }
 div#navigation ul, div#subnavigation ul {
     list-style:none;
-    min-width:770px;
-    height: 50px;
+    min-width: 900px;
+    height: 40px;
     margin:0;
-    padding: 0px 0px 0px 20px;
+    padding: 0px 0px 0px 6px;
     border-bottom: solid 2px #5D835F;
 }
 div#navigation ul li, div#subnavigation ul li {
@@ -291,9 +291,9 @@ div#navigation ul li, div#subnavigation ul li {
 }
 div#navigation ul li a, div#subnavigation ul li a {
     display: block;
-    padding: 12px 10px 14px 1px;
+    padding: 12px 6px 14px 1px;
     float:left;
-    font: 1em/1.5em bold italic small-caps verdana, serif;
+    font: .8em bold italic small-caps verdana, serif;
     color: #000;
     text-decoration:none;
     margin:0;
@@ -878,10 +878,13 @@ div#SourceDetail div#references ol li {
     padding-bottom:.5em;
 }
 
+
 /* Repositories
 ------------------------------------------------------ */
-div#RepositoryList { }
-
+div#RepositoryList {
+    margin: 0;
+    padding: 0;
+}
 div#RepositoryList table.repolist tbody tr td {
     background-color: #D8F3D6;
 }
@@ -897,6 +900,33 @@ div#RepositoryList table.repolist tbody tr td.ColumnType {
 }
 div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
+}
+
+/* Internet Address Book
+------------------------------------------------------ */
+div#InternetAddressBook {
+    margin: 0;
+    padding: 0;
+}
+div#InternetAddressBook table.addressbook {
+    margin: .3em 0 .3em 0;
+}
+div#InternetAddressBook table.addressbook tbody tr.BeginName {
+    border-top: solid 1px #000;
+}
+div#InternetAddressBook table.addressbook tbody tr td {
+    background-color: #FFF;
+    border-bottom: dashed 1px #000;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnType {
+    background-color: #D8F3D6;
+    width: 15%;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
+    width: 30%;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
+    width: 70%;
 }
 
 /* Subsections
@@ -1561,7 +1591,7 @@ body#fullyearlinked able.calendar tbody tr td.sunday {
     border:solid 2px #000;
 }
 
-/* Calendar: OneDay 
+/* Calendar: OneDay
 --------------------------------------------------------------------------------- */
 body#OneDay h3 {
     color: #228A22;

@@ -772,6 +772,56 @@ table.download td.Modified {
     font-weight:bold;
 }
 
+/* Repositories
+------------------------------------------------------ */
+div#RepositoryList {
+    margin: 0;
+    padding: 0;
+}
+div#RepositoryList table.repolist tbody tr td {
+    background-color: #C1B398;
+}
+div#RepositoryList table.repolist tbody tr td a {
+    display: block;
+    padding: .3em 10px;
+}
+div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
+    width: 9%;
+}
+div#RepositoryList table.repolist tbody tr td.ColumnType {
+    width: 15%;
+}
+div#RepositoryList table.repolist tbody tr td.ColumnName {
+    background-color: #FFF;
+}
+
+/* Internet Address Book
+------------------------------------------------------ */
+div#InternetAddressBook {
+    margin: 0;
+    padding: 0;
+}
+div#InternetAddressBook table.addressbook {
+    margin: .3em 0 .3em 0;
+}
+div#InternetAddressBook table.addressbook tbody tr.BeginName {
+    border-top: solid 1px #000;
+}
+div#InternetAddressBook table.addressbook tbody tr td {
+    background-color: #FFF;
+    border-bottom: dashed 1px #000;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnType {
+    background-color: #F6F2EE;
+    width: 15%;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
+    width: 30%;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
+    width: 70%;
+}
+
 /* Subsections
 ----------------------------------------------------- */
 #Home, #Introduction, #Contact {
@@ -1366,4 +1416,28 @@ body#fullyearlinked table.calendar thead tr th.monthName {
 }
 body#fullyearlinked table.calendar tbody tr td {
     height:3em;
+}
+
+/* Calendar: OneDay
+--------------------------------------------------------------------------------- */
+body#OneDay h3 {
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+table.oneday {
+    margin: .3em 0 .3em 0;
+    padding: 0;
+}
+table.oneday tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+table.oneday tbody tr td.ColumnRowLabel {
+    width: 5%;
+}
+table.oneday tbody tr td.ColumnText {
+    width: 85%;
+}
+table.oneday tbody tr td.ColumnEvent {
+    width; 10%;
 }

@@ -784,8 +784,10 @@ table.download td.Modified {
 
 /* Repositories
 ------------------------------------------------------ */
-div#RepositoryList { }
-
+div#RepositoryList {
+    margin: 0;
+    padding: 0;
+}
 div#RepositoryList table.repolist tbody tr td {
 }
 div#RepositoryList table.repolist tbody tr td a {
@@ -800,6 +802,33 @@ div#RepositoryList table.repolist tbody tr td.ColumnType {
 }
 div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
+}
+
+/* Internet Address Book
+------------------------------------------------------ */
+div#InternetAddressBook {
+    margin: 0;
+    padding: 0;
+}
+div#InternetAddressBook table.addressbook {
+    margin: .3em 0 .3em 0;
+}
+div#InternetAddressBook table.addressbook tbody tr.BeginName {
+    border-top: solid 1px #000;
+}
+div#InternetAddressBook table.addressbook tbody tr td {
+    background-color: #FFF;
+    border-bottom: dashed 1px #000;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnType {
+    background-color: #E0E6E0;
+    width: 15%;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
+    width: 30%;
+}
+div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
+    width: 70%;
 }
 
 /* Subsections
@@ -1323,4 +1352,28 @@ body#WebCal #CreatorInfo a, body#WebCal #CreatorInfo a:hover {
 .calendar tbody tr td.next div.date {
     color:#9DBF9D;
     background-color:#E0E6E0;
+}
+
+/* Calendar: OneDay 
+--------------------------------------------------------------------------------- */
+body#OneDay h3 {
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+table.oneday {
+    margin: .3em 0 .3em 0;
+    padding: 0;
+}
+table.oneday tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+table.oneday tbody tr td.ColumnRowLabel {
+    width: 5%;
+}
+table.oneday tbody tr td.ColumnText {
+    width: 85%;
+}
+table.oneday tbody tr td.ColumnEvent {
+    width; 10%;
 }
