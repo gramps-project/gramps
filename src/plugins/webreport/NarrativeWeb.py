@@ -278,64 +278,6 @@ class BasePage(object):
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
 
-    def alphabet_navigation(self, of, db, handle_list, key):
-        """
-        Will create the alphabetical navigation bar...
-        """
-
-        sorted_set = {}
-
-        # The comment below from the glibc locale sv_SE in
-        # localedata/locales/sv_SE :
-        #
-        # % The letter w is normally not present in the Swedish alphabet. It
-        # % exists in some names in Swedish and foreign words, but is accounted
-        # % for as a variant of 'v'.  Words and names with 'w' are in Swedish
-        # % ordered alphabetically among the words and names with 'v'. If two
-        # % words or names are only to be distinguished by 'v' or % 'w', 'v' is
-        # % placed before 'w'.
-        #
-        # See : http://www.gramps-project.org/bugs/view.php?id=2933
-        #
-        (lang_country, modifier ) = locale.getlocale()
-        for ltr in get_first_letters(db, handle_list, key):
-            try:
-                sorted_set[ltr] += 1
-            except KeyError:
-                sorted_set[ltr] = 1
-
-        sorted_first_letter = sorted_set.keys()
-        sorted_first_letter.sort(locale.strcoll)
-
-        num_ltrs = len(sorted_first_letter)
-        if num_ltrs <= 26:
-            of.write('\t<div id="alphabet">\n')
-            of.write('\t\t<ul>\n')
-            for ltr in  sorted_first_letter:
-                if lang_country == "sv_SE" and ltr == u'V':
-                    of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % ("V,W", "V,W"))
-                else:
-                    of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % (ltr, ltr))
-            of.write('\t\t</ul>\n')
-            of.write('\t</div>\n')
-        else:
-            nrows = (num_ltrs / 26) + 1
-            index = 0
-            for rows in range(0, nrows):
-                of.write('\t<div id="alphabet">\n')
-                of.write('\t\t<ul>\n')
-                cols = 0
-                while (cols <= 26 and index < num_ltrs):
-                    if lang_country == "sv_SE" and sorted_first_letter[index] == u'V':
-                        of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % ("V,W", "V,W"))
-                    else:
-                        of.write('\t\t\t<li><a href="#%s">%s</a></li>\n'
-                            % (sorted_first_letter[index], sorted_first_letter[index]))
-                    cols += 1
-                    index += 1
-                of.write('\t\t<ul>\n')
-                of.write('\t</div>\n')
-
     def write_footer(self, of):
 
         of.write('</div>\n')          # Terminate div_content
@@ -797,7 +739,7 @@ class IndividualListPage(BasePage):
         self.write_header(of, _('Individuals'))
 
         # begin alphabetic navigation
-        self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
+        alphabet_navigation(of, db, person_handle_list, _PERSON) 
 
         of.write('<div id="Individuals" class="content">\n')
 
@@ -1080,7 +1022,7 @@ class PlaceListPage(BasePage):
         self.write_header(of, _('Places'))
 
         # begin alphabetic navigation
-        self.alphabet_navigation(of, db, place_handles, _PLACE) 
+        alphabet_navigation(of, db, place_handles, _PLACE) 
 
         of.write('<div id="Places" class="content">\n')
 
@@ -1503,7 +1445,7 @@ class SurnameListPage(BasePage):
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
             self.write_header(of, _('Surnames'))
-            self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
+            alphabet_navigation(of, db, person_handle_list, _PERSON) 
         else:
             of = self.report.create_file("surnames_count")
             self.write_header(of, _('Surnames by person count'))
@@ -3623,12 +3565,12 @@ def _get_prefix_suffix_name(sex, name):
             first = first + ", " + suffix
     return first
 
-def get_person_keyname(db, handle):
+def __get_person_keyname(db, handle):
     """ .... """ 
     person = db.get_person_from_handle(handle)
-    return person.get_primary_name().surname
+    return person.get_primary_name().get_surname()
 
-def get_place_keyname(db, handle):
+def __get_place_keyname(db, handle):
     """ ... """
 
     return ReportUtils.place_name(db, handle)  
@@ -3638,7 +3580,7 @@ def first_letter(string):
         letter = normalize('NFKC', unicode(string))[0].upper()
     else:
         letter = u' '
-    # See : http://www.gramps-project.org/bugs/view.php?id=2933
+    # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     (lang_country, modifier ) = locale.getlocale()
     if lang_country == "sv_SE" and (letter == u'W' or letter == u'V'):
         letter = u'V,W'
@@ -3651,12 +3593,87 @@ def get_first_letters(db, handle_list, key):
 
     for handle in handle_list:
         if key == _PERSON:
-            keyname = get_person_keyname(db, handle)
+            keyname = __get_person_keyname(db, handle)
         else:
-            keyname = get_place_keyname(db, handle) 
-        first_letters.append(first_letter(keyname))
+            keyname = __get_place_keyname(db, handle) 
+        ltr = first_letter(keyname)
+
+        if ltr is not ",":
+            first_letters.append(ltr)
 
     return first_letters
+
+def alphabet_navigation(of, db, handle_list, key):
+    """
+    Will create the alphabet navigation bar for classes IndividualListPage,
+    SurnameListPage, and PlaceListPage
+
+    handle_list -- a list of people's or Places' handles
+    key -- _PERSON or _PLACE
+    """
+
+    sorted_set = {}
+
+    # The comment below from the glibc locale sv_SE in
+    # localedata/locales/sv_SE :
+    #
+    # % The letter w is normally not present in the Swedish alphabet. It
+    # % exists in some names in Swedish and foreign words, but is accounted
+    # % for as a variant of 'v'.  Words and names with 'w' are in Swedish
+    # % ordered alphabetically among the words and names with 'v'. If two
+    # % words or names are only to be distinguished by 'v' or % 'w', 'v' is
+    # % placed before 'w'.
+    #
+    # See : http://www.gramps-project.org/bugs/view.php?id = 2933
+    #
+    (lang_country, modifier ) = locale.getlocale()
+
+    for ltr in get_first_letters(db, handle_list, key):
+        if ltr in sorted_set:
+            sorted_set[ltr] += 1
+        else:
+            sorted_set[ltr] = 1
+
+    # remove the number of each occurance of each letter
+    sorted_alpha_index = sorted(sorted_set, key=locale.strxfrm)
+
+    # remove any commas from the letter set
+    sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != ',']
+
+    # remove any single spaces from the letter set also
+    sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != ' ']
+
+    # if no letters, return None back to its callers
+    if not sorted_alpha_index:
+        return None
+
+    # begin alphabet division
+    of.write('\t<div id="alphabet">\n')
+
+    num_ltrs = len(sorted_alpha_index)
+    nrows = ((num_ltrs // 34) + 1)
+
+    index = 0
+    for row in xrange(nrows):
+        of.write('\t\t<ul>\n')
+
+        cols = 0
+        while (cols <= 34 and index < num_ltrs):
+  
+            ltr = sorted_alpha_index[index]
+            title_str = _("Surnames")  if key == 0 else _("Places")
+            of.write('\t\t\t<li>')
+            if lang_country == "sv_SE" and ltr == u'V':
+                title_str += _(" starting with %s") % "V,W" 
+                of.write('<a href="#V,W" title="%s">V,W</a>\n' % title_str)
+            else:
+                title_str += _(" starting with %s") % ltr 
+                of.write('<a href="#%s" title="%s">%s</a></li>\n' % (ltr, title_str, ltr)) 
+
+                cols += 1
+                index += 1
+        of.write('\t\t</ul>\n')
+    of.write('\t</div>\n')
 
 # ------------------------------------------
 #
