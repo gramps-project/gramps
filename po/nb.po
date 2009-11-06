@@ -2319,7 +2319,7 @@ msgstr "Historikk er tømt"
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead."
-msgstr "Feil: Familietreet \"%s\% finnes ikke.\n"
+msgstr "Feil: Familietreet \"%s\" finnes ikke.\n"
 "Hvis fila er gedcom, gramps-xml eller grdb, bruk opsjonen -i for å importere til et slektstre istedet."
 
 #: ../src/cli/arghandler.py:140
