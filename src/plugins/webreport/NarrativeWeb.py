@@ -128,6 +128,7 @@ COUNTY = _("County")
 COUNTRY = _("Country")
 DHEAD = _("Date")
 DESCRHEAD = _("Description")
+GRAMPSID = _("GRAMPS ID")
 LATITUDE = _("Latitude")
 LOCATIONS = _("Alternate Locations")
 LONGITUDE = _("Longitude")
@@ -303,6 +304,7 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
+        self.exiftagsopt = report.options['exiftagsopt']
 
     def get_birth_date(self, db, person):
         """ Will return a date object for a person's birthdate """
@@ -500,9 +502,7 @@ class BasePage(object):
             else:
                 self.place_list[place_handle] = [lnk]
 
-            place = self.place_link(place_handle,
-                                    ReportUtils.place_name(db, 
-                                    place_handle), up = True)
+            place = self.place_link(place_handle, ReportUtils.place_name(db, place_handle), up = True)
         else:
             place = ''
 
@@ -576,8 +576,7 @@ class BasePage(object):
         place_hyper = None
         if place: 
             place_name = ReportUtils.place_name(db, place_handle)
-            place_hyper = self.place_link(place_handle, place_name, 
-                                          place.gramps_id, subdirs)
+            place_hyper = self.place_link(place_handle, place_name, up = subdirs)
 
         # wrap it all up and return to its callers
         # position 0 = translatable label, position 1 = column class
@@ -1959,31 +1958,31 @@ class PlacePage(BasePage):
                     summaryarea += table
 
                     if not self.noid:
-                        trow = [ Html("tr"),
-                            Html("td", _("GRAMPS ID"), class_ = "ColumnAttribute", inline = True),
+                        trow = Html("tr") + (
+                            Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
                             Html("td", place.gramps_id, class_ = "ColumnValue", inline = True)
-                            ]
+                            )
                         table += trow
 
                     if place.main_loc:
                         ml = place.main_loc
                         for val in [
-                             (LATITUDE,         place.lat),
-                             (LONGITUDE,      place.long), 
-                             (STREET,             ml.street),
-                             (CITY,                  ml.city),
-                             (PARISH,             ml.parish),
-                             (COUNTY,            ml.county),
-                             (STATE,               ml.state),
-                             (POSTAL,             ml.postal),
-                             (COUNTRY,          ml.country),
-                             (LOCATIONS,      place.get_alternate_locations()) ]:
+                             (LATITUDE,  place.lat),
+                             (LONGITUDE, place.long), 
+                             (STREET,    ml.street),
+                             (CITY,      ml.city),
+                             (PARISH,    ml.parish),
+                             (COUNTY,    ml.county),
+                             (STATE,     ml.state),
+                             (POSTAL,    ml.postal),
+                             (COUNTRY,   ml.country),
+                             (LOCATIONS, place.get_alternate_locations() ) ]:
 
                             if val[1]:
-                                trow = [ Html("tr"),
+                                trow = Html("tr") + (
                                     Html("td", val[0], class_ = "ColumnAttribute", inline = True),
                                     Html("td", val[1], class_ = "ColumnValue", inline = True)
-                                    ]
+                                    )
                                 table += trow
 
             # place gallery
@@ -2003,14 +2002,14 @@ class PlacePage(BasePage):
                 placedetail += urllinks
 
             # source references
-#            sourcerefs = self.get_citation_links(place.get_source_references() )
-#            if sourcerefs is not None:
-#                placedetail += sourcerefs  
+            sourcerefs = self.get_citation_links(place.get_source_references() )
+            if sourcerefs is not None:
+                placedetail += sourcerefs  
 
             # place references
-            referenceslist = self.display_references(place_list[place.handle])
-            if referenceslist is not None:
-                placedetail += referenceslist
+            reflist = self.display_references(place_list[place.handle])
+            if reflist is not None:
+                placedetail += reflist
 
         # add clearline for proper styling
         # add footer section
@@ -2193,29 +2192,29 @@ class EventPage(BasePage):
                     samerow = True if (data == "&nbsp;" or (colclass == "Date" or "Event")) \
                         else False
 
-                    trow = [ Html("tr"),
+                    trow = Html("tr") + (
                         Html("td", label, class_ = "ColumnAttribute", inline = True),
                         Html('td', data, class_ = "Column%s" % colclass, inline = samerow)
-                        ]
+                        )
                     tbody += trow
 
                 # get person hyperlink
                 url = self.report.build_url_fname_html(person.handle, "ppl", self.up)
                 person_hyper = self.person_link(url, person, True, gid = person.gramps_id)
-                trow = [ Html("tr"),
-                    Html("td", _('Person'), class_ = "ColumnAttribute", inline = True),
+                trow = Html("tr") + (
+                    Html("td", _("Person"), class_ = "ColumnAttribute", inline = True),
                     Html("td", person_hyper, class_ = "ColumnPerson")
-                    ]
+                    )
                 tbody += trow 
 
                 # display partner if type is either Marriage or Divorce
                 if partner is not None:
                     url = self.report.build_url_fname_html(partner.handle, "ppl", self.up)
                     partner_hyper = self.person_link(url, partner, True, gid = partner.gramps_id)
-                    trow = [ Html("tr"),
-                        Html("td", _('Partner'), class_ = "ColumnAttribute", inline = True),
+                    trow = Html("tr") + (
+                        Html("td", _("Partner"), class_ = "ColumnAttribute", inline = True),
                         Html("td", partner_hyper, class_ = "ColumnPartner")
-                        ]
+                        )
                     tbody += trow
 
             # Narrative subsection
@@ -2244,9 +2243,9 @@ class MediaPage(BasePage):
         (prev, next, page_number, total_pages) = info
         db = report.database
 
-        photo = db.get_object_from_handle(handle)
+        media = db.get_object_from_handle(handle)
         # TODO. How do we pass my_media_list down for use in BasePage?
-        BasePage.__init__(self, report, title, photo.gramps_id)
+        BasePage.__init__(self, report, title, media.gramps_id)
 
         """
         *************************************
@@ -2316,240 +2315,235 @@ class MediaPage(BasePage):
         self.bibli = Bibliography()
 
         # get media type to be used primarily with "img" tags
-        mime_type = photo.get_mime_type()
+        mime_type = media.get_mime_type()
         mtype = Mime.get_description(mime_type)
 
         if mime_type:
             note_only = False
-            newpath = self.copy_source_file(handle, photo)
+            newpath = self.copy_source_file(handle, media)
             target_exists = newpath is not None
         else:
             note_only = True
             target_exists = False
 
-        self.copy_thumbnail(handle, photo)
-        self.page_title = photo.get_description()
+        self.copy_thumbnail(handle, media)
+        self.page_title = media.get_description()
         mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title))
 
-        # begin GalleryDetail division
-        mediadetail = Html("div", class_ = "content", id = "GalleryDetail")
-        body += mediadetail
+        # begin MediaDetail division
+        with Html("div", class_ = "content", id = "GalleryDetail") as mediadetail:
+            body += mediadetail
 
-        # gallery navigation
-        gallerynav = Html("div", id = 'GalleryNav')
-        mediadetail += gallerynav
-        if prev:
-            gallerynav += self.gallery_nav_link(prev, _('Previous'), True)
-        data = _('<strong id = "GalleryCurrent">%(page_number)d</strong> of '
-            '<strong id = "GalleryTotal">%(total_pages)d</strong>' ) % {
-            'page_number' : page_number, 'total_pages' : total_pages }
-        gallerynav += Html("span", data, id = 'GalleryPages')
-        if next:
-            gallerynav += self.gallery_nav_link(next, _('Next'), True)
+            # media navigation
+            with Html("div", id = "GalleryNav") as medianav: 
+                mediadetail += medianav
+                if prev:
+                    medianav += self.media_nav_link(prev, _("Previous"), True)
+                data = _('<strong id = "GalleryCurrent">%(page_number)d</strong> of '
+                         '<strong id = "GalleryTotal">%(total_pages)d</strong>' ) % {
+                         'page_number' : page_number, 'total_pages' : total_pages }
+                medianav += Html("span", data, id = "GalleryPages")
+                if next:
+                    medianav += self.media_nav_link(next, _("Next"), True)
 
-        # missing media error msg
-        errormsg = _('The file has been moved or deleted.')
-        missingimage = Html("span", errormsg, class_ = "MissingImage")  
+            # missing media error msg
+            errormsg = _("The file has been moved or deleted.")
+            missingimage = Html("span", errormsg, class_ = "MissingImage")  
 
-        # begin summaryarea division
-        summaryarea = Html("div", id = 'summaryarea')
-        mediadetail += summaryarea
-        if mime_type:
-            if mime_type.startswith("image/"):
-                if not target_exists:
-                    mediadisplay = Html("div", id = 'GalleryDisplay') + \
-                        missingimage
-                    summaryarea += mediadisplay
-                else:
-                    # Check how big the image is relative to the requested 'initial'
-                    # image size. If it's significantly bigger, scale it down to
-                    # improve the site's responsiveness. We don't want the user to
-                    # have to await a large download unnecessarily. Either way, set
-                    # the display image size as requested.
-                    orig_image_path = Utils.media_path_full(db, photo.get_path())
-                    (width, height) = ImgManip.image_size(orig_image_path)
-                    max_width = self.report.options['maxinitialimagewidth']
-                    max_height = self.report.options['maxinitialimageheight']
-                    scale_w = (float(max_width)/width) or 1    # the 'or 1' is so that
-                                                               # a max of zero is ignored
-
-                    scale_h = (float(max_height)/height) or 1
-                    scale = min(scale_w, scale_h)
-                    new_width = int(width*scale)
-                    new_height = int(height*scale)
-                    if scale < 0.8:
-                        # scale factor is significant enough to warrant making a smaller image
-                        initial_image_path = '%s_init.jpg' % os.path.splitext(newpath)[0]
-                        initial_image_data = ImgManip.resize_to_jpeg_buffer(orig_image_path,
-                                new_width, new_height)
-                        if self.report.archive:
-                            filed, dest = tempfile.mkstemp()
-                            os.write(filed, initial_image_data)
-                            os.close(filed)
-                            self.report.archive.add(dest, initial_image_path)
+            # begin summaryarea division
+            with Html("div", id = "summaryarea") as summaryarea:
+                mediadetail += summaryarea
+                if mime_type:
+                    if mime_type.startswith("image/"):
+                        if not target_exists:
+                            with Html("div", missingimage, id = "MediaDisplay") as mediadisplay:
+                               summaryarea += mediadisplay
                         else:
-                            filed = open(os.path.join(self.html_dir, initial_image_path), 'w')
-                            filed.write(initial_image_data)
-                            filed.close()
+                            # Check how big the image is relative to the requested 'initial'
+                            # image size. If it's significantly bigger, scale it down to
+                            # improve the site's responsiveness. We don't want the user to
+                            # have to await a large download unnecessarily. Either way, set
+                            # the display image size as requested.
+                            orig_image_path = Utils.media_path_full(db, media.get_path())
+                            (width, height) = ImgManip.image_size(orig_image_path)
+                            max_width = self.report.options['maxinitialimagewidth']
+                            max_height = self.report.options['maxinitialimageheight']
+                            scale_w = (float(max_width)/width) or 1    # the 'or 1' is so that
+                                                                       # a max of zero is ignored
+
+                            scale_h = (float(max_height)/height) or 1
+                            scale = min(scale_w, scale_h)
+                            new_width = int(width*scale)
+                            new_height = int(height*scale)
+                            if scale < 0.8:
+                                # scale factor is significant enough to warrant making a smaller image
+                                initial_image_path = '%s_init.jpg' % os.path.splitext(newpath)[0]
+                                initial_image_data = ImgManip.resize_to_jpeg_buffer(orig_image_path,
+                                        new_width, new_height)
+                                if self.report.archive:
+                                    filed, dest = tempfile.mkstemp()
+                                    os.write(filed, initial_image_data)
+                                    os.close(filed)
+                                    self.report.archive.add(dest, initial_image_path)
+                                else:
+                                    filed = open(os.path.join(self.html_dir, initial_image_path), 'w')
+                                    filed.write(initial_image_data)
+                                    filed.close()
+                            else:
+                                # not worth actually making a smaller image
+                                initial_image_path = newpath
+
+                            # TODO. Convert disk path to URL.
+                            url = self.report.build_url_fname(initial_image_path, None, self.up)
+                            if initial_image_path != newpath:
+                                scalemsg = Html("p", "(%d x %d)" % (width, height), inline = True)
+                                summaryarea += scalemsg
+                            with Html("div", style = 'width: %dpx; height: %dpx' % (new_width, new_height)) as mediadisplay:
+                                summaryarea += mediadisplay
+
+                                # Feature #2634; display the mouse-selectable regions.
+                                # See the large block at the top of this function where
+                                # the various regions are stored in _region_items
+                                if len(_region_items):
+                                    ordered = Html("ol", class_ = "RegionBox")
+                                    mediadisplay += ordered
+                                    while len(_region_items) > 0:
+                                        (name, x, y, w, h, linkurl) = _region_items.pop()
+                                        ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
+                                            % (x, y, w, h)) +(
+                                            Html("a", name, href = linkurl)
+                                            )       
+
+                                # display the image
+                                if initial_image_path != newpath:
+                                    url = self.report.build_url_fname(newpath, None, self.up)
+                                    mediadisplay += Html("a", href = url) + (
+                                        Html("img", width = new_width, height = new_height, src = url,
+                                        alt = html_escape(self.page_title))
+                                        )
                     else:
-                        # not worth actually making a smaller image
-                        initial_image_path = newpath
+                        dirname = tempfile.mkdtemp()
+                        thmb_path = os.path.join(dirname, "temp.png")
+                        if ThumbNails.run_thumbnailer(mime_type,
+                                                      Utils.media_path_full(db, media.get_path()),
+                                                      thmb_path, 320):
+                            try:
+                                path = self.report.build_path("preview", media.handle)
+                                npath = os.path.join(path, media.handle) + ".png"
+                                self.report.copy_file(thmb_path, npath)
+                                path = npath
+                                os.unlink(thmb_path)
+                            except IOError:
+                                path = os.path.join("images", "document.png")
+                        else:
+                            path = os.path.join("images", "document.png")
+                        os.rmdir(dirname)
 
-                    # TODO. Convert disk path to URL.
-                    url = self.report.build_url_fname(initial_image_path, None, self.up)
-                    if initial_image_path != newpath:
-                        scalemsg = Html("p", '(%d x %d).' % (width, height), inline = True)
-                        summaryarea += scalemsg
-                    mediadisplay = Html("div", style='width:%dpx; height:%dpx;' % (new_width, new_height))
-                    summaryarea += mediadisplay
-
-                    # Feature #2634; display the mouse-selectable regions.
-                    # See the large block at the top of this function where
-                    # the various regions are stored in _region_items
-                    if len(_region_items):
-                        ordered = Html("ol", class_ = "RegionBox")
-                        mediadisplay += ordered
-                        while len(_region_items) > 0:
-                            (name, x, y, w, h, linkurl) = _region_items.pop()
-                            ordered += Html("li", style='left:%d%%; top:%d%%; width:%d%%; height:%d%%;'
-                                % (x, y, w, h)) +(
-                                    Html("a", name, href = linkurl)
-                                    )       
-
-                    # display the image
-                    if initial_image_path != newpath:
-                        url = self.report.build_url_fname(newpath, None, self.up)
-                        mediadisplay += (Html("a", href = url) +
-                            Html("img", width=new_width, height = new_height, src = url,
-                                alt = html_escape(self.page_title))
-                                )
-            else:
-                dirname = tempfile.mkdtemp()
-                thmb_path = os.path.join(dirname, "temp.png")
-                if ThumbNails.run_thumbnailer(mime_type,
-                                                                    Utils.media_path_full(db,
-                                                                    photo.get_path()),
-                                                                    thmb_path, 320):
-                    try:
-                        path = self.report.build_path('preview', photo.handle)
-                        npath = os.path.join(path, photo.handle) + '.png'
-                        self.report.copy_file(thmb_path, npath)
-                        path = npath
-                        os.unlink(thmb_path)
-                    except IOError:
-                        path = os.path.join('images', 'document.png')
+                        with Html("div", id = "GalleryDisplay") as mediadisplay:
+                            summaryarea += mediadisplay
+                            if target_exists:
+                                # TODO. Convert disk path to URL
+                                url = self.report.build_url_fname(newpath, None, self.up)
+                                hyper = Html("a", href = url)
+                            # TODO. Mixup url and path
+                            # path = convert_disk_path_to_url(path)
+                            url = self.report.build_url_fname(path, None, self.up)
+                            if hyper:
+                                hyper += Html("img", src = url, alt = html_escape(self.page_title))
+                            else:
+                                hyper = Html("img", src = url, alt = html_escape(self.page_title))
+                            if target_exists:
+                                mediadisplay += hyper  
+                            else:
+                                mediadisplay += missingimage
                 else:
-                    path = os.path.join('images', 'document.png')
-                os.rmdir(dirname)
+                    with Html("div", id = "GalleryDisplay") as mediadisplay:
+                        summaryarea += mediadisplay
+                        url = self.report.build_url_image("document.png", "images", self.up)
+                        mediadisplay += Html("img", src = url, alt = html_escape(self.page_title))
 
-                mediadisplay = Html("div", id = 'GalleryDisplay')
-                summaryarea += mediadisplay
-                if target_exists:
-                    # TODO. Convert disk path to URL
-                    url = self.report.build_url_fname(newpath, None, self.up)
-                    hyper = Html("a", href = url)
-                # TODO. Mixup url and path
-                # path = convert_disk_path_to_url(path)
-                url = self.report.build_url_fname(path, None, self.up)
-                if hyper:
-                    hyper += Html("img", src=url, alt = html_escape(self.page_title))
-                else:
-                    hyper = Html("img", src=url, alt = html_escape(self.page_title))
-                if target_exists:
-                    mediadisplay += hyper  
-                else:
-                    mediadisplay += missingimage
-        else:
-            mediadisplay = Html("div", id = 'GalleryDisplay')
-            summaryarea += mediadisplay
-            url = self.report.build_url_image('document.png', 'images', self.up)
-            mediadisplay += Html("img", src=url, alt = html_escape(self.page_title))
+                # media title
+                title = Html("h3", html_escape(self.page_title.strip()), inline = True)
+                summaryarea += title
 
-        # media title
-        title = Html("h3", html_escape(self.page_title.strip()), inline = True)
-        summaryarea += title
+                # begin media table
+                with Html("table", class_ = "infolist gallery") as table: 
+                    summaryarea += table
 
-        # begin media table
-        with Html("table", class_ = "infolist gallery") as table: 
-            summaryarea += table
-
-            # GRAMPS ID
-            media_gid = photo.gramps_id
-            if not self.noid and media_gid:
-                    trow = Html("tr") + (
-                        Html("td", _('GRAMPS ID'), class_ = "ColumnAttribute", inline = True),
-                        Html("td", media_gid, class_ = "ColumnValue", inline = True)
-                        )
-                    table += trow
-
-            # mime type
-            if mime_type:   
-                trow = Html("tr") + (
-                        Html("td", _("File Type"), class_ = "ColumnAttribute", inline = True),
-                        Html("td", mime_type, class_ = "ColumnValue", inline = True)
-                        )
-                table += trow
-
-            # media date
-            date = format_date(photo.get_date_object() )
-            if date:
-                trow = Html("tr") + (
-                    Html("td", DHEAD, class_ = "ColumnAttribute", inline = True),
-                    Html("td", date, class_ = "ColumnValue", inline = True)
-                    )
-                table += trow
-
-        # display image Exif tags/ keys if any?
-        if (pyexiftaglib and mime_type.startswith('image/')):
-            """
-            # Determine if the python exif lib is installed on the system?
-            # yes, then use it and determine if the photo has anything written inside of it?
-            """ 
-
-            image = pyexiv2.Image("%s" % Utils.media_path_full(db, photo.get_path()))
-            image.readMetadata()
-
-            # exif data does exists
-            if len(image.exifKeys()):
-
-                # add clearline for better page layout
-                mediadetail += fullclear
-
-                # add exif title header
-                mediadetail += Html("h4", _("Image Exif Tags"), inline = True)
-
-                # begin exif table
-                with Html("table", class_ = "exifdata") as table:
-                    mediadetail += table
-
-                    for keytag in image.exifKeys():
-                        trow = [ Html("tr"),
-                            Html("td", keytag, class_ = "ColumnAttribute", inline = True),
-                            Html("td", image[keytag], class_ = "ColumnValue", inline = True)
-                            ]
+                    # GRAMPS ID
+                    media_gid = media.gramps_id
+                    if not self.noid and media_gid:
+                        trow = Html("tr") + (
+                            Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
+                            Html("td", media_gid, class_ = "ColumnValue", inline = True)
+                            )
                         table += trow
 
-            #################################################
+                    # mime type
+                    if mime_type:   
+                        trow = Html("tr") + (
+                            Html("td", _("File Type"), class_ = "ColumnAttribute", inline = True),
+                            Html("td", mime_type, class_ = "ColumnValue", inline = True)
+                            )
+                        table += trow
 
-        # get media notes
-        notelist = self.display_note_list(photo.get_note_list() )
-        if notelist is not None:
-            mediadetail += notelist
+                    # media date
+                    date = media.get_date_object()
+                    if date:
+                        trow = Html("tr") + (
+                            Html("td", DHEAD, class_ = "ColumnAttribute", inline = True),
+                            Html("td", format(date), class_ = "ColumnValue", inline = True)
+                            )
+                        table += trow
 
-        # get attribute list
-        attrlist = self.display_attr_list(photo.get_attribute_list(), False)
-        if attrlist is not None:
-            mediadetail += attrlist
+            # display image Exif tags/ keys if any?
+            if ((pyexiftaglib and self.exiftagsopt) and mime_type.startswith("image/")):
+                """
+                # Determine if the python exif lib is installed on the system?
+                # yes, then use it and determine if the photo has anything written inside of it?
+                """ 
 
-        # get media sources
-        srclist = self.display_media_sources(photo)
-        if srclist is not None:
-            mediadetail += srclist
+                image = pyexiv2.Image("%s" % Utils.media_path_full(db, media.get_path()) )
+                image.readMetadata()
 
-        # get media references 
-        reflist = self.display_references(my_media_list)
-        if reflist is not None:
-            mediadetail += reflist
+                # exif data does exists
+                if len(image.exifKeys() ):
+
+                    # add exif title header
+                    mediadetail += Html("h4", _("Image Exif Tags"), inline = True)
+
+                    # begin exif table
+                    with Html("table", class_ = "exifdata") as table:
+                        mediadetail += table
+
+                        for keytag in image.exifKeys():
+                            trow = Html("tr") + (
+                                Html("td", keytag, class_ = "ColumnAttribute"),
+                                Html("td", image[keytag], class_ = "ColumnValue")
+                                )
+                            table += trow
+
+            ##################### End of Exif Tags #####################################################
+
+            # get media notes
+            notelist = self.display_note_list(media.get_note_list() )
+            if notelist is not None:
+                mediadetail += notelist
+
+            # get attribute list
+            attrlist = self.display_attr_list(media.get_attribute_list(), False)
+            if attrlist is not None:
+                mediadetail += attrlist
+
+            # get media sources
+            srclist = self.display_media_sources(media)
+            if srclist is not None:
+                mediadetail += srclist
+
+            # get media references 
+            reflist = self.display_references(my_media_list)
+            if reflist is not None:
+                mediadetail += reflist
 
         # add clearline for proper styling
         # add footer section
@@ -2560,11 +2554,11 @@ class MediaPage(BasePage):
         # and close the file
         self.XHTMLWriter(mediapage, of)
 
-    def gallery_nav_link(self, handle, name, up = False):
+    def media_nav_link(self, handle, name, up = False):
 
         url = self.report.build_url_fname_html(handle, "img", up)
-        name = html_escape(name)
-        hyper = Html("a", name, id = name, href = url,  title = name, inline = True)
+        img_name = html_escape(name)
+        hyper = Html("a", img_name, name = img_name, id = img_name, href = url,  title = img_name, inline = True)
 
         # return hyperlink to its callers
         return hyper
@@ -2925,15 +2919,15 @@ class SourcePage(BasePage):
                 if not self.noid:
                     grampsid = source.gramps_id
 
-                    for (label, val) in [(_('GRAMPS ID'), grampsid),
-                                        (_('Author'), source.author),
-                                        (_('Publication information'), source.pubinfo),
-                                        (_('Abbreviation'), source.abbrev)]:
+                    for (label, val) in [(GRAMPSID, grampsid),
+                                        (_("Author"), source.author),
+                                        (_("Publication information"), source.pubinfo),
+                                        (_("Abbreviation"), source.abbrev)]:
                         if val:
-                            trow = [ Html("tr"),
+                            trow = Html("tr") + (
                                 Html("td", label, class_ = "ColumnAttribute"),
                                 Html("td", val, class_ = "ColumnValue")
-                                ]
+                                )
                             tbody += trow
 
             # additional media
@@ -3011,11 +3005,11 @@ class MediaListPage(BasePage):
                     if not title:
                         title = "[untitled]"
 
-                    trow = [ Html("tr"),
+                    trow = Html("tr") + (
                         Html("td", index, class_ = "ColumnRowLabel", inline = True),
                         Html("td", self.media_ref_link(handle, title), class_ = "ColumnName"),
                         Html("td", date, class_ = "ColumnDate", inline = True)
-                        ]
+                        )
                     tbody += trow
 
                     # increment counter
@@ -3639,7 +3633,7 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         self.page_title = self.sort_name
-        thumbnail = self.display_first_image_as_thumbnail(self.person.get_media_list())
+        thumbnail = self.display_first_image_as_thumbnail(self.person.get_media_list() )
 
         section_title = Html("h3", self.get_name(self.person), inline = True)
 
@@ -3664,11 +3658,11 @@ class IndividualPage(BasePage):
                         pname = pname[2:]
 
                     type_ = str( name.get_type() )
-                    trow = ( Html("tr") +
+                    trow = Html("tr") + (
                         Html("td", type_, class_ = "ColumnAttribute", inline = True)
                         )
                     table += trow
-                    tcell = Html("td", pname, class_ = "ColumnValue", inline = True)
+                    tcell = Html("td", pname, class_ = "ColumnValue")
                     trow += tcell
 
                     # display any notes associated with this name
@@ -3685,44 +3679,43 @@ class IndividualPage(BasePage):
                                 # attach note
                                 unordered += note_text
 
-                # display call names
+                # display call name
                 first_name = primary_name.get_first_name()
                 for name in all_names:
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
-                        call_name += self.get_citation_links( 
-                            name.get_source_references() )
-                        trow = [ Html("tr"),
-                            Html("td", _('Call Name'), class_ = "ColumnAttribute", inline = True),
+                        call_name += self.get_citation_links(name.get_source_references() )
+                        trow = Html("tr") + (
+                            Html("td", _("Call Name"), class_ = "ColumnAttribute", inline = True),
                             Html("td", call_name, class_ = "ColumnValue", inline = True)
-                            ]
+                            )
                         table += trow
   
                 # display the nickname attribute
                 nick_name = self.person.get_nick_name()
                 if nick_name and nick_name != first_name:
-                    nick_name += self.get_citation_links( 
-                        self.person.get_source_references() )
-                    trow = [ Html("tr"),
+                    nick_name += self.get_citation_links(self.person.get_source_references() )
+                    trow = Html("tr") + (
                         Html("td", _("Nick Name"), class_ = "ColumnAttribute", inline = True),
                         Html("td", nick_name, class_ = "ColumnValue", inline = True)
-                        ]
+                        )
                     table += trow 
 
                 # GRAMPS ID
-                if not self.noid:
-                    trow = [ Html("tr"),
-                        Html("td", _("GRAMPS ID"), class_ = "ColumnAttribute", inline = True),
-                        Html("td", self.person.gramps_id, class_ = "ColumnValue", inline = True)
-                        ]
+                person_gid = self.person.get_gramps_id()
+                if not self.noid and person_gid:
+                    trow = Html("tr") + (
+                        Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
+                        Html("td", person_gid, class_ = "ColumnValue", inline = True)
+                        )
                     table += trow
 
                 # Gender
                 gender = self.gender_map[self.person.gender]
-                trow = [ Html("tr"),
+                trow = Html("tr") + (
                     Html("td", _("Gender"), class_ = "ColumnAttribute", inline = True),
                     Html("td", gender, class_ = "ColumnValue", inline = True)
-                    ]
+                    )
                 table += trow
 
                 # Age At Death???
@@ -3733,8 +3726,8 @@ class IndividualPage(BasePage):
                     if birth: 
                         birth_date = birth.get_date_object()
 
-                if birth_date is not None:
-                    alive = probably_alive(self.person, db, date.Today())
+                if birth_date is not None and birth_date != Date.EMPTY:
+                    alive = probably_alive(self.person, db, date.Today() )
 
                     death_date = None
                     death_ref = self.person.get_death_ref()
@@ -3743,33 +3736,33 @@ class IndividualPage(BasePage):
                         if death:
                             death_date = death.get_date_object()
 
-                    if not alive and death_date is not None:
+                    if not alive and (death_date is not None and death_date != Date.EMPTY):
                         nyears = death_date - birth_date
-                        nyears.format(precision=3)
-                        trow = [ Html("tr"),
+                        nyears.format(precision = 3)
+                        trow = Html("tr") + (
                             Html("td", _("Age at Death"), class_ = "ColumnAttribute", inline = True),
                             Html("td", nyears, class_ = "ColumnValue", inline = True)
-                            ]
+                            )
                         table += trow
 
                         # time since they passed away
                         nyears = date.Today() - death_date
-                        nyears.format(precision=3)
+                        nyears.format(precision = 3)
 
                         # get appropriate gender pronoun
-                        if gender == "female":
+                        if gender == Person.FEMALE:
                             gdr_str = "she"
-                        elif gender == "male":
+                        elif gender == Person.MALE:
                             gdr_str = "he"
                         else:
                             gdr_str = "unknown"
 
                         time_str = _("It has been %(time)s, since %(gdr_str)s has died..") % {
                             'time' : nyears, 'gdr_str' : gdr_str }
-                        trow = [ Html("tr"),
+                        trow = Html("tr") + (
                             Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
                             Html("td", time_str, class_ = "ColumnValue", inline = True)
-                            ]
+                            )
                         table += trow
 
         # return all three pieces to its caller
@@ -3789,7 +3782,7 @@ class IndividualPage(BasePage):
             
         # begin events division and section title
         with Html("div", class_ = "subsection", id = "events") as section:
-            section += Html("h4", _('Events'), inline = True)
+            section += Html("h4", _("Events"), inline = True)
 
             # begin events table
             with Html("table", class_ = "infolist eventlist") as table:
@@ -3823,8 +3816,7 @@ class IndividualPage(BasePage):
                     @param: subdirs = True or False
                     @param: hyp = show hyperlinked evt type or not?
                     """
-                    tbody += self.display_event_row(event, evt_ref, True, False, True,
-                        False, True, True)
+                    tbody += self.display_event_row(event, evt_ref, True, False, True, False, True, True)
  
         # return section to its caller
         return section
@@ -3840,7 +3832,7 @@ class IndividualPage(BasePage):
 
         # begin addresses division and title
         with Html("div", class_ = "subsection", id = "Addresses") as section:
-            section += Html("h4", _('Addresses'), inline = True)
+            section += Html("h4", _("Addresses"), inline = True)
 
             # write out addresses()
             section += self.dump_addresses(self.person)
@@ -3860,7 +3852,7 @@ class IndividualPage(BasePage):
 
         # begin LDS Ordinance division and section title
         with Html("div", class_ = "subsection", id = "LDSOrdinance") as section:
-            section += Html("h4", _('Latter-Day Saints (LDS) Ordinance'), inline = True)
+            section += Html("h4", _("Latter-Day Saints/ LDS Ordinance"), inline = True)
 
             # ump individual LDS ordinance list
             section += self.dump_ordinance(db, self.person)
@@ -3925,7 +3917,7 @@ class IndividualPage(BasePage):
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
-            section += Html("h4", _('Parents'), inline = True)
+            section += Html("h4", _("Parents"), inline = True)
 
             # begin parents table
             with Html("table", class_ = "infolist") as table:
@@ -3951,7 +3943,7 @@ class IndividualPage(BasePage):
 
                         if not first:
                             trow = Html("tr") +(
-                                Html("td", "&nbsp;", colspan=2, inline = True)
+                                Html("td", "&nbsp;", colspan = 2, inline = True)
                                 )
                             table += trow
                         else:
@@ -3962,14 +3954,15 @@ class IndividualPage(BasePage):
                             trow = Html("tr")
                             table += trow
 
-                            tabcol1, tabcol2 = self.display_parent(father_handle, _('Father'), frel)
-                            trow += (tabcol1, tabcol2)
+                            tcell1, tcell2 = self.display_parent(father_handle, _("Father"), frel)
+                            trow += (tcell1, tcell2)
                         mother_handle = family.get_mother_handle()
                         if mother_handle:
                             trow = Html("tr")
                             table += trow
-                            tabcol1, tabcol2  = self.display_parent(mother_handle, _('Mother'), mrel)
-                            trow += (tabcol1, tabcol2)
+
+                            tcell1, tcell2  = self.display_parent(mother_handle, _("Mother"), mrel)
+                            trow += (tcell1, tcell2)
 
                         first = False
                         if len(child_ref_list) > 1:
@@ -3979,13 +3972,15 @@ class IndividualPage(BasePage):
                                                             # we've already "seen" this child
 
                     # now that we have all natural siblings, display them...    
-                    if len(sibling):
-                        trow = ( Html("tr") +
+                    if sibling:
+                        trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
                             )
                         table += trow
+
                         tcell = Html("td", class_ = "ColumnValue")
                         trow += tcell
+
                         ordered = Html("ol")
                         tcell += ordered 
 
@@ -4036,13 +4031,15 @@ class IndividualPage(BasePage):
                                         half_siblings.add(half_child_handle)
 
                     # now that we have all half- siblings, display them...    
-                    if len(half_siblings):
-                        trow = ( Html("tr") +
+                    if half_siblings:
+                        trow = Html("tr") + (
                             Html("td", _("Half Siblings"), class_ = "ColumnAttribute", inline = True)
                             )
                         table += trow
+
                         tcell = Html("td", class_ = "ColumnValue")
                         trow += tcell
+
                         ordered = Html("ol")
                         tcell += ordered
 
@@ -4076,7 +4073,7 @@ class IndividualPage(BasePage):
                         if father_handle:
                             tmp_parent_handles.add(father_handle)
 
-                        while len(tmp_parent_handles) > 0:
+                        while len(tmp_parent_handles):
                             # pop the next parent from the set
                             parent_handle = tmp_parent_handles.pop()
 
@@ -4112,7 +4109,7 @@ class IndividualPage(BasePage):
                         # of families involved is > 1
 
                         if len(all_family_handles) > 1:
-                            while len(all_family_handles) > 0:
+                            while len(all_family_handles):
                                 # pop the next family from the set
                                 family_handle = all_family_handles.pop()
                                 # look in this family for children we haven't yet seen
@@ -4127,12 +4124,14 @@ class IndividualPage(BasePage):
 
                         # now that we have all step- siblings, display them...    
                         if len(step_siblings):
-                            trow = ( Html("tr") +
+                            trow = Html("tr") + (
                                 Html("td", _("Step Siblings"), class_ = "ColumnAttribute", inline = True)
                                 )
                             table += trow
+
                             tcell = Html("td", class_ = "ColumnValue")
-                            trow += tcell 
+                            trow += tcell
+
                             ordered = Html("ol")
                             tcell += ordered
 
@@ -4163,7 +4162,7 @@ class IndividualPage(BasePage):
 
         # begin families division and section title
         with Html("div", class_ = "subsection", id = "families") as section:
-            section += Html("h4", _('Families'), inline = True)
+            section += Html("h4", _("Families"), inline = True)
 
             # begin families table
             with Html("table", class_ = "infolist") as table:
@@ -4184,8 +4183,10 @@ class IndividualPage(BasePage):
 
                         tcell = Html("td", class_ = "ColumnValue")
                         trow += tcell
+
                         ordered = Html("ol")
                         tcell += ordered
+
                         childlist = [child_ref.ref for child_ref in childlist]
 
                         if self.report.options['birthorder']:
@@ -4200,13 +4201,13 @@ class IndividualPage(BasePage):
                                 ordered += self.display_child_link(child_handle)
 
                     # family LDS ordinance list
-                    famldslist = family.get_lds_ord_list()
+                    famldslist = family.lds_ord_list
                     if famldslist:
-                        trow = [ Html("tr"),
+                        trow = Html("tr") + (
                             Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
                             Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
                             Html("td", self.dump_ordinance(db, family, "Family"), class_ = "ColumnValue")
-                            ]
+                            )
                         table += trow
 
         # return section to its caller
@@ -4245,6 +4246,7 @@ class IndividualPage(BasePage):
             Html("td", relstr, class_ = "ColumnAttribute", inline = True)  
             )
         table += trow
+
         tcell = Html("td", class_ = "ColumnValue")
         trow += tcell
 
@@ -4297,7 +4299,7 @@ class IndividualPage(BasePage):
             spouse_handle = ReportUtils.find_spouse(self.person, rel_family)
             if spouse_handle:
                 spouse = db.get_person_from_handle(spouse_handle)
-                pedsp = (Html("li", class_ = "spouse") + 
+                pedsp = (Html("li", class_ = "spouse") +
                          self.pedigree_person(spouse)
                         )
                 ped += [pedsp]
@@ -4384,8 +4386,7 @@ class IndividualPage(BasePage):
                 @param: subdirs = True or False
                 @param: hyp = show hyperlinked evt type or not?
                 """
-                tbody += self.display_event_row(event, event_ref, True, False, 
-                    True, False, True, True)
+                tbody += self.display_event_row(event, event_ref, True, False, True, False, True, True)
 
         # return table to its callers
         return table
@@ -4492,18 +4493,19 @@ class RepositoryPage(BasePage):
                 repositorydetail += table
 
                 # repository type
-                trow = [ Html("tr"),
+                trow = Html("tr") + (
                     Html("td", THEAD, class_ = "ColumnType", inline = True),
                     Html("td", str(repo.type), class_ = "ColumnAttribute", inline = True)
-                    ]
+                    )
                 table += trow
 
+                # GRAMPS ID
                 if not self.noid and gid:
                     # repo gramps id
-                    trow = [ Html("tr"),
-                        Html("td", _("GRAMPS ID"), class_ = "ColumnType", inline = True),
+                    trow = Html("tr") + (
+                        Html("td", GRAMPSID, class_ = "ColumnType", inline = True),
                         Html("td", gid, class_ = "ColumnAttribute", inline = True)
-                        ]
+                        )
                     table += trow
 
             # repository: address(es)
@@ -4675,6 +4677,9 @@ class NavWebReport(Report):
         self.inc_gallery = self.options['gallery']
         self.inc_contact = self.options['contactnote'] or \
                            self.options['contactimg']
+
+        # exif tags option
+        self.exiftagsopt = self.options["exiftagsopt"]
 
         # name format option
         self.name_format = self.options['name_format']
@@ -4892,7 +4897,7 @@ class NavWebReport(Report):
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested???
-        if 0 < self.copyright < len(_CC):
+        if 0 < self.copyright <= len(_CC):
             imgs += ["somerights20.gif"]
 
         # include GRAMPS favicon
@@ -4901,16 +4906,19 @@ class NavWebReport(Report):
         # we need the blank image gif neede by behaviour.css
         imgs += ["blank.gif"]
 
+        # add the document.png file for media other than photos
+        imgs += ["document.png"]
+
         # copy Ancestor Tree graphics if needed???
         if self.graph:
             imgs += ["Web_Gender_Female.png",
-                 "Web_Gender_FemaleFFF.png",
-                 "Web_Gender_Male.png",
-                 "Web_Gender_MaleFFF.png"]
+                     "Web_Gender_FemaleFFF.png",
+                     "Web_Gender_Male.png",
+                     "Web_Gender_MaleFFF.png"]
 
-        for f in imgs:
-            from_path = os.path.join(const.IMAGE_DIR, f)
-            self.copy_file(from_path, f, "images")
+        for fname in imgs:
+            from_path = os.path.join(const.IMAGE_DIR, fname)
+            self.copy_file(from_path, fname, "images")
 
     def build_events(self, ind_list, event_dict):
         """
@@ -5525,6 +5533,12 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'gallery', self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
+        self.__exiftags = BooleanOption(_("Whether to add exif tags to the media page or not?"), False)
+        self.__exiftags.set_help(_("Do you want to add the exif data tags to the page?  You will"
+                                   " need to have the pyexiv2 library installed on your system."
+                                   "It can be downloaded from here: http://www.exiv2.org/ ."))
+        menu.add_option(category_name, "exiftagsopt", self.__exiftags)
+ 
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
@@ -5724,9 +5738,11 @@ class NavWebOptions(MenuReportOptions):
         """
 
         if self.__gallery.get_value() == False:
+            self.__exiftags.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
         else:
+            self.__exiftags.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
 

@@ -32,7 +32,7 @@ see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------------------------------
 Color Palette
 --------------------------------------------------------------------------------------------------
-brown dark      #542
+brown dark      #453619, #542
 brown light     #C1B398
 gray            #696969
 green dark	#228A22
@@ -56,12 +56,6 @@ body {
     font-family: Arial, sans, sans-serif, Helvetica;
     color: #000;
     background-color: #FFF;
-}
-body#NarrativeWeb_Horizontal {
-    padding: 158px 0px 0px 0px;
-}
-body#NarrativeWeb_Vertical {
-    padding: 128px 0px 0px 44px;
 }
 
 /* General Elements
@@ -132,15 +126,17 @@ h3 {
     text-align:center;
     margin:0;
     padding:.5em 20px .2em 20px;
-    border-bottom:double 4px #000;
+    border-bottom:double 4px #228A22;
 }
 h4 {
     font:normal 1.2em/1.2em serif;
     color: #FFF;
     margin-top: .3cm;
     padding:.2em 0 .2em 20px;
-    background-color: #228A22;
-    border-bottom:solid 4px #A97;
+    background-color: #453619;
+    border-width: 4px 0px 4px 0px;
+    border-style: solid;
+    border-color: #5D835F;
 }
 h5, h6 {
     font:normal 1em/1.2em serif;
@@ -174,7 +170,7 @@ ol li a {
     text-decoration:none;
 }
 ol li a:hover {
-    text-decoration:underline;
+    text-decoration: none;
 }
 a {
     color: #542;
@@ -185,7 +181,7 @@ a:visited {
 a:hover {
     color: #000;
     background-color: #C1B398;
-    text-decoration:underline;
+    text-decoration: none;
 }
 span.preposition {
     padding-left:1em;
@@ -238,7 +234,7 @@ div#footer a, div#footer a:visited {
 }
 div#footer a:hover {
     color: #000;
-    text-decoration:underline;
+    text-decoration: none;
 }
 div#footer img {
     border:0;
@@ -300,7 +296,6 @@ div#navigation ul li a, div#subnavigation ul li a {
 }
 div#navigation ul li a:hover, div#subnavigation ul li a:hover {
     background-color: #C1B398;
-    color: #000;
 }
 div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     font-weight:bold;
@@ -314,7 +309,7 @@ div#navigation ul li.CurrentSection a:hover {
 }
 div#subnavigation ul li.CurrentSection a {
     border-width: 0px 0px 2px 0px;
-    border-color: #FFF;
+    border-color: #6AF364;
 }
 
 /* Alphabet Navigation
@@ -419,8 +414,6 @@ table.infolist tbody tr td.ColumnPartner a {
     padding:.6em 10px;
     vertical-align:middle;
 }
-table.infolist tbody tr td.ColumnPartner a:hover { }
-
 table.infolist tbody tr td.ColumnParents {
     font-size:.9em;
 }
@@ -434,8 +427,10 @@ table.infolist tbody tr td.ColumnParents span.mother:before {
 
 /* Surnames
 ----------------------------------------------------- */
-#Surnames {  }
-
+#Surnames {
+    margin: 0;
+    padding: 0;
+}
 #SurnameDetail p#description {
     padding-top:0;
 }
@@ -452,11 +447,8 @@ table.surnamelist thead tr th a, table.surnamelist thead tr th a:visited {
     text-decoration:none;
     padding:.2em 10px;
 }
-table.surnamelist tr th:hover { }
-
 table.surnamelist thead tr th.ColumnLetter {
-    padding-left:20px;
-    padding-right:10px;
+    padding: 0px 10px 0px 20px;
 }
 table.surnamelist tbody tr td {
     background-color: #D8F3D6;
@@ -482,14 +474,12 @@ table#SortByName tbody tr td.ColumnSurname a {
     display:block;
     padding:.1em 10px .3em 10px;
 }
-table#SortByCount tbody tr td.ColumnQuantity { }
-
 table.surnamelist tbody tr td.ColumnSurname:hover,
  table#SortByName tbody tr td.ColumnSurname:hover {
     background-color: #C1B398;
 }
 table.surname {
-    border-bottom:solid 1px #000;
+    border-bottom:solid 1px #5D835F;
 }
 table.surname thead tr th.ColumnName {
     width:20%;
@@ -508,8 +498,9 @@ table.surname tbody tr td.ColumnName a {
     display:block;
     padding:.6em 10px .6em 20px;
 }
-table.surname tbody tr td.ColumnName a span.grampsid { }
-
+table.surname tbody tr td.ColumnName a span.grampsid {
+    color: #000;
+}
 table.surname tbody tr td.ColumnName:hover {
     background-color: #C1B398;
 }
@@ -527,8 +518,10 @@ table.surname tbody tr td.ColumnParents {
 
 /* Individuals
 ----------------------------------------------------- */
-div#Individuals {  }
-
+div#Individuals {
+    margin: 0;
+    padding: 0;
+}
 div#Individuals table.individuallist {
     border-bottom: solid 1px #5D835F;
 }
@@ -562,9 +555,10 @@ div#Individuals div table.infolist tr td p {
 div#Individuals div table.infolist tr td p a {
     display:inline;
 }
-
-div#IndividualDetail { }
-
+div#IndividualDetail {
+    padding: 0;
+    margin: 0;
+}
 #IndividualDetail div table.infolist tr td {
     font:normal .9em/1.2em sans-serif;
     vertical-align:top;
@@ -573,7 +567,7 @@ div#IndividualDetail div table.infolist tr td a {
     display:inline;
 }
 div#IndividualDetail table.infolist tr td a:hover {
-    text-decoration:underline;
+    text-decoration: none;
 }
 div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
@@ -584,13 +578,14 @@ div#IndividualDetail div.subsection table tr td:first-child {
 
 /* Places
 ----------------------------------------------------- */
-#Places {  }
-
+#Places {
+    margin: 0;
+    padding: 0;
+}
 #Places table.infolist tbody tr td.ColumnLetter {
     background-color: #D8F3D6;
 }
 #Places table.infolist tbody tr td.ColumnName {
-    padding:0;
     background-color: #FFF;
 }
 #Places table.infolist tbody tr td.ColumnName a {
@@ -599,8 +594,10 @@ div#IndividualDetail div.subsection table tr td:first-child {
 
 /* EventList and EventDetail
 ----------------------------------------------------- */
-div#EventList, div#EventDetail { }
-
+div#EventList, div#EventDetail {
+    margin: 0;
+    padding: 0;
+}
 div#events table.eventlist {
     margin-top: .3cm;
 }
@@ -612,7 +609,7 @@ div#events table.eventlist tbody tr td.ColumnPlace a {
 }
 table.eventlist tbody tr td {
     background-color: #FFF;
-    border-bottom: dashed 1px #000;
+    border-bottom: dashed 1px #5D835F;
 }
 table.eventlist tbody tr td.ColumnEvent {
     width: 20%;
@@ -639,12 +636,8 @@ table.eventlist tbody tr td.ColumnPerson {
 table.eventlist tbody tr td.ColumnPartner {
     width: 35%;
 }
-div#families table.eventlist {
-    margin: 0;
-    padding: 0;
-}
 div#EventList table.eventlist tbody tr.BeginName {
-    border-top: solid 1px #000;
+    border-top: solid 1px #5D835F;
 }
 div#EventList table.eventlist tbody tr td {
     padding: 4px 0px 4px 0px;
@@ -678,8 +671,10 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     
 /* Gallery
 ----------------------------------------------------- */
-#Gallery {  }
-
+#Gallery {
+    margin: 0;
+    padding: 0;
+}
 #Gallery table.infolist tbody tr td.ColumnRowLabel, 
 #Gallery table.infolist tbody tr td.ColumnDate {
     background-color: #D8F3D6;
@@ -693,7 +688,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     padding:.1em 10px .3em 10px;
 }
 #Gallery table.gallerylist tbody tr td {
-    border-bottom: dashed 1px #000;
+    border-bottom: dashed 1px #5D835F;
 }
 #GalleryNav {
     font:normal 1em/1em sans-serif;
@@ -704,10 +699,8 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 #GalleryNav a {
     font-weight:bold;
     text-decoration:none;
-    border:solid 1px #228A22;
+    border:solid 1px #5D835F;
 }
-#GalleryNav a:hover { }
-
 #GalleryNav a#Previous {
     padding:.5em .7em .3em .7em;
 }
@@ -747,29 +740,28 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 }
 #GalleryDetail div#summaryarea table.gallery {
     padding-bottom:0;
-    margin-top:1.5em;
-    margin-bottom:0;
+    margin: 1.5em 0 0 0;
     border-style:solid;
     border-width:2px 0 1px 0;
-    border-color: #000;
+    border-color: #5D835F;
 }
 table.exifdata tr td.ColumnAttribute {
-    border-top:solid 1px #000;
+    border-top:solid 1px #5D835F;
     width:60%;
 }
 table.exiflist tr td.ColumnValue {
-    border-top:solid 1px #000;
+    border-top:solid 1px #5D835F;
     width:45%;
 }
 
 /* Contact
 ----------------------------------------------------- */
 #Contact #summaryarea {
-    background-color: #D8F3D7;
+    background-color: #D8F3D6;
     width:500px;
     margin:0 auto;
     padding:3em;
-    border:double 4px #000;
+    border:double 4px #5D835F;
 }
 #Contact #summaryarea img {
     float:right;
@@ -804,9 +796,6 @@ table.exiflist tr td.ColumnValue {
 }
 #email a {
     text-decoration:none;
-}
-#email a:hover {
-    text-decoration:underline;
 }
 
 /* Download 
