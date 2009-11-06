@@ -95,6 +95,7 @@ def GET_AVAILABLE_GRAMPLETS(name):
                 "column":  -1, 
                 "row":     -1,
                 "data":    [],
+                "help_url": gplug.help_url,
                 }
     return None
 
@@ -236,8 +237,14 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
             self.close()
         elif response == gtk.RESPONSE_HELP:
             # translated name:
-            GrampsDisplay.help(WIKI_HELP_PAGE, 
-                               self.gramplet.tname.replace(" ", "_"))
+            if self.gramplet.help_url:
+                if self.gramplet.help_url.startswith("http://"):
+                    GrampsDisplay.url(self.gramplet.help_url)
+                else:
+                    GrampsDisplay.help(self.gramplet.help_url)
+            else:
+                GrampsDisplay.help(WIKI_HELP_PAGE, 
+                                   self.gramplet.tname.replace(" ", "_"))
         
     def build_menu_names(self, obj):
         """
@@ -308,6 +315,7 @@ class GuiGramplet(object):
         self.row = int(kwargs.get("row", -1))
         self.state = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
+        self.help_url = kwargs.get("help_url", None)
         ##########
         self.use_markup = False
         self.pui = None # user code
