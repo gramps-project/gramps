@@ -4537,7 +4537,7 @@ class InternetAddressBook(BasePage):
     Will Create an Internet Address Book of people's web sites and email addresses
     """
 
-    def __init__(self, report, title, ind_list):
+    def __init__(self, report, title, ind_list, iab_progress):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -4576,6 +4576,7 @@ class InternetAddressBook(BasePage):
                 table += tbody
 
                 for person_handle in ind_list:
+                    iab_progress.step()
 
                     person = db.get_person_from_handle(person_handle)
                     urllist = person.get_url_list()
@@ -5198,7 +5199,10 @@ class NavWebReport(Report):
 
     def address_book_page(self, ind_list):
 
-        InternetAddressBook(self, self.title, ind_list)
+        # set progress pass
+        self.progress.set_pass(_("Creating internet address book page ..."), len(ind_list))
+
+        InternetAddressBook(self, self.title, ind_list, self.progress)
 
     def add_image(self, option_name, height=0):
         pic_id = self.options[option_name]
