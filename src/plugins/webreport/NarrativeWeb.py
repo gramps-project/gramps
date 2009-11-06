@@ -1268,16 +1268,40 @@ class BasePage(object):
                 descr = url.get_description()
                 if not descr:
                     descr = uri
-                if url.get_type() == UrlType.EMAIL and not uri.startswith("mailto:"):
-                    ordered += Html("li") + Html("a",descr,  href = 'mailto:%s' % url)
+                _type = url.get_type()
 
-                elif url.get_type() == UrlType.WEB_HOME and not uri.startswith("http://"):
-                    ordered += Html("li") + Html("a", descr, href = 'http://%s' % url)
+                uri = url.get_path()
+                descr = url.get_description()
+                if not descr:
+                    descr = uri
 
-                elif url.get_type() == UrlType.WEB_FTP and not uri.startswith("ftp://"):
-                    ordered += Html("li") + Html("a", descr, href = 'ftp://%s' % url)
+                list = Html("li")
+                ordered += list
+ 
+                # Email address
+                if _type == UrlType.EMAIL:
+                    if not uri.startswith("mailto:"):
+                        list += Html("a",descr,  href = 'mailto: %s' % uri)
+                    else:
+                        list += Html("a", descr, href = "%s" % uri)
+
+                # Web Site address
+                elif _type == UrlType.WEB_HOME:
+                    if not uri.startswith("http://"):
+                        list += Html("a", descr, href = 'http://%s' % uri)
+                    else:
+                        list += Html("a", href = "%s" % uri)
+
+                # FTP server address
+                elif _type == UrlType.WEB_FTP:
+                    if not uri.startswith("ftp://"):
+                        list += Html("a", descr, href = 'ftp://%s' % uri)
+                    else:
+                        list += Html("a", drscr, href = "%s" % uri) 
+
+                # custom type
                 else:
-                    ordered += Html("li") + Html("a", descr, href = url)
+                    list += Html("a", descr, href = uri)
                 
         # return web links to its caller
         return section
@@ -4588,7 +4612,8 @@ class InternetAddressBook(BasePage):
                         tbody += trow
 
                         # Internet link type
-                        trow += Html("td", str(url.get_type() ), class_ = "ColumnType", inline = True)
+                        _type = url.get_type()
+                        trow += Html("td", str(_type), class_ = "ColumnType", inline = True)
 
                         if first:
                             trow.attr = 'class = "BeginName"'
@@ -4606,25 +4631,33 @@ class InternetAddressBook(BasePage):
                         if not descr:
                             descr = uri
 
-                        if url.get_type() == UrlType.EMAIL and not uri.startswith("mailto:"):
-                            trow += Html("td", class_ = "ColumnLink") + (
-                                Html("a",descr,  href = 'mailto: %s' % url)
-                                ) 
+                        tcell = Html("td", class_ = "ColumnLink")
+                        trow += tcell
+ 
+                        # Email address
+                        if _type == UrlType.EMAIL:
+                            if not uri.startswith("mailto:"):
+                                tcell += Html("a",descr,  href = 'mailto: %s' % uri)
+                            else:
+                                tcell += Html("a", descr, href = "%s" % uri)
 
-                        elif url.get_type() == UrlType.WEB_HOME and not uri.startswith("http://"):
-                            trow += Html("td", class_ = "ColumnLink") + (
-                                Html("a", descr, href = 'http://%s' % url)
-                                )
+                        # Web Site address
+                        elif _type == UrlType.WEB_HOME:
+                            if not uri.startswith("http://"):
+                                tcell += Html("a", descr, href = 'http://%s' % uri)
+                            else:
+                                tcell += Html("a", href = "%s" % uri)
 
-                        elif url.get_type() == UrlType.WEB_FTP and not uri.startswith("ftp://"):
-                            trow += Html("td", class_ = "ColumnLink") + (
-                                Html("a", descr, href = 'ftp://%s' % url)
-                                )
+                        # FTP server address
+                        elif _type == UrlType.WEB_FTP:
+                            if not uri.startswith("ftp://"):
+                                tcell += Html("a", descr, href = 'ftp://%s' % uri)
+                            else:
+                                tcell += Html("a", drscr, href = "%s" % uri) 
 
+                        # custom type
                         else:
-                            trow += Html("td", class_ = "ColumnLink") + (
-                                Html("a", descr, href = url)
-                                )
+                            tcell += Html("a", descr, href = uri)
 
         # Add footer and clearline
         footer = self.write_footer()
