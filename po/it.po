@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-30 21:03+0100\n"
-"PO-Revision-Date: 2009-10-29 02:18+0100\n"
+"PO-Revision-Date: 2009-11-08 00:16+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: ../src/ArgHandler.py:472
 msgid "Database is locked, cannot open it!"
-msgstr "Il database è bloccato, non è possibile aprirlo."
+msgstr "Il database è bloccato, non è possibile aprirlo!"
 
 #: ../src/ArgHandler.py:473
 #, python-format
@@ -95,7 +95,7 @@ msgstr "  Info: %s"
 
 #: ../src/ArgHandler.py:476
 msgid "Database needs recovery, cannot open it!"
-msgstr "Il database deve essere ripristinato, non è possibile aprirlo."
+msgstr "Il database deve essere ripristinato, non è possibile aprirlo!"
 
 #: ../src/Assistant.py:337 ../src/Filters/Rules/Place/_HasPlace.py:47
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
@@ -6269,10 +6269,12 @@ msgid ""
 "GRAMPS XML export is a complete archived XML backup of the GRAMPS database "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
+"L'esportazione in GRAMPS XML produce un archivio XML completo del database "
+"GRAMPS senza gli oggetti multimediali. Adatto per il backup."
 
 #: ../src/plugins/export/ExportXml.py:1223
 msgid "GRAMPS XML export options"
-msgstr "Opzioni esportazione GEDCOM XML"
+msgstr "Opzioni esportazione GRAMPS XML"
 
 #: ../src/plugins/export/ExportXml.py:1226
 msgid "GRAMPS _XML database"
@@ -9621,7 +9623,7 @@ msgstr "EniroMaps"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens 'kartor.eniro.se' for places in Denmark and Sweden"
-msgstr ""
+msgstr "Apre 'kartor.eniro.se' per luoghi in Danimarca e Svezia"
 
 #: ../src/plugins/mapservices/googlemap.py:79
 msgid "GoogleMaps"
@@ -11676,11 +11678,11 @@ msgstr "Ricerca di problemi nei riferimenti a persone"
 
 #: ../src/plugins/tool/Check.py:854
 msgid "Checking people for proper date formats"
-msgstr ""
+msgstr "Controllo correttezza dei formati delle date per le persone"
 
 #: ../src/plugins/tool/Check.py:945
 msgid "Checking families for proper date formats"
-msgstr ""
+msgstr "Controllo correttezza dei formati delle date per le famiglie"
 
 #: ../src/plugins/tool/Check.py:1002
 msgid "Looking for repository reference problems"
@@ -11779,8 +11781,8 @@ msgstr[1] "Erano presenti riferimenti a %d persone ora mancanti\n"
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d data è stata corretta\n"
+msgstr[1] "%d date sono state corrette\n"
 
 #: ../src/plugins/tool/Check.py:1522
 #, python-format
@@ -13061,9 +13063,8 @@ msgid "Letter"
 msgstr "Lettera"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1097
-#, fuzzy
 msgid "Place name|Name"
-msgstr "Nome luogo"
+msgstr "Località"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1160
 #: ../src/plugins/webreport/NarrativeWeb.py:1404
@@ -13131,9 +13132,8 @@ msgstr ""
 "pagina."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1673
-#, fuzzy
 msgid "Source name|Name"
-msgstr "Nome fonte"
+msgstr "Fonte"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1722
 msgid "Publication information"
@@ -13150,9 +13150,8 @@ msgstr ""
 "multimediale si accede alla relativa pagina."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1761
-#, fuzzy
 msgid "Media|Name"
-msgstr "Nome oggetto multimediale"
+msgstr "Oggetto multimediale"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2019
 msgid "Ancestors"
@@ -13524,7 +13523,8 @@ msgstr "Indica se includere una colonna per i genitori"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3523
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Includi i fratelli unilaterali o i fratellastri nelle pagine personali"
+msgstr ""
+"Includere i fratelli unilaterali o i fratellastri nelle pagine personali"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3526
 msgid ""
@@ -13567,7 +13567,7 @@ msgstr "Un giorno di un anno"
 #: ../src/plugins/webreport/WebCal.py:844
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr "%(year)d, colpo d'occhio"
+msgstr "%(year)d, annuale"
 
 #: ../src/plugins/webreport/WebCal.py:856
 msgid ""
@@ -13581,9 +13581,8 @@ msgstr ""
 
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:863
-#, fuzzy
 msgid "Creating Year At A Glance calendar"
-msgstr "Generazione calendari di tipo «colpo d'occhio sull'anno»"
+msgstr "Generazione calendario annuale"
 
 #. open progress meter bar
 #: ../src/plugins/webreport/WebCal.py:893
@@ -13664,9 +13663,8 @@ msgstr ""
 "volta"
 
 #: ../src/plugins/webreport/WebCal.py:1197
-#, fuzzy
 msgid "Create \"Year At A Glance\" Calendar"
-msgstr "Generazione calendari di tipo «colpo d'occhio sull'anno»"
+msgstr "Generare calendari annuali"
 
 #: ../src/plugins/webreport/WebCal.py:1199
 msgid "Whether to create A one-page mini calendar with dates highlighted"
@@ -13844,10 +13842,9 @@ msgstr "Le note per il mese di dicembre"
 #: ../src/plugins/webreport/WebCal.py:1453
 #, python-format
 msgid "%s old"
-msgstr "%s"
+msgstr "%s (compleanno)"
 
 #: ../src/plugins/webreport/WebCal.py:1453
-#, fuzzy
 msgid "birth"
 msgstr "nascita"
 
@@ -16702,7 +16699,7 @@ msgid "Baptised%(endnotes)s."
 msgstr "Fu battezzato/a%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:818
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
@@ -16711,7 +16708,7 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He was christened on %(christening_date)s in %(christening_place)s%(endnotes)"
 "s."
@@ -16720,7 +16717,7 @@ msgstr ""
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:822
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was christened on %(christening_date)s in %"
 "(christening_place)s%(endnotes)s."
@@ -16729,7 +16726,7 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:823
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16738,7 +16735,7 @@ msgstr ""
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:826
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s in %"
 "(christening_place)s%(endnotes)s."
@@ -16747,7 +16744,7 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:827
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16756,51 +16753,51 @@ msgstr ""
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:829
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 "Battezzato/a il %(christening_date)s in quel di %(christening_place)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:834
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr "%(male_name)s fu battezzato il %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:835
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
 msgstr "Fu battezzato il %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:838
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr "%(female_name)s fu battezzata il %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:839
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
 msgstr "Fu battezzata il %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:842
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
 "%(unknown_gender_name)s fu battezzato/a il %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:843
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
 msgstr "Fu battezzata il %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:845
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
 msgstr "Battezzato/a il %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:850
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16809,7 +16806,7 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:851
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
@@ -16817,7 +16814,7 @@ msgstr ""
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:854
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16826,7 +16823,7 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:855
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
@@ -16834,7 +16831,7 @@ msgstr ""
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:858
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in %"
 "(christening_place)s%(endnotes)s."
@@ -16843,7 +16840,7 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:859
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16852,49 +16849,49 @@ msgstr ""
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:861
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 "Battezzato/a nel %(month_year)s in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:866
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr "%(male_name)s fu battezzato nel %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:867
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
 msgstr "Fu battezzato nel %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:870
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr "%(female_name)s fu battezzata nel %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:871
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
 msgstr "Fu battezzata nel %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:874
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr ""
 "%(unknown_gender_name)s fu battezzato/a nel %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:875
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
 msgstr "Fu battezzato/a nel %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:877
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
 msgstr "Battezzato/a nel %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:882
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16903,14 +16900,14 @@ msgstr ""
 "s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:883
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 "Fu battezzato %(modified_date)s in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:886
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16919,14 +16916,14 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:887
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 "Fu battezzata %(modified_date)s in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:890
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in %"
 "(christening_place)s%(endnotes)s."
@@ -16935,7 +16932,7 @@ msgstr ""
 "(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:891
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
@@ -16944,70 +16941,70 @@ msgstr ""
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:893
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 "Battezzato/a %(modified_date)s in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr "%(male_name)s fu battezzato %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:899
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
 msgstr "Fu battezzato %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:902
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr "%(female_name)s fu battezzata %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
 msgstr "Fu battezzata %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:906
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s fu battezzato/a %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:907
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
 msgstr "Fu battezzato/a %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:909
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
 msgstr "Battezzato/a %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:914
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 "%(male_name)s fu battezzato in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:915
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
 msgstr "Fu battezzato in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:918
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 "%(female_name)s fu battezzata in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:919
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
 msgstr "Fu battezzata in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:922
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
@@ -17015,47 +17012,47 @@ msgstr ""
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:923
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
 msgstr "Fu battezzato/a in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:925
-#, fuzzy, python-format
+#, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
 msgstr "Battezzato/a in quel di %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:930
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
 msgstr "%(male_name)s fu battezzato%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:931
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened%(endnotes)s."
 msgstr "Fu battezzato%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:934
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
 msgstr "%(female_name)s fu battezzata%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:935
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened%(endnotes)s."
 msgstr "Fu battezzata%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:938
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
 msgstr "%(unknown_gender_name)s fu battezzato/a%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:939
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened%(endnotes)s."
 msgstr "Fu battezzato/a%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:941
-#, fuzzy, python-format
+#, python-format
 msgid "Christened%(endnotes)s."
 msgstr "Battezzato/a%(endnotes)s."
 
@@ -19009,7 +19006,7 @@ msgstr "_Ripeti %s"
 
 #: ../src/gen/db/dbdir.py:560
 msgid "Need to upgrade database!"
-msgstr "È necessario aggiornare il database."
+msgstr "È necessario aggiornare il database!"
 
 #: ../src/gen/db/dbdir.py:561
 msgid ""
@@ -19466,7 +19463,7 @@ msgstr "Nome da coniugato/a"
 
 #: ../src/gen/lib/eventtype.py:100
 msgid "Adult Christening"
-msgstr ""
+msgstr "Battesimo (christening) da adulto"
 
 #: ../src/gen/lib/eventtype.py:101 ../src/gen/lib/ldsord.py:91
 msgid "Baptism"
@@ -19498,7 +19495,7 @@ msgstr "Censimento"
 
 #: ../src/gen/lib/eventtype.py:108
 msgid "Christening"
-msgstr ""
+msgstr "Battesimo (christening)"
 
 #: ../src/gen/lib/eventtype.py:109 ../src/gen/lib/ldsord.py:93
 msgid "Confirmation"
@@ -19638,7 +19635,7 @@ msgstr "Sposati"
 
 #: ../src/gen/lib/ldsord.py:92
 msgid "Endowment"
-msgstr "Investitura"
+msgstr "Dotazione"
 
 #: ../src/gen/lib/ldsord.py:94
 msgid "Sealed to Parents"
@@ -19680,10 +19677,9 @@ msgstr ""
 
 #: ../src/gen/lib/ldsord.py:107
 msgid "Pre-1970"
-msgstr ""
+msgstr "Pre-1970"
 
 #: ../src/gen/lib/ldsord.py:108
-#, fuzzy
 msgid "Qualified"
 msgstr "Qualificato"
 
@@ -19692,8 +19688,9 @@ msgid "DNS/CAN"
 msgstr ""
 
 #: ../src/gen/lib/ldsord.py:110
+#, fuzzy
 msgid "Stillborn"
-msgstr ""
+msgstr "Nato morto"
 
 #: ../src/gen/lib/ldsord.py:111
 #, fuzzy
@@ -19728,7 +19725,7 @@ msgstr ""
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr ""
 "ERRORE: impossibile caricare correttamente il filtro «%s». Modificare il "
-"filtro."
+"filtro!"
 
 #: ../src/Filters/_SearchBar.py:92
 #, python-format
@@ -20063,22 +20060,18 @@ msgid "Number must be:"
 msgstr "Il valore deve essere:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-#, fuzzy
 msgid "People with <count> addresses"
 msgstr "Persone con <totale> indirizzi"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-#, fuzzy
 msgid "Matches people with a certain number of personal addresses"
 msgstr "Estrae le persone con un certo numero di indirizzi"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-#, fuzzy
 msgid "People with <count> associations"
 msgstr "Persone con <totale> associazioni"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-#, fuzzy
 msgid "Matches people with a certain number of associations"
 msgstr "Estrae le persone con un certo numero di associazioni"
 
@@ -20129,7 +20122,7 @@ msgstr "Filtri ascendenza"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:47
 msgid "People with a common ancestor with <person>"
-msgstr "Persone il cui ascendente comune è <person>"
+msgstr "Persone il cui ascendente comune è <persona>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
@@ -20901,7 +20894,6 @@ msgid "Families with a reference count of <count>"
 msgstr "Famiglie con un numero di riferimenti pari a <totale>"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches family objects with a certain reference count"
 msgstr "Estrae le famiglie con un certo numero di riferimenti"
 
@@ -21204,9 +21196,8 @@ msgid "Matches every place in the database"
 msgstr "Estrae tutte i luoghi nel database"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:23
-#, fuzzy
 msgid "Places changed after <date time>"
-msgstr "Persone modificate dopo <data ora>"
+msgstr "Luoghi modificati dopo <data ora>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid ""
@@ -21965,12 +21956,15 @@ msgid "Select %s from a list"
 msgstr "Selezionare %s dall'elenco"
 
 #: ../src/FilterEditor/_EditRule.py:331
+#, fuzzy
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
+"Fornire o selezionare l'ID di una fonte; lasciare vuoto per trovare oggetti "
+"senza fonti."
 
 #: ../src/FilterEditor/_EditRule.py:482
 msgid "Include original person"
-msgstr "Includi persona originale"
+msgstr "Includere persona originale"
 
 #: ../src/FilterEditor/_EditRule.py:484
 msgid "Use exact case of letters"
@@ -23633,6 +23627,7 @@ msgstr ""
 "stessa persona inserite più volte nel database."
 
 #: ../src/data/tips.xml.in.h:8
+#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are related by "
 "birth to their parents. You can edit the relationship of a child to each "
@@ -23643,6 +23638,15 @@ msgid ""
 "child and its father and mother. Relationships can be any of Adopted, Birth, "
 "Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
+"<b>Modificare le relazioni di un figlio/a</b>: non tutti i figli sono "
+"collegati per nascita ai rispettivi genitori. Si può modicare la relazione "
+"di un figlio verso ogni genitore impostando il figlio/a come persona attiva. "
+"Nella vista relazioni, fare clic sulla terza icona alla destra della voce "
+"&quot;Genitori:&quot;. Selezionare quindi il figlio/a, fare clic con il "
+"pulsante destro e selezionare &quot;Modifica relazione&quot;. Da qui è "
+"possibile impostare il tipo di relazione tra il figlio/a e il padre e la "
+"madre. La relazioni possono essere scelta tra adozione, nascita, "
+"affidamento, nessuno, adozione a distanza, figliastro e sconosciuto."
 
 #: ../src/data/tips.xml.in.h:9
 msgid ""
@@ -23663,6 +23667,11 @@ msgid ""
 "development of GRAMPS, try gramps-devel. Information on both mailing lists "
 "can be found at lists.sf.net."
 msgstr ""
+"<b>Mailing list di GRAMPS</b>: Cercate risposte alle domande su GRAMPS? "
+"Controllate la lista gramps-users. Ci sono molte persone nella lista ed è "
+"quindi molto probabile poter ricevere rapidamente una risposta. Per domande "
+"collegate allo sviluppo di GRAMPS, provare su gramps-devel. Informazioni su "
+"entrambe le liste sono disponibili su lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:11
 msgid ""
@@ -23700,6 +23709,11 @@ msgid ""
 "users or gramps-devel mailing lists, or by creating a Feature Request at "
 "http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
+"<b>Migliorare GRAMPS</b>: gli utenti sono incoraggiati a richiedere "
+"miglioramenti in GRAMPS. Le richieste di miglioramenti possono essere fatte "
+"sia tramite le liste gramps-users o gramps-devel, sia creando una richiesta "
+"di nuova funzionalità (Feature Request) su http://bugs.gramps-project.org ; "
+"quest'ultima procedura è raccomandata."
 
 #: ../src/data/tips.xml.in.h:15
 msgid ""
@@ -23828,6 +23842,8 @@ msgid ""
 "An image can be added to any gallery or the Media View by dragging and "
 "dropping it from a file manager or a web browser."
 msgstr ""
+"Un'immagine può essere aggiunta ad ogni galleria, o alla vista multimedia, "
+"trascinandola dal gestore dei file o da un browser web."
 
 #: ../src/data/tips.xml.in.h:31
 msgid ""
@@ -23854,6 +23870,8 @@ msgid ""
 "Birth order of children in a family can be set, even if they do not have "
 "birth dates, by using drag and drop."
 msgstr ""
+"L'ordine delle nascita dei figli in una famiglia può essere impostato, anche "
+"in assenza delle date di nascita, tramite trascinamento."
 
 #: ../src/data/tips.xml.in.h:34
 msgid ""
@@ -23932,6 +23950,9 @@ msgid ""
 "your language and it is not being displayed, set the default language on "
 "your machine and restart GRAMPS."
 msgstr ""
+"GRAMPS è stato tradotto in più di venti lingue. Se GRAMPS supporta la lingua "
+"del sistema usato ma questa non viene mostrata, impostare correttamente la "
+"lingua predefinita nel sistema e riavviare GRAMPS."
 
 #: ../src/data/tips.xml.in.h:43
 msgid ""
@@ -23970,6 +23991,9 @@ msgid ""
 "GNOME libraries for the graphical interface. GRAMPS is supported on any "
 "computer system where these programs have been ported."
 msgstr ""
+"GRAMPS è scritto con un linguaggio per computer chiamato Python e usa le "
+"librerie GTK e di GNOME per l'interfaccia grafica. GRAMPS è supportato su "
+"ogni sistema informatico in cui questi programmi sono stati portati."
 
 #: ../src/data/tips.xml.in.h:48
 msgid ""
@@ -24031,6 +24055,9 @@ msgid ""
 "Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/"
 "listinfo/gramps-announce"
 msgstr ""
+"Volete essere avvisati quando una nuova versione di GRAMPS viene rilasciata? "
+"Basta iscriversi alla mailing list gramps-announce su http://lists."
+"sourceforge.net/lists/listinfo/gramps-announce"
 
 #: ../src/data/tips.xml.in.h:56
 msgid ""
@@ -24072,6 +24099,10 @@ msgid ""
 "GRAMPS can be extended by any programmer since all of the source code is "
 "freely available under its license."
 msgstr ""
+"Il modello di sviluppo del software libero e open source (Free/Libre and "
+"Open Source Software, FLOSS) fa sì che GRAMPS possa essere esteso da "
+"qualsiasi sviluppatore, poiché il codice sorgente è liberamente disponibile "
+"sotto la sua licenza."
 
 #: ../src/data/tips.xml.in.h:62
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
@@ -24082,6 +24113,9 @@ msgid ""
 "The Media View shows a list of all media entered in the database. These can "
 "be graphic images, videos, sound clips, spreadsheets, documents, and more."
 msgstr ""
+"La vista multimedia mostra l'elenco di tutti gli oggetti multimediali "
+"inseriti nel database. Questi incluono immagini, video, file sonori, fogli "
+"di calcolo, documenti, e molti altri."
 
 #: ../src/data/tips.xml.in.h:64
 msgid ""
@@ -24090,12 +24124,18 @@ msgid ""
 "individual to view a menu to quickly access their spouses, siblings, "
 "children, or parents."
 msgstr ""
+"La vista ascendenza mostra il tradizionale grafico dell'ascendenza. Tenere "
+"il mouse su una persona per vedere ulteriori informazioni su di essa, oppure "
+"fare clic col pulsante destro su una persona per visualizzare un menu che "
+"consente di accedere rapidamente ai suoi coniugi, fratelli, figli o genitori."
 
 #: ../src/data/tips.xml.in.h:65
 msgid ""
 "The Places View shows a list of all places in the database. The list can be "
 "sorted by a number of different criteria, such as City, County or State."
 msgstr ""
+"La vista luoghi mostra l'elenco di tutti i luoghi presenti nel database. La "
+"lista può essere ordinata in base a vari criteri, come Città, Contea o Stato."
 
 #: ../src/data/tips.xml.in.h:66
 msgid ""
@@ -24103,6 +24143,10 @@ msgid ""
 "click on each to edit, add notes, and to see which individuals reference the "
 "source."
 msgstr ""
+"La vista fonti mostra l'elenco di tutte le fonti nella stessa finestra. "
+"Tramite doppio clic su ogni fonte è possibile modificarla, aggiungere delle "
+"note e visualizzare l'elenco delle persone che fanno riferimento a tale "
+"fonte."
 
 #: ../src/data/tips.xml.in.h:67
 msgid ""
@@ -24118,6 +24162,10 @@ msgid ""
 "functions in GRAMPS have keyboard shortcuts. If one exists for a function it "
 "is displayed on the right side of the menu."
 msgstr ""
+"Stufi di staccare le mani dalla tastiera per usare il mouse? A molte "
+"funzioni di GRAMPS sono associati degli acceleratori da tastiera. Se una "
+"funzione ha un'acceleratore, questo viene mostrato nella parte destra del "
+"menu."
 
 #: ../src/data/tips.xml.in.h:69
 msgid ""
@@ -24142,6 +24190,8 @@ msgid ""
 "Unsure what a button does? Simply hold the mouse over a button and a tooltip "
 "will appear."
 msgstr ""
+"Dubbi sulla funzione di un pulsante? Basta tenere il puntatore del mouse sul "
+"pulsante e comparirà un suggerimento."
 
 #: ../src/data/tips.xml.in.h:72
 msgid ""
@@ -24151,6 +24201,12 @@ msgid ""
 "backups or sharing with other GRAMPS users. This format has advantages over "
 "GEDCOM in that no information is ever lost in exporting and importing."
 msgstr ""
+"È possibile convertire i dati in un pacchetto GRAMPS, che è un file "
+"compresso contenente i dati dell'albero genealogico e include tutti gli "
+"altri file usati dal database, come le immagini. Questo file è completamente "
+"portabile ed è quindi utile per i backup o per essere condiviso con altri "
+"utenti GRAMPS. Questo formato ha il vantaggio, rispetto a GEDCOM, che "
+"nessuna informazione viene persa in fase di esportazione o di importazione."
 
 #: ../src/data/tips.xml.in.h:73
 msgid ""
