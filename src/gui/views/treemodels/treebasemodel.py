@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,20 +50,21 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import config
+from Utils import conv_unicode_tosrtkey_ongtk
 from gen.utils.longop import LongOpStatus
-from Filters import SearchFilter
-# from Filters import ExactSearchFilter
 from Lru import LRU
+from bisect import bisect_right
+from Filters import SearchFilter, ExactSearchFilter
 
 #-------------------------------------------------------------------------
 #
-# TreeNodeMap
+# TreeBaseModel
 #
 #-------------------------------------------------------------------------
-class TreeNodeMap(object):
+class TreeBaseModel(gtk.GenericTreeModel):
     """
-    A NodeMap for a hierarchical treeview.  The map defines the mapping
-    between a unique node and a path. Paths are defined by a tuple.
+    The base class for all hierarchical treeview models.  The model defines the
+    mapping between a unique node and a path. Paths are defined by a tuple.
     The first element is an integer specifying the position in the top
     level of the hierarchy.  The next element relates to the next level
     in the hierarchy.  The number of elements depends on the depth of the
@@ -75,275 +77,56 @@ class TreeNodeMap(object):
                 is set to None if no gramps object is associated with the
                 node.
     children    A dictionary of parent nodes.  Each entry is a list of
-                (child, sortkey) tuples.  The list is sorted during the
+                (sortkey, child) tuples.  The list is sorted during the
                 build.  The top node of the hierarchy is None.
-    path2node   A dictionary of paths.  Each entry is a node.
-    node2path   A dictionary of nodes.  Each entry is a path.
     handle2node A dictionary of gramps handles.  Each entry is a node.
-
-    Nodes are added using the add_node method.
-    The path2node and node2path mapping is built using build_toplevel.
-    A simple recursive algorithm is used.
-    Branches of the tree can be re-built using build_sub_entry.
-    """
-    def __init__(self):
-        """
-        Initialise data structures
-        """
-        self.tree = {}
-        self.children = {}
-        self.path2node = {}
-        self.node2path = {}
-
-        self.handle2node = {}
-
-        self.__reverse = False
-
-    def clear(self):
-        """
-        Clear the entire map.
-        """
-        self.tree = {}
-        self.children = {}
-        self.path2node = {}
-        self.node2path = {}
-
-        self.handle2node = {}
-       
-    def clear_sub_entry(self, node):
-        """
-        Clear a single branch of the map.
-        """
-        if node is None:
-            self.path2node = {}
-            self.node2path = {}
-        else:
-            if node in self.children:
-                for child in self.children[node]:
-                    self.clear_node(child[0])
-
-    def clear_node(self, node):
-        if node in self.node2path:
-            path = self.node2path[node]
-            del self.path2node[path]
-            del self.node2path[node]
-            if node in self.children:
-                for child in self.children[node]:
-                    self.clear_node(child[0])
-        
-    def add_node(self, parent, child, sortkey, handle):
-        """
-        Add a node to the map.
-        
-        parent      The parent node for the child.  None for top level.
-        child       A unique ID for the node.
-        sortkey     A key by which to sort child nodes of each parent.
-        handle      The gramps handle of the object corresponding to the
-                    node.  None if the node does not have a handle.
-        """
-        if child in self.tree:
-            if handle:
-                self.tree[child][1] = handle
-            node_added = False
-        else:
-
-            self.tree[child] = [parent, handle]
-            if parent in self.children:
-                self.children[parent] += [(child, sortkey)]
-            else:
-                self.children[parent] = [(child, sortkey)]                
-            node_added = True
-
-        if handle:
-            self.handle2node[handle] = child
-
-        return node_added
-        
-    def remove_node(self, node):
-        if node in self.children:
-            self.tree[node][1] = None
-            node_removed = False
-        else:
-            parent = self.tree[node][0]
-            del self.tree[node]
-            new_list = []
-            for child in self.children[parent]:
-                if child[0] != node:
-                    new_list.append(child)
-            if len(new_list) == 0:
-                del self.children[parent]
-            else:
-                self.children[parent] = new_list
-            node_removed = True
-
-        return node_removed
-
-    def build_sub_entry(self, node, path, sort):
-        """
-        Build the path2node and node2path maps for the children of a
-        given node and recursively builds the next level down.
-        
-        node        The parent node.
-        path        The path of the parent node.
-        """
-        if sort:
-            self.children[node].sort(key=lambda x: locale.strxfrm(x[1]))
-        for i, child in enumerate(self.children[node]):
-            if self.__reverse:
-                new_path = path + [len(self.children[node]) - i - 1]
-            else:
-                new_path = path + [i]
-            self.path2node[tuple(new_path)] = child[0]
-            self.node2path[child[0]] = tuple(new_path)
-            if child[0] in self.children:
-                self.build_sub_entry(child[0], new_path, sort)
-
-    def build_toplevel(self, sort=True):
-        """
-        Build the complete map from the top level.
-        """
-        if len(self.tree) == 0:
-            return
-        self.build_sub_entry(None, [], sort)
-
-    def reverse_order(self):
-        self.__reverse = not self.__reverse
-        self.path2node = {}
-        self.node2path = {}
-        self.build_toplevel(sort=False)
-        
-    def get_handle(self, node):
-        """
-        Get the gramps handle for a node.  Return None if the node does
-        not correspond to a gramps object.
-        """
-        if node in self.tree:
-            return self.tree[node][1]
-        else:
-            return None
-            
-    def get_node(self, handle):
-        """
-        Get the node for a handle.
-        """
-        if handle in self.handle2node:
-            return self.handle2node[handle]
-        else:
-            return None
-            
-    # The following methods support the public interface of the
-    # GenericTreeModel.
     
-    def get_path(self, node):
-        """
-        Get the path for a node.
-        """
-        # For trees without the active person a key error is thrown
-        return self.node2path[node]        
-
-    def get_iter(self, path):
-        """
-        Build the complete map from the top level.
-        """
-        if path in self.path2node:
-            return self.path2node[path]
-        else:
-            # Empty tree
-            return None
-
-    def find_next_node(self, node):
-        """
-        Get the next node with the same parent as the given node.
-        """
-        path_list = list(self.node2path[node])
-        path_list[len(path_list)-1] += 1
-        path = tuple(path_list)
-        if path in self.path2node:
-            return self.path2node[path]
-        else:
-            return None
-
-    def first_child(self, node):
-        """
-        Get the first child of the given node.
-        """
-        if node in self.children:
-            if self.__reverse:
-                size = len(self.children[node])
-                return self.children[node][size - 1][0]
-            else:
-                return self.children[node][0][0]
-        else:
-            return None
-        
-    def has_child(self, node):
-        """
-        Find if the given node has any children.
-        """
-        if node in self.children:
-            return True
-        else:
-            return False
-
-    def number_of_children(self, node):
-        """
-        Get the number of children of the given node.
-        """
-        if node in self.children:
-            return len(self.children[node])
-        else:
-            return 0
-
-    def get_nth_child(self, node, index):
-        """
-        Get the nth child of the given node.
-        """
-        if node in self.children:
-            if len(self.children[node]) > index:
-                if self.__reverse:
-                    size = len(self.children[node])
-                    return self.children[node][size - index - 1][0]
-                else:
-                    return self.children[node][index][0]
-            else:
-                return None
-        else:
-            return None
-
-    def get_parent_of(self, node):
-        """
-        Get the parent of the given node.
-        """
-        if node in self.tree:
-            return self.tree[node][0]
-        else:
-            return None
-
-#-------------------------------------------------------------------------
-#
-# TreeBaseModel
-#
-#-------------------------------------------------------------------------
-class TreeBaseModel(gtk.GenericTreeModel):
-    """
-    The base class for all hierarchical treeview models. 
-    It keeps a TreeNodeMap, and obtains data from database as needed.
+    The model obtains data from database as needed and holds a cache of most
+    recently used data.
+    As iter for generictreemodel, node is used. This will be the handle for 
+    database objects.
+    
+    Creation:
+    db      :   the database
+    tooltip_column :  column number of tooltip
+    marker_column  :  column number of marker
+    search         :  the search that must be shown
+    skip           :  values not to show
+    scol           :  column on which to sort
+    order          :  order of the sort
+    sort_map       :  mapping from columns seen on the GUI and the columns 
+                      as defined here
+    nrgroups       :  maximum number of grouping level, 0 = no group, 
+                      1= one group, .... Some optimizations can be for only
+                      one group. nrgroups=0 should never be used, as then a 
+                      flatbasemodel should be used
+    group_can_have_handle :
+                      can groups have a handle. If False, this means groups 
+                      are only used to group subnodes, not for holding data and
+                      showing subnodes
     """
 
     # LRU cache size
     _CACHE_SIZE = 250
    
-    # Search/Filter modes
-    GENERIC = 0
-    SEARCH = 1
-    FAST = 2
-
     def __init__(self, db, tooltip_column, marker_column=None,
                     search=None, skip=set(),
-                    scol=0, order=gtk.SORT_ASCENDING, sort_map=None):
+                    scol=0, order=gtk.SORT_ASCENDING, sort_map=None,
+                    nrgroups = 1,
+                    group_can_have_handle = False):
         cput = time.clock()
         gtk.GenericTreeModel.__init__(self)
 
+        # Initialise data structures
+        self.tree = {}
+        self.children = {}
+        self.children[None] = []
+        self.handle2node = {}
+        self.__reverse = (order == gtk.SORT_DESCENDING)
+        self.nrgroups = nrgroups
+        self.group_can_have_handle = group_can_have_handle
+
+        self.set_property("leak_references", False)
         self.db = db
         #normally sort on first column, so scol=0
         if sort_map:
@@ -353,11 +136,12 @@ class TreeBaseModel(gtk.GenericTreeModel):
             #we need the model col, that corresponds with scol
             col = self.sort_map[scol][1]
             self.sort_func = self.smap[col]
+            self.sort_col = col
         else:
             self.sort_func = self.smap[scol]
-        self.sort_col = scol
+            self.sort_col = scol
     
-        self.in_build = False
+        self._in_build = False
         
         self.lru_data  = LRU(TreeBaseModel._CACHE_SIZE)
 
@@ -372,15 +156,13 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.todo_color = config.get('preferences.todo-color')
         self.custom_color = config.get('preferences.custom-marker-color')
 
-        self.mapper = TreeNodeMap()
-        self.set_search(search)
-            
-        self.tooltip_column = tooltip_column
-        self.marker_color_column = marker_column
+        self._tooltip_column = tooltip_column
+        self._marker_column = marker_column
 
         self.__total = 0
         self.__displayed = 0
 
+        self.set_search(search)
         self.rebuild_data(self.current_filter, skip)
 
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
@@ -388,19 +170,62 @@ class TreeBaseModel(gtk.GenericTreeModel):
 
 
     def __update_todo(self, *args):
+        """
+        Update the todo color when the preferences change.
+        """
         self.todo_color = config.get('preferences.todo-color')
         
     def __update_custom(self, *args):
+        """
+        Update the custom color when the preferences change.
+        """
         self.custom_color = config.get('preferences.custom-marker-color')
 
     def __update_complete(self, *args):
+        """
+        Update the complete color when the preferences change.
+        """
         self.complete_color = config.get('preferences.complete-color')
 
     def displayed(self):
+        """
+        Return the number of rows displayed.
+        """
         return self.__displayed
         
     def total(self):
+        """
+        Return the total number of rows without a filter or search condition.
+        """
         return self.__total
+
+    def tooltip_column(self):
+        """
+        Return the tooltip column.
+        """
+        return self._tooltip_column
+
+    def marker_column(self):
+        """
+        Return the marker color column.
+        """
+        return self._marker_column
+
+    def clear_cache(self):
+        """
+        Clear the LRU cache.
+        """
+        self.lru_data.clear()
+
+    def clear(self):
+        """
+        Clear the data map.
+        """
+        self.tree = {}
+        self.children = {}
+        self.children[None] = []
+        self.handle2node = {}
+        self.__reverse = False
 
     def set_search(self, search):
         """
@@ -412,24 +237,28 @@ class TreeBaseModel(gtk.GenericTreeModel):
           with the new entries
         """
         if search:
-            if search[0]:
+            if search[0] == 1: # Filter
                 #following is None if no data given in filter sidebar
                 self.search = search[1]
-                self._build_data = self._build_filter_sub
-            else:
+                self._build_data = self._rebuild_filter
+            elif search[0] == 0: # Search
                 if search[1]:
                     # we have search[1] = (index, text_unicode, inversion)
-                    col = search[1][0]
-                    text = search[1][1]
-                    inv = search[1][2]
+                    col, text, inv = search[1]
                     func = lambda x: self._get_value(x, col) or u""
-                    self.search = SearchFilter(func, text, inv)
+                    if search[2]:
+                        self.search = ExactSearchFilter(func, text, inv)
+                    else:
+                        self.search = SearchFilter(func, text, inv)
                 else:
                     self.search = None
-                self._build_data = self._build_search_sub
+                self._build_data = self._rebuild_search
+            else: # Fast filter
+                self.search = search[1]
+                self._build_data = self._rebuild_search
         else:
             self.search = None
-            self._build_data = self._build_search_sub
+            self._build_data = self._rebuild_search
             
         self.current_filter = self.search
 
@@ -437,23 +266,28 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Rebuild the data map.
         """
+        cput = time.clock()
         self.clear_cache()
-        self.in_build  = True
-
-        self.mapper.clear()
+        self._in_build = True
 
         if not self.db.is_open():
             return
 
-        #self._build_data(data_filter, skip)
+        self.clear()
         self._build_data(self.current_filter, skip)
-        self.mapper.build_toplevel()
+        self.sort_data()
 
-        self.in_build  = False
+        self._in_build = False
 
         self.current_filter = data_filter
+        
+        _LOG.debug(self.__class__.__name__ + ' rebuild_data ' +
+                    str(time.clock() - cput) + ' sec')
 
-    def _build_search_sub(self, dfilter, skip):
+    def _rebuild_search(self, dfilter, skip):
+        """
+        Rebuild the data map where a search condition is applied.
+        """
         self.__total = 0
         self.__displayed = 0
         with self.gen_cursor() as cursor:
@@ -464,8 +298,10 @@ class TreeBaseModel(gtk.GenericTreeModel):
                     self.__displayed += 1
                     self.add_row(handle, data)
 
-    def _build_filter_sub(self, dfilter, skip):
-        
+    def _rebuild_filter(self, dfilter, skip):
+        """
+        Rebuild the data map where a filter is applied.
+        """        
         with self.gen_cursor() as cursor:
             handle_list = [key for key, data in cursor]
         self.__total = len(handle_list)
@@ -487,54 +323,160 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 self.add_row(handle, data)
         status.end()
         
-    def reverse_order(self):
-        self.mapper.reverse_order()
+    def add_node(self, parent, child, sortkey, handle, add_parent=True):
+        """
+        Add a node to the map.
+        
+        parent      The parent node for the child.  None for top level. If
+                    this node does not exist, it will be added under the top
+                    level if add_parent=True. For performance, if you have
+                    added the parent, passing add_parent=False, will skip adding
+                    missing parent
+        child       A unique ID for the node.
+        sortkey     A key by which to sort child nodes of each parent.
+        handle      The gramps handle of the object corresponding to the
+                    node.  None if the node does not have a handle.
+        add_parent  Bool, if True, check if parent is present, if not add the 
+                    parent as a top group with no handle
+        """
+        sortkey = conv_unicode_tosrtkey_ongtk(sortkey)
+        if add_parent and not (parent in self.tree):
+            #add parent to self.tree as a node with no handle, as the first
+            #group level
+            self.add_node(None, parent, parent, None, add_parent=False)
+        if child in self.tree:
+            #a node is added that is already present,
+            self._add_dup_node(parent, child, sortkey, handle)
+        else:
+            self.tree[child] = (parent, handle)
+            if parent in self.children:
+                if self._in_build:
+                    self.children[parent].append((sortkey, child))
+                else:
+                    index = bisect_right(self.children[parent], (sortkey, child))
+                    self.children[parent].insert(index, (sortkey, child))
+            else:
+                self.children[parent] = [(sortkey, child)]
 
-    def clear_cache(self):
-        self.lru_data.clear()
+            if not self._in_build:
+                # emit row_inserted signal
+                path = self.on_get_path(child)
+                node = self.get_iter(path)
+                self.row_inserted(path, node)
 
-    def build_sub_entry(self, node):
-        self.mapper.clear_sub_entry(node)
-        if node is None:
-            self.mapper.build_toplevel(sort=True)
+        if handle:
+            self.handle2node[handle] = child
+
+    def _add_dup_node(self, parent, child, sortkey, handle):
+        """
+        How to handle adding a node a second time
+        Default: if group nodes can have handles, it is allowed to add it 
+            again, and this time setting the handle
+        Otherwise, a node should never be added twice!
+        """
+        if not self.group_can_have_handle:
+            raise ValueError, 'attempt to add twice a node to the model %s' % \
+                                str(parent) + ' ' + str(child) + ' ' + sortkey
+        present_val = self.tree[child]
+        if handle and present_val[1] is None:
+            self.tree[child][1] = handle
+        elif handle is None:
+            pass
+        else:
+            #handle given, and present handle is not None
+            raise ValueError, 'attempt to add twice a node to the model'
+
+    def sort_data(self):
+        """
+        Sort the data in the map according to the value of the sort key.
+        """
+        for node in self.children:
+            self.children[node].sort()
+            
+    def remove_node(self, node):
+        """
+        Remove a node from the map.
+        """
+        if node in self.children:
+            self.tree[node][1] = None
         else:
             path = self.on_get_path(node)
-            self.mapper.build_sub_entry(node, list(path), sort=True)
+            parent = self.tree[node][0]
+            del self.tree[node]
+            new_list = []
+            for child in self.children[parent]:
+                if child[1] != node:
+                    new_list.append(child)
+            if len(new_list) == 0:
+                del self.children[parent]
+            else:
+                self.children[parent] = new_list
+
+            # emit row_deleted signal
+            self.row_deleted(path)
+        
+    def reverse_order(self):
+        """
+        Reverse the order of the map.
+        """
+        cput = time.clock()
+        self.__reverse = not self.__reverse
+        self._reverse_level(None)
+        _LOG.debug(self.__class__.__name__ + ' reverse_order ' +
+                    str(time.clock() - cput) + ' sec')
+
+    def _reverse_level(self, node):
+        """
+        Reverse the order of a single level in the map.
+        """
+        if node in self.children:
+            rows = range(len(self.children[node]))
+            rows.reverse()
+            if node is None:
+                path = iter = None
+            else:
+                path = self.on_get_path(node)
+                iter = self.get_iter(path)
+            self.rows_reordered(path, iter, rows)
+            for child in self.children[node]:
+                self._reverse_level(child[1])
 
     def add_row(self, handle, data):
-        pass
+        """
+        Add a row to the model.  In general this will add more then one node.
+        """
+        raise NotImplementedError
 
     def add_row_by_handle(self, handle):
         """
         Add a row to the model.
         """
+        cput = time.clock()
         data = self.map(handle)
-        top_node = self.add_row(handle, data)
-        parent_node = self.on_iter_parent(top_node)
-        
-        self.build_sub_entry(parent_node)
+        self.add_row(handle, data)
 
-        path = self.on_get_path(top_node)
-        node = self.get_iter(path)
-        # only one row_inserted and row_has_child_toggled is needed?
-        self.row_inserted(path, node)
-        self.row_has_child_toggled(path, node)
+        _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
+                    str(time.clock() - cput) + ' sec')
 
     def delete_row_by_handle(self, handle):
         """
         Delete a row from the model.
         """
+        cput = time.clock()
         self.clear_cache()
+
         node = self.get_node(handle)
         parent = self.on_iter_parent(node)
-        while node and self.mapper.remove_node(node):
-            path = self.on_get_path(node)
-            node = parent
-            parent = self.on_iter_parent(parent)
-            
-        self.build_sub_entry(node)
+        self.remove_node(node)
         
-        self.row_deleted(path)
+        while parent is not None:
+            next_parent = self.on_iter_parent(parent)
+            if parent not in self.children:
+                self.remove_node(parent)
+            parent = next_parent
+            
+        _LOG.debug(self.__class__.__name__ + ' delete_row_by_handle ' +
+                    str(time.clock() - cput) + ' sec')
 
     def update_row_by_handle(self, handle):
         """
@@ -543,31 +485,26 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.delete_row_by_handle(handle)
         self.add_row_by_handle(handle)
         
-        # If the node hasn't moved all we need is to call row_changed.
+        # If the node hasn't moved, all we need is to call row_changed.
         #self.row_changed(path, node)
         
-    def get_node(self, handle):
-        return self.mapper.get_node(handle)
-        
     def get_handle(self, node):
-        return self.mapper.get_handle(node)
-
-    def _get_value(self, handle, col):
         """
-        Returns the contents of a given column of a gramps object
+        Get the gramps handle for a node.  Return None if the node does
+        not correspond to a gramps object.
         """
-        try:
-            if handle in self.lru_data:
-                data = self.lru_data[handle]
-            else:
-                data = self.map(handle)
-                if not self.in_build:
-                    self.lru_data[handle] = data
-            return (self.fmap[col](data, handle))
-        except:
-            return None
+        ret = self.tree.get(node)
+        if ret:
+            return ret[1]
+        return ret
+            
+    def get_node(self, handle):
+        """
+        Get the node for a handle.
+        """
+        return self.handle2node.get(handle)
 
-    # The following define the public interface of gtk.GenericTreeModel
+    # The following implement the public interface of gtk.GenericTreeModel
 
     def on_get_flags(self):
         """
@@ -582,34 +519,22 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         raise NotImplementedError
 
-    def on_get_path(self, node):
-        """
-        See gtk.GenericTreeModel
-        """
-        return self.mapper.get_path(node)
-
     def on_get_column_type(self, index):
         """
         See gtk.GenericTreeModel
         """
-        if index == self.tooltip_column:
+        if index == self._tooltip_column:
             return object
         return str
-
-    def on_get_iter(self, path):
-        """
-        See gtk.GenericTreeModel
-        """
-        return self.mapper.get_iter(path)
 
     def on_get_value(self, node, col):
         """
         See gtk.GenericTreeModel
         """
-        handle = self.mapper.get_handle(node)
+        handle = self.get_handle(node)
         if handle is None:
             # Header rows dont get the foreground color set
-            if col == self.marker_color_column:
+            if col == self._marker_column:
                 return None
 
             # Look for header fuction for column and call it
@@ -623,39 +548,131 @@ class TreeBaseModel(gtk.GenericTreeModel):
             # return values for 'data' row, calling a function
             # according to column_defs table
             return self._get_value(handle, col)
+            
+    def _get_value(self, handle, col):
+        """
+        Returns the contents of a given column of a gramps object
+        """
+        try:
+            if handle in self.lru_data:
+                data = self.lru_data[handle]
+            else:
+                data = self.map(handle)
+                if not self._in_build:
+                    self.lru_data[handle] = data
+            return (self.fmap[col](data, handle))
+        except:
+            return None
 
-    def on_iter_next(self,  node):
+    def on_get_iter(self, path):
         """
-        See gtk.GenericTreeModel
+        Returns a node from a given path.
         """
-        return self.mapper.find_next_node(node)
+        if not self.tree:
+            return None
+        node = None
+        pathlist = list(path)
+        for index in pathlist:
+            if self.__reverse:
+                size = len(self.children[node])
+                node = self.children[node][size - index - 1][1]
+            else:
+                node = self.children[node][index][1]
+        return node
+        
+    def on_get_path(self, node):
+        """
+        Returns a path from a given node.
+        """
+        pathlist = []
+        while node is not None:
+            parent = self.tree[node][0]
+            for index, value in enumerate(self.children[parent]):
+                if value[1] == node:
+                    break
+            if self.__reverse:
+                size = len(self.children[parent])
+                pathlist.append(size - index - 1)
+            else:
+                pathlist.append(index)
+            node = parent
+        if pathlist is not None:
+            pathlist.reverse()
+            return tuple(pathlist)
+        else:
+            return None
+            
+    def on_iter_next(self, node):
+        """
+        Get the next node with the same parent as the given node.
+        """
+        parent = self.tree[node][0]
+        for index, child in enumerate(self.children[parent]):
+            if child[1] == node:
+                break
+                
+        if self.__reverse:
+            index -= 1
+        else:
+            index += 1
+
+        if index >= 0 and index < len(self.children[parent]):
+            return self.children[parent][index][1]
+        else:
+            return None
 
     def on_iter_children(self, node):
         """
-        See gtk.GenericTreeModel
+        Get the first child of the given node.
         """
-        return self.mapper.first_child(node)
-
+        if node in self.children:
+            if self.__reverse:
+                size = len(self.children[node])
+                return self.children[node][size - 1][1]
+            else:
+                return self.children[node][0][1]
+        else:
+            return None
+        
     def on_iter_has_child(self, node):
         """
-        See gtk.GenericTreeModel
+        Find if the given node has any children.
         """
-        return self.mapper.has_child(node)
+        if node in self.children:
+            return True
+        else:
+            return False
 
     def on_iter_n_children(self, node):
         """
-        See gtk.GenericTreeModel
+        Get the number of children of the given node.
         """
-        return self.mapper.number_of_children(node)
+        if node in self.children:
+            return len(self.children[node])
+        else:
+            return 0
 
     def on_iter_nth_child(self, node, index):
         """
-        See gtk.GenericTreeModel
+        Get the nth child of the given node.
         """
-        return self.mapper.get_nth_child(node, index)
+        if node in self.children:
+            if len(self.children[node]) > index:
+                if self.__reverse:
+                    size = len(self.children[node])
+                    return self.children[node][size - index - 1][1]
+                else:
+                    return self.children[node][index][1]
+            else:
+                return None
+        else:
+            return None
 
     def on_iter_parent(self, node):
         """
-        See gtk.GenericTreeModel
+        Get the parent of the given node.
         """
-        return self.mapper.get_parent_of(node)
+        if node in self.tree:
+            return self.tree[node][0]
+        else:
+            return None

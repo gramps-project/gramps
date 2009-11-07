@@ -37,7 +37,6 @@ import pango
 import const
 import ManagedWindow
 from Filters import SearchBar
-from DisplayModels import PeopleModel
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -62,7 +61,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             set of handles to skip in the view, and search_bar to show the 
             SearchBar at the top or not. 
         """
-        self.filter = filter
+        self.filter = (2, filter, False)
 
         # Set window title, some selectors may set self.title in their __init__
         if not hasattr(self, 'title'):
@@ -231,6 +230,12 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         raise NotImplementedError
             
+    def exact_search(self):
+        """
+        Returns a tuple indicating columns requiring an exact search
+        """
+        return ()
+
     def setup_filter(self):
         """
         Builds the default filters and add them to the filter bar.
@@ -244,23 +249,25 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         Builds the selection people see in the Selector
         """
-        #search info for the 
-        filter_info = (False, self.search_bar.get_value(), False)
+        if self.filter:
+            filter_info = self.filter
+        else:
+            #search info for the 
+            if self.search_bar.get_value()[0] in self.exact_search():
+                filter_info = (0, self.search_bar.get_value(), True)
+            else:
+                filter_info = (0, self.search_bar.get_value(), False)
+
         #set up cols the first time
         if self.setupcols :
             self.add_columns(self.tree)
-            
+
         #reset the model with correct sorting
-        if self.get_model_class() is PeopleModel:
-            self.model = PeopleModel(self.db,
-                                     (PeopleModel.FAST, self.filter),
-                                     skip=self.skip_list)
-        else:
-            self.model = self.get_model_class()(self.db, self.sort_col,
-                                                self.sortorder,
-                                                sort_map=self.column_order(),
-                                                skip=self.skip_list,
-                                                search=filter_info)
+        self.model = self.get_model_class()(self.db, self.sort_col,
+                                            self.sortorder,
+                                            sort_map=self.column_order(),
+                                            skip=self.skip_list,
+                                            search=filter_info)
         
         self.tree.set_model(self.model)
 
@@ -272,10 +279,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             self.columns[self.sort_col].set_sort_order(self.sortorder)
 
         # set the search column to be the sorted column
-        if self.get_model_class() is PeopleModel:
-            search_col = 0
-        else:
-            search_col = self.column_order()[self.sort_col][1]
+        search_col = self.column_order()[self.sort_col][1]
         self.tree.set_search_column(search_col)
         
         self.setupcols = False
@@ -283,18 +287,17 @@ class BaseSelector(ManagedWindow.ManagedWindow):
     def column_clicked(self, obj, data):
         if self.sort_col != data:
             self.sortorder = gtk.SORT_ASCENDING
+            self.sort_col = data
+            self.build_tree()
         else:
             if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
                 or not self.columns[data].get_sort_indicator()):
                 self.sortorder = gtk.SORT_ASCENDING
             else:
                 self.sortorder = gtk.SORT_DESCENDING
+            self.model.reverse_order()
 
-        self.sort_col = data
         handle = self.first_selected()
-
-        self.build_tree()
-
         if handle:
             path = self.model.on_get_path(handle)
             self.selection.select_path(path)
@@ -303,9 +306,12 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         return True
 
     def show_toggle(self, obj):
-        filter = None if obj.get_active() else self.filter
+        filter_info = None if obj.get_active() else self.filter
 
-        self.model = PeopleModel(self.db, (PeopleModel.FAST, filter),
-                     skip=self.skip_list)
+        self.model = self.get_model_class()(self.db, self.sort_col,
+                                            self.sortorder,
+                                            sort_map=self.column_order(),
+                                            skip=self.skip_list,
+                                            search=filter_info)
         self.tree.set_model(self.model)
         self.tree.grab_focus()

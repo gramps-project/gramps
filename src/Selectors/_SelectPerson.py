@@ -107,6 +107,12 @@ class SelectPerson(BaseSelector):
             ]
         return column_names
 
+    def exact_search(self):
+        """
+        Returns a tuple indicating columns requiring an exact search
+        """
+        return (2,) # Gender ('female' contains the string 'male')
+
     def _on_row_activated(self, treeview, path, view_col):
         store, paths = self.selection.get_selected_rows()
         if paths and len(paths[0]) == 2 :

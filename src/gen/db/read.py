@@ -1404,9 +1404,9 @@ class GrampsDbRead(GrampsDbBase, Callback):
         Return the Person display common information stored in the database's 
         metadata.
         """
-        default = [(1, 1, 100), (1, 2, 100), (1, 3, 150), (0, 4, 150),
-                   (1, 5, 150), (0, 6, 150), (0, 7, 100), (0, 8, 100),
-                   ]
+        default = [(1, 0, 250), (1, 1, 50), (1, 2, 75), (1, 3, 100),
+                   (1, 4, 175), (1, 5, 100), (1, 6, 175), (1, 7, 100),
+                   (0, 8, 100)]
         return self.__get_column_order(PERSON_COL_KEY, default)
 
     def __get_columns(self, key, default):

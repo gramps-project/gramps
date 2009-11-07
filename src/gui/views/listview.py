@@ -34,7 +34,7 @@ import cPickle as pickle
 import time
 import logging
 
-_LOG = logging.getLogger('.listview')
+_LOG = logging.getLogger('.gui.listview')
 
 #----------------------------------------------------------------
 #
@@ -215,14 +215,15 @@ class ListView(NavigationView):
 
     def build_tree(self):
         if self.active:
-            cput = time.clock()
+            cput0 = time.clock()
             if config.get('interface.filter'):
-                filter_info = (True, self.generic_filter)
+                filter_info = (True, self.generic_filter, False)
             else:
-                if self.search_bar.get_value()[0] in self.exact_search():
-                    filter_info = (False, self.search_bar.get_value(), True)
+                value = self.search_bar.get_value()
+                if value[0] in self.exact_search():
+                    filter_info = (False, value, True)
                 else:
-                    filter_info = (False, self.search_bar.get_value(), False)
+                    filter_info = (False, value, False)
 
             if self.dirty or not self.model:
                 self.model = self.make_model(self.dbstate.db, self.sort_col, 
@@ -235,8 +236,11 @@ class ListView(NavigationView):
                 self.model.set_search(filter_info)
                 self.model.rebuild_data()
             
+            cput1 = time.clock()
             self.build_columns()
+            cput2 = time.clock()
             self.list.set_model(self.model)
+            cput3 = time.clock()
             self.__display_column_sort()
             self.goto_active(None)
 
@@ -244,11 +248,17 @@ class ListView(NavigationView):
                 self.tooltips = TreeTips.TreeTips(
                     self.list, self.model.tooltip_column, True)
             self.dirty = False
+            cput4 = time.clock()
             self.uistate.show_filter_results(self.dbstate, 
                                              self.model.displayed(), 
                                              self.model.total())
             _LOG.debug(self.__class__.__name__ + ' build_tree ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(time.clock() - cput0) + ' sec')
+            _LOG.debug('parts ' + str(cput1-cput0) + ' , ' 
+                             + str(cput2-cput1) + ' , ' 
+                             + str(cput3-cput2) + ' , ' 
+                             + str(cput4-cput3) + ' , ' 
+                             + str(time.clock() - cput4))
             
         else:
             self.dirty = True
@@ -534,12 +544,13 @@ class ListView(NavigationView):
         handle = self.first_selected()
 
         if config.get('interface.filter'):
-            filter_info = (True, self.generic_filter)
+            filter_info = (True, self.generic_filter, False)
         else:
-            if self.search_bar.get_value()[0] in self.exact_search():
-                filter_info = (False, self.search_bar.get_value(), True)
+            value = self.search_bar.get_value()
+            if value[0] in self.exact_search():
+                filter_info = (False, value, True)
             else:
-                filter_info = (False, self.search_bar.get_value(), False)
+                filter_info = (False, value, False)
 
         if same_col:
             self.model.reverse_order()
