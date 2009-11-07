@@ -122,7 +122,12 @@ def get_quick_report_list(qv_category=None):
     return names
 
 def run_quick_report_by_name(dbstate, uistate, report_name, handle, 
-                             container=None):
+                             container=None, **kwargs):
+    """
+    Run a QuickView by name.
+    **kwargs provides a way of passing special quick views additional 
+    arguments.
+    """
     report = None
     pmgr = GuiPluginManager.get_instance()
     for pdata in pmgr.get_reg_quick_reports():
@@ -131,7 +136,7 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle,
             break
     if report:
         return run_report(dbstate, uistate, report.category, 
-                          handle, report, container=container)
+                          handle, report, container=container, **kwargs)
     else:
         raise AttributeError, ("No such quick report '%s'" % report_name)
 
@@ -165,15 +170,17 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
     else:
         raise AttributeError, ("No such quick report id = '%s'" % report_name)
                             
-def run_report(dbstate, uistate, category, handle, pdata, container=None):
+def run_report(dbstate, uistate, category, handle, pdata, container=None, 
+               **kwargs):
         """
         Run a Quick Report.
         Optionally container can be passed, rather than putting the report 
         in a new window. 
+        **kwargs are only used for special quick views that allow additional
+        arguments, and that are run by run_quick_report_by_name().
         """
         from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
-        container = None
         pmgr = GuiPluginManager.get_instance()
         mod = pmgr.load_plugin(pdata)
         if not mod:
@@ -210,11 +217,11 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None):
             if obj:
                 if container:
                     result = d.open("", container=container)
-                    func(dbstate.db, d, obj)
+                    func(dbstate.db, d, obj, **kwargs)
                     return result
                 else:
                     d.open("")
-                    retval = func(dbstate.db, d, obj)
+                    retval = func(dbstate.db, d, obj, **kwargs)
                     d.close()
                     return retval
             else:
