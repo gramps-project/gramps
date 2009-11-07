@@ -227,6 +227,21 @@ class FlatNodeMap(object):
         else:
             return self.real_path(index)
 
+    def get_sortkey(self, handle):
+        """
+        Return the sortkey used for the passed handle.
+        
+        :param handle: the key of the object for which the sortkey
+                        is needed
+        :param type: an object handle
+        :Returns: the sortkey, or None if handle is not present
+        """
+        index = self._hndl2index.get(handle)
+        if index is None:
+            return None
+        else:
+            return self._index2hndl[index][0]
+
     def get_handle(self, path):
         """
         Return the handle from the path. The path is assumed to be an integer.
@@ -590,9 +605,17 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Update a row, called after the object with handle is changed
         """
-        ## TODO: if sort key changes, this is not updated correctly ....
-        path = self.node_map.get_path(handle)
-        if path is not None:
+        oldsortkey = self.node_map.get_sortkey(handle)
+        newsortkey = conv_unicode_tosrtkey_ongtk(self.sort_func(self.map(
+                            handle)))
+        if oldsortkey is None or oldsortkey != newsortkey:
+            #or the changed object is not present in the view due to filtering
+            #or the order of the object must change. 
+            self.delete_row_by_handle(handle)
+            self.add_row_by_handle(handle)
+        else:
+            #the row is visible in the view, is changed, but the order is fixed
+            path = self.node_map.get_path(handle)
             node = self.get_iter(path)
             self.row_changed(path, node)
 
