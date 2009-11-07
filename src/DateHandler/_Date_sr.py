@@ -234,13 +234,21 @@ class DateDisplaySR_latin(DateDisplay):
     """
     Serbian (latin) date display class
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
-    
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    long_months = ("",
+        u"januara", u"februara", u"marta", u"aprila",
+        u"maja", u"juna", u"jula", u"avgusta",
+        u"septembra", u"oktobra", u"novembra", u"decembra"
+        )
+
+    short_months = ("",
+        u"jan", u"feb", u"mar", u"apr", u"maj", u"jun",
+        u"jul", u"avg", u"sep", u"okt", u"nov", u"dec"
+        ) 
+
+    roman_months = (
+        "", "I", "II", "III", "IV", "V", "VI",
+        "VII", "VIII", "IX", "X", "XI", "XII"
+        )
     
     calendar = (
         "", u" (julijanski)", u" (hebrejski)", 
@@ -256,57 +264,12 @@ class DateDisplaySR_latin(DateDisplay):
 
     formats = (
         "GGGG-MM-DD (ISO-8601)", 
-        "Numerički (D.M.GGGG.)", 
+        "Numerički (DD.MM.GGGG.)", 
         "D. MMM GGGG.",
         "D. Mesec GGGG.",
         "D. Rb GGGG."
         )
     
-    roman_months = (
-        "",
-        "I",
-        "II",
-        "III",
-        "IV",
-        "V",
-        "VI",
-        "VII",
-        "VIII",
-        "IX",
-        "X",
-        "XI",
-        "XII"
-        )
-        
-    sr_months = ("",
-        u"januara",
-        u"februara",
-        u"marta",
-        u"aprila",
-        u"maja",
-        u"juna",
-        u"jula",
-        u"avgusta",
-        u"septembra",
-        u"oktobra",
-        u"novembra",
-        u"decembra"
-        )
-
-    sr_months3 = ("",
-        u"jan",
-        u"feb",
-        u"mar",
-        u"apr",
-        u"maj",
-        u"jun",
-        u"jul",
-        u"avg",
-        u"sep",
-        u"okt",
-        u"nov",
-        u"dec"
-        )        
 
     def _display_gregorian(self, date_val):
         """
@@ -316,6 +279,7 @@ class DateDisplaySR_latin(DateDisplay):
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
+        ## DD.MM.YYYY.
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
@@ -325,27 +289,28 @@ class DateDisplaySR_latin(DateDisplay):
                     value = self._tformat.replace('%m', str(date_val[1]))
                     value = value.replace('%d', str(date_val[0]))
                     value = value.replace('%Y', str(abs(date_val[2])))
-                    value = value.replace('-', '/')
+                    #some locale magic already provides the right separator
+                    #value = value.replace('/', '.')
         elif self.format == 2:
             # Day. MON Year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = u"%s." % year
                 else:
-                    value = u"%s %s." % (self.sr_months3[date_val[1]], year)
+                    value = u"%s %s." % (self.short_months[date_val[1]], year)
             else:
                 value = u"%d. %s %s." % (date_val[0], 
-                                self.sr_months3[date_val[1]], year)
+                                self.short_months[date_val[1]], year)
         elif self.format == 3:
             # Day. MONTH Year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = u"%s." % year
                 else:
-                    value = u"%s %s." % (self.sr_months[date_val[1]], year)
+                    value = u"%s %s." % (self.long_months[date_val[1]], year)
             else:
                 value = u"%d. %s %s." % (date_val[0], 
-                                self.sr_months[date_val[1]], year)
+                                self.long_months[date_val[1]], year)
         else:
             # Day RomanMon Year
             if date_val[0] == 0:
