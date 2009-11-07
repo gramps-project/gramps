@@ -219,7 +219,7 @@ class DateDisplayHR(DateDisplay):
         )
     
     #currently unused
-    short_months = ( u"sij", u"velj", u"ožu", u"tra", u"svi", u"lip",
+    short_months = ( u"", u"sij", u"velj", u"ožu", u"tra", u"svi", u"lip",
         u"srp", u"kol", u"ruj", u"lis", u"stu", u"pro"
         )
     
