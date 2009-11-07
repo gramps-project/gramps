@@ -31,6 +31,7 @@ PersonView interface.
 #------------------------------------------------------------------------
 
 import cPickle as pickle
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -40,6 +41,14 @@ import cPickle as pickle
 import gtk
 import pango
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger(".gui.personview")
 
 #-------------------------------------------------------------------------
 #
@@ -518,6 +527,7 @@ class PersonView(PageView.PersonNavView):
         since it can change when rows are unselected when the model is set.
         """
         if self.active:
+            cput = time.clock()
             if Config.get(Config.FILTER):
                 filter_info = (PeopleModel.GENERIC, self.generic_filter)
             else:
@@ -525,7 +535,9 @@ class PersonView(PageView.PersonNavView):
 
             self.model = PeopleModel(self.dbstate.db, filter_info, skip)
             active = self.dbstate.active
+            cput1 = time.clock()
             self.tree.set_model(self.model)
+            cput2 = time.clock()
 
             if const.USE_TIPS and self.model.tooltip_column is not None:
                 self.tooltips = TreeTips.TreeTips(self.tree, 
@@ -539,6 +551,9 @@ class PersonView(PageView.PersonNavView):
             self.uistate.show_filter_results(self.dbstate, 
                                              self.model.displayed, 
                                              self.model.total)
+            _LOG.debug(self.__class__.__name__ + ' build_tree ' +
+                    str(time.clock() - cput) + ' sec')
+            _LOG.debug(' setting model ' + str(cput2 - cput1) + ' sec')
         else:
             self.dirty = True
 
@@ -710,6 +725,7 @@ class PersonView(PageView.PersonNavView):
         if not self.model:
             return
         if self.active:
+            cput = time.clock()
             self.dirty = False
             for node in set(handle_list):
                 person = self.dbstate.db.get_person_from_handle(node)
@@ -729,6 +745,8 @@ class PersonView(PageView.PersonNavView):
                 path = self.model.on_get_path(node)
                 pnode = self.model.get_iter(path)
                 self.model.row_inserted(path, pnode)
+            _LOG.debug(self.__class__.__name__ + ' person_added ' +
+                str(time.clock() - cput) + ' sec')
         else:
             self.dirty = True
 
@@ -745,6 +763,7 @@ class PersonView(PageView.PersonNavView):
         if not self.model:
             return
 
+        cput = time.clock()
         expand = []
         self.tree.map_expanded_rows(self.func, expand)
 
@@ -753,11 +772,14 @@ class PersonView(PageView.PersonNavView):
             path = self.model.mapper.top_iter2path.get(i)
             if path:
                 self.tree.expand_row(path, False)
+        _LOG.debug(self.__class__.__name__ + ' person_removed ' +
+                str(time.clock() - cput) + ' sec')
             
     def person_updated(self, handle_list):
         if not self.model:
             return
         
+        cput = time.clock()
         self.model.clear_cache()
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
@@ -796,6 +818,8 @@ class PersonView(PageView.PersonNavView):
                 break
             
         self.goto_active_person()
+        _LOG.debug(self.__class__.__name__ + ' person_updated ' +
+                str(time.clock() - cput) + ' sec')
 
     def get_selected_objects(self):
         (mode, paths) = self.selection.get_selected_rows()

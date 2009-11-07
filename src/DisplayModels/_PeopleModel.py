@@ -40,7 +40,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
+_LOG = logging.getLogger(".gui.peoplemodel")
 
 #-------------------------------------------------------------------------
 #
@@ -243,6 +243,7 @@ class PeopleModel(gtk.GenericTreeModel):
         """
         Initialize the model building the initial data
         """
+        cput = time.clock()
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
@@ -291,6 +292,8 @@ class PeopleModel(gtk.GenericTreeModel):
             data_filter = None
         self.current_filter = data_filter
         self.rebuild_data(data_filter, skip)
+        _LOG.debug(self.__class__.__name__ + ' __init__ ' +
+                    str(time.clock() - cput) + ' sec')
 
     def update_todo(self,client,cnxn_id,entry,data):
         self.todo_color = Config.get(Config.TODO_COLOR)
@@ -305,9 +308,12 @@ class PeopleModel(gtk.GenericTreeModel):
         """
         Convience function that calculates the new data and assigns it.
         """
+        cput = time.clock()
         self.calculate_data(data_filter, skip)
         self.assign_data()
         self.current_filter = data_filter
+        _LOG.debug(self.__class__.__name__ + ' rebuild_data ' +
+                    str(time.clock() - cput) + ' sec')
         
     def _build_search_sub(self,dfilter, skip):
 
