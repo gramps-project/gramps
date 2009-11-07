@@ -203,13 +203,24 @@ class DateDisplayHR(DateDisplay):
     """
     Croatian language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May",
-        u"June", u"July", u"August", u"September", u"October",
-        u"November", u"December" )
+    long_months = ( u"", 
+        u"siječnja",
+        u"veljače",
+        u"ožujka",
+        u"travnja",
+        u"svibnja",
+        u"lipnja",
+        u"srpnja",
+        u"kolovoza",
+        u"rujna",
+        u"listopada",
+        u"studenog",
+        u"prosinca" 
+        )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",
-        u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    #currently unused
+    short_months = ( u"sij", u"velj", u"ožu", u"tra", u"svi", u"lip",
+        u"srp", u"kol", u"ruj", u"lis", u"stu", u"pro"
         )
     
     calendar = (
@@ -248,21 +259,6 @@ class DateDisplayHR(DateDisplay):
         "XII"
         )
         
-    hr_months = ("",
-        u"siječnja",
-        u"veljače",
-        u"ožujka",
-        u"travnja",
-        u"svibnja",
-        u"lipnja",
-        u"srpnja",
-        u"kolovoza",
-        u"rujna",
-        u"listopada",
-        u"studenog",
-        u"prosinca"
-        )
-
     def _display_gregorian(self, date_val):
         """
         display gregorian calendar date in different format
@@ -296,10 +292,10 @@ class DateDisplayHR(DateDisplay):
                 if date_val[1] == 0:
                     value = u"%s." % year
                 else:
-                    value = u"%s %s." % (self.hr_months[date_val[1]], year)
+                    value = u"%s %s." % (self.long_months[date_val[1]], year)
             else:
                 value = u"%d. %s %s." % (date_val[0], 
-                                self.hr_months[date_val[1]], year)
+                                self.long_months[date_val[1]], year)
         else:
             # Day RomanMon Year
             if date_val[0] == 0:
