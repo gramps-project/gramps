@@ -53,7 +53,6 @@ It keeps a FlatNodeMap, and obtains data from database as needed
 #-------------------------------------------------------------------------
 
 from __future__ import with_statement
-import locale
 import logging
 import bisect
 import time
@@ -108,8 +107,8 @@ class FlatNodeMap(object):
     the path, and a dictionary mapping hndl to index.
     To obtain index given a path, method real_index() is available
     
-    ..Note: If a string sortkey is used, apply locale.strxfrm on it , so as 
-            to have localized sort
+    ..Note: If a string sortkey is used, apply conv_unicode_tosrtkey_ongtk
+            on it , so as to have localized sort
     """
 
     def __init__(self):
@@ -494,9 +493,10 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Return the (sort_key, handle) list of all data that can maximally 
         be shown. 
-        This list is sorted ascending, via localized string sort. strxfrm 
-        is used, which is apparently broken in Win ?? --> they should fix 
-        base lib, we need strxfrm
+        This list is sorted ascending, via localized string sort. 
+        conv_unicode_tosrtkey_ongtk which uses strxfrm, which is apparently 
+        broken in Win ?? --> they should fix base lib, we need strxfrm, fix it 
+        in the Utils module.
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
@@ -563,7 +563,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Row is only added if search/filter data is such that it must be shown
         """
         data = self.map(handle)
-        insert_val = (locale.strxfrm(self.sort_func(data)), handle)
+        insert_val = (conv_unicode_tosrtkey_ongtk(self.sort_func(data)), handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
@@ -580,7 +580,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Delete a row, called after the object with handle is deleted
         """
         data = self.map(handle)
-        delete_val = (locale.strxfrm(self.sort_func(data)), handle)
+        delete_val = (conv_unicode_tosrtkey_ongtk(self.sort_func(data)), handle)
         delete_path = self.node_map.delete(delete_val)
         #delete_path is an integer from 0 to n-1
         if delete_path is not None: 
