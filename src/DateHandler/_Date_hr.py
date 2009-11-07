@@ -203,15 +203,13 @@ class DateDisplayHR(DateDisplay):
     """
     Croatian language date display class. 
     """
-    long_months = ("",
-        u"januara", u"februara", u"marta", u"aprila",
-        u"maja", u"juna", u"jula", u"avgusta",
-        u"septembra", u"oktobra", u"novembra", u"decembra"
-        )
+    # TODO: Translate these month strings:
+    long_months = ( u"", u"January", u"February", u"March", u"April", u"May",
+        u"June", u"July", u"August", u"September", u"October",
+        u"November", u"December" )
     
-    short_months = ("",
-        u"jan", u"feb", u"mar", u"apr", u"maj", u"jun",
-        u"jul", u"avg", u"sep", u"okt", u"nov", u"dec"
+    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",
+        u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
         )
     
     calendar = (
