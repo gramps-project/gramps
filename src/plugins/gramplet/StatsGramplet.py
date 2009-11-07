@@ -54,6 +54,9 @@ class StatsGramplet(Gramplet):
         self.set_text(_("No Family Tree loaded."))
         self.set_tooltip(_("Double-click item to see matches"))
 
+    def post_init(self):
+        self.disconnect("active-changed")
+
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-edit', self.update)

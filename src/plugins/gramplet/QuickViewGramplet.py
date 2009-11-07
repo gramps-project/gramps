@@ -100,7 +100,8 @@ class QuickViewGramplet(Gramplet):
             type_list.add_item(item[0], item[1])
         # Add particular lists:
         qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
-        list_option = EnumeratedListOption(_("Quick Views"), qv_list[0][2])
+        list_option = EnumeratedListOption(_("Quick Views"), 
+                                           qv_list[0].id)
         for pdata in qv_list:
             list_option.add_item(pdata.id, pdata.name)
         self.add_option(type_list)

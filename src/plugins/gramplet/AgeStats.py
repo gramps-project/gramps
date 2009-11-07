@@ -38,6 +38,9 @@ class AgeStatsGramplet(Gramplet):
         self.max_father_diff = 60
         self.chart_width = 60
 
+    def post_init(self):
+        self.disconnect("active-changed")
+
     def build_options(self):
         from gen.plug.menu import NumberOption
         self.add_option(NumberOption(_("Max age"), 
