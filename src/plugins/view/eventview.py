@@ -26,6 +26,15 @@ Provide the event view.
 
 #-------------------------------------------------------------------------
 #
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+import logging
+_LOG = logging.getLogger(".plugins.eventview")
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -38,7 +47,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.views.listview import ListView
-import DisplayModels
+from gui.views.treemodels import EventModel
 import Utils
 import Errors
 import Bookmarks
@@ -47,14 +56,6 @@ from DdTargets import DdTargets
 from Editors import EditEvent, DelEventQuery
 from Filters.SideBar import EventSidebarFilter
 from gen.plug import CATEGORY_QR_EVENT
-
-#-------------------------------------------------------------------------
-#
-# internationalization
-#
-#-------------------------------------------------------------------------
-from gettext import gettext as _
-
 
 #-------------------------------------------------------------------------
 #
@@ -95,7 +96,7 @@ class EventView(ListView):
         ListView.__init__(
             self, _('Events'), dbstate, uistate,
             EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
-            DisplayModels.EventModel,
+            EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
             Bookmarks.EventBookmarks,
             multiple=True,

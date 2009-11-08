@@ -39,7 +39,7 @@ import gtk
 import gen.lib
 import config
 from gui.views.listview import ListView
-import DisplayModels
+from gui.views.treemodels import SourceModel
 import Utils
 import Bookmarks
 import Errors
@@ -94,7 +94,7 @@ class SourceView(ListView):
         ListView.__init__(
             self, _('Sources'), dbstate, uistate, 
             SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
-            DisplayModels.SourceModel, signal_map,
+            SourceModel, signal_map,
             dbstate.db.get_source_bookmarks(),
             Bookmarks.SourceBookmarks, multiple=True,
             filter_class=SourceSidebarFilter)

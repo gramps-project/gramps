@@ -144,6 +144,12 @@ class GuiPluginManager(gen.utils.Callback):
         """
         return [plg for plg in self.basemgr.get_reg_tools(gui)
                                 if plg.id not in self.__hidden_plugins]
+
+    def get_reg_views(self):
+        """ Return list of non hidden registered views
+        """
+        return [plg for plg in self.basemgr.get_reg_views()
+                                if plg.id not in self.__hidden_plugins]
     
     def get_reg_quick_reports(self):
         """ Return list of non hidden  registered quick reports

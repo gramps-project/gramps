@@ -29,7 +29,11 @@ from _pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
             TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON, 
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
-            CATEGORY_QR_DATE, PTYPE_STR )
+            CATEGORY_QR_DATE, PTYPE_STR,
+            VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, VIEW_EVENT,
+            VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, VIEW_NOTE,
+            VIEW_GEO
+            )
 from _manager import BasePluginManager
 from _import import ImportPlugin
 from _export import ExportPlugin

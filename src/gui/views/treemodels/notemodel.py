@@ -25,7 +25,7 @@
 #
 #-------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger(".DisplayModels.NoteModel")
+_LOG = logging.getLogger(".gui.notemodel")
 
 #-------------------------------------------------------------------------
 #

@@ -45,7 +45,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.views.listview import ListView
-import DisplayModels
+from gui.views.treemodels import PlaceModel
 from gui.utils import add_menuitem
 import Errors
 import Bookmarks
@@ -111,7 +111,7 @@ class PlaceView(ListView):
         ListView.__init__(
             self, _('Places'), dbstate, uistate, PlaceView.COLUMN_NAMES,
             len(PlaceView.COLUMN_NAMES), 
-            DisplayModels.PlaceModel, signal_map,
+            PlaceModel, signal_map,
             dbstate.db.get_place_bookmarks(),
             Bookmarks.PlaceBookmarks, 
             multiple=True,

@@ -33,7 +33,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from DisplayModels import PlaceModel
+from gui.views.treemodels import PlaceModel
 from _BaseSelector import BaseSelector
 import config
 

@@ -61,7 +61,14 @@ import gobject
 from QuestionDialog import ErrorDialog
 import config
 import Utils
+from gui.pluginmanager import GuiPluginManager
+from gen.plug import (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, 
+            VIEW_EVENT, VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, 
+            VIEW_NOTE, VIEW_GEO)
 
+DEFAULT_SIDEBAR_ORDER = (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, 
+            VIEW_EVENT, VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, 
+            VIEW_NOTE, VIEW_GEO)
 #-------------------------------------------------------------------------
 #
 # Functions
@@ -221,6 +228,41 @@ def _display_welcome_message():
 #        config.set('behavior.betawarn', True)
         config.set('behavior.betawarn', config.get('behavior.betawarn'))
 
+def construct_view_order():
+    """
+    Query the views and determine what views to show and in which order
+    
+    :Returns: a list of lists containing tuples (view_id, viewclass)
+    """
+    pmgr = GuiPluginManager.get_instance()
+    view_list = pmgr.get_reg_views()
+    viewstoshow = {}
+    for pdata in view_list:
+        mod = pmgr.load_plugin(pdata)
+        if not mod:
+            #import of plugin failed
+            ErrorDialog(
+                _('Failed Loading View'), 
+                _('The view %(name)s did not load. See Help Menu, Plugin Status'
+                  ' for more info.\nUse http://bugs.gramps-project.org to'
+                  ' submit bugs of official views, contact the view '
+                  'author (%(firstauthoremail)s) otherwise. ') % {
+                    'name': pdata.name,
+                    'firstauthoremail': pdata.authors_email[0] if 
+                            pdata.authors_email else '...'})
+            continue
+        viewclass = eval('mod.' + pdata.viewclass)
+        if pdata.category in viewstoshow:
+            viewstoshow[pdata.category].append((pdata.id, viewclass))
+        else:
+            viewstoshow[pdata.category] = [(pdata.id, viewclass)]
+    
+    resultorder = []
+    for item in DEFAULT_SIDEBAR_ORDER:
+        if item in viewstoshow:
+            resultorder.append(viewstoshow[item])
+    return resultorder
+    
 #-------------------------------------------------------------------------
 #
 # Main Gramps class
@@ -237,18 +279,18 @@ class Gramps(object):
     def __init__(self, argparser):
         import DbState
         from viewmanager import ViewManager
-        import DataViews
         from cli.arghandler import ArgHandler
         import TipOfDay
         
         register_stock_icons()
         
         dbstate = DbState.DbState()
-        self.vm = ViewManager(dbstate)
-        for view in DataViews.get_views():
-            self.vm.register_view(view)
+        self.vm = ViewManager(dbstate, DEFAULT_SIDEBAR_ORDER)
         
-        self.vm.init_interface()
+        #now we determine which views are present, which to show, and we 
+        #instruct the viewmanager to show them
+        vieworder = construct_view_order()
+        self.vm.init_interface(vieworder)
 
         #act based on the given arguments
         ah = ArgHandler(dbstate, argparser, self.vm, self.argerrorfunc, 

@@ -16,6 +16,7 @@ SUBDIRS = \
 	rel \
 	textreport \
 	tool \
+	view \
 	webreport
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins

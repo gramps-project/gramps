@@ -213,6 +213,9 @@ class ListView(NavigationView):
             self.list.append_column(column)
             index += 1
 
+    def __build_tree(self):
+        Utils.profile(self._build_tree)
+
     def build_tree(self):
         if self.active:
             cput0 = time.clock()

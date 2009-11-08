@@ -44,7 +44,7 @@ import gtk
 #-------------------------------------------------------------------------
 from BasicUtils import name_displayer
 import ManagedWindow
-from DisplayModels import PeopleModel
+from gui.views.treemodels import PeopleModel
 import Relationship
 
 from QuestionDialog import ErrorDialog

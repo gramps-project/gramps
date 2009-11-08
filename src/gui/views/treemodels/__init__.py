@@ -22,3 +22,12 @@
 """
 Package init for the treemodels package.
 """
+
+from peoplemodel import PeopleModel
+from familymodel import FamilyModel
+from eventmodel import EventModel
+from sourcemodel import SourceModel
+from placemodel import PlaceModel
+from mediamodel import MediaModel
+from repomodel import RepositoryModel
+from notemodel import NoteModel

@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 from gui.views.listview import ListView
-import DisplayModels
+from gui.views.treemodels import MediaModel
 import ThumbNails
 import const
 import config
@@ -104,7 +104,7 @@ class MediaView(ListView):
         ListView.__init__(
             self, _('Media'), dbstate, uistate, 
             MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
-            DisplayModels.MediaModel, 
+            MediaModel, 
             signal_map, dbstate.db.get_media_bookmarks(), 
             Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter,
             multiple=True)

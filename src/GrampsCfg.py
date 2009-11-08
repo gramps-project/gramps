@@ -151,10 +151,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Researcher')))
         panel.append_page(self.add_color_panel(), 
                           MarkupLabel(_('Marker Colors')))
-        import DataViews
-        if DataViews.geopresent:
-            panel.append_page(self.add_geoview_panel(), 
-                              MarkupLabel(_('Internet Maps')))
         self.window.show_all()
         self.show()
 
@@ -260,32 +256,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
         for widget in [self.comp_color, self.todo_color, self.custom_color]:
             widget.emit('color-set')
-
-    def add_geoview_panel(self):
-        table = gtk.Table(3, 8)
-        table.set_border_width(12)
-        table.set_col_spacings(12)
-        table.set_row_spacings(6)
-
-        self.add_text(
-            table, _('You need a broadband internet connection to use '
-            'Internet mapping applications from within GRAMPS')
-            , 0)
-
-        self.add_checkbox(
-            table, _('Add GeoView to GRAMPS showing internet maps based on '
-            'your data.'), 
-            1, 'preferences.geoview')
-
-        self.add_text(
-            table, _('GeoView uses OpenStreetMap and Google maps provider.'),
-            2)
-
-        self.add_text(
-            table, _('You need to restart GRAMPS for above settings to take'
-            ' effect'), 5)
-
-        return table
 
     def add_name_panel(self):
         """

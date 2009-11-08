@@ -5,10 +5,8 @@ SUBDIRS = \
 	BasicUtils \
 	cli \
 	data \
-	DataViews \
 	DateHandler \
 	DisplayTabs \
-	DisplayModels \
 	docgen \
 	Editors \
 	Filters \

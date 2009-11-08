@@ -199,10 +199,15 @@ class ViewManager(CLIManager):
     into the gtk.UIManager to control all menus and actions.
 
     The ViewManager controls the various Views within the GRAMPS programs.
+    Views are organised in categories. The categories can be accessed via
+    a sidebar. Within a category, the different views are accesible via the
+    toolbar of view menu.
+    
     A View is a particular way of looking a information in the GRAMPS main
     window. Each view is separate from the others, and has no knowledge of
-    the others. All Views are held in the DisplayViews module. Examples of
-    current views include:
+    the others. 
+    
+    Examples of current views include:
 
     - Person View
     - Relationship View
@@ -212,11 +217,17 @@ class ViewManager(CLIManager):
     The View Manager does not have to know the number of views, the type of
     views, or any other details about the views. It simply provides the 
     method of containing each view, and switching between the views.
-       
+    
     """
 
-    def __init__(self, dbstate):
+    def __init__(self, dbstate, view_category_order):
+        """
+        The viewmanager is initialiste with a dbstate on which GRAMPS is 
+        working, and a fixed view_category_order, which is the order in which
+        the view categories are accessible in the sidebar.
+        """
         CLIManager.__init__(self, dbstate, False)
+        self.view_category_order = view_category_order
         #set pluginmanager to GUI one
         self._pmgr = GuiPluginManager.get_instance()
         self.page_is_changing = False
@@ -277,6 +288,7 @@ class ViewManager(CLIManager):
         self.notebook.set_scrollable(True)
         self.notebook.set_show_tabs(False)
         self.notebook.show()
+        self.notebook_cat = []
         self.__init_lists()
         self.__build_ui_manager()
 
@@ -546,10 +558,11 @@ class ViewManager(CLIManager):
         else:
             self.notebook.set_current_page(new_page)
 
-    def init_interface(self):
+    def init_interface(self, vieworder):
         """
-        Initialize the interface, creating the pages
+        Initialize the interface, creating the pages as given in vieworder
         """
+        self.views = vieworder
         self.__init_lists()
         self.__create_pages()
 
@@ -799,12 +812,6 @@ class ViewManager(CLIManager):
             config.set('interface.fullscreen', False)
         config.save()
 
-    def register_view(self, view):
-        """
-        Allow other objects to register a view with the View Manager
-        """
-        self.views.append(view)
-
     def __switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
         """
         Switches the page based on drag and drop
@@ -818,8 +825,9 @@ class ViewManager(CLIManager):
         """
         Calls on_delete() for each view
         """
-        for page in self.pages:
-            page.on_delete()
+        for pages in self.pages:
+            for page in pages:
+                page.on_delete()
 
     def __create_pages(self):
         """
@@ -831,55 +839,87 @@ class ViewManager(CLIManager):
         use_text = config.get('interface.sidebar-text')
         
         index = 0
-        for page_def in self.views:
-            page = page_def(self.dbstate, self.uistate)
-            page_title = page.get_title()
-            page_stock = page.get_stock()
+        for cat_views in self.views:
+            #for every category, we create a button in the sidebar and a main
+            #workspace in which to show the view
+            first = True
+            nr_views = len(cat_views)
+            self.pages.append([])
+            for id, page_def in cat_views:
+                page = page_def(self.dbstate, self.uistate)
+                page_title = page.get_title()
+                page_stock = page.get_stock()
+                if first:
+                    #the first page of this category, used to obtain
+                    #category workspace notebook
+                    notebook = gtk.Notebook()
+                    notebook.set_scrollable(False)
+                    notebook.set_show_tabs(False)
+                    notebook.show()
+                    self.notebook_cat.append(notebook)
+                    # create icon/label for workspace notebook
+                    hbox = gtk.HBox()
+                    image = gtk.Image()
+                    image.set_from_stock(page_stock, gtk.ICON_SIZE_MENU)
+                    hbox.pack_start(image, False)
+                    hbox.add(gtk.Label(page_title))
+                    hbox.show_all()
+                    page_cat = self.notebook.append_page(notebook, hbox)
+                    # Enable view switching during DnD
+                    hbox.drag_dest_set(0, [], 0)
+                    hbox.connect('drag_motion', self.__switch_page_on_dnd, 
+                                page_cat)
 
-            # create icon/label for notebook
-            hbox = gtk.HBox()
-            image = gtk.Image()
-            image.set_from_stock(page_stock, gtk.ICON_SIZE_MENU)
-            hbox.pack_start(image, False)
-            hbox.add(gtk.Label(page_title))
-            hbox.show_all()
+                    # create the button and add it to the sidebar
+                    button = self.__make_sidebar_button(use_text, index, 
+                                                        page_title, page_stock)
 
-            # create notebook page and add to notebook
-            page.define_actions()
-            page_display = page.get_display()
-            page_display.show_all()
-            page.post()
-            page_no = self.notebook.append_page(page_display, hbox)
-            self.pages.append(page)
-            
-            # Enable view switching during DnD
-            hbox.drag_dest_set(0, [], 0)
-            hbox.connect('drag_motion', self.__switch_page_on_dnd, page_no)
+                    index += 1
+                    self.bbox.pack_start(button, False)
+                    self.buttons.append(button)
+                    
+                    # Enable view switching during DnD
+                    button.drag_dest_set(0, [], 0)
+                    button.connect('drag_motion', self.__switch_page_on_dnd, 
+                                    page_cat)
 
-            # create the button and add it to the sidebar
-            button = self.__make_sidebar_button(use_text, index, 
-                                                page_title, page_stock)
+                # create view page and add to category notebook
+                page.define_actions()
+                page_display = page.get_display()
+                page_display.show_all()
+                page.post()
+                page_no = self.notebook_cat[-1].append_page(page_display, 
+                                                        gtk.Label(page_title))
+                self.pages[-1].append(page)
 
-            index += 1
-            self.bbox.pack_start(button, False)
-            self.buttons.append(button)
-            
-            # Enable view switching during DnD
-            button.drag_dest_set(0, [], 0)
-            button.connect('drag_motion', self.__switch_page_on_dnd, page_no)
+                first = False
 
+        current_cat = 0 
+        current_cat_view = 0
         use_current = config.get('preferences.use-last-view')
         if use_current:
-            current_page = config.get('preferences.last-view')
-            if current_page >= len(self.pages):
-                current_page = 0
-        else:
-            current_page = 0
+            current_page_id = config.get('preferences.last-view')
+            found = False
+            for cat_views in self.views:
+                current_cat_view = 0
+                for id, page_def in cat_views:
+                    if id == current_page_id:
+                        found = True
+                        break
+                    else:
+                        current_cat_view += 1
+                if found:
+                    break
+                current_cat += 1
+            if not found:
+                current_cat = 0 
+                current_cat_view = 0
 
-        self.active_page = self.pages[current_page]
-        self.buttons[current_page].set_active(True)
+        self.active_page = self.pages[current_cat][current_cat_view]
+        self.buttons[current_cat].set_active(True)
         self.active_page.set_active()
-        self.notebook.set_current_page(current_page)
+        self.notebook.set_current_page(current_cat)
+        self.notebook_cat[current_cat].set_current_page(current_cat_view)
 
     def __make_sidebar_button(self, use_text, index, page_title, page_stock):
         """
@@ -1018,18 +1058,18 @@ class ViewManager(CLIManager):
         """
         if num == -1:
             num = self.notebook.get_current_page()
+        num_view = self.notebook_cat[num].get_current_page()
 
         # set button of current page active
         self.__set_active_button(num)
 
         if self.dbstate.open:
-            
             self.__disconnect_previous_page()
 
             if len(self.pages) > 0:
-                self.active_page = self.pages[num]
+                self.active_page = self.pages[num][num_view]
                 self.active_page.set_active()
-                config.set('preferences.last-view', num)
+                config.set('preferences.last-view', self.views[num][num_view][0])
                 config.save()
 
                 self.__setup_navigation()
@@ -1056,7 +1096,6 @@ class ViewManager(CLIManager):
             if infotxt:
                 InfoDialog(_('Import Statistics'), infotxt, self.window)
             self.__post_load()
-    
     
     def __open_activate(self, obj):
         """

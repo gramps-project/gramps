@@ -199,7 +199,14 @@ src/gui/views/pageview.py
 
 # gui/views/treemodels - the GUI views package
 src/gui/views/treemodels/__init__.py
+src/gui/views/treemodels/eventmodel.py
+src/gui/views/treemodels/familymodel.py
 src/gui/views/treemodels/flatbasemodel.py
+src/gui/views/treemodels/mediamodel.py
+src/gui/views/treemodels/peoplemodel.py
+src/gui/views/treemodels/placemodel.py
+src/gui/views/treemodels/repomodel.py
+src/gui/views/treemodels/sourcemodel.py
 src/gui/views/treemodels/treebasemodel.py
 
 # Simple API
@@ -217,21 +224,6 @@ src/Merge/__init__.py
 src/Merge/_MergePerson.py
 src/Merge/_MergePlace.py
 src/Merge/_MergeSource.py
-
-# DataViews package
-src/DataViews/EventView.py
-src/DataViews/FamilyList.py
-src/DataViews/GeoView.py
-src/DataViews/__init__.py
-src/DataViews/MediaView.py
-src/DataViews/GrampletView.py
-src/DataViews/NoteView.py
-src/DataViews/PedigreeView.py
-src/DataViews/PersonView.py
-src/DataViews/PlaceView.py
-src/DataViews/RelationView.py
-src/DataViews/RepositoryView.py
-src/DataViews/SourceView.py
 
 # DateHandler package
 src/DateHandler/_Date_cs.py
@@ -258,16 +250,6 @@ src/docgen/ODSTab.py
 src/docgen/OpenSpreadSheet.py
 src/docgen/SpreadSheetDoc.py
 src/docgen/TextBufDoc.py
-
-# DisplayModels package
-src/DisplayModels/_EventModel.py
-src/DisplayModels/_FamilyModel.py
-src/DisplayModels/_MediaModel.py
-src/DisplayModels/_PeopleModel.py
-src/DisplayModels/_PlaceModel.py
-src/DisplayModels/_RepositoryModel.py
-src/DisplayModels/_SourceModel.py
-src/DisplayModels/__init__.py
 
 # DisplayTabs package
 src/DisplayTabs/_AddrEmbedList.py
@@ -545,6 +527,23 @@ src/plugins/tool/SortEvents.py
 src/plugins/tool/SoundGen.py
 src/plugins/tool/tools.gpr.py
 src/plugins/tool/Verify.py
+
+#plugins/view directory
+src/plugins/view/eventview.py
+src/plugins/view/familyview.py
+src/plugins/view/geoview.py
+src/plugins/view/geoview.gpr.py
+src/plugins/view/grampletview.py
+src/plugins/view/htmlrenderer
+src/plugins/view/mediaview.py
+src/plugins/view/noteview.py
+src/plugins/view/pedigreeview.py
+src/plugins/view/personview.py
+src/plugins/view/placeview.py
+src/plugins/view/relview.py
+src/plugins/view/repoview.py
+src/plugins/view/sourceview.py
+src/plugins/view/view.gpr.py
 
 # plugins/webreport directory
 src/plugins/webreport/NarrativeWeb.py

@@ -61,11 +61,11 @@ from const import TEMP_DIR
 #-------------------------------------------------------------------------
 
 def get_identity():
-    if Utils.lin:
+    if Utils.lin():
         platform = "X11"
-    elif Utils.win:
+    elif Utils.win():
         platform = "Windows"
-    elif Utils.mac:
+    elif Utils.mac():
         platform = "Macintosh"
     else:
         platform = "Unknown"
@@ -112,7 +112,6 @@ except:
 
 #no interfaces present, raise Error so that options for GeoView do not show
 if TOOLKIT == NOWEB :
-    config.set('preferences.geoview', False)
     raise ImportError, 'No GTK html plugin found'
 
 #-------------------------------------------------------------------------

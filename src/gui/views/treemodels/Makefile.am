@@ -7,7 +7,15 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui/views/treemodels
 
 pkgdata_PYTHON = \
 	__init__.py \
+	eventmodel.py \
+	familymodel.py \
 	flatbasemodel.py \
+	mediamodel.py \
+	notemodel.py \
+	peoplemodel.py \
+	placemodel.py \
+	repomodel.py \
+	sourcemodel.py \
 	treebasemodel.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/views/treemodels

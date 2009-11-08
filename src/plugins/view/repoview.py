@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Place View.
+Repository View
 """
 
 #-------------------------------------------------------------------------
@@ -36,17 +36,17 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import gen.lib
 from gui.views.listview import ListView
-import DisplayModels
+from gui.views.treemodels import RepositoryModel
 import Utils
-import Errors
 import Bookmarks
+import Errors
 import config
-import ColumnOrder
-from gen.lib import Note
+from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
-from Filters.SideBar import NoteSidebarFilter
-from Editors import EditNote, DeleteNoteQuery
+from Filters.SideBar import RepoSidebarFilter
+from gen.plug import CATEGORY_QR_REPOSITORY
 
 #-------------------------------------------------------------------------
 #
@@ -58,79 +58,95 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# NoteView
+# RepositoryView
 #
 #-------------------------------------------------------------------------
-class NoteView(ListView):
-    
+class RepositoryView(ListView):
+
     COLUMN_NAMES = [
-        _('Preview'),
+        _('Name'),
         _('ID'),
         _('Type'),
-        _('Marker'),
+        _('Home URL'),
+        _('Street'),
+        _('ZIP/Postal Code'),
+        _('City'),
+        _('County'),
+        _('State'),
+        _('Country'),
+        _('Email'),
+        _('Search URL'),
+        _('Last Changed'),
         ]
-
-    ADD_MSG     = _("Add a new note")
-    EDIT_MSG    = _("Edit the selected note")
-    DEL_MSG     = _("Delete the selected note")
-    FILTER_TYPE = "Note"
+        
+    ADD_MSG = _("Add a new repository")
+    EDIT_MSG = _("Edit the selected repository")
+    DEL_MSG = _("Delete the selected repository")
+    FILTER_TYPE = "Repository"
+    QR_CATEGORY = CATEGORY_QR_REPOSITORY
 
     def __init__(self, dbstate, uistate):
 
         signal_map = {
-            'note-add'     : self.row_add,
-            'note-update'  : self.row_update,
-            'note-delete'  : self.row_delete,
-            'note-rebuild' : self.object_build,
-        }
-
+            'repository-add'     : self.row_add,
+            'repository-update'  : self.row_update,
+            'repository-delete'  : self.row_delete,
+            'repository-rebuild' : self.object_build,
+            }
+        
         self.func_list = {
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
-        }
+            }
 
         ListView.__init__(
-            self, _('Notes'), dbstate, uistate, NoteView.COLUMN_NAMES,
-            len(NoteView.COLUMN_NAMES), DisplayModels.NoteModel, signal_map,
-            dbstate.db.get_note_bookmarks(),
-            Bookmarks.NoteBookmarks,
-            filter_class=NoteSidebarFilter,
-            multiple=True)
+            self, _('Repositories'), dbstate, uistate,
+            RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
+            RepositoryModel, signal_map,
+            dbstate.db.get_repo_bookmarks(),
+            Bookmarks.RepoBookmarks, multiple=True,
+            filter_class=RepoSidebarFilter)
 
         config.connect("interface.filter",
                           self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_note_column_order(clist)
+        self.dbstate.db.set_repository_column_order(clist)
 
     def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_note_bookmarks()
+        return self.dbstate.db.get_repo_bookmarks()
 
     def drag_info(self):
-        """
-        Indicate that the drag type is an EVENT
-        """
-        return DdTargets.NOTE_LINK
+        return DdTargets.REPO_LINK
+
+    def define_actions(self):
+        ListView.define_actions(self)
+        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                         _('_Column Editor'), callback=self._column_editor)
+        self._add_action('FilterEdit', None, _('Repository Filter Editor'),
+                         callback=self.filter_editor,)
+        self._add_action('QuickReport', None, 
+                         _("Quick View"), None, None, None)
+        self._add_action('Dummy', None, 
+                         '  ', None, None, self.dummy_report)
+
+    def _column_editor(self, obj):
+        import ColumnOrder
+
+        ColumnOrder.ColumnOrder(
+            _('Select Repository Columns'),
+            self.uistate,
+            self.dbstate.db.get_repository_column_order(),
+            RepositoryView.COLUMN_NAMES,
+            self.set_column_order)
 
     def column_order(self):
-        """
-        returns a tuple indicating the column order
-        """
-        return self.dbstate.db.get_note_column_order()
+        return self.dbstate.db.get_repository_column_order()
 
     def get_stock(self):
-        """
-        Use the gramps-event stock icon
-        """
-        return 'gramps-notes'
+        return 'gramps-repository'
 
     def ui_definition(self):
-        """
-        Defines the UI string for UIManager
-        """
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="FileMenu">
@@ -165,54 +181,47 @@ class NoteView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
 
-    def define_actions(self):
-        ListView.define_actions(self)
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                         _('_Column Editor'), callback=self._column_editor)
-        self._add_action('FilterEdit', None, _('Note Filter Editor'),
-                         callback=self.filter_editor,)
-
-    def get_handle_from_gramps_id(self, gid):
-        obj = self.dbstate.db.get_note_from_gramps_id(gid)
-        if obj:
-            return obj.get_handle()
-        else:
-            return None
-
-    def _column_editor(self, obj):
-        """
-        returns a tuple indicating the column order
-        """
-        ColumnOrder.ColumnOrder(
-            _('Select Note Columns'),
-            self.uistate,
-            self.dbstate.db.get_note_column_order(),
-            NoteView.COLUMN_NAMES,
-            self.set_column_order)
-
     def add(self, obj):
-        try:
-            EditNote(self.dbstate, self.uistate, [], Note())
-        except Errors.WindowActiveError:
-            pass
+        EditRepository(self.dbstate, self.uistate, [], gen.lib.Repository())
 
     def remove(self, obj):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_note_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_note_from_handle(handle)
-        query = DeleteNoteQuery(self.dbstate, self.uistate, object, the_lists)
-        is_used = any(the_lists)
+        source_list = [
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle, ['Source'])]
+        object = self.dbstate.db.get_repository_from_handle(handle)
+        query = DelRepositoryQuery(self.dbstate, self.uistate, object,
+                                   source_list)
+        is_used = len(source_list) > 0
         return (query, is_used, object)
 
     def edit(self, obj):
         for handle in self.selected_handles():
-            note = self.dbstate.db.get_note_from_handle(handle)
+            repos = self.dbstate.db.get_repository_from_handle(handle)
             try:
-                EditNote(self.dbstate, self.uistate, [], note)
+                EditRepository(self.dbstate, self.uistate, [], repos)
             except Errors.WindowActiveError:
                 pass
+
+    def get_handle_from_gramps_id(self, gid):
+        obj = self.dbstate.db.get_repository_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
+
+    def dummy_report(self, obj):
+        """ For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass

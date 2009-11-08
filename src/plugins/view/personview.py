@@ -46,9 +46,9 @@ _LOG = logging.getLogger(".gui.personview")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import gui.views.pageview as PageView
+from gui.views.pageview import NAVIGATION_PERSON
 from gui.views.listview import ListView
-import DisplayModels
+from gui.views.treemodels import PeopleModel
 import Utils
 from BasicUtils import name_displayer
 from QuestionDialog import ErrorDialog, QuestionDialog
@@ -108,7 +108,7 @@ class PersonView(ListView):
         ListView.__init__(
             self, _('People'), dbstate, uistate,
             PersonView.COLUMN_NAMES, len(PersonView.COLUMN_NAMES), 
-            DisplayModels.PeopleModel,
+            PeopleModel,
             signal_map, dbstate.db.get_bookmarks(),
             Bookmarks.Bookmarks,
             multiple=True,
@@ -126,7 +126,7 @@ class PersonView(ListView):
         self.dbstate.db.set_person_column_order(clist)
 
     def navigation_type(self):
-        return PageView.NAVIGATION_PERSON
+        return NAVIGATION_PERSON
 
     def get_bookmarks(self):
         """

@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from DisplayModels import NoteModel
+from gui.views.treemodels import NoteModel
 from _BaseSelector import BaseSelector
 import config
 

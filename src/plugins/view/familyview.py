@@ -20,7 +20,7 @@
 # $Id$
 
 """
-FamilyList View.
+Family View.
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,8 @@ FamilyList View.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
+import logging
+_LOG = logging.getLogger(".plugins.eventview")
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK+ modules
@@ -44,7 +45,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.views.listview import ListView
-import DisplayModels
+from gui.views.treemodels import FamilyModel
 import Bookmarks
 import Errors
 import config
@@ -53,10 +54,10 @@ from gen.plug import CATEGORY_QR_FAMILY
 
 #-------------------------------------------------------------------------
 #
-# FamilyListView
+# FamilyView
 #
 #-------------------------------------------------------------------------
-class FamilyListView(ListView):
+class FamilyView(ListView):
     
     COLUMN_NAMES = [
         _('ID'),
@@ -84,8 +85,8 @@ class FamilyListView(ListView):
 
         ListView.__init__(
             self, _('Families'), dbstate, uistate,
-            FamilyListView.COLUMN_NAMES, len(FamilyListView.COLUMN_NAMES), 
-            DisplayModels.FamilyModel,
+            FamilyView.COLUMN_NAMES, len(FamilyView.COLUMN_NAMES), 
+            FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
             Bookmarks.FamilyBookmarks, filter_class=FamilySidebarFilter)
 
@@ -110,7 +111,7 @@ class FamilyListView(ListView):
             _('Select Family Columns'),
             self.uistate,
             self.dbstate.db.get_family_list_column_order(),
-            FamilyListView.COLUMN_NAMES,
+            FamilyView.COLUMN_NAMES,
             self.set_column_order)
 
     def get_stock(self):

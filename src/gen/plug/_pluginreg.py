@@ -102,6 +102,22 @@ TOOL_UTILS  = 4
 TOOL_CAT    = [ TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
                 TOOL_UTILS]
 
+#possible view categories
+VIEW_MISC    = 0
+VIEW_PERSON  = 1
+VIEW_REL     = 2
+VIEW_FAMILY  = 3
+VIEW_EVENT   = 4
+VIEW_PLACE   = 5
+VIEW_SOURCE  = 6
+VIEW_REPO    = 7
+VIEW_MEDIA   = 8
+VIEW_NOTE    = 9
+VIEW_GEO     = 10
+VIEW_CAT    = [VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, VIEW_EVENT,
+               VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, VIEW_NOTE,
+               VIEW_GEO]
+
 #possible quickreport categories
 CATEGORY_QR_MISC       = -1
 CATEGORY_QR_PERSON     = 0
@@ -178,11 +194,12 @@ class PluginData(object):
     .. attribute:: report_modes
        The report modes: list of REPORT_MODE_GUI ,REPORT_MODE_BKI,REPORT_MODE_CLI
     
-    Attributes for REPORT and TOOL and QUICKREPORT plugins
+    Attributes for REPORT and TOOL and QUICKREPORT and VIEW plugins
     .. attribute:: category
        Or the report category the plugin belongs to, default=CATEGORY_TEXT
        or the tool category a plugin belongs to, default=TOOL_UTILS
        or the quickreport category a plugin belongs to, default=CATEGORY_QR_PERSON
+       or the view category a plugin belongs to, default=VIEW_MISC
     
     Attributes for REPORT and TOOL plugins
     .. attribute:: optionclass
@@ -243,6 +260,11 @@ class PluginData(object):
        Title to use for the gramplet, default = 'Gramplet'
     .. attribute:: help_url
        The URL where documentation for the URL can be found
+
+    Attributes for VIEW plugins
+    .. attribute:: viewclass
+       A class of type ViewCreator that holds the needed info of the
+       view to be created: icon, viewclass that derives from pageview, ...
     """
 
     def __init__(self):
@@ -296,6 +318,8 @@ class PluginData(object):
         self._expand = False
         self._gramplet_title = _('Gramplet')
         self._help_url = None
+        #VIEW attr
+        self._viewclass = None
     
     def _set_id(self, id):
        self._id = id
@@ -353,6 +377,8 @@ class PluginData(object):
             self._category = TOOL_UTILS
         elif self._ptype == QUICKREPORT:
             self._category = CATEGORY_QR_PERSON
+        elif self._ptype == VIEW:
+            self._category = VIEW_MISC
         #if self._ptype == DOCGEN:
         #    self._load_on_reg = True
 
@@ -463,8 +489,9 @@ class PluginData(object):
     #REPORT OR TOOL OR QUICKREPORT attributes
     def _set_category(self, category):
         if not (self._ptype == REPORT or self._ptype == TOOL or
-        self._ptype == QUICKREPORT):
-            raise ValueError, 'category may only be set for REPORT/TOOL plugins'
+        self._ptype == QUICKREPORT or self._ptype == VIEW):
+            raise ValueError, 'category may only be set for ' \
+                              'REPORT/TOOL/QUICKREPORT/VIEW plugins'
         self._category = category
 
     def _get_category(self):
@@ -690,6 +717,16 @@ class PluginData(object):
     gramplet_title = property(_get_gramplet_title, _set_gramplet_title)
     help_url = property(_get_help_url, _set_help_url)
 
+    def _set_viewclass(self, viewclass):
+        if not self._ptype == VIEW:
+            raise ValueError, 'viewclass may only be set for VIEW plugins'
+        self._viewclass = viewclass
+
+    def _get_viewclass(self):
+        return self._viewclass
+    
+    viewclass = property(_get_viewclass, _set_viewclass)
+
 def newplugin():
     """
     Function to create a new plugindata object, add it to list of 
@@ -808,6 +845,17 @@ class PluginRegister(object):
                     'TOOL_DBFIX': TOOL_DBFIX,
                     'TOOL_REVCTL': TOOL_REVCTL,
                     'TOOL_UTILS': TOOL_UTILS,
+                    'VIEW_MISC': VIEW_MISC,
+                    'VIEW_PERSON': VIEW_PERSON,
+                    'VIEW_REL': VIEW_REL,
+                    'VIEW_FAMILY': VIEW_FAMILY,
+                    'VIEW_EVENT': VIEW_EVENT,
+                    'VIEW_PLACE': VIEW_PLACE,
+                    'VIEW_SOURCE': VIEW_SOURCE,
+                    'VIEW_REPO': VIEW_REPO,
+                    'VIEW_MEDIA': VIEW_MEDIA,
+                    'VIEW_NOTE': VIEW_NOTE,
+                    'VIEW_GEO': VIEW_GEO,
                     'CATEGORY_QR_MISC': CATEGORY_QR_MISC,
                     'CATEGORY_QR_PERSON': CATEGORY_QR_PERSON,
                     'CATEGORY_QR_FAMILY': CATEGORY_QR_FAMILY,

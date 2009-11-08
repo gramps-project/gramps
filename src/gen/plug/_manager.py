@@ -225,6 +225,11 @@ class BasePluginManager(object):
         """
         return self.__pgr.quickreport_plugins()
     
+    def get_reg_views(self):
+        """ Return list of registered views
+        """
+        return self.__pgr.view_plugins()
+    
     def get_reg_mapservices(self):
         """ Return list of registered mapservices
         """
