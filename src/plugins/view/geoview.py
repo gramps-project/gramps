@@ -91,7 +91,7 @@ ZOOMANDPOS = re.compile('zoom=([0-9]*) coord=([0-9\.\-\+]*), ([0-9\.\-\+]*):::')
 
 URL_SEP = '/'
 
-from HtmlRenderer import HtmlView
+from htmlrenderer import HtmlView
 
 #-------------------------------------------------------------------------
 #
