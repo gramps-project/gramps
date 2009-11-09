@@ -126,7 +126,7 @@ h3 {
     text-align:center;
     margin:0;
     padding:.5em 20px .2em 20px;
-    border-bottom:double 4px #228A22;
+    border-bottom: double 4px #5D835F;
 }
 h4 {
     font:normal 1.2em/1.2em serif;
@@ -273,13 +273,15 @@ div#footer p#copyright img {
 ----------------------------------------------------- */
 div#navigation, div#subnavigation {
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 div#navigation ul, div#subnavigation ul {
     list-style:none;
     min-width: 900px;
     height: 40px;
     margin:0;
-    padding: 0px 0px 0px 6px;
+    padding: 0px 0px 0px 16px;
     border-bottom: solid 2px #5D835F;
 }
 div#navigation ul li, div#subnavigation ul li {
@@ -287,7 +289,7 @@ div#navigation ul li, div#subnavigation ul li {
 }
 div#navigation ul li a, div#subnavigation ul li a {
     display: block;
-    padding: 12px 6px 14px 1px;
+    padding: 12px 16px 14px 1px;
     float:left;
     font: .8em bold italic small-caps verdana, serif;
     color: #000;
@@ -300,7 +302,7 @@ div#navigation ul li a:hover, div#subnavigation ul li a:hover {
 div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     font-weight:bold;
     font-style: italic;
-    background-color: #228A22;
+    background-color: #453619;
     color: #FFF;
 }
 div#navigation ul li.CurrentSection a:hover {
@@ -722,7 +724,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     position:relative;
     overflow:hidden;
     text-align:center;
-    border:solid 1px #228A22;
+    border: solid 1px #5D835F;
 }
 #GalleryDisplay img {
     margin:0 auto;
@@ -1000,10 +1002,10 @@ div#events h4 {
     padding-bottom:.8em;
 }
 #IndividualDetail div#events table.infolist tbody tr td.ColumnAttribute {
-    border-bottom:solid 1px #228A22;
+    border-bottom: solid 1px #5D835F;
 }
 #IndividualDetail div#events table.infolist tbody tr td.ColumnValue {
-    border-bottom:solid 1px #000;
+    border-bottom:solid 1px #5D835F
 }
 table.infolist tbody tr td.ColumnValue p {
     font-family:sans-serif;
@@ -1323,7 +1325,7 @@ div#pedigree {
     margin-top:-25px;
     margin-left:16px;
     background-color: #FFF;
-    border:solid 1px #228A22;
+    border: solid 1px #5D835F
 }
 #treeContainer div.boxbg a:hover {
     position:relative;
@@ -1334,7 +1336,7 @@ div#pedigree {
     width:190px;
     margin-left:-20px;
     padding:10px 25px 12px 25px;
-    border:solid 2px #228A22;
+    border: solid 2px #5D835F;
 }
 #treeContainer div.boxbg a:hover, 
 #treeContainer div.AncCol3 a:hover, 
@@ -1462,13 +1464,13 @@ body#WebCal {
     font-style:italic;
     color: #000;
     background-color: #6AF364;
-    border:solid 2px #228A22;
+    border: solid 2px #5D835F;
 }
 .calendar tfoot tr td {
     padding:.7em 5% 1em 5%;
     border-top:solid 2px #000;
     vertical-align:middle;
-    color: #228A22;
+    color: #000;
     background-color: #D8F3D6;
 }
 
@@ -1493,7 +1495,7 @@ body#WebCal {
     padding:0;
     border-width:1px 0 0 1px;
     border-style:solid;
-    border-color: #228A22;
+    border-color: #5D835F;
 }
 .calendar tbody tr td.weekday {
     background-color: #FFF;
@@ -1502,13 +1504,13 @@ body#WebCal {
     background-color: #D8F3D6;
 }
 .calendar tbody tr td.saturday {
-    border-right:solid 1px #228A22;
+    border-right: solid 1px #5D835F;
  }
 .calendar tbody tr td.sunday {
-    border-left:solid 1px #228A22;
+    border-left: solid 1px #5D835F;
 }
 .calendar tbody tr td:first-child {
-    border-left:solid 1px #228A22;
+    border-left: solid 1px #5D835F;
 }
 .calendar tbody tr:first-child td {
     border-top:none;
@@ -1527,7 +1529,7 @@ body#WebCal {
     width:92%;
     margin:0 4%;
     padding:.2em 0 .3em 0;
-    border-top:dashed 1px #228A22;
+    border-top: dashed 1px #5D835F;
 }
 .calendar tbody tr td ul li:first-child {
     border:none;
@@ -1608,7 +1610,7 @@ table.oneday {
     padding: 0;
 }
 table.oneday tbody tr td {
-    border-bottom: dashed 1px #228A22;
+    border-bottom: dashed 1px #5D835F;
 }
 table.oneday tbody tr td.ColumnRowLabel {
     width: 5%;
