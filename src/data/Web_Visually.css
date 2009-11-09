@@ -383,7 +383,7 @@ table.infolist tr td a {
     color: #000;
 }
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top:solid 1px #228A22;
+    border-top:solid 1px #5D835F;
 }
 table.infolist tr td.ColumnLetter {
     width:3%;
@@ -891,31 +891,47 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
 }
 
-/* Internet Address Book
+/* Address Book
 ------------------------------------------------------ */
-div#InternetAddressBook {
+div#AddressBookList, AddressBookDetail {
     margin: 0;
     padding: 0;
 }
-div#InternetAddressBook table.addressbook {
+div#AddressBookList table.addressbook {
     margin: .3em 0 .3em 0;
 }
-div#InternetAddressBook table.addressbook tbody tr.BeginName {
-    border-top: solid 1px #000;
+div#AddressBookList table.addressbook tbody tr.Totals {
+    border: solid 1px #5D835F;
 }
-div#InternetAddressBook table.addressbook tbody tr td {
-    background-color: #FFF;
-    border-bottom: dashed 1px #000;
-}
-div#InternetAddressBook table.addressbook tbody tr td.ColumnType {
+div#AddressBookList tble.addressbook tbody tr.Totals td {
+    text-align: left;
     background-color: #D8F3D6;
-    width: 15%;
 }
-div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
-    width: 30%;
+div#AddressBookList table.addressbook tbody tr td {
+    background-color: #D8F3D6;
+    text-align: center;
+    border: solid 1px #5D835F;
 }
-div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
+div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
+    width: 4%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName {
+    background-color: #FFF;
+    text-align: left;
     width: 70%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName a {
+    display: block;
+    padding: 6px 0px 6px 0px;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
+    width: 8%;
+}
+div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
+    width: 8%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
+    width: 8%;
 }
 
 /* Subsections
@@ -997,14 +1013,12 @@ table.infolist tbody tr td.ColumnValue p {
 
 /* Subsections : Attributes
 ----------------------------------------------------- */
-div#attributes { }
-
+div#attributes {
+    margin: 0;
+    padding: 0;
+}
 table.attrlist {
     width: 100%;
-}
-table.attrlist thead tr th {
-    font-weight: bold;
-    text-transform: uppercase;
 }
 table.attrlist tbody tr {
     border: solid 1px #5D835F;
@@ -1014,6 +1028,9 @@ table.attrlist tbody tr td {
 }
 table.attrlist tbody tr td.ColumnType {
     width: 200px;
+}
+table.attrlist tbody tr td.ColumnAttribute {
+    width: 10%;
 }
 table.attrlist tbody tr td.ColumnValue {
     width: 250px;
@@ -1106,40 +1123,39 @@ table.ldsordlist tbody tr td.ColumnLDSSources {
 /* Subsections : Addresses
 ----------------------------------------------------- */
 div#Addresses {
-    padding-bottom:0;
+    margin: 0;
+    padding: 0;
 }
 div#Addresses table.infolist {
-    font-size:.35cm;
-    background-color: #FFF;
+    font-size: 12px;
+    background- color: #D8F3D6;
 }
 div#Addresses table.infolist tbody tr td {
-    border-bottom:solid 1px #000;
-    padding-top:.4em;
-    padding-bottom:.4em;
+    border-bottom: solid 1px #5D835F;
 }
 div#Addresses table.infolist tbody tr td.ColumnDate {
-    width:15%;
+    width: 15%;
 }
 div#Addresses table.infolist tbody tr td.ColumnStreetAddress {
-    width:30%;
+    width: 30%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCity {
-    width:8%;
+    width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCounty {
-    with:8%;
+    with: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnState {
-    width:12%;
+    width: 12%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCntry {
-    width:5%;
+    width: 5%;
 }
 div#Addresses table.infolist tbody tr td.ColumnPostalcode {
-    width:10%;
+    width: 10%;
 }
 div#Addresses table.infolist tbody tr td.ColumnPhone {
-    width:15%;
+    width: 15%;
 }
 
 /* Subsections : Gallery

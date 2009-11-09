@@ -99,7 +99,6 @@ from gui.utils import ProgressMeter
 import ThumbNails
 import ImgManip
 import Mime
-from Utils import probably_alive, xml_lang
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
@@ -275,11 +274,13 @@ class BasePage(object):
     
     def __init__(self, report, title, gid = None):
         """
-        report - instance of NavWebReport
-        title - text for the <title> tag
-        gid - Gramps ID
-        """
+        Holds all of the things that each class needs to have...
 
+        @param: report - instance of NavWebReport
+        @param: title - text for the title
+        @param: gid - Gramps ID
+        """
+        self.up = False
         # class to do conversion of styled notes to html markup
         self._backend = HtmlBackend()
 
@@ -293,7 +294,6 @@ class BasePage(object):
         self.author = Utils.get_researcher().get_name()
         if self.author:
             self.author = self.author.replace(',,,', '')
-        self.up = False
 
         # TODO. All of these attributes are not necessary, because we have
         # also the options in self.options.  Besides, we need to check which
@@ -305,7 +305,7 @@ class BasePage(object):
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
         self.exiftagsopt = report.options['exiftagsopt']
-
+ 
     def get_birth_date(self, db, person):
         """ Will return a date object for a person's birthdate """
 
@@ -697,14 +697,36 @@ class BasePage(object):
         # return hyperlink to its callers
         return hyper
 
-    def dump_addresses(self, addrobj, showsrc = True):
+    def display_addr_list(self, addrlist, showsrc):
+        """
+        display a person's addresses ...
+
+        @param: addrlist -- a list of address handles
+        @param: showsrc -- whether to show sources or not?
+        """
+
+        if not addrlist:
+            return None
+
+        # begin addresses division and title
+        with Html("div", class_ = "subsection", id = "Addresses") as section:
+            section += Html("h4", _("Addresses"), inline = True)
+
+            # write out addresses()
+            section += self.dump_addresses(addrlist, showsrc)
+
+        # return address division to its caller
+        return section
+
+    def dump_addresses(self, addrlist, showsrc):
         """
         will display an object's addresses, url list, note list, 
         and source references.
 
-        @param: addrobj = either person or repository address object
+        @param: addrlist = either person or repository address list
         @param: showsrc = True  --  person
                           False -- repository
+                          None  -- do not show sources
         """
 
         def write_address_header(showsrc):
@@ -723,7 +745,7 @@ class BasePage(object):
 
             # if showsrc = True -- an individual's address else repository
             if showsrc:
-                addr_header.append([SHEAD,      'Sources'])
+                addr_header.append([SHEAD,      "Sources"])
 
             for (label, colclass) in addr_header:  
                 trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
@@ -738,9 +760,13 @@ class BasePage(object):
             with Html("table") as table:
                 summaryarea += table
 
-                # get table class based on either person or repository
-                table.attr = 'class = "infolist addrlist"' if showsrc \
-                    else 'class = "infolist repolist"'
+                # get table class based on showsrc
+                if showsrc == True:
+                    table.attr = 'class = "infolist addrlist"'
+                elif showsrc == False: 
+                    table.attr = 'class = "infolist repolist"'
+                else:
+                    table.attr = 'class = "infolist addressbook"' 
 
                 # begin table head
                 thead = Html("thead")
@@ -754,7 +780,7 @@ class BasePage(object):
                 table += tbody
 
                 # get address list from an object; either repository or person
-                for address in addrobj.get_address_list():
+                for address in addrlist:
 
                     trow = Html("tr")
                     tbody += trow
@@ -780,12 +806,26 @@ class BasePage(object):
                         trow += Html("td", value, class_ = "Column%s" % colclass, inline = True)
 
                     # address: notelist
-                    notelist = self.display_note_list(address.get_note_list())
-                    if notelist is not None:
-                        summaryarea += notelist
+                    if showsrc is not None:
+                        notelist = self.display_note_list(address.get_note_list())
+                        if notelist is not None:
+                            summaryarea += notelist
                    
         # return summaryarea division to its callers
         return summaryarea
+
+    def addressbook_link(self, handle, up = False):
+        """ createsa hyperlink for an address book link based on person's handle """
+        db = self.report.database
+
+        url = self.report.build_url_fname_html(handle, "addr", up)
+        person = db.get_person_from_handle(handle)
+        person_name = self.get_name(person)
+
+        addr_hyper = Html("a", person_name, href = url, title = html_escape(person_name))
+
+        # return addressbook hyperlink to its caller
+        return addr_hyper
 
     def get_copyright_license(self, copyright, up = False):
         """
@@ -954,7 +994,7 @@ class BasePage(object):
         db = self.report.database
 
         # Header constants
-        xmllang = xml_lang()
+        xmllang = Utils.xml_lang()
         _META1 = 'name="generator" content="%s %s %s"' % (
                     const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE
                     )
@@ -991,7 +1031,7 @@ class BasePage(object):
 
         # Link to GRAMPS favicon
         fname = "/".join(['images', 'favicon.ico'])
-        url5 = self.report.build_url_image('favicon.ico', 'images', self.up)
+        url5 = self.report.build_url_image("favicon.ico", "images", self.up)
 
         # create stylesheet and favicon links
         links = [Html("link", href = url5, type = "image/x-icon", rel = "shortcut icon"),
@@ -1052,7 +1092,7 @@ class BasePage(object):
             ('contact',                 _("Contact"),               self.report.use_contact),
             ('sources',                 SHEAD,                      True),
             ('repositories',            _("Repositories"),          inc_repos),
-            ("Internet_Address_Book",   _("Internet Address Book"), self.report.add_book)
+            ("addressbook",             _("Address Book"),          self.report.addressbook)
                 ]
 
         navigation = Html("div", id = 'navigation')
@@ -1095,11 +1135,11 @@ class BasePage(object):
             elif nav_text == _("Media"):
                 if "img" in self.report.cur_fname:
                     cs = True
-            elif nav_text == _("Internet Address Book"):
-                if "iab" in self.report.cur_fname:
+            elif nav_text == _("Address Book"):
+                if "addr" in self.report.cur_fname:
                     cs = True 
 
-            cs = cs and 'class="CurrentSection"' or ''
+            cs = 'class = "CurrentSection"' if cs else ""
             ul += (Html("li", attr = cs, inline = True) +
                    Html("a", nav_text, href = url)
                   )
@@ -1270,11 +1310,6 @@ class BasePage(object):
                     descr = uri
                 _type = url.get_type()
 
-                uri = url.get_path()
-                descr = url.get_description()
-                if not descr:
-                    descr = uri
-
                 list = Html("li")
                 ordered += list
  
@@ -1306,22 +1341,23 @@ class BasePage(object):
         # return web links to its caller
         return section
 
+    # Only used in IndividualPage.display_ind_sources
+    # and MediaPage.display_media_sources
     def display_source_refs(self, bibli):
         if bibli.get_citation_count() == 0:
             return None
         db = self.report.database
 
-        with Html("div", id = "sourcerefs", class_ = "subsection") as section: 
+        # begin Source References division and title
+        with Html("div", id = "sourcerefs", class_ = "subsection") as section:
             section += Html("h4", _("Source References"), inline = True)
-
-            # begin ordered list
-            ordered1 = Html("ol")
-            section += ordered1
+ 
+            ordered = Html("ol")
 
             cindex = 0
             for citation in bibli.get_citation_list():
-                cindex += 1
 
+                cindex += 1
                 # Add this source to the global list of sources to be displayed
                 # on each source page.
                 lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -1335,35 +1371,40 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 title = source.get_title()
-                list1 = Html("li")
-                ordered1 += list1
-                hyper = self.source_link(source.handle, "sref%d" % cindex, title, source.gramps_id, True)
-                list1 += hyper   
 
-                ordered2 = Html("ol")
-                list1 += ordered2
- 
+                list = Html("li", inline = True)
+
+                hyper = (Html("a", name = "sref%d" % cindex) +
+                    self.source_link(source.handle, title, source.gramps_id, True)
+                    )
+                list += hyper
+
+                ordered1 = Html("ol")
+                list += ordered1
+  
                 for key, sref in citation.get_ref_list():
 
                     tmp = []
-                    confidence = Utils.confidence.get(sref.confidence, _("Unknown"))
-                    if confidence == _("Normal"):
+                    confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
+                    if confidence == _('Normal'):
                         confidence = None
-                    for (label, data) in [(DHEAD,            format_date(sref.date)),
-                                          (_("Page"),        sref.page),
-                                          (_("Confidence"),  confidence)]:
+                    for (label, data) in [(_("Date"), format_date(sref.date)),
+                                          (_("Page"), sref.page),
+                                          (_("Confidence"), confidence)]:
                         if data:
                             tmp.append("%s: %s" % (label, data))
                     notelist = sref.get_note_list()
                     for notehandle in notelist:
                         note = db.get_note_from_handle(notehandle)
                         note_text = self.get_note_format(note)
-                        tmp.append("%s: %s" % (_("Text"), note_text))
+                        tmp.append("%s: %s" % (_('Text'), note_text))
                     if len(tmp) > 0:
-                        list2 = (Html("li") +
-                            Html("a", '; &nbsp; '.join(tmp), name = "sref%d%s" % (cindex, key), inline = True)
-                            )
-                        ordered2 += list2
+
+                        list1 = Html("li")
+                        ordered1 += list1
+
+                        hyper1 = Html("a", '; &nbsp; '.join(tmp), name = "sref%d%s" % (cindex, key)) 
+                        list1 += hyper1
 
         # return section to its callers
         return section
@@ -1497,6 +1538,75 @@ class BasePage(object):
 
         # return hyperlink to its callers
         return hyper
+
+    def dump_place(self, place, table, gid):
+        """ dump a place from the database """
+
+        if not self.noid and gid:
+            trow = Html("tr") + (
+                Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
+                Html("td", gid, class_ = "ColumnValue", inline = True)
+                )
+            table += trow
+
+            if place.main_loc:
+                ml = place.get_main_location()
+                if ml and not ml.is_empty():
+                    for val in [
+                        (LATITUDE,  place.lat),
+                        (LONGITUDE, place.long), 
+                        (STREET,    ml.street),
+                        (CITY,      ml.city),
+                        (PARISH,    ml.parish),
+                        (COUNTY,    ml.county),
+                        (STATE,     ml.state),
+                        (POSTAL,    ml.postal),
+                        (COUNTRY,   ml.country),
+                        (LOCATIONS, place.get_alternate_locations() ) ]:
+
+                        if val[1]:
+                            trow = Html("tr") + (
+                                Html("td", val[0], class_ = "ColumnAttribute", inline = True),
+                                Html("td", val[1], class_ = "ColumnValue", inline = True)
+                                )
+                            table += trow
+
+        # return place table to its callers
+        return table
+
+    def dump_residence(self, has_res):
+        """ creates a residence from the daTABASE """
+
+        if not has_res:
+            return None
+        db = self.report.database
+
+        # begin residence division
+        with Html("div", id = "Residence", class_ = "content") as residence:
+            residence += Html("h4", _("Residence"), inline = True)
+
+            with Html("table", class_ = "infolist place") as table:
+                residence += table
+
+                place_handle = has_res.get_place_handle()
+                if place_handle:
+                    place = db.get_place_from_handle(place_handle)
+                    if place:
+                        self.dump_place(place, table, place.gramps_id)
+
+            descr = has_res.get_description()
+            if descr:
+                with Html("table", class_ = "infolist") as table:
+                    residence += table
+
+                    trow = Html("tr") + (
+                        Html("td", DESCRHEAD, class_ = "ColumnAttribute", inline = True),
+                        Html("td", descr, class_ = "ColumnValue")
+                        )
+                    table += trow
+
+        # return information to its callers
+        return residence
 
 # ---------------------------------------------------------------------------------------
 #              # Web Page Fortmatter and writer                   
@@ -1951,6 +2061,7 @@ class PlaceListPage(BasePage):
 class PlacePage(BasePage):
 
     def __init__(self, report, title, place_handle, src_list, place_list):
+        """ creates the individual place pages """
         db = report.database
 
         place = db.get_place_from_handle(place_handle)
@@ -1981,33 +2092,8 @@ class PlacePage(BasePage):
                 with Html("table", class_ = "infolist place") as table:
                     summaryarea += table
 
-                    if not self.noid:
-                        trow = Html("tr") + (
-                            Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
-                            Html("td", place.gramps_id, class_ = "ColumnValue", inline = True)
-                            )
-                        table += trow
-
-                    if place.main_loc:
-                        ml = place.main_loc
-                        for val in [
-                             (LATITUDE,  place.lat),
-                             (LONGITUDE, place.long), 
-                             (STREET,    ml.street),
-                             (CITY,      ml.city),
-                             (PARISH,    ml.parish),
-                             (COUNTY,    ml.county),
-                             (STATE,     ml.state),
-                             (POSTAL,    ml.postal),
-                             (COUNTRY,   ml.country),
-                             (LOCATIONS, place.get_alternate_locations() ) ]:
-
-                            if val[1]:
-                                trow = Html("tr") + (
-                                    Html("td", val[0], class_ = "ColumnAttribute", inline = True),
-                                    Html("td", val[1], class_ = "ColumnValue", inline = True)
-                                    )
-                                table += trow
+                    # list the place
+                    self.dump_place(place, table, place.gramps_id)
 
             # place gallery
             if self.create_media:
@@ -3314,8 +3400,8 @@ class IndividualPage(BasePage):
             if sect5 is not None:
                 individualdetail += sect5
 
-            # display address(es)
-            sect6 = self.display_addresses()
+            # display address(es) and show sources if any
+            sect6 = self.display_addr_list(self.person.get_address_list(), True)
             if sect6 is not None:
                 individualdetail += sect6
 
@@ -3751,7 +3837,7 @@ class IndividualPage(BasePage):
                         birth_date = birth.get_date_object()
 
                 if birth_date is not None and birth_date != Date.EMPTY:
-                    alive = probably_alive(self.person, db, date.Today() )
+                    alive = Utils.probably_alive(self.person, db, date.Today() )
 
                     death_date = None
                     death_ref = self.person.get_death_ref()
@@ -3843,25 +3929,6 @@ class IndividualPage(BasePage):
                     tbody += self.display_event_row(event, evt_ref, True, False, True, False, True, True)
  
         # return section to its caller
-        return section
-
-    def display_addresses(self):
-        """
-        display a person's addresses ...
-        """
-
-        alist = self.person.get_address_list()
-        if not alist:
-            return None
-
-        # begin addresses division and title
-        with Html("div", class_ = "subsection", id = "Addresses") as section:
-            section += Html("h4", _("Addresses"), inline = True)
-
-            # write out addresses()
-            section += self.dump_addresses(self.person)
-
-        # return address division to its caller
         return section
 
     def display_lds_ordinance(self, person):
@@ -4533,7 +4600,7 @@ class RepositoryPage(BasePage):
                     table += trow
 
             # repository: address(es)
-            addresses = self.dump_addresses(repo, False)
+            addresses = self.dump_addresses(repo.get_address_list(), False)
             if addresses is not None:
                 repositorydetail += addresses
 
@@ -4556,115 +4623,172 @@ class RepositoryPage(BasePage):
         # and close the file
         self.XHTMLWriter(repositorypage, of)
 
-class InternetAddressBook(BasePage):
-    """
-    Will Create an Internet Address Book of people's web sites and email addresses
-    """
+class AddressBookListPage(BasePage):
 
-    def __init__(self, report, title, ind_list, iab_progress):
+    def __init__(self, report, title, has_url_address):
+        """
+        Create a list of individual's that have either internet addresses or 
+        address/ Residence events
+
+        @param: has_url_address -- a list of (sort_name, person_handle, has_add, has_rtes, and has_url
+
+        """
         BasePage.__init__(self, report, title)
         db = report.database
 
         # Name the file, and create it
-        of = self.report.create_file("Internet_Address_Book")
+        of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        iabpage, body = self.write_header(_("Internet Address Book"))
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book List")))
 
-        # begin page division
-        with Html("div", class_ = "content", id = "InternetAddressBook") as addbook:
-            body += addbook
+        # begin AddressBookList division
+        with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
+            body += addressbooklist
 
             # Internet Address Book Page message
             msg = _("This page contains an index of all the individuals in the "
-                          "database, sorted by their GRAMPS ID. Selecting the person&#8217;s "
-                          "name will take you to that person&#8217;s individual page.  "
-                          "Selecting a link will take you to their website or e-mail address.")
-            addbook += Html("p", msg, id = "description")
+                    "database, sorted by their surname. Selecting the person&#8217;s "
+                    "name will take you to their Address Book&#8217;s individual page.")
+            addressbooklist += Html("p", msg, id = "description")
 
             # begin Address Book table
             with Html("table", class_ = "infolist addressbook") as table:
-                addbook += table
+                addressbooklist += table
 
                 thead = Html("thead")
                 table += thead
 
-                trow = Html("tr") + (
-                    Html("th", THEAD, class_ = "ColumnType", inline = True),
-                    Html("th", _("Name"), class_ = "ColumnName", inline = True),
-                    Html("th", _("Link"), class_ = "ColumnLink", inline = True)
-                    )
+                trow = Html("tr")
                 thead += trow
+
+                for (label, colclass) in [
+                    ["&nbsp;",       "RowLabel"],
+                    [_("Name"),      "Name"],
+                    [_("Address"),   "Address"],
+                    [_("Residence"), "Residence"],
+                    [_("Web Links"), "WebLinks"] ]:
+                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
 
                 tbody = Html("tbody")
                 table += tbody
 
-                for person_handle in ind_list:
-                    iab_progress.step()
+                # local counters for total line
+                index, countadd, countres, counturl = 0, 0, 0, 0
 
+                for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
                     person = db.get_person_from_handle(person_handle)
-                    urllist = person.get_url_list()
+                    index += 1
 
-                    first = True
-                    for url in urllist:
+                    address = None
+                    residence = None
+                    weblinks = None
 
-                        trow = Html("tr")
-                        tbody += trow
+                    # has address but no residence event
+                    if has_add and not has_res:
+                        address = "X"
+                        countadd += 1
 
-                        # Internet link type
-                        _type = url.get_type()
-                        trow += Html("td", str(_type), class_ = "ColumnType", inline = True)
+                    # has residence, but no addresses
+                    elif has_res and not has_add:
+                        residence = "X" 
+                        countres += 1
 
-                        if first:
-                            trow.attr = 'class = "BeginName"'
+                    # has residence and addresses too
+                    elif has_add and has_res:
+                        address = "X"
+                        residence = "X" 
+                        countadd += 1
+                        countres += 1
 
-                            person_url = self.report.build_url_fname_html(person.handle, "ppl", False)
-                            person_hyper = self.person_link(person_url, person, True, gid = person.gramps_id)
-                        else:
-                            person_hyper = "&nbsp;"
-                        first = False
+                    # has Web Links
+                    if has_url:
+                        weblinks = "X"
+                        counturl += 1
 
-                        trow += Html("td", person_hyper, class_ = "ColumnName")
+                    trow = Html("tr")
+                    tbody += trow
 
-                        uri = url.get_path()
-                        descr = url.get_description()
-                        if not descr:
-                            descr = uri
-
-                        tcell = Html("td", class_ = "ColumnLink")
-                        trow += tcell
+                    for (colclass, data) in [
+                        ["RowLabel",  index],
+                        ["Name",      self.addressbook_link(person_handle)],
+                        ["Address",   address],
+                        ["Residence", residence],
+                        ["WebLinks",  weblinks] ]:
+                        data = data or "&nbsp;"
  
-                        # Email address
-                        if _type == UrlType.EMAIL:
-                            if not uri.startswith("mailto:"):
-                                tcell += Html("a",descr,  href = 'mailto: %s' % uri)
-                            else:
-                                tcell += Html("a", descr, href = "%s" % uri)
+                        trow += Html("td", data, class_ = "Column%s" % colclass, inline = True)
 
-                        # Web Site address
-                        elif _type == UrlType.WEB_HOME:
-                            if not uri.startswith("http://"):
-                                tcell += Html("a", descr, href = 'http://%s' % uri)
-                            else:
-                                tcell += Html("a", href = "%s" % uri)
-
-                        # FTP server address
-                        elif _type == UrlType.WEB_FTP:
-                            if not uri.startswith("ftp://"):
-                                tcell += Html("a", descr, href = 'ftp://%s' % uri)
-                            else:
-                                tcell += Html("a", drscr, href = "%s" % uri) 
-
-                        # custom type
-                        else:
-                            tcell += Html("a", descr, href = uri)
+                # create totals row for table
+                trow = Html("tr", class_ = "Totals") + (
+                    Html("td", _("Total"), classs_ = "ColumnRowlabel", inline = True),
+                    Html("td", index, class_ = "ColumnName", inline = True),
+                    Html("td", countadd, class_ = "ColumnAddress", inline = True),
+                    Html("td", countres, class_ = "ColumnResidence", inline = True),
+                    Html("td", counturl, class_ = "ColumnWebLinks", inline = True)
+                    )
+                tbody += trow
 
         # Add footer and clearline
         footer = self.write_footer()
         body += (fullclear, footer)
 
-        # write the file and close it
-        self.XHTMLWriter(iabpage, of)   
+        # send the page out for processing
+        # and close the file
+        self.XHTMLWriter(addressbooklistpage, of)
+
+class AddressBookPage(BasePage):
+
+    def __init__(self, report, title, person_handle, has_add, has_res, has_url):
+        """
+        Creates the individual address book pages
+
+        @parm: title = title for this report
+        @param: has_add -- a list of address handles or None
+        @param: has_res -- a residence event or None
+        @param: has_url -- list of url handles or None
+        """
+        db = report.database
+
+        person = db.get_person_from_handle(person_handle)
+        BasePage.__init__(self, report, title, person.gramps_id)
+        self.up = True
+
+        # set the file name and open file
+        of = self.report.create_file(person_handle, "addr")
+        addressbookpage, body = self.write_header("%s - %s" % (title, _("Address Book")))
+
+        # begin address book page division and section title
+        with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
+            body += addressbookdetail
+
+            addressbookdetail += Html("h3", self.get_name(person), inline = True)
+
+            # individual has a url
+            if has_url:
+                addressbookdetail += self.display_url_list(has_url)
+
+            # individual has an address, and not a residence event
+            if has_add and not has_res:
+                addressbookdetail += self.display_addr_list(has_add, None)
+
+            # individual has a residence event and no addresses
+            elif has_res and not has_add:
+                addressbookdetail += self.dump_residence(has_res)
+
+            # individual has both
+            elif has_add and has_res:
+                addressbookdetail += self.display_addr_list(has_add, None)
+                addressbookdetail += self.dump_residence(has_res)
+
+        # add fullclear for proper styling
+        # and footer section to page
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.XHTMLWriter(addressbookpage, of)
 
 class NavWebReport(Report):
     
@@ -4753,7 +4877,7 @@ class NavWebReport(Report):
         self.birthorder = self.options['birthorder']
 
         # get option for Internet Address Book
-        self.add_book = self.options["add_book"]
+        self.addressbook = self.options["addressbook"]
 
         if self.use_home:
             self.index_fname = "index"
@@ -4878,7 +5002,7 @@ class NavWebReport(Report):
 
 
         # build class InternetAddressBook
-        if self.add_book:
+        if self.addressbook:
             self.address_book_page(ind_list)
 
         # if an archive is being used, close it?
@@ -5231,11 +5355,55 @@ class NavWebReport(Report):
             self.progress.step()
 
     def address_book_page(self, ind_list):
+        """
+        Creates classes AddressBookListPage and AddressBookPage
+        """
 
-        # set progress pass
-        self.progress.set_pass(_("Creating internet address book page ..."), len(ind_list))
+        db = self.database
+        has_url_address = []
 
-        InternetAddressBook(self, self.title, ind_list, self.progress)
+        for person_handle in ind_list:
+
+            person = db.get_person_from_handle(person_handle)
+            addrlist = person.get_address_list()
+            evt_ref_list = person.get_event_ref_list()
+            urllist = person.get_url_list()
+
+            has_add = None
+            has_url = None
+            if addrlist:
+                has_add = addrlist
+            if urllist:
+                has_url = urllist
+
+            has_res = None
+            for event_ref in evt_ref_list:
+                event = db.get_event_from_handle(event_ref.ref)
+
+                # get event type
+                evt_type = str(event.get_type() )
+                if evt_type == "Residence":
+                    has_res = event
+                    break
+
+            if has_add or has_res or has_url:
+                primary_name = person.get_primary_name()
+                sort_name = ''.join([primary_name.get_surname(), ", ", primary_name.get_first_name()])
+
+                data = (sort_name, person_handle, has_add, has_res, has_url)
+                has_url_address.append(data)
+
+        # Determine if we build Address Book
+        if has_url_address:
+            has_url_address.sort()
+            AddressBookListPage(self, self.title, has_url_address)
+
+            self.progress.set_pass(_("Creating address book pages ..."), len(has_url_address))
+
+            for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
+                self.progress.step()
+
+                AddressBookPage(self, self.title, person_handle, has_add, has_res, has_url)
 
     def add_image(self, option_name, height=0):
         pic_id = self.options[option_name]
@@ -5727,9 +5895,10 @@ class NavWebOptions(MenuReportOptions):
         inc_gendex.set_help(_('Whether to include a GENDEX file or not'))
         menu.add_option(category_name, 'inc_gendex', inc_gendex)
 
-        add_book = BooleanOption(_("Include an Internet Address Book Page"), True)
-        add_book.set_help(_("Whether to add an Internet Address Book or not?"))
-        menu.add_option(category_name, "add_book", add_book)
+        addressbook = BooleanOption(_("Include address book pages"), False)
+        addressbook.set_help(_("Whether to add Address Book pages or not which can include"
+                                " e-mail and website addresses and personal address/ residence events?"))
+        menu.add_option(category_name, "addressbook", addressbook)
 
     def __archive_changed(self):
         """
