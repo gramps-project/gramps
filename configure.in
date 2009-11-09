@@ -125,7 +125,6 @@ src/Filters/Rules/MediaObject/Makefile
 src/Filters/Rules/Repository/Makefile
 src/Filters/Rules/Note/Makefile
 src/Filters/SideBar/Makefile
-src/DataViews/Makefile
 src/BasicUtils/Makefile
 src/Simple/Makefile
 src/GrampsDbUtils/Makefile
@@ -145,6 +144,7 @@ src/plugins/quickview/Makefile
 src/plugins/rel/Makefile
 src/plugins/textreport/Makefile
 src/plugins/tool/Makefile
+src/plugins/view/Makefile
 src/plugins/webreport/Makefile
 src/DateHandler/Makefile
 src/widgets/Makefile
