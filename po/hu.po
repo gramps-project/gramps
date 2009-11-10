@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: hu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-30 21:03+0100\n"
-"PO-Revision-Date: 2009-11-09 14:24+0100\n"
+"PO-Revision-Date: 2009-11-10 09:48+0100\n"
 "Last-Translator: Kolesár András <translation@kolesar.hu>\n"
 "Language-Team: magyar <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../src/ArgHandler.py:229
-#, fuzzy, python-format
+#, python-format
 msgid "Input family tree \"%s\" does not exist."
-msgstr "A fájl nem létezik"
+msgstr "A megadott családfa \"%s\" nem létezik."
 
 #: ../src/ArgHandler.py:230
 msgid "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead"
@@ -89,9 +89,8 @@ msgid "Email:"
 msgstr "Email:"
 
 #: ../src/Bookmarks.py:66
-#, fuzzy
 msgid "manual|Bookmarks"
-msgstr "_Könyvjelzők"
+msgstr "Könyvjelzők"
 
 #: ../src/Bookmarks.py:201
 #, python-format
@@ -250,7 +249,7 @@ msgstr "Korábban mint"
 
 #: ../src/DateEdit.py:81
 msgid "After"
-msgstr "Később mint "
+msgstr "Később mint"
 
 #: ../src/DateEdit.py:82
 msgid "About"
@@ -469,41 +468,37 @@ msgid ""
 msgstr ""
 
 #: ../src/DbManager.py:691
-#, fuzzy
 msgid "Could not rename the Family Tree."
-msgstr "Nem lehet létrehozni a mappát : %s"
+msgstr "Nem sikerült átnevezni a családfát."
 
 #: ../src/DbManager.py:692
 msgid "Family Tree already exists, choose a unique name."
 msgstr ""
 
 #: ../src/DbManager.py:705
-#, fuzzy
 msgid "Could not rename family tree"
-msgstr "%s fájl nem nyitható meg"
+msgstr "Nem sikerült átnevezni a családfát"
 
 #: ../src/DbManager.py:739
 msgid "Extracting archive..."
 msgstr ""
 
 #: ../src/DbManager.py:744
-#, fuzzy
 msgid "Importing archive..."
-msgstr "Adatrendezés..."
+msgstr "Archívum importálása..."
 
 #: ../src/DbManager.py:760
-#, fuzzy, python-format
+#, python-format
 msgid "Remove the '%s' family tree?"
-msgstr "Apa eltávolítása a családból"
+msgstr "Eltávolítja a '%s' családfát?"
 
 #: ../src/DbManager.py:761
 msgid "Removing this family tree will permanently destroy the data."
 msgstr ""
 
 #: ../src/DbManager.py:762
-#, fuzzy
 msgid "Remove family tree"
-msgstr "Család eltávolítása"
+msgstr "Családfa eltávolítása"
 
 #: ../src/DbManager.py:768
 #, python-format
@@ -515,19 +510,16 @@ msgid "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 
 #: ../src/DbManager.py:774
-#, fuzzy
 msgid "Remove version"
-msgstr "Nincs aktív személy"
+msgstr "Verzió eltávolítása"
 
 #: ../src/DbManager.py:803
-#, fuzzy
 msgid "Could not delete family tree"
-msgstr "A %s fájl nem írható"
+msgstr "Nem sikerült törölni a családfát."
 
 #: ../src/DbManager.py:828
-#, fuzzy
 msgid "Deletion failed"
-msgstr "Sikertelen művelet"
+msgstr "Sikertelen törlés"
 
 #: ../src/DbManager.py:829
 #, python-format
@@ -542,14 +534,12 @@ msgid "Rebuilding database from backup files"
 msgstr ""
 
 #: ../src/DbManager.py:907
-#, fuzzy
 msgid "Could not create family tree"
-msgstr "%s nem hozható létre"
+msgstr "Nem sikerült létrehozni a családfát"
 
 #: ../src/DbManager.py:994
-#, fuzzy
 msgid "Could not make database directory: "
-msgstr "Nem lehet létrehozni a mappát : %s"
+msgstr "Nem sikerült létrehozni az adatbázis könyvtárát: "
 
 #: ../src/DbManager.py:1008
 msgid "Never"
@@ -609,9 +599,8 @@ msgid "Unknown"
 msgstr "Ismeretlen"
 
 #: ../src/DbManager.py:1103
-#, fuzzy
 msgid "Retrieve failed"
-msgstr "Visszakeresés:"
+msgstr "Sikertelen visszaállítás"
 
 #: ../src/DbManager.py:1104
 #, python-format
@@ -623,7 +612,6 @@ msgstr ""
 
 #: ../src/DbManager.py:1145
 #: ../src/DbManager.py:1173
-#, fuzzy
 msgid "Archiving failed"
 msgstr "Sikertelen mentés"
 
@@ -636,14 +624,12 @@ msgid ""
 msgstr ""
 
 #: ../src/DbManager.py:1151
-#, fuzzy
 msgid "Creating data to be archived..."
-msgstr "Adatbázis ellenőrzése és rendbehozatala"
+msgstr "Archiválandó adatok létrehozása..."
 
 #: ../src/DbManager.py:1160
-#, fuzzy
 msgid "Saving archive..."
-msgstr "Diagram mentése..."
+msgstr "Archívum mentése..."
 
 #: ../src/DbManager.py:1174
 #, python-format
@@ -668,14 +654,12 @@ msgid "Saving your data"
 msgstr "Adatainak mentése"
 
 #: ../src/ExportAssistant.py:224
-#, fuzzy
 msgid "Choose the output format"
-msgstr "A mentés formátumának kiválasztása"
+msgstr "Válasszon kimeneti formátumot"
 
 #: ../src/ExportAssistant.py:304
-#, fuzzy
 msgid "Select Save File"
-msgstr "Fájl _kiválasztása"
+msgstr "Fájl kiválasztása"
 
 #: ../src/ExportAssistant.py:342
 #: ../src/plugins/tool/MediaManager.py:270
@@ -925,9 +909,8 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsCfg.py:158
-#, fuzzy
 msgid " Name Editor"
-msgstr "Névszerkesztő"
+msgstr " Névszerkesztő"
 
 #: ../src/GrampsCfg.py:158
 #: ../src/GrampsCfg.py:166
@@ -984,9 +967,8 @@ msgid "Marker Colors"
 msgstr "Jelölés-színek"
 
 #: ../src/GrampsCfg.py:193
-#, fuzzy
 msgid "Internet Maps"
-msgstr "Internet"
+msgstr "Internet-térképek"
 
 #: ../src/GrampsCfg.py:206
 #: ../src/gramps_main.py:97
@@ -1252,18 +1234,16 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsCfg.py:321
-#, fuzzy
 msgid "Google Maps"
-msgstr "_Google-térképek"
+msgstr "Google-térkép"
 
 #: ../src/GrampsCfg.py:325
 msgid "OpenLayers"
 msgstr ""
 
 #: ../src/GrampsCfg.py:329
-#, fuzzy
 msgid "Yahoo! Maps"
-msgstr "_Google-térképek"
+msgstr "Yahoo! térkép"
 
 #: ../src/GrampsCfg.py:333
 msgid "Microsoft Maps"
@@ -1490,9 +1470,8 @@ msgstr "Feltehetően élő emberek"
 
 #: ../src/GrampsCfg.py:868
 #: ../src/plugins/tool/CalculateEstimatedDates.py:106
-#, fuzzy
 msgid "Maximum sibling age difference"
-msgstr "Legnagyobb férj-feleség _korkülönbség"
+msgstr "Legnagyobb férj-feleség korkülönbség"
 
 #: ../src/GrampsCfg.py:871
 #: ../src/plugins/tool/CalculateEstimatedDates.py:112
@@ -1561,23 +1540,20 @@ msgid "Name Format Editor"
 msgstr "Névformátum-szerkesztő"
 
 #: ../src/GrampsCfg.py:1136
-#, fuzzy
 msgid "The format definition is invalid"
-msgstr "Formátumdefiníció _részletei"
+msgstr "Formátumdefiníció részletei"
 
 #: ../src/GrampsCfg.py:1137
 msgid "What would you like to do?"
 msgstr "Mit szeretne tenni?"
 
 #: ../src/GrampsCfg.py:1138
-#, fuzzy
 msgid "_Continue anyway"
-msgstr "Mentés folytatása"
+msgstr "_Folytatás"
 
 #: ../src/GrampsCfg.py:1138
-#, fuzzy
 msgid "_Modify format"
-msgstr "_Megjelenítési formátum"
+msgstr "_Formátum módosítása"
 
 #: ../src/GrampsCfg.py:1146
 msgid "Both Format name and definition have to be defined"
@@ -1983,7 +1959,7 @@ msgstr "A könyvjelző nem állítható be mert semmi sem lett kiválasztva."
 #: ../src/PageView.py:995
 #: ../src/DataViews/PersonView.py:157
 msgid "_Add..."
-msgstr "_Hozzáadás"
+msgstr "_Hozzáadás..."
 
 #: ../src/PageView.py:997
 #: ../src/DataViews/PersonView.py:159
@@ -2116,9 +2092,8 @@ msgid "Person %s connects to himself via %s"
 msgstr ""
 
 #: ../src/Relationship.py:1187
-#, fuzzy
 msgid "undefined"
-msgstr "_Aláhúzott"
+msgstr "meghatározatlan"
 
 #: ../src/Relationship.py:1639
 #: ../src/plugins/import/ImportCsv.py:284
@@ -2135,19 +2110,16 @@ msgid "gender unknown|spouse"
 msgstr "házastárs"
 
 #: ../src/Relationship.py:1646
-#, fuzzy
 msgid "ex-husband"
-msgstr "férj"
+msgstr "előző férj"
 
 #: ../src/Relationship.py:1648
-#, fuzzy
 msgid "ex-wife"
-msgstr "feleség"
+msgstr "előző feleség"
 
 #: ../src/Relationship.py:1650
-#, fuzzy
 msgid "gender unknown|ex-spouse"
-msgstr "házastárs"
+msgstr "előző házastárs"
 
 #: ../src/Relationship.py:1653
 msgid "unmarried|husband"
@@ -2162,14 +2134,12 @@ msgid "gender unknown,unmarried|spouse"
 msgstr "élettárs"
 
 #: ../src/Relationship.py:1660
-#, fuzzy
 msgid "unmarried|ex-husband"
-msgstr "élettárs"
+msgstr "előző férj"
 
 #: ../src/Relationship.py:1662
-#, fuzzy
 msgid "unmarried|ex-wife"
-msgstr "élettárs"
+msgstr "előző feleség"
 
 #: ../src/Relationship.py:1664
 #, fuzzy
@@ -2475,9 +2445,8 @@ msgid "Call Number"
 msgstr "Hívószám"
 
 #: ../src/ScratchPad.py:544
-#, fuzzy
 msgid "Media Type"
-msgstr "_Médiatípus:"
+msgstr "Médiatípus"
 
 #: ../src/ScratchPad.py:556
 msgid "Event Reference"
@@ -2757,24 +2726,20 @@ msgid "Indonesian"
 msgstr "Indonéz"
 
 #: ../src/Spell.py:123
-#, fuzzy
 msgid "Icelandic"
-msgstr "Izlandi stílus"
+msgstr "Izlandi"
 
 #: ../src/Spell.py:124
-#, fuzzy
 msgid "Italian"
-msgstr "_Dölt"
+msgstr "Olasz"
 
 #: ../src/Spell.py:125
-#, fuzzy
 msgid "Kurdi"
-msgstr "KWord"
+msgstr "Kurd"
 
 #: ../src/Spell.py:126
-#, fuzzy
 msgid "Latin"
-msgstr "Hely"
+msgstr "Latin"
 
 #: ../src/Spell.py:127
 msgid "Lithuanian"
@@ -3131,9 +3096,8 @@ msgstr "Kérjük ne eröltesse ennek a fontos párbeszédablaknak a bezárását
 
 #: ../src/Utils.py:1157
 #: ../src/Utils.py:1164
-#, fuzzy
 msgid "Error Opening File"
-msgstr "Hiba %s olvasásakor"
+msgstr "Hiba a fájl megnyitásakor"
 
 #: ../src/Utils.py:1157
 #: ../src/plugins/textreport/IndivComplete.py:421
@@ -3307,7 +3271,7 @@ msgstr "_Felhasználói kézikönyv"
 
 #: ../src/ViewManager.py:408
 msgid "_Export..."
-msgstr "_Exportálás"
+msgstr "_Exportálás..."
 
 #: ../src/ViewManager.py:411
 msgid "_Abandon Changes and Quit"
@@ -3822,9 +3786,8 @@ msgid ""
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:750
-#, fuzzy
 msgid "_OpenStreetMap"
-msgstr "Utca"
+msgstr "_OpenStreetMap"
 
 #: ../src/DataViews/GeoView.py:752
 msgid "Select OpenStreetMap Maps"
@@ -3835,9 +3798,8 @@ msgid "_Google Maps"
 msgstr "_Google-térképek"
 
 #: ../src/DataViews/GeoView.py:757
-#, fuzzy
 msgid "Select Google Maps."
-msgstr "_Google-térképek"
+msgstr "Válassza a Google-térképet."
 
 #: ../src/DataViews/GeoView.py:760
 msgid "_OpenLayers Maps"
@@ -3848,9 +3810,8 @@ msgid "Select OpenLayers Maps."
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:765
-#, fuzzy
 msgid "_Yahoo! Maps"
-msgstr "_Google-térképek"
+msgstr "_Yahoo! térkép"
 
 #: ../src/DataViews/GeoView.py:767
 msgid "Select Yahoo Maps."
@@ -3936,9 +3897,9 @@ msgid "You are looking at the default map."
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:1547
-#, fuzzy, python-format
+#, python-format
 msgid "%(comment)s : birth place."
-msgstr "Született: %(birth_place)s."
+msgstr "%(comment)s : születési hely."
 
 #: ../src/DataViews/GeoView.py:1550
 #, fuzzy
@@ -3946,9 +3907,9 @@ msgid "birth place."
 msgstr "Születési hely"
 
 #: ../src/DataViews/GeoView.py:1584
-#, fuzzy, python-format
+#, python-format
 msgid "%(comment)s : death place."
-msgstr "%(male_name)s halálozási helye %(death_place)s."
+msgstr "%(comment)s : halálozás helye."
 
 #: ../src/DataViews/GeoView.py:1587
 #, fuzzy
@@ -3956,9 +3917,9 @@ msgid "death place."
 msgstr "Elhalálozási hely"
 
 #: ../src/DataViews/GeoView.py:1623
-#, fuzzy, python-format
+#, python-format
 msgid "Id : %s"
-msgstr "h. %s"
+msgstr "Id : %s"
 
 #: ../src/DataViews/GeoView.py:1639
 #: ../src/DataViews/GeoView.py:1723
@@ -3972,9 +3933,9 @@ msgid "All places in the family tree with coordinates."
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:1668
-#, fuzzy, python-format
+#, python-format
 msgid "Id : %(id)s (%(year)s)"
-msgstr "sz. %(birth_date)s - %(place)s"
+msgstr "Id : %(id)s (%(year)s)"
 
 #: ../src/DataViews/GeoView.py:1727
 msgid "All events in the family tree with coordinates."
@@ -4001,9 +3962,8 @@ msgstr ""
 
 #: ../src/DataViews/GeoView.py:1780
 #: ../src/DataViews/GeoView.py:1851
-#, fuzzy
 msgid "No active person set."
-msgstr "Nincs aktív személy"
+msgstr "Nincs aktív személy."
 
 #: ../src/DataViews/GeoView.py:1784
 #, python-format
@@ -4011,9 +3971,9 @@ msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:1829
-#, fuzzy, python-format
+#, python-format
 msgid "%(eventtype)s : %(name)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1849
 msgid "The active person has no places with coordinates."
@@ -4192,9 +4152,8 @@ msgid "Jump to child..."
 msgstr "Ugrás gyermekhez..."
 
 #: ../src/DataViews/PedigreeView.py:1273
-#, fuzzy
 msgid "A person was found to be his/her own ancestor."
-msgstr "Adatbázis hiba: %s a saját őseként lett megadva"
+msgstr "Egy személy a saját őseként lett megadva."
 
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
 #. (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
@@ -4235,10 +4194,10 @@ msgid "Automatic"
 msgstr "Automatikus"
 
 #: ../src/DataViews/PedigreeView.py:1398
-#, fuzzy, python-format
+#, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
-msgstr[0] "%d. generáció"
+msgstr[0] "%d generáció"
 
 #: ../src/DataViews/PedigreeView.py:1411
 #: ../src/DataViews/PedigreeView.py:1431
@@ -4385,7 +4344,7 @@ msgstr "Megjelenítés frissítése..."
 
 #: ../src/DataViews/PersonView.py:601
 msgid "Deleting the person will remove the person from the database."
-msgstr "A személy törlésekor kikerül az adatbázisból"
+msgstr "A személy törlésekor kikerül az adatbázisból."
 
 #: ../src/DataViews/PersonView.py:606
 msgid "_Delete Person"
@@ -4592,7 +4551,7 @@ msgstr "Személy hozzáadása a családhoz gyermekként"
 
 #: ../src/DataViews/RelationView.py:346
 msgid "Add Existing Parents..."
-msgstr "Létező szülők hozzáadása"
+msgstr "Létező szülők hozzáadása..."
 
 #: ../src/DataViews/RelationView.py:354
 msgid "Show Details"
@@ -4695,7 +4654,7 @@ msgstr "Gyermek hozzáadása a családhoz"
 #: ../src/DataViews/RelationView.py:1129
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
-msgstr "sz: %(birthdate)s, h: %(deathdate)s."
+msgstr "sz: %(birthdate)s, h: %(deathdate)s"
 
 #: ../src/DataViews/RelationView.py:1134
 #, python-format
@@ -4814,7 +4773,7 @@ msgstr "Forrásoszlop kiválasztása"
 
 #: ../src/DataViews/SourceView.py:206
 msgid "Cannot merge sources."
-msgstr "A források nem összevonhatóak"
+msgstr "A források nem vonhatók össze."
 
 #: ../src/DataViews/SourceView.py:207
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
@@ -5279,7 +5238,7 @@ msgstr "Exportálás nem sikerült"
 #: ../src/Editors/AddMedia.py:156
 #: ../src/Editors/AddMedia.py:169
 msgid "The filename supplied could not be found."
-msgstr "A kért fájlnév nem található"
+msgstr "A kért fájlnév nem található."
 
 #: ../src/Editors/AddMedia.py:168
 #, python-format
@@ -5687,9 +5646,9 @@ msgstr "Helyiség szerkesztő"
 
 #: ../src/Editors/_EditMedia.py:85
 #: ../src/Editors/_EditMediaRef.py:385
-#, fuzzy, python-format
+#, python-format
 msgid "Media: %s"
-msgstr "Média"
+msgstr "Média: %s"
 
 #: ../src/Editors/_EditMedia.py:87
 #: ../src/Editors/_EditMediaRef.py:387
@@ -5707,9 +5666,8 @@ msgid "Cannot save media object"
 msgstr "Nem lehet menteni az eseményt"
 
 #: ../src/Editors/_EditMedia.py:238
-#, fuzzy
 msgid "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "Nincs adat erről az eseményről. Kérjük adjon meg adatot, vagy szakítsa meg a szerkesztést!"
+msgstr "Nincs adat erről az eseményről. Kérjük adjon meg adatot, vagy szakítsa meg a szerkesztést."
 
 #: ../src/Editors/_EditMedia.py:247
 msgid "Cannot save media object. ID already exists."
@@ -5717,15 +5675,15 @@ msgstr ""
 
 #: ../src/Editors/_EditMedia.py:265
 #: ../src/Editors/_EditMediaRef.py:559
-#, fuzzy, python-format
+#, python-format
 msgid "Add Media Object (%s)"
-msgstr "Médiaobjektum hozzáadása"
+msgstr "Médiaobjektum hozzáadása (%s)"
 
 #: ../src/Editors/_EditMedia.py:270
 #: ../src/Editors/_EditMediaRef.py:555
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Médiaobjektum szerkesztése"
+msgstr "Médiaobjektum szerkesztése (%s)"
 
 #: ../src/Editors/_EditMedia.py:356
 msgid "Remove Media Object"
@@ -5761,14 +5719,12 @@ msgid "All people with the name of %(surname)s will no longer be grouped with th
 msgstr ""
 
 #: ../src/Editors/_EditName.py:345
-#, fuzzy
 msgid "Continue"
-msgstr "Mentés folytatása"
+msgstr "Folytatás"
 
 #: ../src/Editors/_EditName.py:346
-#, fuzzy
 msgid "Return to Name Editor"
-msgstr "Névszerkesztő"
+msgstr "Visszatérés a névszerkesztőhöz"
 
 #: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
@@ -5793,9 +5749,9 @@ msgid "Note: %(id)s - %(context)s"
 msgstr ""
 
 #: ../src/Editors/_EditNote.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "Note: %s"
-msgstr "Megjegyzések"
+msgstr "Megjegyzés: %s"
 
 #: ../src/Editors/_EditNote.py:149
 #, python-format
@@ -5803,9 +5759,8 @@ msgid "New Note - %(context)s"
 msgstr ""
 
 #: ../src/Editors/_EditNote.py:153
-#, fuzzy
 msgid "New Note"
-msgstr "Új név"
+msgstr "Új megjegyzés"
 
 #: ../src/Editors/_EditNote.py:180
 #, fuzzy
@@ -5813,9 +5768,8 @@ msgid "_Note"
 msgstr "Megjegyzés"
 
 #: ../src/Editors/_EditNote.py:283
-#, fuzzy
 msgid "Cannot save note"
-msgstr "Nem lehet menteni az eseményt"
+msgstr "Nem lehet menteni a megjegyzést"
 
 #: ../src/Editors/_EditNote.py:284
 #, fuzzy
@@ -5827,9 +5781,8 @@ msgid "Cannot save note. ID already exists."
 msgstr ""
 
 #: ../src/Editors/_EditNote.py:305
-#, fuzzy
 msgid "Add Note"
-msgstr "Megjegyzés"
+msgstr "Megjegyzés hozzáadása"
 
 #: ../src/Editors/_EditNote.py:372
 #, fuzzy, python-format
@@ -5864,9 +5817,8 @@ msgid "Make Active Person"
 msgstr "Nincs aktív személy"
 
 #: ../src/Editors/_EditPerson.py:518
-#, fuzzy
 msgid "Make Home Person"
-msgstr "_Központi személy kiválasztása"
+msgstr "Központi személy kiválasztása"
 
 #: ../src/Editors/_EditPerson.py:665
 msgid "Problem changing the gender"
@@ -5941,9 +5893,9 @@ msgid "_Location"
 msgstr "_Hely"
 
 #: ../src/Editors/_EditPlace.py:133
-#, fuzzy, python-format
+#, python-format
 msgid "Place: %s"
-msgstr "Helyszínek"
+msgstr "Helyszín: %s"
 
 #: ../src/Editors/_EditPlace.py:135
 msgid "New Place"
@@ -6027,9 +5979,8 @@ msgid "Add Repository"
 msgstr "Tároló hozzáadása"
 
 #: ../src/Editors/_EditRepository.py:84
-#, fuzzy
 msgid "Edit Repository"
-msgstr "Tároló szerkesztése (%s)"
+msgstr "Tároló szerkesztése"
 
 #: ../src/Editors/_EditRepository.py:143
 msgid "Cannot save repository"
@@ -6065,9 +6016,8 @@ msgid "New Source"
 msgstr "Új forrás"
 
 #: ../src/Editors/_EditSource.py:155
-#, fuzzy
 msgid "Edit Source"
-msgstr "Források szerkesztése (%s)"
+msgstr "Forrás szerkesztése"
 
 #: ../src/Editors/_EditSource.py:160
 msgid "Cannot save source"
@@ -6393,9 +6343,9 @@ msgstr "Meg nem született anya"
 
 #: ../src/plugins/BookReport.py:178
 #: ../src/PluginUtils/_GuiOptions.py:618
-#, fuzzy, python-format
+#, python-format
 msgid "%s and %s (%s)"
-msgstr "%s és %s"
+msgstr "%s és %s (%s)"
 
 #: ../src/plugins/BookReport.py:583
 msgid "Available Books"
@@ -6601,9 +6551,8 @@ msgid "Error extracting into %s"
 msgstr "Hiba lépett fel %s fájlba exportáláskor"
 
 #: ../src/plugins/import/ImportGpkg.py:107
-#, fuzzy
 msgid "Base path for relative media set"
-msgstr "Az útvonalak átalakítása relatívból _abszolútba"
+msgstr "Elérési útvonal relatív média-hivatkozásokhoz"
 
 #: ../src/plugins/import/ImportGpkg.py:108
 #, python-format
@@ -6659,39 +6608,39 @@ msgid "The file is probably either corrupt or not a valid GRAMPS database."
 msgstr "A fájl vagy hibás vagy nem egy szabályos GRAMPS adatbázis."
 
 #: ../src/plugins/import/ImportXml.py:237
-#, fuzzy, python-format
+#, python-format
 msgid "  %(id)s - %(text)s\n"
-msgstr "sz. %(birth_date)s - %(place)s"
+msgstr "  %(id)s - %(text)s\n"
 
 #: ../src/plugins/import/ImportXml.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "  Family %(id)s\n"
-msgstr "Családlista"
+msgstr "  Család %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:243
-#, fuzzy, python-format
+#, python-format
 msgid "  Source %(id)s\n"
-msgstr "Forrás: %s"
+msgstr "  Forrás: %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "  Event %(id)s\n"
-msgstr "Esemény: %s"
+msgstr "  Esemény %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "  Media Object %(id)s\n"
-msgstr "Médiaobjektumok"
+msgstr "  Médiaobjektum %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:249
-#, fuzzy, python-format
+#, python-format
 msgid "  Place %(id)s\n"
-msgstr "Helyszín szerkesztése (%s)"
+msgstr "  Hely %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "  Repository %(id)s\n"
-msgstr "Tároló: %s"
+msgstr "  Tároló %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:253
 #, python-format
@@ -6699,39 +6648,39 @@ msgid "  Note %(id)s\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:260
-#, fuzzy, python-format
+#, python-format
 msgid "  People: %d\n"
-msgstr "Emberek"
+msgstr "  Emberek: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:261
-#, fuzzy, python-format
+#, python-format
 msgid "  Families: %d\n"
-msgstr "Családok"
+msgstr "  Családok: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:262
-#, fuzzy, python-format
+#, python-format
 msgid "  Sources: %d\n"
-msgstr "Forrás: %s"
+msgstr "  Források: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "  Events: %d\n"
-msgstr "Esemény: %s"
+msgstr "  Események: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:264
-#, fuzzy, python-format
+#, python-format
 msgid "  Media Objects: %d\n"
-msgstr "Médiaobjektumok"
+msgstr "  Médiaobjektumok: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:265
-#, fuzzy, python-format
+#, python-format
 msgid "  Places: %d\n"
-msgstr "Helyszínek"
+msgstr "  Helyszínek: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:266
-#, fuzzy, python-format
+#, python-format
 msgid "  Repositories: %d\n"
-msgstr "Tárolók"
+msgstr "  Tárolók: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:267
 #, python-format
@@ -6739,9 +6688,8 @@ msgid "  Notes: %d\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:269
-#, fuzzy
 msgid "Number of new objects imported:\n"
-msgstr "Különböző médiaobjektumok"
+msgstr "Importált objektumok száma:\n"
 
 #: ../src/plugins/import/ImportXml.py:278
 msgid ""
@@ -6760,9 +6708,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:763
-#, fuzzy
 msgid "Could not change media path"
-msgstr "Nem nyitható meg a segítség"
+msgstr "Nem sikerült megváltoztatni a média elérési útvonalát"
 
 #: ../src/plugins/import/ImportXml.py:764
 #, python-format
@@ -6817,9 +6764,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:2503
-#, fuzzy
 msgid "The file will not be imported"
-msgstr "%s-t nem lehet megnyitni"
+msgstr "A fájl nem lesz importálva"
 
 #: ../src/plugins/import/ImportXml.py:2506
 #, python-format
@@ -6833,9 +6779,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:2523
-#, fuzzy
 msgid "Old xml file"
-msgstr "Minden fájl"
+msgstr "Régi xml fájl"
 
 #: ../src/plugins/import/ImportXml.py:2533
 #: ../data/gramps.keys.in.h:2
@@ -6888,9 +6833,9 @@ msgid "Records"
 msgstr "Összesítők"
 
 #: ../src/plugins/Records.py:413
-#, fuzzy, python-format
+#, python-format
 msgid "%(number)s. %(name)s (%(value)s)"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(number)s. %(name)s (%(value)s)"
 
 #. ###############################
 #. #########################
@@ -7059,29 +7004,24 @@ msgid "Person divorced at oldest age"
 msgstr ""
 
 #: ../src/plugins/Records.py:545
-#, fuzzy
 msgid "Youngest father"
-msgstr "Fiatal apa"
+msgstr "Legfiatalabb apa"
 
 #: ../src/plugins/Records.py:546
-#, fuzzy
 msgid "Youngest mother"
-msgstr "Fiatal anya"
+msgstr "Legfiatalabb anya"
 
 #: ../src/plugins/Records.py:547
-#, fuzzy
 msgid "Oldest father"
-msgstr "Öreg apa"
+msgstr "Legidősebb apa"
 
 #: ../src/plugins/Records.py:548
-#, fuzzy
 msgid "Oldest mother"
-msgstr "Öreg anya"
+msgstr "Legidősebb anya"
 
 #: ../src/plugins/Records.py:549
-#, fuzzy
 msgid "Couple with most children"
-msgstr "Gyermekes emberek"
+msgstr "Párok a legtöbb gyermekkel"
 
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most recently"
@@ -7092,14 +7032,12 @@ msgid "Living couple married most long ago"
 msgstr ""
 
 #: ../src/plugins/Records.py:552
-#, fuzzy
 msgid "Shortest past marriage"
-msgstr "Kor házasság idején"
+msgstr "Legrövidebb ideig tartó házasság"
 
 #: ../src/plugins/Records.py:553
-#, fuzzy
 msgid "Longest past marriage"
-msgstr "Kor házasság idején"
+msgstr "Leghosszabb ideig tartó házasság"
 
 #: ../src/plugins/Records.py:565
 #, fuzzy
@@ -7268,9 +7206,8 @@ msgstr "M_egjelenítés egyetlen oldalon"
 
 #: ../src/plugins/drawreport/AncestorTree.py:479
 #: ../src/plugins/drawreport/DescendTree.py:476
-#, fuzzy
 msgid "Whether to scale to fit on a single page."
-msgstr "M_egjelenítés egyetlen oldalon"
+msgstr "Megjelenítés egyetlen oldalon."
 
 #: ../src/plugins/drawreport/AncestorTree.py:482
 #: ../src/plugins/drawreport/DescendTree.py:479
@@ -7337,9 +7274,9 @@ msgstr "Csak olvasható adatbázis"
 
 #: ../src/plugins/drawreport/Calendar.py:290
 #: ../src/plugins/textreport/BirthdayReport.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s, birth%(relation)s"
-msgstr "%(person)s %(relationship)s %(active_person)s -nak."
+msgstr "%(person)s, születés%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:294
 #: ../src/plugins/textreport/BirthdayReport.py:250
@@ -7350,13 +7287,13 @@ msgstr[0] ""
 
 #: ../src/plugins/drawreport/Calendar.py:346
 #: ../src/plugins/textreport/BirthdayReport.py:296
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(spouse)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s és\n"
-" %(person)s, %(nyears)d"
+"%(spouse)s and\n"
+" %(person)s, esküvő"
 
 #: ../src/plugins/drawreport/Calendar.py:351
 #: ../src/plugins/textreport/BirthdayReport.py:300
@@ -7528,9 +7465,8 @@ msgstr "2. szöveg"
 
 #: ../src/plugins/drawreport/Calendar.py:448
 #: ../src/plugins/textreport/BirthdayReport.py:408
-#, fuzzy
 msgid "Produced with GRAMPS"
-msgstr "Folytatás _importálással"
+msgstr "Készült GRAMPS segítségével"
 
 #: ../src/plugins/drawreport/Calendar.py:449
 #: ../src/plugins/textreport/BirthdayReport.py:409
@@ -7549,14 +7485,12 @@ msgid "Third line of text at bottom of calendar"
 msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:507
-#, fuzzy
 msgid "Title text and background color"
-msgstr "Cím szövege és háttérszín."
+msgstr "Cím szövege és háttérszíne"
 
 #: ../src/plugins/drawreport/Calendar.py:511
-#, fuzzy
 msgid "Calendar day numbers"
-msgstr "_Hívószám:"
+msgstr "Napok sorszáma a naptáron"
 
 #: ../src/plugins/drawreport/Calendar.py:514
 #, fuzzy
@@ -7631,9 +7565,9 @@ msgid "Produces a graphical descendant tree"
 msgstr "Grafikus utódfa-diagram létrehozása"
 
 #: ../src/plugins/drawreport/FanChart.py:190
-#, fuzzy, python-format
+#, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr "%d generációs legyezőgrafikon %s részére"
+msgstr "%(person)s %(generations)d generációs legyezőgrafikonja"
 
 #: ../src/plugins/drawreport/FanChart.py:347
 #: ../src/plugins/textreport/AncestorReport.py:254
@@ -7948,14 +7882,12 @@ msgid "With fewer items pie chart and legend will be used instead of a bar chart
 msgstr "Kevesebb elem esetén kördiagramot használok oszlopdiagram helyett."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:745
-#, fuzzy
 msgid "Charts 1"
-msgstr "Diagramok"
+msgstr "Diagramok 1"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:747
-#, fuzzy
 msgid "Charts 2"
-msgstr "Diagramok"
+msgstr "Diagramok 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:750
 #, fuzzy
@@ -8366,21 +8298,18 @@ msgstr " Dátum"
 
 #: ../src/plugins/gramplet/AgeStats.py:39
 #: ../src/plugins/gramplet/AgeStats.py:49
-#, fuzzy
 msgid "Max age"
-msgstr "Legnagyobb _életkor"
+msgstr "Legnagyobb életkor"
 
 #: ../src/plugins/gramplet/AgeStats.py:41
 #: ../src/plugins/gramplet/AgeStats.py:50
-#, fuzzy
 msgid "Max age of Mother at birth"
-msgstr "A legkésőbb a_pává váló életkora"
+msgstr "Anya legmagasabb életkora szüléskor"
 
 #: ../src/plugins/gramplet/AgeStats.py:43
 #: ../src/plugins/gramplet/AgeStats.py:51
-#, fuzzy
 msgid "Max age of Father at birth"
-msgstr "A legkésőbb a_pává váló életkora"
+msgstr "Apa legmagasabb életkora szüléskor"
 
 #: ../src/plugins/gramplet/AgeStats.py:45
 #: ../src/plugins/gramplet/AgeStats.py:52
@@ -8412,29 +8341,24 @@ msgid "Statistics"
 msgstr "Statisztikai diagram"
 
 #: ../src/plugins/gramplet/AgeStats.py:217
-#, fuzzy
 msgid "Total"
-msgstr "Eszközök"
+msgstr "Összeg"
 
 #: ../src/plugins/gramplet/AgeStats.py:218
-#, fuzzy
 msgid "Minimum"
-msgstr "Közepes"
+msgstr "Legkisebb"
 
 #: ../src/plugins/gramplet/AgeStats.py:219
-#, fuzzy
 msgid "Average"
-msgstr "Tartományban"
+msgstr "Átlag"
 
 #: ../src/plugins/gramplet/AgeStats.py:220
-#, fuzzy
 msgid "Median"
-msgstr "Média"
+msgstr "Medián"
 
 #: ../src/plugins/gramplet/AgeStats.py:221
-#, fuzzy
 msgid "Maximum"
-msgstr "Legnagyobb _életkor"
+msgstr "Legnagyobb"
 
 #: ../src/plugins/gramplet/AgeStats.py:256
 #, fuzzy, python-format
@@ -8532,9 +8456,8 @@ msgid "Descendant Gramplet"
 msgstr "Utóddiagram"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:170
-#, fuzzy
 msgid "Descendants"
-msgstr "%s utódai"
+msgstr "Utódok"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:535
 msgid ""
@@ -9045,9 +8968,9 @@ msgid "place unknown"
 msgstr "ismeretlen"
 
 #: ../src/plugins/gramplet/WhatsNext.py:407
-#, fuzzy, python-format
+#, python-format
 msgid "%(type)s: %(list)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(type)s: %(list)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:415
 #, fuzzy
@@ -9070,9 +8993,9 @@ msgid "parents missing"
 msgstr "Események hiányoznak"
 
 #: ../src/plugins/gramplet/WhatsNext.py:434
-#, fuzzy, python-format
+#, python-format
 msgid ": %s\n"
-msgstr "Megjegyzések"
+msgstr ": %s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:523
 #, fuzzy
@@ -9186,27 +9109,23 @@ msgstr ""
 
 #: ../src/plugins/graph/GVFamilyLines.py:164
 #: ../src/plugins/graph/GVFamilyLines.py:170
-#, fuzzy
 msgid "The maximum number of ancestors to include."
-msgstr "Legnagyobb korkülönbség a _gyerekek között évben"
+msgstr "Felmenők legnagyobb száma."
 
 #: ../src/plugins/graph/GVFamilyLines.py:173
-#, fuzzy
 msgid "Limit the number of children"
-msgstr "Legnagyobb gyermek_szám"
+msgstr "Legnagyobb gyermekszám"
 
 #: ../src/plugins/graph/GVFamilyLines.py:176
 #: ../src/plugins/graph/GVFamilyLines.py:182
 #: ../src/plugins/graph/GVFamilyLines.py:192
-#, fuzzy
 msgid "The maximum number of children to include."
-msgstr "Legnagyobb gyermek_szám"
+msgstr "A gyerekek legnagyob száma."
 
 #. --------------------
 #: ../src/plugins/graph/GVFamilyLines.py:186
-#, fuzzy
 msgid "Images"
-msgstr "Kép"
+msgstr "Képek"
 
 #: ../src/plugins/graph/GVFamilyLines.py:190
 #: ../src/plugins/graph/GVRelGraph.py:514
@@ -9551,66 +9470,54 @@ msgid "source"
 msgstr "Forrás"
 
 #: ../src/plugins/import/ImportCsv.py:243
-#, fuzzy
 msgid "note"
-msgstr "Megjegyzés"
+msgstr "megjegyzés"
 
 #: ../src/plugins/import/ImportCsv.py:246
-#, fuzzy
 msgid "birth place"
-msgstr "Születési hely"
+msgstr "születés helye"
 
 #: ../src/plugins/import/ImportCsv.py:249
-#, fuzzy
 msgid "birth date"
-msgstr "Születési idő"
+msgstr "születés dátuma"
 
 #: ../src/plugins/import/ImportCsv.py:252
-#, fuzzy
 msgid "birth source"
-msgstr "Elsődleges forrás"
+msgstr "születés forrása"
 
 #: ../src/plugins/import/ImportCsv.py:255
-#, fuzzy
 msgid "death place"
-msgstr "Elhalálozási hely"
+msgstr "halál helye"
 
 #: ../src/plugins/import/ImportCsv.py:258
-#, fuzzy
 msgid "death date"
-msgstr "Halál dátuma"
+msgstr "halál dátuma"
 
 #: ../src/plugins/import/ImportCsv.py:261
-#, fuzzy
 msgid "death source"
-msgstr "Források belefoglalása"
+msgstr "halál forrása"
 
 #: ../src/plugins/import/ImportCsv.py:264
-#, fuzzy
 msgid "death cause"
-msgstr "Halál dátuma"
+msgstr "halál oka"
 
 #: ../src/plugins/import/ImportCsv.py:267
-#, fuzzy
 msgid "gramps id"
-msgstr "[%(gramps_id)s]"
+msgstr "gramps id"
 
 #: ../src/plugins/import/ImportCsv.py:269
-#, fuzzy
 msgid "person"
-msgstr "Személy"
+msgstr "személy"
 
 #. ----------------------------------
 #: ../src/plugins/import/ImportCsv.py:272
-#, fuzzy
 msgid "child"
-msgstr "Gyerekek"
+msgstr "gyeremek"
 
 #. ----------------------------------
 #: ../src/plugins/import/ImportCsv.py:279
-#, fuzzy
 msgid "mother"
-msgstr "Édesanyja"
+msgstr "édesanya"
 
 #: ../src/plugins/import/ImportCsv.py:281
 #, fuzzy
@@ -9618,9 +9525,8 @@ msgid "parent2"
 msgstr "Szülők"
 
 #: ../src/plugins/import/ImportCsv.py:283
-#, fuzzy
 msgid "father"
-msgstr "Édesapja"
+msgstr "édesapa"
 
 #: ../src/plugins/import/ImportCsv.py:285
 #, fuzzy
@@ -9628,19 +9534,16 @@ msgid "parent1"
 msgstr "Szülők"
 
 #: ../src/plugins/import/ImportCsv.py:287
-#, fuzzy
 msgid "marriage"
-msgstr "Esküvő"
+msgstr "házasság"
 
 #: ../src/plugins/import/ImportCsv.py:289
-#, fuzzy
 msgid "date"
-msgstr "Dátum"
+msgstr "dátum"
 
 #: ../src/plugins/import/ImportCsv.py:291
-#, fuzzy
 msgid "place"
-msgstr "Hely"
+msgstr "hely"
 
 #: ../src/plugins/import/ImportCsv.py:319
 #: ../src/plugins/import/ImportGedcom.py:113
@@ -9654,19 +9557,17 @@ msgid "%s could not be opened\n"
 msgstr "%s-t nem lehet megnyitni\n"
 
 #: ../src/plugins/import/ImportCsv.py:329
-#, fuzzy, python-format
+#, python-format
 msgid "format error: file %s, line %d: %s"
-msgstr "Korai fájlvég a %d. sorban.\n"
+msgstr "formátum-hiba: fájlnév %s, sor száma %d: %s"
 
 #: ../src/plugins/import/ImportCsv.py:380
-#, fuzzy
 msgid "CSV Import"
-msgstr "_Importálás"
+msgstr "CSV importálás"
 
 #: ../src/plugins/import/ImportCsv.py:381
-#, fuzzy
 msgid "Reading data..."
-msgstr "Adatrendezés..."
+msgstr "Adatok olvasása..."
 
 #: ../src/plugins/import/ImportCsv.py:695
 #: ../src/plugins/import/ImportGeneWeb.py:181
@@ -9677,23 +9578,20 @@ msgid_plural "Import Complete: %d seconds"
 msgstr[0] "Importálás kész: %d másodperc"
 
 #: ../src/plugins/import/ImportCsv.py:696
-#, fuzzy
 msgid "CSV import"
-msgstr "vCard-import"
+msgstr "CSV importálás"
 
 #: ../src/plugins/import/ImportCsv.py:847
 msgid "CSV Spreadheet"
 msgstr ""
 
 #: ../src/plugins/import/ImportCsv.py:848
-#, fuzzy
 msgid "Import data from CSV files"
-msgstr "Importálás a következőből: %s"
+msgstr "Adatok importálása CSV fájlból"
 
 #: ../src/plugins/import/ImportGedcom.py:116
-#, fuzzy
 msgid "Invalid GEDCOM file"
-msgstr "GEDCOM fájlok"
+msgstr "Érvénytelen GEDCOM fájl"
 
 #: ../src/plugins/import/ImportGedcom.py:117
 #, fuzzy, python-format
@@ -9701,9 +9599,8 @@ msgid "%s could not be imported"
 msgstr "%s-t nem lehet megnyitni"
 
 #: ../src/plugins/import/ImportGedcom.py:134
-#, fuzzy
 msgid "Error reading GEDCOM file"
-msgstr "Hiba %s olvasásakor"
+msgstr "Hiba a GEDCOM fájl olvasásakor"
 
 #: ../src/plugins/import/ImportGedcom.py:146
 #: ../data/gramps.keys.in.h:1
@@ -9776,9 +9673,8 @@ msgid "Cannot find DEF file: %(deffname)s"
 msgstr ""
 
 #: ../src/plugins/import/ImportProGen.py:491
-#, fuzzy
 msgid "Import from Pro-Gen"
-msgstr "Importálás a következőből: %s"
+msgstr "Importálás Pro-Gen-ből"
 
 #: ../src/plugins/import/ImportProGen.py:507
 #, fuzzy
@@ -9798,9 +9694,8 @@ msgstr "Az egyének oldalainak elkészítése"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1047
-#, fuzzy
 msgid "Importing families"
-msgstr "Sikertelen művelet"
+msgstr "Családok importálása"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1232
@@ -9836,9 +9731,8 @@ msgid "vCard"
 msgstr "vCard"
 
 #: ../src/plugins/import/ImportVCard.py:225
-#, fuzzy
 msgid "Import data from vCard files"
-msgstr "Importálás a következőből: %s"
+msgstr "Importálás vCard fájlokból"
 
 #: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
@@ -9864,14 +9758,12 @@ msgid "Denmark"
 msgstr "Szabályos"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:76
-#, fuzzy
 msgid " parish"
-msgstr "Időtartam"
+msgstr " megye"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:80
-#, fuzzy
 msgid " state"
-msgstr "Állam"
+msgstr " állam"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:127
 #, fuzzy, python-format
@@ -9910,49 +9802,47 @@ msgid "Coordinates needed in Denmark"
 msgstr ""
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:188
-#, fuzzy
 msgid "EniroMaps"
-msgstr "Térképek"
+msgstr "EniroMaps"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens 'kartor.eniro.se' for places in Denmark and Sweden"
 msgstr ""
 
 #: ../src/plugins/mapservices/googlemap.py:79
-#, fuzzy
 msgid "GoogleMaps"
-msgstr "_Google-térképek"
+msgstr "Google-térkép"
 
 #: ../src/plugins/mapservices/googlemap.py:81
 msgid "Open on maps.google.com"
 msgstr ""
 
 #: ../src/plugins/mapservices/openstreetmap.py:83
-#, fuzzy
 msgid "OpenStreetMap"
-msgstr "Utca"
+msgstr "OpenStreetMap"
 
 #: ../src/plugins/mapservices/openstreetmap.py:85
-#, fuzzy
 msgid "Open on openstreetmap.org"
-msgstr "Megnyitás OpenOffice.orggal"
+msgstr "Megnyitás az openstreetmap.org-on"
 
 #: ../src/plugins/quickview/AgeOnDate.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "People probably alive and their ages the %s"
-msgstr "Feltehetően élő emberek"
+msgstr "Feltehetően élő emberek %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:51
-#, fuzzy, python-format
+#, python-format
 msgid "People probably alive and their ages on %s"
-msgstr "Feltehetően élő emberek"
+msgstr "Feltehetően élő emberek %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:77
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "%d matches.\n"
-msgstr "%d hónap"
+msgstr ""
+"\n"
+"%d találat.\n"
 
 #: ../src/plugins/quickview/AgeOnDate.py:105
 #, fuzzy
@@ -9961,9 +9851,9 @@ msgstr "A megadott halálozási adatokkal rendelkező személyekre illeszkedik"
 
 #. display the results
 #: ../src/plugins/quickview/all_events.py:55
-#, fuzzy, python-format
+#, python-format
 msgid "Sorted events of %s"
-msgstr "%s utódai"
+msgstr "%s rendezett eseményei"
 
 #: ../src/plugins/quickview/all_events.py:58
 #: ../src/plugins/quickview/all_events.py:102
@@ -10047,9 +9937,9 @@ msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr "%(person)s és %(active_person)s között nem állapítható meg kapcsolat."
 
 #: ../src/plugins/quickview/all_relations.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "Relationships of %s to %s"
-msgstr "Kapcsolat típusa: %s"
+msgstr "Kapcsolat %s és %s között"
 
 #: ../src/plugins/quickview/all_relations.py:266
 #, python-format
@@ -10062,30 +9952,26 @@ msgid "Name Common ancestor"
 msgstr "Ősök száma"
 
 #: ../src/plugins/quickview/all_relations.py:270
-#, fuzzy
 msgid "Parent"
-msgstr "Szülők"
+msgstr "Szülő"
 
 #: ../src/plugins/quickview/all_relations.py:313
-#, fuzzy
 msgid "Partial"
-msgstr "Apai"
+msgstr "Részleges"
 
 #: ../src/plugins/quickview/all_relations.py:332
 msgid "Remarks with inlaw family"
 msgstr ""
 
 #: ../src/plugins/quickview/all_relations.py:334
-#, fuzzy
 msgid "Remarks"
-msgstr "Jelölések in_vertálása"
+msgstr "Megjegyzések"
 
 #: ../src/plugins/quickview/all_relations.py:336
 msgid "The following problems were encountered:"
 msgstr ""
 
 #: ../src/plugins/quickview/all_relations.py:354
-#, fuzzy
 msgid "Relation to Home Person"
 msgstr "Kapcsolat a központi személlyel"
 
@@ -10095,9 +9981,9 @@ msgid "Display all relationships between person and home person."
 msgstr "Kapcsolat a központi személlyel"
 
 #: ../src/plugins/quickview/AttributeMatch.py:29
-#, fuzzy, python-format
+#, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Személy tulajdonsága"
+msgstr "Személyek '%s' tulajdonsággal"
 
 #: ../src/plugins/quickview/AttributeMatch.py:42
 #, python-format
@@ -10190,9 +10076,9 @@ msgstr "Emberek száma"
 
 #. display the title
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "Filtering on %s"
-msgstr "Szűrés"
+msgstr "Szűrés: %s"
 
 #: ../src/plugins/quickview/FilterByName.py:58
 #: ../src/plugins/quickview/FilterByName.py:66
@@ -10255,15 +10141,14 @@ msgid "Size in bytes"
 msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:220
-#, fuzzy, python-format
+#, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
-msgstr[0] "Élő emberek szűrése"
+msgstr[0] "A szűrő %d darab eredményt adott."
 
 #: ../src/plugins/quickview/FilterByName.py:239
-#, fuzzy
 msgid "Display filtered data"
-msgstr "_Megjelenítési formátum"
+msgstr "Szűrt adatok megjelenítése"
 
 #. display the results
 #: ../src/plugins/quickview/lineage.py:53
@@ -10326,30 +10211,26 @@ msgid "Unknown gender"
 msgstr "Ismeretlen nem"
 
 #: ../src/plugins/quickview/lineage.py:241
-#, fuzzy
 msgid "Father lineage"
-msgstr "Édesapa kora"
+msgstr "Édesapa családfája"
 
 #: ../src/plugins/quickview/lineage.py:243
-#, fuzzy
 msgid "Display father lineage"
-msgstr "A _Nap tippjének kijelzése"
+msgstr "Édesapa családfájának megjelenítése"
 
 #: ../src/plugins/quickview/lineage.py:252
-#, fuzzy
 msgid "Mother lineage"
-msgstr "Édesanya kora"
+msgstr "Édesanya családfája"
 
 #: ../src/plugins/quickview/lineage.py:254
-#, fuzzy
 msgid "Display mother lineage"
-msgstr "A _Nap tippjének kijelzése"
+msgstr "Édesanya családfájának megjelenítése"
 
 #. display the title
 #: ../src/plugins/quickview/OnThisDay.py:74
-#, fuzzy, python-format
+#, python-format
 msgid "Events of %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(date)s eseményei"
 
 #: ../src/plugins/quickview/OnThisDay.py:110
 msgid "Events on this exact date"
@@ -10389,29 +10270,28 @@ msgstr "Megadott családi eseményekkel rendelkező személyekre illeszkedik"
 
 #. display the title
 #: ../src/plugins/quickview/References.py:66
-#, fuzzy, python-format
+#, python-format
 msgid "References for this %s"
-msgstr "Képhivatkozások a következő útvonalról:  "
+msgstr "Hivatkozások erre: %s"
 
 #: ../src/plugins/quickview/References.py:77
-#, fuzzy, python-format
+#, python-format
 msgid "No references for this %s"
-msgstr "Nem sikerült a beállítások betöltése innen: %s"
+msgstr "Nincsenek hivatkozások erre: %s"
 
 #: ../src/plugins/quickview/References.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s References"
-msgstr "Hivatkozások"
+msgstr "%s hivatkozásai"
 
 #: ../src/plugins/quickview/References.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "Display references for a %s"
-msgstr "Nem sikerült a beállítások betöltése innen: %s"
+msgstr "%s hivatkozásainak megjelenítése"
 
 #: ../src/plugins/quickview/Reporef.py:88
-#, fuzzy
 msgid "RepoRef"
-msgstr "Eltávolít"
+msgstr "RepoRef"
 
 #: ../src/plugins/quickview/Reporef.py:90
 msgid "Display RepoRef for sources related to active repository"
@@ -10524,9 +10404,9 @@ msgstr "Azokra az emberekre illeszkedik, akiknek a családneve vagy utóneve hi�
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "People with the surname '%s'"
-msgstr "Emberek következő névvel: <name>"
+msgstr "Emberek '%s' vezetéknévvel"
 
 #: ../src/plugins/quickview/SameSurnames.py:122
 #: ../src/plugins/quickview/SameSurnames.py:161
@@ -10537,14 +10417,13 @@ msgstr[0] ""
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "People with the given name '%s'"
-msgstr "Emberek következő névvel: <name>"
+msgstr "Emberek '%s' keresztnévvel"
 
 #: ../src/plugins/quickview/SameSurnames.py:177
-#, fuzzy
 msgid "Same Surnames"
-msgstr "Családnevek"
+msgstr "Egyforma vezetéknevek"
 
 #: ../src/plugins/quickview/SameSurnames.py:179
 #, fuzzy
@@ -10565,14 +10444,13 @@ msgstr "Minden embert azonos névvel csoportosítsunk?"
 
 #. display the title
 #: ../src/plugins/quickview/siblings.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Siblings of %s"
-msgstr "Testvérek"
+msgstr "%s testvérei"
 
 #: ../src/plugins/quickview/siblings.py:46
-#, fuzzy
 msgid "Sibling"
-msgstr "Testvérek"
+msgstr "Testvér"
 
 #: ../src/plugins/quickview/siblings.py:59
 msgid "self"
@@ -10835,9 +10713,9 @@ msgstr "%(person_name)s - további információk:"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:620
 #: ../src/plugins/textreport/DetDescendantReport.py:413
-#, fuzzy, python-format
+#, python-format
 msgid "Spouse: %s"
-msgstr "Házastársak"
+msgstr "Házastárs: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:622
 #: ../src/plugins/textreport/DetDescendantReport.py:415
@@ -11021,9 +10899,8 @@ msgstr "Hiányzó helyszínek kicserélése _______-re"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:796
 #: ../src/plugins/textreport/DetDescendantReport.py:790
-#, fuzzy
 msgid "Whether to replace missing Places with blanks."
-msgstr "Hiányzó helyszínek kicserélése _______-re"
+msgstr "Hiányzó helyszínek cseréje üresre."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:799
 #: ../src/plugins/textreport/DetDescendantReport.py:793
@@ -11032,9 +10909,8 @@ msgstr "Hiányzó dátumok kicserélése _______-re"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:800
 #: ../src/plugins/textreport/DetDescendantReport.py:794
-#, fuzzy
 msgid "Whether to replace missing Dates with blanks."
-msgstr "Hiányzó dátumok kicserélése _______-re"
+msgstr "Hiányzó dátumok cseréje üresre."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:833
 #: ../src/plugins/textreport/DetDescendantReport.py:827
@@ -11137,9 +11013,9 @@ msgid "Produces a textual end of line report"
 msgstr "Ősökről szöveges összesítő"
 
 #: ../src/plugins/textreport/FamilyGroup.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(type)s: %(value)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(type)s: %(value)s"
 
 #: ../src/plugins/textreport/FamilyGroup.py:351
 msgid "Marriage:"
@@ -11315,7 +11191,7 @@ msgstr "Egyéni tények"
 #: ../src/plugins/textreport/IndivComplete.py:400
 #, python-format
 msgid "Summary of %s"
-msgstr "%s oldala"
+msgstr "%s összesítője"
 
 #: ../src/plugins/textreport/IndivComplete.py:420
 #: ../src/plugins/webreport/NarrativeWeb.py:540
@@ -11456,9 +11332,9 @@ msgid "Produces a list of people with a specified marker"
 msgstr "A megadott (rész)névvel rendelkező személyekre illeszkedik"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:85
-#, fuzzy, python-format
+#, python-format
 msgid "Number of Ancestors for %s"
-msgstr "Ősök száma"
+msgstr "%s őseinek száma"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:104
 #, fuzzy, python-format
@@ -11496,9 +11372,9 @@ msgid "Gramps ID: %s "
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:119
-#, fuzzy, python-format
+#, python-format
 msgid "Street: %s "
-msgstr "_Utca"
+msgstr "Utca: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:120
 #, python-format
@@ -11506,24 +11382,24 @@ msgid "Parish: %s "
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:121
-#, fuzzy, python-format
+#, python-format
 msgid "City: %s "
-msgstr "Város:"
+msgstr "Város: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:122
-#, fuzzy, python-format
+#, python-format
 msgid "County: %s "
-msgstr "Megye:"
+msgstr "Megye: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "State: %s"
-msgstr "Állam:"
+msgstr "Állam: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:124
-#, fuzzy, python-format
+#, python-format
 msgid "Country: %s "
-msgstr "Ország:"
+msgstr "Ország: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:146
 msgid "Events that happened at this place"
@@ -11596,7 +11472,7 @@ msgstr "Ősökről szöveges összesítő"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 msgid "book|Title"
-msgstr "book|Cím"
+msgstr "Cím"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 msgid "Title of the Book"
@@ -11738,9 +11614,8 @@ msgid "Provides a summary of the current database"
 msgstr "Összesítőt készít a jelenlegi adatbázisról"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:66
-#, fuzzy
 msgid "Select filter to restrict people"
-msgstr "Fájl_típus kiválasztása:"
+msgstr "Szűrő kiválasztása személyek kizárására"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:77
 #: ../src/gen/lib/notetype.py:81
@@ -11762,15 +11637,13 @@ msgid "Remove previously added dates"
 msgstr "Korábban létrehozott könyvek kezelése"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:86
-#, fuzzy
 msgid "Add estimated birth dates"
-msgstr "Hiányzó dátumok meg_becslése"
+msgstr "Becsült születési dátumok hozzáadása"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:90
 #: ../src/plugins/tool/CalculateEstimatedDates.py:91
-#, fuzzy
 msgid "Add estimated death dates"
-msgstr "A férfi (fiú) halálozási dátuma %(death_date)s."
+msgstr "Becsült halálozási dátumok hozzáadása"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:94
 msgid "Display detailed results"
@@ -11782,24 +11655,20 @@ msgstr ""
 
 #. -----------------------------------------------------
 #: ../src/plugins/tool/CalculateEstimatedDates.py:99
-#, fuzzy
 msgid "Config"
 msgstr "Konfiguráció"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:100
-#, fuzzy
 msgid "Maximum age"
-msgstr "Legnagyobb _életkor"
+msgstr "Legnagyobb életkor"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:103
-#, fuzzy
 msgid "Maximum age that one can live to"
-msgstr "A legkésőbb a_pává váló életkora"
+msgstr "Legnagyobb kor, amíg valaki élt"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:109
-#, fuzzy
 msgid "Maximum age difference between siblings"
-msgstr "Nagy korkülönbség a gyermekek között"
+msgstr "Legnagyobb korkülönbség a gyermekek között"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:115
 #, fuzzy
@@ -11847,25 +11716,23 @@ msgstr "2. lépés: lehetséges egyezések számítása"
 
 #. print "added birth"
 #: ../src/plugins/tool/CalculateEstimatedDates.py:232
-#, fuzzy
 msgid "Estimated birth date"
-msgstr "Hiányzó dátumok meg_becslése"
+msgstr "Becsült születési dátum"
 
 #. print "added death"
 #: ../src/plugins/tool/CalculateEstimatedDates.py:248
-#, fuzzy
 msgid "Estimated death date"
-msgstr "Hiányzó dátumok meg_becslése"
+msgstr "Becsült halálozási dátum"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:260
-#, fuzzy, python-format
+#, python-format
 msgid " added birth on %s"
-msgstr "%s születése"
+msgstr " megadta %s születési dátumát"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:262
-#, fuzzy, python-format
+#, python-format
 msgid " added death on %s"
-msgstr "%s halála"
+msgstr " megadta %s halálozási dátumát"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:264
 msgid "Calculate date estimates"
@@ -12394,10 +12261,10 @@ msgid "Modifications made"
 msgstr "Nem lett módosítva"
 
 #: ../src/plugins/tool/EventNames.py:116
-#, fuzzy, python-format
+#, python-format
 msgid "%s event description has been added"
 msgid_plural "%s event descriptions have been added"
-msgstr[0] "Leírás nem érhető el"
+msgstr[0] "%s esemény-leírás hozzáadva"
 
 #: ../src/plugins/tool/EventNames.py:120
 #, fuzzy
@@ -12668,9 +12535,9 @@ msgid "Not related to \"%s\""
 msgstr ""
 
 #: ../src/plugins/tool/NotRelated.py:163
-#, fuzzy, python-format
+#, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "Mindenkire illeszkedik az adatbázisból"
+msgstr "Mindenki kapcsolódik %s-hoz az adatbázisban"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:236
@@ -13009,9 +12876,8 @@ msgid "Sort family events of the person"
 msgstr "<person> leszármazott családtagjaira illeszkedik"
 
 #: ../src/plugins/tool/SortEvents.py:236
-#, fuzzy
 msgid "Sorts events"
-msgstr "%s utódai"
+msgstr "Sorbarendezi az eseményeket"
 
 #: ../src/plugins/tool/SoundGen.py:59
 msgid "manual|Generate_SoundEx_codes"
@@ -13500,9 +13366,9 @@ msgid "<span class=\"preposition\">at</span> %(place)s"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2769
-#, fuzzy, python-format
+#, python-format
 msgid "<br />%(type)s: %(value)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "<br />%(type)s: %(value)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2905
 #, python-format
@@ -13589,14 +13455,12 @@ msgid "My Family Tree"
 msgstr "Családfám"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3351
-#, fuzzy
 msgid "The title of the web site"
-msgstr "Alcímhez használt stílus."
+msgstr "Weboldal címe"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3356
-#, fuzzy
 msgid "Select filter to restrict people that appear on web site"
-msgstr "Fájl_típus kiválasztása:"
+msgstr "Válasszon szűrőt a weboldalon megjelenő személyekhez"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3367
 #: ../src/plugins/webreport/WebCal.py:1135
@@ -14177,14 +14041,13 @@ msgid "The note for the month of December"
 msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1453
-#, fuzzy, python-format
+#, python-format
 msgid "%s old"
-msgstr "_Félkövér"
+msgstr "%s idős"
 
 #: ../src/plugins/webreport/WebCal.py:1453
-#, fuzzy
 msgid "birth"
-msgstr "Születés"
+msgstr "születés"
 
 #: ../src/plugins/webreport/WebCal.py:1460
 #, python-format
@@ -14753,14 +14616,12 @@ msgid "The size of note text, in points."
 msgstr "A megjegyzés szövegének betűmérete pontban."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1099
-#, fuzzy
 msgid "Open with application"
-msgstr "Megnyitás ezzel: %s"
+msgstr "Megnyitás alkalmazással"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1138
-#, fuzzy
 msgid "Open with default application"
-msgstr "Megnyitás ezzel: %s"
+msgstr "Megnyitás alapértelmezett alkalmazással"
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
@@ -16211,9 +16072,9 @@ msgid "This person was buried on %(burial_date)s%(endnotes)s."
 msgstr "Temetésének ideje: %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:577
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "Temetésének dátuma%(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
 #, fuzzy, python-format
@@ -16321,34 +16182,34 @@ msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr "Temetésének dátuma %(modified_date)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:630
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(male_name)s temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:631
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:634
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(female_name)s temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried %(modified_date)s%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:641
 #, fuzzy, python-format
@@ -16391,14 +16252,14 @@ msgid "Buried in %(burial_place)s%(endnotes)s."
 msgstr "Temetésének helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:662
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s-t eltemették%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:663
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Eltemették%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:666
 #, fuzzy, python-format
@@ -16406,19 +16267,19 @@ msgid "%(female_name)s was buried%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:667
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Eltemették%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:670
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(unknown_gender_name)s-t eltemették%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:671
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "A személyt eltemették %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:673
 #, fuzzy, python-format
@@ -16601,9 +16462,9 @@ msgid "Baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t: %(modified_date)s, %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:764
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(male_name)s keresztelőjének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
 #, fuzzy, python-format
@@ -16611,9 +16472,9 @@ msgid "He was baptised %(modified_date)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t: %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:768
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(female_name)s keresztelésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:769
 #, fuzzy, python-format
@@ -16621,9 +16482,9 @@ msgid "She was baptised %(modified_date)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t: %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:772
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(unknown_gender_name)s keresztelésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:773
 #, fuzzy, python-format
@@ -16671,9 +16532,9 @@ msgid "Baptised in %(baptism_place)s%(endnotes)s."
 msgstr "Elvette %(spouse)s-t %(place)s%(endnotes)s helyen."
 
 #: ../src/ReportBase/_ReportUtils.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s-t megkeresztelték%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
 #, fuzzy, python-format
@@ -16691,9 +16552,9 @@ msgid "She was baptised%(endnotes)s."
 msgstr "Elvette %(spouse)s-t is%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:804
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(unknown_gender_name)s-t megkeresztelték%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:805
 #, fuzzy, python-format
@@ -16701,9 +16562,9 @@ msgid "This person was baptised%(endnotes)s."
 msgstr "Elvette %(spouse)s-t is%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:807
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "Megkeresztelték%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:818
 #, fuzzy, python-format
@@ -16771,9 +16632,9 @@ msgid "This person was christened on %(christening_date)s%(endnotes)s."
 msgstr "Temetésének ideje: %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:845
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "Kersztelésének dátuma %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:850
 #, fuzzy, python-format
@@ -16881,34 +16742,34 @@ msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Temetésének dátuma %(modified_date)s, helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(male_name)s temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:899
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Temetésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:902
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(female_name)s keresztelésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Keresztelésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:906
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(unknown_gender_name)s keresztelésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:907
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Keresztelésének dátuma %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:909
 #, fuzzy, python-format
@@ -16951,14 +16812,14 @@ msgid "Christened in %(christening_place)s%(endnotes)s."
 msgstr "Temetésének helye %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:930
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s-t megkeresztelték%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:931
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Keresztelésének dátuma %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:934
 #, fuzzy, python-format
@@ -16966,19 +16827,19 @@ msgid "%(female_name)s was christened%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:935
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "Megkeresztelték%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:938
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr "%(unknown_gender_name)s temetésének dátuma %(modified_date)s."
+msgstr "%(unknown_gender_name)s-t megkeresztelték%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:939
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened%(endnotes)s."
-msgstr "Temetésének dátuma %(modified_date)s."
+msgstr "A személyt megkeresztelték%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:941
 #, fuzzy, python-format
@@ -17946,9 +17807,9 @@ msgid "%(male_name)s was the child of %(father)s and %(mother)s."
 msgstr "%(male_name)s %(father)s és %(mother)s gyermeke volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1339
-#, fuzzy, python-format
+#, python-format
 msgid "Child of %(father)s and %(mother)s."
-msgstr "%(father)s és %(mother)s"
+msgstr "%(father)s és %(mother)s gyermeke."
 
 #: ../src/ReportBase/_ReportUtils.py:1343
 #, python-format
@@ -17971,9 +17832,9 @@ msgid "%(male_name)s was the son of %(father)s and %(mother)s."
 msgstr "%(male_name)s %(father)s és %(mother)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1350
-#, fuzzy, python-format
+#, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr "%(father)s és %(mother)s"
+msgstr "%(father)s és %(mother)s fia."
 
 #: ../src/ReportBase/_ReportUtils.py:1354
 #, python-format
@@ -17996,9 +17857,9 @@ msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
 msgstr "%(female_name)s  %(father)s és %(mother)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1361
-#, fuzzy, python-format
+#, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr "Ő %(father)s és %(mother)s lánya."
+msgstr "%(father)s és %(mother)s lánya."
 
 #: ../src/ReportBase/_ReportUtils.py:1368
 #, python-format
@@ -18021,7 +17882,7 @@ msgid "%(male_name)s was the child of %(father)s."
 msgstr "%(male_name)s %(father)s gyermeke volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1375
-#, fuzzy, python-format
+#, python-format
 msgid "Child of %(father)s."
 msgstr "%(father)s fia."
 
@@ -18046,7 +17907,7 @@ msgid "%(male_name)s was the son of %(father)s."
 msgstr "%(male_name)s %(father)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1386
-#, fuzzy, python-format
+#, python-format
 msgid "Son of %(father)s."
 msgstr "%(father)s fia."
 
@@ -18071,7 +17932,7 @@ msgid "%(female_name)s was the daughter of %(father)s."
 msgstr "%(female_name)s %(father)s lánya volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1397
-#, fuzzy, python-format
+#, python-format
 msgid "Daughter of %(father)s."
 msgstr "%(father)s lánya."
 
@@ -18096,9 +17957,9 @@ msgid "%(male_name)s was the child of %(mother)s."
 msgstr "%(male_name)s %(mother)s gyermeke volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1411
-#, fuzzy, python-format
+#, python-format
 msgid "Child of %(mother)s."
-msgstr "A hölgy (lány) halálozási dátuma %(month_year)s."
+msgstr " %(mother)s gyermeke."
 
 #: ../src/ReportBase/_ReportUtils.py:1415
 #, python-format
@@ -18121,7 +17982,7 @@ msgid "%(male_name)s was the son of %(mother)s."
 msgstr "%(male_name)s %(mother)s fia volt."
 
 #: ../src/ReportBase/_ReportUtils.py:1422
-#, fuzzy, python-format
+#, python-format
 msgid "Son of %(mother)s."
 msgstr "%(mother)s fia."
 
@@ -20739,9 +20600,8 @@ msgstr "Azokra a helyszínekre illeszkedik, amelyeket bizalmasnak jelöltek"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
-#, fuzzy
 msgid "Position filters"
-msgstr "%s-szűrők"
+msgstr "Koordináta-szűrők"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:46
 #, fuzzy
@@ -20772,9 +20632,8 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Azokra a helyszínekre illeszkedik, melyek feljegyzéseinek szövege illeszkedik egy reguláris kifejezésre"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
-#, fuzzy
 msgid "Street:"
-msgstr "_Utca"
+msgstr "Utca:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:49
 msgid "Church Parish:"
@@ -20812,14 +20671,12 @@ msgid "Matches places with a certain reference count"
 msgstr "A megadott paraméterű helyszínek"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
-#, fuzzy
 msgid "Latitude:"
-msgstr "_Szélességi fok:"
+msgstr "Szélességi fok:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
-#, fuzzy
 msgid "Longitude:"
-msgstr "_Hosszúsági fok:"
+msgstr "Hosszúsági fok:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle height:"
@@ -20838,9 +20695,8 @@ msgid "Matches places with latitude or longitude positioned in a rectangle of gi
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
-#, fuzzy
 msgid "Places matching the <filter>"
-msgstr "<filter>-re illeszkedő emberek"
+msgstr "<filter>-re illeszkedő helyek"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
 #, fuzzy
@@ -21375,44 +21231,36 @@ msgid "Zip/Postal code"
 msgstr "Irányítószám"
 
 #: ../src/FilterEditor/_FilterEditor.py:65
-#, fuzzy
 msgid "Person Filters"
-msgstr "Személyszűrő-szerkesztő"
+msgstr "Személy-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:66
-#, fuzzy
 msgid "Family Filters"
-msgstr "Családi szűrők"
+msgstr "Család-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:67
-#, fuzzy
 msgid "Event Filters"
-msgstr "Eseményszűrők"
+msgstr "Esemény-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:68
-#, fuzzy
 msgid "Place Filters"
-msgstr "Helyszínszűrő-szerkesztő"
+msgstr "Helyszín-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:69
-#, fuzzy
 msgid "Source Filters"
-msgstr "Forrásszűrő-szerkesztő"
+msgstr "Forrás-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:70
-#, fuzzy
 msgid "Media Object Filters"
-msgstr "Médiaobjektumok"
+msgstr "Médiaobjektumok-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:71
-#, fuzzy
 msgid "Repository Filters"
-msgstr "Tárolószűrő-szerkesztő"
+msgstr "Tároló-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:72
-#, fuzzy
 msgid "Note Filters"
-msgstr "Anya szűrői"
+msgstr "Megjegyzés-szűrés"
 
 #: ../src/FilterEditor/_FilterEditor.py:114
 msgid "Comment"
@@ -21423,9 +21271,8 @@ msgid "Custom Filter Editor"
 msgstr "Felhasználói szűrőszerkesztő"
 
 #: ../src/FilterEditor/_FilterEditor.py:189
-#, fuzzy
 msgid "Delete Filter?"
-msgstr "Fájl _kiválasztása"
+msgstr "Törli a szűrőt?"
 
 #: ../src/FilterEditor/_FilterEditor.py:190
 #, fuzzy
@@ -21433,9 +21280,8 @@ msgid "This filter is currently being used as the base for other filters. Deleti
 msgstr "Ez a helyszín jelenleg használatban van. Eltávolításával törlődik az adatbázisból, valamint minden személytől és családtól, amely hivatkozik rá."
 
 #: ../src/FilterEditor/_FilterEditor.py:194
-#, fuzzy
 msgid "Delete Filter"
-msgstr "Fájl _kiválasztása"
+msgstr "Szűrő törlése"
 
 #: ../src/FilterEditor/_EditFilter.py:84
 msgid "Define filter"
@@ -21521,14 +21367,12 @@ msgid "Record is public"
 msgstr "Publikus rekord"
 
 #: ../src/widgets/expandcollapsearrow.py:81
-#, fuzzy
 msgid "Expand this section"
-msgstr "Dátum kiválasztás"
+msgstr "Csoport kibontása"
 
 #: ../src/widgets/expandcollapsearrow.py:84
-#, fuzzy
 msgid "Collapse this section"
-msgstr "Gyűjtemény"
+msgstr "Csoport bezáráse"
 
 #: ../src/widgets/labels.py:91
 msgid ""
@@ -21554,9 +21398,8 @@ msgid "Copy _E-mail Address"
 msgstr ""
 
 #: ../src/widgets/styledtexteditor.py:325
-#, fuzzy
 msgid "_Open Link"
-msgstr "Eseménylink"
+msgstr "_Hivatkozás megnyitása"
 
 #: ../src/widgets/styledtexteditor.py:326
 msgid "Copy _Link Address"
@@ -21564,18 +21407,17 @@ msgstr ""
 
 #: ../src/widgets/styledtexteditor.py:361
 msgid "Italic"
-msgstr "_Dőlt"
+msgstr "Dőlt"
 
 #: ../src/widgets/styledtexteditor.py:363
 msgid "Bold"
-msgstr "_Félkövér"
+msgstr "Félkövér"
 
 #: ../src/widgets/styledtexteditor.py:365
 msgid "Underline"
-msgstr "_Aláhúzott"
+msgstr "Aláhúzott"
 
 #: ../src/widgets/styledtexteditor.py:375
-#, fuzzy
 msgid "Background Color"
 msgstr "Háttérszín"
 
@@ -22047,9 +21889,8 @@ msgid "Format _name:"
 msgstr "Formátum _neve"
 
 #: ../src/glade/gramps.glade.h:76
-#, fuzzy
 msgid "Format definition details"
-msgstr "Formátumdefiníció _részletei"
+msgstr "Formátumdefiníció részletei"
 
 #: ../src/glade/gramps.glade.h:77
 msgid "GRAMPS"
@@ -22988,7 +22829,7 @@ msgstr "A legfiatalabban meg_házasodott életkora"
 
 #: ../src/plugins/tool/verify.glade.h:21
 msgid "_Estimate missing dates"
-msgstr "Hiányzó dátumok meg_becslése"
+msgstr "Hiányzó dátumok _becslése"
 
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
@@ -23017,7 +22858,7 @@ msgstr "<b>Gyermekek hozzáadása</b>: A GRAMPS-ban a gyermekek hozzáadásának
 
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
-msgstr "<b>Személyek könyvjelzőzése</b>: A Könyvjelzők menü az ablak tetején kellemes hely a gyekran használt személyek neveinek tárolására. A könyvjelzővel ellátott személyre kattintva Aktív személyé tehető. Könyvjelzőhöz adáshoz tegye Aktív személlyé, a néven jobb-kattintás után kattintson a \"könyvjelzőhöz adás\" menüpontra."
+msgstr "<b>Személyek könyvjelzőzése</b>: A Könyvjelzők menü az ablak tetején kellemes hely a gyekran használt személyek neveinek tárolására. A könyvjelzővel ellátott személyre kattintva Aktív személyé tehető. Könyvjelzőhöz adáshoz tegye Aktív személlyé, a néven jobb-kattintás után kattintson a 'könyvjelzőhöz adás' menüpontra."
 
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
@@ -23042,9 +22883,8 @@ msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find pos
 msgstr "<b>Kettőzött bejegyzések</b>: <b>Eszközök &gt; Adatbázis feldolgozása &gt; Lehetséges kettőződések megkeresése</b> lehetővé teszi Önnek, hogy megkeresse (és egyesítse) az adatbázisban többször szereplő személyek bejegyzéseit."
 
 #: ../src/data/tips.xml.in.h:8
-#, fuzzy
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
-msgstr "<b>Gyermek kapcsolatának szerkesztése</b>: Nem minden gyermek a szülők született gyermeke. Ön szerkesztheti a gyermek mindkét szülővel való kapcsolatát ha a gyermeket választja aktív személynek. A Kapcsolatok nézetben, kattintson a &quot;Szülők:&quot; bejegyzés jobboldalán található harmadik ikonra. Ezzel elindítja a Családszerkesztőt. Válassza ekkor ki a gyermeket, kattintson a jobb gombbal és válassza a \"Kapcsolat szerkesztése\" menüpontot. Itt be tudja állítani a gyermek és a szülei közötti kapcsolatot. amely lehet lehet: születés, örökbefogadás, mostoha gyermek, befogadott... vagy ismeretlen."
+msgstr "<b>Gyermek kapcsolatának szerkesztése</b>: Nem minden gyermek a szülők született gyermeke. Ön szerkesztheti a gyermek mindkét szülővel való kapcsolatát ha a gyermeket választja aktív személynek. A Kapcsolatok nézetben, kattintson a &quot;Szülők:&quot; bejegyzés jobboldalán található harmadik ikonra. Ezzel elindítja a Családszerkesztőt. Válassza ekkor ki a gyermeket, kattintson a jobb gombbal és válassza a &quot;Kapcsolat szerkesztése&quot; menüpontot. Itt be tudja állítani a gyermek és a szülei közötti kapcsolatot. amely lehet lehet: születés, örökbefogadás, mostoha gyermek, befogadott... vagy ismeretlen."
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
@@ -23076,7 +22916,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:16
 msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
-msgstr "<b>Ellentett szűrés</b>: A szűrőket könnyedén megfordíthatjuk az \"ellentett\" opcióval. Például a \"Gyermekes emberek\" szűrő ellentettjével a gyermektelen embereket választhatjuk ki."
+msgstr "<b>Ellentett szűrés</b>: A szűrőket könnyedén megfordíthatjuk az 'ellentett' opcióval. Például a 'Gyermekes emberek' szűrő ellentettjével a gyermektelen embereket választhatjuk ki."
 
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
@@ -23096,7 +22936,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the &quot;Show All&quot; checkbutton."
-msgstr "<b>Minden lehetőség mutatása</b>: Amikor egy gyermeket, vagy egy házastársat szeretne hozzáadni, akkor csak azok a személyek szerepelnek, akik valójában elképzelhetőek az adott szerepben (az adatbázisban szereplő dátumok alapján). Amennyiben a GRAMPS nem megfelelően szűr, akkor felülbírálhatja a szűrést a \"Mindent megmutat\" kiválasztásával."
+msgstr "<b>Minden lehetőség mutatása</b>: Amikor egy gyermeket, vagy egy házastársat szeretne hozzáadni, akkor csak azok a személyek szerepelnek, akik valójában elképzelhetőek az adott szerepben (az adatbázisban szereplő dátumok alapján). Amennyiben a GRAMPS nem megfelelően szűr, akkor felülbírálhatja a szűrést a &quot;Mindent megmutat&quot; kiválasztásával."
 
 #: ../src/data/tips.xml.in.h:22
 #, fuzzy
@@ -23137,7 +22977,7 @@ msgstr "Képet galériákban vagy Média nézetben is hozzá lehet adni úgy, ho
 
 #: ../src/data/tips.xml.in.h:31
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Bárkit \"központi személynek\" választhatunk a GRAMPS-ban. Használja a <b>Szerkesztés &gt; Központi személy beállítása</b> menüpontot. A központi személy az a személy amely az adatbázis megnyitásakor vagy a ház ikon megnyomásakor aktívvá válik."
+msgstr "Bárkit 'központi személynek' választhatunk a GRAMPS-ban. Használja a <b>Szerkesztés &gt; Központi személy beállítása</b> menüpontot. A központi személy az a személy amely az adatbázis megnyitásakor vagy a ház ikon megnyomásakor aktívvá válik."
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -23254,7 +23094,7 @@ msgstr "A rokonságikapcsolat-számító tíz nyelven érhető el a GRAMPS-ban. 
 
 #: ../src/data/tips.xml.in.h:59
 msgid "The 'merge' function allows you to combine separately listed people into one. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual."
-msgstr "Az \"öszefűzés\" lehetőséget ad arra, hogy az adatbázisban kétszer szereplő személyt egyesítse. Ez nagyon hasznos két egymást átfedő adatbázis egyesítésekor, vagy hibásan két különböző néven mentett egyén egyesítésénél."
+msgstr "Az 'öszefűzés' lehetőséget ad arra, hogy az adatbázisban kétszer szereplő személyt egyesítse. Ez nagyon hasznos két egymást átfedő adatbázis egyesítésekor, vagy hibásan két különböző néven mentett egyén egyesítésénél."
 
 #: ../src/data/tips.xml.in.h:60
 msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
@@ -23262,7 +23102,7 @@ msgstr "Az összesítőkönyv <b>Összesítők &gt; Könyvek &gt; Összesítők�
 
 #: ../src/data/tips.xml.in.h:61
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
-msgstr "A \"Szabad és nyílt forrású szoftver\" (FLOSS) fejlesztési modell azt jelenti, hogy a GRAMPS-ot minden programozó kiegészítheti, mivel a forráskód szabadon elérhető a licensze szerint."
+msgstr "A Szabad és nyílt forrású szoftver (FLOSS) fejlesztési modell azt jelenti, hogy a GRAMPS-ot minden programozó kiegészítheti, mivel a forráskód szabadon elérhető a licensze szerint."
 
 #: ../src/data/tips.xml.in.h:62
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
