@@ -11,7 +11,7 @@ pkgdata_PYTHON = \
 	geoview.py \
 	geoview.gpr.py \
 	grampletview.py \
-	htmlrenderer \
+	htmlrenderer.py \
 	mediaview.py \
 	noteview.py \
 	pedigreeview.py \

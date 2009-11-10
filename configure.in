@@ -108,7 +108,6 @@ src/gui/views/treemodels/Makefile
 src/FilterEditor/Makefile
 src/Mime/Makefile
 src/DisplayTabs/Makefile
-src/DisplayModels/Makefile
 src/Selectors/Makefile
 src/GrampsLogger/Makefile
 src/Merge/Makefile
