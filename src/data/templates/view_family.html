@@ -17,9 +17,9 @@
   {% for family in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{family.gramps_id|escape}}" class="noThumb"><span class="grampsid">[{{family.gramps_id}}]</span></a>
-    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.father.name_set|make_name:user}}</a>
-    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.mother.name_set|make_name:user}}</a>
+    <td><a href="/{{view}}/{{family.handle|escape}}" class="noThumb"><span class="grampsid">[{{family.gramps_id}}]</span></a>
+    <td><a href="/person/{{family.father.handle|escape}}">{{family.father.name_set|make_name:user}}</a>
+    <td><a href="/person/{{family.mother.handle|escape}}">{{family.mother.name_set|make_name:user}}</a>
     {% if user.is_authenticated %}
     <td><a href="/{{view}}/{{family.handle|escape}}">{{family.family_rel_type|escape}}</a>
     {% else %}

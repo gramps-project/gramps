@@ -71,25 +71,29 @@ def view(request, view):
             if request.user.is_authenticated():
                 if "," in search:
                     surname, first_name = [term.strip() for term in search.split(",", 1)]
-                    object_list = Name.objects. \
-                        select_related().filter(surname__icontains=surname, 
-                                                first_name__icontains=first_name).order_by("surname", "first_name")
+                    object_list = Name.objects \
+                        .filter(surname__istartswith=surname, 
+                                first_name__istartswith=first_name) \
+                                .select_related() \
+                                .order_by("surname", "first_name")
                 else:
-                    object_list = Name.objects. \
-                        select_related().filter(Q(surname__icontains=search) | 
-                                                Q(first_name__icontains=search) |
-                                                Q(suffix__icontains=search) |
-                                                Q(prefix__icontains=search) |
-                                                Q(patronymic__icontains=search) |
-                                                Q(title__icontains=search) |
-                                                Q(person__gramps_id__icontains=search)
-                                                  ).order_by("surname", "first_name")
+                    object_list = Name.objects \
+                        .filter(Q(surname__icontains=search) | 
+                                Q(first_name__icontains=search) |
+                                Q(suffix__icontains=search) |
+                                Q(prefix__icontains=search) |
+                                Q(patronymic__icontains=search) |
+                                Q(title__icontains=search) |
+                                Q(person__gramps_id__icontains=search)
+                                ) \
+                        .select_related() \
+                        .order_by("surname", "first_name")
             else:
                 # FIXME: non-authenticated users don't get to search first_names
                 if "," in search:
                     search, first_name = [term.strip() for term in search.split(",", 1)]
                 object_list = Name.objects. \
-                    select_related().filter(surname__icontains=search).order_by("surname", "first_name")
+                    select_related().filter(surname__istartswith=search).order_by("surname", "first_name")
         else:
             object_list = Name.objects.select_related().order_by("surname", "first_name")
         view_template = 'view_person.html'
