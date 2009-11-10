@@ -1,5 +1,8 @@
-from django.conf.urls.defaults import *
+import os
 
+import const
+
+from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
@@ -14,16 +17,12 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
     # Static serves! DANGEROUS in production:
      (r'^styles/(?P<path>.*)$', 'django.views.static.serve',
-      {'document_root': 
-          '/home/dblank/gramps/trunk/src/data', 
-       'show_indexes': 
-          True},
+      {'document_root': const.DATA_DIR,
+       'show_indexes':  True},
       ),
      (r'^images/(?P<path>.*)$', 'django.views.static.serve',
-      {'document_root': 
-          '/home/dblank/gramps/trunk/src/images', 
-       'show_indexes': 
-          True},
+      {'document_root': const.IMAGE_DIR,
+       'show_indexes':  True},
       ),
 )
 

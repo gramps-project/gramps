@@ -10,7 +10,7 @@ init_gramps:
 	python init_gramps.py # clear primary and secondary tables
 
 run:
-	python manage.py runserver
+	PYTHONPATH=../../../src python manage.py runserver
 
 sql:
 	python manage.py sqlall > gramps_sql.txt

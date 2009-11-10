@@ -1,5 +1,8 @@
 # Django settings for gramps project.
 
+import const
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -9,7 +12,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 DATABASE_ENGINE = 'sqlite3'           
-DATABASE_NAME = '/home/dblank/gramps/trunk/src/gen/web/sqlite.db' 
+DATABASE_NAME = os.path.join(const.WEB_DIR, 'sqlite.db')
 DATABASE_USER = ''             
 DATABASE_PASSWORD = ''         
 DATABASE_HOST = ''             
@@ -38,7 +41,7 @@ ROOT_URLCONF = 'gen.web.urls'
 
 TEMPLATE_DIRS = (
     # Use absolute paths, not relative paths.
-    "/home/dblank/gramps/trunk/src/data/templates",
+    os.path.join(const.DATA_DIR, "templates"),
 )
 
 INSTALLED_APPS = (
