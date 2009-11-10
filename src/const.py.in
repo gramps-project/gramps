@@ -32,6 +32,7 @@ Provides constants for other modules
 #-------------------------------------------------------------------------
 import os
 import sys
+import uuid
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
