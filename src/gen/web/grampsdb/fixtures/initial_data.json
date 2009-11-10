@@ -1,0 +1,1572 @@
+[
+   {
+      "model": "grampsdb.config",
+      "pk": 1,
+      "fields":
+         {
+            "setting"   : "db_version" ,
+            "description"   : "database scheme version" ,
+            "value_type"   : "str" ,
+            "value"   : "0.5.0"
+         }
+   },
+   {
+      "model": "grampsdb.config",
+      "pk": 2,
+      "fields":
+         {
+            "setting"   : "db_created" ,
+            "description"   : "database creation date/time" ,
+            "value_type"   : "str" ,
+            "value"   : "2009-11-10 08:08"
+         }
+   },
+   {
+      "model": "grampsdb.markertype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": ""
+         }
+   } ,
+   {
+      "model": "grampsdb.markertype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.markertype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Complete"
+         }
+   } ,
+   {
+      "model": "grampsdb.markertype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "ToDo"
+         }
+   } ,
+   {
+      "model": "grampsdb.nametype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.nametype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.nametype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Also Known As"
+         }
+   } ,
+   {
+      "model": "grampsdb.nametype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Birth Name"
+         }
+   } ,
+   {
+      "model": "grampsdb.nametype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Married Name"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Caste"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Description"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Identification Number"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "National Origin"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Number of Children"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Social Security Number"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 9,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Nickname"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 10,
+      "fields":
+         {
+            "val"   : 8,
+            "name": "Cause"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 11,
+      "fields":
+         {
+            "val"   : 9,
+            "name": "Agency"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 12,
+      "fields":
+         {
+            "val"   : 10,
+            "name": "Age"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 13,
+      "fields":
+         {
+            "val"   : 11,
+            "name": "Father Age"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 14,
+      "fields":
+         {
+            "val"   : 12,
+            "name": "Mother Age"
+         }
+   } ,
+   {
+      "model": "grampsdb.attributetype",
+      "pk": 15,
+      "fields":
+         {
+            "val"   : 13,
+            "name": "Witness"
+         }
+   } ,
+   {
+      "model": "grampsdb.urltype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.urltype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.urltype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "E-mail"
+         }
+   } ,
+   {
+      "model": "grampsdb.urltype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Web Home"
+         }
+   } ,
+   {
+      "model": "grampsdb.urltype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Web Search"
+         }
+   } ,
+   {
+      "model": "grampsdb.urltype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "FTP"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "None"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Birth"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Adopted"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Stepchild"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Sponsored"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Foster"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.childreftype",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Library"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Cemetery"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Church"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Archive"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Album"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Web site"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 9,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Bookstore"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 10,
+      "fields":
+         {
+            "val"   : 8,
+            "name": "Collection"
+         }
+   } ,
+   {
+      "model": "grampsdb.repositorytype",
+      "pk": 11,
+      "fields":
+         {
+            "val"   : 9,
+            "name": "Safe"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 11,
+            "name": "Adopted"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 12,
+            "name": "Birth"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 13,
+            "name": "Death"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 14,
+            "name": "Adult Christening"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 15,
+            "name": "Baptism"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 16,
+            "name": "Bar Mitzvah"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 9,
+      "fields":
+         {
+            "val"   : 17,
+            "name": "Bas Mitzvah"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 10,
+      "fields":
+         {
+            "val"   : 18,
+            "name": "Blessing"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 11,
+      "fields":
+         {
+            "val"   : 19,
+            "name": "Burial"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 12,
+      "fields":
+         {
+            "val"   : 20,
+            "name": "Cause Of Death"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 13,
+      "fields":
+         {
+            "val"   : 21,
+            "name": "Census"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 14,
+      "fields":
+         {
+            "val"   : 22,
+            "name": "Christening"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 15,
+      "fields":
+         {
+            "val"   : 23,
+            "name": "Confirmation"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 16,
+      "fields":
+         {
+            "val"   : 24,
+            "name": "Cremation"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 17,
+      "fields":
+         {
+            "val"   : 25,
+            "name": "Degree"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 18,
+      "fields":
+         {
+            "val"   : 26,
+            "name": "Education"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 19,
+      "fields":
+         {
+            "val"   : 27,
+            "name": "Elected"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 20,
+      "fields":
+         {
+            "val"   : 28,
+            "name": "Emigration"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 21,
+      "fields":
+         {
+            "val"   : 29,
+            "name": "First Communion"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 22,
+      "fields":
+         {
+            "val"   : 30,
+            "name": "Immigration"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 23,
+      "fields":
+         {
+            "val"   : 31,
+            "name": "Graduation"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 24,
+      "fields":
+         {
+            "val"   : 32,
+            "name": "Medical Information"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 25,
+      "fields":
+         {
+            "val"   : 33,
+            "name": "Military Service"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 26,
+      "fields":
+         {
+            "val"   : 34,
+            "name": "Naturalization"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 27,
+      "fields":
+         {
+            "val"   : 35,
+            "name": "Nobility Title"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 28,
+      "fields":
+         {
+            "val"   : 36,
+            "name": "Number of Marriages"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 29,
+      "fields":
+         {
+            "val"   : 37,
+            "name": "Occupation"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 30,
+      "fields":
+         {
+            "val"   : 38,
+            "name": "Ordination"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 31,
+      "fields":
+         {
+            "val"   : 39,
+            "name": "Probate"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 32,
+      "fields":
+         {
+            "val"   : 40,
+            "name": "Property"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 33,
+      "fields":
+         {
+            "val"   : 41,
+            "name": "Religion"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 34,
+      "fields":
+         {
+            "val"   : 42,
+            "name": "Residence"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 35,
+      "fields":
+         {
+            "val"   : 43,
+            "name": "Retirement"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 36,
+      "fields":
+         {
+            "val"   : 44,
+            "name": "Will"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 37,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Marriage"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 38,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Marriage Settlement"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 39,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Marriage License"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 40,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Marriage Contract"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 41,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Marriage Banns"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 42,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Engagement"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 43,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Divorce"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 44,
+      "fields":
+         {
+            "val"   : 8,
+            "name": "Divorce Filing"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 45,
+      "fields":
+         {
+            "val"   : 9,
+            "name": "Annulment"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventtype",
+      "pk": 46,
+      "fields":
+         {
+            "val"   : 10,
+            "name": "Alternate Marriage"
+         }
+   } ,
+   {
+      "model": "grampsdb.familyreltype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.familyreltype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.familyreltype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Civil Union"
+         }
+   } ,
+   {
+      "model": "grampsdb.familyreltype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Unmarried"
+         }
+   } ,
+   {
+      "model": "grampsdb.familyreltype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Married"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Audio"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Book"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Card"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Electronic"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Fiche"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Film"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 9,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Magazine"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 10,
+      "fields":
+         {
+            "val"   : 8,
+            "name": "Manuscript"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 11,
+      "fields":
+         {
+            "val"   : 9,
+            "name": "Map"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 12,
+      "fields":
+         {
+            "val"   : 10,
+            "name": "Newspaper"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 13,
+      "fields":
+         {
+            "val"   : 11,
+            "name": "Photo"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 14,
+      "fields":
+         {
+            "val"   : 12,
+            "name": "Tombstone"
+         }
+   } ,
+   {
+      "model": "grampsdb.sourcemediatype",
+      "pk": 15,
+      "fields":
+         {
+            "val"   : 13,
+            "name": "Video"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Primary"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Clergy"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Celebrant"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Aide"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Bride"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Groom"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 9,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Witness"
+         }
+   } ,
+   {
+      "model": "grampsdb.eventroletype",
+      "pk": 10,
+      "fields":
+         {
+            "val"   : 8,
+            "name": "Family"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : -1,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Custom"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "General"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Research"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Transcript"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 21,
+            "name": "Source text"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 22,
+            "name": "Citation"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 23,
+            "name": "Report"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 9,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Person Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 10,
+      "fields":
+         {
+            "val"   : 20,
+            "name": "Name Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 11,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Attribute Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 12,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Address Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 13,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Association Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 14,
+      "fields":
+         {
+            "val"   : 8,
+            "name": "LDS Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 15,
+      "fields":
+         {
+            "val"   : 9,
+            "name": "Family Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 16,
+      "fields":
+         {
+            "val"   : 10,
+            "name": "Event Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 17,
+      "fields":
+         {
+            "val"   : 11,
+            "name": "Event Reference Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 18,
+      "fields":
+         {
+            "val"   : 12,
+            "name": "Source Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 19,
+      "fields":
+         {
+            "val"   : 13,
+            "name": "Source Reference Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 20,
+      "fields":
+         {
+            "val"   : 14,
+            "name": "Place Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 21,
+      "fields":
+         {
+            "val"   : 15,
+            "name": "Repository Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 22,
+      "fields":
+         {
+            "val"   : 16,
+            "name": "Repository Reference Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 23,
+      "fields":
+         {
+            "val"   : 17,
+            "name": "Media Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 24,
+      "fields":
+         {
+            "val"   : 18,
+            "name": "Media Reference Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.notetype",
+      "pk": 25,
+      "fields":
+         {
+            "val"   : 19,
+            "name": "Child Reference Note"
+         }
+   } ,
+   {
+      "model": "grampsdb.gendertype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Unknown"
+         }
+   } ,
+   {
+      "model": "grampsdb.gendertype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Male"
+         }
+   } ,
+   {
+      "model": "grampsdb.gendertype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Female"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldstype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Baptism"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldstype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Endowment"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldstype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Seal to Parents"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldstype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Seal to Spouse"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldstype",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Confirmation"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "None"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "BIC"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Canceled"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Child"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 5,
+      "fields":
+         {
+            "val"   : 4,
+            "name": "Cleared"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 6,
+      "fields":
+         {
+            "val"   : 5,
+            "name": "Completed"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 7,
+      "fields":
+         {
+            "val"   : 6,
+            "name": "Dns"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 8,
+      "fields":
+         {
+            "val"   : 7,
+            "name": "Infant"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 9,
+      "fields":
+         {
+            "val"   : 8,
+            "name": "Pre 1970"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 10,
+      "fields":
+         {
+            "val"   : 9,
+            "name": "Qualified"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 11,
+      "fields":
+         {
+            "val"   : 10,
+            "name": "DNSCAN"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 12,
+      "fields":
+         {
+            "val"   : 11,
+            "name": "Stillborn"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 13,
+      "fields":
+         {
+            "val"   : 12,
+            "name": "Submitted"
+         }
+   } ,
+   {
+      "model": "grampsdb.ldsstatus",
+      "pk": 14,
+      "fields":
+         {
+            "val"   : 13,
+            "name": "Uncleared"
+         }
+   }
+]
