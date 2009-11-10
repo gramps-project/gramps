@@ -1,7 +1,7 @@
 from django.template import escape, Library
-from gen.web import libdjango
-from gen.web import djangodb
-import gen.web.grampsdb.models as models
+from web import libdjango
+from web import djangodb
+import web.grampsdb.models as models
 from gen.lib.date import Date as GDate, Today
 import DateHandler
 

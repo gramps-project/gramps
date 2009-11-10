@@ -6,8 +6,8 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
-from gen.web.grampsdb.views import (main_page, user_page, logout_page,
-                                    view, view_detail)
+from web.grampsdb.views import (main_page, user_page, logout_page,
+                                view, view_detail)
 
 urlpatterns = patterns('',
     # Specific matches first:

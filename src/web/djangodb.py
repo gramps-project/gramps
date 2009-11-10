@@ -1,6 +1,7 @@
+import web
 import gen
 from gen.db import GrampsDbBase
-from gen.web.libdjango import DjangoInterface
+from web.libdjango import DjangoInterface
 import Utils
 
 # class Trans(object):

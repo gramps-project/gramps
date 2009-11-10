@@ -37,7 +37,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'gen.web.urls'
+ROOT_URLCONF = 'web.urls'
 
 TEMPLATE_DIRS = (
     # Use absolute paths, not relative paths.
@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'gen.web.grampsdb',
+    'web.grampsdb',
 #    'django_extensions',
 )
 

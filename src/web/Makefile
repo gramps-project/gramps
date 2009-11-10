@@ -1,19 +1,19 @@
 # Initialize GRAMPS Django site
 
 update: grampsdb/fixtures/initial_data.json
-	PYTHONPATH=../../../src python manage.py syncdb
+	PYTHONPATH=../../src python manage.py syncdb
 
 grampsdb/fixtures/initial_data.json: 
-	PYTHONPATH=../../../src python init.py > grampsdb/fixtures/initial_data.json
+	PYTHONPATH=../../src python init.py > grampsdb/fixtures/initial_data.json
 
 init_gramps:
-	PYTHONPATH=../../../src python init_gramps.py # clear primary and secondary tables
+	PYTHONPATH=../../src python init_gramps.py # clear primary and secondary tables
 
 run:
-	PYTHONPATH=../../../src python manage.py runserver
+	PYTHONPATH=../../src python manage.py runserver
 
 sql:
-	PYTHONPATH=../../../src python manage.py sqlall > gramps_sql.txt
+	PYTHONPATH=../../src python manage.py sqlall > gramps_sql.txt
 
 docs:
 	mkdir -p docs

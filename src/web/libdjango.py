@@ -1,7 +1,8 @@
 import time
 
-import gen.web.grampsdb.models as models
+import web.grampsdb.models as models
 from django.contrib.contenttypes.models import ContentType
+import web
 import gen
 
 # To get a django person from a django database:

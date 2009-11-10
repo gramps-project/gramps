@@ -1,7 +1,7 @@
-# forms.py forms for Django project gen.web
+# forms.py forms for Django web project 
 
 from django import forms
-from gen.web.grampsdb.models import *
+from web.grampsdb.models import *
 from django.forms.models import inlineformset_factory
 from django.forms.models import BaseModelFormSet
 import datetime

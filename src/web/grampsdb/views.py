@@ -8,9 +8,9 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import Context, RequestContext, escape
 from django.db.models import Q
 
-import gen
-from gen.web.grampsdb.models import *
-from gen.web.settings import VIEWS
+import web
+from web.grampsdb.models import *
+from web.settings import VIEWS
 
 def get_views():
     '''
@@ -21,7 +21,7 @@ def get_views():
 def main_page(request):
     context = RequestContext(request)
     context["views"] = [(pair[0], pair[1], 
-          getattr(gen.web.grampsdb.models, pair[2]).objects.count()) 
+          getattr(web.grampsdb.models, pair[2]).objects.count()) 
                         for pair in get_views()]
     context["view"] = 'home'
     context["cview"] = 'Home'
