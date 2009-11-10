@@ -1,0 +1,13 @@
+{% load my_tags %}
+<table cellspacing="0">
+<thead>
+  <tr>
+{% table_header %}
+  </tr>
+</thead>
+<tbody>
+  {% for view in view_list %}<tr class="{% cycle odd,even %}">
+    <td><a href="/{{view.name|lower}}/">{{ view.name|escape }}</a></td>
+  </tr>{% endfor %}
+</tbody>
+</table>

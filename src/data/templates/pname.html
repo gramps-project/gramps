@@ -1,0 +1,49 @@
+	{{ NForm.management_form }}
+	<table cellspacing = "2">
+	<tr><td colspan = "2">Names:</td></tr>
+	<tr><td width="10"></td>
+		<td><label>Preferred Name?</label></td>
+		<td width="50"><label>Prefix</label></td>
+		<td><label>First Name</label></td>
+		<td><label>Surname</label></td>
+		<td><label>Suffix</label></td>
+		<td><label>Type of Name</label></td>
+		<td><label>Delete</label></td>
+	</tr>
+	{% for form in NForm.forms %} 
+		<div class="fieldWrapper"><tr>
+		<td width="10"></td>
+		{% for field in form %}
+			<td align="center">{{ field }}</td>
+		{% endfor %}
+		</tr></div>
+		<tr><td colspan="5>{{form.errors}}</td></tr>
+	{% endfor %}
+	</table>
+
+	{% for field in PForm %} 
+		<div class="fieldWrapper"><tr>
+		<td>{{ field.label_tag }}: </td>
+		<td width="300">{{ field }}<p>{{ field.help_text }}</p></td>
+		<td>{{ field.errors }}</td>
+		</tr></div>
+	{% endfor %}
+
+{{ NForm.management_form }}
+	<table>
+		<td>Preferred Name?</td>
+		<td>Prefix</td>
+		<td>First Name</td>
+		<td>Surname</td>
+		<td>Suffix</td>
+		<td>Type of Name</td>
+		<td>Delete</td>
+	</tr>
+	{% for form in NForm.forms %} 
+		{% for field in form %}
+			<td align="left">{{ field }}<p>{{ field.errors }}</p></td>
+		{% endfor %}
+		</tr>
+		<tr><td colspan="7"></td></tr>
+	{% endfor %}
+	</table>

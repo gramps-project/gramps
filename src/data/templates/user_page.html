@@ -1,0 +1,20 @@
+{% extends "gramps-base.html" %}
+
+{% block title %}GRAMPS Connect - user page {% endblock %}
+{% block heading %}GRAMPS - user page {% endblock %}
+
+{% block content %} 
+
+<p id="description">Details for <b>{{user.first_name}} {{user.last_name}}</b> ({{user.username}}):</p>
+
+<p id="description">
+<ul>
+   <li>User name: <b>{{user.username}}</b></li>
+   <li>Email: <b><a href="mailto:{{user.email}}">{{user.email}}></a></b></li>
+   <li>Superuser?: <b>{{user.is_superuser}}</b></li>
+   <li>Last login: <b>{{user.last_login}}</b></li>
+</ul>
+</p>
+
+{% endblock %}
+

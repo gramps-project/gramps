@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}Person Details{% endblock %}
+
+{% block pagetitle %}{{Pname}}{% endblock %}
+
+{% block content %}
+	<form name="input" action={{URL}} method="post">
+	<table cellspacing = "2">
+	<tr><td colspan = "2">Preferred Name</td></tr>
+	{% for field in NForm %} 
+		<div class="fieldWrapper"><tr>
+		<td width="10"></td>
+		<td>{{ field.label_tag }}: </td>
+		<td width="300">{{ field }}<p>{{ field.help_text }}</p></td>
+		<td>{{ field.errors }}</td>
+		</tr></div>
+	{% endfor %}
+	</table>
+	<table cellspacing = "2">
+	{% for field in PForm %} 
+		<div class="fieldWrapper"><tr>
+		<td>{{ field.label_tag }}: </td>
+		<td width="300">{{ field }}<p>{{ field.help_text }}</p></td>
+		<td>{{ field.errors }}</td>
+		</tr></div>
+	{% endfor %}
+	</table>
+	<input type="submit" value="Save & Exit" />
+	</form>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}Person Details{% endblock %}
+
+{% block pagetitle %}{{Pname}}{% endblock %}
+
+{% block content %}
+	<form name="input" action={{URL}} method="post">
+	{{ NForm.management_form }}
+	Names (<a id="displayText" href="javascript:toggle('nameset','show');">hide</a>)
+	<div id="nameset" style="display: block">
+	<table class="nicetable">
+	<tr>
+		<td>Preferred Name?</td>
+		<td>Prefix</td>
+		<td>First Name</td>
+		<td>Surname</td>
+		<td>Suffix</td>
+		<td>Type of Name</td>
+		<td>Delete</td>
+	</tr>
+	{% for form in NForm.forms %} 
+		<tr>
+		{% for field in form %}
+			<td><p>{{ field }}</p>
+			<div id="errmsg"><p>{{ field.errors }}</p></div></td>
+		{% endfor %}
+		</tr>
+	{% endfor %}
+	<tr><td colspan="7"><div id="errmsg">{{ NamesetError }}</div></td></tr>
+	</table></div>
+
+	<table class="nicetable">
+	<tr>
+		<td>Reference ID: {{PForm.gramps_id}}</td>
+		<td>{{PForm.private}} Private </td>
+		<td>Last Changed: {{PLastChanged}}
+			<div id="errmsg"><p>{{PForm.last_changed.errors}}</p></div></td>
+	</tr><tr>
+		<td>Marker: {{PForm.marker_type}}
+			<div id="errmsg"><p>{{PForm.marker_type.errors}}</p></div></td>
+		<td>Gender: {{PForm.gender_type}}
+			<div id="errmsg"><p>{{PForm.gender_type.errors}}</p></div></td>
+	</tr><tr>
+		<td><p>Parent in these families: 
+		(<a id="displayText" href="javascript:toggle('families','Edit');">
+		Edit</a>)</p><ul>{% for family in ParentF %}
+					<li>{{family}}</li>
+				{% endfor %}</ul></td>
+		<td><p>Child in these families: 
+		(<a id="displayText" href="javascript:toggle('pfamilies','Edit');">			Edit</a>)</p><ul>{% for family in ChildF %}
+					<li>{{family}}</li>
+				{% endfor %}</ul></td>
+	</tr>
+	</table>
+	<table class="nicetable">
+		<tr><td width = "300"><div id="families" style="display: none">
+		<p>{{PForm.families}}</p>
+		<p>{{PForm.families.help_text}}</p>
+		<p>{{PForm.famlies.errors}}</p></div></td>
+		
+		<td width = "300"><div id="pfamilies" style="display: none">
+		<p>{{PForm.parent_families}}</p>
+		<p>{{PForm.parent_families.help_text}}</p>
+		<p>{{PForm.parent_famlies.errors}}</p></div></td></tr>
+	</table>
+	<input type="submit" value="Save & Exit" />
+	</form>
+{% endblock %}

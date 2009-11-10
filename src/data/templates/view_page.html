@@ -1,0 +1,81 @@
+{% extends "gramps-base.html" %}
+{% load my_tags %}
+
+{% block title %}GRAMPS Connect - {{cview}} view page {% endblock %}
+{% block heading %}GRAMPS - {{cview}} view page {% endblock %}
+
+{% block content %} 
+
+<p id="description">
+<form>
+<input type="submit" value="Search:"></submit>
+<input name="search" type="input" size="50" value="{{search}}"></input>
+</form>
+</p>
+
+<div class="pagination">
+    <span class="step-links">
+        {% ifequal page.number 1 %}
+        [first]
+        {% else %}
+        [<a href="?page=1{{search_query}}">first</a>]
+	{% endifequal %}
+        {% if page.has_previous %}
+            [<a href="?page={{page.previous_page_number}}{{search_query}}">previous</a>]
+	{% else %}
+            [previous]
+        {% endif %}
+
+        <span class="current">
+            Page {{ page.number }} of {{ page.paginator.num_pages }}
+        </span>
+
+        {% if page.has_next %}
+            [<a href="?page={{ page.next_page_number }}{{search_query}}">next</a>]
+	{% else %}
+            [next]
+        {% endif %}
+        {% ifequal page.number page.paginator.num_pages %}
+        [last]
+        {% else %}
+        [<a href="?page={{page.paginator.num_pages}}{{search_query}}">last</a>]
+	{% endifequal %}
+    </span>
+</div>
+
+<p>&nbsp;</p>
+
+{% block table_data %} TABLE DATA GOES HERE {% endblock %}
+<table></table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% ifequal page.number 1 %}
+        [first]
+        {% else %}
+        [<a href="?page=1{{search_query}}">first</a>]
+	{% endifequal %}
+        {% if page.has_previous %}
+            [<a href="?page={{page.previous_page_number}}{{search_query}}">previous</a>]
+	{% else %}
+            [previous]
+        {% endif %}
+
+        <span class="current">
+            Page {{ page.number }} of {{ page.paginator.num_pages }}
+        </span>
+
+        {% if page.has_next %}
+            [<a href="?page={{ page.next_page_number }}{{search_query}}">next</a>]
+	{% else %}
+            [next]
+        {% endif %}
+        {% ifequal page.number page.paginator.num_pages %}
+        [last]
+        {% else %}
+        [<a href="?page={{page.paginator.num_pages}}{{search_query}}">last</a>]
+	{% endifequal %}
+    </span>
+</div>
+
+{% endblock %}

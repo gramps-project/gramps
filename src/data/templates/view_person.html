@@ -1,0 +1,41 @@
+{% extends "view_page.html" %}
+{% load my_tags %}
+
+{% block table_data %} 
+
+<table cellspacing="0" class="infolist IndividualList">
+<thead>
+  <tr>
+    <th>Item #</th>
+    <th>Name</th>
+    <th>ID</th>
+    <th>Gender</th>
+    <th>Birth Date</th>
+<!--    <td>Birth Place</td> -->
+<!--    <td>Death Place</td> -->
+    <th>Death Date</th>
+<!--    <td>Spouse</td> -->
+  </tr>
+</thead>
+<tbody>
+  {% for name in page.object_list %}
+  <tr class="{% cycle odd,even %}">
+    <td>{{ forloop.counter|row_count:page }}</td>
+    <td><a href="/{{view}}/{{name.person.handle|escape}}/" class="noThumb">{{name|make_name:user}}</a>
+    </td>
+    <td><a href="/{{view}}/{{name.person.handle|escape}}" class="grampsid">[{{name.person.gramps_id|escape}}]</a></td>
+    <td><a href="/{{view}}/{{name.person.handle|escape}}" class="noThumb">{{name.person.gender_type|escape}}</a></td>
+    {% if user.is_authenticated %}
+    <td><a href="/{{view}}/{{name.person.handle|escape}}" class="noThumb">{{name.person|person_get_birth_date}}</a></td>
+    <td><a href="/{{view}}/{{name.person.handle|escape}}" class="noThumb">{{name.person|person_get_death_date}}</a></td>
+    {% else %}
+    <td><a href="/{{view}}/{{name.person.handle|escape}}/" class="noThumb">[Private]</a>
+    <td><a href="/{{view}}/{{name.person.handle|escape}}/" class="noThumb">[Private]</a>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+

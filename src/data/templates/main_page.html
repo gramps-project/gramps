@@ -1,0 +1,26 @@
+{% extends "gramps-base.html" %}
+
+{% block title %}GRAMPS Connect - main page {% endblock %}
+{% block heading %}GRAMPS - main page {% endblock %}
+
+{% block content %} 
+
+<p id="description">Welcome to GRAMPS Connect, a new web-based collaboration tool.
+
+{% if user.is_authenticated %}
+  You are now logged in
+  as <a href="/user/{{user.username}}">{{user.username}}</a>.
+{% endif %}
+</p>
+
+<p id="description">
+Database information:
+<ul>
+{% for view in views %}
+   <li><a href="/{{view.1}}">{{view.0}}</a> ({{view.2}} records)</li>
+{% endfor %}
+</ul>
+</p>
+
+{% endblock %}
+
