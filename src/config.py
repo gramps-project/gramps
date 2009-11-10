@@ -33,6 +33,7 @@ This package implements access to GRAMPS configuration.
 #
 #---------------------------------------------------------------
 import os
+import sys
 import time
 import ConfigParser
 import errno
@@ -179,13 +180,13 @@ class ConfigManager(object):
                             if vtype == bool:
                                 value = raw_value in ["1", "True"]
                             elif vtype == list:
-                                print "WARNING: ignoring old key '%s'" % key
+                                print >> sys.stderr, "WARNING: ignoring old key '%s'" % key
                                 continue # there were no lists in oldstyle
                             else:
                                 value = vtype(raw_value)
                         else:
                             # else, ignore it
-                            print "WARNING: ignoring old key '%s'" % key
+                            print >> sys.stderr, "WARNING: ignoring old key '%s'" % key
                             continue # with next setting
                     ####################### End upgrade code
                     else:
@@ -196,7 +197,7 @@ class ConfigManager(object):
                         if type(value) == type(self.default[name][setting]):
                             self.data[name][setting] = value
                         else:
-                            print ("WARNING: ignoring key with wrong type "
+                            print >> sys.stderr, ("WARNING: ignoring key with wrong type "
                                    "'%s.%s'" % (name, setting))
                     else:
                         # this could be a third-party setting; add it:
@@ -659,10 +660,10 @@ if not os.path.exists(CONFIGMAN.filename):
     # If not, let's read old if there:
     if os.path.exists(os.path.join(const.HOME_DIR, "keys.ini")):
         # read it in old style:
-        print "Importing old key file 'keys.ini'..."
+        print >> sys.stderr, "Importing old key file 'keys.ini'..."
         CONFIGMAN.load(os.path.join(const.HOME_DIR, "keys.ini"),
                             oldstyle=True)
-        print "Done importing old key file 'keys.ini'"
+        print >> sys.stderr, "Done importing old key file 'keys.ini'"
     # other version upgrades here...
 
 #---------------------------------------------------------------
