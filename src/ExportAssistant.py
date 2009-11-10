@@ -248,14 +248,18 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         """
         if pagenumber == _ExportAssistant_pages['exporttypes'] :
             #decide if options need to be shown:
+            self.option_box_instance = None
             ix = self.get_selected_format_index()
-            if self.__exporters[ix].get_config(): 
-                return pagenumber + 1
-            else :
+            if not self.__exporters[ix].get_config(): 
                 # no options needed
                 return pagenumber + 2
-        else :
-            return pagenumber + 1
+        elif pagenumber == _ExportAssistant_pages['options']:
+            # need to check to see if we should show file selection
+            if (self.option_box_instance and 
+                hasattr(self.option_box_instance, "no_fileselect")):
+                # don't show fileselect, but mark it ok
+                return pagenumber + 2
+        return pagenumber + 1
         
     def create_options(self):
         """This method gets the option page, and fills it with the options."""
@@ -435,27 +439,46 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             # Present user with what will happen
             ix = self.get_selected_format_index()
             format = self.__exporters[ix].get_name()
-
-            #Allow for exotic error: file is still not correct
-            self.check_fileselect(self.chooser, show=False)
-            if self.get_page_complete(self.chooser) :
-                filename = Utils.get_unicode_path(self.chooser.get_filename())
-                name = os.path.split(filename)[1]
-                folder = os.path.split(filename)[0]
+            page_complete = False
+            # If no file select:
+            if (self.option_box_instance and 
+                hasattr(self.option_box_instance, "no_fileselect")):
+                # No file selection
+                filename = ''
                 confirm_text = _(
-                'The data will be saved as follows:\n\n'
-                'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
-                'Press Apply to proceed, Back to revisit '
-                'your options, or Cancel to abort') % (format.replace("_",""), name, folder)
-                self.set_page_complete(page, True)
-            else :
-                confirm_text = _(
-                'The selected file and folder to save to '
-                'cannot be created or found.\n\n'
-                'Press Back to return and select a valid filename.'
-                ) 
-                self.set_page_complete(page, False)
-            
+                    'The data will be exported as follows:\n\n'
+                    'Format:\t%s\n\n'
+                    'Press Apply to proceed, Back to revisit '
+                    'your options, or Cancel to abort') % (format.replace("_",""), )
+                page_complete = True
+            else:
+                #Allow for exotic error: file is still not correct
+                self.check_fileselect(self.chooser, show=False)
+                if self.get_page_complete(self.chooser) :
+                    filename = Utils.get_unicode_path(self.chooser.get_filename())
+                    name = os.path.split(filename)[1]
+                    folder = os.path.split(filename)[0]
+                    confirm_text = _(
+                    'The data will be saved as follows:\n\n'
+                    'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
+                    'Press Apply to proceed, Back to revisit '
+                    'your options, or Cancel to abort') % (format.replace("_",""), name, folder)
+                    page_complete = True
+                else :
+                    confirm_text = _(
+                        'The selected file and folder to save to '
+                        'cannot be created or found.\n\n'
+                        'Press Back to return and select a valid filename.'
+                        ) 
+                    page_complete = False
+            # Set the page_complete status
+            self.set_page_complete(page, page_complete)
+            # If it is ok, then look for alternate confirm_text
+            if (page_complete and
+                self.option_box_instance and 
+                hasattr(self.option_box_instance, "confirm_text")):
+                # Override message
+                confirm_text = self.option_box_instance.confirm_text
             page.set_label(confirm_text)
                 
         elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_SUMMARY :
@@ -562,8 +585,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         Depending on the success status, set the text for the final page.
         
         """
-        filename = Utils.get_unicode_path(self.chooser.get_filename())
-        config.set('paths.recent-export-dir', os.path.split(filename)[0])
+        if (self.option_box_instance and 
+            hasattr(self.option_box_instance, "no_fileselect")):
+            filename = ""
+        else:
+            filename = Utils.get_unicode_path(self.chooser.get_filename())
+            config.set('paths.recent-export-dir', os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         config.set('behavior.recent-export-type', ix)
         export_function = self.__exporters[ix].get_export_function()
