@@ -137,6 +137,7 @@ RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 PLUGINS_DIR    = os.path.join(ROOT_DIR, "plugins")
 DATA_DIR       = os.path.join(ROOT_DIR, "data")
+WEB_DIR        = os.path.join(os.path.join(ROOT_DIR, 'gen'), 'web')
 #SYSTEM_FILTERS = os.path.join(DATA_DIR, "system_filters.xml")
 TIP_DATA       = os.path.join(DATA_DIR, "tips.xml")
 
