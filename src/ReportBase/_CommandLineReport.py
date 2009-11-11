@@ -30,6 +30,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 import logging
 log = logging.getLogger(".")
@@ -50,10 +51,11 @@ from gen.plug.menu import (FamilyOption, PersonOption, NoteOption,
 from BasicUtils import name_displayer
 from Errors import ReportError
 from ReportBase import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
-                        CATEGORY_GRAPHVIZ)
+                        CATEGORY_GRAPHVIZ, CATEGORY_CODE)
 from _PaperMenu import paper_sizes
-import os
 import const
+import DbState
+from cli.grampscli import CLIManager
 
 #------------------------------------------------------------------------
 #
@@ -423,4 +425,48 @@ def cl_report(database, name, category, report_class, options_class,
         print err_msg
         print m1
     except:
-        log.error(err_msg, exc_info=True)
+        if len(log.handlers) > 0:
+            log.error(err_msg, exc_info=True)
+        else:
+            print >> os.stderr, err_msg
+
+def run_report(db, name, **options_str_dict):
+    """
+    Given a database, run a given report.
+
+    db is a GrampsDb database
+
+    name is the name of a report
+
+    options_str_dict is the same kind of options
+    given at the command line. For example:
+    
+    >>> run_report(db, "ancestor_report", off="txt", 
+                   of="ancestor-007.txt", pid="I37")
+
+    returns True if successfully runs the report, False
+    otherwise.
+    """
+    dbstate = DbState.DbState()
+    climanager = CLIManager(dbstate, False) # don't load db
+    climanager.do_reg_plugins()
+    pmgr = BasePluginManager.get_instance()
+    cl_list = pmgr.get_reg_reports()
+    for pdata in cl_list:
+        if name == pdata.id:
+            mod = pmgr.load_plugin(pdata)
+            if not mod:
+                #import of plugin failed
+                return False
+            category = pdata.category
+            report_class = getattr(mod, pdata.reportclass)
+            options_class = getattr(mod, pdata.optionclass)
+            if category in (CATEGORY_BOOK, CATEGORY_CODE):
+                options_class(db, name, category, 
+                              options_str_dict)
+            else:
+                cl_report(db, name, category, 
+                          report_class, options_class,
+                          options_str_dict)
+                return True
+    return False
