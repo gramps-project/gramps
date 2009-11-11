@@ -821,7 +821,7 @@ if _DOT_FOUND:
     
     _FORMATS += [{ 'type' : "svgz",
                    'ext'  : "svgz",
-                   'descr': _("Compressed Structured Vector Graphs (SVG)"), 
+                   'descr': _("Compressed Structured Vector Graphs (SVGZ)"), 
                    'mime' : "image/svgz", 
                    'class': GVSvgzDoc }]
     
