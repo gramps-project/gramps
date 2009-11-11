@@ -4,21 +4,10 @@ from gen.db import GrampsDbBase
 from web.libdjango import DjangoInterface
 import Utils
 
-# class Trans(object):
-#     def __init__(self, dji_model):
-#         self.dji_model = dji_model
-
-#     def get(self, handle):
-#         return self.dji_model.filter(handle=handle) == 1
-
-#     def keys(self):
-#         return [item.handle for item in self.dji_model.all()]
-
-# from ReportBase._CommandLineReport import run_report_direct
+# from ReportBase._CommandLineReport import run_report
 # import djangodb
 # db = djangodb.DjangoDb()
-# run_report_direct(db, "ancestor_report", off="pdf", of="ar.pdf")
-#
+# run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I37")
 
 def probably_alive(handle):
     db = DjangoDb()
@@ -49,6 +38,10 @@ class DjangoDb(GrampsDbBase):
         self.readonly = False
         self.db_is_open = True
 
+    def get_researcher(self):
+        obj = gen.lib.Name()
+        return obj
+
     def get_event_from_handle(self, handle):
         obj = gen.lib.Event()
         obj.unserialize(self.dji.get_event(self.dji.Event.get(handle=handle)))
@@ -65,11 +58,31 @@ class DjangoDb(GrampsDbBase):
         obj.unserialize(data)
         return obj
 
+    def get_place_from_handle(self, handle):
+        obj = gen.lib.Place()
+        obj.unserialize(self.dji.get_place(self.dji.Place.get(handle=handle)))
+        return obj
+
+    def get_person_handles(self):
+        return [person.handle for person in self.dji.Person.all()]
+
+    def get_default_person(self):
+        return None
+
+    def iter_person_handles(self):
+        return (person.handle for person in self.dji.Person.all())
+
     def get_person_from_gramps_id(self, gramps_id):
         obj = gen.lib.Person()
-        data = self.dji.get_person(self.dji.Person.get(gramps_id=gramps_id))
-        obj.unserialize(data)
-        return obj
+        match_list = self.dji.Person.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            data = self.dji.get_person(
+                match_list[0]
+                )
+            obj.unserialize(data)
+            return obj
+        else:
+            return None
 
     def get_number_of_people(self):
         return self.dji.Person.count()
