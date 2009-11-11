@@ -10,24 +10,51 @@ from django.db.models import Q
 
 import web
 from web.grampsdb.models import *
-from web.settings import VIEWS
 
-def get_views():
-    '''
-    VIEWS is [("People", "person"), (plural, singular), ...]
-    '''
-    return VIEWS
+# Views: [(Nice name plural, /name/handle, Model), ]
+VIEWS = [('People', 'person', Person), 
+         ('Families', 'family', Family),
+         ('Events', 'event', Event),
+         ('Notes', 'note', Note),
+         ('Media', 'media', Media),
+         ('Sources', 'source', Source),
+         ('Places', 'place', Place),
+         ('Repositories', 'repository', Repository),
+         ]
+
+def context_processor(request):
+    """
+    This function is executed before template processing.
+    takes a request, and returns a dictionary context.
+    """
+    # FIXME: make the css_theme based on user's selection
+    context = {}
+    context["css_theme"] = "Web_Mainz.css"
+    # FIXME: get the views from a config?
+    context["views"] = VIEWS
+    return context
+
+# CSS Themes:
+#Web_Basic-Ash.css
+#Web_Mainz.css
+#Web_Basic-Cypress.css
+#Web_Nebraska.css
+#Web_Basic-Lilac.css
+#Web_Print-Default.css
+#Web_Basic-Peach.css
+#Web_Visually.css
+#Web_Basic-Spruce.css
 
 def main_page(request):
     context = RequestContext(request)
-    context["views"] = [(pair[0], pair[1], 
-          getattr(web.grampsdb.models, pair[2]).objects.count()) 
-                        for pair in get_views()]
     context["view"] = 'home'
     context["cview"] = 'Home'
     return render_to_response("main_page.html", context)
                               
 def logout_page(request):
+    context = RequestContext(request)
+    context["view"] = 'home'
+    context["cview"] = 'Home'
     logout(request)
     return HttpResponseRedirect('/')
 
@@ -38,7 +65,6 @@ def user_page(request, username):
         raise Http404('Requested user not found.')
     context = RequestContext(request)
     context["username"] =  username
-    context["views"] = get_views()
     context["view"] = 'user'
     context["cview"] = 'User'
     return render_to_response('user_page.html', context)
@@ -46,7 +72,6 @@ def user_page(request, username):
 def view_detail(request, view, handle):
     cview = view.title()
     context = RequestContext(request)
-    context["views"] = get_views()
     context["cview"] = cview
     context["view"] = view
     context["handle"] = handle
@@ -118,7 +143,6 @@ def view(request, view):
 
     context = RequestContext(request)
     context["page"] = page
-    context["views"] = get_views()
     context["view"] = view
     context["cview"] = cview
     context["search"] = search

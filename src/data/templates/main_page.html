@@ -16,13 +16,19 @@
 </p>
 
 <p id="description">
-Database information:
-<ul>
+Database information:</p>
+
+<table class="infolist">
+<tr>
+<th>Item</th>
+<th>Count</th>
+</tr>
 {% for view in views %}
-   <li><a href="/{{view.1}}">{{view.0}}</a> ({{view.2}} records)</li>
+   <tr><td align="left"><a href="/{{view.1}}">{{view.0}}</a></td> 
+       <td align="right"><a href="/{{view.1}}">{{view.2.objects.count}}</td>
+   </tr>
 {% endfor %}
-</ul>
-</p>
+</table>
 
 {% endblock %}
 

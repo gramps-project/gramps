@@ -44,6 +44,14 @@ TEMPLATE_DIRS = (
     os.path.join(const.DATA_DIR, "templates"),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "web.grampsdb.views.context_processor",
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,15 +70,4 @@ DEFAULT_TABLESPACE = ''
 CACHE_BACKEND = 'locmem://'
 TRANSACTIONS_MANAGED = False
 LOCALE_PATHS = tuple()
-
-# Views: (Nice name plural, /name/handle, Model Name)
-VIEWS = [('People', 'person', 'Person'), 
-         ('Families', 'family', 'Family'),
-         ('Events', 'event', 'Event'),
-         ('Notes', 'note', 'Note'),
-         ('Media', 'media', 'Media'),
-         ('Sources', 'source', 'Source'),
-         ('Places', 'place', 'Place'),
-         ('Repositories', 'repository', 'Repository'),
-         ]
 
