@@ -72,6 +72,10 @@ class DjangoDb(GrampsDbBase):
     def iter_person_handles(self):
         return (person.handle for person in self.dji.Person.all())
 
+    def iter_families(self):
+        return (self.get_family_from_handle(family.handle) 
+                for family in self.dji.Family.all())
+
     def get_person_from_gramps_id(self, gramps_id):
         obj = gen.lib.Person()
         match_list = self.dji.Person.filter(gramps_id=gramps_id)
