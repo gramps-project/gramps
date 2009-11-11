@@ -30,7 +30,9 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import traceback
 import os
+import sys
 
 import logging
 log = logging.getLogger(".")
@@ -420,6 +422,7 @@ def cl_report(database, name, category, report_class, options_class,
         MyReport.begin_report()
         MyReport.write_report()
         MyReport.end_report()
+        return clr
     except ReportError, msg:
         (m1, m2) = msg.messages()
         print err_msg
@@ -428,7 +431,13 @@ def cl_report(database, name, category, report_class, options_class,
         if len(log.handlers) > 0:
             log.error(err_msg, exc_info=True)
         else:
-            print >> os.stderr, err_msg
+            print >> sys.stderr, err_msg
+            ## Something seems to eat the exception above.
+            ## Hack to re-get the exception:
+            try:
+                raise
+            except:
+                traceback.print_exc()
 
 def run_report(db, name, **options_str_dict):
     """
@@ -444,20 +453,25 @@ def run_report(db, name, **options_str_dict):
     >>> run_report(db, "ancestor_report", off="txt", 
                    of="ancestor-007.txt", pid="I37")
 
-    returns True if successfully runs the report, False
-    otherwise.
+    returns CommandLineReport (clr) if successfully runs the report,
+    None otherwise.
+
+    You can see:
+       options and values used in  clr.option_class.options_dict
+       filename in clr.option_class.get_output()
     """
     dbstate = DbState.DbState()
     climanager = CLIManager(dbstate, False) # don't load db
     climanager.do_reg_plugins()
     pmgr = BasePluginManager.get_instance()
     cl_list = pmgr.get_reg_reports()
+    clr = None
     for pdata in cl_list:
         if name == pdata.id:
             mod = pmgr.load_plugin(pdata)
             if not mod:
                 #import of plugin failed
-                return False
+                return clr
             category = pdata.category
             report_class = getattr(mod, pdata.reportclass)
             options_class = getattr(mod, pdata.optionclass)
@@ -465,8 +479,8 @@ def run_report(db, name, **options_str_dict):
                 options_class(db, name, category, 
                               options_str_dict)
             else:
-                cl_report(db, name, category, 
-                          report_class, options_class,
-                          options_str_dict)
-                return True
-    return False
+                clr = cl_report(db, name, category, 
+                                report_class, options_class,
+                                options_str_dict)
+                return clr
+    return clr
