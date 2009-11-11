@@ -36,7 +36,10 @@ def lookup_role_index(role0, event_ref_list):
         return -1
 
 def totime(dtime):
-    return int(time.mktime(dtime.timetuple()))
+    if dtime:
+        return int(time.mktime(dtime.timetuple()))
+    else:
+        return 0
 
 #-------------------------------------------------------------------------
 #
