@@ -54,7 +54,9 @@ import gen.lib
 import gui.views.pageview as PageView
 from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
-import Utils
+from Utils import (media_path_full, probably_alive, find_children, 
+                   find_parents, find_witnessed_people)
+from libformatting import FormattingHelper
 import DateHandler
 import ThumbNails
 import Errors
@@ -359,106 +361,6 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
             self.window.draw_rectangle(self.border_gc, False, 1, 1, alloc.width-6, alloc.height-6)
         else:
             self.window.draw_rectangle(self.border_gc, False, 0, 0, alloc.width-4, alloc.height-4)
-
-class FormattingHelper(object):
-    def __init__(self,dbstate):
-        self.dbstate = dbstate
-        self._text_cache = {}
-        self._markup_cache = {}
-    
-    def format_relation( self, family, line_count):
-        text = ""
-        for event_ref in family.get_event_ref_list():
-            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == gen.lib.EventType.MARRIAGE and \
-            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
-                if line_count < 3:
-                    return DateHandler.get_date(event)
-                name = str(event.get_type())
-                text += name
-                text += "\n"
-                text += DateHandler.get_date(event)
-                text += "\n"
-                text += self.get_place_name(event.get_place_handle())
-                if line_count < 5:
-                    return text;
-                break
-        if not text:
-            text = str(family.get_relationship())
-        return text
-
-    def get_place_name( self, place_handle):
-        text = ""
-        place = self.dbstate.db.get_place_from_handle(place_handle)
-        if place:
-            place_title = place.get_title()
-            if place_title != "":
-                if len(place_title) > 25:
-                    text = place_title[:24]+"..."
-                else:
-                    text = place_title
-        return text
-
-    def format_person( self, person, line_count, use_markup=False):
-        if not person:
-            return ""
-        if use_markup:
-            if person.handle in self._markup_cache:
-                if line_count in self._markup_cache[person.handle]:
-                    return self._markup_cache[person.handle][line_count]
-            name = escape(name_displayer.display(person))
-        else:
-            if person.handle in self._text_cache:
-                if line_count in self._text_cache[person.handle]:
-                    return self._text_cache[person.handle][line_count]
-            name = name_displayer.display(person)
-        text = name
-        if line_count >= 3:
-            birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
-            if birth and use_markup and birth.get_type() != gen.lib.EventType.BIRTH:
-                bdate  = "<i>%s</i>" % escape(DateHandler.get_date(birth))
-                bplace = "<i>%s</i>" % escape(self.get_place_name(birth.get_place_handle()))
-            elif birth and use_markup:
-                bdate  = escape(DateHandler.get_date(birth))
-                bplace = escape(self.get_place_name(birth.get_place_handle()))
-            elif birth:
-                bdate  = DateHandler.get_date(birth)
-                bplace = self.get_place_name(birth.get_place_handle())
-            else:
-                bdate = ""
-                bplace = ""
-            death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
-            if death and use_markup and death.get_type() != gen.lib.EventType.DEATH:
-                ddate  = "<i>%s</i>" % escape(DateHandler.get_date(death))
-                dplace = "<i>%s</i>" % escape(self.get_place_name(death.get_place_handle()))
-            elif death and use_markup:
-                ddate  = escape(DateHandler.get_date(death))
-                dplace = escape(self.get_place_name(death.get_place_handle()))
-            elif death:
-                ddate  = DateHandler.get_date(death)
-                dplace = self.get_place_name(death.get_place_handle())
-            else:
-                ddate = ""
-                dplace = ""
-            
-            if line_count < 5:
-                text = "%s\n* %s\n+ %s" % (name,bdate,ddate)
-            else:
-                text = "%s\n* %s\n  %s\n+ %s\n  %s" % (name,bdate,bplace,ddate,dplace)
-        if use_markup:
-            if not person.handle in self._markup_cache:
-                self._markup_cache[person.handle] = {}
-            self._markup_cache[person.handle][line_count] = text
-        else:
-            if not person.handle in self._text_cache:
-                self._text_cache[person.handle] = {}
-            self._text_cache[person.handle][line_count] = text
-        return text
-
-    def clear_cache( self):
-        self._text_cache = {}
-        self._markup_cache = {}
 
 #-------------------------------------------------------------------------
 #
@@ -877,7 +779,7 @@ class PedigreeView(NavigationView):
                             mtype = obj.get_mime_type()
                             if mtype and mtype[0:5] == "image":
                                 image = ThumbNails.get_thumbnail_path(
-                                            Utils.media_path_full(
+                                            media_path_full(
                                                         self.dbstate.db,
                                                         obj.get_path()),
                                             rectangle=ph.get_rectangle())
@@ -1276,7 +1178,7 @@ class PedigreeView(NavigationView):
             return
 
         try:
-            alive = Utils.probably_alive(person, self.dbstate.db)
+            alive = probably_alive(person, self.dbstate.db)
         except RuntimeError:
             ErrorDialog(_('Relationship loop detected'),
                         _('A person was found to be his/her own ancestor.'))
@@ -1694,75 +1596,6 @@ class PedigreeView(NavigationView):
         self.add_settings_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
         return 1
-
-
-#-------------------------------------------------------------------------
-#
-# Function to return children's list of a person
-#
-#-------------------------------------------------------------------------
-def find_children(db,p):
-    """
-    Return the list of all children's IDs for a person.
-    """
-    childlist = []
-    for family_handle in p.get_family_handle_list():
-        family = db.get_family_from_handle(family_handle)
-        for child_ref in family.get_child_ref_list():
-            childlist.append(child_ref.ref)
-    return childlist
-
-#-------------------------------------------------------------------------
-#
-# Function to return parent's list of a person
-#
-#-------------------------------------------------------------------------
-def find_parents(db,p):
-    """
-    Return the unique list of all parents' IDs for a person.
-    """
-    parentlist = []
-    for f in p.get_parent_family_handle_list():
-        family = db.get_family_from_handle(f)
-        father_handle = family.get_father_handle()
-        mother_handle = family.get_mother_handle()
-        if father_handle not in parentlist:
-            parentlist.append(father_handle)
-        if mother_handle not in parentlist:
-            parentlist.append(mother_handle)
-    return parentlist
-
-#-------------------------------------------------------------------------
-#
-# Function to return persons, that share the same event.
-# This for example links witnesses to the tree
-#
-#-------------------------------------------------------------------------
-def find_witnessed_people(db,p):
-    people = []
-    for event_ref in p.get_event_ref_list():
-        for l in db.find_backlink_handles( event_ref.ref):
-            if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
-                people.append(l[1])
-            if l[0] == 'Family':
-                fam = db.get_family_from_handle(l[1])
-                if fam:
-                    father_handle = fam.get_father_handle()
-                    if father_handle and father_handle != p.get_handle() and father_handle not in people:
-                        people.append(father_handle)
-                    mother_handle = fam.get_mother_handle()
-                    if mother_handle and mother_handle != p.get_handle() and mother_handle not in people:
-                        people.append(mother_handle)
-    for f in p.get_family_handle_list():
-        family = db.get_family_from_handle(f)
-        for event_ref in family.get_event_ref_list():
-            for l in db.find_backlink_handles( event_ref.ref):
-                if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
-                    people.append(l[1])
-    for pref in p.get_person_ref_list():
-        if pref.ref != p.get_handle and pref.ref not in people:
-            people.append(pref.ref)
-    return people
 
 #-------------------------------------------------------------------------
 #

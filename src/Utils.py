@@ -1060,3 +1060,71 @@ def get_participant_from_event(db, event_handle):
         return _('%s, ...') % participant
     else:
         return participant
+
+#-------------------------------------------------------------------------
+#
+# Function to return children's list of a person
+#
+#-------------------------------------------------------------------------
+def find_children(db,p):
+    """
+    Return the list of all children's IDs for a person.
+    """
+    childlist = []
+    for family_handle in p.get_family_handle_list():
+        family = db.get_family_from_handle(family_handle)
+        for child_ref in family.get_child_ref_list():
+            childlist.append(child_ref.ref)
+    return childlist
+
+#-------------------------------------------------------------------------
+#
+# Function to return parent's list of a person
+#
+#-------------------------------------------------------------------------
+def find_parents(db,p):
+    """
+    Return the unique list of all parents' IDs for a person.
+    """
+    parentlist = []
+    for f in p.get_parent_family_handle_list():
+        family = db.get_family_from_handle(f)
+        father_handle = family.get_father_handle()
+        mother_handle = family.get_mother_handle()
+        if father_handle not in parentlist:
+            parentlist.append(father_handle)
+        if mother_handle not in parentlist:
+            parentlist.append(mother_handle)
+    return parentlist
+
+#-------------------------------------------------------------------------
+#
+# Function to return persons, that share the same event.
+# This for example links witnesses to the tree
+#
+#-------------------------------------------------------------------------
+def find_witnessed_people(db,p):
+    people = []
+    for event_ref in p.get_event_ref_list():
+        for l in db.find_backlink_handles( event_ref.ref):
+            if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
+                people.append(l[1])
+            if l[0] == 'Family':
+                fam = db.get_family_from_handle(l[1])
+                if fam:
+                    father_handle = fam.get_father_handle()
+                    if father_handle and father_handle != p.get_handle() and father_handle not in people:
+                        people.append(father_handle)
+                    mother_handle = fam.get_mother_handle()
+                    if mother_handle and mother_handle != p.get_handle() and mother_handle not in people:
+                        people.append(mother_handle)
+    for f in p.get_family_handle_list():
+        family = db.get_family_from_handle(f)
+        for event_ref in family.get_event_ref_list():
+            for l in db.find_backlink_handles( event_ref.ref):
+                if l[0] == 'Person' and l[1] != p.get_handle() and l[1] not in people:
+                    people.append(l[1])
+    for pref in p.get_person_ref_list():
+        if pref.ref != p.get_handle and pref.ref not in people:
+            people.append(pref.ref)
+    return people
