@@ -172,7 +172,6 @@ class Spell(object):
     """Attach a gtkspell instance to the passed TextView instance.
     """
     lang = locale.getlocale()[0]
-    
     _installed_languages = {'off': _('None')}
     
     if HAVE_ENCHANT and HAVE_GTKSPELL:
@@ -194,19 +193,46 @@ class Spell(object):
             _installed_languages[language] = " ".join(name.split('_'))
 
     elif not HAVE_ENCHANT and HAVE_GTKSPELL:
-        #we try a hack to get the languages. We do this by trying all 
-        #languages we know of.
-        for lang_code, lang_name in LANGUAGES.items():
-            try:
-                #work around gtkspell bug with tv
-                tv = gtk.TextView()
-                gtkspell.Spell(tv).set_language(lang_code)
-                _installed_languages[lang_code] = lang_name
-            except RuntimeError:
-                #FIXME: this does not work anymore since 10/2008!!!
-                #if pyenchant is installed we can avoid it, otherwise perhaps
-                # future gtkspell3 will offer a solution.
-                pass
+        # if lang is None, default to en:
+        if lang == None:
+            locale_lang_code = "en"
+        else:
+            locale_lang_code = lang
+        tested = False
+        #we try a hack to get the locale language. 
+        for (lang_code, lang_name) in LANGUAGES.items():
+            # if this lang is the current locale:
+            if (locale_lang_code == lang_code):
+                tested = True
+                # if it is english, we know it works:
+                if locale_lang_code == "en":
+                    _installed_languages[locale_lang_code] = lang_name
+                    print _("Warning: spelling checker language limited to "
+                            "locale '%s'; install pyenchant/python-enchant "
+                            "for better options.") % "en"
+                elif locale.getlocale()[1] == "UTF8":
+                    # Only worked with UTF8 versions of language.
+                    # But, we need to test it:
+                    try:
+                        #work around gtkspell bug with tv
+                        tv = gtk.TextView()
+                        gtkspell.Spell(tv).set_language(lang_code)
+                        _installed_languages[lang_code] = lang_name
+                        print _("Warning: spelling checker language limited to "
+                                "locale '%s'; install pyenchant/python-enchant "
+                                "for better options.") % lang
+                    except:
+                        # FIXME: this does not work anymore since 10/2008!!!
+                        # if pyenchant is installed we can avoid it, otherwise
+                        # perhaps future gtkspell3 will offer a solution.
+                        print _("Warning: spelling checker disabled; "
+                                "install pyenchant/python-enchant to enable.")
+                # if we matched, we're done looking
+                break
+        if not tested:
+            # if we didn't see a match on lang, then there is no spell check
+            print _("Warning: spelling checker disabled; "
+                    "install pyenchant/python-enchant to enable.")
 
     def __init__(self, textview):
         self.textview = textview
