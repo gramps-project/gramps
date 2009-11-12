@@ -128,8 +128,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         sel = SelectRepository(
             self.dbstate,
             self.uistate,
-            self.track,
-            _("Select repository"))
+            self.track)
         
         repo = sel.run()
         if repo:
