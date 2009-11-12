@@ -68,10 +68,3 @@ class SelectRepository(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_repository_from_handle
-
-    def column_view_names(self):
-        """
-        Get correct column view names on which model is based
-        """
-        import DataViews
-        return DataViews.RepositoryView.COLUMN_NAMES

@@ -68,10 +68,3 @@ class SelectSource(BaseSelector):
         
     def get_handle_column(self):
         return 6
-
-    def column_view_names(self):
-        """
-        Get correct column view names on which model is based
-        """
-        import DataViews
-        return DataViews.SourceView.COLUMN_NAMES

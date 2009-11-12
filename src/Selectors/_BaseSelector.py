@@ -85,8 +85,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
         self.tree.grab_focus()
-        
-        self.colinfo = self.column_view_names()
+
         #add the search bar
         self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
         filter_box = self.search_bar.build()
@@ -220,16 +219,8 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         returns a tuple indicating the column order of the model
         """
-        return [(1, row[3], row[1]) for row in self.get_column_titles()]
+        return [(1, row[3], row[1], row[0]) for row in self.get_column_titles()]
 
-    def column_view_names(self):
-        """
-        Get correct column view names on which model is based
-        
-        Derived classes must override this function.
-        """
-        raise NotImplementedError
-            
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search
@@ -242,7 +233,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         cols = []
         for pair in [pair for pair in self.column_order() if pair[0]]:
-            cols.append((self.colinfo[pair[1]], pair[1]))
+            cols.append((pair[3], pair[1]))
         self.search_bar.setup_filter(cols)
         
     def build_tree(self):

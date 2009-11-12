@@ -51,7 +51,7 @@ NOSORT = -1
 #-------------------------------------------------------------------------
 class ListModel(object):
     """
-    Simple model for lists in smaller dialogs (not DataViews).
+    Simple model for lists in smaller dialogs (not views).
     """
 
     def __init__(self, tree, dlist, select_func=None, event_func=None, 

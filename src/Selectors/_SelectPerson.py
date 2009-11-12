@@ -90,23 +90,6 @@ class SelectPerson(BaseSelector):
     def get_handle_column(self):
         return PeopleModel.COLUMN_INT_ID
 
-    def column_view_names(self):
-        """
-        Get correct column view names on which model is based
-        """
-        column_names = [
-            _('Name'), 
-            _('ID') , 
-            _('Gender'), 
-            _('Birth Date'), 
-            _('Birth Place'), 
-            _('Death Date'), 
-            _('Death Place'), 
-            _('Spouse'), 
-            _('Last Change'), 
-            ]
-        return column_names
-
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search

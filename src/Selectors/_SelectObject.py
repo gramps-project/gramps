@@ -102,10 +102,3 @@ class SelectObject(BaseSelector):
                                                              obj.get_path()))
         self.preview.set_from_pixbuf(pix)
         gc.collect()
-
-    def column_view_names(self):
-        """
-        Get correct column view names on which model is based
-        """
-        import DataViews
-        return DataViews.MediaView.COLUMN_NAMES
