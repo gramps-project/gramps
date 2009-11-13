@@ -79,6 +79,7 @@ src/gen/db/exceptions.py
 src/gen/db/dbconst.py
 src/gen/db/__init__.py
 src/gen/db/iterator.py
+src/gen/db/undoredo.py
 
 # gen lib API
 src/gen/lib/witness.py
@@ -145,6 +146,7 @@ src/gen/plug/_gramplet.py
 src/gen/plug/_import.py
 src/gen/plug/_manager.py
 src/gen/plug/_plugin.py
+src/gen/plug/_pluginreg.py
 src/gen/plug/menu/_boolean.py
 src/gen/plug/menu/_color.py
 src/gen/plug/menu/_destination.py
@@ -277,7 +279,7 @@ src/DisplayTabs/_LocationEmbedList.py
 src/DisplayTabs/_LocationModel.py
 src/DisplayTabs/_MediaBackRefList.py
 src/DisplayTabs/_NameEmbedList.py
-#src/DisplayTabs/_NameModel.py
+src/DisplayTabs/_NameModel.py
 src/DisplayTabs/_NoteBackRefList.py
 src/DisplayTabs/_NoteTab.py
 src/DisplayTabs/_PersonEventEmbedList.py
@@ -388,6 +390,7 @@ src/plugins/drawreport/TimeLine.py
 # plugins/export directory
 src/plugins/export/export.gpr.py
 src/plugins/export/ExportCsv.py
+src/plugins/export/ExportDjango.gpr.py
 src/plugins/export/ExportFtree.py
 src/plugins/export/ExportGedcom.py
 src/plugins/export/ExportGeneWeb.py
@@ -437,11 +440,13 @@ src/plugins/import/ImportXml.py
 # plugins/lib directory
 src/plugins/lib/libcairodoc.py
 src/plugins/lib/libgrampsxml.py
+src/plugins/lib/libgrdb.py
 src/plugins/lib/libholiday.py
 src/plugins/lib/libhtml.py
 src/plugins/lib/libhtmlbackend.py
 src/plugins/lib/libhtmlconst.py
 src/plugins/lib/libmapservice.py
+src/plugins/lib/libnarrate.py
 src/plugins/lib/libodfbackend.py
 src/plugins/lib/libplugins.gpr.py
 
@@ -534,7 +539,7 @@ src/plugins/view/familyview.py
 src/plugins/view/geoview.py
 src/plugins/view/geoview.gpr.py
 src/plugins/view/grampletview.py
-src/plugins/view/htmlrenderer
+src/plugins/view/htmlrenderer.py
 src/plugins/view/mediaview.py
 src/plugins/view/noteview.py
 src/plugins/view/pedigreeview.py
