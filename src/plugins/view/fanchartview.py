@@ -56,8 +56,8 @@ from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
 from gettext import gettext as _
 from gen.plug import Gramplet
-from DataViews.PedigreeView import (find_children, find_parents, 
-                                    find_witnessed_people, FormattingHelper)
+from Utils import (find_children, find_parents, find_witnessed_people)
+from libformatting import FormattingHelper
 import gen.lib
 import Errors
 import Bookmarks
