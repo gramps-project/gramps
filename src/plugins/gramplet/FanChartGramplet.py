@@ -106,6 +106,7 @@ class FanChartWidget(gtk.Widget):
         See main() of FanChartGramplet for example of model format.
         """
         gtk.Widget.__init__(self)
+        self.translating = False
         self.last_x, self.last_y = None, None
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
@@ -121,6 +122,7 @@ class FanChartWidget(gtk.Widget):
         ## from the font size? I have no idea.
         self.generations = generations
         self.rotate_value = 90 # degrees, initially, 1st gen male on right half
+        self.center_xy = [0, 0] # distance from center (x, y)
         self.set_generations(self.generations)
         self.center = 50 # pixel radius of center
         self.layout = self.create_pango_layout('cairo')
@@ -214,7 +216,7 @@ class FanChartWidget(gtk.Widget):
         The main method to do the drawing.
         """
         x, y, w, h = self.allocation
-        cr.translate(w/2., h/2.)
+        cr.translate(w/2. - self.center_xy[0], h/2. - self.center_xy[1])
         cr.save()
         cr.rotate(self.rotate_value * math.pi/180)
         for generation in range(self.generations - 1, 0, -1):
@@ -453,15 +455,23 @@ class FanChartWidget(gtk.Widget):
     def on_mouse_up(self, widget, event):
         # Done with mouse movement
         if self.last_x is None or self.last_y is None: return True
-        self.queue_draw()
+        if self.translating:
+            self.translating = False
+            x, y, w, h = self.allocation
+            self.center_xy = w/2 - event.x, h/2 - event.y
         self.last_x, self.last_y = None, None
+        self.queue_draw()
         return True
 
     def on_mouse_move(self, widget, event):
         if self.last_x is None or self.last_y is None: return False
         x, y, w, h = self.allocation
-        cx = w/2
-        cy = h/2
+        if self.translating:
+            self.center_xy = w/2 - event.x, h/2 - event.y
+            self.queue_draw()
+            return True
+        cx = w/2 - self.center_xy[0]
+        cy = h/2 - self.center_xy[1]
         # get the angles of the two points from the center:
         start_angle = math.atan2(event.y - cy, event.x - cx)
         end_angle = math.atan2(self.last_y - cy, self.last_x - cx)
@@ -479,8 +489,9 @@ class FanChartWidget(gtk.Widget):
     def on_mouse_down(self, widget, event):
         # compute angle, radius, find out who would be there (rotated)
         x, y, w, h = self.allocation
-        cx = w/2
-        cy = h/2
+        self.translating = False # keep track of up/down/left/right movement
+        cx = w/2 - self.center_xy[0]
+        cy = h/2 - self.center_xy[1]
         radius = math.sqrt((event.x - cx) ** 2 + (event.y - cy) ** 2)
         if radius < self.center:
             generation = 0
@@ -502,6 +513,13 @@ class FanChartWidget(gtk.Widget):
                         selected = p
                         break
         # Handle the click:
+        if generation == 0: 
+            # left mouse on center:
+            if event.button == 1: # left mouse
+                # save the mouse location for movements
+                self.translating = True
+                self.last_x, self.last_y = event.x, event.y
+                return True
         if selected is None: # clicked in open area, or center
             if radius < self.center:
                 # right mouse
