@@ -1,0 +1,64 @@
+{% extends "view_page_detail.html" %}
+{% load my_tags %}
+
+{% block content %} 
+
+   <script type="text/javascript">
+     $(function(){
+
+            $('#tabs').tabs();
+      });
+   </script>
+
+<table>
+<tr>
+<td>Family:</td><td> {{person.name_set|preferred:"surname"}}</td><td>Prefix:</td><td>{{person.name_set|preferred:"prefix"}}</td>
+</tr>
+<tr>
+<td>Given:</td><td> {{person.name_set|preferred:"first_name"}}</td><td>Callname:</td><td>{{person.name_set|preferred:"call"}}</td>
+</tr>
+<tr>
+<td>Type:</td><td> {{person.name_set|preferred:"name_type"}}</td><td>Patronymic:</td><td>{{person.name_set|preferred:"patronymic"}}</td>
+</tr>
+<tr>
+<td>Description:</td><td spancols="2"></td>
+</tr>
+<tr>
+<td>ID:</td><td spancols="2">{{person.gramps_id|escape}}</td>
+</tr>
+<tr>
+<td>Place:</td><td spancols="2"></td>
+</tr>
+</table>
+
+<!-- Tabs -->
+<h2 class="demoHeaders">Tabs</h2>
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1" style=":hover {color: black;}">Events</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-2">Names</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-4">Attributes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-5">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-6">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-7">Internet</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-8">Associations</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-9">LDS</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-10">References</a></li>
+  </ul>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1"> table 1 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-2"> table 2 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-3"> table 3 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-4"> table 4 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-5"> table 5 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-6"> table 6 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-7"> table 7 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-8"> table 8 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-9"> table 9 </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-10"> table 10 </div>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends "view_page.html" %}
+{% load my_tags %}
+
+{% block table_data %} 
+
+<table cellspacing="0" class="infolist surname">
+<thead>
+  <tr>
+    <th>Repository #</th>
+    <th>ID</th>
+    <th>Type</th>
+    <th>Name</th>
+  </tr>
+</thead>
+<tbody>
+  {% for repository in page.object_list %}
+  <tr class="{% cycle odd,even %}">
+    <td>{{ forloop.counter|row_count:page }}</td>
+    <td><a href="/{{view}}/{{repository.handle|escape}}" class="noThumb">
+           <span class="grampsid">[{{repository.gramps_id}}]</span></a>
+    {% if user.is_authenticated %}
+    <td><a href="/{{view}}/{{repository.handle|escape}}">{{repository.repository_type|escape}}</a>
+    <td><a href="/{{view}}/{{repository.handle|escape}}">{{repository.name|escape}}</a>
+    {% else %}
+      <td></td>
+      <td></td>
+      <td></td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+

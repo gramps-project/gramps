@@ -1,0 +1,52 @@
+{% extends "view_page_detail.html" %}
+{% load my_tags %}
+
+{% block content %} 
+
+   <script type="text/javascript">
+     $(function(){
+
+            $('#tabs').tabs();
+      });
+   </script>
+
+<table>
+<tr>
+<td>Family:</td><td> </td><td>Prefix:</td><td></td>
+</tr>
+<tr>
+<td>Description:</td><td spancols="2"></td>
+</tr>
+<tr>
+<td>ID:</td><td spancols="2">{{person.gramps_id|escape}}</td>
+</tr>
+<tr>
+<td>Place:</td><td spancols="2"></td>
+</tr>
+</table>
+
+<!-- Tabs -->
+<h2 class="demoHeaders">Tabs</h2>
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1" style=":hover {color: black;}">Events</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-2">Names</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-4">Attributes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-5">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-6">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-7">Internet</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-8">Associations</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-9">LDS</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-10">References</a></li>
+  </ul>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends "view_page.html" %}
+{% load my_tags %}
+
+{% block table_data %} 
+
+<table cellspacing="0" class="infolist surname">
+<thead>
+  <tr>
+    <th>Media #</th>
+    <th>ID</th>
+    <th>MIME Type</th>
+    <th>Date</th>
+    <th>File</th>
+  </tr>
+</thead>
+<tbody>
+  {% for media in page.object_list %}
+  <tr class="{% cycle odd,even %}">
+    <td>{{ forloop.counter|row_count:page }}</td>
+    <td><a href="/{{view}}/{{media.handle|escape}}" class="noThumb">
+           <span class="grampsid">[{{media.gramps_id}}]</span></a>
+    {% if user.is_authenticated %}
+    <td><a href="/{{view}}/{{media.handle|escape}}">{{media.mime|escape}}</a>
+    <td><a href="/{{view}}/{{media.handle|escape}}">{{media|display_date}}</a>
+    <td><a href="/{{view}}/{{media.handle|escape}}">{{media.path|escape}}</a>
+    {% else %}
+      <td></td>
+      <td></td>
+      <td></td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+

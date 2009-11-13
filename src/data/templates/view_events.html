@@ -6,24 +6,29 @@
 <table cellspacing="0" class="infolist surname">
 <thead>
   <tr>
-    <th>Item #</th>
+    <th>Event #</th>
     <th>ID</th>
-    <th>Father</th>
-    <th>Mother</th>
-    <th>Relationship</th>
+    <th>Event Type</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Place</th>
   </tr>
 </thead>
 <tbody>
-  {% for family in page.object_list %}
+  {% for event in page.object_list %}
   <tr class="{% cycle odd,even %}">
     <td>{{ forloop.counter|row_count:page }}</td>
-    <td><a href="/{{view}}/{{family.gramps_id|escape}}" class="noThumb"><span class="grampsid">[{{family.gramps_id}}]</span></a>
-    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.father.name_set|make_name:user}}</a>
-    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.mother.name_set|make_name:user}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}" class="noThumb">
+           <span class="grampsid">[{{event.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.family_rel_type|escape}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.event_type|escape}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.description|escape}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|display_date}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.place.title|escape}}</a>
     {% else %}
-    <td><a href="/{{view}}/{{family.handle|escape}}">[Private]</a>
+      <td></td>
+      <td></td>
+      <td></td>
     {% endif %}
   </tr>
   {% endfor %}

@@ -1,0 +1,33 @@
+{% extends "view_page.html" %}
+{% load my_tags %}
+
+{% block table_data %} 
+
+<table cellspacing="0" class="infolist surname">
+<thead>
+  <tr>
+    <th>Place #</th>
+    <th>ID</th>
+    <th>Title</th>
+  </tr>
+</thead>
+<tbody>
+  {% for place in page.object_list %}
+  <tr class="{% cycle odd,even %}">
+    <td>{{ forloop.counter|row_count:page }}</td>
+    <td><a href="/{{view}}/{{place.handle|escape}}" class="noThumb">
+           <span class="grampsid">[{{place.gramps_id}}]</span></a>
+    {% if user.is_authenticated %}
+    <td><a href="/{{view}}/{{place.handle|escape}}">{{place.title|escape}}</a>
+    {% else %}
+      <td></td>
+      <td></td>
+      <td></td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+
