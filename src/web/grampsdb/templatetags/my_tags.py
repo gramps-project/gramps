@@ -29,9 +29,11 @@ def display_date(obj):
     if date_tuple:
         gdate = GDate()
         gdate.unserialize(date_tuple)
-        return _dd(gdate)
+        return escape(_dd(gdate))
     else:
         return ""
+display_date.is_safe = True
+register.filter('display_date', display_date)
 
 def person_get_event(person, event_type):
     event_ref_list = dji.get_event_ref_list(person)
@@ -47,6 +49,12 @@ def person_get_event(person, event_type):
             return ""
     else:
         return ""
+
+def preview(text, width=40):
+    text = text.replace("\n", " ")
+    return escape(text[:width])
+preview.is_safe = True
+register.filter('preview', preview)
 
 def make_name(name, user):
     if isinstance(name, models.Name):
@@ -70,6 +78,15 @@ def make_name(name, user):
         return ""
 make_name.is_safe = True
 register.filter('make_name', make_name)
+
+def preferred(name_set, attr):
+    name = name_set.get(preferred=True)
+    if name:
+        return escape(getattr(name, attr))
+    else:
+        return "[Missing]"
+preferred.is_safe = True
+register.filter('preferred', preferred)
 
 def missing(data):
     if data.strip() == "":

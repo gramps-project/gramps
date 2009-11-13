@@ -70,26 +70,53 @@ def user_page(request, username):
     return render_to_response('user_page.html', context)
 
 def view_detail(request, view, handle):
+    if view == "event":
+        obj = Event.objects.get(handle=handle)
+        view_template = 'view_event_detail.html'
+    elif view == "family":
+        obj = Family.objects.get(handle=handle)
+        view_template = 'view_family_detail.html'
+    elif view == "media":
+        obj = Media.objects.get(handle=handle)
+        view_template = 'view_media_detail.html'
+    elif view == "note":
+        obj = Note.objects.get(handle=handle)
+        view_template = 'view_note_detail.html'
+    elif view == "person":
+        obj = Person.objects.get(handle=handle)
+        view_template = 'view_person_detail.html'
+    elif view == "place":
+        obj = Place.objects.get(handle=handle)
+        view_template = 'view_place_detail.html'
+    elif view == "repository":
+        obj = Repository.objects.get(handle=handle)
+        view_template = 'view_repository_detail.html'
+    elif view == "source":
+        obj = Source.objects.get(handle=handle)
+        view_template = 'view_source_detail.html'
     cview = view.title()
     context = RequestContext(request)
     context["cview"] = cview
     context["view"] = view
     context["handle"] = handle
-    return render_to_response('view_detail_page.html', context)
+    context[view] = obj
+    return render_to_response(view_template, context)
     
 def view(request, view):
     cview = view.title()
     search = ""
-    view_template = 'view_page.html'
     if view == "event":
         object_list = Event.objects.all().order_by("gramps_id")
+        view_template = 'view_events.html'
     elif view == "family":
         object_list = Family.objects.all().order_by("gramps_id")
-        view_template = 'view_family.html'
+        view_template = 'view_families.html'
     elif view == "media":
         object_list = Media.objects.all().order_by("gramps_id")
+        view_template = 'view_media.html'
     elif view == "note":
         object_list = Note.objects.all().order_by("gramps_id")
+        view_template = 'view_notes.html'
     elif view == "person":
         if request.GET.has_key("search"):
             search = request.GET.get("search")
@@ -121,15 +148,18 @@ def view(request, view):
                     select_related().filter(surname__istartswith=search).order_by("surname", "first_name")
         else:
             object_list = Name.objects.select_related().order_by("surname", "first_name")
-        view_template = 'view_person.html'
+        view_template = 'view_people.html'
     elif view == "place":
         object_list = Place.objects.all().order_by("gramps_id")
+        view_template = 'view_places.html'
     elif view == "repository":
         object_list = Repository.objects.all().order_by("gramps_id")
+        view_template = 'view_repositories.html'
     elif view == "source":
         object_list = Source.objects.all().order_by("gramps_id")
+        view_template = 'view_sources.html'
 
-    paginator = Paginator(object_list, 20) 
+    paginator = Paginator(object_list, 15) 
 
     try:
         page = int(request.GET.get('page', '1'))
