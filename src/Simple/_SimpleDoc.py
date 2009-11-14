@@ -137,10 +137,10 @@ def make_basic_stylesheet():
     sheet.add_cell_style("TableHead",cell)
 
     cell = TableCellStyle()
-    sheet.add_cell_style("TableNormalCell",cell)
+    sheet.add_cell_style("TableHeaderCell",cell)
 
     cell = TableCellStyle()
     cell.set_longlist(1)
-    sheet.add_cell_style("TableListCell",cell)
+    sheet.add_cell_style("TableDataCell",cell)
 
     return sheet

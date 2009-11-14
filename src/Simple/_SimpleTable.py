@@ -284,15 +284,17 @@ class SimpleTable(object):
         else:
             self.__rows.sort(lambda a, b: cmp(a[idx],b[idx]))
 
-    def write(self, document):
+    def write(self, document, link=False):
         self.simpledoc = document # simpledoc; simpledoc.doc = docgen object
         if self.simpledoc.doc.type == "standard":
             doc = self.simpledoc.doc
-            doc.start_table('simple','Table')
             columns = len(self.__columns)
+            doc.start_table('simple', 'Table')
+            doc._tbl.set_column_widths([100/columns] * columns)
+            doc._tbl.set_columns(columns)
             if self.title:
                 doc.start_row()
-                doc.start_cell('TableHead',columns)
+                doc.start_cell('TableHead', span=columns) 
                 doc.start_paragraph('TableTitle')
                 doc.write_text(_(self.title))
                 doc.end_paragraph()
@@ -302,15 +304,15 @@ class SimpleTable(object):
                 self.__sort()
             doc.start_row()
             for col in self.__columns:
-                doc.start_cell('TableNormalCell',1)
-                doc.write_text(col,'TableTitle')
+                doc.start_cell('TableHeaderCell', span=1) 
+                doc.write_text(col, 'TableTitle')
                 doc.end_cell()
             doc.end_row()
             for row in self.__rows:
                 doc.start_row()
                 for col in row:
-                    doc.start_cell('TableNormalCell',1)
-                    doc.write_text(col,'Normal')
+                    doc.start_cell('TableDataCell', span=1) 
+                    doc.write_text(col, 'Normal')
                     doc.end_cell()
                 doc.end_row()
             doc.end_table()
