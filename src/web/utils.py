@@ -9,6 +9,7 @@ from gen.lib.date import Date as GDate, Today
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 from django.template import escape
+from django.contrib.contenttypes.models import ContentType
 
 dji = libdjango.DjangoInterface()
 
@@ -68,21 +69,30 @@ def events_table(djperson):
                   _("Date"),
                   _("Place"),
                   _("Role"))
-    person = table.db.get_person_from_handle(djperson.handle)
-    event_list = table.access.events(person)
-    for event in event_list:
-        djevent = dji.Event.get(handle=event.handle)
+    obj_type = ContentType.objects.get_for_model(djperson)
+    event_ref_list = models.EventRef.objects.filter(
+        object_id=djperson.id, 
+        object_type=obj_type).order_by("order")
+    event_list = [(obj.ref_object, obj) for obj in event_ref_list]
+    for (djevent, event_ref) in event_list:
+        print djevent.description
         table.row(
             djevent.description,
-            djevent.event_type.name,
+            str(djevent.event_type),
             djevent.gramps_id, 
-            table.access.event_date_obj(event),
-            table.access.event_place(event),
-            "FIXME")
+            display_date(djevent),
+            get_title(djevent.place),
+            str(event_ref.role_type))
     return table.get_html()
 
 ## FIXME: these dji function wrappers just use the functions
 ## written for the import/export. Can be done much more directly.
+
+def get_title(place):
+    if place:
+        return place.title
+    else:
+        return ""
 
 def person_get_birth_date(person):
     return person_get_event(person, models.EventType.BIRTH)

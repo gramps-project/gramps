@@ -314,6 +314,7 @@ table tr td.TableHeaderCell {
     background-color: #f8eec9;
     font-weight: bold;
     text-align: left;
+    font-size: 0.8em;
     margin:0;
     border-bottom:double 4px #7D5925;
     border-left:solid 2px #7D5925;
@@ -324,6 +325,7 @@ table tr td.TableHeaderCell {
 table tr td.TableDataCell {
     color: #f8eec9;
     border:solid 2px #7D5925;
+    font-size: 0.8em;
 }
 
 table.infolist tr th a {
