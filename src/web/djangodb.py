@@ -2,16 +2,11 @@ import web
 import gen
 from gen.db import GrampsDbBase
 from web.libdjango import DjangoInterface
-import Utils
 
 # from ReportBase._CommandLineReport import run_report
 # import djangodb
 # db = djangodb.DjangoDb()
 # run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I37")
-
-def probably_alive(handle):
-    db = DjangoDb()
-    return Utils.probably_alive(db.get_person_from_handle(handle), db)
 
 class Cursor(object):
     def __init__(self, model, func):
@@ -113,6 +108,15 @@ class DjangoDb(GrampsDbBase):
 
     def get_person_cursor(self):
         return Cursor(self.dji.Person, self.dji.get_person)
+
+    def get_family_cursor(self):
+        return Cursor(self.dji.Family, self.dji.get_family)
+
+    def get_events_cursor(self):
+        return Cursor(self.dji.Event, self.dji.get_event)
+
+    def get_source_cursor(self):
+        return Cursor(self.dji.Source, self.dji.get_source)
 
     def has_person_handle(self, handle):
         return self.dji.Person.filter(handle=handle).count() == 1

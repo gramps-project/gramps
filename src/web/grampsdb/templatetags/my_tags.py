@@ -1,54 +1,22 @@
 from django.template import escape, Library
-from web import libdjango
-from web import djangodb
-import web.grampsdb.models as models
-from gen.lib.date import Date as GDate, Today
-import DateHandler
+from web.utils import *
 
-dji = libdjango.DjangoInterface()
 register = Library()
 
-_dd = DateHandler.displayer.display
-_dp = DateHandler.parser.parse
-
-## FIXME: these dji function wrappers just use the functions
-## written for the import/export. Can be done much more directly.
-
-def person_get_birth_date(person):
-    return person_get_event(person, models.EventType.BIRTH)
-def person_get_death_date(person):
-    return person_get_event(person, models.EventType.DEATH)
+events_table.is_safe = True
+register.filter('events_table', events_table)
 
 person_get_birth_date.is_safe = True
 register.filter('person_get_birth_date', person_get_birth_date)
+
 person_get_death_date.is_safe = True
 register.filter('person_get_death_date', person_get_death_date)
 
-def display_date(obj):
-    date_tuple = dji.get_date(obj)
-    if date_tuple:
-        gdate = GDate()
-        gdate.unserialize(date_tuple)
-        return escape(_dd(gdate))
-    else:
-        return ""
 display_date.is_safe = True
 register.filter('display_date', display_date)
 
-def person_get_event(person, event_type):
-    event_ref_list = dji.get_event_ref_list(person)
-    index = libdjango.lookup_role_index(event_type, event_ref_list)
-    if index >= 0:
-        event_handle = event_ref_list[index][3]
-        # (False, [], [], u'b2cfa6cdec87392cf3b', (1, u'Primary'))
-        # WARNING: the same object can be referred to more than once
-        objs = models.EventRef.objects.filter(ref_object__handle=event_handle)
-        if objs.count() > 0:
-            return display_date(objs[0].ref_object)
-        else:
-            return ""
-    else:
-        return ""
+person_get_event.is_safe = True
+register.filter('person_get_events', person_get_event)
 
 def preview(text, width=40):
     text = text.replace("\n", " ")
@@ -56,26 +24,6 @@ def preview(text, width=40):
 preview.is_safe = True
 register.filter('preview', preview)
 
-def make_name(name, user):
-    if isinstance(name, models.Name):
-        surname = name.surname.strip()
-        if not surname:
-            surname = "[Missing]"
-        if user.is_authenticated():
-            return escape("%s, %s" % (surname, name.first_name))
-        else:
-            if djangodb.probably_alive(name.person.handle):
-                return escape("%s, %s" % (surname, "[Living]"))
-            else:
-                return escape("%s, %s" % (surname, name.first_name))
-    elif name:
-        name = name.get(preferred=True)
-        if name:
-            return make_name(name, user)
-        else:
-            return ""
-    else:
-        return ""
 make_name.is_safe = True
 register.filter('make_name', make_name)
 

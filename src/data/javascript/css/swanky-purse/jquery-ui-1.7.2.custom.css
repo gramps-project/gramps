@@ -48,7 +48,7 @@
 
 /* Component containers
 ----------------------------------*/
-.ui-widget { } 
+.ui-widget { font-family:Georgia, serif; color:#7D5925; font-size: 0.7em; } 
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { }
 .ui-widget-content { border: 1px solid #efec9f; background: #443113 url(images/ui-bg_diamond_8_443113_10x8.png) 50% 50% repeat; color: #efec9f; }
 .ui-widget-content a { color: #efec9f; background: none;}

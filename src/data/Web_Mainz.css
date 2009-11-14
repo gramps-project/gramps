@@ -305,12 +305,29 @@ table tr th {
     padding:.1em 10px;
     border-bottom:double 4px #7D5925;
 }
-table.infolist tr th a {
-    text-decoration:none;
-}
 table tr td {
     vertical-align:middle;
     padding:.1em 10px;
+}
+table tr td.TableHeaderCell {
+    color: #7D5925;
+    background-color: #f8eec9;
+    font-weight: bold;
+    text-align: left;
+    margin:0;
+    border-bottom:double 4px #7D5925;
+    border-left:solid 2px #7D5925;
+    border-right:solid 2px #7D5925;
+    border-top:solid 2px #7D5925;
+}
+
+table tr td.TableDataCell {
+    color: #f8eec9;
+    border:solid 2px #7D5925;
+}
+
+table.infolist tr th a {
+    text-decoration:none;
 }
 table.infolist tr td a {
     display:block;
