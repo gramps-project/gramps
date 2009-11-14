@@ -235,6 +235,11 @@ class RelationshipView(NavigationView):
         GNOME as a stock icon.
         """
         return 'gramps-relation'
+    
+    def get_viewtype_stock(self):
+        """Type of view in category
+        """
+        return 'gramps-relation'
 
     def build_widget(self):
 

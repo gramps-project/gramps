@@ -161,11 +161,18 @@ class PageView(DbGUIElement):
 
     def get_stock(self):
         """
-        Return image associated with the view, which is used for the 
+        Return image associated with the view category, which is used for the 
         icon for the button.
         """
         return gtk.STOCK_MISSING_IMAGE
-        
+
+    def get_viewtype_stock(self):
+        """
+        Return immage associated with the viewtype inside a view category, it
+        will be used for the icon on the button to select view in the category
+        """
+        return gtk.STOCK_MISSING_IMAGE
+
     def get_title(self):
         """
         Return the title of the view. This is used to define the text for the

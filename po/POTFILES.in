@@ -25,7 +25,6 @@ src/ImgManip.py
 src/ListModel.py
 src/ManagedWindow.py
 src/Navigation.py
-src/PageView.py
 src/PlaceUtils.py
 src/QuestionDialog.py
 src/QuickReports.py
@@ -439,6 +438,7 @@ src/plugins/import/ImportXml.py
 
 # plugins/lib directory
 src/plugins/lib/libcairodoc.py
+src/plugins/lib/libformatting.py
 src/plugins/lib/libgrampsxml.py
 src/plugins/lib/libgrdb.py
 src/plugins/lib/libholiday.py

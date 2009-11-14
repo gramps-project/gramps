@@ -116,10 +116,13 @@ UIDEFAULT = '''<ui>
     <menuitem action="Preferences"/>
   </menu>
   <menu action="ViewMenu">
+    <menuitem action="ConfigView"/>
     <menuitem action="Sidebar"/>
     <menuitem action="Toolbar"/>    
     <menuitem action="Filter"/>    
-    <menuitem action="Fullscreen"/>    
+    <menuitem action="Fullscreen"/>
+    <separator/>
+    <placeholder name="ViewsInCategory"/>
     <separator/>
   </menu>
   <menu action="GoMenu">
@@ -156,11 +159,15 @@ UIDEFAULT = '''<ui>
 <toolbar name="ToolBar">
   <placeholder name="CommonNavigation"/>
   <separator/>
-  <toolitem action="ScratchPad"/>  
-  <toolitem action="Reports"/>  
-  <toolitem action="Tools"/>  
+  <toolitem action="ScratchPad"/>
+  <toolitem action="Reports"/>
+  <toolitem action="Tools"/>
   <separator/>
   <placeholder name="CommonEdit"/>
+  <separator/>
+  <placeholder name="ViewsInCategory"/>
+  <separator/>
+  <toolitem action="ConfigView"/>
 </toolbar>
 <accelerator action="F2"/>
 <accelerator action="F3"/>
@@ -176,6 +183,20 @@ UIDEFAULT = '''<ui>
 <accelerator action="<CONTROL>J"/>
 <accelerator action="<CONTROL>N"/>
 <accelerator action="<CONTROL>P"/>
+</ui>
+'''
+
+UICATEGORY = '''<ui>
+<menubar name="MenuBar">
+  <menu action="ViewMenu">
+    <placeholder name="ViewsInCategory">%s
+    </placeholder>
+  </menu>
+</menubar>
+<toolbar name="ToolBar">
+  <placeholder name="ViewsInCategory">%s
+  </placeholder>
+</toolbar>
 </ui>
 '''
 
@@ -395,7 +416,7 @@ class ViewManager(CLIManager):
         connects the signals needed
         """
         self.window.connect('delete-event', self.quit)
-        self.notebook.connect('switch-page', self.change_page)
+        self.notebook.connect('switch-page', self.change_category)
 
     def __init_lists(self):
         """
@@ -477,7 +498,10 @@ class ViewManager(CLIManager):
              _("Open the tools dialog"), self.tools_clicked), 
             ('EditMenu', None, _('_Edit')), 
             ('BookMenu', None, _('_Bookmarks')), 
-            ('ToolsMenu', None, _('_Tools')), 
+            ('ToolsMenu', None, _('_Tools')),
+            ('ConfigView', 'gramps-config', _('_Configure View...'), 
+             '<shift><control>c', _('Configure the active view'), 
+             self.config_view),
             ]
 
         self._file_toggle_action_list = [
@@ -488,7 +512,7 @@ class ViewManager(CLIManager):
             ('Filter', None, _('_Filter Sidebar'), None, None, 
              filter_toggle, self.show_filter), 
             ('Fullscreen', None, _('F_ull Screen'), "F11", None, 
-             self.fullscreen_toggle, self.fullscreen), 
+             self.fullscreen_toggle, self.fullscreen),
             ]
 
         self._undo_action_list = [
@@ -811,6 +835,22 @@ class ViewManager(CLIManager):
             self.window.unfullscreen()
             config.set('interface.fullscreen', False)
         config.save()
+    
+    def view_toggle(self, radioaction, current, category_page):
+        """
+        Go to the views in category_page, with in category: view_page
+        The view has id id_page
+        This is the only method that can call change of views in a category
+        """
+        self.__vb_handlers_block()
+        if self.notebook.get_current_page() != category_page:
+            raise Error, 'Error changing view, category is not active'
+        cat_notebook = self.notebook_cat[category_page]
+        view_page = radioaction.get_current_value()
+        if self.notebook_cat[category_page].get_current_page() != view_page:
+            self.notebook_cat[category_page].set_current_page(view_page)
+        self.__change_view(category_page, view_page)
+        self.__vb_handlers_unblock()
 
     def __switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
         """
@@ -835,6 +875,9 @@ class ViewManager(CLIManager):
         """
         self.pages = []
         self.prev_nav = PageView.NAVIGATION_NONE
+        self.ui_category = {}
+        self.view_toggle_actions = {}
+        self.cat_view_group = None
 
         use_text = config.get('interface.sidebar-text')
         
@@ -842,14 +885,17 @@ class ViewManager(CLIManager):
         for cat_views in self.views:
             #for every category, we create a button in the sidebar and a main
             #workspace in which to show the view
-            first = True
             nr_views = len(cat_views)
+            uimenuitems = ''
+            uitoolitems = ''
+            self.view_toggle_actions[index] = []
             self.pages.append([])
+            nrpage = 0
             for id, page_def in cat_views:
                 page = page_def(self.dbstate, self.uistate)
                 page_title = page.get_title()
                 page_stock = page.get_stock()
-                if first:
+                if nrpage == 0:
                     #the first page of this category, used to obtain
                     #category workspace notebook
                     notebook = gtk.Notebook()
@@ -874,7 +920,6 @@ class ViewManager(CLIManager):
                     button = self.__make_sidebar_button(use_text, index, 
                                                         page_title, page_stock)
 
-                    index += 1
                     self.bbox.pack_start(button, False)
                     self.buttons.append(button)
                     
@@ -891,13 +936,37 @@ class ViewManager(CLIManager):
                 page_no = self.notebook_cat[-1].append_page(page_display, 
                                                         gtk.Label(page_title))
                 self.pages[-1].append(page)
+                pageid = (id + '_%i' % nrpage)
+                uimenuitems += '\n<menuitem action="%s"/>' % pageid
+                uitoolitems += '\n<toolitem action="%s"/>' % pageid
+                self.view_toggle_actions[index].append((pageid, 
+                            page.get_viewtype_stock(),
+                            page_title, '<CONTROL>%i' % (nrpage+1), page_title,
+                            nrpage))
 
-                first = False
+                nrpage += 1
+            if nr_views > 1:
+                #allow for switching views in a category
+                self.ui_category[index] = UICATEGORY % (uimenuitems,
+                                                        uitoolitems)
+            index += 1
 
+        current_cat, current_cat_view = self.__view_to_show(
+                                    config.get('preferences.use-last-view'))
+
+        self.active_page = self.pages[current_cat][current_cat_view]
+        self.buttons[current_cat].set_active(True)
+        self.active_page.set_active()
+        self.notebook.set_current_page(current_cat)
+        self.notebook_cat[current_cat].set_current_page(current_cat_view)
+
+    def __view_to_show(self, use_last = True):
+        """
+        Determine based on preference setting which view should be shown
+        """
         current_cat = 0 
         current_cat_view = 0
-        use_current = config.get('preferences.use-last-view')
-        if use_current:
+        if use_last:
             current_page_id = config.get('preferences.last-view')
             found = False
             for cat_views in self.views:
@@ -914,12 +983,7 @@ class ViewManager(CLIManager):
             if not found:
                 current_cat = 0 
                 current_cat_view = 0
-
-        self.active_page = self.pages[current_cat][current_cat_view]
-        self.buttons[current_cat].set_active(True)
-        self.active_page.set_active()
-        self.notebook.set_current_page(current_cat)
-        self.notebook_cat[current_cat].set_current_page(current_cat_view)
+        return current_cat, current_cat_view
 
     def __make_sidebar_button(self, use_text, index, page_title, page_stock):
         """
@@ -1011,10 +1075,13 @@ class ViewManager(CLIManager):
             self.active_page.set_inactive()
             groups = self.active_page.get_actions()
             for grp in groups:
-                if grp in self.uimanager.get_action_groups():
+                if grp in self.uimanager.get_action_groups(): 
                     self.uimanager.remove_action_group(grp)
+            if self.cat_view_group:
+                if self.cat_view_group in self.uimanager.get_action_groups(): 
+                    self.uimanager.remove_action_group(self.cat_view_group)
 
-    def __connect_active_page(self):
+    def __connect_active_page(self, category_page, view_page):
         """
         Inserts the action groups associated with the current page
         into the UIManager
@@ -1027,6 +1094,18 @@ class ViewManager(CLIManager):
 
         for uidef in self.active_page.additional_ui_definitions():
             mergeid = self.uimanager.add_ui_from_string(uidef)
+            self.merge_ids.append(mergeid)
+        
+        if category_page in self.ui_category:
+            #add entries for the different views in the category
+            self.cat_view_group = gtk.ActionGroup('categoryviews')
+            self.cat_view_group.add_radio_actions(
+                    self.view_toggle_actions[category_page], value=view_page, 
+                    on_change=self.view_toggle, user_data=category_page)
+            self.cat_view_group.set_sensitive(True)
+            self.uimanager.insert_action_group(self.cat_view_group, 1)
+            mergeid = self.uimanager.add_ui_from_string(self.ui_category[
+                                category_page])
             self.merge_ids.append(mergeid)
 
     def __setup_navigation(self):
@@ -1042,38 +1121,56 @@ class ViewManager(CLIManager):
         if nav_type[0] is not None:
             nav_type[0].enable()
 
-    def change_page(self, obj, page, num=-1):
+    def change_category(self, obj, page, num=-1):
         """
-        Wrapper for the __do_change_page, to prevent entering into the 
+        Wrapper for the __do_change_category, to prevent entering into the 
         routine while already in it.
         """
         if not self.page_is_changing:
             self.page_is_changing = True
-            self.__do_change_page(num)
+            self.__do_change_category(num)
             self.page_is_changing = False
 
-    def __do_change_page(self, num):
+    def __do_change_category(self, num):
         """
-        Change the page to the new page
+        Change the category to the new category
         """
         if num == -1:
             num = self.notebook.get_current_page()
-        num_view = self.notebook_cat[num].get_current_page()
 
         # set button of current page active
         self.__set_active_button(num)
+        # now do view specific change
+        self.__change_view(num)
 
+    def __change_view(self, category_page, view_page=-1):
+        """
+        Change a view in a category. 
+        
+        :Param category_page: the category number the view is in
+        :Type category_page: integer >= 0
+        
+        :Param view_page: the view page number to switch to. If -1 is passed
+            the currently already active view in the category is switched to.
+            Use this when a category changes.
+        :Type view_page: integer >=0 to switch to a specific page, or -1 to 
+            switch to the active view in the category
+        """
+        if view_page == -1:
+            #just show active one
+            view_page = self.notebook_cat[category_page].get_current_page()
         if self.dbstate.open:
             self.__disconnect_previous_page()
 
             if len(self.pages) > 0:
-                self.active_page = self.pages[num][num_view]
+                self.active_page = self.pages[category_page][view_page]
                 self.active_page.set_active()
-                config.set('preferences.last-view', self.views[num][num_view][0])
+                config.set('preferences.last-view', 
+                           self.views[category_page][view_page][0])
                 config.save()
 
                 self.__setup_navigation()
-                self.__connect_active_page()
+                self.__connect_active_page(category_page, view_page)
 
                 self.uimanager.ensure_update()
 
@@ -1161,7 +1258,7 @@ class ViewManager(CLIManager):
 
         self.setup_bookmarks()
         
-        self.change_page(None, None)
+        self.change_category(None, None)
         self.actiongroup.set_visible(True)
         self.readonlygroup.set_visible(True)
         
@@ -1285,6 +1382,12 @@ class ViewManager(CLIManager):
             ScratchPad.ScratchPadWindow(self.dbstate, self.uistate)
         except Errors.WindowActiveError:
             return
+
+    def config_view(self, obj):
+        """
+        Displays the configuration dialog for the active view
+        """
+        pass
 
     def undo(self, obj):
         """

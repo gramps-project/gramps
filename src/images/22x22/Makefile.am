@@ -38,6 +38,9 @@ dist_pkgdata_DATA = \
 	gramps-source.png \
 	gramps-spouse.png \
 	gramps-tools.png \
+	gramps-tree-group.png \
+	gramps-tree-list.png \
+	gramps-tree-select.png \
 	gramps-unlock.png \
 	gramps-viewmedia.png \
 	gramps-zoom-best-fit.png \

@@ -1171,6 +1171,11 @@ class GrampletView(PageView):
         """
         return 'gramps-gramplet'
     
+    def get_viewtype_stock(self):
+        """Type of view in category
+        """
+        return 'gramps-gramplet'
+
     def build_tree(self):
         return 
 

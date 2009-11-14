@@ -583,6 +583,17 @@ class FanChartView(NavigationView):
                                   context_popup_callback=self.on_popup)
         return self.fan
 
+    def get_stock(self):
+        """
+        The category stock icon
+        """
+        return 'gramps-relation'
+    
+    def get_viewtype_stock(self):
+        """Type of view in category
+        """
+        return 'gramps-fanchart'
+
     def ui_definition(self):
         return '''<ui>
           <toolbar name="ToolBar">

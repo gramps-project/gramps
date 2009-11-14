@@ -2,7 +2,7 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +13,7 @@
    height="48px"
    id="svg2108"
    sodipodi:version="0.32"
-   inkscape:version="0.45"
+   inkscape:version="0.46"
    sodipodi:docbase="/home/benny/programms/gramps/gramps23/src/images/scalable"
    sodipodi:docname="gramps-parents-open.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
@@ -23,6 +23,13 @@
    sodipodi:modified="true">
   <defs
      id="defs3">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective5188" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient7989"
@@ -665,7 +672,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8"
-     inkscape:cx="18.263989"
+     inkscape:cx="-6.298511"
      inkscape:cy="16.851119"
      inkscape:current-layer="g2292"
      showgrid="false"
@@ -675,7 +682,7 @@
      stroke="#727e0a"
      inkscape:window-width="914"
      inkscape:window-height="790"
-     inkscape:window-x="232"
+     inkscape:window-x="24"
      inkscape:window-y="0" />
   <metadata
      id="metadata4">
@@ -699,7 +706,7 @@
           </rdf:Bag>
         </dc:subject>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+           rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
         <dc:contributor>
           <cc:Agent>
             <dc:title>Benny Malengier, book
@@ -708,19 +715,17 @@ Benny Malengier, grouping</dc:title>
         </dc:contributor>
       </cc:Work>
       <cc:License
-         rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+         rdf:about="http://creativecommons.org/licenses/by/3.0/">
         <cc:permits
-           rdf:resource="http://web.resource.org/cc/Reproduction" />
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
         <cc:permits
-           rdf:resource="http://web.resource.org/cc/Distribution" />
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
         <cc:requires
-           rdf:resource="http://web.resource.org/cc/Notice" />
+           rdf:resource="http://creativecommons.org/ns#Notice" />
         <cc:requires
-           rdf:resource="http://web.resource.org/cc/Attribution" />
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
         <cc:permits
-           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
-        <cc:requires
-           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
       </cc:License>
     </rdf:RDF>
   </metadata>

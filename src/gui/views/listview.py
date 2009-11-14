@@ -306,6 +306,11 @@ class ListView(NavigationView):
                 self.search_bar.show()
                 self.filter_pane.hide()
 
+    def get_viewtype_stock(self):
+        """Type of view in category, default listview is a flat list
+        """
+        return 'gramps-tree-list'
+
     def filter_clicked(self):
         self.generic_filter = self.filter_sidebar.get_filter()
         self.build_tree()

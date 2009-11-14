@@ -62,13 +62,13 @@ from QuestionDialog import ErrorDialog
 import config
 import Utils
 from gui.pluginmanager import GuiPluginManager
-from gen.plug import (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, 
-            VIEW_EVENT, VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, 
-            VIEW_NOTE, VIEW_GEO)
+from gen.plug import (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY,
+            VIEW_EVENT, VIEW_PLACE, VIEW_GEO, VIEW_SOURCE, VIEW_REPO,
+            VIEW_MEDIA, VIEW_NOTE)
 
 DEFAULT_SIDEBAR_ORDER = (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, 
-            VIEW_EVENT, VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, 
-            VIEW_NOTE, VIEW_GEO)
+            VIEW_EVENT, VIEW_PLACE, VIEW_GEO, VIEW_SOURCE, VIEW_REPO,
+            VIEW_MEDIA, VIEW_NOTE)
 #-------------------------------------------------------------------------
 #
 # Functions
@@ -112,11 +112,12 @@ def register_stock_icons ():
         #('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''), 
         #('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-bookmark-edit', _('Organize Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''), 
-        ('gramps-bookmark-new', _('Add Bookmark'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-config', _('Configure'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-date', _('Date'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-date-edit', _('Edit Date'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-event', _('Events'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-family', _('Family'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-fanchart', _('Fan Chart'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-font', _('Font'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-font-color', _('Font Color'), gtk.gdk.CONTROL_MASK, 0, ''),        
         ('gramps-font-bgcolor', _('Font Background Color'), gtk.gdk.CONTROL_MASK, 0, ''), 
@@ -137,8 +138,11 @@ def register_stock_icons ():
         ('gramps-reports', _('Reports'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-repository', _('Repositories'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-source', _('Sources'), gtk.gdk.CONTROL_MASK, 0, ''), 
-        ('gramps-spouse', _('Add Spouse'), gtk.gdk.CONTROL_MASK, 0, ''), 
-        ('gramps-tools', _('Tools'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-spouse', _('Add Spouse'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-tools', _('Tools'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-tree-group', _('Grouped List'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-tree-list', _('List'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-tree-select', _('Select'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-unlock', _('Private'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-viewmedia', _('View'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-zoom-in', _('Zoom In'), gtk.gdk.CONTROL_MASK, 0, ''), 

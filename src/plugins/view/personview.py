@@ -163,6 +163,11 @@ class PersonView(ListView):
         Use the gramps-person stock icon
         """
         return 'gramps-person'
+    
+    def get_viewtype_stock(self):
+        """Type of view in category
+        """
+        return 'gramps-tree-group'
 
     def ui_definition(self):
         """

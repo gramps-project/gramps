@@ -414,9 +414,12 @@ class PedigreeView(NavigationView):
 
     def get_stock(self):
         """
-        Return the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered with
-        GNOME as a stock icon.
+        The category stock icon
+        """
+        return 'gramps-relation'
+    
+    def get_viewtype_stock(self):
+        """Type of view in category
         """
         return 'gramps-pedigree'
 

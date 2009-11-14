@@ -577,6 +577,19 @@ class GeoView(HtmlView):
         HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
 
+    def get_stock(self):
+        """
+        Returns the name of the stock icon to use for the display.
+        This assumes that this icon has already been registered 
+        as a stock icon.
+        """
+        return 'gramps-geo'
+    
+    def get_viewtype_stock(self):
+        """Type of view in category
+        """
+        return 'gramps-geo'
+
     def _savezoomandposition(self, timeloop=None):
         """
         The only way we have to save the zoom and position is to change the
