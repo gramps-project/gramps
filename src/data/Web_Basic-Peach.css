@@ -165,7 +165,7 @@ a:visited {
 #header {
     padding:15px 15px 2px 15px;
     margin:0;
-    background-color:#FFE09F;
+    background-color: #FFE09F;
 }
 #SiteTitle {
     color:#EA8414;
@@ -779,6 +779,49 @@ div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
 }
 div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
     width: 70%;
+}
+
+/* Address Book
+------------------------------------------------------ */
+div#AddressBookList, AddressBookDetail {
+    margin: 0;
+    padding: 0;
+}
+div#AddressBookList table.addressbook {
+    margin: .3em 0 .3em 0;
+}
+div#AddressBookList table.addressbook tbody tr.Totals {
+    border: solid 1px #000;
+}
+div#AddressBookList tble.addressbook tbody tr.Totals td {
+    text-align: left;
+    background-color: #FFE09F;
+}
+div#AddressBookList table.addressbook tbody tr td {
+    background-color: #FFE09F;
+    text-align: center;
+    border: solid 1px #000;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
+    width: 4%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName {
+    background-color: #FFF;
+    text-align: left;
+    width: 70%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName a {
+    display: block;
+    padding: 6px 0px 6px 0px;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
+    width: 8%;
+}
+div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
+    width: 8%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
+    width: 8%;
 }
 
 /* Subsections

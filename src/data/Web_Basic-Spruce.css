@@ -781,6 +781,49 @@ div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
     width: 70%;
 }
 
+/* Address Book
+------------------------------------------------------ */
+div#AddressBookList, AddressBookDetail {
+    margin: 0;
+    padding: 0;
+}
+div#AddressBookList table.addressbook {
+    margin: .3em 0 .3em 0;
+}
+div#AddressBookList table.addressbook tbody tr.Totals {
+    border: solid 1px #000;
+}
+div#AddressBookList tble.addressbook tbody tr.Totals td {
+    text-align: left;
+    background-color: #BFD0EA;
+}
+div#AddressBookList table.addressbook tbody tr td {
+    background-color: #BFD0EA;
+    text-align: center;
+    border: solid 1px #000;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
+    width: 4%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName {
+    background-color: #FFF;
+    text-align: left;
+    width: 70%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName a {
+    display: block;
+    padding: 6px 0px 6px 0px;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
+    width: 8%;
+}
+div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
+    width: 8%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
+    width: 8%;
+}
+
 /* Subsections
 ----------------------------------------------------- */
 #Home, #Introduction, #Contact {
@@ -1164,7 +1207,7 @@ div#sourcerefs ol li ol {
     color:#204D91;
     margin:0;
     padding:15px 0 0 0;
-    background-color:#BFD0EA;
+    background-color: #BFD0EA;
     border-top:solid 1px #204D91;
 }
 #footer a, #footer a:visited {

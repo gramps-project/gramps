@@ -3,7 +3,7 @@
 Copyright Holder and License
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
-Style Name: Visually Impaired Stylesheet
+Style Name: Printer Default stylesheet
 Style Author: Jason M. Simanek (2008)
 **************************************************************************************************
 This website was created with GRAMPS
@@ -32,7 +32,7 @@ see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------------------------------
 Color Palette
 --------------------------------------------------------------------------------------------------
-brown dark      #542
+brown dark      #453619, #542
 brown light     #C1B398
 gray            #696969
 green dark	#228A22
@@ -57,12 +57,6 @@ body {
     color: #000;
     background-color: #FFF;
 }
-body#NarrativeWeb_Horizontal {
-    padding: 158px 0px 0px 0px;
-}
-body#NarrativeWeb_Vertical {
-    padding: 128px 0px 0px 44px;
-}
 
 /* General Elements
 ----------------------------------------------------- */
@@ -86,9 +80,6 @@ td {
 img {
     border:none;
     margin:0;
-}
-.thumbnail a:hover {
-    background:none;
 }
 .content {
     overflow: auto;
@@ -132,15 +123,17 @@ h3 {
     text-align:center;
     margin:0;
     padding:.5em 20px .2em 20px;
-    border-bottom:double 4px #000;
+    border-bottom: double 4px #5D835F;
 }
 h4 {
     font:normal 1.2em/1.2em serif;
     color: #FFF;
     margin-top: .3cm;
     padding:.2em 0 .2em 20px;
-    background-color: #228A22;
-    border-bottom:solid 4px #A97;
+    background-color: #453619;
+    border-width: 4px 0px 4px 0px;
+    border-style: solid;
+    border-color: #5D835F;
 }
 h5, h6 {
     font:normal 1em/1.2em serif;
@@ -173,19 +166,11 @@ ol {
 ol li a {
     text-decoration:none;
 }
-ol li a:hover {
-    text-decoration:underline;
-}
 a {
     color: #542;
 }
 a:visited {
     color: #542;
-}
-a:hover {
-    color: #000;
-    background-color: #C1B398;
-    text-decoration:underline;
 }
 span.preposition {
     padding-left:1em;
@@ -235,10 +220,6 @@ div#footer {
 div#footer a, div#footer a:visited {
     text-decoration:none;
     color: #FFF;
-}
-div#footer a:hover {
-    color: #000;
-    text-decoration:underline;
 }
 div#footer img {
     border:0;
@@ -304,9 +285,6 @@ table.infolist thead tr th {
 table.infolist thead tr th a {
     color: #000;
 }
-table.infolist thead tr th a:hover {
-    background-color: #C1B398;
-}
 table.infolist tr td {
     font:normal 1.1em/1.4em serif;
     vertical-align:middle;
@@ -318,7 +296,7 @@ table.infolist tr td a {
     color: #000;
 }
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top:solid 1px #228A22;
+    border-top:solid 1px #5D835F;
 }
 table.infolist tr td.ColumnLetter {
     width:3%;
@@ -349,8 +327,6 @@ table.infolist tbody tr td.ColumnPartner a {
     padding:.6em 10px;
     vertical-align:middle;
 }
-table.infolist tbody tr td.ColumnPartner a:hover { }
-
 table.infolist tbody tr td.ColumnParents {
     font-size:.9em;
 }
@@ -364,8 +340,10 @@ table.infolist tbody tr td.ColumnParents span.mother:before {
 
 /* Surnames
 ----------------------------------------------------- */
-#Surnames {  }
-
+#Surnames {
+    margin: 0;
+    padding: 0;
+}
 #SurnameDetail p#description {
     padding-top:0;
 }
@@ -382,11 +360,8 @@ table.surnamelist thead tr th a, table.surnamelist thead tr th a:visited {
     text-decoration:none;
     padding:.2em 10px;
 }
-table.surnamelist tr th:hover { }
-
 table.surnamelist thead tr th.ColumnLetter {
-    padding-left:20px;
-    padding-right:10px;
+    padding: 0px 10px 0px 20px;
 }
 table.surnamelist tbody tr td {
     background-color: #D8F3D6;
@@ -412,14 +387,12 @@ table#SortByName tbody tr td.ColumnSurname a {
     display:block;
     padding:.1em 10px .3em 10px;
 }
-table#SortByCount tbody tr td.ColumnQuantity { }
-
 table.surnamelist tbody tr td.ColumnSurname:hover,
  table#SortByName tbody tr td.ColumnSurname:hover {
     background-color: #C1B398;
 }
 table.surname {
-    border-bottom:solid 1px #000;
+    border-bottom:solid 1px #5D835F;
 }
 table.surname thead tr th.ColumnName {
     width:20%;
@@ -438,8 +411,9 @@ table.surname tbody tr td.ColumnName a {
     display:block;
     padding:.6em 10px .6em 20px;
 }
-table.surname tbody tr td.ColumnName a span.grampsid { }
-
+table.surname tbody tr td.ColumnName a span.grampsid {
+    color: #000;
+}
 table.surname tbody tr td.ColumnName:hover {
     background-color: #C1B398;
 }
@@ -457,8 +431,10 @@ table.surname tbody tr td.ColumnParents {
 
 /* Individuals
 ----------------------------------------------------- */
-div#Individuals {  }
-
+div#Individuals {
+    margin: 0;
+    padding: 0;
+}
 div#Individuals table.individuallist {
     border-bottom: solid 1px #5D835F;
 }
@@ -470,7 +446,6 @@ div#Individuals table.individuallist tbody tr td a {
     display: block;
     padding: .6em 10px;
 }
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover, 
 div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
     cursor:default;
     color: #000;
@@ -492,18 +467,16 @@ div#Individuals div table.infolist tr td p {
 div#Individuals div table.infolist tr td p a {
     display:inline;
 }
-
-div#IndividualDetail { }
-
+div#IndividualDetail {
+    padding: 0;
+    margin: 0;
+}
 #IndividualDetail div table.infolist tr td {
     font:normal .9em/1.2em sans-serif;
     vertical-align:top;
 }
 div#IndividualDetail div table.infolist tr td a {
     display:inline;
-}
-div#IndividualDetail table.infolist tr td a:hover {
-    text-decoration:underline;
 }
 div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
@@ -514,13 +487,14 @@ div#IndividualDetail div.subsection table tr td:first-child {
 
 /* Places
 ----------------------------------------------------- */
-#Places {  }
-
+#Places {
+    margin: 0;
+    padding: 0;
+}
 #Places table.infolist tbody tr td.ColumnLetter {
     background-color: #D8F3D6;
 }
 #Places table.infolist tbody tr td.ColumnName {
-    padding:0;
     background-color: #FFF;
 }
 #Places table.infolist tbody tr td.ColumnName a {
@@ -529,8 +503,10 @@ div#IndividualDetail div.subsection table tr td:first-child {
 
 /* EventList and EventDetail
 ----------------------------------------------------- */
-div#EventList, div#EventDetail { }
-
+div#EventList, div#EventDetail {
+    margin: 0;
+    padding: 0;
+}
 div#events table.eventlist {
     margin-top: .3cm;
 }
@@ -542,7 +518,7 @@ div#events table.eventlist tbody tr td.ColumnPlace a {
 }
 table.eventlist tbody tr td {
     background-color: #FFF;
-    border-bottom: dashed 1px #000;
+    border-bottom: dashed 1px #5D835F;
 }
 table.eventlist tbody tr td.ColumnEvent {
     width: 20%;
@@ -569,12 +545,8 @@ table.eventlist tbody tr td.ColumnPerson {
 table.eventlist tbody tr td.ColumnPartner {
     width: 35%;
 }
-div#families table.eventlist {
-    margin: 0;
-    padding: 0;
-}
 div#EventList table.eventlist tbody tr.BeginName {
-    border-top: solid 1px #000;
+    border-top: solid 1px #5D835F;
 }
 div#EventList table.eventlist tbody tr td {
     padding: 4px 0px 4px 0px;
@@ -608,8 +580,10 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     
 /* Gallery
 ----------------------------------------------------- */
-#Gallery {  }
-
+#Gallery {
+    margin: 0;
+    padding: 0;
+}
 #Gallery table.infolist tbody tr td.ColumnRowLabel, 
 #Gallery table.infolist tbody tr td.ColumnDate {
     background-color: #D8F3D6;
@@ -623,7 +597,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     padding:.1em 10px .3em 10px;
 }
 #Gallery table.gallerylist tbody tr td {
-    border-bottom: dashed 1px #000;
+    border-bottom: dashed 1px #5D835F;
 }
 #GalleryNav {
     font:normal 1em/1em sans-serif;
@@ -634,10 +608,8 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 #GalleryNav a {
     font-weight:bold;
     text-decoration:none;
-    border:solid 1px #228A22;
+    border:solid 1px #5D835F;
 }
-#GalleryNav a:hover { }
-
 #GalleryNav a#Previous {
     padding:.5em .7em .3em .7em;
 }
@@ -659,7 +631,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     position:relative;
     overflow:hidden;
     text-align:center;
-    border:solid 1px #228A22;
+    border: solid 1px #5D835F;
 }
 #GalleryDisplay img {
     margin:0 auto;
@@ -677,29 +649,28 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 }
 #GalleryDetail div#summaryarea table.gallery {
     padding-bottom:0;
-    margin-top:1.5em;
-    margin-bottom:0;
+    margin: 1.5em 0 0 0;
     border-style:solid;
     border-width:2px 0 1px 0;
-    border-color: #000;
+    border-color: #5D835F;
 }
 table.exifdata tr td.ColumnAttribute {
-    border-top:solid 1px #000;
+    border-top:solid 1px #5D835F;
     width:60%;
 }
 table.exiflist tr td.ColumnValue {
-    border-top:solid 1px #000;
+    border-top:solid 1px #5D835F;
     width:45%;
 }
 
 /* Contact
 ----------------------------------------------------- */
 #Contact #summaryarea {
-    background-color: #D8F3D7;
+    background-color: #D8F3D6;
     width:500px;
     margin:0 auto;
     padding:3em;
-    border:double 4px #000;
+    border:double 4px #5D835F;
 }
 #Contact #summaryarea img {
     float:right;
@@ -734,9 +705,6 @@ table.exiflist tr td.ColumnValue {
 }
 #email a {
     text-decoration:none;
-}
-#email a:hover {
-    text-decoration:underline;
 }
 
 /* Download 
@@ -802,8 +770,6 @@ div#Sources table.infolist tbody tr td.ColumnName a {
     font-size:.9em;
     padding:.1em 10px .3em 10px;
 }
-div#Sources table.infolist tbody tr td.ColumnName a:hover { }
-
 div#SourceDetail div#references ol li {
     padding-bottom:.5em;
 }
@@ -832,31 +798,47 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
 }
 
-/* Internet Address Book
+/* Address Book
 ------------------------------------------------------ */
-div#InternetAddressBook {
+div#AddressBookList, AddressBookDetail {
     margin: 0;
     padding: 0;
 }
-div#InternetAddressBook table.addressbook {
+div#AddressBookList table.addressbook {
     margin: .3em 0 .3em 0;
 }
-div#InternetAddressBook table.addressbook tbody tr.BeginName {
-    border-top: solid 1px #000;
+div#AddressBookList table.addressbook tbody tr.Totals {
+    border: solid 1px #5D835F;
 }
-div#InternetAddressBook table.addressbook tbody tr td {
-    background-color: #FFF;
-    border-bottom: dashed 1px #000;
-}
-div#InternetAddressBook table.addressbook tbody tr td.ColumnType {
+div#AddressBookList tble.addressbook tbody tr.Totals td {
+    text-align: left;
     background-color: #D8F3D6;
-    width: 15%;
 }
-div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
-    width: 30%;
+div#AddressBookList table.addressbook tbody tr td {
+    background-color: #D8F3D6;
+    text-align: center;
+    border: solid 1px #5D835F;
 }
-div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
+div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
+    width: 4%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName {
+    background-color: #FFF;
+    text-align: left;
     width: 70%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName a {
+    display: block;
+    padding: 6px 0px 6px 0px;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
+    width: 8%;
+}
+div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
+    width: 8%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
+    width: 8%;
 }
 
 /* Subsections
@@ -883,9 +865,6 @@ div.subsection table, div.subsection ol, div.subsection p {
 }
 div.subsection a {
     text-decoration:none;
-}
-div.subsection a:hover {
-    text-decoration:underline;
 }
 div.subsection table.infolist {
     width:100%;
@@ -925,10 +904,10 @@ div#events h4 {
     padding-bottom:.8em;
 }
 #IndividualDetail div#events table.infolist tbody tr td.ColumnAttribute {
-    border-bottom:solid 1px #228A22;
+    border-bottom: solid 1px #5D835F;
 }
 #IndividualDetail div#events table.infolist tbody tr td.ColumnValue {
-    border-bottom:solid 1px #000;
+    border-bottom:solid 1px #5D835F
 }
 table.infolist tbody tr td.ColumnValue p {
     font-family:sans-serif;
@@ -938,14 +917,12 @@ table.infolist tbody tr td.ColumnValue p {
 
 /* Subsections : Attributes
 ----------------------------------------------------- */
-div#attributes { }
-
+div#attributes {
+    margin: 0;
+    padding: 0;
+}
 table.attrlist {
     width: 100%;
-}
-table.attrlist thead tr th {
-    font-weight: bold;
-    text-transform: uppercase;
 }
 table.attrlist tbody tr {
     border: solid 1px #5D835F;
@@ -955,6 +932,9 @@ table.attrlist tbody tr td {
 }
 table.attrlist tbody tr td.ColumnType {
     width: 200px;
+}
+table.attrlist tbody tr td.ColumnAttribute {
+    width: 10%;
 }
 table.attrlist tbody tr td.ColumnValue {
     width: 250px;
@@ -1047,40 +1027,39 @@ table.ldsordlist tbody tr td.ColumnLDSSources {
 /* Subsections : Addresses
 ----------------------------------------------------- */
 div#Addresses {
-    padding-bottom:0;
+    margin: 0;
+    padding: 0;
 }
 div#Addresses table.infolist {
-    font-size:.35cm;
-    background-color: #FFF;
+    font-size: 12px;
+    background- color: #D8F3D6;
 }
 div#Addresses table.infolist tbody tr td {
-    border-bottom:solid 1px #000;
-    padding-top:.4em;
-    padding-bottom:.4em;
+    border-bottom: solid 1px #5D835F;
 }
 div#Addresses table.infolist tbody tr td.ColumnDate {
-    width:15%;
+    width: 15%;
 }
 div#Addresses table.infolist tbody tr td.ColumnStreetAddress {
-    width:30%;
+    width: 30%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCity {
-    width:8%;
+    width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCounty {
-    with:8%;
+    with: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnState {
-    width:12%;
+    width: 12%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCntry {
-    width:5%;
+    width: 5%;
 }
 div#Addresses table.infolist tbody tr td.ColumnPostalcode {
-    width:10%;
+    width: 10%;
 }
 div#Addresses table.infolist tbody tr td.ColumnPhone {
-    width:15%;
+    width: 15%;
 }
 
 /* Subsections : Gallery
@@ -1178,9 +1157,6 @@ div#pedigree {
     text-decoration:none;
     color: #000;
 }
-#pedigree a:hover {
-    text-decoration:underline;
-}
 .pedigreegen {
     font:normal .9em/1.2em sans-serif;
     list-style:none;
@@ -1248,23 +1224,7 @@ div#pedigree {
     margin-top:-25px;
     margin-left:16px;
     background-color: #FFF;
-    border:solid 1px #228A22;
-}
-#treeContainer div.boxbg a:hover {
-    position:relative;
-    z-index:999;
-    font-size:1em;
-    text-decoration:none;
-    color: #542;
-    width:190px;
-    margin-left:-20px;
-    padding:10px 25px 12px 25px;
-    border:solid 2px #228A22;
-}
-#treeContainer div.boxbg a:hover, 
-#treeContainer div.AncCol3 a:hover, 
-#treeContainer div.AncCol4 a:hover {
-    margin-top:-44px;
+    border: solid 1px #5D835F
 }
 #treeContainer div.boxbg a.noThumb, 
 #treeContainer div.AncCol3 a, 
@@ -1276,12 +1236,6 @@ div#pedigree {
 #treeContainer div.boxbg a.noThumb:hover {
     margin-top:0;
 }
-#treeContainer div.AncCol0 a:hover {
-    margin-left:12px;
-}
-#treeContainer div.AncCol4 a:hover {
-    margin-left:-60px;
-}
 #treeContainer div.boxbg span.thumbnail {
     display:block;
     height:65px;
@@ -1292,14 +1246,8 @@ div#pedigree {
     height:65px;
     margin:0 auto;
 }
-#treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
-    height:80px;
-}
 #treeContainer div.AncCol3 span.thumbnail, #treeContainer div.AncCol4 span.thumbnail {
     display:none;
-}
-#treeContainer div.boxbg a:hover span.thumbnail {
-    display:block;
 }
 #treeContainer div.male a,
 #treeContainer div.male span.unlinked {
@@ -1379,21 +1327,18 @@ body#WebCal {
 #CreatorInfo a {
     color: #FFF;
 }
-#CreatorInfo a:hover {
-    color: #FFF;
-}
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
     font-style:italic;
     color: #000;
     background-color: #6AF364;
-    border:solid 2px #228A22;
+    border: solid 2px #5D835F;
 }
 .calendar tfoot tr td {
     padding:.7em 5% 1em 5%;
     border-top:solid 2px #000;
     vertical-align:middle;
-    color: #228A22;
+    color: #000;
     background-color: #D8F3D6;
 }
 
@@ -1418,7 +1363,7 @@ body#WebCal {
     padding:0;
     border-width:1px 0 0 1px;
     border-style:solid;
-    border-color: #228A22;
+    border-color: #5D835F;
 }
 .calendar tbody tr td.weekday {
     background-color: #FFF;
@@ -1427,13 +1372,13 @@ body#WebCal {
     background-color: #D8F3D6;
 }
 .calendar tbody tr td.saturday {
-    border-right:solid 1px #228A22;
+    border-right: solid 1px #5D835F;
  }
 .calendar tbody tr td.sunday {
-    border-left:solid 1px #228A22;
+    border-left: solid 1px #5D835F;
 }
 .calendar tbody tr td:first-child {
-    border-left:solid 1px #228A22;
+    border-left: solid 1px #5D835F;
 }
 .calendar tbody tr:first-child td {
     border-top:none;
@@ -1452,7 +1397,7 @@ body#WebCal {
     width:92%;
     margin:0 4%;
     padding:.2em 0 .3em 0;
-    border-top:dashed 1px #228A22;
+    border-top: dashed 1px #5D835F;
 }
 .calendar tbody tr td ul li:first-child {
     border:none;
@@ -1533,7 +1478,7 @@ table.oneday {
     padding: 0;
 }
 table.oneday tbody tr td {
-    border-bottom: dashed 1px #228A22;
+    border-bottom: dashed 1px #5D835F;
 }
 table.oneday tbody tr td.ColumnRowLabel {
     width: 5%;
