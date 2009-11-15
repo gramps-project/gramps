@@ -323,9 +323,15 @@ table tr td.TableHeaderCell {
 }
 
 table tr td.TableDataCell {
-    color: #f8eec9;
+    color: #7D5925;
+    background-color: white;
     border:solid 2px #7D5925;
     font-size: 0.8em;
+}
+
+table tr td.TableDataCell a {
+    color: black;
+    text-decoration: none;
 }
 
 table.infolist tr th a {

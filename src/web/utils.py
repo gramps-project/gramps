@@ -78,7 +78,7 @@ def events_table(djperson):
         print djevent.description
         table.row(
             djevent.description,
-            str(djevent.event_type),
+            table.db.get_event_from_handle(djevent.handle),
             djevent.gramps_id, 
             display_date(djevent),
             get_title(djevent.place),

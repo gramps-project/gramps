@@ -224,7 +224,7 @@ class SimpleTable(object):
             elif isinstance(item, gen.lib.Source): 
                 retval.append(_('Source'))
                 if (self.__link_col == col or link is None):
-                    link = ('Souce', item.handle)
+                    link = ('Source', item.handle)
             elif isinstance(item, gen.lib.Event):
                 name = self.access.event_type(item)
                 retval.append(name)
@@ -284,7 +284,7 @@ class SimpleTable(object):
         else:
             self.__rows.sort(lambda a, b: cmp(a[idx],b[idx]))
 
-    def write(self, document, link=False):
+    def write(self, document):
         self.simpledoc = document # simpledoc; simpledoc.doc = docgen object
         if self.simpledoc.doc.type == "standard":
             doc = self.simpledoc.doc
@@ -308,13 +308,21 @@ class SimpleTable(object):
                 doc.write_text(col, 'TableTitle')
                 doc.end_cell()
             doc.end_row()
+            index = 0
             for row in self.__rows:
                 doc.start_row()
                 for col in row:
                     doc.start_cell('TableDataCell', span=1) 
+                    if self.__link[index]:
+                        obj_type, handle = self.__link[index]
+                        doc.start_link("/%s/%s" % 
+                                       (obj_type.lower(), handle))
                     doc.write_text(col, 'Normal')
+                    if self.__link[index]:
+                        doc.stop_link()
                     doc.end_cell()
                 doc.end_row()
+                index += 1
             doc.end_table()
             doc.start_paragraph("Normal")
             doc.end_paragraph()
@@ -404,3 +412,4 @@ class SimpleTable(object):
         col_dict = self.__cell_markup.get(x, {})
         col_dict[y] = data
         self.__cell_markup[x] = col_dict
+

@@ -38,7 +38,6 @@ class DjangoDb(GrampsDbBase):
         return obj
 
     def get_event_from_handle(self, handle):
-        print "get_event_from_handle:", handle
         obj = gen.lib.Event()
         obj.unserialize(self.dji.get_event(self.dji.Event.get(handle=handle)))
         return obj
