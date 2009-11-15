@@ -304,7 +304,10 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
-        self.exiftagsopt = report.options['exiftagsopt']
+
+        # only show option if the pyexiv2 library is available on local system
+        if pyexiftaglib:
+            self.exiftagsopt = report.options['exiftagsopt']
  
     def get_birth_date(self, db, person):
         """ Will return a date object for a person's birthdate """
@@ -2603,36 +2606,35 @@ class MediaPage(BasePage):
                         table += trow
 
             # display image Exif tags/ keys if any?
-            if ((pyexiftaglib and self.exiftagsopt) and mime_type.startswith("image/")):
-                """
-                # Determine if the python exif lib is installed on the system?
-                # yes, then use it and determine if the photo has anything written inside of it?
-                """ 
+            if pyexiftaglib:
+                if self.exiftagsopt and mime_type.startswith("image/"):
+                    
+                    # if the pyexiv2 library is installed, then show if the option has been set,
+                    # yes, then use it and determine if the image has anything written inside of it?
+                    image = pyexiv2.Image("%s" % Utils.media_path_full(db, media.get_path()) )
+                    image.readMetadata()
 
-                image = pyexiv2.Image("%s" % Utils.media_path_full(db, media.get_path()) )
-                image.readMetadata()
+                    # exif data does exists
+                    if len(image.exifKeys() ):
 
-                # exif data does exists
-                if len(image.exifKeys() ):
+                        # initialize the dictionary for holding the image exif tags
+                        imagetags = []
 
-                    # initialize the dictionary for holding the image exif tags
-                    imagetags = []
+                        # add exif title header
+                        mediadetail += Html("h4", _("Image Exif Tags/ Keys"), inline = True)
 
-                    # add exif title header
-                    mediadetail += Html("h4", _("Image Exif Tags/ Keys"), inline = True)
+                        # begin exif table
+                        with Html("table", class_ = "exifdata") as table:
+                            mediadetail += table
 
-                    # begin exif table
-                    with Html("table", class_ = "exifdata") as table:
-                        mediadetail += table
-
-                        for keytag in image.exifKeys():
-                            if keytag not in imagetags:
-                                trow = Html("tr") + (
-                                    Html("td", keytag, class_ = "ColumnAttribute"),
-                                    Html("td", image[keytag], class_ = "ColumnValue")
-                                    )
-                                table += trow
-                                imagetags.append(keytag)
+                            for keytag in image.exifKeys():
+                                if keytag not in imagetags:
+                                    trow = Html("tr") + (
+                                        Html("td", keytag, class_ = "ColumnAttribute"),
+                                        Html("td", image[keytag], class_ = "ColumnValue")
+                                        )
+                                    table += trow
+                                    imagetags.append(keytag)
 
             ##################### End of Exif Tags #####################################################
 
@@ -4837,8 +4839,9 @@ class NavWebReport(Report):
         self.inc_contact = self.options['contactnote'] or \
                            self.options['contactimg']
 
-        # exif tags option
-        self.exiftagsopt = self.options["exiftagsopt"]
+        # only show option if the pyexiv2 library is available on local system
+        if pyexiftaglib:
+            self.exiftagsopt = self.options["exiftagsopt"]
 
         # name format option
         self.name_format = self.options['name_format']
@@ -5739,11 +5742,13 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'gallery', self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
-        self.__exiftags = BooleanOption(_("Whether to add exif tags to the media page or not?"), False)
-        self.__exiftags.set_help(_("Do you want to add the exif data tags to the page?  You will"
-                                   " need to have the pyexiv2 library installed on your system."
-                                   "It can be downloaded from here: http://www.exiv2.org/ ."))
-        menu.add_option(category_name, "exiftagsopt", self.__exiftags)
+        # only show option if the pyexiv2 library is available on local system
+        if pyexiftaglib:
+            self.__exiftags = BooleanOption(_("Whether to add exif tags to the media page or not?"), False)
+            self.__exiftags.set_help(_("Do you want to add the exif data tags to the page?  You will"
+                                       " need to have the pyexiv2 library installed on your system."
+                                       "It can be downloaded from here: http://www.exiv2.org/ ."))
+            menu.add_option(category_name, "exiftagsopt", self.__exiftags)
  
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
@@ -5945,11 +5950,17 @@ class NavWebOptions(MenuReportOptions):
         """
 
         if self.__gallery.get_value() == False:
-            self.__exiftags.set_available(False)
+
+            # only show option if the pyexiv2 library is available on local system
+            if pyexiftaglib:
+                self.__exiftags.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
         else:
-            self.__exiftags.set_available(True)
+
+            # only show option if the pyexiv2 library is available on local system
+            if pyexiftaglib:
+                self.__exiftags.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
 
