@@ -222,7 +222,7 @@ class SimpleTable(object):
                 if (self.__link_col == col or link is None):
                     link = ('Family', item.handle)
             elif isinstance(item, gen.lib.Source): 
-                retval.append(_('Source'))
+                retval.append(item.gramps_id)
                 if (self.__link_col == col or link is None):
                     link = ('Source', item.handle)
             elif isinstance(item, gen.lib.Event):
@@ -231,19 +231,19 @@ class SimpleTable(object):
                 if (self.__link_col == col or link is None):
                     link = ('Event', item.handle)
             elif isinstance(item, gen.lib.MediaObject):
-                retval.append(_('Media'))
+                retval.append(item.gramps_id)
                 if (self.__link_col == col or link is None):
                     link = ('Media', item.handle)
             elif isinstance(item, gen.lib.Place):
-                retval.append(_('Place'))
+                retval.append(item.gramps_id)
                 if (self.__link_col == col or link is None):
                     link = ('Place', item.handle)
             elif isinstance(item, gen.lib.Repository):
-                retval.append(_('Repository'))
+                retval.append(item.gramps_id)
                 if (self.__link_col == col or link is None):
                     link = ('Repository', item.handle)
             elif isinstance(item, gen.lib.Note):
-                retval.append(_('Note'))
+                retval.append(item.gramps_id)
                 if (self.__link_col == col or link is None):
                     link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
