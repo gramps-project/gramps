@@ -541,3 +541,27 @@ class HtmlDoc(BaseDoc, TextDoc):
         overwrite base method so page break has no effect
         """
         pass
+
+    def start_link(self, link):
+        """
+        Starts a section to add a link. Link is a URI.
+        """
+        self.htmllist += [Html('a', href=link)]
+
+    def stop_link(self):
+        """
+        Stop a section of a link.
+        """
+        self.__reduce_list()
+
+    def start_underline(self):
+        """
+        Starts a section of underlining.
+        """
+        self.htmllist += [Html('u')]
+
+    def stop_underline(self):
+        """
+        Stop underlining.
+        """
+        self.__reduce_list()

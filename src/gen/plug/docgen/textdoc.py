@@ -249,3 +249,32 @@ class TextDoc(object):
         @param alt: an alternative text to use. Useful for eg html reports
         """
         raise NotImplementedError
+    
+    def start_link(self, link):
+        """
+        Start a link section. This defaults to underlining.
+        @param link: should be an item that makes sense in this
+                     docgen type, if it implements linking.
+        """
+        self.start_underline()
+
+    def stop_link(self):
+        """
+        Stop the link section. Defaults to stoppping the underlining
+        for docgen types that don't support links.
+        """
+        self.stop_underline()
+
+    def start_underline(self):
+        """
+        Start a section of underlining. This passes without error
+        so that docgen types are not required to have this.
+        """
+        pass
+
+    def stop_underline(self):
+        """
+        Stops a section of underlining. This passes without error
+        so that docgen ntypes are not required to have this.
+        """
+        pass
