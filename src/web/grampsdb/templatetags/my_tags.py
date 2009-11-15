@@ -1,10 +1,18 @@
 from django.template import escape, Library
 from web.utils import *
+import web.utils
 
 register = Library()
 
-events_table.is_safe = True
-register.filter('events_table', events_table)
+util_filters = ['person_event_table', 'person_name_table', 'person_source_table', 'person_attribute_table', 
+                'person_address_table', 'person_note_table', 'person_gallery_table', 'person_internet_table', 
+                'person_association_table', 'person_lds_table', 'person_reference_table',
+                'family_children_table', 'family_event_table', 'family_source_table', 'family_attribute_table',
+                'family_note_table', 'family_gallery_table', 'family_lds_table']
+for filter_name in util_filters:
+    func = getattr(web.utils, filter_name)
+    func.is_safe = True
+    register.filter(filter_name, func)
 
 person_get_birth_date.is_safe = True
 register.filter('person_get_birth_date', person_get_birth_date)

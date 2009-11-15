@@ -198,6 +198,10 @@ a:visited {
     margin:0 0 5px 50px;
 }
 
+#data {
+    background-color: white;
+}
+
 /* Navigation
 ----------------------------------------------------- */
 #navigation, #subnavigation {

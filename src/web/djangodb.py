@@ -59,6 +59,16 @@ class DjangoDb(GrampsDbBase):
         obj.unserialize(self.dji.get_place(self.dji.Place.get(handle=handle)))
         return obj
 
+    def get_source_from_handle(self, handle):
+        obj = gen.lib.Source()
+        obj.unserialize(self.dji.get_source(self.dji.Source.get(handle=handle)))
+        return obj
+
+    def get_note_from_handle(self, handle):
+        obj = gen.lib.Note()
+        obj.unserialize(self.dji.get_note(self.dji.Note.get(handle=handle)))
+        return obj
+
     def get_person_handles(self):
         return [person.handle for person in self.dji.Person.all()]
 
