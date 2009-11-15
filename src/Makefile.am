@@ -56,7 +56,6 @@ gdir_PYTHON = \
 	Lru.py\
 	ManagedWindow.py\
 	Navigation.py\
-	PageView.py\
 	QuestionDialog.py\
 	QuickReports.py\
 	RecentFiles.py\

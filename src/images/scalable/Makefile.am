@@ -11,12 +11,12 @@ dist_pkgdata_DATA = \
 	gramps-bookmark-edit.svg \
 	gramps-bookmark-new.svg \
 	gramps-bookmark.svg \
-	gramps-config.png \
+	gramps-config.svg \
 	gramps-date-edit.svg \
 	gramps-date.svg \
 	gramps-event.svg \
 	gramps-family.svg \
-	gramps-fanchart.png \
+	gramps-fanchart.svg \
 	gramps-font-bgcolor.svg \
 	gramps-font-color.svg \
 	gramps-font.svg \
@@ -40,9 +40,9 @@ dist_pkgdata_DATA = \
 	gramps-source.svg \
 	gramps-spouse.svg \
 	gramps-tools.svg \
-	gramps-tree-group.png \
-	gramps-tree-list.png \
-	gramps-tree-select.png \
+	gramps-tree-group.svg \
+	gramps-tree-list.svg \
+	gramps-tree-select.svg \
 	gramps-unlock.svg \
 	gramps-view.svg \
 	gramps-viewmedia.svg \
