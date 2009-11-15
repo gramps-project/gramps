@@ -502,18 +502,14 @@ class BasePage(object):
             else:
                 self.place_list[place_handle] = [lnk]
 
-            place = self.place_link(place_handle, ReportUtils.place_name(db, place_handle), up = True)
-        else:
-            place = ''
-
-        # begin event table row
-        trow = Html("tr")
-
         # get event data
         """
         for more information: see get_event_data()
         """
         event_data = self.get_event_data(evt, evt_ref, showplc, showdescr, showsrc, shownote, subdirs, hyp)
+
+        # begin event table row
+        trow = Html("tr")
 
         for (label, colclass, data) in event_data:
             data = data or "&nbsp;"
@@ -2619,19 +2615,24 @@ class MediaPage(BasePage):
                 # exif data does exists
                 if len(image.exifKeys() ):
 
+                    # initialize the dictionary for holding the image exif tags
+                    imagetags = []
+
                     # add exif title header
-                    mediadetail += Html("h4", _("Image Exif Tags"), inline = True)
+                    mediadetail += Html("h4", _("Image Exif Tags/ Keys"), inline = True)
 
                     # begin exif table
                     with Html("table", class_ = "exifdata") as table:
                         mediadetail += table
 
                         for keytag in image.exifKeys():
-                            trow = Html("tr") + (
-                                Html("td", keytag, class_ = "ColumnAttribute"),
-                                Html("td", image[keytag], class_ = "ColumnValue")
-                                )
-                            table += trow
+                            if keytag not in imagetags:
+                                trow = Html("tr") + (
+                                    Html("td", keytag, class_ = "ColumnAttribute"),
+                                    Html("td", image[keytag], class_ = "ColumnValue")
+                                    )
+                                table += trow
+                                imagetags.append(keytag)
 
             ##################### End of Exif Tags #####################################################
 
@@ -4978,7 +4979,7 @@ class NavWebReport(Report):
         self.place_pages(place_list, source_list)
 
         # build classes EventListPage and EventPage
-        # build the events list only if event pages are being created?
+        # build the events dictionary only if event pages are being created?
         if self.inc_events:
             event_dict = []
             self.build_events(ind_list, event_dict)
