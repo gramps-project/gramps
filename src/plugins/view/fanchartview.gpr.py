@@ -7,6 +7,6 @@ register(VIEW,
          fname = 'fanchartview.py',
          authors = [u"Douglas S. Blank"],
          authors_email = ["doug.blank@gmail.com"],
-         category = VIEW_REL,
+         category = VIEW_PEDI,
          viewclass = 'FanChartView',
   )

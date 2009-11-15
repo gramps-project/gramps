@@ -64,11 +64,11 @@ import Utils
 from gui.pluginmanager import GuiPluginManager
 from gen.plug import (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY,
             VIEW_EVENT, VIEW_PLACE, VIEW_GEO, VIEW_SOURCE, VIEW_REPO,
-            VIEW_MEDIA, VIEW_NOTE)
+            VIEW_MEDIA, VIEW_PEDI, VIEW_NOTE, START, END)
 
 DEFAULT_SIDEBAR_ORDER = (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, 
-            VIEW_EVENT, VIEW_PLACE, VIEW_GEO, VIEW_SOURCE, VIEW_REPO,
-            VIEW_MEDIA, VIEW_NOTE)
+            VIEW_PEDI, VIEW_EVENT, VIEW_PLACE, VIEW_GEO, VIEW_SOURCE,
+            VIEW_REPO, VIEW_MEDIA, VIEW_NOTE)
 #-------------------------------------------------------------------------
 #
 # Functions
@@ -258,7 +258,11 @@ def construct_view_order():
             continue
         viewclass = eval('mod.' + pdata.viewclass)
         if pdata.category in viewstoshow:
-            viewstoshow[pdata.category].append((pdata.id, viewclass))
+            if pdata.order == START:
+                viewstoshow[pdata.category].insert(0, append((pdata.id, 
+                                                              viewclass)))
+            else:
+                viewstoshow[pdata.category].append((pdata.id, viewclass))
         else:
             viewstoshow[pdata.category] = [(pdata.id, viewclass)]
     

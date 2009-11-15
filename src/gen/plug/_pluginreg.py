@@ -107,16 +107,17 @@ VIEW_MISC    = 0
 VIEW_PERSON  = 1
 VIEW_REL     = 2
 VIEW_FAMILY  = 3
-VIEW_EVENT   = 4
-VIEW_PLACE   = 5
-VIEW_SOURCE  = 6
-VIEW_REPO    = 7
-VIEW_MEDIA   = 8
-VIEW_NOTE    = 9
-VIEW_GEO     = 10
+VIEW_PEDI    = 4
+VIEW_EVENT   = 5
+VIEW_PLACE   = 6
+VIEW_SOURCE  = 7
+VIEW_REPO    = 8
+VIEW_MEDIA   = 9
+VIEW_NOTE    = 10
+VIEW_GEO     = 11
 VIEW_CAT    = [VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, VIEW_EVENT,
-               VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, VIEW_NOTE,
-               VIEW_GEO]
+               VIEW_PEDI, VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, 
+               VIEW_NOTE, VIEW_GEO]
 
 #possible quickreport categories
 CATEGORY_QR_MISC       = -1
@@ -139,6 +140,10 @@ REPORT_MODES    = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 TOOL_MODE_GUI = 1    # Standard tool using GUI
 TOOL_MODE_CLI = 2    # Command line interface (CLI)
 TOOL_MODES    = [TOOL_MODE_GUI, TOOL_MODE_CLI]
+
+# possible view orders
+START = 1
+END   = 2
         
 class PluginData(object):
     """
@@ -265,6 +270,11 @@ class PluginData(object):
     .. attribute:: viewclass
        A class of type ViewCreator that holds the needed info of the
        view to be created: icon, viewclass that derives from pageview, ...
+    .. attribute:: order
+       order can be START or END. Default is END. For END, on registering, 
+       the view is appended to the list of views. If START, then the view is
+       prepended. Only set START if you want a view to be the first in the
+       order of views
     """
 
     def __init__(self):
@@ -320,6 +330,7 @@ class PluginData(object):
         self._help_url = None
         #VIEW attr
         self._viewclass = None
+        self._order = END
     
     def _set_id(self, id):
        self._id = id
@@ -724,8 +735,17 @@ class PluginData(object):
 
     def _get_viewclass(self):
         return self._viewclass
-    
+  
+    def _set_order(self, order):
+        if not self._ptype == VIEW:
+            raise ValueError, 'order may only be set for VIEW plugins'
+        self._order = order
+
+    def _get_order(self):
+        return self._order
+
     viewclass = property(_get_viewclass, _set_viewclass)
+    order     = property(_get_order, _set_order)
 
 def newplugin():
     """
@@ -849,6 +869,7 @@ class PluginRegister(object):
                     'VIEW_PERSON': VIEW_PERSON,
                     'VIEW_REL': VIEW_REL,
                     'VIEW_FAMILY': VIEW_FAMILY,
+                    'VIEW_PEDI': VIEW_PEDI,
                     'VIEW_EVENT': VIEW_EVENT,
                     'VIEW_PLACE': VIEW_PLACE,
                     'VIEW_SOURCE': VIEW_SOURCE,
@@ -871,6 +892,8 @@ class PluginRegister(object):
                     'TOOL_MODE_GUI': TOOL_MODE_GUI, 
                     'TOOL_MODE_CLI': TOOL_MODE_CLI,
                     'GRAMPSVERSION': GRAMPSVERSION,
+                    'START': START,
+                    'END': END,
                    },
                    {})
             except ValueError, msg:

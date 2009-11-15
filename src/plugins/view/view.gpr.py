@@ -38,6 +38,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_EVENT,
 viewclass = 'EventView',
+order = START,
   )
 
 register(VIEW, 
@@ -51,6 +52,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_FAMILY,
 viewclass = 'FamilyView',
+order = START,
   )
 
 register(VIEW, 
@@ -64,6 +66,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_MISC,
 viewclass = 'GrampletView',
+order = START,
   )
 
 register(VIEW, 
@@ -77,6 +80,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_MEDIA,
 viewclass = 'MediaView',
+order = START,
   )
 
 register(VIEW, 
@@ -90,6 +94,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_NOTE,
 viewclass = 'NoteView',
+order = START,
   )
 
 register(VIEW, 
@@ -103,6 +108,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_REL,
 viewclass = 'RelationshipView',
+order = START,
   )
 
 register(VIEW, 
@@ -114,7 +120,7 @@ status = STABLE,
 fname = 'pedigreeview.py',
 authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
-category = VIEW_REL,
+category = VIEW_PEDI,
 viewclass = 'PedigreeView',
   )
 
@@ -129,6 +135,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_PERSON,
 viewclass = 'PersonView',
+order = START,
   )
 
 register(VIEW, 
@@ -142,6 +149,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_PLACE,
 viewclass = 'PlaceView',
+order = START,
   )
 
 register(VIEW, 
@@ -155,6 +163,7 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_REPO,
 viewclass = 'RepositoryView',
+order = START,
   )
 
 register(VIEW, 
@@ -168,4 +177,5 @@ authors = [u"The GRAMPS project"],
 authors_email = ["http://gramps-project.org"],
 category = VIEW_SOURCE,
 viewclass = 'SourceView',
+order = START,
   )

@@ -416,7 +416,7 @@ class PedigreeView(NavigationView):
         """
         The category stock icon
         """
-        return 'gramps-relation'
+        return 'gramps-pedigree'
     
     def get_viewtype_stock(self):
         """Type of view in category
