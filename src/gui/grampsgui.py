@@ -144,6 +144,7 @@ def register_stock_icons ():
         ('gramps-tree-list', _('List'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-tree-select', _('Select'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-unlock', _('Private'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-view', _('View'), gtk.gdk.CONTROL_MASK, 0, ''),  
         ('gramps-viewmedia', _('View'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-zoom-in', _('Zoom In'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-zoom-out', _('Zoom Out'), gtk.gdk.CONTROL_MASK, 0, ''), 
