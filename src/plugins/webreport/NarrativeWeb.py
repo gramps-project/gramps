@@ -2550,19 +2550,15 @@ class MediaPage(BasePage):
 
                         with Html("div", id = "GalleryDisplay") as mediadisplay:
                             summaryarea += mediadisplay
+
+                            img_url = self.report.build_url_fname(path, None, self.up)
                             if target_exists:
                                 # TODO. Convert disk path to URL
                                 url = self.report.build_url_fname(newpath, None, self.up)
-                                hyper = Html("a", href = url)
-                            # TODO. Mixup url and path
-                            # path = convert_disk_path_to_url(path)
-                            url = self.report.build_url_fname(path, None, self.up)
-                            if hyper:
-                                hyper += Html("img", src = url, alt = html_escape(self.page_title))
-                            else:
-                                hyper = Html("img", src = url, alt = html_escape(self.page_title))
-                            if target_exists:
-                                mediadisplay += hyper  
+                                hyper = Html("a", href = url) + (
+                                    Html("img", src = img_url, alt = html_escape(self.page_title))
+                                    )
+                                mediadisplay += hyper
                             else:
                                 mediadisplay += missingimage
                 else:
