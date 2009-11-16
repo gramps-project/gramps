@@ -259,8 +259,8 @@ def construct_view_order():
         viewclass = eval('mod.' + pdata.viewclass)
         if pdata.category in viewstoshow:
             if pdata.order == START:
-                viewstoshow[pdata.category].insert(0, append((pdata.id, 
-                                                              viewclass)))
+                viewstoshow[pdata.category].insert(0, ((pdata.id, 
+                                                        viewclass)))
             else:
                 viewstoshow[pdata.category].append((pdata.id, viewclass))
         else:
