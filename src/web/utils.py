@@ -226,9 +226,9 @@ def person_reference_table(djperson, user):
                   _("Name"))
     references = dji.PersonRef.filter(ref_object=djperson)
     for reference in references:
-        table.row(str(reference.reference_type),
+        table.row(str(reference.ref_object),
                   reference.ref_object.gramps_id,
-                  make_name(reference.ref_object))
+                  make_name(reference.ref_object.name_set, user))
     return table.get_html()
 
 def family_children_table(djfamily, user):
