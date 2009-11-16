@@ -59,7 +59,6 @@ from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from BasicUtils import UpdateCallback
 import Errors
-from QuestionDialog import QuestionDialog2
 
 _LOG = logging.getLogger(DBLOGNAME)
 _MINVERSION = 9
@@ -472,6 +471,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         # self.secondary_connected flag should be set accordingly.
         
         if self.need_upgrade():
+            from QuestionDialog import QuestionDialog2
             if QuestionDialog2(_("Need to upgrade database!"), 
                                _("You cannot open this database "
                                  "without upgrading it.\n"

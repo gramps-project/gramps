@@ -37,8 +37,6 @@ import tempfile
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +57,7 @@ def resize_to_jpeg(source, destination, width, height):
     :param height: desired height of the destination image
     :type height: int
     """
+    import gtk
     img = gtk.gdk.pixbuf_new_from_file(source)
     scaled = img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
     scaled.save(destination, 'jpeg')
@@ -77,6 +76,8 @@ def image_size(source):
     :rtype: tuple(int, int)
     :returns: a tuple consisting of the width and height
     """
+    import gtk
+    import gobject
     try:
         img = gtk.gdk.pixbuf_new_from_file(source)
         width = img.get_width()
@@ -105,6 +106,7 @@ def resize_to_jpeg_buffer(source, width, height):
     :rtype: buffer of data 
     :returns: jpeg image as raw data
     """
+    import gtk
     filed, dest = tempfile.mkstemp()
     img = gtk.gdk.pixbuf_new_from_file(source)
     scaled = img.scale_simple(int(width), int(height), gtk.gdk.INTERP_BILINEAR)
