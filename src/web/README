@@ -207,3 +207,31 @@ References:
 [4] http://www.mail-archive.com/django-users@googlegroups.com/msg36675.html
 
 
+Setting up wsgi on Apache
+-------------------------
+
+1. On Fedora11: yum install mod_wsgi
+2. Create /usr/local/wsgi/scripts/
+3. In that dir, put the following in gramps.wsgi:
+
+import os
+import sys
+os.environ['DJANGO_SETTINGS_MODULE'] = 'web.settings'
+os.environ['HOME'] = '/usr/local/wsgi'
+sys.path.append('/usr/local/wsgi/trunk/src')
+import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()
+
+(the HOME is for GRAMPS, which is ignored in this usage)
+
+4. Remove any stdout print statements in code (causes crash otherwise)
+5. Put selinux in permissive mode
+6. Add the following to /etc/httpd/conf/httpd.conf:
+
+WSGIScriptAlias / /usr/local/wsgi/scripts/gramps.wsgi
+ <Directory /usr/local/wsgi/scripts>
+    Order allow,deny
+    Allow from all
+ </Directory>
+
+That's it!
