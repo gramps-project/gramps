@@ -44,7 +44,6 @@ import DateHandler
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.eventtype import EventType
 from Utils import media_path_full
-from QuestionDialog import WarningDialog
 from gen.plug.docgen import IndexMark, INDEX_TYPE_ALP
    
 #-------------------------------------------------------------------------
@@ -140,6 +139,7 @@ def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
         if os.path.exists(filename):
             doc.add_media_object(filename, "right", w_cm, h_cm)
         else:
+            from QuestionDialog import WarningDialog
             WarningDialog(_("Could not add photo to page"), 
                           "%s: %s" % (filename, _('File does not exist')))
 
