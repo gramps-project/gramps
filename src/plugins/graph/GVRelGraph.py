@@ -233,7 +233,7 @@ class RelGraphReport(Report):
             url = ""
             if self.includeurl:
                 h = person_handle
-                dirpath = "ppl/%s/%s" % (h[0], h[1])
+                dirpath = "ppl/%s/%s" % (h[-1], h[-2])
                 dirpath = dirpath.lower()
                 url = "%s/%s.html" % (dirpath, h)
                 
