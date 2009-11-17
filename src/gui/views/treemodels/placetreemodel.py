@@ -94,13 +94,24 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         handle      The handle of the gramps object.
         data        The object data.
         """
-        level1 = data[5][0][4]
+        try:
+            level1 = data[5][0][4]
+        except TypeError:
+            level1 = _('Unknown level1')
         if not level1:
             level1 = _('Unknown level1')
-        level2 = data[5][0][3]
+            
+        try:
+            level2 = data[5][0][3]
+        except TypeError:
+            level2 = _('Unknown level2')
         if not level2:
             level2 = _('Unknown level2')
-        level3 = data[5][0][2]
+
+        try:
+            level3 = data[5][0][2]
+        except TypeError:
+            level3 = _('Unknown level3')
         if not level3:
             level3 = _('Unknown level3')
 
