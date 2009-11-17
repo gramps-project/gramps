@@ -13097,9 +13097,8 @@ msgid "Show Repository Reference"
 msgstr "Vise henvisning til oppbevaringssted"
 
 #: ../src/plugins/quickview/quickview.gpr.py:238
-#, fuzzy
 msgid "Display the repository reference for sources related to the active repository"
-msgstr "Vis RepoRef for kilder som er relatert til aktivt oppbevaringssted"
+msgstr "Vis henvisninger til oppbevaringssted for kilder som er relatert til det aktive oppbevaringsstedet"
 
 #: ../src/plugins/quickview/quickview.gpr.py:257
 msgid "Same Surnames"
@@ -15661,9 +15660,8 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Gir et hierarki, som man kan bla gjennom, og som er baseret på den aktive personen"
 
 #: ../src/plugins/tool/tools.gpr.py:168
-#, fuzzy
 msgid "Dump Gender Statistics"
-msgstr "Importere statistikker"
+msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:169
 msgid "Will dump the statistics for the gender guessing from the first name."
@@ -16821,27 +16819,24 @@ msgid "Pedigree View"
 msgstr "Stamtavlevisning"
 
 #: ../src/plugins/view/view.gpr.py:111
-#, fuzzy
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "Teller antall forfedre til den valgte person"
+msgstr "Visningen viser en anetavle for den valgte personen"
 
 #: ../src/plugins/view/view.gpr.py:123
 msgid "Person View"
 msgstr "Personvisning"
 
 #: ../src/plugins/view/view.gpr.py:124
-#, fuzzy
 msgid "The view showing all people in the family tree"
-msgstr "Forsøke å vise alle stedene i slektstreet."
+msgstr "Visningen viser alle personer i slektstreet"
 
 #: ../src/plugins/view/view.gpr.py:136
 msgid "Place View"
 msgstr "Stedsnavnvisning"
 
 #: ../src/plugins/view/view.gpr.py:137
-#, fuzzy
 msgid "The view showing all the places of the family tree"
-msgstr "Forsøke å vise alle stedene i slektstreet."
+msgstr "Visningen viser alle stedene i slektstreet"
 
 #: ../src/plugins/view/view.gpr.py:149
 msgid "Repository View"
@@ -16975,9 +16970,8 @@ msgid "Place name | Name"
 msgstr "Stedsnavn"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2146
-#, fuzzy
 msgid "This page contains an index of all the events in the database, sorted by their type, date (if one is present), and person&#8217;s surname.  Clicking on an event&#8217;s type will take you to that event&#8217;s page.  Clicking on a person&#8217;s name will take you to that person&#8217;s page.  The person&#8217;s name will only be shown once for their events."
-msgstr "Denne siden inneholder en oversikt over alle personene i databasen, sortert etter etternavn. Ved å klikke på personens navn vil du komme til en egen side for denne personen."
+msgstr "Denne siden inneholder en oversikt over alle hendelsene i databasen, sortert etter type, dato (hvis den finnes) og personens etternavn.  Ved å klikke på hendelsens navn vil du komme til en egen side for denne personen.  Personens navn vil bare vises en gang for personens hendelser."
 
 #. display page itle
 #: ../src/plugins/webreport/NarrativeWeb.py:2271
@@ -17048,9 +17042,8 @@ msgid "Publication information"
 msgstr "Publikasjonsinformasjon"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3081
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr "Denne siden inneholder en oversikt over alle mediaobjektene i databasen, sortert etter tittel. Ved å klikke på mediaobjektstittelen vil du komme til en egen side for dette mediaobjektet."
+msgstr "Denne siden inneholder en oversikt over alle mediaobjektene i databasen, sortert etter tittel. Ved å klikke på mediaobjektstittelen vil du komme til en egen side for dette mediaobjektet.  Hvis du ser bildets størrelse over bildet kan du klikke på bildet for å se det i full størrelse.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3098
 msgid "Media | Name"
@@ -17102,9 +17095,8 @@ msgid "Step Siblings"
 msgstr "Stesøsken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4501
-#, fuzzy
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Denne siden inneholder en oversikt over alle kilder i databasen, sortert etter tittel. Ved å klikke på en kildetittel vil du komme til en egen side for denne kilden."
+msgstr "Denne siden inneholder en oversikt over alle ppbevaringssteder i databasen, sortert etter tittel. Ved å klikke på et oppbevaringssted vil du komme til en egen side for dette oppbevaringsstedet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4516
 msgid "Repository |Name"
@@ -17117,9 +17109,8 @@ msgstr "Adressebokliste"
 
 #. Internet Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4650
-#, fuzzy
 msgid "This page contains an index of all the individuals in the database, sorted by their surname. Selecting the person&#8217;s name will take you to their Address Book&#8217;s individual page."
-msgstr "Denne siden inneholder en oversikt over alle personene i databasen, sortert etter etternavn. Ved å klikke på personens navn vil du komme til en egen side for denne personen."
+msgstr "Denne siden inneholder en oversikt over alle personene i databasen, sortert etter etternavn. Ved å klikke på personens navn vil du komme til en egen side i adresseboken for for denne personen."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4914
 #, python-format
@@ -17151,9 +17142,8 @@ msgid "Creating individual pages"
 msgstr "Lager individuelle sider"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5197
-#, fuzzy
 msgid "Creating GENDEX file"
-msgstr "Feil ved lesing av GEDCOM-fil"
+msgstr "Lager GENDEX-fil"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5237
 msgid "Creating surname pages"
@@ -17181,9 +17171,8 @@ msgid "Creating repository pages"
 msgstr "Lager sider for oppbevaringssteder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5401
-#, fuzzy
 msgid "Creating address book pages ..."
-msgstr "Lager sider for oppbevaringssteder"
+msgstr "Lager adresseboksider..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5622
 msgid "Store web pages in .tar.gz archive"
@@ -17341,9 +17330,8 @@ msgid "Whether to include a gallery of media objects"
 msgstr "Ta med et galleri av mediaobjekt"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5741
-#, fuzzy
 msgid "Whether to add exif tags to the media page or not?"
-msgstr "Om flerårig kalender skal lages eller ikke."
+msgstr "Om exif-informasjon skal legges til på mediasiden eller ikke?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5742
 msgid "Do you want to add the exif data tags to the page?  You will need to have the pyexiv2 library installed on your system.It can be downloaded from here: http://www.exiv2.org/ ."
@@ -17529,9 +17517,8 @@ msgid "Whether to include half and/ or step-siblings with the parents and siblin
 msgstr "Om halv- og/eller stesøsken skal tas med sammen med foreldrene og søsken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5881
-#, fuzzy
 msgid "Sort all children in birth order"
-msgstr "Sorter i fødselsrekkefølge"
+msgstr "Sorter i alle barn fødselsrekkefølge"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5882
 msgid "Whether to display children in birth order or in entry order?"
@@ -17558,14 +17545,12 @@ msgid "Include GENDEX file (/gendex.txt)"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5895
-#, fuzzy
 msgid "Whether to include a GENDEX file or not"
-msgstr "Ta med en fødselskolonne"
+msgstr "Om en GENDEX-fil skal tas med eller ikke"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5898
-#, fuzzy
 msgid "Include address book pages"
-msgstr "Ta med adresser"
+msgstr "Ta med adresseboksider"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5899
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
@@ -17701,36 +17686,32 @@ msgid "Jan - Jun Notes"
 msgstr "Notater for jan - jun"
 
 #: ../src/plugins/webreport/WebCal.py:1482
-#, fuzzy
 msgid "January Note"
-msgstr "jan-notat"
+msgstr "Januarnotat"
 
 #: ../src/plugins/webreport/WebCal.py:1483
 msgid "The note for the month of January"
 msgstr "Notatet for januar måned"
 
 #: ../src/plugins/webreport/WebCal.py:1486
-#, fuzzy
 msgid "February Note"
-msgstr "feb-notat"
+msgstr "Februarnotat"
 
 #: ../src/plugins/webreport/WebCal.py:1487
 msgid "The note for the month of February"
 msgstr "Notatet for februar måned"
 
 #: ../src/plugins/webreport/WebCal.py:1490
-#, fuzzy
 msgid "March Note"
-msgstr "mar-notat"
+msgstr "Marsnotat"
 
 #: ../src/plugins/webreport/WebCal.py:1491
 msgid "The note for the month of March"
 msgstr "Notatet for mars måned"
 
 #: ../src/plugins/webreport/WebCal.py:1494
-#, fuzzy
 msgid "April Note"
-msgstr "apr-notat"
+msgstr "Aprilnotat"
 
 #: ../src/plugins/webreport/WebCal.py:1495
 msgid "The note for the month of April"
@@ -17745,9 +17726,8 @@ msgid "The note for the month of May"
 msgstr "Notatet for mai måned"
 
 #: ../src/plugins/webreport/WebCal.py:1502
-#, fuzzy
 msgid "June Note"
-msgstr "jun-notat"
+msgstr "Juninotat"
 
 #: ../src/plugins/webreport/WebCal.py:1503
 msgid "The note for the month of June"
@@ -17758,54 +17738,48 @@ msgid "Jul - Dec Notes"
 msgstr "Notater for jul - des"
 
 #: ../src/plugins/webreport/WebCal.py:1508
-#, fuzzy
 msgid "July Note"
-msgstr "jul-notat"
+msgstr "Julinotat"
 
 #: ../src/plugins/webreport/WebCal.py:1509
 msgid "The note for the month of July"
 msgstr "Notatet for juli måned"
 
 #: ../src/plugins/webreport/WebCal.py:1512
-#, fuzzy
 msgid "August Note"
-msgstr "aug-notat"
+msgstr "Augustnotat"
 
 #: ../src/plugins/webreport/WebCal.py:1513
 msgid "The note for the month of August"
 msgstr "Notatet for august måned"
 
 #: ../src/plugins/webreport/WebCal.py:1516
-#, fuzzy
 msgid "September Note"
-msgstr "sep-notat"
+msgstr "Septembernotat"
 
 #: ../src/plugins/webreport/WebCal.py:1517
 msgid "The note for the month of September"
 msgstr "Notatet for september måned"
 
 #: ../src/plugins/webreport/WebCal.py:1520
-#, fuzzy
 msgid "October Note"
-msgstr "okt-notat"
+msgstr "Oktobernotat"
 
 #: ../src/plugins/webreport/WebCal.py:1521
 msgid "The note for the month of October"
 msgstr "Notatet for oktober måned"
 
 #: ../src/plugins/webreport/WebCal.py:1524
-#, fuzzy
 msgid "November Note"
-msgstr "nov-notat"
+msgstr "Novembernotat"
 
 #: ../src/plugins/webreport/WebCal.py:1525
 msgid "The note for the month of November"
 msgstr "Notatet for november måned"
 
 #: ../src/plugins/webreport/WebCal.py:1528
-#, fuzzy
 msgid "December Note"
-msgstr "des-notat"
+msgstr "Desembernotat"
 
 #: ../src/plugins/webreport/WebCal.py:1529
 msgid "The note for the month of December"
@@ -17820,33 +17794,28 @@ msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr "Om det skal lages en minikalender på en side med markerte datoer"
 
 #: ../src/plugins/webreport/WebCal.py:1550
-#, fuzzy
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Lager årsoversiktkalender"
+msgstr "Lage sider for endagshendelser i årsoversiktkalender"
 
 #: ../src/plugins/webreport/WebCal.py:1552
-#, fuzzy
 msgid "Whether to create one day pages or not"
-msgstr "Om flerårig kalender skal lages eller ikke."
+msgstr "Om det skal lages endagsider eller ikke"
 
 #: ../src/plugins/webreport/WebCal.py:1555
-#, fuzzy
 msgid "Link to Narrated Web Report"
-msgstr "Fortellende nettsider"
+msgstr "Lenke til fortellende nettsiderapport"
 
 #: ../src/plugins/webreport/WebCal.py:1556
-#, fuzzy
 msgid "Whether to link data to web report or not"
-msgstr "Ta med andre navn."
+msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1560
-#, fuzzy
 msgid "Link prefix"
-msgstr "forstavelse"
+msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1561
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
+msgstr "En forstavelse til lenken som tar deg til fortellende nettsiderapport"
 
 #: ../src/plugins/webreport/WebCal.py:1733
 #, python-format
@@ -17854,9 +17823,8 @@ msgid "%s old"
 msgstr "%s gammel"
 
 #: ../src/plugins/webreport/WebCal.py:1733
-#, fuzzy
 msgid "birth"
-msgstr "Født"
+msgstr "fødsel"
 
 #: ../src/plugins/webreport/WebCal.py:1740
 #, python-format
@@ -17978,13 +17946,12 @@ msgstr "Bruk det valgte verktøyet"
 
 #: ../src/PluginUtils/_PluginWindows.py:63
 #: ../src/PluginUtils/_PluginWindows.py:99
-#, fuzzy
 msgid "Hidden"
-msgstr "Assistent"
+msgstr "Skjult"
 
 #: ../src/PluginUtils/_PluginWindows.py:65
 msgid "Visible"
-msgstr ""
+msgstr "Synlig"
 
 #: ../src/PluginUtils/_PluginWindows.py:69
 #: ../src/PluginUtils/_PluginWindows.py:329
@@ -17992,22 +17959,20 @@ msgid "Plugin Status"
 msgstr "Status for programtillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:111
-#, fuzzy
 msgid "Info"
-msgstr "Spedbarn"
+msgstr "Info"
 
 #: ../src/PluginUtils/_PluginWindows.py:114
 msgid "Hide/Unhide"
-msgstr ""
+msgstr "Skjul/Vis"
 
 #: ../src/PluginUtils/_PluginWindows.py:121
-#, fuzzy
 msgid "Load"
-msgstr "Last på nytt"
+msgstr "Last"
 
 #: ../src/PluginUtils/_PluginWindows.py:127
 msgid "Registered plugins"
-msgstr ""
+msgstr "Registrerte programtillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:143
 msgid "File"
@@ -18018,9 +17983,8 @@ msgid "Message"
 msgstr "Beskjed"
 
 #: ../src/PluginUtils/_PluginWindows.py:153
-#, fuzzy
 msgid "Loaded plugins"
-msgstr "Laster inn programtillegg..."
+msgstr "Lastede programtillegg"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
@@ -18187,9 +18151,8 @@ msgid "The basic style used for the endnotes reference display."
 msgstr "Basisstilen som er brukt på sluttnotatet for referanser."
 
 #: ../src/ReportBase/_Endnotes.py:63
-#, fuzzy
 msgid "The basic style used for the endnotes notes display."
-msgstr "Basisstilen som er brukt på sluttnotatet for kilder."
+msgstr "Basisstilen som er brukt på sluttnotatet for notater."
 
 #: ../src/ReportBase/_Endnotes.py:107
 msgid "Endnotes"
@@ -18302,9 +18265,8 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr "Strukturert vektorgrafikk (SVG)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:823
-#, fuzzy
 msgid "Compressed Structured Vector Graphs (SVGZ)"
-msgstr "Komprimert strukturert vektorgrafikk (SVG)"
+msgstr "Komprimert strukturert vektorgrafikk (SVGZ)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:829
 msgid "JPEG image"
@@ -19870,9 +19832,8 @@ msgid "Events with <count> source"
 msgstr "Hendelser med <antall> kilder"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:44
-#, fuzzy
 msgid "Matches events with a certain number of items in the source"
-msgstr "Samsvarer med personer med et bestemt antall element i kilden"
+msgstr "Samsvarer med hendelser med et bestemt antall element i kilden"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
@@ -20684,7 +20645,6 @@ msgid "Collapse this section"
 msgstr "Slå sammen dette kapittelet"
 
 #: ../src/widgets/labels.py:91
-#, fuzzy
 msgid ""
 "Click to make this person active\n"
 "Right click to display the edit menu"
@@ -21748,7 +21708,6 @@ msgid "Orientation:"
 msgstr "Retning:"
 
 #: ../src/glade/papermenu.glade.h:7
-#, fuzzy
 msgid "Paper Settings"
 msgstr "Papirvalg"
 
@@ -21773,9 +21732,8 @@ msgid "Width:"
 msgstr "Bredde:"
 
 #: ../src/plugins/tool/notrelated.glade.h:1
-#, fuzzy
 msgid "NotRelated"
-msgstr "Ikke i slekt"
+msgstr "IkkeISlekt"
 
 #: ../src/plugins/tool/notrelated.glade.h:3
 msgid "_Marker"
@@ -21852,19 +21810,16 @@ msgid "<i>Double-click on the row to edit personal information</i>"
 msgstr "<i>Dobbeltklikk på raden for å redigere personlig informasjon</i>"
 
 #: ../src/plugins/tool/eval.glade.h:1
-#, fuzzy
 msgid "<b>Error Window</b>"
-msgstr "<b>Kanter</b>"
+msgstr "<b>Feilmeldingsvindu</b>"
 
 #: ../src/plugins/tool/eval.glade.h:2
-#, fuzzy
 msgid "<b>Evaluation Window</b>"
-msgstr "<b>Sted</b>"
+msgstr "<b>Evalueringsvindu</b>"
 
 #: ../src/plugins/tool/eval.glade.h:3
-#, fuzzy
 msgid "<b>Output Window</b>"
-msgstr "<b>Alternativer</b>"
+msgstr "<b>Utskriftsvindu</b>"
 
 #: ../src/plugins/tool/eventcmp.glade.h:1
 msgid "Custom filter _editor"
@@ -21944,9 +21899,8 @@ msgid "Version:"
 msgstr "Versjon:"
 
 #: ../src/plugins/tool/leak.glade.h:1
-#, fuzzy
 msgid "<b>Uncollected Objects</b>"
-msgstr "<b>Valgte regel</b>"
+msgstr ""
 
 #: ../src/plugins/tool/finddupes.glade.h:1
 msgid "<b>Match Threshold</b>"
@@ -21979,32 +21933,28 @@ msgid "_Accept and close"
 msgstr "Godt_a og lukk"
 
 #: ../src/plugins/tool/phpgedview.glade.h:1
-#, fuzzy
 msgid "- default -"
-msgstr "standard"
+msgstr "- standard -"
 
 #: ../src/plugins/tool/phpgedview.glade.h:2
-#, fuzzy
 msgid "<b>phpGedView import</b>"
-msgstr "<b>Delt informasjon</b>"
+msgstr "<b>phpGedView-import</b>"
 
 #: ../src/plugins/tool/phpgedview.glade.h:4
 msgid "Password:"
-msgstr ""
+msgstr "Passord:"
 
 #: ../src/plugins/tool/phpgedview.glade.h:6
-#, fuzzy
 msgid "Username:"
-msgstr "etternavn"
+msgstr "Brukernavn:"
 
 #: ../src/plugins/tool/phpgedview.glade.h:7
 msgid "http://"
-msgstr ""
+msgstr "http://"
 
 #: ../src/plugins/tool/phpgedview.glade.h:8
-#, fuzzy
 msgid "phpGedView import"
-msgstr "GeneWeb-import"
+msgstr "phpGedView-import"
 
 #: ../src/plugins/tool/relcalc.glade.h:1
 msgid "Select a person to determine the relationship"
