@@ -29,9 +29,22 @@ import DateHandler
 import Utils
 
 from BasicUtils import name_displayer
-from ReportBase import ReportUtils
 from gen.lib import EventType
 import config
+
+#-------------------------------------------------------------------------
+#
+# Local functions
+#
+#-------------------------------------------------------------------------
+# FIXME: this is copied from ReportBase._ReportUtils to avoid the gtk
+#        imports.
+def place_name(db, place_handle):
+    if place_handle:
+        place = db.get_place_from_handle(place_handle).get_title()
+    else:
+        place = ""
+    return unicode(place)
 
 class SimpleAccess(object):
     """
@@ -298,7 +311,7 @@ class SimpleAccess(object):
                 if event_handle:
                     event = self.dbase.get_event_from_handle(event_handle)
                     place_handle = event.get_place_handle()
-                    return ReportUtils.place_name(self.dbase, place_handle)
+                    return place_name(self.dbase, place_handle)
         return u''
 
     def spouse(self, person):
@@ -380,7 +393,7 @@ class SimpleAccess(object):
                                    if event.type == EventType.MARRIAGE ]
                         if events:
                             place_handle = events[0].get_place_handle()
-                            return ReportUtils.place_name(self.dbase, place_handle)
+                            return place_name(self.dbase, place_handle)
         return u''
 
     def marriage_date(self, person):
@@ -567,7 +580,7 @@ class SimpleAccess(object):
 
         if event:
             place_handle = event.get_place_handle()
-            return ReportUtils.place_name(self.dbase, place_handle)
+            return place_name(self.dbase, place_handle)
         else:
             return u''
 
