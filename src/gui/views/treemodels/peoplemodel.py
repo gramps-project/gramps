@@ -182,7 +182,7 @@ class PeopleModel(TreeBaseModel):
         
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)
-        sort_key = self.sort_func(data, handle)
+        sort_key = self.sort_func(data)
 
         #if group_name not in self.group_list:
             #self.group_list.append(group_name)
@@ -192,12 +192,12 @@ class PeopleModel(TreeBaseModel):
         # nodes in the treebasemodel, and will be used as iters
         self.add_node(group_name, handle, sort_key, handle)
         
-    def sort_name(self, data, node):
+    def sort_name(self, data):
         n = Name()
         n.unserialize(data[COLUMN_NAME])
         return name_displayer.sort_string(n)
 
-    def column_spouse(self, data, node):
+    def column_spouse(self, data):
         spouses_names = u""
         handle = data[0]
         for family_handle in data[COLUMN_FAMILY]:
@@ -214,40 +214,43 @@ class PeopleModel(TreeBaseModel):
                 spouses_names += name_displayer.display(spouse)
         return spouses_names
 
-    def column_name(self, data, node):
-        if node in self.lru_name:
-            name = self.lru_name[node]
+    def column_name(self, data):
+        handle = data[0]
+        if handle in self.lru_name:
+            name = self.lru_name[handle]
         else:
             name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
             if not self._in_build:
-                self.lru_name[node] = name
+                self.lru_name[handle] = name
         return name
 
-    def column_id(self, data, node):
+    def column_id(self, data):
         return data[COLUMN_ID]
         
-    def column_change(self, data, node):
+    def column_change(self, data):
         return unicode(
             time.strftime('%x %X',
                           time.localtime(data[COLUMN_CHANGE])),
             GrampsLocale.codeset)
 
-    def column_gender(self, data, node):
+    def column_gender(self, data):
         return PeopleModel._GENDER[data[COLUMN_GENDER]]
 
-    def column_birth_day(self, data, node):
-        if node in self.lru_bdate:
-            value = self.lru_bdate[node]
+    def column_birth_day(self, data):
+        handle = data[0]
+        if handle in self.lru_bdate:
+            value = self.lru_bdate[handle]
         else:
-            value = self._get_birth_data(data, node, False)
+            value = self._get_birth_data(data, False)
             if not self._in_build:
-                self.lru_bdate[node] = value
+                self.lru_bdate[handle] = value
         return value
         
-    def sort_birth_day(self, data, node):
-        return self._get_birth_data(data, node, True)
+    def sort_birth_day(self, data):
+        handle = data[0]
+        return self._get_birth_data(data, True)
 
-    def _get_birth_data(self, data, node, sort_mode):
+    def _get_birth_data(self, data, sort_mode):
         index = data[COLUMN_BIRTH]
         if index != -1:
             try:
@@ -288,19 +291,21 @@ class PeopleModel(TreeBaseModel):
         
         return u""
 
-    def column_death_day(self, data, node):
-        if node in self.lru_ddate:
-            value = self.lru_ddate[node]
+    def column_death_day(self, data):
+        handle = data[0]
+        if handle in self.lru_ddate:
+            value = self.lru_ddate[handle]
         else:
-            value = self._get_death_data(data, node, False)
+            value = self._get_death_data(data, False)
             if not self._in_build:
-                self.lru_ddate[node] = value
+                self.lru_ddate[handle] = value
         return value
         
-    def sort_death_day(self, data, node):
-        return self._get_death_data(data, node, True)
+    def sort_death_day(self, data):
+        handle = data[0]
+        return self._get_death_data(data, True)
 
-    def _get_death_data(self, data, node, sort_mode):
+    def _get_death_data(self, data, sort_mode):
         index = data[COLUMN_DEATH]
         if index != -1:
             try:
@@ -342,7 +347,7 @@ class PeopleModel(TreeBaseModel):
                     return retval
         return u""
 
-    def column_birth_place(self, data, node):
+    def column_birth_place(self, data):
         index = data[COLUMN_BIRTH]
         if index != -1:
             try:
@@ -377,7 +382,7 @@ class PeopleModel(TreeBaseModel):
         
         return u""
 
-    def column_death_place(self, data, node):
+    def column_death_place(self, data):
         index = data[COLUMN_DEATH]
         if index != -1:
             try:
@@ -412,12 +417,12 @@ class PeopleModel(TreeBaseModel):
                         return "<i>" + cgi.escape(place_title) + "</i>"
         return u""
 
-    def column_marker_text(self, data, node):
+    def column_marker_text(self, data):
         if COLUMN_MARKER < len(data):
             return str(data[COLUMN_MARKER])
         return ""
 
-    def column_marker_color(self, data, node):
+    def column_marker_color(self, data):
         try:
             if data[COLUMN_MARKER]:
                 if data[COLUMN_MARKER][0] == MarkerType.COMPLETE:
@@ -430,7 +435,7 @@ class PeopleModel(TreeBaseModel):
             pass
         return None
 
-    def column_tooltip(self, data, node):
+    def column_tooltip(self, data):
         if const.USE_TIPS:
             return ToolTips.TipFromFunction(
                 self.db,
@@ -439,8 +444,8 @@ class PeopleModel(TreeBaseModel):
         else:
             return u''
         
-    def column_int_id(self, data, node):
-        return node
+    def column_int_id(self, data):
+        return data[0]
 
     def column_header(self, node):
         return node

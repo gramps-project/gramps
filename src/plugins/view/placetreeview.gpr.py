@@ -1,0 +1,12 @@
+register(VIEW, 
+         id = 'placetreeview',
+         name = _("Place Tree View"),
+         description =  _("A view displaying places in a tree format."),
+         version = '1.0',
+         status = UNSTABLE,
+         fname = 'placetreeview.py',
+         authors = [u"Donald N. Allingham", u"Gary Burton", u"Nick Hall"],
+         authors_email = [""],
+         category = VIEW_PLACE,
+         viewclass = 'PlaceTreeView',
+  )

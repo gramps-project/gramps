@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009    Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,14 +19,16 @@
 #
 # $Id:_PlaceModel.py 9912 2008-01-22 09:17:46Z acraphae $
 
+"""
+Place Model.
+"""
 #-------------------------------------------------------------------------
 #
 # python modules
 #
 #-------------------------------------------------------------------------
-import time
 import logging
-log = logging.getLogger(".")
+_LOG = logging.getLogger(".gui.views.treemodels.placemodel")
 
 #-------------------------------------------------------------------------
 #
@@ -40,9 +42,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
-import GrampsLocale
+from gui.views.treemodels.placebasemodel import PlaceBaseModel
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -50,123 +50,13 @@ from gui.views.treemodels.flatbasemodel import FlatBaseModel
 # PlaceModel
 #
 #-------------------------------------------------------------------------
-class PlaceModel(FlatBaseModel):
-
-    HANDLE_COL = 12
-
-    def __init__(self,db,scol=0, order=gtk.SORT_ASCENDING,search=None,
+class PlaceModel(PlaceBaseModel, FlatBaseModel):
+    """
+    Flat place model.  (Original code in PlaceBaseModel).
+    """
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
-        self.gen_cursor = db.get_place_cursor
-        self.map = db.get_raw_place_data
-        self.fmap = [
-            self.column_name,
-            self.column_id,
-            self.column_parish,
-            self.column_postal_code,
-            self.column_city,
-            self.column_county,
-            self.column_state,
-            self.column_country,
-            self.column_latitude,
-            self.column_longitude,
-            self.column_change,
-            self.column_street,
-            self.column_handle,
-            self.column_tooltip
-            ]
-        self.smap = [
-            self.column_name,
-            self.column_id,
-            self.column_parish,
-            self.column_postal_code,
-            self.column_city,
-            self.column_county,
-            self.column_state,
-            self.column_country,
-            self.column_latitude,
-            self.column_longitude,
-            self.column_change,
-            self.column_street,
-            self.column_handle,
-            ]
+
+        PlaceBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, scol, order, tooltip_column=13,
                            search=search, skip=skip, sort_map=sort_map)
-
-    def on_get_n_columns(self):
-        return len(self.fmap)+1
-
-    def column_handle(self,data):
-        return unicode(data[0])
-
-    def column_name(self,data):
-        return unicode(data[2])
-
-    def column_longitude(self,data):
-        return unicode(data[3])
-
-    def column_latitude(self,data):
-        return unicode(data[4])
-
-    def column_id(self,data):
-        return unicode(data[1])
-
-    def column_parish(self,data):
-        try:
-            return data[5][1]
-        except:
-            return u''
-
-    def column_street(self,data):
-        try:
-            return data[5][0][0]
-        except:
-            return u''
-
-    def column_city(self,data):
-        try:
-            return data[5][0][1]
-        except:
-            return u''
-        
-    def column_county(self,data):
-        try:
-            return data[5][0][2]
-        except:
-            return u''
-    
-    def column_state(self,data):
-        try:
-            return data[5][0][3]
-        except:
-            return u''
-
-    def column_country(self,data):
-        try:
-            return data[5][0][4]
-        except:
-            return u''
-
-    def column_postal_code(self,data):
-        try:
-            return data[5][0][5]
-        except:
-            return u''
-
-    def sort_change(self,data):
-        return "%012x" % data[11]
-    
-    def column_change(self,data):
-        return unicode(time.strftime('%x %X',time.localtime(data[11])),
-                            GrampsLocale.codeset)
-
-    def column_tooltip(self,data):
-        if const.USE_TIPS:
-            try:
-                t = ToolTips.TipFromFunction(
-                    self.db, lambda:
-                    self.db.get_place_from_handle(data[0]))
-            except:
-                log.error("Failed to create tooltip.", exc_info=True)
-            return t
-        else:
-            return u''

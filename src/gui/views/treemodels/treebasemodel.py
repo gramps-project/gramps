@@ -280,7 +280,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self._in_build = False
 
         self.current_filter = data_filter
-        
+
         _LOG.debug(self.__class__.__name__ + ' rebuild_data ' +
                     str(time.clock() - cput) + ' sec')
 
@@ -560,7 +560,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 data = self.map(handle)
                 if not self._in_build:
                     self.lru_data[handle] = data
-            return (self.fmap[col](data, handle))
+            return (self.fmap[col](data))
         except:
             return None
 

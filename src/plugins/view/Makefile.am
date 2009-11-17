@@ -16,6 +16,8 @@ pkgdata_PYTHON = \
 	noteview.py \
 	pedigreeview.py \
 	personview.py \
+	placetreeview.gpr.py \
+	placetreeview.py \
 	placeview.py \
 	relview.py \
 	repoview.py \
