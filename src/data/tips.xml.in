@@ -209,18 +209,18 @@ Check it out.
 <_tip number="31">
 <b>Improving Gramps</b>: Users are encouraged to request enhancements to
 Gramps. 
-Requesting an enhancement can be done either through the gramps-users or
-gramps-devel mailing lists, or by creating a Feature Request at 
+Requesting an enhancement can be done either through the Gramps-users or
+Gramps-devel mailing lists, or by creating a Feature Request at 
 http://bugs.gramps-project.org
 Filing a Feature Request is preferred.
 </_tip>
 
 <_tip number="32">
 <b>Gramps Mailing Lists</b>: Want answers to your queries about Gramps?
-Check out the gramps-users list.
+Check out the Gramps-users list.
 Many people are on the list, so you're likely to get an answer quickly.
 If you have questions related to the development of Gramps,
-try gramps-devel. Information on both mailing lists can be found at
+try Gramps-devel. Information on both mailing lists can be found at
 lists.sf.net.
 </_tip>
 
@@ -230,7 +230,7 @@ Want to help with Gramps but can't program? Not a problem. A project
 as large as Gramps requires people with a wide variety of skills.
 Contributions can vary from writing documentation to testing development
 versions to helping with the web site.
-Start by subscribing to the gramps developers mailing list, gramps-devel
+Start by subscribing to the Gramps developers mailing list, Gramps-devel
 and introducing yourself.
 Subscription information can be found at lists.sf.net.
 </_tip>
@@ -412,7 +412,7 @@ is easier to distribute than multiple reports, especially when printed.
 
 <_tip number="59">
 Interested in getting notified when a new version of Gramps is released?
-Join the gramps-announce mailing list at 
+Join the Gramps-announce mailing list at 
 http://lists.sourceforge.net/lists/listinfo/gramps-announce
 </_tip>
 

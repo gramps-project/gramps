@@ -125,7 +125,7 @@ class ArgHandler(object):
             return db_path
         else:
             self.__error( _('Error: Input family tree "%s" does not exist.\n'
-                    "If gedcom, gramps-xml or grdb, use the -i option to "
+                    "If GEDCOM, Gramps-xml or grdb, use the -i option to "
                     "import into a family tree instead.") % value)
             sys.exit(0)
 

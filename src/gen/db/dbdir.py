@@ -1156,7 +1156,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.db_is_open = False
         raise FileVersionError(
             _("The database version is not supported by this "
-              "version of GRAMPS.\nPlease upgrade to the "
+              "version of Gramps.\nPlease upgrade to the "
               "corresponding version or use XML for porting "
               "data between different database versions."))
 

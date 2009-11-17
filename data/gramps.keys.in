@@ -1,5 +1,5 @@
 application/x-gramps:
-	_description=GRAMPS database
+	_description=Gramps database
 	default_action_type=application
 	short_list_application_ids=gramps
 	short_list_application_ids_for_novice_user_level=gramps
@@ -10,7 +10,7 @@ application/x-gramps:
 	open=gramps %f
 
 application/x-gramps-package:
-	_description=GRAMPS package
+	_description=Gramps package
 	default_action_type=application
 	short_list_application_ids=gramps
 	short_list_application_ids_for_novice_user_level=gramps
@@ -21,7 +21,7 @@ application/x-gramps-package:
 	open=gramps %f
 
 application/x-gramps-xml:
-	_description=GRAMPS XML database
+	_description=Gramps XML database
 	default_action_type=application
 	short_list_application_ids=gramps
 	short_list_application_ids_for_novice_user_level=gramps

@@ -298,7 +298,7 @@ class NavigationView(PageView):
             else:
                 self.uistate.push_message(
                     self.dbstate, 
-                    _("Error: %s is not a valid GRAMPS ID") % gid)
+                    _("Error: %s is not a valid Gramps ID") % gid)
         dialog.destroy()
 
     def get_handle_from_gramps_id(self, gid):

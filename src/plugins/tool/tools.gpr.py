@@ -486,8 +486,8 @@ tool_modes = [TOOL_MODE_GUI]
 
 register(TOOL, 
 id    = 'reorder_ids',
-name  = _("Reorder GRAMPS IDs"),
-description =  _("Reorders the gramps IDs "
+name  = _("Reorder Gramps IDs"),
+description =  _("Reorders the Gramps IDs "
                     "according to Gramps' default rules."),
 version = '1.0',
 status = STABLE,
