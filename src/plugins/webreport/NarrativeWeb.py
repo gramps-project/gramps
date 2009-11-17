@@ -2597,7 +2597,7 @@ class MediaPage(BasePage):
                     if date:
                         trow = Html("tr") + (
                             Html("td", DHEAD, class_ = "ColumnAttribute", inline = True),
-                            Html("td", format(date), class_ = "ColumnValue", inline = True)
+                            Html("td", format_date(date), class_ = "ColumnValue", inline = True)
                             )
                         table += trow
 
