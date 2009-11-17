@@ -204,7 +204,7 @@ span.preposition {
 ----------------------------------------------------- */
 #header  {
     margin:0;
-    height:1.5cm;
+    height: 60px;
     padding:0 0 .9em 0;
     background-color:#542;
     border-bottom:solid 2px #6AF364;
@@ -1224,7 +1224,8 @@ body#WebCal {
     color:#FFF;
 }
 #CreatorInfo a:hover {
-    color:#FFF;
+    background-color: #C1B398;
+    color: #000;
 }
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
@@ -1235,13 +1236,14 @@ body#WebCal {
 }
 .calendar tfoot tr td {
     padding:.7em 5% 1em 5%;
-    border-top:solid 2px #000;
+    border-top: solid 1px #5D835F;
     vertical-align:middle;
-    color:#453619;
+    color: #000;
     background-color:#D8F3D6;
 }
 
-/* Calendar : Date Numeral */
+/* Calendar : Date Numeral 
+------------------------------------------- */
 .calendar tbody tr td div.date {
     float:right;
     display:block;
