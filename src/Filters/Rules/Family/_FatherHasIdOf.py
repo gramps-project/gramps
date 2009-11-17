@@ -46,7 +46,7 @@ class FatherHasIdOf(HasGrampsId):
     labels      = [ _('Person ID:') ]
     name        = _('Families with father with the <Id>')
     description = _("Matches families whose father has a specified "
-                    "GRAMPS ID")
+                    "Gramps ID")
     category    = _('Father filters')
     base_class = HasGrampsId
     apply = father_base

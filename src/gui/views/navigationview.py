@@ -267,11 +267,11 @@ class NavigationView(PageView):
         """
         A dialog to move to a Gramps ID entered by the user.
         """
-        dialog = gtk.Dialog(_('Jump to by GRAMPS ID'), None, 
+        dialog = gtk.Dialog(_('Jump to by Gramps ID'), None, 
                             gtk.DIALOG_NO_SEPARATOR)
         dialog.set_border_width(12)
         label = gtk.Label('<span weight="bold" size="larger">%s</span>' % 
-                          _('Jump to by GRAMPS ID'))
+                          _('Jump to by Gramps ID'))
         label.set_use_markup(True)
         dialog.vbox.add(label)
         dialog.vbox.set_spacing(10)

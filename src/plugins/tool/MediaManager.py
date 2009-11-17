@@ -88,7 +88,7 @@ class MediaMan(Tool.Tool):
         except Errors.WindowActiveError:
             return
 
-        self.welcome_page = self.w.add_text_page(_('GRAMPS Media Manager'),
+        self.welcome_page = self.w.add_text_page(_('Gramps Media Manager'),
                                                  self.get_info_text())
         self.selection_page = self.w.add_page(_('Selecting operation'),
                                               self.build_selection_page())
@@ -113,22 +113,22 @@ class MediaMan(Tool.Tool):
 
     def get_info_text(self):
         return _("This tool allows batch operations on media objects "
-                 "stored in GRAMPS. "
-                 "An important distinction must be made between a GRAMPS "
+                 "stored in Gramps. "
+                 "An important distinction must be made between a Gramps "
                  "media object and its file.\n\n"
-                 "The GRAMPS media object is a collection of data about "
+                 "The Gramps media object is a collection of data about "
                  "the media object file: its filename and/or path, its "
                  "description, its ID, notes, source references, etc. "
                  "These data <b>do not include the file itself</b>.\n\n"
                  "The files containing image, sound, video, etc, exist "
                  "separately on your hard drive. These files are "
-                 "not managed by GRAMPS and are not included in the GRAMPS "
+                 "not managed by Gramps and are not included in the Gramps "
                  "database. "
-                 "The GRAMPS database only stores the path and file names.\n\n"
+                 "The Gramps database only stores the path and file names.\n\n"
                  "This tool allows you to only modify the records within "
-                 "your GRAMPS database. If you want to move or rename "
+                 "your Gramps database. If you want to move or rename "
                  "the files then you need to do it on your own, outside of "
-                 "GRAMPS. Then you can adjust the paths using this tool so "
+                 "Gramps. Then you can adjust the paths using this tool so "
                  "that the media objects store the correct file locations.")
 
     def build_selection_page(self):

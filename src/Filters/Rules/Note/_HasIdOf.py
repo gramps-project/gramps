@@ -43,4 +43,4 @@ class HasIdOf(HasGrampsId):
     """Rule that checks for a note with a specific GRAMPS ID"""
 
     name        = _('Note with <Id>')
-    description = _("Matches a note with a specified GRAMPS ID")
+    description = _("Matches a note with a specified Gramps ID")

@@ -59,7 +59,7 @@ class ErrorView(object):
         GrampsDisplay.help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def draw_window(self):
-        title = "%s - GRAMPS" % _("Error Report")
+        title = "%s - Gramps" % _("Error Report")
         self.top = gtk.Dialog(title)
         #self.top.set_default_size(400,350)
         self.top.set_has_separator(False)
@@ -70,7 +70,7 @@ class ErrorView(object):
         image = gtk.Image()
         image.set_from_stock(gtk.STOCK_DIALOG_ERROR, gtk.ICON_SIZE_DIALOG)
         label = gtk.Label('<span size="larger" weight="bold">%s</span>'
-                          % _("GRAMPS has experienced an unexpected error"))
+                          % _("Gramps has experienced an unexpected error"))
         label.set_use_markup(True)
 
         hbox.pack_start(image,False)
@@ -79,8 +79,8 @@ class ErrorView(object):
         self.top.vbox.pack_start(hbox,False,False,5)
 
         instructions_label = gtk.Label(
-            _("Your data will be safe but it would be advisable to restart GRAMPS immediately. "\
-              "If you would like to report the problem to the GRAMPS team "\
+            _("Your data will be safe but it would be advisable to restart Gramps immediately. "\
+              "If you would like to report the problem to the Gramps team "\
               "please click Report and the Error Reporting Wizard will help you "\
               "to make a bug report."))
         instructions_label.set_line_wrap(True)

@@ -497,7 +497,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 'The copy of your data has been '
                 'successfully saved. You may press Close button '
                 'now to continue.\n\n'
-                'Note: the database currently opened in your GRAMPS '
+                'Note: the database currently opened in your Gramps '
                 'window is NOT the file you have just saved. '
                 'Future editing of the currently opened database will '
                 'not alter the copy you have just made. ')
@@ -533,11 +533,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         ManagedWindow.ManagedWindow.close(self,*obj)
 
     def get_intro_text(self):
-        return _('Under normal circumstances, GRAMPS does not require you '
+        return _('Under normal circumstances, Gramps does not require you '
                  'to directly save your changes. All changes you make are '
                  'immediately saved to the database.\n\n'
                  'This process will help you save a copy of your data '
-                 'in any of the several formats supported by GRAMPS. '
+                 'in any of the several formats supported by Gramps. '
                  'This can be used to make a copy of your data, backup '
                  'your data, or convert it to a format that will allow '
                  'you to transfer it to a different program.\n\n'

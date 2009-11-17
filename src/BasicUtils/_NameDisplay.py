@@ -100,7 +100,7 @@ class NameDisplay(object):
                   Name.get_first_name)
 
     STANDARD_FORMATS = [
-        (Name.DEF,_("Default format (defined by GRAMPS preferences)"),'',_ACT),
+        (Name.DEF,_("Default format (defined by Gramps preferences)"),'',_ACT),
         (Name.LNFN,_("Surname, Given Patronymic"),'%p %l, %f %y %s',_ACT),
         (Name.FNLN,_("Given Surname"),'%f %y %p %l %s',_ACT),
         (Name.PTFN,_("Patronymic, Given"),'%p %y, %s %f',_ACT),

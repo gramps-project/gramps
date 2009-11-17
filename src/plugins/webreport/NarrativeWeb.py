@@ -127,7 +127,7 @@ COUNTY = _("County")
 COUNTRY = _("Country")
 DHEAD = _("Date")
 DESCRHEAD = _("Description")
-GRAMPSID = _("GRAMPS ID")
+GRAMPSID = _("Gramps ID")
 LATITUDE = _("Latitude")
 LOCATIONS = _("Alternate Locations")
 LONGITUDE = _("Longitude")
@@ -3317,7 +3317,7 @@ class ContactPage(BasePage):
                         researcher += Html("span", r.country, id = 'country', inline = True)
                     if r.email:
                         researcher += ( Html("span", id = 'email') +
-                            Html("a", r.email, href = 'mailto:%s?subject="from GRAMPS Web Site"' 
+                            Html("a", r.email, href = 'mailto:%s?subject="from Gramps Web Site"' 
                                 % r.email, inline = True)
                             )
 
@@ -5760,7 +5760,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__gallery_changed()
 
-        nogid = BooleanOption(_('Suppress GRAMPS ID'), False)
+        nogid = BooleanOption(_('Suppress Gramps ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         menu.add_option(category_name, 'nogid', nogid)
 

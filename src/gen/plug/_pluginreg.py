@@ -78,7 +78,7 @@ PTYPE_STR   = {
         DOCGEN: _('Doc creator'), 
         GENERAL: _('Plugin lib'), 
         MAPSERVICE: _('Map service'), 
-        VIEW: _('GRAMPS View'), 
+        VIEW: _('Gramps View'), 
         RELCALC: _('Relationships'), 
         GRAMPLET: _('Gramplet'),
         }

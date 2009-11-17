@@ -82,8 +82,8 @@ plg.extension = "gw"
 
 plg = newplugin()
 plg.id    = 'im_gpkg'
-plg.name  = _('GRAMPS package (portable XML)')
-plg.description =  _('Import data from a GRAMPS package (an archived XML '
+plg.name  = _('Gramps package (portable XML)')
+plg.description =  _('Import data from a Gramps package (an archived XML '
                      'family tree together with the media object files.')
 plg.version = '1.0'
 plg.status = STABLE
@@ -100,11 +100,11 @@ plg.extension = "gpkg"
 
 plg = newplugin()
 plg.id    = 'im_gramps'
-plg.name  = _('GRAMPS XML Family Tree')
-plg.description =  _('The GRAMPS XML format is a text '
+plg.name  = _('Gramps XML Family Tree')
+plg.description =  _('The Gramps XML format is a text '
                      'version of a family tree. It is '
                      'read-write compatible with the '
-                     'present GRAMPS database format.')
+                     'present Gramps database format.')
 plg.version = '1.0'
 plg.status = STABLE
 plg.fname = 'ImportXml.py'
@@ -120,8 +120,8 @@ plg.extension = "gramps"
 
 plg = newplugin()
 plg.id    = 'im_grdb'
-plg.name  = _('GRAMPS 2.x database')
-plg.description =  _('Import data from GRAMPS 2.x database files')
+plg.name  = _('Gramps 2.x database')
+plg.description =  _('Import data from Gramps 2.x database files')
 plg.version = '1.0'
 plg.status = STABLE
 plg.fname = 'ImportGrdb.py'

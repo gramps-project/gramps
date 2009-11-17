@@ -1127,7 +1127,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
         self.db_is_open = False
         raise FileVersionError(
             "The database version is not supported by this "
-            "version of GRAMPS.\nPlease upgrade to the "
+            "version of Gramps.\nPlease upgrade to the "
             "corresponding version or use XML for porting"
             "data between different database versions.")
 
@@ -2728,14 +2728,14 @@ def importData(database, filename, callback=None, cl=0):
             print "Error: %s could not be opened.\n%s  Exiting." \
                   % (filename, 
                      _("The database version is not supported "
-                       "by this version of GRAMPS.\n"\
+                       "by this version of Gramps.\n"\
                        "Please upgrade to the corresponding version "
                        "or use XML for porting data between different "
                        "database versions."))
         else:
             ErrorDialog(_("%s could not be opened") % filename, 
                         _("The Database version is not supported "
-                          "by this version of GRAMPS."))
+                          "by this version of Gramps."))
         return
 
     # If other_database contains its custom name formats, 

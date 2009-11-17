@@ -46,7 +46,7 @@ class MotherHasIdOf(HasGrampsId):
     labels      = [ _('Person ID:') ]
     name        = _('Families with mother with the <Id>')
     description = _("Matches families whose mother has a specified "
-                    "GRAMPS ID")
+                    "Gramps ID")
     category    = _('Mother filters')
     base_class = HasGrampsId
     apply = mother_base

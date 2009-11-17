@@ -70,8 +70,8 @@ MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
     print gettext.gettext("Your Python version does not meet the "
                   "requirements. At least python %d.%d.%d is needed to"
-                  " start GRAMPS.\n\n"
-                  "GRAMPS will terminate now.") % (
+                  " start Gramps.\n\n"
+                  "Gramps will terminate now.") % (
                                         MIN_PYTHON_VERSION[0], 
                                         MIN_PYTHON_VERSION[1],
                                         MIN_PYTHON_VERSION[2])
@@ -145,9 +145,9 @@ def run():
     if not mime_type_is_defined(const.APP_GRAMPS):
         error += [(_("Configuration error"), 
                     _("A definition for the MIME-type %s could not "
-                      "be found \n\n Possibly the installation of GRAMPS "
+                      "be found \n\n Possibly the installation of Gramps "
                       "was incomplete. Make sure the MIME-types "
-                      "of GRAMPS are properly installed.")
+                      "of Gramps are properly installed.")
                     % const.APP_GRAMPS)]
     
     #we start with parsing the arguments to determine if we have a cli or a

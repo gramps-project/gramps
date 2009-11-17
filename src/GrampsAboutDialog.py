@@ -78,7 +78,7 @@ class GrampsAboutDialog(gtk.AboutDialog):
         self.set_version(const.VERSION)
         self.set_copyright(const.COPYRIGHT_MSG)
         self.set_artists([
-            _("Much of GRAMPS' artwork is either from\n"
+            _("Much of Gramps' artwork is either from\n"
               "the Tango Project or derived from the Tango\n"
               "Project. This artwork is released under the\n"
               "Creative Commons Attribution-ShareAlike 2.5\n"
@@ -93,7 +93,7 @@ class GrampsAboutDialog(gtk.AboutDialog):
             self.set_license("License file is missing")
 
         self.set_comments(_(const.COMMENTS) + self.get_versions())
-        self.set_website_label(_('GRAMPS Homepage'))
+        self.set_website_label(_('Gramps Homepage'))
         self.set_website(const.URL_HOMEPAGE)
         
         self.set_authors(_get_authors())

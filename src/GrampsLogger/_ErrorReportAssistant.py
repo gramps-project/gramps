@@ -48,7 +48,7 @@ class ErrorReportAssistant(object):
 
         self.w.add_text_page(
             _('Complete'),
-            _('GRAMPS is an Open Source project. Its success '
+            _('Gramps is an Open Source project. Its success '
               'depends on its users. User feedback is important. '
               'Thank you for taking the time to submit a bug report.'))
 

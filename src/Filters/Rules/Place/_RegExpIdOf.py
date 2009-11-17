@@ -46,5 +46,5 @@ class RegExpIdOf(RegExpIdBase):
     """
 
     name        = _('Places with <Id> matching regular expression')
-    description = _("Matches places whose GRAMPS ID matches "
+    description = _("Matches places whose Gramps ID matches "
                     "the regular expression")

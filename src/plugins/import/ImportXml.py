@@ -130,11 +130,11 @@ def importData(database, filename, callback=None, cl=0):
     except ExpatError, msg:
         if cl:
             print "Error reading %s" % filename
-            print "The file is probably either corrupt or not a valid GRAMPS database."
+            print "The file is probably either corrupt or not a valid Gramps database."
             sys.exit(1)
         else:
             ErrorDialog(_("Error reading %s") % filename, 
-                        _("The file is probably either corrupt or not a valid GRAMPS database."))
+                        _("The file is probably either corrupt or not a valid Gramps database."))
             return
 
     xml_file.close()
@@ -777,7 +777,7 @@ class GrampsParser(UpdateCallback):
         del self.func_map
         del self.func_list
         del self.p
-        self.db.transaction_commit(self.trans, _("GRAMPS XML import"))
+        self.db.transaction_commit(self.trans, _("Gramps XML import"))
         self.db.enable_signals()
         self.db.request_rebuild()
         return self.info
@@ -2478,9 +2478,9 @@ def version_is_valid(filename, cli):
     
     if parser.get_xmlns_version() > libgrampsxml.GRAMPS_XML_VERSION:
         msg = _("The .gramps file you are importing was made by version %s of "
-                "GRAMPS, while you are running an older version %s. "
+                "Gramps, while you are running an older version %s. "
                 "The file will not be imported. Please upgrade to the latest "
-                "version of GRAMPS and try again." 
+                "version of Gramps and try again." 
                 ) % (parser.get_gramps_version(), const.VERSION)
         if cli:
             print msg
@@ -2490,10 +2490,10 @@ def version_is_valid(filename, cli):
             return False
     if parser.get_xmlns_version() < '1.0.0':
         msg = _("The .gramps file you are importing was made by version "
-                "%(oldgramps)s of GRAMPS, while you are running a more "
+                "%(oldgramps)s of Gramps, while you are running a more "
                 "recent version %(newgramps)s.\n\n"
                 "The file will not be imported. Please use an older version of"
-                " GRAMPS that supports version %(xmlversion)s of the xml.\nSee"
+                " Gramps that supports version %(xmlversion)s of the xml.\nSee"
                 "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n "
                 "for more info."
                 ) % {'oldgramps': parser.get_gramps_version(), 
@@ -2508,11 +2508,11 @@ def version_is_valid(filename, cli):
             return False
     elif parser.get_xmlns_version() < '1.1.0':
         msg = _("The .gramps file you are importing was made by version "
-                "%(oldgramps)s of GRAMPS, while you are running a much "
+                "%(oldgramps)s of Gramps, while you are running a much "
                 "more recent version %(newgramps)s.\n\n"
                 "Ensure after import everything is imported correctly. In the "
                 "event of problems, please submit a bug and use an older "
-                "version of GRAMPS in the meantime to import this file, which "
+                "version of Gramps in the meantime to import this file, which "
                 "is version %(xmlversion)s of the xml.\nSee"
                 "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
                 "for more info."

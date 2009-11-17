@@ -105,8 +105,8 @@ plg.extension = "gw"
 
 plg = newplugin()
 plg.id    = 'ex_gpkg'
-plg.name  = _('GRAM_PS package (portable XML)')
-plg.description =  _('GRAMPS package is an archived XML family tree together '
+plg.name  = _('Gram_ps package (portable XML)')
+plg.description =  _('Gramps package is an archived XML family tree together '
                  'with the media object files.')
 plg.version = '1.0'
 plg.status = STABLE
@@ -114,7 +114,7 @@ plg.fname = 'ExportPkg.py'
 plg.ptype = EXPORT
 plg.export_function = 'writeData'
 plg.export_options = 'ExportOptions.WriterOptionBox'
-plg.export_options_title = ('GRAMPS package export options')
+plg.export_options_title = ('Gramps package export options')
 plg.extension = "gpkg"
 
 #------------------------------------------------------------------------
@@ -125,9 +125,9 @@ plg.extension = "gpkg"
 
 plg = newplugin()
 plg.id    = 'ex_gramps'
-plg.name  = _('GRAMPS _XML family tree')
-plg.description =  _('GRAMPS XML export is a complete archived XML backup of a' 
-                 ' GRAMPS family tree without the media object files.'
+plg.name  = _('Gramps _XML family tree')
+plg.description =  _('Gramps XML export is a complete archived XML backup of a' 
+                 ' Gramps family tree without the media object files.'
                  ' Suitable for backup purposes.')
 plg.version = '1.0'
 plg.status = STABLE
@@ -135,7 +135,7 @@ plg.fname = 'ExportXml.py'
 plg.ptype = EXPORT
 plg.export_function = 'export_data'
 plg.export_options = 'ExportOptions.WriterOptionBox'
-plg.export_options_title = ('GRAMPS XML export options')
+plg.export_options_title = ('Gramps XML export options')
 plg.extension = "gramps"
 
 #------------------------------------------------------------------------

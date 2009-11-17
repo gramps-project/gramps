@@ -43,4 +43,4 @@ class HasIdOf(HasGrampsId):
     """Rule that checks for a family with a specific GRAMPS ID"""
 
     name        = _('Event with <Id>')
-    description = _("Matches an event with a specified GRAMPS ID")
+    description = _("Matches an event with a specified Gramps ID")

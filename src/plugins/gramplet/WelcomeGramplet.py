@@ -32,14 +32,14 @@ from TransUtils import sgettext as _
 #------------------------------------------------------------------------
 def make_welcome_content(gui):
     text = _(
-        'Welcome to GRAMPS!\n\n'
-        'GRAMPS is a software package designed for genealogical research.'
-        ' Although similar to other genealogical programs, GRAMPS offers '
+        'Welcome to Gramps!\n\n'
+        'Gramps is a software package designed for genealogical research.'
+        ' Although similar to other genealogical programs, Gramps offers '
         'some unique and powerful features.\n\n'
-        'GRAMPS is an Open Source Software package, which means you are '
+        'Gramps is an Open Source Software package, which means you are '
         'free to make copies and distribute it to anyone you like. It\'s '
         'developed and maintained by a worldwide team of volunteers whose'
-        ' goal is to make GRAMPS powerful, yet easy to use.\n\n'
+        ' goal is to make Gramps powerful, yet easy to use.\n\n'
         'Getting Started\n\n'
         'The first thing you must do is to create a new Family Tree. To '
         'create a new Family Tree (sometimes called a database) select '
@@ -51,8 +51,8 @@ def make_welcome_content(gui):
         'You can right-click on the background of this page to add additional'
         ' gramplets and change the number of columns. You can also drag the '
         'Properties button to reposition the gramplet on this page, and detach'
-        ' the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet'
+        ' the gramplet to float above Gramps. If you close Gramps with a gramplet'
         ' detached, it will re-open detached the next time you start '
-        'GRAMPS.'
+        'Gramps.'
             )
     gui.set_text(text)

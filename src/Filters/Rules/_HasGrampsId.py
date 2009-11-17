@@ -44,7 +44,7 @@ class HasGrampsId(Rule):
 
     labels      = [ _('ID:') ]
     name        = _('Object with <Id>')
-    description = _("Matches objects with a specified GRAMPS ID")
+    description = _("Matches objects with a specified Gramps ID")
     category    = _('General filters')
 
     def apply(self, db, obj):

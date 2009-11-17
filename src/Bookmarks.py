@@ -198,7 +198,7 @@ class Bookmarks :
 
     def draw_window(self):
         """Draw the bookmark dialog box."""
-        title = _("%(title)s - GRAMPS") % {'title': _("Organize Bookmarks")}
+        title = _("%(title)s - Gramps") % {'title': _("Organize Bookmarks")}
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400, 350)
         self.top.set_modal(True)

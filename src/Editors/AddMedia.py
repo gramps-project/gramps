@@ -219,7 +219,7 @@ def scale_image(path, size):
     """
 
     title_msg = _("Cannot display %s") % path
-    detail_msg =  _('GRAMPS is not able to display the image file. '
+    detail_msg =  _('Gramps is not able to display the image file. '
                     'This may be caused by a corrupt file.')
     
     try:

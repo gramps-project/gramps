@@ -62,9 +62,9 @@ class ReorderIds(Tool.BatchTool):
         db = dbstate.db
         self.uistate = uistate
         if uistate:
-            self.progress = ProgressMeter(_('Reordering GRAMPS IDs'),'')
+            self.progress = ProgressMeter(_('Reordering Gramps IDs'),'')
         else:
-            print "Reordering GRAMPS IDs..."
+            print "Reordering Gramps IDs..."
 
         self.trans = db.transaction_begin("", batch=True)
         db.disable_signals()
@@ -156,7 +156,7 @@ class ReorderIds(Tool.BatchTool):
         else:
             print "Done."
 
-        db.transaction_commit(self.trans, _("Reorder GRAMPS IDs"))
+        db.transaction_commit(self.trans, _("Reorder Gramps IDs"))
         db.enable_signals()
         db.request_rebuild()
         

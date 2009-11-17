@@ -282,7 +282,7 @@ register(GRAMPLET,
          height=300,
          expand=True,
          gramplet = 'make_welcome_content',
-         gramplet_title=_("Welcome to GRAMPS!"),
+         gramplet_title=_("Welcome to Gramps!"),
          )
 
 register(GRAMPLET, 

@@ -377,7 +377,7 @@
   </object>
   <object class="GtkDialog" id="importgedcom">
     <property name="width_request">400</property>
-    <property name="title" translatable="yes">GRAMPS - GEDCOM Encoding</property>
+    <property name="title" translatable="yes">Gramps - GEDCOM Encoding</property>
     <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>

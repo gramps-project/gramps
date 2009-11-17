@@ -1157,7 +1157,7 @@ class BookReportDialog(DocReportDialog):
         return _("Book Report")
 
     def get_header(self, name):
-        return _("GRAMPS Book")
+        return _("Gramps Book")
 
     def make_doc_menu(self, active=None):
         """Build a menu of document types that are appropriate for

@@ -46,5 +46,5 @@ class RegExpIdOf(RegExpIdBase):
     """
 
     name        = _('Media Objects with <Id> matching regular expression')
-    description = _("Matches media objects whose GRAMPS ID matches "
+    description = _("Matches media objects whose Gramps ID matches "
                     "the regular expression")

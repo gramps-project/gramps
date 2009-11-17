@@ -414,7 +414,7 @@ class CalendarOptions(MenuReportOptions):
         text1.set_help(_("First line of text at bottom of calendar"))
         menu.add_option(category_name, "text1", text1)
 
-        text2 = StringOption(_("Text Area 2"), _("Produced with GRAMPS"))
+        text2 = StringOption(_("Text Area 2"), _("Produced with Gramps"))
         text2.set_help(_("Second line of text at bottom of calendar"))
         menu.add_option(category_name, "text2", text2)
 

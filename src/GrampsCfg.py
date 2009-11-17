@@ -763,7 +763,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the data format will not take '
-                   'effect until the next time GRAMPS is started.'))
+                   'effect until the next time Gramps is started.'))
 
     def add_date_panel(self):
         table = gtk.Table(2, 7)

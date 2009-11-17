@@ -43,4 +43,4 @@ class HasIdOf(HasGrampsId):
     """Rule that checks for a source with a specific GRAMPS ID"""
 
     name        = _('Source with <Id>')
-    description = _("Matches a source with a specified GRAMPS ID")
+    description = _("Matches a source with a specified Gramps ID")

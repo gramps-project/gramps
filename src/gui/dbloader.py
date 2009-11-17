@@ -115,7 +115,7 @@ class DbLoader(CLIDbLoader):
             
         pmgr = GuiPluginManager.get_instance()
         
-        import_dialog = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
+        import_dialog = gtk.FileChooserDialog(_('Gramps: Import database'), 
                                        self.uistate.window, 
                                        gtk.FILE_CHOOSER_ACTION_OPEN, 
                                        (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
@@ -174,9 +174,9 @@ class DbLoader(CLIDbLoader):
                 # Finally, we give up and declare this an unknown format
                 ErrorDialog(
                     _("Could not open file: %s") % filename, 
-                    _('File type "%s" is unknown to GRAMPS.\n\n'
-                      'Valid types are: GRAMPS database, GRAMPS XML, '
-                      'GRAMPS package, GEDCOM, and others.') % extension)
+                    _('File type "%s" is unknown to Gramps.\n\n'
+                      'Valid types are: Gramps database, Gramps XML, '
+                      'Gramps package, GEDCOM, and others.') % extension)
 
         import_dialog.destroy()
         return False

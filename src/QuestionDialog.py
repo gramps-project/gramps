@@ -189,7 +189,7 @@ class RunDatabaseRepair(ErrorDialog):
         ErrorDialog.__init__(
             self,
             _('Error detected in database'),
-            _('GRAMPS has detected an error in the database. This can '
+            _('Gramps has detected an error in the database. This can '
               'usually be resolved by running the "Check and Repair Database" '
               'tool.\n\nIf this problem continues to exist after running this '
               'tool, please file a bug report at '
@@ -200,7 +200,7 @@ class DBErrorDialog(ErrorDialog):
         ErrorDialog.__init__(
             self,
             _("Low level database corruption detected"),
-            _("GRAMPS has detected a problem in the underlying "
+            _("Gramps has detected a problem in the underlying "
               "Berkeley database. This can be repaired by from "
               "the Family Tree Manager. Select the database and "
               'click on the Repair button') + '\n\n' + str(msg), parent)

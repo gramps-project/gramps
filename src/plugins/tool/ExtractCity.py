@@ -525,7 +525,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         lbl.set_text(
             _('Below is a list of Places with the possible data that can '
               'be extracted from the place title. Select the places you '
-              'wish GRAMPS to convert.'))
+              'wish Gramps to convert.'))
 
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
                                    gobject.TYPE_STRING, gobject.TYPE_STRING, 

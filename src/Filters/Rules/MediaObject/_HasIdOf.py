@@ -43,4 +43,4 @@ class HasIdOf(HasGrampsId):
     """Rule that checks for a media object with a specific GRAMPS ID"""
 
     name        = _('Media object with <Id>')
-    description = _("Matches a media object with a specified GRAMPS ID")
+    description = _("Matches a media object with a specified Gramps ID")

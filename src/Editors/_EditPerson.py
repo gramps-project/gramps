@@ -728,7 +728,7 @@ class EditPerson(EditPrimary):
             prim_object = self.get_from_gramps_id(id)
             name = self.name_displayer.display(prim_object)
             msg1 = _("Cannot save person. ID already exists.")
-            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+            msg2 = _("You have attempted to use the existing Gramps ID with "
                          "value %(id)s. This value is already used by '" 
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {

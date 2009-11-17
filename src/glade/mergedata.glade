@@ -636,7 +636,7 @@
             </child>
             <child>
               <object class="GtkRadioButton" id="gramps_btn1">
-                <property name="label" translatable="yes">GRAMPS ID:</property>
+                <property name="label" translatable="yes">Gramps ID:</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
@@ -654,7 +654,7 @@
             </child>
             <child>
               <object class="GtkRadioButton" id="gramps_btn2">
-                <property name="label" translatable="yes">GRAMPS ID:</property>
+                <property name="label" translatable="yes">Gramps ID:</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>

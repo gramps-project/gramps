@@ -360,7 +360,7 @@ class DbManager(CLIDbManager):
 
         QuestionDialog(
             _("Break the lock on the '%s' database?") % store[path][0],
-            _("GRAMPS believes that someone else is actively editing "
+            _("Gramps believes that someone else is actively editing "
               "this database. You cannot edit this database while it "
               "is locked. If no one is editing the database you may "
               "safely break the lock. However, if someone else is editing "

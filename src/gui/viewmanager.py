@@ -435,9 +435,9 @@ class ViewManager(CLIManager):
             ('Preferences', gtk.STOCK_PREFERENCES, _('_Preferences...'), None,
              None, self.preferences_activate), 
             ('HelpMenu', None, _('_Help')), 
-            ('HomePage', None, _('GRAMPS _Home Page'), None, None, 
+            ('HomePage', None, _('Gramps _Home Page'), None, None, 
              home_page_activate),
-            ('MailingLists', None, _('GRAMPS _Mailing Lists'), None, None, 
+            ('MailingLists', None, _('Gramps _Mailing Lists'), None, None, 
              mailing_lists_activate), 
             ('ReportBug', None, _('_Report a Bug'), None, None, 
              report_bug_activate),
@@ -1248,11 +1248,11 @@ class ViewManager(CLIManager):
             name = title
 
         if self.dbstate.db.readonly:
-            msg =  "%s (%s) - GRAMPS" % (name, _('Read Only'))
+            msg =  "%s (%s) - Gramps" % (name, _('Read Only'))
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(False)
         else:
-            msg = "%s - GRAMPS" % name
+            msg = "%s - Gramps" % name
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(True)
 

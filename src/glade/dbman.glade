@@ -4,7 +4,7 @@
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="dbmanager">
     <property name="border_width">6</property>
-    <property name="title" translatable="yes">Family Trees - GRAMPS</property>
+    <property name="title" translatable="yes">Family Trees - Gramps</property>
     <property name="window_position">center-on-parent</property>
     <property name="default_width">710</property>
     <property name="default_height">300</property>
@@ -287,7 +287,7 @@
     </action-widgets>
   </object>
   <object class="GtkDialog" id="comment">
-    <property name="title" translatable="yes">Revision comment - GRAMPS</property>
+    <property name="title" translatable="yes">Revision comment - Gramps</property>
     <property name="modal">True</property>
     <property name="window_position">center-on-parent</property>
     <property name="default_width">450</property>

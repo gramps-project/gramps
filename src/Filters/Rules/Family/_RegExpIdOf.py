@@ -46,5 +46,5 @@ class RegExpIdOf(RegExpIdBase):
     """
 
     name        = _('Families with <Id> matching regular expression')
-    description = _("Matches families whose GRAMPS ID matches "
+    description = _("Matches families whose Gramps ID matches "
                     "the regular expression")

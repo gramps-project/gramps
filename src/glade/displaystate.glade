@@ -4,7 +4,7 @@
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="displaystate">
     <property name="visible">True</property>
-    <property name="title" translatable="yes">GRAMPS</property>
+    <property name="title" translatable="yes">Gramps</property>
     <property name="window_position">center-always</property>
     <property name="default_width">650</property>
     <property name="default_height">500</property>

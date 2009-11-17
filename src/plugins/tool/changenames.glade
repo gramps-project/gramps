@@ -27,8 +27,8 @@
             <property name="visible">True</property>
             <property name="ypad">10</property>
             <property name="label" translatable="yes">Below is a list of the family names that 
-GRAMPS can convert to correct capitalization. 
-Select the names you wish GRAMPS to convert. </property>
+Gramps can convert to correct capitalization. 
+Select the names you wish Gramps to convert. </property>
           </object>
           <packing>
             <property name="expand">False</property>

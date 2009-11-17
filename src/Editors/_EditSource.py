@@ -188,7 +188,7 @@ class EditSource(EditPrimary):
             prim_object = self.get_from_gramps_id(id)
             name = prim_object.get_title()
             msg1 = _("Cannot save source. ID already exists.")
-            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+            msg2 = _("You have attempted to use the existing Gramps ID with "
                          "value %(id)s. This value is already used by '" 
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {

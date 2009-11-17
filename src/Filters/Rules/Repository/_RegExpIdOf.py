@@ -46,5 +46,5 @@ class RegExpIdOf(RegExpIdBase):
     """
 
     name        = _('Repositories with <Id> matching regular expression')
-    description = _("Matches repositories whose GRAMPS ID matches "
+    description = _("Matches repositories whose Gramps ID matches "
                     "the regular expression")

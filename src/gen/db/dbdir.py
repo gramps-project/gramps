@@ -520,7 +520,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                                _("You cannot open this database "
                                  "without upgrading it.\n"
                                  "If you upgrade then you won't be able "
-                                 "to use previous versions of GRAMPS.\n" 
+                                 "to use previous versions of Gramps.\n" 
                                  "You might want to make a backup copy "
                                  "first."), 
                                _("Upgrade now"), 

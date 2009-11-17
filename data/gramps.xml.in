@@ -4,7 +4,7 @@
 
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-gramps">
-    <_comment>GRAMPS database</_comment>
+    <_comment>Gramps database</_comment>
     <glob pattern="*.grdb"/>
   </mime-type>
   <mime-type type="application/x-gedcom">
@@ -18,11 +18,11 @@
     </magic>
   </mime-type>
   <mime-type type="application/x-gramps-package">
-    <_comment>GRAMPS package</_comment>
+    <_comment>Gramps package</_comment>
     <glob pattern="*.gpkg"/>
   </mime-type>
   <mime-type type="application/x-gramps-xml">
-    <_comment>GRAMPS XML database</_comment>
+    <_comment>Gramps XML database</_comment>
     <glob pattern="*.gramps"/>
     <magic priority="80">
       <match type="string" value="&lt;!DOCTYPE database" offset="0:256"/>
