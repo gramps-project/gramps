@@ -84,7 +84,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Place Name'), self.filter_title)
         self.add_text_entry(_('Street'), self.filter_street)
         self.add_text_entry(_('Church parish'), self.filter_parish)
-        self.add_text_entry(_('Zip/Postal code'), self.filter_zip)
+        self.add_text_entry(_('ZIP/Postal code'), self.filter_zip)
         self.add_text_entry(_('City'), self.filter_city)
         self.add_text_entry(_('County'), self.filter_county)
         self.add_text_entry(_('State'), self.filter_state)

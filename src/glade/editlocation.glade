@@ -193,7 +193,7 @@
                   <object class="GtkLabel" id="label297">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">_Zip/Postal code:</property>
+                    <property name="label" translatable="yes">_ZIP/Postal code:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">postal</property>
                   </object>
