@@ -191,7 +191,7 @@ def cleanup_column_name(column):
                     "Death cause", _("Death cause")]:
         return "deathcause"
     elif retval in ["Grampsid", "ID",
-                    "Gramps id", _("Gramps id")]:
+                    "Gramps id", _("Gramps ID")]:
         return "grampsid"
     elif retval in ["Person", _("Person")]:
         return "person"
@@ -263,7 +263,7 @@ def cleanup_column_name(column):
                     "death cause", _("death cause")]:
         return "deathcause"
     elif retval in ["grampsid", "id", "gramps_id", 
-                    "gramps id", _("Gramps id")]:
+                    "gramps id", _("Gramps ID")]:
         return "grampsid"
     elif retval in ["person", _("person")]:
         return "person"
