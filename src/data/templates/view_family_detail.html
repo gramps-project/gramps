@@ -10,20 +10,54 @@
       });
    </script>
 
-<table>
+<div class="content" id="IndividualDetail">
+
+<h3>{{family.father.name_set|make_name:user}} and {{family.mother.name_set|make_name:user}}</h3>
+
+<div id="summaryarea">
+<table class="infolist"> {% comment %} 4 cols {% endcomment %}
+<tbody>
 <tr>
-<td>Event type:</td><td> </td><td>Date:</td><td></td>
+<th colspan="2">Father</th>
+<th colspan="2">Mother</th>
 </tr>
 <tr>
-<td>Description:</td><td spancols="2">{{event.description|escape}}</td>
+ <td class="ColumnAttribute">Name:</td>
+ <td class="ColumnValue" id="data"><a href="/person/{{family.father.handle}}">{{family.father.name_set|make_name:user}} [{{family.father.gramps_id|escape}}]</a></td>
+ <td class="ColumnAttribute">Name:</td>
+ <td class="ColumnValue" id="data"><a href="/person/{{family.mother.handle}}">{{family.mother.name_set|make_name:user}} [{{family.mother.gramps_id|escape}}]</a></td>
 </tr>
 <tr>
-<td>ID:</td><td spancols="2">{{event.gramps_id|escape}}</td>
+ <td class="ColumnAttribute">Birth:</td>
+ <td class="ColumnValue" id="data">{{family.father|person_get_birth_date}}</td>
+ <td class="ColumnAttribute">Birth:</td>
+ <td class="ColumnValue" id="data">{{family.mother|person_get_birth_date}}</td>
 </tr>
 <tr>
-<td>Place:</td><td spancols="2">{{event.place.title|escape}}</td>
+ <td class="ColumnAttribute">Death:</td>
+ <td class="ColumnValue" id="data">{{family.father|person_get_death_date}}</td>
+ <td class="ColumnAttribute">Death:</td>
+ <td class="ColumnValue" id="data">{{family.mother|person_get_death_date}}</td>
 </tr>
+</tbody>
 </table>
+<table class="infolist"> {% comment %} 6 cols {% endcomment %}
+<tbody>
+<tr>
+  <th colspan="6">Relationship information</th>
+</tr>
+<tr>
+ <td class="ColumnAttribute">ID:</td>
+ <td class="ColumnValue" id="data">{{family.gramps_id|escape}}</td>
+ <td class="ColumnAttribute">Type:</td>
+ <td class="ColumnValue" id="data">RELTYPE</td>
+ <td class="ColumnAttribute">Marker:</td>
+ <td class="ColumnValue" id="data">{{family.marker_type|escape}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 <!-- Tabs -->
 <h2 class="demoHeaders">Tabs</h2>
@@ -61,7 +95,5 @@
     {{ family|family_lds_table:user|safe }}
   </div>
 </div>
-
-
 {% endblock %}
 

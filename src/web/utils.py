@@ -233,43 +233,78 @@ def person_reference_table(djperson, user):
 
 def family_children_table(djfamily, user):
     table = Table()
-    table.columns(_("Column"))
-    table.row("test")
+    table.columns(
+        _("#"),
+        _("ID"),
+        _("Name"),
+        _("Gender"),
+        _("Paternal"),
+        _("Maternal"),
+        _("Birth Date"),
+        )
+    #for djfamily:
+    #    table.row("test")
     return table.get_html()
 
 def family_event_table(djfamily, user):
     table = Table()
-    table.columns(_("Column"))
+    table.columns(
+        _("Description"),
+        _("Type"),
+        _("ID"),
+        _("Date"),
+        _("Place"),
+        _("Role"),
+        )
     table.row("test")
     return table.get_html()
 
 def family_source_table(djfamily, user):
     table = Table()
-    table.columns(_("Column"))
+    table.columns(
+        _("ID"),
+        _("Type"),
+        _("Author"),
+        _("Page"),
+        )
     table.row("test")
     return table.get_html()
 
 def family_attribute_table(djfamily, user):
     table = Table()
-    table.columns(_("Column"))
+    table.columns(
+        _("Type"),
+        _("Value"),
+        )
     table.row("test")
     return table.get_html()
 
 def family_note_table(djfamily, user):
     table = Table()
-    table.columns(_("Column"))
+    table.columns(
+        _("Type"),
+        _("Preview"),
+        )
     table.row("test")
     return table.get_html()
 
 def family_gallery_table(djfamily, user):
     table = Table()
-    table.columns(_("Column"))
+    table.columns(
+        _("Column"),
+        )
     table.row("test")
     return table.get_html()
 
 def family_lds_table(djfamily, user):
     table = Table()
-    table.columns(_("Column"))
+    table.columns(
+        _("Type"),
+        _("Date"),
+        _("Status"),
+        _("Temple"),
+        _("Place"),
+        )
     table.row("test")
     return table.get_html()
 
