@@ -29,7 +29,7 @@ Narrator class for use by plugins.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+import gettext
 
 #------------------------------------------------------------------------
 #
@@ -73,6 +73,8 @@ def _get_empty_endnote_numbers(obj):
     Empty stab function for when endnotes are not needed
     """
     return ""
+
+def _(message): return message
 
 #------------------------------------------------------------------------
 #
@@ -1458,7 +1460,8 @@ class Narrator(object):
     """
 
     def __init__(self, dbase, verbose=True, use_call_name=False,
-                 empty_date="", empty_place="", 
+                 empty_date="", empty_place="",
+                 translate_text=gettext.gettext,
                  get_endnote_numbers=_get_empty_endnote_numbers):
         """ 
         Initialize the narrator class.
@@ -1474,6 +1477,9 @@ class Narrator(object):
         :type empty_date: str
         :param empty_place: String to use when a place is not known.
         :type empty_place: str
+        :param translate_text: A function that returns a translated message 
+            string given a message id (similar to gettext).
+        :type translate_text: callable(str)
         :param get_endnote_numbers: A callable to use for getting a string 
             representing endnote numbers. 
             The function takes a :class:`~gen.lib.srcbase,SourceBase` instance.
@@ -1488,6 +1494,7 @@ class Narrator(object):
         self.__empty_date = empty_date
         self.__empty_place = empty_place
         self.__get_endnote_numbers = get_endnote_numbers
+        self.__translate_text = translate_text
         self.__person = None
         self.__first_name = ""
         self.__first_name_used = False
@@ -1565,38 +1572,40 @@ class Narrator(object):
         if bdate:
             if bdate_mod:
                 if bplace and self.__verbose:
-                    text = born_modified_date_with_place[name_index][gender] % value_map
+                    text = born_modified_date_with_place[name_index][gender]
                 elif bplace:
-                    text = born_modified_date_with_place[2] % value_map
+                    text = born_modified_date_with_place[2]
                 elif self.__verbose:
-                    text = born_modified_date_no_place[name_index][gender] % value_map
+                    text = born_modified_date_no_place[name_index][gender]
                 else:
-                    text = born_modified_date_no_place[2] % value_map
+                    text = born_modified_date_no_place[2]
             elif bdate_full:
                 if bplace and self.__verbose:
-                    text = born_full_date_with_place[name_index][gender] % value_map
+                    text = born_full_date_with_place[name_index][gender]
                 elif bplace:
-                    text = born_full_date_with_place[2] % value_map
+                    text = born_full_date_with_place[2]
                 elif self.__verbose:
-                    text = born_full_date_no_place[name_index][gender] % value_map
+                    text = born_full_date_no_place[name_index][gender]
                 else:
-                    text = born_full_date_no_place[2] % value_map
+                    text = born_full_date_no_place[2]
             else:
                 if bplace and self.__verbose:
-                    text = born_partial_date_with_place[name_index][gender] % value_map
+                    text = born_partial_date_with_place[name_index][gender]
                 elif bplace:
-                    text = born_partial_date_with_place[2] % value_map
+                    text = born_partial_date_with_place[2]
                 elif self.__verbose:
-                    text = born_partial_date_no_place[name_index][gender] % value_map
+                    text = born_partial_date_no_place[name_index][gender]
                 else:
-                    text = born_partial_date_no_place[2] % value_map
+                    text = born_partial_date_no_place[2]
         else:
             if bplace and self.__verbose:
-                text = born_no_date_with_place[name_index][gender] % value_map
+                text = born_no_date_with_place[name_index][gender]
             elif bplace:
-                text = born_no_date_with_place[2] % value_map
+                text = born_no_date_with_place[2]
             else:
                 text = ""
+        
+        text = self.__translate_text(text) % value_map
                 
         if text and birth_event:
             text = text.rstrip(". ")
@@ -1677,43 +1686,43 @@ class Narrator(object):
     
         gender = self.__person.get_gender()
     
-        if ddate:
-            if ddate_mod:
-                if dplace and self.__verbose:
-                    text = died_modified_date_with_place[name_index][gender][age_index] % value_map
-                elif dplace:
-                    text = died_modified_date_with_place[2][age_index] % value_map
-                elif self.__verbose:
-                    text = died_modified_date_no_place[name_index][gender][age_index] % value_map
-                else:
-                    text = died_modified_date_no_place[2][age_index] % value_map
-            elif ddate_full:
-                if dplace and self.__verbose:
-                    text = died_full_date_with_place[name_index][gender][age_index] % value_map
-                elif dplace:
-                    text = died_full_date_with_place[2][age_index] % value_map
-                elif self.__verbose:
-                    text = died_full_date_no_place[name_index][gender][age_index] % value_map
-                else:
-                    text = died_full_date_no_place[2][age_index] % value_map
-            else:
-                if dplace and self.__verbose:
-                    text = died_partial_date_with_place[name_index][gender][age_index] % value_map
-                elif dplace:
-                    text = died_partial_date_with_place[2][age_index] % value_map
-                elif self.__verbose:
-                    text = died_partial_date_no_place[name_index][gender][age_index] % value_map
-                else:
-                    text = died_partial_date_no_place[2][age_index] % value_map
-        else:
+        if ddate and ddate_mod:
             if dplace and self.__verbose:
-                text = died_no_date_with_place[name_index][gender][age_index] % value_map
+                text = died_modified_date_with_place[name_index][gender][age_index]
             elif dplace:
-                text = died_no_date_with_place[2][age_index] % value_map
+                text = died_modified_date_with_place[2][age_index]
             elif self.__verbose:
-                text = died_no_date_no_place[name_index][gender][age_index] % value_map
+                text = died_modified_date_no_place[name_index][gender][age_index]
             else:
-                text = died_no_date_no_place[2][age_index] % value_map
+                text = died_modified_date_no_place[2][age_index]
+        elif ddate and ddate_full:
+            if dplace and self.__verbose:
+                text = died_full_date_with_place[name_index][gender][age_index]
+            elif dplace:
+                text = died_full_date_with_place[2][age_index]
+            elif self.__verbose:
+                text = died_full_date_no_place[name_index][gender][age_index]
+            else:
+                text = died_full_date_no_place[2][age_index]
+        elif ddate:
+            if dplace and self.__verbose:
+                text = died_partial_date_with_place[name_index][gender][age_index]
+            elif dplace:
+                text = died_partial_date_with_place[2][age_index]
+            elif self.__verbose:
+                text = died_partial_date_no_place[name_index][gender][age_index]
+            else:
+                text = died_partial_date_no_place[2][age_index]
+        elif dplace and self.__verbose:
+            text = died_no_date_with_place[name_index][gender][age_index]
+        elif dplace:
+            text = died_no_date_with_place[2][age_index]
+        elif self.__verbose:
+            text = died_no_date_no_place[name_index][gender][age_index]
+        else:
+            text = died_no_date_no_place[2][age_index]
+                
+        text = self.__translate_text(text) % value_map
                 
         if text and death_event:
             text = text.rstrip(". ")
@@ -1773,7 +1782,7 @@ class Narrator(object):
         else:
             return text
     
-        values = {
+        value_map = {
             'unknown_gender_name' : self.__first_name, 
             'male_name'           : self.__first_name, 
             'name'                : self.__first_name, 
@@ -1787,42 +1796,44 @@ class Narrator(object):
     
         if bdate and bdate_mod and self.__verbose:
             if bplace: #male, date, place
-                text = buried_modified_date_place[gender][name_index] % values
+                text = buried_modified_date_place[gender][name_index]
             else:      #male, date, no place
-                text = buried_modified_date_no_place[gender][name_index] % values
+                text = buried_modified_date_no_place[gender][name_index]
         elif bdate and bdate_mod:
             if bplace: #male, date, place
-                text = buried_modified_date_place['succinct'] % values
+                text = buried_modified_date_place['succinct']
             else:      #male, date, no place
-                text = buried_modified_date_no_place['succinct'] % values
+                text = buried_modified_date_no_place['succinct']
         elif bdate and bdate_full and self.__verbose:
             if bplace: #male, date, place
-                text = buried_full_date_place[gender][name_index] % values
+                text = buried_full_date_place[gender][name_index]
             else:      #male, date, no place
-                text = buried_full_date_no_place[gender][name_index] % values
+                text = buried_full_date_no_place[gender][name_index]
         elif bdate and bdate_full:
             if bplace: #male, date, place
-                text = buried_full_date_place['succinct'] % values
+                text = buried_full_date_place['succinct']
             else:      #male, date, no place
-                text = buried_full_date_no_place['succinct'] % values
+                text = buried_full_date_no_place['succinct']
         elif bdate and self.__verbose:
             if bplace: #male, month_year, place
-                text = buried_partial_date_place[gender][name_index] % values
+                text = buried_partial_date_place[gender][name_index]
             else:      #male, month_year, no place
-                text = buried_partial_date_no_place[gender][name_index] % values
+                text = buried_partial_date_no_place[gender][name_index]
         elif bdate:
             if bplace: #male, month_year, place
-                text = buried_partial_date_place['succinct'] % values
+                text = buried_partial_date_place['succinct']
             else:      #male, month_year, no place
-                text = buried_partial_date_no_place['succinct'] % values
+                text = buried_partial_date_no_place['succinct']
         elif bplace and self.__verbose:   #male, no date, place
-            text = buried_no_date_place[gender][name_index] % values
+            text = buried_no_date_place[gender][name_index]
         elif bplace:   #male, no date, place
-            text = buried_no_date_place['succinct'] % values
+            text = buried_no_date_place['succinct']
         elif self.__verbose:
-            text = buried_no_date_no_place[gender][name_index] % values
+            text = buried_no_date_no_place[gender][name_index]
         else:          #male, no date, no place
-            text = buried_no_date_no_place['succinct'] % values
+            text = buried_no_date_no_place['succinct']
+            
+        text = self.__translate_text(text) % value_map
             
         if text:
             text = text + " "
@@ -1878,7 +1889,7 @@ class Narrator(object):
         else:
             return text
     
-        values = {
+        value_map = {
             'unknown_gender_name' : self.__first_name, 
             'male_name'           : self.__first_name, 
             'name'                : self.__first_name, 
@@ -1892,42 +1903,44 @@ class Narrator(object):
     
         if bdate and bdate_mod and self.__verbose:
             if bplace: #male, date, place
-                text = baptised_modified_date_place[gender][name_index] % values
+                text = baptised_modified_date_place[gender][name_index]
             else:      #male, date, no place
-                text = baptised_modified_date_no_place[gender][name_index] % values
+                text = baptised_modified_date_no_place[gender][name_index]
         elif bdate and bdate_mod:
             if bplace: #male, date, place
-                text = baptised_modified_date_place['succinct'] % values
+                text = baptised_modified_date_place['succinct']
             else:      #male, date, no place
-                text = baptised_modified_date_no_place['succinct'] % values
+                text = baptised_modified_date_no_place['succinct']
         elif bdate and bdate_full and self.__verbose:
             if bplace: #male, date, place
-                text = baptised_full_date_place[gender][name_index] % values
+                text = baptised_full_date_place[gender][name_index]
             else:      #male, date, no place
-                text = baptised_full_date_no_place[gender][name_index] % values
+                text = baptised_full_date_no_place[gender][name_index]
         elif bdate and bdate_full:
             if bplace: #male, date, place
-                text = baptised_full_date_place['succinct'] % values
+                text = baptised_full_date_place['succinct']
             else:      #male, date, no place
-                text = baptised_full_date_no_place['succinct'] % values
+                text = baptised_full_date_no_place['succinct']
         elif bdate and self.__verbose:
             if bplace: #male, month_year, place
-                text = baptised_partial_date_place[gender][name_index] % values
+                text = baptised_partial_date_place[gender][name_index]
             else:      #male, month_year, no place
-                text = baptised_partial_date_no_place[gender][name_index] % values
+                text = baptised_partial_date_no_place[gender][name_index]
         elif bdate:
             if bplace: #male, month_year, place
-                text = baptised_partial_date_place['succinct'] % values
+                text = baptised_partial_date_place['succinct']
             else:      #male, month_year, no place
-                text = baptised_partial_date_no_place['succinct'] % values
+                text = baptised_partial_date_no_place['succinct']
         elif bplace and self.__verbose:   #male, no date, place
-            text = baptised_no_date_place[gender][name_index] % values
+            text = baptised_no_date_place[gender][name_index]
         elif bplace:   #male, no date, place
-            text = baptised_no_date_place['succinct'] % values
+            text = baptised_no_date_place['succinct']
         elif self.__verbose:
-            text = baptised_no_date_no_place[gender][name_index] % values
+            text = baptised_no_date_no_place[gender][name_index]
         else:          #male, no date, no place
-            text = baptised_no_date_no_place['succinct'] % values
+            text = baptised_no_date_no_place['succinct']
+            
+        text = self.__translate_text(text) % value_map
             
         if text:
             text = text + " "
@@ -1983,7 +1996,7 @@ class Narrator(object):
         else:
             return text
     
-        values = {
+        value_map = {
             'unknown_gender_name' : self.__first_name, 
             'male_name'           : self.__first_name, 
             'name'                : self.__first_name, 
@@ -1997,42 +2010,44 @@ class Narrator(object):
     
         if cdate and cdate_mod and self.__verbose:
             if cplace: #male, date, place
-                text = christened_modified_date_place[gender][name_index] % values
+                text = christened_modified_date_place[gender][name_index]
             else:      #male, date, no place
-                text = christened_modified_date_no_place[gender][name_index] % values
+                text = christened_modified_date_no_place[gender][name_index]
         elif cdate and cdate_mod:
             if cplace: #male, date, place
-                text = christened_modified_date_place['succinct'] % values
+                text = christened_modified_date_place['succinct']
             else:      #male, date, no place
-                text = christened_modified_date_no_place['succinct'] % values
+                text = christened_modified_date_no_place['succinct']
         elif cdate and cdate_full and self.__verbose:
             if cplace: #male, date, place
-                text = christened_full_date_place[gender][name_index] % values
+                text = christened_full_date_place[gender][name_index]
             else:      #male, date, no place
-                text = christened_full_date_no_place[gender][name_index] % values
+                text = christened_full_date_no_place[gender][name_index]
         elif cdate and cdate_full:
             if cplace: #male, date, place
-                text = christened_full_date_place['succinct'] % values
+                text = christened_full_date_place['succinct']
             else:      #male, date, no place
-                text = christened_full_date_no_place['succinct'] % values
+                text = christened_full_date_no_place['succinct']
         elif cdate and self.__verbose:
             if cplace: #male, month_year, place
-                text = christened_partial_date_place[gender][name_index] % values
+                text = christened_partial_date_place[gender][name_index]
             else:      #male, month_year, no place
-                text = christened_partial_date_no_place[gender][name_index] % values
+                text = christened_partial_date_no_place[gender][name_index]
         elif cdate:
             if cplace: #male, month_year, place
-                text = christened_partial_date_place['succinct'] % values
+                text = christened_partial_date_place['succinct']
             else:      #male, month_year, no place
-                text = christened_partial_date_no_place['succinct'] % values
+                text = christened_partial_date_no_place['succinct']
         elif cplace and self.__verbose:   #male, no date, place
-            text = christened_no_date_place[gender][name_index] % values
+            text = christened_no_date_place[gender][name_index]
         elif cplace:   #male, no date, place
-            text = christened_no_date_place['succinct'] % values
+            text = christened_no_date_place['succinct']
         elif self.__verbose:
-            text = christened_no_date_no_place[gender][name_index] % values
+            text = christened_no_date_no_place[gender][name_index]
         else:          #male, no date, no place
-            text = christened_no_date_no_place['succinct'] % values
+            text = christened_no_date_no_place['succinct']
+            
+        text = self.__translate_text(text) % value_map
             
         if text:
             text = text + " "
@@ -2080,7 +2095,7 @@ class Narrator(object):
                 place = place_obj.get_title()
         relationship = family.get_relationship()
     
-        values = {
+        value_map = {
             'spouse'        : spouse_name, 
             'endnotes'      : self.__get_endnote_numbers(event), 
             'full_date'     : date, 
@@ -2117,117 +2132,119 @@ class Narrator(object):
         if is_first:
             if event and date and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_date_place[gender][date_full] % values
+                    text = marriage_first_date_place[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_date_place[gender][date_full] % values
+                    text = unmarried_first_date_place[gender][date_full]
                 else:
-                    text = relationship_first_date_place[gender][date_full] % values
+                    text = relationship_first_date_place[gender][date_full]
             elif event and date and place:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_date_place['succinct'][date_full] % values
+                    text = marriage_first_date_place['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_date_place['succinct'][date_full] % values
+                    text = unmarried_first_date_place['succinct'][date_full]
                 else:
-                    text = relationship_first_date_place['succinct'][date_full] % values                
+                    text = relationship_first_date_place['succinct'][date_full]           
             elif event and date and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_date[gender][date_full] % values
+                    text = marriage_first_date[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_date[gender][date_full] % values
+                    text = unmarried_first_date[gender][date_full]
                 else:
-                    text = relationship_first_date[gender][date_full] % values
+                    text = relationship_first_date[gender][date_full]
             elif event and date:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_date['succinct'][date_full] % values
+                    text = marriage_first_date['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_date['succinct'][date_full] % values
+                    text = unmarried_first_date['succinct'][date_full]
                 else:
-                    text = relationship_first_date['succinct'][date_full] % values
+                    text = relationship_first_date['succinct'][date_full]
             elif event and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_place[gender] % values
+                    text = marriage_first_place[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_place[gender] % values
+                    text = unmarried_first_place[gender]
                 else:
-                    text = relationship_first_place[gender] % values
+                    text = relationship_first_place[gender]
             elif event and place:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_place['succinct'] % values
+                    text = marriage_first_place['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_place['succinct'] % values
+                    text = unmarried_first_place['succinct']
                 else:
-                    text = relationship_first_place['succinct'] % values
+                    text = relationship_first_place['succinct']
             elif self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_only[gender] % values
+                    text = marriage_first_only[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_only[gender] % values
+                    text = unmarried_first_only[gender]
                 else:
-                    text = relationship_first_only[gender] % values                            
+                    text = relationship_first_only[gender]                           
             else:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_first_only['succinct'] % values
+                    text = marriage_first_only['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_first_only['succinct'] % values
+                    text = unmarried_first_only['succinct']
                 else:
-                    text = relationship_first_only['succinct'] % values
+                    text = relationship_first_only['succinct']
         else:
             if event and date and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_date_place[gender][date_full] % values
+                    text = marriage_also_date_place[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_date_place[gender][date_full] % values
+                    text = unmarried_also_date_place[gender][date_full]
                 else:
-                    text = relationship_also_date_place[gender][date_full] % values
+                    text = relationship_also_date_place[gender][date_full]
             if event and date and place:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_date_place['succinct'][date_full] % values
+                    text = marriage_also_date_place['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_date_place['succinct'][date_full] % values
+                    text = unmarried_also_date_place['succinct'][date_full]
                 else:
-                    text = relationship_also_date_place['succinct'][date_full] % values
+                    text = relationship_also_date_place['succinct'][date_full]
             elif event and date and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_date[gender][date_full] % values
+                    text = marriage_also_date[gender][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_date[gender][date_full] % values
+                    text = unmarried_also_date[gender][date_full]
                 else:
-                    text = relationship_also_date[gender][date_full] % values
+                    text = relationship_also_date[gender][date_full]
             elif event and date:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_date['succinct'][date_full] % values
+                    text = marriage_also_date['succinct'][date_full]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_date['succinct'][date_full] % values
+                    text = unmarried_also_date['succinct'][date_full]
                 else:
-                    text = relationship_also_date['succinct'][date_full] % values
+                    text = relationship_also_date['succinct'][date_full]
             elif event and place and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_place[gender] % values
+                    text = marriage_also_place[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_place[gender] % values
+                    text = unmarried_also_place[gender]
                 else:
-                    text = relationship_also_place[gender] % values
+                    text = relationship_also_place[gender]
             elif event and place:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_place['succinct'] % values
+                    text = marriage_also_place['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_place['succinct'] % values
+                    text = unmarried_also_place['succinct']
                 else:
-                    text = relationship_also_place['succinct'] % values
+                    text = relationship_also_place['succinct']
             elif self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_only[gender] % values
+                    text = marriage_also_only[gender]
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_only[gender] % values
+                    text = unmarried_also_only[gender]
                 else:
-                    text = relationship_also_only[gender] % values
+                    text = relationship_also_only[gender]
             else:
                 if relationship == FamilyRelType.MARRIED:
-                    text = marriage_also_only['succinct'] % values
+                    text = marriage_also_only['succinct']
                 elif relationship == FamilyRelType.UNMARRIED:
-                    text = unmarried_also_only['succinct'] % values
+                    text = unmarried_also_only['succinct']
                 else:
-                    text = relationship_also_only['succinct'] % values
+                    text = relationship_also_only['succinct']
+                    
+        text = self.__translate_text(text) % value_map
     
         if text:
             text = text + " "
@@ -2250,7 +2267,7 @@ class Narrator(object):
         :rtype: unicode
         """
     
-        values = {
+        value_map = {
             'father'              : father_name, 
             'mother'              : mother_name, 
             'male_name'           : self.__first_name, 
@@ -2271,19 +2288,23 @@ class Narrator(object):
     
         text = ""
         if mother_name and father_name and self.__verbose:
-            text = child_father_mother[gender][index][dead] % values
+            text = child_father_mother[gender][index][dead]
         elif mother_name and father_name:
-            text = child_father_mother[gender][2] % values
+            text = child_father_mother[gender][2]
         elif mother_name and self.__verbose:
-            text = child_mother[gender][index][dead] % values
+            text = child_mother[gender][index][dead]
         elif mother_name:
-            text = child_mother[gender][2] % values
+            text = child_mother[gender][2]
         elif father_name and self.__verbose:
-            text = child_father[gender][index][dead] % values
+            text = child_father[gender][index][dead]
         elif father_name:
-            text = child_father[gender][2] % values
+            text = child_father[gender][2]
+            
+        text = self.__translate_text(text) % value_map
+            
         if text:
             text = text + " "
+            
         return text
     
     def __get_age_at_death(self):

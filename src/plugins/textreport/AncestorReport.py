@@ -39,7 +39,8 @@ from gettext import gettext as _
 from BasicUtils import name_displayer
 from Errors import ReportError
 from gen.lib import ChildRefType
-from gen.plug.menu import BooleanOption, NumberOption, PersonOption
+from gen.plug.menu import BooleanOption, NumberOption, PersonOption, \
+                          TranslationOption
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, INDEX_TYPE_TOC, 
                              PARA_ALIGN_CENTER)
@@ -97,7 +98,10 @@ class AncestorReport(Report):
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-        self.__narrator = Narrator(self.database)
+        translator = menu.get_option_by_name('trans').get_translator()
+        self._ = translator.gettext
+        self.__narrator = Narrator(self.database, 
+                                   translate_text = translator.gettext)
 
     def apply_filter(self, person_handle, index, generation=1):
         """
@@ -169,7 +173,7 @@ class AncestorReport(Report):
         # identified as a major category if this is included in a Book report.
 
         name = name_displayer.display_formal(self.center_person)
-        title = _("Ahnentafel Report for %s") % name
+        title = self._("Ahnentafel Report for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("AHN-Title")
         self.doc.write_text(title, mark)
@@ -192,7 +196,7 @@ class AncestorReport(Report):
                 # Create the Generation title, set an index marker
                 mark =  IndexMark(title, INDEX_TYPE_TOC, 2)  
                 self.doc.start_paragraph("AHN-Generation")
-                self.doc.write_text(_("Generation %d") % generation, mark)
+                self.doc.write_text(self._("Generation %d") % generation, mark)
                 self.doc.end_paragraph()
 
             # Build the entry
@@ -262,6 +266,10 @@ class AncestorOptions(MenuReportOptions):
         namebrk = BooleanOption(_("Add linebreak after each name"), False)
         namebrk.set_help(_("Indicates if a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
+        
+        trans = TranslationOption(_("Translation"))
+        trans.set_help(_("The translation to be used for the report."))
+        menu.add_option(category_name, "trans", trans)
 
     def make_default_style(self, default_style):
         """
