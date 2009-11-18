@@ -1375,9 +1375,12 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 title = source.get_title()
-                list = Html("li", inline = True) + (
-                    Html("a", self.source_link(source.handle, title, source.gramps_id, True), 
-                        name = "sref%d" % cindex)
+                list = Html("li") + (
+                    Html("a",
+                        self.source_link(source.handle, title, source.gramps_id,
+                            up=True), 
+                        name="sref%d" % cindex,
+                        inline=True)
                     )
                 ordered += list
 
@@ -1389,23 +1392,27 @@ class BasePage(object):
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                     if confidence == _('Normal'):
                         confidence = None
-                    for (label, data) in [(DHEAD, format_date(sref.date)),
-                                          (_PAGE, sref.page),
-                                          (_CONFIDENCE, confidence)]:
-                        if data:
-                            tmp.append("%s: %s" % (label, data))
 
-                    notelist = sref.get_note_list()
-                    for notehandle in notelist:
-                        note = db.get_note_from_handle(notehandle)
-                        note_text = self.get_note_format(note)
-                        tmp.append("%s: %s" % (_TEXT, note_text))
-                    if len(tmp):
-                        list1 = Html("li", inline = True) + (
-                            Html("a", '; &nbsp; '.join(tmp), name = "sref%d%s" % (cindex, key))
+                    tmp.extend("%s: %s" % (label, data)
+                        for (label, data) in [(DHEAD, format_date(sref.date)),
+                                              (_PAGE, sref.page),
+                                              (_CONFIDENCE, confidence)]
+                        if data)                                                    
+                        
+                    tmp.extend(_TEXT + ': ' +
+                                self.get_note_format(
+                                    db.get_note_from_handle(handle)
+                                ) for handle in sref.get_note_list())
+
+                    if tmp:
+                        list1 = Html("li", inline=True) + (
+                            Html("a", '; &nbsp; '.join(tmp),
+                                name = "sref%d%s" % (cindex, key))
                             )
+
                         ordered1 += list1
-                list += ordered1
+                if citation_ref_list:
+                    list += ordered1
                 ordered += list
             section += ordered
 
@@ -2987,9 +2994,11 @@ class SourceListPage(BasePage):
                     trow = ( Html("tr") +
                         Html("td", index + 1, class_ = "ColumnRowLabel", inline = True)
                         )
-                    tbody += trow 
-                    trow += Html("td", self.source_link(handle, "", source.get_title(), source.gramps_id), 
-                        class_ = "ColumnName")
+                    tbody += trow
+                    trow += Html("td",
+                                self.source_link(handle, source.get_title(),
+                                    source.gramps_id), 
+                                class_ = "ColumnName")
 
         # add clearline for proper styling
         # add footer section
@@ -5497,7 +5506,7 @@ class NavWebReport(Report):
         Imagine we run gramps on Windows (heaven forbits), we don't want to
         see backslashes in the URL.
         """
-        if ( Utils.win ):
+        if Utils.win():
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname, up)
         return "/".join(subdirs + [fname])
