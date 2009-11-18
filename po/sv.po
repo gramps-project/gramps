@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: nytt_sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-11-18 08:40+0100\n"
-"PO-Revision-Date: 2009-11-18 09:15+0100\n"
+"PO-Revision-Date: 2009-11-18 14:35+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -770,7 +770,7 @@ msgstr "Arkivplats"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
 #: ../src/FilterEditor/_EditRule.py:248
 msgid "Note"
-msgstr "Anteckning"
+msgstr "Notis"
 
 #: ../src/GrampsCfg.py:208
 msgid "Suppress warning when adding parents to a child"
@@ -1076,7 +1076,7 @@ msgstr ""
 
 #: ../src/gramps.py:139 ../src/gramps.py:146
 msgid "Configuration error"
-msgstr "Konfigurationsfel"
+msgstr "Fel på inställningsparametrar"
 
 #: ../src/gramps.py:147
 #, python-format
@@ -2467,7 +2467,7 @@ msgstr "Bearbetar händelseposter"
 
 #: ../src/gen/proxy/dbbase.py:112 ../src/plugins/lib/libgrdb.py:344
 msgid "Processing Place records"
-msgstr "Beabetar platsposter"
+msgstr "Bearbetar platsposter"
 
 #: ../src/gen/proxy/dbbase.py:118 ../src/plugins/lib/libgrdb.py:350
 msgid "Processing Source records"
@@ -2483,7 +2483,7 @@ msgstr "Bearbetar arkivplatsposter"
 
 #: ../src/gen/proxy/dbbase.py:136 ../src/plugins/lib/libgrdb.py:368
 msgid "Processing Note records"
-msgstr "Bearbetar anteckningsposter"
+msgstr "Bearbetar notissposter"
 
 #: ../src/gen/db/dbdir.py:519
 msgid "Need to upgrade database!"
@@ -2575,72 +2575,72 @@ msgstr "Rapportera"
 
 #: ../src/gen/lib/notetype.py:87
 msgid "Person Note"
-msgstr "Personanteckning"
+msgstr "Personnotis"
 
 #: ../src/gen/lib/notetype.py:88
 msgid "Name Note"
-msgstr "Namnanteckning"
+msgstr "Namnnotis"
 
 #: ../src/gen/lib/notetype.py:89
 msgid "Attribute Note"
-msgstr "Attributanteckning"
+msgstr "Attributnotis"
 
 #: ../src/gen/lib/notetype.py:90
 msgid "Address Note"
-msgstr "Adressanteckning"
+msgstr "Adressnotis"
 
 #: ../src/gen/lib/notetype.py:91
 msgid "Association Note"
-msgstr "Associationsanteckning"
+msgstr "Släktskapsnotis"
 
 #: ../src/gen/lib/notetype.py:92
 msgid "LDS Note"
-msgstr "SDH-anteckning"
+msgstr "SDH-notis"
 
 #: ../src/gen/lib/notetype.py:93
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:118
 msgid "Family Note"
-msgstr "Familjeanteckning"
+msgstr "Familjenotis"
 
 #: ../src/gen/lib/notetype.py:94
 msgid "Event Note"
-msgstr "Händelseanteckning"
+msgstr "Händelsenotis"
 
 #: ../src/gen/lib/notetype.py:95
 msgid "Event Reference Note"
-msgstr "Händelsereferensanteckning"
+msgstr "Händelsereferensnotis"
 
 #: ../src/gen/lib/notetype.py:96
 msgid "Source Note"
-msgstr "Källanteckning"
+msgstr "Källnotis"
 
 #: ../src/gen/lib/notetype.py:97
 msgid "Source Reference Note"
-msgstr "Källreferensanteckning"
+msgstr "Källreferensnotis"
 
 #: ../src/gen/lib/notetype.py:98
 msgid "Place Note"
-msgstr "Platsanteckning"
+msgstr "Platsnotis"
 
 #: ../src/gen/lib/notetype.py:99
 msgid "Repository Note"
-msgstr "Arkivplatsanteckning"
+msgstr "Arkivplatsnotis"
 
 #: ../src/gen/lib/notetype.py:100
 msgid "Repository Reference Note"
-msgstr "Arkivplatsreferensanteckning"
+msgstr "Arkivplatsreferensnotis"
 
 #: ../src/gen/lib/notetype.py:102
 msgid "Media Note"
-msgstr "Mediaanteckning"
+msgstr "Medianotis"
 
 #: ../src/gen/lib/notetype.py:103
 msgid "Media Reference Note"
-msgstr "Mediareferensanteckning"
+msgstr "Mediareferensnotis"
 
 #: ../src/gen/lib/notetype.py:104
 msgid "Child Reference Note"
-msgstr "Barnreferensanteckning"
+msgstr "Barnreferensnotis"
 
 #: ../src/gen/lib/repotype.py:61
 msgid "Library"
@@ -3129,7 +3129,7 @@ msgstr "Bouppteckning"
 
 #: ../src/gen/lib/eventtype.py:173
 msgid "Property"
-msgstr "Egenskap"
+msgstr "Egendom"
 
 #: ../src/gen/lib/eventtype.py:174
 msgid "Religion"
@@ -3231,7 +3231,7 @@ msgstr "Avbruten"
 
 #: ../src/gen/lib/ldsord.py:103
 msgid "Cleared"
-msgstr "Rensad"
+msgstr "Godkänd"
 
 #: ../src/gen/lib/ldsord.py:104
 msgid "Completed"
@@ -3742,7 +3742,7 @@ msgstr "Media"
 #: ../src/plugins/view/noteview.py:93
 #: ../src/plugins/webreport/NarrativeWeb.py:134
 msgid "Notes"
-msgstr "Anteckningar"
+msgstr "Notiser"
 
 #. Go over parents and build their menu
 #. don't show rest
@@ -4814,7 +4814,7 @@ msgstr "Gruppera som"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:77
 msgid "Note Preview"
-msgstr "Förhandsgranskning av anteckning"
+msgstr "Förhandsgranskning av notis"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:85
 msgid "_Names"
@@ -4834,27 +4834,27 @@ msgstr "Alternativa namn"
 
 #: ../src/DisplayTabs/_NoteTab.py:64
 msgid "Create and add a new note"
-msgstr "Skapa och lägg till en ny anteckning"
+msgstr "Skapa och lägg till en ny notis"
 
 #: ../src/DisplayTabs/_NoteTab.py:65
 msgid "Remove the existing note"
-msgstr "Ta bort den befintliga anteckningen"
+msgstr "Ta bort den befintliga notisen"
 
 #: ../src/DisplayTabs/_NoteTab.py:66 ../src/plugins/view/noteview.py:74
 msgid "Edit the selected note"
-msgstr "Redigera den valda anteckningen"
+msgstr "Redigera den valda notisen"
 
 #: ../src/DisplayTabs/_NoteTab.py:67
 msgid "Add an existing note"
-msgstr "Lägg till en befintlig anteckning"
+msgstr "Lägg till en befintlig notis"
 
 #: ../src/DisplayTabs/_NoteTab.py:68
 msgid "Move the selected note upwards"
-msgstr "Flytta den valda anteckningen uppåt"
+msgstr "Flytta den valda notisen uppåt"
 
 #: ../src/DisplayTabs/_NoteTab.py:69
 msgid "Move the selected note downwards"
-msgstr "Flytta den valda anteckningen neråt"
+msgstr "Flytta den valda notisen neråt"
 
 #: ../src/DisplayTabs/_NoteTab.py:76 ../src/Selectors/_SelectNote.py:67
 #: ../src/plugins/view/noteview.py:67
@@ -5141,28 +5141,28 @@ msgstr "Ta bort mediaobjekt"
 
 #: ../src/Editors/ObjectEntries.py:348
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr "Använd dra-och-släpp eller knapparna för att välja en anteckning"
+msgstr "Använd dra-och-släpp eller knapparna för att välja en notis"
 
 #: ../src/Editors/ObjectEntries.py:350 ../src/PluginUtils/_GuiOptions.py:701
 msgid "No note given, click button to select one"
-msgstr "Ingen anteckning angiven, klicka på knappen för att välja en"
+msgstr "Ingen notis angiven, klicka på knappen för att välja en"
 
 #: ../src/Editors/ObjectEntries.py:351 ../src/Editors/_EditNote.py:279
 #: ../src/Editors/_EditNote.py:325
 msgid "Edit Note"
-msgstr "Redigera anteckning"
+msgstr "Redigera notis"
 
 #: ../src/Editors/ObjectEntries.py:352 ../src/PluginUtils/_GuiOptions.py:671
 msgid "Select an existing note"
-msgstr "Välj en befintlig anteckning"
+msgstr "Välj en befintlig notis"
 
 #: ../src/Editors/ObjectEntries.py:353 ../src/plugins/view/noteview.py:73
 msgid "Add a new note"
-msgstr "Lägg till ny anteckning"
+msgstr "Lägg till ny notis"
 
 #: ../src/Editors/ObjectEntries.py:354
 msgid "Remove note"
-msgstr "Tag bort anteckning"
+msgstr "Tag bort notis"
 
 #: ../src/Editors/_EditAddress.py:83 ../src/Editors/_EditAddress.py:149
 msgid "Address Editor"
@@ -5230,7 +5230,7 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"Du har försökt att använda ett befintligt Gramps ID med värdet %(id)s. Detta "
+"Du har försökt att använda ett befintligt Gramps-ID med värdet %(id)s. Detta "
 "värde används redan av '%(prim_object)s'. Skriv in ett annat ID eller lämna "
 "tomt för att få nästa tillgängliga ID-värde."
 
@@ -5638,21 +5638,21 @@ msgstr "Gruppera endast detta namn"
 #: ../src/Editors/_EditNote.py:140
 #, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr "Anteckning: %(id)s - %(context)s"
+msgstr "Notis: %(id)s - %(context)s"
 
 #: ../src/Editors/_EditNote.py:145
 #, python-format
 msgid "Note: %s"
-msgstr "Anteckning: %s"
+msgstr "Notis: %s"
 
 #: ../src/Editors/_EditNote.py:148
 #, python-format
 msgid "New Note - %(context)s"
-msgstr "Ny anteckning - %(context)s"
+msgstr "Ny notis - %(context)s"
 
 #: ../src/Editors/_EditNote.py:152
 msgid "New Note"
-msgstr "Ny anteckning"
+msgstr "Ny notis"
 
 #: ../src/Editors/_EditNote.py:181
 msgid "_Note"
@@ -5660,26 +5660,26 @@ msgstr "A_nteckning"
 
 #: ../src/Editors/_EditNote.py:298
 msgid "Cannot save note"
-msgstr "Kan inte spara anteckning"
+msgstr "Kan inte spara notis"
 
 #: ../src/Editors/_EditNote.py:299
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
-"Inga uppgifter finns för denna anteckning. Ange sådana eller avbryt "
+"Inga uppgifter finns för denna notis. Ange sådana eller avbryt "
 "redigeringen."
 
 #: ../src/Editors/_EditNote.py:306
 msgid "Cannot save note. ID already exists."
-msgstr "Kan ej spara anteckning. ID finns redan."
+msgstr "Kan ej spara notis. ID finns redan."
 
 #: ../src/Editors/_EditNote.py:320
 msgid "Add Note"
-msgstr "Lägg till anteckning"
+msgstr "Lägg till notis"
 
 #: ../src/Editors/_EditNote.py:387
 #, python-format
 msgid "Delete Note (%s)"
-msgstr "Radera anteckning (%s)"
+msgstr "Radera notis (%s)"
 
 #: ../src/Editors/_EditPerson.py:113
 #, python-format
@@ -6014,7 +6014,7 @@ msgstr "Rad %d gick inte att förstå, så den ignorerades."
 #: ../src/GrampsDbUtils/_GedcomParse.py:2949
 #, python-format
 msgid "Line %d: empty event note was ignored."
-msgstr "Rad %d: tom händelseanteckning ignorerades."
+msgstr "Rad %d: tom händelsenotis ignorerades."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:3632
 #: ../src/GrampsDbUtils/_GedcomParse.py:4200
@@ -6031,7 +6031,7 @@ msgstr "Import från %s"
 #: ../src/GrampsDbUtils/_GedcomParse.py:4078
 #, python-format
 msgid "Line %d: empty note was ignored."
-msgstr "Rad %d: tom anteckning ignorerades."
+msgstr "Rad %d: tom notis ignorerades."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:4117
 #, python-format
@@ -6260,7 +6260,7 @@ msgstr "Välj familj"
 
 #: ../src/Selectors/_SelectNote.py:60
 msgid "Select Note"
-msgstr "Välj anteckning"
+msgstr "Välj notis"
 
 #: ../src/Selectors/_SelectNote.py:70
 #: ../src/plugins/textreport/MarkerReport.py:439
@@ -6555,15 +6555,15 @@ msgstr "Familjeposter"
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:199
 #: ../src/plugins/textreport/Summary.py:283
 msgid "The basic style used for the text display."
-msgstr "Grundläggande stil som används för textvisning."
+msgstr "Grundläggande mall som används för textvisning."
 
 #: ../src/plugins/Records.py:513
 msgid "The style used for headings."
-msgstr "Stil som används för rubriker."
+msgstr "Mall som används för rubriker."
 
 #: ../src/plugins/Records.py:522
 msgid "The style used for the report title"
-msgstr "Stil som används för rapporttiteln."
+msgstr "Mall som används för rapporttiteln."
 
 #: ../src/plugins/Records.py:531
 msgid "Youngest living person"
@@ -6865,7 +6865,7 @@ msgstr "Huruvida trädet skall komprimeras."
 #: ../src/plugins/drawreport/AncestorTree.py:507
 #: ../src/plugins/drawreport/DescendTree.py:533
 msgid "The basic style used for the title display."
-msgstr "Grundläggande stil som används för visning av titel."
+msgstr "Grundläggande mall som används för visning av titel."
 
 #. initialize the dict to fill:
 #: ../src/plugins/drawreport/Calendar.py:149
@@ -7265,7 +7265,7 @@ msgstr "Skriv radiell text upprätt eller avrundat"
 
 #: ../src/plugins/drawreport/FanChart.py:396
 msgid "The style used for the title."
-msgstr "Stil som används för titeln."
+msgstr "Mall som används för titeln."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:292
 msgid "Item count"
@@ -7510,7 +7510,7 @@ msgstr "Ta med diagram med markerade data"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1012
 msgid "The style used for the items and values."
-msgstr "Stil som används för objekt och värden."
+msgstr "Mall som används för objekt och värden."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1021
 #: ../src/plugins/drawreport/TimeLine.py:390
@@ -7527,7 +7527,7 @@ msgstr "Stil som används för objekt och värden."
 #: ../src/plugins/textreport/SimpleBookTitle.py:153
 #: ../src/plugins/textreport/Summary.py:264
 msgid "The style used for the title of the page."
-msgstr "Stil som används för sidans titel."
+msgstr "Mall som används för sidans titel."
 
 #: ../src/plugins/drawreport/TimeLine.py:93
 #, python-format
@@ -7577,11 +7577,11 @@ msgstr "Den kalender, som bestämmer årsutsträckningen."
 
 #: ../src/plugins/drawreport/TimeLine.py:372
 msgid "The style used for the person's name."
-msgstr "Stil som används för personens namn."
+msgstr "Mall som används för personens namn."
 
 #: ../src/plugins/drawreport/TimeLine.py:381
 msgid "The style used for the year labels."
-msgstr "Stil som används för årsetiketter."
+msgstr "Mall som används för årsetiketter."
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
@@ -7730,7 +7730,7 @@ msgstr "Tillämpar valt personfilter"
 
 #: ../src/plugins/export/ExportGedcom.py:282
 msgid "Applying selected note filter"
-msgstr "Tillämpar valt anteckningsfilter"
+msgstr "Tillämpar valt notissfilter"
 
 #: ../src/plugins/export/ExportGedcom.py:291
 msgid "Filtering unlinked records"
@@ -7750,7 +7750,7 @@ msgstr "Skriver källor"
 
 #: ../src/plugins/export/ExportGedcom.py:990
 msgid "Writing notes"
-msgstr "Skriver anteckningar"
+msgstr "Skriver notiser"
 
 #: ../src/plugins/export/ExportGedcom.py:1027
 msgid "Writing repositories"
@@ -8102,7 +8102,7 @@ msgstr "Nyhetsrubriker"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:149
 msgid "Note Gramplet"
-msgstr "Mini-Gramps för anteckningar"
+msgstr "Mini-Gramps för notiser"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:164
 msgid "Pedigree Gramplet"
@@ -9169,7 +9169,7 @@ msgstr "Dödsorsak"
 #: ../src/plugins/import/ImportCsv.py:194
 #: ../src/plugins/import/ImportCsv.py:266
 msgid "Gramps id"
-msgstr "Gramps id"
+msgstr "Gramps-ID"
 
 #: ../src/plugins/import/ImportCsv.py:208
 msgid "Parent2"
@@ -9194,7 +9194,7 @@ msgstr "källa"
 
 #: ../src/plugins/import/ImportCsv.py:242
 msgid "note"
-msgstr "anteckning"
+msgstr "notis"
 
 #: ../src/plugins/import/ImportCsv.py:245
 msgid "birth place"
@@ -9530,7 +9530,7 @@ msgstr "  Arkivplats %(id)s\n"
 #: ../src/plugins/import/ImportXml.py:257
 #, python-format
 msgid "  Note %(id)s\n"
-msgstr "  Anteckning %(id)s\n"
+msgstr "  Notis %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:264
 #, python-format
@@ -9570,7 +9570,7 @@ msgstr "  Arkivplatser: %d\n"
 #: ../src/plugins/import/ImportXml.py:271
 #, python-format
 msgid "  Notes: %d\n"
-msgstr "  Anteckningar: %d\n"
+msgstr "  Notiser: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:273
 msgid "Number of new objects imported:\n"
@@ -9734,7 +9734,7 @@ msgstr "Creative Commons - Erkännande, Ickekommersiell, Dela Lika 2.5 Sverige"
 
 #: ../src/plugins/lib/libhtmlconst.py:116
 msgid "No copyright notice"
-msgstr "Ingen copyrightanteckning"
+msgstr "Ingen copyrightnotis"
 
 #: ../src/plugins/lib/libnarrate.py:86
 #, python-format
@@ -14317,7 +14317,7 @@ msgstr "Översättning för rapporten."
 #: ../src/plugins/textreport/DetDescendantReport.py:853
 #: ../src/ReportBase/_Endnotes.py:42
 msgid "The style used for the generation header."
-msgstr "Stil som används för generationsrubriken."
+msgstr "Mall som används för generationsrubriken."
 
 #. initialize the dict to fill:
 #: ../src/plugins/textreport/BirthdayReport.py:135
@@ -14349,7 +14349,7 @@ msgstr "Titel på kalender"
 
 #: ../src/plugins/textreport/BirthdayReport.py:476
 msgid "Title text style"
-msgstr "Titeltextstil"
+msgstr "Titeltextmall"
 
 #: ../src/plugins/textreport/BirthdayReport.py:479
 msgid "Data text display"
@@ -14357,11 +14357,11 @@ msgstr "Datatextvisning"
 
 #: ../src/plugins/textreport/BirthdayReport.py:481
 msgid "Day text style"
-msgstr "Dagtextstil"
+msgstr "Dagtextmall"
 
 #: ../src/plugins/textreport/BirthdayReport.py:484
 msgid "Month text style"
-msgstr "Månadstextstil"
+msgstr "Månadstextmall"
 
 #: ../src/plugins/textreport/CustomBookText.py:117
 msgid "Initial Text"
@@ -14389,15 +14389,15 @@ msgstr "text, som skall visas sist."
 
 #: ../src/plugins/textreport/CustomBookText.py:137
 msgid "The style used for the first portion of the custom text."
-msgstr "Stil som används för den första delen av den anpassade texten."
+msgstr "Mall som används för den första delen av den anpassade texten."
 
 #: ../src/plugins/textreport/CustomBookText.py:146
 msgid "The style used for the middle portion of the custom text."
-msgstr "Stil som används för mittendelen av den anpassade texten."
+msgstr "Mall som används för mittendelen av den anpassade texten."
 
 #: ../src/plugins/textreport/CustomBookText.py:155
 msgid "The style used for the last portion of the custom text."
-msgstr "Stil som används för den sista delen av den anpassade texten."
+msgstr "Mall som används för den sista delen av den anpassade texten."
 
 #: ../src/plugins/textreport/DescendReport.py:50
 msgid "b."
@@ -14415,12 +14415,12 @@ msgstr "m. %(spouse)s"
 #: ../src/plugins/textreport/DescendReport.py:217
 #, python-format
 msgid "The style used for the level %d display."
-msgstr "Stil som används för visning av nivå %d."
+msgstr "Mall som används för visning av nivå %d."
 
 #: ../src/plugins/textreport/DescendReport.py:226
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr "Stil som används för visning av makar på nivå %d."
+msgstr "Mall som används för visning av makar på nivå %d."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:161
 #, python-format
@@ -14437,7 +14437,7 @@ msgstr "%(name)s är samma person som [%(id_str)s]."
 #: ../src/plugins/textreport/DetDescendantReport.py:619
 #, python-format
 msgid "Notes for %s"
-msgstr "Anteckningar om %s"
+msgstr "Notiser om %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:290
 #: ../src/plugins/textreport/DetAncestralReport.py:313
@@ -14608,7 +14608,7 @@ msgstr "Ta med noteringar"
 #: ../src/plugins/textreport/DetAncestralReport.py:705
 #: ../src/plugins/textreport/DetDescendantReport.py:782
 msgid "Whether to include notes."
-msgstr "Huruvida ta med anteckningar."
+msgstr "Huruvida ta med notiser."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:708
 #: ../src/plugins/textreport/DetDescendantReport.py:785
@@ -14674,7 +14674,7 @@ msgstr "Huruvida ta med källreferenser."
 #: ../src/plugins/textreport/DetAncestralReport.py:732
 #: ../src/plugins/textreport/DetDescendantReport.py:809
 msgid "Include sources notes"
-msgstr "Ta med källanteckningar"
+msgstr "Ta med källnotiser"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:733
 #: ../src/plugins/textreport/DetDescendantReport.py:810
@@ -14682,7 +14682,7 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
-"Huruvida ta ned källanteckningar i notförteckningen. Fungerar bara om källor "
+"Huruvida ta ned källnotiser i notförteckningen. Fungerar bara om källor "
 "medtages."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:737
@@ -14713,27 +14713,27 @@ msgstr "Huruvida ersätta saknade datum med mellanslag."
 #: ../src/plugins/textreport/DetAncestralReport.py:777
 #: ../src/plugins/textreport/DetDescendantReport.py:863
 msgid "The style used for the children list title."
-msgstr "Stil som används för barnlistetiteln."
+msgstr "Mall som används för barnlistetiteln."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:787
 #: ../src/plugins/textreport/DetDescendantReport.py:873
 msgid "The style used for the children list."
-msgstr "Stil som används för barnlistan."
+msgstr "Mall som används för barnlistan."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:810
 #: ../src/plugins/textreport/DetDescendantReport.py:896
 msgid "The style used for the first personal entry."
-msgstr "Stil som används för den första personinformationen."
+msgstr "Mall som används för den första personinformationen."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:820
 #: ../src/plugins/textreport/DetDescendantReport.py:906
 msgid "The style used for the More About header."
-msgstr "Stil som används för notisdelens rubrik."
+msgstr "Mall som används för notisdelens rubrik."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:830
 #: ../src/plugins/textreport/DetDescendantReport.py:916
 msgid "The style used for additional detail data."
-msgstr "Stil som används för allmänna data."
+msgstr "Mall som används för allmänna data."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:242
 #, python-format
@@ -14804,11 +14804,11 @@ msgstr " (%(birth_date)s - %(death_date)s)"
 #: ../src/plugins/textreport/EndOfLineReport.py:266
 #: ../src/plugins/textreport/MarkerReport.py:477
 msgid "The style used for the section headers."
-msgstr "Stil som används för sektionsrubriken."
+msgstr "Mall som används för sektionsrubriken."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:284
 msgid "The basic style used for generation headings."
-msgstr "Grundläggande stil använd för generationsrubriker."
+msgstr "Grundläggande mall använd för generationsrubriker."
 
 #: ../src/plugins/textreport/FamilyGroup.py:102
 #, python-format
@@ -14887,11 +14887,11 @@ msgstr "Huruvida ta med adresser till föräldrar."
 
 #: ../src/plugins/textreport/FamilyGroup.py:632
 msgid "Parent Notes"
-msgstr "Föräldrarnas anteckningar"
+msgstr "Föräldrarnas notiser"
 
 #: ../src/plugins/textreport/FamilyGroup.py:633
 msgid "Whether to include notes for parents."
-msgstr "Huruvida ta med anteckningar för föräldrar."
+msgstr "Huruvida ta med notiser för föräldrar."
 
 #: ../src/plugins/textreport/FamilyGroup.py:636
 msgid "Parent Attributes"
@@ -14946,15 +14946,15 @@ msgstr "Huruvida ta med fält för saknad information."
 #: ../src/plugins/textreport/FamilyGroup.py:708
 #: ../src/plugins/textreport/MarkerReport.py:505
 msgid "The basic style used for the note display."
-msgstr "Grundläggande mall som används för visning av anteckningar."
+msgstr "Grundläggande mall som används för visning av notiser."
 
 #: ../src/plugins/textreport/FamilyGroup.py:717
 msgid "The style used for the text related to the children."
-msgstr "Stil som används för text angående barnen."
+msgstr "Mall som används för text angående barnen."
 
 #: ../src/plugins/textreport/FamilyGroup.py:727
 msgid "The style used for the parent's name"
-msgstr "Stil som används för förälderns namn"
+msgstr "Mall som används för förälderns namn"
 
 #. ------------------------------------------------------------------------
 #.
@@ -15038,11 +15038,11 @@ msgstr "Kontrollera om en särskild sektion krävs."
 
 #: ../src/plugins/textreport/IndivComplete.py:722
 msgid "The style used for category labels."
-msgstr "Stil som används för kategorietiketter."
+msgstr "Mall som används för kategorietiketter."
 
 #: ../src/plugins/textreport/IndivComplete.py:733
 msgid "The style used for the spouse's name."
-msgstr "Stil som används för makans/makens namn."
+msgstr "Mall som används för makans/makens namn."
 
 #: ../src/plugins/textreport/KinshipReport.py:101
 #, python-format
@@ -15089,7 +15089,7 @@ msgstr ""
 #: ../src/plugins/textreport/KinshipReport.py:369
 #: ../src/plugins/textreport/Summary.py:273
 msgid "The basic style used for sub-headings."
-msgstr "Grundläggande stil som används för underrubriker."
+msgstr "Grundläggande mall som används för underrubriker."
 
 #: ../src/plugins/textreport/MarkerReport.py:82
 #, python-format
@@ -15114,7 +15114,7 @@ msgstr "Den markering, som skall användas för rapporten"
 
 #: ../src/plugins/textreport/MarkerReport.py:498
 msgid "The basic style used for table headings."
-msgstr "Grundläggande stil som används för tabellrubriker."
+msgstr "Grundläggande mall som används för tabellrubriker."
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:89
 #, python-format
@@ -15149,7 +15149,7 @@ msgstr "Rapport över platser"
 #: ../src/plugins/textreport/PlaceReport.py:119
 #, python-format
 msgid "Gramps ID: %s "
-msgstr "Gramps ID: %s "
+msgstr "Gramps-ID: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:120
 #, python-format
@@ -15276,7 +15276,7 @@ msgstr "Bild"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Gramps ID of the media object to use as an image."
-msgstr "Gramps ID för det mediaobjekt, som skall användas som bild."
+msgstr "Gramps-ID för det mediaobjekt, som skall användas som bild."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:139
 msgid "Image Size"
@@ -15292,11 +15292,11 @@ msgstr ""
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:163
 msgid "The style used for the subtitle."
-msgstr "Stil som används för undertiteln."
+msgstr "Mall som används för undertiteln."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:173
 msgid "The style used for the footer."
-msgstr "Stil som används för sidfoten."
+msgstr "Mall som används för sidfoten."
 
 #: ../src/plugins/textreport/Summary.py:76
 #: ../src/plugins/textreport/textplugins.gpr.py:328
@@ -15507,7 +15507,7 @@ msgstr "Visa detaljer för varje datum, som skrivs in"
 #. -----------------------------------------------------
 #: ../src/plugins/tool/CalculateEstimatedDates.py:98
 msgid "Config"
-msgstr "Konfiguration"
+msgstr "Inställning"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:99
 msgid "Maximum age"
@@ -15736,7 +15736,7 @@ msgstr "Söker efter tomma arkivplatsposter"
 
 #: ../src/plugins/tool/Check.py:657
 msgid "Looking for empty note records"
-msgstr "Söker efter tomma anteckningsposter"
+msgstr "Söker efter tomma notissposter"
 
 #: ../src/plugins/tool/Check.py:694
 msgid "Looking for empty families"
@@ -15780,7 +15780,7 @@ msgstr "Söker efter problem med referenser till mediaobjekt"
 
 #: ../src/plugins/tool/Check.py:1293
 msgid "Looking for note reference problems"
-msgstr "Söker efter problem med hänvisningar i anteckningar"
+msgstr "Söker efter problem med hänvisningar i notiser"
 
 #: ../src/plugins/tool/Check.py:1460
 msgid "No errors were found"
@@ -15941,8 +15941,8 @@ msgstr[1] "%d mediaobjekt, som refererats till, kunde inte hittas\n"
 #, python-format
 msgid "%d note object was referenced but not found\n"
 msgid_plural "%d note objects were referenced but not found\n"
-msgstr[0] "%d anteckningsobjekt, som refererats till, kunde inte hittas\n"
-msgstr[1] "%d anteckningsobjekt, som refererats till, kunde inte hittas\n"
+msgstr[0] "%d notissobjekt, som refererats till, kunde inte hittas\n"
+msgstr[1] "%d notissobjekt, som refererats till, kunde inte hittas\n"
 
 #: ../src/plugins/tool/Check.py:1583
 #, python-format
@@ -15972,7 +15972,7 @@ msgstr ""
 "   %d mediaobjekt\n"
 "   %d platsobjekt\n"
 "   %d arkivplatsobjekt\n"
-"   %d anteckningsobjekt\n"
+"   %d notissobjekt\n"
 
 #: ../src/plugins/tool/Check.py:1632
 msgid "Integrity Check Results"
@@ -16237,7 +16237,7 @@ msgstr ""
 "viktig distinktion måste göras mellan ett mediaobjekt och dess datafil.\n"
 "\n"
 "Ett mediaobjekt är en samling information om ett mediaobjekts datafil: namn, "
-"sökväg, beskrivning, ID, anteckningar, källreferenser etc. Dessa data "
+"sökväg, beskrivning, ID, notiser, källreferenser etc. Dessa data "
 "<b>innehåller inte datafilen själv</b>.\n"
 "\n"
 "De datafiler som innehåller bilder, ljud, video etc, lagras separat på "
@@ -16569,7 +16569,7 @@ msgstr "Sorterar om arkivplats-ID:n"
 
 #: ../src/plugins/tool/ReorderIds.py:145
 msgid "Reordering Note IDs"
-msgstr "Sorterar om antecknings-ID:n"
+msgstr "Sorterar om notiss-ID:n"
 
 #: ../src/plugins/tool/ReorderIds.py:159 ../src/plugins/tool/tools.gpr.py:489
 msgid "Reorder Gramps IDs"
@@ -17361,15 +17361,15 @@ msgstr "Dubbelklicka på bilden för att visa den i ett visningsprogram"
 
 #: ../src/plugins/view/noteview.py:75
 msgid "Delete the selected note"
-msgstr "Radera den valda anteckningen"
+msgstr "Radera den valda notisen"
 
 #: ../src/plugins/view/noteview.py:175
 msgid "Note Filter Editor"
-msgstr "Redigera anteckningsfilter"
+msgstr "Redigera notissfilter"
 
 #: ../src/plugins/view/noteview.py:190
 msgid "Select Note Columns"
-msgstr "Välj kolumner för anteckning"
+msgstr "Välj kolumner för notis"
 
 #: ../src/plugins/view/pedigreeview.py:80
 msgid "short for baptized|bap."
@@ -17424,7 +17424,7 @@ msgstr "Visa giftermålsdata"
 
 #: ../src/plugins/view/pedigreeview.py:1271
 msgid "Tree style"
-msgstr "Trädstil"
+msgstr "Trädmall"
 
 #: ../src/plugins/view/pedigreeview.py:1278
 msgid "Version A"
@@ -17782,11 +17782,11 @@ msgstr "Vyn visar samtliga mediaobjekt"
 
 #: ../src/plugins/view/view.gpr.py:88
 msgid "Note View"
-msgstr "Anteckningsvy"
+msgstr "Notissvy"
 
 #: ../src/plugins/view/view.gpr.py:89
 msgid "The view showing all the notes"
-msgstr "Vyn visar samtliga anteckningar"
+msgstr "Vyn visar samtliga notiser"
 
 #: ../src/plugins/view/view.gpr.py:102
 msgid "Relationship View"
@@ -17838,7 +17838,7 @@ msgstr "Vyn visar alla källor"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 msgid "Gramps ID"
-msgstr "Gramps ID"
+msgstr "Gramps-ID"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:131
 msgid "Latitude"
@@ -18285,11 +18285,11 @@ msgstr "Den copyright, som skall användas för webbfiler"
 #: ../src/plugins/webreport/NarrativeWeb.py:5675
 #: ../src/plugins/webreport/WebCal.py:1401
 msgid "StyleSheet"
-msgstr "Stilmall"
+msgstr "Mallblad"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5678
 msgid "The stylesheet to be used for the web page"
-msgstr "Den stilmall, som skall användas för webbsidan"
+msgstr "Det mallblad, som skall användas för webbsidan"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5681
 msgid "Include ancestor graph"
@@ -18313,11 +18313,11 @@ msgstr "Sidgenerering"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5704
 msgid "Home page note"
-msgstr "Hemsideanteckning"
+msgstr "Hemsidenotis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5705
 msgid "A note to be used on the home page"
-msgstr "En anteckning, som skall användas på hemsidan"
+msgstr "En notis, som skall användas på hemsidan"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5708
 msgid "Home page image"
@@ -18329,11 +18329,11 @@ msgstr "En bild för användning på hemsidan."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5712
 msgid "Introduction note"
-msgstr "Introduktionsanteckning"
+msgstr "Introduktionsnotis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5713
 msgid "A note to be used as the introduction"
-msgstr "En anteckning, som skall användas som inledning."
+msgstr "En notis, som skall användas som inledning."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5716
 msgid "Introduction image"
@@ -18349,7 +18349,7 @@ msgstr "Kontaktnotering hos utgivare"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5721
 msgid "A note to be used as the publisher contact"
-msgstr "En anteckning, som skall användas som utgivarkontakt."
+msgstr "En notis, som skall användas som utgivarkontakt."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5724
 msgid "Publisher contact image"
@@ -18365,7 +18365,7 @@ msgstr "HTML sidhuvud"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5729
 msgid "A note to be used as the page header"
-msgstr "En anteckning, som skall användas som sidhuvud"
+msgstr "En notis, som skall användas som sidhuvud"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5732
 msgid "HTML user footer"
@@ -18373,7 +18373,7 @@ msgstr "HTML sidfot"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5733
 msgid "A note to be used as the page footer"
-msgstr "En anteckning, som skall används som sidfot"
+msgstr "En notis, som skall används som sidfot"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5736
 msgid "Include images and media objects"
@@ -18427,7 +18427,7 @@ msgstr "Dölj Gramps-ID:n"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5764
 msgid "Whether to include the Gramps ID of objects"
-msgstr "Huruvida ta med Gramps ID för objekt"
+msgstr "Huruvida ta med Gramps-ID för objekt"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5771
 msgid "Privacy"
@@ -18483,11 +18483,11 @@ msgstr "Huruvida ta med alternativ för databasnedladdning"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5813
 msgid "Download page note"
-msgstr "Anteckning för nedladdningssida"
+msgstr "Notis för nedladdningssida"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5814
 msgid "A note to be used on the download page"
-msgstr "En anteckning, som skall användas på nedladdningssidan"
+msgstr "En notis, som skall användas på nedladdningssidan"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5817
 #: ../src/plugins/webreport/NarrativeWeb.py:5826
@@ -18723,7 +18723,7 @@ msgstr "Titel på kalender"
 
 #: ../src/plugins/webreport/WebCal.py:1404
 msgid "The Style Sheet to be used for the web page"
-msgstr "Den stilmall, som skall användas för webbsidan"
+msgstr "Det mallblad, som skall användas för webbsidan"
 
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "Content Options"
@@ -18769,107 +18769,107 @@ msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1480
 msgid "Jan - Jun Notes"
-msgstr "Anteckningar för jan - jun"
+msgstr "Notiser för jan - jun"
 
 #: ../src/plugins/webreport/WebCal.py:1482
 msgid "January Note"
-msgstr "Januarianteckning"
+msgstr "Januarinotis"
 
 #: ../src/plugins/webreport/WebCal.py:1483
 msgid "The note for the month of January"
-msgstr "Anteckningen för januari månad."
+msgstr "Notisen för januari månad."
 
 #: ../src/plugins/webreport/WebCal.py:1486
 msgid "February Note"
-msgstr "Februarianteckning"
+msgstr "Februarinotis"
 
 #: ../src/plugins/webreport/WebCal.py:1487
 msgid "The note for the month of February"
-msgstr "Anteckningen för februari månad."
+msgstr "Notisen för februari månad."
 
 #: ../src/plugins/webreport/WebCal.py:1490
 msgid "March Note"
-msgstr "Marsanteckning"
+msgstr "Marsnotis"
 
 #: ../src/plugins/webreport/WebCal.py:1491
 msgid "The note for the month of March"
-msgstr "Anteckningen för mars månad."
+msgstr "Notisen för mars månad."
 
 #: ../src/plugins/webreport/WebCal.py:1494
 msgid "April Note"
-msgstr "Aprilanteckning"
+msgstr "Aprilnotis"
 
 #: ../src/plugins/webreport/WebCal.py:1495
 msgid "The note for the month of April"
-msgstr "Anteckningen för april månad"
+msgstr "Notisen för april månad"
 
 #: ../src/plugins/webreport/WebCal.py:1498
 msgid "May Note"
-msgstr "Maj anteckningar"
+msgstr "Majnotis"
 
 #: ../src/plugins/webreport/WebCal.py:1499
 msgid "The note for the month of May"
-msgstr "Anteckningen för maj månad"
+msgstr "Notisen för maj månad"
 
 #: ../src/plugins/webreport/WebCal.py:1502
 msgid "June Note"
-msgstr "Junianteckning"
+msgstr "Juninotis"
 
 #: ../src/plugins/webreport/WebCal.py:1503
 msgid "The note for the month of June"
-msgstr "Anteckningen för juni månad"
+msgstr "Notisen för juni månad"
 
 #: ../src/plugins/webreport/WebCal.py:1506
 msgid "Jul - Dec Notes"
-msgstr "Anteckningar för jul - dec"
+msgstr "Notiser för jul - dec"
 
 #: ../src/plugins/webreport/WebCal.py:1508
 msgid "July Note"
-msgstr "Julianteckning"
+msgstr "Julinotis"
 
 #: ../src/plugins/webreport/WebCal.py:1509
 msgid "The note for the month of July"
-msgstr "Anteckningen för juli månad"
+msgstr "Notisen för juli månad"
 
 #: ../src/plugins/webreport/WebCal.py:1512
 msgid "August Note"
-msgstr "Augustianteckning"
+msgstr "Augustinotis"
 
 #: ../src/plugins/webreport/WebCal.py:1513
 msgid "The note for the month of August"
-msgstr "Anteckningen för augusti månad."
+msgstr "Notisen för augusti månad."
 
 #: ../src/plugins/webreport/WebCal.py:1516
 msgid "September Note"
-msgstr "Septemberanteckning"
+msgstr "Septembernotis"
 
 #: ../src/plugins/webreport/WebCal.py:1517
 msgid "The note for the month of September"
-msgstr "Anteckningen för september månad"
+msgstr "Notisen för september månad"
 
 #: ../src/plugins/webreport/WebCal.py:1520
 msgid "October Note"
-msgstr "Oktoberanteckning"
+msgstr "Oktobernotis"
 
 #: ../src/plugins/webreport/WebCal.py:1521
 msgid "The note for the month of October"
-msgstr "Anteckningen för oktober månad"
+msgstr "Notisen för oktober månad"
 
 #: ../src/plugins/webreport/WebCal.py:1524
 msgid "November Note"
-msgstr "Novemberanteckning"
+msgstr "Novembernotis"
 
 #: ../src/plugins/webreport/WebCal.py:1525
 msgid "The note for the month of November"
-msgstr "Anteckningen för november månad."
+msgstr "Notisen för november månad."
 
 #: ../src/plugins/webreport/WebCal.py:1528
 msgid "December Note"
-msgstr "December anteckning"
+msgstr "Decembernotis"
 
 #: ../src/plugins/webreport/WebCal.py:1529
 msgid "The note for the month of December"
-msgstr "Anteckningen för december månad."
+msgstr "Notisen för december månad."
 
 #: ../src/plugins/webreport/WebCal.py:1545
 msgid "Create \"Year At A Glance\" Calendar"
@@ -18991,7 +18991,7 @@ msgstr "Spara som"
 #: ../src/ReportBase/_ReportDialog.py:287
 #: ../src/ReportBase/_StyleEditor.py:100
 msgid "Style Editor"
-msgstr "Stilmallsredigerare"
+msgstr "Mallsredigerare"
 
 #: ../src/PluginUtils/_PluginDialogs.py:120
 msgid "_Apply"
@@ -19210,7 +19210,7 @@ msgstr "Synskadade"
 
 #: ../src/ReportBase/_Constants.py:72
 msgid "No style sheet"
-msgstr "Ingen stilmall"
+msgstr "Inget mallblad"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
 #: ../src/ReportBase/_GraphvizReportDialog.py:1099
@@ -19251,7 +19251,7 @@ msgstr ""
 msgid "The basic style used for the endnotes notes display."
 msgstr ""
 "Den grundläggande mall, som används vid visning av notförteckningens "
-"anteckningar."
+"notiser."
 
 #: ../src/ReportBase/_Endnotes.py:107
 msgid "Endnotes"
@@ -19260,7 +19260,7 @@ msgstr "Slutnoter"
 #: ../src/ReportBase/_Endnotes.py:146
 #, python-format
 msgid "Note %(ind)d - Type: %(type)s"
-msgstr "Anteckning %(ind)d - Typ: %(type)s"
+msgstr "Notis %(ind)d - Typ: %(type)s"
 
 #. -------------------------------------------------------------------------------
 #.
@@ -19547,7 +19547,7 @@ msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1049
 msgid "Note size"
-msgstr "Anteckningsstorlek"
+msgstr "Notissstorlek"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1050
 msgid "The size of note text, in points."
@@ -19572,13 +19572,13 @@ msgstr "tum"
 
 #: ../src/ReportBase/_ReportDialog.py:114
 msgid "Configuration"
-msgstr "Konfiguration"
+msgstr "Inställning"
 
 #. Styles Frame
 #: ../src/ReportBase/_ReportDialog.py:283
 #: ../src/ReportBase/_StyleEditor.py:104
 msgid "Style"
-msgstr "Stil"
+msgstr "Mall"
 
 #. need any labels at top:
 #: ../src/ReportBase/_ReportDialog.py:434
@@ -19643,15 +19643,15 @@ msgstr ""
 
 #: ../src/ReportBase/_StyleEditor.py:88
 msgid "Document Styles"
-msgstr "Dokumentstilar"
+msgstr "Dokumentmallar"
 
 #: ../src/ReportBase/_StyleEditor.py:142
 msgid "Error saving stylesheet"
-msgstr "Fel när stilmall skulle sparas"
+msgstr "Fel när mallblad skulle sparas"
 
 #: ../src/ReportBase/_StyleEditor.py:209
 msgid "Style editor"
-msgstr "Stilmallsredigerare"
+msgstr "Mallredigerare"
 
 #: ../src/ReportBase/_StyleEditor.py:210 ../src/glade/styleeditor.glade.h:34
 msgid "point size|pt"
@@ -19659,7 +19659,7 @@ msgstr "Typsnittsstorlek"
 
 #: ../src/ReportBase/_StyleEditor.py:212
 msgid "Paragraph"
-msgstr "Paragraf"
+msgstr "Stycke"
 
 #: ../src/ReportBase/_StyleEditor.py:243
 msgid "No description available"
@@ -19851,21 +19851,21 @@ msgstr "Reguljärt uttryck:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 msgid "Objects having notes containing <regular expression>"
-msgstr "Objekt med anteckningar som innehåller <reguljärt uttryck>"
+msgstr "Objekt med notiser som innehåller <reguljärt uttryck>"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 msgid "Matches objects whose notes contain text matching a regular expression"
 msgstr ""
-"Matchar objekt vars anteckningar innehåller\n"
+"Matchar objekt vars notiser innehåller\n"
 "text som matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
 msgid "Objects having notes containing <substring>"
-msgstr "Objekt med <delsträng> i anteckningar"
+msgstr "Objekt med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
 msgid "Matches objects whose notes contain text matching a substring"
-msgstr "Matchar objekt vars anteckningar matchar en delsträng"
+msgstr "Matchar objekt vars notiser matchar en delsträng"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
 #: ../src/FilterEditor/_EditRule.py:458
@@ -20230,30 +20230,30 @@ msgstr "Matchar personer som har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
-msgstr "Personer med <antal> anteckningar"
+msgstr "Personer med <antal> notiser"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:47
 msgid "Matches people having a certain number of notes"
-msgstr "Matchar personer som har ett visst antal anteckningar"
+msgstr "Matchar personer som har ett visst antal notiser"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 msgid "People having notes containing <substring>"
-msgstr "Personer med <delsträng> i anteckningar"
+msgstr "Personer med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches people whose notes contain text matching a substring"
 msgstr ""
-"Matchar personer vars anteckningar\n"
+"Matchar personer vars notiser\n"
 "innehåller angiven text"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
-msgstr "Personer med <reguljärt uttryck> i anteckningar"
+msgstr "Personer med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
 msgstr ""
-"Matchar personer vars anteckningar\n"
+"Matchar personer vars notiser\n"
 "innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:46
@@ -20839,27 +20839,27 @@ msgstr "Matchar familjer som har en markör av ett visst värde"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:46
 msgid "Families having <count> notes"
-msgstr "Familjer med <antal> anteckningar"
+msgstr "Familjer med <antal> notiser"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:47
 msgid "Matches families having a certain number notes"
-msgstr "Matchar familjer som har ett visst antal anteckningar"
+msgstr "Matchar familjer som har ett visst antal notiser"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
-msgstr "Familjer med <delsträng> i anteckningar"
+msgstr "Familjer med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Matchar familjer vars anteckningar innehåller angiven delsträng"
+msgstr "Matchar familjer vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:42
 msgid "Families having notes containing <regular expression>"
-msgstr "Familjer med <reguljärt uttryck> i anteckningar"
+msgstr "Familjer med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "Matchar familjer vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar familjer vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
 msgid "Families with a reference count of <count>"
@@ -21060,27 +21060,27 @@ msgstr "Matchar händelser, som har en markör av ett visst värde"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:46
 msgid "Events having <count> notes"
-msgstr "Händelser med <antal> anteckningar"
+msgstr "Händelser med <antal> notiser"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:47
 msgid "Matches events having a certain number of notes"
-msgstr "Matchar händelser, som har ett visst antal anteckningar"
+msgstr "Matchar händelser, som har ett visst antal notiser"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
-msgstr "Händelser med <delsträng> i anteckningar"
+msgstr "Händelser med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven delsträng"
+msgstr "Matchar personer vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
 msgid "Events having notes containing <regular expression>"
-msgstr "Händelser med <reguljärt uttryck> i anteckningar"
+msgstr "Händelser med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Matchar händelser vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar händelser vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
 msgid "Events with a reference count of <count>"
@@ -21207,27 +21207,27 @@ msgstr "Positionsfilter"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:46
 msgid "Places having <count> notes"
-msgstr "Platser med <antal> anteckningar"
+msgstr "Platser med <antal> notiser"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:47
 msgid "Matches places having a certain number of notes"
-msgstr "Matchar platser, som har ett visst antal anteckningar"
+msgstr "Matchar platser, som har ett visst antal notiser"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
-msgstr "Platser med <delsträng> i anteckningar"
+msgstr "Platser med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Matchar platser vars anteckningar innehåller angiven text"
+msgstr "Matchar platser vars notiser innehåller angiven text"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 msgid "Places having notes containing <regular expression>"
-msgstr "Platser med <reguljärt uttryck> i anteckningar"
+msgstr "Platser med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "Matchar platser vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar platser vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
 msgid "Street:"
@@ -21370,27 +21370,27 @@ msgstr "Matchar källor med ett angivet Gramps-ID"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
 msgid "Sources having <count> notes"
-msgstr "Källor med <antal> anteckningar"
+msgstr "Källor med <antal> notiser"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:47
 msgid "Matches sources having a certain number of notes"
-msgstr "Matchar källor, som har ett visst antal anteckningar"
+msgstr "Matchar källor, som har ett visst antal notiser"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
-msgstr "Källor med <reguljärt uttryck> i anteckningar"
+msgstr "Källor med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Matchar källor vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar källor vars notiser innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
 msgid "Sources having notes containing <substring>"
-msgstr "Källor med <delsträng> i anteckningar"
+msgstr "Källor med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Matchar källor vars anteckningar innehåller angiven delsträng"
+msgstr "Matchar källor vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
 msgid "Sources with a reference count of <count>"
@@ -21509,19 +21509,19 @@ msgstr "Matchar mediaobjekt med vissa parametrar"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Mediaobjekt med <delsträng> i anteckningar"
+msgstr "Mediaobjekt med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Matchar mediaobjekt vars anteckningar innehåller angiven delsträng"
+msgstr "Matchar mediaobjekt vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Mediaobjekt med <reguljärt uttryck> i anteckningar"
+msgstr "Mediaobjekt med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Matchar mediaobjekt vars anteckningar matchar ett reguljärt uttryck"
+msgstr "Matchar mediaobjekt vars notiser matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
@@ -21585,19 +21585,19 @@ msgstr "Matchar arkivplatser med ett angivet Gramps-ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Arkivplatser med <delsträng> i anteckningar"
+msgstr "Arkivplatser med <delsträng> i notiser"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Matchar arkivplatser vars anteckningar innehåller angiven delsträng"
+msgstr "Matchar arkivplatser vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
-msgstr "Arkivplatser med <reguljärt uttryck> i anteckningar"
+msgstr "Arkivplatser med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Matchar arkivplatser vars anteckningar matchar ett reguljärt uttryck"
+msgstr "Matchar arkivplatser vars notiser matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
@@ -21646,56 +21646,56 @@ msgstr "Matchar arkivplatser som indikerats som privata"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:45
 msgid "Every note"
-msgstr "Alla anteckningar"
+msgstr "Alla notiser"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:46
 msgid "Matches every note in the database"
-msgstr "Matchar alla anteckningar i databasen"
+msgstr "Matchar alla notiser i databasen"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
 msgid "Notes changed after <date time>"
-msgstr "Anteckningar ändrade efter <datum tid>"
+msgstr "Notiser ändrade efter <datum tid>"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
-"Matchar anteckningar ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:"
+"Matchar notiser ändrade efter en specificerad datum/tid (yyyy-mm-dd hh:"
 "mm:ss) eller i intervall, om ett andra datum/tid givits"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
-msgstr "Anteckning med <Id>"
+msgstr "Notis med <Id>"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:46
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Matchar en anteckning med ett angivet Gramps-ID"
+msgstr "Matchar en notis med ett angivet Gramps-ID"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:45
 msgid "Notes with <marker>"
-msgstr "Anteckningar med <markör>"
+msgstr "Notiser med <markör>"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:46
 msgid "Matches Notes with a marker of a particular value"
-msgstr "Matchar anteckningar med en markering av ett visst värde"
+msgstr "Matchar notiser med en markering av ett visst värde"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
-msgstr "Anteckningar med <delsträng>"
+msgstr "Notiser med <delsträng>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
 msgid "Matches notes who contain text matching a substring"
-msgstr "Matchar anteckningar, som innehåller text matchande en delsträng"
+msgstr "Matchar notiser, som innehåller text matchande en delsträng"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
 msgid "Notes containing <regular expression>"
-msgstr "Anteckningar innehållande <reguljärt uttryck>"
+msgstr "Notiser innehållande <reguljärt uttryck>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
 msgstr ""
-"Matchar anteckningar, som innehåller text\n"
+"Matchar notiser, som innehåller text\n"
 "matchande ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
@@ -21705,15 +21705,15 @@ msgstr "Text:"
 #: ../src/Filters/Rules/Note/_HasNote.py:48
 #: ../src/FilterEditor/_EditRule.py:90
 msgid "Note type:"
-msgstr "Anteckningstyp:"
+msgstr "Notisstyp:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
-msgstr "Anteckningar, som matchar parametrar"
+msgstr "Notiser, som matchar parametrar"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:51
 msgid "Matches Notes with particular parameters"
-msgstr "Matchar anteckningar med vissa parametrar"
+msgstr "Matchar notiser med vissa parametrar"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:43
 msgid "Notes with a reference count of <count>"
@@ -21725,27 +21725,27 @@ msgstr "Matchar noteringar ned en viss referensräknare"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
-msgstr "Anteckningar som matchar <filter>"
+msgstr "Notiser som matchar <filter>"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:46
 msgid "Matches notes matched by the specified filter name"
-msgstr "Matchar anteckningar, som matchas av det angivna filternamnet"
+msgstr "Matchar notiser, som matchas av det angivna filternamnet"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:48
 msgid "Notes with <Id> matching regular expression"
-msgstr "Anteckningar med <id> som matchar reguljärt uttryck"
+msgstr "Notiser med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr "Matchar anteckningar vars Gramps-ID matchar det reguljära uttrycket"
+msgstr "Matchar notiser vars Gramps-ID matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
 msgid "Notes marked private"
-msgstr "Anteckningar markerade som privata"
+msgstr "Notiser markerade som privata"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
-msgstr "Matchar anteckningar som indikerats som privata"
+msgstr "Matchar notiser som indikerats som privata"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
@@ -21833,7 +21833,7 @@ msgstr "Arkivplatsfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:71
 msgid "Note Filters"
-msgstr "Anteckningsfilter"
+msgstr "Notissfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:113
 msgid "Comment"
@@ -22489,7 +22489,7 @@ msgstr "H_öger"
 
 #: ../src/glade/styleeditor.glade.h:22
 msgid "Style n_ame:"
-msgstr "Stil_namn:"
+msgstr "Mall_namn:"
 
 #: ../src/glade/styleeditor.glade.h:23
 msgid "_Bold"
@@ -22780,7 +22780,7 @@ msgstr "_Status:"
 
 #: ../src/glade/editnote.glade.h:1
 msgid "<b>Note</b>"
-msgstr "<b>Anteckning</b>"
+msgstr "<b>Notis</b>"
 
 #: ../src/glade/editnote.glade.h:2
 msgid ""
@@ -22789,9 +22789,9 @@ msgid ""
 "When not checked, notes are automatically cleaned in the reports, which will "
 "improve the report layout."
 msgstr ""
-"Vid aktiverad kommer mellanslag i dina anteckningar att bevars i rapporter. "
+"Vid aktiverad kommer mellanslag i dina notiser att bevars i rapporter. "
 "Använd detta för att formatera utseendet med mellanslag t. ex. i tabeller.\\ "
-"Om ej aktiverad, kommer anteckningarna att automatiskt rensas i rapporter, "
+"Om ej aktiverad, kommer notiserna att automatiskt rensas i rapporter, "
 "vilket förbättrar rapportutseendet."
 
 #: ../src/glade/editnote.glade.h:6
@@ -22904,7 +22904,7 @@ msgstr "Förkortning:"
 
 #: ../src/glade/mergedata.glade.h:6
 msgid "Gramps ID:"
-msgstr "Gramps ID:"
+msgstr "Gramps-ID:"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "Merge and _edit"
@@ -23090,7 +23090,7 @@ msgstr "Rensa boken"
 
 #: ../src/plugins/bookreport.glade.h:5
 msgid "Configure currently selected item"
-msgstr "Konfigurera det objekt som för tillfället är valt"
+msgstr "Ställ in det objekt som för tillfället är valt"
 
 #: ../src/plugins/bookreport.glade.h:6
 msgid "Manage previously created books"
@@ -23114,7 +23114,7 @@ msgstr "Ta bort det objekt som för tillfället är valt från boken"
 
 #: ../src/plugins/bookreport.glade.h:11
 msgid "Save current set of configured selections"
-msgstr "Spara aktuell uppsättning av konfigurerade val"
+msgstr "Spara aktuell uppsättning av inställda val"
 
 #: ../src/plugins/tool/changenames.glade.h:1
 msgid ""
@@ -23342,7 +23342,7 @@ msgstr "Leta efter media"
 
 #: ../src/plugins/tool/removeunused.glade.h:5
 msgid "Search for notes"
-msgstr "Leta efter anteckningar"
+msgstr "Leta efter notiser"
 
 #: ../src/plugins/tool/removeunused.glade.h:6
 msgid "Search for places"
@@ -23584,7 +23584,7 @@ msgid ""
 msgstr ""
 "<b>Olika vyer</b>: Det finns tolv olika vyer för att navigera i din familj: "
 "Gramplets, person, släktskap, familjevis, antavla, händelser, källor, "
-"platser, media, arkivplatser samt anteckningar och HTML-kartor. Var och en "
+"platser, media, arkivplatser samt notiser och HTML-kartor. Var och en "
 "hjälper dig att utföra en eller flera särskilda uppgifter."
 
 #: ../src/data/tips.xml.in.h:7
