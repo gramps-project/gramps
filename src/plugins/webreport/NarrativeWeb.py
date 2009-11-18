@@ -1657,7 +1657,8 @@ class IndividualListPage(BasePage):
             individuallist += Html("p", msg, id = "description")
 
             # add alphabet navigation
-            alpha_nav = alphabet_navigation(db, person_handle_list, _PERSON) 
+            menu_set = get_first_letters(db, person_handle_list, _PERSON) 
+            alpha_nav = alphabet_navigation(menu_set)
             if alpha_nav is not None:
                 individuallist += alpha_nav
 
@@ -2000,7 +2001,8 @@ class PlaceListPage(BasePage):
             placelist += Html("p", msg, id = "description")
 
             # begin alphabet navigation
-            alpha_nav = alphabet_navigation(db, place_handles, _PLACE) 
+            menu_set = get_first_letters(db, place_handles, _PLACE) 
+            alpha_nav = alphabet_navigation(menu_set)
             if alpha_nav is not None:
                 placelist += alpha_nav
 
@@ -2756,7 +2758,8 @@ class SurnameListPage(BasePage):
             # add alphabet navigation...
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
-                alpha_nav = alphabet_navigation(db, person_handle_list, _PERSON) 
+                menu_set = get_first_letters(db, person_handle_list, _PERSON)
+                alpha_nav = alphabet_navigation(menu_set)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
 
@@ -6081,13 +6084,12 @@ def get_first_letters(db, handle_list, key):
 
     return first_letters
 
-def alphabet_navigation(db, handle_list, key):
+def alphabet_navigation(menu_set):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
-    SurnameListPage, and PlaceListPage
+    SurnameListPage, PlaceListPage, and EventList
 
-    handle_list -- a list of people's or Places' handles
-    key -- _PERSON or _PLACE
+    @param: menu_set -- a dictionary of either sorted letters or words
     """
 
     sorted_set = {}
@@ -6106,27 +6108,27 @@ def alphabet_navigation(db, handle_list, key):
     #
     (lang_country, modifier ) = locale.getlocale()
 
-    for ltr in get_first_letters(db, handle_list, key):
-        if ltr in sorted_set:
-            sorted_set[ltr] += 1
+    for menu_item in menu_set:
+        if menu_item in sorted_set:
+            sorted_set[menu_item] += 1
         else:
-            sorted_set[ltr] = 1
+            sorted_set[menu_item] = 1
 
     # remove the number of each occurance of each letter
-    sorted_alpha_index = sorted(sorted_set, key=locale.strxfrm)
+    sorted_alpha_index = sorted(sorted_set, key = locale.strxfrm)
 
     # remove any commas from the letter set
-    sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != ',']
+    sorted_alpha_index = [(menu_item) for menu_item in sorted_alpha_index if menu_item != ","]
 
     # remove any single spaces from the letter set also
-    sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != ' ']
+    sorted_alpha_index = [(menu_item) for menu_item in sorted_alpha_index if menu_item != " "]
 
     # if no letters, return None back to its callers
     if not sorted_alpha_index:
         return None
 
     # begin alphabet division
-    with Html("div", id = "alphabet") as alphabet_nav:
+    with Html("div", id = "alphabet") as alphabetnavigation:
 
         num_ltrs = len(sorted_alpha_index)
         nrows = ((num_ltrs // 34) + 1)
@@ -6134,29 +6136,25 @@ def alphabet_navigation(db, handle_list, key):
         index = 0
         for row in xrange(nrows):
             unordered = Html("ul") 
-            alphabet_nav += unordered
+            alphabetnavigation += unordered
 
             cols = 0
             while (cols <= 34 and index < num_ltrs):
                 list = Html("li", inline = True)
                 unordered += list
 
-                ltr = sorted_alpha_index[index]
-                title_str = _("Surnames")  if key == 0 else _("Places")
+                menu_item = sorted_alpha_index[index]
                 if lang_country == "sv_SE" and ltr == u'V':
-                    title_str += _(" starting with %s") % "V,W" 
-                    hyper = Html("a", "V,W", href = "#V,W")
+                    hyper = Html("a", "V,W", href = "#V,W", alt = "V,W")
                 else:
-                    title_str += _(" starting with %s") % ltr 
-                    hyper = Html("a", ltr, href = "#%s" % ltr)
-                hyper.attr += " title = %s" % title_str  
+                    hyper = Html("a", menu_item, href = "#%s" % menu_item, alt = html_escape(menu_item))
                 list += hyper
 
                 cols += 1
                 index += 1
 
     # return alphabet navigation to its callers
-    return alphabet_nav
+    return alphabetnavigation
 
 def _has_webpage_extension(url):
     """
