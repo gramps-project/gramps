@@ -1605,14 +1605,15 @@ class Narrator(object):
             else:
                 text = ""
         
-        text = self.__translate_text(text) % value_map
-                
-        if text and birth_event:
-            text = text.rstrip(". ")
-            text = text + self.__get_endnote_numbers(birth_event) + ". "
-
         if text:
+            text = self.__translate_text(text) % value_map
+                
+            if birth_event:
+                text = text.rstrip(". ")
+                text = text + self.__get_endnote_numbers(birth_event) + ". "
+
             text = text + " "
+            
         return text
 
     def get_died_string(self, include_age=False):
@@ -1721,15 +1722,16 @@ class Narrator(object):
             text = died_no_date_no_place[name_index][gender][age_index]
         else:
             text = died_no_date_no_place[2][age_index]
-                
-        text = self.__translate_text(text) % value_map
-                
-        if text and death_event:
-            text = text.rstrip(". ")
-            text = text + self.__get_endnote_numbers(death_event) + ". "
-                
+        
         if text:
+            text = self.__translate_text(text) % value_map
+                
+            if death_event:
+                text = text.rstrip(". ")
+                text = text + self.__get_endnote_numbers(death_event) + ". "
+                
             text = text + " "
+            
         return text
 
     def get_buried_string(self):
@@ -1833,10 +1835,10 @@ class Narrator(object):
         else:          #male, no date, no place
             text = buried_no_date_no_place['succinct']
             
-        text = self.__translate_text(text) % value_map
-            
         if text:
+            text = self.__translate_text(text) % value_map
             text = text + " "
+            
         return text
 
     def get_baptized_string(self):
@@ -1939,11 +1941,11 @@ class Narrator(object):
             text = baptised_no_date_no_place[gender][name_index]
         else:          #male, no date, no place
             text = baptised_no_date_no_place['succinct']
-            
-        text = self.__translate_text(text) % value_map
-            
+        
         if text:
+            text = self.__translate_text(text) % value_map
             text = text + " "
+            
         return text
 
     def get_christened_string(self):
@@ -2047,10 +2049,10 @@ class Narrator(object):
         else:          #male, no date, no place
             text = christened_no_date_no_place['succinct']
             
-        text = self.__translate_text(text) % value_map
-            
         if text:
+            text = self.__translate_text(text) % value_map
             text = text + " "
+            
         return text
 
     def get_married_string(self, family, is_first=True):
@@ -2243,10 +2245,9 @@ class Narrator(object):
                     text = unmarried_also_only['succinct']
                 else:
                     text = relationship_also_only['succinct']
-                    
-        text = self.__translate_text(text) % value_map
     
         if text:
+            text = self.__translate_text(text) % value_map
             text = text + " "
         return text
 
@@ -2300,9 +2301,8 @@ class Narrator(object):
         elif father_name:
             text = child_father[gender][2]
             
-        text = self.__translate_text(text) % value_map
-            
         if text:
+            text = self.__translate_text(text) % value_map
             text = text + " "
             
         return text
