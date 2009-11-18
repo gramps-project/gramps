@@ -545,7 +545,7 @@ class BasePage(object):
         else:
             return eventtype
 
-    def get_event_data(self, evt, evt_ref, showplc, showdescr, showsrc, shownote, subdirs, hyp, gid = None):
+    def get_event_data(self, evt, evt_ref, showplc, showdescr, showsrc, shownote, up, hyp, gid = None):
         """
         retrieve event data from event and evt_ref
 
@@ -555,7 +555,7 @@ class BasePage(object):
         @param: showdescr = to show the event description or not?
         @param: showsrc = to show the event source references or not?
         @param: shownote = show notes or not?
-        @param: subdirs = either True or False
+        @param: up = either True or False; add subdirs or not?
         @param: hyp = to hyperlink the event type or not?
         """
         db = self.report.database
@@ -566,16 +566,18 @@ class BasePage(object):
         # get hyperlink or not?
         evt_hyper = evt_type
         if hyp:
-            evt_hyper = self.event_link(evt_type, evt_ref.ref, gid, subdirs)
+            evt_hyper = self.event_link(evt_type, evt_ref.ref, gid, up)
 
         # get place name
+        place = None
         place_handle = evt.get_place_handle()
-        place = db.get_place_from_handle(place_handle)
+        if place_handle:
+            place = db.get_place_from_handle(place_handle)
 
         place_hyper = None
         if place: 
             place_name = ReportUtils.place_name(db, place_handle)
-            place_hyper = self.place_link(place_handle, place_name, up = subdirs)
+            place_hyper = self.place_link(place_handle, place_name, up = up)
 
         # wrap it all up and return to its callers
         # position 0 = translatable label, position 1 = column class
@@ -678,16 +680,15 @@ class BasePage(object):
         # return table to its callers
         return table
 
-    def source_link(self, handle, hyper_name, name, gid = None, up = False):
+    def source_link(self, handle, name, gid = None, up = False):
+        """
+        creates a link to the source
+        """
 
         url = self.report.build_url_fname_html(handle, "src", up)
 
         # begin hyperlink
         hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
-
-        # adding to accomodate display_source_refs()
-        if hyper_name:
-            hyper.attr += 'name = "%s"' % hyper_name
 
         # add GRAMPS ID
         if not self.noid and gid:
@@ -878,11 +879,10 @@ class BasePage(object):
 
     def display_attr_list(self, attrlist, showsrc):
         """
-        will display an object's attributes
+        will display a list of attributes
 
-        @param: attrlist = a list of attributes
-        @param: objtype = which object are we using?  Ex. Person, Event, Photo
-        @param: showsrc = to shown source references or not?
+        @param: attrlist -- a list of attributes
+        @param: showsrc  -- to shown source references or not?
         """
         if not attrlist:
             return None
@@ -1345,18 +1345,23 @@ class BasePage(object):
     def display_source_refs(self, bibli):
         if bibli.get_citation_count() == 0:
             return None
-        db = self.report.database
 
-        # begin Source References division and title
+        # local gettext variables
+        _PAGE = _("Page")
+        _CONFIDENCE = _("Confidence")
+        _TEXT = _("Text")
+
+        db = self.report.database
         with Html("div", id = "sourcerefs", class_ = "subsection") as section:
             section += Html("h4", _("Source References"), inline = True)
- 
+
             ordered = Html("ol")
 
             cindex = 0
-            for citation in bibli.get_citation_list():
-
+            citationlist = bibli.get_citation_list()
+            for citation in citationlist:
                 cindex += 1
+
                 # Add this source to the global list of sources to be displayed
                 # on each source page.
                 lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -1370,42 +1375,41 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 title = source.get_title()
-
-                list = Html("li", inline = True)
-
-                hyper = (Html("a", name = "sref%d" % cindex) +
-                    self.source_link(source.handle, title, source.gramps_id, True)
+                list = Html("li", inline = True) + (
+                    Html("a", self.source_link(source.handle, title, source.gramps_id, True), 
+                        name = "sref%d" % cindex)
                     )
-                list += hyper
+                ordered += list
 
                 ordered1 = Html("ol")
-                list += ordered1
-  
-                for key, sref in citation.get_ref_list():
+                citation_ref_list = citation.get_ref_list()
+                for key, sref in citation_ref_list:
 
                     tmp = []
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                     if confidence == _('Normal'):
                         confidence = None
-                    for (label, data) in [(_("Date"), format_date(sref.date)),
-                                          (_("Page"), sref.page),
-                                          (_("Confidence"), confidence)]:
+                    for (label, data) in [(DHEAD, format_date(sref.date)),
+                                          (_PAGE, sref.page),
+                                          (_CONFIDENCE, confidence)]:
                         if data:
                             tmp.append("%s: %s" % (label, data))
+
                     notelist = sref.get_note_list()
                     for notehandle in notelist:
                         note = db.get_note_from_handle(notehandle)
                         note_text = self.get_note_format(note)
-                        tmp.append("%s: %s" % (_('Text'), note_text))
-                    if len(tmp) > 0:
-
-                        list1 = Html("li")
+                        tmp.append("%s: %s" % (_TEXT, note_text))
+                    if len(tmp):
+                        list1 = Html("li", inline = True) + (
+                            Html("a", '; &nbsp; '.join(tmp), name = "sref%d%s" % (cindex, key))
+                            )
                         ordered1 += list1
+                list += ordered1
+                ordered += list
+            section += ordered
 
-                        hyper1 = Html("a", '; &nbsp; '.join(tmp), name = "sref%d%s" % (cindex, key)) 
-                        list1 += hyper1
-
-        # return section to its callers
+        # return section to its caller
         return section
 
     def display_references(self, handlelist, up = False):
@@ -3360,7 +3364,6 @@ class IndividualPage(BasePage):
         self.place_list = place_list
         self.sort_name = self.get_name(person)
         self.name = self.get_name(person)
-        self.attribute_list = attribute_list
         db = report.database
 
         of = self.report.create_file(person.handle, "ppl")
@@ -3890,7 +3893,7 @@ class IndividualPage(BasePage):
         db = self.report.database
             
         # begin events division and section title
-        with Html("div", class_ = "subsection", id = "events") as section:
+        with Html("div", id = "events", class_ = "subsection") as section:
             section += Html("h4", _("Events"), inline = True)
 
             # begin events table
@@ -3906,7 +3909,7 @@ class IndividualPage(BasePage):
                 @param: show source references
                 @param: show note
                 """
-                thead += self.display_event_header(True, False, True, False)
+                thead += self.display_event_header(True, True, True, False)
 
                 tbody = Html("tbody")
                 table += tbody
@@ -3925,7 +3928,7 @@ class IndividualPage(BasePage):
                     @param: subdirs = True or False
                     @param: hyp = show hyperlinked evt type or not?
                     """
-                    tbody += self.display_event_row(event, evt_ref, True, False, True, False, True, True)
+                    tbody += self.display_event_row(event, evt_ref, True, True, True, False, True, True)
  
         # return section to its caller
         return section
@@ -4442,6 +4445,9 @@ class IndividualPage(BasePage):
         return trow
 
     def format_event(self, eventlist):
+        """
+        displays the event row for events such as marriage and divorce
+        """
         db = self.report.database
 
         # begin eventlist table and table header
@@ -4456,7 +4462,7 @@ class IndividualPage(BasePage):
             @param: show source references
             @param: show note
             """
-            thead += self.display_event_header(True, False, True, False)
+            thead += self.display_event_header(True, True, True, False)
 
             # begin table body
             tbody = Html("tbody")
@@ -4473,10 +4479,10 @@ class IndividualPage(BasePage):
                 @param: show description or not?
                 @param: show source references or not?
                 @param: shownote = show notes or not?
-                @param: subdirs = True or False
+                @param: up = True or False: attach subdirs or not?
                 @param: hyp = show hyperlinked evt type or not?
                 """
-                tbody += self.display_event_row(event, event_ref, True, False, True, False, True, True)
+                tbody += self.display_event_row(event, event_ref, True, True, True, False, True, True)
 
         # return table to its callers
         return table
