@@ -265,10 +265,9 @@ class LivingProxyDb(ProxyDbBase):
         new_person.set_gender(person.get_gender())
         new_person.set_gramps_id(person.get_gramps_id())
         new_person.set_handle(person.get_handle())
+        new_person.set_change_time(person.get_change_time())
         new_person.set_family_handle_list(person.get_family_handle_list())
         new_person.set_parent_family_handle_list( 
                                         person.get_parent_family_handle_list() )
     
         return new_person
-
-

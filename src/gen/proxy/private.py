@@ -728,6 +728,7 @@ def sanitize_person(db, person):
     new_person.set_gender(person.get_gender())
     new_person.set_gramps_id(person.get_gramps_id())
     new_person.set_handle(person.get_handle())
+    new_person.set_change_time(person.get_change_time())
     
     # copy names if not private
     name = person.get_primary_name()
@@ -818,6 +819,7 @@ def sanitize_source(db, source):
     new_source.set_abbreviation(source.get_abbreviation())
     new_source.set_gramps_id(source.get_gramps_id())
     new_source.set_handle(source.get_handle())
+    new_source.set_change_time(source.get_change_time())
     new_source.set_marker(source.get_marker())
     new_source.set_data_map(source.get_data_map())
     
@@ -854,6 +856,7 @@ def sanitize_media(db, media):
     new_media.set_description(media.get_description())
     new_media.set_gramps_id(media.get_gramps_id())
     new_media.set_handle(media.get_handle())
+    new_media.set_change_time(media.get_change_time())
     new_media.set_date_object(media.get_date_object())
     new_media.set_marker(media.get_marker())
 
@@ -882,6 +885,7 @@ def sanitize_place(db, place):
     new_place.set_title(place.get_title())
     new_place.set_gramps_id(place.get_gramps_id())
     new_place.set_handle(place.get_handle())
+    new_place.set_change_time(place.get_change_time())
     new_place.set_longitude(place.get_longitude())
     new_place.set_latitude(place.get_latitude())
     new_place.set_main_location(place.get_main_location())
@@ -917,6 +921,7 @@ def sanitize_event(db, event):
     new_event.set_handle(event.get_handle())
     new_event.set_date_object(event.get_date_object())
     new_event.set_marker(event.get_marker())
+    new_event.set_change_time(event.get_change_time())
 
     copy_source_ref_list(db, event, new_event)
     copy_notes(db, event, new_event)
@@ -950,6 +955,7 @@ def sanitize_family(db, family):
     new_family.set_handle(family.get_handle())
     new_family.set_marker(family.get_marker())    
     new_family.set_relationship(family.get_relationship())
+    new_family.set_change_time(family.get_change_time())
     
     # Copy the father handle.
     father_handle = family.get_father_handle()
@@ -1017,6 +1023,7 @@ def sanitize_repository(db, repository):
     new_repository.set_name(repository.get_name())
     new_repository.set_gramps_id(repository.get_gramps_id())
     new_repository.set_handle(repository.get_handle())
+    new_repository.set_change_time(repository.get_change_time())
     new_repository.set_marker(repository.get_marker())
 
     copy_notes(db, repository, new_repository)

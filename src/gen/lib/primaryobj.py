@@ -106,6 +106,17 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         return self.change
 
+    def set_change_time(self, change):
+        """
+        Modify the time that the data was last changed. 
+        
+        The value must be in the format returned by the time.time() command.
+
+        @param change: new time
+        @type change: int in format as time.time() command
+        """
+        self.change = change
+
     def get_change_display(self):
         """
         Return the string representation of the last change time.

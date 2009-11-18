@@ -3490,7 +3490,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.repo_ref.set_call_number(line.data)
-        self.__skip_subordinate_levels(state.level+1)
+        #self.__skip_subordinate_levels(state.level+1)
 
     def __repo_ref_medi(self, line, state):
         name = line.data
@@ -4167,20 +4167,28 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_TIME:
                 tstr = line.data
             elif line.token == TOKEN_DATE:
-                dstr = line.data
+                #GedcomLex converted already to Date object
+                dobj = line.data
             elif line.token == TOKEN_NOTE:
                 self.__skip_subordinate_levels(level+1)
             else:
                 self.__not_recognized(line, level+1)
 
         # Attempt to convert the values to a valid change time
-        if tstr:
+        if dobj:
+            dstr = "%s %s %s" % (dobj.get_day(), dobj.get_month(),
+                                 dobj.get_year())
             try:
-                if dstr:
-                    tstruct = time.strptime("%s %s" % (dstr, tstr), 
-                                            "%d %b %Y %H:%M:%S")
+                if tstr:
+                    try:
+                        tstruct = time.strptime("%s %s" % (dstr, tstr),
+                                                "%d %m %Y %H:%M:%S")
+                    except ValueError:
+                        #seconds is optional in GEDCOM
+                        tstruct = time.strptime("%s %s" % (dstr, tstr),
+                                                "%d %m %Y %H:%M")
                 else:
-                    tstruct = time.strptime(tstr, "%d %b %Y")
+                    tstruct = time.strptime(dstr, "%d %m %Y")
                 val = time.mktime(tstruct)
                 obj.change = val
             except ValueError:
