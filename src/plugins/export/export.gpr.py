@@ -105,7 +105,7 @@ plg.extension = "gw"
 
 plg = newplugin()
 plg.id    = 'ex_gpkg'
-plg.name  = _('Gram_ps package (portable XML)')
+plg.name  = _('Gra_mps package (portable XML)')
 plg.description =  _('Gramps package is an archived XML family tree together '
                  'with the media object files.')
 plg.version = '1.0'
