@@ -947,7 +947,7 @@
             <dc:title>B. Malengier</dc:title>
           </cc:Agent>
         </dc:creator>
-        <dc:title>GRAMPS</dc:title>
+        <dc:title>Gramps</dc:title>
         <cc:license
            rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
         <dc:contributor>

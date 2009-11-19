@@ -990,7 +990,7 @@
         </dc:subject>
         <cc:license
            rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
-        <dc:description>release of GRAMPS
+        <dc:description>release of Gramps
 </dc:description>
         <dc:contributor>
           <cc:Agent>
