@@ -680,6 +680,8 @@ def sanitize_source_ref(db, source_ref):
     """
     new_ref = SourceRef()
     new_ref.set_date_object(source_ref.get_date_object())
+    new_ref.set_page(source_ref.get_page())
+    new_ref.set_confidence_level(source_ref.get_confidence_level())
     new_ref.set_reference_handle(source_ref.get_reference_handle())
     copy_notes(db, source_ref, new_ref)
     
