@@ -238,14 +238,12 @@ def get_gendex_data(database, event_ref):
                     if place:
                         location = place.get_main_location()
                         if location and not location.is_empty():
-                            if location.get_city().strip():
-                                poe = location.get_city().strip()
-                            if location.get_state().strip():
-                                if poe: poe += ", "
-                                poe += location.get_state().strip()
-                            if location.get_country().strip():
-                                if poe: poe += ", "
-                                poe += location.get_country().strip()
+                            poe = ", ".join(l for l in
+                                            [
+                                                location.get_city().strip(),
+                                                location.get_state().strip(),
+                                                location.get_country().strip()
+                                            ] if l)
     return doe, poe
 
 def format_date(date):
@@ -314,10 +312,9 @@ class BasePage(object):
 
         birth = ReportUtils.get_birth_or_fallback(db, person)
         if birth:
-
-            birth_year = birth.get_date_object().to_calendar(self.calendar).get_year()
-            birth_month = birth.get_date_object().to_calendar(self.calendar).get_month()
-            birth_day = birth.get_date_object().to_calendar(self.calendar).get_day()
+            d = birth.get_date_object().to_calendar(self.calendar)
+            birth_year, birth_month, birth_day = \
+                d.get_year(), d.get_month(), d.get_day()
         else:
             birth_year, birth_month, birth_day = 2199, 12, 31
         birth_date = Date(birth_year, birth_month, birth_day)
@@ -330,10 +327,9 @@ class BasePage(object):
 
         death = ReportUtils.get_death_or_fallback(db, person)
         if death:
-
-            death_year = death.get_date_object().to_calendar(self.calendar).get_year()
-            death_month = death.get_date_object().to_calendar(self.calendar).get_month()
-            death_day = death.get_date_object().to_calendar(self.calendar).get_day()
+            d = death.get_date_object().to_calendar(self.calendar)
+            death_year, death_month, death_day = \
+                d.get_year(), d.get_month(), d.get_day()
         else:
             death_year, death_month, death_day = 2199, 12, 31
         death_date = Date(death_year, death_month, death_day)
@@ -357,13 +353,13 @@ class BasePage(object):
 
         if showsrc:
             srcrefs = self.get_citation_links(attr.get_source_references() ) or "&nbsp;"
-            source_row = ("Sources",    srcrefs)
+            source_row = ("Sources", srcrefs)
             attr_data_row.append(source_row)
  
         # get attribute note list    
         notelist = attr.get_note_list()
         notelist = self.display_note_list(notelist) or "&nbsp;"
-        note_row = ("Notes",    notelist)                      
+        note_row = ("Notes", notelist)                      
         attr_data_row.append(note_row)
 
         # display attribute list
@@ -395,12 +391,12 @@ class BasePage(object):
 
         text = ""
         if len(gid_list):
-            text = text + " <sup>"
+            text += " <sup>"
             for ref in gid_list:
                 index, key = self.bibli.add_reference(ref)
                 id_ = "%d%s" % (index+1, key)
-                text = text + '<a href = "#sref%s">%s</a>' % (id_, id_)
-            text = text + "</sup>"
+                text += '<a href="#sref%s">%s</a>' % (id_, id_)
+            text += "</sup>"
 
         # return citation list text to its callers
         return text
@@ -416,11 +412,8 @@ class BasePage(object):
  
         # styled notes
         htmlnotetext = self.styled_note(note.get_styledtext(),
-                                                               note.get_format())
-        if htmlnotetext:
-            text = htmlnotetext
-        else:
-            text = Html("p", note_text) 
+                                        note.get_format())
+        text = htmlnotetext or Html("p", note_text)
 
         # return text of the note to its callers
         return text
@@ -452,19 +445,28 @@ class BasePage(object):
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
             #FIXME: following split should be regex to match \n\s*\n instead?
-            htmllist += Html("pre", indent = None, inline = True)
+            htmllist += Html("pre", indent=None) + \
+                (l + str(Html('br')) for l in markuptext.split('\n'))
+
+            '''
+            Html('pre',indent=None)
             for line in markuptext.split('\n\n'):
                 htmllist += Html("p")
                 for realline in line.split('\n'):
                     htmllist += realline
                     htmllist += Html('br')
-
+            '''
+    
         elif format == 0:
             #flowed
             #FIXME: following split should be regex to match \n\s*\n instead?
+            htmllist.extend(Html('p') + para for para in markuptext.split("\n\n"))
+
+            '''
             for line in markuptext.split("\n\n"):
                 htmllist += Html("p")
                 htmllist += line
+            '''
 
         return htmllist
 
@@ -480,14 +482,14 @@ class BasePage(object):
         db = self.report.database
 
         # begin unordered list
-        unordered = Html("ul")
-
-        for notehandle in notelist:
-            note = db.get_note_from_handle(notehandle)
-            unordered += self.get_note_format(note)
+        ul = Html("ul")
+        ul.extend(
+            self.get_note_format(
+                db.get_note_from_handle(notehandle))
+            for notehandle in notelist)
 
         # return unordered note list to its callers
-        return unordered
+        return ul
 
     def display_event_row(self, evt, evt_ref, showplc, showdescr, showsrc, shownote, subdirs, hyp):
         """
@@ -518,7 +520,7 @@ class BasePage(object):
             data = data or "&nbsp;"
 
             # determine if information will fit on same line?
-            samerow = True if (data == "&nbsp;" or colclass  == "Date") else False
+            samerow = (data == "&nbsp;" or colclass  == "Date")
 
             trow += Html("td", data, class_ = "Column%s" % colclass, inline = samerow)
 
@@ -673,7 +675,7 @@ class BasePage(object):
                     value = value or "&nbsp;"
 
                     # determine if inline = True or False
-                    samerow = True if (value == "&nbsp;" or colclass == "LDSDate") else False
+                    samerow = (value == "&nbsp;" or colclass == "LDSDate")
 
                     trow += Html("td", value, class_ = "Column%s" % colclass, inline = samerow)
 
@@ -1279,7 +1281,7 @@ class BasePage(object):
                         note_text = unicode(str(note_text), errors='replace')
 
                     # add section title
-                    section += Html("h4", _("Narrative"), inline = True)
+                    section += Html("h4", _("Narrative"), inline=True)
 
                     # attach note
                     section += note_text
@@ -1629,7 +1631,7 @@ class BasePage(object):
         htmlinstance -- web page created with libhtml
             src/plugins/lib/libhtml.py
         """
- 
+
         htmlinstance.write(lambda line: of.write(line + '\n')) 
 
         # closes the file
@@ -4556,10 +4558,7 @@ class RepositoryListPage(BasePage):
                         if rtype == xtype[2]:
                             rtype = xtype[1]
                             break
-                    if rtype:
-                        tcell += rtype
-                    else:
-                        tcell += "&nbsp;"
+                    tcell += rtype or "&nbsp;"
 
                     # repository name and hyperlink
                     repo_title = html_escape(repo.name)
@@ -5241,8 +5240,8 @@ class NavWebReport(Report):
 
         # get death info:
         dod, pod = get_gendex_data(self.database, person.get_death_ref())
-        fp.write("%s|%s|%s|%s|%s|%s|%s|\n" % 
-                 (url, surname, fullname, dob, pob, dod, pod))
+        fp.write(
+            '|'.join((url, surname, fullname, dob, pob, dod, pod)) + '|\n')
 
     def surname_pages(self, ind_list):
         """
