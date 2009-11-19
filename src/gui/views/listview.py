@@ -769,7 +769,7 @@ class ListView(NavigationView):
         box.pack_start(label, True, True, padding=12)
         box.pack_start(combobox, False, False)
         combobox.append_text(_('CSV'))
-        combobox.append_text(_('Open Document Spreadsheet'))
+        combobox.append_text(_('OpenDocument Spreadsheet'))
         combobox.set_active(0)
         box.show_all()
         chooser.set_extra_widget(box)

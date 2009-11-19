@@ -393,7 +393,7 @@ other file types to your Gramps family tree.
 Gramps allows you to generate a number of reports (both text and graphical)
 based on your genealogical information. There is great flexibility in
 selecting what people are included in the reports as well as the output
-format (html, pdf, Open Document Text, RTF, LaTeX and plain text).
+format (html, pdf, OpenDocument Text, RTF, LaTeX and plain text).
 Experiment with the reports under the <b>Reports</b> menu to get an idea
 of how powerful Gramps is.
 </_tip>

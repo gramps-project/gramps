@@ -104,9 +104,9 @@ plg.extension = "tex"
 
 plg = newplugin()
 plg.id    = 'odfdoc'
-plg.name  = _('Open Document Text')
-plg.description =  _("Generates documents in Open "
-                     "Document Text format (.odt).")
+plg.name  = _('OpenDocument Text')
+plg.description =  _("Generates documents in OpenDocument "
+                     "Text format (.odt).")
 plg.version = '1.0'
 plg.status = STABLE
 plg.fname = 'ODFDoc.py'
