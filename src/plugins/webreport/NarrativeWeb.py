@@ -6116,7 +6116,7 @@ def alphabet_navigation(menu_set):
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     #
     (lang_country, modifier ) = locale.getlocale()
-
+    ltr = get_first_letters
     for menu_item in menu_set:
         if menu_item in sorted_set:
             sorted_set[menu_item] += 1
