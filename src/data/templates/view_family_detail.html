@@ -27,12 +27,21 @@
  <td class="ColumnAttribute">Name:</td>
  <td class="ColumnValue" id="data"><a href="/person/{{family.mother.handle}}">{{family.mother.name_set|make_name:user}} [{{family.mother.gramps_id|escape}}]</a></td>
 </tr>
+{% if user.is_authenticated or not family.father.handle|probably_alive %}
 <tr>
  <td class="ColumnAttribute">Birth:</td>
  <td class="ColumnValue" id="data">{{family.father|person_get_birth_date}}</td>
  <td class="ColumnAttribute">Birth:</td>
  <td class="ColumnValue" id="data">{{family.mother|person_get_birth_date}}</td>
 </tr>
+{% else %}
+<tr>
+ <td class="ColumnAttribute">Birth:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+ <td class="ColumnAttribute">Birth:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+</tr>
+{% endif %}
 <tr>
  <td class="ColumnAttribute">Death:</td>
  <td class="ColumnValue" id="data">{{family.father|person_get_death_date}}</td>

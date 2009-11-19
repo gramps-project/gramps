@@ -15,13 +15,18 @@
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 5 cols {% endcomment %}
 <tbody>
+
+{% if user.is_authenticated %}
 <tr>
  <td class="ColumnAttribute">Family:</td>
  <td class="ColumnValue" id="data">{{person.name_set|preferred:"surname"}}</td>
  <td class="ColumnAttribute">Prefix:</td>
  <td class="ColumnValue" id="data">{{person.name_set|preferred:"prefix"}}</td>
- <td rowspan="3" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
+ <td rowspan="5" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
 </tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Suffix:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"suffix"}}</td>
 <tr>
  <td class="ColumnAttribute">Given:</td>
  <td class="ColumnValue" id="data">{{person.name_set|preferred:"first_name"}}</td>
@@ -34,6 +39,11 @@
  <td class="ColumnAttribute">Patronymic:</td>
  <td class="ColumnValue" id="data">{{person.name_set|preferred:"patronymic"}}</td>
 </tr>
+</tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Title:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"title"}}</td>
+<tr>
 <tr>
  <td class="ColumnAttribute">Gender:</td>
  <td class="ColumnValue" id="data">{{person.gender_type|escape}}</td>
@@ -44,9 +54,50 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 
+{% else %}
+
+<tr>
+ <td class="ColumnAttribute">Family:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"surname"}}</td>
+ <td class="ColumnAttribute">Prefix:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+ <td rowspan="5" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
+</tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Suffix:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+<tr>
+ <td class="ColumnAttribute">Given:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+ <td class="ColumnAttribute">Call Name:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+</tr>
+<tr>
+ <td class="ColumnAttribute">Type:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"name_type"}}</td>
+ <td class="ColumnAttribute">Patronymic:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+</tr>
+</tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Title:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+<tr>
+<tr>
+ <td class="ColumnAttribute">Gender:</td>
+ <td class="ColumnValue" id="data">{{person.gender_type|escape}}</td>
+ <td class="ColumnAttribute">ID:</td>
+ <td class="ColumnValue" id="data">{{person.gramps_id|escape}}</td>
+ <td class="ColumnAttribute">Marker:</td>
+ <td class="ColumnValue" id="data"></td>
+</tr>
+</tbody>
+</table>
+
+{% endif %}
+</div>
+</div>
 <!-- Tabs -->
 <h2 class="demoHeaders">Tabs</h2>
 

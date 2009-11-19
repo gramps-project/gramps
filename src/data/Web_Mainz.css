@@ -200,6 +200,17 @@ a:visited {
 
 #data {
     background-color: white;
+    border-style: solid;
+    border-color: #7D5925;
+    border-width:1px 1px 1px 1px;
+}
+
+table tr.even {
+    background-color: #FFF2C5;
+}
+
+table tr.odd {
+    background-color: #ffffe7;
 }
 
 /* Navigation

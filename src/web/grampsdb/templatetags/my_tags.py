@@ -14,6 +14,9 @@ for filter_name in util_filters:
     func.is_safe = True
     register.filter(filter_name, func)
 
+probably_alive.is_safe = True
+register.filter('probably_alive', probably_alive)
+
 person_get_birth_date.is_safe = True
 register.filter('person_get_birth_date', person_get_birth_date)
 

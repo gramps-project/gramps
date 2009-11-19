@@ -18,13 +18,14 @@
 <p id="description">
 Database information:</p>
 
-<table class="infolist">
+<table class="infolist surname">
 <tr>
 <th>Item</th>
 <th>Count</th>
 </tr>
 {% for view in views %}
-   <tr><td align="left"><a href="/{{view.1}}">{{view.0}}</a></td> 
+   <tr class="{% cycle odd,even %}">
+       <td align="left"><a href="/{{view.1}}">{{view.0}}</a></td> 
        <td align="right"><a href="/{{view.1}}">{{view.2.objects.count}}</td>
    </tr>
 {% endfor %}

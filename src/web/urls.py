@@ -33,5 +33,27 @@ urlpatterns += patterns('',
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),
     (r'^(?P<view>(\w+))/$', view),
+    url(r'^person/(?P<handle>(\w+))/$', view_detail, 
+        {"view": "person"}, name="view-person-detail"),
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', view_detail),
 )
+
+# In urls:
+# urlpatterns = patterns('',
+#    url(r'^archive/(\d{4})/$', archive, name="full-archive"),
+#    url(r'^archive-summary/(\d{4})/$', archive, {'summary': True}, "arch-summary"),
+# )
+
+# In template:
+# {% url arch-summary 1945 %}
+# {% url full-archive 2007 %}
+#{% url path.to.view as the_url %}
+#{% if the_url %}
+#  <a href="{{ the_url }}">Link to optional stuff</a>
+#{% endif %}
+
+# In code:
+#from django.core.urlresolvers import reverse
+#
+#def myview(request):
+#    return HttpResponseRedirect(reverse('arch-summary', args=[1945]))
