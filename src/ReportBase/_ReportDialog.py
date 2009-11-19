@@ -122,7 +122,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
 
         self.style_name = self.options.handler.get_default_stylesheet_name()
 
-        window = gtk.Dialog('GRAMPS')
+        window = gtk.Dialog('Gramps')
         self.set_window(window, None, self.get_title())
         self.window.set_has_separator(False)
         self.window.set_modal(True)
@@ -177,7 +177,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         """The window title for this dialog"""
         name = self.report_name
         category = standalone_categories[self.category]
-        return "%s - %s - GRAMPS" % (name, category)
+        return "%s - %s - Gramps" % (name, category)
     
     #------------------------------------------------------------------------
     #

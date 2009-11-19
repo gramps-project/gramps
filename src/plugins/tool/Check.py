@@ -535,7 +535,7 @@ class CheckIntegrity(object):
                 else:
                     self.bad_photo.append(ObjectId)
 
-            fs_top = gtk.FileChooserDialog("%s - GRAMPS" % _("Select file"),
+            fs_top = gtk.FileChooserDialog("%s - Gramps" % _("Select file"),
                         buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                  gtk.STOCK_OK, gtk.RESPONSE_OK)
                         )

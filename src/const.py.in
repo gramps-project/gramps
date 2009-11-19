@@ -155,11 +155,11 @@ else:
 # About box information
 #
 #-------------------------------------------------------------------------
-PROGRAM_NAME   = "GRAMPS"
+PROGRAM_NAME   = "Gramps"
 VERSION        = "@VERSIONSTRING@"
 COPYRIGHT_MSG  = u"\u00A9 2001-2006 Donald N. Allingham\n" \
-                 u"\u00A9 2007-2009 The GRAMPS Developers"
-COMMENTS       = _("GRAMPS (Genealogical Research and Analysis "
+                 u"\u00A9 2007-2009 The Gramps Developers"
+COMMENTS       = _("Gramps (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
 AUTHORS        = [

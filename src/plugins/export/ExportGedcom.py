@@ -122,7 +122,7 @@ QUALITY_MAP = {
 #-------------------------------------------------------------------------
 def sort_by_gramps_id(first, second):
     """
-    Sort objects by their GRAMPS ID.
+    Sort objects by their Gramps ID.
     """
     return cmp(first.gramps_id, second.gramps_id)
 
@@ -133,7 +133,7 @@ def sort_by_gramps_id(first, second):
 #-------------------------------------------------------------------------
 def sort_handles_by_id(handle_list, handle_to_object):
     """
-    Sort a list of handles by the GRAMPS ID. 
+    Sort a list of handles by the Gramps ID. 
     
     The function that returns the object from the handle needs to be supplied 
     so that we get the right object.
@@ -380,9 +380,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         rname = self.dbase.get_researcher().get_name()
 
         self.__writeln(0, "HEAD")
-        self.__writeln(1, "SOUR", "GRAMPS")
+        self.__writeln(1, "SOUR", "Gramps")
         self.__writeln(2, "VERS",  const.VERSION)
-        self.__writeln(2, "NAME", "GRAMPS")
+        self.__writeln(2, "NAME", "Gramps")
         self.__writeln(1, "DATE", date_str)
         self.__writeln(2, "TIME", time_str)
         self.__writeln(1, "SUBM", "@SUBM@")
@@ -537,7 +537,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         """
         Write out the list of note handles to the current level. 
         
-        We use the GRAMPS ID as the XREF for the GEDCOM file.
+        We use the Gramps ID as the XREF for the GEDCOM file.
 
         """
         for note_handle in notelist:
@@ -747,7 +747,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __child_families(self, person):
         """
-        Write the GRAMPS ID as the XREF for each family in which the person
+        Write the Gramps ID as the XREF for each family in which the person
         is listed as a child.
         """
         
@@ -760,7 +760,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __parent_families(self, person):
         """
-        Write the GRAMPS ID as the XREF for each family in which the person
+        Write the Gramps ID as the XREF for each family in which the person
         is listed as a parent.
         """
 
@@ -797,7 +797,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __families(self):
         """
-        Write out the list of families, sorting by GRAMPS ID.
+        Write out the list of families, sorting by Gramps ID.
         """
         self.reset(_("Writing families"))
         self.progress_cnt += 1
@@ -857,7 +857,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         """
         Write the family reference to the file. 
         
-        This is either 'WIFE' or 'HUSB'. As usual, we use the GRAMPS ID as the 
+        This is either 'WIFE' or 'HUSB'. As usual, we use the Gramps ID as the 
         XREF value.
         
         """
@@ -951,7 +951,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __sources(self):
         """
-        Write out the list of sources, sorting by GRAMPS ID.
+        Write out the list of sources, sorting by Gramps ID.
         """
         self.reset(_("Writing sources"))
         self.progress_cnt += 1
@@ -985,7 +985,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __notes(self):
         """
-        Write out the list of notes, sorting by GRAMPS ID.
+        Write out the list of notes, sorting by Gramps ID.
         """
         self.reset(_("Writing notes"))
         self.progress_cnt += 1
@@ -1012,7 +1012,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __repos(self):
         """
-        Write out the list of repositories, sorting by GRAMPS ID.
+        Write out the list of repositories, sorting by Gramps ID.
 
         REPOSITORY_RECORD:=
         n @<XREF:REPO>@ REPO {1:1}

@@ -55,7 +55,7 @@ class SaveDialog(object):
         
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - GRAMPS" % msg1)
+        self.top.set_title("%s - Gramps" % msg1)
         
         self.dontask = self.xml.get_object('dontask')
         self.task1 = task1
@@ -86,7 +86,7 @@ class QuestionDialog(object):
                 
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - GRAMPS" % msg1)
+        self.top.set_title("%s - Gramps" % msg1)
 
         label1 = self.xml.get_object('qd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
@@ -112,7 +112,7 @@ class QuestionDialog2(object):
               
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - GRAMPS" % msg1)
+        self.top.set_title("%s - Gramps" % msg1)
 
         label1 = self.xml.get_object('qd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
@@ -142,7 +142,7 @@ class OptionDialog(object):
               
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - GRAMPS" % msg1)
+        self.top.set_title("%s - Gramps" % msg1)
 
         label1 = self.xml.get_object('od_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
@@ -179,7 +179,7 @@ class ErrorDialog(gtk.MessageDialog):
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
-        self.set_title("%s - GRAMPS" % msg1)
+        self.set_title("%s - Gramps" % msg1)
         self.show()
         self.run()
         self.destroy()
@@ -215,7 +215,7 @@ class WarningDialog(gtk.MessageDialog):
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_markup(msg2)
         self.set_icon(ICON)
-        self.set_title("%s - GRAMPS" % msg1)
+        self.set_title("%s - Gramps" % msg1)
         self.show()
         self.run()
         self.destroy()
@@ -230,7 +230,7 @@ class OkDialog(gtk.MessageDialog):
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
-        self.set_title("%s - GRAMPS" % msg1)
+        self.set_title("%s - Gramps" % msg1)
         self.show()
         self.run()
         self.destroy()
@@ -244,7 +244,7 @@ class InfoDialog(object):
               
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - GRAMPS" % msg1)
+        self.top.set_title("%s - Gramps" % msg1)
 
         label = self.xml.get_object('toplabel')
         label.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
@@ -271,7 +271,7 @@ class MissingMediaDialog(object):
               
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - GRAMPS" % msg1)
+        self.top.set_title("%s - Gramps" % msg1)
 
         self.task1 = task1
         self.task2 = task2
@@ -326,7 +326,7 @@ class MessageHideDialog(object):
               
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - GRAMPS" % title)
+        self.top.set_title("%s - Gramps" % title)
 
         dont_show = self.xml.get_object('dont_show')
         dont_show.set_active(config.get(key))

@@ -322,10 +322,10 @@ if __name__ == "__main__":
 
     a = Assistant(complete)
     a.add_text_page('Getting started', 
-                    'Welcome to GRAMPS, the Genealogical Research '
+                    'Welcome to Gramps, the Genealogical Research '
                     'and Analysis Management Programming System.\n'
                     'Several options and information need to be gathered '
-                    'before GRAMPS is ready to be used. Any of this '
+                    'before Gramps is ready to be used. Any of this '
                     'information can be changed in the future in the '
                     'Preferences dialog under the Settings menu.')
 

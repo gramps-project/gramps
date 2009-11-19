@@ -291,7 +291,7 @@ class ArgHandler(object):
             sys.exit(0)
             
         if self.list_more:
-            print 'GRAMPS Family Trees:'
+            print 'Gramps Family Trees:'
             summary_list = self.dbman.family_tree_summary()
             for summary in summary_list:
                 print "Family Tree \"%s\":" % summary["Family tree"]

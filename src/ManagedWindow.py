@@ -561,7 +561,7 @@ def set_titles(window, title, text, msg=None):
         title.set_text('<span weight="bold" size="larger">%s</span>' % text)
         title.set_use_markup(True)
     if msg:
-        window.set_title('%s - GRAMPS' % msg)
+        window.set_title('%s - Gramps' % msg)
     else:
-        window.set_title('%s - GRAMPS' % text)
+        window.set_title('%s - Gramps' % text)
     window.set_icon_from_file(const.ICON)

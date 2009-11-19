@@ -54,6 +54,14 @@ else:
 
 LOCALEDOMAIN = 'gramps'
 
+import gtk
+try:
+    if gtk.ver <= (2, 20, 0):
+        import gtk.glade
+        gtk.glade.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+except:
+    pass
+
 #-------------------------------------------------------------------------
 #
 # Public Functions

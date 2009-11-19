@@ -24,10 +24,10 @@ import gtk
 from gettext import gettext as _
 
 _type_map = {
-    'application/x-gramps' : 'GRAMPS database',
-    'application/x-gramps-xml' : 'GRAMPS XML database',
+    'application/x-gramps' : 'Gramps database',
+    'application/x-gramps-xml' : 'Gramps XML database',
     'application/x-gedcom' : 'GEDCOM database',
-    'application/x-gramps-package': 'GRAMPS package',
+    'application/x-gramps-package': 'Gramps package',
     'image/jpeg' : 'JPEG image',
     'application/pdf' : 'PDF document',
     'text/rtf' : 'Rich Text File',
@@ -36,7 +36,7 @@ _type_map = {
 mimetypes.add_type('application/x-gramps','.grdb')
 mimetypes.add_type('application/x-gramps','.GRDB')
 mimetypes.add_type('application/x-gramps-xml','.gramps')
-mimetypes.add_type('application/x-gramps-xml','.GRAMPS')
+mimetypes.add_type('application/x-gramps-xml','.Gramps')
 mimetypes.add_type('application/x-gedcom','.ged')
 mimetypes.add_type('application/x-gedcom','.GED')
 mimetypes.add_type('application/x-gramps-package','.gpkg')

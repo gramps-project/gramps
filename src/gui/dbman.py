@@ -808,7 +808,7 @@ def check_in(dbase, filename, callback, cursor_func = None):
     """
     Checks in the specified file into RCS
     """
-    init   = [ "rcs", '-x,v', '-i', '-U', '-q', '-t-"GRAMPS database"' ]
+    init   = [ "rcs", '-x,v', '-i', '-U', '-q', '-t-"Gramps database"' ]
     ci_cmd = [ "ci", '-x,v', "-q", "-f" ]
     archive_name = filename + ",v"
     

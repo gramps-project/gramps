@@ -120,7 +120,7 @@ class TestcaseGenerator(Tool.BatchTool):
             self.run_tool(cli=True)
 
     def init_gui(self,uistate):
-        title = "%s - GRAMPS" % _("Generate testcases")
+        title = "%s - Gramps" % _("Generate testcases")
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400,150)
         self.top.set_has_separator(False)
@@ -193,7 +193,7 @@ class TestcaseGenerator(Tool.BatchTool):
     def run_tool(self, cli=False):
         self.cli = cli
         if( not cli):
-            title = "%s - GRAMPS" % _("Generate testcases")
+            title = "%s - Gramps" % _("Generate testcases")
             self.top = gtk.Window()
             self.top.set_title(title)
             self.top.set_position(gtk.WIN_POS_MOUSE)

@@ -26,7 +26,7 @@
 
 """
 Contains the interface to allow a database to get written using
-GRAMPS' XML file format.
+Gramps' XML file format.
 """
 
 #-------------------------------------------------------------------------
@@ -52,7 +52,7 @@ log = logging.getLogger(".WriteXML")
 
 #-------------------------------------------------------------------------
 #
-# load GRAMPS libraries
+# load Gramps libraries
 #
 #-------------------------------------------------------------------------
 import gen.lib 
@@ -200,7 +200,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
-                     'PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"\n'
+                     'PUBLIC "-//Gramps//DTD Gramps XML %s//EN"\n'
                      '"http://gramps-project.org/xml/%s/grampsxml.dtd">\n'
                      % (libgrampsxml.GRAMPS_XML_VERSION, 
                         libgrampsxml.GRAMPS_XML_VERSION))

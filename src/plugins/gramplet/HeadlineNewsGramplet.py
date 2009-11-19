@@ -88,14 +88,14 @@ class HeadlineNewsGramplet(Gramplet):
         self.limit = 5
         # Description, Type, URL, Pretty URL for User
         self.feeds = [
-            ("GRAMPS Wiki Headline News", "wiki", (self.RAW % "HeadlineNews"), (self.URL % "HeadlineNews")),
-            ("GRAMPS Blog Comments", "rss", "http://blog.gramps-project.org/?feed=comments-rss2", None),
-            ("GRAMPS Blog Posts",    "rss", "http://blog.gramps-project.org/?feed=rss", None),
-            ("GRAMPS Wiki Changes",  "rss", "http://www.gramps-project.org/wiki/index.php?title=Special:RecentChanges&feed=rss", None),
-            ("GRAMPS Bugtracker Issues", "rss", "http://www.gramps-project.org/bugs/issues_rss.php?key=ece7d21451d76337acf776c9a4384773", None),
-            ("GRAMPS SVN Commits",   "rss", "http://cia.vc/stats/project/Gramps/.rss", None),
+            ("Gramps Wiki Headline News", "wiki", (self.RAW % "HeadlineNews"), (self.URL % "HeadlineNews")),
+            ("Gramps Blog Comments", "rss", "http://blog.gramps-project.org/?feed=comments-rss2", None),
+            ("Gramps Blog Posts",    "rss", "http://blog.gramps-project.org/?feed=rss", None),
+            ("Gramps Wiki Changes",  "rss", "http://www.gramps-project.org/wiki/index.php?title=Special:RecentChanges&feed=rss", None),
+            ("Gramps Bugtracker Issues", "rss", "http://www.gramps-project.org/bugs/issues_rss.php?key=ece7d21451d76337acf776c9a4384773", None),
+            ("Gramps SVN Commits",   "rss", "http://cia.vc/stats/project/Gramps/.rss", None),
             ]
-        self.set_tooltip(_("Read GRAMPS headline news"))
+        self.set_tooltip(_("Read Gramps headline news"))
         self.update_interval = 3600 * 1000 # in miliseconds (1 hour)
         self.set_use_markup(True)
         self.set_wrap(False)
@@ -111,7 +111,7 @@ class HeadlineNewsGramplet(Gramplet):
         return True # keep updating!
 
     def main(self):
-        self.set_text("Loading GRAMPS Headline News...\n")
+        self.set_text("Loading Gramps Headline News...\n")
         fresh = True
         yield True
         for (feed_description, feed_type, feed_url, pretty_url) in self.feeds:
@@ -218,7 +218,7 @@ class HeadlineNewsGramplet(Gramplet):
             if "|" in page:
                 template, heading, body = page.split("|", 2)
                 if template.lower() == "release":
-                    newtext = "GRAMPS " + heading + " released.\n\n"
+                    newtext = "Gramps " + heading + " released.\n\n"
                 else:
                     #newtext = "<B>%s</B>\n\n" % heading
                     newtext = ""
