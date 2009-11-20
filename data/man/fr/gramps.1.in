@@ -1,6 +1,6 @@
 .TH gramps 1 "@VERSION@" "Mars 2009" "@VERSION@"
 .SH NOM
-gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
+gramps \- Gramps est une application de généalogie. Gramps est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
 
 .SH SYNOPSIS
 .B gramps
@@ -45,7 +45,7 @@ Il peut importer/exporter le format le plus utilisé par les autres logiciels de
 .SH OPTIONS
 .TP 
 .BI gramps " FICHIER" 
-Si \fIFICHIER\fR est désigné (sans autres commandes) comme arbre familial ou comme répertoire d'arbre familial, alors une session interactive est ouverte. Si FICHIER est un format de fichier supporté par GRAMPS, une base vide est créée dont le nom est celui du \fIFICHIER\fP et les données y seront importées. Les autres options sont ignorées. Ce type de lancement permet d'utiliser gramps pour manipuler des données comme dans un navigateur web. Les formats natifs de gramps sont acceptés, voir ci-dessous.
+Si \fIFICHIER\fR est désigné (sans autres commandes) comme arbre familial ou comme répertoire d'arbre familial, alors une session interactive est ouverte. Si FICHIER est un format de fichier supporté par Gramps, une base vide est créée dont le nom est celui du \fIFICHIER\fP et les données y seront importées. Les autres options sont ignorées. Ce type de lancement permet d'utiliser gramps pour manipuler des données comme dans un navigateur web. Les formats natifs de gramps sont acceptés, voir ci-dessous.
 .br
 
 .TP 
@@ -60,7 +60,7 @@ Le format spécifique du \fIFICHIER\fR est précédé par les arguments
 
 Les formats de sortie disponibles sont \fBgramps\-xml\fR (deviné si \fIFICHIER\fR se termine par
 \fB.gramps\fR), et \fBgedcom\fR (deviné si \fIFICHIER\fR se termine par \fB.ged\fR), ou
-tout autre fichier d'exportation disponible dans le système de plugin GRAMPS.
+tout autre fichier d'exportation disponible dans le système de plugin Gramps.
 .br
 
 Les formats disponibles pour l'importation sont \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,  
@@ -244,11 +244,11 @@ Le programme vérifie si ces variables d'environnement sont déclarées:
 \fBLANG\fR - décrit, quelle langue est utilisée:
 Ex.: pour le français on peut définir fr_FR.UTF-8.
 
-\fBGRAMPSHOME\fR - si défini, force GRAMPS à utiliser un répertoire spécifique pour y conserver ses préférences et bases de données. Par défaut, cette variable n'est pas active et GRAMPS sait que les options et bases de données doivent être créées
+\fBGRAMPSHOME\fR - si défini, force Gramps à utiliser un répertoire spécifique pour y conserver ses préférences et bases de données. Par défaut, cette variable n'est pas active et Gramps sait que les options et bases de données doivent être créées
 dans le répertoire par défaut de l'utilisateur (la variable d'environnement HOME pour Linux ou USERPROFILE pour Windows 2000/XP).
 
 .SH CONCEPTS
-GRAMPS est un système basé sur le support de plugin-python, permettant d'importer et d'exporter, la saisie, 
+Gramps est un système basé sur le support de plugin-python, permettant d'importer et d'exporter, la saisie, 
 générer des rapports, des outils, et afficher des filtres pouvant être ajoutés sans modifier le programme.
 .LP 
 Par ailleurs, gramps permet la génération directe : impression, rapports avec sortie vers d'autres formats, comme \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML, 

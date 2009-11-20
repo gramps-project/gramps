@@ -1,9 +1,9 @@
-.TH gramps 1 "@VERSION@" "Januari 2008" "@VERSION@"
+.TH Gramps 1 "@VERSION@" "Januari 2008" "@VERSION@"
 .SH NAMN
-gramps \- Genealogical Research and Analysis Management Programming System.
+Gramps \- Genealogical Research and Analysis Management Programming System.
 
 .SH SAMMANFATTNING
-.B gramps
+.B Gramps
 .RB [ \-?|\-\^\-help ]
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
@@ -46,14 +46,14 @@ hela världen av nästan all släktforskningsprogramvara.
 
 .SH ALTERNATIV
 .TP 
-.BI gramps " FIL" 
+.BI Gramps " FIL" 
 När \fIFIL\fR ges (utan några flaggor) som namn på ett familjeträd eller som
 en mapp med familjeträd, så öppnas detta och en interaktiv session startas.
-Om FIL är en fil, vars format försås av GRAMPS, skapas ett tomt famljeträd, 
+Om FIL är en fil, vars format förstås av Gramps, skapas ett tomt famljeträd, 
 vars namn är grundat på namnet \fIFIL\fP och vars data importeras till det. 
-Resterande alternativ ignoreras. Detta sätt att starta passar vid användning av gramps
+Resterande alternativ ignoreras. Detta sätt att starta passar vid användning av Gramps
 som en hanterare för släktforskningsdata i t. ex. en web-läsare.
-Detta startsätt accepterar alla inbyggda dataformat för gramps, se nedan.
+Detta startsätt accepterar alla inbyggda dataformat för Gramps, se nedan.
 .br
 
 .TP 
@@ -67,13 +67,13 @@ Uttryckligen specificera format på \fIFIL\fR givet av föregående
 gissas filformat för den filen utgående från dess filändelse eller dess MIME-typ. 
 .br
 
-De format, som är tillgängliga för utmatnig, är \fBgramps\-xml\fR (gissas om \fIFIL\fR slutar på 
-\fB.gramps\fR), \fBgedcom\fR (gissas om \fIFIL\fR slutar med \fB.ged\fR) eller
-någon filexport, som är tillgänglig via GRAMPS tilläggsprogramsystem.
+De format, som är tillgängliga för utmatnig, är \fBGramps\-xml\fR (gissas om \fIFIL\fR slutar på 
+\fB.Gramps\fR), \fBgedcom\fR (gissas om \fIFIL\fR slutar med \fB.ged\fR) eller
+någon filexport, som är tillgänglig via Gramps tilläggsprogramsystem.
 .br
 
-De format, som är tillgängliga för inmatnig, är \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR, 
-\fBgramps\-pkg\fR (gissas om \fIFIL\fR slutar med \fB.gpkg\fR) och
+De format, som är tillgängliga för inmatnig, är \fBgrdb\fR, \fBGramps\-xml\fR, \fBgedcom\fR, 
+\fBGramps\-pkg\fR (gissas om \fIFIL\fR slutar med \fB.gpkg\fR) och
 \fBgeneweb\fR (gissas om \fIFIL\fR slutar med \fB.gw\fR). 
 .br
 
@@ -81,8 +81,8 @@ De format, som är tillgängliga för export är
 .ig
 \fBgrdb\fR,
 ..
-\fBgramps\-xml\fR, \fBgedcom\fR,
-\fBgramps\-pkg\fR, \fBwft\fR (gissas om \fIFIL\fR slutar med \fB.wft\fR),
+\fBGramps\-xml\fR, \fBgedcom\fR,
+\fBGramps\-pkg\fR, \fBwft\fR (gissas om \fIFIL\fR slutar med \fB.wft\fR),
 \fBgeneweb\fR och \fBiso\fR (gissas aldrig, specificeras alltid med
 \fB\-f\fR-alternativ).
 
@@ -103,24 +103,24 @@ session med den angivna databasen.
 .TP 
 .BI \-i,\-\^\-import= " FIL"
 Importera data från \fIFIL\fR. Om du inte har specificerat en databas, skapas en temporär sådan, 
-som tas bort när gramps avslutas.
+som tas bort när Gramps avslutas.
 .br
 
 Om mer är en indatafil anges, måste varje föregås av en \fB\-i\fR-flagga. 
 Filerna importeras i den givna ordningen, 
 t.ex. \fB\-i\fR \fIFIL1\fR \fB\-i\fR \fIFIL2\fR 
 och \fB\-i\fR \fIFIL2\fR \fB\-i\fR \fIFIL1\fR kan skapa skilda 
-gramps IDs i den resulterande databasen. 
+Gramps IDs i den resulterande databasen. 
 
 .TP 
 .BI \-e,\-\^\-export= " FIL"
 Exporterar data till \fIFIL\fR. För \fBiso\fR-format, är \fIFIL\fR i själva verket namnet på den mapp, 
-som gramps databas kommer att skrivas till. 
+som Gramps databas kommer att skrivas till. 
 För
 .ig
 \fBgrdb\fR,
 ..
-\fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR 
+\fBGramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBGramps\-pkg\fR 
 och \fBgeneweb\fR, är \fIFIL\fR namnet på resultatfilen. 
 .br
 
@@ -176,7 +176,7 @@ Kopplar på avlusningshjälpmedel för utveckling och tester.
 För detaljer hänvisas till källkoder
 .TP
 .BI \-\^\-version
-Skriver ur gramps versionsnummer och avslutar
+Skriver ur Gramps versionsnummer och avslutar
 \" change 0 to 1 to enable output of OAF options
 .if 0 \{
 .PP
@@ -209,11 +209,11 @@ Host:port on which the sound server to use is running
 .SH "Operation"
 .br
 Om första argumentet på kommandoraden inte inledds med ett minustecken (d. v. s. ingen flagga), 
-kommer gramps att försöka öppna den fil, vars namn givits av det första argumentet samt påbörja 
+kommer Gramps att försöka öppna den fil, vars namn givits av det första argumentet samt påbörja 
 en interaktiv session utan att ta hänsyn till resten av argumenten på kommandoraden.
 
 .LP
-Om \fB\-O\fR-flagga givits, kommer gramps att försöka öppna den omnämnda databasen 
+Om \fB\-O\fR-flagga givits, kommer Gramps att försöka öppna den omnämnda databasen 
 och sedan arbeta med dess data, enligt ytterligare instruktioner på kommandoraden.
 
 .LP
@@ -228,51 +228,51 @@ Den gällande ordningen är alltid: all import (om någon) -> alla åtgärder (o
 -> all export (om någon). Men öppning måste alltid ske först!
 
 .LP
-Om inget \fB\-O\fR- eller \fB\-i\fR-alternativ givits, kommer gramps att starta sitt 
+Om inget \fB\-O\fR- eller \fB\-i\fR-alternativ givits, kommer Gramps att starta sitt 
 huvudfönster samt påbörja den vanliga interaktiva sessionen med en tom databas,
 då hur som helst inget data finns att bearbeta.
 
 .LP
-Om inget \fB\-e\fR- eller \fB\-a\fR-alternativ givits, kommer gramps att starta sitt 
+Om inget \fB\-e\fR- eller \fB\-a\fR-alternativ givits, kommer Gramps att starta sitt 
 huvudfönster samt påbörja den vanliga interaktiva sessionen med den databas, som blev 
 resultet från all import. Denna databas återfinns i \fBimport_db.grdb\fR
-under \fB~/.gramps/import\fR-mappen.
+under \fB~/.Gramps/import\fR-mappen.
 
 .LP
 De fel som inträffar under import, export eller vid åtgärder kommer antingen att skrivas till 
-\fIstdout\fR (om dessa avbrott hanteras av gramps) eller 
+\fIstdout\fR (om dessa avbrott hanteras av Gramps) eller 
 till \fIstderr\fR (om dessa inte hanteras). Använd vanliga skalkommandon för att styra om 
 \fIstdout\fR och \fIstderr\fR till att spara medelanden och fel i filer. 
 
 .SH EXAMPEL
 .TP 
 För att öppna ett befintligt familjeträd och importera en xml-fil till det, kan man skriva: 
-\fBgramps\fR \fB\-O\fR \fI'Mitt familjeträd'\fR \fB\-i\fR \fI~/db3.gramps\fR
+\fBGramps\fR \fB\-O\fR \fI'Mitt familjeträd'\fR \fB\-i\fR \fI~/db3.Gramps\fR
 .TP 
 Ovanstående ändrar det öppnade familjeträdet, för att göra samma sak, men importera bägge till ett tillfälligt familjeträd och påbörja en interaktiv session, kan man skriva:
-\fBgramps\fR \fB\-i\fR \fI'My Family Tree'\fR \fB\-i\fR \fI~/db3.gramps\fR
+\fBGramps\fR \fB\-i\fR \fI'My Family Tree'\fR \fB\-i\fR \fI~/db3.Gramps\fR
 .TP 
 För att importera fyra databaser (vars format kan avgöras av deras namn) och sedan felkontrollera den resulterande  databasen, kan man skriva: 
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIFIL4.wft\fR \fB\-a\fR \fIcheck\fR 
+\fBGramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.Gramps\fR \fB\-i\fR \fIFIL4.wft\fR \fB\-a\fR \fIcheck\fR 
 .TP 
 För att uttryckligen specificera formaten i examplet ovan, lägg till filnamn med passande \fB\-f\fR-alternativ: 
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIFIL4.wft\fR \fB\-f\fR \fIwft\fR \fB\-a\fR \fIcheck\fR 
+\fBGramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-f\fR \fIGramps-pkg\fR \fB\-i\fR \fI~/db3.Gramps\fR \fB\-f\fR \fIGramps-xml\fR \fB\-i\fR \fIFIL4.wft\fR \fB\-f\fR \fIwft\fR \fB\-a\fR \fIcheck\fR 
 .TP 
-För att spara den databas, som är resultat av all import, ange \fB\-e\fR-flagga (använd \fB\-f\fR om filnamnet inte tillåter gramps att gissa dess format):
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-e\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
+För att spara den databas, som är resultat av all import, ange \fB\-e\fR-flagga (använd \fB\-f\fR om filnamnet inte tillåter Gramps att gissa dess format):
+\fBGramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-e\fR \fI~/new-package\fR \fB\-f\fR \fIGramps-pkg\fR 
 .TP 
-För att importera tre databaser och påbörja en interaklive gramps-session med importresultatet: 
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
+För att importera tre databaser och påbörja en interaklive Gramps-session med importresultatet: 
+\fBGramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.Gramps\fR 
 .TP 
 För att köra verifieringsverktyget från kommandoraden och mata ut resultatet till stdout: 
-\fBgramps\fR \fB\-O\fR \fIfile.grdb\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
+\fBGramps\fR \fB\-O\fR \fIfile.grdb\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
 .TP 
 Slutligen, för att påbörja en normal interaktiv session skriv bara: 
-\fBgramps\fR 
+\fBGramps\fR 
 
 .SH BEGREPP
 Stöder ett python\-baserat system för tilläggsprogram, som möjliggör att import- och export-funktioner, 
-rapportgeneratorer, verktyg samt visningsfilter, kan komplettera gramps utan ändringar i huvudprogrammet.
+rapportgeneratorer, verktyg samt visningsfilter, kan komplettera Gramps utan ändringar i huvudprogrammet.
 .LP 
 Förutom att skapa utskrift på skrivare direkt, kan rapportgeneratorer ha andra målsystem som \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML eller LaTeX så att användaren kan tillåtas att ändra format för att passa behoven. 
 

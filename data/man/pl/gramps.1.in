@@ -52,7 +52,7 @@ jest używany przez większość programów genealogicznych na świecie.
 .BI gramps " PLIK" 
 Kiedy \fIPLIK\fR jest podany (bez żadnych flag) jako nazwa drzewa rodzinnego
 albo nazwa katalogu z drzewem, to wybrane drzewo jest otwierane i rozpoczynana
-jest sesja interaktywna. Jeśli PLIK jest formatem rozpoznawanym przez GRAMPS,
+jest sesja interaktywna. Jeśli PLIK jest formatem rozpoznawanym przez Gramps,
 to tworzone jest puste drzewo, którego nazwa bazuje na nazwie \fIPLIKU\fP
 i dane są do niego importowane. Pozostałe opcje są wtedy ignorowane.
 Jest to sposób na używanie programu jako uchwytu obsługującego
@@ -77,7 +77,7 @@ Dostępne formaty wyjściowe to:
 .br
 \fBgedcom\fR (przyjmowany jeśli \fIPLIK\fR kończy się na \fB.ged\fR),
 .br 
-lub dowolny plik eksportu obsługiwany przez system wtyczek GRAMPS.
+lub dowolny plik eksportu obsługiwany przez system wtyczek Gramps.
 .br
 
 Formaty

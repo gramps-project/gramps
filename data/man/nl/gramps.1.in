@@ -47,13 +47,13 @@ wordt wereldwijd gebruikt door bijna alle genealogische software.
 .BI gramps "BESTAND" 
 Wanneer \fIBESTAND\fR opgegeven wordt (zonder vlaggen) als een familiestamboom
 of als een familistamboommap, dan wordt dit bestand geopend en een interactieve 
-sessie wordt gestart. Indien BESTAND een bestandsformaat dat door GRAMPS
+sessie wordt gestart. Indien BESTAND een bestandsformaat dat door Gramps
 herkent wordt, zal een lege familiestamboom aangemaakt worden. De bestandsnaam
 wordt gebaseerd op de \fIBESTAND\fP naam en de gegevens worden in dit bestand
 geïmporteerd. Met resterende opties wordt geen rekening gehouden. Deze wijze
-van opstarten is zeer bruikbaar om GRAMPS te gebruiken voor genealogische
+van opstarten is zeer bruikbaar om Gramps te gebruiken voor genealogische
 gegevens via een webbrowser. Deze opstartmethode kan gelijk welk gegevensformaat
-eigen aan GRAMPS behandelen, zie onder.
+eigen aan Gramps behandelen, zie onder.
 .br
 
 .TP 
@@ -71,7 +71,7 @@ MIME-type.
 Formaten 
 beschikbaar voor uitvoer zijn \fBgramps\-xml\fR (guessed if \fIFILE\fR ends with
 \fB.gramps\fR), \fBgedcom\fR (guessed if \fIFILE\fR ends with \fB.ged\fR), or
-any file export available through the GRAMPS plugin system.
+any file export available through the Gramps plugin system.
 .br
 
 Formats 
@@ -206,7 +206,7 @@ Host:port on which the sound server to use is running
 .SH "werking"
 .br
 Indien het eerste argument in de opdrachtregel niet start met dash (dus geen
-vlag) dan zal GRAMPS trachten om het bestand te openen met een naam die in het
+vlag) dan zal Gramps trachten om het bestand te openen met een naam die in het
 eerste argument werd opgegeven. Vervolgens wordt een interactieve sessie
 gestart en de overige argumenten van de opdrachtregel worden genegeerd.
 
