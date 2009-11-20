@@ -352,7 +352,7 @@ class BasePage(object):
             ("Value",    attr.get_value() ) ]
 
         if showsrc:
-            srcrefs = self.get_citation_links(attr.get_source_references() ) or "&nbsp;"
+            srcrefs = self.get_citation_links(attr.get_source_references()) or "&nbsp;"
             source_row = ("Sources", srcrefs)
             attr_data_row.append(source_row)
  
@@ -366,7 +366,7 @@ class BasePage(object):
         for (colclass, value) in attr_data_row:
 
             # determine if same row or not?
-            samerow = True if (colclass == "Type" or "Sources") else False
+            samerow = (colclass == "Type" or colclass == "Sources")
 
             trow += Html("td", value, class_ = "Column%s" % colclass, inline = samerow)
 
@@ -448,25 +448,10 @@ class BasePage(object):
             htmllist += Html("pre", indent=None) + \
                 (l + str(Html('br')) for l in markuptext.split('\n'))
 
-            '''
-            Html('pre',indent=None)
-            for line in markuptext.split('\n\n'):
-                htmllist += Html("p")
-                for realline in line.split('\n'):
-                    htmllist += realline
-                    htmllist += Html('br')
-            '''
-    
         elif format == 0:
             #flowed
             #FIXME: following split should be regex to match \n\s*\n instead?
             htmllist.extend(Html('p') + para for para in markuptext.split("\n\n"))
-
-            '''
-            for line in markuptext.split("\n\n"):
-                htmllist += Html("p")
-                htmllist += line
-            '''
 
         return htmllist
 
@@ -511,7 +496,8 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr, showsrc, shownote, subdirs, hyp)
+        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr,
+                        showsrc, shownote, subdirs, hyp)
 
         # begin event table row
         trow = Html("tr")
@@ -520,7 +506,7 @@ class BasePage(object):
             data = data or "&nbsp;"
 
             # determine if information will fit on same line?
-            samerow = (data == "&nbsp;" or colclass  == "Date")
+            samerow = (data == "&nbsp;" or colclass == "Date")
 
             trow += Html("td", data, class_ = "Column%s" % colclass, inline = samerow)
 
@@ -547,7 +533,8 @@ class BasePage(object):
         else:
             return eventtype
 
-    def get_event_data(self, evt, evt_ref, showplc, showdescr, showsrc, shownote, up, hyp, gid = None):
+    def get_event_data(self, evt, evt_ref, showplc, showdescr, showsrc,
+                            shownote, up, hyp, gid = None):
         """
         retrieve event data from event and evt_ref
 
@@ -749,8 +736,8 @@ class BasePage(object):
             if showsrc:
                 addr_header.append([SHEAD,      "Sources"])
 
-            for (label, colclass) in addr_header:  
-                trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
+            trow.extend(Html("th", l, class_="Colummn" + c, inline=True)
+                        for l, c in addr_header)
 
             # return table header row back to module
             return trow
@@ -802,11 +789,9 @@ class BasePage(object):
                         addr_data_row.append(["Sources",    self.get_citation_links(
                             address.get_source_references() )])
 
-                    for (colclass, value) in addr_data_row:
-                        value = value or "&nbsp;"
-
-                        trow += Html("td", value, class_ = "Column%s" % colclass, inline = True)
-
+                    trow.extend(Html("td", v or "&nbsp;", class_="Column" + c, inline=True)
+                                for c, v in addr_data_row)
+                    
                     # address: notelist
                     if showsrc is not None:
                         notelist = self.display_note_list(address.get_note_list())
@@ -1401,10 +1386,11 @@ class BasePage(object):
                                               (_CONFIDENCE, confidence)]
                         if data)                                                    
                         
-                    tmp.extend(_TEXT + ': ' +
+                    tmp.extend("%s: %s" %
+                                (_TEXT,
                                 self.get_note_format(
                                     db.get_note_from_handle(handle)
-                                ) for handle in sref.get_note_list())
+                                )) for handle in sref.get_note_list())
 
                     if tmp:
                         list1 = Html("li", inline=True) + (
@@ -2239,12 +2225,12 @@ class EventListPage(BasePage):
             data = data or "&nbsp;"
 
             # determine if same row or not?
-            samerow = True if (data == "&nbsp;" or (colclass == "Event" or "Date")) else False
+            samerow = (data == "&nbsp;" or colclass in ["Event", "Date"])
 
             trow += Html("td", data, class_ = "Column%s" % colclass, inline = samerow)
 
         # determine if same row or not?
-        samerow = True if person_hyper == "&nbsp;" else False
+        samerow = (person_hyper == "&nbsp;")
 
         # display person hyperlink
         trow += Html("td", person_hyper, class_ = "ColumnPerson", inline = samerow)
@@ -2259,7 +2245,7 @@ class EventListPage(BasePage):
             partner_hyper = self.person_link(url, partner, True, gid = partner.gramps_id)
 
         # determine if same row or not?
-        samerow = True if partner_hyper == "&nbsp;" else False
+        samerow = (partner_hyper == "&nbsp;")
 
         trow += Html("td", partner_hyper, class_ = "ColumnPartner", inline = samerow)
 
@@ -2313,8 +2299,8 @@ class EventPage(BasePage):
                     data = event_data[index][2] or "&nbsp;" 
 
                     # determine if we are using the same row or not?
-                    samerow = True if (data == "&nbsp;" or (colclass == "Date" or "Event")) \
-                        else False
+                    samerow = (data == "&nbsp;" or
+                               colclass in ["Event", "Date"])
 
                     trow = Html("tr") + (
                         Html("td", label, class_ = "ColumnAttribute", inline = True),
