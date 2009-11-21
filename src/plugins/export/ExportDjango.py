@@ -61,7 +61,7 @@ ngettext = translator.ngettext
 from django.conf import settings
 import web.settings as default_settings
 try:
-    settings.configure(default_settings, DEBUG=True)
+    settings.configure(default_settings)
 except RuntimeError:
     # already configured; ignore
     pass

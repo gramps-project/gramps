@@ -675,13 +675,31 @@ TABLES = [
     ("ref", MediaRef)
     ]
 
+def no_style():
+    """Returns a Django Style object that has no colors."""
+    class dummy(object):
+        def __getattr__(self, attr):
+            return lambda x: x
+    return dummy()
+
 def clear_tables(*categories):
     """
     Clear the entries of categories of tables. Category is:
     "abstract", "type", "ref", "meta", "primary" and "secondary".
     """
-    for pair in get_tables(*categories):
-        pair[1].objects.all().delete() 
+    from django.db import connection, transaction
+    cursor = connection.cursor()
+    flush_tables = []
+    for (category, model) in get_tables(*categories):
+        flush_tables.append(model._meta.db_table)
+    # tables = connection.introspection.table_names()
+    # flush_tables = [table for table in tables if not table.endswith("type")]
+    statements = connection.ops.sql_flush(no_style(), 
+                                          flush_tables, 
+                                          connection.introspection.sequence_list())
+    for statement in statements:
+        cursor.execute(statement)
+        transaction.commit_unless_managed()
 
 def table_stats(*categories):
     """
