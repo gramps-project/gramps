@@ -1,4 +1,5 @@
 import time
+import sys
 
 import web.grampsdb.models as models
 from django.contrib.contenttypes.models import ContentType
@@ -29,7 +30,10 @@ def lookup_role_index(role0, event_ref_list):
         count = 0
         for event_ref in event_ref_list:
             (private, note_list, attribute_list, ref, erole) = event_ref
-            event = models.Event.objects.get(handle=ref)
+            try:
+                event = models.Event.objects.get(handle=ref)
+            except:
+                return -1
             if event.event_type[0] == role0:
                 return count
             count += 1
@@ -587,8 +591,12 @@ class DjangoInterface(object):
     def add_note_list(self, obj, note_list):
         for handle in note_list:
             # Just the handle
-            note = models.Note.objects.get(handle=handle)
-            self.add_note_ref(obj, note)
+            try:
+                note = models.Note.objects.get(handle=handle)
+                self.add_note_ref(obj, note)
+            except:
+                print >> sys.stderr, ("ERROR: Note does not exist: '%s'" % 
+                                      handle)
     
     def add_alternate_name_list(self, person, alternate_names):
         for name in alternate_names:
@@ -648,7 +656,13 @@ class DjangoInterface(object):
          note_list,
          handle,
          desc) = person_ref_data
-        person = models.Person.objects.get(handle=handle)
+        try:
+            person = models.Person.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Person does not exist: '%s'" % 
+                                  handle)
+            return
+            
         count = person.references.count()
         person_ref = models.PersonRef(referenced_by=obj,
                                   ref_object=person,
@@ -670,7 +684,12 @@ class DjangoInterface(object):
     def add_media_ref(self, obj, media_ref_data):
         (private, source_list, note_list, attribute_list, 
          ref, role) = media_ref_data
-        media = models.Media.objects.get(handle=ref)
+        try:
+            media = models.Media.objects.get(handle=ref)
+        except:
+            print >> sys.stderr, ("ERROR: Media does not exist: '%s'" % 
+                                  ref)
+            return
         count = media.references.count()
         if not role:
             role = (0,0,0,0)
@@ -689,7 +708,12 @@ class DjangoInterface(object):
     
     def add_source_ref(self, obj, source_data):
         (date, private, note_list, confidence, ref, page) = source_data
-        source = models.Source.objects.get(handle=ref)
+        try:
+            source = models.Source.objects.get(handle=ref)
+        except:
+            print >> sys.stderr, ("ERROR: Source does not exist: '%s'" % 
+                                  ref)
+            return
         count = source.references.count()
         source_ref = models.SourceRef(private=private, 
                                   confidence=confidence, 
@@ -703,7 +727,12 @@ class DjangoInterface(object):
         
     def add_child_ref(self, obj, data):
         (private, source_list, note_list, ref, frel, mrel) = data
-        child = models.Person.objects.get(handle=ref)
+        try:
+            child = models.Person.objects.get(handle=ref)
+        except:
+            print >> sys.stderr, ("ERROR: Person does not exist: '%s'" % 
+                                  ref)
+            return
         count = models.ChildRef.objects.filter(object_id=obj.id,object_type=obj).count()
         child_ref = models.ChildRef(private=private,
                                 referenced_by=obj,
@@ -717,7 +746,12 @@ class DjangoInterface(object):
     
     def add_event_ref(self, obj, event_data):
         (private, note_list, attribute_list, ref, role) = event_data
-        event = models.Event.objects.get(handle=ref)
+        try:
+            event = models.Event.objects.get(handle=ref)
+        except:
+            print >> sys.stderr, ("ERROR: Event does not exist: '%s'" % 
+                                  ref)
+            return
         count = models.EventRef.objects.filter(object_id=obj.id,object_type=obj).count()
         event_ref = models.EventRef(private=private,
                                 referenced_by=obj,
@@ -734,7 +768,12 @@ class DjangoInterface(object):
          call_number, 
          source_media_type,
          private) = reporef_data
-        repository = models.Repository.objects.get(handle=ref)
+        try:
+            repository = models.Repository.objects.get(handle=ref)
+        except:
+            print >> sys.stderr, ("ERROR: Repository does not exist: '%s'" % 
+                                  ref)
+            return
         count = models.RepositoryRef.objects.filter(object_id=obj.id,object_type=obj).count()
         repos_ref = models.RepositoryRef(private=private,
                                      referenced_by=obj,
@@ -747,7 +786,12 @@ class DjangoInterface(object):
         self.add_note_list(repos_ref, note_list)
     
     def add_family_ref(self, obj, handle):
-        family = models.Family.objects.get(handle=handle)
+        try:
+            family = models.Family.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Family does not exist: '%s'" % 
+                                  handle)
+            return
         obj.families.add(family)
         obj.save()
     
@@ -766,11 +810,21 @@ class DjangoInterface(object):
         (lsource_list, lnote_list, date, type, place_handle,
          famc_handle, temple, status, private) = data
         if place_handle:
-            place = models.Place.objects.get(handle=place_handle)
+            try:
+                place = models.Place.objects.get(handle=place_handle)
+            except:
+                print >> sys.stderr, ("ERROR: Place does not exist: '%s'" % 
+                                      place_handle)
+                place = None
         else:
             place = None
         if famc_handle:
-            famc = models.Family.objects.get(handle=famc_handle)
+            try:
+                famc = models.Family.objects.get(handle=famc_handle)
+            except:
+                print >> sys.stderr, ("ERROR: Family does not exist: '%s'" % 
+                                      famc_handle)
+                famc = None
         else:
             famc = None
         lds = models.Lds(lds_type = models.get_type(models.LdsType, type),
@@ -849,13 +903,22 @@ class DjangoInterface(object):
     
     def add_place_ref(self, event, place_handle):
         if place_handle:
-            place = models.Place.objects.get(handle=place_handle)
+            try:
+                place = models.Place.objects.get(handle=place_handle)
+            except:
+                print >> sys.stderr, ("ERROR: Place does not exist: '%s'" % 
+                                      place_handle)
+                return
             event.place = place
             event.save()
     
     def add_parent_family(self, person, parent_family_handle):
-        # handle
-        family = models.Family.objects.get(handle=parent_family_handle)
+        try:
+            family = models.Family.objects.get(handle=parent_family_handle)
+        except:
+            print >> sys.stderr, ("ERROR: Family does not exist: '%s'" % 
+                                  family_handle)
+            return
         person.parent_families.add(family)
         person.save()
     
@@ -981,7 +1044,12 @@ class DjangoInterface(object):
          person_ref_list,    # 20
          ) = data
     
-        person = models.Person.objects.get(handle=handle)
+        try:
+            person = models.Person.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Person does not exist: '%s'" % 
+                                  handle)
+            return
         if primary_name:
             self.add_name(person, primary_name, True)
         self.add_alternate_name_list(person, alternate_names)
@@ -1047,12 +1115,27 @@ class DjangoInterface(object):
          attribute_list, lds_seal_list, source_list, note_list,
          change, marker, private) = data
     
-        family = models.Family.objects.get(handle=handle)
+        try:
+            family = models.Family.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Family does not exist: '%s'" % 
+                                  handle)
+            return
         # father_handle and/or mother_handle can be None
         if father_handle:
-            family.father = models.Person.objects.get(handle=father_handle)
+            try:
+                family.father = models.Person.objects.get(handle=father_handle)
+            except:
+                print >> sys.stderr, ("ERROR: Father does not exist: '%s'" % 
+                                      father_handle)
+                family.father = None
         if mother_handle:
-            family.mother = models.Person.objects.get(handle=mother_handle)
+            try:
+                family.mother = models.Person.objects.get(handle=mother_handle)
+            except:
+                print >> sys.stderr, ("ERROR: Mother does not exist: '%s'" % 
+                                      mother_handle)
+                family.mother = None
         family.save()
         self.add_child_ref_list(family, child_ref_list)
         self.add_note_list(family, note_list)
@@ -1086,7 +1169,12 @@ class DjangoInterface(object):
          change, datamap,
          reporef_list,
          marker, private) = data
-        source = models.Source.objects.get(handle=handle)
+        try:
+            source = models.Source.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Source does not exist: '%s'" % 
+                                  handle)
+            return
         self.add_note_list(source, note_list) 
         self.add_media_ref_list(source, media_list)
         self.add_datamap_dict(source, datamap)
@@ -1108,8 +1196,12 @@ class DjangoInterface(object):
     def add_repository_detail(self, data):
         (handle, gid, the_type, name, note_list,
          address_list, url_list, change, marker, private) = data
-    
-        repository = models.Repository.objects.get(handle=handle)
+        try:
+            repository = models.Repository.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Repository does not exist: '%s'" % 
+                                  handle)
+            return
         self.add_note_list(repository, note_list)
         self.add_url_list("repository", repository, url_list)
         self.add_address_list("repository", repository, address_list)
@@ -1122,7 +1214,10 @@ class DjangoInterface(object):
         elif len(location_data) == 2:
             ((street, city, county, state, country, postal, phone), parish) = location_data
         else:
-            print "ERROR: what kind of location is this?", location_data
+            print >> sys.stderr, ("ERROR: unknown location: '%s'" % 
+                                  location_data)
+            (street, city, county, state, country, postal, phone, parish) = \
+                ("", "", "", "", "", "", "", "")
         location = models.Location(street = street,
                                city = city,
                                county = county,
@@ -1165,7 +1260,12 @@ class DjangoInterface(object):
          source_list,
          note_list,
          change, marker, private) = data
-        place = models.Place.objects.get(handle=handle)
+        try:
+            place = models.Place.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Place does not exist: '%s'" % 
+                                  handle)
+            return
         self.add_url_list("place", place, url_list)
         self.add_media_ref_list(place, media_list)
         self.add_source_ref_list(place, source_list)
@@ -1202,7 +1302,12 @@ class DjangoInterface(object):
          date,
          marker,
          private) = data
-        media = models.Media.objects.get(handle=handle)
+        try:
+            media = models.Media.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Media does not exist: '%s'" % 
+                                  handle)
+            return
         self.add_note_list(media, note_list) 
         self.add_source_ref_list(media, source_list)
         self.add_attribute_list(media, attribute_list)
@@ -1225,7 +1330,12 @@ class DjangoInterface(object):
         (handle, gid, the_type, date, description, place_handle, 
          source_list, note_list, media_list, attribute_list,
          change, marker, private) = data
-        event = models.Event.objects.get(handle=handle)
+        try:
+            event = models.Event.objects.get(handle=handle)
+        except:
+            print >> sys.stderr, ("ERROR: Event does not exist: '%s'" % 
+                                  handle)
+            return
         self.add_place_ref(event, place_handle)
         self.add_note_list(event, note_list)
         self.add_attribute_list(event, attribute_list)

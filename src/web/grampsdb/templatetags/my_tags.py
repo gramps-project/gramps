@@ -17,6 +17,9 @@ for filter_name in util_filters:
 probably_alive.is_safe = True
 register.filter('probably_alive', probably_alive)
 
+format_number.is_safe = True
+register.filter('format_number', format_number)
+
 person_get_birth_date.is_safe = True
 register.filter('person_get_birth_date', person_get_birth_date)
 

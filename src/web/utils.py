@@ -11,6 +11,8 @@ from cli.grampscli import CLIManager
 from django.template import escape
 from django.contrib.contenttypes.models import ContentType
 
+import locale
+
 dji = libdjango.DjangoInterface()
 
 _dd = DateHandler.displayer.display
@@ -26,6 +28,11 @@ def register_plugins():
 def probably_alive(handle):
     db = DjangoDb()
     return Utils.probably_alive(db.get_person_from_handle(handle), db)
+
+def format_number(number, with_grouping=True):
+    # FIXME: should be user's setting
+    locale.setlocale(locale.LC_ALL, "en_US.utf8")
+    return locale.format("%d", number, with_grouping)
 
 class Table(object):
     """

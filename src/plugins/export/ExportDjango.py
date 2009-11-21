@@ -83,10 +83,10 @@ def export_all(database, filename, option_box=None, callback=None):
              database.get_number_of_sources()) * 2 # steps
     count = 0.0
     dji = DjangoInterface()
-    dji.clear_tables("primary", "secondary")
+    dji.clear_tables("primary", "secondary", "ref")
 
-    for step in (0, 1):
-        print "Exporting Step %d..." % (step + 1)
+    for step in [0, 1]:
+        print >> sys.stderr, "Exporting Step %d..." % (step + 1)
         # ---------------------------------
         # Person
         # ---------------------------------
@@ -183,7 +183,7 @@ def export_all(database, filename, option_box=None, callback=None):
 
     total_time = time.time() - start
     msg = ngettext('Export Complete: %d second','Export Complete: %d seconds', total_time ) % total_time
-    print msg
+    print >> sys.stderr, msg
     return True
 
 class NoFilenameOptions(ExportOptions.WriterOptionBox):
