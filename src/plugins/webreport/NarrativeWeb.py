@@ -307,36 +307,6 @@ class BasePage(object):
         if pyexiftaglib:
             self.exiftagsopt = report.options['exiftagsopt']
  
-    def get_birth_date(self, db, person):
-        """ Will return a date object for a person's birthdate """
-
-        birth = ReportUtils.get_birth_or_fallback(db, person)
-        if birth:
-            d = birth.get_date_object().to_calendar(self.calendar)
-            birth_year, birth_month, birth_day = \
-                d.get_year(), d.get_month(), d.get_day()
-        else:
-            birth_year, birth_month, birth_day = 2199, 12, 31
-        birth_date = Date(birth_year, birth_month, birth_day)
-
-        # return birth date based on choice of calendars to its callers
-        return birth_date
-
-    def get_death_date(self, db, person):
-        """ Will return a date object for a person's death date """
-
-        death = ReportUtils.get_death_or_fallback(db, person)
-        if death:
-            d = death.get_date_object().to_calendar(self.calendar)
-            death_year, death_month, death_day = \
-                d.get_year(), d.get_month(), d.get_day()
-        else:
-            death_year, death_month, death_day = 2199, 12, 31
-        death_date = Date(death_year, death_month, death_day)
-
-        # return death date based on choice of calendars to its callers
-        return death_date
-
     def dump_attribute(self, attr, showsrc):
         """
         dump attribute for object presented in display_attr_list()
@@ -1009,21 +979,21 @@ class BasePage(object):
 
         # Link to _NARRATIVESCREEN  stylesheet
         fname = "/".join(["styles", _NARRATIVESCREEN])
-        url3 = self.report.build_url_fname(fname, None, self.up)
+        url2 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to _NARRATIVEPRINT stylesheet
         fname = "/".join(["styles", _NARRATIVEPRINT])
-        url4 = self.report.build_url_fname(fname, None, self.up)
+        url3 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to GRAMPS favicon
         fname = "/".join(['images', 'favicon.ico'])
-        url5 = self.report.build_url_image("favicon.ico", "images", self.up)
+        url4 = self.report.build_url_image("favicon.ico", "images", self.up)
 
         # create stylesheet and favicon links
-        links = [Html("link", href = url5, type = "image/x-icon", rel = "shortcut icon"),
+        links = [Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon"),
              Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url3, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url4, type = "text/css", media = 'print', rel = "stylesheet")
+             Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet"),
+             Html("link", href = url3, type = "text/css", media = 'print', rel = "stylesheet")
              ]
 
         # add additional meta and link tags
