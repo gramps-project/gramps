@@ -8,4 +8,4 @@ import settings
 
 import grampsdb.models as dj
 
-dj.clear_tables("primary", "secondary")
+dj.clear_tables("primary", "secondary", "ref")
