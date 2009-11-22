@@ -221,6 +221,10 @@ class RendererWebkit(Renderer):
     def __init__(self):
         Renderer.__init__(self)
         self.window = webkit.WebView()
+        try:
+            self.window.set_custom_encoding('utf-8') # needs webkit 1.1.10
+        except: # pylint: disable-msg=W0702
+            pass
         self.browser = WEBKIT
         self.frame = self.window.get_main_frame()
         self.frame.connect("load-done", self.page_loaded)
@@ -417,7 +421,7 @@ class HtmlView(PageView.PageView):
         self.box.pack_start(frame, True, True, 0)
         # this is used to activate the back and forward button
         # from the renderer class.
-        self.renderer.fct = self.set_button_sensitivity
+        self.renderer.fct = lambda: self.set_button_sensitivity
         self.renderer.show_all()
         #load a welcome html page
         urlhelp = self._create_start_page()
