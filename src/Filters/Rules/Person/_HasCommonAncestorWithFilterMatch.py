@@ -55,12 +55,22 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
         HasCommonAncestorWith.__init__(self,list)
         self.ancestor_cache = {}
 
-    def init_ancestor_cache(self,db):
+    def prepare(self, db):
+        self.db = db
+        # For each(!) person we keep track of who their ancestors
+        # are, in a set(). So we only have to compute a person's
+        # ancestor list once.
+        # Start with filling the cache for root person (gramps_id in self.list[0])
+        self.ancestor_cache = {}
+        self.with_people = []
         filt = MatchesFilter(self.list)
         filt.prepare(db)
-        def init(self, h): self.ancestor_cache[h] = 1
         for handle in db.get_person_handles(sort_handles=False):
-            if (handle not in self.ancestor_cache
-                and filt.apply (db, db.get_person_from_handle(handle))):
-                for_each_ancestor(db,[handle],init,self)
+            person = db.get_person_from_handle(handle)
+            if filt.apply (db, person):
+                #store all people in the filter so as to compare later
+                self.with_people.append(person.handle)
+                #fill list of ancestor of person if not present yet
+                if handle not in self.ancestor_cache:
+                    self.add_ancs(db, person)
         filt.reset()
