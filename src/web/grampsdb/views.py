@@ -154,7 +154,6 @@ def view(request, view):
                     object_list = Name.objects \
                         .filter(surname__istartswith=surname, 
                                 first_name__istartswith=first_name) \
-                                .select_related() \
                                 .order_by("surname", "first_name")
                 else:
                     object_list = Name.objects \
@@ -166,16 +165,16 @@ def view(request, view):
                                 Q(title__icontains=search) |
                                 Q(person__gramps_id__icontains=search)
                                 ) \
-                        .select_related() \
                         .order_by("surname", "first_name")
             else:
                 # FIXME: non-authenticated users don't get to search first_names
                 if "," in search:
                     search, first_name = [term.strip() for term in search.split(",", 1)]
-                object_list = Name.objects. \
-                    select_related().filter(surname__istartswith=search).order_by("surname", "first_name")
+                object_list = Name.objects \
+                    .filter(surname__istartswith=search) \
+                    .order_by("surname", "first_name")
         else:
-            object_list = Name.objects.select_related().order_by("surname", "first_name")
+            object_list = Name.objects.order_by("surname", "first_name")
         view_template = 'view_people.html'
     elif view == "place":
         object_list = Place.objects.all().order_by("gramps_id")

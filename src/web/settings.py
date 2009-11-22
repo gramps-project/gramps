@@ -49,7 +49,7 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.auth",
-#    "django.core.context_processors.debug",
+    "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "web.grampsdb.views.context_processor",
@@ -66,27 +66,27 @@ INSTALLED_APPS = (
 #    'debug_toolbar',
 )
 
-#DEBUG_TOOLBAR_PANELS = (
-#    'debug_toolbar.panels.version.VersionDebugPanel',
-#    'debug_toolbar.panels.timer.TimerDebugPanel',
-#    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
-#    'debug_toolbar.panels.headers.HeaderDebugPanel',
-#    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
-#    'debug_toolbar.panels.template.TemplateDebugPanel',
-#    'debug_toolbar.panels.sql.SQLDebugPanel',
-#    'debug_toolbar.panels.signals.SignalDebugPanel',
-#    'debug_toolbar.panels.logger.LoggingPanel',
-#    )
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+    )
 
-#def custom_show_toolbar(request):
-#    return True # Always show toolbar, for example purposes only.
+def custom_show_toolbar(request):
+    return True # Always show toolbar, for example purposes only.
 
-#DEBUG_TOOLBAR_CONFIG = {
-#    'INTERCEPT_REDIRECTS': True,
-##    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
-##    'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
-#    'HIDE_DJANGO_SQL': False,
-#    }
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+#    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+#    'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
+    'HIDE_DJANGO_SQL': False,
+    }
 
 # Had to add these to use settings.configure():
 DATABASE_OPTIONS = ''
