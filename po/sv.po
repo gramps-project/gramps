@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-08 17:43+0200\n"
-"PO-Revision-Date: 2009-11-18 14:19+0100\n"
+"PO-Revision-Date: 2009-11-22 23:11+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12790,7 +12790,6 @@ msgstr "Skapad åt <a href=\"%s\">%s</a>"
 #: ../src/plugins/webreport/NarrativeWeb.py:453
 #: ../src/plugins/webreport/NarrativeWeb.py:1615
 #: ../src/plugins/webreport/WebCal.py:364
-#, fuzzy
 msgid "html|Home"
 msgstr "Hem"
 
@@ -24736,918 +24735,827 @@ msgid "Whether to not print empty lines within the 'Personal Display'."
 msgstr "Huruvida skriva tomma rader inom 'Personlig visning'."
 
 #: Descend2.py:1527
-#, fuzzy
 msgid "Bold direct descendants"
-msgstr "Direkta manliga ättlingar"
+msgstr "Fetstil för direkta ättlingar"
 
 #: Descend2.py:1528
 msgid "Whether to bold those people that are direct (not step or half) decendants."
-msgstr ""
+msgstr "Huruvida skriva de personer som är direkt ättlingar (ej styv- eller halvättling) med fetstil."
 
 #: Descend2.py:1533
 msgid "Use seperate display format for spouses"
-msgstr ""
+msgstr "Använd annat format för make/maka"
 
 #: Descend2.py:1534
-#, fuzzy
 msgid "Whether spouses can have a different format."
-msgstr "Huruvida visa makar i trädet."
+msgstr "Huruvida make/maka kan ha skilda format."
 
 #: Descend2.py:1537
-#, fuzzy
 msgid "Indent Spouses"
-msgstr "Ta med make/maka"
+msgstr "Dra in make/maka"
 
 #: Descend2.py:1538
-#, fuzzy
 msgid "Whether to indent the spouses in the tree."
-msgstr "Huruvida visa makar i trädet."
+msgstr "Huruvida dra in make/maka i trädet."
 
 #: Descend2.py:1541
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Visningsformat"
+msgstr ""
+"Make/maka\n"
+"Visningsformat"
 
 #: Descend2.py:1554
-#, fuzzy
 msgid "Replace"
-msgstr "_Ersätt:"
+msgstr "Ersätt"
 
 #: Descend2.py:1556
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/'with this'"
 msgstr ""
+"Byt ut visningsformat:\n"
+"'Byt detta '/'mot detta'"
 
 #: Descend2.py:1558
-#, fuzzy
 msgid ""
 "ie\n"
 "United States of America/U.S.A"
-msgstr "Amerikas Förenta Stater"
+msgstr ""
+"d. v. s."
+"Amerikas Förenta Stater/U. S. A."
 
 #: Descend2.py:1649
-#, fuzzy
 msgid "The bold style used for the text display."
-msgstr "Grundläggande stil som används för textvisning."
+msgstr "Fetstil använd till textvisning."
 
 #: Descend2.py:1707
-#, fuzzy
 msgid "Personal Descend Tree"
-msgstr "Stamtavla"
+msgstr "Personlig stamtavla"
 
 #: Descend2.py:1740
-#, fuzzy
 msgid "Familial Descend Tree"
-msgstr "Stamtavla"
+msgstr "Familjestamtavla"
 
 #: DescendantCountGramplet.py:81
-#, fuzzy
 msgid "Descendent Count"
-msgstr "Stamtavla, kortfattad"
+msgstr "Beräkning av antal ättlingar"
 
 #: DescendantCountGramplet.py:83
-#, fuzzy
 msgid "Number of Descendants"
-msgstr "Antal generationer:"
+msgstr "Antal ättlingar"
 
 #: DescendantCountGramplet.py:92
-#, fuzzy
 msgid "There are %d people.\n"
-msgstr "Gör markering för %d personer"
+msgstr "Det finns %d personer.\n"
 
 #: DescendantCountGramplet.py:105 DescendantCountGramplet.py:118
-#, fuzzy
 msgid "Descendant Count"
-msgstr "Stamtavla, kortfattad"
+msgstr "Beräkning av antal ättlingar"
 
 #: DescendantCountGramplet.py:107
-#, fuzzy
 msgid "Display descendant counts for each person."
-msgstr "Matchar alla ättlingar för den angivna personen"
+msgstr "Visar antal ättlingar för varje person."
 
 #: DescendantCountGramplet.py:114
-#, fuzzy
 msgid "Descendant Count Gramplet"
-msgstr "Fönster med ättlingar"
+msgstr "Fönster för beräkning av antal ättlingar"
 
 #: FamilyGroups_1_1.py:88
 msgid "\"FamilyGroups\" and \"Identification Number\" attributes "
-msgstr ""
+msgstr "\"Familjegrupper\"- och \"Identifikationsnummer\"-attribut "
 
 #: FamilyGroups_1_1.py:456
 msgid "TOTAL NUMBER OF INDIVIDUALS : %s"
-msgstr ""
+msgstr "TOTALT ANTAL INDIVIDER : %s"
 
 #: FamilyGroups_1_1.py:459
-#, fuzzy
 msgid " SURNAME  : %s"
-msgstr "EFTERNAMN"
+msgstr " EFTERNAMN  : %s"
 
 #: FamilyGroups_1_1.py:460
 msgid " is the studied name (Active-Person).\n"
-msgstr ""
+msgstr " är det studerade namnet (aktiv person).\n"
 
 #: FamilyGroups_1_1.py:465
 msgid ""
 " ==> When the number is the lower than twenty, persons are precised with "
 "surname, ID gramps and attribut.\n"
 msgstr ""
+" ==> När antaler är mindre än tjugo, är personer preciserade med "
+"efternamn, ID Gramps och attribut.\n"
 
 #: FamilyGroups_1_1.py:489
 msgid "  Of the individuals bear this name   : %s"
-msgstr ""
+msgstr "  av individerna bär detta namn   : %s"
 
 #: FamilyGroups_1_1.py:494
 msgid "  Of the individuals bear this attribute   : %s  "
-msgstr ""
+msgstr "  av individerna har detta attribut:  %s  "
 
 #: FamilyGroups_1_1.py:519
 msgid " ========= > BEWARE  %s"
-msgstr ""
+msgstr " ========= > VARNING  %s"
 
 #: FamilyGroups_1_1.py:520
 msgid " PERSONS HAVE a empty  \"ID\" attribut or not attribute \"0NOATTRIB\""
-msgstr ""
+msgstr " PERSONER HAR ett tomt  \"ID\" attribut eller inte något attribut \"0NOATTRIB\""
 
 #: FamilyGroups_1_1.py:578
-#, fuzzy
 msgid "The basic style used for the para title."
-msgstr "Grundläggande stil som används för visning av titel."
+msgstr "Grundläggande mall som används för visning av stycketitel."
 
 #: FamilyGroups_1_1.py:606
-#, fuzzy
 msgid "FamilyGroups_1_1"
-msgstr "Familjegrupp"
+msgstr "FamilyGroups_1_1"
 
 #: FamilyGroups_1_1.py:607 Gallery.py:167 SVGMap.py:137 locations.py:259
-#, fuzzy
 msgid "Testing"
-msgstr "Välsignelse"
+msgstr "Provar"
 
 #: FamilyGroups_1_1.py:608
-#, fuzzy
 msgid "FamilyGroups"
-msgstr "Familjegrupp"
+msgstr "Familjegrupper"
 
 #: FaqGramplet.py:44
-#, fuzzy
 msgid "FAQ Gramplet"
-msgstr "Mini-Gramps"
+msgstr "FAQ Gramplet"
 
 #: FaqGramplet.py:47
-#, fuzzy
 msgid "FAQ"
-msgstr "_FAQ"
+msgstr "FAQ"
 
 #: Gallery.py:140
-#, fuzzy
 msgid "The style used for the name of person."
-msgstr "Stil som används för personens namn."
+msgstr "Mall som används för personens namn."
 
 #: Gallery.py:169
-#, fuzzy
 msgid "Produces a gallery"
-msgstr "Skapar en grafisk kalender."
+msgstr "Skapar ett galleri"
 
 #: GoogleEarthWriteKML.py:81 SVGMap.py:54
-#, fuzzy
 msgid "No place description"
-msgstr "Beskrivning saknas"
+msgstr "Platsbeskrivning saknas"
 
 #: GoogleEarthWriteKML.py:114
 msgid "GoogleEarth not installed!"
-msgstr ""
+msgstr "GoogleEarth ej installerat!"
 
 #: GoogleEarthWriteKML.py:115
 msgid ""
 "Create kmz/kml file ''%s''\n"
 "in user directory ''%s''?"
 msgstr ""
+"Skapa en kmz/kml-fil ''%s''\n"
+"i användarmapp ''%s''?"
 
 #: GoogleEarthWriteKML.py:125
-#, fuzzy
 msgid "Failure writing to %s"
 msgstr "Misslyckades med att skriva till %s"
 
 #: GoogleEarthWriteKML.py:126
-#, fuzzy
 msgid "Directory does not exist"
-msgstr "Filen finns inte"
+msgstr "Mappen finns inte"
 
 #: GoogleEarthWriteKML.py:134
 msgid "GoogleEarth file exists!"
-msgstr ""
+msgstr "GoogleEarth file finns redan!"
 
 #: GoogleEarthWriteKML.py:135
 msgid ""
 "Overwrite kmz/kml file ''%s''\n"
 "in user home directory ''%s''?"
 msgstr ""
+"Skriva över kmz/kml-fil ''%s''\n"
+"i användarens hem-mapp ''%s''?"
 
 #: GoogleEarthWriteKML.py:214
-#, fuzzy
 msgid "GoogleEarth"
-msgstr "Google-kartor"
+msgstr "GoogleEarth"
 
 #: GoogleEarthWriteKML.py:216
 msgid "Creates data file for GoogleEarth and opens it"
-msgstr ""
+msgstr "Skapar en datafil för GoogleEartrh och öppnar den"
 
 #: HeadlineNewsGramplet.py:98
 msgid "Read GRAMPS headline news"
-msgstr ""
+msgstr "Läs Gramps nyheter"
 
 #: HeadlineNewsGramplet.py:276
-#, fuzzy
 msgid "Headline News Gramplet"
-msgstr "Fönster med antavla"
+msgstr "Fönster med nyheter"
 
 #: HeadlineNewsGramplet.py:280
 msgid "Headline News"
-msgstr ""
+msgstr "Nyheter"
 
 #: NoteGramplet.py:268
-#, fuzzy
 msgid "Note Gramplet"
-msgstr "Mini-Gramps"
+msgstr "Fönster för anteckningar"
 
 #: PlaceCompletion.py:76
 msgid ""
 "Place Completion by parsing, file lookup and batch setting of place "
 "attributes"
-msgstr ""
+msgstr "Platskomplttering genom att avkodning, filuppslagning och satsvis inställning av platsattribut"
 
 #: PlaceCompletion.py:180 PlaceCompletion.py:211 PlaceCompletion.py:250
 #: PlaceCompletion.py:1041 PlaceCompletion.py:1081
-#, fuzzy
 msgid "city"
-msgstr "Ort"
+msgstr "ort"
 
 #: PlaceCompletion.py:180 PlaceCompletion.py:219 PlaceCompletion.py:258
-#, fuzzy
 msgid "street"
-msgstr "Gatuadress"
+msgstr "gatuadress"
 
 #: PlaceCompletion.py:180 PlaceCompletion.py:221 PlaceCompletion.py:260
 #: PlaceCompletion.py:1042
-#, fuzzy
 msgid "parish"
-msgstr " församling"
+msgstr "församling"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:213 PlaceCompletion.py:252
 #: PlaceCompletion.py:1038 PlaceCompletion.py:1084
-#, fuzzy
 msgid "country"
-msgstr "Land"
+msgstr "land"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:215 PlaceCompletion.py:254
 #: PlaceCompletion.py:424 PlaceCompletion.py:1040 PlaceCompletion.py:1082
-#, fuzzy
 msgid "county"
-msgstr "Landskap"
+msgstr "landskap"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:217 PlaceCompletion.py:256
 #: PlaceCompletion.py:424 PlaceCompletion.py:1039 PlaceCompletion.py:1083
-#, fuzzy
 msgid "state"
-msgstr " län"
+msgstr "län"
 
 #: PlaceCompletion.py:181 PlaceCompletion.py:223 PlaceCompletion.py:262
 #: PlaceCompletion.py:1043
 msgid "zip"
-msgstr ""
+msgstr "zip"
 
 #: PlaceCompletion.py:203 PlaceCompletion.py:239 PlaceCompletion.py:923
 #: PlaceCompletion.py:979 PlaceCompletion.py:981 PlaceCompletion.py:987
-#, fuzzy
 msgid "latitude"
-msgstr "Latitud"
+msgstr "latitud"
 
 #: PlaceCompletion.py:205 PlaceCompletion.py:241 PlaceCompletion.py:924
 #: PlaceCompletion.py:991 PlaceCompletion.py:993 PlaceCompletion.py:998
-#, fuzzy
 msgid "longitude"
-msgstr "Longitud"
+msgstr "longitud"
 
 #: PlaceCompletion.py:226 PlaceCompletion.py:265
 msgid "Error in PlaceCompletion.py"
-msgstr ""
+msgstr "Fel i PlaceCompletion.py"
 
 #: PlaceCompletion.py:227
-#, fuzzy
 msgid "Non existing group used in get"
-msgstr "Ickeexisterande person"
+msgstr "Ickeexisterande grupp använd i get"
 
 #: PlaceCompletion.py:266
-#, fuzzy
 msgid "Non existing group used in set"
-msgstr "Ickeexisterande person"
+msgstr "Ickeexisterande grupp använd i set"
 
 #: PlaceCompletion.py:324
-#, fuzzy
 msgid "Places tool"
-msgstr "Platsbenämning"
+msgstr "Platsverktyg"
 
 #: PlaceCompletion.py:416
 msgid "Non Valid Title Regex"
-msgstr ""
+msgstr "Inget giltigt reguljärt uttryck"
 
 #: PlaceCompletion.py:417
 msgid "Non valid regular expression given to match title. Quiting."
-msgstr ""
+msgstr "Inget giltigt reguljärt uttryck givet att matcha titel. Avbryter."
 
 #: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
 #: PlaceCompletion.py:1079
-#, fuzzy
 msgid "lat"
-msgstr "Släkt"
+msgstr "lat"
 
 #: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
 #: PlaceCompletion.py:1080
-#, fuzzy
 msgid "lon"
-msgstr "Vallonska"
+msgstr "lon"
 
 #: PlaceCompletion.py:432
 msgid "Missing regex groups in match lat/lon"
-msgstr ""
+msgstr "Saknade grupper med reguljära uttryck i matchning av lat/lon"
 
 #: PlaceCompletion.py:433
 msgid "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
-msgstr ""
+msgstr "Grupper med reguljära uttryck %(lat)s och %(lon)s måste finnas vid lat/lon-matchning. Avbryter"
 
 #: PlaceCompletion.py:443
 msgid "Non valid regex for match lat/lon"
-msgstr ""
+msgstr "Inget reguljärt uttryck för matchning av lat/lon"
 
 #: PlaceCompletion.py:444
 msgid "Non valid regular expression given to find lat/lon. Quiting."
-msgstr ""
+msgstr "Inget giltigt reguljärt uttryck givet för att finna lat/long. Avbryter."
 
 #: PlaceCompletion.py:502
 msgid "Finding Places and appropriate changes"
-msgstr ""
+msgstr "Leta efter platser och tillämpliga ändringar"
 
 #: PlaceCompletion.py:504
-#, fuzzy
 msgid "Filtering"
-msgstr "Filter"
+msgstr "Filtrering"
 
 #: PlaceCompletion.py:514
 msgid "Loading lat/lon file in Memory..."
-msgstr ""
+msgstr "Laddar lat/lon-fil till minnet..."
 
 #: PlaceCompletion.py:519
-#, fuzzy
 msgid "Examining places"
-msgstr "Redigera plats"
+msgstr "Undersöker platser"
 
 #: PlaceCompletion.py:707
-#, fuzzy
 msgid "Doing Place changes"
-msgstr "Skapar platsförteckning"
+msgstr "Genomför platsförförändringar"
 
 #: PlaceCompletion.py:744 PlaceCompletion.py:754
-#, fuzzy
 msgid "Change places"
-msgstr "Ändra typer"
+msgstr "Ändra platser"
 
 #: PlaceCompletion.py:749
-#, fuzzy
 msgid "No place record was modified."
-msgstr "Ingen händelse ändrades."
+msgstr "Ingen plats ändrades."
 
 #: PlaceCompletion.py:751
-#, fuzzy
 msgid "1 place record was modified."
-msgstr "Ingen händelse ändrades."
+msgstr "1 plats ändrades."
 
 #: PlaceCompletion.py:753
-#, fuzzy
 msgid "%d place records were modified."
-msgstr "%d händelse ändrades.d."
+msgstr "%d platser ändrades."
 
 #: PlaceCompletion.py:827
-#, fuzzy
 msgid "The selected file is a directory, not a file."
-msgstr "Den valda filen är en katalog, inte en fil.\n"
+msgstr "Den valda filen är en katalog, inte en fil."
 
 #: PlaceCompletion.py:840
 msgid "The file you want to access is not a regular file."
-msgstr ""
+msgstr "Den fil du vill utnyttja är inte en vanlig fil."
 
 #: PlaceCompletion.py:846
-#, fuzzy
 msgid "The file does not exist."
-msgstr "Filen finns inte"
+msgstr "Filen finns inte."
 
 #: PlaceCompletion.py:865
-#, fuzzy
 msgid "Problem reading file"
-msgstr "Fel vid läsning av GEDCOM-fil"
+msgstr "Fel vid filläsning"
 
 #: PlaceCompletion.py:895 PlaceCompletion.py:898 PlaceCompletion.py:1085
 msgid "CITY"
-msgstr ""
+msgstr "STAD"
 
 #: PlaceCompletion.py:899 PlaceCompletion.py:904 PlaceCompletion.py:1087
 msgid "TITLEBEGIN"
-msgstr ""
+msgstr "STARTTITEL"
 
 #: PlaceCompletion.py:905 PlaceCompletion.py:908 PlaceCompletion.py:1086
 msgid "TITLE"
-msgstr ""
+msgstr "TITEL"
 
 #: PlaceCompletion.py:909 PlaceCompletion.py:912 PlaceCompletion.py:1088
 msgid "STATE"
-msgstr ""
+msgstr "STAT"
 
 #: PlaceCompletion.py:913 PlaceCompletion.py:916 PlaceCompletion.py:1089
 msgid "PARISH"
-msgstr ""
+msgstr "FÖRSAMLING"
 
 #: PlaceCompletion.py:983 PlaceCompletion.py:995
 msgid "invalid lat or lon value, %(lat)s, %(lon)s"
-msgstr ""
+msgstr "ogiltigt lat- eller lon-värde, %(lat)s, %(lon)s"
 
 #: PlaceCompletion.py:1064
 msgid "No lat/lon conversion"
-msgstr ""
+msgstr "Ingen lat/lon-omvandling"
 
 #: PlaceCompletion.py:1065
-#, fuzzy
 msgid "All in degree notation"
-msgstr "Samtliga generationer"
+msgstr "Samtliga i gradnotation"
 
 #: PlaceCompletion.py:1066
 msgid "All in decimal notation"
-msgstr ""
+msgstr "Allt i decimal notation"
 
 #: PlaceCompletion.py:1067
 msgid "Correct -50° in 50°S"
-msgstr ""
+msgstr "Korrekt -50° in 50°S"
 
 #: PlaceCompletion.py:1071
-#, fuzzy
 msgid "No changes"
-msgstr "Överge ändringar"
+msgstr "Inga ändringar"
 
 #: PlaceCompletion.py:1072
 msgid "City[, State]"
-msgstr ""
+msgstr "Ort[, stat]"
 
 #: PlaceCompletion.py:1074
 msgid "TitleStart [, City] [, State]"
-msgstr ""
+msgstr "Starttitel [, ort] [, stat]"
 
 #: PlaceCompletion.py:1097
 msgid "City [,|.] State"
-msgstr ""
+msgstr "Ort [,|.] stat"
 
 #: PlaceCompletion.py:1099
-#, fuzzy
 msgid "City [,|.] Country"
-msgstr "O_rt:"
+msgstr "Ort [,|.] land"
 
 #: PlaceCompletion.py:1101
-#, fuzzy
 msgid "City (Country)"
-msgstr "O_rt:"
+msgstr "Ort (land)"
 
 #: PlaceCompletion.py:1107
-#, fuzzy
 msgid "Don't search"
-msgstr "Forskning"
+msgstr "Sök ej"
 
 #: PlaceCompletion.py:1110
 msgid "GeoNames country file, city search"
-msgstr ""
+msgstr "GeoNames landsfil, ortsökning"
 
 #: PlaceCompletion.py:1115
 msgid "GeoNames country file, city localized variants search"
-msgstr ""
+msgstr "GeoNames landsfil, ort lokal sökvariant"
 
 #: PlaceCompletion.py:1126
 msgid "GeoNames country file, title begin, general search"
-msgstr ""
+msgstr "GeoNames landsfil, starttitel, allmän sökning"
 
 #: PlaceCompletion.py:1131
 msgid "GeoNames USA state file, city search"
-msgstr ""
+msgstr "GeoNames USA-delstatfil, ortsökning"
 
 #: PlaceCompletion.py:1145
 msgid "GNS Geonet country file, city search"
-msgstr ""
+msgstr "GNS Geonet landsfil, ortsökning"
 
 #: PlaceCompletion.py:1154
 msgid "GNS Geonet country file, title begin, general search"
-msgstr ""
+msgstr "GNS Geonet landsfil, starttitel, allmän sökning"
 
 #: PlaceCompletion.py:1162
 msgid "Wikipedia CSV Dump"
-msgstr ""
+msgstr "Wikipedia CSV Dump"
 
 #: PlaceCompletion.py:1250
-#, fuzzy
 msgid "All Places"
 msgstr "Alla platser"
 
 #: PlaceCompletion.py:1253
-#, fuzzy
 msgid "No Latitude/Longitude given"
 msgstr "Platser utan latitud eller longitud angivet"
 
 #: PlaceCompletion.py:1345
 msgid "Interactive place completion"
-msgstr ""
+msgstr "Interaktiv platskomplettering"
 
 #: PlaceCompletion.py:1346
-#, fuzzy
 msgid "Unstable"
-msgstr "Stabil"
+msgstr "Ostabil"
 
 #: PlaceCompletion.py:1349
 msgid ""
 "Provides a browsable list of selected places, with possibility to complete/"
 "parse/set the attribute fields"
-msgstr ""
+msgstr "Tillhandahåller en bläddringsbar lista av valda platser, med möjlighet att helt/tolka/sätta attributfälten"
 
 #: PluginManagerGramplet.py:57
-#, fuzzy
 msgid "Reading"
-msgstr "Grad"
+msgstr "Läser"
 
 #: PluginManagerGramplet.py:132
-#, fuzzy
 msgid "Plugin Manager Gramplet"
-msgstr "Tillbehörsfönster utan namn"
+msgstr "Fönster för insticksmoduler"
 
 #: PluginManagerGramplet.py:136
-#, fuzzy
 msgid "Plugin Manager"
-msgstr "Mediahanterare"
+msgstr "Hanterare av insticksmoduler"
 
 #: PythonGramplet.py:47
-#, fuzzy
 msgid "Enter Python expressions"
-msgstr "Reguljärt uttryck:"
+msgstr "Skruv in ett python-uttryck"
 
 #: PythonGramplet.py:53
 msgid "class name|Date"
-msgstr ""
+msgstr "datum"
 
 #: PythonGramplet.py:63
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: PythonGramplet.py:152
-#, fuzzy
 msgid "Python Gramplet"
-msgstr "Mini-Gramps"
+msgstr "Python-fönster"
 
 #: PythonGramplet.py:155
 msgid "Python Shell"
-msgstr ""
+msgstr "Pythonskal"
 
 #: RepositoriesReport.py:68 RepositoriesReport.py:208
 #: RepositoriesReportAlt.py:91
-#, fuzzy
 msgid "Repositories Report"
-msgstr "Arkivplatser"
+msgstr "Arkivplatsrapport"
 
 #: RepositoriesReport.py:177 RepositoriesReportAlt.py:398
-#, fuzzy
 msgid "The style used for repository title."
-msgstr "Stil som används för rapporttiteln."
+msgstr "Malll som används för arkivplatstitel."
 
 #: RepositoriesReport.py:212 RepositoriesReportAlt.py:462
-#, fuzzy
 msgid "Produces a textual repositories report"
-msgstr "Skapar en antavla med minsta tänkbar information."
+msgstr "Åstadkommer en rapport över arkivplatser"
 
 #: RepositoriesReportAlt.py:162
-#, fuzzy
 msgid ""
 "\n"
 "Address: %s"
-msgstr "Adress: "
+msgstr ""
+"\n"
+"Adress: %s"
 
 #: RepositoriesReportAlt.py:190
-#, fuzzy
 msgid "%s. Private"
-msgstr "Privat"
+msgstr "%s privat"
 
 #: RepositoriesReportAlt.py:230
-#, fuzzy
 msgid "Author: %s"
-msgstr "Författare:"
+msgstr "Författare: %s"
 
 #: RepositoriesReportAlt.py:232
-#, fuzzy
 msgid ""
 "\n"
 "Abbreviation: %s"
-msgstr "Förkortning:"
+msgstr ""
+"\n"
+"Förkortning: %s"
 
 #: RepositoriesReportAlt.py:234
-#, fuzzy
 msgid ""
 "\n"
 "Publication information: %s"
-msgstr "_Publiceringsinformation:"
+msgstr ""
+"\n"
+"Publiceringsinformation: %s"
 
 #: RepositoriesReportAlt.py:236
-#, fuzzy
 msgid ""
 "\n"
 "Data: %s"
-msgstr "Län/delstat: %s "
+msgstr ""
+"\n"
+"Data: %s"
 
 #: RepositoriesReportAlt.py:322
-#, fuzzy
 msgid "Include repository's urls"
-msgstr "Ta med källor"
+msgstr "Ta med URL för arkivplatser"
 
 #: RepositoriesReportAlt.py:323
-#, fuzzy
 msgid "Whether to include urls on repository."
-msgstr "Huruvida ta med anteckningar."
+msgstr "Huruvida ta med URL för arkivplatser"
 
 #: RepositoriesReportAlt.py:326
-#, fuzzy
 msgid "Include repository's address"
-msgstr "Ta med adresser"
+msgstr "Ta med arkivplatsadresser"
 
 #: RepositoriesReportAlt.py:327
-#, fuzzy
 msgid "Whether to include addresses on repository."
-msgstr "Huruvida ta med adresser till föräldrar."
+msgstr "Huruvida ta med adresser till arkovplatser."
 
 #: RepositoriesReportAlt.py:330
-#, fuzzy
 msgid "Include source's author"
-msgstr "Ta med källor"
+msgstr "Ta med källförfattare"
 
 #: RepositoriesReportAlt.py:331
-#, fuzzy
 msgid "Whether to include author."
-msgstr "Huruvida ta med anteckningar."
+msgstr "Huruvida ta med källförfattare."
 
 #: RepositoriesReportAlt.py:334
-#, fuzzy
 msgid "Include source's abbreviation"
-msgstr "Ta med källinformation"
+msgstr "Ta med källförkortning"
 
 #: RepositoriesReportAlt.py:335
-#, fuzzy
 msgid "Whether to include abbreviation."
-msgstr "Huruvida ta med händelser."
+msgstr "Huruvida ta med förkortning."
 
 #: RepositoriesReportAlt.py:338
-#, fuzzy
 msgid "Include source's publication information"
-msgstr "Ta med källinformation"
+msgstr "Ta med källors publiceringsinformation"
 
 #: RepositoriesReportAlt.py:339
-#, fuzzy
 msgid "Whether to include publication information."
-msgstr "Huruvida ta med detaljerad information om make/maka."
+msgstr "Huruvida ta med publiceringsinformation."
 
 #: RepositoriesReportAlt.py:342
-#, fuzzy
 msgid "Include source's data"
-msgstr "Ta med källor"
+msgstr "Ta med källors data"
 
 #: RepositoriesReportAlt.py:343
-#, fuzzy
 msgid "Whether to include keys and values."
-msgstr "Huruvida ta med andra namn."
+msgstr "Huruvida ta med nycklar och värden."
 
 #: RepositoriesReportAlt.py:347
-#, fuzzy
 msgid "Whether to include notes on repositories and sources."
-msgstr "Huruvida ta med anteckningar för föräldrar."
+msgstr "Huruvida ta med anteckningar för arkivplatser och källor."
 
 #: RepositoriesReportAlt.py:350
-#, fuzzy
 msgid "Include media"
-msgstr "Ta med datum"
+msgstr "Ta med media"
 
 #: RepositoriesReportAlt.py:351
-#, fuzzy
 msgid "Whether to include media on sources."
-msgstr "Huruvida ta med anteckningar."
+msgstr "Huruvida ta med media."
 
 #: RepositoriesReportAlt.py:355
-#, fuzzy
 msgid "Whether to include repositories and sources marked as private."
-msgstr "Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
+msgstr "Huruvida ta med arkivplatser och källor markerade som privata."
 
 #: RepositoriesReportAlt.py:428
-#, fuzzy
 msgid "The style used for child section."
-msgstr "Den mall, som används för varje sektion."
+msgstr "Den mall, som används barnstycke."
 
 #: RepositoriesReportAlt.py:458
-#, fuzzy
 msgid "Repositories Report 2"
-msgstr "Arkivplatser"
+msgstr "Arkivplatserrapport 2"
 
 #: SVGMap.py:136
-#, fuzzy
 msgid "SVG Map"
-msgstr "Karta"
+msgstr "SVG-karta"
 
 #: SVGMap.py:138
-#, fuzzy
 msgid "Creates data into a SVG file"
-msgstr "Importera data från CSV-filer"
+msgstr "Skapar data för en SVG-fil"
 
 #: Tree_Base.py:500
-#, fuzzy
 msgid "Top Left"
 msgstr "Överkant, vänster"
 
 #: Tree_Base.py:501
-#, fuzzy
 msgid "Top Right"
 msgstr "Överkant, höger"
 
 #: Tree_Base.py:502
-#, fuzzy
 msgid "Bottom Left"
 msgstr "Nederkant, vänster"
 
 #: Tree_Base.py:503
-#, fuzzy
 msgid "Bottom Right"
 msgstr "Nederkant, höger"
 
 #: descendant_count.py:58
-#, fuzzy
 msgid "Number of %s's descendants"
-msgstr "Antal generationer:"
+msgstr "Antal av %s's ättlingar"
 
 #: descendant_count.py:64
-#, fuzzy
 msgid "%s total descendants"
-msgstr "Ättlingar"
+msgstr "Totalt antal ättlingar %s"
 
 #: descendant_count.py:66
 msgid "%s descendants born during his/her lifetime"
-msgstr ""
+msgstr "%s ättlingar föddes under hans/hennes livstid"
 
 #: descendant_count.py:67
 msgid "%s descendants died during his/her lifetime"
-msgstr ""
+msgstr "%s ättlingar dog under hans /hennes livstid"
 
 #: descendant_count.py:68
-#, fuzzy
 msgid "%s descendants now alive"
-msgstr "Ättlingar till %s"
+msgstr "Antal nu levande ättlingar %s"
 
 #: descendant_count.py:141
-#, fuzzy
 msgid "Descendant count"
-msgstr "Stamtavla, kortfattad"
+msgstr "Räkning av antal ättlingar"
 
 #: descendant_count.py:143
-#, fuzzy
 msgid "Displays the number of a person's descendants"
-msgstr "Begränsa antal föräldrar"
+msgstr "Visar antal ättlingar till en person"
 
 #: haradskarta.py:111
-#, fuzzy
 msgid "No coordinates given!"
-msgstr "Y"
+msgstr "Inga koordinater angivna!"
 
 #: haradskarta.py:118
-#, fuzzy
 msgid "Map not available for"
-msgstr "Eniros karta ej tillgänglig för %s"
+msgstr "Ingen karta tillgänglig för"
 
 #: haradskarta.py:119
 msgid ""
 "Longitude=%s\n"
 "Latitude=%s"
 msgstr ""
+"Longitud=%s\n"
+"Latitud=%s"
 
 #: haradskarta.py:142
 msgid "Häradskarta"
-msgstr ""
+msgstr "Häradskarta"
 
 #: haradskarta.py:144
 msgid "Opens häradskarta, if found."
-msgstr ""
+msgstr "Öppnar häradskarta, om funnen."
 
 #: locations.py:76 locations.py:258
-#, fuzzy
 msgid "Locations"
-msgstr "Lokalisering"
+msgstr "Platser"
 
 #: locations.py:102
 msgid ""
 "\n"
 "Census event (Individual)\n"
 msgstr ""
+"\n"
+"Folkräkningshändelse (individ)\n"
 
 #: locations.py:123
 msgid ""
 "\n"
 "Residence event (Individual)\n"
 msgstr ""
+"\n"
+"Boendehändles (individ)\n"
 
 #: locations.py:144
-#, fuzzy
 msgid ""
 "\n"
 "Census event (Family)\n"
-msgstr "Huvudfamilj"
+msgstr ""
+"\n"
+"Folkräkningshändelse (famil)\n"
 
 #: locations.py:165
 msgid ""
 "\n"
 "Residence event (Family)\n"
 msgstr ""
+"\n"
+"Boendehändelse (famil)\n"
 
 #: locations.py:186
-#, fuzzy
 msgid ""
 "\n"
 "Address filter (Person)\n"
-msgstr "Filtrera person"
+msgstr ""
+"\n"
+"Adressfilter (person)\n"
 
 #: locations.py:234
-#, fuzzy
 msgid "The basic style used for the paragraph title."
-msgstr "Grundläggande stil som används för visning av titel."
+msgstr "Grundläggande mall som används för visning av stycketitel."
 
 #: locations.py:262
-#, fuzzy
 msgid "Individuals with locations"
-msgstr "Personer med mediaobjekt"
+msgstr "Personer med platser"
 
 msgid "<b>1. Look up latitude and longitude:</b>"
-msgstr ""
+msgstr "<b>1. Slå upp latitud och longitud:</b>"
 
 msgid "<b>2. Parsing and Conversion of existing title or position:</b>"
-msgstr ""
+msgstr "<b>2. Tolkning och omvadling av befintlig titel eller position:</b>"
 
 msgid "<b>3. Set attributes of all selected places:</b>"
-msgstr ""
+msgstr "<b>3. Sätt attribut på alla valda platser:</b>"
 
 msgid "Apply all suggested changes"
-msgstr ""
+msgstr "Tillämpa all föreslagna ändringar"
 
-#, fuzzy
 msgid "C_enter latitude:"
-msgstr "_Latitud:"
+msgstr "C_entrera latitud:"
 
-#, fuzzy
 msgid "Center longitude:"
-msgstr "Longitud:"
+msgstr "Centrera longitud:"
 
-#, fuzzy
 msgid "Change title into:"
-msgstr "_Ändra filnamn"
+msgstr "Ändra titel till:"
 
 msgid "Convert lat/lon as:"
-msgstr ""
+msgstr "Omvandla lat/lon som:"
 
-#, fuzzy
 msgid "Parish"
-msgstr " församling"
+msgstr "Församling"
 
-#, fuzzy
 msgid "Parish:"
-msgstr "Församling: %s "
+msgstr "Församling:"
 
-#, fuzzy
 msgid "Parse as:"
-msgstr "Föräldrar:"
+msgstr "Sortera som:"
 
-#, fuzzy
 msgid "Parse title:"
-msgstr "Platsbenämning"
+msgstr "Sortera titel:"
 
-#, fuzzy
 msgid "Place _filter:"
-msgstr "Platsfilter"
+msgstr "Plats_filter:"
 
-#, fuzzy
 msgid "Places in a rectangle:"
-msgstr "Platser med parametrar"
+msgstr "Platser i en rektangel:"
 
-#, fuzzy
 msgid "Search in:"
-msgstr "Söksida URL"
+msgstr "Sök i:"
 
-#, fuzzy
 msgid "Select A File"
-msgstr "_Välj fil"
+msgstr "Välj en fil"
 
 msgid ""
 "<i>Delete to delete a row, Double-click on the row to edit place with "
@@ -25660,4 +25568,6 @@ msgid ""
 "<span size=\"large\"><b>Selection of the Places you want to complete:</b></"
 "span>"
 msgstr ""
+"<span size=\"large\"><b>Val av de platser du vill kompklettera:</b></"
+"span>"
 
