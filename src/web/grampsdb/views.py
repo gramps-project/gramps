@@ -1,5 +1,31 @@
-# Create your views here.
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2009         Douglas S. Blank <doug.blank@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# $Id$
+#
 
+""" Main view handlers """
+
+#------------------------------------------------------------------------
+#
+# Django Modules
+#
+#------------------------------------------------------------------------
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
@@ -8,6 +34,11 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import Context, RequestContext, escape
 from django.db.models import Q
 
+#------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#------------------------------------------------------------------------
 import web
 from web.grampsdb.models import *
 
@@ -188,7 +219,10 @@ def view(request, view):
     else:
         raise Http404("Requested page type not known")
 
-    paginator = Paginator(object_list, 15) 
+    if request.user.is_authenticated():
+        paginator = Paginator(object_list, 50) 
+    else:
+        paginator = Paginator(object_list, 15) 
 
     try:
         page = int(request.GET.get('page', '1'))
