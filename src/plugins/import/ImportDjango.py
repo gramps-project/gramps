@@ -30,8 +30,6 @@ Import from the Django dji on the configured database backend
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
-from gettext import ngettext
 import time
 import sys
 import os
@@ -54,10 +52,15 @@ from QuestionDialog import ErrorDialog
 from Utils import create_id
 import const
 
+from TransUtils import get_addon_translator
+translator = get_addon_translator(__file__)
+_ = translator.gettext
+ngettext = translator.ngettext
+
 from django.conf import settings
 import web.settings as default_settings
 try:
-    settings.configure(default_settings, DEBUG=True)
+    settings.configure(default_settings)
 except:
     pass
 
@@ -183,7 +186,7 @@ class DjangoReader(object):
         self.db.transaction_commit(self.trans, _("Django import"))
         self.db.enable_signals()
         self.db.request_rebuild()
-        print msg
+        print >> sys.stderr, msg
 
 
 def import_data(db, filename, callback=None):
