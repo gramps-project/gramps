@@ -10,21 +10,31 @@
       });
    </script>
 
-<table>
+<div class="content" id="IndividualDetail">
+<div id="summaryarea">
+<table class="infolist">
+<trbody>
 <tr>
-<td>Event type:</td><td> {{event.event_type|escape}}</td><td>Date:</td><td>{{event|display_date}}</td>
+<td class="ColumnAttribute">Event type:</td>
+<td class="ColumnValue" id="data"> {{event.event_type|escape}}</td>
+<td class="ColumnAttribute">Date:</td>
+<td class="ColumnValue" id="data">{{event|display_date}}</td>
 </tr>
 <tr>
-<td>Description:</td><td spancols="2">{{event.description|escape}}</td>
+<td class="ColumnAttribute">Description:</td>
+<td  class="ColumnValue" id="data" colspan="3">{{event.description|escape}}</td>
 </tr>
 <tr>
-<td>ID:</td><td spancols="2">{{event.gramps_id|escape}}</td>
+<td class="ColumnAttribute">ID:</td>
+<td  class="ColumnValue" id="data" colspan="3">{{event.gramps_id|escape}}</td>
 </tr>
 <tr>
-<td>Place:</td><td spancols="2">{{event.place.title|escape}}</td>
+<td class="ColumnAttribute">Place:</td>
+<td  class="ColumnValue" id="data" colspan="3">{{event.place.title|escape}}</td>
 </tr>
 </table>
-
+</div>
+</div>
 <!-- Tabs -->
 <h2 class="demoHeaders">Tabs</h2>
 

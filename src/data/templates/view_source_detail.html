@@ -12,36 +12,29 @@
 
 
 <div class="content" id="IndividualDetail">
-<h3>{{person.name_set|make_name:user}}</h3>
+<h3>{{source.title|escape}}</h3>
 <div id="summaryarea">
-<table class="infolist"> {% comment %} 5 cols {% endcomment %}
+<table class="infolist"> {% comment %} 2 cols {% endcomment %}
 <tbody>
 <tr>
- <td class="ColumnAttribute">Family:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"surname"}}</td>
- <td class="ColumnAttribute">Prefix:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"prefix"}}</td>
- <td rowspan="3" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
+<td class="ColumnAttribute">Title:</td>
+<td class="ColumnValue" id="data">{{source.title|escape}}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Given:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"first_name"}}</td>
- <td class="ColumnAttribute">Call Name:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"call"}}</td>
+<td class="ColumnAttribute">Author:</td>
+<td class="ColumnValue" id="data">{{source.author|escape}}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Type:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"name_type"}}</td>
- <td class="ColumnAttribute">Patronymic:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"patronymic"}}</td>
+<td class="ColumnAttribute">ID:</td>
+<td class="ColumnValue" id="data">{{source.gramps_id|escape}}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Gender:</td>
- <td class="ColumnValue" id="data">{{person.gender_type|escape}}</td>
- <td class="ColumnAttribute">ID:</td>
- <td class="ColumnValue" id="data">{{person.gramps_id|escape}}</td>
- <td class="ColumnAttribute">Marker:</td>
- <td class="ColumnValue" id="data">{{person.marker_type|escape}}</td>
+<td class="ColumnAttribute">Abbreviation:</td>
+<td class="ColumnValue" id="data">{{source.abbrev|escape}}</td>
+</tr>
+<tr>
+<td class="ColumnAttribute">Public information:</td>
+<td class="ColumnValue" id="data">{{source.pubinfo|escape}}</td>
 </tr>
 </tbody>
 </table>
@@ -53,51 +46,21 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-events">Events</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-names">Names</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-addresses">Addresses</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-notes">Notes</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-gallery">Gallery</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-association">Associations</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tab-lds">LDS</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-data">Data</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-repositories">Repositories</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-events"> 
-    <!-- Events -->
-    {{ person|person_event_table:user|safe }}
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
-    {{ person|person_name_table:user|safe }}
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {{ person|person_source_table:user|safe }}
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
-    {{ person|person_attribute_table:user|safe }}
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-addresses">
-    {{ person|person_address_table:user|safe }}
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
-    {{ person|person_note_table:user|safe }}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-notes"> 
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
-    {{ person|person_gallery_table:user|safe }}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-internet">
-    {{ person|person_internet_table:user|safe }}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-data">
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-association">
-    {{ person|person_association_table:user|safe }}
-  </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
-    {{ person|person_lds_table:user|safe }}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-repositories">
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
-    {{ person|person_reference_table:user|safe }}
   </div>
 </div>
 
