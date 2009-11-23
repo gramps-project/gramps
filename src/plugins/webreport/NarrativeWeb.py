@@ -333,12 +333,10 @@ class BasePage(object):
         attr_data_row.append(note_row)
 
         # display attribute list
-        for (colclass, value) in attr_data_row:
-
-            # determine if same row or not?
-            samerow = (colclass == "Type" or colclass == "Sources")
-
-            trow += Html("td", value, class_ = "Column%s" % colclass, inline = samerow)
+        trow.extend(
+            Html("td", value, class_ = "Column" + colclass,
+                inline = (colclass == "Type" or colclass == "Sources"))
+            for (colclass, value) in attr_data_row)
 
         # return table row to its caller
         return trow
@@ -471,14 +469,10 @@ class BasePage(object):
 
         # begin event table row
         trow = Html("tr")
-
-        for (label, colclass, data) in event_data:
-            data = data or "&nbsp;"
-
-            # determine if information will fit on same line?
-            samerow = (data == "&nbsp;" or colclass == "Date")
-
-            trow += Html("td", data, class_ = "Column%s" % colclass, inline = samerow)
+        trow.extend(
+            Html("td", data or "&nbsp;", class_ = "Column" + colclass,
+                inline = (not data or colclass == "Date"))
+            for (label, colclass, data) in event_data)
 
         # return events table row to its callers
         return trow 
@@ -601,8 +595,9 @@ class BasePage(object):
             # finish the label's missing piece
             header_row[5][0] += _("Parents") if LDSSealedType == "Person" else _("Spouse") 
 
-            for (label, colclass) in header_row:    
-                trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
+            trow.extend(
+                Html("th", label, class_ = "Column" + colclass, inline = True)
+                for (label, colclass) in header_row)
 
             # start table body
             tbody = Html("tbody")
@@ -628,13 +623,10 @@ class BasePage(object):
                 trow = Html("tr")
                 tbody += trow
 
-                for (colclass, value) in lds_ord_data:
-                    value = value or "&nbsp;"
-
-                    # determine if inline = True or False
-                    samerow = (value == "&nbsp;" or colclass == "LDSDate")
-
-                    trow += Html("td", value, class_ = "Column%s" % colclass, inline = samerow)
+                trow.extend(
+                    Html("td", value or "&nbsp;", class_ = "Column" + colclass,
+                        inline = (not value or colclass == "LDSDate"))
+                    for (colclass, value) in lds_ord_data)
 
         # return table to its callers
         return table
@@ -858,22 +850,23 @@ class BasePage(object):
                 trow = Html("tr")
                 thead += trow
 
-                for (label, colclass) in [
+                header_row = [
                     (THEAD,    "Type"),
                     (VHEAD,    "Value"),
                     (SHEAD,    "Sources"),
-                    (NHEAD,    "Notes") ]:
+                    (NHEAD,    "Notes") ]
 
-                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
-
+                trow.extend(
+                    Html("th", label, class_ = "Column" + colclass, inline = True)
+                    for (label, colclass) in header_row)                  
+                    
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
 
-
-                for attr in attrlist:
-
-                    tbody += self.dump_attribute(attr, showsrc)
+                tbody.extend(
+                    self.dump_attribute(attr, showsrc)
+                    for attr in attrlist)
 
         # return section to its caller
         return section
@@ -1233,6 +1226,7 @@ class BasePage(object):
                     try:
                         note_text = unicode(note_text)
                     except UnicodeDecodeError:
+                        print "unicode(note_text) exception"
                         note_text = unicode(str(note_text), errors='replace')
 
                     # add section title
@@ -2131,13 +2125,15 @@ class EventListPage(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                for (label, colclass) in [
+                header_row = [
                     [_("Event"), "Event"],
                     [DHEAD, "Date"], 
                     [_("Person"), "Person"],
-                    [_("Partner"), "Partner"] ]:
+                    [_("Partner"), "Partner"] ]
 
-                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
+                trow.extend(
+                    Html("th", label, class_ = "Column" + colclass, inline = True)
+                    for (label, colclass) in header_row)
 
                 # begin table body
                 tbody = Html("tbody")
@@ -2191,13 +2187,10 @@ class EventListPage(BasePage):
         for more information: see get_event_data()
         """ 
         event_data = self.get_event_data(evt, evt_ref, False, False, False, False, subdirs, True)
-        for (label, colclass, data) in event_data:
-            data = data or "&nbsp;"
-
-            # determine if same row or not?
-            samerow = (data == "&nbsp;" or colclass in ["Event", "Date"])
-
-            trow += Html("td", data, class_ = "Column%s" % colclass, inline = samerow)
+        trow.extend(
+            Html("td", data or "&nbsp;", class_ = "Column" + colclass,
+                inline = (not data or colclass == "Event" or colclass == "Date"))
+            for (label, colclass, data) in event_data)
 
         # determine if same row or not?
         samerow = (person_hyper == "&nbsp;")
