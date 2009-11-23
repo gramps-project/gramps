@@ -83,11 +83,10 @@ class Table(object):
             def __init__(self, doc):
                 self.doc = doc
         # None is paperstyle, which is ignored:
-        self.doc =  Doc(HtmlDoc.HtmlDoc(make_basic_stylesheet(), None))
+        self.doc =  Doc(HtmlDoc.HtmlDoc(make_basic_stylesheet(Table={"set_width":95}), None))
         self.doc.doc._backend = HtmlBackend()
         # You can set elements id, class, etc:
-        # self.doc.doc.htmllist += [Html('div', id="grampstextdoc")]
-        self.doc.doc.htmllist += [Html('div')]
+        self.doc.doc.htmllist += [Html('div', style="overflow: auto; height:150px; background-color: white;")]
 
     def columns(self, *args):
         self.table.columns(*args)

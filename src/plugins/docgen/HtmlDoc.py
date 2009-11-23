@@ -339,7 +339,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         styles = self.get_style_sheet()
         self._tbl = styles.get_table_style(style)
-        self.htmllist += [Html('table', width=str(self._tbl.get_width())+'%%',
+        self.htmllist += [Html('table', width=str(self._tbl.get_width())+'%',
                                 cellspacing='0')]
 
     def end_table(self):
@@ -373,7 +373,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         else:
             self.htmllist += (Html('td', colspan=str(span), 
                                 width=str(self._tbl.get_column_width(
-                                            self._col))+ '%%',
+                                            self._col))+ '%',
                                 class_=style_name),)
         self._col += 1
 
