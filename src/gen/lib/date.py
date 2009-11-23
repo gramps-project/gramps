@@ -270,12 +270,12 @@ class Span(object):
 
     def __int__(self):
         """
-        Returns the number of months of span.
+        Returns the number of days of span.
         """
         if self.negative:
-            return -(self.sort[0] * 12 + self.sort[1])
+            return -(self.sort[0] + self.sort[1])
         else:
-            return  (self.sort[0] * 12 + self.sort[1])
+            return  (self.sort[0] + self.sort[1])
 
     def __cmp__(self, other):
         """
