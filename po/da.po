@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps-3.1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-11 16:36+0100\n"
+"POT-Creation-Date: 2009-11-24 07:53+0100\n"
 "PO-Revision-Date: 2009-11-23 20:36+0100\n"
 "Last-Translator: Morten Bo Johansen <mbj@spamcop.net>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -671,9 +671,12 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"En kopi af dine data er blevet gemt. Du kan trykke \"Luk\" for at fortsætte.\n"
+"En kopi af dine data er blevet gemt. Du kan trykke \"Luk\" for at "
+"fortsætte.\n"
 "\n"
-"NB: Den database der for øjeblikket er åbnet i dit GRAMPS-vindue er IKKE den fil du lige har gemt. Redigering af den aktuelt åbnede database, vil ikke ændre i den kopi, du har lige har lavet. "
+"NB: Den database der for øjeblikket er åbnet i dit GRAMPS-vindue er IKKE den "
+"fil du lige har gemt. Redigering af den aktuelt åbnede database, vil ikke "
+"ændre i den kopi, du har lige har lavet. "
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:481
@@ -1511,7 +1514,7 @@ msgstr "Baggrundsfarve på skrifttype"
 msgid "Gramplets"
 msgstr "Grampletter"
 
-#: ../src/gramps_main.py:111 ../src/DataViews/GeoView.py:622
+#: ../src/gramps_main.py:111 ../src/DataViews/GeoView.py:626
 msgid "GeoView"
 msgstr "GeoView"
 
@@ -1602,7 +1605,7 @@ msgstr "Tilføj ægtefælle"
 msgid "Tools"
 msgstr "Værktøjer"
 
-#: ../src/gramps_main.py:127 ../src/gen/proxy/private.py:783
+#: ../src/gramps_main.py:127 ../src/gen/proxy/private.py:786
 msgid "Private"
 msgstr "Privat"
 
@@ -1754,7 +1757,7 @@ msgstr "Sæt _bogmærke"
 msgid "%(title)s..."
 msgstr "%(title)s ..."
 
-#: ../src/PageView.py:451 ../src/DataViews/GeoView.py:557
+#: ../src/PageView.py:451 ../src/DataViews/GeoView.py:561
 #: ../src/DataViews/GrampletView.py:1376
 msgid "_Forward"
 msgstr "_Frem"
@@ -1763,7 +1766,7 @@ msgstr "_Frem"
 msgid "Go to the next person in the history"
 msgstr "Gå til næste person i historikken"
 
-#: ../src/PageView.py:459 ../src/DataViews/GeoView.py:549
+#: ../src/PageView.py:459 ../src/DataViews/GeoView.py:553
 #: ../src/DataViews/GrampletView.py:1384
 msgid "_Back"
 msgstr "_Tilbage"
@@ -3409,32 +3412,32 @@ msgstr "Redigering af familiefilter"
 msgid "family"
 msgstr "familie"
 
-#: ../src/DataViews/GeoView.py:375
+#: ../src/DataViews/GeoView.py:379
 msgid "HtmlView"
 msgstr "Html-oversigt"
 
-#: ../src/DataViews/GeoView.py:550
+#: ../src/DataViews/GeoView.py:554
 msgid "Go to the previous page in the history"
 msgstr "Gå til forrige side i historikken"
 
-#: ../src/DataViews/GeoView.py:558
+#: ../src/DataViews/GeoView.py:562
 msgid "Go to the next page in the history"
 msgstr "Gå til næste side i historikken"
 
 #. add the Refresh action to handle the Refresh button
-#: ../src/DataViews/GeoView.py:563
+#: ../src/DataViews/GeoView.py:567
 msgid "_Refresh"
 msgstr "_Genindlæs"
 
-#: ../src/DataViews/GeoView.py:566
+#: ../src/DataViews/GeoView.py:570
 msgid "Stop and reload the page."
 msgstr "Stop og genindlæs siden."
 
-#: ../src/DataViews/GeoView.py:596
+#: ../src/DataViews/GeoView.py:600
 msgid "Start page for the Html View"
 msgstr "Indlæs siden til html-oversigten"
 
-#: ../src/DataViews/GeoView.py:597
+#: ../src/DataViews/GeoView.py:601
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a "
 "webpage in this page\n"
@@ -3446,83 +3449,83 @@ msgstr ""
 "<br>\n"
 "For eksempel: <b>http://gramps-project.org</p>"
 
-#: ../src/DataViews/GeoView.py:750
+#: ../src/DataViews/GeoView.py:754
 msgid "_OpenStreetMap"
 msgstr "_OpenStreetMap"
 
-#: ../src/DataViews/GeoView.py:752
+#: ../src/DataViews/GeoView.py:756
 msgid "Select OpenStreetMap Maps"
 msgstr "Vælg kort fra OpenStreetMap"
 
-#: ../src/DataViews/GeoView.py:755
+#: ../src/DataViews/GeoView.py:759
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
-#: ../src/DataViews/GeoView.py:757
+#: ../src/DataViews/GeoView.py:761
 msgid "Select Google Maps."
 msgstr "Vælg Google Maps."
 
-#: ../src/DataViews/GeoView.py:760
+#: ../src/DataViews/GeoView.py:764
 msgid "_OpenLayers Maps"
 msgstr "O_penLayers"
 
-#: ../src/DataViews/GeoView.py:762
+#: ../src/DataViews/GeoView.py:766
 msgid "Select OpenLayers Maps."
 msgstr "Vælg kort fra OpenLayers."
 
-#: ../src/DataViews/GeoView.py:765
+#: ../src/DataViews/GeoView.py:769
 msgid "_Yahoo! Maps"
 msgstr "_Yahoo! Maps"
 
-#: ../src/DataViews/GeoView.py:767
+#: ../src/DataViews/GeoView.py:771
 msgid "Select Yahoo Maps."
 msgstr "Vælg kort fra Yahoo Maps."
 
-#: ../src/DataViews/GeoView.py:770
+#: ../src/DataViews/GeoView.py:774
 msgid "_Microsoft Maps"
 msgstr "_Microsoft Maps"
 
-#: ../src/DataViews/GeoView.py:772
+#: ../src/DataViews/GeoView.py:776
 msgid "Select Microsoft Maps"
 msgstr "Vælg kort fra Microsoft Maps"
 
-#: ../src/DataViews/GeoView.py:773
+#: ../src/DataViews/GeoView.py:777
 msgid "_All Places"
 msgstr "_Alle steder"
 
-#: ../src/DataViews/GeoView.py:774
+#: ../src/DataViews/GeoView.py:778
 msgid "Attempt to view all places in the family tree."
 msgstr "Forsøg at vise alle steder i slægtsbogen."
 
-#: ../src/DataViews/GeoView.py:776
+#: ../src/DataViews/GeoView.py:780
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/DataViews/GeoView.py:778
+#: ../src/DataViews/GeoView.py:782
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Forsøg at vise alle steder hvor udvalgte personer levede."
 
-#: ../src/DataViews/GeoView.py:780
+#: ../src/DataViews/GeoView.py:784
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/DataViews/GeoView.py:782
+#: ../src/DataViews/GeoView.py:786
 msgid "Attempt to view places of the selected people's family."
 msgstr "Forsøg at vise steder hvor udvalgte personers familier levede."
 
-#: ../src/DataViews/GeoView.py:783
+#: ../src/DataViews/GeoView.py:787
 msgid "_Event"
 msgstr "_Hændelse"
 
-#: ../src/DataViews/GeoView.py:785
+#: ../src/DataViews/GeoView.py:789
 msgid "Attempt to view places connected to all events."
 msgstr "Forsøg at vise steder som er knyttede til alle hændelser."
 
-#: ../src/DataViews/GeoView.py:884
+#: ../src/DataViews/GeoView.py:888
 msgid "List of places without coordinates"
 msgstr "Liste over steder uden koordinater"
 
-#: ../src/DataViews/GeoView.py:885
+#: ../src/DataViews/GeoView.py:889
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
@@ -3530,11 +3533,11 @@ msgstr ""
 "Her er en liste over alle steder uden koordinater i slægtsbogen.<br> Dette "
 "betyder at der ikke er nogen længde- eller breddegrad.<p>"
 
-#: ../src/DataViews/GeoView.py:888
+#: ../src/DataViews/GeoView.py:892
 msgid "Back to prior page"
 msgstr "Tilbage til forrige side"
 
-#: ../src/DataViews/GeoView.py:937
+#: ../src/DataViews/GeoView.py:941
 #, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
@@ -3543,107 +3546,107 @@ msgstr ""
 "Der er %d markører at vise. De er delt op over %d sider med hver %d "
 "markører : "
 
-#: ../src/DataViews/GeoView.py:994
+#: ../src/DataViews/GeoView.py:998
 msgid "All"
 msgstr "Alle"
 
-#: ../src/DataViews/GeoView.py:1514
+#: ../src/DataViews/GeoView.py:1518
 msgid "No location."
 msgstr "Intet sted."
 
-#: ../src/DataViews/GeoView.py:1517
+#: ../src/DataViews/GeoView.py:1521
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Du har ingen steder med koordinater i din slægtsbog."
 
-#: ../src/DataViews/GeoView.py:1520
+#: ../src/DataViews/GeoView.py:1524
 msgid "You are looking at the default map."
 msgstr "Du betragter det forvalgte kort."
 
-#: ../src/DataViews/GeoView.py:1547
+#: ../src/DataViews/GeoView.py:1551
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : fødested."
 
-#: ../src/DataViews/GeoView.py:1550
+#: ../src/DataViews/GeoView.py:1554
 msgid "birth place."
 msgstr "fødested."
 
-#: ../src/DataViews/GeoView.py:1584
+#: ../src/DataViews/GeoView.py:1588
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : dødssted."
 
-#: ../src/DataViews/GeoView.py:1587
+#: ../src/DataViews/GeoView.py:1591
 msgid "death place."
 msgstr "dødssted."
 
-#: ../src/DataViews/GeoView.py:1623
+#: ../src/DataViews/GeoView.py:1627
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/DataViews/GeoView.py:1639 ../src/DataViews/GeoView.py:1723
-#: ../src/DataViews/GeoView.py:1774 ../src/DataViews/GeoView.py:1846
+#: ../src/DataViews/GeoView.py:1643 ../src/DataViews/GeoView.py:1727
+#: ../src/DataViews/GeoView.py:1778 ../src/DataViews/GeoView.py:1850
 msgid "Cannot center the map. No location with coordinates."
 msgstr "Kan ikke centrere kortet. Intet sted med koordinater."
 
-#: ../src/DataViews/GeoView.py:1643
+#: ../src/DataViews/GeoView.py:1647
 msgid "All places in the family tree with coordinates."
 msgstr "Alle steder i slægtsbogen med koordinater."
 
-#: ../src/DataViews/GeoView.py:1668
+#: ../src/DataViews/GeoView.py:1672
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
-#: ../src/DataViews/GeoView.py:1727
+#: ../src/DataViews/GeoView.py:1731
 msgid "All events in the family tree with coordinates."
 msgstr "Alle hændelser i slægtsbogen med koordinater."
 
-#: ../src/DataViews/GeoView.py:1755
+#: ../src/DataViews/GeoView.py:1759
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : Fader : %s"
 
-#: ../src/DataViews/GeoView.py:1760
+#: ../src/DataViews/GeoView.py:1764
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : Moder : %s"
 
-#: ../src/DataViews/GeoView.py:1769
+#: ../src/DataViews/GeoView.py:1773
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : Barn : %(id)s %(index)d"
 
-#: ../src/DataViews/GeoView.py:1776
+#: ../src/DataViews/GeoView.py:1780
 msgid "The active person's family members have no places with coordinates."
 msgstr "Den aktive persons familiemedlemmer har ingen steder med koordinater."
 
-#: ../src/DataViews/GeoView.py:1780 ../src/DataViews/GeoView.py:1851
+#: ../src/DataViews/GeoView.py:1784 ../src/DataViews/GeoView.py:1855
 msgid "No active person set."
 msgstr "Ingen aktiv person er valgt."
 
-#: ../src/DataViews/GeoView.py:1784
+#: ../src/DataViews/GeoView.py:1788
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s personers familiesteder med koordinater i slægtsbogen."
 
-#: ../src/DataViews/GeoView.py:1829
+#: ../src/DataViews/GeoView.py:1833
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/DataViews/GeoView.py:1849
+#: ../src/DataViews/GeoView.py:1853
 msgid "The active person has no places with coordinates."
 msgstr "Den aktive person har ingen steder med koordinater."
 
-#: ../src/DataViews/GeoView.py:1854
+#: ../src/DataViews/GeoView.py:1858
 #, python-format
 msgid "All event places for %s."
 msgstr "Alle steder for hændelser for %s."
 
-#: ../src/DataViews/GeoView.py:1861
+#: ../src/DataViews/GeoView.py:1865
 msgid "Not yet implemented ..."
 msgstr "Endnu ikke indarbejdet ..."
 
@@ -5701,7 +5704,7 @@ msgid "Line %d: empty event note was ignored."
 msgstr "Linje %d: hændelsesnote uden indhold blev ignoreret."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:3634
-#: ../src/GrampsDbUtils/_GedcomParse.py:4202
+#: ../src/GrampsDbUtils/_GedcomParse.py:4210
 #, python-format
 msgid "Could not import %s"
 msgstr "Kunne ikke importere %s"

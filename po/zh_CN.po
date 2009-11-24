@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-22 07:48+0200\n"
+"POT-Creation-Date: 2009-11-24 07:53+0100\n"
 "PO-Revision-Date: 2009-06-20 12:27+0800\n"
 "Last-Translator: grampscn <grampscn@gmail.com>\n"
 "Language-Team: zh <LL@li.org>\n"
@@ -101,14 +101,14 @@ msgstr "整理书签"
 
 #. Add column with object name
 #: ../src/Bookmarks.py:215 ../src/GrampsCfg.py:205 ../src/ScratchPad.py:194
-#: ../src/ScratchPad.py:380 ../src/ScratchPad.py:436 ../src/ScratchPad.py:469
-#: ../src/ScratchPad.py:538 ../src/ScratchPad.py:569 ../src/ScratchPad.py:586
-#: ../src/ScratchPad.py:587 ../src/ScratchPad.py:606 ../src/ScratchPad.py:656
-#: ../src/ScratchPad.py:689 ../src/ScratchPad.py:743 ../src/ScratchPad.py:754
-#: ../src/ScratchPad.py:833 ../src/ToolTips.py:173 ../src/ToolTips.py:199
-#: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
-#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:641
-#: ../src/DataViews/PersonView.py:647 ../src/DataViews/RepositoryView.py:67
+#: ../src/ScratchPad.py:382 ../src/ScratchPad.py:438 ../src/ScratchPad.py:471
+#: ../src/ScratchPad.py:542 ../src/ScratchPad.py:573 ../src/ScratchPad.py:590
+#: ../src/ScratchPad.py:591 ../src/ScratchPad.py:610 ../src/ScratchPad.py:660
+#: ../src/ScratchPad.py:693 ../src/ScratchPad.py:747 ../src/ScratchPad.py:758
+#: ../src/ScratchPad.py:837 ../src/ToolTips.py:173 ../src/ToolTips.py:199
+#: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:76
+#: ../src/DataViews/PersonView.py:515 ../src/DataViews/PersonView.py:656
+#: ../src/DataViews/PersonView.py:662 ../src/DataViews/RepositoryView.py:67
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:67
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
@@ -117,16 +117,9 @@ msgstr "整理书签"
 #: ../src/plugins/BookReport.py:728 ../src/plugins/drawreport/TimeLine.py:59
 #: ../src/plugins/textreport/IndivComplete.py:426
 #: ../src/plugins/textreport/MarkerReport.py:119
-#: ../src/plugins/tool/NotRelated.py:116 ../src/plugins/tool/PatchNames.py:235
+#: ../src/plugins/tool/NotRelated.py:117 ../src/plugins/tool/PatchNames.py:235
 #: ../src/plugins/tool/RelCalc.py:56 ../src/plugins/tool/RelCalc.py:116
-#: ../src/plugins/tool/RemoveUnused.py:203 ../src/plugins/tool/Verify.py:554
-#: ../src/plugins/webreport/NarrativeWeb.py:806
-#: ../src/plugins/webreport/NarrativeWeb.py:965
-#: ../src/plugins/webreport/NarrativeWeb.py:1092
-#: ../src/plugins/webreport/NarrativeWeb.py:1681
-#: ../src/plugins/webreport/NarrativeWeb.py:1769
-#: ../src/plugins/webreport/NarrativeWeb.py:2191
-#: ../src/plugins/webreport/NarrativeWeb.py:2202
+#: ../src/plugins/tool/RemoveUnused.py:203 ../src/plugins/tool/Verify.py:556
 #: ../src/PluginUtils/_GuiOptions.py:815
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
@@ -140,8 +133,8 @@ msgstr "名字"
 #: ../src/Bookmarks.py:215 ../src/PageView.py:526 ../src/PageView.py:703
 #: ../src/Merge/_MergePerson.py:126 ../src/DataViews/EventView.py:70
 #: ../src/DataViews/FamilyList.py:62 ../src/DataViews/MediaView.py:81
-#: ../src/DataViews/NoteView.py:68 ../src/DataViews/PersonView.py:68
-#: ../src/DataViews/PlaceView.py:76 ../src/DataViews/RelationView.py:560
+#: ../src/DataViews/NoteView.py:68 ../src/DataViews/PersonView.py:77
+#: ../src/DataViews/PlaceView.py:76 ../src/DataViews/RelationView.py:559
 #: ../src/DataViews/RepositoryView.py:68 ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_BackRefList.py:57
 #: ../src/DisplayTabs/_EventEmbedList.py:64
@@ -154,9 +147,9 @@ msgstr "名字"
 #: ../src/Selectors/_SelectPlace.py:63
 #: ../src/Selectors/_SelectRepository.py:63
 #: ../src/Selectors/_SelectSource.py:63 ../src/plugins/tool/EventCmp.py:249
-#: ../src/plugins/tool/NotRelated.py:117 ../src/plugins/tool/PatchNames.py:226
+#: ../src/plugins/tool/NotRelated.py:118 ../src/plugins/tool/PatchNames.py:226
 #: ../src/plugins/tool/RelCalc.py:57 ../src/plugins/tool/RemoveUnused.py:197
-#: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/tool/Verify.py:547
+#: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/tool/Verify.py:549
 #: ../src/PluginUtils/_GuiOptions.py:816 ../src/PluginUtils/_GuiOptions.py:956
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
@@ -511,19 +504,19 @@ msgid "Locked by %s"
 msgstr "被 %s 锁定"
 
 #: ../src/DbManager.py:1084 ../src/ScratchPad.py:102
-#: ../src/DataViews/RelationView.py:403 ../src/DataViews/RelationView.py:943
-#: ../src/DataViews/RelationView.py:995
+#: ../src/DataViews/RelationView.py:403 ../src/DataViews/RelationView.py:940
+#: ../src/DataViews/RelationView.py:992
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:148
 #: ../src/plugins/gramplet/RelativeGramplet.py:122
 #: ../src/plugins/gramplet/RelativeGramplet.py:133
 #: ../src/plugins/graph/GVFamilyLines.py:152
-#: ../src/plugins/graph/GVRelGraph.py:546
+#: ../src/plugins/graph/GVRelGraph.py:548
 #: ../src/plugins/quickview/all_relations.py:277
 #: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:443
 #: ../src/plugins/tool/Check.py:1465
-#: ../src/plugins/webreport/NarrativeWeb.py:680
+#: ../src/plugins/webreport/NarrativeWeb.py:634
 #: ../src/gen/plug/_manager.py:313 ../src/gen/plug/_manager.py:314
 #: ../src/gen/plug/_manager.py:315 ../src/gen/plug/_manager.py:338
 #: ../src/gen/plug/_manager.py:339 ../src/gen/plug/_manager.py:373
@@ -536,7 +529,7 @@ msgstr "被 %s 锁定"
 #: ../src/gen/lib/urltype.py:54 ../src/gen/lib/notetype.py:76
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/attrtype.py:62
 #: ../src/gen/lib/childreftype.py:64 ../src/gen/lib/srcmediatype.py:62
-#: ../src/gen/lib/grampstype.py:190 ../src/gen/lib/eventroletype.py:57
+#: ../src/gen/lib/grampstype.py:194 ../src/gen/lib/eventroletype.py:57
 #: ../src/gen/lib/nametype.py:53 ../src/gen/lib/eventtype.py:95
 #: ../src/gen/lib/familyreltype.py:51
 msgid "Unknown"
@@ -605,27 +598,27 @@ msgstr "导出支持"
 msgid "Saving your data"
 msgstr "正在保存你的数据"
 
-#: ../src/ExportAssistant.py:226
+#: ../src/ExportAssistant.py:224
 msgid "Choose the output format"
 msgstr "选择输出格式"
 
-#: ../src/ExportAssistant.py:306
+#: ../src/ExportAssistant.py:304
 msgid "Select Save File"
 msgstr "选择保存文件"
 
-#: ../src/ExportAssistant.py:344 ../src/plugins/tool/MediaManager.py:272
+#: ../src/ExportAssistant.py:342 ../src/plugins/tool/MediaManager.py:270
 msgid "Final confirmation"
 msgstr "最终确认"
 
-#: ../src/ExportAssistant.py:357
+#: ../src/ExportAssistant.py:355
 msgid "Please wait while your data is selected and exported"
 msgstr "当你的数据已被选中并导出，请等待"
 
-#: ../src/ExportAssistant.py:370
+#: ../src/ExportAssistant.py:368
 msgid "Summary"
 msgstr "概要"
 
-#: ../src/ExportAssistant.py:447
+#: ../src/ExportAssistant.py:445
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
@@ -644,7 +637,7 @@ msgstr ""
 "\n"
 "按“执行”继续，“后退”去修改你的选项，“取消”退出"
 
-#: ../src/ExportAssistant.py:454
+#: ../src/ExportAssistant.py:452
 msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
@@ -653,11 +646,11 @@ msgstr ""
 "选中的文件和要保存的目录无法被创建或者被找到.\n"
 "按后退返回并选择一个有效的文件名."
 
-#: ../src/ExportAssistant.py:473
+#: ../src/ExportAssistant.py:471
 msgid "Your data has been saved"
 msgstr "你的数据已经被保存"
 
-#: ../src/ExportAssistant.py:475
+#: ../src/ExportAssistant.py:473
 msgid ""
 "The copy of your data has been successfully saved. You may press Close "
 "button now to continue.\n"
@@ -672,16 +665,16 @@ msgstr ""
 "变你刚保存的拷贝. "
 
 #. add test, what is dir
-#: ../src/ExportAssistant.py:483
+#: ../src/ExportAssistant.py:481
 #, python-format
 msgid "Filename: %s"
 msgstr "文件名: %s"
 
-#: ../src/ExportAssistant.py:485
+#: ../src/ExportAssistant.py:483
 msgid "Saving failed"
 msgstr "保存失败"
 
-#: ../src/ExportAssistant.py:487
+#: ../src/ExportAssistant.py:485
 msgid ""
 "There was an error while saving your data. You may try starting the export "
 "again.\n"
@@ -693,7 +686,7 @@ msgstr ""
 "\n"
 "注:你现在打开的数据库是安全的，那只是无法保存数据的拷贝."
 
-#: ../src/ExportAssistant.py:514
+#: ../src/ExportAssistant.py:512
 msgid ""
 "Under normal circumstances, GRAMPS does not require you to directly save "
 "your changes. All changes you make are immediately saved to the database.\n"
@@ -898,10 +891,10 @@ msgstr "一般"
 msgid "Database"
 msgstr "数据库"
 
-#: ../src/GrampsCfg.py:180 ../src/ScratchPad.py:619 ../src/ScratchPad.py:627
+#: ../src/GrampsCfg.py:180 ../src/ScratchPad.py:623 ../src/ScratchPad.py:631
 #: ../src/plugins/textreport/CustomBookText.py:115
 #: ../src/plugins/textreport/MarkerReport.py:388
-#: ../src/plugins/webreport/NarrativeWeb.py:691
+#: ../src/plugins/webreport/NarrativeWeb.py:645
 #: ../src/ReportBase/_Constants.py:58
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
 msgid "Text"
@@ -944,13 +937,13 @@ msgstr "地址"
 #: ../src/DisplayTabs/_AddrEmbedList.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
 #: ../src/plugins/tool/ExtractCity.py:386
-#: ../src/plugins/webreport/NarrativeWeb.py:1166
+#: ../src/plugins/webreport/NarrativeWeb.py:1109
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
 msgstr "城市"
 
 #: ../src/GrampsCfg.py:208 ../src/DisplayTabs/_LocationEmbedList.py:55
-#: ../src/plugins/webreport/NarrativeWeb.py:1169
+#: ../src/plugins/webreport/NarrativeWeb.py:1112
 msgid "State/Province"
 msgstr "州／省"
 
@@ -959,7 +952,7 @@ msgstr "州／省"
 #: ../src/DisplayTabs/_AddrEmbedList.py:73
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
 #: ../src/plugins/tool/ExtractCity.py:389
-#: ../src/plugins/webreport/NarrativeWeb.py:1171
+#: ../src/plugins/webreport/NarrativeWeb.py:1114
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr "国家"
@@ -967,7 +960,7 @@ msgstr "国家"
 #: ../src/GrampsCfg.py:210 ../src/DataViews/PlaceView.py:78
 #: ../src/DataViews/RepositoryView.py:72
 #: ../src/plugins/tool/ExtractCity.py:388
-#: ../src/plugins/webreport/NarrativeWeb.py:1170
+#: ../src/plugins/webreport/NarrativeWeb.py:1113
 msgid "ZIP/Postal Code"
 msgstr "邮编"
 
@@ -1018,10 +1011,10 @@ msgstr "成员"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #. get the family events
-#: ../src/GrampsCfg.py:225 ../src/gramps_main.py:106 ../src/ScratchPad.py:590
-#: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:476
-#: ../src/DataViews/RelationView.py:1274 ../src/DataViews/RelationView.py:1296
-#: ../src/Editors/_EditFamily.py:505 ../src/plugins/export/ExportCsv.py:459
+#: ../src/GrampsCfg.py:225 ../src/gramps_main.py:106 ../src/ScratchPad.py:594
+#: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:475
+#: ../src/DataViews/RelationView.py:1273 ../src/DataViews/RelationView.py:1295
+#: ../src/Editors/_EditFamily.py:504 ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
 #: ../src/plugins/gramplet/SessionLogGramplet.py:54
 #: ../src/plugins/gramplet/SessionLogGramplet.py:56
@@ -1036,7 +1029,7 @@ msgstr "成员"
 msgid "Family"
 msgstr "家庭"
 
-#: ../src/GrampsCfg.py:227 ../src/ScratchPad.py:290 ../src/ScratchPad.py:368
+#: ../src/GrampsCfg.py:227 ../src/ScratchPad.py:290 ../src/ScratchPad.py:370
 #: ../src/Simple/_SimpleTable.py:232 ../src/DataViews/EventView.py:73
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -1050,7 +1043,7 @@ msgstr "家庭"
 #: ../src/plugins/quickview/References.py:91
 #: ../src/plugins/textreport/MarkerReport.py:302
 #: ../src/plugins/tool/SortEvents.py:60
-#: ../src/plugins/webreport/NarrativeWeb.py:2264
+#: ../src/plugins/webreport/NarrativeWeb.py:2200
 #: ../src/PluginUtils/_GuiOptions.py:955
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:244
@@ -1067,7 +1060,7 @@ msgstr "地点"
 msgid "Source"
 msgstr "来源"
 
-#: ../src/GrampsCfg.py:231 ../src/ScratchPad.py:640 ../src/ScratchPad.py:653
+#: ../src/GrampsCfg.py:231 ../src/ScratchPad.py:644 ../src/ScratchPad.py:657
 #: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:246
 msgid "Media Object"
 msgstr "媒体物"
@@ -1187,14 +1180,14 @@ msgstr "定制格式内容细节(_U)"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:423
 #: ../src/GrampsCfg.py:424 ../src/GrampsCfg.py:425 ../src/GrampsCfg.py:426
-#: ../src/GrampsCfg.py:427 ../src/Utils.py:1205
+#: ../src/GrampsCfg.py:427 ../src/Utils.py:1203
 #: ../src/plugins/drawreport/StatisticsChart.py:89
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:151
 #: ../src/plugins/quickview/FilterByName.py:148
-#: ../src/plugins/webreport/NarrativeWeb.py:805
-#: ../src/plugins/webreport/NarrativeWeb.py:947
-#: ../src/plugins/webreport/NarrativeWeb.py:1529
+#: ../src/plugins/webreport/NarrativeWeb.py:759
+#: ../src/plugins/webreport/NarrativeWeb.py:894
+#: ../src/plugins/webreport/NarrativeWeb.py:1472
 #: ../src/PluginUtils/_GuiOptions.py:82 ../src/PluginUtils/_GuiOptions.py:1072
 msgid "Surname"
 msgstr "姓"
@@ -1203,8 +1196,8 @@ msgstr "姓"
 #: ../src/GrampsCfg.py:423 ../src/GrampsCfg.py:424 ../src/GrampsCfg.py:425
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:427 ../src/GrampsCfg.py:428
 #: ../src/GrampsCfg.py:430 ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432
-#: ../src/GrampsCfg.py:433 ../src/GrampsCfg.py:434 ../src/ScratchPad.py:589
-#: ../src/Utils.py:1203 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/GrampsCfg.py:433 ../src/GrampsCfg.py:434 ../src/ScratchPad.py:593
+#: ../src/Utils.py:1201 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
 msgid "Given"
@@ -1212,19 +1205,19 @@ msgstr "名"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:421
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:433
-#: ../src/ScratchPad.py:594 ../src/Utils.py:1206
+#: ../src/ScratchPad.py:598 ../src/Utils.py:1204
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:165
 msgid "Suffix"
 msgstr "后缀"
 
 #: ../src/GrampsCfg.py:418 ../src/GrampsCfg.py:423 ../src/GrampsCfg.py:429
-#: ../src/GrampsCfg.py:430 ../src/Utils.py:1209
+#: ../src/GrampsCfg.py:430 ../src/Utils.py:1207
 msgid "Common"
 msgstr "通用的，共有的"
 
 #: ../src/GrampsCfg.py:420 ../src/GrampsCfg.py:422 ../src/GrampsCfg.py:424
-#: ../src/GrampsCfg.py:431 ../src/Utils.py:1208
+#: ../src/GrampsCfg.py:431 ../src/Utils.py:1206
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:159
 msgid "Call"
@@ -1232,11 +1225,11 @@ msgstr "称"
 
 #: ../src/GrampsCfg.py:421 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:430
 #: ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432 ../src/GrampsCfg.py:433
-#: ../src/GrampsCfg.py:434 ../src/Utils.py:1205
+#: ../src/GrampsCfg.py:434 ../src/Utils.py:1203
 msgid "SURNAME"
 msgstr "姓"
 
-#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1207
+#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:595 ../src/Utils.py:1205
 #: ../src/Editors/_EditPerson.py:269
 msgid "Patronymic"
 msgstr "取自父的名"
@@ -1258,7 +1251,7 @@ msgid "Example"
 msgstr "例:"
 
 #. label for the combo
-#: ../src/GrampsCfg.py:743 ../src/plugins/drawreport/Calendar.py:397
+#: ../src/GrampsCfg.py:743 ../src/plugins/drawreport/Calendar.py:401
 #: ../src/plugins/textreport/BirthdayReport.py:351
 msgid "Name format"
 msgstr "姓名格式"
@@ -1430,7 +1423,7 @@ msgstr "必须定义格式名称和对其的定义"
 msgid "Family Trees"
 msgstr "家谱树"
 
-#: ../src/gramps_main.py:98 ../src/ScratchPad.py:415 ../src/ScratchPad.py:423
+#: ../src/gramps_main.py:98 ../src/ScratchPad.py:417 ../src/ScratchPad.py:425
 #: ../src/Editors/_EditAttribute.py:133
 msgid "Attribute"
 msgstr "属性"
@@ -1439,7 +1432,7 @@ msgstr "属性"
 msgid "Add Bookmark"
 msgstr "添加书签"
 
-#: ../src/gramps_main.py:103 ../src/ScratchPad.py:178 ../src/ScratchPad.py:367
+#: ../src/gramps_main.py:103 ../src/ScratchPad.py:178 ../src/ScratchPad.py:369
 #: ../src/DataViews/EventView.py:72 ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
 #: ../src/DisplayTabs/_EmbeddedList.py:424
@@ -1455,10 +1448,10 @@ msgstr "添加书签"
 #: ../src/plugins/textreport/MarkerReport.py:296
 #: ../src/plugins/textreport/PlaceReport.py:150
 #: ../src/plugins/tool/SortEvents.py:56
-#: ../src/plugins/webreport/NarrativeWeb.py:683
-#: ../src/plugins/webreport/NarrativeWeb.py:1416
-#: ../src/plugins/webreport/NarrativeWeb.py:1770
-#: ../src/plugins/webreport/NarrativeWeb.py:2264
+#: ../src/plugins/webreport/NarrativeWeb.py:637
+#: ../src/plugins/webreport/NarrativeWeb.py:1359
+#: ../src/plugins/webreport/NarrativeWeb.py:1704
+#: ../src/plugins/webreport/NarrativeWeb.py:2200
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 msgid "Date"
@@ -1472,7 +1465,7 @@ msgstr "编辑日期"
 #: ../src/DataViews/EventView.py:101
 #: ../src/plugins/gramplet/QuickViewGramplet.py:69
 #: ../src/plugins/textreport/MarkerReport.py:279
-#: ../src/plugins/webreport/NarrativeWeb.py:2258
+#: ../src/plugins/webreport/NarrativeWeb.py:2194
 msgid "Events"
 msgstr "事件"
 
@@ -1488,11 +1481,11 @@ msgstr "字体颜色"
 msgid "Font Background Color"
 msgstr "字体北京颜色"
 
-#: ../src/gramps_main.py:110 ../src/DataViews/GrampletView.py:1091
+#: ../src/gramps_main.py:110 ../src/DataViews/GrampletView.py:1086
 msgid "Gramplets"
 msgstr "Gramplet 视图"
 
-#: ../src/gramps_main.py:111 ../src/DataViews/GeoView.py:594
+#: ../src/gramps_main.py:111 ../src/DataViews/GeoView.py:626
 msgid "GeoView"
 msgstr "地理浏览Geoview"
 
@@ -1509,7 +1502,7 @@ msgstr "媒体"
 #: ../src/gramps_main.py:114 ../src/DataViews/NoteView.py:93
 #: ../src/plugins/textreport/IndivComplete.py:159
 #: ../src/plugins/textreport/MarkerReport.py:365
-#: ../src/plugins/webreport/NarrativeWeb.py:2264
+#: ../src/plugins/webreport/NarrativeWeb.py:2200
 msgid "Notes"
 msgstr "摘录"
 
@@ -1517,14 +1510,14 @@ msgstr "摘录"
 #. don't show rest
 #. Go over parents and build their menu
 #: ../src/gramps_main.py:115 ../src/Merge/_MergePerson.py:152
-#: ../src/DataViews/PedigreeView.py:1572 ../src/DataViews/RelationView.py:463
-#: ../src/DataViews/RelationView.py:795 ../src/DataViews/RelationView.py:829
+#: ../src/DataViews/PedigreeView.py:1573 ../src/DataViews/RelationView.py:462
+#: ../src/DataViews/RelationView.py:794 ../src/DataViews/RelationView.py:828
 #: ../src/plugins/gramplet/FanChartGramplet.py:816
 #: ../src/plugins/quickview/all_relations.py:305
-#: ../src/plugins/tool/NotRelated.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:818
-#: ../src/plugins/webreport/NarrativeWeb.py:973
-#: ../src/plugins/webreport/NarrativeWeb.py:2415
+#: ../src/plugins/tool/NotRelated.py:119
+#: ../src/plugins/webreport/NarrativeWeb.py:772
+#: ../src/plugins/webreport/NarrativeWeb.py:920
+#: ../src/plugins/webreport/NarrativeWeb.py:2351
 msgid "Parents"
 msgstr "父母"
 
@@ -1536,18 +1529,19 @@ msgstr "登录父母"
 msgid "Select Parents"
 msgstr "选择父母"
 
-#: ../src/gramps_main.py:118 ../src/DataViews/PedigreeView.py:466
+#: ../src/gramps_main.py:118 ../src/DataViews/PedigreeView.py:468
 #: ../src/plugins/gramplet/PedigreeGramplet.py:284
-#: ../src/plugins/webreport/NarrativeWeb.py:2087
+#: ../src/plugins/webreport/NarrativeWeb.py:2023
 msgid "Pedigree"
 msgstr "谱系"
 
 #: ../src/gramps_main.py:120 ../src/DataViews/PlaceView.py:112
 #: ../src/plugins/gramplet/QuickViewGramplet.py:75
-#: ../src/plugins/webreport/NarrativeWeb.py:456
-#: ../src/plugins/webreport/NarrativeWeb.py:498
-#: ../src/plugins/webreport/NarrativeWeb.py:1075
-#: ../src/plugins/webreport/NarrativeWeb.py:1146
+#: ../src/plugins/webreport/NarrativeWeb.py:406
+#: ../src/plugins/webreport/NarrativeWeb.py:448
+#: ../src/plugins/webreport/NarrativeWeb.py:1022
+#: ../src/plugins/webreport/NarrativeWeb.py:1089
+#: ../src/plugins/webreport/NarrativeWeb.py:3664
 msgid "Places"
 msgstr "地点"
 
@@ -1564,13 +1558,13 @@ msgstr "报告"
 msgid "Repositories"
 msgstr "仓库"
 
-#: ../src/gramps_main.py:124 ../src/ScratchPad.py:193 ../src/ScratchPad.py:435
-#: ../src/ScratchPad.py:468 ../src/DataViews/SourceView.py:95
+#: ../src/gramps_main.py:124 ../src/ScratchPad.py:193 ../src/ScratchPad.py:437
+#: ../src/ScratchPad.py:470 ../src/DataViews/SourceView.py:95
 #: ../src/plugins/gramplet/QuickViewGramplet.py:72
-#: ../src/plugins/webreport/NarrativeWeb.py:460
-#: ../src/plugins/webreport/NarrativeWeb.py:495
-#: ../src/plugins/webreport/NarrativeWeb.py:1655
-#: ../src/plugins/webreport/NarrativeWeb.py:1713
+#: ../src/plugins/webreport/NarrativeWeb.py:410
+#: ../src/plugins/webreport/NarrativeWeb.py:445
+#: ../src/plugins/webreport/NarrativeWeb.py:1589
+#: ../src/plugins/webreport/NarrativeWeb.py:1647
 msgid "Sources"
 msgstr "来源"
 
@@ -1582,7 +1576,7 @@ msgstr "登录配偶"
 msgid "Tools"
 msgstr "工具"
 
-#: ../src/gramps_main.py:127 ../src/gen/proxy/private.py:783
+#: ../src/gramps_main.py:127 ../src/gen/proxy/private.py:786
 msgid "Private"
 msgstr "私有"
 
@@ -1689,30 +1683,31 @@ msgid ""
 "database and from all other items that reference it."
 msgstr "栏目现在正在被使用，删除它将会从数据库中移除所有和它有关信息."
 
-#: ../src/PageView.py:310
+#: ../src/PageView.py:310 ../src/DataViews/FamilyList.py:204
 msgid "Deleting item will remove it from the database."
 msgstr "删除栏目将会从数据库中移除它."
 
-#: ../src/PageView.py:317 ../src/DataViews/PersonView.py:604
+#: ../src/PageView.py:317 ../src/DataViews/FamilyList.py:206
+#: ../src/DataViews/PersonView.py:619
 #, python-format
 msgid "Delete %s?"
 msgstr "是否删除 %s ?"
 
-#: ../src/PageView.py:318
+#: ../src/PageView.py:318 ../src/DataViews/FamilyList.py:207
 msgid "_Delete Item"
 msgstr "删除栏目(_D)"
 
-#: ../src/PageView.py:391 ../src/ViewManager.py:1253
+#: ../src/PageView.py:391 ../src/ViewManager.py:1230
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s 已经被书签记录"
 
-#: ../src/PageView.py:395 ../src/PageView.py:688 ../src/ViewManager.py:1256
+#: ../src/PageView.py:395 ../src/PageView.py:688 ../src/ViewManager.py:1233
 #: ../src/DataViews/FamilyList.py:189
 msgid "Could Not Set a Bookmark"
 msgstr "不能设定书签"
 
-#: ../src/PageView.py:396 ../src/ViewManager.py:1257
+#: ../src/PageView.py:396 ../src/ViewManager.py:1234
 #: ../src/DataViews/FamilyList.py:190
 msgid "A bookmark could not be set because no one was selected."
 msgstr "由于没有选中内容，书签不能被设定."
@@ -1726,29 +1721,29 @@ msgstr "添加书签(_A)"
 msgid "%(title)s..."
 msgstr "%(title)s..."
 
-#: ../src/PageView.py:451 ../src/DataViews/GeoView.py:532
-#: ../src/DataViews/GrampletView.py:1382
+#: ../src/PageView.py:451 ../src/DataViews/GeoView.py:561
+#: ../src/DataViews/GrampletView.py:1376
 msgid "_Forward"
 msgstr "前进(_F)"
 
-#: ../src/PageView.py:452 ../src/DataViews/GrampletView.py:1383
+#: ../src/PageView.py:452 ../src/DataViews/GrampletView.py:1377
 msgid "Go to the next person in the history"
 msgstr "前往历史上的下一个成员"
 
-#: ../src/PageView.py:459 ../src/DataViews/GeoView.py:524
-#: ../src/DataViews/GrampletView.py:1390
+#: ../src/PageView.py:459 ../src/DataViews/GeoView.py:553
+#: ../src/DataViews/GrampletView.py:1384
 msgid "_Back"
 msgstr "后退(_B)"
 
-#: ../src/PageView.py:460 ../src/DataViews/GrampletView.py:1391
+#: ../src/PageView.py:460 ../src/DataViews/GrampletView.py:1385
 msgid "Go to the previous person in the history"
 msgstr "前往历史中的前一个成员"
 
-#: ../src/PageView.py:464 ../src/DataViews/GrampletView.py:1394
+#: ../src/PageView.py:464 ../src/DataViews/GrampletView.py:1388
 msgid "_Home"
 msgstr "首页(_H)"
 
-#: ../src/PageView.py:466 ../src/DataViews/GrampletView.py:1396
+#: ../src/PageView.py:466 ../src/DataViews/GrampletView.py:1390
 msgid "Go to the default person"
 msgstr "前往选中默认人"
 
@@ -1756,7 +1751,7 @@ msgstr "前往选中默认人"
 msgid "Person Filter Editor"
 msgstr "成员过滤编辑器"
 
-#: ../src/PageView.py:472 ../src/DataViews/GrampletView.py:1399
+#: ../src/PageView.py:472 ../src/DataViews/GrampletView.py:1393
 msgid "Set _Home Person"
 msgstr "设置_默认人"
 
@@ -1774,19 +1769,19 @@ msgstr "错误: %s 不是有效的GRAMPS ID"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "不能设定书签，因为未选中内容."
 
-#: ../src/PageView.py:995 ../src/DataViews/PersonView.py:157
+#: ../src/PageView.py:995 ../src/DataViews/PersonView.py:166
 msgid "_Add..."
 msgstr "添加(_A)..."
 
-#: ../src/PageView.py:997 ../src/DataViews/PersonView.py:159
+#: ../src/PageView.py:997 ../src/DataViews/PersonView.py:168
 msgid "_Remove"
 msgstr "删除(_R)"
 
-#: ../src/PageView.py:999 ../src/DataViews/PersonView.py:167
+#: ../src/PageView.py:999 ../src/DataViews/PersonView.py:176
 msgid "Export View..."
 msgstr "导出视图..."
 
-#: ../src/PageView.py:1004 ../src/DataViews/PersonView.py:147
+#: ../src/PageView.py:1004 ../src/DataViews/PersonView.py:156
 msgid "action|_Edit..."
 msgstr "编辑(_E)..."
 
@@ -1794,19 +1789,19 @@ msgstr "编辑(_E)..."
 msgid "_Filter"
 msgstr "过滤器(_F)"
 
-#: ../src/PageView.py:1075 ../src/DataViews/PersonView.py:911
+#: ../src/PageView.py:1075 ../src/DataViews/PersonView.py:935
 msgid "Export View as Spreadsheet"
 msgstr "用电子表格导出视图"
 
-#: ../src/PageView.py:1083 ../src/DataViews/PersonView.py:919
+#: ../src/PageView.py:1083 ../src/DataViews/PersonView.py:943
 msgid "Format:"
 msgstr "格式:"
 
-#: ../src/PageView.py:1088 ../src/DataViews/PersonView.py:924
+#: ../src/PageView.py:1088 ../src/DataViews/PersonView.py:948
 msgid "CSV"
 msgstr "CSV Comma Separated Value，逗号分隔文本"
 
-#: ../src/PageView.py:1089 ../src/DataViews/PersonView.py:925
+#: ../src/PageView.py:1089 ../src/DataViews/PersonView.py:949
 msgid "Open Document Spreadsheet"
 msgstr "打开电子表格文档"
 
@@ -1862,7 +1857,7 @@ msgstr ""
 "GRAMPS侦测到在Berkeley数据库中有一个问题. 可以从家族树管理中修复. 选择“数据"
 "库“ 并点击”修复“按钮"
 
-#: ../src/QuestionDialog.py:310 ../src/Utils.py:1134
+#: ../src/QuestionDialog.py:310 ../src/Utils.py:1132
 msgid "Attempt to force closing the dialog"
 msgstr "尝试强制关闭对话框"
 
@@ -1875,14 +1870,14 @@ msgstr ""
 "请选择有效的选项"
 
 #: ../src/QuickReports.py:81 ../src/DataViews/EventView.py:188
-#: ../src/DataViews/FamilyList.py:174 ../src/DataViews/PersonView.py:151
+#: ../src/DataViews/FamilyList.py:174 ../src/DataViews/PersonView.py:160
 #: ../src/DataViews/RepositoryView.py:126 ../src/docgen/TextBufDoc.py:79
 #: ../src/docgen/TextBufDoc.py:158 ../src/docgen/TextBufDoc.py:160
 #: ../src/plugins/gramplet/QuickViewGramplet.py:127
 msgid "Quick View"
 msgstr "快速浏览"
 
-#: ../src/Relationship.py:792 ../src/DataViews/PedigreeView.py:1271
+#: ../src/Relationship.py:792 ../src/DataViews/PedigreeView.py:1272
 msgid "Relationship loop detected"
 msgstr "侦测到环状关系"
 
@@ -2006,7 +2001,7 @@ msgstr "未知性别，未知关系｜前同居密友"
 
 #: ../src/Reorder.py:31 ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157 ../src/DataViews/FamilyList.py:63
-#: ../src/DataViews/RelationView.py:830 ../src/Selectors/_SelectFamily.py:63
+#: ../src/DataViews/RelationView.py:829 ../src/Selectors/_SelectFamily.py:63
 #: ../src/plugins/import/ImportCsv.py:211
 #: ../src/plugins/quickview/all_relations.py:300
 #: ../src/plugins/textreport/FamilyGroup.py:185
@@ -2015,7 +2010,7 @@ msgstr "未知性别，未知关系｜前同居密友"
 #: ../src/plugins/textreport/IndivComplete.py:218
 #: ../src/plugins/textreport/IndivComplete.py:474
 #: ../src/plugins/textreport/MarkerReport.py:206
-#: ../src/plugins/webreport/NarrativeWeb.py:2446
+#: ../src/plugins/webreport/NarrativeWeb.py:2382
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "父亲"
@@ -2023,7 +2018,7 @@ msgstr "父亲"
 #. ----------------------------------
 #: ../src/Reorder.py:31 ../src/ToolTips.py:238
 #: ../src/Merge/_MergePerson.py:159 ../src/DataViews/FamilyList.py:64
-#: ../src/DataViews/RelationView.py:831 ../src/Selectors/_SelectFamily.py:64
+#: ../src/DataViews/RelationView.py:830 ../src/Selectors/_SelectFamily.py:64
 #: ../src/plugins/import/ImportCsv.py:207
 #: ../src/plugins/quickview/all_relations.py:297
 #: ../src/plugins/textreport/FamilyGroup.py:202
@@ -2032,15 +2027,15 @@ msgstr "父亲"
 #: ../src/plugins/textreport/IndivComplete.py:227
 #: ../src/plugins/textreport/IndivComplete.py:479
 #: ../src/plugins/textreport/MarkerReport.py:212
-#: ../src/plugins/webreport/NarrativeWeb.py:2451
+#: ../src/plugins/webreport/NarrativeWeb.py:2387
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "母亲"
 
 #: ../src/Reorder.py:32 ../src/Merge/_MergePerson.py:173
-#: ../src/DataViews/PersonView.py:74 ../src/DataViews/RelationView.py:1298
+#: ../src/DataViews/PersonView.py:83 ../src/DataViews/RelationView.py:1297
 #: ../src/Selectors/_SelectPerson.py:83 ../src/Selectors/_SelectPerson.py:111
-#: ../src/plugins/textreport/FamilyGroup.py:491
+#: ../src/plugins/textreport/FamilyGroup.py:493
 #: ../src/plugins/tool/RelCalc.py:63
 msgid "Spouse"
 msgstr "配偶"
@@ -2077,16 +2072,16 @@ msgstr "电话"
 msgid "Event Link"
 msgstr "事件连接"
 
-#: ../src/ScratchPad.py:352 ../src/ScratchPad.py:365
+#: ../src/ScratchPad.py:354 ../src/ScratchPad.py:367
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "家庭事件"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:366 ../src/ScratchPad.py:424 ../src/ScratchPad.py:457
-#: ../src/ScratchPad.py:595 ../src/ScratchPad.py:655 ../src/ScratchPad.py:688
-#: ../src/ScratchPad.py:834 ../src/ScratchPad.py:906 ../src/ScratchPad.py:912
+#: ../src/ScratchPad.py:368 ../src/ScratchPad.py:426 ../src/ScratchPad.py:459
+#: ../src/ScratchPad.py:599 ../src/ScratchPad.py:659 ../src/ScratchPad.py:692
+#: ../src/ScratchPad.py:838 ../src/ScratchPad.py:910 ../src/ScratchPad.py:916
 #: ../src/Merge/_MergePerson.py:175 ../src/DataViews/EventView.py:71
 #: ../src/DataViews/MediaView.py:82 ../src/DataViews/NoteView.py:69
 #: ../src/DataViews/RepositoryView.py:69
@@ -2115,62 +2110,62 @@ msgstr "家庭事件"
 msgid "Type"
 msgstr "类别"
 
-#: ../src/ScratchPad.py:369 ../src/gen/lib/attrtype.py:71
+#: ../src/ScratchPad.py:371 ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "原因"
 
-#: ../src/ScratchPad.py:370 ../src/ScratchPad.py:404
+#: ../src/ScratchPad.py:372 ../src/ScratchPad.py:406
 #: ../src/DataViews/EventView.py:69 ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:62
 #: ../src/plugins/textreport/MarkerReport.py:308
 #: ../src/plugins/textreport/PlaceReport.py:150
 #: ../src/plugins/tool/SortEvents.py:59
-#: ../src/plugins/webreport/NarrativeWeb.py:2264 ../src/gen/lib/attrtype.py:65
+#: ../src/plugins/webreport/NarrativeWeb.py:2200 ../src/gen/lib/attrtype.py:65
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "描述"
 
-#: ../src/ScratchPad.py:379 ../src/ScratchPad.py:605 ../src/ScratchPad.py:753
+#: ../src/ScratchPad.py:381 ../src/ScratchPad.py:609 ../src/ScratchPad.py:757
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "主要信息来源"
 
-#: ../src/ScratchPad.py:393 ../src/ScratchPad.py:401
+#: ../src/ScratchPad.py:395 ../src/ScratchPad.py:403
 msgid "Url"
 msgstr "URL"
 
-#: ../src/ScratchPad.py:402 ../src/DataViews/MediaView.py:83
+#: ../src/ScratchPad.py:404 ../src/DataViews/MediaView.py:83
 #: ../src/DisplayTabs/_WebEmbedList.py:63
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr "路径"
 
-#: ../src/ScratchPad.py:426 ../src/ScratchPad.py:459 ../src/ScratchPad.py:908
-#: ../src/ScratchPad.py:914 ../src/DisplayTabs/_AttrEmbedList.py:61
+#: ../src/ScratchPad.py:428 ../src/ScratchPad.py:461 ../src/ScratchPad.py:912
+#: ../src/ScratchPad.py:918 ../src/DisplayTabs/_AttrEmbedList.py:61
 #: ../src/DisplayTabs/_DataEmbedList.py:58
 #: ../src/plugins/tool/PatchNames.py:232
 msgid "Value"
 msgstr "值"
 
-#: ../src/ScratchPad.py:448 ../src/ScratchPad.py:456
+#: ../src/ScratchPad.py:450 ../src/ScratchPad.py:458
 msgid "Family Attribute"
 msgstr "家庭属性"
 
-#: ../src/ScratchPad.py:481 ../src/ScratchPad.py:510
+#: ../src/ScratchPad.py:483 ../src/ScratchPad.py:514
 msgid "Source Reference"
 msgstr "来源参数"
 
-#: ../src/ScratchPad.py:493
+#: ../src/ScratchPad.py:495
 msgid "not available|NA"
 msgstr "N/A"
 
-#: ../src/ScratchPad.py:499
+#: ../src/ScratchPad.py:503
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "卷/页: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:511 ../src/ScratchPad.py:654 ../src/ScratchPad.py:687
-#: ../src/ScratchPad.py:795 ../src/ScratchPad.py:907 ../src/ScratchPad.py:913
+#: ../src/ScratchPad.py:515 ../src/ScratchPad.py:658 ../src/ScratchPad.py:691
+#: ../src/ScratchPad.py:799 ../src/ScratchPad.py:911 ../src/ScratchPad.py:917
 #: ../src/DataViews/MediaView.py:80 ../src/DataViews/SourceView.py:67
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2182,32 +2177,32 @@ msgstr "卷/页: %(pag)s -- %(sourcetext)s"
 msgid "Title"
 msgstr "标题"
 
-#: ../src/ScratchPad.py:512 ../src/DisplayTabs/_SourceEmbedList.py:65
-#: ../src/plugins/webreport/NarrativeWeb.py:684
+#: ../src/ScratchPad.py:516 ../src/DisplayTabs/_SourceEmbedList.py:65
+#: ../src/plugins/webreport/NarrativeWeb.py:638
 msgid "Page"
 msgstr "网页"
 
-#: ../src/ScratchPad.py:524 ../src/ScratchPad.py:537
+#: ../src/ScratchPad.py:528 ../src/ScratchPad.py:541
 msgid "Repository Reference"
 msgstr "参考仓库"
 
-#: ../src/ScratchPad.py:539 ../src/DisplayTabs/_RepoEmbedList.py:64
+#: ../src/ScratchPad.py:543 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
 msgstr "编目编码"
 
-#: ../src/ScratchPad.py:540
+#: ../src/ScratchPad.py:544
 msgid "Media Type"
 msgstr "媒体类型"
 
-#: ../src/ScratchPad.py:552
+#: ../src/ScratchPad.py:556
 msgid "Event Reference"
 msgstr "参考事件"
 
-#: ../src/ScratchPad.py:588
+#: ../src/ScratchPad.py:592
 msgid "Call Name"
 msgstr "称呼"
 
-#: ../src/ScratchPad.py:592 ../src/Utils.py:1204
+#: ../src/ScratchPad.py:596 ../src/Utils.py:1202
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:163
 #: ../src/plugins/tool/PatchNames.py:279 ../src/plugins/tool/PatchNames.py:291
@@ -2220,63 +2215,63 @@ msgstr "前缀"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:593 ../src/Utils.py:1202
+#: ../src/ScratchPad.py:597 ../src/Utils.py:1200
 #: ../src/Editors/_EditPerson.py:269 ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
 #: ../src/plugins/tool/PatchNames.py:267
 msgid "Person|Title"
 msgstr "头衔"
 
-#: ../src/ScratchPad.py:674 ../src/ScratchPad.py:686
+#: ../src/ScratchPad.py:678 ../src/ScratchPad.py:690
 msgid "Media Reference"
 msgstr "参考媒体"
 
-#: ../src/ScratchPad.py:700 ../src/Editors/_EditPersonRef.py:142
+#: ../src/ScratchPad.py:704 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "成员参考"
 
-#: ../src/ScratchPad.py:717 ../src/ScratchPad.py:742
+#: ../src/ScratchPad.py:721 ../src/ScratchPad.py:746
 msgid "Person Link"
 msgstr "成员链接"
 
-#: ../src/ScratchPad.py:744 ../src/ToolTips.py:200
-#: ../src/Merge/_MergePerson.py:130 ../src/DataViews/RelationView.py:570
+#: ../src/ScratchPad.py:748 ../src/ToolTips.py:200
+#: ../src/Merge/_MergePerson.py:130 ../src/DataViews/RelationView.py:569
 #: ../src/plugins/quickview/all_relations.py:270
 #: ../src/plugins/quickview/lineage.py:93
-#: ../src/plugins/textreport/FamilyGroup.py:449
 #: ../src/plugins/textreport/FamilyGroup.py:451
+#: ../src/plugins/textreport/FamilyGroup.py:453
 #: ../src/plugins/textreport/MarkerReport.py:125
-#: ../src/plugins/webreport/NarrativeWeb.py:809
-#: ../src/plugins/webreport/NarrativeWeb.py:967
+#: ../src/plugins/webreport/NarrativeWeb.py:763
+#: ../src/plugins/webreport/NarrativeWeb.py:914
 #: ../src/gen/lib/childreftype.py:59 ../src/gen/lib/eventtype.py:98
 msgid "Birth"
 msgstr "出生"
 
-#: ../src/ScratchPad.py:776 ../src/ScratchPad.py:794
+#: ../src/ScratchPad.py:780 ../src/ScratchPad.py:798
 msgid "Source Link"
 msgstr "来源链接"
 
-#: ../src/ScratchPad.py:796 ../src/DataViews/SourceView.py:70
-#: ../src/plugins/webreport/NarrativeWeb.py:1731
+#: ../src/ScratchPad.py:800 ../src/DataViews/SourceView.py:70
+#: ../src/plugins/webreport/NarrativeWeb.py:1665
 msgid "Abbreviation"
 msgstr "缩写"
 
-#: ../src/ScratchPad.py:797 ../src/DataViews/SourceView.py:69
+#: ../src/ScratchPad.py:801 ../src/DataViews/SourceView.py:69
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
-#: ../src/plugins/webreport/NarrativeWeb.py:1729
+#: ../src/plugins/webreport/NarrativeWeb.py:1663
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "作者"
 
-#: ../src/ScratchPad.py:798 ../src/DataViews/SourceView.py:71
+#: ../src/ScratchPad.py:802 ../src/DataViews/SourceView.py:71
 msgid "Publication Information"
 msgstr "出版信息"
 
-#: ../src/ScratchPad.py:817 ../src/ScratchPad.py:832
+#: ../src/ScratchPad.py:821 ../src/ScratchPad.py:836
 msgid "Repository Link"
 msgstr "仓库链接"
 
-#: ../src/ScratchPad.py:1228 ../src/ScratchPad.py:1265
+#: ../src/ScratchPad.py:1232 ../src/ScratchPad.py:1269
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "剪贴板"
@@ -2622,7 +2617,7 @@ msgid "Zulu"
 msgstr "祖鲁语"
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/ViewManager.py:413
+#: ../src/ViewManager.py:403
 msgid "Tip of the Day"
 msgstr "今日提示"
 
@@ -2663,14 +2658,14 @@ msgstr "子女"
 
 #: ../src/Utils.py:82 ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:237
-#: ../src/plugins/webreport/NarrativeWeb.py:1876
+#: ../src/plugins/webreport/NarrativeWeb.py:1810
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "男性"
 
 #: ../src/Utils.py:83 ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:236
-#: ../src/plugins/webreport/NarrativeWeb.py:1877
+#: ../src/plugins/webreport/NarrativeWeb.py:1811
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
 msgstr "女性"
@@ -2682,7 +2677,7 @@ msgstr "女性"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/Utils.py:84 ../src/Utils.py:177 ../src/Merge/_MergePerson.py:56
-#: ../src/DataViews/RelationView.py:608
+#: ../src/DataViews/RelationView.py:607
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:238
 #: ../src/Mime/_GnomeMime.py:67 ../src/Mime/_GnomeMime.py:74
 #: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
@@ -2697,8 +2692,8 @@ msgstr "女性"
 #: ../src/plugins/textreport/DetDescendantReport.py:492
 #: ../src/plugins/textreport/DetDescendantReport.py:499
 #: ../src/plugins/textreport/IndivComplete.py:319
-#: ../src/plugins/webreport/NarrativeWeb.py:1878
-#: ../src/plugins/webreport/NarrativeWeb.py:2645 ../src/gen/lib/date.py:445
+#: ../src/plugins/webreport/NarrativeWeb.py:1812
+#: ../src/plugins/webreport/NarrativeWeb.py:2581 ../src/gen/lib/date.py:445
 #: ../src/gen/lib/date.py:483
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
@@ -2718,7 +2713,7 @@ msgid "High"
 msgstr "高"
 
 #: ../src/Utils.py:93 ../src/Editors/_EditSourceRef.py:136
-#: ../src/plugins/webreport/NarrativeWeb.py:681
+#: ../src/plugins/webreport/NarrativeWeb.py:635
 msgid "Normal"
 msgstr "正常"
 
@@ -2767,57 +2762,57 @@ msgstr "%(father)s 和 %(mother)s"
 msgid "default"
 msgstr "默认"
 
-#: ../src/Utils.py:735 ../src/plugins/tool/CalculateEstimatedDates.py:416
+#: ../src/Utils.py:737 ../src/plugins/tool/CalculateEstimatedDates.py:416
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "数据库错误: %s 被定义为 他/她自己的祖先"
 
-#: ../src/Utils.py:1135
+#: ../src/Utils.py:1133
 msgid "Please do not force closing this important dialog."
 msgstr "请不要强制关闭这个重要的对话框."
 
-#: ../src/Utils.py:1159 ../src/Utils.py:1166
+#: ../src/Utils.py:1157 ../src/Utils.py:1164
 msgid "Error Opening File"
 msgstr "打开文件出错"
 
-#: ../src/Utils.py:1159 ../src/plugins/textreport/IndivComplete.py:421
+#: ../src/Utils.py:1157 ../src/plugins/textreport/IndivComplete.py:421
 #: ../src/ReportBase/_ReportUtils.py:1856
 msgid "File does not exist"
 msgstr "文件不存在"
 
-#: ../src/Utils.py:1202
+#: ../src/Utils.py:1200
 msgid "Person|TITLE"
 msgstr "头衔"
 
-#: ../src/Utils.py:1203
+#: ../src/Utils.py:1201
 msgid "GIVEN"
 msgstr "名"
 
-#: ../src/Utils.py:1204
+#: ../src/Utils.py:1202
 msgid "PREFIX"
 msgstr "前缀"
 
-#: ../src/Utils.py:1206
+#: ../src/Utils.py:1204
 msgid "SUFFIX"
 msgstr "后缀"
 
-#: ../src/Utils.py:1207
+#: ../src/Utils.py:1205
 msgid "PATRONYMIC"
 msgstr "取自父的名"
 
-#: ../src/Utils.py:1208
+#: ../src/Utils.py:1206
 msgid "CALL"
 msgstr "称呼"
 
-#: ../src/Utils.py:1209
+#: ../src/Utils.py:1207
 msgid "COMMON"
 msgstr "普通"
 
-#: ../src/Utils.py:1210
+#: ../src/Utils.py:1208
 msgid "Initials"
 msgstr "首字目"
 
-#: ../src/Utils.py:1210
+#: ../src/Utils.py:1208
 msgid "INITIALS"
 msgstr "首字目"
 
@@ -2864,222 +2859,222 @@ msgstr "历史记录被清除"
 msgid "Unsupported"
 msgstr "未得到支持"
 
-#: ../src/ViewManager.py:362 ../src/ViewManager.py:363
+#: ../src/ViewManager.py:358
 msgid "Connect to a recent database"
 msgstr "连接到最近的数据库"
 
-#: ../src/ViewManager.py:367 ../src/ViewManager.py:368
-#: ../src/ViewManager.py:387
+#: ../src/ViewManager.py:359 ../src/ViewManager.py:377
 msgid "Manage databases"
 msgstr "管理数据库"
 
-#: ../src/ViewManager.py:385
+#: ../src/ViewManager.py:375
 msgid "_Family Trees"
 msgstr "家谱树（_F)"
 
-#: ../src/ViewManager.py:386
+#: ../src/ViewManager.py:376
 msgid "_Manage Family Trees..."
 msgstr "管理家谱树(_M)..."
 
-#: ../src/ViewManager.py:388
+#: ../src/ViewManager.py:378
 msgid "Open _Recent"
 msgstr "最近打开的（_R)"
 
-#: ../src/ViewManager.py:389
+#: ../src/ViewManager.py:379
 msgid "Open an existing database"
 msgstr "打开一个已存数据库"
 
-#: ../src/ViewManager.py:390
+#: ../src/ViewManager.py:380
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: ../src/ViewManager.py:392
+#: ../src/ViewManager.py:382
 msgid "_View"
 msgstr "查看(_V)"
 
-#: ../src/ViewManager.py:393 ../src/ViewManager.py:458
+#: ../src/ViewManager.py:383 ../src/ViewManager.py:448
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/ViewManager.py:394
+#: ../src/ViewManager.py:384
 msgid "_Preferences..."
 msgstr "首选项(_N)..."
 
-#: ../src/ViewManager.py:396
+#: ../src/ViewManager.py:386
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/ViewManager.py:397
+#: ../src/ViewManager.py:387
 msgid "GRAMPS _Home Page"
 msgstr "GRAMPS的主页(_H)"
 
-#: ../src/ViewManager.py:399
+#: ../src/ViewManager.py:389
 msgid "GRAMPS _Mailing Lists"
 msgstr "GRAMPS的邮件列表(_M)"
 
-#: ../src/ViewManager.py:401
+#: ../src/ViewManager.py:391
 msgid "_Report a Bug"
 msgstr "报告错误(_R)"
 
-#: ../src/ViewManager.py:403
+#: ../src/ViewManager.py:393
 msgid "_Extra Reports/Tools"
 msgstr "其他报告/工具 (_E)"
 
-#: ../src/ViewManager.py:405
+#: ../src/ViewManager.py:395
 msgid "_About"
 msgstr "关于(_A)"
 
-#: ../src/ViewManager.py:407
+#: ../src/ViewManager.py:397
 msgid "_Plugin Status"
 msgstr "显示插件状态(_S)"
 
-#: ../src/ViewManager.py:409
+#: ../src/ViewManager.py:399
 msgid "_FAQ"
 msgstr "FAQ(_F)"
 
-#: ../src/ViewManager.py:410
+#: ../src/ViewManager.py:400
 msgid "_Key Bindings"
 msgstr "组合快捷键(_K)"
 
-#: ../src/ViewManager.py:411
+#: ../src/ViewManager.py:401
 msgid "_User Manual"
 msgstr "用户手册(_U)"
 
-#: ../src/ViewManager.py:418
+#: ../src/ViewManager.py:408
 msgid "_Export..."
 msgstr "导出(_E)..."
 
-#: ../src/ViewManager.py:421
+#: ../src/ViewManager.py:411
 msgid "_Abandon Changes and Quit"
 msgstr "放弃修改并退出(_A)"
 
-#: ../src/ViewManager.py:422 ../src/ViewManager.py:425
+#: ../src/ViewManager.py:412 ../src/ViewManager.py:415
 msgid "_Reports"
 msgstr "报告(_R)"
 
-#: ../src/ViewManager.py:423
+#: ../src/ViewManager.py:413
 msgid "Open the reports dialog"
 msgstr "打开报告对话框"
 
-#: ../src/ViewManager.py:424
+#: ../src/ViewManager.py:414
 msgid "_Go"
 msgstr "前往（_G)"
 
-#: ../src/ViewManager.py:426
+#: ../src/ViewManager.py:416
 msgid "_Windows"
 msgstr "窗口（_W)"
 
-#: ../src/ViewManager.py:452
+#: ../src/ViewManager.py:442
 msgid "Clip_board"
 msgstr "粘贴板(_B)"
 
-#: ../src/ViewManager.py:453
+#: ../src/ViewManager.py:443
 msgid "Open the Clipboard dialog"
 msgstr "打开粘贴板对话框"
 
-#: ../src/ViewManager.py:454
+#: ../src/ViewManager.py:444
 msgid "_Import..."
 msgstr "导入(_I).."
 
-#: ../src/ViewManager.py:456 ../src/ViewManager.py:460
+#: ../src/ViewManager.py:446 ../src/ViewManager.py:450
 msgid "_Tools"
 msgstr "工具(_T)"
 
-#: ../src/ViewManager.py:457
+#: ../src/ViewManager.py:447
 msgid "Open the tools dialog"
 msgstr "打开工具对话框"
 
-#: ../src/ViewManager.py:459
+#: ../src/ViewManager.py:449
 msgid "_Bookmarks"
 msgstr "书签(_B)"
 
-#: ../src/ViewManager.py:464
+#: ../src/ViewManager.py:454
 msgid "_Sidebar"
 msgstr "侧栏(_S)"
 
-#: ../src/ViewManager.py:466
+#: ../src/ViewManager.py:456
 msgid "_Toolbar"
 msgstr "工具(_T)"
 
-#: ../src/ViewManager.py:468
+#: ../src/ViewManager.py:458
 msgid "_Filter Sidebar"
 msgstr "过滤器侧边栏"
 
-#: ../src/ViewManager.py:470
+#: ../src/ViewManager.py:460
 msgid "F_ull Screen"
 msgstr "全屏（_U)"
 
-#: ../src/ViewManager.py:475 ../src/ViewManager.py:1189
+#: ../src/ViewManager.py:465 ../src/ViewManager.py:1166
 msgid "_Undo"
 msgstr "撤销(_U)"
 
-#: ../src/ViewManager.py:480 ../src/ViewManager.py:1206
+#: ../src/ViewManager.py:470 ../src/ViewManager.py:1183
 msgid "_Redo"
 msgstr "Redo(_R)"
 
-#: ../src/ViewManager.py:486
+#: ../src/ViewManager.py:476
 msgid "Undo History..."
 msgstr "撤销历史..."
 
-#: ../src/ViewManager.py:505
+#: ../src/ViewManager.py:495
 #, python-format
 msgid "Key %s is not bound"
 msgstr "键 %s 未帮定"
 
 #. load plugins
-#: ../src/ViewManager.py:603
+#: ../src/ViewManager.py:593
 msgid "Loading plugins..."
 msgstr "载入插件...."
 
-#: ../src/ViewManager.py:611
+#: ../src/ViewManager.py:601
 msgid "Ready"
 msgstr "准备"
 
-#: ../src/ViewManager.py:643
+#: ../src/ViewManager.py:633
 msgid "Autobackup..."
 msgstr "自动备份..."
 
-#: ../src/ViewManager.py:655
+#: ../src/ViewManager.py:645
 msgid "Abort changes?"
 msgstr "退出修改?"
 
-#: ../src/ViewManager.py:656
+#: ../src/ViewManager.py:646
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
 msgstr "退出修改将会恢复到数据库开始修改前的状态."
 
-#: ../src/ViewManager.py:658
+#: ../src/ViewManager.py:648
 msgid "Abort changes"
 msgstr "退出修改"
 
-#: ../src/ViewManager.py:659 ../src/gen/db/dbdir.py:568
+#: ../src/ViewManager.py:649 ../src/DataViews/FamilyList.py:207
+#: ../src/gen/db/dbdir.py:568
 msgid "Cancel"
 msgstr "取消"
 
-#: ../src/ViewManager.py:668
+#: ../src/ViewManager.py:658
 msgid "Cannot abandon session's changes"
 msgstr "无法废弃对话修改"
 
-#: ../src/ViewManager.py:669
+#: ../src/ViewManager.py:659
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr "修改不能被完全遗弃，因为对话中的修改数目超过了限定."
 
-#: ../src/ViewManager.py:1048
+#: ../src/ViewManager.py:1025
 msgid "Import Statistics"
 msgstr "导入统计"
 
-#: ../src/ViewManager.py:1078
+#: ../src/ViewManager.py:1055
 msgid "Could not load a recent Family Tree."
 msgstr "无法载入最近打开的家族树."
 
-#: ../src/ViewManager.py:1079
+#: ../src/ViewManager.py:1056
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "家族树不存在，可能已经被删除."
 
-#: ../src/ViewManager.py:1135
+#: ../src/ViewManager.py:1112
 msgid "Read Only"
 msgstr "只读"
 
@@ -3087,7 +3082,7 @@ msgstr "只读"
 msgid "Unknown father"
 msgstr "未知父亲"
 
-#: ../src/Simple/_SimpleTable.py:210 ../src/DataViews/RelationView.py:925
+#: ../src/Simple/_SimpleTable.py:210 ../src/DataViews/RelationView.py:922
 #: ../src/plugins/quickview/all_relations.py:282 ../src/gen/lib/date.py:320
 #: ../src/gen/lib/date.py:413 ../src/gen/lib/date.py:442
 msgid "and"
@@ -3192,8 +3187,8 @@ msgstr "对比成员"
 #: ../src/Merge/_MergePerson.py:90 ../src/Merge/_MergePerson.py:95
 #: ../src/Merge/_MergePerson.py:268 ../src/Merge/_MergePerson.py:275
 #: ../src/Merge/_MergePerson.py:306 ../src/Merge/_MergePerson.py:311
-#: ../src/DataViews/PersonView.py:190 ../src/DataViews/PersonView.py:203
-#: ../src/DataViews/PersonView.py:214 ../src/DataViews/PersonView.py:228
+#: ../src/DataViews/PersonView.py:199 ../src/DataViews/PersonView.py:212
+#: ../src/DataViews/PersonView.py:223 ../src/DataViews/PersonView.py:237
 msgid "Cannot merge people"
 msgstr "无法合并成员"
 
@@ -3211,7 +3206,7 @@ msgid ""
 "break the relationship between them."
 msgstr "父母和孩子无法合并.合并这些人，你必须先断开他们之间的联系."
 
-#: ../src/Merge/_MergePerson.py:127 ../src/DataViews/PersonView.py:69
+#: ../src/Merge/_MergePerson.py:127 ../src/DataViews/PersonView.py:78
 #: ../src/Editors/_EditFamily.py:105 ../src/Selectors/_SelectPerson.py:78
 #: ../src/Selectors/_SelectPerson.py:106
 #: ../src/plugins/drawreport/StatisticsChart.py:93
@@ -3220,18 +3215,18 @@ msgstr "父母和孩子无法合并.合并这些人，你必须先断开他们�
 #: ../src/plugins/quickview/siblings.py:46
 #: ../src/plugins/textreport/IndivComplete.py:437
 #: ../src/plugins/tool/RelCalc.py:58
-#: ../src/plugins/webreport/NarrativeWeb.py:2216
+#: ../src/plugins/webreport/NarrativeWeb.py:2152
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 msgid "Gender"
 msgstr "性别"
 
-#: ../src/Merge/_MergePerson.py:133 ../src/DataViews/RelationView.py:581
-#: ../src/DataViews/RelationView.py:606
-#: ../src/plugins/textreport/FamilyGroup.py:455
+#: ../src/Merge/_MergePerson.py:133 ../src/DataViews/RelationView.py:580
+#: ../src/DataViews/RelationView.py:605
 #: ../src/plugins/textreport/FamilyGroup.py:457
+#: ../src/plugins/textreport/FamilyGroup.py:459
 #: ../src/plugins/textreport/MarkerReport.py:131
-#: ../src/plugins/webreport/NarrativeWeb.py:812
-#: ../src/plugins/webreport/NarrativeWeb.py:969 ../src/gen/lib/eventtype.py:99
+#: ../src/plugins/webreport/NarrativeWeb.py:766
+#: ../src/plugins/webreport/NarrativeWeb.py:916 ../src/gen/lib/eventtype.py:99
 msgid "Death"
 msgstr "死亡"
 
@@ -3249,16 +3244,16 @@ msgid "No parents found"
 msgstr "未找到父母"
 
 #. Go over spouses and build their menu
-#: ../src/Merge/_MergePerson.py:163 ../src/DataViews/PedigreeView.py:1458
+#: ../src/Merge/_MergePerson.py:163 ../src/DataViews/PedigreeView.py:1459
 #: ../src/plugins/gramplet/FanChartGramplet.py:702
 #: ../src/plugins/textreport/KinshipReport.py:106
 msgid "Spouses"
 msgstr "配偶"
 
-#: ../src/Merge/_MergePerson.py:179 ../src/DataViews/RelationView.py:1214
+#: ../src/Merge/_MergePerson.py:179 ../src/DataViews/RelationView.py:1213
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:215
-#: ../src/plugins/textreport/FamilyGroup.py:354
+#: ../src/plugins/textreport/FamilyGroup.py:356
 #: ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "婚姻"
@@ -3269,7 +3264,7 @@ msgstr "未找到配偶和孩子"
 
 #: ../src/Merge/_MergePerson.py:188
 #: ../src/plugins/textreport/IndivComplete.py:272
-#: ../src/plugins/webreport/NarrativeWeb.py:2364
+#: ../src/plugins/webreport/NarrativeWeb.py:2300
 msgid "Addresses"
 msgstr "地址"
 
@@ -3345,9 +3340,9 @@ msgstr "删除所选家庭"
 #: ../src/DataViews/FamilyList.py:91
 #: ../src/plugins/gramplet/QuickViewGramplet.py:66
 #: ../src/plugins/graph/GVFamilyLines.py:157
-#: ../src/plugins/graph/GVRelGraph.py:551
+#: ../src/plugins/graph/GVRelGraph.py:553
 #: ../src/plugins/textreport/MarkerReport.py:189
-#: ../src/plugins/webreport/NarrativeWeb.py:2601
+#: ../src/plugins/webreport/NarrativeWeb.py:2537
 msgid "Families"
 msgstr "家庭"
 
@@ -3355,7 +3350,7 @@ msgstr "家庭"
 msgid "Select Family Columns"
 msgstr "选择家庭栏目"
 
-#: ../src/DataViews/FamilyList.py:167 ../src/DataViews/PersonView.py:161
+#: ../src/DataViews/FamilyList.py:167 ../src/DataViews/PersonView.py:170
 msgid "_Column Editor..."
 msgstr "栏目编辑器(_C)..."
 
@@ -3363,32 +3358,36 @@ msgstr "栏目编辑器(_C)..."
 msgid "Family Filter Editor"
 msgstr "家庭过滤编辑器"
 
-#: ../src/DataViews/GeoView.py:350
+#: ../src/DataViews/FamilyList.py:206 ../src/plugins/import/ImportCsv.py:276
+msgid "family"
+msgstr "家庭"
+
+#: ../src/DataViews/GeoView.py:379
 msgid "HtmlView"
 msgstr "Html浏览htmlview"
 
-#: ../src/DataViews/GeoView.py:525
+#: ../src/DataViews/GeoView.py:554
 msgid "Go to the previous page in the history"
 msgstr "前往历史中的前一页"
 
-#: ../src/DataViews/GeoView.py:533
+#: ../src/DataViews/GeoView.py:562
 msgid "Go to the next page in the history"
 msgstr "前往历史上的下一个页"
 
 #. add the Refresh action to handle the Refresh button
-#: ../src/DataViews/GeoView.py:538
+#: ../src/DataViews/GeoView.py:567
 msgid "_Refresh"
 msgstr "刷新(_R)"
 
-#: ../src/DataViews/GeoView.py:541
+#: ../src/DataViews/GeoView.py:570
 msgid "Stop and reload the page."
 msgstr "停止并重新载入页面."
 
-#: ../src/DataViews/GeoView.py:571
+#: ../src/DataViews/GeoView.py:600
 msgid "Start page for the Html View"
 msgstr "打开页面 使用Html浏览"
 
-#: ../src/DataViews/GeoView.py:572
+#: ../src/DataViews/GeoView.py:601
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a "
 "webpage in this page\n"
@@ -3399,200 +3398,204 @@ msgstr ""
 "<br>\n"
 "例如: <b>http://gramps-project.org</p>"
 
-#: ../src/DataViews/GeoView.py:744
+#: ../src/DataViews/GeoView.py:754
 msgid "_OpenStreetMap"
 msgstr "打开街景地图"
 
-#: ../src/DataViews/GeoView.py:746
+#: ../src/DataViews/GeoView.py:756
 msgid "Select OpenStreetMap Maps"
 msgstr "选择打开街景地图"
 
-#: ../src/DataViews/GeoView.py:749
+#: ../src/DataViews/GeoView.py:759
 msgid "_Google Maps"
 msgstr "google 地图(_G)"
 
-#: ../src/DataViews/GeoView.py:751
+#: ../src/DataViews/GeoView.py:761
 msgid "Select Google Maps."
 msgstr "选择google 地图."
 
-#: ../src/DataViews/GeoView.py:754
+#: ../src/DataViews/GeoView.py:764
 msgid "_OpenLayers Maps"
 msgstr "打开分层地图(_O)"
 
-#: ../src/DataViews/GeoView.py:756
+#: ../src/DataViews/GeoView.py:766
 msgid "Select OpenLayers Maps."
 msgstr "选择打开层地图."
 
-#: ../src/DataViews/GeoView.py:759
+#: ../src/DataViews/GeoView.py:769
 msgid "_Yahoo! Maps"
 msgstr "Yahoo! 地图(_Y)"
 
-#: ../src/DataViews/GeoView.py:761
+#: ../src/DataViews/GeoView.py:771
 msgid "Select Yahoo Maps."
 msgstr "选择Yahoo 地图."
 
-#: ../src/DataViews/GeoView.py:764
+#: ../src/DataViews/GeoView.py:774
 msgid "_Microsoft Maps"
 msgstr "微软地图(_M)"
 
-#: ../src/DataViews/GeoView.py:766
+#: ../src/DataViews/GeoView.py:776
 msgid "Select Microsoft Maps"
 msgstr "选择微软地图"
 
-#: ../src/DataViews/GeoView.py:767
+#: ../src/DataViews/GeoView.py:777
 msgid "_All Places"
 msgstr "所有地点(_A)"
 
-#: ../src/DataViews/GeoView.py:769
+#: ../src/DataViews/GeoView.py:778
 msgid "Attempt to view all places in the family tree."
 msgstr "尝试在家庭树中浏览所有地点."
 
-#: ../src/DataViews/GeoView.py:770
+#: ../src/DataViews/GeoView.py:780
 msgid "_Person"
 msgstr "人员（_P)"
 
-#: ../src/DataViews/GeoView.py:772
+#: ../src/DataViews/GeoView.py:782
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "尝试浏览选中人员居住的所有的地方."
 
-#: ../src/DataViews/GeoView.py:773
+#: ../src/DataViews/GeoView.py:784
 msgid "_Family"
 msgstr "家庭(_F)"
 
-#: ../src/DataViews/GeoView.py:775
+#: ../src/DataViews/GeoView.py:786
 msgid "Attempt to view places of the selected people's family."
 msgstr "尝试浏览所选人员的家庭的地点."
 
-#: ../src/DataViews/GeoView.py:776
+#: ../src/DataViews/GeoView.py:787
 msgid "_Event"
 msgstr "事件 (_E)"
 
-#: ../src/DataViews/GeoView.py:778
+#: ../src/DataViews/GeoView.py:789
 msgid "Attempt to view places connected to all events."
 msgstr "尝试浏览连接到所有事件的地点."
 
-#: ../src/DataViews/GeoView.py:874
+#: ../src/DataViews/GeoView.py:888
 msgid "List of places without coordinates"
 msgstr "列出所有没有坐标的地址"
 
-#: ../src/DataViews/GeoView.py:875
+#: ../src/DataViews/GeoView.py:889
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "本处列出了家庭树中没有包含坐标的所有地点.<br> 意味着没有经度和纬度.<p>"
 
-#: ../src/DataViews/GeoView.py:925
+#: ../src/DataViews/GeoView.py:892
+msgid "Back to prior page"
+msgstr ""
+
+#: ../src/DataViews/GeoView.py:941
 #, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
 "markers : "
 msgstr "有 %d 标记将要被显示.它们被分成 %d 页面共 %d 个标记: "
 
-#: ../src/DataViews/GeoView.py:964
+#: ../src/DataViews/GeoView.py:998
 msgid "All"
 msgstr "所有"
 
-#: ../src/DataViews/GeoView.py:1427
+#: ../src/DataViews/GeoView.py:1518
 msgid "No location."
 msgstr "没有定位."
 
-#: ../src/DataViews/GeoView.py:1430
+#: ../src/DataViews/GeoView.py:1521
 msgid "You have no places in your family tree  with coordinates."
 msgstr "你的家庭树中的地点未包含坐标."
 
-#: ../src/DataViews/GeoView.py:1433
+#: ../src/DataViews/GeoView.py:1524
 msgid "You are looking at the default map."
 msgstr "你正在看默认地图."
 
-#: ../src/DataViews/GeoView.py:1458
+#: ../src/DataViews/GeoView.py:1551
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : 出生地."
 
-#: ../src/DataViews/GeoView.py:1461
+#: ../src/DataViews/GeoView.py:1554
 msgid "birth place."
 msgstr "出生地点."
 
-#: ../src/DataViews/GeoView.py:1493
+#: ../src/DataViews/GeoView.py:1588
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : 死亡地点."
 
-#: ../src/DataViews/GeoView.py:1496
+#: ../src/DataViews/GeoView.py:1591
 msgid "death place."
 msgstr "死亡地点."
 
-#: ../src/DataViews/GeoView.py:1532
+#: ../src/DataViews/GeoView.py:1627
 #, python-format
 msgid "Id : %s"
 msgstr "Id:%s"
 
-#: ../src/DataViews/GeoView.py:1549 ../src/DataViews/GeoView.py:1626
-#: ../src/DataViews/GeoView.py:1676 ../src/DataViews/GeoView.py:1747
+#: ../src/DataViews/GeoView.py:1643 ../src/DataViews/GeoView.py:1727
+#: ../src/DataViews/GeoView.py:1778 ../src/DataViews/GeoView.py:1850
 msgid "Cannot center the map. No location with coordinates."
 msgstr "无法定位地图的中心.没有地点包含坐标."
 
-#: ../src/DataViews/GeoView.py:1553
+#: ../src/DataViews/GeoView.py:1647
 msgid "All places in the family tree with coordinates."
 msgstr "家族树中的地点均包含了坐标."
 
-#: ../src/DataViews/GeoView.py:1578
+#: ../src/DataViews/GeoView.py:1672
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
-#: ../src/DataViews/GeoView.py:1629
+#: ../src/DataViews/GeoView.py:1731
 msgid "All events in the family tree with coordinates."
 msgstr "家族树中所有的事件均包含了坐标."
 
-#: ../src/DataViews/GeoView.py:1657
+#: ../src/DataViews/GeoView.py:1759
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : 父亲 : %s"
 
-#: ../src/DataViews/GeoView.py:1662
+#: ../src/DataViews/GeoView.py:1764
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : 母亲 : %s"
 
-#: ../src/DataViews/GeoView.py:1671
+#: ../src/DataViews/GeoView.py:1773
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : 子女 : %(id)s %(index)d"
 
-#: ../src/DataViews/GeoView.py:1678
+#: ../src/DataViews/GeoView.py:1780
 msgid "The active person's family members have no places with coordinates."
 msgstr "激活人员的家庭成员没有包含有坐标的地址."
 
-#: ../src/DataViews/GeoView.py:1682 ../src/DataViews/GeoView.py:1752
+#: ../src/DataViews/GeoView.py:1784 ../src/DataViews/GeoView.py:1855
 msgid "No active person set."
 msgstr "未设定激活人员."
 
-#: ../src/DataViews/GeoView.py:1686
+#: ../src/DataViews/GeoView.py:1788
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr "所有 %(name)s 人员，在家庭树中的家庭地址包含了坐标."
 
-#: ../src/DataViews/GeoView.py:1730
+#: ../src/DataViews/GeoView.py:1833
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/DataViews/GeoView.py:1750
+#: ../src/DataViews/GeoView.py:1853
 msgid "The active person has no places with coordinates."
 msgstr "激活人员未包含有坐标的地址."
 
-#: ../src/DataViews/GeoView.py:1755
+#: ../src/DataViews/GeoView.py:1858
 #, python-format
 msgid "All event places for %s."
 msgstr "%s 的所有事件地点."
 
-#: ../src/DataViews/GeoView.py:1762
+#: ../src/DataViews/GeoView.py:1865
 msgid "Not yet implemented ..."
 msgstr "还未执行..."
 
-#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:303
+#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:302
 msgid "Add a new media object"
 msgstr "新增一个媒体物件"
 
@@ -3620,11 +3623,11 @@ msgstr "使用默认查看器观看"
 msgid "Select Media Columns"
 msgstr "选择媒体物栏目"
 
-#: ../src/DataViews/MediaView.py:283 ../src/glade/gramps.glade.h:67
+#: ../src/DataViews/MediaView.py:279 ../src/glade/gramps.glade.h:67
 msgid "Double click image to view in an external viewer"
 msgstr "双击图像，通过外部查看器观看"
 
-#: ../src/DataViews/GrampletView.py:81 ../src/DataViews/GrampletView.py:1235
+#: ../src/DataViews/GrampletView.py:81 ../src/DataViews/GrampletView.py:1229
 msgid "Unnamed Gramplet"
 msgstr "未命名Gramplet 图表"
 
@@ -3632,36 +3635,36 @@ msgstr "未命名Gramplet 图表"
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "拖动属性按钮，移动并点击它用于设置"
 
-#: ../src/DataViews/GrampletView.py:212
+#: ../src/DataViews/GrampletView.py:211
 msgid "Gramplet"
 msgstr "Gramplet 图表"
 
-#: ../src/DataViews/GrampletView.py:365 ../src/DataViews/GrampletView.py:564
+#: ../src/DataViews/GrampletView.py:364 ../src/DataViews/GrampletView.py:563
 #, python-format
 msgid "Gramplet %s is running"
 msgstr "Gramplet %s 正在运行"
 
-#: ../src/DataViews/GrampletView.py:1103
+#: ../src/DataViews/GrampletView.py:1098
 msgid "Right click to add gramplets"
 msgstr "右键点击添加 Gramplets 图表"
 
-#: ../src/DataViews/GrampletView.py:1366
+#: ../src/DataViews/GrampletView.py:1360
 msgid "_Add a gramplet"
 msgstr "新增一项 gramplet 图表(_A)"
 
-#: ../src/DataViews/GrampletView.py:1367
+#: ../src/DataViews/GrampletView.py:1361
 msgid "_Undelete gramplet"
 msgstr "反删除gramplet 图表(_U)"
 
-#: ../src/DataViews/GrampletView.py:1368
+#: ../src/DataViews/GrampletView.py:1362
 msgid "Set Columns to _1"
 msgstr "设定栏目到1"
 
-#: ../src/DataViews/GrampletView.py:1371
+#: ../src/DataViews/GrampletView.py:1365
 msgid "Set Columns to _2"
 msgstr "设定栏目到2"
 
-#: ../src/DataViews/GrampletView.py:1374
+#: ../src/DataViews/GrampletView.py:1368
 msgid "Set Columns to _3"
 msgstr "设定栏目到3"
 
@@ -3672,13 +3675,13 @@ msgstr "预览"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:70
 #: ../src/plugins/textreport/MarkerReport.py:438
-#: ../src/plugins/tool/NotRelated.py:119
+#: ../src/plugins/tool/NotRelated.py:120
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
 msgstr "标记"
 
-#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:354
+#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:353
 msgid "Add a new note"
 msgstr "新增一项摘要"
 
@@ -3731,19 +3734,11 @@ msgstr "bur."
 msgid "short for cremated|crem."
 msgstr "crem."
 
-#: ../src/DataViews/PedigreeView.py:981
+#: ../src/DataViews/PedigreeView.py:982
 msgid "Jump to child..."
 msgstr "跳转到孩子..."
 
-#: ../src/DataViews/PedigreeView.py:990
-msgid "Jump to father"
-msgstr "跳转到父亲"
-
-#: ../src/DataViews/PedigreeView.py:999
-msgid "Jump to mother"
-msgstr "跳转到母亲"
-
-#: ../src/DataViews/PedigreeView.py:1272
+#: ../src/DataViews/PedigreeView.py:1273
 msgid "A person was found to be his/her own ancestor."
 msgstr "人员被发现成为了他／她自己的祖先."
 
@@ -3752,81 +3747,77 @@ msgstr "人员被发现成为了他／她自己的祖先."
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#. An optional link to a home page
-#: ../src/DataViews/PedigreeView.py:1315 ../src/DataViews/PedigreeView.py:1324
-#: ../src/plugins/webreport/NarrativeWeb.py:452
-#: ../src/plugins/webreport/NarrativeWeb.py:1630
-#: ../src/plugins/webreport/WebCal.py:364
+#: ../src/DataViews/PedigreeView.py:1316 ../src/DataViews/PedigreeView.py:1325
 msgid "Home"
 msgstr "首页"
 
-#: ../src/DataViews/PedigreeView.py:1338
+#: ../src/DataViews/PedigreeView.py:1339
 msgid "Show images"
 msgstr "显示图像"
 
-#: ../src/DataViews/PedigreeView.py:1347
+#: ../src/DataViews/PedigreeView.py:1348
 msgid "Show marriage data"
 msgstr "显示结婚日期"
 
-#: ../src/DataViews/PedigreeView.py:1356
+#: ../src/DataViews/PedigreeView.py:1357
 msgid "Tree style"
 msgstr "树类型"
 
-#: ../src/DataViews/PedigreeView.py:1363
+#: ../src/DataViews/PedigreeView.py:1364
 msgid "Version A"
 msgstr "版本 A"
 
-#: ../src/DataViews/PedigreeView.py:1370
+#: ../src/DataViews/PedigreeView.py:1371
 msgid "Version B"
 msgstr "版本 B"
 
-#: ../src/DataViews/PedigreeView.py:1382
+#: ../src/DataViews/PedigreeView.py:1383
 msgid "Tree size"
 msgstr "树的尺寸"
 
-#: ../src/DataViews/PedigreeView.py:1389
+#: ../src/DataViews/PedigreeView.py:1390
 msgid "Automatic"
 msgstr "自动的"
 
-#: ../src/DataViews/PedigreeView.py:1397
+#: ../src/DataViews/PedigreeView.py:1398
 #, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
 msgstr[0] "%d 代人"
 
-#: ../src/DataViews/PedigreeView.py:1410 ../src/DataViews/PedigreeView.py:1430
+#: ../src/DataViews/PedigreeView.py:1411 ../src/DataViews/PedigreeView.py:1431
 #: ../src/plugins/gramplet/FanChartGramplet.py:674
 msgid "People Menu"
 msgstr "人的菜单"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/PedigreeView.py:1492 ../src/DataViews/RelationView.py:845
+#: ../src/DataViews/PedigreeView.py:1493 ../src/DataViews/RelationView.py:844
 #: ../src/plugins/gramplet/FanChartGramplet.py:736
 #: ../src/plugins/quickview/siblings.py:77
-#: ../src/plugins/webreport/NarrativeWeb.py:2457
+#: ../src/plugins/webreport/NarrativeWeb.py:2393
 msgid "Siblings"
 msgstr "兄弟姐妹，同胞"
 
 #. Go over children and build their menu
-#: ../src/DataViews/PedigreeView.py:1535 ../src/DataViews/RelationView.py:1313
+#: ../src/DataViews/PedigreeView.py:1536 ../src/DataViews/RelationView.py:1312
 #: ../src/plugins/gramplet/FanChartGramplet.py:779
-#: ../src/plugins/textreport/FamilyGroup.py:556
+#: ../src/plugins/textreport/FamilyGroup.py:558
 #: ../src/plugins/textreport/IndivComplete.py:333
-#: ../src/plugins/webreport/NarrativeWeb.py:2612
+#: ../src/plugins/webreport/NarrativeWeb.py:2548
 msgid "Children"
 msgstr "子女"
 
 #. Go over parents and build their menu
-#: ../src/DataViews/PedigreeView.py:1609
+#: ../src/DataViews/PedigreeView.py:1610
 #: ../src/plugins/gramplet/FanChartGramplet.py:853
 msgid "Related"
 msgstr "相关的"
 
-#: ../src/DataViews/PedigreeView.py:1660
+#: ../src/DataViews/PedigreeView.py:1661
 msgid "Family Menu"
 msgstr "家庭菜单"
 
-#: ../src/DataViews/PersonView.py:70 ../src/Editors/_EditFamily.py:108
+#: ../src/DataViews/PersonView.py:79 ../src/Editors/_EditFamily.py:108
 #: ../src/Selectors/_SelectPerson.py:79 ../src/Selectors/_SelectPerson.py:107
 #: ../src/plugins/drawreport/TimeLine.py:58
 #: ../src/plugins/quickview/FilterByName.py:58
@@ -3843,65 +3834,65 @@ msgstr "家庭菜单"
 msgid "Birth Date"
 msgstr "出生日期"
 
-#: ../src/DataViews/PersonView.py:71 ../src/Editors/_EditFamily.py:110
+#: ../src/DataViews/PersonView.py:80 ../src/Editors/_EditFamily.py:110
 #: ../src/Selectors/_SelectPerson.py:80 ../src/Selectors/_SelectPerson.py:108
 #: ../src/plugins/tool/RelCalc.py:60
 msgid "Birth Place"
 msgstr "出生地点"
 
-#: ../src/DataViews/PersonView.py:72 ../src/Editors/_EditFamily.py:109
+#: ../src/DataViews/PersonView.py:81 ../src/Editors/_EditFamily.py:109
 #: ../src/Selectors/_SelectPerson.py:81 ../src/Selectors/_SelectPerson.py:109
 #: ../src/plugins/quickview/lineage.py:62
 #: ../src/plugins/quickview/lineage.py:93 ../src/plugins/tool/RelCalc.py:61
 msgid "Death Date"
 msgstr "死亡日期"
 
-#: ../src/DataViews/PersonView.py:73 ../src/Editors/_EditFamily.py:111
+#: ../src/DataViews/PersonView.py:82 ../src/Editors/_EditFamily.py:111
 #: ../src/Selectors/_SelectPerson.py:82 ../src/Selectors/_SelectPerson.py:110
 #: ../src/plugins/tool/RelCalc.py:62
 msgid "Death Place"
 msgstr "死亡地点"
 
-#: ../src/DataViews/PersonView.py:75 ../src/Selectors/_SelectPerson.py:84
+#: ../src/DataViews/PersonView.py:84 ../src/Selectors/_SelectPerson.py:84
 #: ../src/Selectors/_SelectPerson.py:112 ../src/plugins/tool/RelCalc.py:64
 msgid "Last Change"
 msgstr "上次变更"
 
-#: ../src/DataViews/PersonView.py:87
+#: ../src/DataViews/PersonView.py:96
 #: ../src/plugins/textreport/MarkerReport.py:102
 msgid "People"
 msgstr "人"
 
-#: ../src/DataViews/PersonView.py:145
+#: ../src/DataViews/PersonView.py:154
 msgid "Expand all Nodes"
 msgstr "展开所有节点"
 
-#: ../src/DataViews/PersonView.py:148
+#: ../src/DataViews/PersonView.py:157
 msgid "Edit the selected person"
 msgstr "编辑所选人员"
 
-#: ../src/DataViews/PersonView.py:149
+#: ../src/DataViews/PersonView.py:158
 msgid "Collapse all Nodes"
 msgstr "折叠所有节点"
 
-#: ../src/DataViews/PersonView.py:158
+#: ../src/DataViews/PersonView.py:167
 msgid "Add a new person"
 msgstr "新增一个成员"
 
-#: ../src/DataViews/PersonView.py:160
+#: ../src/DataViews/PersonView.py:169
 msgid "Remove the Selected Person"
 msgstr "移除所选成员"
 
-#: ../src/DataViews/PersonView.py:163
+#: ../src/DataViews/PersonView.py:172
 msgid "Compare and _Merge..."
 msgstr "对比并合并(_M)..."
 
-#: ../src/DataViews/PersonView.py:165
+#: ../src/DataViews/PersonView.py:174
 msgid "_Fast Merge..."
 msgstr "快速合并(_F)..."
 
-#: ../src/DataViews/PersonView.py:191 ../src/DataViews/PersonView.py:204
-#: ../src/DataViews/PersonView.py:215 ../src/DataViews/PersonView.py:229
+#: ../src/DataViews/PersonView.py:200 ../src/DataViews/PersonView.py:213
+#: ../src/DataViews/PersonView.py:224 ../src/DataViews/PersonView.py:238
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -3910,40 +3901,40 @@ msgstr ""
 "相同的两个人的信息需要合并时. 如果要选中第二个人，请在按下CTRL 键同时点击目标"
 "个人."
 
-#: ../src/DataViews/PersonView.py:237
+#: ../src/DataViews/PersonView.py:246
 msgid "Select Person Columns"
 msgstr "选择成员专栏"
 
-#: ../src/DataViews/PersonView.py:497
+#: ../src/DataViews/PersonView.py:506
 msgid "Active person not visible"
 msgstr "激活的人员不可见"
 
-#: ../src/DataViews/PersonView.py:580 ../src/Filters/_SearchBar.py:146
+#: ../src/DataViews/PersonView.py:595 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
 msgstr "正在更新显示...."
 
-#: ../src/DataViews/PersonView.py:601
+#: ../src/DataViews/PersonView.py:616
 msgid "Deleting the person will remove the person from the database."
 msgstr "删除成员将会从数据库中移除."
 
-#: ../src/DataViews/PersonView.py:606
+#: ../src/DataViews/PersonView.py:621
 msgid "_Delete Person"
 msgstr "删除成员(_D)"
 
-#: ../src/DataViews/PersonView.py:621
+#: ../src/DataViews/PersonView.py:636
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "删除成员(%s)"
 
-#: ../src/DataViews/PersonView.py:896
+#: ../src/DataViews/PersonView.py:920
 msgid "Go to default person"
 msgstr "前往默认人"
 
-#: ../src/DataViews/PersonView.py:901
+#: ../src/DataViews/PersonView.py:925
 msgid "Edit selected person"
 msgstr "编辑选中的成员"
 
-#: ../src/DataViews/PersonView.py:907
+#: ../src/DataViews/PersonView.py:931
 msgid "Delete selected person"
 msgstr "删除所选成员"
 
@@ -3953,13 +3944,13 @@ msgid "Place Name"
 msgstr "地名"
 
 #: ../src/DataViews/PlaceView.py:77
-#: ../src/plugins/webreport/NarrativeWeb.py:1167
+#: ../src/plugins/webreport/NarrativeWeb.py:1110
 msgid "Church Parish"
 msgstr "教区"
 
 #: ../src/DataViews/PlaceView.py:80 ../src/DataViews/RepositoryView.py:74
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
-#: ../src/plugins/webreport/NarrativeWeb.py:1168
+#: ../src/plugins/webreport/NarrativeWeb.py:1111
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
 msgid "County"
 msgstr "县／郡"
@@ -3972,23 +3963,23 @@ msgid "State"
 msgstr "州／省"
 
 #: ../src/DataViews/PlaceView.py:83
-#: ../src/plugins/webreport/NarrativeWeb.py:1180
+#: ../src/plugins/webreport/NarrativeWeb.py:1123
 msgid "Latitude"
 msgstr "经度"
 
 #: ../src/DataViews/PlaceView.py:84
-#: ../src/plugins/webreport/NarrativeWeb.py:1186
+#: ../src/plugins/webreport/NarrativeWeb.py:1129
 msgid "Longitude"
 msgstr "纬度"
 
 #: ../src/DataViews/PlaceView.py:86 ../src/DataViews/RepositoryView.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:52
-#: ../src/plugins/webreport/NarrativeWeb.py:1165
+#: ../src/plugins/webreport/NarrativeWeb.py:1108
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "Street"
 msgstr "街道"
 
-#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:252
+#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:251
 msgid "Add a new place"
 msgstr "新增一个地点"
 
@@ -4086,15 +4077,15 @@ msgstr "编辑激活的人"
 
 #: ../src/DataViews/RelationView.py:334
 #: ../src/plugins/quickview/all_relations.py:286
-#: ../src/plugins/webreport/NarrativeWeb.py:815
-#: ../src/plugins/webreport/NarrativeWeb.py:971
-#: ../src/plugins/webreport/NarrativeWeb.py:2636
-#: ../src/plugins/webreport/NarrativeWeb.py:2638
+#: ../src/plugins/webreport/NarrativeWeb.py:769
+#: ../src/plugins/webreport/NarrativeWeb.py:918
+#: ../src/plugins/webreport/NarrativeWeb.py:2572
+#: ../src/plugins/webreport/NarrativeWeb.py:2574
 msgid "Partner"
 msgstr "伴侣"
 
 #: ../src/DataViews/RelationView.py:335 ../src/DataViews/RelationView.py:337
-#: ../src/DataViews/RelationView.py:748
+#: ../src/DataViews/RelationView.py:747
 msgid "Add a new family with person as parent"
 msgstr "新增一个家庭，并设定所选人员为其父母"
 
@@ -4108,7 +4099,7 @@ msgid "Add"
 msgstr "添加"
 
 #: ../src/DataViews/RelationView.py:339 ../src/DataViews/RelationView.py:341
-#: ../src/DataViews/RelationView.py:742
+#: ../src/DataViews/RelationView.py:741
 msgid "Add a new set of parents"
 msgstr "新增一对父母"
 
@@ -4123,7 +4114,7 @@ msgid "Share"
 msgstr "共享"
 
 #: ../src/DataViews/RelationView.py:343 ../src/DataViews/RelationView.py:347
-#: ../src/DataViews/RelationView.py:743
+#: ../src/DataViews/RelationView.py:742
 msgid "Add person as child to an existing family"
 msgstr "为一个存在的家庭新增一个成员作为子女"
 
@@ -4139,134 +4130,134 @@ msgstr "显示细节"
 msgid "Show Siblings"
 msgstr "显示所有同胞兄弟"
 
-#: ../src/DataViews/RelationView.py:542 ../src/DataViews/RelationView.py:937
-#: ../src/DataViews/RelationView.py:990 ../src/DataViews/RelationView.py:1077
-#: ../src/DataViews/RelationView.py:1181 ../src/Editors/_EditFamily.py:859
+#: ../src/DataViews/RelationView.py:541 ../src/DataViews/RelationView.py:987
+#: ../src/DataViews/RelationView.py:1074 ../src/DataViews/RelationView.py:1178
+#: ../src/Editors/_EditFamily.py:853
 #, python-format
 msgid "Edit %s"
 msgstr "编辑 %s"
 
-#: ../src/DataViews/RelationView.py:601
+#: ../src/DataViews/RelationView.py:600
 msgid "Alive"
 msgstr "健在的"
 
-#: ../src/DataViews/RelationView.py:659 ../src/DataViews/RelationView.py:686
+#: ../src/DataViews/RelationView.py:658 ../src/DataViews/RelationView.py:685
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s 在 %(place)s"
 
-#: ../src/DataViews/RelationView.py:744
+#: ../src/DataViews/RelationView.py:743
 msgid "Edit parents"
 msgstr "编辑父母"
 
-#: ../src/DataViews/RelationView.py:745
+#: ../src/DataViews/RelationView.py:744
 msgid "Reorder parents"
 msgstr "记录父母"
 
-#: ../src/DataViews/RelationView.py:746
+#: ../src/DataViews/RelationView.py:745
 msgid "Remove person as child of these parents"
 msgstr "移除此人相对这些父母的子女关系"
 
-#: ../src/DataViews/RelationView.py:750
+#: ../src/DataViews/RelationView.py:749
 msgid "Edit family"
 msgstr "编辑家庭"
 
-#: ../src/DataViews/RelationView.py:751
+#: ../src/DataViews/RelationView.py:750
 msgid "Reorder families"
 msgstr "记录家庭"
 
-#: ../src/DataViews/RelationView.py:752
+#: ../src/DataViews/RelationView.py:751
 msgid "Remove person as parent in this family"
 msgstr "移除此人相对这个家庭作为父母的关系"
 
-#: ../src/DataViews/RelationView.py:805 ../src/DataViews/RelationView.py:861
+#: ../src/DataViews/RelationView.py:804 ../src/DataViews/RelationView.py:860
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] " (%d 同胞兄弟姐妹)"
 
-#: ../src/DataViews/RelationView.py:810 ../src/DataViews/RelationView.py:866
+#: ../src/DataViews/RelationView.py:809 ../src/DataViews/RelationView.py:865
 msgid " (1 brother)"
 msgstr "（兄弟1人）"
 
-#: ../src/DataViews/RelationView.py:812 ../src/DataViews/RelationView.py:868
+#: ../src/DataViews/RelationView.py:811 ../src/DataViews/RelationView.py:867
 msgid " (1 sister)"
 msgstr "（姐妹1人）"
 
-#: ../src/DataViews/RelationView.py:814 ../src/DataViews/RelationView.py:870
+#: ../src/DataViews/RelationView.py:813 ../src/DataViews/RelationView.py:869
 msgid " (1 sibling)"
 msgstr "（同胞兄弟 1人）"
 
-#: ../src/DataViews/RelationView.py:816 ../src/DataViews/RelationView.py:872
+#: ../src/DataViews/RelationView.py:815 ../src/DataViews/RelationView.py:871
 msgid " (only child)"
 msgstr "（仅对子女）"
 
-#: ../src/DataViews/RelationView.py:888 ../src/DataViews/RelationView.py:1346
+#: ../src/DataViews/RelationView.py:886 ../src/DataViews/RelationView.py:1344
 msgid "Add new child to family"
 msgstr "为家庭新增一个子女"
 
-#: ../src/DataViews/RelationView.py:893 ../src/DataViews/RelationView.py:1351
+#: ../src/DataViews/RelationView.py:890 ../src/DataViews/RelationView.py:1348
 msgid "Add existing child to family"
 msgstr "将已存有的子女加入到家庭中"
 
-#: ../src/DataViews/RelationView.py:1132
+#: ../src/DataViews/RelationView.py:1129
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
 msgstr "b. %(birthdate)s, d. %(deathdate)s"
 
-#: ../src/DataViews/RelationView.py:1137
+#: ../src/DataViews/RelationView.py:1134
 #, python-format
 msgid "short for born|b. %s"
 msgstr "b. %s"
 
-#: ../src/DataViews/RelationView.py:1139
+#: ../src/DataViews/RelationView.py:1136
 #, python-format
 msgid "short for dead|d. %s"
 msgstr "d. %s"
 
-#: ../src/DataViews/RelationView.py:1201
+#: ../src/DataViews/RelationView.py:1198
 #, python-format
 msgid "Relationship type: %s"
 msgstr "关系类型:%s"
 
-#: ../src/DataViews/RelationView.py:1241
+#: ../src/DataViews/RelationView.py:1240
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s 在 %(place)s"
 
-#: ../src/DataViews/RelationView.py:1245
+#: ../src/DataViews/RelationView.py:1244
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/RelationView.py:1249
+#: ../src/DataViews/RelationView.py:1248
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/RelationView.py:1260
+#: ../src/DataViews/RelationView.py:1259
 msgid "Broken family detected"
 msgstr "侦测到破碎家庭"
 
-#: ../src/DataViews/RelationView.py:1261
+#: ../src/DataViews/RelationView.py:1260
 msgid "Please run the Check and Repair Database tool"
 msgstr "请运行检查和修复数据库工具"
 
-#: ../src/DataViews/RelationView.py:1282 ../src/DataViews/RelationView.py:1328
+#: ../src/DataViews/RelationView.py:1281 ../src/DataViews/RelationView.py:1327
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d 子女)"
 
-#: ../src/DataViews/RelationView.py:1284 ../src/DataViews/RelationView.py:1330
+#: ../src/DataViews/RelationView.py:1283 ../src/DataViews/RelationView.py:1329
 msgid " (no children)"
 msgstr "（无儿无女）"
 
-#: ../src/DataViews/RelationView.py:1467
+#: ../src/DataViews/RelationView.py:1464
 msgid "Add Child to Family"
 msgstr "为家庭添加子女"
 
-#: ../src/DataViews/RelationView.py:1480 ../src/Editors/_EditFamily.py:248
+#: ../src/DataViews/RelationView.py:1477 ../src/Editors/_EditFamily.py:248
 #: ../src/Editors/_EditFamily.py:261
 msgid "Select Child"
 msgstr "选择子女"
@@ -4366,15 +4357,15 @@ msgstr ""
 #: ../src/plugins/export/ExportCd.py:159 ../src/plugins/export/ExportCd.py:172
 #: ../src/plugins/export/ExportCsv.py:304
 #: ../src/plugins/export/ExportCsv.py:308
-#: ../src/plugins/export/ExportGedcom.py:1529
-#: ../src/plugins/export/ExportGedcom.py:1534
+#: ../src/plugins/export/ExportGedcom.py:1523
+#: ../src/plugins/export/ExportGedcom.py:1528
 #: ../src/plugins/export/ExportGeneWeb.py:235
 #: ../src/plugins/export/ExportGeneWeb.py:239
 #: ../src/plugins/export/ExportVCalendar.py:207
 #: ../src/plugins/export/ExportVCalendar.py:211
 #: ../src/plugins/export/ExportVCard.py:183
 #: ../src/plugins/export/ExportVCard.py:187
-#: ../src/plugins/webreport/NarrativeWeb.py:2950
+#: ../src/plugins/webreport/NarrativeWeb.py:2886
 #, python-format
 msgid "Could not create %s"
 msgstr "无法创建 %s"
@@ -4431,7 +4422,7 @@ msgstr "属性(_A)"
 msgid "_References"
 msgstr "首选项（_R)"
 
-#: ../src/DisplayTabs/_BackRefList.py:91
+#: ../src/DisplayTabs/_BackRefList.py:90
 msgid "Edit reference"
 msgstr "编辑参考"
 
@@ -4788,64 +4779,64 @@ msgid ""
 "corrupt file."
 msgstr "GRAMPS 无法显示图像文件，可能文件已经损坏."
 
-#: ../src/Editors/ObjectEntries.py:247
+#: ../src/Editors/ObjectEntries.py:246
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "选择一个地点，使用拖放或按钮"
 
-#: ../src/Editors/ObjectEntries.py:249
+#: ../src/Editors/ObjectEntries.py:248
 msgid "No place given, click button to select one"
 msgstr "未指定地点，点击按钮选择"
 
-#: ../src/Editors/ObjectEntries.py:250
+#: ../src/Editors/ObjectEntries.py:249
 msgid "Edit place"
 msgstr "编辑地点"
 
-#: ../src/Editors/ObjectEntries.py:251
+#: ../src/Editors/ObjectEntries.py:250
 msgid "Select an existing place"
 msgstr "选择一个现有地址"
 
-#: ../src/Editors/ObjectEntries.py:253
+#: ../src/Editors/ObjectEntries.py:252
 msgid "Remove place"
 msgstr "移除地址"
 
-#: ../src/Editors/ObjectEntries.py:298
+#: ../src/Editors/ObjectEntries.py:297
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "选择媒介，使用拖放功能或按钮"
 
-#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:777
+#: ../src/Editors/ObjectEntries.py:299 ../src/PluginUtils/_GuiOptions.py:777
 msgid "No image given, click button to select one"
 msgstr "未指定图像，点击按钮选择"
 
-#: ../src/Editors/ObjectEntries.py:301
+#: ../src/Editors/ObjectEntries.py:300
 msgid "Edit media object"
 msgstr "编辑媒介对象"
 
-#: ../src/Editors/ObjectEntries.py:302 ../src/PluginUtils/_GuiOptions.py:752
+#: ../src/Editors/ObjectEntries.py:301 ../src/PluginUtils/_GuiOptions.py:752
 msgid "Select an existing media object"
 msgstr "选择一个现有媒介对象"
 
-#: ../src/Editors/ObjectEntries.py:304
+#: ../src/Editors/ObjectEntries.py:303
 msgid "Remove media object"
 msgstr "移除媒介对象"
 
-#: ../src/Editors/ObjectEntries.py:349
+#: ../src/Editors/ObjectEntries.py:348
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "选择注释，使用拖放功能或按钮"
 
-#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:700
+#: ../src/Editors/ObjectEntries.py:350 ../src/PluginUtils/_GuiOptions.py:700
 msgid "No note given, click button to select one"
 msgstr "未指定注释，点击按钮选择"
 
-#: ../src/Editors/ObjectEntries.py:352 ../src/Editors/_EditNote.py:264
+#: ../src/Editors/ObjectEntries.py:351 ../src/Editors/_EditNote.py:264
 #: ../src/Editors/_EditNote.py:310
 msgid "Edit Note"
 msgstr "编辑笔记"
 
-#: ../src/Editors/ObjectEntries.py:353 ../src/PluginUtils/_GuiOptions.py:670
+#: ../src/Editors/ObjectEntries.py:352 ../src/PluginUtils/_GuiOptions.py:670
 msgid "Select an existing note"
 msgstr "选择一个现有的笔记"
 
-#: ../src/Editors/ObjectEntries.py:355
+#: ../src/Editors/ObjectEntries.py:354
 msgid "Remove note"
 msgstr "移除笔记"
 
@@ -4996,11 +4987,11 @@ msgstr "添加一个已有的子女"
 msgid "Edit relationship"
 msgstr "编辑关系"
 
-#: ../src/Editors/_EditFamily.py:429
+#: ../src/Editors/_EditFamily.py:428
 msgid "Adding parents to a person"
 msgstr "为成员添加父母"
 
-#: ../src/Editors/_EditFamily.py:430
+#: ../src/Editors/_EditFamily.py:429
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -5010,11 +5001,11 @@ msgstr ""
 "可能会意外以相同父母创建多个家庭. 为了防止发生，当创建家庭时，只有选择了父母"
 "时按钮才有效.其他区域，当你选择父母时才会变得有效."
 
-#: ../src/Editors/_EditFamily.py:477
+#: ../src/Editors/_EditFamily.py:476
 msgid "Family has changed"
 msgstr "家庭已经变更"
 
-#: ../src/Editors/_EditFamily.py:478
+#: ../src/Editors/_EditFamily.py:477
 msgid ""
 "The family you are editing has changed. To make sure that the database is "
 "not corrupted, GRAMPS has updated the family to reflect these changes. Any "
@@ -5023,51 +5014,51 @@ msgstr ""
 "你正在编辑的家庭已经变更. 为确保数据库未崩溃，GRAMPS已经更新了家庭信息来反映"
 "这些变更.你所有的编辑可能已经丢失."
 
-#: ../src/Editors/_EditFamily.py:504 ../src/Editors/_EditFamily.py:507
+#: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:506
 msgid "New Family"
 msgstr "新家庭"
 
-#: ../src/Editors/_EditFamily.py:511 ../src/Editors/_EditFamily.py:1026
+#: ../src/Editors/_EditFamily.py:510 ../src/Editors/_EditFamily.py:1020
 msgid "Edit Family"
 msgstr "编辑家庭"
 
-#: ../src/Editors/_EditFamily.py:547
+#: ../src/Editors/_EditFamily.py:545
 msgid "Select a person as the mother"
 msgstr "选择成员作为母目"
 
-#: ../src/Editors/_EditFamily.py:549
+#: ../src/Editors/_EditFamily.py:546
 msgid "Add a new person as the mother"
 msgstr "新增一位母亲"
 
-#: ../src/Editors/_EditFamily.py:551
+#: ../src/Editors/_EditFamily.py:547
 msgid "Remove the person as the mother"
 msgstr "移除成员的母系关系"
 
-#: ../src/Editors/_EditFamily.py:565
+#: ../src/Editors/_EditFamily.py:561
 msgid "Select a person as the father"
 msgstr "选择成员称谓父目"
 
-#: ../src/Editors/_EditFamily.py:567
+#: ../src/Editors/_EditFamily.py:562
 msgid "Add a new person as the father"
 msgstr "新增移位父亲"
 
-#: ../src/Editors/_EditFamily.py:569
+#: ../src/Editors/_EditFamily.py:563
 msgid "Remove the person as the father"
 msgstr "移除人员的父系关系"
 
-#: ../src/Editors/_EditFamily.py:746
+#: ../src/Editors/_EditFamily.py:740
 msgid "Select Mother"
 msgstr "选择母亲"
 
-#: ../src/Editors/_EditFamily.py:791
+#: ../src/Editors/_EditFamily.py:785
 msgid "Select Father"
 msgstr "选择父亲"
 
-#: ../src/Editors/_EditFamily.py:815
+#: ../src/Editors/_EditFamily.py:809
 msgid "Duplicate Family"
 msgstr "复制家庭"
 
-#: ../src/Editors/_EditFamily.py:816
+#: ../src/Editors/_EditFamily.py:810
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -5076,45 +5067,45 @@ msgstr ""
 "拥有这些父母家庭已经存在于数据库中，如果你保存，将会创建一个家庭拷贝.建议你取"
 "消编辑这个窗口，并选择已经存在的家庭"
 
-#: ../src/Editors/_EditFamily.py:853
+#: ../src/Editors/_EditFamily.py:847
 msgid "Baptism:"
 msgstr "基督教，洗礼:"
 
-#: ../src/Editors/_EditFamily.py:857
+#: ../src/Editors/_EditFamily.py:851
 msgid "Burial:"
 msgstr "葬礼"
 
-#: ../src/Editors/_EditFamily.py:927
+#: ../src/Editors/_EditFamily.py:921
 msgid "A father cannot be his own child"
 msgstr "一个父亲不能成为他自己的孩子"
 
-#: ../src/Editors/_EditFamily.py:928
+#: ../src/Editors/_EditFamily.py:922
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s 列出了家庭中的父亲和孩子."
 
-#: ../src/Editors/_EditFamily.py:937
+#: ../src/Editors/_EditFamily.py:931
 msgid "A mother cannot be her own child"
 msgstr "一个母亲不能称谓她自己的孩子"
 
-#: ../src/Editors/_EditFamily.py:938
+#: ../src/Editors/_EditFamily.py:932
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s 列出了家庭汇中的母亲和孩子."
 
-#: ../src/Editors/_EditFamily.py:945
+#: ../src/Editors/_EditFamily.py:939
 msgid "Cannot save family"
 msgstr "无法保存家庭"
 
-#: ../src/Editors/_EditFamily.py:946
+#: ../src/Editors/_EditFamily.py:940
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "这个家庭没有数据存在，请输入数据并取消编辑."
 
-#: ../src/Editors/_EditFamily.py:953
+#: ../src/Editors/_EditFamily.py:947
 msgid "Cannot save family. ID already exists."
 msgstr "无法保存家庭，ID已经存在."
 
-#: ../src/Editors/_EditFamily.py:954 ../src/Editors/_EditNote.py:292
+#: ../src/Editors/_EditFamily.py:948 ../src/Editors/_EditNote.py:292
 #, python-format
 msgid ""
 "You have attempted to use the existing GRAMPS ID with value %(id)s. This "
@@ -5124,7 +5115,7 @@ msgstr ""
 "你正尝试使用GRAMPS ID为%(id)s 的数据. 这个值已经被使用.请输入不同的ID或者留作"
 "空白来获取下一个有效的ID值."
 
-#: ../src/Editors/_EditFamily.py:995
+#: ../src/Editors/_EditFamily.py:989
 msgid "Add Family"
 msgstr "添加家庭"
 
@@ -5609,36 +5600,36 @@ msgstr "从 GEDCOM 文件%s 中导入"
 msgid "GEDCOM import"
 msgstr "GEDCOM 文件导入"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1088
+#: ../src/GrampsDbUtils/_GedcomParse.py:1090
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "行 %d 无法辨别, 因此被忽略."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:2937
+#: ../src/GrampsDbUtils/_GedcomParse.py:2951
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "行 %d: 空事件注释被忽略."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3620
-#: ../src/GrampsDbUtils/_GedcomParse.py:4188
+#: ../src/GrampsDbUtils/_GedcomParse.py:3634
+#: ../src/GrampsDbUtils/_GedcomParse.py:4210
 #, python-format
 msgid "Could not import %s"
 msgstr "无法导入 %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3964
+#: ../src/GrampsDbUtils/_GedcomParse.py:3978
 #, python-format
 msgid "Import from %s"
 msgstr "从 %s 中导入"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4054
-#: ../src/GrampsDbUtils/_GedcomParse.py:4066
+#: ../src/GrampsDbUtils/_GedcomParse.py:4068
+#: ../src/GrampsDbUtils/_GedcomParse.py:4080
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "行 %d: 空注释被忽略."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4105
+#: ../src/GrampsDbUtils/_GedcomParse.py:4119
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "跳过 %d subordinate(s) 在行 %d"
@@ -5964,16 +5955,16 @@ msgstr "有效条目菜单"
 msgid "GRAMPS Book"
 msgstr "GRAMPS 名册"
 
-#: ../src/plugins/BookReport.py:1263 ../src/plugins/Records.py:577
+#: ../src/plugins/BookReport.py:1263 ../src/plugins/Records.py:578
 #: ../src/plugins/drawreport/AncestorTree.py:543
-#: ../src/plugins/drawreport/Calendar.py:539
+#: ../src/plugins/drawreport/Calendar.py:543
 #: ../src/plugins/drawreport/DescendTree.py:539
 #: ../src/plugins/drawreport/FanChart.py:445
-#: ../src/plugins/drawreport/StatisticsChart.py:903
+#: ../src/plugins/drawreport/StatisticsChart.py:905
 #: ../src/plugins/drawreport/TimeLine.py:466
-#: ../src/plugins/graph/GVFamilyLines.py:1055
+#: ../src/plugins/graph/GVFamilyLines.py:1059
 #: ../src/plugins/graph/GVHourGlass.py:304
-#: ../src/plugins/graph/GVRelGraph.py:631
+#: ../src/plugins/graph/GVRelGraph.py:633
 #: ../src/plugins/mapservices/eniroswedenmap.py:189
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
@@ -5998,12 +5989,12 @@ msgstr "GRAMPS 名册"
 #: ../src/plugins/textreport/DetAncestralReport.py:906
 #: ../src/plugins/textreport/DetDescendantReport.py:900
 #: ../src/plugins/textreport/EndOfLineReport.py:324
-#: ../src/plugins/textreport/FamilyGroup.py:800
+#: ../src/plugins/textreport/FamilyGroup.py:802
 #: ../src/plugins/textreport/IndivComplete.py:646
 #: ../src/plugins/textreport/KinshipReport.py:409
 #: ../src/plugins/textreport/MarkerReport.py:535
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:211
-#: ../src/plugins/textreport/PlaceReport.py:403
+#: ../src/plugins/textreport/PlaceReport.py:405
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
 #: ../src/plugins/textreport/Summary.py:303
 #: ../src/plugins/tool/ChangeNames.py:293
@@ -6011,12 +6002,12 @@ msgstr "GRAMPS 名册"
 #: ../src/plugins/tool/Desbrowser.py:171 ../src/plugins/tool/EventCmp.py:467
 #: ../src/plugins/tool/EventNames.py:179
 #: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:704
-#: ../src/plugins/tool/NotRelated.py:443 ../src/plugins/tool/PatchNames.py:376
+#: ../src/plugins/tool/NotRelated.py:450 ../src/plugins/tool/PatchNames.py:376
 #: ../src/plugins/tool/Rebuild.py:121 ../src/plugins/tool/RebuildRefMap.py:123
-#: ../src/plugins/tool/RelCalc.py:271 ../src/plugins/tool/RemoveUnused.py:497
+#: ../src/plugins/tool/RelCalc.py:271 ../src/plugins/tool/RemoveUnused.py:500
 #: ../src/plugins/tool/ReorderIds.py:240 ../src/plugins/tool/SortEvents.py:233
-#: ../src/plugins/tool/SoundGen.py:156 ../src/plugins/tool/Verify.py:1584
-#: ../src/plugins/webreport/NarrativeWeb.py:3666
+#: ../src/plugins/tool/SoundGen.py:156 ../src/plugins/tool/Verify.py:1586
+#: ../src/plugins/webreport/NarrativeWeb.py:3691
 #: ../src/plugins/webreport/WebCal.py:1589
 msgid "Stable"
 msgstr "稳定版"
@@ -6388,18 +6379,18 @@ msgid ""
 msgstr ""
 "GRAMPS XML 数据库是一个家庭树的文本格式.它与现有的GRAMPS 数据库格式兼容."
 
-#: ../src/plugins/Records.py:217
+#: ../src/plugins/Records.py:222
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
 #, python-format
 msgid "%s and %s"
 msgstr "%s 和 %s"
 
-#: ../src/plugins/Records.py:326 ../src/plugins/gramplet/WhatsNext.py:60
+#: ../src/plugins/Records.py:335 ../src/plugins/gramplet/WhatsNext.py:74
 msgid "Double-click name for details"
 msgstr "双击“名“了解详细信息"
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:327
+#: ../src/plugins/Records.py:336
 #: ../src/plugins/gramplet/AttributesGramplet.py:27
 #: ../src/plugins/gramplet/DescendGramplet.py:46
 #: ../src/plugins/gramplet/GivenNameGramplet.py:39
@@ -6408,11 +6399,11 @@ msgstr "双击“名“了解详细信息"
 #: ../src/plugins/gramplet/StatsGramplet.py:46
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:54
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:39
-#: ../src/plugins/gramplet/WhatsNext.py:61
+#: ../src/plugins/gramplet/WhatsNext.py:75
 msgid "No Family Tree loaded."
 msgstr "未载入家庭树."
 
-#: ../src/plugins/Records.py:342
+#: ../src/plugins/Records.py:343
 #: ../src/plugins/gramplet/GivenNameGramplet.py:54
 #: ../src/plugins/gramplet/StatsGramplet.py:59
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:71
@@ -6420,11 +6411,11 @@ msgstr "未载入家庭树."
 msgid "Processing..."
 msgstr "处理中..."
 
-#: ../src/plugins/Records.py:394 ../src/plugins/Records.py:568
+#: ../src/plugins/Records.py:395 ../src/plugins/Records.py:569
 msgid "Records"
 msgstr "记录"
 
-#: ../src/plugins/Records.py:412
+#: ../src/plugins/Records.py:413
 #, python-format
 msgid "%(number)s. %(name)s (%(value)s)"
 msgstr "%(number)s. %(name)s (%(value)s)"
@@ -6432,101 +6423,101 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #. ###############################
 #. #########################
 #. ###############################
-#: ../src/plugins/Records.py:445 ../src/plugins/drawreport/Calendar.py:375
+#: ../src/plugins/Records.py:446 ../src/plugins/drawreport/Calendar.py:379
 #: ../src/plugins/drawreport/FanChart.py:340
-#: ../src/plugins/drawreport/StatisticsChart.py:678
+#: ../src/plugins/drawreport/StatisticsChart.py:680
 #: ../src/plugins/drawreport/TimeLine.py:310
-#: ../src/plugins/graph/GVRelGraph.py:464
+#: ../src/plugins/graph/GVRelGraph.py:466
 #: ../src/plugins/textreport/AncestorReport.py:247
 #: ../src/plugins/textreport/BirthdayReport.py:329
 #: ../src/plugins/textreport/DescendReport.py:195
 #: ../src/plugins/textreport/DetAncestralReport.py:715
 #: ../src/plugins/textreport/DetDescendantReport.py:696
 #: ../src/plugins/textreport/EndOfLineReport.py:236
-#: ../src/plugins/textreport/FamilyGroup.py:599
+#: ../src/plugins/textreport/FamilyGroup.py:601
 #: ../src/plugins/textreport/IndivComplete.py:513
 #: ../src/plugins/textreport/KinshipReport.py:336
 #: ../src/plugins/textreport/MarkerReport.py:436
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:168
-#: ../src/plugins/textreport/PlaceReport.py:250
+#: ../src/plugins/textreport/PlaceReport.py:252
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:3328
+#: ../src/plugins/webreport/NarrativeWeb.py:3275
 #: ../src/plugins/webreport/WebCal.py:1110
 #: ../src/ReportBase/_ReportDialog.py:344
 msgid "Report Options"
 msgstr "报告选项"
 
 #. ###############################
-#: ../src/plugins/Records.py:447 ../src/plugins/drawreport/Calendar.py:382
-#: ../src/plugins/drawreport/StatisticsChart.py:680
+#: ../src/plugins/Records.py:448 ../src/plugins/drawreport/Calendar.py:386
+#: ../src/plugins/drawreport/StatisticsChart.py:682
 #: ../src/plugins/drawreport/TimeLine.py:312
-#: ../src/plugins/graph/GVRelGraph.py:467
+#: ../src/plugins/graph/GVRelGraph.py:469
 #: ../src/plugins/quickview/FilterByName.py:237
 #: ../src/plugins/textreport/BirthdayReport.py:336
 #: ../src/plugins/textreport/IndivComplete.py:516
 #: ../src/plugins/tool/CalculateEstimatedDates.py:65
 #: ../src/plugins/tool/SortEvents.py:169
-#: ../src/plugins/webreport/NarrativeWeb.py:3349
+#: ../src/plugins/webreport/NarrativeWeb.py:3296
 #: ../src/plugins/webreport/WebCal.py:1122
 #: ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr "过滤器"
 
-#: ../src/plugins/Records.py:449
-#: ../src/plugins/drawreport/StatisticsChart.py:682
+#: ../src/plugins/Records.py:450
+#: ../src/plugins/drawreport/StatisticsChart.py:684
 #: ../src/plugins/drawreport/TimeLine.py:314
 msgid "Determines what people are included in the report"
 msgstr "决定何类人应当包含在报告中"
 
-#: ../src/plugins/Records.py:453
-#: ../src/plugins/drawreport/StatisticsChart.py:686
+#: ../src/plugins/Records.py:454
+#: ../src/plugins/drawreport/StatisticsChart.py:688
 #: ../src/plugins/drawreport/TimeLine.py:318
-#: ../src/plugins/graph/GVRelGraph.py:473
+#: ../src/plugins/graph/GVRelGraph.py:475
 #: ../src/plugins/textreport/IndivComplete.py:522
 #: ../src/plugins/tool/CalculateEstimatedDates.py:70
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:3355
+#: ../src/plugins/webreport/NarrativeWeb.py:3302
 #: ../src/plugins/webreport/WebCal.py:1128
 msgid "Filter Person"
 msgstr "筛选人员"
 
-#: ../src/plugins/Records.py:454
-#: ../src/plugins/drawreport/StatisticsChart.py:687
+#: ../src/plugins/Records.py:455
+#: ../src/plugins/drawreport/StatisticsChart.py:689
 #: ../src/plugins/drawreport/TimeLine.py:319
-#: ../src/plugins/graph/GVRelGraph.py:474
+#: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/textreport/IndivComplete.py:523
 #: ../src/plugins/tool/CalculateEstimatedDates.py:71
 #: ../src/plugins/tool/SortEvents.py:175
-#: ../src/plugins/webreport/NarrativeWeb.py:3356
+#: ../src/plugins/webreport/NarrativeWeb.py:3303
 #: ../src/plugins/webreport/WebCal.py:1129
 msgid "The center person for the filter"
 msgstr "中心任务筛选器"
 
-#: ../src/plugins/Records.py:460
+#: ../src/plugins/Records.py:461
 msgid "Use call name"
 msgstr "使用称呼"
 
-#: ../src/plugins/Records.py:462
+#: ../src/plugins/Records.py:463
 msgid "Don't use call name"
 msgstr "不要使用称呼"
 
-#: ../src/plugins/Records.py:463
+#: ../src/plugins/Records.py:464
 msgid "Replace first name with call name"
 msgstr "用小名替换首名"
 
-#: ../src/plugins/Records.py:464
+#: ../src/plugins/Records.py:465
 msgid "Underline call name in first name / add call name to first name"
 msgstr "在名中着重强调小名/添加小名到首名中"
 
-#: ../src/plugins/Records.py:470
+#: ../src/plugins/Records.py:471
 msgid "Person Records"
 msgstr "成员记录"
 
-#: ../src/plugins/Records.py:472
+#: ../src/plugins/Records.py:473
 msgid "Family Records"
 msgstr "家庭记录"
 
-#: ../src/plugins/Records.py:509 ../src/plugins/drawreport/AncestorTree.py:499
+#: ../src/plugins/Records.py:510 ../src/plugins/drawreport/AncestorTree.py:499
 #: ../src/plugins/drawreport/DescendTree.py:495
 #: ../src/plugins/drawreport/FanChart.py:402
 #: ../src/plugins/textreport/AncestorReport.py:330
@@ -6534,7 +6525,7 @@ msgstr "家庭记录"
 #: ../src/plugins/textreport/DetDescendantReport.py:853
 #: ../src/plugins/textreport/EndOfLineReport.py:273
 #: ../src/plugins/textreport/EndOfLineReport.py:291
-#: ../src/plugins/textreport/FamilyGroup.py:692
+#: ../src/plugins/textreport/FamilyGroup.py:694
 #: ../src/plugins/textreport/IndivComplete.py:599
 #: ../src/plugins/textreport/KinshipReport.py:391
 #: ../src/plugins/textreport/MarkerReport.py:486
@@ -6543,91 +6534,91 @@ msgstr "家庭记录"
 msgid "The basic style used for the text display."
 msgstr "文本显示的基本风格."
 
-#: ../src/plugins/Records.py:518
+#: ../src/plugins/Records.py:519
 msgid "The style used for headings."
 msgstr "标题使用风格."
 
-#: ../src/plugins/Records.py:527
+#: ../src/plugins/Records.py:528
 msgid "The style used for the report title"
 msgstr "汇报标题应用风格"
 
-#: ../src/plugins/Records.py:536
+#: ../src/plugins/Records.py:537
 msgid "Youngest living person"
 msgstr "最年轻的成员"
 
-#: ../src/plugins/Records.py:537
+#: ../src/plugins/Records.py:538
 msgid "Oldest living person"
 msgstr "最年长的成员"
 
-#: ../src/plugins/Records.py:538
+#: ../src/plugins/Records.py:539
 msgid "Person died at youngest age"
 msgstr "死时最年轻的年纪"
 
-#: ../src/plugins/Records.py:539
+#: ../src/plugins/Records.py:540
 msgid "Person died at oldest age"
 msgstr "活的最久的人"
 
-#: ../src/plugins/Records.py:540
+#: ../src/plugins/Records.py:541
 msgid "Person married at youngest age"
 msgstr "结婚最早的人"
 
-#: ../src/plugins/Records.py:541
+#: ../src/plugins/Records.py:542
 msgid "Person married at oldest age"
 msgstr "结婚最晚的人"
 
-#: ../src/plugins/Records.py:542
+#: ../src/plugins/Records.py:543
 msgid "Person divorced at youngest age"
 msgstr "最早离婚 的人"
 
-#: ../src/plugins/Records.py:543
+#: ../src/plugins/Records.py:544
 msgid "Person divorced at oldest age"
 msgstr "离婚时年纪最大的人"
 
-#: ../src/plugins/Records.py:544
+#: ../src/plugins/Records.py:545
 msgid "Youngest father"
 msgstr "最年轻父亲"
 
-#: ../src/plugins/Records.py:545
+#: ../src/plugins/Records.py:546
 msgid "Youngest mother"
 msgstr "最年轻的母亲"
 
-#: ../src/plugins/Records.py:546
+#: ../src/plugins/Records.py:547
 msgid "Oldest father"
 msgstr "最年长的老父"
 
-#: ../src/plugins/Records.py:547
+#: ../src/plugins/Records.py:548
 msgid "Oldest mother"
 msgstr "最年长的慈母"
 
-#: ../src/plugins/Records.py:548
+#: ../src/plugins/Records.py:549
 msgid "Couple with most children"
 msgstr "子女最多的夫妇"
 
-#: ../src/plugins/Records.py:549
+#: ../src/plugins/Records.py:550
 msgid "Living couple married most recently"
 msgstr "最近结婚的夫妻"
 
-#: ../src/plugins/Records.py:550
+#: ../src/plugins/Records.py:551
 msgid "Living couple married most long ago"
 msgstr "健在的夫妻中结婚时间最长的"
 
-#: ../src/plugins/Records.py:551
+#: ../src/plugins/Records.py:552
 msgid "Shortest past marriage"
 msgstr "持续最短的婚姻"
 
-#: ../src/plugins/Records.py:552
+#: ../src/plugins/Records.py:553
 msgid "Longest past marriage"
 msgstr "持续最长的婚姻"
 
-#: ../src/plugins/Records.py:564
+#: ../src/plugins/Records.py:565
 msgid "Records Gramplet"
 msgstr "记录Gramplet"
 
-#: ../src/plugins/Records.py:576
+#: ../src/plugins/Records.py:577
 msgid "Records Report"
 msgstr "记录报告"
 
-#: ../src/plugins/Records.py:581
+#: ../src/plugins/Records.py:582
 msgid "Shows some interesting records about people and families"
 msgstr "显示一些关于家庭和个人有趣的记录"
 
@@ -6721,7 +6712,7 @@ msgid "Tree Options"
 msgstr "树选项"
 
 #: ../src/plugins/drawreport/AncestorTree.py:465
-#: ../src/plugins/drawreport/Calendar.py:387
+#: ../src/plugins/drawreport/Calendar.py:391
 #: ../src/plugins/drawreport/DescendTree.py:462
 #: ../src/plugins/drawreport/FanChart.py:342
 #: ../src/plugins/graph/GVHourGlass.py:256
@@ -6820,7 +6811,7 @@ msgstr "以月为格式..."
 
 #: ../src/plugins/drawreport/Calendar.py:244
 #: ../src/plugins/textreport/BirthdayReport.py:191
-#: ../src/plugins/webreport/NarrativeWeb.py:2988
+#: ../src/plugins/webreport/NarrativeWeb.py:2924
 #: ../src/plugins/webreport/WebCal.py:997
 msgid "Applying Filter..."
 msgstr "应用筛选器..."
@@ -6844,7 +6835,7 @@ msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
 msgstr[0] "%(person)s, %(age)d%(relation)s"
 
-#: ../src/plugins/drawreport/Calendar.py:342
+#: ../src/plugins/drawreport/Calendar.py:346
 #: ../src/plugins/textreport/BirthdayReport.py:296
 #, python-format
 msgid ""
@@ -6854,7 +6845,7 @@ msgstr ""
 "%(spouse)s  和\n"
 " %(person)s, 婚礼"
 
-#: ../src/plugins/drawreport/Calendar.py:347
+#: ../src/plugins/drawreport/Calendar.py:351
 #: ../src/plugins/textreport/BirthdayReport.py:300
 #, python-format
 msgid ""
@@ -6867,20 +6858,20 @@ msgstr[0] ""
 "%(spouse)s 和\n"
 " %(person)s, %(nyears)d"
 
-#: ../src/plugins/drawreport/Calendar.py:377
-#: ../src/plugins/drawreport/Calendar.py:379
+#: ../src/plugins/drawreport/Calendar.py:381
+#: ../src/plugins/drawreport/Calendar.py:383
 #: ../src/plugins/textreport/BirthdayReport.py:331
 #: ../src/plugins/textreport/BirthdayReport.py:333
 msgid "Year of calendar"
 msgstr "年历"
 
-#: ../src/plugins/drawreport/Calendar.py:384
+#: ../src/plugins/drawreport/Calendar.py:388
 #: ../src/plugins/textreport/BirthdayReport.py:338
 #: ../src/plugins/webreport/WebCal.py:1124
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "选择过滤器限制出现在日历上的成员"
 
-#: ../src/plugins/drawreport/Calendar.py:388
+#: ../src/plugins/drawreport/Calendar.py:392
 #: ../src/plugins/drawreport/FanChart.py:343
 #: ../src/plugins/textreport/AncestorReport.py:250
 #: ../src/plugins/textreport/BirthdayReport.py:342
@@ -6893,188 +6884,188 @@ msgstr "选择过滤器限制出现在日历上的成员"
 msgid "The center person for the report"
 msgstr "中心人物报告"
 
-#: ../src/plugins/drawreport/Calendar.py:400
+#: ../src/plugins/drawreport/Calendar.py:404
 #: ../src/plugins/textreport/BirthdayReport.py:354
 msgid "Select the format to display names"
 msgstr "选择用于显示姓名的格式"
 
-#: ../src/plugins/drawreport/Calendar.py:403
+#: ../src/plugins/drawreport/Calendar.py:407
 #: ../src/plugins/textreport/BirthdayReport.py:357
 #: ../src/plugins/webreport/WebCal.py:1203
 msgid "Country for holidays"
 msgstr "法定假日"
 
-#: ../src/plugins/drawreport/Calendar.py:409
+#: ../src/plugins/drawreport/Calendar.py:413
 #: ../src/plugins/textreport/BirthdayReport.py:363
 msgid "Select the country to see associated holidays"
 msgstr "选择国家，了解相关假期"
 
 #. Default selection ????
-#: ../src/plugins/drawreport/Calendar.py:412
+#: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/textreport/BirthdayReport.py:366
 #: ../src/plugins/webreport/WebCal.py:1221
 msgid "First day of week"
 msgstr "每周第一天"
 
-#: ../src/plugins/drawreport/Calendar.py:416
+#: ../src/plugins/drawreport/Calendar.py:420
 #: ../src/plugins/textreport/BirthdayReport.py:370
 #: ../src/plugins/webreport/WebCal.py:1224
 msgid "Select the first day of the week for the calendar"
 msgstr "选择日历中周的第一天"
 
-#: ../src/plugins/drawreport/Calendar.py:419
+#: ../src/plugins/drawreport/Calendar.py:423
 #: ../src/plugins/textreport/BirthdayReport.py:373
 #: ../src/plugins/webreport/WebCal.py:1211
 msgid "Birthday surname"
 msgstr "生日姓"
 
-#: ../src/plugins/drawreport/Calendar.py:420
+#: ../src/plugins/drawreport/Calendar.py:424
 #: ../src/plugins/textreport/BirthdayReport.py:374
 #: ../src/plugins/webreport/WebCal.py:1212
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "妻子用丈夫姓（从列在第一位的家庭）"
 
-#: ../src/plugins/drawreport/Calendar.py:421
+#: ../src/plugins/drawreport/Calendar.py:425
 #: ../src/plugins/textreport/BirthdayReport.py:375
 #: ../src/plugins/webreport/WebCal.py:1214
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "妻随夫姓"
 
-#: ../src/plugins/drawreport/Calendar.py:422
+#: ../src/plugins/drawreport/Calendar.py:426
 #: ../src/plugins/textreport/BirthdayReport.py:376
 #: ../src/plugins/webreport/WebCal.py:1216
 msgid "Wives use their own surname"
 msgstr "妻子使用自己原姓"
 
-#: ../src/plugins/drawreport/Calendar.py:423
+#: ../src/plugins/drawreport/Calendar.py:427
 #: ../src/plugins/textreport/BirthdayReport.py:377
 #: ../src/plugins/webreport/WebCal.py:1217
 msgid "Select married women's displayed surname"
 msgstr "选择已婚妇女的姓"
 
-#: ../src/plugins/drawreport/Calendar.py:426
+#: ../src/plugins/drawreport/Calendar.py:430
 #: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/webreport/WebCal.py:1232
 msgid "Include only living people"
 msgstr "仅包含健在人员"
 
-#: ../src/plugins/drawreport/Calendar.py:427
+#: ../src/plugins/drawreport/Calendar.py:431
 #: ../src/plugins/textreport/BirthdayReport.py:381
 #: ../src/plugins/webreport/WebCal.py:1233
 msgid "Include only living people in the calendar"
 msgstr "在日历中仅包含健在人员"
 
-#: ../src/plugins/drawreport/Calendar.py:430
+#: ../src/plugins/drawreport/Calendar.py:434
 #: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/webreport/WebCal.py:1236
 msgid "Include birthdays"
 msgstr "包括生日"
 
-#: ../src/plugins/drawreport/Calendar.py:431
+#: ../src/plugins/drawreport/Calendar.py:435
 #: ../src/plugins/textreport/BirthdayReport.py:385
 #: ../src/plugins/webreport/WebCal.py:1237
 msgid "Include birthdays in the calendar"
 msgstr "在日历中包含生日"
 
-#: ../src/plugins/drawreport/Calendar.py:434
+#: ../src/plugins/drawreport/Calendar.py:438
 #: ../src/plugins/textreport/BirthdayReport.py:388
 #: ../src/plugins/webreport/WebCal.py:1240
 msgid "Include anniversaries"
 msgstr "包含周年纪念"
 
-#: ../src/plugins/drawreport/Calendar.py:435
+#: ../src/plugins/drawreport/Calendar.py:439
 #: ../src/plugins/textreport/BirthdayReport.py:389
 #: ../src/plugins/webreport/WebCal.py:1241
 msgid "Include anniversaries in the calendar"
 msgstr "在日历中包含周年纪念日"
 
-#: ../src/plugins/drawreport/Calendar.py:438
+#: ../src/plugins/drawreport/Calendar.py:442
 #: ../src/plugins/textreport/BirthdayReport.py:397
 msgid "Text Options"
 msgstr "文本选项"
 
-#: ../src/plugins/drawreport/Calendar.py:440
+#: ../src/plugins/drawreport/Calendar.py:444
 #: ../src/plugins/textreport/BirthdayReport.py:404
 msgid "Text Area 1"
 msgstr "文字区域 1"
 
-#: ../src/plugins/drawreport/Calendar.py:440
+#: ../src/plugins/drawreport/Calendar.py:444
 #: ../src/plugins/textreport/BirthdayReport.py:404
 msgid "My Calendar"
 msgstr "我的日历"
 
-#: ../src/plugins/drawreport/Calendar.py:441
+#: ../src/plugins/drawreport/Calendar.py:445
 #: ../src/plugins/textreport/BirthdayReport.py:405
 msgid "First line of text at bottom of calendar"
 msgstr "日历底部第一行文字"
 
-#: ../src/plugins/drawreport/Calendar.py:444
+#: ../src/plugins/drawreport/Calendar.py:448
 #: ../src/plugins/textreport/BirthdayReport.py:408
 msgid "Text Area 2"
 msgstr "文字区域 2"
 
-#: ../src/plugins/drawreport/Calendar.py:444
+#: ../src/plugins/drawreport/Calendar.py:448
 #: ../src/plugins/textreport/BirthdayReport.py:408
 msgid "Produced with GRAMPS"
 msgstr "由GRAMPS生成"
 
-#: ../src/plugins/drawreport/Calendar.py:445
+#: ../src/plugins/drawreport/Calendar.py:449
 #: ../src/plugins/textreport/BirthdayReport.py:409
 msgid "Second line of text at bottom of calendar"
 msgstr "日历底部文本的第二行"
 
-#: ../src/plugins/drawreport/Calendar.py:448
+#: ../src/plugins/drawreport/Calendar.py:452
 #: ../src/plugins/textreport/BirthdayReport.py:412
 msgid "Text Area 3"
 msgstr "文本区域3"
 
-#: ../src/plugins/drawreport/Calendar.py:449
+#: ../src/plugins/drawreport/Calendar.py:453
 #: ../src/plugins/textreport/BirthdayReport.py:413
 msgid "Third line of text at bottom of calendar"
 msgstr "日历底部文本的第三行"
 
-#: ../src/plugins/drawreport/Calendar.py:503
+#: ../src/plugins/drawreport/Calendar.py:507
 msgid "Title text and background color"
 msgstr "标题文字和背景颜色"
 
-#: ../src/plugins/drawreport/Calendar.py:507
+#: ../src/plugins/drawreport/Calendar.py:511
 msgid "Calendar day numbers"
 msgstr "日历天数"
 
-#: ../src/plugins/drawreport/Calendar.py:510
+#: ../src/plugins/drawreport/Calendar.py:514
 msgid "Daily text display"
 msgstr "每日文本显示"
 
-#: ../src/plugins/drawreport/Calendar.py:512
+#: ../src/plugins/drawreport/Calendar.py:516
 msgid "Days of the week text"
 msgstr "周文本天数Days of the week text"
 
-#: ../src/plugins/drawreport/Calendar.py:516
+#: ../src/plugins/drawreport/Calendar.py:520
 #: ../src/plugins/textreport/BirthdayReport.py:477
 msgid "Text at bottom, line 1"
 msgstr "底部文字, 第一行"
 
-#: ../src/plugins/drawreport/Calendar.py:518
+#: ../src/plugins/drawreport/Calendar.py:522
 #: ../src/plugins/textreport/BirthdayReport.py:479
 msgid "Text at bottom, line 2"
 msgstr "底部文字, 第二行"
 
-#: ../src/plugins/drawreport/Calendar.py:520
+#: ../src/plugins/drawreport/Calendar.py:524
 #: ../src/plugins/textreport/BirthdayReport.py:481
 msgid "Text at bottom, line 3"
 msgstr "底部文字, 第三行"
 
-#: ../src/plugins/drawreport/Calendar.py:522
+#: ../src/plugins/drawreport/Calendar.py:526
 msgid "Borders"
 msgstr "边界"
 
-#: ../src/plugins/drawreport/Calendar.py:538
+#: ../src/plugins/drawreport/Calendar.py:542
 #: ../src/plugins/drawreport/TimeLine.py:333
 #: ../src/plugins/gramplet/CalendarGramplet.py:66
 msgid "Calendar"
 msgstr "日历"
 
-#: ../src/plugins/drawreport/Calendar.py:542
+#: ../src/plugins/drawreport/Calendar.py:546
 msgid "Produces a graphical calendar"
 msgstr "生成一个图形日历"
 
@@ -7191,13 +7182,13 @@ msgstr "全部"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:71
 #: ../src/plugins/drawreport/StatisticsChart.py:162
-#: ../src/plugins/drawreport/StatisticsChart.py:488
+#: ../src/plugins/drawreport/StatisticsChart.py:490
 msgid "Men"
 msgstr "男性"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:72
 #: ../src/plugins/drawreport/StatisticsChart.py:164
-#: ../src/plugins/drawreport/StatisticsChart.py:490
+#: ../src/plugins/drawreport/StatisticsChart.py:492
 msgid "Women"
 msgstr "女"
 
@@ -7325,125 +7316,125 @@ msgstr "子女遗漏"
 msgid "Birth missing"
 msgstr "出生遗漏"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:379
+#: ../src/plugins/drawreport/StatisticsChart.py:381
 msgid "Personal information missing"
 msgstr "个人信息缺失"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:500
-#: ../src/plugins/drawreport/StatisticsChart.py:902
+#: ../src/plugins/drawreport/StatisticsChart.py:502
+#: ../src/plugins/drawreport/StatisticsChart.py:904
 msgid "Statistics Charts"
 msgstr "统计表"
 
 #. extract requested items from the database and count them
-#: ../src/plugins/drawreport/StatisticsChart.py:503
+#: ../src/plugins/drawreport/StatisticsChart.py:505
 msgid "Collecting data..."
 msgstr "收集数据..."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:509
+#: ../src/plugins/drawreport/StatisticsChart.py:511
 msgid "Sorting data..."
 msgstr "整理数据..."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:519
+#: ../src/plugins/drawreport/StatisticsChart.py:521
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr "%(genders)s 出生于 %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:521
+#: ../src/plugins/drawreport/StatisticsChart.py:523
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
 msgstr "出生于 %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:556
+#: ../src/plugins/drawreport/StatisticsChart.py:558
 msgid "Saving charts..."
 msgstr "保存图表..."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:603
-#: ../src/plugins/drawreport/StatisticsChart.py:639
+#: ../src/plugins/drawreport/StatisticsChart.py:605
+#: ../src/plugins/drawreport/StatisticsChart.py:641
 #, python-format
 msgid "%s (persons):"
 msgstr "%s (persons):"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:693
+#: ../src/plugins/drawreport/StatisticsChart.py:695
 msgid "Sort chart items by"
 msgstr "整理图表栏目,通过"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:698
+#: ../src/plugins/drawreport/StatisticsChart.py:700
 msgid "Select how the statistical data is sorted."
 msgstr "选择统计数据如何被整理."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:701
+#: ../src/plugins/drawreport/StatisticsChart.py:703
 msgid "Sort in reverse order"
 msgstr "反向顺序整理"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:702
+#: ../src/plugins/drawreport/StatisticsChart.py:704
 msgid "Check to reverse the sorting order."
 msgstr "钩选反向排列顺序."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:706
+#: ../src/plugins/drawreport/StatisticsChart.py:708
 msgid "People Born After"
 msgstr "People Born After 人员出生于 ..之后"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:708
+#: ../src/plugins/drawreport/StatisticsChart.py:710
 msgid "Birth year from which to include people"
 msgstr "出生的年份 开始"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:711
+#: ../src/plugins/drawreport/StatisticsChart.py:713
 msgid "People Born Before"
 msgstr "出生于 ...之前"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:713
+#: ../src/plugins/drawreport/StatisticsChart.py:715
 msgid "Birth year until which to include people"
 msgstr "Birth year until which to include people"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:716
+#: ../src/plugins/drawreport/StatisticsChart.py:718
 msgid "Include people without known birth years"
 msgstr "包含未知出生年份的人员"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:718
+#: ../src/plugins/drawreport/StatisticsChart.py:720
 msgid "Whether to include people without known birth years"
 msgstr "是否包含未知出生年份的人员"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:722
+#: ../src/plugins/drawreport/StatisticsChart.py:724
 msgid "Genders included"
 msgstr "性别已纳入"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:727
+#: ../src/plugins/drawreport/StatisticsChart.py:729
 msgid "Select which genders are included into statistics."
 msgstr "选择何种性别纳入统计."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:731
+#: ../src/plugins/drawreport/StatisticsChart.py:733
 msgid "Max. items for a pie"
 msgstr "饼图中最多项目"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:732
+#: ../src/plugins/drawreport/StatisticsChart.py:734
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr "更少的项目的饼图和 lengend 将被使用来代替条状图."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:743
+#: ../src/plugins/drawreport/StatisticsChart.py:745
 msgid "Charts 1"
 msgstr "图表－1"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:745
+#: ../src/plugins/drawreport/StatisticsChart.py:747
 msgid "Charts 2"
 msgstr "图表－2"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:748
+#: ../src/plugins/drawreport/StatisticsChart.py:750
 msgid "Include charts with indicated data"
 msgstr "包含有显示数据的图表"
 
-#: ../src/plugins/drawreport/StatisticsChart.py:788
+#: ../src/plugins/drawreport/StatisticsChart.py:790
 msgid "The style used for the items and values."
 msgstr "栏目和数值的应用风格."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:797
+#: ../src/plugins/drawreport/StatisticsChart.py:799
 #: ../src/plugins/drawreport/TimeLine.py:389
 #: ../src/plugins/textreport/AncestorReport.py:307
 #: ../src/plugins/textreport/DescendReport.py:218
 #: ../src/plugins/textreport/DetAncestralReport.py:813
 #: ../src/plugins/textreport/DetDescendantReport.py:807
 #: ../src/plugins/textreport/EndOfLineReport.py:255
-#: ../src/plugins/textreport/FamilyGroup.py:683
+#: ../src/plugins/textreport/FamilyGroup.py:685
 #: ../src/plugins/textreport/IndivComplete.py:567
 #: ../src/plugins/textreport/KinshipReport.py:374
 #: ../src/plugins/textreport/MarkerReport.py:466
@@ -7453,7 +7444,7 @@ msgstr "栏目和数值的应用风格."
 msgid "The style used for the title of the page."
 msgstr "页面标题的样式."
 
-#: ../src/plugins/drawreport/StatisticsChart.py:906
+#: ../src/plugins/drawreport/StatisticsChart.py:908
 msgid "Produces statistical bar and pie charts of the people in the database"
 msgstr "生成数据库中人员的统计条状和饼状图表"
 
@@ -7537,7 +7528,7 @@ msgid "CD export preparation failed"
 msgstr "CD导出准备已失败"
 
 #: ../src/plugins/export/ExportCd.py:236
-#: ../src/plugins/export/ExportPkg.py:174 ../src/plugins/tool/Check.py:537
+#: ../src/plugins/export/ExportPkg.py:185 ../src/plugins/tool/Check.py:537
 msgid "Select file"
 msgstr "选择文件"
 
@@ -7598,15 +7589,15 @@ msgstr "死亡信息来源"
 
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:212
-#: ../src/plugins/textreport/FamilyGroup.py:537
-#: ../src/plugins/webreport/NarrativeWeb.py:2632
+#: ../src/plugins/textreport/FamilyGroup.py:539
+#: ../src/plugins/webreport/NarrativeWeb.py:2568
 msgid "Husband"
 msgstr "丈夫"
 
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:208
-#: ../src/plugins/textreport/FamilyGroup.py:546
-#: ../src/plugins/webreport/NarrativeWeb.py:2634
+#: ../src/plugins/textreport/FamilyGroup.py:548
+#: ../src/plugins/webreport/NarrativeWeb.py:2570
 msgid "Wife"
 msgstr "妻子"
 
@@ -7672,19 +7663,19 @@ msgstr "单独写入"
 msgid "Writing families"
 msgstr "写入家庭"
 
-#: ../src/plugins/export/ExportGedcom.py:1076
+#: ../src/plugins/export/ExportGedcom.py:1070
 msgid "Writing sources"
 msgstr "写入来源"
 
-#: ../src/plugins/export/ExportGedcom.py:1110
+#: ../src/plugins/export/ExportGedcom.py:1104
 msgid "Writing notes"
 msgstr "写入笔记"
 
-#: ../src/plugins/export/ExportGedcom.py:1147
+#: ../src/plugins/export/ExportGedcom.py:1141
 msgid "Writing repositories"
 msgstr "写入仓库"
 
-#: ../src/plugins/export/ExportGedcom.py:1532
+#: ../src/plugins/export/ExportGedcom.py:1526
 msgid "Export failed"
 msgstr "导出失败"
 
@@ -7693,7 +7684,7 @@ msgstr "导出失败"
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/export/ExportGedcom.py:1542
+#: ../src/plugins/export/ExportGedcom.py:1536
 #: ../src/plugins/import/ImportGedcom.py:142
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
@@ -7701,11 +7692,11 @@ msgid ""
 msgstr ""
 "GEDCOM 用于在genealogy 程序间传送数据.大多的族谱软件接受GEDCOM文件作为输入."
 
-#: ../src/plugins/export/ExportGedcom.py:1544
+#: ../src/plugins/export/ExportGedcom.py:1538
 msgid "GEDCOM export options"
 msgstr "GEDCOM 导出选项"
 
-#: ../src/plugins/export/ExportGedcom.py:1547
+#: ../src/plugins/export/ExportGedcom.py:1541
 msgid "GE_DCOM"
 msgstr "GEDCOM（_D)"
 
@@ -7735,17 +7726,17 @@ msgstr "GeneWeb(_G)"
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/export/ExportPkg.py:235
+#: ../src/plugins/export/ExportPkg.py:246
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
 msgstr "GRAMPS文件包是一个资料性的XML数据库，配备媒介对象文件."
 
-#: ../src/plugins/export/ExportPkg.py:237
+#: ../src/plugins/export/ExportPkg.py:248
 msgid "GRAMPS package export options"
 msgstr "GRAMP包 导出选项"
 
-#: ../src/plugins/export/ExportPkg.py:240
+#: ../src/plugins/export/ExportPkg.py:251
 msgid "GRAM_PS package (portable XML)"
 msgstr "GRAMPS 文件包 (移动性XML)"
 
@@ -7917,8 +7908,8 @@ msgid "Attributes Gramplet"
 msgstr "属性 Gramplet"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:58
-#: ../src/plugins/webreport/NarrativeWeb.py:1444
-#: ../src/plugins/webreport/NarrativeWeb.py:1935
+#: ../src/plugins/webreport/NarrativeWeb.py:1387
+#: ../src/plugins/webreport/NarrativeWeb.py:1869
 msgid "Attributes"
 msgstr "属性"
 
@@ -8231,9 +8222,9 @@ msgstr "双击项目查看筛选"
 #: ../src/plugins/gramplet/StatsGramplet.py:123
 #: ../src/plugins/graph/GVFamilyLines.py:141
 #: ../src/plugins/textreport/Summary.py:98
-#: ../src/plugins/webreport/NarrativeWeb.py:455
-#: ../src/plugins/webreport/NarrativeWeb.py:492
-#: ../src/plugins/webreport/NarrativeWeb.py:785
+#: ../src/plugins/webreport/NarrativeWeb.py:405
+#: ../src/plugins/webreport/NarrativeWeb.py:442
+#: ../src/plugins/webreport/NarrativeWeb.py:739
 msgid "Individuals"
 msgstr "个人"
 
@@ -8244,14 +8235,14 @@ msgstr "个体的数量"
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:129
 #: ../src/plugins/graph/GVFamilyLines.py:144
-#: ../src/plugins/graph/GVRelGraph.py:538
+#: ../src/plugins/graph/GVRelGraph.py:540
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "男性"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:132
 #: ../src/plugins/graph/GVFamilyLines.py:148
-#: ../src/plugins/graph/GVRelGraph.py:542
+#: ../src/plugins/graph/GVRelGraph.py:544
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "女性"
@@ -8405,101 +8396,121 @@ msgstr "欢迎进入 Gramplet"
 msgid "Welcome to GRAMPS!"
 msgstr "欢迎进入 GRAMPS 世界"
 
-#: ../src/plugins/gramplet/WhatsNext.py:79
+#: ../src/plugins/gramplet/WhatsNext.py:93
 msgid "No Home Person set."
 msgstr "未设定家庭成员."
 
-#: ../src/plugins/gramplet/WhatsNext.py:245
+#: ../src/plugins/gramplet/WhatsNext.py:258
 msgid "first name unknown"
 msgstr "首姓未知"
 
-#: ../src/plugins/gramplet/WhatsNext.py:248
+#: ../src/plugins/gramplet/WhatsNext.py:261
 msgid "surname unknown"
 msgstr "姓未知"
 
-#: ../src/plugins/gramplet/WhatsNext.py:252
-#: ../src/plugins/gramplet/WhatsNext.py:283
-#: ../src/plugins/gramplet/WhatsNext.py:290
+#: ../src/plugins/gramplet/WhatsNext.py:265
+#: ../src/plugins/gramplet/WhatsNext.py:296
+#: ../src/plugins/gramplet/WhatsNext.py:322
+#: ../src/plugins/gramplet/WhatsNext.py:329
+#: ../src/plugins/gramplet/WhatsNext.py:369
+#: ../src/plugins/gramplet/WhatsNext.py:376
 msgid "(person with unknown name)"
 msgstr "（人员未知姓名）"
 
-#: ../src/plugins/gramplet/WhatsNext.py:265
+#: ../src/plugins/gramplet/WhatsNext.py:278
 msgid "birth event missing"
 msgstr "出生事件缺失"
 
-#: ../src/plugins/gramplet/WhatsNext.py:269
-#: ../src/plugins/gramplet/WhatsNext.py:316
+#: ../src/plugins/gramplet/WhatsNext.py:282
+#: ../src/plugins/gramplet/WhatsNext.py:303
+#: ../src/plugins/gramplet/WhatsNext.py:353
+#: ../src/plugins/gramplet/WhatsNext.py:387
 #, python-format
 msgid ": %(list)s\n"
 msgstr ": %(list)s\n"
 
-#: ../src/plugins/gramplet/WhatsNext.py:270
-#: ../src/plugins/gramplet/WhatsNext.py:317
-#: ../src/plugins/gramplet/WhatsNext.py:338
+#: ../src/plugins/gramplet/WhatsNext.py:283
+#: ../src/plugins/gramplet/WhatsNext.py:304
+#: ../src/plugins/gramplet/WhatsNext.py:354
+#: ../src/plugins/gramplet/WhatsNext.py:388
+#: ../src/plugins/gramplet/WhatsNext.py:409
 msgid ", "
 msgstr ", "
 
-#: ../src/plugins/gramplet/WhatsNext.py:285
-#: ../src/plugins/gramplet/WhatsNext.py:292
+#: ../src/plugins/gramplet/WhatsNext.py:299
+#, fuzzy
+msgid "person not complete"
+msgstr "未设定家主."
+
+#: ../src/plugins/gramplet/WhatsNext.py:318
+#: ../src/plugins/gramplet/WhatsNext.py:325
+#: ../src/plugins/gramplet/WhatsNext.py:365
+#: ../src/plugins/gramplet/WhatsNext.py:372
 msgid "(unknown person)"
 msgstr "（未知人员）"
 
-#: ../src/plugins/gramplet/WhatsNext.py:294
+#: ../src/plugins/gramplet/WhatsNext.py:331
+#: ../src/plugins/gramplet/WhatsNext.py:378
 #, python-format
 msgid "%(name1)s and %(name2)s"
 msgstr "%(name1)s 和 %(name2)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:310
+#: ../src/plugins/gramplet/WhatsNext.py:347
 msgid "marriage event missing"
 msgstr "婚姻事件缺失"
 
-#: ../src/plugins/gramplet/WhatsNext.py:312
+#: ../src/plugins/gramplet/WhatsNext.py:349
 msgid "relation type unknown"
 msgstr "未知关系类型"
 
-#: ../src/plugins/gramplet/WhatsNext.py:327
+#: ../src/plugins/gramplet/WhatsNext.py:383
+#, fuzzy
+msgid "family not complete"
+msgstr "日期不完整"
+
+#: ../src/plugins/gramplet/WhatsNext.py:398
 msgid "date unknown"
 msgstr "未知日期"
 
-#: ../src/plugins/gramplet/WhatsNext.py:329
+#: ../src/plugins/gramplet/WhatsNext.py:400
 msgid "date incomplete"
 msgstr "日期不完整"
 
-#: ../src/plugins/gramplet/WhatsNext.py:333
+#: ../src/plugins/gramplet/WhatsNext.py:404
 msgid "place unknown"
 msgstr "未知地点"
 
-#: ../src/plugins/gramplet/WhatsNext.py:336
+#: ../src/plugins/gramplet/WhatsNext.py:407
 #, python-format
 msgid "%(type)s: %(list)s"
 msgstr "%(type)s: %(list)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:344
+#: ../src/plugins/gramplet/WhatsNext.py:415
 msgid "spouse missing"
 msgstr "配偶缺失"
 
-#: ../src/plugins/gramplet/WhatsNext.py:348
+#: ../src/plugins/gramplet/WhatsNext.py:419
 msgid "father missing"
 msgstr "父亲缺失"
 
-#: ../src/plugins/gramplet/WhatsNext.py:352
+#: ../src/plugins/gramplet/WhatsNext.py:423
 msgid "mother missing"
 msgstr "母亲缺失"
 
-#: ../src/plugins/gramplet/WhatsNext.py:356
+#: ../src/plugins/gramplet/WhatsNext.py:427
 msgid "parents missing"
 msgstr "父母缺失"
 
-#: ../src/plugins/gramplet/WhatsNext.py:363
+#: ../src/plugins/gramplet/WhatsNext.py:434
 #, python-format
 msgid ": %s\n"
 msgstr ":%s\n"
 
-#: ../src/plugins/gramplet/WhatsNext.py:424
+#: ../src/plugins/gramplet/WhatsNext.py:523
 msgid "What's Next Gramplet"
 msgstr "Gramplet下一项"
 
-#: ../src/plugins/gramplet/WhatsNext.py:428
+#: ../src/plugins/gramplet/WhatsNext.py:527
 msgid "What's Next?"
 msgstr "下一项?"
 
@@ -8581,22 +8592,22 @@ msgid "Colours to use for various family lines."
 msgstr "区分不同家庭线所使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:145
-#: ../src/plugins/graph/GVRelGraph.py:539
+#: ../src/plugins/graph/GVRelGraph.py:541
 msgid "The colour to use to display men."
 msgstr "显示男性使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:149
-#: ../src/plugins/graph/GVRelGraph.py:543
+#: ../src/plugins/graph/GVRelGraph.py:545
 msgid "The colour to use to display women."
 msgstr "显示女性使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:153
-#: ../src/plugins/graph/GVRelGraph.py:547
+#: ../src/plugins/graph/GVRelGraph.py:549
 msgid "The colour to use when the gender is unknown."
 msgstr "显示未知性别使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:158
-#: ../src/plugins/graph/GVRelGraph.py:552
+#: ../src/plugins/graph/GVRelGraph.py:554
 msgid "The colour to use to display families."
 msgstr "显示家庭使用的颜色."
 
@@ -8625,7 +8636,7 @@ msgid "Images"
 msgstr "图像"
 
 #: ../src/plugins/graph/GVFamilyLines.py:190
-#: ../src/plugins/graph/GVRelGraph.py:512
+#: ../src/plugins/graph/GVRelGraph.py:514
 msgid "Include thumbnail images of people"
 msgstr "包含人员的缩略图"
 
@@ -8634,17 +8645,17 @@ msgid "Thumbnail location"
 msgstr "缩略图位置"
 
 #: ../src/plugins/graph/GVFamilyLines.py:197
-#: ../src/plugins/graph/GVRelGraph.py:519
+#: ../src/plugins/graph/GVRelGraph.py:521
 msgid "Above the name"
 msgstr "名称之上"
 
 #: ../src/plugins/graph/GVFamilyLines.py:198
-#: ../src/plugins/graph/GVRelGraph.py:520
+#: ../src/plugins/graph/GVRelGraph.py:522
 msgid "Beside the name"
 msgstr "除了名字之外"
 
 #: ../src/plugins/graph/GVFamilyLines.py:200
-#: ../src/plugins/graph/GVRelGraph.py:522
+#: ../src/plugins/graph/GVRelGraph.py:524
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "缩略图应该出现在相关人员的什么位置"
 
@@ -8661,7 +8672,7 @@ msgstr "选项"
 #. ###############################
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:274
-#: ../src/plugins/graph/GVRelGraph.py:530
+#: ../src/plugins/graph/GVRelGraph.py:532
 msgid "Graph coloring"
 msgstr "图表上色"
 
@@ -8677,13 +8688,13 @@ msgstr ""
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:216
 #: ../src/plugins/graph/GVHourGlass.py:283
-#: ../src/plugins/graph/GVRelGraph.py:562
+#: ../src/plugins/graph/GVRelGraph.py:564
 msgid "Use rounded corners"
 msgstr "使用圆角"
 
 #: ../src/plugins/graph/GVFamilyLines.py:217
 #: ../src/plugins/graph/GVHourGlass.py:285
-#: ../src/plugins/graph/GVRelGraph.py:564
+#: ../src/plugins/graph/GVRelGraph.py:566
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "使用圆角区分男性和女性."
 
@@ -8696,12 +8707,12 @@ msgid "Whether to include dates for people and families."
 msgstr "是否为成员和家庭包含日期."
 
 #: ../src/plugins/graph/GVFamilyLines.py:227
-#: ../src/plugins/graph/GVRelGraph.py:487
+#: ../src/plugins/graph/GVRelGraph.py:489
 msgid "Limit dates to years only"
 msgstr "Limit dates to years only"
 
 #: ../src/plugins/graph/GVFamilyLines.py:228
-#: ../src/plugins/graph/GVRelGraph.py:488
+#: ../src/plugins/graph/GVRelGraph.py:490
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -8734,34 +8745,34 @@ msgid ""
 "Whether to include names, dates, and families that are marked as private."
 msgstr "是否包含标记为私有的家庭,姓名,日期."
 
-#: ../src/plugins/graph/GVFamilyLines.py:397
+#: ../src/plugins/graph/GVFamilyLines.py:399
 msgid "Generating Family Lines"
 msgstr "生成家庭线"
 
 #. start the progress indicator
-#: ../src/plugins/graph/GVFamilyLines.py:398
-#: ../src/plugins/tool/NotRelated.py:103 ../src/plugins/tool/NotRelated.py:233
+#: ../src/plugins/graph/GVFamilyLines.py:400
+#: ../src/plugins/tool/NotRelated.py:104 ../src/plugins/tool/NotRelated.py:234
 msgid "Starting"
 msgstr "启动"
 
-#: ../src/plugins/graph/GVFamilyLines.py:403
+#: ../src/plugins/graph/GVFamilyLines.py:405
 msgid "Finding ancestors and children"
 msgstr "找寻祖先和子女"
 
-#: ../src/plugins/graph/GVFamilyLines.py:426
+#: ../src/plugins/graph/GVFamilyLines.py:428
 msgid "Writing family lines"
 msgstr "绘制家庭线"
 
-#: ../src/plugins/graph/GVFamilyLines.py:965
+#: ../src/plugins/graph/GVFamilyLines.py:969
 #, python-format
 msgid "%d children"
 msgstr "%d 子女"
 
-#: ../src/plugins/graph/GVFamilyLines.py:1049
+#: ../src/plugins/graph/GVFamilyLines.py:1053
 msgid "Family Lines Graph"
 msgstr "家庭线图表"
 
-#: ../src/plugins/graph/GVFamilyLines.py:1058
+#: ../src/plugins/graph/GVFamilyLines.py:1062
 msgid "Produces family line graphs using GraphViz"
 msgstr "使用GraphViz 生成家庭线图形"
 
@@ -8799,12 +8810,12 @@ msgstr "图形中包含祖先的辈分和数量"
 
 #. ###############################
 #: ../src/plugins/graph/GVHourGlass.py:271
-#: ../src/plugins/graph/GVRelGraph.py:527
+#: ../src/plugins/graph/GVRelGraph.py:529
 msgid "Graph Style"
 msgstr "图表风格"
 
 #: ../src/plugins/graph/GVHourGlass.py:277
-#: ../src/plugins/graph/GVRelGraph.py:533
+#: ../src/plugins/graph/GVRelGraph.py:535
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -8834,35 +8845,35 @@ msgstr "后代<->祖先"
 msgid "Descendants - Ancestors"
 msgstr "后代 － 祖先"
 
-#: ../src/plugins/graph/GVRelGraph.py:469
+#: ../src/plugins/graph/GVRelGraph.py:471
 msgid "Determines what people are included in the graph"
 msgstr "决定在图像中包含什么样的人"
 
-#: ../src/plugins/graph/GVRelGraph.py:481
+#: ../src/plugins/graph/GVRelGraph.py:483
 msgid "Include Birth, Marriage and Death dates"
 msgstr "包含出生，结婚和死亡日期"
 
-#: ../src/plugins/graph/GVRelGraph.py:482
+#: ../src/plugins/graph/GVRelGraph.py:484
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr "在曲线图标签中包含个体出生，结婚 或者 死亡日期."
 
-#: ../src/plugins/graph/GVRelGraph.py:493
+#: ../src/plugins/graph/GVRelGraph.py:495
 msgid "Use place when no date"
 msgstr "当无日期时使用地点"
 
-#: ../src/plugins/graph/GVRelGraph.py:494
+#: ../src/plugins/graph/GVRelGraph.py:496
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
 msgstr "当没有出生，婚姻，死亡日期等有效数据时，相应的地点区域会被使用."
 
-#: ../src/plugins/graph/GVRelGraph.py:499
+#: ../src/plugins/graph/GVRelGraph.py:501
 msgid "Include URLs"
 msgstr "包含 URL地址"
 
-#: ../src/plugins/graph/GVRelGraph.py:500
+#: ../src/plugins/graph/GVRelGraph.py:502
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -8871,51 +8882,51 @@ msgstr ""
 "每个曲线节点包含一个URL，因此PDF 和 位图文件可以被生成包含动态链接到由  "
 "'Narrated Web Site'报告生成的文件 ."
 
-#: ../src/plugins/graph/GVRelGraph.py:507
+#: ../src/plugins/graph/GVRelGraph.py:509
 msgid "Include IDs"
 msgstr "包含ID"
 
-#: ../src/plugins/graph/GVRelGraph.py:508
+#: ../src/plugins/graph/GVRelGraph.py:510
 msgid "Include individual and family IDs."
 msgstr "包含个人和家庭的ID."
 
-#: ../src/plugins/graph/GVRelGraph.py:514
+#: ../src/plugins/graph/GVRelGraph.py:516
 msgid "Whether to include thumbnails of people."
 msgstr "是否包含人员的缩略图."
 
-#: ../src/plugins/graph/GVRelGraph.py:518
+#: ../src/plugins/graph/GVRelGraph.py:520
 msgid "Thumbnail Location"
 msgstr "缩略图位置"
 
-#: ../src/plugins/graph/GVRelGraph.py:555
+#: ../src/plugins/graph/GVRelGraph.py:557
 msgid "Arrowhead direction"
 msgstr "箭头方向"
 
-#: ../src/plugins/graph/GVRelGraph.py:558
+#: ../src/plugins/graph/GVRelGraph.py:560
 msgid "Choose the direction that the arrows point."
 msgstr "选择箭头所指方向."
 
-#: ../src/plugins/graph/GVRelGraph.py:569
+#: ../src/plugins/graph/GVRelGraph.py:571
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "使用点线标识非生育关系"
 
-#: ../src/plugins/graph/GVRelGraph.py:570
+#: ../src/plugins/graph/GVRelGraph.py:572
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "非生育关系在曲线图中将会由点线来显示."
 
-#: ../src/plugins/graph/GVRelGraph.py:574
+#: ../src/plugins/graph/GVRelGraph.py:576
 msgid "Show family nodes"
 msgstr "显示家庭节点"
 
-#: ../src/plugins/graph/GVRelGraph.py:575
+#: ../src/plugins/graph/GVRelGraph.py:577
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "家庭将会显示为椭圆，链接父母和子女."
 
-#: ../src/plugins/graph/GVRelGraph.py:630
+#: ../src/plugins/graph/GVRelGraph.py:632
 msgid "Relationship Graph"
 msgstr "关系曲线图"
 
-#: ../src/plugins/graph/GVRelGraph.py:632
+#: ../src/plugins/graph/GVRelGraph.py:634
 msgid "Produces relationship graphs using Graphviz"
 msgstr "使用Graphviz 生成关系曲线图"
 
@@ -9000,10 +9011,6 @@ msgstr "成员"
 #: ../src/plugins/import/ImportCsv.py:272
 msgid "child"
 msgstr "子女"
-
-#: ../src/plugins/import/ImportCsv.py:276
-msgid "family"
-msgstr "家庭"
 
 #. ----------------------------------
 #: ../src/plugins/import/ImportCsv.py:279
@@ -9100,11 +9107,11 @@ msgstr "GEDCOM"
 msgid "GeneWeb import"
 msgstr "GeneWeb 导入"
 
-#: ../src/plugins/import/ImportGeneWeb.py:926 ../data/gramps.keys.in.h:5
+#: ../src/plugins/import/ImportGeneWeb.py:945 ../data/gramps.keys.in.h:5
 msgid "GeneWeb"
 msgstr "GeneWeb"
 
-#: ../src/plugins/import/ImportGeneWeb.py:927
+#: ../src/plugins/import/ImportGeneWeb.py:946
 msgid "Import data from GeneWeb files"
 msgstr "从GeneWeb 文件导入"
 
@@ -9660,7 +9667,7 @@ msgid "No birth relation with child"
 msgstr "和孩子无生育关联"
 
 #: ../src/plugins/quickview/lineage.py:158
-#: ../src/plugins/quickview/lineage.py:178 ../src/plugins/tool/Verify.py:984
+#: ../src/plugins/quickview/lineage.py:178 ../src/plugins/tool/Verify.py:986
 msgid "Unknown gender"
 msgstr "未知性别"
 
@@ -10235,8 +10242,8 @@ msgstr "是否添加参考后代到孩子列表."
 #. #########################
 #: ../src/plugins/textreport/DetAncestralReport.py:763
 #: ../src/plugins/textreport/DetDescendantReport.py:753
-#: ../src/plugins/textreport/FamilyGroup.py:612
-#: ../src/plugins/webreport/NarrativeWeb.py:3472
+#: ../src/plugins/textreport/FamilyGroup.py:614
+#: ../src/plugins/webreport/NarrativeWeb.py:3419
 msgid "Include"
 msgstr "包含"
 
@@ -10257,7 +10264,7 @@ msgstr "包含属性"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:760
-#: ../src/plugins/textreport/FamilyGroup.py:634
+#: ../src/plugins/textreport/FamilyGroup.py:636
 msgid "Whether to include attributes."
 msgstr "是否包含属性."
 
@@ -10437,148 +10444,148 @@ msgstr "生成一个原文结尾行的报告"
 msgid "%(type)s: %(value)s"
 msgstr "%(type)s: %(value)s"
 
-#: ../src/plugins/textreport/FamilyGroup.py:349
+#: ../src/plugins/textreport/FamilyGroup.py:351
 msgid "Marriage:"
 msgstr "婚姻:"
 
-#: ../src/plugins/textreport/FamilyGroup.py:430
+#: ../src/plugins/textreport/FamilyGroup.py:432
 msgid "acronym for male|M"
 msgstr "M"
 
-#: ../src/plugins/textreport/FamilyGroup.py:432
+#: ../src/plugins/textreport/FamilyGroup.py:434
 msgid "acronym for female|F"
 msgstr "F"
 
-#: ../src/plugins/textreport/FamilyGroup.py:434
+#: ../src/plugins/textreport/FamilyGroup.py:436
 #, python-format
 msgid "acronym for unknown|%dU"
 msgstr "%dU"
 
-#: ../src/plugins/textreport/FamilyGroup.py:528
+#: ../src/plugins/textreport/FamilyGroup.py:530
 #, python-format
 msgid "Family Group Report - Generation %d"
 msgstr "家庭分组报告 - 第 %d 代"
 
-#: ../src/plugins/textreport/FamilyGroup.py:530
-#: ../src/plugins/textreport/FamilyGroup.py:579
-#: ../src/plugins/textreport/FamilyGroup.py:799
+#: ../src/plugins/textreport/FamilyGroup.py:532
+#: ../src/plugins/textreport/FamilyGroup.py:581
+#: ../src/plugins/textreport/FamilyGroup.py:801
 msgid "Family Group Report"
 msgstr "家庭分组报告"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:602
+#: ../src/plugins/textreport/FamilyGroup.py:604
 msgid "Center Family"
 msgstr "中心家庭"
 
-#: ../src/plugins/textreport/FamilyGroup.py:603
+#: ../src/plugins/textreport/FamilyGroup.py:605
 msgid "The center family for the report"
 msgstr "中心家庭报告"
 
-#: ../src/plugins/textreport/FamilyGroup.py:606
+#: ../src/plugins/textreport/FamilyGroup.py:608
 msgid "Recursive"
 msgstr "递归"
 
-#: ../src/plugins/textreport/FamilyGroup.py:607
+#: ../src/plugins/textreport/FamilyGroup.py:609
 msgid "Create reports for all descendants of this family."
 msgstr "为这个家庭所有后代创建报告."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:615
+#: ../src/plugins/textreport/FamilyGroup.py:617
 msgid "Generation numbers (recursive only)"
 msgstr "后代数量（递归）"
 
-#: ../src/plugins/textreport/FamilyGroup.py:617
+#: ../src/plugins/textreport/FamilyGroup.py:619
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr "是否在每份报告中包含这代人(递归)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:621
+#: ../src/plugins/textreport/FamilyGroup.py:623
 msgid "Parent Events"
 msgstr "父母事件"
 
-#: ../src/plugins/textreport/FamilyGroup.py:622
+#: ../src/plugins/textreport/FamilyGroup.py:624
 msgid "Whether to include events for parents."
 msgstr "是否包含父母的事件."
 
-#: ../src/plugins/textreport/FamilyGroup.py:625
+#: ../src/plugins/textreport/FamilyGroup.py:627
 msgid "Parent Addresses"
 msgstr "父母地址"
 
-#: ../src/plugins/textreport/FamilyGroup.py:626
+#: ../src/plugins/textreport/FamilyGroup.py:628
 msgid "Whether to include addresses for parents."
 msgstr "是否包含父母地址."
 
-#: ../src/plugins/textreport/FamilyGroup.py:629
+#: ../src/plugins/textreport/FamilyGroup.py:631
 msgid "Parent Notes"
 msgstr "父母笔记"
 
-#: ../src/plugins/textreport/FamilyGroup.py:630
+#: ../src/plugins/textreport/FamilyGroup.py:632
 msgid "Whether to include notes for parents."
 msgstr "是否包含为父母的注视."
 
-#: ../src/plugins/textreport/FamilyGroup.py:633
+#: ../src/plugins/textreport/FamilyGroup.py:635
 msgid "Parent Attributes"
 msgstr "父母属性"
 
-#: ../src/plugins/textreport/FamilyGroup.py:637
+#: ../src/plugins/textreport/FamilyGroup.py:639
 msgid "Alternate Parent Names"
 msgstr "替代用父母名字"
 
-#: ../src/plugins/textreport/FamilyGroup.py:638
+#: ../src/plugins/textreport/FamilyGroup.py:640
 msgid "Whether to include alternate names for parents."
 msgstr ""
 
-#: ../src/plugins/textreport/FamilyGroup.py:642
+#: ../src/plugins/textreport/FamilyGroup.py:644
 msgid "Parent Marriage"
 msgstr "父母婚姻"
 
-#: ../src/plugins/textreport/FamilyGroup.py:643
+#: ../src/plugins/textreport/FamilyGroup.py:645
 msgid "Whether to include marriage information for parents."
 msgstr "是否包含父母的结婚信息."
 
-#: ../src/plugins/textreport/FamilyGroup.py:647
+#: ../src/plugins/textreport/FamilyGroup.py:649
 msgid "Dates of Relatives"
 msgstr "亲属的年代"
 
-#: ../src/plugins/textreport/FamilyGroup.py:648
+#: ../src/plugins/textreport/FamilyGroup.py:650
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr "是否包含亲属的年代(父亲，母亲，配偶)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:652
+#: ../src/plugins/textreport/FamilyGroup.py:654
 msgid "Children Marriages"
 msgstr "子女婚姻"
 
-#: ../src/plugins/textreport/FamilyGroup.py:653
+#: ../src/plugins/textreport/FamilyGroup.py:655
 msgid "Whether to include marriage information for children."
 msgstr "是否包含子女的婚姻信息."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:658
+#: ../src/plugins/textreport/FamilyGroup.py:660
 msgid "Missing Information"
 msgstr "遗失家庭信息"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:661
+#: ../src/plugins/textreport/FamilyGroup.py:663
 msgid "Print fields for missing information"
 msgstr ""
 
-#: ../src/plugins/textreport/FamilyGroup.py:663
+#: ../src/plugins/textreport/FamilyGroup.py:665
 msgid "Whether to include fields for missing information."
 msgstr ""
 
-#: ../src/plugins/textreport/FamilyGroup.py:704
+#: ../src/plugins/textreport/FamilyGroup.py:706
 #: ../src/plugins/textreport/MarkerReport.py:504
 msgid "The basic style used for the note display."
 msgstr "笔记显示的基本风格."
 
-#: ../src/plugins/textreport/FamilyGroup.py:713
+#: ../src/plugins/textreport/FamilyGroup.py:715
 msgid "The style used for the text related to the children."
 msgstr "于子女有关的文本应用的风格."
 
-#: ../src/plugins/textreport/FamilyGroup.py:722
+#: ../src/plugins/textreport/FamilyGroup.py:724
 msgid "The style used for the parent's name"
 msgstr "父母姓名应用的风格"
 
-#: ../src/plugins/textreport/FamilyGroup.py:803
+#: ../src/plugins/textreport/FamilyGroup.py:805
 msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
@@ -10607,10 +10614,10 @@ msgid "Summary of %s"
 msgstr "%s 的总结"
 
 #: ../src/plugins/textreport/IndivComplete.py:420
-#: ../src/plugins/webreport/NarrativeWeb.py:530
-#: ../src/plugins/webreport/NarrativeWeb.py:575
-#: ../src/plugins/webreport/NarrativeWeb.py:590
-#: ../src/plugins/webreport/NarrativeWeb.py:3156
+#: ../src/plugins/webreport/NarrativeWeb.py:482
+#: ../src/plugins/webreport/NarrativeWeb.py:529
+#: ../src/plugins/webreport/NarrativeWeb.py:544
+#: ../src/plugins/webreport/NarrativeWeb.py:3094
 #: ../src/ReportBase/_ReportUtils.py:1855
 msgid "Could not add photo to page"
 msgstr "无法向页面添加照片"
@@ -10761,7 +10768,7 @@ msgstr "计算选中人员的祖先数量"
 #. Write the title line. Set in INDEX marker so that this section will be
 #. identified as a major category if this is included in a Book report.
 #: ../src/plugins/textreport/PlaceReport.py:93
-#: ../src/plugins/textreport/PlaceReport.py:402
+#: ../src/plugins/textreport/PlaceReport.py:404
 msgid "Place Report"
 msgstr "地点报告"
 
@@ -10812,47 +10819,47 @@ msgstr "事件的类型"
 msgid "People associated with this place"
 msgstr "与本地点有关的人员"
 
-#: ../src/plugins/textreport/PlaceReport.py:256
+#: ../src/plugins/textreport/PlaceReport.py:258
 msgid "Select using filter"
 msgstr "选择使用筛选器"
 
-#: ../src/plugins/textreport/PlaceReport.py:257
+#: ../src/plugins/textreport/PlaceReport.py:259
 msgid "Select places using a filter"
 msgstr "用筛选选择一个地点"
 
-#: ../src/plugins/textreport/PlaceReport.py:264
+#: ../src/plugins/textreport/PlaceReport.py:266
 msgid "Select places individually"
 msgstr "单独选择地点"
 
-#: ../src/plugins/textreport/PlaceReport.py:265
+#: ../src/plugins/textreport/PlaceReport.py:267
 msgid "List of places to report on"
 msgstr ""
 
-#: ../src/plugins/textreport/PlaceReport.py:295
+#: ../src/plugins/textreport/PlaceReport.py:297
 msgid "The style used for the title of the report."
 msgstr "报告的标题应用的风格."
 
-#: ../src/plugins/textreport/PlaceReport.py:309
+#: ../src/plugins/textreport/PlaceReport.py:311
 msgid "The style used for place title."
 msgstr "地点标题应用风格."
 
-#: ../src/plugins/textreport/PlaceReport.py:321
+#: ../src/plugins/textreport/PlaceReport.py:323
 msgid "The style used for place details."
 msgstr "地点详细信息应用的风格."
 
-#: ../src/plugins/textreport/PlaceReport.py:333
+#: ../src/plugins/textreport/PlaceReport.py:335
 msgid "The style used for a column title."
 msgstr "栏目标题应用风格."
 
-#: ../src/plugins/textreport/PlaceReport.py:347
+#: ../src/plugins/textreport/PlaceReport.py:349
 msgid "The style used for each section."
 msgstr "每个区域的应用风格."
 
-#: ../src/plugins/textreport/PlaceReport.py:370
+#: ../src/plugins/textreport/PlaceReport.py:372
 msgid "The style used for event and person details."
 msgstr "事件和人员详细信息应用风格."
 
-#: ../src/plugins/textreport/PlaceReport.py:404
+#: ../src/plugins/textreport/PlaceReport.py:406
 msgid "Produces a textual place report"
 msgstr "生成一个文本地点报告"
 
@@ -11122,7 +11129,7 @@ msgid "Estimated date"
 msgstr "估计的日期"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:494
-#: ../src/plugins/tool/MediaManager.py:598
+#: ../src/plugins/tool/MediaManager.py:596
 #: ../src/plugins/tool/OwnerEditor.py:203
 msgid "Beta"
 msgstr "测试版"
@@ -11697,7 +11704,7 @@ msgstr ""
 msgid "Find Possible Duplicate People"
 msgstr ""
 
-#: ../src/plugins/tool/FindDupes.py:150 ../src/plugins/tool/Verify.py:301
+#: ../src/plugins/tool/FindDupes.py:150 ../src/plugins/tool/Verify.py:303
 msgid "Tool settings"
 msgstr "工具设置"
 
@@ -11760,7 +11767,7 @@ msgid "manual|Media_Manager..."
 msgstr "媒体管理器(_M)..."
 
 #: ../src/plugins/tool/MediaManager.py:87
-#: ../src/plugins/tool/MediaManager.py:597
+#: ../src/plugins/tool/MediaManager.py:595
 msgid "Media Manager"
 msgstr "媒介管理者"
 
@@ -11803,35 +11810,35 @@ msgstr ""
 "本工具允许你仅仅修改在GRAMPS数据库内的记录.如果你想移动或者重新命名文件，你不"
 "得不在GRAMPS之外曹组.然后用本工具调整媒介对象的路径来修正文件位置."
 
-#: ../src/plugins/tool/MediaManager.py:257
+#: ../src/plugins/tool/MediaManager.py:255
 msgid "Affected path"
 msgstr "受影响的路径"
 
-#: ../src/plugins/tool/MediaManager.py:266
+#: ../src/plugins/tool/MediaManager.py:264
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
 msgstr "按 \"确认\"继续, “取消”退出, 或者“后退”修改你的选择."
 
-#: ../src/plugins/tool/MediaManager.py:297
+#: ../src/plugins/tool/MediaManager.py:295
 msgid "Operation succesfully finished."
 msgstr "操作成功完成."
 
-#: ../src/plugins/tool/MediaManager.py:299
+#: ../src/plugins/tool/MediaManager.py:297
 msgid ""
 "The operation you requested has finished successfully. You may press OK "
 "button now to continue."
 msgstr "你要求的操作已经成功完成.你可以按“确认”按钮接续."
 
-#: ../src/plugins/tool/MediaManager.py:302
+#: ../src/plugins/tool/MediaManager.py:300
 msgid "Operation failed"
 msgstr "操作失败"
 
-#: ../src/plugins/tool/MediaManager.py:304
+#: ../src/plugins/tool/MediaManager.py:302
 msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
 msgstr "执行请求的操作时出错.你可以尝试再次启动工具."
 
-#: ../src/plugins/tool/MediaManager.py:341
+#: ../src/plugins/tool/MediaManager.py:339
 #, python-format
 msgid ""
 "The following action is to be performed:\n"
@@ -11842,11 +11849,11 @@ msgstr ""
 "\n"
 "操作: \t%s"
 
-#: ../src/plugins/tool/MediaManager.py:414
+#: ../src/plugins/tool/MediaManager.py:412
 msgid "Replace _substrings in the path"
 msgstr "替换路径中的子链接"
 
-#: ../src/plugins/tool/MediaManager.py:415
+#: ../src/plugins/tool/MediaManager.py:413
 msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
@@ -11855,19 +11862,19 @@ msgstr ""
 "本工具允许用另外一个子链接替换媒介对象路径子链接. 当你将媒介对象从一个目录移"
 "动到另外一个时有用"
 
-#: ../src/plugins/tool/MediaManager.py:421
+#: ../src/plugins/tool/MediaManager.py:419
 msgid "Replace substring settings"
 msgstr "替换子链接设定"
 
-#: ../src/plugins/tool/MediaManager.py:433
+#: ../src/plugins/tool/MediaManager.py:431
 msgid "_Replace:"
 msgstr "代替:(_R)"
 
-#: ../src/plugins/tool/MediaManager.py:442
+#: ../src/plugins/tool/MediaManager.py:440
 msgid "_With:"
 msgstr "使用(_W)"
 
-#: ../src/plugins/tool/MediaManager.py:456
+#: ../src/plugins/tool/MediaManager.py:454
 #, python-format
 msgid ""
 "The following action is to be performed:\n"
@@ -11882,11 +11889,11 @@ msgstr ""
 "替换:\t\t%s\n"
 "替换为: \t\t%s"
 
-#: ../src/plugins/tool/MediaManager.py:497
+#: ../src/plugins/tool/MediaManager.py:495
 msgid "Convert paths from relative to _absolute"
 msgstr "将相对路径转化为绝对路径(_A)"
 
-#: ../src/plugins/tool/MediaManager.py:498
+#: ../src/plugins/tool/MediaManager.py:496
 msgid ""
 "This tool allows converting relative media paths to the absolute ones. It "
 "does this by prepending the base path as given in the Preferences, or if "
@@ -11895,11 +11902,11 @@ msgstr ""
 "本工具允许将绝对路径转换为相对路径. 它通过假设基本路径为参考值，如果未设定，"
 "将假设为用户的路径."
 
-#: ../src/plugins/tool/MediaManager.py:535
+#: ../src/plugins/tool/MediaManager.py:533
 msgid "Convert paths from absolute to r_elative"
 msgstr "从绝对路径转换到相对路径(_E)"
 
-#: ../src/plugins/tool/MediaManager.py:536
+#: ../src/plugins/tool/MediaManager.py:534
 msgid ""
 "This tool allows converting absolute media paths to a relative path. The "
 "relative path is relative viz-a-viz the base path as given in the "
@@ -11910,57 +11917,56 @@ msgstr ""
 "属性中给出，或者未设定的前提下，是用户的目录. 一个相对路径允许将文件位置和基"
 "本路径绑定，依据你的要求改变."
 
-#: ../src/plugins/tool/MediaManager.py:601
+#: ../src/plugins/tool/MediaManager.py:599
 msgid "Manages batch operations on media files"
 msgstr "管理关于媒介文件的批次操作"
 
-#: ../src/plugins/tool/NotRelated.py:63
+#: ../src/plugins/tool/NotRelated.py:64
 msgid "manual|Not_Related..."
 msgstr ""
 
-#: ../src/plugins/tool/NotRelated.py:79
+#: ../src/plugins/tool/NotRelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
 msgstr "与 \"%s\"  无关联"
 
-#: ../src/plugins/tool/NotRelated.py:162
+#: ../src/plugins/tool/NotRelated.py:163
 #, python-format
 msgid "Everyone in the database is related to %s"
 msgstr "数据库中所有人均和%s相关"
 
-#: ../src/plugins/tool/NotRelated.py:234
-#, python-format
-msgid "Setting marker for %d people"
-msgstr "为%d 人 设定标记"
+#. TRANS: no singular form needed, as rows is always > 1
+#: ../src/plugins/tool/NotRelated.py:236
+#, fuzzy, python-format
+msgid "Setting marker for %d person"
+msgid_plural "Setting marker for %d people"
+msgstr[0] "为%d 人 设定标记"
 
-#: ../src/plugins/tool/NotRelated.py:266
-#, python-format
-msgid "Finding relationships between %d people"
-msgstr "获取%d 人的关系"
+#. TRANS: No singular form is needed.
+#: ../src/plugins/tool/NotRelated.py:270
+#, fuzzy, python-format
+msgid "Finding relationships between %d person"
+msgid_plural "Finding relationships between %d people"
+msgstr[0] "获取%d 人的关系"
 
-#: ../src/plugins/tool/NotRelated.py:331
-msgid "Looking for 1 person"
-msgstr "寻找1 人"
+#. we have at least 1 "unrelated" person to find
+#: ../src/plugins/tool/NotRelated.py:338
+#, fuzzy, python-format
+msgid "Looking for %d person"
+msgid_plural "Looking for %d people"
+msgstr[0] "寻找1 人"
 
-#: ../src/plugins/tool/NotRelated.py:333
-#, python-format
-msgid "Looking for %d people"
-msgstr ""
+#: ../src/plugins/tool/NotRelated.py:363
+#, fuzzy, python-format
+msgid "Looking up the name of %d person"
+msgid_plural "Looking up the names of %d people"
+msgstr[0] "寻找姓名 1人"
 
-#: ../src/plugins/tool/NotRelated.py:356
-msgid "Looking up the name for 1 person"
-msgstr "寻找姓名 1人"
-
-#: ../src/plugins/tool/NotRelated.py:358
-#, python-format
-msgid "Looking up the names for %d people"
-msgstr ""
-
-#: ../src/plugins/tool/NotRelated.py:442
+#: ../src/plugins/tool/NotRelated.py:449
 msgid "Not Related"
 msgstr "不相关"
 
-#: ../src/plugins/tool/NotRelated.py:446
+#: ../src/plugins/tool/NotRelated.py:453
 msgid "Find people who are not in any way related to the selected person"
 msgstr "找到和所选中的人无任何联系的人"
 
@@ -12128,7 +12134,7 @@ msgstr "未用的对象"
 
 #. Add mark column
 #. Add ignore column
-#: ../src/plugins/tool/RemoveUnused.py:186 ../src/plugins/tool/Verify.py:529
+#: ../src/plugins/tool/RemoveUnused.py:186 ../src/plugins/tool/Verify.py:531
 msgid "Mark"
 msgstr "标记"
 
@@ -12136,11 +12142,11 @@ msgstr "标记"
 msgid "Remove unused objects"
 msgstr "移除未用对象"
 
-#: ../src/plugins/tool/RemoveUnused.py:496
+#: ../src/plugins/tool/RemoveUnused.py:499
 msgid "Remove Unused Objects"
 msgstr "移除未用对象"
 
-#: ../src/plugins/tool/RemoveUnused.py:500
+#: ../src/plugins/tool/RemoveUnused.py:503
 msgid "Removes unused objects from the database"
 msgstr "从数据库中移除未用对象"
 
@@ -12256,332 +12262,349 @@ msgstr ""
 msgid "manual|Verify_the_Data..."
 msgstr "验证数据..."
 
-#: ../src/plugins/tool/Verify.py:225
+#: ../src/plugins/tool/Verify.py:227
 msgid "Database Verify tool"
 msgstr "数据库验证工具"
 
-#: ../src/plugins/tool/Verify.py:475
+#: ../src/plugins/tool/Verify.py:477
 msgid "Database Verification Results"
 msgstr "数据库验证结果"
 
 #. Add column with the warning text
-#: ../src/plugins/tool/Verify.py:540
+#: ../src/plugins/tool/Verify.py:542
 msgid "Warning"
 msgstr "警告"
 
-#: ../src/plugins/tool/Verify.py:620
+#: ../src/plugins/tool/Verify.py:622
 msgid "_Show all"
 msgstr "显示所有人(_S)"
 
-#: ../src/plugins/tool/Verify.py:630 ../src/plugins/tool/verify.glade.h:22
+#: ../src/plugins/tool/Verify.py:632 ../src/plugins/tool/verify.glade.h:22
 msgid "_Hide marked"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:885
+#: ../src/plugins/tool/Verify.py:887
 msgid "Baptism before birth"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:899
+#: ../src/plugins/tool/Verify.py:901
 msgid "Death before baptism"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:913
+#: ../src/plugins/tool/Verify.py:915
 msgid "Burial before birth"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:927
+#: ../src/plugins/tool/Verify.py:929
 msgid "Burial before death"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:941
+#: ../src/plugins/tool/Verify.py:943
 msgid "Death before birth"
 msgstr "出生前死亡"
 
-#: ../src/plugins/tool/Verify.py:955
+#: ../src/plugins/tool/Verify.py:957
 msgid "Burial before baptism"
 msgstr "洗礼前埋葬"
 
-#: ../src/plugins/tool/Verify.py:973
+#: ../src/plugins/tool/Verify.py:975
 msgid "Old age at death"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:994
+#: ../src/plugins/tool/Verify.py:996
 msgid "Multiple parents"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:1011
+#: ../src/plugins/tool/Verify.py:1013
 msgid "Married often"
 msgstr "常结婚"
 
-#: ../src/plugins/tool/Verify.py:1030
+#: ../src/plugins/tool/Verify.py:1032
 msgid "Old and unmarried"
 msgstr "老而未婚"
 
-#: ../src/plugins/tool/Verify.py:1057
+#: ../src/plugins/tool/Verify.py:1059
 msgid "Too many children"
 msgstr "子女过多"
 
-#: ../src/plugins/tool/Verify.py:1072
+#: ../src/plugins/tool/Verify.py:1074
 msgid "Same sex marriage"
 msgstr "同性婚姻"
 
-#: ../src/plugins/tool/Verify.py:1082
+#: ../src/plugins/tool/Verify.py:1084
 msgid "Female husband"
 msgstr "女性丈夫"
 
-#: ../src/plugins/tool/Verify.py:1092
+#: ../src/plugins/tool/Verify.py:1094
 msgid "Male wife"
 msgstr "男性妻子"
 
-#: ../src/plugins/tool/Verify.py:1119
+#: ../src/plugins/tool/Verify.py:1121
 msgid "Husband and wife with the same surname"
 msgstr "夫妇同姓、"
 
-#: ../src/plugins/tool/Verify.py:1144
+#: ../src/plugins/tool/Verify.py:1146
 msgid "Large age difference between spouses"
 msgstr "夫妻年龄差异大"
 
-#: ../src/plugins/tool/Verify.py:1175
+#: ../src/plugins/tool/Verify.py:1177
 msgid "Marriage before birth"
 msgstr "指腹为婚"
 
-#: ../src/plugins/tool/Verify.py:1206
+#: ../src/plugins/tool/Verify.py:1208
 msgid "Marriage after death"
 msgstr "离逝后婚姻"
 
-#: ../src/plugins/tool/Verify.py:1240
+#: ../src/plugins/tool/Verify.py:1242
 msgid "Early marriage"
 msgstr "早婚"
 
-#: ../src/plugins/tool/Verify.py:1272
+#: ../src/plugins/tool/Verify.py:1274
 msgid "Late marriage"
 msgstr "晚婚"
 
-#: ../src/plugins/tool/Verify.py:1333
+#: ../src/plugins/tool/Verify.py:1335
 msgid "Old father"
 msgstr "老父"
 
-#: ../src/plugins/tool/Verify.py:1336
+#: ../src/plugins/tool/Verify.py:1338
 msgid "Old mother"
 msgstr "慈母"
 
-#: ../src/plugins/tool/Verify.py:1378
+#: ../src/plugins/tool/Verify.py:1380
 msgid "Young father"
 msgstr "年轻的父亲"
 
-#: ../src/plugins/tool/Verify.py:1381
+#: ../src/plugins/tool/Verify.py:1383
 msgid "Young mother"
 msgstr "年轻的母亲"
 
-#: ../src/plugins/tool/Verify.py:1420
+#: ../src/plugins/tool/Verify.py:1422
 msgid "Unborn father"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:1423
+#: ../src/plugins/tool/Verify.py:1425
 msgid "Unborn mother"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:1468
+#: ../src/plugins/tool/Verify.py:1470
 msgid "Dead father"
 msgstr "亡父"
 
-#: ../src/plugins/tool/Verify.py:1471
+#: ../src/plugins/tool/Verify.py:1473
 msgid "Dead mother"
 msgstr "亡母"
 
-#: ../src/plugins/tool/Verify.py:1493
+#: ../src/plugins/tool/Verify.py:1495
 msgid "Large year span for all children"
 msgstr "首尾两个孩子相隔的最大年数"
 
-#: ../src/plugins/tool/Verify.py:1515
+#: ../src/plugins/tool/Verify.py:1517
 msgid "Large age differences between children"
 msgstr "孩子的最大年龄差"
 
-#: ../src/plugins/tool/Verify.py:1525
+#: ../src/plugins/tool/Verify.py:1527
 msgid "Disconnected individual"
 msgstr ""
 
-#: ../src/plugins/tool/Verify.py:1547
+#: ../src/plugins/tool/Verify.py:1549
 msgid "Invalid birth date"
 msgstr "无效的出生日期"
 
-#: ../src/plugins/tool/Verify.py:1569
+#: ../src/plugins/tool/Verify.py:1571
 msgid "Invalid death date"
 msgstr "无效死亡日期"
 
-#: ../src/plugins/tool/Verify.py:1583
+#: ../src/plugins/tool/Verify.py:1585
 msgid "Verify the Data"
 msgstr "验证数据"
 
-#: ../src/plugins/tool/Verify.py:1587
+#: ../src/plugins/tool/Verify.py:1589
 msgid "Verifies the data against user-defined tests"
 msgstr ""
 
 #. First is used as default selection.
-#: ../src/plugins/webreport/NarrativeWeb.py:123
+#: ../src/plugins/webreport/NarrativeWeb.py:124
 #: ../src/plugins/webreport/WebCal.py:93
 msgid "Basic-Ash"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:124
+#: ../src/plugins/webreport/NarrativeWeb.py:125
 #: ../src/plugins/webreport/WebCal.py:94
 msgid "Basic-Cypress"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:125
+#: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/plugins/webreport/WebCal.py:95
 msgid "Basic-Lilac"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:126
+#: ../src/plugins/webreport/NarrativeWeb.py:127
 #: ../src/plugins/webreport/WebCal.py:96
 msgid "Basic-Peach"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:127
+#: ../src/plugins/webreport/NarrativeWeb.py:128
 #: ../src/plugins/webreport/WebCal.py:97
 msgid "Basic-Spruce"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:128
+#: ../src/plugins/webreport/NarrativeWeb.py:129
 #: ../src/plugins/webreport/WebCal.py:98
 msgid "Mainz"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:129
+#: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/plugins/webreport/WebCal.py:99
 msgid "Nebraska"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:130
+#: ../src/plugins/webreport/NarrativeWeb.py:131
 #: ../src/plugins/webreport/WebCal.py:100
 msgid "Visually Impaired"
 msgstr "视觉损伤"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:132
+#: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/plugins/webreport/WebCal.py:101
 msgid "No style sheet"
 msgstr ""
 
 #. First is used as default selection.
-#: ../src/plugins/webreport/NarrativeWeb.py:137
+#: ../src/plugins/webreport/NarrativeWeb.py:138
 #: ../src/plugins/webreport/WebCal.py:106
 msgid "Unicode (recommended)"
 msgstr "统一码(推荐)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:189
+#: ../src/plugins/webreport/NarrativeWeb.py:190
 #: ../src/plugins/webreport/WebCal.py:158
 msgid "Standard copyright"
 msgstr "标准版权"
 
 #. This must match _CC
-#: ../src/plugins/webreport/NarrativeWeb.py:190
+#: ../src/plugins/webreport/NarrativeWeb.py:191
 #: ../src/plugins/webreport/WebCal.py:161
 msgid "Creative Commons - By attribution"
 msgstr "创建新属性"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:191
+#: ../src/plugins/webreport/NarrativeWeb.py:192
 #: ../src/plugins/webreport/WebCal.py:162
 msgid "Creative Commons - By attribution, No derivations"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:192
+#: ../src/plugins/webreport/NarrativeWeb.py:193
 #: ../src/plugins/webreport/WebCal.py:163
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:193
+#: ../src/plugins/webreport/NarrativeWeb.py:194
 #: ../src/plugins/webreport/WebCal.py:164
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:194
+#: ../src/plugins/webreport/NarrativeWeb.py:195
 #: ../src/plugins/webreport/WebCal.py:165
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:195
+#: ../src/plugins/webreport/NarrativeWeb.py:196
 #: ../src/plugins/webreport/WebCal.py:166
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:196
+#: ../src/plugins/webreport/NarrativeWeb.py:197
 #: ../src/plugins/webreport/WebCal.py:168
 msgid "No copyright notice"
 msgstr "无版权申明"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:354
+#: ../src/plugins/webreport/NarrativeWeb.py:297
 #: ../src/plugins/webreport/WebCal.py:720
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:364
+#: ../src/plugins/webreport/NarrativeWeb.py:307
 #, python-format
 msgid "Created for <a href=\"%s\">%s</a>"
 msgstr ""
 
+#. An optional link to a home page
+#: ../src/plugins/webreport/NarrativeWeb.py:402
+#: ../src/plugins/webreport/NarrativeWeb.py:1564
+#: ../src/plugins/webreport/WebCal.py:364
+#, fuzzy
+msgid "html|Home"
+msgstr "首页"
+
 #. Note. In old NarrativeWeb.py the content_divid depended on filename.
-#: ../src/plugins/webreport/NarrativeWeb.py:453
-#: ../src/plugins/webreport/NarrativeWeb.py:1605
+#: ../src/plugins/webreport/NarrativeWeb.py:403
+#: ../src/plugins/webreport/NarrativeWeb.py:1539
 msgid "Introduction"
 msgstr "介绍"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:454
-#: ../src/plugins/webreport/NarrativeWeb.py:487
-#: ../src/plugins/webreport/NarrativeWeb.py:490
-#: ../src/plugins/webreport/NarrativeWeb.py:1504
+#: ../src/plugins/webreport/NarrativeWeb.py:404
+#: ../src/plugins/webreport/NarrativeWeb.py:437
+#: ../src/plugins/webreport/NarrativeWeb.py:440
+#: ../src/plugins/webreport/NarrativeWeb.py:1447
+#: ../src/plugins/webreport/NarrativeWeb.py:3664
 msgid "Surnames"
 msgstr "姓"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:457
-#: ../src/plugins/webreport/NarrativeWeb.py:501
-#: ../src/plugins/webreport/NarrativeWeb.py:552
-#: ../src/plugins/webreport/NarrativeWeb.py:1290
-#: ../src/plugins/webreport/NarrativeWeb.py:1755
+#: ../src/plugins/webreport/NarrativeWeb.py:407
+#: ../src/plugins/webreport/NarrativeWeb.py:451
+#: ../src/plugins/webreport/NarrativeWeb.py:504
+#: ../src/plugins/webreport/NarrativeWeb.py:1233
+#: ../src/plugins/webreport/NarrativeWeb.py:1689
 msgid "Gallery"
 msgstr "画廊"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:458
-#: ../src/plugins/webreport/NarrativeWeb.py:1814
+#: ../src/plugins/webreport/NarrativeWeb.py:408
+#: ../src/plugins/webreport/NarrativeWeb.py:1748
 msgid "Download"
 msgstr "下载"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:459
-#: ../src/plugins/webreport/NarrativeWeb.py:1828
+#: ../src/plugins/webreport/NarrativeWeb.py:409
+#: ../src/plugins/webreport/NarrativeWeb.py:1762
 msgid "Contact"
 msgstr "联系"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:612
-#: ../src/plugins/webreport/NarrativeWeb.py:2691
+#: ../src/plugins/webreport/NarrativeWeb.py:566
+#: ../src/plugins/webreport/NarrativeWeb.py:2627
 msgid "Narrative"
 msgstr "叙述"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:624
+#: ../src/plugins/webreport/NarrativeWeb.py:578
 msgid "Weblinks"
 msgstr "网页链接"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:652
+#: ../src/plugins/webreport/NarrativeWeb.py:606
 msgid "Source References"
 msgstr "来源首选项"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:685
+#: ../src/plugins/webreport/NarrativeWeb.py:639
 msgid "Confidence"
 msgstr "秘密，私房生活"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:706
+#: ../src/plugins/webreport/NarrativeWeb.py:660
 msgid "References"
 msgstr "参考"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:792
+#: ../src/plugins/webreport/NarrativeWeb.py:746
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:951
+#: ../src/plugins/webreport/NarrativeWeb.py:760
+#: ../src/plugins/webreport/NarrativeWeb.py:912
+#: ../src/plugins/webreport/NarrativeWeb.py:2127
+#: ../src/plugins/webreport/NarrativeWeb.py:2138
+#, fuzzy
+msgid "Person Firstname|Name"
+msgstr "人员筛选名称:"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:898
 #, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
@@ -12589,172 +12612,187 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1082
+#: ../src/plugins/webreport/NarrativeWeb.py:1029
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1091
-#: ../src/plugins/webreport/NarrativeWeb.py:1526
+#: ../src/plugins/webreport/NarrativeWeb.py:1038
+#: ../src/plugins/webreport/NarrativeWeb.py:1469
 msgid "Letter"
 msgstr "Letter"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1159
-#: ../src/plugins/webreport/NarrativeWeb.py:1403
-#: ../src/plugins/webreport/NarrativeWeb.py:1728
-#: ../src/plugins/webreport/NarrativeWeb.py:2210
+#: ../src/plugins/webreport/NarrativeWeb.py:1039
+#, fuzzy
+msgid "Place name|Name"
+msgstr "地名"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:1102
+#: ../src/plugins/webreport/NarrativeWeb.py:1346
+#: ../src/plugins/webreport/NarrativeWeb.py:1662
+#: ../src/plugins/webreport/NarrativeWeb.py:2146
 msgid "GRAMPS ID"
 msgstr "GRAMPS ID"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1298
+#: ../src/plugins/webreport/NarrativeWeb.py:1241
 msgid "Previous"
 msgstr "向前"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1299
+#: ../src/plugins/webreport/NarrativeWeb.py:1242
 #, python-format
 msgid ""
 "<strong id=\"GalleryCurrent\">%(page_number)d</strong> of <strong id="
 "\"GalleryTotal\">%(total_pages)d</strong>"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1303
+#: ../src/plugins/webreport/NarrativeWeb.py:1246
 msgid "Next"
 msgstr "向后"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1312
-#: ../src/plugins/webreport/NarrativeWeb.py:1390
+#: ../src/plugins/webreport/NarrativeWeb.py:1255
+#: ../src/plugins/webreport/NarrativeWeb.py:1333
 msgid "The file has been moved or deleted"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1409
+#: ../src/plugins/webreport/NarrativeWeb.py:1352
 msgid "File type"
 msgstr "文件类型"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1474
+#: ../src/plugins/webreport/NarrativeWeb.py:1417
 msgid "Missing media object:"
 msgstr "缺失媒介对象"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1508
+#: ../src/plugins/webreport/NarrativeWeb.py:1451
 msgid "Surnames by person count"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1513
+#: ../src/plugins/webreport/NarrativeWeb.py:1456
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1531
+#: ../src/plugins/webreport/NarrativeWeb.py:1474
 msgid "Number of people"
 msgstr "人员数目"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1670
+#: ../src/plugins/webreport/NarrativeWeb.py:1604
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1730
+#: ../src/plugins/webreport/NarrativeWeb.py:1615
+#, fuzzy
+msgid "Source name|Name"
+msgstr "来源笔记"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:1664
 msgid "Publication information"
 msgstr "出版信息"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1761
+#: ../src/plugins/webreport/NarrativeWeb.py:1695
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
 "object&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2025
+#: ../src/plugins/webreport/NarrativeWeb.py:1703
+#, fuzzy
+msgid "Media|Name"
+msgstr "媒介笔记"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:1961
 msgid "Ancestors"
 msgstr "祖先"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2239
+#: ../src/plugins/webreport/NarrativeWeb.py:2175
 msgid "Age at Death"
 msgstr "死亡年龄"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2264
+#: ../src/plugins/webreport/NarrativeWeb.py:2200
 msgid "event|Type"
 msgstr "事件类型"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2504
+#: ../src/plugins/webreport/NarrativeWeb.py:2440
 msgid "Half Siblings"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2583
+#: ../src/plugins/webreport/NarrativeWeb.py:2519
 msgid "Step Siblings"
 msgstr "继兄弟姐妹"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2756
+#: ../src/plugins/webreport/NarrativeWeb.py:2692
 #, python-format
 msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2758
+#: ../src/plugins/webreport/NarrativeWeb.py:2694
 #, python-format
 msgid "<span class=\"preposition\">at</span> %(place)s"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2775
+#: ../src/plugins/webreport/NarrativeWeb.py:2711
 #, python-format
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br />%(type)s: %(value)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2911
+#: ../src/plugins/webreport/NarrativeWeb.py:2847
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "%s 和 %s 都不是目录"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2918
-#: ../src/plugins/webreport/NarrativeWeb.py:2922
-#: ../src/plugins/webreport/NarrativeWeb.py:2935
-#: ../src/plugins/webreport/NarrativeWeb.py:2939
+#: ../src/plugins/webreport/NarrativeWeb.py:2854
+#: ../src/plugins/webreport/NarrativeWeb.py:2858
+#: ../src/plugins/webreport/NarrativeWeb.py:2871
+#: ../src/plugins/webreport/NarrativeWeb.py:2875
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "无法创建目录:%s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2944
+#: ../src/plugins/webreport/NarrativeWeb.py:2880
 msgid "Invalid file name"
 msgstr "无效文件名"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2945
+#: ../src/plugins/webreport/NarrativeWeb.py:2881
 msgid "The archive file must be a file, not a directory"
 msgstr "文献文件必须是文件，不是目录"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2954
+#: ../src/plugins/webreport/NarrativeWeb.py:2890
 msgid "Narrated Web Site Report"
 msgstr "引用网站报告"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3045
+#: ../src/plugins/webreport/NarrativeWeb.py:2981
 msgid "Creating individual pages"
 msgstr "创建个人页面"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3066
+#: ../src/plugins/webreport/NarrativeWeb.py:3002
 msgid "Creating surname pages"
 msgstr "创建族姓页面"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3078
+#: ../src/plugins/webreport/NarrativeWeb.py:3014
 msgid "Creating source pages"
 msgstr "创建来源页面"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3089
+#: ../src/plugins/webreport/NarrativeWeb.py:3025
 msgid "Creating place pages"
 msgstr "创建地址页"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3100
+#: ../src/plugins/webreport/NarrativeWeb.py:3036
 msgid "Creating media pages"
 msgstr "创建媒介页面"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3289
+#: ../src/plugins/webreport/NarrativeWeb.py:3236
 #: ../src/plugins/webreport/WebCal.py:259
 msgid "Possible destination error"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3290
+#: ../src/plugins/webreport/NarrativeWeb.py:3237
 #: ../src/plugins/webreport/WebCal.py:260
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -12763,287 +12801,293 @@ msgid ""
 "pages."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3330
+#: ../src/plugins/webreport/NarrativeWeb.py:3277
 msgid "Store web pages in .tar.gz archive"
 msgstr "以 .tar.gz 存档网页"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3332
+#: ../src/plugins/webreport/NarrativeWeb.py:3279
 msgid "Whether to store the web pages in an archive file"
 msgstr "是否以存档文件保存网页"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3337
+#: ../src/plugins/webreport/NarrativeWeb.py:3284
 #: ../src/plugins/webreport/WebCal.py:1112
 msgid "Destination"
 msgstr "目的地"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3339
+#: ../src/plugins/webreport/NarrativeWeb.py:3286
 #: ../src/plugins/webreport/WebCal.py:1114
 msgid "The destination directory for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3345
+#: ../src/plugins/webreport/NarrativeWeb.py:3292
 msgid "Web site title"
 msgstr "网站标题"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3345
+#: ../src/plugins/webreport/NarrativeWeb.py:3292
 msgid "My Family Tree"
 msgstr "我的家庭树"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3346
+#: ../src/plugins/webreport/NarrativeWeb.py:3293
 msgid "The title of the web site"
 msgstr "网站标题"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3351
+#: ../src/plugins/webreport/NarrativeWeb.py:3298
 msgid "Select filter to restrict people that appear on web site"
 msgstr "选择过滤器限制出现在日历上的成员"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3362
+#: ../src/plugins/webreport/NarrativeWeb.py:3309
 #: ../src/plugins/webreport/WebCal.py:1135
 msgid "File extension"
 msgstr "文件扩展"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3365
+#: ../src/plugins/webreport/NarrativeWeb.py:3312
 #: ../src/plugins/webreport/WebCal.py:1138
 msgid "The extension to be used for the web files"
 msgstr "用于网页文件的扩展"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3368
+#: ../src/plugins/webreport/NarrativeWeb.py:3315
 #: ../src/plugins/webreport/WebCal.py:1141
 msgid "Copyright"
 msgstr "版权"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3371
+#: ../src/plugins/webreport/NarrativeWeb.py:3318
 #: ../src/plugins/webreport/WebCal.py:1144
 msgid "The copyright to be used for the web files"
 msgstr "用于网页文件的版权"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3374
+#: ../src/plugins/webreport/NarrativeWeb.py:3321
 #: ../src/plugins/webreport/WebCal.py:1147
 msgid "Character set encoding"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3377
+#: ../src/plugins/webreport/NarrativeWeb.py:3324
 #: ../src/plugins/webreport/WebCal.py:1151
 msgid "The encoding to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3380
+#: ../src/plugins/webreport/NarrativeWeb.py:3327
 #: ../src/plugins/webreport/WebCal.py:1155
 msgid "StyleSheet"
 msgstr "形式列表"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3383
+#: ../src/plugins/webreport/NarrativeWeb.py:3330
 msgid "The stylesheet to be used for the web page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3386
+#: ../src/plugins/webreport/NarrativeWeb.py:3333
 msgid "Include ancestor graph"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3387
+#: ../src/plugins/webreport/NarrativeWeb.py:3334
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3392
+#: ../src/plugins/webreport/NarrativeWeb.py:3339
 msgid "Graph generations"
 msgstr "图形后代"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3397
+#: ../src/plugins/webreport/NarrativeWeb.py:3344
 msgid "The number of generations to include in the ancestor graph"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3407
+#: ../src/plugins/webreport/NarrativeWeb.py:3354
 msgid "Page Generation"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3409
+#: ../src/plugins/webreport/NarrativeWeb.py:3356
 msgid "Home page note"
 msgstr "主页注释"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3410
+#: ../src/plugins/webreport/NarrativeWeb.py:3357
 msgid "A note to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3413
+#: ../src/plugins/webreport/NarrativeWeb.py:3360
 msgid "Home page image"
 msgstr "主页图像"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3414
+#: ../src/plugins/webreport/NarrativeWeb.py:3361
 msgid "An image to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3417
+#: ../src/plugins/webreport/NarrativeWeb.py:3364
 msgid "Introduction note"
 msgstr "介绍注释"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3418
+#: ../src/plugins/webreport/NarrativeWeb.py:3365
 msgid "A note to be used as the introduction"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3421
+#: ../src/plugins/webreport/NarrativeWeb.py:3368
 msgid "Introduction image"
 msgstr "介绍图片"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3422
+#: ../src/plugins/webreport/NarrativeWeb.py:3369
 msgid "An image to be used as the introduction"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3425
+#: ../src/plugins/webreport/NarrativeWeb.py:3372
 msgid "Publisher contact note"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3426
+#: ../src/plugins/webreport/NarrativeWeb.py:3373
 msgid "A note to be used as the publisher contact"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3429
+#: ../src/plugins/webreport/NarrativeWeb.py:3376
 msgid "Publisher contact image"
 msgstr "出版者联系图像"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3430
+#: ../src/plugins/webreport/NarrativeWeb.py:3377
 msgid "An image to be used as the publisher contact"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3433
+#: ../src/plugins/webreport/NarrativeWeb.py:3380
 msgid "HTML user header"
 msgstr "HTML 用户 标题"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3434
+#: ../src/plugins/webreport/NarrativeWeb.py:3381
 msgid "A note to be used as the page header"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3437
+#: ../src/plugins/webreport/NarrativeWeb.py:3384
 msgid "HTML user footer"
 msgstr "HTML用户页脚"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3438
+#: ../src/plugins/webreport/NarrativeWeb.py:3385
 msgid "A note to be used as the page footer"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3441
+#: ../src/plugins/webreport/NarrativeWeb.py:3388
 msgid "Include images and media objects"
 msgstr "包含图像和媒介对象"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3442
+#: ../src/plugins/webreport/NarrativeWeb.py:3389
 msgid "Whether to include a gallery of media objects"
 msgstr "是否 包含媒介对象的画廊"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3445
+#: ../src/plugins/webreport/NarrativeWeb.py:3392
 msgid "Include download page"
 msgstr "包含下载页面"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3446
+#: ../src/plugins/webreport/NarrativeWeb.py:3393
 msgid "Whether to include a database download option"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3449
+#: ../src/plugins/webreport/NarrativeWeb.py:3396
 msgid "Suppress GRAMPS ID"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3450
+#: ../src/plugins/webreport/NarrativeWeb.py:3397
 msgid "Whether to include the Gramps ID of objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3457
+#: ../src/plugins/webreport/NarrativeWeb.py:3404
 msgid "Privacy"
 msgstr "隐私"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3459
+#: ../src/plugins/webreport/NarrativeWeb.py:3406
 msgid "Include records marked private"
 msgstr "包含标记为私有的记录"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3460
+#: ../src/plugins/webreport/NarrativeWeb.py:3407
 msgid "Whether to include private objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3463
+#: ../src/plugins/webreport/NarrativeWeb.py:3410
 msgid "Living People"
 msgstr "健在的人员"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3466
+#: ../src/plugins/webreport/NarrativeWeb.py:3413
 msgid "Exclude"
 msgstr "排除"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3468
+#: ../src/plugins/webreport/NarrativeWeb.py:3415
 msgid "Include Last Name Only"
 msgstr "仅包含名"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3470
+#: ../src/plugins/webreport/NarrativeWeb.py:3417
 msgid "Include Full Name Only"
 msgstr "仅包含全名"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3473
+#: ../src/plugins/webreport/NarrativeWeb.py:3420
 msgid "How to handle living people"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3477
+#: ../src/plugins/webreport/NarrativeWeb.py:3424
 msgid "Years from death to consider living"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3479
+#: ../src/plugins/webreport/NarrativeWeb.py:3426
 msgid ""
 "This allows you to restrict information on people who have not been dead for "
 "very long"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3491
+#: ../src/plugins/webreport/NarrativeWeb.py:3438
 msgid "Advanced"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3493
+#: ../src/plugins/webreport/NarrativeWeb.py:3440
 msgid "Include link to home person on every page"
 msgstr "每页都包含与家主的连接"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3495
+#: ../src/plugins/webreport/NarrativeWeb.py:3442
 msgid "Whether to include a link to the home person"
 msgstr "是否包含与家主的链接"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3498
+#: ../src/plugins/webreport/NarrativeWeb.py:3445
 msgid "Include a column for birth dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3500
+#: ../src/plugins/webreport/NarrativeWeb.py:3447
 msgid "Whether to include a birth column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3503
+#: ../src/plugins/webreport/NarrativeWeb.py:3450
 msgid "Include a column for death dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3505
+#: ../src/plugins/webreport/NarrativeWeb.py:3452
 msgid "Whether to include a death column"
 msgstr "是否包含一个死亡的项目"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3508
+#: ../src/plugins/webreport/NarrativeWeb.py:3455
 msgid "Include a column for partners on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3510
+#: ../src/plugins/webreport/NarrativeWeb.py:3457
 msgid "Whether to include a partners column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3513
+#: ../src/plugins/webreport/NarrativeWeb.py:3460
 msgid "Include a column for parents on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3515
+#: ../src/plugins/webreport/NarrativeWeb.py:3462
 msgid "Whether to include a parents column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3518
+#: ../src/plugins/webreport/NarrativeWeb.py:3465
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3521
+#: ../src/plugins/webreport/NarrativeWeb.py:3468
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3665
+#: ../src/plugins/webreport/NarrativeWeb.py:3667
+#: ../src/plugins/webreport/NarrativeWeb.py:3670
+#, fuzzy, python-format
+msgid " starting with %s"
+msgstr "开始导入, %s"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:3690
 msgid "Narrated Web Site"
 msgstr "引用网站"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3669
+#: ../src/plugins/webreport/NarrativeWeb.py:3694
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr ""
 
@@ -13337,9 +13381,10 @@ msgstr ""
 msgid "%s old"
 msgstr "粗体"
 
-#: ../src/plugins/webreport/WebCal.py:1452
-msgid ", <em>"
-msgstr ", ，，，，<em>"
+#: ../src/plugins/webreport/WebCal.py:1453
+#, fuzzy
+msgid "birth"
+msgstr "出生"
 
 #: ../src/plugins/webreport/WebCal.py:1460
 #, python-format
@@ -13416,36 +13461,36 @@ msgstr "风格编辑器"
 msgid "_Apply"
 msgstr "应用(_A)"
 
-#: ../src/PluginUtils/_PluginDialogs.py:264
+#: ../src/PluginUtils/_PluginDialogs.py:259
 msgid "Report Selection"
 msgstr ""
 
-#: ../src/PluginUtils/_PluginDialogs.py:265 ../src/glade/plugins.glade.h:4
+#: ../src/PluginUtils/_PluginDialogs.py:260 ../src/glade/plugins.glade.h:4
 msgid "Select a report from those available on the left."
 msgstr ""
 
-#: ../src/PluginUtils/_PluginDialogs.py:266
+#: ../src/PluginUtils/_PluginDialogs.py:261
 msgid "_Generate"
 msgstr "生成(_G)"
 
-#: ../src/PluginUtils/_PluginDialogs.py:266
+#: ../src/PluginUtils/_PluginDialogs.py:261
 msgid "Generate selected report"
 msgstr "生成选定报表"
 
-#: ../src/PluginUtils/_PluginDialogs.py:297
+#: ../src/PluginUtils/_PluginDialogs.py:292
 msgid "Tool Selection"
 msgstr "工具选择"
 
-#: ../src/PluginUtils/_PluginDialogs.py:298
+#: ../src/PluginUtils/_PluginDialogs.py:293
 msgid "Select a tool from those available on the left."
 msgstr ""
 
-#: ../src/PluginUtils/_PluginDialogs.py:299
+#: ../src/PluginUtils/_PluginDialogs.py:294
 #: ../src/plugins/tool/verify.glade.h:25
 msgid "_Run"
 msgstr "运行(_R)"
 
-#: ../src/PluginUtils/_PluginDialogs.py:300
+#: ../src/PluginUtils/_PluginDialogs.py:295
 msgid "Run selected tool"
 msgstr "运行选定工具"
 
@@ -13731,7 +13776,7 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:824
-msgid "Compressed Structured Vector Graphs (SVG)"
+msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:830
@@ -18814,7 +18859,7 @@ msgstr "日期"
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/Filters/Rules/Event/_HasData.py:47
-#: ../src/FilterEditor/_EditRule.py:454
+#: ../src/FilterEditor/_EditRule.py:452
 msgid "Place:"
 msgstr "地点:"
 
@@ -18857,7 +18902,7 @@ msgstr "事件过滤器"
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
-#: ../src/FilterEditor/_EditRule.py:466
+#: ../src/FilterEditor/_EditRule.py:464
 msgid "ID:"
 msgstr "ID:"
 
@@ -18892,12 +18937,12 @@ msgid "Matches objects whose notes contain text matching a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:460
+#: ../src/FilterEditor/_EditRule.py:458
 msgid "Reference count must be:"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:456
+#: ../src/FilterEditor/_EditRule.py:454
 msgid "Reference count:"
 msgstr ""
 
@@ -18911,13 +18956,13 @@ msgstr ""
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
-#: ../src/FilterEditor/_EditRule.py:485
+#: ../src/FilterEditor/_EditRule.py:483
 msgid "Case sensitive:"
 msgstr "区分大小写:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
-#: ../src/FilterEditor/_EditRule.py:487
+#: ../src/FilterEditor/_EditRule.py:485
 msgid "Regular-Expression matching:"
 msgstr "正则表达式匹配:"
 
@@ -18945,7 +18990,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:46
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:45
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
-#: ../src/FilterEditor/_EditRule.py:471
+#: ../src/FilterEditor/_EditRule.py:469
 msgid "Filter name:"
 msgstr "筛选名称:"
 
@@ -18965,11 +19010,11 @@ msgstr ""
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
 msgstr ""
 
-#: ../src/Filters/Rules/_Rule.py:40
+#: ../src/Filters/Rules/_Rule.py:41
 msgid "Miscellaneous filters"
 msgstr ""
 
-#: ../src/Filters/Rules/_Rule.py:41 ../src/glade/rule.glade.h:19
+#: ../src/Filters/Rules/_Rule.py:42 ../src/glade/rule.glade.h:19
 msgid "No description"
 msgstr ""
 
@@ -19024,13 +19069,13 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:457
+#: ../src/FilterEditor/_EditRule.py:455
 msgid "Number of instances:"
 msgstr "例子的数量"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:462
+#: ../src/FilterEditor/_EditRule.py:460
 msgid "Number must be:"
 msgstr "需要一定是:"
 
@@ -19295,7 +19340,7 @@ msgid "Matches people with a certain number of items in the source"
 msgstr "匹配在来源中拥有特定数量栏目的人"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
-#: ../src/FilterEditor/_EditRule.py:469
+#: ../src/FilterEditor/_EditRule.py:467
 msgid "Source ID:"
 msgstr "来源 ID:"
 
@@ -19358,7 +19403,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:483
+#: ../src/FilterEditor/_EditRule.py:481
 msgid "Inclusive:"
 msgstr ""
 
@@ -19438,7 +19483,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:464
+#: ../src/FilterEditor/_EditRule.py:462
 msgid "Number of generations:"
 msgstr "后代数目"
 
@@ -19539,7 +19584,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:51
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
-#: ../src/FilterEditor/_EditRule.py:477
+#: ../src/FilterEditor/_EditRule.py:475
 msgid "Event filter name:"
 msgstr "事件过滤条件:"
 
@@ -20056,12 +20101,12 @@ msgstr "匹配特定筛选名称的事件"
 
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:475
+#: ../src/FilterEditor/_EditRule.py:473
 msgid "Person filter name:"
 msgstr "人员筛选名称:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:489
+#: ../src/FilterEditor/_EditRule.py:487
 msgid "Include Family events:"
 msgstr "包含家庭事件:"
 
@@ -20074,7 +20119,7 @@ msgid "Matches events of persons matched by the specified person filter name"
 msgstr "匹配特定人员筛选名称的人员事件"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
-#: ../src/FilterEditor/_EditRule.py:479
+#: ../src/FilterEditor/_EditRule.py:477
 msgid "Source filter name:"
 msgstr "来源筛选名称:"
 
@@ -20702,11 +20747,11 @@ msgstr "任何"
 msgid "example: \"%s\" or \"%s\""
 msgstr "例子: \"%s\" 或 \"%s\""
 
-#: ../src/Filters/SideBar/_SidebarFilter.py:54
+#: ../src/Filters/SideBar/_SidebarFilter.py:53
 msgid "<b>Filter</b>"
 msgstr "<b>筛选</b>"
 
-#: ../src/Filters/SideBar/_SidebarFilter.py:77
+#: ../src/Filters/SideBar/_SidebarFilter.py:76
 msgid "Reset"
 msgstr "重设"
 
@@ -20813,36 +20858,36 @@ msgstr "不是一个有效的ID"
 msgid "Select..."
 msgstr "选择..."
 
-#: ../src/FilterEditor/_EditRule.py:268
+#: ../src/FilterEditor/_EditRule.py:267
 #, python-format
 msgid "Select %s from a list"
 msgstr "从列表中选择 %s"
 
-#: ../src/FilterEditor/_EditRule.py:333
+#: ../src/FilterEditor/_EditRule.py:331
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:484
+#: ../src/FilterEditor/_EditRule.py:482
 msgid "Include original person"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:486
+#: ../src/FilterEditor/_EditRule.py:484
 msgid "Use exact case of letters"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:488
+#: ../src/FilterEditor/_EditRule.py:486
 msgid "Use regular expression"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:490
+#: ../src/FilterEditor/_EditRule.py:488
 msgid "Also family events where person is wife/husband"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:504
+#: ../src/FilterEditor/_EditRule.py:502
 msgid "Rule Name"
 msgstr "规则名称"
 
-#: ../src/FilterEditor/_EditRule.py:616 ../src/FilterEditor/_EditRule.py:627
+#: ../src/FilterEditor/_EditRule.py:614 ../src/FilterEditor/_EditRule.py:625
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "无规则被选中"
@@ -20851,29 +20896,29 @@ msgstr "无规则被选中"
 msgid "Filter Test"
 msgstr "过滤测试"
 
-#: ../src/widgets/buttons.py:149
+#: ../src/widgets/buttons.py:148
 msgid "Record is private"
 msgstr ""
 
-#: ../src/widgets/buttons.py:154
+#: ../src/widgets/buttons.py:153
 msgid "Record is public"
 msgstr ""
 
-#: ../src/widgets/expandcollapsearrow.py:82
+#: ../src/widgets/expandcollapsearrow.py:81
 msgid "Expand this section"
 msgstr "展开本段"
 
-#: ../src/widgets/expandcollapsearrow.py:85
+#: ../src/widgets/expandcollapsearrow.py:84
 msgid "Collapse this section"
 msgstr ""
 
-#: ../src/widgets/labels.py:92
+#: ../src/widgets/labels.py:91
 msgid ""
 "Click to make the active person\n"
 "Right click to display the edit menu"
 msgstr ""
 
-#: ../src/widgets/labels.py:95
+#: ../src/widgets/labels.py:94
 msgid "Edit icons can be enabled in the Preferences dialog"
 msgstr ""
 
@@ -22871,6 +22916,15 @@ msgid ""
 "file types to your GRAMPS family tree."
 msgstr ""
 "你可以连接任何电子媒介（包括非文本信息）和其他文档形式到你的GRAMPS家庭树."
+
+#~ msgid "Jump to father"
+#~ msgstr "跳转到父亲"
+
+#~ msgid "Jump to mother"
+#~ msgstr "跳转到母亲"
+
+#~ msgid ", <em>"
+#~ msgstr ", ，，，，<em>"
 
 #~ msgid "Danger: This is unstable code!"
 #~ msgstr "危险：这是一个不稳定的代码！"
