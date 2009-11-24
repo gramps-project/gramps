@@ -412,14 +412,13 @@ class BasePage(object):
         if format == 1:
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
-            #FIXME: following split should be regex to match \n\s*\n instead?
-            htmllist += Html("pre", indent=None) + \
-                (l + str(Html('br')) for l in markuptext.split('\n'))
+            htmllist += Html("pre", indent=None) + markuptext.split('\n')
 
         elif format == 0:
-            #flowed
-            #FIXME: following split should be regex to match \n\s*\n instead?
-            htmllist.extend(Html('p') + para for para in markuptext.split("\n\n"))
+            #flowed, use \n\n for paragraph detection
+            htmllist.extend(
+                (Html('p') + para.split('\n'))
+                    for para in markuptext.split("\n\n"))
 
         return htmllist
 
@@ -751,8 +750,9 @@ class BasePage(object):
                         addr_data_row.append(["Sources",    self.get_citation_links(
                             address.get_source_references() )])
 
-                    trow.extend(Html("td", v or "&nbsp;", class_="Column" + c, inline=True)
-                                for c, v in addr_data_row)
+                    trow.extend(
+                        Html("td", value or "&nbsp;", class_="Column" + colclass, inline=True)
+                        for colclass, value in addr_data_row)
                     
                     # address: notelist
                     if showsrc is not None:
@@ -1223,11 +1223,6 @@ class BasePage(object):
 
                 if note:
                     note_text = self.get_note_format(note)
-                    try:
-                        note_text = unicode(note_text)
-                    except UnicodeDecodeError:
-                        print "unicode(note_text) exception"
-                        note_text = unicode(str(note_text), errors='replace')
 
                     # add section title
                     section += Html("h4", _("Narrative"), inline=True)
@@ -1666,7 +1661,7 @@ class IndividualListPage(BasePage):
                         trow.attr = 'class = "BeginSurname"'
                         if surname:
                             tcell += Html("a", surname, name = letter, 
-                                title = "Surname with letter %s" % letter)
+                                title = "Surname with letter " + letter)
                         else:
                             tcell += "&nbsp;"
                     else:
@@ -2638,8 +2633,7 @@ class MediaPage(BasePage):
 
     def display_media_sources(self, photo):
 
-        for sref in photo.get_source_references():
-            self.bibli.add_reference(sref)
+        map(self.bibli.add_reference, photo.get_source_references())
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return source references to its callers
@@ -2761,9 +2755,8 @@ class SurnameListPage(BasePage):
                             index_val = "%90d_%s" % (999999999-len(data_list), surname)
                             temp_list[index_val] = (surname, data_list)
 
-                        person_handle_list = []
-                        for key in sorted(temp_list, key = locale.strxfrm):
-                            person_handle_list.append(temp_list[key])
+                        person_handle_list = (temp_list[key]
+                            for key in sorted(temp_list, key = locale.strxfrm))
 
                     last_letter = ''
                     last_surname = ''
@@ -2782,7 +2775,7 @@ class SurnameListPage(BasePage):
 
                             tcell = ( Html("td", class_ = "ColumnLetter") +
                                 Html("a", last_letter, name = last_letter, 
-                                    title = "Surnames with letter %s" % last_letter, inline = True)
+                                    title = "Surnames with letter " + last_letter, inline = True)
                                 )
                             trow += tcell
 
@@ -2928,13 +2921,14 @@ class SourceListPage(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                for (label, colclass) in [
-                    (None,                  "RowLabel"),
-                    (_("Source Name|Name"), "Name") ]:
+                header_row = [
+                    (None, "RowLabel"),
+                    (_("Source Name|Name"), "Name") ]
 
-                    label = label or "&nbsp;"
-                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
-   
+                trow.extend(
+                    Html("th", label or "&nbsp;", class_ = "Column" + colclass, inline = True)
+                    for (label, colclass) in header_row)
+                    
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
@@ -3168,12 +3162,15 @@ class DownloadPage(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                for (label, colclass) in [
-                    (_("File Name"),        "Filename"),
-                    (DESCRHEAD,             "Description"),
-                    (_("License"),          "License"),
-                    (_("Last Modified"),    "Modified") ]:  
-                    trow += Html("th", label, class_ = colclass, inline = True)
+                header_row = [
+                    (_("File Name"),     "Filename"),
+                    (DESCRHEAD,          "Description"),
+                    (_("License"),       "License"),
+                    (_("Last Modified"), "Modified") ]
+
+                trow.extend(
+                    Html("th", label, class_ = colclass, inline = True)
+                    for (label, colclass) in header_row)
 
                 # if dlfname1 is not None, show it???
                 if dlfname1:
@@ -3575,8 +3572,7 @@ class IndividualPage(BasePage):
         will create the "Source References" section for a person 
         """
 
-        for sref in self.person.get_source_references():
-            self.bibli.add_reference(sref)
+        map(self.bibli.add_reference, self.person.get_source_references())
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return to its callers
@@ -3601,13 +3597,13 @@ class IndividualPage(BasePage):
                 thead += trow
 
                 assoc_row = [
-                    (_('Relationship'),               'Relationship'),
-                    (SHEAD,                              'Sources'),
-                    (NHEAD,                              'Notes') ]
+                    (_('Relationship'), 'Relationship'),
+                    (SHEAD,             'Sources'),
+                    (NHEAD,             'Notes') ]
 
-                for (label, colclass) in assoc_row:
-                    trow += Html("th", label, class_ = "Column%s" % colclass, 
-                        inline = True)
+                trow.extend(
+                    Html("th", label, class_="Column" + colclass, inline=True)
+                    for (label, colclass) in assoc_row)
 
                 tbody = Html("tbody")
                 table += tbody
@@ -3626,7 +3622,7 @@ class IndividualPage(BasePage):
                         # get colclass from assoc_row
                         colclass = assoc_row[index][1]
 
-                        trow += Html("td", data, class_ = "Column%s" % colclass, 
+                        trow += Html("td", data, class_ = "Column" + colclass, 
                             inline = True)  
                         index += 1
 
@@ -4023,9 +4019,7 @@ class IndividualPage(BasePage):
                         first = False
                         if len(child_ref_list) > 1:
                             childlist = [child_ref.ref for child_ref in child_ref_list]
-                            for child_handle in childlist:
-                                sibling.add(child_handle)   # remember that 
-                                                            # we've already "seen" this child
+                            sibling.update(childlist)
 
                     # now that we have all natural siblings, display them...    
                     if sibling:
@@ -4041,18 +4035,17 @@ class IndividualPage(BasePage):
                         tcell += ordered 
 
                         if birthorder:
-                            kids = []
                             kids = sorted(add_birthdate(db, sibling))
-
-                            for birth_date, child_handle in kids:
-                                if child_handle != self.person.handle:
-                                    ordered += self.display_child_link(child_handle)
+                            ordered.extend(
+                                self.display_child_link(child_handle)
+                                    for birth_date, child_handle in kids
+                                        if child_handle != self.person.handle)
 
                         else:
-
-                            for child_handle in sibling:
-                                if child_handle != self.person.handle:
-                                    ordered += self.display_child_link(child_handle)
+                            ordered.extend(
+                                self.display_child_link(child_handle)
+                                    for child_handle in sibling
+                                        if child_handle != self.person.handle)
 
                     # Also try to identify half-siblings
                     half_siblings = set()
@@ -4100,16 +4093,13 @@ class IndividualPage(BasePage):
                         tcell += ordered
 
                         if birthorder:
-                            kids = []
                             kids = sorted(add_birthdate(db, half_siblings))
 
-                            for birth_date, child_handle in kids:
-                                ordered += self.display_child_link(child_handle)
-
+                            ordered.extend(
+                                self.display_child_link(child_handle)
+                                for birth_date, child_handle in kids)
                         else:
-
-                            for child_handle in half_siblings:
-                                ordered += self.display_child_link(child_handle)
+                            ordered += map(self.display_child_link, half_siblings)
 
                     # get step-siblings
                     if showallsiblings:
@@ -4195,13 +4185,13 @@ class IndividualPage(BasePage):
                                 kids = []
                                 kids = sorted(add_birthdate(db, step_siblings))
 
-                                for birth_date, child_handle in kids:
-                                    ordered += self.display_child_link(child_handle)
+                                ordered.extend(
+                                    self.display_child_link(child_handle)
+                                        for birth_date, child_handle in kids)
 
                             else:
- 
-                                for child_handle in step_siblings:
-                                    ordered += self.display_child_link(child_handle)
+                                ordered += map(self.display_child_link,
+                                                                step_siblings)
 
         # return parents division to its caller
         return section
@@ -4246,15 +4236,13 @@ class IndividualPage(BasePage):
                         childlist = [child_ref.ref for child_ref in childlist]
 
                         if self.report.options['birthorder']:
-                            kids = []
                             kids = sorted(add_birthdate(db, childlist))
 
-                            for birth_date, child_handle in kids:
-                                ordered += self.display_child_link(child_handle)
+                            ordered.extend(
+                                self.display_child_link(child_handle)
+                                    for birth_date, child_handle in kids)
                         else:
-
-                            for child_handle in childlist:
-                                ordered += self.display_child_link(child_handle)
+                            ordered += map(self.display_child_link, childlist)
 
                     # family LDS ordinance list
                     famldslist = family.lds_ord_list
@@ -4401,8 +4389,9 @@ class IndividualPage(BasePage):
             event_header_row.append((NHEAD, "Notes"))
 
         trow = Html("tr")
-        for (label, colclass) in event_header_row:
-            trow += Html("th", label, class_ = "Column%s" % colclass, inline = True) 
+        trow.extend(
+            Html("th", label, class_ = "Column" + colclass, inline = True)
+            for (label, colclass) in event_header_row)
 
         # return header row to its callers
         return trow
@@ -4627,13 +4616,16 @@ class AddressBookListPage(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                for (label, colclass) in [
+                header_row = [
                     ["&nbsp;",       "RowLabel"],
                     [_("Name"),      "Name"],
                     [_("Address"),   "Address"],
                     [_("Residence"), "Residence"],
-                    [_("Web Links"), "WebLinks"] ]:
-                    trow += Html("th", label, class_ = "Column%s" % colclass, inline = True)
+                    [_("Web Links"), "WebLinks"] ]
+
+                trow.extend(
+                    Html("th", label, class_="Column" + colclass, inline=True)
+                    for (label, colclass) in header_row)
 
                 tbody = Html("tbody")
                 table += tbody
@@ -4674,15 +4666,17 @@ class AddressBookListPage(BasePage):
                     trow = Html("tr")
                     tbody += trow
 
-                    for (colclass, data) in [
+                    header_row = [
                         ["RowLabel",  index],
                         ["Name",      self.addressbook_link(person_handle)],
                         ["Address",   address],
                         ["Residence", residence],
-                        ["WebLinks",  weblinks] ]:
-                        data = data or "&nbsp;"
+                        ["WebLinks",  weblinks] ]
  
-                        trow += Html("td", data, class_ = "Column%s" % colclass, inline = True)
+                    trow.extend(
+                        Html("td", data or "&nbsp;",
+                            class_="Column" + colclass, inline=True)
+                        for (colclass, data) in header_row)
 
                 # create totals row for table
                 trow = Html("tr", class_ = "Totals") + (
@@ -5265,10 +5259,7 @@ class NavWebReport(Report):
         index = 1
         for photo_handle in photo_keys:
             gc.collect() # Reduce memory usage when there are many images.
-            if index == total:
-                next = None
-            else:
-                next = photo_keys[index]
+            next = None if index == total else photo_keys[index]
             # Notice. Here self.photo_list[photo_handle] is used not self.photo_list
             MediaPage(self, self.title, photo_handle, source_list, self.photo_list[photo_handle],
                       (prev, next, index, total))
@@ -6119,11 +6110,7 @@ def _has_webpage_extension(url):
 
     url = filename to be checked
     """
-
-    for ext in _WEB_EXT:
-        if url.endswith(ext):
-            return True
-    return False
+    return any(url.endswith(ext) for ext in _WEB_EXT) 
 
 def get_event_type(event, event_ref):
     """ return the type of an event """
