@@ -24811,1434 +24811,1874 @@ msgstr ""
 "Vous pouvez relier un media électronique (comprenant les informations sans "
 "texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
-#~ msgid "All Names of All People"
-#~ msgstr "Tous les noms pour tous les individus"
-
-#~ msgid "Name Type"
-#~ msgstr "Type de nom"
-
-#~ msgid "Primary Name"
-#~ msgstr "Nom principal"
-
-#~ msgid "Total names %d"
-#~ msgstr "Total des noms %d"
-
-#~ msgid "All names of All people"
-#~ msgstr "Tous les noms pour tous les individus"
-
-#~ msgid "Print entire tree"
-#~ msgstr "Impression de la totalité de l'arbre"
-
-#~ msgid "Print empty boxes for all unknown ancestors."
-#~ msgstr "Génère des cases vides pour tous les ascendants inconnus."
-
-#~ msgid ""
-#~ "Show spouses of\n"
-#~ "the center person"
-#~ msgstr ""
-#~ "Affiche les conjoints de\n"
-#~ "l'individu central"
-
-#~ msgid "No.  Do not show Spouses"
-#~ msgstr "Non. Ne pas afficher les conjoints"
-
-#~ msgid "Yes, and use the the Main Display Format"
-#~ msgstr "Oui, et utiliser le format d'affichage principal"
-
-#~ msgid "Yes, and use the the Secondary Display Format"
-#~ msgstr "Oui, et utiliser le format d'affichage secondaire"
-
-#~ msgid "Wheather to show spouses of the center person"
-#~ msgstr "Afficher ou non les conjoints de l'individu central"
-
-#~ msgid ""
-#~ "Main\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Format d'affichage\n"
-#~ "Principal"
-
-#~ msgid "Co_mpress Main and Secondary Display Formats"
-#~ msgstr "Co_mpresser les formats d'affichage principal et secondaire"
-
-#~ msgid "Whether to not print empty lines within the 'Display boxes'."
-#~ msgstr "Imprimer ou non des lignes vides à l'intérieur des 'Cases'."
-
-#~ msgid ""
-#~ "Use Main/Secondary\n"
-#~ "Display Format for"
-#~ msgstr ""
-#~ "Utiliser le format\n"
-#~ "Principal/Secondaire pour"
-
-#~ msgid "Everyone uses the Main Display format"
-#~ msgstr "Quelqu'un utilise le format d'affichage principal"
-
-#~ msgid "Mothers use Main, and Fathers use the Secondary"
-#~ msgstr "Les mères utilisent le principal, et les pères le secondaire"
-
-#~ msgid "Fathers use Main, and Mothers use the Secondary"
-#~ msgstr "Les pères utilisent le principal, et les mères le secondaire"
-
-#~ msgid "Which Display format to use for Fathers and Mothers"
-#~ msgstr "Quel format d'affichage utiliser pour les pères et mères"
-
-#~ msgid "Secondary"
-#~ msgstr "Secondaire"
-
-#~ msgid ""
-#~ "Secondary\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Format d'affichage\n"
-#~ "Secondaire"
-
-#~ msgid "Include Marriage information"
-#~ msgstr "Inclure les informations sur le mariage"
-
-#~ msgid "Whether to include marriage information in the report."
-#~ msgstr "Inclure ou non les informations du mariage dans le rapport."
-
-#~ msgid ""
-#~ "Marraige\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Format d'affichage\n"
-#~ "Mariage"
-
-#~ msgid "Print"
-#~ msgstr "Impression"
-
-#~ msgid "Scale report to fit"
-#~ msgstr "Adapter le rapport"
-
-#~ msgid "Do not scale report"
-#~ msgstr "Ne pas adapter le rapport"
-
-#~ msgid "Scale report to fit page width only"
-#~ msgstr "Adapter la page à la largeur"
-
-#~ msgid "Scale report to fit the size of the page"
-#~ msgstr "Adaptation à la page"
-
-#~ msgid "Wheather to scale the report to fit a specific size"
-#~ msgstr "Cocher pour adapter le rapport à une taille spécifique"
-
-#~ msgid "One page report"
-#~ msgstr "Rapport sur une page"
-
-#~ msgid "Whether to scale the size of the page to the size of the report."
-#~ msgstr "Adapter ou non la taille de la page pour le rapport"
-
-#~ msgid "Include Report Title"
-#~ msgstr "Inclure le titre du rapport"
-
-#~ msgid "Whether to include the report title."
-#~ msgstr "Inclure ou non le titre du rapport."
-
-#~ msgid "Print a border"
-#~ msgstr "Imprimer une bordure"
-
-#~ msgid "Whether to make a border around the report."
-#~ msgstr "Ajouter ou non une bordure au rapport."
-
-#~ msgid "Print Page Numbers"
-#~ msgstr "Imprimer les numéros de page"
-
-#~ msgid "Whether to print page numbers on each page."
-#~ msgstr "Imprimer ou non les numéros de chaque page."
-
-#~ msgid "Include a personal note"
-#~ msgstr "Inclure une note personnelle"
-
-#~ msgid "Whether to include a personalized note on the report."
-#~ msgstr "Inclure ou non une note pour personnaliser le rapport."
-
-#~ msgid ""
-#~ "Note to add\n"
-#~ "to the graph"
-#~ msgstr ""
-#~ "Note à ajouter\n"
-#~ "au graphique"
-
-#~ msgid "Add a personal note"
-#~ msgstr "Ajouter une note personnelle"
-
-#~ msgid "Note Location"
-#~ msgstr "Emplacement de la note"
-
-#~ msgid "Where to place a personal note."
-#~ msgstr "Emplacement pour la note de l'individu."
-
-#~ msgid "Ancestoral Tree"
-#~ msgstr "Arbre des ascendants alternatif"
-
-#~ msgid "Clock Gramplet"
-#~ msgstr "Gramplet Horloge"
-
-#~ msgid "Clock"
-#~ msgstr "Horloge"
-
-#~ msgid "Active person"
-#~ msgstr "Individu actif"
-
-#~ msgid "Surname, Given"
-#~ msgstr "Nom de famille, Prénom"
-
-#~ msgid "Save"
-#~ msgstr "Enregistrer"
-
-#~ msgid "Abandon"
-#~ msgstr "Abandonner"
-
-#~ msgid "New person"
-#~ msgstr "Nouvel individu"
-
-#~ msgid "Add relation"
-#~ msgstr "Ajouter la relation"
-
-#~ msgid "No relation to active person"
-#~ msgstr "Aucune relation avec l'individu actif"
-
-#~ msgid "Add as a Parent"
-#~ msgstr "Ajouter comme parent"
-
-#~ msgid "Add as a Spouse"
-#~ msgstr "Ajouter comme conjoint"
-
-#~ msgid "Add as a Sibling"
-#~ msgstr "Ajouter comme frère ou sœur"
-
-#~ msgid "Add as a Child"
-#~ msgstr "Ajouter comme enfant"
-
-#~ msgid "Copy Active Data"
-#~ msgstr "Copier ces données"
-
-#~ msgid "in"
-#~ msgstr "dans"
-
-#~ msgid "Gramplet Data Edit: %s"
-#~ msgstr "Gramplet formulaire : %s"
-
-#~ msgid "Can't add new person."
-#~ msgstr "Impossible d'ajouter un nouvel individu."
-
-#~ msgid "Please provide a name."
-#~ msgstr "Saisissez un nom."
-
-#~ msgid "Can't add new person as a parent."
-#~ msgstr "Impossible d'ajouter un nouvel individu comme parent."
-
-#~ msgid "Please set an active person."
-#~ msgstr "Définir l'individu actif."
-
-#~ msgid "Please set the new person's gender."
-#~ msgstr "Définir le genre du nouvel individu."
-
-#~ msgid "Can't add new person as a spouse."
-#~ msgstr "Impossible d'ajouter un nouvel individu comme conjoint."
-
-#~ msgid "Can't add new person as a sibling."
-#~ msgstr "Impossible d'ajouter un nouvel individu comme frère ou sœur."
-
-#~ msgid "Can't add new person as a child."
-#~ msgstr "Impossible d'ajouter un nouvel individu comme enfant."
-
-#~ msgid "Please set gender on Active or new person."
-#~ msgstr "Saisissez le genre du nouvel individu ou de la personne active."
-
-#~ msgid "Same genders on Active and new person."
-#~ msgstr "Même genre entre la personne active et le nouvel individu."
-
-#~ msgid "Please set gender on Active person."
-#~ msgstr "Saisissez le genre de l'individu actif."
-
-#~ msgid "Gramplet Data Entry: %s"
-#~ msgstr "Gramplet formulaire : %s"
-
-#~ msgid "Data Entry Gramplet"
-#~ msgstr "Gramplet Formulaire"
-
-#~ msgid "Data Entry"
-#~ msgstr "Formulaire"
-
-#~ msgid "Pause"
-#~ msgstr "Pause"
-
-#~ msgid "sibling"
-#~ msgstr "1 frère ou sœur"
-
-#~ msgid ""
-#~ "\n"
-#~ "   who is a %s of "
-#~ msgstr ""
-#~ "\n"
-#~ "   qui est %s de "
-
-#~ msgid "No Active Person set."
-#~ msgstr "Aucun individu actif défini."
-
-#~ msgid ""
-#~ "Looking for relationship between\n"
-#~ "  <b>%s</b> (Home Person) and\n"
-#~ "  <b>%s</b> (Active Person)...\n"
-#~ msgstr ""
-#~ "Recherche de relation entre\n"
-#~ "  <b>%s</b> La souche et\n"
-#~ "  <b>%s</b> la personne active ...\n"
-
-#~ msgid ""
-#~ "Found relation #%d: \n"
-#~ "   "
-#~ msgstr ""
-#~ "Relation #%d : \n"
-#~ "   "
-
-#~ msgid ""
-#~ "Paused.\n"
-#~ "Press Continue to search for additional relations.\n"
-#~ msgstr ""
-#~ "Pause.\n"
-#~ "Appuyez sur Continuer pour rechercher d'autres relations.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Search completed. %d relations found."
-#~ msgstr ""
-#~ "\n"
-#~ "Recherche terminée. %d relations trouvées."
-
-#~ msgid "Deep Connections Gramplet"
-#~ msgstr "Gramplet Connexions approfondies"
-
-#~ msgid "Deep Connections"
-#~ msgstr "Connexions approfondies"
-
-#~ msgid "No Source"
-#~ msgstr "Pas de source"
-
-#~ msgid "Ancestor"
-#~ msgstr "Ascendant"
-
-#~ msgid "Descendant"
-#~ msgstr "Descendant"
-
-#~ msgid "Fan"
-#~ msgstr "Roue"
-
-#~ msgid "Growth Spiral"
-#~ msgstr "Spirale grandissante"
-
-#~ msgid "Mandelbrot Tree"
-#~ msgstr "Arbre de mandelbrot"
-
-#~ msgid "Pythagoras Tree"
-#~ msgstr "Arbre de pythagore"
-
-#~ msgid "right to left"
-#~ msgstr "de droite à gauche"
-
-#~ msgid "left to right"
-#~ msgstr "de gauche à droite"
-
-#~ msgid "top to bottom"
-#~ msgstr "de haut en bas"
-
-#~ msgid "bottom to top"
-#~ msgstr "de bas en haut"
-
-#~ msgid "type"
-#~ msgstr "type"
-
-#~ msgid "role"
-#~ msgstr "rôle"
-
-#~ msgid "description"
-#~ msgstr "description"
-
-#~ msgid "witnesses"
-#~ msgstr "témoins"
-
-#~ msgid "Unknown time direction"
-#~ msgstr "Direction temporelle inconnue"
-
-#~ msgid "author"
-#~ msgstr "auteur"
-
-#~ msgid "volume"
-#~ msgstr "volume"
-
-#~ msgid "title"
-#~ msgstr "titre"
-
-#~ msgid "publication_info"
-#~ msgstr "information de publication"
-
-#~ msgid "abbreviation"
-#~ msgstr "abréviation"
-
-#~ msgid "of"
-#~ msgstr "de"
-
-#~ msgid "the chart type runs out of bounds"
-#~ msgstr "le type de graphique est hors limites"
-
-#~ msgid "Search"
-#~ msgstr "Rechercher"
-
-#~ msgid "DenominoViso Options"
-#~ msgstr "Options DenominoViso"
-
-#~ msgid "The destination file for the xhtml-content."
-#~ msgstr "Le fichier de destination pour le contenu xhtml."
-
-#~ msgid "Central Person"
-#~ msgstr "L'individu central"
-
-#~ msgid "The central person for the tree"
-#~ msgstr "L'individu central pour cet arbre"
-
-#~ msgid "Title of the webpage"
-#~ msgstr "Titre de la page internet"
-
-#~ msgid "Any string you wish."
-#~ msgstr "La chaîne désirée."
-
-#~ msgid "Either plot ancestor or descendants graph."
-#~ msgstr "Soit table d'ascendant soit graphique de descendants"
-
-#~ msgid "Display type"
-#~ msgstr "Affichage du type"
-
-#~ msgid "The type of graph to create."
-#~ msgstr "Type de graphique à créer."
-
-#~ msgid "Direction of time"
-#~ msgstr "Sens du temps"
-
-#~ msgid "Direction in which time increases."
-#~ msgstr "Sens de la croissance du temps."
-
-#~ msgid "Max chart width (%)"
-#~ msgstr "Largeur du graphique max (%)"
-
-#~ msgid "Width of the tree as fraction of the browser window"
-#~ msgstr "Largeur de l'arbre en tant que fraction de la fenêtre du navigateur"
-
-#~ msgid "Max chart height (px)"
-#~ msgstr "Hauteur max du graphique (px)"
-
-#~ msgid "Height of the tree in pixels."
-#~ msgstr "Hauteur de l'arbre en pixels."
-
-#~ msgid "Closing remarks"
-#~ msgstr "Observations finales"
-
-#~ msgid ""
-#~ "List of strings, free text added at the bottom, for example for a "
-#~ "copyright notice."
-#~ msgstr ""
-#~ "Liste de chaînes, texte libre ajouté en bas, par exemple une notice de "
-#~ "droit d'auteur."
-
-#~ msgid "Include Options"
-#~ msgstr "Options à inclure"
-
-#~ msgid "Wheater to leave out private data."
-#~ msgstr "Inclure ou non les données privées."
-
-#~ msgid "Include Events"
-#~ msgstr "Inclure les événements"
-
-#~ msgid "Wheather to include a person's events."
-#~ msgstr "Inclure ou non les événements de l'individu."
-
-#~ msgid "Include birth children"
-#~ msgstr "Inclure la naissance des enfants"
-
-#~ msgid "Whether to include the birth of children in the list of events."
-#~ msgstr ""
-#~ "Inclure ou non les naissances des enfants dans la liste des événements."
-
-#~ msgid "Include death relatives"
-#~ msgstr "Inclure les décès des proches"
-
-#~ msgid ""
-#~ "Whether to include the death of relatives during the lifetime of person."
-#~ msgstr "Inclure ou non les décès des proches durant la vie de la personne."
-
-#~ msgid "Include witness note"
-#~ msgstr "Inclure la note du témoin"
-
-#~ msgid ""
-#~ "Whether to include the note belonging to a witness (if the event_format "
-#~ "contains <witnesses>)"
-#~ msgstr ""
-#~ "Inclure ou non la note propre à un témoin (si le format de l'événement "
-#~ "contient <témoins>) "
-
-#~ msgid "Include Attributes"
-#~ msgstr "Inclure les attributs"
-
-#~ msgid "Whether to include a person's attributes"
-#~ msgstr "Inclure ou non les attributs des individus"
-
-#~ msgid "Include Addresses"
-#~ msgstr "Inclure les adresses"
-
-#~ msgid "Whether to include a person's addresses."
-#~ msgstr "Inclure ou non les adresses des individus."
-
-#~ msgid "Include Note"
-#~ msgstr "Inclure la note"
-
-#~ msgid "Whether to include a person's note."
-#~ msgstr "Inclure ou non la note de l'individu."
-
-#~ msgid "Include URL"
-#~ msgstr "Inclure l'URL"
-
-#~ msgid "Whether to include a person's internet address."
-#~ msgstr "Inclure ou non l'adresse internet de l'individu."
-
-#~ msgid "Include URL description"
-#~ msgstr "Inclure la description de l'URL"
-
-#~ msgid "Whether to include the description of the first URL"
-#~ msgstr "Inclure ou non la description du premier URL"
-
-#~ msgid "Include Sources"
-#~ msgstr "Inclure les sources"
-
-#~ msgid "Whether to include a person's sources."
-#~ msgstr "Inclure ou non les sources de l'individu."
-
-#~ msgid "Image Options"
-#~ msgstr "Options de l'image"
-
-#~ msgid "Include Photos/Images from Gallery"
-#~ msgstr "Inclure les photos/images de la galerie"
-
-#~ msgid "Whether to include images"
-#~ msgstr "Inclure ou non les images"
-
-#~ msgid "Copy Image"
-#~ msgstr "Copier l'image"
-
-#~ msgid "Copy the images to a designated directory."
-#~ msgstr "Copier les images vers un répertoire désigné. "
-
-#~ msgid "Images with Attribute"
-#~ msgstr "Images avec attribut"
-
-#~ msgid "Determine images with which attributes to in/exclude"
-#~ msgstr "Déterminer les images avec les attributs à inclure"
-
-#~ msgid "Include Image source references"
-#~ msgstr "Inclure ou non les sources de l'image"
-
-#~ msgid "Whether to include references for images"
-#~ msgstr "Inclure ou non les références pour les images"
-
-#~ msgid "Source reference attribute"
-#~ msgstr "Attribut de la référence de la source"
-
-#~ msgid "Image attribute that should be used as source reference"
-#~ msgstr ""
-#~ "L'attribut de l'image qui doit être utilisé comme référence de la source"
-
-#~ msgid "Style Options"
-#~ msgstr "Options du style"
-
-#~ msgid "Color of active person:"
-#~ msgstr "Couleur de l'individu actif:"
-
-#~ msgid "RGB-color of geometric shape of the activated person."
-#~ msgstr "Couleur RGB de la figure géométrique pour la personne active."
-
-#~ msgid "Color of found persons:"
-#~ msgstr "Couleur des individus trouvés:"
-
-#~ msgid "RGB-color of geometric shape of the persons found."
-#~ msgstr "Couleur RGB de la figure géométrique pour les individus trouvés."
-
-#~ msgid "Color of male persons:"
-#~ msgstr "Couleur des individus masculins:"
-
-#~ msgid "RGB-color of geometric shape of the male persons."
-#~ msgstr ""
-#~ "Couleur RGB de la figure géométrique pour les individus de genre masculin."
-
-#~ msgid "Colour of female persons:"
-#~ msgstr "Couleur des individus féminins:"
-
-#~ msgid "RGB-color of geometric shape of the female persons."
-#~ msgstr ""
-#~ "Couleur RGB pour la figure géométrique des individus de genre féminin."
-
-#~ msgid "Width of rectangle (hrd):"
-#~ msgstr "Largeur du rectangle (hrd) :"
-
-#~ msgid "Height of rectangle (hrd):"
-#~ msgstr "Hauteur du rectangle (hrd) :"
-
-#~ msgid "Vertical distance of rectangles (hrd):"
-#~ msgstr "Distance verticale des rectangles (hrd) :"
-
-#~ msgid "Extra style settings:"
-#~ msgstr "Préférences supplémentaires:"
-
-#~ msgid "Advanced Options"
-#~ msgstr "Options avancées"
-
-#~ msgid "Old browser friendly output"
-#~ msgstr "Sortie adaptée aux anciens navigateurs"
-
-#~ msgid ""
-#~ "Whether to create an ordinary html-file that includes the xhtml-file so "
-#~ "that deprecated browsers can be presented with content they can swallow."
-#~ msgstr ""
-#~ "Créer ou non un simple fichier html incluant un fichier xhtml pour que "
-#~ "les navigateurs moins récents puissent contenir ces données."
+#: AllNames.py:52
+#: AllNames.py:86
+msgid "All Names of All People"
+msgstr "Tous les noms pour tous les individus"
+
+#: AllNames.py:55
+msgid "Name Type"
+msgstr "Type de nom"
+
+#: AllNames.py:55
+msgid "Primary Name"
+msgstr "Nom principal"
+
+#: AllNames.py:72
+msgid "Total names %d"
+msgstr "Total des noms %d"
+
+#: AllNames.py:88
+msgid "All names of All people"
+msgstr "Tous les noms pour tous les individus"
+
+#: Ancestor2.py:1044
+msgid "Print entire tree"
+msgstr "Impression de la totalité de l'arbre"
+
+#: Ancestor2.py:1045
+msgid "Print empty boxes for all unknown ancestors."
+msgstr "Génère des cases vides pour tous les ascendants inconnus."
+
+#: Ancestor2.py:1055
+msgid ""
+"Show spouses of\n"
+"the center person"
+msgstr ""
+"Affiche les conjoints de\n"
+"l'individu central"
+
+#: Ancestor2.py:1056
+msgid "No.  Do not show Spouses"
+msgstr "Non. Ne pas afficher les conjoints"
+
+#: Ancestor2.py:1057
+msgid "Yes, and use the the Main Display Format"
+msgstr "Oui, et utiliser le format d'affichage principal"
+
+#: Ancestor2.py:1058
+msgid "Yes, and use the the Secondary Display Format"
+msgstr "Oui, et utiliser le format d'affichage secondaire"
+
+#: Ancestor2.py:1059
+msgid "Wheather to show spouses of the center person"
+msgstr "Afficher ou non les conjoints de l'individu central"
+
+#: Ancestor2.py:1064
+msgid ""
+"Main\n"
+"Display Format"
+msgstr ""
+"Format d'affichage\n"
+"Principal"
+
+#: Ancestor2.py:1069
+msgid "Co_mpress Main and Secondary Display Formats"
+msgstr "Co_mpresser les formats d'affichage principal et secondaire"
+
+#: Ancestor2.py:1070
+msgid "Whether to not print empty lines within the 'Display boxes'."
+msgstr "Imprimer ou non des lignes vides à l'intérieur des 'Cases'."
+
+#: Ancestor2.py:1073
+msgid ""
+"Use Main/Secondary\n"
+"Display Format for"
+msgstr ""
+"Utiliser le format\n"
+"Principal/Secondaire pour"
+
+#: Ancestor2.py:1074
+msgid "Everyone uses the Main Display format"
+msgstr "Quelqu'un utilise le format d'affichage principal"
+
+#: Ancestor2.py:1075
+msgid "Mothers use Main, and Fathers use the Secondary"
+msgstr "Les mères utilisent le principal, et les pères le secondaire"
+
+#: Ancestor2.py:1076
+msgid "Fathers use Main, and Mothers use the Secondary"
+msgstr "Les pères utilisent le principal, et les mères le secondaire"
+
+#: Ancestor2.py:1077
+msgid "Which Display format to use for Fathers and Mothers"
+msgstr "Quel format d'affichage utiliser pour les pères et mères"
+
+#: Ancestor2.py:1080
+#: Descend2.py:1531
+msgid "Secondary"
+msgstr "Secondaire"
+
+#: Ancestor2.py:1082
+msgid ""
+"Secondary\n"
+"Display Format"
+msgstr ""
+"Format d'affichage\n"
+"Secondaire"
+
+#: Ancestor2.py:1087
+#: Descend2.py:1546
+msgid "Include Marriage information"
+msgstr "Inclure les informations sur le mariage"
+
+#: Ancestor2.py:1088
+#: Descend2.py:1547
+msgid "Whether to include marriage information in the report."
+msgstr "Inclure ou non les informations du mariage dans le rapport."
+
+#: Ancestor2.py:1091
+#: Descend2.py:1550
+msgid ""
+"Marraige\n"
+"Display Format"
+msgstr ""
+"Format d'affichage\n"
+"Mariage"
+
+#: Ancestor2.py:1100
+#: Descend2.py:1561
+msgid "Print"
+msgstr "Impression"
+
+#: Ancestor2.py:1102
+#: Descend2.py:1563
+msgid "Scale report to fit"
+msgstr "Adapter le rapport"
+
+#: Ancestor2.py:1103
+msgid "Do not scale report"
+msgstr "Ne pas adapter le rapport"
+
+#: Ancestor2.py:1104
+msgid "Scale report to fit page width only"
+msgstr "Adapter la page à la largeur"
+
+#: Ancestor2.py:1105
+msgid "Scale report to fit the size of the page"
+msgstr "Adaptation à la page"
+
+#: Ancestor2.py:1106
+#: Descend2.py:1567
+msgid "Wheather to scale the report to fit a specific size"
+msgstr "Cocher pour adapter le rapport à une taille spécifique"
+
+#: Ancestor2.py:1110
+#: Descend2.py:1571
+msgid "One page report"
+msgstr "Rapport sur une page"
+
+#: Ancestor2.py:1111
+#: Descend2.py:1572
+msgid "Whether to scale the size of the page to the size of the report."
+msgstr "Adapter ou non la taille de la page pour le rapport"
+
+#: Ancestor2.py:1115
+#: Descend2.py:1576
+msgid "Include Report Title"
+msgstr "Inclure le titre du rapport"
+
+#: Ancestor2.py:1116
+#: Descend2.py:1577
+msgid "Whether to include the report title."
+msgstr "Inclure ou non le titre du rapport."
+
+#: Ancestor2.py:1119
+#: Descend2.py:1580
+msgid "Print a border"
+msgstr "Imprimer une bordure"
+
+#: Ancestor2.py:1120
+#: Descend2.py:1581
+msgid "Whether to make a border around the report."
+msgstr "Ajouter ou non une bordure au rapport."
+
+#: Ancestor2.py:1123
+#: Descend2.py:1584
+msgid "Print Page Numbers"
+msgstr "Imprimer les numéros de page"
+
+#: Ancestor2.py:1124
+#: Descend2.py:1585
+msgid "Whether to print page numbers on each page."
+msgstr "Imprimer ou non les numéros de chaque page."
+
+#: Ancestor2.py:1135
+#: Descend2.py:1594
+msgid "Include a personal note"
+msgstr "Inclure une note personnelle"
+
+#: Ancestor2.py:1136
+#: Descend2.py:1595
+msgid "Whether to include a personalized note on the report."
+msgstr "Inclure ou non une note pour personnaliser le rapport."
+
+#: Ancestor2.py:1139
+#: Descend2.py:1598
+msgid ""
+"Note to add\n"
+"to the graph"
+msgstr ""
+"Note à ajouter\n"
+"au graphique"
+
+#: Ancestor2.py:1140
+#: Descend2.py:1599
+msgid "Add a personal note"
+msgstr "Ajouter une note personnelle"
+
+#: Ancestor2.py:1144
+#: Descend2.py:1606
+msgid "Note Location"
+msgstr "Emplacement de la note"
+
+#: Ancestor2.py:1147
+#: Descend2.py:1608
+msgid "Where to place a personal note."
+msgstr "Emplacement pour la note de l'individu."
+
+#: Ancestor2.py:1216
+msgid "Ancestoral Tree"
+msgstr "Arbre des ascendants alternatif"
+
+#: ClockGramplet.py:158
+msgid "Clock Gramplet"
+msgstr "Gramplet Horloge"
+
+#: ClockGramplet.py:162
+msgid "Clock"
+msgstr "Horloge"
+
+#: DataEntryGramplet.py:52
+#: NoteGramplet.py:59
+msgid "Active person"
+msgstr "Individu actif"
+
+#: DataEntryGramplet.py:55
+#: DataEntryGramplet.py:82
+msgid "Surname, Given"
+msgstr "Nom de famille, Prénom"
+
+#: DataEntryGramplet.py:66
+#: NoteGramplet.py:105
+msgid "Save"
+msgstr "Enregistrer"
+
+#: DataEntryGramplet.py:69
+#: NoteGramplet.py:108
+msgid "Abandon"
+msgstr "Abandonner"
+
+#: DataEntryGramplet.py:74
+msgid "New person"
+msgstr "Nouvel individu"
+
+#: DataEntryGramplet.py:75
+msgid "Add relation"
+msgstr "Ajouter la relation"
+
+#: DataEntryGramplet.py:76
+msgid "No relation to active person"
+msgstr "Aucune relation avec l'individu actif"
+
+#: DataEntryGramplet.py:77
+msgid "Add as a Parent"
+msgstr "Ajouter comme parent"
+
+#: DataEntryGramplet.py:78
+msgid "Add as a Spouse"
+msgstr "Ajouter comme conjoint"
+
+#: DataEntryGramplet.py:79
+msgid "Add as a Sibling"
+msgstr "Ajouter comme frère ou sœur"
+
+#: DataEntryGramplet.py:80
+msgid "Add as a Child"
+msgstr "Ajouter comme enfant"
+
+#: DataEntryGramplet.py:96
+msgid "Copy Active Data"
+msgstr "Copier ces données"
+
+#: DataEntryGramplet.py:142
+#: DataEntryGramplet.py:156
+#: DataEntryGramplet.py:263
+#: DenominoViso.py:1984
+msgid "in"
+msgstr "dans"
+
+#: DataEntryGramplet.py:384
+msgid "Gramplet Data Edit: %s"
+msgstr "Gramplet formulaire : %s"
+
+#: DataEntryGramplet.py:404
+msgid "Can't add new person."
+msgstr "Impossible d'ajouter un nouvel individu."
+
+#: DataEntryGramplet.py:404
+msgid "Please provide a name."
+msgstr "Saisissez un nom."
+
+#: DataEntryGramplet.py:412
+#: DataEntryGramplet.py:415
+msgid "Can't add new person as a parent."
+msgstr "Impossible d'ajouter un nouvel individu comme parent."
+
+#: DataEntryGramplet.py:412
+#: DataEntryGramplet.py:420
+#: DataEntryGramplet.py:429
+#: DataEntryGramplet.py:434
+msgid "Please set an active person."
+msgstr "Définir l'individu actif."
+
+#: DataEntryGramplet.py:415
+#: DataEntryGramplet.py:424
+msgid "Please set the new person's gender."
+msgstr "Définir le genre du nouvel individu."
+
+#: DataEntryGramplet.py:420
+#: DataEntryGramplet.py:424
+#: DataEntryGramplet.py:556
+#: DataEntryGramplet.py:593
+#: DataEntryGramplet.py:626
+msgid "Can't add new person as a spouse."
+msgstr "Impossible d'ajouter un nouvel individu comme conjoint."
+
+#: DataEntryGramplet.py:429
+msgid "Can't add new person as a sibling."
+msgstr "Impossible d'ajouter un nouvel individu comme frère ou sœur."
+
+#: DataEntryGramplet.py:434
+#: DataEntryGramplet.py:672
+msgid "Can't add new person as a child."
+msgstr "Impossible d'ajouter un nouvel individu comme enfant."
+
+#: DataEntryGramplet.py:555
+msgid "Please set gender on Active or new person."
+msgstr "Saisissez le genre du nouvel individu ou de la personne active."
+
+#: DataEntryGramplet.py:592
+#: DataEntryGramplet.py:625
+msgid "Same genders on Active and new person."
+msgstr "Même genre entre la personne active et le nouvel individu."
+
+#: DataEntryGramplet.py:671
+msgid "Please set gender on Active person."
+msgstr "Saisissez le genre de l'individu actif."
+
+#: DataEntryGramplet.py:693
+msgid "Gramplet Data Entry: %s"
+msgstr "Gramplet formulaire : %s"
+
+#: DataEntryGramplet.py:742
+msgid "Data Entry Gramplet"
+msgstr "Gramplet Formulaire"
+
+#: DataEntryGramplet.py:746
+msgid "Data Entry"
+msgstr "Formulaire"
+
+#: DeepConnections.py:57
+msgid "Pause"
+msgstr "Pause"
+
+#: DeepConnections.py:92
+msgid "sibling"
+msgstr "1 frère ou sœur"
+
+#: DeepConnections.py:116
+msgid ""
+"\n"
+"   who is a %s of "
+msgstr ""
+"\n"
+"   qui est %s de "
+
+#: DeepConnections.py:133
+msgid "No Active Person set."
+msgstr "Aucun individu actif défini."
+
+#: DeepConnections.py:140
+msgid ""
+"Looking for relationship between\n"
+"  <b>%s</b> (Home Person) and\n"
+"  <b>%s</b> (Active Person)...\n"
+msgstr ""
+"Recherche de relation entre\n"
+"  <b>%s</b> La souche et\n"
+"  <b>%s</b> la personne active ...\n"
+
+#: DeepConnections.py:150
+msgid ""
+"Found relation #%d: \n"
+"   "
+msgstr ""
+"Relation #%d : \n"
+"   "
+
+#: DeepConnections.py:156
+msgid ""
+"Paused.\n"
+"Press Continue to search for additional relations.\n"
+msgstr ""
+"Pause.\n"
+"Appuyez sur Continuer pour rechercher d'autres relations.\n"
+
+#: DeepConnections.py:169
+msgid ""
+"\n"
+"Search completed. %d relations found."
+msgstr ""
+"\n"
+"Recherche terminée. %d relations trouvées."
+
+#: DeepConnections.py:180
+msgid "Deep Connections Gramplet"
+msgstr "Gramplet Connexions approfondies"
+
+#: DeepConnections.py:184
+msgid "Deep Connections"
+msgstr "Connexions approfondies"
+
+#: DenominoViso.py:166
+msgid "No Source"
+msgstr "Pas de source"
+
+#: DenominoViso.py:195
+msgid "Ancestor"
+msgstr "Ascendant"
+
+#: DenominoViso.py:196
+msgid "Descendant"
+msgstr "Descendant"
+
+#: DenominoViso.py:201
+msgid "Fan"
+msgstr "Roue"
+
+#: DenominoViso.py:202
+msgid "Growth Spiral"
+msgstr "Spirale grandissante"
+
+#: DenominoViso.py:203
+msgid "Mandelbrot Tree"
+msgstr "Arbre de mandelbrot"
+
+#: DenominoViso.py:204
+msgid "Pythagoras Tree"
+msgstr "Arbre de pythagore"
+
+#: DenominoViso.py:208
+msgid "right to left"
+msgstr "de droite à gauche"
+
+#: DenominoViso.py:209
+msgid "left to right"
+msgstr "de gauche à droite"
+
+#: DenominoViso.py:210
+msgid "top to bottom"
+msgstr "de haut en bas"
+
+#: DenominoViso.py:211
+msgid "bottom to top"
+msgstr "de bas en haut"
+
+#: DenominoViso.py:286
+#: DenominoViso.py:961
+#: DenominoViso.py:1243
+#: DenominoViso.py:2721
+msgid "type"
+msgstr "type"
+
+#: DenominoViso.py:287
+#: DenominoViso.py:960
+#: DenominoViso.py:1020
+#: DenominoViso.py:1243
+#: DenominoViso.py:2720
+msgid "role"
+msgstr "rôle"
+
+#: DenominoViso.py:290
+#: DenominoViso.py:961
+#: DenominoViso.py:1040
+#: DenominoViso.py:1244
+#: DenominoViso.py:2722
+msgid "description"
+msgstr "description"
+
+#: DenominoViso.py:291
+#: DenominoViso.py:962
+#: DenominoViso.py:1047
+#: DenominoViso.py:1245
+msgid "witnesses"
+msgstr "témoins"
+
+#: DenominoViso.py:754
+msgid "Unknown time direction"
+msgstr "Direction temporelle inconnue"
+
+#: DenominoViso.py:1547
+msgid "author"
+msgstr "auteur"
+
+#: DenominoViso.py:1547
+msgid "volume"
+msgstr "volume"
+
+#: DenominoViso.py:1547
+#: DenominoViso.py:2727
+#: PlaceCompletion.py:181
+#: PlaceCompletion.py:201
+#: PlaceCompletion.py:237
+#: PlaceCompletion.py:1014
+#: PlaceCompletion.py:1016
+#: PlaceCompletion.py:1027
+#: PlaceCompletion.py:1029
+msgid "title"
+msgstr "titre"
+
+#: DenominoViso.py:1548
+msgid "publication_info"
+msgstr "information de publication"
+
+#: DenominoViso.py:1549
+msgid "abbreviation"
+msgstr "abréviation"
+
+#: DenominoViso.py:1738
+msgid "of"
+msgstr "de"
+
+#: DenominoViso.py:1939
+msgid "the chart type runs out of bounds"
+msgstr "le type de graphique est hors limites"
+
+#: DenominoViso.py:1984
+msgid "Search"
+msgstr "Rechercher"
+
+#: DenominoViso.py:2527
+msgid "DenominoViso Options"
+msgstr "Options DenominoViso"
+
+#: DenominoViso.py:2531
+msgid "The destination file for the xhtml-content."
+msgstr "Le fichier de destination pour le contenu xhtml."
+
+#: DenominoViso.py:2534
+msgid "Central Person"
+msgstr "L'individu central"
+
+#: DenominoViso.py:2535
+msgid "The central person for the tree"
+msgstr "L'individu central pour cet arbre"
+
+#: DenominoViso.py:2538
+msgid "Title of the webpage"
+msgstr "Titre de la page internet"
+
+#: DenominoViso.py:2539
+msgid "Any string you wish."
+msgstr "La chaîne désirée."
+
+#: DenominoViso.py:2543
+msgid "Either plot ancestor or descendants graph."
+msgstr "Soit table d'ascendant soit graphique de descendants"
+
+#: DenominoViso.py:2548
+msgid "Display type"
+msgstr "Affichage du type"
+
+#: DenominoViso.py:2549
+msgid "The type of graph to create."
+msgstr "Type de graphique à créer."
+
+#: DenominoViso.py:2554
+msgid "Direction of time"
+msgstr "Sens du temps"
+
+#: DenominoViso.py:2555
+msgid "Direction in which time increases."
+msgstr "Sens de la croissance du temps."
+
+#: DenominoViso.py:2564
+msgid "Max chart width (%)"
+msgstr "Largeur du graphique max (%)"
+
+#: DenominoViso.py:2565
+msgid "Width of the tree as fraction of the browser window"
+msgstr "Largeur de l'arbre en tant que fraction de la fenêtre du navigateur"
+
+#: DenominoViso.py:2568
+msgid "Max chart height (px)"
+msgstr "Hauteur max du graphique (px)"
+
+#: DenominoViso.py:2569
+msgid "Height of the tree in pixels."
+msgstr "Hauteur de l'arbre en pixels."
+
+#: DenominoViso.py:2572
+msgid "Closing remarks"
+msgstr "Observations finales"
+
+#: DenominoViso.py:2573
+msgid "List of strings, free text added at the bottom, for example for a copyright notice."
+msgstr "Liste de chaînes, texte libre ajouté en bas, par exemple une notice de droit d'auteur."
+
+#: DenominoViso.py:2576
+msgid "Include Options"
+msgstr "Options à inclure"
+
+#: DenominoViso.py:2580
+msgid "Wheater to leave out private data."
+msgstr "Inclure ou non les données privées."
+
+#: DenominoViso.py:2583
+msgid "Include Events"
+msgstr "Inclure les événements"
+
+#: DenominoViso.py:2585
+msgid "Wheather to include a person's events."
+msgstr "Inclure ou non les événements de l'individu."
+
+#: DenominoViso.py:2593
+msgid "Include birth children"
+msgstr "Inclure la naissance des enfants"
+
+#: DenominoViso.py:2594
+msgid "Whether to include the birth of children in the list of events."
+msgstr "Inclure ou non les naissances des enfants dans la liste des événements."
+
+#: DenominoViso.py:2597
+msgid "Include death relatives"
+msgstr "Inclure les décès des proches"
+
+#: DenominoViso.py:2598
+msgid "Whether to include the death of relatives during the lifetime of person."
+msgstr "Inclure ou non les décès des proches durant la vie de la personne."
+
+#: DenominoViso.py:2601
+msgid "Include witness note"
+msgstr "Inclure la note du témoin"
+
+#: DenominoViso.py:2602
+msgid "Whether to include the note belonging to a witness (if the event_format contains <witnesses>)"
+msgstr "Inclure ou non la note propre à un témoin (si le format de l'événement contient <témoins>) "
+
+#: DenominoViso.py:2606
+msgid "Include Attributes"
+msgstr "Inclure les attributs"
+
+#: DenominoViso.py:2607
+msgid "Whether to include a person's attributes"
+msgstr "Inclure ou non les attributs des individus"
+
+#: DenominoViso.py:2610
+msgid "Include Addresses"
+msgstr "Inclure les adresses"
+
+#: DenominoViso.py:2611
+msgid "Whether to include a person's addresses."
+msgstr "Inclure ou non les adresses des individus."
+
+#: DenominoViso.py:2614
+msgid "Include Note"
+msgstr "Inclure la note"
+
+#: DenominoViso.py:2615
+msgid "Whether to include a person's note."
+msgstr "Inclure ou non la note de l'individu."
+
+#: DenominoViso.py:2618
+msgid "Include URL"
+msgstr "Inclure l'URL"
+
+#: DenominoViso.py:2619
+msgid "Whether to include a person's internet address."
+msgstr "Inclure ou non l'adresse internet de l'individu."
+
+#: DenominoViso.py:2622
+msgid "Include URL description"
+msgstr "Inclure la description de l'URL"
+
+#: DenominoViso.py:2623
+msgid "Whether to include the description of the first URL"
+msgstr "Inclure ou non la description du premier URL"
+
+#: DenominoViso.py:2628
+msgid "Include Sources"
+msgstr "Inclure les sources"
+
+#: DenominoViso.py:2629
+msgid "Whether to include a person's sources."
+msgstr "Inclure ou non les sources de l'individu."
+
+#: DenominoViso.py:2632
+msgid "Image Options"
+msgstr "Options de l'image"
+
+#: DenominoViso.py:2634
+msgid "Include Photos/Images from Gallery"
+msgstr "Inclure les photos/images de la galerie"
+
+#: DenominoViso.py:2635
+msgid "Whether to include images"
+msgstr "Inclure ou non les images"
+
+#: DenominoViso.py:2638
+msgid "Copy Image"
+msgstr "Copier l'image"
+
+#: DenominoViso.py:2639
+msgid "Copy the images to a designated directory."
+msgstr "Copier les images vers un répertoire désigné. "
+
+#: DenominoViso.py:2645
+msgid "Images with Attribute"
+msgstr "Images avec attribut"
+
+#: DenominoViso.py:2646
+msgid "Determine images with which attributes to in/exclude"
+msgstr "Déterminer les images avec les attributs à inclure"
+
+#: DenominoViso.py:2649
+msgid "Include Image source references"
+msgstr "Inclure ou non les sources de l'image"
+
+#: DenominoViso.py:2650
+msgid "Whether to include references for images"
+msgstr "Inclure ou non les références pour les images"
+
+#: DenominoViso.py:2653
+msgid "Source reference attribute"
+msgstr "Attribut de la référence de la source"
+
+#: DenominoViso.py:2654
+msgid "Image attribute that should be used as source reference"
+msgstr "L'attribut de l'image qui doit être utilisé comme référence de la source"
+
+#: DenominoViso.py:2660
+msgid "Style Options"
+msgstr "Options du style"
+
+#: DenominoViso.py:2662
+msgid "Color of active person:"
+msgstr "Couleur de l'individu actif:"
+
+#: DenominoViso.py:2663
+msgid "RGB-color of geometric shape of the activated person."
+msgstr "Couleur RGB de la figure géométrique pour la personne active."
+
+#: DenominoViso.py:2666
+msgid "Color of found persons:"
+msgstr "Couleur des individus trouvés:"
+
+#: DenominoViso.py:2667
+msgid "RGB-color of geometric shape of the persons found."
+msgstr "Couleur RGB de la figure géométrique pour les individus trouvés."
+
+#: DenominoViso.py:2670
+msgid "Color of male persons:"
+msgstr "Couleur des individus masculins:"
+
+#: DenominoViso.py:2671
+msgid "RGB-color of geometric shape of the male persons."
+msgstr "Couleur RGB de la figure géométrique pour les individus de genre masculin."
+
+#: DenominoViso.py:2674
+msgid "Colour of female persons:"
+msgstr "Couleur des individus féminins:"
+
+#: DenominoViso.py:2675
+msgid "RGB-color of geometric shape of the female persons."
+msgstr "Couleur RGB pour la figure géométrique des individus de genre féminin."
+
+#: DenominoViso.py:2678
+msgid "Width of rectangle (hrd):"
+msgstr "Largeur du rectangle (hrd) :"
+
+#: DenominoViso.py:2682
+msgid "Height of rectangle (hrd):"
+msgstr "Hauteur du rectangle (hrd) :"
+
+#: DenominoViso.py:2686
+msgid "Vertical distance of rectangles (hrd):"
+msgstr "Distance verticale des rectangles (hrd) :"
+
+#: DenominoViso.py:2690
+msgid "Extra style settings:"
+msgstr "Préférences supplémentaires:"
+
+#: DenominoViso.py:2694
+msgid "Advanced Options"
+msgstr "Options avancées"
+
+#: DenominoViso.py:2696
+msgid "Old browser friendly output"
+msgstr "Sortie adaptée aux anciens navigateurs"
+
+#: DenominoViso.py:2697
+msgid "Whether to create an ordinary html-file that includes the xhtml-file so that deprecated browsers can be presented with content they can swallow."
+msgstr "Créer ou non un simple fichier html incluant un fichier xhtml pour que les navigateurs moins récents puissent contenir ces données."
 
 # context ?
-#~ msgid "Mouse event handler"
-#~ msgstr "Gestion de l'action de la souris"
+#: DenominoViso.py:2700
+msgid "Mouse event handler"
+msgstr "Gestion de l'action de la souris"
 
-#~ msgid "Mouse handler used to interact with visitor of webpage."
-#~ msgstr ""
-#~ "La gestion du curseur de la souris est utilisé pour interagir avec le "
-#~ "visiteur de la page internet."
+#: DenominoViso.py:2702
+msgid "Mouse handler used to interact with visitor of webpage."
+msgstr "La gestion du curseur de la souris est utilisé pour interagir avec le visiteur de la page internet."
 
-#~ msgid "Birth relationship linestyle"
-#~ msgstr "Style de la lignée de naissance"
+#: DenominoViso.py:2706
+msgid "Birth relationship linestyle"
+msgstr "Style de la lignée de naissance"
 
-#~ msgid ""
-#~ "List of lists where each sublist is a list with information about the "
-#~ "dash pattern of lines connecting children to parents."
-#~ msgstr ""
-#~ "Liste dont les listes contiennent l'information sur le motif pointillé "
-#~ "entre les enfants et les parents."
+#: DenominoViso.py:2708
+msgid "List of lists where each sublist is a list with information about the dash pattern of lines connecting children to parents."
+msgstr "Liste dont les listes contiennent l'information sur le motif pointillé entre les enfants et les parents."
 
-#~ msgid "Source confidence color"
-#~ msgstr "Couleur pour la confiance de la source"
+#: DenominoViso.py:2714
+msgid "Source confidence color"
+msgstr "Couleur pour la confiance de la source"
 
-#~ msgid ""
-#~ "List os lists where each sublist is a list with information on the color "
-#~ "to use for a certain confidence level."
-#~ msgstr ""
-#~ "Liste dont les listes contiennent l'information sur la couleur du niveau "
-#~ "de confiance de la source."
+#: DenominoViso.py:2716
+msgid "List os lists where each sublist is a list with information on the color to use for a certain confidence level."
+msgstr "Liste dont les listes contiennent l'information sur la couleur du niveau de confiance de la source."
 
-#~ msgid "Event format"
-#~ msgstr "Format de l'événement"
+#: DenominoViso.py:2719
+msgid "Event format"
+msgstr "Format de l'événement"
 
-#~ msgid "at"
-#~ msgstr "à"
+#: DenominoViso.py:2720
+msgid "at"
+msgstr "à"
 
-#~ msgid ""
-#~ "List os strings with placeholders for events. Known placeholders: <type>, "
-#~ "<role>, <date>, <place>, <description>, <witnesses>, <source> and any "
-#~ "<attribute-value>."
-#~ msgstr ""
-#~ "Liste des protagonistes des événements : <type>, <rôle>, <date>, <lieu>, "
-#~ "<description>, <témoins>, <source> et tout autre <attribut>."
+#: DenominoViso.py:2724
+msgid "List os strings with placeholders for events. Known placeholders: <type>, <role>, <date>, <place>, <description>, <witnesses>, <source> and any <attribute-value>."
+msgstr "Liste des protagonistes des événements : <type>, <rôle>, <date>, <lieu>, <description>, <témoins>, <source> et tout autre <attribut>."
 
-#~ msgid "Source format"
-#~ msgstr "Format de la source"
+#: DenominoViso.py:2727
+msgid "Source format"
+msgstr "Format de la source"
 
-#~ msgid ""
-#~ "List of strings with placeholders for sources. Known placeholders: "
-#~ "<title>, <volume>, <author>, <publication_info> and <abbreviation>."
-#~ msgstr ""
-#~ "Liste des protagonistes des sources : <titre>, <volume>, <auteur>, "
-#~ "<informations de publication> et <abréviation>."
+#: DenominoViso.py:2728
+msgid "List of strings with placeholders for sources. Known placeholders: <title>, <volume>, <author>, <publication_info> and <abbreviation>."
+msgstr "Liste des protagonistes des sources : <titre>, <volume>, <auteur>, <informations de publication> et <abréviation>."
 
-#~ msgid "restricted to:"
-#~ msgstr "limité à :"
+#: DenominoViso.py:2785
+msgid "restricted to:"
+msgstr "limité à :"
 
-#~ msgid "to directory:"
-#~ msgstr "vers le répertoire :"
+#: DenominoViso.py:2825
+msgid "to directory:"
+msgstr "vers le répertoire :"
 
-#~ msgid "Save images in ..."
-#~ msgstr "Sauver les images dans ..."
+#: DenominoViso.py:2827
+msgid "Save images in ..."
+msgstr "Sauver les images dans ..."
 
-#~ msgid "should be"
-#~ msgstr "devrait être"
+#: DenominoViso.py:2876
+msgid "should be"
+msgstr "devrait être"
 
-#~ msgid "Name HTML-wrapper file"
-#~ msgstr "Nom du fichier HTML (wrapper)"
+#: DenominoViso.py:2918
+msgid "Name HTML-wrapper file"
+msgstr "Nom du fichier HTML (wrapper)"
 
-#~ msgid "Save HTML-wrapper file as ..."
-#~ msgstr "Sauver le fichier HTML (wrapper) sous ..."
+#: DenominoViso.py:2920
+msgid "Save HTML-wrapper file as ..."
+msgstr "Sauver le fichier HTML (wrapper) sous ..."
 
-#~ msgid "Give a filename ..."
-#~ msgstr "Donnez un nom de fichier ..."
+#: DenominoViso.py:2946
+msgid "Give a filename ..."
+msgstr "Donnez un nom de fichier ..."
 
-#~ msgid "Relation type"
-#~ msgstr "Type de relation"
+#: DenominoViso.py:3091
+msgid "Relation type"
+msgstr "Type de relation"
 
-#~ msgid "Use dashed linestyle"
-#~ msgstr "Utiliser les pointillés"
+#: DenominoViso.py:3096
+msgid "Use dashed linestyle"
+msgstr "Utiliser les pointillés"
 
-#~ msgid "Dash length"
-#~ msgstr "Longueur du tiret"
+#: DenominoViso.py:3101
+msgid "Dash length"
+msgstr "Longueur du tiret"
 
-#~ msgid "Inter-dash length"
-#~ msgstr "Longueur du pointillé"
+#: DenominoViso.py:3105
+msgid "Inter-dash length"
+msgstr "Longueur du pointillé"
 
-#~ msgid "Color"
-#~ msgstr "Couleur"
+#: DenominoViso.py:3158
+msgid "Color"
+msgstr "Couleur"
 
-#~ msgid "DenominoViso"
-#~ msgstr "DenominoViso"
+#: DenominoViso.py:3201
+msgid "DenominoViso"
+msgstr "DenominoViso"
 
-#~ msgid "Alpha"
-#~ msgstr "Alpha"
+#: DenominoViso.py:3202
+msgid "Alpha"
+msgstr "Alpha"
 
-#~ msgid ""
-#~ "Generates a web (XHTML) page with a graphical representation of ancestors/"
-#~ "descendants (SVG) where details about individuals become visible upon "
-#~ "mouse-events."
-#~ msgstr ""
-#~ "Génère une page internet (XHTML) avec une représentation graphique des "
-#~ "ascendants/descendants (SVG) dont les détails des individus deviennent "
-#~ "visibles avec les actions de la souris."
-
-# de ou pour ?
-#~ msgid "Descendant Chart for %(person)s"
-#~ msgstr "Arbre des descendants de %(person)s"
+#: DenominoViso.py:3205
+msgid "Generates a web (XHTML) page with a graphical representation of ancestors/descendants (SVG) where details about individuals become visible upon mouse-events."
+msgstr "Génère une page internet (XHTML) avec une représentation graphique des ascendants/descendants (SVG) dont les détails des individus deviennent visibles avec les actions de la souris."
 
 # de ou pour ?
-#~ msgid "Descendant Chart for %(father1)s and %(mother1)s"
-#~ msgstr "Arbre des descendants de %(father1)s et %(mother1)s"
+#: Descend2.py:616
+msgid "Descendant Chart for %(person)s"
+msgstr "Arbre des descendants de %(person)s"
 
 # de ou pour ?
-#~ msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-#~ msgstr "Arbre des descendants de %(person)s et %(father1)s, %(mother1)s"
+#: Descend2.py:618
+msgid "Descendant Chart for %(father1)s and %(mother1)s"
+msgstr "Arbre des descendants de %(father1)s et %(mother1)s"
 
 # de ou pour ?
-#~ msgid "Descendant Chart for %(person)s, %(father1)s  and %(mother1)s"
-#~ msgstr "Arbre des descendants de %(person)s, %(father1)s et %(mother1)s"
+#: Descend2.py:622
+msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
+msgstr "Arbre des descendants de %(person)s et %(father1)s, %(mother1)s"
 
-#~ msgid ""
-#~ "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-#~ msgstr ""
-#~ "Arbre des descendants de %(father1)s, %(father2)s et %(mother1)s, %"
-#~ "(mother2)s"
+# de ou pour ?
+#: Descend2.py:627
+msgid "Descendant Chart for %(person)s, %(father1)s  and %(mother1)s"
+msgstr "Arbre des descendants de %(person)s, %(father1)s et %(mother1)s"
 
-#~ msgid "Report for"
-#~ msgstr "Rapport pour"
+#: Descend2.py:632
+msgid "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
+msgstr "Arbre des descendants de %(father1)s, %(father2)s et %(mother1)s, %(mother2)s"
 
-#~ msgid "The main person for the report"
-#~ msgstr "L'individu principal pour ce rapport"
+#: Descend2.py:1492
+#: Descend2.py:1496
+msgid "Report for"
+msgstr "Rapport pour"
 
-#~ msgid "Start with the parent(s) of the selected first"
-#~ msgstr "Débute avec les parent(s) du premier sélectionné"
+#: Descend2.py:1493
+#: Descend2.py:1497
+msgid "The main person for the report"
+msgstr "L'individu principal pour ce rapport"
 
-#~ msgid "Will show the parents, brother and sisters of the selected person."
-#~ msgstr "Affichera les parents, frères et sœurs de l'individu sélectionné."
+#: Descend2.py:1500
+msgid "Start with the parent(s) of the selected first"
+msgstr "Débute avec les parent(s) du premier sélectionné"
 
-#~ msgid "Level of Spouses"
-#~ msgstr "Niveau des conjoints"
+#: Descend2.py:1501
+msgid "Will show the parents, brother and sisters of the selected person."
+msgstr "Affichera les parents, frères et sœurs de l'individu sélectionné."
 
-#~ msgid ""
-#~ "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-#~ msgstr ""
-#~ "0=aucun conjoint, 1=inclure les conjoints, 2=inclure les conjoints du "
-#~ "conjoint, etc"
+#: Descend2.py:1508
+msgid "Level of Spouses"
+msgstr "Niveau des conjoints"
 
-#~ msgid ""
-#~ "Personal\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Individu\n"
-#~ "Format d'affichage"
+#: Descend2.py:1509
+msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
+msgstr "0=aucun conjoint, 1=inclure les conjoints, 2=inclure les conjoints du conjoint, etc"
 
-#~ msgid "Co_mpress Personal and Spousal Display Formats"
-#~ msgstr "Co_mpresser les formats d'affichage de l'individu et du conjoint"
+#: Descend2.py:1518
+msgid ""
+"Personal\n"
+"Display Format"
+msgstr ""
+"Individu\n"
+"Format d'affichage"
 
-#~ msgid "Whether to not print empty lines within the 'Personal Display'."
-#~ msgstr "Imprimer ou non des lignes vides dans l'affichage de l'individu."
+#: Descend2.py:1523
+msgid "Co_mpress Personal and Spousal Display Formats"
+msgstr "Co_mpresser les formats d'affichage de l'individu et du conjoint"
 
-#~ msgid "Bold direct descendants"
-#~ msgstr "Ligne directe des descendants en gras"
+#: Descend2.py:1524
+msgid "Whether to not print empty lines within the 'Personal Display'."
+msgstr "Imprimer ou non des lignes vides dans l'affichage de l'individu."
 
-#~ msgid ""
-#~ "Whether to bold those people that are direct (not step or half) "
-#~ "decendants."
-#~ msgstr ""
-#~ "Afficher ou non en gras les descendants directs (pas d'alliance ou "
-#~ "d'adoption)."
+#: Descend2.py:1527
+msgid "Bold direct descendants"
+msgstr "Ligne directe des descendants en gras"
 
-#~ msgid "Use seperate display format for spouses"
-#~ msgstr "Utiliser un format d'affichage différent pour les conjoints"
+#: Descend2.py:1528
+msgid "Whether to bold those people that are direct (not step or half) decendants."
+msgstr "Afficher ou non en gras les descendants directs (pas d'alliance ou d'adoption)."
 
-#~ msgid "Whether spouses can have a different format."
-#~ msgstr "Les conjoints utilisent ou non un format différent."
+#: Descend2.py:1533
+msgid "Use seperate display format for spouses"
+msgstr "Utiliser un format d'affichage différent pour les conjoints"
 
-#~ msgid "Indent Spouses"
-#~ msgstr "Indenter les conjoints"
+#: Descend2.py:1534
+msgid "Whether spouses can have a different format."
+msgstr "Les conjoints utilisent ou non un format différent."
 
-#~ msgid "Whether to indent the spouses in the tree."
-#~ msgstr "Indenter ou non les conjoints dans l'arbre."
+#: Descend2.py:1537
+msgid "Indent Spouses"
+msgstr "Indenter les conjoints"
 
-#~ msgid ""
-#~ "Spousal\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Format d'affichage\n"
-#~ "Conjoint"
+#: Descend2.py:1538
+msgid "Whether to indent the spouses in the tree."
+msgstr "Indenter ou non les conjoints dans l'arbre."
+
+#: Descend2.py:1541
+msgid ""
+"Spousal\n"
+"Display Format"
+msgstr ""
+"Format d'affichage\n"
+"Conjoint"
 
 # replacer ?
 # voir context
-#~ msgid "Replace"
-#~ msgstr "Remplacer"
+#: Descend2.py:1554
+msgid "Replace"
+msgstr "Remplacer"
 
-#~ msgid ""
-#~ "Replace Display Format:\n"
-#~ "'Replace this'/'with this'"
-#~ msgstr ""
-#~ "Remplacer le format d'affichage:\n"
-#~ "'Remplacer ceci'/'par cela'"
+#: Descend2.py:1556
+msgid ""
+"Replace Display Format:\n"
+"'Replace this'/'with this'"
+msgstr ""
+"Remplacer le format d'affichage:\n"
+"'Remplacer ceci'/'par cela'"
 
-#~ msgid ""
-#~ "ie\n"
-#~ "United States of America/U.S.A"
-#~ msgstr ""
-#~ "ex:\n"
-#~ "United States of America/U.S.A"
+#: Descend2.py:1558
+msgid ""
+"ie\n"
+"United States of America/U.S.A"
+msgstr ""
+"ex:\n"
+"United States of America/U.S.A"
 
-#~ msgid "The bold style used for the text display."
-#~ msgstr "Le style gras pour afficher du texte."
+#: Descend2.py:1649
+msgid "The bold style used for the text display."
+msgstr "Le style gras pour afficher du texte."
 
-#~ msgid "Personal Descend Tree"
-#~ msgstr "Arbre individuel des descendants"
+#: Descend2.py:1707
+msgid "Personal Descend Tree"
+msgstr "Arbre individuel des descendants"
 
-#~ msgid "Familial Descend Tree"
-#~ msgstr "Arbre familial des descendants"
+#: Descend2.py:1740
+msgid "Familial Descend Tree"
+msgstr "Arbre familial des descendants"
 
-#~ msgid "Descendent Count"
-#~ msgstr "Nombre de descendants"
+#: DescendantCountGramplet.py:81
+msgid "Descendent Count"
+msgstr "Nombre de descendants"
 
-#~ msgid "Number of Descendants"
-#~ msgstr "Nombre de descendants"
+#: DescendantCountGramplet.py:83
+msgid "Number of Descendants"
+msgstr "Nombre de descendants"
 
-#~ msgid "There are %d people.\n"
-#~ msgstr "Il y a %d individus.\n"
+#: DescendantCountGramplet.py:92
+msgid "There are %d people.\n"
+msgstr "Il y a %d individus.\n"
 
-#~ msgid "Descendant Count"
-#~ msgstr "Nombre de descendants"
+#: DescendantCountGramplet.py:105
+#: DescendantCountGramplet.py:118
+msgid "Descendant Count"
+msgstr "Nombre de descendants"
 
-#~ msgid "Display descendant counts for each person."
-#~ msgstr "Affiche le nombre de descendants pour l'individu spécifié."
+#: DescendantCountGramplet.py:107
+msgid "Display descendant counts for each person."
+msgstr "Affiche le nombre de descendants pour l'individu spécifié."
 
-#~ msgid "Descendant Count Gramplet"
-#~ msgstr "Gramplet Nombre de descendants"
+#: DescendantCountGramplet.py:114
+msgid "Descendant Count Gramplet"
+msgstr "Gramplet Nombre de descendants"
 
-#~ msgid "\"FamilyGroups\" and \"Identification Number\" attributes "
-#~ msgstr "Les attributs \"GroupesFamilial\" et \"Numéro d'identification\" "
+#: FamilyGroups_1_1.py:88
+msgid "\"FamilyGroups\" and \"Identification Number\" attributes "
+msgstr "Les attributs \"GroupesFamilial\" et \"Numéro d'identification\" "
 
-#~ msgid "TOTAL NUMBER OF INDIVIDUALS : %s"
-#~ msgstr "NOMBRE TOTAL D'INDIVIDUS : %s"
+#: FamilyGroups_1_1.py:456
+msgid "TOTAL NUMBER OF INDIVIDUALS : %s"
+msgstr "NOMBRE TOTAL D'INDIVIDUS : %s"
 
-#~ msgid " SURNAME  : %s"
-#~ msgstr "NOM DE FAMMILE : %s"
+#: FamilyGroups_1_1.py:459
+msgid " SURNAME  : %s"
+msgstr "NOM DE FAMMILE : %s"
 
-#~ msgid " is the studied name (Active-Person).\n"
-#~ msgstr " est le nom étudié (Personne active).\n"
+#: FamilyGroups_1_1.py:460
+msgid " is the studied name (Active-Person).\n"
+msgstr " est le nom étudié (Personne active).\n"
 
-#~ msgid ""
-#~ " ==> When the number is the lower than twenty, persons are precised with "
-#~ "surname, ID gramps and attribut.\n"
-#~ msgstr ""
-#~ " ===> Quand le nombre est inférieur à 20, les individus sont précisés par "
-#~ "le nom de famille, Identifiant Gramps et attribut.\n"
+#: FamilyGroups_1_1.py:465
+msgid " ==> When the number is the lower than twenty, persons are precised with surname, ID gramps and attribut.\n"
+msgstr " ===> Quand le nombre est inférieur à 20, les individus sont précisés par le nom de famille, Identifiant Gramps et attribut.\n"
 
-#~ msgid "  Of the individuals bear this name   : %s"
-#~ msgstr "  Individus portant ce nom : %s"
+#: FamilyGroups_1_1.py:489
+msgid "  Of the individuals bear this name   : %s"
+msgstr "  Individus portant ce nom : %s"
 
-#~ msgid "  Of the individuals bear this attribute   : %s  "
-#~ msgstr "  Individus portant cet attribut : %s  "
+#: FamilyGroups_1_1.py:494
+msgid "  Of the individuals bear this attribute   : %s  "
+msgstr "  Individus portant cet attribut : %s  "
 
-#~ msgid " ========= > BEWARE  %s"
-#~ msgstr " ========= > ATTENTION  %s"
+#: FamilyGroups_1_1.py:519
+msgid " ========= > BEWARE  %s"
+msgstr " ========= > ATTENTION  %s"
 
-#~ msgid ""
-#~ " PERSONS HAVE a empty  \"ID\" attribut or not attribute \"0NOATTRIB\""
-#~ msgstr " INDIVIDUS ONT un attribut \"ID\" ou aucun attribut \"0NOATTRIB\""
+#: FamilyGroups_1_1.py:520
+msgid " PERSONS HAVE a empty  \"ID\" attribut or not attribute \"0NOATTRIB\""
+msgstr " INDIVIDUS ONT un attribut \"ID\" ou aucun attribut \"0NOATTRIB\""
 
-#~ msgid "The basic style used for the para title."
-#~ msgstr "Le style de base pour afficher le titre du paragraphe."
+#: FamilyGroups_1_1.py:578
+msgid "The basic style used for the para title."
+msgstr "Le style de base pour afficher le titre du paragraphe."
 
-#~ msgid "FamilyGroups_1_1"
-#~ msgstr "GroupesFamiliaux_1_1"
+#: FamilyGroups_1_1.py:606
+msgid "FamilyGroups_1_1"
+msgstr "GroupesFamiliaux_1_1"
 
-#~ msgid "Testing"
-#~ msgstr "En test"
+#: FamilyGroups_1_1.py:607
+#: Gallery.py:167
+#: SVGMap.py:137
+#: locations.py:259
+msgid "Testing"
+msgstr "En test"
 
-#~ msgid "FamilyGroups"
-#~ msgstr "GroupesFamiliaux"
+#: FamilyGroups_1_1.py:608
+msgid "FamilyGroups"
+msgstr "GroupesFamiliaux"
 
-#~ msgid "FAQ Gramplet"
-#~ msgstr "Gramplet FAQ"
+#: FaqGramplet.py:44
+msgid "FAQ Gramplet"
+msgstr "Gramplet FAQ"
 
-#~ msgid "FAQ"
-#~ msgstr "Foire aux questions"
+#: FaqGramplet.py:47
+msgid "FAQ"
+msgstr "Foire aux questions"
 
-#~ msgid "The style used for the name of person."
-#~ msgstr "Style utilisé pour le nom de l'individu."
+#: Gallery.py:140
+msgid "The style used for the name of person."
+msgstr "Style utilisé pour le nom de l'individu."
 
-#~ msgid "Produces a gallery"
-#~ msgstr "Produit une galerie"
+#: Gallery.py:169
+msgid "Produces a gallery"
+msgstr "Produit une galerie"
 
-#~ msgid "No place description"
-#~ msgstr "Pas de description du lieu"
+#: GoogleEarthWriteKML.py:81
+#: SVGMap.py:54
+msgid "No place description"
+msgstr "Pas de description du lieu"
 
-#~ msgid "GoogleEarth not installed!"
-#~ msgstr "GoogleEarth n'est pas installé !"
+#: GoogleEarthWriteKML.py:114
+msgid "GoogleEarth not installed!"
+msgstr "GoogleEarth n'est pas installé !"
 
-#~ msgid ""
-#~ "Create kmz/kml file ''%s''\n"
-#~ "in user directory ''%s''?"
-#~ msgstr ""
-#~ "Créer un fichier kmz/kml ''%s''\n"
-#~ "dans le répertoire utilisateur ''%s'' ?"
+#: GoogleEarthWriteKML.py:115
+msgid ""
+"Create kmz/kml file ''%s''\n"
+"in user directory ''%s''?"
+msgstr ""
+"Créer un fichier kmz/kml ''%s''\n"
+"dans le répertoire utilisateur ''%s'' ?"
 
-#~ msgid "Failure writing to %s"
-#~ msgstr "Échec à l'écriture de %s"
+#: GoogleEarthWriteKML.py:125
+msgid "Failure writing to %s"
+msgstr "Échec à l'écriture de %s"
 
-#~ msgid "Directory does not exist"
-#~ msgstr "Ce répertoire n'existe pas"
+#: GoogleEarthWriteKML.py:126
+msgid "Directory does not exist"
+msgstr "Ce répertoire n'existe pas"
 
-#~ msgid "GoogleEarth file exists!"
-#~ msgstr "Le fichier GoogleEarth existe !"
+#: GoogleEarthWriteKML.py:134
+msgid "GoogleEarth file exists!"
+msgstr "Le fichier GoogleEarth existe !"
 
-#~ msgid ""
-#~ "Overwrite kmz/kml file ''%s''\n"
-#~ "in user home directory ''%s''?"
-#~ msgstr ""
-#~ "Écraser le fichier kmz/kml \"%s\"\n"
-#~ "dans le répertoire home \"%s\" ?"
+#: GoogleEarthWriteKML.py:135
+msgid ""
+"Overwrite kmz/kml file ''%s''\n"
+"in user home directory ''%s''?"
+msgstr ""
+"Écraser le fichier kmz/kml \"%s\"\n"
+"dans le répertoire home \"%s\" ?"
 
-#~ msgid "GoogleEarth"
-#~ msgstr "GoogleEarth"
+#: GoogleEarthWriteKML.py:214
+msgid "GoogleEarth"
+msgstr "GoogleEarth"
 
-#~ msgid "Creates data file for GoogleEarth and opens it"
-#~ msgstr "Créé un fichier de données pour GoogleEarth puis l'ouvre"
+#: GoogleEarthWriteKML.py:216
+msgid "Creates data file for GoogleEarth and opens it"
+msgstr "Créé un fichier de données pour GoogleEarth puis l'ouvre"
 
-#~ msgid "Read GRAMPS headline news"
-#~ msgstr "Lire les nouvelles depuis le wiki de GRAMPS"
+#: HeadlineNewsGramplet.py:98
+msgid "Read GRAMPS headline news"
+msgstr "Lire les nouvelles depuis le wiki de GRAMPS"
 
-#~ msgid "Headline News Gramplet"
-#~ msgstr "Gramplet Résumé"
+#: HeadlineNewsGramplet.py:276
+msgid "Headline News Gramplet"
+msgstr "Gramplet Résumé"
 
-#~ msgid "Headline News"
-#~ msgstr "Nouvelles"
+#: HeadlineNewsGramplet.py:280
+msgid "Headline News"
+msgstr "Nouvelles"
 
-#~ msgid "Note Gramplet"
-#~ msgstr "Gramplet Note"
+#: NoteGramplet.py:268
+msgid "Note Gramplet"
+msgstr "Gramplet Note"
 
-#~ msgid ""
-#~ "Place Completion by parsing, file lookup and batch setting of place "
-#~ "attributes"
-#~ msgstr ""
-#~ "Arrangement du lieu par parsing, recherche et préférences batch pour les "
-#~ "attributs du lieu"
+#: PlaceCompletion.py:76
+msgid "Place Completion by parsing, file lookup and batch setting of place attributes"
+msgstr "Arrangement du lieu par parsing, recherche et préférences batch pour les attributs du lieu"
 
-#~ msgid "city"
-#~ msgstr "ville"
+#: PlaceCompletion.py:180
+#: PlaceCompletion.py:211
+#: PlaceCompletion.py:250
+#: PlaceCompletion.py:1041
+#: PlaceCompletion.py:1081
+msgid "city"
+msgstr "ville"
 
-#~ msgid "street"
-#~ msgstr "rue"
+#: PlaceCompletion.py:180
+#: PlaceCompletion.py:219
+#: PlaceCompletion.py:258
+msgid "street"
+msgstr "rue"
 
-#~ msgid "parish"
-#~ msgstr "paroisse"
+#: PlaceCompletion.py:180
+#: PlaceCompletion.py:221
+#: PlaceCompletion.py:260
+#: PlaceCompletion.py:1042
+msgid "parish"
+msgstr "paroisse"
 
-#~ msgid "country"
-#~ msgstr "pays"
+#: PlaceCompletion.py:181
+#: PlaceCompletion.py:213
+#: PlaceCompletion.py:252
+#: PlaceCompletion.py:1038
+#: PlaceCompletion.py:1084
+msgid "country"
+msgstr "pays"
 
 # "/" perturbe le regex
-#~ msgid "county"
-#~ msgstr "département ou comté"
+#: PlaceCompletion.py:181
+#: PlaceCompletion.py:215
+#: PlaceCompletion.py:254
+#: PlaceCompletion.py:424
+#: PlaceCompletion.py:1040
+#: PlaceCompletion.py:1082
+msgid "county"
+msgstr "département ou comté"
 
 # "/" perturbe le regex
-#~ msgid "state"
-#~ msgstr "région ou province"
+#: PlaceCompletion.py:181
+#: PlaceCompletion.py:217
+#: PlaceCompletion.py:256
+#: PlaceCompletion.py:424
+#: PlaceCompletion.py:1039
+#: PlaceCompletion.py:1083
+msgid "state"
+msgstr "région ou province"
 
 # pas INSEE (spécifique fr)
-#~ msgid "zip"
-#~ msgstr "Code lieu"
+#: PlaceCompletion.py:181
+#: PlaceCompletion.py:223
+#: PlaceCompletion.py:262
+#: PlaceCompletion.py:1043
+msgid "zip"
+msgstr "Code lieu"
 
-#~ msgid "latitude"
-#~ msgstr "latitude"
+#: PlaceCompletion.py:203
+#: PlaceCompletion.py:239
+#: PlaceCompletion.py:923
+#: PlaceCompletion.py:979
+#: PlaceCompletion.py:981
+#: PlaceCompletion.py:987
+msgid "latitude"
+msgstr "latitude"
 
-#~ msgid "longitude"
-#~ msgstr "longitude"
+#: PlaceCompletion.py:205
+#: PlaceCompletion.py:241
+#: PlaceCompletion.py:924
+#: PlaceCompletion.py:991
+#: PlaceCompletion.py:993
+#: PlaceCompletion.py:998
+msgid "longitude"
+msgstr "longitude"
 
-#~ msgid "Error in PlaceCompletion.py"
-#~ msgstr "Erreur dans PlaceCompletion.py"
+#: PlaceCompletion.py:226
+#: PlaceCompletion.py:265
+msgid "Error in PlaceCompletion.py"
+msgstr "Erreur dans PlaceCompletion.py"
 
-#~ msgid "Non existing group used in get"
-#~ msgstr "Un groupe qui n'existe pas a été appelé"
+#: PlaceCompletion.py:227
+msgid "Non existing group used in get"
+msgstr "Un groupe qui n'existe pas a été appelé"
 
-#~ msgid "Non existing group used in set"
-#~ msgstr "Un groupe qui n'existe pas a été défini"
+#: PlaceCompletion.py:266
+msgid "Non existing group used in set"
+msgstr "Un groupe qui n'existe pas a été défini"
 
-#~ msgid "Places tool"
-#~ msgstr "Outil lieux"
+#: PlaceCompletion.py:324
+msgid "Places tool"
+msgstr "Outil lieux"
 
-#~ msgid "Non Valid Title Regex"
-#~ msgstr "Titre de l'expression rationnelle non valide"
+#: PlaceCompletion.py:416
+msgid "Non Valid Title Regex"
+msgstr "Titre de l'expression rationnelle non valide"
 
-#~ msgid "Non valid regular expression given to match title. Quiting."
-#~ msgstr ""
-#~ "Une expression rationnelle non valide a été donnée pour titre. Quitter."
+#: PlaceCompletion.py:417
+msgid "Non valid regular expression given to match title. Quiting."
+msgstr "Une expression rationnelle non valide a été donnée pour titre. Quitter."
 
-#~ msgid "lat"
-#~ msgstr "lat"
+#: PlaceCompletion.py:429
+#: PlaceCompletion.py:562
+#: PlaceCompletion.py:919
+#: PlaceCompletion.py:1079
+msgid "lat"
+msgstr "lat"
 
-#~ msgid "lon"
-#~ msgstr "lon"
+#: PlaceCompletion.py:429
+#: PlaceCompletion.py:562
+#: PlaceCompletion.py:919
+#: PlaceCompletion.py:1080
+msgid "lon"
+msgstr "lon"
 
-#~ msgid "Missing regex groups in match lat/lon"
-#~ msgstr "Expression rationnelle manquante pour lat/lon"
+#: PlaceCompletion.py:432
+msgid "Missing regex groups in match lat/lon"
+msgstr "Expression rationnelle manquante pour lat/lon"
 
-#~ msgid ""
-#~ "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
-#~ msgstr ""
-#~ "Les groupes d'expression rationnelle %(lat)s et %(lon)s doivent être "
-#~ "présent dans la correspondance lat/lon. Quitter."
+#: PlaceCompletion.py:433
+msgid "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
+msgstr "Les groupes d'expression rationnelle %(lat)s et %(lon)s doivent être présent dans la correspondance lat/lon. Quitter."
 
-#~ msgid "Non valid regex for match lat/lon"
-#~ msgstr "Expression rationnelle non valide pour lat/lon"
+#: PlaceCompletion.py:443
+msgid "Non valid regex for match lat/lon"
+msgstr "Expression rationnelle non valide pour lat/lon"
 
-#~ msgid "Non valid regular expression given to find lat/lon. Quiting."
-#~ msgstr ""
-#~ "Expression rationnelle donnée non valide pour trouver lat/lon. Quitter."
+#: PlaceCompletion.py:444
+msgid "Non valid regular expression given to find lat/lon. Quiting."
+msgstr "Expression rationnelle donnée non valide pour trouver lat/lon. Quitter."
 
-#~ msgid "Finding Places and appropriate changes"
-#~ msgstr "Trouver les lieux et changements appropriés"
+#: PlaceCompletion.py:502
+msgid "Finding Places and appropriate changes"
+msgstr "Trouver les lieux et changements appropriés"
 
-#~ msgid "Filtering"
-#~ msgstr "Filtrage"
+#: PlaceCompletion.py:504
+msgid "Filtering"
+msgstr "Filtrage"
 
-#~ msgid "Loading lat/lon file in Memory..."
-#~ msgstr "Chargement du fichier lat/lon en mémoire..."
+#: PlaceCompletion.py:514
+msgid "Loading lat/lon file in Memory..."
+msgstr "Chargement du fichier lat/lon en mémoire..."
 
-#~ msgid "Examining places"
-#~ msgstr "Analyse des lieux"
+#: PlaceCompletion.py:519
+msgid "Examining places"
+msgstr "Analyse des lieux"
 
 # Substantif (GNOME fr)
-#~ msgid "Doing Place changes"
-#~ msgstr "Modification des lieux"
+#: PlaceCompletion.py:707
+msgid "Doing Place changes"
+msgstr "Modification des lieux"
 
-#~ msgid "Change places"
-#~ msgstr "Changement des lieux"
+#: PlaceCompletion.py:744
+#: PlaceCompletion.py:754
+msgid "Change places"
+msgstr "Changement des lieux"
 
-#~ msgid "No place record was modified."
-#~ msgstr "Aucun lieu n'a été modifié."
+#: PlaceCompletion.py:749
+msgid "No place record was modified."
+msgstr "Aucun lieu n'a été modifié."
 
-#~ msgid "1 place record was modified."
-#~ msgstr "1 lieu a été modifié."
+#: PlaceCompletion.py:751
+msgid "1 place record was modified."
+msgstr "1 lieu a été modifié."
 
-#~ msgid "%d place records were modified."
-#~ msgstr "%d lieux ont été modifiés."
+#: PlaceCompletion.py:753
+msgid "%d place records were modified."
+msgstr "%d lieux ont été modifiés."
 
-#~ msgid "The selected file is a directory, not a file."
-#~ msgstr "La sélection est un répertoire et non un fichier."
+#: PlaceCompletion.py:827
+msgid "The selected file is a directory, not a file."
+msgstr "La sélection est un répertoire et non un fichier."
 
-#~ msgid "The file you want to access is not a regular file."
-#~ msgstr "Le fichier auquel vous voulez accéder n'est pas correct."
+#: PlaceCompletion.py:840
+msgid "The file you want to access is not a regular file."
+msgstr "Le fichier auquel vous voulez accéder n'est pas correct."
 
-#~ msgid "The file does not exist."
-#~ msgstr "Fichier inexistant."
+#: PlaceCompletion.py:846
+msgid "The file does not exist."
+msgstr "Fichier inexistant."
 
-#~ msgid "Problem reading file"
-#~ msgstr "Erreur dans le fichier"
+#: PlaceCompletion.py:865
+msgid "Problem reading file"
+msgstr "Erreur dans le fichier"
 
-#~ msgid "CITY"
-#~ msgstr "VILLE"
+#: PlaceCompletion.py:895
+#: PlaceCompletion.py:898
+#: PlaceCompletion.py:1085
+msgid "CITY"
+msgstr "VILLE"
 
-#~ msgid "TITLEBEGIN"
-#~ msgstr "DEBUTDUTITRE"
+#: PlaceCompletion.py:899
+#: PlaceCompletion.py:904
+#: PlaceCompletion.py:1087
+msgid "TITLEBEGIN"
+msgstr "DEBUTDUTITRE"
 
-#~ msgid "TITLE"
-#~ msgstr "TITRE"
-
-# "/" perturbe le regex
-#~ msgid "STATE"
-#~ msgstr "RÉGION OU PROVINCE"
-
-#~ msgid "PARISH"
-#~ msgstr "PAROISSE"
-
-#~ msgid "invalid lat or lon value, %(lat)s, %(lon)s"
-#~ msgstr "Valeur lat ou long invalide, %(lat)s, %(lon)s"
-
-#~ msgid "No lat/lon conversion"
-#~ msgstr "Aucune conversion lat/lon"
-
-#~ msgid "All in degree notation"
-#~ msgstr "Tout en notation dégré"
-
-#~ msgid "All in decimal notation"
-#~ msgstr "Tout en notation décimale"
-
-#~ msgid "Correct -50° in 50°S"
-#~ msgstr "Corriger -50° en 50°S"
-
-#~ msgid "No changes"
-#~ msgstr "Aucun changement"
+#: PlaceCompletion.py:905
+#: PlaceCompletion.py:908
+#: PlaceCompletion.py:1086
+msgid "TITLE"
+msgstr "TITRE"
 
 # "/" perturbe le regex
-#~ msgid "City[, State]"
-#~ msgstr "Ville[, Région ou Province]"
+#: PlaceCompletion.py:909
+#: PlaceCompletion.py:912
+#: PlaceCompletion.py:1088
+msgid "STATE"
+msgstr "RÉGION OU PROVINCE"
+
+#: PlaceCompletion.py:913
+#: PlaceCompletion.py:916
+#: PlaceCompletion.py:1089
+msgid "PARISH"
+msgstr "PAROISSE"
+
+#: PlaceCompletion.py:983
+#: PlaceCompletion.py:995
+msgid "invalid lat or lon value, %(lat)s, %(lon)s"
+msgstr "Valeur lat ou long invalide, %(lat)s, %(lon)s"
+
+#: PlaceCompletion.py:1064
+msgid "No lat/lon conversion"
+msgstr "Aucune conversion lat/lon"
+
+#: PlaceCompletion.py:1065
+msgid "All in degree notation"
+msgstr "Tout en notation dégré"
+
+#: PlaceCompletion.py:1066
+msgid "All in decimal notation"
+msgstr "Tout en notation décimale"
+
+#: PlaceCompletion.py:1067
+msgid "Correct -50° in 50°S"
+msgstr "Corriger -50° en 50°S"
+
+#: PlaceCompletion.py:1071
+msgid "No changes"
+msgstr "Aucun changement"
 
 # "/" perturbe le regex
-#~ msgid "TitleStart [, City] [, State]"
-#~ msgstr "Début du titre [, Ville] [, Région ou Province]"
+#: PlaceCompletion.py:1072
+msgid "City[, State]"
+msgstr "Ville[, Région ou Province]"
 
 # "/" perturbe le regex
-#~ msgid "City [,|.] State"
-#~ msgstr "Ville [,|.] Région ou Province"
-
-#~ msgid "City [,|.] Country"
-#~ msgstr "Ville [,|.] Pays"
-
-#~ msgid "City (Country)"
-#~ msgstr "Ville (Pays)"
-
-#~ msgid "Don't search"
-#~ msgstr "Ne pas chercher"
-
-#~ msgid "GeoNames country file, city search"
-#~ msgstr "GeoNames fichier pays, recherche ville"
-
-#~ msgid "GeoNames country file, city localized variants search"
-#~ msgstr "GeoNames fichier pays, ville localisée recherche diverse"
-
-#~ msgid "GeoNames country file, title begin, general search"
-#~ msgstr "GeoNames fichier pays, début du titre, recherche générale"
-
-#~ msgid "GeoNames USA state file, city search"
-#~ msgstr "GeoNames USA fichier région/province, recherche ville"
-
-#~ msgid "GNS Geonet country file, city search"
-#~ msgstr "GNS Geonet fichier pays, recherche ville"
-
-#~ msgid "GNS Geonet country file, title begin, general search"
-#~ msgstr "GNS Geonet fichier pays, début du titre, recherche générale"
-
-#~ msgid "Wikipedia CSV Dump"
-#~ msgstr "Tableur CSV Wikipedia"
-
-#~ msgid "All Places"
-#~ msgstr "Tous les lieux"
-
-#~ msgid "No Latitude/Longitude given"
-#~ msgstr "Aucune latitude et longitude donnée"
-
-#~ msgid "Interactive place completion"
-#~ msgstr "Arrangement interactif des lieux"
-
-#~ msgid "Unstable"
-#~ msgstr "Instable"
-
-#~ msgid ""
-#~ "Provides a browsable list of selected places, with possibility to "
-#~ "complete/parse/set the attribute fields"
-#~ msgstr ""
-#~ "Fournit une liste consultable des lieux sélectionnés, avec la possibilité "
-#~ "de compléter/parser/définir les champs de l'attribut"
-
-#~ msgid "Reading"
-#~ msgstr "Lecture"
-
-#~ msgid "Plugin Manager Gramplet"
-#~ msgstr "Gramplet Gestionnaire de plugins"
-
-#~ msgid "Plugin Manager"
-#~ msgstr "Gestionnaire de plugins"
-
-#~ msgid "Enter Python expressions"
-#~ msgstr "Entrer des expressions python"
-
-#~ msgid "class name|Date"
-#~ msgstr "Date"
-
-#~ msgid "Error"
-#~ msgstr "Erreur"
-
-#~ msgid "Python Gramplet"
-#~ msgstr "Gramplet Python"
-
-#~ msgid "Python Shell"
-#~ msgstr "Shell python"
-
-#~ msgid "Repositories Report"
-#~ msgstr "Rapport des dépôts"
-
-#~ msgid "The style used for repository title."
-#~ msgstr "Le style utilisé pour le titre du dépôt."
-
-#~ msgid "Produces a textual repositories report"
-#~ msgstr "Produit un rapport textuel des dépôts"
-
-#~ msgid ""
-#~ "\n"
-#~ "Address: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Adresse : %s"
-
-#~ msgid "%s. Private"
-#~ msgstr "%s. Privé"
-
-#~ msgid "Author: %s"
-#~ msgstr "Auteur : %s"
-
-#~ msgid ""
-#~ "\n"
-#~ "Abbreviation: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Abréviation : %s"
-
-#~ msgid ""
-#~ "\n"
-#~ "Publication information: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Information de publication : %s"
-
-#~ msgid ""
-#~ "\n"
-#~ "Data: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Données : %s"
-
-#~ msgid "Include repository's urls"
-#~ msgstr "Inclure les liens internet du dépôt"
-
-#~ msgid "Whether to include urls on repository."
-#~ msgstr "Inclure ou non les liens internet du dépôt."
-
-#~ msgid "Include repository's address"
-#~ msgstr "Inclure les adresses du dépôt"
-
-#~ msgid "Whether to include addresses on repository."
-#~ msgstr "Inclure ou non les adresses du dépôt."
-
-#~ msgid "Include source's author"
-#~ msgstr "Inclure l'auteur de la source"
-
-#~ msgid "Whether to include author."
-#~ msgstr "Inclure ou non l'auteur."
-
-#~ msgid "Include source's abbreviation"
-#~ msgstr "Inclure l'abréviation de la source"
-
-#~ msgid "Whether to include abbreviation."
-#~ msgstr "Inclure ou non l'abréviation."
-
-#~ msgid "Include source's publication information"
-#~ msgstr "Inclure l'information de publication pour la source"
-
-#~ msgid "Whether to include publication information."
-#~ msgstr "Inclure ou non l'information du publication."
-
-#~ msgid "Include source's data"
-#~ msgstr "Inclure les données personnalisées de la source"
-
-#~ msgid "Whether to include keys and values."
-#~ msgstr "Inclure ou non les clés et valeurs."
-
-#~ msgid "Whether to include notes on repositories and sources."
-#~ msgstr "Inclure ou non les notes pour les dépôts et sources."
-
-#~ msgid "Include media"
-#~ msgstr "Inclure les media"
-
-#~ msgid "Whether to include media on sources."
-#~ msgstr "Inclure ou non les media de la source."
-
-#~ msgid "Whether to include repositories and sources marked as private."
-#~ msgstr "Inclure ou non les dépôts et sources marquées comme privées."
-
-#~ msgid "The style used for child section."
-#~ msgstr "Le style utilisé pour la section secondaire."
-
-#~ msgid "Repositories Report 2"
-#~ msgstr "Rapport des dépôts alternatif"
-
-#~ msgid "SVG Map"
-#~ msgstr "Carte SVG"
-
-#~ msgid "Creates data into a SVG file"
-#~ msgstr "Créé des données dans un fichier SVG"
-
-#~ msgid "Top Left"
-#~ msgstr "Supérieur, Gauche"
-
-#~ msgid "Top Right"
-#~ msgstr "Supérieur, Droit"
-
-#~ msgid "Bottom Left"
-#~ msgstr "Inférieur, Gauche"
-
-#~ msgid "Bottom Right"
-#~ msgstr "Inférieur, Droit"
-
-#~ msgid "Number of %s's descendants"
-#~ msgstr "Nombre de descendants de %s"
-
-#~ msgid "%s total descendants"
-#~ msgstr "Il y a %s descendants"
-
-#~ msgid "%s descendants born during his/her lifetime"
-#~ msgstr "%s descendants nés lors de sa vie"
-
-#~ msgid "%s descendants died during his/her lifetime"
-#~ msgstr "%s descendants décédés lors de sa vie"
-
-#~ msgid "%s descendants now alive"
-#~ msgstr "%s descendants en vie actuellement"
-
-#~ msgid "Descendant count"
-#~ msgstr "Nombre de descendants"
-
-#~ msgid "Displays the number of a person's descendants"
-#~ msgstr "Affiche le nombre de descendants de l'individu"
-
-#~ msgid "No coordinates given!"
-#~ msgstr "Aucune coordonnée donnée !"
-
-#~ msgid "Map not available for"
-#~ msgstr "Carte non disponible pour"
-
-#~ msgid ""
-#~ "Longitude=%s\n"
-#~ "Latitude=%s"
-#~ msgstr ""
-#~ "Longitude=%s\n"
-#~ "Latitude=%s"
-
-#~ msgid "Häradskarta"
-#~ msgstr "Häradskarta"
-
-#~ msgid "Opens häradskarta, if found."
-#~ msgstr "Ouvre häradskarta, si trouvé."
-
-#~ msgid "Locations"
-#~ msgstr "Emplacements et adresses"
-
-#~ msgid ""
-#~ "\n"
-#~ "Census event (Individual)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Événement Recensement (individu)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Residence event (Individual)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Événement Résidence (Individu)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Census event (Family)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Événement Recensement (Famille)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Residence event (Family)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Événement Résidence (Famille)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Address filter (Person)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Filtre sur l'adresse (Individu)\n"
-
-#~ msgid "The basic style used for the paragraph title."
-#~ msgstr "Le style de base pour afficher le titre du paragraphe."
-
-#~ msgid "Individuals with locations"
-#~ msgstr "Individus avec un emplacement"
-
-#~ msgid "<b>1. Look up latitude and longitude:</b>"
-#~ msgstr "<b>1. Recherche de la latitude et de la longitude :</b>"
-
-#~ msgid "<b>2. Parsing and Conversion of existing title or position:</b>"
-#~ msgstr "<b>2. Parsage et conversion d'un titre ou partie existant(e) :</b>"
-
-#~ msgid "<b>3. Set attributes of all selected places:</b>"
-#~ msgstr ""
-#~ "<b>3. Définition des attributs pour tous les lieux sélectionnés :</b>"
-
-#~ msgid "Apply all suggested changes"
-#~ msgstr "Appliquer les changements suggérés"
-
-#~ msgid "C_enter latitude:"
-#~ msgstr "C_entre de la latitude :"
-
-#~ msgid "Center longitude:"
-#~ msgstr "Centre de la longitude :"
-
-#~ msgid "Change title into:"
-#~ msgstr "Changer le titre en :"
-
-#~ msgid "Convert lat/lon as:"
-#~ msgstr "Convertir lat/long en :"
-
-#~ msgid "Parish"
-#~ msgstr "Paroisse"
-
-#~ msgid "Parish:"
-#~ msgstr "Paroisse :"
-
-#~ msgid "Parse as:"
-#~ msgstr "Parser comme :"
-
-#~ msgid "Parse title:"
-#~ msgstr "Parsage du titre :"
-
-#~ msgid "Place _filter:"
-#~ msgstr "_Filtre lieux :"
-
-#~ msgid "Places in a rectangle:"
-#~ msgstr "Lieux dans un rectangle :"
-
-#~ msgid "Search in:"
-#~ msgstr "Rechercher dans :"
-
-#~ msgid "Select A File"
-#~ msgstr "Sélectionner un fichier"
-
-#~ msgid ""
-#~ "<i>Delete to delete a row, Double-click on the row to edit place with "
-#~ "changes pre-entered, \n"
-#~ "Press Tab on a row or Google Maps button to see place on a map. Press "
-#~ "Apply to do all changes automatically</i>"
-#~ msgstr ""
-#~ "<i>Supprimer pour enlever une ligne, cliquez deux fois sur une ligne pour "
-#~ "éditer un lieu avec les changements pré-entrés, \n"
-#~ "Appuyez sur Tab à la ligne ou sur le bouton Google Maps pour visualiser "
-#~ "le lieu sur une carte. Appuyez sur Appliquer pour effectuer les "
-#~ "changements automatiquement</i>"
-
-#~ msgid ""
-#~ "<span size=\"large\"><b>Selection of the Places you want to complete:</"
-#~ "b></span>"
-#~ msgstr ""
-#~ "<span size=\"large\"><b>Sélection des lieux à compléter :</b></span>"
+#: PlaceCompletion.py:1074
+msgid "TitleStart [, City] [, State]"
+msgstr "Début du titre [, Ville] [, Région ou Province]"
+
+# "/" perturbe le regex
+#: PlaceCompletion.py:1097
+msgid "City [,|.] State"
+msgstr "Ville [,|.] Région ou Province"
+
+#: PlaceCompletion.py:1099
+msgid "City [,|.] Country"
+msgstr "Ville [,|.] Pays"
+
+#: PlaceCompletion.py:1101
+msgid "City (Country)"
+msgstr "Ville (Pays)"
+
+#: PlaceCompletion.py:1107
+msgid "Don't search"
+msgstr "Ne pas chercher"
+
+#: PlaceCompletion.py:1110
+msgid "GeoNames country file, city search"
+msgstr "GeoNames fichier pays, recherche ville"
+
+#: PlaceCompletion.py:1115
+msgid "GeoNames country file, city localized variants search"
+msgstr "GeoNames fichier pays, ville localisée recherche diverse"
+
+#: PlaceCompletion.py:1126
+msgid "GeoNames country file, title begin, general search"
+msgstr "GeoNames fichier pays, début du titre, recherche générale"
+
+#: PlaceCompletion.py:1131
+msgid "GeoNames USA state file, city search"
+msgstr "GeoNames USA fichier région/province, recherche ville"
+
+#: PlaceCompletion.py:1145
+msgid "GNS Geonet country file, city search"
+msgstr "GNS Geonet fichier pays, recherche ville"
+
+#: PlaceCompletion.py:1154
+msgid "GNS Geonet country file, title begin, general search"
+msgstr "GNS Geonet fichier pays, début du titre, recherche générale"
+
+#: PlaceCompletion.py:1162
+msgid "Wikipedia CSV Dump"
+msgstr "Tableur CSV Wikipedia"
+
+#: PlaceCompletion.py:1250
+msgid "All Places"
+msgstr "Tous les lieux"
+
+#: PlaceCompletion.py:1253
+msgid "No Latitude/Longitude given"
+msgstr "Aucune latitude et longitude donnée"
+
+#: PlaceCompletion.py:1345
+msgid "Interactive place completion"
+msgstr "Arrangement interactif des lieux"
+
+#: PlaceCompletion.py:1346
+msgid "Unstable"
+msgstr "Instable"
+
+#: PlaceCompletion.py:1349
+msgid "Provides a browsable list of selected places, with possibility to complete/parse/set the attribute fields"
+msgstr "Fournit une liste consultable des lieux sélectionnés, avec la possibilité de compléter/parser/définir les champs de l'attribut"
+
+#: PluginManagerGramplet.py:57
+msgid "Reading"
+msgstr "Lecture"
+
+#: PluginManagerGramplet.py:132
+msgid "Plugin Manager Gramplet"
+msgstr "Gramplet Gestionnaire de plugins"
+
+#: PluginManagerGramplet.py:136
+msgid "Plugin Manager"
+msgstr "Gestionnaire de plugins"
+
+#: PythonGramplet.py:47
+msgid "Enter Python expressions"
+msgstr "Entrer des expressions python"
+
+#: PythonGramplet.py:53
+msgid "class name|Date"
+msgstr "Date"
+
+#: PythonGramplet.py:63
+msgid "Error"
+msgstr "Erreur"
+
+#: PythonGramplet.py:152
+msgid "Python Gramplet"
+msgstr "Gramplet Python"
+
+#: PythonGramplet.py:155
+msgid "Python Shell"
+msgstr "Shell python"
+
+#: RepositoriesReport.py:68
+#: RepositoriesReport.py:208
+#: RepositoriesReportAlt.py:91
+msgid "Repositories Report"
+msgstr "Rapport des dépôts"
+
+#: RepositoriesReport.py:177
+#: RepositoriesReportAlt.py:398
+msgid "The style used for repository title."
+msgstr "Le style utilisé pour le titre du dépôt."
+
+#: RepositoriesReport.py:212
+#: RepositoriesReportAlt.py:462
+msgid "Produces a textual repositories report"
+msgstr "Produit un rapport textuel des dépôts"
+
+#: RepositoriesReportAlt.py:162
+msgid ""
+"\n"
+"Address: %s"
+msgstr ""
+"\n"
+"Adresse : %s"
+
+#: RepositoriesReportAlt.py:190
+msgid "%s. Private"
+msgstr "%s. Privé"
+
+#: RepositoriesReportAlt.py:230
+msgid "Author: %s"
+msgstr "Auteur : %s"
+
+#: RepositoriesReportAlt.py:232
+msgid ""
+"\n"
+"Abbreviation: %s"
+msgstr ""
+"\n"
+"Abréviation : %s"
+
+#: RepositoriesReportAlt.py:234
+msgid ""
+"\n"
+"Publication information: %s"
+msgstr ""
+"\n"
+"Information de publication : %s"
+
+#: RepositoriesReportAlt.py:236
+msgid ""
+"\n"
+"Data: %s"
+msgstr ""
+"\n"
+"Données : %s"
+
+#: RepositoriesReportAlt.py:322
+msgid "Include repository's urls"
+msgstr "Inclure les liens internet du dépôt"
+
+#: RepositoriesReportAlt.py:323
+msgid "Whether to include urls on repository."
+msgstr "Inclure ou non les liens internet du dépôt."
+
+#: RepositoriesReportAlt.py:326
+msgid "Include repository's address"
+msgstr "Inclure les adresses du dépôt"
+
+#: RepositoriesReportAlt.py:327
+msgid "Whether to include addresses on repository."
+msgstr "Inclure ou non les adresses du dépôt."
+
+#: RepositoriesReportAlt.py:330
+msgid "Include source's author"
+msgstr "Inclure l'auteur de la source"
+
+#: RepositoriesReportAlt.py:331
+msgid "Whether to include author."
+msgstr "Inclure ou non l'auteur."
+
+#: RepositoriesReportAlt.py:334
+msgid "Include source's abbreviation"
+msgstr "Inclure l'abréviation de la source"
+
+#: RepositoriesReportAlt.py:335
+msgid "Whether to include abbreviation."
+msgstr "Inclure ou non l'abréviation."
+
+#: RepositoriesReportAlt.py:338
+msgid "Include source's publication information"
+msgstr "Inclure l'information de publication pour la source"
+
+#: RepositoriesReportAlt.py:339
+msgid "Whether to include publication information."
+msgstr "Inclure ou non l'information du publication."
+
+#: RepositoriesReportAlt.py:342
+msgid "Include source's data"
+msgstr "Inclure les données personnalisées de la source"
+
+#: RepositoriesReportAlt.py:343
+msgid "Whether to include keys and values."
+msgstr "Inclure ou non les clés et valeurs."
+
+#: RepositoriesReportAlt.py:347
+msgid "Whether to include notes on repositories and sources."
+msgstr "Inclure ou non les notes pour les dépôts et sources."
+
+#: RepositoriesReportAlt.py:350
+msgid "Include media"
+msgstr "Inclure les media"
+
+#: RepositoriesReportAlt.py:351
+msgid "Whether to include media on sources."
+msgstr "Inclure ou non les media de la source."
+
+#: RepositoriesReportAlt.py:355
+msgid "Whether to include repositories and sources marked as private."
+msgstr "Inclure ou non les dépôts et sources marquées comme privées."
+
+#: RepositoriesReportAlt.py:428
+msgid "The style used for child section."
+msgstr "Le style utilisé pour la section secondaire."
+
+#: RepositoriesReportAlt.py:458
+msgid "Repositories Report 2"
+msgstr "Rapport des dépôts alternatif"
+
+#: SVGMap.py:136
+msgid "SVG Map"
+msgstr "Carte SVG"
+
+#: SVGMap.py:138
+msgid "Creates data into a SVG file"
+msgstr "Créé des données dans un fichier SVG"
+
+#: Tree_Base.py:500
+msgid "Top Left"
+msgstr "Supérieur, Gauche"
+
+#: Tree_Base.py:501
+msgid "Top Right"
+msgstr "Supérieur, Droit"
+
+#: Tree_Base.py:502
+msgid "Bottom Left"
+msgstr "Inférieur, Gauche"
+
+#: Tree_Base.py:503
+msgid "Bottom Right"
+msgstr "Inférieur, Droit"
+
+#: descendant_count.py:58
+msgid "Number of %s's descendants"
+msgstr "Nombre de descendants de %s"
+
+#: descendant_count.py:64
+msgid "%s total descendants"
+msgstr "Il y a %s descendants"
+
+#: descendant_count.py:66
+msgid "%s descendants born during his/her lifetime"
+msgstr "%s descendants nés lors de sa vie"
+
+#: descendant_count.py:67
+msgid "%s descendants died during his/her lifetime"
+msgstr "%s descendants décédés lors de sa vie"
+
+#: descendant_count.py:68
+msgid "%s descendants now alive"
+msgstr "%s descendants en vie actuellement"
+
+#: descendant_count.py:141
+msgid "Descendant count"
+msgstr "Nombre de descendants"
+
+#: descendant_count.py:143
+msgid "Displays the number of a person's descendants"
+msgstr "Affiche le nombre de descendants de l'individu"
+
+#: haradskarta.py:111
+msgid "No coordinates given!"
+msgstr "Aucune coordonnée donnée !"
+
+#: haradskarta.py:118
+msgid "Map not available for"
+msgstr "Carte non disponible pour"
+
+#: haradskarta.py:119
+msgid ""
+"Longitude=%s\n"
+"Latitude=%s"
+msgstr ""
+"Longitude=%s\n"
+"Latitude=%s"
+
+#: haradskarta.py:142
+msgid "Häradskarta"
+msgstr "Häradskarta"
+
+#: haradskarta.py:144
+msgid "Opens häradskarta, if found."
+msgstr "Ouvre häradskarta, si trouvé."
+
+#: locations.py:76
+#: locations.py:258
+msgid "Locations"
+msgstr "Emplacements et adresses"
+
+#: locations.py:102
+msgid ""
+"\n"
+"Census event (Individual)\n"
+msgstr ""
+"\n"
+"Événement Recensement (individu)\n"
+
+#: locations.py:123
+msgid ""
+"\n"
+"Residence event (Individual)\n"
+msgstr ""
+"\n"
+"Événement Résidence (Individu)\n"
+
+#: locations.py:144
+msgid ""
+"\n"
+"Census event (Family)\n"
+msgstr ""
+"\n"
+"Événement Recensement (Famille)\n"
+
+#: locations.py:165
+msgid ""
+"\n"
+"Residence event (Family)\n"
+msgstr ""
+"\n"
+"Événement Résidence (Famille)\n"
+
+#: locations.py:186
+msgid ""
+"\n"
+"Address filter (Person)\n"
+msgstr ""
+"\n"
+"Filtre sur l'adresse (Individu)\n"
+
+#: locations.py:234
+msgid "The basic style used for the paragraph title."
+msgstr "Le style de base pour afficher le titre du paragraphe."
+
+#: locations.py:262
+msgid "Individuals with locations"
+msgstr "Individus avec un emplacement"
+
+msgid "<b>1. Look up latitude and longitude:</b>"
+msgstr "<b>1. Recherche de la latitude et de la longitude :</b>"
+
+msgid "<b>2. Parsing and Conversion of existing title or position:</b>"
+msgstr "<b>2. Parsage et conversion d'un titre ou partie existant(e) :</b>"
+
+msgid "<b>3. Set attributes of all selected places:</b>"
+msgstr "<b>3. Définition des attributs pour tous les lieux sélectionnés :</b>"
+
+msgid "Apply all suggested changes"
+msgstr "Appliquer les changements suggérés"
+
+msgid "C_enter latitude:"
+msgstr "C_entre de la latitude :"
+
+msgid "Center longitude:"
+msgstr "Centre de la longitude :"
+
+msgid "Change title into:"
+msgstr "Changer le titre en :"
+
+msgid "Convert lat/lon as:"
+msgstr "Convertir lat/long en :"
+
+msgid "Parish"
+msgstr "Paroisse"
+
+msgid "Parish:"
+msgstr "Paroisse :"
+
+msgid "Parse as:"
+msgstr "Parser comme :"
+
+msgid "Parse title:"
+msgstr "Parsage du titre :"
+
+msgid "Place _filter:"
+msgstr "_Filtre lieux :"
+
+msgid "Places in a rectangle:"
+msgstr "Lieux dans un rectangle :"
+
+msgid "Search in:"
+msgstr "Rechercher dans :"
+
+msgid "Select A File"
+msgstr "Sélectionner un fichier"
+
+msgid ""
+"<i>Delete to delete a row, Double-click on the row to edit place with changes pre-entered, \n"
+"Press Tab on a row or Google Maps button to see place on a map. Press Apply to do all changes automatically</i>"
+msgstr ""
+"<i>Supprimer pour enlever une ligne, cliquez deux fois sur une ligne pour éditer un lieu avec les changements pré-entrés, \n"
+"Appuyez sur Tab à la ligne ou sur le bouton Google Maps pour visualiser le lieu sur une carte. Appuyez sur Appliquer pour effectuer les changements automatiquement</i>"
+
+msgid "<span size=\"large\"><b>Selection of the Places you want to complete:</b></span>"
+msgstr "<span size=\"large\"><b>Sélection des lieux à compléter :</b></span>"

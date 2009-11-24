@@ -23967,1402 +23967,1786 @@ msgstr ""
 "Du kan länka alla typer av elektroniska media (inklusive information som "
 "inte är text) och andra filtyper till ditt GRAMPS-släktträd."
 
-#~ msgid "Jump to father"
-#~ msgstr "Gå till fader"
+#: AllNames.py:52 AllNames.py:86
+msgid "All Names of All People"
+msgstr "Samtliga namn för samtliga personer"
+
+#: AllNames.py:55
+msgid "Name Type"
+msgstr "Namntyp"
+
+#: AllNames.py:55
+msgid "Primary Name"
+msgstr "Förstahandsnamn"
+
+#: AllNames.py:72
+msgid "Total names %d"
+msgstr "Totalt antal namn %d"
+
+#: AllNames.py:88
+msgid "All names of All people"
+msgstr "Samtliga namn för samtliga personer"
+
+#: Ancestor2.py:1044
+msgid "Print entire tree"
+msgstr "Skriv ut hela trädet"
+
+#: Ancestor2.py:1045
+msgid "Print empty boxes for all unknown ancestors."
+msgstr "Skriv ut tomma rutor för okända förfäder."
+
+#: Ancestor2.py:1055
+msgid ""
+"Show spouses of\n"
+"the center person"
+msgstr ""
+"Visar makar till\n"
+"centrumpersonen"
+
+#: Ancestor2.py:1056
+msgid "No.  Do not show Spouses"
+msgstr "Nej.  Visa ej makar."
+
+#: Ancestor2.py:1057
+msgid "Yes, and use the the Main Display Format"
+msgstr "Ja, och använd standardvisningsformatet"
+
+#: Ancestor2.py:1058
+msgid "Yes, and use the the Secondary Display Format"
+msgstr "Ja, och använd det sekundära visningsformatet"
+
+#: Ancestor2.py:1059
+msgid "Wheather to show spouses of the center person"
+msgstr "Huruvida visa makar till centrumpersonen"
+
+#: Ancestor2.py:1064
+msgid ""
+"Main\n"
+"Display Format"
+msgstr ""
+"Standard\n"
+"Visningsformat"
+
+#: Ancestor2.py:1069
+msgid "Co_mpress Main and Secondary Display Formats"
+msgstr "Ko_mprimera standard och sekundärvisningsformaten"
+
+#: Ancestor2.py:1070
+msgid "Whether to not print empty lines within the 'Display boxes'."
+msgstr "Huruvida skriva tomma rader inom 'Visningsrutorna' eller inte."
+
+#: Ancestor2.py:1073
+msgid ""
+"Use Main/Secondary\n"
+"Display Format for"
+msgstr ""
+"Använd standard/sekundärt\n"
+"visningsformat för"
+
+#: Ancestor2.py:1074
+msgid "Everyone uses the Main Display format"
+msgstr "All utnyttjar standardvisningsformatet."
+
+#: Ancestor2.py:1075
+msgid "Mothers use Main, and Fathers use the Secondary"
+msgstr "Mor använder standard och far använder det sekundära"
+
+#: Ancestor2.py:1076
+msgid "Fathers use Main, and Mothers use the Secondary"
+msgstr "Far använder standard och mor använder det sekundära"
+
+#: Ancestor2.py:1077
+msgid "Which Display format to use for Fathers and Mothers"
+msgstr "Vilket visningsformat som skall användas för fäder och mödrar"
+
+#: Ancestor2.py:1080 Descend2.py:1531
+msgid "Secondary"
+msgstr "Sekundärt"
+
+#: Ancestor2.py:1082
+msgid ""
+"Secondary\n"
+"Display Format"
+msgstr ""
+"Sekundärt\n"
+"visningsformat"
+
+#: Ancestor2.py:1087 Descend2.py:1546
+msgid "Include Marriage information"
+msgstr "Ta med giftermålsinformation"
+
+#: Ancestor2.py:1088 Descend2.py:1547
+msgid "Whether to include marriage information in the report."
+msgstr "Huruvida ta med giftermålssinformation i rapporten."
+
+#: Ancestor2.py:1091 Descend2.py:1550
+msgid ""
+"Marraige\n"
+"Display Format"
+msgstr ""
+"Giftermål\n"
+"visningsformat"
+
+#: Ancestor2.py:1100 Descend2.py:1561
+msgid "Print"
+msgstr "Skriv ut"
+
+#: Ancestor2.py:1102 Descend2.py:1563
+msgid "Scale report to fit"
+msgstr "Skala rapport"
+
+#: Ancestor2.py:1103
+msgid "Do not scale report"
+msgstr "Skala inte rapport"
+
+#: Ancestor2.py:1104
+msgid "Scale report to fit page width only"
+msgstr "Skala rapport för att anpassa till sidobredd endast"
+
+#: Ancestor2.py:1105
+msgid "Scale report to fit the size of the page"
+msgstr "Skala för att passa på en enda sida"
+
+#: Ancestor2.py:1106 Descend2.py:1567
+msgid "Wheather to scale the report to fit a specific size"
+msgstr "Huruvida skala om att passa för en specifik storlek "
+
+#: Ancestor2.py:1110 Descend2.py:1571
+msgid "One page report"
+msgstr "Rapport på en sida"
+
+#: Ancestor2.py:1111 Descend2.py:1572
+msgid "Whether to scale the size of the page to the size of the report."
+msgstr "Huruvida skala sidstorlek till rapportstorlek."
+
+#: Ancestor2.py:1115 Descend2.py:1576
+msgid "Include Report Title"
+msgstr "Ta med rapporttitel"
+
+#: Ancestor2.py:1116 Descend2.py:1577
+msgid "Whether to include the report title."
+msgstr "Huruvida ta med rapporttitel."
+
+#: Ancestor2.py:1119 Descend2.py:1580
+msgid "Print a border"
+msgstr "Skriv ut ram"
+
+#: Ancestor2.py:1120 Descend2.py:1581
+msgid "Whether to make a border around the report."
+msgstr "huruvida göra en ram runt rapporten."
+
+#: Ancestor2.py:1123 Descend2.py:1584
+msgid "Print Page Numbers"
+msgstr "Skriv ut sidnummer"
+
+#: Ancestor2.py:1124 Descend2.py:1585
+msgid "Whether to print page numbers on each page."
+msgstr "Huruvida skriva ut sidnummer på varje sida."
+
+#: Ancestor2.py:1135 Descend2.py:1594
+msgid "Include a personal note"
+msgstr "Ta med en personanteckning"
+
+#: Ancestor2.py:1136 Descend2.py:1595
+msgid "Whether to include a personalized note on the report."
+msgstr "Huruvida ta med en personlig anteckning på rapporten."
+
+#: Ancestor2.py:1139 Descend2.py:1598
+msgid ""
+"Note to add\n"
+"to the graph"
+msgstr ""
+"Anteckning att lägga\n"
+"till diagrammet"
+
+#: Ancestor2.py:1140 Descend2.py:1599
+msgid "Add a personal note"
+msgstr "Lägg till en personlig anteckning"
+
+#: Ancestor2.py:1144 Descend2.py:1606
+msgid "Note Location"
+msgstr "Placering av anteckning"
+
+#: Ancestor2.py:1147 Descend2.py:1608
+msgid "Where to place a personal note."
+msgstr "Var placera en personlig anteckning."
+
+#: Ancestor2.py:1216
+msgid "Ancestoral Tree"
+msgstr "Antavla"
+
+#: ClockGramplet.py:158
+msgid "Clock Gramplet"
+msgstr "Klock-Gramplet"
+
+#: ClockGramplet.py:162
+msgid "Clock"
+msgstr "Klocka"
+
+#: DataEntryGramplet.py:52 NoteGramplet.py:59
+msgid "Active person"
+msgstr "Aktiv person"
+
+#: DataEntryGramplet.py:55 DataEntryGramplet.py:82
+msgid "Surname, Given"
+msgstr "Efternamn, Förnamn"
+
+#: DataEntryGramplet.py:66 NoteGramplet.py:105
+msgid "Save"
+msgstr "Spara"
+
+#: DataEntryGramplet.py:69 NoteGramplet.py:108
+msgid "Abandon"
+msgstr "Överge"
+
+#: DataEntryGramplet.py:74
+msgid "New person"
+msgstr "Ny person"
+
+#: DataEntryGramplet.py:75
+msgid "Add relation"
+msgstr "Lägg till släktskap"
+
+#: DataEntryGramplet.py:76
+msgid "No relation to active person"
+msgstr "Ingen släktskap till aktiv person"
+
+#: DataEntryGramplet.py:77
+msgid "Add as a Parent"
+msgstr "Lägg till som föräldrar"
+
+#: DataEntryGramplet.py:78
+msgid "Add as a Spouse"
+msgstr "Lägg till som  maka/make"
+
+#: DataEntryGramplet.py:79
+msgid "Add as a Sibling"
+msgstr "Lägg till som syskon"
+
+#: DataEntryGramplet.py:80
+msgid "Add as a Child"
+msgstr "Lägg till som barn"
+
+#: DataEntryGramplet.py:96
+msgid "Copy Active Data"
+msgstr "Kopiera aktiva data"
+
+#: DataEntryGramplet.py:142 DataEntryGramplet.py:156 DataEntryGramplet.py:263
+#: DenominoViso.py:1984
+msgid "in"
+msgstr "i"
+
+#: DataEntryGramplet.py:384
+msgid "Gramplet Data Edit: %s"
+msgstr "Grampletdataredigering: %s"
+
+#: DataEntryGramplet.py:404
+msgid "Can't add new person."
+msgstr "Kan inte lägga till en ny person"
+
+#: DataEntryGramplet.py:404
+msgid "Please provide a name."
+msgstr "Ange ett namn."
+
+#: DataEntryGramplet.py:412 DataEntryGramplet.py:415
+msgid "Can't add new person as a parent."
+msgstr "Kan ej lägga till en ny person som förälder."
+
+#: DataEntryGramplet.py:412 DataEntryGramplet.py:420 DataEntryGramplet.py:429
+#: DataEntryGramplet.py:434
+msgid "Please set an active person."
+msgstr "Ange en person."
+
+#: DataEntryGramplet.py:415 DataEntryGramplet.py:424
+msgid "Please set the new person's gender."
+msgstr "Ange den nya personens kön."
+
+#: DataEntryGramplet.py:420 DataEntryGramplet.py:424 DataEntryGramplet.py:556
+#: DataEntryGramplet.py:593 DataEntryGramplet.py:626
+msgid "Can't add new person as a spouse."
+msgstr "kan ej lägga till ny person som make/maka."
+
+#: DataEntryGramplet.py:429
+msgid "Can't add new person as a sibling."
+msgstr "Kan ej lägga till ny person som syskon."
+
+#: DataEntryGramplet.py:434 DataEntryGramplet.py:672
+msgid "Can't add new person as a child."
+msgstr "kan ej lägga till ny person som barn."
+
+#: DataEntryGramplet.py:555
+msgid "Please set gender on Active or new person."
+msgstr "Ange kön på aktiv eller ny person"
+
+#: DataEntryGramplet.py:592 DataEntryGramplet.py:625
+msgid "Same genders on Active and new person."
+msgstr "Samma kön på aktiv och ny peson."
+
+#: DataEntryGramplet.py:671
+msgid "Please set gender on Active person."
+msgstr "Ange kön för aktiv person"
+
+#: DataEntryGramplet.py:693
+msgid "Gramplet Data Entry: %s"
+msgstr "Grampletdatainmatning: %s"
+
+#: DataEntryGramplet.py:742
+msgid "Data Entry Gramplet"
+msgstr "Gramplet för datainmatning"
+
+#: DataEntryGramplet.py:746
+msgid "Data Entry"
+msgstr "Datainmatning"
+
+#: DeepConnections.py:57
+msgid "Pause"
+msgstr "Paus"
+
+#: DeepConnections.py:92
+msgid "sibling"
+msgstr "syskon"
+
+#: DeepConnections.py:116
+msgid ""
+"\n"
+"   who is a %s of "
+msgstr ""
+"\n"
+"   som är en/ett %s till "
+
+#: DeepConnections.py:133
+msgid "No Active Person set."
+msgstr "Ingen aktiv person angiven."
+
+#: DeepConnections.py:140
+msgid ""
+"Looking for relationship between\n"
+"  <b>%s</b> (Home Person) and\n"
+"  <b>%s</b> (Active Person)...\n"
+msgstr ""
+"Letar efter släktskap mellan\n"
+"  <b>%s</b> (huvudperson) \n"
+"  <b>%s</b> (aktiv person)...\n"
+
+#: DeepConnections.py:150
+msgid ""
+"Found relation #%d: \n"
+"   "
+msgstr ""
+"Hittade släktskap #%d: \n"
+"   "
+
+#: DeepConnections.py:156
+msgid ""
+"Paused.\n"
+"Press Continue to search for additional relations.\n"
+msgstr ""
+"Paus.\n"
+"Tryck Fortsätt för att leta efter ytterligare släktsakp.\n"
+
+#: DeepConnections.py:169
+msgid ""
+"\n"
+"Search completed. %d relations found."
+msgstr ""
+"\n"
+"Sökning avslutad. %d släktskap hittade."
+
+#: DeepConnections.py:180
+msgid "Deep Connections Gramplet"
+msgstr "Fönster för långa släktskap"
+
+#: DeepConnections.py:184
+msgid "Deep Connections"
+msgstr "Långa släktskap"
+
+#: DenominoViso.py:166
+msgid "No Source"
+msgstr "Ny källa"
+
+#: DenominoViso.py:195
+msgid "Ancestor"
+msgstr "Förfader"
+
+#: DenominoViso.py:196
+msgid "Descendant"
+msgstr "Ättling"
+
+#: DenominoViso.py:201
+msgid "Fan"
+msgstr "Fjäder"
+
+#: DenominoViso.py:202
+msgid "Growth Spiral"
+msgstr "Utvecklingsspiral"
+
+#: DenominoViso.py:203
+msgid "Mandelbrot Tree"
+msgstr "Mandelbrot-träd"
+
+#: DenominoViso.py:204
+msgid "Pythagoras Tree"
+msgstr "Pythagoras-träd"
+
+#: DenominoViso.py:208
+msgid "right to left"
+msgstr "höger till vänster"
+
+#: DenominoViso.py:209
+msgid "left to right"
+msgstr "vänster till höger"
+
+#: DenominoViso.py:210
+msgid "top to bottom"
+msgstr "uppifrån och ner"
+
+#: DenominoViso.py:211
+msgid "bottom to top"
+msgstr "nerifrån och upp"
+
+#: DenominoViso.py:286 DenominoViso.py:961 DenominoViso.py:1243
+#: DenominoViso.py:2721
+msgid "type"
+msgstr "typ"
+
+#: DenominoViso.py:287 DenominoViso.py:960 DenominoViso.py:1020
+#: DenominoViso.py:1243 DenominoViso.py:2720
+msgid "role"
+msgstr "roll"
+
+#: DenominoViso.py:290 DenominoViso.py:961 DenominoViso.py:1040
+#: DenominoViso.py:1244 DenominoViso.py:2722
+msgid "description"
+msgstr "beskrivning"
+
+#: DenominoViso.py:291 DenominoViso.py:962 DenominoViso.py:1047
+#: DenominoViso.py:1245
+msgid "witnesses"
+msgstr "vittnen"
+
+#: DenominoViso.py:754
+msgid "Unknown time direction"
+msgstr "Okänd tidsriktning"
+
+#: DenominoViso.py:1547
+msgid "author"
+msgstr "författare"
+
+#: DenominoViso.py:1547
+msgid "volume"
+msgstr "volym"
+
+#: DenominoViso.py:1547 DenominoViso.py:2727 PlaceCompletion.py:181
+#: PlaceCompletion.py:201 PlaceCompletion.py:237 PlaceCompletion.py:1014
+#: PlaceCompletion.py:1016 PlaceCompletion.py:1027 PlaceCompletion.py:1029
+msgid "title"
+msgstr "titel"
+
+#: DenominoViso.py:1548
+msgid "publication_info"
+msgstr "publikationsinformation"
+
+#: DenominoViso.py:1549
+msgid "abbreviation"
+msgstr "förkortning"
+
+#: DenominoViso.py:1738
+msgid "of"
+msgstr "av"
+
+#: DenominoViso.py:1939
+msgid "the chart type runs out of bounds"
+msgstr "diagramtypen utanför gränser"
+
+#: DenominoViso.py:1984
+msgid "Search"
+msgstr "Sök"
+
+#: DenominoViso.py:2527
+msgid "DenominoViso Options"
+msgstr "DenominoViso-alternativ"
+
+#: DenominoViso.py:2531
+msgid "The destination file for the xhtml-content."
+msgstr "Målfilen för xhtml-innehållet."
+
+#: DenominoViso.py:2534
+msgid "Central Person"
+msgstr "Huvudperson"
+
+#: DenominoViso.py:2535
+msgid "The central person for the tree"
+msgstr "Huvudpersonen för trädet"
+
+#: DenominoViso.py:2538
+msgid "Title of the webpage"
+msgstr "Webbplatsens titel"
+
+#: DenominoViso.py:2539
+msgid "Any string you wish."
+msgstr "Godtyckling mening."
+
+#: DenominoViso.py:2543
+msgid "Either plot ancestor or descendants graph."
+msgstr "Rita antingen ett förfädes- ellet ett ättlingsdiagram."
+
+#: DenominoViso.py:2548
+msgid "Display type"
+msgstr "Visningstyp"
+
+#: DenominoViso.py:2549
+msgid "The type of graph to create."
+msgstr "Diagramtyp"
+
+#: DenominoViso.py:2554
+msgid "Direction of time"
+msgstr "Tidsriktning"
+
+#: DenominoViso.py:2555
+msgid "Direction in which time increases."
+msgstr "Riktning för ökande tid."
+
+#: DenominoViso.py:2564
+msgid "Max chart width (%)"
+msgstr "Max diagrambredd (%)"
+
+#: DenominoViso.py:2565
+msgid "Width of the tree as fraction of the browser window"
+msgstr "Bredd på trädet, som del av fönster."
+
+#: DenominoViso.py:2568
+msgid "Max chart height (px)"
+msgstr "Max diagramhöjd (px)"
+
+#: DenominoViso.py:2569
+msgid "Height of the tree in pixels."
+msgstr "Höjd på trädet i punkter."
+
+#: DenominoViso.py:2572
+msgid "Closing remarks"
+msgstr "Avslutande kommentare"
+
+#: DenominoViso.py:2573
+msgid ""
+"List of strings, free text added at the bottom, for example for a copyright "
+"notice."
+msgstr "Lista på strängar, fri text tillagd nertill, för t. ex. copyright."
+
+#: DenominoViso.py:2576
+msgid "Include Options"
+msgstr "Ta med alternativ"
+
+#: DenominoViso.py:2580
+msgid "Wheater to leave out private data."
+msgstr "Huruvida utesluta privata data."
+
+#: DenominoViso.py:2583
+msgid "Include Events"
+msgstr "Ta med händelser"
+
+#: DenominoViso.py:2585
+msgid "Wheather to include a person's events."
+msgstr "Huruvida ta med händelser."
+
+#: DenominoViso.py:2593
+msgid "Include birth children"
+msgstr "Ta med barnafödslar"
+
+#: DenominoViso.py:2594
+msgid "Whether to include the birth of children in the list of events."
+msgstr "Huruvida ta med barnafödslar i listan med händelser."
+
+#: DenominoViso.py:2597
+msgid "Include death relatives"
+msgstr "Ta med döda släktingar"
+
+#: DenominoViso.py:2598
+msgid "Whether to include the death of relatives during the lifetime of person."
+msgstr "Huruvida ta med döden för släktingar under personens liv."
+
+#: DenominoViso.py:2601
+msgid "Include witness note"
+msgstr "Ta med vittnesanteckningar"
+
+#: DenominoViso.py:2602
+msgid ""
+"Whether to include the note belonging to a witness (if the event_format "
+"contains <witnesses>)"
+msgstr "Huruvida ta med anteckningen till ett vittne (om händelseformatet innehåller <witnesses>)"
+
+#: DenominoViso.py:2606
+msgid "Include Attributes"
+msgstr "Ta med attribut"
+
+#: DenominoViso.py:2607
+msgid "Whether to include a person's attributes"
+msgstr "Huruvida ta med attribut."
+
+#: DenominoViso.py:2610
+msgid "Include Addresses"
+msgstr "Ta med adresser"
+
+#: DenominoViso.py:2611
+msgid "Whether to include a person's addresses."
+msgstr "Huruvida ta med adresser."
+
+#: DenominoViso.py:2614
+msgid "Include Note"
+msgstr "Ta med noteringar"
+
+#: DenominoViso.py:2615
+msgid "Whether to include a person's note."
+msgstr "Huruvida ta med anteckningar."
+
+#: DenominoViso.py:2618
+msgid "Include URL"
+msgstr "Ta med URL:er"
+
+#: DenominoViso.py:2619
+msgid "Whether to include a person's internet address."
+msgstr "Huruvida ta med en pesons internetadress."
+
+#: DenominoViso.py:2622
+msgid "Include URL description"
+msgstr "Ta med URL-beskrivning"
+
+#: DenominoViso.py:2623
+msgid "Whether to include the description of the first URL"
+msgstr "Huruvida ta med beskrivning på första URL-en"
+
+#: DenominoViso.py:2628
+msgid "Include Sources"
+msgstr "Ta med källor"
+
+#: DenominoViso.py:2629
+msgid "Whether to include a person's sources."
+msgstr "Huruvida ta med källor."
+
+#: DenominoViso.py:2632
+msgid "Image Options"
+msgstr "Bildalternativ"
+
+#: DenominoViso.py:2634
+msgid "Include Photos/Images from Gallery"
+msgstr "Ta med foton/bilder från galleri"
+
+#: DenominoViso.py:2635
+msgid "Whether to include images"
+msgstr "Huruvida ta med bilder."
+
+#: DenominoViso.py:2638
+msgid "Copy Image"
+msgstr "Kopiera bild"
+
+#: DenominoViso.py:2639
+msgid "Copy the images to a designated directory."
+msgstr "Kopiera bilder till en särskild mapp."
+
+#: DenominoViso.py:2645
+msgid "Images with Attribute"
+msgstr "Bilder med attribut"
+
+#: DenominoViso.py:2646
+msgid "Determine images with which attributes to in/exclude"
+msgstr "Bestäm bilder med vilka attribut som skall tas med eller ej"
+
+#: DenominoViso.py:2649
+msgid "Include Image source references"
+msgstr "Huruvida ta med bildkällreferenser."
+
+#: DenominoViso.py:2650
+msgid "Whether to include references for images"
+msgstr "Huruvida ta med referenser för bilder"
+
+#: DenominoViso.py:2653
+msgid "Source reference attribute"
+msgstr "Källreferensattribut"
+
+#: DenominoViso.py:2654
+msgid "Image attribute that should be used as source reference"
+msgstr "Bildattribut, som skall användas som källreferens"
+
+#: DenominoViso.py:2660
+msgid "Style Options"
+msgstr "Mallalternativ"
+
+#: DenominoViso.py:2662
+msgid "Color of active person:"
+msgstr "Färg för aktiv person:"
+
+#: DenominoViso.py:2663
+msgid "RGB-color of geometric shape of the activated person."
+msgstr "c"
+
+#: DenominoViso.py:2666
+msgid "Color of found persons:"
+msgstr "Färg på funna personer:"
+
+#: DenominoViso.py:2667
+msgid "RGB-color of geometric shape of the persons found."
+msgstr "RGB-färg på geometrisk form för de funna personerna."
+
+#: DenominoViso.py:2670
+msgid "Color of male persons:"
+msgstr "Färg på manspersoner:"
+
+#: DenominoViso.py:2671
+msgid "RGB-color of geometric shape of the male persons."
+msgstr "RGB-färg på geometrisk form för manspersoner.."
+
+#: DenominoViso.py:2674
+msgid "Colour of female persons:"
+msgstr "Färg på kvinnopersoner:"
+
+#: DenominoViso.py:2675
+msgid "RGB-color of geometric shape of the female persons."
+msgstr "RGB-färg på geometrisk form för kvinnopersoner."
+
+#: DenominoViso.py:2678
+msgid "Width of rectangle (hrd):"
+msgstr "Bredd på rektangel (hrd):"
+
+#: DenominoViso.py:2682
+msgid "Height of rectangle (hrd):"
+msgstr "Höjd på trektangel (hrd):"
+
+#: DenominoViso.py:2686
+msgid "Vertical distance of rectangles (hrd):"
+msgstr "Rektanglars vertikala avstånd (hrd):"
+
+#: DenominoViso.py:2690
+msgid "Extra style settings:"
+msgstr "Extra mallinställningar:"
+
+#: DenominoViso.py:2694
+msgid "Advanced Options"
+msgstr "Avancerade alternativ"
+
+#: DenominoViso.py:2696
+msgid "Old browser friendly output"
+msgstr "Gammeldags bläddrarutdata"
+
+#: DenominoViso.py:2697
+msgid ""
+"Whether to create an ordinary html-file that includes the xhtml-file so that "
+"deprecated browsers can be presented with content they can swallow."
+msgstr "Huruvida skapa en ordinarie html-fil som tar med xhtml-filen så att utgånga bläddrare akn få ett innehåll de kan svälja."
+
+#: DenominoViso.py:2700
+msgid "Mouse event handler"
+msgstr "Mushändlsehanterare"
+
+#: DenominoViso.py:2702
+msgid "Mouse handler used to interact with visitor of webpage."
+msgstr "Mushanterare använd för att samverka med besökare på hemsidan."
+
+#: DenominoViso.py:2706
+msgid "Birth relationship linestyle"
+msgstr "Födelsesläktskapslinjeutseende"
+
+#: DenominoViso.py:2708
+msgid ""
+"List of lists where each sublist is a list with information about the dash "
+"pattern of lines connecting children to parents."
+msgstr "Lista på lista där varje dellista är en lista med information om linjers utseende för förbindelser mellan barn och föräldrar."
+
+#: DenominoViso.py:2714
+msgid "Source confidence color"
+msgstr "Källtillförlitlighetsfärg"
+
+#: DenominoViso.py:2716
+msgid ""
+"List os lists where each sublist is a list with information on the color to "
+"use for a certain confidence level."
+msgstr "Lista med listor där varje dellista är en lista med uppgift om färg att utnyttjas för vissa tillförlitlighetsnivåer."
+
+#: DenominoViso.py:2719
+msgid "Event format"
+msgstr "Händelseformat"
+
+#: DenominoViso.py:2720
+msgid "at"
+msgstr "vid"
+
+#: DenominoViso.py:2724
+msgid ""
+"List os strings with placeholders for events. Known placeholders: <type>, "
+"<role>, <date>, <place>, <description>, <witnesses>, <source> and any "
+"<attribute-value>."
+msgstr ""
+"Lista med strängar med markörer förhändelser. Kända markörer: <type>, "
+"<role>, <date>, <place>, <description>, <witnesses>, <source> och godtyckligt "
+"<attribute-value>."
+
+#: DenominoViso.py:2727
+msgid "Source format"
+msgstr "Källformat"
+
+#: DenominoViso.py:2728
+msgid ""
+"List of strings with placeholders for sources. Known placeholders: <title>, "
+"<volume>, <author>, <publication_info> and <abbreviation>."
+msgstr ""
+"Lista med strängar med markörer källor. Kända markörer: <title>, "
+"<volume>, <author>, <publication_info> and <abbreviation>."
+
+#: DenominoViso.py:2785
+msgid "restricted to:"
+msgstr "begränsat till:"
+
+#: DenominoViso.py:2825
+msgid "to directory:"
+msgstr "till mapp:"
+
+#: DenominoViso.py:2827
+msgid "Save images in ..."
+msgstr "Spara bilder i ..."
+
+#: DenominoViso.py:2876
+msgid "should be"
+msgstr "borde vara"
+
+#: DenominoViso.py:2918
+msgid "Name HTML-wrapper file"
+msgstr "namn på HTML-inkapslingsfil"
+
+#: DenominoViso.py:2920
+msgid "Save HTML-wrapper file as ..."
+msgstr "Spara HTML-inkappslingsfil som ..."
+
+#: DenominoViso.py:2946
+msgid "Give a filename ..."
+msgstr "Angev ett filnamn ..."
+
+#: DenominoViso.py:3091
+msgid "Relation type"
+msgstr "Typ av släktskap"
+
+#: DenominoViso.py:3096
+msgid "Use dashed linestyle"
+msgstr "Använd streckad linje"
+
+#: DenominoViso.py:3101
+msgid "Dash length"
+msgstr "Strecklängd"
+
+#: DenominoViso.py:3105
+msgid "Inter-dash length"
+msgstr "Längd mellan streck"
+
+#: DenominoViso.py:3158
+msgid "Color"
+msgstr "Färg"
+
+#: DenominoViso.py:3201
+msgid "DenominoViso"
+msgstr "DenominoViso"
+
+#: DenominoViso.py:3202
+msgid "Alpha"
+msgstr "Alpha"
+
+#: DenominoViso.py:3205
+msgid ""
+"Generates a web (XHTML) page with a graphical representation of ancestors/"
+"descendants (SVG) where details about individuals become visible upon mouse-"
+"events."
+msgstr "Skapar en hemsida (XHTML) med grafisk representation av förfäder/ättlingar (SVG) där detaljer om individier blir synliga via mushändelser."
+
+#: Descend2.py:616
+msgid "Descendant Chart for %(person)s"
+msgstr "Stamtavla förr %(person)s"
+
+#: Descend2.py:618
+msgid "Descendant Chart for %(father1)s and %(mother1)s"
+msgstr "Stamtavla för %(father1)s och %(mother1)s"
+
+#: Descend2.py:622
+msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
+msgstr "Stamtavla för %(person)s och %(father1)s, %(mother1)s"
+
+#: Descend2.py:627
+msgid "Descendant Chart for %(person)s, %(father1)s  and %(mother1)s"
+msgstr "Stamtavla för %(person)s, %(father1)s  och %(mother1)s"
+
+#: Descend2.py:632
+msgid "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
+msgstr "Stamtavla för %(father1)s, %(father2)s och %(mother1)s, %(mother2)s"
+
+#: Descend2.py:1492 Descend2.py:1496
+msgid "Report for"
+msgstr "Rapport för"
+
+#: Descend2.py:1493 Descend2.py:1497
+msgid "The main person for the report"
+msgstr "Huvudpersonen för rapporten"
+
+#: Descend2.py:1500
+msgid "Start with the parent(s) of the selected first"
+msgstr "Börja med föräldrar(na) till den valda först"
+
+#: Descend2.py:1501
+msgid "Will show the parents, brother and sisters of the selected person."
+msgstr "Kommer att visa föräldrar och syskon till den valda personen."
+
+#: Descend2.py:1508
+msgid "Level of Spouses"
+msgstr "Nivå för makar"
+
+#: Descend2.py:1509
+msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
+msgstr "0=inga makar, 1=tag med makar, 2=tag med makar till makar etc"
+
+#: Descend2.py:1518
+msgid ""
+"Personal\n"
+"Display Format"
+msgstr ""
+"Persnonligt\n"
+"Visningsformat"
+
+#: Descend2.py:1523
+msgid "Co_mpress Personal and Spousal Display Formats"
+msgstr "Ko_mprimera personligt och makevisningformat"
+
+#: Descend2.py:1524
+msgid "Whether to not print empty lines within the 'Personal Display'."
+msgstr "Huruvida skriva tomma rader inom 'Personlig visning'."
+
+#: Descend2.py:1527
+msgid "Bold direct descendants"
+msgstr "Fetstil för direkta ättlingar"
+
+#: Descend2.py:1528
+msgid "Whether to bold those people that are direct (not step or half) decendants."
+msgstr "Huruvida skriva de personer som är direkt ättlingar (ej styv- eller halvättling) med fetstil."
+
+#: Descend2.py:1533
+msgid "Use seperate display format for spouses"
+msgstr "Använd annat format för make/maka"
+
+#: Descend2.py:1534
+msgid "Whether spouses can have a different format."
+msgstr "Huruvida make/maka kan ha skilda format."
+
+#: Descend2.py:1537
+msgid "Indent Spouses"
+msgstr "Dra in make/maka"
+
+#: Descend2.py:1538
+msgid "Whether to indent the spouses in the tree."
+msgstr "Huruvida dra in make/maka i trädet."
+
+#: Descend2.py:1541
+msgid ""
+"Spousal\n"
+"Display Format"
+msgstr ""
+"Make/maka\n"
+"Visningsformat"
+
+#: Descend2.py:1554
+msgid "Replace"
+msgstr "Ersätt"
+
+#: Descend2.py:1556
+msgid ""
+"Replace Display Format:\n"
+"'Replace this'/'with this'"
+msgstr ""
+"Byt ut visningsformat:\n"
+"'Byt detta '/'mot detta'"
+
+#: Descend2.py:1558
+msgid ""
+"ie\n"
+"United States of America/U.S.A"
+msgstr ""
+"d. v. s."
+"Amerikas Förenta Stater/U. S. A."
+
+#: Descend2.py:1649
+msgid "The bold style used for the text display."
+msgstr "Fetstil använd till textvisning."
+
+#: Descend2.py:1707
+msgid "Personal Descend Tree"
+msgstr "Personlig stamtavla"
+
+#: Descend2.py:1740
+msgid "Familial Descend Tree"
+msgstr "Familjestamtavla"
+
+#: DescendantCountGramplet.py:81
+msgid "Descendent Count"
+msgstr "Beräkning av antal ättlingar"
+
+#: DescendantCountGramplet.py:83
+msgid "Number of Descendants"
+msgstr "Antal ättlingar"
+
+#: DescendantCountGramplet.py:92
+msgid "There are %d people.\n"
+msgstr "Det finns %d personer.\n"
+
+#: DescendantCountGramplet.py:105 DescendantCountGramplet.py:118
+msgid "Descendant Count"
+msgstr "Beräkning av antal ättlingar"
+
+#: DescendantCountGramplet.py:107
+msgid "Display descendant counts for each person."
+msgstr "Visar antal ättlingar för varje person."
+
+#: DescendantCountGramplet.py:114
+msgid "Descendant Count Gramplet"
+msgstr "Fönster för beräkning av antal ättlingar"
+
+#: FamilyGroups_1_1.py:88
+msgid "\"FamilyGroups\" and \"Identification Number\" attributes "
+msgstr "\"Familjegrupper\"- och \"Identifikationsnummer\"-attribut "
+
+#: FamilyGroups_1_1.py:456
+msgid "TOTAL NUMBER OF INDIVIDUALS : %s"
+msgstr "TOTALT ANTAL INDIVIDER : %s"
+
+#: FamilyGroups_1_1.py:459
+msgid " SURNAME  : %s"
+msgstr " EFTERNAMN  : %s"
+
+#: FamilyGroups_1_1.py:460
+msgid " is the studied name (Active-Person).\n"
+msgstr " är det studerade namnet (aktiv person).\n"
+
+#: FamilyGroups_1_1.py:465
+msgid ""
+" ==> When the number is the lower than twenty, persons are precised with "
+"surname, ID gramps and attribut.\n"
+msgstr ""
+" ==> När antaler är mindre än tjugo, är personer preciserade med "
+"efternamn, ID Gramps och attribut.\n"
+
+#: FamilyGroups_1_1.py:489
+msgid "  Of the individuals bear this name   : %s"
+msgstr "  av individerna bär detta namn   : %s"
+
+#: FamilyGroups_1_1.py:494
+msgid "  Of the individuals bear this attribute   : %s  "
+msgstr "  av individerna har detta attribut:  %s  "
+
+#: FamilyGroups_1_1.py:519
+msgid " ========= > BEWARE  %s"
+msgstr " ========= > VARNING  %s"
+
+#: FamilyGroups_1_1.py:520
+msgid " PERSONS HAVE a empty  \"ID\" attribut or not attribute \"0NOATTRIB\""
+msgstr " PERSONER HAR ett tomt  \"ID\" attribut eller inte något attribut \"0NOATTRIB\""
+
+#: FamilyGroups_1_1.py:578
+msgid "The basic style used for the para title."
+msgstr "Grundläggande mall som används för visning av stycketitel."
+
+#: FamilyGroups_1_1.py:606
+msgid "FamilyGroups_1_1"
+msgstr "FamilyGroups_1_1"
+
+#: FamilyGroups_1_1.py:607 Gallery.py:167 SVGMap.py:137 locations.py:259
+msgid "Testing"
+msgstr "Provar"
+
+#: FamilyGroups_1_1.py:608
+msgid "FamilyGroups"
+msgstr "Familjegrupper"
+
+#: FaqGramplet.py:44
+msgid "FAQ Gramplet"
+msgstr "FAQ Gramplet"
+
+#: FaqGramplet.py:47
+msgid "FAQ"
+msgstr "FAQ"
+
+#: Gallery.py:140
+msgid "The style used for the name of person."
+msgstr "Mall som används för personens namn."
+
+#: Gallery.py:169
+msgid "Produces a gallery"
+msgstr "Skapar ett galleri"
+
+#: GoogleEarthWriteKML.py:81 SVGMap.py:54
+msgid "No place description"
+msgstr "Platsbeskrivning saknas"
+
+#: GoogleEarthWriteKML.py:114
+msgid "GoogleEarth not installed!"
+msgstr "GoogleEarth ej installerat!"
+
+#: GoogleEarthWriteKML.py:115
+msgid ""
+"Create kmz/kml file ''%s''\n"
+"in user directory ''%s''?"
+msgstr ""
+"Skapa en kmz/kml-fil ''%s''\n"
+"i användarmapp ''%s''?"
+
+#: GoogleEarthWriteKML.py:125
+msgid "Failure writing to %s"
+msgstr "Misslyckades med att skriva till %s"
+
+#: GoogleEarthWriteKML.py:126
+msgid "Directory does not exist"
+msgstr "Mappen finns inte"
+
+#: GoogleEarthWriteKML.py:134
+msgid "GoogleEarth file exists!"
+msgstr "GoogleEarth file finns redan!"
+
+#: GoogleEarthWriteKML.py:135
+msgid ""
+"Overwrite kmz/kml file ''%s''\n"
+"in user home directory ''%s''?"
+msgstr ""
+"Skriva över kmz/kml-fil ''%s''\n"
+"i användarens hem-mapp ''%s''?"
+
+#: GoogleEarthWriteKML.py:214
+msgid "GoogleEarth"
+msgstr "GoogleEarth"
+
+#: GoogleEarthWriteKML.py:216
+msgid "Creates data file for GoogleEarth and opens it"
+msgstr "Skapar en datafil för GoogleEartrh och öppnar den"
+
+#: HeadlineNewsGramplet.py:98
+msgid "Read GRAMPS headline news"
+msgstr "Läs Gramps nyheter"
+
+#: HeadlineNewsGramplet.py:276
+msgid "Headline News Gramplet"
+msgstr "Fönster med nyheter"
+
+#: HeadlineNewsGramplet.py:280
+msgid "Headline News"
+msgstr "Nyheter"
+
+#: NoteGramplet.py:268
+msgid "Note Gramplet"
+msgstr "Fönster för anteckningar"
+
+#: PlaceCompletion.py:76
+msgid ""
+"Place Completion by parsing, file lookup and batch setting of place "
+"attributes"
+msgstr "Platskomplttering genom att avkodning, filuppslagning och satsvis inställning av platsattribut"
+
+#: PlaceCompletion.py:180 PlaceCompletion.py:211 PlaceCompletion.py:250
+#: PlaceCompletion.py:1041 PlaceCompletion.py:1081
+msgid "city"
+msgstr "ort"
+
+#: PlaceCompletion.py:180 PlaceCompletion.py:219 PlaceCompletion.py:258
+msgid "street"
+msgstr "gatuadress"
+
+#: PlaceCompletion.py:180 PlaceCompletion.py:221 PlaceCompletion.py:260
+#: PlaceCompletion.py:1042
+msgid "parish"
+msgstr "församling"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:213 PlaceCompletion.py:252
+#: PlaceCompletion.py:1038 PlaceCompletion.py:1084
+msgid "country"
+msgstr "land"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:215 PlaceCompletion.py:254
+#: PlaceCompletion.py:424 PlaceCompletion.py:1040 PlaceCompletion.py:1082
+msgid "county"
+msgstr "landskap"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:217 PlaceCompletion.py:256
+#: PlaceCompletion.py:424 PlaceCompletion.py:1039 PlaceCompletion.py:1083
+msgid "state"
+msgstr "län"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:223 PlaceCompletion.py:262
+#: PlaceCompletion.py:1043
+msgid "zip"
+msgstr "zip"
+
+#: PlaceCompletion.py:203 PlaceCompletion.py:239 PlaceCompletion.py:923
+#: PlaceCompletion.py:979 PlaceCompletion.py:981 PlaceCompletion.py:987
+msgid "latitude"
+msgstr "latitud"
+
+#: PlaceCompletion.py:205 PlaceCompletion.py:241 PlaceCompletion.py:924
+#: PlaceCompletion.py:991 PlaceCompletion.py:993 PlaceCompletion.py:998
+msgid "longitude"
+msgstr "longitud"
+
+#: PlaceCompletion.py:226 PlaceCompletion.py:265
+msgid "Error in PlaceCompletion.py"
+msgstr "Fel i PlaceCompletion.py"
+
+#: PlaceCompletion.py:227
+msgid "Non existing group used in get"
+msgstr "Ickeexisterande grupp använd i get"
+
+#: PlaceCompletion.py:266
+msgid "Non existing group used in set"
+msgstr "Ickeexisterande grupp använd i set"
+
+#: PlaceCompletion.py:324
+msgid "Places tool"
+msgstr "Platsverktyg"
+
+#: PlaceCompletion.py:416
+msgid "Non Valid Title Regex"
+msgstr "Inget giltigt reguljärt uttryck"
+
+#: PlaceCompletion.py:417
+msgid "Non valid regular expression given to match title. Quiting."
+msgstr "Inget giltigt reguljärt uttryck givet att matcha titel. Avbryter."
+
+#: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
+#: PlaceCompletion.py:1079
+msgid "lat"
+msgstr "lat"
+
+#: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
+#: PlaceCompletion.py:1080
+msgid "lon"
+msgstr "lon"
+
+#: PlaceCompletion.py:432
+msgid "Missing regex groups in match lat/lon"
+msgstr "Saknade grupper med reguljära uttryck i matchning av lat/lon"
+
+#: PlaceCompletion.py:433
+msgid "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
+msgstr "Grupper med reguljära uttryck %(lat)s och %(lon)s måste finnas vid lat/lon-matchning. Avbryter"
+
+#: PlaceCompletion.py:443
+msgid "Non valid regex for match lat/lon"
+msgstr "Inget reguljärt uttryck för matchning av lat/lon"
+
+#: PlaceCompletion.py:444
+msgid "Non valid regular expression given to find lat/lon. Quiting."
+msgstr "Inget giltigt reguljärt uttryck givet för att finna lat/long. Avbryter."
+
+#: PlaceCompletion.py:502
+msgid "Finding Places and appropriate changes"
+msgstr "Leta efter platser och tillämpliga ändringar"
+
+#: PlaceCompletion.py:504
+msgid "Filtering"
+msgstr "Filtrering"
+
+#: PlaceCompletion.py:514
+msgid "Loading lat/lon file in Memory..."
+msgstr "Laddar lat/lon-fil till minnet..."
+
+#: PlaceCompletion.py:519
+msgid "Examining places"
+msgstr "Undersöker platser"
+
+#: PlaceCompletion.py:707
+msgid "Doing Place changes"
+msgstr "Genomför platsförförändringar"
+
+#: PlaceCompletion.py:744 PlaceCompletion.py:754
+msgid "Change places"
+msgstr "Ändra platser"
+
+#: PlaceCompletion.py:749
+msgid "No place record was modified."
+msgstr "Ingen plats ändrades."
+
+#: PlaceCompletion.py:751
+msgid "1 place record was modified."
+msgstr "1 plats ändrades."
+
+#: PlaceCompletion.py:753
+msgid "%d place records were modified."
+msgstr "%d platser ändrades."
+
+#: PlaceCompletion.py:827
+msgid "The selected file is a directory, not a file."
+msgstr "Den valda filen är en katalog, inte en fil."
+
+#: PlaceCompletion.py:840
+msgid "The file you want to access is not a regular file."
+msgstr "Den fil du vill utnyttja är inte en vanlig fil."
+
+#: PlaceCompletion.py:846
+msgid "The file does not exist."
+msgstr "Filen finns inte."
+
+#: PlaceCompletion.py:865
+msgid "Problem reading file"
+msgstr "Fel vid filläsning"
+
+#: PlaceCompletion.py:895 PlaceCompletion.py:898 PlaceCompletion.py:1085
+msgid "CITY"
+msgstr "STAD"
+
+#: PlaceCompletion.py:899 PlaceCompletion.py:904 PlaceCompletion.py:1087
+msgid "TITLEBEGIN"
+msgstr "STARTTITEL"
+
+#: PlaceCompletion.py:905 PlaceCompletion.py:908 PlaceCompletion.py:1086
+msgid "TITLE"
+msgstr "TITEL"
+
+#: PlaceCompletion.py:909 PlaceCompletion.py:912 PlaceCompletion.py:1088
+msgid "STATE"
+msgstr "STAT"
+
+#: PlaceCompletion.py:913 PlaceCompletion.py:916 PlaceCompletion.py:1089
+msgid "PARISH"
+msgstr "FÖRSAMLING"
+
+#: PlaceCompletion.py:983 PlaceCompletion.py:995
+msgid "invalid lat or lon value, %(lat)s, %(lon)s"
+msgstr "ogiltigt lat- eller lon-värde, %(lat)s, %(lon)s"
+
+#: PlaceCompletion.py:1064
+msgid "No lat/lon conversion"
+msgstr "Ingen lat/lon-omvandling"
+
+#: PlaceCompletion.py:1065
+msgid "All in degree notation"
+msgstr "Samtliga i gradnotation"
+
+#: PlaceCompletion.py:1066
+msgid "All in decimal notation"
+msgstr "Allt i decimal notation"
+
+#: PlaceCompletion.py:1067
+msgid "Correct -50° in 50°S"
+msgstr "Korrekt -50° in 50°S"
+
+#: PlaceCompletion.py:1071
+msgid "No changes"
+msgstr "Inga ändringar"
+
+#: PlaceCompletion.py:1072
+msgid "City[, State]"
+msgstr "Ort[, stat]"
+
+#: PlaceCompletion.py:1074
+msgid "TitleStart [, City] [, State]"
+msgstr "Starttitel [, ort] [, stat]"
+
+#: PlaceCompletion.py:1097
+msgid "City [,|.] State"
+msgstr "Ort [,|.] stat"
+
+#: PlaceCompletion.py:1099
+msgid "City [,|.] Country"
+msgstr "Ort [,|.] land"
+
+#: PlaceCompletion.py:1101
+msgid "City (Country)"
+msgstr "Ort (land)"
+
+#: PlaceCompletion.py:1107
+msgid "Don't search"
+msgstr "Sök ej"
+
+#: PlaceCompletion.py:1110
+msgid "GeoNames country file, city search"
+msgstr "GeoNames landsfil, ortsökning"
+
+#: PlaceCompletion.py:1115
+msgid "GeoNames country file, city localized variants search"
+msgstr "GeoNames landsfil, ort lokal sökvariant"
+
+#: PlaceCompletion.py:1126
+msgid "GeoNames country file, title begin, general search"
+msgstr "GeoNames landsfil, starttitel, allmän sökning"
+
+#: PlaceCompletion.py:1131
+msgid "GeoNames USA state file, city search"
+msgstr "GeoNames USA-delstatfil, ortsökning"
+
+#: PlaceCompletion.py:1145
+msgid "GNS Geonet country file, city search"
+msgstr "GNS Geonet landsfil, ortsökning"
+
+#: PlaceCompletion.py:1154
+msgid "GNS Geonet country file, title begin, general search"
+msgstr "GNS Geonet landsfil, starttitel, allmän sökning"
+
+#: PlaceCompletion.py:1162
+msgid "Wikipedia CSV Dump"
+msgstr "Wikipedia CSV Dump"
+
+#: PlaceCompletion.py:1250
+msgid "All Places"
+msgstr "Alla platser"
+
+#: PlaceCompletion.py:1253
+msgid "No Latitude/Longitude given"
+msgstr "Platser utan latitud eller longitud angivet"
+
+#: PlaceCompletion.py:1345
+msgid "Interactive place completion"
+msgstr "Interaktiv platskomplettering"
+
+#: PlaceCompletion.py:1346
+msgid "Unstable"
+msgstr "Ostabil"
+
+#: PlaceCompletion.py:1349
+msgid ""
+"Provides a browsable list of selected places, with possibility to complete/"
+"parse/set the attribute fields"
+msgstr "Tillhandahåller en bläddringsbar lista av valda platser, med möjlighet att helt/tolka/sätta attributfälten"
+
+#: PluginManagerGramplet.py:57
+msgid "Reading"
+msgstr "Läser"
+
+#: PluginManagerGramplet.py:132
+msgid "Plugin Manager Gramplet"
+msgstr "Fönster för insticksmoduler"
+
+#: PluginManagerGramplet.py:136
+msgid "Plugin Manager"
+msgstr "Hanterare av insticksmoduler"
+
+#: PythonGramplet.py:47
+msgid "Enter Python expressions"
+msgstr "Skruv in ett python-uttryck"
+
+#: PythonGramplet.py:53
+msgid "class name|Date"
+msgstr "datum"
+
+#: PythonGramplet.py:63
+msgid "Error"
+msgstr "Fel"
+
+#: PythonGramplet.py:152
+msgid "Python Gramplet"
+msgstr "Python-fönster"
+
+#: PythonGramplet.py:155
+msgid "Python Shell"
+msgstr "Pythonskal"
+
+#: RepositoriesReport.py:68 RepositoriesReport.py:208
+#: RepositoriesReportAlt.py:91
+msgid "Repositories Report"
+msgstr "Arkivplatsrapport"
+
+#: RepositoriesReport.py:177 RepositoriesReportAlt.py:398
+msgid "The style used for repository title."
+msgstr "Malll som används för arkivplatstitel."
+
+#: RepositoriesReport.py:212 RepositoriesReportAlt.py:462
+msgid "Produces a textual repositories report"
+msgstr "Åstadkommer en rapport över arkivplatser"
+
+#: RepositoriesReportAlt.py:162
+msgid ""
+"\n"
+"Address: %s"
+msgstr ""
+"\n"
+"Adress: %s"
+
+#: RepositoriesReportAlt.py:190
+msgid "%s. Private"
+msgstr "%s privat"
+
+#: RepositoriesReportAlt.py:230
+msgid "Author: %s"
+msgstr "Författare: %s"
+
+#: RepositoriesReportAlt.py:232
+msgid ""
+"\n"
+"Abbreviation: %s"
+msgstr ""
+"\n"
+"Förkortning: %s"
+
+#: RepositoriesReportAlt.py:234
+msgid ""
+"\n"
+"Publication information: %s"
+msgstr ""
+"\n"
+"Publiceringsinformation: %s"
+
+#: RepositoriesReportAlt.py:236
+msgid ""
+"\n"
+"Data: %s"
+msgstr ""
+"\n"
+"Data: %s"
+
+#: RepositoriesReportAlt.py:322
+msgid "Include repository's urls"
+msgstr "Ta med URL för arkivplatser"
+
+#: RepositoriesReportAlt.py:323
+msgid "Whether to include urls on repository."
+msgstr "Huruvida ta med URL för arkivplatser"
+
+#: RepositoriesReportAlt.py:326
+msgid "Include repository's address"
+msgstr "Ta med arkivplatsadresser"
+
+#: RepositoriesReportAlt.py:327
+msgid "Whether to include addresses on repository."
+msgstr "Huruvida ta med adresser till arkovplatser."
+
+#: RepositoriesReportAlt.py:330
+msgid "Include source's author"
+msgstr "Ta med källförfattare"
+
+#: RepositoriesReportAlt.py:331
+msgid "Whether to include author."
+msgstr "Huruvida ta med källförfattare."
+
+#: RepositoriesReportAlt.py:334
+msgid "Include source's abbreviation"
+msgstr "Ta med källförkortning"
+
+#: RepositoriesReportAlt.py:335
+msgid "Whether to include abbreviation."
+msgstr "Huruvida ta med förkortning."
+
+#: RepositoriesReportAlt.py:338
+msgid "Include source's publication information"
+msgstr "Ta med källors publiceringsinformation"
+
+#: RepositoriesReportAlt.py:339
+msgid "Whether to include publication information."
+msgstr "Huruvida ta med publiceringsinformation."
+
+#: RepositoriesReportAlt.py:342
+msgid "Include source's data"
+msgstr "Ta med källors data"
+
+#: RepositoriesReportAlt.py:343
+msgid "Whether to include keys and values."
+msgstr "Huruvida ta med nycklar och värden."
+
+#: RepositoriesReportAlt.py:347
+msgid "Whether to include notes on repositories and sources."
+msgstr "Huruvida ta med anteckningar för arkivplatser och källor."
+
+#: RepositoriesReportAlt.py:350
+msgid "Include media"
+msgstr "Ta med media"
+
+#: RepositoriesReportAlt.py:351
+msgid "Whether to include media on sources."
+msgstr "Huruvida ta med media."
+
+#: RepositoriesReportAlt.py:355
+msgid "Whether to include repositories and sources marked as private."
+msgstr "Huruvida ta med arkivplatser och källor markerade som privata."
+
+#: RepositoriesReportAlt.py:428
+msgid "The style used for child section."
+msgstr "Den mall, som används barnstycke."
+
+#: RepositoriesReportAlt.py:458
+msgid "Repositories Report 2"
+msgstr "Arkivplatserrapport 2"
+
+#: SVGMap.py:136
+msgid "SVG Map"
+msgstr "SVG-karta"
+
+#: SVGMap.py:138
+msgid "Creates data into a SVG file"
+msgstr "Skapar data för en SVG-fil"
+
+#: Tree_Base.py:500
+msgid "Top Left"
+msgstr "Överkant, vänster"
+
+#: Tree_Base.py:501
+msgid "Top Right"
+msgstr "Överkant, höger"
+
+#: Tree_Base.py:502
+msgid "Bottom Left"
+msgstr "Nederkant, vänster"
+
+#: Tree_Base.py:503
+msgid "Bottom Right"
+msgstr "Nederkant, höger"
+
+#: descendant_count.py:58
+msgid "Number of %s's descendants"
+msgstr "Antal av %s's ättlingar"
+
+#: descendant_count.py:64
+msgid "%s total descendants"
+msgstr "Totalt antal ättlingar %s"
+
+#: descendant_count.py:66
+msgid "%s descendants born during his/her lifetime"
+msgstr "%s ättlingar föddes under hans/hennes livstid"
+
+#: descendant_count.py:67
+msgid "%s descendants died during his/her lifetime"
+msgstr "%s ättlingar dog under hans /hennes livstid"
+
+#: descendant_count.py:68
+msgid "%s descendants now alive"
+msgstr "Antal nu levande ättlingar %s"
+
+#: descendant_count.py:141
+msgid "Descendant count"
+msgstr "Räkning av antal ättlingar"
+
+#: descendant_count.py:143
+msgid "Displays the number of a person's descendants"
+msgstr "Visar antal ättlingar till en person"
+
+#: haradskarta.py:111
+msgid "No coordinates given!"
+msgstr "Inga koordinater angivna!"
+
+#: haradskarta.py:118
+msgid "Map not available for"
+msgstr "Ingen karta tillgänglig för"
+
+#: haradskarta.py:119
+msgid ""
+"Longitude=%s\n"
+"Latitude=%s"
+msgstr ""
+"Longitud=%s\n"
+"Latitud=%s"
+
+#: haradskarta.py:142
+msgid "Häradskarta"
+msgstr "Häradskarta"
+
+#: haradskarta.py:144
+msgid "Opens häradskarta, if found."
+msgstr "Öppnar häradskarta, om funnen."
+
+#: locations.py:76 locations.py:258
+msgid "Locations"
+msgstr "Platser"
+
+#: locations.py:102
+msgid ""
+"\n"
+"Census event (Individual)\n"
+msgstr ""
+"\n"
+"Folkräkningshändelse (individ)\n"
+
+#: locations.py:123
+msgid ""
+"\n"
+"Residence event (Individual)\n"
+msgstr ""
+"\n"
+"Boendehändles (individ)\n"
+
+#: locations.py:144
+msgid ""
+"\n"
+"Census event (Family)\n"
+msgstr ""
+"\n"
+"Folkräkningshändelse (famil)\n"
+
+#: locations.py:165
+msgid ""
+"\n"
+"Residence event (Family)\n"
+msgstr ""
+"\n"
+"Boendehändelse (famil)\n"
+
+#: locations.py:186
+msgid ""
+"\n"
+"Address filter (Person)\n"
+msgstr ""
+"\n"
+"Adressfilter (person)\n"
+
+#: locations.py:234
+msgid "The basic style used for the paragraph title."
+msgstr "Grundläggande mall som används för visning av stycketitel."
+
+#: locations.py:262
+msgid "Individuals with locations"
+msgstr "Personer med platser"
+
+msgid "<b>1. Look up latitude and longitude:</b>"
+msgstr "<b>1. Slå upp latitud och longitud:</b>"
+
+msgid "<b>2. Parsing and Conversion of existing title or position:</b>"
+msgstr "<b>2. Tolkning och omvadling av befintlig titel eller position:</b>"
+
+msgid "<b>3. Set attributes of all selected places:</b>"
+msgstr "<b>3. Sätt attribut på alla valda platser:</b>"
+
+msgid "Apply all suggested changes"
+msgstr "Tillämpa all föreslagna ändringar"
+
+msgid "C_enter latitude:"
+msgstr "C_entrera latitud:"
+
+msgid "Center longitude:"
+msgstr "Centrera longitud:"
+
+msgid "Change title into:"
+msgstr "Ändra titel till:"
+
+msgid "Convert lat/lon as:"
+msgstr "Omvandla lat/lon som:"
+
+msgid "Parish"
+msgstr "Församling"
+
+msgid "Parish:"
+msgstr "Församling:"
+
+msgid "Parse as:"
+msgstr "Sortera som:"
+
+msgid "Parse title:"
+msgstr "Sortera titel:"
+
+msgid "Place _filter:"
+msgstr "Plats_filter:"
+
+msgid "Places in a rectangle:"
+msgstr "Platser i en rektangel:"
+
+msgid "Search in:"
+msgstr "Sök i:"
+
+msgid "Select A File"
+msgstr "Välj en fil"
+
+msgid ""
+"<i>Delete to delete a row, Double-click on the row to edit place with "
+"changes pre-entered, \n"
+"Press Tab on a row or Google Maps button to see place on a map. Press Apply "
+"to do all changes automatically</i>"
+msgstr ""
+
+msgid ""
+"<span size=\"large\"><b>Selection of the Places you want to complete:</b></"
+"span>"
+msgstr ""
+"<span size=\"large\"><b>Val av de platser du vill kompklettera:</b></"
+"span>"
 
-#~ msgid "Jump to mother"
-#~ msgstr "Gå till moder"
-
-#~ msgid ", <em>"
-#~ msgstr ", <em>"
-
-#~ msgid "All Names of All People"
-#~ msgstr "Samtliga namn för samtliga personer"
-
-#~ msgid "Name Type"
-#~ msgstr "Namntyp"
-
-#~ msgid "Primary Name"
-#~ msgstr "Förstahandsnamn"
-
-#~ msgid "Total names %d"
-#~ msgstr "Totalt antal namn %d"
-
-#~ msgid "All names of All people"
-#~ msgstr "Samtliga namn för samtliga personer"
-
-#~ msgid "Print entire tree"
-#~ msgstr "Skriv ut hela trädet"
-
-#~ msgid "Print empty boxes for all unknown ancestors."
-#~ msgstr "Skriv ut tomma rutor för okända förfäder."
-
-#~ msgid ""
-#~ "Show spouses of\n"
-#~ "the center person"
-#~ msgstr ""
-#~ "Visar makar till\n"
-#~ "centrumpersonen"
-
-#~ msgid "No.  Do not show Spouses"
-#~ msgstr "Nej.  Visa ej makar."
-
-#~ msgid "Yes, and use the the Main Display Format"
-#~ msgstr "Ja, och använd standardvisningsformatet"
-
-#~ msgid "Yes, and use the the Secondary Display Format"
-#~ msgstr "Ja, och använd det sekundära visningsformatet"
-
-#~ msgid "Wheather to show spouses of the center person"
-#~ msgstr "Huruvida visa makar till centrumpersonen"
-
-#~ msgid ""
-#~ "Main\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Standard\n"
-#~ "Visningsformat"
-
-#~ msgid "Co_mpress Main and Secondary Display Formats"
-#~ msgstr "Ko_mprimera standard och sekundärvisningsformaten"
-
-#~ msgid "Whether to not print empty lines within the 'Display boxes'."
-#~ msgstr "Huruvida skriva tomma rader inom 'Visningsrutorna' eller inte."
-
-#~ msgid ""
-#~ "Use Main/Secondary\n"
-#~ "Display Format for"
-#~ msgstr ""
-#~ "Använd standard/sekundärt\n"
-#~ "visningsformat för"
-
-#~ msgid "Everyone uses the Main Display format"
-#~ msgstr "All utnyttjar standardvisningsformatet."
-
-#~ msgid "Mothers use Main, and Fathers use the Secondary"
-#~ msgstr "Mor använder standard och far använder det sekundära"
-
-#~ msgid "Fathers use Main, and Mothers use the Secondary"
-#~ msgstr "Far använder standard och mor använder det sekundära"
-
-#~ msgid "Which Display format to use for Fathers and Mothers"
-#~ msgstr "Vilket visningsformat som skall användas för fäder och mödrar"
-
-#~ msgid "Secondary"
-#~ msgstr "Sekundärt"
-
-#~ msgid ""
-#~ "Secondary\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Sekundärt\n"
-#~ "visningsformat"
-
-#~ msgid "Include Marriage information"
-#~ msgstr "Ta med giftermålsinformation"
-
-#~ msgid "Whether to include marriage information in the report."
-#~ msgstr "Huruvida ta med giftermålssinformation i rapporten."
-
-#~ msgid ""
-#~ "Marraige\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Giftermål\n"
-#~ "visningsformat"
-
-#~ msgid "Print"
-#~ msgstr "Skriv ut"
-
-#~ msgid "Scale report to fit"
-#~ msgstr "Skala rapport"
-
-#~ msgid "Do not scale report"
-#~ msgstr "Skala inte rapport"
-
-#~ msgid "Scale report to fit page width only"
-#~ msgstr "Skala rapport för att anpassa till sidobredd endast"
-
-#~ msgid "Scale report to fit the size of the page"
-#~ msgstr "Skala för att passa på en enda sida"
-
-#~ msgid "Wheather to scale the report to fit a specific size"
-#~ msgstr "Huruvida skala om att passa för en specifik storlek "
-
-#~ msgid "One page report"
-#~ msgstr "Rapport på en sida"
-
-#~ msgid "Whether to scale the size of the page to the size of the report."
-#~ msgstr "Huruvida skala sidstorlek till rapportstorlek."
-
-#~ msgid "Include Report Title"
-#~ msgstr "Ta med rapporttitel"
-
-#~ msgid "Whether to include the report title."
-#~ msgstr "Huruvida ta med rapporttitel."
-
-#~ msgid "Print a border"
-#~ msgstr "Skriv ut ram"
-
-#~ msgid "Whether to make a border around the report."
-#~ msgstr "huruvida göra en ram runt rapporten."
-
-#~ msgid "Print Page Numbers"
-#~ msgstr "Skriv ut sidnummer"
-
-#~ msgid "Whether to print page numbers on each page."
-#~ msgstr "Huruvida skriva ut sidnummer på varje sida."
-
-#~ msgid "Include a personal note"
-#~ msgstr "Ta med en personanteckning"
-
-#~ msgid "Whether to include a personalized note on the report."
-#~ msgstr "Huruvida ta med en personlig anteckning på rapporten."
-
-#~ msgid ""
-#~ "Note to add\n"
-#~ "to the graph"
-#~ msgstr ""
-#~ "Anteckning att lägga\n"
-#~ "till diagrammet"
-
-#~ msgid "Add a personal note"
-#~ msgstr "Lägg till en personlig anteckning"
-
-#~ msgid "Note Location"
-#~ msgstr "Placering av anteckning"
-
-#~ msgid "Where to place a personal note."
-#~ msgstr "Var placera en personlig anteckning."
-
-#~ msgid "Ancestoral Tree"
-#~ msgstr "Antavla"
-
-#~ msgid "Clock Gramplet"
-#~ msgstr "Klock-Gramplet"
-
-#~ msgid "Clock"
-#~ msgstr "Klocka"
-
-#~ msgid "Active person"
-#~ msgstr "Aktiv person"
-
-#~ msgid "Surname, Given"
-#~ msgstr "Efternamn, Förnamn"
-
-#~ msgid "Save"
-#~ msgstr "Spara"
-
-#~ msgid "Abandon"
-#~ msgstr "Överge"
-
-#~ msgid "New person"
-#~ msgstr "Ny person"
-
-#~ msgid "Add relation"
-#~ msgstr "Lägg till släktskap"
-
-#~ msgid "No relation to active person"
-#~ msgstr "Ingen släktskap till aktiv person"
-
-#~ msgid "Add as a Parent"
-#~ msgstr "Lägg till som föräldrar"
-
-#~ msgid "Add as a Spouse"
-#~ msgstr "Lägg till som  maka/make"
-
-#~ msgid "Add as a Sibling"
-#~ msgstr "Lägg till som syskon"
-
-#~ msgid "Add as a Child"
-#~ msgstr "Lägg till som barn"
-
-#~ msgid "Copy Active Data"
-#~ msgstr "Kopiera aktiva data"
-
-#~ msgid "in"
-#~ msgstr "i"
-
-#~ msgid "Gramplet Data Edit: %s"
-#~ msgstr "Grampletdataredigering: %s"
-
-#~ msgid "Can't add new person."
-#~ msgstr "Kan inte lägga till en ny person"
-
-#~ msgid "Please provide a name."
-#~ msgstr "Ange ett namn."
-
-#~ msgid "Can't add new person as a parent."
-#~ msgstr "Kan ej lägga till en ny person som förälder."
-
-#~ msgid "Please set an active person."
-#~ msgstr "Ange en person."
-
-#~ msgid "Please set the new person's gender."
-#~ msgstr "Ange den nya personens kön."
-
-#~ msgid "Can't add new person as a spouse."
-#~ msgstr "kan ej lägga till ny person som make/maka."
-
-#~ msgid "Can't add new person as a sibling."
-#~ msgstr "Kan ej lägga till ny person som syskon."
-
-#~ msgid "Can't add new person as a child."
-#~ msgstr "kan ej lägga till ny person som barn."
-
-#~ msgid "Please set gender on Active or new person."
-#~ msgstr "Ange kön på aktiv eller ny person"
-
-#~ msgid "Same genders on Active and new person."
-#~ msgstr "Samma kön på aktiv och ny peson."
-
-#~ msgid "Please set gender on Active person."
-#~ msgstr "Ange kön för aktiv person"
-
-#~ msgid "Gramplet Data Entry: %s"
-#~ msgstr "Grampletdatainmatning: %s"
-
-#~ msgid "Data Entry Gramplet"
-#~ msgstr "Gramplet för datainmatning"
-
-#~ msgid "Data Entry"
-#~ msgstr "Datainmatning"
-
-#~ msgid "Pause"
-#~ msgstr "Paus"
-
-#~ msgid "sibling"
-#~ msgstr "syskon"
-
-#~ msgid ""
-#~ "\n"
-#~ "   who is a %s of "
-#~ msgstr ""
-#~ "\n"
-#~ "   som är en/ett %s till "
-
-#~ msgid "No Active Person set."
-#~ msgstr "Ingen aktiv person angiven."
-
-#~ msgid ""
-#~ "Looking for relationship between\n"
-#~ "  <b>%s</b> (Home Person) and\n"
-#~ "  <b>%s</b> (Active Person)...\n"
-#~ msgstr ""
-#~ "Letar efter släktskap mellan\n"
-#~ "  <b>%s</b> (huvudperson) \n"
-#~ "  <b>%s</b> (aktiv person)...\n"
-
-#~ msgid ""
-#~ "Found relation #%d: \n"
-#~ "   "
-#~ msgstr ""
-#~ "Hittade släktskap #%d: \n"
-#~ "   "
-
-#~ msgid ""
-#~ "Paused.\n"
-#~ "Press Continue to search for additional relations.\n"
-#~ msgstr ""
-#~ "Paus.\n"
-#~ "Tryck Fortsätt för att leta efter ytterligare släktsakp.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Search completed. %d relations found."
-#~ msgstr ""
-#~ "\n"
-#~ "Sökning avslutad. %d släktskap hittade."
-
-#~ msgid "Deep Connections Gramplet"
-#~ msgstr "Fönster för långa släktskap"
-
-#~ msgid "Deep Connections"
-#~ msgstr "Långa släktskap"
-
-#~ msgid "No Source"
-#~ msgstr "Ny källa"
-
-#~ msgid "Ancestor"
-#~ msgstr "Förfader"
-
-#~ msgid "Descendant"
-#~ msgstr "Ättling"
-
-#~ msgid "Fan"
-#~ msgstr "Fjäder"
-
-#~ msgid "Growth Spiral"
-#~ msgstr "Utvecklingsspiral"
-
-#~ msgid "Mandelbrot Tree"
-#~ msgstr "Mandelbrot-träd"
-
-#~ msgid "Pythagoras Tree"
-#~ msgstr "Pythagoras-träd"
-
-#~ msgid "right to left"
-#~ msgstr "höger till vänster"
-
-#~ msgid "left to right"
-#~ msgstr "vänster till höger"
-
-#~ msgid "top to bottom"
-#~ msgstr "uppifrån och ner"
-
-#~ msgid "bottom to top"
-#~ msgstr "nerifrån och upp"
-
-#~ msgid "type"
-#~ msgstr "typ"
-
-#~ msgid "role"
-#~ msgstr "roll"
-
-#~ msgid "description"
-#~ msgstr "beskrivning"
-
-#~ msgid "witnesses"
-#~ msgstr "vittnen"
-
-#~ msgid "Unknown time direction"
-#~ msgstr "Okänd tidsriktning"
-
-#~ msgid "author"
-#~ msgstr "författare"
-
-#~ msgid "volume"
-#~ msgstr "volym"
-
-#~ msgid "title"
-#~ msgstr "titel"
-
-#~ msgid "publication_info"
-#~ msgstr "publikationsinformation"
-
-#~ msgid "abbreviation"
-#~ msgstr "förkortning"
-
-#~ msgid "of"
-#~ msgstr "av"
-
-#~ msgid "the chart type runs out of bounds"
-#~ msgstr "diagramtypen utanför gränser"
-
-#~ msgid "Search"
-#~ msgstr "Sök"
-
-#~ msgid "DenominoViso Options"
-#~ msgstr "DenominoViso-alternativ"
-
-#~ msgid "The destination file for the xhtml-content."
-#~ msgstr "Målfilen för xhtml-innehållet."
-
-#~ msgid "Central Person"
-#~ msgstr "Huvudperson"
-
-#~ msgid "The central person for the tree"
-#~ msgstr "Huvudpersonen för trädet"
-
-#~ msgid "Title of the webpage"
-#~ msgstr "Webbplatsens titel"
-
-#~ msgid "Any string you wish."
-#~ msgstr "Godtyckling mening."
-
-#~ msgid "Either plot ancestor or descendants graph."
-#~ msgstr "Rita antingen ett förfädes- ellet ett ättlingsdiagram."
-
-#~ msgid "Display type"
-#~ msgstr "Visningstyp"
-
-#~ msgid "The type of graph to create."
-#~ msgstr "Diagramtyp"
-
-#~ msgid "Direction of time"
-#~ msgstr "Tidsriktning"
-
-#~ msgid "Direction in which time increases."
-#~ msgstr "Riktning för ökande tid."
-
-#~ msgid "Max chart width (%)"
-#~ msgstr "Max diagrambredd (%)"
-
-#~ msgid "Width of the tree as fraction of the browser window"
-#~ msgstr "Bredd på trädet, som del av fönster."
-
-#~ msgid "Max chart height (px)"
-#~ msgstr "Max diagramhöjd (px)"
-
-#~ msgid "Height of the tree in pixels."
-#~ msgstr "Höjd på trädet i punkter."
-
-#~ msgid "Closing remarks"
-#~ msgstr "Avslutande kommentare"
-
-#~ msgid ""
-#~ "List of strings, free text added at the bottom, for example for a "
-#~ "copyright notice."
-#~ msgstr "Lista på strängar, fri text tillagd nertill, för t. ex. copyright."
-
-#~ msgid "Include Options"
-#~ msgstr "Ta med alternativ"
-
-#~ msgid "Wheater to leave out private data."
-#~ msgstr "Huruvida utesluta privata data."
-
-#~ msgid "Include Events"
-#~ msgstr "Ta med händelser"
-
-#~ msgid "Wheather to include a person's events."
-#~ msgstr "Huruvida ta med händelser."
-
-#~ msgid "Include birth children"
-#~ msgstr "Ta med barnafödslar"
-
-#~ msgid "Whether to include the birth of children in the list of events."
-#~ msgstr "Huruvida ta med barnafödslar i listan med händelser."
-
-#~ msgid "Include death relatives"
-#~ msgstr "Ta med döda släktingar"
-
-#~ msgid ""
-#~ "Whether to include the death of relatives during the lifetime of person."
-#~ msgstr "Huruvida ta med döden för släktingar under personens liv."
-
-#~ msgid "Include witness note"
-#~ msgstr "Ta med vittnesanteckningar"
-
-#~ msgid ""
-#~ "Whether to include the note belonging to a witness (if the event_format "
-#~ "contains <witnesses>)"
-#~ msgstr ""
-#~ "Huruvida ta med anteckningen till ett vittne (om händelseformatet "
-#~ "innehåller <witnesses>)"
-
-#~ msgid "Include Attributes"
-#~ msgstr "Ta med attribut"
-
-#~ msgid "Whether to include a person's attributes"
-#~ msgstr "Huruvida ta med attribut."
-
-#~ msgid "Include Addresses"
-#~ msgstr "Ta med adresser"
-
-#~ msgid "Whether to include a person's addresses."
-#~ msgstr "Huruvida ta med adresser."
-
-#~ msgid "Include Note"
-#~ msgstr "Ta med noteringar"
-
-#~ msgid "Whether to include a person's note."
-#~ msgstr "Huruvida ta med anteckningar."
-
-#~ msgid "Include URL"
-#~ msgstr "Ta med URL:er"
-
-#~ msgid "Whether to include a person's internet address."
-#~ msgstr "Huruvida ta med en pesons internetadress."
-
-#~ msgid "Include URL description"
-#~ msgstr "Ta med URL-beskrivning"
-
-#~ msgid "Whether to include the description of the first URL"
-#~ msgstr "Huruvida ta med beskrivning på första URL-en"
-
-#~ msgid "Include Sources"
-#~ msgstr "Ta med källor"
-
-#~ msgid "Whether to include a person's sources."
-#~ msgstr "Huruvida ta med källor."
-
-#~ msgid "Image Options"
-#~ msgstr "Bildalternativ"
-
-#~ msgid "Include Photos/Images from Gallery"
-#~ msgstr "Ta med foton/bilder från galleri"
-
-#~ msgid "Whether to include images"
-#~ msgstr "Huruvida ta med bilder."
-
-#~ msgid "Copy Image"
-#~ msgstr "Kopiera bild"
-
-#~ msgid "Copy the images to a designated directory."
-#~ msgstr "Kopiera bilder till en särskild mapp."
-
-#~ msgid "Images with Attribute"
-#~ msgstr "Bilder med attribut"
-
-#~ msgid "Determine images with which attributes to in/exclude"
-#~ msgstr "Bestäm bilder med vilka attribut som skall tas med eller ej"
-
-#~ msgid "Include Image source references"
-#~ msgstr "Huruvida ta med bildkällreferenser."
-
-#~ msgid "Whether to include references for images"
-#~ msgstr "Huruvida ta med referenser för bilder"
-
-#~ msgid "Source reference attribute"
-#~ msgstr "Källreferensattribut"
-
-#~ msgid "Image attribute that should be used as source reference"
-#~ msgstr "Bildattribut, som skall användas som källreferens"
-
-#~ msgid "Style Options"
-#~ msgstr "Mallalternativ"
-
-#~ msgid "Color of active person:"
-#~ msgstr "Färg för aktiv person:"
-
-#~ msgid "RGB-color of geometric shape of the activated person."
-#~ msgstr "c"
-
-#~ msgid "Color of found persons:"
-#~ msgstr "Färg på funna personer:"
-
-#~ msgid "RGB-color of geometric shape of the persons found."
-#~ msgstr "RGB-färg på geometrisk form för de funna personerna."
-
-#~ msgid "Color of male persons:"
-#~ msgstr "Färg på manspersoner:"
-
-#~ msgid "RGB-color of geometric shape of the male persons."
-#~ msgstr "RGB-färg på geometrisk form för manspersoner.."
-
-#~ msgid "Colour of female persons:"
-#~ msgstr "Färg på kvinnopersoner:"
-
-#~ msgid "RGB-color of geometric shape of the female persons."
-#~ msgstr "RGB-färg på geometrisk form för kvinnopersoner."
-
-#~ msgid "Width of rectangle (hrd):"
-#~ msgstr "Bredd på rektangel (hrd):"
-
-#~ msgid "Height of rectangle (hrd):"
-#~ msgstr "Höjd på trektangel (hrd):"
-
-#~ msgid "Vertical distance of rectangles (hrd):"
-#~ msgstr "Rektanglars vertikala avstånd (hrd):"
-
-#~ msgid "Extra style settings:"
-#~ msgstr "Extra mallinställningar:"
-
-#~ msgid "Advanced Options"
-#~ msgstr "Avancerade alternativ"
-
-#~ msgid "Old browser friendly output"
-#~ msgstr "Gammeldags bläddrarutdata"
-
-#~ msgid ""
-#~ "Whether to create an ordinary html-file that includes the xhtml-file so "
-#~ "that deprecated browsers can be presented with content they can swallow."
-#~ msgstr ""
-#~ "Huruvida skapa en ordinarie html-fil som tar med xhtml-filen så att "
-#~ "utgånga bläddrare akn få ett innehåll de kan svälja."
-
-#~ msgid "Mouse event handler"
-#~ msgstr "Mushändlsehanterare"
-
-#~ msgid "Mouse handler used to interact with visitor of webpage."
-#~ msgstr "Mushanterare använd för att samverka med besökare på hemsidan."
-
-#~ msgid "Birth relationship linestyle"
-#~ msgstr "Födelsesläktskapslinjeutseende"
-
-#~ msgid ""
-#~ "List of lists where each sublist is a list with information about the "
-#~ "dash pattern of lines connecting children to parents."
-#~ msgstr ""
-#~ "Lista på lista där varje dellista är en lista med information om linjers "
-#~ "utseende för förbindelser mellan barn och föräldrar."
-
-#~ msgid "Source confidence color"
-#~ msgstr "Källtillförlitlighetsfärg"
-
-#~ msgid ""
-#~ "List os lists where each sublist is a list with information on the color "
-#~ "to use for a certain confidence level."
-#~ msgstr ""
-#~ "Lista med listor där varje dellista är en lista med uppgift om färg att "
-#~ "utnyttjas för vissa tillförlitlighetsnivåer."
-
-#~ msgid "Event format"
-#~ msgstr "Händelseformat"
-
-#~ msgid "at"
-#~ msgstr "vid"
-
-#~ msgid ""
-#~ "List os strings with placeholders for events. Known placeholders: <type>, "
-#~ "<role>, <date>, <place>, <description>, <witnesses>, <source> and any "
-#~ "<attribute-value>."
-#~ msgstr ""
-#~ "Lista med strängar med markörer förhändelser. Kända markörer: <type>, "
-#~ "<role>, <date>, <place>, <description>, <witnesses>, <source> och "
-#~ "godtyckligt <attribute-value>."
-
-#~ msgid "Source format"
-#~ msgstr "Källformat"
-
-#~ msgid ""
-#~ "List of strings with placeholders for sources. Known placeholders: "
-#~ "<title>, <volume>, <author>, <publication_info> and <abbreviation>."
-#~ msgstr ""
-#~ "Lista med strängar med markörer källor. Kända markörer: <title>, "
-#~ "<volume>, <author>, <publication_info> and <abbreviation>."
-
-#~ msgid "restricted to:"
-#~ msgstr "begränsat till:"
-
-#~ msgid "to directory:"
-#~ msgstr "till mapp:"
-
-#~ msgid "Save images in ..."
-#~ msgstr "Spara bilder i ..."
-
-#~ msgid "should be"
-#~ msgstr "borde vara"
-
-#~ msgid "Name HTML-wrapper file"
-#~ msgstr "namn på HTML-inkapslingsfil"
-
-#~ msgid "Save HTML-wrapper file as ..."
-#~ msgstr "Spara HTML-inkappslingsfil som ..."
-
-#~ msgid "Give a filename ..."
-#~ msgstr "Angev ett filnamn ..."
-
-#~ msgid "Relation type"
-#~ msgstr "Typ av släktskap"
-
-#~ msgid "Use dashed linestyle"
-#~ msgstr "Använd streckad linje"
-
-#~ msgid "Dash length"
-#~ msgstr "Strecklängd"
-
-#~ msgid "Inter-dash length"
-#~ msgstr "Längd mellan streck"
-
-#~ msgid "Color"
-#~ msgstr "Färg"
-
-#~ msgid "DenominoViso"
-#~ msgstr "DenominoViso"
-
-#~ msgid "Alpha"
-#~ msgstr "Alpha"
-
-#~ msgid ""
-#~ "Generates a web (XHTML) page with a graphical representation of ancestors/"
-#~ "descendants (SVG) where details about individuals become visible upon "
-#~ "mouse-events."
-#~ msgstr ""
-#~ "Skapar en hemsida (XHTML) med grafisk representation av förfäder/"
-#~ "ättlingar (SVG) där detaljer om individier blir synliga via mushändelser."
-
-#~ msgid "Descendant Chart for %(person)s"
-#~ msgstr "Stamtavla förr %(person)s"
-
-#~ msgid "Descendant Chart for %(father1)s and %(mother1)s"
-#~ msgstr "Stamtavla för %(father1)s och %(mother1)s"
-
-#~ msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-#~ msgstr "Stamtavla för %(person)s och %(father1)s, %(mother1)s"
-
-#~ msgid "Descendant Chart for %(person)s, %(father1)s  and %(mother1)s"
-#~ msgstr "Stamtavla för %(person)s, %(father1)s  och %(mother1)s"
-
-#~ msgid ""
-#~ "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-#~ msgstr "Stamtavla för %(father1)s, %(father2)s och %(mother1)s, %(mother2)s"
-
-#~ msgid "Report for"
-#~ msgstr "Rapport för"
-
-#~ msgid "The main person for the report"
-#~ msgstr "Huvudpersonen för rapporten"
-
-#~ msgid "Start with the parent(s) of the selected first"
-#~ msgstr "Börja med föräldrar(na) till den valda först"
-
-#~ msgid "Will show the parents, brother and sisters of the selected person."
-#~ msgstr "Kommer att visa föräldrar och syskon till den valda personen."
-
-#~ msgid "Level of Spouses"
-#~ msgstr "Nivå för makar"
-
-#~ msgid ""
-#~ "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-#~ msgstr "0=inga makar, 1=tag med makar, 2=tag med makar till makar etc"
-
-#~ msgid ""
-#~ "Personal\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Persnonligt\n"
-#~ "Visningsformat"
-
-#~ msgid "Co_mpress Personal and Spousal Display Formats"
-#~ msgstr "Ko_mprimera personligt och makevisningformat"
-
-#~ msgid "Whether to not print empty lines within the 'Personal Display'."
-#~ msgstr "Huruvida skriva tomma rader inom 'Personlig visning'."
-
-#~ msgid "Bold direct descendants"
-#~ msgstr "Fetstil för direkta ättlingar"
-
-#~ msgid ""
-#~ "Whether to bold those people that are direct (not step or half) "
-#~ "decendants."
-#~ msgstr ""
-#~ "Huruvida skriva de personer som är direkt ättlingar (ej styv- eller "
-#~ "halvättling) med fetstil."
-
-#~ msgid "Use seperate display format for spouses"
-#~ msgstr "Använd annat format för make/maka"
-
-#~ msgid "Whether spouses can have a different format."
-#~ msgstr "Huruvida make/maka kan ha skilda format."
-
-#~ msgid "Indent Spouses"
-#~ msgstr "Dra in make/maka"
-
-#~ msgid "Whether to indent the spouses in the tree."
-#~ msgstr "Huruvida dra in make/maka i trädet."
-
-#~ msgid ""
-#~ "Spousal\n"
-#~ "Display Format"
-#~ msgstr ""
-#~ "Make/maka\n"
-#~ "Visningsformat"
-
-#~ msgid "Replace"
-#~ msgstr "Ersätt"
-
-#~ msgid ""
-#~ "Replace Display Format:\n"
-#~ "'Replace this'/'with this'"
-#~ msgstr ""
-#~ "Byt ut visningsformat:\n"
-#~ "'Byt detta '/'mot detta'"
-
-#~ msgid ""
-#~ "ie\n"
-#~ "United States of America/U.S.A"
-#~ msgstr "d. v. s.Amerikas Förenta Stater/U. S. A."
-
-#~ msgid "The bold style used for the text display."
-#~ msgstr "Fetstil använd till textvisning."
-
-#~ msgid "Personal Descend Tree"
-#~ msgstr "Personlig stamtavla"
-
-#~ msgid "Familial Descend Tree"
-#~ msgstr "Familjestamtavla"
-
-#~ msgid "Descendent Count"
-#~ msgstr "Beräkning av antal ättlingar"
-
-#~ msgid "Number of Descendants"
-#~ msgstr "Antal ättlingar"
-
-#~ msgid "There are %d people.\n"
-#~ msgstr "Det finns %d personer.\n"
-
-#~ msgid "Descendant Count"
-#~ msgstr "Beräkning av antal ättlingar"
-
-#~ msgid "Display descendant counts for each person."
-#~ msgstr "Visar antal ättlingar för varje person."
-
-#~ msgid "Descendant Count Gramplet"
-#~ msgstr "Fönster för beräkning av antal ättlingar"
-
-#~ msgid "\"FamilyGroups\" and \"Identification Number\" attributes "
-#~ msgstr "\"Familjegrupper\"- och \"Identifikationsnummer\"-attribut "
-
-#~ msgid "TOTAL NUMBER OF INDIVIDUALS : %s"
-#~ msgstr "TOTALT ANTAL INDIVIDER : %s"
-
-#~ msgid " SURNAME  : %s"
-#~ msgstr " EFTERNAMN  : %s"
-
-#~ msgid " is the studied name (Active-Person).\n"
-#~ msgstr " är det studerade namnet (aktiv person).\n"
-
-#~ msgid ""
-#~ " ==> When the number is the lower than twenty, persons are precised with "
-#~ "surname, ID gramps and attribut.\n"
-#~ msgstr ""
-#~ " ==> När antaler är mindre än tjugo, är personer preciserade med "
-#~ "efternamn, ID Gramps och attribut.\n"
-
-#~ msgid "  Of the individuals bear this name   : %s"
-#~ msgstr "  av individerna bär detta namn   : %s"
-
-#~ msgid "  Of the individuals bear this attribute   : %s  "
-#~ msgstr "  av individerna har detta attribut:  %s  "
-
-#~ msgid " ========= > BEWARE  %s"
-#~ msgstr " ========= > VARNING  %s"
-
-#~ msgid ""
-#~ " PERSONS HAVE a empty  \"ID\" attribut or not attribute \"0NOATTRIB\""
-#~ msgstr ""
-#~ " PERSONER HAR ett tomt  \"ID\" attribut eller inte något attribut "
-#~ "\"0NOATTRIB\""
-
-#~ msgid "The basic style used for the para title."
-#~ msgstr "Grundläggande mall som används för visning av stycketitel."
-
-#~ msgid "FamilyGroups_1_1"
-#~ msgstr "FamilyGroups_1_1"
-
-#~ msgid "Testing"
-#~ msgstr "Provar"
-
-#~ msgid "FamilyGroups"
-#~ msgstr "Familjegrupper"
-
-#~ msgid "FAQ Gramplet"
-#~ msgstr "FAQ Gramplet"
-
-#~ msgid "FAQ"
-#~ msgstr "FAQ"
-
-#~ msgid "The style used for the name of person."
-#~ msgstr "Mall som används för personens namn."
-
-#~ msgid "Produces a gallery"
-#~ msgstr "Skapar ett galleri"
-
-#~ msgid "No place description"
-#~ msgstr "Platsbeskrivning saknas"
-
-#~ msgid "GoogleEarth not installed!"
-#~ msgstr "GoogleEarth ej installerat!"
-
-#~ msgid ""
-#~ "Create kmz/kml file ''%s''\n"
-#~ "in user directory ''%s''?"
-#~ msgstr ""
-#~ "Skapa en kmz/kml-fil ''%s''\n"
-#~ "i användarmapp ''%s''?"
-
-#~ msgid "Failure writing to %s"
-#~ msgstr "Misslyckades med att skriva till %s"
-
-#~ msgid "Directory does not exist"
-#~ msgstr "Mappen finns inte"
-
-#~ msgid "GoogleEarth file exists!"
-#~ msgstr "GoogleEarth file finns redan!"
-
-#~ msgid ""
-#~ "Overwrite kmz/kml file ''%s''\n"
-#~ "in user home directory ''%s''?"
-#~ msgstr ""
-#~ "Skriva över kmz/kml-fil ''%s''\n"
-#~ "i användarens hem-mapp ''%s''?"
-
-#~ msgid "GoogleEarth"
-#~ msgstr "GoogleEarth"
-
-#~ msgid "Creates data file for GoogleEarth and opens it"
-#~ msgstr "Skapar en datafil för GoogleEartrh och öppnar den"
-
-#~ msgid "Read GRAMPS headline news"
-#~ msgstr "Läs Gramps nyheter"
-
-#~ msgid "Headline News Gramplet"
-#~ msgstr "Fönster med nyheter"
-
-#~ msgid "Headline News"
-#~ msgstr "Nyheter"
-
-#~ msgid "Note Gramplet"
-#~ msgstr "Fönster för anteckningar"
-
-#~ msgid ""
-#~ "Place Completion by parsing, file lookup and batch setting of place "
-#~ "attributes"
-#~ msgstr ""
-#~ "Platskomplttering genom att avkodning, filuppslagning och satsvis "
-#~ "inställning av platsattribut"
-
-#~ msgid "city"
-#~ msgstr "ort"
-
-#~ msgid "street"
-#~ msgstr "gatuadress"
-
-#~ msgid "parish"
-#~ msgstr "församling"
-
-#~ msgid "country"
-#~ msgstr "land"
-
-#~ msgid "county"
-#~ msgstr "landskap"
-
-#~ msgid "state"
-#~ msgstr "län"
-
-#~ msgid "zip"
-#~ msgstr "zip"
-
-#~ msgid "latitude"
-#~ msgstr "latitud"
-
-#~ msgid "longitude"
-#~ msgstr "longitud"
-
-#~ msgid "Error in PlaceCompletion.py"
-#~ msgstr "Fel i PlaceCompletion.py"
-
-#~ msgid "Non existing group used in get"
-#~ msgstr "Ickeexisterande grupp använd i get"
-
-#~ msgid "Non existing group used in set"
-#~ msgstr "Ickeexisterande grupp använd i set"
-
-#~ msgid "Places tool"
-#~ msgstr "Platsverktyg"
-
-#~ msgid "Non Valid Title Regex"
-#~ msgstr "Inget giltigt reguljärt uttryck"
-
-#~ msgid "Non valid regular expression given to match title. Quiting."
-#~ msgstr "Inget giltigt reguljärt uttryck givet att matcha titel. Avbryter."
-
-#~ msgid "lat"
-#~ msgstr "lat"
-
-#~ msgid "lon"
-#~ msgstr "lon"
-
-#~ msgid "Missing regex groups in match lat/lon"
-#~ msgstr "Saknade grupper med reguljära uttryck i matchning av lat/lon"
-
-#~ msgid ""
-#~ "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
-#~ msgstr ""
-#~ "Grupper med reguljära uttryck %(lat)s och %(lon)s måste finnas vid lat/"
-#~ "lon-matchning. Avbryter"
-
-#~ msgid "Non valid regex for match lat/lon"
-#~ msgstr "Inget reguljärt uttryck för matchning av lat/lon"
-
-#~ msgid "Non valid regular expression given to find lat/lon. Quiting."
-#~ msgstr ""
-#~ "Inget giltigt reguljärt uttryck givet för att finna lat/long. Avbryter."
-
-#~ msgid "Finding Places and appropriate changes"
-#~ msgstr "Leta efter platser och tillämpliga ändringar"
-
-#~ msgid "Filtering"
-#~ msgstr "Filtrering"
-
-#~ msgid "Loading lat/lon file in Memory..."
-#~ msgstr "Laddar lat/lon-fil till minnet..."
-
-#~ msgid "Examining places"
-#~ msgstr "Undersöker platser"
-
-#~ msgid "Doing Place changes"
-#~ msgstr "Genomför platsförförändringar"
-
-#~ msgid "Change places"
-#~ msgstr "Ändra platser"
-
-#~ msgid "No place record was modified."
-#~ msgstr "Ingen plats ändrades."
-
-#~ msgid "1 place record was modified."
-#~ msgstr "1 plats ändrades."
-
-#~ msgid "%d place records were modified."
-#~ msgstr "%d platser ändrades."
-
-#~ msgid "The selected file is a directory, not a file."
-#~ msgstr "Den valda filen är en katalog, inte en fil."
-
-#~ msgid "The file you want to access is not a regular file."
-#~ msgstr "Den fil du vill utnyttja är inte en vanlig fil."
-
-#~ msgid "The file does not exist."
-#~ msgstr "Filen finns inte."
-
-#~ msgid "Problem reading file"
-#~ msgstr "Fel vid filläsning"
-
-#~ msgid "CITY"
-#~ msgstr "STAD"
-
-#~ msgid "TITLEBEGIN"
-#~ msgstr "STARTTITEL"
-
-#~ msgid "TITLE"
-#~ msgstr "TITEL"
-
-#~ msgid "STATE"
-#~ msgstr "STAT"
-
-#~ msgid "PARISH"
-#~ msgstr "FÖRSAMLING"
-
-#~ msgid "invalid lat or lon value, %(lat)s, %(lon)s"
-#~ msgstr "ogiltigt lat- eller lon-värde, %(lat)s, %(lon)s"
-
-#~ msgid "No lat/lon conversion"
-#~ msgstr "Ingen lat/lon-omvandling"
-
-#~ msgid "All in degree notation"
-#~ msgstr "Samtliga i gradnotation"
-
-#~ msgid "All in decimal notation"
-#~ msgstr "Allt i decimal notation"
-
-#~ msgid "Correct -50° in 50°S"
-#~ msgstr "Korrekt -50° in 50°S"
-
-#~ msgid "No changes"
-#~ msgstr "Inga ändringar"
-
-#~ msgid "City[, State]"
-#~ msgstr "Ort[, stat]"
-
-#~ msgid "TitleStart [, City] [, State]"
-#~ msgstr "Starttitel [, ort] [, stat]"
-
-#~ msgid "City [,|.] State"
-#~ msgstr "Ort [,|.] stat"
-
-#~ msgid "City [,|.] Country"
-#~ msgstr "Ort [,|.] land"
-
-#~ msgid "City (Country)"
-#~ msgstr "Ort (land)"
-
-#~ msgid "Don't search"
-#~ msgstr "Sök ej"
-
-#~ msgid "GeoNames country file, city search"
-#~ msgstr "GeoNames landsfil, ortsökning"
-
-#~ msgid "GeoNames country file, city localized variants search"
-#~ msgstr "GeoNames landsfil, ort lokal sökvariant"
-
-#~ msgid "GeoNames country file, title begin, general search"
-#~ msgstr "GeoNames landsfil, starttitel, allmän sökning"
-
-#~ msgid "GeoNames USA state file, city search"
-#~ msgstr "GeoNames USA-delstatfil, ortsökning"
-
-#~ msgid "GNS Geonet country file, city search"
-#~ msgstr "GNS Geonet landsfil, ortsökning"
-
-#~ msgid "GNS Geonet country file, title begin, general search"
-#~ msgstr "GNS Geonet landsfil, starttitel, allmän sökning"
-
-#~ msgid "Wikipedia CSV Dump"
-#~ msgstr "Wikipedia CSV Dump"
-
-#~ msgid "All Places"
-#~ msgstr "Alla platser"
-
-#~ msgid "No Latitude/Longitude given"
-#~ msgstr "Platser utan latitud eller longitud angivet"
-
-#~ msgid "Interactive place completion"
-#~ msgstr "Interaktiv platskomplettering"
-
-#~ msgid "Unstable"
-#~ msgstr "Ostabil"
-
-#~ msgid ""
-#~ "Provides a browsable list of selected places, with possibility to "
-#~ "complete/parse/set the attribute fields"
-#~ msgstr ""
-#~ "Tillhandahåller en bläddringsbar lista av valda platser, med möjlighet "
-#~ "att helt/tolka/sätta attributfälten"
-
-#~ msgid "Reading"
-#~ msgstr "Läser"
-
-#~ msgid "Plugin Manager Gramplet"
-#~ msgstr "Fönster för insticksmoduler"
-
-#~ msgid "Plugin Manager"
-#~ msgstr "Hanterare av insticksmoduler"
-
-#~ msgid "Enter Python expressions"
-#~ msgstr "Skruv in ett python-uttryck"
-
-#~ msgid "class name|Date"
-#~ msgstr "datum"
-
-#~ msgid "Error"
-#~ msgstr "Fel"
-
-#~ msgid "Python Gramplet"
-#~ msgstr "Python-fönster"
-
-#~ msgid "Python Shell"
-#~ msgstr "Pythonskal"
-
-#~ msgid "Repositories Report"
-#~ msgstr "Arkivplatsrapport"
-
-#~ msgid "The style used for repository title."
-#~ msgstr "Malll som används för arkivplatstitel."
-
-#~ msgid "Produces a textual repositories report"
-#~ msgstr "Åstadkommer en rapport över arkivplatser"
-
-#~ msgid ""
-#~ "\n"
-#~ "Address: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Adress: %s"
-
-#~ msgid "%s. Private"
-#~ msgstr "%s privat"
-
-#~ msgid "Author: %s"
-#~ msgstr "Författare: %s"
-
-#~ msgid ""
-#~ "\n"
-#~ "Abbreviation: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Förkortning: %s"
-
-#~ msgid ""
-#~ "\n"
-#~ "Publication information: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Publiceringsinformation: %s"
-
-#~ msgid ""
-#~ "\n"
-#~ "Data: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Data: %s"
-
-#~ msgid "Include repository's urls"
-#~ msgstr "Ta med URL för arkivplatser"
-
-#~ msgid "Whether to include urls on repository."
-#~ msgstr "Huruvida ta med URL för arkivplatser"
-
-#~ msgid "Include repository's address"
-#~ msgstr "Ta med arkivplatsadresser"
-
-#~ msgid "Whether to include addresses on repository."
-#~ msgstr "Huruvida ta med adresser till arkovplatser."
-
-#~ msgid "Include source's author"
-#~ msgstr "Ta med källförfattare"
-
-#~ msgid "Whether to include author."
-#~ msgstr "Huruvida ta med källförfattare."
-
-#~ msgid "Include source's abbreviation"
-#~ msgstr "Ta med källförkortning"
-
-#~ msgid "Whether to include abbreviation."
-#~ msgstr "Huruvida ta med förkortning."
-
-#~ msgid "Include source's publication information"
-#~ msgstr "Ta med källors publiceringsinformation"
-
-#~ msgid "Whether to include publication information."
-#~ msgstr "Huruvida ta med publiceringsinformation."
-
-#~ msgid "Include source's data"
-#~ msgstr "Ta med källors data"
-
-#~ msgid "Whether to include keys and values."
-#~ msgstr "Huruvida ta med nycklar och värden."
-
-#~ msgid "Whether to include notes on repositories and sources."
-#~ msgstr "Huruvida ta med anteckningar för arkivplatser och källor."
-
-#~ msgid "Include media"
-#~ msgstr "Ta med media"
-
-#~ msgid "Whether to include media on sources."
-#~ msgstr "Huruvida ta med media."
-
-#~ msgid "Whether to include repositories and sources marked as private."
-#~ msgstr "Huruvida ta med arkivplatser och källor markerade som privata."
-
-#~ msgid "The style used for child section."
-#~ msgstr "Den mall, som används barnstycke."
-
-#~ msgid "Repositories Report 2"
-#~ msgstr "Arkivplatserrapport 2"
-
-#~ msgid "SVG Map"
-#~ msgstr "SVG-karta"
-
-#~ msgid "Creates data into a SVG file"
-#~ msgstr "Skapar data för en SVG-fil"
-
-#~ msgid "Top Left"
-#~ msgstr "Överkant, vänster"
-
-#~ msgid "Top Right"
-#~ msgstr "Överkant, höger"
-
-#~ msgid "Bottom Left"
-#~ msgstr "Nederkant, vänster"
-
-#~ msgid "Bottom Right"
-#~ msgstr "Nederkant, höger"
-
-#~ msgid "Number of %s's descendants"
-#~ msgstr "Antal av %s's ättlingar"
-
-#~ msgid "%s total descendants"
-#~ msgstr "Totalt antal ättlingar %s"
-
-#~ msgid "%s descendants born during his/her lifetime"
-#~ msgstr "%s ättlingar föddes under hans/hennes livstid"
-
-#~ msgid "%s descendants died during his/her lifetime"
-#~ msgstr "%s ättlingar dog under hans /hennes livstid"
-
-#~ msgid "%s descendants now alive"
-#~ msgstr "Antal nu levande ättlingar %s"
-
-#~ msgid "Descendant count"
-#~ msgstr "Räkning av antal ättlingar"
-
-#~ msgid "Displays the number of a person's descendants"
-#~ msgstr "Visar antal ättlingar till en person"
-
-#~ msgid "No coordinates given!"
-#~ msgstr "Inga koordinater angivna!"
-
-#~ msgid "Map not available for"
-#~ msgstr "Ingen karta tillgänglig för"
-
-#~ msgid ""
-#~ "Longitude=%s\n"
-#~ "Latitude=%s"
-#~ msgstr ""
-#~ "Longitud=%s\n"
-#~ "Latitud=%s"
-
-#~ msgid "Häradskarta"
-#~ msgstr "Häradskarta"
-
-#~ msgid "Opens häradskarta, if found."
-#~ msgstr "Öppnar häradskarta, om funnen."
-
-#~ msgid "Locations"
-#~ msgstr "Platser"
-
-#~ msgid ""
-#~ "\n"
-#~ "Census event (Individual)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Folkräkningshändelse (individ)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Residence event (Individual)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Boendehändles (individ)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Census event (Family)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Folkräkningshändelse (famil)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Residence event (Family)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Boendehändelse (famil)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Address filter (Person)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Adressfilter (person)\n"
-
-#~ msgid "The basic style used for the paragraph title."
-#~ msgstr "Grundläggande mall som används för visning av stycketitel."
-
-#~ msgid "Individuals with locations"
-#~ msgstr "Personer med platser"
-
-#~ msgid "<b>1. Look up latitude and longitude:</b>"
-#~ msgstr "<b>1. Slå upp latitud och longitud:</b>"
-
-#~ msgid "<b>2. Parsing and Conversion of existing title or position:</b>"
-#~ msgstr "<b>2. Tolkning och omvadling av befintlig titel eller position:</b>"
-
-#~ msgid "<b>3. Set attributes of all selected places:</b>"
-#~ msgstr "<b>3. Sätt attribut på alla valda platser:</b>"
-
-#~ msgid "Apply all suggested changes"
-#~ msgstr "Tillämpa all föreslagna ändringar"
-
-#~ msgid "C_enter latitude:"
-#~ msgstr "C_entrera latitud:"
-
-#~ msgid "Center longitude:"
-#~ msgstr "Centrera longitud:"
-
-#~ msgid "Change title into:"
-#~ msgstr "Ändra titel till:"
-
-#~ msgid "Convert lat/lon as:"
-#~ msgstr "Omvandla lat/lon som:"
-
-#~ msgid "Parish"
-#~ msgstr "Församling"
-
-#~ msgid "Parish:"
-#~ msgstr "Församling:"
-
-#~ msgid "Parse as:"
-#~ msgstr "Sortera som:"
-
-#~ msgid "Parse title:"
-#~ msgstr "Sortera titel:"
-
-#~ msgid "Place _filter:"
-#~ msgstr "Plats_filter:"
-
-#~ msgid "Places in a rectangle:"
-#~ msgstr "Platser i en rektangel:"
-
-#~ msgid "Search in:"
-#~ msgstr "Sök i:"
-
-#~ msgid "Select A File"
-#~ msgstr "Välj en fil"
-
-#~ msgid ""
-#~ "<span size=\"large\"><b>Selection of the Places you want to complete:</"
-#~ "b></span>"
-#~ msgstr ""
-#~ "<span size=\"large\"><b>Val av de platser du vill kompklettera:</b></span>"
