@@ -939,6 +939,36 @@ div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
     width: 8%;
 }
 
+/*      Gramps Event List by Alphabet
+------------------------------------------------------ */
+div#AlphabetEvent {
+    padding: 0;
+    margin: 0 auto;
+}
+div#AlphabetEvent table.alphaevent {
+    padding: 0;
+    margin: 0;
+}
+div#AlphabetEvent table.alphaevent tbody tr.BeginEvent {
+    border-top: solid 1px #5D835F;
+}
+div#AlphabetEvent table.alphaevent tbody tr td {
+    background-color: #D8F3D6;
+    border-bottom: dashed 1px #5D835F;
+}
+div#AlphabetEvent table.alphaevent tbody tr td.ColumnType {
+    width: 15%;
+}
+div#AlphabetEvent table.alphaevent tbody tr td.ColumnGRAMPSID {
+    width: 15%;
+}
+div#AlphabetEvent table.alphaevent tbody tr td.ColumnDate {
+    width: 15%;
+}
+div#AlphabetEvent table.alphaevent tbody tr td.ColumnPerson {
+    width: 50%;
+}
+
 /* Subsections
 ----------------------------------------------------- */
 #Home, #Introduction, #Contact {
