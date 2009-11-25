@@ -11868,7 +11868,7 @@ msgstr "Udførte rettelser"
 #, python-format
 msgid "%s event description has been added"
 msgid_plural "%s event descriptions have been added"
-msgstr[0] "Udtrækker hændelsesbeskrivelser fra hændelsesdata"
+msgstr[0] "%s hændelsesbeskrivelser fra hændelsesdata"
 msgstr[1] "%s hændelsesbeskrivelse er blevet tilføjet"
 
 #: ../src/plugins/tool/EventNames.py:120
@@ -12214,7 +12214,7 @@ msgstr[1] "Finder slægtskaber mellem %d personer"
 #, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
-msgstr[0] "Leder efter 1 person"
+msgstr[0] "Leder efter %d person"
 msgstr[1] "Leder efter %d personer"
 
 #: ../src/plugins/tool/NotRelated.py:363
