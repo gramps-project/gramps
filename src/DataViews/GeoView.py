@@ -446,8 +446,9 @@ class HtmlView(PageView.PageView):
         """
         Set the backward and forward button in accordance to the browser.
         """
-        self.forward_action.set_sensitive(self.renderer.can_go_forward())
-        self.back_action.set_sensitive(self.renderer.can_go_back())
+        pass
+        #self.forward_action.set_sensitive(self.renderer.can_go_forward())
+        #self.back_action.set_sensitive(self.renderer.can_go_back())
         
     def open(self, url):
         """
@@ -722,14 +723,14 @@ class GeoView(HtmlView):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
-        """
-        return '''<ui>
-          <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
               <toolitem action="Back"/>  
               <toolitem action="Forward"/>  
               <toolitem action="Refresh"/>
             </placeholder>
+        """
+        return '''<ui>
+          <toolbar name="ToolBar">
             <placeholder name="CommonEdit">
               <toolitem action="OpenStreetMap"/>
               <toolitem action="%s"/>
@@ -747,9 +748,9 @@ class GeoView(HtmlView):
         Required define_actions function for PageView. Builds the action
         group information required. 
         """
-        HtmlView._define_actions_fw_bw(self)
-        self.forward_action.set_sensitive(False)
-        self.back_action.set_sensitive(False)
+        #HtmlView._define_actions_fw_bw(self)
+        #self.forward_action.set_sensitive(False)
+        #self.back_action.set_sensitive(False)
         self._add_action('OpenStreetMap', 'gramps-geo-mainmap', 
                          _('_OpenStreetMap'),
                          callback=self._select_openstreetmap_map,
