@@ -48,19 +48,19 @@ class FilterProxyDb(ProxyDbBase):
         ProxyDbBase.__init__(self, db)
         self.person_filter = person_filter
         if person_filter:
-            self.plist = set(h for h in person_filter.apply(
+            self.plist = set(person_filter.apply(
                     self.db, self.db.iter_person_handles()))
         else:
             self.plist = set(self.db.iter_person_handles())
 
         if event_filter:
-            self.elist = set(h for h in event_filter.apply(
+            self.elist = set(event_filter.apply(
                     self.db, self.db.iter_event_handles()))
         else:
             self.elist = set(self.db.iter_event_handles())
         
         if note_filter:
-            self.nlist = set(h for h in note_filter.apply(
+            self.nlist = set(note_filter.apply(
                     self.db, self.db.iter_note_handles()))
         else:
             self.nlist = set(self.db.iter_note_handles())
@@ -68,8 +68,7 @@ class FilterProxyDb(ProxyDbBase):
         self.flist = set()
         for handle in self.plist:
             person = self.db.get_person_from_handle(handle)
-            for handle in person.get_family_handle_list():
-                self.flist.add(handle)
+            self.flist.update(person.get_family_handle_list())
 
     def get_person_from_handle(self, handle):
         """
