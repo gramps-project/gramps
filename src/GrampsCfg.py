@@ -205,20 +205,20 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         self.add_checkbox(
-            table, _('Suppress warning when adding parents to a child'), 
+            table, _('Suppress warning when adding parents to a child.'), 
             0, 'preferences.family-warn')
         
         self.add_checkbox(
-            table, _('Suppress warning when cancelling with changed data'), 
+            table, _('Suppress warning when cancelling with changed data.'), 
             1, 'interface.dont-ask')
         
         self.add_checkbox(
             table, _('Suppress warning about missing researcher when'
-                     ' exporting to GEDCOM'), 
+                     ' exporting to GEDCOM.'), 
             2, 'behavior.owner-warn')
 
         self.add_checkbox(
-            table, _('Show plugin status dialog on plugin load error'), 
+            table, _('Show plugin status dialog on plugin load error.'), 
             3, 'behavior.pop-plugin-status')
         
         return table
@@ -450,7 +450,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             oldname = self.fmt_model.get_value(node, COL_NAME)
             # check to see if this pattern already exists
             if self.__check_for_name(translation, node):
-                ErrorDialog(_("This format exists already"), 
+                ErrorDialog(_("This format exists already."), 
                                            translation)
                 self.edit_button.emit('clicked')
                 return
@@ -472,7 +472,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             t = (_nd.format_str(self.name, escape(obj.get_text())))
             self.valid = True
         except NameDisplayError:
-            t = _("Invalid or incomplete format definition")
+            t = _("Invalid or incomplete format definition.")
             self.valid = False
         self.fmt_model.set(self.iter, COL_EXPL, t)
 
@@ -1062,7 +1062,7 @@ class NameFormatEditDlg(object):
                     self.response = gtk.RESPONSE_CANCEL
                 elif (self.fmt_name == '') ^ (self.fmt_str == ''):
                     ErrorDialog(
-                        _('Both Format name and definition have to be defined'), 
+                        _('Both Format name and definition have to be defined.'), 
                         parent=self.dlg)
                     running = True
                                     
@@ -1075,7 +1075,7 @@ class NameFormatEditDlg(object):
             sample = '<span weight="bold" style="italic">%s</span>' % t
             self.valid = True
         except NameDisplayError:
-            t = _("Invalid or incomplete format definition")
+            t = _("Invalid or incomplete format definition.")
             sample = '<span foreground="#FF0000">%s</span>' % t
             self.valid = False
 

@@ -23,4 +23,4 @@ class ChangedSince(ChangedSinceBase):
     name        = _('Events changed after <date time>')
     description = _("Matches event records changed after a specified "
                     "date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second "
-                    "date/time is given")
+                    "date/time is given.")

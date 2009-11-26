@@ -643,12 +643,12 @@ class IndivCompleteOptions(MenuReportOptions):
         
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                           _("Select the filter to be applied to the report"))
+                           _("Select the filter to be applied to the report."))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
         self.__pid = PersonOption(_("Filter Person"))
-        self.__pid.set_help(_("The center person for the filter"))
+        self.__pid.set_help(_("The center person for the filter."))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         

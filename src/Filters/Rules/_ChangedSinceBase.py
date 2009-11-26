@@ -28,7 +28,7 @@ class ChangedSinceBase(Rule):
     name        = _('Objects changed after <date time>')
     description = _("Matches object records changed after a specified "
                     "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second "
-                    "date/time is given")
+                    "date/time is given.")
     category    = _('General filters')
 
     def add_time(self, date):

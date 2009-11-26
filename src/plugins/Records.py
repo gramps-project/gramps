@@ -441,7 +441,7 @@ class RecordsReportOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                         _("Determines what people are included in the report"))
+                         _("Determines what people are included in the report."))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
@@ -519,7 +519,7 @@ class RecordsReportOptions(MenuReportOptions):
         font.set_bold(1)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_("The style used for the report title"))
+        para.set_description(_("The style used for the report title."))
         default_style.add_paragraph_style('REC-Title', para)
 
 #------------------------------------------------------------------------

@@ -903,12 +903,12 @@ class StatisticsChartOptions(MenuReportOptions):
         
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                         _("Determines what people are included in the report"))
+                         _("Determines what people are included in the report."))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
         self.__pid = PersonOption(_("Filter Person"))
-        self.__pid.set_help(_("The center person for the filter"))
+        self.__pid.set_help(_("The center person for the filter."))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
@@ -929,7 +929,7 @@ class StatisticsChartOptions(MenuReportOptions):
         this_year = time.localtime()[0]
         year_from = NumberOption(_("People Born After"), 
                                  1700, 1, this_year)
-        year_from.set_help(_("Birth year from which to include people"))
+        year_from.set_help(_("Birth year from which to include people."))
         menu.add_option(category_name,"year_from", year_from)
         
         year_to = NumberOption(_("People Born Before"), 
@@ -940,7 +940,7 @@ class StatisticsChartOptions(MenuReportOptions):
         no_years = BooleanOption(_("Include people without known birth years"), 
                                  False)
         no_years.set_help(_("Whether to include people without "
-                            "known birth years"))
+                            "known birth years."))
         menu.add_option(category_name,"no_years", no_years)
 
         gender = EnumeratedListOption(_('Genders included'),
@@ -969,7 +969,7 @@ class StatisticsChartOptions(MenuReportOptions):
                 category_name = _("Charts 2")
             
             opt = BooleanOption(_Extract.extractors[key][1], False)
-            opt.set_help(_("Include charts with indicated data"))
+            opt.set_help(_("Include charts with indicated data."))
             menu.add_option(category_name,key, opt)
             idx += 1
         
