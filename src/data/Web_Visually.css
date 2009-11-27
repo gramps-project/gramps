@@ -647,11 +647,32 @@ div#EventList table.eventlist tbody tr.BeginName {
 div#EventList table.eventlist tbody tr td {
     padding: 4px 0px 4px 0px;
 }
-div#EventList table.eventlist tbody tr td.ColumnEvent a,
-div#EventList table.eventlist tbody tr td.ColumnPerson a,
-div#EventList table.eventlist tbody tr td.ColumnPartner a {
-    display: block;
-    padding: 4px 0px 4px 10px;
+div#EventList table.alphaevent {
+    padding: .3em 0 .3em 0;
+    margin: 0;
+}
+div#EventList table.alphaevent tbody tr.BeginEvent {
+    border-top: solid 1px #5D835F;
+}
+div#EventList table.alphaevent tbody tr td {
+    background-color: #D8F3D6;
+    border-bottom: dashed 1px #5D835F;
+}
+div#EventList table.alphaevent tbody tr td:hover {
+    background: none;
+}
+div#EventList table.alphaevent tbody tr td.ColumnType {
+    width: 15%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
+    width: 15%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnDate {
+    width: 15%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnPerson {
+    background-color: #FFF;
+    width: 50%;
 }
 div#EventDetail h3 {
     font-size: xxx-large;
@@ -937,36 +958,6 @@ div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
 }
 div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
     width: 8%;
-}
-
-/*      Gramps Event List by Alphabet
------------------------------------------------------- */
-div#AlphabetEvent {
-    padding: 0;
-    margin: 0 auto;
-}
-div#AlphabetEvent table.alphaevent {
-    padding: 0;
-    margin: 0;
-}
-div#AlphabetEvent table.alphaevent tbody tr.BeginEvent {
-    border-top: solid 1px #5D835F;
-}
-div#AlphabetEvent table.alphaevent tbody tr td {
-    background-color: #D8F3D6;
-    border-bottom: dashed 1px #5D835F;
-}
-div#AlphabetEvent table.alphaevent tbody tr td.ColumnType {
-    width: 15%;
-}
-div#AlphabetEvent table.alphaevent tbody tr td.ColumnGRAMPSID {
-    width: 15%;
-}
-div#AlphabetEvent table.alphaevent tbody tr td.ColumnDate {
-    width: 15%;
-}
-div#AlphabetEvent table.alphaevent tbody tr td.ColumnPerson {
-    width: 50%;
 }
 
 /* Subsections

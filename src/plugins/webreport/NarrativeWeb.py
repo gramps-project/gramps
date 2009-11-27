@@ -122,18 +122,24 @@ from libhtmlbackend import HtmlBackend
 # Translatable strings for variables within this plugin
 # gettext carries a huge footprint with it.
 AHEAD = _("Attributes")
+BIRTH = _("Birth")
 CITY = _("City")
 COUNTY = _("County")
 COUNTRY = _("Country")
+DEATH = _("Death")
 DHEAD = _("Date")
 DESCRHEAD = _("Description")
+_EVENT = _("Eent")
 GRAMPSID = _("Gramps ID")
 LATITUDE = _("Latitude")
 LOCATIONS = _("Alternate Locations")
 LONGITUDE = _("Longitude")
 NHEAD = _("Notes")
+PARENTS = _("Parents")
 PARISH = _("Church Parish")
+_PARTNER = _("Partner")
 PHEAD = _("Place")
+_PERSON = _("Person")
 PHONE = _("Phone")
 POSTAL = _("Postal Code")
 SHEAD = _("Sources")
@@ -152,7 +158,7 @@ _NARRATIVESCREEN = "narrative-screen.css"
 _NARRATIVEPRINT = "narrative-print.css"
 
 # variables for alphabet_navigation()
-_PERSON, _PLACE = 0, 1
+_KEYPERSON, _KEYPLACE, _KEYEVENT, _ALPHAEVENT = 0, 1, 2, 3
 
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
@@ -323,14 +329,11 @@ class BasePage(object):
 
         if showsrc:
             srcrefs = self.get_citation_links(attr.get_source_references()) or "&nbsp;"
-            source_row = ("Sources", srcrefs)
-            attr_data_row.append(source_row)
+            attr_data_row.append(("Sources", srcrefs))
  
         # get attribute note list    
-        notelist = attr.get_note_list()
-        notelist = self.display_note_list(notelist) or "&nbsp;"
-        note_row = ("Notes", notelist)                      
-        attr_data_row.append(note_row)
+        notelist = self.display_note_list(attr.get_note_list() ) or "&nbsp;"
+        attr_data_row.append(("Notes", notelist))
 
         # display attribute list
         trow.extend(
@@ -535,7 +538,7 @@ class BasePage(object):
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
         info = [
-            [_("Event"), "Event",  evt_hyper],
+            [_EVENT, "Event",  evt_hyper],
             [DHEAD, "Date",  _dd.display(evt.get_date_object() )] ]
 
         if showplc:
@@ -592,7 +595,7 @@ class BasePage(object):
                ]
 
             # finish the label's missing piece
-            header_row[5][0] += _("Parents") if LDSSealedType == "Person" else _("Spouse") 
+            header_row[5][0] += PARENTS if LDSSealedType == "Person" else _("Spouse") 
 
             trow.extend(
                 Html("th", label, class_ = "Column" + colclass, inline = True)
@@ -935,7 +938,7 @@ class BasePage(object):
         # return footer to its callers
         return footer
 
-    def write_header(self, title):
+    def write_header(self, title, key):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
@@ -993,25 +996,28 @@ class BasePage(object):
         head += meta
         head += links
 
-        # begin header section
-        headerdiv = (Html("div", id = 'header') +
-            Html("h1", html_escape(self.title_str), id = "SiteTitle", inline = True)
-            )
-        body += headerdiv
+        # alpha event pages do not need these things
+        if key is not _ALPHAEVENT:
 
-        header_note = self.report.options['headernote']
-        if header_note:
-            note = db.get_note_from_gramps_id(header_note)
-            note_text = self.get_note_format(note)
+            # begin header section
+            headerdiv = (Html("div", id = 'header') +
+                Html("h1", html_escape(self.title_str), id = "SiteTitle", inline = True)
+                )
+            body += headerdiv
 
-            user_header = Html("div", id = 'user_header')
-            headerdiv += user_header  
+            header_note = self.report.options['headernote']
+            if header_note:
+                note = db.get_note_from_gramps_id(header_note)
+                note_text = self.get_note_format(note)
+
+                user_header = Html("div", id = 'user_header')
+                headerdiv += user_header  
  
-            # attach note
-            user_header += note_text
+                # attach note
+                user_header += note_text
 
-        # Begin Navigation Menu
-        body += self.display_nav_links(title)
+            # Begin Navigation Menu
+            body += self.display_nav_links(title)
 
         # return to its caller, page and body
         return page, body
@@ -1340,9 +1346,10 @@ class BasePage(object):
                         confidence = None
 
                     tmp.extend("%s: %s" % (label, data)
-                        for (label, data) in [(DHEAD, _dd.display(sref.date)),
-                                              (_PAGE, sref.page),
-                                              (_CONFIDENCE, confidence)]
+                        for (label, data) in [
+                            [DHEAD, _dd.display(sref.date)],
+                            [_PAGE, sref.page],
+                            [_CONFIDENCE, confidence] ]
                         if data)                                                    
                         
                     tmp.extend("%s: %s" %
@@ -1598,7 +1605,7 @@ class IndividualListPage(BasePage):
         showparents = report.options['showparents']
 
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_("Individuals"))
+        indlistpage, body = self.write_header(_("Individuals"), _KEYPERSON)
 
         # begin Individuals division
         with Html("div", class_ = "content", id = "Individuals") as individuallist:
@@ -1611,8 +1618,8 @@ class IndividualListPage(BasePage):
             individuallist += Html("p", msg, id = "description")
 
             # add alphabet navigation
-            menu_set = get_first_letters(db, person_handle_list, _PERSON) 
-            alpha_nav = alphabet_navigation(menu_set)
+            menu_set = get_first_letters(db, person_handle_list, _KEYPERSON) 
+            alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPERSON)
             if alpha_nav is not None:
                 individuallist += alpha_nav
 
@@ -1631,16 +1638,16 @@ class IndividualListPage(BasePage):
                     )
 
                 if showbirth:
-                    trow += Html("th", _("Birth"), class_ = "ColumnBirth", inline = True)
+                    trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
 
                 if showdeath:
-                    trow += Html("th", _("Death"), class_ = "ColumnDeath", inline = True)
+                    trow += Html("th", DEATH, class_ = "ColumnDeath", inline = True)
 
                 if showpartner:
-                    trow += Html("th", _("Partner"), class_ = "ColumnPartner", inline = True)
+                    trow += Html("th", _PARTNER, class_ = "ColumnPartner", inline = True)
 
                 if showparents:
-                    trow += Html("th", _("Parents"), class_ = "ColumnParents", inline = True)
+                    trow += Html("th", PARENTS, class_ = "ColumnParents", inline = True)
 
             tbody = Html("tbody")
             table += tbody
@@ -1788,7 +1795,7 @@ class SurnamePage(BasePage):
 
         of = self.report.create_file(name_to_md5(surname), "srn")
         self.up = True
-        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname))
+        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname), _KEYPERSON)
 
         # begin SurnameDetail division
         with Html("div", class_ = "content", id = "SurnameDetail") as surnamedetail:
@@ -1815,16 +1822,16 @@ class SurnamePage(BasePage):
                 trow += Html("th", _("Name"), class_ = "ColumnName", inline = True) 
 
                 if showbirth:
-                    trow += Html("th", _("Birth"), class_ = "ColumnBirth", inline = True)
+                    trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
 
                 if showdeath:
-                    trow += Html("th", _("Death"), class_ = "ColumnDeath", inline = True)
+                    trow += Html("th", DEATH, class_ = "ColumnDeath", inline = True)
 
                 if showpartner:
-                    trow += Html("th", _("Partner"), class_ = "ColumnPartner", inline = True)
+                    trow += Html("th", _PARTNER, class_ = "ColumnPartner", inline = True)
 
                 if showparents:
-                    trow += Html("th", _("Parents"), class_ = "ColumnParents", inline = True)
+                    trow += Html("th", PARENTS, class_ = "ColumnParents", inline = True)
 
                 # begin table body 
                 tbody = Html("tbody")
@@ -1942,7 +1949,7 @@ class PlaceListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_("Places"))
+        placelistpage, body = self.write_header(_("Places"), _KEYPLACE)
 
         # begin places division
         with Html("div", class_ = "content", id = "Places") as placelist:
@@ -1955,8 +1962,8 @@ class PlaceListPage(BasePage):
             placelist += Html("p", msg, id = "description")
 
             # begin alphabet navigation
-            menu_set = get_first_letters(db, place_handles, _PLACE) 
-            alpha_nav = alphabet_navigation(menu_set)
+            menu_set = get_first_letters(db, place_handles, _KEYPLACE) 
+            alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPLACE)
             if alpha_nav is not None:
                 placelist += alpha_nav
 
@@ -2030,7 +2037,7 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), "plc")
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        placepage, body = self.write_header(_("Places"))
+        placepage, body = self.write_header(_("Places"), _KEYPLACE)
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2090,13 +2097,19 @@ class PlacePage(BasePage):
         self.XHTMLWriter(placepage, of)
 
 class EventListPage(BasePage):
+    def __init__(self, report, title, event_types, event_handle_list, ind_list):
+        """
+        Will create the event list page
 
-    def __init__(self, report, title, event_dict):
+        @param: event_types: a list of the type in the events database for this class
+        @param: event_handle_list -- a list of event handles
+        #psram: ind_list -- person handles for this database
+        """
         BasePage.__init__(self, report, title)
         db = report.database
 
         of = self.report.create_file("events")
-        eventslistpage, body = self.write_header(_("Events"))
+        eventslistpage, body = self.write_header(_("Events"), _KEYEVENT)
 
         # begin events list  division
         with Html("div", class_ = "content", id = "EventList") as eventlist:
@@ -2104,111 +2117,109 @@ class EventListPage(BasePage):
 
             msg = _("This page contains an index of all the events in the "
                     "database, sorted by their type, date (if one is present), "
-                    "and person&#8217;s surname.  Clicking on an event&#8217;s type "
-                    "will take you to that event&#8217;s page.  Clicking on a "
-                    "person&#8217;s name will take you to that person&#8217;s page.  "
-                    "The person&#8217;s name will only be shown once for their events.")
+                    "Clicking on an event&#8217;s type will load a page of those type of events.")
             eventlist += Html("p", msg, id = "description")
 
-            # begin event list table and table head
-            with Html("table", class_ = "infolist eventlist") as table:
+            # get alphabet navigation for class EventListPage
+            alpha_nav, event_types = alphabet_navigation(event_types, _ALPHAEVENT)
+            if alpha_nav is not None:
+                eventlist += alpha_nav
+
+            # begin alphabet event table
+            with Html("table", class_ = "infolist alphaevent") as table:
                 eventlist += table
+
                 thead = Html("thead")
                 table += thead
 
-                # begin table header row
                 trow = Html("tr")
                 thead += trow
 
-                header_row = [
-                    [_("Event"), "Event"],
-                    [DHEAD, "Date"], 
-                    [_("Person"), "Person"],
-                    [_("Partner"), "Partner"] ]
-
                 trow.extend(
                     Html("th", label, class_ = "Column" + colclass, inline = True)
-                    for (label, colclass) in header_row)
+                    for (label, colclass) in [
+                        [THEAD,    "Type"],
+                        [GRAMPSID, "GRAMPSID"],
+                        [DHEAD,    "Date"],
+                        [_PERSON,  "Person"] ]
+                    ) 
 
-                # begin table body
                 tbody = Html("tbody")
                 table += tbody
 
-                for (person, event_list) in event_dict:
+                # separate events by their type and then thier event handles
+                for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
+                    first_event = True
 
-                    first = True
-                    for (evt_type, sort_date, sort_name, evt, evt_ref, partner) in event_list:
+                    for (gid, date, event_handle) in datalist:
 
-                        # write out event row
-                        tbody += self.write_event_row(person, partner, evt_type, evt, evt_ref, first)
+                        event = db.get_event_from_handle(event_handle)
 
-                        # show the individual's name only once for their events
-                        first = False
+                        trow = Html("tr")
+                        tbody += trow
 
-        # and clearline for proper styling
-        # and footer section
+                        # display Event type if first in the list
+                        tcell = Html("td", class_ = "ColumnType", inline = True)
+                        trow += tcell
+                        if first_event:
+                            trow.attr = 'class = "BeginEvent"'
+                            tcell += Html("a", evt_type, name = "%s" % evt_type, inline = True)
+                        else:
+                            tcell += "&nbsp;" 
+
+                        # GRAMPS ID
+                        tcell = Html("td", class_ = "ColumnGRAMPSID", inline = True)
+                        trow += tcell
+                        if not self.noid and gid:
+                            tcell += gid
+                        else:
+                            tcell += "&nbsp;"
+
+                        # event date
+                        tcell = Html("td", class_ = "ColumnDate", inline = True)
+                        trow += tcell
+                        if date and date is not Date.EMPTY:
+                            tcell += _dd.display(date)
+                        else:
+                            tcell += "&nbsp;"   
+
+                            # Person
+                            if evt_type in ["Divorce", "Marriage"]:
+                                handle_list = db.find_backlink_handles(event_handle, 
+                                    include_classes = ['Person', 'Family'])
+                            else:
+                                handle_list = db.find_backlink_handles(event_handle, include_classes=['Person'])
+                            first_person = True
+
+                            tcell = Html("td", class_ = "ColumnPerson")
+                            trow += tcell
+
+                            for handle in handle_list:
+
+                                person = db.get_person_from_handle(handle)
+                                if person:
+                                    person_name = self.get_name(person)
+
+                                    if not first_person:
+                                        tcell += ", "
+                                    if handle in ind_list:
+                                        url = self.report.build_url_fname_html(handle, "ppl", True) 
+                                        tcell += self.person_link(url, person, True)
+                                    else:
+                                        tcell += person_name
+                            else:
+                                tcell += "&nbsp;"
+                            first_person = False
+                        first_event = False    
+
+        # add clearline for proper styling
+        # add footer section
         footer = self.write_footer()
         body += (fullclear, footer)
 
         # send page ut for processing
         # and close the file
         self.XHTMLWriter(eventslistpage, of)
-
-    def write_event_row(self, person, partner, evt_type, evt, evt_ref, first):
-        """
-        display the event row for class EventListPage()
-
-        @param: person = person that the event is referenced to
-        @param: partner = only used when the event is either a Marriage or Divorce
-        @param: evt_type = the type of event
-        @param: evt = event
-        @param: evt_ref = event reference
-        @param: first = used for only showing the person once for list of events
-        """
-        subdirs = False
-
-        # begin table row 
-        trow = Html("tr")
-
-        if first:
-            trow.attr = 'class = "BeginName"'
-
-        # get person's hyperlink
-        url = self.report.build_url_fname_html(person.handle, "ppl", subdirs)
-        person_hyper = self.person_link(url, person, True, first, gid = person.gramps_id)
-
-        # get event data
-        """
-        for more information: see get_event_data()
-        """ 
-        event_data = self.get_event_data(evt, evt_ref, False, False, False, False, subdirs, True)
-        trow.extend(
-            Html("td", data or "&nbsp;", class_ = "Column" + colclass,
-                inline = (not data or colclass == "Event" or colclass == "Date"))
-            for (label, colclass, data) in event_data)
-
-        # determine if same row or not?
-        samerow = (person_hyper == "&nbsp;")
-
-        # display person hyperlink
-        trow += Html("td", person_hyper, class_ = "ColumnPerson", inline = samerow)
-
-        # get partner hyperlink
-        # display partner if event is either a Marriage or Divorce?
-        partner_hyper = "&nbsp;" 
-        if partner is not None:
-
-            # get partner hyperlink
-            url = self.report.build_url_fname_html(partner.handle, "ppl", subdirs)
-            partner_hyper = self.person_link(url, partner, True, gid = partner.gramps_id)
-
-        # determine if same row or not?
-        samerow = (partner_hyper == "&nbsp;")
-
-        trow += Html("td", partner_hyper, class_ = "ColumnPartner", inline = samerow)
-
-        # return EventList row to its caller
-        return trow
 
 class EventPage(BasePage):
 
@@ -2219,7 +2230,7 @@ class EventPage(BasePage):
         subdirs = True
 
         of = self.report.create_file(evt_ref.ref, "evt")
-        eventpage, body = self.write_header(_("Events"))
+        eventpage, body = self.write_header(_("Events"), _KEYEVENT)
 
         # start event page division
         with Html("div", class_ = "content", id = "EventDetail") as eventdetail:
@@ -2270,7 +2281,7 @@ class EventPage(BasePage):
                 url = self.report.build_url_fname_html(person.handle, "ppl", self.up)
                 person_hyper = self.person_link(url, person, True, gid = person.gramps_id)
                 trow = Html("tr") + (
-                    Html("td", _("Person"), class_ = "ColumnAttribute", inline = True),
+                    Html("td", _PERSON, class_ = "ColumnAttribute", inline = True),
                     Html("td", person_hyper, class_ = "ColumnPerson")
                     )
                 tbody += trow 
@@ -2280,7 +2291,7 @@ class EventPage(BasePage):
                     url = self.report.build_url_fname_html(partner.handle, "ppl", self.up)
                     partner_hyper = self.person_link(url, partner, True, gid = partner.gramps_id)
                     trow = Html("tr") + (
-                        Html("td", _("Partner"), class_ = "ColumnAttribute", inline = True),
+                        Html("td", _PARTNER, class_ = "ColumnAttribute", inline = True),
                         Html("td", partner_hyper, class_ = "ColumnPartner")
                         )
                     tbody += trow
@@ -2396,7 +2407,7 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, media)
         self.page_title = media.get_description()
-        mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title))
+        mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title), _KEYPERSON)
 
         # begin MediaDetail division
         with Html("div", class_ = "content", id = "GalleryDetail") as mediadetail:
@@ -2691,10 +2702,10 @@ class SurnameListPage(BasePage):
 
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelistpage, body = self.write_header(_('Surnames'))
+            surnamelistpage, body = self.write_header(_('Surnames'), _KEYPERSON)
         else:
             of = self.report.create_file("surnames_count")
-            surnamelistpage, body = self.write_header(_('Surnames by person count'))
+            surnamelistpage, body = self.write_header(_('Surnames by person count'), _KEYPERSON)
 
         # begin surnames division
         with Html("div", class_ = "content", id = "surnames") as surnamelist:
@@ -2710,8 +2721,8 @@ class SurnameListPage(BasePage):
             # add alphabet navigation...
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
-                menu_set = get_first_letters(db, person_handle_list, _PERSON)
-                alpha_nav = alphabet_navigation(menu_set)
+                menu_set = get_first_letters(db, person_handle_list, _KEYPERSON)
+                alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPERSON)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
 
@@ -2819,7 +2830,7 @@ class IntroductionPage(BasePage):
         db = report.database
 
         of = self.report.create_file(report.intro_fname)
-        intropage, body = self.write_header(_('Introduction'))
+        intropage, body = self.write_header(_('Introduction'), _KEYPERSON)
 
         # begin Introduction division
         with Html("div", class_ = "content", id = "Introduction") as section:
@@ -2856,7 +2867,7 @@ class HomePage(BasePage):
         db = report.database
 
         of = self.report.create_file("index")
-        homepage, body = self.write_header(_('html|Home'))
+        homepage, body = self.write_header(_('Home'), _KEYPERSON)
 
         # begin home division
         with Html("div", class_ = "content", id = "Home") as section:
@@ -2893,7 +2904,7 @@ class SourceListPage(BasePage):
         source_dict = {}
 
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_("Sources"))
+        sourcelistpage, body = self.write_header(_("Sources"), _KEYPERSON)
 
         # begin source list division
         with Html("div", class_ = "content", id = "Sources") as sourceslist:
@@ -2964,7 +2975,7 @@ class SourcePage(BasePage):
 
         of = self.report.create_file(source.get_handle(), "src")
         self.up = True
-        sourcepage, body = self.write_header(_('Sources'))
+        sourcepage, body = self.write_header(_('Sources'), _KEYPERSON)
 
         # begin source detail division
         with Html("div", class_ = "content", id = "SourceDetail") as section:
@@ -3032,7 +3043,7 @@ class MediaListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("media")
-        medialistpage, body = self.write_header(_('Media'))
+        medialistpage, body = self.write_header(_('Media'), _KEYPERSON)
 
         # begin gallery division
         with Html("div", class_ = "content", id = "Gallery") as section:
@@ -3140,7 +3151,7 @@ class DownloadPage(BasePage):
             return
 
         of = self.report.create_file("download")
-        downloadpage, body = self.write_header(_('Download'))
+        downloadpage, body = self.write_header(_('Download'), _KEYPERSON)
 
         # begin download page and table
         with Html("div", class_ = "content", id = "Download") as download:
@@ -3247,7 +3258,7 @@ class ContactPage(BasePage):
         db = report.database
 
         of = self.report.create_file("contact")
-        contactpage, body = self.write_header(_('Contact'))
+        contactpage, body = self.write_header(_('Contact'), _KEYPERSON)
 
         # begin contact division
         with Html("div", class_ = "content", id = "Contact") as section:
@@ -3328,7 +3339,7 @@ class IndividualPage(BasePage):
 
         of = self.report.create_file(person.handle, "ppl")
         self.up = True
-        indivdetpage, body = self.write_header(self.sort_name)
+        indivdetpage, body = self.write_header(self.sort_name, _KEYPERSON)
 
         # begin individualdetail division
         with Html("div", class_ = "content", id = 'IndividualDetail') as individualdetail:
@@ -3969,7 +3980,7 @@ class IndividualPage(BasePage):
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
-            section += Html("h4", _("Parents"), inline = True)
+            section += Html("h4", PARENTS, inline = True)
 
             # begin parents table
             with Html("table", class_ = "infolist") as table:
@@ -4272,9 +4283,9 @@ class IndividualPage(BasePage):
             elif gender == Person.MALE:
                 relstr = _("Wife")
             else:
-                relstr = _("Partner")
+                relstr = _PARTNER
         else:
-            relstr = _("Partner")
+            relstr = _PARTNER
 
         partner_handle = ReportUtils.find_spouse(self.person, family)
         if partner_handle:
@@ -4373,7 +4384,7 @@ class IndividualPage(BasePage):
         # position 0 = translatable label, position 1 = column class, and
         # position 2 = data
         event_header_row = [
-            (_("Event"), "Event"),
+            (_EVENT, "Event"),
             (DHEAD, "Date") ]
 
         if showplc:
@@ -4449,7 +4460,7 @@ class RepositoryListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("repositories")
-        repolistpage, body = self.write_header(_("Repositories"))
+        repolistpage, body = self.write_header(_("Repositories"), _KEYPERSON)
 
         # begin RepositoryList division
         with Html("div", class_ = "content", id = "RepositoryList") as repositorylist:
@@ -4524,7 +4535,7 @@ class RepositoryPage(BasePage):
 
         of = self.report.create_file(handle, 'repo')
         self.up = True
-        repositorypage, body = self.write_header(_('Repositories'))
+        repositorypage, body = self.write_header(_('Repositories'), _KEYPERSON)
 
         # begin RepositoryDetail division and page title
         with Html("div", class_ = "content", id = "RepositoryDetail") as repositorydetail:
@@ -4594,7 +4605,7 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book List")))
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Bookt")), _KEYPERSON)
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
@@ -4715,7 +4726,7 @@ class AddressBookPage(BasePage):
 
         # set the file name and open file
         of = self.report.create_file(person_handle, "addr")
-        addressbookpage, body = self.write_header("%s - %s" % (title, _("Address Book")))
+        addressbookpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
 
         # begin address book page division and section title
         with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
@@ -4940,9 +4951,9 @@ class NavWebReport(Report):
         # build classes EventListPage and EventPage
         # build the events dictionary only if event pages are being created?
         if self.inc_events:
-            event_dict = []
-            self.build_events(ind_list, event_dict)
-            self.event_pages(event_dict)
+            event_dict, event_types, event_handle_list = [], [], []
+            self.build_events(ind_list, event_dict, event_types, event_handle_list)
+            self.event_pages(event_dict, event_types, event_handle_list, ind_list)
 
         # build classes SourceListPage and SourcePage
         self.source_pages(source_list)
@@ -5038,19 +5049,21 @@ class NavWebReport(Report):
             from_path = os.path.join(const.IMAGE_DIR, fname)
             self.copy_file(from_path, fname, "images")
 
-    def build_events(self, ind_list, event_dict):
+    def build_events(self, ind_list, event_dict, event_types, event_handle_list):
         """
         build a list of events for classes EventListPage and EventPage
 
         @param: ind_list = list of handles for persons in this database
         @param: event_dict = a list of events from ind_list
+        @param: event_types -- will hold the difrferent event types for this database
+        @param: event_handle_list -- a list of event handles to be sorted by type
         """
         db = self.database
  
         for person_handle in ind_list:
             person = db.get_person_from_handle(person_handle)
 
-            # begin events list for each person
+            # begin events list for each new person
             event_list = []
 
             # get sort name for sorting later
@@ -5073,6 +5086,18 @@ class NavWebReport(Report):
                     # get event type
                     evt_type = get_event_type(event, evt_ref)
 
+                    # get event types for class EventsListPage
+                    etype = None
+                    _type = event.type.xml_str()
+                    for xtype in EventType._DATAMAP:
+                        if xtype[2] == _type:
+                            etype = xtype[1]
+                            break
+
+                    if etype is not None:
+                        event_types.append(etype)
+                    event_handle_list.append(evt_ref.ref)
+
                     # get sot date as year/month/day, 2009/09/09, 
                     # or 0000/00/00 for non-existing date
                     event_date = event.get_date_object()
@@ -5092,6 +5117,18 @@ class NavWebReport(Report):
                 # get event type
                 evt_type = get_event_type(event, evt_ref)
 
+                # get event types for class EventsListPage
+                etype = None
+                _type = event.type.xml_str()
+                for xtype in EventType._DATAMAP:
+                    if xtype[2] == _type:
+                        etype = xtype[1]
+                        break
+
+                if etype is not None:
+                    event_types.append(etype)
+                event_handle_list.append(evt_ref.ref)
+
                 # get sot date as year/month/day, see above for further info
                 event_date = event.get_date_object()
                 year = event_date.get_year() or 0
@@ -5100,8 +5137,7 @@ class NavWebReport(Report):
                 sort_date = '%04d/%02d/%02d' % (year, month, day)
 
                 # add event data
-                event_list.append([evt_type, sort_date, sort_name, event, 
-                    evt_ref, partner])
+                event_list.append([evt_type, sort_date, sort_name, event, evt_ref, partner])
 
             # sort the event_list
             event_list.sort()
@@ -5109,8 +5145,11 @@ class NavWebReport(Report):
             # combine person and their events together
             event_dict.append([person, event_list])
 
-        # return the events for class EventListPage and EventPage
-        return event_dict
+        # sort the types alphabetically
+        event_types.sort()
+
+        # return the events for EventListPage and EventPage
+        return event_dict, event_types, event_handle_list
 
     def build_attributes(self, person):
         """ build a list of attributes for each person """
@@ -5226,20 +5265,26 @@ class NavWebReport(Report):
             PlacePage(self, self.title, place, source_list, place_list)
             self.progress.step()
 
-    def event_pages(self, event_dict):
+    def event_pages(self, event_dict, event_types, event_handle_list, ind_list):
         """
         a dump of all the events sorted by event type, date, and surname
         for classes EventListPage and EventPage
-        """
-        self.progress.set_pass(_('Creating event pages'), len(event_dict))
 
+        @param: event_dict -- all the data for class EventPage
+        @param: event_types -- a list of all the event types in this database
+        @param: event_handle_list -- a list of the event handles in the database to be used
+        """
         # send all data to the events list page
-        EventListPage(self, self.title, event_dict)
+        EventListPage(self, self.title, event_types, event_handle_list, ind_list)
+
+        # set up progress bar for event pages
+        self.progress.set_pass(_("Creating event pages"), len(event_dict))
 
         for (person, event_list) in event_dict:
             self.progress.step()   
 
             for (evt_type, sort_date, sort_name, event, evt_ref, partner) in event_list:
+                self.progress.step()
 
                 # create individual event page 
                 EventPage(self, self.title, person, partner, evt_type, event, evt_ref)
@@ -5978,6 +6023,30 @@ def sort_people(db, handle_list):
 
     return sorted_lists
 
+def sort_event_types(db, event_types, event_handle_list):
+    """
+    sort a list of event types and group them by their type
+
+    @param: event_types -- a dict of event types
+    @param: event_handle_list -- all event handles in this database
+    """
+
+    event_dict = dict( (evt_type, []) for evt_type in event_types)
+
+    for handle in event_handle_list:
+
+        event = db.get_event_from_handle(handle)
+        event_type = event.type.xml_str()
+
+        # add the stuff from this event
+        if event_type in event_dict:
+            event_dict[event_type].append(
+                (event.gramps_id, event.get_date_object(), handle)
+                )
+
+    # return a list of tuples, one per event
+    return ( (event_type, event_list) for (event_type, event_list) in event_dict.iteritems() )
+
 # Modified _get_regular_surname from WebCal.py to get prefix, first name, and suffix
 def _get_short_name(gender, name):
     """ Will get prefix and suffix for all people passed through it """
@@ -6021,7 +6090,7 @@ def get_first_letters(db, handle_list, key):
     first_letters = []
 
     for handle in handle_list:
-        if key == _PERSON:
+        if key == _KEYPERSON:
             keyname = __get_person_keyname(db, handle)
         else:
             keyname = __get_place_keyname(db, handle) 
@@ -6032,16 +6101,15 @@ def get_first_letters(db, handle_list, key):
 
     return first_letters
 
-def alphabet_navigation(menu_set):
+def alphabet_navigation(menu_set, alphakey):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
 
-    @param: menu_set -- a dictionary of either sorted letters or words
+    @param: menu_set -- a dictionary of either letters or words
+    @param: alphakey -- either Person, Place, or AlphaEvent
     """
-
     sorted_set = {}
-
     # The comment below from the glibc locale sv_SE in
     # localedata/locales/sv_SE :
     #
@@ -6056,6 +6124,7 @@ def alphabet_navigation(menu_set):
     #
     (lang_country, modifier ) = locale.getlocale()
     ltr = get_first_letters
+
     for menu_item in menu_set:
         if menu_item in sorted_set:
             sorted_set[menu_item] += 1
@@ -6069,40 +6138,46 @@ def alphabet_navigation(menu_set):
     sorted_alpha_index = [(menu_item) for menu_item in sorted_alpha_index if menu_item != ","]
 
     # remove any single spaces from the letter set also
-    sorted_alpha_index = [(menu_item) for menu_item in sorted_alpha_index if menu_item != " "]
+    # Event Types can and do have spaces, so leave them alone for now...
+    if alphakey is not _ALPHAEVENT:  
+        sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != " "]
 
-    # if no letters, return None back to its callers
+    # if no letters or words, return None to its callers
     if not sorted_alpha_index:
         return None
 
-    # begin alphabet division
+    num_ltrs = len(sorted_alpha_index)
+    num_of_cols = 34 if alphakey is not _ALPHAEVENT else 9
+    num_of_rows = ((num_ltrs // num_of_cols) + 1)
+
+    # begin alphabet navigation division
     with Html("div", id = "alphabet") as alphabetnavigation:
 
-        num_ltrs = len(sorted_alpha_index)
-        nrows = ((num_ltrs // 34) + 1)
-
         index = 0
-        for row in xrange(nrows):
+        for row in xrange(num_of_rows):
             unordered = Html("ul") 
             alphabetnavigation += unordered
 
             cols = 0
-            while (cols <= 34 and index < num_ltrs):
+            while (cols <= num_of_cols and index < num_ltrs):
                 list = Html("li", inline = True)
                 unordered += list
 
                 menu_item = sorted_alpha_index[index]
-                if lang_country == "sv_SE" and ltr == u'V':
+                if lang_country == "sv_SE" and menu_item == u'V':
                     hyper = Html("a", "V,W", href = "#V,W", alt = "V,W")
                 else:
                     hyper = Html("a", menu_item, href = "#%s" % menu_item, alt = html_escape(menu_item))
                 list += hyper
 
-                cols += 1
+                # increase letter/ word in sorted_alpha_index
                 index += 1
+                cols += 1
+            num_of_rows -= 1
 
-    # return alphabet navigation to its callers
-    return alphabetnavigation
+    # return alphabet navigation, and menu_set to its callers
+    # EventListPage will reuse sorted_alpha_index
+    return alphabetnavigation, sorted_alpha_index
 
 def _has_webpage_extension(url):
     """
