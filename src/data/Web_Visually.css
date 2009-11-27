@@ -1346,10 +1346,16 @@ div#pedigree {
     color: #542;
     width:118px;
     padding:5px 20px 7px 20px;
-    margin-top:-25px;
     margin-left:16px;
     background-color: #FFF;
     border: solid 1px #5D835F
+}
+#treeContainer div.boxbg a.noThumb,
+#treeContainer div.AncCol3 a, 
+#treeContainer div.AncCol4 a, 
+#treeContainer div.AncCol3 span.unlinked, 
+#treeContainer div.AncCol4 span.unlinked {
+    margin-top:10px;
 }
 #treeContainer div.boxbg a:hover {
     position:relative;
@@ -1366,13 +1372,6 @@ div#pedigree {
 #treeContainer div.AncCol3 a:hover, 
 #treeContainer div.AncCol4 a:hover {
     margin-top:-44px;
-}
-#treeContainer div.boxbg a.noThumb, 
-#treeContainer div.AncCol3 a, 
-#treeContainer div.AncCol4 a, 
-#treeContainer div.AncCol3 span.unlinked, 
-#treeContainer div.AncCol4 span.unlinked {
-    margin-top:10px;
 }
 #treeContainer div.boxbg a.noThumb:hover {
     margin-top:0;
