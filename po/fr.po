@@ -8,7 +8,7 @@
 #  remove (context) : enlever une référence ou supprimer de la base
 #  home : souche
 #  active person : individu actif
-#  media : media (pas de 's' ou accent)
+#  media : les media (pas de 's' ou accent), le medium
 #
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
@@ -3748,7 +3748,7 @@ msgstr "Glisser un objet media"
 
 #: ../src/DataViews/MediaView.py:216
 msgid "Media Filter Editor"
-msgstr "Éditeur de filtre sur le media"
+msgstr "Éditeur de filtre sur l'objet media"
 
 #: ../src/DataViews/MediaView.py:219
 msgid "View in the default viewer"
@@ -7852,7 +7852,7 @@ msgstr "Sélectionner un fichier"
 
 #: ../src/plugins/export/ExportCd.py:258 ../src/plugins/tool/Check.py:556
 msgid "Media object could not be found"
-msgstr "Le media est introuvable"
+msgstr "L'objet media est introuvable"
 
 #: ../src/plugins/export/ExportCd.py:259
 #, python-format
@@ -9930,23 +9930,23 @@ msgstr "les individus avec des images"
 
 #: ../src/plugins/quickview/FilterByName.py:41
 msgid "media references"
-msgstr "les références de media"
+msgstr "les références de l'objet media"
 
 #: ../src/plugins/quickview/FilterByName.py:41
 msgid "unique media"
-msgstr "le media présent"
+msgstr "l'objet media présent"
 
 #: ../src/plugins/quickview/FilterByName.py:42
 msgid "missing media"
-msgstr "le media manquant"
+msgstr "les objets media manquant"
 
 #: ../src/plugins/quickview/FilterByName.py:42
 msgid "media by size"
-msgstr "la taille du media"
+msgstr "les objets media par taille"
 
 #: ../src/plugins/quickview/FilterByName.py:42
 msgid "list of people"
-msgstr "le nombre d'individus"
+msgstr "nombre d'individus"
 
 # Substantif (GNOME fr)
 #. display the title
@@ -10000,11 +10000,11 @@ msgstr "media"
 
 #: ../src/plugins/quickview/FilterByName.py:180
 msgid "Unique Media"
-msgstr "Media présent"
+msgstr "Objet media présent"
 
 #: ../src/plugins/quickview/FilterByName.py:188
 msgid "Missing Media"
-msgstr "Mediamanquant"
+msgstr "Objet media manquant"
 
 #: ../src/plugins/quickview/FilterByName.py:199
 msgid "Size in bytes"
@@ -13318,7 +13318,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1703
 msgid "Media|Name"
-msgstr "Nom du medium"
+msgstr "Nom de l'objet media"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1961
 msgid "Ancestors"
@@ -13404,7 +13404,7 @@ msgstr "Création des pages pour le lieu"
 # Substantif (GNOME fr)
 #: ../src/plugins/webreport/NarrativeWeb.py:3036
 msgid "Creating media pages"
-msgstr "Création des pages pour le media"
+msgstr "Création des pages pour l'objet media"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3236
 #: ../src/plugins/webreport/WebCal.py:259
@@ -22946,7 +22946,7 @@ msgid ""
 "(0,0) is the top left corner. Do this by giving two corners on a diagonal of "
 "the rectangular region you want to use."
 msgstr ""
-"Si le media est une image, sélectionnez une région référencée de l'image. Le "
+"Si l'objet media est une image, sélectionnez une région référencée de l'image. Le "
 "point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale "
 "de la région rectangulaire que vous souhaitez définir."
 
