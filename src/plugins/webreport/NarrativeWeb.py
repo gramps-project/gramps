@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
-# Copyright (C) 2007       Gary Burton <gary.burton@zen.co.uk>
+# Copyright (C) 2007-2009  Gary Burton <gary.burton@zen.co.uk>
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
@@ -345,8 +345,6 @@ class BasePage(object):
         return trow
 
     def get_citation_links(self, source_ref_list):
-        self.bibli = Bibliography()
-
         gid_list = []
         lnk = (self.report.cur_fname, self.page_title, self.gid)
 
@@ -1343,7 +1341,6 @@ class BasePage(object):
                         name="sref%d" % cindex,
                         inline=True)
                     )
-                ordered += list
 
                 ordered1 = Html("ol")
                 citation_ref_list = citation.get_ref_list()
