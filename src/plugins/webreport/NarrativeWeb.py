@@ -413,7 +413,7 @@ class BasePage(object):
         if format == 1:
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
-            htmllist += Html("pre", indent=None) + markuptext.split('\n')
+            htmllist += Html("pre", indent=None) + markuptext.split('\n\n')
 
         elif format == 0:
             #flowed, use \n\n for paragraph detection
