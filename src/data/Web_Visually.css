@@ -590,6 +590,9 @@ div#IndividualDetail div.subsection table tr td:first-child {
 #Places table.infolist tbody tr td.ColumnLetter {
     background-color: #D8F3D6;
 }
+#Places table.infolist tbody tr td.ColumnLetter a:hover {
+    background: none;
+}
 #Places table.infolist tbody tr td.ColumnName {
     background-color: #FFF;
 }
@@ -658,21 +661,28 @@ div#EventList table.alphaevent tbody tr td {
     background-color: #D8F3D6;
     border-bottom: dashed 1px #5D835F;
 }
-div#EventList table.alphaevent tbody tr td:hover {
-    background: none;
-}
 div#EventList table.alphaevent tbody tr td.ColumnType {
     width: 15%;
 }
+div#EventList table.alphaevent tbody tr td.ColumnType a:hover {
+    background: none;
+}
 div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
-    width: 15%;
+    background-color: #FFF;
+    width: 12%;
 }
 div#EventList table.alphaevent tbody tr td.ColumnDate {
-    width: 15%;
+    width: 20%;
 }
 div#EventList table.alphaevent tbody tr td.ColumnPerson {
-    background-color: #FFF;
-    width: 50%;
+    width: 60%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
+    display:block;
+}
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
+    content:"+ ";
 }
 div#EventDetail h3 {
     font-size: xxx-large;

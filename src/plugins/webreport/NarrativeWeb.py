@@ -484,7 +484,6 @@ class BasePage(object):
 
         url = self.report.build_url_fname_html(handle, "evt", up)
 
-
         # if event pages are being created, then hyperlink the event type
         if self.inc_events:
             evt_hyper = Html("a", eventtype, href = url, title = eventtype)
@@ -1292,8 +1291,18 @@ class BasePage(object):
         # return web links to its caller
         return section
 
-    # Only used in IndividualPage.display_ind_sources
-    # and MediaPage.display_media_sources
+    def display_ind_sources(self, srcobj):
+        """
+        will create the "Source References" section for an object
+        """
+
+        map(self.bibli.add_reference, srcobj.get_source_references())
+        sourcerefs = self.display_source_refs(self.bibli)
+
+        # return to its callers
+        return sourcerefs
+
+    # Only used in IndividualPage.display_ind_sources(), and MediaPage.display_media_sources()
     def display_source_refs(self, bibli):
         if bibli.get_citation_count() == 0:
             return None
@@ -2152,7 +2161,6 @@ class EventListPage(BasePage):
                     first_event = True
 
                     for (gid, date, event_handle) in datalist:
-
                         event = db.get_event_from_handle(event_handle)
 
                         trow = Html("tr")
@@ -2163,17 +2171,15 @@ class EventListPage(BasePage):
                         trow += tcell
                         if first_event:
                             trow.attr = 'class = "BeginEvent"'
-                            tcell += Html("a", evt_type, name = "%s" % evt_type, inline = True)
+                            tcell += Html("a", evt_type, name = "%s" % evt_type, 
+                                title = _("Event types beginning with %s" % evt_type), inline = True)
                         else:
                             tcell += "&nbsp;" 
 
                         # GRAMPS ID
-                        tcell = Html("td", class_ = "ColumnGRAMPSID", inline = True)
-                        trow += tcell
-                        if not self.noid and gid:
-                            tcell += gid
-                        else:
-                            tcell += "&nbsp;"
+                        trow += ( Html("td", class_ = "ColumnGRAMPSID") +
+                            self.event_grampsid_link(event_handle, gid, None)
+                            )
 
                         # event date
                         tcell = Html("td", class_ = "ColumnDate", inline = True)
@@ -2183,33 +2189,55 @@ class EventListPage(BasePage):
                         else:
                             tcell += "&nbsp;"   
 
-                            # Person
-                            if evt_type in ["Divorce", "Marriage"]:
-                                handle_list = db.find_backlink_handles(event_handle, 
-                                    include_classes = ['Person', 'Family'])
-                            else:
-                                handle_list = db.find_backlink_handles(event_handle, include_classes=['Person'])
+                        # Person
+                        if evt_type in ["Divorce", "Marriage"]:
+                            handle_list = db.find_backlink_handles(event_handle, 
+                                include_classes = ['Person', 'Family'])
+                        else:
+                            handle_list = db.find_backlink_handles(event_handle, include_classes=['Person'])
+
+                        tcell = Html("td", class_ = "ColumnPerson")
+                        trow += tcell
+
+                        if handle_list:
                             first_person = True
 
-                            tcell = Html("td", class_ = "ColumnPerson")
-                            trow += tcell
+                            # clasname can be either Person or Family 
+                            for (classname, handle) in handle_list:
 
-                            for handle in handle_list:
+                                if classname == "Person":
+                                    person = db.get_person_from_handle(handle)
+                                    if person:
+                                        person_name = self.get_name(person)
 
-                                person = db.get_person_from_handle(handle)
-                                if person:
-                                    person_name = self.get_name(person)
+                                        if not first_person:
+                                            tcell += ", "
 
-                                    if not first_person:
-                                        tcell += ", "
-                                    if handle in ind_list:
-                                        url = self.report.build_url_fname_html(handle, "ppl", True) 
-                                        tcell += self.person_link(url, person, True)
-                                    else:
                                         tcell += person_name
-                            else:
-                                tcell += "&nbsp;"
-                            first_person = False
+                                else:
+                                    family = db.get_family_from_handle(handle)
+                                    if family:
+
+                                        # husband and spouse in this example, are called father and mother
+                                        husband_handle = family.get_father_handle() 
+                                        spouse_handle = family.get_mother_handle()
+                                        husband = db.get_person_from_handle(husband_handle)
+                                        spouse = db.get_person_from_handle(spouse_handle)
+                                        if husband:
+                                            husband_name = self.get_name(husband)
+                                        if spouse:
+                                            spouse_name = self.get_name(spouse)
+                                        if spouse and husband:
+                                            tcell += ( Html("span", husband_name, class_ = "father fatherNmother") +
+                                                Html("span", spouse_name, class_ = "mother")
+                                                )
+                                        elif spouse:
+                                            tcell += Html("span", spouse_name, class_ = "mother")
+                                        elif husband:
+                                            tcell += Html("span", husband_name, class_ = "father")
+                                first_person = False
+                        else:
+                            tcell += "&nbsp;" 
                         first_event = False    
 
         # add clearline for proper styling
@@ -2220,6 +2248,16 @@ class EventListPage(BasePage):
         # send page ut for processing
         # and close the file
         self.XHTMLWriter(eventslistpage, of)
+
+    def event_grampsid_link(self, handle, grampsid, up):
+        """
+        create a hyperlink from event handle, but show grampsid
+        """
+
+        url = self.report.build_url_fname_html(handle, "evt", up)
+
+        # return hyperlink to its caller
+        return Html("a", grampsid, href = url, alt = grampsid)
 
 class EventPage(BasePage):
 
@@ -2298,14 +2336,23 @@ class EventPage(BasePage):
 
             # Narrative subsection
             if shownote: 
-                notelist = event_data[(len(event_data) - 1)][2]
-                eventdetail += self.display_note_list(notelist)
+                notelist = self.display_note_list( event_data[(len(event_data) - 1)][2] )
+                if notelist is not None:
+                    eventdetail += notelist
 
             # get attribute list
             attrlist = event.get_attribute_list()
             attrlist.extend(evt_ref.get_attribute_list() )
-            if attrlist:
-                eventdetail += self.display_attr_list(attrlist, False)  
+            attrlist = self.display_attr_list(attrlist, False)
+            if attrlist is not None:
+                eventdetail += attrlist
+
+            # get event source references
+            srcrefs = event.get_source_references()
+            self.bibli = Bibliography()
+            srcrefs = self.display_ind_sources(event)
+            if srcrefs is not None:
+                eventdetail += srcrefs            
 
         # add clearline for proper styling
         # add footer section
@@ -2477,7 +2524,8 @@ class MediaPage(BasePage):
                             if initial_image_path != newpath:
                                 scalemsg = Html("p", "(%d x %d)" % (width, height), inline = True)
                                 summaryarea += scalemsg
-                            with Html("div", style = 'width: %dpx; height: %dpx' % (new_width, new_height)) as mediadisplay:
+                            with Html("div", style = 'width: %dpx; height: %dpx' % (new_width, 
+                                new_height)) as mediadisplay:
                                 summaryarea += mediadisplay
 
                                 # Feature #2634; display the mouse-selectable regions.
@@ -2647,7 +2695,7 @@ class MediaPage(BasePage):
         map(self.bibli.add_reference, photo.get_source_references())
         sourcerefs = self.display_source_refs(self.bibli)
 
-        # return source references to its callers
+        # return source references to its caller
         return sourcerefs
 
     def copy_source_file(self, handle, photo):
@@ -3415,7 +3463,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect10
 
             # display sources
-            sect11 = self.display_ind_sources()
+            sect11 = self.display_ind_sources(self.person)
             if sect11 is not None:
                 individualdetail += sect11
 
@@ -3577,17 +3625,6 @@ class IndividualPage(BasePage):
             tree += self.draw_tree(gen_nr+1, maxgen, max_size, 
                                    new_center, m_center, m_handle)
         return tree
-
-    def display_ind_sources(self):
-        """
-        will create the "Source References" section for a person 
-        """
-
-        map(self.bibli.add_reference, self.person.get_source_references())
-        sourcerefs = self.display_source_refs(self.bibli)
-
-        # return to its callers
-        return sourcerefs
 
     def display_ind_associations(self, assoclist):
         """
@@ -5281,13 +5318,14 @@ class NavWebReport(Report):
         self.progress.set_pass(_("Creating event pages"), len(event_dict))
 
         for (person, event_list) in event_dict:
-            self.progress.step()   
 
             for (evt_type, sort_date, sort_name, event, evt_ref, partner) in event_list:
-                self.progress.step()
 
                 # create individual event page 
                 EventPage(self, self.title, person, partner, evt_type, event, evt_ref)
+
+                # increment the progress bar
+                self.progress.step()
 
     def gallery_pages(self, source_list):
         import gc
@@ -5444,14 +5482,21 @@ class NavWebReport(Report):
         too many entries.
 
         For example, this may return "8/1/aec934857df74d36618"
+
+        *** up = None = [./] for use in EventListPage
         """
         subdirs = []
         if subdir:
             subdirs.append(subdir)
             subdirs.append(fname[-1].lower())
             subdirs.append(fname[-2].lower())
-        if up:
+
+        if up == True:
             subdirs = ['..']*3 + subdirs
+
+        # added for use in class EventListPage
+        elif up == None:
+            subdirs = ['.'] + subdirs
         return subdirs
 
     def build_path(self, subdir, fname, up = False):
