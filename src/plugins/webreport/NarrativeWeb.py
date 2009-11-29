@@ -2034,6 +2034,7 @@ class PlacePage(BasePage):
 
     def __init__(self, report, title, place_handle, src_list, place_list):
         """ creates the individual place pages """
+        self.bibli = Bibliography()
         db = report.database
 
         place = db.get_place_from_handle(place_handle)
@@ -2081,6 +2082,11 @@ class PlacePage(BasePage):
             urllinks = self.display_url_list(place.get_url_list())
             if urllinks is not None:
                 placedetail += urllinks
+
+            # source references
+            srcrefs = self.display_ind_sources(place) 
+            if srcrefs is not None:
+                placedetail += srcrefs
 
             # place references
             reflist = self.display_references(place_list[place.handle])
@@ -2377,7 +2383,8 @@ class MediaPage(BasePage):
         # get all of the backlinks to this media object; meaning all of
         # the people, events, places, etc..., that use this image
         _region_items = set()
-        for (classname, newhandle) in db.find_backlink_handles(handle):
+        for (classname, newhandle) in db.find_backlink_handles(handle, 
+            include_classes = ["Person", "Family", "Event", "Place"]):
 
             # for each of the backlinks, get the relevant object from the db
             # and determine a few important things, such as a text name we
@@ -2392,9 +2399,28 @@ class MediaPage(BasePage):
                 if not _name or _name == "":
                     _name = _obj.get_primary_name().get_first_name()
                 _linkurl = report.build_url_fname_html(_obj.handle, "ppl", True)
+            elif classname == "Family":
+                _obj = db.get_family_from_handle(newhandle)
+                partner1_handle = _obj.get_father_handle()
+                partner2_handle = _obj.get_mother_handle()
+                if partner1_handle:
+                     partner1 = db.get_person_from_handle(partner1_handle)
+                if partner2_handle:
+                    partner2 = db.get_person_from_handle(partner2_handle)
+                if partner2 and partner1:
+                    _name = partner1.get_primary_name().get_first_name()
+                elif partner1:
+                    _name = partner1.get_primary_name().get_first_name()
+                elif partner2:
+                    _name = partner2.get_primary_name().get_first_name()
+                _linkurl = report.build_url_fname_html(partner1_handle, "ppl", True)   
             elif classname == "Event":
                 _obj = db.get_event_from_handle( newhandle )
                 _name = _obj.get_description()
+            elif classname == "Place":
+                _obj = db.get_place_from_handle(newhandle)
+                _name = ReportUtils.place_name(db, newhandle)
+                _linkurl = report.build_url_fname_html(newhandle, "plc", True)   
 
             # continue looking through the loop for an object...
             if _obj is None:
@@ -3829,49 +3855,29 @@ class IndividualPage(BasePage):
                 table += trow
 
                 # Age At Death???
-                birth_date = None
+                birth_date = Date.EMPTY
                 birth_ref = self.person.get_birth_ref()
                 if birth_ref:
                     birth = db.get_event_from_handle(birth_ref.ref)
                     if birth: 
                         birth_date = birth.get_date_object()
 
-                if birth_date is not None and birth_date != Date.EMPTY:
+                if birth_date and birth_date is not Date.EMPTY:
                     alive = Utils.probably_alive(self.person, db, date.Today() )
 
-                    death_date = None
+                    death_date = Date.EMPTY
                     death_ref = self.person.get_death_ref()
                     if death_ref:
                         death = db.get_event_from_handle(death_ref.ref)
                         if death:
                             death_date = death.get_date_object()
 
-                    if not alive and (death_date is not None and death_date != Date.EMPTY):
+                    if not alive and (death_date and death_date is not Date.EMPTY):
                         nyears = death_date - birth_date
                         nyears.format(precision = 3)
                         trow = Html("tr") + (
                             Html("td", _("Age at Death"), class_ = "ColumnAttribute", inline = True),
                             Html("td", nyears, class_ = "ColumnValue", inline = True)
-                            )
-                        table += trow
-
-                        # time since they passed away
-                        nyears = date.Today() - death_date
-                        nyears.format(precision = 3)
-
-                        # get appropriate gender pronoun
-                        if gender == Person.FEMALE:
-                            gdr_str = "she"
-                        elif gender == Person.MALE:
-                            gdr_str = "he"
-                        else:
-                            gdr_str = "unknown"
-
-                        time_str = _("It has been %(time)s, since %(gdr_str)s has died..") % {
-                            'time' : nyears, 'gdr_str' : gdr_str }
-                        trow = Html("tr") + (
-                            Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                            Html("td", time_str, class_ = "ColumnValue", inline = True)
                             )
                         table += trow
 
