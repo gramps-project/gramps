@@ -145,11 +145,6 @@ class EniroSVMapService(MapService):
                 msg2 = msg2 % (54.55, 69.05, 8.05, 24.15)
                 WarningDialog(_("Eniro map not available"), msg2 )
                 return
-        if not coord_ok:
-            WarningDialog(_("Eniro map not available"), 
-                          _("Latitude and longitude,\n" \
-                            "or street and city needed") )
-            return
         if coord_ok:
             place_title = _build_title(place)
             place_city =  _build_city(place)
@@ -163,9 +158,9 @@ class EniroSVMapService(MapService):
             self.url = path.replace(" ","%20")
             return
 
-        if country_given:
+        place_area = _build_area(place)
+        if country_given and place_area:
             if country in MAP_NAMES_SWEDEN:
-                place_area = _build_area(place)
                 path = "http://kartor.eniro.se/query?&what=map_adr&mop=aq" \
                        "&geo_area=%s&partner=gramps"
                 path = path % (place_area)
@@ -176,7 +171,12 @@ class EniroSVMapService(MapService):
                               _("Coordinates needed in Denmark") )
                 self.url = ""
                 return
-    
+        
+        WarningDialog(_("Eniro map not available"), 
+                      _("Latitude and longitude,\n" \
+                        "or street and city needed") )
+        return
+   
 #------------------------------------------------------------------------
 #
 # Register map service
