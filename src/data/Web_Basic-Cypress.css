@@ -557,29 +557,24 @@ table.eventlist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    background-color: #FFF;
     width: 20%;
 }
 table.eventlist tbody tr td.ColumnDate {
     width: 16%;
 }
 table.eventlist tbody tr td.ColumnPlace {
-    background-color: #FFF;
     width: 35%;
 }
 table.eventlist tbody tr td.ColumnSources {
-    background-color: #FFF;
     width: 12%;
 }
 table.eventlist tbody tr td.ColumnNotes {
     width: 25%;
 }
 table.eventlist tbody tr td.ColumnPerson {
-    background-color: #FFF;
     width: 35%;
 }
 table.eventlist tbody tr td.ColumnPartner {
-    background-color: #FFF;
     width: 35%;
 }
 div#EventList table.eventlist tbody tr td.ColumnEvent a,
@@ -587,6 +582,38 @@ div#EventList table.eventlist tbody tr td.ColumnPerson a,
 div#EventList table.eventlist tbody tr td.ColumnPartner a {
     display: block;
     padding: .9em 10px;
+}
+div#EventList table.alphaevent {
+    padding: .3em 0 .3em 0;
+    margin: 0;
+}
+div#EventList table.alphaevent tbody tr.BeginEvent {
+    border-top: solid 1px #000;
+}
+div#EventList table.alphaevent tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+div#EventList table.alphaevent tbody tr td.ColumnType {
+    width: 15%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnType a:hover {
+    background: none;
+}
+div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
+    width: 12%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnDate {
+    width: 20%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnPerson {
+    width: 60%;
+}
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
+    display:block;
+}
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
+    content:"+ ";
 }
 div#EventDetail h3 {
     font-size: xxx-large;
