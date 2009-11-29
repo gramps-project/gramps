@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-11-24 07:53+0100\n"
-"PO-Revision-Date: 2009-11-08 00:16+0100\n"
+"PO-Revision-Date: 2009-11-29 01:25+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "Regione/Provincia:"
 #: ../src/Assistant.py:341 ../src/Filters/Rules/Place/_HasPlace.py:54
 #: ../src/plugins/tool/ownereditor.glade.h:5
 msgid "Country:"
-msgstr "Stato:"
+msgstr "Nazione:"
 
 #: ../src/Assistant.py:342
 msgid "ZIP/Postal code:"
@@ -1044,7 +1044,7 @@ msgstr "Regione/Provincia"
 #: ../src/plugins/webreport/NarrativeWeb.py:1114
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
-msgstr "Stato"
+msgstr "Nazione"
 
 #: ../src/GrampsCfg.py:210 ../src/DataViews/PlaceView.py:78
 #: ../src/DataViews/RepositoryView.py:72
@@ -10799,7 +10799,7 @@ msgid "acronym for female|F"
 msgstr "F"
 
 #: ../src/plugins/textreport/FamilyGroup.py:436
-#, fuzzy, python-format
+#, python-format
 msgid "acronym for unknown|%dU"
 msgstr "%dS"
 
@@ -11149,14 +11149,14 @@ msgid "County: %s "
 msgstr "Contea/Provincia: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "State: %s"
-msgstr "Regione: %s "
+msgstr "Stato/regione: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:124
 #, python-format
 msgid "Country: %s "
-msgstr "Stato: %s "
+msgstr "Nazione: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:146
 msgid "Events that happened at this place"
@@ -13537,9 +13537,9 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3667
 #: ../src/plugins/webreport/NarrativeWeb.py:3670
-#, fuzzy, python-format
+#, python-format
 msgid " starting with %s"
-msgstr "Avvio importazione, %s"
+msgstr " che iniziano per %s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3690
 msgid "Narrated Web Site"
@@ -14258,9 +14258,8 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:824
-#, fuzzy
 msgid "Compressed Structured Vector Graphs (SVGZ)"
-msgstr "Structured Vector Graphics compresso (SVG)"
+msgstr "Structured Vector Graphics compresso (SVGZ)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:830
 msgid "JPEG image"
@@ -21965,7 +21964,6 @@ msgid "Select %s from a list"
 msgstr "Selezionare %s dall'elenco"
 
 #: ../src/FilterEditor/_EditRule.py:331
-#, fuzzy
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
 "Fornire o selezionare l'ID di una fonte; lasciare vuoto per trovare oggetti "
@@ -22178,7 +22176,6 @@ msgid "Indicates if the record is private"
 msgstr "Indica se l'informazione è privata"
 
 #: ../src/glade/edit_person.glade.h:13
-#, fuzzy
 msgid "Part of the Given name that is the normally used name. "
 msgstr "Parte del nome normalmente usata come appellativo. "
 
@@ -22897,11 +22894,11 @@ msgid "_Sort as:"
 msgstr "_Ordina come:"
 
 #: ../src/glade/gramps.glade.h:180
-#, fuzzy
 msgid "_State/Province:"
 msgstr "_Stato/Provincia:"
 
 #: ../src/glade/gramps.glade.h:181
+#, fuzzy
 msgid "_State:"
 msgstr "_Regione:"
 
@@ -22911,7 +22908,7 @@ msgstr "_Stato:"
 
 #: ../src/glade/gramps.glade.h:183
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
-msgstr "S_wiss (Arial, Helvetica, sans-serif)"
+msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
 #: ../src/glade/gramps.glade.h:184
 msgid "_Title:"
@@ -23636,7 +23633,6 @@ msgstr ""
 "stessa persona inserite più volte nel database."
 
 #: ../src/data/tips.xml.in.h:8
-#, fuzzy
 msgid ""
 "<b>Editing The Relationship of a Child</b>: Not all children are related by "
 "birth to their parents. You can edit the relationship of a child to each "
@@ -23648,14 +23644,15 @@ msgid ""
 "Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Modificare le relazioni di un figlio/a</b>: non tutti i figli sono "
-"collegati per nascita ai rispettivi genitori. Si può modicare la relazione "
-"di un figlio verso ogni genitore impostando il figlio/a come persona attiva. "
-"Nella vista relazioni, fare clic sulla terza icona alla destra della voce "
-"&quot;Genitori:&quot;. Selezionare quindi il figlio/a, fare clic con il "
-"pulsante destro e selezionare &quot;Modifica relazione&quot;. Da qui è "
-"possibile impostare il tipo di relazione tra il figlio/a e il padre e la "
-"madre. La relazioni possono essere scelta tra adozione, nascita, "
-"affidamento, nessuno, adozione a distanza, figliastro e sconosciuto."
+"collegati per nascita ai rispettivi genitori. Si possono modicare le "
+"relazioni di un figlio verso i rispettivi genitori impostando il figlio/a "
+"come persona attiva. Nella vista relazioni, fare clic sulla terza icona alla "
+"destra della voce &quot;Genitori:&quot;. Selezionare quindi il figlio/a, "
+"fare clic con il pulsante destro e selezionare &quot;Modifica "
+"relazione&quot;. Da qui è possibile impostare il tipo di relazione tra il "
+"figlio/a e il padre e la madre. La relazioni possono essere scelta tra "
+"adozione, nascita, affidamento, nessuno, adozione a distanza, figliastro e "
+"sconosciuto."
 
 #: ../src/data/tips.xml.in.h:9
 msgid ""
@@ -23756,6 +23753,9 @@ msgid ""
 "listed only once. By clicking on the arrow to the left of a name, the list "
 "will expand to show all individuals with that last name."
 msgstr ""
+"<b>Individuare le persone</b>: di base, ogni cognome nella vista persone è "
+"elencato una sola volta. Facendo clic sulla freccia a sinistra di un nome, "
+"la lista si espande per mostrare tutte le persone con quel cognome."
 
 #: ../src/data/tips.xml.in.h:19
 msgid ""
@@ -23837,6 +23837,8 @@ msgid ""
 "A range of dates can be given by using the format &quot;between January 4, "
 "2000 and March 20, 2003&quot;"
 msgstr ""
+"È possibile fornire un intervallo di date usando il formato &quot;tra 4 "
+"gennaio 2000 e 20 marzo 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:29
 msgid ""
@@ -24101,6 +24103,10 @@ msgid ""
 "collect a variety of reports into a single document. This single report is "
 "easier to distribute than multiple reports, especially when printed."
 msgstr ""
+"Il resoconto libro, <b>Resoconti &gt; Libri &gt; Resoconto libro</b>, "
+"permette agli utenti di raccogliere vari resoconti in un unico documento. Un "
+"unico resoconto è più semplice da distribuire che non diversi resoconti, "
+"specialmente quando viene stampato."
 
 #: ../src/data/tips.xml.in.h:61
 msgid ""
