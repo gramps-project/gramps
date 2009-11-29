@@ -2038,7 +2038,6 @@ class PlacePage(BasePage):
 
         place = db.get_place_from_handle(place_handle)
         BasePage.__init__(self, report, title, place.gramps_id)
-        self.src_list = src_list        # TODO verify that this is correct
 
         of = self.report.create_file(place.get_handle(), "plc")
         self.up = True
@@ -2082,11 +2081,6 @@ class PlacePage(BasePage):
             urllinks = self.display_url_list(place.get_url_list())
             if urllinks is not None:
                 placedetail += urllinks
-
-            # source references
-            sourcerefs = self.get_citation_links(place.get_source_references() )
-            if sourcerefs is not None:
-                placedetail += sourcerefs  
 
             # place references
             reflist = self.display_references(place_list[place.handle])
