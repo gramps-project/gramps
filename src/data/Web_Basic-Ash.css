@@ -612,7 +612,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
     width: 20%;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnEvent {
-    background-color: #000;
     border-top: solid 1px #000;
 }
 
