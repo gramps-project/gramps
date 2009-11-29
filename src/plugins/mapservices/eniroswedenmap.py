@@ -18,7 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
+# $Id$
+#
 """
 Eniro Sweden (Denmark) map service plugin. Opens place in kartor.eniro.se
 """
@@ -35,6 +36,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gen.plug import PluginManager
 from libmapservice import MapService
 from QuestionDialog import WarningDialog
 
@@ -119,12 +121,17 @@ class EniroSVMapService(MapService):
         # Change country to upper case
         country = place.get_main_location().get_country().upper().strip()
         country_given = (country in MAP_NAMES_SWEDEN or \
-                        country in MAP_NAMES_DENMARK) and (country != "")
-        # if no country given, check if we might be in the vicinity defined by
+                         country in MAP_NAMES_DENMARK)
+        # Now check if country is defined
+        if not country_given:
+            WarningDialog(_("Eniro map not available for %s") % country, \
+                          _("Only for Sweden and Denmark") )
+            return
+        # Chech if we are in the vicinity defined by
         # 54 33' 0" < lat < 66 9' 0", 54.55 and 69.05
         # 8 3' 0" < long < 24 9' 0", 8.05 and 24.15 
         latitude, longitude = self._lat_lon(place)
-        if latitude is None or longitude is None:
+        if latitude == None or longitude == None:
             coord_ok = False
         else:
             latitude = float(latitude) 
@@ -138,20 +145,12 @@ class EniroSVMapService(MapService):
                 msg2 = msg2 % (54.55, 69.05, 8.05, 24.15)
                 WarningDialog(_("Eniro map not available"), msg2 )
                 return
-        # Now check if country is defined
-        if not (country_given or coord_ok):
-            WarningDialog(_("Eniro map not available"), 
-                          _("Latitude and longitude,\n" \
-                            "or street and city needed") )
-            return
         if coord_ok:
             place_title = _build_title(place)
             place_city =  _build_city(place)
             x_coord, y_coord = self._lat_lon(place, format="RT90")
-            # Set zoom level to 5 if Sweden/Denmark, others 3
+            # Set zoom level to 5 if Sweden/Denmark
             zoom = 5
-            if not country_given:
-                zoom = 3
             path = "http://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s" \
                    "&zoom_level=%i&map_size=0&title=%s&city=%s&partner=gramps"
             # Note x and y are swapped!
@@ -159,9 +158,9 @@ class EniroSVMapService(MapService):
             self.url = path.replace(" ","%20")
             return
 
-        if country_given:
+        place_area = _build_area(place)
+        if country_given and place_area:
             if country in MAP_NAMES_SWEDEN:
-                place_area = _build_area(place)
                 path = "http://kartor.eniro.se/query?&what=map_adr&mop=aq" \
                        "&geo_area=%s&partner=gramps"
                 path = path % (place_area)
@@ -172,6 +171,23 @@ class EniroSVMapService(MapService):
                               _("Coordinates needed in Denmark") )
                 self.url = ""
                 return
-        else:
-            WarningDialog(_("Eniro map not available for %s") % country, \
-                          _("Only for Sweden and Denmark") )
+        
+        WarningDialog(_("Eniro map not available"), 
+                      _("Latitude and longitude,\n" \
+                        "or street and city needed") )
+        return
+   
+#------------------------------------------------------------------------
+#
+# Register map service
+#
+#------------------------------------------------------------------------
+PluginManager.get_instance().register_mapservice(
+    name = 'EniroMaps',
+    mapservice = EniroSVMapService(),
+    translated_name = _("EniroMaps"),
+    status = _("Stable"),
+    tooltip= _("Opens 'kartor.eniro.se' for places in Denmark and Sweden"),
+    author_name="Peter Landgren",
+    author_email="peter.talken@telia.com"
+    )
