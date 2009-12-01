@@ -221,6 +221,10 @@ class MediaView(ListView):
         self._add_action('OpenMedia', 'gramps-viewmedia', _('View'), 
                          tip=_("View in the default viewer"), 
                          callback=self.view_media)
+        self._add_action('OpenContainingFolder', None, 
+                         _('Open Containing _Folder'), 
+                         tip=_("Open the folder containing the media file"), 
+                         callback=self.open_containing_folder)
                         
     def view_media(self, obj):
         """
@@ -230,6 +234,17 @@ class MediaView(ListView):
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
             mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
             open_file_with_default_application(mpath)
+
+    def open_containing_folder(self, obj):
+        """
+        Launch external viewers for the selected objects.
+        """
+        for handle in self.selected_handles():
+            ref_obj = self.dbstate.db.get_object_from_handle(handle)
+            mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+            if mpath:
+                mfolder, mfile = os.path.split(mpath)
+                open_file_with_default_application(mfolder)
 
     def _column_editor(self, obj):
         """
@@ -351,9 +366,11 @@ class MediaView(ListView):
             <toolitem action="OpenMedia"/>
           </toolbar>
           <popup name="Popup">
+            <menuitem action="OpenMedia"/>
+            <menuitem action="OpenContainingFolder"/>
+            <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
-            <menuitem action="OpenMedia"/>
             <menuitem action="Remove"/>
           </popup>
         </ui>'''
