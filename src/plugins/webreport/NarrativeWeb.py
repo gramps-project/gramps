@@ -45,6 +45,7 @@ Narrative Web Page generator.
 #
 #------------------------------------------------------------------------
 from __future__ import with_statement
+import gc
 import os
 import sys
 import re
@@ -446,7 +447,7 @@ class BasePage(object):
 
     def display_event_row(self, evt, evt_ref, showplc, showdescr, showsrc, shownote, subdirs, hyp):
         """
-        display the event row for class IndividualPage
+        display the event row for IndividualPage
         """
         db = self.report.database
 
@@ -513,7 +514,7 @@ class BasePage(object):
         db = self.report.database
 
         # get event type
-        evt_type = get_event_type(evt, evt_ref)
+        evt_type = evt.type.xml_str()
 
         # get hyperlink or not?
         evt_hyper = evt_type
@@ -546,14 +547,16 @@ class BasePage(object):
             info.append([DESCRHEAD, "Description", descr])
 
         if showsrc:
-            srcrefs = self.get_citation_links(evt.get_source_references() )
-            info.append([SHEAD, "Sources", srcrefs])
+            srcrefs = self.display_ind_sources(evt)
+            if srcrefs is not None:
+                info.append([SHEAD, "Sources", srcrefs])
 
         if shownote:
             notelist = evt.get_note_list()
             notelist.extend(evt_ref.get_note_list() )
-            notelist = self.dump_notes(notelist)
-            info.append([NHEAD, "Notes", notelist])
+            notelist = self.display_note_list(notelist)
+            if notelist is not None:
+                info.append([NHEAD, "Notes", notelist])
 
         # return event data information to its callers
         return info                        
@@ -2121,9 +2124,9 @@ class EventListPage(BasePage):
         with Html("div", class_ = "content", id = "EventList") as eventlist:
             body += eventlist
 
-            msg = _("This page contains an index of all the events in the "
-                    "database, sorted by their type, date (if one is present), "
-                    "Clicking on an event&#8217;s type will load a page of those type of events.")
+            msg = _("This page contains an index of all the events in the database, sorted by their "
+                    "type, gramps id, and date (if one is present), Clicking on an "
+                    "event&#8217;s Gramps ID will load a page of those type of events.")
             eventlist += Html("p", msg, id = "description")
 
             # get alphabet navigation for class EventListPage
@@ -2257,12 +2260,21 @@ class EventListPage(BasePage):
         return Html("a", grampsid, href = url, alt = grampsid)
 
 class EventPage(BasePage):
+    def __init__(self, report, title, evt_type, person, event, evt_ref):
+        """
+        Creates the individual event page
 
-    def __init__(self, report, title, person, partner, evt_type, event, evt_ref):
+        @param: title -- is the title of the web pages
+        @param: evt_type -- the event type
+        @param: event -- the event for this page
+        @param: evt_ref -- the event reference
+        """
+
         BasePage.__init__(self, report, title, event.gramps_id)
         self.up = True
         db = report.database
         subdirs = True
+        self.bibli = Bibliography()
 
         of = self.report.create_file(evt_ref.ref, "evt")
         eventpage, body = self.write_header(_("Events"), _KEYEVENT)
@@ -2287,12 +2299,11 @@ class EventPage(BasePage):
                 table += tbody
 
                 # get event data
-                shownote = True
                 """
                 for more information: see get_event_data()
                 """ 
                 event_data = self.get_event_data(event, evt_ref, True, True, 
-                    False, shownote, subdirs, False, event.gramps_id)
+                    False, True, subdirs, False, event.gramps_id)
 
                 # the first ones are listed here, the rest are shown below
                 # minus one because it starts at zero instead of one
@@ -2308,28 +2319,63 @@ class EventPage(BasePage):
 
                     trow = Html("tr") + (
                         Html("td", label, class_ = "ColumnAttribute", inline = True),
-                        Html('td', data, class_ = "Column%s" % colclass, inline = samerow)
+                        Html('td', data, class_ = "Column" + colclass, inline = samerow)
                         )
                     tbody += trow
 
-                # get person hyperlink
-                url = self.report.build_url_fname_html(person.handle, "ppl", self.up)
-                person_hyper = self.person_link(url, person, True, gid = person.gramps_id)
+                # Person
+                evt_type = event.type.xml_str()
+                if evt_type in ["Divorce", "Marriage"]:
+                    handle_list = db.find_backlink_handles(evt_ref.ref, 
+                        include_classes = ['Person', 'Family'])
+                else:
+                    handle_list = db.find_backlink_handles(evt_ref.ref, include_classes = ['Person'])
+
                 trow = Html("tr") + (
-                    Html("td", _PERSON, class_ = "ColumnAttribute", inline = True),
-                    Html("td", person_hyper, class_ = "ColumnPerson")
-                    )
-                tbody += trow 
+                    Html("td", _PERSON, class_ = "ColumnAttribute", inline = True)
+                    ) 
+                tcell = Html("td", class_ = "ColumnPerson")
+                trow += tcell
 
-                # display partner if type is either Marriage or Divorce
-                if partner is not None:
-                    url = self.report.build_url_fname_html(partner.handle, "ppl", self.up)
-                    partner_hyper = self.person_link(url, partner, True, gid = partner.gramps_id)
-                    trow = Html("tr") + (
-                        Html("td", _PARTNER, class_ = "ColumnAttribute", inline = True),
-                        Html("td", partner_hyper, class_ = "ColumnPartner")
-                        )
-                    tbody += trow
+                if handle_list:
+                    first_person = True
+
+                     # clasname can be either Person or Family 
+                    for (classname, handle) in handle_list:
+
+                        if classname == "Person":
+                            person = db.get_person_from_handle(handle)
+                            if person:
+                                person_name = self.get_name(person)
+
+                                if not first_person:
+                                    tcell += ", "
+
+                                tcell += person_name
+                        else:
+                            family = db.get_family_from_handle(handle)
+                            if family:
+
+                                # husband and spouse in this example, are called father and mother
+                                husband_handle = family.get_father_handle() 
+                                spouse_handle = family.get_mother_handle()
+                                husband = db.get_person_from_handle(husband_handle)
+                                spouse = db.get_person_from_handle(spouse_handle)
+                                if husband:
+                                    husband_name = self.get_name(husband)
+                                if spouse:
+                                    spouse_name = self.get_name(spouse)
+                                if spouse and husband:
+                                    tcell += ( Html("span", husband_name, class_ = "father fatherNmother") +
+                                        Html("span", spouse_name, class_ = "mother")
+                                        )
+                                elif spouse:
+                                    tcell += Html("span", spouse_name, class_ = "mother")
+                                elif husband:
+                                    tcell += Html("span", husband_name, class_ = "father")
+                        first_person = False
+                else:
+                    tcell += "&nbsp;" 
 
             # Narrative subsection
             if shownote: 
@@ -2340,11 +2386,11 @@ class EventPage(BasePage):
             # get attribute list
             attrlist = event.get_attribute_list()
             attrlist.extend(evt_ref.get_attribute_list() )
-            attrlist = self.display_attr_list(attrlist, False)
+            attrlist = self.display_attr_list(attrlist, True)
             if attrlist is not None:
                 eventdetail += attrlist
 
-            # get event source references
+            # event source references
             srcrefs = event.get_source_references()
             self.bibli = Bibliography()
             srcrefs = self.display_ind_sources(event)
@@ -5105,20 +5151,14 @@ class NavWebReport(Report):
             first_name = person.get_primary_name().get_first_name()
             sort_name = ', '.join([last_name, first_name])
 
-            partner = None
             for family_handle in person.get_family_handle_list():
                 family = db.get_family_from_handle(family_handle)
-
-                # get partner for use in Marriage and Divorce
-                partner_handle = ReportUtils.find_spouse(person, family)
-                if partner_handle:
-                    partner = db.get_person_from_handle(partner_handle)
 
                 for evt_ref in family.get_event_ref_list():
                     event = db.get_event_from_handle(evt_ref.ref)
 
                     # get event type
-                    evt_type = get_event_type(event, evt_ref)
+                    evt_type = event.type.xml_str()
 
                     # get event types for class EventsListPage
                     etype = None
@@ -5141,15 +5181,13 @@ class NavWebReport(Report):
                     sort_date = '%04d/%02d/%02d' % (year, month, day)
 
                     # add event data
-                    event_list.append([evt_type, sort_date, sort_name, event, 
-                        evt_ref, partner])
+                    event_list.append([evt_type, sort_date, sort_name, event, evt_ref])
 
-            partner = None 
             for evt_ref in person.get_primary_event_ref_list():
                 event = db.get_event_from_handle(evt_ref.ref)
 
                 # get event type
-                evt_type = get_event_type(event, evt_ref)
+                evt_type = event.type.xml_str()
 
                 # get event types for class EventsListPage
                 etype = None
@@ -5171,16 +5209,13 @@ class NavWebReport(Report):
                 sort_date = '%04d/%02d/%02d' % (year, month, day)
 
                 # add event data
-                event_list.append([evt_type, sort_date, sort_name, event, evt_ref, partner])
+                event_list.append([evt_type, sort_date, sort_name, event, evt_ref])
 
             # sort the event_list
             event_list.sort()
 
             # combine person and their events together
             event_dict.append([person, event_list])
-
-        # sort the types alphabetically
-        event_types.sort()
 
         # return the events for EventListPage and EventPage
         return event_dict, event_types, event_handle_list
@@ -5308,24 +5343,24 @@ class NavWebReport(Report):
         @param: event_types -- a list of all the event types in this database
         @param: event_handle_list -- a list of the event handles in the database to be used
         """
+
+        # set up progress bar for event pages; using ind list because it was taking too long at the end
+        self.progress.set_pass(_("Creating event pages"), len(ind_list))
+
         # send all data to the events list page
         EventListPage(self, self.title, event_types, event_handle_list, ind_list)
 
-        # set up progress bar for event pages
-        self.progress.set_pass(_("Creating event pages"), len(event_dict))
-
         for (person, event_list) in event_dict:
 
-            for (evt_type, sort_date, sort_name, event, evt_ref, partner) in event_list:
+            for (evt_type, sort_date, sort_name, event, evt_ref) in event_list:
 
                 # create individual event page 
-                EventPage(self, self.title, person, partner, evt_type, event, evt_ref)
+                EventPage(self, self.title, evt_type, person, event, evt_ref)
 
                 # increment the progress bar
                 self.progress.step()
 
     def gallery_pages(self, source_list):
-        import gc
 
         self.progress.set_pass(_("Creating media pages"), len(self.photo_list))
 
@@ -6228,20 +6263,6 @@ def _has_webpage_extension(url):
     url = filename to be checked
     """
     return any(url.endswith(ext) for ext in _WEB_EXT) 
-
-def get_event_type(event, event_ref):
-    """ return the type of an event """
-
-    evt_name = str(event.get_type())
-
-    if event_ref.get_role() == EventRoleType.PRIMARY:
-        evt_type = u"%(evt_name)s" % locals()
-    else:
-        evt_role = event_ref.get_role()
-        evt_type = u"%(evt_name)s (%(evt_role)s)" % locals()
-
-    # return event type to its callers
-    return evt_type
 
 def add_birthdate(db, childlist):
     """

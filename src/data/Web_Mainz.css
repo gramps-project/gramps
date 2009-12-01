@@ -630,6 +630,7 @@ div#EventDetail table.eventlist {
 div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
     font-weight: bold;
     text-transform: uppercase;
+    border-top: solid 1px #000;
     width: 20%;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnEvent {
