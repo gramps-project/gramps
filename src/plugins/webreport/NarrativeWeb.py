@@ -2303,42 +2303,35 @@ class EventPage(BasePage):
                 for more information: see get_event_data()
                 """ 
                 event_data = self.get_event_data(event, evt_ref, True, True, 
-                    False, True, subdirs, False, event.gramps_id)
+                    False, False, subdirs, False, event.gramps_id)
 
-                # the first ones are listed here, the rest are shown below
-                # minus one because it starts at zero instead of one
-                # minus one for note list which is shown below
-                for index in xrange(len(event_data) - 2):
-                    label = event_data[index][0]
-                    colclass = event_data[index][1]
-                    data = event_data[index][2] or "&nbsp;" 
+                for (label, colclass, data) in event_data:
+                    if data:
 
-                    # determine if we are using the same row or not?
-                    samerow = (data == "&nbsp;" or
-                               colclass in ["Event", "Date"])
-
-                    trow = Html("tr") + (
-                        Html("td", label, class_ = "ColumnAttribute", inline = True),
-                        Html('td', data, class_ = "Column" + colclass, inline = samerow)
-                        )
-                    tbody += trow
+                        trow = Html("tr")
+                        tbody += trow
+  
+                        trow += Html("td", label, class_ = "ColumnAttribute", inline = True) + (
+                            Html('td', data, class_ = "Column" + colclass)
+                            )
 
                 # Person
-                evt_type = event.type.xml_str()
                 if evt_type in ["Divorce", "Marriage"]:
                     handle_list = db.find_backlink_handles(evt_ref.ref, 
                         include_classes = ['Person', 'Family'])
                 else:
                     handle_list = db.find_backlink_handles(evt_ref.ref, include_classes = ['Person'])
 
-                trow = Html("tr") + (
-                    Html("td", _PERSON, class_ = "ColumnAttribute", inline = True)
-                    ) 
-                tcell = Html("td", class_ = "ColumnPerson")
-                trow += tcell
-
                 if handle_list:
                     first_person = True
+
+                    trow = Html("tr") + (
+                        Html("td", _PERSON, class_ = "ColumnAttribute", inline = True)
+                        )
+                    tbody += trow
+
+                    tcell = Html("td", class_ = "ColumnPerson")
+                    trow += tcell
 
                      # clasname can be either Person or Family 
                     for (classname, handle) in handle_list:
@@ -2374,14 +2367,13 @@ class EventPage(BasePage):
                                 elif husband:
                                     tcell += Html("span", husband_name, class_ = "father")
                         first_person = False
-                else:
-                    tcell += "&nbsp;" 
 
             # Narrative subsection
-            if shownote: 
-                notelist = self.display_note_list( event_data[(len(event_data) - 1)][2] )
-                if notelist is not None:
-                    eventdetail += notelist
+            notelist = event.get_note_list()
+            notelist.extend(evt_ref.get_note_list() )
+            notelist = self.display_note_list(notelist)
+            if notelist is not None:
+                eventdetail += notelist
 
             # get attribute list
             attrlist = event.get_attribute_list()
@@ -2392,7 +2384,6 @@ class EventPage(BasePage):
 
             # event source references
             srcrefs = event.get_source_references()
-            self.bibli = Bibliography()
             srcrefs = self.display_ind_sources(event)
             if srcrefs is not None:
                 eventdetail += srcrefs            
