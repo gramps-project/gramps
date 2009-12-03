@@ -454,7 +454,8 @@ class HtmlView(PageView.PageView):
         """
         open an url
         """
-        self.renderer.open(url)
+        if self.key_active_changed != None:
+            self.renderer.open(url)
 
     def go_back(self, button):
         """
@@ -659,6 +660,7 @@ class GeoView(HtmlView):
         self.maxlat = float(0.0)
         self.minlon = float(0.0)
         self.key_active_changed = None
+        self.is_active = False
  
     def top_widget(self):
         """
@@ -694,7 +696,8 @@ class GeoView(HtmlView):
         self.external_uri()
         if self.need_to_resize != True:
             try:
-                self._geo_places(self.displaytype)
+                if self.is_active:
+                    self._geo_places(self.displaytype)
             except:
                 pass
 
@@ -704,6 +707,7 @@ class GeoView(HtmlView):
         """
         self.key_active_changed = self.dbstate.connect('active-changed',
                                                        self.goto_active_person)
+        self.is_active = True
 
     def set_inactive(self):
         """
@@ -711,6 +715,7 @@ class GeoView(HtmlView):
         """
         HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
+        self.is_active = False
 
     def _change_map(self, usedmap):
         """
@@ -831,10 +836,10 @@ class GeoView(HtmlView):
         self.nbmarkers = 0
         self.without = 0
         self._createmapstraction(displaytype)
-        self.open(urlparse.urlunsplit(
-                           ('file', '',
-                            URL_SEP.join(self.htmlfile.split(os.sep)),
-                            '', '')))
+        #self.open(urlparse.urlunsplit(
+        #                   ('file', '',
+        #                    URL_SEP.join(self.htmlfile.split(os.sep)),
+        #                    '', '')))
 
     def _select_openstreetmap_map(self, handle):
         """
