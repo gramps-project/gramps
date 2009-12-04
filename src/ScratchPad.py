@@ -324,8 +324,8 @@ class ScratchPadNote(ScratchPadWrapper):
 
         self._title = value.get_gramps_id()
         #String must be unicode for truncation to work for non ascii characters
-        note = unicode(note)
         note = value.get().replace('\n', ' ')
+        note = unicode(note)
         if len(note) > 80:
             self._value = note[:80]+"..."
         else:
