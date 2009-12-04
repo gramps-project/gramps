@@ -8848,7 +8848,7 @@ msgstr "(individu avec un nom inconnu)"
 
 #: ../src/plugins/gramplet/WhatsNext.py:278
 msgid "birth event missing"
-msgstr "Naissance manquante"
+msgstr "naissance manquante"
 
 #: ../src/plugins/gramplet/WhatsNext.py:282
 #: ../src/plugins/gramplet/WhatsNext.py:303
@@ -9893,62 +9893,77 @@ msgid "Display people with same attribute."
 msgstr "Affiche les individus avec le même attribut."
 
 #. force translation
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:38
 msgid "all people"
 msgstr "tous les individus"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:38
 msgid "males"
 msgstr "hommes"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:38
 msgid "females"
 msgstr "femmes"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:38
 msgid "people with unknown gender"
 msgstr "les individus sans genre"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:39
 msgid "people with incomplete names"
 msgstr "les individus avec des noms incomplets"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:39
 msgid "people with missing birth dates"
 msgstr "les individus sans date de naissance"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:40
 msgid "disconnected people"
 msgstr "les individus déconnectés"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:40
 msgid "all families"
 msgstr "toutes les familles"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:40
 msgid "unique surnames"
 msgstr "les noms présents"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:41
 msgid "people with media"
 msgstr "les individus avec des objets media"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:41
 msgid "media references"
 msgstr "les références de l'objet media"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:41
 msgid "unique media"
 msgstr "l'objet media présent"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:42
 msgid "missing media"
 msgstr "les objets media manquants"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:42
 msgid "media by size"
 msgstr "la taille de l'objet media"
 
+#. filtering on
 #: ../src/plugins/quickview/FilterByName.py:42
 msgid "list of people"
 msgstr "le nombre d'individus"
@@ -10277,7 +10292,7 @@ msgstr "Correspond aux individus sans prénom"
 #: ../src/plugins/quickview/SameSurnames.py:105
 #, python-format
 msgid "People with the surname '%s'"
-msgstr "Individus ayant le même nom que '%s'"
+msgstr "Individus ayant le nom '%s'"
 
 # ngettext
 #: ../src/plugins/quickview/SameSurnames.py:122
