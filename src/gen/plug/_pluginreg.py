@@ -102,23 +102,6 @@ TOOL_UTILS  = 4
 TOOL_CAT    = [ TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
                 TOOL_UTILS]
 
-#possible view categories
-VIEW_MISC    = 0
-VIEW_PERSON  = 1
-VIEW_REL     = 2
-VIEW_FAMILY  = 3
-VIEW_PEDI    = 4
-VIEW_EVENT   = 5
-VIEW_PLACE   = 6
-VIEW_SOURCE  = 7
-VIEW_REPO    = 8
-VIEW_MEDIA   = 9
-VIEW_NOTE    = 10
-VIEW_GEO     = 11
-VIEW_CAT    = [VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, VIEW_EVENT,
-               VIEW_PEDI, VIEW_PLACE, VIEW_SOURCE, VIEW_REPO, VIEW_MEDIA, 
-               VIEW_NOTE, VIEW_GEO]
-
 #possible quickreport categories
 CATEGORY_QR_MISC       = -1
 CATEGORY_QR_PERSON     = 0
@@ -204,7 +187,8 @@ class PluginData(object):
        Or the report category the plugin belongs to, default=CATEGORY_TEXT
        or the tool category a plugin belongs to, default=TOOL_UTILS
        or the quickreport category a plugin belongs to, default=CATEGORY_QR_PERSON
-       or the view category a plugin belongs to, default=VIEW_MISC
+       or the view category a plugin belongs to, 
+           default=("Miscellaneous", _("Miscellaneous"))
     
     Attributes for REPORT and TOOL plugins
     .. attribute:: optionclass
@@ -389,7 +373,7 @@ class PluginData(object):
         elif self._ptype == QUICKREPORT:
             self._category = CATEGORY_QR_PERSON
         elif self._ptype == VIEW:
-            self._category = VIEW_MISC
+            self._category = ("Miscellaneous", _("Miscellaneous"))
         #if self._ptype == DOCGEN:
         #    self._load_on_reg = True
 
@@ -865,18 +849,6 @@ class PluginRegister(object):
                     'TOOL_DBFIX': TOOL_DBFIX,
                     'TOOL_REVCTL': TOOL_REVCTL,
                     'TOOL_UTILS': TOOL_UTILS,
-                    'VIEW_MISC': VIEW_MISC,
-                    'VIEW_PERSON': VIEW_PERSON,
-                    'VIEW_REL': VIEW_REL,
-                    'VIEW_FAMILY': VIEW_FAMILY,
-                    'VIEW_PEDI': VIEW_PEDI,
-                    'VIEW_EVENT': VIEW_EVENT,
-                    'VIEW_PLACE': VIEW_PLACE,
-                    'VIEW_SOURCE': VIEW_SOURCE,
-                    'VIEW_REPO': VIEW_REPO,
-                    'VIEW_MEDIA': VIEW_MEDIA,
-                    'VIEW_NOTE': VIEW_NOTE,
-                    'VIEW_GEO': VIEW_GEO,
                     'CATEGORY_QR_MISC': CATEGORY_QR_MISC,
                     'CATEGORY_QR_PERSON': CATEGORY_QR_PERSON,
                     'CATEGORY_QR_FAMILY': CATEGORY_QR_FAMILY,

@@ -55,7 +55,7 @@ if not (TOOLKIT == NOWEB):
     fname = 'geoview.py',
     authors = [u"The Gramps project"],
     authors_email = ["http://gramps-project.org"],
-    category = VIEW_GEO,
+    category = ("Geography", _("Geography")),
     viewclass = 'GeoView',
       )
 
@@ -68,6 +68,6 @@ if not (TOOLKIT == NOWEB):
     fname = 'htmlrenderer.py',
     authors = [u"The Gramps project"],
     authors_email = ["http://gramps-project.org"],
-    category = VIEW_MISC,
+    category = ("Web", _("Web")),
     viewclass = 'HtmlView',
       )

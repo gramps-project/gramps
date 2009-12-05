@@ -7,6 +7,6 @@ register(VIEW,
          fname = 'placetreeview.py',
          authors = [u"Donald N. Allingham", u"Gary Burton", u"Nick Hall"],
          authors_email = [""],
-         category = VIEW_PLACE,
+         category = ("Places", _("Places")),
          viewclass = 'PlaceTreeView',
   )

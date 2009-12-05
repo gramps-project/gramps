@@ -526,10 +526,10 @@ register('interface.child-ref-width', 600)
 register('interface.clipboard-height', 300)
 register('interface.clipboard-width', 300)
 register('interface.dont-ask', False)
-register('interface.data-views', 
-         ['GrampletView', 'PersonView', 'RelationshipView', 
-          'FamilyListView', 'PedigreeView', 'EventView', 'SourceView',
-          'PlaceView', 'MediaView', 'RepositoryView', 'NoteView'])
+register('interface.view-categories',
+         ["Gramplets", "People", "Relationships", "Families", 
+          "Charts", "Events", "Places", "Geography", "Sources",
+          "Repositories", "Media", "Notes"])
 register('interface.event-height', 450)
 register('interface.event-ref-height', 450)
 register('interface.event-ref-width', 600)

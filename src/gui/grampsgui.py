@@ -62,13 +62,8 @@ from QuestionDialog import ErrorDialog
 import config
 import Utils
 from gui.pluginmanager import GuiPluginManager
-from gen.plug import (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY,
-            VIEW_EVENT, VIEW_PLACE, VIEW_GEO, VIEW_SOURCE, VIEW_REPO,
-            VIEW_MEDIA, VIEW_PEDI, VIEW_NOTE, START, END)
+from gen.plug import (START, END)
 
-DEFAULT_SIDEBAR_ORDER = (VIEW_MISC, VIEW_PERSON, VIEW_REL, VIEW_FAMILY, 
-            VIEW_PEDI, VIEW_EVENT, VIEW_PLACE, VIEW_GEO, VIEW_SOURCE,
-            VIEW_REPO, VIEW_MEDIA, VIEW_NOTE)
 #-------------------------------------------------------------------------
 #
 # Functions
@@ -256,20 +251,28 @@ def construct_view_order():
                     'firstauthoremail': pdata.authors_email[0] if 
                             pdata.authors_email else '...'})
             continue
-        viewclass = eval('mod.' + pdata.viewclass)
-        if pdata.category in viewstoshow:
+        viewclass = getattr(mod, pdata.viewclass)
+        # pdata.category is (string, trans-string):
+        if pdata.category[0] in viewstoshow:
             if pdata.order == START:
-                viewstoshow[pdata.category].insert(0, ((pdata.id, 
-                                                        viewclass)))
+                viewstoshow[pdata.category[0]].insert(0, ((pdata, viewclass)))
             else:
-                viewstoshow[pdata.category].append((pdata.id, viewclass))
+                viewstoshow[pdata.category[0]].append((pdata, viewclass))
         else:
-            viewstoshow[pdata.category] = [(pdata.id, viewclass)]
+            viewstoshow[pdata.category[0]] = [(pdata, viewclass)]
     
     resultorder = []
-    for item in DEFAULT_SIDEBAR_ORDER:
+    # First, get those in order defined, if exists:
+    for item in config.get("interface.view-categories"):
         if item in viewstoshow:
             resultorder.append(viewstoshow[item])
+    # Next, get the rest in some order:
+    viewstoshow_names = viewstoshow.keys()
+    viewstoshow_names.sort()
+    for item in viewstoshow_names:
+        if viewstoshow[item] in resultorder:
+            continue
+        resultorder.append(viewstoshow[item])
     return resultorder
     
 #-------------------------------------------------------------------------
@@ -294,7 +297,7 @@ class Gramps(object):
         register_stock_icons()
         
         dbstate = DbState.DbState()
-        self.vm = ViewManager(dbstate, DEFAULT_SIDEBAR_ORDER)
+        self.vm = ViewManager(dbstate, config.get("interface.view-categories"))
         
         #now we determine which views are present, which to show, and we 
         #instruct the viewmanager to show them

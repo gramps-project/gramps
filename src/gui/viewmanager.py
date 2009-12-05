@@ -891,9 +891,13 @@ class ViewManager(CLIManager):
             self.view_toggle_actions[index] = []
             self.pages.append([])
             nrpage = 0
-            for id, page_def in cat_views:
+            for pdata, page_def in cat_views:
                 page = page_def(self.dbstate, self.uistate)
+                # Category is (string, trans):
+                page.set_category(pdata.category)
                 page_title = page.get_title()
+                page_category = page.get_category()
+                page_translated_category = page.get_translated_category()
                 page_stock = page.get_stock()
                 if nrpage == 0:
                     #the first page of this category, used to obtain
@@ -908,7 +912,7 @@ class ViewManager(CLIManager):
                     image = gtk.Image()
                     image.set_from_stock(page_stock, gtk.ICON_SIZE_MENU)
                     hbox.pack_start(image, False)
-                    hbox.add(gtk.Label(page_title))
+                    hbox.add(gtk.Label(page_translated_category))
                     hbox.show_all()
                     page_cat = self.notebook.append_page(notebook, hbox)
                     # Enable view switching during DnD
@@ -918,7 +922,8 @@ class ViewManager(CLIManager):
 
                     # create the button and add it to the sidebar
                     button = self.__make_sidebar_button(use_text, index, 
-                                                        page_title, page_stock)
+                                                        page_translated_category, 
+                                                        page_stock)
 
                     self.bbox.pack_start(button, False)
                     self.buttons.append(button)
@@ -936,12 +941,13 @@ class ViewManager(CLIManager):
                 page_no = self.notebook_cat[-1].append_page(page_display, 
                                                         gtk.Label(page_title))
                 self.pages[-1].append(page)
-                pageid = (id + '_%i' % nrpage)
+                pageid = (pdata.id + '_%i' % nrpage)
                 uimenuitems += '\n<menuitem action="%s"/>' % pageid
                 uitoolitems += '\n<toolitem action="%s"/>' % pageid
+                # id, stock, button text, UI, tooltip, page
                 self.view_toggle_actions[index].append((pageid, 
                             page.get_viewtype_stock(),
-                            page_title, '<CONTROL>%i' % (nrpage+1), page_title,
+                            pdata.name, '<CONTROL>%i' % (nrpage+1), page_title,
                             nrpage))
 
                 nrpage += 1
@@ -971,8 +977,8 @@ class ViewManager(CLIManager):
             found = False
             for cat_views in self.views:
                 current_cat_view = 0
-                for id, page_def in cat_views:
-                    if id == current_page_id:
+                for pdata, page_def in cat_views:
+                    if pdata.id == current_page_id:
                         found = True
                         break
                     else:
@@ -1166,7 +1172,7 @@ class ViewManager(CLIManager):
                 self.active_page = self.pages[category_page][view_page]
                 self.active_page.set_active()
                 config.set('preferences.last-view', 
-                           self.views[category_page][view_page][0])
+                           self.views[category_page][view_page][0].id)
                 config.save()
 
                 self.__setup_navigation()
@@ -1605,14 +1611,14 @@ def run_plugin(pdata, dbstate, uistate):
 
         if pdata.ptype == REPORT:
             ReportBase.report(dbstate, uistate, dbstate.active,
-                   eval('mod.' + pdata.reportclass), 
-                   eval('mod.' + pdata.optionclass), 
+                   getattr(mod, pdata.reportclass), 
+                   getattr(mod, pdata.optionclass), 
                    pdata.name, pdata.id, 
                    pdata.category, pdata.require_active)
         else:
             gui_tool(dbstate, uistate, 
-                           eval('mod.' + pdata.toolclass), 
-                           eval('mod.' + pdata.optionclass),
+                           getattr(mod, pdata.toolclass), 
+                           getattr(mod, pdata.optionclass),
                            pdata.name, pdata.id, pdata.category,
                            dbstate.db.request_rebuild)
 

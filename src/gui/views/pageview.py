@@ -39,6 +39,7 @@ _LOG = logging.getLogger('.pageview')
 #
 #----------------------------------------------------------------
 import gtk
+from gettext import gettext as _
 
 #----------------------------------------------------------------
 #
@@ -79,6 +80,8 @@ class PageView(DbGUIElement):
         self.dirty = True
         self.active = False
         self.func_list = {}
+        self.category = "Miscellaneous"
+        self.translated_category = _("Miscellaneous")
 
         self.dbstate.connect('no-database', self.disable_action_group)
         self.dbstate.connect('database-changed', self.enable_action_group)
@@ -179,6 +182,34 @@ class PageView(DbGUIElement):
         button, and for the tab label.
         """
         return self.title
+
+
+    def set_category(self, category):
+        """
+        Set the category of the view. This is used to define the text for the
+        button, and for the tab label.
+
+        category - a tuple of the form (category, translated-category)
+        """
+        if isinstance(category, tuple):
+            self.category = category[0]
+            self.translated_category = category[1]
+        else:
+            raise AttributeError("View category must be (name, translated-name)")
+
+    def get_category(self):
+        """
+        Return the category name of the view. This is used to define
+        the text for the button, and for the tab label.
+        """
+        return self.category
+
+    def get_translated_category(self):
+        """
+        Return the translated category name of the view. This is used
+        to define the text for the button, and for the tab label.
+        """
+        return self.translated_category
 
     def get_display(self):
         """
