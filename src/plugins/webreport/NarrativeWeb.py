@@ -1214,7 +1214,7 @@ class BasePage(object):
             elif classname == "Event":
                 _obj = db.get_event_from_handle( newhandle )
                 _name = _obj.get_description()
-                _linkurl = self.report.build_url_fnamme_html(_obj.handle, "evt", True) 
+                _linkurl = self.report.build_url_fname_html(_obj.handle, "evt", True) 
             elif classname == "Place":
                 _obj = db.get_place_from_handle(newhandle)
                 _name = ReportUtils.place_name(db, newhandle)
