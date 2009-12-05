@@ -468,16 +468,22 @@ def probably_alive(person, db, current_date=None, limit=0):
                    (defaults to today)
     :param limit:  number of years to check beyond death_date
     """
+    today = gen.lib.Date()
+    today.set_yr_mon_day(*time.localtime(time.time())[0:3])
     if current_date is None:
-        current_date = gen.lib.Date()
-        # yr, mon, day:
-        current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
+        current_date = today
+    # Are we checking to see if they are alive right now?
+    now = current_date.match(today, "=")
 
     death_date = None
     # If the recorded death year is before current year then
     # things are simple.
     death_ref = person.get_death_ref()
     if death_ref and death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+        # If they have a prmary death ref
+        if now:
+            # If you are asking today, then they are dead
+            return False
         death = db.get_event_from_handle(death_ref.ref)
         if death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
             death_date = death.get_date_object()
@@ -491,6 +497,10 @@ def probably_alive(person, db, current_date=None, limit=0):
         if ev and ev.type in [gen.lib.EventType.CAUSE_DEATH, 
                               gen.lib.EventType.BURIAL, 
                               gen.lib.EventType.CREMATION]:
+            # If they have a prmary death-related event
+            if now:
+                # If you are asking today, then they are dead
+                return False
             if not death_date:
                 death_date = ev.get_date_object()
             if ev.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
