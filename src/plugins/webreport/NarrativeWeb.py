@@ -446,7 +446,7 @@ class BasePage(object):
         # return unordered note list to its callers
         return ul
 
-    def display_event_row(self, evt, evt_ref, showplc, showdescr, showsrc, shownote, subdirs, hyp):
+    def display_event_row(self, evt, evt_ref, showplc, showdescr, showsrc, subdirs, hyp):
         """
         display the event row for IndividualPage
         """
@@ -1095,6 +1095,73 @@ class BasePage(object):
         # return navigation menu bar to its caller
         return navigation
 
+    def add_image(self, option_name, height = 0):
+        db = self.report.database
+
+        pic_id = self.report.options[option_name]
+        if pic_id:
+            obj = db.get_object_from_gramps_id(pic_id)
+            obj_handle = obj.handle
+            mime_type = obj.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
+                try:
+
+                    newpath, thumb_path = self.report.prepare_copy_media(obj)
+                    self.report.copy_file(Utils.media_path_full(db, obj.get_path()), newpath)
+
+                    # get media rectangles
+                    _region_items = self.media_rectangles(obj_handle, obj)
+                    if len(_region_items):
+                        with Html("div") as mediadisplay:
+
+                            # Feature #2634; display the mouse-selectable regions.
+                            # See the large block at the top of this function where
+                            # the various regions are stored in _region_items
+                            ordered = Html("ol", class_ = "RegionBox")
+                            mediadisplay += ordered
+                            while len(_region_items):
+                                (name, x, y, w, h, linkurl) = _region_items.pop()
+                                ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
+                                    % (x, y, w, h)) +(
+                                    Html("a", name, href = linkurl)
+                                    )       
+
+                                # begin image
+                                image = Html("img")
+                                mediadisplay += image
+                                img_attr = ''
+                                if height:
+                                    img_attr += 'height = "%d"'  % height
+                                img_attr += ' src = "%s" alt = "%s"' % (newpath, obj.get_description())
+
+                                # add image attributes to image
+                                image.attr = img_attr
+
+                                # return image with media behaviours styling
+                                return mediadisplay
+
+                    # media has no media references
+                    else:
+
+                        # begin image
+                        image = Html("img")
+                        img_attr = ''
+                        if height:
+                            img_attr += 'height = "%d"'  % height
+                        img_attr += ' src = "%s" alt = "%s"' % (newpath, obj.get_description())
+
+                        # add image attributes to image
+                        image.attr = img_attr
+
+                        # return an image
+                        return image   
+
+                except (IOError, OSError), msg:
+                    WarningDialog(_("Could not add photo to page"), str(msg))
+
+        # no image to return
+        return None
+
     def media_rectangles(self, handle, media):
 
         """
@@ -1200,6 +1267,25 @@ class BasePage(object):
 
             if mime_type:
                 try:
+
+                    # get media rectangles
+                    _region_items = self.media_rectangles(photo_handle, photo)
+                    if len(_region_items):
+                        with Html("div") as mediadisplay:
+                            snapshot += mediadisplay
+
+                            # Feature #2634; display the mouse-selectable regions.
+                            # See the large block at the top of this function where
+                            # the various regions are stored in _region_items
+                            ordered = Html("ol", class_ = "RegionBox")
+                            mediadisplay += ordered
+                            while len(_region_items):
+                                (name, x, y, w, h, linkurl) = _region_items.pop()
+                                ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
+                                    % (x, y, w, h)) +(
+                                    Html("a", name, href = linkurl)
+                                    )       
+
                     lnkref = (self.report.cur_fname, self.page_title, self.gid)
                     self.report.add_lnkref_to_photo(photo, lnkref)
                     real_path, newpath = self.report.prepare_copy_media(photo)
@@ -1250,6 +1336,7 @@ class BasePage(object):
 
                 photo_handle = mediaref.get_reference_handle()
                 photo = db.get_object_from_handle(photo_handle)
+
                 if photo_handle in displayed:
                     continue
                 mime_type = photo.get_mime_type()
@@ -1259,6 +1346,25 @@ class BasePage(object):
 
                 if mime_type:
                     try:
+
+                        # get media rectangles
+                        _region_items = self.media_rectangles(photo_handle, photo)
+                        if len(_region_items):
+                            with Html("div") as mediadisplay:
+                                section += mediadisplay
+
+                                # Feature #2634; display the mouse-selectable regions.
+                                # See the large block at the top of this function where
+                                # the various regions are stored in _region_items
+                                ordered = Html("ol", class_ = "RegionBox")
+                                mediadisplay += ordered
+                                while len(_region_items):
+                                    (name, x, y, w, h, linkurl) = _region_items.pop()
+                                    ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
+                                        % (x, y, w, h)) +(
+                                        Html("a", name, href = linkurl)
+                                        )       
+
                         lnkref = (self.report.cur_fname, self.page_title, self.gid)
                         self.report.add_lnkref_to_photo(photo, lnkref)
                         real_path, newpath = self.report.prepare_copy_media(photo)
@@ -2669,7 +2775,7 @@ class MediaPage(BasePage):
 
                     # media date
                     date = media.get_date_object()
-                    if date:
+                    if date and date is not Date.EMPTY:
                         trow = Html("tr") + (
                             Html("td", DHEAD, class_ = "ColumnAttribute", inline = True),
                             Html("td", _dd.display(date), class_ = "ColumnValue", inline = True)
@@ -2941,7 +3047,7 @@ class IntroductionPage(BasePage):
         with Html("div", class_ = "content", id = "Introduction") as section:
             body += section
 
-            introimg = report.add_image('introimg')
+            introimg = self.add_image('introimg')
             if introimg is not None:
                 section += introimg
 
@@ -2978,7 +3084,7 @@ class HomePage(BasePage):
         with Html("div", class_ = "content", id = "Home") as section:
             body += section
 
-            homeimg = report.add_image('homeimg')
+            homeimg = self.add_image('homeimg')
             if homeimg is not None:
                 section += homeimg
 
@@ -3373,7 +3479,7 @@ class ContactPage(BasePage):
             with Html("div", id = 'summaryarea') as summaryarea:
                 section  += summaryarea
 
-                contactimg = report.add_image('contactimg', 200)
+                contactimg = self.add_image('contactimg', 200)
                 if contactimg is not None:
                     summaryarea += contactimg
 
@@ -3951,9 +4057,8 @@ class IndividualPage(BasePage):
                 @param: show place
                 @param: show description
                 @param: show source references
-                @param: show note
                 """
-                thead += self.display_event_header(True, True, True, False)
+                thead += self.display_event_header(True, True, True)
 
                 tbody = Html("tbody")
                 table += tbody
@@ -3968,11 +4073,10 @@ class IndividualPage(BasePage):
                     @param: show place or not?
                     @param: show description or not?
                     @param: show source references or not?
-                    @param: shownote = show notes or not?
                     @param: subdirs = True or False
                     @param: hyp = show hyperlinked evt type or not?
                     """
-                    tbody += self.display_event_row(event, evt_ref, True, True, True, False, True, True)
+                    tbody += self.display_event_row(event, evt_ref, True, True, True, True, True)
  
         # return section to its caller
         return section
@@ -4445,7 +4549,7 @@ class IndividualPage(BasePage):
                                    )
         return ped
 
-    def display_event_header(self, showplc, showdescr, showsrc, shownote):
+    def display_event_header(self, showplc, showdescr, showsrc):
         """
         will print the event header row for display_event_row() and
             format_event()
@@ -4453,7 +4557,6 @@ class IndividualPage(BasePage):
         @param: showplc = show place
         @param: showdescr = show description
         @param: showsrc = show source references
-        @param: shownote = show notes or not?
         """ 
         # position 0 = translatable label, position 1 = column class, and
         # position 2 = data
@@ -4469,9 +4572,6 @@ class IndividualPage(BasePage):
 
         if showsrc:
             event_header_row.append((SHEAD, "Sources"))
-
-        if shownote:
-            event_header_row.append((NHEAD, "Notes"))
 
         trow = Html("tr")
         trow.extend(
@@ -4497,9 +4597,8 @@ class IndividualPage(BasePage):
             @param: show place
             @param: show description
             @param: show source references
-            @param: show note
             """
-            thead += self.display_event_header(True, True, True, False)
+            thead += self.display_event_header(True, True, True)
 
             # begin table body
             tbody = Html("tbody")
@@ -4515,11 +4614,10 @@ class IndividualPage(BasePage):
                 @param: show place or not?
                 @param: show description or not?
                 @param: show source references or not?
-                @param: shownote = show notes or not?
                 @param: up = True or False: attach subdirs or not?
                 @param: hyp = show hyperlinked evt type or not?
                 """
-                tbody += self.display_event_row(event, event_ref, True, True, True, False, True, True)
+                tbody += self.display_event_row(event, event_ref, True, True, True, True, True)
 
         # return table to its callers
         return table
@@ -5339,7 +5437,8 @@ class NavWebReport(Report):
         """
 
         # set up progress bar for event pages; using ind list because it was taking too long at the end
-        self.progress.set_pass(_("Creating event pages"), len(ind_list))
+        event_handles = self.database.get_event_handles()
+        self.progress.set_pass(_("Creating event pages"), len(event_handles))
 
         # send all data to the events list page
         EventListPage(self, self.title, event_types, event_handle_list, ind_list)
@@ -5470,36 +5569,6 @@ class NavWebReport(Report):
                 self.progress.step()
 
                 AddressBookPage(self, self.title, person_handle, has_add, has_res, has_url)
-
-    def add_image(self, option_name, height=0):
-        pic_id = self.options[option_name]
-        if pic_id:
-            obj = self.database.get_object_from_gramps_id(pic_id)
-            mime_type = obj.get_mime_type()
-            if mime_type and mime_type.startswith("image"):
-                try:
-                    newpath, thumb_path = self.prepare_copy_media(obj)
-                    self.copy_file(Utils.media_path_full(self.database, obj.get_path()),
-                                    newpath)
-
-                    # begin image
-                    image = Html("img")
-                    img_attr = ''
-                    if height:
-                        img_attr += 'height = "%d"'  % height
-                    img_attr += ' src = "%s" alt = "%s"' % (newpath, obj.get_description())
-
-                    # add image attributes to image
-                    image.attr = img_attr
-
-                    # return an image
-                    return image   
-
-                except (IOError, OSError), msg:
-                    WarningDialog(_("Could not add photo to page"), str(msg))
-
-        # no image to return
-        return None
 
     def build_subdirs(self, subdir, fname, up = False):
         """
