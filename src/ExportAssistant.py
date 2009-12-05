@@ -134,6 +134,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             
         pmgr = GuiPluginManager.get_instance()
         self.__exporters = pmgr.get_export_plugins()
+        self.map_exporters = {}
         
         self.__previous_page = -1
 
@@ -201,10 +202,13 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         group = None
         recent_type = config.get('behavior.recent-export-type')
         
-        for ix in range(len(self.__exporters)):
-            title = self.__exporters[ix].get_name()
-            description= self.__exporters[ix].get_description()
-
+        exporters = [(x.get_name().replace("_", ""), x) for x in self.__exporters]
+        exporters.sort()
+        ix = 0
+        for sort_title, exporter in exporters:
+            title = exporter.get_name()
+            description= exporter.get_description()
+            self.map_exporters[ix] = exporter
             button = gtk.RadioButton(group,title)
             button.set_tooltip_text(description)
             if not group:
@@ -213,6 +217,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             table.attach(button, 0, 2, 2*ix, 2*ix+1)
             if ix == recent_type :
                 button.set_active(True)
+            ix += 1
         
         box.add(table)
         
@@ -250,7 +255,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             #decide if options need to be shown:
             self.option_box_instance = None
             ix = self.get_selected_format_index()
-            if not self.__exporters[ix].get_config(): 
+            if not self.map_exporters[ix].get_config(): 
                 # no options needed
                 return pagenumber + 2
         elif pagenumber == _ExportAssistant_pages['options']:
@@ -265,7 +270,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         """This method gets the option page, and fills it with the options."""
         option = self.get_selected_format_index()
         vbox = self.get_nth_page(_ExportAssistant_pages['options'])
-        (config_title, config_box_class) = self.__exporters[option].get_config()
+        (config_title, config_box_class) = self.map_exporters[option].get_config()
         self.set_page_title(vbox, config_title)
         # remove present content of the vbox
         vbox.foreach(vbox.remove)
@@ -438,7 +443,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             # The confirm page with apply button
             # Present user with what will happen
             ix = self.get_selected_format_index()
-            format = self.__exporters[ix].get_name()
+            format = self.map_exporters[ix].get_name()
             page_complete = False
             # If no file select:
             if (self.option_box_instance and 
@@ -561,7 +566,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     def suggest_filename(self):
         """Prepare suggested filename and set it in the file chooser."""
         ix = self.get_selected_format_index()
-        ext = self.__exporters[ix].get_extension()
+        ext = self.map_exporters[ix].get_extension()
         
         # Suggested folder: try last export, then last import, then home.
         default_dir = config.get('paths.recent-export-dir')
@@ -593,7 +598,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             config.set('paths.recent-export-dir', os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         config.set('behavior.recent-export-type', ix)
-        export_function = self.__exporters[ix].get_export_function()
+        export_function = self.map_exporters[ix].get_export_function()
         success = export_function(self.dbstate.db,
                                   filename,
                                   self.option_box_instance,
