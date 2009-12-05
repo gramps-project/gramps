@@ -84,14 +84,14 @@ REPOSITORY_KEY = 6
 REFERENCE_KEY  = 7
 NOTE_KEY       = 8
 
-PERSON_COL_KEY      = 'columns'
-CHILD_COL_KEY       = 'child_columns'
-PLACE_COL_KEY       = 'place_columns'
-SOURCE_COL_KEY      = 'source_columns'
-MEDIA_COL_KEY       = 'media_columns'
-REPOSITORY_COL_KEY  = 'repository_columns'
-EVENT_COL_KEY       = 'event_columns'
-FAMILY_COL_KEY      = 'family_columns'
-NOTE_COL_KEY        = 'note_columns'
+PERSON_COL_KEY      = 'person-view.columns'
+CHILD_COL_KEY       = 'child-view.columns'
+PLACE_COL_KEY       = 'place-view.columns'
+SOURCE_COL_KEY      = 'source-view.columns'
+MEDIA_COL_KEY       = 'media-view.columns'
+REPOSITORY_COL_KEY  = 'repository-view.columns'
+EVENT_COL_KEY       = 'event-view.columns'
+FAMILY_COL_KEY      = 'family-view.columns'
+NOTE_COL_KEY        = 'note-view.columns'
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2

@@ -52,6 +52,7 @@ from gen.utils.callback import Callback
 from gen.db import (GrampsCursor, GrampsDbBase)
 from Utils import create_id
 import Errors
+import config
 
 LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
@@ -1389,28 +1390,24 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         self.set_column_order(col_list, NOTE_COL_KEY)
 
-    def __get_column_order(self, name, default):
-        if self.metadata is None:
-            return default
+    def __get_column_order(self, name):
+        default = config.get_default(name)
+        cols = config.get(name)
+        if len(cols) != len(default):
+            return cols + default[len(cols):]
         else:
-            cols = self.metadata.get(name, default)
-            if len(cols) != len(default):
-                return cols + default[len(cols):]
-            else:
-                return cols
-
+            return cols
+        
     def get_person_column_order(self):
         """
         Return the Person display common information stored in the database's 
         metadata.
         """
-        default = [(1, 0, 250), (1, 1, 50), (1, 2, 75), (1, 3, 100),
-                   (1, 4, 175), (1, 5, 100), (1, 6, 175), (1, 7, 100),
-                   (0, 8, 100)]
-        return self.__get_column_order(PERSON_COL_KEY, default)
+        return self.__get_column_order(PERSON_COL_KEY)
 
-    def __get_columns(self, key, default):
-        values = self.__get_column_order(key, default)
+    def __get_columns(self, key):
+        default = config.get_default(key)
+        values = self.__get_column_order(key)
         new = []
         for val in values:
             if len(val) == 2:
@@ -1427,77 +1424,56 @@ class GrampsDbRead(GrampsDbBase, Callback):
         Return the Person display common information stored in the database's 
         metadata.
         """
-        default = [(1, 0, 75), (1, 1, 200), (1, 2, 200), (1, 3, 100),
-                   (0, 4, 100)]
-        return self.__get_columns(FAMILY_COL_KEY, default)
+        return self.__get_columns(FAMILY_COL_KEY)
 
     def get_child_column_order(self):
         """
         Return the Person display common information stored in the database's 
         metadata.
         """
-        default = [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
-                   (0, 6), (0, 7)]
-        return self.__get_column_order(CHILD_COL_KEY, default)
+        return self.__get_column_order(CHILD_COL_KEY)
 
     def get_place_column_order(self):
         """
         Return the Place display common information stored in thedatabase's 
         metadata.
         """
-        default = [(1, 0, 250), (1, 1, 75), (1, 11, 100), (0, 3, 100),
-                   (1, 4, 100, ), (0, 5, 150), (1, 6, 150), (0, 7, 150),
-                   (0, 8, 150), (0, 9, 150), (0, 10, 150),(0,2,100)]
-        return self.__get_columns(PLACE_COL_KEY, default)
+        return self.__get_columns(PLACE_COL_KEY)
 
     def get_source_column_order(self):
         """
         Return the Source display common information stored in the database's 
         metadata.
         """
-        default = [(1, 0, 200), (1, 1, 75), (1, 2, 150), (0, 3, 100),
-                   (1, 4, 150), (0, 5, 100)]
-        return self.__get_columns(SOURCE_COL_KEY, default)
+        return self.__get_columns(SOURCE_COL_KEY)
 
     def get_media_column_order(self):
         """
         Return the MediaObject display common information stored in the
         database's metadata.
         """
-        default = [(1, 0, 200, ), (1, 1, 75), (1, 2, 100), (1, 3, 200),
-                   (1, 5, 150), (0, 4, 150)]
-        return self.__get_columns(MEDIA_COL_KEY, default)
+        return self.__get_columns(MEDIA_COL_KEY)
 
     def get_event_column_order(self):
         """
         Return the Event display common information stored in the database's 
         metadata.
         """
-        default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), (1, 3, 150),
-                   (1, 4, 200), (0, 5, 100)]
-        # Benny's new column order
-        default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), 
-           (0, 6, 230), (1, 3, 150),
-           (1, 4, 200), (0, 5, 100)]
-        return self.__get_columns(EVENT_COL_KEY, default)
+        return self.__get_columns(EVENT_COL_KEY)
 
     def get_repository_column_order(self):
         """
         Return the Repository display common information stored in the
         database's metadata.
         """
-        default = [(1, 0, 200), (1, 1, 75), (0, 5, 100), (0, 6, 100),
-                   (1, 2, 100), (1, 3, 250), (1, 4, 100), (0, 7, 100),
-                   (0, 8, 100), (0, 9, 100), (0, 10, 100), (0, 12, 100)]
-        return self.__get_columns(REPOSITORY_COL_KEY, default)
+        return self.__get_columns(REPOSITORY_COL_KEY)
 
     def get_note_column_order(self):
         """
         Return the Note display common information stored in the database's 
         metadata.
         """
-        default = [(1, 0, 350), (1, 1, 75), (1, 2, 100), (1, 3, 100)]
-        return self.__get_columns(NOTE_COL_KEY, default)
+        return self.__get_columns(NOTE_COL_KEY)
 
     def delete_primary_from_reference_map(self, handle, transaction):
         """
