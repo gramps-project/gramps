@@ -60,7 +60,7 @@ from BasicUtils import UpdateCallback
 from gen.db.exceptions import GrampsDbWriteFailure
 import const
 from QuestionDialog import ErrorDialog
-import ExportOptions
+from ExportOptions import WriterOptionBox
 import gen.proxy
 import libgrampsxml
 

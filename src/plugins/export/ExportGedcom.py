@@ -43,7 +43,7 @@ from gen.lib.date import make_gedcom_date, MONTH
 import const
 import GrampsDbUtils._GedcomInfo as GedcomInfo
 import Errors
-import ExportOptions
+from ExportOptions import WriterOptionBox
 import BasicUtils
 from Utils import media_path_full
 import gen.proxy

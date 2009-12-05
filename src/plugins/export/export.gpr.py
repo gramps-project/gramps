@@ -74,7 +74,7 @@ plg.status = STABLE
 plg.fname = 'ExportGedcom.py'
 plg.ptype = EXPORT
 plg.export_function = 'export_data'
-plg.export_options = 'ExportOptions.WriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('GEDCOM export options')
 plg.extension = "ged"
 
@@ -113,7 +113,7 @@ plg.status = STABLE
 plg.fname = 'ExportPkg.py'
 plg.ptype = EXPORT
 plg.export_function = 'writeData'
-plg.export_options = 'ExportOptions.WriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('Gramps package export options')
 plg.extension = "gpkg"
 
@@ -134,7 +134,7 @@ plg.status = STABLE
 plg.fname = 'ExportXml.py'
 plg.ptype = EXPORT
 plg.export_function = 'export_data'
-plg.export_options = 'ExportOptions.WriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('Gramps XML export options')
 plg.extension = "gramps"
 
@@ -153,7 +153,7 @@ plg.status = UNSTABLE
 plg.fname = 'ExportSql.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
-plg.export_options = 'ExportOptions.WriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('SQLite options')
 plg.extension = "sql"
 

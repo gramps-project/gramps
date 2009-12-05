@@ -45,6 +45,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import config
 import gen.utils
 from gen.plug import PluginRegister
 
@@ -279,11 +280,13 @@ class BasePluginManager(object):
         if self.__import_plugins == []:
             #The module still needs to be imported
             for pdata in self.get_reg_importers():
+                if pdata.id in config.get("plugin.hiddenplugins"):
+                    continue
                 mod = self.load_plugin(pdata)
                 if mod:
                     imp = gen.plug.ImportPlugin(name=pdata.name, 
                         description     = pdata.description,
-                        import_function = eval('mod.' + pdata.import_function),
+                        import_function = getattr(mod, pdata.import_function),
                         extension       = pdata.extension)
                     self.__import_plugins.append(imp)
 
@@ -300,14 +303,16 @@ class BasePluginManager(object):
         if self.__export_plugins == []:
             #The modules still need to be imported
             for pdata in self.get_reg_exporters():
+                if pdata.id in config.get("plugin.hiddenplugins"):
+                    continue
                 mod = self.load_plugin(pdata)
                 if mod:
                     exp = gen.plug.ExportPlugin(name=pdata.name, 
                         description     = pdata.description,
-                        export_function = eval('mod.' + pdata.export_function),
+                        export_function = getattr(mod, pdata.export_function),
                         extension       = pdata.extension,
                         config          = (pdata.export_options_title, 
-                                          eval('mod.' + pdata.export_options)))
+                                          getattr(mod, pdata.export_options)))
                     self.__export_plugins.append(exp)
                 
         return self.__export_plugins
@@ -324,11 +329,13 @@ class BasePluginManager(object):
         if self.__docgen_plugins == []:
             #The modules still need to be imported
             for pdata in self.get_reg_docgens():
+                if pdata.id in config.get("plugin.hiddenplugins"):
+                    continue
                 mod = self.load_plugin(pdata)
                 if mod:
                     dgp = gen.plug.DocGenPlugin(name=pdata.name, 
                             description = pdata.description,
-                            basedoc     = eval('mod.' + pdata.basedocclass),
+                            basedoc     = getattr(mod, pdata.basedocclass),
                             paper       = pdata.paper,
                             style       = pdata.style, 
                             extension   = pdata.extension )

@@ -44,7 +44,7 @@ log = logging.getLogger(".ExportSql")
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import ExportOptions
+from ExportOptions import WriterOptionBox
 from Utils import create_id
 
 #-------------------------------------------------------------------------
