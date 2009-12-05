@@ -1434,8 +1434,15 @@ class WebCalOptions(MenuReportOptions):
 
         country = EnumeratedListOption(_('Country for holidays'), 0 )
         holiday_table = libholiday.HolidayTable()
-        for index, item in enumerate(holiday_table.get_countries()):
-            country.add_item(index, item)
+        countries = holiday_table.get_countries()
+        countries.sort()
+        if (len(countries) == 0 or 
+            (len(countries) > 0 and countries[0] != '')):
+            countries.insert(0, '')
+        count = 0
+        for c in countries:
+            country.add_item(count, c)
+            count += 1
         country.set_help(_("Holidays will be included for the selected "
                             "country"))
         menu.add_option(category_name, "country", country)
