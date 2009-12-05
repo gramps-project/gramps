@@ -1,3 +1,4 @@
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -465,8 +466,7 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr,
-                        showsrc, shownote, subdirs, hyp)
+        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr, subdirs, hyp)
 
         # begin event table row
         trow = Html("tr")
@@ -474,6 +474,10 @@ class BasePage(object):
             Html("td", data or "&nbsp;", class_ = "Column" + colclass,
                 inline = (not data or colclass == "Date"))
             for (label, colclass, data) in event_data)
+
+        # get event source references
+        srcrefs = self.get_citation_links( evt.get_source_references() ) or "&nbsp;"
+        trow += Html("td", srcrefs, class_ = "ColumnSources")
 
         # return events table row to its callers
         return trow 
@@ -497,8 +501,7 @@ class BasePage(object):
         else:
             return eventtype
 
-    def get_event_data(self, evt, evt_ref, showplc, showdescr, showsrc,
-                            shownote, up, hyp, gid = None):
+    def get_event_data(self, evt, evt_ref, showplc, showdescr, up, hyp, gid = None):
         """
         retrieve event data from event and evt_ref
 
@@ -545,18 +548,6 @@ class BasePage(object):
         if showdescr:
             descr = evt.get_description()
             info.append([DESCRHEAD, "Description", descr])
-
-        if showsrc:
-            srcrefs = self.display_ind_sources(evt)
-            if srcrefs is not None:
-                info.append([SHEAD, "Sources", srcrefs])
-
-        if shownote:
-            notelist = evt.get_note_list()
-            notelist.extend(evt_ref.get_note_list() )
-            notelist = self.display_note_list(notelist)
-            if notelist is not None:
-                info.append([NHEAD, "Notes", notelist])
 
         # return event data information to its callers
         return info                        
@@ -1103,6 +1094,96 @@ class BasePage(object):
 
         # return navigation menu bar to its caller
         return navigation
+
+    def media_rectangles(self, handle, media):
+
+        """
+        *************************************
+        GRAMPS feature #2634 -- attempt to highlight subregions in media
+        objects and link back to the relevant web page.
+
+        This next section of code builds up the "records" we'll need to
+        generate the html/css code to support the subregions
+        *************************************
+        """
+        db = self.report.database
+
+        # get all of the backlinks to this media object; meaning all of
+        # the people, events, places, etc..., that use this image
+        _region_items = set()
+        for (classname, newhandle) in db.find_backlink_handles(handle, 
+            include_classes = ["Person", "Family", "Event", "Place"]):
+
+            # for each of the backlinks, get the relevant object from the db
+            # and determine a few important things, such as a text name we
+            # can use, and the URL to a relevant web page
+            _obj     = None
+            _name    = ""
+            _linkurl = "#"
+            if classname == "Person":
+                _obj = db.get_person_from_handle( newhandle )
+                # what is the shortest possible name we could use for this person?
+                _name = _obj.get_primary_name().get_call_name()
+                if not _name or _name == "":
+                    _name = _obj.get_primary_name().get_first_name()
+                _linkurl = self.report.build_url_fname_html(_obj.handle, "ppl", True)
+            elif classname == "Family":
+                _obj = db.get_family_from_handle( newhandle )
+                partner1_handle = _obj.get_father_handle()
+                partner2_handle = _obj.get_mother_handle()
+                if partner1_handle:
+                     partner1 = db.get_person_from_handle(partner1_handle)
+                if partner2_handle:
+                    partner2 = db.get_person_from_handle(partner2_handle)
+                if partner2 and partner1:
+                    _name = partner1.get_primary_name().get_first_name()
+                    _linkurl = self.report.build_url_fname_html(partner1_handle, "ppl", True)  
+                elif partner1:
+                    _name = partner1.get_primary_name().get_first_name()
+                    _linkurl = self.report.build_url_fname_html(partner1_handle, "ppl", True)  
+                elif partner2:
+                    _name = partner2.get_primary_name().get_first_name()
+                    _linkurl = self.report.build_url_fname_html(partner2_handle, "ppl", True)  
+            elif classname == "Event":
+                _obj = db.get_event_from_handle( newhandle )
+                _name = _obj.get_description()
+                _linkurl = self.report.build_url_fnamme_html(_obj.handle, "evt", True) 
+            elif classname == "Place":
+                _obj = db.get_place_from_handle(newhandle)
+                _name = ReportUtils.place_name(db, newhandle)
+                _linkurl = self.report.build_url_fname_html(newhandle, "plc", True)   
+
+            # continue looking through the loop for an object...
+            if _obj is None:
+                continue
+
+            # get a list of all media refs for this object
+            medialist = _obj.get_media_list()
+
+            # go media refs looking for one that points to this image
+            for mediaref in medialist:
+
+                # is this mediaref for this image?  do we have a rect?
+                if mediaref.ref == handle and mediaref.rect is not None:
+
+                    (x1, y1, x2, y2) = mediaref.rect
+                    # GRAMPS gives us absolute coordinates,
+                    # but we need relative width + height
+                    w = x2 - x1
+                    h = y2 - y1
+
+                    # remember all this information, cause we'll need
+                    # need it later when we output the <li>...</li> tags
+                    item = (_name, x1, y1, w, h, _linkurl)
+                    _region_items.add(item)
+        """
+        *************************************
+        end of code that looks for and prepares the media object regions
+        *************************************
+        """
+
+        # return media rectangles to its callers
+        return _region_items
 
     def display_first_image_as_thumbnail( self, photolist = None):
         db = self.report.database 
@@ -2302,8 +2383,8 @@ class EventPage(BasePage):
                 """
                 for more information: see get_event_data()
                 """ 
-                event_data = self.get_event_data(event, evt_ref, True, True, 
-                    False, False, subdirs, False, event.gramps_id)
+                event_data = self.get_event_data(event, evt_ref, True, True, subdirs, 
+                    False, event.gramps_id)
 
                 for (label, colclass, data) in event_data:
                     if data:
@@ -2407,86 +2488,8 @@ class MediaPage(BasePage):
         # TODO. How do we pass my_media_list down for use in BasePage?
         BasePage.__init__(self, report, title, media.gramps_id)
 
-        """
-        *************************************
-        GRAMPS feature #2634 -- attempt to highlight subregions in media
-        objects and link back to the relevant web page.
-
-        This next section of code builds up the "records" we'll need to
-        generate the html/css code to support the subregions
-        *************************************
-        """
-
-        # get all of the backlinks to this media object; meaning all of
-        # the people, events, places, etc..., that use this image
-        _region_items = set()
-        for (classname, newhandle) in db.find_backlink_handles(handle, 
-            include_classes = ["Person", "Family", "Event", "Place"]):
-
-            # for each of the backlinks, get the relevant object from the db
-            # and determine a few important things, such as a text name we
-            # can use, and the URL to a relevant web page
-            _obj     = None
-            _name    = ""
-            _linkurl = "#"
-            if classname == "Person":
-                _obj = db.get_person_from_handle( newhandle )
-                # what is the shortest possible name we could use for this person?
-                _name = _obj.get_primary_name().get_call_name()
-                if not _name or _name == "":
-                    _name = _obj.get_primary_name().get_first_name()
-                _linkurl = report.build_url_fname_html(_obj.handle, "ppl", True)
-            elif classname == "Family":
-                _obj = db.get_family_from_handle(newhandle)
-                partner1_handle = _obj.get_father_handle()
-                partner2_handle = _obj.get_mother_handle()
-                if partner1_handle:
-                     partner1 = db.get_person_from_handle(partner1_handle)
-                if partner2_handle:
-                    partner2 = db.get_person_from_handle(partner2_handle)
-                if partner2 and partner1:
-                    _name = partner1.get_primary_name().get_first_name()
-                elif partner1:
-                    _name = partner1.get_primary_name().get_first_name()
-                elif partner2:
-                    _name = partner2.get_primary_name().get_first_name()
-                _linkurl = report.build_url_fname_html(partner1_handle, "ppl", True)   
-            elif classname == "Event":
-                _obj = db.get_event_from_handle( newhandle )
-                _name = _obj.get_description()
-            elif classname == "Place":
-                _obj = db.get_place_from_handle(newhandle)
-                _name = ReportUtils.place_name(db, newhandle)
-                _linkurl = report.build_url_fname_html(newhandle, "plc", True)   
-
-            # continue looking through the loop for an object...
-            if _obj is None:
-                continue
-
-            # get a list of all media refs for this object
-            medialist = _obj.get_media_list()
-
-            # go media refs looking for one that points to this image
-            for mediaref in medialist:
-
-                # is this mediaref for this image?  do we have a rect?
-                if mediaref.ref == handle and mediaref.rect is not None:
-
-                    (x1, y1, x2, y2) = mediaref.rect
-                    # GRAMPS gives us absolute coordinates,
-                    # but we need relative width + height
-                    w = x2 - x1
-                    h = y2 - y1
-
-                    # remember all this information, cause we'll need
-                    # need it later when we output the <li>...</li> tags
-                    item = (_name, x1, y1, w, h, _linkurl)
-                    _region_items.add(item)
-        """
-        *************************************
-        end of code that looks for and prepares the media object regions
-        *************************************
-        """
+        # get media rectangles
+        _region_items = self.media_rectangles(handle, media)
 
         of = self.report.create_file(handle, "img")
         self.up = True
