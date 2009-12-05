@@ -12741,9 +12741,8 @@ msgstr "Uključiti polu-braću/polu-sestre sa roditeljima i braćom/sestrama."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3667
 #: ../src/plugins/webreport/NarrativeWeb.py:3670
-#, fuzzy, python-format
 msgid " starting with %s"
-msgstr "Početak uvoza, %s"
+msgstr " početak uvoza %s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3690
 msgid "Narrated Web Site"
@@ -13432,9 +13431,8 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:824
-#, fuzzy
 msgid "Compressed Structured Vector Graphs (SVGZ)"
-msgstr "Komprimirana Strukturirana Vektorska Grafika (SVG)"
+msgstr "Komprimirana Strukturirana Vektorska Grafika (SVGZ)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:830
 msgid "JPEG image"
