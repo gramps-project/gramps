@@ -984,12 +984,16 @@ class Date(object):
         other_start, other_stop = other_date.get_start_stop_range()
         self_start,  self_stop  = self.get_start_stop_range()
 
-        if comparison in ["=", "=="]:
+        if comparison == "=":
             # If some overlap then match is True, otherwise False.
             return ((self_start <= other_start <= self_stop) or
                     (self_start <= other_stop <= self_stop) or 
                     (other_start <= self_start <= other_stop) or 
                     (other_start <= self_stop <= other_stop))
+        elif comparison == "==":
+            # If they match exactly on start and stop
+            return ((self_start == other_start) and
+                    (other_stop == other_stop))
         elif comparison == "<":
             # If any < any
             return self_start < other_stop
