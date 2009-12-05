@@ -105,7 +105,7 @@ plg.extension = "gw"
 
 plg = newplugin()
 plg.id    = 'ex_gpkg'
-plg.name  = _('Gra_mps package (portable XML)')
+plg.name  = _('Gra_mps XML Package (family tree and media)')
 plg.description =  _('Gramps package is an archived XML family tree together '
                  'with the media object files.')
 plg.version = '1.0'
@@ -125,7 +125,7 @@ plg.extension = "gpkg"
 
 plg = newplugin()
 plg.id    = 'ex_gramps'
-plg.name  = _('Gramps _XML family tree')
+plg.name  = _('Gramps _XML (family tree)')
 plg.description =  _('Gramps XML export is a complete archived XML backup of a' 
                  ' Gramps family tree without the media object files.'
                  ' Suitable for backup purposes.')
