@@ -73,7 +73,7 @@ def nbsp(string):
     """
     """
     if string:
-        return escape(string)
+        return string
     else:
         return mark_safe("&nbsp;")
 
