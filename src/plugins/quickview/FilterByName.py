@@ -37,14 +37,24 @@ import posixpath
 from TransUtils import sgettext as _
 from gettext import ngettext
 
-# force translation
-[_('Filtering_on|all people'), _('Filtering_on|males'), _('Filtering_on|females'),
- _('Filtering_on|people with unknown gender'), _('Filtering_on|people with incomplete names'),
- _('Filtering_on|people with missing birth dates'), _('Filtering_on|disconnected people'),
- _('Filtering_on|all families'), _('Filtering_on|unique surnames'),
- _('Filtering_on|people with media'), _('Filtering_on|media references'),
- _('Filtering_on|unique media'), _('Filtering_on|missing media'),
- _('Filtering_on|media by size'), _('Filtering_on|list of people')]
+fname_map = {'all people': _('Filtering_on|all people'), 
+             'males': _('Filtering_on|males'), 
+             'females': _('Filtering_on|females'),
+             'people with unknown gender': 
+                _('Filtering_on|people with unknown gender'), 
+             'people with incomplete names': 
+                _('Filtering_on|people with incomplete names'),
+             'people with missing birth dates': 
+                _('Filtering_on|people with missing birth dates'), 
+             'disconnected people': _('Filtering_on|disconnected people'),
+             'all families': _('Filtering_on|all families'), 
+             'unique surnames': _('Filtering_on|unique surnames'),
+             'people with media': _('Filtering_on|people with media'), 
+             'media references': _('Filtering_on|media references'),
+             'unique media': _('Filtering_on|unique media'), 
+             'missing media': _('Filtering_on|missing media'),
+             'media by size': _('Filtering_on|media by size'), 
+             'list of people': _('Filtering_on|list of people')}
 
 def run(database, document, filter_name, *args, **kwargs):
     """
@@ -56,7 +66,10 @@ def run(database, document, filter_name, *args, **kwargs):
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb)
     # display the title
-    sdoc.title(_("Filtering on %s") % _(filter_name)) # listed above
+    if filter_name in fname_map:
+        sdoc.title(_("Filtering on %s") % fname_map[filter_name]) # listed above
+    else:
+        sdoc.title(_("Filtering on %s") % _(filter_name))
     sdoc.paragraph("")
     matches = 0
     if (filter_name == 'all people'):
