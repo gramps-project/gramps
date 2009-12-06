@@ -1231,6 +1231,16 @@ class Date(object):
         """
         return self._get_low_item(Date._POS_YR)
 
+    def get_year_calendar(self, calendar=None):
+        """
+        Return the year of this date in the calendar given. 
+
+        Defaults to self.calendar if one is not given.
+        """
+        if not calendar:
+            calendar = self.calendar
+        return self.to_calendar(calendar).get_year()
+
     def get_new_year(self):
         """
         Return the new year code associated with the date. 
