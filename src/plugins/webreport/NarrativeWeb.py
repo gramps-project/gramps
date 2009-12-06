@@ -2312,7 +2312,7 @@ class EventListPage(BasePage):
             body += eventlist
 
             msg = _("This page contains an index of all the events in the database, sorted by their "
-                    "type, gramps id, and date (if one is present), Clicking on an "
+                    "type, Gramps id, and date (if one is present), Clicking on an "
                     "event&#8217;s Gramps ID will load a page of those type of events.")
             eventlist += Html("p", msg, id = "description")
 
@@ -4777,7 +4777,7 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Bookt")), _KEYPERSON)
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
