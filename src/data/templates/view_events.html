@@ -22,9 +22,9 @@
            <span class="grampsid">[{{event.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event.event_type|escape}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.description|escape}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|display_date}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.place.title|escape}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.description|nbsp}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|display_date|nbsp}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.place.title|nbsp}}</a>
     {% else %}
       <td></td>
       <td></td>

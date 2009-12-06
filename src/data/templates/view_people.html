@@ -27,8 +27,8 @@
     <td><a href="{{name.person.handle|escape}}/" class="grampsid">[{{name.person.gramps_id|escape}}]</a></td>
     <td><a href="{{name.person.handle|escape}}/" class="noThumb">{{name.person.gender_type|escape}}</a></td>
     {% if user.is_authenticated %}
-    <td><a href="{{name.person.handle|escape}}/" class="noThumb">{{name.person|person_get_birth_date}}</a></td>
-    <td><a href="{{name.person.handle|escape}}/" class="noThumb">{{name.person|person_get_death_date}}</a></td>
+    <td><a href="{{name.person.handle|escape}}/" class="noThumb">{{name.person|person_get_birth_date|nbsp}}</a></td>
+    <td><a href="{{name.person.handle|escape}}/" class="noThumb">{{name.person|person_get_death_date|nbsp}}</a></td>
     {% else %}
     <td><a href="{{name.person.handle|escape}}/" class="noThumb">[Private]</a>
     <td><a href="{{name.person.handle|escape}}/" class="noThumb">[Private]</a>

@@ -345,6 +345,7 @@ table tr td.TableDataCell {
 }
 
 table tr td.TableDataCell a {
+    display: block;
     color: black;
     text-decoration: none;
 }

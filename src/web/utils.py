@@ -37,6 +37,7 @@ from gen.lib.date import Date as GDate, Today
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 from django.template import escape
+from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.models import ContentType
 
 #------------------------------------------------------------------------
@@ -68,6 +69,14 @@ def format_number(number, with_grouping=True):
     locale.setlocale(locale.LC_ALL, "en_US.utf8")
     return locale.format("%d", number, with_grouping)
 
+def nbsp(string):
+    """
+    """
+    if string:
+        return escape(string)
+    else:
+        return mark_safe("&nbsp;")
+
 class Table(object):
     """
     >>> table = Table()
@@ -93,14 +102,16 @@ class Table(object):
         self.table.columns(*args)
 
     def row(self, *args):
-        self.table.row(*args)
+        self.table.row(*[nbsp(arg) for arg in args])
 
     def link(self, object_type_name, handle):
         self.table.set_link_col((object_type_name, handle))
 
     def get_html(self):
+        # The HTML writer escapes data:
         self.table.write(self.doc) # forces to htmllist
-        return str(self.doc.doc.htmllist[0])
+        # We have a couple of HTML bits that we want to unescape:
+        return str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
 
 _ = lambda text: text
 

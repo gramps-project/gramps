@@ -21,8 +21,8 @@
            <span class="grampsid">[{{source.gramps_id}}]</span></a>
     {% if user.is_authenticated %}
     <td><a href="/{{view}}/{{source.handle|escape}}">{{source.title|escape}}</a>
-    <td><a href="/{{view}}/{{source.handle|escape}}">{{source.pubinfo|escape}}</a>
-    <td><a href="/{{view}}/{{source.handle|escape}}">{{source.author|escape}}</a>
+    <td><a href="/{{view}}/{{source.handle|escape}}">{{source.pubinfo|nbsp}}</a>
+    <td><a href="/{{view}}/{{source.handle|escape}}">{{source.author|nbsp}}</a>
     {% else %}
       <td></td>
       <td></td>
