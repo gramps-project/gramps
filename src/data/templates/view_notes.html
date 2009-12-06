@@ -3,10 +3,10 @@
 
 {% block table_data %} 
 
-<table cellspacing="0" class="infolist surname">
+<table cellspacing="0" class="infolist surname" width="95%">
 <thead>
   <tr>
-    <th>Note #</th>
+    <th>#</th>
     <th>ID</th>
     <th>Note Type</th>
     <th>Text</th>
@@ -22,7 +22,6 @@
     <td><a href="/{{view}}/{{note.handle|escape}}">{{note.note_type|escape}}</a>
     <td><a href="/{{view}}/{{note.handle|escape}}">{{note.text|preview:40}}</a>
     {% else %}
-      <td></td>
       <td></td>
       <td></td>
     {% endif %}

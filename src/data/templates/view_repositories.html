@@ -3,10 +3,11 @@
 
 {% block table_data %} 
 
-<table cellspacing="0" class="infolist surname">
+<table cellspacing="0" class="infolist surname" width="95%">
+
 <thead>
   <tr>
-    <th>Repository #</th>
+    <th>#</th>
     <th>ID</th>
     <th>Type</th>
     <th>Name</th>
@@ -22,7 +23,6 @@
     <td><a href="/{{view}}/{{repository.handle|escape}}">{{repository.repository_type|escape}}</a>
     <td><a href="/{{view}}/{{repository.handle|escape}}">{{repository.name|escape}}</a>
     {% else %}
-      <td></td>
       <td></td>
       <td></td>
     {% endif %}

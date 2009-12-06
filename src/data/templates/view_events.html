@@ -3,10 +3,10 @@
 
 {% block table_data %} 
 
-<table cellspacing="0" class="infolist surname">
+<table cellspacing="0" class="infolist surname" width="95%">
 <thead>
   <tr>
-    <th>Event #</th>
+    <th>#</th>
     <th>ID</th>
     <th>Event Type</th>
     <th>Description</th>
@@ -26,6 +26,7 @@
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event|display_date}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event.place.title|escape}}</a>
     {% else %}
+      <td></td>
       <td></td>
       <td></td>
       <td></td>

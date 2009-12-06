@@ -1,0 +1,156 @@
+{% extends "view_page_detail.html" %}
+{% load my_tags %}
+
+{% block content %} 
+
+   <script type="text/javascript">
+     $(function(){
+
+            $('#tabs').tabs();
+      });
+   </script>
+
+<div class="content" id="IndividualDetail">
+<h3>{{person.name_set|make_name:user}}</h3>
+<div id="summaryarea">
+<table class="infolist"> {% comment %} 5 cols {% endcomment %}
+<tbody>
+
+{% if user.is_authenticated %}
+<tr>
+ <td class="ColumnAttribute">Family:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"surname"}}</td>
+ <td class="ColumnAttribute">Prefix:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"prefix"}}</td>
+ <td rowspan="5" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
+</tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Suffix:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"suffix"}}</td>
+<tr>
+ <td class="ColumnAttribute">Given:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"first_name"}}</td>
+ <td class="ColumnAttribute">Call Name:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"call"}}</td>
+</tr>
+<tr>
+ <td class="ColumnAttribute">Type:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"name_type"}}</td>
+ <td class="ColumnAttribute">Patronymic:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"patronymic"}}</td>
+</tr>
+</tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Title:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"title"}}</td>
+<tr>
+<tr>
+ <td class="ColumnAttribute">Gender:</td>
+ <td class="ColumnValue" id="data">{{person.gender_type|escape}}</td>
+ <td class="ColumnAttribute">ID:</td>
+ <td class="ColumnValue" id="data">{{person.gramps_id|escape}}</td>
+ <td class="ColumnAttribute">Marker:</td>
+ <td class="ColumnValue" id="data">{{person.marker_type|escape}}</td>
+</tr>
+</tbody>
+</table>
+
+{% else %}
+
+<tr>
+ <td class="ColumnAttribute">Family:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"surname"}}</td>
+ <td class="ColumnAttribute">Prefix:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+ <td rowspan="5" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
+</tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Suffix:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+<tr>
+ <td class="ColumnAttribute">Given:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+ <td class="ColumnAttribute">Call Name:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+</tr>
+<tr>
+ <td class="ColumnAttribute">Type:</td>
+ <td class="ColumnValue" id="data">{{person.name_set|preferred:"name_type"}}</td>
+ <td class="ColumnAttribute">Patronymic:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+</tr>
+</tr>
+ <td class="ColumnAttribute" colspan="2"></td>
+ <td class="ColumnAttribute">Title:</td>
+ <td class="ColumnValue" id="data">[Private]</td>
+<tr>
+<tr>
+ <td class="ColumnAttribute">Gender:</td>
+ <td class="ColumnValue" id="data">{{person.gender_type|escape}}</td>
+ <td class="ColumnAttribute">ID:</td>
+ <td class="ColumnValue" id="data">{{person.gramps_id|escape}}</td>
+ <td class="ColumnAttribute">Marker:</td>
+ <td class="ColumnValue" id="data"></td>
+</tr>
+</tbody>
+</table>
+
+{% endif %}
+</div>
+</div>
+<!-- Tabs -->
+<h2 class="demoHeaders">Tabs</h2>
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-events">Events</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-names">Names</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-attributes">Attributes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-addresses">Addresses</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-internet">Internet</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-association">Associations</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-lds">LDS</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-references">References</a></li>
+  </ul>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-events"> 
+    <!-- Events -->
+    {{ person|person_event_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
+    {{ person|person_name_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
+    {{ person|person_source_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
+    {{ person|person_attribute_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-addresses">
+    {{ person|person_address_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
+    {{ person|person_note_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
+    {{ person|person_gallery_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-internet">
+    {{ person|person_internet_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-association">
+    {{ person|person_association_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
+    {{ person|person_lds_table:user|safe }}
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
+    {{ person|person_reference_table:user|safe }}
+  </div>
+</div>
+
+
+{% endblock %}
+

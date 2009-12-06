@@ -9,7 +9,7 @@
 <p id="description">
 <form name="SearchForm">
 <input type="submit" value="Search:"></submit>
-<input name="search" id="get_focus" type="input" size="50" value="{{search}}"></input>
+<input autocomplete="off" name="search" id="get_focus" type="input" size="50" value="{{search}}"></input>
 </form>
 </p>
 
@@ -40,6 +40,7 @@
         {% else %}
         [<a href="?page={{page.paginator.num_pages}}{{search_query}}">last</a>]
 	{% endifequal %}
+	<b>Matches</b>: {{page.paginator.count}}/{{total}}
     </span>
 </div>
 
@@ -78,6 +79,7 @@
         {% else %}
         [<a href="?page={{page.paginator.num_pages}}{{search_query}}">last</a>]
 	{% endifequal %}
+	<b>Matches</b>: {{page.paginator.count}}/{{total}}
     </span>
 </div>
 

@@ -60,7 +60,8 @@ def register_plugins():
 
 def probably_alive(handle):
     db = DjangoDb()
-    return Utils.probably_alive(db.get_person_from_handle(handle), db)
+    person = db.get_person_from_handle(handle)
+    return Utils.probably_alive(person, db)
 
 def format_number(number, with_grouping=True):
     # FIXME: should be user's setting

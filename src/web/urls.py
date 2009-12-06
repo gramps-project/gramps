@@ -39,7 +39,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from web.grampsdb.views import (main_page, user_page, logout_page,
-                                view, view_detail)
+                                view, view_detail, view_name_detail)
 
 urlpatterns = patterns('',
     # Specific matches first:
@@ -68,6 +68,7 @@ urlpatterns += patterns('',
     url(r'^person/(?P<handle>(\w+))/$', view_detail, 
         {"view": "person"}, name="view-person-detail"),
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', view_detail),
+    (r'^person/(?P<handle>(\w+))/name/(?P<id>(\w+))$', view_name_detail),
 )
 
 # In urls:

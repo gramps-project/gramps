@@ -3,10 +3,10 @@
 
 {% block table_data %} 
 
-<table cellspacing="0" class="infolist surname">
+<table cellspacing="0" class="infolist surname" width="95%">
 <thead>
   <tr>
-    <th>Place #</th>
+    <th>#</th>
     <th>ID</th>
     <th>Title</th>
   </tr>
@@ -20,8 +20,6 @@
     {% if user.is_authenticated %}
     <td><a href="/{{view}}/{{place.handle|escape}}">{{place.title|escape}}</a>
     {% else %}
-      <td></td>
-      <td></td>
       <td></td>
     {% endif %}
   </tr>

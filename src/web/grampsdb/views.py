@@ -45,7 +45,7 @@ from web.grampsdb.models import *
 _ = lambda text: text
 
 # Views: [(Nice name plural, /name/handle, Model), ]
-VIEWS = [(_('People'), 'person', Person), 
+VIEWS = [(_('People'), 'person', Name), 
          (_('Families'), 'family', Family),
          (_('Events'), 'event', Event),
          (_('Notes'), 'note', Note),
@@ -102,6 +102,19 @@ def user_page(request, username):
     context["cview"] = _('User')
     return render_to_response('user_page.html', context)
 
+def view_name_detail(request, handle, id):
+    view_template = "view_name_detail.html"
+    name = Name.objects.get(id=id)
+    person = Person.objects.get(handle=handle)
+    context = RequestContext(request)
+    context["cview"] = 'Name'
+    context["view"] = 'name'
+    context["handle"] = handle
+    context["id"] = id
+    context["name"] = name
+    context["person"] = person
+    return render_to_response(view_template, context)
+    
 def view_detail(request, view, handle):
     if view == "event":
         try:
@@ -160,69 +173,215 @@ def view_detail(request, view, handle):
     context["handle"] = handle
     context[view] = obj
     return render_to_response(view_template, context)
-    
+
 def view(request, view):
     cview = view.title()
     search = ""
     if view == "event":
-        object_list = Event.objects.all().order_by("gramps_id")
+        if request.user.is_authenticated():
+            private = Q()
+        else:
+            # NON-AUTHENTICATED users
+            private = Q(private=False)
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Event.objects \
+                .filter((Q(gramps_id__icontains=search) |
+                         Q(event_type__name__icontains=search) |
+                         Q(place__title__icontains=search)) &
+                        private
+                        ) \
+                .order_by("gramps_id")
+        else:
+            object_list = Event.objects.filter(private).order_by("gramps_id")
         view_template = 'view_events.html'
+        total = Event.objects.all().count()
     elif view == "family":
-        object_list = Family.objects.all().order_by("gramps_id")
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            if request.user.is_authenticated():
+                if "," in search:
+                    surname, first = [term.strip() for term in 
+                                      search.split(",", 1)]
+                    object_list = Family.objects \
+                        .filter((Q(father__name__surname__istartswith=surname) &
+                                 Q(father__name__first_name__istartswith=first)) |
+                                (Q(mother__name__surname__istartswith=surname) &
+                                 Q(mother__name__first_name__istartswith=first)) 
+                                ) \
+                        .order_by("gramps_id")
+                else: # no comma
+                    object_list = Family.objects \
+                        .filter(Q(gramps_id__icontains=search) |
+                                Q(family_rel_type__name__icontains=search) |
+                                Q(father__name__surname__istartswith=search) |
+                                Q(father__name__first_name__istartswith=search) |
+                                Q(mother__name__surname__istartswith=search) |
+                                Q(mother__name__first_name__istartswith=search)
+                                ) \
+                        .order_by("gramps_id")
+            else: 
+                # NON-AUTHENTICATED users
+                if "," in search:
+                    search, trash = [term.strip() for term in search.split(",", 1)]
+                object_list = Family.objects \
+                    .filter((Q(gramps_id__icontains=search) |
+                             Q(family_rel_type__name__icontains=search) |
+                             Q(father__name__surname__istartswith=search) |
+                             Q(mother__name__surname__istartswith=search)) &
+                            Q(private=False) 
+                            ) \
+                    .order_by("gramps_id")
+        else: # no search
+            if request.user.is_authenticated():
+                object_list = Family.objects.all().order_by("gramps_id")
+            else:
+                # NON-AUTHENTICATED users
+                object_list = Family.objects.filter(private=False).order_by("gramps_id")
         view_template = 'view_families.html'
+        total = Family.objects.all().count()
     elif view == "media":
-        object_list = Media.objects.all().order_by("gramps_id")
+        if request.user.is_authenticated():
+            private = Q()
+        else:
+            # NON-AUTHENTICATED users
+            private = Q(private=False)
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Media.objects \
+                .filter(Q(gramps_id__icontains=search) &
+                        private
+                        ) \
+                .order_by("gramps_id")
+        else:
+            object_list = Media.objects.filter(private).order_by("gramps_id")
         view_template = 'view_media.html'
+        total = Media.objects.all().count()
     elif view == "note":
-        object_list = Note.objects.all().order_by("gramps_id")
+        if request.user.is_authenticated():
+            private = Q()
+        else:
+            # NON-AUTHENTICATED users
+            private = Q(private=False)
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Note.objects \
+                .filter((Q(gramps_id__icontains=search) |
+                         Q(note_type__name__icontains=search) |
+                         Q(text__icontains=search)) &
+                        private
+                        ) \
+                .order_by("gramps_id")
+        else:
+            object_list = Note.objects.filter(private).order_by("gramps_id")
         view_template = 'view_notes.html'
+        total = Note.objects.all().count()
     elif view == "person":
         if request.GET.has_key("search"):
             search = request.GET.get("search")
             if request.user.is_authenticated():
                 if "," in search:
-                    surname, first_name = [term.strip() for term in search.split(",", 1)]
+                    surname, first_name = [term.strip() for term in 
+                                           search.split(",", 1)]
                     object_list = Name.objects \
-                        .filter(surname__istartswith=surname, 
-                                first_name__istartswith=first_name) \
-                                .order_by("surname", "first_name")
+                        .filter(Q(surname__istartswith=surname, 
+                                  first_name__istartswith=first_name)) \
+                        .order_by("surname", "first_name")
                 else:
                     object_list = Name.objects \
-                        .filter(Q(surname__icontains=search) | 
-                                Q(first_name__icontains=search) |
-                                Q(suffix__icontains=search) |
-                                Q(prefix__icontains=search) |
-                                Q(patronymic__icontains=search) |
-                                Q(title__icontains=search) |
-                                Q(person__gramps_id__icontains=search)
+                        .filter((Q(surname__icontains=search) | 
+                                 Q(first_name__icontains=search) |
+                                 Q(suffix__icontains=search) |
+                                 Q(prefix__icontains=search) |
+                                 Q(patronymic__icontains=search) |
+                                 Q(title__icontains=search) |
+                                 Q(person__gramps_id__icontains=search))
                                 ) \
                         .order_by("surname", "first_name")
             else:
-                # FIXME: non-authenticated users don't get to search first_names
+                # BEGIN NON-AUTHENTICATED users
                 if "," in search:
-                    search, first_name = [term.strip() for term in search.split(",", 1)]
+                    search, trash = [term.strip() for term in search.split(",", 1)]
                 object_list = Name.objects \
-                    .filter(surname__istartswith=search) \
+                    .filter(Q(surname__istartswith=search) &
+                            Q(private=False) &
+                            Q(person__private=False)
+                            ) \
                     .order_by("surname", "first_name")
+                # END NON-AUTHENTICATED users
         else:
-            object_list = Name.objects.order_by("surname", "first_name")
+            if request.user.is_authenticated():
+                object_list = Name.objects.all().order_by("surname", "first_name")
+            else:
+                # BEGIN NON-AUTHENTICATED users
+                object_list = Name.objects.filter(Q(private=False) &
+                                                  Q(person__private=False)).order_by("surname", "first_name")
+                # END NON-AUTHENTICATED users
         view_template = 'view_people.html'
+        total = Name.objects.all().count()
     elif view == "place":
-        object_list = Place.objects.all().order_by("gramps_id")
+        if request.user.is_authenticated():
+            private = Q()
+        else:                 
+            # NON-AUTHENTICATED users
+            private = Q(private=False)
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Place.objects \
+                .filter((Q(gramps_id__icontains=search) |
+                         Q(title__icontains=search) 
+                         ) &
+                        private
+                        ) \
+                .order_by("gramps_id")
+        else:
+            object_list = Place.objects.filter(private).order_by("gramps_id")
         view_template = 'view_places.html'
+        total = Place.objects.all().count()
     elif view == "repository":
-        object_list = Repository.objects.all().order_by("gramps_id")
+        if request.user.is_authenticated():
+            private = Q()
+        else:
+            # NON-AUTHENTICATED users
+            private = Q(private=False)
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Repository.objects \
+                .filter((Q(gramps_id__icontains=search) |
+                         Q(name__icontains=search) |
+                         Q(repository_type__name__icontains=search)
+                         ) &
+                        private
+                        ) \
+                .order_by("gramps_id")
+        else:
+            object_list = Repository.objects.filter(private).order_by("gramps_id")
         view_template = 'view_repositories.html'
+        total = Repository.objects.all().count()
     elif view == "source":
-        object_list = Source.objects.all().order_by("gramps_id")
+        if request.user.is_authenticated():
+            private = Q()
+        else:
+            # NON-AUTHENTICATED users
+            private = Q(private=False)
+        if request.GET.has_key("search"):
+            search = request.GET.get("search")
+            object_list = Source.objects \
+                .filter(Q(gramps_id__icontains=search) &
+                        private
+                        ) \
+                .order_by("gramps_id")
+        else:
+            object_list = Source.objects.filter(private).order_by("gramps_id")
         view_template = 'view_sources.html'
+        total = Source.objects.all().count()
     else:
         raise Http404("Requested page type not known")
 
     if request.user.is_authenticated():
         paginator = Paginator(object_list, 50) 
     else:
-        paginator = Paginator(object_list, 15) 
+        paginator = Paginator(object_list, 19) 
 
     try:
         page = int(request.GET.get('page', '1'))
@@ -239,6 +398,7 @@ def view(request, view):
     context["view"] = view
     context["cview"] = cview
     context["search"] = search
+    context["total"] = total
     if search:
         context["search_query"] = ("&search=%s" % escape(search))
     else:
