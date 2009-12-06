@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+from math import pi, cos, sin
 
 #------------------------------------------------------------------------
 #
@@ -60,6 +61,65 @@ pt2cm = ReportUtils.pt2cm
 
 #------------------------------------------------------------------------
 #
+# private functions
+#
+#------------------------------------------------------------------------
+def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle, 
+               end_angle,  short_radius=0):
+    """
+    Draw a wedge shape.
+    """
+    while end_angle < start_angle:
+        end_angle += 360
+
+    p = []
+    
+    degreestoradians = pi / 180.0
+    radiansdelta = degreestoradians / 2
+    sangle = start_angle * degreestoradians
+    eangle = end_angle * degreestoradians
+    while eangle < sangle:
+        eangle = eangle + 2 * pi
+    angle = sangle
+
+    if short_radius == 0:
+        if (end_angle - start_angle) != 360:
+            p.append((centerx, centery))
+    else:
+        origx = (centerx + cos(angle) * short_radius)
+        origy = (centery + sin(angle) * short_radius)
+        p.append((origx, origy))
+        
+    while angle < eangle:
+        x = centerx + cos(angle) * radius
+        y = centery + sin(angle) * radius
+        p.append((x, y))
+        angle = angle + radiansdelta
+    x = centerx + cos(eangle) * radius
+    y = centery + sin(eangle) * radius
+    p.append((x, y))
+
+    if short_radius:
+        x = centerx + cos(eangle) * short_radius
+        y = centery + sin(eangle) * short_radius
+        p.append((x, y))
+
+        angle = eangle
+        while angle >= sangle:
+            x = centerx + cos(angle) * short_radius
+            y = centery + sin(angle) * short_radius
+            p.append((x, y))
+            angle -= radiansdelta
+    doc.draw_path(style, p)
+
+    delta = (eangle - sangle) / 2.0
+    rad = short_radius + (radius - short_radius) / 2.0
+
+    return ( (centerx + cos(sangle + delta) * rad), 
+             (centery + sin(sangle + delta) * rad))
+
+#------------------------------------------------------------------------
+#
 # FanChart
 #
 #------------------------------------------------------------------------
@@ -89,7 +149,8 @@ class FanChart(Report):
         self.circle          = menu.get_option_by_name('circle').get_value()
         self.background      = menu.get_option_by_name('background').get_value()
         self.radial          = menu.get_option_by_name('radial').get_value()
-        self.calendar = gen.lib.date.Date.ui_calendar_names[menu.get_option_by_name('calendar').get_value()]
+        selected_cal         = menu.get_option_by_name('calendar').get_value()
+        self.calendar        = gen.lib.date.Date.ui_calendar_names[selected_cal]
         pid                  = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
@@ -279,8 +340,8 @@ class FanChart(Report):
         for index in range(segments - 1, 2*segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (xc,yc) = ReportUtils.draw_wedge(self.doc,background_style, x, y, rad2,
-                                          start_angle, end_angle, rad1)
+            (xc,yc) = draw_wedge(self.doc, background_style, x, y, rad2,
+                                 start_angle, end_angle, rad1)
             if self.map[index]:
                 if (generation == 0) and self.circle == FULL_CIRCLE:
                     yc = y
@@ -311,8 +372,8 @@ class FanChart(Report):
         for index in range(segments - 1, 2*segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (xc,yc) = ReportUtils.draw_wedge(self.doc,background_style, x, y, rad2,
-                                          start_angle, end_angle, rad1)
+            (xc,yc) = draw_wedge(self.doc,background_style, x, y, rad2,
+                                 start_angle, end_angle, rad1)
             text_angle += delta
             if self.map[index]:
                 if self.radial == RADIAL_UPRIGHT and (start_angle >= 90) and (start_angle < 270):
