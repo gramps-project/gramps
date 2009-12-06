@@ -1,3 +1,12 @@
+Version 3.1.3 -- the "What name?" release.
+* contains translation updates, crash fixes, bug fixes, and minor updates.
+* fixes and updates to:
+* -> notes, date handler, GEDCOM parser, GEDCOM export, PlaceView,
+* -> thumbnails, unicode/text truncation, Gramplets, gtk 2.18/Ubuntu 9.10,
+* -> xml export/import data loss, GeneWeb GEDCOM import, css updates
+* several MacPorts-specific fixes
+* several Windows-specific fixes
+
 Version 3.1.2 -- the "Skip the impersonations" release.
 * Contains translation updates and small bug fixes.  No new features.
 * ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv, 
