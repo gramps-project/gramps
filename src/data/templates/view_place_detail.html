@@ -10,18 +10,25 @@
       });
    </script>
 
-<table>
+<div class="content" id="IndividualDetail">
+<div id="summaryarea">
+
+<table class="infolist">
 <tr>
-<td>Event type:</td><td> {{event.event_type|escape}}</td><td>Date:</td><td></td>
+<td class="ColumnAttribute">Place Name:</td>
+<td class="Columnvalue" id="data" colpan="3"> {{place.title|escape}}</td>
 </tr>
 <tr>
-<td>Description:</td><td spancols="2">{{event.description|escape}}</td>
+<td class="ColumnAttribute">Latitude:</td>
+<td class="ColumnValue" id="data">{{place.latitude|escape}}</td>
+<td class="ColumnAttribute">Longitude:</td>
+<td class="ColumnValue" id="data">{{place.longitude|escape}}</td>
 </tr>
 <tr>
-<td>ID:</td><td spancols="2">{{event.gramps_id|escape}}</td>
-</tr>
-<tr>
-<td>Place:</td><td spancols="2">{{event.place.title|escape}}</td>
+<td class="ColumnAttribute">ID:</td>
+<td class="ColumnValue" id="data">{{place.gramps_id|escape}}</td>
+<td class="ColumnAttribute">Private:</td>
+<td class="ColumnValue" id="data">{{place.private}}
 </tr>
 </table>
 
@@ -30,18 +37,30 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1" style=":hover {color: black;}">Sources</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-2">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">Gallery</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">Attributes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">References</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-location">Location</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-alternatelocations">Alternate Locations</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-internet">Internet</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-locations">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-alternatelocations">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-sources">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-notes">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-gallery">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-internet">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-references">
+  </div>
 </div>
-
-
+</div>
+</div>
 {% endblock %}
 

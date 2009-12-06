@@ -558,9 +558,9 @@ div#EventList table.eventlist tbody tr td.ColumnPartner a {
     padding: 4px 0px 4px 10px;
 }
 div#EventDetail h3 {
-    font-size: xxx-large;
+    font-size: large;
 }
-div#EventDetail h3:first-lettr {
+div#EventDetail h3:first-letter {
     color: #5D835F;
 }
 div#EventDetail table.eventlist {
@@ -721,7 +721,7 @@ div#Download table.download {
     width: 100%;
 }
 div#Download table.download img {
-    float:center;
+    text-align:center;
 }
 div#Download table.download tbody tr#Row02 {
     border-bottom:solid 2px #000;
@@ -893,7 +893,7 @@ div#events h4 {
     line-height:12px;
     text-transform:uppercase;
     color: #542;
-    padding-top:6px 0 4px 0;
+    padding:6px 0 4px 0;
     background-color: #6AF364;
 }
 #IndividualDetail div#events table.infolist thead tr th:first-child {
@@ -1032,7 +1032,7 @@ div#Addresses {
 }
 div#Addresses table.infolist {
     font-size: 12px;
-    background- color: #D8F3D6;
+    background-color: #D8F3D6;
 }
 div#Addresses table.infolist tbody tr td {
     border-bottom: solid 1px #5D835F;
@@ -1047,7 +1047,7 @@ div#Addresses table.infolist tbody tr td.ColumnCity {
     width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCounty {
-    with: 8%;
+    width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnState {
     width: 12%;
@@ -1487,5 +1487,5 @@ table.oneday tbody tr td.ColumnText {
     width: 85%;
 }
 table.oneday tbody tr td.ColumnEvent {
-    width; 10%;
+    width: 10%;
 }

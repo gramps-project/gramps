@@ -619,9 +619,9 @@ div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
     content:"+ ";
 }
 div#EventDetail h3 {
-    font-size: xxx-large;
+    font-size: large;
 }
-div#EventDetail h3:first-lettr {
+div#EventDetail h3:first-letter {
     color: #000;
 }
 div#EventDetail table.eventlist {
@@ -768,7 +768,7 @@ table.download {
     width:100%;
 }
 table.download img {
-    float:center;
+    text-align: center;
 }
 table.download thead tr th {
     text-align:center;
@@ -835,7 +835,7 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
     min-height:500px;
     padding:1.5em 0 3em 0;
 }
-#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p, {
+#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p {
     margin:0 20px 1em 20px;
     padding-top:1em;
 }

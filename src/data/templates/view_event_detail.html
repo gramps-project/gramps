@@ -30,7 +30,7 @@
 </tr>
 <tr>
 <td class="ColumnAttribute">Place:</td>
-<td  class="ColumnValue" id="data" colspan="3">{{event.place.title|escape}}</td>
+<td  class="ColumnValue" id="data" colspan="3">{{event.place.title|escape}} [{{event.place.gramps_id}}]</td>
 </tr>
 </table>
 </div>
@@ -40,16 +40,20 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1" style=":hover {color: black;}">Sources</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-2">Notes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">Gallery</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">Attributes</a></li>
-    <li class="ui-corner-top ui-state-default"><a href="#tabs-3">References</a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-sources">Sources</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-notes">Notes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-gallery">Gallery</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-attributes">Attributes</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tabs-references">References</a></li>
   </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-sources">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-gallery">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-attributes">
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-references">
+  </div>
 </div>
 
 
