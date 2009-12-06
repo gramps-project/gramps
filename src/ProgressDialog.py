@@ -101,11 +101,12 @@ class GtkProgressDialog(gtk.Dialog):
         self.vbox.pack_start(pbar, expand=False, fill=False)
         
         pbar.show()
-        
-        self.resize_children()
-        self._process_events()
+        # this seems to cause an infinite loop:
+        #self.resize_children()
             
         self._progress_bars.append(pbar)
+        # This is a bad idea; could cause deletes while adding:
+        #self._process_events()
         return len(self._progress_bars)-1
     
     def remove(self, pbar_idx):
@@ -114,9 +115,10 @@ class GtkProgressDialog(gtk.Dialog):
         :param pbar_idx: the index as returned from L{add}
         :type pbar_idx: int
         """
-        pbar = self._progress_bars[pbar_idx]
-        self.vbox.remove(pbar)
-        del self._progress_bars[pbar_idx]
+        if pbar_idx is not None:
+            pbar = self._progress_bars[pbar_idx]
+            self.vbox.remove(pbar)
+            del self._progress_bars[pbar_idx]
         
     def step(self, pbar_idx):
         """Click the progress bar over to the next value.  Be paranoid
@@ -158,31 +160,41 @@ if __name__ == '__main__':
     def test(a, b):
         d = ProgressMonitor(GtkProgressDialog)
         
-        s = LongOpStatus("Doing very long operation", 100, 10)
+        s = LongOpStatus("Doing very long operation", 100, 10, can_cancel=True)
     
         d.add_op(s)
         
         for i in xrange(0, 99):
+            if s.should_cancel():
+                break
             time.sleep(0.1)
             if i == 30:
                 t = LongOpStatus("doing a shorter one", 100, 10, 
                                  can_cancel=True)
                 d.add_op(t)
                 for j in xrange(0, 99):
+                    if s.should_cancel(): 
+                        t.cancel()
+                        break
                     if t.should_cancel():
                         break
                     time.sleep(0.1)
                     t.heartbeat()
-                t.end()
+                if not t.was_cancelled():
+                    t.end()
             if i == 60:
                 t = LongOpStatus("doing another shorter one", 100, 10)
                 d.add_op(t)
                 for j in xrange(0, 99):
+                    if s.should_cancel():
+                        t.cancel()
+                        break
                     time.sleep(0.1)
                     t.heartbeat()
                 t.end()
             s.heartbeat()
-        s.end()
+        if not s.was_cancelled():
+            s.end()
     
     w = gtk.Window(gtk.WINDOW_TOPLEVEL)
     w.connect('destroy', gtk.main_quit)

@@ -88,7 +88,8 @@ class ProgressMeter(object):
     MODE_FRACTION = 0
     MODE_ACTIVITY = 1
     
-    def __init__(self, title, header=''):
+    def __init__(self, title, header='', can_cancel=False, 
+                 cancel_callback=None):
         """
         Specify the title and the current pass header.
         """
@@ -97,9 +98,18 @@ class ProgressMeter(object):
         self.__pbar_max = 100.0
         self.__pbar_index = 0.0
         self.__old_val = -1
+        self.__can_cancel = can_cancel
+        self.__cancelled = False
+        if cancel_callback:
+            self.__cancel_callback = cancel_callback
+        else:
+            self.__cancel_callback = self.handle_cancel
         
         self.__dialog = gtk.Dialog()
-        self.__dialog.connect('delete_event', self.__warn)
+        if self.__can_cancel:
+            self.__dialog.connect('delete_event', self.__cancel_callback)
+        else:
+            self.__dialog.connect('delete_event', self.__warn)
         self.__dialog.set_has_separator(False)
         self.__dialog.set_title(title)
         self.__dialog.set_border_width(12)
@@ -117,10 +127,31 @@ class ProgressMeter(object):
  
         self.__pbar = gtk.ProgressBar()
         self.__dialog.vbox.add(self.__pbar)
+
+        if self.__can_cancel:
+            self.__dialog.set_size_request(350, 170)
+            self.__cancel_button = gtk.Button(stock=gtk.STOCK_CANCEL)
+            self.__cancel_button.connect('clicked', self.__cancel_callback)
+            self.__dialog.vbox.add(self.__cancel_button)
         
         self.__dialog.show_all()
         if header == '':
             self.__lbl.hide()
+
+    def handle_cancel(self, *args, **kwargs):
+        """
+        Default cancel handler (if enabled).
+        """
+        self.__cancel_button.set_sensitive(False)
+        self.__lbl.set_label(_("Cancelling..."))
+        self.__cancelled = True
+
+    def get_cancelled(self):
+        """
+        Returns cancelled setting. True if progress meter has been
+        cancelled.
+        """
+        return self.__cancelled
 
     def set_pass(self, header="", total=100, mode=MODE_FRACTION):
         """
@@ -132,11 +163,13 @@ class ProgressMeter(object):
         self.__pbar_max = total
         self.__pbar_index = 0.0
         
-        self.__lbl.set_text(header)
-        if header == '':
-            self.__lbl.hide()
-        else:
-            self.__lbl.show()
+        # If it is cancelling, don't overwite that message:
+        if not self.__cancelled:
+            self.__lbl.set_text(header)
+            if header == '':
+                self.__lbl.hide()
+            else:
+                self.__lbl.show()
 
         if self.__mode is ProgressMeter.MODE_FRACTION:
             self.__pbar.set_fraction(0.0)
@@ -170,6 +203,8 @@ class ProgressMeter(object):
             
         while gtk.events_pending():
             gtk.main_iteration()
+
+        return self.__cancelled
 
     def set_header(self, text):
         self.__lbl.set_text(text)
