@@ -34,15 +34,17 @@ from gen.lib import Person
 import DateHandler
 
 import posixpath
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from gettext import ngettext
 
 # force translation
-[_('all people'), _('males'), _('females'), _('people with unknown gender'),
- _('people with incomplete names'), _('people with missing birth dates'),
- _('disconnected people'), _('all families'), _('unique surnames'),
- _('people with media'), _('media references'), _('unique media'), 
- _('missing media'), _('media by size'), _('list of people')]
+[_('Filtering_on|all people'), _('Filtering_on|males'), _('Filtering_on|females'),
+ _('Filtering_on|people with unknown gender'), _('Filtering_on|people with incomplete names'),
+ _('Filtering_on|people with missing birth dates'), _('Filtering_on|disconnected people'),
+ _('Filtering_on|all families'), _('Filtering_on|unique surnames'),
+ _('Filtering_on|people with media'), _('Filtering_on|media references'),
+ _('Filtering_on|unique media'), _('Filtering_on|missing media'),
+ _('Filtering_on|media by size'), _('Filtering_on|list of people')]
 
 def run(database, document, filter_name, *args, **kwargs):
     """
