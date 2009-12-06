@@ -183,6 +183,7 @@ class SimpleTable(object):
     def set_link_col(self, col):
         """
         Manually sets the column that defines link.
+        col is either a number (column) or a (object_type_name, handle).
         """
         self.__link_col = col
 
@@ -313,12 +314,19 @@ class SimpleTable(object):
                 doc.start_row()
                 for col in row:
                     doc.start_cell('TableDataCell', span=1) 
-                    if self.__link[index]:
+                    obj_type, handle = None, None
+                    if isinstance(self.__link_col, tuple):
+                        obj_type, handle = self.__link_col
+                    elif self.__link[index]:
                         obj_type, handle = self.__link[index]
-                        doc.start_link("/%s/%s" % 
-                                       (obj_type.lower(), handle))
+                    if obj_type:
+                        if obj_type.lower() == "url":
+                            doc.start_link(handle)
+                        else:
+                            doc.start_link("/%s/%s" % 
+                                           (obj_type.lower(), handle))
                     doc.write_text(col, 'Normal')
-                    if self.__link[index]:
+                    if obj_type:
                         doc.stop_link()
                     doc.end_cell()
                 doc.end_row()

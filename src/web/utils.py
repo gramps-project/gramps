@@ -95,6 +95,9 @@ class Table(object):
     def row(self, *args):
         self.table.row(*args)
 
+    def link(self, object_type_name, handle):
+        self.table.set_link_col((object_type_name, handle))
+
     def get_html(self):
         self.table.write(self.doc) # forces to htmllist
         return str(self.doc.doc.htmllist[0])
@@ -147,6 +150,8 @@ def person_name_table(djperson, user):
                       name.group_as,
                       ["No", "Yes"][sourceq],
                       note)
+            table.link('URL', "/person/%s/name/%s" % 
+                       (name.person.handle, name.id))
     return table.get_html()
 
 def person_source_table(djperson, user):
@@ -379,7 +384,7 @@ def display_date(obj):
     if date_tuple:
         gdate = GDate()
         gdate.unserialize(date_tuple)
-        return escape(_dd(gdate))
+        return _dd(gdate)
     else:
         return ""
 
@@ -410,12 +415,12 @@ def make_name(name, user):
         if not surname:
             surname = "[Missing]"
         if user.is_authenticated():
-            return escape("%s, %s" % (surname, name.first_name))
+            return "%s, %s" % (surname, name.first_name)
         else:
             if probably_alive(name.person.handle):
-                return escape("%s, %s" % (surname, "[Living]"))
+                return "%s, %s" % (surname, "[Living]")
             else:
-                return escape("%s, %s" % (surname, name.first_name))
+                return "%s, %s" % (surname, name.first_name)
     elif name: # name_set
         name = name.get(preferred=True)
         if name:
