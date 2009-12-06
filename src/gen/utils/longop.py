@@ -26,11 +26,11 @@ class LongOpStatus(Callback):
 	}
     
         def long(self):
-        status = LongOpStatus("doing long job", 100, 10)
+            status = LongOpStatus("doing long job", 100, 10)
 
             for i in xrange(0,99):
-            time.sleep(0.1)
-            status.heartbeat()
+                time.sleep(0.1)
+                status.heartbeat()
 
             status.end()
     
@@ -124,6 +124,12 @@ class LongOpStatus(Callback):
         """
         return self._secs_left
 
+    def was_cancelled(self):
+        """
+        Has this process been cancelled?
+        """
+        return self._cancel
+
     def cancel(self):
         """Inform the operation that it should complete.
         """
@@ -186,7 +192,7 @@ class LongOpStatus(Callback):
 
 if __name__ == '__main__':
 
-    s = LongOpStatus("msg", 100, 10)
+    s = LongOpStatus("msg", 100, 10, can_cancel=True)
 
     def heartbeat():
         print "heartbeat ", s.estimated_secs_to_complete()
@@ -197,9 +203,20 @@ if __name__ == '__main__':
     s.connect('op-heartbeat', heartbeat)
     s.connect('op-end', end)
 
+    import signal
+
+    def ctrlc_handler(signum, frame):
+        print "Received interrupt!"
+        s.cancel()
+
+    signal.signal(signal.SIGINT, ctrlc_handler)
+
     for i in xrange(0, 99):
+        if s.should_cancel():
+            break
         time.sleep(0.1)
         s.heartbeat()
 
-    s.end()
+    if not s.was_cancelled():
+        s.end()
     

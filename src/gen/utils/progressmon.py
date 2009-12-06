@@ -126,6 +126,10 @@ class ProgressMonitor(object):
         
         log.debug("heartbeat in ProgressMonitor")
         
+        if idx >= len(self._status_stack):
+            # this item has been cancelled
+            return
+
         facade = self._status_stack[idx]
         
         if facade.status_obj.estimated_secs_to_complete() > self._popup_time:
@@ -143,8 +147,15 @@ class ProgressMonitor(object):
     def _end(self, idx):
         # hide any progress dialog
         # remove the status object from the stack
-        
         log.debug("received end in ProgressMonitor")
+
+        if idx >= len(self._status_stack):
+            # this item has been cancelled
+            return
+
+        while idx < len(self._status_stack) - 1:
+            self._end(len(self._status_stack) - 1)
+
         facade = self._status_stack[idx]
         if facade.active:
             dlg = self._get_dlg()
