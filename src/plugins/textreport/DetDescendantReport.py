@@ -147,7 +147,8 @@ class DetDescendantReport(Report):
             empty_place = ""
             
         self.__narrator = Narrator(self.database, self.verbose, use_call,
-                                   empty_date, empty_place, self.endnotes)
+                                   empty_date, empty_place, 
+                                   get_endnote_numbers=self.endnotes)
 
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
