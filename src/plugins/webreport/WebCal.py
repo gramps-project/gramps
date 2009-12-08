@@ -1463,7 +1463,7 @@ class WebCalOptions(MenuReportOptions):
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow)
 
-        home_link = StringOption(_('Home link'), '../index.html')
+        home_link = StringOption(_('Home link'), '../../NAVWEB/index.html')
         home_link.set_help(_("The link to be included to direct the user to "
                          "the main page of the web site"))
         menu.add_option(category_name, "home_link", home_link)
@@ -1564,8 +1564,9 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, 'link_to_narweb', self.__links)  
         self.__links.connect('value-changed', self.__links_changed)
 
-        self.__prefix = StringOption(_('Link prefix'), "file:///home/user/NAVWEB/")
-        self.__prefix.set_help(_("A Prefix on the links to take you to Narrated Web Report"))
+        self.__prefix = StringOption(_('Link prefix'), "../../NAVWEB/")
+        self.__prefix.set_help(_("A Prefix on the links to take you to "
+                                 "Narrated Web Report"))
         menu.add_option(category_name, "prefix", self.__prefix)
 
         self.__links_changed()
