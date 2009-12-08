@@ -81,12 +81,19 @@ class UnicodeReader(object):
     """
 
     def __init__(self, f, encoding="utf-8", **kwds):
+        self.first_row = True
         f = UTF8Recoder(f, encoding)
         self.reader = csv.reader(f, **kwds)
 
     def next(self):
         row = self.reader.next()
-        return [unicode(s, "utf-8") for s in row]
+        rowlist = [unicode(s, "utf-8") for s in row]
+        # Add check for Byte Order Mark (Windows, Notepad probably):
+        if self.first_row:
+            if len(rowlist) > 0 and rowlist[0].startswith(u"\ufeff"):
+                rowlist[0] = rowlist[0][1:]
+            self.first_row = False
+        return rowlist
 
     def __iter__(self):
         return self
