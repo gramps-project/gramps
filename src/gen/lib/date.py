@@ -1231,15 +1231,24 @@ class Date(object):
         """
         return self._get_low_item(Date._POS_YR)
 
-    def get_year_calendar(self, calendar=None):
+    def get_year_calendar(self, calendar_name=None):
         """
-        Return the year of this date in the calendar given. 
+        Return the year of this date in the calendar name given. 
 
-        Defaults to self.calendar if one is not given.
+        Defaults to self's calendar if one is not given.
+
+        >>> Date(2009, 12, 8).to_calendar("hebrew").get_year_calendar()
+        5770
         """
-        if not calendar:
-            calendar = self.calendar
-        return self.to_calendar(calendar).get_year()
+        if calendar_name:
+            cal = self.lookup_calendar(calendar_name)
+        else:
+            cal = self.calendar
+        if cal == self.calendar:
+            return self.get_year()
+        else:
+            retval = Date(self)
+            return retval.convert_calendar(cal).get_year()
 
     def get_new_year(self):
         """
