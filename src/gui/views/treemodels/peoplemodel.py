@@ -65,6 +65,7 @@ import ToolTips
 import GrampsLocale
 from Lru import LRU
 from gui.views.treemodels.treebasemodel import TreeBaseModel
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -80,6 +81,8 @@ COLUMN_EVENT  = 7
 COLUMN_FAMILY = 8
 COLUMN_CHANGE = 17
 COLUMN_MARKER = 18
+
+invalid_date_format = config.get('preferences.invalid-date-format')
 
 #-------------------------------------------------------------------------
 #
