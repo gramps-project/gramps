@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-18 11:32+0100\n"
+"POT-Creation-Date: 2009-12-09 22:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr ""
 
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
-#: ../src/Bookmarks.py:201 ../src/Bookmarks.py:209 ../src/gui/grampsgui.py:114
+#: ../src/Bookmarks.py:201 ../src/Bookmarks.py:209 ../src/gui/grampsgui.py:109
 #: ../src/gui/views/navigationview.py:206
 msgid "Organize Bookmarks"
 msgstr ""
@@ -91,9 +91,9 @@ msgstr ""
 #: ../src/plugins/tool/RelCalc.py:61 ../src/plugins/tool/RelCalc.py:118
 #: ../src/plugins/tool/RemoveUnused.py:198 ../src/plugins/tool/Verify.py:484
 #: ../src/plugins/view/personview.py:80 ../src/plugins/view/repoview.py:67
-#: ../src/plugins/webreport/NarrativeWeb.py:1675
-#: ../src/plugins/webreport/NarrativeWeb.py:1860
-#: ../src/plugins/webreport/NarrativeWeb.py:4672
+#: ../src/plugins/webreport/NarrativeWeb.py:1833
+#: ../src/plugins/webreport/NarrativeWeb.py:2018
+#: ../src/plugins/webreport/NarrativeWeb.py:4804
 #: ../src/PluginUtils/_GuiOptions.py:816
 #: ../src/PluginUtils/_PluginWindows.py:100
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
@@ -150,7 +150,7 @@ msgstr ""
 
 #: ../src/const.py:162
 msgid ""
-"GRAMPS (Genealogical Research and Analysis Management Programming System) is "
+"Gramps (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
 msgstr ""
 
@@ -158,8 +158,8 @@ msgstr ""
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
-#: ../src/const.py:193 ../src/const.py:194 ../src/gen/lib/date.py:1618
-#: ../src/gen/lib/date.py:1632
+#: ../src/const.py:193 ../src/const.py:194 ../src/gen/lib/date.py:1641
+#: ../src/gen/lib/date.py:1655
 msgid "none"
 msgstr ""
 
@@ -221,31 +221,31 @@ msgstr ""
 msgid "Export Assistant"
 msgstr ""
 
-#: ../src/ExportAssistant.py:180
+#: ../src/ExportAssistant.py:181
 msgid "Saving your data"
 msgstr ""
 
-#: ../src/ExportAssistant.py:225
+#: ../src/ExportAssistant.py:230
 msgid "Choose the output format"
 msgstr ""
 
-#: ../src/ExportAssistant.py:309
+#: ../src/ExportAssistant.py:314
 msgid "Select Save File"
 msgstr ""
 
-#: ../src/ExportAssistant.py:347 ../src/plugins/tool/MediaManager.py:270
+#: ../src/ExportAssistant.py:352 ../src/plugins/tool/MediaManager.py:270
 msgid "Final confirmation"
 msgstr ""
 
-#: ../src/ExportAssistant.py:360
+#: ../src/ExportAssistant.py:365
 msgid "Please wait while your data is selected and exported"
 msgstr ""
 
-#: ../src/ExportAssistant.py:373
+#: ../src/ExportAssistant.py:378
 msgid "Summary"
 msgstr ""
 
-#: ../src/ExportAssistant.py:449
+#: ../src/ExportAssistant.py:454
 #, python-format
 msgid ""
 "The data will be exported as follows:\n"
@@ -255,7 +255,7 @@ msgid ""
 "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
 msgstr ""
 
-#: ../src/ExportAssistant.py:462
+#: ../src/ExportAssistant.py:467
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
@@ -267,18 +267,18 @@ msgid ""
 "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
 msgstr ""
 
-#: ../src/ExportAssistant.py:469
+#: ../src/ExportAssistant.py:474
 msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
 
-#: ../src/ExportAssistant.py:495
+#: ../src/ExportAssistant.py:500
 msgid "Your data has been saved"
 msgstr ""
 
-#: ../src/ExportAssistant.py:497
+#: ../src/ExportAssistant.py:502
 msgid ""
 "The copy of your data has been successfully saved. You may press Close "
 "button now to continue.\n"
@@ -289,16 +289,16 @@ msgid ""
 msgstr ""
 
 #. add test, what is dir
-#: ../src/ExportAssistant.py:505
+#: ../src/ExportAssistant.py:510
 #, python-format
 msgid "Filename: %s"
 msgstr ""
 
-#: ../src/ExportAssistant.py:507
+#: ../src/ExportAssistant.py:512
 msgid "Saving failed"
 msgstr ""
 
-#: ../src/ExportAssistant.py:509
+#: ../src/ExportAssistant.py:514
 msgid ""
 "There was an error while saving your data. You may try starting the export "
 "again.\n"
@@ -307,7 +307,7 @@ msgid ""
 "data that failed to save."
 msgstr ""
 
-#: ../src/ExportAssistant.py:536
+#: ../src/ExportAssistant.py:541
 msgid ""
 "Under normal circumstances, Gramps does not require you to directly save "
 "your changes. All changes you make are immediately saved to the database.\n"
@@ -488,7 +488,7 @@ msgstr ""
 #: ../src/GrampsCfg.py:143 ../src/ScratchPad.py:610 ../src/ScratchPad.py:618
 #: ../src/plugins/textreport/CustomBookText.py:115
 #: ../src/plugins/textreport/MarkerReport.py:389
-#: ../src/plugins/webreport/NarrativeWeb.py:1352
+#: ../src/plugins/webreport/NarrativeWeb.py:1501
 #: ../src/ReportBase/_Constants.py:52
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
 msgid "Text"
@@ -515,10 +515,10 @@ msgid "Marker Colors"
 msgstr ""
 
 #: ../src/GrampsCfg.py:167 ../src/ScratchPad.py:147 ../src/ScratchPad.py:164
-#: ../src/gui/grampsgui.py:110 ../src/DisplayTabs/_AddrEmbedList.py:72
+#: ../src/gui/grampsgui.py:105 ../src/DisplayTabs/_AddrEmbedList.py:72
 #: ../src/Editors/_EditAddress.py:149
 #: ../src/plugins/textreport/FamilyGroup.py:299
-#: ../src/plugins/webreport/NarrativeWeb.py:4673
+#: ../src/plugins/webreport/NarrativeWeb.py:4805
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr ""
@@ -526,7 +526,7 @@ msgstr ""
 #: ../src/GrampsCfg.py:168 ../src/DisplayTabs/_AddrEmbedList.py:73
 #: ../src/DisplayTabs/_LocationEmbedList.py:55
 #: ../src/plugins/tool/ExtractCity.py:384 ../src/plugins/view/repoview.py:73
-#: ../src/plugins/webreport/NarrativeWeb.py:125
+#: ../src/plugins/webreport/NarrativeWeb.py:128
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
 msgstr ""
@@ -538,7 +538,7 @@ msgstr ""
 #: ../src/GrampsCfg.py:170 ../src/DisplayTabs/_AddrEmbedList.py:75
 #: ../src/DisplayTabs/_LocationEmbedList.py:58
 #: ../src/plugins/tool/ExtractCity.py:387 ../src/plugins/view/repoview.py:76
-#: ../src/plugins/webreport/NarrativeWeb.py:127
+#: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr ""
@@ -548,7 +548,7 @@ msgstr ""
 msgid "ZIP/Postal Code"
 msgstr ""
 
-#: ../src/GrampsCfg.py:172 ../src/plugins/webreport/NarrativeWeb.py:137
+#: ../src/GrampsCfg.py:172 ../src/plugins/webreport/NarrativeWeb.py:145
 msgid "Phone"
 msgstr ""
 
@@ -563,7 +563,7 @@ msgstr ""
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/GrampsCfg.py:184 ../src/ToolTips.py:197 ../src/gui/grampsgui.py:135
+#: ../src/GrampsCfg.py:184 ../src/ToolTips.py:197 ../src/gui/grampsgui.py:130
 #: ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/gramplet/QuickViewGramplet.py:92
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
@@ -571,26 +571,25 @@ msgstr ""
 #: ../src/plugins/gramplet/SessionLogGramplet.py:50
 #: ../src/plugins/gramplet/SessionLogGramplet.py:59
 #: ../src/plugins/gramplet/SessionLogGramplet.py:67
-#: ../src/plugins/import/ImportCsv.py:196
+#: ../src/plugins/import/ImportCsv.py:203
 #: ../src/plugins/quickview/AgeOnDate.py:54
 #: ../src/plugins/quickview/AttributeMatch.py:34
-#: ../src/plugins/quickview/FilterByName.py:61
-#: ../src/plugins/quickview/FilterByName.py:67
-#: ../src/plugins/quickview/FilterByName.py:74
-#: ../src/plugins/quickview/FilterByName.py:81
-#: ../src/plugins/quickview/FilterByName.py:88
+#: ../src/plugins/quickview/FilterByName.py:76
+#: ../src/plugins/quickview/FilterByName.py:82
+#: ../src/plugins/quickview/FilterByName.py:89
 #: ../src/plugins/quickview/FilterByName.py:96
-#: ../src/plugins/quickview/FilterByName.py:108
-#: ../src/plugins/quickview/FilterByName.py:137
-#: ../src/plugins/quickview/FilterByName.py:144
-#: ../src/plugins/quickview/FilterByName.py:176
+#: ../src/plugins/quickview/FilterByName.py:103
+#: ../src/plugins/quickview/FilterByName.py:111
+#: ../src/plugins/quickview/FilterByName.py:123
+#: ../src/plugins/quickview/FilterByName.py:152
+#: ../src/plugins/quickview/FilterByName.py:159
+#: ../src/plugins/quickview/FilterByName.py:191
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:77
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 #: ../src/plugins/tool/EventCmp.py:243
-#: ../src/plugins/webreport/NarrativeWeb.py:2170
-#: ../src/plugins/webreport/NarrativeWeb.py:2318
+#: ../src/plugins/webreport/NarrativeWeb.py:144
 #: ../src/FilterEditor/_EditRule.py:241
 msgid "Person"
 msgstr ""
@@ -599,16 +598,16 @@ msgstr ""
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #: ../src/GrampsCfg.py:186 ../src/ScratchPad.py:581 ../src/ToolTips.py:227
-#: ../src/gen/lib/eventroletype.py:66 ../src/gui/grampsgui.py:119
+#: ../src/gen/lib/eventroletype.py:66 ../src/gui/grampsgui.py:114
 #: ../src/Editors/_EditFamily.py:552 ../src/plugins/export/ExportCsv.py:453
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
 #: ../src/plugins/gramplet/SessionLogGramplet.py:54
 #: ../src/plugins/gramplet/SessionLogGramplet.py:56
 #: ../src/plugins/gramplet/SessionLogGramplet.py:70
-#: ../src/plugins/import/ImportCsv.py:203
+#: ../src/plugins/import/ImportCsv.py:210
 #: ../src/plugins/quickview/all_events.py:78
 #: ../src/plugins/quickview/all_relations.py:270
-#: ../src/plugins/quickview/FilterByName.py:116
+#: ../src/plugins/quickview/FilterByName.py:131
 #: ../src/plugins/quickview/quickview.gpr.py:209
 #: ../src/plugins/quickview/References.py:78
 #: ../src/plugins/textreport/IndivComplete.py:71
@@ -622,7 +621,7 @@ msgstr ""
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:55
 #: ../src/DisplayTabs/_LdsEmbedList.py:65 ../src/Selectors/_SelectEvent.py:67
 #: ../src/plugins/export/ExportCsv.py:410
-#: ../src/plugins/import/ImportCsv.py:218
+#: ../src/plugins/import/ImportCsv.py:225
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -630,7 +629,7 @@ msgstr ""
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/MarkerReport.py:303
 #: ../src/plugins/tool/SortEvents.py:59 ../src/plugins/view/eventview.py:74
-#: ../src/plugins/webreport/NarrativeWeb.py:136
+#: ../src/plugins/webreport/NarrativeWeb.py:143
 #: ../src/PluginUtils/_GuiOptions.py:956
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:244
@@ -639,8 +638,8 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:190 ../src/DisplayTabs/_NameEmbedList.py:76
 #: ../src/Editors/_EditSource.py:76 ../src/plugins/export/ExportCsv.py:410
-#: ../src/plugins/import/ImportCsv.py:168
-#: ../src/plugins/import/ImportCsv.py:201
+#: ../src/plugins/import/ImportCsv.py:175
+#: ../src/plugins/import/ImportCsv.py:208
 #: ../src/plugins/quickview/quickview.gpr.py:211
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/Reporef.py:73 ../src/FilterEditor/_EditRule.py:245
@@ -654,9 +653,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:194 ../src/plugins/quickview/quickview.gpr.py:210
 #: ../src/plugins/quickview/References.py:79
-#: ../src/plugins/webreport/NarrativeWeb.py:586
-#: ../src/plugins/webreport/NarrativeWeb.py:2168
-#: ../src/plugins/webreport/NarrativeWeb.py:4425
+#: ../src/plugins/webreport/NarrativeWeb.py:134
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
 #: ../src/FilterEditor/_EditRule.py:243
 msgid "Event"
@@ -675,7 +672,7 @@ msgstr ""
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/export/ExportCsv.py:410
 #: ../src/plugins/gramplet/gramplet.gpr.py:155
-#: ../src/plugins/import/ImportCsv.py:170
+#: ../src/plugins/import/ImportCsv.py:177
 #: ../src/plugins/textreport/FamilyGroup.py:317
 #: ../src/ReportBase/_GraphvizReportDialog.py:1034
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
@@ -689,19 +686,19 @@ msgid "Note"
 msgstr ""
 
 #: ../src/GrampsCfg.py:208
-msgid "Suppress warning when adding parents to a child"
+msgid "Suppress warning when adding parents to a child."
 msgstr ""
 
 #: ../src/GrampsCfg.py:212
-msgid "Suppress warning when cancelling with changed data"
+msgid "Suppress warning when cancelling with changed data."
 msgstr ""
 
 #: ../src/GrampsCfg.py:216
-msgid "Suppress warning about missing researcher when exporting to GEDCOM"
+msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr ""
 
 #: ../src/GrampsCfg.py:221
-msgid "Show plugin status dialog on plugin load error"
+msgid "Show plugin status dialog on plugin load error."
 msgstr ""
 
 #: ../src/GrampsCfg.py:232 ../src/gen/lib/markertype.py:56
@@ -736,14 +733,14 @@ msgstr ""
 #. show surname and first name
 #: ../src/GrampsCfg.py:335 ../src/GrampsCfg.py:337 ../src/GrampsCfg.py:341
 #: ../src/GrampsCfg.py:342 ../src/GrampsCfg.py:343 ../src/GrampsCfg.py:344
-#: ../src/GrampsCfg.py:345 ../src/Utils.py:931
+#: ../src/GrampsCfg.py:345 ../src/Utils.py:941
 #: ../src/plugins/drawreport/StatisticsChart.py:315
 #: ../src/plugins/export/ExportCsv.py:329
-#: ../src/plugins/import/ImportCsv.py:150
-#: ../src/plugins/quickview/FilterByName.py:127
-#: ../src/plugins/webreport/NarrativeWeb.py:1674
-#: ../src/plugins/webreport/NarrativeWeb.py:1836
-#: ../src/plugins/webreport/NarrativeWeb.py:2783
+#: ../src/plugins/import/ImportCsv.py:157
+#: ../src/plugins/quickview/FilterByName.py:142
+#: ../src/plugins/webreport/NarrativeWeb.py:1832
+#: ../src/plugins/webreport/NarrativeWeb.py:1994
+#: ../src/plugins/webreport/NarrativeWeb.py:2960
 #: ../src/PluginUtils/_GuiOptions.py:85 ../src/PluginUtils/_GuiOptions.py:1073
 msgid "Surname"
 msgstr ""
@@ -753,49 +750,49 @@ msgstr ""
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:345 ../src/GrampsCfg.py:346
 #: ../src/GrampsCfg.py:348 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/ScratchPad.py:580
-#: ../src/Utils.py:929 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/Utils.py:939 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/export/ExportCsv.py:329
-#: ../src/plugins/import/ImportCsv.py:154
+#: ../src/plugins/import/ImportCsv.py:161
 msgid "Given"
 msgstr ""
 
 #: ../src/GrampsCfg.py:335 ../src/GrampsCfg.py:337 ../src/GrampsCfg.py:339
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:351
-#: ../src/ScratchPad.py:585 ../src/Utils.py:932
+#: ../src/ScratchPad.py:585 ../src/Utils.py:942
 #: ../src/Editors/_EditPerson.py:276 ../src/plugins/export/ExportCsv.py:330
-#: ../src/plugins/import/ImportCsv.py:164
+#: ../src/plugins/import/ImportCsv.py:171
 msgid "Suffix"
 msgstr ""
 
 #: ../src/GrampsCfg.py:336 ../src/GrampsCfg.py:341 ../src/GrampsCfg.py:347
-#: ../src/GrampsCfg.py:348 ../src/Utils.py:935
+#: ../src/GrampsCfg.py:348 ../src/Utils.py:945
 msgid "Common"
 msgstr ""
 
 #: ../src/GrampsCfg.py:338 ../src/GrampsCfg.py:340 ../src/GrampsCfg.py:342
-#: ../src/GrampsCfg.py:349 ../src/Utils.py:934
+#: ../src/GrampsCfg.py:349 ../src/Utils.py:944
 #: ../src/plugins/export/ExportCsv.py:330
-#: ../src/plugins/import/ImportCsv.py:158
+#: ../src/plugins/import/ImportCsv.py:165
 msgid "Call"
 msgstr ""
 
 #: ../src/GrampsCfg.py:339 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:351
-#: ../src/GrampsCfg.py:352 ../src/Utils.py:931
+#: ../src/GrampsCfg.py:352 ../src/Utils.py:941
 msgid "SURNAME"
 msgstr ""
 
-#: ../src/GrampsCfg.py:345 ../src/ScratchPad.py:582 ../src/Utils.py:933
+#: ../src/GrampsCfg.py:345 ../src/ScratchPad.py:582 ../src/Utils.py:943
 #: ../src/Editors/_EditPerson.py:285
 msgid "Patronymic"
 msgstr ""
 
 #: ../src/GrampsCfg.py:453
-msgid "This format exists already"
+msgid "This format exists already."
 msgstr ""
 
 #: ../src/GrampsCfg.py:475 ../src/GrampsCfg.py:1078
-msgid "Invalid or incomplete format definition"
+msgid "Invalid or incomplete format definition."
 msgstr ""
 
 #: ../src/GrampsCfg.py:492
@@ -809,7 +806,7 @@ msgstr ""
 #. label for the combo
 #: ../src/GrampsCfg.py:662 ../src/plugins/drawreport/Calendar.py:408
 #: ../src/plugins/textreport/BirthdayReport.py:360
-#: ../src/plugins/webreport/NarrativeWeb.py:5663
+#: ../src/plugins/webreport/NarrativeWeb.py:5799
 #: ../src/plugins/webreport/WebCal.py:1383
 msgid "Name format"
 msgstr ""
@@ -974,7 +971,7 @@ msgid "_Modify format"
 msgstr ""
 
 #: ../src/GrampsCfg.py:1065
-msgid "Both Format name and definition have to be defined"
+msgid "Both Format name and definition have to be defined."
 msgstr ""
 
 #: ../src/gramps.py:71
@@ -1044,7 +1041,7 @@ msgid ""
 "on the Repair button"
 msgstr ""
 
-#: ../src/QuestionDialog.py:316 ../src/gui/utils.py:185
+#: ../src/QuestionDialog.py:316 ../src/gui/utils.py:220
 msgid "Attempt to force closing the dialog"
 msgstr ""
 
@@ -1063,6 +1060,7 @@ msgid "Quick View"
 msgstr ""
 
 #: ../src/Relationship.py:795 ../src/plugins/view/pedigreeview.py:1186
+#: ../src/plugins/view/pedigreeviewext.py:1864
 msgid "Relationship loop detected"
 msgstr ""
 
@@ -1086,11 +1084,11 @@ msgstr ""
 msgid "undefined"
 msgstr ""
 
-#: ../src/Relationship.py:1643 ../src/plugins/import/ImportCsv.py:283
+#: ../src/Relationship.py:1643 ../src/plugins/import/ImportCsv.py:290
 msgid "husband"
 msgstr ""
 
-#: ../src/Relationship.py:1645 ../src/plugins/import/ImportCsv.py:279
+#: ../src/Relationship.py:1645 ../src/plugins/import/ImportCsv.py:286
 msgid "wife"
 msgstr ""
 
@@ -1184,7 +1182,7 @@ msgstr ""
 
 #: ../src/Reorder.py:29 ../src/ToolTips.py:232
 #: ../src/Merge/_MergePerson.py:165 ../src/Selectors/_SelectFamily.py:63
-#: ../src/plugins/import/ImportCsv.py:210
+#: ../src/plugins/import/ImportCsv.py:217
 #: ../src/plugins/quickview/all_relations.py:300
 #: ../src/plugins/textreport/FamilyGroup.py:186
 #: ../src/plugins/textreport/FamilyGroup.py:197
@@ -1193,7 +1191,7 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:602
 #: ../src/plugins/textreport/MarkerReport.py:207
 #: ../src/plugins/view/familyview.py:64 ../src/plugins/view/relview.py:847
-#: ../src/plugins/webreport/NarrativeWeb.py:4050
+#: ../src/plugins/webreport/NarrativeWeb.py:4198
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr ""
@@ -1201,7 +1199,7 @@ msgstr ""
 #. ----------------------------------
 #: ../src/Reorder.py:29 ../src/ToolTips.py:237
 #: ../src/Merge/_MergePerson.py:167 ../src/Selectors/_SelectFamily.py:64
-#: ../src/plugins/import/ImportCsv.py:206
+#: ../src/plugins/import/ImportCsv.py:213
 #: ../src/plugins/quickview/all_relations.py:297
 #: ../src/plugins/textreport/FamilyGroup.py:203
 #: ../src/plugins/textreport/FamilyGroup.py:214
@@ -1210,23 +1208,24 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:607
 #: ../src/plugins/textreport/MarkerReport.py:213
 #: ../src/plugins/view/familyview.py:65 ../src/plugins/view/relview.py:848
-#: ../src/plugins/webreport/NarrativeWeb.py:4057
+#: ../src/plugins/webreport/NarrativeWeb.py:4205
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr ""
 
+#. finish the label's missing piece
 #: ../src/Reorder.py:30 ../src/Merge/_MergePerson.py:181
 #: ../src/Selectors/_SelectPerson.py:83
 #: ../src/plugins/textreport/FamilyGroup.py:494
 #: ../src/plugins/tool/RelCalc.py:68 ../src/plugins/view/personview.py:87
 #: ../src/plugins/view/relview.py:1315
-#: ../src/plugins/webreport/NarrativeWeb.py:643
+#: ../src/plugins/webreport/NarrativeWeb.py:589
 msgid "Spouse"
 msgstr ""
 
 #: ../src/Reorder.py:30 ../src/plugins/textreport/MarkerReport.py:219
 #: ../src/plugins/view/familyview.py:66
-#: ../src/plugins/webreport/NarrativeWeb.py:3641
+#: ../src/plugins/webreport/NarrativeWeb.py:3811
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr ""
@@ -1262,19 +1261,19 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:571
 #: ../src/plugins/tool/Check.py:1478 ../src/plugins/view/relview.py:421
 #: ../src/plugins/view/relview.py:958 ../src/plugins/view/relview.py:1010
-#: ../src/plugins/webreport/NarrativeWeb.py:1389
+#: ../src/plugins/webreport/NarrativeWeb.py:1540
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
 msgstr ""
 
 #: ../src/ScratchPad.py:165 ../src/ScratchPad.py:356
-#: ../src/gui/grampsgui.py:116 ../src/DisplayTabs/_AddrEmbedList.py:71
+#: ../src/gui/grampsgui.py:111 ../src/DisplayTabs/_AddrEmbedList.py:71
 #: ../src/DisplayTabs/_EventEmbedList.py:77
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:62 ../src/Selectors/_SelectEvent.py:66
 #: ../src/plugins/export/ExportCsv.py:410
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
-#: ../src/plugins/import/ImportCsv.py:216
+#: ../src/plugins/import/ImportCsv.py:223
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -1282,7 +1281,7 @@ msgstr ""
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:55 ../src/plugins/view/eventview.py:73
 #: ../src/plugins/view/mediaview.py:85
-#: ../src/plugins/webreport/NarrativeWeb.py:128
+#: ../src/plugins/webreport/NarrativeWeb.py:132
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 msgid "Date"
@@ -1298,11 +1297,11 @@ msgid "Telephone"
 msgstr ""
 
 #: ../src/ScratchPad.py:180 ../src/ScratchPad.py:424 ../src/ScratchPad.py:457
-#: ../src/gui/grampsgui.py:140 ../src/plugins/gramplet/QuickViewGramplet.py:72
-#: ../src/plugins/view/sourceview.py:95
-#: ../src/plugins/webreport/NarrativeWeb.py:139
-#: ../src/plugins/webreport/NarrativeWeb.py:2942
-#: ../src/plugins/webreport/NarrativeWeb.py:3010
+#: ../src/gui/grampsgui.py:135 ../src/plugins/gramplet/QuickViewGramplet.py:72
+#: ../src/plugins/view/sourceview.py:95 ../src/plugins/view/view.gpr.py:179
+#: ../src/plugins/webreport/NarrativeWeb.py:147
+#: ../src/plugins/webreport/NarrativeWeb.py:3118
+#: ../src/plugins/webreport/NarrativeWeb.py:3189
 msgid "Sources"
 msgstr ""
 
@@ -1330,7 +1329,7 @@ msgstr ""
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:64
 #: ../src/Selectors/_SelectNote.py:69 ../src/Selectors/_SelectObject.py:77
 #: ../src/plugins/BookReport.py:725 ../src/plugins/BookReport.py:729
-#: ../src/plugins/quickview/FilterByName.py:96
+#: ../src/plugins/quickview/FilterByName.py:111
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -1340,7 +1339,7 @@ msgstr ""
 #: ../src/plugins/tool/PatchNames.py:223 ../src/plugins/tool/SortEvents.py:56
 #: ../src/plugins/view/eventview.py:72 ../src/plugins/view/mediaview.py:82
 #: ../src/plugins/view/noteview.py:69 ../src/plugins/view/repoview.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:143
+#: ../src/plugins/webreport/NarrativeWeb.py:151
 #: ../src/PluginUtils/_PluginWindows.py:95
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
@@ -1359,7 +1358,7 @@ msgstr ""
 #: ../src/plugins/textreport/MarkerReport.py:309
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/view/eventview.py:70
-#: ../src/plugins/webreport/NarrativeWeb.py:129
+#: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/PluginUtils/_PluginWindows.py:104
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
@@ -1381,7 +1380,7 @@ msgid "Path"
 msgstr ""
 
 #: ../src/ScratchPad.py:404 ../src/ScratchPad.py:412
-#: ../src/gui/grampsgui.py:111 ../src/Editors/_EditAttribute.py:133
+#: ../src/gui/grampsgui.py:106 ../src/Editors/_EditAttribute.py:133
 msgid "Attribute"
 msgstr ""
 
@@ -1389,7 +1388,7 @@ msgstr ""
 #: ../src/ScratchPad.py:905 ../src/DisplayTabs/_AttrEmbedList.py:63
 #: ../src/DisplayTabs/_DataEmbedList.py:60
 #: ../src/plugins/tool/PatchNames.py:226
-#: ../src/plugins/webreport/NarrativeWeb.py:145
+#: ../src/plugins/webreport/NarrativeWeb.py:153
 msgid "Value"
 msgstr ""
 
@@ -1425,7 +1424,7 @@ msgstr ""
 
 #. local gettext variables
 #: ../src/ScratchPad.py:503 ../src/DisplayTabs/_SourceEmbedList.py:68
-#: ../src/plugins/webreport/NarrativeWeb.py:1350
+#: ../src/plugins/webreport/NarrativeWeb.py:1499
 msgid "Page"
 msgstr ""
 
@@ -1445,13 +1444,13 @@ msgstr ""
 msgid "Event Reference"
 msgstr ""
 
-#: ../src/ScratchPad.py:579 ../src/plugins/webreport/NarrativeWeb.py:3801
+#: ../src/ScratchPad.py:579 ../src/plugins/webreport/NarrativeWeb.py:3971
 msgid "Call Name"
 msgstr ""
 
-#: ../src/ScratchPad.py:583 ../src/Utils.py:930
+#: ../src/ScratchPad.py:583 ../src/Utils.py:940
 #: ../src/Editors/_EditPerson.py:276 ../src/plugins/export/ExportCsv.py:330
-#: ../src/plugins/import/ImportCsv.py:162
+#: ../src/plugins/import/ImportCsv.py:169
 #: ../src/plugins/tool/PatchNames.py:273 ../src/plugins/tool/PatchNames.py:285
 msgid "Prefix"
 msgstr ""
@@ -1462,9 +1461,9 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:584 ../src/Utils.py:928
+#: ../src/ScratchPad.py:584 ../src/Utils.py:938
 #: ../src/Editors/_EditPerson.py:285 ../src/plugins/export/ExportCsv.py:331
-#: ../src/plugins/import/ImportCsv.py:160
+#: ../src/plugins/import/ImportCsv.py:167
 #: ../src/plugins/tool/PatchNames.py:261
 msgid "Person|Title"
 msgstr ""
@@ -1490,8 +1489,7 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
 #: ../src/plugins/view/relview.py:587
-#: ../src/plugins/webreport/NarrativeWeb.py:1679
-#: ../src/plugins/webreport/NarrativeWeb.py:1863
+#: ../src/plugins/webreport/NarrativeWeb.py:127
 msgid "Birth"
 msgstr ""
 
@@ -1500,13 +1498,13 @@ msgid "Source Link"
 msgstr ""
 
 #: ../src/ScratchPad.py:787 ../src/plugins/view/sourceview.py:70
-#: ../src/plugins/webreport/NarrativeWeb.py:3038
+#: ../src/plugins/webreport/NarrativeWeb.py:3217
 msgid "Abbreviation"
 msgstr ""
 
 #: ../src/ScratchPad.py:788 ../src/DisplayTabs/_SourceEmbedList.py:67
 #: ../src/plugins/view/sourceview.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:3036
+#: ../src/plugins/webreport/NarrativeWeb.py:3215
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr ""
@@ -1913,21 +1911,21 @@ msgstr ""
 #. ----------------------------------
 #: ../src/ToolTips.py:242 ../src/gen/lib/ldsord.py:102
 #: ../src/Merge/_MergePerson.py:192 ../src/plugins/export/ExportCsv.py:453
-#: ../src/plugins/import/ImportCsv.py:199
+#: ../src/plugins/import/ImportCsv.py:206
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr ""
 
-#: ../src/Utils.py:80 ../src/gui/views/treemodels/peoplemodel.py:94
+#: ../src/Utils.py:80 ../src/gui/views/treemodels/peoplemodel.py:97
 #: ../src/Merge/_MergePerson.py:57 ../src/Editors/_EditPerson.py:253
-#: ../src/plugins/webreport/NarrativeWeb.py:3353
+#: ../src/plugins/webreport/NarrativeWeb.py:3535
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr ""
 
-#: ../src/Utils.py:81 ../src/gui/views/treemodels/peoplemodel.py:94
+#: ../src/Utils.py:81 ../src/gui/views/treemodels/peoplemodel.py:97
 #: ../src/Merge/_MergePerson.py:57 ../src/Editors/_EditPerson.py:252
-#: ../src/plugins/webreport/NarrativeWeb.py:3354
+#: ../src/plugins/webreport/NarrativeWeb.py:3536
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
 msgstr ""
@@ -1939,24 +1937,24 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../src/Utils.py:82 ../src/Utils.py:175 ../src/gen/lib/date.py:452
-#: ../src/gen/lib/date.py:490 ../src/gui/views/treemodels/peoplemodel.py:94
+#: ../src/gen/lib/date.py:490 ../src/gui/views/treemodels/peoplemodel.py:97
 #: ../src/Merge/_MergePerson.py:57 ../src/Editors/_EditPerson.py:254
 #: ../src/Mime/_GnomeMime.py:67 ../src/Mime/_GnomeMime.py:74
 #: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
 #: ../src/plugins/gramplet/SessionLogGramplet.py:72
 #: ../src/plugins/gramplet/SessionLogGramplet.py:73
-#: ../src/plugins/textreport/DetAncestralReport.py:480
-#: ../src/plugins/textreport/DetAncestralReport.py:487
-#: ../src/plugins/textreport/DetAncestralReport.py:528
-#: ../src/plugins/textreport/DetAncestralReport.py:535
-#: ../src/plugins/textreport/DetDescendantReport.py:499
-#: ../src/plugins/textreport/DetDescendantReport.py:506
-#: ../src/plugins/textreport/DetDescendantReport.py:556
-#: ../src/plugins/textreport/DetDescendantReport.py:563
+#: ../src/plugins/textreport/DetAncestralReport.py:481
+#: ../src/plugins/textreport/DetAncestralReport.py:488
+#: ../src/plugins/textreport/DetAncestralReport.py:529
+#: ../src/plugins/textreport/DetAncestralReport.py:536
+#: ../src/plugins/textreport/DetDescendantReport.py:500
+#: ../src/plugins/textreport/DetDescendantReport.py:507
+#: ../src/plugins/textreport/DetDescendantReport.py:557
+#: ../src/plugins/textreport/DetDescendantReport.py:564
 #: ../src/plugins/textreport/IndivComplete.py:404
 #: ../src/plugins/view/relview.py:625
-#: ../src/plugins/webreport/NarrativeWeb.py:3355
-#: ../src/plugins/webreport/NarrativeWeb.py:4333
+#: ../src/plugins/webreport/NarrativeWeb.py:3537
+#: ../src/plugins/webreport/NarrativeWeb.py:4473
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr ""
@@ -1975,7 +1973,7 @@ msgid "High"
 msgstr ""
 
 #: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:139
-#: ../src/plugins/webreport/NarrativeWeb.py:1390
+#: ../src/plugins/webreport/NarrativeWeb.py:1541
 msgid "Normal"
 msgstr ""
 
@@ -2019,53 +2017,53 @@ msgstr ""
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
-#: ../src/Utils.py:612 ../src/plugins/tool/CalculateEstimatedDates.py:416
+#: ../src/Utils.py:622 ../src/plugins/tool/CalculateEstimatedDates.py:416
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr ""
 
-#: ../src/Utils.py:928
+#: ../src/Utils.py:938
 msgid "Person|TITLE"
 msgstr ""
 
-#: ../src/Utils.py:929
+#: ../src/Utils.py:939
 msgid "GIVEN"
 msgstr ""
 
-#: ../src/Utils.py:930
+#: ../src/Utils.py:940
 msgid "PREFIX"
 msgstr ""
 
-#: ../src/Utils.py:932
+#: ../src/Utils.py:942
 msgid "SUFFIX"
 msgstr ""
 
-#: ../src/Utils.py:933
+#: ../src/Utils.py:943
 msgid "PATRONYMIC"
 msgstr ""
 
-#: ../src/Utils.py:934
+#: ../src/Utils.py:944
 msgid "CALL"
 msgstr ""
 
-#: ../src/Utils.py:935
+#: ../src/Utils.py:945
 msgid "COMMON"
 msgstr ""
 
-#: ../src/Utils.py:936
+#: ../src/Utils.py:946
 msgid "Initials"
 msgstr ""
 
-#: ../src/Utils.py:936
+#: ../src/Utils.py:946
 msgid "INITIALS"
 msgstr ""
 
-#: ../src/Utils.py:1044 ../src/Utils.py:1060
+#: ../src/Utils.py:1054 ../src/Utils.py:1070
 #, python-format
 msgid "%s, ..."
 msgstr ""
 
-#: ../src/UndoHistory.py:63 ../src/gui/grampsgui.py:159
+#: ../src/UndoHistory.py:63 ../src/gui/grampsgui.py:154
 msgid "Undo History"
 msgstr ""
 
@@ -2215,7 +2213,7 @@ msgid "Import finished..."
 msgstr ""
 
 #. Create a new database
-#: ../src/cli/clidbman.py:271 ../src/plugins/import/ImportCsv.py:382
+#: ../src/cli/clidbman.py:271 ../src/plugins/import/ImportCsv.py:389
 msgid "Importing data..."
 msgstr ""
 
@@ -2307,7 +2305,7 @@ msgstr ""
 msgid "Progress Information"
 msgstr ""
 
-#: ../src/gen/proxy/private.py:737 ../src/gui/grampsgui.py:146
+#: ../src/gen/proxy/private.py:740 ../src/gui/grampsgui.py:141
 msgid "Private"
 msgstr ""
 
@@ -2748,7 +2746,7 @@ msgid "between"
 msgstr ""
 
 #: ../src/gen/lib/date.py:327 ../src/gen/lib/date.py:420
-#: ../src/gen/lib/date.py:449 ../src/Simple/_SimpleTable.py:216
+#: ../src/gen/lib/date.py:449 ../src/Simple/_SimpleTable.py:217
 #: ../src/plugins/quickview/all_relations.py:282
 #: ../src/plugins/view/relview.py:940
 msgid "and"
@@ -2821,35 +2819,35 @@ msgstr ""
 msgid "calendar|Swedish"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1618
+#: ../src/gen/lib/date.py:1641
 msgid "estimated"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1618
+#: ../src/gen/lib/date.py:1641
 msgid "calculated"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1632
+#: ../src/gen/lib/date.py:1655
 msgid "before"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1632
+#: ../src/gen/lib/date.py:1655
 msgid "after"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1632
+#: ../src/gen/lib/date.py:1655
 msgid "about"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1633
+#: ../src/gen/lib/date.py:1656
 msgid "range"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1633
+#: ../src/gen/lib/date.py:1656
 msgid "span"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1633
+#: ../src/gen/lib/date.py:1656
 msgid "textonly"
 msgstr ""
 
@@ -2870,8 +2868,7 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
 #: ../src/plugins/view/relview.py:598 ../src/plugins/view/relview.py:623
-#: ../src/plugins/webreport/NarrativeWeb.py:1682
-#: ../src/plugins/webreport/NarrativeWeb.py:1866
+#: ../src/plugins/webreport/NarrativeWeb.py:131
 msgid "Death"
 msgstr ""
 
@@ -2988,8 +2985,8 @@ msgid "Religion"
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:175
-#: ../src/plugins/webreport/NarrativeWeb.py:1589
-#: ../src/plugins/webreport/NarrativeWeb.py:4674
+#: ../src/plugins/webreport/NarrativeWeb.py:1746
+#: ../src/plugins/webreport/NarrativeWeb.py:4806
 msgid "Residence"
 msgstr ""
 
@@ -3003,7 +3000,7 @@ msgstr ""
 
 #: ../src/gen/lib/eventtype.py:178 ../src/Merge/_MergePerson.py:188
 #: ../src/plugins/export/ExportCsv.py:409
-#: ../src/plugins/import/ImportCsv.py:214
+#: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:357
 #: ../src/plugins/view/relview.py:1231
 msgid "Marriage"
@@ -3131,7 +3128,7 @@ msgstr ""
 #. Constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/gen/plug/_manager.py:56
+#: ../src/gen/plug/_manager.py:57
 msgid "No description was provided"
 msgstr ""
 
@@ -3175,27 +3172,31 @@ msgstr ""
 msgid "Gramps View"
 msgstr ""
 
-#: ../src/gen/plug/_pluginreg.py:82 ../src/gui/grampsgui.py:137
-#: ../src/plugins/view/relview.py:118
+#: ../src/gen/plug/_pluginreg.py:82 ../src/gui/grampsgui.py:132
+#: ../src/plugins/view/relview.py:118 ../src/plugins/view/view.gpr.py:109
 msgid "Relationships"
 msgstr ""
 
-#: ../src/gen/plug/_pluginreg.py:83 ../src/gen/plug/_pluginreg.py:329
+#: ../src/gen/plug/_pluginreg.py:83 ../src/gen/plug/_pluginreg.py:313
 #: ../src/plugins/view/grampletview.py:208
 msgid "Gramplet"
 msgstr ""
 
-#: ../src/gen/plug/_pluginreg.py:900 ../src/gen/plug/_pluginreg.py:905
+#: ../src/gen/plug/_pluginreg.py:376 ../src/gui/views/pageview.py:84
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../src/gen/plug/_pluginreg.py:872 ../src/gen/plug/_pluginreg.py:877
 #, python-format
 msgid "Failed reading plugin registration %(filename)s"
 msgstr ""
 
-#: ../src/gen/plug/_pluginreg.py:927
+#: ../src/gen/plug/_pluginreg.py:899
 #, python-format
 msgid "Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 
-#: ../src/gen/plug/_pluginreg.py:935
+#: ../src/gen/plug/_pluginreg.py:907
 #, python-format
 msgid "Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
@@ -3254,7 +3255,7 @@ msgstr ""
 #: ../src/plugins/export/ExportVCalendar.py:200
 #: ../src/plugins/export/ExportVCard.py:174
 #: ../src/plugins/export/ExportVCard.py:178
-#: ../src/plugins/webreport/NarrativeWeb.py:4959
+#: ../src/plugins/webreport/NarrativeWeb.py:5096
 #, python-format
 msgid "Could not create %s"
 msgstr ""
@@ -3347,7 +3348,7 @@ msgstr ""
 
 #: ../src/gui/dbman.py:274 ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63
-#: ../src/plugins/webreport/NarrativeWeb.py:140
+#: ../src/plugins/webreport/NarrativeWeb.py:148
 #: ../src/PluginUtils/_PluginWindows.py:141
 msgid "Status"
 msgstr ""
@@ -3496,189 +3497,188 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:109
+#: ../src/gui/grampsgui.py:104
 msgid "Family Trees"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:115
+#: ../src/gui/grampsgui.py:110
 msgid "Configure"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:117
+#: ../src/gui/grampsgui.py:112
 msgid "Edit Date"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:118 ../src/Merge/_MergePerson.py:150
+#: ../src/gui/grampsgui.py:113 ../src/Merge/_MergePerson.py:150
 #: ../src/plugins/gramplet/QuickViewGramplet.py:69
 #: ../src/plugins/textreport/MarkerReport.py:280
-#: ../src/plugins/view/eventview.py:97
-#: ../src/plugins/webreport/NarrativeWeb.py:1088
-#: ../src/plugins/webreport/NarrativeWeb.py:1131
-#: ../src/plugins/webreport/NarrativeWeb.py:2143
-#: ../src/plugins/webreport/NarrativeWeb.py:2267
-#: ../src/plugins/webreport/NarrativeWeb.py:3897
+#: ../src/plugins/view/eventview.py:97 ../src/plugins/view/view.gpr.py:39
+#: ../src/plugins/webreport/NarrativeWeb.py:1035
+#: ../src/plugins/webreport/NarrativeWeb.py:1078
+#: ../src/plugins/webreport/NarrativeWeb.py:2308
+#: ../src/plugins/webreport/NarrativeWeb.py:2467
+#: ../src/plugins/webreport/NarrativeWeb.py:4047
 msgid "Events"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:120 ../src/plugins/drawreport/drawplugins.gpr.py:94
+#: ../src/gui/grampsgui.py:115 ../src/plugins/drawreport/drawplugins.gpr.py:94
 #: ../src/plugins/gramplet/gramplet.gpr.py:109
 msgid "Fan Chart"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:121
+#: ../src/gui/grampsgui.py:116
 msgid "Font"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:122 ../src/widgets/styledtexteditor.py:373
+#: ../src/gui/grampsgui.py:117 ../src/widgets/styledtexteditor.py:373
 msgid "Font Color"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:123
+#: ../src/gui/grampsgui.py:118
 msgid "Font Background Color"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:124 ../src/plugins/view/grampletview.py:777
+#: ../src/gui/grampsgui.py:119 ../src/plugins/view/grampletview.py:777
+#: ../src/plugins/view/view.gpr.py:67
 msgid "Gramplets"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:125 ../src/gui/grampsgui.py:126
-#: ../src/gui/grampsgui.py:127 ../src/plugins/view/geoview.py:238
+#: ../src/gui/grampsgui.py:120 ../src/gui/grampsgui.py:121
+#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoview.py:238
 msgid "GeoView"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:128
+#: ../src/gui/grampsgui.py:123
 msgid "Public"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:129 ../src/plugins/quickview/FilterByName.py:166
-#: ../src/plugins/view/mediaview.py:105
-#: ../src/plugins/webreport/NarrativeWeb.py:1089
-#: ../src/plugins/webreport/NarrativeWeb.py:1134
-#: ../src/plugins/webreport/NarrativeWeb.py:2444
-#: ../src/plugins/webreport/NarrativeWeb.py:3078
+#: ../src/gui/grampsgui.py:124 ../src/plugins/quickview/FilterByName.py:181
+#: ../src/plugins/view/mediaview.py:105 ../src/plugins/view/view.gpr.py:81
+#: ../src/plugins/webreport/NarrativeWeb.py:1036
+#: ../src/plugins/webreport/NarrativeWeb.py:1081
+#: ../src/plugins/webreport/NarrativeWeb.py:2620
+#: ../src/plugins/webreport/NarrativeWeb.py:3257
 msgid "Media"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:130 ../src/plugins/textreport/IndivComplete.py:244
+#: ../src/gui/grampsgui.py:125 ../src/plugins/textreport/IndivComplete.py:244
 #: ../src/plugins/textreport/MarkerReport.py:366
-#: ../src/plugins/view/noteview.py:93
-#: ../src/plugins/webreport/NarrativeWeb.py:134
+#: ../src/plugins/view/noteview.py:93 ../src/plugins/view/view.gpr.py:95
+#: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Notes"
 msgstr ""
 
 #. Go over parents and build their menu
 #. don't show rest
-#. finish the label's missing piece
-#: ../src/gui/grampsgui.py:131 ../src/Merge/_MergePerson.py:160
+#: ../src/gui/grampsgui.py:126 ../src/Merge/_MergePerson.py:160
 #: ../src/plugins/gramplet/FanChartGramplet.py:834
 #: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:114
-#: ../src/plugins/view/pedigreeview.py:1487 ../src/plugins/view/relview.py:480
-#: ../src/plugins/view/relview.py:812 ../src/plugins/view/relview.py:846
-#: ../src/plugins/webreport/NarrativeWeb.py:643
-#: ../src/plugins/webreport/NarrativeWeb.py:1688
-#: ../src/plugins/webreport/NarrativeWeb.py:1872
-#: ../src/plugins/webreport/NarrativeWeb.py:4013
+#: ../src/plugins/view/pedigreeview.py:1487
+#: ../src/plugins/view/pedigreeviewext.py:2267
+#: ../src/plugins/view/relview.py:480 ../src/plugins/view/relview.py:812
+#: ../src/plugins/view/relview.py:846
+#: ../src/plugins/webreport/NarrativeWeb.py:140
 msgid "Parents"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:132
+#: ../src/gui/grampsgui.py:127
 msgid "Add Parents"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:133
+#: ../src/gui/grampsgui.py:128
 msgid "Select Parents"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:134 ../src/plugins/gramplet/gramplet.gpr.py:169
+#: ../src/gui/grampsgui.py:129 ../src/plugins/gramplet/gramplet.gpr.py:169
 #: ../src/plugins/view/pedigreeview.py:373
-#: ../src/plugins/webreport/NarrativeWeb.py:3717
+#: ../src/plugins/view/pedigreeviewext.py:488
+#: ../src/plugins/webreport/NarrativeWeb.py:3887
 msgid "Pedigree"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:136 ../src/plugins/gramplet/QuickViewGramplet.py:75
-#: ../src/plugins/view/placeview.py:51
-#: ../src/plugins/webreport/NarrativeWeb.py:1087
-#: ../src/plugins/webreport/NarrativeWeb.py:1128
-#: ../src/plugins/webreport/NarrativeWeb.py:1990
-#: ../src/plugins/webreport/NarrativeWeb.py:2077
-#: ../src/plugins/webreport/NarrativeWeb.py:6145
+#: ../src/gui/grampsgui.py:131 ../src/plugins/gramplet/QuickViewGramplet.py:75
+#: ../src/plugins/view/placeview.py:51 ../src/plugins/view/view.gpr.py:151
+#: ../src/plugins/webreport/NarrativeWeb.py:1034
+#: ../src/plugins/webreport/NarrativeWeb.py:1075
+#: ../src/plugins/webreport/NarrativeWeb.py:2148
+#: ../src/plugins/webreport/NarrativeWeb.py:2236
 msgid "Places"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:138
+#: ../src/gui/grampsgui.py:133
 msgid "Reports"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:139 ../src/plugins/gramplet/QuickViewGramplet.py:78
-#: ../src/plugins/view/repoview.py:103
-#: ../src/plugins/webreport/NarrativeWeb.py:1093
-#: ../src/plugins/webreport/NarrativeWeb.py:4500
-#: ../src/plugins/webreport/NarrativeWeb.py:4578
+#: ../src/gui/grampsgui.py:134 ../src/plugins/gramplet/QuickViewGramplet.py:78
+#: ../src/plugins/view/repoview.py:103 ../src/plugins/view/view.gpr.py:165
+#: ../src/plugins/webreport/NarrativeWeb.py:1040
+#: ../src/plugins/webreport/NarrativeWeb.py:4635
+#: ../src/plugins/webreport/NarrativeWeb.py:4710
 msgid "Repositories"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:141
+#: ../src/gui/grampsgui.py:136
 msgid "Add Spouse"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:142
+#: ../src/gui/grampsgui.py:137
 msgid "Tools"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:143
+#: ../src/gui/grampsgui.py:138
 msgid "Grouped List"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:144
+#: ../src/gui/grampsgui.py:139
 msgid "List"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:145 ../src/plugins/tool/ChangeNames.py:193
+#: ../src/gui/grampsgui.py:140 ../src/plugins/tool/ChangeNames.py:193
 #: ../src/plugins/tool/ExtractCity.py:537
 #: ../src/plugins/tool/PatchNames.py:217 ../src/glade/mergedata.glade.h:12
 msgid "Select"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:147 ../src/gui/grampsgui.py:148
+#: ../src/gui/grampsgui.py:142 ../src/gui/grampsgui.py:143
 #: ../src/DisplayTabs/_GalleryTab.py:131 ../src/Editors/_EditPerson.py:515
 #: ../src/plugins/view/mediaview.py:221
 msgid "View"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:149
+#: ../src/gui/grampsgui.py:144
 msgid "Zoom In"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:150
+#: ../src/gui/grampsgui.py:145
 msgid "Zoom Out"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:151
+#: ../src/gui/grampsgui.py:146
 msgid "Fit Width"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:152
+#: ../src/gui/grampsgui.py:147
 msgid "Fit Page"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:157
+#: ../src/gui/grampsgui.py:152
 msgid "Export"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:158
+#: ../src/gui/grampsgui.py:153
 msgid "Import"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:160 ../src/Filters/SideBar/_RepoSidebarFilter.py:94
+#: ../src/gui/grampsgui.py:155 ../src/Filters/SideBar/_RepoSidebarFilter.py:94
 msgid "URL"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:216
+#: ../src/gui/grampsgui.py:211
 msgid "Danger: This is unstable code!"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:217
+#: ../src/gui/grampsgui.py:212
 msgid ""
 "This Gramps 3.x-trunk is a development release. This version is not meant "
 "for normal usage. Use at your own risk.\n"
@@ -3694,11 +3694,11 @@ msgid ""
 "and make sure to export your data to XML every now and then."
 msgstr ""
 
-#: ../src/gui/grampsgui.py:250
+#: ../src/gui/grampsgui.py:245
 msgid "Failed Loading View"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:251
+#: ../src/gui/grampsgui.py:246
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Status for more info.\n"
@@ -3706,19 +3706,23 @@ msgid ""
 "the view author (%(firstauthoremail)s) otherwise. "
 msgstr ""
 
-#: ../src/gui/grampsgui.py:330
+#: ../src/gui/grampsgui.py:333
 msgid "Error parsing arguments"
 msgstr ""
 
-#: ../src/gui/utils.py:186
+#: ../src/gui/utils.py:146
+msgid "Cancelling..."
+msgstr ""
+
+#: ../src/gui/utils.py:221
 msgid "Please do not force closing this important dialog."
 msgstr ""
 
-#: ../src/gui/utils.py:216 ../src/gui/utils.py:223
+#: ../src/gui/utils.py:251 ../src/gui/utils.py:258
 msgid "Error Opening File"
 msgstr ""
 
-#: ../src/gui/utils.py:216 ../src/plugins/textreport/IndivComplete.py:549
+#: ../src/gui/utils.py:251 ../src/plugins/textreport/IndivComplete.py:549
 #: ../src/ReportBase/_ReportUtils.py:144
 msgid "File does not exist"
 msgstr ""
@@ -3890,11 +3894,11 @@ msgstr ""
 msgid "F_ull Screen"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:519 ../src/gui/viewmanager.py:1281
+#: ../src/gui/viewmanager.py:519 ../src/gui/viewmanager.py:1287
 msgid "_Undo"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:524 ../src/gui/viewmanager.py:1298
+#: ../src/gui/viewmanager.py:524 ../src/gui/viewmanager.py:1304
 msgid "_Redo"
 msgstr ""
 
@@ -3949,35 +3953,35 @@ msgid ""
 "the session exceeded the limit."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1194
+#: ../src/gui/viewmanager.py:1200
 msgid "Import Statistics"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1251
+#: ../src/gui/viewmanager.py:1257
 msgid "Read Only"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1345 ../src/gui/views/navigationview.py:183
+#: ../src/gui/viewmanager.py:1351 ../src/gui/views/navigationview.py:183
 #, python-format
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1348 ../src/gui/views/listview.py:403
+#: ../src/gui/viewmanager.py:1354 ../src/gui/views/listview.py:403
 #: ../src/gui/views/navigationview.py:187
 #: ../src/plugins/view/familyview.py:189
 msgid "Could Not Set a Bookmark"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1349 ../src/gui/views/navigationview.py:188
+#: ../src/gui/viewmanager.py:1355 ../src/gui/views/navigationview.py:188
 #: ../src/plugins/view/familyview.py:190
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1599
+#: ../src/gui/viewmanager.py:1605
 msgid "Failed Loading Plugin"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1600
+#: ../src/gui/viewmanager.py:1606
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Status for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
@@ -4072,7 +4076,7 @@ msgid "CSV"
 msgstr ""
 
 #: ../src/gui/views/listview.py:772
-msgid "Open Document Spreadsheet"
+msgid "OpenDocument Spreadsheet"
 msgstr ""
 
 #: ../src/gui/views/navigationview.py:203
@@ -4124,11 +4128,11 @@ msgstr ""
 msgid "Error: %s is not a valid Gramps ID"
 msgstr ""
 
-#: ../src/Simple/_SimpleTable.py:215
+#: ../src/Simple/_SimpleTable.py:216
 msgid "Unknown father"
 msgstr ""
 
-#: ../src/Simple/_SimpleTable.py:220
+#: ../src/Simple/_SimpleTable.py:221
 msgid "Unknown mother"
 msgstr ""
 
@@ -4152,27 +4156,27 @@ msgstr ""
 #. called to fill in each format flag.
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/import/ImportCsv.py:232
+#: ../src/plugins/import/ImportCsv.py:239
 msgid "Person|title"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/import/ImportCsv.py:226
+#: ../src/plugins/import/ImportCsv.py:233
 msgid "given"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:284 ../src/BasicUtils/_NameDisplay.py:323
-#: ../src/plugins/import/ImportCsv.py:234
+#: ../src/plugins/import/ImportCsv.py:241
 msgid "prefix"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/import/ImportCsv.py:222
+#: ../src/plugins/import/ImportCsv.py:229
 msgid "surname"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:286 ../src/BasicUtils/_NameDisplay.py:325
-#: ../src/plugins/import/ImportCsv.py:236
+#: ../src/plugins/import/ImportCsv.py:243
 msgid "suffix"
 msgstr ""
 
@@ -4181,7 +4185,7 @@ msgid "patronymic"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:288 ../src/BasicUtils/_NameDisplay.py:327
-#: ../src/plugins/import/ImportCsv.py:230
+#: ../src/plugins/import/ImportCsv.py:237
 msgid "call"
 msgstr ""
 
@@ -4193,23 +4197,23 @@ msgstr ""
 msgid "initials"
 msgstr ""
 
-#: ../src/config.py:621
+#: ../src/config.py:628
 msgid "Missing Given Name"
 msgstr ""
 
-#: ../src/config.py:622
+#: ../src/config.py:629
 msgid "Missing Record"
 msgstr ""
 
-#: ../src/config.py:623
+#: ../src/config.py:630
 msgid "Missing Surname"
 msgstr ""
 
-#: ../src/config.py:630 ../src/config.py:632
+#: ../src/config.py:637 ../src/config.py:639
 msgid "Living"
 msgstr ""
 
-#: ../src/config.py:631
+#: ../src/config.py:638
 msgid "Private Record"
 msgstr ""
 
@@ -4247,11 +4251,11 @@ msgstr ""
 #: ../src/Selectors/_SelectPerson.py:78
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:331
-#: ../src/plugins/import/ImportCsv.py:166
+#: ../src/plugins/import/ImportCsv.py:173
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:565
 #: ../src/plugins/tool/RelCalc.py:63 ../src/plugins/view/personview.py:82
-#: ../src/plugins/webreport/NarrativeWeb.py:3828
+#: ../src/plugins/webreport/NarrativeWeb.py:3998
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 msgid "Gender"
 msgstr ""
@@ -4274,6 +4278,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:720
 #: ../src/plugins/textreport/KinshipReport.py:109
 #: ../src/plugins/view/pedigreeview.py:1373
+#: ../src/plugins/view/pedigreeviewext.py:2147
 msgid "Spouses"
 msgstr ""
 
@@ -4283,7 +4288,7 @@ msgstr ""
 
 #: ../src/Merge/_MergePerson.py:199
 #: ../src/plugins/textreport/IndivComplete.py:357
-#: ../src/plugins/webreport/NarrativeWeb.py:713
+#: ../src/plugins/webreport/NarrativeWeb.py:657
 msgid "Addresses"
 msgstr ""
 
@@ -4512,7 +4517,7 @@ msgstr ""
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:54
 #: ../src/DisplayTabs/_LdsEmbedList.py:64
-#: ../src/plugins/webreport/NarrativeWeb.py:144
+#: ../src/plugins/webreport/NarrativeWeb.py:152
 msgid "Temple"
 msgstr ""
 
@@ -4520,11 +4525,15 @@ msgstr ""
 msgid "_Gallery"
 msgstr ""
 
-#: ../src/DisplayTabs/_GalleryTab.py:239
+#: ../src/DisplayTabs/_GalleryTab.py:139 ../src/plugins/view/mediaview.py:225
+msgid "Open Containing _Folder"
+msgstr ""
+
+#: ../src/DisplayTabs/_GalleryTab.py:247
 msgid "Non existing media found in the Gallery"
 msgstr ""
 
-#: ../src/DisplayTabs/_GalleryTab.py:470 ../src/plugins/view/mediaview.py:200
+#: ../src/DisplayTabs/_GalleryTab.py:478 ../src/plugins/view/mediaview.py:200
 msgid "Drag Media Object"
 msgstr ""
 
@@ -4554,14 +4563,14 @@ msgstr ""
 
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
 #: ../src/plugins/view/repoview.py:71
-#: ../src/plugins/webreport/NarrativeWeb.py:142
+#: ../src/plugins/webreport/NarrativeWeb.py:150
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "Street"
 msgstr ""
 
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
 #: ../src/plugins/view/repoview.py:74
-#: ../src/plugins/webreport/NarrativeWeb.py:126
+#: ../src/plugins/webreport/NarrativeWeb.py:129
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
 msgid "County"
 msgstr ""
@@ -5066,13 +5075,13 @@ msgstr ""
 
 #: ../src/Editors/_EditFamily.py:109 ../src/Selectors/_SelectPerson.py:79
 #: ../src/plugins/drawreport/TimeLine.py:59
-#: ../src/plugins/quickview/FilterByName.py:61
-#: ../src/plugins/quickview/FilterByName.py:67
-#: ../src/plugins/quickview/FilterByName.py:74
-#: ../src/plugins/quickview/FilterByName.py:81
-#: ../src/plugins/quickview/FilterByName.py:88
-#: ../src/plugins/quickview/FilterByName.py:108
-#: ../src/plugins/quickview/FilterByName.py:176
+#: ../src/plugins/quickview/FilterByName.py:76
+#: ../src/plugins/quickview/FilterByName.py:82
+#: ../src/plugins/quickview/FilterByName.py:89
+#: ../src/plugins/quickview/FilterByName.py:96
+#: ../src/plugins/quickview/FilterByName.py:103
+#: ../src/plugins/quickview/FilterByName.py:123
+#: ../src/plugins/quickview/FilterByName.py:191
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
@@ -5145,7 +5154,7 @@ msgid ""
 "updated. Some edits you have made may have been lost."
 msgstr ""
 
-#: ../src/Editors/_EditFamily.py:521 ../src/plugins/import/ImportCsv.py:275
+#: ../src/Editors/_EditFamily.py:521 ../src/plugins/import/ImportCsv.py:282
 #: ../src/plugins/view/familyview.py:206
 msgid "family"
 msgstr ""
@@ -5748,7 +5757,7 @@ msgid "Line %d: empty event note was ignored."
 msgstr ""
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:3632
-#: ../src/GrampsDbUtils/_GedcomParse.py:4200
+#: ../src/GrampsDbUtils/_GedcomParse.py:4208
 #, python-format
 msgid "Could not import %s"
 msgstr ""
@@ -6139,15 +6148,15 @@ msgstr ""
 #. #########################
 #. ###############################
 #: ../src/plugins/Records.py:440 ../src/plugins/drawreport/Calendar.py:386
-#: ../src/plugins/drawreport/FanChart.py:345
+#: ../src/plugins/drawreport/FanChart.py:407
 #: ../src/plugins/drawreport/StatisticsChart.py:902
 #: ../src/plugins/drawreport/TimeLine.py:311
 #: ../src/plugins/graph/GVRelGraph.py:464
 #: ../src/plugins/textreport/AncestorReport.py:251
 #: ../src/plugins/textreport/BirthdayReport.py:338
 #: ../src/plugins/textreport/DescendReport.py:182
-#: ../src/plugins/textreport/DetAncestralReport.py:654
-#: ../src/plugins/textreport/DetDescendantReport.py:720
+#: ../src/plugins/textreport/DetAncestralReport.py:655
+#: ../src/plugins/textreport/DetDescendantReport.py:721
 #: ../src/plugins/textreport/EndOfLineReport.py:238
 #: ../src/plugins/textreport/FamilyGroup.py:602
 #: ../src/plugins/textreport/IndivComplete.py:641
@@ -6156,7 +6165,7 @@ msgstr ""
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:174
 #: ../src/plugins/textreport/PlaceReport.py:253
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:5626
+#: ../src/plugins/webreport/NarrativeWeb.py:5762
 #: ../src/plugins/webreport/WebCal.py:1355
 #: ../src/ReportBase/_ReportDialog.py:326
 msgid "Report Options"
@@ -6172,7 +6181,7 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:644
 #: ../src/plugins/tool/CalculateEstimatedDates.py:64
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:5647
+#: ../src/plugins/webreport/NarrativeWeb.py:5783
 #: ../src/plugins/webreport/WebCal.py:1367
 #: ../src/FilterEditor/_FilterEditor.py:113
 msgid "Filter"
@@ -6180,8 +6189,7 @@ msgstr ""
 
 #: ../src/plugins/Records.py:444
 #: ../src/plugins/drawreport/StatisticsChart.py:906
-#: ../src/plugins/drawreport/TimeLine.py:315
-msgid "Determines what people are included in the report"
+msgid "Determines what people are included in the report."
 msgstr ""
 
 #: ../src/plugins/Records.py:448
@@ -6191,19 +6199,16 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:650
 #: ../src/plugins/tool/CalculateEstimatedDates.py:69
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:5653
+#: ../src/plugins/webreport/NarrativeWeb.py:5789
 #: ../src/plugins/webreport/WebCal.py:1373
 msgid "Filter Person"
 msgstr ""
 
-#: ../src/plugins/Records.py:449
-#: ../src/plugins/drawreport/StatisticsChart.py:911
-#: ../src/plugins/drawreport/TimeLine.py:320
+#: ../src/plugins/Records.py:449 ../src/plugins/drawreport/TimeLine.py:320
 #: ../src/plugins/graph/GVRelGraph.py:474
-#: ../src/plugins/textreport/IndivComplete.py:651
 #: ../src/plugins/tool/CalculateEstimatedDates.py:70
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:5654
+#: ../src/plugins/webreport/NarrativeWeb.py:5790
 #: ../src/plugins/webreport/WebCal.py:1374
 msgid "The center person for the filter"
 msgstr ""
@@ -6234,10 +6239,10 @@ msgstr ""
 
 #: ../src/plugins/Records.py:504 ../src/plugins/drawreport/AncestorTree.py:498
 #: ../src/plugins/drawreport/DescendTree.py:524
-#: ../src/plugins/drawreport/FanChart.py:415
+#: ../src/plugins/drawreport/FanChart.py:469
 #: ../src/plugins/textreport/AncestorReport.py:338
-#: ../src/plugins/textreport/DetAncestralReport.py:803
-#: ../src/plugins/textreport/DetDescendantReport.py:889
+#: ../src/plugins/textreport/DetAncestralReport.py:804
+#: ../src/plugins/textreport/DetDescendantReport.py:890
 #: ../src/plugins/textreport/EndOfLineReport.py:275
 #: ../src/plugins/textreport/EndOfLineReport.py:293
 #: ../src/plugins/textreport/FamilyGroup.py:696
@@ -6254,7 +6259,7 @@ msgid "The style used for headings."
 msgstr ""
 
 #: ../src/plugins/Records.py:522
-msgid "The style used for the report title"
+msgid "The style used for the report title."
 msgstr ""
 
 #: ../src/plugins/Records.py:531
@@ -6358,11 +6363,11 @@ msgid "Generates documents in LaTeX format."
 msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:107
-msgid "Open Document Text"
+msgid "OpenDocument Text"
 msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:108
-msgid "Generates documents in Open Document Text format (.odt)."
+msgid "Generates documents in OpenDocument Text format (.odt)."
 msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:127
@@ -6408,13 +6413,13 @@ msgid "of %d"
 msgstr ""
 
 #: ../src/plugins/docgen/HtmlDoc.py:265
-#: ../src/plugins/webreport/NarrativeWeb.py:5586
+#: ../src/plugins/webreport/NarrativeWeb.py:5722
 #: ../src/plugins/webreport/WebCal.py:248
 msgid "Possible destination error"
 msgstr ""
 
 #: ../src/plugins/docgen/HtmlDoc.py:266
-#: ../src/plugins/webreport/NarrativeWeb.py:5587
+#: ../src/plugins/webreport/NarrativeWeb.py:5723
 #: ../src/plugins/webreport/WebCal.py:249
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -6441,19 +6446,21 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:53
 #: ../src/plugins/drawreport/DescendTree.py:46
 #: ../src/plugins/view/pedigreeview.py:78
+#: ../src/plugins/view/pedigreeviewext.py:79
 msgid "short for born|b."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:54
 #: ../src/plugins/drawreport/DescendTree.py:48
 #: ../src/plugins/view/pedigreeview.py:79
+#: ../src/plugins/view/pedigreeviewext.py:80
 msgid "short for died|d."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:193
 #: ../src/plugins/drawreport/Calendar.py:92
 #: ../src/plugins/drawreport/DescendTree.py:141
-#: ../src/plugins/drawreport/FanChart.py:96
+#: ../src/plugins/drawreport/FanChart.py:154
 #: ../src/plugins/graph/GVHourGlass.py:98
 #: ../src/plugins/textreport/AncestorReport.py:100
 #: ../src/plugins/textreport/BirthdayReport.py:86
@@ -6480,13 +6487,13 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:464
 #: ../src/plugins/drawreport/Calendar.py:398
 #: ../src/plugins/drawreport/DescendTree.py:491
-#: ../src/plugins/drawreport/FanChart.py:347
+#: ../src/plugins/drawreport/FanChart.py:409
 #: ../src/plugins/graph/GVHourGlass.py:257
 #: ../src/plugins/textreport/AncestorReport.py:253
 #: ../src/plugins/textreport/BirthdayReport.py:350
 #: ../src/plugins/textreport/DescendReport.py:184
-#: ../src/plugins/textreport/DetAncestralReport.py:656
-#: ../src/plugins/textreport/DetDescendantReport.py:722
+#: ../src/plugins/textreport/DetAncestralReport.py:657
+#: ../src/plugins/textreport/DetDescendantReport.py:723
 #: ../src/plugins/textreport/EndOfLineReport.py:240
 #: ../src/plugins/textreport/KinshipReport.py:323
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:176
@@ -6500,11 +6507,11 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:468
 #: ../src/plugins/drawreport/DescendTree.py:495
-#: ../src/plugins/drawreport/FanChart.py:351
+#: ../src/plugins/drawreport/FanChart.py:413
 #: ../src/plugins/textreport/AncestorReport.py:257
 #: ../src/plugins/textreport/DescendReport.py:188
-#: ../src/plugins/textreport/DetAncestralReport.py:660
-#: ../src/plugins/textreport/DetDescendantReport.py:735
+#: ../src/plugins/textreport/DetAncestralReport.py:661
+#: ../src/plugins/textreport/DetDescendantReport.py:736
 msgid "Generations"
 msgstr ""
 
@@ -6569,7 +6576,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:252
 #: ../src/plugins/textreport/BirthdayReport.py:200
-#: ../src/plugins/webreport/NarrativeWeb.py:5028
+#: ../src/plugins/webreport/NarrativeWeb.py:5165
 #: ../src/plugins/webreport/WebCal.py:1106
 msgid "Applying Filter..."
 msgstr ""
@@ -6628,12 +6635,12 @@ msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:399
-#: ../src/plugins/drawreport/FanChart.py:348
+#: ../src/plugins/drawreport/FanChart.py:410
 #: ../src/plugins/textreport/AncestorReport.py:254
 #: ../src/plugins/textreport/BirthdayReport.py:351
 #: ../src/plugins/textreport/DescendReport.py:185
-#: ../src/plugins/textreport/DetAncestralReport.py:657
-#: ../src/plugins/textreport/DetDescendantReport.py:723
+#: ../src/plugins/textreport/DetAncestralReport.py:658
+#: ../src/plugins/textreport/DetDescendantReport.py:724
 #: ../src/plugins/textreport/EndOfLineReport.py:241
 #: ../src/plugins/textreport/KinshipReport.py:324
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:177
@@ -6642,7 +6649,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:411
 #: ../src/plugins/textreport/BirthdayReport.py:363
-#: ../src/plugins/webreport/NarrativeWeb.py:5666
+#: ../src/plugins/webreport/NarrativeWeb.py:5802
 #: ../src/plugins/webreport/WebCal.py:1386
 msgid "Select the format to display names"
 msgstr ""
@@ -6653,167 +6660,167 @@ msgstr ""
 msgid "Country for holidays"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:420
+#: ../src/plugins/drawreport/Calendar.py:425
 #: ../src/plugins/textreport/BirthdayReport.py:372
 msgid "Select the country to see associated holidays"
 msgstr ""
 
 #. Default selection ????
-#: ../src/plugins/drawreport/Calendar.py:423
+#: ../src/plugins/drawreport/Calendar.py:428
 #: ../src/plugins/textreport/BirthdayReport.py:375
-#: ../src/plugins/webreport/WebCal.py:1453
+#: ../src/plugins/webreport/WebCal.py:1460
 msgid "First day of week"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:427
+#: ../src/plugins/drawreport/Calendar.py:432
 #: ../src/plugins/textreport/BirthdayReport.py:379
-#: ../src/plugins/webreport/WebCal.py:1456
+#: ../src/plugins/webreport/WebCal.py:1463
 msgid "Select the first day of the week for the calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:430
+#: ../src/plugins/drawreport/Calendar.py:435
 #: ../src/plugins/textreport/BirthdayReport.py:382
-#: ../src/plugins/webreport/WebCal.py:1443
+#: ../src/plugins/webreport/WebCal.py:1450
 msgid "Birthday surname"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:431
+#: ../src/plugins/drawreport/Calendar.py:436
 #: ../src/plugins/textreport/BirthdayReport.py:383
-#: ../src/plugins/webreport/WebCal.py:1444
+#: ../src/plugins/webreport/WebCal.py:1451
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:432
+#: ../src/plugins/drawreport/Calendar.py:437
 #: ../src/plugins/textreport/BirthdayReport.py:384
-#: ../src/plugins/webreport/WebCal.py:1446
+#: ../src/plugins/webreport/WebCal.py:1453
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:433
+#: ../src/plugins/drawreport/Calendar.py:438
 #: ../src/plugins/textreport/BirthdayReport.py:385
-#: ../src/plugins/webreport/WebCal.py:1448
+#: ../src/plugins/webreport/WebCal.py:1455
 msgid "Wives use their own surname"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:434
+#: ../src/plugins/drawreport/Calendar.py:439
 #: ../src/plugins/textreport/BirthdayReport.py:386
-#: ../src/plugins/webreport/WebCal.py:1449
+#: ../src/plugins/webreport/WebCal.py:1456
 msgid "Select married women's displayed surname"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:437
+#: ../src/plugins/drawreport/Calendar.py:442
 #: ../src/plugins/textreport/BirthdayReport.py:389
-#: ../src/plugins/webreport/WebCal.py:1464
+#: ../src/plugins/webreport/WebCal.py:1471
 msgid "Include only living people"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:438
+#: ../src/plugins/drawreport/Calendar.py:443
 #: ../src/plugins/textreport/BirthdayReport.py:390
-#: ../src/plugins/webreport/WebCal.py:1465
+#: ../src/plugins/webreport/WebCal.py:1472
 msgid "Include only living people in the calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:441
+#: ../src/plugins/drawreport/Calendar.py:446
 #: ../src/plugins/textreport/BirthdayReport.py:393
-#: ../src/plugins/webreport/WebCal.py:1468
+#: ../src/plugins/webreport/WebCal.py:1475
 msgid "Include birthdays"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:442
+#: ../src/plugins/drawreport/Calendar.py:447
 #: ../src/plugins/textreport/BirthdayReport.py:394
-#: ../src/plugins/webreport/WebCal.py:1469
+#: ../src/plugins/webreport/WebCal.py:1476
 msgid "Include birthdays in the calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:445
+#: ../src/plugins/drawreport/Calendar.py:450
 #: ../src/plugins/textreport/BirthdayReport.py:397
-#: ../src/plugins/webreport/WebCal.py:1472
+#: ../src/plugins/webreport/WebCal.py:1479
 msgid "Include anniversaries"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:446
+#: ../src/plugins/drawreport/Calendar.py:451
 #: ../src/plugins/textreport/BirthdayReport.py:398
-#: ../src/plugins/webreport/WebCal.py:1473
+#: ../src/plugins/webreport/WebCal.py:1480
 msgid "Include anniversaries in the calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:449
+#: ../src/plugins/drawreport/Calendar.py:454
 #: ../src/plugins/textreport/BirthdayReport.py:406
 msgid "Text Options"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:451
+#: ../src/plugins/drawreport/Calendar.py:456
 #: ../src/plugins/textreport/BirthdayReport.py:413
 msgid "Text Area 1"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:451
+#: ../src/plugins/drawreport/Calendar.py:456
 #: ../src/plugins/textreport/BirthdayReport.py:413
 msgid "My Calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:452
+#: ../src/plugins/drawreport/Calendar.py:457
 #: ../src/plugins/textreport/BirthdayReport.py:414
 msgid "First line of text at bottom of calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:455
+#: ../src/plugins/drawreport/Calendar.py:460
 #: ../src/plugins/textreport/BirthdayReport.py:417
 msgid "Text Area 2"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:455
+#: ../src/plugins/drawreport/Calendar.py:460
 #: ../src/plugins/textreport/BirthdayReport.py:417
 msgid "Produced with Gramps"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:456
+#: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:418
 msgid "Second line of text at bottom of calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:459
+#: ../src/plugins/drawreport/Calendar.py:464
 #: ../src/plugins/textreport/BirthdayReport.py:421
 msgid "Text Area 3"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:460
+#: ../src/plugins/drawreport/Calendar.py:465
 #: ../src/plugins/textreport/BirthdayReport.py:422
 msgid "Third line of text at bottom of calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:514
+#: ../src/plugins/drawreport/Calendar.py:519
 msgid "Title text and background color"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:518
+#: ../src/plugins/drawreport/Calendar.py:523
 msgid "Calendar day numbers"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:521
+#: ../src/plugins/drawreport/Calendar.py:526
 msgid "Daily text display"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:523
+#: ../src/plugins/drawreport/Calendar.py:528
 msgid "Days of the week text"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:527
+#: ../src/plugins/drawreport/Calendar.py:532
 #: ../src/plugins/textreport/BirthdayReport.py:486
 msgid "Text at bottom, line 1"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:529
+#: ../src/plugins/drawreport/Calendar.py:534
 #: ../src/plugins/textreport/BirthdayReport.py:488
 msgid "Text at bottom, line 2"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:531
+#: ../src/plugins/drawreport/Calendar.py:536
 #: ../src/plugins/textreport/BirthdayReport.py:490
 msgid "Text at bottom, line 3"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:533
+#: ../src/plugins/drawreport/Calendar.py:538
 msgid "Borders"
 msgstr ""
 
@@ -6843,7 +6850,6 @@ msgid "Produces a graphical ancestral tree"
 msgstr ""
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:52
-#: ../src/plugins/drawreport/FanChart.py:377
 #: ../src/plugins/drawreport/TimeLine.py:334
 #: ../src/plugins/gramplet/gramplet.gpr.py:73
 msgid "Calendar"
@@ -6882,77 +6888,72 @@ msgstr ""
 msgid "Produces a timeline chart."
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:195
+#: ../src/plugins/drawreport/FanChart.py:253
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:352
+#: ../src/plugins/drawreport/FanChart.py:414
 #: ../src/plugins/textreport/AncestorReport.py:258
 #: ../src/plugins/textreport/DescendReport.py:189
-#: ../src/plugins/textreport/DetAncestralReport.py:661
-#: ../src/plugins/textreport/DetDescendantReport.py:736
+#: ../src/plugins/textreport/DetAncestralReport.py:662
+#: ../src/plugins/textreport/DetDescendantReport.py:737
 msgid "The number of generations to include in the report"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:355
+#: ../src/plugins/drawreport/FanChart.py:417
 msgid "Type of graph"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:356
+#: ../src/plugins/drawreport/FanChart.py:418
 msgid "full circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:357
+#: ../src/plugins/drawreport/FanChart.py:419
 msgid "half circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:358
+#: ../src/plugins/drawreport/FanChart.py:420
 msgid "quarter circle"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:359
+#: ../src/plugins/drawreport/FanChart.py:421
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:363
+#: ../src/plugins/drawreport/FanChart.py:425
 msgid "Background color"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:364
+#: ../src/plugins/drawreport/FanChart.py:426
 msgid "white"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:365
+#: ../src/plugins/drawreport/FanChart.py:427
 msgid "generation dependent"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:366
+#: ../src/plugins/drawreport/FanChart.py:428
 msgid "Background color is either white or generation dependent"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:370
+#: ../src/plugins/drawreport/FanChart.py:432
 msgid "Orientation of radial texts"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:372
+#: ../src/plugins/drawreport/FanChart.py:434
 msgid "upright"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:373
+#: ../src/plugins/drawreport/FanChart.py:435
 msgid "roundabout"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:374
+#: ../src/plugins/drawreport/FanChart.py:436
 msgid "Print radial texts upright or roundabout"
 msgstr ""
 
-#: ../src/plugins/drawreport/FanChart.py:378
-#: ../src/plugins/drawreport/TimeLine.py:335
-msgid "The calendar which determines the year span"
-msgstr ""
-
-#: ../src/plugins/drawreport/FanChart.py:406
+#: ../src/plugins/drawreport/FanChart.py:460
 msgid "The style used for the title."
 msgstr ""
 
@@ -7002,13 +7003,13 @@ msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:329
 #: ../src/plugins/export/ExportCsv.py:332
-#: ../src/plugins/import/ImportCsv.py:173
+#: ../src/plugins/import/ImportCsv.py:180
 msgid "Birth place"
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:331
 #: ../src/plugins/export/ExportCsv.py:333
-#: ../src/plugins/import/ImportCsv.py:182
+#: ../src/plugins/import/ImportCsv.py:189
 msgid "Death place"
 msgstr ""
 
@@ -7127,6 +7128,11 @@ msgstr ""
 msgid "%s (persons):"
 msgstr ""
 
+#: ../src/plugins/drawreport/StatisticsChart.py:911
+#: ../src/plugins/textreport/IndivComplete.py:651
+msgid "The center person for the filter."
+msgstr ""
+
 #: ../src/plugins/drawreport/StatisticsChart.py:917
 msgid "Sort chart items by"
 msgstr ""
@@ -7148,7 +7154,7 @@ msgid "People Born After"
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:932
-msgid "Birth year from which to include people"
+msgid "Birth year from which to include people."
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:935
@@ -7164,7 +7170,7 @@ msgid "Include people without known birth years"
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:942
-msgid "Whether to include people without known birth years"
+msgid "Whether to include people without known birth years."
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:946
@@ -7193,7 +7199,7 @@ msgid "Charts 2"
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:972
-msgid "Include charts with indicated data"
+msgid "Include charts with indicated data."
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1012
@@ -7204,8 +7210,8 @@ msgstr ""
 #: ../src/plugins/drawreport/TimeLine.py:390
 #: ../src/plugins/textreport/AncestorReport.py:315
 #: ../src/plugins/textreport/DescendReport.py:205
-#: ../src/plugins/textreport/DetAncestralReport.py:757
-#: ../src/plugins/textreport/DetDescendantReport.py:843
+#: ../src/plugins/textreport/DetAncestralReport.py:758
+#: ../src/plugins/textreport/DetDescendantReport.py:844
 #: ../src/plugins/textreport/EndOfLineReport.py:257
 #: ../src/plugins/textreport/FamilyGroup.py:687
 #: ../src/plugins/textreport/IndivComplete.py:710
@@ -7249,6 +7255,10 @@ msgstr ""
 msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
 msgstr ""
 
+#: ../src/plugins/drawreport/TimeLine.py:315
+msgid "Determines what people are included in the report"
+msgstr ""
+
 #: ../src/plugins/drawreport/TimeLine.py:326
 #: ../src/plugins/tool/SortEvents.py:180
 msgid "Sort by"
@@ -7257,6 +7267,10 @@ msgstr ""
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/tool/SortEvents.py:185
 msgid "Sorting method to use"
+msgstr ""
+
+#: ../src/plugins/drawreport/TimeLine.py:335
+msgid "The calendar which determines the year span"
 msgstr ""
 
 #: ../src/plugins/drawreport/TimeLine.py:372
@@ -7304,7 +7318,7 @@ msgid "GeneWeb is a web based genealogy program."
 msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:108
-msgid "Gram_ps package (portable XML)"
+msgid "Gra_mps XML Package (family tree and media)"
 msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:109
@@ -7314,7 +7328,7 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:128
-msgid "Gramps _XML family tree"
+msgid "Gramps _XML (family tree)"
 msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:129
@@ -7349,38 +7363,38 @@ msgid "vCard is used in many addressbook and pim applications."
 msgstr ""
 
 #: ../src/plugins/export/ExportCsv.py:331
-#: ../src/plugins/import/ImportCsv.py:176
+#: ../src/plugins/import/ImportCsv.py:183
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr ""
 
 #: ../src/plugins/export/ExportCsv.py:332
-#: ../src/plugins/import/ImportCsv.py:179
+#: ../src/plugins/import/ImportCsv.py:186
 msgid "Birth source"
 msgstr ""
 
 #: ../src/plugins/export/ExportCsv.py:333
-#: ../src/plugins/import/ImportCsv.py:185
+#: ../src/plugins/import/ImportCsv.py:192
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr ""
 
 #: ../src/plugins/export/ExportCsv.py:334
-#: ../src/plugins/import/ImportCsv.py:188
+#: ../src/plugins/import/ImportCsv.py:195
 msgid "Death source"
 msgstr ""
 
 #: ../src/plugins/export/ExportCsv.py:409
-#: ../src/plugins/import/ImportCsv.py:211
+#: ../src/plugins/import/ImportCsv.py:218
 #: ../src/plugins/textreport/FamilyGroup.py:540
-#: ../src/plugins/webreport/NarrativeWeb.py:4320
+#: ../src/plugins/webreport/NarrativeWeb.py:4460
 msgid "Husband"
 msgstr ""
 
 #: ../src/plugins/export/ExportCsv.py:409
-#: ../src/plugins/import/ImportCsv.py:207
+#: ../src/plugins/import/ImportCsv.py:214
 #: ../src/plugins/textreport/FamilyGroup.py:549
-#: ../src/plugins/webreport/NarrativeWeb.py:4322
+#: ../src/plugins/webreport/NarrativeWeb.py:4462
 msgid "Wife"
 msgstr ""
 
@@ -7549,7 +7563,7 @@ msgid "Statistics"
 msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:223
-#: ../src/plugins/webreport/NarrativeWeb.py:4729
+#: ../src/plugins/webreport/NarrativeWeb.py:4866
 msgid "Total"
 msgstr ""
 
@@ -7642,14 +7656,18 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:692
 #: ../src/plugins/view/pedigreeview.py:1325
 #: ../src/plugins/view/pedigreeview.py:1345
+#: ../src/plugins/view/pedigreeviewext.py:2096
+#: ../src/plugins/view/pedigreeviewext.py:2117
 msgid "People Menu"
 msgstr ""
 
 #. Go over siblings and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:754
 #: ../src/plugins/quickview/quickview.gpr.py:301
-#: ../src/plugins/view/pedigreeview.py:1407 ../src/plugins/view/relview.py:862
-#: ../src/plugins/webreport/NarrativeWeb.py:4070
+#: ../src/plugins/view/pedigreeview.py:1407
+#: ../src/plugins/view/pedigreeviewext.py:2182
+#: ../src/plugins/view/relview.py:862
+#: ../src/plugins/webreport/NarrativeWeb.py:4216
 msgid "Siblings"
 msgstr ""
 
@@ -7658,14 +7676,16 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:559
 #: ../src/plugins/textreport/IndivComplete.py:418
 #: ../src/plugins/view/pedigreeview.py:1450
+#: ../src/plugins/view/pedigreeviewext.py:2227
 #: ../src/plugins/view/relview.py:1330
-#: ../src/plugins/webreport/NarrativeWeb.py:4273
+#: ../src/plugins/webreport/NarrativeWeb.py:4415
 msgid "Children"
 msgstr ""
 
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:871
 #: ../src/plugins/view/pedigreeview.py:1524
+#: ../src/plugins/view/pedigreeviewext.py:2315
 msgid "Related"
 msgstr ""
 
@@ -7716,8 +7736,8 @@ msgstr ""
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
 #: ../src/plugins/gramplet/gramplet.gpr.py:61
-#: ../src/plugins/webreport/NarrativeWeb.py:124
-#: ../src/plugins/webreport/NarrativeWeb.py:892
+#: ../src/plugins/webreport/NarrativeWeb.py:126
+#: ../src/plugins/webreport/NarrativeWeb.py:835
 msgid "Attributes"
 msgstr ""
 
@@ -7902,8 +7922,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:254
 #: ../src/plugins/textreport/AncestorReport.py:199
-#: ../src/plugins/textreport/DetAncestralReport.py:173
-#: ../src/plugins/textreport/DetDescendantReport.py:254
+#: ../src/plugins/textreport/DetAncestralReport.py:174
+#: ../src/plugins/textreport/DetDescendantReport.py:255
 #: ../src/plugins/textreport/EndOfLineReport.py:163
 #, python-format
 msgid "Generation %d"
@@ -7958,8 +7978,8 @@ msgstr ""
 #: ../src/plugins/graph/GVFamilyLines.py:158
 #: ../src/plugins/graph/GVRelGraph.py:551
 #: ../src/plugins/textreport/MarkerReport.py:190
-#: ../src/plugins/view/familyview.py:87
-#: ../src/plugins/webreport/NarrativeWeb.py:4258
+#: ../src/plugins/view/familyview.py:87 ../src/plugins/view/view.gpr.py:53
+#: ../src/plugins/webreport/NarrativeWeb.py:4400
 msgid "Families"
 msgstr ""
 
@@ -8043,9 +8063,9 @@ msgstr ""
 #: ../src/plugins/gramplet/StatsGramplet.py:129
 #: ../src/plugins/graph/GVFamilyLines.py:142
 #: ../src/plugins/textreport/Summary.py:99
-#: ../src/plugins/webreport/NarrativeWeb.py:1086
-#: ../src/plugins/webreport/NarrativeWeb.py:1122
-#: ../src/plugins/webreport/NarrativeWeb.py:1647
+#: ../src/plugins/webreport/NarrativeWeb.py:1033
+#: ../src/plugins/webreport/NarrativeWeb.py:1069
+#: ../src/plugins/webreport/NarrativeWeb.py:1804
 msgid "Individuals"
 msgstr ""
 
@@ -8294,7 +8314,7 @@ msgid "Family Lines Graph"
 msgstr ""
 
 #: ../src/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz"
+msgid "Produces family line graphs using GraphViz."
 msgstr ""
 
 #: ../src/plugins/graph/graphplugins.gpr.py:53
@@ -8302,7 +8322,7 @@ msgid "Hourglass Graph"
 msgstr ""
 
 #: ../src/plugins/graph/graphplugins.gpr.py:54
-msgid "Produces an hourglass graph using Graphviz"
+msgid "Produces an hourglass graph using Graphviz."
 msgstr ""
 
 #: ../src/plugins/graph/graphplugins.gpr.py:74
@@ -8310,7 +8330,7 @@ msgid "Relationship Graph"
 msgstr ""
 
 #: ../src/plugins/graph/graphplugins.gpr.py:75
-msgid "Produces relationship graphs using Graphviz"
+msgid "Produces relationship graphs using Graphviz."
 msgstr ""
 
 #. ------------------------------------------------------------------------
@@ -8766,115 +8786,116 @@ msgstr ""
 msgid "Import data from vCard files"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:153
+#: ../src/plugins/import/ImportCsv.py:160
 msgid "Given name"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:157
+#: ../src/plugins/import/ImportCsv.py:164
 msgid "Call name"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:191
+#: ../src/plugins/import/ImportCsv.py:198
 msgid "Death cause"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:194
-#: ../src/plugins/import/ImportCsv.py:266
-msgid "Gramps id"
+#: ../src/plugins/import/ImportCsv.py:201
+#: ../src/plugins/import/ImportCsv.py:273
+#: ../src/plugins/webreport/NarrativeWeb.py:135
+msgid "Gramps ID"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:208
+#: ../src/plugins/import/ImportCsv.py:215
 msgid "Parent2"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:212
+#: ../src/plugins/import/ImportCsv.py:219
 msgid "Parent1"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:225
+#: ../src/plugins/import/ImportCsv.py:232
 msgid "given name"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:238
+#: ../src/plugins/import/ImportCsv.py:245
 msgid "gender"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:240
-#: ../src/plugins/import/ImportCsv.py:273
+#: ../src/plugins/import/ImportCsv.py:247
+#: ../src/plugins/import/ImportCsv.py:280
 msgid "source"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:242
+#: ../src/plugins/import/ImportCsv.py:249
 msgid "note"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:245
+#: ../src/plugins/import/ImportCsv.py:252
 msgid "birth place"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:248
+#: ../src/plugins/import/ImportCsv.py:255
 msgid "birth date"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:251
+#: ../src/plugins/import/ImportCsv.py:258
 msgid "birth source"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:254
+#: ../src/plugins/import/ImportCsv.py:261
 msgid "death place"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:257
+#: ../src/plugins/import/ImportCsv.py:264
 msgid "death date"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:260
+#: ../src/plugins/import/ImportCsv.py:267
 msgid "death source"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:263
+#: ../src/plugins/import/ImportCsv.py:270
 msgid "death cause"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:268
+#: ../src/plugins/import/ImportCsv.py:275
 msgid "person"
 msgstr ""
 
 #. ----------------------------------
-#: ../src/plugins/import/ImportCsv.py:271
+#: ../src/plugins/import/ImportCsv.py:278
 msgid "child"
 msgstr ""
 
 #. ----------------------------------
-#: ../src/plugins/import/ImportCsv.py:278
+#: ../src/plugins/import/ImportCsv.py:285
 msgid "mother"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:280
+#: ../src/plugins/import/ImportCsv.py:287
 msgid "parent2"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:282
+#: ../src/plugins/import/ImportCsv.py:289
 msgid "father"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:284
+#: ../src/plugins/import/ImportCsv.py:291
 msgid "parent1"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:286
+#: ../src/plugins/import/ImportCsv.py:293
 msgid "marriage"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:288
+#: ../src/plugins/import/ImportCsv.py:295
 msgid "date"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:290
+#: ../src/plugins/import/ImportCsv.py:297
 msgid "place"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:318
+#: ../src/plugins/import/ImportCsv.py:325
 #: ../src/plugins/import/ImportGedcom.py:115
 #: ../src/plugins/import/ImportGedcom.py:129
 #: ../src/plugins/import/ImportGeneWeb.py:83
@@ -8885,20 +8906,20 @@ msgstr ""
 msgid "%s could not be opened\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:328
+#: ../src/plugins/import/ImportCsv.py:335
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:379
+#: ../src/plugins/import/ImportCsv.py:386
 msgid "CSV Import"
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:380
+#: ../src/plugins/import/ImportCsv.py:387
 msgid "Reading data..."
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:694
+#: ../src/plugins/import/ImportCsv.py:701
 #: ../src/plugins/import/ImportGeneWeb.py:180
 #: ../src/plugins/import/ImportVCard.py:144
 #, python-format
@@ -8907,7 +8928,7 @@ msgid_plural "Import Complete: %d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/import/ImportCsv.py:695
+#: ../src/plugins/import/ImportCsv.py:702
 msgid "CSV import"
 msgstr ""
 
@@ -12992,28 +13013,19 @@ msgid "Longitude not within %s to %s"
 msgstr ""
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
-#: ../src/plugins/mapservices/eniroswedenmap.py:143
+#: ../src/plugins/mapservices/eniroswedenmap.py:166
 #: ../src/plugins/mapservices/eniroswedenmap.py:171
 msgid "Eniro map not available"
 msgstr ""
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:144
-msgid ""
-"Latitude and longitude,\n"
-"or street and city needed"
-msgstr ""
-
-#: ../src/plugins/mapservices/eniroswedenmap.py:172
+#: ../src/plugins/mapservices/eniroswedenmap.py:167
 msgid "Coordinates needed in Denmark"
 msgstr ""
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:176
-#, python-format
-msgid "Eniro map not available for %s"
-msgstr ""
-
-#: ../src/plugins/mapservices/eniroswedenmap.py:177
-msgid "Only for Sweden and Denmark"
+#: ../src/plugins/mapservices/eniroswedenmap.py:172
+msgid ""
+"Latitude and longitude,\n"
+"or street and city needed"
 msgstr ""
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:31
@@ -13144,12 +13156,7 @@ msgstr ""
 
 #: ../src/plugins/quickview/all_relations.py:286
 #: ../src/plugins/view/relview.py:345
-#: ../src/plugins/webreport/NarrativeWeb.py:1685
-#: ../src/plugins/webreport/NarrativeWeb.py:1869
-#: ../src/plugins/webreport/NarrativeWeb.py:2171
-#: ../src/plugins/webreport/NarrativeWeb.py:2328
-#: ../src/plugins/webreport/NarrativeWeb.py:4324
-#: ../src/plugins/webreport/NarrativeWeb.py:4326
+#: ../src/plugins/webreport/NarrativeWeb.py:142
 msgid "Partner"
 msgstr ""
 
@@ -13179,103 +13186,102 @@ msgstr ""
 msgid "There are %d people with a matching attribute name.\n"
 msgstr ""
 
-#. force translation
-#: ../src/plugins/quickview/FilterByName.py:41
-msgid "all people"
+#: ../src/plugins/quickview/FilterByName.py:40
+msgid "Filtering_on|all people"
 msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:41
-msgid "males"
-msgstr ""
-
-#: ../src/plugins/quickview/FilterByName.py:41
-msgid "females"
-msgstr ""
-
-#: ../src/plugins/quickview/FilterByName.py:41
-msgid "people with unknown gender"
+msgid "Filtering_on|males"
 msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:42
-msgid "people with incomplete names"
-msgstr ""
-
-#: ../src/plugins/quickview/FilterByName.py:42
-msgid "people with missing birth dates"
-msgstr ""
-
-#: ../src/plugins/quickview/FilterByName.py:43
-msgid "disconnected people"
-msgstr ""
-
-#: ../src/plugins/quickview/FilterByName.py:43
-msgid "all families"
-msgstr ""
-
-#: ../src/plugins/quickview/FilterByName.py:43
-msgid "unique surnames"
+msgid "Filtering_on|females"
 msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:44
-msgid "people with media"
+msgid "Filtering_on|people with unknown gender"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:44
-msgid "media references"
+#: ../src/plugins/quickview/FilterByName.py:46
+msgid "Filtering_on|people with incomplete names"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:44
-msgid "unique media"
+#: ../src/plugins/quickview/FilterByName.py:48
+msgid "Filtering_on|people with missing birth dates"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:45
-msgid "missing media"
+#: ../src/plugins/quickview/FilterByName.py:49
+msgid "Filtering_on|disconnected people"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:45
-msgid "media by size"
+#: ../src/plugins/quickview/FilterByName.py:50
+msgid "Filtering_on|all families"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:45
-msgid "list of people"
+#: ../src/plugins/quickview/FilterByName.py:51
+msgid "Filtering_on|unique surnames"
 msgstr ""
 
-#. display the title
+#: ../src/plugins/quickview/FilterByName.py:52
+msgid "Filtering_on|people with media"
+msgstr ""
+
+#: ../src/plugins/quickview/FilterByName.py:53
+msgid "Filtering_on|media references"
+msgstr ""
+
+#: ../src/plugins/quickview/FilterByName.py:54
+msgid "Filtering_on|unique media"
+msgstr ""
+
+#: ../src/plugins/quickview/FilterByName.py:55
+msgid "Filtering_on|missing media"
+msgstr ""
+
+#: ../src/plugins/quickview/FilterByName.py:56
+msgid "Filtering_on|media by size"
+msgstr ""
+
 #: ../src/plugins/quickview/FilterByName.py:57
+msgid "Filtering_on|list of people"
+msgstr ""
+
+#: ../src/plugins/quickview/FilterByName.py:70
+#: ../src/plugins/quickview/FilterByName.py:72
 #, python-format
 msgid "Filtering on %s"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:61
-#: ../src/plugins/quickview/FilterByName.py:67
-#: ../src/plugins/quickview/FilterByName.py:74
-#: ../src/plugins/quickview/FilterByName.py:81
-#: ../src/plugins/quickview/FilterByName.py:88
-#: ../src/plugins/quickview/FilterByName.py:108
-#: ../src/plugins/quickview/FilterByName.py:176
+#: ../src/plugins/quickview/FilterByName.py:76
+#: ../src/plugins/quickview/FilterByName.py:82
+#: ../src/plugins/quickview/FilterByName.py:89
+#: ../src/plugins/quickview/FilterByName.py:96
+#: ../src/plugins/quickview/FilterByName.py:103
+#: ../src/plugins/quickview/FilterByName.py:123
+#: ../src/plugins/quickview/FilterByName.py:191
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 msgid "Name type"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:102
+#: ../src/plugins/quickview/FilterByName.py:117
 msgid "birth event but no date"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:105
+#: ../src/plugins/quickview/FilterByName.py:120
 msgid "missing birth event"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:127
+#: ../src/plugins/quickview/FilterByName.py:142
 #: ../src/PluginUtils/_GuiOptions.py:86
 msgid "Count"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:137
+#: ../src/plugins/quickview/FilterByName.py:152
 msgid "Media count"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:144
+#: ../src/plugins/quickview/FilterByName.py:159
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -13283,24 +13289,24 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:148
+#: ../src/plugins/quickview/FilterByName.py:163
 #: ../src/plugins/export/exportgeneweb.glade.h:7
 msgid "media"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:151
+#: ../src/plugins/quickview/FilterByName.py:166
 msgid "Unique Media"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:157
+#: ../src/plugins/quickview/FilterByName.py:172
 msgid "Missing Media"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:166
+#: ../src/plugins/quickview/FilterByName.py:181
 msgid "Size in bytes"
 msgstr ""
 
-#: ../src/plugins/quickview/FilterByName.py:185
+#: ../src/plugins/quickview/FilterByName.py:200
 #, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
@@ -13743,14 +13749,14 @@ msgid "Ahnentafel Report for %s"
 msgstr ""
 
 #: ../src/plugins/textreport/AncestorReport.py:261
-#: ../src/plugins/textreport/DetAncestralReport.py:664
-#: ../src/plugins/textreport/DetDescendantReport.py:740
+#: ../src/plugins/textreport/DetAncestralReport.py:665
+#: ../src/plugins/textreport/DetDescendantReport.py:741
 msgid "Page break between generations"
 msgstr ""
 
 #: ../src/plugins/textreport/AncestorReport.py:263
-#: ../src/plugins/textreport/DetAncestralReport.py:666
-#: ../src/plugins/textreport/DetDescendantReport.py:742
+#: ../src/plugins/textreport/DetAncestralReport.py:667
+#: ../src/plugins/textreport/DetDescendantReport.py:743
 msgid "Whether to start a new page after each generation."
 msgstr ""
 
@@ -13771,8 +13777,8 @@ msgid "The translation to be used for the report."
 msgstr ""
 
 #: ../src/plugins/textreport/AncestorReport.py:328
-#: ../src/plugins/textreport/DetAncestralReport.py:767
-#: ../src/plugins/textreport/DetDescendantReport.py:853
+#: ../src/plugins/textreport/DetAncestralReport.py:768
+#: ../src/plugins/textreport/DetDescendantReport.py:854
 #: ../src/ReportBase/_Endnotes.py:42
 msgid "The style used for the generation header."
 msgstr ""
@@ -13880,360 +13886,360 @@ msgstr ""
 msgid "The style used for the spouse level %d display."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:161
+#: ../src/plugins/textreport/DetAncestralReport.py:162
 #, python-format
 msgid "Ancestral Report for %s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:237
-#: ../src/plugins/textreport/DetDescendantReport.py:334
+#: ../src/plugins/textreport/DetAncestralReport.py:238
+#: ../src/plugins/textreport/DetDescendantReport.py:335
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:278
-#: ../src/plugins/textreport/DetDescendantReport.py:619
+#: ../src/plugins/textreport/DetAncestralReport.py:279
+#: ../src/plugins/textreport/DetDescendantReport.py:620
 #, python-format
 msgid "Notes for %s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:290
-#: ../src/plugins/textreport/DetAncestralReport.py:313
-#: ../src/plugins/textreport/DetAncestralReport.py:324
-#: ../src/plugins/textreport/DetAncestralReport.py:343
-#: ../src/plugins/textreport/DetDescendantReport.py:631
-#: ../src/plugins/textreport/DetDescendantReport.py:649
-#: ../src/plugins/textreport/DetDescendantReport.py:660
-#: ../src/plugins/textreport/DetDescendantReport.py:679
+#: ../src/plugins/textreport/DetAncestralReport.py:291
+#: ../src/plugins/textreport/DetAncestralReport.py:314
+#: ../src/plugins/textreport/DetAncestralReport.py:325
+#: ../src/plugins/textreport/DetAncestralReport.py:344
+#: ../src/plugins/textreport/DetDescendantReport.py:632
+#: ../src/plugins/textreport/DetDescendantReport.py:650
+#: ../src/plugins/textreport/DetDescendantReport.py:661
+#: ../src/plugins/textreport/DetDescendantReport.py:680
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:297
-#: ../src/plugins/textreport/DetDescendantReport.py:638
+#: ../src/plugins/textreport/DetAncestralReport.py:298
+#: ../src/plugins/textreport/DetDescendantReport.py:639
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:332
-#: ../src/plugins/textreport/DetDescendantReport.py:668
+#: ../src/plugins/textreport/DetAncestralReport.py:333
+#: ../src/plugins/textreport/DetDescendantReport.py:669
 msgid "Address: "
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:350
-#: ../src/plugins/textreport/DetAncestralReport.py:402
-#: ../src/plugins/textreport/DetDescendantReport.py:396
-#: ../src/plugins/textreport/DetDescendantReport.py:686
+#: ../src/plugins/textreport/DetAncestralReport.py:351
+#: ../src/plugins/textreport/DetAncestralReport.py:403
+#: ../src/plugins/textreport/DetDescendantReport.py:397
+#: ../src/plugins/textreport/DetDescendantReport.py:687
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:372
-#: ../src/plugins/textreport/DetDescendantReport.py:366
+#: ../src/plugins/textreport/DetAncestralReport.py:373
+#: ../src/plugins/textreport/DetDescendantReport.py:367
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:375
-#: ../src/plugins/textreport/DetDescendantReport.py:369
+#: ../src/plugins/textreport/DetAncestralReport.py:376
+#: ../src/plugins/textreport/DetDescendantReport.py:370
 #, python-format
 msgid "%(date)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:377
-#: ../src/plugins/textreport/DetDescendantReport.py:371
+#: ../src/plugins/textreport/DetAncestralReport.py:378
+#: ../src/plugins/textreport/DetDescendantReport.py:372
 #, python-format
 msgid "%(place)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:389
-#: ../src/plugins/textreport/DetDescendantReport.py:383
+#: ../src/plugins/textreport/DetAncestralReport.py:390
+#: ../src/plugins/textreport/DetDescendantReport.py:384
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:491
-#: ../src/plugins/textreport/DetDescendantReport.py:510
+#: ../src/plugins/textreport/DetAncestralReport.py:492
+#: ../src/plugins/textreport/DetDescendantReport.py:511
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:542
-#: ../src/plugins/textreport/DetDescendantReport.py:570
+#: ../src/plugins/textreport/DetAncestralReport.py:543
+#: ../src/plugins/textreport/DetDescendantReport.py:571
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:594
-#: ../src/plugins/textreport/DetDescendantReport.py:477
+#: ../src/plugins/textreport/DetAncestralReport.py:595
+#: ../src/plugins/textreport/DetDescendantReport.py:478
 #, python-format
 msgid "Spouse: %s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:596
-#: ../src/plugins/textreport/DetDescendantReport.py:479
+#: ../src/plugins/textreport/DetAncestralReport.py:597
+#: ../src/plugins/textreport/DetDescendantReport.py:480
 #, python-format
 msgid "Relationship with: %s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:669
-#: ../src/plugins/textreport/DetDescendantReport.py:745
+#: ../src/plugins/textreport/DetAncestralReport.py:670
+#: ../src/plugins/textreport/DetDescendantReport.py:746
 msgid "Content"
-msgstr ""
-
-#: ../src/plugins/textreport/DetAncestralReport.py:671
-#: ../src/plugins/textreport/DetDescendantReport.py:747
-msgid "Use callname for common name"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:748
+msgid "Use callname for common name"
+msgstr ""
+
+#: ../src/plugins/textreport/DetAncestralReport.py:673
+#: ../src/plugins/textreport/DetDescendantReport.py:749
 msgid "Whether to use the call name as the first name."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:676
-#: ../src/plugins/textreport/DetDescendantReport.py:751
+#: ../src/plugins/textreport/DetAncestralReport.py:677
+#: ../src/plugins/textreport/DetDescendantReport.py:752
 msgid "Use full dates instead of only the year"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:677
-#: ../src/plugins/textreport/DetDescendantReport.py:753
+#: ../src/plugins/textreport/DetAncestralReport.py:678
+#: ../src/plugins/textreport/DetDescendantReport.py:754
 msgid "Whether to use full dates instead of just year."
-msgstr ""
-
-#: ../src/plugins/textreport/DetAncestralReport.py:680
-#: ../src/plugins/textreport/DetDescendantReport.py:756
-msgid "List children"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:681
 #: ../src/plugins/textreport/DetDescendantReport.py:757
-msgid "Whether to list children."
+msgid "List children"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:684
-#: ../src/plugins/textreport/DetDescendantReport.py:760
-msgid "Compute death age"
+#: ../src/plugins/textreport/DetAncestralReport.py:682
+#: ../src/plugins/textreport/DetDescendantReport.py:758
+msgid "Whether to list children."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:685
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-msgid "Whether to compute a person's age at death."
+msgid "Compute death age"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:688
-#: ../src/plugins/textreport/DetDescendantReport.py:764
-msgid "Omit duplicate ancestors"
+#: ../src/plugins/textreport/DetAncestralReport.py:686
+#: ../src/plugins/textreport/DetDescendantReport.py:762
+msgid "Whether to compute a person's age at death."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:689
 #: ../src/plugins/textreport/DetDescendantReport.py:765
+msgid "Omit duplicate ancestors"
+msgstr ""
+
+#: ../src/plugins/textreport/DetAncestralReport.py:690
+#: ../src/plugins/textreport/DetDescendantReport.py:766
 msgid "Whether to omit duplicate ancestors."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:692
+#: ../src/plugins/textreport/DetAncestralReport.py:693
 msgid "Use Complete Sentences"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:694
-#: ../src/plugins/textreport/DetDescendantReport.py:770
+#: ../src/plugins/textreport/DetAncestralReport.py:695
+#: ../src/plugins/textreport/DetDescendantReport.py:771
 msgid "Whether to use complete sentences or succinct language."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:697
-#: ../src/plugins/textreport/DetDescendantReport.py:773
+#: ../src/plugins/textreport/DetAncestralReport.py:698
+#: ../src/plugins/textreport/DetDescendantReport.py:774
 msgid "Add descendant reference in child list"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:699
-#: ../src/plugins/textreport/DetDescendantReport.py:776
+#: ../src/plugins/textreport/DetAncestralReport.py:700
+#: ../src/plugins/textreport/DetDescendantReport.py:777
 msgid "Whether to add descendant references in child list."
 msgstr ""
 
 #. #########################
-#: ../src/plugins/textreport/DetAncestralReport.py:702
-#: ../src/plugins/textreport/DetDescendantReport.py:779
+#: ../src/plugins/textreport/DetAncestralReport.py:703
+#: ../src/plugins/textreport/DetDescendantReport.py:780
 #: ../src/plugins/textreport/FamilyGroup.py:615
-#: ../src/plugins/webreport/NarrativeWeb.py:5792
+#: ../src/plugins/webreport/NarrativeWeb.py:5928
 msgid "Include"
-msgstr ""
-
-#: ../src/plugins/textreport/DetAncestralReport.py:704
-#: ../src/plugins/textreport/DetDescendantReport.py:781
-msgid "Include notes"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:705
 #: ../src/plugins/textreport/DetDescendantReport.py:782
-msgid "Whether to include notes."
+msgid "Include notes"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:708
-#: ../src/plugins/textreport/DetDescendantReport.py:785
-msgid "Include attributes"
+#: ../src/plugins/textreport/DetAncestralReport.py:706
+#: ../src/plugins/textreport/DetDescendantReport.py:783
+msgid "Whether to include notes."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:709
 #: ../src/plugins/textreport/DetDescendantReport.py:786
+msgid "Include attributes"
+msgstr ""
+
+#: ../src/plugins/textreport/DetAncestralReport.py:710
+#: ../src/plugins/textreport/DetDescendantReport.py:787
 #: ../src/plugins/textreport/FamilyGroup.py:637
 msgid "Whether to include attributes."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:712
-#: ../src/plugins/textreport/DetDescendantReport.py:789
+#: ../src/plugins/textreport/DetAncestralReport.py:713
+#: ../src/plugins/textreport/DetDescendantReport.py:790
 msgid "Include Photo/Images from Gallery"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:713
-#: ../src/plugins/textreport/DetDescendantReport.py:790
+#: ../src/plugins/textreport/DetAncestralReport.py:714
+#: ../src/plugins/textreport/DetDescendantReport.py:791
 msgid "Whether to include images."
-msgstr ""
-
-#: ../src/plugins/textreport/DetAncestralReport.py:716
-#: ../src/plugins/textreport/DetDescendantReport.py:793
-msgid "Include alternative names"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:717
 #: ../src/plugins/textreport/DetDescendantReport.py:794
-msgid "Whether to include other names."
+msgid "Include alternative names"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:720
-#: ../src/plugins/textreport/DetDescendantReport.py:797
-msgid "Include events"
+#: ../src/plugins/textreport/DetAncestralReport.py:718
+#: ../src/plugins/textreport/DetDescendantReport.py:795
+msgid "Whether to include other names."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:721
 #: ../src/plugins/textreport/DetDescendantReport.py:798
-msgid "Whether to include events."
+msgid "Include events"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:724
-#: ../src/plugins/textreport/DetDescendantReport.py:801
-msgid "Include addresses"
+#: ../src/plugins/textreport/DetAncestralReport.py:722
+#: ../src/plugins/textreport/DetDescendantReport.py:799
+msgid "Whether to include events."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:725
 #: ../src/plugins/textreport/DetDescendantReport.py:802
-msgid "Whether to include addresses."
+msgid "Include addresses"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:728
-#: ../src/plugins/textreport/DetDescendantReport.py:805
-msgid "Include sources"
+#: ../src/plugins/textreport/DetAncestralReport.py:726
+#: ../src/plugins/textreport/DetDescendantReport.py:803
+msgid "Whether to include addresses."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:729
 #: ../src/plugins/textreport/DetDescendantReport.py:806
-msgid "Whether to include source references."
+msgid "Include sources"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:732
-#: ../src/plugins/textreport/DetDescendantReport.py:809
-msgid "Include sources notes"
+#: ../src/plugins/textreport/DetAncestralReport.py:730
+#: ../src/plugins/textreport/DetDescendantReport.py:807
+msgid "Whether to include source references."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:733
 #: ../src/plugins/textreport/DetDescendantReport.py:810
+msgid "Include sources notes"
+msgstr ""
+
+#: ../src/plugins/textreport/DetAncestralReport.py:734
+#: ../src/plugins/textreport/DetDescendantReport.py:811
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:737
-#: ../src/plugins/textreport/DetDescendantReport.py:823
+#: ../src/plugins/textreport/DetAncestralReport.py:738
+#: ../src/plugins/textreport/DetDescendantReport.py:824
 msgid "Missing information"
-msgstr ""
-
-#: ../src/plugins/textreport/DetAncestralReport.py:739
-#: ../src/plugins/textreport/DetDescendantReport.py:825
-msgid "Replace missing places with ______"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:740
 #: ../src/plugins/textreport/DetDescendantReport.py:826
-msgid "Whether to replace missing Places with blanks."
+msgid "Replace missing places with ______"
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:743
-#: ../src/plugins/textreport/DetDescendantReport.py:829
-msgid "Replace missing dates with ______"
+#: ../src/plugins/textreport/DetAncestralReport.py:741
+#: ../src/plugins/textreport/DetDescendantReport.py:827
+msgid "Whether to replace missing Places with blanks."
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:744
 #: ../src/plugins/textreport/DetDescendantReport.py:830
+msgid "Replace missing dates with ______"
+msgstr ""
+
+#: ../src/plugins/textreport/DetAncestralReport.py:745
+#: ../src/plugins/textreport/DetDescendantReport.py:831
 msgid "Whether to replace missing Dates with blanks."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:777
-#: ../src/plugins/textreport/DetDescendantReport.py:863
+#: ../src/plugins/textreport/DetAncestralReport.py:778
+#: ../src/plugins/textreport/DetDescendantReport.py:864
 msgid "The style used for the children list title."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:787
-#: ../src/plugins/textreport/DetDescendantReport.py:873
+#: ../src/plugins/textreport/DetAncestralReport.py:788
+#: ../src/plugins/textreport/DetDescendantReport.py:874
 msgid "The style used for the children list."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:810
-#: ../src/plugins/textreport/DetDescendantReport.py:896
+#: ../src/plugins/textreport/DetAncestralReport.py:811
+#: ../src/plugins/textreport/DetDescendantReport.py:897
 msgid "The style used for the first personal entry."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:820
-#: ../src/plugins/textreport/DetDescendantReport.py:906
+#: ../src/plugins/textreport/DetAncestralReport.py:821
+#: ../src/plugins/textreport/DetDescendantReport.py:907
 msgid "The style used for the More About header."
 msgstr ""
 
-#: ../src/plugins/textreport/DetAncestralReport.py:830
-#: ../src/plugins/textreport/DetDescendantReport.py:916
+#: ../src/plugins/textreport/DetAncestralReport.py:831
+#: ../src/plugins/textreport/DetDescendantReport.py:917
 msgid "The style used for additional detail data."
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:242
+#: ../src/plugins/textreport/DetDescendantReport.py:243
 #, python-format
 msgid "Descendant Report for %(person_name)s"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:726
+#: ../src/plugins/textreport/DetDescendantReport.py:727
 msgid "Numbering system"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:728
+#: ../src/plugins/textreport/DetDescendantReport.py:729
 msgid "Henry numbering"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:729
+#: ../src/plugins/textreport/DetDescendantReport.py:730
 msgid "d'Aboville numbering"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:731
+#: ../src/plugins/textreport/DetDescendantReport.py:732
 msgid "Record (Modified Register) numbering"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:732
+#: ../src/plugins/textreport/DetDescendantReport.py:733
 msgid "The numbering system to be used"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:768
+#: ../src/plugins/textreport/DetDescendantReport.py:769
 msgid "Use complete sentences"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:814
+#: ../src/plugins/textreport/DetDescendantReport.py:815
 #: ../src/plugins/textreport/KinshipReport.py:335
 msgid "Include spouses"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:815
+#: ../src/plugins/textreport/DetDescendantReport.py:816
 msgid "Whether to include detailed spouse information."
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:818
+#: ../src/plugins/textreport/DetDescendantReport.py:819
 msgid "Include path to start-person"
 msgstr ""
 
-#: ../src/plugins/textreport/DetDescendantReport.py:819
+#: ../src/plugins/textreport/DetDescendantReport.py:820
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant"
@@ -14443,10 +14449,10 @@ msgid "Summary of %s"
 msgstr ""
 
 #: ../src/plugins/textreport/IndivComplete.py:548
-#: ../src/plugins/webreport/NarrativeWeb.py:1180
-#: ../src/plugins/webreport/NarrativeWeb.py:1237
-#: ../src/plugins/webreport/NarrativeWeb.py:1253
-#: ../src/plugins/webreport/NarrativeWeb.py:5439
+#: ../src/plugins/webreport/NarrativeWeb.py:1160
+#: ../src/plugins/webreport/NarrativeWeb.py:1303
+#: ../src/plugins/webreport/NarrativeWeb.py:1380
+#: ../src/plugins/webreport/NarrativeWeb.py:1396
 #: ../src/ReportBase/_ReportUtils.py:143
 msgid "Could not add photo to page"
 msgstr ""
@@ -14462,7 +14468,7 @@ msgid "Female"
 msgstr ""
 
 #: ../src/plugins/textreport/IndivComplete.py:646
-msgid "Select the filter to be applied to the report"
+msgid "Select the filter to be applied to the report."
 msgstr ""
 
 #: ../src/plugins/textreport/IndivComplete.py:657
@@ -14547,7 +14553,7 @@ msgid "Marker Report for %s Items"
 msgstr ""
 
 #: ../src/plugins/textreport/MarkerReport.py:103
-#: ../src/plugins/view/personview.py:109
+#: ../src/plugins/view/personview.py:109 ../src/plugins/view/view.gpr.py:137
 msgid "People"
 msgstr ""
 
@@ -16630,12 +16636,20 @@ msgid ""
 "needed"
 msgstr ""
 
+#: ../src/plugins/view/geoview.gpr.py:58
+msgid "Geography"
+msgstr ""
+
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Html View"
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:65
 msgid "A view allowing to see html pages embedded in Gramps"
+msgstr ""
+
+#: ../src/plugins/view/geoview.gpr.py:71
+msgid "Web"
 msgstr ""
 
 #: ../src/plugins/view/grampletview.py:172
@@ -16719,11 +16733,15 @@ msgstr ""
 msgid "View in the default viewer"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:226
+msgid "Open the folder containing the media file"
+msgstr ""
+
+#: ../src/plugins/view/mediaview.py:256
 msgid "Select Media Columns"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:275 ../src/glade/editmedia.glade.h:2
+#: ../src/plugins/view/mediaview.py:290 ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
 msgstr ""
@@ -16741,35 +16759,43 @@ msgid "Select Note Columns"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:80
+#: ../src/plugins/view/pedigreeviewext.py:81
 msgid "short for baptized|bap."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:81
+#: ../src/plugins/view/pedigreeviewext.py:82
 msgid "short for chistianized|chr."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:82
+#: ../src/plugins/view/pedigreeviewext.py:83
 msgid "short for buried|bur."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:83
+#: ../src/plugins/view/pedigreeviewext.py:84
 msgid "short for cremated|crem."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:506
+#: ../src/plugins/view/pedigreeviewext.py:633
 #: ../src/plugins/view/personview.py:369 ../src/plugins/view/relview.py:362
 msgid "Person Filter Editor"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:896
+#: ../src/plugins/view/pedigreeviewext.py:1220
 msgid "Jump to child..."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:914
+#: ../src/plugins/view/pedigreeviewext.py:1266
 msgid "Jump to mother"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1187
+#: ../src/plugins/view/pedigreeviewext.py:1865
 msgid "A person was found to be his/her own ancestor."
 msgstr ""
 
@@ -16780,30 +16806,37 @@ msgstr ""
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/plugins/view/pedigreeview.py:1230
 #: ../src/plugins/view/pedigreeview.py:1239
+#: ../src/plugins/webreport/NarrativeWeb.py:3081
 msgid "Home"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1253
+#: ../src/plugins/view/pedigreeviewext.py:1929
 msgid "Show images"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1262
+#: ../src/plugins/view/pedigreeviewext.py:1939
 msgid "Show marriage data"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1271
+#: ../src/plugins/view/pedigreeviewext.py:1987
 msgid "Tree style"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1278
+#: ../src/plugins/view/pedigreeviewext.py:1995
 msgid "Version A"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1285
+#: ../src/plugins/view/pedigreeviewext.py:2002
 msgid "Version B"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1297
+#: ../src/plugins/view/pedigreeviewext.py:2020
 msgid "Tree size"
 msgstr ""
 
@@ -16812,6 +16845,8 @@ msgid "Automatic"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1312
+#: ../src/plugins/view/pedigreeviewext.py:2030
+#: ../src/plugins/view/pedigreeviewext.py:2041
 #, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
@@ -16819,7 +16854,72 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../src/plugins/view/pedigreeview.py:1575
+#: ../src/plugins/view/pedigreeviewext.py:2364
 msgid "Family Menu"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:1950
+msgid "Show unknown peoples"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:1961
+msgid "Mouse scroll direction"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:1969
+msgid "Top <-> Bottom"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:1976
+msgid "Left <-> Right"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:2009
+msgid "Version C"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:2048
+msgid "Tree direction"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:2056
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
+msgid "Vertical (top to bottom)"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:2063
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
+msgid "Vertical (bottom to top)"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:2070
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
+msgid "Horizontal (left to right)"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:2077
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
+msgid "Horizontal (right to left)"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.py:2304
+#: ../src/plugins/view/relview.py:351
+msgid "Add New Parents..."
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.gpr.py:32
+#: ../src/plugins/view/view.gpr.py:116
+msgid "Pedigree View"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.gpr.py:33
+#: ../src/plugins/view/view.gpr.py:117
+msgid "The view showing an ancestor pedigree of the selected person"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.gpr.py:39
+#: ../src/plugins/view/view.gpr.py:123
+msgid "Charts"
 msgstr ""
 
 #: ../src/plugins/view/personview.py:91 ../src/plugins/view/personview.py:384
@@ -16911,10 +17011,6 @@ msgstr ""
 #: ../src/plugins/view/relview.py:350 ../src/plugins/view/relview.py:352
 #: ../src/plugins/view/relview.py:759
 msgid "Add a new set of parents"
-msgstr ""
-
-#: ../src/plugins/view/relview.py:351
-msgid "Add New Parents..."
 msgstr ""
 
 #: ../src/plugins/view/relview.py:354 ../src/plugins/view/relview.py:358
@@ -17159,158 +17255,147 @@ msgstr ""
 msgid "The view showing all relationships of the selected person"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:116
-msgid "Pedigree View"
-msgstr ""
-
-#: ../src/plugins/view/view.gpr.py:117
-msgid "The view showing an ancestor pedigree of the selected person"
-msgstr ""
-
-#: ../src/plugins/view/view.gpr.py:129
+#: ../src/plugins/view/view.gpr.py:130
 msgid "Person View"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:130
+#: ../src/plugins/view/view.gpr.py:131
 msgid "The view showing all people in the family tree"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:143
+#: ../src/plugins/view/view.gpr.py:144
 msgid "Place View"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:144
+#: ../src/plugins/view/view.gpr.py:145
 msgid "The view showing all the places of the family tree"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:157
+#: ../src/plugins/view/view.gpr.py:158
 msgid "Repository View"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:158
+#: ../src/plugins/view/view.gpr.py:159
 msgid "The view showing all the repositories"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:171
+#: ../src/plugins/view/view.gpr.py:172
 msgid "Source View"
 msgstr ""
 
-#: ../src/plugins/view/view.gpr.py:172
+#: ../src/plugins/view/view.gpr.py:173
 msgid "The view showing all the sources"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:130
-msgid "Gramps ID"
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:131
+#: ../src/plugins/webreport/NarrativeWeb.py:136
 msgid "Latitude"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:132
+#: ../src/plugins/webreport/NarrativeWeb.py:137
 msgid "Alternate Locations"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:133
+#: ../src/plugins/webreport/NarrativeWeb.py:138
 msgid "Longitude"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:135
+#: ../src/plugins/webreport/NarrativeWeb.py:141
 msgid "Church Parish"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:138
+#: ../src/plugins/webreport/NarrativeWeb.py:146
 msgid "Postal Code"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:141
+#: ../src/plugins/webreport/NarrativeWeb.py:149
 msgid "State/ Province"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:638
+#: ../src/plugins/webreport/NarrativeWeb.py:584
 msgid "Sealed to "
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:947
+#: ../src/plugins/webreport/NarrativeWeb.py:891
 #, python-format
 msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> on %(date)s"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:962
+#: ../src/plugins/webreport/NarrativeWeb.py:906
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1083
+#: ../src/plugins/webreport/NarrativeWeb.py:1030
 msgid "Html|Home"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1084
-#: ../src/plugins/webreport/NarrativeWeb.py:2868
+#: ../src/plugins/webreport/NarrativeWeb.py:1031
+#: ../src/plugins/webreport/NarrativeWeb.py:3044
 msgid "Introduction"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1085
-#: ../src/plugins/webreport/NarrativeWeb.py:1117
-#: ../src/plugins/webreport/NarrativeWeb.py:1120
-#: ../src/plugins/webreport/NarrativeWeb.py:2740
-#: ../src/plugins/webreport/NarrativeWeb.py:6145
+#: ../src/plugins/webreport/NarrativeWeb.py:1032
+#: ../src/plugins/webreport/NarrativeWeb.py:1064
+#: ../src/plugins/webreport/NarrativeWeb.py:1067
+#: ../src/plugins/webreport/NarrativeWeb.py:2916
 msgid "Surnames"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1090
-#: ../src/plugins/webreport/NarrativeWeb.py:3186
-#: ../src/plugins/webreport/NarrativeWeb.py:5812
+#: ../src/plugins/webreport/NarrativeWeb.py:1037
+#: ../src/plugins/webreport/NarrativeWeb.py:3365
+#: ../src/plugins/webreport/NarrativeWeb.py:5948
 msgid "Download"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1091
-#: ../src/plugins/webreport/NarrativeWeb.py:3290
+#: ../src/plugins/webreport/NarrativeWeb.py:1038
+#: ../src/plugins/webreport/NarrativeWeb.py:3472
 msgid "Contact"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1094
-#: ../src/plugins/webreport/NarrativeWeb.py:1137
-#: ../src/plugins/webreport/NarrativeWeb.py:4764
+#. Add xml, doctype, meta and stylesheets
+#: ../src/plugins/webreport/NarrativeWeb.py:1041
+#: ../src/plugins/webreport/NarrativeWeb.py:1084
+#: ../src/plugins/webreport/NarrativeWeb.py:4780
+#: ../src/plugins/webreport/NarrativeWeb.py:4901
 msgid "Address Book"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1209
+#: ../src/plugins/webreport/NarrativeWeb.py:1332
 msgid "Gallery"
 msgstr ""
 
 #. add section title
-#: ../src/plugins/webreport/NarrativeWeb.py:1282
+#: ../src/plugins/webreport/NarrativeWeb.py:1421
 msgid "Narrative"
 msgstr ""
 
 #. begin web title
-#: ../src/plugins/webreport/NarrativeWeb.py:1299
-#: ../src/plugins/webreport/NarrativeWeb.py:4675
+#: ../src/plugins/webreport/NarrativeWeb.py:1438
+#: ../src/plugins/webreport/NarrativeWeb.py:4807
 msgid "Web Links"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1351
+#: ../src/plugins/webreport/NarrativeWeb.py:1500
 msgid "Confidence"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1356
+#: ../src/plugins/webreport/NarrativeWeb.py:1505
 msgid "Source References"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1422
+#: ../src/plugins/webreport/NarrativeWeb.py:1579
 msgid "References"
 msgstr ""
 
 #. Individual List page message
-#: ../src/plugins/webreport/NarrativeWeb.py:1654
+#: ../src/plugins/webreport/NarrativeWeb.py:1811
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1845
+#: ../src/plugins/webreport/NarrativeWeb.py:2003
 #, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
@@ -17319,108 +17404,105 @@ msgid ""
 msgstr ""
 
 #. place list page message
-#: ../src/plugins/webreport/NarrativeWeb.py:1997
+#: ../src/plugins/webreport/NarrativeWeb.py:2155
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2016
-#: ../src/plugins/webreport/NarrativeWeb.py:2776
+#: ../src/plugins/webreport/NarrativeWeb.py:2175
+#: ../src/plugins/webreport/NarrativeWeb.py:2953
 msgid "Letter"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2017
+#: ../src/plugins/webreport/NarrativeWeb.py:2176
 msgid "Place name | Name"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2149
+#: ../src/plugins/webreport/NarrativeWeb.py:2314
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
-"their type, date (if one is present), and person&#8217;s surname.  Clicking "
-"on an event&#8217;s type will take you to that event&#8217;s page.  Clicking "
-"on a person&#8217;s name will take you to that person&#8217;s page.  The "
-"person&#8217;s name will only be shown once for their events."
+"their type, Gramps id, and date (if one is present), Clicking on an "
+"event&#8217;s Gramps ID will load a page of those type of events."
+msgstr ""
+
+#: ../src/plugins/webreport/NarrativeWeb.py:2362
+#, python-format
+msgid "Event types beginning with %s"
 msgstr ""
 
 #. display page itle
-#: ../src/plugins/webreport/NarrativeWeb.py:2274
+#: ../src/plugins/webreport/NarrativeWeb.py:2474
 #, python-format
 msgid "%(type)s of %(name)s"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2454
+#: ../src/plugins/webreport/NarrativeWeb.py:2630
 msgid "Previous"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2455
+#: ../src/plugins/webreport/NarrativeWeb.py:2631
 #, python-format
 msgid ""
 "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = "
 "\"GalleryTotal\">%(total_pages)d</strong>"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2460
+#: ../src/plugins/webreport/NarrativeWeb.py:2636
 msgid "Next"
 msgstr ""
 
 #. missing media error msg
-#: ../src/plugins/webreport/NarrativeWeb.py:2463
+#: ../src/plugins/webreport/NarrativeWeb.py:2639
 msgid "The file has been moved or deleted."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2594
+#: ../src/plugins/webreport/NarrativeWeb.py:2771
 msgid "File Type"
 msgstr ""
 
 #. add exif title header
-#: ../src/plugins/webreport/NarrativeWeb.py:2624
+#: ../src/plugins/webreport/NarrativeWeb.py:2801
 msgid "Image Exif Tags/ Keys"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2707
+#: ../src/plugins/webreport/NarrativeWeb.py:2883
 msgid "Missing media object:"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2743
+#: ../src/plugins/webreport/NarrativeWeb.py:2919
 msgid "Surnames by person count"
 msgstr ""
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2750
+#: ../src/plugins/webreport/NarrativeWeb.py:2926
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2789
+#: ../src/plugins/webreport/NarrativeWeb.py:2966
 msgid "Number of People"
 msgstr ""
 
-#. An optional link to a home page
-#: ../src/plugins/webreport/NarrativeWeb.py:2905
-#: ../src/plugins/webreport/WebCal.py:532
-msgid "html|Home"
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:2956
+#: ../src/plugins/webreport/NarrativeWeb.py:3132
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2972
+#: ../src/plugins/webreport/NarrativeWeb.py:3148
 msgid "Source Name|Name"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3037
+#: ../src/plugins/webreport/NarrativeWeb.py:3216
 msgid "Publication information"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3084
+#: ../src/plugins/webreport/NarrativeWeb.py:3263
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -17428,539 +17510,523 @@ msgid ""
 "on the image to see the full sized version.  "
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3101
+#: ../src/plugins/webreport/NarrativeWeb.py:3280
 msgid "Media | Name"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3209
+#: ../src/plugins/webreport/NarrativeWeb.py:3388
 msgid "File Name"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3211
+#: ../src/plugins/webreport/NarrativeWeb.py:3390
 msgid "License"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3212
+#: ../src/plugins/webreport/NarrativeWeb.py:3391
 msgid "Last Modified"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3562
+#: ../src/plugins/webreport/NarrativeWeb.py:3744
 msgid "Ancestors"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3629
+#: ../src/plugins/webreport/NarrativeWeb.py:3799
 msgid "Associations"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3811
+#: ../src/plugins/webreport/NarrativeWeb.py:3981
 msgid "Nick Name"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3855
+#: ../src/plugins/webreport/NarrativeWeb.py:4025
 msgid "Age at Death"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3872
-#, python-format
-msgid "It has been %(time)s, since %(gdr_str)s has died.."
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:3948
+#: ../src/plugins/webreport/NarrativeWeb.py:4096
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4129
+#: ../src/plugins/webreport/NarrativeWeb.py:4274
 msgid "Half Siblings"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4221
+#: ../src/plugins/webreport/NarrativeWeb.py:4363
 msgid "Step Siblings"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4506
+#: ../src/plugins/webreport/NarrativeWeb.py:4641
 msgid ""
 "This page contains an index of all the repositories in the database, sorted "
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4521
+#: ../src/plugins/webreport/NarrativeWeb.py:4656
 msgid "Repository |Name"
 msgstr ""
 
-#. Add xml, doctype, meta and stylesheets
-#: ../src/plugins/webreport/NarrativeWeb.py:4648
-msgid "Address Book List"
-msgstr ""
-
 #. Internet Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:4655
+#: ../src/plugins/webreport/NarrativeWeb.py:4787
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their surname. Selecting the person&#8217;s name will take you to their "
 "Address Book&#8217;s individual page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4920
+#: ../src/plugins/webreport/NarrativeWeb.py:5057
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4927
-#: ../src/plugins/webreport/NarrativeWeb.py:4931
-#: ../src/plugins/webreport/NarrativeWeb.py:4944
-#: ../src/plugins/webreport/NarrativeWeb.py:4948
+#: ../src/plugins/webreport/NarrativeWeb.py:5064
+#: ../src/plugins/webreport/NarrativeWeb.py:5068
+#: ../src/plugins/webreport/NarrativeWeb.py:5081
+#: ../src/plugins/webreport/NarrativeWeb.py:5085
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4953
+#: ../src/plugins/webreport/NarrativeWeb.py:5090
 msgid "Invalid file name"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4954
+#: ../src/plugins/webreport/NarrativeWeb.py:5091
 msgid "The archive file must be a file, not a directory"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4963
+#: ../src/plugins/webreport/NarrativeWeb.py:5100
 msgid "Narrated Web Site Report"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5185
+#: ../src/plugins/webreport/NarrativeWeb.py:5339
 msgid "Creating individual pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5203
+#: ../src/plugins/webreport/NarrativeWeb.py:5357
 msgid "Creating GENDEX file"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5243
+#: ../src/plugins/webreport/NarrativeWeb.py:5397
 msgid "Creating surname pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5257
+#: ../src/plugins/webreport/NarrativeWeb.py:5411
 msgid "Creating source pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5267
+#: ../src/plugins/webreport/NarrativeWeb.py:5421
 msgid "Creating place pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5280
+#: ../src/plugins/webreport/NarrativeWeb.py:5441
 msgid "Creating event pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5296
+#: ../src/plugins/webreport/NarrativeWeb.py:5458
 msgid "Creating media pages"
 msgstr ""
 
 #. set progress bar pass for Repositories
-#: ../src/plugins/webreport/NarrativeWeb.py:5350
+#: ../src/plugins/webreport/NarrativeWeb.py:5509
 msgid "Creating repository pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5407
+#: ../src/plugins/webreport/NarrativeWeb.py:5566
 msgid "Creating address book pages ..."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5628
+#: ../src/plugins/webreport/NarrativeWeb.py:5764
 msgid "Store web pages in .tar.gz archive"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5630
+#: ../src/plugins/webreport/NarrativeWeb.py:5766
 msgid "Whether to store the web pages in an archive file"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5635
+#: ../src/plugins/webreport/NarrativeWeb.py:5771
 #: ../src/plugins/webreport/WebCal.py:1357
 msgid "Destination"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5637
+#: ../src/plugins/webreport/NarrativeWeb.py:5773
 #: ../src/plugins/webreport/WebCal.py:1359
 msgid "The destination directory for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5643
+#: ../src/plugins/webreport/NarrativeWeb.py:5779
 msgid "Web site title"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5643
+#: ../src/plugins/webreport/NarrativeWeb.py:5779
 msgid "My Family Tree"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5644
+#: ../src/plugins/webreport/NarrativeWeb.py:5780
 msgid "The title of the web site"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5649
+#: ../src/plugins/webreport/NarrativeWeb.py:5785
 msgid "Select filter to restrict people that appear on web site"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5669
+#: ../src/plugins/webreport/NarrativeWeb.py:5805
 #: ../src/plugins/webreport/WebCal.py:1389
 msgid "File extension"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5672
+#: ../src/plugins/webreport/NarrativeWeb.py:5808
 #: ../src/plugins/webreport/WebCal.py:1392
 msgid "The extension to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5675
+#: ../src/plugins/webreport/NarrativeWeb.py:5811
 #: ../src/plugins/webreport/WebCal.py:1395
 msgid "Copyright"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5678
+#: ../src/plugins/webreport/NarrativeWeb.py:5814
 #: ../src/plugins/webreport/WebCal.py:1398
 msgid "The copyright to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5681
+#: ../src/plugins/webreport/NarrativeWeb.py:5817
 #: ../src/plugins/webreport/WebCal.py:1401
 msgid "StyleSheet"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5684
+#: ../src/plugins/webreport/NarrativeWeb.py:5820
 msgid "The stylesheet to be used for the web page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5687
+#: ../src/plugins/webreport/NarrativeWeb.py:5823
 msgid "Include ancestor graph"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5688
+#: ../src/plugins/webreport/NarrativeWeb.py:5824
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5693
+#: ../src/plugins/webreport/NarrativeWeb.py:5829
 msgid "Graph generations"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5698
+#: ../src/plugins/webreport/NarrativeWeb.py:5834
 msgid "The number of generations to include in the ancestor graph"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5708
+#: ../src/plugins/webreport/NarrativeWeb.py:5844
 msgid "Page Generation"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5710
+#: ../src/plugins/webreport/NarrativeWeb.py:5846
 msgid "Home page note"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5711
+#: ../src/plugins/webreport/NarrativeWeb.py:5847
 msgid "A note to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5714
+#: ../src/plugins/webreport/NarrativeWeb.py:5850
 msgid "Home page image"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5715
+#: ../src/plugins/webreport/NarrativeWeb.py:5851
 msgid "An image to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5718
+#: ../src/plugins/webreport/NarrativeWeb.py:5854
 msgid "Introduction note"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5719
+#: ../src/plugins/webreport/NarrativeWeb.py:5855
 msgid "A note to be used as the introduction"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5722
+#: ../src/plugins/webreport/NarrativeWeb.py:5858
 msgid "Introduction image"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5723
+#: ../src/plugins/webreport/NarrativeWeb.py:5859
 msgid "An image to be used as the introduction"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5726
+#: ../src/plugins/webreport/NarrativeWeb.py:5862
 msgid "Publisher contact note"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5727
+#: ../src/plugins/webreport/NarrativeWeb.py:5863
 msgid "A note to be used as the publisher contact"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5730
+#: ../src/plugins/webreport/NarrativeWeb.py:5866
 msgid "Publisher contact image"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5731
+#: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid "An image to be used as the publisher contact"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5734
+#: ../src/plugins/webreport/NarrativeWeb.py:5870
 msgid "HTML user header"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5735
+#: ../src/plugins/webreport/NarrativeWeb.py:5871
 msgid "A note to be used as the page header"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5738
+#: ../src/plugins/webreport/NarrativeWeb.py:5874
 msgid "HTML user footer"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5739
+#: ../src/plugins/webreport/NarrativeWeb.py:5875
 msgid "A note to be used as the page footer"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5742
+#: ../src/plugins/webreport/NarrativeWeb.py:5878
 msgid "Include images and media objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5743
+#: ../src/plugins/webreport/NarrativeWeb.py:5879
 msgid "Whether to include a gallery of media objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5749
+#: ../src/plugins/webreport/NarrativeWeb.py:5885
 msgid "Whether to add exif tags to the media page or not?"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5750
+#: ../src/plugins/webreport/NarrativeWeb.py:5886
 msgid ""
 "Do you want to add the exif data tags to the page?  You will need to have "
 "the pyexiv2 library installed on your system.It can be downloaded from here: "
 "http://www.exiv2.org/ ."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5755
+#: ../src/plugins/webreport/NarrativeWeb.py:5891
 msgid "Max width of initial image"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5757
+#: ../src/plugins/webreport/NarrativeWeb.py:5893
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5761
+#: ../src/plugins/webreport/NarrativeWeb.py:5897
 msgid "Max height of initial image"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5763
+#: ../src/plugins/webreport/NarrativeWeb.py:5899
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5769
+#: ../src/plugins/webreport/NarrativeWeb.py:5905
 msgid "Suppress Gramps ID"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5770
+#: ../src/plugins/webreport/NarrativeWeb.py:5906
 msgid "Whether to include the Gramps ID of objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5777
+#: ../src/plugins/webreport/NarrativeWeb.py:5913
 msgid "Privacy"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5779
+#: ../src/plugins/webreport/NarrativeWeb.py:5915
 msgid "Include records marked private"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5780
+#: ../src/plugins/webreport/NarrativeWeb.py:5916
 msgid "Whether to include private objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5783
+#: ../src/plugins/webreport/NarrativeWeb.py:5919
 msgid "Living People"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5786
+#: ../src/plugins/webreport/NarrativeWeb.py:5922
 msgid "Exclude"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5788
+#: ../src/plugins/webreport/NarrativeWeb.py:5924
 msgid "Include Last Name Only"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5790
+#: ../src/plugins/webreport/NarrativeWeb.py:5926
 msgid "Include Full Name Only"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5793
+#: ../src/plugins/webreport/NarrativeWeb.py:5929
 msgid "How to handle living people"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5797
+#: ../src/plugins/webreport/NarrativeWeb.py:5933
 msgid "Years from death to consider living"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5799
+#: ../src/plugins/webreport/NarrativeWeb.py:5935
 msgid ""
 "This allows you to restrict information on people who have not been dead for "
 "very long"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5814
+#: ../src/plugins/webreport/NarrativeWeb.py:5950
 msgid "Include download page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5815
+#: ../src/plugins/webreport/NarrativeWeb.py:5951
 msgid "Whether to include a database download option"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5819
+#: ../src/plugins/webreport/NarrativeWeb.py:5955
 msgid "Download page note"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5820
+#: ../src/plugins/webreport/NarrativeWeb.py:5956
 msgid "A note to be used on the download page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5823
-#: ../src/plugins/webreport/NarrativeWeb.py:5832
+#: ../src/plugins/webreport/NarrativeWeb.py:5959
+#: ../src/plugins/webreport/NarrativeWeb.py:5968
 msgid "Download Filename"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5825
-#: ../src/plugins/webreport/NarrativeWeb.py:5834
+#: ../src/plugins/webreport/NarrativeWeb.py:5961
+#: ../src/plugins/webreport/NarrativeWeb.py:5970
 msgid "File to be used for downloading of database"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5828
-#: ../src/plugins/webreport/NarrativeWeb.py:5837
+#: ../src/plugins/webreport/NarrativeWeb.py:5964
+#: ../src/plugins/webreport/NarrativeWeb.py:5973
 msgid "Description for download"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5828
+#: ../src/plugins/webreport/NarrativeWeb.py:5964
 msgid "Smith Family Tree"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5829
-#: ../src/plugins/webreport/NarrativeWeb.py:5838
+#: ../src/plugins/webreport/NarrativeWeb.py:5965
+#: ../src/plugins/webreport/NarrativeWeb.py:5974
 msgid "Give a description for this file."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5837
+#: ../src/plugins/webreport/NarrativeWeb.py:5973
 msgid "Johnson Family Tree"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5841
+#: ../src/plugins/webreport/NarrativeWeb.py:5977
 msgid "Download Copyright License"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5844
+#: ../src/plugins/webreport/NarrativeWeb.py:5980
 msgid "The copyright to be used for ths download file?"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5853
-#: ../src/plugins/webreport/WebCal.py:1537
+#: ../src/plugins/webreport/NarrativeWeb.py:5989
+#: ../src/plugins/webreport/WebCal.py:1544
 msgid "Advanced Options"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5855
-#: ../src/plugins/webreport/WebCal.py:1539
+#: ../src/plugins/webreport/NarrativeWeb.py:5991
+#: ../src/plugins/webreport/WebCal.py:1546
 msgid "Character set encoding"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5858
-#: ../src/plugins/webreport/WebCal.py:1542
+#: ../src/plugins/webreport/NarrativeWeb.py:5994
+#: ../src/plugins/webreport/WebCal.py:1549
 msgid "The encoding to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5861
+#: ../src/plugins/webreport/NarrativeWeb.py:5997
 msgid "Include link to home person on every page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5862
+#: ../src/plugins/webreport/NarrativeWeb.py:5998
 msgid "Whether to include a link to the home person"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5865
+#: ../src/plugins/webreport/NarrativeWeb.py:6001
 msgid "Include a column for birth dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5866
+#: ../src/plugins/webreport/NarrativeWeb.py:6002
 msgid "Whether to include a birth column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5869
+#: ../src/plugins/webreport/NarrativeWeb.py:6005
 msgid "Include a column for death dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5870
+#: ../src/plugins/webreport/NarrativeWeb.py:6006
 msgid "Whether to include a death column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5873
+#: ../src/plugins/webreport/NarrativeWeb.py:6009
 msgid "Include a column for partners on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5875
+#: ../src/plugins/webreport/NarrativeWeb.py:6011
 msgid "Whether to include a partners column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5878
+#: ../src/plugins/webreport/NarrativeWeb.py:6014
 msgid "Include a column for parents on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5880
+#: ../src/plugins/webreport/NarrativeWeb.py:6016
 msgid "Whether to include a parents column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5883
+#: ../src/plugins/webreport/NarrativeWeb.py:6019
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5885
+#: ../src/plugins/webreport/NarrativeWeb.py:6021
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5889
+#: ../src/plugins/webreport/NarrativeWeb.py:6025
 msgid "Sort all children in birth order"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5890
+#: ../src/plugins/webreport/NarrativeWeb.py:6026
 msgid "Whether to display children in birth order or in entry order?"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5894
+#: ../src/plugins/webreport/NarrativeWeb.py:6030
 msgid "Include event pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5895
+#: ../src/plugins/webreport/NarrativeWeb.py:6031
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5898
+#: ../src/plugins/webreport/NarrativeWeb.py:6034
 msgid "Include repository pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5899
+#: ../src/plugins/webreport/NarrativeWeb.py:6035
 msgid "Whether to include the Repository Pages or not?"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5902
+#: ../src/plugins/webreport/NarrativeWeb.py:6038
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5903
+#: ../src/plugins/webreport/NarrativeWeb.py:6039
 msgid "Whether to include a GENDEX file or not"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5906
+#: ../src/plugins/webreport/NarrativeWeb.py:6042
 msgid "Include address book pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5907
+#: ../src/plugins/webreport/NarrativeWeb.py:6043
 msgid ""
 "Whether to add Address Book pages or not which can include e-mail and "
 "website addresses and personal address/ residence events?"
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:6147
-#: ../src/plugins/webreport/NarrativeWeb.py:6150
-#, python-format
-msgid " starting with %s"
 msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:306
@@ -17976,6 +18042,11 @@ msgstr ""
 #: ../src/plugins/webreport/WebCal.py:460
 #, python-format
 msgid "Created for %(author)s"
+msgstr ""
+
+#. An optional link to a home page
+#: ../src/plugins/webreport/WebCal.py:532
+msgid "html|Home"
 msgstr ""
 
 #. Add a link for year_glance() if requested
@@ -18074,170 +18145,170 @@ msgstr ""
 msgid "Enter the ending year for the calendars between 1900 - 3000."
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1439
+#: ../src/plugins/webreport/WebCal.py:1446
 msgid "Holidays will be included for the selected country"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1459
+#: ../src/plugins/webreport/WebCal.py:1466
 msgid "Home link"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1460
+#: ../src/plugins/webreport/WebCal.py:1467
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1480
+#: ../src/plugins/webreport/WebCal.py:1487
 msgid "Jan - Jun Notes"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1482
+#: ../src/plugins/webreport/WebCal.py:1489
 msgid "January Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1483
+#: ../src/plugins/webreport/WebCal.py:1490
 msgid "The note for the month of January"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1486
+#: ../src/plugins/webreport/WebCal.py:1493
 msgid "February Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1487
+#: ../src/plugins/webreport/WebCal.py:1494
 msgid "The note for the month of February"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1490
+#: ../src/plugins/webreport/WebCal.py:1497
 msgid "March Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1491
+#: ../src/plugins/webreport/WebCal.py:1498
 msgid "The note for the month of March"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1494
+#: ../src/plugins/webreport/WebCal.py:1501
 msgid "April Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1495
+#: ../src/plugins/webreport/WebCal.py:1502
 msgid "The note for the month of April"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1498
+#: ../src/plugins/webreport/WebCal.py:1505
 msgid "May Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1499
+#: ../src/plugins/webreport/WebCal.py:1506
 msgid "The note for the month of May"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1502
+#: ../src/plugins/webreport/WebCal.py:1509
 msgid "June Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1503
+#: ../src/plugins/webreport/WebCal.py:1510
 msgid "The note for the month of June"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1506
+#: ../src/plugins/webreport/WebCal.py:1513
 msgid "Jul - Dec Notes"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1508
+#: ../src/plugins/webreport/WebCal.py:1515
 msgid "July Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1509
+#: ../src/plugins/webreport/WebCal.py:1516
 msgid "The note for the month of July"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1512
+#: ../src/plugins/webreport/WebCal.py:1519
 msgid "August Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1513
+#: ../src/plugins/webreport/WebCal.py:1520
 msgid "The note for the month of August"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1516
+#: ../src/plugins/webreport/WebCal.py:1523
 msgid "September Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1517
+#: ../src/plugins/webreport/WebCal.py:1524
 msgid "The note for the month of September"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1520
+#: ../src/plugins/webreport/WebCal.py:1527
 msgid "October Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1521
+#: ../src/plugins/webreport/WebCal.py:1528
 msgid "The note for the month of October"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1524
+#: ../src/plugins/webreport/WebCal.py:1531
 msgid "November Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1525
+#: ../src/plugins/webreport/WebCal.py:1532
 msgid "The note for the month of November"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1528
+#: ../src/plugins/webreport/WebCal.py:1535
 msgid "December Note"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1529
+#: ../src/plugins/webreport/WebCal.py:1536
 msgid "The note for the month of December"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1545
+#: ../src/plugins/webreport/WebCal.py:1552
 msgid "Create \"Year At A Glance\" Calendar"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1546
+#: ../src/plugins/webreport/WebCal.py:1553
 msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1550
+#: ../src/plugins/webreport/WebCal.py:1557
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1552
+#: ../src/plugins/webreport/WebCal.py:1559
 msgid "Whether to create one day pages or not"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1555
+#: ../src/plugins/webreport/WebCal.py:1562
 msgid "Link to Narrated Web Report"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1556
+#: ../src/plugins/webreport/WebCal.py:1563
 msgid "Whether to link data to web report or not"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1560
+#: ../src/plugins/webreport/WebCal.py:1567
 msgid "Link prefix"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1561
+#: ../src/plugins/webreport/WebCal.py:1568
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1733
+#: ../src/plugins/webreport/WebCal.py:1741
 #, python-format
 msgid "%s old"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1733
+#: ../src/plugins/webreport/WebCal.py:1741
 msgid "birth"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1740
+#: ../src/plugins/webreport/WebCal.py:1748
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr ""
 
-#: ../src/plugins/webreport/WebCal.py:1743
+#: ../src/plugins/webreport/WebCal.py:1751
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
@@ -18584,22 +18655,6 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "TrueType / FreeSans"
-msgstr ""
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
-msgid "Vertical (top to bottom)"
-msgstr ""
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
-msgid "Vertical (bottom to top)"
-msgstr ""
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
-msgid "Horizontal (left to right)"
-msgstr ""
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:73
-msgid "Horizontal (right to left)"
 msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:75
@@ -18985,7 +19040,7 @@ msgstr ""
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
 msgid ""
 "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
-"ss) or in range, if a second date/time is given"
+"ss) or in range, if a second date/time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
@@ -19233,7 +19288,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
-"ss) or in the range, if a second date-time is given"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
@@ -19925,7 +19980,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
-"ss) or in the range, if a second date-time is given"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
@@ -20194,7 +20249,7 @@ msgstr ""
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
-"ss) or in the range, if a second date/time is given"
+"ss) or in the range, if a second date/time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
@@ -20361,7 +20416,7 @@ msgstr ""
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
-"ss) or in the range, if a second date-time is given"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
@@ -20530,7 +20585,7 @@ msgstr ""
 #: ../src/Filters/Rules/Source/_ChangedSince.py:24
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
-"ss) or in the range, if a second date-time is given"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
@@ -20644,7 +20699,7 @@ msgstr ""
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
-"ss) or in the range, if a second date:time is given"
+"ss) or in the range, if a second date:time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
@@ -20750,7 +20805,7 @@ msgstr ""
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
-"hh:mm:ss) or in the range, if a second date/time is given"
+"hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
@@ -20838,7 +20893,7 @@ msgstr ""
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
-"ss) or in the range, if a second date-time is given"
+"ss) or in the range, if a second date-time is given."
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
@@ -22948,9 +23003,9 @@ msgid ""
 "Gramps allows you to generate a number of reports (both text and graphical) "
 "based on your genealogical information. There is great flexibility in "
 "selecting what people are included in the reports as well as the output "
-"format (html, pdf, Open Document Text, RTF, LaTeX and plain text). "
-"Experiment with the reports under the <b>Reports</b> menu to get an idea of "
-"how powerful Gramps is."
+"format (html, pdf, OpenDocument Text, RTF, LaTeX and plain text). Experiment "
+"with the reports under the <b>Reports</b> menu to get an idea of how "
+"powerful Gramps is."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
