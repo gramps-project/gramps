@@ -543,6 +543,8 @@ src/plugins/view/htmlrenderer.py
 src/plugins/view/mediaview.py
 src/plugins/view/noteview.py
 src/plugins/view/pedigreeview.py
+src/plugins/view/pedigreeviewext.py
+src/plugins/view/pedigreeviewext.gpr.py
 src/plugins/view/personview.py
 src/plugins/view/placeview.py
 src/plugins/view/relview.py
