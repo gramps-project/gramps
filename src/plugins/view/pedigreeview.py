@@ -384,7 +384,7 @@ class PedigreeView(NavigationView):
         self.tree_style = config.get('interface.pedview-layout') # Nice tree
         self.show_images = config.get('interface.pedview-show-images') # Show photos of persons
         self.show_marriage_data = config.get('interface.pedview-show-marriage') # Hide marriage data by default
-        self.format_helper = FormattingHelper( self.dbstate)
+        self.format_helper = FormattingHelper(self.dbstate)
 
     def change_page(self):
         NavigationView.change_page(self)
@@ -1599,61 +1599,3 @@ class PedigreeView(NavigationView):
         self.add_settings_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
         return 1
-
-#-------------------------------------------------------------------------
-#
-# Functions to build the text displayed in the details view of a DispBox
-# aditionally used by PedigreeView to get the largest area covered by a DispBox
-#
-#-------------------------------------------------------------------------
-def build_detail_string(db,person):
-
-    detail_text = name_displayer.display(person)
-
-    def format_event(db, label, event):
-        if not event:
-            return u""
-        ed = DateHandler.get_date(event)
-        ep = None
-        place_handle = event.get_place_handle()
-        if place_handle:
-            place_title = db.get_place_from_handle(place_handle).get_title()
-            if place_title != "":
-                if len(place_title) > 15:
-                    ep = place_title[:14]+"..."
-                else:
-                    ep = place_title
-        if ep:
-            return u"\n%s %s, %s" % (label,ed,ep)
-        return u"\n%s %s" % (label,ed)
-
-    
-    birth_ref = person.get_birth_ref()
-    if birth_ref:
-        detail_text += format_event(db, _BORN,
-                                    db.get_event_from_handle(birth_ref.ref))
-    else:
-        for event_ref in person.get_event_ref_list():
-            event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == gen.lib.EventType.BAPTISM:
-                detail_text += format_event(db, _BAPT, event)
-                break
-            if event and event.get_type() == gen.lib.EventType.CHRISTEN:
-                detail_text += format_event(db, _CHRI, event)
-                break
-
-    death_ref = person.get_death_ref()
-    if death_ref:
-        detail_text += format_event(db, _DIED,
-                                    db.get_event_from_handle(death_ref.ref))
-    else:
-        for event_ref in person.get_event_ref_list():
-            event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == gen.lib.EventType.BURIAL:
-                detail_text += format_event(db, _BURI, event)
-                break
-            if event and event.get_type() == gen.lib.EventType.CREMATION:
-                detail_text += format_event(db, _CREM, event)
-                break
-
-    return detail_text
