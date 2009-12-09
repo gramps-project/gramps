@@ -40,7 +40,6 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions
 from SubstKeywords import SubstKeywords
-import gen.lib
 
 #------------------------------------------------------------------------
 #
@@ -149,8 +148,6 @@ class FanChart(Report):
         self.circle          = menu.get_option_by_name('circle').get_value()
         self.background      = menu.get_option_by_name('background').get_value()
         self.radial          = menu.get_option_by_name('radial').get_value()
-        selected_cal         = menu.get_option_by_name('calendar').get_value()
-        self.calendar        = gen.lib.date.Date.ui_calendar_names[selected_cal]
         pid                  = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
@@ -272,7 +269,7 @@ class FanChart(Report):
         birth_ref = person.get_birth_ref()
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
-            b = birth.get_date_object().to_calendar(self.calendar).get_year()
+            b = birth.get_date_object().get_year()
             if b == 0:
                 b = ""
         else:
@@ -281,12 +278,16 @@ class FanChart(Report):
         death_ref = person.get_death_ref()
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
-            d = death.get_date_object().to_calendar(self.calendar).get_year()
+            d = death.get_date_object().get_year()
             if d == 0:
                 d = ""
         else:
             d = ""
-
+        # french calendar years < 15
+        if b < 15:
+            b = birth.get_date_object().to_calendar("gregorian").get_year()
+        if d < 15:
+            d = death.get_date_object().to_calendar("gregorian").get_year()
         if b and d:
             val = "%s - %s" % (str(b),str(d))
         elif b:
@@ -434,14 +435,6 @@ class FanChartOptions(MenuReportOptions):
         radial.add_item(RADIAL_ROUNDABOUT,_('roundabout'))
         radial.set_help(_("Print radial texts upright or roundabout"))
         menu.add_option(category_name,"radial",radial)
-        
-        self.__calendar = EnumeratedListOption(_("Calendar"), 0)
-        self.__calendar.set_help(_("The calendar which determines the year span"))
-        idx = 0
-        for calendar in gen.lib.date.Date.ui_calendar_names:
-            self.__calendar.add_item(idx, calendar)
-            idx += 1
-        menu.add_option(category_name, "calendar", self.__calendar)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Fan Chart report."""
