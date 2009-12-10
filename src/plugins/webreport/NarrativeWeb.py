@@ -1,4 +1,3 @@
-f
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
