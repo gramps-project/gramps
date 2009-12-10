@@ -14,7 +14,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -2295,13 +2295,12 @@ class PlacePage(BasePage):
         self.XHTMLWriter(placepage, of)
 
 class EventListPage(BasePage):
-    def __init__(self, report, title, event_types, event_handle_list, ind_list):
+    def __init__(self, report, title, event_types, event_handle_list):
         """
         Will create the event list page
 
         @param: event_types: a list of the type in the events database for this class
         @param: event_handle_list -- a list of event handles
-        #psram: ind_list -- person handles for this database
         """
         BasePage.__init__(self, report, title)
         db = report.database
@@ -2315,7 +2314,7 @@ class EventListPage(BasePage):
 
             msg = _("This page contains an index of all the events in the database, sorted by their "
                     "type, Gramps id, and date (if one is present), Clicking on an "
-                    "event&#8217;s Gramps ID will load a page of those type of events.")
+                    "event&#8217;s Gramps ID will load a page for that event.")
             eventlist += Html("p", msg, id = "description")
 
             # get alphabet navigation for class EventListPage
@@ -2349,6 +2348,9 @@ class EventListPage(BasePage):
                 for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
                     evt_type = _("%(eventtype)s") % {'eventtype' : evt_type}
                     first_event = True
+
+                    # sort the datalist by gramps id, date, and event handle
+                    datalist.sort()
 
                     for (gid, date, event_handle) in datalist:
                         event = db.get_event_from_handle(event_handle)
@@ -5125,11 +5127,8 @@ class NavWebReport(Report):
         self.place_pages(place_list, source_list)
 
         # build classes EventListPage and EventPage
-        # build the events dictionary only if event pages are being created?
         if self.inc_events:
-            event_dict, event_types, event_handle_list = [], [], []
-            self.build_events(ind_list, event_dict, event_types, event_handle_list)
-            self.event_pages(event_dict, event_types, event_handle_list, ind_list)
+            self.event_pages(ind_list)
 
         # build classes SourceListPage and SourcePage
         self.source_pages(source_list)
@@ -5225,16 +5224,15 @@ class NavWebReport(Report):
             from_path = os.path.join(const.IMAGE_DIR, fname)
             self.copy_file(from_path, fname, "images")
 
-    def build_events(self, ind_list, event_dict, event_types, event_handle_list):
+    def build_events(self, ind_list):
         """
         build a list of events for classes EventListPage and EventPage
 
         @param: ind_list = list of handles for persons in this database
-        @param: event_dict = a list of events from ind_list
-        @param: event_types -- will hold the difrferent event types for this database
-        @param: event_handle_list -- a list of event handles to be sorted by type
         """
         db = self.database
+        event_types = []
+        event_handle_list = []
  
         for person_handle in ind_list:
             person = db.get_person_from_handle(person_handle)
@@ -5253,18 +5251,9 @@ class NavWebReport(Report):
                 for evt_ref in family.get_event_ref_list():
                     event = db.get_event_from_handle(evt_ref.ref)
 
-                    # get event type
-                    evt_type = event.type.xml_str()
-
-                    # get event types for class EventsListPage
-                    etype = None
-                    for xtype in EventType._DATAMAP:
-                        if xtype[2] == evt_type:
-                            etype = xtype[1]
-                            break
-
-                    if etype is not None:
-                        event_types.append(etype)
+                    # get the event type
+                    etype = str(event.type)
+                    event_types.append(etype)
                     event_handle_list.append(evt_ref.ref)
 
                     # get sot date as year/month/day, 2009/09/09, 
@@ -5282,18 +5271,8 @@ class NavWebReport(Report):
                 event = db.get_event_from_handle(evt_ref.ref)
 
                 # get event type
-                evt_type = event.type.xml_str()
-
-                # get event types for class EventsListPage
-                etype = None
-                _type = event.type.xml_str()
-                for xtype in EventType._DATAMAP:
-                    if xtype[2] == _type:
-                        etype = xtype[1]
-                        break
-
-                if etype is not None:
-                    event_types.append(etype)
+                etype = str(event.type)
+                event_types.append(etype)
                 event_handle_list.append(evt_ref.ref)
 
                 # get sot date as year/month/day, see above for further info
@@ -5429,22 +5408,21 @@ class NavWebReport(Report):
             PlacePage(self, self.title, place, source_list, place_list)
             self.progress.step()
 
-    def event_pages(self, event_dict, event_types, event_handle_list, ind_list):
+    def event_pages(self, ind_list):
         """
         a dump of all the events sorted by event type, date, and surname
         for classes EventListPage and EventPage
-
-        @param: event_dict -- all the data for class EventPage
-        @param: event_types -- a list of all the event types in this database
-        @param: event_handle_list -- a list of the event handles in the database to be used
         """
 
         # set up progress bar for event pages; using ind list because it was taking too long at the end
         event_handles = self.database.get_event_handles()
         self.progress.set_pass(_("Creating event pages"), len(event_handles))
 
+        # gather the information that we will need for these two classes
+        event_dict, event_types, event_handle_list = self.build_events(ind_list)
+
         # send all data to the events list page
-        EventListPage(self, self.title, event_types, event_handle_list, ind_list)
+        EventListPage(self, self.title, event_types, event_handle_list)
 
         for (person, event_list) in event_dict:
 
@@ -6290,7 +6268,7 @@ def alphabet_navigation(menu_set, alphakey):
         return None
 
     num_ltrs = len(sorted_alpha_index)
-    num_of_cols = 34 if alphakey is not _ALPHAEVENT else 9
+    num_of_cols = 34 if alphakey is not _ALPHAEVENT else 10
     num_of_rows = ((num_ltrs // num_of_cols) + 1)
 
     # begin alphabet navigation division
