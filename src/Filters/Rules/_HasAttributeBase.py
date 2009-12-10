@@ -59,8 +59,6 @@ class HasAttributeBase(Rule):
             specified_type.set_from_xml_str(self.list[0])
             name_match = attr.get_type() == specified_type
 
-            value_match = \
-                    attr.get_value().upper().find(self.list[1].upper()) != -1
-            if name_match and value_match:
-                return True
+            if name_match:
+                return attr.get_value().upper().find(self.list[1].upper()) != -1
         return False

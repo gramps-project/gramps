@@ -190,7 +190,8 @@ class ListView(NavigationView):
         self.columns = []
 
         index = 0
-        for pair in [pair for pair in self.column_order() if pair[0]]:
+        for pair in self.column_order():
+            if not pair[0]: continue
             name = self.colinfo[pair[1]]
 
             column = gtk.TreeViewColumn(name, self.renderer)
@@ -223,10 +224,7 @@ class ListView(NavigationView):
                 filter_info = (True, self.generic_filter, False)
             else:
                 value = self.search_bar.get_value()
-                if value[0] in self.exact_search():
-                    filter_info = (False, value, True)
-                else:
-                    filter_info = (False, value, False)
+                filter_info = (False, value, value[0] in self.exact_search())
 
             if self.dirty or not self.model:
                 self.model = self.make_model(self.dbstate.db, self.sort_col, 
@@ -338,10 +336,9 @@ class ListView(NavigationView):
 
     def setup_filter(self):
         """Build the default filters and add them to the filter menu."""
-        cols = []
-        for pair in [pair for pair in self.column_order() if pair[0]]:
-            cols.append((self.colinfo[pair[1]], pair[1]))
-        self.search_bar.setup_filter(cols)
+        self.search_bar.setup_filter(
+            [(self.colinfo[pair[1]], pair[1])
+                for pair in self.column_order() if pair[0]])
 
     ####################################################################
     # Navigation
@@ -352,15 +349,15 @@ class ListView(NavigationView):
         Required by the NavigationView interface.
         
         We have a bit of a problem due to the nature of how GTK works.
-        We have unselect the previous path and select the new path. However, 
+        We have to unselect the previous path and select the new path. However, 
         these cause a row change, which calls the row_change callback, which
         can end up calling change_active_person, which can call
         goto_active_person, causing a bit of recusion. Confusing, huh?
 
-        Unforunately, we row_change has to be able to call change_active_person, 
-        because the can occur from the interface in addition to programatically.
+        Unfortunately, row_change has to be able to call change_active_person, 
+        because this can occur from the interface in addition to programatically.
 
-        TO handle this, we set the self.inactive variable that we can check
+        To handle this, we set the self.inactive variable that we can check
         in row_change to look for this particular condition.
         """
         if not handle or handle in self.selected_handles():
@@ -488,7 +485,7 @@ class ListView(NavigationView):
                 else:
                     msg = _('Deleting item will remove it from the database.')
                 
-                msg = "%s %s" % (msg, Utils.data_recover_msg)
+                msg += ' ' + Utils.data_recover_msg
                 #descr = object.get_description()
                 #if descr == "":
                 descr = object.get_gramps_id()
@@ -729,7 +726,7 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
+        if not event.state or event.state in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 self.edit(obj)
                 return True
@@ -807,8 +804,7 @@ class ListView(NavigationView):
         ofile.start_page()
         ofile.start_row()
         # Headings
-        for name in column_names:
-            ofile.write_cell(name)
+        map(ofile.write_cell, column_names)
         ofile.end_row()
 
         if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
@@ -831,8 +827,7 @@ class ListView(NavigationView):
             return
         while node is not None:
             ofile.start_row()
-            for counter in range(level): # Indentation
-                ofile.write_cell('')
+            map(ofile.write_cell, ('',)*level)
             for index in data_cols:
                 ofile.write_cell(self.model.get_value(node, index))
             ofile.end_row()
