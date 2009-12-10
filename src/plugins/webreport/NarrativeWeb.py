@@ -1,4 +1,3 @@
-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -509,8 +508,6 @@ class BasePage(object):
         @param: evt_ref = eent reference
         @param: showplc = show the event place or not?
         @param: showdescr = to show the event description or not?
-        @param: showsrc = to show the event source references or not?
-        @param: shownote = show notes or not?
         @param: up = either True or False; add subdirs or not?
         @param: hyp = to hyperlink the event type or not?
         """
@@ -518,11 +515,15 @@ class BasePage(object):
 
         # get event type
         evt_type = evt.type.xml_str()
+        for xtype in EventType._DATAMAP:
+            if xtype[2] == evt_type:
+                etype = xtype[1]
+                break
 
         # get hyperlink or not?
-        evt_hyper = evt_type
+        evt_hyper = etype
         if hyp:
-            evt_hyper = self.event_link(evt_type, evt_ref.ref, gid, up)
+            evt_hyper = self.event_link(etype, evt_ref.ref, gid, up)
 
         # get place name
         place = None
@@ -539,8 +540,9 @@ class BasePage(object):
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
         info = [
-            [_EVENT, "Event",  evt_hyper],
-            [DHEAD, "Date",  _dd.display(evt.get_date_object() )] ]
+               [_EVENT, "Event",  evt_hyper],
+               [DHEAD, "Date", _dd.display(evt.get_date_object() )]
+               ]
 
         if showplc:
             info.append([PHEAD, "Place", place_hyper])
@@ -2345,6 +2347,7 @@ class EventListPage(BasePage):
 
                 # separate events by their type and then thier event handles
                 for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
+                    evt_type = _("%(eventtype)s") % {'eventtype' : evt_type}
                     first_event = True
 
                     for (gid, date, event_handle) in datalist:
@@ -2358,8 +2361,9 @@ class EventListPage(BasePage):
                         trow += tcell
                         if first_event:
                             trow.attr = 'class = "BeginEvent"'
-                            tcell += Html("a", evt_type, name = "%s" % evt_type, 
-                                title = _("Event types beginning with %s" % evt_type), inline = True)
+                            tcell += Html("a", evt_type, name = evt_type, 
+                                title = _("Event types beginning with %(eventtype)s") % {
+                                    'eventtype': evt_type}, inline = True)
                         else:
                             tcell += "&nbsp;" 
 
@@ -5235,7 +5239,7 @@ class NavWebReport(Report):
         for person_handle in ind_list:
             person = db.get_person_from_handle(person_handle)
 
-            # begin events list for each new person
+            # begin event list new for each person
             event_list = []
 
             # get sort name for sorting later
@@ -5254,9 +5258,8 @@ class NavWebReport(Report):
 
                     # get event types for class EventsListPage
                     etype = None
-                    _type = event.type.xml_str()
                     for xtype in EventType._DATAMAP:
-                        if xtype[2] == _type:
+                        if xtype[2] == evt_type:
                             etype = xtype[1]
                             break
 
