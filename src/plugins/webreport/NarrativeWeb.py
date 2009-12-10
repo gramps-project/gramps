@@ -1,3 +1,4 @@
+f
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -513,17 +514,9 @@ class BasePage(object):
         """
         db = self.report.database
 
-        # get event type
-        evt_type = evt.type.xml_str()
-        for xtype in EventType._DATAMAP:
-            if xtype[2] == evt_type:
-                etype = xtype[1]
-                break
-
-        # get hyperlink or not?
-        evt_hyper = etype
-        if hyp:
-            evt_hyper = self.event_link(etype, evt_ref.ref, gid, up)
+        # get event type and hyperlink to it or not?
+        etype = str(evt.type)
+        evt_hyper = self.event_link(etype, evt_ref.ref, gid, up) if hyp else etype
 
         # get place name
         place = None
@@ -2477,8 +2470,9 @@ class EventPage(BasePage):
             body += eventdetail
 
             # display page itle
+            person_name = self.get_name(person)
             title = _("%(type)s of %(name)s") % {'type' : evt_type.lower(),
-                                                 'name' : self.get_name(person) }
+                                                 'name' : person_name }
 
             # line is in place for Peter Lundgren
             title = title[0].upper() + title[1:]
@@ -5231,8 +5225,7 @@ class NavWebReport(Report):
         @param: ind_list = list of handles for persons in this database
         """
         db = self.database
-        event_types = []
-        event_handle_list = []
+        event_dict, event_types = [], []
  
         for person_handle in ind_list:
             person = db.get_person_from_handle(person_handle)
@@ -5251,11 +5244,6 @@ class NavWebReport(Report):
                 for evt_ref in family.get_event_ref_list():
                     event = db.get_event_from_handle(evt_ref.ref)
 
-                    # get the event type
-                    etype = str(event.type)
-                    event_types.append(etype)
-                    event_handle_list.append(evt_ref.ref)
-
                     # get sot date as year/month/day, 2009/09/09, 
                     # or 0000/00/00 for non-existing date
                     event_date = event.get_date_object()
@@ -5265,15 +5253,11 @@ class NavWebReport(Report):
                     sort_date = '%04d/%02d/%02d' % (year, month, day)
 
                     # add event data
-                    event_list.append([evt_type, sort_date, sort_name, event, evt_ref])
+                    event_types.append(str(event.type))
+                    event_list.append( [str(event.type), sort_date, sort_name, event, evt_ref] )
 
             for evt_ref in person.get_primary_event_ref_list():
                 event = db.get_event_from_handle(evt_ref.ref)
-
-                # get event type
-                etype = str(event.type)
-                event_types.append(etype)
-                event_handle_list.append(evt_ref.ref)
 
                 # get sot date as year/month/day, see above for further info
                 event_date = event.get_date_object()
@@ -5283,16 +5267,17 @@ class NavWebReport(Report):
                 sort_date = '%04d/%02d/%02d' % (year, month, day)
 
                 # add event data
-                event_list.append([evt_type, sort_date, sort_name, event, evt_ref])
+                event_types.append(str(event.type))
+                event_list.append( [str(event.type), sort_date, sort_name, event, evt_ref] )
 
-            # sort the event_list
+             # sort the event_list
             event_list.sort()
 
             # combine person and their events together
             event_dict.append([person, event_list])
 
         # return the events for EventListPage and EventPage
-        return event_dict, event_types, event_handle_list
+        return event_dict, event_types
 
     def build_attributes(self, person):
         """ build a list of attributes for each person """
@@ -5415,11 +5400,11 @@ class NavWebReport(Report):
         """
 
         # set up progress bar for event pages; using ind list because it was taking too long at the end
-        event_handles = self.database.get_event_handles()
-        self.progress.set_pass(_("Creating event pages"), len(event_handles))
+        event_handle_list = self.database.get_event_handles()
+        self.progress.set_pass(_("Creating event pages"), len(event_handle_list))
 
         # gather the information that we will need for these two classes
-        event_dict, event_types, event_handle_list = self.build_events(ind_list)
+        event_dict, event_types = self.build_events(ind_list)
 
         # send all data to the events list page
         EventListPage(self, self.title, event_types, event_handle_list)
@@ -5428,7 +5413,7 @@ class NavWebReport(Report):
 
             for (evt_type, sort_date, sort_name, event, evt_ref) in event_list:
 
-                # create individual event page 
+                # create individual event page
                 EventPage(self, self.title, evt_type, person, event, evt_ref)
 
                 # increment the progress bar
@@ -6157,11 +6142,11 @@ def sort_event_types(db, event_types, event_handle_list):
     for handle in event_handle_list:
 
         event = db.get_event_from_handle(handle)
-        event_type = event.type.xml_str()
+        etype = str(event.type)
 
         # add the stuff from this event
-        if event_type in event_dict:
-            event_dict[event_type].append(
+        if etype in event_dict:
+            event_dict[etype].append(
                 (event.gramps_id, event.get_date_object(), handle)
                 )
 
