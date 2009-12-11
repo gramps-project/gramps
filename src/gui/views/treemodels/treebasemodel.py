@@ -403,11 +403,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
             path = self.on_get_path(node)
             parent = self.tree[node][0]
             del self.tree[node]
-            new_list = []
-            for child in self.children[parent]:
-                if child[1] != node:
-                    new_list.append(child)
-            if len(new_list) == 0:
+            new_list = [child for child in self.children[parent]
+                            if child[1] != node]
+            if not new_list:
                 del self.children[parent]
             else:
                 self.children[parent] = new_list

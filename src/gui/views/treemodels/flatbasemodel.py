@@ -151,10 +151,7 @@ class FlatNodeMap(object):
         self._index2hndl = index2hndllist
         self._hndl2index = {}
         self._identical = identical
-        if identical:
-            self._fullhndl = self._index2hndl
-        else:
-            self._fullhndl = fullhndllist
+        self._fullhndl = self._index2hndl if identical else fullhndllist
         self._reverse = reverse
         self.reverse_order()
     
@@ -182,10 +179,9 @@ class FlatNodeMap(object):
             self.__corr = (len(self._index2hndl) - 1, -1)
         else:
             self.__corr = (0, 1)
-        if not self._hndl2index: 
-            for index, key in enumerate(self._index2hndl):
-                #the handle is key[1]
-                self._hndl2index[key[1]] = index
+        if not self._hndl2index:
+            self._hndl2index = dict([key[1], index]
+                for index, key in enumerate(self._index2hndl))
     
     def real_path(self, index):
         """
@@ -222,10 +218,7 @@ class FlatNodeMap(object):
         :Returns: the path, or None if handle does not link to a path
         """
         index = self._hndl2index.get(handle)
-        if index is None:
-            return None
-        else:
-            return self.real_path(index)
+        return None if index is None else self.real_path(index)
 
     def get_sortkey(self, handle):
         """
@@ -237,10 +230,7 @@ class FlatNodeMap(object):
         :Returns: the sortkey, or None if handle is not present
         """
         index = self._hndl2index.get(handle)
-        if index is None:
-            return None
-        else:
-            return self._index2hndl[index][0]
+        return None if index is None else self._index2hndl[index][0]
 
     def get_handle(self, path):
         """
@@ -528,8 +518,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
             if not allkeys:
                 allkeys = self.sort_keys()
             if self.search and self.search.text:
-                dlist = [h for h  in allkeys \
-                             if self.search.match(h[1], self.db) and \
+                dlist = [h for h in allkeys
+                             if self.search.match(h[1], self.db) and
                              h[1] not in self.skip and h[1] != ignore]
                 ident = False
             elif ignore is None and not self.skip:
@@ -538,7 +528,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
                 dlist = allkeys
             else:
                 ident = False
-                dlist = [h for h in allkeys \
+                dlist = [h for h in allkeys
                              if h[1] not in self.skip and h[1] != ignore]
             self.node_map.set_path_map(dlist, allkeys, identical=ident, 
                                        reverse=self._reverse)

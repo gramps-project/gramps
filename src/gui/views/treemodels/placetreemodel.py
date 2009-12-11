@@ -64,21 +64,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
 
-        self.hmap = [
-            self.column_header,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            ]
+        self.hmap = [self.column_header] + [None]*12
 
         PlaceBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,

@@ -144,21 +144,7 @@ class PeopleModel(TreeBaseModel):
             self.column_tooltip,
             self.column_int_id,
             ]
-        self.hmap = [
-            self.column_header,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            ]
+        self.hmap = [self.column_header] + [None]*len(self.smap)
         TreeBaseModel.__init__(self, db, search=search, skip=skip,
                                 tooltip_column=11, marker_column=10,
                                 scol=scol, order=order, sort_map=sort_map)
