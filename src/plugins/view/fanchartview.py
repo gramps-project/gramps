@@ -142,7 +142,7 @@ class FanChartWidget(gtk.Widget):
         self.set_generations(self.generations)
         self.center = 50 # pixel radius of center
         self.layout = self.create_pango_layout('cairo')
-        self.layout.set_font_description(pango.FontDescription("sans serif 8"))
+        self.layout.set_font_description(pango.FontDescription("sans 8"))
 
     def reset_generations(self):
         """
@@ -350,7 +350,7 @@ class FanChartWidget(gtk.Widget):
         for i in range(len(text)):
             cr.save()
             layout = self.create_pango_layout(text[i])
-            layout.set_font_description(pango.FontDescription("sans serif 8"))
+            layout.set_font_description(pango.FontDescription("sans 8"))
             angle = 360.0 * i / (radius * self.degrees_per_radius) + pos
             cr.set_source_rgb(0, 0, 0) # black 
             cr.rotate(angle * (math.pi / 180));
