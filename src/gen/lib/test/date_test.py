@@ -207,14 +207,6 @@ for calendar in (Date.CAL_JULIAN,
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
 
-# CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
-with Context(Date.CAL_SWEDISH) as calendar:
-    for year in range(1701, 1712):
-        for month in range(1,13):
-            d = Date()
-            d.set(quality,modifier,calendar,(4,month,year,False),"Text comment")
-            dates.append( d)
-
 for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
     for month in range(1,14):
         d = Date()
@@ -261,11 +253,15 @@ def suite3():
                 if dateval.modifier != Date.MOD_TEXTONLY:
                     dateval.text = ("Comment. Format: %s" % 
                                     DateHandler.get_date_formats()[format])
-                suite.addTest(Eval("test_eval%04d" % count, dateval, 
-                                      "datestr = _dd.display(dateval)", 
-                                      "ndate = _dp.parse(datestr)", 
-                                      "ntxt = _dd.display(ndate)",
-                                   format))
+                suite.addTest(
+                    Eval("testset '%s' test_eval%04d" % (testset, count), 
+                         dateval, 
+                         "datestr = _dd.display(dateval)", 
+                         "ndate = _dp.parse(datestr)", 
+                         "ntxt = _dd.display(ndate)",
+                         format,
+                         )
+                    )
                 count += 1
     return suite
 
@@ -373,15 +369,15 @@ def suite():
         count += 1
     return suite
 
-def assert_func(exp1, exp2):
-    e1 = eval(exp1)
-    e2 = eval(exp2)
+def assert_func(exp1, exp2, env=None):
+    e1 = eval(exp1, env)
+    e2 = eval(exp2, env)
     assert e1 == e2, "%s should be %s but was %s" % (exp1, e2, e1)
 
 class Assert(unittest.TestCase):
-    def __init__(self, method_name, part, exp1, exp2):
+    def __init__(self, method_name, part, exp1, exp2, env=None):
         self.__dict__[method_name + ("-%d" % part)] = \
-            lambda: assert_func(exp1, exp2)
+            lambda: assert_func(exp1, exp2, env)
         unittest.TestCase.__init__(self, method_name + ("-%d" % part))
 
 def suite2():
@@ -423,7 +419,33 @@ def suite2():
         count += 1
     return suite
 
+swedish_dates = []
+# CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
+with Context(Date.CAL_SWEDISH) as calendar:
+    for year in range(1701, 1712):
+        for month in range(1,13):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,month,year,False),"Text comment")
+            swedish_dates.append( d)
+
+def suite4():
+    """ interface to automated test runner test/regrtest.py """
+    config.set('behavior.date-before-range', 9999)
+    config.set('behavior.date-after-range', 9999)
+    config.set('behavior.date-about-range', 10)
+    suite = unittest.TestSuite()            
+    count = 1
+    for date in swedish_dates:
+        suite.addTest(Assert('swedish dates test', 
+                             count, 
+                             "date.sortval",
+                             "date.to_calendar('gregorian').sortval",
+                             env = {"date": date}))
+        count += 1
+    return suite
+
 if __name__ == "__main__":
-    unittest.TextTestRunner().run(suite3())
-    unittest.TextTestRunner().run(suite2())
     unittest.TextTestRunner().run(suite())
+    unittest.TextTestRunner().run(suite2())
+    unittest.TextTestRunner().run(suite3())
+    unittest.TextTestRunner().run(suite4())
