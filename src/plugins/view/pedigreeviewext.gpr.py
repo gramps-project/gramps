@@ -36,7 +36,7 @@ status = STABLE,
 fname = 'pedigreeviewext.py',
 authors = [u"The Gramps project"],
 authors_email = ["http://gramps-project.org"],
-category = ("Charts", _("Charts")),
+category = ("Ancestry", _("Ancestry")),
 viewclass = 'PedigreeViewExt',
 order = START,
   )

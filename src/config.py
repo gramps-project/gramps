@@ -532,7 +532,7 @@ register('interface.clipboard-width', 300)
 register('interface.dont-ask', False)
 register('interface.view-categories',
          ["Gramplets", "People", "Relationships", "Families", 
-          "Charts", "Events", "Places", "Geography", "Sources",
+          "Ancestry", "Events", "Places", "Geography", "Sources",
           "Repositories", "Media", "Notes"])
 register('interface.event-height', 450)
 register('interface.event-ref-height', 450)
