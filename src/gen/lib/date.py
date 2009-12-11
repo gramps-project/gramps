@@ -690,10 +690,7 @@ class Date(object):
         if isinstance(source, tuple):
             if calendar is None:
                 self.calendar = Date.CAL_GREGORIAN
-            elif isinstance(calendar, int):
-                self.calendar = calendar
-            else:
-                self.calendar = lookup_calendar(calendar)
+            self.calendar = lookup_calendar(calendar)
             if modifier is None:
                 self.modifier = Date.MOD_NONE
             else:
@@ -1809,6 +1806,7 @@ def lookup_calendar(calendar):
     >>> lookup_calendar("hebrew")
     2
     """
+    if isinstance(calendar, int): return calendar
     for pos, calendar_name in enumerate(Date.calendar_names):
         if calendar.lower() == calendar_name.lower():
             return pos
