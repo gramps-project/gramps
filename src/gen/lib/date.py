@@ -688,8 +688,6 @@ class Date(object):
             raise AttributeError, "invalid args to Date: %s" % source
         #### ok, process either date or tuple
         if isinstance(source, tuple):
-            if calendar is None:
-                self.calendar = Date.CAL_GREGORIAN
             self.calendar = lookup_calendar(calendar)
             if modifier is None:
                 self.modifier = Date.MOD_NONE
@@ -1806,6 +1804,7 @@ def lookup_calendar(calendar):
     >>> lookup_calendar("hebrew")
     2
     """
+    if calendar is None: return Date.CAL_GREGORIAN
     if isinstance(calendar, int): return calendar
     for pos, calendar_name in enumerate(Date.calendar_names):
         if calendar.lower() == calendar_name.lower():
