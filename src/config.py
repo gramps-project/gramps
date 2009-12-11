@@ -227,13 +227,17 @@ class ConfigManager(object):
                 keys = sorted(self.data[section])
                 for key in keys:
                     value = self.data[section][key]
-                    if value == self.get_default("%s.%s" % (section, key)):
-                        default = ";;"
-                    else:
-                        default = ""
-                    if isinstance(value, long):
-                        value = int(value)
-                    key_file.write(("%s%s=%s\n")% (default, key, repr(value)))
+                    # If it has a default:
+                    if self.has_default("%s.%s" % (section, key)):
+                        if value == self.get_default("%s.%s" % (section, key)):
+                            default = ";;"
+                        else:
+                            default = ""
+                        if isinstance(value, long):
+                            value = int(value)
+                        key_file.write(("%s%s=%s\n")% (default, 
+                                                       key, 
+                                                       repr(value)))
                 key_file.write("\n")
             key_file.close()
         # else, no filename given; nothing to save so do nothing quietly
