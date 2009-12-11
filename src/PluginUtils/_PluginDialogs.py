@@ -90,6 +90,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.dialog.connect_signals({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "destroy_passed_object"   : self.close,
+            "on_delete_event": self.close,
             })
 
         self.tree = self.dialog.get_object("tree")
