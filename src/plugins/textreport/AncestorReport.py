@@ -40,13 +40,14 @@ from BasicUtils import name_displayer
 from Errors import ReportError
 from gen.lib import ChildRefType
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption, \
-                          TranslationOption
+                          EnumeratedListOption
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, INDEX_TYPE_TOC, 
                              PARA_ALIGN_CENTER)
 from ReportBase import Report, ReportUtils, MenuReportOptions
-
+import TransUtils
 from libnarrate import Narrator
+from libtranslate import Translator
 
 #------------------------------------------------------------------------
 #
@@ -98,10 +99,11 @@ class AncestorReport(Report):
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-        translator = menu.get_option_by_name('trans').get_translator()
-        self._ = translator.gettext
+        language = menu.get_option_by_name('trans').get_value()
+        translator = Translator(language)
+        self._ = translator.get_text
         self.__narrator = Narrator(self.database, 
-                                   translate_text = translator.gettext)
+                                   translator=translator)
 
     def apply_filter(self, person_handle, index, generation=1):
         """
@@ -267,7 +269,11 @@ class AncestorOptions(MenuReportOptions):
         namebrk.set_help(_("Indicates if a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
         
-        trans = TranslationOption(_("Translation"))
+        trans = EnumeratedListOption(_("Translation"), 
+                                      Translator.DEFAULT_TRANSLATION_STR)
+        trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("default"))
+        for language in TransUtils.get_available_translations():
+            trans.add_item(language, language)
         trans.set_help(_("The translation to be used for the report."))
         menu.add_option(category_name, "trans", trans)
 

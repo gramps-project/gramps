@@ -24,13 +24,6 @@
 Narrator class for use by plugins.
 """
 
-#-------------------------------------------------------------------------
-#
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-import gettext
-
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -42,9 +35,9 @@ from gen.lib.eventroletype import EventRoleType
 from gen.lib.eventtype import EventType
 from gen.lib.familyreltype import FamilyRelType
 from BasicUtils import name_displayer as _nd
-import DateHandler
 import Utils
 from ReportBase import ReportUtils
+from libtranslate import Translator
 
 #-------------------------------------------------------------------------
 #
@@ -1461,7 +1454,7 @@ class Narrator(object):
 
     def __init__(self, dbase, verbose=True, use_call_name=False,
                  empty_date="", empty_place="",
-                 translate_text=gettext.gettext,
+                 translator=None,
                  get_endnote_numbers=_get_empty_endnote_numbers):
         """ 
         Initialize the narrator class.
@@ -1494,10 +1487,15 @@ class Narrator(object):
         self.__empty_date = empty_date
         self.__empty_place = empty_place
         self.__get_endnote_numbers = get_endnote_numbers
-        self.__translate_text = translate_text
         self.__person = None
         self.__first_name = ""
         self.__first_name_used = False
+        
+        if translator is None:
+            translator = Translator(Translator.DEFAULT_TRANSLATION_STR)
+            
+        self.__translate_text = translator.get_text
+        self.__get_date = translator.get_date
 
     def set_subject(self, person):
         """
@@ -1546,7 +1544,7 @@ class Narrator(object):
         if birth_ref and birth_ref.ref:
             birth_event = self.__db.get_event_from_handle(birth_ref.ref)
             if birth_event:
-                bdate = DateHandler.get_date(birth_event)
+                bdate = self.__get_date(birth_event.get_date_object())
                 bplace_handle = birth_event.get_place_handle()
                 if bplace_handle:
                     place = self.__db.get_place_from_handle(bplace_handle)
@@ -1657,7 +1655,7 @@ class Narrator(object):
         if death_ref and death_ref.ref:
             death_event = self.__db.get_event_from_handle(death_ref.ref)
             if death_event:
-                ddate = DateHandler.get_date(death_event)
+                ddate = self.__get_date(death_event.get_date_object())
                 dplace_handle = death_event.get_place_handle()
                 if dplace_handle:
                     place = self.__db.get_place_from_handle(dplace_handle)
@@ -1773,7 +1771,7 @@ class Narrator(object):
                 break
     
         if burial:
-            bdate = DateHandler.get_date(burial)
+            bdate = self.__get_date(burial.get_date_object())
             bplace_handle = burial.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
@@ -1880,7 +1878,7 @@ class Narrator(object):
                 break
     
         if baptism:
-            bdate = DateHandler.get_date(baptism)
+            bdate = self.__get_date(baptism.get_date_object())
             bplace_handle = baptism.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
@@ -1987,7 +1985,7 @@ class Narrator(object):
                 break
     
         if christening:
-            cdate = DateHandler.get_date(christening)
+            cdate = self.__get_date(christening.get_date_object())
             cplace_handle = christening.get_place_handle()
             if cplace_handle:
                 place = self.__db.get_place_from_handle(cplace_handle)
@@ -2088,7 +2086,7 @@ class Narrator(object):
         spouse_name = _nd.display(spouse)
     
         if event:
-            mdate = DateHandler.get_date(event)
+            mdate = self.__get_date(event.get_date_object())
             if mdate:
                 date = mdate
             place_handle = event.get_place_handle()

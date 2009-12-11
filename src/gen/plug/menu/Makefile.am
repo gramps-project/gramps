@@ -25,8 +25,7 @@ pkgdata_PYTHON = \
 	_string.py \
 	_style.py \
 	_surnamecolor.py \
-	_text.py \
-	_translation.py
+	_text.py 
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug/menu
 pkgpythondir = @pkgpythondir@/gen/plug/menu

@@ -54,8 +54,8 @@ class DateDisplay(object):
                     u"June", u"July", u"August", u"September", u"October", 
                     u"November", u"December" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", u"Jul", 
-                     u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",
+                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
 
     _tformat = GrampsLocale.tformat
 

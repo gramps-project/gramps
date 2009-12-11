@@ -17,7 +17,8 @@ pkgdata_PYTHON = \
 	libmapservice.py\
 	libmixin.py\
 	libodfbackend.py\
-	libplugins.gpr.py
+	libplugins.gpr.py\
+	libtranslate.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
 pkgpythondir = @pkgpythondir@/plugins/lib

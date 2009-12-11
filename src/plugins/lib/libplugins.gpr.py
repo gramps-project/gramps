@@ -26,7 +26,6 @@
 # libcairo
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libcairodoc',
 name  = "Cairodoc lib",
@@ -45,7 +44,6 @@ authors_email = ["http://gramps-project.org"],
 # libformatting
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libformatting',
 name  = "FormattingHelper lib",
@@ -63,7 +61,6 @@ authors_email = ["http://gramps-project.org"],
 # libgrampsxml
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libgrampsxml',
 name  = "Grampsxml lib",
@@ -82,7 +79,6 @@ authors_email = ["http://gramps-project.org"],
 # libgrdb
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libgrdb',
 name  = "grdb lib",
@@ -100,7 +96,6 @@ authors_email = ["http://gramps-project.org"],
 # libholiday
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libholiday',
 name  = "holiday lib",
@@ -118,7 +113,6 @@ authors_email = ["http://gramps-project.org"],
 # llibhtmlbackend
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libhtmlbackend',
 name  = "htmlbackend lib",
@@ -136,7 +130,6 @@ authors_email = ["http://gramps-project.org"],
 # libhtmlconst
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libhtmlconst',
 name  = "htmlconst lib",
@@ -154,7 +147,6 @@ authors_email = ["http://gramps-project.org"],
 # libhtml
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libhtml',
 name  = "html lib",
@@ -172,7 +164,6 @@ authors_email = ["gerald.britton@gmail.com"],
 # libmapservice
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libmapservice',
 name  = "mapservice lib",
@@ -205,7 +196,6 @@ authors_email = ["brian@gramps-project.org"],
 # libodfbackend
 #
 #------------------------------------------------------------------------
-
 register(GENERAL, 
 id    = 'libodfbackend',
 name  = "odfbackend lib",
@@ -215,4 +205,20 @@ status = STABLE,
 fname = 'libodfbackend.py',
 authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
+)
+
+#------------------------------------------------------------------------
+#
+# libtranslate
+#
+#------------------------------------------------------------------------
+register(GENERAL, 
+id    = 'libtranslate',
+name  = "translation lib",
+description =  _("Provides Textual Translation.") ,
+version = '1.0',
+status = STABLE,
+fname = 'libtranslate.py',
+authors = ["Brian Matherly"],
+authors_email = ["brian@gramps-project.org"],
 )

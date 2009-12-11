@@ -72,6 +72,12 @@ def setup_gettext():
     #following installs _ as a python function, we avoid this as TransUtils is
     #used sometimes:
     #gettext.install(LOCALEDOMAIN, LOCALEDIR, unicode=1)
+    
+def get_localedomain():
+    """
+    Get the LOCALEDOMAIN used for the Gramps application.
+    """
+    return LOCALEDOMAIN
 
 def get_addon_translator(filename, domain="addon"):
     """
@@ -173,48 +179,3 @@ def sngettext(singular, plural, n, sep='|'):
         sep_idx = singular.rfind(sep)
         msgval = singular[sep_idx+1:]
     return msgval
-
-#-------------------------------------------------------------------------
-#
-# Translator
-#
-#-------------------------------------------------------------------------
-class Translator:
-    """
-    This class provides translated strings for the configured language.
-    """
-    DEFAULT_TRANSLATION_STR = "default"
-    
-    def __init__(self, lang=DEFAULT_TRANSLATION_STR):
-        """
-        :param lang: The language to translate to. 
-            The language can be:
-               * The name of any installed .mo file
-               * "en" to use the message strings in the code
-               * "default" to use the default translation being used by gettext.
-        :type lang: string
-        :return: nothing
-        
-        """
-        if lang == Translator.DEFAULT_TRANSLATION_STR:
-            self.trans = None
-        else:
-            # fallback=True will cause the translator to use English if 
-            # lang = "en" or if something goes wrong.
-            self.trans = gettext.translation(LOCALEDOMAIN, languages=[lang], 
-                                             fallback=True)
-            
-    def gettext(self, message):
-        """
-        Return the translated string.
-        
-        :param message: The message to be translated.
-        :type message: string
-        :returns: The translated message
-        :rtype: unicode
-        
-        """
-        if self.trans is None:
-            return gettext.gettext(message)
-        else:
-            return self.trans.gettext(message)
