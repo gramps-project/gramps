@@ -693,7 +693,7 @@ class Date(object):
             elif isinstance(calendar, int):
                 self.calendar = calendar
             else:
-                self.calendar = self.lookup_calendar(calendar)
+                self.calendar = lookup_calendar(calendar)
             if modifier is None:
                 self.modifier = Date.MOD_NONE
             else:
@@ -1241,7 +1241,7 @@ class Date(object):
         5770
         """
         if calendar_name:
-            cal = self.lookup_calendar(calendar_name)
+            cal = lookup_calendar(calendar_name)
         else:
             cal = self.calendar
         if cal == self.calendar:
@@ -1625,14 +1625,7 @@ class Date(object):
         """
         Lookup calendar name in the list of known calendars, even if translated.
         """
-        calendar_lower = [n.lower() for n in Date.calendar_names]
-        ui_lower = [n.lower() for n in Date.ui_calendar_names]
-        if calendar.lower() in calendar_lower:
-            return calendar_lower.index(calendar.lower())
-        elif calendar.lower() in ui_lower:
-            return ui_lower.index(calendar.lower())
-        else:
-            raise AttributeError("invalid calendar: '%s'" % calendar)
+        return lookup_calendar(calendar)
 
     def lookup_quality(self, quality):
         """
@@ -1669,7 +1662,7 @@ class Date(object):
         >>> Date("Jan 1 1591").to_calendar("julian")
         1590-12-22 (Julian)
         """
-        cal = self.lookup_calendar(calendar_name)
+        cal = lookup_calendar(calendar_name)
         retval = Date(self)
         retval.convert_calendar(cal)
         return retval
@@ -1808,3 +1801,18 @@ def __build_date_string(day, mon, year, bce, mmap):
     else:
         retval = "%d %s %d%s" % (day, mmap[mon], year, bce)
     return retval
+
+def lookup_calendar(calendar):
+    """
+    Find the ID associated with the calendar name.
+
+    >>> lookup_calendar("hebrew")
+    2
+    """
+    for pos, calendar_name in enumerate(Date.calendar_names):
+        if calendar.lower() == calendar_name.lower():
+            return pos
+    for pos, calendar_name in enumerate(Date.ui_calendar_names):
+        if calendar.lower() == calendar_name.lower():
+            return pos
+    raise AttributeError("invalid calendar: '%s'" % calendar)
