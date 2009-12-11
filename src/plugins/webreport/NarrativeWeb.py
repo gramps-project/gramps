@@ -1192,6 +1192,8 @@ class BasePage(object):
                 _obj = db.get_family_from_handle( newhandle )
                 partner1_handle = _obj.get_father_handle()
                 partner2_handle = _obj.get_mother_handle()
+                partner1 = None
+                partner2 = None
                 if partner1_handle:
                      partner1 = db.get_person_from_handle(partner1_handle)
                 if partner2_handle:
