@@ -1248,7 +1248,8 @@ class Date(object):
             return self.get_year()
         else:
             retval = Date(self)
-            return retval.convert_calendar(cal).get_year()
+            retval.convert_calendar(cal)
+            return retval.get_year()
 
     def get_new_year(self):
         """
