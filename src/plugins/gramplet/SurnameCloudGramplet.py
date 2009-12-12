@@ -58,7 +58,7 @@ def make_tag_size(n, counts, mins=8, maxs=20):
 class SurnameCloudGramplet(Gramplet):
     def init(self):
         self.set_tooltip(_("Double-click surname for details"))
-        self.top_size = 100 # will be overwritten in load
+        self.top_size = 150 # will be overwritten in load
         self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
@@ -123,11 +123,13 @@ class SurnameCloudGramplet(Gramplet):
         total = 0
         include_greater_than = 0
         for s in sums:
-            if total + totals[s] <= self.top_size:
+            if total + totals[s] <= self.top_size_option.get_value():
                 total += totals[s]
             else:
                 include_greater_than = s
                 break
+        mins = self.min_option.get_value()
+        maxs = self.max_option.get_value()
         # Ok, now we can show those counts > include_greater_than:
         showing = 0
         self.set_text("")
@@ -137,7 +139,7 @@ class SurnameCloudGramplet(Gramplet):
                     text = config.get('preferences.no-surname-text')
                 else:
                     text = surname
-                size = make_tag_size(count, counts)
+                size = make_tag_size(count, counts, mins=mins, maxs=maxs)
                 self.link(text, 'Surname', representative_handle[surname], size,
                           "%s, %d%% (%d)" % (text, 
                                              int((float(count)/total_people) * 100), 
@@ -148,3 +150,13 @@ class SurnameCloudGramplet(Gramplet):
                          total_surnames)
         self.append_text((_("Total surnames showing") + ": %d\n") % showing)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")
+
+    def build_options(self):
+        from gen.plug.menu import NumberOption
+        self.top_size_option = NumberOption(_("Number of surnames"), self.top_size, 1, 150)
+        self.add_option(self.top_size_option)
+        self.min_option = NumberOption(_("Min font size"), 8, 1, 50)
+        self.add_option(self.min_option)
+        self.max_option = NumberOption(_("Max font size"), 20, 1, 50)
+        self.add_option(self.max_option)
+
