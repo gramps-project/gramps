@@ -36,6 +36,7 @@ from gettext import gettext as _
 #
 # GNOME/GTK
 #
+import gtk
 #-------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------
@@ -56,7 +57,6 @@ def add_menuitem(menu, msg, obj, func):
     add a menuitem to menu with label msg, which activates func, and has data
     obj
     """
-    import gtk
     item = gtk.MenuItem(msg)
     item.set_data('o', obj)
     item.connect("activate", func)
@@ -93,7 +93,6 @@ class ProgressMeter(object):
         """
         Specify the title and the current pass header.
         """
-        import gtk
         self.__mode = ProgressMeter.MODE_FRACTION
         self.__pbar_max = 100.0
         self.__pbar_index = 0.0
@@ -158,7 +157,6 @@ class ProgressMeter(object):
         Reset for another pass. Provide a new header and define number
         of steps to be used.
         """
-        import gtk
         self.__mode = mode
         self.__pbar_max = total
         self.__pbar_index = 0.0
@@ -182,7 +180,6 @@ class ProgressMeter(object):
     def step(self):
         """Click the progress bar over to the next value.  Be paranoid
         and insure that it doesn't go over 100%."""
-        import gtk
         if self.__mode is ProgressMeter.MODE_FRACTION:
             self.__pbar_index = self.__pbar_index + 1.0
             
