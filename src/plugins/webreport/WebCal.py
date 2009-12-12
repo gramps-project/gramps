@@ -1121,20 +1121,20 @@ class WebCalReport(Report):
             if (self.birthday and birth_date is not None and birth_date.is_valid()):
 
                 year = birth_date.get_year()
-                month = birth_date.get_month()
-                day = birth_date.get_day()
+                month = birth_date.get_month() or 1
+                day = birth_date.get_day() or 1
 
                 # date to figure if someone is still alive
+                # current year of calendar, month nd day is their birth month and birth day 
                 prob_alive_date = Date(this_year, month, day)
 
                 # add some things to handle maiden name:
                 father_surname = None # husband, actually
-                sex = person.gender
-                if sex == Person.FEMALE:
+                if person.gender == Person.FEMALE:
 
                     # get husband's last name:
                     if self.maiden_name in ['spouse_first', 'spouse_last']: 
-                        if len(family_list) > 0:
+                        if family_list:
                             if self.maiden_name == 'spouse_first':
                                 fhandle = family_list[0]
                             else:
@@ -1147,16 +1147,16 @@ class WebCalReport(Report):
                                     father = self.database.get_person_from_handle(father_handle)
                                     if father is not None:
                                         father_name = father.primary_name
-                                        father_surname = _get_regular_surname(sex, father_name)
+                                        father_surname = _get_regular_surname(person.gender, father_name)
                 short_name = self.get_name(person, father_surname)
                 alive = probably_alive(person, self.database, prob_alive_date)
                 if (self.alive and alive) or not self.alive:
 
                     # add link to NarrativeWeb
                     if self.link_to_narweb:
-                        text = Html('a', short_name, 
-                                    href=self.build_url_fname_html(person.handle, 'ppl', 
-                                                                   prefix=self.narweb_prefix))
+                        text = Html("a", short_name, 
+                                    href = self.build_url_fname_html(person.handle, "ppl", 
+                                                                   prefix = self.narweb_prefix))
                     else:
                         text = short_name
                     self.add_day_item(text, year, month, day, 'Birthday')
