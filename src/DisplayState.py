@@ -52,6 +52,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import gen.utils
+from gui.utils import process_pending_events
 import config
 from BasicUtils import name_displayer
 import const
@@ -404,8 +405,7 @@ class DisplayState(gen.utils.Callback):
             self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         else:
             self.window.window.set_cursor(None)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        process_pending_events()
 
     def set_open_widget(self, widget):
         self.widget = widget
@@ -443,18 +443,14 @@ class DisplayState(gen.utils.Callback):
             else:
                 name = _("No active person")
             self.status.push(self.status_id, name)
-
-        while gtk.events_pending():
-            gtk.main_iteration()
+        process_pending_events()
 
     def pulse_progressbar(self, value):
         self.progress.set_fraction(min(value/100.0, 1.0))
         self.progress.set_text("%d%%" % value)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        process_pending_events()
 
     def status_text(self, text):
         self.status.pop(self.status_id)
         self.status.push(self.status_id, text)
-        while gtk.events_pending():
-            gtk.main_iteration()
+        process_pending_events()

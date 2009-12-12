@@ -271,3 +271,15 @@ def open_file_with_default_application( file_path ):
             if os.path.isfile(prog):
                 os.spawnvpe(os.P_NOWAIT, prog, [prog, norm_path], os.environ)
                 return
+
+def process_pending_events(max_count=10):
+    """
+    Process pending events, but don't get into an infinite loop.
+    """
+    import gtk
+    count = 0
+    while gtk.events_pending():
+        gtk.main_iteration()
+        count += 1
+        if count >= max_count:
+            break
