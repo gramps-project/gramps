@@ -697,7 +697,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
     text-transform: uppercase;
     width: 20%;
 }
-div#EventDetail table.eventlist tbody tr td.ColumnEvent {
+div#EventDetail table.eventlist tbody tr td.ColumnDate {
     background-color: #D8F3D6;
     border-top: solid 1px #5D835F;
 }
@@ -1240,8 +1240,8 @@ div#narrative {
 /* Subsections : Source References
 ----------------------------------------------------- */
 div#sourcerefs {
-    height:2.64cm;
-    overflow:auto;
+    padding: 0;
+    margin: 0 auto;
 }
 div#sourcerefs ol {
     list-style-type:decimal;
