@@ -329,7 +329,7 @@ class Gramplet(object):
         from PluginUtils import make_gui_option
         #tooltips, dbstate, uistate, track
         widget, label = make_gui_option(
-                            option, self.dbstate, self.uistate,None)
+                            option, self.dbstate, self.uistate, [])
         self.option_dict.update({option.get_label(): (widget, option)})
         self.option_order.append(option.get_label())
 
