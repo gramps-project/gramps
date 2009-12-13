@@ -2340,7 +2340,6 @@ class EventListPage(BasePage):
 
                 # separate events by their type and then thier event handles
                 for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
-                    evt_type = _("%(eventtype)s") % {'eventtype' : evt_type}
                     first_event = True
 
                     # sort the datalist by gramps id, date, and event handle
@@ -5350,7 +5349,7 @@ class NavWebReport(Report):
 
         index = 0
         for event_handle in event_handle_list:
-            self.progress.set_header(_("Creating event page %02d of %02d" % (index + 1, len(event_handle_list))))
+            self.progress.set_header(_("Creating event page %02d of %02d") % (index + 1, len(event_handle_list)))
 
             # create individual event pages
             EventPage(self, self.title, event_handle)
