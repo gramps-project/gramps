@@ -140,7 +140,7 @@ _brother_level = [u"", u"le frère%s", u"l'oncle%s", u"le grand-oncle%s",
                   u"l'arrière-grand-oncle%s"]
 
 _nephew_level = [u"", u"le neveu%s", u"le petit-neveu%s",
-                 "l'arrière-petit-neveu%s"]
+                 u"l'arrière-petit-neveu%s"]
 
 _niece_level = [u"", u"la nièce%s", u"la petite-nièce%s",
                 u"l'arrière-petite-nièce%s"]
@@ -730,12 +730,12 @@ if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src
-    # python src/plugins/rel_fr.py
+    # python src/plugins/rel/rel_fr.py
     # (Above not needed here)
 
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
-        python src/plugins/rel_xx.py
+        python src/plugins/rel/rel_xx.py
     """
     from Relationship import test
     rc = RelationshipCalculator()
