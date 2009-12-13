@@ -34,7 +34,6 @@ from statusbar import Statusbar
 from styledtextbuffer import *
 from styledtexteditor import *
 from toolcomboentry import *
-from unused import *
 from validatedcomboentry import *
 from validatedmaskedentry import *
 from valueaction import *
