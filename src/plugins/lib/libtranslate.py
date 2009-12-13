@@ -30,6 +30,7 @@ Translator class for use by plugins.
 #
 #------------------------------------------------------------------------
 import gettext
+_ = gettext.gettext
 
 #------------------------------------------------------------------------
 #
@@ -38,6 +39,75 @@ import gettext
 #------------------------------------------------------------------------
 import TransUtils
 import DateHandler
+
+#------------------------------------------------------------------------
+#
+# Private Constants
+#
+#------------------------------------------------------------------------
+_LANG_MAP = {
+    "bg" : _("Bulgarian"),
+    "ca" : _("Catalan"),
+    "cs" : _("Czech"),
+    "da" : _("Danish"),
+    "de" : _("German"),
+    "en" : _("English"),
+    "eo" : _("Esperanto"),
+    "es" : _("Spanish"),
+    "fi" : _("Finnish"),
+    "fr" : _("French"),
+    "he" : _("Hebrew"),
+    "hr" : _("Croatian"),
+    "hu" : _("Hungarian"),
+    "it" : _("Italian"),
+    "lt" : _("Lithuanian"),
+    "mk" : _("Macedonian"),
+    "nb" : _("Norwegian Bokmal"),
+    "nl" : _("Dutch"),
+    "nn" : _("Norwegian Nynorsk"),
+    "pl" : _("Polish"),
+    "pt" : _("Portuguese"),
+    "ro" : _("Romanian"),
+    "ru" : _("Russian"),
+    "sk" : _("Slovak"),
+    "sl" : _("Slovenian"),
+    "sq" : _("Albanian"),
+    "sv" : _("Swedish"),
+    "tr" : _("Turkish"),
+    "zh" : _("Chinese")
+}
+
+_COUNTRY_MAP = {
+    "BR" : _("Brazil"),
+    "CN" : _("China")
+}
+
+#------------------------------------------------------------------------
+#
+# Public Functions
+#
+#------------------------------------------------------------------------
+def get_language_string(lang_code):
+    """
+    Given a language code of the form "lang_region", return a text string 
+    representing that language.
+    """
+    code_parts = lang_code.rsplit("_")
+    
+    lang = code_parts[0]
+    if lang in _LANG_MAP:
+        lang = _LANG_MAP[lang]
+    
+    if len(code_parts) > 1:
+        country = code_parts[1]
+        if country in _COUNTRY_MAP:
+            country = _COUNTRY_MAP[country]
+        retstr = _("%(language)s (%(country)s)") % \
+                { 'language' : lang, 'country'  : country  }
+    else:
+        retstr = lang
+        
+    return retstr
 
 #-------------------------------------------------------------------------
 #
@@ -70,7 +140,10 @@ class Translator:
             self.__trans = gettext.translation(TransUtils.get_localedomain(), 
                                                languages=[lang], 
                                                fallback=True)
-            self.__dd = DateHandler.LANG_TO_DISPLAY[lang](None)
+            if lang in DateHandler.LANG_TO_DISPLAY:
+                self.__dd = DateHandler.LANG_TO_DISPLAY[lang](None)
+            else:
+                self.__dd = DateHandler.displayer
             
     def get_text(self, message):
         """

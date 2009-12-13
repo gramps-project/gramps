@@ -47,7 +47,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from ReportBase import Report, ReportUtils, MenuReportOptions
 import TransUtils
 from libnarrate import Narrator
-from libtranslate import Translator
+from libtranslate import Translator, get_language_string
 
 #------------------------------------------------------------------------
 #
@@ -273,7 +273,7 @@ class AncestorOptions(MenuReportOptions):
                                       Translator.DEFAULT_TRANSLATION_STR)
         trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("default"))
         for language in TransUtils.get_available_translations():
-            trans.add_item(language, language)
+            trans.add_item(language, get_language_string(language))
         trans.set_help(_("The translation to be used for the report."))
         menu.add_option(category_name, "trans", trans)
 
