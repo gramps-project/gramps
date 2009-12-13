@@ -317,6 +317,8 @@ class SimpleTable(object):
                     obj_type, handle = None, None
                     if isinstance(self.__link_col, tuple):
                         obj_type, handle = self.__link_col
+                    elif isinstance(self.__link_col, list):
+                        obj_type, handle = self.__link_col[index]
                     elif self.__link[index]:
                         obj_type, handle = self.__link[index]
                     if obj_type:
