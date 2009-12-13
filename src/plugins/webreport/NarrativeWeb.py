@@ -6089,6 +6089,9 @@ def sort_event_types(db, event_types, event_handle_list):
                 (event.gramps_id, event.get_date_object(), handle)
                 )
 
+    for tup_list in event_dict.values():
+        tup_list.sort()
+
     # return a list of tuples, one per event
     return ( (event_type, event_list) for (event_type, event_list) in event_dict.iteritems() )
 
