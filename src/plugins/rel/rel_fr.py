@@ -142,7 +142,7 @@ _brother_level = [u"", u"le frère%s", u"l'oncle%s", u"le grand-oncle%s",
 _nephew_level = [u"", u"le neveu%s", u"le petit-neveu%s",
                  "l'arrière-petit-neveu%s"]
 
-_niece_level = [u"", "la nièce%s", "la petite-nièce%s",
+_niece_level = [u"", u"la nièce%s", u"la petite-nièce%s",
                 u"l'arrière-petite-nièce%s"]
 
 # kinship report
