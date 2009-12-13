@@ -214,11 +214,11 @@ class EditPlace(EditPrimary):
         
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
-            return ValidationError(_(u"Invalid latitude (syntax: 18\u00b09'" +
-                                   '48.21"S, -18.2412 or -18:9:48.21)'))
+            return ValidationError(_(u"Invalid latitude (syntax: 18\u00b09'") +
+                                   _('48.21"S, -18.2412 or -18:9:48.21)'))
         elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
-            return ValidationError(_(u"Invalid longitude (syntax: 18\u00b09'" +
-                                   '48.21"E, -18.2412 or -18:9:48.21)'))
+            return ValidationError(_(u"Invalid longitude (syntax: 18\u00b09'") +
+                                   _('48.21"E, -18.2412 or -18:9:48.21)'))
 
     def build_menu_names(self, place):
         return (_('Edit Place'), self.get_menu_title())
