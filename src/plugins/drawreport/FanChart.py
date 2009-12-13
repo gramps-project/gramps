@@ -283,11 +283,6 @@ class FanChart(Report):
                 d = ""
         else:
             d = ""
-        # french calendar years < 15
-        if b < 15:
-            b = birth.get_date_object().to_calendar("gregorian").get_year()
-        if d < 15:
-            d = death.get_date_object().to_calendar("gregorian").get_year()
         if b and d:
             val = "%s - %s" % (str(b),str(d))
         elif b:
