@@ -166,12 +166,6 @@ class ChildEmbedList(EmbeddedList):
         self.rebuild()
 
     def build_columns(self):
-        """
-        We can't use the default build_columns in the base class, because
-        we are using the custom TypeCellRenderer to handle father parent
-        relationships. The Paternal and Maternal columns (columns 4 and 5)
-        use this.
-        """
         for column in self.columns:
             self.tree.remove_column(column)
         self.columns = []

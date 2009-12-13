@@ -19,7 +19,6 @@ pkgdata_PYTHON = \
 	styledtextbuffer.py \
 	styledtexteditor.py \
 	toolcomboentry.py \
-	unused.py \
 	validatedcomboentry.py \
 	validatedmaskedentry.py \
 	valueaction.py \
