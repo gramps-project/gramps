@@ -3280,7 +3280,7 @@ class MediaListPage(BasePage):
                     ]
                 trow.extend(
                     Html("th", label, class_ = "Column" + colclass, inline = True)
-                for (label, colclass) in media_header_row
+                        for (label, colclass) in media_header_row
                     )
   
                 # begin table body
@@ -3293,9 +3293,7 @@ class MediaListPage(BasePage):
         
                 for handle in mlist:
                     media = db.get_object_from_handle(handle)
-                    title = media.get_description()
-                    if not title:
-                        title = "[untitled]"
+                    title = media.get_description() or "[untitled]"
 
                     trow = Html("tr")
                     tbody += trow
@@ -3309,7 +3307,7 @@ class MediaListPage(BasePage):
 
                     trow.extend(
                         Html("td", data, class_ = "Column" + colclass)
-                    for (data, colclass) in media_data_row
+                            for (data, colclass) in media_data_row
                         )  
 
                     index += 1
