@@ -81,6 +81,7 @@ src/gen/db/iterator.py
 src/gen/db/undoredo.py
 
 # gen lib API
+src/gen/lib/exiftype.py
 src/gen/lib/witness.py
 src/gen/lib/__init__.py
 src/gen/lib/reporef.py
