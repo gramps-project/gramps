@@ -2637,10 +2637,12 @@ class MediaPage(BasePage):
             with Html("div", id = "summaryarea") as summaryarea:
                 mediadetail += summaryarea
                 if mime_type:
+                    print mime_type 
                     if mime_type.startswith("image/"):
                         if not target_exists:
-                            with Html("div", missingimage, id = "MediaDisplay") as mediadisplay:
-                               summaryarea += mediadisplay
+                            with Html("div", id = "MediaDisplay") as mediadisplay:
+                                summaryarea += mediadisplay
+                                mediadisplay += missingimage
                         else:
                             # Check how big the image is relative to the requested 'initial'
                             # image size. If it's significantly bigger, scale it down to
@@ -3251,31 +3253,37 @@ class MediaListPage(BasePage):
         medialistpage, body = self.write_header(_('Media'), _KEYPERSON)
 
         # begin gallery division
-        with Html("div", class_ = "content", id = "Gallery") as section:
-            body += section
+        with Html("div", class_ = "content", id = "Gallery") as medialist:
+            body += medialist
 
             msg = _("This page contains an index of all the media objects "
                           "in the database, sorted by their title. Clicking on "
                           "the title will take you to that media object&#8217;s page.  "
                           "If you see media size densions above an image, click on the "
                           "image to see the full sized version.  ")
-            section += Html("p", msg, id = "description")
+            medialist += Html("p", msg, id = "description")
 
             # begin gallery table and table head
             with Html("table", class_ = "infolist gallerylist") as table:
-                section += table
+                medialist += table
 
                 # begin table head
                 thead = Html("thead")
                 table += thead
 
-                trow = Html("tr") + (
-                    Html("th", "&nbsp;", class_ = "ColumnRowLabel", inline = True),
-                    Html("th", _("Media | Name"), class_ = "ColumnName", inline = True),
-                    Html("th", DHEAD, class_ = "ColumnDate", inline = True)
-                    )
+                trow = Html("tr")
                 thead += trow
-
+                media_header_row = [
+                    ["&nbsp;",    "RowLabel"],
+                    [_("Media | Name"),  "Name"],
+                    [DHEAD,              "Date"],
+                    [_("Mime Type"),     "Mime"]
+                    ]
+                trow.extend(
+                    Html("th", label, class_ = "Column" + colclass, inline = True)
+                for (label, colclass) in media_header_row
+                    )
+  
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
@@ -3286,19 +3294,25 @@ class MediaListPage(BasePage):
         
                 for handle in mlist:
                     media = db.get_object_from_handle(handle)
-                    date = _dd.display(media.get_date_object() )
                     title = media.get_description()
                     if not title:
                         title = "[untitled]"
 
-                    trow = Html("tr") + (
-                        Html("td", index, class_ = "ColumnRowLabel", inline = True),
-                        Html("td", self.media_ref_link(handle, title), class_ = "ColumnName"),
-                        Html("td", date, class_ = "ColumnDate", inline = True)
-                        )
+                    trow = Html("tr")
                     tbody += trow
 
-                    # increment counter
+                    media_data_row = [
+                        [index,                                 "RowLabel"],
+                        [self.media_ref_link(handle, title),    "Name"],
+                        [_dd.display(media.get_date_object() ), "Date"],
+                        [media.get_mime_type(),                 "Mime"]
+                        ] 
+
+                    trow.extend(
+                        Html("td", data, class_ = "Column" + colclass)
+                    for (data, colclass) in media_data_row
+                        )  
+
                     index += 1
 
         # add footer section
