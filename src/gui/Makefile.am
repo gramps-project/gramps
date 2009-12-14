@@ -4,7 +4,8 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
-	views
+	views \
+	widgets
 
 pkgdatadir = $(datadir)/@PACKAGE@/gui
 

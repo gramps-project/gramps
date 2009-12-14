@@ -210,6 +210,14 @@ src/gui/views/treemodels/repomodel.py
 src/gui/views/treemodels/sourcemodel.py
 src/gui/views/treemodels/treebasemodel.py
 
+# gui/widgets - the GUI widgets package
+src/gui/widgets/buttons.py
+src/gui/widgets/expandcollapsearrow.py
+src/gui/widgets/labels.py
+src/gui/widgets/menutoolbuttonaction.py
+src/gui/widgets/styledtexteditor.py
+src/gui/widgets/validatedmaskedentry.py
+
 # Simple API
 src/Simple/_SimpleTable.py
 
@@ -829,14 +837,6 @@ src/FilterEditor/_FilterEditor.py
 src/FilterEditor/_EditFilter.py
 src/FilterEditor/_EditRule.py
 src/FilterEditor/_ShowResults.py
-
-# widgets package
-src/widgets/buttons.py
-src/widgets/expandcollapsearrow.py
-src/widgets/labels.py
-src/widgets/menutoolbuttonaction.py
-src/widgets/styledtexteditor.py
-src/widgets/validatedmaskedentry.py
 
 #
 #	Glade files
