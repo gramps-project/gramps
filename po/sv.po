@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-11-24 07:53+0100\n"
-"PO-Revision-Date: 2009-11-24 15:49+0100\n"
+"PO-Revision-Date: 2009-12-14 15:18+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6961,7 +6961,7 @@ msgstr "Läser databas..."
 #: ../src/plugins/textreport/BirthdayReport.py:246
 #, python-format
 msgid "%(person)s, birth%(relation)s"
-msgstr "%(person)s, birth%(relation)s"
+msgstr "%(person)s, födelse%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:294
 #: ../src/plugins/textreport/BirthdayReport.py:250
