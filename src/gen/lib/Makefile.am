@@ -21,6 +21,7 @@ pkgdata_PYTHON = \
 	eventref.py \
 	eventroletype.py \
 	eventtype.py \
+	exiftype.py \
 	family.py \
 	familyreltype.py \
 	genderstats.py \
