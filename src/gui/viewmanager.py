@@ -74,7 +74,7 @@ import gui.views.pageview as PageView
 import Navigation
 import RecentFiles
 from BasicUtils import name_displayer
-import widgets
+from gui import widgets
 import UndoHistory
 from gui.dbloader import DbLoader
 import GrampsDisplay

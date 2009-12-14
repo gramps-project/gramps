@@ -52,7 +52,7 @@ import Errors
 import config
 from glade import Glade
 from DisplayTabs import SourceEmbedList, NoteTab
-from widgets import MonitoredDataType, PrivacyButton
+from gui.widgets import MonitoredDataType, PrivacyButton
 from BasicUtils import name_displayer
 
 #-------------------------------------------------------------------------

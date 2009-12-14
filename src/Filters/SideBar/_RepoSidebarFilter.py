@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import widgets
+from gui import widgets
 from gen.lib import Repository, RepositoryType
 
 from Filters.SideBar import SidebarFilter

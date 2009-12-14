@@ -39,7 +39,7 @@ import gen.lib
 from glade import Glade
 from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList, 
                          DataEmbedList, RepoEmbedList)
-from widgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
+from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
                      MonitoredDate)
 from _EditReference import RefTab, EditReference
 

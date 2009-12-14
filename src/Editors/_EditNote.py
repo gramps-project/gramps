@@ -47,10 +47,10 @@ import pango
 #-------------------------------------------------------------------------
 import config
 import const
-from widgets import StyledTextEditor
+from gui.widgets import StyledTextEditor
 from Editors._EditPrimary import EditPrimary
 from DisplayTabs import GrampsTab, NoteBackRefList
-from widgets import (MonitoredDataType, MonitoredCheckbox, 
+from gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
                      MonitoredEntry, PrivacyButton)
 from gen.lib import Note
 from QuestionDialog import ErrorDialog

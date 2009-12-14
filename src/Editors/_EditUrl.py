@@ -36,7 +36,7 @@ from gettext import gettext as _
 import const
 import config
 from _EditSecondary import EditSecondary
-from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from glade import Glade
 
 #-------------------------------------------------------------------------

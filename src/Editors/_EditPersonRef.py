@@ -50,7 +50,7 @@ import config
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
-from widgets import MonitoredEntry, PrivacyButton
+from gui.widgets import MonitoredEntry, PrivacyButton
 from DisplayTabs import SourceEmbedList, NoteTab
 from glade import Glade
 

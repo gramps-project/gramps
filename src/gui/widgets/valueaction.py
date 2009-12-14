@@ -45,7 +45,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from widgets.valuetoolitem import ValueToolItem
+from gui.widgets.valuetoolitem import ValueToolItem
 
 #-------------------------------------------------------------------------
 #

@@ -53,7 +53,7 @@ from Utils import media_path_full, probably_alive
 import DateHandler
 import ThumbNails
 import config
-import widgets
+from gui import widgets
 import Errors
 import gen.utils
 import Bookmarks

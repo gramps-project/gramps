@@ -49,7 +49,7 @@ from Editors._EditPrimary import EditPrimary
 
 from DisplayTabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList)
-from widgets import MonitoredEntry, PrivacyButton
+from gui.widgets import MonitoredEntry, PrivacyButton
 from QuestionDialog import ErrorDialog
 from glade import Glade
 

@@ -24,7 +24,7 @@ from gettext import gettext as _
 import gtk
 import pango
 
-import widgets
+from gui import widgets
 import config
 
 _RETURN = gtk.gdk.keyval_from_name("Return")

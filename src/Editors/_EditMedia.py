@@ -48,7 +48,7 @@ import Mime
 import ThumbNails
 import Utils
 from Editors import EditPrimary
-from widgets import MonitoredDate, MonitoredEntry, PrivacyButton
+from gui.widgets import MonitoredDate, MonitoredEntry, PrivacyButton
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from Editors.AddMedia import AddMediaObject

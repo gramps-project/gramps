@@ -67,8 +67,7 @@ from ReportBase import ReportUtils
 from DisplayTabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
-from widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType, 
-                     IconButton, LinkBox, BasicLabel)
+from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType)
 from gen.plug import CATEGORY_QR_FAMILY
 from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)

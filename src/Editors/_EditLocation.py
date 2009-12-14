@@ -30,7 +30,7 @@ import const
 import config
 from _EditSecondary import EditSecondary
 from glade import Glade
-from widgets import MonitoredEntry
+from gui.widgets import MonitoredEntry
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------

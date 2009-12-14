@@ -51,7 +51,7 @@ from BasicUtils import name_displayer as _nd
 import Utils
 from gen.lib import Name
 import ManagedWindow
-from widgets import MarkupLabel, BasicLabel
+from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2
 from Errors import NameDisplayError
 from glade import Glade

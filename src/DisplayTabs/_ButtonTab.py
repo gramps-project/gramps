@@ -40,7 +40,7 @@ import gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from widgets import SimpleButton
+from gui.widgets import SimpleButton
 from _GrampsTab import GrampsTab
 import Errors
 

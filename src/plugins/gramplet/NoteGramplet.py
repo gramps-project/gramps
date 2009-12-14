@@ -35,7 +35,7 @@ from gen.plug import Gramplet
 from BasicUtils import name_displayer
 from TransUtils import sgettext as _
 from const import GLADE_FILE
-from widgets import StyledTextEditor
+from gui.widgets import StyledTextEditor
 from gen.lib import StyledText, Note
 import Errors
 

@@ -47,7 +47,7 @@ from gettext import gettext as _
 #
 #----------------------------------------------------------------
 from gui.dbguielement import DbGUIElement
-from widgets.menutoolbuttonaction import MenuToolButtonAction
+from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
 
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0

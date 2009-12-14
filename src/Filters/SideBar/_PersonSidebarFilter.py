@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import widgets
+from gui import widgets
 import gen.lib
 import DateHandler
 

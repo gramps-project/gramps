@@ -41,7 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Errors
-from widgets import SimpleButton
+from gui.widgets import SimpleButton
 from _EmbeddedList import EmbeddedList
 
 #-------------------------------------------------------------------------

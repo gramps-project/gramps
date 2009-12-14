@@ -50,7 +50,7 @@ import gobject
 import Utils
 from gui.utils import ProgressMeter
 from gui.pluginmanager import GuiPluginManager
-import widgets
+from gui import widgets
 import ManagedWindow
 from QuestionDialog import OptionDialog
 from Selectors import selector_factory

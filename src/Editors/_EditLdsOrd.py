@@ -53,7 +53,7 @@ from glade import Glade
 from _EditSecondary import EditSecondary
 from ObjectEntries import PlaceEntry
 from DisplayTabs import SourceEmbedList,NoteTab
-from widgets import (PrivacyButton, MonitoredDate, 
+from gui.widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
 
 _DATA_MAP = {

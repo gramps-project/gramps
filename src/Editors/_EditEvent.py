@@ -50,7 +50,7 @@ from glade import Glade
 from QuestionDialog import ErrorDialog
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
-from widgets import (MonitoredEntry, PrivacyButton, 
+from gui.widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)
 
 #-------------------------------------------------------------------------

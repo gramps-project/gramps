@@ -39,7 +39,7 @@ import const
 import config
 from Utils import get_researcher
 import GrampsDisplay
-from widgets import MonitoredEntry
+from gui.widgets import MonitoredEntry
 import ManagedWindow
 from PluginUtils import Tool
 from TransUtils import sgettext as _

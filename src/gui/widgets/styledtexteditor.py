@@ -49,12 +49,12 @@ from pango import UNDERLINE_SINGLE
 #
 #-------------------------------------------------------------------------
 from gen.lib import StyledTextTagType
-from widgets.styledtextbuffer import (StyledTextBuffer, ALLOWED_STYLES,
+from gui.widgets.styledtextbuffer import (StyledTextBuffer, ALLOWED_STYLES,
                                       MATCH_START, MATCH_END,
                                       MATCH_FLAVOR, MATCH_STRING)
-from widgets.valueaction import ValueAction
-from widgets.toolcomboentry import ToolComboEntry
-from widgets.springseparator import SpringSeparatorAction
+from gui.widgets.valueaction import ValueAction
+from gui.widgets.toolcomboentry import ToolComboEntry
+from gui.widgets.springseparator import SpringSeparatorAction
 from Spell import Spell
 from GrampsDisplay import url as display_url
 

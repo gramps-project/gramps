@@ -51,7 +51,7 @@ import Utils
 from gui.utils import add_menuitem, open_file_with_default_application
 import Mime
 import gen.lib
-import widgets
+from gui import widgets
 from BasicUtils import name_displayer
 import Errors
 from glade import Glade

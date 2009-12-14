@@ -51,7 +51,7 @@ from gen.lib import NoteType
 from glade import Glade
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
-from widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
+from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from _EditReference import RefTab, EditReference
 from AddMedia import AddMediaObject
 

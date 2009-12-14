@@ -44,7 +44,7 @@ import const
 import config
 import gen.lib
 
-from widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
+from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from DisplayTabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from Editors._EditPrimary import EditPrimary
 from QuestionDialog import ErrorDialog
