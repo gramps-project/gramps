@@ -25,8 +25,7 @@ SUBDIRS = \
 	plugins \
 	ReportBase \
 	Selectors \
-	Simple \
-	widgets
+	Simple
 
 gdirdir=$(prefix)/share/gramps
 
