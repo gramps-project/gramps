@@ -586,9 +586,10 @@ class WebCalReport(Report):
     def calendar_build(self, cal, year, month):
         """
         This does the work of building the calendar
-        'cal' - one of "yg" year_glance(), or "wc" webcalendar()
-        'year' -- year being created
-        'month' - month number 1, 2, .., 12
+
+        @param: cal - either "yg" year_glance(), or "wc" webcalendar()
+        @param: year -- year being created
+        @param: month - month number 1, 2, .., 12
         """
 
         # define names for long and short month names
@@ -653,180 +654,174 @@ class WebCalReport(Report):
                 th_txt = '%s %d' % (month_name, year)
 
         # begin calendar table and table head
-        cal_table = Html("table", class_ = "calendar", id = month_name)
-        thead = Html("thead")
-        cal_table += thead 
+        with Html("table", class_ = "calendar", id = month_name) as table:
 
-        trow = Html("tr") + (
-            Html('th', th_txt, class_ ='monthName', colspan=7, inline = True)
-            )
-        thead += trow    
+            thead = Html("thead")
+            table += thead 
 
-        # Calendar weekday names header
-        trow = Html("tr")
-        thead += trow
-  
-        for day_col in range(7):
-            dayclass = get_class_for_daycol(day_col)
-            dayname = get_name_for_daycol(day_col)
-            trow += Html('th', class_ =dayclass, inline = True) + (
-                Html('abbr', dayname[0], title=dayname)
+            trow = Html("tr") + (
+                Html("th", th_txt, class_ ='monthName', colspan=7, inline = True)
                 )
+            thead += trow    
 
-        # begin table body
-        tbody = Html("tbody")
-        cal_table += tbody
-
-        # get first of the month and month information 
-        current_date, current_ord, monthinfo = get_first_day_of_month(year, month)
-
-        # begin calendar table rows, starting week0 
-        nweeks = len(monthinfo)
-        for week_row in range(0, nweeks):
-            week = monthinfo[week_row]
-
-            # if you look this up in wikipedia, the first week is called week0
-            trow = Html("tr", class_ = "week%02d" % week_row)
-            tbody += trow
-
-            # begin calendar day column
-            for day_col in range(0, 7):
+            # Calendar weekday names header
+            trow = Html("tr")
+            thead += trow
+  
+            for day_col in range(7):
                 dayclass = get_class_for_daycol(day_col)
+                dayname = get_name_for_daycol(day_col)
+                trow += Html("th", class_ =dayclass, inline = True) + (
+                    Html('abbr', dayname[0], title=dayname)
+                    )
 
-                # day number, can also be a zero -- a day before or after month 
-                day = week[day_col]
+            # begin table body
+            tbody = Html("tbody")
+            table += tbody
 
-                # start the beginning variable for <td>, table cell
-                tcell_id = "%s%02d" % (abbr_month_name, day)
+            # get first of the month and month information 
+            current_date, current_ord, monthinfo = get_first_day_of_month(year, month)
 
-                # add calendar date division
-                datediv = Html("div", day, class_ = "date", inline = True)
+            # begin calendar table rows, starting week0 
+            nweeks = len(monthinfo)
+            for week_row in range(0, nweeks):
+                week = monthinfo[week_row]
 
-                # a day in the previous or next month
-                if day == 0:
+                # if you look this up in wikipedia, the first week is called week0
+                trow = Html("tr", class_ = "week%02d" % week_row)
+                tbody += trow
 
-                    # day in previous month
-                    if week_row == 0:
-                        specday = __get_previous_month_day(year, month, day_col)
-                        specclass = "previous " + dayclass
+                # begin calendar day column
+                for day_col in range(0, 7):
+                    dayclass = get_class_for_daycol(day_col)
 
-                    # a day in the next month
-                    elif week_row == (nweeks-1):
-                        specday = __get_next_month_day(year, month, day_col)   
-                        specclass = "next " + dayclass
+                    # day number, can also be a zero -- a day before or after month 
+                    day = week[day_col]
 
-                    # continue table cell, <td>, without id tag
-                    tcell = Html('td', class_ = specclass, inline = True) + (
+                    # start the beginning variable for <td>, table cell
+                    tcell_id = "%s%02d" % (abbr_month_name, day)
 
-                        # adds date for previous and next month days
-                        Html("div", specday, class_ = "date", inline = True)
-                        )
-                    trow += tcell
+                    # add calendar date division
+                    datediv = Html("div", day, class_ = "date", inline = True)
 
-                # normal day number in current month
-                else: 
-                    thisday = datetime.date.fromordinal(current_ord)
+                    # a day in the previous or next month
+                    if day == 0:
 
-                    # Something this month
-                    if thisday.month == month:
-                        holiday_list = self.holidays.get(month, {}).get(thisday.day, [])
-                        bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
+                        # day in previous month
+                        specday = __get_previous_month_day(year, month, day_col) if week_row == 0 \
+                            else __get_next_month_day(year, month, day_col) 
 
-                        # date is an instance because of subtracting abilities in date.py
-                        event_date = Date()
-                        event_date.set_yr_mon_day(thisday.year, thisday.month, thisday.day)
 
-                        # get events for this day
-                        day_list = get_day_list(event_date, holiday_list, bday_anniv_list) 
+                        specclass = "previous " if week_row == 0 else "Next "
+                        specclass += dayclass
 
-                        # is there something this day?
-                        if day_list: 
+                        # continue table cell, <td>, without id tag
+                        tcell = Html("td", class_ = specclass, inline = True) + (
 
-                            hilightday = 'highlight ' + dayclass
-                            tcell = Html('td', id = tcell_id, class_ = hilightday)
+                            # adds date for previous and next month days
+                            Html("div", specday, class_ = "date", inline = True)
+                            )
 
-                            # Year at a Glance
-                            if cal == "yg":
+                    # normal day number in current month
+                    else: 
+                        thisday = datetime.date.fromordinal(current_ord)
 
-                                # make one day pages and hyperlink 
-                                if self.makeoneday: 
+                        # Something this month
+                        if thisday.month == month:
+                            holiday_list = self.holidays.get(month, {}).get(thisday.day, [])
+                            bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
 
-                                    # create yyyymmdd date string for 
-                                    # "One Day" calendar page filename
-                                    fname_date = '%04d%02d%02d' % (year,month,day) + self.ext
+                            # date is an instance because of subtracting abilities in date.py
+                            event_date = Date(thisday.year, thisday.month, thisday.day)
 
-                                    # create hyperlink to one_day()
-                                    fname_date = full_month_name + '/' + fname_date 
-                                    hyper = Html("a", datediv, href=fname_date, inline = True)
-                                    tcell += hyper
+                            # get events for this day
+                            day_list = get_day_list(event_date, holiday_list, bday_anniv_list) 
 
-                                    # only year_glance() needs this to create the one_day() pages 
-                                    self.one_day(event_date, fname_date, day_list)
+                            # is there something this day?
+                            if day_list: 
 
-                                # just year_glance(), but no one_day() pages
+                                hilightday = 'highlight ' + dayclass
+                                tcell = Html("td", id = tcell_id, class_ = hilightday)
+
+                                # Year at a Glance
+                                if cal == "yg":
+
+                                    # make one day pages and hyperlink 
+                                    if self.makeoneday: 
+
+                                        # create yyyymmdd date string for 
+                                        # "One Day" calendar page filename
+                                        fname_date = '%04d%02d%02d' % (year,month,day) + self.ext
+
+                                        # create hyperlink to one_day()
+                                        fname_date = full_month_name + '/' + fname_date 
+                                        hyper = Html("a", datediv, href=fname_date, inline = True)
+                                        tcell += hyper
+
+                                        # only year_glance() needs this to create the one_day() pages 
+                                        self.one_day(event_date, fname_date, day_list)
+
+                                    # just year_glance(), but no one_day() pages
+                                    else:
+
+                                        # continue table cell, <td>, without id tag
+                                        tcell = Html("td", class_ = hilightday, inline = True) + (
+
+                                            # adds date division
+                                            Html("div", day, class_ = "date", inline = True)
+                                            ) 
+
+                                # WebCal
                                 else:
 
-                                    # continue table cell, <td>, without id tag
-                                    tcell = Html('td', class_ = hilightday, inline = True) + (
+                                    # add date to table cell
+                                    tcell += datediv 
 
-                                        # adds date division
-                                        Html("div", day, class_ = "date", inline = True)
-                                        ) 
+                                    # list the events
+                                    unordered = Html("ul")
+                                    tcell += unordered
 
-                            # WebCal
-                            else:
+                                    for nyears, date, text, event in day_list:
+                                        unordered += Html("li", text, inline = False if event == 'Anniversary' 
+                                            else True)
 
-                                # add date to table cell
-                                tcell += datediv 
+                            # no events for this day
+                            else: 
 
-                                # list the events
-                                unordered = Html("ul")
-                                tcell += unordered
+                                # create empty day with date 
+                                tcell = Html("td", class_ = dayclass, inline = True) + (
 
-                                for nyears, date, text, event in day_list:
-                                    unordered += Html("li", text, inline = False if event == 'Anniversary' 
-                                        else True)
+                                    # adds date division
+                                    Html("div", day, class_ = "date", inline = True)
+                                    ) 
 
-                        # no events for this day
-                        else: 
-
-                            # create empty day with date 
-                            tcell = Html('td', class_ = dayclass, inline = True) + (
+                        # nothing for this month
+                        else:
+                            tcell = Html("td", class_ = dayclass) + (
 
                                 # adds date division
                                 Html("div", day, class_ = "date", inline = True)
                                 ) 
 
-                    # nothing for this month
-                    else:
-                        tcell = Html('td', class_ = dayclass) + (
-
-                            # adds date division
-                            Html("div", day, class_ = "date", inline = True)
-                            ) 
-
                     # attach table cell to table row
                     # close the day column
                     trow += tcell
 
-                # change day number
-                current_ord += 1
+                    # change day number
+                    current_ord += 1
 
-        if cal == "yg":
-            # Fill up till we have 6 rows, so that the months align properly
-            for weeks in xrange(nweeks, 6):
-                six_weeks = Html("tr", class_ = "week%02d" % (weeks + 1))
-                tbody += six_weeks
+            if cal == "yg":
+                for weeks in xrange(nweeks, 6):
 
-                for emptydays in xrange(6):
-                    six_weeks += Html("td", class_ = "emptyDays", inline = True)
+                    # each calendar must have six weeks for proper styling and alignment
+                    with Html("tr", class_ = "week%02d" % (weeks + 1)) as six_weeks:
+                        tbody += six_weeks
 
-                # create table cell
-                for col in xrange(6):
-                    six_weeks += Html("td", class_ = "EmptyDays", inline = True)
+                        for emptydays in range(7):
+                            six_weeks += Html("td", class_ = "emptyDays", inline = True)
 
-        # return calendar table to its caller
-        return cal_table
+        # return calendar table to its callers
+        return table
 
 # ---------------------------------------------------------------------------------------
 #   Creates the Web Calendars; the primary part of this plugin
@@ -882,7 +877,7 @@ class WebCalReport(Report):
             monthly_calendar += cal_foot
 
             trow = Html("tr") + (
-                Html('td', note, colspan=7, inline = True)
+                Html("td", note, colspan=7, inline = True)
                 ) 
             cal_foot += trow
 
@@ -1190,10 +1185,10 @@ class WebCalReport(Report):
 
                             if event_obj.is_valid():
                                 if self.link_to_narweb:
-                                    spouse_name = Html('a', spouse_name,
+                                    spouse_name = Html("a", spouse_name,
                                                        href=self.build_url_fname_html(spouse_handle, 'ppl', 
                                                                                       prefix=self.narweb_prefix))
-                                    short_name = Html('a', short_name,
+                                    short_name = Html("a", short_name,
                                                       href=self.build_url_fname_html(person.handle, 'ppl', 
                                                                                      prefix=self.narweb_prefix))
                                 text = _('%(spouse)s and %(person)s') % {

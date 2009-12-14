@@ -5238,13 +5238,7 @@ class NavWebReport(Report):
             # get family attributes
             attribute_list.extend(family.get_attribute_list() )
 
-            for evt_ref in family.get_event_ref_list():
-                event = db.get_event_from_handle(evt_ref.ref)
-
-                # get events attributes
-                attribute_list.extend(event.get_attribute_list() )
-
-        # attributes to its caller
+        # return attributes to its caller
         return attribute_list
 
     def person_pages(self, ind_list, place_list, source_list):
@@ -5263,8 +5257,7 @@ class NavWebReport(Report):
             # get attributes for each person
             attribute_list = self.build_attributes(person)
 
-            IndividualPage(self, self.title, person, ind_list, place_list, source_list,
-                attribute_list)
+            IndividualPage(self, self.title, person, ind_list, place_list, source_list, attribute_list)
 
         if self.inc_gendex:
             self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))
@@ -6082,7 +6075,7 @@ def sort_people(db, handle_list):
 
 def sort_event_types(db, event_types, event_handle_list):
     """
-    sort a list of event types and group them by their type
+    sort a list of event types and their associated event handles
 
     @param: event_types -- a dict of event types
     @param: event_handle_list -- all event handles in this database
@@ -6095,7 +6088,7 @@ def sort_event_types(db, event_types, event_handle_list):
         event = db.get_event_from_handle(handle)
         etype = str(event.type)
 
-        # add the stuff from this event
+        # add (gramps_id, date, handle) from this event
         if etype in event_dict:
             event_dict[etype].append(
                 (event.gramps_id, event.get_date_object(), handle)
