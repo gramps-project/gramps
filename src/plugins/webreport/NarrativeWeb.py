@@ -2707,7 +2707,7 @@ class MediaPage(BasePage):
                                         )
                     else:
                         dirname = tempfile.mkdtemp()
-                        thmb_path = os.path.join(dirname, "temp.png")
+                        thmb_path = os.path.join(dirname, "document.png")
                         if ThumbNails.run_thumbnailer(mime_type,
                                                       Utils.media_path_full(db, media.get_path()),
                                                       thmb_path, 320):
