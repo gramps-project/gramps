@@ -60,7 +60,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
             pass
 
     def reset(self):
-        self.map = {}
+        self.map.reset()
 
     def apply(self,db,person):
         return person.handle in self.map

@@ -182,6 +182,8 @@ old_names_2_class = {
     "Is a sibling of filter match"  : Rules.Person.IsSiblingOfFilterMatch,
     "Relationship path between two people" :
         Rules.Person.RelationshipPathBetween,
+    "Relationship paths between a person and a list of people" :
+        Rules.Person.DeepRelationshipPathBetween,
     "People who were adopted"       : Rules.Person.HaveAltFamilies,
     "People who have images"        : Rules.Person.HavePhotos,
     "People with children"          : Rules.Person.HaveChildren,

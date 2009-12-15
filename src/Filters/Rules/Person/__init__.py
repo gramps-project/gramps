@@ -92,6 +92,7 @@ from _PeoplePrivate import PeoplePrivate
 from _PersonWithIncompleteEvent import PersonWithIncompleteEvent
 from _ProbablyAlive import ProbablyAlive
 from _RelationshipPathBetween import RelationshipPathBetween
+from _DeepRelationshipPathBetween import DeepRelationshipPathBetween
 from _RelationshipPathBetweenBookmarks import RelationshipPathBetweenBookmarks
 from Filters.Rules._Rule import Rule
 from _SearchName import SearchName
@@ -161,6 +162,7 @@ editor_rule_list = [
     IsSpouseOfFilterMatch,
     IsSiblingOfFilterMatch,
     RelationshipPathBetween,
+    DeepRelationshipPathBetween,
     RelationshipPathBetweenBookmarks,
     HasTextMatchingSubstringOf,
     HasNote,

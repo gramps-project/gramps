@@ -56,7 +56,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf,MatchesFilter):
     
     def prepare(self,db):
         self.db = db
-        self.map = {}
+        self.map = set()
         try:
             if int(self.list[1]):
                 first = 0
@@ -73,7 +73,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf,MatchesFilter):
         filt.reset()
 
     def reset(self):
-        self.map = {}
+        self.map.clear()
 
     def apply(self,db,person):
         return person.handle in self.map

@@ -46,13 +46,13 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
 
     def prepare(self,db):
         self.db = db
-        self.person_map = {}
-        self.event_map = {}
-        self.source_map = {}
-        self.repo_map = {}
-        self.family_map = {}
-        self.place_map = {}
-        self.media_map = {}
+        self.person_map = set()
+        self.event_map = set()
+        self.source_map = set()
+        self.repo_map = set()
+        self.family_map = set()
+        self.place_map = set()
+        self.media_map = set()
         self.case_sensitive = False
         self.regexp_match = True
         self.cache_sources()

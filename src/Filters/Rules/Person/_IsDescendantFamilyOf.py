@@ -97,6 +97,7 @@ class IsDescendantFamilyOf(Rule):
 
     def exclude(self):
         # This removes root person and his/her spouses from the matches set
+        if not self.root_person: return
         self.matches.remove(self.root_person.handle)
         for family_handle in self.root_person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
