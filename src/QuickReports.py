@@ -191,10 +191,6 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
             d = TextBufDoc(make_basic_stylesheet(), None)
             d.dbstate = dbstate
             d.uistate = uistate
-            if container:
-                d.change_active = False
-            else:
-                d.change_active = True
             if isinstance(handle, basestring): # a handle
                 if category == CATEGORY_QR_PERSON :
                     obj = dbstate.db.get_person_from_handle(handle)
