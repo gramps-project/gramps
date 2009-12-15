@@ -195,7 +195,7 @@ class PlaceBaseView(ListView):
         #select the map services to show
         self.mapservicedata = {}
         servlist = GuiPluginManager.get_instance().get_reg_mapservices()
-        for i, pdata in zip(range(len(servlist)), servlist):
+        for i, pdata in enumerate(servlist):
             key = pdata.id.replace(' ', '-')
             add_menuitem(menu, pdata.name, None, 
                                make_callback(self.set_mapservice, key))
