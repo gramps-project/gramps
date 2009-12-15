@@ -80,7 +80,7 @@ runfunc = 'run'
 
 register(QUICKREPORT, 
 id    = 'all_events_fam',
-name  = _("All Events"),
+name  = _("All Family Events"),
 description =  _("Display the family and family members events."),
 version = '1.0',
 status = STABLE,
@@ -261,7 +261,7 @@ runfunc = 'run_given'
 
 register(QUICKREPORT, 
 id    = 'samegivens_misc',
-name  = _("Same Given Names"),
+name  = _("Same Given Names - stand-alone"),
 description =  _("Display people with the same given name as a person."),
 version = '1.0',
 status = STABLE,
