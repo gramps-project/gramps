@@ -70,7 +70,6 @@ from gen.lib.eventroletype import EventRoleType
 from gen.lib.markertype import MarkerType
 from gen.lib.notetype import NoteType
 from gen.lib.styledtexttagtype import StyledTextTagType
-from gen.lib.exiftype import ExifType
 
 # Text
 from gen.lib.styledtexttag import StyledTextTag
