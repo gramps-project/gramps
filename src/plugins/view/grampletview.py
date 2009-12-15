@@ -47,6 +47,7 @@ from gettext import gettext as _
 import Errors
 import const
 from gui.views.pageview import PageView
+from gui.editors import EditPerson, EditFamily
 import ManagedWindow
 import ConfigParser
 from gui.utils import add_menuitem
@@ -656,7 +657,6 @@ class GuiGramplet(object):
                         if event.button == 1: # left mouse
                             if event.type == gtk.gdk._2BUTTON_PRESS: # double
                                 try:
-                                    from Editors import EditPerson
                                     EditPerson(self.dbstate, 
                                                self.uistate, 
                                                [], person)
@@ -669,7 +669,6 @@ class GuiGramplet(object):
                         elif event.button == 3: # right mouse
                             #FIXME: add a popup menu with options
                             try:
-                                from Editors import EditPerson
                                 EditPerson(self.dbstate, 
                                            self.uistate, 
                                            [], person)
@@ -714,7 +713,6 @@ class GuiGramplet(object):
                         if event.button == 1: # left mouse
                             if event.type == gtk.gdk._2BUTTON_PRESS: # double
                                 try:
-                                    from Editors import EditFamily
                                     EditFamily(self.dbstate, 
                                                self.uistate, 
                                                [], family)
@@ -724,7 +722,6 @@ class GuiGramplet(object):
                         elif event.button == 3: # right mouse
                             #FIXME: add a popup menu with options
                             try:
-                                from Editors import EditFamily
                                 EditFamily(self.dbstate, 
                                            self.uistate, 
                                            [], family)

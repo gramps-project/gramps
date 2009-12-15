@@ -8,7 +8,6 @@ SUBDIRS = \
 	DateHandler \
 	DisplayTabs \
 	docgen \
-	Editors \
 	Filters \
 	FilterEditor \
 	gen \
@@ -24,7 +23,6 @@ SUBDIRS = \
 	PluginUtils \
 	plugins \
 	ReportBase \
-	Selectors \
 	Simple
 
 gdirdir=$(prefix)/share/gramps

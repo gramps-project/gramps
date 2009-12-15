@@ -32,7 +32,7 @@ from gui.views.placebaseview import PlaceBaseView
 from gui.views.treemodels import PlaceTreeModel
 import gen.lib
 import Errors
-from Editors import EditPlace
+from gui.editors import EditPlace
 
 #-------------------------------------------------------------------------
 #

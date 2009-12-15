@@ -48,8 +48,8 @@ import gen.lib
 from BasicUtils import name_displayer
 import LdsUtils
 from glade import Glade
-from _EditSecondary import EditSecondary
-from ObjectEntries import PlaceEntry
+from editsecondary import EditSecondary
+from objectentries import PlaceEntry
 from DisplayTabs import SourceEmbedList,NoteTab
 from gui.widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)

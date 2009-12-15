@@ -267,7 +267,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def add_button_clicked(self, obj):
         try:
-            from Editors import EditMediaRef
+            from gui.editors import EditMediaRef
             EditMediaRef(self.dbstate, self.uistate, self.track, 
                          gen.lib.MediaObject(), gen.lib.MediaRef(),
                          self.add_callback)
@@ -295,7 +295,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         if src:
             sref = gen.lib.MediaRef()
             try:
-                from Editors import EditMediaRef
+                from gui.editors import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              src, sref, self.add_callback)
             except Errors.WindowActiveError:
@@ -313,7 +313,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             obj = self.dbstate.db.get_object_from_handle(
                                                 ref.get_reference_handle())
             try:
-                from Editors import EditMediaRef
+                from gui.editors import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              obj, ref, None)
             except Errors.WindowActiveError:

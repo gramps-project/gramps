@@ -99,9 +99,8 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         return ((1, 0), (1, 1), (1, 2), (1, 3))
 
     def handle_extra_type(self, objtype, obj):
+        from gui.editors import EditRepoRef
         try:
-            from Editors import EditRepoRef
-            
             ref = gen.lib.RepoRef()
             repo = self.dbstate.db.get_repository_from_handle(obj)
             EditRepoRef(
@@ -111,11 +110,10 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             pass
 
     def add_button_clicked(self, obj):
+        from gui.editors import EditRepoRef
         ref = gen.lib.RepoRef()
         repo = gen.lib.Repository()
         try:
-            from Editors import EditRepoRef
-            
             EditRepoRef(
                 self.dbstate, self.uistate, self.track, 
                 repo, ref, self.add_callback)
@@ -133,8 +131,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         repo = sel.run()
         if repo:
             try:
-                from Editors import EditRepoRef
-                
+                from gui.editors import EditRepoRef
                 ref = gen.lib.RepoRef()
                 EditRepoRef(self.dbstate,
                               self.uistate,
@@ -158,8 +155,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         if ref:
             repo = self.dbstate.db.get_repository_from_handle(ref.ref)
             try:
-                from Editors import EditRepoRef
-                
+                from gui.editors import EditRepoRef
                 EditRepoRef(
                     self.dbstate, self.uistate, self.track, repo, 
                     ref, self.edit_callback)

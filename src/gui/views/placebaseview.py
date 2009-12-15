@@ -52,7 +52,7 @@ import config
 from QuestionDialog import ErrorDialog
 from gui.pluginmanager import GuiPluginManager
 from DdTargets import DdTargets
-from Editors import EditPlace, DeletePlaceQuery
+from gui.editors import EditPlace, DeletePlaceQuery
 from Filters.SideBar import PlaceSidebarFilter
 
 #-------------------------------------------------------------------------

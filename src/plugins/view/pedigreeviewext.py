@@ -58,11 +58,9 @@ from BasicUtils import name_displayer
 from Utils import (media_path_full, probably_alive, find_children, 
                    find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
-import DateHandler
 import ThumbNails
 import Errors
-from ReportBase import ReportUtils
-from Editors import EditPerson, EditFamily
+from gui.editors import EditPerson, EditFamily
 from DdTargets import DdTargets
 import cPickle as pickle
 import config

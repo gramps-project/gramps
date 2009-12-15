@@ -40,8 +40,7 @@ import const
 from gettext import ngettext
 from PluginUtils import Tool
 from ReportBase import ReportUtils
-from PluginUtils import Tool
-from Editors import EditPerson, EditFamily
+from gui.editors import EditPerson, EditFamily
 import ManagedWindow
 from gui.utils import ProgressMeter
 import GrampsDisplay

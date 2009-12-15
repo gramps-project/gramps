@@ -38,7 +38,7 @@ class FamilyAttrEmbedList(AttrEmbedList):
         AttrEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
-        from Editors import EditFamilyAttribute
+        from gui.editors import EditFamilyAttribute
         return EditFamilyAttribute
 
     def get_user_values(self):

@@ -61,7 +61,7 @@ import DateHandler
 import ThumbNails
 import Errors
 from ReportBase import ReportUtils
-from Editors import EditPerson, EditFamily 
+from gui.editors import EditPerson, EditFamily 
 from DdTargets import DdTargets
 import cPickle as pickle
 import config

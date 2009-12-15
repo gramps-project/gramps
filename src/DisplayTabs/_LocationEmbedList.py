@@ -73,8 +73,7 @@ class LocationEmbedList(EmbeddedList):
     def add_button_clicked(self, obj):
         loc = gen.lib.Location()
         try:
-            from Editors import EditLocation
-            
+            from gui.editors import EditLocation
             EditLocation(self.dbstate, self.uistate, self.track, 
                          loc, self.add_callback)
         except Errors.WindowActiveError:
@@ -88,8 +87,7 @@ class LocationEmbedList(EmbeddedList):
         loc = self.get_selected()
         if loc:
             try:
-                from Editors import EditLocation
-                
+                from gui.editors import EditLocation
                 EditLocation(self.dbstate, self.uistate, self.track, 
                              loc, self.edit_callback)
             except Errors.WindowActiveError:

@@ -81,10 +81,9 @@ class WebEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
+        from gui.editors import EditUrl
         url = gen.lib.Url()
         try:
-            from Editors import EditUrl
-            
             EditUrl(self.dbstate, self.uistate, self.track, 
                     '', url, self.add_callback)
         except Errors.WindowActiveError:
@@ -95,11 +94,10 @@ class WebEmbedList(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self, obj):
+        from gui.editors import EditUrl
         url = self.get_selected()
         if url:
             try:
-                from Editors import EditUrl
-                
                 EditUrl(self.dbstate, self.uistate, self.track, 
                         '', url, self.edit_callback)
             except Errors.WindowActiveError:

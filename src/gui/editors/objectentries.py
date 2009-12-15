@@ -45,9 +45,9 @@ from pango import ELLIPSIZE_END
 #
 #-------------------------------------------------------------------------
 from gen.lib import (Place, MediaObject, Note)
-from Editors._EditPlace import EditPlace
-from Editors._EditMedia import EditMedia
-from Editors._EditNote import EditNote
+from editplace import EditPlace
+from editmedia import EditMedia
+from editnote import EditNote
 from gui.selectors import SelectorFactory
 from DdTargets import DdTargets
 from Errors import WindowActiveError

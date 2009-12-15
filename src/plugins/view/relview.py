@@ -47,6 +47,7 @@ import pango
 #-------------------------------------------------------------------------
 import gen.lib
 import gui.views.pageview as PageView
+from gui.editors import EditPerson, EditFamily
 from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
 from Utils import media_path_full, probably_alive
@@ -1206,7 +1207,6 @@ class RelationshipView(NavigationView):
         return item
 
     def edit_menu(self, obj, handle):
-        from Editors import EditPerson
         person = self.dbstate.db.get_person_from_handle(handle)
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
@@ -1394,7 +1394,6 @@ class RelationshipView(NavigationView):
             self.edit_person(obj, handle)
         
     def edit_person(self, obj, handle):
-        from Editors import EditPerson
         person = self.dbstate.db.get_person_from_handle(handle)
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
@@ -1403,7 +1402,6 @@ class RelationshipView(NavigationView):
 
     def edit_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)
@@ -1412,7 +1410,6 @@ class RelationshipView(NavigationView):
 
     def add_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            from Editors import EditFamily
             family = gen.lib.Family()
             person = self.dbstate.active
             if not person:
@@ -1429,7 +1426,6 @@ class RelationshipView(NavigationView):
                 pass
 
     def add_spouse(self, obj):
-        from Editors import EditFamily
         family = gen.lib.Family()
         person = self.dbstate.active
 
@@ -1453,7 +1449,6 @@ class RelationshipView(NavigationView):
     def add_child_to_fam(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
             callback = lambda x: self.callback_add_child(x, handle)
-            from Editors import EditPerson
             person = gen.lib.Person()
             family = self.dbstate.db.get_family_from_handle(handle)
             father = self.dbstate.db.get_person_from_handle(
@@ -1539,7 +1534,6 @@ class RelationshipView(NavigationView):
                 child)
 
     def add_parents(self, obj):
-        from Editors import EditFamily
         family = gen.lib.Family()
         person = self.dbstate.active
 
@@ -1557,7 +1551,6 @@ class RelationshipView(NavigationView):
             
     def add_parent_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            from Editors import EditFamily
             family = gen.lib.Family()
             person = self.dbstate.active
 

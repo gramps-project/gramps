@@ -347,7 +347,7 @@ class RemoveUnused(Tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
     def call_editor(self, the_type, handle):
         try:
             obj = self.tables[the_type]['get_func'](handle)
-            editor_str = 'from Editors import %s as editor' \
+            editor_str = 'from gui.editors import %s as editor' \
                          % self.tables[the_type]['editor']
             exec(editor_str)            
             editor(self.dbstate, self.uistate, [], obj)

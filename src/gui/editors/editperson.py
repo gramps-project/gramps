@@ -57,7 +57,9 @@ import Errors
 from glade import Glade
 from gen.utils import set_birth_death_index
 
-from Editors._EditPrimary import EditPrimary
+from editprimary import EditPrimary
+from editmediaref import EditMediaRef
+from editname import EditName
 import config
 from QuestionDialog import ErrorDialog, ICON
 
@@ -481,9 +483,7 @@ class EditPerson(EditPrimary):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
 
             media_list = self.obj.get_media_list()
-            if media_list:
-                from Editors import EditMediaRef
-                
+            if media_list:                
                 media_ref = media_list[0]
                 object_handle = media_ref.get_reference_handle()
                 media_obj = self.db.get_object_from_handle(object_handle)
@@ -535,8 +535,6 @@ class EditPerson(EditPrimary):
         """
         media_list = self.obj.get_media_list()
         if media_list:
-            from Editors import EditMediaRef
-            
             media_ref = media_list[0]
             object_handle = media_ref.get_reference_handle()
             media_obj = self.db.get_object_from_handle(object_handle)
@@ -768,7 +766,6 @@ class EditPerson(EditPrimary):
         on the main form (not in the names tab).
          
         """
-        from Editors import EditName
         EditName(self.dbstate, self.uistate, self.track, 
                  self.pname, self._update_name)
 

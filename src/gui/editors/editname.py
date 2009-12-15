@@ -41,10 +41,8 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
 from BasicUtils import name_displayer
-from _EditSecondary import EditSecondary
+from editsecondary import EditSecondary
 from gen.lib import NoteType
 from DisplayTabs import GrampsTab,SourceEmbedList,NoteTab
 from gui.widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 

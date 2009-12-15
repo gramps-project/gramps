@@ -43,6 +43,7 @@ try:
     import cairo
 except ImportError:
     pass
+from gettext import gettext as _
 
 if gtk.pygtk_version < (2,3,93):
     raise Exception("PyGtk 2.3.93 or later required")
@@ -54,14 +55,12 @@ if gtk.pygtk_version < (2,3,93):
 #-------------------------------------------------------------------------
 from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
-from gettext import gettext as _
-from gen.plug import Gramplet
 from Utils import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
 import Errors
 import Bookmarks
-from Editors import EditPerson, EditFamily 
+from gui.editors import EditPerson, EditFamily 
 
 #-------------------------------------------------------------------------
 #

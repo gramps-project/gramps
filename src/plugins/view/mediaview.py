@@ -56,7 +56,7 @@ import Utils
 import Bookmarks
 import Mime
 import gen.lib
-from Editors import EditMedia, DeleteMediaQuery
+from gui.editors import EditMedia, DeleteMediaQuery
 import Errors
 from Filters.SideBar import MediaSidebarFilter
 from DdTargets import DdTargets

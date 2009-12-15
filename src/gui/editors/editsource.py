@@ -42,10 +42,8 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
 import gen.lib
-from Editors._EditPrimary import EditPrimary
+from editprimary import EditPrimary
 
 from DisplayTabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList)
@@ -213,7 +211,7 @@ class EditSource(EditPrimary):
     def _cleanup_on_exit(self):
         self.backref_tab.close()
 
-class DelSrcQuery(object):
+class DeleteSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):
         self.source = source
         self.db = dbstate.db

@@ -37,4 +37,4 @@ from toolcomboentry import *
 from validatedcomboentry import *
 from validatedmaskedentry import *
 from valueaction import *
-from valuetoolitem import *
+from valuetoolitem import * 

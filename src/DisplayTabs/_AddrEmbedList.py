@@ -107,8 +107,7 @@ class AddrEmbedList(EmbeddedList):
         """
         addr = gen.lib.Address()
         try:
-            from Editors import EditAddress
-            
+            from gui.editors import EditAddress
             EditAddress(self.dbstate, self.uistate, self.track, 
                         addr, self.add_callback)
         except Errors.WindowActiveError:
@@ -131,8 +130,7 @@ class AddrEmbedList(EmbeddedList):
         addr = self.get_selected()
         if addr:
             try:
-                from Editors import EditAddress
-                
+                from gui.editors import EditAddress
                 EditAddress(self.dbstate, self.uistate, self.track, 
                             addr, self.edit_callback)
             except Errors.WindowActiveError:

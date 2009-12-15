@@ -42,10 +42,8 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
 import gen.lib
-from Editors._EditPrimary import EditPrimary
+from editprimary import EditPrimary
 from DisplayTabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gui.widgets import MonitoredEntry, PrivacyButton

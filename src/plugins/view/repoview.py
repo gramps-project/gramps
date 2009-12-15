@@ -39,11 +39,10 @@ import gtk
 import gen.lib
 from gui.views.listview import ListView
 from gui.views.treemodels import RepositoryModel
-import Utils
 import Bookmarks
 import Errors
 import config
-from Editors import EditRepository, DelRepositoryQuery
+from gui.editors import EditRepository, DeleteRepositoryQuery
 from DdTargets import DdTargets
 from Filters.SideBar import RepoSidebarFilter
 from gen.plug import CATEGORY_QR_REPOSITORY
@@ -199,8 +198,8 @@ class RepositoryView(ListView):
             item[1] for item in
             self.dbstate.db.find_backlink_handles(handle, ['Source'])]
         object = self.dbstate.db.get_repository_from_handle(handle)
-        query = DelRepositoryQuery(self.dbstate, self.uistate, object,
-                                   source_list)
+        query = DeleteRepositoryQuery(self.dbstate, self.uistate, object,
+                                      source_list)
         is_used = len(source_list) > 0
         return (query, is_used, object)
 

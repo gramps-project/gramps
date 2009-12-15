@@ -51,7 +51,7 @@ from gui.utils import open_file_with_default_application
 from gui.pluginmanager import GuiPluginManager
 import _Tool as Tool
 from QuestionDialog import InfoDialog
-import config
+from gui.editors import EditPerson
 
 #-------------------------------------------------------------------------
 #
@@ -468,7 +468,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
-        from Editors import EditPerson
         buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
                                                        int(event.x), 
                                                        int(event.y))

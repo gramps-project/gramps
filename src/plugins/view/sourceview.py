@@ -45,7 +45,7 @@ import Bookmarks
 import Errors
 from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
-from Editors import EditSource, DelSrcQuery
+from gui.editors import EditSource, DeleteSrcQuery
 from Filters.SideBar import SourceSidebarFilter
 
 #-------------------------------------------------------------------------
@@ -186,7 +186,7 @@ class SourceView(ListView):
     def remove_object_from_handle(self, handle):
         the_lists = Utils.get_source_referents(handle, self.dbstate.db)
         object = self.dbstate.db.get_source_from_handle(handle)
-        query = DelSrcQuery(self.dbstate, self.uistate, object, the_lists)
+        query = DeleteSrcQuery(self.dbstate, self.uistate, object, the_lists)
         is_used = any(the_lists)
         return (query, is_used, object)
 

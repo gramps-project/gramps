@@ -69,7 +69,7 @@ class AttrEmbedList(EmbeddedList):
                               AttrModel, move_buttons=True)
 
     def get_editor(self):
-        from Editors import EditAttribute
+        from gui.editors import EditAttribute
         return EditAttribute
 
     def get_user_values(self):

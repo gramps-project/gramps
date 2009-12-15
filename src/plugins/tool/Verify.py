@@ -54,6 +54,7 @@ import gobject
 #------------------------------------------------------------------------
 import const
 import gen.lib
+from gui.editors import EditPerson, EditFamily
 import Utils
 import GrampsDisplay
 from ManagedWindow import ManagedWindow
@@ -605,14 +606,12 @@ class VerifyResults(ManagedWindow):
             handle = row[VerifyResults.OBJ_HANDLE_COL]
             if the_type == 'Person':
                 try:
-                    from Editors import EditPerson
                     person = self.dbstate.db.get_person_from_handle(handle)
                     EditPerson(self.dbstate, self.uistate, [], person)
                 except Errors.WindowActiveError:
                     pass
             elif the_type == 'Family':
                 try:
-                    from Editors import EditFamily
                     family = self.dbstate.db.get_family_from_handle(handle)
                     EditFamily(self.dbstate, self.uistate, [], family)
                 except Errors.WindowActiveError:

@@ -71,7 +71,7 @@ class PersonRefEmbedList(EmbeddedList):
                               move_buttons=True)
 
     def get_ref_editor(self):
-        from Editors import EditPersonRef
+        from gui.editors import EditPersonRef
         return EditPersonRef
 
     def get_data(self):
@@ -81,8 +81,7 @@ class PersonRefEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
-        from Editors import EditPersonRef
-
+        from gui.editors import EditPersonRef
         try:
             ref = gen.lib.PersonRef()
             ref.rel = _('Godfather')
@@ -97,10 +96,10 @@ class PersonRefEmbedList(EmbeddedList):
         self.rebuild()
 
     def edit_button_clicked(self, obj):
+        from gui.editors import EditPersonRef
         ref = self.get_selected()
         if ref:
             try:
-                from Editors import EditPersonRef
                 EditPersonRef(
                     self.dbstate, self.uistate, self.track,
                     ref, self.edit_callback)
@@ -115,8 +114,8 @@ class PersonRefEmbedList(EmbeddedList):
         And event reference that is from a drag and drop has
         an unknown event reference type
         """
+        from gui.editors import EditPersonRef
         try:
-            from Editors import EditPersonRef
             ref = gen.lib.PersonRef(obj)
             ref.rel = _('Unknown')
             EditPersonRef(

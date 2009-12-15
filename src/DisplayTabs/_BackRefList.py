@@ -128,59 +128,49 @@ class BackRefList(EmbeddedList):
             return (None, None)
     
     def edit_button_clicked(self, obj):
+        
+        from gui.editors import EditEvent, EditPerson, EditFamily, EditSource, \
+                                EditPlace, EditMedia, EditRepository
+
         (reftype, ref) = self.find_node()
         if reftype == 'Person':
             try:
-                from Editors import EditPerson
-                
                 person = self.dbstate.db.get_person_from_handle(ref)
                 EditPerson(self.dbstate, self.uistate, [], person)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Family':
             try:
-                from Editors import EditFamily
-                
                 family = self.dbstate.db.get_family_from_handle(ref)
                 EditFamily(self.dbstate, self.uistate, [], family)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Source':
             try:
-                from Editors import EditSource
-                
                 source = self.dbstate.db.get_source_from_handle(ref)
                 EditSource(self.dbstate, self.uistate, [], source)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Place':
             try:
-                from Editors import EditPlace
-                
                 place = self.dbstate.db.get_place_from_handle(ref)
                 EditPlace(self.dbstate, self.uistate, [], place)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'MediaObject':
             try:
-                from Editors import EditMedia
-                
                 obj = self.dbstate.db.get_object_from_handle(ref)
                 EditMedia(self.dbstate, self.uistate, [], obj)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Event':
             try:
-                from Editors import EditEvent
-                
                 event = self.dbstate.db.get_event_from_handle(ref)
                 EditEvent(self.dbstate, self.uistate, [], event)
             except Errors.WindowActiveError:
                 pass
         elif reftype == 'Repository':
             try:
-                from Editors import EditRepository
-                
                 repo = self.dbstate.db.get_repository_from_handle(ref)
                 EditRepository(self.dbstate, self.uistate, [], repo)
             except Errors.WindowActiveError:

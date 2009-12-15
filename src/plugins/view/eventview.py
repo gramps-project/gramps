@@ -53,7 +53,7 @@ import Errors
 import Bookmarks
 import config
 from DdTargets import DdTargets
-from Editors import EditEvent, DelEventQuery
+from gui.editors import EditEvent, DeleteEventQuery
 from Filters.SideBar import EventSidebarFilter
 from gen.plug import CATEGORY_QR_EVENT
 
@@ -233,8 +233,8 @@ class EventView(ListView):
         
         object = self.dbstate.db.get_event_from_handle(handle)
 
-        query = DelEventQuery(self.dbstate, self.uistate, object, 
-                              person_list, family_list)
+        query = DeleteEventQuery(self.dbstate, self.uistate, object, 
+                                 person_list, family_list)
         is_used = len(person_list) + len(family_list) > 0
         return (query, is_used, object)
 

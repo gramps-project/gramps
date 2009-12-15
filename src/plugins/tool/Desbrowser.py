@@ -42,6 +42,7 @@ import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
 from glade import Glade
+from gui.editors import EditPerson
 
 #------------------------------------------------------------------------
 #
@@ -114,8 +115,6 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         return item_id
     
     def button_press_event(self, obj,event):
-        from Editors import EditPerson
-
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store, node = self.tree.get_selection().get_selected()
             if node:

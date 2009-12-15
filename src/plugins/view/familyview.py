@@ -46,6 +46,7 @@ import gtk
 import gen.lib
 from gui.views.listview import ListView
 from gui.views.treemodels import FamilyModel
+from gui.editors import EditFamily
 import Bookmarks
 import Errors
 import config
@@ -191,7 +192,6 @@ class FamilyView(ListView):
                   "no one was selected."))
         
     def add(self, obj):
-        from Editors import EditFamily
         family = gen.lib.Family()
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
@@ -215,7 +215,6 @@ class FamilyView(ListView):
     
     def edit(self, obj):
         for handle in self.selected_handles():
-            from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
                 EditFamily(self.dbstate, self.uistate, [], family)

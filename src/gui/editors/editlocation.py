@@ -26,9 +26,7 @@
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
-from _EditSecondary import EditSecondary
+from editsecondary import EditSecondary
 from glade import Glade
 from gui.widgets import MonitoredEntry
 from gettext import gettext as _

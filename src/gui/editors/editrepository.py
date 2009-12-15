@@ -40,13 +40,11 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
 import gen.lib
 
 from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from DisplayTabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
-from Editors._EditPrimary import EditPrimary
+from editprimary import EditPrimary
 from QuestionDialog import ErrorDialog
 from glade import Glade
 
@@ -195,7 +193,7 @@ class EditRepository(EditPrimary):
     def _cleanup_on_exit(self):
         self.backref_list.close()
 
-class DelRepositoryQuery(object):
+class DeleteRepositoryQuery(object):
     def __init__(self, dbstate, uistate, repository, sources):
         self.obj = repository
         self.db = dbstate.db

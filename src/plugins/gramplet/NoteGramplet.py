@@ -34,8 +34,8 @@ import pango
 from gen.plug import Gramplet
 from BasicUtils import name_displayer
 from TransUtils import sgettext as _
-from const import GLADE_FILE
 from gui.widgets import StyledTextEditor
+from gui.editors import EditPerson, EditFamily
 from gen.lib import StyledText, Note
 import Errors
 
@@ -130,7 +130,7 @@ class NoteGramplet(Gramplet):
 
     def build_interface(self):
         """
-        Based on src/Editors/_EditNote.py
+        Based on src/gui/editors/editnote.py
         """
         vbox = gtk.VBox()
         self.texteditor = StyledTextEditor()
@@ -220,7 +220,6 @@ class NoteGramplet(Gramplet):
         self.update()
 
     def edit_person(self, obj):
-        from Editors import EditPerson
         try:
             EditPerson(self.gui.dbstate, 
                        self.gui.uistate, [], 
@@ -230,7 +229,6 @@ class NoteGramplet(Gramplet):
             pass
 
     def edit_family(self, obj):
-        from Editors import EditFamily
         try:
             EditFamily(self.gui.dbstate, 
                        self.gui.uistate, [], 

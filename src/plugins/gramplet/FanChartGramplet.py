@@ -59,7 +59,7 @@ from Utils import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
 import Errors
-from Editors import EditPerson, EditFamily 
+from gui.editors import EditPerson, EditFamily 
 
 #-------------------------------------------------------------------------
 #

@@ -117,16 +117,16 @@ class PersonEventEmbedList(EventEmbedList):
         return gen.lib.EventType(gen.lib.EventType.BIRTH)
 
     def get_ref_editor(self):
-        from Editors import EditEventRef
+        from gui.editors import EditEventRef
         return EditEventRef
 
     def editnotworkgroup(self, key):
         """
         Edit non native event in own editor
         """
-        from Editors import EditFamily
         family = self.dbstate.db.get_family_from_handle(key)
         try:
+            from gui.editors import EditFamily
             EditFamily(self.dbstate, self.uistate, [], family)
         except Errors.WindowActiveError:
             pass

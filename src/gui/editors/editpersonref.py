@@ -22,7 +22,7 @@
 # $Id$
 
 """
-The EditAddress module provides the EditAddress class. This provides a
+The EditPersonRef module provides the EditPersonRef class. This provides a
 mechanism for the user to edit address information.
 """
 
@@ -45,83 +45,93 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
-from _EditSecondary import EditSecondary
+from BasicUtils import name_displayer
+from editsecondary import EditSecondary
 from gen.lib import NoteType
-from glade import Glade
+from gui.widgets import MonitoredEntry, PrivacyButton
+from gui.selectors import SelectorFactory
 from DisplayTabs import SourceEmbedList, NoteTab
-from gui.widgets import MonitoredDate, MonitoredEntry, PrivacyButton
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
-# EditAddress class
+# EditPersonRef class
 #
 #-------------------------------------------------------------------------
-class EditAddress(EditSecondary):
+class EditPersonRef(EditSecondary):
     """
     Displays a dialog that allows the user to edit an address.
     """
-
 
     def __init__(self, dbstate, uistate, track, addr, callback):
         """
         Displays the dialog box.
 
-        parent - The class that called the Address editor.
+        parent - The class that called the PersonRef editor.
         addr - The address that is to be edited
         """
         EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.address-width'
-        self.height_key = 'interface.address-height'
+        self.width_key = 'interface.person-ref-width'
+        self.height_key = 'interface.person-ref-height'
         
         self.top = Glade()
+                
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
-                        _('Address Editor'))
+                        _('Person Reference Editor'))
+        self.person_label = self.top.get_object('person')
 
     def _setup_fields(self):
-        self.addr_start = MonitoredDate(
-            self.top.get_object("date_entry"),
-            self.top.get_object("date_stat"), 
-            self.obj.get_date_object(),
-            self.uistate,
-            self.track,
-            self.db.readonly)
-            
+
+        if self.obj.ref:
+            p = self.dbstate.db.get_person_from_handle(self.obj.ref)
+            self.person_label.set_text(name_displayer.display(p))
+        
         self.street = MonitoredEntry(
-            self.top.get_object("street"), self.obj.set_street,
-            self.obj.get_street, self.db.readonly)
+            self.top.get_object("relationship"),
+            self.obj.set_relation,
+            self.obj.get_relation,
+            self.db.readonly)
 
-        self.city = MonitoredEntry(
-            self.top.get_object("city"), self.obj.set_city,
-            self.obj.get_city, self.db.readonly)
-
-        self.state = MonitoredEntry(
-            self.top.get_object("state"), self.obj.set_state,
-            self.obj.get_state, self.db.readonly)
-
-        self.country = MonitoredEntry(
-            self.top.get_object("country"), self.obj.set_country,
-            self.obj.get_country, self.db.readonly)
-
-        self.postal = MonitoredEntry(
-            self.top.get_object("postal"), self.obj.set_postal_code,
-            self.obj.get_postal_code, self.db.readonly)
-
-        self.phone = MonitoredEntry(
-            self.top.get_object("phone"), self.obj.set_phone,
-            self.obj.get_phone, self.db.readonly)
-            
-        self.priv = PrivacyButton(self.top.get_object("private"),
-                                  self.obj, self.db.readonly)
+        self.priv = PrivacyButton(
+            self.top.get_object("private"),
+            self.obj,
+            self.db.readonly)
 
     def _connect_signals(self):
-        self.define_help_button(self.top.get_object('help'))
+        #self.define_help_button(self.top.get_object('help'))
         self.define_cancel_button(self.top.get_object('cancel'))
         self.define_ok_button(self.top.get_object('ok'),self.save)
+        self.top.get_object('select').connect('clicked',self._select_person)
+
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('person-rebuild', self.close)
+        self._add_db_signal('person-delete', self.check_for_close)
+
+    def check_for_close(self, handles):
+        """
+        Callback method for delete signals. 
+        If there is a delete signal of the primary object we are editing, the
+        editor (and all child windows spawned) should be closed
+        """
+        if self.obj.ref in handles:
+            self.close()
+
+    def _select_person(self, obj):
+        SelectPerson = SelectorFactory('Person')
+
+        sel = SelectPerson(self.dbstate, self.uistate, self.track)
+        person = sel.run()
+
+        if person:
+            self.obj.ref = person.get_handle()
+            self.person_label.set_text(name_displayer.display(person))
 
     def _create_tabbed_pages(self):
         """
@@ -139,20 +149,29 @@ class EditAddress(EditSecondary):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
-                    notetype=NoteType.ADDRESS))
+                    notetype=NoteType.ASSOCIATION))
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
         self.top.get_object('vbox').pack_start(notebook,True)
 
     def build_menu_names(self, obj):
-        return (_('Address'),_('Address Editor'))
+        return (_('Person Reference'),_('Person Reference Editor'))
 
     def save(self,*obj):
         """
         Called when the OK button is pressed. Gets data from the
         form and updates the Address data structure.
         """
-        if self.callback:
-            self.callback(self.obj)
-        self.close()
+
+        if self.obj.ref:
+            if self.callback:
+                self.callback(self.obj)
+            self.close()
+        else:
+            from QuestionDialog import ErrorDialog
+
+            ErrorDialog(
+                _('No person selected'),
+                _('You must either select a person or Cancel '
+                  'the edit'))

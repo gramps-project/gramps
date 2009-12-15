@@ -31,6 +31,8 @@ import gen.lib
 import Errors
 import config
 import DateHandler
+from gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
+                         EditPlace, EditRepository)
 
 class SimpleTable(object):
     """
@@ -84,8 +86,6 @@ class SimpleTable(object):
         """
         Handle events on tables. obj is a treeview
         """
-        from Editors import (EditPerson, EditEvent, EditFamily, EditSource,
-                             EditPlace, EditRepository)
         selection = obj.get_selection()
         store, node = selection.get_selected()
         if not node:

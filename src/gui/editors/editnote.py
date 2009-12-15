@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import logging
-_LOG = logging.getLogger(".Editors.EditNote")
+_LOG = logging.getLogger(".gui.editors.EditNote")
 
 #-------------------------------------------------------------------------
 #
@@ -48,7 +48,7 @@ import pango
 import config
 import const
 from gui.widgets import StyledTextEditor
-from Editors._EditPrimary import EditPrimary
+from editprimary import EditPrimary
 from DisplayTabs import GrampsTab, NoteBackRefList
 from gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
                      MonitoredEntry, PrivacyButton)

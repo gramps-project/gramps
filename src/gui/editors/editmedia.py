@@ -41,17 +41,15 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-import const
-import config
 import gen.lib
 import Mime
 import ThumbNails
 import Utils
-from Editors import EditPrimary
+from editprimary import EditPrimary
 from gui.widgets import MonitoredDate, MonitoredEntry, PrivacyButton
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
-from Editors.AddMedia import AddMediaObject
+from addmedia import AddMediaObject
 from QuestionDialog import ErrorDialog
 from glade import Glade
 

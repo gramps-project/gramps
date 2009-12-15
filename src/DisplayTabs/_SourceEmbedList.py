@@ -99,9 +99,8 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
         return ((1, 0), (1, 1), (1, 2), (1, 3))
 
     def add_button_clicked(self, obj):
+        from gui.editors import EditSourceRef
         try:
-            from Editors import EditSourceRef
-            
             sref = gen.lib.SourceRef()
             src = gen.lib.Source()
             EditSourceRef(
@@ -115,14 +114,13 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
             pass
 
     def share_button_clicked(self, obj):
+        from gui.editors import EditSourceRef
         SelectSource = SelectorFactory('Source')
 
         sel = SelectSource(self.dbstate,self.uistate,self.track)
         src = sel.run()
         if src:
             try:
-                from Editors import EditSourceRef
-                
                 ref = gen.lib.SourceRef()
                 EditSourceRef(self.dbstate,
                               self.uistate,
@@ -135,13 +133,12 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
                 pass
 
     def edit_button_clicked(self, obj):
+        from gui.editors import EditSourceRef
         sref = self.get_selected()
         if sref:
             src = self.dbstate.db.get_source_from_handle(sref.ref)
 
             try:
-                from Editors import EditSourceRef
-                
                 EditSourceRef(self.dbstate, self.uistate, self.track, 
                               src, sref, self.object_edited)
             except Errors.WindowActiveError:
@@ -180,11 +177,10 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
         self.rebuild()
 
     def handle_extra_type(self, objtype, obj):
+        from gui.editors import EditSourceRef
         sref = gen.lib.SourceRef()
         src = self.dbstate.db.get_source_from_handle(obj)
         try:
-            from Editors import EditSourceRef
-            
             EditSourceRef(self.dbstate, self.uistate, self.track, 
                           src, sref, self.object_added)
         except Errors.WindowActiveError:

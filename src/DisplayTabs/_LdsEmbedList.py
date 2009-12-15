@@ -71,7 +71,7 @@ class LdsEmbedList(EmbeddedList):
                               LdsModel, move_buttons=True)
 
     def get_editor(self):
-        from Editors import EditLdsOrd
+        from gui.editors import EditLdsOrd
         return EditLdsOrd
 
     def new_data(self):

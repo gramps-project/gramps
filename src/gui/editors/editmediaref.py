@@ -43,7 +43,6 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 import const
-import config
 import Mime
 import ThumbNails
 import Utils
@@ -52,8 +51,8 @@ from glade import Glade
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
-from _EditReference import RefTab, EditReference
-from AddMedia import AddMediaObject
+from editreference import RefTab, EditReference
+from addmedia import AddMediaObject
 
 #-------------------------------------------------------------------------
 #

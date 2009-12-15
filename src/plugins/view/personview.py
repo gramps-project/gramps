@@ -56,7 +56,7 @@ import Errors
 import Bookmarks
 import config
 from DdTargets import DdTargets
-from Editors import EditPerson
+from gui.editors import EditPerson
 from Filters.SideBar import PersonSidebarFilter
 from gen.plug import CATEGORY_QR_PERSON
 

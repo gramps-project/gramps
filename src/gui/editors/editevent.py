@@ -41,11 +41,10 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import config
 import gen.lib
 import GrampsDisplay
-from _EditPrimary import EditPrimary
-from ObjectEntries import PlaceEntry
+from editprimary import EditPrimary
+from objectentries import PlaceEntry
 from glade import Glade
 from QuestionDialog import ErrorDialog
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
@@ -316,7 +315,7 @@ class EditFamilyEvent(EditEvent):
 # Delete Query class
 #
 #-------------------------------------------------------------------------
-class DelEventQuery(object):
+class DeleteEventQuery(object):
     def __init__(self, dbstate, uistate, event, person_list, family_list):
         self.event = event
         self.db = dbstate.db

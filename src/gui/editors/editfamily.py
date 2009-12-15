@@ -54,7 +54,6 @@ import pango
 #
 #-------------------------------------------------------------------------
 import Utils
-import const
 import config
 from BasicUtils import name_displayer
 import gen.lib
@@ -62,7 +61,9 @@ import Errors
 import DateHandler
 from glade import Glade
 
-from Editors import EditPrimary
+from editprimary import EditPrimary
+from editchildref import EditChildRef
+from editperson import EditPerson
 from ReportBase import ReportUtils
 from DisplayTabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
@@ -203,7 +204,6 @@ class ChildEmbedList(EmbeddedList):
                 (0, 8), (0, 9)]
 
     def add_button_clicked(self, obj):
-        from Editors import EditPerson
         person = gen.lib.Person()
         autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
@@ -268,8 +268,6 @@ class ChildEmbedList(EmbeddedList):
             self.call_edit_childref(handle)
 
     def call_edit_childref(self, handle):
-        from Editors import EditChildRef
-
         for ref in self.family.get_child_ref_list():
             if ref.ref == handle:
                 p = self.dbstate.db.get_person_from_handle(handle)
@@ -284,8 +282,6 @@ class ChildEmbedList(EmbeddedList):
     def edit_child_button_clicked(self, obj):
         handle = self.get_selected()
         if handle:
-            from Editors import EditPerson
-
             for ref in self.family.get_child_ref_list():
                 if ref.ref == handle:
                     p = self.dbstate.db.get_person_from_handle(handle)
@@ -736,7 +732,6 @@ class EditFamily(EditPrimary):
                          self.mbutton_del, self.mbutton_edit)
 
     def add_mother_clicked(self, obj):
-        from Editors import EditPerson
         person = gen.lib.Person()
         person.set_gender(gen.lib.Person.FEMALE)
         autoname = config.get('behavior.surname-guessing')
@@ -754,7 +749,6 @@ class EditFamily(EditPrimary):
                    self.new_mother_added)
 
     def add_father_clicked(self, obj):
-        from Editors import EditPerson
         person = gen.lib.Person()
         person.set_gender(gen.lib.Person.MALE)
         autoname = config.get('behavior.surname-guessing')

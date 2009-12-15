@@ -33,15 +33,13 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
 import gen.lib
 from glade import Glade
 from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList, 
                          DataEmbedList, RepoEmbedList)
 from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
                      MonitoredDate)
-from _EditReference import RefTab, EditReference
+from editreference import RefTab, EditReference
 
 #-------------------------------------------------------------------------
 #

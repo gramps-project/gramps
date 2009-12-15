@@ -33,14 +33,11 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
-
 from gen.lib import NoteType
 
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
-from _EditReference import RefTab, EditReference
+from editreference import RefTab, EditReference
 from glade import Glade
 
 #-------------------------------------------------------------------------

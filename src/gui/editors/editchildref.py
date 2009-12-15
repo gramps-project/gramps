@@ -45,11 +45,9 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-from _EditSecondary import EditSecondary
+from editsecondary import EditSecondary
 from gen.lib import NoteType
 import Errors
-import config
 from glade import Glade
 from DisplayTabs import SourceEmbedList, NoteTab
 from gui.widgets import MonitoredDataType, PrivacyButton

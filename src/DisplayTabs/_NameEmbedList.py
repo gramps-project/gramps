@@ -147,8 +147,7 @@ class NameEmbedList(GroupEmbeddedList):
     def add_button_clicked(self, obj):
         name = gen.lib.Name()
         try:
-            from Editors import EditName
-            
+            from gui.editors import EditName
             EditName(self.dbstate, self.uistate, self.track, 
                      name, self.add_callback)
         except Errors.WindowActiveError:
@@ -162,7 +161,7 @@ class NameEmbedList(GroupEmbeddedList):
         name = self.get_selected()
         if name and name[1] is not None:
             try:
-                from Editors import EditName
+                from gui.editors import EditName
                 if name[0] == NameModel.ALTINDEX:
                     EditName(self.dbstate, self.uistate, self.track, 
                              name[1], self.edit_callback)

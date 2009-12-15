@@ -139,7 +139,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.rebuild_callback()
 
     def get_ref_editor(self):
-        from Editors import EditFamilyEventRef
+        from gui.editors import EditFamilyEventRef
         return EditFamilyEventRef
 
     def get_icon_name(self):
@@ -329,10 +329,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     def editnotworkgroup(self, key):
         """
         Edit non native event in own editor
-        """
-        from Editors import EditPerson
+        """ 
         person = self.dbstate.db.get_person_from_handle(key)
         try:
+            from gui.editors import EditPerson
             EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass

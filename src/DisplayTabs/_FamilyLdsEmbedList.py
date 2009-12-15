@@ -59,7 +59,7 @@ class FamilyLdsEmbedList(LdsEmbedList):
         LdsEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
-        from Editors import EditFamilyLdsOrd
+        from gui.editors import EditFamilyLdsOrd
         return EditFamilyLdsOrd
     
     def new_data(self):

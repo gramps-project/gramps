@@ -54,7 +54,7 @@ import ColumnOrder
 from gen.lib import Note
 from DdTargets import DdTargets
 from Filters.SideBar import NoteSidebarFilter
-from Editors import EditNote, DeleteNoteQuery
+from gui.editors import EditNote, DeleteNoteQuery
 
 #-------------------------------------------------------------------------
 #
