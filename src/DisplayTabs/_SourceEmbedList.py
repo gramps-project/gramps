@@ -34,6 +34,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.dbguielement import DbGUIElement
+from gui.selectors import SelectorFactory
 import Errors
 from DdTargets import DdTargets
 from _SourceRefModel import SourceRefModel
@@ -114,8 +115,7 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
             pass
 
     def share_button_clicked(self, obj):
-        from Selectors import selector_factory
-        SelectSource = selector_factory('Source')
+        SelectSource = SelectorFactory('Source')
 
         sel = SelectSource(self.dbstate,self.uistate,self.track)
         src = sel.run()

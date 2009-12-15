@@ -40,6 +40,7 @@ from DdTargets import DdTargets
 from _GroupEmbeddedList import GroupEmbeddedList
 from _EventRefModel import EventRefModel
 from gui.dbguielement import DbGUIElement
+from gui.selectors import SelectorFactory
 
 #-------------------------------------------------------------------------
 #
@@ -215,8 +216,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     "reference, you need to close the event.")
     
     def share_button_clicked(self, obj):
-        from Selectors import selector_factory
-        SelectEvent = selector_factory('Event')
+        SelectEvent = SelectorFactory('Event')
 
         sel = SelectEvent(self.dbstate, self.uistate, self.track)
         event = sel.run()

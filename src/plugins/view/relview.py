@@ -54,6 +54,7 @@ import DateHandler
 import ThumbNails
 import config
 from gui import widgets
+from gui.selectors import SelectorFactory
 import Errors
 import gen.utils
 import Bookmarks
@@ -1482,9 +1483,8 @@ class RelationshipView(NavigationView):
         self.dbstate.db.transaction_commit(trans, _("Add Child to Family"))
 
     def sel_child_to_fam(self, obj, event, handle, surname=None):
-        from Selectors import selector_factory
         if button_activated(event, _LEFT_BUTTON):
-            SelectPerson = selector_factory('Person')
+            SelectPerson = SelectorFactory('Person')
             family = self.dbstate.db.get_family_from_handle(handle)
             # it only makes sense to skip those who are already in the family
             skip_list = [family.get_father_handle(), \
@@ -1500,8 +1500,7 @@ class RelationshipView(NavigationView):
 
     def select_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            from Selectors import selector_factory
-            SelectFamily = selector_factory('Family')
+            SelectFamily = SelectorFactory('Family')
 
             phandle = self.dbstate.get_active_person().handle
             person = self.dbstate.db.get_person_from_handle(phandle)
@@ -1520,8 +1519,7 @@ class RelationshipView(NavigationView):
                     child)
 
     def select_parents(self, obj):
-        from Selectors import selector_factory
-        SelectFamily = selector_factory('Family')
+        SelectFamily = SelectorFactory('Family')
 
         phandle = self.dbstate.get_active_person().handle
         person = self.dbstate.db.get_person_from_handle(phandle)

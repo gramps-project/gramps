@@ -48,11 +48,15 @@ from gen.lib import (Place, MediaObject, Note)
 from Editors._EditPlace import EditPlace
 from Editors._EditMedia import EditMedia
 from Editors._EditNote import EditNote
-from Selectors import selector_factory
+from gui.selectors import SelectorFactory
 from DdTargets import DdTargets
 from Errors import WindowActiveError
-from Selectors import selector_factory
 
+#-------------------------------------------------------------------------
+#
+# ObjEntry
+#
+#-------------------------------------------------------------------------
 class ObjEntry(object):
     """
     Handles the selection of a existing or new Object. Supports Drag and Drop
@@ -285,7 +289,7 @@ class PlaceEntry(ObjEntry):
             pass
 
     def call_selector(self):
-        cls = selector_factory('Place')
+        cls = SelectorFactory('Place')
         return cls(self.dbstate, self.uistate, self.track)
 
 # FIXME isn't used anywhere
@@ -336,7 +340,7 @@ class MediaEntry(ObjEntry):
             pass
 
     def call_selector(self):
-        cls = selector_factory('MediaObject')
+        cls = SelectorFactory('MediaObject')
         return cls(self.dbstate, self.uistate, self.track)
     
 # FIXME isn't used anywhere
@@ -404,5 +408,5 @@ class NoteEntry(ObjEntry):
             pass
 
     def call_selector(self):
-        cls = selector_factory('Note')
+        cls = SelectorFactory('Note')
         return cls(self.dbstate, self.uistate, self.track)

@@ -59,7 +59,7 @@ import const
 import gen.lib
 from Filters import Rules
 import AutoComp
-from Selectors import selector_factory
+from gui.selectors import SelectorFactory
 from BasicUtils import name_displayer as _nd
 import Utils
 import ManagedWindow
@@ -271,7 +271,7 @@ class MyID(gtk.HBox):
 
     def button_press(self, obj):
         obj_class = self.namespace
-        selector = selector_factory(obj_class)
+        selector = SelectorFactory(obj_class)
         inst = selector(self.dbstate, self.uistate, self.track)
         val = inst.run()
         if val is None:

@@ -44,8 +44,6 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
 import gen.lib
 from BasicUtils import name_displayer
 import LdsUtils
@@ -55,6 +53,7 @@ from ObjectEntries import PlaceEntry
 from DisplayTabs import SourceEmbedList,NoteTab
 from gui.widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
+from gui.selectors import SelectorFactory
 
 _DATA_MAP = {
     gen.lib.LdsOrd.BAPTISM : [
@@ -252,8 +251,7 @@ class EditLdsOrd(EditSecondary):
         self.top.get_object('vbox').pack_start(notebook,True)
 
     def select_parents_clicked(self, obj):
-        from Selectors import selector_factory
-        SelectFamily = selector_factory('Family')
+        SelectFamily = SelectorFactory('Family')
 
         dialog = SelectFamily(self.dbstate,self.uistate,self.track)
         family = dialog.run()

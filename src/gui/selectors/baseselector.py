@@ -34,7 +34,6 @@ import pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 import ManagedWindow
 from Filters import SearchBar
 from glade import Glade

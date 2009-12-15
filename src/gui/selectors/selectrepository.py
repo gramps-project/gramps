@@ -33,39 +33,37 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import FamilyModel
-from _BaseSelector import BaseSelector
-import config
+from gui.views.treemodels import RepositoryModel
+from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #
-# SelectFamily
+# SelectRepository
 #
 #-------------------------------------------------------------------------
-class SelectFamily(BaseSelector):
+class SelectRepository(BaseSelector):
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.family-sel-width'
-        self.height_key = 'interface.family-sel-height'
+        self.width_key = 'interface.repo-sel-width'
+        self.height_key = 'interface.repo-sel-height'
 
     def get_window_title(self):
-        return _("Select Family")
+        return _("Select Repository")
         
     def get_model_class(self):
-        return FamilyModel
+        return RepositoryModel
 
     def get_column_titles(self):
         return [
-            (_('ID'),      75, BaseSelector.TEXT, 0),
-            (_('Father'), 200, BaseSelector.TEXT, 1),
-            (_('Mother'), 200, BaseSelector.TEXT, 2),
+            (_('Title'), 350, BaseSelector.TEXT, 0),
+            (_('ID'),     75, BaseSelector.TEXT, 1)
             ]
 
-    def get_from_handle_func(self):
-        return self.db.get_family_from_handle
-        
     def get_handle_column(self):
-        return 6
+        return 13
+
+    def get_from_handle_func(self):
+        return self.db.get_repository_from_handle

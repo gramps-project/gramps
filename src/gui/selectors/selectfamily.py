@@ -21,57 +21,50 @@
 
 # $Id$
 
-"""Handling of selection dialog for selecting notes
-"""
-
 #-------------------------------------------------------------------------
 #
-# Python Modules
+# internationalization
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS Modules
+# gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import NoteModel
-from _BaseSelector import BaseSelector
-import config
+from gui.views.treemodels import FamilyModel
+from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #
-# SelectNote
+# SelectFamily
 #
 #-------------------------------------------------------------------------
-class SelectNote(BaseSelector):
-    """ Class that handles the selection of a note
-    """
+class SelectFamily(BaseSelector):
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.note-sel-width'
-        self.height_key = 'interface.note-sel-height'
+        self.width_key = 'interface.family-sel-width'
+        self.height_key = 'interface.family-sel-height'
 
     def get_window_title(self):
-        return _("Select Note")
+        return _("Select Family")
         
     def get_model_class(self):
-        return NoteModel
+        return FamilyModel
 
     def get_column_titles(self):
         return [
-            (_('Preview'), 350, BaseSelector.TEXT, 0),
-            (_('ID'),      75,  BaseSelector.TEXT, 1),
-            (_('Type'),    100, BaseSelector.TEXT, 2),
-            (_('Marker'),  100, BaseSelector.TEXT, 3)
+            (_('ID'),      75, BaseSelector.TEXT, 0),
+            (_('Father'), 200, BaseSelector.TEXT, 1),
+            (_('Mother'), 200, BaseSelector.TEXT, 2),
             ]
-            
+
     def get_from_handle_func(self):
-        return self.db.get_note_from_handle
+        return self.db.get_family_from_handle
         
     def get_handle_column(self):
-        return 4
+        return 6

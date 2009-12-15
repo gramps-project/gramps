@@ -48,8 +48,7 @@ import const
 from Utils import media_path_full
 import ThumbNails
 from gui.views.treemodels import MediaModel
-from _BaseSelector import BaseSelector
-import config
+from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #

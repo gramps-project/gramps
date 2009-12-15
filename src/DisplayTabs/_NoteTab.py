@@ -41,6 +41,7 @@ from gettext import gettext as _
 import Errors
 import gen.lib
 from gui.dbguielement import DbGUIElement
+from gui.selectors import SelectorFactory
 from _NoteModel import NoteModel
 from _EmbeddedList import EmbeddedList
 from DdTargets import DdTargets
@@ -166,8 +167,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
                 pass
     
     def share_button_clicked(self, obj):
-        from Selectors import selector_factory
-        SelectNote = selector_factory('Note')
+        SelectNote = SelectorFactory('Note')
 
         sel = SelectNote(self.dbstate,self.uistate,self.track)
         note = sel.run()

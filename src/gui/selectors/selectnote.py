@@ -21,50 +21,56 @@
 
 # $Id$
 
+"""Handling of selection dialog for selecting notes
+"""
+
 #-------------------------------------------------------------------------
 #
-# internationalization
+# Python Modules
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# gramps modules
+# GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import RepositoryModel
-from _BaseSelector import BaseSelector
-import config
+from gui.views.treemodels import NoteModel
+from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #
-# SelectRepository
+# SelectNote
 #
 #-------------------------------------------------------------------------
-class SelectRepository(BaseSelector):
+class SelectNote(BaseSelector):
+    """ Class that handles the selection of a note
+    """
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.repo-sel-width'
-        self.height_key = 'interface.repo-sel-height'
+        self.width_key = 'interface.note-sel-width'
+        self.height_key = 'interface.note-sel-height'
 
     def get_window_title(self):
-        return _("Select Repository")
+        return _("Select Note")
         
     def get_model_class(self):
-        return RepositoryModel
+        return NoteModel
 
     def get_column_titles(self):
         return [
-            (_('Title'), 350, BaseSelector.TEXT, 0),
-            (_('ID'),     75, BaseSelector.TEXT, 1)
+            (_('Preview'), 350, BaseSelector.TEXT, 0),
+            (_('ID'),      75,  BaseSelector.TEXT, 1),
+            (_('Type'),    100, BaseSelector.TEXT, 2),
+            (_('Marker'),  100, BaseSelector.TEXT, 3)
             ]
-
-    def get_handle_column(self):
-        return 13
-
+            
     def get_from_handle_func(self):
-        return self.db.get_repository_from_handle
+        return self.db.get_note_from_handle
+        
+    def get_handle_column(self):
+        return 4

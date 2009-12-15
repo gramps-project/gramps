@@ -45,12 +45,11 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import config
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 from gui.widgets import MonitoredEntry, PrivacyButton
+from gui.selectors import SelectorFactory
 from DisplayTabs import SourceEmbedList, NoteTab
 from glade import Glade
 
@@ -125,8 +124,7 @@ class EditPersonRef(EditSecondary):
             self.close()
 
     def _select_person(self, obj):
-        from Selectors import selector_factory
-        SelectPerson = selector_factory('Person')
+        SelectPerson = SelectorFactory('Person')
 
         sel = SelectPerson(self.dbstate, self.uistate, self.track)
         person = sel.run()

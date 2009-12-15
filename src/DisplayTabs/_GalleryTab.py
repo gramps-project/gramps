@@ -47,6 +47,7 @@ import gobject
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 from gui.dbguielement import DbGUIElement
+from gui.selectors import SelectorFactory
 import gen.lib
 import Utils
 import ThumbNails
@@ -287,8 +288,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         This function should be overridden by the derived class.
         
         """
-        from Selectors import selector_factory
-        SelectObject = selector_factory('MediaObject')
+        SelectObject = SelectorFactory('MediaObject')
 
         sel = SelectObject(self.dbstate, self.uistate, self.track)
         src = sel.run()

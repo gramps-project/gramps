@@ -20,32 +20,32 @@
 
 # $Id$
 
-from _SelectorExceptions import SelectorException
+from selectorexceptions import SelectorException
 
-def selector_factory(classname):
+def SelectorFactory(classname):
     if classname == 'Person':
-        from _SelectPerson import SelectPerson
+        from selectperson import SelectPerson
         cls = SelectPerson
     elif classname == 'Family':
-        from _SelectFamily import SelectFamily
+        from selectfamily import SelectFamily
         cls = SelectFamily
     elif classname == 'Event':
-        from _SelectEvent import SelectEvent
+        from selectevent import SelectEvent
         cls = SelectEvent
     elif classname == 'Place':
-        from _SelectPlace import SelectPlace
+        from selectplace import SelectPlace
         cls = SelectPlace
     elif classname == 'Source':
-        from _SelectSource import SelectSource
+        from selectsource import SelectSource
         cls = SelectSource
     elif classname == 'MediaObject':
-        from _SelectObject import SelectObject
+        from selectobject import SelectObject
         cls = SelectObject
     elif classname == 'Repository':
-        from _SelectRepository import SelectRepository
+        from selectrepository import SelectRepository
         cls = SelectRepository
     elif classname == 'Note':
-        from _SelectNote import SelectNote
+        from selectnote import SelectNote
         cls = SelectNote
     else:
         raise SelectorException("Attempt to create unknown "

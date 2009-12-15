@@ -35,8 +35,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.views.treemodels import PeopleModel
-from _BaseSelector import BaseSelector
-import config
+from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #

@@ -3,29 +3,29 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/Selectors
+pkgdatadir = $(datadir)/@PACKAGE@/gui/selectors
 
 pkgdata_PYTHON = \
 	__init__.py \
-	_BaseSelector.py \
-	_SelectEvent.py \
-	_SelectFamily.py \
-	_SelectNote.py \
-	_SelectObject.py \
-	_SelectPerson.py \
-	_SelectRepository.py \
-	_SelectSource.py \
-	_SelectPlace.py \
-	_SelectorExceptions.py \
-	_SelectorFactory.py
+	baseselector.py \
+	selectevent.py \
+	selectfamily.py \
+	selectnote.py \
+	selectobject.py \
+	selectperson.py \
+	selectrepository.py \
+	selectsource.py \
+	selectplace.py \
+	selectorexceptions.py \
+	selectorfactory.py
 
-pkgpyexecdir = @pkgpyexecdir@/Selectors
-pkgpythondir = @pkgpythondir@/Selectors
+pkgpyexecdir = @pkgpyexecdir@/gui/selectors
+pkgpythondir = @pkgpythondir@/gui/selectors
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
-GRAMPS_PY_MODPATH = "../"
+GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \

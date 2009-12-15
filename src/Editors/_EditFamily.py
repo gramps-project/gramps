@@ -72,8 +72,8 @@ from gen.plug import CATEGORY_QR_FAMILY
 from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
 
-from Selectors import selector_factory
-SelectPerson = selector_factory('Person')
+from gui.selectors import SelectorFactory
+SelectPerson = SelectorFactory('Person')
 
 _RETURN = gdk.keyval_from_name("Return")
 _KP_ENTER = gdk.keyval_from_name("KP_Enter")

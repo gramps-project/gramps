@@ -34,8 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gui.views.treemodels import SourceModel
-from _BaseSelector import BaseSelector
-import config
+from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #

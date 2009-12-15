@@ -33,38 +33,41 @@ from gettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import PlaceModel
-from _BaseSelector import BaseSelector
-import config
+from gui.views.treemodels import EventModel
+from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #
-# SelectPlace
+# SelectEvent
 #
 #-------------------------------------------------------------------------
-class SelectPlace(BaseSelector):
+class SelectEvent(BaseSelector):
 
     def _local_init(self):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.place-sel-width'
-        self.height_key = 'interface.place-sel-height'
+        self.width_key = 'interface.event-sel-width'
+        self.height_key = 'interface.event-sel-height'
 
     def get_window_title(self):
-        return _("Select Place")
+        return _("Select Event")
         
     def get_model_class(self):
-        return PlaceModel
+        return EventModel
 
     def get_column_titles(self):
         return [
-            (_('Title'), 350, BaseSelector.TEXT, 0),
-            (_('ID'),     75, BaseSelector.TEXT, 1)
+            (_('Description'),       250, BaseSelector.TEXT, 0),
+            (_('ID'),                75,  BaseSelector.TEXT, 1),
+            (_('Type'),              75,  BaseSelector.TEXT, 2),
+            (_('Main Participants'), 250, BaseSelector.TEXT, 6),
+            (_('Date'),              150, BaseSelector.TEXT, 3),
+            (_('Place'),             150, BaseSelector.TEXT, 4)
             ]
 
     def get_from_handle_func(self):
-        return self.db.get_place_from_handle
+        return self.db.get_event_from_handle
         
     def get_handle_column(self):
-        return PlaceModel.HANDLE_COL
+        return 7

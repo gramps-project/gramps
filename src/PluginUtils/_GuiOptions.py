@@ -53,7 +53,7 @@ from gui.pluginmanager import GuiPluginManager
 from gui import widgets
 import ManagedWindow
 from QuestionDialog import OptionDialog
-from Selectors import selector_factory
+from gui.selectors import SelectorFactory
 from BasicUtils import name_displayer as _nd
 from Filters import GenericFilter, Rules
 import gen
@@ -466,7 +466,7 @@ class GuiPersonOption(gtk.HBox):
             gid = active_person.get_gramps_id()
             rfilter.add_rule(Rules.Person.HasIdOf([gid]))
 
-        select_class = selector_factory('Person')
+        select_class = SelectorFactory('Person')
         sel = select_class(self.__dbstate, self.__uistate, self.__track, 
                            title=_('Select a person for the report'), 
                            filter=rfilter )
@@ -588,7 +588,7 @@ class GuiFamilyOption(gtk.HBox):
                 gid = family.get_gramps_id()
                 rfilter.add_rule(Rules.Family.HasIdOf([gid]))
 
-        select_class = selector_factory('Family')
+        select_class = SelectorFactory('Family')
         sel = select_class(self.__dbstate, self.__uistate, self.__track, 
                            filter=rfilter )
         family = sel.run()
@@ -677,7 +677,7 @@ class GuiNoteOption(gtk.HBox):
         """
         Handle the button to choose a different note.
         """
-        select_class = selector_factory('Note')
+        select_class = SelectorFactory('Note')
         sel = select_class(self.__dbstate, self.__uistate, self.__track)
         note = sel.run()
         self.__update_note(note)
@@ -759,7 +759,7 @@ class GuiMediaOption(gtk.HBox):
         """
         Handle the button to choose a different note.
         """
-        select_class = selector_factory('MediaObject')
+        select_class = SelectorFactory('MediaObject')
         sel = select_class(self.__dbstate, self.__uistate, self.__track)
         media = sel.run()
         self.__update_media(media)
@@ -878,7 +878,7 @@ class GuiPersonListOption(gtk.HBox):
             skip_list.add(person.get_handle())
             i = self.__model.iter_next(i)
 
-        select_class = selector_factory('Person')
+        select_class = SelectorFactory('Person')
         sel = select_class(self.__dbstate, self.__uistate, 
                            self.__track, skip=skip_list)
         person = sel.run()
@@ -1018,7 +1018,7 @@ class GuiPlaceListOption(gtk.HBox):
             skip_list.add(place.get_handle())
             i = self.__model.iter_next(i)
 
-        select_class = selector_factory('Place')
+        select_class = SelectorFactory('Place')
         sel = select_class(self.__dbstate, self.__uistate, 
                            self.__track, skip=skip_list)
         place = sel.run()
