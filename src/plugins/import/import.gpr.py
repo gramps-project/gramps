@@ -148,23 +148,6 @@ plg.extension = "def"
 
 #------------------------------------------------------------------------
 #
-# SQLite Import
-#
-#------------------------------------------------------------------------
-
-plg = newplugin()
-plg.id    = 'im_sqlite'
-plg.name  = _('SQLite Import')
-plg.description =  _('SQLite is a common local database format')
-plg.version = '1.0'
-plg.status = UNSTABLE
-plg.fname = 'ImportSql.py'
-plg.ptype = IMPORT
-plg.import_function = 'importData'
-plg.extension = "sql"
-
-#------------------------------------------------------------------------
-#
 # vCard
 #
 #------------------------------------------------------------------------

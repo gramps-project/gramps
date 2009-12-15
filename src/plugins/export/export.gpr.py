@@ -140,25 +140,6 @@ plg.extension = "gramps"
 
 #------------------------------------------------------------------------
 #
-# SQLITE database
-#
-#------------------------------------------------------------------------
-
-plg = newplugin()
-plg.id    = 'ex_sqlite'
-plg.name  = _('SQLite Export')
-plg.description =  _('SQLite is a common local database format')
-plg.version = '1.0'
-plg.status = UNSTABLE
-plg.fname = 'ExportSql.py'
-plg.ptype = EXPORT
-plg.export_function = 'exportData'
-plg.export_options = 'WriterOptionBox'
-plg.export_options_title = ('SQLite options')
-plg.extension = "sql"
-
-#------------------------------------------------------------------------
-#
 # vCalendar
 #
 #------------------------------------------------------------------------
