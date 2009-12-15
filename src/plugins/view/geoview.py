@@ -434,12 +434,12 @@ class GeoView(HtmlView):
         url += '&zoom=%d' % int(self.realzoom)
         url += '&lat=%s' % str(self.reallatitude)
         url += '&lon=%s' % str(self.reallongitude)
-        self.open(url)
+        self._openurl(url)
         self._create_pages_selection(cpage, int(maxp))
         self._savezoomandposition()
         # Need to wait the page is loaded to show the markers.
         gobject.timeout_add(1500, self._show_selected_places)
-        self._erase_placebox_selection()
+        #self._erase_placebox_selection()
 
     def _show_selected_places(self):
         """
@@ -459,7 +459,7 @@ class GeoView(HtmlView):
         url = urlparse.urlunsplit( ('file', '',
                     URL_SEP.join(self.without_coord_file.split(os.sep)),
                     '', ''))
-        self.open(url)
+        self._openurl(url)
 
     def _entry_selected_place(self, combobox): # pylint: disable-msg=W0612
         """
@@ -489,7 +489,7 @@ class GeoView(HtmlView):
                     url += '&zoom=%d' % int(self.realzoom)
                     url += '&lat=%s' % str(self.reallatitude)
                     url += '&lon=%s' % str(self.reallongitude)
-                    self.open(url)
+                    self._openurl(url)
                     (current, maxp ) = self.pages[1].get_label().split('/', 1)
                     self._create_pages_selection(entry[2], int(maxp))
                     self._savezoomandposition()
@@ -651,7 +651,7 @@ class GeoView(HtmlView):
         url += '&zoom=%d' % int(self.realzoom)
         url += '&lat=%s' % str(self.reallatitude)
         url += '&lon=%s' % str(self.reallongitude)
-        self.open(url)
+        self._openurl(url)
         self._savezoomandposition()
         if self.displaytype != "places":
             # Need to wait the page is loaded to set the markers.
@@ -671,7 +671,9 @@ class GeoView(HtmlView):
                     year = model.get_value(widget.get_active_iter(), 0)
                 except:  # pylint: disable-msg=W0704
                     pass # pylint: disable-msg=W0702
-                if year != "no":
+                if self.last_selected_year == 0:
+                    self.last_selected_year = year
+                elif year != "no":
                     self.last_selected_year = year
                     self._call_js_selectmarkers(year)
 
@@ -811,6 +813,7 @@ class GeoView(HtmlView):
         self._set_mapstylelabel(self.stylesheet)
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
+        self._geo_places()
 
     def __create_styles_menu_actions(self):
         """
@@ -922,6 +925,8 @@ class GeoView(HtmlView):
         """
         Specifies the places to display with mapstraction.
         """
+        if not self.endinit:
+            return
         if self.nbmarkers > 0 :
             # While the db is not loaded, we have 0 markers.
             self._savezoomandposition()
@@ -929,15 +934,6 @@ class GeoView(HtmlView):
         self.nbplaces = 0
         self.without = 0
         self._createmapstraction(self.displaytype)
-        self._do_we_need_to_zoom_between_map()
-        url = urlparse.urlunsplit( ('file', '',
-                            URL_SEP.join(self.htmlfile.split(os.sep)),
-                            '', ''))
-        url += '?map=%s' % self.usedmap
-        url += '&zoom=%d' % int(self.realzoom)
-        url += '&lat=%s' % str(self.reallatitude)
-        url += '&lon=%s' % str(self.reallongitude)
-        self.open(url)
 
     def _select_openstreetmap_map(self, handle): # pylint: disable-msg=W0613
         """
@@ -1271,7 +1267,15 @@ class GeoView(HtmlView):
             self._createmapstractionpostheader(h4mess, self.nbpages)
             self._createmapstractiontrailer()
             if self.nbpages == 1:
-                self.open(self.htmlfile)
+                self._do_we_need_to_zoom_between_map()
+                url = urlparse.urlunsplit( ('file', '',
+                                URL_SEP.join(self.htmlfile.split(os.sep)),
+                                '', ''))
+                url += '?map=%s' % self.usedmap
+                url += '&zoom=%d' % int(self.realzoom)
+                url += '&lat=%s' % str(self.reallatitude)
+                url += '&lon=%s' % str(self.reallongitude)
+                self._openurl(url)
         self.placebox.set_model(self.plist)
         self.placebox.thaw_child_notify()
 
@@ -1866,3 +1870,10 @@ class GeoView(HtmlView):
         else:
             return u'%s%s%s' % (dblp, gcp, delp)
     
+    def _openurl(self,url):
+        """
+        Here, we call really the htmlview and the renderer
+        """
+        if self.endinit:
+            self.open(url)
+

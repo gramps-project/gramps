@@ -466,7 +466,7 @@ class HtmlView(PageView):
         self.box.pack_start(frame, True, True, 0)
         # this is used to activate the back and forward button
         # from the renderer class.
-        self.renderer.fct = self.set_button_sensitivity
+        self.renderer.fct = lambda: self.set_button_sensitivity
         self.renderer.show_all()
         #load a welcome html page
         urlhelp = self._create_start_page()
@@ -648,9 +648,12 @@ class HtmlView(PageView):
                              'For example: <b>http://gramps-project.org</p>')
         }
         filename = os.path.join(tmpdir, 'startpage.html')
-        ufd = file(filename, "w+")
-        ufd.write(data)
-        ufd.close()
+        # Now we have two views : Web and Geography, we need to create the
+        # startpage only once.
+        if not os.path.exists(filename):
+            ufd = file(filename, "w+")
+            ufd.write(data)
+            ufd.close()
         return urlparse.urlunsplit(('file', '',
                                     URL_SEP.join(filename.split(os.sep)),
                                     '', ''))
