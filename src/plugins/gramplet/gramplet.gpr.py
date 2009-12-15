@@ -74,16 +74,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id = "Deep Connections Gramplet", 
-         name =_("Deep Connections Gramplet"), 
-         status = STABLE,
-         fname="DeepConnections.py",
-         height = 230,
-         expand = True,
-         gramplet = 'DeepConnectionsGramplet',
-         gramplet_title = _("Deep Connections"))
-
-register(GRAMPLET, 
          id = "Descendant Gramplet", 
          name=_("Descendant Gramplet"), 
          status = STABLE,
@@ -132,34 +122,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id="Headline News Gramplet", 
-         name=_("Headline News Gramplet"), 
-         status = STABLE,
-         fname="HeadlineNewsGramplet.py",
-         height=300,
-         expand=True,
-         gramplet = 'HeadlineNewsGramplet',
-         gramplet_title=_("Headline News"),
-         #gramps="3.1.0",
-         version="1.0.2",
-         )
-
-register(GRAMPLET, 
-         id="Note Gramplet", 
-         name=_("Note Gramplet"), 
-         status = STABLE,
-         fname="NoteGramplet.py",
-         height=100,
-         expand=True,
-         gramplet = 'NoteGramplet',
-         gramplet_title=_("Note"),
-         detached_width = 500,
-         detached_height = 400,
-         #gramps="3.1.0",
-         version="1.0.0",
-         )
-
-register(GRAMPLET, 
          id="Pedigree Gramplet", 
          name=_("Pedigree Gramplet"), 
          status = STABLE,
@@ -183,16 +145,6 @@ register(GRAMPLET,
          gramplet_title=_("Plugin Manager"),
          version="1.0.0",
          #gramps="3.1.0",
-         )
-
-register(GRAMPLET, 
-         id="Python Gramplet", 
-         name=_("Python Gramplet"), 
-         status = STABLE,
-         fname="PythonGramplet.py",
-         height=250,
-         gramplet = 'PythonGramplet',
-         gramplet_title=_("Python Shell"),
          )
 
 register(GRAMPLET, 

@@ -15,7 +15,6 @@ pkgdata_PYTHON = \
 	FaqGramplet.py \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
-	HeadlineNewsGramplet.py \
 	PedigreeGramplet.py \
 	QuickViewGramplet.py \
 	RelativeGramplet.py \
