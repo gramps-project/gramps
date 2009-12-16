@@ -95,8 +95,6 @@ def find_deep_relations(db, progress, person, path, seen, target_people):
     if len(target_people) < 1:
         return []
     
-    progress.set_header(_('Evaluating ') + person.get_primary_name().get_name())
-    
     handle = person.get_handle()
     if handle in seen:
         return []
