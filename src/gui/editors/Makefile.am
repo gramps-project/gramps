@@ -13,26 +13,26 @@ pkgdata_PYTHON = \
 	__init__.py\
 	editaddress.py \
 	editattribute.py \
-	editchildRef.py \
+	editchildref.py \
 	editevent.py \
-	editeventRef.py \
+	editeventref.py \
 	editfamily.py \
-	editldsOrd.py \
+	editldsord.py \
 	editlocation.py \
 	editmedia.py \
-	editmediaRef.py \
+	editmediaref.py \
 	editname.py \
 	editnote.py \
 	editperson.py \
-	editpersonRef.py \
+	editpersonref.py \
 	editplace.py \
 	editprimary.py \
 	editreference.py \
 	editrepository.py \
-	editrepoRef.py \
+	editreporef.py \
 	editsecondary.py \
 	editsource.py \
-	editsourceRef.py \
+	editsourceref.py \
 	editurl.py \
 	objectentries.py
 
