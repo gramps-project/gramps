@@ -159,6 +159,12 @@ class PeopleModel(TreeBaseModel):
         """ Return the number of columns in the model """
         return len(self.fmap)+1
 
+    def get_tree_levels(self):
+        """
+        Return the headings of the levels in the hierarchy.
+        """
+        return ['Group As', 'Name']
+
     def add_row(self, handle, data):
         """
         Add nodes to the node map for a single person.

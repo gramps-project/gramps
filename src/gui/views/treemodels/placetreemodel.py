@@ -73,6 +73,12 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
                                 nrgroups = 3,
                                 group_can_have_handle = True)
 
+    def get_tree_levels(self):
+        """
+        Return the headings of the levels in the hierarchy.
+        """
+        return ['Country', 'State', 'County', 'Place Name']
+
     def add_row(self, handle, data):
         """
         Add nodes to the node map for a single place.

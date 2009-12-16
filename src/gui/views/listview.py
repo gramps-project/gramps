@@ -803,8 +803,16 @@ class ListView(NavigationView):
         ofile.open(name)
         ofile.start_page()
         ofile.start_row()
+
         # Headings
-        map(ofile.write_cell, column_names)
+        if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
+            headings = column_names
+        else:
+            levels = self.model.get_tree_levels()
+            headings = levels + column_names[1:]
+            data_cols = data_cols[1:]
+
+        map(ofile.write_cell, headings)
         ofile.end_row()
 
         if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
@@ -816,25 +824,28 @@ class ListView(NavigationView):
                 ofile.end_row()
         else:
             # Tree model
-            node = self.model.get_iter_first()
-            self.write_node(node, 0, ofile, data_cols)
+            node = self.model.on_get_iter((0,))
+            self.write_node(node, len(levels), [], ofile, data_cols)
         
         ofile.end_page()
         ofile.close()
         
-    def write_node(self, node, level, ofile, data_cols):
+    def write_node(self, node, depth, level, ofile, data_cols):
         if node is None:
             return
         while node is not None:
-            ofile.start_row()
-            map(ofile.write_cell, ('',)*level)
-            for index in data_cols:
-                ofile.write_cell(self.model.get_value(node, index))
-            ofile.end_row()
+            new_level = level + [self.model.on_get_value(node, 0)]
+            if self.model.get_handle(node):
+                ofile.start_row()
+                padded_level = new_level + [''] * (depth - len(new_level))
+                map(ofile.write_cell, padded_level)
+                for index in data_cols:
+                    ofile.write_cell(self.model.on_get_value(node, index))
+                ofile.end_row()
 
-            first_child = self.model.iter_children(node)
-            self.write_node(first_child, level + 1, ofile, data_cols)
-            node = self.model.iter_next(node)
+            first_child = self.model.on_iter_children(node)
+            self.write_node(first_child, depth, new_level, ofile, data_cols)
+            node = self.model.on_iter_next(node)
 
     ####################################################################
     # Template functions
