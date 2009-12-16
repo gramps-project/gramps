@@ -24,7 +24,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:  $
+# $Id: NarrativeWeb.py 13797 2009-12-15 10:30:00Z robhealey1 $
 
 """
 Narrative Web Page generator.
@@ -325,7 +325,7 @@ class BasePage(object):
         trow = Html("tr")
 
         attr_data_row = [
-            ("Type",     attr.get_type().xml_str() ),
+            ("Type",     str(attr.get_type() ) ),
             ("Value",    attr.get_value() ) ]
 
         if showsrc:
@@ -333,14 +333,14 @@ class BasePage(object):
             attr_data_row.append(("Sources", srcrefs))
  
         # get attribute note list    
-        notelist = self.display_note_list(attr.get_note_list() ) or "&nbsp;"
+        notelist = self.dump_notes(attr.get_note_list() ) or "&nbsp;"
         attr_data_row.append(("Notes", notelist))
 
         # display attribute list
         trow.extend(
-            Html("td", value, class_ = "Column" + colclass,
+            Html("td", data, class_ = "Column" + colclass,
                 inline = (colclass == "Type" or colclass == "Sources"))
-            for (colclass, value) in attr_data_row)
+            for (colclass, data) in attr_data_row)
 
         # return table row to its caller
         return trow
@@ -5788,13 +5788,11 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'gallery', self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
-        # only show option if the pyexiv2 library is available on local system
-        if pyexiftaglib:
-            self.__exiftags = BooleanOption(_("Whether to add exif tags to the media page or not?"), False)
-            self.__exiftags.set_help(_("Do you want to add the exif data tags to the page?  You will"
-                                       " need to have the pyexiv2 library installed on your system."
-                                       "It can be downloaded from here: http://www.exiv2.org/ ."))
-            menu.add_option(category_name, "exiftagsopt", self.__exiftags)
+        self.__exiftags = BooleanOption(_("Include exif tags on media pages?"), False)
+        self.__exiftags.set_help(_("Do you want to add the exif data tags to the page?  You will"
+                                   " need to have the pyexiv2 library installed on your system."
+                                   "It can be downloaded and installed from most linux repositories."))
+        menu.add_option(category_name, "exiftagsopt", self.__exiftags)
  
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
@@ -5995,16 +5993,19 @@ class NavWebOptions(MenuReportOptions):
         Handles the changing nature of gallery
         """
 
+        if not pyexiftaglib:
+            self.__exiftags.set_available(False)
+
         if self.__gallery.get_value() == False:
 
-            # only show option if the pyexiv2 library is available on local system
+            # disable option if pyexiv2 library is not installed on system ...
             if pyexiftaglib:
                 self.__exiftags.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
         else:
 
-            # only show option if the pyexiv2 library is available on local system
+            # disable option if pyexiv2 library is not installed on system ...
             if pyexiftaglib:
                 self.__exiftags.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
