@@ -102,7 +102,7 @@ user_pref("network.http.proxy.keep-alive", true);
 user_pref("network.http.proxy.version", 1.1);
 user_pref("network.http.sendRefererHeader, 0);
 user_pref("general.useragent.extra.firefox, "Mozilla/5.0");
-user_pref("general.useragent.locale, "fr");
+user_pref("general.useragent.locale, %(lang)s);
 '''
 #-------------------------------------------------------------------------
 #
@@ -379,50 +379,31 @@ class RendererMozilla(Renderer):
                 prefs = open(os.path.join(MOZEMBED_SUBPATH,
                                           "prefs.js"),
                              "w+")
-                parts = urlparse.urlparse(proxy)
-                if not parts[0] or parts[0] == 'http':
-                    host_port = parts[1]
-                    hport = host_port.split(':')
-                    host = hport[0].strip()
-                    if host:
-                        try:
-                            port = int(hport[1])
-                        except:
-                            user = host
-                            uprox = hport[1].split('@')
-                            password = uprox[0]
-                            host = uprox[1]
-                            port = int(hport[2])
-                if port and host:
-                    port = str(port)
-                    prefs.write(MOZJS % vars())
-                    '''
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.type", 1);\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.http", "'+host+'");\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.http_port", '+port+');\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.no_proxies_on",')
-                    prefs.write(' "127.0.0.1,localhost,localhost')
-                    prefs.write('.localdomain");\r\n')
-                    prefs.write('user_pref("network.proxy')
-                    prefs.write('.share_proxy_settings", true);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.proxy.pipelining", true);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.proxy.keep-alive", true);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.proxy.version", 1.1);\r\n')
-                    prefs.write('user_pref("network.http')
-                    prefs.write('.sendRefererHeader, 0);\r\n')
-                    prefs.write('user_pref("general.useragent')
-                    prefs.write('.extra.firefox, "Mozilla/5.0");\r\n')
-                    prefs.write('user_pref("general.useragent')
-                    prefs.write('.locale, "fr");\r\n')
-                    '''
-                prefs.close()
+                if not os.path.exists(prefs):
+                    parts = urlparse.urlparse(proxy)
+                    if not parts[0] or parts[0] == 'http':
+                        host_port = parts[1]
+                        hport = host_port.split(':')
+                        host = hport[0].strip()
+                        if host:
+                            try:
+                                port = int(hport[1])
+                            except:
+                                user = host
+                                uprox = hport[1].split('@')
+                                password = uprox[0]
+                                host = uprox[1]
+                                port = int(hport[2])
+                    if port and host:
+                        port = str(port)
+                        (lang_country, modifier ) = locale.getlocale()
+                        lang = lang_country.split('_')[0]
+                        prefs.write(MOZJS % {
+                                     'host' : host,
+                                     'port' : port,
+                                     'lang' : lang
+                                    } )
+                    prefs.close()
         except:
             try: # trying to remove pref.js in case of proxy change.
                 os.remove(os.path.join(MOZEMBED_SUBPATH, "prefs.js"))
