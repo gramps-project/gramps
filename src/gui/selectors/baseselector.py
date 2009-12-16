@@ -230,9 +230,10 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         Builds the default filters and add them to the filter bar.
         """
-        cols = []
-        for pair in [pair for pair in self.column_order() if pair[0]]:
-            cols.append((pair[3], pair[1]))
+        cols = [(pair[3], pair[1])
+                    for pair in self.column_order()
+                        if pair[0]
+                ]
         self.search_bar.setup_filter(cols)
         
     def build_tree(self):
