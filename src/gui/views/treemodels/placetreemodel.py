@@ -103,7 +103,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
 
         node1 = (level1, )
         node2 = (level2, level1)
-        node3 = (level3, level2)
+        node3 = (level3, level2, level1)
         sort_key = self.sort_func(data)
         
         self.add_node(None, node1, level1, None, add_parent=False)
