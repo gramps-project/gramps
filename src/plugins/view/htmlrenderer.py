@@ -89,7 +89,21 @@ WEBKIT  = 1
 MOZILLA = 2
 KITNAME = [ "None", "WebKit", "Mozilla" ]
 URL_SEP = '/'
-
+MOZJS = '''
+user_pref("network.proxy.type", 1);
+user_pref("network.proxy.http", %(host)s);
+user_pref("network.proxy.http_port", %(port)s);
+user_pref("network.proxy.no_proxies_on",
+ "127.0.0.1,localhost,localhost
+ .localdomain")
+user_pref("network.proxy.share_proxy_settings", true);
+user_pref("network.http.proxy.pipelining", true);
+user_pref("network.http.proxy.keep-alive", true);
+user_pref("network.http.proxy.version", 1.1);
+user_pref("network.http.sendRefererHeader, 0);
+user_pref("general.useragent.extra.firefox, "Mozilla/5.0");
+user_pref("general.useragent.locale, "fr");
+'''
 #-------------------------------------------------------------------------
 #
 # What Web interfaces ?
@@ -381,6 +395,8 @@ class RendererMozilla(Renderer):
                             port = int(hport[2])
                 if port and host:
                     port = str(port)
+                    prefs.write(MOZJS % vars())
+                    '''
                     prefs.write('user_pref("network.proxy')
                     prefs.write('.type", 1);\r\n')
                     prefs.write('user_pref("network.proxy')
@@ -405,6 +421,7 @@ class RendererMozilla(Renderer):
                     prefs.write('.extra.firefox, "Mozilla/5.0");\r\n')
                     prefs.write('user_pref("general.useragent')
                     prefs.write('.locale, "fr");\r\n')
+                    '''
                 prefs.close()
         except:
             try: # trying to remove pref.js in case of proxy change.
