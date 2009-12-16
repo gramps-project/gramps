@@ -6096,8 +6096,10 @@ def sort_event_types(db, event_types, event_handle_list):
     for tup_list in event_dict.values():
         tup_list.sort()
 
-    # return a list of tuples, one per event
-    return ( (event_type, event_list) for (event_type, event_list) in event_dict.iteritems() )
+    # return a list of sorted tuples, one per event
+    retval = [(event_type, event_list) for (event_type, event_list) in event_dict.iteritems()]
+    retval.sort(key=lambda item: str(item[0]))
+    return retval
 
 # Modified _get_regular_surname from WebCal.py to get prefix, first name, and suffix
 def _get_short_name(gender, name):
