@@ -192,7 +192,35 @@ src/gui/pluginmanager.py
 src/gui/utils.py
 src/gui/viewmanager.py
 
-# guie/selectors - the GUI selectors package
+# gui/editors - the GUI editors package
+src/gui/editors/addmedia.py
+src/gui/editors/objectentries.py
+src/gui/editors/editaddress.py
+src/gui/editors/editattribute.py
+src/gui/editors/editchildRef.py
+src/gui/editors/editevent.py
+src/gui/editors/editeventRef.py
+src/gui/editors/editfamily.py
+src/gui/editors/editldsOrd.py
+src/gui/editors/editlocation.py
+src/gui/editors/editmedia.py
+src/gui/editors/editmediaRef.py
+src/gui/editors/editname.py
+src/gui/editors/editnote.py
+src/gui/editors/editperson.py
+src/gui/editors/editpersonRef.py
+src/gui/editors/editplace.py
+src/gui/editors/editprimary.py
+src/gui/editors/editreference.py
+src/gui/editors/editrepoRef.py
+src/gui/editors/editrepository.py
+src/gui/editors/editsecondary.py
+src/gui/editors/editsource.py
+src/gui/editors/editsourceRef.py
+src/gui/editors/editurl.py
+src/gui/editors/__init__.py
+
+# gui/selectors - the GUI selectors package
 src/gui/selectors/baseselector.py
 src/gui/selectors/selectevent.py
 src/gui/selectors/selectfamily.py
@@ -315,34 +343,6 @@ src/DisplayTabs/_SourceRefModel.py
 src/DisplayTabs/_WebEmbedList.py
 src/DisplayTabs/_WebModel.py
 src/DisplayTabs/__init__.py
-
-# Editors package
-src/Editors/AddMedia.py
-src/Editors/ObjectEntries.py
-src/Editors/_EditAddress.py
-src/Editors/_EditAttribute.py
-src/Editors/_EditChildRef.py
-src/Editors/_EditEvent.py
-src/Editors/_EditEventRef.py
-src/Editors/_EditFamily.py
-src/Editors/_EditLdsOrd.py
-src/Editors/_EditLocation.py
-src/Editors/_EditMedia.py
-src/Editors/_EditMediaRef.py
-src/Editors/_EditName.py
-src/Editors/_EditNote.py
-src/Editors/_EditPerson.py
-src/Editors/_EditPersonRef.py
-src/Editors/_EditPlace.py
-src/Editors/_EditPrimary.py
-src/Editors/_EditReference.py
-src/Editors/_EditRepoRef.py
-src/Editors/_EditRepository.py
-src/Editors/_EditSecondary.py
-src/Editors/_EditSource.py
-src/Editors/_EditSourceRef.py
-src/Editors/_EditUrl.py
-src/Editors/__init__.py
 
 # GrampsDbUtils package
 src/GrampsDbUtils/_Backup.py
