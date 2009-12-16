@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from _LdsEmbedList import LdsEmbedList
+from ldsembedlist import LdsEmbedList
 import gen.lib
 
 #-------------------------------------------------------------------------

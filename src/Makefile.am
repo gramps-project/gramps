@@ -6,7 +6,6 @@ SUBDIRS = \
 	cli \
 	data \
 	DateHandler \
-	DisplayTabs \
 	docgen \
 	Filters \
 	FilterEditor \

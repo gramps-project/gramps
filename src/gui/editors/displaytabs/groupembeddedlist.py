@@ -26,7 +26,6 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
 import cPickle as pickle
 
 #-------------------------------------------------------------------------
@@ -42,7 +41,7 @@ import pango
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from DisplayTabs._EmbeddedList import EmbeddedList
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

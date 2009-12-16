@@ -54,7 +54,7 @@ import ThumbNails
 import Errors
 import Mime
 from DdTargets import DdTargets
-from DisplayTabs._ButtonTab import ButtonTab
+from buttontab import ButtonTab
 
 #-------------------------------------------------------------------------
 #

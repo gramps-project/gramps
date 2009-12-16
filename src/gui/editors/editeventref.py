@@ -35,7 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 from glade import Glade
-from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
+from displaytabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (PrivacyButton, MonitoredEntry,
                      MonitoredDate, MonitoredDataType)

@@ -35,91 +35,63 @@ from gettext import gettext as _
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from _PersonRefModel import PersonRefModel
-from _EmbeddedList import EmbeddedList
+from locationmodel import LocationModel
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-class PersonRefEmbedList(EmbeddedList):
+class LocationEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 3
-    _DND_TYPE   = DdTargets.PERSONREF
-
-    _MSG = {
-        'add'   : _('Create and add a new association'),
-        'del'   : _('Remove the existing association'),
-        'edit'  : _('Edit the selected association'),
-        'up'    : _('Move the selected association upwards'),
-        'down'  : _('Move the selected association downwards'),
-    }
-
+    _HANDLE_COL = 5
+    _DND_TYPE   = DdTargets.LOCATION
+    
     #index = column in model. Value =
-    #  (name, sortcol in model, width, markup/text
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Name'), 0, 250, 0, -1), 
-        (_('ID'), 1, 100, 0, -1), 
-        (_('Association'), 2, 100, 0, -1), 
+        (_('Street'),         0, 150, 0, -1), 
+        (_('City'),           1, 100, 0, -1), 
+        (_('County'),         2, 100, 0, -1), 
+        (_('State/Province'), 3, 100, 0, -1), 
+        (_('Country'),        4, 75, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Associations'), PersonRefModel, 
+                              _('Alternate _Locations'), LocationModel, 
                               move_buttons=True)
-
-    def get_ref_editor(self):
-        from gui.editors import EditPersonRef
-        return EditPersonRef
 
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
     def add_button_clicked(self, obj):
-        from gui.editors import EditPersonRef
+        loc = gen.lib.Location()
         try:
-            ref = gen.lib.PersonRef()
-            ref.rel = _('Godfather')
-            EditPersonRef(
-                self.dbstate, self.uistate, self.track,
-                ref, self.add_callback)
+            from gui.editors import EditLocation
+            EditLocation(self.dbstate, self.uistate, self.track, 
+                         loc, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self, obj):
-        self.get_data().append(obj)
+    def add_callback(self, name):
+        self.get_data().append(name)
         self.rebuild()
 
     def edit_button_clicked(self, obj):
-        from gui.editors import EditPersonRef
-        ref = self.get_selected()
-        if ref:
+        loc = self.get_selected()
+        if loc:
             try:
-                EditPersonRef(
-                    self.dbstate, self.uistate, self.track,
-                    ref, self.edit_callback)
+                from gui.editors import EditLocation
+                EditLocation(self.dbstate, self.uistate, self.track, 
+                             loc, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self, obj):
+    def edit_callback(self, name):
         self.rebuild()
-
-    def _handle_drag(self, row, obj):
-        """
-        And event reference that is from a drag and drop has
-        an unknown event reference type
-        """
-        from gui.editors import EditPersonRef
-        try:
-            ref = gen.lib.PersonRef(obj)
-            ref.rel = _('Unknown')
-            EditPersonRef(
-                self.dbstate, self.uistate, self.track,
-                ref, self.add_callback)
-        except Errors.WindowActiveError:
-            pass

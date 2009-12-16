@@ -35,7 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from gen.lib import NoteType
 
-from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
+from displaytabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from editreference import RefTab, EditReference
 from glade import Glade

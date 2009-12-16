@@ -65,7 +65,7 @@ from editprimary import EditPrimary
 from editchildref import EditChildRef
 from editperson import EditPerson
 from ReportBase import ReportUtils
-from DisplayTabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
+from displaytabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
 from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType)
@@ -84,7 +84,7 @@ _RIGHT_BUTTON = 3
 class ChildEmbedList(EmbeddedList):
     """
     The child embed list is specific to the Edit Family dialog, so it
-    is contained here instead of in DisplayTabs.
+    is contained here instead of in displaytabs.
     """
 
     _HANDLE_COL = 10

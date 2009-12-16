@@ -43,8 +43,8 @@ from gettext import gettext as _
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from DisplayTabs._NameModel import NameModel
-from DisplayTabs._GroupEmbeddedList import GroupEmbeddedList
+from namemodel import NameModel
+from groupembeddedlist import GroupEmbeddedList
 
 #-------------------------------------------------------------------------
 #

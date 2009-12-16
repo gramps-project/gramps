@@ -47,7 +47,7 @@ from editprimary import EditPrimary
 from objectentries import PlaceEntry
 from glade import Glade
 from QuestionDialog import ErrorDialog
-from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
+from displaytabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)

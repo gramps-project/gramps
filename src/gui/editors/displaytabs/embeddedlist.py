@@ -42,7 +42,7 @@ import pango
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from DisplayTabs._ButtonTab import ButtonTab
+from buttontab import ButtonTab
 
 #-------------------------------------------------------------------------
 #

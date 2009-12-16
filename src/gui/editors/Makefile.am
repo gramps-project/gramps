@@ -1,7 +1,10 @@
-# This is the src/Editors level Makefile for Gramps
+# This is the src/gui/editors level Makefile for Gramps
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
+
+SUBDIRS = \
+	displaytabs
 
 pkgdatadir = $(datadir)/@PACKAGE@/gui/editors
 

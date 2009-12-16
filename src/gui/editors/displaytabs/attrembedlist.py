@@ -35,8 +35,8 @@ from gettext import gettext as _
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from DisplayTabs._AttrModel import AttrModel
-from DisplayTabs._EmbeddedList import EmbeddedList
+from attrmodel import AttrModel
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

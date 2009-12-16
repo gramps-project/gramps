@@ -50,7 +50,7 @@ import LdsUtils
 from glade import Glade
 from editsecondary import EditSecondary
 from objectentries import PlaceEntry
-from DisplayTabs import SourceEmbedList,NoteTab
+from displaytabs import SourceEmbedList,NoteTab
 from gui.widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
 from gui.selectors import SelectorFactory

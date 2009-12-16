@@ -39,8 +39,8 @@ from gettext import gettext as _
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from DisplayTabs._AddressModel import AddressModel
-from DisplayTabs._EmbeddedList import EmbeddedList
+from addressmodel import AddressModel
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

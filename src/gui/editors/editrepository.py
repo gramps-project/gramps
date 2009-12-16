@@ -43,7 +43,7 @@ import gtk
 import gen.lib
 
 from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
-from DisplayTabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
+from displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from editprimary import EditPrimary
 from QuestionDialog import ErrorDialog
 from glade import Glade

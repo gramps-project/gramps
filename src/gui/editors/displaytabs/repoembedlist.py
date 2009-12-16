@@ -37,8 +37,8 @@ from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 import Errors
 from DdTargets import DdTargets
-from _RepoRefModel import RepoRefModel
-from _EmbeddedList import EmbeddedList
+from reporefmodel import RepoRefModel
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

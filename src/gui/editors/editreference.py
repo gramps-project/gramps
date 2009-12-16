@@ -34,7 +34,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import ManagedWindow
-from DisplayTabs import GrampsTab
+from displaytabs import GrampsTab
 import config
 from gui.dbguielement import DbGUIElement
 

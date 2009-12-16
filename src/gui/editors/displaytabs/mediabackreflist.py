@@ -25,14 +25,14 @@
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from _BackRefModel import BackRefModel
-from _BackRefList import BackRefList
+from backrefmodel import BackRefModel
+from backreflist import BackRefList
 
-class PlaceBackRefList(BackRefList):
+class MediaBackRefList(BackRefList):
 
     def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj, 
                              BackRefModel, callback=callback)
 
     def get_icon_name(self):
-        return 'gramps-place'
+        return 'gramps-media'

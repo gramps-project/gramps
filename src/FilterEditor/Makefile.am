@@ -1,4 +1,4 @@
-# This is the src/DisplayTabs level Makefile for Gramps
+# This is the src/FilterEditor level Makefile for Gramps
 
 pkgdatadir = $(datadir)/@PACKAGE@/FilterEditor
 

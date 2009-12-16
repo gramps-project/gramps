@@ -25,14 +25,21 @@
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from _BackRefModel import BackRefModel
-from _BackRefList import BackRefList
+from attrembedlist import AttrEmbedList
 
-class SourceBackRefList(BackRefList):
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class FamilyAttrEmbedList(AttrEmbedList):
 
-    def __init__(self, dbstate, uistate, track, obj, callback=None):
-        BackRefList.__init__(self, dbstate, uistate, track, obj, 
-                             BackRefModel, callback=callback)
+    def __init__(self, dbstate, uistate, track, data):
+        AttrEmbedList.__init__(self, dbstate, uistate, track, data)
 
-    def get_icon_name(self):
-        return 'gramps-source'
+    def get_editor(self):
+        from gui.editors import EditFamilyAttribute
+        return EditFamilyAttribute
+
+    def get_user_values(self):
+        return self.dbstate.db.get_family_attribute_types()        

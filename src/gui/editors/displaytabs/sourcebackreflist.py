@@ -25,14 +25,14 @@
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from _BackRefModel import BackRefModel
-from _BackRefList import BackRefList
+from backrefmodel import BackRefModel
+from backreflist import BackRefList
 
-class PersonBackRefList(BackRefList):
+class SourceBackRefList(BackRefList):
 
     def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj, 
                              BackRefModel, callback=callback)
 
     def get_icon_name(self):
-        return 'gramps-relation'
+        return 'gramps-source'

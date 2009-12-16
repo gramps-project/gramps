@@ -49,7 +49,7 @@ import config
 import const
 from gui.widgets import StyledTextEditor
 from editprimary import EditPrimary
-from DisplayTabs import GrampsTab, NoteBackRefList
+from displaytabs import GrampsTab, NoteBackRefList
 from gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
                      MonitoredEntry, PrivacyButton)
 from gen.lib import Note

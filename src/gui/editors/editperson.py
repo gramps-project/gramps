@@ -63,7 +63,7 @@ from editname import EditName
 import config
 from QuestionDialog import ErrorDialog, ICON
 
-from DisplayTabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
+from displaytabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab, 
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList, 
                          PersonBackRefList)

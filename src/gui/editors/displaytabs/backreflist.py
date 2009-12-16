@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 import Errors
 from gui.widgets import SimpleButton
-from _EmbeddedList import EmbeddedList
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

@@ -25,14 +25,15 @@
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from _BackRefModel import BackRefModel
-from _BackRefList import BackRefList
 
-class EventBackRefList(BackRefList):
+from backrefmodel import BackRefModel
+from backreflist import BackRefList
+
+class NoteBackRefList(BackRefList):
 
     def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj, 
-                             BackRefModel, callback)
+                             BackRefModel, callback=callback)
 
     def get_icon_name(self):
-        return 'gramps-event'
+        return 'gramps-notes'

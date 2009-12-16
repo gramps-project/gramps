@@ -45,7 +45,7 @@ import gtk
 import gen.lib
 from editprimary import EditPrimary
 
-from DisplayTabs import (NoteTab, GalleryTab, DataEmbedList,
+from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList)
 from gui.widgets import MonitoredEntry, PrivacyButton
 from QuestionDialog import ErrorDialog

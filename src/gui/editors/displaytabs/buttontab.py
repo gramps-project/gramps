@@ -41,7 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.widgets import SimpleButton
-from _GrampsTab import GrampsTab
+from grampstab import GrampsTab
 import Errors
 
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")

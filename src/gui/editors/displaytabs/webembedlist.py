@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -34,74 +35,88 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 import Errors
-from _LdsModel import LdsModel
-from _EmbeddedList import EmbeddedList
+from DdTargets import DdTargets
+from webmodel import WebModel
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-class LdsEmbedList(EmbeddedList):
+class WebEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 5
-#    _DND_TYPE   = DdTargets.ADDRESS
+    _HANDLE_COL = 3
+    _DND_TYPE   = DdTargets.URL
 
     _MSG = {
-        'add'   : _('Create and add a new LDS ordinance'),
-        'del'   : _('Remove the existing LDS ordinance'),
-        'edit'  : _('Edit the selected LDS ordinance'),
-        'up'    : _('Move the selected LDS ordinance upwards'),
-        'down'  : _('Move the selected LDS ordinance downwards'),
+        'add'   : _('Create and add a new web address'),
+        'del'   : _('Remove the existing web address'),
+        'edit'  : _('Edit the selected web address'),
+        'up'    : _('Move the selected web address upwards'),
+        'down'  : _('Move the selected web address downwards'),
+        'jump'  : _('Jump to the selected web address'),
     }
 
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'),    0, 150, 0, -1), 
-        (_('Date'),    1, 150, 1, -1), 
-        (_('Status'),  3, 75, 0, -1), 
-        (_('Temple'),  2, 200, 0, -1), 
-        (_('Place'),   3, 100, 0, -1), 
+        (_('Type')       , 0, 100, 0, -1), 
+        (_('Path')       , 1, 200, 0, -1), 
+        (_('Description'), 2, 150, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_LDS'), 
-                              LdsModel, move_buttons=True)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Internet'), 
+                              WebModel, move_buttons=True, jump_button=True)
 
-    def get_editor(self):
-        from gui.editors import EditLdsOrd
-        return EditLdsOrd
+    def get_icon_name(self):
+        return 'gramps-url'
 
-    def new_data(self):
-        return gen.lib.LdsOrd()
-    
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
+        return ((1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
+        from gui.editors import EditUrl
+        url = gen.lib.Url()
         try:
-            self.get_editor()(self.dbstate, self.uistate, self.track, 
-                              self.new_data(), self.add_callback)
+            EditUrl(self.dbstate, self.uistate, self.track, 
+                    '', url, self.add_callback)
         except Errors.WindowActiveError:
             pass
 
-    def add_callback(self, name):
-        self.get_data().append(name)
+    def add_callback(self, url):
+        self.get_data().append(url)
         self.rebuild()
 
     def edit_button_clicked(self, obj):
-        lds = self.get_selected()
-        if lds:
+        from gui.editors import EditUrl
+        url = self.get_selected()
+        if url:
             try:
-                self.get_editor()(self.dbstate, self.uistate, self.track, 
-                                  lds, self.edit_callback)
+                EditUrl(self.dbstate, self.uistate, self.track, 
+                        '', url, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self, name):
+    def edit_callback(self, url):
         self.rebuild()
+
+    def get_popup_menu_items(self):
+        return [ 
+            (True,  True,  gtk.STOCK_ADD,     self.add_button_clicked),
+            (False, True,  gtk.STOCK_EDIT,    self.edit_button_clicked),
+            (True,  True,  gtk.STOCK_REMOVE,  self.del_button_clicked),
+            (True,  True,  gtk.STOCK_JUMP_TO, self.jump_button_clicked),
+            ]
+
+    def jump_button_clicked(self, obj):
+        import GrampsDisplay
+
+        url = self.get_selected()
+        if url.get_path():
+            GrampsDisplay.url(url.get_path())

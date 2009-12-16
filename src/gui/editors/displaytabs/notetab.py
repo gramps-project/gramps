@@ -42,8 +42,8 @@ import Errors
 import gen.lib
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
-from _NoteModel import NoteModel
-from _EmbeddedList import EmbeddedList
+from notemodel import NoteModel
+from embeddedlist import EmbeddedList
 from DdTargets import DdTargets
 
 #-------------------------------------------------------------------------

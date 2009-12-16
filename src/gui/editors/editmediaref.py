@@ -48,7 +48,7 @@ import ThumbNails
 import Utils
 from gen.lib import NoteType
 from glade import Glade
-from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
+from displaytabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from editreference import RefTab, EditReference

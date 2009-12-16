@@ -35,8 +35,8 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 from BasicUtils import name_displayer
-from _EventEmbedList import EventEmbedList
-from _EventRefModel import EventRefModel
+from eventembedlist import EventEmbedList
+from eventrefmodel import EventRefModel
 
 _std_types = [
     gen.lib.EventType(gen.lib.EventType.BIRTH),

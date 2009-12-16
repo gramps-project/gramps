@@ -47,7 +47,7 @@ import ThumbNails
 import Utils
 from editprimary import EditPrimary
 from gui.widgets import MonitoredDate, MonitoredEntry, PrivacyButton
-from DisplayTabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
+from displaytabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from addmedia import AddMediaObject
 from QuestionDialog import ErrorDialog

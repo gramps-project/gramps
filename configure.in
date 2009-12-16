@@ -104,12 +104,12 @@ src/gen/plug/docgen/Makefile
 src/gen/plug/menu/Makefile
 src/gui/Makefile
 src/gui/editors/Makefile
+src/gui/editors/displaytabs/Makefile
 src/gui/selectors/Makefile
 src/gui/views/Makefile
 src/gui/views/treemodels/Makefile
 src/FilterEditor/Makefile
 src/Mime/Makefile
-src/DisplayTabs/Makefile
 src/GrampsLogger/Makefile
 src/Merge/Makefile
 src/docgen/Makefile

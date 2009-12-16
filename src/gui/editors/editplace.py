@@ -44,7 +44,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 from editprimary import EditPrimary
-from DisplayTabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
+from displaytabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gui.widgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError

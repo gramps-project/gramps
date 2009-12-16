@@ -37,8 +37,8 @@ import gtk
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from _GroupEmbeddedList import GroupEmbeddedList
-from _EventRefModel import EventRefModel
+from groupembeddedlist import GroupEmbeddedList
+from eventrefmodel import EventRefModel
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 

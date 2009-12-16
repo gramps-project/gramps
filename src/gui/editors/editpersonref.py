@@ -50,7 +50,7 @@ from editsecondary import EditSecondary
 from gen.lib import NoteType
 from gui.widgets import MonitoredEntry, PrivacyButton
 from gui.selectors import SelectorFactory
-from DisplayTabs import SourceEmbedList, NoteTab
+from displaytabs import SourceEmbedList, NoteTab
 from glade import Glade
 
 #-------------------------------------------------------------------------
