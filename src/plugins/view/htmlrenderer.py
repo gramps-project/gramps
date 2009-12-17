@@ -398,11 +398,7 @@ class RendererMozilla(Renderer):
                         port = str(port)
                         (lang_country, modifier ) = locale.getlocale()
                         lang = lang_country.split('_')[0]
-                        prefs.write(MOZJS % {
-                                     'host' : host,
-                                     'port' : port,
-                                     'lang' : lang
-                                    } )
+                        prefs.write(MOZJS % vars() )
                     prefs.close()
         except:
             try: # trying to remove pref.js in case of proxy change.
