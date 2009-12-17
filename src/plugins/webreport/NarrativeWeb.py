@@ -2330,8 +2330,8 @@ class EventListPage(BasePage):
                     Html("th", label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
                         [THEAD,    "Type"],
-                        [GRAMPSID, "GRAMPSID"],
                         [DHEAD,    "Date"],
+                        [GRAMPSID, "GRAMPSID"],
                         [_PERSON,  "Person"] ]
                     ) 
 
@@ -2342,10 +2342,7 @@ class EventListPage(BasePage):
                 for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
                     first_event = True
 
-                    # sort the datalist by gramps id, date, and event handle
-                    datalist.sort()
-
-                    for (gid, date, event_handle) in datalist:
+                    for (date, gid, event_handle) in datalist:
                         event = db.get_event_from_handle(event_handle)
 
                         trow = Html("tr")
@@ -2362,11 +2359,6 @@ class EventListPage(BasePage):
                         else:
                             tcell += "&nbsp;" 
 
-                        # GRAMPS ID
-                        trow += ( Html("td", class_ = "ColumnGRAMPSID") +
-                            self.event_grampsid_link(event_handle, gid, None)
-                            )
-
                         # event date
                         tcell = Html("td", class_ = "ColumnDate", inline = True)
                         trow += tcell
@@ -2374,6 +2366,11 @@ class EventListPage(BasePage):
                             tcell += _dd.display(date)
                         else:
                             tcell += "&nbsp;"   
+
+                        # GRAMPS ID
+                        trow += ( Html("td", class_ = "ColumnGRAMPSID") +
+                            self.event_grampsid_link(event_handle, gid, None)
+                            )
 
                         # Person
                         if evt_type in ["Divorce", "Marriage"]:
@@ -6090,7 +6087,7 @@ def sort_event_types(db, event_types, event_handle_list):
         # add (gramps_id, date, handle) from this event
         if etype in event_dict:
             event_dict[etype].append(
-                (event.gramps_id, event.get_date_object(), handle)
+                (event.get_date_object(), event.gramps_id, handle)
                 )
 
     for tup_list in event_dict.values():

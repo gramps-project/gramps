@@ -126,7 +126,7 @@ h3 {
     border-bottom: double 4px #5D835F;
 }
 h4 {
-    font:normal 1.2em/1.2em serif;
+    font: normal 1.2em/1.2em serif;
     color: #FFF;
     margin-top: .3cm;
     padding:.2em 0 .2em 20px;
@@ -327,7 +327,7 @@ div#alphabet ul {
     height:24px;
     margin:0;
     padding: 0px 0px 0px 16px;
-    border-width: 2px 0px 4px 0px;
+    border-width: 1px 0px 1px 0px;
     border-style: solid;
     border-color: #5D835F;
 }
@@ -342,7 +342,7 @@ div#alphabet ul li a {
     display:block;
     padding: 4px 8px 4px 8px;
     float:left;
-    font:bold 16px/100% sans;
+    font: normal 16px/100% sans;
     margin:0;
     text-decoration:none;
     color: #000;
@@ -682,24 +682,27 @@ div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
     content:"+ ";
 }
 div#EventDetail h3 {
-    font-size: xxx-large;
+    font-size: 28px;
 }
-div#EventDetail h3:first-lettr {
-    color: #5D835F;
+div#EventDetail h3:first-letter {
+    color: #903;
 }
 div#EventDetail table.eventlist {
-    margin: .5cm 0 .3cm 1.5cm;
-    width: 800px;
+    width: 100%;
+}
+div#EventDetail table.eventlist tbody tr {
+    border-top: dashed 1px #5D835F;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
-    border-top: solid 1px #5D835F;
-    font-weight: bold;
     text-transform: uppercase;
     width: 20%;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnDate {
     background-color: #D8F3D6;
     border-top: solid 1px #5D835F;
+}
+div#EventDetail table.eventlist tbody tr td.ColumnPerson {
+    background-color: #D8F3D6;
 }
     
 /* Gallery
@@ -787,13 +790,18 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
     border-width: 2px 0 1px 0;
     border-color: #5D835F;
 }
-table.exifdata tr td.ColumnAttribute {
-    border-top: solid 1px #5D835F;
-    width:60%;
+#GalleryDetail table.exifdata {
+    margin: .2em 0 .2em 0;
+    width: 100%;
 }
-table.exiflist tr td.ColumnValue {
-    border-top:solid 1px #5D835F;
-    width:45%;
+#GalleryDetail table.exifdata tbody tr {
+    border-top: solid 1px #5D835F;
+}
+#GalleryDetail table.exifdata tbody tr td.ColumnExifKeys {
+    width: 60%;
+}
+#GalleryDetail table.exifdata tbody tr td.ColumnMetaData {
+    width: 40%;
 }
 
 /* Contact
