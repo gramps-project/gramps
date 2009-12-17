@@ -29,7 +29,7 @@
 
 NOWEB  = 0
 WEBKIT = 1
-MOZIL  = 2
+MOZILLA  = 2
 
 TOOLKIT = NOWEB
 
