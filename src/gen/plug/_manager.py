@@ -108,6 +108,10 @@ class BasePluginManager(object):
             return False # return value is True for error
         
         for (dirpath, dirnames, filenames) in os.walk(direct):
+            root, subdir = os.path.split(dirpath)
+            if subdir.startswith("."): 
+                dirnames[:] = []
+                continue
             for dirname in dirnames:
                 # Skip hidden and system directories:
                 if dirname.startswith(".") or dirname in ["po", "locale"]:
