@@ -663,8 +663,7 @@ class ListView(NavigationView):
         """
         if self.active:
             cput = time.clock()
-            for handle in handle_list:
-                self.model.delete_row_by_handle(handle)
+            map(self.model.delete_row_by_handle, handle_list)
             _LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
                     str(time.clock() - cput) + ' sec')
             self.uistate.show_filter_results(self.dbstate, 
