@@ -110,7 +110,7 @@ class EditPerson(EditPrimary):
         return gen.lib.Person()
 
     def get_menu_title(self):
-        if self.obj.get_handle():
+        if self.obj and self.obj.get_handle():
             name = name_displayer.display(self.obj)
             title = _('Person: %(name)s') % {'name': name}
         else:
