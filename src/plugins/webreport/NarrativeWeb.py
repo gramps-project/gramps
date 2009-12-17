@@ -65,13 +65,6 @@ from cStringIO import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize
 
-# attempt to import the python exif library?
-try:
-    import pyexiv2
-    pyexiftaglib = True
-except ImportError:
-    pyexiftaglib = False
-
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -115,6 +108,10 @@ from libhtml import Html
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend
+
+# if the pyexiv2 library is installed, look for libexiftags
+# from src/plugins/lib/libexiftags.py
+from libexiftags import ExifKeyTags
 #------------------------------------------------------------------------
 #
 # constants
@@ -310,10 +307,6 @@ class BasePage(object):
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
 
-        # only show option if the pyexiv2 library is available on local system
-        if pyexiftaglib:
-            self.exiftagsopt = report.options['exiftagsopt']
- 
     def dump_attribute(self, attr, showsrc):
         """
         dump attribute for object presented in display_attr_list()
@@ -826,7 +819,7 @@ class BasePage(object):
 
         # begin attributes division and section title
         with Html("div", class_ = "ubsection", id = "attributes") as section:
-            section += Html("h4", _("Attributes"),  inline = True)
+            section += Html("h4", AHEAD,  inline = True)
 
             # begin attributes table
             with Html("table", class_ = "infolist attrlist") as table:
@@ -2307,7 +2300,7 @@ class EventListPage(BasePage):
             body += eventlist
 
             msg = _("This page contains an index of all the events in the database, sorted by their "
-                    "type, Gramps id, and date (if one is present), Clicking on an "
+                    "type, date (if one is present), and gramps id, Clicking on an "
                     "event&#8217;s Gramps ID will load a page for that event.")
             eventlist += Html("p", msg, id = "description")
 
@@ -2626,19 +2619,19 @@ class MediaPage(BasePage):
                 if next:
                     medianav += self.media_nav_link(next, _("Next"), True)
 
-            # missing media error msg
+            # missing media error message
             errormsg = _("The file has been moved or deleted.")
-            missingimage = Html("span", errormsg, class_ = "MissingImage")  
 
             # begin summaryarea division
             with Html("div", id = "summaryarea") as summaryarea:
                 mediadetail += summaryarea
                 if mime_type:
-                    if mime_type.startswith("image/"):
+                    if mime_type.startswith("image"):
                         if not target_exists:
                             with Html("div", id = "MediaDisplay") as mediadisplay:
                                 summaryarea += mediadisplay
-                                mediadisplay += missingimage
+                                mediadisplay += Html("span", errormsg, class_ = "MissingImage")  
+ 
                         else:
                             # Check how big the image is relative to the requested 'initial'
                             # image size. If it's significantly bigger, scale it down to
@@ -2686,13 +2679,13 @@ class MediaPage(BasePage):
                                 # Feature #2634; display the mouse-selectable regions.
                                 # See the large block at the top of this function where
                                 # the various regions are stored in _region_items
-                                if len(_region_items):
+                                if _region_items:
                                     ordered = Html("ol", class_ = "RegionBox")
                                     mediadisplay += ordered
                                     while len(_region_items) > 0:
                                         (name, x, y, w, h, linkurl) = _region_items.pop()
                                         ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
-                                            % (x, y, w, h)) +(
+                                            % (x, y, w, h)) + (
                                             Html("a", name, href = linkurl)
                                             )       
 
@@ -2733,7 +2726,7 @@ class MediaPage(BasePage):
                                     )
                                 mediadisplay += hyper
                             else:
-                                mediadisplay += missingimage
+                                mediadisplay += Html("span", errormsg, class_ = "MissingImage")  
                 else:
                     with Html("div", id = "GalleryDisplay") as mediadisplay:
                         summaryarea += mediadisplay
@@ -2773,39 +2766,6 @@ class MediaPage(BasePage):
                             Html("td", _dd.display(date), class_ = "ColumnValue", inline = True)
                             )
                         table += trow
-
-            # display image Exif tags/ keys if any?
-            if pyexiftaglib:
-                if self.exiftagsopt and mime_type.startswith("image/"):
-                    
-                    # if the pyexiv2 library is installed, then show if the option has been set,
-                    # yes, then use it and determine if the image has anything written inside of it?
-                    image = pyexiv2.Image("%s" % Utils.media_path_full(db, media.get_path()) )
-                    image.readMetadata()
-
-                    # exif data does exists
-                    if len(image.exifKeys() ):
-
-                        # initialize the dictionary for holding the image exif tags
-                        imagetags = []
-
-                        # add exif title header
-                        mediadetail += Html("h4", _("Image Exif Tags/ Keys"), inline = True)
-
-                        # begin exif table
-                        with Html("table", class_ = "exifdata") as table:
-                            mediadetail += table
-
-                            for keytag in image.exifKeys():
-                                if keytag not in imagetags:
-                                    trow = Html("tr") + (
-                                        Html("td", keytag, class_ = "ColumnAttribute"),
-                                        Html("td", image[keytag], class_ = "ColumnValue")
-                                        )
-                                    table += trow
-                                    imagetags.append(keytag)
-
-            ##################### End of Exif Tags #####################################################
 
             # get media notes
             notelist = self.display_note_list(media.get_note_list() )
@@ -4980,10 +4940,6 @@ class NavWebReport(Report):
         self.inc_contact = self.options['contactnote'] or \
                            self.options['contactimg']
 
-        # only show option if the pyexiv2 library is available on local system
-        if pyexiftaglib:
-            self.exiftagsopt = self.options["exiftagsopt"]
-
         # name format option
         self.name_format = self.options['name_format']
 
@@ -5327,6 +5283,27 @@ class NavWebReport(Report):
             PlacePage(self, self.title, place, source_list, place_list)
             self.progress.step()
 
+    def get_event_handles(self, db, ind_list):
+        """
+        creates a list of event handles for this database
+        """
+
+        event_handle_list = []
+        for person_handle in ind_list:
+            person = db.get_person_from_handle(person_handle)
+
+            for evt_ref in person.get_event_ref_list():
+                event_handle_list.append(evt_ref.ref)
+
+            for fhandle in person.get_family_handle_list():
+                family = db.get_family_from_handle(fhandle)
+
+                for evt_ref in family.get_event_ref_list():
+                    event_handle_list.append(evt_ref.ref)
+            
+        # return event_handle_list to its caller
+        return event_handle_list
+                
     def event_pages(self, ind_list):
         """
         a dump of all the events sorted by event type, date, and surname
@@ -5340,6 +5317,9 @@ class NavWebReport(Report):
 
         # gather the information that we will need for these two classes
         event_types = []
+
+        # get the event handle list for this database
+        event_handle_list = self.get_event_handles(db, ind_list)
  
         for event_handle in event_handle_list:
             event = self.database.get_event_from_handle(event_handle)
@@ -5785,12 +5765,6 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'gallery', self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
-        self.__exiftags = BooleanOption(_("Include exif tags on media pages?"), False)
-        self.__exiftags.set_help(_("Do you want to add the exif data tags to the page?  You will"
-                                   " need to have the pyexiv2 library installed on your system."
-                                   "It can be downloaded and installed from most linux repositories."))
-        menu.add_option(category_name, "exiftagsopt", self.__exiftags)
- 
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
@@ -5990,21 +5964,10 @@ class NavWebOptions(MenuReportOptions):
         Handles the changing nature of gallery
         """
 
-        if not pyexiftaglib:
-            self.__exiftags.set_available(False)
-
         if self.__gallery.get_value() == False:
-
-            # disable option if pyexiv2 library is not installed on system ...
-            if pyexiftaglib:
-                self.__exiftags.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
         else:
-
-            # disable option if pyexiv2 library is not installed on system ...
-            if pyexiftaglib:
-                self.__exiftags.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
 
