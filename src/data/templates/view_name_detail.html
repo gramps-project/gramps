@@ -11,7 +11,7 @@
    </script>
 
 <div class="content" id="IndividualDetail">
-<h3>NAME{# form|make_name:user #}</h3>
+<h3>{{form|make_name:user}}</h3>
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 4 cols {% endcomment %}
 <tbody>
@@ -24,27 +24,34 @@
     <form method="post">
   {% endifequal %}
 <tr>
- <td class="ColumnAttribute">Family:</td>
+ <td class="ColumnAttribute">{{form.surname.label}}:</td>
  <td class="ColumnValue" id="data">{{form.surname|render:action}}</td>
- <td class="ColumnAttribute">Prefix:</td>
+ <td class="ColumnAttribute">{{form.prefix.label}}:</td>
  <td class="ColumnValue" id="data">{{form.prefix|render:action}}</td>
 </tr>
- <td class="ColumnAttribute">Given:</td>
+ <td class="ColumnAttribute">{{form.first_name.label}}:</td>
  <td class="ColumnValue" id="data">{{form.first_name|render:action}}</td>
- <td class="ColumnAttribute">Call Name:</td>
+ <td class="ColumnAttribute">{{form.call.label}}:</td>
  <td class="ColumnValue" id="data">{{form.call|render:action}}</td>
 <tr>
 </tr>
- <td class="ColumnAttribute">Title:</td>
+ <td class="ColumnAttribute">{{form.title.label}}:</td>
  <td class="ColumnValue" id="data">{{form.title|render:action}}</td>
- <td class="ColumnAttribute">Suffix:</td>
+ <td class="ColumnAttribute">{{form.suffix.label}}:</td>
  <td class="ColumnValue" id="data">{{form.suffix|render:action}}</td>
 <tr>
- <td class="ColumnAttribute">Patronymic:</td>
+ <td class="ColumnAttribute">{{form.patronymic.label}}:</td>
  <td class="ColumnValue" id="data">{{form.patronymic|render:action}}</td>
- <td class="ColumnAttribute">Type:</td>
+ <td class="ColumnAttribute">{{form.name_type.label}}:</td>
  <td class="ColumnValue" id="data">{{form.name_type|render:action}}</td>
 </tr>
+<tr>
+ <td class="ColumnAttribute">{{form.preferred.label}}:</td>
+{% if form.model.preferred %}
+ <td class="ColumnValue" id="data" colspan="3">True</td>
+{% else %}
+ <td class="ColumnValue" id="data" colspan="3">{{form.preferred|render:action}}</td>
+{% endif %}
 </tr>
 </tbody>
 </table>
@@ -52,25 +59,25 @@
 {% else %}
 
 <tr>
- <td class="ColumnAttribute">Family:</td>
+ <td class="ColumnAttribute">{{form.surname.label}}:</td>
  <td class="ColumnValue" id="data">{{form.surname}}</td>
- <td class="ColumnAttribute">Prefix:</td>
+ <td class="ColumnAttribute">{{form.prefix.label}}:</td>
  <td class="ColumnValue" id="data">[Private]</td>
 <tr>
- <td class="ColumnAttribute">Given:</td>
+ <td class="ColumnAttribute">{{form.given.label}}:</td>
  <td class="ColumnValue" id="data">[Private]</td>
- <td class="ColumnAttribute">Call Name:</td>
+ <td class="ColumnAttribute">{{form.call.label}}:</td>
  <td class="ColumnValue" id="data">[Private]</td>
 </tr>
 </tr>
- <td class="ColumnAttribute">Title:</td>
+ <td class="ColumnAttribute">{{form.title.label}}:</td>
  <td class="ColumnValue" id="data">[Private]</td>
- <td class="ColumnAttribute">Suffix:</td>
+ <td class="ColumnAttribute">{{form.suffix.label}}:</td>
  <td class="ColumnValue" id="data">[Private]</td>
 <tr>
- <td class="ColumnAttribute">Patronymic:</td>
+ <td class="ColumnAttribute">{{form.patronymic.label}}:</td>
  <td class="ColumnValue" id="data">[Private]</td>
- <td class="ColumnAttribute">Type:</td>
+ <td class="ColumnAttribute">{{form.name_type.label}}:</td>
  <td class="ColumnValue" id="data">{{form.name_type}}</td>
 </tr>
 </tbody>
@@ -105,7 +112,7 @@
   {% else %}
 [<a href="/person/{{person.handle}}/name/{{order}}/edit">Edit Name</a>]
 [<a href="/person/{{person.handle}}/name/{{order}}/delete">Delete Name</a>]
-[<a href="/person/{{person.handle}}/name/{{order}}/add">Add Name</a>]
+[<a href="/person/{{person.handle}}/name/add">Add Name</a>]
   {% endifequal %}
 {% else %}
 {% endif %}

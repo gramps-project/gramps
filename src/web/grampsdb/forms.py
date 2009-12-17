@@ -21,7 +21,10 @@ class NameForm(forms.ModelForm):
     class Meta:
         model = Name
         fields = ("suffix", "first_name", "title", "prefix", 
-                  "call", "surname", "patronymic", "name_type")
+                  "call", "surname", "patronymic", "name_type",
+                  "preferred")
+    # Add these because they are TextFields, which render as
+    # Textareas:
     surname = forms.CharField(required=False, widget=TextInput())
     first_name = forms.CharField(required=False, widget=TextInput())
     title = forms.CharField(required=False, widget=TextInput())

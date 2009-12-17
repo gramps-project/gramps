@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 import web.grampsdb.models as models
+import web.grampsdb.forms as forms
 from web import libdjango
 from web.djangodb import DjangoDb
 from Simple import SimpleTable, SimpleAccess, make_basic_stylesheet
@@ -123,9 +124,9 @@ _ = lambda text: text
 
 def render(formfield, action):
     retval = "error"
-    name = formfield.name # 'surname'
+    fieldname = formfield.name # 'surname'
     if action == "view": # gets the unicode from model
-        retval = str(getattr(formfield.form.model, name))
+        retval = str(getattr(formfield.form.model, fieldname))
     else: # renders as default
         retval = formfield.as_widget()
     return retval
@@ -449,8 +450,22 @@ def make_name(name, user):
                 return "%s, %s" % (surname, "[Living]")
             else:
                 return "%s, %s" % (surname, name.first_name)
+    elif isinstance(name, forms.NameForm):
+        surname = name.model.surname.strip()
+        if not surname:
+            surname = "[Missing]"
+        if user.is_authenticated():
+            return "%s, %s" % (surname, name.model.first_name)
+        else:
+            if probably_alive(name.model.person.handle):
+                return "%s, %s" % (surname, "[Living]")
+            else:
+                return "%s, %s" % (surname, name.model.first_name)
     elif name: # name_set
-        name = name.get(preferred=True)
+        try:
+            name = name.get(preferred=True)
+        except:
+            return "[No preferred name]"
         if name:
             return make_name(name, user)
         else:

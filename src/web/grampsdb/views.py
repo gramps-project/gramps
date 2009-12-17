@@ -41,11 +41,11 @@ from django.db.models import Q
 #------------------------------------------------------------------------
 import web
 from web.grampsdb.models import *
-from web.forms import NameForm
+from web.grampsdb.forms import NameForm
 
 _ = lambda text: text
 
-# Views: [(Nice name plural, /name/handle, Model), ]
+# Views: [(<Nice name plural>, /<name>/handle, <Model>), ]
 VIEWS = [(_('People'), 'person', Name), 
          (_('Families'), 'family', Family),
          (_('Events'), 'event', Event),
@@ -104,6 +104,9 @@ def user_page(request, username):
     return render_to_response('user_page.html', context)
 
 def view_name_detail(request, handle, order, action="view"):
+    if order == "add":
+        order = 0
+        action = "add"
     if request.POST.has_key("action"):
         action = request.POST.get("action")
     if action == "view":
@@ -117,15 +120,39 @@ def view_name_detail(request, handle, order, action="view"):
         form = NameForm(instance=name)
         form.model = name
     elif action == "delete":
-        pass
+        person = Person.objects.get(handle=handle)
+        person.name_set.get(order=order).delete()
+        action = "back"
     elif action == "add":
-        pass
+        person = Person.objects.get(handle=handle)
+        name = Name()
+        form = NameForm()
+        form.model = name
+        action = "edit"
+    elif action == "new":
+        person = Person.objects.get(handle=handle)
+        form = NameForm(request.POST)
+        if form.is_valid():
+            name.save()
+            action = "save"
+        else:
+            action = "edit"
     elif action == "save":
         person = Person.objects.get(handle=handle)
         name = person.name_set.get(order=order)
         form = NameForm(request.POST, instance=name)
         form.model = name
         if form.is_valid():
+            # now it is preferred:
+            if form.cleaned_data["preferred"]:
+                # but it wasn't:
+                if not name.preferred:
+                    # set all of the other names to be 
+                    # not preferred:
+                    person.name_set.filter(~ Q(id=name.id)) \
+                        .update(preferred=False)
+                # else it always was
+            # else some other name is preferred
             form.save()
         else:
             action = "edit"
@@ -144,6 +171,9 @@ def view_name_detail(request, handle, order, action="view"):
         context["action"] = "view"
         return redirect("/person/%s/name/%d" % 
                         (person.handle, name.order), context)
+    elif action == "back":
+        return redirect("/person/%s/" % 
+                        (person.handle), context)
     else:
         return render_to_response(view_template, context)
     

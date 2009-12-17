@@ -49,7 +49,10 @@ make_name.is_safe = True
 register.filter('make_name', make_name)
 
 def preferred(name_set, attr):
-    name = name_set.get(preferred=True)
+    try:
+        name = name_set.get(preferred=True)
+    except:
+        return "[No preferred name]"
     if name:
         return escape(getattr(name, attr))
     else:
