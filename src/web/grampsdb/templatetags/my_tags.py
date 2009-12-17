@@ -15,7 +15,7 @@ util_filters = ['person_event_table', 'person_name_table',
                 'family_source_table', 'family_attribute_table',
                 'family_note_table', 'family_gallery_table', 
                 'family_lds_table', 
-                'nbsp']
+                'nbsp', 'render']
 for filter_name in util_filters:
     func = getattr(web.utils, filter_name)
     func.is_safe = True

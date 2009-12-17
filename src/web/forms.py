@@ -4,12 +4,14 @@ from django import forms
 from web.grampsdb.models import *
 from django.forms.models import inlineformset_factory
 from django.forms.models import BaseModelFormSet
+from django.forms.widgets import TextInput
 import datetime
 
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         exclude = ('handle',)
+
     '''def clean(self):
         cleaned_data['last_changed'] = datetime.datetime.now()
         super(PersonForm, self).clean() # validate based on model
@@ -18,6 +20,15 @@ class PersonForm(forms.ModelForm):
 class NameForm(forms.ModelForm):
     class Meta:
         model = Name
+        fields = ("suffix", "first_name", "title", "prefix", 
+                  "call", "surname", "patronymic", "name_type")
+    surname = forms.CharField(required=False, widget=TextInput())
+    first_name = forms.CharField(required=False, widget=TextInput())
+    title = forms.CharField(required=False, widget=TextInput())
+    prefix = forms.CharField(required=False, widget=TextInput())
+    suffix = forms.CharField(required=False, widget=TextInput())
+    call = forms.CharField(required=False, widget=TextInput())
+    patronymic = forms.CharField(required=False, widget=TextInput())
 
 '''class NameFormset(BaseModelFormSet):
     def __init__(self, *args, **kwargs):

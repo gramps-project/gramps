@@ -68,7 +68,8 @@ urlpatterns += patterns('',
     url(r'^person/(?P<handle>(\w+))/$', view_detail, 
         {"view": "person"}, name="view-person-detail"),
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', view_detail),
-    (r'^person/(?P<handle>(\w+))/name/(?P<id>(\w+))$', view_name_detail),
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', view_name_detail),
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<action>(\w+))$', view_name_detail),
 )
 
 # In urls:

@@ -107,6 +107,12 @@ class Table(object):
     def link(self, object_type_name, handle):
         self.table.set_link_col((object_type_name, handle))
 
+    def links(self, links):
+        """
+        A list of (object_type_name, handle) pairs, one per row.
+        """
+        self.table.set_link_col(links)
+
     def get_html(self):
         # The HTML writer escapes data:
         self.table.write(self.doc) # forces to htmllist
@@ -114,6 +120,15 @@ class Table(object):
         return str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
 
 _ = lambda text: text
+
+def render(formfield, action):
+    retval = "error"
+    name = formfield.name # 'surname'
+    if action == "view": # gets the unicode from model
+        retval = str(getattr(formfield.form.model, name))
+    else: # renders as default
+        retval = formfield.as_widget()
+    return retval
 
 def person_event_table(djperson, user):
     table = Table()
@@ -147,7 +162,8 @@ def person_name_table(djperson, user):
                   _("Source"),
                   _("Note Preview"))
     if user.is_authenticated():
-        for name in djperson.name_set.all():
+        links = []
+        for name in djperson.name_set.all().order_by("order"):
             obj_type = ContentType.objects.get_for_model(name)
             sourceq = dji.SourceRef.filter(object_type=obj_type,
                                            object_id=name.id).count() > 0
@@ -161,8 +177,9 @@ def person_name_table(djperson, user):
                       name.group_as,
                       ["No", "Yes"][sourceq],
                       note)
-            table.link('URL', "/person/%s/name/%s" % 
-                       (name.person.handle, name.id))
+            links.append(('URL', "/person/%s/name/%s" % 
+                          (name.person.handle, name.order)))
+        table.links(links)
     return table.get_html()
 
 def person_source_table(djperson, user):

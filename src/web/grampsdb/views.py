@@ -30,7 +30,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext, escape
 from django.db.models import Q
 
@@ -41,6 +41,7 @@ from django.db.models import Q
 #------------------------------------------------------------------------
 import web
 from web.grampsdb.models import *
+from web.forms import NameForm
 
 _ = lambda text: text
 
@@ -102,18 +103,49 @@ def user_page(request, username):
     context["cview"] = _('User')
     return render_to_response('user_page.html', context)
 
-def view_name_detail(request, handle, id):
-    view_template = "view_name_detail.html"
-    name = Name.objects.get(id=id)
-    person = Person.objects.get(handle=handle)
+def view_name_detail(request, handle, order, action="view"):
+    if request.POST.has_key("action"):
+        action = request.POST.get("action")
+    if action == "view":
+        person = Person.objects.get(handle=handle)
+        name = person.name_set.get(order=order)
+        form = NameForm(instance=name)
+        form.model = name
+    elif action == "edit":
+        person = Person.objects.get(handle=handle)
+        name = person.name_set.get(order=order)
+        form = NameForm(instance=name)
+        form.model = name
+    elif action == "delete":
+        pass
+    elif action == "add":
+        pass
+    elif action == "save":
+        person = Person.objects.get(handle=handle)
+        name = person.name_set.get(order=order)
+        form = NameForm(request.POST, instance=name)
+        form.model = name
+        if form.is_valid():
+            form.save()
+        else:
+            action = "edit"
     context = RequestContext(request)
-    context["cview"] = 'Name'
+    context["action"] = action
+    context["cview"] = action #_('Name')
     context["view"] = 'name'
     context["handle"] = handle
     context["id"] = id
-    context["name"] = name
     context["person"] = person
-    return render_to_response(view_template, context)
+    context["form"] = form
+    context["order"] = name.order
+    view_template = "view_name_detail.html"
+    print "action:", action
+    if action == "save":
+        context["action"] = "view"
+        return redirect("/person/%s/name/%d" % 
+                        (person.handle, name.order), context)
+    else:
+        return render_to_response(view_template, context)
     
 def view_detail(request, view, handle):
     if view == "event":
