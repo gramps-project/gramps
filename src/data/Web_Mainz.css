@@ -199,6 +199,7 @@ a:visited {
     border-style: solid;
     border-color: #7D5925;
     border-width:1px 1px 1px 1px;
+    width: 30%;
 }
 
 table tr.even {
