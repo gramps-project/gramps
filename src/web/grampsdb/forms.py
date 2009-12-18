@@ -25,13 +25,13 @@ class NameForm(forms.ModelForm):
                   "preferred")
     # Add these because they are TextFields, which render as
     # Textareas:
-    surname = forms.CharField(required=False, widget=TextInput())
-    first_name = forms.CharField(required=False, widget=TextInput())
-    title = forms.CharField(required=False, widget=TextInput())
-    prefix = forms.CharField(required=False, widget=TextInput())
-    suffix = forms.CharField(required=False, widget=TextInput())
-    call = forms.CharField(required=False, widget=TextInput())
-    patronymic = forms.CharField(required=False, widget=TextInput())
+    surname = forms.CharField(required=False, widget=TextInput(attrs={'size':'30'}))
+    first_name = forms.CharField(required=False, widget=TextInput(attrs={'size':'30'}))
+    title = forms.CharField(required=False, widget=TextInput(attrs={'size':'30'}))
+    prefix = forms.CharField(required=False, widget=TextInput(attrs={'size':'30'}))
+    suffix = forms.CharField(required=False, widget=TextInput(attrs={'size':'30'}))
+    call = forms.CharField(required=False, widget=TextInput(attrs={'size':'30'}))
+    patronymic = forms.CharField(required=False, widget=TextInput(attrs={'size':'30'}))
 
 '''class NameFormset(BaseModelFormSet):
     def __init__(self, *args, **kwargs):

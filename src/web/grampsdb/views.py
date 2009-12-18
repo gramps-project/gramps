@@ -121,7 +121,18 @@ def view_name_detail(request, handle, order, action="view"):
         form.model = name
     elif action == "delete":
         person = Person.objects.get(handle=handle)
-        person.name_set.get(order=order).delete()
+        name_to_delete = person.name_set.get(order=order)
+        was_preferred = name_to_delete.preferred
+        name_to_delete.delete()
+        names = person.name_set.all().order_by("order")
+        for count in range(names.count()):
+            if was_preferred:
+                names[count].preferred = True
+                was_preferred = False
+            names[count].order = count
+            names[count].save()
+        form = NameForm()
+        name = Name()
         action = "back"
     elif action == "add":
         person = Person.objects.get(handle=handle)
@@ -129,31 +140,33 @@ def view_name_detail(request, handle, order, action="view"):
         form = NameForm()
         form.model = name
         action = "edit"
-    elif action == "new":
-        person = Person.objects.get(handle=handle)
-        form = NameForm(request.POST)
-        if form.is_valid():
-            name.save()
-            action = "save"
-        else:
-            action = "edit"
     elif action == "save":
         person = Person.objects.get(handle=handle)
-        name = person.name_set.get(order=order)
+        try:
+            name = person.name_set.get(order=order)
+        except:
+            order = person.name_set.count() + 1
+            name = Name(calendar=0, modifier=0, quality=0,
+                        year1=0, day1=0, month1=0,
+                        sortval = 0, newyear=0, order=order,
+                        sort_as=0, display_as=0, person_id=person.id)
         form = NameForm(request.POST, instance=name)
         form.model = name
         if form.is_valid():
             # now it is preferred:
-            if form.cleaned_data["preferred"]:
-                # but it wasn't:
-                if not name.preferred:
-                    # set all of the other names to be 
-                    # not preferred:
-                    person.name_set.filter(~ Q(id=name.id)) \
-                        .update(preferred=False)
-                # else it always was
+            print "valid"
+            if name.preferred: # was preferred, stil must be
+                form.cleaned_data["preferred"] = True
+            elif form.cleaned_data["preferred"]: # now is
+                # set all of the other names to be 
+                # not preferred:
+                print "set"
+                person.name_set.filter(~ Q(id=name.id)) \
+                    .update(preferred=False)
             # else some other name is preferred
-            form.save()
+            print "save"
+            n = form.save()
+            print n.preferred
         else:
             action = "edit"
     context = RequestContext(request)
