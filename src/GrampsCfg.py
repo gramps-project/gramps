@@ -55,6 +55,7 @@ from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2
 from Errors import NameDisplayError
 from glade import Glade
+from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
 #
@@ -686,6 +687,37 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.attach(obox, 1, 3, row, row+1, yoptions=0)
         row += 1
 
+        # Date format on reports:
+        obox = gtk.combo_box_new_text()
+        #formats = GrampsLocale.tformat
+        formats = DateHandler.get_date_formats()
+        for item in formats:
+            obox.append_text(item)
+        active = config.get('preferences.date-format-report')
+        if active >= len(formats):
+            active = 0
+        obox.set_active(active)
+        obox.connect('changed', self.date_format_report_changed)
+        lwidget = BasicLabel("%s: " % _('Date format on reports'))
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox, 1, 3, row, row+1, yoptions=0)
+        row += 1
+        
+        # Calendar format on report:
+        obox = gtk.combo_box_new_text()
+        formats = DateHandler.get_calendar_formats()
+        for item in formats:
+            obox.append_text(item)
+        active = config.get('preferences.calendar-format-report')
+        if active >= len(formats):
+            active = 0
+        obox.set_active(active)
+        obox.connect('changed', self.date_calendar_changed)
+        lwidget = BasicLabel("%s: " % _('Calendar format on reports'))
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox, 1, 3, row, row+1, yoptions=0)
+        row += 1
+
         # Surname guessing:
         obox = gtk.combo_box_new_text()
         formats = _surname_styles
@@ -764,6 +796,14 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         OkDialog(_('Change is not immediate'), 
                  _('Changing the data format will not take '
                    'effect until the next time Gramps is started.'))
+
+    def date_calendar_changed(self, obj):
+ 
+        config.set('preferences.calendar-format-report', obj.get_active())
+    
+    def date_format_report_changed(self, obj):
+
+        config.set('preferences.date-format-report', obj.get_active())
 
     def add_date_panel(self):
         table = gtk.Table(2, 7)

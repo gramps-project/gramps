@@ -80,3 +80,12 @@ def get_date(date_base) :
 def get_date_valid(date_base):
     date_obj = date_base.get_date_object()
     return date_obj.get_valid()
+    
+def get_calendar_formats():
+    """
+    Return the list of supported calendars.
+    """
+    try:
+        return LANG_TO_DISPLAY[LANG].calendar
+    except:
+        return LANG_TO_DISPLAY["C"].calendar
