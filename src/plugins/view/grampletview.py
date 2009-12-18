@@ -196,7 +196,10 @@ class LinkTag(gtk.TextTag):
         tag_table = buffer.get_tag_table()
         self.set_property('foreground', "blue")
         #self.set_property('underline', pango.UNDERLINE_SINGLE)
-        tag_table.add(self)
+        try:
+            tag_table.add(self)
+        except ValueError: # tag is already in tag table
+            pass
 
 class GrampletWindow(ManagedWindow.ManagedWindow):
     """
