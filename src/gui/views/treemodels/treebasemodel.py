@@ -348,7 +348,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
             #a node is added that is already present,
             self._add_dup_node(parent, child, sortkey, handle)
         else:
-            self.tree[child] = (parent, handle)
+            self.tree[child] = [parent, handle]
             if parent in self.children:
                 if self._in_build:
                     self.children[parent].append((sortkey, child))
@@ -439,6 +439,12 @@ class TreeBaseModel(gtk.GenericTreeModel):
             for child in self.children[node]:
                 self._reverse_level(child[1])
 
+    def get_tree_levels(self):
+        """
+        Return the headings of the levels in the hierarchy.
+        """
+        raise NotImplementedError
+        
     def add_row(self, handle, data):
         """
         Add a row to the model.  In general this will add more then one node.
@@ -470,7 +476,13 @@ class TreeBaseModel(gtk.GenericTreeModel):
         while parent is not None:
             next_parent = self.on_iter_parent(parent)
             if parent not in self.children:
-                self.remove_node(parent)
+                if self.tree[parent][1]:
+                    # emit row_has_child_toggled signal
+                    path = self.on_get_path(parent)
+                    node = self.get_iter(path)
+                    self.row_has_child_toggled(path, node)
+                else:
+                    self.remove_node(parent)
             parent = next_parent
             
         _LOG.debug(self.__class__.__name__ + ' delete_row_by_handle ' +
