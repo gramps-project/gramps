@@ -439,18 +439,20 @@ class GeoView(HtmlView):
         self._savezoomandposition()
         # Need to wait the page is loaded to show the markers.
         gobject.timeout_add(1500, self._show_selected_places)
-        #self._erase_placebox_selection()
+        self._erase_placebox_selection()
 
     def _show_selected_places(self):
         """
         Here, we synchronize the years combobox with the renderer
+        except when we are in the places view.
         """
-        index = 0
-        for r_year in self.buttons:
-            if self.last_selected_year == r_year[0]:
-                self.yearsbox.set_active(index)
-                self._call_js_selectmarkers(r_year[0])
-            index += 1
+        if self.displaytype != "places":
+            index = 0
+            for r_year in self.buttons:
+                if self.last_selected_year == r_year[0]:
+                    self.yearsbox.set_active(index)
+                    self._call_js_selectmarkers(r_year[0])
+                index += 1
 
     def _show_places_without_coord(self, widget): # pylint: disable-msg=W0613
         """
@@ -498,7 +500,7 @@ class GeoView(HtmlView):
                                         entry[1])
                     # Need to wait the page is loaded to show the markers.
                     gobject.timeout_add(1600, self._show_selected_places)
-        self._erase_placebox_selection()
+                self._erase_placebox_selection()
         return
         
     def _show_place_info_bubble(self, marker_index):
@@ -510,9 +512,9 @@ class GeoView(HtmlView):
 
     def _erase_placebox_selection(self):
         """
-        We erase the place selected after 2 secondes.
+        We erase the place name in the entrybox after 1 second.
         """
-        gobject.timeout_add(2000, self.placebox.child.set_text, "")
+        gobject.timeout_add(1000, self.placebox.child.set_text, "")
 
     def on_delete(self):
         """
@@ -1051,8 +1053,8 @@ class GeoView(HtmlView):
         if modulo == 0:
             modulo = 10
         self.minyear -= self.minyear % 10
-        self.maxyear -= self.maxyear % 10
-        self.yearint = ( self.maxyear - self.minyear ) / 10 + 5
+        self.maxyear -= ( self.maxyear % 10 ) + 10
+        self.yearint = ( self.maxyear - self.minyear ) / ( self.maxbut - 1 )
         self.yearint -= ( self.yearint % modulo )
         if self.yearint == 0:
             self.yearint = 10
@@ -1749,11 +1751,11 @@ class GeoView(HtmlView):
                                 'name' : _nd.display(person)
                                 }
                 self._createpersonmarkers(dbstate, person, comment)
-        self._need_to_create_pages(3, self.center,
-                                  _("All %(name)s people's family places in the"
-                                   " family tree with coordinates.") % {
-                                     'name' :_nd.display(person) },
-                                  )
+            self._need_to_create_pages(3, self.center,
+                                      _("All %(name)s people's family places in the"
+                                       " family tree with coordinates.") % {
+                                         'name' :_nd.display(person) },
+                                      )
 
     def _createmapstractionperson(self, dbstate):
         """
@@ -1809,8 +1811,8 @@ class GeoView(HtmlView):
                         else:
                             self._append_to_places_without_coord(
                                                         place.gramps_id, descr)
-        self._need_to_create_pages(4, self.center, 
-                                   _("All event places for") + (" %s." % 
+            self._need_to_create_pages(4, self.center, 
+                                       _("All event places for") + (" %s." % 
                                                          _nd.display(person) ) )
 
     def _need_to_create_pages(self, ptype, center, message ):
