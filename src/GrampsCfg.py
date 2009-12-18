@@ -790,7 +790,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         win = DisplayNameEditor(self.uistate, self.dbstate, self.track, self)
 
     def date_format_changed(self, obj):
-        from QuestionDialog import OkDialog
 
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
