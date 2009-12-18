@@ -52,10 +52,9 @@ import Utils
 from gen.lib import Name
 import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
-from QuestionDialog import ErrorDialog, QuestionDialog2
+from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
 from Errors import NameDisplayError
 from glade import Glade
-from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
 #
