@@ -1,6 +1,7 @@
-
+# Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1102,7 +1103,7 @@ class RelationshipView(PageView.PersonNavView):
             return None
 
         birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
-        if birth and birth.get_type != gen.lib.EventType.BIRTH:
+        if birth and birth.get_type() != gen.lib.EventType.BIRTH:
             sdate = DateHandler.get_date(birth)
             if sdate:
                 bdate  = "<i>%s</i>" % cgi.escape(sdate)
@@ -1114,7 +1115,7 @@ class RelationshipView(PageView.PersonNavView):
             bdate = ""
 
         death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
-        if death and death.get_type != gen.lib.EventType.DEATH:
+        if death and death.get_type() != gen.lib.EventType.DEATH:
             sdate = DateHandler.get_date(death)
             if sdate:
                 ddate  = "<i>%s</i>" % cgi.escape(sdate)
