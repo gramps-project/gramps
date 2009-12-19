@@ -688,7 +688,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         # Date format on reports:
         obox = gtk.combo_box_new_text()
-        #formats = GrampsLocale.tformat
         formats = DateHandler.get_date_formats()
         for item in formats:
             obox.append_text(item)
