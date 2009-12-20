@@ -68,3 +68,9 @@ class EventRoleType(GrampsType):
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
+
+    def is_primary(self):
+        """
+        Returns True if EventRoleType is primary, False otherwise.
+        """
+        return self.__value == self.PRIMARY
