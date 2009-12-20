@@ -810,25 +810,25 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.add_pos_int_entry(table, 
                 _('Date about range'),
-                0, 'behavior.date-about-range', self.update_entry)
+                0, 'behavior.date-about-range', self.update_int_entry)
         self.add_pos_int_entry(table, 
                 _('Date after range'),
-                1, 'behavior.date-after-range', self.update_entry)
+                1, 'behavior.date-after-range', self.update_int_entry)
         self.add_pos_int_entry(table, 
                 _('Date before range'),
-                2, 'behavior.date-before-range', self.update_entry)
+                2, 'behavior.date-before-range', self.update_int_entry)
         self.add_pos_int_entry(table, 
                 _('Maximum age probably alive'),
-                3, 'behavior.max-age-prob-alive', self.update_entry)
+                3, 'behavior.max-age-prob-alive', self.update_int_entry)
         self.add_pos_int_entry(table, 
                 _('Maximum sibling age difference'),
-                4, 'behavior.max-sib-age-diff', self.update_entry)
+                4, 'behavior.max-sib-age-diff', self.update_int_entry)
         self.add_pos_int_entry(table, 
                 _('Minimum years between generations'),
-                5, 'behavior.min-generation-years', self.update_entry)
+                5, 'behavior.min-generation-years', self.update_int_entry)
         self.add_pos_int_entry(table, 
                 _('Average years between generations'),
-                6, 'behavior.avg-generation-gap', self.update_entry)
+                6, 'behavior.avg-generation-gap', self.update_int_entry)
         self.add_pos_int_entry(table,
                 _('Markup for invalid date format'), 
                 7, 'preferences.invalid-date-format', self.update_entry)
@@ -991,6 +991,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             if val:
                 self.path_entry.set_text(val)
         f.destroy()
+
+    def update_int_entry(self, obj, constant):
+        config.set(constant, int(obj.get_text()))
 
     def update_entry(self, obj, constant):
         config.set(constant, unicode(obj.get_text()))
