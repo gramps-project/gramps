@@ -48,15 +48,12 @@ register.filter('preview', preview)
 make_name.is_safe = True
 register.filter('make_name', make_name)
 
-def preferred(name_set, attr):
+def preferred(person):
     try:
-        name = name_set.get(preferred=True)
+        name = person.name_set.get(preferred=True)
     except:
-        return "[No preferred name]"
-    if name:
-        return escape(getattr(name, attr))
-    else:
-        return "[Missing]"
+        name = None
+    return name
 preferred.is_safe = True
 register.filter('preferred', preferred)
 
@@ -87,13 +84,6 @@ def table_header(context, headers = None):
 
 register.inclusion_tag('table_header.html', 
                        takes_context=True)(table_header)
-
-def view_navigation(context):
-    # add things for the view here
-    return context
-
-register.inclusion_tag('view_navigation.html', 
-                       takes_context=True)(view_navigation)
 
 def paginator(context, adjacent_pages=2):
     """

@@ -11,91 +11,54 @@
    </script>
 
 <div class="content" id="IndividualDetail">
-<h3>{{person.name_set|make_name:user}}</h3>
+<h3></h3>
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 5 cols {% endcomment %}
 <tbody>
 
-{% if user.is_authenticated %}
 <tr>
  <td class="ColumnAttribute">Family:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"surname"}}</td>
+ <td class="ColumnValue" id="data">{{name.surname}}</td>
  <td class="ColumnAttribute">Prefix:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"prefix"}}</td>
- <td rowspan="5" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
+ <td class="ColumnValue" id="data">{{name.prefix}}</td>
+ <td rowspan="6" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
 </tr>
+<tr>
  <td class="ColumnAttribute" colspan="2"></td>
  <td class="ColumnAttribute">Suffix:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"suffix"}}</td>
+ <td class="ColumnValue" id="data">{{name.suffix}}</td>
+</tr>
 <tr>
  <td class="ColumnAttribute">Given:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"first_name"}}</td>
+ <td class="ColumnValue" id="data">{{name.first_name}}</td>
  <td class="ColumnAttribute">Call Name:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"call"}}</td>
+ <td class="ColumnValue" id="data">{{name.call}}</td>
 </tr>
 <tr>
  <td class="ColumnAttribute">Type:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"name_type"}}</td>
+ <td class="ColumnValue" id="data">{{name.name_type}}</td>
  <td class="ColumnAttribute">Patronymic:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"patronymic"}}</td>
+ <td class="ColumnValue" id="data">{{name.patronymic}}</td>
 </tr>
-</tr>
+<tr>
  <td class="ColumnAttribute" colspan="2"></td>
  <td class="ColumnAttribute">Title:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"title"}}</td>
-<tr>
+ <td class="ColumnValue" id="data">{{name.title}}</td>
+</tr>
 <tr>
  <td class="ColumnAttribute">Gender:</td>
- <td class="ColumnValue" id="data">{{person.gender_type|escape}}</td>
+ <td class="ColumnValue" id="data">{{person.gender_type}}</td>
  <td class="ColumnAttribute">ID:</td>
- <td class="ColumnValue" id="data">{{person.gramps_id|escape}}</td>
+ <td class="ColumnValue" id="data">{{person.gramps_id}}</td>
+</tr>
+<tr>
  <td class="ColumnAttribute">Marker:</td>
- <td class="ColumnValue" id="data">{{person.marker_type|escape}}</td>
+ <td class="ColumnValue" id="data">{{person.marker_type}}</td>
+ <td class="ColumnAttribute" colspan="3"></td>
 </tr>
 </tbody>
 </table>
 
-{% else %}
-
-<tr>
- <td class="ColumnAttribute">Family:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"surname"}}</td>
- <td class="ColumnAttribute">Prefix:</td>
- <td class="ColumnValue" id="data">[Private]</td>
- <td rowspan="5" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
-</tr>
- <td class="ColumnAttribute" colspan="2"></td>
- <td class="ColumnAttribute">Suffix:</td>
- <td class="ColumnValue" id="data">[Private]</td>
-<tr>
- <td class="ColumnAttribute">Given:</td>
- <td class="ColumnValue" id="data">[Private]</td>
- <td class="ColumnAttribute">Call Name:</td>
- <td class="ColumnValue" id="data">[Private]</td>
-</tr>
-<tr>
- <td class="ColumnAttribute">Type:</td>
- <td class="ColumnValue" id="data">{{person.name_set|preferred:"name_type"}}</td>
- <td class="ColumnAttribute">Patronymic:</td>
- <td class="ColumnValue" id="data">[Private]</td>
-</tr>
-</tr>
- <td class="ColumnAttribute" colspan="2"></td>
- <td class="ColumnAttribute">Title:</td>
- <td class="ColumnValue" id="data">[Private]</td>
-<tr>
-<tr>
- <td class="ColumnAttribute">Gender:</td>
- <td class="ColumnValue" id="data">{{person.gender_type|escape}}</td>
- <td class="ColumnAttribute">ID:</td>
- <td class="ColumnValue" id="data">{{person.gramps_id|escape}}</td>
- <td class="ColumnAttribute">Marker:</td>
- <td class="ColumnValue" id="data"></td>
-</tr>
-</tbody>
-</table>
-
-{% endif %}
 </div>
 </div>
 <!-- Tabs -->

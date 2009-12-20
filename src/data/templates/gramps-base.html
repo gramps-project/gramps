@@ -29,9 +29,9 @@
    <div id="navigation">
     {% block navigation %}
     <ul>
-    <li class="{{ cview|currentSection:"home" }}"><a href="/">Home</a></li>
+    <li class="{{ tview|currentSection:"home" }}"><a href="/">Home</a></li>
     {% for view in views %}
-         <li class="{{ cview|currentSection:view.1 }}"><a href="/{{view.1}}/">{{view.0}}</a></li>
+         <li class="{{tview|currentSection:view.1 }}"><a href="/{{view.1}}/">{{view.0}}</a></li>
     {% endfor %}
     {% if user.is_authenticated %}
          <li><a href="/logout">Logout</a></li>

@@ -42,6 +42,7 @@ from django.db.models import Q
 import web
 from web.grampsdb.models import *
 from web.grampsdb.forms import NameForm
+from web.utils import probably_alive
 
 _ = lambda text: text
 
@@ -82,13 +83,13 @@ def context_processor(request):
 def main_page(request):
     context = RequestContext(request)
     context["view"] = 'home'
-    context["cview"] = _('Home')
+    context["tview"] = _('Home')
     return render_to_response("main_page.html", context)
                               
 def logout_page(request):
     context = RequestContext(request)
     context["view"] = 'home'
-    context["cview"] = _('Home')
+    context["tview"] = _('Home')
     logout(request)
     return HttpResponseRedirect('/')
 
@@ -100,7 +101,7 @@ def user_page(request, username):
     context = RequestContext(request)
     context["username"] =  username
     context["view"] = 'user'
-    context["cview"] = _('User')
+    context["tview"] = _('User')
     return render_to_response('user_page.html', context)
 
 def view_name_detail(request, handle, order, action="view"):
@@ -171,7 +172,7 @@ def view_name_detail(request, handle, order, action="view"):
             action = "edit"
     context = RequestContext(request)
     context["action"] = action
-    context["cview"] = action #_('Name')
+    context["tview"] = _('Name')
     context["view"] = 'name'
     context["handle"] = handle
     context["id"] = id
@@ -190,67 +191,91 @@ def view_name_detail(request, handle, order, action="view"):
     else:
         return render_to_response(view_template, context)
     
+
+class PrivateProxy(object):
+    def __init__(self, obj):
+        self.obj = obj
+
+    def __getattr__(self, attr):
+        return getattr(self.obj, attr)
+
 def view_detail(request, view, handle):
+    context = RequestContext(request)
+    context["view"] = view
     if view == "event":
         try:
             obj = Event.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_event_detail.html'
+        context["tview"] = _("Event")
     elif view == "family":
         try:
             obj = Family.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_family_detail.html'
+        context["tview"] = _("Family")
     elif view == "media":
         try:
             obj = Media.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_media_detail.html'
+        context["tview"] = _("Media")
     elif view == "note":
         try:
             obj = Note.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_note_detail.html'
+        context["tview"] = _("Note")
     elif view == "person":
         try:
             obj = Person.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_person_detail.html'
+        person = obj
+        name = person.get_primary_name()
+        if request.user.is_authenticated():
+            pass # see everything, no limits
+        elif probably_alive(person.handle):
+            name.first_name = "[Living]"
+        elif person.private:
+            name = Name()
+            name.surname = "[Private]"
+            name.first_name = "[Private]"
+        # FIXME: protect everything else; what if name.private?
+        context["name"] = name
+        context["tview"] = _("Person")
     elif view == "place":
         try:
             obj = Place.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_place_detail.html'
+        context["tview"] = _("Place")
     elif view == "repository":
         try:
             obj = Repository.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_repository_detail.html'
+        context["tview"] = _("Repository")
     elif view == "source":
         try:
             obj = Source.objects.get(handle=handle)
         except:
             raise Http404(_("Requested %s does not exist.") % view)
         view_template = 'view_source_detail.html'
+        context["tview"] = _("Source")
     else:
         raise Http404(_("Requested page type not known"))
-    cview = view.title()
-    context = RequestContext(request)
-    context["cview"] = cview
-    context["view"] = view
-    context["handle"] = handle
     context[view] = obj
     return render_to_response(view_template, context)
 
 def view(request, view):
-    cview = view.title()
     search = ""
     if view == "event":
         if request.user.is_authenticated():
@@ -471,7 +496,7 @@ def view(request, view):
     context = RequestContext(request)
     context["page"] = page
     context["view"] = view
-    context["cview"] = cview
+    context["tview"] = _(view.title())
     context["search"] = search
     context["total"] = total
     if search:

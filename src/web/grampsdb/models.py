@@ -344,6 +344,17 @@ class Person(PrimaryObject):
     #   .lds_set
     #   .url_set
 
+    def get_primary_name(self):
+        """
+        Return the preferred name of a person.
+        """
+        names = self.name_set.all().order_by("order")
+        if names.count() > 0:
+            name = names[0]
+        else:
+            name = None
+        return name
+
 class Family(PrimaryObject):
     father = models.ForeignKey('Person', related_name="father_ref", 
                                null=True, blank=True)
@@ -456,6 +467,18 @@ class Name(DateObject, SecondaryObject):
                                ["", " "][bool(self.prefix)],
                                self.surname, 
                                self.first_name)
+    @staticmethod
+    def get_dummy():
+        name = Name()
+        #name.
+
+    def sanitize(self):
+        self.first_name = "[Private]"
+        self.prefix = ""
+        self.suffix = ""
+        self.prefix = ""
+        self.prefix = ""
+        self.prefix = ""
 
 class Lds(DateObject, SecondaryObject):
     """

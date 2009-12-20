@@ -131,7 +131,11 @@ def render(formfield, action):
         retval = formfield.as_widget()
     return retval
 
+def make_button(text, url):
+    return """[<a href="%s">%s</a>]""" % (url, text)
+
 def person_event_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Description"), 
                   _("Type"),
@@ -153,9 +157,14 @@ def person_event_table(djperson, user):
                 display_date(djevent),
                 get_title(djevent.place),
                 str(event_ref.role_type))
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add event"), "/person/%s/event/add" % djperson.handle)
+    return retval
 
 def person_name_table(djperson, user):
+    print "person_name_table", djperson, user
+    retval = ""
     table = Table()
     table.columns(_("Name"), 
                   _("Type"),
@@ -172,7 +181,10 @@ def person_name_table(djperson, user):
                                            object_id=name.id)
             note = ""
             if note_refs.count() > 0:
-                note = dji.Note.get(id=note_refs[0].object_id).text[:50]
+                try:
+                    note = dji.Note.get(id=note_refs[0].object_id).text[:50]
+                except:
+                    note = None
             table.row(make_name(name, user),
                       str(name.name_type),
                       name.group_as,
@@ -181,9 +193,13 @@ def person_name_table(djperson, user):
             links.append(('URL', "/person/%s/name/%s" % 
                           (name.person.handle, name.order)))
         table.links(links)
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add name"), "/person/%s/name/add" % djperson.handle)
+    return retval
 
 def person_source_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("ID"), 
                   _("Title"),
@@ -200,9 +216,13 @@ def person_source_table(djperson, user):
                       source_ref.ref_object.author,
                       source_ref.page,
                       )
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add source"), "/person/%s/source/add" % djperson.handle)
+    return retval
 
 def person_attribute_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Type"), 
                   _("Value"),
@@ -214,9 +234,13 @@ def person_attribute_table(djperson, user):
         for attribute in attributes:
             table.row(attribute.attribute_type.name,
                       attribute.value)
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add attribute"), "/person/%s/attribute/add" % djperson.handle)
+    return retval
 
 def person_address_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Date"), 
                   _("Address"),
@@ -232,9 +256,13 @@ def person_address_table(djperson, user):
                           location.city,
                           location.state,
                           location.country)
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add address"), "/person/%s/address/add" % djperson.handle)
+    return retval
 
 def person_note_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(
         _("ID"),
@@ -250,16 +278,24 @@ def person_note_table(djperson, user):
             table.row(table.db.get_note_from_handle(note.handle),
                       str(note_ref.ref_object.note_type),
                       note_ref.ref_object.text[:50])
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add note"), "/person/%s/note/add" % djperson.handle)
+    return retval
 
 def person_gallery_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Name"), 
                   _("Type"),
                   )
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add gallery"), "/person/%s/gallery/add" % djperson.handle)
+    return retval
 
 def person_internet_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Type"),
                   _("Path"),
@@ -270,9 +306,13 @@ def person_internet_table(djperson, user):
             table.row(str(url.url_type),
                       url.path,
                       url.desc)
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add internet"), "/person/%s/internet/add" % djperson.handle)
+    return retval
 
 def person_association_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Name"), 
                   _("ID"),
@@ -282,9 +322,13 @@ def person_association_table(djperson, user):
         associations = gperson.get_person_ref_list()
         for association in associations:
             table.row()
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add association"), "/person/%s/association/add" % djperson.handle)
+    return retval
 
 def person_lds_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Type"), 
                   _("Date"),
@@ -300,9 +344,13 @@ def person_lds_table(djperson, user):
                       str(lds.status),
                       lds.temple,
                       get_title(lds.place))
-    return table.get_html()
+    retval += table.get_html()
+    if user.is_authenticated():
+        retval += make_button(_("Add LDS"), "/person/%s/lds/add" % djperson.handle)
+    return retval
 
 def person_reference_table(djperson, user):
+    retval = ""
     table = Table()
     table.columns(_("Type"), 
                   _("ID"),
@@ -316,6 +364,7 @@ def person_reference_table(djperson, user):
     return table.get_html()
 
 def family_children_table(djfamily, user):
+    retval = ""
     table = Table()
     table.columns(
         _("#"),
@@ -332,6 +381,7 @@ def family_children_table(djfamily, user):
     return table.get_html()
 
 def family_event_table(djfamily, user):
+    retval = ""
     table = Table()
     table.columns(
         _("Description"),
@@ -345,6 +395,7 @@ def family_event_table(djfamily, user):
     return table.get_html()
 
 def family_source_table(djfamily, user):
+    retval = ""
     table = Table()
     table.columns(
         _("ID"),
@@ -356,6 +407,7 @@ def family_source_table(djfamily, user):
     return table.get_html()
 
 def family_attribute_table(djfamily, user):
+    retval = ""
     table = Table()
     table.columns(
         _("Type"),
@@ -365,6 +417,7 @@ def family_attribute_table(djfamily, user):
     return table.get_html()
 
 def family_note_table(djfamily, user):
+    retval = ""
     table = Table()
     table.columns(
         _("Type"),
@@ -374,6 +427,7 @@ def family_note_table(djfamily, user):
     return table.get_html()
 
 def family_gallery_table(djfamily, user):
+    retval = ""
     table = Table()
     table.columns(
         _("Column"),
@@ -382,6 +436,7 @@ def family_gallery_table(djfamily, user):
     return table.get_html()
 
 def family_lds_table(djfamily, user):
+    retval = ""
     table = Table()
     table.columns(
         _("Type"),
