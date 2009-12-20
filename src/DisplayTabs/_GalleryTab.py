@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -344,11 +345,11 @@ class GalleryTab(ButtonTab):
         dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target(),
                       DdTargets.MEDIAOBJ.target()]
 
-        self.iconlist.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types,
-                                    gtk.gdk.ACTION_COPY)
-        self.iconlist.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                      [self._DND_TYPE.target()],
-                                      gtk.gdk.ACTION_COPY)
+        self.iconlist.enable_model_drag_dest(dnd_types,
+                                         gtk.gdk.ACTION_COPY)
+        self.iconlist.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
+                                  [self._DND_TYPE.target()],
+                                  gtk.gdk.ACTION_COPY)
         self.iconlist.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.iconlist.connect('drag_data_received', self.drag_data_received)
