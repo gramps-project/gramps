@@ -23,33 +23,50 @@
 
 #------------------------------------------------------------------------
 #
-# Gramps/Django Modules
+# Python Modules
 #
 #------------------------------------------------------------------------
-import web.grampsdb.models as models
-import web.grampsdb.forms as forms
-from web import libdjango
-from web.djangodb import DjangoDb
-from Simple import SimpleTable, SimpleAccess, make_basic_stylesheet
-import Utils
-import DbState
-import DateHandler
-from gen.lib.date import Date as GDate, Today
-from gen.plug import BasePluginManager
-from cli.grampscli import CLIManager
+import locale
+
+#------------------------------------------------------------------------
+#
+# Django Modules
+#
+#------------------------------------------------------------------------
 from django.template import escape
 from django.utils.safestring import mark_safe
 from django.contrib.contenttypes.models import ContentType
 
 #------------------------------------------------------------------------
 #
-# Python Modules
+# Gramps-Connect Modules
 #
 #------------------------------------------------------------------------
-import locale
+import web.grampsdb.models as models
+import web.grampsdb.forms as forms
+from web import libdjango
+from web.djangodb import DjangoDb
 
+#------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#------------------------------------------------------------------------
+from Simple import SimpleTable, SimpleAccess, make_basic_stylesheet
+import Utils
+import DbState
+import DateHandler
+from gen.lib.date import Date as GDate, Today
+import gen.lib
+from gen.plug import BasePluginManager
+from cli.grampscli import CLIManager
+
+#------------------------------------------------------------------------
+#
+# Modeul Constants
+#
+#------------------------------------------------------------------------
 dji = libdjango.DjangoInterface()
-
 _dd = DateHandler.displayer.display
 _dp = DateHandler.parser.parse
 
@@ -458,10 +475,18 @@ def get_title(place):
         return ""
 
 def person_get_birth_date(person):
-    return person_get_event(person, models.EventType.BIRTH)
+    db = DjangoDb()
+    event = db.get_birth_or_fallback(person)
+    if event:
+        return event.date
+    return None
 
 def person_get_death_date(person):
-    return person_get_event(person, models.EventType.DEATH)
+    db = DjangoDb()
+    event = db.get_death_or_fallback(person)
+    if event:
+        return event.date
+    return None
 
 def display_date(obj):
     date_tuple = dji.get_date(obj)
@@ -493,7 +518,7 @@ def person_get_event(person, event_type=None):
                   for event_handle in event_ref_list]
         return [j for i in retval for j in i]
 
-def make_name(name, user):
+def make_name(name, user=None):
     if isinstance(name, models.Name):
         surname = name.surname.strip()
         if not surname:
@@ -516,16 +541,14 @@ def make_name(name, user):
                 return "%s, %s" % (surname, "[Living]")
             else:
                 return "%s, %s" % (surname, name.model.first_name)
-    elif name: # name_set
-        try:
-            name = name.get(preferred=True)
-        except:
+    elif isinstance(name, gen.lib.Person): # name is a gen.lib.Person
+        person = name
+        name = person.get_primary_name()
+        if name is None:
             return "[No preferred name]"
-        if name:
-            return make_name(name, user)
         else:
-            return ""
-    else:
+            return "%s, %s" % (name.get_surname(), name.get_first_name())
+    else: # no name
         return ""
 
 register_plugins()

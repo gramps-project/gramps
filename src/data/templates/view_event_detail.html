@@ -22,7 +22,11 @@
 </tr>
 <tr>
 <td class="ColumnAttribute">Description:</td>
+{% if user.is_authenticated %}
 <td  class="ColumnValue" id="data" colspan="3">{{event.description|escape}}</td>
+{% else %}
+<td  class="ColumnValue" id="data" colspan="3">[Private]</td>
+{% endif %}
 </tr>
 <tr>
 <td class="ColumnAttribute">ID:</td>

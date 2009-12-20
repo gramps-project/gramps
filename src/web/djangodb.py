@@ -60,6 +60,15 @@ class DjangoDb(GrampsDbBase):
         self.dji = DjangoInterface()
         self.readonly = False
         self.db_is_open = True
+        self.name_formats = range(4)
+        self.bookmarks = []
+        self.family_bookmarks = []
+        self.event_bookmarks = []
+        self.place_bookmarks = []
+        self.source_bookmarks = []
+        self.repo_bookmarks = []
+        self.media_bookmarks = []
+        self.note_bookmarks = []
 
     def get_researcher(self):
         obj = gen.lib.Name()

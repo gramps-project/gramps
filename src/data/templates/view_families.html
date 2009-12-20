@@ -18,8 +18,8 @@
   <tr class="{% cycle odd,even %}">
     <td><a href="/{{view}}/{{family.handle|escape}}" class="noThumb">{{ forloop.counter|row_count:page }}</a></td>
     <td><a href="/{{view}}/{{family.handle|escape}}" class="noThumb"><span class="grampsid">[{{family.gramps_id}}]</span></a>
-    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.father.name_set|make_name:user|nbsp}}</a>
-    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.mother.name_set|make_name:user|nbsp}}</a>
+    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.father|make_name:user|nbsp}}</a>
+    <td><a href="/{{view}}/{{family.handle|escape}}">{{family.mother|make_name:user|nbsp}}</a>
     {% if user.is_authenticated %}
     <td><a href="/{{view}}/{{family.handle|escape}}">{{family.family_rel_type|escape}}</a>
     {% else %}

@@ -1,3 +1,6 @@
+import re
+
+from django import template
 from django.template import escape, Library
 from django.utils.safestring import mark_safe
 from web.utils import *
@@ -20,6 +23,40 @@ for filter_name in util_filters:
     func = getattr(web.utils, filter_name)
     func.is_safe = True
     register.filter(filter_name, func)
+
+def get_person_from_handle(db, handle):
+    # db is a Gramps Db interface
+    # handle is a Person Handle
+    return db.get_person_from_handle(handle)
+
+class TemplateNode(template.Node):
+    def __init__(self, args, var_name):
+        self.db = template.Variable(args[0])
+        self.handle = template.Variable(args[1])
+        self.var_name = var_name
+
+    def render(self, context):
+        context[self.var_name] = \
+            get_person_from_handle(self.db.resolve(context),
+                                   self.handle.resolve(context))
+        return ''
+
+def do_get_person_from_handle(parser, token):
+    try:
+        # Splitting by None == splitting by spaces.
+        tag_name, args = token.contents.split(None, 1)
+    except ValueError:
+        raise template.TemplateSyntaxError, \
+            ("%r tag requires arguments" % token.contents.split()[0])
+    m = re.search(r'(.*?) as (\w+)', args)
+    if not m:
+        raise template.TemplateSyntaxError, \
+            ("%r tag had invalid arguments" % tag_name)
+    args_string, var_name = m.groups()
+    args = args_string.split()
+    return TemplateNode(args, var_name)
+
+register.tag("get_person_from_handle", do_get_person_from_handle)
 
 probably_alive.is_safe = True
 register.filter('probably_alive', probably_alive)

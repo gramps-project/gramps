@@ -43,6 +43,9 @@ import web
 from web.grampsdb.models import *
 from web.grampsdb.forms import NameForm
 from web.utils import probably_alive
+from web.djangodb import DjangoDb
+
+from gen.proxy import LivingProxyDb
 
 _ = lambda text: text
 
@@ -276,6 +279,15 @@ def view_detail(request, view, handle):
     return render_to_response(view_template, context)
 
 def view(request, view):
+    db_direct = DjangoDb()
+    if not request.user.is_authenticated():
+        #MODE_EXCLUDE_ALL  = 0
+        #MODE_INCLUDE_LAST_NAME_ONLY = 1
+        #MODE_INCLUDE_FULL_NAME_ONLY = 2
+        db = LivingProxyDb(db_direct, 
+                           LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+    else:
+        db = db_direct
     search = ""
     if view == "event":
         if request.user.is_authenticated():
@@ -499,6 +511,7 @@ def view(request, view):
     context["tview"] = _(view.title())
     context["search"] = search
     context["total"] = total
+    context["db"] = db
     if search:
         context["search_query"] = ("&search=%s" % escape(search))
     else:

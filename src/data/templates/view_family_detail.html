@@ -12,7 +12,7 @@
 
 <div class="content" id="IndividualDetail">
 
-<h3>{{family.father.name_set|make_name:user}} and {{family.mother.name_set|make_name:user}}</h3>
+<h3>{{family.father|make_name:user}} and {{family.mother|make_name:user}}</h3>
 
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 4 cols {% endcomment %}
@@ -23,9 +23,9 @@
 </tr>
 <tr>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{family.father.handle}}">{{family.father.name_set|make_name:user}} [{{family.father.gramps_id|escape}}]</a></td>
+ <td class="ColumnValue" id="data"><a href="/person/{{family.father.handle}}">{{family.father|make_name:user}} [{{family.father.gramps_id|escape}}]</a></td>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{family.mother.handle}}">{{family.mother.name_set|make_name:user}} [{{family.mother.gramps_id|escape}}]</a></td>
+ <td class="ColumnValue" id="data"><a href="/person/{{family.mother.handle}}">{{family.mother|make_name:user}} [{{family.mother.gramps_id|escape}}]</a></td>
 </tr>
 {% if user.is_authenticated or not family.father.handle|probably_alive %}
 <tr>
