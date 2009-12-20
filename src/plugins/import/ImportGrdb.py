@@ -53,7 +53,7 @@ from libgrdb import GrampsDbGrdb
 from gen.db.txn import GrampsDbTxn as Transaction
 from gen.db.cursor import GrampsCursor
 from gen.db.dbconst import *
-from gen.db.exceptions import FileVersionError
+from gen.db.exceptions import GrampsDbVersionError
 from gen.utils import db_copy
 import const
 from QuestionDialog import ErrorDialog
@@ -473,11 +473,6 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
         self.abort_possible = True
         #self.undo_history_timestamp = time.time()
 
-        return 1
-
-    def load_from(self, other_database, filename, callback):
-        self.load(filename, callback)
-        db_copy(other_database, self, callback)
         return 1
 
     def make_env_name(self, full_name):
@@ -1125,11 +1120,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
         self.metadata   = None
         self.env        = None
         self.db_is_open = False
-        raise FileVersionError(
-            "The database version is not supported by this "
-            "version of Gramps.\nPlease upgrade to the "
-            "corresponding version or use XML for porting"
-            "data between different database versions.")
+        raise GrampsDbVersionError()
 
     def close(self):
         if not self.db_is_open:

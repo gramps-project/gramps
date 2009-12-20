@@ -55,7 +55,6 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from cli.grampscli import CLIDbLoader
-import const
 import config
 import gen.db
 import Utils
@@ -251,6 +250,65 @@ class DbLoader(CLIDbLoader):
         if self.import_info is None:
             return u""
         return self.import_info.info_text()
+    
+    def read_file(self, filename):
+        """
+        This method takes care of changing database, and loading the data.
+        In 3.0 we only allow reading of real databases of filetype 
+        'x-directory/normal'
+        
+        This method should only return on success.
+        Returning on failure makes no sense, because we cannot recover,
+        since database has already beeen changed.
+        Therefore, any errors should raise exceptions.
+
+        On success, return with the disabled signals. The post-load routine
+        should enable signals, as well as finish up with other UI goodies.
+        """
+
+        if os.path.exists(filename):
+            if not os.access(filename, os.W_OK):
+                mode = "r"
+                self._warn(_('Read only database'), 
+                                             _('You do not have write access '
+                                               'to the selected file.'))
+            else:
+                mode = "w"
+        else:
+            mode = 'w'
+
+        self.dbstate.change_database(gen.db.GrampsDBDir())
+        self.dbstate.db.disable_signals()
+
+        self._begin_progress()
+        
+        try:
+            try:
+                self.dbstate.db.load(filename, self._pulse_progress, 
+                                     mode, upgrade=False)
+            except gen.db.exceptions.GrampsDbUpgradeRequiredError, msg:
+                if QuestionDialog2(_("Need to upgrade database!"), 
+                                   str(msg), 
+                                   _("Upgrade now"), 
+                                   _("Cancel")).run():
+                    self.dbstate.db.load(filename, self._pulse_progress, 
+                                         mode, upgrade=True)
+                    self.dbstate.db.set_save_path(filename)
+                else:
+                    self.dbstate.no_database()
+        except gen.db.exceptions.GrampsDbVersionError, msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
+        except OSError, msg:
+            self.dbstate.no_database()
+            self._errordialog(
+                _("Could not open file: %s") % filename, str(msg))
+        except Errors.DbError, msg:
+            self.dbstate.no_database()
+            self._dberrordialog(msg)
+        except Exception:
+            self.dbstate.no_database()
+        return True
 
 #-------------------------------------------------------------------------
 #

@@ -188,17 +188,9 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError
 
-    def load(self, name, callback, mode=None):
+    def load(self, name, callback, mode=None, upgrade=False):
         """
         Open the specified database. 
-        """
-        raise NotImplementedError
-
-    def load_from(self, other_database, filename, callback):
-        """
-        Load data from the other database into itself.
-        
-        The filename is the name of the file for the newly created database.
         """
         raise NotImplementedError
 

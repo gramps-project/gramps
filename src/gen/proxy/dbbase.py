@@ -142,18 +142,10 @@ class DbBase(object):
     def close_undodb(self):
         raise NotImplementedError
 
-    def load(self, name, callback, mode="w"):
+    def load(self, name, callback, mode="w", upgrade=False):
         """
         Opens the specified database. The method needs to be overridden
         in the derived class.
-        """
-        raise NotImplementedError
-
-    def load_from(self, other_database, filename, callback):
-        """
-        Loads data from the other database into itself.
-        The filename is the name of the file for the newly created database.
-        The method needs to be overridden in the derived class.
         """
         raise NotImplementedError
 

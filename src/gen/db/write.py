@@ -33,11 +33,9 @@ This is used since GRAMPS version 3.0
 from __future__ import with_statement
 import cPickle as pickle
 import os
-import sys
 import time
 import locale
 import bisect
-from types import InstanceType
 from functools import wraps
 
 from gettext import gettext as _
@@ -53,7 +51,7 @@ from sys import maxint
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note)
 from gen.db import (GrampsDbRead, BSDDBTxn, GrampsDbTxn, GrampsCursor,
-                    FileVersionError, FileVersionDeclineToUpgrade,
+                    GrampsDbVersionError, GrampsDbUpgradeRequiredError,
                     GrampsDbUndoBSDDB as GrampsDbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
@@ -367,7 +365,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         return False
 
     @catch_db_error
-    def load(self, name, callback, mode=DBMODE_W):
+    def load(self, name, callback, mode=DBMODE_W, upgrade=False):
 
         if self.__check_readonly(name):
             mode = DBMODE_R
@@ -421,6 +419,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         # it makes no sense to go further
         if not self.version_supported():
             self.__close_early()
+            raise GrampsDbVersionError()
 
         self.__load_metadata()
         gstats = self.metadata.get('gender_stats', default=None)
@@ -469,21 +468,12 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         # If secondary indices change, then they should removed
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
-        
         if self.need_upgrade():
-            from QuestionDialog import QuestionDialog2
-            if QuestionDialog2(_("Need to upgrade database!"), 
-                               _("You cannot open this database "
-                                 "without upgrading it.\n"
-                                 "If you upgrade then you won't be able "
-                                 "to use previous versions of GRAMPS.\n" 
-                                 "You might want to make a backup copy "
-                                 "first."), 
-                               _("Upgrade now"), 
-                               _("Cancel")).run():
+            if upgrade == True:
                 self.gramps_upgrade(callback)
             else:
-                raise FileVersionDeclineToUpgrade()
+                self.__close_early()
+                raise GrampsDbUpgradeRequiredError()
 
         if callback:
             callback(50)
@@ -520,13 +510,6 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                 self.undodb.close()
             except db.DBNoSuchFileError:
                 pass                
-
-    @catch_db_error
-    def load_from(self, other_database, filename, callback):
-        self.load(filename, callback)
-        from gen.utils import db_copy
-        db_copy(other_database, self, callback)
-        return 1
 
     def __load_metadata(self):
         # name display formats
@@ -1008,18 +991,12 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         """
         Bail out if the incompatible version is discovered:
         * close cleanly to not damage data/env
-        * raise exception
         """
         self.metadata.close()
         self.env.close()
         self.metadata   = None
         self.env        = None
         self.db_is_open = False
-        raise FileVersionError(
-            _("The database version is not supported by this "
-              "version of GRAMPS.\nPlease upgrade to the "
-              "corresponding version or use XML for porting "
-              "data between different database versions."))
     
     @catch_db_error
     def close(self):

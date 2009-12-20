@@ -50,7 +50,7 @@ import config
 import const
 import Errors
 import DbState
-from gen.db import (GrampsDBDir, FileVersionDeclineToUpgrade)
+from gen.db import GrampsDBDir
 import gen.db.exceptions
 from gen.plug import BasePluginManager
 from Utils import get_researcher
@@ -147,9 +147,10 @@ class CLIDbLoader(object):
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode)
             self.dbstate.db.set_save_path(filename)
-        except FileVersionDeclineToUpgrade:
+        except gen.db.exceptions.GrampsDbUpgradeRequiredError, msg:
             self.dbstate.no_database()
-        except gen.db.exceptions.FileVersionError, msg:
+            self._errordialog( _("Cannot open database"), str(msg))
+        except gen.db.exceptions.GrampsDbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:

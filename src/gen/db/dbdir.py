@@ -54,9 +54,8 @@ from gen.db import (GrampsDbBase, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP,
                     REFERENCE_KEY, Transaction)
 from BasicUtils import UpdateCallback
 from gen.db.cursor import GrampsCursor
-from gen.db.exceptions import FileVersionError, FileVersionDeclineToUpgrade
+from gen.db.exceptions import GrampsDbVersionError, GrampsDbUpgradeRequiredError
 import Errors
-from QuestionDialog import QuestionDialog2
 
 _MINVERSION = 9
 _DBVERSION = 14
@@ -404,12 +403,12 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             self.__log_error()
             raise Errors.DbError(msg)
 
-    def load(self, name, callback, mode="w"):
+    def load(self, name, callback, mode="w", upgrade=False):
         try:
             if self.__check_readonly(name):
                 mode = "r"
             write_lock_file(name)
-            return self.__load(name, callback, mode)
+            return self.__load(name, callback, mode, upgrade)
         except DBERRS, msg:
             self.__log_error()
             raise Errors.DbError(msg)
@@ -422,7 +421,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                 return True
         return False
 
-    def __load(self, name, callback, mode="w"):
+    def __load(self, name, callback, mode="w", upgrade=False):
 
         if self.db_is_open:
             self.close()
@@ -467,6 +466,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # it makes no sense to go further
         if not self.version_supported():
             self.__close_early()
+            raise GrampsDbVersionError()
 
         self.family_map     = self.__open_table(self.full_name, FAMILY_TBL)
         self.place_map      = self.__open_table(self.full_name, PLACES_TBL)
@@ -514,20 +514,12 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # If secondary indices change, then they should removed
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
-        
         if self.need_upgrade():
-            if QuestionDialog2(_("Need to upgrade database!"), 
-                               _("You cannot open this database "
-                                 "without upgrading it.\n"
-                                 "If you upgrade then you won't be able "
-                                 "to use previous versions of Gramps.\n" 
-                                 "You might want to make a backup copy "
-                                 "first."), 
-                               _("Upgrade now"), 
-                               _("Cancel")).run():
+            if upgrade == True:
                 self.gramps_upgrade(callback)
             else:
-                raise FileVersionDeclineToUpgrade()
+                self.__close_early()
+                raise GrampsDbUpgradeRequiredError()
 
         if callback:
             callback(50)
@@ -561,16 +553,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             self.undolog = os.path.join(self.full_name, "undo.db")
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-
-    def load_from(self, other_database, filename, callback):
-        try:
-            self.load(filename, callback)
-            from gen.utils import db_copy
-            db_copy(other_database, self, callback)
-            return 1
-        except DBERRS, msg:
-            self.__log_error()
-            raise Errors.DbError(msg)
 
     def __load_metadata(self):
         # name display formats
@@ -1147,18 +1129,12 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         """
         Bail out if the incompatible version is discovered:
         * close cleanly to not damage data/env
-        * raise exception
         """
         self.metadata.close()
         self.env.close()
         self.metadata   = None
         self.env        = None
         self.db_is_open = False
-        raise FileVersionError(
-            _("The database version is not supported by this "
-              "version of Gramps.\nPlease upgrade to the "
-              "corresponding version or use XML for porting "
-              "data between different database versions."))
 
     def close(self):
         try:

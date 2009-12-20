@@ -313,19 +313,10 @@ class GrampsDbRead(GrampsDbBase, Callback):
     def get_note_cursor(self, *args, **kwargs):
         return self.get_cursor(self.note_map, *args, **kwargs)
 
-    def load(self, name, callback, mode=DBMODE_R):
+    def load(self, name, callback, mode=DBMODE_R, upgrade=False):
         """
         Open the specified database. 
         
-        The method needs to be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def load_from(self, other_database, filename, callback):
-        """
-        Load data from the other database into itself.
-        
-        The filename is the name of the file for the newly created database.
         The method needs to be overridden in the derived class.
         """
         raise NotImplementedError
