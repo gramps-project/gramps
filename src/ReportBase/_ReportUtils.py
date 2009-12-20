@@ -41,8 +41,6 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import DateHandler
-from gen.lib.eventroletype import EventRoleType
-from gen.lib.eventtype import EventType
 from Utils import media_path_full
 from gen.plug.docgen import IndexMark, INDEX_TYPE_ALP
    
@@ -163,8 +161,8 @@ def find_spouse(person, family):
 def find_marriage(database, family):    
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event and event.type.value == EventType.MARRIAGE \
-            and event_ref.role.value == EventRoleType.FAMILY:
+        if (event and event.type.is_marriage() and
+            event_ref.role.is_family()):
             return event
     return None
 
@@ -175,8 +173,8 @@ def get_birth_or_fallback(database, person):
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event.type.value in [EventType.CHRISTEN, EventType.BAPTISM] \
-            and event_ref.role.value == EventRoleType.PRIMARY:
+        if (event.type.is_birth_fallback() and
+            event_ref.role.is_primary()):
             return event
     return None    
 
@@ -187,10 +185,8 @@ def get_death_or_fallback(database, person):
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if (event.type.value in [EventType.BURIAL, 
-                                 EventType.CREMATION, 
-                                 EventType.CAUSE_DEATH]
-            and event_ref.role.value == EventRoleType.PRIMARY):
+        if (event.type.is_death_fallback() and
+            event_ref.role.is_primary()):
             return event
     return None    
 

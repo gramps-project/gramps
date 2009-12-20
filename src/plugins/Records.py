@@ -35,7 +35,7 @@ from TransUtils import sgettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from gen.lib import ChildRefType, Date, EventType, Name, EventRoleType
+from gen.lib import ChildRefType, Date, Name
 from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from BasicUtils import name_displayer
 from gen.plug import Gramplet
@@ -69,9 +69,7 @@ def _find_death_date(db, person):
         event_list = person.get_primary_event_ref_list()
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
-            if (event.get_type() == EventType.BURIAL or
-                event.get_type() == EventType.CAUSE_DEATH or
-                event.get_type() == EventType.CREMATION):
+            if event.get_type().is_death_fallback():
                 return event.get_date_object()
     return None
 
@@ -137,13 +135,13 @@ def _find_records(db, filter, callname):
             divorce_date = None
             for event_ref in family.get_event_ref_list():
                 event = db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == gen.lib.EventType.MARRIAGE and \
-                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+                if (event.get_type().is_marriage() and 
+                    (event_ref.get_role().is_family() or 
+                     event_ref.get_role().is_primary())):
                     marriage_date = event.get_date_object()
-                elif event.get_type() == gen.lib.EventType.DIVORCE and \
-                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+                elif (event.get_type().is_divorce() and 
+                      (event_ref.get_role().is_family() or 
+                       event_ref.get_role().is_primary())):
                     divorce_date = event.get_date_object()
 
             if _good_date(marriage_date):
@@ -225,13 +223,13 @@ def _find_records(db, filter, callname):
         divorce_date = None
         for event_ref in family.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event.get_type() == gen.lib.EventType.MARRIAGE and \
-            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+            if (event.get_type().is_marriage() and 
+                (event_ref.get_role().is_family() or 
+                 event_ref.get_role().is_primary())):
                 marriage_date = event.get_date_object()
-            if event and event.get_type() == gen.lib.EventType.DIVORCE and \
-            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+            if (event and event.get_type().is_divorce() and 
+                (event_ref.get_role().is_family() or 
+                 event_ref.get_role().is_primary())):
                 divorce_date = event.get_date_object()
 
         father_death_date = _find_death_date(db, father)

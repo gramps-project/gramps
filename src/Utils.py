@@ -479,7 +479,7 @@ def probably_alive(person, db, current_date=None, limit=0):
     # If the recorded death year is before current year then
     # things are simple.
     death_ref = person.get_death_ref()
-    if death_ref and death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+    if death_ref and death_ref.get_role().is_primary():
         # If they have a prmary death ref
         if now:
             # If you are asking today, then they are dead
@@ -494,10 +494,8 @@ def probably_alive(person, db, current_date=None, limit=0):
     # These are fairly good indications that someone's not alive.
     for ev_ref in person.get_primary_event_ref_list():
         ev = db.get_event_from_handle(ev_ref.ref)
-        if ev and ev.type in [gen.lib.EventType.CAUSE_DEATH, 
-                              gen.lib.EventType.BURIAL, 
-                              gen.lib.EventType.CREMATION]:
-            # If they have a prmary death-related event
+        if ev and ev.type.is_death_fallback():
+            # If they have a primary death-related event
             if now:
                 # If you are asking today, then they are dead
                 return False
@@ -515,7 +513,7 @@ def probably_alive(person, db, current_date=None, limit=0):
     # If they were born within 100 years before current year then
     # assume they are alive (we already know they are not dead).
     birth_ref = person.get_birth_ref()
-    if birth_ref and birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+    if birth_ref and birth_ref.get_role().is_primary():
         birth = db.get_event_from_handle(birth_ref.ref)
         if (birth.get_date_object().get_start_date() != gen.lib.Date.EMPTY):
             if not birth_date:
@@ -631,7 +629,7 @@ def probably_alive(person, db, current_date=None, limit=0):
             if father_handle:
                 father = db.get_person_from_handle(father_handle)
                 father_birth_ref = father.get_birth_ref()
-                if father_birth_ref and father_birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+                if father_birth_ref and father_birth_ref.get_role().is_primary():
                     father_birth = db.get_event_from_handle(
                         father_birth_ref.ref)
                     dobj = father_birth.get_date_object()
@@ -640,7 +638,7 @@ def probably_alive(person, db, current_date=None, limit=0):
                             return True
 
                 father_death_ref = father.get_death_ref()
-                if father_death_ref and father_death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+                if father_death_ref and father_death_ref.get_role().is_primary():
                     father_death = db.get_event_from_handle(
                         father_death_ref.ref)
                     dobj = father_death.get_date_object()
@@ -655,7 +653,7 @@ def probably_alive(person, db, current_date=None, limit=0):
             if mother_handle:
                 mother = db.get_person_from_handle(mother_handle)
                 mother_birth_ref = mother.get_birth_ref()
-                if mother_birth_ref and mother_birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+                if mother_birth_ref and mother_birth_ref.get_role().is_primary():
                     mother_birth = db.get_event_from_handle(mother_birth_ref.ref)
                     dobj = mother_birth.get_date_object()
                     if dobj.get_start_date() != gen.lib.Date.EMPTY:
@@ -663,7 +661,7 @@ def probably_alive(person, db, current_date=None, limit=0):
                             return True
 
                 mother_death_ref = mother.get_death_ref()
-                if mother_death_ref and mother_death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+                if mother_death_ref and mother_death_ref.get_role().is_primary():
                     mother_death = db.get_event_from_handle(
                         mother_death_ref.ref)
                     dobj = mother_death.get_date_object()
@@ -1042,7 +1040,7 @@ def get_participant_from_event(db, event_handle):
         person = db.get_person_from_handle(personhandle)
         for event_ref in person.get_event_ref_list():
             if event_handle == event_ref.ref and \
-                    event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+                    event_ref.get_role().is_primary():
                 if participant:
                     ellipses = True
                 else:
@@ -1057,7 +1055,7 @@ def get_participant_from_event(db, event_handle):
         family = db.get_family_from_handle(familyhandle)
         for event_ref in family.get_event_ref_list():
             if event_handle == event_ref.ref and \
-                    event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
+                    event_ref.get_role().is_family():
                 if participant:
                     ellipses = True
                 else:
