@@ -365,11 +365,11 @@ class GalleryTab(ButtonTab, DbGUIElement):
         dnd_types = [ self._DND_TYPE.target(), self._DND_EXTRA.target(),
                       DdTargets.MEDIAOBJ.target()]
 
-        self.iconlist.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types,
-                                    gtk.gdk.ACTION_COPY)
-        self.iconlist.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                      [self._DND_TYPE.target()],
-                                      gtk.gdk.ACTION_COPY)
+        self.iconlist.enable_model_drag_dest(dnd_types,
+                                         gtk.gdk.ACTION_COPY)
+        self.iconlist.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
+                                  [self._DND_TYPE.target()],
+                                  gtk.gdk.ACTION_COPY)
         self.iconlist.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.iconlist.connect('drag_data_received', self.drag_data_received)
