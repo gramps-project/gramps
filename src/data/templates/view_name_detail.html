@@ -23,6 +23,7 @@
     {% endfor %}
     <form method="post">
   {% endifequal %}
+{% endif %}
 <tr>
  <td class="ColumnAttribute">{{form.surname.label}}:</td>
  <td class="ColumnValue" id="data">{{form.surname|render:action}}</td>
@@ -55,37 +56,9 @@
 </tr>
 </tbody>
 </table>
-
-{% else %}
-
-<tr>
- <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data">{{form.surname}}</td>
- <td class="ColumnAttribute">{{form.prefix.label}}:</td>
- <td class="ColumnValue" id="data">[Private]</td>
-<tr>
- <td class="ColumnAttribute">{{form.given.label}}:</td>
- <td class="ColumnValue" id="data">[Private]</td>
- <td class="ColumnAttribute">{{form.call.label}}:</td>
- <td class="ColumnValue" id="data">[Private]</td>
-</tr>
-</tr>
- <td class="ColumnAttribute">{{form.title.label}}:</td>
- <td class="ColumnValue" id="data">[Private]</td>
- <td class="ColumnAttribute">{{form.suffix.label}}:</td>
- <td class="ColumnValue" id="data">[Private]</td>
-<tr>
- <td class="ColumnAttribute">{{form.patronymic.label}}:</td>
- <td class="ColumnValue" id="data">[Private]</td>
- <td class="ColumnAttribute">{{form.name_type.label}}:</td>
- <td class="ColumnValue" id="data">{{form.name_type}}</td>
-</tr>
-</tbody>
-</table>
-
-{% endif %}
 </div>
 </div>
+
 <!-- Tabs -->
 <h2 class="demoHeaders">Tabs</h2>
 
