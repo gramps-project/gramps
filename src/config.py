@@ -109,6 +109,18 @@ class ConfigManager(object):
         self.data = {}
         self.reset()
 
+    def __getitem__(self, item):
+        """
+        For item access, such as config["interface.dont-ask"]
+        """
+        return self.get(item)
+
+    def __setitem__(self, item, value):
+        """
+        For item assignment, such as config["interface.dont-ask"] = True
+        """
+        self.set(item, value)
+
     def reset(self, key=None):
         """
         Resets one, a section, or all settings values to their defaults.
@@ -714,3 +726,5 @@ if not os.path.exists(CONFIGMAN.filename):
 #
 #---------------------------------------------------------------
 CONFIGMAN.load()
+
+config = CONFIGMAN
