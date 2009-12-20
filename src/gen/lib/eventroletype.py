@@ -71,6 +71,13 @@ class EventRoleType(GrampsType):
 
     def is_primary(self):
         """
-        Returns True if EventRoleType is primary, False otherwise.
+        Returns True if EventRoleType is PRIMARY, False otherwise.
         """
-        return self.__value == self.PRIMARY
+        return self.value == self.PRIMARY
+
+    def is_family(self):
+        """
+        Returns True if EventRoleType is FAMILY, False otherwise.
+        """
+        return self.value == self.FAMILY
+

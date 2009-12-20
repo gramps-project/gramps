@@ -190,4 +190,30 @@ class EventType(GrampsType):
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
         
+    def is_birth_fallback(self):
+        """
+        Returns True if EventRoleType is a birth fallback, False
+        otherwise.
+        """
+        return self.value in [self.CHRISTEN, 
+                              self.BAPTISM]
+    
+    def is_death_fallback(self):
+        """
+        Returns True if EventRoleType is a death fallback, False
+        otherwise.
+        """
+        return self.value in [self.BURIAL, 
+                              self.CREMATION, 
+                              self.CAUSE_DEATH]
+    def is_marriage(self):
+        """
+        Returns True if EventRoleType is MARRIAGE, False otherwise.
+        """
+        return self.value == self.MARRIAGE
 
+    def is_divorce(self):
+        """
+        Returns True if EventRoleType is DIVORCE, False otherwise.
+        """
+        return self.value == self.DIVORCE
