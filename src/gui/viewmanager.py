@@ -72,13 +72,14 @@ from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
 import gui.views.pageview as PageView
 import Navigation
-import RecentFiles
 from BasicUtils import name_displayer
 from gui import widgets
 import UndoHistory
 from gui.dbloader import DbLoader
 import GrampsDisplay
 from gen.utils import ProgressMonitor
+from gen.db.backup import backup
+from gen.db.exceptions import GrampsDbException
 from GrampsAboutDialog import GrampsAboutDialog
 import ProgressDialog
 
@@ -693,13 +694,14 @@ class ViewManager(CLIManager):
         """
         Backup the current file as a backup file.
         """
-        import GrampsDbUtils
-
         if self.dbstate.db.has_changed:
             self.uistate.set_busy_cursor(1)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
-            GrampsDbUtils.Backup.backup(self.dbstate.db)
+            try:
+                backup(self.dbstate.db)
+            except GrampsDbException, msg:
+                ErrorDialog(_("Error saving backup data"), msg)
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
 

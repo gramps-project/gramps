@@ -6,7 +6,8 @@
 pkgdatadir = $(datadir)/@PACKAGE@/gen/db
 
 pkgdata_PYTHON = \
-	__init__.py\
+	__init__.py \
+	backup.py \
 	base.py \
 	bsddbtxn.py \
 	cursor.py \

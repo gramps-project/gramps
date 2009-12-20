@@ -71,6 +71,7 @@ src/gen/proxy/filter.py
 src/gen/proxy/__init__.py
 
 # gen db API
+src/gen/db/backup.py
 src/gen/db/base.py
 src/gen/db/dbdir.py
 src/gen/db/cursor.py
@@ -345,7 +346,6 @@ src/docgen/SpreadSheetDoc.py
 src/docgen/TextBufDoc.py
 
 # GrampsDbUtils package
-src/GrampsDbUtils/_Backup.py
 src/GrampsDbUtils/_GedcomInfo.py
 src/GrampsDbUtils/_GedcomStageOne.py
 #src/GrampsDbUtils/_GedcomLex.py

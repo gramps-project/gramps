@@ -50,14 +50,15 @@ db.
 # load standard python libraries
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+import os
+import cPickle as pickle
 
 #------------------------------------------------------------------------
 #
 # Gramps libs
 #
 #------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog
+from gen.db.exceptions import GrampsDbException
 from gen.db.write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
     EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, META
 
@@ -67,9 +68,6 @@ from gen.db.write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
 #
 #------------------------------------------------------------------------
 import logging
-import os
-import cPickle as pickle
-
 LOG = logging.getLogger(".Backup")
 
 def backup(database):
@@ -86,7 +84,7 @@ def backup(database):
     try:
         __do_export(database)
     except (OSError, IOError), msg:
-        ErrorDialog(_("Error saving backup data"), str(msg))
+        raise GrampsDbException(str(msg))
 
 def __mk_backup_name(database, base):
     """
@@ -154,7 +152,7 @@ def restore(database):
     try:
         __do_restore(database)
     except (OSError, IOError), msg:
-        ErrorDialog(_("Error restoring backup data"), str(msg))
+        raise GrampsDbException(str(msg))
 
 def __do_restore(database):
     """

@@ -71,10 +71,11 @@ from QuestionDialog import ErrorDialog, QuestionDialog
 from gen.db import GrampsDBDir
 from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
-import GrampsDbUtils
 from DdTargets import DdTargets
 import RecentFiles
 from glade import Glade
+from gen.db.backup import restore
+from gen.db.exceptions import GrampsDbException
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
@@ -641,7 +642,12 @@ class DbManager(CLIDbManager):
         dbase.load(dirname, None)
 
         self.__start_cursor(_("Rebuilding database from backup files"))
-        GrampsDbUtils.Backup.restore(dbase)
+        
+        try:
+            restore(dbase)
+        except GrampsDbException, msg:
+            ErrorDialog(_("Error restoring backup data"), msg)
+
         self.__end_cursor()
 
         dbase.close()

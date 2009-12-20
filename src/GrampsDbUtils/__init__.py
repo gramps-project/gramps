@@ -29,5 +29,3 @@ from _GedcomInfo import (personalConstantEvents, familyConstantEvents,
      
 from _GedcomParse import GedcomParser
 
-import _Backup as Backup
-

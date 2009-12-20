@@ -27,3 +27,4 @@ from txn import *
 from undoredo import *
 from exceptions import *
 from write import *
+from backup import backup, restore
