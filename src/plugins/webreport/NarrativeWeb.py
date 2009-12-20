@@ -111,7 +111,11 @@ from libhtmlbackend import HtmlBackend
 
 # if the pyexiv2 library is installed, look for libexiftags
 # from src/plugins/lib/libexiftags.py
-from libexiftags import ExifKeyTags
+try:
+    from libexiftags import ExifKeyTags
+except ImportError:
+    pass
+
 #------------------------------------------------------------------------
 #
 # constants
