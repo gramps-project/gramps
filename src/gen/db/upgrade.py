@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: upgrade.py 12672 2009-06-16 15:49:17Z gbritton $
+# $Id$
 
 from __future__ import with_statement
 from gen.db import BSDDBTxn

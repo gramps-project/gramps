@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: write.py 12672 2009-06-16 15:49:17Z gbritton $
+# $Id$
 
 """
 Provide the Berkeley DB (DBDir) database backend for GRAMPS.

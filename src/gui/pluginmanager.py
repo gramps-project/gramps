@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: _manager.py 13403 2009-10-24 20:27:10Z bmcage $
+# $Id$
 
 """
 The core of the GRAMPS plugin system. This module provides capability to load

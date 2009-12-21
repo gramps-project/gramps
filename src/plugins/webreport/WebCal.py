@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: WebCal.py 13878 2009-12-21 09:51:27Z robhealey1 $
+# $Id$
 
 """
 Web Calendar generator.

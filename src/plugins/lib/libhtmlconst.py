@@ -24,7 +24,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: libhtmlconst.py 12593 2009-05-30 08:46:12Z robhealey1 $
+# $Id$
 
 """
 General constants used in different html enabled plugins

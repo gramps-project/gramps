@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: menutoolbuttonaction 10763 2008-05-27 19:53:25Z zfoldvar $
+# $Id$
 
 "MenuToolButtonAction class."
 

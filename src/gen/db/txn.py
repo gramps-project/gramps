@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: txn.py 12672 2009-06-16 15:49:17Z gbritton $
+# $Id$
 
 """
 Exports the GrampsDbTxn class for managing Gramps transactions and the undo

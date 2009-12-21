@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: PedigreeView.py 11820 2009-02-03 10:33:19Z romjerome $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: read.py 12786 2009-07-11 15:32:37Z gburto01 $
+# $Id$
 
 """
 Read classes for the GRAMPS databases.

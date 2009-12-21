@@ -24,7 +24,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: NarrativeWeb.py 13878 2009-12-21 10:30:00Z robhealey1 $
+# $Id$
 
 """
 Narrative Web Page generator.

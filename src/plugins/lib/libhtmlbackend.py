@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: docbackend.py 12437 2009-04-13 02:11:49Z pez4brian $
+# $Id$
 
 """Html and Html format management for the different reports 
 """

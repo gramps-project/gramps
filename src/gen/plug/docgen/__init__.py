@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 10055 2008-02-18 20:07:09Z acraphae $
+# $Id$
 
 """
 The docgen package providing the API the document generating plugins can use.

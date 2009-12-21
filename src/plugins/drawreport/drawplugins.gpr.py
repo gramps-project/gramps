@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: drawplugins.gpr.py 13850 2009-12-08 20:00:00Z robhealey1 $
+# $Id$
 
 #------------------------------------------------------------------------
 #

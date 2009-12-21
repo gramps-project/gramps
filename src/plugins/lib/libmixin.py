@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: mixin.py 12786 2009-07-11 15:32:37Z gburto01 $
+# $Id$
 
 """
 Mixin for GrampsDbDir to enable find_from_handle and check_from_handle methods.
