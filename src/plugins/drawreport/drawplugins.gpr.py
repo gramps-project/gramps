@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2009 Benny Malengier
 #
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: $
+# $Id: drawplugins.gpr.py 13850 2009-12-08 20:00:00Z robhealey1 $
 
 #------------------------------------------------------------------------
 #

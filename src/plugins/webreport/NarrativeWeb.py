@@ -24,7 +24,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: NarrativeWeb.py 13797 2009-12-15 10:30:00Z robhealey1 $
+# $Id: NarrativeWeb.py 13878 2009-12-21 10:30:00Z robhealey1 $
 
 """
 Narrative Web Page generator.
@@ -1891,15 +1891,9 @@ class IndividualListPage(BasePage):
                         tcell = Html("td", class_ = "ColumnDeath", inline = True)
                         trow += tcell
 
-                        death_ref = person.get_death_ref()
-                        if death_ref:
-                            death = db.get_event_from_handle(death_ref.ref)
-                            if death:
-                                death_date = _dd.display(death.get_date_object())
-                                if death.get_type() == EventType.DEATH:
-                                    tcell += death_date
-                                else:
-                                    tcell += Html('em', death_date)
+                        death_date = _find_death_date(db, person)
+                        if death_date is not None:
+                            tcell += death_date
                         else:
                             tcell += "&nbsp;"
 
@@ -2057,15 +2051,10 @@ class SurnamePage(BasePage):
                     if showdeath:
                         tcell = Html("td", class_ = "ColumnDeath", inline = True)
                         trow += tcell
-                        death_ref = person.get_death_ref()
-                        if death_ref:
-                            death = db.get_event_from_handle(death_ref.ref)
-                            if death:
-                                death_date = _dd.display(death.get_date_object())  
-                                if death.get_type() == EventType.DEATH:
-                                    tcell += death_date
-                                else:
-                                    tcell += Html('em', death_date)
+
+                        death_date = _find_death_date(db, person)
+                        if death_date is not None:
+                            tcell += death_date
                         else:
                             tcell += "&nbsp;"
 
@@ -3977,14 +3966,8 @@ class IndividualPage(BasePage):
                 if birth_date and birth_date is not Date.EMPTY:
                     alive = Utils.probably_alive(self.person, db, date.Today() )
 
-                    death_date = Date.EMPTY
-                    death_ref = self.person.get_death_ref()
-                    if death_ref:
-                        death = db.get_event_from_handle(death_ref.ref)
-                        if death:
-                            death_date = death.get_date_object()
-
-                    if not alive and (death_date and death_date is not Date.EMPTY):
+                    death_date = _find_death_date(db, self.person)
+                    if not alive and death_date is not None:
                         nyears = death_date - birth_date
                         nyears.format(precision = 3)
                         trow = Html("tr") + (
@@ -5287,27 +5270,6 @@ class NavWebReport(Report):
             PlacePage(self, self.title, place, source_list, place_list)
             self.progress.step()
 
-    def get_event_handles(self, db, ind_list):
-        """
-        creates a list of event handles for this database
-        """
-
-        event_handle_list = []
-        for person_handle in ind_list:
-            person = db.get_person_from_handle(person_handle)
-
-            for evt_ref in person.get_event_ref_list():
-                event_handle_list.append(evt_ref.ref)
-
-            for fhandle in person.get_family_handle_list():
-                family = db.get_family_from_handle(fhandle)
-
-                for evt_ref in family.get_event_ref_list():
-                    event_handle_list.append(evt_ref.ref)
-            
-        # return event_handle_list to its caller
-        return event_handle_list
-                
     def event_pages(self, ind_list):
         """
         a dump of all the events sorted by event type, date, and surname
@@ -5315,19 +5277,9 @@ class NavWebReport(Report):
         """
         db = self.database
 
-        # set up progress bar for event pages; using ind list because it was taking too long at the end
-        event_handle_list = db.get_event_handles()
+        # set up progress bar for event pages; using ind list
+        event_handle_list, event_types = build_event_data(db, ind_list)
         self.progress.set_pass(_("Creating event pages"), len(event_handle_list))
-
-        # gather the information that we will need for these two classes
-        event_types = []
-
-        # get the event handle list for this database
-        event_handle_list = self.get_event_handles(db, ind_list)
- 
-        for event_handle in event_handle_list:
-            event = self.database.get_event_from_handle(event_handle)
-            event_types.append( str(event.type) )
 
         # send all data to the events list page
         EventListPage(self, self.title, event_types, event_handle_list)
@@ -6226,3 +6178,43 @@ def add_birthdate(db, childlist):
 
     # return the list of child handles and their birthdates
     return sorted_children
+
+def _find_death_date(db, person):
+    death_ref = person.get_death_ref()
+    if death_ref:
+        death = db.get_event_from_handle(death_ref.ref)
+        return death.get_date_object()
+    else:
+        event_list = person.get_primary_event_ref_list()
+        for event_ref in event_list:
+            event = db.get_event_from_handle(event_ref.ref)
+            if event.get_type().is_death_fallback():
+                return event.get_date_object()
+    return None
+
+def build_event_data(db, ind_list):
+    """
+    creates a list of event handles and event types for this database
+    """
+
+    event_handle_list = []
+    event_types = []
+
+    for person_handle in ind_list:
+        person = db.get_person_from_handle(person_handle)
+
+        for evt_ref in person.get_event_ref_list():
+            event = db.get_event_from_handle(evt_ref.ref)
+            event_types.append( str(event.type) ) 
+            event_handle_list.append(evt_ref.ref)
+
+        for fhandle in person.get_family_handle_list():
+            family = db.get_family_from_handle(fhandle)
+
+            for evt_ref in family.get_event_ref_list():
+                event = db.get_event_from_handle(evt_ref.ref)
+                event_types.append( str(event.type) )
+                event_handle_list.append(evt_ref.ref)
+            
+    # return event_handle_list and event types to its caller
+    return event_handle_list, event_types
