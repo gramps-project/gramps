@@ -58,7 +58,6 @@ src/gen/__init__.py
 src/gen/utils/__init__.py
 src/gen/utils/callback.py
 src/gen/utils/callman.py
-src/gen/utils/dbutils.py
 src/gen/utils/longop.py
 src/gen/utils/progressmon.py
 

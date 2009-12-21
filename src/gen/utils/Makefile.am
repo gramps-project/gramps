@@ -7,7 +7,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/utils
 
 pkgdata_PYTHON = \
 	__init__.py \
-	dbutils.py \
 	callback.py \
 	callman.py \
 	progressmon.py \
