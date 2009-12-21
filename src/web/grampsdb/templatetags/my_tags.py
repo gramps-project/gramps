@@ -30,33 +30,41 @@ def get_person_from_handle(db, handle):
     return db.get_person_from_handle(handle)
 
 class TemplateNode(template.Node):
-    def __init__(self, args, var_name):
-        self.db = template.Variable(args[0])
-        self.handle = template.Variable(args[1])
+    def __init__(self, args, var_name, func):
+        self.args = map(template.Variable, args)
         self.var_name = var_name
+        self.func = func
 
     def render(self, context):
-        context[self.var_name] = \
-            get_person_from_handle(self.db.resolve(context),
-                                   self.handle.resolve(context))
-        return ''
+        value = self.func(*[item.resolve(context) for item in self.args])
+        if self.var_name:
+            context[self.var_name] = value
+            return ''
+        else:
+            return value
 
-def do_get_person_from_handle(parser, token):
-    try:
-        # Splitting by None == splitting by spaces.
-        tag_name, args = token.contents.split(None, 1)
-    except ValueError:
-        raise template.TemplateSyntaxError, \
-            ("%r tag requires arguments" % token.contents.split()[0])
-    m = re.search(r'(.*?) as (\w+)', args)
-    if not m:
-        raise template.TemplateSyntaxError, \
-            ("%r tag had invalid arguments" % tag_name)
-    args_string, var_name = m.groups()
-    args = args_string.split()
-    return TemplateNode(args, var_name)
+def parse_tokens(tokens):
+    # Splitting by None splits by spaces
+    items = tokens.contents.split(None)
+    # {% tag_name arg1 arg2 arg3 as variable %}
+    # {% tag_name arg1 arg2 arg3 %}
+    tag_name = items[0]
+    if "as" == items[-2]:
+        var_name = items[-1]
+        args = items[1:-2]
+    else:
+        var_name = None
+        args = items[1:]
+    return (tag_name, args, var_name)
 
-register.tag("get_person_from_handle", do_get_person_from_handle)
+def make_tag(func):
+    def do_func(parser, tokens):
+        tag_name, args, var_name = parse_tokens(tokens)
+        return TemplateNode(args, var_name, func)
+    return do_func
+
+register.tag("get_person_from_handle", 
+             make_tag(get_person_from_handle))
 
 probably_alive.is_safe = True
 register.filter('probably_alive', probably_alive)
