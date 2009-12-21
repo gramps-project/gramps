@@ -22,7 +22,6 @@
 Generic utilities useful for users of the gen package
 """
 
-from dbutils import *
 from progressmon import ProgressMonitor
 from longop import LongOpStatus
 from callback import Callback

@@ -133,7 +133,7 @@ class FamilyModel(FlatBaseModel):
         erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]
         erlist = [x for x in erlist if x.get_role()==EventRoleType.FAMILY or 
                                        x.get_role()==EventRoleType.PRIMARY]
-        event = gen.utils.marriage_from_eventref_list(self.db, erlist)
+        event = self.db.marriage_from_eventref_list(erlist)
         if event:
             return DateHandler.displayer.display(event.date)
         else:
@@ -141,7 +141,7 @@ class FamilyModel(FlatBaseModel):
 
     def sort_marriage(self, data):
         erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]
-        event = gen.utils.marriage_from_eventref_list(self.db, erlist)
+        event = self.db.marriage_from_eventref_list(erlist)
         if event:
             return "%09d" % event.date.get_sort_value()
         else:

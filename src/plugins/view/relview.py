@@ -58,7 +58,6 @@ import config
 from gui import widgets
 from gui.selectors import SelectorFactory
 import Errors
-import gen.utils
 import Bookmarks
 import const
 
@@ -1509,10 +1508,7 @@ class RelationshipView(NavigationView):
                 active_handle = self.dbstate.active.handle
                 child = self.dbstate.db.get_person_from_handle(active_handle)
 
-                gen.utils.add_child_to_family(
-                    self.dbstate.db,
-                    family,
-                    child)
+                self.dbstate.db.add_child_to_family(family, child)
 
     def select_parents(self, obj):
         SelectFamily = SelectorFactory('Family')
@@ -1529,10 +1525,7 @@ class RelationshipView(NavigationView):
             active_handle = self.dbstate.active.handle
             child = self.dbstate.db.get_person_from_handle(active_handle)
             
-            gen.utils.add_child_to_family(
-                self.dbstate.db,
-                family,
-                child)
+            self.dbstate.db.add_child_to_family(family, child)
 
     def add_parents(self, obj):
         family = gen.lib.Family()
@@ -1566,15 +1559,13 @@ class RelationshipView(NavigationView):
 
     def delete_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            gen.utils.remove_parent_from_family(self.dbstate.db, 
-                                                self.dbstate.active.handle, 
-                                                handle)
+            self.dbstate.db.remove_parent_from_family(self.dbstate.active.handle, 
+                                                      handle)
 
     def delete_parent_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            gen.utils.remove_child_from_family(self.dbstate.db, 
-                                               self.dbstate.active.handle, 
-                                               handle)
+            self.dbstate.db.remove_child_from_family(self.dbstate.active.handle, 
+                                                     handle)
 
     def change_to(self, obj, handle):
         self.dbstate.change_active_handle(handle)

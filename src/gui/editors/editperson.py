@@ -55,7 +55,6 @@ from gui import widgets
 from BasicUtils import name_displayer
 import Errors
 from glade import Glade
-from gen.utils import set_birth_death_index
 
 from editprimary import EditPrimary
 from editmediaref import EditMediaRef
@@ -737,7 +736,7 @@ class EditPerson(EditPrimary):
         
         self._check_for_unknown_gender()
 
-        set_birth_death_index(self.db, self.obj)
+        self.db.set_birth_death_index(self.obj)
 
         trans = self.db.transaction_begin()
 

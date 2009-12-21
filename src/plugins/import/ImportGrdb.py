@@ -54,7 +54,6 @@ from gen.db.txn import GrampsDbTxn as Transaction
 from gen.db.cursor import GrampsCursor
 from gen.db.dbconst import *
 from gen.db.exceptions import GrampsDbVersionError
-from gen.utils import db_copy
 import const
 from QuestionDialog import ErrorDialog
 from Errors import HandleError

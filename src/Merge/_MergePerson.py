@@ -432,7 +432,7 @@ class MergePeople(object):
         # merge the event lists
         self.merge_event_lists(new)
 
-        gen.utils.set_birth_death_index(self.db, new)
+        self.db.set_birth_death_index(new)
 
         # copy attributes
         new.set_attribute_list(self.p1.get_attribute_list() +

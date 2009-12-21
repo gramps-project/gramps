@@ -40,7 +40,6 @@ from PluginUtils import Tool, MenuToolOptions, PluginWindows
 from ReportBase import ReportUtils
 from gen.plug.menu import FilterOption, PersonOption, \
                           EnumeratedListOption, BooleanOption
-from gen.utils import set_birth_death_index
 
 #------------------------------------------------------------------------
 #
@@ -123,7 +122,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
             if self.fam_events:
                 family_handles.extend(person.get_family_handle_list())
             person.set_event_ref_list(event_ref_list)
-            set_birth_death_index(self.db, person)
+            self.db.set_birth_death_index(person)
             self.db.commit_person(person, trans)
             self.change = True
         return family_handles

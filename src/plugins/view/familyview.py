@@ -207,9 +207,8 @@ class FamilyView(ListView):
                        _('_Delete Item'), _('Cancel'))
         if q.run():
             self.uistate.set_busy_cursor(1)
-            import gen.utils
             for handle in self.selected_handles():
-                gen.utils.remove_family_relationships(self.dbstate.db, handle)
+                self.dbstate.db.remove_family_relationships(handle)
             self.build_tree()
             self.uistate.set_busy_cursor(0)
     

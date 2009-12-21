@@ -317,7 +317,7 @@ class PersonView(ListView):
         active_name = _("Delete Person (%s)") % name_displayer.display(person)
 
         # delete the person from the database
-        gen.utils.delete_person_from_database(self.dbstate.db, person, trans)
+        self.dbstate.db.delete_person_from_database(person, trans)
 
         # remove the person from the list
         self.remove_from_person_list(person)
