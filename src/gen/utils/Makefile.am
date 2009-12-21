@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	__init__.py \
 	callback.py \
 	callman.py \
+	configmanager.py \
 	progressmon.py \
 	longop.py
 
