@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: libformatting.py 13878 2009-12-21 10:40:00Z robhealey1 $
+# $Id$
 
 """Format of commonly used expressions, making use of a cache to not 
 recompute
