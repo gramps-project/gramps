@@ -500,7 +500,7 @@ class GeoView(HtmlView):
                                         entry[1])
                     # Need to wait the page is loaded to show the markers.
                     gobject.timeout_add(1600, self._show_selected_places)
-                self._erase_placebox_selection()
+                #self._erase_placebox_selection()
         return
         
     def _show_place_info_bubble(self, marker_index):
@@ -1047,15 +1047,10 @@ class GeoView(HtmlView):
             self.maxyear = 2100
         if self.minyear == 9999:
             self.minyear = 1500
-        period = (self.maxyear-self.minyear)
-        intvl = (period/self.maxbut)
-        modulo = intvl - ( intvl % 10 )
-        if modulo == 0:
-            modulo = 10
         self.minyear -= self.minyear % 10
         self.maxyear -= ( self.maxyear % 10 ) + 10
-        self.yearint = ( self.maxyear - self.minyear ) / ( self.maxbut - 1 )
-        self.yearint -= ( self.yearint % modulo )
+        self.yearint = 10 + ( self.maxyear - self.minyear ) / ( self.maxbut - 1 )
+        self.yearint -= ( self.yearint % 10 )
         if self.yearint == 0:
             self.yearint = 10
         self.mapview.write("<script>\n")
