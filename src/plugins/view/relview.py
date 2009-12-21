@@ -61,7 +61,7 @@ import Errors
 import Bookmarks
 import const
 
-from ReportBase import ReportUtils
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 _GenderCode = {
     gen.lib.Person.MALE    : u'\u2642', 
@@ -582,7 +582,7 @@ class RelationshipView(NavigationView):
                       2, 3, 0, 1, yoptions=0)
 
         # Birth event.
-        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
+        birth = get_birth_or_fallback(self.dbstate.db, person)
         if birth:
             birth_title = birth.get_type()
         else:
@@ -593,7 +593,7 @@ class RelationshipView(NavigationView):
         subtbl.attach(widgets.BasicLabel(self.format_event(birth)),
                       2, 3, 1, 2, yoptions=0)
 
-        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
+        death = get_death_or_fallback(self.dbstate.db, person)
         if death:
             death_title = death.get_type()
         else:
@@ -1121,7 +1121,7 @@ class RelationshipView(NavigationView):
         if not person:
             return None
 
-        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
+        birth = get_birth_or_fallback(self.dbstate.db, person)
         if birth and birth.get_type() != gen.lib.EventType.BIRTH:
             sdate = DateHandler.get_date(birth)
             if sdate:
@@ -1133,7 +1133,7 @@ class RelationshipView(NavigationView):
         else:
             bdate = ""
 
-        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
+        death = get_death_or_fallback(self.dbstate.db, person)
         if death and death.get_type() != gen.lib.EventType.DEATH:
             sdate = DateHandler.get_date(death)
             if sdate:

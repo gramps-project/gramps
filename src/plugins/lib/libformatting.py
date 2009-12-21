@@ -40,7 +40,7 @@ from cgi import escape
 import gen.lib
 import DateHandler
 from BasicUtils import name_displayer
-from ReportBase import ReportUtils
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #-------------------------------------------------------------------------
 #
@@ -111,7 +111,7 @@ class FormattingHelper(object):
             name = name_displayer.display(person)
         text = name
         if line_count >= 3:
-            birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
+            birth = get_birth_or_fallback(self.dbstate.db, person)
             if birth and use_markup and birth.get_type() != \
                                                     gen.lib.EventType.BIRTH:
                 bdate  = "<i>%s</i>" % escape(DateHandler.get_date(birth))
@@ -126,7 +126,7 @@ class FormattingHelper(object):
             else:
                 bdate = ""
                 bplace = ""
-            death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
+            death = get_death_or_fallback(self.dbstate.db, person)
             if death and use_markup and death.get_type() != \
                                                     gen.lib.EventType.DEATH:
                 ddate  = "<i>%s</i>" % escape(DateHandler.get_date(death))

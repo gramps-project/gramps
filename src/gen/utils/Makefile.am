@@ -10,6 +10,7 @@ pkgdata_PYTHON = \
 	callback.py \
 	callman.py \
 	configmanager.py \
+	fallback.py \
 	progressmon.py \
 	longop.py
 

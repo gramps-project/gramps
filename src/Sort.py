@@ -40,8 +40,8 @@ import locale
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from BasicUtils import name_displayer as _nd
-from ReportBase import ReportUtils
 
 #-------------------------------------------------------------------------
 #
@@ -118,13 +118,13 @@ class Sort(object):
         first = self.database.get_person_from_handle(first_id)
         second = self.database.get_person_from_handle(second_id)
 
-        birth1 = ReportUtils.get_birth_or_fallback(self.database, first)
+        birth1 = get_birth_or_fallback(self.database, first)
         if birth1:
             date1 = birth1.get_date_object()
         else:
             date1 = Date()
 
-        birth2 = ReportUtils.get_birth_or_fallback(self.database, second)
+        birth2 = get_birth_or_fallback(self.database, second)
         if birth2:
             date2 = birth2.get_date_object()
         else:
@@ -143,7 +143,7 @@ class Sort(object):
         are equal, sorts by name"""
         first = self.database.get_person_from_handle(first_id)
 
-        birth1 = ReportUtils.get_birth_or_fallback(self.database, first)
+        birth1 = get_birth_or_fallback(self.database, first)
         if birth1:
             date1 = birth1.get_date_object()
         else:

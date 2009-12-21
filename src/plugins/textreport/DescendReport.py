@@ -46,6 +46,7 @@ from Errors import ReportError
 from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
 import Sort
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 _BORN = _('b.')
 _DIED = _('d.')
@@ -85,8 +86,8 @@ class DescendantReport(Report):
         self.by_birthdate = sort.by_birthdate
         
     def dump_dates(self, person):
-        birth = ReportUtils.get_birth_or_fallback(self.database, person)
-        death = ReportUtils.get_death_or_fallback(self.database, person)
+        birth = get_birth_or_fallback(self.database, person)
+        death = get_death_or_fallback(self.database, person)
 
         if birth or death:
             self.doc.write_text(' (')

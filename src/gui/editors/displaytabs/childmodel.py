@@ -36,8 +36,8 @@ import cgi
 import DateHandler
 from BasicUtils import name_displayer
 import Utils
-from ReportBase import ReportUtils
 import gen.lib
+from gen.utils import get_birth_or_fallback
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +78,7 @@ class ChildModel(gtk.ListStore):
         return self.family.get_child_ref_list()
 
     def column_birth_day(self, data):
-        birth = ReportUtils.get_birth_or_fallback(self.db, data)
+        birth = get_birth_or_fallback(self.db, data)
         if birth:
             if birth.get_type() == gen.lib.EventType.BIRTH:
                 return DateHandler.get_date(birth)

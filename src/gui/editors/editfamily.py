@@ -64,7 +64,6 @@ from glade import Glade
 from editprimary import EditPrimary
 from editchildref import EditChildRef
 from editperson import EditPerson
-from ReportBase import ReportUtils
 from displaytabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
@@ -72,8 +71,9 @@ from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType)
 from gen.plug import CATEGORY_QR_FAMILY
 from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
-
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gui.selectors import SelectorFactory
+
 SelectPerson = SelectorFactory('Person')
 
 _RETURN = gdk.keyval_from_name("Return")
@@ -898,7 +898,7 @@ class EditFamily(EditPrimary):
             person = db.get_person_from_handle(handle)
             name = "%s [%s]" % (name_displayer.display(person),
                                 person.gramps_id)
-            birth = ReportUtils.get_birth_or_fallback(db, person)
+            birth = get_birth_or_fallback(db, person)
             self.callman.register_handles({'person': [handle]})
             if birth:
                 #if event changes it view needs to update
@@ -906,7 +906,7 @@ class EditFamily(EditPrimary):
             if birth and birth.get_type() == gen.lib.EventType.BAPTISM:
                 birth_label.set_label(_("Baptism:"))
 
-            death = ReportUtils.get_death_or_fallback(db, person)
+            death = get_death_or_fallback(db, person)
             if death:
                 #if event changes it view needs to update
                 self.callman.register_handles({'event': [death.get_handle()]})

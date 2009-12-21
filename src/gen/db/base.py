@@ -1520,46 +1520,6 @@ class GrampsDbBase(object):
         """
         raise NotImplementedError
 
-    def get_birth_or_fallback(self, person):
-        """
-        Get BIRTH event from a person, or fallback to an event around
-        the time of birth.
-        """
-        birth_ref = person.get_birth_ref()
-        if birth_ref:   # regular birth found
-            event = self.get_event_from_handle(birth_ref.ref)
-            if event:
-                return event
-        # now search the event list for fallbacks
-        for event_ref in person.get_primary_event_ref_list():
-            if event_ref:
-                event = self.get_event_from_handle(event_ref.ref)
-                if (event
-                    and event.type.is_birth_fallback()
-                    and event_ref.role.is_primary()):
-                    return event
-        return None    
-
-    def get_death_or_fallback(self, person):
-        """
-        Get a DEATH event from a person, or fallback to an
-        event around the time of death.
-        """
-        death_ref = person.get_death_ref()
-        if death_ref:   # regular death found
-            event = self.get_event_from_handle(death_ref.ref)
-            if event:
-                return event
-        # now search the event list for fallbacks
-        for event_ref in person.get_primary_event_ref_list():
-            if event_ref:
-                event = self.get_event_from_handle(event_ref.ref)
-                if (event
-                    and event.type.is_death_fallback()
-                    and event_ref.role.is_primary()):
-                    return event
-        return None    
-
     def add_child_to_family(self, family, child,
                             mrel=gen.lib.ChildRefType(),
                             frel=gen.lib.ChildRefType(),

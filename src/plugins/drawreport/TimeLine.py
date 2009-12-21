@@ -48,6 +48,7 @@ from BasicUtils import name_displayer
 from Utils import probably_alive
 from gui.utils import ProgressMeter
 import gen.lib
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -139,13 +140,13 @@ class TimeLine(Report):
         for p_id in self.plist:
             self.progress.step()
             p = self.database.get_person_from_handle(p_id)
-            birth = ReportUtils.get_birth_or_fallback(self.database, p)
+            birth = get_birth_or_fallback(self.database, p)
             if birth:
                 b = birth.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 b = None
 
-            death = ReportUtils.get_death_or_fallback(self.database, p)
+            death = get_death_or_fallback(self.database, p)
             if death:
                 d = death.get_date_object().to_calendar(self.calendar).get_year()
             else:
@@ -242,13 +243,13 @@ class TimeLine(Report):
 
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            birth = ReportUtils.get_birth_or_fallback(self.database, p)
+            birth = get_birth_or_fallback(self.database, p)
             if birth:
                 b = birth.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 b = None
 
-            death = ReportUtils.get_death_or_fallback(self.database, p)
+            death = get_death_or_fallback(self.database, p)
             if death:
                 d = death.get_date_object().to_calendar(self.calendar).get_year()
             else:

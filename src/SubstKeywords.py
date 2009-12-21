@@ -39,9 +39,9 @@ Mary Smith was born on 3/28/1923.
 #------------------------------------------------------------------------
 
 from BasicUtils import name_displayer
-from ReportBase import ReportUtils
 import DateHandler
 import gen.lib
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -81,13 +81,13 @@ class SubstKeywords(object):
         self.m = ""
         self.M = ""
         
-        birth = ReportUtils.get_birth_or_fallback(database, person)
+        birth = get_birth_or_fallback(database, person)
         if birth:
             self.b = DateHandler.get_date(birth)
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
                 self.B = database.get_place_from_handle(bplace_handle).get_title()
-        death = ReportUtils.get_death_or_fallback(database, person)
+        death = get_death_or_fallback(database, person)
         if death:
             self.d = DateHandler.get_date(death)
             dplace_handle = death.get_place_handle()

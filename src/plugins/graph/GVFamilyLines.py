@@ -56,6 +56,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions
 from gen.plug.menu import NumberOption, ColorOption, BooleanOption, \
                           EnumeratedListOption, PersonListOption, \
                           SurnameColorOption
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -780,8 +781,8 @@ class FamilyLinesReport(Report):
 
             # see if we have a birth/death or fallback dates we can use
             if self._incdates or self._incplaces:
-                bth_event = ReportUtils.get_birth_or_fallback(self._db, person)
-                dth_event = ReportUtils.get_death_or_fallback(self._db, person)
+                bth_event = get_birth_or_fallback(self._db, person)
+                dth_event = get_death_or_fallback(self._db, person)
             else:
                 bth_event = None
                 dth_event = None

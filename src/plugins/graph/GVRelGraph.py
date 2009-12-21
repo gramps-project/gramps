@@ -53,6 +53,7 @@ import DateHandler
 import gen.lib
 import Utils
 import ThumbNails
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -403,13 +404,13 @@ class RelGraphReport(Report):
     
     def get_date_strings(self, person):
         "returns tuple of birth/christening and death/burying date strings"
-        birth_event = ReportUtils.get_birth_or_fallback(self.database, person)
+        birth_event = get_birth_or_fallback(self.database, person)
         if birth_event:
             birth = self.get_event_string(birth_event)
         else:
             birth = ""
 
-        death_event = ReportUtils.get_death_or_fallback(self.database, person)
+        death_event = get_death_or_fallback(self.database, person)
         if death_event:
             death = self.get_event_string(death_event)
         else:

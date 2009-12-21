@@ -36,9 +36,9 @@ from gen.plug import Gramplet
 from TransUtils import sgettext as _
 from gettext import ngettext
 from BasicUtils import name_displayer
-from ReportBase import ReportUtils
 import DateHandler
 import gen
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -185,7 +185,7 @@ class PedigreeGramplet(Gramplet):
             self.set_box(generation, 0) # regardless, turn off line if on
 
     def info_string(self, person):
-        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
+        birth = get_birth_or_fallback(self.dbstate.db, person)
         if birth and birth.get_type() != gen.lib.EventType.BIRTH:
             sdate = DateHandler.get_date(birth)
             if sdate:
@@ -197,7 +197,7 @@ class PedigreeGramplet(Gramplet):
         else:
             bdate = ""
 
-        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
+        death = get_death_or_fallback(self.dbstate.db, person)
         if death and death.get_type() != gen.lib.EventType.DEATH:
             sdate = DateHandler.get_date(death)
             if sdate:

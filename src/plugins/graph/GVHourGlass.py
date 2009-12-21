@@ -43,6 +43,7 @@ from gen.plug.menu import (PersonOption, BooleanOption, NumberOption,
                           EnumeratedListOption)
 from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -169,13 +170,13 @@ class HourGlassReport(Report):
         p_id = person.get_gramps_id()
         name = name_displayer.display_formal(person)
         
-        birth_evt = ReportUtils.get_birth_or_fallback(self.__db, person)
+        birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
             birth = DateHandler.get_date(birth_evt)
         else:
             birth = ""
         
-        death_evt = ReportUtils.get_death_or_fallback(self.__db, person)
+        death_evt = get_death_or_fallback(self.__db, person)
         if death_evt:
             death = DateHandler.get_date(death_evt)
         else:

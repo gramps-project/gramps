@@ -44,6 +44,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -283,12 +284,12 @@ class KinshipReport(Report):
         name = name_displayer.display(person)
         mark = ReportUtils.get_person_mark(self.database, person)
         birth_date = ""
-        birth = ReportUtils.get_birth_or_fallback(self.database, person)
+        birth = get_birth_or_fallback(self.database, person)
         if birth:
             birth_date = DateHandler.get_date(birth)
         
         death_date = ""
-        death = ReportUtils.get_death_or_fallback(self.database, person)
+        death = get_death_or_fallback(self.database, person)
         if death:
             death_date = DateHandler.get_date(death)
         dates = _(" (%(birth_date)s - %(death_date)s)") % { 
