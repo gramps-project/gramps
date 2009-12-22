@@ -58,6 +58,7 @@ import DbState
 import DateHandler
 from gen.lib.date import Date as GDate, Today
 import gen.lib
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 
@@ -476,14 +477,14 @@ def get_title(place):
 
 def person_get_birth_date(person):
     db = DjangoDb()
-    event = db.get_birth_or_fallback(person)
+    event = get_birth_or_fallback(db, person)
     if event:
         return event.date
     return None
 
 def person_get_death_date(person):
     db = DjangoDb()
-    event = db.get_death_or_fallback(person)
+    event = get_death_or_fallback(db, person)
     if event:
         return event.date
     return None
