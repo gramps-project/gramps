@@ -166,7 +166,8 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
             if module:
                 getattr(module, opts["content"])(gui)
             else:
-                print "Unregistered gramplet '%s': skipping content" % opts["name"]
+                print "Error loading gramplet '%s': skipping content" \
+                                                                % opts["name"]
         # now that we have user code, set the tooltips
         msg = gui.tooltip
         if msg is None:
