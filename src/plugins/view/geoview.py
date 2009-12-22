@@ -8,6 +8,7 @@
 # Copyright (C) 2009  Gerald Britton
 # Copyright (C) 2009  Helge GRAMPS
 # Copyright (C) 2009  Josip
+# Copyright (C) 2009  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,11 +59,13 @@ import gobject
 import gen.lib
 import Utils
 import config
+import Errors
 from gui.utils import add_menuitem
 from ReportBase import CSS_FILES
 from BasicUtils import name_displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
+from gui.editors import EditPlace
 
 #-------------------------------------------------------------------------
 #
@@ -237,6 +240,7 @@ class GeoView(HtmlView):
         self.renderer = HtmlView.__init__(self, dbstate, uistate,
                                           title=_("GeoView"))
         self.dbstate = dbstate
+        self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
         self.usedmap = "openstreetmap"
         self.placeslist = []
@@ -706,6 +710,7 @@ class GeoView(HtmlView):
               <toolitem action="OpenStreetMap"/>
               <toolitem action="Google"/>
               <toolitem action="SaveZoom"/>
+              <toolitem action="AddPlace"/>
               <toolitem action="StyleSheet"/>
               <separator/>
               <toolitem action="PersonMaps"/>
@@ -732,6 +737,11 @@ class GeoView(HtmlView):
                          _('_Google Maps'),
                          callback=self._select_google_map,
                          tip=_("Select Google Maps."))
+        self._add_action('AddPlace', gtk.STOCK_ADD, 
+            _('_Add Place'),
+            callback=self._add_place,
+            tip=_("Add the location centred on the map as a new place in "
+                  "Gramps. Double click the location to centre on the map."))
         self.lock_action = gtk.ActionGroup(self.title + "/SaveZoom")
         self.lock_action.add_toggle_actions([
             ('SaveZoom', 'gramps-lock', _("_SaveZoom"), "<ALT>L",
@@ -1879,3 +1889,15 @@ class GeoView(HtmlView):
         if self.endinit:
             self.open(url)
 
+    def _add_place(self,url):
+        """
+        Add a new place using longitude and latitude of location centred
+        on the map
+        """
+        new_place = gen.lib.Place()
+        new_place.set_latitude(self.reallatitude)
+        new_place.set_longitude(self.reallongitude)
+        try:
+            EditPlace(self.dbstate, self.uistate, [], new_place)
+        except Errors.WindowActiveError:
+            pass
