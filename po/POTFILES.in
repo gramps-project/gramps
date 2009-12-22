@@ -65,14 +65,12 @@ src/gen/utils/progressmon.py
 src/gen/proxy/living.py
 src/gen/proxy/private.py
 src/gen/proxy/proxybase.py
-src/gen/proxy/dbbase.py
 src/gen/proxy/filter.py
 src/gen/proxy/__init__.py
 
 # gen db API
 src/gen/db/backup.py
 src/gen/db/base.py
-src/gen/db/dbdir.py
 src/gen/db/cursor.py
 src/gen/db/exceptions.py
 src/gen/db/dbconst.py

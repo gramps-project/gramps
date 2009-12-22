@@ -7,7 +7,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/proxy
 
 pkgdata_PYTHON = \
 	__init__.py \
-	dbbase.py \
 	filter.py \
 	living.py \
 	private.py \

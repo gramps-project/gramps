@@ -12,7 +12,6 @@ pkgdata_PYTHON = \
 	bsddbtxn.py \
 	cursor.py \
 	dbconst.py \
-	dbdir.py \
 	exceptions.py \
 	iterator.py \
 	read.py \
