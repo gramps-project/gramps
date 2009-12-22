@@ -1047,10 +1047,14 @@ class GeoView(HtmlView):
             self.maxyear = 2100
         if self.minyear == 9999:
             self.minyear = 1500
-        self.minyear -= self.minyear % 10
-        self.maxyear -= ( self.maxyear % 10 ) + 10
-        self.yearint = 10 + ( self.maxyear - self.minyear ) / ( self.maxbut - 1 )
-        self.yearint -= ( self.yearint % 10 )
+        adjust_before_min_year = config.get('behavior.date-before-range')
+        adjust_after_max_year = config.get('behavior.date-after-range')
+        self.minyear -= ( self.minyear - adjust_before_min_year ) % 10
+        self.maxyear -= ( self.maxyear + adjust_after_max_year ) % 10
+        self.yearint = adjust_after_max_year + \
+                           ( self.maxyear - self.minyear ) / \
+                           ( self.maxbut - 1 )
+        self.yearint -= self.yearint % 10
         if self.yearint == 0:
             self.yearint = 10
         self.mapview.write("<script>\n")
@@ -1065,7 +1069,8 @@ class GeoView(HtmlView):
             if self.displaytype != "places":
                 self._set_years_selection(self.minyear,
                                           self.yearint,
-                                          self.maxyear+1)
+                                          self.maxyear)
+                                          #self.maxyear + adjust_after_max_year)
                 self.years.show()
         self.mapview.write("<div id=\"GOverviewMapControl_Helper\"")
         self.mapview.write(" style=\"height: %dpx; " %
