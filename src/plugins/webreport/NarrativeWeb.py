@@ -77,7 +77,6 @@ log = logging.getLogger(".WebPage")
 # GRAMPS module
 #------------------------------------------------------------------------
 import gen.lib
-from gen.lib.repotype import RepositoryType
 from gen.lib import UrlType, EventType, Person, date, Date, ChildRefType, \
                     FamilyRelType, NameType, Name
 from gen.lib.date import make_gedcom_date
@@ -108,13 +107,6 @@ from libhtml import Html
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend
-
-# if the pyexiv2 library is installed, look for libexiftags
-# from src/plugins/lib/libexiftags.py
-try:
-    from libexiftags import ExifKeyTags
-except ImportError:
-    pass
 
 #------------------------------------------------------------------------
 #
@@ -4620,15 +4612,8 @@ class RepositoryListPage(BasePage):
                     trow += Html("td", index + 1, class_ = "ColumnRowLabel", inline = True)
 
                     # repository type
-                    rtype = repo.type.xml_str()
-                    tcell = Html("td", class_ = "ColumnType", inline = True)
-                    trow += tcell
-
-                    for xtype in RepositoryType._DATAMAP:
-                        if rtype == xtype[2]:
-                            rtype = xtype[1]
-                            break
-                    tcell += rtype or "&nbsp;"
+                    rtype = str(repo.type)
+                    trow += Html("td", rtype, class_ = "ColumnType", inline = True)
 
                     # repository name and hyperlink
                     repo_title = html_escape(repo.name)
