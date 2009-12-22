@@ -22,7 +22,7 @@ from editaddress import EditAddress
 from editattribute import EditAttribute, EditFamilyAttribute
 from editchildref import EditChildRef
 from editevent import EditEvent, DeleteEventQuery
-from editeventref import EditEventRef
+from editeventref import EditEventRef, EditFamilyEventRef
 from editfamily import EditFamily
 from editldsord import EditLdsOrd, EditFamilyLdsOrd
 from editlocation import EditLocation
