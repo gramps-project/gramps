@@ -311,12 +311,15 @@ class BasePluginManager(object):
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
+                    options = None
+                    if (pdata.export_options and 
+                        hasattr(mod, pdata.export_options)):
+                        options = getattr(mod, pdata.export_options)
                     exp = gen.plug.ExportPlugin(name=pdata.name, 
                         description     = pdata.description,
                         export_function = getattr(mod, pdata.export_function),
                         extension       = pdata.extension,
-                        config          = (pdata.export_options_title, 
-                                          getattr(mod, pdata.export_options)))
+                        config          = (pdata.export_options_title, options))
                     self.__export_plugins.append(exp)
                 
         return self.__export_plugins
