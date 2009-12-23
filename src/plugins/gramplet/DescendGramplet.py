@@ -40,6 +40,7 @@ from gen.plug import Gramplet
 from ReportBase import ReportUtils
 from BasicUtils import name_displayer
 import DateHandler
+from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 class DescendantGramplet(Gramplet):
     def init(self):
@@ -69,21 +70,14 @@ class DescendantGramplet(Gramplet):
         self.append_text("", scroll_to="begin")
 
     def dump_dates(self, person):
-        birth_date = ""
-        birth_ref = person.get_birth_ref()
-        if birth_ref:
-            birth = self.dbstate.db.get_event_from_handle(birth_ref.ref)
-            birth_date = DateHandler.get_date(birth)
-        else:
-            birth = None
+        birth = get_birth_or_fallback(self.dbstate.db, person)
+        death = get_death_or_fallback(self.dbstate.db, person)
 
-        death_date = ""
-        death_ref = person.get_death_ref()
-        if death_ref:
-            death = self.dbstate.db.get_event_from_handle(death_ref.ref)
+        if birth:
+            birth_date = DateHandler.get_date(birth)
+
+        if death:
             death_date = DateHandler.get_date(death)
-        else:
-            death = None
 
         if birth or death:
             self.append_text(' (')
@@ -104,12 +98,14 @@ class DescendantGramplet(Gramplet):
 
             if birth:
                 if birth_place:
-                    self.append_text(_("b. %(birth_date)s - %(place)s") % {
+                    self.append_text(_("%(event_abbrev)s %(birth_date)s - %(place)s") % {
+                        'event_abbrev': birth.type.get_abbreviation(),
                         'birth_date' : birth_date,
                         'place' : birth_place,
                         })
                 else:
-                    self.append_text(_("b. %(birth_date)s") % {
+                    self.append_text(_("%(event_abbrev)s %(birth_date)s") % {
+                        'event_abbrev': birth.type.get_abbreviation(),
                         'birth_date' : birth_date
                         })
 
@@ -117,12 +113,14 @@ class DescendantGramplet(Gramplet):
                 if birth:
                     self.append_text(', ')
                 if death_place:
-                    self.append_text(_("d. %(death_date)s - %(place)s") % {
+                    self.append_text(_("%(event_abbrev)s %(death_date)s - %(place)s") % {
+                        'event_abbrev': death.type.get_abbreviation(),
                         'death_date' : death_date,
                         'place' : death_place,
                         })
                 else:
-                    self.append_text(_("d. %(death_date)s") % {
+                    self.append_text(_("%(event_abbrev)s %(death_date)s") % {
+                        'event_abbrev': death.type.get_abbreviation(),
                         'death_date' : death_date
                         })
 

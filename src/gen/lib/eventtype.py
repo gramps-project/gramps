@@ -29,7 +29,8 @@ Provide the different event types
 # Python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -187,6 +188,12 @@ class EventType(GrampsType):
         (MARR_ALT        , _("Alternate Marriage"),   "Alternate Marriage"),
         ]
 
+    _ABBREVIATIONS = {
+        BIRTH: _("birth abbreviation|b"),
+        DEATH: _("death abbreviation|d"),
+        MARRIAGE: _("marriage abbreviation|m"),
+        }
+
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
         
@@ -231,3 +238,18 @@ class EventType(GrampsType):
         Returns True if EventType is DIVORCE, False otherwise.
         """
         return self.value == self.DIVORCE
+
+    def get_abbreviation(self):
+        """
+        Returns the abbreviation for this event. Uses the explicitly
+        given abbreviations, or first letter of each word, or the first
+        three letters. Appends a period after the abbreviation.
+        """
+        if self.value in self._ABBREVIATIONS:
+            return self._ABBREVIATIONS[self.value] + "."
+        else:
+            abbrev = str(self)
+            if " " in abbrev:
+                return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
+            else:
+                return abbrev[:3].lower() + "."

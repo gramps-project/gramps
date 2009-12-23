@@ -48,9 +48,6 @@ import DateHandler
 import Sort
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
-_BORN = _('b.')
-_DIED = _('d.')
-
 #------------------------------------------------------------------------
 #
 # DescendantReport
@@ -98,12 +95,14 @@ class DescendantReport(Report):
             if bplace_handle:
                 birth_place = self.database.get_place_from_handle(
                     bplace_handle).get_title()
-                self.doc.write_text(_("b. %(birth_date)s - %(place)s") % {
+                self.doc.write_text(_("%(event_abbrev)s %(birth_date)s - %(place)s") % {
+                    'event_abbrev': birth.type.get_abbreviation(),
                     'birth_date' : birth_date,
                     'place' : birth_place,
                     })
             else:
-                self.doc.write_text(_("b. %(birth_date)s") % {
+                self.doc.write_text(_("%(event_abbrev)s %(birth_date)s") % {
+                    'event_abbrev': birth.type.get_abbreviation(),
                     'birth_date' : birth_date
                     })
 
@@ -115,12 +114,14 @@ class DescendantReport(Report):
             if dplace_handle:
                 death_place = self.database.get_place_from_handle(
                     dplace_handle).get_title()
-                self.doc.write_text(_("d. %(death_date)s - %(place)s") % {
+                self.doc.write_text(_("%(event_abbrev)s %(death_date)s - %(place)s") % {
+                    'event_abbrev': death.type.get_abbreviation(),
                     'death_date' : death_date,
                     'place' : death_place,
                     })
             else:
-                self.doc.write_text(_("d. %(death_date)s") % {
+                self.doc.write_text(_("%(event_abbrev)s %(death_date)s") % {
+                    'event_abbrev': death.type.get_abbreviation(),
                     'death_date' : death_date
                     })
 
