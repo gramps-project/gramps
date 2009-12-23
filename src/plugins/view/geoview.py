@@ -1923,8 +1923,8 @@ class GeoView(HtmlView):
         on the map
         """
         new_place = gen.lib.Place()
-        new_place.set_latitude(self.reallatitude)
-        new_place.set_longitude(self.reallongitude)
+        new_place.set_latitude(str(self.reallatitude))
+        new_place.set_longitude(str(self.reallongitude))
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
         except Errors.WindowActiveError:
