@@ -1839,7 +1839,7 @@ class Narrator(object):
             
         return text
 
-    def get_baptized_string(self):
+    def get_baptised_string(self):
         """ 
         Get a string narrating the baptism of the subject.
         Example sentences:

@@ -538,8 +538,11 @@ class DetDescendantReport(Report):
 
             self.doc.write_text("%s. " % child_name, child_mark)
             self.__narrator.set_subject(child)
-            self.doc.write_text_citation(self.__narrator.get_born_string())
-            self.doc.write_text_citation(self.__narrator.get_died_string())
+            self.doc.write_text_citation(self.__narrator.get_born_string() or
+                                         self.__narrator.get_christened_string() or
+                                         self.__narrator.get_baptised_string())
+            self.doc.write_text_citation(self.__narrator.get_died_string() or 
+                                         self.__narrator.get_buried_string())
             self.doc.end_paragraph()
 
     def __write_family_events(self, family):
@@ -593,7 +596,7 @@ class DetDescendantReport(Report):
         if text:
             self.doc.write_text_citation(text)
 
-        text = self.__narrator.get_baptized_string()
+        text = self.__narrator.get_baptised_string()
         if text:
             self.doc.write_text_citation(text)
             
