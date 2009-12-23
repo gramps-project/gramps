@@ -238,8 +238,7 @@ class GeoView(HtmlView):
     """
 
     def __init__(self, dbstate, uistate):
-        self.renderer = HtmlView.__init__(self, dbstate, uistate,
-                                          title=_("GeoView"))
+        HtmlView.__init__(self, dbstate, uistate, title=_("GeoView"))
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
