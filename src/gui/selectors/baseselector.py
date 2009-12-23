@@ -111,7 +111,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         #show or hide search bar?
         self.set_show_search_bar(show_search_bar)
         #Hide showall always (used in person selector only)
-        if self.filter is not None:
+        if self.filter[1] is not None:
             self.showall.show()
         else:
             self.showall.hide()
@@ -240,7 +240,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         Builds the selection people see in the Selector
         """
-        if self.filter:
+        if self.filter[1]:
             filter_info = self.filter
         else:
             #search info for the 
