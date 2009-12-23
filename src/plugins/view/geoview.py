@@ -9,6 +9,7 @@
 # Copyright (C) 2009  Helge GRAMPS
 # Copyright (C) 2009  Josip
 # Copyright (C) 2009  Gary Burton
+# Copyright (C) 2009  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -326,6 +327,7 @@ class GeoView(HtmlView):
 
     def _place_added(self, handle_list):
         self.displaytype = "places"
+        self._set_lock_unlock(True)
         self._geo_places()
         
     def top_widget(self):
@@ -970,6 +972,17 @@ class GeoView(HtmlView):
         self.usedmap = "google"        
         self._change_map("google")
         self._ask_year_selection(self.last_year)
+
+    def _set_lock_unlock(self, state):
+        """
+        Change the lock/unlock state.
+        """
+        actionstyles = self.lock_action.get_action('SaveZoom')
+        widgets = actionstyles.get_proxies()
+        for widget in widgets :
+            if isinstance(widget, gtk.ToggleToolButton):
+                widget.set_active(state)
+        self._set_lock_unlock_icon()
 
     def _set_lock_unlock_icon(self):
         """
