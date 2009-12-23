@@ -993,7 +993,10 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         f.destroy()
 
     def update_int_entry(self, obj, constant):
-        config.set(constant, int(obj.get_text()))
+        try:
+            config.set(constant, int(obj.get_text()))
+        except:
+            print "WARNING: ignoring invalid value for '%s'" % constant
 
     def update_entry(self, obj, constant):
         config.set(constant, unicode(obj.get_text()))
