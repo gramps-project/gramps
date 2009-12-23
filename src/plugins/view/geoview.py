@@ -1938,8 +1938,8 @@ class GeoView(HtmlView):
         selector = SelectPlace(self.dbstate, self.uistate, [])
         place = selector.run()
         if place:
-            place.set_latitude(self.reallatitude)
-            place.set_longitude(self.reallongitude)
+            place.set_latitude(str(self.reallatitude))
+            place.set_longitude(str(self.reallongitude))
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
             except Errors.WindowActiveError:
