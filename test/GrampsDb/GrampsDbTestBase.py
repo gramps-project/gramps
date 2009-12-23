@@ -14,9 +14,10 @@ try:
 except NameError:
     from sets import Set as set
     
-import GrampsDb
+from gen.db import DbBsddb
+from cli.clidbman import CLIDbManager
 import const
-import RelLib
+import gen.lib
 
 logger = logging.getLogger('Gramps.GrampsDbTestBase')
 
@@ -28,11 +29,12 @@ class GrampsDbBaseTest(unittest.TestCase):
         def dummy_callback(dummy):
             pass
         self._tmpdir = tempfile.mkdtemp()
-        self._filename = os.path.join(self._tmpdir,'test.grdb')
+        #self._filename = os.path.join(self._tmpdir,'test.grdb')
         
-        self._db = GrampsDb.gramps_db_factory(const.app_gramps)()
+        self._db = DbBsddb()
+        dbman = CLIDbManager(None)
+        self._filename, title = dbman.create_new_db_cli(title="Test")
         self._db.load(self._filename, dummy_callback, "w")
-
 
     def tearDown(self):
         self._db.close()
@@ -84,9 +86,9 @@ class GrampsDbBaseTest(unittest.TestCase):
         # Add a Source
         
         tran = self._db.transaction_begin()
-        source = RelLib.Source()
+        source = gen.lib.Source()
         if repos is not None:
-            repo_ref = RelLib.RepoRef()
+            repo_ref = gen.lib.RepoRef()
             repo_ref.set_reference_handle(repos.get_handle())
             source.add_repo_reference(repo_ref)
         self._db.add_source(source,tran)
@@ -99,7 +101,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         # Add a Repository
         
         tran = self._db.transaction_begin()
-        repos = RelLib.Repository()
+        repos = gen.lib.Repository()
         self._db.add_repository(repos,tran)
         self._db.commit_repository(repos,tran)
         self._db.transaction_commit(tran, "Add Repository")
@@ -112,7 +114,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         object = object_class()
 
         for source in sources:
-            src_ref = RelLib.SourceRef()
+            src_ref = gen.lib.SourceRef()
             src_ref.set_reference_handle(source.get_handle())
             object.add_source_reference(src_ref)
 
@@ -127,34 +129,34 @@ class GrampsDbBaseTest(unittest.TestCase):
     def _add_person_with_sources(self,sources):
 
         return self._add_object_with_source(sources,
-                                            RelLib.Person,
+                                            gen.lib.Person,
                                             self._db.add_person,
                                             self._db.commit_person)
 
     def _add_family_with_sources(self,sources):
 
         return self._add_object_with_source(sources,
-                                            RelLib.Family,
+                                            gen.lib.Family,
                                             self._db.add_family,
                                             self._db.commit_family)
 
     def _add_event_with_sources(self,sources):
 
         return self._add_object_with_source(sources,
-                                            RelLib.Event,
+                                            gen.lib.Event,
                                             self._db.add_event,
                                             self._db.commit_event)
 
     def _add_place_with_sources(self,sources):
 
         return self._add_object_with_source(sources,
-                                            RelLib.Place,
+                                            gen.lib.Place,
                                             self._db.add_place,
                                             self._db.commit_place)
 
     def _add_media_object_with_sources(self,sources):
 
         return self._add_object_with_source(sources,
-                                            RelLib.MediaObject,
+                                            gen.lib.MediaObject,
                                             self._db.add_object,
                                             self._db.commit_media_object)

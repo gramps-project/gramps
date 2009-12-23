@@ -15,35 +15,12 @@ except NameError:
     from sets import Set as set
 
 import const
-import RelLib
+import gen.lib
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 
 from GrampsDbTestBase import GrampsDbBaseTest
-import GrampsDb
 
-class FactoryTest(unittest.TestCase):
-    """Test the GrampsDb Factory classes."""
-
-    def test_gramps_db_factory(self):
-        """test than gramps_db_factory returns the correct classes."""
-        
-        cls = GrampsDb.gramps_db_factory(db_type = const.app_gramps)
-        assert cls.__name__ == "GrampsBSDDB", \
-               "Returned class is %s " % str(cls.__class__.__name__)
-
-        cls = GrampsDb.gramps_db_factory(db_type = const.app_gramps_xml)
-        assert cls.__name__ == "GrampsXMLDB", \
-               "Returned class is %s " % str(cls.__class__.__name__)
-
-        cls = GrampsDb.gramps_db_factory(db_type = const.app_gedcom)
-        assert cls.__name__ == "GrampsGEDDB", \
-               "Returned class is %s " % str(cls.__class__.__name__)
-
-        self.assertRaises(GrampsDb.GrampsDbException, GrampsDb.gramps_db_factory, "gibberish")
-
-        
-        
 class ReferenceMapTest (GrampsDbBaseTest):
     """Test methods on the GrampsDbBase class that are related to the reference_map
     index implementation."""
@@ -59,7 +36,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
 
         assert len(references) == 1
-        assert references[0] == (RelLib.Person.__name__,person.get_handle())
+        assert references[0] == (gen.lib.Person.__name__,person.get_handle())
 
     def test_backlink_for_repository(self):
         """check that the source / repos backlink lookup works."""
@@ -70,7 +47,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         references = [ ref for ref in self._db.find_backlink_handles(repos.get_handle()) ]
 
         assert len(references) == 1
-        assert references[0] == (RelLib.Source.__name__,source.get_handle())
+        assert references[0] == (gen.lib.Source.__name__,source.get_handle())
 
     def test_class_limited_lookup(self):
         """check that class limited lookups work."""
@@ -89,16 +66,16 @@ class ReferenceMapTest (GrampsDbBaseTest):
         assert len(references) == 5, "len(references) == %s " % str(len(references))
 
         # should just return the person reference
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(RelLib.Person.__name__,)) ]
+        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(gen.lib.Person.__name__,)) ]
         assert len(references) == 1, "len(references) == %s " % str(len(references))
-        assert references[0][0] == RelLib.Person.__name__, "references = %s" % repr(references)
+        assert references[0][0] == gen.lib.Person.__name__, "references = %s" % repr(references)
 
         # should just return the person  and event reference
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(RelLib.Person.__name__,
-                                                                                          RelLib.Event.__name__)) ]
+        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(gen.lib.Person.__name__,
+                                                                                          gen.lib.Event.__name__)) ]
         assert len(references) == 2, "len(references) == %s " % str(len(references))
-        assert references[0][0] == RelLib.Person.__name__, "references = %s" % repr(references)
-        assert references[1][0] == RelLib.Event.__name__, "references = %s" % repr(references)
+        assert references[0][0] == gen.lib.Person.__name__, "references = %s" % repr(references)
+        assert references[1][0] == gen.lib.Event.__name__, "references = %s" % repr(references)
 
         
 
@@ -130,7 +107,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         
         # unhook the reference_map update function so that we
         # can insert some records without the reference_map being updated.
-        update_method = self._db._update_reference_map
+        update_method = self._db.update_reference_map
         self._db._update_reference_map = lambda x,y: 1
 
         # Insert a person/source pair.
@@ -216,7 +193,6 @@ class ReferenceMapTest (GrampsDbBaseTest):
         
 def testSuite():
     suite = unittest.makeSuite(ReferenceMapTest,'test')
-    suite.addTests(unittest.makeSuite(FactoryTest,'test'))
     return suite
 
 def perfSuite():

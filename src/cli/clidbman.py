@@ -94,7 +94,8 @@ class CLIDbManager(object):
             self.active = None
         
         self.current_names = []
-        self._populate_cli()
+        if dbstate:
+            self._populate_cli()
 
     def empty(self, val):
         """Callback that does nothing
@@ -234,7 +235,7 @@ class CLIDbManager(object):
         name_file.close()
 
         # write the version number into metadata
-        newdb = gen.db.GrampsDBDir()
+        newdb = gen.db.DbBsddb()
         newdb.write_version(new_path)
 
         (tval, last) = time_val(new_path)
@@ -269,7 +270,7 @@ class CLIDbManager(object):
     
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
-                dbclass = gen.db.GrampsDBDir
+                dbclass = gen.db.DbBsddb
                 dbase = dbclass()
                 dbase.load(new_path, callback)
     
