@@ -67,6 +67,7 @@ from BasicUtils import name_displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
 from gui.editors import EditPlace
+from gui.selectors.selectplace import SelectPlace
 
 #-------------------------------------------------------------------------
 #
@@ -322,9 +323,10 @@ class GeoView(HtmlView):
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
         self.endinit = False
-        self.signal_map = {'place-add': self._place_added}
+        self.signal_map = {'place-add': self._place_changed,
+                           'place-update' : self._place_changed}
 
-    def _place_added(self, handle_list):
+    def _place_changed(self, handle_list):
         self.displaytype = "places"
         self._set_lock_unlock(True)
         self._geo_places()
@@ -717,6 +719,7 @@ class GeoView(HtmlView):
               <toolitem action="Google"/>
               <toolitem action="SaveZoom"/>
               <toolitem action="AddPlace"/>
+              <toolitem action="LinkPlace"/>
               <toolitem action="StyleSheet"/>
               <separator/>
               <toolitem action="PersonMaps"/>
@@ -747,6 +750,11 @@ class GeoView(HtmlView):
             _('_Add Place'),
             callback=self._add_place,
             tip=_("Add the location centred on the map as a new place in "
+                  "Gramps. Double click the location to centre on the map."))
+        self._add_action('LinkPlace', 'gramps-place', 
+            _('_Link Place'),
+            callback=self._link_place,
+            tip=_("Link the location centred on the map to a place in "
                   "Gramps. Double click the location to centre on the map."))
         self.lock_action = gtk.ActionGroup(self.title + "/SaveZoom")
         self.lock_action.add_toggle_actions([
@@ -1921,3 +1929,18 @@ class GeoView(HtmlView):
             EditPlace(self.dbstate, self.uistate, [], new_place)
         except Errors.WindowActiveError:
             pass
+
+    def _link_place(self,url):
+        """
+        Link an existing place using longitude and latitude of location centred
+        on the map
+        """
+        selector = SelectPlace(self.dbstate, self.uistate, [])
+        place = selector.run()
+        if place:
+            place.set_latitude(self.reallatitude)
+            place.set_longitude(self.reallongitude)
+            try:
+                EditPlace(self.dbstate, self.uistate, [], place)
+            except Errors.WindowActiveError:
+                pass
