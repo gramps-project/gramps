@@ -322,7 +322,12 @@ class GeoView(HtmlView):
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
         self.endinit = False
- 
+        self.signal_map = {'place-add': self._place_added}
+
+    def _place_added(self, handle_list):
+        self.displaytype = "places"
+        self._geo_places()
+        
     def top_widget(self):
         """
         The top widget to use, for GeoView :
@@ -920,7 +925,7 @@ class GeoView(HtmlView):
         self.displaytype = "event"
         self._geo_places()
 
-    def _new_database(self, *args): # pylint: disable-msg=W0613
+    def _new_database(self, db):
         """
         We just change the database.
         Restore the initial config. Is it good ?
@@ -932,6 +937,9 @@ class GeoView(HtmlView):
                                     config.get('geoview.latitude'),
                                     config.get('geoview.longitude'),
                                     "D.D8")
+        self._change_db(db)
+        for sig in self.signal_map:
+            self.callman.add_db_signal(sig, self.signal_map[sig])
 
     def _geo_places(self):
         """
@@ -1834,7 +1842,7 @@ class GeoView(HtmlView):
               _("Cannot center the map. No location with coordinates."
                 "The following reasons are : <ul>"
                 "<li>The active person has no places with coordinates.</li>"
-	        "<li>The active person's family members have no places "
+                "<li>The active person's family members have no places "
                 "with coordinates.</li><li>You have no places.</li>"
                 "<li>You have no active person set.</li>"), 
               )
