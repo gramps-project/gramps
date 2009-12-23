@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Exports the GrampsDbTxn class for managing Gramps transactions and the undo
+Exports the DbTxn class for managing Gramps transactions and the undo
 database.
 """
 
@@ -51,7 +51,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 # Gramps transaction class
 #
 #-------------------------------------------------------------------------
-class GrampsDbTxn(dict):
+class DbTxn(dict):
     """
     Define a group of database commits that define a single logical operation.
     This class should not be used directly, but subclassed to reference a real
@@ -86,10 +86,10 @@ class GrampsDbTxn(dict):
         Create a new transaction. 
         
         A Transaction instance should not be created directly, but by the 
-        GrampsDbBase class or classes derived from GrampsDbBase. The commitdb 
+        DbBase class or classes derived from DbBase. The commitdb 
         parameter is a list-like interface that stores the commit data. This 
         could be a simple list, or a RECNO-style database object.  The grampsdb
-        parameter is a reference to the GrampsDbWrite object to which this
+        parameter is a reference to the DbWrite object to which this
         transaction will be applied.
 
         The data structure used to handle the transactions is a Python
@@ -108,7 +108,7 @@ class GrampsDbTxn(dict):
                 data   = pickled representation of the object        
         """
 
-        super(GrampsDbTxn, self).__init__({})
+        super(DbTxn, self).__init__({})
 
         self.msg = msg
         self.commitdb = commitdb
@@ -298,7 +298,7 @@ def testtxn():
         """ Fake commit database"""
         pass
 
-    class G(GrampsDbTxn):
+    class G(DbTxn):
         """Derived transacton class"""
         def get_db_txn(self, env):
             return T()

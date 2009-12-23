@@ -40,7 +40,7 @@ from bsddb import db
 from gettext import gettext as _
 
 import logging
-LOG = logging.getLogger(".GrampsDb")
+LOG = logging.getLogger(".Db")
 
 #-------------------------------------------------------------------------
 #
@@ -94,7 +94,7 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
 _SIGBASE = ('person', 'family', 'source', 'event', 
             'media', 'place', 'repository', 'reference', 'note')
 
-class GrampsDbBookmarks(object):
+class DbBookmarks(object):
     def __init__(self, default=[]):
         self.bookmarks = list(default) # want a copy (not an alias)
 
@@ -119,7 +119,7 @@ class GrampsDbBookmarks(object):
     def insert(self, pos, item):
         self.bookmarks.insert(pos, item)
 
-class GrampsDbGrdb(Callback):
+class DbGrdb(Callback):
     """
     GRAMPS database object. This object is a base class for all
     database interfaces.
@@ -177,7 +177,7 @@ class GrampsDbGrdb(Callback):
 
     def __init__(self):
         """
-        Create a new GrampsDbBase instance. 
+        Create a new DbBase instance. 
         
         A new GrampDbBase class should never be directly created. Only classes 
         derived from this class should be created.
@@ -256,14 +256,14 @@ class GrampsDbGrdb(Callback):
         self.default = None
         self.owner = Researcher()
         self.name_formats = []
-        self.bookmarks = GrampsDbBookmarks()
-        self.family_bookmarks = GrampsDbBookmarks()
-        self.event_bookmarks = GrampsDbBookmarks()
-        self.place_bookmarks = GrampsDbBookmarks()
-        self.source_bookmarks = GrampsDbBookmarks()
-        self.repo_bookmarks = GrampsDbBookmarks()
-        self.media_bookmarks = GrampsDbBookmarks()
-        self.note_bookmarks = GrampsDbBookmarks()
+        self.bookmarks = DbBookmarks()
+        self.family_bookmarks = DbBookmarks()
+        self.event_bookmarks = DbBookmarks()
+        self.place_bookmarks = DbBookmarks()
+        self.source_bookmarks = DbBookmarks()
+        self.repo_bookmarks = DbBookmarks()
+        self.media_bookmarks = DbBookmarks()
+        self.note_bookmarks = DbBookmarks()
         self._bm_changes = 0
         self.path = ""
         self.surname_list = []
@@ -2600,7 +2600,7 @@ class Transaction(object):
         Create a new transaction. 
         
         A Transaction instance should not be created directly, but by the 
-        GrampsDbBase class or classes derived from GrampsDbBase. The db 
+        DbBase class or classes derived from DbBase. The db 
         parameter is a list-like interface that stores the commit data. This 
         could be a simple list, or a RECNO-style database object.
 

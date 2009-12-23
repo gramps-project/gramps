@@ -277,7 +277,7 @@ class DbLoader(CLIDbLoader):
         else:
             mode = 'w'
 
-        self.dbstate.change_database(gen.db.GrampsDBDir())
+        self.dbstate.change_database(gen.db.DbBsddb())
         self.dbstate.db.disable_signals()
 
         self._begin_progress()
@@ -286,7 +286,7 @@ class DbLoader(CLIDbLoader):
             try:
                 self.dbstate.db.load(filename, self._pulse_progress, 
                                      mode, upgrade=False)
-            except gen.db.exceptions.GrampsDbUpgradeRequiredError, msg:
+            except gen.db.exceptions.DbUpgradeRequiredError, msg:
                 if QuestionDialog2(_("Need to upgrade database!"), 
                                    str(msg), 
                                    _("Upgrade now"), 
@@ -296,7 +296,7 @@ class DbLoader(CLIDbLoader):
                     self.dbstate.db.set_save_path(filename)
                 else:
                     self.dbstate.no_database()
-        except gen.db.exceptions.GrampsDbVersionError, msg:
+        except gen.db.exceptions.DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:

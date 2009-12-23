@@ -113,8 +113,8 @@ def _table_low_level(db,table):
         return True
 
 #    import gen.db
-    from gen.db import GrampsDBDirAssocCursor
-    table_cursor = GrampsDBDirAssocCursor(table)
+    from gen.db import DbBsddbAssocCursor
+    table_cursor = DbBsddbAssocCursor(table)
     for handle in dup_handles:
         print "    Duplicates found for handle: %s" % handle
         try:
@@ -163,7 +163,7 @@ class Check(Tool.BatchTool):
         # The low-level repair is bypassing the transaction mechanism.
         # As such, we run it before starting the transaction.
         # We only do this for the dbdir backend.
-        if self.db.__class__.__name__ == 'GrampsDBDir':
+        if self.db.__class__.__name__ == 'DbBsddb':
             low_level(self.db)
         
         trans = self.db.transaction_begin("", batch=True)

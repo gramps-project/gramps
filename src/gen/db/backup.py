@@ -58,7 +58,7 @@ import cPickle as pickle
 # Gramps libs
 #
 #------------------------------------------------------------------------
-from gen.db.exceptions import GrampsDbException
+from gen.db.exceptions import DbException
 from gen.db.write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
     EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, META
 
@@ -79,19 +79,19 @@ def backup(database):
     purpose of this function is to catch any exceptions that occur.
 
     @param database: database instance to backup
-    @type database: GrampsDbDir
+    @type database: DbDir
     """
     try:
         __do_export(database)
     except (OSError, IOError), msg:
-        raise GrampsDbException(str(msg))
+        raise DbException(str(msg))
 
 def __mk_backup_name(database, base):
     """
     Return the backup name of the database table
 
     @param database: database instance 
-    @type database: GrampsDbDir
+    @type database: DbDir
     @param base: base name of the table
     @type base: str
     """
@@ -102,7 +102,7 @@ def __mk_tmp_name(database, base):
     Return the temporary backup name of the database table
 
     @param database: database instance 
-    @type database: GrampsDbDir
+    @type database: DbDir
     @param base: base name of the table
     @type base: str
     """
@@ -114,7 +114,7 @@ def __do_export(database):
     a file.
 
     @param database: database instance to backup
-    @type database: GrampsDbDir
+    @type database: DbDir
     """
     try:
         for (base, tbl) in __build_tbl_map(database):
@@ -147,12 +147,12 @@ def restore(database):
     purpose of this function is to catch any exceptions that occur.
 
     @param database: database instance to restore
-    @type database: GrampsDbDir
+    @type database: DbDir
     """
     try:
         __do_restore(database)
     except (OSError, IOError), msg:
-        raise GrampsDbException(str(msg))
+        raise DbException(str(msg))
 
 def __do_restore(database):
     """
@@ -160,7 +160,7 @@ def __do_restore(database):
     to the appropriate database file.
 
     @param database: database instance to backup
-    @type database: GrampsDbDir
+    @type database: DbDir
     """
     for (base, tbl) in __build_tbl_map(database):
         backup_name = __mk_backup_name(database, base)
@@ -174,7 +174,7 @@ def __load_tbl_txn(database, backup_table, tbl):
     Return the temporary backup name of the database table
 
     @param database: database instance 
-    @type database: GrampsDbDir
+    @type database: DbDir
     @param backup_table: file containing the backup data
     @type backup_table: file
     @param tbl: Berkeley db database table
@@ -194,7 +194,7 @@ def __build_tbl_map(database):
     Builds a table map of names to database tables.
 
     @param database: database instance to backup
-    @type database: GrampsDbDir
+    @type database: DbDir
     """
     return [
         ( PERSON_TBL,  database.person_map.db),

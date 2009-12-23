@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provide the Berkeley DB (DBDir) database backend for GRAMPS.
+Provide the Berkeley DB (DbBsddb) database backend for GRAMPS.
 This is used since GRAMPS version 3.0
 """
 
@@ -50,9 +50,10 @@ from sys import maxint
 #-------------------------------------------------------------------------
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note)
-from gen.db import (GrampsDbRead, BSDDBTxn, GrampsDbTxn, GrampsCursor,
-                    GrampsDbVersionError, GrampsDbUpgradeRequiredError,
-                    GrampsDbUndoBSDDB as GrampsDbUndo)
+from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
+                    DbTxn, GrampsCursor,DbVersionError, 
+                    DbUpgradeRequiredError, 
+                    DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from BasicUtils import UpdateCallback
@@ -151,10 +152,10 @@ class GrampsWriteCursor(GrampsCursor):
         
 #-------------------------------------------------------------------------
 #
-# GrampsDBDirAssocCursor
+# DbBsddbAssocCursor
 #
 #-------------------------------------------------------------------------
-class GrampsDBDirAssocCursor(GrampsCursor):
+class DbBsddbAssocCursor(GrampsCursor):
 
     def __init__(self, source, txn=None, **kwargs):
         GrampsCursor.__init__(self, txn=txn, **kwargs)
@@ -163,10 +164,11 @@ class GrampsDBDirAssocCursor(GrampsCursor):
         
 #-------------------------------------------------------------------------
 #
-# GrampsDBDir
+# DbBsddb
 #
 #-------------------------------------------------------------------------
-class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
+class DbBsddb(DbBsddbRead, DbWriteBase, 
+                  Callback, UpdateCallback):
     """
     GRAMPS database write access object. 
     """
@@ -197,7 +199,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         """Create a new GrampsDB."""
         
         self.txn = None
-        GrampsDbRead.__init__(self)
+        DbBsddbRead.__init__(self)
         Callback.__init__(self)
         self.secondary_connected = False
         self.has_changed = False
@@ -279,14 +281,14 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         """
         Returns a reference to a cursor over the reference map
         """
-        return GrampsDBDirAssocCursor(self.reference_map, self.txn)
+        return DbBsddbAssocCursor(self.reference_map, self.txn)
 
     @catch_db_error
     def get_reference_map_primary_cursor(self):
         """
         Returns a reference to a cursor over the reference map primary map
         """
-        return GrampsDBDirAssocCursor(self.reference_map_primary_map, 
+        return DbBsddbAssocCursor(self.reference_map_primary_map, 
                                         self.txn)
 
     @catch_db_error
@@ -294,10 +296,10 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         """
         Returns a reference to a cursor over the reference map referenced map
         """
-        return GrampsDBDirAssocCursor(self.reference_map_referenced_map, 
+        return DbBsddbAssocCursor(self.reference_map_referenced_map, 
                                         self.txn)
 
-    # These are overriding the GrampsDbRead's methods of saving metadata
+    # These are overriding the DbBsddbRead's methods of saving metadata
     # because we now have txn-capable metadata table
 
     @catch_db_error
@@ -376,7 +378,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             self.close()
 
         self.readonly = mode == DBMODE_R
-        #super(GrampsDbRead, self).load(name, callback, mode)
+        #super(DbBsddbRead, self).load(name, callback, mode)
         if callback:
             callback(12)
 
@@ -419,7 +421,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         # it makes no sense to go further
         if not self.version_supported():
             self.__close_early()
-            raise GrampsDbVersionError()
+            raise DbVersionError()
 
         self.__load_metadata()
         gstats = self.metadata.get('gender_stats', default=None)
@@ -473,7 +475,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
                 self.gramps_upgrade(callback)
             else:
                 self.__close_early()
-                raise GrampsDbUpgradeRequiredError()
+                raise DbUpgradeRequiredError()
 
         if callback:
             callback(50)
@@ -501,7 +503,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         """
         if not self.readonly:
             self.undolog = os.path.join(self.full_name, DBUNDOFN)
-            self.undodb = GrampsDbUndo(self, self.undolog)
+            self.undodb = DbUndo(self, self.undolog)
             self.undodb.open()
 
     def __close_undodb(self):
@@ -1719,7 +1721,7 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
 # BdbTransaction
 #
 #-------------------------------------------------------------------------
-class BdbTransaction(GrampsDbTxn):
+class BdbTransaction(DbTxn):
     """
     The batch parameter is set to True for large transactions. For such
     transactions, the list of changes is not maintained, and no undo
@@ -1735,7 +1737,7 @@ class BdbTransaction(GrampsDbTxn):
     __slots__ = ('batch', 'no_magic')
     
     def __init__(self, msg, undodb, grampsdb, batch=False, no_magic=False):
-        GrampsDbTxn.__init__(self, msg, undodb, grampsdb)
+        DbTxn.__init__(self, msg, undodb, grampsdb)
         self.batch = batch
         self.no_magic = no_magic
 
@@ -1774,7 +1776,7 @@ if __name__ == "__main__":
 
     import os, sys, pdb
     
-    d = GrampsDBDir()
+    d = DbBsddb()
     if len(sys.argv) > 1:
         db_name = sys.argv[1]
     else:

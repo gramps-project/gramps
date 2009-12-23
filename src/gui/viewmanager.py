@@ -79,7 +79,7 @@ from gui.dbloader import DbLoader
 import GrampsDisplay
 from gen.utils import ProgressMonitor
 from gen.db.backup import backup
-from gen.db.exceptions import GrampsDbException
+from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
 import ProgressDialog
 
@@ -700,7 +700,7 @@ class ViewManager(CLIManager):
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
             try:
                 backup(self.dbstate.db)
-            except GrampsDbException, msg:
+            except DbException, msg:
                 ErrorDialog(_("Error saving backup data"), msg)
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()

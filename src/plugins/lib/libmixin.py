@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Mixin for GrampsDbDir to enable find_from_handle and check_from_handle methods.
+Mixin for DbDir to enable find_from_handle and check_from_handle methods.
 """
 
 #------------------------------------------------------------------------------
@@ -34,17 +34,17 @@ from gen.lib import (GenderStats, Person, Family, Event, Place, Source,
 
 #------------------------------------------------------------------------------
 #
-# GrampsDbMixin class
+# DbMixin class
 #
 #------------------------------------------------------------------------------
-class GrampsDbMixin(object):
+class DbMixin(object):
     """
-    GrampsDbMixin -- a collection of methods to be added to the main
+    DbMixin -- a collection of methods to be added to the main
     gramps database class for use with import functions.  To enable these
     functions, add the following code to your module:
 
-        if GrampsDbMixin not in database.__class__.__bases__:
-        database.__class__.__bases__ = (GrampsDbMixin,) +  \
+        if DbMixin not in database.__class__.__bases__:
+        database.__class__.__bases__ = (DbMixin,) +  \
                                         database.__class__.__bases__
 
     where "database" is the object name of your instance of the gramps

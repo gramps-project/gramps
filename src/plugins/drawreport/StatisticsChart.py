@@ -197,7 +197,7 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     the birth or death date is missing, a (-1, -1) is returned.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param person: Person object to calculate the age of
     @type person: Person
     @param end_handle: Determines the event handle that determines

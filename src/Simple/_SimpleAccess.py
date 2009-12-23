@@ -114,7 +114,7 @@ class SimpleAccess(object):
         Initialize the SimpleAccess object with the database that will be used.
         
         @param dbase: GRAMPS database object
-        @type dbase: GrampsDbBase
+        @type dbase: DbBase
         """
         self.dbase = dbase
 

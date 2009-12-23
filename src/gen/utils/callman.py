@@ -105,7 +105,7 @@ class CallbackManager(object):
         """
         :param database: database to which to connect the callbacks of this 
             CallbackManager object
-        :type database: a class:`~gen.db.base.GrampsDbBase` object
+        :type database: a class:`~gen.db.base.DbBase` object
         """
         #no handles to track
         self.database = database
@@ -261,7 +261,7 @@ class CallbackManager(object):
         Execute a specific callback. This is only actually done if one of the
         registered handles is involved. 
         Arg must conform to the requirements of the signal emitter. 
-        For a GrampsDbBase that is that arg must be not given (rebuild 
+        For a DbBase that is that arg must be not given (rebuild 
         methods), or arg[0] must be the list of handles affected.
         """
         key = signal.split('-')[0]

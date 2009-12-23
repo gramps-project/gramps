@@ -68,14 +68,14 @@ import pango
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog, QuestionDialog
-from gen.db import GrampsDBDir
+from gen.db import DbBsddb
 from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from DdTargets import DdTargets
 import RecentFiles
 from glade import Glade
 from gen.db.backup import restore
-from gen.db.exceptions import GrampsDbException
+from gen.db.exceptions import DbException
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
@@ -509,7 +509,7 @@ class DbManager(CLIDbManager):
         new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
         
         self.__start_cursor(_("Extracting archive..."))
-        dbclass = GrampsDBDir
+        dbclass = DbBsddb
         dbase = dbclass()
         dbase.load(new_path, None)
         
@@ -633,10 +633,10 @@ class DbManager(CLIDbManager):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = GrampsDBDir()
+        newdb = DbBsddb()
         newdb.write_version(dirname)
 
-        dbclass = GrampsDBDir
+        dbclass = DbBsddb
         dbase = dbclass()
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
@@ -645,7 +645,7 @@ class DbManager(CLIDbManager):
         
         try:
             restore(dbase)
-        except GrampsDbException, msg:
+        except DbException, msg:
             ErrorDialog(_("Error restoring backup data"), msg)
 
         self.__end_cursor()

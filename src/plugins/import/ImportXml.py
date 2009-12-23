@@ -48,7 +48,7 @@ from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY,
 from BasicUtils import UpdateCallback
 import const
 import libgrampsxml
-from libmixin import GrampsDbMixin
+from libmixin import DbMixin
 
 #-------------------------------------------------------------------------
 #
@@ -83,8 +83,8 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 #-------------------------------------------------------------------------
 def importData(database, filename, callback=None, cl=0):
 
-    if GrampsDbMixin not in database.__class__.__bases__:
-        database.__class__.__bases__ = (GrampsDbMixin,) +  \
+    if DbMixin not in database.__class__.__bases__:
+        database.__class__.__bases__ = (DbMixin,) +  \
                                         database.__class__.__bases__
 
     filename = os.path.normpath(filename)

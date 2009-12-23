@@ -50,7 +50,7 @@ import config
 import const
 import Errors
 import DbState
-from gen.db import GrampsDBDir
+from gen.db import DbBsddb
 import gen.db.exceptions
 from gen.plug import BasePluginManager
 from Utils import get_researcher
@@ -137,7 +137,7 @@ class CLIDbLoader(object):
         else:
             mode = 'w'
 
-        dbclass = GrampsDBDir
+        dbclass = DbBsddb
         
         self.dbstate.change_database(dbclass())
         self.dbstate.db.disable_signals()
@@ -147,10 +147,10 @@ class CLIDbLoader(object):
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode)
             self.dbstate.db.set_save_path(filename)
-        except gen.db.exceptions.GrampsDbUpgradeRequiredError, msg:
+        except gen.db.exceptions.DbUpgradeRequiredError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.GrampsDbVersionError, msg:
+        except gen.db.exceptions.DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:

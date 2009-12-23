@@ -93,7 +93,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
     @param bibliography: The bibliography that contains the citations.
     @type bibliography: L{Bibliography}
     @param database: The database that the sources come from.
-    @type database: GrampsDbBase
+    @type database: DbBase
     @param doc: The document to write the endnotes into.
     @type doc: L{docgen.TextDoc}
     @param printnotes: Indicate if the notes attached to a source must be

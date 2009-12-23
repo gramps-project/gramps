@@ -443,7 +443,7 @@ def run_report(db, name, **options_str_dict):
     """
     Given a database, run a given report.
 
-    db is a GrampsDb database
+    db is a Db database
 
     name is the name of a report
 

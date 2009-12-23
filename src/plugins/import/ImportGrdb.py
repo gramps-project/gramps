@@ -38,7 +38,7 @@ import cPickle as pickle
 import time
 from bsddb import dbshelve, db
 import logging
-__LOG = logging.getLogger(".GrampsDb")
+__LOG = logging.getLogger(".Db")
 
 #-------------------------------------------------------------------------
 #
@@ -48,12 +48,12 @@ __LOG = logging.getLogger(".GrampsDb")
 from gen.lib import (GenderStats, Source, Person, Family, Event, Place, 
                      MediaObject, Repository, Note, Attribute, AttributeType, 
                      NoteType)
-from gen.db.write import (GrampsDBDir, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP)
-from libgrdb import GrampsDbGrdb
-from gen.db.txn import GrampsDbTxn as Transaction
+from gen.db.write import (DbBsddb, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP)
+from libgrdb import DbGrdb
+from gen.db.txn import DbTxn as Transaction
 from gen.db.cursor import GrampsCursor
 from gen.db.dbconst import *
-from gen.db.exceptions import GrampsDbVersionError
+from gen.db.exceptions import DbVersionError
 import const
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
@@ -133,7 +133,7 @@ class GrampsBSDDBDupCursor(GrampsBSDDBAssocCursor):
 # GrampsBSDDB
 #
 #-------------------------------------------------------------------------
-class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
+class GrampsBSDDB(DbGrdb, UpdateCallback):
     """ GRAMPS database object for Berkeley DB. 
         This is replaced for internal use by gen/db/dbdir.py
         However, this class is still used for import of the 2.2.x 
@@ -143,7 +143,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
     def __init__(self, use_txn = True):
         """creates a new GrampsDB"""
         
-        GrampsDbGrdb.__init__(self)
+        DbGrdb.__init__(self)
         #UpdateCallback.__init__(self)
         self.txn = None
         self.secondary_connected = False
@@ -304,7 +304,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
     def get_reference_map_referenced_cursor(self):
         return GrampsBSDDBDupCursor(self.reference_map_referenced_map, self.txn)
 
-    # These are overriding the GrampsDbBase's methods of saving metadata
+    # These are overriding the DbBase's methods of saving metadata
     # because we now have txn-capable metadata table
     def set_default_person_handle(self, handle):
         """sets the default Person to the passed instance"""
@@ -1119,7 +1119,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
         self.metadata   = None
         self.env        = None
         self.db_is_open = False
-        raise GrampsDbVersionError()
+        raise DbVersionError()
 
     def close(self):
         if not self.db_is_open:
@@ -1475,7 +1475,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
         else:
             self.txn = None
 
-        GrampsDbBase.transaction_commit(self, transaction, msg)
+        DbBase.transaction_commit(self, transaction, msg)
 
         for (key, data) in transaction.reference_add:
             self.reference_map.put(str(key), data, txn=self.txn)
@@ -1524,7 +1524,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
         print "Undoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
-        status = GrampsDbBase.undo(self, update_history)
+        status = DbBase.undo(self, update_history)
         if self.UseTXN:
             if status:
                 self.txn.commit()
@@ -1537,7 +1537,7 @@ class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
         print "Redoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
-        status = GrampsDbBase.redo(self, update_history)
+        status = DbBase.redo(self, update_history)
         if self.UseTXN:
             if status:
                 self.txn.commit()

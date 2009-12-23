@@ -19,7 +19,7 @@
 # $Id$
 #
 
-""" Implements a GrampsDb interface """
+""" Implements a Db interface """
 
 #------------------------------------------------------------------------
 #
@@ -28,7 +28,7 @@
 #------------------------------------------------------------------------
 import web
 import gen
-from gen.db import GrampsDbBase
+from gen.db import DbBase
 from web.libdjango import DjangoInterface
 
 # from ReportBase._CommandLineReport import run_report
@@ -50,7 +50,7 @@ class Cursor(object):
     def __exit__(self, *args, **kwargs):
         pass
 
-class DjangoDb(GrampsDbBase):
+class DjangoDb(DbBase):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """

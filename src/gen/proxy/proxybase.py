@@ -30,15 +30,16 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 #
 #-------------------------------------------------------------------------
 from itertools import ifilter
+import types
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.db.base import GrampsDbBase
+from gen.db.base import DbReadBase, DbWriteBase
 
-class ProxyDbBase(GrampsDbBase):
+class ProxyDbBase(DbReadBase):
     """
     ProxyDbBase is a base class for building a proxy to a Gramps database. 
     This class attempts to implement functions that are likely to be common 
@@ -323,8 +324,12 @@ class ProxyDbBase(GrampsDbBase):
             setattr(self, name, attr)
             return attr
 
+        # if a write-method:
+        if (name in DbWriteBase.__dict__ and
+            not name.startswith("__") and 
+            type(DbWriteBase.__dict__[name]) is types.FunctionType):
+            raise AttributeError
         # Default behaviour: lookup attribute in parent object
-
         return getattr(self.db, name)
 
     def get_person_from_handle(self, handle):
@@ -677,29 +682,6 @@ class ProxyDbBase(GrampsDbBase):
     def get_mediapath(self):
         """returns the default media path of the database"""
         return self.db.get_mediapath()
-
-    def find_backlink_handles(self, handle, include_classes=None):
-        """
-        Find all objects that hold a reference to the object handle.
-        Returns an iterator over a list of (class_name, handle) tuples.
-
-        @param handle: handle of the object to search for.
-        @type handle: database handle
-        @param include_classes: list of class names to include in the results.
-                                Default: None means include all classes.
-        @type include_classes: list of class names
-        
-        This default implementation does a sequential scan through all
-        the primary object databases and is very slow. Backends can
-        override this method to provide much faster implementations that
-        make use of additional capabilities of the backend.
-
-        Note that this is a generator function, it returns a iterator for
-        use in loops. If you want a list of the results use:
-
-        >    result_list = list(find_backlink_handles(handle))
-        """
-        raise NotImplementedError
 
     def get_gramps_ids(self, obj_key):
         return self.db.get_gramps_ids(obj_key)

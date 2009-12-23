@@ -344,7 +344,7 @@ class ArgHandler(object):
                 else:
                     self.imp_db_path = Utils.get_empty_tempdir("import_dbdir")
                 
-                    newdb = gen.db.GrampsDBDir()
+                    newdb = gen.db.DbBsddb()
                     newdb.write_version(self.imp_db_path)
                 
                 try:

@@ -46,7 +46,7 @@ class CursorIterator(object):
             
                 # check for cancel
                 #if self._status.should_cancel():
-                #    raise GrampsDbUserCancel
+                #    raise DbUserCancel
             
                 # emit heartbeat
                 self._status.heartbeat()

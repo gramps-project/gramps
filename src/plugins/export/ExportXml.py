@@ -57,7 +57,7 @@ log = logging.getLogger(".WriteXML")
 #-------------------------------------------------------------------------
 import gen.lib 
 from BasicUtils import UpdateCallback
-from gen.db.exceptions import GrampsDbWriteFailure
+from gen.db.exceptions import DbWriteFailure
 import const
 from QuestionDialog import ErrorDialog
 from ExportOptions import WriterOptionBox
@@ -87,7 +87,7 @@ def escxml(d):
 #
 #
 #-------------------------------------------------------------------------
-class GrampsDbXmlWriter(UpdateCallback):
+class GrampsXmlWriter(UpdateCallback):
     """
     Writes a database to the XML file.
     """
@@ -121,7 +121,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         base = os.path.dirname(filename)
         if os.path.isdir(base):
             if not os.access(base, os.W_OK) or not os.access(base, os.R_OK):
-                raise GrampsDbWriteFailure(
+                raise DbWriteFailure(
                          _('Failure writing %s') % filename,
                          _("The database cannot be saved because you do "
                            "not have permission to write to the directory. "
@@ -131,7 +131,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             
         if os.path.exists(filename):
             if not os.access(filename, os.W_OK):
-                raise GrampsDbWriteFailure(
+                raise DbWriteFailure(
                         _('Failure writing %s') % filename,
                         _("The database cannot be saved because you do "
                            "not have permission to write to the file. "
@@ -150,7 +150,7 @@ class GrampsDbXmlWriter(UpdateCallback):
                 g = open(filename,"w")
         except IOError,msg:
             print str(msg)
-            raise GrampsDbWriteFailure((_('Failure writing %s') % filename,
+            raise DbWriteFailure((_('Failure writing %s') % filename,
                                        str(msg)))
             return 0
 
@@ -1189,13 +1189,13 @@ def export_data(database, filename, option_box=None, callback=None):
 # XmlWriter
 #
 #-------------------------------------------------------------------------
-class XmlWriter(GrampsDbXmlWriter):
+class XmlWriter(GrampsXmlWriter):
     """
     Writes a database to the XML file.
     """
 
     def __init__(self, dbase, callback, strip_photos, compress=1):
-        GrampsDbXmlWriter.__init__(
+        GrampsXmlWriter.__init__(
             self, dbase, strip_photos, compress, const.VERSION, callback)
         
     def write(self, filename):
@@ -1204,8 +1204,8 @@ class XmlWriter(GrampsDbXmlWriter):
         """
         ret = 0 #False
         try:
-            ret = GrampsDbXmlWriter.write(self, filename)
-        except GrampsDbWriteFailure, msg:
+            ret = GrampsXmlWriter.write(self, filename)
+        except DbWriteFailure, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1, m2)
         return ret

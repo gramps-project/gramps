@@ -416,7 +416,7 @@ def copy_media_ref_list(db, original_obj, clean_obj):
     references and references to private objects.
 
     @param db: GRAMPS database to which the references belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param original_obj: Object that may have private references
     @type original_obj: MediaBase
     @param clean_obj: Object that will have only non-private references
@@ -436,7 +436,7 @@ def copy_source_ref_list(db, original_obj, clean_obj):
     references and references to private objects.
 
     @param db: GRAMPS database to which the references belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param original_obj: Object that may have private references
     @type original_obj: SourceBase
     @param clean_obj: Object that will have only non-private references
@@ -456,7 +456,7 @@ def copy_notes(db, original_obj, clean_obj):
     notes.
 
     @param db: GRAMPS database to which the references belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param original_obj: Object that may have private references
     @type original_obj: NoteBase
     @param clean_obj: Object that will have only non-private references
@@ -474,7 +474,7 @@ def copy_attributes(db, original_obj, clean_obj):
     private attributes.
 
     @param db: GRAMPS database to which the references belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param original_obj: Object that may have private references
     @type original_obj: AttributeBase
     @param clean_obj: Object that will have only non-private references
@@ -496,7 +496,7 @@ def copy_urls(db, original_obj, clean_obj):
     private urls.
 
     @param db: GRAMPS database to which the references belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param original_obj: Object that may have urls
     @type original_obj: UrlBase
     @param clean_obj: Object that will have only non-private urls
@@ -513,7 +513,7 @@ def copy_lds_ords(db, original_obj, clean_obj):
     private LDS ORDs.
 
     @param db: GRAMPS database to which the references belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param original_obj: Object that may have LDS ORDs
     @type original_obj: LdsOrdBase
     @param clean_obj: Object that will have only non-private LDS ORDs
@@ -530,7 +530,7 @@ def copy_addresses(db, original_obj, clean_obj):
     private addresses.
 
     @param db: GRAMPS database to which the references belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param original_obj: Object that may have addresses
     @type original_obj: AddressBase
     @param clean_obj: Object that will have only non-private addresses
@@ -548,7 +548,7 @@ def sanitize_lds_ord(db, lds_ord):
     removed from it.
     
     @param db: GRAMPS database to which the LdsOrd object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param name: source LdsOrd object that will be copied with
     privacy records removed
     @type name: LdsOrd
@@ -584,7 +584,7 @@ def sanitize_address(db, address):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param name: source Address object that will be copied with
     privacy records removed
     @type name: Address
@@ -614,7 +614,7 @@ def sanitize_name(db, name):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param name: source Name object that will be copied with
     privacy records removed
     @type name: Name
@@ -647,7 +647,7 @@ def sanitize_media_ref(db, media_ref):
     removed from it.
     
     @param db: GRAMPS database to which the MediaRef object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param source_ref: source MediaRef object that will be copied with
     privacy records removed
     @type source_ref: MediaRef
@@ -671,7 +671,7 @@ def sanitize_source_ref(db, source_ref):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param source_ref: source SourceRef object that will be copied with
     privacy records removed
     @type source_ref: SourceRef
@@ -694,7 +694,7 @@ def sanitize_event_ref(db, event_ref):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param event_ref: source EventRef object that will be copied with
     privacy records removed
     @type event_ref: EventRef
@@ -717,7 +717,7 @@ def sanitize_person(db, person):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param person: source Person object that will be copied with
     privacy records removed
     @type person: Person
@@ -806,7 +806,7 @@ def sanitize_source(db, source):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param source: source Source object that will be copied with
     privacy records removed
     @type source: Source
@@ -844,7 +844,7 @@ def sanitize_media(db, media):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param media: source Media object that will be copied with
     privacy records removed
     @type media: MediaObject
@@ -875,7 +875,7 @@ def sanitize_place(db, place):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param place: source Place object that will be copied with
     privacy records removed
     @type place: Place
@@ -908,7 +908,7 @@ def sanitize_event(db, event):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param event: source Event object that will be copied with
     privacy records removed
     @type event: Event
@@ -944,7 +944,7 @@ def sanitize_family(db, family):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param family: source Family object that will be copied with
     privacy records removed
     @type family: Family
@@ -1012,7 +1012,7 @@ def sanitize_repository(db, repository):
     removed from it.
     
     @param db: GRAMPS database to which the Person object belongs
-    @type db: GrampsDbBase
+    @type db: DbBase
     @param repository: source Repository object that will be copied with
     privacy records removed
     @type repository: Repository

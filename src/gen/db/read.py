@@ -49,7 +49,7 @@ from gen.lib import (MediaObject, Person, Family, Source, Event, Place,
                      Repository, Note, GenderStats, Researcher)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
-from gen.db import (GrampsCursor, GrampsDbBase)
+from gen.db import (GrampsCursor, DbReadBase)
 from Utils import create_id
 import Errors
 import config
@@ -68,7 +68,7 @@ _SIGBASE = ('person', 'family', 'source', 'event',
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
                db.DBPageNotFoundError, db.DBInvalidArgError)
 
-class GrampsDbBookmarks(object):
+class DbBookmarks(object):
     def __init__(self, default=[]):
         self.bookmarks = list(default) # want a copy (not an alias)
 
@@ -98,14 +98,14 @@ class GrampsDbBookmarks(object):
 # GrampsDBReadCursor
 #
 #-------------------------------------------------------------------------
-class GrampsDbReadCursor(GrampsCursor):
+class DbReadCursor(GrampsCursor):
 
     def __init__(self, source, txn=None, **kwargs):
         GrampsCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.db.cursor(txn)
         self.source = source
 
-class GrampsDbRead(GrampsDbBase, Callback):
+class DbBsddbRead(DbReadBase, Callback):
     """
     Read class for the GRAMPS databases.  Implements methods necessary to read
     the various object classes. Currently, there are eight (8) classes:
@@ -176,10 +176,10 @@ class GrampsDbRead(GrampsDbBase, Callback):
 
     def __init__(self):
         """
-        Create a new GrampsDbRead instance. 
+        Create a new DbBsddbRead instance. 
         """
         
-        GrampsDbBase.__init__(self)
+        DbReadBase.__init__(self)
         #Callback.__init__(self)
 
         self.set_person_id_prefix('I%04d')
@@ -253,14 +253,14 @@ class GrampsDbRead(GrampsDbBase, Callback):
         self.default = None
         self.owner = Researcher()
         self.name_formats = []
-        self.bookmarks = GrampsDbBookmarks()
-        self.family_bookmarks = GrampsDbBookmarks()
-        self.event_bookmarks = GrampsDbBookmarks()
-        self.place_bookmarks = GrampsDbBookmarks()
-        self.source_bookmarks = GrampsDbBookmarks()
-        self.repo_bookmarks = GrampsDbBookmarks()
-        self.media_bookmarks = GrampsDbBookmarks()
-        self.note_bookmarks = GrampsDbBookmarks()
+        self.bookmarks = DbBookmarks()
+        self.family_bookmarks = DbBookmarks()
+        self.event_bookmarks = DbBookmarks()
+        self.place_bookmarks = DbBookmarks()
+        self.source_bookmarks = DbBookmarks()
+        self.repo_bookmarks = DbBookmarks()
+        self.media_bookmarks = DbBookmarks()
+        self.note_bookmarks = DbBookmarks()
         self._bm_changes = 0
         self.path = ""
         self.surname_list = []
@@ -284,7 +284,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
 
     def get_cursor(self, table, *args, **kwargs):
         try:
-            return GrampsDbReadCursor(table, self.txn)
+            return DbReadCursor(table, self.txn)
         except DBERRS, msg:
             self.__log_error()
             raise Errors.DbError(msg)
@@ -312,14 +312,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
 
     def get_note_cursor(self, *args, **kwargs):
         return self.get_cursor(self.note_map, *args, **kwargs)
-
-    def load(self, name, callback, mode=DBMODE_R, upgrade=False):
-        """
-        Open the specified database. 
-        
-        The method needs to be overridden in the derived class.
-        """
-        raise NotImplementedError
 
     def close(self):
         """
@@ -608,14 +600,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         return self.name_group.has_key(str(name))
 
-    def set_name_group_mapping(self, name, group):
-        """
-        Set the default grouping name for a surname. 
-        
-        Needs to be overridden in the derived class.
-        """
-        raise NotImplementedError
-        
     def get_number_of_records(self, table):
         if not self.db_is_open:
             return 0
@@ -990,40 +974,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
         Return the list of locale-sorted surnames contained in the database.
         """
         return self.surname_list
-
-    def build_surname_list(self):
-        """
-        Build the list of locale-sorted surnames contained in the database.
-        
-        The function must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def sort_surname_list(self):
-        """
-        Sort the surname list in place.
-        """
-        raise NotImplementedError
-
-    def add_to_surname_list(self, person, batch_transaction):
-        """
-        Check to see if the surname of the given person is already in
-        the surname list. 
-        
-        If not then we need to add the name to the list.
-        The function must be overridden in the derived class.
-        """        
-        raise NotImplementedError
-
-    def remove_from_surname_list(self, person):
-        """
-        Check whether there are persons with the same surname left in
-        the database. 
-        
-        If not then we need to remove the name from the list.
-        The function must be overridden in the derived class.
-        """
-        raise NotImplementedError
 
     def get_bookmarks(self):
         """Return the list of Person handles in the bookmarks."""
@@ -1466,15 +1416,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         return self.__get_columns(NOTE_COL_KEY)
 
-    def delete_primary_from_reference_map(self, handle, transaction):
-        """
-        Called each time an object is removed from the database. 
-        
-        This can be used by subclasses to update any additional index tables 
-        that might need to be changed.
-        """
-        pass
-
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
@@ -1557,8 +1498,3 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         return self._bm_changes > 0
 
-if __name__ == '__main__':
-    x = GrampsDbRead()
-    x.person_prefix = 'foo %s bar'
-    print x.person_prefix
-    

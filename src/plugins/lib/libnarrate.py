@@ -1460,7 +1460,7 @@ class Narrator(object):
         Initialize the narrator class.
         
         :param dbase: The database that contains the data to be narrated.
-        :type dbase: :class:`~gen.db.base,GrampsDbBase`
+        :type dbase: :class:`~gen.db.base,DbBase`
         :param verbose: Specifies whether complete sentences should be used.
         :type verbose: bool
         :param use_call_name: Specifies whether a person's call name should be 

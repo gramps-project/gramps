@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Exports the GrampsDbUndo class for managing Gramps transactions
+Exports the DbUndo class for managing Gramps transactions
 undos and redos.
 """
 
@@ -57,10 +57,10 @@ _SIGBASE = ('person', 'family', 'source', 'event', 'media',
             'place', 'repository', 'reference', 'note')
 #-------------------------------------------------------------------------
 #
-# GrampsDbUndo class
+# DbUndo class
 #
 #-------------------------------------------------------------------------            
-class GrampsDbUndo(object):
+class DbUndo(object):
     """
     Base class for the gramps undo/redo manager.  Needs to be subclassed
     for use with a real backend.
@@ -333,7 +333,7 @@ class GrampsDbUndo(object):
             self.db._log_error()
             raise Errors.DbError(msg)        
 
-class GrampsDbUndoList(GrampsDbUndo):
+class DbUndoList(DbUndo):
     """
     Implementation of the gramps undo database using a Python list
     """
@@ -341,7 +341,7 @@ class GrampsDbUndoList(GrampsDbUndo):
         """
         Class constructor
         """
-        super(GrampsDbUndoList, self).__init__(grampsdb)
+        super(DbUndoList, self).__init__(grampsdb)
         self.undodb = []
 
     def open(self):
@@ -389,7 +389,7 @@ class GrampsDbUndoList(GrampsDbUndo):
         """
         return len(self.undodb)
 
-class GrampsDbUndoBSDDB(GrampsDbUndo):
+class DbUndoBSDDB(DbUndo):
     """
     Class constructor for gramps undo/redo database using a bsddb recno
     database as the backing store.
@@ -399,7 +399,7 @@ class GrampsDbUndoBSDDB(GrampsDbUndo):
         """
         Class constructor
         """
-        super(GrampsDbUndoBSDDB, self).__init__(grampsdb)
+        super(DbUndoBSDDB, self).__init__(grampsdb)
         self.undodb = db.DB()
         self.path = path
 
@@ -478,7 +478,7 @@ def testundo():
             self.reference_map  = {}
 
     print "list tests"
-    undo = GrampsDbUndoList(D())
+    undo = DbUndoList(D())
     print undo.append('foo')
     print undo.append('bar')
     print undo[0]
@@ -490,7 +490,7 @@ def testundo():
         print data
     print
     print "bsddb tests"
-    undo = GrampsDbUndoBSDDB(D(), '/tmp/testundo')
+    undo = DbUndoBSDDB(D(), '/tmp/testundo')
     undo.open()
     print undo.append('foo')
     print undo.append('fo2')
