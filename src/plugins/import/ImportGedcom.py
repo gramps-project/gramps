@@ -47,7 +47,7 @@ from GrampsDbUtils._GedcomParse import GedcomParser
 from GrampsDbUtils._GedcomStageOne import StageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
 from glade import Glade
-from libmixin import GrampsDbMixin
+from libmixin import DbMixin
 
 try:
     import config
@@ -66,8 +66,8 @@ def importData(database, filename, callback=None):
     Try to handle ANSEL encoded files that are not really ANSEL encoded
     """
 
-    if GrampsDbMixin not in database.__class__.__bases__:
-        database.__class__.__bases__ = (GrampsDbMixin,) +  \
+    if DbMixin not in database.__class__.__bases__:
+        database.__class__.__bases__ = (DbMixin,) +  \
                                         database.__class__.__bases__
 
     try:
