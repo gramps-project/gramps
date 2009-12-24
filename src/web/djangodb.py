@@ -28,7 +28,7 @@
 #------------------------------------------------------------------------
 import web
 import gen
-from gen.db import DbBase
+from gen.db import DbReadBase, DbWriteBase
 from web.libdjango import DjangoInterface
 
 # from ReportBase._CommandLineReport import run_report
@@ -50,13 +50,14 @@ class Cursor(object):
     def __exit__(self, *args, **kwargs):
         pass
 
-class DjangoDb(DbBase):
+class DjangoDb(DbReadBase, DbWriteBase):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
 
     def __init__(self):
-        super(DjangoDb, self).__init__()
+        DbReadBase.__init__(self)
+        DbWriteBase.__init__(self)
         self.dji = DjangoInterface()
         self.readonly = False
         self.db_is_open = True

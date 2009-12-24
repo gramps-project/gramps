@@ -46,8 +46,6 @@ class DbReadBase(object):
         derived from this class should be created.
         """
 
-        super(DbReadBase, self).__init__()
-
     def all_handles(self, table):
         """
         Return all handles from the specified table as a list
@@ -1172,7 +1170,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-class DbWriteBase(DbReadBase):
+class DbWriteBase(object):
     """
     GRAMPS database object. This object is a base class for all
     database interfaces.  All methods raise NotImplementedError
@@ -1186,8 +1184,6 @@ class DbWriteBase(DbReadBase):
         A new DbWriteBase class should never be directly created. Only classes 
         derived from this class should be created.
         """
-
-        super(DbWriteBase, self).__init__()
 
     def add_event(self, event, transaction, set_gid=True):
         """

@@ -180,7 +180,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         
         DbReadBase.__init__(self)
-        #Callback.__init__(self)
+        Callback.__init__(self)
 
         self.set_person_id_prefix('I%04d')
         self.set_object_id_prefix('O%04d')

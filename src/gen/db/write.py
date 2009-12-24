@@ -167,8 +167,7 @@ class DbBsddbAssocCursor(GrampsCursor):
 # DbBsddb
 #
 #-------------------------------------------------------------------------
-class DbBsddb(DbBsddbRead, DbWriteBase, 
-                  Callback, UpdateCallback):
+class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     """
     GRAMPS database write access object. 
     """
@@ -200,7 +199,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase,
         
         self.txn = None
         DbBsddbRead.__init__(self)
-        Callback.__init__(self)
+        DbWriteBase.__init__(self)
+        #UpdateCallback.__init__(self)
         self.secondary_connected = False
         self.has_changed = False
 
