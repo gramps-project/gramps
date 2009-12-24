@@ -79,7 +79,6 @@ src/gen/db/iterator.py
 src/gen/db/undoredo.py
 
 # gen lib API
-src/gen/lib/exiftype.py
 src/gen/lib/witness.py
 src/gen/lib/__init__.py
 src/gen/lib/reporef.py
@@ -195,26 +194,26 @@ src/gui/editors/addmedia.py
 src/gui/editors/objectentries.py
 src/gui/editors/editaddress.py
 src/gui/editors/editattribute.py
-src/gui/editors/editchildRef.py
+src/gui/editors/editchildref.py
 src/gui/editors/editevent.py
-src/gui/editors/editeventRef.py
+src/gui/editors/editeventref.py
 src/gui/editors/editfamily.py
-src/gui/editors/editldsOrd.py
+src/gui/editors/editldsord.py
 src/gui/editors/editlocation.py
 src/gui/editors/editmedia.py
-src/gui/editors/editmediaRef.py
+src/gui/editors/editmediaref.py
 src/gui/editors/editname.py
 src/gui/editors/editnote.py
 src/gui/editors/editperson.py
-src/gui/editors/editpersonRef.py
+src/gui/editors/editpersonref.py
 src/gui/editors/editplace.py
 src/gui/editors/editprimary.py
 src/gui/editors/editreference.py
-src/gui/editors/editrepoRef.py
+src/gui/editors/editreporef.py
 src/gui/editors/editrepository.py
 src/gui/editors/editsecondary.py
 src/gui/editors/editsource.py
-src/gui/editors/editsourceRef.py
+src/gui/editors/editsourceref.py
 src/gui/editors/editurl.py
 src/gui/editors/__init__.py
 
@@ -258,7 +257,7 @@ src/gui/editors/displaytabs/sourceembedlist.py
 src/gui/editors/displaytabs/sourcerefmodel.py
 src/gui/editors/displaytabs/webembedlist.py
 src/gui/editors/displaytabs/webmodel.py
-src/gui/editors/displaytabs/_init__.py
+src/gui/editors/displaytabs/__init__.py
 
 # gui/selectors - the GUI selectors package
 src/gui/selectors/baseselector.py
