@@ -42,6 +42,7 @@ import urlparse
 import const
 import operator
 import locale
+from gtk.keysyms import Tab as KEY_TAB
 
 #-------------------------------------------------------------------------
 #
@@ -285,14 +286,19 @@ class GeoView(HtmlView):
         self.places = []
         self.sort = []
         self.psort = []
-        self.label = gtk.Label("")
+        self.clear = gtk.Button("")
         self.buttons = gtk.ListStore(gobject.TYPE_STRING, # The year
                                   )
         self.plist = gtk.ListStore(gobject.TYPE_STRING, # The name
                                    gobject.TYPE_INT,    # the marker index
                                    gobject.TYPE_INT     # the marker page
                                   )
-        self.plist.set_sort_column_id(0, gtk.SORT_ASCENDING)
+        # I suppress sort in the combobox for performances.
+        # I tried to load a database with more than 35000 places.
+        # with the sort function, its takes approximatively 20 minutes
+        # to see the combobox and the map.
+        # Without the sort function, it takes approximatively 4 minutes.
+        #self.plist.set_sort_column_id(0, gtk.SORT_ASCENDING)
         self.without_coord_file = []
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
@@ -340,7 +346,7 @@ class GeoView(HtmlView):
          - Years selection
         """
         self.box1 = gtk.VBox(False, 1) # pylint: disable-msg=W0201
-        self.label.set_alignment(1.0, 0.5)
+        self.clear.set_alignment(1.0, 0.5)
         cell = gtk.CellRendererText()
         self.placebox = gtk.ComboBoxEntry(self.plist)# pylint: disable-msg=W0201
         self.placebox.pack_start(cell)
@@ -352,9 +358,11 @@ class GeoView(HtmlView):
         completion.set_inline_completion(True)
         completion.set_match_func(self._match_string)
         self.placebox.child.connect('changed', self._entry_selected_place)
+        self.placebox.child.connect('key-press-event', self._entry_key_event)
+        self.clear.connect('clicked', self._erase_placebox_selection)
         self.placebox.child.set_completion(completion)
         box = gtk.HBox()
-        box.pack_start(self.label, False, False, padding=2)
+        box.pack_start(self.clear, False, False, padding=2)
         box.pack_start(self.placebox, False, False, padding=2)
         box.pack_start(self.pages_selection, False, False, padding=2)
         box.pack_start(self.nocoord, False, False, padding=2)
@@ -370,6 +378,32 @@ class GeoView(HtmlView):
         self.box1.pack_start(self.title, False, False, padding=2)
         self.box1.show_all()
         return self.box1
+
+    def _entry_key_event(self, widget, event):
+        """
+        The user enter characters. If he enter tab, I'll try to complete.
+        This is used when the completion doen't start at the beginning
+        of the word or sentence.
+        i.e : If we have in our place list :
+             ...
+             "town of london, England"
+             "in the town of londonderry"
+             "ville de londres"
+             ...
+        in the entrybox, if you select "londr", then enter tab,
+        the selected item will be "ville de londres"
+        """
+        prefix = widget.get_text().lower()
+        count = 0
+        found = "inconnu"
+        if event.keyval == KEY_TAB:
+            for place in self.plist:
+                if prefix in place[0].lower():
+                   count += 1
+                   found = place[0]
+        if count == 1:
+            self.placebox.child.set_text(found)
+        pass
 
     def _match_string(self, compl, key, fiter): # pylint: disable-msg=W0613
         """
@@ -451,7 +485,7 @@ class GeoView(HtmlView):
         self._savezoomandposition()
         # Need to wait the page is loaded to show the markers.
         gobject.timeout_add(1500, self._show_selected_places)
-        self._erase_placebox_selection()
+        self.placebox.child.set_text("")
 
     def _show_selected_places(self):
         """
@@ -512,7 +546,6 @@ class GeoView(HtmlView):
                                         entry[1])
                     # Need to wait the page is loaded to show the markers.
                     gobject.timeout_add(1600, self._show_selected_places)
-                #self._erase_placebox_selection()
         return
         
     def _show_place_info_bubble(self, marker_index):
@@ -522,11 +555,11 @@ class GeoView(HtmlView):
         self.renderer.execute_script("javascript:placeclick('%d')" % 
                                      marker_index)
 
-    def _erase_placebox_selection(self):
+    def _erase_placebox_selection(self, arg):
         """
         We erase the place name in the entrybox after 1 second.
         """
-        gobject.timeout_add(1000, self.placebox.child.set_text, "")
+        self.placebox.child.set_text("")
 
     def on_delete(self):
         """
@@ -1274,11 +1307,10 @@ class GeoView(HtmlView):
         self.placebox.freeze_child_notify()
         self.placebox.set_model(None)
         self.plist.clear()
-        self.label.set_text("%s (%d)" % ( _("Places list"), self.nbplaces ))
+        self.clear.set_label("%s (%d)" % ( _("Places list"), self.nbplaces ))
         pages = ( self.nbplaces / NB_MARKERS_PER_PAGE )
         if (self.nbplaces % NB_MARKERS_PER_PAGE ) != 0:
             pages += 1
-        #if (self.nbplaces % NB_MARKERS_PER_PAGE) == 0:
         if self.nbplaces == 0:
             try:
                 self._createmapstractiontrailer()
