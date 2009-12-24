@@ -268,8 +268,7 @@ class SimpleTable(object):
                 retval.append(item[0])
                 link = (item[1], item[2:])
             else:
-                raise AttributeError, ("unknown object type: '%s': %s" % 
-                                       (item, type(item)))
+                retval.append(str(item))
         self.__link.append(link)
         self.__rows.append(retval)
 

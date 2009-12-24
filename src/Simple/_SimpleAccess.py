@@ -782,7 +782,7 @@ class SimpleAccess(object):
         @return: list of events in the database
         @rtype: list
         """
-        return self.__all_objects(self.dbase.get_events_cursor, 
+        return self.__all_objects(self.dbase.get_event_cursor, 
                                   self.dbase.get_event_from_handle)
 
     def all_sources(self):
