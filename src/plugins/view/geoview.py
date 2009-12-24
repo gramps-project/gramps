@@ -748,8 +748,7 @@ class GeoView(HtmlView):
               <toolitem action="Refresh"/>
             </placeholder>
             <placeholder name="CommonEdit">
-              <toolitem action="OpenStreetMap"/>
-              <toolitem action="Google"/>
+              <toolitem action="Provider"/>
               <toolitem action="SaveZoom"/>
               <toolitem action="AddPlace"/>
               <toolitem action="LinkPlace"/>
@@ -771,14 +770,6 @@ class GeoView(HtmlView):
         HtmlView._define_actions_fw_bw(self)
         self.forward_action.set_sensitive(False)
         self.back_action.set_sensitive(False)
-        self._add_action('OpenStreetMap', 'gramps-geo-mainmap', 
-                         _('_OpenStreetMap'),
-                         callback=self._select_openstreetmap_map,
-                         tip=_("Select OpenStreetMap Maps"))
-        self._add_action('Google', 'gramps-geo-altmap',
-                         _('_Google Maps'),
-                         callback=self._select_google_map,
-                         tip=_("Select Google Maps."))
         self._add_action('AddPlace', gtk.STOCK_ADD, 
             _('_Add Place'),
             callback=self._add_place,
@@ -789,6 +780,15 @@ class GeoView(HtmlView):
             callback=self._link_place,
             tip=_("Link the location centred on the map to a place in "
                   "Gramps. Double click the location to centre on the map."))
+        self.provider_action = gtk.ActionGroup(self.title + "/Provider")
+        self.provider_action.add_toggle_actions([
+            ('Provider', 'gramps-geo-mainmap', _("_Provider"), "<ALT>P",
+             _("Select the maps provider. You can choose "
+               "between OpenStreetMap and Google maps"),
+             self._change_provider,
+             )
+            ])
+        self._add_action_group(self.provider_action)
         self.lock_action = gtk.ActionGroup(self.title + "/SaveZoom")
         self.lock_action.add_toggle_actions([
             ('SaveZoom', 'gramps-lock', _("_SaveZoom"), "<ALT>L",
@@ -997,22 +997,6 @@ class GeoView(HtmlView):
         self.without = 0
         self._createmapstraction(self.displaytype)
 
-    def _select_openstreetmap_map(self, handle): # pylint: disable-msg=W0613
-        """
-        Make openstreetmap the default map.
-        """
-        self.usedmap = "openstreetmap"        
-        self._change_map("openstreetmap")
-        self._ask_year_selection(self.last_year)
-
-    def _select_google_map(self, handle): # pylint: disable-msg=W0613
-        """
-        Specifies google is the default map
-        """
-        self.usedmap = "google"        
-        self._change_map("google")
-        self._ask_year_selection(self.last_year)
-
     def _set_lock_unlock(self, state):
         """
         Change the lock/unlock state.
@@ -1047,6 +1031,33 @@ class GeoView(HtmlView):
         if not button.get_active():
             self._change_map(self.usedmap)
         self._set_lock_unlock_icon()
+
+    def _change_provider(self, button):
+        """
+        Toogle between the two maps providers.
+        Inactive ( the default ) is openstreetmap.
+        Active means Google maps.
+        """
+        if button.get_active():
+            self.usedmap = "google"
+        else:
+            self.usedmap = "openstreetmap"
+        self._change_map(self.usedmap)
+        self._set_provider_icon()
+        self._ask_year_selection(self.last_year)
+
+    def _set_provider_icon(self):
+        """
+        Change the provider icon depending on the button state.
+        """
+        actionstyles = self.provider_action.get_action('Provider')
+        widgets = actionstyles.get_proxies()
+        for widget in widgets :
+            if isinstance(widget, gtk.ToggleToolButton):
+                if self.provider_action.get_action('Provider').get_active():
+                    widget.set_stock_id('gramps-geo-altmap')
+                else:
+                    widget.set_stock_id('gramps-geo-mainmap')
 
     def _createpageplaceswithoutcoord(self):
         """
