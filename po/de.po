@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-26 00:09+0100\n"
-"PO-Revision-Date: 2009-12-26 00:18+0100\n"
+"PO-Revision-Date: 2009-12-26 00:38+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -14573,7 +14573,7 @@ msgstr "Personen mit unvollständigen Familiennamen"
 
 #: ../src/plugins/quickview/SameSurnames.py:40
 msgid "Matches people with lastname missing"
-msgstr "Entspricht Personen, bei denen der Nachname fehlt"
+msgstr "Entspricht Personen, bei denen der Familienname fehlt"
 
 #: ../src/plugins/quickview/SameSurnames.py:41
 #: ../src/plugins/quickview/SameSurnames.py:53
@@ -14646,7 +14646,7 @@ msgstr "Personen mit dem <Familiennamen>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
-msgstr "Entspricht Personen, mit dem selben Nachnamen"
+msgstr "Entspricht Personen, mit dem selben Familiennamen"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
@@ -14662,7 +14662,7 @@ msgstr "Personen mit unvollständigem Vornamen"
 
 #: ../src/plugins/quickview/SameSurnames.py:82
 msgid "Matches people with firstname missing"
-msgstr "Entspricht Personen, bei denen der Vornachname fehlt"
+msgstr "Entspricht Personen, bei denen der Vorname fehlt"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:106
@@ -19026,7 +19026,7 @@ msgstr "Ausschließen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5756
 msgid "Include Last Name Only"
-msgstr "Nur Nachnamen aufnehmen"
+msgstr "Nur Familiennamen aufnehmen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5758
 msgid "Include Full Name Only"
@@ -20891,7 +20891,7 @@ msgstr "Personen mit unvollständigen Namen"
 
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:46
 msgid "Matches people with firstname or lastname missing"
-msgstr "Entspricht den Personen, bei den der Vor- oder Nachname fehlt"
+msgstr "Entspricht den Personen, bei den der Vor- oder Familienname fehlt"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:48
 msgid "Ancestors of <filter> match"
