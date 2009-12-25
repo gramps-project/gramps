@@ -88,9 +88,9 @@ all lines until the next level 2 token is found (in this case, skipping the
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 import re
 import time
+import codecs
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -108,17 +108,17 @@ LOG = logging.getLogger(".GedcomImport")
 #-------------------------------------------------------------------------
 import Errors
 import gen.lib
-from BasicUtils import name_displayer, UpdateCallback
+from BasicUtils import UpdateCallback
 import Mime
 import LdsUtils
 import Utils
+from ansel_utf8 import ansel_to_utf8
 
 from _GedcomTokens import *
 
 import _GedcomInfo as GedcomInfo
 import _GedcomUtils as GedcomUtils 
 import _GedcomLex as GedcomLex
-import _GedcomChar as GedcomChar
 
 from gen.db.dbconst import EVENT_KEY
 
@@ -237,6 +237,68 @@ def find_from_handle(gramps_id, table):
         intid = Utils.create_id()
         table[gramps_id] = intid
     return intid
+
+#-------------------------------------------------------------------------
+#
+# File Readers
+#
+#-------------------------------------------------------------------------
+class BaseReader(object):
+    def __init__(self, ifile, encoding):
+        self.ifile = ifile
+        self.enc = encoding
+
+    def reset(self):
+        self.ifile.seek(0)
+
+    def readline(self):
+        return unicode(self.ifile.readline(), 
+                       encoding=self.enc,
+                       errors='replace')
+
+class UTF8Reader(BaseReader):
+
+    def __init__(self, ifile):
+        BaseReader.__init__(self, ifile, 'utf8')
+        self.reset()
+
+    def reset(self):
+        self.ifile.seek(0)
+        data = self.ifile.read(3)
+        if data != "\xef\xbb\xbf":
+            self.ifile.seek(0)
+
+    def readline(self):
+        return unicode(self.ifile.readline(),
+                       encoding=self.enc,
+                       errors='replace')
+
+class UTF16Reader(BaseReader):
+
+    def __init__(self, ifile):
+        new_file = codecs.EncodedFile(ifile, 'utf8', 'utf16')
+        BaseReader.__init__(self, new_file, 'utf16')
+        self.reset()
+
+    def readline(self):
+        l = self.ifile.readline()
+        if l.strip():
+            return l
+        else:
+            return self.ifile.readline()
+
+class AnsiReader(BaseReader):
+
+    def __init__(self, ifile):
+        BaseReader.__init__(self, ifile, 'latin1')
+    
+class AnselReader(BaseReader):
+
+    def __init__(self, ifile):
+        BaseReader.__init__(self, ifile, "")
+
+    def readline(self):
+        return ansel_to_utf8(self.ifile.readline())
 
 #-------------------------------------------------------------------------
 #
@@ -783,13 +845,13 @@ class GedcomParser(UpdateCallback):
         enc = stage_one.get_encoding()
 
         if enc == "ANSEL":
-            rdr = GedcomChar.AnselReader(ifile)
+            rdr = AnselReader(ifile)
         elif enc in ("UTF-8", "UTF8"):
-            rdr = GedcomChar.UTF8Reader(ifile)
+            rdr = UTF8Reader(ifile)
         elif enc in ("UTF-16", "UTF16", "UNICODE"):
-            rdr = GedcomChar.UTF16Reader(ifile)
+            rdr = UTF16Reader(ifile)
         else:
-            rdr = GedcomChar.AnsiReader(ifile)
+            rdr = AnsiReader(ifile)
 
         self.lexer = GedcomLex.Reader(rdr)
         self.filename = filename

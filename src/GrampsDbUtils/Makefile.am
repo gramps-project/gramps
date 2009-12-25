@@ -6,7 +6,6 @@
 pkgdatadir = $(datadir)/@PACKAGE@/GrampsDbUtils
 
 pkgdata_PYTHON = \
-	_GedcomChar.py\
 	_GedcomInfo.py\
 	_GedcomLex.py\
 	_GedcomParse.py\
