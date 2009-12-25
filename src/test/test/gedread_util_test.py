@@ -52,6 +52,8 @@ class Test(U.TestCase):
         np = db.get_number_of_people()
         self.assertEquals(np,1, 
             tu.msg(np,1, "db has exactly one person"))
+        db.close()
+        del tl
 
 if __name__ == "__main__":
     U.main()

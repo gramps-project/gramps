@@ -181,6 +181,7 @@ class Test4(U.TestCase):
             nl = len(ll)
             self.assertEquals(nl,2, 
                 tu.msg(nl,2, "pass %d: expected line count" % i))
+            del tl
 
 
 if __name__ == "__main__":
