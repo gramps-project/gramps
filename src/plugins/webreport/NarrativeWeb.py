@@ -168,6 +168,7 @@ _VGAP = 10
 _HGAP = 30
 _SHADOW = 5
 _XOFFSET = 5
+_WRONGMEDIAPATH = []
 
 wrapper = TextWrapper()
 wrapper.break_log_words = True
@@ -2676,10 +2677,12 @@ class MediaPage(BasePage):
 
                                 # display the image
                                 if initial_image_path != newpath:
-                                    url = self.report.build_url_fname(newpath, None, self.up)
-                                    mediadisplay += Html("a", href = url) + (
-                                        Html("img", width = new_width, height = new_height, src = url,
-                                        alt = html_escape(self.page_title))
+                                    url = self.report.build_url_fname(newpath, 
+                                                None, self.up)
+                                mediadisplay += Html("a", href = url) + (
+                                    Html("img", width=new_width, 
+                                         height=new_height, src=url,
+                                         alt=html_escape(self.page_title))
                                         )
                     else:
                         dirname = tempfile.mkdtemp()
@@ -2806,6 +2809,9 @@ class MediaPage(BasePage):
         newpath = os.path.join(to_dir, handle) + ext
 
         fullpath = Utils.media_path_full(db, photo.get_path())
+        if not os.path.isfile(fullpath):
+            _WRONGMEDIAPATH.append([ photo.get_gramps_id(), fullpath])
+            return None
         try:
             if self.report.archive:
                 self.report.archive.add(fullpath, str(newpath))
@@ -5078,6 +5084,14 @@ class NavWebReport(Report):
         # if an archive is being used, close it?
         if self.archive:
             self.archive.close()
+        
+        if len(_WRONGMEDIAPATH) > 0:
+            error = '\n'.join([_('ID=%(grampsid)s, path=%(dir)s') % {
+                            'grampsid': x[0],
+                            'dir': x[1]} for x in _WRONGMEDIAPATH[:10]])
+            if len(_WRONGMEDIAPATH) > 10:
+                error += '\n ...'
+            WarningDialog(_("Missing media objects:"), error)
         self.progress.close()
 
     def build_person_list(self):
