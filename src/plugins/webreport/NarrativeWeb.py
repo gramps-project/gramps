@@ -4983,6 +4983,7 @@ class NavWebReport(Report):
         self.photo_list = {}
 
     def write_report(self):
+        _WRONGMEDIAPATH = []
         if not self.use_archive:
             dir_name = self.target_path
             if dir_name is None:
