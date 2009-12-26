@@ -8,17 +8,6 @@ import web.utils
 
 register = Library()
 
-util_filters = ['person_event_table', 'person_name_table', 
-                'person_source_table', 'person_attribute_table', 
-                'person_address_table', 'person_note_table', 
-                'person_gallery_table', 'person_internet_table', 
-                'person_association_table', 'person_lds_table', 
-                'person_reference_table',
-                'family_children_table', 'family_event_table', 
-                'family_source_table', 'family_attribute_table',
-                'family_note_table', 'family_gallery_table', 
-                'family_lds_table', 
-                'nbsp', 'render']
 for filter_name in util_filters:
     func = getattr(web.utils, filter_name)
     func.is_safe = True
@@ -65,6 +54,9 @@ def make_tag(func):
 
 register.tag("get_person_from_handle", 
              make_tag(get_person_from_handle))
+
+register.tag("source_table", 
+             make_tag(source_table))
 
 probably_alive.is_safe = True
 register.filter('probably_alive', probably_alive)

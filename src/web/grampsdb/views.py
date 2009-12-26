@@ -141,7 +141,10 @@ def view_name_detail(request, handle, order, action="view"):
     elif action == "add":
         person = Person.objects.get(handle=handle)
         name = Name()
-        form = NameForm()
+        name.sort_as = NameFormatType.objects.get(val=0)
+        name.display_as = NameFormatType.objects.get(val=0)
+        name.name_type = NameType.objects.get(val=2) # Birth Name
+        form = NameForm(instance=name)
         form.model = name
         action = "edit"
     elif action == "save":
@@ -153,7 +156,9 @@ def view_name_detail(request, handle, order, action="view"):
             name = Name(calendar=0, modifier=0, quality=0,
                         year1=0, day1=0, month1=0,
                         sortval = 0, newyear=0, order=order,
-                        sort_as=0, display_as=0, person_id=person.id)
+                        sort_as=NameFormatType(val=0), 
+                        display_as=NameFormatType(val=0), 
+                        person_id=person.id)
         form = NameForm(request.POST, instance=name)
         form.model = name
         if form.is_valid():
@@ -276,6 +281,7 @@ def view_detail(request, view, handle):
     else:
         raise Http404(_("Requested page type not known"))
     context[view] = obj
+    context["action"] = "view"
     return render_to_response(view_template, context)
 
 def view(request, view):

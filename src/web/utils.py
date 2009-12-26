@@ -62,9 +62,20 @@ from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 
+util_filters = ['person_event_table', 'person_name_table', 
+                'person_attribute_table', 
+                'person_address_table', 'person_note_table', 
+                'person_gallery_table', 'person_internet_table', 
+                'person_association_table', 'person_lds_table', 
+                'person_reference_table',
+                'family_children_table', 'family_event_table', 
+                'family_attribute_table',
+                'family_note_table', 'family_gallery_table', 
+                'family_lds_table', 
+                'nbsp', 'render']
 #------------------------------------------------------------------------
 #
-# Modeul Constants
+# Module Constants
 #
 #------------------------------------------------------------------------
 dji = libdjango.DjangoInterface()
@@ -216,7 +227,7 @@ def person_name_table(djperson, user):
         retval += make_button(_("Add name"), "/person/%s/name/add" % djperson.handle)
     return retval
 
-def person_source_table(djperson, user):
+def source_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("ID"), 
@@ -224,9 +235,9 @@ def person_source_table(djperson, user):
                   _("Author"),
                   _("Page"))
     if user.is_authenticated():
-        obj_type = ContentType.objects.get_for_model(djperson)
+        obj_type = ContentType.objects.get_for_model(obj)
         source_refs = dji.SourceRef.filter(object_type=obj_type,
-                                           object_id=djperson.id)
+                                           object_id=obj.id)
         for source_ref in source_refs:
             source = table.db.get_source_from_handle(source_ref.ref_object.handle)
             table.row(source,
@@ -235,8 +246,8 @@ def person_source_table(djperson, user):
                       source_ref.page,
                       )
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add source"), "/person/%s/source/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add source"), url % args)
     return retval
 
 def person_attribute_table(djperson, user):

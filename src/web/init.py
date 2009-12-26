@@ -43,7 +43,7 @@ from gen.lib.srcmediatype import SourceMediaType
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.notetype import NoteType
 
-from grampsdb.models import GenderType, LdsType, LdsStatus
+from grampsdb.models import GenderType, LdsType, LdsStatus, NameFormatType
 
 def get_datamap(x):
     """
@@ -86,7 +86,8 @@ for table, entries in [("grampsdb.config",
 
 type_models = [MarkerType, NameType, AttributeType, UrlType, ChildRefType, 
                RepositoryType, EventType, FamilyRelType, SourceMediaType, 
-               EventRoleType, NoteType, GenderType, LdsType, LdsStatus]
+               EventRoleType, NoteType, GenderType, LdsType, LdsStatus,
+               NameFormatType]
 for type in type_models:
     count = 1
     # Add each code:

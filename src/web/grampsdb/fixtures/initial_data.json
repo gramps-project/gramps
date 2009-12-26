@@ -18,7 +18,7 @@
             "setting"   : "db_created" ,
             "description"   : "database creation date/time" ,
             "value_type"   : "str" ,
-            "value"   : "2009-12-12 20:42"
+            "value"   : "2009-12-26 00:38"
          }
    },
    {
@@ -1567,6 +1567,42 @@
          {
             "val"   : 13,
             "name": "Uncleared"
+         }
+   } ,
+   {
+      "model": "grampsdb.nameformattype",
+      "pk": 1,
+      "fields":
+         {
+            "val"   : 0,
+            "name": "Default format"
+         }
+   } ,
+   {
+      "model": "grampsdb.nameformattype",
+      "pk": 2,
+      "fields":
+         {
+            "val"   : 1,
+            "name": "Surname, Given Patronymic"
+         }
+   } ,
+   {
+      "model": "grampsdb.nameformattype",
+      "pk": 3,
+      "fields":
+         {
+            "val"   : 2,
+            "name": "Given Surname"
+         }
+   } ,
+   {
+      "model": "grampsdb.nameformattype",
+      "pk": 4,
+      "fields":
+         {
+            "val"   : 3,
+            "name": "Patronymic, Given"
          }
    }
 ]

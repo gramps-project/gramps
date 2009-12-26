@@ -86,7 +86,7 @@
     {{ person|person_name_table:user|safe }}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {{ person|person_source_table:user|safe }}
+    {% source_table person user action "/person/%s/source/add" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
     {{ person|person_attribute_table:user|safe }}

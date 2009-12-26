@@ -229,6 +229,68 @@ class LdsStatus(mGrampsType):
     _DEFAULT = _DATAMAP[0]
     val = models.IntegerField('lds status', choices=_DATAMAP, blank=False)
 
+class NameFormatType(mGrampsType):
+    _DATAMAP = [(0, "Default format"),
+                (1, "Surname, Given Patronymic"),
+                (2, "Given Surname"),
+                (3, "Patronymic, Given"),]
+    _DEFAULT = _DATAMAP[0]
+    val = models.IntegerField('Name formats', choices=_DATAMAP, blank=False)
+
+class CalendarType(mGrampsType):
+    CAL_GREGORIAN  = 0 # CODE
+    CAL_JULIAN     = 1
+    CAL_HEBREW     = 2
+    CAL_FRENCH     = 3
+    CAL_PERSIAN    = 4
+    CAL_ISLAMIC    = 5
+    CAL_SWEDISH    = 6
+
+    _DATAMAP = [(CAL_GREGORIAN, "Gregorian"),
+                (CAL_JULIAN, "Julian"),
+                (CAL_HEBREW, "Hebrew"),
+                (CAL_FRENCH, "French Republican"),
+                (CAL_PERSIAN, "Persian"),
+                (CAL_ISLAMIC, "Islamic"),
+                (CAL_SWEDISH, "Swedish")] 
+
+    _DEFAULT = _DATAMAP[CAL_GREGORIAN]
+    val = models.IntegerField('Calendar', choices=_DATAMAP, blank=False)
+
+class DateModifierType(mGrampsType):
+    MOD_NONE       = 0  # CODE
+    MOD_BEFORE     = 1
+    MOD_AFTER      = 2
+    MOD_ABOUT      = 3
+    MOD_RANGE      = 4
+    MOD_SPAN       = 5
+    MOD_TEXTONLY   = 6
+
+    _DATAMAP = [(MOD_NONE, ""),
+                (MOD_BEFORE, "Before"),
+                (MOD_AFTER, "After"),
+                (MOD_ABOUT, "About"),
+                (MOD_RANGE, "Range"),
+                (MOD_SPAN, "Span"),
+                (MOD_TEXTONLY, "Text only")]
+
+    _DEFAULT = _DATAMAP[MOD_NONE]
+    val = models.IntegerField('Date modifier', choices=_DATAMAP, blank=False)
+
+class DateNewYearType(mGrampsType):
+    NEWYEAR_JAN1   = 0 # CODE
+    NEWYEAR_MAR1   = 1
+    NEWYEAR_MAR25  = 2
+    NEWYEAR_SEP1   = 3
+
+    _DATAMAP = [(NEWYEAR_JAN1, ""),
+                (NEWYEAR_MAR1, "March 1"),
+                (NEWYEAR_MAR25, "March 25"),
+                (NEWYEAR_SEP1, "September 1")]
+
+    _DEFAULT = _DATAMAP[NEWYEAR_JAN1]
+    val = models.IntegerField('New Year start date', choices=_DATAMAP, blank=False)
+    
 #---------------------------------------------------------------------------
 #
 # Support definitions
@@ -241,6 +303,9 @@ class DateObject(models.Model):
     calendar = models.IntegerField()
     modifier = models.IntegerField()
     quality = models.IntegerField()
+    #quality_estimated   = models.BooleanField()
+    #quality_calculated  = models.BooleanField()
+    #quality_interpreted = models.BooleanField()
     day1 = models.IntegerField()
     month1 = models.IntegerField()
     year1 = models.IntegerField()
@@ -447,7 +512,7 @@ class SecondaryObject(models.Model):
 
 class Name(DateObject, SecondaryObject):
     name_type = models.ForeignKey('NameType', related_name="name_code")
-    preferred = models.BooleanField('preferred name?')
+    preferred = models.BooleanField('Preferred name?')
     first_name = models.TextField(blank=True)
     surname = models.TextField(blank=True)
     suffix = models.TextField(blank=True)
@@ -456,8 +521,10 @@ class Name(DateObject, SecondaryObject):
     patronymic = models.TextField(blank=True)
     call = models.TextField(blank=True)
     group_as = models.TextField(blank=True)
-    sort_as = models.IntegerField(blank=True)
-    display_as = models.IntegerField(blank=True)
+    sort_as =  models.ForeignKey('NameFormatType', 
+                                 related_name="sort_as")
+    display_as = models.ForeignKey('NameFormatType', 
+                                   related_name="display_as")
 
     ## Key:
     person = models.ForeignKey("Person")
@@ -656,6 +723,7 @@ TABLES = [
     ("type", MarkerType),
     ("type", MarkupType),
     ("type", NameType),
+    ("type", NameFormatType),
     ("type", AttributeType),
     ("type", UrlType),
     ("type", ChildRefType),

@@ -68,9 +68,25 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
   </ul>
+
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-general"> 
+    <table>
+    <tr><td>{{form.group_as.label}}: </td>
+        <td>{{form.group_as|render:action}}</td>
+    </tr>
+    <tr><td>{{form.sort_as.label}}: </td>
+        <td>{{form.sort_as|render:action}}</td>
+    </tr>
+    <tr><td>{{form.display_as.label}}: </td>
+         <td>{{form.display_as|render:action}}</td>
+    </tr>
+    <tr><td>{{form.text.label}}: </td>
+         <td>{{form.text|render:action}}</td>
+    </tr>
+    </table>
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
+    {% source_table form.model user action "/person/%s/name/%s/source/add" person.handle form.model.order %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
   </div>

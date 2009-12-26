@@ -583,7 +583,7 @@ class DjangoInterface(object):
         return (name.private, source_list, note_list, date,
                 name.first_name, name.surname, name.suffix, name.title,
                 tuple(name.name_type), name.prefix, name.patronymic,
-                name.group_as, name.sort_as, name.display_as, name.call)
+                name.group_as, name.sort_as.val, name.display_as.val, name.call)
 
     def pack_location(self, loc, with_parish):
         if with_parish:
@@ -1005,8 +1005,8 @@ class DjangoInterface(object):
             name.prefix = prefix
             name.patronymic = patronymic
             name.group_as = group_as
-            name.sort_as = sort_as
-            name.display_as = display_as 
+            name.sort_as = models.get_type(models.NameFormatType, sort_as)
+            name.display_as = models.get_type(models.NameFormatType, display_as)
             name.call = call
             # we know person exists
             # needs to have an ID for key
