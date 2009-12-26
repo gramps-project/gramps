@@ -654,6 +654,9 @@ class ListView(NavigationView):
                 self.model.update_row_by_handle(handle)
             _LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
                     str(time.clock() - cput) + ' sec')
+            # Ensure row is still selected after a change of postion in tree.
+            if not self.selected_handles():
+                self.goto_handle(handle)
         else:
             self.dirty = True
 
