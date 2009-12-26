@@ -140,21 +140,22 @@ class PlaceTreeView(PlaceBaseView):
         level1 = level2 = level3 = u""
         if len(pathlist) == 1:
             path = pathlist[0]
+            node = model.on_get_iter(path)
+            parent = model.on_iter_parent(node)
+            value = model.on_get_value(node, 0)
             if len(path) == 1:
-                level1 = model.on_get_iter(path)[0]
+                level1 = value
             elif len(path) == 2:
-                level2 = model.on_get_iter(path)[0]
-                level1 = model.on_get_iter(path)[1]
+                level2 = value
+                level1 = parent[0]
             elif len(path) == 3:
-                node = model.on_get_iter(path)
-                level3 = node[0]
-                level2 = node[1]
-                level1 = model.on_iter_parent(node)[1]
+                level3 = value
+                level2 = parent[0]
+                level1 = parent[1]
             else:
-                node = model.on_iter_parent(model.on_get_iter(path))
-                level3 = node[0]
-                level2 = node[1]
-                level1 = model.on_iter_parent(node)[1]
+                level3 = parent[0]
+                level2 = parent[1]
+                level1 = parent[2]
 
         try:
             place.get_main_location().set_country(level1)

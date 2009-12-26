@@ -86,37 +86,49 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         handle      The handle of the gramps object.
         data        The object data.
         """
-        try:
-            level1 = data[5][0][4]
-        except TypeError:
-            level1 = _('Unknown level1')
-        if not level1:
-            level1 = _('Unknown level1')
-            
-        try:
-            level2 = data[5][0][3]
-        except TypeError:
-            level2 = _('Unknown level2')
-        if not level2:
-            level2 = _('Unknown level2')
+        if data[5] is None:
+            # No primary location
+            level = [''] * 5
+        else:
+            level = [data[5][0][i] for i in range(4,-1,-1)]
 
-        try:
-            level3 = data[5][0][2]
-        except TypeError:
-            level3 = _('Unknown level3')
-        if not level3:
-            level3 = _('Unknown level3')
-
-        node1 = (level1, )
-        node2 = (level2, level1)
-        node3 = (level3, level2, level1)
+        node1 = (level[0], )
+        node2 = (level[1], level[0])
+        node3 = (level[2], level[1], level[0])
         sort_key = self.sort_func(data)
-        
-        self.add_node(None, node1, level1, None, add_parent=False)
-        self.add_node(node1, node2, level2, None, add_parent=False)
-        self.add_node(node2, node3, level3, None, add_parent=False)
-        self.add_node(node3, handle, sort_key, handle, add_parent=False)
 
+        if not (level[3] or level[4]):
+            if level[2]:
+                self.add_node(None, node1, level[0], None, add_parent=False)
+                self.add_node(node1, node2, level[1], None, add_parent=False)
+                self.add_node(node2, handle, level[2], handle, add_parent=False)
+            elif level[1]:
+                self.add_node(None, node1, level[0], None, add_parent=False)
+                self.add_node(node1, handle, level[1], handle, add_parent=False)
+            elif level[0]:
+                self.add_node(None, handle, level[0], handle, add_parent=False)
+            else:
+                self.add_node(None, handle, sort_key, handle, add_parent=False)
+               
+        else:        
+            self.add_node(None, node1, level[0], None, add_parent=False)
+            self.add_node(node1, node2, level[1], None, add_parent=False)
+            self.add_node(node2, node3, level[2], None, add_parent=False)
+            self.add_node(node3, handle, sort_key, handle, add_parent=False)
+
+    def column_name(self, data):
+        if data[5] is not None:
+            level = [data[5][0][i] for i in range(4,-1,-1)]
+            if not (level[3] or level[4]):
+                return unicode(level[2] or level[1] or level[0])
+            elif level[3] and level[4]:
+                return unicode(level[3] + ', ' + level[4])
+            elif level[3] or level[4]:
+                return unicode(level[3] or level[4])
+            else:
+                return unicode(data[2])
+        return unicode(data[2])
+        
     def column_header(self, node):
         """
         Return a column heading.  This is called for nodes with no associated
