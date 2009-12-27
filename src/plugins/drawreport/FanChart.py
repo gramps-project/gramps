@@ -40,6 +40,7 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions
 from SubstKeywords import SubstKeywords
+import config
 
 #------------------------------------------------------------------------
 #
@@ -57,6 +58,8 @@ RADIAL_UPRIGHT    = 0
 RADIAL_ROUNDABOUT = 1
 
 pt2cm = ReportUtils.pt2cm
+
+cal = config.get('preferences.calendar-format-report')
 
 #------------------------------------------------------------------------
 #
@@ -269,7 +272,7 @@ class FanChart(Report):
         birth_ref = person.get_birth_ref()
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
-            b = birth.get_date_object().get_year()
+            b = birth.get_date_object().to_calendar(cal).get_year()
             if b == 0:
                 b = ""
         else:
@@ -278,7 +281,7 @@ class FanChart(Report):
         death_ref = person.get_death_ref()
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
-            d = death.get_date_object().get_year()
+            d = death.get_date_object().to_calendar(cal).get_year()
             if d == 0:
                 d = ""
         else:

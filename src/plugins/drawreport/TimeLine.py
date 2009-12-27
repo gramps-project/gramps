@@ -47,8 +47,15 @@ from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer
 from Utils import probably_alive
 from gui.utils import ProgressMeter
-import gen.lib
+import config
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
+
+#------------------------------------------------------------------------
+#
+# private constants
+#
+#------------------------------------------------------------------------ 
+cal = config.get('preferences.calendar-format-report')
 
 #------------------------------------------------------------------------
 #
@@ -97,7 +104,6 @@ class TimeLine(Report):
         sort_functions = _get_sort_functions(Sort.Sort(database))
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
-        self.calendar = gen.lib.date.Date.ui_calendar_names[menu.get_option_by_name('calendar').get_value()]
 
     def write_report(self):
         self.progress = ProgressMeter(_('Timeline'))
@@ -142,13 +148,13 @@ class TimeLine(Report):
             p = self.database.get_person_from_handle(p_id)
             birth = get_birth_or_fallback(self.database, p)
             if birth:
-                b = birth.get_date_object().to_calendar(self.calendar).get_year()
+                b = birth.get_date_object().to_calendar(cal).get_year()
             else:
                 b = None
 
             death = get_death_or_fallback(self.database, p)
             if death:
-                d = death.get_date_object().to_calendar(self.calendar).get_year()
+                d = death.get_date_object().to_calendar(cal).get_year()
             else:
                 d = None
 
@@ -214,9 +220,7 @@ class TimeLine(Report):
         normal_font = style_sheet.get_paragraph_style('TLG-Name').get_font()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
 
-        byline = _("%(calendar_type)s Calendar, Sorted by %(sortby)s") % \
-                   {"calendar_type": self.calendar,
-                    "sortby": self.sort_name}
+        byline = _("Sorted by %s") % self.sort_name
 
         self.doc.center_text('TLG-title',self.title + "\n" + byline,width/2.0,0)
         
@@ -245,13 +249,13 @@ class TimeLine(Report):
             p = self.database.get_person_from_handle(p_id)
             birth = get_birth_or_fallback(self.database, p)
             if birth:
-                b = birth.get_date_object().to_calendar(self.calendar).get_year()
+                b = birth.get_date_object().to_calendar(cal).get_year()
             else:
                 b = None
 
             death = get_death_or_fallback(self.database, p)
             if death:
-                d = death.get_date_object().to_calendar(self.calendar).get_year()
+                d = death.get_date_object().to_calendar(cal).get_year()
             else:
                 d = None
 
@@ -331,15 +335,7 @@ class TimeLineOptions(MenuReportOptions):
             idx += 1
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
-        
-        self.__calendar = EnumeratedListOption(_("Calendar"), 0)
-        self.__calendar.set_help(_("The calendar which determines the year span"))
-        idx = 0
-        for calendar in gen.lib.date.Date.ui_calendar_names:
-            self.__calendar.add_item(idx, calendar)
-            idx += 1
-        menu.add_option(category_name, "calendar", self.__calendar)
-        
+                
     def __update_filters(self):
         """
         Update the filter list based on the selected person
