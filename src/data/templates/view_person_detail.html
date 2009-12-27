@@ -11,49 +11,61 @@
    </script>
 
 <div class="content" id="IndividualDetail">
-<h3></h3>
+<h3>{{nameform|make_name:user}} [{{person.gramps_id}}]</h3>
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 5 cols {% endcomment %}
 <tbody>
 
+{% if user.is_authenticated %}
+  {% ifequal action "edit" %}
+    {% for error in personform.errors %}
+       {{error}}<br>
+    {% endfor %}
+    {% for error in nameform.errors %}
+       {{error}}<br>
+    {% endfor %}
+    <form method="post">
+  {% endifequal %}
+{% endif %}
+
 <tr>
- <td class="ColumnAttribute">Family:</td>
- <td class="ColumnValue" id="data">{{name.surname}}</td>
- <td class="ColumnAttribute">Prefix:</td>
- <td class="ColumnValue" id="data">{{name.prefix}}</td>
+ <td class="ColumnAttribute">{{nameform.surname.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.surname|render:action}}</td>
+ <td class="ColumnAttribute">{{nameform.prefix.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.prefix|render:action}}</td>
  <td rowspan="6" colspan="2" style="border:solid 2px #7D5925;">Image:</td>
 </tr>
 <tr>
  <td class="ColumnAttribute" colspan="2"></td>
- <td class="ColumnAttribute">Suffix:</td>
- <td class="ColumnValue" id="data">{{name.suffix}}</td>
+ <td class="ColumnAttribute">{{nameform.suffix.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.suffix|render:action}}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Given:</td>
- <td class="ColumnValue" id="data">{{name.first_name}}</td>
- <td class="ColumnAttribute">Call Name:</td>
- <td class="ColumnValue" id="data">{{name.call}}</td>
+ <td class="ColumnAttribute">{{nameform.first_name.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.first_name|render:action}}</td>
+ <td class="ColumnAttribute">{{nameform.call.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.call|render:action}}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Type:</td>
- <td class="ColumnValue" id="data">{{name.name_type}}</td>
- <td class="ColumnAttribute">Patronymic:</td>
- <td class="ColumnValue" id="data">{{name.patronymic}}</td>
+ <td class="ColumnAttribute">{{nameform.name_type.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.name_type|render:action}}</td>
+ <td class="ColumnAttribute">{{nameform.patronymic.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.patronymic|render:action}}</td>
 </tr>
 <tr>
  <td class="ColumnAttribute" colspan="2"></td>
- <td class="ColumnAttribute">Title:</td>
- <td class="ColumnValue" id="data">{{name.title}}</td>
+ <td class="ColumnAttribute">{{nameform.title.label}}</td>
+ <td class="ColumnValue" id="data">{{nameform.title|render:action}}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Gender:</td>
- <td class="ColumnValue" id="data">{{person.gender_type}}</td>
- <td class="ColumnAttribute">ID:</td>
- <td class="ColumnValue" id="data">{{person.gramps_id}}</td>
+ <td class="ColumnAttribute">{{personform.gender_type.label}}</td>
+ <td class="ColumnValue" id="data">{{personform.gender_type|render:action}}</td>
+ <td class="ColumnAttribute">{{personform.gramps_id.label}}</td>
+ <td class="ColumnValue" id="data">{{personform.gramps_id|render:action}}</td>
 </tr>
 <tr>
- <td class="ColumnAttribute">Marker:</td>
- <td class="ColumnValue" id="data">{{person.marker_type}}</td>
+ <td class="ColumnAttribute">{{personform.marker_type.label}}</td>
+ <td class="ColumnValue" id="data">{{personform.marker_type|render:action}}</td>
  <td class="ColumnAttribute" colspan="3"></td>
 </tr>
 </tbody>
@@ -80,40 +92,54 @@
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-events"> 
     <!-- Events -->
-    {{ person|person_event_table:user|safe }}
+    {% event_table person user action "/person/%s/event" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
-    {{ person|person_name_table:user|safe }}
+    {% name_table person user action "/person/%s/name" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table person user action "/person/%s/source/add" person.handle %}
+    {% source_table person user action "/person/%s/source" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
-    {{ person|person_attribute_table:user|safe }}
+    {% attribute_table person user action "/person/%s/attribute" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-addresses">
-    {{ person|person_address_table:user|safe }}
+    {% address_table person user action "/person/%s/address" person.handle %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
-    {{ person|person_note_table:user|safe }}
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom
+	      ui-tabs-hide" id="tab-notes">
+    {% note_table person user action "/person/%s/note" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
-    {{ person|person_gallery_table:user|safe }}
+    {% gallery_table person user action "/person/%s/gallery" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-internet">
-    {{ person|person_internet_table:user|safe }}
+    {% internet_table person user action "/person/%s/internet" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-association">
-    {{ person|person_association_table:user|safe }}
+    {% association_table person user action "/person/%s/association" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
-    {{ person|person_lds_table:user|safe }}
+    {% lds_table person user action "/person/%s/lds" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-references">
-    {{ person|person_reference_table:user|safe }}
+    {% reference_table person user action "/person/%s/reference" person.handle %}
   </div>
 </div>
 
+{% if user.is_authenticated %}
+  {% ifequal action "edit" %}
+    {% make_button "Back to Person" "/person/%s" person.handle %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="submit" value="Submit"/>
+    </form>
+  {% else %}
+{% make_button "Back to People" "/person/" %}
+{% make_button "Edit Person" "/person/%s/edit" person.handle %}
+{% make_button "Delete Person" "/person/%s/delete" person.handle %}
+  {% endifequal %}
+{% else %}
+{% endif %}
 
 {% endblock %}
 

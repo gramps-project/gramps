@@ -83,25 +83,25 @@
   </ul>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-children"> 
     <!-- Events -->
-    {{ family|family_children_table:user|safe }}
+    {% children_table family user action "/family/%s/children" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-events">
-    {{ family|family_event_table:user|safe }}
+    {% event_table family user action "/family/%s/children" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {{ family|source_table:user|safe }}
+    {% source_table family user action "/family/%s/children" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-attributes">
-    {{ family|family_attribute_table:user|safe }}
+    {% attribute_table family user action "/family/%s/children" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
-    {{ family|family_note_table:user|safe }}
+    {% note_table family user action "/family/%s/children" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-gallery">
-    {{ family|family_gallery_table:user|safe }}
+    {% gallery_table family user action "/family/%s/children" family.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-lds">
-    {{ family|family_lds_table:user|safe }}
+    {% lds_table family user action "/family/%s/children" family.handle %}
   </div>
 </div>
 {% endblock %}

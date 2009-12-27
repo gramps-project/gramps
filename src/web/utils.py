@@ -62,17 +62,28 @@ from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 
-util_filters = ['person_event_table', 'person_name_table', 
-                'person_attribute_table', 
-                'person_address_table', 'person_note_table', 
-                'person_gallery_table', 'person_internet_table', 
-                'person_association_table', 'person_lds_table', 
-                'person_reference_table',
-                'family_children_table', 'family_event_table', 
-                'family_attribute_table',
-                'family_note_table', 'family_gallery_table', 
-                'family_lds_table', 
-                'nbsp', 'render']
+util_filters = [
+    'nbsp', 
+    'render',
+    ]
+
+util_tags = [
+    "get_person_from_handle", 
+    "event_table",
+    "name_table",
+    "source_table",
+    "note_table",
+    "attribute_table",
+    "address_table",
+    "gallery_table",
+    "internet_table",
+    "association_table",
+    "lds_table",
+    "reference_table",
+    "children_table",
+    "make_button",
+    ]
+
 #------------------------------------------------------------------------
 #
 # Module Constants
@@ -88,6 +99,14 @@ def register_plugins():
     climanager.do_reg_plugins()
     pmgr = BasePluginManager.get_instance()
     return pmgr
+
+def get_person_from_handle(db, handle):
+    # db is a Gramps Db interface
+    # handle is a Person Handle
+    try:
+        return db.get_person_from_handle(handle)
+    except:
+        return None
 
 def probably_alive(handle):
     db = DjangoDb()
@@ -160,10 +179,11 @@ def render(formfield, action):
         retval = formfield.as_widget()
     return retval
 
-def make_button(text, url):
-    return """[<a href="%s">%s</a>]""" % (url, text)
+def make_button(text, url, *args):
+    url = url % args
+    return """[ <a href="%s">%s</a> ] """ % (url, text)
 
-def person_event_table(djperson, user):
+def event_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Description"), 
@@ -173,9 +193,9 @@ def person_event_table(djperson, user):
                   _("Place"),
                   _("Role"))
     if user.is_authenticated():
-        obj_type = ContentType.objects.get_for_model(djperson)
+        obj_type = ContentType.objects.get_for_model(obj)
         event_ref_list = models.EventRef.objects.filter(
-            object_id=djperson.id, 
+            object_id=obj.id, 
             object_type=obj_type).order_by("order")
         event_list = [(obj.ref_object, obj) for obj in event_ref_list]
         for (djevent, event_ref) in event_list:
@@ -187,12 +207,13 @@ def person_event_table(djperson, user):
                 get_title(djevent.place),
                 str(event_ref.role_type))
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add event"), "/person/%s/event/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add event"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_name_table(djperson, user):
-    print "person_name_table", djperson, user
+def name_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Name"), 
@@ -202,7 +223,7 @@ def person_name_table(djperson, user):
                   _("Note Preview"))
     if user.is_authenticated():
         links = []
-        for name in djperson.name_set.all().order_by("order"):
+        for name in obj.name_set.all().order_by("order"):
             obj_type = ContentType.objects.get_for_model(name)
             sourceq = dji.SourceRef.filter(object_type=obj_type,
                                            object_id=name.id).count() > 0
@@ -219,12 +240,15 @@ def person_name_table(djperson, user):
                       name.group_as,
                       ["No", "Yes"][sourceq],
                       note)
-            links.append(('URL', "/person/%s/name/%s" % 
-                          (name.person.handle, name.order)))
+            links.append(('URL', 
+                          # url is "/person/%s/name"
+                          (url % name.person.handle) + ("/%s" % name.order)))
         table.links(links)
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add name"), "/person/%s/name/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add name"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
 def source_table(obj, user, action, url=None, *args):
@@ -247,28 +271,56 @@ def source_table(obj, user, action, url=None, *args):
                       )
     retval += table.get_html()
     if user.is_authenticated() and url and action != "edit":
-        retval += make_button(_("Add source"), url % args)
+        retval += make_button(_("Add source"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_attribute_table(djperson, user):
+def note_table(obj, user, action, url=None, *args):
+    retval = ""
+    table = Table()
+    table.columns(
+        _("ID"),
+        _("Type"),
+        _("Note"))
+    if user.is_authenticated():
+        obj_type = ContentType.objects.get_for_model(obj)
+        note_refs = dji.NoteRef.filter(object_type=obj_type,
+                                       object_id=obj.id)
+        for note_ref in note_refs:
+            note = table.db.get_note_from_handle(
+                note_ref.ref_object.handle)
+            table.row(table.db.get_note_from_handle(note.handle),
+                      str(note_ref.ref_object.note_type),
+                      note_ref.ref_object.text[:50])
+    retval += table.get_html()
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add note"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
+    return retval
+
+def attribute_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Type"), 
                   _("Value"),
                   )
     if user.is_authenticated():
-        obj_type = ContentType.objects.get_for_model(djperson)
+        obj_type = ContentType.objects.get_for_model(obj)
         attributes = dji.Attribute.filter(object_type=obj_type,
-                                          object_id=djperson.id)
+                                          object_id=obj.id)
         for attribute in attributes:
             table.row(attribute.attribute_type.name,
                       attribute.value)
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add attribute"), "/person/%s/attribute/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add attribute"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_address_table(djperson, user):
+def address_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Date"), 
@@ -277,7 +329,7 @@ def person_address_table(djperson, user):
                   _("State"),
                   _("Country"))
     if user.is_authenticated():
-        for address in djperson.address_set.all().order_by("order"):
+        for address in obj.address_set.all().order_by("order"):
             locations = address.location_set.all().order_by("order")
             for location in locations:
                 table.row(display_date(address),
@@ -286,77 +338,63 @@ def person_address_table(djperson, user):
                           location.state,
                           location.country)
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add address"), "/person/%s/address/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add address"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_note_table(djperson, user):
-    retval = ""
-    table = Table()
-    table.columns(
-        _("ID"),
-        _("Type"),
-        _("Note"))
-    if user.is_authenticated():
-        obj_type = ContentType.objects.get_for_model(djperson)
-        note_refs = dji.NoteRef.filter(object_type=obj_type,
-                                       object_id=djperson.id)
-        for note_ref in note_refs:
-            note = table.db.get_note_from_handle(
-                note_ref.ref_object.handle)
-            table.row(table.db.get_note_from_handle(note.handle),
-                      str(note_ref.ref_object.note_type),
-                      note_ref.ref_object.text[:50])
-    retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add note"), "/person/%s/note/add" % djperson.handle)
-    return retval
-
-def person_gallery_table(djperson, user):
+def gallery_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Name"), 
                   _("Type"),
                   )
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add gallery"), "/person/%s/gallery/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add gallery"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_internet_table(djperson, user):
+def internet_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Type"),
                   _("Path"),
                   _("Description"))
     if user.is_authenticated():
-        urls = dji.Url.filter(person=djperson)
+        urls = dji.Url.filter(person=obj)
         for url in urls:
             table.row(str(url.url_type),
                       url.path,
                       url.desc)
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add internet"), "/person/%s/internet/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add internet"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_association_table(djperson, user):
+def association_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Name"), 
                   _("ID"),
                   _("Association"))
     if user.is_authenticated():
-        gperson = table.db.get_person_from_handle(djperson.handle)
+        gperson = table.db.get_person_from_handle(obj.handle)
         associations = gperson.get_person_ref_list()
         for association in associations:
             table.row()
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add association"), "/person/%s/association/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add association"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_lds_table(djperson, user):
+def lds_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Type"), 
@@ -365,8 +403,8 @@ def person_lds_table(djperson, user):
                   _("Temple"),
                   _("Place"))
     if user.is_authenticated():
-        obj_type = ContentType.objects.get_for_model(djperson)
-        ldss = djperson.lds_set.all().order_by("order")
+        obj_type = ContentType.objects.get_for_model(obj)
+        ldss = obj.lds_set.all().order_by("order")
         for lds in ldss:
             table.row(str(lds.lds_type),
                       display_date(lds),
@@ -374,25 +412,29 @@ def person_lds_table(djperson, user):
                       lds.temple,
                       get_title(lds.place))
     retval += table.get_html()
-    if user.is_authenticated():
-        retval += make_button(_("Add LDS"), "/person/%s/lds/add" % djperson.handle)
+    if user.is_authenticated() and url and action != "edit":
+        retval += make_button(_("Add LDS"), (url + "/add") % args)
+    else:
+        retval += nbsp("") # to keep tabs same height
     return retval
 
-def person_reference_table(djperson, user):
+def reference_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(_("Type"), 
                   _("ID"),
                   _("Name"))
     if user.is_authenticated():
-        references = dji.PersonRef.filter(ref_object=djperson)
+        references = dji.PersonRef.filter(ref_object=obj)
         for reference in references:
             table.row(str(reference.ref_object),
                       reference.ref_object.gramps_id,
                       make_name(reference.ref_object.name_set, user))
-    return table.get_html()
+    retval += table.get_html()
+    retval += nbsp("") # to keep tabs same height
+    return retval 
 
-def family_children_table(djfamily, user):
+def children_table(obj, user, action, url=None, *args):
     retval = ""
     table = Table()
     table.columns(
@@ -407,74 +449,7 @@ def family_children_table(djfamily, user):
     #if user.is_authenticated():
     #for djfamily:
     #    table.row("test")
-    return table.get_html()
-
-def family_event_table(djfamily, user):
-    retval = ""
-    table = Table()
-    table.columns(
-        _("Description"),
-        _("Type"),
-        _("ID"),
-        _("Date"),
-        _("Place"),
-        _("Role"),
-        )
-    table.row("test")
-    return table.get_html()
-
-def family_source_table(djfamily, user):
-    retval = ""
-    table = Table()
-    table.columns(
-        _("ID"),
-        _("Type"),
-        _("Author"),
-        _("Page"),
-        )
-    table.row("test")
-    return table.get_html()
-
-def family_attribute_table(djfamily, user):
-    retval = ""
-    table = Table()
-    table.columns(
-        _("Type"),
-        _("Value"),
-        )
-    table.row("test")
-    return table.get_html()
-
-def family_note_table(djfamily, user):
-    retval = ""
-    table = Table()
-    table.columns(
-        _("Type"),
-        _("Preview"),
-        )
-    table.row("test")
-    return table.get_html()
-
-def family_gallery_table(djfamily, user):
-    retval = ""
-    table = Table()
-    table.columns(
-        _("Column"),
-        )
-    table.row("test")
-    return table.get_html()
-
-def family_lds_table(djfamily, user):
-    retval = ""
-    table = Table()
-    table.columns(
-        _("Type"),
-        _("Date"),
-        _("Status"),
-        _("Temple"),
-        _("Place"),
-        )
-    table.row("test")
+    retval += nbsp("") # to keep tabs same height
     return table.get_html()
 
 ## FIXME: these dji function wrappers just use the functions
@@ -488,14 +463,14 @@ def get_title(place):
 
 def person_get_birth_date(person):
     db = DjangoDb()
-    event = get_birth_or_fallback(db, person)
+    event = get_birth_or_fallback(db, db.get_person_from_handle(person.handle))
     if event:
         return event.date
     return None
 
 def person_get_death_date(person):
     db = DjangoDb()
-    event = get_death_or_fallback(db, person)
+    event = get_death_or_fallback(db, db.get_person_from_handle(person.handle))
     if event:
         return event.date
     return None
@@ -530,7 +505,7 @@ def person_get_event(person, event_type=None):
                   for event_handle in event_ref_list]
         return [j for i in retval for j in i]
 
-def make_name(name, user=None):
+def make_name(name, user):
     if isinstance(name, models.Name):
         surname = name.surname.strip()
         if not surname:
@@ -560,6 +535,9 @@ def make_name(name, user=None):
             return "[No preferred name]"
         else:
             return "%s, %s" % (name.get_surname(), name.get_first_name())
+    elif isinstance(name, models.Person): # django person
+        person = name
+        return make_name(person.name_set.get(preferred=True), user)
     else: # no name
         return ""
 

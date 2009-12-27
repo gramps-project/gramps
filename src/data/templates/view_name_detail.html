@@ -11,7 +11,7 @@
    </script>
 
 <div class="content" id="IndividualDetail">
-<h3>Name for Person [{{person.gramps_id}}]</h3>
+<h3>{{person|make_name:user}} [{{person.gramps_id}}]</h3>
 <div id="summaryarea">
 <table class="infolist"> {% comment %} 4 cols {% endcomment %}
 <tbody>
@@ -69,26 +69,32 @@
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
   </ul>
 
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-general"> 
-    <table>
-    <tr><td>{{form.group_as.label}}: </td>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+  id="tab-general"> 
+    <div style="overflow: auto; height:150px; color: black; background-color: white;">
+    <table border="1">
+    <tr><td style="background-color: #FFF2C5;">{{form.group_as.label}}: </td>
         <td>{{form.group_as|render:action}}</td>
     </tr>
-    <tr><td>{{form.sort_as.label}}: </td>
+    <tr><td style="background-color: #FFF2C5;">{{form.sort_as.label}}: </td>
         <td>{{form.sort_as|render:action}}</td>
     </tr>
-    <tr><td>{{form.display_as.label}}: </td>
+    <tr><td style="background-color: #FFF2C5;">{{form.display_as.label}}: </td>
          <td>{{form.display_as|render:action}}</td>
     </tr>
-    <tr><td>{{form.text.label}}: </td>
+    <tr><td style="background-color: #FFF2C5;">{{form.text.label}}: </td>
          <td>{{form.text|render:action}}</td>
     </tr>
     </table>
+    </div>
+    &nbsp;
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
-    {% source_table form.model user action "/person/%s/name/%s/source/add" person.handle form.model.order %}
+    {% source_table form.model user action "/person/%s/name/%s/source" person.handle form.model.order %}
   </div>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-notes">
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom
+	      ui-tabs-hide" id="tab-notes">
+    {% note_table form.model user action "/person/%s/name/%s/note" person.handle form.model.order %}
   </div>
 </div>
 

@@ -41,11 +41,11 @@ from django.db.models import Q
 #------------------------------------------------------------------------
 import web
 from web.grampsdb.models import *
-from web.grampsdb.forms import NameForm
+from web.grampsdb.forms import NameForm, PersonForm
 from web.utils import probably_alive
 from web.djangodb import DjangoDb
 
-from gen.proxy import LivingProxyDb
+import gen.proxy
 
 _ = lambda text: text
 
@@ -207,8 +207,9 @@ class PrivateProxy(object):
     def __getattr__(self, attr):
         return getattr(self.obj, attr)
 
-def view_detail(request, view, handle):
+def view_detail(request, view, handle, action="view"):
     context = RequestContext(request)
+    context["action"] = action
     context["view"] = view
     if view == "event":
         try:
@@ -239,24 +240,7 @@ def view_detail(request, view, handle):
         view_template = 'view_note_detail.html'
         context["tview"] = _("Note")
     elif view == "person":
-        try:
-            obj = Person.objects.get(handle=handle)
-        except:
-            raise Http404(_("Requested %s does not exist.") % view)
-        view_template = 'view_person_detail.html'
-        person = obj
-        name = person.get_primary_name()
-        if request.user.is_authenticated():
-            pass # see everything, no limits
-        elif probably_alive(person.handle):
-            name.first_name = "[Living]"
-        elif person.private:
-            name = Name()
-            name.surname = "[Private]"
-            name.first_name = "[Private]"
-        # FIXME: protect everything else; what if name.private?
-        context["name"] = name
-        context["tview"] = _("Person")
+        return view_person_detail(request, view, handle, action)
     elif view == "place":
         try:
             obj = Place.objects.get(handle=handle)
@@ -281,19 +265,56 @@ def view_detail(request, view, handle):
     else:
         raise Http404(_("Requested page type not known"))
     context[view] = obj
-    context["action"] = "view"
+    return render_to_response(view_template, context)
+
+def get_gramps_db(request):
+    dbase = DjangoDb()
+    if request.user.is_authenticated():
+        private_filter=False
+        living_filter=False
+    else:
+        private_filter=True
+        living_filter=True
+    # If the private flag is set, apply the PrivateProxyDb
+    if private_filter:
+        dbase = gen.proxy.PrivateProxyDb(dbase)
+    # If the restrict flag is set, apply the LivingProxyDb
+    if living_filter:
+        dbase = gen.proxy.LivingProxyDb(
+            dbase, 
+            gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+    return dbase
+
+def view_person_detail(request, view, handle, action="view"):
+    context = RequestContext(request)
+    context["action"] = action
+    context["view"] = view
+    context["tview"] = _("Person")
+    view_template = 'view_person_detail.html'
+    if request.user.is_authenticated():
+        person = Person.objects.get(handle=handle)
+        name = person.name_set.get(preferred=True)
+    else:
+        db = get_gramps_db(request)
+        gramps_person = db.get_person_from_handle(handle)
+        if not gramps_person:
+            raise Http404(_("Requested %s is not accessible.") % view)
+        person = Person.objects.get(handle=handle)
+        name = person.name_set.get(preferred=True)
+        # fill forms with data from db
+        name.surname = gramps_person.get_primary_name().get_surname()
+        name.first_name = gramps_person.get_primary_name().get_first_name()
+    pf = PersonForm(instance=person)
+    pf.model = person
+    nf = NameForm(instance=name)
+    nf.model = name
+    context["personform"] = pf
+    context["nameform"] = nf
+    context["person"] = person
     return render_to_response(view_template, context)
 
 def view(request, view):
-    db_direct = DjangoDb()
-    if not request.user.is_authenticated():
-        #MODE_EXCLUDE_ALL  = 0
-        #MODE_INCLUDE_LAST_NAME_ONLY = 1
-        #MODE_INCLUDE_FULL_NAME_ONLY = 2
-        db = LivingProxyDb(db_direct, 
-                           LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
-    else:
-        db = db_direct
+    db = get_gramps_db(request)
     search = ""
     if view == "event":
         if request.user.is_authenticated():
@@ -315,9 +336,9 @@ def view(request, view):
         view_template = 'view_events.html'
         total = Event.objects.all().count()
     elif view == "family":
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            if request.user.is_authenticated():
+        if request.user.is_authenticated():
+            if request.GET.has_key("search"):
+                search = request.GET.get("search")
                 if "," in search:
                     surname, first = [term.strip() for term in 
                                       search.split(",", 1)]
@@ -338,8 +359,12 @@ def view(request, view):
                                 Q(mother__name__first_name__istartswith=search)
                                 ) \
                         .order_by("gramps_id")
-            else: 
-                # NON-AUTHENTICATED users
+            else: # no search
+                object_list = Family.objects.all().order_by("gramps_id")
+        else:
+            # NON-AUTHENTICATED users
+            if request.GET.has_key("search"):
+                search = request.GET.get("search")
                 if "," in search:
                     search, trash = [term.strip() for term in search.split(",", 1)]
                 object_list = Family.objects \
@@ -347,15 +372,18 @@ def view(request, view):
                              Q(family_rel_type__name__icontains=search) |
                              Q(father__name__surname__istartswith=search) |
                              Q(mother__name__surname__istartswith=search)) &
-                            Q(private=False) 
+                            Q(private=False) &
+                            Q(mother__private=False) &
+                            Q(father__private=False)
                             ) \
                     .order_by("gramps_id")
-        else: # no search
-            if request.user.is_authenticated():
-                object_list = Family.objects.all().order_by("gramps_id")
             else:
-                # NON-AUTHENTICATED users
-                object_list = Family.objects.filter(private=False).order_by("gramps_id")
+                object_list = Family.objects \
+                    .filter(Q(private=False) & 
+                            Q(mother__private=False) &
+                            Q(father__private=False)
+                            ) \
+                    .order_by("gramps_id")
         view_template = 'view_families.html'
         total = Family.objects.all().count()
     elif view == "media":
@@ -395,9 +423,9 @@ def view(request, view):
         view_template = 'view_notes.html'
         total = Note.objects.all().count()
     elif view == "person":
-        if request.GET.has_key("search"):
-            search = request.GET.get("search")
-            if request.user.is_authenticated():
+        if request.user.is_authenticated():
+            if request.GET.has_key("search"):
+                search = request.GET.get("search")
                 if "," in search:
                     surname, first_name = [term.strip() for term in 
                                            search.split(",", 1)]
@@ -417,7 +445,11 @@ def view(request, view):
                                 ) \
                         .order_by("surname", "first_name")
             else:
-                # BEGIN NON-AUTHENTICATED users
+                object_list = Name.objects.all().order_by("surname", "first_name")
+        else:
+            # BEGIN NON-AUTHENTICATED users
+            if request.GET.has_key("search"):
+                search = request.GET.get("search")
                 if "," in search:
                     search, trash = [term.strip() for term in search.split(",", 1)]
                 object_list = Name.objects \
@@ -426,15 +458,12 @@ def view(request, view):
                             Q(person__private=False)
                             ) \
                     .order_by("surname", "first_name")
-                # END NON-AUTHENTICATED users
-        else:
-            if request.user.is_authenticated():
-                object_list = Name.objects.all().order_by("surname", "first_name")
             else:
-                # BEGIN NON-AUTHENTICATED users
-                object_list = Name.objects.filter(Q(private=False) &
-                                                  Q(person__private=False)).order_by("surname", "first_name")
-                # END NON-AUTHENTICATED users
+                object_list = Name.objects \
+                                .filter(Q(private=False) &
+                                        Q(person__private=False)) \
+                                .order_by("surname", "first_name")
+            # END NON-AUTHENTICATED users
         view_template = 'view_people.html'
         total = Name.objects.all().count()
     elif view == "place":

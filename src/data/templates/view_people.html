@@ -24,7 +24,7 @@
     {% if person %}
     <td><a href="{{person.handle}}/" class="noThumb">{{ forloop.counter|row_count:page }}</a>
     </td>
-    <td><a href="{{person.handle}}/" class="noThumb">{{person|make_name}}</a>
+    <td><a href="{{person.handle}}/" class="noThumb">{{person|make_name:user}}</a>
     </td>
     <td><a href="{{person.handle}}/" class="grampsid">[{{person.gramps_id}}]</a></td>
     <td><a href="{{person.handle}}/" class="noThumb">{{person.gender_type}}</a></td>

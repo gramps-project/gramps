@@ -92,9 +92,17 @@ class DjangoDb(DbReadBase, DbWriteBase):
         return obj
 
     def get_place_from_handle(self, handle):
-        obj = gen.lib.Place()
-        obj.unserialize(self.dji.get_place(self.dji.Place.get(handle=handle)))
-        return obj
+        try:
+            dji_obj = self.dji.Place.get(handle=handle)
+        except:
+            dji_obj = None
+        if dji_obj:
+            tuple_obj = self.dji.get_place(dji_obj)
+            if tuple_obj:
+                obj = gen.lib.Place()
+                obj.unserialize(tuple_obj)
+                return obj
+        return None
 
     def get_source_from_handle(self, handle):
         obj = gen.lib.Source()

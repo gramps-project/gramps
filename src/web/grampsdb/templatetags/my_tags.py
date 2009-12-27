@@ -8,16 +8,6 @@ import web.utils
 
 register = Library()
 
-for filter_name in util_filters:
-    func = getattr(web.utils, filter_name)
-    func.is_safe = True
-    register.filter(filter_name, func)
-
-def get_person_from_handle(db, handle):
-    # db is a Gramps Db interface
-    # handle is a Person Handle
-    return db.get_person_from_handle(handle)
-
 class TemplateNode(template.Node):
     def __init__(self, args, var_name, func):
         self.args = map(template.Variable, args)
@@ -33,8 +23,7 @@ class TemplateNode(template.Node):
             return value
 
 def parse_tokens(tokens):
-    # Splitting by None splits by spaces
-    items = tokens.contents.split(None)
+    items = tokens.split_contents()
     # {% tag_name arg1 arg2 arg3 as variable %}
     # {% tag_name arg1 arg2 arg3 %}
     tag_name = items[0]
@@ -52,11 +41,14 @@ def make_tag(func):
         return TemplateNode(args, var_name, func)
     return do_func
 
-register.tag("get_person_from_handle", 
-             make_tag(get_person_from_handle))
+for filter_name in util_filters:
+    func = getattr(web.utils, filter_name)
+    func.is_safe = True
+    register.filter(filter_name, func)
 
-register.tag("source_table", 
-             make_tag(source_table))
+for tag_name in util_tags:
+    func = getattr(web.utils, tag_name)
+    register.tag(tag_name, make_tag(func))
 
 probably_alive.is_safe = True
 register.filter('probably_alive', probably_alive)

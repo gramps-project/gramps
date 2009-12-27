@@ -10,7 +10,6 @@ import datetime
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        exclude = ('handle',)
 
     '''def clean(self):
         cleaned_data['last_changed'] = datetime.datetime.now()
