@@ -24,6 +24,14 @@
 Base class for the GRAMPS databases. All database interfaces should inherit
 from this class.
 """
+
+#-------------------------------------------------------------------------
+#
+# Python libraries
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
