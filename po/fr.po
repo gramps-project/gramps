@@ -8598,7 +8598,7 @@ msgstr "Gramplet Parenté"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:146
 msgid "Relatives"
-msgstr "Parentés"
+msgstr "Liens de parenté"
 
 # à vérifier
 #: ../src/plugins/gramplet/SessionLogGramplet.py:37
@@ -23005,7 +23005,7 @@ msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue 
 
 #: ../src/data/tips.xml.in.h:51
 msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
-msgstr "GRAMPS fonctionne sous KDE, tant que les librairies GTK nécessaires sont installées."
+msgstr "GRAMPS fonctionne sous KDE, tant que les bibliothèques GTK nécessaires sont installées."
 
 # Récits pour Narratives plutôt que sagas...
 #: ../src/data/tips.xml.in.h:52
