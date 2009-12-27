@@ -879,7 +879,6 @@ class EditFamily(EditPrimary):
 
     def edit_person(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            from _EditPerson import EditPerson
             try:
                 person = self.db.get_person_from_handle(handle)
                 EditPerson(self.dbstate, self.uistate,
