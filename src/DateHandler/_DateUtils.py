@@ -85,7 +85,9 @@ def get_calendar_formats():
     """
     Return the list of supported calendars.
     """
-    try:
-        return LANG_TO_DISPLAY[LANG].calendar
-    except:
-        return LANG_TO_DISPLAY["C"].calendar
+    cal = []
+
+    for calendar in gen.lib.date.Date.ui_calendar_names:
+        cal.append(calendar)
+        
+    return cal
