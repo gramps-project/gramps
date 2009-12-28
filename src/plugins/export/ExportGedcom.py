@@ -41,7 +41,7 @@ import time
 import gen.lib
 from gen.lib.date import make_gedcom_date, MONTH
 import const
-import GrampsDbUtils._GedcomInfo as GedcomInfo
+import GrampsDbUtils._GedcomParse as libgedcom
 import Errors
 from ExportOptions import WriterOptionBox
 import BasicUtils
@@ -607,7 +607,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             if etype in (gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH):
                 continue
                 
-            val = GedcomInfo.personalConstantEvents.get(etype, "").strip()
+            val = libgedcom.personalConstantEvents.get(etype, "").strip()
                         
             if val and val.strip():
                 if val in NEEDS_PARAMETER:
@@ -685,7 +685,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         for attr in attr_list:
 
             attr_type = int(attr.get_type())
-            name = GedcomInfo.personalConstantAttributes.get(attr_type)
+            name = libgedcom.personalConstantAttributes.get(attr_type)
             key = str(attr.get_type())
             value = attr.get_value().strip().replace('\r', ' ')
             
@@ -876,7 +876,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         for event_ref in [ ref for ref in family.get_event_ref_list()]:
             event = self.dbase.get_event_from_handle(event_ref.ref)
             etype = int(event.get_type())
-            val = GedcomInfo.familyConstantEvents.get(etype)
+            val = libgedcom.familyConstantEvents.get(etype)
             
             if val:
                 if event_has_subordinate_data(event, event_ref):
@@ -931,7 +931,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         for attr in attr_list:
             
             attr_type = int(attr.get_type())
-            name = GedcomInfo.familyConstantAttributes.get(attr_type)
+            name = libgedcom.familyConstantAttributes.get(attr_type)
             value = attr.get_value().replace('\r', ' ')
 
             if attr_type in ("AFN", "RFN", "REFN", "_UID"):

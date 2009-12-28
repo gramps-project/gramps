@@ -23,9 +23,6 @@
 """
 This package implements additions to the the GrampsDb database. 
 """
-
-from _GedcomInfo import (personalConstantEvents, familyConstantEvents, 
-                         personalConstantAttributes)
      
 from _GedcomParse import GedcomParser
 

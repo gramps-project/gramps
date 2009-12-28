@@ -44,7 +44,7 @@ cynical, one might believe that the commercial programs were trying to
 make it difficult to transfer your data to another application.
 
 This parser takes a different approach to parsing a GEDCOM file. The first
-state, GedcomLex, reads lines from the file, and does some basic lexical
+state, Lexer, reads lines from the file, and does some basic lexical
 analysis on each line (actually several lines, since it automatically
 combines CONT and CONC tagged lines). Each logical line returned to this
 parser contains:
@@ -92,6 +92,7 @@ import re
 import time
 import codecs
 from gettext import gettext as _
+from xml.parsers.expat import ParserCreate
 
 #------------------------------------------------------------------------
 #
@@ -107,18 +108,18 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #-------------------------------------------------------------------------
 import Errors
+import const
 import gen.lib
 from BasicUtils import UpdateCallback
 import Mime
 import LdsUtils
 import Utils
 from ansel_utf8 import ansel_to_utf8
+from DateHandler._DateParser import DateParser
 
 from _GedcomTokens import *
 
-import _GedcomInfo as GedcomInfo
 import _GedcomUtils as GedcomUtils 
-import _GedcomLex as GedcomLex
 
 from gen.db.dbconst import EVENT_KEY
 
@@ -139,6 +140,31 @@ TRUNC_MSG = _("Your GEDCOM file is corrupted. "
 # constants
 #
 #-------------------------------------------------------------------------
+ADOPT_NONE         = 0
+ADOPT_EVENT        = 1
+ADOPT_FTW          = 2
+ADOPT_LEGACY       = 3
+ADOPT_PEDI         = 4
+ADOPT_STD          = 5
+CONC_OK            = 0
+CONC_BROKEN        = 1
+ALT_NAME_NONE      = 0
+ALT_NAME_STD       = 1
+ALT_NAME_ALIAS     = 2
+ALT_NAME_AKA       = 3
+ALT_NAME_EVENT_AKA = 4
+ALT_NAME_UALIAS    = 5
+CALENDAR_NO        = 0
+CALENDAR_YES       = 1
+OBJE_NO            = 0
+OBJE_YES           = 1
+PREFIX_NO          = 0
+PREFIX_YES         = 1
+RESIDENCE_ADDR     = 0
+RESIDENCE_PLAC     = 1
+SOURCE_REFS_NO     = 0
+SOURCE_REFS_YES    = 1
+
 TYPE_BIRTH  = gen.lib.ChildRefType()
 TYPE_ADOPT  = gen.lib.ChildRefType(gen.lib.ChildRefType.ADOPTED)
 TYPE_FOSTER = gen.lib.ChildRefType(gen.lib.ChildRefType.FOSTER)
@@ -194,20 +220,130 @@ MEDIA_MAP = {
 
 #-------------------------------------------------------------------------
 #
+# Integer to GEDCOM tag mappings for constants
+#
+#-------------------------------------------------------------------------
+CALENDAR_MAP = {
+    "FRENCH R" : gen.lib.Date.CAL_FRENCH,
+    "JULIAN"   : gen.lib.Date.CAL_JULIAN,
+    "HEBREW"   : gen.lib.Date.CAL_HEBREW,
+}
+
+QUALITY_MAP = {
+    'CAL' : gen.lib.Date.QUAL_CALCULATED,
+    'INT' : gen.lib.Date.QUAL_CALCULATED,
+    'EST' : gen.lib.Date.QUAL_ESTIMATED,
+}
+
+SEX_MAP = {
+    'F' : gen.lib.Person.FEMALE,
+    'M' : gen.lib.Person.MALE,
+}
+
+familyConstantEvents = {
+    gen.lib.EventType.ANNULMENT  : "ANUL",
+    gen.lib.EventType.DIV_FILING : "DIVF",
+    gen.lib.EventType.DIVORCE    : "DIV",
+    gen.lib.EventType.CENSUS     : "CENS",
+    gen.lib.EventType.ENGAGEMENT : "ENGA",
+    gen.lib.EventType.MARR_BANNS : "MARB",
+    gen.lib.EventType.MARR_CONTR : "MARC",
+    gen.lib.EventType.MARR_LIC   : "MARL",
+    gen.lib.EventType.MARR_SETTL : "MARS",
+    gen.lib.EventType.MARRIAGE   : "MARR"
+    }
+
+personalConstantEvents = {
+    gen.lib.EventType.ADOPT            : "ADOP",
+    gen.lib.EventType.ADULT_CHRISTEN   : "CHRA",
+    gen.lib.EventType.BIRTH            : "BIRT",
+    gen.lib.EventType.DEATH            : "DEAT",
+    gen.lib.EventType.BAPTISM          : "BAPM",
+    gen.lib.EventType.BAR_MITZVAH      : "BARM",
+    gen.lib.EventType.BAS_MITZVAH      : "BASM",
+    gen.lib.EventType.BLESS            : "BLES",
+    gen.lib.EventType.BURIAL           : "BURI",
+    gen.lib.EventType.CAUSE_DEATH      : "CAUS",
+    gen.lib.EventType.ORDINATION       : "ORDN",
+    gen.lib.EventType.CENSUS           : "CENS",
+    gen.lib.EventType.CHRISTEN         : "CHR" ,
+    gen.lib.EventType.CONFIRMATION     : "CONF",
+    gen.lib.EventType.CREMATION        : "CREM",
+    gen.lib.EventType.DEGREE           : "_DEG", 
+    gen.lib.EventType.DIV_FILING       : "DIVF",
+    gen.lib.EventType.EDUCATION        : "EDUC",
+    gen.lib.EventType.ELECTED          : "",
+    gen.lib.EventType.EMIGRATION       : "EMIG",
+    gen.lib.EventType.FIRST_COMMUN     : "FCOM",
+    gen.lib.EventType.GRADUATION       : "GRAD",
+    gen.lib.EventType.MED_INFO         : "_MDCL", 
+    gen.lib.EventType.MILITARY_SERV    : "_MILT", 
+    gen.lib.EventType.NATURALIZATION   : "NATU",
+    gen.lib.EventType.NOB_TITLE        : "TITL",
+    gen.lib.EventType.NUM_MARRIAGES    : "NMR",
+    gen.lib.EventType.IMMIGRATION      : "IMMI",
+    gen.lib.EventType.OCCUPATION       : "OCCU",
+    gen.lib.EventType.PROBATE          : "PROB",
+    gen.lib.EventType.PROPERTY         : "PROP",
+    gen.lib.EventType.RELIGION         : "RELI",
+    gen.lib.EventType.RESIDENCE        : "RESI", 
+    gen.lib.EventType.RETIREMENT       : "RETI",
+    gen.lib.EventType.WILL             : "WILL",
+    }
+
+familyConstantAttributes = {
+    gen.lib.AttributeType.NUM_CHILD   : "NCHI",
+    }
+
+personalConstantAttributes = {
+    gen.lib.AttributeType.CASTE       : "CAST",
+    gen.lib.AttributeType.DESCRIPTION : "DSCR",
+    gen.lib.AttributeType.ID          : "IDNO",
+    gen.lib.AttributeType.NATIONAL    : "NATI",
+    gen.lib.AttributeType.NUM_CHILD   : "NCHI",
+    gen.lib.AttributeType.SSN         : "SSN",
+    }
+
+#-------------------------------------------------------------------------
+#
+# Gedcom to int constants
+#
+#-------------------------------------------------------------------------
+lds_status = {
+    "BIC"      : gen.lib.LdsOrd.STATUS_BIC,
+    "CANCELED" : gen.lib.LdsOrd.STATUS_CANCELED,
+    "CHILD"    : gen.lib.LdsOrd.STATUS_CHILD,
+    "CLEARED"  : gen.lib.LdsOrd.STATUS_CLEARED,
+    "COMPLETED": gen.lib.LdsOrd.STATUS_COMPLETED,
+    "DNS"      : gen.lib.LdsOrd.STATUS_DNS,
+    "INFANT"   : gen.lib.LdsOrd.STATUS_INFANT,
+    "PRE-1970" : gen.lib.LdsOrd.STATUS_PRE_1970,
+    "QUALIFIED": gen.lib.LdsOrd.STATUS_QUALIFIED,
+    "DNS/CAN"  : gen.lib.LdsOrd.STATUS_DNS_CAN,
+    "STILLBORN": gen.lib.LdsOrd.STATUS_STILLBORN,
+    "SUBMITTED": gen.lib.LdsOrd.STATUS_SUBMITTED,
+    "UNCLEARED": gen.lib.LdsOrd.STATUS_UNCLEARED,
+    }
+
+
+#-------------------------------------------------------------------------
+#
 # GEDCOM events to GRAMPS events conversion
 #
 #-------------------------------------------------------------------------
-GED_2_GRAMPS = {}
-for _val, _key in GedcomInfo.personalConstantEvents.iteritems():
-    #_key = GedcomInfo.personalConstantEvents[_val]
-    if _key != "":
-        GED_2_GRAMPS[_key] = _val
+GED_TO_GRAMPS_EVENT = {}
+for __val, __key in personalConstantEvents.iteritems():
+    if __key != "":
+        GED_TO_GRAMPS_EVENT[__key] = __val
 
-GED_2_FAMILY = {}
-for _val, _key in GedcomInfo.familyConstantEvents.iteritems():
-    #_key = GedcomInfo.familyConstantEvents[_val]
-    if _key != "":
-        GED_2_FAMILY[_key] = _val
+for __val, __key in familyConstantEvents.iteritems():
+    if __key != "":
+        GED_TO_GRAMPS_EVENT[__key] = __val
+
+GED_TO_GRAMPS_ATTR = {}
+for __val, __key in personalConstantAttributes.iteritems():
+    if __key != "":
+        GED_TO_GRAMPS_ATTR[__key] = __val
 
 #-------------------------------------------------------------------------
 #
@@ -218,6 +354,10 @@ NOTE_RE    = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
 CONT_RE    = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE    = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
 PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
+MOD   = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
+CAL   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D?([^@]+)@\s*(.*)$")
+RANGE = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
+SPAN  = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
 
 #-------------------------------------------------------------------------
 #
@@ -237,6 +377,502 @@ def find_from_handle(gramps_id, table):
         intid = Utils.create_id()
         table[gramps_id] = intid
     return intid
+
+#-----------------------------------------------------------------------
+#
+# GedcomDateParser
+#
+#-----------------------------------------------------------------------
+class GedcomDateParser(DateParser):
+
+    month_to_int = {
+        'jan' : 1,  'feb' : 2,  'mar' : 3,  'apr' : 4,
+        'may' : 5,  'jun' : 6,  'jul' : 7,  'aug' : 8,
+        'sep' : 9,  'oct' : 10, 'nov' : 11, 'dec' : 12,
+        }
+
+DATE_CNV = GedcomDateParser()
+
+def extract_date(text):
+    """
+    Converts the specified text to a gen.lib.Date object.
+    """
+    dateobj = gen.lib.Date()
+
+    text = text.replace('BET ABT','EST BET') # Horrible hack for importing
+                                             # illegal GEDCOM from
+                                             # Apple Macintosh Classic
+                                             # 'Gene' program
+
+    try:
+        # extract out the MOD line
+        match = MOD.match(text)
+        if match:
+            (mod, text) = match.groups()
+            qual = QUALITY_MAP.get(mod, gen.lib.Date.QUAL_NONE)
+        else:
+            qual = gen.lib.Date.QUAL_NONE
+
+        # parse the range if we match, if so, return
+        match = RANGE.match(text)
+        if match:
+            (cal1, data1, cal2, data2) = match.groups()
+
+            cal = CALENDAR_MAP.get(cal1, gen.lib.Date.CAL_GREGORIAN)
+                    
+            start = DATE_CNV.parse(data1)
+            stop =  DATE_CNV.parse(data2)
+            dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_RANGE, cal,
+                        start.get_start_date() + stop.get_start_date())
+            dateobj.set_quality(qual)
+            return dateobj
+
+        # parse a span if we match
+        match = SPAN.match(text)
+        if match:
+            (cal1, data1, cal2, data2) = match.groups()
+
+            cal = CALENDAR_MAP.get(cal1, gen.lib.Date.CAL_GREGORIAN)
+                    
+            start = DATE_CNV.parse(data1)
+            stop =  DATE_CNV.parse(data2)
+            dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_SPAN, cal,
+                        start.get_start_date() + stop.get_start_date())
+            dateobj.set_quality(qual)
+            return dateobj
+        
+        match = CAL.match(text)
+        if match:
+            (abt, cal, data) = match.groups()
+            if abt:
+                dateobj = DATE_CNV.parse("%s %s" % (abt, data))
+            else:
+                dateobj = DATE_CNV.parse(data)
+            dateobj.set_calendar(CALENDAR_MAP.get(cal, 
+                                                  gen.lib.Date.CAL_GREGORIAN))
+            dateobj.set_quality(qual)
+            return dateobj
+
+        dateobj = DATE_CNV.parse(text)
+        dateobj.set_quality(qual)
+        return dateobj
+    
+    # FIXME: explain where/why an IOError might arise
+    # and also: is such a long try-clause needed
+    # having this fallback invites "what about other exceptions?"
+    except IOError:
+        # fallback strategy (evidently)
+        return DATE_CNV.set_text(text)
+    
+#-------------------------------------------------------------------------
+#
+# Lexer - serves as the lexical analysis engine
+#
+#-------------------------------------------------------------------------
+class Lexer(object):
+
+    def __init__(self, ifile):
+        self.ifile = ifile
+        self.current_list = []
+        self.eof = False
+        self.cnv = None
+        self.cnt = 0
+        self.index = 0
+        self.func_map = {
+            TOKEN_CONT : self.__fix_token_cont,
+            TOKEN_CONC : self.__fix_token_conc,
+            }
+
+    def readline(self):
+        if len(self.current_list) <= 1 and not self.eof:
+            self.__readahead()
+        try:
+            return GedLine(self.current_list.pop())
+        except:
+            return None
+
+    def __fix_token_cont(self, data):
+        line = self.current_list[0]
+        new_value = line[2] + '\n' + data[2]
+        self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
+
+    def __fix_token_conc(self, data):
+        line = self.current_list[0]
+        if len(line[2]) == 4:
+            # This deals with lines of the form
+            # 0 @<XREF:NOTE>@ NOTE
+            #   1 CONC <SUBMITTER TEXT>
+            # The previous line contains only a tag and no data so concat a
+            # space to separate the new line from the tag. This prevents the
+            # first letter of the new line being lost later
+            # in _GedcomParse.__parse_record
+            new_value = line[2] + ' ' + data[2]
+        else:
+            new_value = line[2] + data[2]
+        self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
+
+    def __readahead(self):
+        while len(self.current_list) < 5:
+            line = self.ifile.readline()
+            self.index += 1
+            if not line:
+                self.eof = True
+                return
+
+            try:
+                # According to the GEDCOM 5.5 standard,
+                # Chapter 1 subsection Grammar
+                #"leading whitespace preceeding a GEDCOM line should be ignored"
+                # We will also strip the terminator which is any combination
+                # of carriage_return and line_feed
+                line = line.lstrip(' ').rstrip('\n\r')
+                # split into level+delim+rest
+                line = line.partition(' ')
+                level = int(line[0])
+                # there should only be one space after the level,
+                # but we can ignore more,
+                # then split into tag+delim+line_value
+                # or xfef_id+delim+rest
+                line = line[2].lstrip(' ').partition(' ')
+                tag = line[0]
+                line_value = line[2]
+            except:
+                continue
+
+            token = TOKENS.get(tag, TOKEN_UNKNOWN)
+            data = (level, token, line_value, tag, self.index)
+
+            func = self.func_map.get(data[1])
+            if func:
+                func(data)
+            else:
+                self.current_list.insert(0, data)
+
+#-----------------------------------------------------------------------
+#
+# GedLine - represents a tokenized version of a GEDCOM line
+#
+#-----------------------------------------------------------------------
+class GedLine(object):
+    """
+    GedLine is a class the represents a GEDCOM line. The form of a  GEDCOM line 
+    is:
+    
+    <LEVEL> <TOKEN> <TEXT>
+
+    This gets parsed into
+
+    Line Number, Level, Token Value, Token Text, and Data
+
+    Data is dependent on the context the Token Value. For most of tokens, 
+    this is just a text string. However, for certain tokens where we know 
+    the context, we can provide some value. The current parsed tokens are:
+
+    TOKEN_DATE   - gen.lib.Date
+    TOKEN_SEX    - gen.lib.Person gender item
+    TOEKN_UKNOWN - Check to see if this is a known event
+    """
+    def __init__(self, data):
+        """
+        If the level is 0, then this is a top level instance. In this case, 
+        we may find items in the form of:
+
+        <LEVEL> @ID@ <ITEM>
+
+        If this is not the top level, we check the MAP_DATA array to see if 
+        there is a conversion function for the data.
+        """
+        self.line = data[4]
+        self.level = data[0]
+        self.token = data[1]
+        self.token_text = data[3].strip()
+        self.data = data[2]
+
+        if self.level == 0:
+            if self.token_text and self.token_text[0] == '@' \
+                    and self.token_text[-1] == '@':
+                self.token = TOKEN_ID
+                self.token_text = self.token_text[1:-1]
+                self.data = self.data.strip()
+        else:
+            func = _MAP_DATA.get(self.token)
+            if func:
+                func(self)
+
+    def calc_sex(self):
+        """
+        Converts the data field to a gen.lib token indicating the gender
+        """
+        try:
+            self.data = SEX_MAP.get(self.data.strip()[0], gen.lib.Person.UNKNOWN)
+        except:
+            self.data = gen.lib.Person.UNKNOWN
+
+    def calc_date(self):
+        """
+        Converts the data field to a gen.lib.Date object
+        """
+        self.data = extract_date(self.data)
+
+    def calc_unknown(self):
+        """
+        Checks to see if the token maps a known GEDCOM event. If so, we 
+        change the type from UNKNOWN to TOKEN_GEVENT (gedcom event), and
+        the data is assigned to the associated GRAMPS EventType
+        """
+        token = GED_TO_GRAMPS_EVENT.get(self.token_text)
+        if token:
+            event = gen.lib.Event()
+            event.set_description(self.data)
+            event.set_type(token)
+            self.token = TOKEN_GEVENT
+            self.data = event
+        else:
+            token = GED_TO_GRAMPS_ATTR.get(self.token_text)
+            if token:
+                attr = gen.lib.Attribute()
+                attr.set_value(self.data)
+                attr.set_type(token)
+                self.token = TOKEN_ATTR
+                self.data = attr
+
+    def calc_note(self):
+        gid = self.data.strip()
+        if len(gid) > 2 and gid[0] == '@' and gid[-1] == '@':
+            self.token = TOKEN_RNOTE
+            self.data = gid[1:-1]
+
+    def calc_nchi(self):
+        attr = gen.lib.Attribute()
+        attr.set_value(self.data)
+        attr.set_type(gen.lib.AttributeType.NUM_CHILD)
+        self.data = attr
+        self.token = TOKEN_ATTR
+
+    def calc_attr(self):
+        attr = gen.lib.Attribute()
+        attr.set_value(self.data)
+        attr.set_type((gen.lib.AttributeType.CUSTOM, self.token_text))
+        self.data = attr
+        self.token = TOKEN_ATTR
+
+    def __repr__(self):
+        return "%d: %d (%d:%s) %s" % (self.line, self.level, self.token, 
+                                      self.token_text, self.data)
+
+_MAP_DATA = {
+    TOKEN_UNKNOWN : GedLine.calc_unknown,
+    TOKEN_DATE    : GedLine.calc_date,
+    TOKEN_SEX     : GedLine.calc_sex,
+    TOKEN_NOTE    : GedLine.calc_note,
+    TOKEN_NCHI    : GedLine.calc_nchi,
+    TOKEN__STAT   : GedLine.calc_attr,
+    TOKEN__UID    : GedLine.calc_attr,
+    TOKEN_AFN     : GedLine.calc_attr,
+    }
+
+#-------------------------------------------------------------------------
+#
+# GedcomDescription
+#
+#-------------------------------------------------------------------------
+class GedcomDescription(object):
+    def __init__(self, name):
+        self.name = name
+        self.dest = ""
+        self.adopt = ADOPT_STD
+        self.conc = CONC_OK
+        self.altname = ALT_NAME_STD
+        self.cal = CALENDAR_YES
+        self.obje = OBJE_YES
+        self.resi = RESIDENCE_ADDR
+        self.source_refs = SOURCE_REFS_YES
+        self.gramps2tag_map = {}
+        self.tag2gramps_map = {}
+        self.prefix = PREFIX_YES
+        self.endl = "\n"
+        
+    def set_dest(self,val):
+        self.dest = val
+
+    def get_dest(self):
+        return self.dest
+
+    def set_endl(self,val):
+        self.endl = val.replace('\\r','\r').replace('\\n','\n')
+
+    def get_endl(self):
+        return self.endl
+
+    def set_adopt(self,val):
+        self.adopt = val
+
+    def get_adopt(self):
+        return self.adopt
+
+    def set_prefix(self,val):
+        self.prefix=val
+
+    def get_prefix(self):
+        return self.prefix
+    
+    def set_conc(self,val):
+        self.conc = val
+
+    def get_conc(self):
+        return self.conc
+
+    def set_alt_name(self,val):
+        self.altname = val
+
+    def get_alt_name(self):
+        return self.altname
+
+    def set_alt_calendar(self,val):
+        self.cal = val
+
+    def get_alt_calendar(self):
+        return self.cal
+
+    def set_obje(self,val):
+        self.obje = val
+
+    def get_obje(self):
+        return self.obje
+
+    def set_resi(self,val):
+        self.resi = val
+
+    def get_resi(self):
+        return self.resi
+
+    def set_source_refs(self,val):
+        self.source_refs = val
+
+    def get_source_refs(self):
+        return self.source_refs
+
+    def add_tag_value(self,tag,value):
+        self.gramps2tag_map[value] = tag
+        self.tag2gramps_map[tag] = value
+
+    def gramps2tag(self,key):
+        if key in self.gramps2tag_map:
+            return self.gramps2tag_map[key]
+        return ""
+
+    def tag2gramps(self,key):
+        if key in self.tag2gramps_map:
+            return self.tag2gramps_map[key]
+        return key
+
+#-------------------------------------------------------------------------
+#
+# GedcomInfoDB
+#
+#-------------------------------------------------------------------------
+class GedcomInfoDB(object):
+    def __init__(self):
+        self.map = {}
+
+        self.standard = GedcomDescription("GEDCOM 5.5 standard")
+        self.standard.set_dest("GEDCOM 5.5")
+
+        try:
+            filepath = os.path.join(const.DATA_DIR,"gedcom.xml")
+            f = open(filepath.encode('iso8859-1'),"r")
+        except:
+            return
+
+        parser = GedInfoParser(self)
+        parser.parse(f)
+        f.close()
+
+    def add_description(self, name, obj):
+        self.map[name] = obj
+
+    def get_description(self, name):
+        if name in self.map:
+            return self.map[name]
+        return self.standard
+
+    def get_from_source_tag(self, name):
+        for k, val in self.map.iteritems():
+            if val.get_dest() == name:
+                return val
+        return self.standard
+
+    def get_name_list(self):
+        return ["GEDCOM 5.5 standard"] + sorted(self.map)
+    
+#-------------------------------------------------------------------------
+#
+# GedInfoParser
+#
+#-------------------------------------------------------------------------
+class GedInfoParser(object):
+    def __init__(self,parent):
+        self.parent = parent
+        self.current = None
+
+    def parse(self,file):
+        p = ParserCreate()
+        p.StartElementHandler = self.startElement
+        p.ParseFile(file)
+        
+    def startElement(self,tag,attrs):
+        if tag == "target":
+            name = attrs['name']
+            self.current = GedcomDescription(name)
+            self.parent.add_description(name,self.current)
+        elif tag == "dest":
+            self.current.set_dest(attrs['val'])
+        elif tag == "endl":
+            self.current.set_endl(attrs['val'])
+        elif tag == "adopt":
+            val = attrs['val']
+            if val == 'none':
+                self.current.set_adopt(ADOPT_NONE)
+            elif val == 'event':
+                self.current.set_adopt(ADOPT_EVENT)
+            elif val == 'ftw':
+                self.current.set_adopt(ADOPT_FTW)
+            elif val == 'legacy':
+                self.current.set_adopt(ADOPT_LEGACY)
+            elif val == 'pedigree':
+                self.current.set_adopt(ADOPT_PEDI)
+        elif tag == "conc":
+            if attrs['val'] == 'broken':
+                self.current.set_conc(CONC_BROKEN)
+        elif tag == "alternate_names":
+            val = attrs['val']
+            if val == 'none':
+                self.current.set_alt_name(ALT_NAME_NONE)
+            elif val == 'event_aka':
+                self.current.set_alt_name(ALT_NAME_EVENT_AKA)
+            elif val == 'alias':
+                self.current.set_alt_name(ALT_NAME_ALIAS)
+            elif val == 'aka':
+                self.current.set_alt_name(ALT_NAME_AKA)
+            elif val == '_alias':
+                self.current.set_alt_name(ALT_NAME_UALIAS)
+        elif tag == "calendars":
+            if attrs['val'] == 'no':
+                self.current.set_alt_calendar(CALENDAR_NO)
+        elif tag == "event":
+            self.current.add_tag_value(attrs['tag'],attrs['value'])
+        elif tag == "object_support":
+            if attrs['val'] == 'no':
+                self.current.set_obje(OBJE_NO)
+        elif tag == "prefix":
+            if attrs['val'] == 'no':
+                self.current.set_obje(PREFIX_NO)
+        elif tag == "residence":
+            if attrs['val'] == 'place':
+                self.current.set_resi(RESIDENCE_PLAC)
+        elif tag == "source_refs":
+            if attrs['val'] == 'no':
+                self.current.set_source_refs(SOURCE_REFS_NO)
 
 #-------------------------------------------------------------------------
 #
@@ -330,7 +966,7 @@ class GedcomParser(UpdateCallback):
         self.place_parser = GedcomUtils.PlaceParser()
         self.inline_srcs = {}
         self.media_map = {}
-        self.gedmap = GedcomInfo.GedcomInfoDB()
+        self.gedmap = GedcomInfoDB()
         self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.use_def_src = default_source
         if self.use_def_src:
@@ -853,7 +1489,7 @@ class GedcomParser(UpdateCallback):
         else:
             rdr = AnsiReader(ifile)
 
-        self.lexer = GedcomLex.Reader(rdr)
+        self.lexer = Lexer(rdr)
         self.filename = filename
         self.backoff = False
 
@@ -861,7 +1497,7 @@ class GedcomParser(UpdateCallback):
         self.geddir = os.path.dirname(fullpath)
     
         self.error_count = 0
-        amap = GedcomInfo.personalConstantAttributes
+        amap = personalConstantAttributes
         
         self.attrs = amap.values()
         self.gedattr = {}
@@ -2095,7 +2731,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        status = GedcomInfo.lds_status.get(line.data, gen.lib.LdsOrd.STATUS_NONE)
+        status = lds_status.get(line.data, gen.lib.LdsOrd.STATUS_NONE)
         state.lds_ord.set_status(status)
 
     def __person_famc(self, line, state):
@@ -2794,8 +3430,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if state.event.get_type().is_custom():
-            if line.data in GED_2_GRAMPS:
-                name = gen.lib.EventType(GED_2_GRAMPS[line.data])
+            if line.data in GED_TO_GRAMPS_EVENT:
+                name = gen.lib.EventType(GED_TO_GRAMPS_EVENT[line.data])
             else:
                 val = self.gedsource.tag2gramps(line.data)
                 if val:
@@ -2809,8 +3445,7 @@ class GedcomParser(UpdateCallback):
             state.event.set_type(name)
         else:
             try:
-                if line.data not in GED_2_GRAMPS and \
-                       line.data not in GED_2_FAMILY and \
+                if line.data not in GED_TO_GRAMPS_EVENT and \
                        line.data[0] != 'Y':
                     state.event.set_description(line.data)
             except IndexError:
@@ -3769,8 +4404,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if state.attr.get_type() == "":
-            if line.data in GED_2_GRAMPS:
-                name = GED_2_GRAMPS[line.data]
+            if line.data in GED_TO_GRAMPS_EVENT:
+                name = GED_TO_GRAMPS_EVENT[line.data]
             else:
                 val = self.gedsource.tag2gramps(line.data)
                 if val:
@@ -4229,7 +4864,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_TIME:
                 tstr = line.data
             elif line.token == TOKEN_DATE:
-                #GedcomLex converted already to Date object
+                #Lexer converted already to Date object
                 dobj = line.data
             elif line.token == TOKEN_NOTE:
                 self.__skip_subordinate_levels(level+1)
