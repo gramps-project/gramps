@@ -38,12 +38,6 @@ from BasicUtils import name_displayer
 from eventembedlist import EventEmbedList
 from eventrefmodel import EventRefModel
 
-_std_types = [
-    gen.lib.EventType(gen.lib.EventType.BIRTH),
-    gen.lib.EventType(gen.lib.EventType.DEATH),
-    ]
-               
-
 #-------------------------------------------------------------------------
 #
 # PersonEventEmbedList
@@ -101,20 +95,12 @@ class PersonEventEmbedList(EventEmbedList):
     def default_role(self):
         return gen.lib.EventRoleType(gen.lib.EventRoleType.PRIMARY)
 
-    def default_type(self):
-        type_list = []
-
-        # combine return info into a single flat sequence
-
-        event = None
-        for event_ref in self.get_data()[0]:
-            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            type_list.append(event.get_type())
-
-        for etype in _std_types:
-            if etype not in type_list:
-                return gen.lib.EventType(etype)
-        return gen.lib.EventType(gen.lib.EventType.BIRTH)
+    def default_types(self):
+        return [
+            gen.lib.EventType(gen.lib.EventType.BIRTH),
+            gen.lib.EventType(gen.lib.EventType.DEATH),
+            gen.lib.EventType(gen.lib.EventType.BURIAL),
+            ]
 
     def get_ref_editor(self):
         from gui.editors import EditEventRef

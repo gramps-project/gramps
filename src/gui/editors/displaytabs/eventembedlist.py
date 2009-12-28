@@ -187,8 +187,27 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """
         return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
 
+    def default_types(self):
+        return [
+            gen.lib.EventType(gen.lib.EventType.MARRIAGE),
+            gen.lib.EventType(gen.lib.EventType.DIVORCE),
+            ]
+
     def default_type(self):
-        return gen.lib.EventType(gen.lib.EventType.MARRIAGE)
+        type_list = []
+
+        # combine return info into a single flat sequence
+
+        event = None
+        for event_ref in self.get_data()[0]:
+            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+            type_list.append(event.get_type())
+
+        _std_types = self.default_types()
+        for etype in _std_types:
+            if etype not in type_list:
+                return gen.lib.EventType(etype)
+        return _std_types[0]
 
     def default_role(self):
         return gen.lib.EventRoleType(gen.lib.EventRoleType.FAMILY)
