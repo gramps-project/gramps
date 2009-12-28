@@ -696,7 +696,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             active = 0
         obox.set_active(active)
         obox.connect('changed', self.date_calendar_changed)
-        lwidget = BasicLabel("%s: " % _('Calendar format on reports'))
+        lwidget = BasicLabel("%s: " % _('Calendar on reports'))
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
         table.attach(obox, 1, 3, row, row+1, yoptions=0)
         row += 1
