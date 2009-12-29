@@ -43,8 +43,7 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #------------------------------------------------------------------------
 import Errors
-from GrampsDbUtils._GedcomParse import GedcomParser
-from GrampsDbUtils._GedcomStageOne import StageOne
+from GrampsDbUtils._GedcomParse import GedcomParser, GedcomStageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
 from glade import Glade
 from libmixin import DbMixin
@@ -103,7 +102,7 @@ def importData(database, filename, callback=None):
 
     try:
         ifile = open(filename, "rU")
-        stage_one = StageOne(ifile)
+        stage_one = GedcomStageOne(ifile)
         stage_one.parse()
 
         if code_set:

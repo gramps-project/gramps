@@ -100,7 +100,7 @@ from xml.parsers.expat import ParserCreate
 #
 #------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".GedcomImport")
+LOG = logging.getLogger(".libgedcom")
 
 #-------------------------------------------------------------------------
 #
@@ -5051,4 +5051,148 @@ class GedcomParser(UpdateCallback):
         """
         state.res.set_phone(line.data)
 
-#===eof===
+#-------------------------------------------------------------------------
+#
+# GedcomStageOne
+#
+#-------------------------------------------------------------------------
+class GedcomStageOne(object):
+    """
+    The GedcomStageOne parser scans the file quickly, looking for a few things.
+     This includes:
+
+    1. Character set encoding
+    2. Number of people and families in the list
+    3. Child to family references, since Ancestry.com creates GEDCOM files 
+       without the FAMC references.
+    """
+    __BAD_UTF16 = _("Your GEDCOM file is corrupted. "
+                  "The file appears to be encoded using the UTF16 "
+                  "character set, but is missing the BOM marker.")
+    __EMPTY_GED = _("Your GEDCOM file is empty.")
+    
+    @staticmethod
+    def __is_xref_value(value):
+        """
+        Return True if value is in the form of a XREF value. We assume that
+        if we have a leading '@' character, then we are okay.
+        """
+        return value and value[0] == '@'
+    
+    @staticmethod
+    def __add_to_list(table, key, value):
+        """
+        Add the value to the table entry associated with key. If the entry 
+        does not exist, it is added.
+        """
+        if key in table:
+            table[key].append(value)
+        else:
+            table[key] = [value]
+    
+    def __init__(self, ifile):
+        self.ifile = ifile
+        self.famc = {}
+        self.fams = {}
+        self.enc = ""
+        self.pcnt = 0
+        self.lcnt = 0
+
+    def __detect_file_decoder(self, input_file):
+        """
+        Detects the file encoding of the file by looking for a BOM 
+        (byte order marker) in the GEDCOM file. If we detect a UTF-16
+        encoded file, we must connect to a wrapper using the codecs
+        package.
+        """
+        line = input_file.read(2)
+        if line == "\xef\xbb":
+            input_file.read(1)
+            self.enc = "UTF8"
+            return input_file
+        elif line == "\xff\xfe":
+            self.enc = "UTF16"
+            input_file.seek(0)
+            return codecs.EncodedFile(input_file, 'utf8', 'utf16')
+        elif not line :
+            raise Errors.GedcomError(self.__EMPTY_GED)
+        elif line[0] == "\x00" or line[1] == "\x00":
+            raise Errors.GedcomError(self.__BAD_UTF16)
+        else:
+            input_file.seek(0)
+            return input_file
+
+    def parse(self):
+        """
+        Parse the input file.
+        """
+        current_family_id = ""
+        
+        reader = self.__detect_file_decoder(self.ifile)
+
+        for line in reader:
+            line = line.strip()
+            if not line:
+                continue
+            self.lcnt += 1
+
+            data = line.split(None, 2) + ['']
+            try:
+                (level, key, value) = data[:3]
+                value = value.strip()
+                level = int(level)
+                key = key.strip()
+            except:
+                LOG.warn(_("Invalid line %d in GEDCOM file.") % self.lcnt)
+                continue
+
+            if level == 0 and key[0] == '@':
+                if value == ("FAM", "FAMILY") :
+                    current_family_id = key.strip()[1:-1]
+                elif value == ("INDI", "INDIVIDUAL"):
+                    self.pcnt += 1
+            elif key in ("HUSB", "HUSBAND", "WIFE") and \
+                 self.__is_xref_value(value):
+                self.__add_to_list(self.fams, value[1:-1], current_family_id)
+            elif key in ("CHIL", "CHILD") and self.__is_xref_value(value):
+                self.__add_to_list(self.famc, value[1:-1], current_family_id)
+            elif key == 'CHAR' and not self.enc:
+                assert(isinstance(value, basestring))
+                self.enc = value
+
+    def get_famc_map(self):
+        """
+        Return the Person to Child Family map
+        """
+        return self.famc
+
+    def get_fams_map(self):
+        """
+        Return the Person to Family map (where the person is a spouse)
+        """
+        return self.fams
+
+    def get_encoding(self):
+        """
+        Return the detected encoding
+        """
+        return self.enc.upper()
+
+    def set_encoding(self, enc):
+        """
+        Forces the encoding
+        """
+        assert(isinstance(enc, basestring))
+        self.enc = enc
+
+    def get_person_count(self):
+        """
+        Return the number of INDI records found
+        """
+        return self.pcnt
+
+    def get_line_count(self):
+        """
+        Return the number of lines in the file
+        """
+        return self.lcnt

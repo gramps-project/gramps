@@ -342,7 +342,6 @@ src/docgen/SpreadSheetDoc.py
 src/docgen/TextBufDoc.py
 
 # GrampsDbUtils package
-src/GrampsDbUtils/_GedcomStageOne.py
 src/GrampsDbUtils/_GedcomParse.py
 src/GrampsDbUtils/_GedcomTokens.py
 src/GrampsDbUtils/__init__.py
