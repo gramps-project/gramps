@@ -49,7 +49,7 @@ log = logging.getLogger(".ExportDjango")
 #
 #------------------------------------------------------------------------
 import ExportOptions
-from Utils import create_id
+from Utils import create_id, probably_alive
 import const
 import gen.lib
 
@@ -95,7 +95,10 @@ def export_all(database, filename, option_box=None, callback=None):
             if step == 0:
                 dji.add_person(data)
             elif step == 1:
-                dji.add_person_detail(data)
+                djperson = dji.add_person_detail(data)
+                person = database.get_person_from_handle(person_handle)
+                djperson.probably_alive = probably_alive(person, database)
+                djperson.save()
             count += 1
             callback(100 * count/total)
 

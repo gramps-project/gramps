@@ -401,8 +401,10 @@ class DjangoInterface(object):
         pnote_list = self.get_note_list(person)
         person_ref_list = self.get_person_ref_list(person)
         # This looks up the events for the first EventType given:
-        death_ref_index = lookup_role_index(models.EventType.DEATH, event_ref_list)
-        birth_ref_index = lookup_role_index(models.EventType.BIRTH, event_ref_list)
+        death_ref_index = lookup_role_index(models.EventType.DEATH, 
+                                            event_ref_list)
+        birth_ref_index = lookup_role_index(models.EventType.BIRTH, 
+                                            event_ref_list)
         return (str(person.handle),
                 person.gramps_id,  
                 tuple(person.gender_type)[0],
@@ -1097,6 +1099,23 @@ class DjangoInterface(object):
         self.add_source_ref_list(person, psource_list)
         self.add_address_list("person", person, address_list)
         self.add_lds_list("person", person, lds_ord_list)
+        # set person.birth and birth.death to correct events:
+
+        obj_type = ContentType.objects.get_for_model(person)
+        events = models.EventRef.objects.filter(
+            object_id=person.id, 
+            object_type=obj_type, 
+            ref_object__event_type__val=models.EventType.BIRTH)
+        if events:
+            person.birth = events[0].ref_object
+        events = models.EventRef.objects.filter(
+            object_id=person.id, 
+            object_type=obj_type, 
+            ref_object__event_type__val=models.EventType.DEATH)
+        if events:
+            person.death = events[0].ref_object
+        person.save()
+        return person
 
     def add_note_detail(self, data):
         """
@@ -1122,7 +1141,9 @@ class DjangoInterface(object):
         for markup in markup_list:
             markup_code, value, start_stop_list = markup
             m = models.Markup(note=n, order=count, 
-                              markup_type=models.get_type(models.MarkupType, markup_code, get_or_create=True),
+                   markup_type=models.get_type(models.MarkupType,
+                                               markup_code, 
+                                               get_or_create=True),
                               string=value,
                               start_stop_list=str(start_stop_list))
             m.save()

@@ -62,6 +62,8 @@ from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
 
+_ = lambda msg: msg
+
 util_filters = [
     'nbsp', 
     'render',
@@ -106,9 +108,15 @@ def get_person_from_handle(db, handle):
     try:
         return db.get_person_from_handle(handle)
     except:
+        print "error in get_person_from_handle:"
+        import sys, traceback
+        cla, exc, trbk = sys.exc_info()
+        print  _("Error") + (" : %s %s" %(cla, exc))
+        traceback.print_exc()
         return None
 
 def probably_alive(handle):
+    return False
     db = DjangoDb()
     person = db.get_person_from_handle(handle)
     return Utils.probably_alive(person, db)
@@ -365,13 +373,13 @@ def internet_table(obj, user, action, url=None, *args):
                   _("Description"))
     if user.is_authenticated():
         urls = dji.Url.filter(person=obj)
-        for url in urls:
-            table.row(str(url.url_type),
-                      url.path,
-                      url.desc)
+        for url_obj in urls:
+            table.row(str(url_obj.url_type),
+                      url_obj.path,
+                      url_obj.desc)
     retval += table.get_html()
     if user.is_authenticated() and url and action != "edit":
-        retval += make_button(_("Add internet"), (url + "/add") % args)
+        retval += make_button(_("Add internet"), ((str(url) % args) + "/add"))
     else:
         retval += nbsp("") # to keep tabs same height
     return retval
@@ -462,17 +470,17 @@ def get_title(place):
         return ""
 
 def person_get_birth_date(person):
-    db = DjangoDb()
-    event = get_birth_or_fallback(db, db.get_person_from_handle(person.handle))
-    if event:
-        return event.date
+    #db = DjangoDb()
+    #event = get_birth_or_fallback(db, db.get_person_from_handle(person.handle))
+    #if event:
+    #    return event.date
     return None
 
 def person_get_death_date(person):
-    db = DjangoDb()
-    event = get_death_or_fallback(db, db.get_person_from_handle(person.handle))
-    if event:
-        return event.date
+    #db = DjangoDb()
+    #event = get_death_or_fallback(db, db.get_person_from_handle(person.handle))
+    #if event:
+    #    return event.date
     return None
 
 def display_date(obj):
@@ -513,7 +521,7 @@ def make_name(name, user):
         if user.is_authenticated():
             return "%s, %s" % (surname, name.first_name)
         else:
-            if probably_alive(name.person.handle):
+            if name.person.probably_alive:
                 return "%s, %s" % (surname, "[Living]")
             else:
                 return "%s, %s" % (surname, name.first_name)
@@ -524,7 +532,7 @@ def make_name(name, user):
         if user.is_authenticated():
             return "%s, %s" % (surname, name.model.first_name)
         else:
-            if probably_alive(name.model.person.handle):
+            if name.model.person.probably_alive:
                 return "%s, %s" % (surname, "[Living]")
             else:
                 return "%s, %s" % (surname, name.model.first_name)
@@ -540,6 +548,64 @@ def make_name(name, user):
         return make_name(person.name_set.get(preferred=True), user)
     else: # no name
         return ""
+
+class lazy(object):
+    EMPTY = []
+    used = 0
+    total = 0
+    def __init__(self, func, *args, **kwargs):
+        self.func = func
+        self.args = args
+        self.kwargs = kwargs
+        self.result = lazy.EMPTY
+        lazy.used = lazy.used + 1
+        lazy.total = lazy.total + 1
+        #print "freeze:", func, args
+
+    def thaw(self):
+        self.result = object.__getattribute__(self, "func")(*object.__getattribute__(self, "args"), 
+                                                             **object.__getattribute__(self, "kwargs"))
+        #print "thaw:", object.__getattribute__(self, "func"), object.__getattribute__(self, "result") 
+        lazy.used = lazy.used - 1
+
+    def __getattribute__(self, attr):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return getattr(object.__getattribute__(self, "result"), attr)
+
+    def __str__(self):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return str(object.__getattribute__(self, "result"))
+
+    def __int__(self):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return int(object.__getattribute__(self, "result"))
+
+    def __float__(self):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return float(object.__getattribute__(self, "result"))
+
+    def __repr__(self):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return repr(object.__getattribute__(self, "result"))
+
+    def __getitem__(self, pos):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return object.__getattribute__(self, "result")[pos]
+
+    def __len__(self):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return len(object.__getattribute__(self, "result"))
+
+def freeze(item):
+    return lazy(lambda i: i, item)
+
 
 register_plugins()
 

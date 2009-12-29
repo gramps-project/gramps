@@ -86,9 +86,8 @@ class DjangoDb(DbReadBase, DbWriteBase):
         return obj
 
     def get_person_from_handle(self, handle):
-        obj = gen.lib.Person()
-        data = self.dji.get_person(self.dji.Person.get(handle=handle))
-        obj.unserialize(data)
+        data = self.dji.get_person(self.dji.Person.select_related().get(handle=handle))
+        obj = gen.lib.Person.create(data)
         return obj
 
     def get_place_from_handle(self, handle):
@@ -112,6 +111,11 @@ class DjangoDb(DbReadBase, DbWriteBase):
     def get_note_from_handle(self, handle):
         obj = gen.lib.Note()
         obj.unserialize(self.dji.get_note(self.dji.Note.get(handle=handle)))
+        return obj
+
+    def get_object_from_handle(self, handle):
+        obj = gen.lib.MediaObject()
+        obj.unserialize(self.dji.get_media(self.dji.Media.get(handle=handle)))
         return obj
 
     def get_person_handles(self):

@@ -269,12 +269,12 @@ def view_detail(request, view, handle, action="view"):
 
 def get_gramps_db(request):
     dbase = DjangoDb()
-    if request.user.is_authenticated():
-        private_filter=False
-        living_filter=False
-    else:
-        private_filter=True
-        living_filter=True
+    #if request.user.is_authenticated():
+    private_filter=False
+    living_filter=False
+    #else:
+    #    private_filter=True
+    #    living_filter=True
     # If the private flag is set, apply the PrivateProxyDb
     if private_filter:
         dbase = gen.proxy.PrivateProxyDb(dbase)
@@ -453,6 +453,7 @@ def view(request, view):
                 if "," in search:
                     search, trash = [term.strip() for term in search.split(",", 1)]
                 object_list = Name.objects \
+                    .select_related() \
                     .filter(Q(surname__istartswith=search) &
                             Q(private=False) &
                             Q(person__private=False)
@@ -460,6 +461,7 @@ def view(request, view):
                     .order_by("surname", "first_name")
             else:
                 object_list = Name.objects \
+                                .select_related() \
                                 .filter(Q(private=False) &
                                         Q(person__private=False)) \
                                 .order_by("surname", "first_name")
@@ -526,9 +528,9 @@ def view(request, view):
         raise Http404("Requested page type not known")
 
     if request.user.is_authenticated():
-        paginator = Paginator(object_list, 50) 
+        paginator = Paginator(object_list, 20) 
     else:
-        paginator = Paginator(object_list, 19) 
+        paginator = Paginator(object_list, 20) 
 
     try:
         page = int(request.GET.get('page', '1'))

@@ -392,6 +392,7 @@ class Person(PrimaryObject):
     The model for the person object
     """
     gender_type = models.ForeignKey('GenderType')
+    probably_alive = models.BooleanField("Probably alive")
     families = models.ManyToManyField('Family', blank=True, null=True)
     parent_families = models.ManyToManyField('Family', 
                                              related_name="parent_families",
@@ -400,8 +401,8 @@ class Person(PrimaryObject):
     references = generic.GenericRelation('PersonRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
-    #lds_list = models.ManyToManyField('Lds', null=True, blank=True)
-    #url_list = models.ManyToManyField('Url', null=True, blank=True)
+    birth = models.ForeignKey("Event", related_name="birth", null=True)
+    death = models.ForeignKey("Event", related_name="death", null=True)
 
     # Others keys here:
     #   .name_set 
@@ -806,177 +807,3 @@ def get_tables(*categories):
     return [pair for pair in TABLES if (pair[0] in categories) or 
             ("all" in categories) and pair[0] != "abstract"]
 
-#---------------------------------------------------------------------------
-#
-# Testing Functions
-#
-#---------------------------------------------------------------------------
-
-## Primary:
-
-def test_Person():
-    m = get_default_type(MarkerType)
-    p = Person(handle=create_id(), marker_type=m)
-    p.gender_type = GenderType.objects.get(id=1) 
-    p.gramps_id = "P%05d" % (Person.objects.count() + 1)
-    p.save()
-    return p
-
-def test_Family():
-    m = get_default_type(MarkerType)
-    frt = FamilyRelType.objects.get(id=1)
-    f = Family(handle=create_id(), marker_type=m, family_rel_type=frt)
-    f.gramps_id = "F%05d" % (Family.objects.count() + 1)
-    f.save()
-    return f
-
-def test_Source():
-    m = get_default_type(MarkerType)
-    s = Source(handle=create_id(), marker_type=m)
-    s.save()
-    s.gramps_id = "S%05d" % (Source.objects.count() + 1)
-    s.save()
-    return s
-
-def test_Event():
-    m = get_default_type(MarkerType)
-    et = get_default_type(EventType)
-    e = Event(handle=create_id(), marker_type=m, event_type=et)
-    e.set_date_from_gdate( GDate() )
-    e.gramps_id = "E%05d" % (Event.objects.count() + 1)
-    e.save()
-    return e
-
-def test_Repository():
-    m = get_default_type(MarkerType)
-    rt = get_default_type(RepositoryType)
-    r = Repository(handle=create_id(), marker_type=m, repository_type=rt)
-    r.gramps_id = "R%05d" % (Repository.objects.count() + 1)
-    r.save()
-    return r
-
-def test_Place():
-    m = get_default_type(MarkerType)
-    p = Place(handle=create_id(), marker_type=m)
-    p.gramps_id = "L%05d" % (Place.objects.count() + 1)
-    p.save()
-    return p
-    
-def test_Media():
-    m = get_default_type(MarkerType)
-    media = Media(handle=create_id(), marker_type=m)
-    media.set_date_from_gdate( GDate() )
-    media.save()
-    media.gramps_id = "M%05d" % (Media.objects.count() + 1)
-    return media
-
-def test_Note():
-    m = get_default_type(MarkerType)
-    note_type = get_default_type(NoteType)
-    note = Note(handle=create_id(), marker_type=m, note_type=note_type, 
-                preformatted=False)
-    note.gramps_id = "N%05d" % (Note.objects.count() + 1)
-    note.save()
-    return note
-
-def test_Family_with_children():
-    father = test_Person()
-    fname = test_Name(father, "Blank", "Lowell")
-    mother = test_Person()
-    mname = test_Name(mother, "Bamford", "Norma")
-    family_rel_type = get_default_type(FamilyRelType)
-    m = get_default_type(MarkerType)
-    f = Family(handle=create_id(), father=father, mother=mother, 
-               family_rel_type=family_rel_type, marker_type=m)
-    f.save()
-    for names in [("Blank", "Doug"), ("Blank", "Laura"), ("Blank", "David")]:
-        p = test_Person()
-        n = test_Name(p, names[0], names[1])
-        p.families.add(f)
-    f.save()
-    return f
-
-## Secondary:
-
-def test_Name(person=None, surname=None, first=None):
-    if not person: # Testing
-        person = test_Person()
-    m = get_default_type(MarkerType)
-    n = Name()
-    if first:
-        n.first_name = first
-    if surname:
-        n.surname = surname
-    n.set_date_from_gdate(Today())
-    n.name_type = get_default_type(NameType)
-    n.order = 1
-    n.sort_as = 1
-    n.display_as = 1
-    person.save()
-    n.person = person
-    n.save()
-    return n
-
-def test_Markup(note=None):
-    if not note:
-        note = test_Note()
-    markup = Markup(note=note, 
-                    markup_type=get_type(MarkupType, 
-                                         (1, "Testing"), 
-                                         get_or_create=True))
-    markup.order = 1
-    markup.save()
-    return markup
-
-def test_Lds(place=None, famc=None):
-    if not place:
-        place = test_Place()
-    if not famc:
-        famc = test_Family()
-    lds = Lds(lds_type=get_default_type(LdsType), status=get_default_type(LdsStatus), 
-              place=place, famc=famc, order=1)
-    lds.set_date_from_gdate(Today())
-    lds.save()
-    return lds
-    
-def test_NoteRef():
-    note = test_Note()
-    person = test_Person()
-    note_ref = NoteRef(referenced_by=person, ref_object=note)
-    note_ref.order = 1
-    note_ref.save()
-    family = test_Family()
-    note_ref = NoteRef(referenced_by=family, ref_object=note)
-    note_ref.order = 1
-    note_ref.save()
-    return note_ref
-
-def test_SourceRef():
-    note = test_Note()
-    source = test_Source()
-    source_ref = SourceRef(referenced_by=note, ref_object=source, confidence=4)
-    source_ref.set_date_from_gdate(Today())
-    source_ref.order = 1
-    source_ref.save()
-    return source_ref
-
-#---------------------------------------------------------------------------
-#
-# Testing
-#
-#---------------------------------------------------------------------------
-
-def main():
-    for test_Item in [test_Person, test_Family, test_Family_with_children, 
-                      test_Source, test_Event, 
-                      test_Repository, test_Place, test_Media, test_Note, 
-                      test_Name, test_Markup, test_Lds, test_NoteRef,
-                      test_SourceRef]:
-        print "testing:", test_Item.__name__
-        obj = test_Item()
-
-    sourceref = test_SourceRef()
-    print sourceref.ref_object.references.all()
-
-if __name__ == "__main__":
-    main()
