@@ -11,7 +11,6 @@ SUBDIRS = \
 	FilterEditor \
 	gen \
 	glade \
-	GrampsDbUtils \
 	GrampsLocale \
 	GrampsLogger \
 	gui \

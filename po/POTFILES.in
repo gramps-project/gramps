@@ -341,10 +341,6 @@ src/docgen/OpenSpreadSheet.py
 src/docgen/SpreadSheetDoc.py
 src/docgen/TextBufDoc.py
 
-# GrampsDbUtils package
-src/GrampsDbUtils/_GedcomParse.py
-src/GrampsDbUtils/__init__.py
-
 # GrampsLocale package
 src/GrampsLocale/_GrampsLocale.py
 
@@ -439,6 +435,7 @@ src/plugins/import/ImportXml.py
 # plugins/lib directory
 src/plugins/lib/libcairodoc.py
 src/plugins/lib/libformatting.py
+src/plugins/lib/libgedcom.py
 src/plugins/lib/libgrampsxml.py
 src/plugins/lib/libgrdb.py
 src/plugins/lib/libholiday.py

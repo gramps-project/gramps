@@ -58,6 +58,22 @@ authors_email = ["http://gramps-project.org"],
 
 #------------------------------------------------------------------------
 #
+# libgedcom
+#
+#------------------------------------------------------------------------
+register(GENERAL, 
+id    = 'libgedcom',
+name  = "GEDCOM library",
+description =  _("Provides GEDCOM processing functionality"),
+version = '1.0',
+status = STABLE,
+fname = 'libgedcom.py',
+authors = ["The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+  )
+
+#------------------------------------------------------------------------
+#
 # libgrampsxml
 #
 #------------------------------------------------------------------------

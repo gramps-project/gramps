@@ -43,10 +43,10 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #------------------------------------------------------------------------
 import Errors
-from GrampsDbUtils._GedcomParse import GedcomParser, GedcomStageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
 from glade import Glade
 from libmixin import DbMixin
+import libgedcom
 
 try:
     import config
@@ -102,14 +102,14 @@ def importData(database, filename, callback=None):
 
     try:
         ifile = open(filename, "rU")
-        stage_one = GedcomStageOne(ifile)
+        stage_one = libgedcom.GedcomStageOne(ifile)
         stage_one.parse()
 
         if code_set:
             stage_one.set_encoding(code_set)
         ifile.seek(0)
-        gedparse = GedcomParser(database, ifile, filename, callback, 
-                                stage_one, DEFAULT_SOURCE)
+        gedparse = libgedcom.GedcomParser(database, ifile, filename, callback, 
+                                          stage_one, DEFAULT_SOURCE)
     except IOError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return

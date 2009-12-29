@@ -41,7 +41,7 @@ import time
 import gen.lib
 from gen.lib.date import make_gedcom_date, MONTH
 import const
-import GrampsDbUtils._GedcomParse as libgedcom
+import libgedcom
 import Errors
 from ExportOptions import WriterOptionBox
 import BasicUtils

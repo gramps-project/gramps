@@ -30,6 +30,8 @@ import os
 from tempfile import mkstemp
 from gettext import gettext as _
 from glade import Glade
+import libgedcom
+
 #
 # Interface to phpGedView
 #
@@ -315,7 +317,6 @@ class phpGedViewImporter(object):
             gtk.main_iteration()
         
     def on_next_pressed_cb(self, widget, event=None, data=None):
-        from GrampsDbUtils import GedcomParser
         if event:
             print event.type
         
@@ -334,7 +335,7 @@ class phpGedViewImporter(object):
                 
                 self.update_progressbar( _("Importing GEDCOM..."))
 
-                GedcomParser.importData(self.db, fn)
+                libgedcom.GedcomParser.importData(self.db, fn)
                 # done. bye.
                 self.dialog.destroy()
                 

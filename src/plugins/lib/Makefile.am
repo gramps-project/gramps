@@ -7,7 +7,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib
 
 pkgdata_PYTHON = \
 	libcairodoc.py\
-	libformatting.py \
+	libformatting.py\
+	libgedcom.py\
 	libgrampsxml.py\
 	libgrdb.py\
 	libhtml.py\
