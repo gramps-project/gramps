@@ -343,7 +343,6 @@ src/docgen/TextBufDoc.py
 
 # GrampsDbUtils package
 src/GrampsDbUtils/_GedcomParse.py
-src/GrampsDbUtils/_GedcomTokens.py
 src/GrampsDbUtils/__init__.py
 
 # GrampsLocale package
