@@ -952,7 +952,7 @@ class DjangoInterface(object):
             family = models.Family.objects.get(handle=parent_family_handle)
         except:
             print >> sys.stderr, ("ERROR: Family does not exist: '%s'" % 
-                                  family_handle)
+                                  parent_family_handle)
             return
         person.parent_families.add(family)
         person.save()
