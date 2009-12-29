@@ -1689,7 +1689,8 @@ def main(args):
     def on_validate(widget, text):
         myDate = parser.parse(text)
         if not myDate.is_regular():
-            return ValidationError("'%s' is not a valid date value")
+            # used on AgeOnDateGramplet
+            return ValidationError(_("'%s' is not a valid date value"))
         
     win = gtk.Window()
     win.set_title('ValidatableMaskedEntry test window')

@@ -64,11 +64,11 @@ class AgeOnDateGramplet(Gramplet):
         description.set_wrap_mode(gtk.WRAP_WORD)
         description.set_editable(False)
         buffer = description.get_buffer()
-        buffer.set_text(_("Enter a date in the entry below and click Run."
-                          " This will compute the ages for everyone in your"
-                          " Family Tree on that date. You can then sort by"
-                          " the age column, and double-click the row to view"
-                          " or edit."))
+        buffer.set_text(_("Enter a date (YYYY-MM-DD) in the entry below"
+                          " and click Run. This will compute the ages for"
+                          " everyone in your Family Tree on that date."
+                          " You can then sort by the age column, and"
+                          " double-click the row to view or edit."))
         label = gtk.Label()
         label.set_text(_("Date") + ":")
         self.entry = gtk.Entry()
