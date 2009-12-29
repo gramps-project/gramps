@@ -196,6 +196,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         UrlBase.unserialize(self, urls)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
+        return self
             
     def _has_handle_reference(self, classname, handle):
         """

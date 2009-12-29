@@ -187,6 +187,7 @@ class GrampsType(object):
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
         self.__value, self.__string = data
+        return self
 
     def __str__(self):
         if self.__value == self._CUSTOM:
