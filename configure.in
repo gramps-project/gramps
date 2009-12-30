@@ -127,7 +127,6 @@ src/Filters/SideBar/Makefile
 src/gui/widgets/Makefile
 src/BasicUtils/Makefile
 src/Simple/Makefile
-src/GrampsDbUtils/Makefile
 src/GrampsLocale/Makefile
 src/PluginUtils/Makefile
 src/ReportBase/Makefile
