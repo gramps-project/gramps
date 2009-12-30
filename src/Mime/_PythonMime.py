@@ -20,7 +20,6 @@
 
 import mimetypes
 import const
-import gtk
 from gettext import gettext as _
 
 _type_map = {
@@ -67,4 +66,5 @@ def mime_type_is_defined(mime_type):
     return mime_type in _type_map
 
 def find_mime_type_pixbuf(mime_type):
+    import gtk
     return gtk.gdk.pixbuf_new_from_file(const.ICON)
