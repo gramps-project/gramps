@@ -168,8 +168,13 @@ class SimpleTable(object):
         elif self.__link[index]:
             objclass, handle = self.__link[index]
             if objclass == 'Person':
+                import gobject
                 person = self.access.dbase.get_person_from_handle(handle)
-                self.simpledoc.doc.dbstate.change_active_person(person)
+                # If you emmit the signal here and it causes this table to be deleted, 
+                # then you'll crash Python:
+                #self.simpledoc.doc.dbstate.change_active_person(person)
+                # So, let's return from this, then change the active person:
+                gobject.timeout_add(100, self.simpledoc.doc.dbstate.change_active_person, person)
                 return True
         return False # didn't handle event
 
