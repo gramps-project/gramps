@@ -1,0 +1,35 @@
+<div class="pagination">
+    <span class="step-links">
+        <div id="alphabet" style="padding: 0pt 0 0pt 0;">
+        <ul>
+        {% ifequal page.number 1 %}
+        <li>first</li>
+        {% else %}
+        <li><a href="?page=1{{search_query}}">first</a></li>
+	{% endifequal %}
+        {% if page.has_previous %}
+            <li><a href="?page={{page.previous_page_number}}{{search_query}}">previous</a></li>
+	{% else %}
+            <li>previous</li>
+        {% endif %}
+
+        <span class="current">
+            <li>Page {{ page.number }} of {{ page.paginator.num_pages }}</li>
+        </span>
+
+        {% if page.has_next %}
+            <li><a href="?page={{ page.next_page_number }}{{search_query}}">next</a></li>
+	{% else %}
+            <li>next</li>
+        {% endif %}
+        {% ifequal page.number page.paginator.num_pages %}
+        <li>last</li>
+        {% else %}
+        <li><a href="?page={{page.paginator.num_pages}}{{search_query}}">last</a></li>
+	{% endifequal %}
+	<b>Matches</b>: {{page.paginator.count}}/{{total}} <b>Showing</b>: {{results_this_page}}
+	</ul>
+        </div>
+    </span>
+</div>
+
