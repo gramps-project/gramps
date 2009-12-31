@@ -34,6 +34,7 @@ class DbState(Callback):
     __signals__ = {
         'database-changed' : (DbBsddbRead, ), 
         'active-changed'   : (str, ), 
+        'media-changed'    : (str, ),
         'no-database'      :  None, 
         }
 

@@ -332,6 +332,7 @@ class MediaView(ListView):
             pix = ThumbNails.get_thumbnail_image(
                         Utils.media_path_full(self.dbstate.db, obj.get_path()))
             self.image.set_from_pixbuf(pix)
+            self.dbstate.emit('media-changed', (handle, ))
     
     def ui_definition(self):
         """
