@@ -54,6 +54,7 @@ from gui.pluginmanager import GuiPluginManager
 from DdTargets import DdTargets
 from gui.editors import EditPlace, DeletePlaceQuery
 from Filters.SideBar import PlaceSidebarFilter
+from gen.plug import CATEGORY_QR_PLACE
 
 #-------------------------------------------------------------------------
 #
@@ -89,6 +90,7 @@ class PlaceBaseView(ListView):
     EDIT_MSG    = _("Edit the selected place")
     DEL_MSG     = _("Delete the selected place")
     FILTER_TYPE = "Place"
+    QR_CATEGORY = CATEGORY_QR_PLACE
 
     def __init__(self, dbstate, uistate, title, model):
 
@@ -143,6 +145,8 @@ class PlaceBaseView(ListView):
                                 "Service (OpenstreetMap, Google Maps, ...)"))
         self._add_action('FilterEdit', None, _('Place Filter Editor'),
                          callback=self.filter_editor)
+        self._add_action('QuickReport', None, _("Quick View"), None, None, None)
+        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
 
     def change_page(self):
         """
@@ -317,8 +321,19 @@ class PlaceBaseView(ListView):
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
             <menuitem action="GotoMap"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
+
+    def dummy_report(self, obj):
+        """ For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass
 
     def add(self, obj):
         try:

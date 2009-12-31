@@ -55,6 +55,7 @@ from gen.lib import Note
 from DdTargets import DdTargets
 from Filters.SideBar import NoteSidebarFilter
 from gui.editors import EditNote, DeleteNoteQuery
+from gen.plug import CATEGORY_QR_NOTE
 
 #-------------------------------------------------------------------------
 #
@@ -74,6 +75,7 @@ class NoteView(ListView):
     EDIT_MSG    = _("Edit the selected note")
     DEL_MSG     = _("Delete the selected note")
     FILTER_TYPE = "Note"
+    QR_CATEGORY = CATEGORY_QR_NOTE
 
     def __init__(self, dbstate, uistate):
 
@@ -165,8 +167,19 @@ class NoteView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
+
+    def dummy_report(self, obj):
+        """ For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass
 
     def define_actions(self):
         ListView.define_actions(self)
@@ -174,6 +187,8 @@ class NoteView(ListView):
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FilterEdit', None, _('Note Filter Editor'),
                          callback=self.filter_editor,)
+        self._add_action('QuickReport', None, _("Quick View"), None, None, None)
+        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_note_from_gramps_id(gid)

@@ -112,6 +112,7 @@ CATEGORY_QR_PLACE      = 4
 CATEGORY_QR_REPOSITORY = 5
 CATEGORY_QR_NOTE       = 6
 CATEGORY_QR_DATE       = 7
+CATEGORY_QR_MEDIA      = 8
 
 # Modes for generating reports
 REPORT_MODE_GUI = 1    # Standalone report using GUI
@@ -855,6 +856,7 @@ class PluginRegister(object):
                     'CATEGORY_QR_EVENT': CATEGORY_QR_EVENT,
                     'CATEGORY_QR_SOURCE': CATEGORY_QR_SOURCE,
                     'CATEGORY_QR_PLACE': CATEGORY_QR_PLACE,
+                    'CATEGORY_QR_MEDIA': CATEGORY_QR_MEDIA,
                     'CATEGORY_QR_REPOSITORY': CATEGORY_QR_REPOSITORY,
                     'CATEGORY_QR_NOTE': CATEGORY_QR_NOTE,
                     'CATEGORY_QR_DATE': CATEGORY_QR_DATE,

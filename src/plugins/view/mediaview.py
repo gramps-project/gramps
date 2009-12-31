@@ -60,7 +60,7 @@ from gui.editors import EditMedia, DeleteMediaQuery
 import Errors
 from Filters.SideBar import MediaSidebarFilter
 from DdTargets import DdTargets
-
+from gen.plug import CATEGORY_QR_MEDIA
 
 #-------------------------------------------------------------------------
 #
@@ -89,6 +89,7 @@ class MediaView(ListView):
     EDIT_MSG    = _("Edit the selected media object")
     DEL_MSG     = _("Delete the selected media object")
     FILTER_TYPE = 'MediaObject'
+    QR_CATEGORY = CATEGORY_QR_MEDIA
 
     _DND_TYPE = DdTargets.URI_LIST
     
@@ -225,6 +226,9 @@ class MediaView(ListView):
                          _('Open Containing _Folder'), 
                          tip=_("Open the folder containing the media file"), 
                          callback=self.open_containing_folder)
+
+        self._add_action('QuickReport', None, _("Quick View"), None, None, None)
+        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
                         
     def view_media(self, obj):
         """
@@ -372,8 +376,19 @@ class MediaView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
+
+    def dummy_report(self, obj):
+        """ For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass
 
     def add(self, obj):
         """Add a new media object to the media list"""

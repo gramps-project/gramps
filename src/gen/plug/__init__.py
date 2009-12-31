@@ -29,7 +29,7 @@ from _pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
             TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON, 
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
-            CATEGORY_QR_DATE, PTYPE_STR,
+            CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,
             START, END
             )
 from _manager import BasePluginManager
@@ -48,5 +48,5 @@ __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
             TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON, 
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
-            CATEGORY_QR_DATE, PTYPE_STR,
+            CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,
             START, END]

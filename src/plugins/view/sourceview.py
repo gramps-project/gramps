@@ -47,6 +47,7 @@ from DdTargets import DdTargets
 from QuestionDialog import ErrorDialog
 from gui.editors import EditSource, DeleteSrcQuery
 from Filters.SideBar import SourceSidebarFilter
+from gen.plug import CATEGORY_QR_SOURCE
 
 #-------------------------------------------------------------------------
 #
@@ -76,6 +77,7 @@ class SourceView(ListView):
     EDIT_MSG = _("Edit the selected source")
     DEL_MSG = _("Delete the selected source")
     FILTER_TYPE = "Source"
+    QR_CATEGORY = CATEGORY_QR_SOURCE
 
     def __init__(self, dbstate, uistate):
 
@@ -119,6 +121,8 @@ class SourceView(ListView):
                          callback=self.fast_merge)
         self._add_action('FilterEdit', None, _('Source Filter Editor'),
                          callback=self.filter_editor,)
+        self._add_action('QuickReport', None, _("Quick View"), None, None, None)
+        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
 
     def _column_editor(self, obj):
         import ColumnOrder
@@ -174,8 +178,19 @@ class SourceView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
+
+    def dummy_report(self, obj):
+        """ For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass
 
     def add(self, obj):
         EditSource(self.dbstate, self.uistate, [], gen.lib.Source())

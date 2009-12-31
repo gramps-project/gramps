@@ -191,6 +191,8 @@ refitems = [(CATEGORY_QR_PERSON, 'person', _("Person")),
             (CATEGORY_QR_EVENT, 'event', _("Event")), 
             (CATEGORY_QR_SOURCE, 'source', _("Source")), 
             (CATEGORY_QR_PLACE, 'place', _("Place")), 
+            (CATEGORY_QR_MEDIA, 'media', _("Media")), 
+            (CATEGORY_QR_NOTE, 'note', _("Note")), 
             ]
 
 for (category, item, trans) in refitems:

@@ -43,6 +43,10 @@ def get_ref(db, objclass, handle):
         ref = db.get_source_from_handle(handle)
     elif objclass == 'Place':
         ref = db.get_place_from_handle(handle)
+    elif objclass == 'Note':
+        ref = db.get_note_from_handle(handle)
+    elif objclass in ['MediaObject', 'Media']:
+        ref = db.get_object_from_handle(handle)
     else:
         ref = objclass
     return ref
@@ -61,7 +65,6 @@ def run(database, document, object, item, trans):
     sdoc.title(_("References for this %s") % trans)
     sdoc.paragraph("\n")
     stab.columns(_("Type"), _("Reference"))
-    
     for (objclass, handle) in database.find_backlink_handles(object.handle):
         ref = get_ref(database, objclass, handle)
         stab.row(_(objclass), ref) # translation are explicit (above)
@@ -79,3 +82,5 @@ run_family = lambda db, doc, obj: run(db, doc, obj, 'family', _("Family"))
 run_event  = lambda db, doc, obj: run(db, doc, obj, 'event', _("Event"))
 run_source = lambda db, doc, obj: run(db, doc, obj, 'source', _("Source"))
 run_place  = lambda db, doc, obj: run(db, doc, obj, 'place', _("Place"))
+run_media  = lambda db, doc, obj: run(db, doc, obj, 'media', _("Media"))
+run_note  = lambda db, doc, obj: run(db, doc, obj, 'note', _("Note"))
