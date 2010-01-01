@@ -96,8 +96,7 @@ def export_all(database, filename, option_box=None, callback=None):
                 dji.add_person(data)
             elif step == 1:
                 djperson = dji.add_person_detail(data)
-                person = database.get_person_from_handle(person_handle)
-                djperson.probably_alive = probably_alive(person, database)
+                djperson.probably_alive = not bool(djperson.death)
                 djperson.save()
             count += 1
             callback(100 * count/total)
