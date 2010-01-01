@@ -39,7 +39,11 @@
          <li><a href="/admin">Admin</a></li>
        {% endif %}
     {% else %}
+	 {% if next %}
+         <li><a href="/login/?next={{next}}">Login</a></li>
+         {% else %}
          <li><a href="/login/">Login</a></li>
+	 {% endif %}
   {% endif %}
     </ul>
     {% endblock %}

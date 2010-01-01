@@ -26,33 +26,35 @@
 {% endif %}
 <tr>
  <td class="ColumnAttribute">{{form.surname.label}}:</td>
- <td class="ColumnValue" id="data">{{form.surname|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.surname user action %}</td>
  <td class="ColumnAttribute">{{form.prefix.label}}:</td>
- <td class="ColumnValue" id="data">{{form.prefix|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.prefix user action %}</td>
 </tr>
  <td class="ColumnAttribute">{{form.first_name.label}}:</td>
- <td class="ColumnValue" id="data">{{form.first_name|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.first_name user action %}</td>
  <td class="ColumnAttribute">{{form.call.label}}:</td>
- <td class="ColumnValue" id="data">{{form.call|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.call user action %}</td>
 <tr>
 </tr>
  <td class="ColumnAttribute">{{form.title.label}}:</td>
- <td class="ColumnValue" id="data">{{form.title|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.title user action %}</td>
  <td class="ColumnAttribute">{{form.suffix.label}}:</td>
- <td class="ColumnValue" id="data">{{form.suffix|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.suffix user action %}</td>
 <tr>
  <td class="ColumnAttribute">{{form.patronymic.label}}:</td>
- <td class="ColumnValue" id="data">{{form.patronymic|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.patronymic user action %}</td>
  <td class="ColumnAttribute">{{form.name_type.label}}:</td>
- <td class="ColumnValue" id="data">{{form.name_type|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.name_type user action %}</td>
 </tr>
 <tr>
  <td class="ColumnAttribute">{{form.preferred.label}}:</td>
 {% if form.model.preferred %}
- <td class="ColumnValue" id="data" colspan="3">True</td>
+ <td class="ColumnValue" id="data">True</td>
 {% else %}
- <td class="ColumnValue" id="data" colspan="3">{{form.preferred|render:action}}</td>
+ <td class="ColumnValue" id="data">{% render form.preferred user action %}</td>
 {% endif %}
+ <td class="ColumnAttribute">{{form.private.label}}:</td>
+ <td class="ColumnValue" id="data">{% render form.private user action %}</td>
 </tr>
 </tbody>
 </table>
@@ -65,6 +67,7 @@
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tab-general">General</a></li>
+    <li class="ui-corner-top ui-state-default"><a href="#tab-names">Names</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-sources">Sources</a></li>
     <li class="ui-corner-top ui-state-default"><a href="#tab-notes">Notes</a></li>
   </ul>
@@ -74,20 +77,23 @@
     <div style="overflow: auto; height:150px; color: black; background-color: white;">
     <table border="1">
     <tr><td style="background-color: #FFF2C5;">{{form.group_as.label}}: </td>
-        <td>{{form.group_as|render:action}}</td>
+        <td>{% render form.group_as user action %}</td>
     </tr>
     <tr><td style="background-color: #FFF2C5;">{{form.sort_as.label}}: </td>
-        <td>{{form.sort_as|render:action}}</td>
+        <td>{% render form.sort_as user action %}</td>
     </tr>
     <tr><td style="background-color: #FFF2C5;">{{form.display_as.label}}: </td>
-         <td>{{form.display_as|render:action}}</td>
+         <td>{% render form.display_as user action %}</td>
     </tr>
     <tr><td style="background-color: #FFF2C5;">{{form.text.label}}: </td>
-         <td>{{form.text|render:action}}</td>
+         <td>{% render form.text user action %}</td>
     </tr>
     </table>
     </div>
     &nbsp;
+  </div>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-names">
+    {% name_table person user action "/person/%s/name" person.handle %}
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tab-sources">
     {% source_table form.model user action "/person/%s/name/%s/source" person.handle form.model.order %}
@@ -107,6 +113,7 @@
   {% else %}
 [<a href="/person/{{person.handle}}/name/{{order}}/edit">Edit Name</a>]
 [<a href="/person/{{person.handle}}/name/{{order}}/delete">Delete Name</a>]
+[<a href="/person/{{person.handle}}/name/add">Add Name</a>]
   {% endifequal %}
 {% else %}
 {% endif %}

@@ -66,10 +66,12 @@ _ = lambda msg: msg
 
 util_filters = [
     'nbsp', 
-    'render',
+    'render_date',
+    'render_name',
     ]
 
 util_tags = [
+    'render',
     "get_person_from_handle", 
     "event_table",
     "name_table",
@@ -178,15 +180,6 @@ class Table(object):
 
 _ = lambda text: text
 
-def render(formfield, action):
-    retval = "error"
-    fieldname = formfield.name # 'surname'
-    if action == "view": # gets the unicode from model
-        retval = str(getattr(formfield.form.model, fieldname))
-    else: # renders as default
-        retval = formfield.as_widget()
-    return retval
-
 def make_button(text, url, *args):
     url = url % args
     return """[ <a href="%s">%s</a> ] """ % (url, text)
@@ -215,7 +208,7 @@ def event_table(obj, user, action, url=None, *args):
                 get_title(djevent.place),
                 str(event_ref.role_type))
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add event"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -244,7 +237,7 @@ def name_table(obj, user, action, url=None, *args):
                 except:
                     note = None
             table.row(make_name(name, user),
-                      str(name.name_type),
+                      str(name.name_type) + ["", " (preferred)"][int(name.preferred)],
                       name.group_as,
                       ["No", "Yes"][sourceq],
                       note)
@@ -253,7 +246,7 @@ def name_table(obj, user, action, url=None, *args):
                           (url % name.person.handle) + ("/%s" % name.order)))
         table.links(links)
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add name"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -278,7 +271,7 @@ def source_table(obj, user, action, url=None, *args):
                       source_ref.page,
                       )
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add source"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -302,7 +295,7 @@ def note_table(obj, user, action, url=None, *args):
                       str(note_ref.ref_object.note_type),
                       note_ref.ref_object.text[:50])
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add note"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -322,7 +315,7 @@ def attribute_table(obj, user, action, url=None, *args):
             table.row(attribute.attribute_type.name,
                       attribute.value)
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add attribute"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -346,7 +339,7 @@ def address_table(obj, user, action, url=None, *args):
                           location.state,
                           location.country)
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add address"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -359,7 +352,7 @@ def gallery_table(obj, user, action, url=None, *args):
                   _("Type"),
                   )
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add gallery"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -378,7 +371,7 @@ def internet_table(obj, user, action, url=None, *args):
                       url_obj.path,
                       url_obj.desc)
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add internet"), ((str(url) % args) + "/add"))
     else:
         retval += nbsp("") # to keep tabs same height
@@ -392,11 +385,12 @@ def association_table(obj, user, action, url=None, *args):
                   _("Association"))
     if user.is_authenticated():
         gperson = table.db.get_person_from_handle(obj.handle)
-        associations = gperson.get_person_ref_list()
-        for association in associations:
-            table.row()
+        if gperson:
+            associations = gperson.get_person_ref_list()
+            for association in associations:
+                table.row()
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add association"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -420,7 +414,7 @@ def lds_table(obj, user, action, url=None, *args):
                       lds.temple,
                       get_title(lds.place))
     retval += table.get_html()
-    if user.is_authenticated() and url and action != "edit":
+    if user.is_authenticated() and url and action == "view":
         retval += make_button(_("Add LDS"), (url + "/add") % args)
     else:
         retval += nbsp("") # to keep tabs same height
@@ -492,6 +486,71 @@ def display_date(obj):
     else:
         return ""
 
+def render(formfield, user, action, test=False, truetext=""):
+    if not user.is_authenticated():
+        action = "view"
+    if action == "view":
+        if (not user.is_authenticated() and not test) or user.is_authenticated():
+            fieldname = formfield.name # 'surname'
+            retval = str(getattr(formfield.form.model, fieldname))
+        else:
+            retval = truetext
+    else:
+        retval = formfield.as_widget()
+    return retval
+
+def render_name(name, user):
+    """
+    Given a Django or Gramps object, render the name and return.  This
+    function uses authentication, privacy and probably_alive settings.
+    """
+    if isinstance(name, models.Name):
+        if not user.is_authenticated():
+            name.sanitize()
+        return "%s, %s" % (name.surname, name.first_name)
+    elif isinstance(name, forms.NameForm):
+        if not user.is_authenticated():
+            name.model.sanitize()
+        return "%s, %s" % (name.model.surname, name.model.first_name)
+    elif isinstance(name, gen.lib.Person): # name is a gen.lib.Person
+        person = name
+        try:
+            name = person.get_primary_name()
+        except:
+            name = None
+        if name is None:
+            return "[No preferred name]"
+        if not user.is_authenticated():
+            name.sanitize()
+        return "%s, %s" % (name.surname, name.first_name)
+    elif isinstance(name, models.Person): # django person
+        person = name
+        try:
+            name = person.name_set.get(preferred=True)
+        except:
+            return "Error"
+        return render_name(name, user)
+    else: # no name object
+        return "[No preferred name]"
+
+def make_name(name, user):
+    return render_name(name, user)
+
+def render_date(obj, user):
+    """
+    Given a Django object, render the date as text and return.  This
+    function uses authentication settings.
+    """
+    if (user.is_authenticated() or 
+        (not user.is_authenticated() and obj and not obj.private)):
+        if obj:
+            date_tuple = dji.get_date(obj)
+            if date_tuple:
+                gdate = GDate().unserialize(date_tuple)
+                return _dd(gdate)
+        return ""
+    return "[Private]"
+
 def person_get_event(person, event_type=None):
     event_ref_list = dji.get_event_ref_list(person)
     if event_type:
@@ -512,42 +571,6 @@ def person_get_event(person, event_type=None):
                    models.EventRef.objects.filter(ref_object__handle=event_handle[3])] 
                   for event_handle in event_ref_list]
         return [j for i in retval for j in i]
-
-def make_name(name, user):
-    if isinstance(name, models.Name):
-        surname = name.surname.strip()
-        if not surname:
-            surname = "[Missing]"
-        if user.is_authenticated():
-            return "%s, %s" % (surname, name.first_name)
-        else:
-            if name.person.probably_alive:
-                return "%s, %s" % (surname, "[Living]")
-            else:
-                return "%s, %s" % (surname, name.first_name)
-    elif isinstance(name, forms.NameForm):
-        surname = name.model.surname.strip()
-        if not surname:
-            surname = "[Missing]"
-        if user.is_authenticated():
-            return "%s, %s" % (surname, name.model.first_name)
-        else:
-            if name.model.person.probably_alive:
-                return "%s, %s" % (surname, "[Living]")
-            else:
-                return "%s, %s" % (surname, name.model.first_name)
-    elif isinstance(name, gen.lib.Person): # name is a gen.lib.Person
-        person = name
-        name = person.get_primary_name()
-        if name is None:
-            return "[No preferred name]"
-        else:
-            return "%s, %s" % (name.get_surname(), name.get_first_name())
-    elif isinstance(name, models.Person): # django person
-        person = name
-        return make_name(person.name_set.get(preferred=True), user)
-    else: # no name
-        return ""
 
 class lazy(object):
     EMPTY = []
@@ -572,6 +595,13 @@ class lazy(object):
         if object.__getattribute__(self, "result") is lazy.EMPTY:
             object.__getattribute__(self, "thaw")()
         return getattr(object.__getattribute__(self, "result"), attr)
+
+    def myclass(self):
+        if object.__getattribute__(self, "result") is lazy.EMPTY:
+            object.__getattribute__(self, "thaw")()
+        return object.__getattribute__(self, "result").__class__
+
+    #__class__ = property(myclass)
 
     def __str__(self):
         if object.__getattribute__(self, "result") is lazy.EMPTY:

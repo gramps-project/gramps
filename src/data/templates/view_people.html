@@ -24,13 +24,19 @@
     </td>
     <td><a href="{{name.person.handle}}/" class="grampsid">[{{name.person.gramps_id}}]</a></td>
     <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.gender_type}}</a></td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.birth}}</a></td>
-    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.death}}</a></td>
+    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.birth|render_date:user}}</a></td>
+    <td><a href="{{name.person.handle}}/" class="noThumb">{{name.person.death|render_date:user}}</a></td>
     {% endif %}
   </tr>
   {% endfor %}
 </tbody>
 </table>
+
+{% if user.is_authenticated %}
+
+{% make_button "Add a new Person" "/person/add" %}
+
+{% endif %}
 
 {% endblock %}
 

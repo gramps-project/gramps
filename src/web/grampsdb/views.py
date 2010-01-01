@@ -41,11 +41,11 @@ from django.db.models import Q
 #------------------------------------------------------------------------
 import web
 from web.grampsdb.models import *
-from web.grampsdb.forms import NameForm, PersonForm
-from web.utils import probably_alive
+from web.grampsdb.forms import *
 from web.djangodb import DjangoDb
 
 import gen.proxy
+from Utils import create_id
 
 _ = lambda text: text
 
@@ -70,6 +70,9 @@ def context_processor(request):
     context["css_theme"] = "Web_Mainz.css"
     # FIXME: get the views from a config?
     context["views"] = VIEWS
+    context["True"] = True
+    context["False"] = False
+    context["default"] = ""
     return context
 
 # CSS Themes:
@@ -107,6 +110,40 @@ def user_page(request, username):
     context["tview"] = _('User')
     return render_to_response('user_page.html', context)
 
+def fix_person(request, person):
+    try:
+        name = person.name_set.get(preferred=True)
+    except:
+        names = person.name_set.all().order_by("order")
+        if names.count() == 0:
+            name = Name(person=person, 
+                        surname="? Fixed", 
+                        first_name="? Missing name",
+                        preferred=True)
+            name.save()
+        else:
+            order = 1
+            for name in names:
+                if order == 1:
+                    name.preferred = True
+                else:
+                    name.preferred = False
+                name.order = order
+                name.save()
+                order += 1
+    if request:
+        return redirect("/person/%s" % person.handle, request)
+
+def set_date(obj):
+    obj.calendar = 0
+    obj.modifier = 0
+    obj.quality = 0
+    obj.text = ""
+    obj.sortval = 0
+    obj.newyear = 0
+    obj.day1, obj.month1, obj.year1, obj.slash1 = 0, 0, 0, 0
+    obj.day2, obj.month2, obj.year2, obj.slash2 = 0, 0, 0, 0
+
 def view_name_detail(request, handle, order, action="view"):
     if order == "add":
         order = 0
@@ -115,50 +152,53 @@ def view_name_detail(request, handle, order, action="view"):
         action = request.POST.get("action")
     if action == "view":
         person = Person.objects.get(handle=handle)
-        name = person.name_set.get(order=order)
+        try:
+            name = person.name_set.filter(order=order)[0]
+        except:
+            return fix_person(request, person)
         form = NameForm(instance=name)
         form.model = name
     elif action == "edit":
         person = Person.objects.get(handle=handle)
-        name = person.name_set.get(order=order)
+        name = person.name_set.filter(order=order)[0]
         form = NameForm(instance=name)
         form.model = name
     elif action == "delete":
         person = Person.objects.get(handle=handle)
-        name_to_delete = person.name_set.get(order=order)
-        was_preferred = name_to_delete.preferred
-        name_to_delete.delete()
         names = person.name_set.all().order_by("order")
-        for count in range(names.count()):
-            if was_preferred:
-                names[count].preferred = True
-                was_preferred = False
-            names[count].order = count
-            names[count].save()
+        print "delete", names.count()
+        if names.count() > 1:
+            print "more than 1"
+            name_to_delete = names[0]
+            was_preferred = name_to_delete.preferred
+            name_to_delete.delete()
+            names = person.name_set.all().order_by("order")
+            for count in range(names[1:].count()):
+                print count
+                if was_preferred:
+                    names[count].preferred = True
+                    was_preferred = False
+                names[count].order = count
+                names[count].save()
         form = NameForm()
         name = Name()
         action = "back"
-    elif action == "add":
+    elif action == "add": # add name
         person = Person.objects.get(handle=handle)
-        name = Name()
-        name.sort_as = NameFormatType.objects.get(val=0)
-        name.display_as = NameFormatType.objects.get(val=0)
-        name.name_type = NameType.objects.get(val=2) # Birth Name
+        name = Name(person=person, 
+                    display_as=NameFormatType.objects.get(val=0), 
+                    sort_as=NameFormatType.objects.get(val=0), 
+                    name_type=NameType.objects.get(val=2))
         form = NameForm(instance=name)
         form.model = name
         action = "edit"
     elif action == "save":
         person = Person.objects.get(handle=handle)
         try:
-            name = person.name_set.get(order=order)
+            name = person.name_set.filter(order=order)[0]
         except:
             order = person.name_set.count() + 1
-            name = Name(calendar=0, modifier=0, quality=0,
-                        year1=0, day1=0, month1=0,
-                        sortval = 0, newyear=0, order=order,
-                        sort_as=NameFormatType(val=0), 
-                        display_as=NameFormatType(val=0), 
-                        person_id=person.id)
+            name = Name(person=person, order=order)
         form = NameForm(request.POST, instance=name)
         form.model = name
         if form.is_valid():
@@ -174,6 +214,7 @@ def view_name_detail(request, handle, order, action="view"):
                     .update(preferred=False)
             # else some other name is preferred
             print "save"
+            set_date(name)
             n = form.save()
             print n.preferred
         else:
@@ -187,6 +228,7 @@ def view_name_detail(request, handle, order, action="view"):
     context["person"] = person
     context["form"] = form
     context["order"] = name.order
+    context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
     view_template = "view_name_detail.html"
     print "action:", action
     if action == "save":
@@ -199,13 +241,6 @@ def view_name_detail(request, handle, order, action="view"):
     else:
         return render_to_response(view_template, context)
     
-
-class PrivateProxy(object):
-    def __init__(self, obj):
-        self.obj = obj
-
-    def __getattr__(self, attr):
-        return getattr(self.obj, attr)
 
 def view_detail(request, view, handle, action="view"):
     context = RequestContext(request)
@@ -265,56 +300,104 @@ def view_detail(request, view, handle, action="view"):
     else:
         raise Http404(_("Requested page type not known"))
     context[view] = obj
+    context["next"] = "/%s/%s" % (view, obj.handle)
     return render_to_response(view_template, context)
-
-def get_gramps_db(request):
-    dbase = DjangoDb()
-    #if request.user.is_authenticated():
-    private_filter=False
-    living_filter=False
-    #else:
-    #    private_filter=True
-    #    living_filter=True
-    # If the private flag is set, apply the PrivateProxyDb
-    if private_filter:
-        dbase = gen.proxy.PrivateProxyDb(dbase)
-    # If the restrict flag is set, apply the LivingProxyDb
-    if living_filter:
-        dbase = gen.proxy.LivingProxyDb(
-            dbase, 
-            gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
-    return dbase
 
 def view_person_detail(request, view, handle, action="view"):
     context = RequestContext(request)
+    print view, handle, action
+    if handle == "add":
+        if request.POST.has_key("action"):
+            action = request.POST.get("action")
+        else:
+            action = "add"
+    elif request.POST.has_key("action"):
+        action = request.POST.get("action")
+    if request.user.is_authenticated():
+        if action == "edit":
+            # get all of the data:
+            person = Person.objects.get(handle=handle)
+            try:
+                name = person.name_set.get(preferred=True)
+            except:
+                name = Name(person=person, preferred=True)
+            pf = PersonForm(instance=person)
+            pf.model = person
+            nf = NameForm(instance=name)
+            nf.model = name
+        elif action == "add":
+            # make new data:
+            person = Person()
+            name = Name(person=person, preferred=True,
+                        display_as=NameFormatType.objects.get(val=0), 
+                        sort_as=NameFormatType.objects.get(val=0), 
+                        name_type=NameType.objects.get(val=2))
+            nf = NameForm(instance=name)
+            nf.model = name
+            pf = PersonForm(instance=person)
+            pf.model = person
+            action = "edit"
+        elif action == "save":
+            try:
+                person = Person.objects.get(handle=handle)
+            except:
+                person = Person(handle=create_id())
+            if person.id: # editing
+                name = person.name_set.get(preferred=True)
+            else: # adding a new person with new name
+                name = Name(person=person, preferred=True)
+            pf = PersonForm(request.POST, instance=person)
+            pf.model = person
+            nf = NameFormFromPerson(request.POST, instance=name)
+            nf.model = name
+            print "checking:", person.handle
+            if nf.is_valid() and pf.is_valid():
+                person = pf.save()
+                name = nf.save(commit=False)
+                name.person = person
+                name.save()
+            else:
+                action = "edit"
+        else: # view
+            person = Person.objects.get(handle=handle)
+            try:
+                name = person.name_set.get(preferred=True)
+            except:
+                return fix_person(request, person)
+            pf = PersonForm(instance=person)
+            pf.model = person
+            nf = NameForm(instance=name)
+            nf.model = name
+    else: # view person detail
+        # BEGIN NON-AUTHENTICATED ACCESS
+        person = Person.objects.get(handle=handle)
+        if person:
+            if person.private:
+                raise Http404(_("Requested %s is not accessible.") % view)
+            name = person.name_set.get(preferred=True)
+            if person.probably_alive:
+                name.sanitize()
+        else:
+            raise Http404(_("Requested %s does not exist.") % view)
+        pf = PersonForm(instance=person)
+        pf.model = person
+        nf = NameForm(instance=name)
+        nf.model = name
+        # END NON-AUTHENTICATED ACCESS
+    if action == "save":
+        context["action"] = "view"
+        return redirect("/person/%s" % person.handle, context)
     context["action"] = action
     context["view"] = view
     context["tview"] = _("Person")
-    view_template = 'view_person_detail.html'
-    if request.user.is_authenticated():
-        person = Person.objects.get(handle=handle)
-        name = person.name_set.get(preferred=True)
-    else:
-        db = get_gramps_db(request)
-        gramps_person = db.get_person_from_handle(handle)
-        if not gramps_person:
-            raise Http404(_("Requested %s is not accessible.") % view)
-        person = Person.objects.get(handle=handle)
-        name = person.name_set.get(preferred=True)
-        # fill forms with data from db
-        name.surname = gramps_person.get_primary_name().get_surname()
-        name.first_name = gramps_person.get_primary_name().get_first_name()
-    pf = PersonForm(instance=person)
-    pf.model = person
-    nf = NameForm(instance=name)
-    nf.model = name
     context["personform"] = pf
     context["nameform"] = nf
     context["person"] = person
+    context["next"] = "/person/%s" % person.handle
+    view_template = 'view_person_detail.html'
     return render_to_response(view_template, context)
 
 def view(request, view):
-    db = get_gramps_db(request)
     search = ""
     if view == "event":
         if request.user.is_authenticated():
@@ -366,12 +449,14 @@ def view(request, view):
             if request.GET.has_key("search"):
                 search = request.GET.get("search")
                 if "," in search:
-                    search, trash = [term.strip() for term in search.split(",", 1)]
+                    search_text, trash = [term.strip() for term in search.split(",", 1)]
+                else:
+                    search_text = search
                 object_list = Family.objects \
-                    .filter((Q(gramps_id__icontains=search) |
-                             Q(family_rel_type__name__icontains=search) |
-                             Q(father__name__surname__istartswith=search) |
-                             Q(mother__name__surname__istartswith=search)) &
+                    .filter((Q(gramps_id__icontains=search_text) |
+                             Q(family_rel_type__name__icontains=search_text) |
+                             Q(father__name__surname__istartswith=search_text) |
+                             Q(mother__name__surname__istartswith=search_text)) &
                             Q(private=False) &
                             Q(mother__private=False) &
                             Q(father__private=False)
@@ -450,11 +535,14 @@ def view(request, view):
             # BEGIN NON-AUTHENTICATED users
             if request.GET.has_key("search"):
                 search = request.GET.get("search")
+                print "search:", search
                 if "," in search:
-                    search, trash = [term.strip() for term in search.split(",", 1)]
+                    search_text, trash = [term.strip() for term in search.split(",", 1)]
+                else:
+                    search_text = search
                 object_list = Name.objects \
                     .select_related() \
-                    .filter(Q(surname__istartswith=search) &
+                    .filter(Q(surname__istartswith=search_text) &
                             Q(private=False) &
                             Q(person__private=False)
                             ) \
@@ -548,9 +636,10 @@ def view(request, view):
     context["tview"] = _(view.title())
     context["search"] = search
     context["total"] = total
-    context["db"] = db
+    context["object_list"] = object_list
+    context["next"] = "/person/"
     if search:
-        context["search_query"] = ("&search=%s" % escape(search))
+        context["search_query"] = ("&search=%s" % search)
     else:
         context["search_query"] = ""
     return render_to_response(view_template, context)

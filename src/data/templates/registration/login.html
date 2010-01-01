@@ -29,7 +29,11 @@
     </td>
    </tr>
  </table>
+{% if next %}
+ <input type="hidden" name="next" value="{{next}}" />
+{% else %}
  <input type="hidden" name="next" value="/" />
+{% endif %}
  <input type="submit" value="Login" />
 </form>
 {% endblock %}

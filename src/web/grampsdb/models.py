@@ -300,23 +300,23 @@ class DateNewYearType(mGrampsType):
 class DateObject(models.Model):
     class Meta: abstract = True
 
-    calendar = models.IntegerField()
-    modifier = models.IntegerField()
-    quality = models.IntegerField()
+    calendar = models.IntegerField(default=0)
+    modifier = models.IntegerField(default=0)
+    quality = models.IntegerField(default=0)
     #quality_estimated   = models.BooleanField()
     #quality_calculated  = models.BooleanField()
     #quality_interpreted = models.BooleanField()
-    day1 = models.IntegerField()
-    month1 = models.IntegerField()
-    year1 = models.IntegerField()
-    slash1 = models.BooleanField()
+    day1 = models.IntegerField(default=0)
+    month1 = models.IntegerField(default=0)
+    year1 = models.IntegerField(default=0)
+    slash1 = models.BooleanField(default=False)
     day2 = models.IntegerField(blank=True, null=True)
     month2 = models.IntegerField(blank=True, null=True)
     year2 = models.IntegerField(blank=True, null=True)
     slash2 = models.NullBooleanField(blank=True, null=True)
     text = models.CharField(max_length=80, blank=True)
-    sortval = models.IntegerField()
-    newyear = models.IntegerField()
+    sortval = models.IntegerField(default=0)
+    newyear = models.IntegerField(default=0)
 
     def set_date_from_datetime(self, date_time, text=""):
         """
@@ -401,8 +401,8 @@ class Person(PrimaryObject):
     references = generic.GenericRelation('PersonRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
-    birth = models.ForeignKey("Event", related_name="birth", null=True)
-    death = models.ForeignKey("Event", related_name="death", null=True)
+    birth = models.ForeignKey("Event", related_name="birth", blank=True, null=True)
+    death = models.ForeignKey("Event", related_name="death", blank=True, null=True)
 
     # Others keys here:
     #   .name_set 
@@ -414,12 +414,7 @@ class Person(PrimaryObject):
         """
         Return the preferred name of a person.
         """
-        names = self.name_set.all().order_by("order")
-        if names.count() > 0:
-            name = names[0]
-        else:
-            name = None
-        return name
+        return self.name_set.get(preferred=True)
 
 class Family(PrimaryObject):
     father = models.ForeignKey('Person', related_name="father_ref", 
@@ -509,10 +504,12 @@ class SecondaryObject(models.Model):
     last_saved = models.DateTimeField('last changed', auto_now=True)
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
-    order = models.PositiveIntegerField()
+    order = models.PositiveIntegerField(default=1)
 
 class Name(DateObject, SecondaryObject):
-    name_type = models.ForeignKey('NameType', related_name="name_code")
+    name_type = models.ForeignKey('NameType', 
+                                  related_name="name_code",
+                                  default=2)
     preferred = models.BooleanField('Preferred name?')
     first_name = models.TextField(blank=True)
     surname = models.TextField(blank=True)
@@ -523,12 +520,14 @@ class Name(DateObject, SecondaryObject):
     call = models.TextField(blank=True)
     group_as = models.TextField(blank=True)
     sort_as =  models.ForeignKey('NameFormatType', 
-                                 related_name="sort_as")
+                                 related_name="sort_as",
+                                 default=1)
     display_as = models.ForeignKey('NameFormatType', 
-                                   related_name="display_as")
-
+                                   related_name="display_as",
+                                   default=1)
     ## Key:
     person = models.ForeignKey("Person")
+    _sanitized = False
 
     def __unicode__(self):
         return "%s%s%s, %s" % (self.prefix, 
@@ -541,12 +540,13 @@ class Name(DateObject, SecondaryObject):
         #name.
 
     def sanitize(self):
-        self.first_name = "[Private]"
-        self.prefix = ""
-        self.suffix = ""
-        self.prefix = ""
-        self.prefix = ""
-        self.prefix = ""
+        if not self._sanitized:
+            self._sanitized = True
+            if self.person.probably_alive:
+                self.first_name = "[Living]"
+                self.call = ""
+                self.group_as = ""
+                self.title = ""
 
 class Lds(DateObject, SecondaryObject):
     """

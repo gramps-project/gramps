@@ -86,8 +86,12 @@ class DjangoDb(DbReadBase, DbWriteBase):
         return obj
 
     def get_person_from_handle(self, handle):
-        data = self.dji.get_person(self.dji.Person.select_related().get(handle=handle))
-        obj = gen.lib.Person.create(data)
+        try:
+            person = self.dji.Person.select_related().get(handle=handle)
+        except:
+            return None
+        data = self.dji.get_person(person)
+        obj = gen.lib.Person().unserialize(data)
         return obj
 
     def get_place_from_handle(self, handle):
