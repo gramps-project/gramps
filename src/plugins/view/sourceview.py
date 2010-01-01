@@ -38,6 +38,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 import config
+from gui.views.navigationview import NAVIGATION_SOURCE
 from gui.views.listview import ListView
 from gui.views.treemodels import SourceModel
 import Utils
@@ -103,6 +104,9 @@ class SourceView(ListView):
 
         config.connect("interface.filter",
                           self.filter_toggle)
+
+    def navigation_type(self):
+        return NAVIGATION_SOURCE
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_source_column_order(clist)

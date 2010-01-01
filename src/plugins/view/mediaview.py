@@ -47,6 +47,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
+from gui.views.navigationview import NAVIGATION_MEDIA
 from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
 import ThumbNails
@@ -117,6 +118,9 @@ class MediaView(ListView):
 
         config.connect("interface.filter", 
                           self.filter_toggle)
+
+    def navigation_type(self):
+        return NAVIGATION_MEDIA
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_media_column_order(clist)
@@ -333,7 +337,7 @@ class MediaView(ListView):
                         Utils.media_path_full(self.dbstate.db, obj.get_path()))
             self.image.set_from_pixbuf(pix)
             self.dbstate.emit('media-changed', (handle, ))
-    
+
     def ui_definition(self):
         """
         Return the UIManager XML description of the menus

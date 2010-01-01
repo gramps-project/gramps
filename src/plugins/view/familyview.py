@@ -44,6 +44,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gui.views.navigationview import NAVIGATION_FAMILY
 from gui.views.listview import ListView
 from gui.views.treemodels import FamilyModel
 from gui.editors import EditFamily
@@ -98,6 +99,9 @@ class FamilyView(ListView):
 
         config.connect("interface.filter",
                           self.filter_toggle)
+
+    def navigation_type(self):
+        return NAVIGATION_FAMILY
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_family_list_column_order(clist)

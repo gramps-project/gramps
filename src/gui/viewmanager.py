@@ -70,7 +70,7 @@ import GrampsCfg
 import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
                             InfoDialog)
-import gui.views.pageview as PageView
+import gui.views.navigationview as NavigationView
 import Navigation
 from BasicUtils import name_displayer
 from gui import widgets
@@ -343,8 +343,8 @@ class ViewManager(CLIManager):
         self.toolbar.insert(openbtn, 0)
         
         self.person_nav = Navigation.PersonNavigation(self.dbstate, self.uistate)
-        self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav, 
-                                                             None)
+        self._navigation_type[NavigationView.NAVIGATION_PERSON] = \
+                                                    (self.person_nav, None)
         self.recent_manager = DisplayState.RecentDocsMenu(
             self.uistate, self.dbstate, self._read_recent_file)
         self.recent_manager.build()
@@ -532,8 +532,15 @@ class ViewManager(CLIManager):
             ]
 
         self._navigation_type = {
-            PageView.NAVIGATION_NONE: (None, None), 
-            PageView.NAVIGATION_PERSON: (None, None), 
+            None: (None, None), 
+            NavigationView.NAVIGATION_PERSON: (None, None), 
+            NavigationView.NAVIGATION_FAMILY: (None, None),
+            NavigationView.NAVIGATION_EVENT: (None, None),
+            NavigationView.NAVIGATION_PLACE: (None, None),
+            NavigationView.NAVIGATION_SOURCE: (None, None),
+            NavigationView.NAVIGATION_REPOSITORY: (None, None),
+            NavigationView.NAVIGATION_MEDIA: (None, None),
+            NavigationView.NAVIGATION_NOTE: (None, None)
             }
 
     def __keypress(self, action):
@@ -876,7 +883,7 @@ class ViewManager(CLIManager):
         Create the Views
         """
         self.pages = []
-        self.prev_nav = PageView.NAVIGATION_NONE
+        self.prev_nav = None
         self.ui_category = {}
         self.view_toggle_actions = {}
         self.cat_view_group = None

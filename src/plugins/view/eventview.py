@@ -46,6 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gui.views.navigationview import NAVIGATION_EVENT
 from gui.views.listview import ListView
 from gui.views.treemodels import EventModel
 import Utils
@@ -109,6 +110,9 @@ class EventView(ListView):
 
         config.connect("interface.filter",
                           self.filter_toggle)
+
+    def navigation_type(self):
+        return NAVIGATION_EVENT
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_event_column_order(clist)

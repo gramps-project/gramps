@@ -44,6 +44,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gui.views.navigationview import NAVIGATION_PLACE
 from gui.views.listview import ListView
 from gui.utils import add_menuitem
 import Errors
@@ -120,6 +121,9 @@ class PlaceBaseView(ListView):
 
         config.connect("interface.filter",
                           self.filter_toggle)
+
+    def navigation_type(self):
+        return NAVIGATION_PLACE
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_place_column_order(clist)

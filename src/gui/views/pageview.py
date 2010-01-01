@@ -49,9 +49,6 @@ from gettext import gettext as _
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
 
-NAVIGATION_NONE   = -1
-NAVIGATION_PERSON = 0
-
 #------------------------------------------------------------------------------
 #
 # PageView
@@ -133,7 +130,7 @@ class PageView(DbGUIElement):
         Indictates the navigation type. Currently, we only support navigation
         for views that are Person centric.
         """
-        return NAVIGATION_NONE
+        return None
     
     def ui_definition(self):
         """

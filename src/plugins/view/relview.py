@@ -47,9 +47,8 @@ import pango
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import gui.views.pageview as PageView
 from gui.editors import EditPerson, EditFamily
-from gui.views.navigationview import NavigationView
+from gui.views.navigationview import NavigationView, NAVIGATION_PERSON
 from BasicUtils import name_displayer
 from Utils import media_path_full, probably_alive
 import DateHandler
@@ -164,7 +163,7 @@ class RelationshipView(NavigationView):
         self.callman.add_db_signal('person-delete', self.redraw)
 
     def navigation_type(self):
-        return PageView.NAVIGATION_PERSON
+        return NAVIGATION_PERSON
 
     def goto_handle(self, handle):
         self.redraw()

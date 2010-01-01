@@ -46,7 +46,7 @@ _LOG = logging.getLogger(".gui.personview")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.views.pageview import NAVIGATION_PERSON
+from gui.views.navigationview import NAVIGATION_PERSON
 from gui.views.listview import ListView
 from gui.views.treemodels import PeopleModel
 import Utils

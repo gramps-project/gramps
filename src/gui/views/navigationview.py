@@ -50,8 +50,15 @@ from gui.views.pageview import PageView
 
 from TransUtils import sgettext as _
 
-NAVIGATION_NONE   = -1
+NAVIGATION_NONE = -1
 NAVIGATION_PERSON = 0
+NAVIGATION_FAMILY = 1
+NAVIGATION_EVENT = 2
+NAVIGATION_PLACE = 3
+NAVIGATION_SOURCE = 4
+NAVIGATION_REPOSITORY = 5
+NAVIGATION_MEDIA = 6
+NAVIGATION_NOTE = 7
 
 #------------------------------------------------------------------------------
 #

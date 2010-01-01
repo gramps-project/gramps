@@ -53,7 +53,7 @@ except:
 #-------------------------------------------------------------------------
 import gen.lib
 import gui.views.pageview as PageView
-from gui.views.navigationview import NavigationView
+from gui.views.navigationview import NavigationView, NAVIGATION_PERSON
 from BasicUtils import name_displayer
 from Utils import (media_path_full, probably_alive, find_children, 
                    find_parents, find_witnessed_people)
@@ -677,7 +677,7 @@ class PedigreeViewExt(NavigationView):
         self.build_tree()
 
     def navigation_type(self):
-        return PageView.NAVIGATION_PERSON
+        return NAVIGATION_PERSON
 
     def goto_handle(self, handle=None):
         """Callback function for change active person in other GRAMPS page."""

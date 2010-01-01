@@ -37,6 +37,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gui.views.navigationview import NAVIGATION_REPOSITORY
 from gui.views.listview import ListView
 from gui.views.treemodels import RepositoryModel
 import Bookmarks
@@ -108,6 +109,9 @@ class RepositoryView(ListView):
 
         config.connect("interface.filter",
                           self.filter_toggle)
+
+    def navigation_type(self):
+        return NAVIGATION_REPOSITORY
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_repository_column_order(clist)
