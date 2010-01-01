@@ -125,6 +125,10 @@ class PlaceTreeView(PlaceBaseView):
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
             <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
+            <separator/>
             <menuitem action="GotoMap"/>
           </popup>
         </ui>'''

@@ -320,11 +320,12 @@ class PlaceBaseView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
-            <menuitem action="GotoMap"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
             </menu>
+            <separator/>
+            <menuitem action="GotoMap"/>
           </popup>
         </ui>'''
 
