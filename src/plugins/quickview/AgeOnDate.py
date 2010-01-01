@@ -68,7 +68,7 @@ def run(database, document, date):
                 diff_span = (date - birth_date)
                 if ((death_date is not None) or
                     (death_date is None and 
-                     int(diff_span)/12.0 <= config.get('behavior.max-age-prob-alive') * 365)):
+                     int(diff_span)/365.0 <= config.get('behavior.max-age-prob-alive'))):
                     birth_str = str(diff_span)
                     birth_sort = int(diff_span)
         if birth_str != "":
