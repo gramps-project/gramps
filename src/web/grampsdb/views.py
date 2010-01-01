@@ -166,15 +166,12 @@ def view_name_detail(request, handle, order, action="view"):
     elif action == "delete":
         person = Person.objects.get(handle=handle)
         names = person.name_set.all().order_by("order")
-        print "delete", names.count()
         if names.count() > 1:
-            print "more than 1"
             name_to_delete = names[0]
             was_preferred = name_to_delete.preferred
             name_to_delete.delete()
             names = person.name_set.all().order_by("order")
             for count in range(names[1:].count()):
-                print count
                 if was_preferred:
                     names[count].preferred = True
                     was_preferred = False
@@ -203,20 +200,16 @@ def view_name_detail(request, handle, order, action="view"):
         form.model = name
         if form.is_valid():
             # now it is preferred:
-            print "valid"
             if name.preferred: # was preferred, stil must be
                 form.cleaned_data["preferred"] = True
             elif form.cleaned_data["preferred"]: # now is
                 # set all of the other names to be 
                 # not preferred:
-                print "set"
                 person.name_set.filter(~ Q(id=name.id)) \
                     .update(preferred=False)
             # else some other name is preferred
-            print "save"
             set_date(name)
             n = form.save()
-            print n.preferred
         else:
             action = "edit"
     context = RequestContext(request)
@@ -230,7 +223,6 @@ def view_name_detail(request, handle, order, action="view"):
     context["order"] = name.order
     context["next"] = "/person/%s/name/%d" % (person.handle, name.order)
     view_template = "view_name_detail.html"
-    print "action:", action
     if action == "save":
         context["action"] = "view"
         return redirect("/person/%s/name/%d" % 
@@ -305,7 +297,6 @@ def view_detail(request, view, handle, action="view"):
 
 def view_person_detail(request, view, handle, action="view"):
     context = RequestContext(request)
-    print view, handle, action
     if handle == "add":
         if request.POST.has_key("action"):
             action = request.POST.get("action")
@@ -350,7 +341,6 @@ def view_person_detail(request, view, handle, action="view"):
             pf.model = person
             nf = NameFormFromPerson(request.POST, instance=name)
             nf.model = name
-            print "checking:", person.handle
             if nf.is_valid() and pf.is_valid():
                 person = pf.save()
                 name = nf.save(commit=False)
@@ -535,7 +525,6 @@ def view(request, view):
             # BEGIN NON-AUTHENTICATED users
             if request.GET.has_key("search"):
                 search = request.GET.get("search")
-                print "search:", search
                 if "," in search:
                     search_text, trash = [term.strip() for term in search.split(",", 1)]
                 else:

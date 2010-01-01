@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 import locale
+import sys
 
 #------------------------------------------------------------------------
 #
@@ -110,10 +111,10 @@ def get_person_from_handle(db, handle):
     try:
         return db.get_person_from_handle(handle)
     except:
-        print "error in get_person_from_handle:"
+        print >> sys.stderr, "error in get_person_from_handle:"
         import sys, traceback
         cla, exc, trbk = sys.exc_info()
-        print  _("Error") + (" : %s %s" %(cla, exc))
+        print  >> sys.stderr, _("Error") + (" : %s %s" %(cla, exc))
         traceback.print_exc()
         return None
 
