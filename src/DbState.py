@@ -25,10 +25,21 @@ Provide the database state class
 from gen.db import DbBsddbRead
 from gen.utils import Callback
 import config
-from gui.views.navigationview import (NAVIGATION_PERSON, NAVIGATION_FAMILY,
-                                      NAVIGATION_EVENT, NAVIGATION_PLACE,
-                                      NAVIGATION_SOURCE, NAVIGATION_REPOSITORY,
-                                      NAVIGATION_MEDIA, NAVIGATION_NOTE)
+# FIXME: this brings in gtk
+#from gui.views.navigationview import (NAVIGATION_PERSON, NAVIGATION_FAMILY,
+#                                      NAVIGATION_EVENT, NAVIGATION_PLACE,
+#                                      NAVIGATION_SOURCE, NAVIGATION_REPOSITORY,
+#                                      NAVIGATION_MEDIA, NAVIGATION_NOTE)
+NAVIGATION_NONE = -1
+NAVIGATION_PERSON = 0
+NAVIGATION_FAMILY = 1
+NAVIGATION_EVENT = 2
+NAVIGATION_PLACE = 3
+NAVIGATION_SOURCE = 4
+NAVIGATION_REPOSITORY = 5
+NAVIGATION_MEDIA = 6
+NAVIGATION_NOTE = 7
+
 ACTIVE_SIGNALS = ['person-active',
                   'family-active',
                   'event-active',
