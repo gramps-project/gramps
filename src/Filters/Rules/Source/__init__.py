@@ -37,6 +37,7 @@ from _SourcePrivate import SourcePrivate
 from _MatchesFilter import MatchesFilter
 from _HasSource import HasSource
 from _ChangedSince import ChangedSince
+from _HasRepository import HasRepository
 
 editor_rule_list = [
     AllSources,
@@ -50,4 +51,5 @@ editor_rule_list = [
     SourcePrivate,
     MatchesFilter,
     ChangedSince,
+    HasRepository
 ]

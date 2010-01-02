@@ -15,6 +15,7 @@ pkgdata_PYTHON = \
 	_HasSource.py\
 	_HasNote.py \
 	_HasNoteRegexp.py\
+	_HasRepository.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Source
