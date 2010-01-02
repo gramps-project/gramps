@@ -36,6 +36,8 @@ from django.contrib.contenttypes import generic
 from gen.lib.date import Date as GDate, Today
 from Utils import create_id, create_uid
 
+from web.grampsdb.profile import Profile
+
 #---------------------------------------------------------------------------
 #
 # Support functions
@@ -290,7 +292,21 @@ class DateNewYearType(mGrampsType):
 
     _DEFAULT = _DATAMAP[NEWYEAR_JAN1]
     val = models.IntegerField('New Year start date', choices=_DATAMAP, blank=False)
-    
+
+class ThemeType(mGrampsType):
+    _DATAMAP = list(enumerate(["Web_Mainz.css",
+                          "Web_Basic-Ash.css",
+                          "Web_Basic-Cypress.css",
+                          "Web_Nebraska.css",
+                          "Web_Basic-Lilac.css",
+                          "Web_Print-Default.css",
+                          "Web_Basic-Peach.css",
+                          "Web_Visually.css",
+                          "Web_Basic-Spruce.css",]))
+
+    _DEFAULT = _DATAMAP[0]
+    val = models.IntegerField('Theme', choices=_DATAMAP, blank=False)
+
 #---------------------------------------------------------------------------
 #
 # Support definitions
@@ -737,6 +753,7 @@ TABLES = [
     ("type", GenderType),
     ("type", LdsType),
     ("type", LdsStatus),
+    ("type", ThemeType),
     ("abstract", DateObject),
     ("meta", Config),
     ("abstract", PrimaryObject),

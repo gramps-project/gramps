@@ -111,6 +111,8 @@ DEBUG_TOOLBAR_CONFIG = {
     'HIDE_DJANGO_SQL': False,
     }
 
+AUTH_PROFILE_MODULE = "grampsdb.Profile"
+
 # Had to add these to use settings.configure():
 DATABASE_OPTIONS = ''
 URL_VALIDATOR_USER_AGENT = ''

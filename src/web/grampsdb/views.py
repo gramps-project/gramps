@@ -65,26 +65,18 @@ def context_processor(request):
     This function is executed before template processing.
     takes a request, and returns a dictionary context.
     """
-    # FIXME: make the css_theme based on user's selection
     context = {}
-    context["css_theme"] = "Web_Mainz.css"
-    # FIXME: get the views from a config?
+    if request.user.is_authenticated():
+        profile = request.user.get_profile()
+        context["css_theme"] = profile.css_theme
+    else:
+        context["css_theme"] = "Web_Mainz.css"
+    # Other things for all environments:
     context["views"] = VIEWS
     context["True"] = True
     context["False"] = False
     context["default"] = ""
     return context
-
-# CSS Themes:
-#Web_Basic-Ash.css
-#Web_Mainz.css
-#Web_Basic-Cypress.css
-#Web_Nebraska.css
-#Web_Basic-Lilac.css
-#Web_Print-Default.css
-#Web_Basic-Peach.css
-#Web_Visually.css
-#Web_Basic-Spruce.css
 
 def main_page(request):
     context = RequestContext(request)

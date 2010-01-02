@@ -43,7 +43,8 @@ from gen.lib.srcmediatype import SourceMediaType
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.notetype import NoteType
 
-from grampsdb.models import GenderType, LdsType, LdsStatus, NameFormatType
+from grampsdb.models import (GenderType, LdsType, LdsStatus, 
+                             NameFormatType, ThemeType)
 
 def get_datamap(x):
     """

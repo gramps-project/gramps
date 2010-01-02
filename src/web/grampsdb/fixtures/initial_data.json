@@ -18,7 +18,7 @@
             "setting"   : "db_created" ,
             "description"   : "database creation date/time" ,
             "value_type"   : "str" ,
-            "value"   : "2010-01-01 10:12"
+            "value"   : "2010-01-02 11:30"
          }
    },
    {
