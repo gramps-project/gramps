@@ -23,16 +23,16 @@
 </tr>
 <tr>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{family.father.handle}}">{{family.father|make_name:user}} [{{family.father.gramps_id|escape}}]</a></td>
+ <td class="ColumnValue" id="data"><a href="/person/{{family.father.handle}}">{{family.father|render_name:user}} [{{family.father.gramps_id}}]</a></td>
  <td class="ColumnAttribute">Name:</td>
- <td class="ColumnValue" id="data"><a href="/person/{{family.mother.handle}}">{{family.mother|make_name:user}} [{{family.mother.gramps_id|escape}}]</a></td>
+ <td class="ColumnValue" id="data"><a href="/person/{{family.mother.handle}}">{{family.mother|render_name:user}} [{{family.mother.gramps_id}}]</a></td>
 </tr>
-{% if user.is_authenticated or not family.father.handle|probably_alive %}
+{% if user.is_authenticated or not family.father.probably_alive %}
 <tr>
  <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">{{family.father|person_get_birth_date}}</td>
+ <td class="ColumnValue" id="data">{{family.father.birth|render_date:user}}</td>
  <td class="ColumnAttribute">Birth:</td>
- <td class="ColumnValue" id="data">{{family.mother|person_get_birth_date}}</td>
+ <td class="ColumnValue" id="data">{{family.mother.birth|render_date:user}}</td>
 </tr>
 {% else %}
 <tr>
@@ -44,24 +44,28 @@
 {% endif %}
 <tr>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{family.father|person_get_death_date}}</td>
+ <td class="ColumnValue" id="data">{{family.father.death|render_date:user}}</td>
  <td class="ColumnAttribute">Death:</td>
- <td class="ColumnValue" id="data">{{family.mother|person_get_death_date}}</td>
+ <td class="ColumnValue" id="data">{{family.mother.death|render_date:user}}</td>
 </tr>
 </tbody>
 </table>
-<table class="infolist"> {% comment %} 6 cols {% endcomment %}
+<table class="infolist"> 
 <tbody>
 <tr>
-  <th colspan="6">Relationship information</th>
+  <th colspan="4">Relationship information</th>
 </tr>
 <tr>
  <td class="ColumnAttribute">ID:</td>
- <td class="ColumnValue" id="data">{{family.gramps_id|escape}}</td>
+ <td class="ColumnValue" id="data">{{family.gramps_id}}</td>
  <td class="ColumnAttribute">Type:</td>
  <td class="ColumnValue" id="data">RELTYPE</td>
+</tr>
+<tr>
  <td class="ColumnAttribute">Marker:</td>
- <td class="ColumnValue" id="data">{{family.marker_type|escape}}</td>
+ <td class="ColumnValue" id="data">{{family.marker_type}}</td>
+ <td class="ColumnAttribute">Private:</td>
+ <td class="ColumnValue" id="data">{{family.private}}</td>
 </tr>
 </tbody>
 </table>

@@ -20,17 +20,21 @@
     <td>{{ forloop.counter|row_count:page }}</td>
     <td><a href="/{{view}}/{{event.handle|escape}}" class="noThumb">
            <span class="grampsid">[{{event.gramps_id}}]</span></a>
+
     {% if user.is_authenticated %}
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.event_type|escape}}</a>
+
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event.event_type|nbsp}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event.description|nbsp}}</a>
-    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|display_date|nbsp}}</a>
+    <td><a href="/{{view}}/{{event.handle|escape}}">{{event|render_date:user}}</a>
     <td><a href="/{{view}}/{{event.handle|escape}}">{{event.place.title|nbsp}}</a>
+
     {% else %}
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>[Private]</td>
+      <td>[Private]</td>
+      <td>[Private]</td>
+      <td>[Private]</td>
     {% endif %}
+
   </tr>
   {% endfor %}
 </tbody>

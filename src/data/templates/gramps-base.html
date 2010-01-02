@@ -34,7 +34,11 @@
          <li class="{{tview|currentSection:view.1 }}"><a href="/{{view.1}}/">{{view.0}}</a></li>
     {% endfor %}
     {% if user.is_authenticated %}
+	 {% if next %}
+         <li><a href="/logout/?next={{next}}">Logout</a></li>
+	 {% else %}
          <li><a href="/logout">Logout</a></li>
+	 {% endif %}
        {% if user.is_superuser %}
          <li><a href="/admin">Admin</a></li>
        {% endif %}

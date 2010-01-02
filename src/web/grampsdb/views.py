@@ -97,6 +97,9 @@ def logout_page(request):
     context["view"] = 'home'
     context["tview"] = _('Home')
     logout(request)
+    # TODO: allow this once we have an error page
+    #if request.GET.has_key("next"):
+    #    return redirect(request.GET.get("next"), context)
     return HttpResponseRedirect('/')
 
 def user_page(request, username):
@@ -626,7 +629,7 @@ def view(request, view):
     context["search"] = search
     context["total"] = total
     context["object_list"] = object_list
-    context["next"] = "/person/"
+    context["next"] = "/%s/" % view
     if search:
         context["search_query"] = ("&search=%s" % search)
     else:

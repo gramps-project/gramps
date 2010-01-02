@@ -449,11 +449,40 @@ def children_table(obj, user, action, url=None, *args):
         _("Maternal"),
         _("Birth Date"),
         )
-    #if user.is_authenticated():
-    #for djfamily:
-    #    table.row("test")
+
+    family = obj
+    obj_type = ContentType.objects.get_for_model(family)
+    childrefs = dji.ChildRef.filter(object_id=family.id,
+                                    object_type=obj_type).order_by("order")
+    links = []
+    count = 1
+    for childref in childrefs:
+        child = childref.ref_object
+        if user.is_authenticated():
+            table.row(str(count), 
+                      "[%s]" % child.gramps_id,
+                      render_name(child, user),
+                      child.gender_type,
+                      childref.father_rel_type,
+                      childref.mother_rel_type,
+                      render_date(child.birth, user),
+                      )
+            links.append(('URL', ("/person/%s" % child.handle)))
+        else:
+            table.row(str(count), 
+                      "[%s]" % child.gramps_id,
+                      render_name(child, user),
+                      child.gender_type,
+                      "[Private]",
+                      "[Private]",
+                      "[Private]",
+                      )
+            links.append(('URL', ("/person/%s" % child.handle)))
+        count += 1
+    table.links(links)
+    retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
-    return table.get_html()
+    return retval
 
 ## FIXME: these dji function wrappers just use the functions
 ## written for the import/export. Can be done much more directly.
