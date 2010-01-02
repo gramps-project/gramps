@@ -160,12 +160,7 @@ class NavigationView(PageView):
         """
         Changes the active object.
         """
-        if self.navigation_type() == NAVIGATION_PERSON:
-            if handle is None:
-                self.dbstate.change_active_person(None)
-            else:
-                person = self.dbstate.db.get_person_from_handle(handle)
-                self.dbstate.change_active_person(person)
+        self.dbstate.set_active(self.navigation_type(), handle)
 
     def goto_handle(self, handle):
         """
