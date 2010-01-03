@@ -527,7 +527,7 @@ class PeopleModel(gtk.GenericTreeModel):
             GrampsLocale.codeset)
 
     def column_gender(self, data, node):
-        return PeopleModel._GENDER[data[PeopleModel._GENDER_COL]]
+        return unicode(PeopleModel._GENDER[data[PeopleModel._GENDER_COL]])
 
     def column_birth_day(self, data, node):
         try:

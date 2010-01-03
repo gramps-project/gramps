@@ -104,7 +104,7 @@ class RepositoryModel(BaseModel):
         return unicode(data[1])
 
     def column_type(self,data):
-        return str(gen.lib.RepositoryType(data[2]))
+        return unicode(gen.lib.RepositoryType(data[2]))
 
     def column_name(self,data):
         return unicode(data[3])
