@@ -42,7 +42,5 @@ def save_profile(sender, instance, created, **kwargs):
     if created:
         profile = Profile(user=instance)
         profile.save()
-    else:
-        print sender
 
 post_save.connect(save_profile, sender=User)
