@@ -1409,7 +1409,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         # Reference to the source
         self.__writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
         if ref.get_page() != "":
-            self.__writeln(level+1, 'PAGE', ref.get_page())
+        # PAGE <WHERE_WITHIN_SOURCE> can not have CONC lines.
+        # WHERE_WITHIN_SOURCE:= {Size=1:248}
+        # Maximize line to 248 and set limit to 248, for no line split
+            self.__writeln(level+1, 'PAGE', ref.get_page()[0:248], limit=248)
 
         conf = min(ref.get_confidence_level(), gen.lib.SourceRef.CONF_VERY_HIGH)
         if conf != gen.lib.SourceRef.CONF_NORMAL and conf != -1:
