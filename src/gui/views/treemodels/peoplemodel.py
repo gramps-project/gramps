@@ -229,7 +229,7 @@ class PeopleModel(TreeBaseModel):
             GrampsLocale.codeset)
 
     def column_gender(self, data):
-        return PeopleModel._GENDER[data[COLUMN_GENDER]]
+        return unicode(PeopleModel._GENDER[data[COLUMN_GENDER]])
 
     def column_birth_day(self, data):
         handle = data[0]

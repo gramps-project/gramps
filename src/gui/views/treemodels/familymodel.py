@@ -127,7 +127,7 @@ class FamilyModel(FlatBaseModel):
             return u""
 
     def column_type(self, data):
-        return str(gen.lib.FamilyRelType(data[5]))
+        return unicode(gen.lib.FamilyRelType(data[5]))
 
     def column_marriage(self, data):
         erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]

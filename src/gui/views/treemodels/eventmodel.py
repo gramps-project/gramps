@@ -113,7 +113,7 @@ class EventModel(FlatBaseModel):
             return u''
 
     def column_type(self,data):
-        return str(gen.lib.EventType(data[COLUMN_TYPE]))
+        return unicode(gen.lib.EventType(data[COLUMN_TYPE]))
 
     def column_id(self,data):
         return unicode(data[COLUMN_ID])
