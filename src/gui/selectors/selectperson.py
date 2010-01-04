@@ -62,7 +62,6 @@ class SelectPerson(BaseSelector):
         self.width_key = 'interface.person-sel-width'
         self.height_key = 'interface.person-sel-height'
         self.tree.connect('key-press-event', self._key_press)
-        self.showall.connect('toggled',self.show_toggle)
 
     def get_window_title(self):
         return _("Select Person")

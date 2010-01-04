@@ -592,7 +592,7 @@ class GuiFamilyOption(gtk.HBox):
         sel = select_class(self.__dbstate, self.__uistate, self.__track, 
                            filter=rfilter )
         family = sel.run()
-        self.__update_family(family)
+        self.__update_family(family.get_handle())
     
     def __update_family(self, handle):
         """

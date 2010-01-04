@@ -110,8 +110,9 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.show()
         #show or hide search bar?
         self.set_show_search_bar(show_search_bar)
-        #Hide showall always (used in person selector only)
+        #Hide showall if no filter is specified
         if self.filter[1] is not None:
+            self.showall.connect('toggled', self.show_toggle)
             self.showall.show()
         else:
             self.showall.hide()
