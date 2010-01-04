@@ -55,7 +55,7 @@ import ManagedWindow
 from QuestionDialog import OptionDialog
 from gui.selectors import SelectorFactory
 from BasicUtils import name_displayer as _nd
-from Filters import GenericFilter, Rules
+from Filters import GenericFilterFactory, GenericFilter, Rules
 import gen
 
 #------------------------------------------------------------------------
@@ -561,7 +561,7 @@ class GuiFamilyOption(gtk.HBox):
         Handle the button to choose a different family.
         """
         # Create a filter for the person selector.
-        rfilter = GenericFilter()
+        rfilter = GenericFilterFactory('Family')()
         rfilter.set_logical_op('or')
         
         # Add the current family
