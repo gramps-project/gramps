@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2008       Gary Burton
+# Copyright (C) 2008,2010  Gary Burton
 # Copyright (C) 2008       Craig J. Anderson
 # Copyright (C) 2009       Nick Hall
 #
@@ -592,7 +592,8 @@ class GuiFamilyOption(gtk.HBox):
         sel = select_class(self.__dbstate, self.__uistate, self.__track, 
                            filter=rfilter )
         family = sel.run()
-        self.__update_family(family.get_handle())
+        if family:
+            self.__update_family(family.get_handle())
     
     def __update_family(self, handle):
         """
