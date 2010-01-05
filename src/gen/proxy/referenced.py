@@ -118,6 +118,24 @@ class ReferencedProxyDb(ProxyDbBase):
             elif class_name == 'Family':
                 if not self.get_family_from_handle(handle):
                     continue
+            elif class_name == 'Event':
+                if handle in self.unreferenced_events:
+                    continue
+            elif class_name == 'Place':
+                if handle in self.unreferenced_places:
+                    continue
+            elif class_name == 'Source':
+                if handle in self.unreferenced_sources:
+                    continue
+            elif class_name == 'Repository':
+                if handle in self.unreferenced_repositories:
+                    continue
+            elif class_name == 'MediaObject':
+                if handle in self.unreferenced_media_objects:
+                    continue
+            elif class_name == 'Note':
+                if handle in self.unreferenced_notes:
+                    continue
             yield (class_name, handle)
         return
 
@@ -152,10 +170,9 @@ class ReferencedProxyDb(ProxyDbBase):
             for object_type, object_dict in object_types.iteritems():
                 unref_list = object_dict['unref_list']
                 handle_list = object_dict['handle_list']()
-                for handle in handle_list:
-                    if (handle not in unref_list and
-                        not any(self.find_backlink_handles(handle)) ):
-                            unref_list.add(handle)
+                unref_list.update(
+                    handle for handle in handle_list
+                        if not any(self.find_backlink_handles(handle)))
                 current_count += len(unref_list)
 
             if current_count == last_count:
