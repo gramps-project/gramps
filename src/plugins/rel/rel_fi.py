@@ -213,3 +213,19 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return (self.get_ancestors_cousin(secondRel,firstRel),common)
         else:
             return (self.get_cousins_descendant(other_person,firstRel,secondRel),common)
+
+if __name__ == "__main__":
+
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src
+    # python src/plugins/rel/rel_fi.py
+    # (Above not needed here)
+
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel/rel_xx.py
+    """
+    from Relationship import test
+    RC = RelationshipCalculator()
+    test(RC, True)

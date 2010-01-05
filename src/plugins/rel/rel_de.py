@@ -281,12 +281,12 @@ if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src 
-    # python src/plugins/rel_fr.py 
+    # python src/plugins/rel/rel_de.py 
     # (Above not needed here)
 
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
-        python src/plugins/rel_xx.py
+        python src/plugins/rel/rel_xx.py
     """
     from Relationship import test
     rc = RelationshipCalculator()
