@@ -19,7 +19,9 @@
 #
 
 # $Id:Relationship.py 9912 2008-01-22 09:17:46Z acraphae $
-
+"""
+Classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # python modules
@@ -791,7 +793,7 @@ class RelationshipCalculator(object):
             self.__apply_filter(db, other_person, '', [], secondMap,
                                     stoprecursemap = firstMap)
         except RuntimeError:
-            return (-1,None,-1,[],-1,[] ) , \
+            return (-1, None, -1, [], -1, []) , \
                             [_("Relationship loop detected")] + self.__msg
 
         if self.storemap:
@@ -815,8 +817,8 @@ class RelationshipCalculator(object):
                 #insert common ancestor in correct position,
                 #  if shorter links, check if not subset
                 #  if longer links, check if not superset
-                pos=0
-                for ranknew, handlenew,rel1new,fam1new,rel2new,fam2new in com :
+                pos = 0
+                for ranknew, handlenew, rel1new, fam1new, rel2new, fam2new in com :
                     insert = True
                     for rank, handle, rel1, fam1, rel2, fam2 in common :
                         if ranknew < rank : 
@@ -832,14 +834,14 @@ class RelationshipCalculator(object):
                     if insert :
                         if common :
                             common.insert(pos, (ranknew, handlenew,
-                                    rel1new, fam1new,rel2new,fam2new))
+                                    rel1new, fam1new, rel2new, fam2new))
                         else:
                             common = [(ranknew, handlenew,
                                     rel1new, fam1new, rel2new, fam2new)]
                         #now check if superset must be deleted from common
-                        deletelist=[]
+                        deletelist = []
                         index = pos+1
-                        for rank, handle,rel1,fam1,rel2,fam2 in common[pos+1:]:
+                        for rank, handle, rel1, fam1, rel2, fam2 in common[pos+1:]:
                             if rel1new == rel1[:len(rel1new)] and \
                                     rel2new == rel2[:len(rel2new)] :
                                 deletelist.append(index)
@@ -860,16 +862,16 @@ class RelationshipCalculator(object):
             firstFam      = common[0][3]
             secondRel     = common[0][4]
             secondFam     = common[0][5]
-            return (rank,person_handle,firstRel,firstFam,secondRel,secondFam),\
+            return (rank, person_handle, firstRel, firstFam, secondRel, secondFam),\
                         self.__msg
         if common : 
             #list with tuples (rank, handle person,rel_str_orig,rel_fam_orig,
             #       rel_str_other,rel_fam_str) and messages
             return common, self.__msg
         if not self.__all_dist :
-            return  (-1,None,'',[],'',[]), self.__msg
+            return  (-1, None, '', [], '', []), self.__msg
         else :
-            return [(-1,None,'',[],'',[])], self.__msg
+            return [(-1, None, '', [], '', [])], self.__msg
     
     def __apply_filter(self, db, person, rel_str, rel_fam, pmap,
                             depth=1, stoprecursemap=None):
@@ -927,7 +929,7 @@ class RelationshipCalculator(object):
                                  rel2[len(rel1):])]
                         return
         elif store:
-            pmap[person.handle] = [[rel_str],[rel_fam]]
+            pmap[person.handle] = [[rel_str], [rel_fam]]
             
         #having added person to the pmap, we only look up recursively to 
         # parents if this person is not common relative
@@ -999,7 +1001,7 @@ class RelationshipCalculator(object):
                             pmap[chandle][1] += [rel_fam_new]
                             #person is already a grandparent in another branch
                         else:
-                            pmap[chandle] = [[rel_str+addstr],[rel_fam_new]]
+                            pmap[chandle] = [[rel_str+addstr], [rel_fam_new]]
                 fam += 1
 
             for handle, data in parentstodo.iteritems():
@@ -1899,7 +1901,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting nieces\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstr = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(1, i,
                                             gen.lib.Person.FEMALE, 
@@ -1913,7 +1915,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting nephews\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(1, i,
                                             gen.lib.Person.FEMALE, 
@@ -1927,7 +1929,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting unknown nephews/nieces\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(1, i,
                                             gen.lib.Person.FEMALE, 
@@ -1941,7 +1943,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting uncles\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, 1,
                                             gen.lib.Person.FEMALE, 
@@ -1955,7 +1957,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting aunts\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, 1,
                                             gen.lib.Person.MALE, 
@@ -1969,7 +1971,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting unknown uncles/aunts\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstr = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(i, 1,
                                             gen.lib.Person.MALE, 
@@ -1983,7 +1985,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting male cousins same generation\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstra = _rand_relstr(i,'f')
         relstrb = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, i,
@@ -1999,7 +2001,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting female cousins same generation\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstra = _rand_relstr(i,'m')
         relstrb = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(i, i,
@@ -2015,7 +2017,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
             print rel
     print '\n\ntesting unknown cousins same generation\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
+    for i in range(1, MAX) :
         relstra = _rand_relstr(i,'m')
         relstrb = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(i, i,
@@ -2033,8 +2035,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     sys.stdin.readline()
     import random
     random.seed()
-    for i in range(1,MAX) :
-        for j in range (i,MAX) :
+    for i in range(1, MAX) :
+        for j in range (i, MAX) :
             rnd = random.randint(0, 100)
             if rnd < 10 :
                 relstra = _rand_relstr(j,'f')
@@ -2065,8 +2067,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                         print rel
     print '\n\ntesting some cousins down\n'
     sys.stdin.readline()
-    for i in range(1,MAX) :
-        for j in range (i,MAX) :
+    for i in range(1, MAX) :
+        for j in range (i, MAX) :
             rnd = random.randint(0, 100)
             if rnd < 10 :
                 relstra = _rand_relstr(i,'f')
