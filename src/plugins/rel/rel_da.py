@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2003-2005  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Andrew I Baznikin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -123,7 +124,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('sønne')
             else:
                 result.append('datter')
-        if person.get_gender() == gen.lib.Person.MALE:
+        if person == gen.lib.Person.MALE:
             result.append('søn')
         else:
             result.append('datter')
@@ -146,47 +147,21 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     result.append('sønne')
                 else:
                     result.append('datter')
-            if person.get_gender() == gen.lib.Person.MALE:
+            if person == gen.lib.Person.MALE:
                 result.append('søn')
             else:
                 result.append('datter')
         else:
-            if person.get_gender() == gen.lib.Person.MALE:
+            if person == gen.lib.Person.MALE:
                 result.append('bror')
             else:
                 result.append('søster')
         return self.pair_up(result)
 
-    def get_relationship(self,db, orig_person, other_person):
-        """
-        Return a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-    
-        Special cases: relation strings "", "undefined" and "spouse".
-        """
+    def get_relationship(self,
+                        secondRel, firstRel, orig_person, other_person):
 
-        if orig_person is None:
-            return ("undefined",[])
-    
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return (is_spouse,[])
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = \
-                     self.get_relationship_distance(db, orig_person, other_person)
-
-        if isinstance(common, basestring):
-            return (common,[])
-        elif common:
-            person_handle = common[0]
-        else:
-            return ("",[])
-
+        common = ""
         if not firstRel:
             if not secondRel:
                 return ('',common)
@@ -196,6 +171,16 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return (self.get_direct_descendant(other_person,firstRel),common)
         else:
             return (self.get_two_way_rel(other_person,firstRel,secondRel),common)
+
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                    reltocommon_a, reltocommon_b,
+                                    only_birth=True, 
+                                    in_law_a=False, in_law_b=False):
+        return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0];
+ 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+        return self.get_two_way_rel(gender_b,"","")
 
 if __name__ == "__main__":
 
