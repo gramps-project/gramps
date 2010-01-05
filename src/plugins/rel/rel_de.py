@@ -29,7 +29,9 @@
 # http://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
 # Rewritten from scratch for GRAMPS 3 by Stefan Siegel,
 # loosely based on rel_fr.py
-
+"""
+German-specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -126,6 +128,9 @@ _schwippschwager = {
 #-------------------------------------------------------------------------
 
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 

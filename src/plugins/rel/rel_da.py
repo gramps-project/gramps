@@ -25,7 +25,9 @@
 
 # Written by Alex Roitman, largely based on Relationship.py by Don Allingham
 # and on valuable input from Lars Kr. Lundin
-
+"""
+Specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -75,19 +77,22 @@ _niece_level = [ "", "niecen", "næstsøskendebarnet", "søsterens barnebarn", ]
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def get_parents(self,level):
-        if level>len(_parents_level)-1:
+    def get_parents(self, level):
+        if level > len(_parents_level)-1:
             #return "fjern forfader"
             #Instead of "remote ancestors" using "tip (level) oldeforældre" here.
             return "tip (%d) oldeforældre" % level
         else:
             return _parents_level[level]
 
-    def pair_up(self,rel_list):
+    def pair_up(self, rel_list):
         result = []
         item = ""
         for word in rel_list[:]:
@@ -108,7 +113,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         gen_result = [ item + 's' for item in result[0:-1] ]
         return ' '.join(gen_result+result[-1:])
 
-    def get_direct_ancestor(self,person,rel_string):
+    def get_direct_ancestor(self, person, rel_string):
         result = []
         for ix in range(len(rel_string)):
             if rel_string[ix] == 'f':
@@ -117,9 +122,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('mor')
         return self.pair_up(result)
 
-    def get_direct_descendant(self,person,rel_string):
+    def get_direct_descendant(self, person, rel_string):
         result = []
-        for ix in range(len(rel_string)-2,-1,-1):
+        for ix in range(len(rel_string)-2, -1, -1):
             if rel_string[ix] == 'f':
                 result.append('sønne')
             else:
@@ -130,19 +135,19 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('datter')
         return self.pair_up(result)
 
-    def get_two_way_rel(self,person,first_rel_string,second_rel_string):
+    def get_two_way_rel(self, person, first_rel_string, second_rel_string):
         result = []
         for ix in range(len(second_rel_string)-1):
             if second_rel_string[ix] == 'f':
                 result.append('far')
             else:
                 result.append('mor')
-        if len(first_rel_string)>1:
+        if len(first_rel_string) > 1:
             if first_rel_string[-2] == 'f':
                 result.append('bror')
             else:
                 result.append('søster')
-            for ix in range(len(first_rel_string)-3,-1,-1):
+            for ix in range(len(first_rel_string)-3, -1, -1):
                 if first_rel_string[ix] == 'f':
                     result.append('sønne')
                 else:
@@ -164,23 +169,23 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         common = ""
         if not firstRel:
             if not secondRel:
-                return ('',common)
+                return ('', common)
             else:
-                return (self.get_direct_ancestor(other_person,secondRel),common)
+                return (self.get_direct_ancestor(other_person, secondRel), common)
         elif not secondRel:
-            return (self.get_direct_descendant(other_person,firstRel),common)
+            return (self.get_direct_descendant(other_person, firstRel), common)
         else:
-            return (self.get_two_way_rel(other_person,firstRel,secondRel),common)
+            return (self.get_two_way_rel(other_person, firstRel, secondRel), common)
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                     reltocommon_a, reltocommon_b,
                                     only_birth=True, 
                                     in_law_a=False, in_law_b=False):
-        return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0];
+        return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0]
  
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
-        return self.get_two_way_rel(gender_b,"","")
+        return self.get_two_way_rel(gender_b, "", "")
 
 if __name__ == "__main__":
 
