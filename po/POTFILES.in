@@ -75,7 +75,6 @@ src/gen/db/cursor.py
 src/gen/db/exceptions.py
 src/gen/db/dbconst.py
 src/gen/db/__init__.py
-src/gen/db/iterator.py
 src/gen/db/undoredo.py
 
 # gen lib API

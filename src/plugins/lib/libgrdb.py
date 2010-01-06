@@ -50,7 +50,6 @@ LOG = logging.getLogger(".Db")
 from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
                      Repository, Note, GenderStats, Researcher)
 from gen.utils.callback import Callback
-from gen.db.iterator import CursorIterator
 
 #-------------------------------------------------------------------------
 #
@@ -323,50 +322,26 @@ class DbGrdb(Callback):
     def get_person_cursor(self):
         raise NotImplementedError
 
-    def get_person_cursor_iter(self, msg=_("Processing Person records")):
-        return CursorIterator(self, self.get_person_cursor(), msg)
-
     def get_family_cursor(self):
         raise NotImplementedError
-
-    def get_family_cursor_iter(self, msg=_("Processing Family records")):
-        return CursorIterator(self, self.get_family_cursor(), msg)
 
     def get_event_cursor(self):
         raise NotImplementedError
 
-    def get_event_cursor_iter(self, msg=_("Processing Event records")):
-        return CursorIterator(self, self.get_event_cursor(), msg)
-
     def get_place_cursor(self):
         raise NotImplementedError
-
-    def get_place_cursor_iter(self, msg=_("Processing Place records")):
-        return CursorIterator(self, self.get_place_cursor(), msg)
 
     def get_source_cursor(self):
         raise NotImplementedError
 
-    def get_source_cursor_iter(self, msg=_("Processing Source records")):
-        return CursorIterator(self, self.get_source_cursor(), msg)
-
     def get_media_cursor(self):
         raise NotImplementedError
-
-    def get_media_cursor_iter(self, msg=_("Processing Media records")):
-        return CursorIterator(self, self.get_media_cursor(), msg)
 
     def get_repository_cursor(self):
         raise NotImplementedError
 
-    def get_repository_cursor_iter(self, msg=_("Processing Repository records")):
-        return CursorIterator(self, self.get_repository_cursor(), msg)
-
     def get_note_cursor(self):
         raise NotImplementedError
-
-    def get_note_cursor_iter(self, msg=_("Processing Note records")):
-        return CursorIterator(self, self.get_note_cursor(), msg)
 
     def open_undodb(self):
         if not self.readonly:

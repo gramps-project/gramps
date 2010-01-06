@@ -13,7 +13,6 @@ pkgdata_PYTHON = \
 	cursor.py \
 	dbconst.py \
 	exceptions.py \
-	iterator.py \
 	read.py \
 	txn.py \
 	undoredo.py \
