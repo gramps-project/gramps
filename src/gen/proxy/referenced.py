@@ -110,33 +110,29 @@ class ReferencedProxyDb(ProxyDbBase):
 
         >    result_list = list(find_backlink_handles(handle))
         """
+
+        perfam = {
+                    "Person" : self.get_person_from_handle,
+                    "Family" : self.get_family_from_handle,
+                 }
+
+        unref = {
+                    "Event"         : self.unreferenced_events,
+                    "Place"         : self.unreferenced_places,
+                    "Source"        : self.unreferenced_sources,
+                    "Repository"    : self.unreferenced_repositories,
+                    "MediaObject"   : self.unreferenced_media_objects,
+                    "Note"          : self.unreferenced_notes,
+                }
+                
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for (class_name, handle) in handle_itr:
-            if class_name == 'Person':  
-                if not self.get_person_from_handle(handle):
-                    continue
-            elif class_name == 'Family':
-                if not self.get_family_from_handle(handle):
-                    continue
-            elif class_name == 'Event':
-                if handle in self.unreferenced_events:
-                    continue
-            elif class_name == 'Place':
-                if handle in self.unreferenced_places:
-                    continue
-            elif class_name == 'Source':
-                if handle in self.unreferenced_sources:
-                    continue
-            elif class_name == 'Repository':
-                if handle in self.unreferenced_repositories:
-                    continue
-            elif class_name == 'MediaObject':
-                if handle in self.unreferenced_media_objects:
-                    continue
-            elif class_name == 'Note':
-                if handle in self.unreferenced_notes:
-                    continue
-            yield (class_name, handle)
+            if (class_name in perfam                # Person or Family exist?
+                    and perfam[class_name](handle)
+                or class_name in unref               # not yet in unref?
+                    and handle not in unref[class_name]):
+
+                        yield (class_name, handle)
         return
 
     def __find_unreferenced_objects(self):
