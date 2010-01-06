@@ -58,8 +58,6 @@ src/gen/__init__.py
 src/gen/utils/__init__.py
 src/gen/utils/callback.py
 src/gen/utils/callman.py
-src/gen/utils/longop.py
-src/gen/utils/progressmon.py
 
 # gen proxy API
 src/gen/proxy/living.py
@@ -295,6 +293,7 @@ src/gui/widgets/buttons.py
 src/gui/widgets/expandcollapsearrow.py
 src/gui/widgets/labels.py
 src/gui/widgets/menutoolbuttonaction.py
+src/gui/widgets/progressdialog.py
 src/gui/widgets/styledtexteditor.py
 src/gui/widgets/validatedmaskedentry.py
 

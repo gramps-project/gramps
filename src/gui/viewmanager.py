@@ -77,11 +77,10 @@ from gui import widgets
 import UndoHistory
 from gui.dbloader import DbLoader
 import GrampsDisplay
-from gen.utils import ProgressMonitor
+from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
-import ProgressDialog
 
 #-------------------------------------------------------------------------
 #
@@ -324,7 +323,7 @@ class ViewManager(CLIManager):
         vbox.show()
 
         self.progress_monitor = ProgressMonitor(
-            ProgressDialog.GtkProgressDialog, ("", self.window))
+            GtkProgressDialog, ("", self.window))
 
         self.uistate = DisplayState.DisplayState(
             self.window, self.statusbar, self.progress, self.warnbtn, 

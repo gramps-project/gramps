@@ -24,6 +24,4 @@ Generic utilities useful for users of the gen package
 
 from fallback import *
 from configmanager import ConfigManager
-from progressmon import ProgressMonitor
-from longop import LongOpStatus
 from callback import Callback

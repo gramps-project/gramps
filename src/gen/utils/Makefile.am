@@ -10,9 +10,7 @@ pkgdata_PYTHON = \
 	callback.py \
 	callman.py \
 	configmanager.py \
-	fallback.py \
-	progressmon.py \
-	longop.py
+	fallback.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/utils
 pkgpythondir = @pkgpythondir@/gen/utils

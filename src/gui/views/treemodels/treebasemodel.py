@@ -51,7 +51,7 @@ import gtk
 #-------------------------------------------------------------------------
 import config
 from Utils import conv_unicode_tosrtkey_ongtk
-from gen.utils.longop import LongOpStatus
+from gui.widgets.progressdialog import LongOpStatus
 from Lru import LRU
 from bisect import bisect_right
 from Filters import SearchFilter, ExactSearchFilter
