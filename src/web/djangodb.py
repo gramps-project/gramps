@@ -29,12 +29,56 @@
 import web
 import gen
 from gen.db import DbReadBase, DbWriteBase
+from gen.db import (PERSON_KEY,
+                    FAMILY_KEY,
+                    SOURCE_KEY,
+                    EVENT_KEY,
+                    MEDIA_KEY,
+                    PLACE_KEY,
+                    REPOSITORY_KEY,
+                    NOTE_KEY)
 from web.libdjango import DjangoInterface
 
+# Example for running a report:
 # from ReportBase._CommandLineReport import run_report
 # import djangodb
 # db = djangodb.DjangoDb()
 # run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I37")
+
+# Imports for importing a file:
+import DbState
+from cli.grampscli import CLIManager
+from gen.plug import BasePluginManager
+import os
+
+def import_file(db, filename, callback):
+    """
+    Import a file (such as a GEDCOM file) into the given db.
+
+    >>> import_file(DjangoDb(), "/home/user/Untitled_1.ged", lambda a: a)
+    """
+    dbstate = DbState.DbState()
+    climanager = CLIManager(dbstate, False) # do not load db_loader
+    climanager.do_reg_plugins()
+    pmgr = BasePluginManager.get_instance()
+    (name, ext) = os.path.splitext(os.path.basename(filename))
+    format = ext[1:].lower()
+    import_list = pmgr.get_reg_importers()
+    for pdata in import_list:
+        if format == pdata.extension:
+            mod = pmgr.load_plugin(pdata)
+            if not mod:
+                for name, error_tuple in pmgr.get_fail_list():
+                    etype, exception, traceback = error_tuple
+                    print "ERROR:", name, exception
+                return False
+            import_function = getattr(mod, pdata.import_function)
+            db.step = 0
+            import_function(db, filename, callback)
+            db.step = 1
+            import_function(db, filename, callback)
+            return True
+    return False
 
 class Cursor(object):
     def __init__(self, model, func):
@@ -49,6 +93,10 @@ class Cursor(object):
             yield (item.handle, self.func(item))
     def __exit__(self, *args, **kwargs):
         pass
+    def iter(self):
+        for item in self.model.all():
+            yield (item.handle, self.func(item))
+        yield None
 
 class DjangoDb(DbReadBase, DbWriteBase):
     """
@@ -70,6 +118,32 @@ class DjangoDb(DbReadBase, DbWriteBase):
         self.repo_bookmarks = []
         self.media_bookmarks = []
         self.note_bookmarks = []
+        self.event_prefix = "E%04s"
+        # ----------------------------------
+        self.id_trans  = {}
+        self.fid_trans = {}
+        self.pid_trans = {}
+        self.sid_trans = {}
+        self.oid_trans = {}
+        self.rid_trans = {}
+        self.nid_trans = {}
+        self.eid_trans = {}
+        self.env = None
+        self.person_map = {}
+        self.family_map = {}
+        self.place_map  = {}
+        self.source_map = {}
+        self.repository_map  = {}
+        self.note_map = {}
+        self.media_map  = {}
+        self.event_map  = {}
+        self.metadata   = {}
+        self.name_group = {}
+        self.undo_callback = None
+        self.redo_callback = None
+        self.undo_history_callback = None
+        self.modified   = 0
+
 
     def get_researcher(self):
         obj = gen.lib.Name()
@@ -166,19 +240,19 @@ class DjangoDb(DbReadBase, DbWriteBase):
         return self.dji.Repository.count()
 
     def get_place_cursor(self):
-        return Cursor(self.dji.Place, self.dji.get_place)
+        return Cursor(self.dji.Place, self.dji.get_place).iter()
 
     def get_person_cursor(self):
-        return Cursor(self.dji.Person, self.dji.get_person)
+        return Cursor(self.dji.Person, self.dji.get_person).iter()
 
     def get_family_cursor(self):
-        return Cursor(self.dji.Family, self.dji.get_family)
+        return Cursor(self.dji.Family, self.dji.get_family).iter()
 
     def get_events_cursor(self):
-        return Cursor(self.dji.Event, self.dji.get_event)
+        return Cursor(self.dji.Event, self.dji.get_event).iter()
 
     def get_source_cursor(self):
-        return Cursor(self.dji.Source, self.dji.get_source)
+        return Cursor(self.dji.Source, self.dji.get_source).iter()
 
     def has_person_handle(self, handle):
         return self.dji.Person.filter(handle=handle).count() == 1
@@ -272,7 +346,7 @@ class DjangoDb(DbReadBase, DbWriteBase):
         #self.dji.add_note_detail(note.serialize())
 
     def add_place(self, place, trans, set_gid=True):
-        #print "add_place:", place.handle
+        print "add_place:", place.handle
         pass
 
     def add_event(self, event, trans, set_gid=True):
@@ -309,11 +383,10 @@ class DjangoDb(DbReadBase, DbWriteBase):
         #self.add_note(note, change_time)
 
     def commit_place(self, place, trans, change_time=None):
-        pass
-        #print "commit_place:", place.handle
-        #if self.dji.Place.filter(handle=place.handle).count() == 0:
-        #    self.dji.add_place(place.serialize())
-        #self.dji.add_place_detail(place.serialize())
+        print "commit_place:", place.handle
+        if self.dji.Place.filter(handle=place.handle).count() == 0:
+            self.dji.add_place(place.serialize())
+        self.dji.add_place_detail(place.serialize())
 
     def commit_event(self, event, change_time=None):
         pass
@@ -333,3 +406,33 @@ class DjangoDb(DbReadBase, DbWriteBase):
     #     return obj, new
 
 
+    def get_gramps_ids(self, obj_key):
+        key2table = {
+            PERSON_KEY:     self.id_trans, 
+            FAMILY_KEY:     self.fid_trans, 
+            SOURCE_KEY:     self.sid_trans, 
+            EVENT_KEY:      self.eid_trans, 
+            MEDIA_KEY:      self.oid_trans, 
+            PLACE_KEY:      self.pid_trans, 
+            REPOSITORY_KEY: self.rid_trans, 
+            NOTE_KEY:       self.nid_trans, 
+            }
+
+        table = key2table[obj_key]
+        return table.keys()
+
+    def get_gramps_ids(self, obj_key):
+        print "object key:", obj_key
+        return []
+
+    def transaction_begin(self, msg, batch, no_magic):
+        return 
+
+    def disable_signals(self):
+        pass
+
+    def set_researcher(self, owner):
+        pass
+
+    def find_next_place_gramps_id(self):
+        return "P0"
