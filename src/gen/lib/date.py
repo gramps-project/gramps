@@ -1690,6 +1690,19 @@ class Date(object):
         temp[Date._POS_RSL] = value
         self.dateval = tuple(temp)
 
+    def make_vague(self):
+        """
+        Remove month and day details to make the date approximate.
+        """
+        dv = list(self.dateval)
+        dv[Date._POS_MON] = 0
+        dv[Date._POS_DAY] = 0
+        if Date._POS_RDAY < len(dv):
+            dv[Date._POS_RDAY] = 0
+            dv[Date._POS_RMON] = 0
+        self.dateval = tuple(dv)
+        self._calc_sort_value()
+
 def Today():
     """
     Returns a Date object set to the current date.
