@@ -45,16 +45,25 @@ class SimpleTable(object):
         self.title = title
         self.__columns = []
         self.__cell_markup = {} # [col][row] = "<b>data</b>"
+        self.__cell_type = {} # [col] = "text"
         self.__rows = []
+        self.__raw_data = []
         self.__link = []
         self.__sort_col = None
         self.__sort_reverse = False
         self.__link_col = None
         self.__callback_leftclick = None
         self.__callback_leftdouble = None
+        self.model_index_of_column = {}
 
     def get_row_count(self):
         return len(self.__rows)
+
+    def get_row(self, index):
+        return self.__rows[index]
+
+    def get_raw_data(self, index):
+        return self.__raw_data[index]
 
     def columns(self, *cols):
         """
@@ -198,11 +207,17 @@ class SimpleTable(object):
         retval = [] 
         link   = None
         row = len(self.__rows)
+        self.__raw_data.append([])
         for col in range(len(data)):
             item = data[col]
+            self.__raw_data[-1].append(item)
             # FIXME: add better text representations of these objects
             if isinstance(item, basestring):
-                retval.append(item)
+                if item == "checkbox": 
+                    retval.append(True)
+                    self.set_cell_type(col, "checkbox")
+                else:
+                    retval.append(item)
             elif isinstance(item, (int, float, long)):
                 retval.append(item)
                 self.row_sort_val(col, item)
@@ -283,10 +298,20 @@ class SimpleTable(object):
 
     def __sort(self):
         idx = self.__columns.index(self.__sort_col)
+        # FIXME: move raw_data with this
         if self.__sort_reverse:
             self.__rows.sort(lambda a, b: -cmp(a[idx],b[idx]))
         else:
             self.__rows.sort(lambda a, b: cmp(a[idx],b[idx]))
+
+    def toggle(self, obj, path, col):
+        """
+        obj - column widget
+        path - row
+        col - column
+        """
+        self.treeview.get_model()[path][col] = not \
+            self.treeview.get_model()[path][col]
 
     def write(self, document):
         self.simpledoc = document # simpledoc; simpledoc.doc = docgen object
@@ -358,11 +383,19 @@ class SimpleTable(object):
             sort_data = []
             sort_data_types = []
             for col in self.__columns:
-                types.append(type(col))
-                if self.get_cell_markup(cnt):
-                    column = gtk.TreeViewColumn(col,renderer,markup=model_index)
-                else:
-                    column = gtk.TreeViewColumn(col,renderer,text=model_index)
+                if self.get_cell_type(cnt) == "text":
+                    types.append(type(col))
+                    if self.get_cell_markup(cnt):
+                        column = gtk.TreeViewColumn(col,renderer,markup=model_index)
+                    else:
+                        column = gtk.TreeViewColumn(col,renderer,text=model_index)
+                elif self.get_cell_type(cnt) == "checkbox":
+                    types.append(bool)
+                    toggle_renderer = gtk.CellRendererToggle()
+                    toggle_renderer.set_property('activatable', True)
+                    toggle_renderer.connect("toggled", self.toggle, model_index)
+                    column = gtk.TreeViewColumn(col, toggle_renderer)
+                    column.add_attribute(toggle_renderer, "active", model_index)
                 column.set_resizable(True)
                 if self.__sort_vals[cnt] != []:
                     sort_data.append(self.__sort_vals[cnt])
@@ -372,6 +405,7 @@ class SimpleTable(object):
                 else:
                     column.set_sort_column_id(model_index)
                 treeview.append_column(column)
+                self.model_index_of_column[col] = model_index
                 #if model_index == sort_index:
                 # FIXME: what to set here?    
                 model_index += 1
@@ -385,6 +419,7 @@ class SimpleTable(object):
             iter = buffer.get_end_iter()
             anchor = buffer.create_child_anchor(iter)
             text_view.add_child_at_anchor(treeview, anchor)
+            self.treeview= treeview
             count = 0
             for data in self.__rows:
                 col = 0
@@ -418,6 +453,14 @@ class SimpleTable(object):
             else:
                 return data
 
+    def get_cell_type(self, col):
+        """
+        See if a column has a type, else return "text" as default.
+        """
+        if col in self.__cell_type:
+            return self.__cell_type[col]
+        return "text"
+
     def set_cell_markup(self, x, y, data):
         """
         Set the cell at position [x][y] to a formatted string.
@@ -426,3 +469,8 @@ class SimpleTable(object):
         col_dict[y] = data
         self.__cell_markup[x] = col_dict
 
+    def set_cell_type(self, col, value):
+        """
+        Set the cell type at position [x].
+        """
+        self.__cell_type[col] = value
