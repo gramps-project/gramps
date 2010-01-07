@@ -511,10 +511,10 @@ class DetAncestorReport(Report):
 
             self.__narrator.set_subject(child)
             self.doc.write_text("%s. " % child_name, child_mark)
-            self.doc.write_text(self.__narrator.get_born_string() or
+            self.doc.write_text_citation(self.__narrator.get_born_string() or
                                 self.__narrator.get_christened_string() or
                                 self.__narrator.get_baptised_string())
-            self.doc.write_text(self.__narrator.get_died_string() or
+            self.doc.write_text_citation(self.__narrator.get_died_string() or
                                 self.__narrator.get_buried_string())
             self.doc.end_paragraph()
 
