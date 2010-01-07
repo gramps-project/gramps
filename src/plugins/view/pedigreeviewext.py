@@ -1074,10 +1074,10 @@ class PedigreeViewExt(NavigationView):
                 if y+height > ymax:
                     ymax = y+height
 
-                # x = positions[i][1][1][0]+1
-                # y = positions[i][1][1][1]+1
-                # w = 1
-                # h = positions[i][1][1][2]
+                x = positions[i][1][1][0]+1
+                y = positions[i][1][1][1]+1
+                w = 1
+                h = positions[i][1][1][2]
                 line = gtk.DrawingArea()
                 line.set_size_request(20, -1)
                 line.connect("expose-event", self.line_expose_cb)
