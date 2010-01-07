@@ -99,7 +99,7 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         self.glade.connect_signals({
             "on_apply_clicked" : self.apply_clicked,
             "on_close_clicked" : self.close,
-            "on_delete_event": self.close,
+            "on_delete_event"  : self.close,
             })
         self.display()
         self.show()

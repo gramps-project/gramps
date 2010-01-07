@@ -93,6 +93,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.glade.connect_signals({
             "on_close_clicked"  : self.close,
             "on_apply_clicked"  : self.on_apply_clicked,
+            "on_delete_event"   : self.close,
             })
             
         self.show()

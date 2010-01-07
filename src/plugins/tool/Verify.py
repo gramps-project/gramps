@@ -255,6 +255,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             "on_verify_ok_clicked"  : self.on_apply_clicked
+            "on_delete_event"       : self.close,
         })
 
         window = self.top.toplevel

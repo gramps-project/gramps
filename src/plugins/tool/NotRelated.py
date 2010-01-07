@@ -81,6 +81,7 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         topDialog.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
+            "on_delete_event"       : self.close,
         })
 
         window = topDialog.toplevel

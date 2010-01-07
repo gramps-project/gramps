@@ -72,6 +72,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         self.glade.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
+            "on_delete_event"       : self.close,
             })
 
         window = self.glade.toplevel

@@ -130,6 +130,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             "on_delete_merge_event" : self.close,
+            "on_delete_event"   : self.close,
             })
 
         self.show()

@@ -109,6 +109,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
             "on_help_button_clicked": self.on_help_button_clicked,
             "on_eventbox_button_press_event": self.on_button_press_event,
             "on_menu_activate": self.on_menu_activate,
+            "on_delete_event"   : self.close,
             })
 
         # fetch the popup menu

@@ -129,6 +129,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
             "on_filters_delete_event": self.close,
             "on_help_clicked"        : self.on_help_clicked,
             "destroy_passed_object"  : self.close
+            "on_delete_event"        : self.close,
             })
     
         window = self.filterDialog.toplevel

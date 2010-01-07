@@ -204,6 +204,7 @@ class RemoveUnused(Tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
             "destroy_passed_object"   : self.close,
             "on_remove_button_clicked": self.do_remove,
             "on_find_button_clicked"  : self.find,
+            "on_delete_event"         : self.close,
             })
 
         self.dc_label = self.top.get_object('dc_label')

@@ -516,6 +516,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
             "destroy_passed_object" : self.close, 
             "on_ok_clicked" : self.on_ok_clicked, 
             "on_help_clicked" : self.on_help_clicked, 
+            "on_delete_event"   : self.close,
             })
         
         self.list = self.top.get_object("list")
