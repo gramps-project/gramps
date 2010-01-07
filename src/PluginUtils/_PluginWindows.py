@@ -392,7 +392,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
                                              gtk.RESPONSE_CANCEL)
         self.cancel.connect('clicked', self.close)
 
-        self.ok = self.window.add_button(gtk.STOCK_APPLY, gtk.RESPONSE_OK)
+        self.ok = self.window.add_button(gtk.STOCK_EXECUTE, gtk.RESPONSE_OK)
         self.ok.connect('clicked', self.on_ok_clicked)
 
         self.window.set_default_size(600, -1)
@@ -604,6 +604,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         else:
             self.results_clear()
         self.set_current_frame(frame_name)
+        return self.results_text
 
     def setup_other_frames(self):
         """Similar to add_option this method takes a frame_name, a
