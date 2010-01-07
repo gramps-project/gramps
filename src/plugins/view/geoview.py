@@ -88,7 +88,6 @@ _ICONS = {
 #-------------------------------------------------------------------------
 import re
 ZOOMANDPOS = re.compile('zoom=([0-9]*) coord=([0-9\.\-\+]*), ([0-9\.\-\+]*):::')
-cal = config.get('preferences.calendar-format-report')
 
 #-------------------------------------------------------------------------
 #
@@ -266,6 +265,7 @@ class GeoView(HtmlView):
         self.lock_action = None
         self.realzoom = 0
         self.reallatitude = self.reallongitude = 0.0
+        self.cal = 0
         if config.get('geoview.lock'):
             self.realzoom = config.get('geoview.zoom')
             self.displaytype = config.get('geoview.map')
@@ -334,6 +334,9 @@ class GeoView(HtmlView):
                            'place-update' : self._place_changed}
 
     def _place_changed(self, handle_list):
+        """
+        One place changed. need to display it.
+        """
         self.displaytype = "places"
         self._set_lock_unlock(True)
         self._geo_places()
@@ -1367,6 +1370,7 @@ class GeoView(HtmlView):
         """
         Which kind of map are we going to create ?
         """
+        self.cal = config.get('preferences.calendar-format-report')
         if displaytype == "places":
             self._createmapstractionplaces(self.dbstate)
         elif displaytype == "family":
@@ -1600,7 +1604,7 @@ class GeoView(HtmlView):
             event_ref = person.get_birth_ref()
             if event_ref:
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
-                eventyear = event.get_date_object().to_calendar(cal).get_year()
+                eventyear = event.get_date_object().to_calendar(self.cal).get_year()
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
@@ -1637,7 +1641,7 @@ class GeoView(HtmlView):
             event_ref = person.get_death_ref()
             if event_ref:
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
-                eventyear = event.get_date_object().to_calendar(cal).get_year()
+                eventyear = event.get_date_object().to_calendar(self.cal).get_year()
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
@@ -1725,7 +1729,7 @@ class GeoView(HtmlView):
 
         for event in dbstate.db.iter_events():
             place_handle = event.get_place_handle()
-            eventyear = event.get_date_object().to_calendar(cal).get_year()
+            eventyear = event.get_date_object().to_calendar(self.cal).get_year()
             if place_handle:
                 place = dbstate.db.get_place_from_handle(place_handle)
                 if place:
@@ -1864,7 +1868,7 @@ class GeoView(HtmlView):
                     # Only match primaries, no witnesses
                     continue
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
-                eventyear = event.get_date_object().to_calendar(cal).get_year()
+                eventyear = event.get_date_object().to_calendar(self.cal).get_year()
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
