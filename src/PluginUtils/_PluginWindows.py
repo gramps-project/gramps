@@ -403,12 +403,12 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
 
         self.setup_title()
         self.setup_header()
-        self.tbl = gtk.Table(4, 4, False)
-        self.tbl.set_col_spacings(12)
-        self.tbl.set_row_spacings(6)
-        self.tbl.set_border_width(6)
-        self.col = 0
-        self.window.vbox.add(self.tbl)
+        #self.tbl = gtk.Table(4, 4, False)
+        #self.tbl.set_col_spacings(12)
+        #self.tbl.set_row_spacings(6)
+        #self.tbl.set_border_width(6)
+        #self.col = 0
+        #self.window.vbox.add(self.tbl)
 
         # Build the list of widgets that are used to extend the Options
         # frame and to create other frames
@@ -559,7 +559,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         title = self.get_header(self.get_title())
         label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(True)
-        self.window.vbox.pack_start(label, True, True, self.border_pad)
+        self.window.vbox.pack_start(label, False, False, self.border_pad)
 
     def add_frame_option(self, frame_name, label_text, widget):
         """Similar to add_option this method takes a frame_name, a
