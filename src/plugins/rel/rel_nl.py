@@ -21,7 +21,9 @@
 #
 
 # $Id$
-
+"""
+Specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -242,12 +244,15 @@ _uncle_level = [ "",
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
     
     #sibling strings
-    STEP= 'stief'
+    STEP = 'stief'
     HALF = 'half'
     
-    INLAW='aangetrouwde '
+    INLAW = 'aangetrouwde '
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
@@ -275,7 +280,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return "verre %s%sachterkleinzoon (%d generaties)" % (inlaw,
                                                                   step, level)
 
-    def _get_mother(self,level, step='', inlaw=''):
+    def _get_mother(self, level, step='', inlaw=''):
         """Internal Dutch method to create relation string
         """
         if level > len(_mother_level)-1:
@@ -542,12 +547,12 @@ if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src
-    #    python src/plugins/rel_nl.py
+    #    python src/plugins/rel/rel_nl.py
     
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
-        python src/plugins/rel_xx.py
+        python src/plugins/rel/rel_xx.py
     """
     from Relationship import test
-    rc = RelationshipCalculator()
-    test(rc, True)
+    RC = RelationshipCalculator()
+    test(RC, True)

@@ -26,7 +26,10 @@
 # Written by Alex Roitman, largely based on Relationship.py by Don Allingham
 # and on valuable input from Jens Arvidsson
 # Updated to 3.0 by Peter Landgren 2007-12-30.
-
+#
+"""
+Swedish-specific definitions of relationships
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -36,10 +39,6 @@
 import gen.lib
 import Relationship
 
-#-------------------------------------------------------------------------
-#
-# Swedish-specific definitions of relationships
-#
 #-------------------------------------------------------------------------
 
 _cousin_level = [ "", "kusin", 
@@ -69,6 +68,9 @@ u"artonde", u"nittonde", u"tjugonde" ]
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
 
     #sibling strings
     STEP = 'styv'
@@ -524,13 +526,13 @@ if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src 
-    # python src/plugins/rel_fr.py 
+    # python src/plugins/rel/rel_sv.py 
     # (Above not needed here)
     
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
-        python src/plugins/rel_xx.py
+        python src/plugins/rel/rel_xx.py
     """
     from Relationship import test
-    rc = RelationshipCalculator()
-    test(rc, True)
+    RC = RelationshipCalculator()
+    test(RC, True)

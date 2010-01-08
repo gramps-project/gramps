@@ -19,9 +19,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-
-
+"""
+Slovak-specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -75,9 +75,9 @@ _sister_level = [ "", "sestra%s", "teta%s", "prateta%s", "praprateta%s", ]
 
 _brother_level = [ "", "brat%s", "strýko%s", "prastrýko%s", "praprastrýko%s", ]
 
-_nephew_level =[ "", "synovec%s", "prasynovec%s", "praprasynovec%s", ]
+_nephew_level = [ "", "synovec%s", "prasynovec%s", "praprasynovec%s", ]
 
-_niece_level =[ "", "neter%s", "praneter%s", "prapraneter%s", ]
+_niece_level = [ "", "neter%s", "praneter%s", "prapraneter%s", ]
 
 # kinship report
 
@@ -106,6 +106,9 @@ _nephews_nieces_level = [ "", "synovci a netere",
 #-------------------------------------------------------------------------
 
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
    
     INLAW = ' (m. zväzok)'
 
@@ -576,13 +579,13 @@ if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src 
-    # python src/plugins/rel_sk.py 
+    # python src/plugins/rel/rel_sk.py 
     # (Above not needed here)
     
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
-        python src/plugins/rel_xx.py
+        python src/plugins/rel/rel_xx.py
     """
     from Relationship import test
-    rc = RelationshipCalculator()
-    test(rc, True)
+    RC = RelationshipCalculator()
+    test(RC, True)

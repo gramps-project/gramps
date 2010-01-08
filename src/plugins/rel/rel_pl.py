@@ -26,9 +26,9 @@
 # PL: Po objaśnienia oznaczania relacji zobacz Relationship.py
 # EN: For more information see Relationship.py
 #
-
-
-
+"""
+Polish-specific definitions of relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -38,10 +38,6 @@
 import gen.lib
 import Relationship
 
-#-------------------------------------------------------------------------
-#
-# Polish-specific definitions of relationships
-#
 #-------------------------------------------------------------------------
 
 
@@ -254,17 +250,13 @@ _niece_level_of_sisters_daughter = [ "", "siostrzenica",
 #-------------------------------------------------------------------------
 
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
    
-    
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)    
         
-    
-    #--------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------
     def get_son(self, level, inlaw=''):
         """
         Podaje tekst zawierający informację, jak bardzo potomek męski 
@@ -273,9 +265,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         
         # Określ, czy osoba jest przybraną, czy rodzoną
         if inlaw == '':
-            t_inlaw =""
+            t_inlaw = ""
         else:
-            t_inlaw ="przybrany "
+            t_inlaw = "przybrany "
             
         # TODO: dodać rozpoznawanie pasierb/pasierbica
         if level >= 0 and level < len(_son_level):
@@ -301,11 +293,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         # Określ, czy osoba jest przybraną, czy rodzoną 
         #   + stwórz obie formy (męską i żeńską)
         if inlaw == '':
-            t_inlaw =""
-            t_inlawM =""
+            t_inlaw = ""
+            t_inlawM = ""
         else:
-            t_inlaw ="przybrana "
-            t_inlawM ="przybrany "
+            t_inlaw = "przybrana "
+            t_inlawM = "przybrany "
         
         # TODO: dodać rozpoznawanie pasierb/pasierbica
         if level >= 0 and level < len(_daughter_level):
@@ -328,9 +320,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         
         # Określ, czy osoba jest przybraną, czy rodzoną
         if inlaw == '':
-            t_inlaw =""
+            t_inlaw = ""
         else:
-            t_inlaw ="przybrany "
+            t_inlaw = "przybrany "
                     
         if level == 1:
             if inlaw == '' :
@@ -350,7 +342,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         PL: Generuje relację po mieczu/po kądzieli
         EN: Generate relation 'by sword' or 'by distaff', polish specific
         """
-        if level <=1:
+        if level <= 1:
             return ""
         
         elif level == 2:
@@ -422,9 +414,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         (np. ojciec) jest spokrewniony do danej osoby
         """
         if inlaw == '':
-            t_inlaw =""
+            t_inlaw = ""
         else:
-            t_inlaw ="przybrany "
+            t_inlaw = "przybrany "
                     
         if level >= 0 and level < len(_father_level):
             # Jeśli znasz bezpośrednią nazwę relacji, to ją zastosuj
@@ -460,9 +452,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         
         if inlaw == '':
-            t_inlaw =""
+            t_inlaw = ""
         else:
-            t_inlaw ="przybrana "
+            t_inlaw = "przybrana "
                     
         if level >= 0 and level < len(_mother_level):
             # Jeśli znasz bezpośrednią nazwę relacji, to ją zastosuj
@@ -498,9 +490,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         
         if inlaw == '':
-            t_inlaw =""
+            t_inlaw = ""
         else:
-            t_inlaw ="przybrany "
+            t_inlaw = "przybrany "
                     
         if level == 1:
             return t_inlaw + "rodzic"
@@ -785,26 +777,26 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 
         elif Ga > 1 and Gb > 1:
             if (gender_b == gen.lib.Person.MALE):
-                if Ga==2 and Gb==2:
+                if Ga == 2 and Gb == 2:
                     rel_str = "kuzyn"
                 else:
                     rel_str = "daleki kuzyn (%d. stopień pokrewieństwa)" % (Ga+Gb) 
                 
             elif (gender_b == gen.lib.Person.FEMALE):
-                if Ga==2 and Gb==2:
+                if Ga == 2 and Gb == 2:
                     rel_str = "kuzynka"
                 else:                
                     rel_str = "daleka kuzynka (%d. stopień pokrewieństwa)" % (Ga+Gb)   
                          
             else:
-                if Ga==2 and Gb==2:
+                if Ga == 2 and Gb == 2:
                     rel_str = "kuzyn(ka)"
                 else:                   
                     rel_str = "daleki członek rodziny (%d. stopień pokrewieństwa)" % (Ga+Gb)            
 
         else:            
             # A program should never goes there, but...
-            rel_str ="nieokreślony stopień pokrewieństwa"
+            rel_str = "nieokreślony stopień pokrewieństwa"
         
         return rel_str
     
@@ -883,12 +875,12 @@ if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src 
-    #    python src/plugins/rel_pl.py 
+    #    python src/plugins/rel/rel_pl.py 
     
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
-        python src/plugins/rel_xx.py
+        python src/plugins/rel/rel_xx.py
     """
     from Relationship import test
-    rc = RelationshipCalculator()
-    test(rc, True)
+    RC = RelationshipCalculator()
+    test(RC, True)

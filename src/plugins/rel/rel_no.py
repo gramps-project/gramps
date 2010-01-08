@@ -25,7 +25,9 @@
 
 # Written by Alex Roitman, largely based on Relationship.py by Don Allingham
 # and on valuable input from Frode Jemtland
-
+"""
+Norwegian-Specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -36,10 +38,6 @@ import gen.lib
 import Relationship
 
 #-------------------------------------------------------------------------
-#
-# Norwegian-specific definitions of relationships
-#
-#-------------------------------------------------------------------------
 
 _cousin_level = [ "", "", #brother/sister, fetter/kusine -- these are taken care of separately
 "tremenning", "firemenning", "femmenning", 
@@ -49,25 +47,28 @@ _cousin_level = [ "", "", #brother/sister, fetter/kusine -- these are taken care
 "femtenmenning", "sekstenmenning", "syttenmenning",
 "attenmenning", "nittenmenning", "tyvemenning" ] 
 
-_cousin_terms = _cousin_level + ["fetter","kusine"]
+_cousin_terms = _cousin_level + ["fetter", "kusine"]
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def get_parents(self,level):
+    def get_parents(self, level):
         if level == 0:
             return "forelder"
         else:
             return "ane i %d-te generationen" % (level+1)
 
-    def get_cousin(self,level):
-        if level>len(_cousin_level)-1:
+    def get_cousin(self, level):
+        if level > len(_cousin_level)-1:
             # FIXME: use Norwegian term term here, 
             # UPDATED by Frode: unsure about the expretion "en fjern slektning", should it be just "fjern slektning".
             # Need to see it used in the program to get the understanding.
@@ -75,7 +76,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _cousin_level[level]
 
-    def pair_up(self,rel_list):
+    def pair_up(self, rel_list):
         result = []
         item = ""
         for word in rel_list[:]:
@@ -99,7 +100,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         gen_result = [ item + 's' for item in result[0:-1] ]
         return ' '.join(gen_result+result[-1:])
 
-    def get_direct_ancestor(self,person,rel_string):
+    def get_direct_ancestor(self, person, rel_string):
         result = []
         for ix in range(len(rel_string)):
             if rel_string[ix] == 'f':
@@ -108,9 +109,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('mor')
         return self.pair_up(result)
 
-    def get_direct_descendant(self,person,rel_string):
+    def get_direct_descendant(self, person, rel_string):
         result = []
-        for ix in range(len(rel_string)-2,-1,-1):
+        for ix in range(len(rel_string)-2, -1, -1):
             if rel_string[ix] == 'f':
                 result.append('sønne')
             else:
@@ -121,7 +122,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('datter')
         return self.pair_up(result)
 
-    def get_ancestors_cousin(self,person,rel_string_long,rel_string_short):
+    def get_ancestors_cousin(self, person, rel_string_long, rel_string_short):
         result = []
         removed = len(rel_string_long)-len(rel_string_short)
         level = len(rel_string_short)-1
@@ -136,11 +137,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('fetter')
         else:
             result.append('kusine')
-        main_string = self.get_two_way_rel(person,rel_string_short,rel_string_long)
+        main_string = self.get_two_way_rel(person, rel_string_short, rel_string_long)
         aux_string = self.pair_up(result)
-        return "%s (%s)" % (main_string,aux_string)
+        return "%s (%s)" % (main_string, aux_string)
 
-    def get_cousins_descendant(self,person,rel_string_long,rel_string_short):
+    def get_cousins_descendant(self, person, rel_string_long, rel_string_short):
         result = []
         aux_string = ""
         removed = len(rel_string_long)-len(rel_string_short)-1
@@ -156,7 +157,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('bror')
         else:
             result.append('søster')
-        for ix in range(removed-1,-1,-1):
+        for ix in range(removed-1, -1, -1):
             if rel_string_long[ix] == 'f':
                 result.append('sønn')
             else:
@@ -165,12 +166,12 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('sønn')
         else:
             result.append('datter')
-        main_string = self.get_two_way_rel(person,rel_string_long,rel_string_short)
+        main_string = self.get_two_way_rel(person, rel_string_long, rel_string_short)
         if level:
             aux_string = " (%s)" % self.pair_up(result)
-        return "%s%s" % (main_string,aux_string)
+        return "%s%s" % (main_string, aux_string)
 
-    def get_ancestors_brother(self,rel_string):
+    def get_ancestors_brother(self, rel_string):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -180,7 +181,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         result.append('bror')
         return self.pair_up(result)
 
-    def get_ancestors_sister(self,rel_string):
+    def get_ancestors_sister(self, rel_string):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -190,7 +191,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         result.append('søster')
         return self.pair_up(result)
 
-    def get_two_way_rel(self,person,first_rel_string,second_rel_string):
+    def get_two_way_rel(self, person, first_rel_string, second_rel_string):
         result = []
         for ix in range(len(second_rel_string)-1):
             if second_rel_string[ix] == 'f':
@@ -202,7 +203,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('bror')
             else:
                 result.append('søster')
-            for ix in range(len(first_rel_string)-3,-1,-1):
+            for ix in range(len(first_rel_string)-3, -1, -1):
                 if first_rel_string[ix] == 'f':
                     result.append('sønne')
                 else:
@@ -224,20 +225,20 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         common = ""
         if not firstRel:
             if not secondRel:
-                return ('',common)
+                return ('', common)
             else:
-                return (self.get_direct_ancestor(other_person,secondRel),common)
+                return (self.get_direct_ancestor(other_person, secondRel), common)
         elif not secondRel:
-            return (self.get_direct_descendant(other_person,firstRel),common)
+            return (self.get_direct_descendant(other_person, firstRel), common)
         elif len(firstRel) == 1:
             if other_person == gen.lib.Person.MALE:
-                return (self.get_ancestors_brother(secondRel),common)
+                return (self.get_ancestors_brother(secondRel), common)
             else:
-                return (self.get_ancestors_sister(secondRel),common)
+                return (self.get_ancestors_sister(secondRel), common)
         elif len(secondRel) >= len(firstRel):
-            return (self.get_ancestors_cousin(other_person,secondRel,firstRel),common)
+            return (self.get_ancestors_cousin(other_person, secondRel, firstRel), common)
         else:
-            return (self.get_cousins_descendant(other_person,firstRel,secondRel),common)
+            return (self.get_cousins_descendant(other_person, firstRel, secondRel), common)
     
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                     reltocommon_a, reltocommon_b,
@@ -247,7 +248,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
  
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
-        return self.get_two_way_rel(gender_b,"","")
+        return self.get_two_way_rel(gender_b, "", "")
 
 if __name__ == "__main__":
 

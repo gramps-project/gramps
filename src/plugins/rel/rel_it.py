@@ -28,7 +28,9 @@
 #            Benny Malengier <benny.malengier@gramps-project.org, 2007
 #            Maria-Cristina Ciocci <see above>, 2007
 #
-
+"""
+Italian-Specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -122,6 +124,9 @@ _niece_level = [   "", "la nipote%(step)s%(inlaw)s",
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
     
     INLAW = ' acquisit%(gen)s'
     
@@ -145,8 +150,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return 'o'
         return 'a'
     
-    def get_parents (self,level):
-        if level>len(_level)-1:
+    def get_parents (self, level):
+        if level > len(_level)-1:
             return "remote ancestors"
         else:
             return "%si genitori" % _level[level]
@@ -311,59 +316,59 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     #
     #-------------------------------------------------------------------------
 
-    def get_relationship(self,db, orig_person, other_person):
+    def get_relationship(self, db, orig_person, other_person):
         """
         returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother)
+        along with a list of common ancestors (typically father, mother)
         """
 
         if orig_person is None:
-            return ("non definito",[])
+            return ("non definito", [])
 
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
         is_spouse = self.is_spouse(db, orig_person, other_person)
         if is_spouse:
-            return (is_spouse,[])
+            return (is_spouse, [])
 
         #get_relationship_distance changed, first data is relation to 
         #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = \
+        (secondRel, firstRel, common) = \
                      self.get_relationship_distance(db, orig_person, other_person)
 
         if isinstance(common, basestring):
-            return (common,[])
+            return (common, [])
         elif common:
             person_handle = common[0]
         else:
-            return ("",[])
+            return ("", [])
 
         firstRel = len(firstRel)
         secondRel = len(secondRel)
 
         if firstRel == 0:
             if secondRel == 0:
-                return ('',common)
+                return ('', common)
             elif other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_father(secondRel),common)
+                return (self.get_father(secondRel), common)
             else:
-                return (self.get_mother(secondRel),common)
+                return (self.get_mother(secondRel), common)
         elif secondRel == 0:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_son(firstRel),common)
+                return (self.get_son(firstRel), common)
             else:
-                return (self.get_daughter(firstRel),common)
+                return (self.get_daughter(firstRel), common)
         elif firstRel == 1:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_uncle(secondRel),common)
+                return (self.get_uncle(secondRel), common)
             else:
-                return (self.get_aunt(secondRel),common)
+                return (self.get_aunt(secondRel), common)
         elif secondRel == 1:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_nephew(firstRel-1),common)
+                return (self.get_nephew(firstRel-1), common)
             else:
-                return (self.get_niece(firstRel-1),common)
+                return (self.get_niece(firstRel-1), common)
         else:
             if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_male_cousin(firstRel-1, secondRel-1), common)
@@ -507,12 +512,12 @@ if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src 
-    #    python src/plugins/rel_it.py 
+    #    python src/plugins/rel/rel_it.py 
     
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
-        python src/plugins/rel_xx.py
+        python src/plugins/rel/rel_xx.py
     """
     from Relationship import test
-    rc = RelationshipCalculator()
-    test(rc, True)
+    RC = RelationshipCalculator()
+    test(RC, True)

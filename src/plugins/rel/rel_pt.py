@@ -24,7 +24,9 @@
 # Based on the Spanish version by Julio Sanchez <julio.sanchez@gmail.com>
 
 # $Id:rel_pt.py 9912 2008-01-22 09:17:46Z acraphae $
-
+"""
+Specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -110,133 +112,136 @@ _niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", ]
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def get_male_cousin(self,level):
-        if level<len(_level_name_male):
+    def get_male_cousin(self, level):
+        if level < len(_level_name_male):
             return "%s primo" % (_level_name_male[level]) 
         else:
             return "%dº primo" % level 
 
-    def get_female_cousin(self,level):
-        if level<len(_level_name_female):
+    def get_female_cousin(self, level):
+        if level < len(_level_name_female):
             return "%s prima" % (_level_name_female[level]) 
         else:
             return "%dª prima" % level 
 
-    def get_distant_uncle(self,level):
-        if level<len(_level_name_male):
+    def get_distant_uncle(self, level):
+        if level < len(_level_name_male):
             return "%s tio" % (_level_name_male[level]) 
         else:
             return "%dº tio" % level 
 
-    def get_distant_aunt(self,level):
-        if level<len(_level_name_female):
+    def get_distant_aunt(self, level):
+        if level < len(_level_name_female):
             return "%s tia" % (_level_name_female[level]) 
         else:
             return "%dª tia" % level 
 
-    def get_distant_nephew(self,level):
-        if level<len(_level_name_male):
+    def get_distant_nephew(self, level):
+        if level < len(_level_name_male):
             return "%s sobrinho" % (_level_name_male[level]) 
         else:
             return "%dº sobrinho" % level 
 
-    def get_distant_nieve(self,level):
-        if level<len(_level_name_female):
+    def get_distant_nieve(self, level):
+        if level < len(_level_name_female):
             return "%s sobrinha" % (_level_name_female[level]) 
         else:
             return "%dª sobrinha" % level 
 
-    def get_male_relative(self,level1,level2):
-        if level1<len(_level_name_male_a):
+    def get_male_relative(self, level1, level2):
+        if level1 < len(_level_name_male_a):
             level1_str = _level_name_male_a[level1]
         else:
             level1_str = "%dº" % level1
-        if level2<len(_level_name_male_a):
+        if level2 < len(_level_name_male_a):
             level2_str = _level_name_male_a[level2]
         else:
             level2_str = "%dº" % level2
         level = level1 + level2
-        if level<len(_level_name_male_a):
+        if level < len(_level_name_male_a):
             level_str = _level_name_male_a[level]
         else:
             level_str = "%dº" % level
-        return "parente em %s grau (%s com %s)" % (level_str,level1_str,level2_str)
+        return "parente em %s grau (%s com %s)" % (level_str, level1_str, level2_str)
 
-    def get_female_relative(self,level1,level2):
-        return self.get_male_relative(level1,level2)
+    def get_female_relative(self, level1, level2):
+        return self.get_male_relative(level1, level2)
 
-    def get_parents(self,level):
-        if level<len(_parents_level):
+    def get_parents(self, level):
+        if level < len(_parents_level):
             return _parents_level[level]
-        elif (level-1)<len(_level_name_plural):
+        elif (level-1) < len(_level_name_plural):
             return "%s avós" % (_level_name_plural[level-1])
         else:
             return "%dº avós" % (level-1)
 
-    def get_father(self,level):
-        if level<len(_father_level):
+    def get_father(self, level):
+        if level < len(_father_level):
             return _father_level[level]
-        elif (level-1)<len(_level_name_male_a):
+        elif (level-1) < len(_level_name_male_a):
             return "%s avô" % (_level_name_male_a[level-1])
         else:
             return "%dº avô" % (level-1)
 
-    def get_son(self,level):
-        if level<len(_son_level):
+    def get_son(self, level):
+        if level < len(_son_level):
             return _son_level[level]
-        elif (level-1)<len(_level_name_male_a):
+        elif (level-1) < len(_level_name_male_a):
             return "%s neto" % (_level_name_male_a[level-1])
         else:
             return "%dº neto" % (level-1)
 
-    def get_mother(self,level):
-        if level<len(_mother_level):
+    def get_mother(self, level):
+        if level < len(_mother_level):
             return _mother_level[level]
         elif (level-1)<len(_level_name_female):
             return "%s avó" % (_level_name_female[level-1])
         else:
             return "%dª avó" % (level-1)
 
-    def get_daughter(self,level):
-        if level<len(_daughter_level):
+    def get_daughter(self, level):
+        if level < len(_daughter_level):
             return _daughter_level[level]
-        elif (level-1)<len(_level_name_female):
+        elif (level-1) < len(_level_name_female):
             return "%s neta" % (_level_name_female[level-1])
         else:
             return "%dª neta" % (level-1)
 
-    def get_aunt(self,level):
-        if level<len(_sister_level):
+    def get_aunt(self, level):
+        if level < len(_sister_level):
             return _sister_level[level]
-        elif (level-2)<len(_level_name_female):
+        elif (level-2) < len(_level_name_female):
             return "%s tia avó" % (_level_name_female[level-2])
         else:
             return "%dª tia avó" % (level-2)
 
-    def get_uncle(self,level):
-        if level<len(_brother_level):
+    def get_uncle(self, level):
+        if level < len(_brother_level):
             return _brother_level[level]
-        elif (level-2)<len(_level_name_male_a):
+        elif (level-2) < len(_level_name_male_a):
             return "%s tio avô" % (_level_name_male_a[level-2])
         else:
             return "%dº tio avô" % (level-2)
 
-    def get_nephew(self,level):
-        if level<len(_nephew_level):
+    def get_nephew(self, level):
+        if level < len(_nephew_level):
             return _nephew_level[level]
-        elif (level-1)<len(_level_name_male_a):
+        elif (level-1) < len(_level_name_male_a):
             return "%s sobrinho neto" % (_level_name_male_a[level-1])
         else:
             return "%dº sobrinho neto" % (level-1)
 
-    def get_niece(self,level):
-        if level<len(_niece_level):
+    def get_niece(self, level):
+        if level < len(_niece_level):
             return _niece_level[level]
-        elif (level-1)<len(_level_name_female):
+        elif (level-1) < len(_level_name_female):
             return "%s sobrinha neta" % (_level_name_female[level-1])
         else:
             return "%dª sobrinha neta" % (level-1)
@@ -244,80 +249,80 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_relationship(self, orig_person, other_person):
         """
         returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
+        along with a list of common ancestors (typically father, mother) 
         """
 
         if orig_person is None:
-            return ("indefinido",[])
+            return ("indefinido", [])
 
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
         is_spouse = self.is_spouse(orig_person, other_person)
         if is_spouse:
-            return (is_spouse,[])
+            return (is_spouse, [])
 
         #get_relationship_distance changed, first data is relation to 
         #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = self.get_relationship_distance(orig_person, other_person)
+        (secondRel, firstRel, common) = self.get_relationship_distance(orig_person, other_person)
 
         if isinstance(common, basestring):
-            return (common,[])
+            return (common, [])
         elif common:
             person_handle = common[0]
         else:
-            return ("",[])
+            return ("", [])
 
         firstRel = len(firstRel)
         secondRel = len(secondRel)
 
         if firstRel == 0:
             if secondRel == 0:
-                return ('',common)
+                return ('', common)
             elif other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_father(secondRel),common)
+                return (self.get_father(secondRel), common)
             else:
-                return (self.get_mother(secondRel),common)
+                return (self.get_mother(secondRel), common)
         elif secondRel == 0:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_son(firstRel),common)
+                return (self.get_son(firstRel), common)
             else:
-                return (self.get_daughter(firstRel),common)
+                return (self.get_daughter(firstRel), common)
         elif firstRel == 1:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_uncle(secondRel),common)
+                return (self.get_uncle(secondRel), common)
             else:
-                return (self.get_aunt(secondRel),common)
+                return (self.get_aunt(secondRel), common)
         elif secondRel == 1:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_nephew(firstRel-1),common)
+                return (self.get_nephew(firstRel-1), common)
             else:
-                return (self.get_niece(firstRel-1),common)
+                return (self.get_niece(firstRel-1), common)
         elif firstRel == secondRel == 2:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return ('primo irmão',common)
+                return ('primo irmão', common)
             else:
-                return ('prima irmã',common)
+                return ('prima irmã', common)
         elif firstRel == secondRel:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_male_cousin(firstRel-1),common)
+                return (self.get_male_cousin(firstRel-1), common)
             else:
-                return (self.get_female_cousin(firstRel-1),common)
+                return (self.get_female_cousin(firstRel-1), common)
         elif firstRel == secondRel+1:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_distant_nephew(secondRel),common)
+                return (self.get_distant_nephew(secondRel), common)
             else:
-                return (self.get_distant_niece(secondRel),common)
+                return (self.get_distant_niece(secondRel), common)
         elif firstRel+1 == secondRel:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_distant_uncle(firstRel),common)
+                return (self.get_distant_uncle(firstRel), common)
             else:
-                return (self.get_distant_aunt(firstRel),common)
+                return (self.get_distant_aunt(firstRel), common)
         else:
             if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_male_relative(firstRel,secondRel),common)
+                return (self.get_male_relative(firstRel, secondRel), common)
             else:
-                return (self.get_female_relative(firstRel,secondRel),common)
+                return (self.get_female_relative(firstRel, secondRel), common)
 
 if __name__ == "__main__":
 

@@ -25,7 +25,9 @@
 
 # Written by Alex Roitman, largely based on Relationship.py by Don Allingham
 # and on valuable input from Eero Tamminen
-
+"""
+Specific classes for relationships.
+"""
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -50,11 +52,14 @@ _parents_level = [ "", "vanhemmat", "isovanhemmat", "isoisovanhemmat",
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    """
+    RelationshipCalculator Class
+    """
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def get_cousin(self,level):
+    def get_cousin(self, level):
         if level == 0:
             return ""
         elif level == 1:
@@ -64,7 +69,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level > 2:
             return "%d. serkku" % level
 
-    def get_cousin_genitive(self,level):
+    def get_cousin_genitive(self, level):
         if level == 0:
             return ""
         elif level == 1:
@@ -74,13 +79,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level > 2:
             return "%d. serkun" % level
 
-    def get_parents(self,level):
-        if level>len(_parents_level)-1:
+    def get_parents(self, level):
+        if level > len(_parents_level)-1:
             return "kaukaiset esivanhemmat"
         else:
             return _parents_level[level]
 
-    def get_direct_ancestor(self,person,rel_string):
+    def get_direct_ancestor(self, person, rel_string):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -93,9 +98,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('äiti')
         return ' '.join(result)
 
-    def get_direct_descendant(self,person,rel_string):
+    def get_direct_descendant(self, person, rel_string):
         result = []
-        for ix in range(len(rel_string)-2,-1,-1):
+        for ix in range(len(rel_string)-2, -1, -1):
             if rel_string[ix] == 'f':
                 result.append('pojan')
             elif rel_string[ix] == 'm':
@@ -110,7 +115,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('lapsi')
         return ' '.join(result)
 
-    def get_ancestors_cousin(self,rel_string_long,rel_string_short):
+    def get_ancestors_cousin(self, rel_string_long, rel_string_short):
         result = []
         removed = len(rel_string_long)-len(rel_string_short)
         level = len(rel_string_short)-1
@@ -122,7 +127,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         result.append(self.get_cousin(level))
         return ' '.join(result)
 
-    def get_cousins_descendant(self,person,rel_string_long,rel_string_short):
+    def get_cousins_descendant(self, person, rel_string_long, rel_string_short):
         result = []
         removed = len(rel_string_long)-len(rel_string_short)-1
         level = len(rel_string_short)-1
@@ -132,7 +137,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('veljen')
         else:
             result.append('sisaren')
-        for ix in range(removed-1,-1,-1):
+        for ix in range(removed-1, -1, -1):
             if rel_string_long[ix] == 'f':
                 result.append('pojan')
             elif rel_string_long[ix] == 'm':
@@ -147,7 +152,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append('lapsi')
         return ' '.join(result)
 
-    def get_ancestors_brother(self,rel_string):
+    def get_ancestors_brother(self, rel_string):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -157,7 +162,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         result.append('veli')
         return ' '.join(result)
 
-    def get_ancestors_sister(self,rel_string):
+    def get_ancestors_sister(self, rel_string):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -174,26 +179,26 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         common = ""
         if not firstRel:
             if not secondRel:
-                return ('',common)
+                return ('', common)
             else:
-                return (self.get_direct_ancestor(other_person,secondRel),common)
+                return (self.get_direct_ancestor(other_person, secondRel), common)
         elif not secondRel:
-            return (self.get_direct_descendant(other_person,firstRel),common)
+            return (self.get_direct_descendant(other_person, firstRel), common)
         elif len(firstRel) == 1:
             if other_person == gen.lib.Person.MALE:
-                return (self.get_ancestors_brother(secondRel),common)
+                return (self.get_ancestors_brother(secondRel), common)
             else:
-                return (self.get_ancestors_sister(secondRel),common)
+                return (self.get_ancestors_sister(secondRel), common)
         elif len(secondRel) >= len(firstRel):
-            return (self.get_ancestors_cousin(secondRel,firstRel),common)
+            return (self.get_ancestors_cousin(secondRel, firstRel), common)
         else:
-            return (self.get_cousins_descendant(other_person,firstRel,secondRel),common)
+            return (self.get_cousins_descendant(other_person, firstRel, secondRel), common)
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                     reltocommon_a, reltocommon_b,
                                     only_birth=True, 
                                     in_law_a=False, in_law_b=False):
-        return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0];
+        return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0]
  
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
