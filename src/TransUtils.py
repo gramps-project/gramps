@@ -30,7 +30,7 @@ Provide translation assistance
 # python modules
 #
 #------------------------------------------------------------------------
-import gettext
+import gettext as translate
 import os
 
 #-------------------------------------------------------------------------
@@ -66,8 +66,8 @@ def setup_gettext():
     :returns: Nothing.
 
     """
-    gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-    gettext.textdomain(LOCALEDOMAIN)
+    translate.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+    translate.textdomain(LOCALEDOMAIN)
     
     #following installs _ as a python function, we avoid this as TransUtils is
     #used sometimes:
@@ -101,10 +101,10 @@ def get_addon_translator(filename, domain="addon"):
     Assumes path/filename
             path/locale/LANG/LC_MESSAGES/addon.mo.
     """
-    gramps_translator = gettext.translation(LOCALEDOMAIN, LOCALEDIR, 
+    gramps_translator = translate.translation(LOCALEDOMAIN, LOCALEDIR,
                                             fallback=True)
     path = os.path.dirname(os.path.abspath(filename))
-    addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
+    addon_translator = translate.translation(domain, os.path.join(path,"locale"),
                                            fallback=True)
     gramps_translator.add_fallback(addon_translator)
     return gramps_translator # with a language fallback
@@ -128,6 +128,16 @@ def get_available_translations():
     languages.sort()
 
     return languages
+
+def gettext(msgid):
+    """
+    Obtain translation of gettext, return a unicode object
+    :param msgid: The string to translated.
+    :type msgid: unicode
+    :returns: Translation or the original with context stripped.
+    :rtype: unicode
+    """
+    return unicode(translate.gettext(msgid))
     
 def sgettext(msgid, sep='|'):
     """
@@ -146,11 +156,11 @@ def sgettext(msgid, sep='|'):
     :rtype: unicode
 
     """
-    msgval = gettext.gettext(msgid)
+    msgval = translate.gettext(msgid)
     if msgval == msgid:
         sep_idx = msgid.rfind(sep)
         msgval = msgid[sep_idx+1:]
-    return msgval
+    return unicode(msgval)
 
 def sngettext(singular, plural, n, sep='|'):
     """
@@ -174,8 +184,8 @@ def sngettext(singular, plural, n, sep='|'):
     :rtype: unicode
 
     """
-    msgval = gettext.ngettext(singular, plural, n)
+    msgval = translate.ngettext(singular, plural, n)
     if msgval == singular:
         sep_idx = singular.rfind(sep)
         msgval = singular[sep_idx+1:]
-    return msgval
+    return unicode(msgval)
