@@ -33,7 +33,8 @@ TreeModel for the GRAMPS Person tree.
 #
 #-------------------------------------------------------------------------
 from __future__ import with_statement
-from gettext import gettext as _
+#from gettext import gettext as _
+from TransUtils import gettext as _
 import time
 import cgi
 
@@ -229,7 +230,7 @@ class PeopleModel(TreeBaseModel):
             GrampsLocale.codeset)
 
     def column_gender(self, data):
-        return unicode(PeopleModel._GENDER[data[COLUMN_GENDER]])
+        return PeopleModel._GENDER[data[COLUMN_GENDER]]
 
     def column_birth_day(self, data):
         handle = data[0]
