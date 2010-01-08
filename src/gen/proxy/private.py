@@ -384,31 +384,26 @@ class PrivateProxyDb(ProxyDbBase):
         # private (like a SourceRef or MediaRef). It only checks if the 
         # referenced object is private.
 
+        objects = {
+            'Person'        : self.db.get_person_from_handle,
+            'Family'        : self.db.get_family_from_handle,
+            'Event'         : self.db.get_event_from_handle,
+            'Source'        : self.db.get_source_from_handle,
+            'Place'         : self.db.get_place_from_handle,
+            'MediaObject'   : self.db.get_object_from_handle,
+            'Note'          : self.db.get_note_from_handle,
+            'Repository'    : self.db.get_repository_from_handle,
+            }
+
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for (class_name, handle) in handle_itr:
-            if class_name == 'Person':
-                obj = self.db.get_person_from_handle(handle)
-            elif class_name == 'Family':
-                obj = self.db.get_family_from_handle(handle)
-            elif class_name == 'Event':
-                obj = self.db.get_event_from_handle(handle)
-            elif class_name == 'Source':
-                obj = self.db.get_source_from_handle(handle)
-            elif class_name == 'Place':
-                obj = self.db.get_place_from_handle(handle)
-            elif class_name == 'MediaObject':
-                obj = self.db.get_object_from_handle(handle)
-            elif class_name == 'Note':
-                obj = self.db.get_note_from_handle(handle)
-            elif class_name == 'Repository':
-                obj = self.db.get_repository_from_handle(handle)
+            if class_name in objects:
+                obj = objects[class_name](handle)
+                if obj and not obj.get_privacy():
+                    yield (class_name, handle)
             else:
-                raise NotImplementedError
-            
-            if obj and not obj.get_privacy():
-                yield (class_name, handle)
+                raise NotImplementedError                
         return
-
 
 def copy_media_ref_list(db, original_obj, clean_obj):
     """

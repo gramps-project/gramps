@@ -145,29 +145,24 @@ class ReferencedProxyDb(ProxyDbBase):
         effectively become unreferenced, so the action is performed in a loop
         until there are no more objects to unreference.
         """
-        object_types = {
-            'Event': {'unref_list': self.unreferenced_events,
-                      'handle_list': self.get_event_handles},
-            'Place': {'unref_list': self.unreferenced_places,
-                      'handle_list': self.get_place_handles},
-            'Source': {'unref_list': self.unreferenced_sources,
-                       'handle_list': self.get_source_handles},
-            'Repositories': {'unref_list': self.unreferenced_repositories,
-                             'handle_list': self.get_repository_handles},
-            'MediaObjects': {'unref_list': self.unreferenced_media_objects,
-                             'handle_list': self.get_media_object_handles},
-            'Notes': {'unref_list': self.unreferenced_notes,
-                      'handle_list': self.get_note_handles}
-            }
+
+        unrefs = (
+                (self.unreferenced_events,      self.get_event_handles),
+                (self.unreferenced_places,      self.get_place_handles),
+                (self.unreferenced_sources,     self.get_source_handles),
+                (self.unreferenced_repositories,
+                                                self.get_repository_handles),
+                (self.unreferenced_media_objects,
+                                                self.get_media_object_handles),
+                (self.unreferenced_notes,       self.get_note_handles),
+                )
 
         last_count = 0
         while True:
             current_count = 0
-            for object_type, object_dict in object_types.iteritems():
-                unref_list = object_dict['unref_list']
-                handle_list = object_dict['handle_list']()
+            for (unref_list, handle_list) in unrefs:
                 unref_list.update(
-                    handle for handle in handle_list
+                    handle for handle in handle_list()
                         if not any(self.find_backlink_handles(handle)))
                 current_count += len(unref_list)
 
