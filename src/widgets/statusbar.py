@@ -163,9 +163,14 @@ class Statusbar(gtk.HBox):
         self._set_packing()
         
         if ralign:
-            label = new_bar.get_children()[0].get_children()[0]
-            label.set_alignment(xalign=1.0, yalign=0.5)        
-        
+            frame = new_bar.get_children()[0]
+            obj = frame.get_children()[0]
+            # obj was a gtk.Label (GTK 2.16.6),
+            # now it is is gtk.HBox (GTK 2.19.1)
+            while not isinstance(obj, gtk.Label):
+                obj = obj.get_children()[0]
+            obj.set_alignment(xalign=1.0, yalign=0.5) 
+
         new_bar_id = self._get_next_id()
         self._bars[new_bar_id] = new_bar
         
