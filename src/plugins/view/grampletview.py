@@ -212,6 +212,10 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         """
         self.title = gramplet.title + " " + _("Gramplet")
         self.gramplet = gramplet
+        # Keep track of what state it was in:
+        self.docked_state = gramplet.state
+        # Now detach it
+        self.gramplet.set_state("detached") 
         ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], self.title)
         self.set_window(gtk.Dialog("",gramplet.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -269,18 +273,33 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         """
         self.gramplet.gvoptions.hide()
         self.gramplet.viewpage.detached_gramplets.remove(self.gramplet)
-        self.gramplet.state = "maximized"
+        if self.docked_state == "minimized":
+            self.gramplet.set_state("minimized")
+        else:
+            self.gramplet.set_state("maximized")
         parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
         self.gramplet.mainframe.reparent(parent)
-        # FIXME: Put the gramplet in the same column/row where it came from, if you can.
-        # This will put it at the bottom of column:
-        expand,fill,padding,pack =  parent.query_child_packing(self.gramplet.mainframe)
-        parent.set_child_packing(self.gramplet.mainframe,
-                                 self.gramplet.expand,
-                                 fill,
-                                 padding,
-                                 pack)
-        # end FIXME
+        viewpage = self.gramplet.viewpage
+        col = self.gramplet.column
+        stack = []
+        for gframe in viewpage.columns[col]:
+            gramplet = viewpage.frame_map[str(gframe)]
+            if gramplet.row > self.gramplet.row:
+                viewpage.columns[col].remove(gframe)
+                stack.append(gframe)
+        expand = self.gramplet.state == "maximized" and self.gramplet.expand
+        column = viewpage.columns[col]
+        column.pack_start(self.gramplet.mainframe, expand=expand)
+        for gframe in stack:
+            gramplet = viewpage.frame_map[str(gframe)]
+            expand = gramplet.state == "maximized" and gramplet.expand
+            viewpage.columns[col].pack_start(gframe, expand=expand)
+        # Now make sure they all have the correct expand:
+        for gframe in viewpage.columns[col]:
+            gramplet = viewpage.frame_map[str(gframe)]
+            expand, fill, padding, pack =  column.query_child_packing(gramplet.mainframe)
+            expand = gramplet.state == "maximized" and gramplet.expand
+            column.set_child_packing(gramplet.mainframe, expand, fill, padding, pack)
         self.gramplet.gvclose.show()
         self.gramplet.gvstate.show()
         self.gramplet.gvproperties.show()
@@ -375,7 +394,7 @@ class GuiGramplet(object):
         Detach the gramplet from the GrampletView, and open in own window.
         """
         # hide buttons:
-        self.set_state("detached") 
+        #self.set_state("detached") 
         self.viewpage.detached_gramplets.append(self)
         # make a window, and attach it there
         self.detached_window = GrampletWindow(self)
@@ -870,7 +889,7 @@ class GrampletView(PageView):
         # put the gramplets where they go:
         # sort by row
         gramplets.sort(key=lambda x: x.row)
-
+        rows = [0] * max(self.column_count, 1)
         for cnt, gramplet in enumerate(gramplets):
             # see if the user wants this in a particular location:
             # and if there are that many columns
@@ -880,6 +899,8 @@ class GrampletView(PageView):
                 # else, spread them out:
                 pos = cnt % self.column_count
             gramplet.column = pos
+            gramplet.row = rows[gramplet.column]
+            rows[gramplet.column] += 1
             if recolumn and (gramplet.state == "detached" or gramplet.state == "closed"):
                 continue
             if gramplet.state == "minimized":
@@ -1021,24 +1042,26 @@ class GrampletView(PageView):
             fromcol.remove(mainframe)
         # now find where to insert in column:
         stack = []
+        current_row = 0
         for gframe in self.columns[col]:
+            gramplet = self.frame_map[str(gframe)]
+            gramplet.row = current_row
+            current_row += 1
             rect = gframe.get_allocation()
             if y < (rect.y + 15): # starts at 0, this allows insert before
                 self.columns[col].remove(gframe)
                 stack.append(gframe)
         maingramplet = self.frame_map.get(str(mainframe), None)
         maingramplet.column = col
-        if maingramplet.state == "maximized":
-            expand = maingramplet.expand
-        else:
-            expand = False
+        maingramplet.row = current_row
+        current_row += 1
+        expand = maingramplet.state == "maximized" and maingramplet.expand
         self.columns[col].pack_start(mainframe, expand=expand)
         for gframe in stack:
             gramplet = self.frame_map[str(gframe)]
-            if gramplet.state == "maximized":
-                expand = gramplet.expand
-            else:
-                expand = False
+            gramplet.row = current_row
+            current_row += 1
+            expand = gramplet.state == "maximized" and gramplet.expand
             self.columns[col].pack_start(gframe, expand=expand)
         return True
 
