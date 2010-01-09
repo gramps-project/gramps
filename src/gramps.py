@@ -89,8 +89,6 @@ except:
 
 args = sys.argv
 
-MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
-
 def setup_logging():
     """Setup basic logging support."""
 

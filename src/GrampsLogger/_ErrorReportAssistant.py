@@ -2,8 +2,10 @@ from gettext import gettext as _
 import Assistant
 import const
 import gtk
+import pygtk
+import gobject
+import cairo
 import sys, os,bsddb
-
 
 
 class ErrorReportAssistant(object):
@@ -111,18 +113,27 @@ class ErrorReportAssistant(object):
                "Gramps version: %s \n"\
                "LANG: %s\n"\
                "OS: %s\n"\
-               "Distribution: %s\n"\
+               "Distribution: %s\n\n"\
+               "GTK version    : %s\n"\
+               "pygtk version  : %s\n"\
+               "gobject version: %s\n"\
+               "cairo version  : %s"\
                % (str(sys.version).replace('\n',''),
                   str(bsddb.__version__),
                   str(const.VERSION),
                   os.environ.get('LANG',''),
                   operatingsystem,
-                  distribution)
+                  distribution,
+                  gtk.gtk_version,
+                  gtk.pygtk_version,
+                  gobject.pygobject_version,
+                  cairo.version_info)
 
     def _reset_error_details_text_buffer(self, obj=None):
         self._error_details_text_buffer.set_text(
-	    "\n".join(self._rotate_handler.get_formatted_log(self._error_detail.get_record())) +
-	    self._error_detail.get_formatted_log())
+            "\n".join(self._rotate_handler.get_formatted_log(
+                        self._error_detail.get_record()))
+            + self._error_detail.get_formatted_log())
 
     def _clear_error_details_text_buffer(self, obj=None):
         self._error_details_text_buffer.delete(
