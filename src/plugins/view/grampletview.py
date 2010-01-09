@@ -277,8 +277,6 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
             self.gramplet.set_state("minimized")
         else:
             self.gramplet.set_state("maximized")
-        parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
-        self.gramplet.mainframe.reparent(parent)
         viewpage = self.gramplet.viewpage
         col = self.gramplet.column
         stack = []
@@ -289,7 +287,8 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                 stack.append(gframe)
         expand = self.gramplet.state == "maximized" and self.gramplet.expand
         column = viewpage.columns[col]
-        column.pack_start(self.gramplet.mainframe, expand=expand)
+        parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
+        self.gramplet.mainframe.reparent(parent)
         for gframe in stack:
             gramplet = viewpage.frame_map[str(gframe)]
             expand = gramplet.state == "maximized" and gramplet.expand
