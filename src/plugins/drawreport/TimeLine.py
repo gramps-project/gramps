@@ -104,6 +104,7 @@ class TimeLine(Report):
         sort_functions = _get_sort_functions(Sort.Sort(database))
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
+        self.calendar = 0
 
     def write_report(self):
         self.progress = ProgressMeter(_('Timeline'))
@@ -143,18 +144,20 @@ class TimeLine(Report):
         self.plist.sort(key=self.sort_func)
         self.progress.set_pass(_('Calculating timeline...'), len(self.plist))
         
+        self.calendar = config.get('preferences.calendar-format-report')
+        
         for p_id in self.plist:
             self.progress.step()
             p = self.database.get_person_from_handle(p_id)
             birth = get_birth_or_fallback(self.database, p)
             if birth:
-                b = birth.get_date_object().to_calendar(cal).get_year()
+                b = birth.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 b = None
 
             death = get_death_or_fallback(self.database, p)
             if death:
-                d = death.get_date_object().to_calendar(cal).get_year()
+                d = death.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 d = None
 
@@ -244,18 +247,20 @@ class TimeLine(Report):
         
         self.plist = self.filter.apply(self.database,
                                        self.database.iter_person_handles())
+        
+        self.calendar = config.get('preferences.calendar-format-report')
 
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
             birth = get_birth_or_fallback(self.database, p)
             if birth:
-                b = birth.get_date_object().to_calendar(cal).get_year()
+                b = birth.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 b = None
 
             death = get_death_or_fallback(self.database, p)
             if death:
-                d = death.get_date_object().to_calendar(cal).get_year()
+                d = death.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 d = None
 

@@ -166,6 +166,8 @@ class FanChart(Report):
             self.background_style.append(background_style_name)
             text_style_name = 'text_style' + '%d' % i
             self.text_style.append(text_style_name)
+        
+        self.calendar = 0
 
         Report.__init__(self, database, options_class)
 
@@ -268,11 +270,12 @@ class FanChart(Report):
     def get_info(self,person_handle,generation):
         person = self.database.get_person_from_handle(person_handle)
         pn = person.get_primary_name()
+        self.calendar = config.get('preferences.calendar-format-report')
 
         birth_ref = person.get_birth_ref()
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
-            b = birth.get_date_object().to_calendar(cal).get_year()
+            b = birth.get_date_object().to_calendar(self.calendar).get_year()
             if b == 0:
                 b = ""
         else:
@@ -281,7 +284,7 @@ class FanChart(Report):
         death_ref = person.get_death_ref()
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
-            d = death.get_date_object().to_calendar(cal).get_year()
+            d = death.get_date_object().to_calendar(self.calendar).get_year()
             if d == 0:
                 d = ""
         else:

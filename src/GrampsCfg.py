@@ -782,9 +782,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
     def date_calendar_changed(self, obj):
  
         config.set('preferences.calendar-format-report', obj.get_active())
-        OkDialog(_('Change is not immediate'), 
-                 _('Changing the data format will not take '
-                   'effect until the next time Gramps is started.'))
     
     def add_date_panel(self):
         table = gtk.Table(2, 7)
