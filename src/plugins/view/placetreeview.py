@@ -28,6 +28,7 @@ Place Tree View
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gui.views.listview import LISTTREE
 from gui.views.placebaseview import PlaceBaseView
 from gui.views.treemodels import PlaceTreeModel
 import gen.lib
@@ -55,6 +56,12 @@ class PlaceTreeView(PlaceBaseView):
         PlaceBaseView.__init__(self, dbstate, uistate,
                                                 _('Tree'), PlaceTreeModel)
 
+    def type_list(self):
+        """
+        set the listtype, this governs eg keybinding
+        """
+        return LISTTREE
+
     def get_viewtype_stock(self):
         """
         Override the default icon.  Set for hierarchical view.
@@ -67,9 +74,9 @@ class PlaceTreeView(PlaceBaseView):
         """
         PlaceBaseView.define_actions(self)
         
-        self._add_action('OpenBranch', None, _("Expand Rows"),
+        self._add_action('OpenBranch', None, _("Expand this Entire Group"),
                          callback=self.open_branch)
-        self._add_action('CloseBranch', None, _("Collapse Rows"),
+        self._add_action('CloseBranch', None, _("Collapse this Entire Group"),
                          callback=self.close_branch)
         self._add_action('OpenAllNodes', None, _("Expand all Nodes"),
                          callback=self.open_all_nodes)

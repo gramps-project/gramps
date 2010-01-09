@@ -47,7 +47,7 @@ _LOG = logging.getLogger(".gui.personview")
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.views.navigationview import NAVIGATION_PERSON
-from gui.views.listview import ListView
+from gui.views.listview import ListView, LISTTREE
 from gui.views.treemodels import PeopleModel
 import Utils
 from BasicUtils import name_displayer
@@ -121,7 +121,13 @@ class PersonView(ListView):
             }
 
         config.connect("interface.filter", self.filter_toggle)
-        
+
+    def type_list(self):
+        """
+        set the listtype, this governs eg keybinding
+        """
+        return LISTTREE
+
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_person_column_order(clist)
 

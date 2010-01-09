@@ -61,9 +61,17 @@ import Utils
 from QuestionDialog import QuestionDialog, QuestionDialog2
 from TransUtils import sgettext as _
 
+#----------------------------------------------------------------
+#
+# Constants
+#
+#----------------------------------------------------------------
+
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
 
+LISTFLAT = 0
+LISTTREE = 1
 
 #----------------------------------------------------------------
 #
@@ -101,6 +109,12 @@ class ListView(NavigationView):
         self.markup_required = markup
         dbstate.connect('database-changed', self.change_db)
 
+    def type_list(self):
+        """
+        set the listtype, this governs eg keybinding
+        """
+        return LISTFLAT
+
     ####################################################################
     # Build interface
     ####################################################################
@@ -124,7 +138,12 @@ class ListView(NavigationView):
         self.list.set_headers_clickable(True)
         self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event', self._button_press)
-        self.list.connect('key-press-event', self._key_press)
+        if self.type_list() == LISTFLAT:
+            # Flat list
+            self.list.connect('key-press-event', self._key_press)
+        else:
+            # Tree
+            self.list.connect('key-press-event', self._key_press_tree)
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
             self.list.connect('drag_begin', self.drag_begin)
@@ -364,7 +383,7 @@ class ListView(NavigationView):
         if not handle or handle in self.selected_handles():
             return
 
-        if self.model.get_flags() & gtk.TREE_MODEL_LIST_ONLY:
+        if self.type_list() == LISTFLAT:
             # Flat
             try:
                 path = self.model.on_get_path(handle)
@@ -376,8 +395,10 @@ class ListView(NavigationView):
             node = self.model.get_node(handle)
             if node:
                 parent_node = self.model.on_iter_parent(node)
-                parent_path = self.model.on_get_path(parent_node)
-                self.list.expand_row(parent_path, 0)
+                if parent_node:
+                    parent_path = self.model.on_get_path(parent_node)
+                    if parent_path:
+                        self.list.expand_row(parent_path, False)
                 path = self.model.on_get_path(node)
 
         if path:
@@ -739,7 +760,44 @@ class ListView(NavigationView):
                 self.edit(obj)
                 return True
         return False
-        
+
+    def _key_press_tree(self, obj, event):
+        """
+        Overwrite of listview key press
+        """
+        if not self.dbstate.open:
+            return False
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                store, paths = self.selection.get_selected_rows()
+                if paths:
+                    firstsel = paths[0]
+                    firstnode = self.model.on_get_iter(firstsel)
+                    if len(paths)==1 and firstnode.handle is None:
+                        return self.expand_collapse_tree()
+                    else:
+                        self.edit(obj)
+                        return True
+        return False
+
+    def expand_collapse_tree(self):
+        """
+        Expand or collapse the selected group node.
+        Return True if change done, False otherwise
+        """
+        store, paths = self.selection.get_selected_rows()
+        if paths:
+            firstsel = paths[0]
+            firstnode = self.model.on_get_iter(firstsel)
+            if firstnode.handle:
+                return False
+            if self.list.row_expanded(firstsel):
+                self.list.collapse_row(firstsel)
+            else:
+                self.list.expand_row(firstsel, False)
+            return True
+        return False
+
     def key_delete(self):
         self.remove(None)
 
