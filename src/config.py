@@ -32,7 +32,7 @@ This package implements access to GRAMPS configuration.
 # Gramps imports
 #
 #---------------------------------------------------------------
-import os
+import os, sys
 from gettext import gettext as _
 
 #---------------------------------------------------------------
