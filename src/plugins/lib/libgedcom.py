@@ -93,6 +93,7 @@ import time
 import codecs
 from gettext import gettext as _
 from xml.parsers.expat import ParserCreate
+from collections import defaultdict
 
 #------------------------------------------------------------------------
 #
@@ -5477,21 +5478,10 @@ class GedcomStageOne(object):
         """
         return value and value[0] == '@'
     
-    @staticmethod
-    def __add_to_list(table, key, value):
-        """
-        Add the value to the table entry associated with key. If the entry 
-        does not exist, it is added.
-        """
-        if key in table:
-            table[key].append(value)
-        else:
-            table[key] = [value]
-    
     def __init__(self, ifile):
         self.ifile = ifile
-        self.famc = {}
-        self.fams = {}
+        self.famc = defaultdict(list)
+        self.fams = defaultdict(list)
         self.enc = ""
         self.pcnt = 0
         self.lcnt = 0
@@ -5551,9 +5541,9 @@ class GedcomStageOne(object):
                     self.pcnt += 1
             elif key in ("HUSB", "HUSBAND", "WIFE") and \
                  self.__is_xref_value(value):
-                self.__add_to_list(self.fams, value[1:-1], current_family_id)
+                self.fams[value[1:-1]].append(current_family_id)
             elif key in ("CHIL", "CHILD") and self.__is_xref_value(value):
-                self.__add_to_list(self.famc, value[1:-1], current_family_id)
+                self.famc[value[1:-1]].append(current_family_id)
             elif key == 'CHAR' and not self.enc:
                 assert(isinstance(value, basestring))
                 self.enc = value

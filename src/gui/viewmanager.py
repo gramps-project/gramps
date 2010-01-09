@@ -35,6 +35,7 @@ import os
 
 from gettext import gettext as _
 from cStringIO import StringIO
+from collections import defaultdict
 
 #-------------------------------------------------------------------------
 #
@@ -1489,22 +1490,19 @@ class ViewManager(CLIManager):
         
         menu = gtk.Menu()
         menu.show()
-    
-        hash_data = {}
+
+        hash_data = defaultdict(list)
         for pdata in item_list:
             if not pdata.supported:
                 category = _UNSUPPORTED
             else:
                 category = categories[pdata.category]
-            if category in hash_data:
-                hash_data[category].append(pdata)
-            else:
-                hash_data[category] = [pdata]
-                
+            hash_data[category].append(pdata)
+
         # Sort categories, skipping the unsupported
-        catlist = [item for item in hash_data
-                   if item != _UNSUPPORTED]
-        catlist.sort()
+        catlist = sorted(item for item in hash_data
+                   if item != _UNSUPPORTED)
+
         for key in catlist:
             new_key = key.replace(' ', '-')
             ofile.write('<menu action="%s">' % new_key)

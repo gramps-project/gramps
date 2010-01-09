@@ -64,6 +64,7 @@ from TransUtils import sgettext as _
 from cStringIO import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize
+from collections import defaultdict
 
 #------------------------------------------------------------------------
 #
@@ -5958,7 +5959,7 @@ class NavWebOptions(MenuReportOptions):
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
-    sname_sub = {}
+    sname_sub = defaultdict(list)
     sortnames = {}
 
     for person_handle in handle_list:
@@ -5971,11 +5972,7 @@ def sort_people(db, handle_list):
             surname = db.get_name_group_mapping(primary_name.surname)
 
         sortnames[person_handle] = _nd.sort_string(primary_name)
-
-        if surname in sname_sub:
-            sname_sub[surname].append(person_handle)
-        else:
-            sname_sub[surname] = [person_handle]
+        sname_sub[surname].append(person_handle)
 
     sorted_lists = []
     temp_list = sorted(sname_sub, key=locale.strxfrm)
@@ -6079,7 +6076,7 @@ def alphabet_navigation(menu_set, alphakey):
     @param: menu_set -- a dictionary of either letters or words
     @param: alphakey -- either Person, Place, or AlphaEvent
     """
-    sorted_set = {}
+    sorted_set = defaultdict(int)
     # The comment below from the glibc locale sv_SE in
     # localedata/locales/sv_SE :
     #
@@ -6096,10 +6093,7 @@ def alphabet_navigation(menu_set, alphakey):
     ltr = get_first_letters
 
     for menu_item in menu_set:
-        if menu_item in sorted_set:
-            sorted_set[menu_item] += 1
-        else:
-            sorted_set[menu_item] = 1
+        sorted_set[menu_item] += 1
 
     # remove the number of each occurance of each letter
     sorted_alpha_index = sorted(sorted_set, key = locale.strxfrm)

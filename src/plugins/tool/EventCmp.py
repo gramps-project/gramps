@@ -29,6 +29,7 @@
 #
 #------------------------------------------------------------------------
 import os
+from collections import defaultdict
 
 #------------------------------------------------------------------------
 #
@@ -128,7 +129,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
             "on_editor_clicked"      : self.filter_editor_clicked,
             "on_filters_delete_event": self.close,
             "on_help_clicked"        : self.on_help_clicked,
-            "destroy_passed_object"  : self.close
+            "destroy_passed_object"  : self.close,
             "on_delete_event"        : self.close,
             })
     
@@ -296,14 +297,11 @@ class DisplayChart(ManagedWindow.ManagedWindow):
             name = individual.get_primary_name().get_name()
             gid = individual.get_gramps_id()
 
-            the_map = {}
+            the_map = defaultdict(list)
             for ievent_ref in individual.get_event_ref_list():
                 ievent = self.db.get_event_from_handle(ievent_ref.ref)
                 event_name = str(ievent.get_type())
-                if event_name in the_map:
-                    the_map[event_name].append(ievent_ref.ref)
-                else:
-                    the_map[event_name] = [ievent_ref.ref]
+                the_map[event_name].append(ievent_ref.ref)
 
             first = True
             done = False
@@ -346,7 +344,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         name, birth, and death.
         This should be the column titles of the report.
         """
-        the_map = {}
+        the_map = defaultdict(int)
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
             for event_ref in individual.get_event_ref_list():
@@ -354,10 +352,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 name = str(event.get_type())
                 if not name:
                     break
-                if name in the_map:
-                    the_map[name] += 1
-                else:
-                    the_map[name] = 1
+                the_map[name] += 1
 
         unsort_list = sorted([(d, k) for k,d in the_map.iteritems()],by_value)
         

@@ -30,6 +30,7 @@
 #------------------------------------------------------------------------
 import os
 from gettext import gettext as _
+from collections import defaultdict
 
 #------------------------------------------------------------------------
 #
@@ -477,7 +478,7 @@ class IndivCompleteReport(Report):
         contained within a group it is moved from the Individual Facts
         section into its own section.
         """
-        event_dict = {}
+        event_dict = defaultdict(list)
         event_ref_list = self.person.get_event_ref_list()
         for event_ref in event_ref_list:
             if event_ref:
@@ -485,10 +486,7 @@ class IndivCompleteReport(Report):
                 group = TYPE2GROUP[event.get_type().value]
                 if group not in self.section_list:
                     group = FACTS
-                if group in event_dict:
-                    event_dict[group].append(event_ref)
-                else:
-                    event_dict[group] = [event_ref]
+                event_dict[group].append(event_ref)
                     
         # Write separate event group sections
         for group in SECTION_LIST:

@@ -33,6 +33,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+from collections import defaultdict
 
 #-------------------------------------------------------------------------
 #
@@ -186,16 +187,13 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.store.clear()
 
         # build the tree items and group together based on the category name
-        item_hash = {}
+        item_hash = defaultdict()
         for plugin in reg_list:
             if not plugin.supported:
                 category = _UNSUPPORTED
             else:
                 category = categories[plugin.category]
-            if category in item_hash:
-                item_hash[category].append(plugin)
-            else:
-                item_hash[category] = [plugin]
+            item_hash[category].append(plugin)
 
         # add a submenu for each category, and populate it with the
         # GtkTreeItems that are associated with it.

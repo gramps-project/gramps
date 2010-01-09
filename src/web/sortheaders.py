@@ -2,6 +2,7 @@
 # Site: http://www.djangosnippets.org/snippets/308/
 
 from django.core.paginator import InvalidPage, EmptyPage
+from collections import defaultdict
 
 from unicodedata import normalize
 import locale
@@ -137,7 +138,7 @@ class NamePaginator(object):
         self.pages = []
         
         # chunk up the objects so we don't need to iterate over the whole list for each letter
-        chunks = {}
+        chunks = defaultdict(list)
         
         for obj in self.object_list:
             if on: 
@@ -146,10 +147,6 @@ class NamePaginator(object):
                 obj_str = unicode(obj)
             
             letter = first_letter(obj_str[0])
-            
-            if letter not in chunks: 
-                chunks[letter] = []
-            
             chunks[letter].append(obj)
         
         # the process for assigning objects to each page
