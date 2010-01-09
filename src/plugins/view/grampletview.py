@@ -30,9 +30,7 @@ GrampletView interface.
 #
 #-------------------------------------------------------------------------
 import gtk
-import gobject
 import pango
-
 import traceback
 import time
 import types
