@@ -166,6 +166,11 @@ class LongOpStatus(Callback):
             self._start = time.time()
             self.emit('op-heartbeat')
 
+    def step(self):
+        """Convenience function so LongOpStatus can be used as a ProgressBar 
+            if set up correctly"""
+        self.heartbeat()
+
     def estimated_secs_to_complete(self):
         """Return the number of seconds estimated left before operation 
         completes. This will change as 'hearbeat' is called.
@@ -284,14 +289,14 @@ class ProgressMonitor(object):
     __default_popup_time = 5 # seconds
     
     def __init__(self, dialog_class, dialog_class_params=(),
-                 title=_("Progress Information"), 
+                 title=_("Progress Information"),
                  popup_time = None):
         """
         @param dialog_class: A class used to display the progress dialog.
         @type dialog_class: GtkProgressDialog or the same interface.
         
         @param dialog_class_params: A tuple that will be used as the initial
-        arguments to the dialog_class, this might be used for passing in 
+        arguments to the dialog_class, this might be used for passing in
         a parent window handle.
         @type dialog_class_params: tuple
         
@@ -391,6 +396,8 @@ class ProgressMonitor(object):
         facade.status_obj.disconnect(facade.heartbeat_cb_id)
         facade.status_obj.disconnect(facade.end_cb_id)
         del self._status_stack[idx]
+        if len(self._status_stack) == 0 and self._dlg:
+            self._dlg.close()
         
 #-------------------------------------------------------------------------
 #
@@ -551,7 +558,7 @@ class GtkProgressDialog(gtk.Dialog):
         self.destroy()
         
 if __name__ == '__main__':
-
+    
     def test(a, b):
         d = ProgressMonitor(GtkProgressDialog)
         
@@ -600,4 +607,3 @@ if __name__ == '__main__':
     w.show()
     gtk.main()
     print 'done'
-        

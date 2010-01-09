@@ -33,6 +33,7 @@ This module provides the model that is used for all hierarchical treeviews.
 from __future__ import with_statement
 import time
 import locale
+from gettext import gettext as _
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")
@@ -51,10 +52,161 @@ import gtk
 #-------------------------------------------------------------------------
 import config
 from Utils import conv_unicode_tosrtkey_ongtk
-from gui.widgets.progressdialog import LongOpStatus
+import gui.widgets.progressdialog as progressdlg
 from Lru import LRU
 from bisect import bisect_right
 from Filters import SearchFilter, ExactSearchFilter
+
+#-------------------------------------------------------------------------
+#
+# Node
+#
+#-------------------------------------------------------------------------
+class Node(object):
+    """
+    This class defines an individual node of a tree in the model.  The node
+    stores the following data:
+
+    name        Textual description of the node.
+    sortkey     A key which defines the sort order of the node.
+    ref         Reference to this node in the tree dictionary.
+    handle      A Gramps handle.  Can be None if no Gramps object is
+                associated with the node.
+    parent      id of the parent node.
+    prev        Link to the previous sibling via id.
+    next        Link to the next sibling via id.
+
+    children    A list of (sortkey, nodeid) tuples for the children of the node.
+                This list is always kept sorted.
+    """
+    __slots__ = ('name', 'sortkey', 'ref', 'handle', 'parent', 'prev', 
+                 'next', 'children')#, '__weakref__')
+
+    def __init__(self, ref, parent, sortkey, handle):
+        self.name = sortkey
+        if sortkey:
+            self.sortkey = conv_unicode_tosrtkey_ongtk(sortkey)
+        else:
+            self.sortkey = None
+        self.ref = ref
+        self.handle = handle
+        self.parent = parent
+        self.prev = None
+        self.next = None
+        self.children = []
+
+    def set_handle(self, handle):
+        """
+        Assign the handle of a Gramps object to this node.
+        """
+        if not self.handle:
+            self.handle = handle
+        else:
+            raise ValueError, 'attempt to add twice a node to the model'
+        
+    def add_child(self, node, nodemap):
+        """
+        Add a node to the list of children for this node using the id's in
+        nodemap.
+        """
+        nodeid = id(node)
+        if len(self.children):
+            index = bisect_right(self.children, (node.sortkey, nodeid))
+            if index == 0:
+                node.prev = None
+                next_nodeid = self.children[0][1]
+                next_node = nodemap.node(next_nodeid)
+                next_node.prev = nodeid
+                node.next = next_nodeid
+            elif index == len(self.children):
+                prev_nodeid = self.children[-1][1]
+                prev_node = nodemap.node(prev_nodeid)
+                prev_node.next = nodeid
+                node.prev = prev_nodeid
+                node.next = None
+            else:
+                prev_nodeid = self.children[index - 1][1]
+                next_nodeid = self.children[index][1]
+                prev_node = nodemap.node(prev_nodeid)
+                next_node = nodemap.node(next_nodeid)
+                prev_node.next = nodeid
+                next_node.prev = nodeid
+                node.prev = prev_nodeid
+                node.next = next_nodeid
+
+            self.children.insert(index, (node.sortkey, nodeid))
+
+        else:
+            self.children.append((node.sortkey, nodeid))
+            
+    def remove_child(self, node, nodemap):
+        """
+        Remove a node from the list of children for this node, using nodemap.
+        """
+        nodeid = id(node)
+        index = bisect_right(self.children, (node.sortkey, nodeid)) - 1
+        if not (self.children[index] == (node.sortkey, nodeid)):
+            raise ValueError, str(node.name) + \
+                        ' not present in self.children: ' + str(self.children)\
+                        + ' at index ' + str(index)
+        if index == 0:
+            nodemap.node(self.children[index][1]).prev = None
+        elif index == len(self.children)-1:
+            nodemap.node(self.children[index - 1][1]).next = None
+        else:
+            nodemap.node(self.children[index - 1][1]).next = \
+                        self.children[index + 1][1]
+            nodemap.node(self.children[index + 1][1]).prev = \
+                        self.children[index - 1][1]
+
+        self.children.pop(index)
+
+#-------------------------------------------------------------------------
+#
+# NodeMap
+#
+#-------------------------------------------------------------------------
+class NodeMap(object):
+    """
+    Map of id of Node classes to real object
+    """
+    def __init__(self):
+        self.id2node = {}
+    
+    def add_node(self, node):
+        """
+        Add a Node object to the map and return id of this node
+        """
+        nodeid = id(node)
+        self.id2node[nodeid] = node
+        return nodeid
+    
+    def del_node(self, node):
+        """
+        Remove a Node object from the map and return nodeid
+        """
+        nodeid = id(node)
+        del self.id2node[nodeid]
+        return nodeid
+    
+    def del_nodeid(self, nodeid):
+        """
+        Remove Node with id nodeid from the map
+        """
+        del self.id2node[nodeid]
+
+    def node(self, nodeid):
+        """
+        Obtain the node object from it's id
+        """
+        return self.id2node[nodeid]
+
+    def clear(self):
+        """
+        clear the map
+        """
+        self.id2node.clear()
+        self.id2node = {}
 
 #-------------------------------------------------------------------------
 #
@@ -72,14 +224,11 @@ class TreeBaseModel(gtk.GenericTreeModel):
 
     The following data is stored:
 
-    tree        A dictionary of unique nodes.  Each entry is a list
-                containing the parent node and gramps handle.  The handle
-                is set to None if no gramps object is associated with the
-                node.
-    children    A dictionary of parent nodes.  Each entry is a list of
-                (sortkey, child) tuples.  The list is sorted during the
-                build.  The top node of the hierarchy is None.
-    handle2node A dictionary of gramps handles.  Each entry is a node.
+    tree        A dictionary of unique identifiers which correspond to nodes in
+                the hierarchy.  Each entry is a node object.
+    handle2node A dictionary of gramps handles.  Each entry is a node object.
+    nodemap     A NodeMap, mapping id's of the nodes to the node objects. Node
+                refer to other notes via id's in a linked list form.
     
     The model obtains data from database as needed and holds a cache of most
     recently used data.
@@ -116,18 +265,21 @@ class TreeBaseModel(gtk.GenericTreeModel):
                     group_can_have_handle = False):
         cput = time.clock()
         gtk.GenericTreeModel.__init__(self)
+        
+        self.__reverse = (order == gtk.SORT_DESCENDING)
+        self.scol = scol
+        self.nrgroups = nrgroups
+        self.group_can_have_handle = group_can_have_handle
+        self.db = db
+        
+        self._set_base_data()
 
         # Initialise data structures
         self.tree = {}
-        self.children = {}
-        self.children[None] = []
+        self.nodemap = NodeMap()
         self.handle2node = {}
-        self.__reverse = (order == gtk.SORT_DESCENDING)
-        self.nrgroups = nrgroups
-        self.group_can_have_handle = group_can_have_handle
 
         self.set_property("leak_references", False)
-        self.db = db
         #normally sort on first column, so scol=0
         if sort_map:
             #sort_map is the stored order of the columns and if they are
@@ -168,6 +320,26 @@ class TreeBaseModel(gtk.GenericTreeModel):
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
                     str(time.clock() - cput) + ' sec')
 
+    def _set_base_data(self):
+        """
+        This method must be overwritten in the inheriting class, setting 
+        all needed information
+        
+        gen_cursor   : func to create cursor to loop over objects in model
+        number_items : func to obtain number of items that are shown if all
+                        shown
+        map     : function to obtain the raw bsddb object datamap
+        smap    : the map with functions to obtain sort value based on sort col
+        fmap    : the map with functions to obtain value of a row with handle
+        hmap    : the map with functions to obtain value of a row without handle
+        """
+        self.gen_cursor = None
+        self.number_items = None   # function 
+        self.map = None
+        
+        self.smap = None
+        self.fmap = None
+        self.hmap = None
 
     def __update_todo(self, *args):
         """
@@ -221,11 +393,18 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Clear the data map.
         """
+        #invalidate the iters within gtk
+        self.invalidate_iters()
+        self.tree.clear()
         self.tree = {}
-        self.children = {}
-        self.children[None] = []
+        self.handle2node.clear()
         self.handle2node = {}
-        self.__reverse = False
+        self.nodemap.clear()
+        self.nodemap = NodeMap()
+        #start with creating the new iters
+        topnode = Node(None, None, None, None)
+        self.nodemap.add_node(topnode)
+        self.tree[None] = topnode
 
     def set_search(self, search):
         """
@@ -275,7 +454,6 @@ class TreeBaseModel(gtk.GenericTreeModel):
 
         self.clear()
         self._build_data(self.current_filter, skip)
-        self.sort_data()
 
         self._in_build = False
 
@@ -290,37 +468,71 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         self.__total = 0
         self.__displayed = 0
+        
+        items = self.number_items()
+        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+                                            popup_time=2)
+        status = progressdlg.LongOpStatus(msg=_("Building People View"),
+                            total_steps=items, interval=items//20, 
+                            can_cancel=True)
+        pmon.add_op(status)
         with self.gen_cursor() as cursor:
             for handle, data in cursor:
+                status.heartbeat()
+                if status.should_cancel():
+                    break
                 self.__total += 1
                 if not (handle in skip or (dfilter and not
                                         dfilter.match(handle, self.db))):
                     self.__displayed += 1
                     self.add_row(handle, data)
+        if not status.was_cancelled():
+            status.end()
 
     def _rebuild_filter(self, dfilter, skip):
         """
         Rebuild the data map where a filter is applied.
-        """        
+        """
+        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+                                            popup_time=2)
+        status = progressdlg.LongOpStatus(msg=_("Building People View"),
+                              total_steps=3, interval=1)
+        pmon.add_op(status)
+        self.__total = self.number_items()
+        status_ppl = progressdlg.LongOpStatus(msg=_("Obtaining all people"),
+                        total_steps=self.__total, interval=self.__total//10)
+        pmon.add_op(status_ppl)
+        
+        def beat(key):
+            status_ppl.heartbeat()
+            return key
+        
         with self.gen_cursor() as cursor:
-            handle_list = [key for key, data in cursor]
-        self.__total = len(handle_list)
+            handle_list = [beat(key) for key, data in cursor]
+        status_ppl.end()
+        self.__displayed = 0
+        status.heartbeat()
 
         if dfilter:
-            handle_list = dfilter.apply(self.db, handle_list)
-            self.__displayed = len(handle_list)
-        else:
-            self.__displayed = self.db.get_number_of_people()
+            status_filter = progressdlg.LongOpStatus(msg=_("Applying filter"),
+                        total_steps=self.__total, interval=self.__total//10)
+            pmon.add_op(status_filter)
+            handle_list = dfilter.apply(self.db, handle_list, 
+                                        progress=status_filter)
+            status_filter.end()
+        status.heartbeat()
 
-        status = LongOpStatus(msg="Loading People",
-                              total_steps=self.__displayed,
-                              interval=self.__displayed//10)
-        self.db.emit('long-op-start', (status,))
+        todisplay = len(handle_list)
+        status_col = progressdlg.LongOpStatus(msg=_("Constructing column data"),
+                total_steps=todisplay, interval=todisplay//10)
+        pmon.add_op(status_col)
         for handle in handle_list:
-            status.heartbeat()
+            status_col.heartbeat()
             data = self.map(handle)
             if not handle in skip:
                 self.add_row(handle, data)
+                self.__displayed += 1
+        status_col.end()
         status.end()
         
     def add_node(self, parent, child, sortkey, handle, add_parent=True):
@@ -339,35 +551,31 @@ class TreeBaseModel(gtk.GenericTreeModel):
         add_parent  Bool, if True, check if parent is present, if not add the 
                     parent as a top group with no handle
         """
-        sortkey = conv_unicode_tosrtkey_ongtk(sortkey)
         if add_parent and not (parent in self.tree):
             #add parent to self.tree as a node with no handle, as the first
             #group level
             self.add_node(None, parent, parent, None, add_parent=False)
         if child in self.tree:
             #a node is added that is already present,
-            self._add_dup_node(parent, child, sortkey, handle)
+            child_node = self.tree[child]
+            self._add_dup_node(child_node, parent, child, sortkey, handle)
         else:
-            self.tree[child] = [parent, handle]
-            if parent in self.children:
-                if self._in_build:
-                    self.children[parent].append((sortkey, child))
-                else:
-                    index = bisect_right(self.children[parent], (sortkey, child))
-                    self.children[parent].insert(index, (sortkey, child))
-            else:
-                self.children[parent] = [(sortkey, child)]
+            parent_node = self.tree[parent]
+            child_node = Node(child, id(parent_node), sortkey, handle)
+            parent_node.add_child(child_node, self.nodemap)
+            self.tree[child] = child_node
+            self.nodemap.add_node(child_node)
 
             if not self._in_build:
                 # emit row_inserted signal
-                path = self.on_get_path(child)
+                path = self.on_get_path(child_node)
                 node = self.get_iter(path)
                 self.row_inserted(path, node)
 
         if handle:
-            self.handle2node[handle] = child
+            self.handle2node[handle] = child_node
 
-    def _add_dup_node(self, parent, child, sortkey, handle):
+    def _add_dup_node(self, node, parent, child, sortkey, handle):
         """
         How to handle adding a node a second time
         Default: if group nodes can have handles, it is allowed to add it 
@@ -377,67 +585,51 @@ class TreeBaseModel(gtk.GenericTreeModel):
         if not self.group_can_have_handle:
             raise ValueError, 'attempt to add twice a node to the model %s' % \
                                 str(parent) + ' ' + str(child) + ' ' + sortkey
-        present_val = self.tree[child]
-        if handle and present_val[1] is None:
-            self.tree[child][1] = handle
-        elif handle is None:
-            pass
-        else:
-            #handle given, and present handle is not None
-            raise ValueError, 'attempt to add twice a node to the model'
-
-    def sort_data(self):
-        """
-        Sort the data in the map according to the value of the sort key.
-        """
-        for node in self.children:
-            self.children[node].sort()
+        if handle:
+            node.set_handle(handle)
             
     def remove_node(self, node):
         """
         Remove a node from the map.
         """
-        if node in self.children:
-            self.tree[node][1] = None
+        if node.children:
+            node.set_handle(None)
         else:
             path = self.on_get_path(node)
-            parent = self.tree[node][0]
-            del self.tree[node]
-            new_list = [child for child in self.children[parent]
-                            if child[1] != node]
-            if not new_list:
-                del self.children[parent]
-            else:
-                self.children[parent] = new_list
-
+            self.nodemap.node(node.parent).remove_child(node, self.nodemap)
+            del self.tree[node.ref]
+            self.nodemap.del_node(node)
+            del node
+            
             # emit row_deleted signal
             self.row_deleted(path)
         
     def reverse_order(self):
         """
-        Reverse the order of the map.
+        Reverse the order of the map. This does not signal rows_reordered,
+        so to propagate the change to the view, you need to reattach the
+        model to the view. 
         """
-        cput = time.clock()
         self.__reverse = not self.__reverse
-        self._reverse_level(None)
-        _LOG.debug(self.__class__.__name__ + ' reverse_order ' +
-                    str(time.clock() - cput) + ' sec')
 
     def _reverse_level(self, node):
         """
-        Reverse the order of a single level in the map.
+        Reverse the order of a single level in the map and signal 
+        rows_reordered so the view is updated.
+        If many changes are done, it is better to detach the model, do the
+        changes to reverse the level, and reattach the model, so the view
+        does not update for every change signal.
         """
-        if node in self.children:
-            rows = range(len(self.children[node]))
-            rows.reverse()
-            if node is None:
+        if node.children:
+            rows = range(len(node.children)-1,-1,-1)
+            if node.parent is None:
                 path = iter = None
             else:
                 path = self.on_get_path(node)
                 iter = self.get_iter(path)
             self.rows_reordered(path, iter, rows)
-            for child in self.children[node]:
-                self._reverse_level(child[1])
+            for child in node.children:
+                self._reverse_level(self.nodemap.node(child[1]))
 
     def get_tree_levels(self):
         """
@@ -447,7 +639,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         
     def add_row(self, handle, data):
         """
-        Add a row to the model.  In general this will add more then one node.
+        Add a row to the model.  In general this will add more then one node by
+        using the add_node method.
         """
         raise NotImplementedError
 
@@ -470,13 +663,14 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.clear_cache()
 
         node = self.get_node(handle)
-        parent = self.on_iter_parent(node)
+        parent = self.nodemap.node(node.parent)
         self.remove_node(node)
         
         while parent is not None:
-            next_parent = self.on_iter_parent(parent)
-            if parent not in self.children:
-                if self.tree[parent][1]:
+            next_parent = self.nodemap.node(parent.parent) \
+                        if parent.parent is not None else None
+            if not parent.children:
+                if parent.handle:
                     # emit row_has_child_toggled signal
                     path = self.on_get_path(parent)
                     node = self.get_iter(path)
@@ -503,10 +697,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Get the gramps handle for a node.  Return None if the node does
         not correspond to a gramps object.
         """
-        ret = self.tree.get(node)
-        if ret:
-            return ret[1]
-        return ret
+        return node.handle
             
     def get_node(self, handle):
         """
@@ -537,12 +728,14 @@ class TreeBaseModel(gtk.GenericTreeModel):
             return object
         return str
 
-    def on_get_value(self, node, col):
+    def on_get_value(self, nodeid, col):
         """
         See gtk.GenericTreeModel
         """
-        handle = self.get_handle(node)
-        if handle is None:
+        #print 'get_value', nodeid, col
+        nodeid = id(nodeid)
+        node = self.nodemap.node(nodeid)
+        if node.handle is None:
             # Header rows dont get the foreground color set
             if col == self._marker_column:
                 return None
@@ -557,7 +750,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         else:
             # return values for 'data' row, calling a function
             # according to column_defs table
-            return self._get_value(handle, col)
+            return self._get_value(node.handle, col)
             
     def _get_value(self, handle, col):
         """
@@ -578,111 +771,118 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Returns a node from a given path.
         """
-        if not self.tree:
+        if not self.tree or not self.tree[None].children:
             return None
-        node = None
+        node = self.tree[None]
         pathlist = list(path)
         for index in pathlist:
             if self.__reverse:
-                size = len(self.children[node])
-                node = self.children[node][size - index - 1][1]
+                size = len(node.children)
+                node = self.nodemap.node(node.children[size - index - 1][1])
             else:
-                node = self.children[node][index][1]
+                node = self.nodemap.node(node.children[index][1])
         return node
         
-    def on_get_path(self, node):
+    def on_get_path(self, nodeid):
         """
         Returns a path from a given node.
         """
+        nodeid = id(nodeid)
+        node = self.nodemap.node(nodeid)
         pathlist = []
-        while node is not None:
-            parent = self.tree[node][0]
-            for index, value in enumerate(self.children[parent]):
-                if value[1] == node:
-                    break
-            if self.__reverse:
-                size = len(self.children[parent])
-                pathlist.append(size - index - 1)
-            else:
-                pathlist.append(index)
+        while node.parent is not None:
+            parent = self.nodemap.node(node.parent)
+            index = -1
+            while node is not None:
+                # Step backwards
+                nodeid = node.next if self.__reverse else node.prev
+                node = self.nodemap.node(nodeid) if nodeid is not None else \
+                            None
+                index += 1
+            pathlist.append(index)
             node = parent
+
         if pathlist is not None:
             pathlist.reverse()
             return tuple(pathlist)
         else:
             return None
             
-    def on_iter_next(self, node):
+    def on_iter_next(self, nodeid):
         """
         Get the next node with the same parent as the given node.
         """
-        parent = self.tree[node][0]
-        for index, child in enumerate(self.children[parent]):
-            if child[1] == node:
-                break
-                
-        if self.__reverse:
-            index -= 1
-        else:
-            index += 1
+        nodeid = id(nodeid)
+        node = self.nodemap.node(nodeid)
+        val = node.prev if self.__reverse else node.next
+        return self.nodemap.node(val) if val is not None else val
 
-        if index >= 0 and index < len(self.children[parent]):
-            return self.children[parent][index][1]
-        else:
-            return None
-
-    def on_iter_children(self, node):
+    def on_iter_children(self, nodeid):
         """
         Get the first child of the given node.
         """
-        if node in self.children:
+        if nodeid is None:
+            node = self.tree[None]
+        else:
+            nodeid = id(nodeid)
+            node = self.nodemap.node(nodeid)
+        if node.children:
             if self.__reverse:
-                size = len(self.children[node])
-                return self.children[node][size - 1][1]
+                size = len(node.children)
+                return self.nodemap.node(node.children[size - 1][1])
             else:
-                return self.children[node][0][1]
+                return self.nodemap.node(node.children[0][1])
         else:
             return None
         
-    def on_iter_has_child(self, node):
+    def on_iter_has_child(self, nodeid):
         """
         Find if the given node has any children.
         """
-        if node in self.children:
-            return True
+        if nodeid is None:
+            node = self.tree[None]
         else:
-            return False
+            nodeid = id(nodeid)
+            node = self.nodemap.node(nodeid)
+        return True if node.children else False
 
-    def on_iter_n_children(self, node):
+    def on_iter_n_children(self, nodeid):
         """
         Get the number of children of the given node.
         """
-        if node in self.children:
-            return len(self.children[node])
+        if nodeid is None:
+            node = self.tree[None]
         else:
-            return 0
+            nodeid = id(nodeid)
+            node = self.nodemap.node(nodeid)
+        return len(node.children)
 
-    def on_iter_nth_child(self, node, index):
+    def on_iter_nth_child(self, nodeid, index):
         """
         Get the nth child of the given node.
         """
-        if node in self.children:
-            if len(self.children[node]) > index:
+        if nodeid is None:
+            node = self.tree[None]
+        else:
+            nodeid = id(nodeid)
+            node = self.nodemap.node(nodeid)
+        if node.children:
+            if len(node.children) > index:
                 if self.__reverse:
-                    size = len(self.children[node])
-                    return self.children[node][size - index - 1][1]
+                    size = len(node.children)
+                    return self.nodemap.node(node.children[size - index - 1][1])
                 else:
-                    return self.children[node][index][1]
+                    return self.nodemap.node(node.children[index][1])
             else:
                 return None
         else:
             return None
 
-    def on_iter_parent(self, node):
+    def on_iter_parent(self, nodeid):
         """
         Get the parent of the given node.
         """
-        if node in self.tree:
-            return self.tree[node][0]
-        else:
-            return None
+        nodeid = id(nodeid)
+        node = self.nodemap.node(nodeid)
+        return self.nodemap.node(node.parent) if node.parent is not None else \
+                    None

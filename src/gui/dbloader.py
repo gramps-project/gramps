@@ -89,11 +89,16 @@ class DbLoader(CLIDbLoader):
         DBErrorDialog(str(msg.value))
     
     def _begin_progress(self):
-        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.set_busy_cursor(1)
         self.uistate.progress.show()
+        self.uistate.pulse_progressbar(0)
     
     def _pulse_progress(self, value):
         self.uistate.pulse_progressbar(value)
+
+    def _end_progress(self):
+        self.uistate.set_busy_cursor(0)
+        self.uistate.progress.hide()
 
     def import_file(self):
         # First thing first: import is a batch transaction
@@ -222,14 +227,13 @@ class DbLoader(CLIDbLoader):
     def do_import(self, dialog, importer, filename):
         self.import_info = None
         dialog.destroy()
-        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.uistate.progress.show()
+        self._begin_progress()
 
         try:
             #an importer can return an object with info, object.info_text() 
             #returns that info. Otherwise None is set to import_info
             self.import_info = importer(self.dbstate.db, filename,
-                            self.uistate.pulse_progressbar)
+                            self._pulse_progress)
             dirname = os.path.dirname(filename) + os.path.sep
             config.set('paths.recent-import-dir', dirname)
         except UnicodeError, msg:
@@ -240,6 +244,7 @@ class DbLoader(CLIDbLoader):
                   "encoding, and import again") + "\n\n %s" % msg)
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
+        self._end_progress()
     
     def import_info_text(self):
         """
@@ -308,6 +313,7 @@ class DbLoader(CLIDbLoader):
             self._dberrordialog(msg)
         except Exception:
             self.dbstate.no_database()
+        self._end_progress()
         return True
 
 #-------------------------------------------------------------------------

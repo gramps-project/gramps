@@ -111,6 +111,13 @@ class CLIDbLoader(object):
         """
         pass
 
+    def _end_progress(self):
+        """
+        Convenience method to allow to hide the progress bar if wanted at
+        end of load actions. Inherit if needed
+        """
+        pass
+
     def read_file(self, filename):
         """
         This method takes care of changing database, and loading the data.

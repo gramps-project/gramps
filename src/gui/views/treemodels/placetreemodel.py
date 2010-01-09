@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009    Nick Hall
+# Copyright (C) 2009    Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,14 +65,19 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
 
-        self.hmap = [self.column_header] + [None]*12
-
         PlaceBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,
                                 tooltip_column=13,
                                 search=search, skip=skip, sort_map=sort_map,
                                 nrgroups = 3,
                                 group_can_have_handle = True)
+
+    def _set_base_data(self):
+        """See TreeBaseModel, for place, most have been set in init of
+        PlaceBaseModel
+        """
+        self.number_items = self.db.get_number_of_places
+        self.hmap = [self.column_header] + [None]*12
 
     def get_tree_levels(self):
         """
@@ -134,4 +140,4 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         Return a column heading.  This is called for nodes with no associated
         Gramps handle.
         """
-        return node[0]
+        return node.name

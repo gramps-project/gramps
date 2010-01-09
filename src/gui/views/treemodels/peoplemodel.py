@@ -105,15 +105,16 @@ class PeopleModel(TreeBaseModel):
         """
         Initialize the model building the initial data
         """
-        self.lru_name  = LRU(TreeBaseModel._CACHE_SIZE)
-        self.lru_bdate = LRU(TreeBaseModel._CACHE_SIZE)
-        self.lru_ddate = LRU(TreeBaseModel._CACHE_SIZE)
+        TreeBaseModel.__init__(self, db, search=search, skip=skip,
+                                tooltip_column=11, marker_column=10,
+                                scol=scol, order=order, sort_map=sort_map)
 
-        self.gen_cursor = db.get_person_cursor
-        self.map = db.get_raw_person_data
-        self.scol = scol
-
-        #self.group_list = []
+    def _set_base_data(self):
+        """See TreeBaseModel, we also set some extra lru caches
+        """
+        self.gen_cursor = self.db.get_person_cursor
+        self.number_items = self.db.get_number_of_people
+        self.map = self.db.get_raw_person_data
 
         self.fmap = [
             self.column_name,
@@ -146,9 +147,11 @@ class PeopleModel(TreeBaseModel):
             self.column_int_id,
             ]
         self.hmap = [self.column_header] + [None]*len(self.smap)
-        TreeBaseModel.__init__(self, db, search=search, skip=skip,
-                                tooltip_column=11, marker_column=10,
-                                scol=scol, order=order, sort_map=sort_map)
+
+        self.lru_name  = LRU(TreeBaseModel._CACHE_SIZE)
+        self.lru_bdate = LRU(TreeBaseModel._CACHE_SIZE)
+        self.lru_ddate = LRU(TreeBaseModel._CACHE_SIZE)
+
     def clear_cache(self):
         """ Clear the LRU cache """
         TreeBaseModel.clear_cache(self)
@@ -444,7 +447,7 @@ class PeopleModel(TreeBaseModel):
         return data[0]
 
     def column_header(self, node):
-        return node
+        return node.name
 
     def column_header_view(self, node):
         return True

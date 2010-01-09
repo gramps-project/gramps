@@ -269,10 +269,10 @@ class PersonView(ListView):
         if len(pathlist) == 1:
             path = pathlist[0]
             if len(path) == 1:
-                name = model.on_get_iter(path)
+                name = model.on_get_iter(path).name
             else:
                 node = model.on_get_iter(path)
-                name = model.on_iter_parent(node)
+                name = model.on_iter_parent(node).name
 
         try:
             person.get_primary_name().set_surname(name)
@@ -332,7 +332,8 @@ class PersonView(ListView):
     def remove_from_person_list(self, person):
         """Remove the selected person from the list. A person object is
         expected, not an ID"""
-        path = self.model.on_get_path(person.get_handle())
+        node = self.model.get_node(person.get_handle())
+        path = self.model.on_get_path(node)
         (col, row) = path
         if row > 0:
             self.selection.select_path((col, row-1))

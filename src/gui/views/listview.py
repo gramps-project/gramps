@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
 # Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -532,6 +533,8 @@ class ListView(NavigationView):
         obj     A TreeViewColumn object of the column clicked
         data    The column index
         """
+        self.uistate.set_busy_cursor(1)
+        self.uistate.push_message(self.dbstate, _("Column clicked, sorting..."))
         cput = time.clock()
         same_col = False
         if self.sort_col != data:
@@ -558,6 +561,7 @@ class ListView(NavigationView):
                 filter_info = (False, value, False)
 
         if same_col:
+            self.list.set_model(None)
             self.model.reverse_order()
         else:
             self.model = self.make_model(self.dbstate.db, self.sort_col, 
@@ -574,6 +578,8 @@ class ListView(NavigationView):
         # set the search column to be the sorted column
         search_col = self.column_order()[data][1]
         self.list.set_search_column(search_col)
+        
+        self.uistate.set_busy_cursor(0)
         
         _LOG.debug('   ' + self.__class__.__name__ + ' column_clicked ' +
                     str(time.clock() - cput) + ' sec')

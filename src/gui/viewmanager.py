@@ -1230,7 +1230,6 @@ class ViewManager(CLIManager):
             self.uistate.clear_history(self.dbstate.active.handle)
         else :
             self.uistate.clear_history(None)
-        self.uistate.progress.hide()
 
         self.dbstate.db.undo_callback = self.__change_undo_label
         self.dbstate.db.redo_callback = self.__change_redo_label
