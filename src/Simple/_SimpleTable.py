@@ -32,6 +32,28 @@ import Errors
 import config
 import DateHandler
 
+def on_table_click(obj, table):
+    """
+    This is a workaround for a weird issue in Python. It occurs when a
+    click occurs faster than gramps can respond, and the
+    gobject.timeout_add ends up being called recursively. For some
+    reason some of the methods are removed from the Table object
+    making future calls invalid.
+    """
+    if hasattr(table, "_callback_leftclick"):
+        return table.on_table_click(obj)
+
+def on_table_doubleclick(obj, path, view_column, table):
+    """
+    This is a workaround for a weird issue in Python. It occurs when a
+    double-click occurs faster than gramps can respond, and the
+    gobject.timeout_add ends up being called recursively. For some
+    reason some of the methods are removed from the Table object
+    making future calls invalid.
+    """
+    if hasattr(table, "_callback_leftdouble"):
+        return table.on_table_doubleclick(obj, path, view_column)
+
 class SimpleTable(object):
     """
     Provide a simplified table creation interface.
@@ -52,8 +74,8 @@ class SimpleTable(object):
         self.__sort_col = None
         self.__sort_reverse = False
         self.__link_col = None
-        self.__callback_leftclick = None
-        self.__callback_leftdouble = None
+        self._callback_leftclick = None
+        self._callback_leftdouble = None
         self.model_index_of_column = {}
 
     def get_row_count(self):
@@ -85,9 +107,9 @@ class SimpleTable(object):
         Override (or add) a function for click/double-click
         """
         if which == "leftclick":
-            self.__callback_leftclick = callback
+            self._callback_leftclick = callback
         elif which == "leftdouble":
-            self.__callback_leftdouble = callback
+            self._callback_leftdouble = callback
 
     def on_table_doubleclick(self, obj, path, view_column):
         """
@@ -100,8 +122,8 @@ class SimpleTable(object):
         if not node:
             return
         index = store.get_value(node, 0) # index
-        if self.__callback_leftdouble:
-            self.__callback_leftdouble(store.get_value(node, 1))
+        if self._callback_leftdouble:
+            self._callback_leftdouble(store.get_value(node, 1))
             return True
         elif self.__link[index]:
             objclass, handle = self.__link[index]
@@ -171,19 +193,18 @@ class SimpleTable(object):
         if not node:
             return
         index = store.get_value(node, 0) # index
-        if self.__callback_leftclick:
-            self.__callback_leftclick(store.get_value(node, 1))
+        if self._callback_leftclick:
+            self._callback_leftclick(store.get_value(node, 1))
             return True
         elif self.__link[index]:
             objclass, handle = self.__link[index]
             if objclass == 'Person':
                 import gobject
-                person = self.access.dbase.get_person_from_handle(handle)
                 # If you emmit the signal here and it causes this table to be deleted, 
                 # then you'll crash Python:
-                #self.simpledoc.doc.dbstate.change_active_person(person)
+                #self.simpledoc.doc.dbstate.set_active_person(handle)
                 # So, let's return from this, then change the active person:
-                gobject.timeout_add(100, self.simpledoc.doc.dbstate.change_active_person, person)
+                return gobject.timeout_add(100, self.simpledoc.doc.dbstate.set_active_person, handle)
                 return True
         return False # didn't handle event
 
@@ -375,8 +396,8 @@ class SimpleTable(object):
                 sort_index = 0
             treeview = gtk.TreeView()
             treeview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-            treeview.connect('row-activated', self.on_table_doubleclick)
-            treeview.connect('cursor-changed', self.on_table_click)
+            treeview.connect('row-activated', on_table_doubleclick, self)
+            treeview.connect('cursor-changed', on_table_click, self)
             renderer = gtk.CellRendererText()
             types = [int] # index
             cnt = 0
