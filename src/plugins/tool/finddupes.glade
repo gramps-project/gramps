@@ -80,7 +80,7 @@
             <property name="border_width">6</property>
             <property name="spacing">12</property>
             <child>
-              <object class="GtkLabel" id="title">
+              <object class="GtkLabel" id="title1">
                 <property name="visible">True</property>
                 <property name="ypad">6</property>
                 <property name="justify">center</property>
@@ -197,7 +197,7 @@
             <property name="border_width">6</property>
             <property name="spacing">6</property>
             <child>
-              <object class="GtkLabel" id="title">
+              <object class="GtkLabel" id="title2">
                 <property name="visible">True</property>
                 <property name="justify">center</property>
               </object>

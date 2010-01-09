@@ -192,7 +192,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="title">
+              <object class="GtkLabel" id="title1">
                 <property name="visible">True</property>
                 <property name="justify">center</property>
               </object>
