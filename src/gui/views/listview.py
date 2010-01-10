@@ -719,8 +719,20 @@ class ListView(NavigationView):
             return False
         from QuickReports import create_quickreport_menu
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.edit(obj)
-            return True
+            if self.type_list() == LISTFLAT:
+                self.edit(obj)
+                return True
+            else:
+                # Tree
+                store, paths = self.selection.get_selected_rows()
+                if paths:
+                    firstsel = paths[0]
+                    firstnode = self.model.on_get_iter(firstsel)
+                    if len(paths)==1 and firstnode.handle is None:
+                        return self.expand_collapse_tree_branch()
+                    else:
+                        self.edit(obj)
+                        return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = self.uistate.uimanager.get_widget('/Popup')
             #construct quick reports if needed
@@ -751,7 +763,8 @@ class ListView(NavigationView):
     
     def _key_press(self, obj, event):
         """
-        Called when a key is pressed.
+        Called when a key is pressed on a flat listview
+        ENTER --> edit selection
         """
         if not self.dbstate.open:
             return False
@@ -763,7 +776,9 @@ class ListView(NavigationView):
 
     def _key_press_tree(self, obj, event):
         """
-        Overwrite of listview key press
+        Called when a key is pressed on a tree listview
+        ENTER --> edit selection or open group node
+        SHIFT+ENTER --> open group node and all children nodes
         """
         if not self.dbstate.open:
             return False
@@ -778,6 +793,15 @@ class ListView(NavigationView):
                     else:
                         self.edit(obj)
                         return True
+        elif event.state in (gtk.gdk.SHIFT_MASK, ):
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                store, paths = self.selection.get_selected_rows()
+                if paths:
+                    firstsel = paths[0]
+                    firstnode = self.model.on_get_iter(firstsel)
+                    if len(paths)==1 and firstnode.handle is None:
+                        return self.expand_collapse_tree_branch()
+            
         return False
 
     def expand_collapse_tree(self):
@@ -795,6 +819,24 @@ class ListView(NavigationView):
                 self.list.collapse_row(firstsel)
             else:
                 self.list.expand_row(firstsel, False)
+            return True
+        return False
+
+    def expand_collapse_tree_branch(self):
+        """
+        Expand or collapse the selected group node with all children.
+        Return True if change done, False otherwise
+        """
+        store, paths = self.selection.get_selected_rows()
+        if paths:
+            firstsel = paths[0]
+            firstnode = self.model.on_get_iter(firstsel)
+            if firstnode.handle:
+                return False
+            if self.list.row_expanded(firstsel):
+                self.list.collapse_row(firstsel)
+            else:
+                self.open_branch(None)
             return True
         return False
 
@@ -946,3 +988,47 @@ class ListView(NavigationView):
         Template function to allow the removal of an object by its handle
         """
         raise NotImplementedError
+
+    def open_all_nodes(self, obj):
+        """
+        Method for Treeviews to open all groups
+        obj: for use of method in event callback 
+        """
+        self.uistate.status_text(_("Updating display..."))
+        self.uistate.set_busy_cursor(True)
+
+        self.list.expand_all()
+
+        self.uistate.set_busy_cursor(False)
+        self.uistate.modify_statusbar(self.dbstate)
+
+    def close_all_nodes(self, obj):
+        """
+        Method for Treeviews to close all groups
+        obj: for use of method in event callback
+        """
+        self.list.collapse_all()
+
+    def open_branch(self, obj):
+        """
+        Expand the selected branches and all children.
+        obj: for use of method in event callback
+        """
+        self.uistate.status_text(_("Updating display..."))
+        self.uistate.set_busy_cursor(True)
+        
+        selected = self.selection.get_selected_rows()
+        for path in selected[1]:
+            self.list.expand_row(path, True)
+
+        self.uistate.set_busy_cursor(False)
+        self.uistate.modify_statusbar(self.dbstate)
+        
+    def close_branch(self, obj):
+        """
+        Collapse the selected branches.
+        obj: for use of method in event callback
+        """
+        selected = self.selection.get_selected_rows()
+        for path in selected[1]:
+            self.list.collapse_row(path)

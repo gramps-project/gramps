@@ -415,18 +415,6 @@ class PersonView(ListView):
         self.all_action.set_visible(False)
         self.edit_action.set_visible(False)
 
-    def open_all_nodes(self, obj):
-        self.uistate.status_text(_("Updating display..."))
-        self.uistate.set_busy_cursor(True)
-
-        self.list.expand_all()
-
-        self.uistate.set_busy_cursor(False)
-        self.uistate.modify_statusbar(self.dbstate)
-
-    def close_all_nodes(self, obj):
-        self.list.collapse_all()
-        
     def cmp_merge(self, obj):
         mlist = self.get_selected_objects()
 
