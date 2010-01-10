@@ -31,6 +31,7 @@ gdir_PYTHON = \
 	AutoComp.py\
 	Bookmarks.py\
 	ColumnOrder.py\
+    config.py\
 	const.py\
 	DateEdit.py\
 	Date.py\
@@ -68,8 +69,7 @@ gdir_PYTHON = \
 	TreeTips.py\
 	Utils.py\
 	UndoHistory.py\
-	PlaceUtils.py\
-	ProgressDialog.py
+	PlaceUtils.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
