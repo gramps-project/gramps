@@ -59,7 +59,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from ExportOptions import WriterOptionBox
-#from BasicUtils import UpdateCallback
 import gen.proxy
 from ExportXml import XmlWriter
 import Utils

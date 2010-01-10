@@ -45,7 +45,7 @@ import DateHandler
 from BasicUtils import name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY)
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 import const
 import libgrampsxml
 from libmixin import DbMixin

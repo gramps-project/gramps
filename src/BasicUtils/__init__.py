@@ -20,5 +20,4 @@
 
 # $Id: __init__.py$
 
-from _UpdateCallback import UpdateCallback
 from _NameDisplay import displayer as name_displayer

@@ -58,7 +58,7 @@ from gui.editors import EditPerson, EditFamily
 import Utils
 import GrampsDisplay
 from ManagedWindow import ManagedWindow
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 from PluginUtils import Tool
 from TransUtils import sgettext as _
 from glade import Glade
@@ -224,11 +224,11 @@ def get_marriage_date(db,family):
 #-------------------------------------------------------------------------
 class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
-    def __init__(self, dbstate, uistate, options_class, name,callback=None):
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Database Verify tool')
         Tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.__init__(self,uistate,[],self.__class__)
-        UpdateCallback.__init__(self,self.uistate.pulse_progressbar)
+        ManagedWindow.__init__(self, uistate,[], self.__class__)
+        UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
 
         self.dbstate = dbstate
         if uistate:
@@ -237,11 +237,11 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
             self.add_results = self.add_results_cli
             self.run_tool(cli=True)
 
-    def add_results_cli(self,results):
+    def add_results_cli(self, results):
         # print data for the user, no GUI
-        (msg,gramps_id, name,the_type,rule_id,severity, handle) = results
+        (msg,gramps_id, name, the_type, rule_id, severity, handle) = results
         if severity == Rule.WARNING:
-            print "W: %s, %s: %s, %s" % (msg,the_type,gramps_id, name)
+            print "W: %s, %s: %s, %s" % (msg,the_type, gramps_id, name)
         elif severity == Rule.ERROR:
             print "E: %s, %s: %s, %s" % (msg,the_type,gramps_id, name)
         else:

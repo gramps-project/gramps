@@ -56,7 +56,7 @@ import gobject
 import Errors
 import ManagedWindow
 from DateHandler import displayer as _dd
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 from PluginUtils import Tool
 from glade import Glade
 

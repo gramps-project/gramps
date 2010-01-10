@@ -52,7 +52,7 @@ import GrampsDisplay
 import Assistant
 import Errors
 from gen.lib import MediaObject
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 from PluginUtils import Tool
 from Utils import media_path_full, relative_path, media_path
 from TransUtils import sgettext as _

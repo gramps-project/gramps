@@ -57,7 +57,7 @@ from gen.db.exceptions import DbVersionError
 import const
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 from BasicUtils import name_displayer
 
 #-------------------------------------------------------------------------

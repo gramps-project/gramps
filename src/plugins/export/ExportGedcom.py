@@ -44,7 +44,7 @@ import const
 import libgedcom
 import Errors
 from ExportOptions import WriterOptionBox
-import BasicUtils
+from gen.updatecallback import UpdateCallback
 from Utils import media_path_full
 import gen.proxy
 from QuestionDialog import ErrorDialog
@@ -202,16 +202,16 @@ def event_has_subordinate_data(event, event_ref):
 # GedcomWriter class
 #
 #-------------------------------------------------------------------------
-class GedcomWriter(BasicUtils.UpdateCallback):
+class GedcomWriter(UpdateCallback):
     """
     The GEDCOM writer creates a GEDCOM file that contains the exported 
-    information from the database. It derives from BasicUtils.UpdateCallback
+    information from the database. It derives from UpdateCallback
     so that it can provide visual feedback via a progress bar if needed.
     """
 
     def __init__(self, database, cmd_line=0,
                  option_box=None, callback=None):
-        BasicUtils.UpdateCallback.__init__(self, callback)
+        UpdateCallback.__init__(self, callback)
 
         self.dbase = database
         self.cmd_line = cmd_line

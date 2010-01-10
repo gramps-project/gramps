@@ -51,14 +51,14 @@ log = logging.getLogger(".Rebuild")
 #-------------------------------------------------------------------------
 from PluginUtils import Tool
 from QuestionDialog import OkDialog
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
 # runTool
 #
 #-------------------------------------------------------------------------
-class Rebuild(Tool.Tool,UpdateCallback):
+class Rebuild(Tool.Tool, UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
@@ -75,7 +75,7 @@ class Rebuild(Tool.Tool,UpdateCallback):
             uistate.progress.show()
             uistate.push_message(dbstate, _("Rebuilding secondary indices..."))
             
-            UpdateCallback.__init__(self,self.callback)
+            UpdateCallback.__init__(self, self.callback)
             self.set_total(11)
             self.db.rebuild_secondary(self.update)
             self.reset()

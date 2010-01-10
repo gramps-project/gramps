@@ -13,7 +13,8 @@ SUBDIRS = \
 pkgdatadir = $(datadir)/@PACKAGE@/gen
 
 pkgdata_PYTHON = \
-	__init__.py
+	__init__.py \
+	updatecallback.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen
 pkgpythondir = @pkgpythondir@/gen

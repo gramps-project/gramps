@@ -56,7 +56,7 @@ log = logging.getLogger(".WriteXML")
 #
 #-------------------------------------------------------------------------
 import gen.lib 
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 from gen.db.exceptions import DbWriteFailure
 import const
 from QuestionDialog import ErrorDialog

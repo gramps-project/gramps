@@ -111,7 +111,7 @@ LOG = logging.getLogger(".libgedcom")
 import Errors
 import const
 import gen.lib
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 import Mime
 import LdsUtils
 import Utils

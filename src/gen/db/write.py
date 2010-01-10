@@ -56,7 +56,7 @@ from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 import Errors
 
 _LOG = logging.getLogger(DBLOGNAME)

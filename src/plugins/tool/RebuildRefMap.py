@@ -53,14 +53,14 @@ log = logging.getLogger(".RebuildRefMap")
 #-------------------------------------------------------------------------
 from PluginUtils import Tool
 from QuestionDialog import OkDialog
-from BasicUtils import UpdateCallback
+from gen.updatecallback import UpdateCallback
 
 #-------------------------------------------------------------------------
 #
 # runTool
 #
 #-------------------------------------------------------------------------
-class RebuildRefMap(Tool.Tool,UpdateCallback):
+class RebuildRefMap(Tool.Tool, UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
@@ -79,7 +79,7 @@ class RebuildRefMap(Tool.Tool,UpdateCallback):
             self.callback = None
             print "Rebuilding reference maps..."
             
-        UpdateCallback.__init__(self,self.callback)
+        UpdateCallback.__init__(self, self.callback)
         self.set_total(6)
         self.db.reindex_reference_map(self.update)
         self.reset()
