@@ -187,7 +187,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.store.clear()
 
         # build the tree items and group together based on the category name
-        item_hash = defaultdict()
+        item_hash = defaultdict(list)
         for plugin in reg_list:
             if not plugin.supported:
                 category = _UNSUPPORTED
