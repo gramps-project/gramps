@@ -222,7 +222,7 @@ class ListView(NavigationView):
                 mcol = self.model.marker_column()
                 column.add_attribute(self.renderer, 'foreground', mcol)
 
-            if self.markup_required and pair[1] != 0:
+            if self.markup_required:
                 column.add_attribute(self.renderer, 'markup', pair[1])
             else:
                 column.add_attribute(self.renderer, 'text', pair[1])
@@ -406,7 +406,9 @@ class ListView(NavigationView):
                 if parent_node:
                     parent_path = self.model.on_get_path(parent_node)
                     if parent_path:
-                        self.list.expand_row(parent_path, False)
+                        for i in range(len(parent_path)):
+                            expand_path = tuple([x for x in parent_path[:i+1]])
+                            self.list.expand_row(expand_path, False)
                 path = self.model.on_get_path(node)
 
         if path:

@@ -28,6 +28,7 @@ Place tree model.
 # python modules
 #
 #-------------------------------------------------------------------------
+import cgi
 import logging
 _LOG = logging.getLogger(".gui.views.treemodels.placetreemodel")
 
@@ -52,6 +53,16 @@ from gui.views.treemodels.treebasemodel import TreeBaseModel
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+COUNTRYLEVELS = {
+'default': [_('<Countries>'), _('<States>'), _('<Counties>'), 
+            _('<Places>')]
+}
 
 #-------------------------------------------------------------------------
 #
@@ -96,6 +107,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
             # No primary location
             level = [''] * 5
         else:
+            #country, state, county, city, street
             level = [data[5][0][i] for i in range(4,-1,-1)]
 
         node1 = (level[0], )
@@ -107,12 +119,15 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
             if level[2]:
                 self.add_node(None, node1, level[0], None, add_parent=False)
                 self.add_node(node1, node2, level[1], None, add_parent=False)
-                self.add_node(node2, handle, level[2], handle, add_parent=False)
+                self.add_node(node2, node3, level[2], None, add_parent=False)
+                self.add_node(node3, handle, level[2], handle, add_parent=False)
             elif level[1]:
                 self.add_node(None, node1, level[0], None, add_parent=False)
-                self.add_node(node1, handle, level[1], handle, add_parent=False)
+                self.add_node(node1, node2, level[1], None, add_parent=False)
+                self.add_node(node2, handle, level[1], handle, add_parent=False)
             elif level[0]:
-                self.add_node(None, handle, level[0], handle, add_parent=False)
+                self.add_node(None, node1, level[0], None, add_parent=False)
+                self.add_node(node1, handle, level[0], handle, add_parent=False)
             else:
                 self.add_node(None, handle, sort_key, handle, add_parent=False)
                
@@ -123,7 +138,9 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
             self.add_node(node3, handle, sort_key, handle, add_parent=False)
 
     def column_name(self, data):
-        if data[5] is not None:
+        if data[2]:
+            return unicode(data[2])
+        elif data[5] is not None:
             level = [data[5][0][i] for i in range(4,-1,-1)]
             if not (level[3] or level[4]):
                 return unicode(level[2] or level[1] or level[0])
@@ -132,7 +149,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
             elif level[3] or level[4]:
                 return unicode(level[3] or level[4])
             else:
-                return unicode(data[2])
+                return u"<i>%s<i>" % cgi.escape(_("<no name>"))
         return unicode(data[2])
         
     def column_header(self, node):
@@ -140,4 +157,9 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         Return a column heading.  This is called for nodes with no associated
         Gramps handle.
         """
-        return node.name
+        if node.name:
+            return '<i>%s</i>' % cgi.escape(node.name)
+        else:
+            level = len(self.on_get_path(node))
+            return '<i>%s</i>' % cgi.escape(COUNTRYLEVELS['default'][level])
+            

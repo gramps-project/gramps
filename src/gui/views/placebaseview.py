@@ -92,7 +92,8 @@ class PlaceBaseView(ListView):
     FILTER_TYPE = "Place"
     QR_CATEGORY = CATEGORY_QR_PLACE
 
-    def __init__(self, dbstate, uistate, title, model, nav_group):
+    def __init__(self, dbstate, uistate, title, model, nav_group,
+                 markup=False):
 
         signal_map = {
             'place-add'     : self.row_add,
@@ -116,7 +117,7 @@ class PlaceBaseView(ListView):
             dbstate.db.get_place_bookmarks(),
             Bookmarks.PlaceBookmarks, nav_group,
             multiple=True,
-            filter_class=PlaceSidebarFilter)
+            filter_class=PlaceSidebarFilter, markup=markup)
 
         config.connect("interface.filter",
                           self.filter_toggle)

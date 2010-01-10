@@ -55,7 +55,7 @@ class PlaceTreeView(PlaceBaseView):
     def __init__(self, dbstate, uistate):
         PlaceBaseView.__init__(self, dbstate, uistate,
                                _('Tree'), PlaceTreeModel,
-                               nav_group=0)
+                               nav_group=0, markup=True)
 
     def type_list(self):
         """
