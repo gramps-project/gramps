@@ -76,7 +76,6 @@ class Tool(object):
     def __init__(self, dbstate, options_class, name):
         from PluginUtils import MenuToolOptions
         self.db = dbstate.db
-        self.person = dbstate.active
         try:
             if issubclass(options_class, MenuToolOptions):
                 # FIXME: pass in person_id
@@ -125,9 +124,9 @@ class ActivePersonTool(Tool):
     for tools that depend on active person.
     """
 
-    def __init__(self, dbstate, options_class, name):
+    def __init__(self, dbstate, uistate, options_class, name):
         
-        if not dbstate.get_active_person():
+        if not uistate.get_active('Person'):
             from QuestionDialog import ErrorDialog
             
             ErrorDialog(_('Active person has not been set'),

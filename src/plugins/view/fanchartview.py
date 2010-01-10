@@ -53,11 +53,11 @@ if gtk.pygtk_version < (2,3,93):
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
 from Utils import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
+from gui.views.navigationview import NavigationView
 import Errors
 import Bookmarks
 from gui.editors import EditPerson, EditFamily 
@@ -565,17 +565,21 @@ class FanChartView(NavigationView):
     """
     The Gramplet code that realizes the FanChartWidget. 
     """
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Fan Chart'),
                                       dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.Bookmarks)        
+                                      Bookmarks.PersonBookmarks,
+                                      nav_group)        
 
         dbstate.connect('active-changed', self.active_changed)
         self.dbstate = dbstate
         self.uistate = uistate
         self.generations = 9
         self.format_helper = FormattingHelper(self.dbstate)
+
+    def navigation_type(self):
+        return 'Person'
 
     def build_widget(self):
         self.fan = FanChartWidget(self.generations, 
@@ -616,6 +620,9 @@ class FanChartView(NavigationView):
         self.update()
 
     def update(self):
+        self.main()
+        
+    def goto_handle(self, handle):
         self.main()
 
     def have_parents(self, person):
@@ -663,7 +670,7 @@ class FanChartView(NavigationView):
         data.
         """
         self.fan.reset_generations()
-        person = self.dbstate.get_active_person()
+        person = self.dbstate.db.get_person_from_handle(self.get_active())
         if not person: 
             name = None
         else:
@@ -710,7 +717,7 @@ class FanChartView(NavigationView):
     def on_childmenu_changed(self, obj,person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
-        self.dbstate.change_active_handle(person_handle)
+        self.change_active(person_handle)
         return True
 
     def edit_person_cb(self, obj,person_handle):

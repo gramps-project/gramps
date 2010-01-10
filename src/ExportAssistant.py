@@ -124,9 +124,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         #set up callback method for the export plugins
         self.callback = self.pulse_progressbar
             
-        if self.dbstate.active:
-            self.person = self.dbstate.get_active_person()
-        else:
+        person_handle = self.uistate.get_active('Person')
+        self.person = self.dbstate.db.get_person_from_handle(person_handle)
+        if not self.person:
             self.person = self.dbstate.db.find_initial_person()
             
         self.logo      = gtk.gdk.pixbuf_new_from_file(_gramps_png)
@@ -401,7 +401,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         The "prepare" signal is emitted when a new page is set as the 
         assistant's current page, but before making the new page visible.
         
-        :param page:	the new page to prepare for display.
+        :param page:   the new page to prepare for display.
         
         """
         #determine if we go backward or forward

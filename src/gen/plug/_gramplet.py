@@ -27,7 +27,7 @@ class Gramplet(object):
     """
     Base class for non-graphical gramplet code.
     """
-    def __init__(self, gui):
+    def __init__(self, gui, nav_group=0):
         """
         Internal constructor for non-graphical gramplets.
         """
@@ -41,21 +41,33 @@ class Gramplet(object):
         # links to each other:
         self.gui = gui   # plugin gramplet has link to gui
         gui.pui = self   # gui has link to plugin ui
+        self.nav_group = nav_group
         self.dbstate = gui.dbstate
         self.uistate = gui.uistate
         self.init()
         self.on_load()
         self.build_options()
         self.connect(self.dbstate, "database-changed", self._db_changed)
-        self.connect(self.dbstate, "active-changed", self._active_changed)
         self.connect(self.gui.textview, "button-press-event", 
                      self.gui.on_button_press) 
         self.connect(self.gui.textview, "motion-notify-event", 
                      self.gui.on_motion)
-        if self.dbstate.active: # already changed
+        self.connect_signal('Person', self._active_changed)
+        
+        active_person = self.get_active('Person')
+        if active_person: # already changed
             self._db_changed(self.dbstate.db)
-            self._active_changed(self.dbstate.active.handle)
+            self._active_changed(active_person)
         self.post_init()
+
+    def connect_signal(self, nav_type, method):
+        """
+        Connect the given method to the active-changed signal for the
+        navigation type requested. 
+        """
+        self.uistate.register(nav_type, self.nav_group)
+        history = self.uistate.get_history(nav_type, self.nav_group)
+        self.connect(history, "active-changed", method)
 
     def init(self): # once, constructor
         """
@@ -94,6 +106,18 @@ class Gramplet(object):
         special data.
         """
         return
+
+    def get_active(self, nav_type):
+        """
+        Return the handle of the active object for the given navigation type.
+        """
+        return self.uistate.get_active(nav_type, self.nav_group)
+
+    def set_active(self, nav_type, handle):
+        """
+        Change the handle of the active object for the given navigation type.
+        """
+        self.uistate.set_active(handle, nav_type, self.nav_group)
 
     def active_changed(self, handle):
         """

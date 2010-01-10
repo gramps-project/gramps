@@ -47,8 +47,8 @@ import pango
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gui.views.navigationview import NavigationView
 from gui.editors import EditPerson, EditFamily
-from gui.views.navigationview import NavigationView, NAVIGATION_PERSON
 from BasicUtils import name_displayer
 from Utils import media_path_full, probably_alive
 import DateHandler
@@ -115,11 +115,12 @@ class AttachList(object):
 
 class RelationshipView(NavigationView):
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Relationships'),
                                       dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.Bookmarks)        
+                                      Bookmarks.PersonBookmarks,
+                                      nav_group)        
 
         self.func_list = {
             '<CONTROL>J' : self.jump,
@@ -163,7 +164,7 @@ class RelationshipView(NavigationView):
         self.callman.add_db_signal('person-delete', self.redraw)
 
     def navigation_type(self):
-        return NAVIGATION_PERSON
+        return 'Person'
 
     def goto_handle(self, handle):
         self.redraw()
@@ -181,8 +182,9 @@ class RelationshipView(NavigationView):
         self.redraw()
 
     def person_update(self, handle_list):
-        if self.dbstate.active:
-            while not self.change_person(self.dbstate.active.handle):
+        person  = self.get_active()
+        if person:
+            while not self.change_person(person):
                 pass
         else:
             self.change_person(None)
@@ -191,36 +193,41 @@ class RelationshipView(NavigationView):
         """Large change to person database"""
         if self.active:
             self.bookmarks.redraw()
-        if self.dbstate.active:
-            while not self.change_person(self.dbstate.active.handle):
+        person  = self.get_active()
+        if person:
+            while not self.change_person(person):
                 pass
         else:
             self.change_person(None)
 
     def family_update(self, handle_list):
-        if self.dbstate.active:
-            while not self.change_person(self.dbstate.active.handle):
+        person  = self.get_active()
+        if person:
+            while not self.change_person(person):
                 pass
         else:
             self.change_person(None)
 
     def family_add(self, handle_list):
-        if self.dbstate.active:
-            while not self.change_person(self.dbstate.active.handle):
+        person  = self.get_active()
+        if person:
+            while not self.change_person(person):
                 pass
         else:
             self.change_person(None)
 
     def family_delete(self, handle_list):
-        if self.dbstate.active:
-            while not self.change_person(self.dbstate.active.handle):
+        person  = self.get_active()
+        if person:
+            while not self.change_person(person):
                 pass
         else:
             self.change_person(None)
 
     def family_rebuild(self):
-        if self.dbstate.active:
-            while not self.change_person(self.dbstate.active.handle):
+        person  = self.get_active()
+        if person:
+            while not self.change_person(person):
                 pass
         else:
             self.change_person(None)
@@ -387,12 +394,12 @@ class RelationshipView(NavigationView):
 
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
-        self.change_person(self.dbstate.active.handle)
+        self.change_person(self.get_active())
         config.set('preferences.family-siblings', self.show_siblings)
 
     def details_toggle(self, obj):
         self.show_details = obj.get_active()
-        self.change_person(self.dbstate.active.handle)
+        self.change_person(self.get_active())
         config.set('preferences.family-details', self.show_details)
 
     def change_db(self, db):
@@ -422,9 +429,9 @@ class RelationshipView(NavigationView):
             return (_(u"Unknown"), "")
 
     def redraw(self, *obj):
-        if self.dbstate.active:
-            self.handle_history(self.dbstate.active.handle)
-            self.change_person(self.dbstate.active.handle)
+        active_person = self.get_active()
+        if active_person:
+            self.change_person(active_person)
         else:
             self.change_person(None)
         
@@ -812,7 +819,7 @@ class RelationshipView(NavigationView):
             # don't show rest
             self.write_label("%s:" % _('Parents'), family, True, person)
             self.row -= 1 # back up one row for summary names
-            active = self.dbstate.active.handle
+            active = self.ui.get_active()
             child_list = [ref.ref for ref in family.get_child_ref_list()
                           if ref.ref != active]
             if child_list:
@@ -849,7 +856,7 @@ class RelationshipView(NavigationView):
             self.write_person(_('Mother'), family.get_mother_handle())
 
             if self.show_siblings:
-                active = self.dbstate.active.handle
+                active = self.get_active()
                 hbox = gtk.HBox()
                 if self.check_collapsed(person.handle, "SIBLINGS"):
                     arrow = widgets.ExpandCollapseArrow(True,
@@ -1181,7 +1188,7 @@ class RelationshipView(NavigationView):
 
     def _button_press(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            self.dbstate.change_active_handle(handle)
+            self.change_active(handle)
         elif button_activated(event, _RIGHT_BUTTON):
             myMenu = gtk.Menu()
             myMenu.append(self.build_menu_item(handle))
@@ -1280,7 +1287,7 @@ class RelationshipView(NavigationView):
         
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
-        if self.dbstate.active.handle == father_handle:
+        if self.get_active() == father_handle:
             handle = mother_handle
         else:
             handle = father_handle
@@ -1410,7 +1417,7 @@ class RelationshipView(NavigationView):
     def add_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
             family = gen.lib.Family()
-            person = self.dbstate.active
+            person = self.dbstate.db.get_person_from_handle(self.get_active())
             if not person:
                 return
             
@@ -1426,7 +1433,7 @@ class RelationshipView(NavigationView):
 
     def add_spouse(self, obj):
         family = gen.lib.Family()
-        person = self.dbstate.active
+        person = self.dbstate.db.get_person_from_handle(self.get_active())
 
         if not person:
             return
@@ -1442,7 +1449,7 @@ class RelationshipView(NavigationView):
             pass
 
     def edit_active(self, obj):
-        phandle = self.dbstate.get_active_person().handle
+        phandle = self.get_active()
         self.edit_person(obj, phandle)
 
     def add_child_to_fam(self, obj, event, handle):
@@ -1496,7 +1503,7 @@ class RelationshipView(NavigationView):
         if button_activated(event, _LEFT_BUTTON):
             SelectFamily = SelectorFactory('Family')
 
-            phandle = self.dbstate.get_active_person().handle
+            phandle = self.get_active()
             person = self.dbstate.db.get_person_from_handle(phandle)
             skip = set(person.get_family_handle_list())
             
@@ -1504,15 +1511,14 @@ class RelationshipView(NavigationView):
             family = dialog.run()
 
             if family:
-                active_handle = self.dbstate.active.handle
-                child = self.dbstate.db.get_person_from_handle(active_handle)
+                child = self.dbstate.db.get_person_from_handle(self.get_active())
 
                 self.dbstate.db.add_child_to_family(family, child)
 
     def select_parents(self, obj):
         SelectFamily = SelectorFactory('Family')
 
-        phandle = self.dbstate.get_active_person().handle
+        phandle = self.get_active()
         person = self.dbstate.db.get_person_from_handle(phandle)
         skip = set(person.get_family_handle_list()+
                    person.get_parent_family_handle_list())
@@ -1521,14 +1527,13 @@ class RelationshipView(NavigationView):
         family = dialog.run()
 
         if family:
-            active_handle = self.dbstate.active.handle
-            child = self.dbstate.db.get_person_from_handle(active_handle)
+            child = self.dbstate.db.get_person_from_handle(self.get_active())
             
             self.dbstate.db.add_child_to_family(family, child)
 
     def add_parents(self, obj):
         family = gen.lib.Family()
-        person = self.dbstate.active
+        person = self.dbstate.db.get_person_from_handle(self.get_active())
 
         if not person:
             return
@@ -1545,7 +1550,7 @@ class RelationshipView(NavigationView):
     def add_parent_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
             family = gen.lib.Family()
-            person = self.dbstate.active
+            person = self.dbstate.db.get_person_from_handle(self.get_active())
 
             ref = gen.lib.ChildRef()
             ref.ref = person.handle
@@ -1558,27 +1563,25 @@ class RelationshipView(NavigationView):
 
     def delete_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            self.dbstate.db.remove_parent_from_family(self.dbstate.active.handle, 
-                                                      handle)
+            self.dbstate.db.remove_parent_from_family(self.get_active(), handle)
 
     def delete_parent_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            self.dbstate.db.remove_child_from_family(self.dbstate.active.handle, 
-                                                     handle)
+            self.dbstate.db.remove_child_from_family(self.get_active(), handle)
 
     def change_to(self, obj, handle):
-        self.dbstate.change_active_handle(handle)
+        self.change_active(handle)
 
     def reorder_button_press(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
             self.reorder(obj)
             
     def reorder(self, obj, dumm1=None, dummy2=None):
-        if self.dbstate.active:
+        if self.get_active():
             try:
                 import Reorder
                 Reorder.Reorder(self.dbstate, self.uistate, [],
-                                self.dbstate.active.handle)
+                                self.get_active())
             except Errors.WindowActiveError:
                 pass
 

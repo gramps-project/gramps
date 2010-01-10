@@ -46,7 +46,6 @@ _LOG = logging.getLogger(".gui.personview")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.views.navigationview import NAVIGATION_PERSON
 from gui.views.listview import ListView, LISTTREE
 from gui.views.treemodels import PeopleModel
 import Utils
@@ -94,7 +93,7 @@ class PersonView(ListView):
     FILTER_TYPE = "Person"
     QR_CATEGORY = CATEGORY_QR_PERSON
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
         """
         Create the Person View
         """
@@ -110,7 +109,7 @@ class PersonView(ListView):
             PersonView.COLUMN_NAMES, len(PersonView.COLUMN_NAMES), 
             PeopleModel,
             signal_map, dbstate.db.get_bookmarks(),
-            Bookmarks.Bookmarks,
+            Bookmarks.PersonBookmarks, nav_group,
             multiple=True,
             filter_class=PersonSidebarFilter,
             markup=True)
@@ -132,7 +131,7 @@ class PersonView(ListView):
         self.dbstate.db.set_person_column_order(clist)
 
     def navigation_type(self):
-        return NAVIGATION_PERSON
+        return 'Person'
 
     def get_bookmarks(self):
         """
@@ -332,7 +331,9 @@ class PersonView(ListView):
         self.dbstate.db.transaction_commit(trans, active_name)
 
         # select the previously active person, turn off the busy cursor
-        self.uistate.phistory.back()
+        history = self.uistate.get_history(self.navigation_type(),
+                                           self.get_group())
+        self.uistate.history.back()
         self.uistate.set_busy_cursor(False)
 
     def remove_from_person_list(self, person):

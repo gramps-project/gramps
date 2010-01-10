@@ -44,7 +44,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.views.navigationview import NAVIGATION_FAMILY
 from gui.views.listview import ListView
 from gui.views.treemodels import FamilyModel
 from gui.editors import EditFamily
@@ -76,7 +75,7 @@ class FamilyView(ListView):
     FILTER_TYPE = "Family"
     QR_CATEGORY = CATEGORY_QR_FAMILY
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'family-add'     : self.row_add,
@@ -90,7 +89,8 @@ class FamilyView(ListView):
             FamilyView.COLUMN_NAMES, len(FamilyView.COLUMN_NAMES), 
             FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
-            Bookmarks.FamilyBookmarks, filter_class=FamilySidebarFilter)
+            Bookmarks.FamilyBookmarks, nav_group,
+            filter_class=FamilySidebarFilter)
 
         self.func_list = {
             '<CONTROL>J' : self.jump,
@@ -101,7 +101,7 @@ class FamilyView(ListView):
                           self.filter_toggle)
 
     def navigation_type(self):
-        return NAVIGATION_FAMILY
+        return 'Family'
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_family_list_column_order(clist)
@@ -130,6 +130,12 @@ class FamilyView(ListView):
                 <menuitem action="ExportTab"/>
               </placeholder>
             </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+              </placeholder>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>
@@ -147,6 +153,10 @@ class FamilyView(ListView):
            </menu>
           </menubar>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
@@ -154,6 +164,9 @@ class FamilyView(ListView):
             </placeholder>
           </toolbar>
           <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>

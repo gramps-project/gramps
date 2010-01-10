@@ -57,11 +57,12 @@ class DescendantGramplet(Gramplet):
         self.update()
 
     def main(self):
-        if self.dbstate.get_active_person() is None:
+        active_handle = self.get_active('Person')
+        if not active_handle:
             self.set_text(_("No Active Person selected."))
             return
         self.set_text("")
-        self.center_person =  self.dbstate.get_active_person()
+        self.center_person = self.dbstate.db.get_person_from_handle(active_handle)
         name = name_displayer.display(self.center_person)
         title = _("Descendants of %s") % name
         self.append_text(title)

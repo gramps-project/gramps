@@ -684,7 +684,7 @@ class GuiGramplet(object):
                                 except Errors.WindowActiveError:
                                     pass
                             elif event.type == gtk.gdk.BUTTON_PRESS: # single click
-                                self.dbstate.change_active_person(person)
+                                self.uistate.set_active(handle, 'Person')
                                 return True # handled event
                         elif event.button == 3: # right mouse
                             #FIXME: add a popup menu with options

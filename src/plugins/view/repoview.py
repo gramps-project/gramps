@@ -37,7 +37,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.views.navigationview import NAVIGATION_REPOSITORY
 from gui.views.listview import ListView
 from gui.views.treemodels import RepositoryModel
 import Bookmarks
@@ -85,7 +84,7 @@ class RepositoryView(ListView):
     FILTER_TYPE = "Repository"
     QR_CATEGORY = CATEGORY_QR_REPOSITORY
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'repository-add'     : self.row_add,
@@ -104,14 +103,15 @@ class RepositoryView(ListView):
             RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
             RepositoryModel, signal_map,
             dbstate.db.get_repo_bookmarks(),
-            Bookmarks.RepoBookmarks, multiple=True,
+            Bookmarks.RepoBookmarks, nav_group,
+            multiple=True,
             filter_class=RepoSidebarFilter)
 
         config.connect("interface.filter",
                           self.filter_toggle)
 
     def navigation_type(self):
-        return NAVIGATION_REPOSITORY
+        return 'Repository'
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_repository_column_order(clist)
@@ -163,6 +163,12 @@ class RepositoryView(ListView):
                 <menuitem action="EditBook"/>
               </placeholder>
             </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+              </placeholder>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>
@@ -174,6 +180,10 @@ class RepositoryView(ListView):
             </menu>
           </menubar>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
@@ -181,6 +191,9 @@ class RepositoryView(ListView):
             </placeholder>
           </toolbar>
           <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>

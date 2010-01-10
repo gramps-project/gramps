@@ -63,7 +63,8 @@ class RelativesGramplet(Gramplet):
         """
         self.set_text("")
         database = self.dbstate.db
-        active_person = self.dbstate.get_active_person()
+        active_handle = self.get_active('Person')
+        active_person = self.dbstate.db.get_person_from_handle(active_handle)
         if not active_person:
             return
         name = name_displayer.display(active_person)

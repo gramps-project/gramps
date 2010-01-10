@@ -580,7 +580,7 @@ class EditPerson(EditPrimary):
             self.home_action.set_sensitive(True)
             
     def _make_active(self, obj):
-        self.dbstate.change_active_person(self.obj)
+        self.uistate.set_active(self.obj.get_handle(), 'Person')
         
     def _make_home_person(self, obj):
         handle = self.obj.get_handle()

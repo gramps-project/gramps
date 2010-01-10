@@ -44,7 +44,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.views.navigationview import NAVIGATION_PLACE
 from gui.views.listview import ListView
 from gui.utils import add_menuitem
 import Errors
@@ -93,7 +92,7 @@ class PlaceBaseView(ListView):
     FILTER_TYPE = "Place"
     QR_CATEGORY = CATEGORY_QR_PLACE
 
-    def __init__(self, dbstate, uistate, title, model):
+    def __init__(self, dbstate, uistate, title, model, nav_group):
 
         signal_map = {
             'place-add'     : self.row_add,
@@ -115,7 +114,7 @@ class PlaceBaseView(ListView):
             len(PlaceBaseView.COLUMN_NAMES), 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
-            Bookmarks.PlaceBookmarks, 
+            Bookmarks.PlaceBookmarks, nav_group,
             multiple=True,
             filter_class=PlaceSidebarFilter)
 
@@ -123,7 +122,7 @@ class PlaceBaseView(ListView):
                           self.filter_toggle)
 
     def navigation_type(self):
-        return NAVIGATION_PLACE
+        return 'Place'
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_place_column_order(clist)
@@ -298,6 +297,12 @@ class PlaceBaseView(ListView):
                 <menuitem action="EditBook"/>
               </placeholder>
             </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+              </placeholder>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>
@@ -312,6 +317,10 @@ class PlaceBaseView(ListView):
             </menu>
           </menubar>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
@@ -321,6 +330,9 @@ class PlaceBaseView(ListView):
             </placeholder>
           </toolbar>
           <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>

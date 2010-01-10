@@ -63,12 +63,14 @@ WIKI_HELP_SEC = _('manual|Not_Related...')
 class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        Tool.ActivePersonTool.__init__(self, dbstate, options_class, name)
+        Tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
+                                       name)
 
         if self.fail:   # bug #2709 -- fail if we have no active person
             return
 
-        person = dbstate.get_active_person()
+        person_handle = uistate.get_active('Person')
+        person = dbstate.db.get_person_from_handle(person_handle)
         self.name = person.get_primary_name().get_regular_name()
         self.title = _('Not related to "%s"') % self.name
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)

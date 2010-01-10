@@ -47,7 +47,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-from gui.views.navigationview import NAVIGATION_MEDIA
 from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
 import ThumbNails
@@ -94,7 +93,7 @@ class MediaView(ListView):
 
     _DND_TYPE = DdTargets.URI_LIST
     
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'media-add'     : self.row_add, 
@@ -108,7 +107,8 @@ class MediaView(ListView):
             MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
             MediaModel, 
             signal_map, dbstate.db.get_media_bookmarks(), 
-            Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter,
+            Bookmarks.MediaBookmarks, nav_group,
+            filter_class=MediaSidebarFilter,
             multiple=True)
 
         self.func_list = {
@@ -120,7 +120,7 @@ class MediaView(ListView):
                           self.filter_toggle)
 
     def navigation_type(self):
-        return NAVIGATION_MEDIA
+        return 'Media'
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_media_column_order(clist)
@@ -363,8 +363,18 @@ class MediaView(ListView):
                 <menuitem action="EditBook"/>
               </placeholder>
             </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+              </placeholder>
+            </menu>
           </menubar>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
@@ -374,6 +384,9 @@ class MediaView(ListView):
             <toolitem action="OpenMedia"/>
           </toolbar>
           <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <separator/>
             <menuitem action="OpenMedia"/>
             <menuitem action="OpenContainingFolder"/>
             <separator/>

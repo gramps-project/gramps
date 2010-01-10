@@ -613,7 +613,8 @@ class FanChartGramplet(Gramplet):
         data.
         """
         self.gui.fan.reset_generations()
-        person = self.dbstate.get_active_person()
+        active_handle = self.get_active('Person')
+        person = self.dbstate.db.get_person_from_handle(active_handle)
         if not person: 
             name = None
         else:
@@ -657,10 +658,10 @@ class FanChartGramplet(Gramplet):
                 parent += 1
         self.gui.fan.queue_draw()
 
-    def on_childmenu_changed(self, obj,person_handle):
+    def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
-        self.dbstate.change_active_handle(person_handle)
+        self.set_active('Person', person_handle)
         return True
 
     def edit_person_cb(self, obj,person_handle):

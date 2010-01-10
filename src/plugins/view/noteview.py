@@ -44,7 +44,6 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.navigationview import NAVIGATION_NOTE
 from gui.views.listview import ListView
 from gui.views.treemodels import NoteModel
 import Utils
@@ -78,7 +77,7 @@ class NoteView(ListView):
     FILTER_TYPE = "Note"
     QR_CATEGORY = CATEGORY_QR_NOTE
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'note-add'     : self.row_add,
@@ -96,7 +95,7 @@ class NoteView(ListView):
             self, _('Notes'), dbstate, uistate, NoteView.COLUMN_NAMES,
             len(NoteView.COLUMN_NAMES), NoteModel, signal_map,
             dbstate.db.get_note_bookmarks(),
-            Bookmarks.NoteBookmarks,
+            Bookmarks.NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
             multiple=True)
 
@@ -104,7 +103,7 @@ class NoteView(ListView):
                           self.filter_toggle)
 
     def navigation_type(self):
-        return NAVIGATION_NOTE
+        return 'Note'
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_note_column_order(clist)
@@ -150,6 +149,12 @@ class NoteView(ListView):
                 <menuitem action="EditBook"/>
               </placeholder>
             </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+              </placeholder>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>
@@ -161,6 +166,10 @@ class NoteView(ListView):
             </menu>
           </menubar>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
@@ -168,6 +177,9 @@ class NoteView(ListView):
             </placeholder>
           </toolbar>
           <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,12 +54,14 @@ import gobject
 #-------------------------------------------------------------------------
 import gen.utils
 from gui.utils import process_pending_events
+from gui.views.navigationview import NavigationView
 import config
 from BasicUtils import name_displayer
 import const
 import ManagedWindow
 import Relationship
 from glade import Glade
+from Utils import navigation_label
 
 DISABLED = -1
 
@@ -74,7 +77,7 @@ class History(gen.utils.Callback):
     """
 
     __signals__ = {
-        'changed'      : (list, ), 
+        'active-changed' : (str, ), 
         'menu-changed' : (list, ), 
         }
 
@@ -108,7 +111,8 @@ class History(gen.utils.Callback):
         mhc = self.mhistory.count(del_id)
         for c in range(mhc):
             self.mhistory.remove(del_id)
-        self.emit('changed', (self.history, ))
+        if self.history:
+            self.emit('active-changed', (self.history[self.index],))
         self.emit('menu-changed', (self.mhistory, ))
 
     def push(self, handle):
@@ -117,14 +121,15 @@ class History(gen.utils.Callback):
         """
         self.prune()
         if len(self.history) == 0 or handle != self.history[-1]:
-            self.history.append(handle)
+            self.history.append(str(handle))
             if handle in self.mhistory:
                 self.mhistory.remove(handle)
             self.mhistory.append(handle)
             self.index += 1
+        if self.history:
+            self.emit('active-changed', (self.history[self.index],))
         self.emit('menu-changed', (self.mhistory, ))
-        self.emit('changed', (self.history, ))
-
+ 
     def forward(self, step=1):
         """
         Moves forward in the history list
@@ -134,6 +139,8 @@ class History(gen.utils.Callback):
         if handle not in self.mhistory:
             self.mhistory.append(handle)
             self.emit('menu-changed', (self.mhistory, ))
+        if self.history:
+            self.emit('active-changed', (self.history[self.index],))
         return str(self.history[self.index])
 
     def back(self, step=1):
@@ -146,6 +153,8 @@ class History(gen.utils.Callback):
             if handle not in self.mhistory:
                 self.mhistory.append(handle)
                 self.emit('menu-changed', (self.mhistory, ))
+            if self.history:
+                self.emit('active-changed', (self.history[self.index],))
             return str(self.history[self.index])
         except IndexError:
             return u""
@@ -316,7 +325,7 @@ class DisplayState(gen.utils.Callback):
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
         self.progress = progress
-        self.phistory = History()
+        self.history_lookup = {}
         self.gwm = ManagedWindow.GrampsWindowManager(uimanager)
         self.widget = None
         self.disprel_old = ''
@@ -335,6 +344,37 @@ class DisplayState(gen.utils.Callback):
         # This call has been moved one level up, 
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
+
+    def get_history(self, nav_type, nav_group=0):
+        """
+        Return the history object for the given navigation type and group.
+        """
+        return self.history_lookup.get((nav_type, nav_group))
+
+    def register(self, nav_type, nav_group):
+        """
+        Create a history and navigation object for the specified
+        navigation type and group, if they don't exist.
+        """
+        if (nav_type, nav_group) not in self.history_lookup:
+            history = History()
+            self.history_lookup[(nav_type, nav_group)] = history
+
+    def get_active(self, nav_type, nav_group=0):
+        """
+        Return the handle for the active obejct specified by the given
+        navigation type and group.
+        """
+        history = self.get_history(nav_type, nav_group)
+        return history.present()
+
+    def set_active(self, handle, nav_type, nav_group=0):
+        """
+        Set the active object for the specified navigation type and group to
+        the given handle.
+        """
+        history = self.get_history(nav_type, nav_group)
+        history.push(handle)
 
     def set_sensitive(self, state):
         self.window.set_sensitive(state)
@@ -356,7 +396,7 @@ class DisplayState(gen.utils.Callback):
         """
         self.relationship.set_depth(value)
         
-    def display_relationship(self, dbstate):
+    def display_relationship(self, dbstate, active_handle):
         """ Construct the relationship in order to show it in the statusbar
             This can be a time intensive calculation, so we only want to do
             it if persons are different than before.
@@ -368,33 +408,23 @@ class DisplayState(gen.utils.Callback):
         """
         self.relationship.connect_db_signals(dbstate)
         default_person = dbstate.db.get_default_person()
-        active = dbstate.get_active_person()
-        if default_person is None or active is None:
+        if default_person is None or active_handle is None:
             return u''
         if default_person.handle == self.disprel_defpers and \
-                active.handle == self.disprel_active :
+                active_handle == self.disprel_active :
             return self.disprel_old
-        
+
+        active = dbstate.db.get_person_from_handle(active_handle)
         name = self.relationship.get_one_relationship(
                                             dbstate.db, default_person, active)
         #store present call data
         self.disprel_old = name
         self.disprel_defpers = default_person.handle
-        self.disprel_active = active.handle
+        self.disprel_active = active_handle
         if name:
             return name
         else:
             return u""
-
-    def clear_history(self, handle=None):
-        """Clear the history. If handle is given, then the history is 
-            immediately initialized with a first entry 
-            (you'd eg want active person you view there as History contains the 
-             present object too!)
-        """
-        self.phistory.clear()
-        if handle :
-            self.phistory.push(handle)
 
     def set_busy_cursor(self, value):
         if value == self.busy:
@@ -427,22 +457,29 @@ class DisplayState(gen.utils.Callback):
         self.status.push(1, '', self.last_bar)
 
     def modify_statusbar(self, dbstate, active=None):
+        view = self.viewmanager.active_page
+        if not isinstance(view, NavigationView):
+            return
+
+        nav_type = view.navigation_type()
+        active_handle = self.get_active(nav_type, view.navigation_group())
+        
         self.status.pop(self.status_id)
-        if dbstate.active is None:
-            self.status.push(self.status_id, "")
-        else:
-            person = dbstate.get_active_person()
-            if person:
-                pname = name_displayer.display(person)
-                name = "[%s] %s" % (person.get_gramps_id(), pname)
-                if config.get('interface.statusbar') > 1:
-                    if person.handle != dbstate.db.get_default_handle():
-                        msg = self.display_relationship(dbstate)
-                        if msg:
-                            name = "%s (%s)" % (name, msg.strip())
-            else:
-                name = _("No active person")
-            self.status.push(self.status_id, name)
+
+        name = navigation_label(dbstate.db, nav_type, active_handle)
+
+        # Append relationship to default person if funtionality is enabled.
+        if nav_type == 'Person' and active_handle \
+                                and config.get('interface.statusbar') > 1:
+            if active_handle != dbstate.db.get_default_handle():
+                msg = self.display_relationship(dbstate, active_handle)
+                if msg:
+                    name = '%s (%s)' % (name, msg.strip())
+
+        if not name:
+            name = _('No active object')
+
+        self.status.push(self.status_id, name)
         process_pending_events()
 
     def pulse_progressbar(self, value):

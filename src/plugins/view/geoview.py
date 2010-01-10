@@ -609,7 +609,7 @@ class GeoView(HtmlView):
         self.width = gws.width
         self.height = gws.height
         self.header_size = self.box1.get_allocation().height + 8
-        if not self.dbstate.active:
+        if not self.uistate.get_active('Person'):
             return
         self.external_uri()
 
@@ -927,7 +927,7 @@ class GeoView(HtmlView):
         """
         Change the style of the map view
         """
-        if not self.dbstate.active:
+        if not self.uistate.get_active('Person'):
             return
         self._geo_places()
 
@@ -935,7 +935,7 @@ class GeoView(HtmlView):
         """
         Here when the GeoView page is loaded
         """
-        if not self.dbstate.active:
+        if not self.uistate.get_active('Person'):
             return
         self._geo_places()
 
@@ -951,7 +951,7 @@ class GeoView(HtmlView):
         Specifies the person places.
         """
         self.displaytype = "person"
-        if not self.dbstate.active:
+        if not self.uistate.get_active('Person'):
             return
         self._geo_places()
 
@@ -960,7 +960,7 @@ class GeoView(HtmlView):
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
-        if not self.dbstate.active:
+        if not self.uistate.get_active('Person'):
             return
         self._geo_places()
 
@@ -1795,9 +1795,8 @@ class GeoView(HtmlView):
         self.minyear = 9999
         self.maxyear = 0
         self.center = True
-        person = None
-        if dbstate.active:
-            person = dbstate.active
+        person_handle = self.uistate.get_active('Person')
+        person = dbstate.db.get_person_from_handle(person_handle)
         if person is not None:
             family_list = person.get_family_handle_list()
             if len(family_list) > 0:
@@ -1855,9 +1854,8 @@ class GeoView(HtmlView):
         self.maxyear = 0
         latitude = ""
         longitude = ""
-        person = None
-        if dbstate.active:
-            person = dbstate.active
+        person_handle = self.uistate.get_active('Person')
+        person = dbstate.db.get_person_from_handle(person_handle)
         self.center = True
         if person is not None:
             # For each event, if we have a place, set a marker.

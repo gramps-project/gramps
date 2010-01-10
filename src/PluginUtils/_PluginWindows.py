@@ -482,7 +482,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
                         except Errors.WindowActiveError:
                             pass
                     else:
-                        self.dbstate.change_active_person(person)
+                        self.uistate.set_active(person_handle, 'Person')
                     return True # handled event
         return False # did not handle event
 

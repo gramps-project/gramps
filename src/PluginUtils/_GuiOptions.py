@@ -433,7 +433,8 @@ class GuiPersonOption(gtk.HBox):
         self.pack_start(pevt, False)
         self.pack_end(person_button, False)
         
-        person = self.__dbstate.get_active_person()
+        person_handle = self.__uistate.get_active('Person')
+        person = self.__dbstate.db.get_person_from_handle(person_handle)
         if not person:
             person = self.__db.get_default_person()
         self.__update_person(person)
@@ -461,7 +462,8 @@ class GuiPersonOption(gtk.HBox):
             rfilter.add_rule(Rules.Person.HasIdOf([gid]))
         
         # Add the selected person if one exists.
-        active_person = self.__dbstate.get_active_person()
+        person_handle = self.__uistate.get_active('Person')
+        active_person = self.__dbstate.db.get_person_from_handle(person_handle)
         if active_person:
             gid = active_person.get_gramps_id()
             rfilter.add_rule(Rules.Person.HasIdOf([gid]))
@@ -540,7 +542,8 @@ class GuiFamilyOption(gtk.HBox):
         family_list = []
         
         # First try the family of the active person
-        person = self.__dbstate.get_active_person()
+        person_handle = self.__uistate.get_active('Person')
+        person = self.__dbstate.db.get_person_from_handle(person_handle)
         if person:
             family_list = person.get_family_handle_list()
             

@@ -74,7 +74,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         reports. This is used to build the selection tree on the left
         hand side of the dialog box.
         """
-        self.active = state.active
+        self.active = uistate.get_active('Person')
         self.imap = {}
         self.msg = msg
         self.content = content
@@ -238,7 +238,9 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             return 
 
         if pdata.ptype == REPORT:
-            report(self.state, self.uistate, self.state.active,
+            active_handle = self.uistate.get_active('Person')
+            report(self.state, self.uistate,
+                   self.state.db.get_person_from_handle(active_handle),
                    eval('mod.' + pdata.reportclass), 
                    eval('mod.' + pdata.optionclass), 
                    pdata.name, pdata.id, 

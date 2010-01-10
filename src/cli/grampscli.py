@@ -274,8 +274,8 @@ class CLIManager(object):
         config.set('paths.recent-file', filename)
 
         try:
-            self.dbstate.change_active_person(
-                                    self.dbstate.db.find_initial_person())
+            initial_person = self.dbstate.db.find_initial_person().get_handle()
+            self.uistate.set_active(initial_person, 'Person')
         except:
             pass
         

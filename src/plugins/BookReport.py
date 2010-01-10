@@ -97,7 +97,7 @@ _UNSUPPORTED = _("Unsupported")
 # Private Functions
 #
 #------------------------------------------------------------------------
-def _initialize_options(options, dbstate):
+def _initialize_options(options, dbstate, uistate):
     """
     Validates all options by making sure that their values are consistent with
     the database.
@@ -116,12 +116,14 @@ def _initialize_options(options, dbstate):
 
         if isinstance(option, PersonOption):
             if not dbase.get_person_from_gramps_id(value):
-                person = dbstate.get_active_person()
+                person_handle = uistate.get_active('Person')
+                person = dbase.get_person_from_handle(person_handle)
                 option.set_value(person.get_gramps_id())
         
         elif isinstance(option, FamilyOption):
             if not dbase.get_family_from_gramps_id(value):
-                person = dbstate.get_active_person()
+                person_handle = uistate.get_active('Person')
+                person = dbase.get_person_from_handle(person_handle)
                 family_list = person.get_family_handle_list()
                 if family_list:
                     family_handle = family_list[0]
@@ -825,7 +827,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             return
         data = self.avail_model.get_data(the_iter, range(self.avail_nr_cols))
         item = BookItem(self.db, data[2])
-        _initialize_options(item.option_class, self.dbstate)
+        _initialize_options(item.option_class, self.dbstate, self.uistate)
         data[2] = _get_subject(item.option_class, self.db)
         self.book_model.add(data)
         self.book.append_item(item)

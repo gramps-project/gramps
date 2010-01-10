@@ -46,7 +46,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.views.navigationview import NAVIGATION_EVENT
 from gui.views.listview import ListView
 from gui.views.treemodels import EventModel
 import Utils
@@ -83,7 +82,7 @@ class EventView(ListView):
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
         """
         Create the Event View
         """
@@ -99,7 +98,7 @@ class EventView(ListView):
             EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
             EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
-            Bookmarks.EventBookmarks,
+            Bookmarks.EventBookmarks, nav_group,
             multiple=True,
             filter_class=EventSidebarFilter)
             
@@ -112,7 +111,7 @@ class EventView(ListView):
                           self.filter_toggle)
 
     def navigation_type(self):
-        return NAVIGATION_EVENT
+        return 'Event'
 
     def column_ord_setfunc(self, clist):
         self.dbstate.db.set_event_column_order(clist)
@@ -153,6 +152,12 @@ class EventView(ListView):
                 <menuitem action="EditBook"/>
               </placeholder>
             </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+              </placeholder>
+            </menu>
             <menu action="FileMenu">
               <placeholder name="LocalExport">
                 <menuitem action="ExportTab"/>
@@ -169,6 +174,10 @@ class EventView(ListView):
             </menu>
           </menubar>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
@@ -176,6 +185,9 @@ class EventView(ListView):
             </placeholder>
           </toolbar>
           <popup name="Popup">
+            <menuitem action="Back"/>
+            <menuitem action="Forward"/>
+            <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>

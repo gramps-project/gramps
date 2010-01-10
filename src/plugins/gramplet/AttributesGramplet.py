@@ -41,7 +41,8 @@ class AttributesGramplet(Gramplet):
 
     def main(self): # return false finishes
         self.set_text("")
-        active_person = self.dbstate.get_active_person()
+        active_handle = self.get_active('Person')
+        active_person = self.dbstate.db.get_person_from_handle(active_handle)
         if not active_person:
             return
         name = name_displayer.display(active_person)

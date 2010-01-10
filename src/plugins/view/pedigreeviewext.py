@@ -52,8 +52,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import gui.views.pageview as PageView
-from gui.views.navigationview import NavigationView, NAVIGATION_PERSON
+from gui.views.navigationview import NavigationView
 from BasicUtils import name_displayer
 from Utils import (media_path_full, probably_alive, find_children, 
                    find_parents, find_witnessed_people)
@@ -482,10 +481,11 @@ class PedigreeViewExt(NavigationView):
     Displays the ancestors of a selected individual.
     """
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Pedigree'), dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
-                                      Bookmarks.Bookmarks)
+                                      Bookmarks.PersonBookmarks,
+                                      nav_group)
 
         self.func_list = {
             'F2' : self.kb_goto_home,
@@ -647,9 +647,9 @@ class PedigreeViewExt(NavigationView):
         information.
         """
         try:
-            active = self.dbstate.get_active_person()
+            active = self.get_active()
             if active:
-                self.rebuild_trees(active.handle)
+                self.rebuild_trees(active)
             else:
                 self.rebuild_trees(None)
         except AttributeError, msg:
@@ -677,14 +677,16 @@ class PedigreeViewExt(NavigationView):
         self.build_tree()
 
     def navigation_type(self):
-        return NAVIGATION_PERSON
+        return 'Person'
 
     def goto_handle(self, handle=None):
-        """Callback function for change active person in other GRAMPS page."""
         self.dirty = True
         if handle:
-            self.rebuild_trees(handle)
-            self.handle_history(handle)
+            person = self.dbstate.db.get_person_from_handle(handle)
+            if person:
+                self.rebuild_trees(handle)
+            else:
+                self.rebuild_trees(None)
         else:
             self.rebuild_trees(None)
         self.uistate.modify_statusbar(self.dbstate)
@@ -699,22 +701,18 @@ class PedigreeViewExt(NavigationView):
         """Callback function for signals of change database."""
         self.format_helper.clear_cache()
         self.dirty = True
-        if self.dbstate.active:
-            self.rebuild_trees(self.dbstate.active.handle)
-        else:
-            self.rebuild_trees(None)
+        self.rebuild_trees(self.get_active())
 
     def rebuild_trees(self, person_handle):
         """
         Rebild tree with root person_handle.
         Called from many fuctions, when need full redraw tree.
         """
-
-        self.dirty = False
-
         person = None
         if person_handle:
             person = self.dbstate.db.get_person_from_handle(person_handle)
+
+        self.dirty = False
 
         if self.tree_style != 2 and \
            (self.force_size > 5 or self.force_size == 0):
@@ -1515,7 +1513,7 @@ class PedigreeViewExt(NavigationView):
         """Change root person to default person for database."""
         defperson = self.dbstate.db.get_default_person()
         if defperson:
-            self.dbstate.change_active_person(defperson)
+            self.change_active(defperson.get_handle())
 
     def edit_person_cb(self, obj, person_handle):
         """
@@ -1696,16 +1694,17 @@ class PedigreeViewExt(NavigationView):
 
     def on_show_child_menu(self, obj):
         """User clicked button to move to child of active person"""
-        if self.dbstate.active:
+        person = self.dbstate.db.get_person_from_handle(self.get_active())
+        if person:
             # Build and display the menu attached to the left pointing arrow
             # button. The menu consists of the children of the current root
             # person of the tree. Attach a child to each menu item.
 
-            childlist = find_children(self.dbstate.db, self.dbstate.active)
+            childlist = find_children(self.dbstate.db, person)
             if len(childlist) == 1:
                 child = self.dbstate.db.get_person_from_handle(childlist[0])
                 if child:
-                    self.dbstate.change_active_person(child)
+                    self.change_active(childlist[0])
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child_handle in childlist:
@@ -1737,7 +1736,7 @@ class PedigreeViewExt(NavigationView):
         Callback for the pulldown menu selection, changing to the person
         attached with menu item.
         """
-        self.dbstate.change_active_handle(person_handle)
+        self.change_active(person_handle)
         return True
 
     def change_force_size_cb(self, menuitem, data):
@@ -1747,7 +1746,7 @@ class PedigreeViewExt(NavigationView):
             self.force_size = data
             self.dirty = True
             # switch to matching size
-            self.rebuild_trees(self.dbstate.active.handle)
+            self.rebuild_trees(self.get_active())
 
     def change_tree_style_cb(self, menuitem, data):
         """Change tree_style option."""
@@ -1758,11 +1757,7 @@ class PedigreeViewExt(NavigationView):
                     self.force_size = 5
                 self.dirty = True
                 self.tree_style = data
-                if self.dbstate.active:
-                    # Rebuild using new style
-                    self.rebuild_trees(self.dbstate.active.handle)
-                else:
-                    self.rebuild_trees(None)
+                self.rebuild_trees(self.get_active())
 
     def change_tree_direction_cb(self, menuitem, data):
         """Change tree_direction option."""
@@ -1771,22 +1766,14 @@ class PedigreeViewExt(NavigationView):
             if self.tree_direction != data:
                 self.dirty = True
                 self.tree_direction = data
-                if self.dbstate.active:
-                    # Rebuild using new tree direction
-                    self.rebuild_trees(self.dbstate.active.handle)
-                else:
-                    self.rebuild_trees(None)
+                self.rebuild_trees(self.get_active())
 
     def change_show_images_cb(self, event):
         """Change show_images option."""
         self.show_images = not self.show_images
         config.set('interface.pedviewext-show-images', self.show_images)
         self.dirty = True
-        if self.dbstate.active:
-            # Rebuild using new style
-            self.rebuild_trees(self.dbstate.active.handle)
-        else:
-            self.rebuild_trees(None)
+        self.rebuild_trees(self.get_active())
 
     def change_show_marriage_cb(self, event):
         """Change show_marriage_data option."""
@@ -1794,11 +1781,7 @@ class PedigreeViewExt(NavigationView):
         config.set('interface.pedviewext-show-marriage', 
                     self.show_marriage_data)
         self.dirty = True
-        if self.dbstate.active:
-            # Rebuild using new style
-            self.rebuild_trees(self.dbstate.active.handle)
-        else:
-            self.rebuild_trees(None)
+        self.rebuild_trees(self.get_active())
 
     def change_show_unknown_peoples_cb(self, event):
         """Change show_unknown_peoples option."""
@@ -1806,11 +1789,7 @@ class PedigreeViewExt(NavigationView):
         config.set('interface.pedviewext-show-unknown-peoples', 
                     self.show_unknown_peoples)
         self.dirty = True
-        if self.dbstate.active:
-            # Rebuild using new style
-            self.rebuild_trees(self.dbstate.active.handle)
-        else:
-            self.rebuild_trees(None)
+        self.rebuild_trees(self.get_active())
 
     def change_scroll_direction_cb(self, menuitem, data):
         """Change scroll_direction option."""
@@ -1898,7 +1877,8 @@ class PedigreeViewExt(NavigationView):
         to the context menu. Used by both build_nav_menu() and
         build_full_nav_menu() methods.
         """
-        hobj = self.uistate.phistory
+        hobj = self.uistate.get_history(self.navigation_type(),
+                                        self.get_group())
         home_sensitivity = True
         if not self.dbstate.db.get_default_person():
             home_sensitivity = False

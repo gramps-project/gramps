@@ -53,12 +53,12 @@ class QuickViewGramplet(Gramplet):
         qv_option = self.get_option(_("Quick Views"))
         quick_view = qv_option.get_value()
         if quick_type == CATEGORY_QR_PERSON:
-            active = self.dbstate.get_active_person()
-            if active:
+            active_handle = self.get_active('Person')
+            if active_handle:
                 run_quick_report_by_name(self.gui.dbstate, 
                                          self.gui.uistate, 
                                          quick_view,
-                                         active.handle,
+                                         active_handle,
                                          container=self.gui.textview)
         else:
             active_list = []

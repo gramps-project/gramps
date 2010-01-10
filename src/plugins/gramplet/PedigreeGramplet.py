@@ -229,7 +229,8 @@ class PedigreeGramplet(Gramplet):
         self._boxes = [0] * (self.max_generations + 1)
         self._generations = {}
         self.gui.buffer.set_text("")
-        active_person = self.dbstate.get_active_person()
+        active_handle = self.get_active('Person')
+        active_person = self.dbstate.db.get_person_from_handle(active_handle)
         if not active_person:
             return False
         #no wrap in Gramplet

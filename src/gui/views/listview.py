@@ -87,11 +87,11 @@ class ListView(NavigationView):
     QR_CATEGORY = -1
 
     def __init__(self, title, dbstate, uistate, columns, handle_col, 
-                 make_model, signal_map, get_bookmarks, bm_type, 
+                 make_model, signal_map, get_bookmarks, bm_type, nav_group,
                  multiple=False, filter_class=None, markup=False):
 
         NavigationView.__init__(self, title, dbstate, uistate, 
-                              get_bookmarks, bm_type)
+                              get_bookmarks, bm_type, nav_group)
         #default is listviews keep themself in sync with database
         self._dirty_on_change_inactive = False
         
@@ -756,7 +756,7 @@ class ListView(NavigationView):
                     self.uistate.uimanager.\
                             get_widget('/Popup/QuickReport').remove_submenu()
                 reportactions = []
-                if menu and self.dbstate.active:
+                if menu and self.get_active():
                     (ui, reportactions) = create_quickreport_menu(
                                             self.QR_CATEGORY, 
                                             self.dbstate, 

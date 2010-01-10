@@ -71,8 +71,6 @@ import GrampsCfg
 import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
                             InfoDialog)
-import gui.views.navigationview as NavigationView
-import Navigation
 from BasicUtils import name_displayer
 from gui import widgets
 import UndoHistory
@@ -341,10 +339,7 @@ class ViewManager(CLIManager):
         openbtn = self.__build_open_button()
         self.uistate.set_open_widget(openbtn)
         self.toolbar.insert(openbtn, 0)
-        
-        self.person_nav = Navigation.PersonNavigation(self.dbstate, self.uistate)
-        self._navigation_type[NavigationView.NAVIGATION_PERSON] = \
-                                                    (self.person_nav, None)
+
         self.recent_manager = DisplayState.RecentDocsMenu(
             self.uistate, self.dbstate, self._read_recent_file)
         self.recent_manager.build()
@@ -531,18 +526,6 @@ class ViewManager(CLIManager):
              _('Undo History...'), "<control>H", None, self.undo_history), 
             ]
 
-        self._navigation_type = {
-            None: (None, None), 
-            NavigationView.NAVIGATION_PERSON: (None, None), 
-            NavigationView.NAVIGATION_FAMILY: (None, None),
-            NavigationView.NAVIGATION_EVENT: (None, None),
-            NavigationView.NAVIGATION_PLACE: (None, None),
-            NavigationView.NAVIGATION_SOURCE: (None, None),
-            NavigationView.NAVIGATION_REPOSITORY: (None, None),
-            NavigationView.NAVIGATION_MEDIA: (None, None),
-            NavigationView.NAVIGATION_NOTE: (None, None)
-            }
-
     def __keypress(self, action):
         """
         Callback that is called on a keypress. It works by extracting the 
@@ -576,8 +559,8 @@ class ViewManager(CLIManager):
     def __prev_view(self, action):
         """
         Callback that is called when the previous view action is selected.
-        It selects the previous view as the active view. If we reach the beginning
-        of the list of views, we wrap around to the last view.
+        It selects the previous view as the active view. If we reach the
+        beginning of the list of views, we wrap around to the last view.
         """
         current_page = self.notebook.get_current_page()
         if current_page == 0:
@@ -883,7 +866,6 @@ class ViewManager(CLIManager):
         Create the Views
         """
         self.pages = []
-        self.prev_nav = None
         self.ui_category = {}
         self.view_toggle_actions = {}
         self.cat_view_group = None
@@ -908,6 +890,7 @@ class ViewManager(CLIManager):
                 page_category = page.get_category()
                 page_translated_category = page.get_translated_category()
                 page_stock = page.get_stock()
+
                 if nrpage == 0:
                     #the first page of this category, used to obtain
                     #category workspace notebook
@@ -1123,19 +1106,6 @@ class ViewManager(CLIManager):
                                 category_page])
             self.merge_ids.append(mergeid)
 
-    def __setup_navigation(self):
-        """
-        Initialize the navigation scheme
-        """
-        old_nav = self._navigation_type[self.prev_nav]
-        if old_nav[0] is not None:
-            old_nav[0].disable()
-
-        page_type = self.active_page.navigation_type()
-        nav_type = self._navigation_type[page_type]
-        if nav_type[0] is not None:
-            nav_type[0].enable()
-
     def change_category(self, obj, page, num=-1):
         """
         Wrapper for the __do_change_category, to prevent entering into the 
@@ -1184,7 +1154,6 @@ class ViewManager(CLIManager):
                            self.views[category_page][view_page][0].id)
                 config.save()
 
-                self.__setup_navigation()
                 self.__connect_active_page(category_page, view_page)
 
                 self.uimanager.ensure_update()
@@ -1226,12 +1195,6 @@ class ViewManager(CLIManager):
         This method is for the common UI post_load, both new files
         and added data like imports.
         """
-        if self.dbstate.active :
-            # clear history and fill history with first entry, active person
-            self.uistate.clear_history(self.dbstate.active.handle)
-        else :
-            self.uistate.clear_history(None)
-
         self.dbstate.db.undo_callback = self.__change_undo_label
         self.dbstate.db.redo_callback = self.__change_redo_label
         self.__change_undo_label(None)
@@ -1270,8 +1233,6 @@ class ViewManager(CLIManager):
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(True)
 
-        self.setup_bookmarks()
-        
         self.change_category(None, None)
         self.actiongroup.set_visible(True)
         self.readonlygroup.set_visible(True)
@@ -1339,36 +1300,6 @@ class ViewManager(CLIManager):
             # Let it go: history window does not exist
             return
  
-    def setup_bookmarks(self):
-        """
-        Initialize the bookmarks based of the database. This needs to
-        be called anytime the database changes.
-        """
-        import Bookmarks
-        self.bookmarks = Bookmarks.Bookmarks(
-            self.dbstate, self.uistate, self.dbstate.db.get_bookmarks())
-
-    def add_bookmark(self, obj):
-        """
-        Add a bookmark to the bookmark list
-        """
-        if self.dbstate.active:
-            self.bookmarks.add(self.dbstate.active.get_handle())
-            name = name_displayer.display(self.dbstate.active)
-            self.uistate.push_message(self.dbstate, 
-                                      _("%s has been bookmarked") % name)
-        else:
-            WarningDialog(
-                _("Could Not Set a Bookmark"), 
-                _("A bookmark could not be set because "
-                  "no one was selected."))
-
-    def edit_bookmarks(self, obj):
-        """
-        Displays the Bookmark editor
-        """
-        self.bookmarks.edit()
-
     def reports_clicked(self, obj):
         """
         Displays the Reports dialog
@@ -1615,7 +1546,7 @@ def run_plugin(pdata, dbstate, uistate):
             return 
 
         if pdata.ptype == REPORT:
-            ReportBase.report(dbstate, uistate, dbstate.active,
+            ReportBase.report(dbstate, uistate, uistate.get_active('Person'),
                    getattr(mod, pdata.reportclass), 
                    getattr(mod, pdata.optionclass), 
                    pdata.name, pdata.id, 

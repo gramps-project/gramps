@@ -1136,3 +1136,58 @@ def find_witnessed_people(db,p):
         if pref.ref != p.get_handle and pref.ref not in people:
             people.append(pref.ref)
     return people
+
+#-------------------------------------------------------------------------
+#
+# Function to return a label to display the active object in the status bar
+# and to describe bookmarked objects.
+#
+#-------------------------------------------------------------------------
+def navigation_label(db, nav_type, handle):
+
+    label = None
+    if nav_type == 'Person':
+        obj = db.get_person_from_handle(handle)
+        if obj:
+            label = name_displayer.display(obj)
+    elif nav_type == 'Family':
+        obj = db.get_family_from_handle(handle)
+        if obj:
+            label = family_name(obj, db)
+    elif nav_type == 'Event':
+        obj = db.get_event_from_handle(handle)
+        if obj:
+            type = obj.get_type()
+            who = get_participant_from_event(db, handle)
+            desc = obj.get_description()
+            label = '%s - %s' % (type, who)
+            if desc:
+                label = '%s - %s' % (label, desc)
+    elif nav_type == 'Place':
+        obj = db.get_place_from_handle(handle)
+        if obj:
+            label = obj.get_title()
+    elif nav_type == 'Source':
+        obj = db.get_source_from_handle(handle)
+        if obj:
+            label = obj.get_title()
+    elif nav_type == 'Repository':
+        obj = db.get_repository_from_handle(handle)
+        if obj:
+            label = obj.get_name()
+    elif nav_type == 'Media':
+        obj = db.get_object_from_handle(handle)
+        if obj:
+            label = obj.get_description()
+    elif nav_type == 'Note':
+        obj = db.get_note_from_handle(handle)
+        if obj:
+            label = obj.get()
+            label = " ".join(label.split())
+            if len(label) > 40:
+                label = label[:40] + "..."
+
+    if label:
+        label = '[%s] %s' % (obj.get_gramps_id(), label)
+
+    return label

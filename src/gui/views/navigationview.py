@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
-# Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009-2010  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,18 +47,7 @@ import gtk
 #
 #----------------------------------------------------------------
 from gui.views.pageview import PageView
-
 from TransUtils import sgettext as _
-
-NAVIGATION_NONE = -1
-NAVIGATION_PERSON = 0
-NAVIGATION_FAMILY = 1
-NAVIGATION_EVENT = 2
-NAVIGATION_PLACE = 3
-NAVIGATION_SOURCE = 4
-NAVIGATION_REPOSITORY = 5
-NAVIGATION_MEDIA = 6
-NAVIGATION_NOTE = 7
 
 #------------------------------------------------------------------------------
 #
@@ -72,7 +61,7 @@ class NavigationView(PageView):
     should derive from this class.
     """
     
-    def __init__(self, title, state, uistate, bookmarks, bm_type):
+    def __init__(self, title, state, uistate, bookmarks, bm_type, nav_group):
         PageView.__init__(self, title, state, uistate)
         self.bookmarks = bm_type(self.dbstate, self.uistate, bookmarks,
                                  self.goto_handle)
@@ -81,7 +70,10 @@ class NavigationView(PageView):
         self.back_action = None
         self.book_action = None
         self.other_action = None
-        self.key_active_changed = None
+        self.active_signal = None
+        self.nav_group = nav_group
+
+        self.uistate.register(self.navigation_type(), self.nav_group)
 
     def define_actions(self):
         """
@@ -111,7 +103,7 @@ class NavigationView(PageView):
         
         self.fwd_action.set_visible(True)
         self.back_action.set_visible(True)
-        hobj = self.uistate.phistory
+        hobj = self.get_history()
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
 
@@ -119,19 +111,22 @@ class NavigationView(PageView):
         """
         Called when the page changes.
         """
-        hobj = self.uistate.phistory
+        hobj = self.get_history()
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
         self.other_action.set_sensitive(not self.dbstate.db.readonly)
-        
+        self.uistate.modify_statusbar(self.dbstate)
+
     def set_active(self):
         """
         Called when the page becomes active (displayed).
         """
         PageView.set_active(self)
         self.bookmarks.display()
-        self.key_active_changed = self.dbstate.connect('active-changed', 
-                                                       self.goto_active)
+        
+        hobj = self.get_history()
+        self.active_signal = hobj.connect('active-changed', self.goto_active)
+            
         self.goto_active(None)
 
     def set_inactive(self):
@@ -141,26 +136,51 @@ class NavigationView(PageView):
         if self.active:
             PageView.set_inactive(self)
             self.bookmarks.undisplay()
-            self.dbstate.disconnect(self.key_active_changed)
+            hobj = self.get_history()
+            hobj.disconnect(self.active_signal)
+
+    def navigation_group(self):
+        """
+        Return the navigation group.
+        """
+        return self.nav_group
+        
+    def get_history(self):
+        """
+        Return the history object.
+        """
+        return self.uistate.get_history(self.navigation_type(),
+                                        self.navigation_group())
 
     def goto_active(self, active_handle):
         """
         Callback (and usable function) that selects the active person
         in the display tree.
         """
-        if self.dbstate.active:
-            self.handle_history(self.dbstate.active.handle)
+        active_handle = self.uistate.get_active(self.navigation_type(),
+                                                self.navigation_group())
+        if active_handle:
+            self.goto_handle(active_handle)
+            
+        hobj = self.get_history()
+        self.fwd_action.set_sensitive(not hobj.at_end())
+        self.back_action.set_sensitive(not hobj.at_front())
 
-        # active object for each navigation type
-        if self.navigation_type() == NAVIGATION_PERSON:
-            if self.dbstate.active:
-                self.goto_handle(self.dbstate.active.handle)
-         
+    def get_active(self):
+        """
+        Return the handle of the active object.
+        """
+        hobj = self.uistate.get_history(self.navigation_type(),
+                                        self.navigation_group())
+        return hobj.present()
+        
     def change_active(self, handle):
         """
         Changes the active object.
         """
-        self.dbstate.set_active(self.navigation_type(), handle)
+        hobj = self.get_history()
+        if handle and not hobj.lock and not (handle == hobj.present()):
+            hobj.push(handle)            
 
     def goto_handle(self, handle):
         """
@@ -177,10 +197,12 @@ class NavigationView(PageView):
         Add a bookmark to the list.
         """
         from BasicUtils import name_displayer
-        
-        if self.dbstate.active:
-            self.bookmarks.add(self.dbstate.active.get_handle())
-            name = name_displayer.display(self.dbstate.active)
+
+        active_handle = self.uistate.get_active('Person')
+        active_person = self.dbstate.db.get_person_from_handle(active_handle)
+        if active_person:
+            self.bookmarks.add(active_handle)
+            name = name_displayer.display(active_person)
             self.uistate.push_message(self.dbstate, 
                                       _("%s has been bookmarked") % name)
         else:
@@ -253,9 +275,9 @@ class NavigationView(PageView):
         """
         Set the default person.
         """
-        active = self.dbstate.active
+        active = self.uistate.get_active('Person')
         if active:
-            self.dbstate.db.set_default_person_handle(active.get_handle())
+            self.dbstate.db.set_default_person_handle(active)
 
     def home(self, obj):
         """
@@ -263,7 +285,7 @@ class NavigationView(PageView):
         """
         defperson = self.dbstate.db.get_default_person()
         if defperson:
-            self.dbstate.change_active_person(defperson)
+            self.change_active(defperson.get_handle())
 
     def jump(self):
         """
@@ -293,9 +315,7 @@ class NavigationView(PageView):
             gid = text.get_text()
             handle = self.get_handle_from_gramps_id(gid)
             if handle is not None:
-                if self.navigation_type() == NAVIGATION_PERSON:
-                    self.change_active(handle)
-
+                self.change_active(handle)
                 self.goto_handle(handle)
             else:
                 self.uistate.push_message(
@@ -314,12 +334,11 @@ class NavigationView(PageView):
         """
         Move forward one object in the history.
         """
-        hobj = self.uistate.phistory
+        hobj = self.get_history()
         hobj.lock = True
         if not hobj.at_end():
             try:
                 handle = hobj.forward()
-                self.dbstate.change_active_handle(handle)
                 self.uistate.modify_statusbar(self.dbstate)
                 hobj.mhistory.append(hobj.history[hobj.index])
                 self.fwd_action.set_sensitive(not hobj.at_end())
@@ -337,14 +356,12 @@ class NavigationView(PageView):
         """
         Move backward one object in the history.
         """
-        hobj = self.uistate.phistory
+        hobj = self.get_history()
         hobj.lock = True
         if not hobj.at_front():
             try:
                 handle = hobj.back()
-                self.active = self.dbstate.db.get_person_from_handle(handle)
                 self.uistate.modify_statusbar(self.dbstate)
-                self.dbstate.change_active_handle(handle)
                 hobj.mhistory.append(hobj.history[hobj.index])
                 self.back_action.set_sensitive(not hobj.at_front())
                 self.fwd_action.set_sensitive(True)
@@ -357,18 +374,6 @@ class NavigationView(PageView):
             self.fwd_action.set_sensitive(True)
         hobj.lock = False
         
-    def handle_history(self, handle):
-        """
-        Updates the person history information
-        It will push the person at the end of the history if that person is
-        not present person
-        """
-        hobj = self.uistate.phistory
-        if handle and not hobj.lock and not (handle == hobj.present()):
-            hobj.push(handle)
-            self.fwd_action.set_sensitive(not hobj.at_end())
-            self.back_action.set_sensitive(not hobj.at_front())
-            
     ####################################################################
     # Template functions
     ####################################################################

@@ -105,7 +105,7 @@ class Bookmarks :
         """
         Connect the person-delete signal
         """
-        self.dbstate.db.connect('person-delete', self.remove_handles)
+        raise NotImplementedError
 
     def update_bookmarks(self, bookmarks):
         """
@@ -140,16 +140,15 @@ class Bookmarks :
         text.write(TOP)
 
         self.undisplay()
-        
+
         actions = []
         count = 0
 
         if len(self.bookmarks.get()) > 0:
             text.write('<placeholder name="GoToBook">')
-
             for item in self.bookmarks.get():
                 try:
-                    label, obj = self.make_label(item)
+                    label = self.make_label(item)
                     func = self.callback(item)
                     action_id = "BM:%s" % item
                     actions.append((action_id, None, label, None, None, func))
@@ -167,12 +166,10 @@ class Bookmarks :
         text.close()
 
     def make_label(self, handle):
-        person = self.dbstate.db.get_person_from_handle(handle)
-        name = name_displayer.display(person)
-        return ("%s [%s]" % (name, person.gramps_id), person)
+        raise NotImplementedError
 
     def callback(self, handle):
-        return make_callback(handle, self.dbstate.change_active_handle)
+        raise NotImplementedError
 
     def add(self, person_handle):
         """Append the person to the bottom of the bookmarks."""
@@ -326,6 +323,19 @@ class ListBookmarks(Bookmarks):
     def do_callback(self, handle):
         self.goto_handle(handle)
 
+class PersonBookmarks(ListBookmarks) :
+    "Handle the bookmarks interface for Gramps."
+    
+    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
+                               goto_handle)
+        
+    def make_label(self, handle):
+        return Utils.navigation_label(self.dbstate.db, 'Person', handle)
+
+    def connect_signals(self):
+        self.dbstate.db.connect('person-delete', self.remove_handles)
+        
 class FamilyBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
@@ -334,9 +344,7 @@ class FamilyBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        obj = self.dbstate.db.get_family_from_handle(handle)
-        name = Utils.family_name(obj, self.dbstate.db)
-        return ("%s [%s]" % (name, obj.gramps_id), obj)
+        return Utils.navigation_label(self.dbstate.db, 'Family', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('family-delete', self.remove_handles)
@@ -349,12 +357,7 @@ class EventBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        obj = self.dbstate.db.get_event_from_handle(handle)
-        if obj.get_description() == "":
-            name = str(obj.get_type())
-        else:
-            name = obj.get_description()
-        return ("%s [%s]" % (name, obj.gramps_id), obj)
+        return Utils.navigation_label(self.dbstate.db, 'Event', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('event-delete', self.remove_handles)
@@ -366,9 +369,7 @@ class SourceBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        obj = self.dbstate.db.get_source_from_handle(handle)
-        name = obj.get_title()
-        return ("%s [%s]" % (name, obj.gramps_id), obj)
+        return Utils.navigation_label(self.dbstate.db, 'Source', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('source-delete', self.remove_handles)
@@ -381,9 +382,7 @@ class MediaBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        obj = self.dbstate.db.get_object_from_handle(handle)
-        name = obj.get_description()
-        return ("%s [%s]" % (name, obj.gramps_id), obj)
+        return Utils.navigation_label(self.dbstate.db, 'Media', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('media-delete', self.remove_handles)
@@ -396,9 +395,7 @@ class RepoBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        obj = self.dbstate.db.get_repository_from_handle(handle)
-        name = obj.get_name()
-        return ("%s [%s]" % (name, obj.gramps_id), obj)
+        return Utils.navigation_label(self.dbstate.db, 'Repository', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('repository-delete', self.remove_handles)
@@ -411,9 +408,7 @@ class PlaceBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        obj = self.dbstate.db.get_place_from_handle(handle)
-        name = obj.get_title()
-        return ("%s [%s]" % (name, obj.gramps_id), obj)
+        return Utils.navigation_label(self.dbstate.db, 'Place', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('place-delete', self.remove_handles)
@@ -426,13 +421,7 @@ class NoteBookmarks(ListBookmarks) :
                                goto_handle)
         
     def make_label(self, handle):
-        obj = self.dbstate.db.get_note_from_handle(handle)
-        name = obj.get().replace('\n', ' ')
-        #String must be unicode for truncation to work for non ascii characters
-        name = unicode(name)
-        if len(name) > 40:
-            name = name[:40]+"..."
-        return ("%s [%s]" % (name, obj.gramps_id), obj)
+        return Utils.navigation_label(self.dbstate.db, 'Note', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('note-delete', self.remove_handles)

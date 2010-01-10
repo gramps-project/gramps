@@ -202,9 +202,9 @@ class SimpleTable(object):
                 import gobject
                 # If you emmit the signal here and it causes this table to be deleted, 
                 # then you'll crash Python:
-                #self.simpledoc.doc.dbstate.set_active_person(handle)
+                #self.simpledoc.doc.uistate.set_active(handle, 'Person')
                 # So, let's return from this, then change the active person:
-                return gobject.timeout_add(100, self.simpledoc.doc.dbstate.set_active_person, handle)
+                return gobject.timeout_add(100, self.simpledoc.doc.uistate.set_active, handle, 'Person')
                 return True
         return False # didn't handle event
 
