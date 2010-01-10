@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Andrew I Baznikin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,7 +70,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "nagyszülei"
         elif level == 3: return "dédszülei"
         elif level == 4: return "ükszülei"
-        else           : return "%s szülei" % _level[level]
+        elif level <= len([level]): return "%s szülei" % _level[level]
 
     def get_father (self, level):
         if   level == 0: return ""
@@ -77,7 +78,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "nagyapja"
         elif level == 3: return "dédapja"
         elif level == 4: return "ükapja"
-        else           : return "%s ükapja" % (_level[level])
+        elif level <= len([level]): return "%s ükapja" % (_level[level])
 
     def get_mother (self, level):
         if   level == 0: return ""
@@ -85,7 +86,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "nagyanyja"
         elif level == 3: return "dédanyja"
         elif level == 4: return "ükanyja"
-        else           : return "%s ükanyja" % (_level[level])
+        elif level <= len([level]): return "%s ükanyja" % (_level[level])
 
     def get_son (self, level):
         if   level == 0: return ""
@@ -93,29 +94,29 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "unokája"
         elif level == 3: return "dédunokája"
         elif level == 4: return "ükunokája"
-        else           : return "%s unokája" % (_level[level])
+        elif level <= len([level]): return "%s unokája" % (_level[level])
 
     def get_daughter (self, level):
         if   level == 0: return ""
         elif level == 1: return "lánya"
-        else           : return self.get_son(level)
+        elif level <= len([level]): return self.get_son(level)
 
     def get_uncle (self, level):
         if   level == 0: return ""
         elif level == 1: return "testvére"
         elif level == 2: return "nagybátyja"
-        else           : return "%s nagybátyja" % (_level[level])
+        elif level <= len([level]): return "%s nagybátyja" % (_level[level])
 
     def get_aunt (self, level):
         if   level == 0: return ""
         elif level == 1: return "testvére"
         elif level == 2: return "nagynénje"
-        else           : return "%s nagynénje" % (_level[level])
+        elif level <= len([level]): return "%s nagynénje" % (_level[level])
 
     def get_nephew (self, level):
         if   level == 0: return ""
         elif level == 1: return "unokája"
-        else           : return "%s unokája" % (_level[level])
+        elif level <= len([level]): return "%s unokája" % (_level[level])
 
     def get_niece(self, level):
         return self.get_nephew(level)
@@ -123,7 +124,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_male_cousin (self, level):
         if   level == 0: return ""
         elif level == 1: return "unokatestvére"
-        else           : return "%s unokatestvére" % (_level[level])
+        elif level <= len([level]): return "%s unokatestvére" % (_level[level])
 
     def get_female_cousin (self, level):
         return self.get_male_cousin(level)
@@ -135,13 +136,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     #----------------------------------------------
 
     def get_age_comp(self, orig_person, other_person):
-        # 0=nothing, -1=other is younger 1=other is older
-        orig_birth_event = orig_person.get_birth()
-        orig_birth_date = orig_birth_event.get_date_object()
-        other_birth_event = other_person.get_birth()
-        other_birth_date = other_birth_event.get_date_object()
-        if (orig_birth_date == "")or(other_birth_date == "") :return 0
-        else  :return orig_birth_date > other_birth_date
+        # in 3.X api we can't know persons age
+        return 0
           
 
     def get_age_brother (self, level):
@@ -177,22 +173,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                             return 1
         return 0
 
-    def get_fathermother_in_law_common(self, orig, other):
-        for f in other.get_family_handle_list():
-            family = self.db.get_family_from_handle(f)
-            sp_id = None
-            if family:
-                if other == family.get_father_handle(): 
-                    sp_id = family.get_mother_handle()
-                elif other == family.get_mother_handle(): 
-                    sp_id = family.get_father_handler()
-                for g in orig.get_family_handle_list():
-                    family = self.db.get_family_from_handle(g)
-                    if family:
-                        if sp_id in family.get_child_handle_list(): 
-                            return [sp_id]
-        return []
-
     #------------------------------------------------------------------------
     #
     # hu: sógor, sógornő
@@ -218,102 +198,61 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                         return 1
         return 0
 
-    def get_brothersister_in_law_common(self, orig, other):
-        for f in orig.get_family_handle_list():
-            family = self.db.get_family_from_handle(f)
-            sp_id = None
-            if family:
-                if orig ==  family.get_father_handle(): 
-                    sp_id = family.get_mother_handle()
-                elif other == family.get_mother_handle(): 
-                    sp_id = family.get_father_handler()
-
-                p = other.get_main_parents_family_handle()
-                family = self.db.get_family_from_handle(p)
-                if family:
-                    c = family.get_child_handle_list()
-                if (other.get_handle() in c) and (sp_id in c): 
-                    return [sp_id]
-        return []
-
     #-------------------------------------------------------------------------
     #
     # get_relationship
     #
     #-------------------------------------------------------------------------
 
-    def get_relationship(self, db, orig_person, other_person):
+    def get_relationship(self, secondRel, firstRel, orig_person, other_person, in_law_a, in_law_b):
         """
         returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother)
         """
 
-        if orig_person is None:
-            return ("undefined", [])
+        common = ""
 
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
+        if in_law_a or in_law_a:
+            if firstRel == 0 and secondRel == 0:
+                if other_person == gen.lib.Person.MALE:
+                    return ("apósa","")
+                elif other_person == gen.lib.Person.FEMALE:
+                    return ("anyósa","")
+                else:
+                    return ("apósa vagy anyósa","")
 
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return (is_spouse, [])
+            elif secondRel == 0:
+                if orig_person == gen.lib.Person.MALE:
+                    return ("veje","")
+                elif orig_person == gen.lib.Person.FEMALE:
+                    return ("menye","")
+                else:
+                    return ("veje vagy menye","")
 
-        if self.is_fathermother_in_law(other_person, orig_person):
-            if other_person.getGender() == gen.lib.Person.MALE:
-                return ("apósa", self.get_fathermother_in_law_common(other_person, orig_person))
-            elif other_person.getGender() == gen.lib.Person.FEMALE:
-                return ("anyósa", self.get_fathermother_in_law_common(other_person, orig_person))
-            elif other_person.getGender() == 2 :
-                return ("apósa vagy anyósa", self.get_fathermother_in_law_common(other_person, orig_person))
-
-        if self.is_fathermother_in_law(orig_person, other_person):
-            if orig_person.getGender() == gen.lib.Person.MALE:
-                return ("veje", self.get_fathermother_in_law_common(orig_person, other_person))
-            elif orig_person.getGender() == gen.lib.Person.FEMALE:
-                return ("menye", self.get_fathermother_in_law_common(orig_person, other_person))
-            elif orig_person.getGender() == 2 :
-                return ("veje vagy menye", self.get_fathermother_in_law_common(orig_person, other_person))
-
-        if self.is_brothersister_in_law(orig_person, other_person):
-            if other_person.getGender() == gen.lib.Person.MALE:
-                return ("sógora", self.get_brothersister_in_law_common(orig_person, other_person))
-            elif other_person.getGender() == gen.lib.Person.FEMALE:
-                return ("sógornője", self.get_brothersister_in_law_common(orig_person, other_person))
-            elif other_person.getGender() == 2 :
-                return ("sógora vagy sógornője", self.get_brothersister_in_law_common(orig_person, other_person))
-
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel, firstRel, common) = \
-                     self.get_relationship_distance(db, orig_person, other_person)
-        
-        if isinstance(common, basestring):
-            return (common, [])
-        elif common:
-            person_handle = common[0]
-        else:
-            return ("", [])
-
-        firstRel = len(firstRel)
-        secondRel = len(secondRel)
+            elif firstRel == 1:
+                if other_person == gen.lib.Person.MALE:
+                    return ("sógora","")
+                elif other_person == gen.lib.Person.FEMALE:
+                    return ("sógornője","")
+                else:
+                    return ("sógora vagy sógornője","")
 
         if firstRel == 0:
             if secondRel == 0:
                 return ('', common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
+            elif other_person == gen.lib.Person.MALE:
                 return (self.get_father(secondRel), common)
             else:
                 return (self.get_mother(secondRel), common)
 
         elif secondRel == 0:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person == gen.lib.Person.MALE:
                 return (self.get_son(firstRel), common)
             else:
                 return (self.get_daughter(firstRel), common)
 
         elif firstRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person == gen.lib.Person.MALE:
                 if secondRel == 1:
                     return (self.get_age_brother(self.get_age_comp(orig_person, other_person)), common)
                 else :return (self.get_uncle(secondRel), common)
@@ -323,16 +262,26 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 else :return (self.get_aunt(secondRel), common)
 
         elif secondRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-1), common)
             else:
                 return (self.get_niece(firstRel-1), common)
 
         else:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person == gen.lib.Person.MALE:
                 return (self.get_male_cousin(firstRel-1), common)
             else:
                 return (self.get_female_cousin(firstRel-1), common)
+
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True, 
+                                       in_law_a=False, in_law_b=False):
+        return self.get_relationship(Ga, Gb, gender_a, gender_b, in_law_a, in_law_b)[0]
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+        return self.get_relationship(1, 1, gender_a, gender_b, in_law_a, in_law_b)[0]
 
 if __name__ == "__main__":
 
