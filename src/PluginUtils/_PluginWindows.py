@@ -504,6 +504,25 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         buffer.insert_at_cursor(text)
         buffer.delete_mark_by_name("end")        
 
+    def write_to_page(self, page, text):
+        buffer = page.get_buffer()
+        mark = buffer.create_mark("end", buffer.get_end_iter())
+        self.results_text.scroll_to_mark(mark, 0)
+        buffer.insert_at_cursor(text)
+        buffer.delete_mark_by_name("end")        
+
+    def clear(self, text):
+        # Remove all tags and clear text
+        buffer = text.get_buffer()
+        tag_table = buffer.get_tag_table()
+        start = buffer.get_start_iter()
+        end = buffer.get_end_iter()
+        for (tag, handle) in self.tags:
+            buffer.remove_tag(tag, start, end)
+            tag_table.remove(tag)
+        self.tags = []
+        buffer.set_text("")
+
     def results_clear(self):
         # Remove all tags and clear text
         buffer = self.results_text.get_buffer()
@@ -587,7 +606,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
                         fname, child = self.frames[frame_name][0]
                         page = self.notebook.page_num(child)
                         self.notebook.set_current_page(page)
-                    return
+                        return
 
     def add_results_frame(self, frame_name="Results"):
         if frame_name not in self.frames:
@@ -602,9 +621,27 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
             self.notebook.append_page(window, l)
             self.notebook.show_all()
         else:
+            self.results_write("\n")
             self.results_clear()
         self.set_current_frame(frame_name)
         return self.results_text
+
+    def add_page(self, frame_name="Help"):
+        if frame_name not in self.frames:
+            text = gtk.TextView() 
+            text.set_wrap_mode(gtk.WRAP_WORD)
+            window = gtk.ScrolledWindow()
+            window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            window.add(text)
+            window.set_shadow_type(gtk.SHADOW_IN)
+            self.frames[frame_name] = [[frame_name, window]] 
+            self.frame_names.append(frame_name)
+            l = gtk.Label("<b>%s</b>" % _(frame_name))
+            l.set_use_markup(True)
+            self.notebook.append_page(window, l)
+            self.notebook.show_all()
+        self.set_current_frame(frame_name)
+        return text
 
     def setup_other_frames(self):
         """Similar to add_option this method takes a frame_name, a
