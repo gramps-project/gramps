@@ -627,19 +627,22 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                                         _("sibling death-related date"),
                                         child)
 
-            if not is_spouse: # if you are not doing a spouse lookup, then let's do:
-                mother_handle = family.get_mother_handle()
-                father_handle = family.get_father_handle()
-                if mother_handle == person.handle and father_handle:
-                    father = self.db.get_person_from_handle(father_handle)
-                    date1, date2, explain, other = self.calc_estimates(father, is_spouse=True)
-                    if date1 and date2:
-                        return date1, date2, _("a spouse, ") + explain, other
-                elif father_handle == person.handle and mother_handle:
-                    mother = self.db.get_person_from_handle(mother_handle)
-                    date1, date2, explain, other = self.calc_estimates(father, is_spouse=True)
-                    if date1 and date2:
-                        return date1, date2, _("a spouse, ") + explain, other
+        if not is_spouse: # if you are not in recursion, let's recurse:
+            for family_handle in person.get_family_handle_list():
+                family = self.db.get_family_from_handle(family_handle)
+                if family:
+                    mother_handle = family.get_mother_handle()
+                    father_handle = family.get_father_handle()
+                    if mother_handle == person.handle and father_handle:
+                        father = self.db.get_person_from_handle(father_handle)
+                        date1, date2, explain, other = self.calc_estimates(father, is_spouse=True)
+                        if date1 and date2:
+                            return date1, date2, _("a spouse, ") + explain, other
+                    elif father_handle == person.handle and mother_handle:
+                        mother = self.db.get_person_from_handle(mother_handle)
+                        date1, date2, explain, other = self.calc_estimates(mother, is_spouse=True)
+                        if date1 and date2:
+                            return date1, date2, _("a spouse, ") + explain, other
 
         # Try looking for descendants that were born more than a lifespan
         # ago.
