@@ -233,9 +233,11 @@ class SimpleTable(object):
             item = data[col]
             self.__raw_data[-1].append(item)
             # FIXME: add better text representations of these objects
-            if isinstance(item, basestring):
+            if item is None:
+                retval.append("")
+            elif isinstance(item, basestring):
                 if item == "checkbox": 
-                    retval.append(True)
+                    retval.append("")
                     self.set_cell_type(col, "checkbox")
                 else:
                     retval.append(item)
@@ -448,7 +450,10 @@ class SimpleTable(object):
                 for cell in data:
                     rowdata.append(self.get_cell_markup(col, count, cell))
                     col += 1
-                model.append(row=([count] + list(rowdata) + [col[count] for col in sort_data]))
+                try:
+                    model.append(row=([count] + list(rowdata) + [col[count] for col in sort_data]))
+                except:
+                    print "error in row %d: data: %s, sort data: %d" % (count, rowdata, len(sort_data[0]))
                 count += 1
             text_view.show_all()
             self.simpledoc.paragraph("")
