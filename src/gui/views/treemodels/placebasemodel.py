@@ -57,7 +57,7 @@ from gettext import gettext as _
 # PlaceBaseModel
 #
 #-------------------------------------------------------------------------
-class PlaceBaseModel():
+class PlaceBaseModel(object):
 
     HANDLE_COL = 12
 

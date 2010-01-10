@@ -92,7 +92,9 @@ class ListView(NavigationView):
 
         NavigationView.__init__(self, title, dbstate, uistate, 
                               get_bookmarks, bm_type)
-
+        #default is listviews keep themself in sync with database
+        self._dirty_on_change_inactive = False
+        
         self.filter_class = filter_class
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
@@ -233,6 +235,12 @@ class ListView(NavigationView):
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
+
+    def set_active(self):
+        NavigationView.set_active(self)
+        self.uistate.show_filter_results(self.dbstate, 
+                                         self.model.displayed(), 
+                                         self.model.total())
 
     def __build_tree(self):
         Utils.profile(self._build_tree)
@@ -657,15 +665,17 @@ class ListView(NavigationView):
         """
         Called when an object is added.
         """
-        if self.active:
+        if self.active or \
+           (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
             for handle in handle_list:
                 self.model.add_row_by_handle(handle)
             _LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
                     str(time.clock() - cput) + ' sec')
-            self.uistate.show_filter_results(self.dbstate, 
-                                             self.model.displayed(), 
-                                             self.model.total())
+            if self.active:
+                self.uistate.show_filter_results(self.dbstate, 
+                                                 self.model.displayed(), 
+                                                 self.model.total())
         else:
             self.dirty = True
 
@@ -675,7 +685,8 @@ class ListView(NavigationView):
         """
         if self.model:
             self.model.prev_handle = None
-        if self.active:
+        if self.active or \
+           (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
             for handle in handle_list:
                 self.model.update_row_by_handle(handle)
@@ -691,14 +702,16 @@ class ListView(NavigationView):
         """
         Called when an object is deleted.
         """
-        if self.active:
+        if self.active or \
+           (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
             map(self.model.delete_row_by_handle, handle_list)
             _LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
                     str(time.clock() - cput) + ' sec')
-            self.uistate.show_filter_results(self.dbstate, 
-                                             self.model.displayed(), 
-                                             self.model.total())
+            if self.active:
+                self.uistate.show_filter_results(self.dbstate, 
+                                                 self.model.displayed(), 
+                                                 self.model.total())
         else:
             self.dirty = True
 
@@ -709,7 +722,7 @@ class ListView(NavigationView):
         self.dirty = True
         if self.active:
             self.bookmarks.redraw()
-        self.build_tree()
+            self.build_tree()
 
     def _button_press(self, obj, event):
         """

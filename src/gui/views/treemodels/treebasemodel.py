@@ -265,6 +265,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
                     group_can_have_handle = False):
         cput = time.clock()
         gtk.GenericTreeModel.__init__(self)
+        #two unused attributes pesent to correspond to flatbasemodel
+        self.prev_handle = None
+        self.prev_data = None
         
         self.__reverse = (order == gtk.SORT_DESCENDING)
         self.scol = scol
@@ -571,6 +574,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 path = self.on_get_path(child_node)
                 node = self.get_iter(path)
                 self.row_inserted(path, node)
+                self.__total += 1
+                self.__displayed += 1
 
         if handle:
             self.handle2node[handle] = child_node
@@ -587,19 +592,26 @@ class TreeBaseModel(gtk.GenericTreeModel):
                                 str(parent) + ' ' + str(child) + ' ' + sortkey
         if handle:
             node.set_handle(handle)
-            
+            if not self._in_build:
+                self.__total += 1
+                self.__displayed += 1
+
     def remove_node(self, node):
         """
         Remove a node from the map.
         """
         if node.children:
             node.set_handle(None)
+            self.__displayed -= 1
+            self.__total -= 1
         else:
             path = self.on_get_path(node)
             self.nodemap.node(node.parent).remove_child(node, self.nodemap)
             del self.tree[node.ref]
             self.nodemap.del_node(node)
             del node
+            self.__displayed -= 1
+            self.__total -= 1
             
             # emit row_deleted signal
             self.row_deleted(path)

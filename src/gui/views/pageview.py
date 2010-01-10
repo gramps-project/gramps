@@ -59,6 +59,29 @@ class PageView(DbGUIElement):
     The PageView class is the base class for all Data Views in GRAMPS.  All 
     Views should derive from this class. The ViewManager understands the public
     interface of this class
+    
+    The following attributes are available
+    ..attribute:: active
+      is the view active at the moment (visible in Gramps as the main view)
+    ..attribute:: dirty
+      bool, is the view current with the database or not. A dirty view triggers
+      a rebuild when it becomes active
+    ..attribute:: _dirty_on_change_inactive
+      read/write bool by inheriting classes. 
+      Views can behave two ways to signals:
+      1. if the view is inactive, set it dirty, and rebuild the view when 
+          it becomes active. In this case, this method returns True
+      2. if the view is inactive, try to stay in sync with database. Only 
+         rebuild or other large changes make view dirty
+    ..attribute:: title
+      title of the view
+    ..attribute:: dbstate
+      the dbstate
+    ..attribute:: uistate
+      the displaystate
+    ..attribute:: category
+      the category to which the view belongs. Views in the same category are
+      placed behind the same button in the sidebar
     """
 
     def __init__(self, title, dbstate, uistate):
@@ -76,6 +99,7 @@ class PageView(DbGUIElement):
         self.ui_def = '<ui></ui>'
         self.dirty = True
         self.active = False
+        self._dirty_on_change_inactive = True
         self.func_list = {}
         self.category = "Miscellaneous"
         self.translated_category = _("Miscellaneous")
