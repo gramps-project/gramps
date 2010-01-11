@@ -119,12 +119,6 @@ class CalcEstDateOptions(MenuToolOptions):
         num.set_help(_("Maximum age difference between siblings"))
         menu.add_option(category_name, "MAX_SIB_AGE_DIFF", num)
 
-        num = NumberOption(_("Minimum years between generations"), 
-                           config.get('behavior.min-generation-years'),
-                           0, 200)
-        num.set_help(_("Minimum years between two generations"))
-        menu.add_option(category_name, "MIN_GENERATION_YEARS", num)
-
         num = NumberOption(_("Average years between generations"), 
                            config.get('behavior.avg-generation-gap'),
                            0, 200)
@@ -158,7 +152,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
     def __init__(self, *args, **kwargs):
         PluginWindows.ToolManagedWindowBatch.__init__(self, *args, **kwargs)
-        self.help_page = self.add_page("Help")
+        self.help_page = self.add_page(_("Help"))
         self.write_to_page(self.help_page, 
                            "The Calculate Estimated Dates Tool is used to add and remove "
                            "birth and death events for people that are missing these "
@@ -175,6 +169,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                            "automatically remove these events.\n\n"
                            "You may have to run the tool repeatedly (without removing previous "
                            "events) to add all of the events possible.")
+        self.set_current_frame(_("Help"))
 
     def get_title(self):
         return _("Calculate Estimated Dates")
@@ -233,7 +228,6 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         add_death = self.options.handler.options_dict['add_death']
         remove_old = self.options.handler.options_dict['remove']
 
-        self.MIN_GENERATION_YEARS = self.options.handler.options_dict['MIN_GENERATION_YEARS']
         self.MAX_SIB_AGE_DIFF = self.options.handler.options_dict['MAX_SIB_AGE_DIFF']
         self.MAX_AGE_PROB_ALIVE = self.options.handler.options_dict['MAX_AGE_PROB_ALIVE']
         self.AVG_GENERATION_GAP = self.options.handler.options_dict['AVG_GENERATION_GAP']
@@ -376,6 +370,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 self.results_write("\n")
         self.results_write("\n")
         self.progress.close()
+        self.set_current_frame(_("Select"))
 
     def make_button(self, text, function, widget):
         import gtk
@@ -670,11 +665,11 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         child_death = self.db.get_event_from_handle(child_death_ref.ref)
                         dobj = child_death.get_date_object()
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- self.MIN_GENERATION_YEARS), 
-                                    dobj.copy_offset_ymd(- self.MIN_GENERATION_YEARS + self.MAX_AGE_PROB_ALIVE),
+                            return (dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP), 
+                                    dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
                                     _("descendent death date"),
                                     child)
-                    date1, date2, explain, other = descendants_too_old (child, years + self.MIN_GENERATION_YEARS)
+                    date1, date2, explain, other = descendants_too_old (child, years + self.AVG_GENERATION_GAP)
                     if date1 and date2:
                         return date1, date2, explain, other
                     # Check fallback data:
@@ -694,8 +689,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         elif ev and ev.type.is_death_fallback():
                             dobj = ev.get_date_object() 
                             if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                                return (dobj.copy_offset_ymd(- self.MIN_GENERATION_YEARS), 
-                                        dobj.copy_offset_ymd(- self.MIN_GENERATION_YEARS + self.MAX_AGE_PROB_ALIVE),
+                                return (dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP), 
+                                        dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
                                         _("descendent death-related date"),
                                         child)
 
@@ -706,7 +701,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
         date1, date2, explain, other = None, None, "", None
         try:
-            date1, date2, explain, other = descendants_too_old(person, self.MIN_GENERATION_YEARS)
+            date1, date2, explain, other = descendants_too_old(person, self.AVG_GENERATION_GAP)
         except RuntimeError:
             raise Errors.DatabaseError(
                 _("Database error: %s is defined as his or her own ancestor") %
@@ -816,7 +811,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
         # If there are ancestors that would be too old in the current year
         # then assume our person must be dead too.
-        date1, date2, explain, other = ancestors_too_old (person, - self.MIN_GENERATION_YEARS)
+        date1, date2, explain, other = ancestors_too_old (person, - self.AVG_GENERATION_GAP)
         if date1 and date2:
             return (date1, date2, explain, other)
 
