@@ -1878,7 +1878,7 @@ class PedigreeViewExt(NavigationView):
         build_full_nav_menu() methods.
         """
         hobj = self.uistate.get_history(self.navigation_type(),
-                                        self.get_group())
+                                        self.navigation_group())
         home_sensitivity = True
         if not self.dbstate.db.get_default_person():
             home_sensitivity = False

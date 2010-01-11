@@ -332,8 +332,8 @@ class PersonView(ListView):
 
         # select the previously active person, turn off the busy cursor
         history = self.uistate.get_history(self.navigation_type(),
-                                           self.get_group())
-        self.uistate.history.back()
+                                           self.navigation_group())
+        history.back()
         self.uistate.set_busy_cursor(False)
 
     def remove_from_person_list(self, person):
