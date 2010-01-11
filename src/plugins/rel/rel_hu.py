@@ -70,7 +70,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "nagyszülei"
         elif level == 3: return "dédszülei"
         elif level == 4: return "ükszülei"
-        elif level <= len([level]): return "%s szülei" % _level[level]
+        else: return "%d. szülei" % level
 
     def get_father (self, level):
         if   level == 0: return ""
@@ -78,7 +78,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "nagyapja"
         elif level == 3: return "dédapja"
         elif level == 4: return "ükapja"
-        elif level <= len([level]): return "%s ükapja" % (_level[level])
+        else: return "%d. ükapja" % level
 
     def get_mother (self, level):
         if   level == 0: return ""
@@ -86,7 +86,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "nagyanyja"
         elif level == 3: return "dédanyja"
         elif level == 4: return "ükanyja"
-        elif level <= len([level]): return "%s ükanyja" % (_level[level])
+        else: return "%d. ükanyja" % level
 
     def get_son (self, level):
         if   level == 0: return ""
@@ -94,7 +94,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif level == 2: return "unokája"
         elif level == 3: return "dédunokája"
         elif level == 4: return "ükunokája"
-        elif level <= len([level]): return "%s unokája" % (_level[level])
+        else: return "%d. unokája" % level
 
     def get_daughter (self, level):
         if   level == 0: return ""
@@ -105,18 +105,18 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if   level == 0: return ""
         elif level == 1: return "testvére"
         elif level == 2: return "nagybátyja"
-        elif level <= len([level]): return "%s nagybátyja" % (_level[level])
+        else: return "%d. nagybátyja" % level
 
     def get_aunt (self, level):
         if   level == 0: return ""
         elif level == 1: return "testvére"
         elif level == 2: return "nagynénje"
-        elif level <= len([level]): return "%s nagynénje" % (_level[level])
+        else: return "%d. nagynénje" % level
 
     def get_nephew (self, level):
         if   level == 0: return ""
         elif level == 1: return "unokája"
-        elif level <= len([level]): return "%s unokája" % (_level[level])
+        else: return "%d. unokája" % level
 
     def get_niece(self, level):
         return self.get_nephew(level)
@@ -124,7 +124,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_male_cousin (self, level):
         if   level == 0: return ""
         elif level == 1: return "unokatestvére"
-        elif level <= len([level]): return "%s unokatestvére" % (_level[level])
+        else: return "%d. unokatestvére" % level
 
     def get_female_cousin (self, level):
         return self.get_male_cousin(level)
