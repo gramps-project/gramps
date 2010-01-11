@@ -621,9 +621,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
             self.notebook.append_page(window, l)
             self.notebook.show_all()
         else:
-            self.results_write("\n")
             self.results_clear()
-        self.set_current_frame(frame_name)
         return self.results_text
 
     def add_page(self, frame_name="Help"):
@@ -640,7 +638,10 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
             l.set_use_markup(True)
             self.notebook.append_page(window, l)
             self.notebook.show_all()
-        self.set_current_frame(frame_name)
+        else:
+            # FIXME: get text
+            #
+            text = self.frames[frame_name][0][1].something
         return text
 
     def setup_other_frames(self):
