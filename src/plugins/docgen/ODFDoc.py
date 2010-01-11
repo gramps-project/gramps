@@ -1021,10 +1021,10 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 
         self.cntnt.write('<draw:polygon draw:style-name="%s" draw:layer="layout" ' % style)
         self.cntnt.write('draw:z-index="1" ')
-        x = int((minx)*1000)
-        y = int((miny)*1000)
+        x = float(minx)
+        y = float(miny)
         
-        self.cntnt.write('svg:x="%d" svg:y="%d" ' % (x, y))
+        self.cntnt.write('svg:x="%2fcm" svg:y="%2fcm" ' % (x, y))
         self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int((maxx-minx)*1000), int((maxy-miny)*1000)))
         self.cntnt.write('svg:width="%.4fcm" ' % (maxx-minx))
         self.cntnt.write('svg:height="%.4fcm" ' % (maxy-miny))
