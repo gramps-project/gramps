@@ -56,6 +56,8 @@ class ConfigManager(object):
     Class to construct the singleton CONFIGMAN where all 
     settings are stored.
     """
+    PLUGINS = {}
+
     def __init__(self, filename = None):
         """ 
         Configure manager constructor takes an optional filename.
@@ -87,11 +89,56 @@ class ConfigManager(object):
         filename using self.save(otherfilename).
         """
         self._cb_id = 0 # callback id counter
-        self.filename = filename
+        self.config_path, config_filename = os.path.split(os.path.abspath(filename))
+        self.filename = filename # fullpath and filename
         self.callbacks = {}
         self.default = {}
         self.data = {}
         self.reset()
+
+    def register_manager(self, name, plugin="", use_config_path=False):
+        """
+        Register a plugin manager. name is used as the filename
+        and the name of the key of the singleton. plugin is either:
+        - full filename ending in .ini
+        - a dir or full filename to put ini file into
+        - a ConfigManager instance
+
+        If use_config_path is True, use this ConfigManager's path.
+        """
+        if isinstance(plugin, str): # directory or filename
+            path, ininame = os.path.split(os.path.abspath(plugin))
+            if not ininame.endswith(".ini"):
+                ininame = "%s.ini" % name
+            if use_config_path:
+                path = self.config_path
+            filename = os.path.join(path, ininame)
+            plugin = ConfigManager(filename)
+        elif isinstance(plugin, ConfigManager):
+            pass # ok!
+        else:
+            raise AttributeError("plugin needs to be a file or ConfigManager")
+        ConfigManager.PLUGINS[name] = plugin
+        return ConfigManager.PLUGINS[name]
+
+    def get_manager(self, name):
+        if name in ConfigManager.PLUGINS:
+            return ConfigManager.PLUGINS[name]
+        else:
+            raise AttributeError("config '%s': does not exist"% name)
+
+    def has_manager(self, name):
+        return name in ConfigManager.PLUGINS
+
+    def init(self):
+        """
+        Either loads from an existing ini file, or saves to it.
+        """
+        if self.filename:
+            if os.path.exists(self.filename):
+                self.load()
+            else:
+                self.save()
 
     def __getitem__(self, item):
         """
