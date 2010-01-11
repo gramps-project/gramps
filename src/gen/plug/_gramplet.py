@@ -113,6 +113,14 @@ class Gramplet(object):
         """
         return self.uistate.get_active(nav_type, self.nav_group)
 
+    def get_active_object(self, nav_type):
+        """
+        Return the object of the active object for the given navigation type.
+        """
+        handle = self.uistate.get_active(nav_type, self.nav_group)
+        if handle:
+            return getattr(self.dbstate.db, "get_%s_from_handle" % nav_type.lower())(handle)
+
     def set_active(self, nav_type, handle):
         """
         Change the handle of the active object for the given navigation type.
