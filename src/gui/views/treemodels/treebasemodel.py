@@ -206,7 +206,6 @@ class NodeMap(object):
         clear the map
         """
         self.id2node.clear()
-        self.id2node = {}
 
 #-------------------------------------------------------------------------
 #
@@ -399,11 +398,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         #invalidate the iters within gtk
         self.invalidate_iters()
         self.tree.clear()
-        self.tree = {}
         self.handle2node.clear()
-        self.handle2node = {}
         self.nodemap.clear()
-        self.nodemap = NodeMap()
         #start with creating the new iters
         topnode = Node(None, None, None, None)
         self.nodemap.add_node(topnode)
