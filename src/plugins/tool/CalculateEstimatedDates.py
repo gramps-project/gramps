@@ -203,6 +203,9 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                                self.window)
             if not self.reselect:
                 return
+
+        current_date = gen.lib.Date()
+        current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
         self.action = {}
         widget = self.add_results_frame(_("Select"))
         document = TextBufDoc(make_basic_stylesheet(), None)
@@ -310,16 +313,17 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         ev = self.db.get_event_from_handle(birth_ref.ref)
                         date1 = ev.get_date_object()
                     elif not birth_ref and add_birth and date1:
-                        add_birth_event = True
-                        date1.make_vague()
+                        if date1.match( current_date, "<"):
+                            add_birth_event = True
+                            date1.make_vague()
+                        else:
+                            date1 = gen.lib.Date()
                     else:
                         date1 = gen.lib.Date()
                     if death_ref:
                         ev = self.db.get_event_from_handle(death_ref.ref)
                         date2 = ev.get_date_object()
                     elif not death_ref and add_death and date2:
-                        current_date = gen.lib.Date()
-                        current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
                         if date2.match( current_date, "<"):
                             add_death_event = True
                             date2.make_vague()
@@ -517,7 +521,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         # things are simple.
         if death_ref and death_ref.get_role().is_primary():
             death = self.db.get_event_from_handle(death_ref.ref)
-            if death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
+            if death and death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
                 death_date = death.get_date_object()
 
         # Look for Cause Of Death, Burial or Cremation events.
@@ -534,7 +538,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         if not birth_date:
             if birth_ref and birth_ref.get_role().is_primary():
                 birth = self.db.get_event_from_handle(birth_ref.ref)
-                if birth.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
+                if birth and birth.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
                     birth_date = birth.get_date_object()
 
         # Look for Baptism, etc events.
