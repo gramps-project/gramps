@@ -105,6 +105,59 @@ class DbReadCursor(GrampsCursor):
         self.cursor = source.db.cursor(txn)
         self.source = source
 
+class DbEngine(object):
+    """
+    A collection of DbTables and related methods.
+    """
+    def __init__(self, *tables):
+        self.tables = {}
+        for table in tables:
+            self.tables[table.name] = table
+
+    def __getattr__(self, table):
+        if table in self.tables:
+            return self.tables[table]
+
+    def __getitem__(self, item):
+        if item in self.tables:
+            return self.tables[item]
+
+    def __iter__(self):
+        return self.__next__()
+
+    def __next__(self):
+        for item in self.tables.keys():
+            yield item
+
+    def __exit__(self, *args, **kwargs):
+        pass
+
+class DbTable(object):
+    """
+    An object to hold data related to a primary database schema.
+    """
+    def __init__(self, name, **kwargs):
+        self.name = name
+        self.settings = {}
+        self.settings.update(kwargs)
+
+    def update(self, **kwargs):
+        self.settings.update(kwargs)
+
+    def __getattr__(self, attr):
+        if attr in self.settings:
+            return self.settings[attr]
+
+    def __getitem__(self, item):
+        if item in self.settings:
+            return self.settings[attr]
+
+    def get(self, **kwargs):
+        for keyword in kwargs:
+            if keyword in self.settings:
+                return self.settings[keyword](kwargs[keyword])
+
+
 class DbBsddbRead(DbReadBase, Callback):
     """
     Read class for the GRAMPS databases.  Implements methods necessary to read
@@ -181,6 +234,65 @@ class DbBsddbRead(DbReadBase, Callback):
         
         DbReadBase.__init__(self)
         Callback.__init__(self)
+
+        self.engine = DbEngine(
+            DbTable(
+                "Person", 
+                handle=self.get_person_from_handle, 
+                gramps_id=self.get_person_from_gramps_id,
+                _class=Person,
+                _cursor=self.get_person_cursor,
+                ),
+            DbTable(
+                'Family', 
+                handle=self.get_family_from_handle, 
+                gramps_id=self.get_family_from_gramps_id,
+                _class=Family,
+                _cursor=self.get_family_cursor,
+                ),
+            DbTable(
+                'Source', 
+                handle=self.get_source_from_handle, 
+                gramps_id=self.get_source_from_gramps_id,
+                _class=Source,
+                _cursor=self.get_source_cursor,
+                ),
+            DbTable(
+                'Event', 
+                handle=self.get_event_from_handle, 
+                gramps_id=self.get_event_from_gramps_id,
+                _class=Event,
+                _cursor=self.get_event_cursor,
+                ),
+            DbTable(
+                'Media', 
+                handle=self.get_object_from_handle, 
+                gramps_id=self.get_object_from_gramps_id,
+                _class=MediaObject,
+                cursor=self.get_media_cursor,
+                ),
+            DbTable(
+                'Place', 
+                handle=self.get_place_from_handle, 
+                gramps_id=self.get_place_from_gramps_id,
+                _class=Place,
+                _cursor=self.get_place_cursor,
+                ),
+            DbTable(
+                'Repository', 
+                handle=self.get_repository_from_handle, 
+                gramps_id=self.get_repository_from_gramps_id,
+                _class=Repository,
+                _cursor=self.get_repository_cursor,
+                ),
+            DbTable(
+                'Note', 
+                handle=self.get_note_from_handle, 
+                gramps_id=self.get_note_from_gramps_id,
+                _class=Note,
+                _cursor=self.get_note_cursor,
+                ),
+            )
 
         self.set_person_id_prefix('I%04d')
         self.set_object_id_prefix('O%04d')
@@ -416,6 +528,20 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__find_next_gramps_id(self.note_prefix,
                                           self.nmap_index, self.nid_trans)          
+
+    def get_by_name(self, name, handle):
+        """
+        Given one of the object names (not class_type) lookup the
+        object by handle.
+        """
+        return self.engine[name].get(handle=handle)
+
+    def get_by_gramps_id(self, name, gramps_id):
+        """
+        Given one of the object names (not class_type) lookup the
+        object by handle.
+        """
+        return self.engine[name].get(gramps_id=gramps_id)
 
     def get_from_handle(self, handle, class_type, data_map):
         data = data_map.get(str(handle))
@@ -1442,24 +1568,39 @@ class DbBsddbRead(DbReadBase, Callback):
         # Make a dictionary of the functions and classes that we need for
         # each of the primary object tables.
         primary_tables = {
-            'Person': {'cursor_func': self.get_person_cursor, 
-                       'class_func': Person}, 
-            'Family': {'cursor_func': self.get_family_cursor, 
-                       'class_func': Family}, 
-            'Event': {'cursor_func': self.get_event_cursor, 
-                      'class_func': Event}, 
-            'Place': {'cursor_func': self.get_place_cursor, 
-                      'class_func': Place}, 
-            'Source': {'cursor_func': self.get_source_cursor, 
-                       'class_func': Source}, 
-            'MediaObject': {'cursor_func': self.get_media_cursor, 
-                            'class_func': MediaObject}, 
-            'Repository': {'cursor_func': self.get_repository_cursor, 
-                           'class_func': Repository},
-            'Note':   {'cursor_func': self.get_note_cursor, 
-                       'class_func': Note},
+            'Person': {
+                'cursor_func': self.get_person_cursor, 
+                'class_func': Person,
+                }, 
+            'Family': {
+                'cursor_func': self.get_family_cursor, 
+                'class_func': Family,
+                }, 
+            'Event': {
+                'cursor_func': self.get_event_cursor, 
+                'class_func': Event,
+                }, 
+            'Place': {
+                'cursor_func': self.get_place_cursor, 
+                'class_func': Place,
+                }, 
+            'Source': {
+                'cursor_func': self.get_source_cursor, 
+                'class_func': Source,
+                }, 
+            'MediaObject': {
+                'cursor_func': self.get_media_cursor, 
+                'class_func': MediaObject,
+                }, 
+            'Repository': {
+                'cursor_func': self.get_repository_cursor, 
+                'class_func': Repository,
+                },
+            'Note':   {
+                'cursor_func': self.get_note_cursor, 
+                'class_func': Note,
+                },
             }
-
 
         # Find which tables to iterate over
         if (include_classes is None):
