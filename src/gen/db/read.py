@@ -269,7 +269,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 handle=self.get_object_from_handle, 
                 gramps_id=self.get_object_from_gramps_id,
                 _class=MediaObject,
-                cursor=self.get_media_cursor,
+                _cursor=self.get_media_cursor,
                 ),
             DbTable(
                 'Place', 
