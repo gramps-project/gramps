@@ -604,6 +604,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
             path = self.on_get_path(node)
             self.nodemap.node(node.parent).remove_child(node, self.nodemap)
             del self.tree[node.ref]
+            del self.handle2node[node.handle]
             self.nodemap.del_node(node)
             del node
             self.__displayed -= 1
