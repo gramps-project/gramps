@@ -101,7 +101,7 @@ class AncestorReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
         language = menu.get_option_by_name('trans').get_value()
         translator = Translator(language)
-        self._ = translator.get_text
+        self._ = translator.gettext
         self.__narrator = Narrator(self.database, 
                                    translator=translator)
 
@@ -226,7 +226,7 @@ class AncestorReport(Report):
 
             self.__narrator.set_subject(person)
             self.doc.write_text(self.__narrator.get_born_string())
-            self.doc.write_text(self.__narrator.get_baptized_string())
+            self.doc.write_text(self.__narrator.get_baptised_string())
             self.doc.write_text(self.__narrator.get_died_string())
             self.doc.write_text(self.__narrator.get_buried_string())
                         

@@ -1494,7 +1494,7 @@ class Narrator(object):
         if translator is None:
             translator = Translator(Translator.DEFAULT_TRANSLATION_STR)
             
-        self.__translate_text = translator.get_text
+        self.__translate_text = translator.gettext
         self.__get_date = translator.get_date
 
     def set_subject(self, person):
