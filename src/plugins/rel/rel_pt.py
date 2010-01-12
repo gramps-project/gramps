@@ -147,7 +147,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return "%dº sobrinho" % level 
 
-    def get_distant_nieve(self,level):
+    def get_distant_niece(self,level):
         if level<len(_level_name_female):
             return "%s sobrinha" % (_level_name_female[level]) 
         else:
@@ -244,80 +244,57 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return "%dª sobrinha neta" % (level-1)
 
-    def get_relationship(self, orig_person, other_person):
+    def get_relationship(self, secondRel, firstRel, orig_person_gender, other_person_gender):
         """
         returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
         """
 
-        if orig_person is None:
-            return ("indefinido",[])
-
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(orig_person, other_person)
-        if is_spouse:
-            return (is_spouse,[])
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = self.get_relationship_distance(orig_person, other_person)
-
-        if isinstance(common, basestring):
-            return (common,[])
-        elif common:
-            person_handle = common[0]
-        else:
-            return ("",[])
-
-        firstRel = len(firstRel)
-        secondRel = len(secondRel)
-
+        common = ""
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
+            elif other_person_gender == gen.lib.Person.MALE:
                 return (self.get_father(secondRel),common)
             else:
                 return (self.get_mother(secondRel),common)
         elif secondRel == 0:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_son(firstRel),common)
             else:
                 return (self.get_daughter(firstRel),common)
         elif firstRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_uncle(secondRel),common)
             else:
                 return (self.get_aunt(secondRel),common)
         elif secondRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-1),common)
             else:
                 return (self.get_niece(firstRel-1),common)
         elif firstRel == secondRel == 2:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return ('primo irmão',common)
             else:
                 return ('prima irmã',common)
         elif firstRel == secondRel:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_male_cousin(firstRel-1),common)
             else:
                 return (self.get_female_cousin(firstRel-1),common)
         elif firstRel == secondRel+1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_distant_nephew(secondRel),common)
             else:
                 return (self.get_distant_niece(secondRel),common)
         elif firstRel+1 == secondRel:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_distant_uncle(firstRel),common)
             else:
                 return (self.get_distant_aunt(firstRel),common)
         else:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_male_relative(firstRel,secondRel),common)
             else:
                 return (self.get_female_relative(firstRel,secondRel),common)
