@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-12 19:48+0100\n"
-"PO-Revision-Date: 2010-01-12 19:51+0100\n"
+"POT-Creation-Date: 2010-01-12 20:52+0100\n"
+"PO-Revision-Date: 2010-01-12 21:11+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -145,6 +145,12 @@ msgstr "Édition des signets"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
 #: ../src/FilterEditor/_ShowResults.py:86
+#: ../src/web/grampsdb/views.py:212
+#: ../src/web/utils.py:221
+#: ../src/web/utils.py:352
+#: ../src/web/utils.py:384
+#: ../src/web/utils.py:429
+#: ../src/web/utils.py:446
 msgid "Name"
 msgstr "Nom"
 
@@ -194,6 +200,12 @@ msgstr "Nom"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:90
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:84
 #: ../src/FilterEditor/_ShowResults.py:89
+#: ../src/web/utils.py:193
+#: ../src/web/utils.py:259
+#: ../src/web/utils.py:285
+#: ../src/web/utils.py:385
+#: ../src/web/utils.py:428
+#: ../src/web/utils.py:445
 msgid "ID"
 msgstr "Id"
 
@@ -663,6 +675,7 @@ msgstr "Couleurs du marqueur"
 #: ../src/plugins/textreport/FamilyGroup.py:299
 #: ../src/plugins/webreport/NarrativeWeb.py:4746
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
+#: ../src/web/utils.py:329
 msgid "Address"
 msgstr "Adresse"
 
@@ -674,6 +687,7 @@ msgstr "Adresse"
 #: ../src/plugins/view/repoview.py:72
 #: ../src/plugins/webreport/NarrativeWeb.py:121
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
+#: ../src/web/utils.py:330
 msgid "City"
 msgstr "Ville"
 
@@ -691,6 +705,7 @@ msgstr "Région/Province"
 #: ../src/plugins/view/repoview.py:75
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
+#: ../src/web/utils.py:332
 msgid "Country"
 msgstr "Pays"
 
@@ -749,6 +764,7 @@ msgstr "Adresse électronique"
 #: ../src/plugins/tool/EventCmp.py:245
 #: ../src/plugins/webreport/NarrativeWeb.py:137
 #: ../src/FilterEditor/_EditRule.py:241
+#: ../src/web/grampsdb/views.py:377
 msgid "Person"
 msgstr "Individu"
 
@@ -778,6 +794,7 @@ msgstr "Individu"
 #: ../src/plugins/view/relview.py:1298
 #: ../src/plugins/view/relview.py:1320
 #: ../src/FilterEditor/_EditRule.py:242
+#: ../src/web/grampsdb/views.py:249
 msgid "Family"
 msgstr "Famille"
 
@@ -803,6 +820,9 @@ msgstr "Famille"
 #: ../src/PluginUtils/_GuiOptions.py:960
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:244
+#: ../src/web/grampsdb/views.py:272
+#: ../src/web/utils.py:195
+#: ../src/web/utils.py:407
 msgid "Place"
 msgstr "Lieu"
 
@@ -817,6 +837,8 @@ msgstr "Lieu"
 #: ../src/plugins/quickview/References.py:83
 #: ../src/plugins/quickview/Reporef.py:73
 #: ../src/FilterEditor/_EditRule.py:245
+#: ../src/web/grampsdb/views.py:286
+#: ../src/web/utils.py:224
 msgid "Source"
 msgstr "Source"
 
@@ -836,6 +858,7 @@ msgstr "Objet media"
 #: ../src/plugins/webreport/NarrativeWeb.py:127
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
 #: ../src/FilterEditor/_EditRule.py:243
+#: ../src/web/grampsdb/views.py:242
 msgid "Event"
 msgstr "Événement"
 
@@ -845,6 +868,7 @@ msgstr "Événement"
 #: ../src/gui/editors/editrepository.py:68
 #: ../src/plugins/gramplet/QuickViewGramplet.py:108
 #: ../src/FilterEditor/_EditRule.py:247
+#: ../src/web/grampsdb/views.py:279
 msgid "Repository"
 msgstr "Dépôt"
 
@@ -869,6 +893,8 @@ msgstr "Dépôt"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
 #: ../src/FilterEditor/_EditRule.py:248
+#: ../src/web/grampsdb/views.py:263
+#: ../src/web/utils.py:287
 msgid "Note"
 msgstr "Note"
 
@@ -1589,6 +1615,9 @@ msgstr "Inconnu"
 #: ../src/plugins/webreport/NarrativeWeb.py:125
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
+#: ../src/web/utils.py:194
+#: ../src/web/utils.py:328
+#: ../src/web/utils.py:404
 msgid "Date"
 msgstr "Date"
 
@@ -1615,6 +1644,7 @@ msgstr "Téléphone"
 #: ../src/plugins/webreport/NarrativeWeb.py:140
 #: ../src/plugins/webreport/NarrativeWeb.py:3062
 #: ../src/plugins/webreport/NarrativeWeb.py:3133
+#: ../src/web/grampsdb/views.py:58
 msgid "Sources"
 msgstr "Sources"
 
@@ -1673,6 +1703,14 @@ msgstr "Événement familial"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:86
+#: ../src/web/utils.py:192
+#: ../src/web/utils.py:222
+#: ../src/web/utils.py:286
+#: ../src/web/utils.py:308
+#: ../src/web/utils.py:353
+#: ../src/web/utils.py:365
+#: ../src/web/utils.py:403
+#: ../src/web/utils.py:427
 msgid "Type"
 msgstr "Type"
 
@@ -1694,6 +1732,8 @@ msgstr "Cause"
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/PluginUtils/_PluginWindows.py:104
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
+#: ../src/web/utils.py:191
+#: ../src/web/utils.py:367
 msgid "Description"
 msgstr "Description"
 
@@ -1713,6 +1753,7 @@ msgstr "URL"
 #: ../src/gui/editors/displaytabs/webembedlist.py:65
 #: ../src/plugins/view/mediaview.py:83
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
+#: ../src/web/utils.py:366
 msgid "Path"
 msgstr "Chemin"
 
@@ -1731,6 +1772,7 @@ msgstr "Attribut"
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/tool/PatchNames.py:227
 #: ../src/plugins/webreport/NarrativeWeb.py:146
+#: ../src/web/utils.py:309
 msgid "Value"
 msgstr "Valeur"
 
@@ -1769,6 +1811,7 @@ msgstr "Volume/Page: %(pag)s -- %(sourcetext)s"
 #: ../src/plugins/view/sourceview.py:68
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
+#: ../src/web/utils.py:260
 msgid "Title"
 msgstr "Titre"
 
@@ -1776,6 +1819,7 @@ msgstr "Titre"
 #: ../src/ScratchPad.py:503
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:69
 #: ../src/plugins/webreport/NarrativeWeb.py:1486
+#: ../src/web/utils.py:262
 msgid "Page"
 msgstr "Page"
 
@@ -1874,6 +1918,7 @@ msgstr "Abréviation"
 #: ../src/plugins/view/sourceview.py:70
 #: ../src/plugins/webreport/NarrativeWeb.py:3159
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
+#: ../src/web/utils.py:261
 msgid "Author"
 msgstr "Auteur"
 
@@ -3891,6 +3936,7 @@ msgstr "Nom de l'arbre familial"
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/plugins/webreport/NarrativeWeb.py:141
 #: ../src/PluginUtils/_PluginWindows.py:141
+#: ../src/web/utils.py:405
 msgid "Status"
 msgstr "Statut"
 
@@ -4092,12 +4138,14 @@ msgstr "Éditer la date"
 #: ../src/plugins/webreport/NarrativeWeb.py:2283
 #: ../src/plugins/webreport/NarrativeWeb.py:2443
 #: ../src/plugins/webreport/NarrativeWeb.py:3995
+#: ../src/web/grampsdb/views.py:55
 msgid "Events"
 msgstr "Événements"
 
 #: ../src/gui/grampsgui.py:115
 #: ../src/plugins/drawreport/drawplugins.gpr.py:95
 #: ../src/plugins/gramplet/gramplet.gpr.py:99
+#: ../src/plugins/view/fanchartview.py:569
 msgid "Fan Chart"
 msgstr "Roue des ascendants"
 
@@ -4143,6 +4191,8 @@ msgstr "Public"
 #: ../src/plugins/webreport/NarrativeWeb.py:1066
 #: ../src/plugins/webreport/NarrativeWeb.py:2591
 #: ../src/plugins/webreport/NarrativeWeb.py:3201
+#: ../src/web/grampsdb/views.py:57
+#: ../src/web/grampsdb/views.py:256
 msgid "Media"
 msgstr "Media"
 
@@ -4152,6 +4202,7 @@ msgstr "Media"
 #: ../src/plugins/view/noteview.py:95
 #: ../src/plugins/view/view.gpr.py:95
 #: ../src/plugins/webreport/NarrativeWeb.py:132
+#: ../src/web/grampsdb/views.py:56
 msgid "Notes"
 msgstr "Notes"
 
@@ -4162,6 +4213,7 @@ msgstr "Notes"
 #: ../src/plugins/gramplet/FanChartGramplet.py:835
 #: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:116
+#: ../src/plugins/view/fanchartview.py:891
 #: ../src/plugins/view/pedigreeview.py:1479
 #: ../src/plugins/view/pedigreeviewext.py:2245
 #: ../src/plugins/view/relview.py:488
@@ -4190,11 +4242,13 @@ msgstr "Arbre généalogique"
 #: ../src/gui/grampsgui.py:131
 #: ../src/plugins/gramplet/QuickViewGramplet.py:76
 #: ../src/plugins/view/placeview.py:52
+#: ../src/plugins/view/placetreeview.gpr.py:10
 #: ../src/plugins/view/view.gpr.py:151
 #: ../src/plugins/webreport/NarrativeWeb.py:1019
 #: ../src/plugins/webreport/NarrativeWeb.py:1060
 #: ../src/plugins/webreport/NarrativeWeb.py:2124
 #: ../src/plugins/webreport/NarrativeWeb.py:2212
+#: ../src/web/grampsdb/views.py:59
 msgid "Places"
 msgstr "Lieux"
 
@@ -4209,6 +4263,7 @@ msgstr "Rapports"
 #: ../src/plugins/webreport/NarrativeWeb.py:1025
 #: ../src/plugins/webreport/NarrativeWeb.py:4583
 #: ../src/plugins/webreport/NarrativeWeb.py:4651
+#: ../src/web/grampsdb/views.py:60
 msgid "Repositories"
 msgstr "Dépôts"
 
@@ -4876,6 +4931,7 @@ msgid "Move the child down in the childrens list"
 msgstr "Déplacer l'enfant vers le bas dans la liste"
 
 #: ../src/gui/editors/editfamily.py:103
+#: ../src/web/utils.py:444
 msgid "#"
 msgstr "Numéro"
 
@@ -4891,14 +4947,17 @@ msgstr "Numéro"
 #: ../src/plugins/view/personview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:3952
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
+#: ../src/web/utils.py:447
 msgid "Gender"
 msgstr "Genre"
 
 #: ../src/gui/editors/editfamily.py:107
+#: ../src/web/utils.py:448
 msgid "Paternal"
 msgstr "Paternel"
 
 #: ../src/gui/editors/editfamily.py:108
+#: ../src/web/utils.py:449
 msgid "Maternal"
 msgstr "Maternel"
 
@@ -4919,6 +4978,7 @@ msgstr "Maternel"
 #: ../src/plugins/tool/CalculateEstimatedDates.py:220
 #: ../src/plugins/tool/RelCalc.py:64
 #: ../src/plugins/view/personview.py:82
+#: ../src/web/utils.py:450
 msgid "Birth Date"
 msgstr "Date de naissance"
 
@@ -5599,6 +5659,7 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 #: ../src/plugins/tool/ExtractCity.py:385
 #: ../src/plugins/view/repoview.py:74
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
+#: ../src/web/utils.py:331
 msgid "State"
 msgstr "Région/Province"
 
@@ -5748,6 +5809,7 @@ msgid "Move the selected event downwards"
 msgstr "Déplacer l'événement sélectionné vers le bas"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
+#: ../src/web/utils.py:196
 msgid "Role"
 msgstr "Rôle"
 
@@ -5798,6 +5860,7 @@ msgstr "%(groupname)s - %(groupnumber)d"
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:64
 #: ../src/plugins/webreport/NarrativeWeb.py:145
+#: ../src/web/utils.py:406
 msgid "Temple"
 msgstr "Temple"
 
@@ -5889,11 +5952,13 @@ msgstr "Déplacer le nom sélectionné vers le bas"
 
 # trunk
 #: ../src/gui/editors/displaytabs/nameembedlist.py:75
+#: ../src/web/utils.py:223
 msgid "Group As"
 msgstr "Grouper sous"
 
 # trunk
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
+#: ../src/web/utils.py:225
 msgid "Note Preview"
 msgstr "Aperçu de la note"
 
@@ -6046,6 +6111,7 @@ msgid "Move the selected association downwards"
 msgstr "Déplacer l'association sélectionnée vers le bas"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:64
+#: ../src/web/utils.py:386
 msgid "Association"
 msgstr "Association"
 
@@ -6490,6 +6556,41 @@ msgid "Exactly two places must be selected to perform a merge. A second place ca
 msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fusion. Le deuxième lieu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et en cliquant sur le lieu désiré."
 
 # trunk
+#: ../src/gui/views/treemodels/placebasemodel.py:135
+msgid "EW"
+msgstr ""
+
+# trunk
+#: ../src/gui/views/treemodels/placebasemodel.py:138
+msgid "NS"
+msgstr ""
+
+# trunk
+#: ../src/gui/views/treemodels/placetreemodel.py:63
+msgid "<Countries>"
+msgstr "<Pays>"
+
+# trunk
+#: ../src/gui/views/treemodels/placetreemodel.py:63
+msgid "<States>"
+msgstr "<Régions>"
+
+# trunk
+#: ../src/gui/views/treemodels/placetreemodel.py:63
+msgid "<Counties>"
+msgstr "<Départements>"
+
+# trunk
+#: ../src/gui/views/treemodels/placetreemodel.py:64
+msgid "<Places>"
+msgstr "<Lieux>"
+
+# trunk
+#: ../src/gui/views/treemodels/placetreemodel.py:155
+msgid "<no name>"
+msgstr "<pas de nom>"
+
+# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/views/treemodels/treebasemodel.py:474
 msgid "Building View"
@@ -6779,6 +6880,7 @@ msgstr "Aucun parent"
 #: ../src/Merge/_MergePerson.py:171
 #: ../src/plugins/gramplet/FanChartGramplet.py:721
 #: ../src/plugins/textreport/KinshipReport.py:110
+#: ../src/plugins/view/fanchartview.py:777
 #: ../src/plugins/view/pedigreeview.py:1365
 #: ../src/plugins/view/pedigreeviewext.py:2125
 msgid "Spouses"
@@ -8407,6 +8509,7 @@ msgstr "Export Django"
 
 # trunk
 #: ../src/plugins/export/ExportDjango.gpr.py:26
+#: ../src/plugins/import/ImportDjango.gpr.py:26
 msgid "Django is a web framework working on a configured database"
 msgstr "Django est un environnement de travail internet fonctionnant avec une base de données configurée"
 
@@ -8645,6 +8748,7 @@ msgstr ""
 "Cliquez et glissez dans l'espace libre pour la rotation"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:693
+#: ../src/plugins/view/fanchartview.py:749
 #: ../src/plugins/view/pedigreeview.py:1317
 #: ../src/plugins/view/pedigreeview.py:1337
 #: ../src/plugins/view/pedigreeviewext.py:2074
@@ -8655,6 +8759,7 @@ msgstr "Menu Individus"
 #. Go over siblings and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:755
 #: ../src/plugins/quickview/quickview.gpr.py:284
+#: ../src/plugins/view/fanchartview.py:811
 #: ../src/plugins/view/pedigreeview.py:1399
 #: ../src/plugins/view/pedigreeviewext.py:2160
 #: ../src/plugins/view/relview.py:870
@@ -8666,6 +8771,7 @@ msgstr "Frères et sœurs"
 #: ../src/plugins/gramplet/FanChartGramplet.py:798
 #: ../src/plugins/textreport/FamilyGroup.py:559
 #: ../src/plugins/textreport/IndivComplete.py:419
+#: ../src/plugins/view/fanchartview.py:854
 #: ../src/plugins/view/pedigreeview.py:1442
 #: ../src/plugins/view/pedigreeviewext.py:2205
 #: ../src/plugins/view/relview.py:1337
@@ -8675,6 +8781,7 @@ msgstr "Enfants"
 
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:872
+#: ../src/plugins/view/fanchartview.py:928
 #: ../src/plugins/view/pedigreeview.py:1516
 #: ../src/plugins/view/pedigreeviewext.py:2293
 msgid "Related"
@@ -8947,6 +9054,7 @@ msgstr "Vues express"
 #: ../src/plugins/view/familyview.py:88
 #: ../src/plugins/view/view.gpr.py:53
 #: ../src/plugins/webreport/NarrativeWeb.py:4348
+#: ../src/web/grampsdb/views.py:54
 msgid "Families"
 msgstr "Familles"
 
@@ -9897,6 +10005,7 @@ msgstr "Lecture des données..."
 
 # ngettext
 #: ../src/plugins/import/ImportCsv.py:701
+#: ../src/plugins/import/ImportDjango.py:185
 #: ../src/plugins/import/ImportGeneWeb.py:180
 #: ../src/plugins/import/ImportVCard.py:144
 #, python-format
@@ -9908,6 +10017,16 @@ msgstr[1] "Importation terminée : %d secondes"
 #: ../src/plugins/import/ImportCsv.py:702
 msgid "CSV import"
 msgstr "Importation de CSV"
+
+# trunk
+#: ../src/plugins/import/ImportDjango.gpr.py:25
+msgid "Django Import"
+msgstr "Import Django"
+
+# trunk
+#: ../src/plugins/import/ImportDjango.py:186
+msgid "Django import"
+msgstr "Import Django"
 
 #: ../src/plugins/import/ImportGedcom.py:117
 msgid "Invalid GEDCOM file"
@@ -14438,6 +14557,7 @@ msgstr "Correspond aux individus sans prénom"
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:51
 #: ../src/Filters/Rules/Place/_HasPlace.py:58
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:54
+#: ../src/Filters/Rules/Source/_HasRepository.py:47
 #: ../src/Filters/Rules/Source/_HasSource.py:51
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
 #: ../src/Filters/Rules/Repository/_HasRepo.py:54
@@ -15451,9 +15571,11 @@ msgstr "Le style de base utilisé pour les sous-titres."
 msgid "Marker Report for %s Items"
 msgstr "Rapport du marqueur %s"
 
+#. Views: [(<Nice name plural>, /<name>/handle, <Model>), ]
 #: ../src/plugins/textreport/MarkerReport.py:103
 #: ../src/plugins/view/personview.py:108
 #: ../src/plugins/view/view.gpr.py:137
+#: ../src/web/grampsdb/views.py:53
 msgid "People"
 msgstr "Individus"
 
@@ -16041,6 +16163,7 @@ msgstr "Sélection..."
 msgid "Adding events '%s'..."
 msgstr "Ajout d'événements '%s'..."
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:439
 #, python-format
 msgid "Added birth event based on %s, from %s"
@@ -16056,6 +16179,7 @@ msgstr "Naissance basée sur %s ajoutée"
 msgid "Estimated birth date"
 msgstr "Date de naissance estimée"
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:453
 #, python-format
 msgid "Added death event based on %s, from %s"
@@ -16091,10 +16215,12 @@ msgstr "%d événements ajoutés."
 msgid "Estimated date"
 msgstr "Date estimée"
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:539
 msgid "death-related evidence"
 msgstr ""
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:556
 msgid "birth-related evidence"
 msgstr ""
@@ -16109,10 +16235,12 @@ msgstr "Date de naissance d'un frère ou d'une sœur"
 msgid "sibling death date"
 msgstr "Date de décès d'un frère ou d'une sœur"
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:620
 msgid "sibling birth-related date"
 msgstr ""
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:631
 msgid "sibling death-related date"
 msgstr ""
@@ -16133,10 +16261,12 @@ msgstr "Date de naissance d'un descendant"
 msgid "descendent death date"
 msgstr "Date de décès d'un descendant"
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:695
 msgid "descendent birth-related date"
 msgstr ""
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:703
 msgid "descendent death-related date"
 msgstr ""
@@ -16153,11 +16283,13 @@ msgstr "date de naissance d'un ascendant"
 msgid "ancestor death date"
 msgstr "date de décès d'un ascendant"
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:758
 #: ../src/plugins/tool/CalculateEstimatedDates.py:804
 msgid "ancestor birth-related date"
 msgstr ""
 
+# trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:766
 #: ../src/plugins/tool/CalculateEstimatedDates.py:812
 msgid "ancestor death-related date"
@@ -17627,6 +17759,24 @@ msgid "Family Filter Editor"
 msgstr "Éditeur de filtre sur la famille"
 
 # trunk
+#: ../src/plugins/view/fanchartview.gpr.py:3
+msgid "Fan Chart View"
+msgstr "Vue roue des ascendants"
+
+# trunk
+# Ancêtres, Aïeux ?
+#: ../src/plugins/view/fanchartview.gpr.py:4
+#: ../src/plugins/view/pedigreeviewext.gpr.py:39
+#: ../src/plugins/view/view.gpr.py:123
+msgid "Ancestry"
+msgstr "Lignée"
+
+# trunk
+#: ../src/plugins/view/fanchartview.gpr.py:5
+msgid "The view showing relations through a fanchart"
+msgstr "Cette vue affiche toutes les relations dans une roue"
+
+# trunk
 #: ../src/plugins/view/geoview.py:432
 msgid "Time period"
 msgstr "Période"
@@ -18032,6 +18182,8 @@ msgstr "Un individu est défini comme son propre ascendant."
 #: ../src/plugins/view/pedigreeview.py:1222
 #: ../src/plugins/view/pedigreeview.py:1231
 #: ../src/plugins/webreport/NarrativeWeb.py:3025
+#: ../src/web/grampsdb/views.py:84
+#: ../src/web/grampsdb/views.py:90
 msgid "Home"
 msgstr "Souche"
 
@@ -18151,13 +18303,6 @@ msgstr "Vue Arbre généalogique"
 msgid "The view showing an ancestor pedigree of the selected person"
 msgstr "Cette vue affiche un arbre des ascendants de la personne sélectionnée"
 
-# trunk
-# Ancêtres, Aïeux ?
-#: ../src/plugins/view/pedigreeviewext.gpr.py:39
-#: ../src/plugins/view/view.gpr.py:123
-msgid "Ancestry"
-msgstr "Lignée"
-
 #: ../src/plugins/view/personview.py:90
 #: ../src/plugins/view/personview.py:392
 msgid "Add a new person"
@@ -18195,10 +18340,12 @@ msgid "Delete Person (%s)"
 msgstr "Supprimer l'individu (%s)"
 
 #: ../src/plugins/view/personview.py:379
+#: ../src/plugins/view/placetreeview.py:82
 msgid "Expand all Nodes"
 msgstr "Déployer tous les nœuds"
 
 #: ../src/plugins/view/personview.py:383
+#: ../src/plugins/view/placetreeview.py:84
 msgid "Collapse all Nodes"
 msgstr "Fermer tous les nœuds"
 
@@ -18222,6 +18369,32 @@ msgstr "_Fusion rapide..."
 #: ../src/plugins/view/personview.py:463
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
 msgstr "Exactement deux individus doivent être sélectionnés pour accomplir une fusion. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl) lors du clic sur l'individu désiré."
+
+# trunk
+# Vue lieux
+#: ../src/plugins/view/placetreeview.gpr.py:3
+msgid "Place Tree View"
+msgstr "Vue hiérarchisée"
+
+# trunk
+#: ../src/plugins/view/placetreeview.gpr.py:4
+msgid "A view displaying places in a tree format."
+msgstr ""
+
+# trunk
+#: ../src/plugins/view/placetreeview.py:57
+msgid "Tree"
+msgstr "Arbre"
+
+# trunk
+#: ../src/plugins/view/placetreeview.py:78
+msgid "Expand this Entire Group"
+msgstr "Déployer le groupe entier"
+
+# trunk
+#: ../src/plugins/view/placetreeview.py:80
+msgid "Collapse this Entire Group"
+msgstr "Compresser le groupe entier"
 
 #: ../src/plugins/view/relview.py:345
 msgid "_Reorder"
@@ -19591,6 +19764,7 @@ msgstr "Inclure ou non un lien vers le rapport Saga"
 msgid "Link prefix"
 msgstr "Lien préfixe"
 
+# trunk
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
@@ -20447,6 +20621,7 @@ msgid "Event filters"
 msgstr "Filtres événements"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:45
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:121
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:46
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
@@ -20545,6 +20720,7 @@ msgid "Matches objects that are indicated as private"
 msgstr "Correspond aux objets marqués comme privés"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:52
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:121
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:47
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:46
@@ -20607,6 +20783,34 @@ msgstr "Individus modifiés après la <date>"
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux individus modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
+# trunk
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
+msgid "Relationship path between <person> and people matching <filter>"
+msgstr "Chemin relationnel entre <l'individu> et les individus correspondant au <filtre> "
+
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
+#: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
+#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:53
+msgid "Relationship filters"
+msgstr "Filtres relationnels"
+
+# trunk
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
+msgid "Searches over the database starting from a specified person and returns everyone between that person and a set of target people specified with a filter.  This produces a set of relationship paths (including by marriage) between the specified person and the target people.  Each path is not necessarily the shortest path."
+msgstr ""
+
+# trunk
+# Substantif (GNOME fr)
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
+msgid "Finding relationship paths"
+msgstr "Trouve les chemins relationnels"
+
+# trunk
+# Substantif (GNOME fr)
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:135
+msgid "Evaluating people"
+msgstr "Évaluation des individus"
+
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
 msgstr "Individus déconnectés"
@@ -20636,12 +20840,14 @@ msgstr "Correspond aux individus ayant une date ou lieu manquant dans un événe
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
+#: ../src/Filters/Rules/Source/_HasRepository.py:44
 #: ../src/FilterEditor/_EditRule.py:455
 msgid "Number of instances:"
 msgstr "Nombre de cas :"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
+#: ../src/Filters/Rules/Source/_HasRepository.py:44
 #: ../src/FilterEditor/_EditRule.py:460
 msgid "Number must be:"
 msgstr "Le nombre doit être :"
@@ -21301,11 +21507,6 @@ msgstr "Correspond aux noms d'individus avec une expression rationnelle spécifi
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
 msgstr "Relation entre les <individus>"
-
-#: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
-#: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:53
-msgid "Relationship filters"
-msgstr "Filtres relationnels"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
@@ -22064,6 +22265,17 @@ msgstr "Sources avec un <nombre> de références"
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
 msgid "Matches sources with a certain reference count"
 msgstr "Correspond aux sources ayant un nombre de références"
+
+# trunk
+#: ../src/Filters/Rules/Source/_HasRepository.py:45
+msgid "Sources with <count> Repository references"
+msgstr "Sources avec un <nombre> de références de dépôt"
+
+# trunk
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Source/_HasRepository.py:46
+msgid "Matches sources with certain number repository references"
+msgstr "Correspond aux sources ayant un nombre de références de dépôt"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -24121,6 +24333,95 @@ msgstr "Estimer les a_bsences de dates"
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
 msgstr "_Identifie les dates invalides"
+
+# trunk
+#: ../src/web/grampsdb/views.py:101
+msgid "Requested user not found."
+msgstr ""
+
+# trunk
+#: ../src/web/grampsdb/views.py:105
+msgid "User"
+msgstr "Utilisateur"
+
+# trunk
+#: ../src/web/grampsdb/views.py:240
+#: ../src/web/grampsdb/views.py:247
+#: ../src/web/grampsdb/views.py:254
+#: ../src/web/grampsdb/views.py:261
+#: ../src/web/grampsdb/views.py:270
+#: ../src/web/grampsdb/views.py:277
+#: ../src/web/grampsdb/views.py:284
+#: ../src/web/grampsdb/views.py:366
+#, python-format
+msgid "Requested %s does not exist."
+msgstr "La demande %s n'existe pas."
+
+# trunk
+#: ../src/web/grampsdb/views.py:288
+msgid "Requested page type not known"
+msgstr ""
+
+# trunk
+#: ../src/web/grampsdb/views.py:361
+#, python-format
+msgid "Requested %s is not accessible."
+msgstr ""
+
+# trunk
+#: ../src/web/utils.py:117
+msgid "Error"
+msgstr "Erreur"
+
+# trunk
+#: ../src/web/utils.py:213
+msgid "Add event"
+msgstr "Ajouter un événement"
+
+# trunk
+#: ../src/web/utils.py:251
+msgid "Add name"
+msgstr "Ajouter un nom"
+
+# trunk
+#: ../src/web/utils.py:276
+msgid "Add source"
+msgstr "Ajouter une source"
+
+# trunk
+#: ../src/web/utils.py:300
+msgid "Add note"
+msgstr "Ajouter une note"
+
+# trunk
+#: ../src/web/utils.py:320
+msgid "Add attribute"
+msgstr "Ajouter un attribut"
+
+# trunk
+#: ../src/web/utils.py:344
+msgid "Add address"
+msgstr "Ajouter une adresse"
+
+# trunk
+#: ../src/web/utils.py:357
+msgid "Add gallery"
+msgstr "Ajouter une galerie"
+
+# trunk
+#: ../src/web/utils.py:376
+msgid "Add internet"
+msgstr "Ajouter internet"
+
+# trunk
+#: ../src/web/utils.py:395
+msgid "Add association"
+msgstr "Ajouter une association"
+
+# trunk
+#: ../src/web/utils.py:419
+msgid "Add LDS"
+msgstr "Ajouter une événement mormon"
 
 # trunk
 #: ../data/gramps.desktop.in.h:1

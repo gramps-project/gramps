@@ -284,7 +284,9 @@ src/gui/views/treemodels/familymodel.py
 src/gui/views/treemodels/flatbasemodel.py
 src/gui/views/treemodels/mediamodel.py
 src/gui/views/treemodels/peoplemodel.py
+src/gui/views/treemodels/placebasemodel.py
 src/gui/views/treemodels/placemodel.py
+src/gui/views/treemodels/placetreemodel.py
 src/gui/views/treemodels/repomodel.py
 src/gui/views/treemodels/sourcemodel.py
 src/gui/views/treemodels/treebasemodel.py
@@ -419,6 +421,8 @@ src/plugins/graph/GVRelGraph.py
 # plugins/import directory
 src/plugins/import/import.gpr.py
 src/plugins/import/ImportCsv.py
+src/plugins/import/ImportDjango.gpr.py
+src/plugins/import/ImportDjango.py
 src/plugins/import/ImportGedcom.py
 src/plugins/import/ImportGeneWeb.py
 src/plugins/import/ImportGrdb.py
@@ -529,6 +533,8 @@ src/plugins/tool/Verify.py
 #plugins/view directory
 src/plugins/view/eventview.py
 src/plugins/view/familyview.py
+src/plugins/view/fanchartview.gpr.py
+src/plugins/view/fanchartview.py
 src/plugins/view/geoview.py
 src/plugins/view/geoview.gpr.py
 src/plugins/view/grampletview.py
@@ -540,6 +546,8 @@ src/plugins/view/pedigreeviewext.py
 src/plugins/view/pedigreeviewext.gpr.py
 src/plugins/view/personview.py
 src/plugins/view/placeview.py
+src/plugins/view/placetreeview.gpr.py
+src/plugins/view/placetreeview.py
 src/plugins/view/relview.py
 src/plugins/view/repoview.py
 src/plugins/view/sourceview.py
@@ -607,6 +615,7 @@ src/Filters/Rules/_HasMarkerBase.py
 
 # Filters.Rules.Person package
 src/Filters/Rules/Person/_ChangedSince.py
+src/Filters/Rules/Person/_DeepRelationshipPathBetween.py
 src/Filters/Rules/Person/_Disconnected.py
 src/Filters/Rules/Person/_Everyone.py
 src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py
@@ -758,6 +767,7 @@ src/Filters/Rules/Source/_HasNote.py
 src/Filters/Rules/Source/_HasNoteRegexp.py
 src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Source/_HasReferenceCountOf.py
+src/Filters/Rules/Source/_HasRepository.py
 src/Filters/Rules/Source/_HasSource.py
 src/Filters/Rules/Source/_MatchesFilter.py
 src/Filters/Rules/Source/_SourcePrivate.py
@@ -887,6 +897,11 @@ src/plugins/export/exportgeneweb.glade
 src/plugins/export/exportvcalendar.glade
 src/plugins/export/exportvcard.glade
 src/plugins/tool/verify.glade
+#
+#	web
+#
+src/web/grampsdb/views.py
+src/web/utils.py
 #
 #	Files to extract from and then merge into
 #
