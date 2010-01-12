@@ -120,7 +120,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
                 self.add_node(None, node1, level[0], None, add_parent=False)
                 self.add_node(node1, node2, level[1], None, add_parent=False)
                 self.add_node(node2, node3, level[2], None, add_parent=False)
-                self.add_node(node3, handle, level[2], handle, add_parent=False)
+                self.add_node(node3, handle, sort_key, handle, add_parent=False)
             elif level[1]:
                 self.add_node(None, node1, level[0], None, add_parent=False)
                 self.add_node(node1, node2, level[1], None, add_parent=False)
@@ -129,7 +129,10 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
                 self.add_node(None, node1, level[0], None, add_parent=False)
                 self.add_node(node1, handle, level[0], handle, add_parent=False)
             else:
-                self.add_node(None, handle, sort_key, handle, add_parent=False)
+                self.add_node(None, node1, level[0], None, add_parent=False)
+                self.add_node(node1, node2, level[1], None, add_parent=False)
+                self.add_node(node2, node3, level[2], None, add_parent=False)
+                self.add_node(node3, handle, sort_key, handle, add_parent=False)
                
         else:        
             self.add_node(None, node1, level[0], None, add_parent=False)

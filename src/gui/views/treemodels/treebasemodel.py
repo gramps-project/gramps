@@ -471,7 +471,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         items = self.number_items()
         pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
                                             popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Building People View"),
+        status = progressdlg.LongOpStatus(msg=_("Building View"),
                             total_steps=items, interval=items//20, 
                             can_cancel=True)
         pmon.add_op(status)
