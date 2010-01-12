@@ -24,7 +24,6 @@ src/gramps.py
 src/ImgManip.py
 src/ListModel.py
 src/ManagedWindow.py
-src/Navigation.py
 src/PlaceUtils.py
 src/QuestionDialog.py
 src/QuickReports.py

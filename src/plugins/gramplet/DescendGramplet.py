@@ -99,13 +99,13 @@ class DescendantGramplet(Gramplet):
 
             if birth:
                 if birth_place:
-                    self.append_text(_("%(event_abbrev)s %(birth_date)s - %(place)s") % {
+                    self.append_text("%(event_abbrev)s %(birth_date)s - %(place)s" % {
                         'event_abbrev': birth.type.get_abbreviation(),
                         'birth_date' : birth_date,
                         'place' : birth_place,
                         })
                 else:
-                    self.append_text(_("%(event_abbrev)s %(birth_date)s") % {
+                    self.append_text("%(event_abbrev)s %(birth_date)s" % {
                         'event_abbrev': birth.type.get_abbreviation(),
                         'birth_date' : birth_date
                         })
@@ -114,13 +114,13 @@ class DescendantGramplet(Gramplet):
                 if birth:
                     self.append_text(', ')
                 if death_place:
-                    self.append_text(_("%(event_abbrev)s %(death_date)s - %(place)s") % {
+                    self.append_text("%(event_abbrev)s %(death_date)s - %(place)s" % {
                         'event_abbrev': death.type.get_abbreviation(),
                         'death_date' : death_date,
                         'place' : death_place,
                         })
                 else:
-                    self.append_text(_("%(event_abbrev)s %(death_date)s") % {
+                    self.append_text("%(event_abbrev)s %(death_date)s" % {
                         'event_abbrev': death.type.get_abbreviation(),
                         'death_date' : death_date
                         })
