@@ -119,8 +119,8 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 register(TOOL, 
 id    = 'test_for_date_parser_and_displayer',
-name  = _("Check Localized Date Displayer and Parser"),
-description =  _("This test tool will create many people showing all"
+name  = "Check Localized Date Displayer and Parser",
+description =  ("This test tool will create many people showing all"
                         " different date variants as birth. The death date is"
                         " created by parsing the result of the date displayer for"
                         " the birth date. This way you can ensure that dates"
@@ -165,8 +165,8 @@ tool_modes = [TOOL_MODE_GUI]
 
 register(TOOL, 
 id    = 'dgenstats',
-name  = _("Dump Gender Statistics"),
-description =  _("Will dump the statistics for the gender guessing "
+name  = "Dump Gender Statistics",
+description =  ("Will dump the statistics for the gender guessing "
                         "from the first name."),
 version = '1.0',
 status = STABLE,
@@ -187,8 +187,8 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 register(TOOL, 
 id    = 'eval',
-name  = _("Python Evaluation Window"),
-description =  _("Provides a window that can evaluate python code"),
+name  = "Python Evaluation Window",
+description =  "Provides a window that can evaluate python code",
 version = '1.0',
 status = STABLE,
 fname = 'Eval.py',
@@ -296,8 +296,8 @@ tool_modes = [TOOL_MODE_GUI]
 
 register(TOOL, 
 id    = 'leak',
-name  = _("Show Uncollected Objects"),
-description =  _("Provide a window listing all uncollected objects"),
+name  = "Show Uncollected Objects",
+description =  "Provide a window listing all uncollected objects",
 version = '1.0',
 status = STABLE,
 fname = 'Leak.py',
@@ -320,7 +320,7 @@ id    = 'mediaman',
 name  = _("Media Manager"),
 description =  _("Manages batch operations on media files"),
 version = '1.0',
-status = UNSTABLE,
+status = STABLE,
 fname = 'MediaManager.py',
 authors = ["Alex Roitman"],
 authors_email = ["shura@gramps-project.org"],
@@ -363,7 +363,7 @@ id    = 'editowner',
 name  = _("Edit Database Owner Information"),
 description =  _("Allow editing database owner information."),
 version = '1.0',
-status = UNSTABLE,
+status = STABLE,
 fname = 'OwnerEditor.py',
 authors = ["Zsolt Foldvari"],
 authors_email = ["zfoldvar@users.sourceforge.net"],
@@ -550,8 +550,8 @@ tool_modes = [TOOL_MODE_GUI]
 
 register(TOOL, 
 id    = 'testcasegenerator',
-name  = _("Generate Testcases for Persons and Families"),
-description =  _("The testcase generator will generate some persons "
+name  = "Generate Testcases for Persons and Families",
+description =  ("The testcase generator will generate some persons "
                         "and families that have broken links in the database "
                         "or data that is in conflict to a relation."),
 version = '1.0',
