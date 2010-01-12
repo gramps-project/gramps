@@ -345,6 +345,13 @@ class DisplayState(gen.utils.Callback):
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
 
+    def clear_history(self):
+        """
+        Clear all history objects.
+        """
+        for history in self.history_lookup.values():
+            history.clear()
+
     def get_history(self, nav_type, nav_group=0):
         """
         Return the history object for the given navigation type and group.
@@ -381,6 +388,7 @@ class DisplayState(gen.utils.Callback):
         
     def db_changed(self, db):
         db.connect('long-op-start', self.progress_monitor.add_op)
+        self.clear_history()
 
     def set_relationship_class(self):
         """method that rebinds the relationship to the current rel calc
