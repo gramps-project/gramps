@@ -191,12 +191,18 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return "le %s cousin%s" % (_REMOVED_LEVEL[level - 1], inlaw)
         elif level < removed:
             self.get_uncle(level - 1, inlaw)
-        else:
+        elif level < 30:
 
-            # limitation gen = 29
+            # limitation gen = 30
 
             return u"le cousin lointain, relié à la %s génération" % \
                 _LEVEL_NAME[removed]
+        else:
+
+            # use numerical generation
+
+            return u"le cousin lointain, relié à la %dème génération" % \
+                (level + 1)
 
     def get_cousine(self, level, removed, inlaw=""):
         """
@@ -206,17 +212,34 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return "la %s cousine%s" % (_LEVEL_NAME[level - 1], inlaw)
         elif level < removed:
             self.get_aunt(level - 1, inlaw)
-        else:
+        elif level < 30:
+
+            # limitation gen = 30
+
             return u"la cousine lointaine, reliée à la %s génération" % \
                 _LEVEL_NAME[removed]
+        else:
+
+            # use numerical generation
+
+            return u"la cousine lointaine, reliée à la %dème génération" % \
+                (level + 1)
 
     def get_parents(self, level):
         """
         ancestors
         """
-        if level > len(_PARENTS_LEVEL) - 1:
+        if level > len(_PARENTS_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"les ascendants lointains, à la %s génération" % \
                 _LEVEL_NAME[level]
+        elif level > len(_PARENTS_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"les ascendants lointains, à la %dème génération" % level
         else:
             return _PARENTS_LEVEL[level]
 
@@ -224,9 +247,17 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         ancestor, gender = male
         """
-        if level > len(_FATHER_LEVEL) - 1:
+        if level > len(_FATHER_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"l'ascendant lointain, à la %s génération" % \
                 _LEVEL_NAME[level]
+        elif level > len(_FATHER_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"l'ascendant lointain, à la %dème génération" % level
         else:
             return _FATHER_LEVEL[level] % inlaw
 
@@ -234,9 +265,17 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         ancestor, gender = female
         """
-        if level > len(_MOTHER_LEVEL) - 1:
+        if level > len(_MOTHER_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"l'ascendante lointaine, à la %s génération" % \
                 _LEVEL_NAME[level]
+        elif level > len(_MOTHER_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"l'ascendante lointaine, à la %dème génération" % level
         else:
             return _MOTHER_LEVEL[level] % inlaw
 
@@ -244,7 +283,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         unknown parent
         """
-        if level > len(_LEVEL_NAME) - 1:
+        if level > len(_LEVEL_NAME) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"l'ascendant lointain, à la %s génération" % \
                 _LEVEL_NAME[level]
         elif level == 1:
@@ -256,9 +298,17 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         descendant, gender = male
         """
-        if level > len(_SON_LEVEL) - 1:
+        if level > len(_SON_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"le descendant lointain, à la %s génération" % \
                 _LEVEL_NAME[level + 1]
+        elif level > len(_SON_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"le descendant lointain, à la %dème génération" % level
         else:
             return _SON_LEVEL[level] % inlaw
 
@@ -266,9 +316,17 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         descendant, gender = female
         """
-        if level > len(_DAUGHTER_LEVEL) - 1:
+        if level > len(_DAUGHTER_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"la descendante lointaine, à la %s génération" % \
                 _LEVEL_NAME[level + 1]
+        elif level > len(_DAUGHTER_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"la descendante lointaine, à la %dème génération" % level
         else:
             return _DAUGHTER_LEVEL[level] % inlaw
 
@@ -276,7 +334,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         descendant, gender = unknown
         """
-        if level > len(_LEVEL_NAME) - 1:
+        if level > len(_LEVEL_NAME) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"le descendant lointain, à la %s génération" % \
                 _LEVEL_NAME[level + 1]
         elif level == 1:
@@ -294,9 +355,18 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         sibling of an ancestor, gender = male
         """
-        if level > len(_BROTHER_LEVEL) - 1:
+        if level > len(_BROTHER_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"l'oncle lointain, relié à la %s génération" % \
                 _LEVEL_NAME[level]
+        elif level > len(_BROTHER_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"l'oncle lointain, relié à la %dème génération" % \
+                (level + 1)
         else:
             return _BROTHER_LEVEL[level] % inlaw
 
@@ -304,9 +374,18 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         sibling of an ancestor, gender = female
         """
-        if level > len(_SISTER_LEVEL) - 1:
+        if level > len(_SISTER_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"la tante lointaine, reliée à la %s génération" % \
                 _LEVEL_NAME[level]
+        elif level > len(_SISTER_LEVEL) -1:
+
+            # use numerical generation
+
+            return u"la tante lointaine, reliée à la %dème génération" % \
+                (level + 1)
         else:
             return _SISTER_LEVEL[level] % inlaw
 
@@ -314,8 +393,16 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         cousin of a descendant, gender = male
         """
-        if level > len(_NEPHEW_LEVEL) - 1:
+        if level > len(_NEPHEW_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"le neveu lointain, à la %s génération" % _LEVEL_NAME[level]
+        elif level > len(_NEPHEW_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"le neveu lointain, à la %dème génération" % (level + 1)
         else:
             return _NEPHEW_LEVEL[level] % inlaw
 
@@ -323,9 +410,17 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         cousin of a descendant, gender = female
         """
-        if level > len(_NIECE_LEVEL) - 1:
+        if level > len(_NIECE_LEVEL) - 1 and level < 30:
+
+            # limitation gen = 30
+
             return u"la nièce lointaine, à la %s génération" % \
                 _LEVEL_NAME[level]
+        elif level > len(_NIECE_LEVEL) - 1:
+
+            # use numerical generation
+
+            return u"la nièce lointaine, à la %dème génération" % (level + 1)
         else:
             return _NIECE_LEVEL[level] % inlaw
 
