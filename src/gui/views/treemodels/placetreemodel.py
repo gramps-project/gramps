@@ -59,6 +59,7 @@ from gettext import gettext as _
 # Constants
 #
 #-------------------------------------------------------------------------
+
 COUNTRYLEVELS = {
 'default': [_('<Countries>'), _('<States>'), _('<Counties>'), 
             _('<Places>')]

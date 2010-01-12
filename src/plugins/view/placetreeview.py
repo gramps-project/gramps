@@ -30,7 +30,7 @@ Place Tree View
 #-------------------------------------------------------------------------
 from gui.views.listview import LISTTREE
 from gui.views.placebaseview import PlaceBaseView
-from gui.views.treemodels import PlaceTreeModel
+from gui.views.treemodels.placetreemodel import PlaceTreeModel, COUNTRYLEVELS
 import gen.lib
 import Errors
 from gui.editors import EditPlace
@@ -149,30 +149,40 @@ class PlaceTreeView(PlaceBaseView):
         place = gen.lib.Place()
         
         model, pathlist = self.selection.get_selected_rows()
+        level = [u"", u"", u""]
         level1 = level2 = level3 = u""
         if len(pathlist) == 1:
             path = pathlist[0]
             node = model.on_get_iter(path)
-            parent = model.on_iter_parent(node)
             value = model.on_get_value(node, 0)
+            
             if len(path) == 1:
-                level1 = value
+                level[0] = node.name
             elif len(path) == 2:
-                level2 = value
-                level1 = parent[0]
+                level[1] = node.name
+                parent = model.on_iter_parent(node)
+                level[0] = parent.name
             elif len(path) == 3:
-                level3 = value
-                level2 = parent[0]
-                level1 = parent[1]
+                level[2] = node.name
+                parent = model.on_iter_parent(node)
+                level[1] = parent.name
+                parent = model.on_iter_parent(parent)
+                level[0] = parent.name
             else:
-                level3 = parent[0]
-                level2 = parent[1]
-                level1 = parent[2]
+                parent = model.on_iter_parent(node)
+                level[2] = parent.name
+                parent = model.on_iter_parent(parent)
+                level[1] = parent.name
+                parent = model.on_iter_parent(parent)
+                level[0] = parent.name
 
+        for ind in [0, 1, 2]: 
+            if level[ind] and level[ind] == COUNTRYLEVELS['default'][ind+1]:
+                level[ind] = u""
+        place.get_main_location().set_country(level[0])
+        place.get_main_location().set_state(level[1])
+        place.get_main_location().set_county(level[2])
         try:
-            place.get_main_location().set_country(level1)
-            place.get_main_location().set_state(level2)
-            place.get_main_location().set_county(level3)
             EditPlace(self.dbstate, self.uistate, [], place)
         except Errors.WindowActiveError:
             pass

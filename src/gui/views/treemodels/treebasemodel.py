@@ -791,12 +791,10 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 node = self.nodemap.node(node.children[index][1])
         return node
         
-    def on_get_path(self, nodeid):
+    def on_get_path(self, node):
         """
         Returns a path from a given node.
         """
-        nodeid = id(nodeid)
-        node = self.nodemap.node(nodeid)
         pathlist = []
         while node.parent is not None:
             parent = self.nodemap.node(node.parent)
@@ -816,24 +814,19 @@ class TreeBaseModel(gtk.GenericTreeModel):
         else:
             return None
             
-    def on_iter_next(self, nodeid):
+    def on_iter_next(self, node):
         """
         Get the next node with the same parent as the given node.
         """
-        nodeid = id(nodeid)
-        node = self.nodemap.node(nodeid)
         val = node.prev if self.__reverse else node.next
         return self.nodemap.node(val) if val is not None else val
 
-    def on_iter_children(self, nodeid):
+    def on_iter_children(self, node):
         """
         Get the first child of the given node.
         """
-        if nodeid is None:
+        if node is None:
             node = self.tree[None]
-        else:
-            nodeid = id(nodeid)
-            node = self.nodemap.node(nodeid)
         if node.children:
             if self.__reverse:
                 size = len(node.children)
@@ -843,37 +836,28 @@ class TreeBaseModel(gtk.GenericTreeModel):
         else:
             return None
         
-    def on_iter_has_child(self, nodeid):
+    def on_iter_has_child(self, node):
         """
         Find if the given node has any children.
         """
-        if nodeid is None:
+        if node is None:
             node = self.tree[None]
-        else:
-            nodeid = id(nodeid)
-            node = self.nodemap.node(nodeid)
         return True if node.children else False
 
-    def on_iter_n_children(self, nodeid):
+    def on_iter_n_children(self, node):
         """
         Get the number of children of the given node.
         """
-        if nodeid is None:
+        if node is None:
             node = self.tree[None]
-        else:
-            nodeid = id(nodeid)
-            node = self.nodemap.node(nodeid)
         return len(node.children)
 
-    def on_iter_nth_child(self, nodeid, index):
+    def on_iter_nth_child(self, node, index):
         """
         Get the nth child of the given node.
         """
-        if nodeid is None:
+        if node is None:
             node = self.tree[None]
-        else:
-            nodeid = id(nodeid)
-            node = self.nodemap.node(nodeid)
         if node.children:
             if len(node.children) > index:
                 if self.__reverse:
@@ -886,11 +870,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
         else:
             return None
 
-    def on_iter_parent(self, nodeid):
+    def on_iter_parent(self, node):
         """
         Get the parent of the given node.
         """
-        nodeid = id(nodeid)
-        node = self.nodemap.node(nodeid)
         return self.nodemap.node(node.parent) if node.parent is not None else \
                     None
