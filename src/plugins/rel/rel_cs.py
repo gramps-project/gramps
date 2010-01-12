@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Andrew I Baznikin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -146,7 +147,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _niece_level[level]
 
-    def get_relationship(self, db, orig_person, other_person):
+    def get_relationship(self, secondRel, firstRel, orig_person_gender, other_person_gender):
         """
         Return a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
@@ -154,70 +155,46 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Special cases: relation strings "", "undefined" and "spouse".
         """
 
-        if orig_person is None:
-            return ("undefined", [])
-
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return (is_spouse, [])
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel, firstRel, common) = \
-                     self.get_relationship_distance(db, orig_person, other_person)
-
-        if isinstance(common, basestring):
-            return (common, [])
-        elif common:
-            person_handle = common[0]
-        else:
-            return ("", [])
-
-        firstRel = len(firstRel)
-        secondRel = len(secondRel)
-
+        common = ""
         if firstRel == 0:
             if secondRel == 0:
                 return ('', common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
+            elif other_person_gender == gen.lib.Person.MALE:
                 return (self.get_father(secondRel), common)
             else:
                 return (self.get_mother(secondRel), common)
         elif secondRel == 0:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_son(firstRel), common)
             else:
                 return (self.get_daughter(firstRel), common)
         elif firstRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_uncle(secondRel), common)
             else:
                 return (self.get_aunt(secondRel), common)
         elif secondRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-1), common)
             else:
                 return (self.get_niece(firstRel-1), common)
         elif firstRel == secondRel == 2:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return ('vlastní bratranec', common)
             else:
                 return ('vlastní sestřenice', common)
         elif firstRel == 3 and secondRel == 2:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return ('bratranec druhého stupně', common)
             else:
                 return ('sestřenice druhého stupně', common)
         elif firstRel == 2 and secondRel == 3:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 return ('bratranec druhého stupně', common)
             else:
                 return ('sestřenice druhého stupně', common)
         else:
-            if other_person.get_gender() == gen.lib.Person.MALE:
+            if other_person_gender == gen.lib.Person.MALE:
                 if firstRel+secondRel > len(_level_name)-1:
                     return (self.get_male_cousin(firstRel+secondRel), common)
                 else:
@@ -227,3 +204,29 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     return (self.get_female_cousin(firstRel+secondRel), common)
                 else:
                     return ('vzdálená sestřenice', common)
+
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True, 
+                                       in_law_a=False, in_law_b=False):
+        return self.get_relationship(Ga, Gb, gender_a, gender_b)[0];
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+        return self.get_relationship(1, 1, gender_a, gender_b)[0];
+
+if __name__ == "__main__":
+
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src
+    # python src/plugins/rel/rel_cs.py
+    # (Above not needed here)
+
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel/rel_xx.py
+    """
+    from Relationship import test
+    RC = RelationshipCalculator()
+    test(RC, True)
