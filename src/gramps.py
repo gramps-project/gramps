@@ -32,6 +32,7 @@ import locale
 import const
 import signal
 import gettext
+_ = gettext.gettext
 import logging
 
 LOG = logging.getLogger(".")
@@ -68,13 +69,13 @@ TransUtils.setup_gettext()
 
 MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
-    print gettext.gettext("Your Python version does not meet the "
-                  "requirements. At least python %d.%d.%d is needed to"
-                  " start Gramps.\n\n"
-                  "Gramps will terminate now.") % (
-                                        MIN_PYTHON_VERSION[0], 
-                                        MIN_PYTHON_VERSION[1],
-                                        MIN_PYTHON_VERSION[2])
+    print (_("Your Python version does not meet the "
+             "requirements. At least python %d.%d.%d is needed to"
+             " start Gramps.\n\n"
+             "Gramps will terminate now.") % (
+            MIN_PYTHON_VERSION[0], 
+            MIN_PYTHON_VERSION[1],
+            MIN_PYTHON_VERSION[2]))
     sys.exit(1)
 
 #-------------------------------------------------------------------------
@@ -135,10 +136,10 @@ def run():
         build_user_paths()   
     except OSError, msg:
         error += [(_("Configuration error"), str(msg))]
-        return False
-    except:
+        return error
+    except msg:
         LOG.error("Error reading configuration.", exc_info=True)
-        return False
+        return [(_("Error reading configuration"), str(msg))]
         
     if not mime_type_is_defined(const.APP_GRAMPS):
         error += [(_("Configuration error"), 
@@ -163,4 +164,7 @@ def run():
         from cli.grampscli import startcli
         startcli(error, argpars)
 
-run()
+errors = run()
+if errors and isinstance(errors, list):
+    for error in errors:
+        print error[0], error[1]
