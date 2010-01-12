@@ -275,6 +275,7 @@ src/gui/views/__init__.py
 src/gui/views/listview.py
 src/gui/views/navigationview.py
 src/gui/views/pageview.py
+src/gui/views/placebaseview.py
 
 # gui/views/treemodels - the GUI views package
 src/gui/views/treemodels/__init__.py

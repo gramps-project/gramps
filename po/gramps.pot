@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-12 13:26+0100\n"
+"POT-Creation-Date: 2010-01-12 19:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,10 +120,10 @@ msgstr ""
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:62
 #: ../src/gui/selectors/selectsource.py:62
-#: ../src/gui/views/navigationview.py:304 ../src/Merge/_MergePerson.py:128
-#: ../src/plugins/tool/EventCmp.py:245 ../src/plugins/tool/NotRelated.py:115
-#: ../src/plugins/tool/PatchNames.py:221 ../src/plugins/tool/RelCalc.py:62
-#: ../src/plugins/tool/RemoveUnused.py:192
+#: ../src/gui/views/navigationview.py:304 ../src/gui/views/placebaseview.py:76
+#: ../src/Merge/_MergePerson.py:128 ../src/plugins/tool/EventCmp.py:245
+#: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
+#: ../src/plugins/tool/RelCalc.py:62 ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:479
 #: ../src/plugins/view/eventview.py:71 ../src/plugins/view/familyview.py:64
 #: ../src/plugins/view/mediaview.py:81 ../src/plugins/view/noteview.py:69
@@ -531,7 +531,8 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:168 ../src/gui/editors/displaytabs/addrembedlist.py:73
 #: ../src/gui/editors/displaytabs/locationembedlist.py:55
-#: ../src/plugins/tool/ExtractCity.py:384 ../src/plugins/view/repoview.py:72
+#: ../src/gui/views/placebaseview.py:79 ../src/plugins/tool/ExtractCity.py:384
+#: ../src/plugins/view/repoview.py:72
 #: ../src/plugins/webreport/NarrativeWeb.py:121
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
@@ -544,14 +545,15 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:170 ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/gui/editors/displaytabs/locationembedlist.py:58
-#: ../src/plugins/tool/ExtractCity.py:387 ../src/plugins/view/repoview.py:75
+#: ../src/gui/views/placebaseview.py:82 ../src/plugins/tool/ExtractCity.py:387
+#: ../src/plugins/view/repoview.py:75
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr ""
 
-#: ../src/GrampsCfg.py:171 ../src/plugins/tool/ExtractCity.py:386
-#: ../src/plugins/view/repoview.py:71
+#: ../src/GrampsCfg.py:171 ../src/gui/views/placebaseview.py:78
+#: ../src/plugins/tool/ExtractCity.py:386 ../src/plugins/view/repoview.py:71
 msgid "ZIP/Postal Code"
 msgstr ""
 
@@ -1073,9 +1075,9 @@ msgid ""
 "Instead select one of the available options"
 msgstr ""
 
-#: ../src/QuickReports.py:80 ../src/docgen/TextBufDoc.py:81
-#: ../src/docgen/TextBufDoc.py:160 ../src/docgen/TextBufDoc.py:162
-#: ../src/plugins/gramplet/gramplet.gpr.py:158
+#: ../src/QuickReports.py:80 ../src/gui/views/placebaseview.py:152
+#: ../src/docgen/TextBufDoc.py:81 ../src/docgen/TextBufDoc.py:160
+#: ../src/docgen/TextBufDoc.py:162 ../src/plugins/gramplet/gramplet.gpr.py:158
 #: ../src/plugins/view/eventview.py:208 ../src/plugins/view/familyview.py:192
 #: ../src/plugins/view/mediaview.py:234 ../src/plugins/view/noteview.py:206
 #: ../src/plugins/view/personview.py:385 ../src/plugins/view/repoview.py:132
@@ -1202,6 +1204,10 @@ msgstr ""
 
 #: ../src/Relationship.py:1700
 msgid "gender unknown,unknown relation|former partner"
+msgstr ""
+
+#: ../src/Relationship.py:2119
+msgid "civil union"
 msgstr ""
 
 #: ../src/Reorder.py:29 ../src/ToolTips.py:232
@@ -4046,6 +4052,7 @@ msgid "Select an existing place"
 msgstr ""
 
 #: ../src/gui/editors/objectentries.py:255
+#: ../src/gui/views/placebaseview.py:89
 msgid "Add a new place"
 msgstr ""
 
@@ -4923,7 +4930,8 @@ msgid "Move the selected address downwards"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
-#: ../src/plugins/tool/ExtractCity.py:385 ../src/plugins/view/repoview.py:74
+#: ../src/gui/views/placebaseview.py:81 ../src/plugins/tool/ExtractCity.py:385
+#: ../src/plugins/view/repoview.py:74
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
 msgstr ""
@@ -5154,14 +5162,14 @@ msgid "_LDS"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/locationembedlist.py:54
-#: ../src/plugins/view/repoview.py:70
+#: ../src/gui/views/placebaseview.py:86 ../src/plugins/view/repoview.py:70
 #: ../src/plugins/webreport/NarrativeWeb.py:143
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "Street"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
-#: ../src/plugins/view/repoview.py:73
+#: ../src/gui/views/placebaseview.py:80 ../src/plugins/view/repoview.py:73
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
 msgid "County"
@@ -5639,6 +5647,112 @@ msgstr ""
 #: ../src/gui/views/navigationview.py:323
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:75
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
+msgid "Place Name"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:77
+#: ../src/plugins/webreport/NarrativeWeb.py:134
+msgid "Church Parish"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:83
+#: ../src/plugins/webreport/NarrativeWeb.py:129
+msgid "Latitude"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:84
+#: ../src/plugins/webreport/NarrativeWeb.py:131
+msgid "Longitude"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:85 ../src/plugins/view/eventview.py:75
+#: ../src/plugins/view/familyview.py:69 ../src/plugins/view/mediaview.py:84
+#: ../src/plugins/view/personview.py:87 ../src/plugins/view/repoview.py:78
+#: ../src/plugins/view/sourceview.py:73
+msgid "Last Changed"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:90
+msgid "Edit the selected place"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:91
+msgid "Delete the selected place"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:137 ../src/plugins/view/eventview.py:206
+#: ../src/plugins/view/mediaview.py:223 ../src/plugins/view/noteview.py:203
+#: ../src/plugins/view/repoview.py:128 ../src/plugins/view/sourceview.py:123
+msgid "_Column Editor"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:138
+msgid "_Merge..."
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:140
+msgid "Loading..."
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:141
+msgid ""
+"Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
+"Maps, ...)"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:144
+msgid "Select a Map Service"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:146
+msgid "_Look up with Map Service"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:148
+msgid ""
+"Attempt to see this location with a Map Service (OpenstreetMap, Google "
+"Maps, ...)"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:150
+msgid "Place Filter Editor"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:238
+msgid "No map service is available."
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:239
+msgid "Check your installation."
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:247
+msgid "No place selected."
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:248
+msgid ""
+"You need to select a place to be able to view it on a map. Some Map Services "
+"might support multiple selections."
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:275
+msgid "Select Place Columns"
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:397
+msgid "Cannot merge places."
+msgstr ""
+
+#: ../src/gui/views/placebaseview.py:398
+msgid ""
+"Exactly two places must be selected to perform a merge. A second place can "
+"be selected by holding down the control key while clicking on the desired "
+"place."
 msgstr ""
 
 #: ../src/gui/views/treemodels/treebasemodel.py:474
@@ -16653,12 +16767,6 @@ msgstr ""
 msgid "Marriage date but not married"
 msgstr ""
 
-#: ../src/plugins/view/eventview.py:75 ../src/plugins/view/familyview.py:69
-#: ../src/plugins/view/mediaview.py:84 ../src/plugins/view/personview.py:87
-#: ../src/plugins/view/repoview.py:78 ../src/plugins/view/sourceview.py:73
-msgid "Last Changed"
-msgstr ""
-
 #: ../src/plugins/view/eventview.py:79
 msgid "Add a new event"
 msgstr ""
@@ -16673,12 +16781,6 @@ msgstr ""
 
 #: ../src/plugins/view/eventview.py:203
 msgid "Event Filter Editor"
-msgstr ""
-
-#: ../src/plugins/view/eventview.py:206 ../src/plugins/view/mediaview.py:223
-#: ../src/plugins/view/noteview.py:203 ../src/plugins/view/repoview.py:128
-#: ../src/plugins/view/sourceview.py:123
-msgid "_Column Editor"
 msgstr ""
 
 #: ../src/plugins/view/eventview.py:226
@@ -17572,20 +17674,8 @@ msgstr ""
 msgid "The view showing all the sources"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:129
-msgid "Latitude"
-msgstr ""
-
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 msgid "Alternate Locations"
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:131
-msgid "Longitude"
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:134
-msgid "Church Parish"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:139
@@ -21289,10 +21379,6 @@ msgstr ""
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
 msgid "Publication"
-msgstr ""
-
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
-msgid "Place Name"
 msgstr ""
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
