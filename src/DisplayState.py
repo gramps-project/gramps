@@ -466,7 +466,7 @@ class DisplayState(gen.utils.Callback):
         
         self.status.pop(self.status_id)
 
-        name = navigation_label(dbstate.db, nav_type, active_handle)
+        name, obj = navigation_label(dbstate.db, nav_type, active_handle)
 
         # Append relationship to default person if funtionality is enabled.
         if nav_type == 'Person' and active_handle \

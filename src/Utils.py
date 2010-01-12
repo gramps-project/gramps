@@ -1190,4 +1190,4 @@ def navigation_label(db, nav_type, handle):
     if label:
         label = '[%s] %s' % (obj.get_gramps_id(), label)
 
-    return label
+    return (label, obj)

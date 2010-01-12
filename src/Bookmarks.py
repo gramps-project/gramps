@@ -148,7 +148,7 @@ class Bookmarks :
             text.write('<placeholder name="GoToBook">')
             for item in self.bookmarks.get():
                 try:
-                    label = self.make_label(item)
+                    label, obj = self.make_label(item)
                     func = self.callback(item)
                     action_id = "BM:%s" % item
                     actions.append((action_id, None, label, None, None, func))
