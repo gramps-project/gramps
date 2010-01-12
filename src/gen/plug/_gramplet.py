@@ -119,8 +119,9 @@ class Gramplet(object):
         Assumes nav_type is one of the codes of Db.get_by_name.
         """
         handle = self.uistate.get_active(nav_type, self.nav_group)
-        if nav_type in self.dbstate.db.engine and handle:
-            return self.dbstate.db.engine[nav_type].get(handle=handle)
+        if nav_type in self.dbstate.db.get_table_names() and handle:
+            return self.dbstate.db.get_from_name_and_handle(nav_type, handle)
+        return None
 
     def set_active(self, nav_type, handle):
         """
