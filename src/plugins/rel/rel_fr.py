@@ -3,7 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2007  Donald N. Allingham
-# Copyright (C) 2008-2009  Brian G. Matherly
+# Copyright (C) 2008-2010  Brian G. Matherly
 # Copyright (C) 2007-2010  Jerome Rapinat
 #
 # This program is free software; you can redistribute it and/or modify
@@ -435,7 +435,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
 
         rel_str = u"des parents lointains"
-        atgen = " à la %sème génération"
+        atgen = u" à la %sème génération"
         bygen = u" par la %sème génération"
         cmt = u" (frères ou sœurs d'un ascendant" + atgen % Ga + ")"
         if Ga == 0:
@@ -461,7 +461,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             if Ga < len(_SIBLINGS_LEVEL):
                 rel_str = _SIBLINGS_LEVEL[Ga]
             else:
-                rel_str = u"Les enfants d'un ascendant" + atgen % (Ga + 1) + \
+                rel_str = u"les enfants d'un ascendant" + atgen % (Ga + 1) + \
                     cmt
         elif Ga == 1:
 
@@ -533,7 +533,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = u"les neveux et nièces" + bygen % Gb
             
         if in_law_b == True:
-            rel_str = "conjoints des %s" % rel_str
+            rel_str = u"les conjoints pour %s" % rel_str
             
         return rel_str
 
