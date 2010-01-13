@@ -15,6 +15,17 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
    GraphViz         Enable creation of graphs using GraphViz engine
                     http://www.graphviz.org
 
+The following packages are *STRONGLY RECOMMENDED* to be installed:
+   python-webkit    Enable html rendering for Geographic view and Web view
+                    Be careful, webkit is always in a development phase.
+                    If you get crashes, remove python-webkit and add the
+                    gecko package instead.
+   or
+   python-gtkmozembed is the gecko equivalent to webkit which is more stable.
+                    It can be python-gnome2-extras or python-gtkhtml2
+                    depending on distributions.
+   If WEBKIT ang GECKO are installed, webkit will be used.
+
 The following packages are optional
    python gtkspell  Enable spell checking in the notes
    pyenchant        Enable query of installed spell check dictionaries
