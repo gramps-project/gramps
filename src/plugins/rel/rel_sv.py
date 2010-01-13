@@ -399,8 +399,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str =  u"avlägsna kusiner"
                 
         if in_law_b == True:
-            # TODO: Translate this!
-            rel_str = "spouses of %s" % rel_str
+            rel_str = "makar till %s" % rel_str
                 
         return rel_str
 
