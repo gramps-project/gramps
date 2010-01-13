@@ -1,0 +1,24 @@
+Gramps 3.2 Release Notes
+
+General Improvements
+
+* New Plugin System
+In the Help Menu -> Menu Status, all available plugins are visible. All plugins can be hidden, saving resources and hiding options you do not need. Eg: You don't use the Pedigree View? Hide it in the Plugin Status, and it will not be present anymore. You don't use vcard export? Hide it in the Plugin Status, and it will not be offered anymore.
+
+* Faster
+Many under the hood improvements have occurred that should improve perfamance enormously. Yes, new features are present to use all your processing power, but they are all implemented as plugins that can be hidden. Eg: Insert of a person in a 30000 people family tree took 4sec on 1.4Ghz PC in 3.1, Now it is done in milliseconds.
+
+*New Views
+There are new views, and some views have been greatly improved
+  - People view can now be sorted on the columns
+  - A Place treeview is present, nicely grouping your places under country groups
+  - GeoView has left it's beta status behind and shows your data on an 
+    online map (Openstreetmap or google maps, fast internet connection required)
+  - Help Menu -> Extra Reports/Tools open a webpage with downloadable extra views
+
+
+Other Improvements
+
+* Styled Notes now in most output formats that support styles, eg in the web report
+* New languages
+* Select language in which report should be created (only present now in some reports)
