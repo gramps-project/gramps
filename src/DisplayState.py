@@ -78,7 +78,7 @@ class History(gen.utils.Callback):
 
     __signals__ = {
         'active-changed' : (str, ), 
-        'menu-changed' : (list, ), 
+        'mru-changed' : (list, )
         }
 
     def __init__(self):
@@ -90,7 +90,7 @@ class History(gen.utils.Callback):
         Clears the history, resetting the values back to their defaults
         """
         self.history = []
-        self.mhistory = []
+        self.mru = []
         self.index = -1
         self.lock = False
 
@@ -108,12 +108,12 @@ class History(gen.utils.Callback):
             self.history.remove(del_id)
             self.index -= 1
         
-        mhc = self.mhistory.count(del_id)
+        mhc = self.mru.count(del_id)
         for c in range(mhc):
-            self.mhistory.remove(del_id)
+            self.mru.remove(del_id)
+        self.emit('mru-changed', (self.mru, ))
         if self.history:
             self.emit('active-changed', (self.history[self.index],))
-        self.emit('menu-changed', (self.mhistory, ))
 
     def push(self, handle):
         """
@@ -122,13 +122,13 @@ class History(gen.utils.Callback):
         self.prune()
         if len(self.history) == 0 or handle != self.history[-1]:
             self.history.append(str(handle))
-            if handle in self.mhistory:
-                self.mhistory.remove(handle)
-            self.mhistory.append(handle)
+            if handle in self.mru:
+                self.mru.remove(handle)
+            self.mru.append(handle)
+            self.emit('mru-changed', (self.mru, ))
             self.index += 1
         if self.history:
             self.emit('active-changed', (self.history[self.index],))
-        self.emit('menu-changed', (self.mhistory, ))
  
     def forward(self, step=1):
         """
@@ -136,9 +136,10 @@ class History(gen.utils.Callback):
         """
         self.index += step
         handle = self.history[self.index]
-        if handle not in self.mhistory:
-            self.mhistory.append(handle)
-            self.emit('menu-changed', (self.mhistory, ))
+        if handle in self.mru:
+            self.mru.remove(handle)
+        self.mru.append(handle)
+        self.emit('mru-changed', (self.mru, ))
         if self.history:
             self.emit('active-changed', (self.history[self.index],))
         return str(self.history[self.index])
@@ -150,9 +151,10 @@ class History(gen.utils.Callback):
         self.index -= step
         try:
             handle = self.history[self.index]
-            if handle not in self.mhistory:
-                self.mhistory.append(handle)
-                self.emit('menu-changed', (self.mhistory, ))
+            if handle in self.mru:
+                self.mru.remove(handle)
+            self.mru.append(handle)
+            self.emit('mru-changed', (self.mru, ))
             if self.history:
                 self.emit('active-changed', (self.history[self.index],))
             return str(self.history[self.index])
@@ -189,7 +191,6 @@ class History(gen.utils.Callback):
         """
         if not self.at_end():
             self.history = self.history[0:self.index+1]
-
 
 #-------------------------------------------------------------------------
 #

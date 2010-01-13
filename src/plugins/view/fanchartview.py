@@ -599,6 +599,17 @@ class FanChartView(NavigationView):
 
     def ui_definition(self):
         return '''<ui>
+          <menubar name="MenuBar">
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+                <separator/>
+                <menuitem action="HomePerson"/>
+                <separator/>
+              </placeholder>
+            </menu>
+          </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
               <toolitem action="Back"/>  

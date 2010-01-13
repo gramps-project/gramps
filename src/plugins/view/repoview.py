@@ -167,6 +167,7 @@ class RepositoryView(ListView):
               <placeholder name="CommonGo">
                 <menuitem action="Back"/>
                 <menuitem action="Forward"/>
+                <separator/>
               </placeholder>
             </menu>
             <menu action="EditMenu">

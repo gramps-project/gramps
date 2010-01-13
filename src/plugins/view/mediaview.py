@@ -367,6 +367,7 @@ class MediaView(ListView):
               <placeholder name="CommonGo">
                 <menuitem action="Back"/>
                 <menuitem action="Forward"/>
+                <separator/>
               </placeholder>
             </menu>
           </menubar>

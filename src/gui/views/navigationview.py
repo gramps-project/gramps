@@ -48,7 +48,24 @@ import gtk
 #----------------------------------------------------------------
 from gui.views.pageview import PageView
 from TransUtils import sgettext as _
+from Utils import navigation_label
 
+DISABLED = -1
+MRU_SIZE = 10
+
+MRU_TOP = [
+    '<ui>'
+    '<menubar name="MenuBar">'
+    '<menu action="GoMenu">'
+    '<placeholder name="CommonHistory">'
+    ]
+
+MRU_BTM = [
+    '</placeholder>'
+    '</menu>'
+    '</menubar>'
+    '</ui>'
+    ]
 #------------------------------------------------------------------------------
 #
 # NavigationView
@@ -71,7 +88,9 @@ class NavigationView(PageView):
         self.book_action = None
         self.other_action = None
         self.active_signal = None
+        self.mru_signal = None
         self.nav_group = nav_group
+        self.mru_active = DISABLED
 
         self.uistate.register(self.navigation_type(), self.nav_group)
 
@@ -126,6 +145,8 @@ class NavigationView(PageView):
         
         hobj = self.get_history()
         self.active_signal = hobj.connect('active-changed', self.goto_active)
+        self.mru_signal = hobj.connect('mru-changed', self.update_mru_menu)
+        self.update_mru_menu(hobj.mru)
             
         self.goto_active(None)
 
@@ -138,6 +159,8 @@ class NavigationView(PageView):
             self.bookmarks.undisplay()
             hobj = self.get_history()
             hobj.disconnect(self.active_signal)
+            hobj.disconnect(self.mru_signal)
+            self.mru_disable()
 
     def navigation_group(self):
         """
@@ -337,19 +360,10 @@ class NavigationView(PageView):
         hobj = self.get_history()
         hobj.lock = True
         if not hobj.at_end():
-            try:
-                handle = hobj.forward()
-                self.uistate.modify_statusbar(self.dbstate)
-                hobj.mhistory.append(hobj.history[hobj.index])
-                self.fwd_action.set_sensitive(not hobj.at_end())
-                self.back_action.set_sensitive(True)
-            except:
-                hobj.clear()
-                self.fwd_action.set_sensitive(False)
-                self.back_action.set_sensitive(False)
-        else:
-            self.fwd_action.set_sensitive(False)
-            self.back_action.set_sensitive(True)
+            hobj.forward()
+            self.uistate.modify_statusbar(self.dbstate)
+        self.fwd_action.set_sensitive(not hobj.at_end())
+        self.back_action.set_sensitive(True)
         hobj.lock = False
 
     def back_clicked(self, obj):
@@ -359,21 +373,60 @@ class NavigationView(PageView):
         hobj = self.get_history()
         hobj.lock = True
         if not hobj.at_front():
-            try:
-                handle = hobj.back()
-                self.uistate.modify_statusbar(self.dbstate)
-                hobj.mhistory.append(hobj.history[hobj.index])
-                self.back_action.set_sensitive(not hobj.at_front())
-                self.fwd_action.set_sensitive(True)
-            except:
-                hobj.clear()
-                self.fwd_action.set_sensitive(False)
-                self.back_action.set_sensitive(False)
-        else:
-            self.back_action.set_sensitive(False)
-            self.fwd_action.set_sensitive(True)
+            hobj.back()
+            self.uistate.modify_statusbar(self.dbstate)
+        self.back_action.set_sensitive(not hobj.at_front())
+        self.fwd_action.set_sensitive(True)
         hobj.lock = False
         
+    ####################################################################
+    # MRU functions
+    ####################################################################
+    
+    def mru_disable(self):
+        """
+        Remove the UI and action groups for the MRU list.
+        """
+        if self.mru_active != DISABLED:
+            self.uistate.uimanager.remove_ui(self.mru_active)
+            self.uistate.uimanager.remove_action_group(self.mru_action)
+            self.mru_active = DISABLED
+
+    def mru_enable(self):
+        """
+        Enables the UI and action groups for the MRU list.
+        """
+        if self.mru_active == DISABLED:
+            self.uistate.uimanager.insert_action_group(self.mru_action, 1)
+            self.mru_active = self.uistate.uimanager.add_ui_from_string(self.mru_ui)
+            self.uistate.uimanager.ensure_update()
+
+    def update_mru_menu(self, items):
+        """
+        Builds the UI and action group for the MRU list.
+        """
+        self.mru_disable()
+        nav_type = self.navigation_type()
+        hobj = self.get_history()
+        menu_len = min(len(items) - 1, MRU_SIZE)
+        
+        entry = '<menuitem action="%s%02d"/>'
+        data = [entry % (nav_type, index) for index in range(0, menu_len)]
+        self.mru_ui = "".join(MRU_TOP) + "".join(data) + "".join(MRU_BTM)
+        
+        mitems = items[-MRU_SIZE - 1:-1] # Ignore current handle
+        mitems.reverse()
+        data = []
+        for index, handle in enumerate(mitems):
+            name, obj = navigation_label(self.dbstate.db, nav_type, handle)
+            data.append(('%s%02d'%(nav_type, index), None,  name,
+                         "<alt>%d" % index, None,
+                         make_callback(hobj.push, handle)))
+ 
+        self.mru_action = gtk.ActionGroup(nav_type)
+        self.mru_action.add_actions(data)
+        self.mru_enable()
+
     ####################################################################
     # Template functions
     ####################################################################
@@ -422,3 +475,8 @@ class NavigationView(PageView):
         """
         raise NotImplementedError
         
+def make_callback(func, handle):
+    """
+    Generates a callback function based off the passed arguments
+    """
+    return lambda x: func(handle)
