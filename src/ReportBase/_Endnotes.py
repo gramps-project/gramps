@@ -1,7 +1,8 @@
-#
+##
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007  Brian G. Matherly
+# Copyright (C) 2010  Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,8 @@ def add_endnote_styles(style_sheet):
     style_sheet.add_paragraph_style("Endnotes-Source", para)
 
     para = ParagraphStyle()
-    para.set(lmargin=1.5)
+    para.set(first_indent=-0.9, lmargin=1.9)
+#    para.set(lmargin=1.5)
     para.set_top_margin(0.25)
     para.set_bottom_margin(0.25)
     para.set_description(_('The basic style used for the endnotes reference display.'))
@@ -123,20 +125,17 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
         ref_list = citation.get_ref_list()
         
         if ref_list:
-            doc.start_paragraph('Endnotes-Ref')
-        
             first = True
-            rindex = 0
+            reflines = ""
             for key, ref in ref_list:
                 txt = "%s: %s" % (key, ref.get_page())
                 if first:
-                    doc.write_text(txt)
+                    reflines += txt
                     first = False
                 else:
-                    doc.write_text('\n%s' % txt)
-                
-                rindex += 1
-            doc.end_paragraph()
+                    reflines += ('\n%s' % txt)
+            doc.write_endnotes_ref(reflines,'Endnotes-Ref')
+
         if printnotes:
             note_list = source.get_note_list()
             ind = 1
