@@ -678,8 +678,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.remove_node(node)
         
         while parent is not None:
-            next_parent = self.nodemap.node(parent.parent) \
-                        if parent.parent is not None else None
+            next_parent = parent.parent and self.nodemap.node(parent.parent)
             if not parent.children:
                 if parent.handle:
                     # emit row_has_child_toggled signal
@@ -788,8 +787,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         pathlist = list(path)
         for index in pathlist:
             if self.__reverse:
-                size = len(node.children)
-                node = self.nodemap.node(node.children[size - index - 1][1])
+                node = self.nodemap.node(node.children[-index - 1][1])
             else:
                 node = self.nodemap.node(node.children[index][1])
         return node
@@ -805,8 +803,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
             while node is not None:
                 # Step backwards
                 nodeid = node.next if self.__reverse else node.prev
-                node = self.nodemap.node(nodeid) if nodeid is not None else \
-                            None
+                node = nodeid and self.nodemap.node(nodeid)
                 index += 1
             pathlist.append(index)
             node = parent
@@ -822,7 +819,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Get the next node with the same parent as the given node.
         """
         val = node.prev if self.__reverse else node.next
-        return self.nodemap.node(val) if val is not None else val
+        return val and self.nodemap.node(val)
 
     def on_iter_children(self, node):
         """
@@ -831,11 +828,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         if node is None:
             node = self.tree[None]
         if node.children:
-            if self.__reverse:
-                size = len(node.children)
-                return self.nodemap.node(node.children[size - 1][1])
-            else:
-                return self.nodemap.node(node.children[0][1])
+            return self.nodemap.node(
+                        node.children[-1 if self.__reverse else 0][1])
         else:
             return None
         
@@ -864,8 +858,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         if node.children:
             if len(node.children) > index:
                 if self.__reverse:
-                    size = len(node.children)
-                    return self.nodemap.node(node.children[size - index - 1][1])
+                    return self.nodemap.node(node.children[-index - 1][1])
                 else:
                     return self.nodemap.node(node.children[index][1])
             else:
@@ -877,5 +870,4 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Get the parent of the given node.
         """
-        return self.nodemap.node(node.parent) if node.parent is not None else \
-                    None
+        return node.parent and self.nodemap.node(node.parent)
