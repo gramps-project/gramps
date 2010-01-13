@@ -4,6 +4,7 @@
 # Copyright (C) 2007  Zsolt Foldvari
 # Copyright (C) 2009  Benny Malengier
 # Copyright (C) 2009  Brian Matherly
+# Copyright (C) 2010  Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1278,31 +1279,14 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     def end_cell(self):
         self._active_element = self._active_element.get_parent()
     
-    def write_note(self, text, format, style_name):
+    def write_endnotes_ref(self, text, style_name):
         """
-        Method to write the note objects text on a
-        Document
+        Overwrite base method for lines of endnotes references
         """
-        # We need to escape the text here for later pango.Layout.set_markup
-        # calls. This way we save the markup created by the report
-        # The markup in the note editor is not in the text so is not 
-        # considered. It must be added by pango too
-        if format == 1:
-            #preformatted, retain whitespace. Cairo retains \n automatically,
-            #so use \n\n for paragraph detection
-            #this is bad code, a user can type spaces between paragraph!
-            for line in text.split('\n\n'):
-                self.start_paragraph(style_name)
-                self.write_text(line)
-                self.end_paragraph()
-        elif format == 0:
-            #this is bad code, a user can type spaces between paragraph!
-            for line in text.split('\n\n'):
-                self.start_paragraph(style_name)
-                line = line.replace('\n',' ')
-                line = ' '.join(line.split())
-                self.write_text(line)
-                self.end_paragraph()
+        for line in text.split('\n\n'):
+            self.start_paragraph(style_name)
+            self.write_text(line)
+            self.end_paragraph()
 
     def write_styled_note(self, styledtext, format, style_name):
         """
