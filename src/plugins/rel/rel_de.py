@@ -229,6 +229,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = _lineal_up[gender]
             elif removed < 0:
                 rel_str = _lineal_down[gender]
+            elif in_law_a or in_law_b:
+                rel_str = u'Partner'
             else:
                 rel_str = u'Proband'
         else:
@@ -249,8 +251,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = _collateral_same[gender]
         return self._fix_caps(rel_str % {'p': pre, 's': post})
 
-    def get_plural_relationship_string(self, Ga, Gb):
-        return self._get_relationship_string(Ga, Gb, 'many')
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
+        return self._get_relationship_string(Ga, Gb, 'many',
+                                             reltocommon_a, reltocommon_b,
+                                             only_birth, in_law_a, in_law_b)
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,

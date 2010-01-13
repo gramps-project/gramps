@@ -128,13 +128,15 @@ class KinshipReport(Report):
                 elif x > 1 and not self.inc_cousins:
                     continue
                 
-                title = self.rel_calc.get_plural_relationship_string(Ga, Gb)
+                get_rel_str = self.rel_calc.get_plural_relationship_string
+                
+                title = get_rel_str(Ga, Gb, in_law_b=False)
                 self.write_people(title, self.kinship_map[Ga][Gb])
                 
                 if self.inc_spouses and \
                    Ga in self.spouse_map and \
                    Gb in self.spouse_map[Ga]:
-                    title = _("spouses of %s") % title
+                    title = get_rel_str(Ga, Gb, in_law_b=True)
                     self.write_people(title, self.spouse_map[Ga][Gb])
 
     def traverse_down(self, person_handle, Ga, Gb, skip_handle=None):

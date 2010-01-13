@@ -311,7 +311,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         return rel_str
 
 
-    def get_plural_relationship_string(self, Ga, Gb):
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
         """
         Provide a string that describes the relationsip between a person, and
         a group of people with the same relationship. E.g. "grandparents" or
@@ -394,6 +397,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = self.pair_up(result,'')                
             else:
                 rel_str =  u"avlägsna kusiner"
+                
+        if in_law_b == True:
+            # TODO: Translate this!
+            rel_str = "spouses of %s" % rel_str
+                
         return rel_str
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,

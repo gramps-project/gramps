@@ -64,8 +64,9 @@ plg.fname = 'rel_de.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["de", "DE", "de_DE", "deutsch", "Deutsch", "de_DE.UTF8", 
-                 "de_DE@euro", "de_DE.UTF8@euro",
+                 "de_DE@euro", "de_DE.UTF8@euro", "de_AT.UTF-8",
                  "german","German", "de_DE.UTF-8", "de_DE.utf-8", "de_DE.utf8"]
+
 # es
 plg = newplugin()
 plg.id    = 'relcalc_es'

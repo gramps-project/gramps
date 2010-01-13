@@ -434,7 +434,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_junior_female_cousin(Ga-1, Gb-Ga))
 
 
-    def get_plural_relationship_string(self, Ga, Gb):
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
         rel_str = u"дальние родственники"
         if Ga == 0:
             # These are descendants
@@ -478,6 +481,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                                     _juniors_removed_level[Gb-Ga] )
             else:
                 rel_str =  u"(младшие) дальние родственники"
+                
+        if in_law_b == True:
+            # TODO: Translate this!
+            rel_str = "spouses of %s" % rel_str
+                
         return rel_str
 
 # TODO: def get_sibling_relationship_string for Russian step and inlaw relations

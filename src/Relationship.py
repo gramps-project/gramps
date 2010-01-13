@@ -1373,7 +1373,10 @@ class RelationshipCalculator(object):
             common_list.append(commons[rel_str])
         return (relstrings, common_list)
 
-    def get_plural_relationship_string(self, Ga, Gb):
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
         """
         Provide a string that describes the relationsip between a person, and
         a group of people with the same relationship. E.g. "grandparents" or
@@ -1389,6 +1392,23 @@ class RelationshipCalculator(object):
         :param Gb: The number of generations between the group of people and the
         common ancestor
         :type Gb: int
+        :param reltocommon_a : relation path to common ancestor or common
+                            Family for person a. 
+                            Note that length = Ga
+        :type reltocommon_a: str 
+        :param reltocommon_b : relation path to common ancestor or common
+                            Family for person b. 
+                            Note that length = Gb
+        :type reltocommon_b: str 
+        :param only_birth : True if relation between a and b is by birth only
+                            False otherwise
+        :type only_birth: bool
+        :param in_law_a : True if path to common ancestors is via the partner
+                          of person a
+        :type in_law_a: bool
+        :param in_law_b : True if path to common ancestors is via the partner
+                          of person b
+        :type in_law_b: bool
         :returns: A string describing the relationship between the person and
         the group.
         :rtype: str
@@ -1442,6 +1462,10 @@ class RelationshipCalculator(object):
                                                     _removed_level[Gb-Ga] )
             else:
                 rel_str =  "distant cousins"
+                
+        if in_law_b == True:
+            rel_str = "spouses of %s" % rel_str
+                
         return rel_str
     
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,

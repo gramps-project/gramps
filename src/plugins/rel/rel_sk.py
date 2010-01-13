@@ -225,7 +225,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
 # kinship report
 
-    def get_plural_relationship_string(self, Ga, Gb):
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
         """
         see Relationship.py
         """
@@ -289,8 +292,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             elif Ga < len(_level_name):
                 rel_str = "prastrýkovia a pratety" + bygen % (
                                Ga+1)
-            else:
-                return rel_str
         elif Gb > 1 and Gb > Ga:
             # These are cousins in different generations with the second person 
             # being in a lower generation from the common ancestor than the 
@@ -307,8 +308,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             elif Ga < len(_level_name):
                 rel_str =  "synovci a netere" + bygen % (
                                 Gb)
-            else:
-                return rel_str
+        if in_law_b == True:
+            # TODO: Translate this!
+            rel_str = "spouses of %s" % rel_str
+            
         return rel_str
 
 

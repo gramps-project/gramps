@@ -426,7 +426,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
 # kinship report
 
-    def get_plural_relationship_string(self, Ga, Gb):
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
         """
         voir Relationship.py
         """
@@ -507,8 +510,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             elif Ga < len(_LEVEL_NAME):
                 rel_str = u"les grands-oncles et grands-tantes" + bygen % \
                     (Ga + 1)
-            else:
-                return rel_str
+
         elif Gb > 1 and Gb > Ga:
 
             # These are cousins in different generations with the second person
@@ -529,8 +531,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = u"les neveux et nièces" + can + civ
             elif Ga < len(_LEVEL_NAME):
                 rel_str = u"les neveux et nièces" + bygen % Gb
-            else:
-                return rel_str
+            
+        if in_law_b == True:
+            rel_str = "conjoints des %s" % rel_str
+            
         return rel_str
 
 # quick report (missing on RelCalc tool - Status Bar)
