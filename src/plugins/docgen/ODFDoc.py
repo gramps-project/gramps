@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2005-2009  Serge Noiraud
 # Copyright (C) 2007-2009  Brian G. Matherly
+# Copyright (C) 2010       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1185,27 +1186,21 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('</text:h>\n')
         self.new_cell = 1
 
-    def write_note(self, text, format, style_name):
+    def write_endnotes_ref(self, text, style_name):
         """
-        write a note
+        Overwrite base method for lines of endnotes references
         """
-        if format == 1:
-            text = escape(text, _esc_map)
+        for line in text.split('\n'):
+            text = escape(line, _esc_map)
             # Replace multiple spaces: have to go from the largest number down
             for n in range(text.count(' '), 1, -1):
                 text = text.replace(' '*n, ' <text:s text:c="%d"/>' % (n-1) )
             self.start_paragraph(style_name)
-            self.cntnt.write('<text:span text:style-name="GRAMPS-preformat">')
+#            self.cntnt.write('<text:span text:style-name="GRAMPS-preformat">')
+            self.cntnt.write('<text:span text:style-name="Standard">')
             self.cntnt.write(text)
             self.cntnt.write('</text:span>')
             self.end_paragraph()
-        elif format == 0:
-            for line in text.split('\n\n'):
-                self.start_paragraph(style_name)
-                line = line.replace('\n', ' ')
-                line = ' '.join(line.split())
-                self.write_text(line)
-                self.end_paragraph()
 
     def write_styled_note(self, styledtext, format, style_name):
         """

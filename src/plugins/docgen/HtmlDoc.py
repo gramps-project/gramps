@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier <benny.malengier@gramps-project.org>
+# Copyright (C) 2010       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -450,28 +451,19 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         self.__reduce_list()
 
-    def write_note(self, text, format, style_name):
+    def write_endnotes_ref(self, text, style_name):
         """
-        Overwrite base method
+        Overwrite base method for lines of endnotes references
         """
         self.htmllist += [Html('div', id='grampsstylednote')]
-        if format == 1:
-            #preformatted, retain whitespace.
-            #  User should use write_styled_note for correct behavior, in this 
-            #    more basic method we convert all to a monospace character
+        for line in text.split('\n'):
+        #    more basic method we convert all to a monospace character
             self.htmllist += [Html('pre', class_=style_name, 
-                                style = 'font-family: courier, monospace',
-                                indent=None, inline=True)]
-            self.write_text(text)
+                            style = 'font-family: courier, monospace',
+                            indent=None, inline=True)]
+            self.write_text(line)
             #end pre element
             self.__reduce_list()
-        elif format == 0:
-            for line in text.split('\n\n'):
-                self.start_paragraph(style_name)
-                self.write_text(line)
-                self.end_paragraph()
-        else:
-            raise NotImplementedError
         #end div element
         self.__reduce_list()
 

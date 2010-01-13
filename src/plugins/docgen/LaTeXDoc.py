@@ -7,6 +7,7 @@
 #               2002-2003  Donald A. Peterson
 #               2003       Alex Roitman
 #               2009       Benny Malengier
+#               2010       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -647,12 +648,17 @@ class LaTeXDoc(BaseDoc, TextDoc):
             #preformatted finished, go back to normal escape function
             self._backend.setescape(False)
 
-    def write_note(self,text,format,style_name):
-        """Write the note's text to the file, respecting the format"""
-        self.start_paragraph(style_name)
-        if format == 1:
-            self._backend.write('\\begin{verbatim}')
-        self.write_text(text)
-        if format == 1:
-            self._backend.write('\\end{verbatim}')
-        self.end_paragraph()
+    def write_endnotes_ref(self, text, style_name):
+        """
+        Overwrite base method for lines of endnotes references
+        """
+        self._backend.write("\\begin{minipage}{{0.8\\linewidth}}\n")
+        for line in text.split('\n'):
+            self.start_paragraph(style_name)
+            if format == 0:
+                self._backend.write('\\begin{verbatim}')
+            self.write_text(line)
+            if format == 0:
+                self._backend.write('\\end{verbatim}')
+            self.end_paragraph()
+        self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")

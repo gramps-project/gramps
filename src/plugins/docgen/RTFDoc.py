@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2010       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -395,11 +396,16 @@ class RTFDoc(BaseDoc,TextDoc):
             index = index+1
         self.f.write('}}\\par\n')
     
-    def write_note(self,text,format,style_name):
+    def write_styled_note(self,styledtext,format,style_name):
+        text = str(styledtext)
         if format == 1:
+            # Preformatted note
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
                 self.write_text(line)
+                if self.in_table:
+                    # Add LF when in table as in indiv_complete report
+                    self.write_text('\n')
                 self.end_paragraph()
         elif format == 0:
             for line in text.split('\n\n'):
@@ -408,6 +414,25 @@ class RTFDoc(BaseDoc,TextDoc):
                 line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
+        self.start_paragraph(style_name)
+        self.write_text('\n')
+        self.end_paragraph()
+
+    def write_endnotes_ref(self,text,style_name):
+        """
+        Overwrite base method for lines of endnotes references
+        """
+        for line in text.split('\n'):
+            self.start_paragraph(style_name)
+            self.write_text(line)
+            if self.in_table:
+                # Add LF when in table as in indiv_complete report
+                self.write_text('\n')
+            self.end_paragraph()
+        # Write NL after all ref lines for each source
+        self.start_paragraph(style_name)
+        self.write_text('\n')
+        self.end_paragraph()
 
     #--------------------------------------------------------------------
     #

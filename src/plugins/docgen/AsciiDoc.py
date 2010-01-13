@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier <benny.malengier@gramps-project.org>
+# Copyright (C) 2010       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -123,6 +124,10 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
 #------------------------------------------------------------------------
 class AsciiDoc(BaseDoc,TextDoc):
 
+    def __init__(self, styles, type):
+        BaseDoc.__init__(self, styles, type)
+        self.__note_format = False
+
     #--------------------------------------------------------------------
     #
     # Opens the file, resets the text buffer.
@@ -239,8 +244,13 @@ class AsciiDoc(BaseDoc,TextDoc):
             # line indent, as specified by style.
             this_text = reformat_para(self.text,regular_indent,right,fmt,
                                       right_pad,first_indent)
-        
-        this_text += '\n' + the_pad + '\n' 
+        if self.__note_format:
+            # don't add an extra LF before the_pad if preformatted notes.
+            if this_text != '\n':
+                # don't add LF if there is this_text is a LF
+                this_text += the_pad + '\n'
+        else:
+            this_text += '\n' + the_pad + '\n' 
         
         if self.in_cell:
             self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + \
@@ -343,12 +353,20 @@ class AsciiDoc(BaseDoc,TextDoc):
         else:
             self.f.write(this_text)
 
-    def write_note(self,text,format,style_name):
+    def write_styled_note(self,styledtext,format,style_name):
+        text = str(styledtext)
         if format == 1:
+            # Preformatted note
+            self.__note_format = True
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
                 self.write_text(line)
                 self.end_paragraph()
+            # Add an extra LF after all lines in each preformatted note
+            self.__note_format = False
+            self.start_paragraph(style_name)
+            self.write_text('\n')
+            self.end_paragraph()
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
@@ -356,6 +374,21 @@ class AsciiDoc(BaseDoc,TextDoc):
                 line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
+
+    def write_endnotes_ref(self, text, style_name):
+        """
+        Overwrite base method for lines of endnotes references
+        """
+        self.__note_format = True
+        for line in text.split('\n'):
+            self.start_paragraph(style_name)
+            self.write_text(line)
+            self.end_paragraph()
+        # Add an extra LF after all lines in each preformatted note
+        self.__note_format = False
+        self.start_paragraph(style_name)
+        self.write_text('\n')
+        self.end_paragraph()
 
     #--------------------------------------------------------------------
     #
