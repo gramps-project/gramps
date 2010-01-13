@@ -150,7 +150,8 @@ class Node(object):
                         ' not present in self.children: ' + str(self.children)\
                         + ' at index ' + str(index)
         if index == 0:
-            nodemap.node(self.children[index][1]).prev = None
+            if len(self.children) > 1:
+                nodemap.node(self.children[index+1][1]).prev = None
         elif index == len(self.children)-1:
             nodemap.node(self.children[index - 1][1]).next = None
         else:
@@ -604,7 +605,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
             path = self.on_get_path(node)
             self.nodemap.node(node.parent).remove_child(node, self.nodemap)
             del self.tree[node.ref]
-            del self.handle2node[node.handle]
+            if node.handle is not None:
+                del self.handle2node[node.handle]
             self.nodemap.del_node(node)
             del node
             self.__displayed -= 1
