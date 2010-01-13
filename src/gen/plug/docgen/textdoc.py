@@ -6,6 +6,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2010       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -190,6 +191,15 @@ class TextDoc(object):
         @param text: text to write.
         @param format: format to use for writing. True for flowed text, 
             1 for preformatted text.
+        """
+        raise NotImplementedError
+
+    def write_endnotes_ref(self, text, style_name):
+        """
+        Writes the note's text and take care of paragraphs, 
+
+        @param text: text to write.
+        @param style_name: style to be used.
         """
         raise NotImplementedError
 
