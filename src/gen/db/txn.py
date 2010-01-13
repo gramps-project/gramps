@@ -34,6 +34,7 @@ from __future__ import with_statement
 import cPickle as pickle
 from bsddb import dbshelve, db
 import logging
+from collections import defaultdict
 
 #-------------------------------------------------------------------------
 #
@@ -51,7 +52,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 # Gramps transaction class
 #
 #-------------------------------------------------------------------------
-class DbTxn(dict):
+class DbTxn(defaultdict):
     """
     Define a group of database commits that define a single logical operation.
     This class should not be used directly, but subclassed to reference a real
@@ -108,7 +109,7 @@ class DbTxn(dict):
                 data   = pickled representation of the object        
         """
 
-        super(DbTxn, self).__init__({})
+        defaultdict.__init__(self, list, {})
 
         self.msg = msg
         self.commitdb = commitdb
@@ -158,10 +159,8 @@ class DbTxn(dict):
             self.last = len(self.commitdb) -1
         if self.first is None:
             self.first = self.last
-        if (obj_type, trans_type) in self:
-            self[(obj_type, trans_type)] += [(handle, new_data)]
-        else:
-            self[(obj_type, trans_type)] = [(handle, new_data)]
+        self[(obj_type, trans_type)] += [(handle, new_data)]
+        return
 
     def get_recnos(self, reverse=False):
         """
