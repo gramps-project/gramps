@@ -184,6 +184,7 @@ src/gui/__init__.py
 src/gui/dbguielement.py
 src/gui/dbloader.py
 src/gui/dbman.py
+src/gui/filtereditor.py
 src/gui/grampsgui.py
 src/gui/pluginmanager.py
 src/gui/utils.py
@@ -825,12 +826,6 @@ src/Filters/SideBar/_PlaceSidebarFilter.py
 src/Filters/SideBar/_MediaSidebarFilter.py
 src/Filters/SideBar/_RepoSidebarFilter.py
 src/Filters/SideBar/_NoteSidebarFilter.py
-
-# FilterEditor package
-src/FilterEditor/_FilterEditor.py
-src/FilterEditor/_EditFilter.py
-src/FilterEditor/_EditRule.py
-src/FilterEditor/_ShowResults.py
 
 #
 #	Glade files

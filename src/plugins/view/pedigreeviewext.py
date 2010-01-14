@@ -53,6 +53,7 @@ except:
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.views.navigationview import NavigationView
+from gui.filtereditor import FilterEditor
 from gen.display.name import displayer as name_displayer
 from Utils import (media_path_full, probably_alive, find_children, 
                    find_parents, find_witnessed_people)
@@ -632,8 +633,6 @@ class PedigreeViewExt(NavigationView):
                         callback=self.filter_editor)
 
     def filter_editor(self, obj):
-        from FilterEditor import FilterEditor
-
         try:
             FilterEditor('Person', const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)

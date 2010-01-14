@@ -65,6 +65,7 @@ import config
 from QuestionDialog import RunDatabaseRepair, ErrorDialog
 import Bookmarks
 import const
+from gui.filtereditor import FilterEditor
 
 #-------------------------------------------------------------------------
 #
@@ -505,8 +506,6 @@ class PedigreeView(NavigationView):
                         callback=self.filter_editor)
 
     def filter_editor(self, obj):
-        from FilterEditor import FilterEditor
-
         try:
             FilterEditor('Person', const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)

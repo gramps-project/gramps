@@ -58,7 +58,7 @@ import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
 from glade import Glade
-
+from gui.filtereditor import FilterEditor
 
 #-------------------------------------------------------------------------
 #
@@ -163,9 +163,8 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         return (_("Filter selection"),_("Event Comparison tool"))
 
     def filter_editor_clicked(self, obj):
-        import FilterEditor
         try:
-            FilterEditor.FilterEditor('Person',const.CUSTOM_FILTERS,
+            FilterEditor('Person',const.CUSTOM_FILTERS,
                                       self.dbstate,self.uistate)
         except Errors.WindowActiveError:
             pass

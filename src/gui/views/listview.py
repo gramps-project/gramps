@@ -59,6 +59,7 @@ from gui.utils import add_menuitem
 import const
 import Utils
 from QuestionDialog import QuestionDialog, QuestionDialog2
+from gui.filtereditor import FilterEditor
 from TransUtils import sgettext as _
 
 #----------------------------------------------------------------
@@ -354,8 +355,6 @@ class ListView(NavigationView):
         self.build_tree()
 
     def filter_editor(self, obj):
-        from FilterEditor import FilterEditor
-
         try:
             FilterEditor(self.FILTER_TYPE , const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)

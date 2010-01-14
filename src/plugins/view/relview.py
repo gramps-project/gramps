@@ -49,6 +49,7 @@ import pango
 import gen.lib
 from gui.views.navigationview import NavigationView
 from gui.editors import EditPerson, EditFamily
+from gui.filtereditor import FilterEditor
 from gen.display.name import displayer as name_displayer
 from Utils import media_path_full, probably_alive
 import DateHandler
@@ -384,8 +385,6 @@ class RelationshipView(NavigationView):
         self.family_action.set_sensitive(False)
 
     def filter_editor(self, obj):
-        from FilterEditor import FilterEditor
-
         try:
             FilterEditor('Person', const.CUSTOM_FILTERS, 
                          self.dbstate, self.uistate)

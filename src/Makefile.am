@@ -2,13 +2,11 @@
 # $Id$
 
 SUBDIRS = \
-	BasicUtils \
 	cli \
 	data \
 	DateHandler \
 	docgen \
 	Filters \
-	FilterEditor \
 	gen \
 	glade \
 	GrampsLocale \

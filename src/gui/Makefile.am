@@ -16,6 +16,7 @@ pkgdata_PYTHON = \
 	dbguielement.py \
 	dbloader.py \
 	dbman.py \
+	filtereditor.py \
 	grampsgui.py \
 	pluginmanager.py \
 	utils.py \
