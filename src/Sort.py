@@ -40,8 +40,8 @@ import locale
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
-from BasicUtils import name_displayer as _nd
+from gen.utils import get_birth_or_fallback
+from gen.display.name import displayer as _nd
 
 #-------------------------------------------------------------------------
 #
