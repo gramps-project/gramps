@@ -41,7 +41,7 @@ from pango import WEIGHT_NORMAL, WEIGHT_BOLD
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #

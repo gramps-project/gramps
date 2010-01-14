@@ -41,7 +41,7 @@ from gettext import gettext as _
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import NumberOption, PersonOption
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler

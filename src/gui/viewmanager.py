@@ -71,7 +71,6 @@ import GrampsCfg
 import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
                             InfoDialog)
-from BasicUtils import name_displayer
 from gui import widgets
 import UndoHistory
 from gui.dbloader import DbLoader

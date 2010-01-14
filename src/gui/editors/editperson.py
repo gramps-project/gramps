@@ -46,13 +46,11 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 import Utils
 from gui.utils import add_menuitem, open_file_with_default_application
-import Mime
 import gen.lib
 from gui import widgets
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import Errors
 from glade import Glade
 

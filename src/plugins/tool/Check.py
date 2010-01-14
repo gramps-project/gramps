@@ -58,12 +58,11 @@ import gtk
 import gen.lib
 import Utils
 from gui.utils import ProgressMeter
-#import const
 import ManagedWindow
 
 from PluginUtils import Tool
 from QuestionDialog import OkDialog, MissingMediaDialog
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 from glade import Glade
 
 #-------------------------------------------------------------------------

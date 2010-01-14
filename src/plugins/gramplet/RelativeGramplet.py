@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
 from TransUtils import sgettext as _
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 
 #------------------------------------------------------------------------
 #

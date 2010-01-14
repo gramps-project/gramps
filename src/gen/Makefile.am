@@ -4,10 +4,11 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
-	plug \
-	proxy\
-	db\
+	display \
+	db \
 	lib\
+	plug \
+	proxy \
 	utils
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen

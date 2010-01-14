@@ -48,7 +48,7 @@ __LOG = logging.getLogger(".Db")
 from gen.lib import (GenderStats, Source, Person, Family, Event, Place, 
                      MediaObject, Repository, Note, Attribute, AttributeType, 
                      NoteType)
-from gen.db.write import (DbBsddb, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP)
+from gen.db.write import (KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP)
 from libgrdb import DbGrdb
 from gen.db.txn import DbTxn as Transaction
 from gen.db.cursor import GrampsCursor
@@ -58,7 +58,7 @@ import const
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from gen.updatecallback import UpdateCallback
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #

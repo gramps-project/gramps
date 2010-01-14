@@ -94,11 +94,9 @@ import ThumbNails
 import ImgManip
 import Mime
 from QuestionDialog import ErrorDialog, WarningDialog
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd 
 from DateHandler import displayer as _dd
-from DateHandler import parser as _dp
 from gen.proxy import PrivateProxyDb, LivingProxyDb
-from gen.lib.eventroletype import EventRoleType
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
 # import HTML Class from

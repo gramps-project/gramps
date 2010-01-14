@@ -64,7 +64,7 @@ import config
 import Errors
 from gui.utils import add_menuitem
 from ReportBase import CSS_FILES
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
 from gui.editors import EditPlace

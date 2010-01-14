@@ -49,7 +49,7 @@ import pango
 import gen.lib
 from gui.views.navigationview import NavigationView
 from gui.editors import EditPerson, EditFamily
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Utils import media_path_full, probably_alive
 import DateHandler
 import ThumbNails

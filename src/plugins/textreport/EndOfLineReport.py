@@ -34,7 +34,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,

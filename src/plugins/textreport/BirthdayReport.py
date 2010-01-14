@@ -35,7 +35,7 @@ import datetime, time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 from Errors import ReportError
 from gen.lib import NameType, EventType, Name, Date, Person
 import Relationship

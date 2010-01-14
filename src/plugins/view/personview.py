@@ -49,7 +49,7 @@ import gen.lib
 from gui.views.listview import ListView, LISTTREE
 from gui.views.treemodels import PeopleModel
 import Utils
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from QuestionDialog import ErrorDialog, QuestionDialog
 import Errors
 import Bookmarks

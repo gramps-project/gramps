@@ -41,7 +41,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
 from gen.lib import NoteType
 from displaytabs import GrampsTab,SourceEmbedList,NoteTab

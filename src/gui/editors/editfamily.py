@@ -55,7 +55,7 @@ import pango
 #-------------------------------------------------------------------------
 import Utils
 import config
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import gen.lib
 import Errors
 import DateHandler

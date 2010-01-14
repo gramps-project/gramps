@@ -28,7 +28,7 @@ import gen.lib
 import DateHandler
 import Utils
 
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from gen.lib import EventType
 import config
 

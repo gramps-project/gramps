@@ -42,7 +42,7 @@ from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                          FilterOption, PersonOption, EnumeratedListOption
 import gen.lib
 import config
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import Errors
 from ReportBase import ReportUtils
 from docgen import TextBufDoc

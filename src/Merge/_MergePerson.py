@@ -36,13 +36,12 @@ import pango
 from TransUtils import sgettext as _
 import gen.lib
 from ReportBase import ReportUtils
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import const
 import DateHandler
 from QuestionDialog import ErrorDialog
 import GrampsDisplay
 import ManagedWindow
-import gen.utils
 from glade import Glade
 
 #-------------------------------------------------------------------------

@@ -20,7 +20,7 @@
 #
 
 from gen.plug import Gramplet
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from gettext import gettext as _
 
 class AttributesGramplet(Gramplet):

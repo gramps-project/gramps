@@ -47,13 +47,13 @@ import gobject
 import config
 import const
 import DateHandler
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
+from gen.display.name import NameDisplayError
 import Utils
 from gen.lib import Name
 import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
-from Errors import NameDisplayError
 from glade import Glade
 
 #-------------------------------------------------------------------------

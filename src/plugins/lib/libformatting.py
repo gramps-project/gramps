@@ -39,7 +39,7 @@ from cgi import escape
 #-------------------------------------------------------------------------
 import gen.lib
 import DateHandler
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #-------------------------------------------------------------------------

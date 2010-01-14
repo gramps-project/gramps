@@ -54,6 +54,9 @@ src/cli/grampscli.py
 src/gen/__init__.py
 src/gen/updatecallback.py
 
+# gen display API
+src/gen/display/name.py
+
 # gen utils API
 src/gen/utils/__init__.py
 src/gen/utils/callback.py
@@ -302,9 +305,6 @@ src/gui/widgets/validatedmaskedentry.py
 
 # Simple API
 src/Simple/_SimpleTable.py
-
-# BasicUtils package
-src/BasicUtils/_NameDisplay.py
 
 # Config package
 src/config.py

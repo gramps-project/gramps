@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007 Donald N. Allingham
+# Copyright (C) 2010      Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,4 +21,3 @@
 
 # $Id: __init__.py$
 
-from _NameDisplay import displayer as name_displayer

@@ -60,7 +60,7 @@ _LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import const
 from gen.lib import Name, EventRef, EventType, EventRoleType, MarkerType
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import DateHandler
 import ToolTips
 import GrampsLocale

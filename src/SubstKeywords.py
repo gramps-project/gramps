@@ -37,8 +37,7 @@ Mary Smith was born on 3/28/1923.
 # Gramps modules
 #
 #------------------------------------------------------------------------
-
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import DateHandler
 import gen.lib
 from gen.utils import get_birth_or_fallback, get_death_or_fallback

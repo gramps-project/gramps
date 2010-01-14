@@ -40,7 +40,7 @@ import math
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 from gen.plug.menu import PersonOption
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,

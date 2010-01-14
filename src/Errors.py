@@ -142,14 +142,3 @@ class DbError(Exception):
     def __str__(self):
         "Return string representation"
         return self.value
-
-class NameDisplayError(Exception):
-    """
-    Error used to report that the name display format string is invalid.
-    """
-    def __init__(self, value):
-        Exception.__init__(self)
-        self.value = value
-
-    def __str__(self):
-        return self.value

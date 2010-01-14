@@ -46,7 +46,7 @@ from gen.plug.menu import BooleanOption, FilterOption, PersonOption, \
                           BooleanListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions
 from ReportBase import Bibliography, Endnotes
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 from Utils import media_path_full
 from QuestionDialog import WarningDialog
 

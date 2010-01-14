@@ -35,7 +35,7 @@ import locale
 from gen.plug import Gramplet
 from TransUtils import sgettext as _
 from gettext import ngettext
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import DateHandler
 import gen
 from gen.utils import get_birth_or_fallback, get_death_or_fallback

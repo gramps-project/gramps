@@ -45,7 +45,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import LdsUtils
 from glade import Glade
 from editsecondary import EditSecondary

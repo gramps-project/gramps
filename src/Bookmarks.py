@@ -51,7 +51,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsDisplay
-from BasicUtils import name_displayer
 import ListModel
 import Utils
 import const

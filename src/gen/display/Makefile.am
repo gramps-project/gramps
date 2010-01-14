@@ -1,16 +1,16 @@
-# This is the src/BasicUtils level Makefile for Gramps
+# This is the src/gen/display level Makefile for Gramps
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/BasicUtils
+pkgdatadir = $(datadir)/@PACKAGE@/display
 
 pkgdata_PYTHON = \
-	_NameDisplay.py\
+	name.py\
 	__init__.py
 
-pkgpyexecdir = @pkgpyexecdir@/BasicUtils
-pkgpythondir = @pkgpythondir@/BasicUtils
+pkgpyexecdir = @pkgpyexecdir@/display
+pkgpythondir = @pkgpythondir@/display
 
 
 dist_pkgdata_DATA = 

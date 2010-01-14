@@ -39,7 +39,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 from Errors import ReportError
 from gen.lib import FamilyRelType, Person
 from gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 

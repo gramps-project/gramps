@@ -54,7 +54,7 @@ from gui import widgets
 import ManagedWindow
 from QuestionDialog import OptionDialog
 from gui.selectors import SelectorFactory
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 from Filters import GenericFilterFactory, GenericFilter, Rules
 import gen
 

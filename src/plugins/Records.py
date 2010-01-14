@@ -34,10 +34,9 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import gen.lib
 from gen.lib import ChildRefType, Date, Name
 from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from gen.plug import Gramplet
 from gen.plug.menu import (BooleanOption, EnumeratedListOption, 
                            FilterOption, PersonOption)

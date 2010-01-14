@@ -56,8 +56,7 @@ import gen.utils
 from gui.utils import process_pending_events
 from gui.views.navigationview import NavigationView
 import config
-from BasicUtils import name_displayer
-import const
+from gen.display.name import displayer as name_displayer
 import ManagedWindow
 import Relationship
 from glade import Glade

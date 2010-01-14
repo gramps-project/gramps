@@ -35,7 +35,7 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)

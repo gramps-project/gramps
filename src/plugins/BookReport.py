@@ -83,7 +83,7 @@ from ReportBase._DocReportDialog import DocReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 from ReportBase._ReportOptions import ReportOptions
 
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #

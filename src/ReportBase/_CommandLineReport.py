@@ -50,7 +50,7 @@ from gen.plug.menu import (FamilyOption, PersonOption, NoteOption,
                            MediaOption, PersonListOption, NumberOption, 
                            BooleanOption, DestinationOption, StringOption, 
                            TextOption, EnumeratedListOption)
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 from ReportBase import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                         CATEGORY_GRAPHVIZ, CATEGORY_CODE)

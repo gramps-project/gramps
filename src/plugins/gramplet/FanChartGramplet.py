@@ -52,14 +52,14 @@ if gtk.pygtk_version < (2,3,93):
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from gettext import gettext as _
 from gen.plug import Gramplet
 from Utils import (find_children, find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
 import gen.lib
 import Errors
-from gui.editors import EditPerson, EditFamily 
+from gui.editors import EditPerson
 
 #-------------------------------------------------------------------------
 #

@@ -60,7 +60,7 @@ import gen.lib
 from Filters import Rules
 import AutoComp
 from gui.selectors import SelectorFactory
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 import Utils
 import ManagedWindow
 

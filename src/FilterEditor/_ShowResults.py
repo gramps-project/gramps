@@ -55,7 +55,7 @@ import gobject
 #-------------------------------------------------------------------------
 import const
 import ManagedWindow
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 import Utils
 
 #-------------------------------------------------------------------------

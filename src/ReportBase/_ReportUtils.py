@@ -246,7 +246,7 @@ def get_person_filters(person, include_single=True):
     @type person: boolean
     """
     from Filters import GenericFilter, Rules, CustomFilters
-    from BasicUtils import name_displayer
+    from gen.display.name import displayer as name_displayer
 
     if person:
         name = name_displayer.display(person)

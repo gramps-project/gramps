@@ -42,7 +42,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                         INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.lib import MarkerType
 from Filters import GenericFilterFactory, Rules
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import DateHandler
 
 #------------------------------------------------------------------------

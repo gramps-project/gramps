@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from eventembedlist import EventEmbedList
 from eventrefmodel import EventRefModel
 

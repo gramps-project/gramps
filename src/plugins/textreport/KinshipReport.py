@@ -36,7 +36,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 import Relationship
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,

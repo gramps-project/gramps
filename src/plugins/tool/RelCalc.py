@@ -42,7 +42,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import ManagedWindow
 from gui.views.treemodels import PeopleModel
 import Relationship

@@ -51,7 +51,7 @@ import Errors
 from glade import Glade
 from displaytabs import SourceEmbedList, NoteTab
 from gui.widgets import MonitoredDataType, PrivacyButton
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #

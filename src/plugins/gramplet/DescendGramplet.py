@@ -38,7 +38,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
 from ReportBase import ReportUtils
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import DateHandler
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 

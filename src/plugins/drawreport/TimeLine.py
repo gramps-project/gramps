@@ -44,8 +44,7 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                     FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)
 import Sort
 from QuestionDialog import ErrorDialog
-from BasicUtils import name_displayer
-from Utils import probably_alive
+from gen.display.name import displayer as name_displayer
 from gui.utils import ProgressMeter
 import config
 from gen.utils import get_birth_or_fallback, get_death_or_fallback

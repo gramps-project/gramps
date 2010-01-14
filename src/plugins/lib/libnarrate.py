@@ -34,7 +34,7 @@ from gen.lib.person import Person
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.eventtype import EventType
 from gen.lib.familyreltype import FamilyRelType
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 import Utils
 from ReportBase import ReportUtils
 from libtranslate import Translator

@@ -52,14 +52,12 @@ except:
 #-------------------------------------------------------------------------
 import gen.lib
 from gui.views.navigationview import NavigationView
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from Utils import (media_path_full, probably_alive, find_children, 
                    find_parents, find_witnessed_people)
 from libformatting import FormattingHelper
-import DateHandler
 import ThumbNails
 import Errors
-from ReportBase import ReportUtils
 from gui.editors import EditPerson, EditFamily 
 from DdTargets import DdTargets
 import cPickle as pickle

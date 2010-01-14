@@ -65,7 +65,7 @@ from Utils import probably_alive, xml_lang, get_researcher
 from gui.utils import ProgressMeter
 from DateHandler import displayer as _dd
 
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 
 import libholiday
 from libhtml import Html

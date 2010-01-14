@@ -39,7 +39,7 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import const
 import Utils
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import Errors
 from PluginUtils import (Options, OptionHandler, OptionList, 
                          OptionListCollection)

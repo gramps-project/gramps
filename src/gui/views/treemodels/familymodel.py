@@ -44,10 +44,9 @@ import const
 import ToolTips
 import GrampsLocale
 import DateHandler
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import gen.lib
 from gen.lib import EventRoleType
-import gen.utils
 
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 

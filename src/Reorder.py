@@ -17,11 +17,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
 
-import const
-from BasicUtils import name_displayer
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
+from gen.display.name import displayer as name_displayer
 import ListModel
 import ManagedWindow
 from glade import Glade

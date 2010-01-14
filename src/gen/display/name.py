@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007  Donald N. Allingham
+# Copyright (C) 2010       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +39,6 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.lib import Name
-from Errors import NameDisplayError
 
 try:
     import config
@@ -83,6 +83,22 @@ def _make_cmp(a, b): return -cmp(a[1], b[1])
 
 #-------------------------------------------------------------------------
 #
+# NameDisplayError class
+#
+#-------------------------------------------------------------------------
+class NameDisplayError(Exception):
+    """
+    Error used to report that the name display format string is invalid.
+    """
+    def __init__(self, value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value
+
+#-------------------------------------------------------------------------
+#
 # NameDisplay class
 #
 #-------------------------------------------------------------------------
@@ -93,11 +109,6 @@ class NameDisplay(object):
 
     format_funcs = {}
     raw_format_funcs = {}
-
-    # FIXME: Is this used anywhere? I cannot see that it is.
-    sort_field = (Name.get_surname, Name.get_surname,
-                  Name.get_first_name, Name.get_patronymic,
-                  Name.get_first_name)
 
     STANDARD_FORMATS = [
         (Name.DEF,_("Default format (defined by Gramps preferences)"),'',_ACT),

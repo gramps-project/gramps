@@ -48,7 +48,7 @@ from TransUtils import sgettext as _
 from gen.plug.menu import BooleanOption, EnumeratedListOption, FilterOption, \
                           PersonOption, ColorOption
 from ReportBase import Report, ReportUtils, MenuReportOptions
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import DateHandler
 import gen.lib
 import Utils

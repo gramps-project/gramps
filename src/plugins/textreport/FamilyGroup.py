@@ -36,7 +36,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 import DateHandler
 from TransUtils import sgettext as _
-from BasicUtils import name_displayer as _nd
+from gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #

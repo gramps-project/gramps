@@ -219,7 +219,7 @@ class NavigationView(PageView):
         """
         Add a bookmark to the list.
         """
-        from BasicUtils import name_displayer
+        from gen.display.name import displayer as name_displayer
 
         active_handle = self.uistate.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)

@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 import ManagedWindow
 import DateHandler
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 import config
 import GrampsDisplay
 from QuestionDialog import SaveDialog

@@ -39,7 +39,7 @@ import const
 import gen.lib
 from gui.utils import ProgressMeter
 import soundex
-from BasicUtils import name_displayer
+from gen.display.name import displayer as name_displayer
 from QuestionDialog import OkDialog
 import ListModel
 import Errors
@@ -47,7 +47,7 @@ from Merge import PersonCompare
 import GrampsDisplay
 import ManagedWindow
 from PluginUtils import Tool
-from QuestionDialog import ErrorDialog, RunDatabaseRepair
+from QuestionDialog import RunDatabaseRepair
 from TransUtils import sgettext as _
 from glade import Glade
 
