@@ -24,7 +24,6 @@ SUBDIRS = \
 gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
-	ansel_utf8.py\
 	Assistant.py\
 	AutoComp.py\
 	Bookmarks.py\
