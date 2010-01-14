@@ -304,8 +304,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write('% (If you do not have ucs.sty, you may obtain it from\n')
         self._backend.write('%  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)\n')
         self._backend.write('%\n')
-        self._backend.write('\\usepackage[latin1]{inputenc}\n')
-        self._backend.write('%\\usepackage[latin1,utf8]{inputenc}\n')
+        self._backend.write('%\\usepackage[latin1]{inputenc}\n')
+        self._backend.write('\\usepackage[latin1,utf8]{inputenc}\n')
         # add packages (should be standard on a default installation)
         # for finer output control.  Put comments in file for user to read
         self._backend.write('\\usepackage{graphicx}  % Extended graphics support\n')
@@ -317,8 +317,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write('% two lines and adjusting the width appropriately.')
         self._backend.write(' The example\n% removes 0.5in from each margin.')
         self._backend.write(' (Adds 1 inch to the text)\n')
-        self._backend.write('%\\addtolength{\\oddsidemargin}{-0.5in}\n')
-        self._backend.write('%\\addtolength{\\textwidth}{1.0in}\n%\n')
+        self._backend.write('\\addtolength{\\oddsidemargin}{-0.5in}\n')
+        self._backend.write('\\addtolength{\\textwidth}{1.0in}\n%\n')
         self._backend.write('% Create a margin-adjusting command that allows LaTeX\n')
         self._backend.write('% to behave like the other gramps-supported output formats\n')
         self._backend.write('\\newlength{\\leftedge}\n')
@@ -404,10 +404,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
     
             left  = style.get_left_margin()
             first = style.get_first_indent() + left
-            
             thisstyle.leftIndent = left
             thisstyle.firstLineIndent = first
-            
             self.latexstyle[style_name] = thisstyle
 
     def close(self):
@@ -437,6 +435,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.fend = ltxstyle.font_end
         self.indent = ltxstyle.leftIndent
         self.FLindent = ltxstyle.firstLineIndent
+        #firstLineIndent is not used, subtract from indent.
+        self.indent -= self.FLindent
     
         if self.indent is not None and not self.in_table:
             myspace = '%scm' % str(self.indent)
@@ -655,10 +655,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write("\\begin{minipage}{{0.8\\linewidth}}\n")
         for line in text.split('\n'):
             self.start_paragraph(style_name)
-            if format == 0:
-                self._backend.write('\\begin{verbatim}')
+#            self._backend.write('\\begin{verbatim}')
             self.write_text(line)
-            if format == 0:
-                self._backend.write('\\end{verbatim}')
+#            self._backend.write('\\end{verbatim}')
             self.end_paragraph()
         self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")
