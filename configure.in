@@ -94,6 +94,7 @@ src/const.py
 src/Makefile
 src/cli/Makefile
 src/gen/Makefile
+src/gen/display/Makefile
 src/gen/proxy/Makefile
 src/gen/db/Makefile
 src/gen/lib/Makefile
