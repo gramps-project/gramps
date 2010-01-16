@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -90,7 +91,8 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.relationship.connect_db_signals(dbstate)
 
         self.glade = Glade()
-
+        self.person = self.db.get_person_from_handle(
+                                            uistate.get_active('Person'))
         name = ''
         if self.person:
             name = name_displayer.display(self.person)
@@ -108,7 +110,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.textbuffer = gtk.TextBuffer()
         self.text.set_buffer(self.textbuffer)
         
-        self.model = PeopleModel(self.db,None)
+        self.model = PeopleModel(self.db)
         self.tree.set_model(self.model)
 
         self.tree.connect('key-press-event', self._key_press)
@@ -169,7 +171,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         if not node:
             return
         
-        handle = model.get_value(node,len(PeopleModel.COLUMN_DEFS)-1)
+        handle = model.get_value(node, PeopleModel.COLUMN_INT_ID)
         other_person = self.db.get_person_from_handle(handle)        
         if other_person is None :
             self.textbuffer.set_text("")
