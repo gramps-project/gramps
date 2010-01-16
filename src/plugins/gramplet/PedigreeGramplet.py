@@ -232,7 +232,7 @@ class PedigreeGramplet(Gramplet):
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
         if not active_person:
-            return False
+            yield False
         #no wrap in Gramplet
         self.no_wrap()
         self.process_person(active_person.handle, 1, "f") # father
@@ -243,6 +243,7 @@ class PedigreeGramplet(Gramplet):
         all = [active_person.handle]
         percent_sign = _("percent sign or text string|%")
         for g in gens:
+            yield True
             count = len(self._generations[g])
             handles = self._generations[g]
             self.append_text("     ")
