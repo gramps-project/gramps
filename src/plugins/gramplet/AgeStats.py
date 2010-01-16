@@ -87,9 +87,10 @@ class AgeStatsGramplet(Gramplet):
         mother_handles = [[] for age in range(self.max_mother_diff)]
         father_handles = [[] for age in range(self.max_father_diff)]
         text = ""
-
+        count = 0
         for p in self.dbstate.db.iter_people():
-            yield True
+            if count % 300 == 0:
+                yield True
             # if birth_date and death_date, compute age
             birth_ref = p.get_birth_ref()
             birth_date = None
@@ -158,6 +159,7 @@ class AgeStatsGramplet(Gramplet):
                                 #    print "Mother diff out of range: %d for %s" % (diff,
                                 #                                                   p.get_primary_name().get_first_name()
                                 #                                                   + " " + p.get_primary_name().get_surname())            
+            count += 1
         width = self.chart_width
         graph_width = width - 8
         self.create_bargraph(age_dict, age_handles, _("Lifespan Age Distribution"), _("Age"), graph_width, 5, self.max_age) 
