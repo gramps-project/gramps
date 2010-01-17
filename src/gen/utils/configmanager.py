@@ -36,6 +36,7 @@ import sys
 import time
 import ConfigParser
 import errno
+import copy
 
 try:
     from ast import literal_eval as safe_eval
@@ -196,13 +197,13 @@ class ConfigManager(object):
             for section in self.default:
                 self.data[section] = {}
                 for setting in self.default[section]:
-                    self.data[section][setting] = self.default[section][setting]
+                    self.data[section][setting] = copy.deepcopy(self.default[section][setting])
         elif setting is None:
             self.data[section] = {}
             for setting in self.default[section]:
-                self.data[section][setting] = self.default[section][setting]
+                self.data[section][setting] = copy.deepcopy(self.default[section][setting])
         else:
-            self.data[section][setting] = self.default[section][setting]
+            self.data[section][setting] = copy.deepcopy(self.default[section][setting])
         # Callbacks are still connected
 
     def get_sections(self):
@@ -397,7 +398,7 @@ class ConfigManager(object):
         if setting not in self.data[section]:
             self.data[section][setting] = default
         # Set the default, regardless:
-        self.default[section][setting] = default
+        self.default[section][setting] = copy.deepcopy(default)
 
     def connect(self, key, func):
         """
