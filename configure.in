@@ -109,7 +109,6 @@ src/gui/editors/displaytabs/Makefile
 src/gui/selectors/Makefile
 src/gui/views/Makefile
 src/gui/views/treemodels/Makefile
-src/FilterEditor/Makefile
 src/Mime/Makefile
 src/GrampsLogger/Makefile
 src/Merge/Makefile
@@ -126,7 +125,6 @@ src/Filters/Rules/Repository/Makefile
 src/Filters/Rules/Note/Makefile
 src/Filters/SideBar/Makefile
 src/gui/widgets/Makefile
-src/BasicUtils/Makefile
 src/Simple/Makefile
 src/GrampsLocale/Makefile
 src/PluginUtils/Makefile
