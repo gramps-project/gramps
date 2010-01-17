@@ -320,6 +320,7 @@ register('researcher.researcher-postal', '')
 register('researcher.researcher-state', '')
 
 register('plugin.hiddenplugins', [])
+register('plugin.addonplugins', [])
 
 #---------------------------------------------------------------
 #

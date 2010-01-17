@@ -52,6 +52,9 @@ from gui.pluginmanager import GuiPluginManager
 import _Tool as Tool
 from QuestionDialog import InfoDialog
 from gui.editors import EditPerson
+import Utils
+import const
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -127,7 +130,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         vbox_reg.pack_start(hbutbox, expand=False, padding=5)
         
         notebook.append_page(vbox_reg, 
-                             tab_label=gtk.Label(_('Registered plugins')))
+                             tab_label=gtk.Label(_('Registered Plugins')))
         
         #second page with loaded plugins
         vbox_loaded = gtk.VBox()
@@ -178,8 +181,66 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             self.__load_btn.connect('clicked', self.__load, self.list, 4) # id_col
         vbox_loaded.pack_start(hbutbox, expand=False, padding=5)
         notebook.append_page(vbox_loaded, 
-                             tab_label=gtk.Label(_('Loaded plugins')))
+                             tab_label=gtk.Label(_('Loaded Plugins')))
 
+        #third page with method to install plugin
+        install_page = gtk.VBox()
+        scrolled_window = gtk.ScrolledWindow()
+        self.addon_list = gtk.TreeView()
+        # model: help_name, name, ptype, image, desc, use, rating, contact, download 
+        self.addon_model = gtk.ListStore(gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING)
+        self.addon_list.set_model(self.addon_model)
+        self.addon_list.set_rules_hint(True)
+        #self.addon_list.connect('button-press-event', self.button_press)
+        col = gtk.TreeViewColumn(_('Addon Name'), gtk.CellRendererText(),
+                                 text=1)
+        col.set_sort_column_id(1)
+        self.addon_list.append_column(col)
+        col = gtk.TreeViewColumn(_('Type'), gtk.CellRendererText(),
+                                 text=2)
+        col.set_sort_column_id(2)
+        self.addon_list.append_column(col)
+        col = gtk.TreeViewColumn(_('Description'), gtk.CellRendererText(),
+                                 text=4)
+        col.set_sort_column_id(4)
+        self.addon_list.append_column(col)
+        self.addon_list.connect('button-press-event', self.button_press_addon)
+
+        install_row = gtk.HBox()
+        install_row.pack_start(gtk.Label(_("Path to Addon:")), expand=False)
+        self.install_addon_path = gtk.Entry()
+
+        button = gtk.Button()
+        img = gtk.Image()
+        img.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        button.add(img)
+        button.connect('clicked', self.__select_file)
+        install_row.pack_start(self.install_addon_path, expand=True)
+        install_row.pack_start(button, expand=False, fill=False)
+
+        scrolled_window.add(self.addon_list)
+        install_page.pack_start(scrolled_window)
+        install_page.pack_start(install_row, expand=True, fill=False)
+
+        hbutbox = gtk.HButtonBox()
+        hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.__add_btn = gtk.Button(_("Install Addon"))
+        hbutbox.add(self.__add_btn)
+        self.__add_btn.connect('clicked', self.__get_addon) 
+        self.__refresh_btn = gtk.Button(_("Refresh Addon List"))
+        hbutbox.add(self.__refresh_btn)
+        self.__refresh_btn.connect('clicked', self.__refresh_addon_list) 
+        install_page.pack_start(hbutbox, expand=False, padding=5)
+        notebook.append_page(install_page, 
+                             tab_label=gtk.Label(_('Install Addons')))
 
         #add the notebook to the window
         self.window.vbox.add(notebook)
@@ -197,11 +258,108 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.window.show_all()
         self.__populate_lists()
 
+    def __refresh_addon_list(self, obj):
+        import urllib
+        URL = "%s%s" % (const.URL_WIKISTRING, const.WIKI_EXTRAPLUGINS_RAWDATA)
+        fp = urllib.urlopen(URL)
+        state = "read"
+        rows = []
+        row = []
+        for line in fp.readlines():
+            if line.startswith("|-") or line.startswith("|}"):
+                if row != []:
+                    rows.append(row)
+                state = "row"
+                row = []
+            elif state == "row":
+                if line.startswith("|"):
+                    row.append(line[1:].strip())
+            else:
+                state = "read"
+        fp.close()
+        rows.sort(key=lambda row: (row[1], row[0]))
+        self.addon_model.clear()
+        # clear the config list:
+        config.get('plugin.addonplugins')[:] = []
+        for row in rows:
+            try:
+                help_name, ptype, image, desc, use, rating, contact, download = row
+            except:
+                continue
+            if help_name.startswith("[[") and help_name.endswith("]]"):
+                name = help_name[2:-2]
+                if "|" in name:
+                    url, name = name.split("|", 1)
+            elif help_name.startswith("[") and help_name.endswith("]"):
+                name = help_name[1:-1]
+                if " " in name:
+                    url, name = name.split(" ", 1)
+            else:
+                name = help_name
+            
+            self.addon_model.append(row=[help_name, name, ptype, image, desc, use, 
+                                         rating, contact, download])
+            config.get('plugin.addonplugins').append([help_name, name, ptype, image, desc, use, 
+                                                      rating, contact, download])
+        config.save()
+
+    def __get_addon(self, obj):
+        import urllib
+        import zipfile
+        import tarfile
+        import cStringIO
+        path = self.install_addon_path.get_text()
+        if (path.startswith("http://") or
+            path.startswith("https://") or
+            path.startswith("ftp://")):
+            fp = urllib.urlopen(path)
+        else:
+            fp = open(path)
+        buffer = cStringIO.StringIO(fp.read())
+        if path.endswith(".zip") or path.endswith(".ZIP"):
+            file_obj = zipfile.ZipFile(buffer)
+            files = file_obj.namelist()
+        elif path.endswith(".tar.gz") or path.endswith(".tgz"):
+            file_obj = tarfile.open(None, fileobj=buffer)
+            files = file_obj.getnames()
+        else:
+            raise AttributeError("unknown file type")
+        print files
+
+    def __select_file(self, obj):
+        fcd = gtk.FileChooserDialog(_("Load Addon"), 
+                                    buttons=(gtk.STOCK_CANCEL,
+                                             gtk.RESPONSE_CANCEL,
+                                             gtk.STOCK_OPEN,
+                                             gtk.RESPONSE_OK))
+        name = os.path.abspath(self.install_addon_path.get_text())
+        fcd.set_current_name(name)
+        if name:
+            fcd.set_filename(name)
+
+        status = fcd.run()
+        if status == gtk.RESPONSE_OK:
+            path = Utils.get_unicode_path(fcd.get_filename())
+            if path:
+                self.install_addon_path.set_text(path)
+        fcd.destroy()
+
     def __populate_lists(self):
         """ Build the lists of plugins """
         self.__populate_load_list()
         self.__populate_reg_list()
-    
+        self.__populate_addon_list()
+
+    def __populate_addon_list(self):
+        self.addon_model.clear()
+        for row in config.get('plugin.addonplugins'):
+            try:
+                help_name, name, ptype, image, desc, use, rating, contact, download = row
+            except:
+                continue
+            self.addon_model.append(row=[help_name, name, ptype, image, desc, use, 
+                                         rating, contact, download])
+
     def __populate_load_list(self):
         """ Build list of loaded plugins"""
         fail_list = self.__pmgr.get_fail_list()
@@ -275,6 +433,35 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.__info(obj, self.list_reg, 4)
+    
+    def button_press_addon(self, obj, event):
+        """ Callback function from the user clicking on a line in reg plugin
+        """
+        import urllib
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            selection = self.addon_list.get_selection()
+            model, node = selection.get_selected()
+            if node:
+                download = model.get_value(node, 8)
+                url = "Unknown URL"
+                if download.startswith("[[") and download.endswith("]]"):
+                    # Not directly possible to get the URL:
+                    wiki_page = download[2:-2]
+                    if "|" in wiki_page:
+                        wiki_page, text = wiki_page.split("|", 1)
+                    # need to get a page that says where it is:
+                    fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, wiki_page, 
+                                                    "&action=edit&externaledit=true&mode=file"))
+                    for line in fp:
+                        if line.startswith("URL="):
+                            junk, url = line.split("=", 1)
+                            break
+                    fp.close()
+                elif download.startswith("[") and download.endswith("]"):
+                    url = download[1:-1]
+                    if " " in url:
+                        url, text = url.split(" ", 1)
+                self.install_addon_path.set_text(url)
     
     def build_menu_names(self, obj):
         return (self.title, "")
