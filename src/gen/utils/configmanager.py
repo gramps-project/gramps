@@ -96,26 +96,51 @@ class ConfigManager(object):
         self.data = {}
         self.reset()
 
-    def register_manager(self, name, plugin="", use_config_path=False):
+    def register_manager(self, name, override="", use_config_path=False):
         """
-        Register a plugin manager. name is used as the filename
-        and the name of the key of the singleton. plugin is either:
-        - full filename ending in .ini
-        - a dir or full filename to put ini file into
+        Register a plugin manager. 
+
+        name is used as the key of the config manager singleton. It is
+        also be used as the base filename (unless an override is given,
+        or use_config_path is True).
+
+        override is either: 
+        - a full path+filename ending in .ini 
+        - a filename ending in .ini 
+        - a dir path to put ini file into 
+        - a full path+filename to get dir to put ini file into
         - a ConfigManager instance
 
-        If use_config_path is True, use this ConfigManager's path.
+        If use_config_path is True, use this ConfigManager's path as
+        the new manager's path, ignoring any path given in override.
+
+        Examples:
+        >>> config.register_manager("Simple")
+        # will use the calling programs directory, and "Simple.ini"
+        >>> config.register_manager("Simple", __file__)
+        # will use the __file__'s directory, and "Simple.ini"
+        >>> config.register_manager("Simple", "c:\\temp")
+        # will use the given directory, "c:\\temp\\Simple.ini"
+        >>> config.register_manager("Simple", use_config_path)
+        # will use config's path: ~/.gramps/gramps32/plugins/Simple.ini
+        >>> config.register_manager("Simple", "Other.ini", use_config_path)
+        # will use config's path: ~/.gramps/gramps32/plugins/Other.ini
+        >>> config.register_manager("Simple", "/tmp/Other.ini")
+        # will use /tmp/Other.ini
         """
-        if isinstance(plugin, str): # directory or filename
-            path, ininame = os.path.split(os.path.abspath(plugin))
+        if isinstance(override, str): # directory or filename
+            if override:
+                path, ininame = os.path.split(os.path.abspath(override))
+            else:
+                path, ininame = os.path.split(sys._getframe(1).f_code.co_filename)
             if not ininame.endswith(".ini"):
                 ininame = "%s.ini" % name
             if use_config_path:
                 path = self.config_path
             filename = os.path.join(path, ininame)
             plugin = ConfigManager(filename)
-        elif isinstance(plugin, ConfigManager):
-            pass # ok!
+        elif isinstance(override, ConfigManager):
+            plugin = override
         else:
             raise AttributeError("plugin needs to be a file or ConfigManager")
         ConfigManager.PLUGINS[name] = plugin
