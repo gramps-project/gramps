@@ -31,6 +31,7 @@ Provide translation assistance
 #
 #------------------------------------------------------------------------
 import gettext as translate
+import sys
 import os
 
 #-------------------------------------------------------------------------
@@ -79,12 +80,14 @@ def get_localedomain():
     """
     return LOCALEDOMAIN
 
-def get_addon_translator(filename, domain="addon"):
+def get_addon_translator(filename=None, domain="addon"):
     """
     Get a translator for an addon. 
-       filename - with full path
-       domain - the name of the .mo file under the LANG/LC_MESSAGES dir
-       returns - a gettext.translation object
+
+       filename - filename of a file in directory with full path, or
+                  None to get from running code
+       domain   - the name of the .mo file under the LANG/LC_MESSAGES dir
+       returns  - a gettext.translation object
 
     The return object has the following properties and methods:
       .gettext
@@ -101,6 +104,8 @@ def get_addon_translator(filename, domain="addon"):
     Assumes path/filename
             path/locale/LANG/LC_MESSAGES/addon.mo.
     """
+    if filename is None:
+        filename = sys._getframe(1).f_code.co_filename
     gramps_translator = translate.translation(LOCALEDOMAIN, LOCALEDIR,
                                             fallback=True)
     path = os.path.dirname(os.path.abspath(filename))
