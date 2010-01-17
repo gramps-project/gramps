@@ -66,7 +66,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
     
     def __init__(self, uistate, track=[]):
         self.__uistate = uistate
-        self.title = _("Plugin Status")
+        self.title = _("Plugin Manager")
         ManagedWindow.ManagedWindow.__init__(self, uistate, track,
                                              self.__class__)
 
@@ -95,13 +95,15 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         col0_reg = gtk.TreeViewColumn(_('Type'), gtk.CellRendererText(), text=0)
         col0_reg.set_sort_column_id(0)
         self.list_reg.append_column(col0_reg)
-        self.list_reg.append_column(
-            gtk.TreeViewColumn(_('Hidden'), gtk.CellRendererText(), markup=1))
+        col = gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(), markup=1)
+        col.set_sort_column_id(1)
+        self.list_reg.append_column(col)
         col2_reg = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(), text=2)
         col2_reg.set_sort_column_id(2)
         self.list_reg.append_column(col2_reg)
-        self.list_reg.append_column(
-            gtk.TreeViewColumn(_('Description'), gtk.CellRendererText(), text=3))
+        col = gtk.TreeViewColumn(_('Description'), gtk.CellRendererText(), text=3)
+        col.set_sort_column_id(3)
+        self.list_reg.append_column(col)
         self.list_reg.set_search_column(2)
 
         scrolled_window_reg.add(self.list_reg)
@@ -110,47 +112,76 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.__info_btn = gtk.Button(_("Info"))
         hbutbox.add(self.__info_btn)
-        self.__info_btn.connect('clicked', self.__info)
+        self.__info_btn.connect('clicked', self.__info, self.list_reg, 4) # id_col
         self.__hide_btn = gtk.Button(_("Hide/Unhide"))
         hbutbox.add(self.__hide_btn)
-        self.__hide_btn.connect('clicked', self.__hide)
+        self.__hide_btn.connect('clicked', self.__hide, 
+                                self.list_reg, 4, 1) # list, id_col, hide_col
         if __debug__:
             self.__edit_btn = gtk.Button(_("Edit"))
             hbutbox.add(self.__edit_btn)
-            self.__edit_btn.connect('clicked', self.__edit)
+            self.__edit_btn.connect('clicked', self.__edit, self.list_reg, 4) # id_col
             self.__load_btn = gtk.Button(_("Load"))
             hbutbox.add(self.__load_btn)
-            self.__load_btn.connect('clicked', self.__load)
+            self.__load_btn.connect('clicked', self.__load, self.list_reg, 4) # id_col
         vbox_reg.pack_start(hbutbox, expand=False, padding=5)
         
         notebook.append_page(vbox_reg, 
                              tab_label=gtk.Label(_('Registered plugins')))
         
-        
         #second page with loaded plugins
+        vbox_loaded = gtk.VBox()
         scrolled_window = gtk.ScrolledWindow()
         self.list = gtk.TreeView()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
-                                   gobject.TYPE_STRING, object)
+                                   gobject.TYPE_STRING, object, 
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.selection = self.list.get_selection()
-        
         self.list.set_model(self.model)
         self.list.set_rules_hint(True)
         self.list.connect('button-press-event', self.button_press)
-        self.list.append_column(
-            gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(),
-                               markup=0))
-        col1 = gtk.TreeViewColumn(_('File'), gtk.CellRendererText(), text=1)
+        col = gtk.TreeViewColumn(_('Loaded'), gtk.CellRendererText(),
+                                 markup=0)
+        col.set_sort_column_id(0)
+        self.list.append_column(col)
+        col1 = gtk.TreeViewColumn(_('File'), gtk.CellRendererText(), 
+                                  text=1)
         col1.set_sort_column_id(1)
         self.list.append_column(col1)
+        col = gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(), 
+                                 markup=5)
+        col.set_sort_column_id(5)
+        self.list.append_column(col)
         col2 = gtk.TreeViewColumn(_('Message'), gtk.CellRendererText(), text=2)
         col2.set_sort_column_id(2)
         self.list.append_column(col2)
         self.list.set_search_column(1)
 
         scrolled_window.add(self.list)
-        notebook.append_page(scrolled_window, 
+        vbox_loaded.pack_start(scrolled_window)
+        hbutbox = gtk.HButtonBox()
+        hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.__info_btn = gtk.Button(_("Info"))
+        hbutbox.add(self.__info_btn)
+        self.__info_btn.connect('clicked', self.__info, self.list, 4) # id_col
+        self.__hide_btn = gtk.Button(_("Hide/Unhide"))
+        hbutbox.add(self.__hide_btn)
+        self.__hide_btn.connect('clicked', self.__hide,
+                                self.list, 4, 5) # list, id_col, hide_col
+
+        if __debug__:
+            self.__edit_btn = gtk.Button(_("Edit"))
+            hbutbox.add(self.__edit_btn)
+            self.__edit_btn.connect('clicked', self.__edit, self.list, 4) # id_col
+            self.__load_btn = gtk.Button(_("Load"))
+            hbutbox.add(self.__load_btn)
+            self.__load_btn.connect('clicked', self.__load, self.list, 4) # id_col
+        vbox_loaded.pack_start(hbutbox, expand=False, padding=5)
+        notebook.append_page(vbox_loaded, 
                              tab_label=gtk.Label(_('Loaded plugins')))
+
+
+        #add the notebook to the window
         self.window.vbox.add(notebook)
         
         if __debug__:
@@ -176,24 +207,37 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         fail_list = self.__pmgr.get_fail_list()
         
         for i in fail_list:
+            # i = (filename, (exception-type, exception, traceback), pdata)
             err = i[1][0]
-            
+            pdata = i[2]
+            hidden = pdata.id in self.hidden
+            if hidden:
+                hiddenstr = self.HIDDEN
+            else:
+                hiddenstr = self.AVAILABLE
             if err == Errors.UnavailableError:
                 self.model.append(row=[
                     '<span color="blue">%s</span>' % _('Unavailable'),
-                    i[0], str(i[1][1]), None])
+                    i[0], str(i[1][1]), None, pdata.id, hiddenstr])
             else:
                 self.model.append(row=[
                     '<span weight="bold" color="red">%s</span>' % _('Fail'),
-                    i[0], str(i[1][1]), i[1]])
+                    i[0], str(i[1][1]), i[1], pdata.id, hiddenstr])
 
         success_list = self.__pmgr.get_success_list()
         for i in success_list:
+            # i = (filename, module, pdata)
+            pdata = i[2]
             modname = i[1].__name__
             descr = self.__pmgr.get_module_description(modname)
+            hidden = pdata.id in self.hidden
+            if hidden:
+                hiddenstr = self.HIDDEN
+            else:
+                hiddenstr = self.AVAILABLE
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
-                i[0], descr, None])
+                i[0], descr, None, pdata.id, hiddenstr])
         
     def __populate_reg_list(self):
         """ Build list of registered plugins"""
@@ -226,6 +270,12 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             if data:
                 PluginTrace(self.uistate, [], data, name)
                 
+    def button_press_reg(self, obj, event):
+        """ Callback function from the user clicking on a line in reg plugin
+        """
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.__info(obj, self.list_reg, 4)
+    
     def build_menu_names(self, obj):
         return (self.title, "")
     
@@ -235,21 +285,16 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
     
-    def button_press_reg(self, obj, event):
-        """ Callback function from the user clicking on a line in reg plugin
-        """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.__info(None)
-    
-    def __info(self, obj):
+    def __info(self, obj, list_obj, id_col):
         """ Callback function from the "Info" button
         """
-        model, node = self.selection_reg.get_selected()
+        selection = list_obj.get_selection()
+        model, node = selection.get_selected()
         if not node:
             return
-        id = model.get_value(node, 4)
-        typestr  = model.get_value(node, 0)
+        id = model.get_value(node, id_col)
         pdata = self.__preg.get_plugin(id)
+        typestr = pdata.ptype
         auth = ' - '.join(pdata.authors)
         email = ' - '.join(pdata.authors_email)
         if len(auth) > 60: 
@@ -275,42 +320,45 @@ Location: %(fpath)s
             }
             InfoDialog('Detailed Info', infotxt, parent=self.window)
     
-    def __hide(self, obj):
+    def __hide(self, obj, list_obj, id_col, hide_col):
         """ Callback function from the "Hide" button
         """
-        model, node = self.selection_reg.get_selected()
+        selection = list_obj.get_selection()
+        model, node = selection.get_selected()
         if not node:
             return
-        id = model.get_value(node, 4)
+        id = model.get_value(node, id_col)
         if id in self.hidden:
             #unhide
             self.hidden.remove(id)
-            model.set_value(node, 1, self.AVAILABLE)
+            model.set_value(node, hide_col, self.AVAILABLE)
             self.__pmgr.unhide_plugin(id)
         else:
             #hide
             self.hidden.add(id)
-            model.set_value(node, 1, self.HIDDEN)
+            model.set_value(node, hide_col, self.HIDDEN)
             self.__pmgr.hide_plugin(id)
     
-    def __load(self, obj):
+    def __load(self, obj, list_obj, id_col):
         """ Callback function from the "Load" button
         """
-        model, node = self.selection_reg.get_selected()
+        selection = list_obj.get_selection()
+        model, node = selection.get_selected()
         if not node:
             return
-        id = model.get_value(node, 4)
+        id = model.get_value(node, id_col)
         pdata = self.__preg.get_plugin(id)
         self.__pmgr.load_plugin(pdata)
         self.__rebuild_load_list()
 
-    def __edit(self, obj):
+    def __edit(self, obj, list_obj, id_col):
         """ Callback function from the "Load" button
         """
-        model, node = self.selection_reg.get_selected()
+        selection = list_obj.get_selection()
+        model, node = selection.get_selected()
         if not node:
             return
-        id = model.get_value(node, 4)
+        id = model.get_value(node, id_col)
         pdata = self.__preg.get_plugin(id)
         open_file_with_default_application(
             os.path.join(pdata.fpath, pdata.fname)
@@ -326,7 +374,7 @@ class PluginTrace(ManagedWindow.ManagedWindow):
     
     def __init__(self, uistate, track, data, name):
         self.name = name
-        title = "%s: %s" % (_("Plugin Status"), name)
+        title = "%s: %s" % (_("Plugin Error"), name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.set_window(gtk.Dialog("", uistate.window,

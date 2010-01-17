@@ -139,12 +139,12 @@ class BasePluginManager(object):
         plugin = pdata.mod_name
         try: 
             _module = __import__(plugin)
-            self.__success_list.append((filename, _module))
+            self.__success_list.append((filename, _module, pdata))
             self.__loaded_plugins[pdata.id] = _module
             self.__mod2text[_module.__name__] = pdata.description
             return _module
         except:
-            self.__failmsg_list.append((filename, sys.exc_info()))
+            self.__failmsg_list.append((filename, sys.exc_info(), pdata))
         return None
 
     def empty_managed_plugins(self):
@@ -168,19 +168,20 @@ class BasePluginManager(object):
 
         for plugin in self.__success_list:
             filename = plugin[0]
+            pdata = plugin[2]
             filename = filename.replace('pyc','py')
             filename = filename.replace('pyo','py')
             try: 
                 reload(plugin[1])
             except:
-                self.__failmsg_list.append((filename, sys.exc_info()))
+                self.__failmsg_list.append((filename, sys.exc_info(), pdata))
             
         # Remove previously good plugins that are now bad
         # from the registered lists
         self.__purge_failed()
     
         # attempt to load the plugins that have failed in the past
-        for (filename, message) in oldfailmsg:
+        for (filename, message, pdata) in oldfailmsg:
             name = os.path.split(filename)
             match = pymod.match(name[1])
             if not match:
@@ -193,9 +194,9 @@ class BasePluginManager(object):
                 # Looks like a bug in Python.
                 _module = __import__(plugin)
                 reload(_module)
-                self.__success_list.append((filename, _module))
+                self.__success_list.append((filename, _module, pdata))
             except:
-                self.__failmsg_list.append((filename, sys.exc_info()))
+                self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
     def get_fail_list(self):
         """ Return the list of failed plugins. """
@@ -371,7 +372,7 @@ class BasePluginManager(object):
         """
         failed_module_names = [
             os.path.splitext(os.path.basename(filename))[0]
-            for filename, junk in self.__failmsg_list
+            for filename, msg, pdata in self.__failmsg_list
             ]
 
         self.__export_plugins[:] = [ item for item in self.__export_plugins

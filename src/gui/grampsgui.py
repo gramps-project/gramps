@@ -243,7 +243,7 @@ def construct_view_order():
             #import of plugin failed
             ErrorDialog(
                 _('Failed Loading View'), 
-                _('The view %(name)s did not load. See Help Menu, Plugin Status'
+                _('The view %(name)s did not load. See Help Menu, Plugin Manager'
                   ' for more info.\nUse http://bugs.gramps-project.org to'
                   ' submit bugs of official views, contact the view '
                   'author (%(firstauthoremail)s) otherwise. ') % {

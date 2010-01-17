@@ -440,7 +440,7 @@ class ViewManager(CLIManager):
              extra_plugins_activate),
             ('About', gtk.STOCK_ABOUT, _('_About'), None, None, 
              display_about_box),
-            ('PluginStatus', None, _('_Plugin Status'), None, None, 
+            ('PluginStatus', None, _('_Plugin Manager'), None, None, 
              self.__plugin_status), 
             ('FAQ', None, _('_FAQ'), None, None, faq_activate), 
             ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
@@ -1538,7 +1538,7 @@ def run_plugin(pdata, dbstate, uistate):
             #import of plugin failed
             ErrorDialog(
                 _('Failed Loading Plugin'), 
-                _('The plugin did not load. See Help Menu, Plugin Status'
+                _('The plugin did not load. See Help Menu, Plugin Manager'
                   ' for more info.\nUse http://bugs.gramps-project.org to'
                   ' submit bugs of official plugins, contact the plugin '
                   'author otherwise. '))

@@ -263,7 +263,7 @@ class PlaceBaseView(ListView):
             servfunc = eval('mod.' +  serv.mapservice)
             servfunc()(self.dbstate.db, places)
         else:
-            print 'Failed to load map plugin, see Plugin Status'
+            print 'Failed to load map plugin, see Plugin Manager'
 
     def drag_info(self):
         return DdTargets.PLACE_LINK
