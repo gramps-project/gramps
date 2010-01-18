@@ -34,6 +34,7 @@
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+from bisect import bisect
 
 #------------------------------------------------------------------------
 #
@@ -47,6 +48,76 @@ import ImgManip
 import Errors
 import Utils
 
+#------------------------------------------------------------------------
+#
+# Latex Article Template
+#
+#------------------------------------------------------------------------
+
+_LATEX_TEMPLATE_1 = '\\documentclass[%s]{article}\n'
+_LATEX_TEMPLATE = '''\\usepackage[T1]{fontenc}
+%
+% We use latin1 encoding at a minimum by default.
+% GRAMPS uses unicode UTF-8 encoding for its
+% international support. LaTeX can deal gracefully
+% with unicode encoding by using the ucs style invoked
+% when utf8 is specified as an option to the inputenc
+% package. This package is included by default in some
+% installations, but not in others, so we do not make it
+% the default.  Uncomment the second line if you wish to use it
+% (If you do not have ucs.sty, you may obtain it from
+%  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)
+%
+%\\usepackage[latin1]{inputenc}
+\\usepackage[latin1,utf8]{inputenc}
+\\usepackage{graphicx}  % Extended graphics support
+\\usepackage{longtable} % For multi-page tables
+\\usepackage{calc} % For margin indents
+%
+% Depending on your LaTeX installation, the margins may be too
+% narrow.  This can be corrected by uncommenting the following
+% two lines and adjusting the width appropriately. The example
+% removes 0.5in from each margin. (Adds 1 inch to the text)
+\\addtolength{\\oddsidemargin}{-0.5in}
+\\addtolength{\\textwidth}{1.0in}
+%
+% Create a margin-adjusting command that allows LaTeX
+% to behave like the other gramps-supported output formats
+\\newlength{\\leftedge}
+\\setlength{\\leftedge}{\\parindent}
+\\newlength{\\grampstext}
+\\setlength{\\grampstext}{\\textwidth}
+\\newcommand{\\grampsindent}[1]{%
+   \\setlength{\\parindent}{\\leftedge + #1}%
+   \\setlength{\\textwidth}{\\grampstext - #1}%
+}
+
+\\begin{document}
+
+'''
+
+
+#------------------------------------------------------------------------
+#
+# Font size table and function
+#
+#------------------------------------------------------------------------
+
+# These tables coorelate font sizes to Latex.  The first table contains
+# typical font sizes in points.  The second table contains the standard
+# Latex font size names. Since we use bisect to map the first table to the
+# second, we are guaranteed that any font less than 6 points is 'tiny', fonts
+# from 6-7 points are 'script', etc. and fonts greater than or equal to 22
+# are considered 'Huge'.  Note that fonts from 12-13 points are not given a
+# Latex font size name but are considered "normal."
+
+_FONT_SIZES = [6, 8, 10, 12, 14, 16, 18, 20, 22]
+_FONT_NAMES = ['tiny', 'scriptsize', 'footnotesize', 'small', '',
+               'large', 'Large', 'LARGE', 'huge', 'Huge']
+
+def map_font_size(fontsize):
+    """ Map font size in points to Latex font size """
+    return _FONT_NAMES[bisect(_FONT_SIZES, fontsize)]
 #------------------------------------------------------------------------
 #
 # Functions for docbackend
@@ -138,24 +209,12 @@ class LateXBackend(DocBackend):
             return None
         elif type == DocBackend.FONTSIZE:
             #translate size in point to something LaTeX can work with
-            if value >= 22:
-                return ("{\\Huge ", "}")
-            elif value >= 20:
-                return ("{\\huge ", "}")
-            elif value >= 18:
-                return ("{\\LARGE ", "}")
-            elif value >= 16:
-                return ("{\\Large ", "}")
-            elif value >= 14:
-                return ("{\\large ", "}")
-            elif value < 8:
-                return ("{\\scriptsize ", "}")
-            elif value < 10:
-                return ("{\\footnotesize ", "}")
-            elif value < 12:
-                return ("{\\small ", "}")
+            fontsize = map_font_size(value)
+            if fontsize:
+                return ("{\\" + fontsize + ' ', "}")
             else:
                 return ("", "")
+
         elif type == DocBackend.FONTFACE:
             if 'MONO' in value.upper():
                 return ("{\\ttfamily ", "}")
@@ -191,7 +250,7 @@ def roman2arabic(strval):
         return 0
 
     # Return None if there are chars outside of valid roman numerals
-    if [char for char in strval if char not in 'MDCLXVI']:
+    if not all(char in 'MDCLXVI' for char in strval):
         return 0
 
     vals2 = ['CM', 'CD', 'XC', 'XL', 'IX', 'IV']
@@ -277,59 +336,14 @@ class LaTeXDoc(BaseDoc, TextDoc):
         # Paper selections are somewhat limited on a stock installation. 
         # If the user picks something not listed here, we'll just accept
         # the default of the user's LaTeX installation (usually letter).
-        paper_name = self.paper.get_size().get_name()
-        if paper_name == "A4":
-            options = options + ",a4paper"
-        elif paper_name == "A5":
-            options = options + ",a5paper"
-        elif paper_name == "B5":
-            options = options + ",b4paper"
-        elif paper_name == "Legal":
-            options = options + ",legalpaper"
-        elif paper_name == "Letter":
-            options = options + ",letterpaper"
+        paper_name = self.paper.get_size().get_name().lower()
+        if paper_name in ["a4", "a5", "legal", "letter"]:
+            options += ',' + paper_name + 'paper'
 
         # Use the article template, T1 font encodings, and specify
         # that we should use Latin1 and unicode character encodings.
-        self._backend.write('\\documentclass[%s]{article}\n' % options)
-        self._backend.write('\\usepackage[T1]{fontenc}\n')
-        self._backend.write('%\n% We use latin1 encoding at a minimum by default.\n')
-        self._backend.write('% GRAMPS uses unicode UTF-8 encoding for its\n')
-        self._backend.write('% international support. LaTeX can deal gracefully\n')
-        self._backend.write('% with unicode encoding by using the ucs style invoked\n')
-        self._backend.write('% when utf8 is specified as an option to the inputenc\n')
-        self._backend.write('% package. This package is included by default in some\n')
-        self._backend.write('% installations, but not in others, so we do not make it\n')
-        self._backend.write('% the default.  Uncomment the second line if you wish to use it\n')
-        self._backend.write('% (If you do not have ucs.sty, you may obtain it from\n')
-        self._backend.write('%  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)\n')
-        self._backend.write('%\n')
-        self._backend.write('%\\usepackage[latin1]{inputenc}\n')
-        self._backend.write('\\usepackage[latin1,utf8]{inputenc}\n')
-        # add packages (should be standard on a default installation)
-        # for finer output control.  Put comments in file for user to read
-        self._backend.write('\\usepackage{graphicx}  % Extended graphics support\n')
-        self._backend.write('\\usepackage{longtable} % For multi-page tables\n')
-        self._backend.write('\\usepackage{calc} % For margin indents\n')
-        self._backend.write('%\n% Depending on your LaTeX installation, the')
-        self._backend.write(' margins may be too\n% narrow. ')
-        self._backend.write(' This can be corrected by uncommenting the following\n')
-        self._backend.write('% two lines and adjusting the width appropriately.')
-        self._backend.write(' The example\n% removes 0.5in from each margin.')
-        self._backend.write(' (Adds 1 inch to the text)\n')
-        self._backend.write('\\addtolength{\\oddsidemargin}{-0.5in}\n')
-        self._backend.write('\\addtolength{\\textwidth}{1.0in}\n%\n')
-        self._backend.write('% Create a margin-adjusting command that allows LaTeX\n')
-        self._backend.write('% to behave like the other gramps-supported output formats\n')
-        self._backend.write('\\newlength{\\leftedge}\n')
-        self._backend.write('\\setlength{\\leftedge}{\\parindent}\n')
-        self._backend.write('\\newlength{\\grampstext}\n')
-        self._backend.write('\\setlength{\\grampstext}{\\textwidth}\n')
-        self._backend.write('\\newcommand{\\grampsindent}[1]{%\n')
-        self._backend.write('   \\setlength{\\parindent}{\\leftedge + #1}%\n')
-        self._backend.write('   \\setlength{\\textwidth}{\\grampstext - #1}%\n')
-        self._backend.write('}\n\n')
-        self._backend.write('\\begin{document}\n\n')
+        self._backend.write(_LATEX_TEMPLATE_1 % options)
+        self._backend.write(_LATEX_TEMPLATE)
     
         self.in_list = 0
         self.in_table = 0
@@ -353,54 +367,30 @@ class LaTeXDoc(BaseDoc, TextDoc):
             # Is there special alignment?  (default is left)
             align = style.get_alignment_text()
             if  align == "center":
-                thisstyle.font_beg = thisstyle.font_beg + "\\centerline{"
+                thisstyle.font_beg += "\\centerline{"
                 thisstyle.font_end = "}" + thisstyle.font_end 
             elif align == "right":
-                thisstyle.font_beg = thisstyle.font_beg + "\\hfill"
+                thisstyle.font_beg += "\\hfill"
     
             # Establish font face and shape
             if font.get_type_face() == FONT_SANS_SERIF:
-                thisstyle.font_beg = thisstyle.font_beg + "\\sffamily"
+                thisstyle.font_beg += "\\sffamily"
                 thisstyle.font_end = "\\rmfamily" + thisstyle.font_end 
             if font.get_bold():
-                thisstyle.font_beg = thisstyle.font_beg + "\\bfseries"
+                thisstyle.font_beg += "\\bfseries"
                 thisstyle.font_end = "\\mdseries" + thisstyle.font_end
             if font.get_italic() or font.get_underline():
-                thisstyle.font_beg = thisstyle.font_beg + "\\itshape"
+                thisstyle.font_beg += "\\itshape"
                 thisstyle.font_end = "\\upshape" + thisstyle.font_end
     
             # Now determine font size 
-            sflag = 0
-            if size >= 22:
-                thisstyle.font_beg = thisstyle.font_beg + "\\Huge"
-                sflag = 1
-            elif size >= 20:
-                thisstyle.font_beg = thisstyle.font_beg + "\\huge"
-                sflag = 1
-            elif size >= 18:
-                thisstyle.font_beg = thisstyle.font_beg + "\\LARGE"
-                sflag = 1
-            elif size >= 16:
-                thisstyle.font_beg = thisstyle.font_beg + "\\Large"
-                sflag = 1
-            elif size >= 14:
-                thisstyle.font_beg = thisstyle.font_beg + "\\large"
-                sflag = 1
-            elif size < 8:
-                thisstyle.font_beg = thisstyle.font_beg + "\\scriptsize"
-                sflag = 1
-            elif size < 10:
-                thisstyle.font_beg = thisstyle.font_beg + "\\footnotesize"
-                sflag = 1
-            elif size < 12:
-                thisstyle.font_beg = thisstyle.font_beg + "\\small"
-                sflag = 1
+            fontsize = map_font_size(size)
+            if fontsize:
+                thisstyle.font_beg += "\\" + fontsize
+                thisstyle.font_end += "\\normalsize"
     
-            if sflag == 1:
-                thisstyle.font_end = thisstyle.font_end + "\\normalsize"
-    
-            thisstyle.font_beg = thisstyle.font_beg + " "
-            thisstyle.font_end = thisstyle.font_end + " "
+            thisstyle.font_beg += " "
+            thisstyle.font_end += " "
     
             left  = style.get_left_margin()
             first = style.get_first_indent() + left
@@ -459,10 +449,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     self._backend.write('  \\renewcommand\\theenumi{\\arabic{enumi}}')
                 else:
                     # roman, set the case correctly
-                    if leader_1.islower():
-                        self._backend.write('  \\renewcommand\\theenumi{\\roman{enumi}}')
-                    else:
-                        self._backend.write('  \\renewcommand\\theenumi{\\Roman{enumi}}')
+                    elf._backend.write('  \\renewcommand\\theenumi{\\%soman{enumi}}'
+                        % ('r'  if leader_1.islower() else 'R'))
     
                 self._backend.write('  \\setcounter{enumi}{%d} ' % num)
                 self._backend.write('  \\addtocounter{enumi}{-1}\n')
@@ -612,8 +600,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             text = '\\newline\n'
         text = latexescape(text)
         #hard coded replace of the underline used for missing names/data
-        text = text.replace('\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_',
-                            '\\underline{\hspace{3cm}}')
+        text = text.replace('\\_'*13, '\\underline{\hspace{3cm}}')
         self._backend.write(text)
 
     def write_styled_note(self, styledtext, format, style_name):
