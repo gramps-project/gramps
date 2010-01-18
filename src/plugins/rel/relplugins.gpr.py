@@ -111,6 +111,19 @@ plg.lang_list = ["fr", "FR", "fr_FR", "fr_CA", "francais",
                  "fr_FR.UTF-8", "fr_FR.utf-8", "fr_FR.utf8",
                  "fr_CA.UTF-8"]
 
+# hr
+plg = newplugin()
+plg.id    = 'relcalc_hr'
+plg.name  = _("Croatian Relationship Calculator")
+plg.description =  _("Calculates relationships between people")
+plg.version = '1.0'
+plg.status = STABLE
+plg.fname = 'rel_hr.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["hrvatski", "Hrvatski", "croatian", "Croatian",
+                        "hr", "HR", "hr_HR", "hr_HR.UTF-8", "hr_HR.utf-8"]
+
 # hu
 plg = newplugin()
 plg.id    = 'relcalc_hu'

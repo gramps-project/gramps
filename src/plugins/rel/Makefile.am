@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	rel_fi.py\
 	rel_fr.py\
 	rel_hu.py\
+        rel_hr.py\
 	rel_it.py\
 	rel_nl.py\
 	rel_no.py\
