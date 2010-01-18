@@ -56,6 +56,60 @@ import Utils
 import const
 import config
 
+class Zipfile(object):
+    """
+    Class to duplicate the methods of tarfile for Python 2.5.
+    """
+    def __init__(self, buffer):
+        import zipfile
+        self.buffer = buffer
+        self.zip_obj = zipfile.ZipFile(buffer)
+
+    def extractall(self, path, members=None):
+        """
+        Extract all of the files in the zip into path.
+        """
+        names = self.zip_obj.namelist()
+        for name in self.get_paths(names):
+            fullname = os.path.join(path, name)
+            if not os.path.exists(fullname): 
+                os.mkdir(fullname)
+        for name in self.get_files(names):
+            fullname = os.path.join(path, name)
+            outfile = file(fullname, 'wb')
+            outfile.write(self.zip_obj.read(name))
+            outfile.close()
+
+    def getnames(self):
+        """
+        Get the files and directories of the zipfile.
+        """
+        return self.zip_obj.namelist()
+
+    def get_paths(self, items):
+        """
+        Get the directories from the items.
+        """
+        return (name for name in items if self.is_path(name) and not self.is_file(name))
+
+    def get_files(self, items):
+        """
+        Get the files from the items.
+        """
+        return (name for name in items if self.is_file(name))
+
+    def is_path(self, name):
+        """
+        Is the name a path?
+        """
+        return os.path.split(name)[0]
+
+    def is_file(self, name):
+        """
+        Is the name a directory?
+        """
+        return os.path.split(name)[1]
+
 #-------------------------------------------------------------------------
 #
 # PluginStatus: overview of all plugins
@@ -212,7 +266,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                                  text=4)
         col.set_sort_column_id(4)
         self.addon_list.append_column(col)
-        self.addon_list.connect('button-press-event', self.button_press_addon)
+        self.addon_list.connect('cursor-changed', self.button_press_addon)
 
         install_row = gtk.HBox()
         install_row.pack_start(gtk.Label(_("Path to Addon:")), expand=False)
@@ -235,6 +289,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.__add_btn = gtk.Button(_("Install Addon"))
         hbutbox.add(self.__add_btn)
         self.__add_btn.connect('clicked', self.__get_addon) 
+        self.__add_all_btn = gtk.Button(_("Install All Addons"))
+        hbutbox.add(self.__add_all_btn)
+        self.__add_all_btn.connect('clicked', self.__get_all_addons) 
         self.__refresh_btn = gtk.Button(_("Refresh Addon List"))
         hbutbox.add(self.__refresh_btn)
         self.__refresh_btn.connect('clicked', self.__refresh_addon_list) 
@@ -303,12 +360,43 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                                                       rating, contact, download])
         config.save()
 
-    def __get_addon(self, obj):
+    def __get_all_addons(self, obj):
         import urllib
-        import zipfile
+        for row in self.addon_model:
+            (help_name, name, ptype, image, desc, use, rating, contact, 
+             download) = row
+            url = "Unknown URL"
+            if download.startswith("[[") and download.endswith("]]"):
+                # Not directly possible to get the URL:
+                wiki_page = download[2:-2]
+                if "|" in wiki_page:
+                    wiki_page, text = wiki_page.split("|", 1)
+                # need to get a page that says where it is:
+                fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, wiki_page, 
+                                                "&action=edit&externaledit=true&mode=file"))
+                for line in fp:
+                    if line.startswith("URL="):
+                        junk, url = line.split("=", 1)
+                        break
+                fp.close()
+            elif download.startswith("[") and download.endswith("]"):
+                url = download[1:-1]
+                if " " in url:
+                    url, text = url.split(" ", 1)
+            self.__load_addon_file(url)
+        self.__rebuild_load_list()
+        self.__rebuild_reg_list()
+
+    def __get_addon(self, obj):
+        path = self.install_addon_path.get_text()
+        self.__load_addon_file(path)
+        self.__rebuild_load_list()
+        self.__rebuild_reg_list()
+
+    def __load_addon_file(self, path):
+        import urllib
         import tarfile
         import cStringIO
-        path = self.install_addon_path.get_text()
         if (path.startswith("http://") or
             path.startswith("https://") or
             path.startswith("ftp://")):
@@ -317,15 +405,20 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             fp = open(path)
         buffer = cStringIO.StringIO(fp.read())
         if path.endswith(".zip") or path.endswith(".ZIP"):
-            file_obj = zipfile.ZipFile(buffer)
-            files = file_obj.namelist()
+            file_obj = Zipfile(buffer)
         elif path.endswith(".tar.gz") or path.endswith(".tgz"):
             file_obj = tarfile.open(None, fileobj=buffer)
-            files = file_obj.getnames()
         else:
-            raise AttributeError("unknown file type")
-        print files
-
+            print "load addon: unknown file type: '%s'" % path
+            return False
+        file_obj.extractall(const.USER_PLUGINS)
+        
+        gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
+                     for name in file_obj.getnames() if name.endswith(".gpr.py")])
+        for gpr_file in gpr_files:
+            self.__pmgr.reg_plugins(gpr_file)
+        return True
+    
     def __select_file(self, obj):
         fcd = gtk.FileChooserDialog(_("Load Addon"), 
                                     buttons=(gtk.STOCK_CANCEL,
@@ -434,34 +527,33 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.__info(obj, self.list_reg, 4)
     
-    def button_press_addon(self, obj, event):
+    def button_press_addon(self, obj):
         """ Callback function from the user clicking on a line in reg plugin
         """
         import urllib
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            selection = self.addon_list.get_selection()
-            model, node = selection.get_selected()
-            if node:
-                download = model.get_value(node, 8)
-                url = "Unknown URL"
-                if download.startswith("[[") and download.endswith("]]"):
-                    # Not directly possible to get the URL:
-                    wiki_page = download[2:-2]
-                    if "|" in wiki_page:
-                        wiki_page, text = wiki_page.split("|", 1)
-                    # need to get a page that says where it is:
-                    fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, wiki_page, 
-                                                    "&action=edit&externaledit=true&mode=file"))
-                    for line in fp:
-                        if line.startswith("URL="):
-                            junk, url = line.split("=", 1)
-                            break
-                    fp.close()
-                elif download.startswith("[") and download.endswith("]"):
-                    url = download[1:-1]
-                    if " " in url:
-                        url, text = url.split(" ", 1)
-                self.install_addon_path.set_text(url)
+        selection = self.addon_list.get_selection()
+        model, node = selection.get_selected()
+        if node:
+            download = model.get_value(node, 8)
+            url = "Unknown URL"
+            if download.startswith("[[") and download.endswith("]]"):
+                # Not directly possible to get the URL:
+                wiki_page = download[2:-2]
+                if "|" in wiki_page:
+                    wiki_page, text = wiki_page.split("|", 1)
+                # need to get a page that says where it is:
+                fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, wiki_page, 
+                                                "&action=edit&externaledit=true&mode=file"))
+                for line in fp:
+                    if line.startswith("URL="):
+                        junk, url = line.split("=", 1)
+                        break
+                fp.close()
+            elif download.startswith("[") and download.endswith("]"):
+                url = download[1:-1]
+                if " " in url:
+                    url, text = url.split(" ", 1)
+            self.install_addon_path.set_text(url)
     
     def build_menu_names(self, obj):
         return (self.title, "")
