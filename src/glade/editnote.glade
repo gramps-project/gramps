@@ -131,9 +131,10 @@
                         <property name="receives_default">False</property>
                         <property name="has_tooltip">True</property>
                         <property name="tooltip_markup">When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. 
-When not checked, notes are automatically cleaned in the reports, which will improve the report layout.</property>
+When not checked, notes are automatically cleaned in the reports, which will improve the report layout. Use monospace font to keep preformatting.</property>
                         <property name="tooltip_text" translatable="yes">When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. 
-When not checked, notes are automatically cleaned in the reports, which will improve the report layout.</property>
+When not checked, notes are automatically cleaned in the reports, which will improve the report layout.
+Use monospace font to keep preformatting.</property>
                         <property name="use_underline">True</property>
                         <property name="draw_indicator">True</property>
                       </object>
