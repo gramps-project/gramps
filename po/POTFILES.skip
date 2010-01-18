@@ -3,6 +3,8 @@ src/Filters/Rules/_HasLDSBase.py
 src/Filters/Rules/_HasNoteBase.py
 src/Filters/Rules/_HasReferenceCountOf.py
 src/Filters/Rules/_HasSourceBase.py
+src/Filters/Rules/_MatchesEventFilterBase.py
+src/Filters/Rules/_MatchesSourceFilterBase.py
 src/gen/db/write.py
 src/gen/lib/styledtext.py
 src/gen/lib/styledtexttagtype.py

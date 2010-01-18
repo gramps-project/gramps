@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,14 +33,14 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import MatchesFilterBase
+from Filters.Rules import MatchesSourceFilterBase
 
 #-------------------------------------------------------------------------
 #
 # MatchesFilter
 #
 #-------------------------------------------------------------------------
-class MatchesSourceFilter(MatchesFilterBase):
+class MatchesSourceFilter(MatchesSourceFilterBase):
     """
     Rule that checks against another filter.
     """
@@ -52,18 +53,3 @@ class MatchesSourceFilter(MatchesFilterBase):
 
     # we want to have this filter show source filters
     namespace   = 'Source'
-
-    def prepare(self, db):
-        MatchesFilterBase.prepare(self, db)
-        self.MSF_filt = self.find_filter()
-
-    def apply(self, db, event):
-        if self.MSF_filt is None :
-            return False
-        
-        sourcelist = [x.ref for x in event.get_source_references()]
-        for sourcehandle in sourcelist:
-            #check if source in source filter
-            if self.MSF_filt.check(db, sourcehandle):
-                return True
-        return False

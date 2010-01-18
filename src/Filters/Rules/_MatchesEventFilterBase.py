@@ -1,7 +1,6 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2010  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _MatchesEventFilterBase.py
 
 #-------------------------------------------------------------------------
 #
@@ -33,14 +32,14 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import MatchesEventFilterBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
-# MatchesFilter
+# MatchesEventFilter
 #
 #-------------------------------------------------------------------------
-class MatchesEventFilter(MatchesEventFilterBase):
+class MatchesEventFilterBase(MatchesFilterBase):
     """
     Rule that checks against another filter.
 
@@ -50,10 +49,25 @@ class MatchesEventFilter(MatchesEventFilterBase):
     """
 
     labels      = [_('Event filter name:')]
-    name        = _('Persons with events matching the <event filter>')
-    description = _("Matches persons who have events that match a certain"
+    name        = _('Objects with events matching the <event filter>')
+    description = _("Matches objects who have events that match a certain"
                     " event filter")
     category    = _('General filters')
 
     # we want to have this filter show event filters
     namespace   = 'Event'
+
+    def prepare(self, db):
+        MatchesFilterBase.prepare(self, db)
+        self.MEF_filt = self.find_filter()    
+
+    def apply(self, db, object):
+        if self.MEF_filt is None :
+            return False
+        
+        eventlist = [x.ref for x in object.get_event_ref_list()]
+        for eventhandle in eventlist:
+            #check if event in event filter
+            if self.MEF_filt.check(db, eventhandle):
+                return True
+        return False

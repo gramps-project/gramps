@@ -1,7 +1,6 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2010  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _MatchesSourceFilterBase.py
 
 #-------------------------------------------------------------------------
 #
@@ -33,27 +32,38 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import MatchesEventFilterBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
 # MatchesFilter
 #
 #-------------------------------------------------------------------------
-class MatchesEventFilter(MatchesEventFilterBase):
+class MatchesSourceFilterBase(MatchesFilterBase):
     """
     Rule that checks against another filter.
-
-    This is a base rule for subclassing by specific objects.
-    Subclasses need to define the namespace class attribute.
-    
     """
 
-    labels      = [_('Event filter name:')]
-    name        = _('Persons with events matching the <event filter>')
-    description = _("Matches persons who have events that match a certain"
-                    " event filter")
+    labels      = [_('Source filter name:')]
+    name        = _('Objects with source matching the <source filter>')
+    description = _("Matches objects with sources that match the "
+                    "specified source filter name")
     category    = _('General filters')
 
-    # we want to have this filter show event filters
-    namespace   = 'Event'
+    # we want to have this filter show source filters
+    namespace   = 'Source'
+
+    def prepare(self, db):
+        MatchesFilterBase.prepare(self, db)
+        self.MSF_filt = self.find_filter()
+
+    def apply(self, db, object):
+        if self.MSF_filt is None :
+            return False
+        
+        sourcelist = [x.ref for x in object.get_source_references()]
+        for sourcehandle in sourcelist:
+            #check if source in source filter
+            if self.MSF_filt.check(db, sourcehandle):
+                return True
+        return False
