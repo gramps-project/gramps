@@ -46,7 +46,7 @@ from gen.lib import Person
 
 from QuestionDialog import OkDialog
 from PluginUtils import Tool
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from glade import Glade
 
 #-------------------------------------------------------------------------

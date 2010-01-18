@@ -60,7 +60,7 @@ import const
 import Utils
 from QuestionDialog import QuestionDialog, QuestionDialog2
 from gui.filtereditor import FilterEditor
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #----------------------------------------------------------------
 #

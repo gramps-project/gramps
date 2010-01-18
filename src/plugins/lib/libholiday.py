@@ -25,7 +25,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 from xml.parsers import expat
 import datetime
 import math

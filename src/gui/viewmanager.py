@@ -33,7 +33,7 @@ Manages the main window and the pluggable views
 #-------------------------------------------------------------------------
 import os
 
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 from cStringIO import StringIO
 from collections import defaultdict
 

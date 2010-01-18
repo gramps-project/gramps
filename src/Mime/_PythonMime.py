@@ -20,7 +20,7 @@
 
 import mimetypes
 import const
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 _type_map = {
     'application/x-gramps' : 'Gramps database',

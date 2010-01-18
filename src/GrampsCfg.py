@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 import random
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import os
 from xml.sax.saxutils import escape
 

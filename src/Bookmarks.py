@@ -54,7 +54,7 @@ import GrampsDisplay
 import ListModel
 import Utils
 import const
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

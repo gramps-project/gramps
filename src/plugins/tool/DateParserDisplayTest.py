@@ -35,7 +35,7 @@ Tools/Debug/Check Localized Date Parser and Displayer
 #-------------------------------------------------------------------------
 import traceback
 import sys
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

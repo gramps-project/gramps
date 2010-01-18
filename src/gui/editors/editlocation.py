@@ -29,7 +29,7 @@
 from editsecondary import EditSecondary
 from glade import Glade
 from gui.widgets import MonitoredEntry
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

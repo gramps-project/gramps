@@ -36,7 +36,7 @@ from gen.plug.docgen import (GraphicsStyle, FontStyle, ParagraphStyle,
 from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, MenuReportOptions, ReportUtils
 from SubstKeywords import SubstKeywords
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #

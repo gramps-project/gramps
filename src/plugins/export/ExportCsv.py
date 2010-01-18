@@ -29,7 +29,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 import csv
 import cStringIO
 import codecs

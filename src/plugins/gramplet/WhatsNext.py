@@ -30,7 +30,7 @@ from gen.lib import EventType, FamilyRelType, MarkerType
 from gen.plug import Gramplet
 from gen.display.name import displayer as name_displayer
 from ReportBase import ReportUtils
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #

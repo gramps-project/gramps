@@ -26,7 +26,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

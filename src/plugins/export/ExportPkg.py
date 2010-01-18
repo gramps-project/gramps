@@ -36,7 +36,7 @@ import os
 import sys
 import tarfile
 from cStringIO import StringIO
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

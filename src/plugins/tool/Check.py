@@ -32,8 +32,8 @@ from __future__ import with_statement
 import os
 import cStringIO
 
-from gettext import gettext as _
-from gettext import ngettext
+from gen.ggettext import gettext as _
+from gen.ggettext import ngettext
 
 #------------------------------------------------------------------------
 #

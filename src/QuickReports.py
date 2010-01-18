@@ -30,7 +30,7 @@ This module provides the functions to build the quick report context menu's
 # python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 from cStringIO import StringIO
 
 #------------------------------------------------------------------------

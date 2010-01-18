@@ -30,7 +30,7 @@ Utility functions that depend on GUI components or for GUI components
 #
 #-------------------------------------------------------------------------
 import os
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
 # the cli only).

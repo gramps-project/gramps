@@ -29,7 +29,7 @@ Provide the different Attribute Types for GRAMPS.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

@@ -36,7 +36,7 @@ Geo View
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import os
 import urlparse
 import const

@@ -15,6 +15,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen
 
 pkgdata_PYTHON = \
 	__init__.py \
+	ggettext.py \
 	updatecallback.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen

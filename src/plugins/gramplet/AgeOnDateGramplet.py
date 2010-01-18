@@ -35,7 +35,7 @@ on a particular date.
 #
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 import DateHandler
 from QuickReports import run_quick_report_by_name
 

@@ -27,7 +27,7 @@ Display references for any object
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 def get_ref(db, objclass, handle):
     """

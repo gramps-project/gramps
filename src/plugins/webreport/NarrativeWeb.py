@@ -60,7 +60,7 @@ import codecs
 import tarfile
 import tempfile
 import operator
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from cStringIO import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize

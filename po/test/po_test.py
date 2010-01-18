@@ -172,7 +172,7 @@ def suite2():
         if glob.fnmatch.fnmatch(potfile,"*.py"):
             suite.addTest(TestGetText('test_gettext_py_%04d', potfile,
                                       ["import gettext",
-                                       "from gettext",
+                                       "from gen.ggettext",
                                        "import sgettext"]))
         elif glob.fnmatch.fnmatch(potfile,"*.glade"):
             suite.addTest(TestGetText('test_gettext_glade_%04d', potfile,

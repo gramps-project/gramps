@@ -30,8 +30,8 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
-from gettext import ngettext
+from gen.ggettext import gettext as _
+from gen.ggettext import ngettext
 import locale
 import math
 

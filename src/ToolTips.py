@@ -51,7 +51,7 @@
 #
 #------------------------------------------------------------------------
 from xml.sax.saxutils import escape
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

@@ -31,7 +31,7 @@ mechanism for the user to edit attribute information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

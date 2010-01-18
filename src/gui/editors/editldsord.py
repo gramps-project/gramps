@@ -30,7 +30,7 @@ mechanism for the user to edit personal LDS information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

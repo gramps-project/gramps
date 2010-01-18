@@ -34,8 +34,8 @@ from gen.lib import Person
 import DateHandler
 
 import posixpath
-from TransUtils import sgettext as _
-from gettext import ngettext
+from gen.ggettext import sgettext as _
+from gen.ggettext import ngettext
 
 fname_map = {'all people': _('Filtering_on|all people'), 
              'males': _('Filtering_on|males'), 

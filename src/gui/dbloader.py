@@ -31,7 +31,7 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import logging
 
 #-------------------------------------------------------------------------

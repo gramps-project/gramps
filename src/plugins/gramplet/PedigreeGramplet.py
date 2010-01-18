@@ -33,8 +33,8 @@ import locale
 #
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
-from TransUtils import sgettext as _
-from gettext import ngettext
+from gen.ggettext import sgettext as _
+from gen.ggettext import ngettext
 from gen.display.name import displayer as name_displayer
 import DateHandler
 import gen

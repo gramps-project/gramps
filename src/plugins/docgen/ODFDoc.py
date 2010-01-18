@@ -94,7 +94,7 @@ import Errors
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 _apptype = 'application/vnd.oasis.opendocument.text'
 

@@ -34,7 +34,7 @@ creating, and deleting of databases.
 #-------------------------------------------------------------------------
 import os
 import time
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 #
 # set up logging

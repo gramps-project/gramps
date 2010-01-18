@@ -27,7 +27,7 @@ Display all events on a particular day.
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import gen.lib
 
 def get_ref(db, objclass, handle):

@@ -28,8 +28,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
-from gettext import ngettext
+from gen.ggettext import sgettext as _
+from gen.ggettext import ngettext
 from cgi import escape
 import math
 

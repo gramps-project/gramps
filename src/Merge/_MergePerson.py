@@ -33,7 +33,7 @@ import pango
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 import gen.lib
 from ReportBase import ReportUtils
 from gen.display.name import displayer as name_displayer

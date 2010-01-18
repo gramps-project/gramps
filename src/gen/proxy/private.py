@@ -29,7 +29,7 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 # Python libraries
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

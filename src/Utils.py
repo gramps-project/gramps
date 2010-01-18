@@ -50,7 +50,7 @@ import Errors
 from GrampsLocale import codeset
 
 from const import TEMP_DIR, USER_HOME, WINDOWS, MACOS, LINUX, GRAMPS_UUID
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

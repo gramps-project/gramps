@@ -33,7 +33,7 @@ This module provides the model that is used for all hierarchical treeviews.
 from __future__ import with_statement
 import time
 import locale
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")

@@ -30,7 +30,7 @@ __all__ = ["LinkLabel", "EditLabel", "BasicLabel", "GenderLabel",
 #-------------------------------------------------------------------------
 import os
 import cgi
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import logging
 _LOG = logging.getLogger(".widgets.labels")
 

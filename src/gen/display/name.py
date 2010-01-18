@@ -30,7 +30,7 @@ Class handling language-specific displaying of names.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 import re
 
 #-------------------------------------------------------------------------

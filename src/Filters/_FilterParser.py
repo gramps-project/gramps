@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from xml.sax import handler
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

@@ -33,7 +33,7 @@ from __future__ import with_statement
 import os
 import shutil
 import tempfile
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import cPickle as pickle
 import time
 from bsddb import dbshelve, db

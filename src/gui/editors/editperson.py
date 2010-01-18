@@ -32,7 +32,7 @@ to edit information about a particular Person.
 #
 #-------------------------------------------------------------------------
 import locale
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

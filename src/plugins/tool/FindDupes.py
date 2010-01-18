@@ -48,7 +48,7 @@ import GrampsDisplay
 import ManagedWindow
 from PluginUtils import Tool
 from QuestionDialog import RunDatabaseRepair
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from glade import Glade
 
 #-------------------------------------------------------------------------

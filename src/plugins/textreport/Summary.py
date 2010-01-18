@@ -31,7 +31,7 @@ Reports/Text Reports/Database Summary Report.
 #
 #------------------------------------------------------------------------
 import posixpath
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

@@ -34,7 +34,7 @@ Display a person's father or mother lineage
 
 import gen.lib
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 __FMT     = "%-30s\t%-12s\t%-12s"
 __FMT_REM = "   %s: %s"

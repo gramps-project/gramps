@@ -36,7 +36,7 @@ import os
 #-------------------------------------------------------------------------
 
 import gen.lib
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from gen.plug import PluginRegister, BasePluginManager
 
 #-------------------------------------------------------------------------

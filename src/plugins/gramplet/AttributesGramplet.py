@@ -21,7 +21,7 @@
 
 from gen.plug import Gramplet
 from gen.display.name import displayer as name_displayer
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 class AttributesGramplet(Gramplet):
     """

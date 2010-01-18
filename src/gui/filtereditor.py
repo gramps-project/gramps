@@ -60,7 +60,7 @@ from QuestionDialog import QuestionDialog
 import const
 import GrampsDisplay
 import Errors
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 import gen.lib
 from Filters import Rules
 import AutoComp

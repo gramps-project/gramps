@@ -31,7 +31,7 @@ Mime utility functions for the MS Windows platform
 #-------------------------------------------------------------------------
 import os
 from _winreg import *
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

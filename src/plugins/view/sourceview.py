@@ -54,7 +54,7 @@ from gen.plug import CATEGORY_QR_SOURCE
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 
 #-------------------------------------------------------------------------

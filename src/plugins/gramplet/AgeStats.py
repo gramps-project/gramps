@@ -27,7 +27,7 @@ This Gramplet shows textual distributions of age breakdowns of various types.
 import locale
 
 from gen.plug import Gramplet
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import gen.lib
 
 class AgeStatsGramplet(Gramplet):

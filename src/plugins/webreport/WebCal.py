@@ -36,8 +36,8 @@ from __future__ import with_statement
 #------------------------------------------------------------------------
 import os, codecs, shutil, re
 import datetime, calendar
-from TransUtils import sgettext as _
-from gettext import ngettext
+from gen.ggettext import sgettext as _
+from gen.ggettext import ngettext
 from itertools import imap
 
 #------------------------------------------------------------------------

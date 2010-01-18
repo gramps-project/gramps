@@ -37,7 +37,7 @@ import locale
 import os
 from sys import maxint
 from bsddb import db
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 import logging
 LOG = logging.getLogger(".Db")

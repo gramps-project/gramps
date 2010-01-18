@@ -31,7 +31,7 @@
 import os
 import sys
 from time import localtime
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

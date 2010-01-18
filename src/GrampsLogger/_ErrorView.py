@@ -11,7 +11,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from _ErrorReportAssistant import ErrorReportAssistant
 import GrampsDisplay
 

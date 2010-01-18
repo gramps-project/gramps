@@ -30,7 +30,7 @@ Generate an hourglass graph using the GraphViz generator.
 # python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

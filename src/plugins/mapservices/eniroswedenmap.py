@@ -28,7 +28,7 @@ Eniro Sweden (Denmark) map service plugin. Opens place in kartor.eniro.se
 # python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

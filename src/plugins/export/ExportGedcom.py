@@ -29,7 +29,7 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import os
 import time
 

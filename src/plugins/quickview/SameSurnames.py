@@ -28,8 +28,8 @@ Display a people who have a person's same surname or given name.
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
-from gettext import ngettext
+from gen.ggettext import gettext as _
+from gen.ggettext import ngettext
 import gen.lib
 from Filters.Rules import Rule
 from Filters import GenericFilterFactory

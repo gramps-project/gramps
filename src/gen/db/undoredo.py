@@ -34,7 +34,7 @@ from __future__ import with_statement
 import time, os
 import cPickle as pickle
 from bsddb import db
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

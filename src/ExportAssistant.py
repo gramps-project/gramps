@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

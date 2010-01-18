@@ -56,7 +56,7 @@ from PluginUtils import Tool
 from ReportBase import ReportUtils
 import GrampsDisplay 
 import ManagedWindow
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from glade import Glade
 from gui.filtereditor import FilterEditor
 

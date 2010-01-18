@@ -25,7 +25,7 @@ Provide a simplified table creation interface
 
 import cgi
 import copy
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 import gen.lib
 import Errors

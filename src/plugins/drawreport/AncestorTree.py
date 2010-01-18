@@ -29,7 +29,7 @@
 #
 #------------------------------------------------------------------------
 import math
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 #------------------------------------------------------------------------
 #
 # GRAMPS modules

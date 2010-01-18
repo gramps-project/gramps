@@ -30,8 +30,8 @@
 #
 #-------------------------------------------------------------------------
 import time
-from TransUtils import sgettext as _
-from gettext import ngettext
+from gen.ggettext import sgettext as _
+from gen.ggettext import ngettext
 import csv
 import codecs
 import cStringIO

@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from bsddb import db as bsddb_db
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 from DdTargets import DdTargets
 import cPickle as pickle
 

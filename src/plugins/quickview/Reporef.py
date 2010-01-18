@@ -32,7 +32,7 @@ Display RepoRef for sources related to active repository
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 def run(database, document, repo):
     """

@@ -30,7 +30,7 @@ long running operations.
 #
 #-------------------------------------------------------------------------
 import time
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import logging
 log = logging.getLogger("gen.progressdialog")
 

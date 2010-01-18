@@ -28,7 +28,7 @@ Display a person's siblings in a report window
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 import Relationship
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 def run(database, document, person):
     """

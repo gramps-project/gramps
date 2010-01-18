@@ -20,7 +20,7 @@
 
 # $Id$
 
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import gtk
 import pango
 

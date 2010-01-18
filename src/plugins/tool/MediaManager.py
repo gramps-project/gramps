@@ -55,7 +55,7 @@ from gen.lib import MediaObject
 from gen.updatecallback import UpdateCallback
 from PluginUtils import Tool
 from Utils import media_path_full, relative_path, media_path
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

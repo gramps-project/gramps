@@ -40,7 +40,7 @@ from gen.display.name import displayer as name_displayer
 from PluginUtils import Tool
 import GrampsDisplay
 import ManagedWindow
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from glade import Glade
 from gui.editors import EditPerson
 

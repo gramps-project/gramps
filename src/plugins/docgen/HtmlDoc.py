@@ -36,7 +36,7 @@ Report output generator for html documents, based on Html and HtmlBackend
 import os
 import shutil
 import time
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

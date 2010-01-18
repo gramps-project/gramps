@@ -64,7 +64,7 @@ from gen.plug import CATEGORY_QR_PERSON
 # internationalization
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

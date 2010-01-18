@@ -207,34 +207,6 @@ class Translator:
             sep_idx = msgid.rfind(sep)
             msgval = msgid[sep_idx+1:]
         return unicode(msgval)
-    
-    def sngettext(self, singular, plural, n, sep='|'):
-        """
-        Strip the context used for resolving translation ambiguities.
-        
-        The translation of singular/plural is returned unless the translation is
-        not available and the singular contains the separator. In that case,
-        the returned value is the portion of singular following the last
-        separator. Default separator is '|'.
-    
-        :param singular: The singular form of the string to be translated.
-                          may contain a context seperator
-        :type singular: unicode
-        :param plural: The plural form of the string to be translated.
-        :type plural: unicode
-        :param n: the amount for which to decide the translation
-        :type n: int
-        :param sep: The separator marking the context.
-        :type sep: unicode
-        :returns: Translation or the original with context stripped.
-        :rtype: unicode
-    
-        """
-        msgval = self.ngettext(singular, plural, n)
-        if msgval == singular:
-            sep_idx = singular.rfind(sep)
-            msgval = singular[sep_idx+1:]
-        return unicode(msgval)
         
     def get_date(self, date):
         """

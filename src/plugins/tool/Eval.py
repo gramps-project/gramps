@@ -31,7 +31,7 @@ Provide a python evaluation window
 #------------------------------------------------------------------------
 import cStringIO
 import sys
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import traceback
 
 #------------------------------------------------------------------------

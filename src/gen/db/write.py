@@ -38,7 +38,7 @@ import locale
 import bisect
 from functools import wraps
 
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 from bsddb import dbshelve, db
 import logging
 from sys import maxint

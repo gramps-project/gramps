@@ -25,7 +25,7 @@
     
     Tools/Debug/Dump Gender Statistics
 """
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import gtk
 import ListModel
 import ManagedWindow

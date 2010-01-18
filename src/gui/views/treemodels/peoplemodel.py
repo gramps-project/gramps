@@ -33,8 +33,7 @@ TreeModel for the GRAMPS Person tree.
 #
 #-------------------------------------------------------------------------
 from __future__ import with_statement
-#from gettext import gettext as _
-from TransUtils import gettext as _
+from gen.ggettext import gettext as _
 import time
 import cgi
 

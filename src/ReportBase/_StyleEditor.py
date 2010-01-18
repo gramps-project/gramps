@@ -31,7 +31,7 @@ Paragraph/Font style editor
 # Python modules
 #
 #------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 import logging
 log = logging.getLogger(".")
 

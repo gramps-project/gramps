@@ -30,7 +30,7 @@ __all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import re
 
 import logging

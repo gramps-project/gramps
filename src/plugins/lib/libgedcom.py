@@ -91,7 +91,7 @@ import os
 import re
 import time
 import codecs
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
 import cStringIO

@@ -36,7 +36,7 @@ from gui.views.treemodels import PlaceModel
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

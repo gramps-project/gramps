@@ -40,7 +40,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow

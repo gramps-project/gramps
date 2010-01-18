@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 from __future__ import with_statement
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

@@ -24,7 +24,7 @@
 Provide utilities for printing endnotes in text reports.
 """
 from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 def add_endnote_styles(style_sheet):
     """

@@ -28,7 +28,7 @@ import urllib2
 import gtk
 import os
 from tempfile import mkstemp
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 from glade import Glade
 import libgedcom
 

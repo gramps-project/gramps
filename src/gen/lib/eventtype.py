@@ -29,7 +29,7 @@ Provide the different event types
 # Python modules
 #
 #------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

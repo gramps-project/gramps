@@ -23,7 +23,7 @@
 #
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 def run(database, document, attribute, value=None):
     sdb = SimpleAccess(database)

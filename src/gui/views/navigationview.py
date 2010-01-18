@@ -47,7 +47,7 @@ import gtk
 #
 #----------------------------------------------------------------
 from gui.views.pageview import PageView
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from Utils import navigation_label
 
 DISABLED = -1

@@ -50,7 +50,7 @@ from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
 import gen.lib
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from glade import Glade
 
 #-------------------------------------------------------------------------

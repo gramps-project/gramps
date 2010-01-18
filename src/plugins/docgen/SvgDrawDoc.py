@@ -30,7 +30,7 @@ SVG document generator.
 # python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import StringIO
 
 #-------------------------------------------------------------------------

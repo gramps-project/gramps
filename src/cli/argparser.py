@@ -35,7 +35,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 #-------------------------------------------------------------------------
 import sys
 import getopt
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import logging
 
 #-------------------------------------------------------------------------

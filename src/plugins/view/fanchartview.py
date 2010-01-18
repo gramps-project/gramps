@@ -43,7 +43,7 @@ try:
     import cairo
 except ImportError:
     pass
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 if gtk.pygtk_version < (2,3,93):
     raise Exception("PyGtk 2.3.93 or later required")

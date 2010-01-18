@@ -26,7 +26,7 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import cPickle as pickle
 
 #-------------------------------------------------------------------------

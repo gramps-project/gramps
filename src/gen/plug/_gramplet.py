@@ -21,7 +21,7 @@
 # $Id$
 
 import types
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 class Gramplet(object):
     """

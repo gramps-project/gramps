@@ -32,7 +32,7 @@ scheme specified in the database's prefix ids
 #
 #------------------------------------------------------------------------
 import re
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

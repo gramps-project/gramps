@@ -50,7 +50,7 @@ import TreeTips
 import DateHandler
 import GrampsDisplay
 import ManagedWindow
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from Utils import mac
 from glade import Glade
 from DdTargets import DdTargets

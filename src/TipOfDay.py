@@ -31,7 +31,7 @@ Handles the Tip of the Day dialog
 #-------------------------------------------------------------------------
 from xml.parsers.expat import ParserCreate,ExpatError
 from random import Random
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import os
 
 #-------------------------------------------------------------------------

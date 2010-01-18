@@ -61,7 +61,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+from gen.ggettext import sgettext as _
 from gen.lib import Date
 import DateHandler
 import const

@@ -29,7 +29,7 @@
 import sys
 import os
 import const
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import logging
 
 LOG = logging.getLogger(".grampsgui")

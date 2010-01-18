@@ -1,4 +1,4 @@
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 import Assistant
 import const
 import gtk

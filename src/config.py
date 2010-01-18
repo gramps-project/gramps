@@ -33,7 +33,7 @@ This package implements access to GRAMPS configuration.
 #
 #---------------------------------------------------------------
 import os, sys
-from gettext import gettext as _
+from gen.ggettext import gettext as _
 
 #---------------------------------------------------------------
 #

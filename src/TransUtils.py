@@ -30,7 +30,7 @@ Provide translation assistance
 # python modules
 #
 #------------------------------------------------------------------------
-import gettext as translate
+import gettext
 import sys
 import os
 
@@ -67,8 +67,8 @@ def setup_gettext():
     :returns: Nothing.
 
     """
-    translate.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-    translate.textdomain(LOCALEDOMAIN)
+    gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+    gettext.textdomain(LOCALEDOMAIN)
     
     #following installs _ as a python function, we avoid this as TransUtils is
     #used sometimes:
@@ -106,10 +106,10 @@ def get_addon_translator(filename=None, domain="addon"):
     """
     if filename is None:
         filename = sys._getframe(1).f_code.co_filename
-    gramps_translator = translate.translation(LOCALEDOMAIN, LOCALEDIR,
+    gramps_translator = gettext.translation(LOCALEDOMAIN, LOCALEDIR,
                                             fallback=True)
     path = os.path.dirname(os.path.abspath(filename))
-    addon_translator = translate.translation(domain, os.path.join(path,"locale"),
+    addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
                                            fallback=True)
     gramps_translator.add_fallback(addon_translator)
     return gramps_translator # with a language fallback
@@ -133,64 +133,3 @@ def get_available_translations():
     languages.sort()
 
     return languages
-
-def gettext(msgid):
-    """
-    Obtain translation of gettext, return a unicode object
-    :param msgid: The string to translated.
-    :type msgid: unicode
-    :returns: Translation or the original with context stripped.
-    :rtype: unicode
-    """
-    return unicode(translate.gettext(msgid))
-    
-def sgettext(msgid, sep='|'):
-    """
-    Strip the context used for resolving translation ambiguities.
-    
-    The translation of msgid is returned unless the translation is
-    not available and the msgid contains the separator. In that case,
-    the returned value is the portion of msgid following the last
-    separator. Default separator is '|'.
-
-    :param msgid: The string to translated.
-    :type msgid: unicode
-    :param sep: The separator marking the context.
-    :type sep: unicode
-    :returns: Translation or the original with context stripped.
-    :rtype: unicode
-
-    """
-    msgval = translate.gettext(msgid)
-    if msgval == msgid:
-        sep_idx = msgid.rfind(sep)
-        msgval = msgid[sep_idx+1:]
-    return unicode(msgval)
-
-def sngettext(singular, plural, n, sep='|'):
-    """
-    Strip the context used for resolving translation ambiguities.
-    
-    The translation of singular/plural is returned unless the translation is
-    not available and the singular contains the separator. In that case,
-    the returned value is the portion of singular following the last
-    separator. Default separator is '|'.
-
-    :param singular: The singular form of the string to be translated.
-                      may contain a context seperator
-    :type singular: unicode
-    :param plural: The plural form of the string to be translated.
-    :type plural: unicode
-    :param n: the amount for which to decide the translation
-    :type n: int
-    :param sep: The separator marking the context.
-    :type sep: unicode
-    :returns: Translation or the original with context stripped.
-    :rtype: unicode
-
-    """
-    msgval = translate.ngettext(singular, plural, n)
-    if msgval == singular:
-        sep_idx = singular.rfind(sep)
-        msgval = singular[sep_idx+1:]
-    return unicode(msgval)
