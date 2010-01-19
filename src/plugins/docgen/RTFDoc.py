@@ -398,25 +398,42 @@ class RTFDoc(BaseDoc,TextDoc):
     
     def write_styled_note(self,styledtext,format,style_name):
         text = str(styledtext)
-        if format == 1:
+        if format:
             # Preformatted note
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
                 self.write_text(line)
                 if self.in_table:
-                    # Add LF when in table as in indiv_complete report
+                #    # Add LF when in table as in indiv_complete report
                     self.write_text('\n')
                 self.end_paragraph()
-        elif format == 0:
+        else:
+            firstline = True
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
-                line = line.replace('\n',' ')
-                line = ' '.join(line.split())
+                if len(line) > 0:
+                    # Remember first char, can be a LF.
+                    firstchar = line[0] 
+                    # Replace all LF's with space and reformat.
+                    line = line.replace('\n',' ')
+                    line = ' '.join(line.split())
+                    # If rememberd first char is LF, insert in front of lines
+                    #This takes care of the case with even number of empry lines.
+                    if firstchar == '\n':
+                        line = firstchar + line
+                    #Insert LF's if not first line.
+                    if not firstline:
+                        line = '\n\n' + line
+                else:
+                    # If odd number of empty lines line will be empty.
+                    line = '\n\n'
                 self.write_text(line)
                 self.end_paragraph()
-        self.start_paragraph(style_name)
-        self.write_text('\n')
-        self.end_paragraph()
+                firstline = False
+            self.start_paragraph(style_name)
+            self.write_text('\n')
+            self.end_paragraph()
+        print
 
     def write_endnotes_ref(self,text,style_name):
         """
@@ -429,9 +446,8 @@ class RTFDoc(BaseDoc,TextDoc):
                 # Add LF when in table as in indiv_complete report
                 self.write_text('\n')
             self.end_paragraph()
-        # Write NL after all ref lines for each source
+        # Write an empty para after all ref lines for each source
         self.start_paragraph(style_name)
-        self.write_text('\n')
         self.end_paragraph()
 
     #--------------------------------------------------------------------
