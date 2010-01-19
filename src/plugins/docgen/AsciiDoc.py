@@ -234,16 +234,25 @@ class AsciiDoc(BaseDoc,TextDoc):
             # If we have a leader then we need to reformat the text
             # as if there's no special treatment for the first line.
             # Then add leader and eat up the beginning of the first line pad.
-            start_at = regular_indent + min(len(self.leader)+first_indent,0)
-            this_text = reformat_para(self.text,regular_indent,right,fmt,
-                                      right_pad)
-            this_text = ' '*(regular_indent+first_indent) + \
-                        self.leader + this_text[start_at:]
+            # Do not reformat if preformatted notes
+            if not self.__note_format:
+                start_at = regular_indent + min(len(self.leader)+first_indent,0)
+                this_text = reformat_para(self.text,regular_indent,right,fmt,
+                                          right_pad)
+                this_text = ' '*(regular_indent+first_indent) + \
+                                 self.leader + this_text[start_at:]
+            else:
+                this_text = self.text
         else:
             # If no leader then reformat the text according to the first
             # line indent, as specified by style.
-            this_text = reformat_para(self.text,regular_indent,right,fmt,
+            # Do not reformat if preformatted notes
+            if not self.__note_format:
+                this_text = reformat_para(self.text,regular_indent,right,fmt,
                                       right_pad,first_indent)
+            else:
+                this_text = self.text
+
         if self.__note_format:
             # don't add an extra LF before the_pad if preformatted notes.
             if this_text != '\n':
@@ -355,19 +364,18 @@ class AsciiDoc(BaseDoc,TextDoc):
 
     def write_styled_note(self,styledtext,format,style_name):
         text = str(styledtext)
-        if format == 1:
-            # Preformatted note
+        if format:
+            #Preformatted note, keep all white spaces, tabs, LF's
             self.__note_format = True
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
                 self.write_text(line)
                 self.end_paragraph()
-            # Add an extra LF after all lines in each preformatted note
-            self.__note_format = False
+            # Add an extra empty para all lines in each preformatted note
             self.start_paragraph(style_name)
-            self.write_text('\n')
             self.end_paragraph()
-        elif format == 0:
+            self.__note_format = False
+        else:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
@@ -379,16 +387,10 @@ class AsciiDoc(BaseDoc,TextDoc):
         """
         Overwrite base method for lines of endnotes references
         """
-        self.__note_format = True
         for line in text.split('\n'):
             self.start_paragraph(style_name)
             self.write_text(line)
             self.end_paragraph()
-        # Add an extra LF after all lines in each preformatted note
-        self.__note_format = False
-        self.start_paragraph(style_name)
-        self.write_text('\n')
-        self.end_paragraph()
 
     #--------------------------------------------------------------------
     #
