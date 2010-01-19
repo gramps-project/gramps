@@ -69,6 +69,7 @@ from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
 from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
+from Filters.SideBar import PlaceSidebarFilter, EventSidebarFilter
 
 #-------------------------------------------------------------------------
 #
@@ -238,7 +239,6 @@ class GeoView(HtmlView):
     """
     The view used to render html pages.
     """
-
     def __init__(self, dbstate, uistate):
         HtmlView.__init__(self, dbstate, uistate, title=_("GeoView"))
         self.dbstate = dbstate
@@ -256,6 +256,7 @@ class GeoView(HtmlView):
         self.nbpages = 0
         self.last_index = 0
         self.yearinmarker = []
+        self.javascript_ready = False
         self.mustcenter = False
         self.centerlat = self.centerlon = 0.0
         self.setattr = True
@@ -330,6 +331,9 @@ class GeoView(HtmlView):
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
         self.endinit = False
+        self.generic_filter = None
+        self.hpaned = gtk.HBox() # for filters
+        self.filter.pack_start(self.hpaned, True, True)
         self.signal_map = {'place-add': self._place_changed,
                            'place-update' : self._place_changed}
 
@@ -339,6 +343,7 @@ class GeoView(HtmlView):
         """
         self.displaytype = "places"
         self._set_lock_unlock(True)
+        self.filter_toggle(None, None, None, None)
         self._geo_places()
         
     def top_widget(self):
@@ -381,6 +386,10 @@ class GeoView(HtmlView):
         self.box1.pack_start(box, False, False, padding=2)
         self.box1.pack_start(self.title, False, False, padding=2)
         self.box1.show_all()
+        if self.displaytype == "places":
+            self.build_filters_container(self.filter, PlaceSidebarFilter)
+        elif self.displaytype == "event":
+            self.build_filters_container(self.filter, EventSidebarFilter)
         return self.box1
 
     def _entry_key_event(self, widget, event):
@@ -556,8 +565,9 @@ class GeoView(HtmlView):
         """
         We need to call javascript to show the info bubble.
         """
-        self.renderer.execute_script("javascript:placeclick('%d')" % 
-                                     marker_index)
+        if self.javascript_ready:
+            self.renderer.execute_script("javascript:placeclick('%d')" % 
+                                         marker_index)
 
     def _erase_placebox_selection(self, arg):
         """
@@ -732,12 +742,13 @@ class GeoView(HtmlView):
         """
         Ask to the renderer to show All or specific markers.
         """
-        if year == _("All"):
-            self.renderer.execute_script(
-                "javascript:selectmarkers('All')")
-        else:
-            self.renderer.execute_script(
-                "javascript:selectmarkers('%s')" % year )
+        if self.javascript_ready:
+            if year == _("All"):
+                self.renderer.execute_script(
+                    "javascript:selectmarkers('All')")
+            else:
+                self.renderer.execute_script(
+                    "javascript:selectmarkers('%s')" % year )
 
     def ui_definition(self):
         """
@@ -820,6 +831,10 @@ class GeoView(HtmlView):
                         _("Reload the map with new style."),
                         self._gotostyle,
                         _('Select a StyleSheet'))
+        self._add_toggle_action('Filter', None, _('_Filter'), 
+                                callback=self.filter_toggle_action,
+                                value=config.get('interface.filter'))
+        config.connect('interface.filter',self.filter_toggle)
 
     def go_back(self, button): # pylint: disable-msg=W0613
         """
@@ -876,6 +891,7 @@ class GeoView(HtmlView):
         self._set_mapstylelabel(self.stylesheet)
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
+        self.filter_toggle(None, None, None, None)
         self._geo_places()
 
     def __create_styles_menu_actions(self):
@@ -929,6 +945,7 @@ class GeoView(HtmlView):
         """
         if not self.uistate.get_active('Person'):
             return
+        self.filter_toggle(None, None, None, None)
         self._geo_places()
 
     def _goto_active_person(self, handle=None): # pylint: disable-msg=W0613
@@ -937,6 +954,7 @@ class GeoView(HtmlView):
         """
         if not self.uistate.get_active('Person'):
             return
+        self.filter_toggle(None, None, None, None)
         self._geo_places()
 
     def _all_places(self, hanle=None): # pylint: disable-msg=W0613
@@ -944,6 +962,7 @@ class GeoView(HtmlView):
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
+        self.build_filters_container(self.filter, PlaceSidebarFilter)
         self._geo_places()
 
     def _person_places(self, handle=None): # pylint: disable-msg=W0613
@@ -951,6 +970,7 @@ class GeoView(HtmlView):
         Specifies the person places.
         """
         self.displaytype = "person"
+        self.no_filter()
         if not self.uistate.get_active('Person'):
             return
         self._geo_places()
@@ -960,6 +980,7 @@ class GeoView(HtmlView):
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
+        self.no_filter()
         if not self.uistate.get_active('Person'):
             return
         self._geo_places()
@@ -969,6 +990,7 @@ class GeoView(HtmlView):
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
+        self.build_filters_container(self.filter, EventSidebarFilter)
         self._geo_places()
 
     def _new_database(self, db):
@@ -999,6 +1021,7 @@ class GeoView(HtmlView):
         self.nbmarkers = 0
         self.nbplaces = 0
         self.without = 0
+        self.javascript_ready = False
         self._createmapstraction(self.displaytype)
 
     def _set_lock_unlock(self, state):
@@ -1690,7 +1713,12 @@ class GeoView(HtmlView):
         longitude = ""
         self.center = True
 
-        for place in dbstate.db.iter_places():
+        if self.generic_filter == None or not config.get('interface.filter'):
+            places_handle = dbstate.db.iter_place_handles()
+        else:
+            places_handle = self.generic_filter.apply(dbstate.db, dbstate.db.iter_place_handles())
+        for place_hdl in places_handle:
+            place = dbstate.db.get_place_from_handle(place_hdl)
             descr = place.get_title()
             descr1 = _("Id : %s") % place.gramps_id
             longitude = place.get_longitude()
@@ -1727,7 +1755,12 @@ class GeoView(HtmlView):
         longitude = ""
         self.center = True
 
-        for event in dbstate.db.iter_events():
+        if self.generic_filter == None or not config.get('interface.filter'):
+            events_handle = dbstate.db.iter_event_handles()
+        else:
+            events_handle = self.generic_filter.apply(dbstate.db, dbstate.db.iter_event_handles())
+        for event_hdl in events_handle:
+            event = dbstate.db.get_event_from_handle(event_hdl)
             place_handle = event.get_place_handle()
             eventyear = event.get_date_object().to_calendar(self.cal).get_year()
             if place_handle:
@@ -1962,6 +1995,7 @@ class GeoView(HtmlView):
         """
         if self.endinit:
             self.open(url)
+            self.javascript_ready = True
 
     def _add_place(self,url):
         """
@@ -1990,3 +2024,78 @@ class GeoView(HtmlView):
                 EditPlace(self.dbstate, self.uistate, [], place)
             except Errors.WindowActiveError:
                 pass
+
+    ####################################################################
+    # Filters
+    ####################################################################
+    def build_filters_container(self, box, filter_class):
+        """
+        Used to create the filters on Geoview.
+        Depending on the events view or places, view we must generate the
+        good filter.
+        We need to remove the old filter if it exists then add the new one.
+        """
+        try:
+            self.vbox.destroy()
+        except:  # pylint: disable-msg=W0704
+            pass # pylint: disable-msg=W0702
+        for child in self.hpaned.get_children(): # cleanup
+            self.hpaned.remove(child)
+        self.vbox = gtk.VBox()
+        self.hpaned.pack_start(self.vbox, True, True)
+        self.filter_sidebar = filter_class(self.dbstate, self.uistate, 
+                                           self.filter_clicked)
+        self.filter_pane = self.filter_sidebar.get_widget()
+        self.hpaned.pack_end(self.filter_pane, False, False)
+        box.show_all()
+        self.filter_toggle(None, None, None, None)
+
+    def no_filter(self):
+        """
+        We don't need a filter for the current view.
+        """
+        try:
+            self.filter_pane.hide()
+        except:  # pylint: disable-msg=W0704
+            pass # pylint: disable-msg=W0702
+
+    def filter_toggle(self, client, cnxn_id, entry, data):
+        """
+        We must show or hide the filter depending on the filter toggle button.
+        """
+        if not self.endinit:
+            return
+
+        if self.displaytype == "places" or self.displaytype == "event":
+            if config.get('interface.filter'):
+                self.filter_pane.show()
+            else:
+                self.filter_pane.hide()
+
+    def filter_toggle_action(self, obj):
+        """
+        Depending on the filter toggle button action, we must show or hile
+        the filter then save the state in the config file.
+        """
+        if self.displaytype == "places" or self.displaytype == "event":
+            if obj.get_active():
+                self.filter_pane.show()
+                active = True
+            else:
+                self.filter_pane.hide()
+                active = False
+            config.set('interface.filter', active)
+            self.build_tree()
+
+    def filter_clicked(self):
+        """
+        We have clicked on the Find button into the filter box.
+        """
+        self.generic_filter = self.filter_sidebar.get_filter()
+        self.build_tree()
+
+    def build_tree(self):
+        """
+        Builds the new view depending on the filter.
+        """
+        self._geo_places()

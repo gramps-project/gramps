@@ -425,6 +425,7 @@ class HtmlView(PageView):
         self.renderer = None
         self.urlfield = ""
         self.htmlfile = ""
+        self.filter = gtk.HBox()
         self.table = ""
         self.browser = NOWEB
         self.bootstrap_handler = None
@@ -441,6 +442,7 @@ class HtmlView(PageView):
         self.box.pack_start(self.top_widget(), False, False, 0 )
         #web page under it in a scrolled window
         self.table = gtk.Table(1, 1, False)
+        frames = gtk.HBox(False, 4)
         frame = gtk.ScrolledWindow(None, None)
         frame.set_shadow_type(gtk.SHADOW_NONE)
         frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -457,11 +459,15 @@ class HtmlView(PageView):
             # We use gtkmozembed
             self.renderer = RendererMozilla()
         self.table.add(self.renderer.get_window())
-        self.box.pack_start(frame, True, True, 0)
+        frames.set_homogeneous(False)
+        frames.pack_start(frame, True, True, 0)
+        frames.pack_end(self.filter, False, False, 0)
+        self.box.pack_start(frames, True, True, 0)
         # this is used to activate the back and forward button
         # from the renderer class.
         self.renderer.fct = lambda: self.set_button_sensitivity
         self.renderer.show_all()
+        self.filter.hide()
         #load a welcome html page
         urlhelp = self._create_start_page()
         self.open(urlhelp)
