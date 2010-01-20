@@ -992,12 +992,18 @@ class Date(object):
         elif comparison == "<":
             # If any < any
             return self_start < other_stop
+        elif comparison == "<=":
+            # If any < any
+            return self_start <= other_stop
         elif comparison == "<<":
             # If all < all
             return self_stop < other_start
         elif comparison == ">":
             # If any > any
             return self_stop > other_start
+        elif comparison == ">=":
+            # If any > any
+            return self_stop >= other_start
         elif comparison == ">>":
             # If all > all
             return self_start > other_stop
