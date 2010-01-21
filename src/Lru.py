@@ -75,7 +75,8 @@ class LRU(object):
             lnk.next.prev = None
             self.first = lnk.next
             lnk.next = None
-            del self.data[lnk.value[0]]
+            if lnk.value[0] in self.data:
+                del self.data[lnk.value[0]]
             del lnk
 
     def __delitem__(self, obj):
