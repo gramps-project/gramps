@@ -221,7 +221,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             self.model.append(row=[time_text,mod_text,fg,bg])
 
         # Get the not-None portion of transaction list
-        translist = [item for item in self.undodb.translist if item]
+        translist = filter(None, self.undodb.translist)
         for transaction in translist:
             time_text = time.ctime(transaction.timestamp)
             mod_text = transaction.get_description()

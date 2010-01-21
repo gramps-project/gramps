@@ -171,7 +171,7 @@ class DjangoInterface(object):
             else:
                 return gen.lib.Name().serialize()
         else:
-            return [self.pack_name(name) for name in names]
+            return map(self.pack_name, names)
      
     def get_datamap(self, obj): # obj is source
         datamap_dict = {}
@@ -202,10 +202,10 @@ class DjangoInterface(object):
         obj_type = ContentType.objects.get_for_model(obj)
         reporefs = models.RepositoryRef.objects.filter(object_id=obj.id, 
                                                    object_type=obj_type)
-        return [self.pack_repository_ref(repo) for repo in reporefs]
+        return map(self.pack_repository_ref, reporefs)
 
     def get_url_list(self, obj):
-        return [self.pack_url(url) for url in obj.url_set.all().order_by("order")]
+        return map(self.pack_url, obj.url_set.all().order_by("order"))
 
     def get_address_list(self, obj, with_parish): # person or repository
         addresses = obj.address_set.all().order_by("order")
@@ -257,12 +257,12 @@ class DjangoInterface(object):
 
     def get_person_ref_list(self, person):
         obj_type = ContentType.objects.get_for_model(person)
-        return [self.pack_person_ref(x) for x in 
+        return map(self.pack_person_ref, 
                 models.PersonRef.objects.filter(object_id=person.id, 
-                                            object_type=obj_type)]
+                                            object_type=obj_type))
 
     def get_lds_list(self, obj): # person or family
-        return [self.pack_lds(lds) for lds in obj.lds_set.all().order_by("order")]
+        return map(self.pack_lds, obj.lds_set.all().order_by("order"))
 
     def get_place_handle(self, obj): # obj is event
         if obj.place:

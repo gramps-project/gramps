@@ -68,7 +68,7 @@ class LdsOrdBase(object):
         """
         Convert a serialized tuple of data to an object
         """
-        self.lds_ord_list = [LdsOrd().unserialize(item) for item in data]
+        self.lds_ord_list = map(LdsOrd().unserialize, data)
 
     def add_lds_ord(self, lds_ord):
         """

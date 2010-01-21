@@ -683,7 +683,7 @@ class SimpleAccess(object):
 
         if obj:
             handles = [ ref.ref for ref in obj.get_source_references() ]
-            return [ self.dbase.get_source_from_handle(h) for h in handles ]
+            return map(self.dbase.get_source_from_handle, handles)
         else:
             return []
 

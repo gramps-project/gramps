@@ -814,7 +814,7 @@ class ProgenParser(object):
                 per_klad = recflds[per_klad_ix]
                 per_info = recflds[per_info_ix]
 
-                note_txt = [x for x in [per_info, per_klad] if x]
+                note_txt = filter(None, [per_info, per_klad])
                 if note_txt:
                     note = gen.lib.Note()
                     note.set('\n'.join(note_txt))
@@ -860,7 +860,7 @@ class ProgenParser(object):
                 source_text = recflds[birth_source_text_ix]
                 info = recflds[birth_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [info, time, source_text] if x]
+                    desc = filter(None, [info, time, source_text])
                     desc = desc and '; '.join(desc) or None
                     event, birth_ref = self.__create_event_and_ref(gen.lib.EventType.BIRTH, desc, date, place, srcref)
                     person.set_birth_ref(birth_ref)
@@ -883,7 +883,7 @@ class ProgenParser(object):
                 source_text = recflds[bapt_source_text_ix]
                 info = recflds[bapt_info_ix]
                 if date or place or info or srcref or reli or witness:
-                    desc = [x for x in [reli, info, source_text] if x]
+                    desc = filter(None, [reli, info, source_text])
                     desc = desc and '; '.join(desc) or None
                     event, bapt_ref = self.__create_event_and_ref(gen.lib.EventType.BAPTISM, desc, date, place, srcref)
                     person.add_event_ref(bapt_ref)
@@ -919,7 +919,7 @@ class ProgenParser(object):
                 source_text = recflds[death_source_text_ix]
                 info = recflds[death_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [info, time, source_text] if x]
+                    desc = filter(None, [info, time, source_text])
                     desc = desc and '; '.join(desc) or None
                     event, death_ref = self.__create_event_and_ref(gen.lib.EventType.DEATH, desc, date, place, srcref)
                     person.set_death_ref(death_ref)
@@ -940,7 +940,7 @@ class ProgenParser(object):
                 source_text = recflds[bur_source_text_ix]
                 info = recflds[bur_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [info, source_text] if x]
+                    desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
                     event, burial_ref = self.__create_event_and_ref(gen.lib.EventType.BURIAL, desc, date, place, srcref)
                     person.add_event_ref(burial_ref)
@@ -962,7 +962,7 @@ class ProgenParser(object):
                 info = recflds[crem_info_ix]
                 if date or place or info or srcref:
                     # TODO. Check that not both burial and cremation took place.
-                    desc = [x for x in [info, source_text] if x]
+                    desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
                     event, cremation_ref = self.__create_event_and_ref(gen.lib.EventType.CREMATION, desc, date, place, srcref)
                     person.add_event_ref(cremation_ref)
@@ -1074,7 +1074,7 @@ class ProgenParser(object):
                 rel_klad = recflds[rel_klad_ix]
                 rel_info = recflds[rel_info_ix]
 
-                note_txt = [x for x in [rel_info, rel_klad] if x]
+                note_txt = filter(None, [rel_info, rel_klad])
                 if note_txt:
                     note = gen.lib.Note()
                     note.set('\n'.join(note_txt))
@@ -1095,7 +1095,7 @@ class ProgenParser(object):
                 source_text = recflds[mar_source_text_ix]
                 info = recflds[mar_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [info, source_text] if x]
+                    desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
                     event, mar_ref = self.__create_event_and_ref(gen.lib.EventType.MARRIAGE, desc, date, place, srcref)
                     fam.add_event_ref(mar_ref)
@@ -1127,7 +1127,7 @@ class ProgenParser(object):
                 source_text = recflds[marc_source_text_ix]
                 info = recflds[marc_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [reli, info, source_text] if x]
+                    desc = filter(None, [reli, info, source_text])
                     desc.insert(0, 'Kerkelijk huwelijk')
                     desc = desc and '; '.join(desc) or None
                     event, marc_ref = self.__create_event_and_ref(gen.lib.EventType.MARRIAGE, desc, date, place, srcref)
@@ -1159,7 +1159,7 @@ class ProgenParser(object):
                 source_text = recflds[marl_source_text_ix]
                 info = recflds[marl_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [info, source_text] if x]
+                    desc = filter(None, [info, source_text])
                     desc.insert(0, 'Ondertrouw')
                     desc = desc and '; '.join(desc) or None
                     event, marl_ref = self.__create_event_and_ref(gen.lib.EventType.MARR_LIC, desc, date, place, srcref)
@@ -1187,7 +1187,7 @@ class ProgenParser(object):
                 source_text = recflds[civu_source_text_ix]
                 info = recflds[civu_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [info, source_text] if x]
+                    desc = filter(None, [info, source_text])
                     desc.insert(0, 'Samenwonen')
                     desc = desc and '; '.join(desc) or None
                     event, civu_ref = self.__create_event_and_ref(gen.lib.EventType.UNKNOWN, desc, date, place, srcref)
@@ -1211,7 +1211,7 @@ class ProgenParser(object):
                 source_text = recflds[div_source_text_ix]
                 info = recflds[div_info_ix]
                 if date or place or info or srcref:
-                    desc = [x for x in [info, source_text] if x]
+                    desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
                     event, div_ref = self.__create_event_and_ref(gen.lib.EventType.DIVORCE, desc, date, place, srcref)
                     fam.add_event_ref(div_ref)

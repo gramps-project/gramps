@@ -241,7 +241,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        add_list = [item for item in self.lds_ord_list if item]
+        add_list = filter(None, self.lds_ord_list)
         return self.media_list + self.attribute_list + \
                 self.source_list + add_list
 

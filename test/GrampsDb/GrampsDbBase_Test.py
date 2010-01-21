@@ -33,7 +33,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         source = self._add_source()
         person = self._add_person_with_sources([source])
         
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
+        references = list(self._db.find_backlink_handles(source.get_handle()))
 
         assert len(references) == 1
         assert references[0] == (gen.lib.Person.__name__,person.get_handle())
@@ -44,7 +44,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         repos = self._add_repository()
         source = self._add_source(repos=repos)
         
-        references = [ ref for ref in self._db.find_backlink_handles(repos.get_handle()) ]
+        references = list(self._db.find_backlink_handles(repos.get_handle()))
 
         assert len(references) == 1
         assert references[0] == (gen.lib.Source.__name__,source.get_handle())
@@ -61,7 +61,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         self._add_media_object_with_sources([source])
 
         # make sure that we have the correct number of references (one for each object)
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
+        references = list(self._db.find_backlink_handles(source.get_handle()))
 
         assert len(references) == 5, "len(references) == %s " % str(len(references))
 
@@ -71,8 +71,8 @@ class ReferenceMapTest (GrampsDbBaseTest):
         assert references[0][0] == gen.lib.Person.__name__, "references = %s" % repr(references)
 
         # should just return the person  and event reference
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(gen.lib.Person.__name__,
-                                                                                          gen.lib.Event.__name__)) ]
+        references = list(self._db.find_backlink_handles(source.get_handle(),
+                            (gen.lib.Person.__name__, gen.lib.Event.__name__)))
         assert len(references) == 2, "len(references) == %s " % str(len(references))
         assert references[0][0] == gen.lib.Person.__name__, "references = %s" % repr(references)
         assert references[1][0] == gen.lib.Event.__name__, "references = %s" % repr(references)
@@ -94,7 +94,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
 
         assert self._db.get_person_from_handle(person.get_handle()) is None
         
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
+        references = list(self._db.find_backlink_handles(source.get_handle()))
 
         assert len(references) == 0, "len(references) == %s " % str(len(references))
 
@@ -115,7 +115,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         person = self._add_person_with_sources([source])
 
         # Check that the reference map does not contain the reference.
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
+        references = list(self._db.find_backlink_handles(source.get_handle()))
 
         assert len(references) == 0, "len(references) == %s " % str(len(references))
 
@@ -124,7 +124,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         self._db.reindex_reference_map(cb)
 
         # Check that the reference now appears in the reference_map
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
+        references = list(self._db.find_backlink_handles(source.get_handle()))
 
         assert len(references) == 1, "len(references) == %s " % str(len(references))
 
@@ -155,7 +155,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         cur.close()
 
         start = time.time()
-        references = [ ref for ref in self._db.find_backlink_handles(handle) ]
+        references = list(self._db.find_backlink_handles(handle))
         end = time.time()
 
         with_reference_map = end - start
@@ -165,7 +165,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         self._db.__class__.find_backlink_handles = self._db.__class__.__base__.find_backlink_handles
 
         start = time.time()
-        references = [ ref for ref in self._db.find_backlink_handles(handle) ]
+        references = list(self._db.find_backlink_handles(handle))
         end = time.time()
 
         without_reference_map = end - start

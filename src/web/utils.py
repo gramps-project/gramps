@@ -162,7 +162,7 @@ class Table(object):
         self.table.columns(*args)
 
     def row(self, *args):
-        self.table.row(*[nbsp(arg) for arg in args])
+        self.table.row(*map(nbsp, args))
 
     def link(self, object_type_name, handle):
         self.table.set_link_col((object_type_name, handle))

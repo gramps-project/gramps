@@ -149,7 +149,7 @@ class TextBufDoc(BaseDoc, TextDoc):
 
             tab_array = pango.TabArray(len(new_tabs)+1,True)
             index = 0
-            for tab in [ pixels(x) for x in new_tabs ]:
+            for tab in map(pixels, new_tabs):
                 tab_array.set_tab(index, pango.TAB_LEFT, tab)
                 index += 1
             tag.set_property("tabs", tab_array)

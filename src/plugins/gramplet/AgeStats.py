@@ -83,9 +83,9 @@ class AgeStatsGramplet(Gramplet):
         age_dict = {}
         mother_dict = {}
         father_dict = {}
-        age_handles = [[] for age in range(self.max_age)]
-        mother_handles = [[] for age in range(self.max_mother_diff)]
-        father_handles = [[] for age in range(self.max_father_diff)]
+        age_handles = [[]] * self.max_age
+        mother_handles = [[]] * self.max_mother_diff
+        father_handles = [[]] * self.max_father_diff
         text = ""
         count = 0
         for p in self.dbstate.db.iter_people():

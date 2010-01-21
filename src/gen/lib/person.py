@@ -309,7 +309,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         :rtype: list
         """
         check_list = self.lds_ord_list
-        add_list = [item for item in check_list if item]
+        add_list = filter(None, check_list)
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
                     self.attribute_list + self.urls + \

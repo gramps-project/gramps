@@ -67,7 +67,7 @@ class AttributeBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.attribute_list = [Attribute().unserialize(item) for item in data]
+        self.attribute_list = map(Attribute().unserialize, data)
 
     def add_attribute(self, attribute):
         """

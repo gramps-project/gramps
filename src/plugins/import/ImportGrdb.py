@@ -747,7 +747,7 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
 
-        >       result_list = [i for i in find_backlink_handles(handle)]
+        >       result_list = list(find_backlink_handles(handle))
         """
 
         # Use the secondary index to locate all the reference_map entries

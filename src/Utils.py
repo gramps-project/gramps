@@ -1103,7 +1103,7 @@ def get_referents(handle, db, primary_objects):
     
     """
     # Use one pass through the reference map to grab all the references
-    object_list = [item for item in db.find_backlink_handles(handle)]
+    object_list = db.find_backlink_handles(handle)
     
     # Then form the object-specific lists
     the_lists = ()
@@ -1267,8 +1267,8 @@ def relative_path(original, base):
     target_list = (orig_name).split(os.sep)
     # make sure '/home/person' and 'c:/home/person' both give 
     #   list ['home', 'person']
-    base_list = [word for word in base_list if word]
-    target_list = [word for word in target_list if word]
+    base_list = filter(None, base_list)
+    target_list = filter(None, target_list)
     i = -1
     for i in range(min(len(base_list), len(target_list))):
         if base_list[i] <> target_list[i]: break
@@ -1419,8 +1419,8 @@ def get_participant_from_event(db, event_handle):
     """
     participant = ""
     ellipses = False
-    result_list = [i for i in db.find_backlink_handles(event_handle, 
-                             include_classes=['Person', 'Family'])]
+    result_list = list(db.find_backlink_handles(event_handle, 
+                             include_classes=['Person', 'Family']))
     #obtain handles without duplicates
     people = set([x[1] for x in result_list if x[0] == 'Person'])
     families = set([x[1] for x in result_list if x[0] == 'Family'])

@@ -48,10 +48,8 @@ class SourceBase(object):
         :param source: Object used to initialize the new object
         :type source: SourceBase
         """
-        if source:
-            self.source_list = [SourceRef(sref) for sref in source.source_list]
-        else:
-            self.source_list = []
+
+        self.source_list = map(SourceRef, source.source_list) if source else []
 
     def serialize(self):
         """
@@ -63,7 +61,7 @@ class SourceBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.source_list = [SourceRef().unserialize(item) for item in data]
+        self.source_list = map(SourceRef().unserialize, data)
 
     def add_source_reference(self, src_ref) :
         """

@@ -578,7 +578,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         return
 
     def toggled(self, cell, path_string):
-        path = tuple([int (i) for i in path_string.split(':')])
+        path = tuple(map(int, path_string.split(':')))
         row = self.model[path]
         row[0] = not row[0]
 

@@ -143,7 +143,7 @@ class FanChartWidget(gtk.Widget):
         self.data = {}
         for i in range(self.generations):
             # name, person, parents?, children?
-            self.data[i] = [(None, None, None, None) for j in range(2 ** i)]
+            self.data[i] = [(None,) * 4] * 2 ** i
             self.angle[i] = []
             angle = 0
             slice = 360.0 / (2 ** i)

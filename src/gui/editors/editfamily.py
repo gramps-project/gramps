@@ -250,7 +250,7 @@ class ChildEmbedList(EmbeddedList):
             self.call_edit_childref(ref.ref)
 
     def run(self, skip):
-        skip_list = [ x for x in skip if x]
+        skip_list = filter(None, skip)
         SelectPerson(self.dbstate, self.uistate, self.track,
                      _("Select Child"), skip=skip_list)
 
@@ -655,7 +655,7 @@ class EditFamily(EditPrimary):
         self.phandles = [mhandle, fhandle] + \
                         [ x.ref for x in self.obj.get_child_ref_list()]
         
-        self.phandles = [handle for handle in self.phandles if handle]
+        self.phandles = filter(None, self.phandles)
 
     def _create_tabbed_pages(self):
 

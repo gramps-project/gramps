@@ -1248,7 +1248,7 @@ class DbGrdb(Callback):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        return [unicode(k) for k in self.name_group.keys()]
+        return map(unicode, self.name_group.keys())
 
     def has_name_group_key(self, name):
         """
@@ -2504,7 +2504,7 @@ class DbGrdb(Callback):
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
 
-        >    result_list = [i for i in find_backlink_handles(handle)]
+        >    result_list = list(find_backlink_handles(handle))
         """
 
         # Make a dictionary of the functions and classes that we need for

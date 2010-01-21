@@ -254,7 +254,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         self.top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
-            "on_verify_ok_clicked"  : self.on_apply_clicked
+            "on_verify_ok_clicked"  : self.on_apply_clicked,
             "on_delete_event"       : self.close,
         })
 
@@ -562,7 +562,7 @@ class VerifyResults(ManagedWindow):
             button.set_label(_("_Hide marked"))
         
     def selection_toggled(self,cell,path_string):
-        sort_path = tuple([int (i) for i in path_string.split(':')])
+        sort_path = tuple(map(int, path_string.split(':')))
         filt_path = self.sort_model.convert_path_to_child_path(sort_path)
         real_path = self.filt_model.convert_path_to_child_path(filt_path)
         row = self.real_model[real_path]

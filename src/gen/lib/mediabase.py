@@ -48,11 +48,7 @@ class MediaBase(object):
         :param source: Object used to initialize the new object
         :type source: MediaBase
         """
-        
-        if source:
-            self.media_list = [ MediaRef(mref) for mref in source.media_list ]
-        else:
-            self.media_list = []
+        self.media_list = map(MediaRef, source.media_list) if source else []
 
     def serialize(self):
         """
@@ -64,7 +60,7 @@ class MediaBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.media_list = [MediaRef().unserialize(item) for item in data]
+        self.media_list = map(MediaRef().unserialize, data)
 
     def add_media_reference(self, media_ref):
         """

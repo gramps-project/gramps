@@ -44,11 +44,7 @@ class NoteBase(object):
         :param source: Object used to initialize the new object
         :type source: NoteBase
         """
-        
-        if source:
-            self.note_list = [handle for handle in source.note_list]
-        else:
-            self.note_list = []
+        self.note_list = list(source.note_list) if source else []
 
     def serialize(self):
         """
@@ -60,7 +56,7 @@ class NoteBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.note_list = [handle for handle in data]
+        self.note_list = list(data)
 
     def add_note(self, handle):
         """

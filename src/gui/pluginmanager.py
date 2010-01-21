@@ -114,8 +114,7 @@ class GuiPluginManager(gen.utils.Callback):
         Note that config will then emit a signal
         """ 
         self.__hidden_plugins.add(id)
-        hideset = [x for x in self.__hidden_plugins]
-        config.set('plugin.hiddenplugins', hideset)
+        config.set('plugin.hiddenplugins', list(self.__hidden_plugins))
         config.save()
         self.__hidden_changed()
     
@@ -124,8 +123,7 @@ class GuiPluginManager(gen.utils.Callback):
         return it again, and write this change to the config
         """
         self.__hidden_plugins.remove(id)
-        hideset = [x for x in self.__hidden_plugins]
-        config.set('plugin.hiddenplugins', hideset)
+        config.set('plugin.hiddenplugins', list(self.__hidden_plugins))
         config.save()
         self.__hidden_changed()
 

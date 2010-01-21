@@ -873,7 +873,7 @@ class GedcomWriter(UpdateCallback):
         event to discover the event type.
         
         """
-        for event_ref in [ ref for ref in family.get_event_ref_list()]:
+        for event_ref in family.get_event_ref_list():
             event = self.dbase.get_event_from_handle(event_ref.ref)
             etype = int(event.get_type())
             val = libgedcom.familyConstantEvents.get(etype)

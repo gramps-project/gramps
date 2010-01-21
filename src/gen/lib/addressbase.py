@@ -51,10 +51,7 @@ class AddressBase(object):
         :param source: Object used to initialize the new object
         :type source: AddressBase
         """
-        if source:
-            self.address_list = [Address(addr) for addr in source.address_list]
-        else:
-            self.address_list = []
+        self.address_list = map(Address, source.address_list) if source else []
 
     def serialize(self):
         """
@@ -66,7 +63,7 @@ class AddressBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.address_list = [Address().unserialize(item) for item in data]
+        self.address_list = map(Address().unserialize, data)
 
     def add_address(self, address):
         """

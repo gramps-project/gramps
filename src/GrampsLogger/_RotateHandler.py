@@ -28,8 +28,8 @@ class RotateHandler(logging.Handler):
         Return the buffer with the records in the correct order.
         """
 
-        return [record for record in self._buffer[self._index:] + self._buffer[:self._index]
-                if record is not None]
+        return filter(None,
+                self._buffer[self._index:] + self._buffer[:self._index])
 
     def get_formatted_log(self, remove_tail_duplicate=None):
         """

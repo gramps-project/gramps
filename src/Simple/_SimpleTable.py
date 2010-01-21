@@ -100,7 +100,7 @@ class SimpleTable(object):
                 columns.append(col)
         # end of unicode fix
         self.__columns = list(copy.copy(columns))
-        self.__sort_vals = [[] for i in range(len(self.__columns))]
+        self.__sort_vals = [[]]*len(self.__columns)
 
     def set_callback(self, which, callback):
         """

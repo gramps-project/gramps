@@ -1601,7 +1601,7 @@ class DbWriteBase(object):
             self.set_default_person_handle(None)
     
         # loop through the family list 
-        for family_handle in [ f for f in person.get_family_handle_list() if f ]:
+        for family_handle in filter(None, person.get_family_handle_list()):
     
             family = self.get_family_from_handle(family_handle)
     

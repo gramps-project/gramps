@@ -472,8 +472,7 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
         base = self._db.get_source_from_handle(self._obj.get_reference_handle())
         self._title = base.get_title()
         
-        notelist = [ self._db.get_note_from_handle(hndl) 
-                     for hndl in self._obj.get_note_list() ]
+        notelist = map(self._db.get_note_from_handle, self._obj.get_note_list())
         srctxtlist = [ note for note in notelist 
                        if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
 

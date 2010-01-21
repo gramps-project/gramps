@@ -51,11 +51,7 @@ class UrlBase(object):
         :param source: Object used to initialize the new object
         :type source: UrlBase
         """
-        
-        if source:
-            self.urls = [ Url(url) for url in source.urls ]
-        else:
-            self.urls = []
+        self.urls = map(Url, source.urls) if source else []
 
     def serialize(self):
         """
@@ -67,7 +63,7 @@ class UrlBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.urls = [Url().unserialize(item) for item in data]
+        self.urls = map(Url().unserialize, data)
 
     def get_url_list(self):
         """

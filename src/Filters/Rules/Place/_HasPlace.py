@@ -62,7 +62,7 @@ class HasPlace(Rule):
             return False
 
         # If no location data was given then we're done: match
-        if not [item for item in self.list[1:] if item]:
+        if not any(self.list[1:]):
             return True
             
         # Something was given, so checking for location until we match

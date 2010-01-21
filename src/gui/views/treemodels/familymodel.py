@@ -129,7 +129,7 @@ class FamilyModel(FlatBaseModel):
         return unicode(gen.lib.FamilyRelType(data[5]))
 
     def column_marriage(self, data):
-        erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]
+        erlist = map(gen.lib.EventRef().unserialize, data[6])
         erlist = [x for x in erlist if x.get_role()==EventRoleType.FAMILY or 
                                        x.get_role()==EventRoleType.PRIMARY]
         event = self.db.marriage_from_eventref_list(erlist)
@@ -139,7 +139,7 @@ class FamilyModel(FlatBaseModel):
             return u''
 
     def sort_marriage(self, data):
-        erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]
+        erlist = map(gen.lib.EventRef().unserialize, data[6])
         event = self.db.marriage_from_eventref_list(erlist)
         if event:
             return "%09d" % event.date.get_sort_value()

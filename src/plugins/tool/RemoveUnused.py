@@ -309,7 +309,7 @@ class RemoveUnused(Tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
         self.db.request_rebuild()
 
     def selection_toggled(self, cell, path_string):
-        sort_path = tuple([int (i) for i in path_string.split(':')])
+        sort_path = tuple(map(int, path_string.split(':')))
         real_path = self.sort_model.convert_path_to_child_path(sort_path)
         row = self.real_model[real_path]
         row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
