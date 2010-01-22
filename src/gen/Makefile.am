@@ -4,8 +4,8 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
-	display \
 	db \
+    display \
 	lib\
 	plug \
 	proxy \
