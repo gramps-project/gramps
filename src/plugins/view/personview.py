@@ -417,7 +417,7 @@ class PersonView(ListView):
         self.edit_action.set_visible(False)
 
     def cmp_merge(self, obj):
-        mlist = self.get_selected_objects()
+        mlist = self.selected_handles()
 
         if len(mlist) != 2:
             ErrorDialog(
@@ -427,8 +427,8 @@ class PersonView(ListView):
           "control key while clicking on the desired person."))
         else:
             import Merge 
-            person1 = self.db.get_person_from_handle(mlist[0])
-            person2 = self.db.get_person_from_handle(mlist[1])
+            person1 = self.dbstate.db.get_person_from_handle(mlist[0])
+            person2 = self.dbstate.db.get_person_from_handle(mlist[1])
             if person1 and person2:
                 Merge.PersonCompare(self.dbstate, self.uistate, person1, 
                                     person2, self.build_tree)
@@ -441,7 +441,7 @@ class PersonView(ListView):
                       "person."))
 
     def fast_merge(self, obj):
-        mlist = self.get_selected_objects()
+        mlist = self.selected_handles()
 
         if len(mlist) != 2:
             ErrorDialog(
@@ -452,8 +452,8 @@ class PersonView(ListView):
         else:
             import Merge
             
-            person1 = self.db.get_person_from_handle(mlist[0])
-            person2 = self.db.get_person_from_handle(mlist[1])
+            person1 = self.dbstate.db.get_person_from_handle(mlist[0])
+            person2 = self.dbstate.db.get_person_from_handle(mlist[1])
             if person1 and person2:
                 Merge.MergePeopleUI(self.dbstate, self.uistate, person1, 
                                     person2, self.build_tree)
