@@ -31,66 +31,14 @@ Mime utility functions for the MS Windows platform
 #-------------------------------------------------------------------------
 import os
 from _winreg import *
-from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import _PythonMime
-
-
-def get_application(mime_type):
-    """Return the application command and application name of the
-    specified mime type"""
-    extension = _get_extension(mime_type)
-    progid = _get_prog_id(extension)
-
-    if not progid:
-        return None
-
-    # Find the application associated with this program ID
-    hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
-    subkey = OpenKey(hcr, "%s\shell\open\command" % progid)
-    if subkey:
-        name, command, data_type = EnumValue(subkey, 0)
-        if data_type == REG_EXPAND_SZ:
-            command = command.replace( '%SystemRoot%', 
-                                       os.getenv('SystemRoot') )
-        CloseKey(hcr)
-    else:
-        return None
-    CloseKey(subkey)
-
-    # Find a friendly name for the application
-    if command.startswith('"'):
-        app = command.split('"')[1]
-    elif command.startswith('rundll32.exe'):
-        # Get the description of the DLL instead of the application
-        app = command.split()[1].split(',')[0]
-    else:
-        app = command.split()[0]
-
-    hcu = ConnectRegistry(None, HKEY_CURRENT_USER)
-    try:
-        subkey = OpenKey(hcu, "Software\Microsoft\Windows\ShellNoRoam\MUICache")
-    except WindowsError:
-        subkey = None
-        
-    desc = None
-    if subkey:
-        try:
-            desc, data_type = QueryValueEx(subkey, app)
-        except WindowsError:
-            # No friendly name exists. Use progid
-            desc = progid
-        CloseKey(subkey)
-    else:
-        desc = progid
-    CloseKey(hcu)
-
-    return (command, desc)
+import _pythonmime
+from gen.ggettext import gettext as _
 
 def get_description(mime_type):
     """Return the description of the specfied mime type"""
@@ -110,7 +58,7 @@ def get_description(mime_type):
 
 def get_type(file):
     """Return the mime type of the specified file"""
-    return _PythonMime.get_type(file)
+    return _pythonmime.get_type(file)
 
 def mime_type_is_defined(mime_type):
     """
@@ -120,7 +68,7 @@ def mime_type_is_defined(mime_type):
     if extension:
         return True
     else:
-        return _PythonMime.mime_type_is_defined(mime_type)
+        return _pythonmime.mime_type_is_defined(mime_type)
     
 #-------------------------------------------------------------------------
 #

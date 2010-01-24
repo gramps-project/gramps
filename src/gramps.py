@@ -42,7 +42,7 @@ LOG = logging.getLogger(".")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Mime import mime_type_is_defined
+from gen.mime import mime_type_is_defined
 import TransUtils
 
 #-------------------------------------------------------------------------

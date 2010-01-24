@@ -30,4 +30,4 @@ The gen module provides 5 packages.
   5. gen.utils provides some generic utilities
 """
 
-__all__ = [ "proxy", "db", "lib", "utils", "plug" ]
+__all__ = [ "db", "display", "lib", "mime", "plug", "proxy", "utils" ]

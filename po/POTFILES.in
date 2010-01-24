@@ -54,21 +54,6 @@ src/cli/grampscli.py
 src/gen/__init__.py
 src/gen/updatecallback.py
 
-# gen display API
-src/gen/display/name.py
-
-# gen utils API
-src/gen/utils/__init__.py
-src/gen/utils/callback.py
-src/gen/utils/callman.py
-
-# gen proxy API
-src/gen/proxy/living.py
-src/gen/proxy/private.py
-src/gen/proxy/proxybase.py
-src/gen/proxy/filter.py
-src/gen/proxy/__init__.py
-
 # gen db API
 src/gen/db/backup.py
 src/gen/db/base.py
@@ -77,6 +62,9 @@ src/gen/db/exceptions.py
 src/gen/db/dbconst.py
 src/gen/db/__init__.py
 src/gen/db/undoredo.py
+
+# gen display API
+src/gen/display/name.py
 
 # gen lib API
 src/gen/lib/witness.py
@@ -135,6 +123,12 @@ src/gen/lib/researcher.py
 src/gen/lib/familyreltype.py
 src/gen/lib/ldsord.py
 
+# gen mime API
+src/gen/mime/__init__.py
+src/gen/mime/_gnomemime.py
+src/gen/mime/_pythonmime.py
+src/gen/mime/_winmime.py
+
 # gen plugin API
 src/gen/plug/__init__.py
 src/gen/plug/_docgenplugin.py
@@ -178,6 +172,18 @@ src/gen/plug/docgen/textdoc.py
 src/gen/plug/docbackend/__init__.py
 src/gen/plug/docbackend/cairobackend.py
 src/gen/plug/docbackend/docbackend.py
+
+# gen proxy API
+src/gen/proxy/living.py
+src/gen/proxy/private.py
+src/gen/proxy/proxybase.py
+src/gen/proxy/filter.py
+src/gen/proxy/__init__.py
+
+# gen utils API
+src/gen/utils/__init__.py
+src/gen/utils/callback.py
+src/gen/utils/callman.py
 
 # gui - GUI code
 src/gui/__init__.py
@@ -348,11 +354,6 @@ src/GrampsLogger/_ErrorView.py
 src/GrampsLogger/_GtkHandler.py
 src/GrampsLogger/__init__.py
 src/GrampsLogger/_RotateHandler.py
-
-# Mime package
-src/Mime/_GnomeMime.py
-src/Mime/__init__.py
-src/Mime/_PythonMime.py
 
 # plugins directory
 src/plugins/BookReport.py

@@ -31,33 +31,6 @@ except:
     
 from gen.ggettext import gettext as _
 
-def get_application(type):
-    """Return the application command and application name of the
-    specified mime type"""
-    try:
-        applist = mime_get_short_list_applications(type)
-        if applist:
-            applist = [mime_get_default_application(type)] + applist
-            for prog in applist:
-                if _is_good_command(prog[2]):
-                    return (prog[2],prog[1])
-            else:
-                return None
-        else:
-            return None
-    except:
-        return None
-
-def _is_good_command(cmd):
-    """
-    We don't know what to do with certain substitution values.
-    If we find one, skip the command.
-    """
-    for sub in [ "%m", "%i", "%c" ]:
-        if cmd.find(sub) != -1:
-            return False
-    return True
-
 def get_description(type):
     """Return the description of the specified mime type."""
     try:
@@ -82,3 +55,17 @@ def mime_type_is_defined(type):
     except:
         return False
  
+ #-------------------------------------------------------------------------
+#
+# private functions
+#
+#-------------------------------------------------------------------------
+def _is_good_command(cmd):
+    """
+    We don't know what to do with certain substitution values.
+    If we find one, skip the command.
+    """
+    for sub in [ "%m", "%i", "%c" ]:
+        if cmd.find(sub) != -1:
+            return False
+    return True

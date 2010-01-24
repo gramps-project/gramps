@@ -19,12 +19,12 @@
 #
 
 try:
-    from _GnomeMime import *
+    from _gnomemime import get_description, get_type, mime_type_is_defined
 except:
     try:
-        from _WinMime import *
+        from _winmime import get_description, get_type, mime_type_is_defined
     except:
-        from _PythonMime import *
+        from _pythonmime import get_description, get_type, mime_type_is_defined
 
 def base_type(val):
     return val.split('/')[0]

@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 import gen.lib
-import Mime
+import gen.mime
 import ThumbNails
 import Utils
 from editprimary import EditPrimary
@@ -138,7 +138,7 @@ class EditMedia(EditPrimary):
         self.draw_preview()
 
     def determine_mime(self):
-        descr = Mime.get_description(self.obj.get_mime_type())
+        descr = gen.mime.get_description(self.obj.get_mime_type())
         if descr:
             self.mimetext.set_text(descr)
 
@@ -146,9 +146,9 @@ class EditMedia(EditPrimary):
         path_full = Utils.media_path_full(self.db, path)
         if path != self.obj.get_path() and path_full != self.obj.get_path():
             #redetermine mime
-            mime = Mime.get_type(Utils.find_file(path_full))
+            mime = gen.mime.get_type(Utils.find_file(path_full))
             self.obj.set_mime_type(mime)
-            descr = Mime.get_description(mime)
+            descr = gen.mime.get_description(mime)
             if descr:
                 self.mimetext.set_text(descr)
             else:

@@ -92,7 +92,7 @@ import Utils
 from gui.utils import ProgressMeter
 import ThumbNails
 import ImgManip
-import Mime
+import gen.mime
 from QuestionDialog import ErrorDialog, WarningDialog
 from gen.display.name import displayer as _nd 
 from DateHandler import displayer as _dd
@@ -2574,7 +2574,7 @@ class MediaPage(BasePage):
 
         # get media type to be used primarily with "img" tags
         mime_type = media.get_mime_type()
-        mtype = Mime.get_description(mime_type)
+        mtype = gen.mime.get_description(mime_type)
 
         if mime_type:
             note_only = False

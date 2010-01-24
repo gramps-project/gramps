@@ -53,7 +53,7 @@ import gtk
 import const
 import config
 import Utils
-import Mime
+import gen.mime
 import ThumbNails
 import GrampsDisplay
 import ManagedWindow
@@ -162,7 +162,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             filename = Utils.relative_path(filename, pname)
 
 
-        mtype = Mime.get_type(full_file)
+        mtype = gen.mime.get_type(full_file)
         description = description or os.path.basename(filename)
 
         self.obj.set_description(description)
@@ -197,7 +197,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         
         filename = Utils.find_file( filename)
         if filename:
-            mtype = Mime.get_type(filename)
+            mtype = gen.mime.get_type(filename)
             if mtype and mtype.startswith("image"):
                 image = scale_image(filename, const.THUMBSCALE)
             else:

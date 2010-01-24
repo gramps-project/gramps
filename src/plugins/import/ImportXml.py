@@ -38,7 +38,7 @@ import re
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog, WarningDialog
-import Mime
+import gen.mime
 import gen.lib
 import Utils
 import DateHandler
@@ -1678,7 +1678,7 @@ class GrampsParser(UpdateCallback):
                 attr.set_type(key)
                 attr.set_value(attrs[key])
                 self.photo.add_attribute(attr)
-        self.photo.set_mime_type(Mime.get_type(self.photo.get_path()))
+        self.photo.set_mime_type(gen.mime.get_type(self.photo.get_path()))
         self.db.add_object(self.photo, self.trans)
         #set correct change time
         self.db.commit_media_object(self.photo, self.trans, self.change)

@@ -52,7 +52,7 @@ import gen.lib
 import Utils
 import ThumbNails
 import Errors
-import Mime
+import gen.mime
 from DdTargets import DdTargets
 from buttontab import ButtonTab
 
@@ -458,8 +458,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 protocol, site, mfile, j, k, l = urlparse.urlparse(d)
                 if protocol == "file":
                     name = Utils.fix_encoding(mfile)
-                    mime = Mime.get_type(name)
-                    if not Mime.is_valid_type(mime):
+                    mime = gen.mime.get_type(name)
+                    if not gen.mime.is_valid_type(mime):
                         return
                     photo = gen.lib.MediaObject()
                     photo.set_path(name)
@@ -477,28 +477,6 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     self.dbstate.db.transaction_commit(trans,
                                                        _("Drag Media Object"))
                     self.rebuild()
-#                 elif protocol != "":
-#                     import urllib
-#                     u = urllib.URLopener()
-#                     try:
-#                         tfile, headers = u.retrieve(d)
-#                     except (IOError,OSError), msg:
-#                         t = _("Could not import %s") % d
-#                         ErrorDialog(t,str(msg))
-#                         return
-#                     tfile = Utils.fix_encoding(tfile)
-#                     mime = GrampsMime.get_type(tfile)
-#                     photo = gen.lib.MediaObject()
-#                     photo.set_mime_type(mime)
-#                     photo.set_description(d)
-#                     photo.set_path(tfile)
-#                     trans = self.db.transaction_begin()
-#                     self.db.add_object(photo,trans)
-#                     self.db.transaction_commit(trans,_("Drag Media Object"))
-#                     oref = gen.lib.MediaRef()
-#                     oref.set_reference_handle(photo.get_handle())
-#                     self.dataobj.add_media_reference(oref)
-#                     self.add_thumbnail(oref)
 
     def handle_extra_type(self, objtype, obj):
         pass

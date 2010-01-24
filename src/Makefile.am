@@ -15,7 +15,6 @@ SUBDIRS = \
 	images \
 	Merge \
 	mapstraction \
-	Mime \
 	PluginUtils \
 	plugins \
 	ReportBase \

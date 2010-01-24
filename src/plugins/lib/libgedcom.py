@@ -113,7 +113,7 @@ import Errors
 import const
 import gen.lib
 from gen.updatecallback import UpdateCallback
-import Mime
+import gen.mime
 import LdsUtils
 import Utils
 from DateHandler._DateParser import DateParser
@@ -4981,7 +4981,7 @@ class GedcomParser(UpdateCallback):
                 self.__warn(_("Could not import %s") % filename[0])
         path = filename[0].replace('\\', os.path.sep)
         state.media.set_path(path)
-        state.media.set_mime_type(Mime.get_type(path))
+        state.media.set_mime_type(gen.mime.get_type(path))
         if not state.media.get_description():
             state.media.set_description(path)
 
@@ -5561,7 +5561,7 @@ class GedcomParser(UpdateCallback):
                 photo.set_description(title)
                 full_path = os.path.abspath(path)
                 if os.path.isfile(full_path):
-                    photo.set_mime_type(Mime.get_type(full_path))
+                    photo.set_mime_type(gen.mime.get_type(full_path))
                 else:
                     photo.set_mime_type(MIME_MAP.get(form.lower(), 'unknown'))
                 self.dbase.add_object(photo, self.trans)

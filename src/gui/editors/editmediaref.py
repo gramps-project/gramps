@@ -43,7 +43,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 import const
-import Mime
+import gen.mime
 import ThumbNails
 import Utils
 from gen.lib import NoteType
@@ -110,7 +110,7 @@ class EditMediaRef(EditReference):
                                                      self.rectangle)
         self.subpixmap.set_from_pixbuf(self.subpix)
 
-        mt = Mime.get_description(self.mtype)
+        mt = gen.mime.get_description(self.mtype)
         self.top.get_object("type").set_text(mt if mt else "")
         
     def _setup_fields(self):

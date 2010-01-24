@@ -6,7 +6,8 @@
 SUBDIRS = \
 	db \
     display \
-	lib\
+	lib \
+	mime \
 	plug \
 	proxy \
 	utils
