@@ -124,7 +124,9 @@ def setup_logging():
 def build_user_paths():
     """ check/make user-dirs on each Gramps session"""
     for path in const.USER_DIRLIST:
-        if not os.path.isdir(path):
+        if os.path.islink(path):
+            pass # ok
+        elif not os.path.isdir(path):
             os.mkdir(path)
 
 def run():

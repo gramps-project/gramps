@@ -806,7 +806,7 @@ class PluginRegister(object):
         :Returns: A list with PluginData objects
         """
         # if the directory does not exist, do nothing
-        if not os.path.isdir(dir):
+        if not (os.path.isdir(dir) or os.path.islink(dir)):
             return []
         
         ext = r".gpr.py"
