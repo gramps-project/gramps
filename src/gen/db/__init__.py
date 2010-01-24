@@ -41,7 +41,7 @@
             - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/base.py?view=markup})
             - B{Callback} - callback and signal functions (U{gen/utils/callback.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/utils/callback.py?view=markup})
         - B{UpdateCallback} - callback functionality (U{gen/updatecallback.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/read.py?view=markup gen/updatecallback.py?view=markup>})
-    - B{DbBDjango} - read and write implementation to Django-based databases (U{web/djangodb.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/web/djangodb.py?view=markup})
+    - B{DbDjango} - read and write implementation to Django-based databases (U{web/dbdjango.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/web/dbdjango.py?view=markup})
         - B{DbWriteBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/base.py?view=markup})
         - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/base.py?view=markup})
 
