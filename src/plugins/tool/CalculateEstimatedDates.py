@@ -124,6 +124,12 @@ class CalcEstDateOptions(MenuToolOptions):
                            0, 200)
         num.set_help(_("Average years between two generations"))
         menu.add_option(category_name, "AVG_GENERATION_GAP", num)
+
+        dates = EnumeratedListOption(_("Estimated Dates"), 0)
+        dates.add_item(0, _("Approximate (about)"))
+        dates.add_item(1, _("Extremes (after and before)"))
+        dates.set_help( _("Dates on events are either about or after/before"))
+        menu.add_option(category_name, "dates", dates)
         
     def __update_filters(self):
         """
@@ -439,9 +445,10 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                     explanation = _("Added birth event based on %s, from %s") % (evidence, other_name)
                 else:
                     explanation = _("Added birth event based on %s") % evidence
+                modifier = self.get_modifier("birth")
                 birth = self.create_event(_("Estimated birth date"), 
                                           gen.lib.EventType.BIRTH, 
-                                          date1, source, explanation)
+                                          date1, source, explanation, modifier)
                 event_ref = gen.lib.EventRef()
                 event_ref.set_reference_handle(birth.get_handle())
                 person.set_birth_ref(event_ref)
@@ -453,9 +460,10 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                     explanation = _("Added death event based on %s, from %s") % (evidence, other_name)
                 else:
                     explanation = _("Added death event based on %s") % evidence
+                modifier = self.get_modifier("death")
                 death = self.create_event(_("Estimated death date"), 
                                           gen.lib.EventType.DEATH, 
-                                          date2, source, explanation)
+                                          date2, source, explanation, modifier)
                 event_ref = gen.lib.EventRef()
                 event_ref.set_reference_handle(death.get_handle())
                 person.set_death_ref(event_ref)
@@ -472,6 +480,19 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         self.results_write("\n\n")
         self.progress.close()
 
+    def get_modifier(self, event_type):
+        setting = self.options.handler.options_dict['dates']
+        if event_type == "birth":
+            if setting == 0:
+                return gen.lib.Date.MOD_ABOUT
+            else:
+                return gen.lib.Date.MOD_AFTER
+        else:
+            if setting == 0:
+                return gen.lib.Date.MOD_ABOUT
+            else:
+                return gen.lib.Date.MOD_BEFORE
+
     def get_or_create_source(self, source_text):
         source_list = self.db.get_source_handles()
         for source_handle in source_list:
@@ -485,7 +506,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
     def create_event(self, description=_("Estimated date"), 
                      type=None, date=None, source=None, 
-                     note_text=""):
+                     note_text="", modifier=None):
         event = gen.lib.Event()
         event.set_description(description)
         note = gen.lib.Note()
@@ -497,7 +518,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         if type:
             event.set_type(gen.lib.EventType(type))
         if date:
-            date.set_modifier(gen.lib.Date.MOD_ABOUT)
+            if modifier:
+                date.set_modifier(modifier)
             date.set_quality(gen.lib.Date.QUAL_ESTIMATED)
             date.set_yr_mon_day(date.get_year(), 0, 0)
             event.set_date_object(date)
