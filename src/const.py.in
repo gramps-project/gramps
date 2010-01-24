@@ -41,8 +41,11 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = map(int, "@VERSION@".split(".", 2))
+if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
+    VERSION        = "3.2.0"
+else:
+    VERSION        = "@VERSIONSTRING@"
+VERSION_TUPLE  = (3, 2, 0)
 
 #-------------------------------------------------------------------------
 #
