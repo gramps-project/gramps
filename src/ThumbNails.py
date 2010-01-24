@@ -188,6 +188,29 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None):
 
 #-------------------------------------------------------------------------
 #
+# find_mime_type_pixbuf
+#
+#-------------------------------------------------------------------------
+_icon_theme = gtk.icon_theme_get_default()
+
+def find_mime_type_pixbuf(mime_type):
+    try:
+        icontmp = mime_type.replace('/','-')
+        newicon = "gnome-mime-%s" % icontmp
+        try:
+            return _icon_theme.load_icon(newicon,48,0)
+        except:
+            icontmp = mime_type.split('/')[0]
+            try:
+                newicon = "gnome-mime-%s" % icontmp
+                return _icon_theme.load_icon(newicon,48,0)
+            except:
+                return gtk.gdk.pixbuf_new_from_file(const.ICON)
+    except:
+        return gtk.gdk.pixbuf_new_from_file(const.ICON)
+
+#-------------------------------------------------------------------------
+#
 # run_thumbnailer
 #
 #-------------------------------------------------------------------------
@@ -263,7 +286,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None):
         return gtk.gdk.pixbuf_new_from_file(filename)
     except (gobject.GError, OSError):
         if mtype:
-            return Mime.find_mime_type_pixbuf(mtype)
+            return find_mime_type_pixbuf(mtype)
         else:
             default = os.path.join(const.IMAGE_DIR, "document.png")
             return gtk.gdk.pixbuf_new_from_file(default)

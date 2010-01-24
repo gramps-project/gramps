@@ -121,9 +121,6 @@ def mime_type_is_defined(mime_type):
         return True
     else:
         return _PythonMime.mime_type_is_defined(mime_type)
-
-def find_mime_type_pixbuf(mime_type):
-    return _PythonMime.find_mime_type_pixbuf(mime_type)
     
 #-------------------------------------------------------------------------
 #

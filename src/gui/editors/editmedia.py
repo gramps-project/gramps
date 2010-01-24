@@ -165,7 +165,7 @@ class EditMedia(EditPrimary):
                         mtype)
             self.pixmap.set_from_pixbuf(pb)
         else:
-            pb = Mime.find_mime_type_pixbuf('text/plain')
+            pb = ThumbNails.find_mime_type_pixbuf('text/plain')
             self.pixmap.set_from_pixbuf(pb)
 
     def setup_filepath(self):

@@ -21,7 +21,6 @@
 # $Id:_GnomeMime.py 9912 2008-01-22 09:17:46Z acraphae $
 
 import gtk
-import const
 
 try:
     from gnomevfs import mime_get_short_list_applications, \
@@ -82,22 +81,4 @@ def mime_type_is_defined(type):
         return True
     except:
         return False
-
-_icon_theme = gtk.icon_theme_get_default()
-
-def find_mime_type_pixbuf(mime_type):
-    try:
-        icontmp = mime_type.replace('/','-')
-        newicon = "gnome-mime-%s" % icontmp
-        try:
-            return _icon_theme.load_icon(newicon,48,0)
-        except:
-            icontmp = mime_type.split('/')[0]
-            try:
-                newicon = "gnome-mime-%s" % icontmp
-                return _icon_theme.load_icon(newicon,48,0)
-            except:
-                return gtk.gdk.pixbuf_new_from_file(const.ICON)
-    except:
-        return gtk.gdk.pixbuf_new_from_file(const.ICON)
-    
+ 
