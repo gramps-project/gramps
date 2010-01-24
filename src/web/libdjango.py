@@ -46,7 +46,7 @@ import gen
 #    tuple = dji.get_person(djperson)
 #    gperson = lib.gen.Person(tuple)
 # OR
-#    gperson = djangodb.DjangoDb().get_person_from_handle(handle)
+#    gperson = dbdjango.DbDjango().get_person_from_handle(handle)
 
 #-------------------------------------------------------------------------
 #

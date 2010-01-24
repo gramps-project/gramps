@@ -42,7 +42,7 @@ from django.db.models import Q
 import web
 from web.grampsdb.models import *
 from web.grampsdb.forms import *
-from web.djangodb import DjangoDb
+from web.dbdjango import DbDjango
 
 import gen.proxy
 from Utils import create_id

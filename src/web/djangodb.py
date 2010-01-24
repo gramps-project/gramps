@@ -41,8 +41,8 @@ from web.libdjango import DjangoInterface
 
 # Example for running a report:
 # from ReportBase._CommandLineReport import run_report
-# import djangodb
-# db = djangodb.DjangoDb()
+# import dbdjango
+# db = dbdjango.DbDjango()
 # run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I37")
 
 # Imports for importing a file:
@@ -55,7 +55,7 @@ def import_file(db, filename, callback):
     """
     Import a file (such as a GEDCOM file) into the given db.
 
-    >>> import_file(DjangoDb(), "/home/user/Untitled_1.ged", lambda a: a)
+    >>> import_file(DbDjango(), "/home/user/Untitled_1.ged", lambda a: a)
     """
     dbstate = DbState.DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
@@ -98,7 +98,7 @@ class Cursor(object):
             yield (item.handle, self.func(item))
         yield None
 
-class DjangoDb(DbReadBase, DbWriteBase):
+class DbDjango(DbReadBase, DbWriteBase):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """

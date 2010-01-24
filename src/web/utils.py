@@ -46,7 +46,7 @@ from django.contrib.contenttypes.models import ContentType
 import web.grampsdb.models as models
 import web.grampsdb.forms as forms
 from web import libdjango
-from web.djangodb import DjangoDb
+from web.dbdjango import DbDjango
 
 #------------------------------------------------------------------------
 #
@@ -120,7 +120,7 @@ def get_person_from_handle(db, handle):
 
 def probably_alive(handle):
     return False
-    db = DjangoDb()
+    db = DbDjango()
     person = db.get_person_from_handle(handle)
     return Utils.probably_alive(person, db)
 
@@ -146,7 +146,7 @@ class Table(object):
     >>> table.get_html()
     """
     def __init__(self):
-        self.db = DjangoDb()
+        self.db = DbDjango()
         self.access = SimpleAccess(self.db)
         self.table = SimpleTable(self.access)
         class Doc(object):
@@ -494,14 +494,14 @@ def get_title(place):
         return ""
 
 def person_get_birth_date(person):
-    #db = DjangoDb()
+    #db = DbDjango()
     #event = get_birth_or_fallback(db, db.get_person_from_handle(person.handle))
     #if event:
     #    return event.date
     return None
 
 def person_get_death_date(person):
-    #db = DjangoDb()
+    #db = DbDjango()
     #event = get_death_or_fallback(db, db.get_person_from_handle(person.handle))
     #if event:
     #    return event.date
