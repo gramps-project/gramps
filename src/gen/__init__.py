@@ -19,15 +19,8 @@
 #
 
 """
-The gen module provides 5 packages. 
-  1. gen.lib gives access to all genealogy related objects, like family,
-     person, ...
-  2. gen.db provides access to the bsddb backend storing genea data
-  3. gen.proxy provides access to the data via a proxy that filters out 
-     specific data
-  4. gen.plug defines a plugin system so plugins can be written that can 
-     work on the data. This can be in CLI or GUI
-  5. gen.utils provides some generic utilities
+The gen module provides packages that are common to all gramps 
+interfaces (gui, cli and web).
 """
 
 __all__ = [ "db", "display", "lib", "mime", "plug", "proxy", "utils" ]
