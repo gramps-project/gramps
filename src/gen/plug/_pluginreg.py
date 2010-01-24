@@ -266,6 +266,7 @@ class PluginData(object):
         self._id = None
         self._name = None
         self._version = None
+        self._for_gramps = None
         self._description = None
         self._status = UNSTABLE
         self._fname = None
@@ -340,6 +341,12 @@ class PluginData(object):
 
     def _get_version(self):
         return self._version
+
+    def _set_for_gramps(self, version):
+       self._for_gramps = version
+
+    def _get_for_gramps(self):
+        return self._for_gramps
 
     def _set_status(self, status):
         if status not in STATUS:
@@ -417,6 +424,7 @@ class PluginData(object):
     name = property(_get_name, _set_name)
     description = property(_get_description, _set_description) 
     version = property(_get_version, _set_version) 
+    for_gramps = property(_get_for_gramps, _set_for_gramps) 
     status = property(_get_status, _set_status)
     fname = property(_get_fname, _set_fname)
     fpath = property(_get_fpath, _set_fpath)
