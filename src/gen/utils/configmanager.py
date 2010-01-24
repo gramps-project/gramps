@@ -59,9 +59,10 @@ class ConfigManager(object):
     """
     PLUGINS = {}
 
-    def __init__(self, filename = None):
+    def __init__(self, filename=None, plugins=None):
         """ 
-        Configure manager constructor takes an optional filename.
+        Configure manager constructor takes an optional filename, and
+        plugin path.
 
         The data dictionary stores the settings:
 
@@ -88,22 +89,29 @@ class ConfigManager(object):
         The default filename (usually the one you are reading from)
         is stored as self.filename. However, you can save to another
         filename using self.save(otherfilename).
+
+        filename (if given) is a fullpath.
+        plugins (if given) is a relative path to filename.
+
         """
         self._cb_id = 0 # callback id counter
-        self.config_path, config_filename = os.path.split(os.path.abspath(filename))
-        self.filename = filename # fullpath and filename
+        self.config_path, config_filename = \
+            os.path.split(os.path.abspath(filename))
+        self.filename = filename # fullpath and filename, or None
+        self.plugins = plugins # relative directory name, or None
         self.callbacks = {}
         self.default = {}
         self.data = {}
         self.reset()
 
-    def register_manager(self, name, override="", use_config_path=False):
+    def register_manager(self, name, override="", use_plugins_path=True, 
+                         use_config_path=False):
         """
         Register a plugin manager. 
 
         name is used as the key of the config manager singleton. It is
         also be used as the base filename (unless an override is given,
-        or use_config_path is True).
+        or use_config_path or use_plugins_path is True).
 
         override is either: 
         - a full path+filename ending in .ini 
@@ -116,17 +124,20 @@ class ConfigManager(object):
         the new manager's path, ignoring any path given in override.
 
         Examples:
-        >>> config.register_manager("Simple")
+        >>> config.register_manager("Simple", use_plugins_path=False)
         # will use the calling programs directory, and "Simple.ini"
-        >>> config.register_manager("Simple", __file__)
+        >>> config.register_manager("Simple", __file__, 
+                                    use_plugins_path=False)
         # will use the __file__'s directory, and "Simple.ini"
-        >>> config.register_manager("Simple", "c:\\temp")
+        >>> config.register_manager("Simple", "c:\\temp", 
+                                    use_plugins_path=False)
         # will use the given directory, "c:\\temp\\Simple.ini"
-        >>> config.register_manager("Simple", use_config_path)
-        # will use config's path: ~/.gramps/gramps32/plugins/Simple.ini
-        >>> config.register_manager("Simple", "Other.ini", use_config_path)
-        # will use config's path: ~/.gramps/gramps32/plugins/Other.ini
-        >>> config.register_manager("Simple", "/tmp/Other.ini")
+        >>> config.register_manager("Simple", use_config_path=True)
+        # will use config's path: ~/.gramps/gramps32/Simple.ini
+        >>> config.register_manager("Simple", "Other.ini")
+        # will use config + plugins path: ~/.gramps/gramps32/plugins/Other.ini
+        >>> config.register_manager("Simple", "/tmp/Other.ini", 
+                                    use_plugins_path=False)
         # will use /tmp/Other.ini
         """
         if isinstance(override, str): # directory or filename
@@ -138,6 +149,8 @@ class ConfigManager(object):
                 ininame = "%s.ini" % name
             if use_config_path:
                 path = self.config_path
+            elif use_plugins_path:
+                path = os.path.join(self.config_path, self.plugins)
             filename = os.path.join(path, ininame)
             plugin = ConfigManager(filename)
         elif isinstance(override, ConfigManager):
@@ -197,13 +210,16 @@ class ConfigManager(object):
             for section in self.default:
                 self.data[section] = {}
                 for setting in self.default[section]:
-                    self.data[section][setting] = copy.deepcopy(self.default[section][setting])
+                    self.data[section][setting] = \
+                        copy.deepcopy(self.default[section][setting])
         elif setting is None:
             self.data[section] = {}
             for setting in self.default[section]:
-                self.data[section][setting] = copy.deepcopy(self.default[section][setting])
+                self.data[section][setting] = \
+                    copy.deepcopy(self.default[section][setting])
         else:
-            self.data[section][setting] = copy.deepcopy(self.default[section][setting])
+            self.data[section][setting] = \
+                copy.deepcopy(self.default[section][setting])
         # Callbacks are still connected
 
     def get_sections(self):

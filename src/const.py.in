@@ -37,6 +37,15 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
+# Gramps Version
+#
+#-------------------------------------------------------------------------
+PROGRAM_NAME   = "Gramps"
+VERSION        = "@VERSIONSTRING@"
+VERSION_TUPLE  = map(int, "@VERSION@".split(".", 2))
+
+#-------------------------------------------------------------------------
+#
 # Standard GRAMPS Websites
 #
 #-------------------------------------------------------------------------
@@ -106,6 +115,8 @@ else:
         unicode(__file__, sys.getfilesystemencoding())))
 
 IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
+VERSION_DIR    = os.path.join(
+    HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
 
 CUSTOM_FILTERS = os.path.join(HOME_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
@@ -114,9 +125,9 @@ TOOL_OPTIONS   = os.path.join(HOME_DIR, "tool_options.xml")
 ENV_DIR        = os.path.join(HOME_DIR, "env")
 TEMP_DIR       = os.path.join(HOME_DIR, "temp")
 THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
-USER_PLUGINS   = os.path.join(HOME_DIR, "plugins")
+USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
 # dirs checked/made for each Gramps session
-USER_DIRLIST = (HOME_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
+USER_DIRLIST = (HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 USER_PLUGINS)
 
 ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
@@ -156,8 +167,6 @@ else:
 # About box information
 #
 #-------------------------------------------------------------------------
-PROGRAM_NAME   = "Gramps"
-VERSION        = "@VERSIONSTRING@"
 COPYRIGHT_MSG  = u"\u00A9 2001-2006 Donald N. Allingham\n" \
                  u"\u00A9 2007-2009 The Gramps Developers"
 COMMENTS       = _("Gramps (Genealogical Research and Analysis "

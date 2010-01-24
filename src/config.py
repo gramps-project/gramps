@@ -48,7 +48,7 @@ from gen.utils import ConfigManager
 # Constants
 #
 #---------------------------------------------------------------
-INIFILE = os.path.join(const.HOME_DIR, "gramps32.ini")
+INIFILE = os.path.join(const.VERSION_DIR, "gramps.ini")
 
 #---------------------------------------------------------------
 #
@@ -120,7 +120,7 @@ def emit(key):
 #
 #---------------------------------------------------------------
 
-CONFIGMAN = ConfigManager(INIFILE)
+CONFIGMAN = ConfigManager(INIFILE, "plugins")
 
 register('behavior.addmedia-image-dir', '')
 register('behavior.addmedia-relative-path', False)
