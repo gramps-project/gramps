@@ -681,8 +681,7 @@ class GtkDocTable(GtkDocBaseElement):
             new_table = GtkDocTable(self._style)
             #add the split row
             new_table.add_child(r2)
-            for row in self._children[row_index+1:]:
-                new_table.add_child(row)
+            map(new_table.add_child, self._children[row_index+1:])
             del self._children[row_index+1:]
             
         return (self, new_table), table_height
@@ -1253,9 +1252,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         
         # we need to remember the column width list from the table style.
         # this is an ugly hack, but got no better idea.
-        self._active_row_style = []
-        for i in range(style.get_columns()):
-            self._active_row_style.append(style.get_column_width(i))
+        self._active_row_style = map(style.get_column_width,
+                                        range(style.get_columns()))
     
     def end_table(self):
         self._active_element = self._active_element.get_parent()

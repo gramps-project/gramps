@@ -182,8 +182,9 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         """
         #cleanup callbackmanager of this editor
         self._cleanup_callbacks()
-        for tab in [tab for tab in self.__tabs if hasattr(tab, 'callman')]:
-            tab._cleanup_callbacks()
+        for tab in self.__tabs:
+            if hasattr(tab, 'callman'):
+                tab._cleanup_callbacks()
 
     def check_for_close(self, handles):
         """

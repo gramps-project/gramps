@@ -212,8 +212,7 @@ class ObjEntry(object):
             If True:  remove icon and edit icon
         """
         if self.add_edt is not None:
-            for i in self.add_edt.get_children():
-                self.add_edt.remove(i)
+            map(self.add_edt.remove, self.add_edt.get_children())
         for i in self.share.get_children():
             self.share.remove(i)
 

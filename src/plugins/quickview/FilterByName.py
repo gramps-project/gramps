@@ -34,6 +34,7 @@ from gen.lib import Person
 import DateHandler
 
 import posixpath
+from collections import defaultdict
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 
@@ -133,12 +134,12 @@ def run(database, document, filter_name, *args, **kwargs):
             stab.row(family)
             matches += 1
     elif (filter_name == 'unique surnames'):
-        namelist = {}
+        namelist = defaultdict(int)
         for person in database.iter_people():
             names = [person.get_primary_name()] + person.get_alternate_names()
             surnames = list(set([name.get_group_name() for name in names]))
             for surname in surnames:
-                namelist[surname] = namelist.get(surname, 0) + 1
+                namelist[surname] += 1
         stab.columns(_("Surname"), _("Count"))
         for name in sorted(namelist):
             stab.row(name, namelist[name])

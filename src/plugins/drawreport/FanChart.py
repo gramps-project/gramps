@@ -187,17 +187,14 @@ class FanChart(Report):
             return
         self.map[index-1] = person_handle
 
-        self.text[index-1] = []
-
         subst = SubstKeywords(self.database,person_handle)
-        
-        for line in self.display:
-            self.text[index-1].append(subst.replace(line))
+        self.text[index-1] = map(subst.replace, self.display)
 
         style_sheet = self.doc.get_style_sheet()
         self.font = style_sheet.get_paragraph_style('text_style').get_font()
         for line in self.text[index-1]:
-            self.box_width = max(self.box_width,self.doc.string_width(self.font,line))
+            self.box_width = max(self.box_width,
+                                    self.doc.string_width(self.font,line))
 
         self.lines = max(self.lines,len(self.text[index-1]))    
 

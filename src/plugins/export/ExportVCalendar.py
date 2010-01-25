@@ -144,13 +144,13 @@ class CalendarWriter(object):
             self.option_box.parse_options()
 
             if self.option_box.cfilter is None:
-                for p in self.db.iter_person_handles():
-                    self.plist[p] = 1
+                self.plist.udpate([p, 1]
+                    for p in self.db.iter_person_handles())
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(self.db, 
-                      self.db.iter_person_handles()):
-                        self.plist[p] = 1
+                    self.plist.update([p, 1] 
+                        for p in self.option_box.cfilter.apply(
+                            self.db, self.db.iter_person_handles()))
                 except Errors.FilterError, msg:
                     (m1, m2) = msg.messages()
                     ErrorDialog(m1, m2)

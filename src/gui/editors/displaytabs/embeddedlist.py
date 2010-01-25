@@ -414,8 +414,7 @@ class EmbeddedList(ButtonTab):
         # remove any existing columns, which would be stored in
         # self.columns
         
-        for column in self.columns:
-            self.tree.remove_column(column)
+        map(self.tree.remove_column, self.columns)
         self.columns = []
 
         # loop through the values returned by column_order

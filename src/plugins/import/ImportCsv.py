@@ -124,8 +124,7 @@ class UnicodeWriter(object):
         self.queue.truncate(0)
 
     def writerows(self, rows):
-        for row in rows:
-            self.writerow(row)
+        map(self.writerow, rows)
 
     def close(self):
         self.stream.close()

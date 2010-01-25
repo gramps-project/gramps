@@ -18,6 +18,8 @@
 
 # $Id$
 
+from collections import defaultdict
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -78,7 +80,7 @@ class SurnameCloudGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing...") + "\n")
         yield True
-        surnames = {}
+        surnames = defaultdict(int)
         representative_handle = {}
 
         cnt = 0
@@ -86,7 +88,7 @@ class SurnameCloudGramplet(Gramplet):
             allnames = [person.get_primary_name()] + person.get_alternate_names()
             allnames = set([name.get_group_name().strip() for name in allnames])
             for surname in allnames:
-                surnames[surname] = surnames.get(surname, 0) + 1
+                surnames[surname] += 1
                 representative_handle[surname] = person.handle
             cnt += 1
             if not cnt % _YIELD_INTERVAL:
@@ -116,9 +118,9 @@ class SurnameCloudGramplet(Gramplet):
         line = 0
         ### All done!
         # Now, find out how many we can display without going over top_size:
-        totals = {}
+        totals = defaultdict(int)
         for (count, givensubname) in cloud_names: # givensubname_sort:
-            totals[count] = totals.get(count, 0) + 1
+            totals[count] += 1
         sums = sorted(totals, reverse=True)
         total = 0
         include_greater_than = 0

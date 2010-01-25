@@ -2039,8 +2039,7 @@ class GeoView(HtmlView):
             self.vbox.destroy()
         except:  # pylint: disable-msg=W0704
             pass # pylint: disable-msg=W0702
-        for child in self.hpaned.get_children(): # cleanup
-            self.hpaned.remove(child)
+        map(self.hpaned.remove, self.hpaned.get_children())
         self.vbox = gtk.VBox()
         self.hpaned.pack_start(self.vbox, True, True)
         self.filter_sidebar = filter_class(self.dbstate, self.uistate, 

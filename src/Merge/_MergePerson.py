@@ -457,10 +457,8 @@ class MergePeople(object):
                                       self.p2.get_source_references())
 
         # media
-        for photo in self.p1.get_media_list():
-            new.add_media_reference(photo)
-        for photo in self.p2.get_media_list():
-            new.add_media_reference(photo)
+        map(new.add_media_reference, self.p1.get_media_list())
+        map(new.add_media_reference, self.p2.get_media_list())
 
         # note
         new.set_note_list(self.p1.get_note_list() + 
@@ -847,8 +845,7 @@ class MergePeople(object):
 
         # merge family attributes
 
-        for xdata in src_family.get_attribute_list():
-            tgt_family.add_attribute(xdata)
+        map(tgt_family.add_attribute, src_family.get_attribute_list())
 
         # merge family notes
         tgt_family.set_note_list(tgt_family.get_note_list() + 
@@ -860,8 +857,7 @@ class MergePeople(object):
 
         # merge multimedia objects
 
-        for photo in src_family.get_media_list():
-            tgt_family.add_media_reference(photo)
+        map(tgt_family.add_media_reference, src_family.get_media_list())
 
     def adjust_family_pointers(self, tgt_family, src_family, trans):
         """

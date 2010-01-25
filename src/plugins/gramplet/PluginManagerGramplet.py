@@ -74,10 +74,10 @@ class PluginManagerGramplet(Gramplet):
                     row.append(line[1:].strip())
             else:
                 state = "read"
-        types = {}
-        for row in rows:
-            types[row[1]] = 1
+
+        types = dict([row[1], 1] for row in rows)
         self.set_text("")
+
         # name, type, ver, desc, use, rating, contact, download
         for type in types:
             self.render_text("<b>%s Plugins</b>\n" % _(type))

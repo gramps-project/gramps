@@ -163,11 +163,11 @@ class RTFDoc(BaseDoc,TextDoc):
         else:
             self.font_type = '\\f1\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
         if f.get_bold():
-            self.font_type = self.font_type + "\\b"
+            self.font_type += "\\b"
         if f.get_underline():
-            self.font_type = self.font_type + "\\ul"
+            self.font_type += "\\ul"
         if f.get_italic():
-            self.font_type = self.font_type + "\\i"
+            self.font_type += "\\i"
 
         # build paragraph information
 
@@ -228,7 +228,7 @@ class RTFDoc(BaseDoc,TextDoc):
         else:
             if self.text == "":
                 self.write_text(" ")
-            self.text = self.text + '}'
+            self.text += '}'
 
     #--------------------------------------------------------------------
     #
@@ -261,10 +261,10 @@ class RTFDoc(BaseDoc,TextDoc):
         self.f.write('}')
 
     def start_superscript(self):
-        self.text = self.text + '{{\*\updnprop5801}\up10 '
+        self.text += '{{\*\updnprop5801}\up10 '
 
     def end_superscript(self):
-        self.text = self.text + '}'
+        self.text += '}'
 
     #--------------------------------------------------------------------
     #
@@ -338,10 +338,10 @@ class RTFDoc(BaseDoc,TextDoc):
             self.f.write('\\clbrdrr\\brdrs\\brdrw10\n')
         table_width = float(self.paper.get_usable_width())
         for cell in range(self.cell,self.cell+span):
-            self.cell_percent = self.cell_percent + float(self.tbl_style.get_column_width(cell))
+            self.cell_percent += float(self.tbl_style.get_column_width(cell))
         cell_width = twips((table_width * self.cell_percent)/100.0)
         self.f.write('\\cellx%d\\pard\intbl\n' % cell_width)
-        self.cell = self.cell+1
+        self.cell += 1
 
     #--------------------------------------------------------------------
     #
@@ -464,12 +464,12 @@ class RTFDoc(BaseDoc,TextDoc):
         text = text.replace('\n','\n\\par ')
         if self.opened == 0:
             self.opened = 1
-            self.text = self.text + '{%s ' % self.font_type
+            self.text += '{%s ' % self.font_type
 
         for i in text:
             if ord(i) > 127:
-                self.text = self.text + '\\\'%2x' % ord(i)
+                self.text += '\\\'%2x' % ord(i)
             elif i == '{' or i == '}' :
-                self.text = self.text + '\\%s' % i
+                self.text += '\\%s' % i
             else:
-                self.text = self.text + i
+                self.text += i

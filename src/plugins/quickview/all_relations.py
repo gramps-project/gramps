@@ -315,7 +315,7 @@ class AllRelReport():
                 if isinstance(fam, list):
                     famstr = str(fam[0]+1)
                     for val in fam[1:] :
-                        famstr = famstr + ', ' + str(val+1)
+                        famstr += ', ' + str(val+1)
                 else:
                     famstr = str(fam+1)
                 sdoc.paragraph(_FMT_DET2 % (' ', par_str, birth_str, famstr))
@@ -335,7 +335,6 @@ class AllRelReport():
             sdoc.paragraph("")
             sdoc.paragraph(_("The following problems were encountered:"))
             
-            for msg in msg_list :
-                sdoc.paragraph(msg)
+            map(sdoc.paragraph, msg_list)
             sdoc.paragraph("")
             sdoc.paragraph("")

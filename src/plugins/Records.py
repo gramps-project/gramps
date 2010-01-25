@@ -370,10 +370,9 @@ class RecordsReport(Report):
 
         self.callname = menu.get_option_by_name('callname').get_value()
 
-        self.include = {}
-        for (text, varname, default) in RECORDS:
-            self.include[varname] = menu.get_option_by_name(varname).get_value()
-
+        self.include = dict([varname,
+                            menu.get_option_by_name(varname).get_value()]
+                                for (_1, varname, _3) in RECORDS)
 
     def write_report(self):
         """

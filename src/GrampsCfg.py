@@ -675,8 +675,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # Date format:
         obox = gtk.combo_box_new_text()
         formats = DateHandler.get_date_formats()
-        for item in formats:
-            obox.append_text(item)
+        map(obox.append_text, formats)
         active = config.get('preferences.date-format')
         if active >= len(formats):
             active = 0
@@ -689,8 +688,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         
         # Calendar format on report:
         obox = gtk.combo_box_new_text()
-        for item in gen.lib.Date.ui_calendar_names:
-            obox.append_text(item)
+        map(obox.append_text, gen.lib.Date.ui_calendar_names)
         active = config.get('preferences.calendar-format-report')
         if active >= len(formats):
             active = 0
@@ -704,8 +702,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # Surname guessing:
         obox = gtk.combo_box_new_text()
         formats = _surname_styles
-        for item in formats:
-            obox.append_text(item)
+        map(obox.append_text, formats)
         obox.set_active(config.get('behavior.surname-guessing'))
         obox.connect('changed', 
                      lambda obj: config.set('behavior.surname-guessing', 
@@ -719,8 +716,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         obox = gtk.combo_box_new_text()
         formats = [_("Active person's name and ID"), 
                    _("Relationship to home person")]
-        for item in formats:
-            obox.append_text(item)
+        map(obox.append_text, formats)
         active = config.get('interface.statusbar')
         if active < 2:
             obox.set_active(0)

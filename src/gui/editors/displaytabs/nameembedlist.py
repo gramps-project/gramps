@@ -125,12 +125,8 @@ class NameEmbedList(GroupEmbeddedList):
     def set_default_name(self, name):
         pname = self.person.get_primary_name()
         self.person.set_primary_name(name)
-        remove = []
-        for altname in self.data:
-            if altname.is_equal(name):
-                remove.append(altname)
-        for altname in remove:
-            self.data.remove(altname)
+        remove = [altname for altname in self.data if altname.is_equal(name)]
+        map(self.data.remove, remove)
         #only non empty name should move to alternative names
         if not name.is_equal(gen.lib.Name()):
             self.data.append(pname)

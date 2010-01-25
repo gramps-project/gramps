@@ -405,10 +405,8 @@ class RelationshipView(NavigationView):
         #reset the connects
         self._change_db(db)
         if self.child:
-            for old_child in self.vbox.get_children():
-                self.vbox.remove(old_child)
-            for old_child in self.header.get_children():
-                self.header.remove(old_child)
+            map(self.vbox.remove, self.vbox.get_children())
+            map(self.header.remove, self.header.get_children())
             self.child = None
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
@@ -547,9 +545,7 @@ class RelationshipView(NavigationView):
 
     def write_title(self, person):
 
-        for old_child in self.header.get_children():
-            self.header.remove(old_child)
-
+        map(self.header.remove, self.header.get_children())
         table = gtk.Table(2, 3)
         table.set_col_spacings(12)
         table.set_row_spacings(0)

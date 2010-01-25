@@ -18,6 +18,8 @@
 
 # $Id$
 
+from collections import defaultdict
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -62,7 +64,7 @@ class TopSurnamesGramplet(Gramplet):
 
     def main(self):
         self.set_text(_("Processing...") + "\n")
-        surnames = {}
+        surnames = defaultdict(int)
         representative_handle = {}
 
         cnt = 0
@@ -70,7 +72,7 @@ class TopSurnamesGramplet(Gramplet):
             allnames = [person.get_primary_name()] + person.get_alternate_names()
             allnames = set([name.get_group_name().strip() for name in allnames])
             for surname in allnames:
-                surnames[surname] = surnames.get(surname, 0) + 1
+                surnames[surname] += 1
                 representative_handle[surname] = person.handle
             cnt += 1
             if not cnt % _YIELD_INTERVAL:

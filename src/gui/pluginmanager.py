@@ -81,9 +81,7 @@ class GuiPluginManager(gen.utils.Callback):
         
         gen.utils.Callback.__init__(self)
         self.basemgr = BasePluginManager.get_instance()
-        self.__hidden_plugins = set([])
-        for id in config.get('plugin.hiddenplugins'):
-            self.__hidden_plugins.add(id)
+        self.__hidden_plugins = set(config.get('plugin.hiddenplugins'))
         self.__hidden_changed()
     
     def reload_plugins(self):

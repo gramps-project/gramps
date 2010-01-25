@@ -25,6 +25,7 @@ This Gramplet shows textual distributions of age breakdowns of various types.
 """
 
 import locale
+from collections import defaultdict
 
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
@@ -80,9 +81,9 @@ class AgeStatsGramplet(Gramplet):
 
     def main(self):
         self.clear_text()
-        age_dict = {}
-        mother_dict = {}
-        father_dict = {}
+        age_dict = defaultdict(int)
+        mother_dict = defaultdict(int)
+        father_dict = defaultdict(int)
         age_handles = [[]] * self.max_age
         mother_handles = [[]] * self.max_mother_diff
         father_handles = [[]] * self.max_father_diff
@@ -105,7 +106,7 @@ class AgeStatsGramplet(Gramplet):
             if death_date and birth_date and birth_date.get_year() != 0:
                 age = death_date.get_year() - birth_date.get_year()
                 if age >= 0 and age < self.max_age:
-                    age_dict[age] = age_dict.get(age, 0) + 1
+                    age_dict[age] += 1
                     age_handles[age].append(p.handle)
                 #else:
                 #    print "Age out of range: %d for %s" % (age,
@@ -138,7 +139,7 @@ class AgeStatsGramplet(Gramplet):
                             if bdate and birth_date and birth_date.get_year() != 0:
                                 diff = birth_date.get_year() - bdate.get_year()
                                 if diff >= 0 and diff < self.max_father_diff:
-                                    father_dict[diff] = father_dict.get(diff, 0) + 1
+                                    father_dict[diff] += 1
                                     father_handles[diff].append(f_handle)
                                 #else:
                                 #    print "Father diff out of range: %d for %s" % (diff,
@@ -153,7 +154,7 @@ class AgeStatsGramplet(Gramplet):
                             if bdate and birth_date and birth_date.get_year() != 0:
                                 diff = birth_date.get_year() - bdate.get_year()
                                 if diff >= 0 and diff < self.max_mother_diff:
-                                    mother_dict[diff] = mother_dict.get(diff, 0) + 1
+                                    mother_dict[diff] += 1
                                     mother_handles[diff].append(m_handle)
                                 #else:
                                 #    print "Mother diff out of range: %d for %s" % (diff,

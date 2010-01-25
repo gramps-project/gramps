@@ -1065,8 +1065,7 @@ class ViewManager(CLIManager):
         Disconnects the previous page, removing the old action groups
         and removes the old UI components.
         """
-        for mergeid in self.merge_ids:
-            self.uimanager.remove_ui(mergeid)
+        map(self.uimanager.remove_ui, self.merge_ids)
             
         if self.active_page:
             self.active_page.set_inactive()

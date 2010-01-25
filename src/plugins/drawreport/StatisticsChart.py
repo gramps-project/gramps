@@ -448,10 +448,8 @@ class Extract(object):
 
     def get_event_ages(self, data):
         "return ages at given (person,event_handles)"
-        ages = []
         person, event_handles = data
-        for event_handle in event_handles:
-            ages.append(self.estimate_age(person, event_handle))
+        ages = [self.estimate_age(person, h) for h in event_handles]
         if ages:
             return ages
         return [_("Events missing")]
@@ -582,9 +580,7 @@ class Extract(object):
 
     def get_event_handles(self, person):
         "return list of event handles for given person or None"
-        events = []
-        for event_ref in person.get_event_ref_list():
-            events.append(event_ref.ref)
+        events = [ref.ref for ref in person.get_event_ref_list()]
 
         if events:
             return (person, events)
@@ -842,9 +838,7 @@ class StatisticsChart(Report):
         pad =  row_h * 0.5
         
         # check maximum value
-        max_value = 0
-        for key in lookup:
-            max_value = max(data[key], max_value)
+        max_value = reduce(max, map(data.get, lookup), 0)
         # horizontal area for the gfx bars
         margin = 1.0
         middle = width/2.0

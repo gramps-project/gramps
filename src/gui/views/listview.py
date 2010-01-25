@@ -207,8 +207,7 @@ class ListView(NavigationView):
                                 callback=self.filter_toggle_action)
 
     def build_columns(self):
-        for column in self.columns:
-            self.list.remove_column(column)
+        map(self.list.remove_column, self.columns)
             
         self.columns = []
 
@@ -669,8 +668,7 @@ class ListView(NavigationView):
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
-            for handle in handle_list:
-                self.model.add_row_by_handle(handle)
+            map(self.model.add_row_by_handle, handle_list)
             _LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
                     str(time.clock() - cput) + ' sec')
             if self.active:
@@ -689,8 +687,7 @@ class ListView(NavigationView):
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
-            for handle in handle_list:
-                self.model.update_row_by_handle(handle)
+            map(self.model.update_row_by_handle, handle_list)
             _LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
                     str(time.clock() - cput) + ' sec')
             # Ensure row is still selected after a change of postion in tree.

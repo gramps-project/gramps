@@ -1241,11 +1241,8 @@ class GrampletView(PageView):
                 qr_menu = rg_menu.get_submenu()
                 if qr_menu is not None:
                     rg_menu.remove_submenu()
-                names = []
-                for gramplet in self.closed_gramplets:
-                    names.append(gramplet.title)
-                for opts in self.closed_opts:
-                    names.append(opts["title"])
+                names = [gramplet.title for gramplet in self.closed_gramplets]
+                names.extend(opts["title"] for opts in self.closed_opts)
                 names.sort()
                 if len(names) > 0:
                     qr_menu = gtk.Menu()

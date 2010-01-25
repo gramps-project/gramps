@@ -1056,8 +1056,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
         # Remove what we found
         filters = self.filterdb.get_filters(space)
-        for the_filter in filter_set:
-            filters.remove(the_filter)
+        map(filters.remove, filter_set)
 
     def _find_dependent_filters(self, space, gfilter, filter_set):
         """

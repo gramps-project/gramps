@@ -1078,8 +1078,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write('%s<coord long="%s" lat="%s"/>\n'
                          % ("  "*(index+1), longitude, lat))
         self.dump_location(main_loc)
-        for loc in place.get_alternate_locations():
-            self.dump_location(loc)
+        map(self.dump_location, place.get_alternate_locations())
         self.write_media_list(place.get_media_list(), index+1)
         self.write_url_list(place.get_url_list())
         self.write_note_list(place.get_note_list(), index+1)

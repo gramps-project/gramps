@@ -1750,8 +1750,7 @@ class RelationshipCalculator(object):
             subscribed
         """
         dbstate.disconnect(self.state_signal_key)
-        for key in self.signal_keys:
-            dbstate.db.disconnect(key)
+        map(dbstate.db.disconnect, self.signal_keys)
         self.storemap = False
         self.stored_map = None
 

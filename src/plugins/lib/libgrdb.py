@@ -1715,8 +1715,7 @@ class DbGrdb(Callback):
             self.emit(objtype + '-delete', (del_list, ))
 
     def __do_del(self, del_list, func):
-        for handle in del_list:
-            func(handle)
+        map(func, del_list)
         return del_list
 
     def do_commit(self, add_list, db_map):

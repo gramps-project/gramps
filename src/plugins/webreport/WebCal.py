@@ -525,9 +525,7 @@ class WebCalReport(Report):
 
         # An optional link to a home page
         navs.append((self.home_link,  _('html|Home'),  add_home))
-
-        for month in range(1, 13):
-            navs.append((month, month, True))
+        navs.extend((month, month, True) for month in range(1,13))
 
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))

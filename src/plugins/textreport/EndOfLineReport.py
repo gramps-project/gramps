@@ -149,8 +149,7 @@ class EndOfLineReport(Report):
             self.write_generation_row(generation)
             for person_handle, pedigrees in handles.iteritems():
                 self.write_person_row(person_handle)
-                for pedigree in pedigrees:
-                    self.write_pedigree_row(pedigree)
+                map(self.write_pedigree_row, pedigrees)
         self.doc.end_table()
 
     def write_generation_row(self, generation):

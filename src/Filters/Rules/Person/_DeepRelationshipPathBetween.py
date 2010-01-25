@@ -143,8 +143,7 @@ class DeepRelationshipPathBetween(Rule):
         progress = None
         
         self.__matches = set()
-        for path in paths:
-            self.__matches.update(path)
+        map(self.__matches.update, paths)
         
     def reset(self):
         self.__matches = set()

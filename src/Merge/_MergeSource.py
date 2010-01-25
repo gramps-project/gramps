@@ -144,8 +144,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
             self.s1.set_gramps_id(self.s2.get_gramps_id())
 
         # Copy photos from src2 to src1
-        for photo in self.s2.get_media_list():
-            self.s1.add_media_reference(photo)
+        map(self.s1.add_media_reference, self.s2.get_media_list())
 
         # Add notes from S2 to S1
         self.s1.set_note_list(self.s1.get_note_list() + self.s2.get_note_list())

@@ -124,16 +124,13 @@ class MergePlaces(ManagedWindow.ManagedWindow):
             self.p1.set_latitude(self.p2.get_latitude())
 
         # Add URLs from P2 to P1
-        for url in self.p2.get_url_list():
-            self.p1.add_url(url)
+        map(self.p1.add_url, self.p2.get_url_list())
 
         # Copy photos from P2 to P1
-        for photo in self.p2.get_media_list():
-            self.p1.add_media_reference(photo)
+        map(self.p1.add_media_reference, self.p2.get_media_list())
 
         # Copy sources from P2 to P1
-        for source in self.p2.get_source_references():
-            self.p1.add_source_reference(source)
+        map(self.p1.add_source_reference, self.p2.get_source_references())
 
         # Add notes from P2 to P1
         self.p1.set_note_list(self.p1.get_note_list() + 

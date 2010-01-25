@@ -94,8 +94,8 @@ class PersonSidebarFilter(SidebarFilter):
 
         self.filter_note = gtk.Entry()
         self.filter_gender = gtk.combo_box_new_text()
-        for i in [ _('any'), _('male'), _('female'), _('unknown') ]:
-            self.filter_gender.append_text(i)
+        map(self.filter_gender.append_text, 
+            [ _('any'), _('male'), _('female'), _('unknown') ])
         self.filter_gender.set_active(0)
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))

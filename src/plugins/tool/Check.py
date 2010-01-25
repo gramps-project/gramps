@@ -1301,9 +1301,8 @@ class CheckIntegrity(object):
             bad_handles = [ item[1] for item in handle_list
                             if item[0] == 'Note' and
                             item[1] not in known_handles ]
-            for bad_handle in bad_handles:
-                person.remove_note(bad_handle)
             if bad_handles:
+                map(person.remove_note, bad_handles)
                 self.db.commit_person(person, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
@@ -1318,9 +1317,8 @@ class CheckIntegrity(object):
             bad_handles = [ item[1] for item in handle_list
                             if item[0] == 'Note' and
                             item[1] not in known_handles ]
-            for bad_handle in bad_handles:
-                family.remove_note(bad_handle)
             if bad_handles:
+                map(family.remove_note, bad_handles)
                 self.db.commit_family(family, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
@@ -1335,9 +1333,8 @@ class CheckIntegrity(object):
             bad_handles = [ item[1] for item in handle_list
                             if item[0] == 'Note' and
                             item[1] not in known_handles ]
-            for bad_handle in bad_handles:
-                place.remove_note(bad_handle)
             if bad_handles:
+                map(place.remove_note, bad_handles)
                 self.db.commit_place(place, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
@@ -1355,6 +1352,7 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 source.remove_note(bad_handle)
             if bad_handles:
+                map(source.remove_note, bad_handles)
                 self.db.commit_source(source, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
@@ -1369,9 +1367,8 @@ class CheckIntegrity(object):
             bad_handles = [ item[1] for item in handle_list
                             if item[0] == 'Note' and
                             item[1] not in known_handles ]
-            for bad_handle in bad_handles:
-                obj.remove_note(bad_handle)
             if bad_handles:
+                map(obj.remove_note, bad_handles)
                 self.db.commit_media_object(obj, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
@@ -1386,9 +1383,8 @@ class CheckIntegrity(object):
             bad_handles = [ item[1] for item in handle_list
                             if item[0] == 'Note' and
                             item[1] not in known_handles ]
-            for bad_handle in bad_handles:
-                event.remove_note(bad_handle)
             if bad_handles:
+                map(event.remove_note, bad_handles)
                 self.db.commit_event(event, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
@@ -1403,9 +1399,8 @@ class CheckIntegrity(object):
             bad_handles = [ item[1] for item in handle_list
                             if item[0] == 'Note' and
                             item[1] not in known_handles ]
-            for bad_handle in bad_handles:
-                repo.remove_note(bad_handle)
             if bad_handles:
+                map(repo.remove_note, bad_handles)
                 self.db.commit_repository(repo, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]

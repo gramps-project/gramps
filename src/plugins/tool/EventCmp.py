@@ -103,10 +103,9 @@ class TableReport(object):
     def set_row(self,val):
         self.row = val + 2
         
-    def write_table_head(self,data):
+    def write_table_head(self, data):
         self.doc.start_row()
-        for item in data:
-            self.doc.write_cell(item)
+        map(self.doc.write_cell, data)
         self.doc.end_row()
 
 #------------------------------------------------------------------------

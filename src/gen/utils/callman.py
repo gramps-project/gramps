@@ -140,8 +140,7 @@ class CallbackManager(object):
         This method should always be called before a the callback methods
         become invalid.
         """
-        for key in self.custom_signal_keys:
-            self.database.disconnect(key)
+        map(self.database.disconnect, self.custom_signal_keys)
         self.custom_signal_keys = []
         for key, value in self.__callbacks.iteritems():
             if not value[1] is None:
@@ -186,8 +185,7 @@ class CallbackManager(object):
         for key in KEYS:
             handles = ahandledict.get(key)
             if handles:
-                for handle in handles:
-                    self.__handles[key].remove(handle)
+                map(self.__handles[key].remove, handles)
     
     def unregister_all(self):
         """

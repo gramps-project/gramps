@@ -158,8 +158,7 @@ class CardWriter(object):
             self.oldval = newval
 
     def cl_setup(self):
-        for p in self.db.iter_person_handles():
-            self.plist[p] = 1
+        self.plist.update([p, 1] for p in self.db.iter_person_handles())
 
     def writeln(self, text):
         #self.g.write('%s\n' % (text.encode('iso-8859-1')))

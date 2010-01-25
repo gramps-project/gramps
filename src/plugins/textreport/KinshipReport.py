@@ -274,8 +274,7 @@ class KinshipReport(Report):
         mark = IndexMark(cap_title, INDEX_TYPE_TOC, 2)
         self.doc.write_text(subtitle, mark)
         self.doc.end_paragraph()
-        for person_handle in people_handles:
-            self.write_person(person_handle)
+        map(self.write_person, people_handles)
 
     def write_person(self, person_handle):
         """

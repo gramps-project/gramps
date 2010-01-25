@@ -2188,9 +2188,7 @@ class GedcomParser(UpdateCallback):
         amap = personalConstantAttributes
         
         self.attrs = amap.values()
-        self.gedattr = {}
-        for val, key in amap.iteritems():
-            self.gedattr[key] = val
+        self.gedattr = dict([key, val] for val, key in amap.iteritems())
         self.search_paths = []
 
     def parse_gedcom_file(self, use_trans=False):
@@ -4294,8 +4292,7 @@ class GedcomParser(UpdateCallback):
             place_handle = place.handle
             place.set_main_location(location)
 
-        for note in note_list:
-            place.add_note(note)
+        map(place.add_note, note_list)
 
         state.event.set_place_handle(place_handle)
         self.dbase.commit_place(place, self.trans)

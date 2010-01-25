@@ -140,8 +140,7 @@ class UnicodeWriter(object):
         self.queue.truncate(0)
 
     def writerows(self, rows):
-        for row in rows:
-            self.writerow(row)
+        map(self.writerow, rows)
 
     def close(self):
         self.stream.close()
@@ -253,8 +252,8 @@ class CSVWriter(object):
             if not option_box.cfilter.is_empty():
                 self.db = gen.proxy.FilterProxyDb(self.db, option_box.cfilter)
 
-        for p in self.db.iter_person_handles():
-            self.plist[p] = 1
+        self.plist.update([p, 1] for p in self.db.iter_person_handles())
+
         # get the families for which these people are spouses:
         self.flist = {}
         for key in self.plist:

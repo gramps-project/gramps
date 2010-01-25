@@ -166,8 +166,7 @@ class ChildEmbedList(EmbeddedList):
         self.rebuild()
 
     def build_columns(self):
-        for column in self.columns:
-            self.tree.remove_column(column)
+        map(self.tree.remove_column, self.columns)
         self.columns = []
 
         for pair in self.column_order():

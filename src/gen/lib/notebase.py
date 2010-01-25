@@ -84,8 +84,7 @@ class NoteBase(object):
         """
         if handle in self.note_list:
             self.note_list.remove(handle)
-        for item in self.get_note_child_list():
-            item.remove_note(handle)
+        map(item.remove_note, self.get_note_child_list())
     
     def get_note_child_list(self):
         """
