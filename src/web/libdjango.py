@@ -160,8 +160,7 @@ class DjangoInterface(object):
         obj_type = ContentType.objects.get_for_model(obj)
         attribute_list = models.Attribute.objects.filter(object_id=obj.id, 
                                                      object_type=obj_type)
-        return [self.pack_attribute(attribute) for attribute 
-                in attribute_list]
+        return map(self.pack_attribute, attribute_list)
 
     def get_names(self, person, preferred):
         names = person.name_set.filter(preferred=preferred).order_by("order")
@@ -174,29 +173,19 @@ class DjangoInterface(object):
             return map(self.pack_name, names)
      
     def get_datamap(self, obj): # obj is source
-        datamap_dict = {}
-        datamap_list = obj.datamap_set.all()
-        for datamap in datamap_list:
-            datamap_dict[datamap.key] = datamap.value
-        return datamap_dict
+        return dict([map.key, map.value] for map in obj.datamap_set.all())
 
     def get_media_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
         mediarefs = models.MediaRef.objects.filter(object_id=obj.id, 
                                                object_type=obj_type)
-        retval = []
-        for mediaref in mediarefs:
-            retval.append(self.pack_media_ref(mediaref))
-        return retval
+        return map(self.pack_media_ref, mediarefs)
 
     def get_note_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
         noterefs = models.NoteRef.objects.filter(object_id=obj.id, 
                                              object_type=obj_type)
-        retval = []
-        for noteref in noterefs:
-            retval.append( noteref.ref_object.handle)
-        return retval
+        return [noteref.ref_object.handle for noteref in noterefs]
 
     def get_repository_ref_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
@@ -209,30 +198,20 @@ class DjangoInterface(object):
 
     def get_address_list(self, obj, with_parish): # person or repository
         addresses = obj.address_set.all().order_by("order")
-        retval = []
-        count = 1
-        for address in addresses:
-            retval.append(self.pack_address(address, with_parish))
-            count += 1
-        return retval
+        return [self.pack_address(address, with_parish)
+                    for address in addresses]
 
     def get_child_ref_list(self, family):
         obj_type = ContentType.objects.get_for_model(family)
         childrefs = models.ChildRef.objects.filter(object_id=family.id, \
                                                    object_type=obj_type).order_by("order")
-        retval = []
-        for childref in childrefs:
-            retval.append(self.pack_child_ref(childref))
-        return retval
+        return map(self.pack_child_ref, childrefs)
 
     def get_source_ref_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
         sourcerefs = models.SourceRef.objects.filter(object_id=obj.id, \
                                   object_type=obj_type).order_by("order")
-        retval = []
-        for sourceref in sourcerefs:
-            retval.append(self.pack_source_ref(sourceref))
-        return retval
+        return map(self.pack_source_ref, sourcerefs)
 
     def get_event_refs(self, obj, order="order"):
         obj_type = ContentType.objects.get_for_model(obj)
@@ -244,10 +223,7 @@ class DjangoInterface(object):
         obj_type = ContentType.objects.get_for_model(obj)
         eventrefs = models.EventRef.objects.filter(object_id=obj.id, \
                                   object_type=obj_type).order_by("order")
-        retval = []
-        for eventref in eventrefs:
-            retval.append(self.pack_event_ref(eventref))
-        return retval
+        return map(self.pack_event_ref, eventrefs)
 
     def get_family_list(self, person): # person has families
         return [fam.handle for fam in person.families.all()]
