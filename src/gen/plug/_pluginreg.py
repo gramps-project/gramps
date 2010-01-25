@@ -33,7 +33,6 @@ import os
 import sys
 import re
 import traceback
-from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +41,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from const import VERSION as GRAMPSVERSION
 from TransUtils import get_addon_translator
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -773,6 +773,57 @@ def register(ptype, **kwargs):
         setattr(plg, prop, kwargs[prop])
     return plg
 
+def make_environment(**kwargs):
+    env = {
+        'newplugin': newplugin,
+        'register': register,
+        'STABLE': STABLE,
+        'UNSTABLE': UNSTABLE,
+        'REPORT': REPORT,
+        'QUICKREPORT': QUICKREPORT,
+        'TOOL': TOOL,
+        'IMPORT': IMPORT,
+        'EXPORT': EXPORT,
+        'DOCGEN': DOCGEN,
+        'GENERAL': GENERAL,
+        'MAPSERVICE': MAPSERVICE,
+        'VIEW': VIEW,
+        'RELCALC': RELCALC,
+        'GRAMPLET': GRAMPLET,
+        'CATEGORY_TEXT': CATEGORY_TEXT,
+        'CATEGORY_DRAW': CATEGORY_DRAW,
+        'CATEGORY_CODE': CATEGORY_CODE,
+        'CATEGORY_WEB': CATEGORY_WEB,
+        'CATEGORY_BOOK': CATEGORY_BOOK,
+        'CATEGORY_GRAPHVIZ': CATEGORY_GRAPHVIZ,
+        'TOOL_DEBUG': TOOL_DEBUG,
+        'TOOL_ANAL': TOOL_ANAL,
+        'TOOL_DBPROC': TOOL_DBPROC,
+        'TOOL_DBFIX': TOOL_DBFIX,
+        'TOOL_REVCTL': TOOL_REVCTL,
+        'TOOL_UTILS': TOOL_UTILS,
+        'CATEGORY_QR_MISC': CATEGORY_QR_MISC,
+        'CATEGORY_QR_PERSON': CATEGORY_QR_PERSON,
+        'CATEGORY_QR_FAMILY': CATEGORY_QR_FAMILY,
+        'CATEGORY_QR_EVENT': CATEGORY_QR_EVENT,
+        'CATEGORY_QR_SOURCE': CATEGORY_QR_SOURCE,
+        'CATEGORY_QR_PLACE': CATEGORY_QR_PLACE,
+        'CATEGORY_QR_MEDIA': CATEGORY_QR_MEDIA,
+        'CATEGORY_QR_REPOSITORY': CATEGORY_QR_REPOSITORY,
+        'CATEGORY_QR_NOTE': CATEGORY_QR_NOTE,
+        'CATEGORY_QR_DATE': CATEGORY_QR_DATE,
+        'REPORT_MODE_GUI': REPORT_MODE_GUI, 
+        'REPORT_MODE_BKI': REPORT_MODE_BKI, 
+        'REPORT_MODE_CLI': REPORT_MODE_CLI,
+        'TOOL_MODE_GUI': TOOL_MODE_GUI, 
+        'TOOL_MODE_CLI': TOOL_MODE_CLI,
+        'GRAMPSVERSION': GRAMPSVERSION,
+        'START': START,
+        'END': END,
+        }
+    env.update(kwargs)
+    return env
+
 #-------------------------------------------------------------------------
 #
 # PluginRegister
@@ -830,54 +881,8 @@ class PluginRegister(object):
             local_gettext = get_addon_translator(full_filename).gettext
             try:
                 execfile(full_filename,
-                   {'_': local_gettext,
-                    'newplugin': newplugin,
-                    'register': register,
-                    'STABLE': STABLE,
-                    'UNSTABLE': UNSTABLE,
-                    'REPORT': REPORT,
-                    'QUICKREPORT': QUICKREPORT,
-                    'TOOL': TOOL,
-                    'IMPORT': IMPORT,
-                    'EXPORT': EXPORT,
-                    'DOCGEN': DOCGEN,
-                    'GENERAL': GENERAL,
-                    'MAPSERVICE': MAPSERVICE,
-                    'VIEW': VIEW,
-                    'RELCALC': RELCALC,
-                    'GRAMPLET': GRAMPLET,
-                    'CATEGORY_TEXT': CATEGORY_TEXT,
-                    'CATEGORY_DRAW': CATEGORY_DRAW,
-                    'CATEGORY_CODE': CATEGORY_CODE,
-                    'CATEGORY_WEB': CATEGORY_WEB,
-                    'CATEGORY_BOOK': CATEGORY_BOOK,
-                    'CATEGORY_GRAPHVIZ': CATEGORY_GRAPHVIZ,
-                    'TOOL_DEBUG': TOOL_DEBUG,
-                    'TOOL_ANAL': TOOL_ANAL,
-                    'TOOL_DBPROC': TOOL_DBPROC,
-                    'TOOL_DBFIX': TOOL_DBFIX,
-                    'TOOL_REVCTL': TOOL_REVCTL,
-                    'TOOL_UTILS': TOOL_UTILS,
-                    'CATEGORY_QR_MISC': CATEGORY_QR_MISC,
-                    'CATEGORY_QR_PERSON': CATEGORY_QR_PERSON,
-                    'CATEGORY_QR_FAMILY': CATEGORY_QR_FAMILY,
-                    'CATEGORY_QR_EVENT': CATEGORY_QR_EVENT,
-                    'CATEGORY_QR_SOURCE': CATEGORY_QR_SOURCE,
-                    'CATEGORY_QR_PLACE': CATEGORY_QR_PLACE,
-                    'CATEGORY_QR_MEDIA': CATEGORY_QR_MEDIA,
-                    'CATEGORY_QR_REPOSITORY': CATEGORY_QR_REPOSITORY,
-                    'CATEGORY_QR_NOTE': CATEGORY_QR_NOTE,
-                    'CATEGORY_QR_DATE': CATEGORY_QR_DATE,
-                    'REPORT_MODE_GUI': REPORT_MODE_GUI, 
-                    'REPORT_MODE_BKI': REPORT_MODE_BKI, 
-                    'REPORT_MODE_CLI': REPORT_MODE_CLI,
-                    'TOOL_MODE_GUI': TOOL_MODE_GUI, 
-                    'TOOL_MODE_CLI': TOOL_MODE_CLI,
-                    'GRAMPSVERSION': GRAMPSVERSION,
-                    'START': START,
-                    'END': END,
-                   },
-                   {})
+                         make_environment(_=local_gettext),
+                         {})
             except ValueError, msg:
                 print _('Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename}
