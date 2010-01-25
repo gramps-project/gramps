@@ -549,6 +549,42 @@ GED_TO_GRAMPS_ATTR = {}
 for __val, __key in personalConstantAttributes.iteritems():
     if __key != "":
         GED_TO_GRAMPS_ATTR[__key] = __val
+        
+#-------------------------------------------------------------------------
+#
+# GEDCOM Date Constants
+#
+#-------------------------------------------------------------------------
+HMONTH = [
+    "", "ELUL", "TSH", "CSH", "KSL", "TVT", "SHV", "ADR", 
+    "ADS", "NSN", "IYR", "SVN", "TMZ", "AAV", "ELL" ]
+
+FMONTH = [
+    "",     "VEND", "BRUM", "FRIM", "NIVO", "PLUV", "VENT", 
+    "GERM", "FLOR", "PRAI", "MESS", "THER", "FRUC", "COMP"]
+
+MONTH = [
+    "",    "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
+    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
+
+CALENDAR_MAP = {
+    gen.lib.Date.CAL_HEBREW : (HMONTH, '@#DHEBREW@'), 
+    gen.lib.Date.CAL_FRENCH : (FMONTH, '@#DFRENCH R@'), 
+    gen.lib.Date.CAL_JULIAN : (MONTH, '@#DJULIAN@'), 
+    gen.lib.Date.CAL_SWEDISH : (MONTH, '@#DUNKNOWN@'), 
+    }
+
+DATE_MODIFIER = {
+    gen.lib.Date.MOD_ABOUT   : "ABT", 
+    gen.lib.Date.MOD_BEFORE  : "BEF", 
+    gen.lib.Date.MOD_AFTER   : "AFT", 
+    #Date.MOD_INTERPRETED : "INT",
+    }
+
+DATE_QUALITY = {
+    gen.lib.Date.QUAL_CALCULATED : "CAL", 
+    gen.lib.Date.QUAL_ESTIMATED  : "EST", 
+}
 
 #-------------------------------------------------------------------------
 #
@@ -5835,3 +5871,65 @@ class GedcomStageOne(object):
         Return the number of lines in the file
         """
         return self.lcnt
+
+#-------------------------------------------------------------------------
+#
+# make_gedcom_date
+#
+#-------------------------------------------------------------------------
+def make_gedcom_date(subdate, calendar, mode, quality):
+    """
+    Convert a GRAMPS date structure into a GEDCOM compatible date.
+    """
+    retval = ""
+    (day, mon, year) = subdate[0:3]
+    (mmap, prefix) = CALENDAR_MAP.get(calendar, (MONTH, ""))
+    if year < 0:
+        year = -year
+        bce = " B.C."
+    else:
+        bce = ""
+    try:
+        retval = __build_date_string(day, mon, year, bce, mmap)
+    except IndexError:
+        print "Month index error - %d" % mon
+        retval = "%d%s" % (year, bce)
+    if calendar == gen.lib.Date.CAL_SWEDISH:
+        # If Swedish calendar use ISO for for date and append (swedish)
+        # to indicate calandar
+        if year and not mon and not day:
+            retval = "%i" % (year)
+        else:
+            retval = "%i-%02i-%02i" % (year, mon, day)
+        retval = retval + " (swedish)"
+        # Skip prefix @#DUNKNOWN@ as it seems
+        # not used in all other genealogy applications.
+        # GRAMPS can handle it on import, but not with (swedish) appended
+        # to explain what calendar, the unknown refer to
+        prefix = ""
+    if prefix:
+        retval = "%s %s" % (prefix, retval)
+    if mode in DATE_MODIFIER:
+        retval = "%s %s" % (DATE_MODIFIER[mode], retval)
+    if quality in DATE_QUALITY:
+        retval = "%s %s" % (DATE_QUALITY[quality], retval)
+    return retval
+
+def __build_date_string(day, mon, year, bce, mmap):
+    """
+    Build a date string from the supplied information.
+    """
+    if day == 0:
+        if mon == 0:
+            retval = '%d%s' % (year, bce)
+        elif year == 0:
+            retval = '(%s)' % mmap[mon]
+        else:
+            retval = "%s %d%s" % (mmap[mon], year, bce)
+    elif mon == 0:
+        retval = '%d%s' % (year, bce)
+    elif year == 0:
+        retval = "(%d %s)" % (day, mmap[mon])
+    else:
+        retval = "%d %s %d%s" % (day, mmap[mon], year, bce)
+    return retval

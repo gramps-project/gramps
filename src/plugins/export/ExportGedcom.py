@@ -39,7 +39,6 @@ import time
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gen.lib.date import make_gedcom_date, MONTH
 import const
 import libgedcom
 import Errors
@@ -375,7 +374,7 @@ class GedcomWriter(UpdateCallback):
         """
         local_time = time.localtime(time.time())
         (year, mon, day, hour, minutes, sec) = local_time[0:6]
-        date_str = "%d %s %d" % (day, MONTH[mon], year)
+        date_str = "%d %s %d" % (day, libgedcom.MONTH[mon], year)
         time_str = "%02d:%02d:%02d" % (hour, minutes, sec)
         rname = self.dbase.get_researcher().get_name()
 
@@ -1099,7 +1098,7 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(level, 'CHAN')
         time_val = time.localtime(timeval)
         self.__writeln(level+1, 'DATE', '%d %s %d' % (
-                time_val[2], MONTH[time_val[1]], time_val[0]))
+                time_val[2], libgedcom.MONTH[time_val[1]], time_val[0]))
         self.__writeln(level+2, 'TIME', '%02d:%02d:%02d' % (
                 time_val[3], time_val[4], time_val[5]))
 
@@ -1208,14 +1207,16 @@ class GedcomWriter(UpdateCallback):
             quality = date.get_quality()
             if mod == gen.lib.Date.MOD_SPAN:
                 val = "FROM %s TO %s" % (
-                    make_gedcom_date(start, cal, mod, quality), 
-                    make_gedcom_date(date.get_stop_date(), cal, mod, quality))
+                    libgedcom.make_gedcom_date(start, cal, mod, quality), 
+                    libgedcom.make_gedcom_date(date.get_stop_date(), 
+                                               cal, mod, quality))
             elif mod == gen.lib.Date.MOD_RANGE:
                 val = "BET %s AND %s" % (
-                    make_gedcom_date(start, cal, mod, quality), 
-                    make_gedcom_date(date.get_stop_date(), cal, mod, quality))
+                    libgedcom.make_gedcom_date(start, cal, mod, quality), 
+                    libgedcom.make_gedcom_date(date.get_stop_date(), 
+                                               cal, mod, quality))
             else:
-                val = make_gedcom_date(start, cal, mod, quality)
+                val = libgedcom.make_gedcom_date(start, cal, mod, quality)
             self.__writeln(level, 'DATE', val)
         elif date.get_text():
             self.__writeln(level, 'DATE', date.get_text())
@@ -1405,6 +1406,4 @@ def export_data(database, filename, option_box=None, callback=None):
         ErrorDialog(msg2, str(msg))
     except Errors.DatabaseError, msg:
         ErrorDialog(_("Export failed"), str(msg))
-    except:
-        ErrorDialog(_("Could not create %s") % filename)
     return ret

@@ -5,7 +5,7 @@
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Copyright (C) 2007-2009  Gary Burton <gary.burton@zen.co.uk>
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
-# Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
 # Copyright (C) 2008-2009  Rob G. Healey <robhealey1@gmail.com>	
 #
@@ -29,16 +29,6 @@
 """
 Narrative Web Page generator.
 """
-
-#------------------------------------------------------------------------
-#
-# Suggested pylint usage:
-#      --max-line-length=100     Yes, I know PEP8 suggest 80, but this has longer lines
-#      --argument-rgx='[a-z_][a-z0-9_]{1,30}$'    Several identifiers are two characters
-#      --variable-rgx='[a-z_][a-z0-9_]{1,30}$'    Several identifiers are two characters
-#
-#------------------------------------------------------------------------
-
 #------------------------------------------------------------------------
 #
 # python modules
@@ -59,8 +49,6 @@ import shutil
 import codecs
 import tarfile
 import tempfile
-import operator
-from gen.ggettext import sgettext as _
 from cStringIO import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize
@@ -77,10 +65,10 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 # GRAMPS module
 #------------------------------------------------------------------------
+from gen.ggettext import sgettext as _
 import gen.lib
 from gen.lib import UrlType, EventType, Person, date, Date, ChildRefType, \
                     FamilyRelType, NameType, Name
-from gen.lib.date import make_gedcom_date
 import const
 import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
@@ -106,6 +94,8 @@ from libhtml import Html
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend
+
+from libgedcom import make_gedcom_date
 
 #------------------------------------------------------------------------
 #
