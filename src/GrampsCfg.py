@@ -51,6 +51,7 @@ from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
 import Utils
 from gen.lib import Name
+import gen.lib
 import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
@@ -688,8 +689,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         
         # Calendar format on report:
         obox = gtk.combo_box_new_text()
-        formats = DateHandler.get_calendar_formats()
-        for item in formats:
+        for item in gen.lib.Date.ui_calendar_names:
             obox.append_text(item)
         active = config.get('preferences.calendar-format-report')
         if active >= len(formats):

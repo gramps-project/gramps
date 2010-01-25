@@ -30,7 +30,6 @@ Class handling language-specific selection for date parser and displayer.
 #
 #-------------------------------------------------------------------------
 from DateHandler import LANG_TO_DISPLAY, LANG, parser, displayer
-import gen.lib.date
 
 #--------------------------------------------------------------
 #
@@ -81,14 +80,3 @@ def get_date(date_base) :
 def get_date_valid(date_base):
     date_obj = date_base.get_date_object()
     return date_obj.get_valid()
-    
-def get_calendar_formats():
-    """
-    Return the list of supported calendars.
-    """
-    cal = []
-
-    for calendar in gen.lib.date.Date.ui_calendar_names:
-        cal.append(calendar)
-        
-    return cal
