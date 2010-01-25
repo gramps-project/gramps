@@ -1,6 +1,6 @@
 # This is the src/gui/editors/displaytabs level Makefile for Gramps
 
-pkgdatadir = $(datadir)/@PAcKAGE@/gui/editors/displaytabs
+pkgdatadir = $(datadir)/@PACKAGE@/gui/editors/displaytabs
 
 pkgdata_PYTHON = \
 	addrembedlist.py \
