@@ -72,6 +72,15 @@ def version_str_to_tup(sversion, positions):
         tup = (0,) * positions
     return tup
 
+class newplugin(object):
+    """
+    Fake newplugin.
+    """
+    def __init__(self):
+        globals()["register_results"].append({})
+    def __setattr__(self, attr, value):
+        globals()["register_results"][-1][attr] = value
+
 def register(ptype, **kwargs):
     """
     Fake registration. Side-effect sets register_results to kwargs.
@@ -494,7 +503,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         for gpr_file in [name for name in file_obj.getnames() if name.endswith(".gpr.py")]:
             contents = file_obj.extractfile(gpr_file).read()
             # Put a fake register and _ function in environment:
-            env = make_environment(register=register, _=lambda text: text)
+            env = make_environment(register=register, 
+                                   newplugin=newplugin, 
+                                   _=lambda text: text)
             # clear out the result variable:
             globals()["register_results"] = []
             # evaluate the contents:
@@ -505,19 +516,19 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                 continue
             # There can be multiple addons per gpr file:
             for results in globals()["register_results"]:
-                for_gramps = results.get("for_gramps", None)
-                if for_gramps:
-                    vtup = version_str_to_tup(for_gramps, 2)
+                gramps_target_version = results.get("gramps_target_version", None)
+                if gramps_target_version:
+                    vtup = version_str_to_tup(gramps_target_version, 2)
                     # Is it for the right version of gramps?
                     if vtup == const.VERSION_TUPLE[0:2]:
                         # If this version is not installed, or > installed, install it
                         good_gpr.add(gpr_file)
                         messages += [_("'%s' is for this version of Gramps.") % gpr_file]
                 else:
-                    # another register function doesn't have for_gramps
+                    # another register function doesn't have gramps_target_version
                     if gpr_file in good_gpr:
                         s.remove(gpr_file)
-                    messages += [_("Error: missing for_gramps = '3.2' in '%s'...") % gpr_file]
+                    messages += [_("Error: missing gramps_target_version = '3.2' in '%s'...") % gpr_file]
         if len(good_gpr) > 0:
             # Now, install the ok ones
             file_obj.extractall(const.USER_PLUGINS)
