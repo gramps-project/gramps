@@ -5,6 +5,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Person
 pkgdata_PYTHON = \
 	_ChangedSince.py\
 	_Disconnected.py \
+    _DeepRelationshipPathBetween.py \
 	_Everyone.py \
 	_FamilyWithIncompleteEvent.py \
 	_HasAttribute.py \
