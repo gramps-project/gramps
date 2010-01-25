@@ -36,8 +36,8 @@ pkgdata_PYTHON = \
 	editurl.py \
 	objectentries.py
 
-pkgpyexecdir = @pkgpyexecdir@/src/editors
-pkgpythondir = @pkgpythondir@/src/editors
+pkgpyexecdir = @pkgpyexecdir@/gui/editors
+pkgpythondir = @pkgpythondir@/gui/editors
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
