@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 import traceback
-from gen.ggettext import gettext as _
 import os
 
 #-------------------------------------------------------------------------
@@ -46,7 +45,8 @@ import gobject
 #-------------------------------------------------------------------------
 import ManagedWindow
 import Errors
-from gen.plug import PluginRegister, PTYPE_STR
+from gen.plug import PluginRegister, PTYPE_STR, make_environment
+from gen.ggettext import gettext as _
 from gui.utils import open_file_with_default_application
 from gui.pluginmanager import GuiPluginManager
 import _Tool as Tool
@@ -56,9 +56,37 @@ import Utils
 import const
 import config
 
+def version_str_to_tup(sversion, positions):
+    """
+    Given a string version and positions count, returns a tuple of
+    integers.
+
+    >>> version_str_to_tup("1.02.9", 2)
+    (1, 2)
+    """
+    try:
+        tup = tuple(([int(n) for n in 
+                      sversion.split(".", sversion.count("."))] + 
+                     [0] * positions)[0:positions])
+    except:
+        tup = (0,) * positions
+    return tup
+
+def register(ptype, **kwargs):
+    """
+    Fake registration. Side-effect sets register_results to kwargs.
+    """
+    retval = {"ptype": ptype}
+    retval.update(kwargs)
+    # Get the results back to calling function
+    if "register_results" in globals():
+        globals()["register_results"].append(retval)
+    else:
+        globals()["register_results"] = [retval]
+
 class Zipfile(object):
     """
-    Class to duplicate the methods of tarfile for Python 2.5.
+    Class to duplicate the methods of tarfile.TarFile, for Python 2.5.
     """
     def __init__(self, buffer):
         import zipfile
@@ -79,6 +107,29 @@ class Zipfile(object):
             outfile = file(fullname, 'wb')
             outfile.write(self.zip_obj.read(name))
             outfile.close()
+
+    def extractfile(self, name):
+        """
+        Extract a name from the zip file.
+
+        >>> Zipfile(buffer).extractfile("Dir/dile.py").read()
+        <Contents>
+        """
+        class ExtractFile(object):
+            def __init__(self, zip_obj, name):
+                self.zip_obj = zip_obj
+                self.name = name
+            def read(self):
+                data = self.zip_obj.read(self.name)
+                del self.zip_obj
+                return data
+        return ExtractFile(self.zip_obj, name)
+
+    def close(self):
+        """
+        Close the zip object.
+        """
+        self.zip_obj.close()
 
     def getnames(self):
         """
@@ -241,8 +292,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         install_page = gtk.VBox()
         scrolled_window = gtk.ScrolledWindow()
         self.addon_list = gtk.TreeView()
-        # model: help_name, name, ptype, image, desc, use, rating, contact, download 
+        # model: help_name, name, ptype, image, desc, use, rating, contact, download, url
         self.addon_model = gtk.ListStore(gobject.TYPE_STRING, 
+                                         gobject.TYPE_STRING, 
                                          gobject.TYPE_STRING, 
                                          gobject.TYPE_STRING, 
                                          gobject.TYPE_STRING, 
@@ -316,6 +368,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.__populate_lists()
 
     def __refresh_addon_list(self, obj):
+        """
+        Reloads the addons from the wiki into the list.
+        """
         import urllib
         URL = "%s%s" % (const.URL_WIKISTRING, const.WIKI_EXTRAPLUGINS_RAWDATA)
         fp = urllib.urlopen(URL)
@@ -340,39 +395,29 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         config.get('plugin.addonplugins')[:] = []
         for row in rows:
             try:
+                # from wiki:
                 help_name, ptype, image, desc, use, rating, contact, download = row
             except:
                 continue
+            help_url = _("Unknown Help URL")
             if help_name.startswith("[[") and help_name.endswith("]]"):
                 name = help_name[2:-2]
                 if "|" in name:
-                    url, name = name.split("|", 1)
+                    help_url, name = name.split("|", 1)
             elif help_name.startswith("[") and help_name.endswith("]"):
                 name = help_name[1:-1]
                 if " " in name:
-                    url, name = name.split(" ", 1)
+                    help_url, name = name.split(" ", 1)
             else:
                 name = help_name
-            
-            self.addon_model.append(row=[help_name, name, ptype, image, desc, use, 
-                                         rating, contact, download])
-            config.get('plugin.addonplugins').append([help_name, name, ptype, image, desc, use, 
-                                                      rating, contact, download])
-        config.save()
-
-    def __get_all_addons(self, obj):
-        import urllib
-        for row in self.addon_model:
-            (help_name, name, ptype, image, desc, use, rating, contact, 
-             download) = row
-            url = "Unknown URL"
+            url = _("Unknown URL")
             if download.startswith("[[") and download.endswith("]]"):
                 # Not directly possible to get the URL:
-                wiki_page = download[2:-2]
-                if "|" in wiki_page:
-                    wiki_page, text = wiki_page.split("|", 1)
+                url = download[2:-2]
+                if "|" in url:
+                    url, text = url.split("|", 1)
                 # need to get a page that says where it is:
-                fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, wiki_page, 
+                fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, url, 
                                                 "&action=edit&externaledit=true&mode=file"))
                 for line in fp:
                     if line.startswith("URL="):
@@ -383,17 +428,48 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                 url = download[1:-1]
                 if " " in url:
                     url, text = url.split(" ", 1)
-            self.__load_addon_file(url)
+            if (url.endswith(".zip") or 
+                url.endswith(".ZIP") or 
+                url.endswith(".tar.gz") or 
+                url.endswith(".tgz")):
+                # Then this is ok:
+                self.addon_model.append(row=[help_name, name, ptype, image, desc, use, 
+                                             rating, contact, download, url])
+                config.get('plugin.addonplugins').append([help_name, name, ptype, image, desc, use, 
+                                                          rating, contact, download, url])
+        config.save()
+
+    def __get_all_addons(self, obj):
+        """
+        Get all addons from the wiki and install them.
+        """
+        import urllib
+        for row in self.addon_model:
+            (help_name, name, ptype, image, desc, use, rating, contact, 
+             download, url) = row
+            messages = self.__load_addon_file(url)
+            # FIXME: display messages
+            for message in messages:
+                print message
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
 
     def __get_addon(self, obj):
+        """
+        Get an addon from the wiki or file system and install it.
+        """
         path = self.install_addon_path.get_text()
-        self.__load_addon_file(path)
+        messages = self.__load_addon_file(path)
+        # FIXME: display messages
+        for message in messages:
+            print message
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
 
     def __load_addon_file(self, path):
+        """
+        Load an addon from a particular path (from URL or file system).
+        """
         import urllib
         import tarfile
         import cStringIO
@@ -404,22 +480,61 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         else:
             fp = open(path)
         buffer = cStringIO.StringIO(fp.read())
+        fp.close()
+        # file_obj is either Zipfile or TarFile
         if path.endswith(".zip") or path.endswith(".ZIP"):
             file_obj = Zipfile(buffer)
         elif path.endswith(".tar.gz") or path.endswith(".tgz"):
             file_obj = tarfile.open(None, fileobj=buffer)
         else:
-            print "load addon: unknown file type: '%s'" % path
-            return False
-        file_obj.extractall(const.USER_PLUGINS)
-        
-        gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
-                     for name in file_obj.getnames() if name.endswith(".gpr.py")])
-        for gpr_file in gpr_files:
-            self.__pmgr.reg_plugins(gpr_file)
-        return True
+            return [("Error: unknown file type: '%s'") % path]
+        # First, see what versions we have/are getting:
+        good_gpr = set()
+        messages = []
+        for gpr_file in [name for name in file_obj.getnames() if name.endswith(".gpr.py")]:
+            contents = file_obj.extractfile(gpr_file).read()
+            # Put a fake register and _ function in environment:
+            env = make_environment(register=register, _=lambda text: text)
+            # clear out the result variable:
+            globals()["register_results"] = []
+            # evaluate the contents:
+            try:
+                exec(contents, env)
+            except:
+                messages += [_("Error in '%s' file: cannot load.") % gpr_file]
+                continue
+            # There can be multiple addons per gpr file:
+            for results in globals()["register_results"]:
+                for_gramps = results.get("for_gramps", None)
+                if for_gramps:
+                    vtup = version_str_to_tup(for_gramps, 2)
+                    # Is it for the right version of gramps?
+                    if vtup == const.VERSION_TUPLE[0:2]:
+                        # If this version is not installed, or > installed, install it
+                        good_gpr.add(gpr_file)
+                        messages += [_("'%s' is for this version of Gramps.") % gpr_file]
+                else:
+                    # another register function doesn't have for_gramps
+                    if gpr_file in good_gpr:
+                        s.remove(gpr_file)
+                    messages += [_("Error: missing for_gramps = '3.2' in '%s'...") % gpr_file]
+        if len(good_gpr) > 0:
+            # Now, install the ok ones
+            file_obj.extractall(const.USER_PLUGINS)
+            messages += [_("Installing '%s'...") % path]
+            gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
+                             for name in good_gpr])
+            for gpr_file in gpr_files:
+                messages += [_("Registered '%s'") % gpr_file]
+                self.__pmgr.reg_plugins(gpr_file)
+
+        file_obj.close()
+        return messages
     
     def __select_file(self, obj):
+        """
+        Select a file from the file system.
+        """
         fcd = gtk.FileChooserDialog(_("Load Addon"), 
                                     buttons=(gtk.STOCK_CANCEL,
                                              gtk.RESPONSE_CANCEL,
@@ -444,14 +559,17 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.__populate_addon_list()
 
     def __populate_addon_list(self):
+        """
+        Build the list of addons from the config setting.
+        """
         self.addon_model.clear()
         for row in config.get('plugin.addonplugins'):
             try:
-                help_name, name, ptype, image, desc, use, rating, contact, download = row
+                help_name, name, ptype, image, desc, use, rating, contact, download, url = row
             except:
                 continue
             self.addon_model.append(row=[help_name, name, ptype, image, desc, use, 
-                                         rating, contact, download])
+                                         rating, contact, download, url])
 
     def __populate_load_list(self):
         """ Build list of loaded plugins"""
@@ -534,25 +652,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         selection = self.addon_list.get_selection()
         model, node = selection.get_selected()
         if node:
-            download = model.get_value(node, 8)
-            url = "Unknown URL"
-            if download.startswith("[[") and download.endswith("]]"):
-                # Not directly possible to get the URL:
-                wiki_page = download[2:-2]
-                if "|" in wiki_page:
-                    wiki_page, text = wiki_page.split("|", 1)
-                # need to get a page that says where it is:
-                fp = urllib.urlopen("%s%s%s" % (const.URL_WIKISTRING, wiki_page, 
-                                                "&action=edit&externaledit=true&mode=file"))
-                for line in fp:
-                    if line.startswith("URL="):
-                        junk, url = line.split("=", 1)
-                        break
-                fp.close()
-            elif download.startswith("[") and download.endswith("]"):
-                url = download[1:-1]
-                if " " in url:
-                    url, text = url.split(" ", 1)
+            url = model.get_value(node, 9)
             self.install_addon_path.set_text(url)
     
     def build_menu_names(self, obj):
