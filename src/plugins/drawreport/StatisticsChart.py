@@ -838,7 +838,7 @@ class StatisticsChart(Report):
         pad =  row_h * 0.5
         
         # check maximum value
-        max_value = reduce(max, map(data.get, lookup), 0)
+        max_value = max(data[k] for k in lookup) if data else 0
         # horizontal area for the gfx bars
         margin = 1.0
         middle = width/2.0
