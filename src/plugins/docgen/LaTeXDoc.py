@@ -68,8 +68,8 @@ _LATEX_TEMPLATE = '''\\usepackage[T1]{fontenc}
 % (If you do not have ucs.sty, you may obtain it from
 %  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)
 %
-%\\usepackage[latin1]{inputenc}
-\\usepackage[latin1,utf8]{inputenc}
+\\usepackage[latin1]{inputenc}
+%\\usepackage[latin1,utf8]{inputenc}
 \\usepackage{graphicx}  % Extended graphics support
 \\usepackage{longtable} % For multi-page tables
 \\usepackage{calc} % For margin indents
@@ -78,8 +78,8 @@ _LATEX_TEMPLATE = '''\\usepackage[T1]{fontenc}
 % narrow.  This can be corrected by uncommenting the following
 % two lines and adjusting the width appropriately. The example
 % removes 0.5in from each margin. (Adds 1 inch to the text)
-\\addtolength{\\oddsidemargin}{-0.5in}
-\\addtolength{\\textwidth}{1.0in}
+%\\addtolength{\\oddsidemargin}{-0.5in}
+%\\addtolength{\\textwidth}{1.0in}
 %
 % Create a margin-adjusting command that allows LaTeX
 % to behave like the other gramps-supported output formats
@@ -613,7 +613,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         text = str(styledtext)
 
         s_tags = styledtext.get_tags()
-        if format == 1:
+        if format:
             #preformatted, use different escape function
             self._backend.setescape(True)
         
@@ -625,15 +625,18 @@ class LaTeXDoc(BaseDoc, TextDoc):
         # A quick solution: create a minipage for the note and add that always
         #   hoping that the user will have left sufficient room for the page
         self._backend.write("\\begin{minipage}{{0.8\\linewidth}}\n")
-        self.start_paragraph(style_name)
-        self._backend.write(markuptext)
-        self.end_paragraph()
-        #end the minipage, add trick to have a white line at bottom of note,
-        # we assume here a note should be distinct from its surrounding.
-        self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")
-        if format == 1:
+        if format:
+            self.start_paragraph(style_name)
+            self._backend.write(markuptext)
+            self.end_paragraph()
             #preformatted finished, go back to normal escape function
             self._backend.setescape(False)
+        else:
+            for line in markuptext.split('\n\n'):
+                self.start_paragraph(style_name)
+                self._backend.write(line)
+                self.end_paragraph()
+        self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")
 
     def write_endnotes_ref(self, text, style_name):
         """
@@ -642,8 +645,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write("\\begin{minipage}{{0.8\\linewidth}}\n")
         for line in text.split('\n'):
             self.start_paragraph(style_name)
-#            self._backend.write('\\begin{verbatim}')
             self.write_text(line)
-#            self._backend.write('\\end{verbatim}')
             self.end_paragraph()
         self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")
