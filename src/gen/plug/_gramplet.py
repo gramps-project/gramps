@@ -32,6 +32,8 @@ class Gramplet(object):
         Internal constructor for non-graphical gramplets.
         """
         self._idle_id = 0
+        self.active = True
+        self.dirty = False
         self._pause = False
         self._generator = None
         self._need_to_update = False
@@ -140,8 +142,6 @@ class Gramplet(object):
         """
         Private code that updates the GUI when active_person is changed.
         """
-        self.uistate.push_message(self.gui.dbstate,
-                _("Gramplet %s is running") % self.gui.title)
         self.active_changed(handle)
 
     def db_changed(self):
@@ -264,8 +264,16 @@ class Gramplet(object):
         The main interface for running the main method.
         """
         import gobject
-        if (self.gui.state in ["closed", "minimized"] and 
-            not self.gui.force_update): return
+        if ((not self.active or 
+             self.gui.state in ["closed", "minimized"]) and 
+            not self.gui.force_update): 
+            self.dirty = True
+            #print "  %s is not active" % self.gui.title
+            return
+        #print "   %s is UPDATING" % self.gui.title
+        self.dirty = False
+        self.uistate.push_message(self.dbstate,
+                _("Gramplet %s is running") % self.gui.title)
         if self._idle_id != 0:
             self.interrupt()
         self._generator = self.main()
@@ -337,8 +345,6 @@ class Gramplet(object):
         Internal method for handling items that should happen when the
         database changes. This will push a message to the GUI status bar.
         """
-        self.uistate.push_message(self.dbstate,
-                _("Gramplet %s is running") % self.gui.title)
         self.dbstate.db = db
         self.gui.dbstate.db = db
         self.db_changed()
