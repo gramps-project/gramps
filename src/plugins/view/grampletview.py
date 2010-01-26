@@ -223,6 +223,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                                      gramplet.detached_height)
         self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
         # add gramplet:
+        self.gramplet.pui.active = True
         self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.connect('response', self.handle_response)
         # HACK: must show window to make it work right:
