@@ -265,12 +265,13 @@ class Gramplet(object):
         """
         import gobject
         if ((not self.active or 
-             self.gui.state in ["closed", "minimized"]) and 
+             self.gui.state in ["closed", "minimized"] or 
+             not self.dbstate.open) and 
             not self.gui.force_update): 
             self.dirty = True
             #print "  %s is not active" % self.gui.title
             return
-        #print "   %s is UPDATING" % self.gui.title
+        #print "     %s is UPDATING" % self.gui.title
         self.dirty = False
         self.uistate.push_message(self.dbstate,
                 _("Gramplet %s is running") % self.gui.title)
@@ -287,16 +288,22 @@ class Gramplet(object):
         """
         if not isinstance(self._generator, types.GeneratorType):
             self._idle_id = 0
+            self.uistate.push_message(self.dbstate,
+                _("Gramplet %s updated") % self.gui.title)
             return False
         try:
             retval = self._generator.next()
             if not retval:
                 self._idle_id = 0
             if self._pause:
+                self.uistate.push_message(self.dbstate,
+                   _("Gramplet %s updated") % self.gui.title)
                 return False
             return retval
         except StopIteration:
             self._idle_id = 0
+            self.uistate.push_message(self.dbstate,
+                _("Gramplet %s updated") % self.gui.title)
             return False
         except Exception, e:
             import traceback
@@ -304,6 +311,8 @@ class Gramplet(object):
             traceback.print_exc()
             print "Continuing after gramplet error..."
             self._idle_id = 0
+            self.uistate.push_message(self.dbstate,
+                _("Gramplet %s caused an error") % self.gui.title)
             return False
 
     def pause(self, *args):

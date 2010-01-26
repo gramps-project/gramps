@@ -422,7 +422,8 @@ class GuiGramplet(object):
                                      padding,
                                      pack)
             if oldstate is "minimized" and self.pui:
-                self.pui.update()
+                if self.pui.dirty:
+                    self.pui.update()
 
     def change_state(self, obj):
         """
