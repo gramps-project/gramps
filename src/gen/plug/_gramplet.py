@@ -32,8 +32,8 @@ class Gramplet(object):
         Internal constructor for non-graphical gramplets.
         """
         self._idle_id = 0
-        self.active = True
-        self.dirty = False
+        self.active = False
+        self.dirty = True
         self._pause = False
         self._generator = None
         self._need_to_update = False

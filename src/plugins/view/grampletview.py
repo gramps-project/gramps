@@ -1198,7 +1198,6 @@ class GrampletView(PageView):
         return 'gramps-gramplet'
 
     def set_inactive(self):
-        print "gramplet page inactive..."
         self.active = False
         for title in self.gramplet_map:
             if self.gramplet_map[title].pui:
@@ -1206,14 +1205,12 @@ class GrampletView(PageView):
                     self.gramplet_map[title].pui.active = False
 
     def set_active(self):
-        print "gramplet page active!"
         self.active = True
         for title in self.gramplet_map:
             if self.gramplet_map[title].pui:
                 self.gramplet_map[title].pui.active = True
                 if self.gramplet_map[title].pui.dirty:
                     if self.gramplet_map[title].state == "maximized":
-                        # FIXME: do in background?
                         self.gramplet_map[title].pui.update()
 
     def ui_definition(self):
