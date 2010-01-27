@@ -665,13 +665,10 @@ class Date(object):
                          _("calendar|Islamic"),
                          _("calendar|Swedish")]
 
-    def __init__(self, *source, **kwargs):
+    def __init__(self, *source):
         """
         Create a new Date instance.
         """
-        calendar = kwargs.get("calendar", None)
-        modifier = kwargs.get("modifier", None)
-        quality = kwargs.get("quality", None)
         #### setup None, Date, or numbers
         if len(source) == 0:
             source = None
@@ -688,35 +685,14 @@ class Date(object):
             raise AttributeError, "invalid args to Date: %s" % source
         #### ok, process either date or tuple
         if isinstance(source, tuple):
-            self.calendar = lookup_calendar(calendar)
-            if modifier is None:
-                self.modifier = Date.MOD_NONE
-            else:
-                self.modifier = self.lookup_modifier(modifier)
-            if quality is None:
-                self.quality  = Date.QUAL_NONE
-            else:
-                self.quality = self.lookup_quality(quality)
+            self.calendar = Date.CAL_GREGORIAN
+            self.modifier = Date.MOD_NONE
+            self.quality  = Date.QUAL_NONE
             self.dateval  = Date.EMPTY
             self.text     = u""
             self.sortval  = 0
             self.newyear = 0
             self.set_yr_mon_day(*source)
-        elif isinstance(source, str) and source != "":
-            if (calendar is not None or 
-                modifier is not None or 
-                quality is not None):
-                raise AttributeError("can't set calendar, modifier, or "
-                                     "quality with string date")
-            import DateHandler
-            source = DateHandler.parser.parse(source)
-            self.calendar = source.calendar
-            self.modifier = source.modifier
-            self.quality  = source.quality
-            self.dateval  = source.dateval
-            self.text     = source.text
-            self.sortval  = source.sortval
-            self.newyear  = source.newyear
         elif source:
             self.calendar = source.calendar
             self.modifier = source.modifier
@@ -1504,13 +1480,21 @@ class Date(object):
             elif ny == Date.NEWYEAR_SEP1:
                 split = (9, 1)
             if (self.get_month(), self.get_day()) >= split:
-                d1 = Date(self.get_year(), 1, 1, calendar=self.calendar).sortval
-                d2 = Date(self.get_year(), split[0], split[1], calendar=self.calendar).sortval
-                self.sortval -= (d2 - d1)
+                d1 = Date(self.get_year(), 1, 1)
+                d1.set_calendar(self.calendar)
+                d1_val = d1.sortval
+                d2 = Date(self.get_year(), split[0], split[1])
+                d2.set_calendar(self.calendar)
+                d2_val = d2.sortval
+                self.sortval -= (d2_val - d1_val)
             else:
-                d1 = Date(self.get_year(), 12, 31, calendar=self.calendar).sortval
-                d2 = Date(self.get_year(), split[0], split[1], calendar=self.calendar).sortval
-                self.sortval += (d1 - d2) + 1
+                d1 = Date(self.get_year(), 12, 31)
+                d1.set_calendar(self.calendar)
+                d1_val = d1.sortval
+                d2 = Date(self.get_year(), split[0], split[1])
+                d2.set_calendar(self.calendar)
+                d2_val = d2.sortval
+                self.sortval += (d1_val - d2_val) + 1
 
         if text:
             self.text = text
@@ -1660,7 +1644,7 @@ class Date(object):
         """
         Return a new Date object in the calendar calendar_name.
         
-        >>> Date("Jan 1 1591").to_calendar("julian")
+        >>> Date(1591, 1, 1).to_calendar("julian")
         1590-12-22 (Julian)
         """
         cal = lookup_calendar(calendar_name)
