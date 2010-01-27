@@ -104,6 +104,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
         # GenderStats.count_person.
+
+    def __eq__(self, other):
+        return isinstance(other, Person) and self.handle == other.handle
         
     def serialize(self):
         """
