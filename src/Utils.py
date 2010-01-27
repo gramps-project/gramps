@@ -474,6 +474,11 @@ class ProbablyAlive(object):
         self.AVG_GENERATION_GAP = avg_generation_gap
 
     def probably_alive_range(self, person, is_spouse=False):
+        # FIXME: some of these computed dates need to be a span. For
+        #        example, if a person could be born +/- 20 yrs around
+        #        a date then it should be a span, and yr_offset should
+        #        deal with it as well ("between 1920 and 1930" + 10 =
+        #        "between 1930 and 1940")
         if person is None:
             return (None, None, "", None)
         birth_ref = person.get_birth_ref()
@@ -550,7 +555,7 @@ class ProbablyAlive(object):
                             if year != 0:
                                 # sibling birth date
                                 return (gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF),
-                                        gen.lib.Date().copy_ymd(year + self.MAX_SIB_AGE_DIFF + self.MAX_AGE_PROB_ALIVE),
+                                        gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF + self.MAX_AGE_PROB_ALIVE),
                                         _("sibling birth date"),
                                         child)
                     elif ev and ev.type.is_death():
@@ -561,7 +566,8 @@ class ProbablyAlive(object):
                             if year != 0:
                                 # sibling death date
                                 return (gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE),
-                                        gen.lib.Date().copy_ymd(year + self.MAX_SIB_AGE_DIFF),
+                                        gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE 
+                                                                + self.MAX_AGE_PROB_ALIVE),
                                         _("sibling death date"),
                                         child)
                 # Go through again looking for fallback:
@@ -575,7 +581,7 @@ class ProbablyAlive(object):
                             if year != 0:
                                 # sibling birth date
                                 return (gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF),
-                                        gen.lib.Date().copy_ymd(year + self.MAX_SIB_AGE_DIFF + self.MAX_AGE_PROB_ALIVE),
+                                        gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF + self.MAX_AGE_PROB_ALIVE),
                                         _("sibling birth-related date"),
                                         child)
                     elif ev and ev.type.is_death_fallback():
@@ -586,7 +592,7 @@ class ProbablyAlive(object):
                             if year != 0:
                                 # sibling death date
                                 return (gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE),
-                                        gen.lib.Date().copy_ymd(year + self.MAX_SIB_AGE_DIFF),
+                                        gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE),
                                         _("sibling death-related date"),
                                         child)
 
@@ -620,8 +626,9 @@ class ProbablyAlive(object):
                                     elif person.handle == father_handle and mother_handle: 
                                         other = self.db.get_person_from_handle(mother_handle)
                                     return (gen.lib.Date().copy_ymd(year - self.AVG_GENERATION_GAP),
-                                            gen.lib.Date().copy_ymd(year + (self.MAX_AGE_PROB_ALIVE - 
-                                                                            self.AVG_GENERATION_GAP)),
+                                            gen.lib.Date().copy_ymd(year - self.AVG_GENERATION_GAP + 
+                                                                    self.MAX_AGE_PROB_ALIVE),
+                                                                            
                                             _("event with spouse"), other)
 
         # Try looking for descendants that were born more than a lifespan
@@ -834,55 +841,48 @@ def probably_alive(person, db,
     pb = ProbablyAlive(db, max_sib_age_diff, 
                        max_age_prob_alive, avg_generation_gap)
     birth, death, explain, relative = pb.probably_alive_range(person)
-    if death is None: # no evidence... can't say if alive/dead
-        if return_range:
-            return (True, birth, death, explain, relative)
-        else:
-            return True
-    # must have est dates
-    if current_date: # date in which to consider alive
-        # SPECIAL CASE: Today:
-        if current_date.match(gen.lib.date.Today(), "=="):
-            if person.get_death_ref():
-                if return_range:
-                    return (False, birth, death, explain, relative)
-                else:
-                    return False
-        # if death in the future:
-        if (gen.lib.date.Today() - death)[0] < 0:
-            if return_range:
-                return (True, birth, death, explain, relative)
-            else:
-                return True
-        ########### Not today, or today and no death ref:
-        if limit:
-            death += limit # add these years to death
-        # if the current - birth is too big, not alive:
-        if (current_date - birth)[0] > max_age_prob_alive:
+    if current_date is None:
+        current_date = gen.lib.date.Today()
+    if not birth or not death:
+        # no evidence, must consider alive
+        return (True, None, None, _("no evidence"), None)
+    # must have est dates from here:
+    # SPECIAL CASE: Today:
+    if current_date.match(gen.lib.date.Today(), "=="):
+        if person.get_death_ref():
             if return_range:
                 return (False, birth, death, explain, relative)
             else:
                 return False
-        # Finally, check to see if current_date is between dates
-        result = (current_date.match(birth, ">=") and 
-                  current_date.match(death, "<="))
-        if return_range:
-            return (result, birth, death, explain, relative)
-        else:
-            return result
-    # Future death:
+    if limit:
+        death += limit # add these years to death
+    # if death in the future:
     if (gen.lib.date.Today() - death)[0] < 0:
         if return_range:
-            return (True, birth, death, explain, relative)
+            return (True, birth, death, ("future death, ") + explain, relative)
         else:
             return True
-    # else, they have a est death date, and Today, thus dead
-    else:
+    # if the current - birth is too big, not alive:
+    # FIXME: use match here:
+    if (current_date - birth)[0] > max_age_prob_alive:
         if return_range:
             return (False, birth, death, explain, relative)
         else:
             return False
-
+    # FIXME: use match here:
+    # if the current_date is before birth, not alive:
+    if (birth - current_date)[0] >= 0:
+        if return_range:
+            return (False, birth, death, explain, relative)
+        else:
+            return False
+    # Finally, check to see if current_date is between dates
+    result = (current_date.match(birth, ">=") and 
+              current_date.match(death, "<="))
+    if return_range:
+        return (result, birth, death, explain, relative)
+    else:
+        return result
 
 def probably_alive_range(person, db, 
                          max_sib_age_diff=None, 
