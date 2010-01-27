@@ -111,7 +111,7 @@ class WhatNextGramplet(Gramplet):
         # parent's other spouses, the ancestors of my grandchildren's spouses,
         # the ancestors of my sibling's spouses etc.
         ancestors = [[default_person]]
-        ancestors_queue = [[[default_person]]] + [[]] * self.ANCESTOR_DELAY
+        ancestors_queue = [[[default_person]]] + [[] for i in range(self.ANCESTOR_DELAY)]
 
         # List of lists of families of relatives in currently processed
         # distance. We go up one level of distance in each round.
@@ -131,12 +131,12 @@ class WhatNextGramplet(Gramplet):
         # beginning of this class definition, but the principle remains the
         # same.
         families = []
-        families_queue = [[]] * self.ANCESTOR_DELAY
+        families_queue = [[] for i in range(self.ANCESTOR_DELAY)]
 
         # List of spouses to add to ancestors list so we track ancestors of
         # spouses, too, but delayed as defined by the parameter.
         spouses = []
-        spouses_queue = [[]] * self.SPOUSE_DELAY
+        spouses_queue = [[] for i in range(self.SPOUSE_DELAY)]
 
         while (ancestors or families):
             # (Other) families of parents
