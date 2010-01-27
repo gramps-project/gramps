@@ -352,6 +352,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         date1 = gen.lib.Date()
                     if add_death == 1 and not death_ref: # no date
                         date2 = gen.lib.Date()
+                    if person == other:
+                        other = None
                     stab.row("checkbox", 
                              person, 
                              action, 

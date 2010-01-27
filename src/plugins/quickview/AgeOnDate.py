@@ -28,6 +28,7 @@ Display references for any object
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
+from Utils import probably_alive
 from gen.ggettext import gettext as _
 import DateHandler
 import gen.lib
@@ -54,26 +55,13 @@ def run(database, document, date):
     stab.columns(_("Person"), _("Age")) # Actual Date makes column unicode
     matches = 0
     for person in sdb.all_people():
-        birth_date = None
-        birth_str = ""
-        birth_sort = 0
-        birth_ref = gen.lib.Person.get_birth_ref(person)
-        birth_date = get_event_date_from_ref(database, birth_ref)
-        death_ref = gen.lib.Person.get_death_ref(person)
-        death_date = get_event_date_from_ref(database, death_ref)
-        if birth_date:
-            if (birth_date.get_valid() and birth_date < date and
-                birth_date.get_year() != 0 and
-                ((death_date is None) or (death_date > date))):
-                diff_span = (date - birth_date)
-                if ((death_date is not None) or
-                    (death_date is None and 
-                     int(diff_span)/365.0 <= config.get('behavior.max-age-prob-alive'))):
-                    birth_str = str(diff_span)
-                    birth_sort = int(diff_span)
-        if birth_str != "":
-            stab.row(person, birth_str)
-            stab.row_sort_val(1, diff_span)
+        alive, birth, death, explain, relative = \
+            probably_alive(person, database, date, return_range=True)
+        # Doesn't show people probably alive but no way of figuring an age:
+        if alive and birth:
+            diff_span = (date - birth)
+            stab.row(person, str(diff_span))
+            stab.row_sort_val(1, int(diff_span))
             matches += 1
 
     sdoc.paragraph(_("\n%d matches.\n") % matches)
