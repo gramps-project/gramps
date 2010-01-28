@@ -187,7 +187,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 result.append('mor')
         if inlaw != '' :
-            inlaw = 'ingifta '
+            inlaw = 's ingifta '
         result.append(self._get_cousin(level, step, inlaw))
         if step != '' and len(result)==1:
             result[0] = self.STEP + result[0]
