@@ -799,7 +799,47 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             rel_str = "nieokreślony stopień pokrewieństwa"
         
         return rel_str
-    
+
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
+        """
+        Generate a text with information, how far away is a group of persons
+        from a main person
+        """
+
+        if Ga == Gb == 0:
+            return 'ta sama osoba'
+        if 0 == Ga:
+            if 1 == Gb:
+                return 'Dzieci'
+            if 2 == Gb:
+                return 'Wnuki'
+            if 3 == Gb:
+                return 'Prawnuki'
+            if 4 == Gb:
+                return 'Praprawnuki'
+            return 'Praprapra(n)wnuki'
+        if 0 == Gb:
+            if 1 == Ga:
+                return 'Rodzice'
+            if 2 == Ga:
+                return 'Dziadkowie'
+            if 3 == Ga:
+                return 'Pradziadkowie'
+            if 4 == Ga:
+                return 'Praprapradziadkowie'
+            return 'Praprapra(n)dziadkowie'
+        if 1 == Ga == Gb:
+            return 'Rodzeństwo'
+        if 1 == Gb and Ga > 1:
+            return 'Wujowie/stryjowie i ciocie'
+        if 1 < Gb and 1 == Ga:
+            return 'bratankowie(ice)/siostrzeńcy(nice)'
+        if 1 < Ga and 1 < Gb:
+            return 'dalsza rodzina'
+        return 'relacja nieznana'
     
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
