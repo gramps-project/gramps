@@ -91,15 +91,7 @@ class SimpleTable(object):
         """
         Set the columns
         """
-        # gtk tree doesn't like unicode?!
-        columns = []
-        for col in cols:
-            if type(col) == unicode:
-                columns.append(str(col))
-            else:
-                columns.append(col)
-        # end of unicode fix
-        self.__columns = list(copy.copy(columns))
+        self.__columns = [unicode(col) for col in cols]
         self.__sort_vals = [[] for i in range(len(self.__columns))]
 
     def set_callback(self, which, callback):
@@ -407,7 +399,7 @@ class SimpleTable(object):
             sort_data_types = []
             for col in self.__columns:
                 if self.get_cell_type(cnt) == "text":
-                    types.append(type(col))
+                    types.append(str)
                     if self.get_cell_markup(cnt):
                         column = gtk.TreeViewColumn(col,renderer,markup=model_index)
                     else:
