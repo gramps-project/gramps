@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-11-24 07:53+0100\n"
-"PO-Revision-Date: 2009-11-25 22:53+0100\n"
+"PO-Revision-Date: 2010-01-27 22:48+0100\n"
 "Last-Translator: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "Language-Team: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "MIME-Version: 1.0\n"
@@ -10928,7 +10928,7 @@ msgstr "Raport relacji rodzinnych dla %s"
 #: ../src/plugins/textreport/KinshipReport.py:133
 #, python-format
 msgid "spouses of %s"
-msgstr "konkubenci %s"
+msgstr "małżonkowie %s"
 
 #: ../src/plugins/textreport/KinshipReport.py:343
 msgid "The maximum number of descendant generations"
