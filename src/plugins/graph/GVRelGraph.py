@@ -141,14 +141,14 @@ class RelGraphReport(Report):
         }
 
         arrow_str = menu.get_option_by_name('arrow').get_value()
-        if arrow_str.find('d') == -1:
-            self.arrowheadstyle = 'none'
+        if 'd' in arrow_str:
+            self.arrowheadstyle = 'normal'
         else:
-            self.arrowheadstyle = None
-        if arrow_str.find('a') != -1:
+            self.arrowheadstyle = 'none'
+        if 'a' in arrow_str:
             self.arrowtailstyle = 'normal'
         else:
-            self.arrowtailstyle = None
+            self.arrowtailstyle = 'none'
         filter_option = options_class.menu.get_option_by_name('filter')
         self._filter = filter_option.get_filter()
 
