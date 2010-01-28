@@ -308,14 +308,23 @@ class GVDocBase(BaseDoc, GVDoc):
         
         if style or head or tail:
             self.write(' [')
-            
+
             if style:
                 self.write(' style=%s' % style)
             if head:
                 self.write(' arrowhead=%s' % head)
             if tail:
                 self.write(' arrowtail=%s' % tail)
-                
+            if head:
+                if tail:
+                    self.write(' dir=both')
+                else:
+                    self.write(' dir=forward')
+            else:
+                if tail:
+                    self.write(' dir=back')
+                else:
+                    self.write(' dir=none')                
             self.write(' ]')
 
         self.write(';')
