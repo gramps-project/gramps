@@ -160,7 +160,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         PluginWindows.ToolManagedWindowBatch.__init__(self, *args, **kwargs)
         self.help_page = self.add_page(_("Help"))
         self.write_to_page(self.help_page, 
-                           "The Calculate Estimated Dates Tool is used to add and remove "
+                           _("The Calculate Estimated Dates Tool is used to add and remove "
                            "birth and death events for people that are missing these "
                            "events.\n\n"
                            "To use:\n"
@@ -174,7 +174,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                            "the Source. Otherwise, it will get removed the next time you "
                            "automatically remove these events.\n\n"
                            "You may have to run the tool repeatedly (without removing previous "
-                           "events) to add all of the events possible.")
+                           "events) to add all of the events possible."))
         self.set_current_frame(_("Help"))
 
     def get_title(self):
@@ -414,16 +414,15 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         # Do not add birth or death event if one exists, no matter what
         if self.table.treeview.get_model() is None:
             return
+        self.trans = self.db.transaction_begin("",batch=True)
         self.pre_run()
         source_text = self.options.handler.options_dict['source_text']
         select_col = self.table.model_index_of_column[_("Select")]
         source = self.get_or_create_source(source_text)
-        self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         self.results_write(_("Selecting... "))
         self.progress.set_pass((_("Adding events '%s'...") % source_text), 
                                len(self.table.treeview.get_model()))
-        self.trans = self.db.transaction_begin("",batch=True)
         count = 0
         for row in self.table.treeview.get_model():
             self.progress.step()
