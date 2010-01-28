@@ -5,12 +5,6 @@
   <country name="United States">
     <date name="New Year's Eve" value="*/12/31" type="National" />
     <date name="New Year's Day" value="*/1/1" type="National" />
-    <date name="Inauguration Day" value="1997/1/20" type="National" />
-    <date name="Inauguration Day" value="2001/1/20" type="National" />
-    <date name="Inauguration Day" value="2005/1/20" type="National" />
-    <date name="Inauguration Day" value="2009/1/20" type="National" />
-    <date name="Inauguration Day" value="2013/1/20" type="National" />
-    <date name="Inauguration Day" value="2017/1/20" type="National" />
     <date name="ML Kings's Birthday" value="*/3/mon/jan" type="Secular" />
     <date name="Groundhog Day" value="*/2/2" type="Secular" />
     <date name="Lincoln's Birthday" value="*/2/12" type="Secular" />
@@ -22,91 +16,19 @@
     <date name="April Fool's Day" value="*/4/1" type="Secular" />
     <date name="Arbor Day" value="*/-1/fri/apr" type="Secular" />
     <date name="Earth Day" value="*/4/22" type="Secular" />
-    <date name="Daylight Saving begins" value="1999/4/4" type="Informational" />
-    <date name="Daylight Saving begins" value="2000/4/2" type="Informational" />
-    <date name="Daylight Saving begins" value="2001/4/1" type="Informational" />
-    <date name="Daylight Saving begins" value="2002/4/7" type="Informational" />
-    <date name="Daylight Saving begins" value="2003/4/6" type="Informational" />
-    <date name="Daylight Saving begins" value="2004/4/4" type="Informational" />
-    <date name="Daylight Saving begins" value="2005/4/3" type="Informational" />
-    <date name="Daylight Saving begins" value="2006/4/2" type="Informational" />
-    <date name="Daylight Saving begins" value="2007/3/11" type="Informational" />
-    <date name="Daylight Saving begins" value="2008/3/9" type="Informational" />
-    <date name="Daylight Saving begins" value="2009/3/8" type="Informational" />
-    <date name="Daylight Saving begins" value="2010/3/14" type="Informational" />
-    <date name="Daylight Saving begins" value="2011/3/13" type="Informational" />
-    <date name="Daylight Saving begins" value="2012/3/11" type="Informational" />
-    <date name="Daylight Saving begins" value="2013/3/10" type="Informational" />
-    <date name="Daylight Saving begins" value="2014/3/9" type="Informational" />
-    <date name="Daylight Saving begins" value="2015/3/8" type="Informational" />
-    <date name="Daylight Saving begins" value="2016/3/13" type="Informational" />
-    <date name="Daylight Saving begins" value="2017/3/12" type="Informational" />
-    <date name="Daylight Saving begins" value="2018/3/11" type="Informational" />
-    <date name="Daylight Saving begins" value="2019/3/10" type="Informational" />
-    <date name="Income Taxes due" value="1999/4/15" type="National" />
-    <date name="Income Taxes due" value="2000/4/17" type="National" />
-    <date name="Income Taxes due" value="2001/4/16" type="National" />
-    <date name="Income Taxes due" value="2002/4/15" type="National" />
-    <date name="Income Taxes due" value="2003/4/15" type="National" />
-    <date name="Income Taxes due" value="2004/4/15" type="National" />
-    <date name="Income Taxes due" value="2005/4/15" type="National" />
-    <date name="Income Taxes due" value="2006/4/17" type="National" />
-    <date name="Income Taxes due" value="2007/4/16" type="National" />
-    <date name="Income Taxes due" value="2008/4/15" type="National" />
-    <date name="Income Taxes due" value="2009/4/15" type="National" />
-    <date name="Income Taxes due" value="2010/4/15" type="National" />
-    <date name="Income Taxes due" value="2011/4/15" type="National" />
-    <date name="Income Taxes due" value="2012/4/16" type="National" />
-    <date name="Income Taxes due" value="2013/4/15" type="National" />
-    <date name="Income Taxes due" value="2014/4/15" type="National" />
-    <date name="Income Taxes due" value="2015/4/15" type="National" />
-    <date name="Income Taxes due" value="2016/4/15" type="National" />
-    <date name="Income Taxes due" value="2017/4/17" type="National" />
-    <date name="Income Taxes due" value="2018/4/16" type="National" />
-    <date name="Income Taxes due" value="2019/4/15" type="National" />
-    <date name="Ash Wednesday" value="1999/2/17" type="religious" />
-    <date name="Ash Wednesday" value="1999/2/17" type="religious" />
-    <date name="Ash Wednesday" value="2000/3/8" type="religious" />
-    <date name="Ash Wednesday" value="2001/2/28" type="religious" />
-    <date name="Ash Wednesday" value="2002/2/13" type="religious" />
-    <date name="Ash Wednesday" value="2003/3/5" type="religious" />
-    <date name="Ash Wednesday" value="2004/2/25" type="religious" />
-    <date name="Ash Wednesday" value="2005/2/9" type="religious" />
-    <date name="Ash Wednesday" value="2006/3/1" type="religious" />
-    <date name="Ash Wednesday" value="2007/2/21" type="religious" />
-    <date name="Ash Wednesday" value="2008/2/6" type="religious" />
-    <date name="Ash Wednesday" value="2009/2/25" type="religious" />
-    <date name="Ash Wednesday" value="2010/2/17" type="religious" />
-    <date name="Ash Wednesday" value="2011/3/9" type="religious" />
-    <date name="Ash Wednesday" value="2012/2/22" type="religious" />
-    <date name="Ash Wednesday" value="2013/2/13" type="religious" />
-    <date name="Ash Wednesday" value="2014/3/5" type="religious" />
-    <date name="Ash Wednesday" value="2015/2/18" type="religious" />
-    <date name="Ash Wednesday" value="2016/2/10" type="religious" />
-    <date name="Ash Wednesday" value="2017/3/1" type="religious" />
-    <date name="Ash Wednesday" value="2018/2/14" type="religious" />
-    <date name="Ash Wednesday" value="2019/3/6" type="religious" />
-    <date name="Easter" value="1999/4/4" type="religious" />
-    <date name="Easter" value="2000/4/25" type="religious" />
-    <date name="Easter" value="2001/4/15" type="religious" />
-    <date name="Easter" value="2002/3/31" type="religious" />
-    <date name="Easter" value="2003/4/20" type="religious" />
-    <date name="Easter" value="2004/4/11" type="religious" />
-    <date name="Easter" value="2005/3/27" type="religious" />
-    <date name="Easter" value="2006/4/16" type="religious" />
-    <date name="Easter" value="2007/4/8" type="religious" />
-    <date name="Easter" value="2008/3/23" type="religious" />
-    <date name="Easter" value="2009/4/12" type="religious" />
-    <date name="Easter" value="2010/4/4" type="religious" />
-    <date name="Easter" value="2011/4/24" type="religious" />
-    <date name="Easter" value="2012/4/8" type="religious" />
-    <date name="Easter" value="2013/3/31" type="religious" />
-    <date name="Easter" value="2014/4/20" type="religious" />
-    <date name="Easter" value="2015/4/5" type="religious" />
-    <date name="Easter" value="2016/3/27" type="religious" />
-    <date name="Easter" value="2017/4/16" type="religious" />
-    <date name="Easter" value="2018/4/1" type="religious" />
-    <date name="Easter" value="2019/4/21" type="religious" />
+
+    <date name="Easter" type="religious" value="> easter(y)" />
+    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
+    <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
+    <date name="Income Taxes due" value="*/4/15" type="national"
+	  if="date.weekday().__cmp__(4)-1" />
+    <date name="Income Taxes due" value="*/4/16" type="national"
+	  if="date.weekday() == 0" />
+    <date name="Income Taxes due" value="*/4/17" type="national"
+	  if="date.weekday() == 0" />
+    <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
+    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
+
     <date name="Passover" value="2005/4/24" type="religious" />
     <date name="Passover" value="2006/4/13" type="religious" />
     <date name="Passover" value="2007/4/03" type="religious" />
@@ -114,6 +36,16 @@
     <date name="Passover" value="2009/4/09" type="religious" />
     <date name="Passover" value="2010/3/30" type="religious" />
     <date name="Passover" value="2011/4/19" type="religious" />
+    <date name="Passover" value="2011/4/19" type="religious" />
+    <date name="Passover" value="2012/4/7" type="religious" />
+    <date name="Passover" value="2013/3/26" type="religious" />
+    <date name="Passover" value="2014/4/15" type="religious" />
+    <date name="Passover" value="2015/4/4" type="religious" />
+    <date name="Passover" value="2016/4/23" type="religious" />
+    <date name="Passover" value="2017/4/11" type="religious" />
+    <date name="Passover" value="2018/3/31" type="religious" />
+    <date name="Passover" value="2019/4/20" type="religious" />
+    <date name="Passover" value="2020/4/9" type="religious" />
     <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="Secular" />
     <date name="Cinco de Mayo" value="*/5/5" type="Secular" />
     <date name="Armed Forces Day" value="*/3/sat/may" type="Secular" />
@@ -125,27 +57,6 @@
     <date name="Parents' Day" value="*/4/sun/jul" type="Secular" />
     <date name="Labor Day" value="*/1/mon/sep" type="National" />
     <date name="Grandparents' Day" value="*/1/mon/sep" offset="6" type="Secular" />
-    <date name="Daylight Saving ends" value="1999/10/31" type="Informational" />
-    <date name="Daylight Saving ends" value="2000/10/29" type="Informational" />
-    <date name="Daylight Saving ends" value="2001/10/28" type="Informational" />
-    <date name="Daylight Saving ends" value="2002/10/27" type="Informational" />
-    <date name="Daylight Saving ends" value="2003/10/26" type="Informational" />
-    <date name="Daylight Saving ends" value="2004/10/31" type="Informational" />
-    <date name="Daylight Saving ends" value="2005/10/30" type="Informational" />
-    <date name="Daylight Saving ends" value="2006/10/29" type="Informational" />
-    <date name="Daylight Saving ends" value="2007/11/4" type="Informational" />
-    <date name="Daylight Saving ends" value="2008/11/2" type="Informational" />
-    <date name="Daylight Saving ends" value="2009/11/1" type="Informational" />
-    <date name="Daylight Saving ends" value="2010/11/7" type="Informational" />
-    <date name="Daylight Saving ends" value="2011/11/6" type="Informational" />
-    <date name="Daylight Saving ends" value="2012/11/4" type="Informational" />
-    <date name="Daylight Saving ends" value="2013/11/3" type="Informational" />
-    <date name="Daylight Saving ends" value="2014/11/2" type="Informational" />
-    <date name="Daylight Saving ends" value="2015/11/1" type="Informational" />
-    <date name="Daylight Saving ends" value="2016/11/6" type="Informational" />
-    <date name="Daylight Saving ends" value="2017/11/5" type="Informational" />
-    <date name="Daylight Saving ends" value="2018/11/4" type="Informational" />
-    <date name="Daylight Saving ends" value="2019/11/3" type="Informational" />
     <date name="Columbus Day" value="*/2/mon/oct" type="Secular" />
     <date name="Ramadan begins" value="2006/09/24" type="religious" />
     <date name="Ramadan begins" value="2007/09/13" type="religious" />
