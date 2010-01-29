@@ -223,7 +223,8 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                                      gramplet.detached_height)
         self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
         # add gramplet:
-        self.gramplet.pui.active = True
+        if self.gramplet.pui:
+            self.gramplet.pui.active = True
         self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.connect('response', self.handle_response)
         # HACK: must show window to make it work right:
@@ -288,7 +289,8 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         column = viewpage.columns[col]
         parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
         self.gramplet.mainframe.reparent(parent)
-        self.gramplet.pui.active = self.gramplet.viewpage.active
+        if self.gramplet.pui:
+            self.gramplet.pui.active = self.gramplet.viewpage.active
         for gframe in stack:
             gramplet = viewpage.frame_map[str(gframe)]
             expand = gramplet.state == "maximized" and gramplet.expand
@@ -1182,8 +1184,6 @@ class GrampletView(PageView):
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
                 self.drop_widget(self.widget, gramplet, 0, 0, 0)
-            #if g.pui:
-            #    g.pui.update()
         else:
             print "Can't make gramplet of type '%s'." % name
 
