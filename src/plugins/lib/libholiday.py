@@ -87,6 +87,10 @@ def dst(year, area="us"):
         stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
     return (start, stop)
 
+def isodow(y, m, d):
+    """ Return the ISO day of week for the given year, month and day. """
+    return datetime.date(y, m, d).isoweekday()
+
 #------------------------------------------------------------------------
 #
 # HolidayTable
