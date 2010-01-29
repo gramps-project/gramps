@@ -87,6 +87,21 @@ def dst(year, area="us"):
         stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
     return (start, stop)
 
+def swedish_midsummer_day(year):
+    """
+    Function for calculating date for Swedish Midsummer Day
+    It is Saturday in week number 25, which is the third or
+    forth Saturday in June.
+    First possible date for third Saturday is June, 15
+    Last possible date for fourth Saturday is June, 28
+    In holidays.xml it is called by
+    <date name="Midsommardagen" value="> swedish_midsummer_day(y)" type="religious" />
+    """
+    for day in range(15,29):
+        d = datetime.date(year, 6, day)
+        if (year, 25, 6) == d.isocalendar():
+            return str(year) + "/6/" + str(day)
+
 #------------------------------------------------------------------------
 #
 # HolidayTable
@@ -358,7 +373,6 @@ class _Holidays:
 
             if self.debug: 
                 print "rule['value']:", rule["value"]
-                
             if rule["value"].count("/") == 3: # year/num/day/month, "3rd wednesday in april"
                 y, num, dayname, mon = rule["value"].split("/")
                 if y == "*":

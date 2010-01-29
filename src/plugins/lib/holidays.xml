@@ -301,7 +301,7 @@
     <date name="2. Pääsiäispäivä" value="2010/4/5" type="religious" />
     <date name="2. Pääsiäispäivä" value="2011/4/25" type="religious" />
     <date name="2. Pääsiäispäivä" value="2012/4/9" type="religious" />
-    <date name="2. Pääsiäispäivä" value="2013/4/1" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2013/4/1" type="religious" />easter
     <date name="2. Pääsiäispäivä" value="2014/4/21" type="religious" />
     <date name="2. Pääsiäispäivä" value="2015/4/6" type="religious" />
     <date name="Helatorstai" value="2000/6/1" type="religious" />
@@ -403,48 +403,18 @@
     <date name="début Kwanzaa" value="*/12/26" type="religious" />
   </country>
   <country name="Sverige - röda dagar">
-    <date name="Nyårsdagen" value="*/1/1" type="National" />
-    <date name="Trettondagen" value="*/1/5" type="National" />
-    <date name="Långfredagen" value="2007/4/6" type="National" />
-    <date name="Påskdagen" value="2007/4/8" type="National" />
-    <date name="Annandag Påsk" value="2007/4/9" type="National" />
-    <date name="Långfredagen" value="2008/3/21" type="National" />
-    <date name="Påskdagen" value="2008/3/23" type="National" />
-    <date name="Annandag Påsk" value="2008/3/24" type="National" />
-    <date name="Långfredagen" value="2009/4/10" type="National" />
-    <date name="Påskdagen" value="2009/4/12" type="National" />
-    <date name="Annandag Påsk" value="2009/4/13" type="National" />
-    <date name="Långfredagen" value="2010/4/2" type="National" />
-    <date name="Påskdagen" value="2010/4/4" type="National" />
-    <date name="Annandag Påsk" value="2010/4/5" type="National" />
-    <date name="Långfredagen" value="2011/4/21" type="National" />
-    <date name="Påskdagen" value="2011/4/24" type="National" />
-    <date name="Annandag Påsk" value="2011/4/25" type="National" />
-    <date name="Långfredagen" value="2012/4/6" type="National" />
-    <date name="Påskdagen" value="2012/4/8" type="National" />
-    <date name="Annandag Påsk" value="2012/4/9" type="National" />
-    <date name="Långfredagen" value="2013/3/29" type="National" />
-    <date name="Påskdagen" value="2013/3/31" type="National" />
-    <date name="Annandag Påsk" value="2013/4/1" type="National" />
-    <date name="Långfredagen" value="2014/4/18" type="National" />
-    <date name="Påskdagen" value="2014/4/20" type="National" />
-    <date name="Annandag Påsk" value="2014/4/21" type="National" />
-    <date name="Långfredagen" value="2015/4/3" type="National" />
-    <date name="Påskdagen" value="2015/4/5" type="National" />
-    <date name="Annandag Påsk" value="2015/4/6" type="National" />
-    <date name="Första Maj" value="*/5/1" type="National" />
-    <date name="Kristi Himmelfärdsdag" value="2009/5/21" type="National" />
-    <date name="Kristi Himmelfärdsdag" value="2010/5/13" type="National" />
-    <date name="Kristi Himmelfärdsdag" value="2011/6/2" type="National" />
-    <date name="Kristi Himmelfärdsdag" value="2012/5/17" type="National" />
-    <date name="Kristi Himmelfärdsdag" value="2013/5/9" type="National" />
-    <date name="Kristi Himmelfärdsdag" value="2014/5/29" type="National" />
-    <date name="Kristi Himmelfärdsdag" value="2015/5/14" type="National" />
-    <date name="Nationaldag" value="*/6/6" type="National" />
-    <date name="Midsommardagen" value="*/3/sat/jun" type="National" />
-    <date name="Allahelgonadagen" value="*/1/sat/nov" type="National" />
-    <date name="Juldagen" value="*/12/25" type="National" />
-    <date name="Annandag Jul" value="*/12/26" type="National" />
+    <date name="Nyårsdagen" value="*/1/1" type="religious" />
+    <date name="Trettondagen" value="*/1/6" type="religious" />
+    <date name="Långfredagen" type="religious" value="> easter(y)" offset="-2" />
+    <date name="Påskdagen" type="religious" value="> easter(y)"  />
+    <date name="Annandag Påsk" type="religious" value="> easter(y)" offset="2" />
+    <date name="Första Maj" value="*/5/1" type="secular" />
+    <date name="Kristi Himmelfärdsdag" type="religious" value="> easter(y)" offset="+39" />
+    <date name="Nationaldag" value="*/6/6" type="secular" />
+    <date name="Midsommardagen" value="> swedish_midsummer_day(y)" type="religious" />
+    <date name="Allahelgonadagen" value="*/1/sat/nov" type="religious" />
+    <date name="Juldagen" value="*/12/25" type="religious" />
+    <date name="Annandag Jul" value="*/12/26" type="religious" />
   </country>
   <country name="England">
     <date name="New Year's Day" value="2010/1/1" type="National" />
