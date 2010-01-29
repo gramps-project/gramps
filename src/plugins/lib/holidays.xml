@@ -410,8 +410,8 @@
   </country>
   <country name="England">
     <date name="New Year's Day" value="*/1/1" type="National" />
-    <date name="Bank Holiday" value="*/1/1" offset="+1" if="isodow(y, m, d) == 7" type="national" />
-    <date name="Bank Holiday" value="*/1/1" offset="+2" if="isodow(y, m, d) == 6" type="national" />
+    <date name="Bank Holiday" value="*/1/1" offset="+1" if="dow(y, m, d) == 7" type="national" />
+    <date name="Bank Holiday" value="*/1/1" offset="+2" if="dow(y, m, d) == 6" type="national" />
     <date name="Good Friday" value="> easter(y)" offset="-2" type="National" />
     <date name="Easter Monday" value="> easter(y)" offset="+1" type="National" />
     <date name="May Bank Holiday" value="*/1/mon/may" type="National" />
@@ -421,8 +421,8 @@
     <date name="Summer Bank Holiday" value="*/-1/mon/aug" type="National" />
     <date name="Christmas Day" value="*/dec/25" type="national" />
     <date name="Boxing Day" value="*/dec/26" type="national" />
-    <date name="Bank Holiday" value="*/dec/25" offset="+2" if="isodow(y, m, d) > 5" type="national" />
-    <date name="Bank Holiday" value="*/dec/26" offset="+2" if="isodow(y, m, d) > 5" type="national" />
+    <date name="Bank Holiday" value="*/dec/25" offset="+2" if="dow(y, m, d) > 5" type="national" />
+    <date name="Bank Holiday" value="*/dec/26" offset="+2" if="dow(y, m, d) > 5" type="national" />
     <date name="BST starts" value="*/-1/sun/mar" type="Informational" />
     <date name="BST ends" value="*/-1/sun/oct" type="Informational" />
     <date name="Valentine's Day" value="*/2/14" type="Secular" />

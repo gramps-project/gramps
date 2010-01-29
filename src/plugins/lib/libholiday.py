@@ -87,7 +87,7 @@ def dst(year, area="us"):
         stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
     return (start, stop)
 
-def isodow(y, m, d):
+def dow(y, m, d):
     """ Return the ISO day of week for the given year, month and day. """
     return datetime.date(y, m, d).isoweekday()
 
@@ -327,17 +327,17 @@ class _Holidays:
             print "%s's in %d %d..." % (dayname, month, year)
              
         retval = [0]
-        dow = self.DAYS.index(dayname)
+        day_of_week = self.DAYS.index(dayname)
         for day in range(1, 32):
             try:
                 date = datetime.date(year, month, day)
             except ValueError:
                 continue
-            if date.weekday() == dow:
+            if date.weekday() == day_of_week:
                 retval.append(day)
                 
         if self.debug: 
-            print "dow=", dow, "days=", retval
+            print "day_of_week=", day_of_week, "days=", retval
             
         return retval
     
@@ -421,23 +421,23 @@ class _Holidays:
 
                 if offset == "workday":
                     # next workday you come to, including this one
-                    dow = self.WORKDAY
+                    day_of_week = self.WORKDAY
                     ordinal = ndate.toordinal()
-                    while ndate.fromordinal(ordinal).weekday() not in dow:
+                    while ndate.fromordinal(ordinal).weekday() not in day_of_week:
                         ordinal += direction
                     ndate = ndate.fromordinal(ordinal)
                 elif offset == "weekend":
                     # next weekend you come to, including this one
-                    dow = self.WEEKEND
+                    day_of_week = self.WEEKEND
                     ordinal = ndate.toordinal()
-                    while ndate.fromordinal(ordinal).weekday() not in dow:
+                    while ndate.fromordinal(ordinal).weekday() not in day_of_week:
                         ordinal += direction
                     ndate = ndate.fromordinal(ordinal)
                 elif offset in self.DAYS:
                     # next tuesday you come to, including this one
-                    dow = self.DAYS.index(offset)
+                    day_of_week = self.DAYS.index(offset)
                     ordinal = ndate.toordinal()
-                    while ndate.fromordinal(ordinal).weekday() != dow:
+                    while ndate.fromordinal(ordinal).weekday() != day_of_week:
                         ordinal += direction
                     ndate = ndate.fromordinal(ordinal)
 
