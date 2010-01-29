@@ -297,6 +297,8 @@ class _Xml2Obj:
 #------------------------------------------------------------------------
 class _Holidays:
     """ Class used to read XML holidays to add to calendar. """
+    MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 
+              'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
     def __init__(self, elements, country="US"):
         self.debug = 0
         self.elements = elements
@@ -384,8 +386,7 @@ class _Holidays:
                 elif mon == "*":
                     m = date.month
                 else:
-                    m = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 
-                         'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].index(mon) + 1
+                    m = self.MONTHS.index(mon) + 1
                 dates_of_dayname = self.get_daynames(y, m, dayname)
                 
                 if self.debug: 
@@ -401,6 +402,8 @@ class _Holidays:
                     y = int(y)
                 if m == "*":
                     m = date.month
+                elif m in self.MONTHS:
+                    m = self.MONTHS.index(m) + 1
                 else:
                     m = int(m)
                 if d == "*":
