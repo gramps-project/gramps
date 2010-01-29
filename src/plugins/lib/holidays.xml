@@ -411,7 +411,7 @@
     <date name="Första Maj" value="*/5/1" type="secular" />
     <date name="Kristi Himmelfärdsdag" type="religious" value="> easter(y)" offset="+39" />
     <date name="Nationaldag" value="*/6/6" type="secular" />
-    <date name="Midsommardagen" value="> swedish_midsummer_day(y)" type="religious" />
+    <date name="Midsommardagen" value="*/jun/20" offset="sat" type="religious" />
     <date name="Allahelgonadagen" value="*/1/sat/nov" type="religious" />
     <date name="Juldagen" value="*/12/25" type="religious" />
     <date name="Annandag Jul" value="*/12/26" type="religious" />
