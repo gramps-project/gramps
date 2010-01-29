@@ -299,6 +299,9 @@ class _Holidays:
     """ Class used to read XML holidays to add to calendar. """
     MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 
               'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+    DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+    WORKDAY = ['mon', 'tue', 'wed', 'thu', 'fri']
+    WEEKEND = ['sat', 'sun']
     def __init__(self, elements, country="US"):
         self.debug = 0
         self.elements = elements
@@ -335,7 +338,7 @@ class _Holidays:
             print "%s's in %d %d..." % (dayname, month, year)
              
         retval = [0]
-        dow = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].index(dayname)
+        dow = self.DAYS.index(dayname)
         for day in range(1, 32):
             try:
                 date = datetime.date(year, month, day)
@@ -365,7 +368,7 @@ class _Holidays:
                      rule["offset"][1:].isdigit():
                     offset = int(rule["offset"])
                 else:
-                    # must be a dayname
+                    # must be a dayname or "workday"
                     offset = rule["offset"]
                 
             if rule["value"].startswith('>'):
@@ -423,9 +426,22 @@ class _Holidays:
                 if offset[0] == "-":
                     direction = -1
                     offset = offset[1:]
-                if offset in ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']:
+
+                if offset == "workday":
+                    dow = self.WORKDAY
+                    ordinal = ndate.toordinal()
+                    while ndate.fromordinal(ordinal).weekday() not in dow:
+                        ordinal += direction
+                    ndate = ndate.fromordinal(ordinal)
+                elif offset == "weekend":
+                    dow = self.WEEKEND
+                    ordinal = ndate.toordinal()
+                    while ndate.fromordinal(ordinal).weekday() not in dow:
+                        ordinal += direction
+                    ndate = ndate.fromordinal(ordinal)
+                elif offset in self.DAYS:
                     # next tuesday you come to, including this one
-                    dow = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].index(offset)
+                    dow = self.DAYS.index(offset)
                     ordinal = ndate.toordinal()
                     while ndate.fromordinal(ordinal).weekday() != dow:
                         ordinal += direction
