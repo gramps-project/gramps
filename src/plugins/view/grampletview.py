@@ -288,6 +288,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         column = viewpage.columns[col]
         parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
         self.gramplet.mainframe.reparent(parent)
+        self.gramplet.pui.active = self.gramplet.viewpage.active
         for gframe in stack:
             gramplet = viewpage.frame_map[str(gframe)]
             expand = gramplet.state == "maximized" and gramplet.expand
