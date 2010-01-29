@@ -300,8 +300,8 @@ class _Holidays:
     MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 
               'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
     DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-    WORKDAY = ['mon', 'tue', 'wed', 'thu', 'fri']
-    WEEKEND = ['sat', 'sun']
+    WORKDAY = range(5) # indexes into above
+    WEEKEND = (5, 6) # indexes into above
     def __init__(self, elements, country="US"):
         self.debug = 0
         self.elements = elements
@@ -370,7 +370,7 @@ class _Holidays:
                 else:
                     # must be a dayname or "workday"
                     offset = rule["offset"]
-                
+
             if rule["value"].startswith('>'):
                 # eval exp -> year/num[/day[/month]]
                 y, m, d = date.year, date.month, date.day
@@ -388,7 +388,7 @@ class _Holidays:
                     m = int(mon)
                 elif mon == "*":
                     m = date.month
-                else:
+                elif mon in self.MONTHS:
                     m = self.MONTHS.index(mon) + 1
                 dates_of_dayname = self.get_daynames(y, m, dayname)
                 
@@ -426,14 +426,19 @@ class _Holidays:
                 if offset[0] == "-":
                     direction = -1
                     offset = offset[1:]
+                elif offset[0] == "+":
+                    direction = 1
+                    offset = offset[1:]
 
                 if offset == "workday":
+                    # next workday you come to, including this one
                     dow = self.WORKDAY
                     ordinal = ndate.toordinal()
                     while ndate.fromordinal(ordinal).weekday() not in dow:
                         ordinal += direction
                     ndate = ndate.fromordinal(ordinal)
                 elif offset == "weekend":
+                    # next weekend you come to, including this one
                     dow = self.WEEKEND
                     ordinal = ndate.toordinal()
                     while ndate.fromordinal(ordinal).weekday() not in dow:
@@ -446,7 +451,7 @@ class _Holidays:
                     while ndate.fromordinal(ordinal).weekday() != dow:
                         ordinal += direction
                     ndate = ndate.fromordinal(ordinal)
-            
+
             if self.debug: 
                 print "ndate:", ndate, "date:", date
                 
