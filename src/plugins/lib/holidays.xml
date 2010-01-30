@@ -415,7 +415,7 @@
     <date name="Första Maj" value="*/5/1" type="secular" />
     <date name="Kristi Himmelfärdsdag" type="religious" value="> easter(y)" offset="+39" />
     <date name="Annandag Pingst" value="easter(y)" offset="50" type="secular" if="not(y>=2006)" />
-    <date name="nationaldagen" value="*/6/6" type="secular" if="(y>=2006)" />
+    <date name="Nationaldagen" value="*/6/6" type="secular" if="(y>=2006)" />
     <date name="Midsommardagen" value="*/jun/20" offset="sat" type="religious" if="(y>=1953)" />
     <date name="Midsommardagen" value="*/jun/24" type="religious" if="not(y>=1953)"  />
     <date name="Allahelgonadagen" value="*/1/sat/nov" type="religious" />
