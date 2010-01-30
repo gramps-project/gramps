@@ -908,7 +908,7 @@ def get_referents(handle, db, primary_objects):
     
     """
     # Use one pass through the reference map to grab all the references
-    object_list = db.find_backlink_handles(handle)
+    object_list = list(db.find_backlink_handles(handle))
     
     # Then form the object-specific lists
     the_lists = ()
