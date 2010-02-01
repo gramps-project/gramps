@@ -285,31 +285,6 @@ register('preferences.sprefix', 'S%04d')
 register('preferences.todo-color', '#ff0000')
 register('preferences.use-last-view', True)
 
-register('person-view.columns', [(1, 0, 250), (1, 1, 50), (1, 2, 75), 
-                                 (1, 3, 100), (1, 4, 175), (1, 5, 100), 
-                                 (1, 6, 175), (1, 7, 100), (0, 8, 100)])
-register('child-view.columns', [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), 
-                                (1, 5), (0, 6), (0, 7)])
-register('place-view.columns', [(1, 0, 250), (1, 1, 75), (1, 11, 100), 
-                                (0, 3, 100), (1, 4, 100, ), (0, 5, 150), 
-                                (1, 6, 150), (0, 7, 150), (0, 8, 150), 
-                                (0, 9, 150), (0, 10, 150),(0,2,100)])
-register('source-view.columns', [(1, 0, 200), (1, 1, 75), (1, 2, 150), 
-                                 (0, 3, 100), (1, 4, 150), (0, 5, 100)])
-register('media-view.columns', [(1, 0, 200, ), (1, 1, 75), (1, 2, 100), 
-                                (1, 3, 200), (1, 5, 150), (0, 4, 150)])
-register('repository-view.columns', [(1, 0, 200), (1, 1, 75), (0, 5, 100), 
-                                     (0, 6, 100), (1, 2, 100), (1, 3, 250), 
-                                     (1, 4, 100), (0, 7, 100), (0, 8, 100), 
-                                     (0, 9, 100), (0, 10, 100), (0, 12, 100)])
-register('event-view.columns', [(1, 0, 200), (1, 1, 75), (1, 2, 100), 
-                                (0, 6, 230), (1, 3, 150),
-                                (1, 4, 200), (0, 5, 100)])
-register('family-view.columns', [(1, 0, 75), (1, 1, 200), (1, 2, 200), 
-                                 (1, 3, 100), (0, 4, 100)])
-register('note-view.columns', [(1, 0, 350), (1, 1, 75), (1, 2, 100), 
-                               (1, 3, 100)])
-
 register('researcher.researcher-addr', '')
 register('researcher.researcher-city', '')
 register('researcher.researcher-country', '')

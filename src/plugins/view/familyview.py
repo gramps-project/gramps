@@ -59,7 +59,16 @@ from gen.plug import CATEGORY_QR_FAMILY
 #
 #-------------------------------------------------------------------------
 class FamilyView(ListView):
-    
+    """ FamilyView class, derived from the ListView
+    """
+    # columns in the model used in view
+    COL_ID = 0
+    COL_FATHER = 1
+    COL_MOTHER = 2
+    COL_REL = 3
+    COL_MARDATE = 4
+    COL_CHAN = 5
+    # name of the columns
     COLUMN_NAMES = [
         _('ID'),
         _('Father'),
@@ -68,6 +77,14 @@ class FamilyView(ListView):
         _('Marriage Date'),
         _('Last Changed'),
         ]
+    #default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
+                             COL_MARDATE]),
+        ('columns.order', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
+                           COL_MARDATE, COL_CHAN]),
+        ('columns.sizecol', [75, 200, 200, 100, 100, 100])
+        )    
 
     ADD_MSG     = _("Add a new family")
     EDIT_MSG    = _("Edit the selected family")
@@ -103,22 +120,6 @@ class FamilyView(ListView):
     def navigation_type(self):
         return 'Family'
 
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_family_list_column_order(clist)
-
-    def column_order(self):
-        return self.dbstate.db.get_family_list_column_order()
-
-    def _column_editor(self, obj):
-        import ColumnOrder
-
-        ColumnOrder.ColumnOrder(
-            _('Select Family Columns'),
-            self.uistate,
-            self.dbstate.db.get_family_list_column_order(),
-            FamilyView.COLUMN_NAMES,
-            self.set_column_order)
-
     def get_stock(self):
         return 'gramps-family'
 
@@ -143,7 +144,6 @@ class FamilyView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
             </menu>
            <menu action="BookMenu">
@@ -182,8 +182,6 @@ class FamilyView(ListView):
         """Add the Forward action group to handle the Forward button."""
 
         ListView.define_actions(self)
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor...'), callback=self._column_editor)
 
         self._add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)

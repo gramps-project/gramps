@@ -60,6 +60,7 @@ class NoteModel(FlatBaseModel):
             self.column_id,
             self.column_type,
             self.column_marker,
+            self.column_change,
             self.column_handle,
             self.column_marker_color
         ]
@@ -68,10 +69,11 @@ class NoteModel(FlatBaseModel):
             self.column_id,
             self.column_type,
             self.column_marker,
+            self.column_change,
             self.column_handle,
             self.column_marker_color
         ]
-        self.marker_color_column = 5
+        self.marker_color_column = 6
         FlatBaseModel.__init__(self, db, scol, order, search=search,
                            skip=skip, sort_map=sort_map)
 
@@ -124,3 +126,7 @@ class NoteModel(FlatBaseModel):
                 return None
         except IndexError:
             return None
+
+    def column_change(self,data):
+        return unicode(time.strftime('%x %X',time.localtime(
+                            data[Note.POS_CHANGE])), GrampsLocale.codeset)

@@ -50,7 +50,6 @@ import Utils
 import Errors
 import Bookmarks
 import config
-import ColumnOrder
 from gen.lib import Note
 from DdTargets import DdTargets
 from Filters.SideBar import NoteSidebarFilter
@@ -63,13 +62,28 @@ from gen.plug import CATEGORY_QR_NOTE
 #
 #-------------------------------------------------------------------------
 class NoteView(ListView):
+    """
+    Noteview, a normal flat listview for the notes
+    """
+    COL_PREVIEW = 0
+    COL_ID = 1
+    COL_TYPE = 2
+    COL_MARKER = 3
+    COL_CHAN = 4
     
     COLUMN_NAMES = [
         _('Preview'),
         _('ID'),
         _('Type'),
         _('Marker'),
+        _('Last Changed')
         ]
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE, COL_MARKER]),
+        ('columns.order', [COL_PREVIEW, COL_ID, COL_TYPE, COL_MARKER,
+                           COL_CHAN]),
+        ('columns.sizecol', [350, 75, 100, 100, 100]))
 
     ADD_MSG     = _("Add a new note")
     EDIT_MSG    = _("Edit the selected note")
@@ -105,9 +119,6 @@ class NoteView(ListView):
     def navigation_type(self):
         return 'Note'
 
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_note_column_order(clist)
-
     def get_bookmarks(self):
         """
         Return the bookmark object
@@ -119,12 +130,6 @@ class NoteView(ListView):
         Indicate that the drag type is an EVENT
         """
         return DdTargets.NOTE_LINK
-
-    def column_order(self):
-        """
-        returns a tuple indicating the column order
-        """
-        return self.dbstate.db.get_note_column_order()
 
     def get_stock(self):
         """
@@ -162,7 +167,6 @@ class NoteView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
             </menu>
           </menubar>
@@ -200,8 +204,6 @@ class NoteView(ListView):
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                         _('_Column Editor'), callback=self._column_editor)
         self._add_action('FilterEdit', None, _('Note Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
@@ -213,17 +215,6 @@ class NoteView(ListView):
             return obj.get_handle()
         else:
             return None
-
-    def _column_editor(self, obj):
-        """
-        returns a tuple indicating the column order
-        """
-        ColumnOrder.ColumnOrder(
-            _('Select Note Columns'),
-            self.uistate,
-            self.dbstate.db.get_note_column_order(),
-            NoteView.COLUMN_NAMES,
-            self.set_column_order)
 
     def add(self, obj):
         try:

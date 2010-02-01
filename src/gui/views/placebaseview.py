@@ -70,7 +70,21 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class PlaceBaseView(ListView):
-    
+    """ base view class for place views, be they flat list or tree
+    """
+    COL_NAME = 0
+    COL_ID = 1
+    COL_PARISH = 2
+    COL_ZIP = 3
+    COL_CITY = 4
+    COL_COUNTY = 5
+    COL_STATE = 6
+    COL_COUNTRY = 7
+    COL_LAT = 8
+    COL_LON = 9
+    COL_CHAN = 10
+    COL_STREET = 11
+    # name of the columns
     COLUMN_NAMES = [
         _('Place Name'),
         _('ID'),
@@ -85,7 +99,16 @@ class PlaceBaseView(ListView):
         _('Last Changed'),
         _('Street'),
         ]
-
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_CITY, COL_STATE
+                             ]),
+        ('columns.order', [COL_NAME, COL_ID, COL_STREET, COL_ZIP, COL_CITY, 
+                           COL_COUNTY, COL_STATE, COL_COUNTRY, COL_LAT,
+                           COL_LON, COL_PARISH, COL_CHAN]),
+        ('columns.sizecol', [250, 75, 100, 100, 100, 100, 150, 150, 150, 
+                             150, 150, 100])
+        )    
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
     DEL_MSG     = _("Delete the selected place")
@@ -124,17 +147,12 @@ class PlaceBaseView(ListView):
 
     def navigation_type(self):
         return 'Place'
-
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_place_column_order(clist)
     
     def get_bookmarks(self):
         return self.dbstate.db.get_place_bookmarks()
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                         _('_Column Editor'), callback=self._column_editor)
         self._add_action('FastMerge', None, _('_Merge...'),
                          callback=self.fast_merge)
         self._add_toolmenu_action('MapsList', _('Loading...'),
@@ -268,19 +286,6 @@ class PlaceBaseView(ListView):
     def drag_info(self):
         return DdTargets.PLACE_LINK
 
-    def _column_editor(self, obj):
-        import ColumnOrder
-
-        ColumnOrder.ColumnOrder(
-            _('Select Place Columns'),
-            self.uistate,
-            self.dbstate.db.get_place_column_order(),
-            PlaceBaseView.COLUMN_NAMES,
-            self.set_column_order)
-
-    def column_order(self):
-        return self.dbstate.db.get_place_column_order()
-
     def get_stock(self):
         return 'gramps-place'
 
@@ -311,7 +316,6 @@ class PlaceBaseView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
               <placeholder name="Merge">
                 <menuitem action="FastMerge"/>

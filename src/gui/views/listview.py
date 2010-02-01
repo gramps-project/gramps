@@ -51,6 +51,7 @@ import pango
 #
 #----------------------------------------------------------------
 from gui.views.navigationview import NavigationView
+from gui.columnorder import ColumnOrder
 import config
 import TreeTips
 import Errors
@@ -80,7 +81,13 @@ LISTTREE = 1
 #
 #----------------------------------------------------------------
 class ListView(NavigationView):
-
+    COLUMN_NAMES = []
+    #listview config settings that are always present related to the columns
+    CONFIGSETTINGS = (
+        ('columns.visible', []),
+        ('columns.order', []),
+        ('columns.sizecol', [])
+        )
     ADD_MSG = ""
     EDIT_MSG = ""
     DEL_MSG = ""
@@ -127,6 +134,7 @@ class ListView(NavigationView):
         contains the interface. This containter will be inserted into
         a gtk.Notebook page.
         """
+        self.init_config()
         self.vbox = gtk.VBox()
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
@@ -469,10 +477,24 @@ class ListView(NavigationView):
 
     def column_order(self):
         """
-        Must be set by children. The method that obtains the column order
-        to be used. Format: see ColumnOrder.
+        Column order is obtained from the config file of the listview. 
+        A column order is a list of 3-tuples. The order in the list is the
+        order the columns must appear in.
+        For a column, the 3-tuple should be (enable, modelcol, sizecol), where
+            enable: show this column or don't show it
+            modelcol: column in the datamodel this column is build of
+            size: size the column should have
         """
-        raise NotImplementedError
+        order = self._config.get('columns.order')
+        size = self._config.get('columns.sizecol')
+        vis =  self._config.get('columns.visible')
+        colord = []
+        for val, size in zip(order, size):
+            if val in vis:
+                colord.append((1, val, size))
+            else:
+                colord.append((0, val, size))
+        return colord
 
     def column_ord_setfunc(self, clist):
         """
@@ -1038,8 +1060,38 @@ class ListView(NavigationView):
     def close_branch(self, obj):
         """
         Collapse the selected branches.
-        obj: for use of method in event callback
+        :param obj: not used, present only to allow the use of the method in
+            event callback
         """
         selected = self.selection.get_selected_rows()
         for path in selected[1]:
             self.list.collapse_row(path)
+
+    def can_configure(self):
+        """
+        See :class:`~gui.views.pageview.PageView 
+        :return: bool
+        """
+        return True
+
+    def config_connect(self):
+        """
+        Overwriten from  :class:`~gui.views.pageview.PageView method
+        This method will be called after the ini file is initialized
+        """
+        #func = self.config_callback(self.build_tree)
+        #self._config.connect('columns.visible', func)
+        #self._config.connect('columns.order', func)
+        pass
+
+    def _get_configure_page_funcs(self):
+        """
+        Return a list of functions that create gtk elements to use in the 
+        notebook pages of the Configure dialog
+        
+        :return: list of functions
+        """
+        def columnpage():
+            return _('Columns', ColumnOrder(self._config, COLUMN_NAMES,
+                                            tree=False))
+        return [columnpage]

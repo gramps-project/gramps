@@ -19,7 +19,7 @@ dist_pkgdata_DATA = \
 	addmedia.glade \
 	questiondialog.glade \
 	columnorder.glade \
-	grampscfg.glade \
+	configure.glade \
 	dateedit.glade \
 	editsource.glade \
 	styleeditor.glade \

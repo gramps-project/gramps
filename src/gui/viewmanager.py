@@ -67,7 +67,6 @@ import ReportBase
 import DisplayState
 import const
 import config
-import GrampsCfg
 import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
                             InfoDialog)
@@ -76,6 +75,7 @@ import UndoHistory
 from gui.dbloader import DbLoader
 import GrampsDisplay
 from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
+from gui.configure import GrampsPreferences
 from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
@@ -762,7 +762,7 @@ class ViewManager(CLIManager):
         Open the preferences dialog.
         """
         try:
-            GrampsCfg.GrampsPreferences(self.uistate, self.dbstate)
+            GrampsPreferences(self.uistate, self.dbstate)
             self._key = self.uistate.connect('nameformat-changed', 
                                              self.active_page.build_tree)
         except Errors.WindowActiveError:
@@ -885,6 +885,7 @@ class ViewManager(CLIManager):
                 page = page_def(self.dbstate, self.uistate)
                 # Category is (string, trans):
                 page.set_category(pdata.category)
+                page.set_ident(page.get_category() + '_' + pdata.id)
                 page_title = page.get_title()
                 page_category = page.get_category()
                 page_translated_category = page.get_translated_category()
@@ -1103,6 +1104,12 @@ class ViewManager(CLIManager):
             mergeid = self.uimanager.add_ui_from_string(self.ui_category[
                                 category_page])
             self.merge_ids.append(mergeid)
+        
+        configaction = self.actiongroup.get_action('ConfigView')
+        if self.active_page.can_configure():
+            configaction.set_sensitive(True)
+        else:
+            configaction.set_sensitive(False)
 
     def change_category(self, obj, page, num=-1):
         """
@@ -1330,7 +1337,7 @@ class ViewManager(CLIManager):
         """
         Displays the configuration dialog for the active view
         """
-        pass
+        self.active_page.configure()
 
     def undo(self, obj):
         """

@@ -43,13 +43,7 @@ __all__ = (
             
             ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'EVENT_KEY',
              'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY', 'NOTE_KEY',
-             'REFERENCE_KEY', 'PERSON_COL_KEY', 'FAMILY_COL_KEY',
-             'CHILD_COL_KEY'
-            ) +
-
-            ('PERSON_COL_KEY', 'FAMILY_COL_KEY', 'CHILD_COL_KEY',
-             'PLACE_COL_KEY', 'SOURCE_COL_KEY', 'MEDIA_COL_KEY', 
-             'EVENT_COL_KEY', 'REPOSITORY_COL_KEY', 'NOTE_COL_KEY'
+             'REFERENCE_KEY'
             ) +
 
             ('TXNADD', 'TXNUPD', 'TXNDEL')
@@ -83,15 +77,5 @@ PLACE_KEY      = 5
 REPOSITORY_KEY = 6
 REFERENCE_KEY  = 7
 NOTE_KEY       = 8
-
-PERSON_COL_KEY      = 'person-view.columns'
-CHILD_COL_KEY       = 'child-view.columns'
-PLACE_COL_KEY       = 'place-view.columns'
-SOURCE_COL_KEY      = 'source-view.columns'
-MEDIA_COL_KEY       = 'media-view.columns'
-REPOSITORY_COL_KEY  = 'repository-view.columns'
-EVENT_COL_KEY       = 'event-view.columns'
-FAMILY_COL_KEY      = 'family-view.columns'
-NOTE_COL_KEY        = 'note-view.columns'
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2

@@ -338,19 +338,6 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
                 self.metadata.sync()
         return None
 
-    def _set_column_order(self, col_list, name):
-        if self.metadata and not self.readonly: 
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
-            self.metadata.put(name, col_list, txn=the_txn)
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
-
     def version_supported(self):
         dbversion = self.metadata.get('version',default=_DBVERSION)
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
@@ -1588,21 +1575,23 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
 
         # Remove event column metadata, since columns have changed.
         # This will reset all columns to defaults in event view
-        for name in (PERSON_COL_KEY, EVENT_COL_KEY):
-            try:
-                if self.UseTXN:
-                    # Start transaction if needed
-                    the_txn = self.env.txn_begin()
-                else:
-                    the_txn = None
-                self.metadata.delete(name, txn=the_txn)
-                if self.UseTXN:
-                    the_txn.commit()
-                else:
-                    self.metadata.sync()
-            except KeyError:
-                if self.UseTXN:
-                    the_txn.abort()
+        ## This action is removed: column data is no longer used, so no
+        ## need to change it
+        #for name in (PERSON_COL_KEY, EVENT_COL_KEY):
+        #    try:
+        #        if self.UseTXN:
+        #            # Start transaction if needed
+        #            the_txn = self.env.txn_begin()
+        #        else:
+        #            the_txn = None
+        #        self.metadata.delete(name, txn=the_txn)
+        #        if self.UseTXN:
+        #            the_txn.commit()
+        #        else:
+        #            self.metadata.sync()
+        #    except KeyError:
+        #        if self.UseTXN:
+        #            the_txn.abort()
 
         # This upgrade adds attribute lists to Event and EventRef objects
         length = self.get_number_of_events() + len(self.person_map) \

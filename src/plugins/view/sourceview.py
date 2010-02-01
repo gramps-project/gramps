@@ -63,7 +63,15 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class SourceView(ListView):
-
+    """ sources listview class 
+    """
+    COL_TITLE = 0
+    COL_ID = 1
+    COL_AUTH = 2
+    COL_ABBR = 3
+    COL_PINFO = 4
+    COL_CHAN = 5
+    # name of the columns
     COLUMN_NAMES = [
         _('Title'),
         _('ID'),
@@ -72,7 +80,13 @@ class SourceView(ListView):
         _('Publication Information'),
         _('Last Changed'),
         ]
-    
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
+        ('columns.order', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
+                           COL_CHAN]),
+        ('columns.sizecol', [200, 75, 150, 100, 150, 100])
+        )    
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
     DEL_MSG = _("Delete the selected source")
@@ -108,9 +122,6 @@ class SourceView(ListView):
     def navigation_type(self):
         return 'Source'
 
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_source_column_order(clist)
-
     def get_bookmarks(self):
         return self.dbstate.db.get_source_bookmarks()
 
@@ -119,27 +130,12 @@ class SourceView(ListView):
     
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                         _('_Column Editor'), callback=self._column_editor)
         self._add_action('FastMerge', None, _('_Merge'),
                          callback=self.fast_merge)
         self._add_action('FilterEdit', None, _('Source Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
         self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
-
-    def _column_editor(self, obj):
-        import ColumnOrder
-
-        ColumnOrder.ColumnOrder(
-            _('Select Source Columns'),
-            self.uistate,
-            self.dbstate.db.get_source_column_order(),
-            SourceView.COLUMN_NAMES,
-            self.set_column_order)
-
-    def column_order(self):
-        return self.dbstate.db.get_source_column_order()
 
     def get_stock(self):
         return 'gramps-source'
@@ -171,7 +167,6 @@ class SourceView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
               <placeholder name="Merge">
                 <menuitem action="FastMerge"/>

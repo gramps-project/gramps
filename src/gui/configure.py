@@ -50,8 +50,8 @@ import DateHandler
 from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
 import Utils
-from gen.lib import Name
 import gen.lib
+from gen.lib import Name
 import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
@@ -121,43 +121,208 @@ will be removed around empty fields. Other text will appear literally."""))
     def build_menu_names(self, obj):
         return (_(" Name Editor"), _("Preferences"))
 
-class GrampsPreferences(ManagedWindow.ManagedWindow):
 
-    def __init__(self, uistate, dbstate):
+#-------------------------------------------------------------------------
+#
+# ConfigureDialog
+#
+#-------------------------------------------------------------------------
+
+class ConfigureDialog(ManagedWindow.ManagedWindow):
+    """
+    Base class for configuration dialogs. They provide a Notebook, to which 
+    pages are added with configuration options, and a Cancel and Save button.
+    On save, a config file on which the dialog works, is saved to disk, and
+    a callback called.
+    """
+    def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
+                 configmanager,
+                 dialogtitle=_("Preferences"), on_close=None):
+        """
+        Set up a configuration dialog
+        :param uistate: a DisplayState instance
+        :param dbstate: a DbState instance
+        :param configure_page_funcs: a list of function that return a tuple
+            (str, gtk.Widget). The string is used as label for the 
+            configuration page, and the widget as the content of the 
+            configuration page
+        :param configobj: the unique object that is configured, it must be 
+            identifiable (id(configobj)). If the configure dialog of the 
+            configobj is already open, a Errors.WindowActiveError will be
+            raised. Grab this exception in the calling method
+        :param configmanager: a configmanager object. Several convenience
+            methods are present in ConfigureDialog to set up widgets that 
+            write changes directly via this configmanager.
+        :param dialogtitle: the title of the configuration dialog
+        :param on_close: callback that is called on close
+        """
         self.dbstate = dbstate
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], GrampsPreferences)
+        self.__config = configmanager
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], configobj)
         self.set_window(
-            gtk.Dialog(_('Preferences'), 
-                       flags=gtk.DIALOG_NO_SEPARATOR, 
+            gtk.Dialog(dialogtitle, flags=gtk.DIALOG_NO_SEPARATOR, 
                        buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
-            None, _('Preferences'), None)
-        panel = gtk.Notebook()
-        self.window.vbox.add(panel)
+                       None, dialogtitle, None)
+        self.panel = gtk.Notebook()
+        self.window.vbox.add(self.panel)
+        self.__on_close = on_close
         self.window.connect('response', self.done)
-        panel.append_page(self.add_behavior_panel(), 
-                          MarkupLabel(_('General')))
-        panel.append_page(self.add_database_panel(), 
-                          MarkupLabel(_('Database')))
-        panel.append_page(self.add_formats_panel(), 
-                          MarkupLabel(_('Display')))
-        panel.append_page(self.add_text_panel(), 
-                          MarkupLabel(_('Text')))
-        panel.append_page(self.add_prefix_panel(), 
-                          MarkupLabel(_('ID Formats')))
-        panel.append_page(self.add_date_panel(), 
-                          MarkupLabel(_('Dates')))
-        panel.append_page(self.add_advanced_panel(), 
-                          MarkupLabel(_('Warnings')))
-        panel.append_page(self.add_researcher_panel(), 
-                          MarkupLabel(_('Researcher')))
-        panel.append_page(self.add_color_panel(), 
-                          MarkupLabel(_('Marker Colors')))
+        
+        self.__setup_pages(configure_page_funcs)
+        
         self.window.show_all()
         self.show()
+    
+    def __setup_pages(self, configure_page_funcs):
+        """
+        This method builds the notebookpages in the panel
+        """
+        for func in configure_page_funcs:
+            labeltitle, widget = func()
+            self.panel.append_page(widget, MarkupLabel(labeltitle))
 
     def done(self, obj, value):
-        Utils.update_constants()
+        if self.__on_close:
+            self.__on_close()
         self.close()
+
+    def update_int_entry(self, obj, constant):
+        """
+        :param obj: an object with get_text method that should contain an
+            integer
+        :param constant: the config setting to which the integer value must be 
+            saved
+        """
+        try:
+            self.__config.set(constant, int(obj.get_text()))
+        except:
+            print "WARNING: ignoring invalid value for '%s'" % constant
+
+    def update_entry(self, obj, constant):
+        """
+        :param obj: an object with get_text method 
+        :param constant: the config setting to which the text value must be 
+            saved
+        """
+        self.__config.set(constant, unicode(obj.get_text()))
+
+    def update_color(self, obj, constant, color_hex_label):
+        color = obj.get_color()
+        hexval = "#%02x%02x%02x" % (color.red/256, 
+                                    color.green/256, 
+                                    color.blue/256)
+        color_hex_label.set_text(hexval)
+        self.__config.set(constant, hexval)
+
+    def update_checkbox(self, obj, constant):
+        self.__config.set(constant, obj.get_active())
+
+    def update_radiobox(self, obj, constant):
+        self.__config.set(constant, obj.get_active())
+
+    def add_checkbox(self, table, label, index, constant, start=1, stop=9):
+        checkbox = gtk.CheckButton(label)
+        checkbox.set_active(self.__config.get(constant))
+        checkbox.connect('toggled', self.update_checkbox, constant)
+        table.attach(checkbox, start, stop, index, index+1, yoptions=0)
+
+    def add_radiobox(self, table, label, index, constant, group, column):
+        radiobox = gtk.RadioButton(group,label)
+        if self.__config.get(constant) == True:
+            radiobox.set_active(True)
+        radiobox.connect('toggled', self.update_radiobox, constant)
+        table.attach(radiobox, column, column+1, index, index+1, yoptions=0)
+        return radiobox
+
+    def add_text(self, table, label, index):
+        text = gtk.Label()
+        text.set_line_wrap(True)
+        text.set_alignment(0.,0.)
+        text.set_text(label)
+        table.attach(text, 1, 9, index, index+1, yoptions=0)
+
+    def add_path_box(self, table, label, index, entry, path, callback_label, 
+                     callback_sel):
+        """ Add an entry to give in path and a select button to open a 
+            dialog. 
+            Changing entry calls callback_label
+            Clicking open button call callback_sel
+        """
+        lwidget = BasicLabel("%s: " %label)
+        hbox = gtk.HBox()
+        if path:
+            entry.set_text(path)
+        entry.connect('changed', callback_label)
+        btn = gtk.Button()
+        btn.connect('clicked', callback_sel)
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        image.show()
+        btn.add(image)
+        hbox.pack_start(entry, expand=True, fill=True)
+        hbox.pack_start(btn, expand=False, fill=False)
+        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(hbox, 2, 3, index, index+1, yoptions=0)
+
+    def add_entry(self, table, label, index, constant, callback=None):
+        if not callback:
+            callback = self.update_entry
+        lwidget = BasicLabel("%s: " % label)
+        entry = gtk.Entry()
+        entry.set_text(self.__config.get(constant))
+        entry.connect('changed', callback, constant)
+        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(entry, 1, 2, index, index+1, yoptions=0)
+
+    def add_pos_int_entry(self, table, label, index, constant, callback=None):
+        """ entry field for positive integers
+        """
+        lwidget = BasicLabel("%s: " % label)
+        entry = gtk.Entry()
+        entry.set_text(str(self.__config.get(constant)))
+        if callback:
+            entry.connect('changed', callback, constant)
+        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(entry, 2, 3, index, index+1, yoptions=0)
+
+    def add_color(self, table, label, index, constant):
+        lwidget = BasicLabel("%s: " % label)
+        hexval = self.__config.get(constant)
+        color = gtk.gdk.color_parse(hexval)
+        entry = gtk.ColorButton(color=color)
+        color_hex_label = BasicLabel(hexval)
+        entry.connect('color-set', self.update_color, constant, color_hex_label)
+        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
+        table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
+        return entry
+
+#-------------------------------------------------------------------------
+#
+# GrampsPreferences
+#
+#-------------------------------------------------------------------------
+class GrampsPreferences(ConfigureDialog):
+
+    def __init__(self, uistate, dbstate):
+        page_funcs = (
+            self.add_behavior_panel,
+            self.add_database_panel,
+            self.add_formats_panel,
+            self.add_text_panel,
+            self.add_prefix_panel,
+            self.add_date_panel,
+            self.add_advanced_panel,
+            self.add_researcher_panel,
+            self.add_color_panel
+            )
+        ConfigureDialog.__init__(self, uistate, dbstate, page_funcs, 
+                                 GrampsPreferences, config,
+                                 on_close=Utils.update_constants)
 
     def add_researcher_panel(self):
         table = gtk.Table(3, 8)
@@ -172,7 +337,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_entry(table, _('ZIP/Postal Code'), 5, 'researcher.researcher-postal')
         self.add_entry(table, _('Phone'), 6, 'researcher.researcher-phone')
         self.add_entry(table, _('Email'), 7, 'researcher.researcher-email')
-        return table
+        return _('Researcher'), table
 
     def add_prefix_panel(self):
         """
@@ -198,7 +363,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                        self.update_idformat_entry)
         self.add_entry(table, _('Note'), 7, 'preferences.nprefix',
                        self.update_idformat_entry)
-        return table
+        return _('ID Formats'), table
 
     def add_advanced_panel(self):
         table = gtk.Table(4, 8)
@@ -222,7 +387,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             table, _('Show plugin status dialog on plugin load error.'), 
             3, 'behavior.pop-plugin-status')
         
-        return table
+        return _('Warnings'), table
 
     def add_color_panel(self):
         table = gtk.Table(3, 8)
@@ -240,7 +405,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         button = gtk.Button(stock=gtk.STOCK_REVERT_TO_SAVED)
         button.connect('clicked', self.reset_colors)
         table.attach(button, 1, 2, 3, 4, yoptions=0, xoptions=0)
-        return table
+        return _('Marker Colors'), table
 
     def reset_colors(self, obj):
 
@@ -734,7 +899,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           _("Show text in sidebar buttons (requires restart)"), 
                           row, 'interface.sidebar-text', stop=3)
         row += 1
-        return table
+        return _('Display'), table
 
     def add_text_panel(self):
         row = 0
@@ -760,7 +925,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_entry(table, _('Private record'), row, 
                        'preferences.private-record-text')
         row += 1
-        return table
+        return _('Text'), table
 
     def cb_name_dialog(self, obj):
         the_list = self.fmt_obox.get_model()
@@ -810,7 +975,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                 _('Markup for invalid date format'), 
                 7, 'preferences.invalid-date-format', self.update_entry)
 
-        return table
+        return _('Dates'), table
         
     def add_behavior_panel(self):
         table = gtk.Table(3, 8)
@@ -845,7 +1010,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                 7, self.path_entry, self.dbstate.db.get_mediapath(),
                 self.set_mediapath, self.select_mediapath)
 
-        return table
+        return _('General'), table
 
     def add_database_panel(self):
         table = gtk.Table(2, 2)
@@ -860,88 +1025,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                 _('Automatically load last database'), 
                 1, 'behavior.autoload')
                 
-        return table
-        
-    def add_checkbox(self, table, label, index, constant, start=1, stop=9):
-        checkbox = gtk.CheckButton(label)
-        checkbox.set_active(config.get(constant))
-        checkbox.connect('toggled', self.update_checkbox, constant)
-        table.attach(checkbox, start, stop, index, index+1, yoptions=0)
-
-    def add_radiobox(self, table, label, index, constant, group, column):
-        radiobox = gtk.RadioButton(group,label)
-        if config.get(constant) == True:
-            radiobox.set_active(True)
-        radiobox.connect('toggled', self.update_radiobox, constant)
-        table.attach(radiobox, column, column+1, index, index+1, yoptions=0)
-        return radiobox
-
-    def add_text(self, table, label, index):
-        text = gtk.Label()
-        text.set_line_wrap(True)
-        text.set_alignment(0.,0.)
-        text.set_text(label)
-        table.attach(text, 1, 9, index, index+1, yoptions=0)
-
-    def add_path_box(self, table, label, index, entry, path, callback_label, 
-                     callback_sel):
-        """ Add an entry to give in path and a select button to open a 
-            dialog. 
-            Changing entry calls callback_label
-            Clicking open button call callback_sel
-        """
-        lwidget = BasicLabel("%s: " %label)
-        hbox = gtk.HBox()
-        if path:
-            entry.set_text(path)
-        entry.connect('changed', callback_label)
-        btn = gtk.Button()
-        btn.connect('clicked', callback_sel)
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
-        image.show()
-        btn.add(image)
-        hbox.pack_start(entry, expand=True, fill=True)
-        hbox.pack_start(btn, expand=False, fill=False)
-        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
-        table.attach(hbox, 2, 3, index, index+1, yoptions=0)
-
-    def add_entry(self, table, label, index, constant, callback=None):
-        if not callback:
-            callback = self.update_entry
-        lwidget = BasicLabel("%s: " % label)
-        entry = gtk.Entry()
-        entry.set_text(config.get(constant))
-        entry.connect('changed', callback, constant)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
-        table.attach(entry, 1, 2, index, index+1, yoptions=0)
-
-    def add_pos_int_entry(self, table, label, index, constant, callback=None):
-        """ entry field for positive integers
-        """
-        lwidget = BasicLabel("%s: " % label)
-        entry = gtk.Entry()
-        entry.set_text(str(config.get(constant)))
-        if callback:
-            entry.connect('changed', callback, constant)
-        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
-        table.attach(entry, 2, 3, index, index+1, yoptions=0)
-
-    def add_color(self, table, label, index, constant):
-        lwidget = BasicLabel("%s: " % label)
-        hexval = config.get(constant)
-        color = gtk.gdk.color_parse(hexval)
-        entry = gtk.ColorButton(color=color)
-        color_hex_label = BasicLabel(hexval)
-        entry.connect('color-set', self.update_color, constant, color_hex_label)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
-        table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
-        table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
-        return entry
+        return _('Database'), table
 
     def set_mediapath(self, *obj):
         if self.path_entry.get_text().strip():
@@ -968,15 +1052,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             if val:
                 self.path_entry.set_text(val)
         f.destroy()
-
-    def update_int_entry(self, obj, constant):
-        try:
-            config.set(constant, int(obj.get_text()))
-        except:
-            print "WARNING: ignoring invalid value for '%s'" % constant
-
-    def update_entry(self, obj, constant):
-        config.set(constant, unicode(obj.get_text()))
 
     def update_idformat_entry(self, obj, constant):
         config.set(constant, unicode(obj.get_text()))
@@ -1008,20 +1083,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             self.uistate.set_gendepth(intval)
         else:
             obj.set_text(str(intval))
-
-    def update_color(self, obj, constant, color_hex_label):
-        color = obj.get_color()
-        hexval = "#%02x%02x%02x" % (color.red/256, 
-                                    color.green/256, 
-                                    color.blue/256)
-        color_hex_label.set_text(hexval)
-        config.set(constant, hexval)
-
-    def update_checkbox(self, obj, constant):
-        config.set(constant, obj.get_active())
-
-    def update_radiobox(self, obj, constant):
-        config.set(constant, obj.get_active())
 
     def build_menu_names(self, obj):
         return (_('Preferences'), None)

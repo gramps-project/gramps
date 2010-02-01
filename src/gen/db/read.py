@@ -52,7 +52,6 @@ from gen.utils.callback import Callback
 from gen.db import (GrampsCursor, DbReadBase)
 from Utils import create_id
 import Errors
-import config
 
 LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
@@ -157,16 +156,8 @@ class DbBsddbRead(DbReadBase, Callback):
 
         returns a list of all Event types assocated with instances of <object>
         in the database.
-
-    .. method:: get_<object>_column_order()
-
-        returns the object's display common information.
-
     """
 
-    # This holds a reference to the gramps Config module if
-    # it is available, it is setup by the factory methods.
-    __config__ = None
     __signals__ = {}
     # If this is True logging will be turned on.
     try:
@@ -1368,150 +1359,6 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.metadata is not None:
             return self.metadata.get('mediapath', None)
         return None
-
-    def set_column_order(self, col_list, name):
-        if (self.metadata is not None) and (not self.readonly):
-            self.metadata[name] = col_list
-
-    def set_person_column_order(self, col_list):
-        """
-        Store the Person display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, PERSON_COL_KEY)
-
-    def set_family_list_column_order(self, col_list):
-        """
-        Store the Person display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, FAMILY_COL_KEY)
-
-    def set_child_column_order(self, col_list):
-        """
-        Store the Person display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, CHILD_COL_KEY)
-
-    def set_place_column_order(self, col_list):
-        """
-        Store the Place display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, PLACE_COL_KEY)
-
-    def set_source_column_order(self, col_list):
-        """
-        Store the Source display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, SOURCE_COL_KEY)
-
-    def set_media_column_order(self, col_list):
-        """
-        Store the Media display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, MEDIA_COL_KEY)
-
-    def set_event_column_order(self, col_list):
-        """
-        Store the Event display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, EVENT_COL_KEY)
-
-    def set_repository_column_order(self, col_list):
-        """
-        Store the Repository display common information in the database's 
-        metadata.
-        """
-        self.set_column_order(col_list, REPOSITORY_COL_KEY)
-
-    def set_note_column_order(self, col_list):
-        """
-        Store the Note display common information in the database's metadata.
-        """
-        self.set_column_order(col_list, NOTE_COL_KEY)
-
-    def __get_column_order(self, name):
-        default = config.get_default(name)
-        cols = config.get(name)
-        if len(cols) != len(default):
-            return cols + default[len(cols):]
-        else:
-            return cols
-        
-    def get_person_column_order(self):
-        """
-        Return the Person display common information stored in the database's 
-        metadata.
-        """
-        return self.__get_column_order(PERSON_COL_KEY)
-
-    def __get_columns(self, key):
-        default = config.get_default(key)
-        values = self.__get_column_order(key)
-        new = []
-        for val in values:
-            if len(val) == 2:
-                for x in default:
-                    if val[1] == x[1]:
-                        new.append((val[0], val[1], x[2]))
-                        break
-            else:
-                new.append(val)
-        return new
-        
-    def get_family_list_column_order(self):
-        """
-        Return the Person display common information stored in the database's 
-        metadata.
-        """
-        return self.__get_columns(FAMILY_COL_KEY)
-
-    def get_child_column_order(self):
-        """
-        Return the Person display common information stored in the database's 
-        metadata.
-        """
-        return self.__get_column_order(CHILD_COL_KEY)
-
-    def get_place_column_order(self):
-        """
-        Return the Place display common information stored in thedatabase's 
-        metadata.
-        """
-        return self.__get_columns(PLACE_COL_KEY)
-
-    def get_source_column_order(self):
-        """
-        Return the Source display common information stored in the database's 
-        metadata.
-        """
-        return self.__get_columns(SOURCE_COL_KEY)
-
-    def get_media_column_order(self):
-        """
-        Return the MediaObject display common information stored in the
-        database's metadata.
-        """
-        return self.__get_columns(MEDIA_COL_KEY)
-
-    def get_event_column_order(self):
-        """
-        Return the Event display common information stored in the database's 
-        metadata.
-        """
-        return self.__get_columns(EVENT_COL_KEY)
-
-    def get_repository_column_order(self):
-        """
-        Return the Repository display common information stored in the
-        database's metadata.
-        """
-        return self.__get_columns(REPOSITORY_COL_KEY)
-
-    def get_note_column_order(self):
-        """
-        Return the Note display common information stored in the database's 
-        metadata.
-        """
-        return self.__get_columns(NOTE_COL_KEY)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """

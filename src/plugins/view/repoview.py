@@ -61,6 +61,21 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class RepositoryView(ListView):
+    """ repository listview class 
+    """
+    COL_NAME = 0
+    COL_ID = 1
+    COL_TYPE = 2
+    COL_URL = 3
+    COL_STREET = 4
+    COL_ZIP = 5
+    COL_CITY = 6
+    COL_COUNTY = 7
+    COL_STATE = 8
+    COL_COUNTRY = 9
+    COL_EMAIL = 10
+    COL_SURL = 11
+    COL_CHAN = 12
 
     COLUMN_NAMES = [
         _('Name'),
@@ -77,7 +92,17 @@ class RepositoryView(ListView):
         _('Search URL'),
         _('Last Changed'),
         ]
-        
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
+                             ]),
+        ('columns.order', [COL_NAME, COL_ID, COL_ZIP, COL_CITY, COL_TYPE, 
+                           COL_URL, COL_STREET, COL_COUNTY, COL_STATE, 
+                           COL_COUNTRY, COL_EMAIL, COL_SURL,
+                           COL_CHAN]),
+        ('columns.sizecol', [200, 75, 100, 100, 100, 250, 100, 100, 100,
+                             100, 100, 100, 100])
+        )    
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
     DEL_MSG = _("Delete the selected repository")
@@ -113,9 +138,6 @@ class RepositoryView(ListView):
     def navigation_type(self):
         return 'Repository'
 
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_repository_column_order(clist)
-
     def get_bookmarks(self):
         return self.dbstate.db.get_repo_bookmarks()
 
@@ -124,27 +146,12 @@ class RepositoryView(ListView):
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                         _('_Column Editor'), callback=self._column_editor)
         self._add_action('FilterEdit', None, _('Repository Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, 
                          _("Quick View"), None, None, None)
         self._add_action('Dummy', None, 
                          '  ', None, None, self.dummy_report)
-
-    def _column_editor(self, obj):
-        import ColumnOrder
-
-        ColumnOrder.ColumnOrder(
-            _('Select Repository Columns'),
-            self.uistate,
-            self.dbstate.db.get_repository_column_order(),
-            RepositoryView.COLUMN_NAMES,
-            self.set_column_order)
-
-    def column_order(self):
-        return self.dbstate.db.get_repository_column_order()
 
     def get_stock(self):
         return 'gramps-repository'
@@ -176,7 +183,6 @@ class RepositoryView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
             </menu>
           </menubar>

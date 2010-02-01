@@ -195,13 +195,6 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_event_column_order(self):
-        """
-        Return the Event display common information stored in the database's 
-        metadata.
-        """
-        raise NotImplementedError
-
     def get_event_cursor(self):
         """
         Return a reference to a cursor over Family objects
@@ -289,13 +282,6 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_family_list_column_order(self):
-        """
-        Return the Person display common information stored in the database's 
-        metadata.
-        """
-        raise NotImplementedError
-
     def get_family_relation_types(self):
         """
         Return a list of all relationship types associated with Family
@@ -331,13 +317,6 @@ class DbReadBase(object):
     def get_media_bookmarks(self):
         """
         Return the list of Person handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_media_column_order(self):
-        """
-        Return the MediaObject display common information stored in the
-        database's metadata.
         """
         raise NotImplementedError
 
@@ -384,13 +363,6 @@ class DbReadBase(object):
     def get_note_bookmarks(self):
         """
         Return the list of Note handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_note_column_order(self):
-        """
-        Return the Note display common information stored in the database's 
-        metadata.
         """
         raise NotImplementedError
 
@@ -503,13 +475,6 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_person_column_order(self):
-        """
-        Return the Person display common information stored in the database's 
-        metadata.
-        """
-        raise NotImplementedError
-
     def get_person_cursor(self):
         """
         Return a reference to a cursor over Person objects
@@ -552,13 +517,6 @@ class DbReadBase(object):
     def get_place_bookmarks(self):
         """
         Return the list of Person handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_place_column_order(self):
-        """
-        Return the Place display common information stored in thedatabase's 
-        metadata.
         """
         raise NotImplementedError
 
@@ -666,13 +624,6 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_repository_column_order(self):
-        """
-        Return the Repository display common information stored in the
-        database's metadata.
-        """
-        raise NotImplementedError
-
     def get_repository_cursor(self):
         """
         Return a reference to a cursor over Repository objects
@@ -726,13 +677,6 @@ class DbReadBase(object):
     def get_source_bookmarks(self):
         """
         Return the list of Person handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_source_column_order(self):
-        """
-        Return the Source display common information stored in the database's 
-        metadata.
         """
         raise NotImplementedError
 
@@ -1069,74 +1013,6 @@ class DbReadBase(object):
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
         such as S%d or S%04d.
-        """
-        raise NotImplementedError
-
-    def get_child_column_order(self):
-        """
-        Return the Person display common information stored in the database's 
-        metadata.
-        """
-        raise NotImplementedError
-
-    def set_child_column_order(self, col_list):
-        """
-        Store the Person display common information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_column_order(self, col_list, name):
-        """
-        Store the display information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_event_column_order(self, col_list):
-        """
-        Store the Event display common information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_family_list_column_order(self, col_list):
-        """
-        Store the Person display common information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_media_column_order(self, col_list):
-        """
-        Store the Media display common information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_note_column_order(self, col_list):
-        """
-        Store the Note display common information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_person_column_order(self, col_list):
-        """
-        Store the Person display common information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_place_column_order(self, col_list):
-        """
-        Store the Place display common information in the database's metadata.
-        """
-        raise NotImplementedError
-
-    def set_repository_column_order(self, col_list):
-        """
-        Store the Repository display common information in the database's 
-        metadata.
-        """
-        raise NotImplementedError
-
-    def set_source_column_order(self, col_list):
-        """
-        Store the Source display common information in the database's metadata.
         """
         raise NotImplementedError
 

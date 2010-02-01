@@ -73,8 +73,18 @@ from gen.ggettext import sgettext as _
 #-------------------------------------------------------------------------
 class PersonView(ListView):
     """
-    PersonView class, derived from the ListView
+    PersonView class, derived from the ListView, a treeview
     """
+    COL_NAME = 0
+    COL_ID = 1
+    COL_GEN = 2
+    COL_BDAT = 3
+    COL_BPLAC = 4
+    COL_DDAT = 5
+    COL_DPLAC = 6
+    COL_SPOUSE = 7
+    COL_CHAN = 8
+    #name of the columns
     COLUMN_NAMES = [
         _('Name'),
         _('ID'),
@@ -86,7 +96,13 @@ class PersonView(ListView):
         _('Spouse'),
         _('Last Changed'),
         ]
-    
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
+        ('columns.order', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
+                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_CHAN]),
+        ('columns.sizecol', [250, 75, 75, 100, 175, 100, 175, 100, 100])
+        )  
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
     DEL_MSG     = _("Delete the selected person")
@@ -127,9 +143,6 @@ class PersonView(ListView):
         """
         return LISTTREE
 
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_person_column_order(clist)
-
     def navigation_type(self):
         return 'Person'
 
@@ -151,17 +164,11 @@ class PersonView(ListView):
         """
         return DdTargets.PERSON_LINK_LIST
 
-    def column_order(self):
-        """
-        returns a tuple indicating the column order
-        """
-        return self.dbstate.db.get_person_column_order()
-
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search
         """
-        return (2,) # Gender ('female' contains the string 'male')
+        return (PersonView.COL_GEN,) # Gender ('female' contains the string 'male')
 
     def get_stock(self):
         """
@@ -207,7 +214,6 @@ class PersonView(ListView):
                 <menuitem action="Remove"/>
               </placeholder>
               <menuitem action="SetActive"/>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
               <placeholder name="Merge">
                 <menuitem action="CmpMerge"/>
@@ -251,19 +257,6 @@ class PersonView(ListView):
             return obj.get_handle()
         else:
             return None
-
-    def _column_editor(self, obj):
-        """
-        returns a tuple indicating the column order
-        """
-        import ColumnOrder
-
-        ColumnOrder.ColumnOrder(
-            _('Select Person Columns'),
-            self.uistate,
-            self.dbstate.db.get_person_column_order(),
-            PersonView.COLUMN_NAMES,
-            self.set_column_order)
 
     def add(self, obj):
         person = gen.lib.Person()
@@ -391,9 +384,7 @@ class PersonView(ListView):
                 ('Add', gtk.STOCK_ADD, _("_Add..."), "<control>Insert", 
                 _("Add a new person"), self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
-                 _("Remove the Selected Person"), self.remove), 
-                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor...'), None, 
-                 None, self._column_editor),  
+                 _("Remove the Selected Person"), self.remove),
                 ('CmpMerge', None, _('Compare and _Merge...'), None, None, 
                  self.cmp_merge), 
                 ('FastMerge', None, _('_Fast Merge...'), None, None, 

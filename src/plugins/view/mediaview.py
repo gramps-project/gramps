@@ -75,7 +75,13 @@ class MediaView(ListView):
     thumbnail image at the top of the view that must be updated when the
     selection changes or when the selected media object changes.
     """
-    
+    COL_TITLE = 0
+    COL_ID = 1
+    COL_TYPE = 2
+    COL_PATH = 3
+    COL_CHAN = 4
+    COL_DATE = 5
+    #name of the columns
     COLUMN_NAMES = [
         _('Title'), 
         _('ID'), 
@@ -84,6 +90,14 @@ class MediaView(ListView):
         _('Last Changed'), 
         _('Date'), 
         ]
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
+                             COL_DATE]),
+        ('columns.order', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
+                           COL_DATE, COL_CHAN]),
+        ('columns.sizecol', [200, 75, 100, 200, 150, 150])
+        )    
     
     ADD_MSG     = _("Add a new media object")
     EDIT_MSG    = _("Edit the selected media object")
@@ -121,9 +135,6 @@ class MediaView(ListView):
 
     def navigation_type(self):
         return 'Media'
-
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_media_column_order(clist)
 
     def _set_dnd(self):
         """
@@ -219,8 +230,6 @@ class MediaView(ListView):
         """
         ListView.define_actions(self)
 
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES, 
-                         _('_Column Editor'), callback=self._column_editor)
         self._add_action('FilterEdit', None, _('Media Filter Editor'), 
                          callback=self.filter_editor)
         self._add_action('OpenMedia', 'gramps-viewmedia', _('View'), 
@@ -253,25 +262,6 @@ class MediaView(ListView):
             if mpath:
                 mfolder, mfile = os.path.split(mpath)
                 open_file_with_default_application(mfolder)
-
-    def _column_editor(self, obj):
-        """
-        Start the column editor dialog
-        """
-        import ColumnOrder
-
-        ColumnOrder.ColumnOrder(
-            _('Select Media Columns'), 
-            self.uistate, 
-            self.dbstate.db.get_media_column_order(), 
-            MediaView.COLUMN_NAMES, 
-            self.set_column_order)
-
-    def column_order(self):
-        """
-        Get the column order from the database
-        """
-        return self.dbstate.db.get_media_column_order()
 
     def get_stock(self):
         """
@@ -354,7 +344,6 @@ class MediaView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
             </menu>
             <menu action="BookMenu">

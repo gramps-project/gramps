@@ -26,8 +26,7 @@ gdir_PYTHON = \
 	Assistant.py\
 	AutoComp.py\
 	Bookmarks.py\
-	ColumnOrder.py\
-    config.py\
+	config.py\
 	const.py\
 	DateEdit.py\
 	Date.py\
@@ -39,7 +38,6 @@ gdir_PYTHON = \
 	ExportOptions.py\
 	glade.py\
 	GrampsAboutDialog.py\
-	GrampsCfg.py\
 	GrampsDisplay.py\
 	gramps.py\
 	ImgManip.py\

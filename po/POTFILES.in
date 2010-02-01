@@ -7,7 +7,6 @@ src/ansel_utf8.py
 src/Assistant.py
 src/AutoComp.py
 src/Bookmarks.py
-src/ColumnOrder.py
 src/const.py
 src/DateEdit.py
 src/Date.py
@@ -18,7 +17,6 @@ src/ExportAssistant.py
 src/ExportOptions.py
 src/glade.py
 src/GrampsAboutDialog.py
-src/GrampsCfg.py
 src/GrampsDisplay.py
 src/gramps.py
 src/ImgManip.py
@@ -187,6 +185,8 @@ src/gen/utils/callman.py
 
 # gui - GUI code
 src/gui/__init__.py
+src/gui/columnorder.py
+src/gui/configure.py
 src/gui/dbguielement.py
 src/gui/dbloader.py
 src/gui/dbman.py
@@ -842,7 +842,7 @@ src/glade/displaystate.glade
 src/glade/addmedia.glade
 src/glade/questiondialog.glade
 src/glade/columnorder.glade
-src/glade/grampscfg.glade
+src/glade/configure.glade
 src/glade/dateedit.glade
 src/glade/editsource.glade
 src/glade/styleeditor.glade

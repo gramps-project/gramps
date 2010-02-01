@@ -107,7 +107,6 @@ class PlaceTreeView(PlaceBaseView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
               <placeholder name="Merge">
                 <menuitem action="FastMerge"/>

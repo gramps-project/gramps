@@ -13,6 +13,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui
 
 pkgdata_PYTHON = \
 	__init__.py \
+	columnorder.py \
+	configure.py \
 	dbguielement.py \
 	dbloader.py \
 	dbman.py \

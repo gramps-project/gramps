@@ -66,6 +66,15 @@ class EventView(ListView):
     """
     EventView class, derived from the ListView
     """
+    # columns in the model used in view
+    COL_DESCR = 0
+    COL_ID = 1
+    COL_TYPE = 2
+    COL_DATE = 3
+    COL_PLACE = 4
+    COL_CHAN = 5
+    COL_PARTIC = 6
+    # name of the columns
     COLUMN_NAMES = [
         _('Description'),
         _('ID'),
@@ -75,7 +84,13 @@ class EventView(ListView):
         _('Last Changed'),
         _('Main Participants'),
         ]
-    
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_DESCR, COL_ID, COL_TYPE, COL_DATE, COL_PLACE]),
+        ('columns.order', [COL_DESCR, COL_ID, COL_TYPE, COL_PARTIC, COL_DATE,
+                           COL_PLACE, COL_CHAN]),
+        ('columns.sizecol', [200, 75, 100, 230, 150, 200, 100])
+        )    
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
@@ -113,9 +128,6 @@ class EventView(ListView):
     def navigation_type(self):
         return 'Event'
 
-    def column_ord_setfunc(self, clist):
-        self.dbstate.db.set_event_column_order(clist)
-
     def get_bookmarks(self):
         """
         Return the bookmark object
@@ -127,12 +139,6 @@ class EventView(ListView):
         Indicate that the drag type is an EVENT
         """
         return DdTargets.EVENT
-
-    def column_order(self):
-        """
-        returns a tuple indicating the column order
-        """
-        return self.dbstate.db.get_event_column_order()
 
     def get_stock(self):
         """
@@ -170,7 +176,6 @@ class EventView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
               </placeholder>
-              <menuitem action="ColumnEdit"/>
               <menuitem action="FilterEdit"/>
             </menu>
           </menubar>
@@ -203,8 +208,6 @@ class EventView(ListView):
         ListView.define_actions(self)
         self._add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
-        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                         _('_Column Editor'), callback=self._column_editor,)
         self._add_action('QuickReport', None, 
                          _("Quick View"), None, None, None)
         self._add_action('Dummy', None, 
@@ -216,19 +219,6 @@ class EventView(ListView):
             return obj.get_handle()
         else:
             return None
-
-    def _column_editor(self, obj):
-        """
-        returns a tuple indicating the column order
-        """
-        import ColumnOrder
-
-        ColumnOrder.ColumnOrder(
-            _('Select Event Columns'),
-            self.uistate,
-            self.dbstate.db.get_event_column_order(),
-            EventView.COLUMN_NAMES,
-            self.set_column_order)
 
     def add(self, obj):
         try:

@@ -46,8 +46,11 @@ from gen.ggettext import gettext as _
 # GRAMPS 
 #
 #----------------------------------------------------------------
+import Errors
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
+from gui.configure import ConfigureDialog
+from config import config
 
 #------------------------------------------------------------------------------
 #
@@ -84,6 +87,8 @@ class PageView(DbGUIElement):
       placed behind the same button in the sidebar
     """
 
+    CONFIGSETTINGS = []
+
     def __init__(self, title, dbstate, uistate):
         self.title = title
         self.dbstate = dbstate
@@ -102,6 +107,7 @@ class PageView(DbGUIElement):
         self._dirty_on_change_inactive = True
         self.func_list = {}
         self.category = "Miscellaneous"
+        self.ident = None
         self.translated_category = _("Miscellaneous")
 
         self.dbstate.connect('no-database', self.disable_action_group)
@@ -110,6 +116,9 @@ class PageView(DbGUIElement):
         self.model = None
         self.selection = None
         self.handle_col = 0
+        
+        self._config = None
+        self.__configure_content = None
 
         DbGUIElement.__init__(self, dbstate.db)
 
@@ -231,6 +240,12 @@ class PageView(DbGUIElement):
         to define the text for the button, and for the tab label.
         """
         return self.translated_category
+
+    def set_ident(self, ident):
+        """
+        Set the id of the view. This is an unique ident
+        """
+        self.ident = ident
 
     def get_display(self):
         """
@@ -373,3 +388,73 @@ class PageView(DbGUIElement):
         that should be called when quiting the main application.
         """
         pass
+
+    def init_config(self):
+        """
+        If you need a view with a config, then call this method in the 
+        build_tree method. It will set up a config file for the 
+        view, and use CONFIGSETTINGS to set the config defaults. 
+        The config is later accessbile via self._config
+        So you can do 
+        self._config.get("section.variable1")
+        self._config.set("section.variable1", value)
+        self._config.save()
+        
+        CONFIGSETTINGS should be a list with tuples like 
+        ("section.variable1", value)
+        """
+        if self._config:
+            return
+        self._config = config.register_manager(self.ident, 
+                                               use_config_path=True)
+        for section, value in self.CONFIGSETTINGS:
+            self._config.register(section, value)
+        self._config.init()
+        self.config_connect()
+
+    def config_connect(self):
+        """
+        Overwrite this method to set connects to the config file to monitor
+        changes. This method will be called after the ini file is initialized
+        Eg:
+            self.config.connect("section.option", self.callback)
+        """
+        pass
+
+    def config_callback(self, callback):
+        """
+        Convenience wrappen to create a callback for a config setting
+        :param callback: a callback function to call.
+        """
+        return lambda arg1, arg2, arg3, arg4: callback()
+
+    def can_configure(self):
+        """
+        Inheriting classes should set if the view has a configure window or not
+        :return: bool
+        """
+        return False
+
+    def configure(self):
+        """
+        Open the configure dialog for the view.
+        """
+        if not self.__configure_content:
+            self.__configure_content = self._get_configure_page_funcs()
+        title = _("Configure %(cat)s - %(view)s") % \
+                        {'cat': self.get_category(), 'view': self.get_title()}
+        try:
+            ConfigureDialog(self.uistate, self.dbstate, 
+                            self.__configure_content,
+                            self, self._config, dialogtitle=title)
+        except Errors.WindowActiveError:
+            return
+
+    def _get_configure_page_funcs(self):
+        """
+        Return a list of functions that create gtk elements to use in the 
+        notebook pages of the Configure view
+        
+        :return: list of functions
+        """
+        raise NotImplementedError
