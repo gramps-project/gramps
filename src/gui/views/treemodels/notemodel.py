@@ -71,7 +71,7 @@ class NoteModel(FlatBaseModel):
             self.column_id,
             self.column_type,
             self.column_marker,
-            self.column_change,
+            self.sort_change,
             self.column_handle,
             self.column_marker_color
         ]
@@ -129,6 +129,9 @@ class NoteModel(FlatBaseModel):
         except IndexError:
             return None
 
+    def sort_change(self, data):
+        return "%012x" % data[11]
+    
     def column_change(self,data):
         return unicode(time.strftime('%x %X',time.localtime(
                             data[Note.POS_CHANGE])), GrampsLocale.codeset)

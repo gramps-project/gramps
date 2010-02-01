@@ -150,10 +150,10 @@ class FamilyModel(FlatBaseModel):
         return unicode(data[1])
 
     def sort_change(self, data):
-        return "%012x" % data[13]
+        return "%012x" % data[12]
     
     def column_change(self, data):
-        return unicode(time.strftime('%x %X', time.localtime(data[13])), 
+        return unicode(time.strftime('%x %X', time.localtime(data[12])), 
                        GrampsLocale.codeset)
 
     def column_marker_text(self, data):
