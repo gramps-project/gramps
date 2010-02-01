@@ -330,12 +330,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 txn.put('mediapath', path)            
 
-    def set_column_order(self, col_list, name):
-        if self.metadata and not self.readonly: 
-            # Start transaction
-            with BSDDBTxn(self.env, self.metadata) as txn:
-                txn.put(name, col_list)   
-
     @catch_db_error
     def version_supported(self):
         dbversion = self.metadata.get('version', default=0)
