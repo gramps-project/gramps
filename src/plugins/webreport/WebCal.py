@@ -66,6 +66,7 @@ from gui.utils import ProgressMeter
 from DateHandler import displayer as _dd
 
 from gen.display.name import displayer as _nd
+from DateHandler import displayer as _dd
 
 import libholiday
 from libhtml import Html
@@ -1617,8 +1618,8 @@ dow_gramps2iso = [ -1, calendar.SUNDAY, calendar.MONDAY, calendar.TUESDAY,
                    calendar.SATURDAY]
 
 # define names for full and abbreviated month names in GrampsLocale
-full_month_name = GrampsLocale.long_months
-abbr_month_name = GrampsLocale.short_months
+full_month_name = _dd.long_months
+abbr_month_name = _dd.short_months
 
 def get_full_month_name(month):
     """ returns full or long month name """
