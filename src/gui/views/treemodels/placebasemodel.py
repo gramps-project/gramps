@@ -191,7 +191,7 @@ class PlaceBaseModel(object):
     def sort_change(self, data):
         return "%012x" % data[11]
     
-    def column_change(self, data, node):
+    def column_change(self, data):
         return unicode(time.strftime('%x %X',time.localtime(data[11])),
                             GrampsLocale.codeset)
 

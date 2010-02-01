@@ -97,7 +97,6 @@ class ListView(NavigationView):
     def __init__(self, title, dbstate, uistate, columns, handle_col, 
                  make_model, signal_map, get_bookmarks, bm_type, nav_group,
                  multiple=False, filter_class=None, markup=False):
-
         NavigationView.__init__(self, title, dbstate, uistate, 
                               get_bookmarks, bm_type, nav_group)
         #default is listviews keep themself in sync with database
