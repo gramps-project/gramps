@@ -24,6 +24,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
+import time
 import logging
 _LOG = logging.getLogger(".gui.notemodel")
 
@@ -39,6 +40,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import GrampsLocale
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gen.lib import (Note, NoteType, MarkerType, StyledText)
 
