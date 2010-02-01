@@ -34,7 +34,7 @@ import time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gen.display.name import displayer as _nd 
 from Errors import ReportError
 import Relationship
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
@@ -46,7 +46,7 @@ from gen.plug.menu import (BooleanOption, StringOption, NumberOption,
 from gui.utils import ProgressMeter
 from ReportBase import Report, ReportUtils, MenuReportOptions
 from Utils import probably_alive
-from DateHandler import display as _dd
+from DateHandler import displayer as _dd
 import GrampsLocale
 import gen.lib
 
@@ -114,7 +114,7 @@ class Calendar(Report):
         else:
             name = gen.lib.Name(primary_name)
         name.set_display_as(self.name_format)
-        return name_displayer.display_name(name)
+        return _nd.display_name(name)
         
     def draw_rectangle(self, style, sx, sy, ex, ey):
         """ This should be in BaseDoc """
@@ -405,7 +405,7 @@ class CalendarOptions(MenuReportOptions):
 
         # We must figure out the value of the first option before we can
         # create the EnumeratedListOption
-        fmt_list = name_displayer.get_name_format()
+        fmt_list = _nd.get_name_format()
         name_format = EnumeratedListOption(_("Name format"), fmt_list[0][0])
         for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)

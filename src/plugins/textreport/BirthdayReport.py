@@ -171,8 +171,8 @@ class CalendarReport(Report):
         """ Prints a month as a page """
         year = self.year
         self.doc.start_paragraph('BIR-Monthstyle')
-        self.doc.write_text(_dd[month].capitalize())
-        self.doc.end_paragraph(.long_months)
+        self.doc.write_text(_dd.long_months[month].capitalize())
+        self.doc.end_paragraph()
         current_date = datetime.date(year, month, 1)
         current_ord = current_date.toordinal()
         started_day = {}
