@@ -48,6 +48,7 @@ from gui.utils import ProgressMeter
 from ReportBase import Report, ReportUtils, MenuReportOptions
 from Utils import probably_alive
 import GrampsLocale
+from DateHandler import displayer as _dd
 
 import libholiday
 
@@ -170,8 +171,8 @@ class CalendarReport(Report):
         """ Prints a month as a page """
         year = self.year
         self.doc.start_paragraph('BIR-Monthstyle')
-        self.doc.write_text(GrampsLocale.long_months[month].capitalize())
-        self.doc.end_paragraph()
+        self.doc.write_text(_dd[month].capitalize())
+        self.doc.end_paragraph(.long_months)
         current_date = datetime.date(year, month, 1)
         current_ord = current_date.toordinal()
         started_day = {}

@@ -46,6 +46,7 @@ from gen.plug.menu import (BooleanOption, StringOption, NumberOption,
 from gui.utils import ProgressMeter
 from ReportBase import Report, ReportUtils, MenuReportOptions
 from Utils import probably_alive
+from DateHandler import display as _dd
 import GrampsLocale
 import gen.lib
 
@@ -181,7 +182,7 @@ class Calendar(Report):
         self.doc.draw_box("CAL-Title", "", 0, 0, width, header)
         self.doc.draw_line("CAL-Border", 0, header, width, header)
         year = self.year
-        title = "%s %d" % (GrampsLocale.long_months[month].capitalize(), year)
+        title = "%s %d" % (_dd.long_months[month].capitalize(), year)
         font_height = pt2cm(ptitle.get_font().get_size())
         self.doc.center_text("CAL-Title", title, width/2, font_height * 0.25)
         cell_width = width / 7
