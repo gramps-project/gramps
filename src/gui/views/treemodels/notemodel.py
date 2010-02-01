@@ -130,7 +130,7 @@ class NoteModel(FlatBaseModel):
             return None
 
     def sort_change(self, data):
-        return "%012x" % data[11]
+        return "%012x" % data[Note.POS_CHANGE]
     
     def column_change(self,data):
         return unicode(time.strftime('%x %X',time.localtime(
