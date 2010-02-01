@@ -1,4 +1,4 @@
-Please read the COPYING file first.
+cPlease read the COPYING file first.
 If building from source, also read the INSTALL file (at least through the
 "SUPER-SHORT VERSION") before going further.
 
@@ -7,7 +7,6 @@ Requirements
 The following packages *MUST* be installed in order for Gramps to work:
    Python 2.5 or greater
    PyGTK2 2.12 or greater
-   Python Glade bindings 
    librsvg2 (svg icon view)
    xdg-utils
 
@@ -27,13 +26,16 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
    If WEBKIT ang GECKO are installed, webkit will be used.
 
 The following packages are optional
-   python gtkspell  Enable spell checking in the notes
-   pyenchant        Enable query of installed spell check dictionaries
+   python gtkspell & python enchant :  Enable spell checking in the notes,
+                    the first contains the libraries, the second is 
+                    needed to query the installed languages. Both must
+                    be present for spell check to activate
    ttf-freefont     More font support in the reports
 
-No longer needed in 3.x:
+No longer needed in 3.1:
    yelp             Gnome help browser. At the moment no help is shipped
-
+No longer needed in 3.2:
+   python glade bindings
 
 Documentation
 ---------------------------------

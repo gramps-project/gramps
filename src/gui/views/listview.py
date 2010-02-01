@@ -461,11 +461,11 @@ class ListView(NavigationView):
             sel_data.set(sel_data.target, 8 , pickle.dumps(data))
         return True
 
-    def set_column_order(self, clist):
+    def set_column_order(self):
         """
-        change the order of the columns to that given in clist
+        change the order of the columns to that given in config file
+        after config file changed. We reset the sort to the first column
         """
-        self.column_ord_setfunc(clist)
         #now we need to rebuild the model so it contains correct column info
         self.dirty = True
         #make sure we sort on first column. We have no idea where the 
@@ -496,20 +496,6 @@ class ListView(NavigationView):
                 colord.append((0, val, size))
         return colord
 
-    def column_ord_setfunc(self, clist):
-        """
-        Must be set by children. The method that stores the column order
-        given by clist (result of ColumnOrder class).
-        """
-        raise NotImplementedError
-
-    def _column_editor(self, obj):
-        """
-        Causes the View to display a column editor. This should be overridden
-        by any class that provides columns (such as a list based view)
-        """
-        raise NotImplemented
-        
     def remove_selected_objects(self):
         """
         Function to remove selected objects
@@ -1077,7 +1063,8 @@ class ListView(NavigationView):
     def config_connect(self):
         """
         Overwriten from  :class:`~gui.views.pageview.PageView method
-        This method will be called after the ini file is initialized
+        This method will be called after the ini file is initialized,
+        use it to monitor changes in the ini file
         """
         #func = self.config_callback(self.build_tree)
         #self._config.connect('columns.visible', func)
@@ -1092,6 +1079,7 @@ class ListView(NavigationView):
         :return: list of functions
         """
         def columnpage():
-            return _('Columns', ColumnOrder(self._config, COLUMN_NAMES,
-                                            tree=False))
+            return _('Columns'), ColumnOrder(self._config, self.COLUMN_NAMES,
+                                            self.set_column_order,
+                                            tree=self.type_list()==LISTTREE)
         return [columnpage]

@@ -18,7 +18,6 @@ dist_pkgdata_DATA = \
 	displaystate.glade \
 	addmedia.glade \
 	questiondialog.glade \
-	columnorder.glade \
 	configure.glade \
 	dateedit.glade \
 	editsource.glade \

@@ -841,7 +841,6 @@ src/glade/tipofday.glade
 src/glade/displaystate.glade
 src/glade/addmedia.glade
 src/glade/questiondialog.glade
-src/glade/columnorder.glade
 src/glade/configure.glade
 src/glade/dateedit.glade
 src/glade/editsource.glade
