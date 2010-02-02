@@ -416,7 +416,7 @@ class ListView(NavigationView):
                             self.list.expand_row(expand_path, False)
                 path = self.model.on_get_path(node)
 
-        if path:
+        if path is not None:
             self.selection.unselect_all()
             self.selection.select_path(path)
             self.list.scroll_to_cell(path, None, 1, 0.5, 0)
