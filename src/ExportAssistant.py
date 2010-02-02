@@ -119,6 +119,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.top_title = _("Export Assistant")
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
+        #set_window is present in both parent classes
         ManagedWindow.ManagedWindow.set_window(self, self, None,
             self.top_title, isWindow=True)        
 
