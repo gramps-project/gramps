@@ -85,7 +85,8 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         self._connect_signals()
         #if the database is changed, all info shown is invalid and the window
         # should close
-        self.dbstate.connect('database-changed', self._do_close)
+        self.dbstate_connect_key = self.dbstate.connect('database-changed', 
+                                   self._do_close)
         self.show()
         self._post_init()
 
@@ -170,6 +171,7 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
 
     def _do_close(self, *obj):
         self._cleanup_db_connects()
+        self.dbstate.disconnect(self.dbstate_connect_key)
         self._cleanup_on_exit()
         ManagedWindow.ManagedWindow.close(self)
 
@@ -218,7 +220,6 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         return gen.lib.PrimaryObject
 
     def data_has_changed(self):
-
         if self.db.readonly:
             return False
         elif self.obj.handle:
