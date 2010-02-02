@@ -168,7 +168,7 @@ class RelationshipView(NavigationView):
         return 'Person'
 
     def goto_handle(self, handle):
-        self.redraw()
+        self.change_person(handle)
 
     def shade_update(self, client, cnxn_id, entry, data):
         self.use_shade = config.get('preferences.relation-shade')
