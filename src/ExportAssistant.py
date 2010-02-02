@@ -117,7 +117,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.top_title = _("Export Assistant")
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
-        self.set_window(self, None, self.top_title, isWindow=True)
+        #set_window is present in both parent classes
+        ManagedWindow.ManagedWindow.set_window(self, self, None,
+            self.top_title, isWindow=True)
         
         #set up callback method for the export plugins
         self.callback = self.pulse_progressbar
