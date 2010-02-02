@@ -82,7 +82,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         self.marker.unserialize(marker)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
-        self.reporef_list = map(RepoRef().unserialize, reporef_list)
+        self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]
         
     def _has_handle_reference(self, classname, handle):
         """

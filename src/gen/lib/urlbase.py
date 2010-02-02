@@ -63,7 +63,7 @@ class UrlBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.urls = map(Url().unserialize, data)
+        self.urls = [Url().unserialize(item) for item in data]
 
     def get_url_list(self):
         """

@@ -63,7 +63,7 @@ class AddressBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.address_list = map(Address().unserialize, data)
+        self.address_list = [Address().unserialize(item) for item in data]
 
     def add_address(self, address):
         """
