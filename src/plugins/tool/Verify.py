@@ -415,7 +415,7 @@ class VerifyResults(ManagedWindow):
         self.dbstate = dbstate
         self.top = Glade(toplevel="verify_result")
         window = self.top.toplevel
-        self.set_window(window,self.top.get_object('title'),self.title)
+        self.set_window(window,self.top.get_object('title2'),self.title)
     
         self.top.connect_signals({
             "destroy_passed_object"  : self.close,
