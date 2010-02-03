@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2010       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -77,6 +78,8 @@ class ColumnOrder(gtk.VBox):
         self.config = config
         self.on_apply = on_apply
         
+        self.pack_start(gtk.Label(' '), expand=False, fill=False)
+        
         self.startrow = 0
         if self.treeview:
             label = gtk.Label(
@@ -84,9 +87,14 @@ class ColumnOrder(gtk.VBox):
                       column_names[0])
             self.startrow = 1
             self.pack_start(label, expand=False, fill=False)
+            self.pack_start(gtk.Label(' '), expand=False, fill=False)
 
+        self.pack_start(gtk.Label(_('Drag and drop the columns to change'
+                                    ' the order')), expand=False, fill=False)
+        self.pack_start(gtk.Label(' '), expand=False, fill=False)
         hbox = gtk.HBox()
         hbox.set_spacing(10)
+        hbox.pack_start(gtk.Label(' '))
         scroll = gtk.ScrolledWindow()
         scroll.set_size_request(250,300)
         hbox.pack_start(scroll)
