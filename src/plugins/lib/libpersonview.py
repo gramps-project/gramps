@@ -3,6 +3,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2009       Nick Hall
+# Copyright (C) 2010       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +17,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  021111307  USA
 #
 
 # $Id$
 
 """
-Provide the person view.
+Provide the base for a list person view.
 """
 
 #-------------------------------------------------------------------------
@@ -46,8 +47,7 @@ _LOG = logging.getLogger(".gui.personview")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.views.listview import ListView, LISTTREE
-from gui.views.treemodels import PeopleModel
+from gui.views.listview import ListView
 import Utils
 from gen.display.name import displayer as name_displayer
 from QuestionDialog import ErrorDialog, QuestionDialog
@@ -71,9 +71,9 @@ from gen.ggettext import sgettext as _
 # PersonView
 #
 #-------------------------------------------------------------------------
-class PersonView(ListView):
+class BasePersonView(ListView):
     """
-    PersonView class, derived from the ListView, a treeview
+    Base view for PersonView listviews ListView, a treeview
     """
     COL_NAME = 0
     COL_ID = 1
@@ -109,7 +109,7 @@ class PersonView(ListView):
     FILTER_TYPE = "Person"
     QR_CATEGORY = CATEGORY_QR_PERSON
 
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, title, model, nav_group=0):
         """
         Create the Person View
         """
@@ -119,12 +119,11 @@ class PersonView(ListView):
             'person-delete'  : self.row_delete,
             'person-rebuild' : self.object_build,
             }
-
+ 
         ListView.__init__(
-            self, _('People'), dbstate, uistate,
-            PersonView.COLUMN_NAMES, len(PersonView.COLUMN_NAMES), 
-            PeopleModel,
-            signal_map, dbstate.db.get_bookmarks(),
+            self, title, dbstate, uistate,
+            BasePersonView.COLUMN_NAMES, len(BasePersonView.COLUMN_NAMES), 
+            model, signal_map, dbstate.db.get_bookmarks(),
             Bookmarks.PersonBookmarks, nav_group,
             multiple=True,
             filter_class=PersonSidebarFilter,
@@ -136,12 +135,6 @@ class PersonView(ListView):
             }
 
         config.connect("interface.filter", self.filter_toggle)
-
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTTREE
 
     def navigation_type(self):
         return 'Person'
@@ -168,18 +161,13 @@ class PersonView(ListView):
         """
         Returns a tuple indicating columns requiring an exact search
         """
-        return (PersonView.COL_GEN,) # Gender ('female' contains the string 'male')
+        return (BasePersonView.COL_GEN,) # Gender ('female' contains the string 'male')
 
     def get_stock(self):
         """
-        Use the gramps-person stock icon
+        Use the grampsperson stock icon
         """
         return 'gramps-person'
-    
-    def get_viewtype_stock(self):
-        """Type of view in category
-        """
-        return 'gramps-tree-group'
 
     def ui_definition(self):
         """
@@ -223,7 +211,7 @@ class PersonView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
+              <toolitem action="Back"/>
               <toolitem action="Forward"/>  
               <toolitem action="HomePerson"/>
             </placeholder>
@@ -237,9 +225,6 @@ class PersonView(ListView):
             <menuitem action="Back"/>
             <menuitem action="Forward"/>
             <menuitem action="HomePerson"/>
-            <separator/>
-            <menuitem action="OpenAllNodes"/>
-            <menuitem action="CloseAllNodes"/>
             <separator/>
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
@@ -261,23 +246,11 @@ class PersonView(ListView):
     def add(self, obj):
         person = gen.lib.Person()
         
-        # attempt to get the current surname
-        (model, pathlist) = self.selection.get_selected_rows()
-        name = u""
-        if len(pathlist) == 1:
-            path = pathlist[0]
-            if len(path) == 1:
-                name = model.on_get_iter(path).name
-            else:
-                node = model.on_get_iter(path)
-                name = model.on_iter_parent(node).name
-
         try:
-            person.get_primary_name().set_surname(name)
-            EditPerson(self.dbstate, self.uistate, [], person)
+            EditPerson(self.dbstate, self.uistate, [], gen.lib.Person())
         except Errors.WindowActiveError:
             pass
-
+ 
     def edit(self, obj):
         for handle in self.selected_handles():
             person = self.dbstate.db.get_person_from_handle(handle)
@@ -336,7 +309,7 @@ class PersonView(ListView):
         path = self.model.on_get_path(node)
         (col, row) = path
         if row > 0:
-            self.selection.select_path((col, row-1))
+            self.selection.select_path((col, row1))
         elif row == 0 and self.model.on_get_iter(path):
             self.selection.select_path(path)
 
@@ -369,15 +342,12 @@ class PersonView(ListView):
         self.all_action.add_actions([
                 ('FilterEdit', None, _('Person Filter Editor'), None, None,
                 self.filter_editor),
-                ('OpenAllNodes', None, _("Expand all Nodes"), None, None, 
-                 self.open_all_nodes), 
                 ('Edit', gtk.STOCK_EDIT, _("action|_Edit..."), "<control>Return", 
                  _("Edit the selected person"), self.edit), 
-                ('CloseAllNodes', None, _("Collapse all Nodes"), None, None, 
-                 self.close_all_nodes), 
                 ('QuickReport', None, _("Quick View"), None, None, None), 
                 ('Dummy', None, '  ', None, None, self.dummy_report), 
                 ])
+
 
         self.edit_action.add_actions(
             [

@@ -238,3 +238,19 @@ fname = 'libtranslate.py',
 authors = ["Brian Matherly"],
 authors_email = ["brian@gramps-project.org"],
 )
+
+#------------------------------------------------------------------------
+#
+# libpersonview
+#
+#------------------------------------------------------------------------
+register(GENERAL, 
+id    = 'libpersonview',
+name  = "lib for the person list views",
+description =  _("Provides the Base needed for the List People views.") ,
+version = '1.0',
+status = STABLE,
+fname = 'libpersonview.py',
+authors = ["The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+)

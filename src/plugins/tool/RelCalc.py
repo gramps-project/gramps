@@ -45,7 +45,8 @@ import gtk
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
 import ManagedWindow
-from gui.views.treemodels import PeopleModel
+from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
+from libpersonview import BasePersonView
 import Relationship
 
 from QuestionDialog import ErrorDialog
@@ -58,18 +59,7 @@ from glade import Glade
 #
 #-------------------------------------------------------------------------
 
-column_names = [
-    _('Name'),
-    _('ID') ,
-    _('Gender'),
-    _('Birth Date'),
-    _('Birth Place'),
-    _('Death Date'),
-    _('Death Place'),
-    _('Spouse'),
-    _('Last Change'),
-    _('Cause of Death'),
-    ]
+column_names = BasePersonView.COLUMN_NAMES
 
 #-------------------------------------------------------------------------
 #
@@ -85,6 +75,21 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         
         Tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+
+        #set the columns to see
+        for data in BasePersonView.CONFIGSETTINGS:
+            if data[0] == 'columns.order':
+                colord = data[1]
+            elif data[0] == 'columns.visible':
+                colvis = data[1]
+            elif data[0] == 'columns.sizecol':
+                colsize = data[1]
+        self.colord = []
+        for col, size in zip(colord, colsize):
+            if col in colvis:
+                self.colord.append((1, col, size))
+            else:
+                self.colord.append((0, col, size))
 
         self.dbstate = dbstate
         self.relationship = Relationship.get_relationship_calculator()
@@ -110,23 +115,16 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.textbuffer = gtk.TextBuffer()
         self.text.set_buffer(self.textbuffer)
         
-        self.model = PeopleModel(self.db)
+        self.model = PersonTreeModel(self.db)
         self.tree.set_model(self.model)
 
         self.tree.connect('key-press-event', self._key_press)
         self.selection = self.tree.get_selection()
         self.selection.set_mode(gtk.SELECTION_SINGLE)
 
-        column = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(),text=0)
-        column.set_resizable(True)
-        column.set_min_width(225)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        self.tree.append_column(column)
         #keep reference of column so garbage collection works
-        self.columns = [column]
-
-        index = 1
-        for pair in self.db.get_person_column_order():
+        self.columns = []
+        for pair in self.colord:
             if not pair[0]:
                 continue
             name = column_names[pair[1]]
@@ -138,7 +136,6 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             self.tree.append_column(column)
             #keep reference of column so garbage collection works
             self.columns.append(column)
-            index += 1
 
         self.sel = self.tree.get_selection()
         self.changedkey = self.sel.connect('changed',self.on_apply_clicked)
@@ -171,7 +168,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         if not node:
             return
         
-        handle = model.get_value(node, PeopleModel.COLUMN_INT_ID)
+        handle = model.get_value(node, PeopleBaseModel.COLUMN_INT_ID)
         other_person = self.db.get_person_from_handle(handle)        
         if other_person is None :
             self.textbuffer.set_text("")

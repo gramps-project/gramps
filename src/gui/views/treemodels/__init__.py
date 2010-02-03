@@ -23,7 +23,7 @@
 Package init for the treemodels package.
 """
 
-from peoplemodel import PeopleModel
+from peoplemodel import PeopleBaseModel, PersonListModel, PersonTreeModel
 from familymodel import FamilyModel
 from eventmodel import EventModel
 from sourcemodel import SourceModel

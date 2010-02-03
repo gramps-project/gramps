@@ -18,6 +18,7 @@ pkgdata_PYTHON = \
 	libmapservice.py\
 	libmixin.py\
 	libodfbackend.py\
+	libpersonview.py\
 	libplugins.gpr.py\
 	libtranslate.py
 

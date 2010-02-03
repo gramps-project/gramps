@@ -32,7 +32,6 @@ TreeModel for the GRAMPS Person tree.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement
 from gen.ggettext import gettext as _
 import time
 import cgi
@@ -64,6 +63,7 @@ import DateHandler
 import ToolTips
 import GrampsLocale
 from Lru import LRU
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
 import config
 
@@ -86,34 +86,26 @@ invalid_date_format = config.get('preferences.invalid-date-format')
 
 #-------------------------------------------------------------------------
 #
-# PeopleModel
+# PeopleBaseModel
 #
 #-------------------------------------------------------------------------
-class PeopleModel(TreeBaseModel):
+class PeopleBaseModel(object):
     """
-    Basic GenericTreeModel interface to handle the Tree interface for
-    the PersonView
+    Basic Model interface to handle the PersonViews
     """
     _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
     # The following is accessed from PersonView - CHECK
     COLUMN_INT_ID = 12  # dynamic calculation of column indices
+    # LRU cache size
+    _CACHE_SIZE = 250
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db):
         """
         Initialize the model building the initial data
         """
-        TreeBaseModel.__init__(self, db, search=search, skip=skip,
-                                tooltip_column=11, marker_column=10,
-                                scol=scol, order=order, sort_map=sort_map)
-
-    def _set_base_data(self):
-        """See TreeBaseModel, we also set some extra lru caches
-        """
-        self.gen_cursor = self.db.get_person_cursor
-        self.number_items = self.db.get_number_of_people
-        self.map = self.db.get_raw_person_data
+        self.gen_cursor = db.get_person_cursor
+        self.map = db.get_raw_person_data
 
         self.fmap = [
             self.column_name,
@@ -145,59 +137,71 @@ class PeopleModel(TreeBaseModel):
             self.column_tooltip,
             self.column_int_id,
             ]
-        self.hmap = [self.column_header] + [None]*len(self.smap)
 
-        self.lru_name  = LRU(TreeBaseModel._CACHE_SIZE)
-        self.lru_bdate = LRU(TreeBaseModel._CACHE_SIZE)
-        self.lru_ddate = LRU(TreeBaseModel._CACHE_SIZE)
+        #columns are accessed on every mouse over, so it is worthwhile to
+        #cache columns visible in one screen to avoid expensive database 
+        #lookup of derived values
+        self.lru_name  = LRU(PeopleBaseModel._CACHE_SIZE)
+        self.lru_spouse = LRU(PeopleBaseModel._CACHE_SIZE)
+        self.lru_bdate = LRU(PeopleBaseModel._CACHE_SIZE)
+        self.lru_ddate = LRU(PeopleBaseModel._CACHE_SIZE)
 
-    def clear_cache(self):
+    def clear_local_cache(self, handle=None):
         """ Clear the LRU cache """
-        TreeBaseModel.clear_cache(self)
-        self.lru_name.clear()
-        self.lru_bdate.clear()
-        self.lru_ddate.clear()
-        
+        if handle:
+            try:
+                del self.lru_name[handle]
+            except KeyError:
+                pass
+            try:
+                del self.lru_spouse[handle]
+            except KeyError:
+                pass
+            try:
+                del self.lru_bdate[handle]
+            except KeyError:
+                pass
+            try:
+                del self.lru_ddate[handle]
+            except KeyError:
+                pass
+        else:
+            self.lru_name.clear()
+            self.lru_spouse.clear()
+            self.lru_bdate.clear()
+            self.lru_ddate.clear()
+
     def on_get_n_columns(self):
         """ Return the number of columns in the model """
         return len(self.fmap)+1
 
-    def get_tree_levels(self):
-        """
-        Return the headings of the levels in the hierarchy.
-        """
-        return ['Group As', 'Name']
-
-    def add_row(self, handle, data):
-        """
-        Add nodes to the node map for a single person.
-
-        handle      The handle of the gramps object.
-        data        The object data.
-        """
-        ngn = name_displayer.name_grouping_data
-        nsn = name_displayer.raw_sorted_name
-        
-        name_data = data[COLUMN_NAME]
-        group_name = ngn(self.db, name_data)
-        sort_key = self.sort_func(data)
-
-        #if group_name not in self.group_list:
-            #self.group_list.append(group_name)
-            #self.add_node(None, group_name, group_name, None)
-            
-        # add as node: parent, child, sortkey, handle; parent and child are 
-        # nodes in the treebasemodel, and will be used as iters
-        self.add_node(group_name, handle, sort_key, handle)
-        
     def sort_name(self, data):
         n = Name()
         n.unserialize(data[COLUMN_NAME])
         return name_displayer.sort_string(n)
 
-    def column_spouse(self, data):
-        spouses_names = u""
+    def column_name(self, data):
         handle = data[0]
+        if handle in self.lru_name:
+            name = self.lru_name[handle]
+        else:
+            name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
+            if not self._in_build:
+                self.lru_name[handle] = name
+        return name
+
+    def column_spouse(self, data):
+        handle = data[0]
+        if handle in self.lru_spouse:
+            value = self.lru_spouse[handle]
+        else:
+            value = self._get_spouse_data(data)
+            if not self._in_build:
+                self.lru_spouse[handle] = value
+        return value
+    
+    def _get_spouse_data(self, data):
+        spouses_names = u""
         for family_handle in data[COLUMN_FAMILY]:
             family = self.db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle(),
@@ -212,16 +216,6 @@ class PeopleModel(TreeBaseModel):
                 spouses_names += name_displayer.display(spouse)
         return spouses_names
 
-    def column_name(self, data):
-        handle = data[0]
-        if handle in self.lru_name:
-            name = self.lru_name[handle]
-        else:
-            name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
-            if not self._in_build:
-                self.lru_name[handle] = name
-        return name
-
     def column_id(self, data):
         return data[COLUMN_ID]
         
@@ -232,7 +226,7 @@ class PeopleModel(TreeBaseModel):
             GrampsLocale.codeset)
 
     def column_gender(self, data):
-        return PeopleModel._GENDER[data[COLUMN_GENDER]]
+        return PeopleBaseModel._GENDER[data[COLUMN_GENDER]]
 
     def column_birth_day(self, data):
         handle = data[0]
@@ -445,9 +439,80 @@ class PeopleModel(TreeBaseModel):
     def column_int_id(self, data):
         return data[0]
 
+class PersonListModel(PeopleBaseModel, FlatBaseModel):
+    """
+    Listed people model.
+    """
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+                 skip=set(), sort_map=None):
+
+        PeopleBaseModel.__init__(self, db)
+        FlatBaseModel.__init__(self, db, search=search, skip=skip,
+                                tooltip_column=11,
+                                scol=scol, order=order, sort_map=sort_map)
+
+    def clear_cache(self, handle=None):
+        """ Clear the LRU cache """
+        PeopleBaseModel.clear_local_cache(self, handle)
+
+    def marker_column(self):
+        """
+        Return the column for marker colour.
+        """
+        return 10
+
+class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
+    """
+    Hierarchical people model.
+    """
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+                 skip=set(), sort_map=None):
+
+        PeopleBaseModel.__init__(self, db)
+        TreeBaseModel.__init__(self, db, 11, search=search, skip=skip,
+                                marker_column=10,
+                                scol=scol, order=order, sort_map=sort_map)
+
+    def _set_base_data(self):
+        """See TreeBaseModel, we also set some extra lru caches
+        """
+        self.number_items = self.db.get_number_of_people
+        self.hmap = [self.column_header] + [None]*len(self.smap)
+
+    def clear_cache(self, handle=None):
+        """ Clear the LRU cache 
+        overwrite of base methods
+        """
+        TreeBaseModel.clear_cache(self, handle)
+        PeopleBaseModel.clear_local_cache(self, handle)
+
+    def get_tree_levels(self):
+        """
+        Return the headings of the levels in the hierarchy.
+        """
+        return ['Group As', 'Name']
+
     def column_header(self, node):
         return node.name
+    
+    def add_row(self, handle, data):
+        """
+        Add nodes to the node map for a single person.
 
-    def column_header_view(self, node):
-        return True
+        handle      The handle of the gramps object.
+        data        The object data.
+        """
+        ngn = name_displayer.name_grouping_data
+        nsn = name_displayer.raw_sorted_name
+        
+        name_data = data[COLUMN_NAME]
+        group_name = ngn(self.db, name_data)
+        sort_key = self.sort_func(data)
 
+        #if group_name not in self.group_list:
+            #self.group_list.append(group_name)
+            #self.add_node(None, group_name, group_name, None)
+            
+        # add as node: parent, child, sortkey, handle; parent and child are 
+        # nodes in the treebasemodel, and will be used as iters
+        self.add_node(group_name, handle, sort_key, handle)

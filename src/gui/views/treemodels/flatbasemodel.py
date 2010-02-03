@@ -392,6 +392,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
             self.sort_func = self.smap[scol]
         self.sort_col = scol
         self.skip = skip
+        self._in_build = False
 
         self.node_map = FlatNodeMap()
         self.set_search(search)
@@ -494,6 +495,15 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         return None
 
+    def clear_cache(self, handle=None):
+        """
+        If you use a cache, overwrite here so it is cleared when this 
+        method is called (on rebuild)
+        :param handle: if None, clear entire cache, otherwise clear the handle
+                       entry if present
+        """
+        pass
+
     def sort_keys(self):
         """
         Return the (sort_key, handle) list of all data that can maximally 
@@ -513,6 +523,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """ function called when view must be build, given a search text
             in the top search bar
         """
+        self.clear_cache()
+        self._in_build = True
         if self.db.is_open():
             allkeys = self.node_map.full_srtkey_hndl_map()
             if not allkeys:
@@ -534,11 +546,14 @@ class FlatBaseModel(gtk.GenericTreeModel):
                                        reverse=self._reverse)
         else:
             self.node_map.clear_map()
+        self._in_build = False
 
     def _rebuild_filter(self, ignore=None):
         """ function called when view must be build, given filter options
             in the filter sidebar
         """
+        self.clear_cache()
+        self._in_build = True
         if self.db.is_open():
             allkeys = self.node_map.full_srtkey_hndl_map()
             if not allkeys:
@@ -561,6 +576,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
                                        reverse=self._reverse)
         else:
             self.node_map.clear_map()
+        self._in_build = False
         
     def add_row_by_handle(self, handle):
         """
@@ -584,6 +600,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Delete a row, called after the object with handle is deleted
         """
+        self.clear_cache(handle)
         data = self.map(handle)
         delete_val = (conv_unicode_tosrtkey_ongtk(self.sort_func(data)), handle)
         delete_path = self.node_map.delete(delete_val)
@@ -595,6 +612,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Update a row, called after the object with handle is changed
         """
+        self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
         newsortkey = conv_unicode_tosrtkey_ongtk(self.sort_func(self.map(
                             handle)))

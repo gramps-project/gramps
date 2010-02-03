@@ -386,11 +386,17 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         return self._marker_column
 
-    def clear_cache(self):
+    def clear_cache(self, handle=None):
         """
         Clear the LRU cache.
         """
-        self.lru_data.clear()
+        if handle:
+            try:
+                del self.lru_data[handle]
+            except KeyError:
+                pass
+        else:
+            self.lru_data.clear()
 
     def clear(self):
         """
@@ -671,7 +677,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Delete a row from the model.
         """
         cput = time.clock()
-        self.clear_cache()
+        self.clear_cache(handle)
 
         node = self.get_node(handle)
         parent = self.nodemap.node(node.parent)

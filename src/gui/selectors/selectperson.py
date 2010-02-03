@@ -34,7 +34,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import PeopleModel
+from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
@@ -67,7 +67,7 @@ class SelectPerson(BaseSelector):
         return _("Select Person")
         
     def get_model_class(self):
-        return PeopleModel
+        return PersonTreeModel
 
     def get_column_titles(self):
         return [
@@ -86,7 +86,7 @@ class SelectPerson(BaseSelector):
         return self.db.get_person_from_handle
         
     def get_handle_column(self):
-        return PeopleModel.COLUMN_INT_ID
+        return PeopleBaseModel.COLUMN_INT_ID
 
     def exact_search(self):
         """
