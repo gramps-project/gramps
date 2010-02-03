@@ -1077,7 +1077,7 @@ class ListView(NavigationView):
         
         :return: list of functions
         """
-        def columnpage():
+        def columnpage(configdialog):
             return _('Columns'), ColumnOrder(self._config, self.COLUMN_NAMES,
                                             self.set_column_order,
                                             tree=self.type_list()==LISTTREE)

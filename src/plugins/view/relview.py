@@ -115,6 +115,18 @@ class AttachList(object):
         self.max_y = max(self.max_y, y1)
 
 class RelationshipView(NavigationView):
+    """
+    View showing a textual representation of the relationships of the 
+    active person
+    """
+    #settings in the config file
+    CONFIGSETTINGS = (
+        ('preferences.family-siblings', True),
+        ('preferences.family-details', True),
+        ('preferences.relation-display-theme', "CLASSIC"),
+        ('preferences.relation-shade', True),
+        ('preferences.releditbtn', True),
+        )
 
     def __init__(self, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Relationships'),
@@ -128,22 +140,12 @@ class RelationshipView(NavigationView):
             }
 
         dbstate.connect('database-changed', self.change_db)
-        self.show_siblings = config.get('preferences.family-siblings')
-        self.show_details = config.get('preferences.family-details')
         self.redrawing = False
-        self.use_shade = config.get('preferences.relation-shade')
-        self.toolbar_visible = config.get('interface.toolbar-on')
 
         self.color = gtk.TextView().style.white
         self.child = None
         self.old_handle = None
 
-        config.connect("preferences.relation-shade",
-                          self.shade_update)
-        config.connect("interface.releditbtn",
-                          self.config_update)
-        config.connect("interface.toolbar-on",
-                          self.shade_update)
         self.reorder_sensitive = False
         self.collapsed_items = {}
 
@@ -167,11 +169,35 @@ class RelationshipView(NavigationView):
     def navigation_type(self):
         return 'Person'
 
+    def can_configure(self):
+        """
+        See :class:`~gui.views.pageview.PageView 
+        :return: bool
+        """
+        return True
+
+    def on_delete(self):
+        self._config.save()
+        NavigationView.on_delete(self)
+
+    def set_ident(self, ident):
+        """
+        Set the id of the view. This is an unique ident
+        We use this to create immediately the config file with this ident.
+        """
+        NavigationView.set_ident(self, ident)
+        self.init_config()
+        self.show_siblings = self._config.get('preferences.family-siblings')
+        self.show_details = self._config.get('preferences.family-details')
+        self.use_shade = self._config.get('preferences.relation-shade')
+        self.theme = self._config.get('preferences.relation-display-theme')
+        self.toolbar_visible = config.get('interface.toolbar-on')
+
     def goto_handle(self, handle):
         self.change_person(handle)
 
     def shade_update(self, client, cnxn_id, entry, data):
-        self.use_shade = config.get('preferences.relation-shade')
+        self.use_shade = self._config.get('preferences.relation-shade')
         self.toolbar_visible = config.get('interface.toolbar-on')
         self.uistate.modify_statusbar(self.dbstate)
         self.redraw()
@@ -251,7 +277,10 @@ class RelationshipView(NavigationView):
         return 'gramps-relation'
 
     def build_widget(self):
-
+        """
+        Build the widget that contains the view, see 
+        :class:`~gui.views.pageview.PageView 
+        """
         container = gtk.VBox()
         container.set_border_width(12)
 
@@ -394,12 +423,12 @@ class RelationshipView(NavigationView):
     def siblings_toggle(self, obj):
         self.show_siblings = obj.get_active()
         self.change_person(self.get_active())
-        config.set('preferences.family-siblings', self.show_siblings)
+        self._config.set('preferences.family-siblings', self.show_siblings)
 
     def details_toggle(self, obj):
         self.show_details = obj.get_active()
         self.change_person(self.get_active())
-        config.set('preferences.family-details', self.show_details)
+        self._config.set('preferences.family-details', self.show_details)
 
     def change_db(self, db):
         #reset the connects
@@ -556,7 +585,7 @@ class RelationshipView(NavigationView):
         text = fmt % cgi.escape(name)
         label = widgets.DualMarkupLabel(text, _GenderCode[person.gender],
                                         x_align=1, y_align=0)
-        if config.get('interface.releditbtn'):
+        if self._config.get('preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, 
                                         person.handle)
             button.set_tooltip_text(_('Edit %s') % name)
@@ -946,10 +975,11 @@ class RelationshipView(NavigationView):
             initial_name = False
             if handle:
                 name = self.get_name(handle, True)
-                link_label = widgets.LinkLabel(name, self._button_press, handle)
+                link_label = widgets.LinkLabel(name, self._button_press, 
+                                               handle, theme=self.theme)
                 if self.use_shade:
                     link_label.modify_bg(gtk.STATE_NORMAL, self.color)
-                if config.get('interface.releditbtn'):
+                if self._config.get('preferences.releditbtn'):
                     button = widgets.IconButton(self.edit_button_press, 
                                                 handle)
                     button.set_tooltip_text(_('Edit %s') % name[0])
@@ -975,7 +1005,7 @@ class RelationshipView(NavigationView):
 
         label = widgets.MarkupLabel(format % cgi.escape(title),
                                     x_align=1, y_align=0)
-        if config.get('interface.releditbtn'):
+        if self._config.get('preferences.releditbtn'):
             label.set_padding(0, 5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
@@ -988,22 +1018,17 @@ class RelationshipView(NavigationView):
             person = self.dbstate.db.get_person_from_handle(handle)
             parent = len(person.get_parent_family_handle_list()) > 0
             format = ''
-            relation_display_theme = config.get('preferences.relation-display-theme')
+            relation_display_theme = self._config.get(
+                                    'preferences.relation-display-theme')
             if parent:
-                if relation_display_theme == "CLASSIC":
-                    format = 'underline="single" weight="heavy" style="italic"'
-                elif relation_display_theme == "WEBPAGE":
-                    format = 'foreground="blue" weight="heavy"'
+                emph = True
             else:
-                if relation_display_theme == "CLASSIC":
-                    format = 'underline="single"'
-                elif relation_display_theme == "WEBPAGE":
-                    format = 'foreground="blue"'
+                emph = False
             link_label = widgets.LinkLabel(name, self._button_press, 
-                                           handle, format)
+                                           handle, emph, theme=self.theme)
             if self.use_shade:
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
-            if config.get('interface.releditbtn'):
+            if self._config.get('preferences.releditbtn'):
                 button = widgets.IconButton(self.edit_button_press, handle)
                 button.set_tooltip_text(_('Edit %s') % name[0])
             else:
@@ -1038,7 +1063,7 @@ class RelationshipView(NavigationView):
 
         lbl = widgets.MarkupLabel(format % cgi.escape(title),
                                   x_align=1, y_align=.5)
-        if config.get('interface.releditbtn'):
+        if self._config.get('preferences.releditbtn'):
             lbl.set_padding(0, 5)
         return lbl
 
@@ -1061,23 +1086,15 @@ class RelationshipView(NavigationView):
                               self.dbstate.db.get_person_from_handle(handle))
 
         format = ''
-        relation_display_theme = config.get('preferences.relation-display-theme')
+        relation_display_theme = self._config.get(
+                                        'preferences.relation-display-theme')
+        emph = False
         if child_should_be_linked and parent:
-            if relation_display_theme == "CLASSIC":
-                format = 'underline="single" weight="heavy" style="italic"'
-            elif relation_display_theme == "WEBPAGE":
-                format = 'foreground="blue" weight="heavy"'
-            else:
-                raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
+            emph = True
         elif child_should_be_linked and not parent:
-            if relation_display_theme == "CLASSIC":
-                format = 'underline="single"'
-            elif relation_display_theme == "WEBPAGE":
-                format = 'foreground="blue"'
-            else:
-                raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
+            emph = False
         elif parent and not child_should_be_linked:
-            format = 'weight="heavy"'
+            emph = None
 
         if child_should_be_linked:
             link_func = self._button_press
@@ -1085,12 +1102,14 @@ class RelationshipView(NavigationView):
             link_func = None
 
         name = self.get_name(handle, True)
-        link_label = widgets.LinkLabel(name, link_func, handle, format)
+        link_label = widgets.LinkLabel(name, link_func, handle, emph,
+                                       theme=self.theme)
 
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
-        if child_should_be_linked and config.get('interface.releditbtn'):
+        if child_should_be_linked and self._config.get(
+            'preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, handle)
             button.set_tooltip_text(_('Edit %s') % name[0])
         else:
@@ -1579,6 +1598,66 @@ class RelationshipView(NavigationView):
                                 self.get_active())
             except Errors.WindowActiveError:
                 pass
+
+    def config_connect(self):
+        """
+        Overwriten from  :class:`~gui.views.pageview.PageView method
+        This method will be called after the ini file is initialized,
+        use it to monitor changes in the ini file
+        """
+        self._config.connect("preferences.relation-shade",
+                          self.shade_update)
+        self._config.connect("preferences.releditbtn",
+                          self.config_update)
+        self._config.connect("preferences.relation-display-theme",
+                          self.config_update)
+        config.connect("interface.toolbar-on",
+                          self.shade_update)
+
+    def config_panel(self, configdialog):
+        """
+        Function that builds the widget in the configuration dialog
+        """
+        table = gtk.Table(3, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        configdialog.add_checkbox(table, 
+                _('Use shading'), 
+                0, 'preferences.relation-shade')
+        configdialog.add_checkbox(table, 
+                _('Display edit buttons'), 
+                1, 'preferences.releditbtn')
+        checkbox = gtk.CheckButton(_('View links as website links'))
+        theme = self._config.get('preferences.relation-display-theme')
+        checkbox.set_active(theme == 'WEBPAGE')
+        checkbox.connect('toggled', self._config_update_theme)
+        table.attach(checkbox, 1, 9, 2, 3, yoptions=0)
+
+        return _('Layout'), table
+
+    def _config_update_theme(self, obj):
+        """
+        callback from the theme checkbox
+        """
+        if obj.get_active():
+            self.theme = 'WEBPAGE'
+            self._config.set('preferences.relation-display-theme', 
+                              'WEBPAGE')
+        else:
+            self.theme = 'CLASSIC'
+            self._config.set('preferences.relation-display-theme', 
+                              'CLASSIC')
+
+    def _get_configure_page_funcs(self):
+        """
+        Return a list of functions that create gtk elements to use in the 
+        notebook pages of the Configure dialog
+        
+        :return: list of functions
+        """
+        return [self.config_panel]
 
 #-------------------------------------------------------------------------
 #

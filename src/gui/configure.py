@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2008  Raphael Ackermann
+# Copyright (C) 2008       Raphael Ackermann
+# Copyright (C) 2010       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -178,7 +179,7 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         This method builds the notebookpages in the panel
         """
         for func in configure_page_funcs:
-            labeltitle, widget = func()
+            labeltitle, widget = func(self)
             self.panel.append_page(widget, MarkupLabel(labeltitle))
 
     def done(self, obj, value):
@@ -324,7 +325,7 @@ class GrampsPreferences(ConfigureDialog):
                                  GrampsPreferences, config,
                                  on_close=Utils.update_constants)
 
-    def add_researcher_panel(self):
+    def add_researcher_panel(self, configdialog):
         table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
@@ -339,7 +340,7 @@ class GrampsPreferences(ConfigureDialog):
         self.add_entry(table, _('Email'), 7, 'researcher.researcher-email')
         return _('Researcher'), table
 
-    def add_prefix_panel(self):
+    def add_prefix_panel(self, configdialog):
         """
         Add the ID prefix tab to the preferences.
         """
@@ -365,7 +366,7 @@ class GrampsPreferences(ConfigureDialog):
                        self.update_idformat_entry)
         return _('ID Formats'), table
 
-    def add_advanced_panel(self):
+    def add_advanced_panel(self, configdialog):
         table = gtk.Table(4, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
@@ -389,7 +390,7 @@ class GrampsPreferences(ConfigureDialog):
         
         return _('Warnings'), table
 
-    def add_color_panel(self):
+    def add_color_panel(self, configdialog):
         table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(12)
@@ -422,58 +423,6 @@ class GrampsPreferences(ConfigureDialog):
         self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
         for widget in [self.comp_color, self.todo_color, self.custom_color]:
             widget.emit('color-set')
-
-    def add_name_panel(self):
-        """
-        Name format settings panel
-        """
-
-        # a dummy name to be used in the examples
-        self.examplename = Name()
-        self.examplename.set_title('Dr.')
-        self.examplename.set_first_name('Edwin Jose')
-        self.examplename.set_surname_prefix('von der')
-        self.examplename.set_surname('Smith')
-        self.examplename.set_suffix('Sr')
-        self.examplename.set_patronymic('Wilson')
-        self.examplename.set_call_name('Ed')
-
-        table = gtk.Table(2, 2)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
-
-        # get the model for the combo and the treeview
-        active = _nd.get_default_format()
-        self.fmt_model, active = self._build_name_format_model(active)
-
-        # set up the combo to choose the preset format
-        self.fmt_obox = gtk.ComboBox()
-        cell = gtk.CellRendererText()
-        self.fmt_obox.pack_start(cell, True)
-        self.fmt_obox.add_attribute(cell, 'text', 1)
-        self.fmt_obox.set_model(self.fmt_model)
-        
-        # set the default value as active in the combo
-        self.fmt_obox.set_active(active)
-        self.fmt_obox.connect('changed', self.cb_name_changed)
-        # label for the combo
-        lwidget = BasicLabel("%s: " % _('_Display format'))
-        lwidget.set_use_underline(True)
-        lwidget.set_mnemonic_widget(self.fmt_obox)
-
-        # build the format manager ui
-        custom_ui = self._build_custom_name_ui()
-        name_exp = gtk.expander_new_with_mnemonic(_('C_ustom format details'))
-        name_exp.add(custom_ui)
-        name_exp.set_sensitive(self.dbstate.open)
-        
-        # put all these together
-        table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
-        table.attach(self.fmt_obox, 1, 2, 0, 1, yoptions=0)
-        table.attach(name_exp, 0, 2, 1, 2, yoptions=gtk.FILL|gtk.EXPAND)
-        
-        return table
 
     def _build_name_format_model(self, active):
         """
@@ -796,7 +745,7 @@ class GrampsPreferences(ConfigureDialog):
         self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                            only_active=False)
 
-    def add_formats_panel(self):
+    def add_formats_panel(self, configdialog):
         row = 0
         table = gtk.Table(4, 4)
         table.set_border_width(12)
@@ -901,7 +850,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         return _('Display'), table
 
-    def add_text_panel(self):
+    def add_text_panel(self, configdialog):
         row = 0
         table = gtk.Table(6, 8)
         table.set_border_width(12)
@@ -944,7 +893,7 @@ class GrampsPreferences(ConfigureDialog):
  
         config.set('preferences.calendar-format-report', obj.get_active())
     
-    def add_date_panel(self):
+    def add_date_panel(self, configdialog):
         table = gtk.Table(2, 7)
         table.set_border_width(12)
         table.set_col_spacings(6)
@@ -977,8 +926,8 @@ class GrampsPreferences(ConfigureDialog):
 
         return _('Dates'), table
         
-    def add_behavior_panel(self):
-        table = gtk.Table(3, 8)
+    def add_behavior_panel(self, configdialog):
+        table = gtk.Table(3, 6)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -993,26 +942,20 @@ class GrampsPreferences(ConfigureDialog):
                 _('Display Tip of the Day'), 
                 2, 'behavior.use-tips')
         self.add_checkbox(table, 
-                _('Use shading in Relationship View'), 
-                3, 'preferences.relation-shade')
-        self.add_checkbox(table, 
-                _('Display edit buttons on Relationship View'), 
-                4, 'interface.releditbtn')
-        self.add_checkbox(table, 
                 _('Remember last view displayed'), 
-                5, 'preferences.use-last-view')
+                3, 'preferences.use-last-view')
         self.add_pos_int_entry(table, 
                 _('Max generations for relationships'),
-                6, 'behavior.generation-depth', self.update_gen_depth)
+                4, 'behavior.generation-depth', self.update_gen_depth)
         self.path_entry = gtk.Entry()
         self.add_path_box(table, 
                 _('Base path for relative media paths'),
-                7, self.path_entry, self.dbstate.db.get_mediapath(),
+                5, self.path_entry, self.dbstate.db.get_mediapath(),
                 self.set_mediapath, self.select_mediapath)
 
         return _('General'), table
 
-    def add_database_panel(self):
+    def add_database_panel(self, configdialog):
         table = gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)

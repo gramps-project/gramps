@@ -47,7 +47,6 @@ import pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import config
 
 #-------------------------------------------------------------------------
 #
@@ -71,27 +70,44 @@ def realize_cb(widget):
 #-------------------------------------------------------------------------
 class LinkLabel(gtk.EventBox):
 
-    def __init__(self, label, func, handle, decoration=None):
-        if decoration is None:
-            relation_display_theme = config.get('preferences.relation-display-theme')
-            if relation_display_theme == "CLASSIC":
-                decoration = 'underline="single"'
-            elif relation_display_theme == "WEBPAGE":
-                decoration = 'foreground="blue"'
+    def __init__(self, label, func, handle, emph=False, theme="CLASSIC"):
+        self.theme = theme
+        self.emph = emph
+        if emph:
+            #emphasize a link
+            if theme == "CLASSIC":
+                format = 'underline="single" weight="heavy" style="italic"'
+            elif theme == "WEBPAGE":
+                format = 'foreground="blue" weight="heavy"'
             else:
-                raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
+                raise AttributeError("invalid theme: '%s'" % theme)
+        elif emph is None:
+            #emphasize, but not a link
+            if theme == "CLASSIC":
+                format = 'weight="heavy"'
+            elif theme == "WEBPAGE":
+                format = 'weight="heavy"'
+            else:
+                raise AttributeError("invalid theme: '%s'" % theme)
+        else:
+            #no emphasize, a link
+            if theme == "CLASSIC":
+                format = 'underline="single"'
+            elif theme == "WEBPAGE":
+                format = 'foreground="blue"'
+            else:
+                raise AttributeError("invalid theme: '%s'" % theme)
 
         gtk.EventBox.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
-        self.decoration = decoration
+        self.decoration = format
         text = '<span %s>%s</span>' % (self.decoration, self.orig_text)
 
         if func:
             msg = _('Click to make this person active\n'
-                    'Right click to display the edit menu')
-            if not config.get('interface.releditbtn'):
-                msg += "\n" + _('Edit icons can be enabled in the Preferences dialog')
+                    'Right click to display the edit menu\n'
+                    'Click Edit icon (enable in configuration dialog) to edit')
 
             self.set_tooltip_text(msg)
         
@@ -116,13 +132,34 @@ class LinkLabel(gtk.EventBox):
         self.label.set_padding(x, y)
         
     def enter_text(self, obj, event, handle):
-        relation_display_theme = config.get('preferences.relation-display-theme')
-        if relation_display_theme == "CLASSIC":
-            text = '<span foreground="blue" %s>%s</span>' % (self.decoration, self.orig_text)
-        elif relation_display_theme == "WEBPAGE":
-            text = '<span underline="single" %s>%s</span>' % (self.decoration, self.orig_text)
+        if self.emph:
+            #emphasize a link
+            if self.theme == "CLASSIC":
+                format = 'foreground="blue" underline="single" '\
+                         'weight="heavy" style="italic"'
+            elif self.theme == "WEBPAGE":
+                format = 'underline="single" foreground="blue" '\
+                         'weight="heavy"'
+            else:
+                raise AttributeError("invalid theme: '%s'" % theme)
+        elif self.emph is None:
+            # no link, no change on enter_text
+            if self.theme == "CLASSIC":
+                format = 'weight="heavy"'
+            elif self.theme == "WEBPAGE":
+                format = 'weight="heavy"'
+            else:
+                raise AttributeError("invalid theme: '%s'" % theme)
         else:
-            raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
+            #no emphasize, a link
+            if self.theme == "CLASSIC":
+                format = 'foreground="blue" underline="single"'
+            elif self.theme == "WEBPAGE":
+                format = 'underline="single" foreground="blue"'
+            else:
+                raise AttributeError("invalid theme: '%s'" % theme)
+        
+        text = '<span %s>%s</span>' % (format, self.orig_text)
         self.label.set_text(text)
         self.label.set_use_markup(True)
 

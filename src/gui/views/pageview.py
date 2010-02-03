@@ -392,7 +392,7 @@ class PageView(DbGUIElement):
     def init_config(self):
         """
         If you need a view with a config, then call this method in the 
-        build_tree method. It will set up a config file for the 
+        build_widget or __init__ method. It will set up a config file for the 
         view, and use CONFIGSETTINGS to set the config defaults. 
         The config is later accessbile via self._config
         So you can do 
