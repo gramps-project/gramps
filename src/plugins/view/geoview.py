@@ -2098,3 +2098,44 @@ class GeoView(HtmlView):
         Builds the new view depending on the filter.
         """
         self._geo_places()
+
+    def _create_start_page(self):
+        """
+        This command creates a default start page, and returns the URL of
+        this page.
+        """
+        tmpdir = GEOVIEW_SUBPATH
+        data = """
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
+                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml"  >
+         <head>
+          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+          <title>%(title)s</title>
+         </head>
+         <body >
+           <H1>%(title)s</H1>
+           <H4>%(content)s</H4>
+         </body>
+        </html>
+        """ % { 'height' : 600,
+                'title'  : _('Start page for the Geography View'),
+                'content': _('You don\'t see a map here for the following '
+                             'reasons :<br><ol>'
+                             '<li>Your database is empty or not yet selected.</li>'
+                             '<li>You don\'t yet select a person.</li>'
+                             '<li>You have no place in your database.</li>'
+                             '<li>The selected places have no coordinates.</li>'
+                             '</ol>')
+        }
+        filename = os.path.join(tmpdir, 'geography.html')
+        # Now we have two views : Web and Geography, we need to create the
+        # startpage only once.
+        if not os.path.exists(filename):
+            ufd = file(filename, "w+")
+            ufd.write(data)
+            ufd.close()
+        return urlparse.urlunsplit(('file', '',
+                                    URL_SEP.join(filename.split(os.sep)),
+                                    '', ''))
+
