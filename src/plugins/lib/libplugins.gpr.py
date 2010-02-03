@@ -254,3 +254,19 @@ fname = 'libpersonview.py',
 authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
 )
+
+#------------------------------------------------------------------------
+#
+# libplaceview
+#
+#------------------------------------------------------------------------
+register(GENERAL, 
+id    = 'libplaceview',
+name  = "lib for the place list views",
+description =  _("Provides the Base needed for the List Place views.") ,
+version = '1.0',
+status = STABLE,
+fname = 'libplaceview.py',
+authors = ["The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+)

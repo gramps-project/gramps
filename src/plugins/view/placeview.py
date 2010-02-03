@@ -28,7 +28,7 @@ Place View
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.placebaseview import PlaceBaseView
+from libplaceview import PlaceBaseView
 from gui.views.treemodels import PlaceModel
 
 #-------------------------------------------------------------------------

@@ -29,7 +29,7 @@ Place Tree View
 #
 #-------------------------------------------------------------------------
 from gui.views.listview import LISTTREE
-from gui.views.placebaseview import PlaceBaseView
+from libplaceview import PlaceBaseView
 from gui.views.treemodels.placetreemodel import PlaceTreeModel, COUNTRYLEVELS
 import gen.lib
 import Errors

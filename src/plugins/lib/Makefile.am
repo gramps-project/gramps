@@ -19,6 +19,7 @@ pkgdata_PYTHON = \
 	libmixin.py\
 	libodfbackend.py\
 	libpersonview.py\
+	libplaceview.py\
 	libplugins.gpr.py\
 	libtranslate.py
 
