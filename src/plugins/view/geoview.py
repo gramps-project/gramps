@@ -630,6 +630,7 @@ class GeoView(HtmlView):
         self.key_active_changed = self.dbstate.connect('active-changed',
                                                        self._goto_active_person)
         self._goto_active_person()
+        self.filter.hide() # hide the filter
 
     def set_inactive(self):
         """
@@ -2067,9 +2068,9 @@ class GeoView(HtmlView):
 
         if self.displaytype == "places" or self.displaytype == "event":
             if config.get('interface.filter'):
-                self.filter_pane.show()
+                self.filter.show()
             else:
-                self.filter_pane.hide()
+                self.filter.hide()
 
     def filter_toggle_action(self, obj):
         """
@@ -2078,10 +2079,10 @@ class GeoView(HtmlView):
         """
         if self.displaytype == "places" or self.displaytype == "event":
             if obj.get_active():
-                self.filter_pane.show()
+                self.filter.show()
                 active = True
             else:
-                self.filter_pane.hide()
+                self.filter.hide()
                 active = False
             config.set('interface.filter', active)
             self.build_tree()
