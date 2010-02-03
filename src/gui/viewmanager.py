@@ -79,6 +79,7 @@ from gui.configure import GrampsPreferences
 from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
+from workspace import Workspace
 
 #-------------------------------------------------------------------------
 #
@@ -930,7 +931,12 @@ class ViewManager(CLIManager):
                 page_display = page.get_display()
                 page_display.show_all()
                 page.post()
-                page_no = self.notebook_cat[-1].append_page(page_display, 
+
+                # create a workspace and add the view to it
+                ws = Workspace()
+                ws.add_view(page_display)
+                
+                page_no = self.notebook_cat[-1].append_page(ws.get_display(), 
                                                         gtk.Label(page_title))
                 self.pages[-1].append(page)
                 pageid = (pdata.id + '_%i' % nrpage)

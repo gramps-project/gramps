@@ -117,10 +117,10 @@ class PeopleBaseModel(object):
             self.column_death_place,
             self.column_spouse,
             self.column_change,
+            self.column_int_id,
             self.column_marker_text,
             self.column_marker_color,
             self.column_tooltip,
-            self.column_int_id,
             ]
         self.smap = [
             self.sort_name,
@@ -132,10 +132,10 @@ class PeopleBaseModel(object):
             self.column_death_place,
             self.column_spouse,
             self.column_change,
+            self.column_int_id,
             self.column_marker_text,
             self.column_marker_color,
             self.column_tooltip,
-            self.column_int_id,
             ]
 
         #columns are accessed on every mouse over, so it is worthwhile to
@@ -448,7 +448,7 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
 
         PeopleBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, search=search, skip=skip,
-                                tooltip_column=11,
+                                tooltip_column=12,
                                 scol=scol, order=order, sort_map=sort_map)
 
     def clear_cache(self, handle=None):
@@ -459,7 +459,7 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
         """
         Return the column for marker colour.
         """
-        return 10
+        return 11
 
 class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
     """
@@ -469,8 +469,8 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
                  skip=set(), sort_map=None):
 
         PeopleBaseModel.__init__(self, db)
-        TreeBaseModel.__init__(self, db, 11, search=search, skip=skip,
-                                marker_column=10,
+        TreeBaseModel.__init__(self, db, 12, search=search, skip=skip,
+                                marker_column=11,
                                 scol=scol, order=order, sort_map=sort_map)
 
     def _set_base_data(self):
