@@ -1788,7 +1788,7 @@ def get_relationship_calculator(reinit=False):
         lang = ' '
         try:
             lang = os.environ["LANG"]
-            _LANG_SET = True
+            lang_set = True
         except:
             # if LANG is not set
             import locale
@@ -1796,25 +1796,39 @@ def get_relationship_calculator(reinit=False):
             if not lang:
                 # if lang is empty/None
                 lang = locale.getdefaultlocale()[0]
-            _LANG_SET = False
-        
+            lang_set = False
         __RELCALC_CLASS = RelationshipCalculator
         # set correct relationship calculator based on LANG
+        relation_translation_found = False
         for plugin in PluginRegister.get_instance().relcalc_plugins():
-            if not lang in plugin.lang_list and _LANG_SET:
-                # LANG set but with non recognizable language info. Try getlocale
-                import locale
-                lang = locale.getlocale()[0]
-                if not lang:
-                    # if lang is empty/None
-                    lang = locale.getdefaultlocale()[0]
             if lang in plugin.lang_list:
                 pmgr = BasePluginManager.get_instance()
                 # the loaded module is put in variable mod
                 mod = pmgr.load_plugin(plugin)
                 if mod:
                     __RELCALC_CLASS = eval('mod.' + plugin.relcalcclass)
+                    relation_translation_found = True
                     break
+        if not relation_translation_found:
+            # LANG set but with non recognizable language info. Try getlocale
+            import locale
+            lang = locale.getlocale()[0]
+            if not lang:
+                # if lang is empty/None
+                lang = locale.getdefaultlocale()[0]
+        for plugin in PluginRegister.get_instance().relcalc_plugins():
+            if lang in plugin.lang_list:
+                pmgr = BasePluginManager.get_instance()
+                # the loaded module is put in variable mod
+                mod = pmgr.load_plugin(plugin)
+                if mod:
+                    __RELCALC_CLASS = eval('mod.' + plugin.relcalcclass)
+                    relation_translation_found = True
+                    break
+        if not relation_translation_found and \
+            len(PluginRegister.get_instance().relcalc_plugins()):
+            print "No language available or wrong code in rel_xx.py."
+            print "English will be used."
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
