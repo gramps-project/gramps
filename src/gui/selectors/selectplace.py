@@ -72,4 +72,4 @@ class SelectPlace(BaseSelector):
         return self.db.get_place_from_handle
         
     def get_handle_column(self):
-        return PlaceModel.HANDLE_COL
+        return PlaceListModel.HANDLE_COL
