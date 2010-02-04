@@ -68,10 +68,6 @@ from gen.ggettext import sgettext as _
 # Constants
 #
 #----------------------------------------------------------------
-
-NAVIGATION_NONE   = -1
-NAVIGATION_PERSON = 0
-
 LISTFLAT = 0
 LISTTREE = 1
 
