@@ -51,6 +51,7 @@ from displaytabs import (SourceEmbedList, NoteTab, GalleryTab,
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)
+from Utils import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #
@@ -82,10 +83,15 @@ class EditEvent(EditPrimary):
         return gen.lib.Event()
 
     def get_menu_title(self):
-        if self.obj.get_handle():
-            event_name = self.obj.get_description()
-            if not event_name:
-                event_name = str(self.obj.get_type())
+        handle = self.obj.get_handle()
+        if handle:
+            who = get_participant_from_event(self.db, handle)
+            desc = self.obj.get_description()
+            event_name = self.obj.get_type()
+            if desc:
+                event_name = '%s - %s' % (event_name, desc)
+            if who:
+                event_name = '%s - %s' % (event_name, who)
             dialog_title = _('Event: %s')  % event_name
         else:
             dialog_title = _('New Event')
