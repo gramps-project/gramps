@@ -280,7 +280,7 @@ if platform.system() in WINDOWS:
     #so no need to specify it
     conv_utf8_tosrtkey_ongtk = lambda x: locale.strxfrm(unicode(x).encode(
                                                                     codeset))
-    conv_unicode_tosrtkey_ongtk = lambda x: locale.strxfrm(x.encode(codeset))
+    conv_unicode_tosrtkey_ongtk = lambda x: locale.strxfrm(x.encode(codeset),'replace')
 else:
     # on unix C functions need to recieve utf-8. Default conversion would
     # use ascii, so it is needed to be explicit about the resulting encoding 
