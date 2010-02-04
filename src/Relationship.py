@@ -1805,6 +1805,9 @@ def get_relationship_calculator(reinit=False):
                 # LANG set but with non recognizable language info. Try getlocale
                 import locale
                 lang = locale.getlocale()[0]
+                if not lang:
+                    # if lang is empty/None
+                    lang = locale.getdefaultlocale()[0]
             if lang in plugin.lang_list:
                 pmgr = BasePluginManager.get_instance()
                 # the loaded module is put in variable mod
