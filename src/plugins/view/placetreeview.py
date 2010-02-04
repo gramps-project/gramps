@@ -30,7 +30,7 @@ Place Tree View
 #-------------------------------------------------------------------------
 from gui.views.listview import LISTTREE
 from libplaceview import PlaceBaseView
-from gui.views.treemodels.placetreemodel import PlaceTreeModel, COUNTRYLEVELS
+from gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
 import gen.lib
 import Errors
 from gui.editors import EditPlace

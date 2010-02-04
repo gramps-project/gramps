@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import PlaceModel
+from gui.views.treemodels.placemodel import PlaceListModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
@@ -54,7 +54,7 @@ class SelectPlace(BaseSelector):
         return _("Select Place")
         
     def get_model_class(self):
-        return PlaceModel
+        return PlaceListModel
 
     def get_column_titles(self):
         return [

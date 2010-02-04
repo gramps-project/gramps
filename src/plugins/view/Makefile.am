@@ -19,9 +19,9 @@ pkgdata_PYTHON = \
 	pedigreeviewext.gpr.py \
 	personlistview.py \
 	persontreeview.py \
-	placetreeview.gpr.py \
+	placelistview.py \
 	placetreeview.py \
-	placeview.py \
+	placetreeview.gpr.py \
 	relview.py \
 	repoview.py \
 	sourceview.py \

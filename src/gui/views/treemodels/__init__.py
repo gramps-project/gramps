@@ -27,9 +27,7 @@ from peoplemodel import PeopleBaseModel, PersonListModel, PersonTreeModel
 from familymodel import FamilyModel
 from eventmodel import EventModel
 from sourcemodel import SourceModel
-from placebasemodel import PlaceBaseModel
-from placemodel import PlaceModel
-from placetreemodel import PlaceTreeModel
+from placemodel import PlaceBaseModel, PlaceListModel, PlaceTreeModel
 from mediamodel import MediaModel
 from repomodel import RepositoryModel
 from notemodel import NoteModel

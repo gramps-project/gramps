@@ -13,9 +13,7 @@ pkgdata_PYTHON = \
 	mediamodel.py \
 	notemodel.py \
 	peoplemodel.py \
-	placebasemodel.py \
 	placemodel.py \
-	placetreemodel.py \
 	repomodel.py \
 	sourcemodel.py \
 	treebasemodel.py

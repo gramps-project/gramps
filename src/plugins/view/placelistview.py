@@ -20,7 +20,7 @@
 # $Id$
 
 """
-Place View
+Place List View
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Place View
 #
 #-------------------------------------------------------------------------
 from libplaceview import PlaceBaseView
-from gui.views.treemodels import PlaceModel
+from gui.views.treemodels.placemodel import PlaceListModel
 
 #-------------------------------------------------------------------------
 #
@@ -40,14 +40,14 @@ from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# PlaceView
+# PlaceListView
 #
 #-------------------------------------------------------------------------
-class PlaceView(PlaceBaseView):
+class PlaceListView(PlaceBaseView):
     """
     Flat place view.  (Original code in PlaceBaseView).
     """
     def __init__(self, dbstate, uistate):
         PlaceBaseView.__init__(self, dbstate, uistate,
-                               _('Places'), PlaceModel,
+                               _('Places'), PlaceListModel,
                                nav_group=0)
