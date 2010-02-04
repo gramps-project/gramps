@@ -250,4 +250,4 @@ plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["sv", "SV", "sv_SE", "swedish", "Swedish", "sv_SE.UTF8",
                  "sv_SE@euro", "sv_SE.UTF8@euro", "svenska", "Svenska",
-                 "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8"]
+                 "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8", "Swedish_Sweden"]
