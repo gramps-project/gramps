@@ -79,7 +79,7 @@ except ImportError:
 gender = {
     gen.lib.Person.MALE    : _("male"), 
     gen.lib.Person.FEMALE  : _("female"), 
-    gen.lib.Person.UNKNOWN : _("unknown"), 
+    gen.lib.Person.UNKNOWN : _("gender|unknown"), 
     }
 
 def format_gender( type):
@@ -1377,6 +1377,9 @@ def navigation_label(db, nav_type, handle):
         if obj:
             label = obj.get()
             label = " ".join(label.split())
+            # When strings are cut, make sure they are unicode
+            #otherwise you may end of with cutting within an utf-8 sequence
+            label = unicode(label)
             if len(label) > 40:
                 label = label[:40] + "..."
 
