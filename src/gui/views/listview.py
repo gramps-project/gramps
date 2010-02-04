@@ -593,15 +593,15 @@ class ListView(NavigationView):
                 filter_info = (False, value, False)
 
         if same_col:
-            self.list.set_model(None)
             self.model.reverse_order()
         else:
             self.model = self.make_model(self.dbstate.db, self.sort_col, 
                                          self.sort_order, 
                                          search=filter_info, 
                                          sort_map=self.column_order())
-        
-        self.list.set_model(self.model)
+
+            self.list.set_model(self.model)
+
         self.__display_column_sort()
 
         if handle:

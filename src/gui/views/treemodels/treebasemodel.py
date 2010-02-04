@@ -628,6 +628,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         model to the view. 
         """
         self.__reverse = not self.__reverse
+        top_node = self.tree[None]
+        self._reverse_level(top_node)
 
     def _reverse_level(self, node):
         """
