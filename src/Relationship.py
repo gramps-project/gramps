@@ -1790,8 +1790,12 @@ def get_relationship_calculator(reinit=False):
             lang = os.environ["LANG"]
             _LANG_SET = True
         except:
+            # if LANG is not set
             import locale
             lang = locale.getlocale()[0]
+            if not lang:
+                # if lang is empty/None
+                lang = locale.getdefaultlocale()[0]
             _LANG_SET = False
         
         __RELCALC_CLASS = RelationshipCalculator
