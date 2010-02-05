@@ -71,7 +71,7 @@ class Rule(object):
         return True
 
     def display_values(self):
-        v = ( '%s="%s"' % ((_(self.labels[ix]),)*2)
+        v = ( '%s="%s"' % (_(self.labels[ix]), self.list[ix])
               for ix in xrange(len(self.list)) if self.list[ix] )
 
         return ';'.join(v)
