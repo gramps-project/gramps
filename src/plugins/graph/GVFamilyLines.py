@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2007-2008  Stephane Charette
 # Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2009       Gary Burton 
+# Copyright (C) 2009-2010  Gary Burton 
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -57,6 +57,7 @@ from gen.plug.menu import NumberOption, ColorOption, BooleanOption, \
                           EnumeratedListOption, PersonListOption, \
                           SurnameColorOption
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.display.name import displayer as name_displayer
 
 #------------------------------------------------------------------------
 #
@@ -764,7 +765,7 @@ class FamilyLinesReport(Report):
         for handle in self._people:
             self.progress.step()
             person = self._db.get_person_from_handle(handle)
-            name = person.get_primary_name().get_regular_name()
+            name = name_displayer.display_name(person.get_primary_name())
 
             # figure out what colour to use
             gender = person.get_gender()
