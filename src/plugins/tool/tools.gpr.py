@@ -174,8 +174,8 @@ fname = 'DumpGenderStats.py',
 authors = ["Donald N. Allingham", "Martin Hawlisch"],
 authors_email = ["don@gramps-project.org", "martin@hawlisch.de"],
 category = TOOL_DEBUG,
-toolclass = 'DesBrowse',
-optionclass = 'DesBrowseOptions',
+toolclass = 'DumpGenderStats',
+optionclass = 'DumpGenderStatsOptions',
 tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
   )
 
