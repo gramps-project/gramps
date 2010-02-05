@@ -208,7 +208,7 @@ class PeopleBaseModel(object):
                               family.get_mother_handle()]:
                 if not spouse_id:
                     continue
-                if spouse_id == handle:
+                if spouse_id == data[0]:
                     continue
                 spouse = self.db.get_person_from_handle(spouse_id)
                 if spouses_names:
