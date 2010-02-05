@@ -1,4 +1,4 @@
-cPlease read the COPYING file first.
+Please read the COPYING file first.
 If building from source, also read the INSTALL file (at least through the
 "SUPER-SHORT VERSION") before going further.
 
@@ -15,15 +15,25 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     http://www.graphviz.org
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
-   python-webkit    Enable html rendering for Geographic view and Web view
-                    Be careful, webkit is always in a development phase.
-                    If you get crashes, remove python-webkit and add the
-                    gecko package instead.
-   or
-   python-gtkmozembed is the gecko equivalent to webkit which is more stable.
-                    It can be python-gnome2-extras or python-gtkhtml2
-                    depending on distributions.
-   If WEBKIT ang GECKO are installed, webkit will be used.
+   PyWebKitGtk or python-gtkmozembed: PACKAGERS, Test if on your distribution
+                    webkit and Gramps is stable. If you get crashes, patch 
+                    src/plugins/view/htmlrenderer.py and
+                    src/plugins/view/geoview.gpr.py, so as to remove:
+                       import webkit
+                    Then use the gecko package (python-gtkmozembed) instead.
+                    If WEBKIT ang GECKO are installed, webkit will be used as
+                    the javascript engine is faster (google maps).
+   * PyWebKitGtk    
+             Enable html rendering for Geographic view and Web view
+             Often called python-webkit package.
+             Be careful, webkit is always in a development phase.
+
+   * python-gtkmozembed 
+             Enable html rendering for Geographic view and Web view
+             The gecko (firefox) equivalent to webkit, at the moment 
+             of writing, more stable than webkit.
+             It can be in python-gnome2-extras or python-gtkhtml2
+             depending on distributions.
 
 The following packages are optional
    python gtkspell & python enchant :  Enable spell checking in the notes,
