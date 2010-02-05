@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-05 11:35+0100\n"
-"PO-Revision-Date: 2010-02-05 12:11+0100\n"
+"PO-Revision-Date: 2010-02-05 16:10+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1998,12 +1998,12 @@ msgstr "%(father)s et %(mother)s"
 # trunk
 #: ../src/Utils.py:503
 msgid "death-related evidence"
-msgstr ""
+msgstr "décès-preuve reliée"
 
 # trunk
 #: ../src/Utils.py:520
 msgid "birth-related evidence"
-msgstr ""
+msgstr "naissance-preuve reliée"
 
 #: ../src/Utils.py:525
 #: ../src/plugins/import/ImportCsv.py:263
@@ -2018,22 +2018,22 @@ msgstr "date de naissance"
 # trunk
 #: ../src/Utils.py:559
 msgid "sibling birth date"
-msgstr "Date de naissance d'un frère ou d'une sœur"
+msgstr "date de naissance d'un frère ou d'une sœur"
 
 # trunk
 #: ../src/Utils.py:571
 msgid "sibling death date"
-msgstr "Date de décès d'un frère ou d'une sœur"
+msgstr "date de décès d'un frère ou d'une sœur"
 
 # trunk
 #: ../src/Utils.py:585
 msgid "sibling birth-related date"
-msgstr ""
+msgstr "naissance frère ou sœur-date reliée"
 
 # trunk
 #: ../src/Utils.py:596
 msgid "sibling death-related date"
-msgstr ""
+msgstr "décès frère ou sœur-date reliée"
 
 # trunk
 #: ../src/Utils.py:609
@@ -2044,27 +2044,27 @@ msgstr "un conjoint,"
 # trunk
 #: ../src/Utils.py:632
 msgid "event with spouse"
-msgstr "Événement avec le conjoint"
+msgstr "événement avec le conjoint"
 
 # trunk
 #: ../src/Utils.py:653
 msgid "descendent birth date"
-msgstr "Date de naissance d'un descendant"
+msgstr "date de naissance d'un descendant"
 
 # trunk
 #: ../src/Utils.py:662
 msgid "descendent death date"
-msgstr "Date de décès d'un descendant"
+msgstr "date de décès d'un descendant"
 
 # trunk
 #: ../src/Utils.py:678
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "naissance descendant-date reliée"
 
 # trunk
 #: ../src/Utils.py:686
 msgid "descendent death-related date"
-msgstr ""
+msgstr "décès descendant-date reliée"
 
 #: ../src/Utils.py:699
 #, python-format
@@ -2087,19 +2087,19 @@ msgstr "date de décès d'un ascendant"
 #: ../src/Utils.py:741
 #: ../src/Utils.py:787
 msgid "ancestor birth-related date"
-msgstr ""
+msgstr "naissance ascendant-date reliée"
 
 # trunk
 #: ../src/Utils.py:749
 #: ../src/Utils.py:795
 msgid "ancestor death-related date"
-msgstr ""
+msgstr "décès ascendant-date reliée"
 
 # trunk
 #. no evidence, must consider alive
 #: ../src/Utils.py:848
 msgid "no evidence"
-msgstr "Aucune preuve"
+msgstr "aucune preuve"
 
 #: ../src/Utils.py:1129
 msgid "Person|TITLE"
@@ -5086,9 +5086,11 @@ msgstr "_Barre latérale"
 msgid "_Toolbar"
 msgstr "Barre d'ou_tils"
 
+# chaîne utilisée dans la vue relation ???
+# trunk
 #: ../src/gui/viewmanager.py:507
 msgid "_Filter Sidebar"
-msgstr "_Filtres"
+msgstr "Barre de _filtre"
 
 #: ../src/gui/viewmanager.py:509
 msgid "F_ull Screen"
@@ -6968,7 +6970,7 @@ msgstr "Erreur : %s n'est pas un ID Gramps valide"
 #: ../src/gui/views/pageview.py:444
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr ""
+msgstr "Configure %(cat)s - %(view)s"
 
 # trunk
 #: ../src/gui/views/pageview.py:450
@@ -7006,12 +7008,12 @@ msgstr "<Lieux>"
 # trunk
 #: ../src/gui/views/treemodels/placemodel.py:151
 msgid "EW"
-msgstr ""
+msgstr "EO"
 
 # trunk
 #: ../src/gui/views/treemodels/placemodel.py:154
 msgid "NS"
-msgstr ""
+msgstr "NS"
 
 # trunk
 #: ../src/gui/views/treemodels/placemodel.py:330
@@ -14403,22 +14405,22 @@ msgstr "Fournit la base nécessaire à la liste dans les vues Lieux."
 # trunk
 #: ../src/plugins/lib/libtranslate.py:74
 msgid "Albanian"
-msgstr ""
+msgstr "Albanais"
 
 # trunk
 #: ../src/plugins/lib/libtranslate.py:77
 msgid "Chinese"
-msgstr ""
+msgstr "Chinois"
 
 # trunk
 #: ../src/plugins/lib/libtranslate.py:81
 msgid "Brazil"
-msgstr ""
+msgstr "Brésilien"
 
 # trunk
 #: ../src/plugins/lib/libtranslate.py:82
 msgid "China"
-msgstr ""
+msgstr "Chine"
 
 # trunk
 #: ../src/plugins/lib/libtranslate.py:105
@@ -16558,12 +16560,12 @@ msgstr "Dates estimées"
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:129
 msgid "Approximate (about)"
-msgstr ""
+msgstr "Avoisinant (vers) "
 
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:130
 msgid "Extremes (after and before)"
-msgstr ""
+msgstr "Extrêmes (avant et après)"
 
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:131
@@ -16593,6 +16595,8 @@ msgid ""
 "\n"
 "You may have to run the tool repeatedly (without removing previous events) to add all of the events possible."
 msgstr ""
+"L'outil d'estimation des dates est utilisé pour ajouter et enlever des événements naissance et décès chez les individus pour lesquels ces événements manquent.\n"
+" "
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:181
 #: ../src/plugins/tool/tools.gpr.py:35
@@ -16610,10 +16614,10 @@ msgid "Select None"
 msgstr "Ne rien sélectionner"
 
 # trunk
+# à vérifier dans le contexte
 #: ../src/plugins/tool/CalculateEstimatedDates.py:192
-#, fuzzy
 msgid "Toggle Selection"
-msgstr "Sélection ..."
+msgstr "Sélection du levier"
 
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:193
@@ -18762,7 +18766,7 @@ msgstr "Ajouter des nouveaux parents..."
 #: ../src/plugins/view/pedigreeviewext.gpr.py:32
 #: ../src/plugins/view/view.gpr.py:116
 msgid "Pedigree View"
-msgstr "Vue Arbre généalogique"
+msgstr "Vue Pedigree Alt"
 
 # trunk
 #: ../src/plugins/view/pedigreeviewext.gpr.py:33
@@ -19135,15 +19139,13 @@ msgstr "Cette vue affiche toutes les personnes de l'arbre familial"
 
 # trunk
 #: ../src/plugins/view/view.gpr.py:144
-#, fuzzy
 msgid "Person List View"
-msgstr "Vue Individu"
+msgstr "Liste de la vue Individu"
 
 # trunk
 #: ../src/plugins/view/view.gpr.py:145
-#, fuzzy
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Cette vue affiche toutes les personnes de l'arbre familial"
+msgstr "Cette vue affiche toutes les personnes de l'arbre familial dans une liste simple"
 
 # trunk
 #: ../src/plugins/view/view.gpr.py:158
@@ -19182,12 +19184,12 @@ msgstr "Noms aternatifs"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:127
 msgid "Postal Code"
-msgstr "Code lieu :"
+msgstr "Code lieu"
 
 # province (Canada, Belgique)
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 msgid "State/ Province"
-msgstr "Région/Province :"
+msgstr "Région/Province"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:557
@@ -19365,7 +19367,7 @@ msgstr "Informations de publication"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3195
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr ""
+msgstr "Cette page contient un index de tous les objet media de la base de données, classés par titre. Cliquer sur un titre va ouvrir sa page media. Si la taille de l'image n'est pas suffisante, cliquez sur l'image pour la voir dans sa taille réelle."
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3214
@@ -20206,7 +20208,7 @@ msgstr "Lien préfixe"
 # trunk
 #: ../src/plugins/webreport/WebCal.py:1548
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
+msgstr "Un préfixe sur le lien pour vous diriger vers le rapport internet"
 
 # trunk
 #: ../src/plugins/webreport/WebCal.py:1727
@@ -20373,7 +20375,6 @@ msgstr "Charger"
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:247
-#, fuzzy
 msgid "Registered Plugins"
 msgstr "Greffons enregistrés"
 
@@ -20408,19 +20409,22 @@ msgid "Path to Addon:"
 msgstr "Chemin vers le greffon additionnel :"
 
 # trunk
+# bouton
 #: ../src/PluginUtils/_PluginWindows.py:350
 msgid "Install Addon"
-msgstr "Installer le greffon additionnel"
+msgstr "Installer le greffon"
 
 # trunk
+# bouton
 #: ../src/PluginUtils/_PluginWindows.py:353
 msgid "Install All Addons"
-msgstr "Installer tous les greffons"
+msgstr "Tout installer"
 
 # trunk
+# bouton
 #: ../src/PluginUtils/_PluginWindows.py:356
 msgid "Refresh Addon List"
-msgstr "Actualiser la liste des greffons"
+msgstr "Actualiser la liste"
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:361
@@ -20435,9 +20439,8 @@ msgstr "Recharger"
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:411
-#, fuzzy
 msgid "Unknown Help URL"
-msgstr "Inconnu"
+msgstr "URL d'aide inconnu"
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:422
@@ -20452,9 +20455,9 @@ msgstr "Erreur dans le fichier '%s' : impossible à charger."
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:526
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr "Cette version de la base de données n'est plus supportée par cette version de Gramps."
+msgstr "'%s' est pour cette version de Gramps."
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:531
@@ -20465,15 +20468,15 @@ msgstr "Erreur: gramps_target_version = '3.2' dans '%s' manquant"
 # Substantif (GNOME fr)
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:535
-#, fuzzy, python-format
+#, python-format
 msgid "Installing '%s'..."
-msgstr "Enlève '%s'..."
+msgstr "Installation de '%s'..."
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:539
-#, fuzzy, python-format
+#, python-format
 msgid "Registered '%s'"
-msgstr "Greffons enregistrés"
+msgstr "'%s' enregistré"
 
 # trunk
 #: ../src/PluginUtils/_PluginWindows.py:549
@@ -21248,7 +21251,7 @@ msgstr "Filtres relationnels"
 # trunk
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
 msgid "Searches over the database starting from a specified person and returns everyone between that person and a set of target people specified with a filter.  This produces a set of relationship paths (including by marriage) between the specified person and the target people.  Each path is not necessarily the shortest path."
-msgstr ""
+msgstr "Recherche dans la base de données en commençant par une personne spécifiée pour trouver tous les individus entre cette personne et un groupe d'individus spécifiés par le filtre. Ceci génère des liens relationnels (incluant les mariages) entre la personne spécifiée et les individus ciblés. Les chemins ne sont pas toujours les plus courts."
 
 # trunk
 # Substantif (GNOME fr)
@@ -23870,14 +23873,14 @@ msgstr "<b>Note</b>"
 
 # trunk
 #: ../src/glade/editnote.glade.h:2
-#, fuzzy
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. \n"
 "When not checked, notes are automatically cleaned in the reports, which will improve the report layout.\n"
 "Use monospace font to keep preformatting."
 msgstr ""
 "Si activé, l'espacement de votre note sera respecté dans les rapports. Utilisez-le pour ajouter un format avec espaces, par exemple un tableau.\n"
-"Si désactivé, les notes sont automatiquement nettoyées dans les rapports, ce qui améliorera le rendu du rapport."
+"Si désactivé, les notes sont automatiquement nettoyées dans les rapports, ce qui améliorera le rendu du rapport.\n"
+"Utilisez la police de caractère monospace pour conserver le formatage."
 
 # une note
 #: ../src/glade/editnote.glade.h:7
@@ -24560,7 +24563,7 @@ msgstr "_Identifie les dates invalides"
 # trunk
 #: ../src/web/grampsdb/views.py:101
 msgid "Requested user not found."
-msgstr ""
+msgstr "Utilisateur demandé non trouvé."
 
 # trunk
 #: ../src/web/grampsdb/views.py:105
@@ -24583,13 +24586,13 @@ msgstr "La demande %s n'existe pas."
 # trunk
 #: ../src/web/grampsdb/views.py:288
 msgid "Requested page type not known"
-msgstr ""
+msgstr "Type de page demandé inconnu."
 
 # trunk
 #: ../src/web/grampsdb/views.py:361
 #, python-format
 msgid "Requested %s is not accessible."
-msgstr ""
+msgstr "%s demandé n'est pas accessible."
 
 # trunk
 #: ../src/web/utils.py:117
