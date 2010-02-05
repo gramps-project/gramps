@@ -755,20 +755,20 @@ class GeoView(HtmlView):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
-        """
-        return '''<ui>
-          <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
               <toolitem action="Back"/>  
               <toolitem action="Forward"/>  
               <toolitem action="Refresh"/>
             </placeholder>
+              <toolitem action="StyleSheet"/>
+        """
+        return '''<ui>
+          <toolbar name="ToolBar">
             <placeholder name="CommonEdit">
               <toolitem action="Provider"/>
               <toolitem action="SaveZoom"/>
               <toolitem action="AddPlace"/>
               <toolitem action="LinkPlace"/>
-              <toolitem action="StyleSheet"/>
               <separator/>
               <toolitem action="PersonMaps"/>
               <toolitem action="FamilyMaps"/>
@@ -783,9 +783,9 @@ class GeoView(HtmlView):
         Required define_actions function for PageView. Builds the action
         group information required. 
         """
-        HtmlView._define_actions_fw_bw(self)
-        self.forward_action.set_sensitive(False)
-        self.back_action.set_sensitive(False)
+        #HtmlView._define_actions_fw_bw(self)
+        #self.forward_action.set_sensitive(False)
+        #self.back_action.set_sensitive(False)
         self._add_action('AddPlace', gtk.STOCK_ADD, 
             _('_Add Place'),
             callback=self._add_place,
@@ -828,10 +828,10 @@ class GeoView(HtmlView):
         self._add_action('EventMaps', 'gramps-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
-        self._add_toolmenu_action('StyleSheet', _('Selecting stylesheet ...'),
-                        _("Reload the map with new style."),
-                        self._gotostyle,
-                        _('Select a StyleSheet'))
+        #self._add_toolmenu_action('StyleSheet', _('Selecting stylesheet ...'),
+        #                _("Reload the map with new style."),
+        #                self._gotostyle,
+        #                _('Select a StyleSheet'))
         self._add_toggle_action('Filter', None, _('_Filter'), 
                                 callback=self.filter_toggle_action,
                                 value=config.get('interface.filter'))
@@ -867,29 +867,29 @@ class GeoView(HtmlView):
         PageView.change_page(self)
         # menutoolbutton actions are stored in PageView class, 
         # obtain the widgets where we need to add to menu
-        actionstyles = self.action_toolmenu['StyleSheet']
-        widgets = actionstyles.get_proxies()
-        mmenu = self.__create_styles_menu_actions()
+        #actionstyles = self.action_toolmenu['StyleSheet']
+        #widgets = actionstyles.get_proxies()
+        #mmenu = self.__create_styles_menu_actions()
 
-        if not self.stylesheetdata:
-            return
+        #if not self.stylesheetdata:
+        #    return
 
-        self.stylesheetlabel = []
+        #self.stylesheetlabel = []
 
         #store all gtk labels to be able to update label on selection change
-        for widget in widgets :
-            if isinstance(widget, gtk.MenuToolButton):
-                widget.set_menu(mmenu)
-                if gtk.pygtk_version >= (2, 12, 0):
-                    widget.set_arrow_tooltip_text(actionstyles.arrowtooltip)
-                lbl = gtk.Label(self._mapstyle_label())
-                self.stylesheetlbl = lbl
-                lbl.show()
-                self.stylesheetlabel.append(lbl)
-                widget.set_label_widget(self.stylesheetlabel[-1])
-                widget.set_stock_id(gtk.STOCK_SELECT_FONT)
+        #for widget in widgets :
+        #    if isinstance(widget, gtk.MenuToolButton):
+        #        widget.set_menu(mmenu)
+        #        if gtk.pygtk_version >= (2, 12, 0):
+        #            widget.set_arrow_tooltip_text(actionstyles.arrowtooltip)
+        #        lbl = gtk.Label(self._mapstyle_label())
+        #        self.stylesheetlbl = lbl
+        #        lbl.show()
+        #        self.stylesheetlabel.append(lbl)
+        #        widget.set_label_widget(self.stylesheetlabel[-1])
+        #        widget.set_stock_id(gtk.STOCK_SELECT_FONT)
         self._set_lock_unlock_icon()
-        self._set_mapstylelabel(self.stylesheet)
+        #self._set_mapstylelabel(self.stylesheet)
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
         self.filter_toggle(None, None, None, None)
@@ -1964,6 +1964,7 @@ class GeoView(HtmlView):
         The first one based on the default used by NarrativeWeb.
         The second one is specific to GeoView.
         """
+        return u''
         # Get the default stylesheet.
         dblp = "<link media=\"screen\" "
         delp = "type=\"text/css\" rel=\"stylesheet\" />\n"
