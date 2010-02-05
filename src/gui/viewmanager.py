@@ -870,15 +870,17 @@ class ViewManager(CLIManager):
         self.cat_view_group = None
 
         use_text = config.get('interface.sidebar-text')
-        
-        index = 0
-        for cat_views in self.views:
+        #obtain which views should be the active ones
+        current_cat, current_cat_view, default_cat_views = \
+                self.__views_to_show(config.get('preferences.use-last-view'))
+
+        for indexcat, cat_views in enumerate(self.views):
             #for every category, we create a button in the sidebar and a main
             #workspace in which to show the view
             nr_views = len(cat_views)
             uimenuitems = ''
             uitoolitems = ''
-            self.view_toggle_actions[index] = []
+            self.view_toggle_actions[indexcat] = []
             self.pages.append([])
             nrpage = 0
             for pdata, page_def in cat_views:
@@ -913,7 +915,7 @@ class ViewManager(CLIManager):
                                 page_cat)
 
                     # create the button and add it to the sidebar
-                    button = self.__make_sidebar_button(use_text, index, 
+                    button = self.__make_sidebar_button(use_text, indexcat, 
                                                         page_translated_category, 
                                                         page_stock)
 
@@ -937,7 +939,7 @@ class ViewManager(CLIManager):
                 uimenuitems += '\n<menuitem action="%s"/>' % pageid
                 uitoolitems += '\n<toolitem action="%s"/>' % pageid
                 # id, stock, button text, UI, tooltip, page
-                self.view_toggle_actions[index].append((pageid, 
+                self.view_toggle_actions[indexcat].append((pageid, 
                             page.get_viewtype_stock(),
                             pdata.name, '<CONTROL>%i' % (nrpage+1), page_title,
                             nrpage))
@@ -945,12 +947,10 @@ class ViewManager(CLIManager):
                 nrpage += 1
             if nr_views > 1:
                 #allow for switching views in a category
-                self.ui_category[index] = UICATEGORY % (uimenuitems,
+                self.ui_category[indexcat] = UICATEGORY % (uimenuitems,
                                                         uitoolitems)
-            index += 1
-
-        current_cat, current_cat_view = self.__view_to_show(
-                                    config.get('preferences.use-last-view'))
+            #set view cat to last used in this category
+            self.notebook_cat[-1].set_current_page(default_cat_views[indexcat])
 
         self.active_page = self.pages[current_cat][current_cat_view]
         self.buttons[current_cat].set_active(True)
@@ -958,30 +958,34 @@ class ViewManager(CLIManager):
         self.notebook.set_current_page(current_cat)
         self.notebook_cat[current_cat].set_current_page(current_cat_view)
 
-    def __view_to_show(self, use_last = True):
+    def __views_to_show(self, use_last = True):
         """
-        Determine based on preference setting which view should be shown
+        Determine based on preference setting which views should be shown
         """
         current_cat = 0 
         current_cat_view = 0
+        default_cat_views = [0] * len(self.views)
         if use_last:
             current_page_id = config.get('preferences.last-view')
+            default_page_ids = config.get('preferences.last-views')
             found = False
-            for cat_views in self.views:
-                current_cat_view = 0
+            for indexcat, cat_views in enumerate(self.views):
+                cat_view = 0
                 for pdata, page_def in cat_views:
-                    if pdata.id == current_page_id:
-                        found = True
-                        break
-                    else:
-                        current_cat_view += 1
-                if found:
-                    break
-                current_cat += 1
+                    if not found:
+                        if pdata.id == current_page_id:
+                                current_cat = indexcat
+                                current_cat_view = cat_view
+                                default_cat_views[indexcat] = cat_view
+                                found = True
+                                break
+                    if pdata.id in default_page_ids:
+                        default_cat_views[indexcat] = cat_view
+                    cat_view += 1
             if not found:
                 current_cat = 0 
                 current_cat_view = 0
-        return current_cat, current_cat_view
+        return current_cat, current_cat_view, default_cat_views
 
     def __make_sidebar_button(self, use_text, index, page_title, page_stock):
         """
@@ -1151,12 +1155,17 @@ class ViewManager(CLIManager):
             view_page = self.notebook_cat[category_page].get_current_page()
         if self.dbstate.open:
             self.__disconnect_previous_page()
-
             if len(self.pages) > 0:
                 self.active_page = self.pages[category_page][view_page]
                 self.active_page.set_active()
-                config.set('preferences.last-view', 
-                           self.views[category_page][view_page][0].id)
+                newcurpageid = self.views[category_page][view_page][0].id
+                config.set('preferences.last-view', newcurpageid)
+                olddefaults = config.get('preferences.last-views')
+                if len(olddefaults) != len(self.pages): 
+                    #number views changed, we cannot trust the old
+                    olddefaults = [''] * len(self.pages)
+                olddefaults[category_page] = newcurpageid 
+                config.set('preferences.last-views', olddefaults)
                 config.save()
 
                 self.__connect_active_page(category_page, view_page)
