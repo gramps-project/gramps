@@ -826,7 +826,7 @@ class RelationshipView(NavigationView):
             # don't show rest
             self.write_label("%s:" % _('Parents'), family, True, person)
             self.row -= 1 # back up one row for summary names
-            active = self.ui.get_active()
+            active = self.get_active()
             child_list = [ref.ref for ref in family.get_child_ref_list()
                           if ref.ref != active]
             if child_list:
