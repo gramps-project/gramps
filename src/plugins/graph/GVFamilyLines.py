@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2007-2008  Stephane Charette
 # Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2009       Gary Burton 
+# Copyright (C) 2009-2010  Gary Burton 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -55,6 +55,7 @@ from gen.plug import PluginManager
 from gen.plug.menu import NumberOption, ColorOption, BooleanOption, \
                           EnumeratedListOption, PersonListOption, \
                           SurnameColorOption
+from BasicUtils import name_displayer
 
 #------------------------------------------------------------------------
 #
@@ -762,7 +763,7 @@ class FamilyLinesReport(Report):
         for handle in self._people:
             self.progress.step()
             person = self._db.get_person_from_handle(handle)
-            name = person.get_primary_name().get_regular_name()
+            name = name_displayer.display_name(person.get_primary_name())
 
             # figure out what colour to use
             gender = person.get_gender()
