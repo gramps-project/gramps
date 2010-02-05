@@ -3,7 +3,6 @@
 #
 # 	Python files
 #
-src/ansel_utf8.py
 src/Assistant.py
 src/AutoComp.py
 src/Bookmarks.py
@@ -41,7 +40,7 @@ src/TreeTips.py
 src/Utils.py
 src/UndoHistory.py
 
-# cli 
+# cli
 src/cli/__init__.py
 src/cli/arghandler.py
 src/cli/argparser.py
@@ -285,7 +284,6 @@ src/gui/views/__init__.py
 src/gui/views/listview.py
 src/gui/views/navigationview.py
 src/gui/views/pageview.py
-src/gui/views/placebaseview.py
 
 # gui/views/treemodels - the GUI views package
 src/gui/views/treemodels/__init__.py
@@ -294,9 +292,7 @@ src/gui/views/treemodels/familymodel.py
 src/gui/views/treemodels/flatbasemodel.py
 src/gui/views/treemodels/mediamodel.py
 src/gui/views/treemodels/peoplemodel.py
-src/gui/views/treemodels/placebasemodel.py
 src/gui/views/treemodels/placemodel.py
-src/gui/views/treemodels/placetreemodel.py
 src/gui/views/treemodels/repomodel.py
 src/gui/views/treemodels/sourcemodel.py
 src/gui/views/treemodels/treebasemodel.py
@@ -447,6 +443,7 @@ src/plugins/lib/libmapservice.py
 src/plugins/lib/libnarrate.py
 src/plugins/lib/libodfbackend.py
 src/plugins/lib/libpersonview.py
+src/plugins/lib/libplaceview.py
 src/plugins/lib/libplugins.gpr.py
 src/plugins/lib/libtranslate.py
 
@@ -549,7 +546,7 @@ src/plugins/view/pedigreeviewext.py
 src/plugins/view/pedigreeviewext.gpr.py
 src/plugins/view/personlistview.py
 src/plugins/view/persontreeview.py
-src/plugins/view/placeview.py
+src/plugins/view/placelistview.py
 src/plugins/view/placetreeview.gpr.py
 src/plugins/view/placetreeview.py
 src/plugins/view/relview.py
