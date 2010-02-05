@@ -290,7 +290,7 @@ register('researcher.researcher-phone', '')
 register('researcher.researcher-postal', '')
 register('researcher.researcher-state', '')
 
-register('plugin.hiddenplugins', [])
+register('plugin.hiddenplugins', ['htmlview'])
 register('plugin.addonplugins', [])
 
 #---------------------------------------------------------------
