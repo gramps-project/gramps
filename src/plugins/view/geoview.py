@@ -239,6 +239,11 @@ class GeoView(HtmlView):
     """
     The view used to render html pages.
     """
+    CONFIGSETTINGS = (
+        ('preferences.alternate-provider', False),
+        ('preferences.provider-in-toolbar', False),
+        )
+
     def __init__(self, dbstate, uistate):
         HtmlView.__init__(self, dbstate, uistate, title=_("GeoView"))
         self.dbstate = dbstate
@@ -336,6 +341,75 @@ class GeoView(HtmlView):
         self.filter.pack_start(self.hpaned, True, True)
         self.signal_map = {'place-add': self._place_changed,
                            'place-update' : self._place_changed}
+        self.init_config()
+
+    def can_configure(self):
+        """
+        We have a configuration window.
+        """
+        return True
+
+    def _get_configure_page_funcs(self):
+        """
+        The function which is used to create the configuration window.
+        """
+        return [self.geoview_options]
+
+    def config_connect(self):
+        """
+        This method will be called after the ini file is initialized,
+        use it to monitor changes in the ini file
+        """
+        self._config.connect("preferences.alternate-provider",
+                          self.config_update)
+        self._config.connect("preferences.provider-in-toolbar",
+                          self.config_update)
+
+    def config_update(self, client, cnxn_id, entry, data):
+        if self._config.get('preferences.alternate-provider'):
+            self.usedmap = "google"
+        else:
+            self.usedmap = "openstreetmap"
+        if self._config.get('preferences.provider-in-toolbar'):
+            self.provider_hide_show(True)
+        else:
+            self.provider_hide_show(False)
+        self._change_map(self.usedmap)
+        self._set_provider_icon(self._config.get('preferences.alternate-provider'))
+        self._ask_year_selection(self.last_year)
+
+    def provider_hide_show(self, state):
+        """
+        Function that hide or show the provider button in the toolbar
+        """
+        actionstyles = self.provider_action.get_action('Provider')
+        widgets = actionstyles.get_proxies()
+        for widget in widgets :
+            if isinstance(widget, gtk.ToggleToolButton):
+                if state:
+                    widget.show()
+                else:
+                    widget.hide()
+
+    def geoview_options(self, configdialog):
+        """
+        Function that builds the widget in the configuration dialog
+        """
+        table = gtk.Table(2, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+        configdialog.add_text(table, 
+                _('If the alternate provider is selected,'
+                  ' then we use googlemaps else we use openstreetmap.'), 1)
+        configdialog.add_checkbox(table, 
+                _('Alternate provider.'),
+                2, 'preferences.alternate-provider')
+        configdialog.add_checkbox(table, 
+                _('Add provider selection to toolbar.'),
+                3, 'preferences.provider-in-toolbar')
+
+        return _('Map provider'), table
 
     def _place_changed(self, handle_list):
         """
@@ -893,61 +967,63 @@ class GeoView(HtmlView):
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
         self.filter_toggle(None, None, None, None)
+        if not self._config.get('preferences.provider-in-toolbar'):
+            self.provider_hide_show(False)
         self._geo_places()
 
-    def __create_styles_menu_actions(self):
-        """
-        Function creating a menu and actions that are used as dropdown menu
-        from the menutoolbutton
-        """
-        # disable msg=W0612 # i is unused
-        # pylint: disable-msg=W0612
-        menu = gtk.Menu()
-        #select the stylesheets to show
-        self.stylesheetdata = {}
-        stylelist = []
-        for style in CSS_FILES:
-            stylelist.append([style[0], style[1]])
-        for i, stylesheet in zip(range(len(stylelist)), stylelist):
-            key = ""
-            for word in stylesheet[0].split(' '):
-                key += word.capitalize()
-            key = key.replace(' ','')
-            add_menuitem(menu, stylesheet[0], stylesheet[1] , 
-                               _make_callback(self._set_mapstylesheet,
-                                             stylesheet[1]))
-            self.stylesheetdata[key] = [stylesheet[0], stylesheet[1]]
-        return menu
+    #def __create_styles_menu_actions(self):
+    #    """
+    #    Function creating a menu and actions that are used as dropdown menu
+    #    from the menutoolbutton
+    #    """
+    #    # disable msg=W0612 # i is unused
+    #    # pylint: disable-msg=W0612
+    #    menu = gtk.Menu()
+    #    #select the stylesheets to show
+    #    self.stylesheetdata = {}
+    #    stylelist = []
+    #    for style in CSS_FILES:
+    #        stylelist.append([style[0], style[1]])
+    #    for i, stylesheet in zip(range(len(stylelist)), stylelist):
+    #        key = ""
+    #        for word in stylesheet[0].split(' '):
+    #            key += word.capitalize()
+    #        key = key.replace(' ','')
+    #        add_menuitem(menu, stylesheet[0], stylesheet[1] , 
+    #                           _make_callback(self._set_mapstylesheet,
+    #                                         stylesheet[1]))
+    #        self.stylesheetdata[key] = [stylesheet[0], stylesheet[1]]
+    #    return menu
 
-    def _mapstyle_label(self):
-        """
-        return the current label for the menutoolbutton
-        """
-        return self.stylesheet
+    #def _mapstyle_label(self):
+    #    """
+    #    return the current label for the menutoolbutton
+    #    """
+    #    return self.stylesheet
 
-    def _set_mapstylesheet(self, obj):
-        """
-        Set the style of the map view
-        """
-        self.stylesheet = obj
-        self._set_mapstylelabel(obj)
+    #def _set_mapstylesheet(self, obj):
+    #    """
+    #    Set the style of the map view
+    #    """
+    #    self.stylesheet = obj
+    #    self._set_mapstylelabel(obj)
 
-    def _set_mapstylelabel(self, obj):
-        """
-        Set the style label in the selection button.
-        """
-        for stylesheet in self.stylesheetdata.keys():
-            if obj == self.stylesheetdata[stylesheet][1]:
-                self.stylesheetlbl.set_text(self.stylesheetdata[stylesheet][0])
+    #def _set_mapstylelabel(self, obj):
+    #    """
+    #    Set the style label in the selection button.
+    #    """
+    #    for stylesheet in self.stylesheetdata.keys():
+    #        if obj == self.stylesheetdata[stylesheet][1]:
+    #            self.stylesheetlbl.set_text(self.stylesheetdata[stylesheet][0])
 
-    def _gotostyle(self, obj): # pylint: disable-msg=W0613
-        """
-        Change the style of the map view
-        """
-        if not self.uistate.get_active('Person'):
-            return
-        self.filter_toggle(None, None, None, None)
-        self._geo_places()
+    #def _gotostyle(self, obj): # pylint: disable-msg=W0613
+    #    """
+    #    Change the style of the map view
+    #    """
+    #    if not self.uistate.get_active('Person'):
+    #        return
+    #    self.filter_toggle(None, None, None, None)
+    #    self._geo_places()
 
     def _goto_active_person(self, handle=None): # pylint: disable-msg=W0613
         """
@@ -1071,10 +1147,10 @@ class GeoView(HtmlView):
         else:
             self.usedmap = "openstreetmap"
         self._change_map(self.usedmap)
-        self._set_provider_icon()
+        self._set_provider_icon(button.get_active())
         self._ask_year_selection(self.last_year)
 
-    def _set_provider_icon(self):
+    def _set_provider_icon(self, state):
         """
         Change the provider icon depending on the button state.
         """
@@ -1082,7 +1158,7 @@ class GeoView(HtmlView):
         widgets = actionstyles.get_proxies()
         for widget in widgets :
             if isinstance(widget, gtk.ToggleToolButton):
-                if self.provider_action.get_action('Provider').get_active():
+                if state:
                     widget.set_stock_id('gramps-geo-altmap')
                 else:
                     widget.set_stock_id('gramps-geo-mainmap')
