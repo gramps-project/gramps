@@ -1350,12 +1350,13 @@ def navigation_label(db, nav_type, handle):
     elif nav_type == 'Event':
         obj = db.get_event_from_handle(handle)
         if obj:
-            type = obj.get_type()
             who = get_participant_from_event(db, handle)
             desc = obj.get_description()
-            label = '%s - %s' % (type, who)
+            label = obj.get_type()
             if desc:
                 label = '%s - %s' % (label, desc)
+            if who:
+                label = '%s - %s' % (label, who)
     elif nav_type == 'Place':
         obj = db.get_place_from_handle(handle)
         if obj:
