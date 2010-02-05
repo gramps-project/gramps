@@ -647,8 +647,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 path = self.on_get_path(node)
                 iter = self.get_iter(path)
             self.rows_reordered(path, iter, rows)
-            for child in node.children:
-                self._reverse_level(self.nodemap.node(child[1]))
+            if self.nrgroups > 1:
+                for child in node.children:
+                    self._reverse_level(self.nodemap.node(child[1]))
 
     def get_tree_levels(self):
         """
