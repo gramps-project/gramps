@@ -1798,7 +1798,13 @@ def get_relationship_calculator(reinit=False):
                 lang = locale.getdefaultlocale()[0]
             lang_set = False
         __RELCALC_CLASS = RelationshipCalculator
-        # set correct relationship calculator based on LANG
+        # See if lang begins with en_, English_ or english_
+        # If so return standard relationship calculator.
+        enlang = lang.split('_')[0].lower()
+        if ('en' in enlang) or ('english' in enlang):
+            return __RELCALC_CLASS()
+        # set correct non English relationship calculator based on LANG
+        # or on locale.getlocale() or if that fails locale.getdeafultlocale()
         relation_translation_found = False
         for plugin in PluginRegister.get_instance().relcalc_plugins():
             if lang in plugin.lang_list:
