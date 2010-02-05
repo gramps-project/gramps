@@ -203,6 +203,8 @@ class RelationshipView(NavigationView):
         self.redraw()
 
     def config_update(self, client, cnxn_id, entry, data):
+        self.show_siblings = self._config.get('preferences.family-siblings')
+        self.show_details = self._config.get('preferences.family-details')
         self.redraw()
 
     def build_tree(self):
@@ -341,8 +343,6 @@ class RelationshipView(NavigationView):
               </placeholder>
             </menu>
             <menu action="ViewMenu">
-              <menuitem action="Siblings"/>
-              <menuitem action="Details"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -403,13 +403,6 @@ class RelationshipView(NavigationView):
         self._add_action_group(self.order_action)
         self._add_action_group(self.family_action)
 
-        self._add_toggle_action('Details', None, _('Show Details'), 
-                                None, None, self.details_toggle, 
-                                self.show_details)
-        self._add_toggle_action('Siblings', None, _('Show Siblings'), 
-                                None, None, self.siblings_toggle, 
-                                self.show_siblings)
-
         self.order_action.set_sensitive(self.reorder_sensitive)
         self.family_action.set_sensitive(False)
 
@@ -419,16 +412,6 @@ class RelationshipView(NavigationView):
                          self.dbstate, self.uistate)
         except Errors.WindowActiveError:
             return
-
-    def siblings_toggle(self, obj):
-        self.show_siblings = obj.get_active()
-        self.change_person(self.get_active())
-        self._config.set('preferences.family-siblings', self.show_siblings)
-
-    def details_toggle(self, obj):
-        self.show_details = obj.get_active()
-        self.change_person(self.get_active())
-        self._config.set('preferences.family-details', self.show_details)
 
     def change_db(self, db):
         #reset the connects
@@ -1611,6 +1594,10 @@ class RelationshipView(NavigationView):
                           self.config_update)
         self._config.connect("preferences.relation-display-theme",
                           self.config_update)
+        self._config.connect("preferences.family-siblings",
+                          self.config_update)
+        self._config.connect("preferences.family-details",
+                          self.config_update)
         config.connect("interface.toolbar-on",
                           self.shade_update)
 
@@ -1637,6 +1624,23 @@ class RelationshipView(NavigationView):
 
         return _('Layout'), table
 
+    def content_panel(self, configdialog):
+        """
+        Function that builds the widget in the configuration dialog
+        """
+        table = gtk.Table(2, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+        configdialog.add_checkbox(table, 
+                _('Show Details'), 
+                0, 'preferences.family-details')
+        configdialog.add_checkbox(table, 
+                _('Show Siblings'), 
+                1, 'preferences.family-siblings')
+
+        return _('Content'), table
+
     def _config_update_theme(self, obj):
         """
         callback from the theme checkbox
@@ -1657,7 +1661,7 @@ class RelationshipView(NavigationView):
         
         :return: list of functions
         """
-        return [self.config_panel]
+        return [self.content_panel, self.config_panel]
 
 #-------------------------------------------------------------------------
 #

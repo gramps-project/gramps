@@ -96,7 +96,7 @@ class ColumnOrder(gtk.VBox):
         hbox.set_spacing(10)
         hbox.pack_start(gtk.Label(' '))
         scroll = gtk.ScrolledWindow()
-        scroll.set_size_request(250,300)
+        scroll.set_size_request(300,300)
         hbox.pack_start(scroll)
         self.tree = gtk.TreeView()
         self.tree.set_reorderable(True)
