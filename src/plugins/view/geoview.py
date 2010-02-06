@@ -249,7 +249,6 @@ class GeoView(HtmlView):
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
-        self.usedmap = "openstreetmap"
         self.placeslist = []
         self.stylesheetlabel = []
         self.stylesheetdata = {}
@@ -342,6 +341,12 @@ class GeoView(HtmlView):
         self.signal_map = {'place-add': self._place_changed,
                            'place-update' : self._place_changed}
         self.init_config()
+        self.alternate_provider = self._config.get('preferences.alternate-provider')
+        if self.alternate_provider:
+            self.usedmap = "google"
+        else:
+            self.usedmap = "openstreetmap"
+        self.provider_in_toolbar = self._config.get('preferences.provider-in-toolbar')
 
     def can_configure(self):
         """
@@ -366,7 +371,8 @@ class GeoView(HtmlView):
                           self.config_update)
 
     def config_update(self, client, cnxn_id, entry, data):
-        if self._config.get('preferences.alternate-provider'):
+        self.alternate_provider = self._config.get('preferences.alternate-provider')
+        if self.alternate_provider:
             self.usedmap = "google"
         else:
             self.usedmap = "openstreetmap"
@@ -375,7 +381,7 @@ class GeoView(HtmlView):
         else:
             self.provider_hide_show(False)
         self._change_map(self.usedmap)
-        self._set_provider_icon(self._config.get('preferences.alternate-provider'))
+        self._set_provider_icon(self.alternate_provider)
         self._ask_year_selection(self.last_year)
 
     def provider_hide_show(self, state):
@@ -669,6 +675,7 @@ class GeoView(HtmlView):
             config.set('geoview.longitude', "0.0")
             config.set('geoview.map', "person")
         config.set('geoview.stylesheet', self.stylesheet)
+        self._config.save()
 
     def init_parent_signals_for_map(self, widget, event):
         """
@@ -1144,8 +1151,10 @@ class GeoView(HtmlView):
         """
         if button.get_active():
             self.usedmap = "google"
+            self._config.set('preferences.alternate-provider', True)
         else:
             self.usedmap = "openstreetmap"
+            self._config.set('preferences.alternate-provider', False)
         self._change_map(self.usedmap)
         self._set_provider_icon(button.get_active())
         self._ask_year_selection(self.last_year)
