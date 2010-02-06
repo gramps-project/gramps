@@ -250,9 +250,6 @@ class GeoView(HtmlView):
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
         self.placeslist = []
-        self.stylesheetlabel = []
-        self.stylesheetdata = {}
-        self.stylesheetlbl = None
         self.displaytype = "person"
         self.nbmarkers = 0
         self.nbplaces = 0
@@ -278,9 +275,6 @@ class GeoView(HtmlView):
                                     config.get('geoview.latitude'),
                                     config.get('geoview.longitude'),
                                     "D.D8")
-        self.stylesheet = config.get('geoview.stylesheet')
-        if ( self.stylesheet == "" ):
-            self.stylesheet = CSS_FILES[0][1]
         self.minyear = self.maxyear = 1
         self.maxbut = 10
         self.mapview = None
@@ -674,7 +668,6 @@ class GeoView(HtmlView):
             config.set('geoview.latitude', "0.0")
             config.set('geoview.longitude', "0.0")
             config.set('geoview.map', "person")
-        config.set('geoview.stylesheet', self.stylesheet)
         self._config.save()
 
     def init_parent_signals_for_map(self, widget, event):
@@ -699,7 +692,7 @@ class GeoView(HtmlView):
         gws = widget.get_allocation()
         self.width = gws.width
         self.height = gws.height
-        self.header_size = self.box1.get_allocation().height + 8
+        self.header_size = self.box1.get_allocation().height + 20
         if not self.uistate.get_active('Person'):
             return
         self.external_uri()
@@ -836,12 +829,6 @@ class GeoView(HtmlView):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
-              <toolitem action="Refresh"/>
-            </placeholder>
-              <toolitem action="StyleSheet"/>
         """
         return '''<ui>
           <toolbar name="ToolBar">
@@ -909,10 +896,6 @@ class GeoView(HtmlView):
         self._add_action('EventMaps', 'gramps-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
-        #self._add_toolmenu_action('StyleSheet', _('Selecting stylesheet ...'),
-        #                _("Reload the map with new style."),
-        #                self._gotostyle,
-        #                _('Select a StyleSheet'))
         self._add_toggle_action('Filter', None, _('_Filter Sidebar'), 
                                 callback=self.filter_toggle_action,
                                 value=config.get('interface.filter'))
@@ -946,91 +929,13 @@ class GeoView(HtmlView):
           5. store label so it can be changed when selection changes
         """
         PageView.change_page(self)
-        # menutoolbutton actions are stored in PageView class, 
-        # obtain the widgets where we need to add to menu
-        #actionstyles = self.action_toolmenu['StyleSheet']
-        #widgets = actionstyles.get_proxies()
-        #mmenu = self.__create_styles_menu_actions()
-
-        #if not self.stylesheetdata:
-        #    return
-
-        #self.stylesheetlabel = []
-
-        #store all gtk labels to be able to update label on selection change
-        #for widget in widgets :
-        #    if isinstance(widget, gtk.MenuToolButton):
-        #        widget.set_menu(mmenu)
-        #        if gtk.pygtk_version >= (2, 12, 0):
-        #            widget.set_arrow_tooltip_text(actionstyles.arrowtooltip)
-        #        lbl = gtk.Label(self._mapstyle_label())
-        #        self.stylesheetlbl = lbl
-        #        lbl.show()
-        #        self.stylesheetlabel.append(lbl)
-        #        widget.set_label_widget(self.stylesheetlabel[-1])
-        #        widget.set_stock_id(gtk.STOCK_SELECT_FONT)
         self._set_lock_unlock_icon()
-        #self._set_mapstylelabel(self.stylesheet)
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
         self.filter_toggle(None, None, None, None)
         if not self._config.get('preferences.provider-in-toolbar'):
             self.provider_hide_show(False)
         self._geo_places()
-
-    #def __create_styles_menu_actions(self):
-    #    """
-    #    Function creating a menu and actions that are used as dropdown menu
-    #    from the menutoolbutton
-    #    """
-    #    # disable msg=W0612 # i is unused
-    #    # pylint: disable-msg=W0612
-    #    menu = gtk.Menu()
-    #    #select the stylesheets to show
-    #    self.stylesheetdata = {}
-    #    stylelist = []
-    #    for style in CSS_FILES:
-    #        stylelist.append([style[0], style[1]])
-    #    for i, stylesheet in zip(range(len(stylelist)), stylelist):
-    #        key = ""
-    #        for word in stylesheet[0].split(' '):
-    #            key += word.capitalize()
-    #        key = key.replace(' ','')
-    #        add_menuitem(menu, stylesheet[0], stylesheet[1] , 
-    #                           _make_callback(self._set_mapstylesheet,
-    #                                         stylesheet[1]))
-    #        self.stylesheetdata[key] = [stylesheet[0], stylesheet[1]]
-    #    return menu
-
-    #def _mapstyle_label(self):
-    #    """
-    #    return the current label for the menutoolbutton
-    #    """
-    #    return self.stylesheet
-
-    #def _set_mapstylesheet(self, obj):
-    #    """
-    #    Set the style of the map view
-    #    """
-    #    self.stylesheet = obj
-    #    self._set_mapstylelabel(obj)
-
-    #def _set_mapstylelabel(self, obj):
-    #    """
-    #    Set the style label in the selection button.
-    #    """
-    #    for stylesheet in self.stylesheetdata.keys():
-    #        if obj == self.stylesheetdata[stylesheet][1]:
-    #            self.stylesheetlbl.set_text(self.stylesheetdata[stylesheet][0])
-
-    #def _gotostyle(self, obj): # pylint: disable-msg=W0613
-    #    """
-    #    Change the style of the map view
-    #    """
-    #    if not self.uistate.get_active('Person'):
-    #        return
-    #    self.filter_toggle(None, None, None, None)
-    #    self._geo_places()
 
     def _goto_active_person(self, handle=None): # pylint: disable-msg=W0613
         """
@@ -2044,24 +1949,11 @@ class GeoView(HtmlView):
 
     def _add_stylesheet(self):
         """
-        return all the css styles sheet needed for GeoView.
-        We use two styles sheets :
-        The first one based on the default used by NarrativeWeb.
-        The second one is specific to GeoView.
+        Return the css style sheet needed for GeoView.
         """
-        return u''
         # Get the default stylesheet.
         dblp = "<link media=\"screen\" "
         delp = "type=\"text/css\" rel=\"stylesheet\" />\n"
-        if self.stylesheet != "":
-            cpath = os.path.join(const.ROOT_DIR,
-                                 'data',
-                                 '%s' % self.stylesheet
-                                )
-            dpath = urlparse.urlunsplit(('file', '',
-                                         URL_SEP.join(cpath.split(os.sep)),
-                                         '', ''))
-            dcp = "href=\"%s\" " % dpath
         # Get the GeoView stylesheet.
         cpath = os.path.join(const.ROOT_DIR,
                              'data',
@@ -2071,10 +1963,7 @@ class GeoView(HtmlView):
                                      URL_SEP.join(cpath.split(os.sep)),
                                      '', ''))
         gcp = "href=\"%s\" " % gpath
-        if self.stylesheet != "":
-            return u'%s%s%s  %s%s%s' % (dblp, dcp, delp, dblp, gcp, delp)
-        else:
-            return u'%s%s%s' % (dblp, gcp, delp)
+        return u'%s%s%s' % (dblp, gcp, delp)
     
     def _openurl(self,url):
         """
