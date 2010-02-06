@@ -1801,7 +1801,6 @@ def get_relationship_calculator(reinit=False):
         # See if lang begins with en_, English_ or english_
         # If so return standard relationship calculator.
         enlang = lang.split('_')[0].lower()
-        print enlang
         if ('en' == enlang) or ('english' == enlang):
             return __RELCALC_CLASS()
         # set correct non English relationship calculator based on LANG
