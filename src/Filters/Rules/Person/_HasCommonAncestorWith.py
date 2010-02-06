@@ -82,8 +82,10 @@ class HasCommonAncestorWith(Rule):
 
     def has_common_ancestor(self, other):
         for handle in self.with_people:
-            if self.ancestor_cache[handle] & \
-                    self.ancestor_cache[other.handle]:
+            if ((handle in self.ancestor_cache and 
+                 self.ancestor_cache[handle]) & 
+                (other.handle in self.ancestor_cache and 
+                 self.ancestor_cache[other.handle])):
                 return True
         return False
 
