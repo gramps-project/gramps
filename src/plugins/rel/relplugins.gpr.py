@@ -105,11 +105,11 @@ plg.status = STABLE
 plg.fname = 'rel_fr.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["fr", "FR", "fr_FR", "fr_CA", "francais",
-                 "Francais", "fr_FR.UTF8", "fr_FR@euro", 
+plg.lang_list = ["fr", "FR", "fr_FR", "fr_CA", "français",
+                 "Français", "fr_FR.UTF8", "fr_FR@euro", 
                  "fr_FR.UTF8@euro", "french", "French",
                  "fr_FR.UTF-8", "fr_FR.utf-8", "fr_FR.utf8",
-                 "fr_CA.UTF-8"]
+                 "fr_CA.UTF-8", "Français_France"]
 
 # hr
 plg = newplugin()
@@ -121,8 +121,8 @@ plg.status = STABLE
 plg.fname = 'rel_hr.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["hrvatski", "Hrvatski", "croatian", "Croatian",
-                        "hr", "HR", "hr_HR", "hr_HR.UTF-8", "hr_HR.utf-8"]
+plg.lang_list = ["hrvatski", "Hrvatski", "croatian", "Croatian", "hr", "HR",
+                 "hr_HR", "hr_HR.UTF-8", "hr_HR.utf-8", "Croatian_Croatia"]
 
 # hu
 plg = newplugin()
