@@ -71,7 +71,7 @@ class NoteSidebarFilter(SidebarFilter):
 
         self.generic = gtk.ComboBox()
 
-        SidebarFilter.__init__(self, dbstate, uistate)
+        SidebarFilter.__init__(self, dbstate, uistate, "Note")
 
     def create_widget(self):
         cell = gtk.CellRendererText()
@@ -84,7 +84,7 @@ class NoteSidebarFilter(SidebarFilter):
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Text'), self.filter_text)
         self.add_entry(_('Type'), self.ntype)
-        self.add_entry(_('Custom filter'), self.generic)
+        self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):

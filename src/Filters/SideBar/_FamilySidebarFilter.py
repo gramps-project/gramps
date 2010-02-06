@@ -98,7 +98,7 @@ class FamilySidebarFilter(SidebarFilter):
 
         self.generic = gtk.ComboBox()
 
-        SidebarFilter.__init__(self, dbstate, uistate)
+        SidebarFilter.__init__(self, dbstate, uistate, "Family")
 
     def create_widget(self):
         cell = gtk.CellRendererText()
@@ -116,7 +116,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.add_entry(_('Family Event'), self.etype)
         self.add_entry(_('Marker'), self.mtype)
         self.add_text_entry(_('Family Note'), self.filter_note)
-        self.add_entry(_('Custom filter'), self.generic)
+        self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):

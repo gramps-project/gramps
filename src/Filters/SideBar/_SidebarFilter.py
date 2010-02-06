@@ -34,7 +34,7 @@ class SidebarFilter(object):
     _FILTER_WIDTH = 200
     _FILTER_ELLIPSIZE = pango.ELLIPSIZE_END
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, namespace):
         self.position = 1
         self.table = gtk.Table(4, 11)
         self.table.set_border_width(6)
@@ -48,6 +48,7 @@ class SidebarFilter(object):
         uistate.connect('filters-changed', self.on_filters_changed)
         self.uistate = uistate
         self.dbstate = dbstate
+        self.namespace = namespace
 
     def _init_interface(self):
         self.table.attach(widgets.MarkupLabel(_('<b>Filter</b>')),
@@ -137,4 +138,49 @@ class SidebarFilter(object):
 
     def on_filters_changed(self, namespace):
         pass
+
+    def add_filter_entry(self, text, widget):
+        """
+        Adds the text and widget to GUI, with an Edit button.
+        """
+        hbox = gtk.HBox()
+        hbox.pack_start(widget)
+        hbox.pack_start(widgets.SimpleButton(gtk.STOCK_EDIT, self.edit_filter))
+        self.add_entry(text, hbox)
+
+    def edit_filter(self, obj):
+        """
+        Callback which invokes the EditFilter dialog. Will create new
+        filter if called if none is selected.
+        """
+        from gui.filtereditor import EditFilter
+        from Filters import FilterList, GenericFilterFactory
+        import const
+        the_filter = None
+        filterdb = FilterList(const.CUSTOM_FILTERS)
+        filterdb.load()
+        if self.generic.get_active() != 0:
+            model = self.generic.get_model()
+            node = self.generic.get_active_iter()
+            if node:
+                sel_filter = model.get_value(node, 1)
+                # the_filter needs to be a particular object for editor
+                for filt in filterdb.get_filters(self.namespace):
+                    if filt.get_name() == sel_filter.get_name():
+                        the_filter = filt
+        else:
+            the_filter = GenericFilterFactory(self.namespace)()
+        if the_filter:
+            EditFilter(self.namespace, self.dbstate, self.uistate, [],
+                       the_filter, filterdb,
+                       lambda : self.edit_filter_save(filterdb))
+
+    def edit_filter_save(self, filterdb):
+        """
+        If a filter changed, save them all. Reloads, and also calls callback.
+        """
+        from Filters import reload_custom_filters
+        filterdb.save()
+        reload_custom_filters()
+        self.on_filters_changed(self.namespace)
 

@@ -51,7 +51,6 @@ from Filters.Rules.Person import (RegExpName, SearchName, RegExpIdOf,
                                   HasNoteMatchingSubstringOf, MatchesFilter)
 from Filters import GenericFilter, build_filter_model, Rules
 
-
 def extract_text(entry_widget):
     """
     Extract the text from the entry widget, strips off any extra spaces, 
@@ -102,7 +101,7 @@ class PersonSidebarFilter(SidebarFilter):
 
         self.generic = gtk.ComboBox()
 
-        SidebarFilter.__init__(self, dbstate, uistate)
+        SidebarFilter.__init__(self, dbstate, uistate, "Person")
 
     def create_widget(self):
         cell = gtk.CellRendererText()
@@ -133,7 +132,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_entry(_('Event'), self.etype)
         self.add_entry(_('Marker'), self.mtype)
         self.add_text_entry(_('Note'), self.filter_note)
-        self.add_entry(_('Custom filter'), self.generic)
+        self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
@@ -146,7 +145,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.etype.child.set_text(u'')
         self.mtype.child.set_text(u'')
         self.generic.set_active(0)
-        
+
     def get_filter(self):
         """
         Extracts the text strings from the sidebar, and uses them to build up

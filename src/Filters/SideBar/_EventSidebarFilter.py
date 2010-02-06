@@ -77,7 +77,7 @@ class EventSidebarFilter(SidebarFilter):
 
         self.generic = gtk.ComboBox()
 
-        SidebarFilter.__init__(self, dbstate, uistate)
+        SidebarFilter.__init__(self, dbstate, uistate, "Event")
 
     def create_widget(self):
         cell = gtk.CellRendererText()
@@ -93,7 +93,7 @@ class EventSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Date'), self.filter_date)
         self.add_text_entry(_('Place'), self.filter_place)
         self.add_text_entry(_('Note'), self.filter_note)
-        self.add_entry(_('Custom filter'), self.generic)
+        self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
