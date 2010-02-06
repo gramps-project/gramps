@@ -913,7 +913,7 @@ class GeoView(HtmlView):
         #                _("Reload the map with new style."),
         #                self._gotostyle,
         #                _('Select a StyleSheet'))
-        self._add_toggle_action('Filter', None, _('_Filter'), 
+        self._add_toggle_action('Filter', None, _('_Filter Sidebar'), 
                                 callback=self.filter_toggle_action,
                                 value=config.get('interface.filter'))
         config.connect('interface.filter',self.filter_toggle)
