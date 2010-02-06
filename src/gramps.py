@@ -28,11 +28,11 @@
 #-------------------------------------------------------------------------
 import sys
 import os
-import locale
 import const
 import signal
 import gettext
 _ = gettext.gettext
+import locale
 import logging
 
 LOG = logging.getLogger(".")
@@ -50,6 +50,12 @@ import TransUtils
 # Load internationalization setup
 #
 #-------------------------------------------------------------------------
+
+#the order in which bindtextdomain on gettext and on locale is called
+#appears important, so we refrain from doing first all gettext.
+#
+#TransUtils.setup_gettext()
+gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
 try:
     locale.setlocale(locale.LC_ALL,'C')
     locale.setlocale(locale.LC_ALL,'')
@@ -58,8 +64,18 @@ except locale.Error:
 except ValueError:
     pass
 
+gettext.textdomain(TransUtils.LOCALEDOMAIN)
+gettext.install(TransUtils.LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
+
+try:
+    locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+    #locale.textdomain(TransUtils.LOCALEDOMAIN)
+except locale.Error:
+    print 'No translation in some gtk.Builder strings, '\
+          'call TransUtils.setup_windows_gtk ??'
+
 LOG.debug('Using locale:', locale.getlocale())
-TransUtils.setup_gettext()
+
 
 #-------------------------------------------------------------------------
 #

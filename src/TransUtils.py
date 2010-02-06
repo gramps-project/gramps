@@ -33,6 +33,7 @@ Provide translation assistance
 import gettext
 import sys
 import os
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -69,11 +70,27 @@ def setup_gettext():
     """
     gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
     gettext.textdomain(LOCALEDOMAIN)
+    try:
+        locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+    except ValueError:
+        print 'Failed to bind text domain, gtk.Builder() has no translation'
     
     #following installs _ as a python function, we avoid this as TransUtils is
     #used sometimes:
     #gettext.install(LOCALEDOMAIN, LOCALEDIR, unicode=1)
-    
+
+def setup_windows_gtk():
+    """ function to decide if needed on windows
+    This function should be called on windows instead of locale.bindtextdomain
+    """
+    from Utils import win
+    if win():
+        try:
+            libintl = ctypes.cdll.LoadLibrary("C:\\GTK\\gtk-2.18.5\\bin\\intl.dll")
+            libintl.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
+        except:
+            print "Error Loading translations into gtk.builder files"
+
 def get_localedomain():
     """
     Get the LOCALEDOMAIN used for the Gramps application.

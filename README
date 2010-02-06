@@ -10,6 +10,15 @@ The following packages *MUST* be installed in order for Gramps to work:
    librsvg2 (svg icon view)
    xdg-utils
 
+The following package is needed for full translation of the interface
+to your language:
+   language-pack-gnome-xx 
+                    Translation of GTK elements to your language, with             
+                    with xx your language code eg for Dutch you need
+                    language-pack-gnome-nl. The translation of the
+                    Gramps strings is included with the source code.
+
+
 The following packages are *STRONGLY RECOMMENDED* to be installed:
    GraphViz         Enable creation of graphs using GraphViz engine
                     http://www.graphviz.org
