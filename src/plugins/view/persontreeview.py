@@ -56,7 +56,7 @@ class PersonTreeView(BasePersonView):
     """
     def __init__(self, dbstate, uistate, nav_group=0):
         BasePersonView.__init__(self, dbstate, uistate,
-                               _('People'), PersonTreeModel,
+                               _('People Tree View'), PersonTreeModel,
                                nav_group=nav_group)
 
     def type_list(self):
