@@ -557,13 +557,12 @@ class EditRule(ManagedWindow.ManagedWindow):
             node = self.store.insert_after(top_node[category], prev)
             self.store.set(node, 0, class_obj.name, 1, class_obj)
 
-            #
             # if this is an edit rule, save the node
             if class_obj == self.sel_class:
-                sel_node = node
+                sel_node = (top_node[category], node)
 
         if sel_node:
-            self.selection.select_iter(sel_node)
+            self.select_iter(sel_node)
             page = self.class2page[self.active_rule.__class__]
             self.notebook.set_current_page(page)
             self.display_values(self.active_rule.__class__)
@@ -580,6 +579,17 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.get_widget('rule_editor_help').connect('clicked', self.on_help_clicked)
 
         self.show()
+
+    def select_iter(self, data):
+        """
+        Workaround to get self.selection to move to iter row.
+        self.selection.select_iter(iter) did not work, so we first
+        select the top_node iter, expand it, and then select_iter.
+        """
+        top_node, iter = data
+        self.selection.select_iter(top_node)
+        self.expand_collapse()
+        self.selection.select_iter(iter)
 
     def _button_press(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
