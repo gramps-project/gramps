@@ -406,13 +406,13 @@ class GeoView(HtmlView):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         configdialog.add_text(table, 
-                _('If the alternate provider is selected,'
-                  ' then we use googlemaps else we use openstreetmap.'), 1)
+                _("If 'Use alternate provider' is selected below,"
+                  ' Google maps is used, otherwise OpenStreetMap.'), 1)
         configdialog.add_checkbox(table, 
-                _('Alternate provider.'),
+                _('Use alternate provider.'),
                 2, 'preferences.alternate-provider')
         configdialog.add_checkbox(table, 
-                _('Add provider selection to toolbar.'),
+                _('Add a provider toggle button to the toolbar.'),
                 3, 'preferences.provider-in-toolbar')
 
         return _('Map provider'), table
