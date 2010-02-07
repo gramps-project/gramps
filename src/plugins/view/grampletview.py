@@ -57,7 +57,7 @@ class GrampletView(PageView):
         the base class. Returns a gtk container widget.
         """
         # load the user's gramplets and set columns, etc
-        return GrampletPane(self, self.dbstate, self.uistate)
+        return GrampletPane("Gramplets_grampletview", self, self.dbstate, self.uistate)
 
     def define_actions(self):
         """

@@ -66,11 +66,7 @@ WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
 #
 #-------------------------------------------------------------------------
 PLUGMAN = GuiPluginManager.get_instance()
-
-GRAMPLET_FILENAME = os.path.join(const.HOME_DIR,"gramplets.ini")
 NL = "\n" 
-
-debug = False
 
 def AVAILABLE_GRAMPLETS():
     return [gplug.id for gplug in PLUGMAN.get_reg_gramplets()]
@@ -133,7 +129,6 @@ def get_gramplet_options_by_name(name):
     """
     Get options by gramplet name.
     """
-    if debug: print "name:", name
     if name in AVAILABLE_GRAMPLETS():
         return GET_AVAILABLE_GRAMPLETS(name).copy()
     else:
@@ -144,7 +139,6 @@ def get_gramplet_options_by_tname(name):
     """
     get options by translated name.
     """
-    if debug: print "name:", name
     for key in AVAILABLE_GRAMPLETS():
         if GET_AVAILABLE_GRAMPLETS(key)["tname"] == name:
             return GET_AVAILABLE_GRAMPLETS(key).copy()
@@ -785,8 +779,9 @@ class GrampletPane(gtk.ScrolledWindow):
                 if gramplet.state == "minimized":
                     gramplet.set_state("minimized")
 
-    def __init__(self, pageview, dbstate, uistate):
+    def __init__(self, configfile, pageview, dbstate, uistate):
         gtk.ScrolledWindow.__init__(self)
+        self.configfile = os.path.join(const.USER_PLUGINS, "%s.ini" % configfile)
         self.dbstate = dbstate
         self.uistate = uistate
         self.pageview = pageview
@@ -907,7 +902,7 @@ class GrampletPane(gtk.ScrolledWindow):
     def load_gramplets(self):
         self.column_count = 2 # default for new user
         retval = []
-        filename = GRAMPLET_FILENAME
+        filename = self.configfile
         if filename and os.path.exists(filename):
             cp = ConfigParser.ConfigParser()
             cp.read(filename)
@@ -936,10 +931,9 @@ class GrampletPane(gtk.ScrolledWindow):
         return retval
 
     def save(self):
-        if debug: print "saving"
         if len(self.frame_map) + len(self.detached_gramplets) == 0:
             return # something is the matter
-        filename = GRAMPLET_FILENAME
+        filename = self.configfile
         try:
             fp = open(filename, "w")
         except:
