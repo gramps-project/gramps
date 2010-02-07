@@ -61,6 +61,7 @@ import gobject
 from QuestionDialog import ErrorDialog
 import config
 import Utils
+import constfunc
 from gui.pluginmanager import GuiPluginManager
 from gen.plug import (START, END)
 
@@ -77,7 +78,7 @@ def register_stock_icons ():
     """
         
     #iconpath to the base image. The front of the list has highest priority 
-    if Utils.win():
+    if constfunc.win():
         iconpaths = [
                     (os.path.join(const.IMAGE_DIR, '48x48'), '.png'), 
                     (const.IMAGE_DIR, '.png'), 
