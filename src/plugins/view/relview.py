@@ -445,6 +445,7 @@ class RelationshipView(NavigationView):
             self.change_person(None)
         
     def change_person(self, obj):
+        self.change_active(obj)
         try:
             return self._change_person(obj)
         except AttributeError, msg:
