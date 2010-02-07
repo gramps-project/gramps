@@ -779,9 +779,10 @@ class GrampletPane(gtk.ScrolledWindow):
                 if gramplet.state == "minimized":
                     gramplet.set_state("minimized")
 
-    def __init__(self, configfile, pageview, dbstate, uistate):
+    def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
         gtk.ScrolledWindow.__init__(self)
-        self.configfile = os.path.join(const.USER_PLUGINS, "%s.ini" % configfile)
+        self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
+        self.column_count = kwargs.get("column_count", 2) # default for new user
         self.dbstate = dbstate
         self.uistate = uistate
         self.pageview = pageview
@@ -900,7 +901,6 @@ class GrampletPane(gtk.ScrolledWindow):
                 gramplet.close() 
 
     def load_gramplets(self):
-        self.column_count = 2 # default for new user
         retval = []
         filename = self.configfile
         if filename and os.path.exists(filename):
