@@ -300,6 +300,7 @@ src/gui/views/treemodels/treebasemodel.py
 # gui/widgets - the GUI widgets package
 src/gui/widgets/buttons.py
 src/gui/widgets/expandcollapsearrow.py
+src/gui/widgets/grampletpane.py
 src/gui/widgets/labels.py
 src/gui/widgets/menutoolbuttonaction.py
 src/gui/widgets/progressdialog.py
@@ -833,7 +834,7 @@ src/Filters/SideBar/_NoteSidebarFilter.py
 src/plugins/docgen/gtkprint.glade
 src/glade/editperson.glade
 src/glade/gramps.glade
-src/glade/grampletview.glade
+src/glade/grampletpane.glade
 src/glade/baseselector.glade
 src/glade/reorder.glade
 src/glade/tipofday.glade

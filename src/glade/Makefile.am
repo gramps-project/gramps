@@ -11,7 +11,7 @@ dist_pkgdata_DATA = \
 	rule.glade\
 	scratchpad.glade\
 	papermenu.glade \
-	grampletview.glade \
+	grampletpane.glade \
 	baseselector.glade \
 	reorder.glade \
 	tipofday.glade \

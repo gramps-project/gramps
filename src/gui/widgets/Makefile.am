@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	__init__.py \
 	buttons.py \
 	expandcollapsearrow.py \
+	grampletpane.py \
 	labels.py \
 	linkbox.py \
 	menutoolbuttonaction.py \
