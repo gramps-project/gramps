@@ -33,7 +33,6 @@ Some independet constants
 import sys
 import os
 import platform
-#import locale
 
 #-------------------------------------------------------------------------
 #
