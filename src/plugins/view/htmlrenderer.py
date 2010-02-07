@@ -51,6 +51,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.views.pageview import PageView
 import Utils
+import constfunc
 import config
 from const import TEMP_DIR
 
@@ -61,11 +62,11 @@ from const import TEMP_DIR
 #-------------------------------------------------------------------------
 
 def get_identity():
-    if Utils.lin():
+    if constfunc.lin():
         platform = "X11"
-    elif Utils.win():
+    elif constfunc.win():
         platform = "Windows"
-    elif Utils.mac():
+    elif constfunc.mac():
         platform = "Macintosh"
     else:
         platform = "Unknown"
