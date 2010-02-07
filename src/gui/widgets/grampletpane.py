@@ -783,6 +783,8 @@ class GrampletPane(gtk.ScrolledWindow):
         gtk.ScrolledWindow.__init__(self)
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
         self.column_count = kwargs.get("column_count", 2) # default for new user
+        self.default_gramplets = kwargs.get("default_gramplets", 
+                ["Top Surnames Gramplet", "Welcome Gramplet"])
         self.dbstate = dbstate
         self.uistate = uistate
         self.pageview = pageview
@@ -925,7 +927,7 @@ class GrampletPane(gtk.ScrolledWindow):
                     retval.append((data["name"], data)) # name, opts
         else:
             # give defaults as currently known
-            for name in ["Top Surnames Gramplet", "Welcome Gramplet"]:
+            for name in self.default_gramplets:
                 if name in AVAILABLE_GRAMPLETS():
                     retval.append((name, GET_AVAILABLE_GRAMPLETS(name)))
         return retval
