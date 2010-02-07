@@ -152,12 +152,12 @@ def get_gramplet_options_by_tname(name):
     print ("Unknown gramplet name: '%s'" % name)
     return None
 
-def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
+def make_requested_gramplet(pane, name, opts, dbstate, uistate):
     """
     Make a GUI gramplet given its name.
     """
     if name in AVAILABLE_GRAMPLETS():
-        gui = GuiGramplet(viewpage, dbstate, uistate, **opts)
+        gui = GuiGramplet(pane, dbstate, uistate, **opts)
         if opts.get("content", None):
             pdata = PLUGMAN.get_plugin(opts["name"])
             module = PLUGMAN.load_plugin(pdata)
@@ -272,32 +272,32 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         Dock the detached GrampletWindow back in the column from where it came.
         """
         self.gramplet.gvoptions.hide()
-        self.gramplet.viewpage.detached_gramplets.remove(self.gramplet)
+        self.gramplet.pane.detached_gramplets.remove(self.gramplet)
         if self.docked_state == "minimized":
             self.gramplet.set_state("minimized")
         else:
             self.gramplet.set_state("maximized")
-        viewpage = self.gramplet.viewpage
+        pane = self.gramplet.pane
         col = self.gramplet.column
         stack = []
-        for gframe in viewpage.columns[col]:
-            gramplet = viewpage.frame_map[str(gframe)]
+        for gframe in pane.columns[col]:
+            gramplet = pane.frame_map[str(gframe)]
             if gramplet.row > self.gramplet.row:
-                viewpage.columns[col].remove(gframe)
+                pane.columns[col].remove(gframe)
                 stack.append(gframe)
         expand = self.gramplet.state == "maximized" and self.gramplet.expand
-        column = viewpage.columns[col]
-        parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
+        column = pane.columns[col]
+        parent = self.gramplet.pane.get_column_frame(self.gramplet.column)
         self.gramplet.mainframe.reparent(parent)
         if self.gramplet.pui:
-            self.gramplet.pui.active = self.gramplet.viewpage.active
+            self.gramplet.pui.active = self.gramplet.pane.pageview.active
         for gframe in stack:
-            gramplet = viewpage.frame_map[str(gframe)]
+            gramplet = pane.frame_map[str(gframe)]
             expand = gramplet.state == "maximized" and gramplet.expand
-            viewpage.columns[col].pack_start(gframe, expand=expand)
+            pane.columns[col].pack_start(gframe, expand=expand)
         # Now make sure they all have the correct expand:
-        for gframe in viewpage.columns[col]:
-            gramplet = viewpage.frame_map[str(gframe)]
+        for gframe in pane.columns[col]:
+            gramplet = pane.frame_map[str(gframe)]
             expand, fill, padding, pack =  column.query_child_packing(gramplet.mainframe)
             expand = gramplet.state == "maximized" and gramplet.expand
             column.set_child_packing(gramplet.mainframe, expand, fill, padding, pack)
@@ -315,11 +315,11 @@ class GuiGramplet(object):
     TARGET_TYPE_FRAME = 80
     LOCAL_DRAG_TYPE   = 'GRAMPLET'
     LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
-    def __init__(self, viewpage, dbstate, uistate, title, **kwargs):
+    def __init__(self, pane, dbstate, uistate, title, **kwargs):
         """
         Internal constructor for GUI portion of a gramplet.
         """
-        self.viewpage = viewpage
+        self.pane = pane
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = title
@@ -387,7 +387,7 @@ class GuiGramplet(object):
         if self.state == "detached":
             return
         self.state = "closed"
-        self.viewpage.closed_gramplets.append(self)
+        self.pane.closed_gramplets.append(self)
         self.mainframe.get_parent().remove(self.mainframe)
 
     def detach(self):
@@ -396,7 +396,7 @@ class GuiGramplet(object):
         """
         # hide buttons:
         #self.set_state("detached") 
-        self.viewpage.detached_gramplets.append(self)
+        self.pane.detached_gramplets.append(self)
         # make a window, and attach it there
         self.detached_window = GrampletWindow(self)
 
@@ -771,57 +771,44 @@ class GuiGramplet(object):
                     return True
         return False # did not handle event
 
-class MyScrolledWindow(gtk.ScrolledWindow):
+class GrampletPane(gtk.ScrolledWindow):
     def show_all(self):
         # first show them all:
         gtk.ScrolledWindow.show_all(self)
         # Hack to get around show_all that shows hidden items
         # do once, the first time showing
-        if self.viewpage:
-            gramplets = (g for g in self.viewpage.gramplet_map.itervalues() 
+        if self.pane:
+            gramplets = (g for g in self.pane.gramplet_map.itervalues() 
                             if g is not None)
-            self.viewpage = None
+            self.pane = None
             for gramplet in gramplets:
                 gramplet.gvoptions.hide()
                 if gramplet.state == "minimized":
                     gramplet.set_state("minimized")
 
-class GrampletView(PageView): 
-    """
-    GrampletView interface
-    """
-
-    def __init__(self, dbstate, uistate):
-        """
-        Create a GrampletView, with the current dbstate and uistate
-        """
-        PageView.__init__(self, _('Gramplets'), dbstate, uistate)
+    def __init__(self, pageview, dbstate, uistate):
+        gtk.ScrolledWindow.__init__(self)
+        self.dbstate = dbstate
+        self.uistate = uistate
+        self.pageview = pageview
+        self.pane = self
         self._popup_xy = None
-
-    def build_widget(self):
-        """
-        Builds the container widget for the interface. Must be overridden by the
-        the base class. Returns a gtk container widget.
-        """
-        # load the user's gramplets and set columns, etc
         user_gramplets = self.load_gramplets()
         # build the GUI:
-        frame = MyScrolledWindow()
         msg = _("Right click to add gramplets")
-        frame.set_tooltip_text(msg)
-        frame.viewpage = self
-        frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.set_tooltip_text(msg)
+        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.hbox = gtk.HBox(homogeneous=True)
         # Set up drag and drop
-        frame.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
+        self.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
                             gtk.DEST_DEFAULT_HIGHLIGHT |
                             gtk.DEST_DEFAULT_DROP,
                             [('GRAMPLET', 0, 80)],
                             gtk.gdk.ACTION_COPY)
-        frame.connect('drag_drop', self.drop_widget)
-        frame.connect('button-press-event', self._button_press)
+        self.connect('drag_drop', self.drop_widget)
+        self.connect('button-press-event', self._button_press)
 
-        frame.add_with_viewport(self.hbox)
+        self.add_with_viewport(self.hbox)
         # Create the columns:
         self.columns = []
         for i in range(self.column_count):
@@ -860,7 +847,6 @@ class GrampletView(PageView):
             else:
                 print "Can't make gramplet of type '%s'." % name
         self.place_gramplets()
-        return frame
 
     def get_column_frame(self, column_num):
         if column_num < len(self.columns):
@@ -950,7 +936,7 @@ class GrampletView(PageView):
                     retval.append((name, GET_AVAILABLE_GRAMPLETS(name)))
         return retval
 
-    def save(self, *args):
+    def save(self):
         if debug: print "saving"
         if len(self.frame_map) + len(self.detached_gramplets) == 0:
             return # something is the matter
@@ -1066,27 +1052,6 @@ class GrampletView(PageView):
             self.columns[col].pack_start(gframe, expand=expand)
         return True
 
-    def define_actions(self):
-        """
-        Defines the UIManager actions. Called by the ViewManager to set up the
-        View. The user typically defines self.action_list and 
-        self.action_toggle_list in this function. 
-        """
-        self.action = gtk.ActionGroup(self.title + "/Gramplets")
-        self.action.add_actions([('AddGramplet',gtk.STOCK_ADD,_("_Add a gramplet")),
-                                 ('RestoreGramplet',None,_("_Undelete gramplet")),
-                                 ('Columns1',None,_("Set Columns to _1"),
-                                  None,None,
-                                  lambda obj:self.set_columns(1)),
-                                 ('Columns2',None,_("Set Columns to _2"),
-                                  None,None,
-                                  lambda obj:self.set_columns(2)),
-                                 ('Columns3',None,_("Set Columns to _3"),
-                                  None,None,
-                                  lambda obj:self.set_columns(3)),
-                                 ])
-        self._add_action_group(self.action)
-
     def set_columns(self, num):
         # clear the gramplets:
         self.clear_gramplets()
@@ -1104,7 +1069,7 @@ class GrampletView(PageView):
             self.hbox.pack_start(self.columns[-1],expand=True)
         # place the gramplets back in the new columns
         self.place_gramplets(recolumn=True)
-        self.widget.show()
+        self.show()
 
     def restore_gramplet(self, obj):
         name = obj.get_child().get_label()
@@ -1114,10 +1079,10 @@ class GrampletView(PageView):
                 #gramplet.state = "maximized"
                 self.closed_gramplets.remove(gramplet)
                 if self._popup_xy is not None:
-                    self.drop_widget(self.widget, gramplet, 
+                    self.drop_widget(self, gramplet, 
                                      self._popup_xy[0], self._popup_xy[1], 0)
                 else:
-                    self.drop_widget(self.widget, gramplet, 0, 0, 0)
+                    self.drop_widget(self, gramplet, 0, 0, 0)
                 gramplet.set_state("maximized")
                 return
         ################ Second kind: from options
@@ -1143,10 +1108,10 @@ class GrampletView(PageView):
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
             if self._popup_xy is not None:
-                self.drop_widget(self.widget, gramplet, 
+                self.drop_widget(self, gramplet, 
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
-                self.drop_widget(self.widget, gramplet, 0, 0, 0)
+                self.drop_widget(self, gramplet, 0, 0, 0)
 
     def add_gramplet(self, obj):
         tname = obj.get_child().get_label()
@@ -1180,65 +1145,16 @@ class GrampletView(PageView):
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
             if self._popup_xy is not None:
-                self.drop_widget(self.widget, gramplet, 
+                self.drop_widget(self, gramplet, 
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
-                self.drop_widget(self.widget, gramplet, 0, 0, 0)
+                self.drop_widget(self, gramplet, 0, 0, 0)
             if gramplet.pui:
                 gramplet.pui.active = True
                 gramplet.pui.update()
         else:
             print "Can't make gramplet of type '%s'." % name
 
-    def get_stock(self):
-        """
-        Return image associated with the view, which is used for the 
-        icon for the button.
-        """
-        return 'gramps-gramplet'
-    
-    def get_viewtype_stock(self):
-        """Type of view in category
-        """
-        return 'gramps-gramplet'
-
-    def set_inactive(self):
-        self.active = False
-        for title in self.gramplet_map:
-            if self.gramplet_map[title].pui:
-                if self.gramplet_map[title].state != "detached":
-                    self.gramplet_map[title].pui.active = False
-
-    def set_active(self):
-        self.active = True
-        for title in self.gramplet_map:
-            if self.gramplet_map[title].pui:
-                self.gramplet_map[title].pui.active = True
-                if self.gramplet_map[title].pui.dirty:
-                    if self.gramplet_map[title].state == "maximized":
-                        self.gramplet_map[title].pui.update()
-
-    def ui_definition(self):
-        return """
-        <ui>
-          <menubar name="MenuBar">
-            <menu action="ViewMenu">
-              <menuitem action="Columns1"/>
-              <menuitem action="Columns2"/>
-              <menuitem action="Columns3"/>
-            </menu>
-          </menubar>
-          <popup name="Popup">
-            <menuitem action="AddGramplet"/>
-            <menuitem action="RestoreGramplet"/>
-            <separator/>
-            <menuitem action="Columns1"/>
-            <menuitem action="Columns2"/>
-            <menuitem action="Columns3"/>
-          </popup>
-        </ui>
-        """
-        
     def _button_press(self, obj, event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self._popup_xy = (event.x, event.y)
@@ -1273,6 +1189,20 @@ class GrampletView(PageView):
                 return True
         return False
 
+    def set_inactive(self):
+        for title in self.gramplet_map:
+            if self.gramplet_map[title].pui:
+                if self.gramplet_map[title].state != "detached":
+                    self.gramplet_map[title].pui.active = False
+
+    def set_active(self):
+        for title in self.gramplet_map:
+            if self.gramplet_map[title].pui:
+                self.gramplet_map[title].pui.active = True
+                if self.gramplet_map[title].pui.dirty:
+                    if self.gramplet_map[title].state == "maximized":
+                        self.gramplet_map[title].pui.update()
+
     def on_delete(self):
         gramplets = (g for g in self.gramplet_map.itervalues() 
                         if g is not None)
@@ -1281,3 +1211,87 @@ class GrampletView(PageView):
             if gramplet.pui:
                 gramplet.pui.on_save()
         self.save()
+
+class GrampletView(PageView): 
+    """
+    GrampletView interface
+    """
+
+    def __init__(self, dbstate, uistate):
+        """
+        Create a GrampletView, with the current dbstate and uistate
+        """
+        PageView.__init__(self, _('Gramplets'), dbstate, uistate)
+
+    def build_widget(self):
+        """
+        Builds the container widget for the interface. Must be overridden by the
+        the base class. Returns a gtk container widget.
+        """
+        # load the user's gramplets and set columns, etc
+        return GrampletPane(self, self.dbstate, self.uistate)
+
+    def define_actions(self):
+        """
+        Defines the UIManager actions. Called by the ViewManager to set up the
+        View. The user typically defines self.action_list and 
+        self.action_toggle_list in this function. 
+        """
+        self.action = gtk.ActionGroup(self.title + "/Gramplets")
+        self.action.add_actions([('AddGramplet',gtk.STOCK_ADD,_("_Add a gramplet")),
+                                 ('RestoreGramplet',None,_("_Undelete gramplet")),
+                                 ('Columns1',None,_("Set Columns to _1"),
+                                  None,None,
+                                  lambda obj:self.widget.set_columns(1)),
+                                 ('Columns2',None,_("Set Columns to _2"),
+                                  None,None,
+                                  lambda obj:self.widget.set_columns(2)),
+                                 ('Columns3',None,_("Set Columns to _3"),
+                                  None,None,
+                                  lambda obj:self.widget.set_columns(3)),
+                                 ])
+        self._add_action_group(self.action)
+
+    def get_stock(self):
+        """
+        Return image associated with the view, which is used for the 
+        icon for the button.
+        """
+        return 'gramps-gramplet'
+    
+    def get_viewtype_stock(self):
+        """Type of view in category
+        """
+        return 'gramps-gramplet'
+
+    def set_inactive(self):
+        self.active = False
+        self.widget.set_inactive()
+
+    def set_active(self):
+        self.active = True
+        self.widget.set_active()
+
+    def ui_definition(self):
+        return """
+        <ui>
+          <menubar name="MenuBar">
+            <menu action="ViewMenu">
+              <menuitem action="Columns1"/>
+              <menuitem action="Columns2"/>
+              <menuitem action="Columns3"/>
+            </menu>
+          </menubar>
+          <popup name="Popup">
+            <menuitem action="AddGramplet"/>
+            <menuitem action="RestoreGramplet"/>
+            <separator/>
+            <menuitem action="Columns1"/>
+            <menuitem action="Columns2"/>
+            <menuitem action="Columns3"/>
+          </popup>
+        </ui>
+        """
+        
+    def on_delete(self):
+        self.widget.on_delete()
