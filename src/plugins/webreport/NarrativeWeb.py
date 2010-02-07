@@ -77,6 +77,7 @@ from gen.plug.menu import PersonOption, NumberOption, StringOption, \
 from ReportBase import (Report, ReportUtils, MenuReportOptions,
                         Bibliography, CSS_FILES )
 import Utils
+import constfunc
 from gui.utils import ProgressMeter
 import ThumbNails
 import ImgManip
@@ -1267,7 +1268,7 @@ class BasePage(object):
 
                     # TODO. Check if build_url_fname can be used.
                     newpath = "/".join(['..']*3 + [newpath])
-                    if ( Utils.win ):
+                    if ( constfunc.win ):
                         newpath = newpath.replace('\\',"/")
 
                     # begin hyperlink
@@ -1345,7 +1346,7 @@ class BasePage(object):
                         real_path, newpath = self.report.prepare_copy_media(photo)
                         # TODO. Check if build_url_fname can be used.
                         newpath = "/".join(['..']*3 + [newpath])
-                        if ( Utils.win ):
+                        if ( constfunc.win ):
                             newpath = newpath.replace('\\',"/")
  
                         # begin hyperlink
@@ -3626,7 +3627,7 @@ class IndividualPage(BasePage):
                     if mime_type:
                         (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
                         thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
-                        if ( Utils.win ):
+                        if ( constfunc.win ):
                             thumbnailUrl = thumbnailUrl.replace('\\',"/")
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             boxbg += self.person_link(url, person, name_style = True, 
@@ -5439,7 +5440,7 @@ class NavWebReport(Report):
         if up:
             subdirs = ['..']*3 + subdirs
         nname = "/".join(subdirs + [fname])
-        if ( Utils.win ):
+        if ( constfunc.win ):
             nname = nname.replace('\\',"/")
         return nname
 
@@ -5460,7 +5461,7 @@ class NavWebReport(Report):
         Imagine we run gramps on Windows (heaven forbits), we don't want to
         see backslashes in the URL.
         """
-        if Utils.win():
+        if constfunc.win():
             fname = fname.replace('\\',"/")
         subdirs = self.build_subdirs(subdir, fname, up)
         return "/".join(subdirs + [fname])
