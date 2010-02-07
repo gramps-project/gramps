@@ -44,7 +44,7 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gen.mime import mime_type_is_defined
 import TransUtils
-
+import constfunc
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup
@@ -67,12 +67,14 @@ except ValueError:
 gettext.textdomain(TransUtils.LOCALEDOMAIN)
 gettext.install(TransUtils.LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
 
-try:
-    locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
-    #locale.textdomain(TransUtils.LOCALEDOMAIN)
-except locale.Error:
-    print 'No translation in some gtk.Builder strings, '\
-          'call TransUtils.setup_windows_gtk ??'
+if not constfunc.win():
+    try:
+        locale.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
+        #locale.textdomain(TransUtils.LOCALEDOMAIN)
+    except locale.Error:
+        print 'No translation in some gtk.Builder strings, '
+else:
+    TransUtils.setup_windows_gtk()
 
 LOG.debug('Using locale:', locale.getlocale())
 

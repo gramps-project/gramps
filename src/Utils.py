@@ -214,37 +214,6 @@ def family_upper_name(family, db):
 
 #-------------------------------------------------------------------------
 #
-# Platform determination functions
-#
-#-------------------------------------------------------------------------
-
-def lin():
-    """
-    Return True if a linux system
-    Note: Normally do as linux in else statement of a check !
-    """
-    if platform.system() in LINUX:
-        return True
-    return False
-    
-def mac():
-    """
-    Return True if a Macintosh system
-    """
-    if platform.system() in MACOS:
-        return True
-    return False
-
-def win():
-    """
-    Return True if a windows system
-    """
-    if platform.system() in WINDOWS:
-        return True
-    return False
-
-#-------------------------------------------------------------------------
-#
 # String Encoding functions
 #
 #-------------------------------------------------------------------------
