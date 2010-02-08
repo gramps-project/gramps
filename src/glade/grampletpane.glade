@@ -18,24 +18,7 @@
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkExpander" id="gvoptions">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child type="label">
-                      <object class="GtkLabel" id="vboxtop">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Options</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">0</property>
-                  </packing>
+                  <placeholder/>
                 </child>
                 <child>
                   <object class="GtkScrolledWindow" id="gvscrolledwindow">

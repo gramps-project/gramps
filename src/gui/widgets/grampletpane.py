@@ -166,8 +166,6 @@ def make_requested_gramplet(pane, name, opts, dbstate, uistate):
         if msg:
             gui.scrolledwindow.set_tooltip_text(msg)
             gui.tooltips_text = msg
-        gui.make_gui_options()
-        gui.gvoptions.hide()
         return gui
     return None
 
@@ -220,16 +218,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
             self.gramplet.pui.active = True
         self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.connect('response', self.handle_response)
-        # HACK: must show window to make it work right:
         self.show()
-        # But that shows everything, hide them here:
-        self.gramplet.gvclose.hide()
-        self.gramplet.gvstate.hide()
-        self.gramplet.gvproperties.hide()
-        if self.gramplet.pui and len(self.gramplet.pui.option_dict) > 0:
-            self.gramplet.gvoptions.show()
-        else:
-            self.gramplet.gvoptions.hide()
 
     def handle_response(self, object, response):
         """
@@ -264,7 +253,6 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         """
         Dock the detached GrampletWindow back in the column from where it came.
         """
-        self.gramplet.gvoptions.hide()
         self.gramplet.pane.detached_gramplets.remove(self.gramplet)
         if self.docked_state == "minimized":
             self.gramplet.set_state("minimized")
@@ -346,7 +334,6 @@ class GuiGramplet(object):
         self.mainframe = self.xml.get_object('gvgramplet')
         self.gvwin.remove(self.mainframe)
 
-        self.gvoptions = self.xml.get_object('gvoptions')
         self.textview = self.xml.get_object('gvtextview')
         self.buffer = self.textview.get_buffer()
         self.scrolledwindow = self.xml.get_object('gvscrolledwindow')
@@ -607,26 +594,6 @@ class GuiGramplet(object):
     def get_container_widget(self):
         return self.scrolledwindow
 
-    def make_gui_options(self):
-        if not self.pui: return
-        topbox = gtk.VBox()
-        hbox = gtk.HBox()
-        labels = gtk.VBox()
-        options = gtk.VBox()
-        hbox.pack_start(labels, False)
-        hbox.pack_start(options, True)
-        topbox.add(hbox)
-        self.gvoptions.add(topbox)
-        for item in self.pui.option_order:
-            label = gtk.Label(item + ":")
-            label.set_alignment(1.0, 0.5)
-            labels.add(label)
-            options.add(self.pui.option_dict[item][0]) # widget
-        save_button = gtk.Button(stock=gtk.STOCK_SAVE)
-        topbox.add(save_button)
-        topbox.show_all()
-        save_button.connect('clicked', self.pui.save_update_options)
-
     def link(self, text, link_type, data, size=None, tooltip=None):
         buffer = self.buffer
         iter = buffer.get_end_iter()
@@ -765,20 +732,6 @@ class GuiGramplet(object):
         return False # did not handle event
 
 class GrampletPane(gtk.ScrolledWindow):
-    def show_all(self):
-        # first show them all:
-        gtk.ScrolledWindow.show_all(self)
-        # Hack to get around show_all that shows hidden items
-        # do once, the first time showing
-        if self.pane:
-            gramplets = (g for g in self.pane.gramplet_map.itervalues() 
-                            if g is not None)
-            self.pane = None
-            for gramplet in gramplets:
-                gramplet.gvoptions.hide()
-                if gramplet.state == "minimized":
-                    gramplet.set_state("minimized")
-
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
         gtk.ScrolledWindow.__init__(self)
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
