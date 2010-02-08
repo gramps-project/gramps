@@ -5493,7 +5493,7 @@ class NavWebReport(Report):
             tarinfo = tarfile.TarInfo(self.cur_fname)
             tarinfo.size = len(self.string_io.getvalue())
             tarinfo.mtime = time.time()
-            if os.sys.platform != "win32":
+            if not constfunc.win():
                 tarinfo.uid = os.getuid()
                 tarinfo.gid = os.getgid()
             self.string_io.seek(0)
