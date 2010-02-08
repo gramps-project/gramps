@@ -47,6 +47,7 @@ import pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+import constfunc
 
 #-------------------------------------------------------------------------
 #
@@ -206,7 +207,7 @@ class GenderLabel(gtk.Label):
     def __init__(self, text):
         gtk.Label.__init__(self, text)
         self.set_alignment(0, 0.5)
-        if os.sys.platform == "win32":
+        if constfunc.win():
             pangoFont = pango.FontDescription('Arial')
             self.modify_font(pangoFont)
         self.show()
