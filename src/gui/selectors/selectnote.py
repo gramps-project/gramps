@@ -73,4 +73,4 @@ class SelectNote(BaseSelector):
         return self.db.get_note_from_handle
         
     def get_handle_column(self):
-        return 4
+        return 5
