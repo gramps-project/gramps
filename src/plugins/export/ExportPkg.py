@@ -62,6 +62,7 @@ from ExportOptions import WriterOptionBox
 import gen.proxy
 from ExportXml import XmlWriter
 import Utils
+import constfunc
 
 #-------------------------------------------------------------------------
 #
@@ -232,7 +233,7 @@ class PackageWriter(object):
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())
         tarinfo.mtime = time.time()
-        if os.sys.platform != "win32":
+        if not constfunc.win():
             tarinfo.uid = os.getuid()
             tarinfo.gid = os.getgid()
         g.seek(0)
