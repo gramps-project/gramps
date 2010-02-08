@@ -85,6 +85,17 @@ SYSCONFDIR = "@sysconfdir@"
 
 #-------------------------------------------------------------------------
 #
+# Platforms
+# Never test on LINUX, handle Linux in the else statement as default
+#
+#-------------------------------------------------------------------------
+LINUX = ["Linux", "linux", "linux2"]
+MACOS = ["Darwin", "darwin"]
+WINDOWS = ["Windows", "win32"]
+
+
+#-------------------------------------------------------------------------
+#
 # Determine the home directory. According to Wikipedia, most UNIX like
 # systems use HOME. I'm assuming that this would apply to OS X as well.
 # Windows apparently uses USERPROFILE
@@ -160,7 +171,7 @@ PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
 
 USE_TIPS       = False
 
-if os.sys.platform == "win32":
+if os.sys.platform in WINDOWS:
     USE_THUMBNAILER = False
 else:
     USE_THUMBNAILER = True
@@ -205,16 +216,6 @@ THUMBSCALE   = 96.0
 XMLFILE      = "data.gramps"
 NO_SURNAME   = "(%s)" % _("none")
 NO_GIVEN     = "(%s)" % _("none")
-
-#-------------------------------------------------------------------------
-#
-# Platforms
-# Never test on LINUX, handle Linux in the else statement as default
-#
-#-------------------------------------------------------------------------
-LINUX = ["Linux", "linux"]
-MACOS = ["Darwin", "darwin"]
-WINDOWS = ["Windows", "win32"]
 
 #-------------------------------------------------------------------------
 #
