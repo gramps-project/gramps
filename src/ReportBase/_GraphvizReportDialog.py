@@ -57,6 +57,7 @@ from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
 from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption, \
                           BooleanOption
+import constfunc
 
 #-------------------------------------------------------------------------------
 #
@@ -88,7 +89,7 @@ _RATIO = [ { 'name' : _("Minimal size"),                'value': "compress" },
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
 
-if os.sys.platform == "win32":
+if constfunc.win():
     _DOT_FOUND = Utils.search_for("dot.exe")
     
     if Utils.search_for("gswin32c.exe") == 1:
