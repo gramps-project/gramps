@@ -48,6 +48,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 import gen.lib
 import Errors
+import constfunc
 
 #-------------------------------------------------------------------------
 #
@@ -255,13 +256,13 @@ def open_file_with_default_application( file_path ):
         ErrorDialog(_("Error Opening File"), _("File does not exist"))
         return
         
-    if os.sys.platform == 'win32':
+    if constfunc.win():
         try:
             os.startfile(norm_path)
         except WindowsError, msg:
             ErrorDialog(_("Error Opening File"), str(msg))
     else:
-        if os.sys.platform == 'darwin':
+        if constfunc.mac():
             utility = 'open'
         else:
             utility = 'xdg-open'

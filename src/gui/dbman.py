@@ -45,7 +45,8 @@ from gen.ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".DbManager")
 
-if os.sys.platform == "win32":
+import constfunc
+if constfunc.win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
         # RCS requires the "TZ" variable be set.
@@ -76,6 +77,7 @@ import RecentFiles
 from glade import Glade
 from gen.db.backup import restore
 from gen.db.exceptions import DbException
+
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
