@@ -206,9 +206,6 @@ class ListView(NavigationView):
                          tip=self.EDIT_MSG, 
                          callback=self.edit)
         
-        self._add_toggle_action('Filter', None, _('_Filter Sidebar'), 
-                                callback=self.filter_toggle_action)
-
     def build_columns(self):
         map(self.list.remove_column, self.columns)
             
