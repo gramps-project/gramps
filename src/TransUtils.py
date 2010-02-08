@@ -34,7 +34,7 @@ import gettext
 import sys
 import os
 import locale
-import ctypes
+
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -83,13 +83,9 @@ def setup_windows_gtk():
     """ function to decide if needed on windows
     This function should be called on windows instead of locale.bindtextdomain
     """
-    from constfunc import win
-    if win():
-        try:
-            libintl = ctypes.cdll.LoadLibrary("intl.dll")
-            libintl.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-        except:
-            print "Error Loading translations into gtk.builder files"
+    import gtk
+    import gtk.glade
+    gtk.glade.bindtextdomain("gramps", LOCALEDIR)
 
 def get_localedomain():
     """
