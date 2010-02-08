@@ -36,7 +36,6 @@ import locale
 import random
 import time
 import shutil
-import platform
 import uuid
 
 #-------------------------------------------------------------------------
@@ -334,7 +333,7 @@ def get_unicode_path(path):
     :rtype:      unicode
     :returns:     The Unicode version of path.
     """
-    if os.sys.platform == "win32":
+    if constfunc.win():
         return unicode(path)
     else:
         return unicode(path,sys.getfilesystemencoding())
@@ -392,7 +391,7 @@ def search_for(name):
         name = name.split('"')[1]
     else:
         name = name.split()[0]
-    if os.sys.platform == "win32":
+    if constfunc.win():
         for i in os.environ['PATH'].split(';'):
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
