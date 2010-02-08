@@ -49,7 +49,8 @@ import gen.lib
 import Errors
 from GrampsLocale import codeset
 
-from const import TEMP_DIR, USER_HOME, WINDOWS, MACOS, LINUX, GRAMPS_UUID
+from const import TEMP_DIR, USER_HOME, GRAMPS_UUID
+import constfunc
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -239,7 +240,7 @@ def encodingdefs():
     """
     pass
 
-if platform.system() in WINDOWS:
+if constfunc.win():
     # python encoding is ascii, but C functions need to recieve the 
     # windows codeset, so convert over to it
     conv_utf8_tosrtkey = lambda x: locale.strxfrm(x.decode("utf-8").encode(
