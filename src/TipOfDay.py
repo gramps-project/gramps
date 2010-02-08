@@ -104,8 +104,11 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         return text
 
     def next_tip_cb(self, dummy=None):
-        tip_text = self.escape(self.tip_list[self.new_index[self.index]])
-        self.tip.set_text(_(tip_text))
+        tip_text = _(self.escape(self.tip_list[self.new_index[self.index]]))
+        newtext = ''
+        for line in tip_text.split('<br/>'):
+            newtext += line + '\n\n' 
+        self.tip.set_text(newtext[:-2])
         self.tip.set_use_markup(True)
         self.index = (self.index + 1) % len(self.tip_list)
 
@@ -165,16 +168,22 @@ class TipParser(object):
             # Skip all tips with xml:lang attribute, as they are
             # already in the translation catalog
             self.skip = 'xml:lang' in attrs
+        elif tag == "br":
+            pass
         elif tag != "tips":
             # let all the other tags through, except for the "tips" tag
+            # eg <b> my text</b>
             self.tlist.append("<%s>" % tag)
 
     def endElement(self, tag):
         if tag == "tip" and not self.skip:
             text = ''.join(self.tlist)
             self.mylist.append(' '.join(text.split()))
+        elif tag == "br":
+            self.tlist.append("<br/>")
         elif tag != "tips":
             # let all the other tags through, except for the "tips" tag
+            # eg <b> my text</b>
             self.tlist.append("</%s>" % tag)
 
     def characters(self, data):
