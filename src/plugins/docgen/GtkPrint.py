@@ -46,6 +46,7 @@ from gen.plug.docgen import PAPER_PORTRAIT
 import libcairodoc
 import Errors
 from glade import Glade
+#import constfunc
 
 #------------------------------------------------------------------------
 #
@@ -581,7 +582,7 @@ class GtkPrint(libcairodoc.CairoDoc):
     def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
         """
-        ##if os.sys.platform == 'win32':
+        ##if constfunc.win()':
             ##return False
             
         self.preview = PrintPreview(operation, preview, context, parent)
