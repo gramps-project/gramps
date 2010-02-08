@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:TransUtils.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id:constfunc.py 14272 2010-02-07 19:11:00Z ldnp $
 
 """
 Some independet constants
@@ -30,8 +30,6 @@ Some independet constants
 # python modules
 #
 #------------------------------------------------------------------------
-import sys
-import os
 import platform
 
 #-------------------------------------------------------------------------
