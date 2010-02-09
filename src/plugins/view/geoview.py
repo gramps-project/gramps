@@ -662,8 +662,8 @@ class GeoView(HtmlView):
                    )
         if config.get('geoview.lock'):
             config.set('geoview.zoom', int(self.realzoom))
-            config.set('geoview.latitude', self.reallatitude)
-            config.set('geoview.longitude', self.reallongitude)
+            config.set('geoview.latitude', str(self.reallatitude))
+            config.set('geoview.longitude', str(self.reallongitude))
             config.set('geoview.map', self.displaytype)
         else:
             config.set('geoview.zoom', 0)
@@ -782,6 +782,8 @@ class GeoView(HtmlView):
                                         URL_SEP.join(url.split(os.sep)),
                                         '', ''))
         else:
+            if self.htmlfile == "":
+                self.htmlfile = os.path.join(GEOVIEW_SUBPATH, "geography.html")
             url = urlparse.urlunsplit( ('file', '',
                                 URL_SEP.join(self.htmlfile.split(os.sep)),
                                 '', ''))
