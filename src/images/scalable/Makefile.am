@@ -5,6 +5,15 @@ SUBDIRS =
 pkgdatadir = $(datadir)/@PACKAGE@/images/scalable
 
 dist_pkgdata_DATA = \
+geo-place-add.svg
+	geo-fixed-zoom.svg \
+	geo-free-zoom.svg \
+	geo-place-add.svg \
+	geo-place-link.svg \
+	geo-show-event.svg \
+	geo-show-family.svg \
+	geo-show-person.svg \
+	geo-show-place.svg \
 	gramps-address.svg \
 	gramps-attribute.svg \
 	gramps-bookmark-delete.svg \

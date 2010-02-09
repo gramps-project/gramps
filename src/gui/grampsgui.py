@@ -61,8 +61,8 @@ import gobject
 from QuestionDialog import ErrorDialog
 import config
 import Utils
-import constfunc
-from gui.pluginmanager import GuiPluginManager
+from constfunc import win
+from gui.pluginmanager import GuiPluginManager, base_reg_stock_icons
 from gen.plug import (START, END)
 
 #-------------------------------------------------------------------------
@@ -71,6 +71,7 @@ from gen.plug import (START, END)
 #
 #-------------------------------------------------------------------------
 
+
 def register_stock_icons ():
     """
     Add the gramps names for its icons (eg gramps-person) to the GTK icon
@@ -78,7 +79,7 @@ def register_stock_icons ():
     """
         
     #iconpath to the base image. The front of the list has highest priority 
-    if constfunc.win():
+    if win():
         iconpaths = [
                     (os.path.join(const.IMAGE_DIR, '48x48'), '.png'), 
                     (const.IMAGE_DIR, '.png'), 
@@ -156,51 +157,7 @@ def register_stock_icons ():
          ('gramps-url', _('URL'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ]
     
-    # Register our stock items
-    gtk.stock_add (items+items_legacy)
-    
-    # Add our custom icon factory to the list of defaults
-    factory = gtk.IconFactory ()
-    factory.add_default ()
-    
-    for data in items+items_legacy:
-        pixbuf = 0
-        for (dirname, ext) in iconpaths:
-            icon_file = os.path.expanduser(os.path.join(dirname, data[0]+ext))
-            if os.path.isfile(icon_file):
-                try:
-                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
-                    break
-                except:
-                    pass
-                  
-        if not pixbuf :
-            icon_file = os.path.join(const.IMAGE_DIR, 'gramps.png')
-            pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
-            
-        ## FIXME from gtk 2.17.3/2.15.2 change this to 
-        ## FIXME  pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
-        pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
-        icon_set = gtk.IconSet (pixbuf)
-        #add different sized icons, always png type!
-        for size in extraiconsize :
-            pixbuf = 0
-            icon_file = os.path.expanduser(
-                    os.path.join(size[0], data[0]+'.png'))
-            if os.path.isfile(icon_file):
-                try:
-                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
-                except:
-                    pass
-                    
-            if pixbuf :
-                source = gtk.IconSource()
-                source.set_size_wildcarded(False)
-                source.set_size(size[1])
-                source.set_pixbuf(pixbuf)
-                icon_set.add_source(source)
-            
-        factory.add (data[0], icon_set)
+    base_reg_stock_icons(iconpaths, extraiconsize, items+items_legacy)
 
 def _display_welcome_message():
     """

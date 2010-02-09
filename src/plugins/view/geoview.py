@@ -854,12 +854,12 @@ class GeoView(HtmlView):
         #HtmlView._define_actions_fw_bw(self)
         #self.forward_action.set_sensitive(False)
         #self.back_action.set_sensitive(False)
-        self._add_action('AddPlace', gtk.STOCK_ADD, 
+        self._add_action('AddPlace', 'geo-place-add', 
             _('_Add Place'),
             callback=self._add_place,
             tip=_("Add the location centred on the map as a new place in "
                   "Gramps. Double click the location to centre on the map."))
-        self._add_action('LinkPlace', 'gramps-place', 
+        self._add_action('LinkPlace',  'geo-place-link', 
             _('_Link Place'),
             callback=self._link_place,
             tip=_("Link the location centred on the map to a place in "
@@ -875,25 +875,25 @@ class GeoView(HtmlView):
         self._add_action_group(self.provider_action)
         self.lock_action = gtk.ActionGroup(self.title + "/SaveZoom")
         self.lock_action.add_toggle_actions([
-            ('SaveZoom', 'gramps-lock', _("_SaveZoom"), "<ALT>L",
+            ('SaveZoom', 'geo-fixed-zoom', _("_Save Zoom"), "<ALT>L",
              _("Save the zoom between places map, person map, "
-               "family map and events map"),
+               "family map and event map"),
              self._save_zoom,
              config.get('geoview.lock')
              )
             ])
         self._add_action_group(self.lock_action)
-        self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_All Places'),
+        self._add_action('AllPlacesMaps', 'geo-show-place', _('_All Places'),
         callback=self._all_places, tip=_("Attempt to view all places in "
                                          "the family tree."))
-        self._add_action('PersonMaps', 'gramps-person', _('_Person'),
+        self._add_action('PersonMaps', 'geo-show-person', _('_Person'),
             callback=self._person_places,
             tip=_("Attempt to view all the places "
                   "where the selected people lived."))
-        self._add_action('FamilyMaps', 'gramps-parents-add', _('_Family'),
+        self._add_action('FamilyMaps', 'geo-show-family', _('_Family'),
             callback=self._family_places,
             tip=_("Attempt to view places of the selected people's family."))
-        self._add_action('EventMaps', 'gramps-event', _('_Event'),
+        self._add_action('EventMaps', 'geo-show-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
         self._add_toggle_action('Filter', None, _('_Filter Sidebar'), 
@@ -1033,9 +1033,9 @@ class GeoView(HtmlView):
         for widget in widgets :
             if isinstance(widget, gtk.ToggleToolButton):
                 if self.lock_action.get_action('SaveZoom').get_active():
-                    widget.set_stock_id('gramps-lock')
+                    widget.set_stock_id('geo-fixed-zoom')
                 else:
-                    widget.set_stock_id('gramps-unlock')
+                    widget.set_stock_id('geo-free-zoom')
 
     def _save_zoom(self, button):
         """

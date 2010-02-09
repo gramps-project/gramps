@@ -34,7 +34,8 @@ importers, exporters, quick reports, and document generators.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-
+import os
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -43,13 +44,74 @@ importers, exporters, quick reports, and document generators.
 #-------------------------------------------------------------------------
 import gen.utils
 from gen.plug import BasePluginManager, PluginRegister
+from constfunc import win
 import config
+import const
 
 #-------------------------------------------------------------------------
 #
-# Constants
+# Functions
 #
 #-------------------------------------------------------------------------
+
+def base_reg_stock_icons(iconpaths, extraiconsize, items):
+    """
+    Reusable base to register stock icons in Gramps
+    ..attribute iconpaths: list of main directory of the base icon, and
+      extension, eg:
+      [(os.path.join(const.IMAGE_DIR, 'scalable'), '.svg')]
+    ..attribute extraiconsize: list of dir with extra prepared icon sizes and
+      the gtk size to use them for, eg:
+      [(os.path.join(const.IMAGE_DIR, '22x22'), gtk.ICON_SIZE_LARGE_TOOLBAR)]
+    ..attribute items: list of icons to register, eg:
+      [('gramps-db', _('Family Trees'), gtk.gdk.CONTROL_MASK, 0, '')]
+    """
+    
+    # Register our stock items
+    gtk.stock_add (items)
+    
+    # Add our custom icon factory to the list of defaults
+    factory = gtk.IconFactory ()
+    factory.add_default ()
+    
+    for data in items:
+        pixbuf = 0
+        for (dirname, ext) in iconpaths:
+            icon_file = os.path.expanduser(os.path.join(dirname, data[0]+ext))
+            if os.path.isfile(icon_file):
+                try:
+                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+                    break
+                except:
+                    pass
+                  
+        if not pixbuf :
+            icon_file = os.path.join(const.IMAGE_DIR, 'gramps.png')
+            pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+            
+        ## FIXME from gtk 2.17.3/2.15.2 change this to 
+        ## FIXME  pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
+        pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
+        icon_set = gtk.IconSet (pixbuf)
+        #add different sized icons, always png type!
+        for size in extraiconsize :
+            pixbuf = 0
+            icon_file = os.path.expanduser(
+                    os.path.join(size[0], data[0]+'.png'))
+            if os.path.isfile(icon_file):
+                try:
+                    pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
+                except:
+                    pass
+                    
+            if pixbuf :
+                source = gtk.IconSource()
+                source.set_size_wildcarded(False)
+                source.set_size(size[1])
+                source.set_pixbuf(pixbuf)
+                icon_set.add_source(source)
+            
+        factory.add (data[0], icon_set)
 
 #-------------------------------------------------------------------------
 #
@@ -83,14 +145,70 @@ class GuiPluginManager(gen.utils.Callback):
         self.basemgr = BasePluginManager.get_instance()
         self.__hidden_plugins = set(config.get('plugin.hiddenplugins'))
         self.__hidden_changed()
-    
+
+    def load_plugin(self, pdata):
+        if not self.is_loaded(pdata.id):
+            #load stock icons before import, only gui needs this
+            if pdata.icons:
+                if pdata.icondir and os.path.isdir(pdata.icondir):
+                    dir = pdata.icondir
+                else:
+                    #use the plugin directory
+                    dir = pdata.directory
+                self.load_icons(pdata.icons, dir)
+        return self.basemgr.load_plugin(pdata)
+
     def reload_plugins(self):
         self.basemgr.reload_plugins()
         self.emit('plugins-reloaded')
     
     def __getattr__(self, name):
         return getattr(self.basemgr, name)
-    
+
+    def load_icons(self, icons, dir):
+        """
+        Load icons in the iconfactory of gramps, so they can be used in the
+        plugin.
+        
+        ..attribute icons: 
+          New stock icons to register. A list of tuples (stock_id, icon_label), 
+          eg: 
+            [('gramps_myplugin', _('My Plugin')), 
+            ('gramps_myplugin_open', _('Open Plugin'))]
+          The plugin directory must contain the directories scalable, 48x48, 22x22
+          and 16x16 with the icons, eg in dir we have:
+            scalable/gramps_myplugin.svg
+            48x48/gramps_myplugin.png
+            22x22/gramps_myplugin.png
+        ..attribute dir: directory from where to load the icons
+        """
+        if win():
+            iconpaths = [
+                        (os.path.join(dir, '48x48'), '.png'), 
+                        (dir, '.png'), 
+                        ]
+        else :
+            iconpaths = [
+                        (os.path.join(dir, 'scalable'), '.svg'), 
+                        (dir, '.svg'), (dir, '.png'), 
+                        ]
+        
+        #sizes: menu=16, small_toolbar=18, large_toolbar=24, 
+        #       button=20, dnd=32, dialog=48
+        #add to the back of this list to overrule images set at beginning of list
+        extraiconsize = [
+                        (os.path.join(dir, '22x22'), gtk.ICON_SIZE_LARGE_TOOLBAR), 
+                        (os.path.join(dir, '16x16'), gtk.ICON_SIZE_MENU), 
+                        (os.path.join(dir, '22x22'), gtk.ICON_SIZE_BUTTON), 
+                        ]
+
+        items = []
+        for stock_id, label in icons:
+            items.append((stock_id, label, gtk.gdk.CONTROL_MASK, 0, ''))
+        
+        base_reg_stock_icons(iconpaths, extraiconsize, items)
+
+
     def __hidden_changed(self, *args):
         #if hidden changed, stored data must be emptied as it could contain
         #something that now must be hidden

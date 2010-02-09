@@ -127,6 +127,14 @@ class BasePluginManager(object):
         for plugin in self.__pgr.filter_load_on_reg():
             mod = self.load_plugin(plugin)
 
+    def is_loaded(self, pdata_id):
+        """
+        return True if plugin is already loaded
+        """
+        if pdata_id in self.__loaded_plugins:
+            return True
+        return False
+
     def load_plugin(self, pdata):
         """
         Load a PluginData object. This means import of the python module.

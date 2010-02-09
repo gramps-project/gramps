@@ -40,6 +40,7 @@ import traceback
 #
 #-------------------------------------------------------------------------
 from const import VERSION as GRAMPSVERSION
+from const import IMAGE_DIR
 from TransUtils import get_addon_translator
 from gen.ggettext import gettext as _
 
@@ -168,6 +169,19 @@ class PluginData(object):
        bool value, if True, the plugin is loaded on GRAMPS startup. Some 
        plugins. Only set this value if for testing you want the plugin to be
        loaded immediately on startup. default=False
+    .. attribute: icons
+       New stock icons to register. A list of tuples (stock_id, icon_label), 
+       eg: 
+            [('gramps_myplugin', _('My Plugin')), 
+            ('gramps_myplugin_open', _('Open Plugin')]
+       The icon directory must contain the directories scalable, 48x48, 22x22
+       and 16x16 with the icons, eg:
+            scalable/gramps_myplugin.svg
+            48x48/gramps_myplugin.png
+            22x22/gramps_myplugin.png
+    .. attribute: icondir
+       The directory to use for the icons. If icondir is not set or None, it
+       reverts to the plugindirectory itself. 
     
     Attributes for RELCALC plugins:
     .. attribute:: relcalcclass 
@@ -263,6 +277,9 @@ class PluginData(object):
     """
 
     def __init__(self):
+        #read/write attribute
+        self.directory = None
+        #base attributes
         self._id = None
         self._name = None
         self._version = None
@@ -276,6 +293,8 @@ class PluginData(object):
         self._authors_email = []
         self._supported = True
         self._load_on_reg = False
+        self._icons = []
+        self._icondir = None
         #derived var
         self.mod_name = None
         #RELCALC attr
@@ -412,14 +431,28 @@ class PluginData(object):
     def _get_supported(self):
         return self._supported
 
-    def _get_load_on_reg(self):
-        return self._load_on_reg
-    
     def _set_load_on_reg(self, load_on_reg):
         if not isinstance(load_on_reg, bool):
             raise ValueError, 'Plugin must have load_on_reg=True or False'
         self._load_on_reg = load_on_reg
-        
+
+    def _get_load_on_reg(self):
+        return self._load_on_reg
+
+    def _get_icons(self):
+        return self._icons
+
+    def _set_icons(self, icons):
+        if not isinstance(icons, list):
+            raise ValueError, 'Plugin must have icons as a list'
+        self._icons = icons
+
+    def _get_icondir(self):
+        return self._icondir
+
+    def _set_icondir(self, icondir):
+        self._icondir = icondir
+
     id = property(_get_id, _set_id)   
     name = property(_get_name, _set_name)
     description = property(_get_description, _set_description) 
@@ -434,6 +467,8 @@ class PluginData(object):
     authors_email = property(_get_authors_email, _set_authors_email)
     supported = property(_get_supported, _set_supported)
     load_on_reg = property(_get_load_on_reg, _set_load_on_reg)
+    icons = property(_get_icons, _set_icons)
+    icondir = property(_get_icondir, _set_icondir)
     
     def statustext(self):
         return STATUSTEXT[self.status]
@@ -740,6 +775,7 @@ class PluginData(object):
 
     viewclass = property(_get_viewclass, _set_viewclass)
     order     = property(_get_order, _set_order)
+    
 
 def newplugin():
     """
@@ -821,6 +857,7 @@ def make_environment(**kwargs):
         'GRAMPSVERSION': GRAMPSVERSION,
         'START': START,
         'END': END,
+        'IMAGE_DIR': IMAGE_DIR
         }
     env.update(kwargs)
     return env
@@ -902,6 +939,7 @@ class PluginRegister(object):
             ind = lenpd-1
             for plugin in self.__plugindata[lenpd:]:
                 ind += 1
+                plugin.directory = dir
                 if not plugin.status == STABLE and self.stable_only:
                     rmlist.append(ind)
                     continue
