@@ -62,8 +62,6 @@ import gen.lib
 import Utils
 import config
 import Errors
-from gui.utils import add_menuitem
-from ReportBase import CSS_FILES
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
@@ -335,12 +333,11 @@ class GeoView(HtmlView):
         self.signal_map = {'place-add': self._place_changed,
                            'place-update' : self._place_changed}
         self.init_config()
-        self.alternate_provider = self._config.get('preferences.alternate-provider')
-        if self.alternate_provider:
+        self.alt_provider = self._config.get('preferences.alternate-provider')
+        if self.alt_provider:
             self.usedmap = "google"
         else:
             self.usedmap = "openstreetmap"
-        self.provider_in_toolbar = self._config.get('preferences.provider-in-toolbar')
 
     def can_configure(self):
         """
@@ -365,8 +362,12 @@ class GeoView(HtmlView):
                           self.config_update)
 
     def config_update(self, client, cnxn_id, entry, data):
-        self.alternate_provider = self._config.get('preferences.alternate-provider')
-        if self.alternate_provider:
+        # pylint: disable-msg=W0613
+        """
+        Some preferences changed in the configuration window.
+        """
+        self.alt_provider = self._config.get('preferences.alternate-provider')
+        if self.alt_provider:
             self.usedmap = "google"
         else:
             self.usedmap = "openstreetmap"
@@ -375,7 +376,7 @@ class GeoView(HtmlView):
         else:
             self.provider_hide_show(False)
         self._change_map(self.usedmap)
-        self._set_provider_icon(self.alternate_provider)
+        self._set_provider_icon(self.alt_provider)
         self._ask_year_selection(self.last_year)
 
     def provider_hide_show(self, state):
@@ -412,6 +413,7 @@ class GeoView(HtmlView):
         return _('Map provider'), table
 
     def _place_changed(self, handle_list):
+        # pylint: disable-msg=W0613
         """
         One place changed. need to display it.
         """
@@ -486,11 +488,10 @@ class GeoView(HtmlView):
         if event.keyval == KEY_TAB:
             for place in self.plist:
                 if prefix in place[0].lower():
-                   count += 1
-                   found = place[0]
+                    count += 1
+                    found = place[0]
         if count == 1:
             self.placebox.child.set_text(found)
-        pass
 
     def _match_string(self, compl, key, fiter): # pylint: disable-msg=W0613
         """
@@ -644,6 +645,7 @@ class GeoView(HtmlView):
                                          marker_index)
 
     def _erase_placebox_selection(self, arg):
+        # pylint: disable-msg=W0613
         """
         We erase the place name in the entrybox after 1 second.
         """
@@ -899,7 +901,7 @@ class GeoView(HtmlView):
         self._add_toggle_action('Filter', None, _('_Filter Sidebar'), 
                                 callback=self.filter_toggle_action,
                                 value=config.get('interface.filter'))
-        config.connect('interface.filter',self.filter_toggle)
+        config.connect('interface.filter', self.filter_toggle)
 
     def go_back(self, button): # pylint: disable-msg=W0613
         """
@@ -1707,7 +1709,8 @@ class GeoView(HtmlView):
         if self.generic_filter == None or not config.get('interface.filter'):
             places_handle = dbstate.db.iter_place_handles()
         else:
-            places_handle = self.generic_filter.apply(dbstate.db, dbstate.db.iter_place_handles())
+            places_handle = self.generic_filter.apply(dbstate.db,
+                                                dbstate.db.iter_place_handles())
         for place_hdl in places_handle:
             place = dbstate.db.get_place_from_handle(place_hdl)
             descr = place.get_title()
@@ -1749,7 +1752,8 @@ class GeoView(HtmlView):
         if self.generic_filter == None or not config.get('interface.filter'):
             events_handle = dbstate.db.iter_event_handles()
         else:
-            events_handle = self.generic_filter.apply(dbstate.db, dbstate.db.iter_event_handles())
+            events_handle = self.generic_filter.apply(dbstate.db,
+                                                dbstate.db.iter_event_handles())
         for event_hdl in events_handle:
             event = dbstate.db.get_event_from_handle(event_hdl)
             place_handle = event.get_place_handle()
@@ -1861,8 +1865,8 @@ class GeoView(HtmlView):
                                 }
                 self._createpersonmarkers(dbstate, person, comment)
             self._need_to_create_pages(3, self.center,
-                                      _("All %(name)s people's family places in the"
-                                       " family tree with coordinates.") % {
+                                      _("All %(name)s people's family places in"
+                                       " the family tree with coordinates.") % {
                                          'name' :_nd.display(person) },
                                       )
 
@@ -1965,7 +1969,7 @@ class GeoView(HtmlView):
         gcp = "href=\"%s\" " % gpath
         return u'%s%s%s' % (dblp, gcp, delp)
     
-    def _openurl(self,url):
+    def _openurl(self, url):
         """
         Here, we call really the htmlview and the renderer
         """
@@ -1973,7 +1977,7 @@ class GeoView(HtmlView):
             self.open(url)
             self.javascript_ready = True
 
-    def _add_place(self,url):
+    def _add_place(self, url): # pylint: disable-msg=W0613
         """
         Add a new place using longitude and latitude of location centred
         on the map
@@ -1986,7 +1990,7 @@ class GeoView(HtmlView):
         except Errors.WindowActiveError:
             pass
 
-    def _link_place(self,url):
+    def _link_place(self, url): # pylint: disable-msg=W0613
         """
         Link an existing place using longitude and latitude of location centred
         on the map
@@ -2035,6 +2039,7 @@ class GeoView(HtmlView):
             pass # pylint: disable-msg=W0702
 
     def filter_toggle(self, client, cnxn_id, entry, data):
+        # pylint: disable-msg=W0613
         """
         We must show or hide the filter depending on the filter toggle button.
         """
@@ -2098,8 +2103,8 @@ class GeoView(HtmlView):
                 'title'  : _('Start page for the Geography View'),
                 'content': _('You don\'t see a map here for the following '
                              'reasons :<br><ol>'
-                             '<li>Your database is empty or not yet selected.</li>'
-                             '<li>You don\'t yet select a person.</li>'
+                             '<li>Your database is empty or not yet selected.'
+                             '</li><li>You don\'t yet select a person.</li>'
                              '<li>You have no place in your database.</li>'
                              '<li>The selected places have no coordinates.</li>'
                              '</ol>')
