@@ -660,7 +660,7 @@ class GeoView(HtmlView):
         config.set('geoview.lock',
                    self.lock_action.get_action('SaveZoom').get_active()
                    )
-        if self.lock_action.get_action('SaveZoom').get_active():
+        if config.get('geoview.lock'):
             config.set('geoview.zoom', int(self.realzoom))
             config.set('geoview.latitude', self.reallatitude)
             config.set('geoview.longitude', self.reallongitude)
@@ -761,7 +761,7 @@ class GeoView(HtmlView):
             self.reallatitude = 0.0
         if self.reallongitude == None:
             self.reallongitude = 0.0
-        if not self.lock_action.get_action('SaveZoom').get_active():
+        if not config.get('geoview.lock'):
             self.reallatitude = self.latit
             self.reallongitude = self.longt
             self.realzoom = self.zoom
@@ -833,6 +833,24 @@ class GeoView(HtmlView):
         associated with the interface.
         """
         return '''<ui>
+          <menubar name="MenuBar">
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="PersonMapsMenu"/>
+                <menuitem action="FamilyMapsMenu"/>
+                <menuitem action="EventMapsMenu"/>
+                <menuitem action="AllPlacesMapsMenu"/>
+              </placeholder>
+            </menu>
+            <menu action="EditMenu">
+              <menuitem action="AddPlaceMenu"/>
+              <menuitem action="LinkPlaceMenu"/>
+            </menu>
+            <menu action="ViewMenu">
+              <menuitem action="ProviderMenu"/>
+              <menuitem action="SaveZoomMenu"/>
+            </menu>
+          </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonEdit">
               <toolitem action="Provider"/>
@@ -866,18 +884,45 @@ class GeoView(HtmlView):
             callback=self._link_place,
             tip=_("Link the location centred on the map to a place in "
                   "Gramps. Double click the location to centre on the map."))
+        self._add_action('AddPlaceMenu', 'geo-place-add', 
+            _('_Add Place'),
+            callback=self._add_place,
+            tip=_("Add the location centred on the map as a new place in "
+                  "Gramps. Double click the location to centre on the map."))
+        self._add_action('LinkPlaceMenu',  'geo-place-link', 
+            _('_Link Place'),
+            callback=self._link_place,
+            tip=_("Link the location centred on the map to a place in "
+                  "Gramps. Double click the location to centre on the map."))
         self.provider_action = gtk.ActionGroup(self.title + "/Provider")
         self.provider_action.add_toggle_actions([
             ('Provider', 'gramps-geo-mainmap', _("_Provider"), "<ALT>P",
              _("Select the maps provider. You can choose "
                "between OpenStreetMap and Google maps"),
              self._change_provider,
+             self._config.get('preferences.alternate-provider')
+             )
+            ])
+        self.provider_action.add_toggle_actions([
+            ('ProviderMenu', 'gramps-geo-mainmap', _("_Provider"), "<ALT>P",
+             _("Select the maps provider. You can choose "
+               "between OpenStreetMap and Google maps"),
+             self._change_provider,
+             self._config.get('preferences.alternate-provider')
              )
             ])
         self._add_action_group(self.provider_action)
         self.lock_action = gtk.ActionGroup(self.title + "/SaveZoom")
         self.lock_action.add_toggle_actions([
             ('SaveZoom', 'geo-fixed-zoom', _("_Save Zoom"), "<ALT>L",
+             _("Save the zoom between places map, person map, "
+               "family map and event map"),
+             self._save_zoom,
+             config.get('geoview.lock')
+             )
+            ])
+        self.lock_action.add_toggle_actions([
+            ('SaveZoomMenu', 'geo-fixed-zoom', _("_Save Zoom"), "<ALT>L",
              _("Save the zoom between places map, person map, "
                "family map and event map"),
              self._save_zoom,
@@ -896,6 +941,19 @@ class GeoView(HtmlView):
             callback=self._family_places,
             tip=_("Attempt to view places of the selected people's family."))
         self._add_action('EventMaps', 'geo-show-event', _('_Event'),
+            callback=self._event_places,
+            tip=_("Attempt to view places connected to all events."))
+        self._add_action('AllPlacesMapsMenu', 'geo-show-place', _('_All Places'),
+        callback=self._all_places, tip=_("Attempt to view all places in "
+                                         "the family tree."))
+        self._add_action('PersonMapsMenu', 'geo-show-person', _('_Person'),
+            callback=self._person_places,
+            tip=_("Attempt to view all the places "
+                  "where the selected people lived."))
+        self._add_action('FamilyMapsMenu', 'geo-show-family', _('_Family'),
+            callback=self._family_places,
+            tip=_("Attempt to view places of the selected people's family."))
+        self._add_action('EventMapsMenu', 'geo-show-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
         self._add_toggle_action('Filter', None, _('_Filter Sidebar'), 
@@ -931,12 +989,13 @@ class GeoView(HtmlView):
           5. store label so it can be changed when selection changes
         """
         PageView.change_page(self)
-        self._set_lock_unlock_icon()
+        self._set_lock_unlock(config.get('geoview.lock'))
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
         self.filter_toggle(None, None, None, None)
         if not self._config.get('preferences.provider-in-toolbar'):
             self.provider_hide_show(False)
+        self._set_provider_icon(self.alt_provider)
         self._geo_places()
 
     def _goto_active_person(self, handle=None): # pylint: disable-msg=W0613
@@ -1024,6 +1083,11 @@ class GeoView(HtmlView):
         for widget in widgets :
             if isinstance(widget, gtk.ToggleToolButton):
                 widget.set_active(state)
+        actionstyles = self.lock_action.get_action('SaveZoomMenu')
+        widgets = actionstyles.get_proxies()
+        for widget in widgets :
+            if isinstance(widget, gtk.CheckMenuItem):
+                widget.set_active(state)
         self._set_lock_unlock_icon()
 
     def _set_lock_unlock_icon(self):
@@ -1038,6 +1102,9 @@ class GeoView(HtmlView):
                     widget.set_stock_id('geo-fixed-zoom')
                 else:
                     widget.set_stock_id('geo-free-zoom')
+        config.set('geoview.lock',
+                   self.lock_action.get_action('SaveZoom').get_active()
+                   )
 
     def _save_zoom(self, button):
         """
@@ -1048,7 +1115,7 @@ class GeoView(HtmlView):
         """
         if not button.get_active():
             self._change_map(self.usedmap)
-        self._set_lock_unlock_icon()
+        self._set_lock_unlock(button.get_active())
 
     def _change_provider(self, button):
         """
@@ -1074,10 +1141,16 @@ class GeoView(HtmlView):
         widgets = actionstyles.get_proxies()
         for widget in widgets :
             if isinstance(widget, gtk.ToggleToolButton):
+                widget.set_active(state)
                 if state:
                     widget.set_stock_id('gramps-geo-altmap')
                 else:
                     widget.set_stock_id('gramps-geo-mainmap')
+        actionstyles = self.provider_action.get_action('ProviderMenu')
+        widgets = actionstyles.get_proxies()
+        for widget in widgets :
+            if isinstance(widget, gtk.CheckMenuItem):
+                widget.set_active(state)
 
     def _createpageplaceswithoutcoord(self):
         """
