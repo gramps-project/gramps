@@ -95,7 +95,7 @@ class PaperComboBox(gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = self.store[active][0]
+        key = unicode(self.store[active][0])
         return (self.mapping[key],key)
 
 #-------------------------------------------------------------------------
