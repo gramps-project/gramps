@@ -532,9 +532,14 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         if path.endswith(".zip") or path.endswith(".ZIP"):
             file_obj = Zipfile(buffer)
         elif path.endswith(".tar.gz") or path.endswith(".tgz"):
-            file_obj = tarfile.open(None, fileobj=buffer)
+            try:
+                file_obj = tarfile.open(None, fileobj=buffer)
+            except:
+                callback(_("Error: cannot open '%s'") % path)
+                return 
         else:
-            return [("Error: unknown file type: '%s'") % path]
+            callback(_("Error: unknown file type: '%s'") % path)
+            return 
         # First, see what versions we have/are getting:
         good_gpr = set()
         for gpr_file in [name for name in file_obj.getnames() if name.endswith(".gpr.py")]:
