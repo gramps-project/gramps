@@ -70,7 +70,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Description'), -1, 195, 0, EventRefModel.COL_FONTWEIGHT[0]),
+        (_('Description'), -1, 240, 0, EventRefModel.COL_FONTWEIGHT[0]),
         (_('Type'), EventRefModel.COL_TYPE[0], 100, 0, 
                                             EventRefModel.COL_FONTWEIGHT[0]),
         (_('ID'), EventRefModel.COL_GID[0], 60, 0, 
