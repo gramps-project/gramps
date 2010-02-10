@@ -939,10 +939,8 @@ class ViewManager(CLIManager):
                 uimenuitems += '\n<menuitem action="%s"/>' % pageid
                 uitoolitems += '\n<toolitem action="%s"/>' % pageid
                 # id, stock, button text, UI, tooltip, page
-                if nrpage < 9 * 3:
-                    modifier = ["<CONTROL>",
-                                "<ALT>", 
-                                "<CONTROL><ALT>"][int(nrpage / 9)] + str((nrpage % 9) + 1)
+                if nrpage < 9:
+                    modifier = "<CONTROL>%d" % ((nrpage % 9) + 1)
                 else:
                     modifier = ""
                 self.view_toggle_actions[indexcat].append((pageid, 
