@@ -39,7 +39,7 @@ import traceback
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from const import VERSION as GRAMPSVERSION
+from const import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from const import IMAGE_DIR
 from TransUtils import get_addon_translator
 from gen.ggettext import gettext as _
@@ -937,9 +937,20 @@ class PluginRegister(object):
             #  3. TOOL_DEBUG only if __debug__ True
             rmlist = []
             ind = lenpd-1
+            GRAMPS_VERSION = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
             for plugin in self.__plugindata[lenpd:]:
                 ind += 1
                 plugin.directory = dir
+                if plugin.gramps_target_version != GRAMPS_VERSION:
+                    print _('Plugin file %(filename)s is wrong version: '
+                            'should be "%(gramps_version)s" but is actually '
+                            '"%(gramps_target_version)s".' % 
+                            {'filename': os.path.join(dir, plugin.fname),
+                             'gramps_version': GRAMPS_VERSION,
+                             'gramps_target_version': plugin.gramps_target_version,}
+                            )
+                    rmlist.append(ind)
+                    continue
                 if not plugin.status == STABLE and self.stable_only:
                     rmlist.append(ind)
                     continue
