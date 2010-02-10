@@ -56,6 +56,12 @@ import Utils
 import const
 import config
 
+def display_message(message):
+    """
+    A default callback for displaying messages.
+    """
+    print message
+
 def version_str_to_tup(sversion, positions):
     """
     Given a string version and positions count, returns a tuple of
@@ -349,7 +355,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.__add_btn = gtk.Button(_("Install Addon"))
         hbutbox.add(self.__add_btn)
-        self.__add_btn.connect('clicked', self.__get_addon) 
+        self.__add_btn.connect('clicked', self.__get_addon_top)
         self.__add_all_btn = gtk.Button(_("Install All Addons"))
         hbutbox.add(self.__add_all_btn)
         self.__add_all_btn.connect('clicked', self.__get_all_addons) 
@@ -381,12 +387,22 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         Reloads the addons from the wiki into the list.
         """
         import urllib
+        from gui.utils import ProgressMeter
         URL = "%s%s" % (const.URL_WIKISTRING, const.WIKI_EXTRAPLUGINS_RAWDATA)
-        fp = urllib.urlopen(URL)
+        try:
+            fp = urllib.urlopen(URL)
+        except:
+            print "Error: cannot open %s" % URL
+            return
+        pm = ProgressMeter(_("Refreshing Addon List"))
+        pm.set_pass(header=_("Reading gramps-project.org..."))
         state = "read"
         rows = []
         row = []
-        for line in fp.readlines():
+        lines = fp.readlines()
+        pm.set_pass(total=len(lines), header=_("Reading gramps-project.org..."))
+        for line in lines:
+            pm.step()
             if line.startswith("|-") or line.startswith("|}"):
                 if row != []:
                     rows.append(row)
@@ -402,7 +418,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.addon_model.clear()
         # clear the config list:
         config.get('plugin.addonplugins')[:] = []
+        pm.set_pass(total=len(rows), header=_("Checking addon..."))
         for row in rows:
+            pm.step()
             try:
                 # from wiki:
                 help_name, ptype, image, desc, use, rating, contact, download = row
@@ -446,6 +464,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                                              rating, contact, download, url])
                 config.get('plugin.addonplugins').append([help_name, name, ptype, image, desc, use, 
                                                           rating, contact, download, url])
+        pm.close()
         config.save()
 
     def __get_all_addons(self, obj):
@@ -453,29 +472,40 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         Get all addons from the wiki and install them.
         """
         import urllib
+        from gui.utils import ProgressMeter
+        pm = ProgressMeter(_("Install all Addons"), _("Installing..."), message_area=True)
+        pm.set_pass(total=len(self.addon_model))
         for row in self.addon_model:
+            pm.step()
             (help_name, name, ptype, image, desc, use, rating, contact, 
              download, url) = row
-            messages = self.__load_addon_file(url)
-            # FIXME: display messages
-            for message in messages:
-                print message
+            self.__load_addon_file(url, callback=pm.append_message)
+        pm.message_area_ok.set_sensitive(True)
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
 
-    def __get_addon(self, obj):
+    def __get_addon_top(self, obj):
+        """
+        Toplevel method to get an addon.
+        """
+        from gui.utils import ProgressMeter
+        pm = ProgressMeter(_("Installing Addon"), message_area=True)
+        pm.set_pass(total=2, header=_("Reading gramps-project.org..."))
+        pm.step()
+        self.__get_addon(obj, callback=pm.append_message)
+        pm.step()
+        pm.message_area_ok.set_sensitive(True)
+
+    def __get_addon(self, obj, callback=display_message):
         """
         Get an addon from the wiki or file system and install it.
         """
         path = self.install_addon_path.get_text()
-        messages = self.__load_addon_file(path)
-        # FIXME: display messages
-        for message in messages:
-            print message
+        self.__load_addon_file(path, callback)
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
 
-    def __load_addon_file(self, path):
+    def __load_addon_file(self, path, callback=display_message):
         """
         Load an addon from a particular path (from URL or file system).
         """
@@ -485,9 +515,17 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         if (path.startswith("http://") or
             path.startswith("https://") or
             path.startswith("ftp://")):
-            fp = urllib.urlopen(path)
+            try:
+                fp = urllib.urlopen(path)
+            except:
+                callback(_("Unable to open '%s'") % path)
+                return
         else:
-            fp = open(path)
+            try:
+                fp = open(path)
+            except:
+                callback(_("Unable to open '%s'") % path)
+                return
         buffer = cStringIO.StringIO(fp.read())
         fp.close()
         # file_obj is either Zipfile or TarFile
@@ -499,8 +537,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             return [("Error: unknown file type: '%s'") % path]
         # First, see what versions we have/are getting:
         good_gpr = set()
-        messages = []
         for gpr_file in [name for name in file_obj.getnames() if name.endswith(".gpr.py")]:
+            callback((_("Examining '%s'...") % gpr_file) + "\n")
             contents = file_obj.extractfile(gpr_file).read()
             # Put a fake register and _ function in environment:
             env = make_environment(register=register, 
@@ -512,7 +550,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             try:
                 exec(contents, env)
             except:
-                messages += [_("Error in '%s' file: cannot load.") % gpr_file]
+                msg = _("Error in '%s' file: cannot load.") % gpr_file
+                callback("   " + msg + "\n")
                 continue
             # There can be multiple addons per gpr file:
             for results in globals()["register_results"]:
@@ -523,24 +562,23 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                     if vtup == const.VERSION_TUPLE[0:2]:
                         # If this version is not installed, or > installed, install it
                         good_gpr.add(gpr_file)
-                        messages += [_("'%s' is for this version of Gramps.") % gpr_file]
+                        callback("   " + (_("'%s' is for this version of Gramps.") % gpr_file)  + "\n")
                 else:
                     # another register function doesn't have gramps_target_version
                     if gpr_file in good_gpr:
                         s.remove(gpr_file)
-                    messages += [_("Error: missing gramps_target_version = '3.2' in '%s'...") % gpr_file]
+                    callback("   " + (_("Error: missing gramps_target_version = '3.2' in '%s'...") % gpr_file)  + "\n")
         if len(good_gpr) > 0:
             # Now, install the ok ones
             file_obj.extractall(const.USER_PLUGINS)
-            messages += [_("Installing '%s'...") % path]
+            callback((_("Installing '%s'...") % path) + "\n")
             gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
                              for name in good_gpr])
             for gpr_file in gpr_files:
-                messages += [_("Registered '%s'") % gpr_file]
+                callback("   " + (_("Registered '%s'") % gpr_file) + "\n")
                 self.__pmgr.reg_plugins(gpr_file)
 
         file_obj.close()
-        return messages
     
     def __select_file(self, obj):
         """

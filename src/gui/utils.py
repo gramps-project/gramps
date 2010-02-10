@@ -93,7 +93,7 @@ class ProgressMeter(object):
     MODE_ACTIVITY = 1
     
     def __init__(self, title, header='', can_cancel=False, 
-                 cancel_callback=None):
+                 cancel_callback=None, message_area=False):
         """
         Specify the title and the current pass header.
         """
@@ -137,11 +137,48 @@ class ProgressMeter(object):
             self.__cancel_button = gtk.Button(stock=gtk.STOCK_CANCEL)
             self.__cancel_button.connect('clicked', self.__cancel_callback)
             self.__dialog.vbox.add(self.__cancel_button)
-        
+
+        self.message_area = None
+        if message_area:
+            area = gtk.ScrolledWindow()
+            text = gtk.TextView()
+            text.set_border_width(6)
+            text.set_editable(False)
+            self.message_area = text
+            area.add_with_viewport(text)
+            area.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            self.__dialog.vbox.add(area)
+            self.message_area_ok = gtk.Button(stock=gtk.STOCK_OK)
+            self.message_area_ok.connect("clicked", self.close)
+            self.message_area_ok.set_sensitive(False)
+            self.__dialog.vbox.pack_start(self.message_area_ok, expand=False, fill=False)
+            self.__dialog.set_size_request(500, 350)
+
         self.__dialog.show_all()
         if header == '':
             self.__lbl.hide()
 
+    def append_message(self, text):
+        """
+        Method to add text to message area.
+        """
+        if self.message_area:
+            buffer = self.message_area.get_buffer()
+            end = buffer.get_end_iter()
+            buffer.insert(end, text)
+        else:
+            print "Progress:", text
+
+    def set_message(self, text):
+        """
+        Sets the text of the message area.
+        """
+        if self.message_area:
+            buffer = self.message_area.get_buffer()
+            buffer.set_text(text)
+        else:
+            print "Progress:", text
+        
     def handle_cancel(self, *args, **kwargs):
         """
         Default cancel handler (if enabled).
@@ -227,7 +264,7 @@ class ProgressMeter(object):
             self.__dialog)
         return True
 
-    def close(self):
+    def close(self, widget=None):
         """
         Close the progress meter
         """
