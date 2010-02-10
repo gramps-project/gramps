@@ -51,7 +51,7 @@ import DateHandler
 import GrampsDisplay
 import ManagedWindow
 from gen.ggettext import sgettext as _
-from Utils import mac
+from constfunc import mac
 from glade import Glade
 from DdTargets import DdTargets
 
