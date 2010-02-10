@@ -300,7 +300,8 @@ class WebCalReport(Report):
 # ---------------------------------------------------------------------------------------
     def __get_holidays(self, year):
 
-        self.progress.set_pass(_('Calculating Holidays for year %04d' % year), 365)
+        # _('translation')
+        self.progress.set_pass((_('Calculating Holidays for year %04d') % year), 365)
 
         """ Get the holidays for the specified country and year """
         holiday_table = libholiday.HolidayTable()
