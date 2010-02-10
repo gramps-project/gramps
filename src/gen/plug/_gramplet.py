@@ -48,7 +48,7 @@ class Gramplet(object):
         self.uistate = gui.uistate
         self.init()
         self.on_load()
-        #self.build_options()
+        self.build_options()
         self.connect(self.dbstate, "database-changed", self._db_changed)
         self.connect(self.gui.textview, "button-press-event", 
                      self.gui.on_button_press) 
