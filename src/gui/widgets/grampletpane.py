@@ -175,6 +175,23 @@ def logical_true(value):
     """
     return value in ["True", True, 1, "1"]
 
+class ConfigInterface(object):
+    def __init__(self, pane):
+        self.pane = pane
+
+    def get(self, item):
+        print "get:", item
+        if item == "Gramplet View Options.column_count":
+            return self.pane.column_count
+
+    def set(self, widget, key):
+        if key == "Gramplet View Options.column_count":
+            try:
+                value = int(widget.get_text())
+                self.pane.set_columns(value)
+            except:
+                pass
+
 class LinkTag(gtk.TextTag):
     """
     Class for keeping track of link data.
@@ -734,6 +751,7 @@ class GuiGramplet(object):
 class GrampletPane(gtk.ScrolledWindow):
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
         gtk.ScrolledWindow.__init__(self)
+        self._config = ConfigInterface(self)
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
         self.column_count = kwargs.get("column_count", 2) 
@@ -1173,4 +1191,36 @@ class GrampletPane(gtk.ScrolledWindow):
             if gramplet.pui:
                 gramplet.pui.on_save()
         self.save()
+
+    def can_configure(self):
+        """
+        See :class:`~gui.views.pageview.PageView 
+        :return: bool
+        """
+        return True
+
+    def _get_configure_page_funcs(self):
+        """
+        Return a list of functions that create gtk elements to use in the 
+        notebook pages of the Configure dialog
+        
+        :return: list of functions
+        """
+        return [self.config_panel]
+
+    def config_panel(self, configdialog):
+        """
+        Function that builds the widget in the configuration dialog
+        """
+        table = gtk.Table(3, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        configdialog.add_pos_int_entry(table, 
+                _('Number of Columns'), 
+                0, 
+                'Gramplet View Options.column_count',
+                self._config.set)
+        return _('Layout'), table
 

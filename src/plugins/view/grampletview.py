@@ -68,15 +68,6 @@ class GrampletView(PageView):
         self.action = gtk.ActionGroup(self.title + "/Gramplets")
         self.action.add_actions([('AddGramplet',gtk.STOCK_ADD,_("_Add a gramplet")),
                                  ('RestoreGramplet',None,_("_Undelete gramplet")),
-                                 ('Columns1',None,_("Set Columns to _1"),
-                                  None,None,
-                                  lambda obj:self.widget.set_columns(1)),
-                                 ('Columns2',None,_("Set Columns to _2"),
-                                  None,None,
-                                  lambda obj:self.widget.set_columns(2)),
-                                 ('Columns3',None,_("Set Columns to _3"),
-                                  None,None,
-                                  lambda obj:self.widget.set_columns(3)),
                                  ])
         self._add_action_group(self.action)
 
@@ -103,23 +94,29 @@ class GrampletView(PageView):
     def ui_definition(self):
         return """
         <ui>
-          <menubar name="MenuBar">
-            <menu action="ViewMenu">
-              <menuitem action="Columns1"/>
-              <menuitem action="Columns2"/>
-              <menuitem action="Columns3"/>
-            </menu>
-          </menubar>
           <popup name="Popup">
             <menuitem action="AddGramplet"/>
             <menuitem action="RestoreGramplet"/>
-            <separator/>
-            <menuitem action="Columns1"/>
-            <menuitem action="Columns2"/>
-            <menuitem action="Columns3"/>
           </popup>
         </ui>
         """
         
     def on_delete(self):
         self.widget.on_delete()
+
+    def can_configure(self):
+        """
+        See :class:`~gui.views.pageview.PageView 
+        :return: bool
+        """
+        self._config = self.widget._config
+        return self.widget.can_configure()
+
+    def _get_configure_page_funcs(self):
+        """
+        Return a list of functions that create gtk elements to use in the 
+        notebook pages of the Configure dialog
+        
+        :return: list of functions
+        """
+        return self.widget._get_configure_page_funcs()
