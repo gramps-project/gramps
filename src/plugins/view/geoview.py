@@ -285,19 +285,18 @@ class GeoView(HtmlView):
         self.places = []
         self.sort = []
         self.psort = []
-        self.tooltips = gtk.Tooltips()
         self.clear = gtk.Button("")
-        self.tooltips.set_tip(self.clear,
+        self.clear.set_tooltip_text(
                               _("Clear the entry field in the places selection"
                                 " box."))
         self.savezoom = gtk.Button("")
         self.savezoom.connect("clicked", self._save_zoom)
-        self.tooltips.set_tip(self.savezoom,
+        self.savezoom.set_tooltip_text(
                               _("Save the zoom and coordinates between places "
                                 "map, person map, family map and event map."))
         self.provider = gtk.Button("")
         self.provider.connect("clicked", self._change_provider)
-        self.tooltips.set_tip(self.provider,
+        self.provider.set_tooltip_text(
                               _("Select the maps provider. You can choose "
                                 "between OpenStreetMap and Google maps."))
         self.buttons = gtk.ListStore(gobject.TYPE_STRING, # The year
@@ -326,7 +325,7 @@ class GeoView(HtmlView):
         self.yearsbox.pack_start(cell)
         self.yearsbox.add_attribute(self.yearsbox.get_cells()[0], 'text', 0)
         self.yearsbox.connect('changed', self._ask_year_selection)
-        self.tooltips.set_tip(self.yearsbox,
+        self.yearsbox.set_tooltip_text(
                               _("Select the period for which you want to"
                                 " see the places."))
         self.years.pack_start(self.ylabel, True, True, padding=2)
@@ -335,15 +334,15 @@ class GeoView(HtmlView):
         self.pages = []
         self.last_page = 1
         bef = gtk.Button("<<")
-        self.tooltips.set_tip(bef,
+        bef.set_tooltip_text(
                               _("Prior page."))
         self.pages.append(bef)
         cur = gtk.Button("1")
-        self.tooltips.set_tip(cur,
+        cur.set_tooltip_text(
                               _("The current page/the last page."))
         self.pages.append(cur)
         aft = gtk.Button(">>")
-        self.tooltips.set_tip(aft,
+        aft.set_tooltip_text(
                               _("Next page."))
         self.pages.append(aft)
         for page in self.pages:
@@ -351,7 +350,7 @@ class GeoView(HtmlView):
             self.pages_selection.pack_start(page, False, False, padding=2)
         self.nocoord = gtk.Button("Unref") # don't translate
         self.nocoord.connect("clicked", self._show_places_without_coord)
-        self.tooltips.set_tip(self.nocoord,
+        self.nocoord.set_tooltip_text(
                               _("The number of places which have no coordinates."))
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
@@ -446,7 +445,7 @@ class GeoView(HtmlView):
         self.placebox = gtk.ComboBoxEntry(self.plist)# pylint: disable-msg=W0201
         self.placebox.pack_start(cell)
         self.placebox.add_attribute(self.placebox.get_cells()[0], 'text', 0)
-        self.tooltips.set_tip(self.placebox,
+        self.placebox.set_tooltip_text(
                               _("Select the place for which you want to"
                                 " see the info bubble."))
         completion = gtk.EntryCompletion()
@@ -782,6 +781,7 @@ class GeoView(HtmlView):
         """
         Tell the browser to change the current map.
         """
+        self.uistate.clear_filter_results()
         self._do_we_need_to_zoom_between_map()
         if self.last_page != 1:
             ftype = {"places":'P',
@@ -962,6 +962,7 @@ class GeoView(HtmlView):
         self._set_lock_unlock(config.get('geoview.lock'))
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
+        self.uistate.clear_filter_results()
         self.filter_toggle(None, None, None, None)
         self._set_provider_icon(self.alt_provider)
         self._geo_places()
