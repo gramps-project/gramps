@@ -410,7 +410,6 @@ class GuiGramplet(object):
             column = self.mainframe.get_parent() # column
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
             column.set_child_packing(self.mainframe,False,fill,padding,pack)
-
         else:
             self.scrolledwindow.show()
             self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
@@ -820,6 +819,25 @@ class GrampletPane(gtk.ScrolledWindow):
             else:
                 print "Can't make gramplet of type '%s'." % name
         self.place_gramplets()
+
+    def show_all(self):
+        """
+        This seems to be necessary to hide the hidden 
+        parts of a collapsed gramplet on main view.
+        """
+        super(GrampletPane, self).show_all()
+        for gramplet in self.gramplet_map.values():
+            if gramplet.state == "minimized":
+                gramplet.set_state("minimized")
+
+    def set_state_all(self):
+        """
+        This seems to be necessary to hide the hidden
+        parts of a collapsed gramplet on sidebars.
+        """
+        for gramplet in self.gramplet_map.values():
+            if gramplet.state in ["minimized", "maximized"]:
+                gramplet.set_state(gramplet.state)
 
     def get_column_frame(self, column_num):
         if column_num < len(self.columns):
