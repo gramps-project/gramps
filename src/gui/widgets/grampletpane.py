@@ -236,6 +236,10 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.connect('response', self.handle_response)
         self.show()
+        # After we show, then we hide:
+        self.gramplet.gvclose.hide()
+        self.gramplet.gvstate.hide()
+        self.gramplet.gvproperties.hide()
 
     def handle_response(self, object, response):
         """
