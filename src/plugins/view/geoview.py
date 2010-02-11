@@ -1956,7 +1956,7 @@ class GeoView(HtmlView):
         Prepare the header of the page if we have no markers.
         """
         if center:
-            self._create_pages(
+            page = self._create_message_pages(
               _("Cannot center the map. No location with coordinates."
                 "The following reasons are : <ul>"
                 "<li>The active person has no places with coordinates.</li>"
