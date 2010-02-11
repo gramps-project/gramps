@@ -142,11 +142,14 @@ def valid_plugin_version(plugin_version_string):
     """
     dots = plugin_version_string.count(".")
     if dots == 1:
-        plugin_version  = [int(n) for n in plugin_version_string.split(".", 1)]
-        return tuple(plugin_version) == (VERSION_TUPLE[0], VERSION_TUPLE[1])
+        plugin_version  = tuple([int(n) for n in 
+                                 plugin_version_string.split(".", 1)])
+        return plugin_version == VERSION_TUPLE[:2]
     elif dots == 2:
-        plugin_version  = [int(n) for n in plugin_version_string.split(".", 2)]
-        return tuple(plugin_version) <= VERSION_TUPLE
+        plugin_version  = tuple([int(n) for n in 
+                                 plugin_version_string.split(".", 2)])
+        return (plugin_version[:2] == VERSION_TUPLE[:2] and 
+                plugin_version <= VERSION_TUPLE)
     return False
         
 class PluginData(object):
