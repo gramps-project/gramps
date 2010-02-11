@@ -165,6 +165,7 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
                        buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
                        None, dialogtitle, None)
         self.panel = gtk.Notebook()
+        self.panel.set_scrollable(True)
         self.window.vbox.add(self.panel)
         self.__on_close = on_close
         self.window.connect('response', self.done)
@@ -178,7 +179,11 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         """
         This method builds the notebookpages in the panel
         """
-        for func in configure_page_funcs:
+        if callable(configure_page_funcs):
+            pages = configure_page_funcs()
+        else:
+            pages = configure_page_funcs
+        for func in pages:
             labeltitle, widget = func(self)
             self.panel.append_page(widget, MarkupLabel(labeltitle))
 
