@@ -239,7 +239,8 @@ class GeoView(HtmlView):
     """
     CONFIGSETTINGS = (
         ('preferences.alternate-provider', False),
-        ('preferences.provider-in-toolbar', False),
+        ('preferences.timeperiod-before-range', 10),
+        ('preferences.timeperiod-after-range', 10),
         )
 
     def __init__(self, dbstate, uistate):
@@ -284,7 +285,21 @@ class GeoView(HtmlView):
         self.places = []
         self.sort = []
         self.psort = []
+        self.tooltips = gtk.Tooltips()
         self.clear = gtk.Button("")
+        self.tooltips.set_tip(self.clear,
+                              _("Clear the entry field in the places selection"
+                                " box."))
+        self.savezoom = gtk.Button("")
+        self.savezoom.connect("clicked", self._save_zoom)
+        self.tooltips.set_tip(self.savezoom,
+                              _("Save the zoom and coordinates between places "
+                                "map, person map, family map and event map."))
+        self.provider = gtk.Button("")
+        self.provider.connect("clicked", self._change_provider)
+        self.tooltips.set_tip(self.provider,
+                              _("Select the maps provider. You can choose "
+                                "between OpenStreetMap and Google maps."))
         self.buttons = gtk.ListStore(gobject.TYPE_STRING, # The year
                                   )
         self.plist = gtk.ListStore(gobject.TYPE_STRING, # The name
@@ -311,19 +326,33 @@ class GeoView(HtmlView):
         self.yearsbox.pack_start(cell)
         self.yearsbox.add_attribute(self.yearsbox.get_cells()[0], 'text', 0)
         self.yearsbox.connect('changed', self._ask_year_selection)
+        self.tooltips.set_tip(self.yearsbox,
+                              _("Select the period for which you want to"
+                                " see the places."))
         self.years.pack_start(self.ylabel, True, True, padding=2)
         self.years.pack_start(self.yearsbox, True, True, padding=2)
         self.pages_selection = gtk.HBox()
         self.pages = []
         self.last_page = 1
-        self.pages.append(gtk.Button("<<"))
-        self.pages.append(gtk.Button("1")) # current page
-        self.pages.append(gtk.Button(">>"))
+        bef = gtk.Button("<<")
+        self.tooltips.set_tip(bef,
+                              _("Prior page."))
+        self.pages.append(bef)
+        cur = gtk.Button("1")
+        self.tooltips.set_tip(cur,
+                              _("The current page/the last page."))
+        self.pages.append(cur)
+        aft = gtk.Button(">>")
+        self.tooltips.set_tip(aft,
+                              _("Next page."))
+        self.pages.append(aft)
         for page in self.pages:
             page.connect("clicked", self._ask_new_page)
             self.pages_selection.pack_start(page, False, False, padding=2)
         self.nocoord = gtk.Button("Unref") # don't translate
         self.nocoord.connect("clicked", self._show_places_without_coord)
+        self.tooltips.set_tip(self.nocoord,
+                              _("The number of places which have no coordinates."))
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
         self.endinit = False
@@ -356,9 +385,9 @@ class GeoView(HtmlView):
         This method will be called after the ini file is initialized,
         use it to monitor changes in the ini file
         """
-        self._config.connect("preferences.alternate-provider",
+        self._config.connect("preferences.timeperiod-before-range",
                           self.config_update)
-        self._config.connect("preferences.provider-in-toolbar",
+        self._config.connect("preferences.timeperiod-after-range",
                           self.config_update)
 
     def config_update(self, client, cnxn_id, entry, data):
@@ -366,31 +395,11 @@ class GeoView(HtmlView):
         """
         Some preferences changed in the configuration window.
         """
-        self.alt_provider = self._config.get('preferences.alternate-provider')
-        if self.alt_provider:
-            self.usedmap = "google"
-        else:
-            self.usedmap = "openstreetmap"
-        if self._config.get('preferences.provider-in-toolbar'):
-            self.provider_hide_show(True)
-        else:
-            self.provider_hide_show(False)
+        print "in config update"
+        print self._config.get('preferences.timeperiod-before-range')
         self._change_map(self.usedmap)
         self._set_provider_icon(self.alt_provider)
         self._ask_year_selection(self.last_year)
-
-    def provider_hide_show(self, state):
-        """
-        Function that hide or show the provider button in the toolbar
-        """
-        actionstyles = self.provider_action.get_action('Provider')
-        widgets = actionstyles.get_proxies()
-        for widget in widgets :
-            if isinstance(widget, gtk.ToggleToolButton):
-                if state:
-                    widget.show()
-                else:
-                    widget.hide()
 
     def geoview_options(self, configdialog):
         """
@@ -401,16 +410,16 @@ class GeoView(HtmlView):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         configdialog.add_text(table, 
-                _("If 'Use alternate provider' is selected below,"
-                  ' Google maps is used, otherwise OpenStreetMap.'), 1)
-        configdialog.add_checkbox(table, 
-                _('Use alternate provider.'),
-                2, 'preferences.alternate-provider')
-        configdialog.add_checkbox(table, 
-                _('Add a provider toggle button to the toolbar.'),
-                3, 'preferences.provider-in-toolbar')
+                _("The two following fields are used to adjust "
+                  "the time period when we are near the limits."), 1)
+        configdialog.add_pos_int_entry(table, 
+                _('The number of years before the first event date.'),
+                2, 'preferences.timeperiod-before-range')
+        configdialog.add_pos_int_entry(table, 
+                _('The number of years after the last event date.'),
+                3, 'preferences.timeperiod-after-range')
 
-        return _('Map provider'), table
+        return _('Time period adjustment'), table
 
     def _place_changed(self, handle_list):
         # pylint: disable-msg=W0613
@@ -432,10 +441,14 @@ class GeoView(HtmlView):
         """
         self.box1 = gtk.VBox(False, 1) # pylint: disable-msg=W0201
         self.clear.set_alignment(1.0, 0.5)
+        self.savezoom.set_alignment(1.0, 0.5)
         cell = gtk.CellRendererText()
         self.placebox = gtk.ComboBoxEntry(self.plist)# pylint: disable-msg=W0201
         self.placebox.pack_start(cell)
         self.placebox.add_attribute(self.placebox.get_cells()[0], 'text', 0)
+        self.tooltips.set_tip(self.placebox,
+                              _("Select the place for which you want to"
+                                " see the info bubble."))
         completion = gtk.EntryCompletion()
         completion.set_model(self.plist)
         completion.set_minimum_key_length(1)
@@ -452,6 +465,8 @@ class GeoView(HtmlView):
         box.pack_start(self.pages_selection, False, False, padding=2)
         box.pack_start(self.nocoord, False, False, padding=2)
         box.pack_start(self.years, False, False, padding=2)
+        box.pack_start(self.savezoom, False, False, padding=2)
+        box.pack_start(self.provider, False, False, padding=2)
         box.show_all()
         self.title = gtk.Label('')
         self.title.set_single_line_mode(True)
@@ -657,9 +672,6 @@ class GeoView(HtmlView):
         Save the zoom, latitude, longitude and lock
         """
         self._savezoomandposition()
-        config.set('geoview.lock',
-                   self.lock_action.get_action('SaveZoom').get_active()
-                   )
         if config.get('geoview.lock'):
             config.set('geoview.zoom', int(self.realzoom))
             config.set('geoview.latitude', str(self.reallatitude))
@@ -845,18 +857,13 @@ class GeoView(HtmlView):
               </placeholder>
             </menu>
             <menu action="EditMenu">
+              <separator/>
               <menuitem action="AddPlaceMenu"/>
               <menuitem action="LinkPlaceMenu"/>
-            </menu>
-            <menu action="ViewMenu">
-              <menuitem action="ProviderMenu"/>
-              <menuitem action="SaveZoomMenu"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonEdit">
-              <toolitem action="Provider"/>
-              <toolitem action="SaveZoom"/>
               <toolitem action="AddPlace"/>
               <toolitem action="LinkPlace"/>
               <separator/>
@@ -873,9 +880,6 @@ class GeoView(HtmlView):
         Required define_actions function for PageView. Builds the action
         group information required. 
         """
-        #HtmlView._define_actions_fw_bw(self)
-        #self.forward_action.set_sensitive(False)
-        #self.back_action.set_sensitive(False)
         self._add_action('AddPlace', 'geo-place-add', 
             _('_Add Place'),
             callback=self._add_place,
@@ -896,42 +900,6 @@ class GeoView(HtmlView):
             callback=self._link_place,
             tip=_("Link the location centred on the map to a place in "
                   "Gramps. Double click the location to centre on the map."))
-        self.provider_action = gtk.ActionGroup(self.title + "/Provider")
-        self.provider_action.add_toggle_actions([
-            ('Provider', 'gramps-geo-mainmap', _("_Provider"), "<ALT>P",
-             _("Select the maps provider. You can choose "
-               "between OpenStreetMap and Google maps"),
-             self._change_provider,
-             self._config.get('preferences.alternate-provider')
-             )
-            ])
-        self.provider_action.add_toggle_actions([
-            ('ProviderMenu', 'gramps-geo-mainmap', _("_Provider"), "<ALT>P",
-             _("Select the maps provider. You can choose "
-               "between OpenStreetMap and Google maps"),
-             self._change_provider,
-             self._config.get('preferences.alternate-provider')
-             )
-            ])
-        self._add_action_group(self.provider_action)
-        self.lock_action = gtk.ActionGroup(self.title + "/SaveZoom")
-        self.lock_action.add_toggle_actions([
-            ('SaveZoom', 'geo-fixed-zoom', _("_Save Zoom"), "<ALT>L",
-             _("Save the zoom between places map, person map, "
-               "family map and event map"),
-             self._save_zoom,
-             config.get('geoview.lock')
-             )
-            ])
-        self.lock_action.add_toggle_actions([
-            ('SaveZoomMenu', 'geo-fixed-zoom', _("_Save Zoom"), "<ALT>L",
-             _("Save the zoom between places map, person map, "
-               "family map and event map"),
-             self._save_zoom,
-             config.get('geoview.lock')
-             )
-            ])
-        self._add_action_group(self.lock_action)
         self._add_action('AllPlacesMaps', 'geo-show-place', _('_All Places'),
         callback=self._all_places, tip=_("Attempt to view all places in "
                                          "the family tree."))
@@ -995,8 +963,6 @@ class GeoView(HtmlView):
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
         self.filter_toggle(None, None, None, None)
-        if not self._config.get('preferences.provider-in-toolbar'):
-            self.provider_hide_show(False)
         self._set_provider_icon(self.alt_provider)
         self._geo_places()
 
@@ -1080,33 +1046,19 @@ class GeoView(HtmlView):
         """
         Change the lock/unlock state.
         """
-        actionstyles = self.lock_action.get_action('SaveZoom')
-        widgets = actionstyles.get_proxies()
-        for widget in widgets :
-            if isinstance(widget, gtk.ToggleToolButton):
-                widget.set_active(state)
-        actionstyles = self.lock_action.get_action('SaveZoomMenu')
-        widgets = actionstyles.get_proxies()
-        for widget in widgets :
-            if isinstance(widget, gtk.CheckMenuItem):
-                widget.set_active(state)
+        config.set('geoview.lock', state)
         self._set_lock_unlock_icon()
 
     def _set_lock_unlock_icon(self):
         """
         Change the lock/unlock icon depending on the button state.
         """
-        actionstyles = self.lock_action.get_action('SaveZoom')
-        widgets = actionstyles.get_proxies()
-        for widget in widgets :
-            if isinstance(widget, gtk.ToggleToolButton):
-                if self.lock_action.get_action('SaveZoom').get_active():
-                    widget.set_stock_id('geo-fixed-zoom')
-                else:
-                    widget.set_stock_id('geo-free-zoom')
-        config.set('geoview.lock',
-                   self.lock_action.get_action('SaveZoom').get_active()
-                   )
+        image = gtk.Image()
+        if config.get('geoview.lock'):
+            image.set_from_stock('geo-fixed-zoom', gtk.ICON_SIZE_MENU)
+        else:
+            image.set_from_stock('geo-free-zoom', gtk.ICON_SIZE_MENU)
+        self.savezoom.set_image(image)
 
     def _save_zoom(self, button):
         """
@@ -1115,9 +1067,12 @@ class GeoView(HtmlView):
         events or places map.
         When we unlock, we reload the page with our values.
         """
-        if not button.get_active():
-            self._change_map(self.usedmap)
-        self._set_lock_unlock(button.get_active())
+        if config.get('geoview.lock'):
+            config.set('geoview.lock', False)
+            self._set_lock_unlock(False)
+        else:
+            config.set('geoview.lock', True)
+            self._set_lock_unlock(True)
 
     def _change_provider(self, button):
         """
@@ -1125,34 +1080,27 @@ class GeoView(HtmlView):
         Inactive ( the default ) is openstreetmap.
         Active means Google maps.
         """
-        if button.get_active():
-            self.usedmap = "google"
-            self._config.set('preferences.alternate-provider', True)
-        else:
+        if self._config.get('preferences.alternate-provider'):
             self.usedmap = "openstreetmap"
             self._config.set('preferences.alternate-provider', False)
+            self._set_provider_icon(False)
+        else:
+            self.usedmap = "google"
+            self._config.set('preferences.alternate-provider', True)
+            self._set_provider_icon(True)
         self._change_map(self.usedmap)
-        self._set_provider_icon(button.get_active())
         self._ask_year_selection(self.last_year)
 
     def _set_provider_icon(self, state):
         """
         Change the provider icon depending on the button state.
         """
-        actionstyles = self.provider_action.get_action('Provider')
-        widgets = actionstyles.get_proxies()
-        for widget in widgets :
-            if isinstance(widget, gtk.ToggleToolButton):
-                widget.set_active(state)
-                if state:
-                    widget.set_stock_id('gramps-geo-altmap')
-                else:
-                    widget.set_stock_id('gramps-geo-mainmap')
-        actionstyles = self.provider_action.get_action('ProviderMenu')
-        widgets = actionstyles.get_proxies()
-        for widget in widgets :
-            if isinstance(widget, gtk.CheckMenuItem):
-                widget.set_active(state)
+        image = gtk.Image()
+        if self._config.get('preferences.alternate-provider'):
+            image.set_from_stock('gramps-geo-altmap', gtk.ICON_SIZE_MENU)
+        else:
+            image.set_from_stock('gramps-geo-mainmap', gtk.ICON_SIZE_MENU)
+        self.provider.set_image(image)
 
     def _createpageplaceswithoutcoord(self):
         """
@@ -1224,8 +1172,10 @@ class GeoView(HtmlView):
             self.maxyear = 2100
         if self.minyear == 9999:
             self.minyear = 1500
-        adjust_before_min_year = config.get('behavior.date-before-range')
-        adjust_after_max_year = config.get('behavior.date-after-range')
+        adjust_before_min_year = self._config.get(
+                                       'preferences.timeperiod-before-range')
+        adjust_after_max_year = self._config.get(
+                                       'preferences.timeperiod-after-range')
         self.minyear -= ( self.minyear - adjust_before_min_year ) % 10
         self.maxyear -= ( self.maxyear + adjust_after_max_year ) % 10
         self.yearint = adjust_after_max_year + \
@@ -1247,7 +1197,6 @@ class GeoView(HtmlView):
                 self._set_years_selection(self.minyear,
                                           self.yearint,
                                           self.maxyear)
-                                          #self.maxyear + adjust_after_max_year)
                 self.years.show()
         self.mapview.write("<div id=\"GOverviewMapControl_Helper\"")
         self.mapview.write(" style=\"height: %dpx; " %
@@ -1307,7 +1256,6 @@ class GeoView(HtmlView):
                 }
             )
         fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
-                                             #'mxn.js?(openlayers,google)')
                                              'mapstraction.js')
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(fpath.split(os.sep)),
@@ -1535,8 +1483,8 @@ class GeoView(HtmlView):
         ipath = os.path.join(const.ROOT_DIR, 'images/22x22/', '%s.png' % value )
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(ipath.split(os.sep)), '', ''))
-        self.mapview.write("my_marker.setIcon(\"%s\",[22,22],[0,22]);" % upath)
-        self.mapview.write("my_marker.setShadowIcon(\"\");")
+        self.mapview.write("my_marker.setIcon(\"%s\",[22,22],[0,0]);" % upath)
+        self.mapview.write("my_marker.setShadowIcon(\"\",0);")
 
     def _show_title(self, title):
         """
@@ -2030,7 +1978,6 @@ class GeoView(HtmlView):
         """
         Return the css style sheet needed for GeoView.
         """
-        # Get the default stylesheet.
         dblp = "<link media=\"screen\" "
         delp = "type=\"text/css\" rel=\"stylesheet\" />\n"
         # Get the GeoView stylesheet.
@@ -2179,7 +2126,7 @@ class GeoView(HtmlView):
                 'content': _('You don\'t see a map here for the following '
                              'reasons :<br><ol>'
                              '<li>Your database is empty or not yet selected.'
-                             '</li><li>You don\'t yet select a person.</li>'
+                             '</li><li>You have not yet selected a person.</li>'
                              '<li>You have no place in your database.</li>'
                              '<li>The selected places have no coordinates.</li>'
                              '</ol>')
