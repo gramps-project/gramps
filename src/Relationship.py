@@ -1821,7 +1821,10 @@ def get_relationship_calculator(reinit=False):
             lang = locale.getlocale()[0]
             if not lang:
                 # if lang is empty/None
-                lang = locale.getdefaultlocale()[0]
+                try:
+                    lang = locale.getdefaultlocale()[0]
+                except:
+                    pass
         for plugin in PluginRegister.get_instance().relcalc_plugins():
             if lang in plugin.lang_list:
                 pmgr = BasePluginManager.get_instance()
