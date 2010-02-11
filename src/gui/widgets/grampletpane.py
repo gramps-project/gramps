@@ -175,23 +175,6 @@ def logical_true(value):
     """
     return value in ["True", True, 1, "1"]
 
-class ConfigInterface(object):
-    def __init__(self, pane):
-        self.pane = pane
-
-    def get(self, item):
-        print "get:", item
-        if item == "Gramplet View Options.column_count":
-            return self.pane.column_count
-
-    def set(self, widget, key):
-        if key == "Gramplet View Options.column_count":
-            try:
-                value = int(widget.get_text())
-                self.pane.set_columns(value)
-            except:
-                pass
-
 class LinkTag(gtk.TextTag):
     """
     Class for keeping track of link data.
@@ -751,10 +734,22 @@ class GuiGramplet(object):
                     return True
         return False # did not handle event
 
+    def get_title(self):
+        return self.title
+
+    def set_title(self, new_title):
+        # can't do it if already titled that way
+        if new_title in self.pane.gramplet_map: return
+        del self.pane.gramplet_map[self.title] 
+        self.title = new_title
+        self.pane.gramplet_map[self.title] = self
+        self.titlelabel.set_text("<b><i>%s</i></b>" % self.title)
+        self.titlelabel.set_use_markup(True)
+        
 class GrampletPane(gtk.ScrolledWindow):
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
+        self._config = Configuration(self)
         gtk.ScrolledWindow.__init__(self)
-        self._config = ConfigInterface(self)
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
         self.column_count = kwargs.get("column_count", 2) 
@@ -1228,7 +1223,15 @@ class GrampletPane(gtk.ScrolledWindow):
         
         :return: list of functions
         """
-        return [self.config_panel]
+        def generate_pages():
+            return [self.config_panel] + \
+                [self.build_panel(gramplet) for gramplet in 
+                 sorted(self.gramplet_map.values(), key=lambda g: g.title) 
+                 if gramplet.state != "closed"]
+        return generate_pages
+ 
+    def get_columns(self):
+        return self.column_count
 
     def config_panel(self, configdialog):
         """
@@ -1239,10 +1242,57 @@ class GrampletPane(gtk.ScrolledWindow):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
+        self._config.register('Gramplet View Options.column_count',
+                              int,
+                              self.get_columns, # pane
+                              self.set_columns) # pane
+
         configdialog.add_pos_int_entry(table, 
-                _('Number of Columns'), 
-                0, 
+                 _('Number of Columns'), 
+                 0, 
                 'Gramplet View Options.column_count',
                 self._config.set)
-        return _('Layout'), table
+        return _('Gramplet Layout'), table
+ 
+    def build_panel(self, gramplet):
+        self._config.register("%s.title" % gramplet.title, 
+                              str, gramplet.get_title, gramplet.set_title)
+        def gramplet_panel(configdialog):
+            configdialog.window.set_size_request(500, -1)
+            table = gtk.Table(3, 2)
+            table.set_border_width(12)
+            table.set_col_spacings(6)
+            table.set_row_spacings(6)
+            configdialog.add_entry(table, 
+                _('Title'), 
+                0, 
+                "%s.title" % gramplet.title,
+                self._config.set)
+            return gramplet.title, table
+        return gramplet_panel
 
+class Configuration(object):
+    """
+    A config wrapper to redirect set/get to GrampletPane.
+    """
+    def __init__(self, pane):
+        self.pane = pane
+        self.data = {}
+
+    def get(self, key):
+        vtype, getter, setter = self.data[key]
+        return getter()
+
+    def set(self, widget, key):
+        vtype, getter, setter = self.data[key]
+        try:
+            value = vtype(widget.get_text())
+        except:
+            return
+        setter(value)
+
+    def register(self, key, vtype, getter, setter):
+        """
+        register a key with type, getter, and setter methods.
+        """
+        self.data[key] = (vtype, getter, setter)
