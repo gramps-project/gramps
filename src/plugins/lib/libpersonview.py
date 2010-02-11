@@ -309,7 +309,7 @@ class BasePersonView(ListView):
         path = self.model.on_get_path(node)
         (col, row) = path
         if row > 0:
-            self.selection.select_path((col, row1))
+            self.selection.select_path((col, row))
         elif row == 0 and self.model.on_get_iter(path):
             self.selection.select_path(path)
 
