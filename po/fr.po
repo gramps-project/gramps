@@ -24734,7 +24734,7 @@ msgstr "<b>La Vue Lignée</b><br/> La vue Lignée affiche un arbre traditionnel.
 # trunk
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; Book Report...&quot;, allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr "<b>Les rapports de livre</b></br>Rapport &gt; Livres &gt; Gestionnaire de Livres permet aux utilisateurs une multitude de rapports dans un seul document. Ce rapport unique est plus facile à partager que de nombreux rapports, surtout pour l'impression."
+msgstr "<b>Les rapports de livre</b><br/>Rapport &gt; Livres &gt; Gestionnaire de Livres permet aux utilisateurs une multitude de rapports dans un seul document. Ce rapport unique est plus facile à partager que de nombreux rapports, surtout pour l'impression."
 
 # Substantif (GNOME fr)
 # trunk
