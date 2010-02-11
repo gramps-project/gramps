@@ -485,7 +485,8 @@ class DisplayState(gen.utils.Callback):
                     name = '%s (%s)' % (name, msg.strip())
 
         if not name:
-            name = _('No active object')
+            name = _('No active %(navigation_type)s') % {"navigation_type":
+                                                         _(nav_type.lower())}
 
         self.status.push(self.status_id, name)
         process_pending_events()
