@@ -1956,7 +1956,7 @@ class GeoView(HtmlView):
         Prepare the header of the page if we have no markers.
         """
         if center:
-            self._create_pages(ptype, "",
+            self._create_pages(
               _("Cannot center the map. No location with coordinates."
                 "The following reasons are : <ul>"
                 "<li>The active person has no places with coordinates.</li>"
@@ -1965,6 +1965,7 @@ class GeoView(HtmlView):
                 "<li>You have no active person set.</li>"), 
               )
             self.box1.set_sensitive(False)
+            self._openurl(page)
         else:
             mess = ""
             self._create_pages(ptype, message, mess)
@@ -2139,6 +2140,35 @@ class GeoView(HtmlView):
             ufd = file(filename, "w+")
             ufd.write(data)
             ufd.close()
+        return urlparse.urlunsplit(('file', '',
+                                    URL_SEP.join(filename.split(os.sep)),
+                                    '', ''))
+
+    def _create_message_page(self, message):
+        """
+        This function creates a page which contains a message.
+        """
+        tmpdir = GEOVIEW_SUBPATH
+        data = """
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
+                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml"  >
+         <head>
+          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+          <title>Message</title>
+         </head>
+         <body >
+           <H4>%(content)s</H4>
+         </body>
+        </html>
+        """ % {
+                'content': message
+        }
+
+        filename = os.path.join(tmpdir, 'message.html')
+        ufd = file(filename, "w+")
+        ufd.write(data)
+        ufd.close()
         return urlparse.urlunsplit(('file', '',
                                     URL_SEP.join(filename.split(os.sep)),
                                     '', ''))
