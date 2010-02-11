@@ -129,6 +129,25 @@ TOOL_MODES    = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 # possible view orders
 START = 1
 END   = 2
+
+#-------------------------------------------------------------------------
+#
+# Functions and classes
+#
+#-------------------------------------------------------------------------
+def valid_plugin_version(plugin_version_string):
+    """
+    Checks to see if string is a valid version string for this version
+    of Gramps.
+    """
+    dots = plugin_version_string.count(".")
+    if dots == 1:
+        plugin_version  = [int(n) for n in plugin_version_string.split(".", 1)]
+        return tuple(plugin_version) == (VERSION_TUPLE[0], VERSION_TUPLE[1])
+    elif dots == 2:
+        plugin_version  = [int(n) for n in plugin_version_string.split(".", 2)]
+        return tuple(plugin_version) <= VERSION_TUPLE
+    return False
         
 class PluginData(object):
     """
@@ -922,12 +941,12 @@ class PluginRegister(object):
                          make_environment(_=local_gettext),
                          {})
             except ValueError, msg:
-                print _('Failed reading plugin registration %(filename)s') % \
+                print _('ERROR: Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename}
                 print msg
                 self.__plugindata = self.__plugindata[:lenpd]
             except:
-                print _('Failed reading plugin registration %(filename)s') % \
+                print _('ERROR: Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename}
                 print "".join(traceback.format_exception(*sys.exc_info()))
                 self.__plugindata = self.__plugindata[:lenpd]
@@ -937,16 +956,15 @@ class PluginRegister(object):
             #  3. TOOL_DEBUG only if __debug__ True
             rmlist = []
             ind = lenpd-1
-            GRAMPS_VERSION = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
             for plugin in self.__plugindata[lenpd:]:
                 ind += 1
                 plugin.directory = dir
-                if plugin.gramps_target_version != GRAMPS_VERSION:
-                    print _('Plugin file %(filename)s is wrong version: '
-                            'should be "%(gramps_version)s" but is actually '
-                            '"%(gramps_target_version)s".' % 
+                if not valid_plugin_version(plugin.gramps_target_version):
+                    print _('ERROR: Plugin file %(filename)s has a version of '
+                            '"%(gramps_target_version)s" which is invalid for Gramps '
+                            '"%(gramps_version)s".' % 
                             {'filename': os.path.join(dir, plugin.fname),
-                             'gramps_version': GRAMPS_VERSION,
+                             'gramps_version': GRAMPSVERSION,
                              'gramps_target_version': plugin.gramps_target_version,}
                             )
                     rmlist.append(ind)
@@ -961,7 +979,7 @@ class PluginRegister(object):
                 match = pymod.match(plugin.fname)
                 if not match:
                     rmlist.append(ind)
-                    print _('Wrong python file %(filename)s in register file '
+                    print _('ERROR: Wrong python file %(filename)s in register file '
                             '%(regfile)s')  % {
                                'filename': os.path.join(dir, plugin.fname),
                                'regfile': os.path.join(dir, filename)
@@ -969,7 +987,7 @@ class PluginRegister(object):
                     continue
                 if not os.path.isfile(os.path.join(dir, plugin.fname)):
                     rmlist.append(ind)
-                    print _('Python file %(filename)s in register file '
+                    print _('ERROR: Python file %(filename)s in register file '
                             '%(regfile)s does not exist')  % {
                                'filename': os.path.join(dir, plugin.fname),
                                'regfile': os.path.join(dir, filename)
