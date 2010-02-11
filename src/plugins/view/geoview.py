@@ -1914,9 +1914,6 @@ class GeoView(HtmlView):
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
                     continue
-                if event_ref.role != gen.lib.EventRoleType.PRIMARY:
-                    # Only match primaries, no witnesses
-                    continue
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
                 eventyear = event.get_date_object().to_calendar(self.cal).get_year()
                 place_handle = event.get_place_handle()
@@ -1959,6 +1956,7 @@ class GeoView(HtmlView):
             page = self._create_message_page(
               _("Cannot center the map. No location with coordinates."
                 "The following reasons are : <ul>"
+                "<li>The filter you use return nothing.</li>"
                 "<li>The active person has no places with coordinates.</li>"
                 "<li>The active person's family members have no places "
                 "with coordinates.</li><li>You have no places.</li>"
