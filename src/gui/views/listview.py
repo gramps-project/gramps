@@ -92,7 +92,7 @@ class ListView(NavigationView):
 
     def __init__(self, title, dbstate, uistate, columns, handle_col, 
                  make_model, signal_map, get_bookmarks, bm_type, nav_group,
-                 multiple=False, filter_class=None, markup=False):
+                 multiple=False, filter_class=None, markup=None):
         NavigationView.__init__(self, title, dbstate, uistate, 
                               get_bookmarks, bm_type, nav_group)
         #default is listviews keep themself in sync with database
@@ -111,7 +111,10 @@ class ListView(NavigationView):
         self.signal_map = signal_map
         self.multiple_selection = multiple
         self.generic_filter = None
-        self.markup_required = markup
+        if markup:
+            self.markup_columns = markup
+        else:
+            self.markup_columns = []
         dbstate.connect('database-changed', self.change_db)
 
     def type_list(self):
@@ -222,7 +225,7 @@ class ListView(NavigationView):
                 mcol = self.model.marker_column()
                 column.add_attribute(self.renderer, 'foreground', mcol)
 
-            if self.markup_required:
+            if pair[1] in self.markup_columns:
                 column.add_attribute(self.renderer, 'markup', pair[1])
             else:
                 column.add_attribute(self.renderer, 'text', pair[1])

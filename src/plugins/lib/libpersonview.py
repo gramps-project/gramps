@@ -96,6 +96,8 @@ class BasePersonView(ListView):
         _('Spouse'),
         _('Last Changed'),
         ]
+    # columns that contain markup
+    MARKUP_COLS = [COL_BDAT, COL_BPLAC, COL_DDAT, COL_DPLAC]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
@@ -127,7 +129,7 @@ class BasePersonView(ListView):
             Bookmarks.PersonBookmarks, nav_group,
             multiple=True,
             filter_class=PersonSidebarFilter,
-            markup=True)
+            markup=BasePersonView.MARKUP_COLS)
             
         self.func_list = {
             '<CONTROL>J' : self.jump,

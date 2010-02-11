@@ -318,19 +318,22 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
             self.add_node(node3, handle, sort_key, handle, add_parent=False)
 
     def column_name(self, data):
-        if data[2]:
-            return unicode(data[2])
-        elif data[5] is not None:
+        name = ''
+        if data[5] is not None:
             level = [data[5][0][i] for i in range(4,-1,-1)]
             if not (level[3] or level[4]):
-                return unicode(level[2] or level[1] or level[0])
+                name = unicode(level[2] or level[1] or level[0])
             elif level[3] and level[4]:
-                return unicode(level[3] + ', ' + level[4])
+                name = unicode(level[3] + ', ' + level[4])
             elif level[3] or level[4]:
-                return unicode(level[3] or level[4])
-            else:
-                return u"<i>%s<i>" % cgi.escape(_("<no name>"))
-        return unicode(data[2])
+                name = unicode(level[3] or level[4])
+        if not name:
+            name = unicode(data[2])
+
+        if name:
+            return cgi.escape(name)
+        else:
+            return u"<i>%s<i>" % cgi.escape(_("<no name>"))
         
     def column_header(self, node):
         """

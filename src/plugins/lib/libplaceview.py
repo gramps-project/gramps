@@ -99,6 +99,8 @@ class PlaceBaseView(ListView):
         _('Last Changed'),
         _('Street'),
         ]
+    # columns that contain markup
+    MARKUP_COLS = [COL_NAME]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_CITY, COL_STATE
@@ -116,7 +118,7 @@ class PlaceBaseView(ListView):
     QR_CATEGORY = CATEGORY_QR_PLACE
 
     def __init__(self, dbstate, uistate, title, model, nav_group,
-                 markup=False):
+                 markup=None):
 
         signal_map = {
             'place-add'     : self.row_add,
