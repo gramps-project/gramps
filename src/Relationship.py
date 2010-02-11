@@ -1801,7 +1801,7 @@ def get_relationship_calculator(reinit=False):
         # See if lang begins with en_, English_ or english_
         # If so return standard relationship calculator.
         enlang = lang.split('_')[0].lower()
-        if ('en' == enlang) or ('english' == enlang):
+        if enlang in ('en', 'english', 'c'):
             return __RELCALC_CLASS()
         # set correct non English relationship calculator based on LANG
         # or on locale.getlocale() or if that fails locale.getdeafultlocale()
@@ -1833,8 +1833,8 @@ def get_relationship_calculator(reinit=False):
                     break
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
-            print "No language available or wrong code in rel_xx.py."
-            print "English will be used."
+            print (("No translation available for language '%s'. " +
+                    "Using 'english' instead.") % enlang)
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
