@@ -332,7 +332,7 @@ class DisplayState(gen.utils.Callback):
         self.disprel_defpers = None
         self.disprel_active = None
         self.warnbtn = warnbtn
-        self.last_bar = self.status.insert(min_width=15, ralign=True)
+        self.last_bar = self.status.insert(min_width=35, ralign=True)
         self.set_relationship_class()
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
@@ -456,7 +456,10 @@ class DisplayState(gen.utils.Callback):
         gobject.timeout_add(5000, self.modify_statusbar, dbstate)
 
     def show_filter_results(self, dbstate, matched, total):
-        text = "%d/%d" % (matched, total)
+        #nav_type = self.viewmanager.active_page.navigation_type()
+        #text = ((_("%(nav_type)s View") % {"nav_type": _(nav_type)}) + 
+        text = (self.viewmanager.active_page.title +
+                (": %d/%d" % (matched, total)))
         self.status.pop(1, self.last_bar)
         self.status.push(1, text, self.last_bar)
 
