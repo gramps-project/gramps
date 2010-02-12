@@ -46,67 +46,43 @@ from gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
 class QuickViewGramplet(Gramplet):
     def active_changed(self, handle):
         self.update()
-        
+
+    def post_init(self):
+        self.connect_signal('Family', self._active_changed)
+        self.connect_signal('Event', self._active_changed)
+        self.connect_signal('Place', self._active_changed)
+        self.connect_signal('Source', self._active_changed)
+        self.connect_signal('Repository', self._active_changed)
+        self.connect_signal('Media', self._active_changed)
+        self.connect_signal('Note', self._active_changed)
+
     def main(self):
         qv_type = self.get_option(_("View Type"))
         quick_type = qv_type.get_value()
         qv_option = self.get_option(_("Quick Views"))
         quick_view = qv_option.get_value()
-        if quick_type == CATEGORY_QR_PERSON:
-            active_handle = self.get_active('Person')
-            if active_handle:
-                run_quick_report_by_name(self.gui.dbstate, 
-                                         self.gui.uistate, 
-                                         quick_view,
-                                         active_handle,
-                                         container=self.gui.textview)
-        else:
-            active_list = []
-            for pages in self.gui.uistate.viewmanager.pages:
-                for item in pages:
-                    if (item.get_title() == _("Families") and
-                        quick_type == CATEGORY_QR_FAMILY):
-                        active_list += item.selected_handles()
-                    elif (item.get_title() == _("Events") and
-                          quick_type == CATEGORY_QR_EVENT):
-                        active_list += item.selected_handles()
-                    elif (item.get_title() == _("Sources") and
-                          quick_type == CATEGORY_QR_SOURCE):
-                        active_list += item.selected_handles()
-                    elif (item.get_title() == _("Places") and
-                          quick_type == CATEGORY_QR_PLACE):
-                        active_list += item.selected_handles()
-                    elif (item.get_title() == _("Media") and
-                          quick_type == CATEGORY_QR_MEDIA):
-                        active_list += item.selected_handles()
-                    elif (item.get_title() == _("Repositories") and
-                          quick_type == CATEGORY_QR_REPOSITORY):
-                        active_list += item.selected_handles()
-            if len(active_list) > 1:
-                for active in active_list:
-                    run_quick_report_by_name(self.gui.dbstate, 
-                                             self.gui.uistate, 
-                                             quick_view,
-                                             active)
-            elif len(active_list) == 1:
-                    run_quick_report_by_name(self.gui.dbstate, 
-                                             self.gui.uistate, 
-                                             quick_view,
-                                             active_list[0],
-                                             container=self.gui.textview)
+        try:
+            active_handle = self.get_active(quick_type)
+        except:
+            active_handle = None
+        if active_handle:
+            run_quick_report_by_name(self.gui.dbstate, 
+                                     self.gui.uistate, 
+                                     quick_view,
+                                     active_handle,
+                                     container=self.gui.textview)
 
     def build_options(self):
         from gen.plug.menu import EnumeratedListOption
         # Add types:
-        type_list = EnumeratedListOption(_("View Type"), CATEGORY_QR_PERSON)
-        for item in [(CATEGORY_QR_PERSON, _("Person")), 
-                     #TODO: add these once they have active change signals
-                     (CATEGORY_QR_EVENT, _("Event")), 
-                     (CATEGORY_QR_FAMILY, _("Family")), 
-                     (CATEGORY_QR_MEDIA, _("Media")), 
-                     (CATEGORY_QR_PLACE, _("Place")), 
-                     (CATEGORY_QR_REPOSITORY, _("Repository")),
-                     (CATEGORY_QR_SOURCE, _("Source")), 
+        type_list = EnumeratedListOption(_("View Type"), "Person")
+        for item in [("Person", _("Person")), 
+                     ("Event", _("Event")), 
+                     ("Family", _("Family")), 
+                     ("Media", _("Media")), 
+                     ("Place", _("Place")), 
+                     ("Repository", _("Repository")),
+                     ("Source", _("Source")), 
                      ]:
             type_list.add_item(item[0], item[1])
         # Add particular lists:
@@ -121,9 +97,16 @@ class QuickViewGramplet(Gramplet):
         type_widget.value_changed = self.rebuild_option_list
 
     def rebuild_option_list(self):
+        code_map = {"Person": CATEGORY_QR_PERSON, 
+                    "Family": CATEGORY_QR_FAMILY,
+                    "Event": CATEGORY_QR_EVENT, 
+                    "Source": CATEGORY_QR_SOURCE, 
+                    "Place": CATEGORY_QR_PLACE, 
+                    "Media": CATEGORY_QR_MEDIA,
+                    "Repsoitory": CATEGORY_QR_REPOSITORY}
         qv_option = self.get_option(_("View Type"))
         list_option = self.get_option(_("Quick Views"))
         list_option.clear()
-        qv_list = get_quick_report_list(qv_option.get_value())
+        qv_list = get_quick_report_list(code_map[qv_option.get_value()])
         for pdata in qv_list:
             list_option.add_item(pdata.id, pdata.name)
