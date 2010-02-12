@@ -1585,14 +1585,8 @@ class GeoView(HtmlView):
                         self.mapview.write("%s<br>" % _escape(mark[0]))
                         if formatype == 1:
                             self.mapview.write("<br>%s" % _escape(mark[5]))
-                        elif formatype == 2:
-                            self.mapview.write("<br>%s - %s" % (_escape(mark[7]),
-                                                                _escape(mark[5])))
-                        elif formatype == 3:
-                            self.mapview.write("<br>%s - %s" % (_escape(mark[7]),
-                                                                _escape(mark[5])))
-                        elif formatype == 4:
-                            self.mapview.write("<br>%s - %s" % (_escape(mark[7]),
+                        else:
+                            self.mapview.write("<br>%s - %s" % (mark[7],
                                                                 _escape(mark[5])))
                 else: # This marker already exists. add info.
                     if ( mark[8] and savetype != mark[8] ):
@@ -1600,7 +1594,7 @@ class GeoView(HtmlView):
                     if indm > last:
                         divclose = True
                     else:
-                        self.mapview.write("<br>%s - %s" % (_escape(mark[7]), _escape(mark[5])))
+                        self.mapview.write("<br>%s - %s" % (mark[7], _escape(mark[5])))
                     ret = 1
                     for year in self.yearinmarker:
                         if year == mark[7]:
