@@ -140,6 +140,7 @@ def valid_plugin_version(plugin_version_string):
     Checks to see if string is a valid version string for this version
     of Gramps.
     """
+    if not isinstance(plugin_version_string, basestring): return False
     dots = plugin_version_string.count(".")
     if dots == 1:
         plugin_version  = tuple([int(n) for n in 
