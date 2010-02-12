@@ -228,6 +228,14 @@ def _make_callback(func, val):
     """
     return lambda x: func(val)
 
+def _escape(text):
+    """
+    return the text with some characters translated : " &
+    """
+    text = text.replace('&','\\&')
+    text = text.replace('"','\\"')
+    return text
+
 #-------------------------------------------------------------------------
 #
 # GeoView
@@ -1566,7 +1574,7 @@ class GeoView(HtmlView):
                         self.mapview.write("my_marker = new Marker(point);")
                         self.mapview.write("gmarkers[%d]=my_marker;" % ind )
                         self.mapview.write("my_marker.setLabel")
-                        self.mapview.write("(\"%s\");" % mark[0])
+                        self.mapview.write("(\"%s\");" % _escape(mark[0]))
                         self.yearinmarker.append(mark[7])
                         divclose = False
                         differtype = False
@@ -1574,25 +1582,25 @@ class GeoView(HtmlView):
                             savetype = mark[8]
                         self.mapview.write("my_marker.setInfoBubble(\"<div ")
                         self.mapview.write("id='geo-info' >")
-                        self.mapview.write("%s<br>" % mark[0])
+                        self.mapview.write("%s<br>" % _escape(mark[0]))
                         if formatype == 1:
-                            self.mapview.write("<br>%s" % mark[5])
+                            self.mapview.write("<br>%s" % _escape(mark[5]))
                         elif formatype == 2:
-                            self.mapview.write("<br>%s - %s" % (mark[7],
-                                                                mark[5]))
+                            self.mapview.write("<br>%s - %s" % (_escape(mark[7]),
+                                                                _escape(mark[5])))
                         elif formatype == 3:
-                            self.mapview.write("<br>%s - %s" % (mark[7],
-                                                                mark[5]))
+                            self.mapview.write("<br>%s - %s" % (_escape(mark[7]),
+                                                                _escape(mark[5])))
                         elif formatype == 4:
-                            self.mapview.write("<br>%s - %s" % (mark[7],
-                                                                mark[5]))
+                            self.mapview.write("<br>%s - %s" % (_escape(mark[7]),
+                                                                _escape(mark[5])))
                 else: # This marker already exists. add info.
                     if ( mark[8] and savetype != mark[8] ):
                         differtype = True
                     if indm > last:
                         divclose = True
                     else:
-                        self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
+                        self.mapview.write("<br>%s - %s" % (_escape(mark[7]), _escape(mark[5])))
                     ret = 1
                     for year in self.yearinmarker:
                         if year == mark[7]:
