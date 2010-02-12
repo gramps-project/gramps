@@ -775,8 +775,6 @@ class GrampletPane(gtk.ScrolledWindow):
         # default for new user; may be overridden in config:
         self.column_count = kwargs.get("column_count", 2) 
         # width of window, if sidebar; may be overridden in config:
-        self.pane_width = kwargs.get("pane_width", 250 * self.column_count) 
-        self.pane_other_width = kwargs.get("pane_other_width", -1) 
         self.pane_position = kwargs.get("pane_position", -1) 
         self.default_gramplets = kwargs.get("default_gramplets", 
                 ["Top Surnames Gramplet", "Welcome Gramplet"])
@@ -926,10 +924,6 @@ class GrampletPane(gtk.ScrolledWindow):
                 if sec == "Gramplet View Options":
                     if "column_count" in cp.options(sec):
                         self.column_count = int(cp.get(sec, "column_count"))
-                    if "pane_width" in cp.options(sec):
-                        self.pane_width = int(cp.get(sec, "pane_width"))
-                    if "pane_other_width" in cp.options(sec):
-                        self.pane_other_width = int(cp.get(sec, "pane_other_width"))
                     if "pane_position" in cp.options(sec):
                         self.pane_position = int(cp.get(sec, "pane_position"))
                 else:
@@ -966,8 +960,7 @@ class GrampletPane(gtk.ScrolledWindow):
         fp.write("[Gramplet View Options]" + NL)
         fp.write(("column_count=%d" + NL) % self.column_count)
         fp.write(("pane_position=%d" + NL) % self.pane_position)
-        fp.write(("pane_other_width=%d" + NL) % self.pane_other_width)
-        fp.write(("pane_width=%d" + NL + NL) % self.pane_width)
+        fp.write(NL) 
         # showing gramplets:
         for col in range(self.column_count):
             row = 0
