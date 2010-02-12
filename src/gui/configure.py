@@ -226,21 +226,27 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
     def update_radiobox(self, obj, constant):
         self.__config.set(constant, obj.get_active())
 
-    def add_checkbox(self, table, label, index, constant, start=1, stop=9):
+    def add_checkbox(self, table, label, index, constant, start=1, stop=9, config=None):
+        if not config:
+            config = self.__config
         checkbox = gtk.CheckButton(label)
-        checkbox.set_active(self.__config.get(constant))
+        checkbox.set_active(config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant)
         table.attach(checkbox, start, stop, index, index+1, yoptions=0)
 
-    def add_radiobox(self, table, label, index, constant, group, column):
+    def add_radiobox(self, table, label, index, constant, group, column, config=None):
+        if not config:
+            config = self.__config
         radiobox = gtk.RadioButton(group,label)
-        if self.__config.get(constant) == True:
+        if config.get(constant) == True:
             radiobox.set_active(True)
         radiobox.connect('toggled', self.update_radiobox, constant)
         table.attach(radiobox, column, column+1, index, index+1, yoptions=0)
         return radiobox
 
-    def add_text(self, table, label, index):
+    def add_text(self, table, label, index, config=None):
+        if not config:
+            config = self.__config
         text = gtk.Label()
         text.set_line_wrap(True)
         text.set_alignment(0.,0.)
@@ -248,12 +254,14 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         table.attach(text, 1, 9, index, index+1, yoptions=0)
 
     def add_path_box(self, table, label, index, entry, path, callback_label, 
-                     callback_sel):
+                     callback_sel, config=None):
         """ Add an entry to give in path and a select button to open a 
             dialog. 
             Changing entry calls callback_label
             Clicking open button call callback_sel
         """
+        if not config:
+            config = self.__config
         lwidget = BasicLabel("%s: " %label)
         hbox = gtk.HBox()
         if path:
@@ -271,32 +279,38 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
                      xoptions=gtk.FILL)
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
 
-    def add_entry(self, table, label, index, constant, callback=None):
+    def add_entry(self, table, label, index, constant, callback=None, config=None):
+        if not config:
+            config = self.__config
         if not callback:
             callback = self.update_entry
         lwidget = BasicLabel("%s: " % label)
         entry = gtk.Entry()
-        entry.set_text(self.__config.get(constant))
+        entry.set_text(config.get(constant))
         entry.connect('changed', callback, constant)
         table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
-    def add_pos_int_entry(self, table, label, index, constant, callback=None):
+    def add_pos_int_entry(self, table, label, index, constant, callback=None, config=None):
         """ entry field for positive integers
         """
+        if not config:
+            config = self.__config
         lwidget = BasicLabel("%s: " % label)
         entry = gtk.Entry()
-        entry.set_text(str(self.__config.get(constant)))
+        entry.set_text(str(config.get(constant)))
         if callback:
             entry.connect('changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
                      xoptions=gtk.FILL)
         table.attach(entry, 2, 3, index, index+1, yoptions=0)
 
-    def add_color(self, table, label, index, constant):
+    def add_color(self, table, label, index, constant, config=None):
+        if not config:
+            config = self.__config
         lwidget = BasicLabel("%s: " % label)
-        hexval = self.__config.get(constant)
+        hexval = config.get(constant)
         color = gtk.gdk.color_parse(hexval)
         entry = gtk.ColorButton(color=color)
         color_hex_label = BasicLabel(hexval)
