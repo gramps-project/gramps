@@ -62,13 +62,11 @@ try:
     import config
     _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
     _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
-    _MIN_GENERATION_YEARS = config.get('behavior.min-generation-years')
     _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
 except ImportError:
     # Utils used as module not part of GRAMPS
     _MAX_AGE_PROB_ALIVE   = 110
     _MAX_SIB_AGE_DIFF     = 20
-    _MIN_GENERATION_YEARS = 13
     _AVG_GENERATION_GAP   = 20
 
 #-------------------------------------------------------------------------
@@ -808,7 +806,8 @@ def probably_alive(person, db,
     :param avg_generation_gap: average generation gap, in years
     """
     pb = ProbablyAlive(db, max_sib_age_diff, 
-                       max_age_prob_alive, avg_generation_gap)
+                       max_age_prob_alive, 
+                       avg_generation_gap)
     birth, death, explain, relative = pb.probably_alive_range(person)
     if current_date is None:
         current_date = gen.lib.date.Today()
@@ -833,7 +832,7 @@ def probably_alive(person, db,
             return True
     # if the current - birth is too big, not alive:
     # FIXME: use match here:
-    if (current_date - birth)[0] > max_age_prob_alive:
+    if (current_date - birth)[0] > pb.MAX_AGE_PROB_ALIVE:
         if return_range:
             return (False, birth, death, explain, relative)
         else:
@@ -1171,11 +1170,9 @@ def update_constants():
     Used to update the constants that are cached in this module.
     """
     import config
-    global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _MIN_GENERATION_YEARS, \
-        _AVG_GENERATION_GAP
+    global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _AVG_GENERATION_GAP
     _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
     _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
-    _MIN_GENERATION_YEARS = config.get('behavior.min-generation-years')
     _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
 
 #-------------------------------------------------------------------------
