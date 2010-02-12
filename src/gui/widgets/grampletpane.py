@@ -597,6 +597,27 @@ class GuiGramplet(object):
     def get_container_widget(self):
         return self.scrolledwindow
 
+    def make_gui_options(self):
+        if not self.pui: return
+        if len(self.pui.option_order) == 0: return
+        topbox = gtk.VBox()
+        hbox = gtk.HBox()
+        labels = gtk.VBox()
+        options = gtk.VBox()
+        hbox.pack_start(labels, False)
+        hbox.pack_start(options, True)
+        topbox.add(hbox)
+        for item in self.pui.option_order:
+            label = gtk.Label(item + ":")
+            label.set_alignment(1.0, 0.5)
+            labels.add(label)
+            options.add(self.pui.option_dict[item][0]) # widget
+        save_button = gtk.Button(stock=gtk.STOCK_SAVE)
+        topbox.add(save_button)
+        topbox.show_all()
+        save_button.connect('clicked', self.pui.save_update_options)
+        return topbox
+
     def link(self, text, link_type, data, size=None, tooltip=None):
         buffer = self.buffer
         iter = buffer.get_end_iter()
@@ -1268,6 +1289,9 @@ class GrampletPane(gtk.ScrolledWindow):
                 0, 
                 "%s.title" % gramplet.title,
                 self._config.set)
+            options = gramplet.make_gui_options()
+            if options:
+                table.attach(options, 1, 2, 4, 5, yoptions=0)
             return gramplet.title, table
         return gramplet_panel
 
