@@ -56,6 +56,17 @@ class QuickViewGramplet(Gramplet):
         self.connect_signal('Media', self._active_changed)
         self.connect_signal('Note', self._active_changed)
 
+    def on_load(self):
+        if len(self.gui.data) != 2:
+            self.gui.data[:] = ["Person", None]
+
+    def on_save(self):
+        qv_type = self.get_option(_("View Type"))
+        quick_type = qv_type.get_value()
+        qv_option = self.get_option(_("Quick Views"))
+        quick_view = qv_option.get_value()
+        self.gui.data[:] = [quick_type, quick_view]
+
     def main(self):
         qv_type = self.get_option(_("View Type"))
         quick_type = qv_type.get_value()
@@ -75,7 +86,7 @@ class QuickViewGramplet(Gramplet):
     def build_options(self):
         from gen.plug.menu import EnumeratedListOption
         # Add types:
-        type_list = EnumeratedListOption(_("View Type"), "Person")
+        type_list = EnumeratedListOption(_("View Type"), self.gui.data[0])
         for item in [("Person", _("Person")), 
                      ("Event", _("Event")), 
                      ("Family", _("Family")), 
@@ -87,8 +98,10 @@ class QuickViewGramplet(Gramplet):
             type_list.add_item(item[0], item[1])
         # Add particular lists:
         qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
+        if self.gui.data[1] is None:
+            self.gui.data[1] = qv_list[0].id
         list_option = EnumeratedListOption(_("Quick Views"), 
-                                           qv_list[0].id)
+                                           self.gui.data[1])
         for pdata in qv_list:
             list_option.add_item(pdata.id, pdata.name)
         self.add_option(type_list)
