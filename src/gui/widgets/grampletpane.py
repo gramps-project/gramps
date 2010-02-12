@@ -1272,7 +1272,8 @@ class GrampletPane(gtk.ScrolledWindow):
                  _('Number of Columns'), 
                  0, 
                 'Gramplet View Options.column_count',
-                self._config.set)
+                self._config.set,
+                config=self._config)
         return _('Gramplet Layout'), table
  
     def build_panel(self, gramplet):
@@ -1288,7 +1289,8 @@ class GrampletPane(gtk.ScrolledWindow):
                 _('Title'), 
                 0, 
                 "%s.title" % gramplet.title,
-                self._config.set)
+                self._config.set,
+                config=self._config)
             options = gramplet.make_gui_options()
             if options:
                 table.attach(options, 1, 2, 4, 5, yoptions=0)
