@@ -1369,7 +1369,7 @@ class GrampletPane(gtk.ScrolledWindow):
             # Options:
             options = gramplet.make_gui_options()
             if options:
-                table.attach(options, 0, 4, 5, 6, yoptions=0)
+                table.attach(options, 1, 4, 5, 6, yoptions=0)
             return gramplet.title, table
         return gramplet_panel
 
