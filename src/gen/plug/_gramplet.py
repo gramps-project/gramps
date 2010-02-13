@@ -32,6 +32,7 @@ class Gramplet(object):
         Internal constructor for non-graphical gramplets.
         """
         self._idle_id = 0
+        self.track = []
         self.active = False
         self.dirty = True
         self._pause = False
@@ -377,19 +378,9 @@ class Gramplet(object):
         """
         from PluginUtils import make_gui_option
         widget, label = make_gui_option(
-            option, self.dbstate, self.uistate, [])
+            option, self.dbstate, self.uistate, self.track)
         self.option_dict.update({option.get_label(): [widget, option]})
         self.option_order.append(option.get_label())
-
-    def get_gui_option(self, label):
-        """
-        Reconstruct a deleted widget.
-        """
-        from PluginUtils import make_gui_option
-        dummy, option = self.option_dict[label] 
-        widget, label = make_gui_option(
-            option, self.dbstate, self.uistate, [])
-        return widget
 
     def save_update_options(self, obj):
         """
