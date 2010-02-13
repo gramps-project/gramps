@@ -600,6 +600,7 @@ class GuiGramplet(object):
     def make_gui_options(self):
         if not self.pui: return
         if len(self.pui.option_order) == 0: return
+        frame = gtk.Frame()
         topbox = gtk.VBox()
         hbox = gtk.HBox()
         labels = gtk.VBox()
@@ -611,12 +612,16 @@ class GuiGramplet(object):
             label = gtk.Label(item + ":")
             label.set_alignment(1.0, 0.5)
             labels.add(label)
-            options.add(self.pui.option_dict[item][0]) # widget
+            # The original may have been deleted when the dialog closed:
+            #options.add(self.pui.option_dict[item][0]) # widget
+            # so we regenerate:
+            options.add(self.pui.get_gui_option(item)) # widget
         save_button = gtk.Button(stock=gtk.STOCK_SAVE)
         topbox.add(save_button)
-        topbox.show_all()
         save_button.connect('clicked', self.pui.save_update_options)
-        return topbox
+        frame.add(topbox)
+        frame.show_all()
+        return frame
 
     def link(self, text, link_type, data, size=None, tooltip=None):
         buffer = self.buffer

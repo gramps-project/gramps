@@ -376,11 +376,20 @@ class Gramplet(object):
         Add an option to the GUI gramplet.
         """
         from PluginUtils import make_gui_option
-        #tooltips, dbstate, uistate, track
         widget, label = make_gui_option(
-                            option, self.dbstate, self.uistate, [])
-        self.option_dict.update({option.get_label(): (widget, option)})
+            option, self.dbstate, self.uistate, [])
+        self.option_dict.update({option.get_label(): [widget, option]})
         self.option_order.append(option.get_label())
+
+    def get_gui_option(self, label):
+        """
+        Reconstruct a deleted widget.
+        """
+        from PluginUtils import make_gui_option
+        dummy, option = self.option_dict[label] 
+        widget, label = make_gui_option(
+            option, self.dbstate, self.uistate, [])
+        return widget
 
     def save_update_options(self, obj):
         """
