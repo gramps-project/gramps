@@ -176,7 +176,7 @@ _JAVASCRIPT = '''<script>
   gmarkers[i].openBubble();
  }
  function addcross() {
- Mapstraction.prototype.addCrosshairs=function(Height,Width,Cross)
+ Mapstraction.prototype.addCrosshairs=function(Cross)
  {
   var map=this.maps[this.api];
   var container=map.getContainer();
@@ -1272,10 +1272,7 @@ class GeoView(HtmlView):
         cpath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(fpath.split(os.sep)),
                                      '', ''))
-        self.mapview.write("mapstraction.addCrosshairs(%d,%d,'%s');" % (
-                           ( self.height - self.header_size + ( 22 * 2 ) ),
-                           self.width,
-                           cpath ))
+        self.mapview.write("mapstraction.addCrosshairs('%s');" % cpath )
 
     def _create_needed_javascript(self):
         """
