@@ -612,10 +612,7 @@ class GuiGramplet(object):
             label = gtk.Label(item + ":")
             label.set_alignment(1.0, 0.5)
             labels.add(label)
-            # The original may have been deleted when the dialog closed:
-            #options.add(self.pui.option_dict[item][0]) # widget
-            # so we regenerate:
-            options.add(self.pui.get_gui_option(item)) # widget
+            options.add(self.pui.option_dict[item][0]) # widget
         save_button = gtk.Button(stock=gtk.STOCK_SAVE)
         topbox.add(save_button)
         save_button.connect('clicked', self.pui.save_update_options)
@@ -808,6 +805,7 @@ class GrampletPane(gtk.ScrolledWindow):
         self.column_count = kwargs.get("column_count", 2) 
         # width of window, if sidebar; may be overridden in config:
         self.pane_position = kwargs.get("pane_position", -1) 
+        self.pane_orientation = kwargs.get("pane_orientation", "horizontal") 
         self.default_gramplets = kwargs.get("default_gramplets", 
                 ["Top Surnames Gramplet", "Welcome Gramplet"])
         self.dbstate = dbstate
@@ -958,6 +956,8 @@ class GrampletPane(gtk.ScrolledWindow):
                         self.column_count = int(cp.get(sec, "column_count"))
                     if "pane_position" in cp.options(sec):
                         self.pane_position = int(cp.get(sec, "pane_position"))
+                    if "pane_orientation" in cp.options(sec):
+                        self.pane_orientation = cp.get(sec, "pane_orientation")
                 else:
                     data = {"title": sec}
                     for opt in cp.options(sec):
@@ -996,6 +996,7 @@ class GrampletPane(gtk.ScrolledWindow):
         fp.write("[Gramplet View Options]" + NL)
         fp.write(("column_count=%d" + NL) % self.column_count)
         fp.write(("pane_position=%d" + NL) % self.pane_position)
+        fp.write(("pane_orientation=%s" + NL) % self.pane_orientation)
         fp.write(NL) 
         # showing gramplets:
         for col in range(self.column_count):
@@ -1306,6 +1307,15 @@ class GrampletPane(gtk.ScrolledWindow):
         return _('Gramplet Layout'), table
  
     def build_panel(self, gramplet):
+        # BEGIN WORKAROUND: 
+        # This is necessary because gtk doesn't redisplay these widgets correctly
+        # so we replace them with new ones
+        if gramplet.pui:
+            gramplet.pui.save_options()
+            gramplet.pui.update_options = {}
+            gramplet.pui.option_order = []
+            gramplet.pui.build_options()
+        # END WORKAROUND
         self._config.register("%s.title" % gramplet.title, 
                               str, gramplet.get_title, gramplet.set_title)
         self._config.register("%s.height" % gramplet.title, 
