@@ -390,6 +390,7 @@ class GeoView(HtmlView):
                            'place-update' : self._place_changed}
         self.init_config()
         self.context_id = 0
+        self.active = False
         self.alt_provider = self._config.get('preferences.alternate-provider')
         if self.alt_provider:
             self.usedmap = "google"
@@ -745,6 +746,7 @@ class GeoView(HtmlView):
                                                        self._goto_active_person)
         self._goto_active_person()
         self.filter.hide() # hide the filter
+        self.active = True
 
     def set_inactive(self):
         """
@@ -752,6 +754,7 @@ class GeoView(HtmlView):
         """
         HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
+        self.active = False
 
     def get_stock(self):
         """
@@ -774,6 +777,7 @@ class GeoView(HtmlView):
         Then we can get the new title with the new values.
         """
         res = self.dbstate.db.get_researcher()
+        title = None
         if res: # Don't modify the current values if no db is loaded.
             start = 0
             try:
@@ -788,13 +792,15 @@ class GeoView(HtmlView):
             except:  # pylint: disable-msg=W0704
                 pass # pylint: disable-msg=W0702
         if timeloop:
-            if title:
-                self.uistate.status.pop(self.context_id)
-                mess = "lon = %s \tlat = %s\tzoom = %s" % ( self.reallatitude,
-                                                            self.reallongitude,
-                                                            self.realzoom)
-                self.context_id = self.uistate.status.push(1, mess)
-            gobject.timeout_add(timeloop, self._savezoomandposition, timeloop)
+            if self.active:
+                if title != None:
+                    self.uistate.status.pop(self.context_id)
+                    mess = "lon= %s \tlat= %s\tzoom= %s" % ( self.reallatitude,
+                                                             self.reallongitude,
+                                                             self.realzoom)
+                    self.context_id = self.uistate.status.push(1, mess)
+                gobject.timeout_add(timeloop,
+                                    self._savezoomandposition, timeloop)
 
     def _do_we_need_to_zoom_between_map(self):
         """
