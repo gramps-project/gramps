@@ -116,7 +116,7 @@ class QuickViewGramplet(Gramplet):
                     "Source": CATEGORY_QR_SOURCE, 
                     "Place": CATEGORY_QR_PLACE, 
                     "Media": CATEGORY_QR_MEDIA,
-                    "Repsoitory": CATEGORY_QR_REPOSITORY}
+                    "Repository": CATEGORY_QR_REPOSITORY}
         qv_option = self.get_option(_("View Type"))
         list_option = self.get_option(_("Quick Views"))
         list_option.clear()
