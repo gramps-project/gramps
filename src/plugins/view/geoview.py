@@ -185,9 +185,9 @@ _JAVASCRIPT = '''<script>
   crosshairs.style.width=crosshairsSize+'px';
   crosshairs.style.height=crosshairsSize+'px';
   crosshairs.style.border='0';
-  crosshairs.style.position='relative';
-  crosshairs.style.top=((Height-crosshairsSize)/2)+'px';
-  crosshairs.style.left=((Width-crosshairsSize)/2)+'px';
+  crosshairs.style.position='fixed';
+  crosshairs.style.top='50%';
+  crosshairs.style.left='50%';
   crosshairs.style.zIndex='500';
   container.appendChild(crosshairs);
   this.crosshairs=crosshairs;
