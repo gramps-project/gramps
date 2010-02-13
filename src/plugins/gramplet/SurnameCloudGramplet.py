@@ -61,6 +61,8 @@ class SurnameCloudGramplet(Gramplet):
     def init(self):
         self.set_tooltip(_("Double-click surname for details"))
         self.top_size = 150 # will be overwritten in load
+        self.min_font = 8
+        self.max_font = 20
         self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
@@ -71,11 +73,13 @@ class SurnameCloudGramplet(Gramplet):
         self.dbstate.db.connect('family-rebuild', self.update)
 
     def on_load(self):
-        if len(self.gui.data) > 0:
+        if len(self.gui.data) == 3:
             self.top_size = int(self.gui.data[0])
+            self.min_font = int(self.gui.data[1])
+            self.max_font = int(self.gui.data[2])
 
     def on_save(self):
-        self.gui.data = [self.top_size]
+        self.gui.data = [self.top_size, self.min_font, self.max_font]
 
     def main(self):
         self.set_text(_("Processing...") + "\n")
@@ -157,8 +161,13 @@ class SurnameCloudGramplet(Gramplet):
         from gen.plug.menu import NumberOption
         self.top_size_option = NumberOption(_("Number of surnames"), self.top_size, 1, 150)
         self.add_option(self.top_size_option)
-        self.min_option = NumberOption(_("Min font size"), 8, 1, 50)
+        self.min_option = NumberOption(_("Min font size"), self.min_font, 1, 50)
         self.add_option(self.min_option)
-        self.max_option = NumberOption(_("Max font size"), 20, 1, 50)
+        self.max_option = NumberOption(_("Max font size"), self.max_font, 1, 50)
         self.add_option(self.max_option)
+
+    def save_options(self):
+        self.top_size = int(self.get_option(_("Number of surnames")).get_value())
+        self.min_font = int(self.get_option(_("Min font size")).get_value())
+        self.max_font = int(self.get_option(_("Max font size")).get_value())
 

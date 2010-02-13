@@ -34,8 +34,8 @@ import gen.lib
 class AgeStatsGramplet(Gramplet):
 
     def init(self):
-        self.max_age = 120
-        self.max_mother_diff = 60
+        self.max_age = 110
+        self.max_mother_diff = 40
         self.max_father_diff = 60
         self.chart_width = 60
 
@@ -63,18 +63,17 @@ class AgeStatsGramplet(Gramplet):
         self.no_wrap()
         tag = self.gui.buffer.create_tag("fixed")
         tag.set_property("font", "Courier 8")
-# FIXME: something wrong saving ordered data list?!
-#         if len(self.gui.data) > 0:
-#             self.max_age = int(self.gui.data[0])
-#         if len(self.gui.data) > 1:
-#             self.max_mother_diff = int(self.gui.data[1])
-#         if len(self.gui.data) > 2:
-#             self.max_father_diff = int(self.gui.data[2])
-#         if len(self.gui.data) > 3:
-#             self.chart_width = int(self.gui.data[3])
+        if len(self.gui.data) == 4:
+            self.max_age = int(self.gui.data[0])
+            self.max_mother_diff = int(self.gui.data[1])
+            self.max_father_diff = int(self.gui.data[2])
+            self.chart_width = int(self.gui.data[3])
 
-#     def on_save(self):
-#         self.gui.data = [self.max_age, self.max_mother_diff, self.max_father_diff, self.chart_width]
+    def on_save(self):
+        self.gui.data = [self.max_age, 
+                         self.max_mother_diff, 
+                         self.max_father_diff, 
+                         self.chart_width]
 
     def db_changed(self):
         self.update()

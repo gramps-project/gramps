@@ -55,20 +55,25 @@ class PedigreeGramplet(Gramplet):
         self.box_mode = "UTF"
 
     def build_options(self):
-        from gen.plug.menu import NumberOption
+        from gen.plug.menu import NumberOption, BooleanOption, EnumeratedListOption
         self.add_option(NumberOption(_("Max generations"), 
                                      self.max_generations, 1, 100))
+        self.add_option(BooleanOption(_("Show dates"), bool(self.show_dates)))
+        elist = EnumeratedListOption(_("Line type"), self.box_mode)
+        elist.add_item("UTF", "UTF")
+        elist.add_item("ASCII", "ASCII")
+        self.add_option(elist)
 
     def save_options(self):
         self.max_generations = int(self.get_option(_("Max generations")).get_value())
+        self.show_dates = int(self.get_option(_("Show dates")).get_value())
+        self.box_mode = self.get_option(_("Line type")).get_value()
 
     def on_load(self):
-        if len(self.gui.data) > 0:
+        if len(self.gui.data) == 3:
             self.max_generations = int(self.gui.data[0])
-        if len(self.gui.data) > 1:
             self.show_dates = int(self.gui.data[1])
-        if len(self.gui.data) > 2:
-            self.box_mode = self.gui.data[2] # ASCII or UTF
+            self.box_mode = self.gui.data[2] # "ASCII" or "UTF"
 
     def on_save(self):
         self.gui.data = [self.max_generations, self.show_dates, self.box_mode]
