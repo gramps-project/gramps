@@ -758,6 +758,33 @@ class GuiGramplet(object):
     def get_title(self):
         return self.title
 
+    def set_height(self, height):
+        self.height = height
+        if not self.expand:
+            self.scrolledwindow.set_size_request(-1, self.height)
+
+    def get_height(self):
+        return self.height
+
+    def get_detached_height(self):
+        return self.detached_height
+
+    def get_detached_width(self):
+        return self.detached_width
+
+    def set_detached_height(self, height):
+        self.detached_height = height
+
+    def set_detached_width(self, width):
+        self.detached_width = width
+
+    def get_expand(self):
+        return self.expand
+
+    def set_expand(self, value):
+        self.expand = value
+        self.set_state(self.state)
+
     def set_title(self, new_title):
         # can't do it if already titled that way
         if new_title in self.pane.gramplet_map: return
@@ -1276,21 +1303,58 @@ class GrampletPane(gtk.ScrolledWindow):
     def build_panel(self, gramplet):
         self._config.register("%s.title" % gramplet.title, 
                               str, gramplet.get_title, gramplet.set_title)
+        self._config.register("%s.height" % gramplet.title, 
+                              int, gramplet.get_height, gramplet.set_height)
+        self._config.register("%s.detached_height" % gramplet.title, 
+                              int, gramplet.get_detached_height, gramplet.set_detached_height)
+        self._config.register("%s.detached_width" % gramplet.title, 
+                              int, gramplet.get_detached_width, gramplet.set_detached_width)
+        self._config.register("%s.expand" % gramplet.title, 
+                              bool, gramplet.get_expand, gramplet.set_expand)
         def gramplet_panel(configdialog):
             configdialog.window.set_size_request(500, -1)
             table = gtk.Table(3, 2)
             table.set_border_width(12)
             table.set_col_spacings(6)
             table.set_row_spacings(6)
+            # Title:
             configdialog.add_entry(table, 
                 _('Title'), 
                 0, 
                 "%s.title" % gramplet.title,
                 self._config.set,
                 config=self._config)
+            # Expand to max height
+            configdialog.add_checkbox(table, 
+                _("Use maximum height available"), 
+                1, 
+                "%s.expand" % gramplet.title, 
+                config=self._config)
+            # Height
+            configdialog.add_pos_int_entry(table, 
+                _('Height if not maximized'), 
+                2, 
+                "%s.height" % gramplet.title,
+                self._config.set,
+                config=self._config)
+            # Detached height
+            configdialog.add_pos_int_entry(table, 
+                _('Detached width'), 
+                3, 
+                "%s.detached_width" % gramplet.title,
+                self._config.set,
+                config=self._config)
+            # Detached width
+            configdialog.add_pos_int_entry(table, 
+                _('Detached height'), 
+                4, 
+                "%s.detached_height" % gramplet.title,
+                self._config.set,
+                config=self._config)
+            # Options:
             options = gramplet.make_gui_options()
             if options:
-                table.attach(options, 1, 2, 4, 5, yoptions=0)
+                table.attach(options, 0, 4, 5, 6, yoptions=0)
             return gramplet.title, table
         return gramplet_panel
 
@@ -1307,12 +1371,21 @@ class Configuration(object):
         return getter()
 
     def set(self, widget, key):
+        """
+        Hooked to signal, it is widget, key.
+        Hooked to config, it is key, widget
+        """
+        if key not in self.data:
+            widget, key = key, widget
         vtype, getter, setter = self.data[key]
-        try:
-            value = vtype(widget.get_text())
-        except:
-            return
-        setter(value)
+        if type(widget) == vtype:
+            setter(widget)
+        else:
+            try:
+                value = vtype(widget.get_text())
+            except:
+                return
+            setter(value)
 
     def register(self, key, vtype, getter, setter):
         """
