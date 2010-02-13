@@ -220,8 +220,10 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         color_hex_label.set_text(hexval)
         self.__config.set(constant, hexval)
 
-    def update_checkbox(self, obj, constant):
-        self.__config.set(constant, obj.get_active())
+    def update_checkbox(self, obj, constant, config=None):
+        if not config:
+            config = self.__config
+        config.set(constant, obj.get_active())
 
     def update_radiobox(self, obj, constant):
         self.__config.set(constant, obj.get_active())
@@ -231,7 +233,7 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
             config = self.__config
         checkbox = gtk.CheckButton(label)
         checkbox.set_active(config.get(constant))
-        checkbox.connect('toggled', self.update_checkbox, constant)
+        checkbox.connect('toggled', self.update_checkbox, constant, config)
         table.attach(checkbox, start, stop, index, index+1, yoptions=0)
 
     def add_radiobox(self, table, label, index, constant, group, column, config=None):
