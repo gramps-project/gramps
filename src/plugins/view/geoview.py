@@ -126,6 +126,7 @@ _JAVASCRIPT = '''<script>
  var pos = 0; var mapstraction;
  var regrep = new RegExp(\"default\",\"g\");
  var current_map; var ulat; var ulon; var default_icon;
+ var crosshairsSize=33;
  function getArgs(){
   var args = new Object();
   var query = location.search.substring(1);
@@ -173,6 +174,25 @@ _JAVASCRIPT = '''<script>
  }
  function placeclick(i) {
   gmarkers[i].openBubble();
+ }
+ function addcross() {
+ Mapstraction.prototype.addCrosshairs=function(Height,Width,Cross)
+ {
+  var map=this.maps[this.api];
+  var container=map.getContainer();
+  var crosshairs=document.createElement("img");
+  crosshairs.src=Cross;
+  crosshairs.style.width=crosshairsSize+'px';
+  crosshairs.style.height=crosshairsSize+'px';
+  crosshairs.style.border='0';
+  crosshairs.style.position='relative';
+  crosshairs.style.top=((Height-crosshairsSize)/2)+'px';
+  crosshairs.style.left=((Width-crosshairsSize)/2)+'px';
+  crosshairs.style.zIndex='500';
+  container.appendChild(crosshairs);
+  this.crosshairs=crosshairs;
+  return crosshairs;
+ };
  }
 '''
 
@@ -369,6 +389,7 @@ class GeoView(HtmlView):
         self.signal_map = {'place-add': self._place_changed,
                            'place-update' : self._place_changed}
         self.init_config()
+        self.context_id = 0
         self.alt_provider = self._config.get('preferences.alternate-provider')
         if self.alt_provider:
             self.usedmap = "google"
@@ -402,8 +423,6 @@ class GeoView(HtmlView):
         """
         Some preferences changed in the configuration window.
         """
-        print "in config update"
-        print self._config.get('preferences.timeperiod-before-range')
         self._change_map(self.usedmap)
         self._set_provider_icon(self.alt_provider)
         self._ask_year_selection(self.last_year)
@@ -769,6 +788,12 @@ class GeoView(HtmlView):
             except:  # pylint: disable-msg=W0704
                 pass # pylint: disable-msg=W0702
         if timeloop:
+            if title:
+                self.uistate.status.pop(self.context_id)
+                mess = "lon = %s \tlat = %s\tzoom = %s" % ( self.reallatitude,
+                                                            self.reallongitude,
+                                                            self.realzoom)
+                self.context_id = self.uistate.status.push(1, mess)
             gobject.timeout_add(timeloop, self._savezoomandposition, timeloop)
 
     def _do_we_need_to_zoom_between_map(self):
@@ -1235,6 +1260,16 @@ class GeoView(HtmlView):
         self.mapview.write(" mapstraction.addControls(")
         self.mapview.write("{ pan: true, zoom: 'large', ")
         self.mapview.write("scale: true, map_type: true });\n")
+        self.mapview.write("addcross();")
+        fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
+                                             'crosshairs.png')
+        cpath = urlparse.urlunsplit(('file', '',
+                                     URL_SEP.join(fpath.split(os.sep)),
+                                     '', ''))
+        self.mapview.write("mapstraction.addCrosshairs(%d,%d,'%s');" % (
+                           ( self.height - self.header_size + ( 22 * 2 ) ),
+                           self.width,
+                           cpath ))
 
     def _create_needed_javascript(self):
         """
