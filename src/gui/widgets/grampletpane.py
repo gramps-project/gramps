@@ -930,11 +930,15 @@ class GrampletPane(gtk.ScrolledWindow):
                     data = {"title": sec}
                     for opt in cp.options(sec):
                         if opt.startswith("data["):
-                            temp = data.get("data", [])
-                            temp.append(cp.get(sec, opt).strip())
+                            temp = data.get("data", {})
+                            #temp.append(cp.get(sec, opt).strip())
+                            pos = int(opt[5:-1])
+                            temp[pos] = cp.get(sec, opt).strip()
                             data["data"] = temp
                         else:
                             data[opt] = cp.get(sec, opt).strip()
+                    if "data" in data:
+                        data["data"] = [data["data"][key] for key in sorted(data["data"].keys())]
                     if "name" not in data:
                         data["name"] = "Unnamed Gramplet"
                         data["tname"]= _("Unnamed Gramplet")
