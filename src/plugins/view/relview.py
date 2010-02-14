@@ -1150,14 +1150,16 @@ class RelationshipView(NavigationView):
             ddate = ""
 
         if bdate and ddate:
-            value = _("b. %(birthdate)s, d. %(deathdate)s") % {
+            value = _("%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s") % {
+                'birthabbrev': birth.type.get_abbreviation(),
+                'deathabbrev': death.type.get_abbreviation(),
                 'birthdate' : bdate, 
                 'deathdate' : ddate
                 }
         elif bdate:
-            value = _("short for born|b. %s") % (bdate)
+            value = _("%s %s") % (birth.type.get_abbreviation(), bdate)
         elif ddate:
-            value = _("short for dead|d. %s") % (ddate)
+            value = _("%s %s") % (death.type.get_abbreviation(), ddate)
         else:
             value = ""
         return value
