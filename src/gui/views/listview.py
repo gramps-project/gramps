@@ -319,6 +319,10 @@ class ListView(NavigationView):
         return hpaned
 
     def filter_toggle(self, client, cnxn_id, entry, data):
+        """
+        Callback on change interface.filter, inheriting methods connect to 
+        change in ini file
+        """
         if config.get('interface.filter'):
             self.search_bar.hide()
             self.filter_pane.show()
@@ -342,18 +346,6 @@ class ListView(NavigationView):
 
     def filter_clicked(self):
         self.generic_filter = self.filter_sidebar.get_filter()
-        self.build_tree()
-        
-    def filter_toggle_action(self, obj):
-        if obj.get_active():
-            self.search_bar.hide()
-            self.filter_pane.show()
-            active = True
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-            active = False
-        config.set('interface.filter', active)
         self.build_tree()
 
     def filter_editor(self, obj):
