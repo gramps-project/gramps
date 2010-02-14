@@ -6097,7 +6097,7 @@ def alphabet_navigation(menu_set, alphakey):
 
     # if no letters or words, return None to its callers
     if not sorted_alpha_index:
-        return None
+        return None, None
 
     num_ltrs = len(sorted_alpha_index)
     num_of_cols = 34 if alphakey is not _ALPHAEVENT else 10
