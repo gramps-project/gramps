@@ -2308,7 +2308,8 @@ class EventListPage(BasePage):
                 table += tbody
 
                 # separate events by their type and then thier event handles
-                for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
+                for (evt_type, datalist) in sort_event_types(db, event_types, 
+                        event_handle_list):
                     first_event = True
 
                     for (date, gid, event_handle) in datalist:
@@ -2648,7 +2649,7 @@ class MediaPage(BasePage):
                             if initial_image_path != newpath:
                                 scalemsg = Html("p", "(%d x %d)" % (width, height), inline = True)
                                 summaryarea += scalemsg
-                            with Html("div", style = 'width: %dpx; height: %dpx' % (new_width, 
+                            with Html("div", id="GalleryDisplay", style = 'width: %dpx; height: %dpx' % (new_width, 
                                 new_height)) as mediadisplay:
                                 summaryarea += mediadisplay
 
@@ -6097,7 +6098,7 @@ def alphabet_navigation(menu_set, alphakey):
 
     # if no letters or words, return None to its callers
     if not sorted_alpha_index:
-        return None, None
+        return None, []
 
     num_ltrs = len(sorted_alpha_index)
     num_of_cols = 34 if alphakey is not _ALPHAEVENT else 10
