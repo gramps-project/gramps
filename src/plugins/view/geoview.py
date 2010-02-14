@@ -268,8 +268,11 @@ def _escape(text):
     """
     return the text with some characters translated : " &
     """
-    text = text.replace('&','\\&')
-    text = text.replace('"','\\"')
+    try:
+        text = text.replace('&','\\&')
+        text = text.replace('"','\\"')
+    except:  # pylint: disable-msg=W0704
+        pass # pylint: disable-msg=W0702
     return text
 
 #-------------------------------------------------------------------------
