@@ -83,9 +83,12 @@ def setup_windows_gtk():
     """ function to decide if needed on windows
     This function should be called on windows instead of locale.bindtextdomain
     """
-    import gtk
-    import gtk.glade
-    gtk.glade.bindtextdomain("gramps", LOCALEDIR)
+    import ctypes
+    libintl = ctypes.cdll.intl
+    libintl.bindtextdomain(LOCALEDOMAIN, str(LOCALEDIR))
+    libintl.textdomain(LOCALEDOMAIN)
+    libintl.bind_textdomain_codeset(LOCALEDOMAIN, "UTF-8")
+    libintl.gettext.restype = ctypes.c_char_p
 
 def get_localedomain():
     """
