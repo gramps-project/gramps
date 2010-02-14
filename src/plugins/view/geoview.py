@@ -126,7 +126,6 @@ _JAVASCRIPT = '''<script>
  var pos = 0; var mapstraction;
  var regrep = new RegExp(\"default\",\"g\");
  var current_map; var ulat; var ulon; var default_icon;
- var crosshairsSize=33;
  function getArgs(){
   var args = new Object();
   var query = location.search.substring(1);
@@ -175,7 +174,22 @@ _JAVASCRIPT = '''<script>
  function placeclick(i) {
   gmarkers[i].openBubble();
  }
+ var crosshairsSize=34;
+ var crossh=null;
+ function addcrosshair(state,Cross) {
+  if ( state == 0 ) {
+    if (crossh) mapstraction.removeCrosshairs(crossh);
+  } else {
+    crossh = mapstraction.addCrosshairs(Cross);
+  };
+ }
  function addcross() {
+ Mapstraction.prototype.removeCrosshairs=function(cross)
+ {
+  var map=this.maps[this.api];
+  var container=map.getContainer();
+  container.removeChild(crossh);
+ };
  Mapstraction.prototype.addCrosshairs=function(Cross)
  {
   var map=this.maps[this.api];
@@ -187,7 +201,9 @@ _JAVASCRIPT = '''<script>
   crosshairs.style.border='0';
   crosshairs.style.position='fixed';
   crosshairs.style.top='50%';
+  crosshairs.style.marginTop='+2px';
   crosshairs.style.left='50%';
+  crosshairs.style.marginLeft='-13px'; 
   crosshairs.style.zIndex='500';
   container.appendChild(crosshairs);
   this.crosshairs=crosshairs;
@@ -269,6 +285,8 @@ class GeoView(HtmlView):
         ('preferences.alternate-provider', False),
         ('preferences.timeperiod-before-range', 10),
         ('preferences.timeperiod-after-range', 10),
+        ('preferences.crosshair', False),
+        ('preferences.coordinates-in-degree', False),
         )
 
     def __init__(self, dbstate, uistate):
@@ -396,6 +414,11 @@ class GeoView(HtmlView):
             self.usedmap = "google"
         else:
             self.usedmap = "openstreetmap"
+        fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
+                                             'crosshairs.png')
+        self.crosspath = urlparse.urlunsplit(('file', '',
+                                              URL_SEP.join(fpath.split(os.sep)),
+                                              '', ''))
 
     def can_configure(self):
         """
@@ -403,11 +426,17 @@ class GeoView(HtmlView):
         """
         return True
 
+    def get_title(self):
+        """
+        Used to set the titlebar in the configuration window.
+        """
+        return _('Geography')
+
     def _get_configure_page_funcs(self):
         """
         The function which is used to create the configuration window.
         """
-        return [self.geoview_options]
+        return [self.map_options, self.geoview_options]
 
     def config_connect(self):
         """
@@ -418,6 +447,8 @@ class GeoView(HtmlView):
                           self.config_update)
         self._config.connect("preferences.timeperiod-after-range",
                           self.config_update)
+        self._config.connect("preferences.crosshair",
+                          self.config_crosshair)
 
     def config_update(self, client, cnxn_id, entry, data):
         # pylint: disable-msg=W0613
@@ -427,6 +458,15 @@ class GeoView(HtmlView):
         self._change_map(self.usedmap)
         self._set_provider_icon(self.alt_provider)
         self._ask_year_selection(self.last_year)
+
+    def config_crosshair(self, client, cnxn_id, entry, data):
+        # pylint: disable-msg=W0613
+        """
+        Do we have a crosshair ?
+        """
+        if self.javascript_ready:
+            self.renderer.execute_script("javascript:addcrosshair('%d','%s')" % 
+                          (self._config.get("preferences.crosshair"), self.crosspath))
 
     def geoview_options(self, configdialog):
         """
@@ -447,6 +487,23 @@ class GeoView(HtmlView):
                 3, 'preferences.timeperiod-after-range')
 
         return _('Time period adjustment'), table
+
+    def map_options(self, configdialog):
+        """
+        Function that builds the widget in the configuration dialog
+        """
+        table = gtk.Table(2, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+        configdialog.add_checkbox(table,
+                _('Crosshair on the map.'),
+                1, 'preferences.crosshair')
+        configdialog.add_checkbox(table,
+                _('Show the coordinates in the statusbar either in degree'
+                  '\neither in internal gramps format ( D.D8 )'),
+                2, 'preferences.coordinates-in-degree')
+        return _('The map'), table
 
     def _place_changed(self, handle_list):
         # pylint: disable-msg=W0613
@@ -795,8 +852,16 @@ class GeoView(HtmlView):
             if self.active:
                 if title != None:
                     self.uistate.status.pop(self.context_id)
-                    mess = "lon= %s \tlat= %s\tzoom= %s" % ( self.reallatitude,
-                                                             self.reallongitude,
+                    if self._config.get('preferences.coordinates-in-degree'):
+                        latitude, longitude = conv_lat_lon(self.reallatitude,
+                                                           self.reallongitude,
+                                                           "DEG")
+                    else:
+                        latitude, longitude = conv_lat_lon(self.reallatitude,
+                                                           self.reallongitude,
+                                                           "D.D8")
+                    mess = "lon= %s \tlat= %s\tzoom= %s" % ( latitude,
+                                                             longitude,
                                                              self.realzoom)
                     self.context_id = self.uistate.status.push(1, mess)
                 gobject.timeout_add(timeloop,
@@ -1267,12 +1332,9 @@ class GeoView(HtmlView):
         self.mapview.write("{ pan: true, zoom: 'large', ")
         self.mapview.write("scale: true, map_type: true });\n")
         self.mapview.write("addcross();")
-        fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
-                                             'crosshairs.png')
-        cpath = urlparse.urlunsplit(('file', '',
-                                     URL_SEP.join(fpath.split(os.sep)),
-                                     '', ''))
-        self.mapview.write("mapstraction.addCrosshairs('%s');" % cpath )
+        self.mapview.write("addcrosshair('%d', '%s');" % (
+                                         self._config.get("preferences.crosshair"),
+                                         self.crosspath))
 
     def _create_needed_javascript(self):
         """
