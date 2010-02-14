@@ -312,6 +312,18 @@ class DisplayState(gen.utils.Callback):
         'filter-name-changed' : (str, unicode, unicode), 
         'nameformat-changed' : None, 
         }
+    
+    #nav_type to message
+    NAV2MES = {
+        'Person': _("No active person"),
+        'Family': _("No active family"),
+        'Event': _("No active event"),
+        'Place': _("No active place"),
+        'Source': _("No active source"),
+        'Repository': _("No active repository"),
+        'Media': _("No active media"),
+        'Note': _("No active note"),
+        }
 
     def __init__(self, window, status, progress, warnbtn, uimanager, 
                  progress_monitor, viewmanager=None):
@@ -488,8 +500,7 @@ class DisplayState(gen.utils.Callback):
                     name = '%s (%s)' % (name, msg.strip())
 
         if not name:
-            name = _('No active %(navigation_type)s') % {"navigation_type":
-                                                         _(nav_type.lower())}
+            name = self.NAV2MES[nav_type]
 
         self.status.push(self.status_id, name)
         process_pending_events()

@@ -94,6 +94,15 @@ class NavigationView(PageView):
 
         self.uistate.register(self.navigation_type(), self.nav_group)
 
+    
+    def navigation_type(self):
+        """
+        Indictates the navigation type. Navigation type can be the string
+        name of any of the primary Objects. A History object will be 
+        created for it, see DisplayState.History
+        """
+        return None
+
     def define_actions(self):
         """
         Define menu actions.

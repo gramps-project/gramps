@@ -157,13 +157,6 @@ class PageView(DbGUIElement):
         class.
         """
         raise NotImplementedError
-
-    def navigation_type(self):
-        """
-        Indictates the navigation type. Currently, we only support navigation
-        for views that are Person centric.
-        """
-        return None
     
     def ui_definition(self):
         """
