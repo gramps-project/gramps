@@ -401,7 +401,7 @@ class GeoView(HtmlView):
         self.nocoord = gtk.Button("Unref") # don't translate
         self.nocoord.connect("clicked", self._show_places_without_coord)
         self.nocoord.set_tooltip_text(
-                              _("The number of places which have no coordinates."))
+                     _("The number of places which have no coordinates."))
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
         self.endinit = False
@@ -456,7 +456,8 @@ class GeoView(HtmlView):
         """
         try:
             self._config.set(constant, int(obj.get_text()))
-        except:
+        except:  # pylint: disable-msg=W0704
+            #pass # pylint: disable-msg=W0702
             print "WARNING: ignoring invalid value for '%s'" % constant
 
     def config_update(self, obj, constant):
@@ -465,7 +466,7 @@ class GeoView(HtmlView):
         Some preferences changed in the configuration window.
         """
         self._change_map(self.usedmap)
-        self._set_provider_icon(self.alt_provider)
+        self._set_provider_icon()
         self._ask_year_selection(self.last_year)
 
     def config_crosshair(self, client, cnxn_id, entry, data):
@@ -487,13 +488,15 @@ class GeoView(HtmlView):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         configdialog.add_text(table, 
-                _("You can adjust the time period with the two following values."), 1)
+          _("You can adjust the time period with the two following values."), 1)
         configdialog.add_pos_int_entry(table, 
                 _('The number of years before the first event date.'),
-                2, 'preferences.timeperiod-before-range', self.config_update_int)
+                2, 'preferences.timeperiod-before-range',
+                self.config_update_int)
         configdialog.add_pos_int_entry(table, 
                 _('The number of years after the last event date.'),
-                3, 'preferences.timeperiod-after-range', self.config_update_int)
+                3, 'preferences.timeperiod-after-range',
+                self.config_update_int)
 
         return _('Time period adjustment'), table
 
@@ -1027,9 +1030,10 @@ class GeoView(HtmlView):
         self._add_action('EventMaps', 'geo-show-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
-        self._add_action('AllPlacesMapsMenu', 'geo-show-place', _('_All Places'),
-        callback=self._all_places, tip=_("Attempt to view all places in "
-                                         "the family tree."))
+        self._add_action('AllPlacesMapsMenu', 'geo-show-place',
+                         _('_All Places'), callback=self._all_places,
+                         tip=_("Attempt to view all places in "
+                               "the family tree."))
         self._add_action('PersonMapsMenu', 'geo-show-person', _('_Person'),
             callback=self._person_places,
             tip=_("Attempt to view all the places "
@@ -1078,7 +1082,7 @@ class GeoView(HtmlView):
         self.endinit = True
         self.uistate.clear_filter_results()
         self.filter_toggle(None, None, None, None)
-        self._set_provider_icon(self.alt_provider)
+        self._set_provider_icon()
         self._geo_places()
 
     def _goto_active_person(self, handle=None): # pylint: disable-msg=W0613
@@ -1126,7 +1130,7 @@ class GeoView(HtmlView):
         self.build_filters_container(self.filter, EventSidebarFilter)
         self._geo_places()
 
-    def _new_database(self, db):
+    def _new_database(self, database):
         """
         We just change the database.
         Restore the initial config. Is it good ?
@@ -1138,7 +1142,7 @@ class GeoView(HtmlView):
                                     config.get('geoview.latitude'),
                                     config.get('geoview.longitude'),
                                     "D.D8")
-        self._change_db(db)
+        self._change_db(database)
         for sig in self.signal_map:
             self.callman.add_db_signal(sig, self.signal_map[sig])
 
@@ -1175,7 +1179,7 @@ class GeoView(HtmlView):
             image.set_from_stock('geo-free-zoom', gtk.ICON_SIZE_MENU)
         self.savezoom.set_image(image)
 
-    def _save_zoom(self, button):
+    def _save_zoom(self, button): # pylint: disable-msg=W0613
         """
         Do we change the zoom between maps ?
         It's not between maps providers, but between people, family,
@@ -1189,7 +1193,7 @@ class GeoView(HtmlView):
             config.set('geoview.lock', True)
             self._set_lock_unlock(True)
 
-    def _change_provider(self, button):
+    def _change_provider(self, button): # pylint: disable-msg=W0613
         """
         Toogle between the two maps providers.
         Inactive ( the default ) is openstreetmap.
@@ -1198,15 +1202,14 @@ class GeoView(HtmlView):
         if self._config.get('preferences.alternate-provider'):
             self.usedmap = "openstreetmap"
             self._config.set('preferences.alternate-provider', False)
-            self._set_provider_icon(False)
         else:
             self.usedmap = "google"
             self._config.set('preferences.alternate-provider', True)
-            self._set_provider_icon(True)
+        self._set_provider_icon()
         self._change_map(self.usedmap)
         self._ask_year_selection(self.last_year)
 
-    def _set_provider_icon(self, state):
+    def _set_provider_icon(self):
         """
         Change the provider icon depending on the button state.
         """
@@ -1343,8 +1346,8 @@ class GeoView(HtmlView):
         self.mapview.write("scale: true, map_type: true });\n")
         self.mapview.write("addcross();")
         self.mapview.write("addcrosshair('%d', '%s');" % (
-                                         self._config.get("preferences.crosshair"),
-                                         self.crosspath))
+                            self._config.get("preferences.crosshair"),
+                            self.crosspath))
 
     def _create_needed_javascript(self):
         """
@@ -1696,15 +1699,16 @@ class GeoView(HtmlView):
                         if formatype == 1:
                             self.mapview.write("<br>%s" % _escape(mark[5]))
                         else:
-                            self.mapview.write("<br>%s - %s" % (mark[7],
-                                                                _escape(mark[5])))
+                            self.mapview.write("<br>%s - %s" % 
+                                               (mark[7], _escape(mark[5])))
                 else: # This marker already exists. add info.
                     if ( mark[8] and savetype != mark[8] ):
                         differtype = True
                     if indm > last:
                         divclose = True
                     else:
-                        self.mapview.write("<br>%s - %s" % (mark[7], _escape(mark[5])))
+                        self.mapview.write("<br>%s - %s" % (mark[7],
+                                                            _escape(mark[5])))
                     ret = 1
                     for year in self.yearinmarker:
                         if year == mark[7]:
@@ -2121,8 +2125,8 @@ class GeoView(HtmlView):
         new_place.set_longitude(str(self.reallongitude))
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
-        except Errors.WindowActiveError:
-            pass
+        except Errors.WindowActiveError: # pylint: disable-msg=W0704
+            pass # pylint: disable-msg=W0702
 
     def _link_place(self, url): # pylint: disable-msg=W0613
         """
@@ -2136,8 +2140,8 @@ class GeoView(HtmlView):
             place.set_longitude(str(self.reallongitude))
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
-            except Errors.WindowActiveError:
-                pass
+            except Errors.WindowActiveError: # pylint: disable-msg=W0704
+                pass # pylint: disable-msg=W0702
 
     ####################################################################
     # Filters
@@ -2301,5 +2305,6 @@ class GeoView(HtmlView):
             gobject.timeout_add(10000, # Every 10 seconds
                                 self._test_network, host)
         if self.no_network:
-           self.open(self._create_message_page(
-                     'Your network is down. I can\'t do the job.'))
+            self.open(self._create_message_page(
+                      'No network connection found.<br>A connection to the'
+                      ' internet is needed to show places or events on a map.'))
