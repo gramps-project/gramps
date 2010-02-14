@@ -151,6 +151,8 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
                 ind += 1
 
 def _format_source_text(source):
+    if not source: return ""
+
     src_txt = ""
     
     if source.get_author():
