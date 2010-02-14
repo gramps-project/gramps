@@ -126,6 +126,7 @@ class DetDescendantReport(Report):
         self.inc_mates     = menu.get_option_by_name('incmates').get_value()
         self.inc_attrs     = menu.get_option_by_name('incattrs').get_value()
         self.inc_paths     = menu.get_option_by_name('incpaths').get_value()
+        self.inc_ssign     = menu.get_option_by_name('incssign').get_value()
         pid                = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
@@ -525,15 +526,26 @@ class DetDescendantReport(Report):
                 value = str(self.prev_gen_handles.get(child_handle))
                 child_name += " [%s]" % value
 
+            if self.inc_ssign:
+                prefix = " "
+                for family_handle in child.get_family_handle_list():
+                    family = self.database.get_family_from_handle(family_handle)
+                    if family.get_child_ref_list():
+                        prefix = "+ "
+                        break
+            else:
+                prefix = ""
+
             if child_handle in self.dnumber:
                 self.doc.start_paragraph("DDR-ChildList",
-                        str(self.dnumber[child_handle])
+                        prefix
+                        + str(self.dnumber[child_handle])
                         + " "
                         + ReportUtils.roman(cnt).lower()
                         + ".")
             else:
                 self.doc.start_paragraph("DDR-ChildList",
-                                     ReportUtils.roman(cnt).lower() + ".")
+                              prefix + ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
             self.doc.write_text("%s. " % child_name, child_mark)
@@ -819,9 +831,16 @@ class DetDescendantOptions(MenuReportOptions):
         incmates.set_help(_("Whether to include detailed spouse information."))
         menu.add_option(category_name, "incmates", incmates)
 
+        incssign = BooleanOption(_("Include sign of succession ('+')" \
+                                   " in child-list"), True)
+        incssign.set_help(_("Whether to include a sign ('+') before the"
+                            " descendant number in the child-list to indicate"
+                            " a child has succession."))
+        menu.add_option(category_name, "incssign", incssign)
+
         incpaths = BooleanOption(_("Include path to start-person"), False)
         incpaths.set_help(_("Whether to include the path of descendancy " \
-                            "from the start-person to each descendant"))
+                            "from the start-person to each descendant."))
         menu.add_option(category_name, "incpaths", incpaths)
 
         category_name = _("Missing information")        
