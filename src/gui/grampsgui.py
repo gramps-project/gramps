@@ -197,7 +197,7 @@ def construct_view_order():
     viewstoshow = {}
     for pdata in view_list:
         mod = pmgr.load_plugin(pdata)
-        if not mod:
+        if not mod or not hasattr(mod, pdata.viewclass):
             #import of plugin failed
             ErrorDialog(
                 _('Failed Loading View'), 
