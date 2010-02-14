@@ -443,14 +443,19 @@ class GeoView(HtmlView):
         This method will be called after the ini file is initialized,
         use it to monitor changes in the ini file
         """
-        self._config.connect("preferences.timeperiod-before-range",
-                          self.config_update)
-        self._config.connect("preferences.timeperiod-after-range",
-                          self.config_update)
         self._config.connect("preferences.crosshair",
                           self.config_crosshair)
 
-    def config_update(self, client, cnxn_id, entry, data):
+    def config_update_int(self, obj, constant):
+        """
+        Try to read an int.
+        """
+        try:
+            self._config.set(constant, int(obj.get_text()))
+        except:
+            print "WARNING: ignoring invalid value for '%s'" % constant
+
+    def config_update(self, obj, constant):
         # pylint: disable-msg=W0613
         """
         Some preferences changed in the configuration window.
@@ -466,7 +471,8 @@ class GeoView(HtmlView):
         """
         if self.javascript_ready:
             self.renderer.execute_script("javascript:addcrosshair('%d','%s')" % 
-                          (self._config.get("preferences.crosshair"), self.crosspath))
+                          (self._config.get("preferences.crosshair"),
+                           self.crosspath))
 
     def geoview_options(self, configdialog):
         """
@@ -477,14 +483,13 @@ class GeoView(HtmlView):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         configdialog.add_text(table, 
-                _("The two following fields are used to adjust "
-                  "the time period when we are near the limits."), 1)
+                _("You can adjust the time period with the two following values."), 1)
         configdialog.add_pos_int_entry(table, 
                 _('The number of years before the first event date.'),
-                2, 'preferences.timeperiod-before-range')
+                2, 'preferences.timeperiod-before-range', self.config_update_int)
         configdialog.add_pos_int_entry(table, 
                 _('The number of years after the last event date.'),
-                3, 'preferences.timeperiod-after-range')
+                3, 'preferences.timeperiod-after-range', self.config_update_int)
 
         return _('Time period adjustment'), table
 
