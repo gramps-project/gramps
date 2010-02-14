@@ -762,8 +762,8 @@ class GuiGramplet(object):
 
     def set_height(self, height):
         self.height = height
-        if not self.expand:
-            self.scrolledwindow.set_size_request(-1, self.height)
+        self.scrolledwindow.set_size_request(-1, self.height)
+        self.set_state(self.state)
 
     def get_height(self):
         return self.height
@@ -785,6 +785,7 @@ class GuiGramplet(object):
 
     def set_expand(self, value):
         self.expand = value
+        self.scrolledwindow.set_size_request(-1, self.height)
         self.set_state(self.state)
 
     def set_title(self, new_title):
