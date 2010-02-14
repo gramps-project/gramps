@@ -294,6 +294,7 @@ class GeoView(HtmlView):
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
+        self.no_network = True
         self.placeslist = []
         self.displaytype = "person"
         self.nbmarkers = 0
@@ -809,6 +810,7 @@ class GeoView(HtmlView):
         self._goto_active_person()
         self.filter.hide() # hide the filter
         self.active = True
+        self._test_network('maps.google.com')
 
     def set_inactive(self):
         """
@@ -2102,7 +2104,7 @@ class GeoView(HtmlView):
         """
         Here, we call really the htmlview and the renderer
         """
-        if self.endinit:
+        if self.endinit and not self.no_network:
             self.open(url)
             self.javascript_ready = True
 
@@ -2278,3 +2280,23 @@ class GeoView(HtmlView):
                                     URL_SEP.join(filename.split(os.sep)),
                                     '', ''))
 
+    def _test_network(self, host):
+        """
+        This function is used to test if we are connected to a network.
+        """
+        pinghost = os.popen("ping -q -c2 " + host, "r")
+        line = pinghost.read()
+        if not line:
+            self.no_network = True
+        result = re.search('.*, (.*)% packet loss.*', line)
+        if result != None and int(result.group(1)) == 0:
+            self.no_network = False
+        else:
+            self.no_network = True
+
+        if self.active:
+            gobject.timeout_add(10000, # Every 10 seconds
+                                self._test_network, host)
+        if self.no_network:
+           self.open(self._create_message_page(
+                     'Your network is down. I can\'t do the job.'))
