@@ -33,6 +33,7 @@ creating, and deleting of databases.
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import time
 from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
@@ -384,6 +385,10 @@ def find_locker_name(dirpath):
         fname = os.path.join(dirpath, "lock")
         ifile = open(fname)
         username = ifile.read().strip()
+        # Convert username to unicode according to system encoding
+        # Otherwise problems with non ASCII characters in
+        # username in Windows
+        username = unicode(username, sys.getfilesystemencoding())
         last = _("Locked by %s") % username
         ifile.close()
     except (OSError, IOError):
