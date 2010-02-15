@@ -135,6 +135,9 @@ class PersonEventEmbedList(EventEmbedList):
         ref = self.get_selected()
         if not ref or ref[1]:
             return
+        if ref[0] == 0:
+            #the workgroup: person events, cannot move up
+            return
         if ref[0] == 1:
             #cannot move up, already first family
             return
@@ -154,6 +157,9 @@ class PersonEventEmbedList(EventEmbedList):
         """
         ref = self.get_selected()
         if not ref or ref[1]:
+            return
+        if ref[0] == 0:
+            #person events, cannot move down
             return
         if ref[0] == len(self._groups)-1:
             #cannot move down, already last family
