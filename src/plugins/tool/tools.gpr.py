@@ -117,32 +117,6 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 #------------------------------------------------------------------------
 #
-# Check Localized Date Displayer and Parser
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'test_for_date_parser_and_displayer',
-name  = "Check Localized Date Displayer and Parser",
-description =  ("This test tool will create many people showing all"
-                        " different date variants as birth. The death date is"
-                        " created by parsing the result of the date displayer for"
-                        " the birth date. This way you can ensure that dates"
-                        " printed can be parsed back in correctly."),
-version = '1.0',
-gramps_target_version = '3.2',
-status = UNSTABLE,
-fname = 'DateParserDisplayTest.py',
-authors = ["Martin Hawlisch"],
-authors_email = ["martin@hawlisch.de"],
-category = TOOL_DEBUG,
-toolclass = 'DateParserDisplayTest',
-optionclass = 'DateParserDisplayTestOptions',
-tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
-  )
-
-#------------------------------------------------------------------------
-#
 # Interactive Descendant Browser
 #
 #------------------------------------------------------------------------
@@ -163,28 +137,6 @@ optionclass = 'DesBrowseOptions',
 tool_modes = [TOOL_MODE_GUI]
   )
 
-#------------------------------------------------------------------------
-#
-# Dump Gender Statistics
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'dgenstats',
-name  = "Dump Gender Statistics",
-description =  ("Will dump the statistics for the gender guessing "
-                        "from the first name."),
-version = '1.0',
-gramps_target_version = '3.2',
-status = STABLE,
-fname = 'DumpGenderStats.py',
-authors = ["Donald N. Allingham", "Martin Hawlisch"],
-authors_email = ["don@gramps-project.org", "martin@hawlisch.de"],
-category = TOOL_DEBUG,
-toolclass = 'DumpGenderStats',
-optionclass = 'DumpGenderStatsOptions',
-tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
-  )
 
 #------------------------------------------------------------------------
 #
@@ -564,30 +516,6 @@ category = TOOL_UTILS,
 toolclass = 'SoundGen',
 optionclass = 'SoundGenOptions',
 tool_modes = [TOOL_MODE_GUI]
-  )
-
-#------------------------------------------------------------------------
-#
-# Generate Testcases for Persons and Families
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'testcasegenerator',
-name  = "Generate Testcases for Persons and Families",
-description =  ("The testcase generator will generate some persons "
-                        "and families that have broken links in the database "
-                        "or data that is in conflict to a relation."),
-version = '1.0',
-gramps_target_version = '3.2',
-status = UNSTABLE,
-fname = 'TestcaseGenerator.py',
-authors = ["Martin Hawlisch"],
-authors_email = ["martin@hawlisch.de"],
-category = TOOL_DEBUG,
-toolclass = 'TestcaseGenerator',
-optionclass = 'TestcaseGeneratorOptions',
-tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
   )
 
 #------------------------------------------------------------------------
