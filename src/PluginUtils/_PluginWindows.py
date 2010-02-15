@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 import traceback
 import os
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -580,7 +581,13 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
                              for name in good_gpr])
             for gpr_file in gpr_files:
-                callback("   " + (_("Registered '%s'") % gpr_file) + "\n")
+                # Convert gpr_file to unicode otherwise the callback will not
+                # work with non ASCII characters in filenames in Windows.
+                # But don't use converted filenames
+                # in the call to self.__pmgr.reg_plugins
+                # as that will break in reg_plugins.
+                u_gpr_file = unicode(gpr_file, sys.getfilesystemencoding())
+                callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
                 self.__pmgr.reg_plugins(gpr_file)
 
         file_obj.close()
