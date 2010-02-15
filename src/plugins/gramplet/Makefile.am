@@ -16,6 +16,7 @@ pkgdata_PYTHON = \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
 	PedigreeGramplet.py \
+    PluginManagerGramplet.py\
 	QuickViewGramplet.py \
 	RelativeGramplet.py \
 	SessionLogGramplet.py \
