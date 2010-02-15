@@ -1504,11 +1504,11 @@ class DbWriteBase(object):
         person_list = [
             item[1] for item in
             self.find_backlink_handles(handle,['Person'])]
-    
+        
         for phandle in person_list:
             p = self.get_person_from_handle(phandle)
-            p.remove_handle_references('Person', handle)
-            self.commit_person(person, trans)
+            p.remove_handle_references('Person', [handle])
+            self.commit_person(p, trans)
         self.remove_person(handle, trans)
     
     def remove_family_relationships(self, family_handle, trans=None):
