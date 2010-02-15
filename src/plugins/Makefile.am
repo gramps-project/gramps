@@ -22,6 +22,7 @@ SUBDIRS = \
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
+    bookreport.gpr.py\
 	BookReport.py\
 	records.gpr.py\
 	Records.py
