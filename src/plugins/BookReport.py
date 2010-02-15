@@ -584,7 +584,6 @@ class BookListDisplay(object):
         if nodelete:
             delete_button = self.xml.get_object("delete_button")
             delete_button.hide()
-
         self.xml.connect_signals({
             "on_booklist_cancel_clicked" : self.on_booklist_cancel_clicked,
             "on_booklist_ok_clicked" : self.on_booklist_ok_clicked,
@@ -691,7 +690,6 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
         window.show()
-    
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,
             "on_remove_clicked"     : self.on_remove_clicked,
@@ -703,7 +701,14 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             "on_open_clicked"       : self.on_open_clicked,
             "on_edit_clicked"       : self.on_edit_clicked,
             "on_book_ok_clicked"    : self.on_book_ok_clicked,
-            "destroy_passed_object" : self.close
+            "destroy_passed_object" : self.close,
+
+        # Insert dummy handlers for second top level in the glade file
+            "on_booklist_ok_clicked"    : lambda _:None,
+            "on_booklist_delete_clicked": lambda _:None,
+            "on_booklist_cancel_clicked": lambda _:None,
+            "on_booklist_ok_clicked"    : lambda _:None,
+            "on_booklist_ok_clicked"    : lambda _:None,
             })
 
         self.avail_tree = self.xml.get_object("avail_tree")
