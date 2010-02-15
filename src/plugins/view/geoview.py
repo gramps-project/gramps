@@ -268,11 +268,8 @@ def _escape(text):
     """
     return the text with some characters translated : " &
     """
-    try:
-        text = text.replace('&','\\&')
-        text = text.replace('"','\\"')
-    except:  # pylint: disable-msg=W0704
-        pass # pylint: disable-msg=W0702
+    text = text.replace('&','\\&')
+    text = text.replace('"','\\"')
     return text
 
 #-------------------------------------------------------------------------
@@ -1916,7 +1913,7 @@ class GeoView(HtmlView):
                                 dbstate.db.find_backlink_handles(event.handle)
                                     if ref_type == 'Person' 
                                       ]
-                        descr2 = event.get_type()
+                        descr2 = "%s" % event.get_type()
                         if person_list:
                             for person in person_list:
                                 descr2 = ("%(description)s - %(name)s") % {
