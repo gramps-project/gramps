@@ -325,7 +325,7 @@ class GuiGramplet(object):
         self.row = int(kwargs.get("row", -1))
         self.state = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
-        self.help_url = kwargs.get("help_url", None)
+        self.help_url = kwargs.get("help_url", WIKI_HELP_PAGE)
         ##########
         self.use_markup = False
         self.pui = None # user code
