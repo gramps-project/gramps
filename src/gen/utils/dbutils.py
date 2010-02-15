@@ -66,8 +66,8 @@ def delete_person_from_database(db, person, trans):
 
     for phandle in person_list:
         p = db.get_person_from_handle(phandle)
-        p.remove_handle_references('Person', handle)
-        db.commit_person(person, trans)
+        p.remove_handle_references('Person', [handle])
+        db.commit_person(p, trans)
     db.remove_person(handle, trans)
 
 def remove_family_relationships(db, family_handle, trans=None):
