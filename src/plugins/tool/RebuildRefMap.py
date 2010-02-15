@@ -88,7 +88,8 @@ class RebuildRefMap(Tool.Tool, UpdateCallback):
             uistate.set_busy_cursor(0)
             uistate.progress.hide()
             OkDialog(_("Reference maps rebuilt"),
-                     _('All reference maps have been rebuilt.'))
+                     _('All reference maps have been rebuilt.'),
+                     parent=uistate.window)
         else:
             print "All reference maps have been rebuilt."
         self.db.enable_signals()

@@ -199,7 +199,7 @@ class Check(Tool.BatchTool):
         self.db.enable_signals()
         self.db.request_rebuild()
 
-        errs = checker.build_report(cli)
+        errs = checker.build_report(uistate)
         if errs:
             Report(uistate, checker.text.getvalue(), cli)
 
@@ -1406,7 +1406,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-    def build_report(self, cl=0):
+    def build_report(self, uistate=None):
         self.progress.close()
         bad_photos = len(self.bad_photo)
         replaced_photos = len(self.replaced_photo)
@@ -1448,11 +1448,12 @@ class CheckIntegrity(object):
                  )
         
         if errors == 0:
-            if cl:
-                print "No errors were found: the database has passed internal checks."
-            else:
+            if uistate:
                 OkDialog(_("No errors were found"),
-                         _('The database has passed internal checks'))
+                         _('The database has passed internal checks'),
+                         parent=uistate.window)
+            else:
+                print "No errors were found: the database has passed internal checks."
             return 0
 
         self.text = cStringIO.StringIO()

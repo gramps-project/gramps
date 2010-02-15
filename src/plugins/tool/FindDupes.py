@@ -171,7 +171,8 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         if len(self.map) == 0:
             OkDialog(
                 _("No matches found"),
-                _("No potential duplicate people were found"))
+                _("No potential duplicate people were found"),
+                parent=self.window)
         else:
             try:
                 ShowMatches(self.dbstate,self.uistate,self.track,

@@ -150,7 +150,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.options.handler.options_dict['totype'] = the_type.xml_str()
         
         modified,msg = self.run_tool(cli=False)
-        OkDialog(_('Change types'),msg,self.window)
+        OkDialog(_('Change types'), msg, self.window)
 
         # Save options
         self.options.handler.save_options()

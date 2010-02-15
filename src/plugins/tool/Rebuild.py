@@ -83,7 +83,8 @@ class Rebuild(Tool.Tool, UpdateCallback):
             uistate.set_busy_cursor(0)
             uistate.progress.hide()
             OkDialog(_("Secondary indices rebuilt"),
-                     _('All secondary indices have been rebuilt.'))
+                     _('All secondary indices have been rebuilt.'),
+                     parent=uistate.window)
         else:
             print "Rebuilding Secondary Indices..."
             self.db.rebuild_secondary(self.update_empty)

@@ -142,7 +142,8 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.progress.close()
             self.close()
             OkDialog(_('No modifications made'),
-                     _("No capitalization changes were detected."))
+                     _("No capitalization changes were detected."),
+                     parent=uistate.window)
 
     def name_cap(self, name):
         name.strip()            
