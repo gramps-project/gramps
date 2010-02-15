@@ -929,7 +929,13 @@ class ViewManager(CLIManager):
 
                 # create view page and add to category notebook
                 page.define_actions()
-                page_display = page.get_display()
+                try:
+                    page_display = page.get_display()
+                except:
+                    import traceback
+                    print "ERROR: '%s' failed to create view" % pdata.name
+                    traceback.print_exc()
+                    continue
                 page_display.show_all()
                 page.post()
                 page_no = self.notebook_cat[-1].append_page(page_display, 
