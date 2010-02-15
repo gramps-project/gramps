@@ -1312,9 +1312,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             cursor.set(name)
             if cursor.count() == 1:
                 i = bisect.bisect(self.surname_list, name)
-                assert 0 <= i-1 < len(self.surname_list)
-                del self.surname_list[i-1]
-        except ValueError:
+                if 0 <= i-1 < len(self.surname_list):
+                    del self.surname_list[i-1]
+        except:
             pass
         finally:
             cursor.close()
