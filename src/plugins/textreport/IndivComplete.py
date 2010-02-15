@@ -505,12 +505,12 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
 
     def write_report(self):
-        plist = self.database.iter_person_handles()
+        plist = self.database.get_person_handles(sort_handles=True)
         if self.filter:
             ind_list = self.filter.apply(self.database, plist)
         else:
             ind_list = plist
-            
+
         for count, person_handle in enumerate(ind_list):
             self.person = self.database.get_person_from_handle(
                 person_handle)
