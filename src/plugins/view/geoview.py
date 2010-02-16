@@ -62,6 +62,7 @@ import gen.lib
 import Utils
 import config
 import Errors
+import constfunc
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
@@ -2288,18 +2289,27 @@ class GeoView(HtmlView):
         """
         This function is used to test if we are connected to a network.
         """
-        pinghost = os.popen("ping -q -c2 " + host, "r")
+        if constfunc.win():
+           command = "ping -n 2 "
+        #elif constfunc.mac():
+        #   command = "ping -c 2 "
+        else:
+           command = "ping -c 2 "
+
+        pinghost = os.popen(command + host, "r")
         line = pinghost.read()
         if not line:
             self.no_network = True
         result = re.search('.*, (.*)% packet loss.*', line)
         if result != None and int(result.group(1)) == 0:
-            self.no_network = False
+            if self.no_network == True:
+                self.no_network = False
+                self._change_map(self.usedmap)
         else:
             self.no_network = True
 
         if self.active:
-            gobject.timeout_add(10000, # Every 10 seconds
+            gobject.timeout_add(30000, # Every 30 seconds
                                 self._test_network, host)
         if self.no_network:
             self.open(self._create_message_page(
