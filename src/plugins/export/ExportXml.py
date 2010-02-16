@@ -48,7 +48,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".WriteXML")
+LOG = logging.getLogger(".WriteXML")
 
 #-------------------------------------------------------------------------
 #
