@@ -39,7 +39,7 @@ from gen.ggettext import ngettext
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".ImportVCard")
+LOG = logging.getLogger(".ImportVCard")
 
 #-------------------------------------------------------------------------
 #
@@ -136,7 +136,7 @@ class VCardParser(object):
                 elif fields[0] == "URL":
                     self.add_url(fields, line_parts.group(2))
                 else:
-                    print "Token >%s< unknown. line skipped: %s" % (fields[0],line)
+                    LOG.warn("Token >%s< unknown. line skipped: %s" % (fields[0],line))
         except Errors.GedcomError, err:
             self.errmsg(str(err))
             

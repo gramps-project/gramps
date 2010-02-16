@@ -38,7 +38,7 @@ import cPickle as pickle
 import time
 from bsddb import dbshelve, db
 import logging
-__LOG = logging.getLogger(".Db")
+LOG = logging.getLogger(".Db")
 
 #-------------------------------------------------------------------------
 #
@@ -158,7 +158,6 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
     def __open_table(self, file_name, table_name, dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
-        print file_name
         if self.readonly:
             dbmap.open(file_name, table_name, dbtype, db.DB_RDONLY)
         else:
@@ -739,9 +738,7 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
 
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
-        print "FIND BACKLINK"
         referenced_cur = self.get_reference_map_referenced_cursor()
-        print "refcur", referenced_cur
 
         try:
             ret = referenced_cur.set(handle)
@@ -1400,7 +1397,7 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
             # under certain circumstances during a database reload, 
             # data_map can be none. If so, then don't report an error
             if data_map:
-                __LOG.error("Failed to get from handle", exc_info=True)
+                LOG.error("Failed to get from handle", exc_info=True)
         if data:
             newobj = class_type()
             newobj.unserialize(data)
@@ -1508,7 +1505,6 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         self.txn = None
 
     def undo(self, update_history=True):
-        print "Undoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
         status = DbBase.undo(self, update_history)
@@ -1521,7 +1517,6 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         return status
 
     def redo(self, update_history=True):
-        print "Redoing it"
         if self.UseTXN:
             self.txn = self.env.txn_begin()
         status = DbBase.redo(self, update_history)
@@ -1568,30 +1563,10 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
             self.gramps_upgrade_13()
         if version < 14:
             self.gramps_upgrade_14()
-        print "Upgrade time:", int(time.time()-t), "seconds"
+        LOG.debug("Upgrade time: %s %s", int(time.time()-t), "seconds")
 
     def gramps_upgrade_10(self):
-        print "Upgrading to DB version 10..."
-
-        # Remove event column metadata, since columns have changed.
-        # This will reset all columns to defaults in event view
-        ## This action is removed: column data is no longer used, so no
-        ## need to change it
-        #for name in (PERSON_COL_KEY, EVENT_COL_KEY):
-        #    try:
-        #        if self.UseTXN:
-        #            # Start transaction if needed
-        #            the_txn = self.env.txn_begin()
-        #        else:
-        #            the_txn = None
-        #        self.metadata.delete(name, txn=the_txn)
-        #        if self.UseTXN:
-        #            the_txn.commit()
-        #        else:
-        #            self.metadata.sync()
-        #    except KeyError:
-        #        if self.UseTXN:
-        #            the_txn.abort()
+        LOG.debug("Upgrading to DB version 10...")
 
         # This upgrade adds attribute lists to Event and EventRef objects
         length = self.get_number_of_events() + len(self.person_map) \
@@ -1713,10 +1688,10 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         else:
             self.metadata.sync()
 
-        print "Done upgrading to DB version 10"
+        LOG.debug("Done upgrading to DB version 10")
 
     def gramps_upgrade_11(self):
-        print "Upgrading to DB version 11..."
+        LOG.debug("Upgrading to DB version 11...")
 
         # This upgrade modifies addresses and locations
         length = len(self.person_map) + len(self.place_map) \
@@ -1822,10 +1797,10 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         else:
             self.metadata.sync()
 
-        print "Done upgrading to DB version 11"
+        LOG.debug("Done upgrading to DB version 11")
 
     def gramps_upgrade_12(self):
-        print "Upgrading to DB version 12..."
+        LOG.debug("Upgrading to DB version 12...")
         # Hook up surnames 
         table_flags = self.__open_flags()
         self.surnames = db.DB(self.env)
@@ -1850,14 +1825,14 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         else:
             self.metadata.sync()
 
-        print "Done upgrading to DB version 12"
+        LOG.debug("Done upgrading to DB version 12")
 
     def gramps_upgrade_13(self):
         """
         First upgrade in 2.3/3.0 branch.
         We assume that the data is at least from 2.2.x.
         """
-        print "Upgrading to DB version 13..."
+        LOG.debug("Upgrading to DB version 13...")
         # Hook up note id index
         table_flags = self.__open_flags()
         self.nid_trans = db.DB(self.env)
@@ -1977,7 +1952,7 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
                                      table_flags)
         self.reference_map_referenced_map.close()
 
-        print "Done upgrading to DB version 13"
+        LOG.debug("Done upgrading to DB version 13")
 
     def commit_13(self,data_tuple,data_key_name,data_map, note_handles=None):
         """
@@ -2314,13 +2289,13 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
                        urls, new_lds_list, new_source_list, note_list, 
                        change, marker, priv, new_person_ref_list)
         else:
-            print name, obj
+            LOG.warn("could not convert_notes_13 %s %s", name, obj)
         # Return the required tuple
         return (new_obj, note_handles)
     
     def gramps_upgrade_14(self):
         """Upgrade database from version 13 to 14."""
-        print "Upgrading to DB version 14..."
+        LOG.debug("Upgrading to DB version 14...")
         # This upgrade modifies notes and dates
         length = (len(self.note_map) + len(self.person_map) +
                   len(self.event_map) + len(self.family_map) +
@@ -2695,22 +2670,22 @@ def importData(database, filename, callback=None, cl=0):
         other_database.load(new_filename, callback)
     except:
         if cl:
-            print "Error: %s could not be opened. Exiting." % new_filename
+            LOG.warn("%s could not be opened. Exiting." % new_filename)
         else:
             import traceback
-            print traceback.print_exc()
+            traceback.print_exc()
             ErrorDialog(_("%s could not be opened") % new_filename)
         return
 
     if not other_database.version_supported():
         if cl:
-            print "Error: %s could not be opened.\n%s  Exiting." \
+            LOG.warn("Error: %s could not be opened.\n%s  Exiting." \
                   % (filename, 
                      _("The database version is not supported "
                        "by this version of Gramps.\n"\
                        "Please upgrade to the corresponding version "
                        "or use XML for porting data between different "
-                       "database versions."))
+                       "database versions.")))
         else:
             ErrorDialog(_("%s could not be opened") % filename, 
                         _("The Database version is not supported "
@@ -2853,7 +2828,7 @@ def importData(database, filename, callback=None, cl=0):
                     msg = _("Your family tree groups name %s together"
                             " with %s, did not change this grouping to %s") % (
                                                         key, present, value)
-                    print msg
+                    LOG.warn(msg)
             else:
                 database.set_name_group_mapping(key, value)
 

@@ -137,7 +137,6 @@ def _read_recs(table, bname):
         recs.append(tups)
 
     log.info("# length %s.recs[] = %d" % (table['name1'], len(recs)))
-    print "# length %s.recs[] = %d" % (table['name1'], len(recs))
     return recs
 
 

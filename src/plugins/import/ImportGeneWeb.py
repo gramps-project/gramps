@@ -39,7 +39,7 @@ from gen.ggettext import ngettext
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".ImportGeneWeb")
+LOG = logging.getLogger(".ImportGeneWeb")
 
 #-------------------------------------------------------------------------
 #
@@ -65,8 +65,6 @@ _cal_map = {
     'H' : gen.lib.Date.CAL_HEBREW,
     'F' : gen.lib.Date.CAL_FRENCH,
     }
-
-enable_debug = False
 
 #-------------------------------------------------------------------------
 #
@@ -142,7 +140,7 @@ class GeneWebParser(object):
                 
                 fields = line.split(" ")
             
-                self.debug("LINE: %s" %line)
+                LOG.debug("LINE: %s" %line)
                 if fields[0] == "fam":
                     self.current_mode = "fam"
                     self.read_family_line(line,fields)
@@ -172,7 +170,8 @@ class GeneWebParser(object):
                 elif fields[0] == "encoding:":
                     self.encoding = fields[1]
                 else:
-                    print "parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % (fields[0],self.lineno,line)
+                    LOG.warn("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
+                             (fields[0],self.lineno,line))
         except Errors.GedcomError, err:
             self.errmsg(str(err))
             
@@ -183,9 +182,9 @@ class GeneWebParser(object):
         self.db.enable_signals()
         self.db.request_rebuild()
         
-        print msg
-        print "Families: %d" % len(self.fkeys)
-        print "Individuals: %d" % len(self.ikeys)
+        LOG.debug(msg)
+        LOG.debug("Families: %d" % len(self.fkeys))
+        LOG.debug("Individuals: %d" % len(self.ikeys))
         return None
 
     def read_family_line(self,line,fields):
@@ -198,7 +197,7 @@ class GeneWebParser(object):
         self.fkeys.append(self.current_family.get_handle())
         idx = 1;
         
-        self.debug("\nHusband:")
+        LOG.debug("\nHusband:")
         (idx, husband) = self.parse_person(fields,idx,gen.lib.Person.MALE,None)
         if husband:
             self.current_husband_handle = husband.get_handle()
@@ -206,9 +205,9 @@ class GeneWebParser(object):
             self.db.commit_family(self.current_family,self.trans)
             husband.add_family_handle(self.current_family.get_handle())
             self.db.commit_person(husband,self.trans)
-        self.debug("Marriage:")
+        LOG.debug("Marriage:")
         idx = self.parse_marriage(fields,idx)
-        self.debug("Wife:")
+        LOG.debug("Wife:")
         (idx,wife) = self.parse_person(fields,idx,gen.lib.Person.FEMALE,None)
         if wife:
             self.current_family.set_mother_handle(wife.get_handle())
@@ -218,14 +217,14 @@ class GeneWebParser(object):
         return None
 
     def read_relationship_person(self,line,fields):
-        self.debug("\Relationships:")
+        LOG.debug("\Relationships:")
         (idx,person) = self.parse_person(fields,1,gen.lib.Person.UNKNOWN,None)
         if person:
             self.current_relationship_person_handle = person.get_handle()
 
     def read_relation_lines(self):
         if not self.current_relationship_person_handle:
-            print "Unknown person for relationship in line %d!" % self.lineno
+            LOG.warn("Unknown person for relationship in line %d!" % self.lineno)
             return None
         rel_person = self.db.get_person_from_handle(self.current_relationship_person_handle)
         while 1:
@@ -245,14 +244,14 @@ class GeneWebParser(object):
                     (idx,asso_p) = self.parse_person(fields,0,gen.lib.Person.UNKNOWN,None)
                     pref = gen.lib.PersonRef()
                     pref.set_relation(matches.groups()[0])
-                    print("TODO: Handle association types properly")
+                    LOG.warn("TODO: Handle association types properly")
                     pref.set_reference_handle(asso_p.get_handle())
                     rel_person.add_person_ref(pref)
                     self.db.commit_person(rel_person,self.trans)
                 else:
-                    print "Invalid name of person in line %d" % self.lineno
+                    LOG.warn("Invalid name of person in line %d" % self.lineno)
             else:
-                print "Invalid relationship in line %d" % self.lineno
+                LOG.warn("Invalid relationship in line %d" % self.lineno)
                 break
         self.current_mode = None
         return None
@@ -261,7 +260,7 @@ class GeneWebParser(object):
 
     def read_source_line(self,line,fields):
         if not self.current_family:
-            print "Unknown family of child in line %d!" % self.lineno
+            LOG.warn("Unknown family of child in line %d!" % self.lineno)
             return None
         source = self.get_or_create_source(self.decode(fields[1]))
         self.current_family.add_source_reference(source)
@@ -269,7 +268,7 @@ class GeneWebParser(object):
         return None
     
     def read_witness_line(self,line,fields):
-        self.debug("Witness:")
+        LOG.debug("Witness:")
         if fields[1] == "m:":
             (idx,wit_p) = self.parse_person(fields,2,gen.lib.Person.MALE,None)
         elif fields[1] == "f:":
@@ -298,12 +297,12 @@ class GeneWebParser(object):
     def read_children_lines(self):
         father_surname = "Dummy"
         if not self.current_husband_handle:
-            print "Unknown father for child in line %d!" % self.lineno
+            LOG.warn("Unknown father for child in line %d!" % self.lineno)
             return None
         husb = self.db.get_person_from_handle(self.current_husband_handle)
         father_surname = husb.get_primary_name().get_surname()
         if not self.current_family:
-            print "Unknown family of child in line %d!" % self.lineno
+            LOG.warn("Unknown family of child in line %d!" % self.lineno)
             return None
         while 1:
             line = self.get_next_line()
@@ -314,7 +313,7 @@ class GeneWebParser(object):
 
             fields = line.split(" ")
             if fields[0] == "-":
-                self.debug("Child:")
+                LOG.debug("Child:")
                 child = None
                 if fields[1] == "h":
                     (idx,child) = self.parse_person(fields,2,gen.lib.Person.MALE,father_surname)
@@ -363,7 +362,7 @@ class GeneWebParser(object):
 
     def read_family_comment(self,line,fields):
         if not self.current_family:
-            print "Unknown family of child in line %d!" % self.lineno
+            LOG.warn("Unknown family of child in line %d!" % self.lineno)
             return None
         n = gen.lib.Note()
         n.set(line)
@@ -424,8 +423,8 @@ class GeneWebParser(object):
         #while idx < len(fields) and not fields[idx][0] == "+":
         while idx < len(fields) and not (fields[idx] and fields[idx][0] == "+"):
             if fields[idx]:
-                print "parse_marriage(): Unknown field:", \
-                        "'%s' in line %d!" % (fields[idx], self.lineno)
+                LOG.warn(("parse_marriage(): Unknown field: " +
+                          "'%s' in line %d!") % (fields[idx], self.lineno))
             idx += 1
 
         while idx < len(fields) and mariageDataRe.match(fields[idx]):
@@ -433,33 +432,33 @@ class GeneWebParser(object):
             idx += 1
             if field.startswith("+"):
                 mar_date = self.parse_date(self.decode(field))
-                self.debug(" Married at: %s" % field)
+                LOG.debug(" Married at: %s" % field)
             elif field.startswith("-"):
                 div_date = self.parse_date(self.decode(field))
-                self.debug(" Div at: %s" % field)
+                LOG.debug(" Div at: %s" % field)
             elif field == "#mp" and idx < len(fields):
                 mar_place = self.get_or_create_place(self.decode(fields[idx]))
-                self.debug(" Marriage place: %s" % fields[idx])
+                LOG.debug(" Marriage place: %s" % fields[idx])
                 idx += 1
             elif field == "#ms" and idx < len(fields):
                 mar_source = self.get_or_create_source(self.decode(fields[idx]))
-                self.debug(" Marriage source: %s" % fields[idx])
+                LOG.debug(" Marriage source: %s" % fields[idx])
                 idx += 1
             elif field == "#sep" and idx < len(fields):
                 sep_date = self.parse_date(self.decode(fields[idx]))
-                self.debug(" Seperated since: %s" % fields[idx])
+                LOG.debug(" Seperated since: %s" % fields[idx])
                 idx += 1
             elif field == "#nm":
-                self.debug(" Are not married.")
+                LOG.debug(" Are not married.")
                 married = 0
             elif field == "#noment":
-                self.debug(" Not mentioned.")
+                LOG.debug(" Not mentioned.")
             elif field == "#eng":
-                self.debug(" Are engaged.")
+                LOG.debug(" Are engaged.")
                 engaged = 1
             else:
-                print "parse_marriage(): Unknown field", \
-                        "'%s'for mariage in line %d!" % (field, self.lineno)
+                LOG.warn(("parse_marriage(): Unknown field " +
+                          "'%s'for mariage in line %d!") % (field, self.lineno))
 
         if mar_date or mar_place or mar_source:
             mar = self.create_event(
@@ -493,7 +492,7 @@ class GeneWebParser(object):
         
         if not father_surname:
             if not idx < len(fields):
-                print "Missing surname of person in line %d!" % self.lineno
+                LOG.warn("Missing surname of person in line %d!" % self.lineno)
                 surname =""
             else:
                 surname = self.decode(fields[idx])
@@ -502,7 +501,7 @@ class GeneWebParser(object):
             surname = father_surname
         
         if not idx < len(fields):
-            print "Missing firstname of person in line %d!" % self.lineno
+            LOG.warn("Missing firstname of person in line %d!" % self.lineno)
             firstname = ""
         else:
             firstname = self.decode(fields[idx])
@@ -513,7 +512,7 @@ class GeneWebParser(object):
                 surname = self.decode(fields[idx])
                 idx += 1
 
-        self.debug("Person: %s %s" % (firstname, surname))
+        LOG.debug("Person: %s %s" % (firstname, surname))
         person = self.get_or_create_person(firstname,surname)
         name = gen.lib.Name()
         name.set_type( gen.lib.NameType(gen.lib.NameType.BIRTH))
@@ -556,13 +555,13 @@ class GeneWebParser(object):
             field = fields[idx]
             idx += 1
             if field.startswith('('):
-                self.debug("Public Name: %s" % field)
+                LOG.debug("Public Name: %s" % field)
                 public_name = self.decode(field[1:-1])
             elif field.startswith('{'):
-                self.debug("Firstsname Alias: %s" % field)
+                LOG.debug("Firstsname Alias: %s" % field)
                 firstname_aliases.append(self.decode(field[1:-1]))
             elif field.startswith('['):
-                self.debug("Title: %s" % field)
+                LOG.debug("Title: %s" % field)
                 titleparts = self.decode(field[1:-1]).split(":")
                 tname = ttitle = tplace = tstart = tend = tnth = None
                 try:
@@ -591,11 +590,11 @@ class GeneWebParser(object):
                 title_ref.set_reference_handle(title.get_handle())
                 person.add_event_ref(title_ref)
             elif field == '#nick' and idx < len(fields):
-                self.debug("Nick Name: %s" % fields[idx])
+                LOG.debug("Nick Name: %s" % fields[idx])
                 nick_names.append(self.decode(fields[idx]))
                 idx += 1
             elif field == '#occu' and idx < len(fields):
-                self.debug("Occupation: %s" % fields[idx])
+                LOG.debug("Occupation: %s" % fields[idx])
                 occu = self.create_event(
                         gen.lib.EventType.OCCUPATION, self.decode(fields[idx]))
                 occu_ref = gen.lib.EventRef()
@@ -603,80 +602,80 @@ class GeneWebParser(object):
                 person.add_event_ref(occu_ref)
                 idx += 1
             elif field == '#alias' and idx < len(fields):
-                self.debug("Name Alias: %s" % fields[idx])
+                LOG.debug("Name Alias: %s" % fields[idx])
                 name_aliases.append(self.decode(fields[idx]))
                 idx += 1
             elif field == '#salias' and idx < len(fields):
-                self.debug("Surname Alias: %s" % fields[idx])
+                LOG.debug("Surname Alias: %s" % fields[idx])
                 surname_aliases.append(self.decode(fields[idx]))
                 idx += 1
             elif field == '#image' and idx < len(fields):
-                self.debug("Image: %s" % fields[idx])
+                LOG.debug("Image: %s" % fields[idx])
                 idx += 1
             elif field == '#src' and idx < len(fields):
-                self.debug("Source: %s" % fields[idx])
+                LOG.debug("Source: %s" % fields[idx])
                 source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif field == '#bs' and idx < len(fields):
-                self.debug("Birth Source: %s" % fields[idx])
+                LOG.debug("Birth Source: %s" % fields[idx])
                 birth_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif field[0] == '!':
-                self.debug("Baptize at: %s" % fields[idx])
+                LOG.debug("Baptize at: %s" % fields[idx])
                 bapt_date = self.parse_date(self.decode(fields[idx][1:]))
                 idx += 1
             elif field == '#bp' and idx < len(fields):
-                self.debug("Birth Place: %s" % fields[idx])
+                LOG.debug("Birth Place: %s" % fields[idx])
                 birth_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif field == '#pp' and idx < len(fields):
-                self.debug("Baptize Place: %s" % fields[idx])
+                LOG.debug("Baptize Place: %s" % fields[idx])
                 bapt_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif field == '#ps' and idx < len(fields):
-                self.debug("Baptize Source: %s" % fields[idx])
+                LOG.debug("Baptize Source: %s" % fields[idx])
                 bapt_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif field == '#dp' and idx < len(fields):
-                self.debug("Death Place: %s" % fields[idx])
+                LOG.debug("Death Place: %s" % fields[idx])
                 death_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif field == '#ds' and idx < len(fields):
-                self.debug("Death Source: %s" % fields[idx])
+                LOG.debug("Death Source: %s" % fields[idx])
                 death_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif field == '#buri' and idx < len(fields):
-                self.debug("Burial Date: %s" % fields[idx])
+                LOG.debug("Burial Date: %s" % fields[idx])
                 bur_date = self.parse_date(self.decode(fields[idx]))
                 idx += 1
             elif field == '#crem' and idx < len(fields):
-                self.debug("Cremention Date: %s" % fields[idx])
+                LOG.debug("Cremention Date: %s" % fields[idx])
                 crem_date = self.parse_date(self.decode(fields[idx]))
                 idx += 1
             elif field == '#rp' and idx < len(fields):
-                self.debug("Burial Place: %s" % fields[idx])
+                LOG.debug("Burial Place: %s" % fields[idx])
                 bur_place = self.get_or_create_place(self.decode(fields[idx]))
                 idx += 1
             elif field == '#rs' and idx < len(fields):
-                self.debug("Burial Source: %s" % fields[idx])
+                LOG.debug("Burial Source: %s" % fields[idx])
                 bur_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif field == '#apubl':
-                self.debug("This is a public record")
+                LOG.debug("This is a public record")
             elif field == '#apriv':
-                self.debug("This is a private record")
+                LOG.debug("This is a private record")
                 person.set_privacy(True)
             elif field == '#h':
-                self.debug("This is a restricted record")
+                LOG.debug("This is a restricted record")
                 #TODO: Gramps does currently not feature this level
                 person.set_privacy(True)
             elif dateRe.match(field):
                 if not birth_parsed:
-                    self.debug("Birth Date: %s" % field)
+                    LOG.debug("Birth Date: %s" % field)
                     birth_date = self.parse_date(self.decode(field))
                     birth_parsed = True
                 else:
-                    self.debug("Death Date: %s" % field)
+                    LOG.debug("Death Date: %s" % field)
                     death_date = self.parse_date(self.decode(field))
                     if field == "mj":
                         death_cause = "Died joung"
@@ -690,8 +689,8 @@ class GeneWebParser(object):
                         death_cause = "Disappeared"
                     #TODO: Set special death types more properly
             else:
-                print "parse_person(): Unknown field", \
-                      "'%s' for person in line %d!" % (field, self.lineno)
+                LOG.warn(("parse_person(): Unknown field " +
+                          "'%s' for person in line %d!") % (field, self.lineno))
         
         if public_name:
             name = person.get_primary_name()

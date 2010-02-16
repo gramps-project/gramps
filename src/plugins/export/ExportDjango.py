@@ -41,7 +41,7 @@ import time
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".ExportDjango")
+LOG = logging.getLogger(".ExportDjango")
 
 #------------------------------------------------------------------------
 #
@@ -86,7 +86,7 @@ def export_all(database, filename, option_box=None, callback=None):
     dji.clear_tables("primary", "secondary", "ref")
 
     for step in [0, 1]:
-        print >> sys.stderr, "Exporting Step %d..." % (step + 1)
+        LOG.debug("Exporting Step %d..." % (step + 1))
         # ---------------------------------
         # Person
         # ---------------------------------
@@ -185,7 +185,7 @@ def export_all(database, filename, option_box=None, callback=None):
 
     total_time = time.time() - start
     msg = ngettext('Export Complete: %d second','Export Complete: %d seconds', total_time ) % total_time
-    print >> sys.stderr, msg
+    LOG.debug(msg)
     return True
 
 class NoFilenameOptions(ExportOptions.WriterOptionBox):

@@ -30,8 +30,6 @@
 #
 #-------------------------------------------------------------------------
 import time
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
 import csv
 import codecs
 import cStringIO
@@ -42,19 +40,21 @@ import cStringIO
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".ImportCSV")
+LOG = logging.getLogger(".ImportCSV")
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import sgettext as _
+from gen.ggettext import ngettext
 import gen.lib
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from Utils import gender as gender_map
-from gui.utils import ProgressMeter
 from Utils import create_id
+from gui.utils import ProgressMeter
 
 #-------------------------------------------------------------------------
 #
@@ -138,7 +138,7 @@ def rd(line_number, row, col, key, default = None):
     """ Return Row data by column name """
     if key in col:
         if col[key] >= len(row):
-            print "Warning: missing '%s, on line %d" % (key, line_number)
+            LOG.warn("missing '%s, on line %d" % (key, line_number))
             return default
         retval = row[col[key]].strip()
         if retval == "":
@@ -312,7 +312,6 @@ class CSVParser(object):
         self.db = db
         self.filename = filename
         self.callback = callback
-        self.debug = 0
 
     def readCSV(self):
         fp = None
@@ -367,7 +366,7 @@ class CSVParser(object):
             else:
                 return None
         else:
-            print "error: invalid lookup type in CSV import: '%s'" % type
+            LOG.warn("invalid lookup type in CSV import: '%s'" % type)
             return None
 
     def storeup(self, type, id, object):
@@ -379,7 +378,7 @@ class CSVParser(object):
         elif type == "family":
             self.fref[id.lower()] = object
         else:
-            print "error: invalid storeup type in CSV import: '%s'" % type
+            LOG.warn("invalid storeup type in CSV import: '%s'" % type)
 
     def process(self):
         progress = ProgressMeter(_('CSV Import'))
@@ -428,7 +427,7 @@ class CSVParser(object):
                 husband = self.lookup("person", husband)
                 if husband is None and wife is None:
                     # might have children, so go ahead and add
-                    print "Warning: no parents on line %d; adding family anyway" % line_number
+                    LOG.warn("no parents on line %d; adding family anyway" % line_number)
                 family = self.get_or_create_family(marriage_ref, husband, wife)
                 # adjust gender, if not already provided
                 if husband:
@@ -488,7 +487,7 @@ class CSVParser(object):
                 # family, child
                 family_ref   = rd(line_number, row, col, "family")
                 if family_ref is None:
-                    print "Error: no family reference found for family on line %d" % line_number
+                    LOG.warn("no family reference found for family on line %d" % line_number)
                     continue # required
                 child   = rd(line_number, row, col, "child")
                 source  = rd(line_number, row, col, "source")
@@ -497,17 +496,17 @@ class CSVParser(object):
                 child = self.lookup("person", child)
                 family = self.lookup("family", family_ref)
                 if family is None:
-                    print "Error: no matching family reference found for family on line %d" % line_number
+                    LOG.warn("no matching family reference found for family on line %d" % line_number)
                     continue
                 if child is None:
-                    print "Error: no matching child reference found for family on line %d" % line_number
+                    LOG.warn("no matching child reference found for family on line %d" % line_number)
                     continue
                 # is this child already in this family? If so, don't add
-                if self.debug: print "children:", [ref.ref for ref in family.get_child_ref_list()]
-                if self.debug: print "looking for:", child.get_handle()
+                LOG.debug("children: %s", [ref.ref for ref in family.get_child_ref_list()])
+                LOG.debug("looking for: %s", child.get_handle())
                 if child.get_handle() not in [ref.ref for ref in family.get_child_ref_list()]:
                     # add child to family
-                    if self.debug: print "   adding child to family", child.get_gramps_id(), family.get_gramps_id()
+                    LOG.debug("   adding child [%s] to family [%s]", child.get_gramps_id(), family.get_gramps_id())
                     childref = gen.lib.ChildRef()
                     childref.set_reference_handle(child.get_handle())
                     family.add_child_ref( childref)
@@ -529,7 +528,7 @@ class CSVParser(object):
                     source_refs = child.get_source_references()
                     found = 0
                     for ref in source_refs:
-                        if self.debug: print "child: looking for ref:", ref.ref, source.get_handle()
+                        LOG.debug("child: %s looking for ref: %s", ref.ref, source.get_handle())
                         if ref.ref == source.get_handle():
                             found = 1
                     if not found:
@@ -586,7 +585,7 @@ class CSVParser(object):
                 person = self.lookup("person", person_ref)
                 if person is None:
                     if surname is None:
-                        print "Warning: empty surname for new person on line %d" % line_number
+                        LOG.warn("empty surname for new person on line %d" % line_number)
                         surname = ""
                     # new person
                     person = self.create_person(firstname, surname)
@@ -686,7 +685,7 @@ class CSVParser(object):
                     source_refs = person.get_source_references()
                     found = 0
                     for ref in source_refs:
-                        if self.debug: print "person: looking for ref:", ref.ref, source.get_handle()
+                        LOG.debug("person: %s looking for ref: %s", ref.ref, source.get_handle())
                         if ref.ref == source.get_handle():
                             found = 1
                     if not found:
@@ -695,21 +694,21 @@ class CSVParser(object):
                         person.add_source_reference(sref)
                 self.db.commit_person(person, self.trans)
             else:
-                print "Warning: ignoring line %d" % line_number
+                LOG.warn("ignoring line %d" % line_number)
         t = time.time() - t
         msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
         self.db.transaction_commit(self.trans,_("CSV import"))
         self.db.enable_signals()
         self.db.request_rebuild()
-        print msg
-        print "New Families: %d" % self.fam_count
-        print "New Individuals: %d" % self.indi_count
+        LOG.debug(msg)
+        LOG.debug("New Families: %d" % self.fam_count)
+        LOG.debug("New Individuals: %d" % self.indi_count)
         progress.close()
         return None
 
     def get_or_create_family(self, family_ref, husband, wife):
         # if a gramps_id and exists:
-        if self.debug: print "get_or_create_family"
+        LOG.debug("get_or_create_family")
         if family_ref.startswith("[") and family_ref.endswith("]"):
             family = self.db.get_family_from_gramps_id(family_ref[1:-1])
             if family:
@@ -724,7 +723,7 @@ class CSVParser(object):
                     if wife.get_handle() != fam_wife_handle:
                         # this wife is not the same old one! Add her!
                         family.set_mother_handle(wife.get_handle())
-                if self.debug: print "   returning existing family"
+                LOG.debug("   returning existing family")
                 return family
         # if not, create one:
         family = gen.lib.Family()
@@ -752,13 +751,13 @@ class CSVParser(object):
     def get_or_create_event(self, object, type, date=None, place=None, source=None):
         """ Add or find a type event on object """
         # first, see if it exists
-        if self.debug: print "get_or_create_event"
+        LOG.debug("get_or_create_event")
         ref_list = object.get_event_ref_list()
-        if self.debug: print "refs:", ref_list
+        LOG.debug("refs: %s", ref_list)
         # look for a match, and possible correction
         for ref in ref_list:
             event = self.db.get_event_from_handle(ref.ref)
-            if self.debug: print "   compare event type", int(event.get_type()), type
+            LOG.debug("   compare event type %s == %s", int(event.get_type()), type)
             if int(event.get_type()) == type:
                 # Match! Let's update
                 if date:
@@ -769,7 +768,7 @@ class CSVParser(object):
                     source_refs = event.get_source_references()
                     found = 0
                     for ref in source_refs:
-                        if self.debug: print "get_or_create_event: looking for ref:", ref.ref, source.get_handle()
+                        LOG.debug("get_or_create_event: %s looking for ref: %s", ref.ref, source.get_handle())
                         if ref.ref == source.get_handle():
                             found = 1
                     if not found:
@@ -777,10 +776,10 @@ class CSVParser(object):
                         sref.set_reference_handle(source.get_handle())
                         event.add_source_reference(sref)
                 self.db.commit_event(event,self.trans)
-                if self.debug: print "   returning existing event"
+                LOG.debug("   returning existing event")
                 return (0, event)
         # else create it:
-        if self.debug: print "   creating event"
+        LOG.debug("   creating event")
         event = gen.lib.Event()
         if type:
             event.set_type(gen.lib.EventType(type))
@@ -792,7 +791,7 @@ class CSVParser(object):
             source_refs = event.get_source_references()
             found = 0
             for ref in source_refs:
-                if self.debug: print "looking for ref:", ref.ref, source.get_handle()
+                LOG.debug("%s looking for ref: %s", ref.ref, source.get_handle())
                 if ref.ref == source.get_handle():
                     found = 1
             if not found:
@@ -814,8 +813,8 @@ class CSVParser(object):
 
     def get_or_create_place(self,place_name):
         place_list = self.db.iter_place_handles()
-        if self.debug: print "get_or_create_place: list:", list(place_list)
-        if self.debug: print "get_or_create_place: looking for:", place_name
+        LOG.debug("get_or_create_place: list: %s", list(place_list))
+        LOG.debug("get_or_create_place: looking for: %s", place_name)
         for place_handle in place_list:
             place = self.db.get_place_from_handle(place_handle)
             if place.get_title() == place_name:
@@ -828,8 +827,8 @@ class CSVParser(object):
 
     def get_or_create_source(self, source_text):
         source_list = self.db.get_source_handles()
-        if self.debug: print "get_or_create_source: list:", source_list
-        if self.debug: print "get_or_create_source: looking for:", source_text
+        LOG.debug("get_or_create_source: list: %s", source_list)
+        LOG.debug("get_or_create_source: looking for: %s", source_text)
         for source_handle in source_list:
             source = self.db.get_source_from_handle(source_handle)
             if source.get_title() == source_text:

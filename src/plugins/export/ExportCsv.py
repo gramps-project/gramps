@@ -40,7 +40,7 @@ import codecs
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".ExportCSV")
+LOG = logging.getLogger(".ExportCSV")
 
 #-------------------------------------------------------------------------
 #
@@ -309,8 +309,8 @@ class CSVWriter(object):
         if self.include_children:
             self.total += len(self.flist)
         ######################## 
-        print "Possible people to export:", len(self.plist)
-        print "Possible families to export:", len(self.flist)
+        LOG.debug("Possible people to export: %s", len(self.plist))
+        LOG.debug("Possible families to export: %s", len(self.flist))
         ########################### sort:
         sortorder = []
         for key in self.plist:

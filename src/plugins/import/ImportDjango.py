@@ -40,7 +40,7 @@ import os
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".ImportDjango")
+LOG = logging.getLogger(".ImportDjango")
 
 #-------------------------------------------------------------------------
 #
@@ -186,8 +186,7 @@ class DjangoReader(object):
         self.db.transaction_commit(self.trans, _("Django import"))
         self.db.enable_signals()
         self.db.request_rebuild()
-        print >> sys.stderr, msg
-
+        LOG.debug(msg)
 
 def import_data(db, filename, callback=None):
     g = DjangoReader(db, filename, callback)

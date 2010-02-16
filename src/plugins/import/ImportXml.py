@@ -31,6 +31,8 @@ import sys
 from xml.parsers.expat import ExpatError, ParserCreate
 from gen.ggettext import gettext as _
 import re
+import logging
+LOG = logging.getLogger(".ImportXML")
 
 #-------------------------------------------------------------------------
 #
@@ -117,8 +119,8 @@ def importData(database, filename, callback=None, cl=0):
         info = parser.parse(xml_file, line_cnt, person_cnt)
     except IOError, msg:
         if cl:
-            print "Error reading %s" % filename
-            print msg
+            LOG.warn("Error reading %s" % filename)
+            LOG.warn(msg)
             import traceback
             traceback.print_exc()
             sys.exit(1)
@@ -129,8 +131,8 @@ def importData(database, filename, callback=None, cl=0):
             return
     except ExpatError, msg:
         if cl:
-            print "Error reading %s" % filename
-            print "The file is probably either corrupt or not a valid Gramps database."
+            LOG.warn("Error reading %s" % filename)
+            LOG.warn("The file is probably either corrupt or not a valid Gramps database.")
             sys.exit(1)
         else:
             ErrorDialog(_("Error reading %s") % filename, 
@@ -2456,14 +2458,14 @@ def open_file(filename, cli):
             xml_file = open(filename, "r")
     except IOError, msg:
         if cli:
-            print "Error: %s could not be opened Exiting." % filename
-            print msg
+            LOG.warn("Error: %s could not be opened Exiting." % filename)
+            LOG.warn(msg)
         else:
             ErrorDialog(_("%s could not be opened") % filename, str(msg))
         xml_file = None
     except:
         if cli:
-            print "Error: %s could not be opened. Exiting." % filename
+            LOG.warn("Error: %s could not be opened. Exiting." % filename)
         else:
             ErrorDialog(_("%s could not be opened") % filename)
         xml_file = None
@@ -2483,7 +2485,7 @@ def version_is_valid(filename, cli):
                 "version of Gramps and try again." 
                 ) % (parser.get_gramps_version(), const.VERSION)
         if cli:
-            print msg
+            LOG.warn(msg)
             return False
         else:
             ErrorDialog(msg)
@@ -2501,7 +2503,7 @@ def version_is_valid(filename, cli):
                      'xmlversion': parser.get_xmlns_version(),
                     }
         if cli:
-            print msg
+            LOG.warn(msg)
             return False
         else:
             ErrorDialog(_('The file will not be imported'), msg)
@@ -2521,7 +2523,7 @@ def version_is_valid(filename, cli):
                      'xmlversion': parser.get_xmlns_version(),
                     }
         if cli:
-            print msg
+            LOG.warn(msg)
             return True
         else:
             WarningDialog(_('Old xml file'), msg)

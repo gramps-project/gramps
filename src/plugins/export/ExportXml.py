@@ -149,7 +149,7 @@ class GrampsXmlWriter(UpdateCallback):
             else:
                 g = open(filename,"w")
         except IOError,msg:
-            print str(msg)
+            LOG.warn(str(msg))
             raise DbWriteFailure((_('Failure writing %s') % filename,
                                        str(msg)))
             return 0
