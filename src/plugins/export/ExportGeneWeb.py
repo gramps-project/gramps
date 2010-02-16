@@ -450,6 +450,7 @@ class GeneWebWriter(object):
         return str.replace(' ','_')
     
     def get_ref_name(self,person):
+        missing_surname = config.get("preferences.no-surname-text")
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         firstname = config.get('preferences.private-given-text') 
         if not (Utils.probably_alive(person,self.db) and \
@@ -457,10 +458,11 @@ class GeneWebWriter(object):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
-        return "%s %s.%d" % (surname, firstname, 
+        return "%s %s.%d" % (surname or missing_surname, firstname, 
                              self.person_ids[person.get_handle()])
 
     def get_child_ref_name(self,person,father_lastname):
+        missing_first_name = config.get("preferences.no-given-text")
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         firstname = config.get('preferences.private-given-text')
         if not (Utils.probably_alive(person,self.db) and \
@@ -468,7 +470,7 @@ class GeneWebWriter(object):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
-        ret = "%s.%d" % (firstname, self.person_ids[person.get_handle()])
+        ret = "%s.%d" % (firstname or missing_first_name, self.person_ids[person.get_handle()])
         if surname != father_lastname: ret += " " + surname
         return ret
 
