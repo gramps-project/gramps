@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-11 18:29+0100\n"
-"PO-Revision-Date: 2010-02-12 20:02+0100\n"
+"PO-Revision-Date: 2010-02-16 10:40+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -17798,7 +17798,7 @@ msgstr "Maak het ingaveveld van de locatieselectie leeg."
 
 #: ../src/plugins/view/geoview.py:295
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
-msgstr "Het zoomniveau en de coördinaten opslaan voor de locatie-, personen-, familie- en gebeurtenissenkaarten"
+msgstr "Het zoomniveau en de coördinaten opslaan voor de locatie-, personen-, familie- en gebeurtenissenkaarten."
 
 #: ../src/plugins/view/geoview.py:300
 msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
@@ -17826,7 +17826,7 @@ msgstr "Het aantal locaties zonder coördinaten."
 
 #: ../src/plugins/view/geoview.py:412
 msgid "The two following fields are used to adjust the time period when we are near the limits."
-msgstr "De twee volgende velden worden gebruikt om de tijdsperiode bij te stellen indien we dicht bij de grenzen zijn. "
+msgstr "De twee volgende velden worden gebruikt om de tijdsperiode bij te stellen indien we dicht bij de grenzen zijn."
 
 #: ../src/plugins/view/geoview.py:415
 msgid "The number of years before the first event date."
@@ -19993,7 +19993,7 @@ msgstr ""
 
 #: ../src/PluginUtils/_Tool.py:111
 msgid "_Proceed with the tool"
-msgstr "Doorgaan met importeren"
+msgstr "_Doorgaan met het hulpmiddel"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
@@ -23959,7 +23959,7 @@ msgstr "<b>De active persoon wisselen</b><br/>De actieve persoon wisselen in de 
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;"
-msgstr "<b>Meewerken aan Gramps?</b><br/>Wilt u meewerken, maar u kunt niet programmeren? Geen probleem. Een groot project zoals Gramps, vereist mensen met zeer ruime ervaringsgebieden. Medewerking kan gaan van het schrijven van documentatie tot het testen van ontwikkelingsversies tot het helpen met van de website. U kunt best beginnen door u in te schrijven op de gramps ontwikkelings- nieuwsgroep en stel u daar voor. Inschrijvingsinformatie kan gevonden worden op lists.sf.net. Gebruik&quot;Hulp &gt; Gramps-nieuwsgroepen&quot;."
+msgstr "<b>Meewerken aan Gramps?</b><br/>Wilt u meewerken, maar u kunt niet programmeren? Geen probleem. Een groot project zoals Gramps, vereist mensen met zeer ruime ervaringsgebieden. Medewerking kan gaan van het schrijven van documentatie tot het testen van ontwikkelingsversies tot het helpen met van de website. U kunt best beginnen door u in te schrijven op de gramps ontwikkelings- nieuwsgroep en stel u daar voor. Inschrijvingsinformatie kan gevonden worden op lists.sf.net. Gebruik&quot;Hulp &gt; Gramps-nieuwsgroepen&quot;"
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Directing Your Research</b><br/>Go from what you know to what you do not. Always record everything that is known before making conjectures. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
@@ -23991,7 +23991,7 @@ msgstr "<b>Filters</b><br/>Filters laten u toe om het aantal personen dat getoon
 
 #: ../src/data/tips.xml.in.h:16
 msgid "<b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;"
-msgstr "<b>Gramps aankondigingen</b><br/>Geïnteresseerd om verwittigd te worden bij een nieuwe versie van Gramps? Wordt lid van de aankondigingsnieuwsgroep via &quot;Hulp &gt; Gramps-nieuwsgroepen&quot;."
+msgstr "<b>Gramps aankondigingen</b><br/>Geïnteresseerd om verwittigd te worden bij een nieuwe versie van Gramps? Wordt lid van de aankondigingsnieuwsgroep via &quot;Hulp &gt; Gramps-nieuwsgroepen&quot;"
 
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
@@ -24079,11 +24079,11 @@ msgstr "<b>U spreekt geen engels?</b><br/>Vrijwilligers hebben Gramps vertaald i
 
 #: ../src/data/tips.xml.in.h:38
 msgid "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative."
-msgstr "<b>Openbronprogramma</b><br/>Het Free/Libre en Open Source Software (FLOSS) ontwikkelmodel betekent dat Gramps kan worden uitgebreid door elke programmeur omdat alle broncode vrij beschikbaar is met deze licentie. Het gaat dus niet enkel om 'free beer' om de vrijheid om het programma te bestuderen en te veranderen. Wenst u meer te weten over openbronprogramma's kijk dan eens naar het 'Open Source Iniative' en de 'Free Software Foundation'. "
+msgstr "<b>Openbronprogramma</b><br/>Het Free/Libre en Open Source Software (FLOSS) ontwikkelmodel betekent dat Gramps kan worden uitgebreid door elke programmeur omdat alle broncode vrij beschikbaar is met deze licentie. Het gaat dus niet enkel om 'free beer' om de vrijheid om het programma te bestuderen en te veranderen. Wenst u meer te weten over openbronprogramma's kijk dan eens naar het 'Open Source Initiative' en de 'Free Software Foundation'."
 
 #: ../src/data/tips.xml.in.h:39
 msgid "<b>Ordering Children in a Family</b><br/>The birth order of children in a family can be set by using drag and drop. This order is preserved even when they do not have birth dates."
-msgstr "<b>Het ordene van kinderen in een familie</b><br/>De geboortevolgorde van de kinderen kan veranderd worden door de naam te verslepen naar een andere rij. Deze volgorde wordt aangehouden, zelfs indien er geen geboortedatums beschikbaar zijn."
+msgstr "<b>Het ordenen van kinderen in een familie</b><br/>De geboortevolgorde van de kinderen kan veranderd worden door de naam te verslepen naar een andere rij. Deze volgorde wordt aangehouden, zelfs indien er geen geboortedatums beschikbaar zijn."
 
 #: ../src/data/tips.xml.in.h:40
 msgid "<b>Organising the Views</b><br/>Many of the views can presented your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
