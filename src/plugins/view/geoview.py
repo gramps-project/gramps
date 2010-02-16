@@ -2291,16 +2291,18 @@ class GeoView(HtmlView):
         """
         if constfunc.win():
            command = "ping -n 2 "
+           stringtosearch = "([0-9]*)%.*"
         #elif constfunc.mac():
         #   command = "ping -c 2 "
         else:
+           stringtosearch = ".*, (.*)% packet loss.*"
            command = "ping -c 2 "
 
         pinghost = os.popen(command + host, "r")
         line = pinghost.read()
         if not line:
             self.no_network = True
-        result = re.search('.*, (.*)% packet loss.*', line)
+        result = re.search(stringtosearch, line)
         if result != None and int(result.group(1)) == 0:
             if self.no_network == True:
                 self.no_network = False
