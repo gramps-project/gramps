@@ -818,18 +818,17 @@ def probably_alive(person, db,
     # SPECIAL CASE: Today:
     if current_date.match(gen.lib.date.Today(), "=="):
         if person.get_death_ref():
+            # if death in the future: (impossible, unless guess)
+            # if return_range:
+            # return (True, birth, death, ("future death, ") + explain, relative)
+            # else:
+            # return True
             if return_range:
                 return (False, birth, death, explain, relative)
             else:
                 return False
     if limit:
         death += limit # add these years to death
-    # if death in the future:
-    if (gen.lib.date.Today() - death)[0] < 0:
-        if return_range:
-            return (True, birth, death, ("future death, ") + explain, relative)
-        else:
-            return True
     # if the current - birth is too big, not alive:
     # FIXME: use match here:
     if (current_date - birth)[0] > pb.MAX_AGE_PROB_ALIVE:
