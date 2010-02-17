@@ -43,6 +43,7 @@ import const
 import operator
 import locale
 from gtk.keysyms import Tab as KEY_TAB
+import socket
 
 #-------------------------------------------------------------------------
 #
@@ -814,7 +815,7 @@ class GeoView(HtmlView):
         self._goto_active_person()
         self.filter.hide() # hide the filter
         self.active = True
-        self._test_network('maps.google.com')
+        self._test_network()
 
     def set_inactive(self):
         """
@@ -2285,34 +2286,26 @@ class GeoView(HtmlView):
                                     URL_SEP.join(filename.split(os.sep)),
                                     '', ''))
 
-    def _test_network(self, host):
+    def _test_network(self):
         """
         This function is used to test if we are connected to a network.
         """
-        if constfunc.win():
-           command = "ping -n 2 "
-           stringtosearch = "([0-9]*)%.*"
-        #elif constfunc.mac():
-        #   command = "ping -c 2 "
-        else:
-           stringtosearch = ".*, (.*)% packet loss.*"
-           command = "ping -c 2 "
-
-        pinghost = os.popen(command + host, "r")
-        line = pinghost.read()
-        if not line:
-            self.no_network = True
-        result = re.search(stringtosearch, line)
-        if result != None and int(result.group(1)) == 0:
-            if self.no_network == True:
-                self.no_network = False
-                self._change_map(self.usedmap)
-        else:
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect(('216.239.59.106', 80)) # google
+            if sock != None:
+                if self.no_network == True:
+                    self.no_network = False
+                    self._change_map(self.usedmap)
+                sock.close()
+            else:
+                self.no_network = True
+        except:
             self.no_network = True
 
         if self.active:
-            gobject.timeout_add(30000, # Every 30 seconds
-                                self._test_network, host)
+            gobject.timeout_add(10000, # Every 10 seconds
+                                self._test_network)
         if self.no_network:
             self.open(self._create_message_page(
                       'No network connection found.<br>A connection to the'
