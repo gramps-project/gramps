@@ -84,11 +84,24 @@ def setup_windows_gtk():
     This function should be called on windows instead of locale.bindtextdomain
     """
     import ctypes
-    libintl = ctypes.cdll.intl
-    libintl.bindtextdomain(LOCALEDOMAIN, str(LOCALEDIR))
+    try:
+        import webkit
+        # Webkit installed, try to find path to  libintl-8.dll
+        os_path = os.environ['PATH']
+        for subpath in os_path.split(';'):
+            path2file = subpath + '\\libintl-8.dll'
+            if os.path.isfile(path2file):
+                break
+        libintl = ctypes.cdll.LoadLibrary(path2file)
+    except:
+        # If WebKit not installed, use this
+        libintl = ctypes.cdll.intl #LoadLibrary('c:\\WINDOWS\\system\\intl.dll')
+    # The intl.dll in c:\\Program\\GTK2-Runtime\\bin\\ does not give any Glade translations.
+    #libintl = ctypes.cdll.LoadLibrary('c:\\Program\\GTK2-Runtime\\bin\\intl.dll')
+    libintl.bindtextdomain(LOCALEDOMAIN,
+        LOCALEDIR.encode(sys.getfilesystemencoding()))
     libintl.textdomain(LOCALEDOMAIN)
     libintl.bind_textdomain_codeset(LOCALEDOMAIN, "UTF-8")
-    libintl.gettext.restype = ctypes.c_char_p
 
 def get_localedomain():
     """
