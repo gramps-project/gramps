@@ -63,7 +63,6 @@ import gen.lib
 import Utils
 import config
 import Errors
-import constfunc
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
@@ -289,6 +288,10 @@ class GeoView(HtmlView):
         ('preferences.timeperiod-after-range', 10),
         ('preferences.crosshair', False),
         ('preferences.coordinates-in-degree', False),
+        ('preferences.network-test', False),
+        ('preferences.network-timeout', 5),
+        ('preferences.network-periodicity', 10),
+        ('preferences.network-site', 'www.gramps-project.org'),
         )
 
     def __init__(self, dbstate, uistate):
@@ -296,7 +299,7 @@ class GeoView(HtmlView):
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
-        self.no_network = True
+        self.no_network = False
         self.placeslist = []
         self.displaytype = "person"
         self.nbmarkers = 0
@@ -412,6 +415,7 @@ class GeoView(HtmlView):
         self.init_config()
         self.context_id = 0
         self.active = False
+        self.already_testing = False
         self.alt_provider = self._config.get('preferences.alternate-provider')
         if self.alt_provider:
             self.usedmap = "google"
@@ -439,7 +443,7 @@ class GeoView(HtmlView):
         """
         The function which is used to create the configuration window.
         """
-        return [self.map_options, self.geoview_options]
+        return [self.map_options, self.geoview_options, self.net_options]
 
     def config_connect(self):
         """
@@ -448,6 +452,8 @@ class GeoView(HtmlView):
         """
         self._config.connect("preferences.crosshair",
                           self.config_crosshair)
+        self._config.connect("preferences.network-test",
+                          self.config_network_test)
 
     def config_update_int(self, obj, constant):
         """
@@ -481,6 +487,7 @@ class GeoView(HtmlView):
     def geoview_options(self, configdialog):
         """
         Function that builds the widget in the configuration dialog
+        for the time period options.
         """
         table = gtk.Table(2, 2)
         table.set_border_width(12)
@@ -502,6 +509,7 @@ class GeoView(HtmlView):
     def map_options(self, configdialog):
         """
         Function that builds the widget in the configuration dialog
+        for the map options.
         """
         table = gtk.Table(2, 2)
         table.set_border_width(12)
@@ -515,6 +523,42 @@ class GeoView(HtmlView):
                   '\neither in internal gramps format ( D.D8 )'),
                 2, 'preferences.coordinates-in-degree')
         return _('The map'), table
+
+    def config_network_test(self, client, cnxn_id, entry, data):
+        # pylint: disable-msg=W0613
+        """
+        Do we need to test the network ?
+        """
+        if self._config.get('preferences.network-test'):
+            self._test_network()
+
+    def net_options(self, configdialog):
+        """
+        Function that builds the widget in the configuration dialog
+        for the network options.
+        """
+        table = gtk.Table(1, 1)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+        configdialog.add_checkbox(table,
+                _('Test the network '),
+                1, 'preferences.network-test')
+        configdialog.add_pos_int_entry(table, 
+                _('Time out for the network connection test '),
+                2, 'preferences.network-timeout',
+                self.config_update_int)
+        configdialog.add_pos_int_entry(table, 
+                _('Time in seconds between two network tests.'
+                  '\nMust be greater or equal to 10 secondes'),
+                3, 'preferences.network-periodicity',
+                self.config_update_int)
+        configdialog.add_text(table,
+                _('Host to test for http. Please, change this '
+                  'and select one of your choice.'), 4)
+        configdialog.add_entry(table, '',
+                5, 'preferences.network-site')
+        return _('The network'), table
 
     def _place_changed(self, handle_list):
         # pylint: disable-msg=W0613
@@ -1154,6 +1198,7 @@ class GeoView(HtmlView):
         if self.nbmarkers > 0 :
             # While the db is not loaded, we have 0 markers.
             self._savezoomandposition()
+        self._test_network()
         self.nbmarkers = 0
         self.nbplaces = 0
         self.without = 0
@@ -2286,13 +2331,14 @@ class GeoView(HtmlView):
                                     URL_SEP.join(filename.split(os.sep)),
                                     '', ''))
 
-    def _test_network(self):
+    def __test_network(self):
         """
         This function is used to test if we are connected to a network.
         """
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.connect(('216.239.59.106', 80)) # google
+            sock.settimeout(self._config.get('preferences.network-timeout'))
+            sock.connect((self._config.get('preferences.network-site'), 80))
             if sock != None:
                 if self.no_network == True:
                     self.no_network = False
@@ -2303,10 +2349,30 @@ class GeoView(HtmlView):
         except:
             self.no_network = True
 
-        if self.active:
-            gobject.timeout_add(10000, # Every 10 seconds
-                                self._test_network)
+        if self.active and self._config.get('preferences.network-test'):
+            gobject.timeout_add(
+                    self._config.get('preferences.network-periodicity') * 1000,
+                    self.__test_network)
+        else: 
+            self.already_testing = False
         if self.no_network:
             self.open(self._create_message_page(
                       'No network connection found.<br>A connection to the'
                       ' internet is needed to show places or events on a map.'))
+
+    def _test_network(self):
+        """
+        This function is used to test if we are connected to a network.
+        """
+        if not self.endinit:
+            return
+        if not self._config.get('preferences.network-test'):
+            return
+        if self.already_testing: # we need to avoid multiple tests.
+            return
+        else:
+            self.already_testing = True
+        if self._config.get('preferences.network-periodicity') < 10:
+            # How many seconds between tests ? mini = 10 secondes.
+            self._config.set('preferences.network-periodicity', 10)
+        self.__test_network()
