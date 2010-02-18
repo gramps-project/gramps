@@ -38,6 +38,7 @@ Geo View
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import os
+import sys
 import urlparse
 import const
 import operator
@@ -104,7 +105,8 @@ from htmlrenderer import HtmlView
 # Constants
 #
 #-------------------------------------------------------------------------
-GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
+#covert to unicode for better hadnling of path in Windows
+GEOVIEW_SUBPATH = unicode(Utils.get_empty_tempdir('geoview'), sys.getfilesystemencoding())
 NB_MARKERS_PER_PAGE = 200
 
 #-------------------------------------------------------------------------
