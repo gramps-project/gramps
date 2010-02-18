@@ -114,6 +114,9 @@ else:
     USER_HOME = os.environ['HOME'] 
     HOME_DIR = os.path.join(USER_HOME, '.gramps')
 
+USER_HOME = unicode(USER_HOME, sys.getfilesystemencoding())
+#HOME_DIR = unicode(HOME_DIR, sys.getfilesystemencoding())
+
 #-------------------------------------------------------------------------
 #
 # Paths to files - assumes that files reside in the same directory as
