@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-11 18:29+0100\n"
-"PO-Revision-Date: 2010-02-16 10:40+0100\n"
+"PO-Revision-Date: 2010-02-20 18:59+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1173,7 +1173,7 @@ msgstr "Bibliotheekreferentie"
 #: ../src/ScratchPad.py:529
 #: ../src/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Call Number"
-msgstr "Telefoonnummer"
+msgstr "Inventarisnummer"
 
 #: ../src/ScratchPad.py:530
 msgid "Media Type"
@@ -2152,11 +2152,11 @@ msgstr "PATRONIEM"
 #: ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:164
 msgid "Call"
-msgstr "Call"
+msgstr "Roep"
 
 #: ../src/Utils.py:1104
 msgid "CALL"
-msgstr "CALL"
+msgstr "ROEP"
 
 #: ../src/Utils.py:1105
 #: ../src/gui/configure.py:451
@@ -2560,7 +2560,7 @@ msgstr "patroniem"
 #: ../src/gen/display/name.py:338
 #: ../src/plugins/import/ImportCsv.py:236
 msgid "call"
-msgstr "call"
+msgstr "roep"
 
 #: ../src/gen/display/name.py:302
 #: ../src/gen/display/name.py:339
@@ -3642,7 +3642,7 @@ msgstr ""
 "  <b>Voorvoegsel</b>  - voorvoegsel(van, de)\n"
 "  <b>Achtervoegsel</b>   - achtervoegsel (Jr. ,Sr.)\n"
 "  <b>Roep</b>   - roepnaam\n"
-"  <b>Normaal</b>  - roepnaam of anders eerste deel van Voornaam\n"
+"  <b>Normaal</b>  - roepnaam of anders eerste deel van voornaam\n"
 "  <b>Patroniem</b>  - patroniem(naam van de vader)\n"
 "  <b>Initialen</b>   - de eerste letters van de voornaam\n"
 "</tt>\n"
@@ -14717,7 +14717,7 @@ msgstr "Soort mediabestand"
 
 #: ../src/plugins/quickview/Reporef.py:73
 msgid "Call number"
-msgstr "Telefoonnummer"
+msgstr "Inventarisnummer"
 
 #: ../src/plugins/quickview/SameSurnames.py:39
 msgid "People with incomplete surnames"
@@ -22649,13 +22649,13 @@ msgid ""
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
 "De volgende afspraken gelden:\n"
-"<tt>  <b>%f</b> - Achternaam       <b>%F</b> - GIVEN NAME\n"
-"  <b>%l</b> - Geboortenaam     <b>%L</b> - SURNAME\n"
-"  <b>%t</b> - Titel            <b>%T</b> - TITLE\n"
+"<tt>  <b>%f</b> - Achternaam       <b>%F</b> - ACHTERNAAM\n"
+"  <b>%l</b> - Geboortenaam     <b>%L</b> - VOORNAAM\n"
+"  <b>%t</b> - Titel            <b>%T</b> - TITEL\n"
 "  <b>%p</b> - Prefix           <b>%P</b> - PREFIX\n"
 "  <b>%s</b> - Suffix           <b>%S</b> - SUFFIX\n"
-"  <b>%c</b> - Roepnaam         <b>%C</b> - CALL NAME\n"
-"  <b>%y</b> - Patroniem        <b>%Y</b> - PATRONYMIC</tt>"
+"  <b>%c</b> - Roepnaam         <b>%C</b> - ROEPNAAM\n"
+"  <b>%y</b> - Patroniem        <b>%Y</b> - PATRONIEM</tt>"
 
 #: ../src/glade/dateedit.glade.h:1
 msgid "<b>Date</b>"
@@ -22929,7 +22929,7 @@ msgstr "_Naam:"
 
 #: ../src/glade/editreporef.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
-msgstr "<b>Merk op:</b> Alle veranderingen in de gedeelte bibliotheek zal gereflecteerd worden in de bibliotheek zelf, en voor alle items die deze bibliotheek verwijzen."
+msgstr "<b>Merk op:</b> Alle veranderingen in de gedeelde bibliotheek zal gereflecteerd worden in de bibliotheek zelf en voor alle items die naar deze bibliotheek verwijzen."
 
 #: ../src/glade/editreporef.glade.h:3
 #: ../src/glade/editeventref.glade.h:3
@@ -24143,7 +24143,7 @@ msgstr "<b>Het 'GEDCOM' bestandsformaat</b><br/>Gramps laat u toe om te im- en t
 
 #: ../src/data/tips.xml.in.h:54
 msgid "<b>The Gramps Code</b><br/>Gramps is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. Gramps is supported on any computer system where these programs have been ported. Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
-msgstr "<b>De Gramps-code</b><br/>Gramps is geschreven in de computertaal genaamd 'Python' waarbei gebruik gemaakt wordt van de GTK en GNOME bibliotheken voor de grafische interactie. Gramps is beschikbaar op elk platform waarop deze bibliotheken beschikbaar zijn. Gramps kan draaien op Linux, BSD, Solaris, Windows en MAC OS X."
+msgstr "<b>De Gramps-code</b><br/>Gramps is geschreven in de computertaal genaamd 'Python' waarbij gebruik gemaakt wordt van de GTK en GNOME bibliotheken voor de grafische interactie. Gramps is beschikbaar op elk platform waarop deze bibliotheken beschikbaar zijn. Gramps kan draaien op Linux, BSD, Solaris, Windows en MAC OS X."
 
 #: ../src/data/tips.xml.in.h:55
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/"
