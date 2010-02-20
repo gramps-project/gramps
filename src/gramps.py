@@ -74,7 +74,7 @@ if not constfunc.win():
     except locale.Error:
         print 'No translation in some gtk.Builder strings, '
 else:
-    TransUtils.setup_windows_gtk()
+    TransUtils.setup_windows_gettext()
 
 LOG.debug('Using locale:', locale.getlocale())
 

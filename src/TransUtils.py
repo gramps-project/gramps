@@ -41,6 +41,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 import const
+from QuestionDialog import WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -78,30 +79,113 @@ def setup_gettext():
     #following installs _ as a python function, we avoid this as TransUtils is
     #used sometimes:
     #gettext.install(LOCALEDOMAIN, LOCALEDIR, unicode=1)
+    
+def find_intl(fname):
+    """
+    Routine for finding if fname is in path
+    Returns path to fname or None
+    """
+    os_path = os.environ['PATH']
+    for subpath in os_path.split(';'):
+        path2file = subpath + '\\' + fname
+        if os.path.isfile(path2file):
+            return path2file
+    return None
 
-def setup_windows_gtk():
-    """ function to decide if needed on windows
-    This function should be called on windows instead of locale.bindtextdomain
+def test_trans(str2trans,libintl):
+    """
+    Routine to see if translation works
+    Returns translated string
+    """
+    transstr = libintl.gettext(str2trans, LOCALEDOMAIN)
+    return transstr
+
+def init_windows_gettext(intl_path):
+    """
+    Help routine for loading and setting up libintl attributes
+    Returns libintl
     """
     import ctypes
-    try:
-        import webkit
-        # Webkit installed, try to find path to  libintl-8.dll
-        os_path = os.environ['PATH']
-        for subpath in os_path.split(';'):
-            path2file = subpath + '\\libintl-8.dll'
-            if os.path.isfile(path2file):
-                break
-        libintl = ctypes.cdll.LoadLibrary(path2file)
-    except:
-        # If WebKit not installed, use this
-        libintl = ctypes.cdll.intl #LoadLibrary('c:\\WINDOWS\\system\\intl.dll')
-    # The intl.dll in c:\\Program\\GTK2-Runtime\\bin\\ does not give any Glade translations.
-    #libintl = ctypes.cdll.LoadLibrary('c:\\Program\\GTK2-Runtime\\bin\\intl.dll')
+    libintl = ctypes.cdll.LoadLibrary(intl_path)
     libintl.bindtextdomain(LOCALEDOMAIN,
-        LOCALEDIR.encode(sys.getfilesystemencoding()))
+    LOCALEDIR.encode(sys.getfilesystemencoding()))
     libintl.textdomain(LOCALEDOMAIN)
     libintl.bind_textdomain_codeset(LOCALEDOMAIN, "UTF-8")
+    libintl.gettext.restype = ctypes.c_char_p
+    return libintl
+
+def setup_windows_gettext():
+    """
+    Windows specific function for migrating from LibGlade to GtkBuilder
+    Glade had a gtk.glade.bindtextdomain() function to define the directory
+    where to look for translations (.mo-files). It is now replaced with call
+    to locale.bindtextdomain() which exposes the C librarys gettext
+    interface on systems that provide this interface.
+    As MS Standard Runtime C library have not such interface call to
+    Python's locale.bindtextdomain() is not supported on Windows systems.
+    To get translation to work we must use gettext runtime library directly
+    using ctypes.
+
+    SEE: https://bugzilla.gnome.org/show_bug.cgi?id=574520
+
+    NOTE: officially GTK is builded in a way that allows deployment without
+    gettext runtime library in addition to that for historic reason and
+    compability libraries is build with MS name style convention like
+    "intl.dll" but private builds my use posix/ld-linker traditon like
+    "libintlX-X.dll" which in recent gettext version would be libintl-8.dll
+    """
+    str2translate = "Family Trees - Gramps"
+    translated = ""
+    # 1. See if there is a intl.dll in Windows/system
+    os_path = os.environ['PATH']
+    intl_path = 'c:\\WINDOWS\\system\\intx.dll'
+    if os.path.isfile(intl_path):
+        libintl = init_windows_gettext(intl_path)
+        # Now check for translation.
+        translated = test_trans(str2translate,libintl)
+        if str2translate != translated:
+            #Translation complete
+            return
+
+    #2. See if there is a libintl-8.dll in the current path
+    intl_path = find_intl('\\libintl-8.dll')
+    if intl_path:
+        libintl = init_windows_gettext(intl_path)
+        # Now check for translation.
+        translated = test_trans(str2translate,libintl)
+        if str2translate != translated:
+            #Translation complete
+            return
+
+    #3. See if there is another intl.dll in current path
+    intl_path = find_intl('\\intl.dll')
+    if intl_path:
+        libintl = init_windows_gettext(intl_path)
+        # Now check for translation.
+        translated = test_trans(str2translate,libintl)
+        if str2translate != translated:
+            #Translation complete
+            return
+ 
+    # 4. If strings are equal, see if we have English as language
+    lang = ' '
+    try:
+        lang = os.environ["LANG"]
+    except:
+        # if LANG is not set
+        lang = locale.getlocale()[0]
+        if not lang:
+            # if lang is empty/None
+            lang = locale.getdefaultlocale()[0]
+    # See if lang begins with en_, English_ or english_
+    enlang = lang.split('_')[0].lower()
+    if enlang in ('en', 'english', 'c'):
+        return
+
+    # No complete/working translation found
+    WarningDialog(_("Translation might not be complete/not working for"),
+                    locale.getlocale()[0] )
+    
 
 def get_localedomain():
     """
