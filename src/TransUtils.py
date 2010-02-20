@@ -138,7 +138,7 @@ def setup_windows_gettext():
     translated = ""
     # 1. See if there is a intl.dll in Windows/system
     os_path = os.environ['PATH']
-    intl_path = 'c:\\WINDOWS\\system\\intx.dll'
+    intl_path = 'c:\\WINDOWS\\system\\int.dll'
     if os.path.isfile(intl_path):
         libintl = init_windows_gettext(intl_path)
         # Now check for translation.
