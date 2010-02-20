@@ -51,6 +51,7 @@ from gui.views.listview import ListView
 from gui.views.treemodels import MediaModel
 import ThumbNails
 import const
+import constfunc
 import config
 import Utils
 import Bookmarks
@@ -205,6 +206,13 @@ class MediaView(ListView):
                     if not gen.mime.is_valid_type(mime):
                         return
                     photo = gen.lib.MediaObject()
+                    #If in Windows, the url from urlparse.urlparse(d) above is incorrect
+                    # It leaves a "/" first in the url and this is not a valid Windows path/file name.
+                    if constfunc.win():
+                        if name[0] == "/":
+                            name = name[1:]
+                        # Then replace all %20 with a space
+                        name = name.replace('%20',' ')
                     photo.set_path(name)
                     photo.set_mime_type(mime)
                     basename = os.path.basename(name)
