@@ -918,9 +918,12 @@ class GeoView(HtmlView):
                         latitude, longitude = conv_lat_lon(self.reallatitude,
                                                            self.reallongitude,
                                                            "D.D8")
-                    mess = "lon= %s \tlat= %s\tzoom= %s" % ( latitude,
-                                                             longitude,
-                                                             self.realzoom)
+                    mess = "%s= %s\t%s= %s\t%s= %s" % ( _("Latitude"),
+                                                        latitude,
+                                                        _("Longitude"),
+                                                        longitude,
+                                                        _("Zoom"),
+                                                        self.realzoom)
                     self.context_id = self.uistate.status.push(1, mess)
                 gobject.timeout_add(timeloop,
                                     self._savezoomandposition, timeloop)
