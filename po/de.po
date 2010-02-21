@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-16 11:02+0100\n"
-"PO-Revision-Date: 2010-02-16 13:11+0100\n"
+"POT-Creation-Date: 2010-02-21 01:56+0100\n"
+"PO-Revision-Date: 2010-02-21 02:15+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr "Name"
 #: ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:479
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
-#: ../src/plugins/view/mediaview.py:87 ../src/plugins/view/noteview.py:76
+#: ../src/plugins/view/mediaview.py:88 ../src/plugins/view/noteview.py:76
 #: ../src/plugins/view/relview.py:593 ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77 ../src/PluginUtils/_GuiOptions.py:821
 #: ../src/PluginUtils/_GuiOptions.py:961
@@ -152,7 +152,7 @@ msgstr "Name"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:186
+#: ../src/const.py:189
 msgid ""
 "Gramps (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -160,11 +160,11 @@ msgstr ""
 "Gramps (Genealogisches Recherche und Analyse Management Programm System) ist "
 "ein Programm zur Ahnenforschung."
 
-#: ../src/const.py:207
+#: ../src/const.py:210
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Sebastian Vöcking, Mirko Leonhäuser"
 
-#: ../src/const.py:217 ../src/const.py:218 ../src/gen/lib/date.py:1620
+#: ../src/const.py:220 ../src/const.py:221 ../src/gen/lib/date.py:1620
 #: ../src/gen/lib/date.py:1634
 msgid "none"
 msgstr "kein"
@@ -604,7 +604,7 @@ msgstr ""
 #: ../src/plugins/gramplet/gramplet.gpr.py:173
 #: ../src/plugins/lib/libpersonview.py:349
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:212
-#: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:243
+#: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:251
 #: ../src/plugins/view/noteview.py:209 ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
 msgid "Quick View"
@@ -844,7 +844,7 @@ msgstr "Adresse"
 #: ../src/plugins/textreport/MarkerReport.py:297
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:54 ../src/plugins/view/eventview.py:82
-#: ../src/plugins/view/mediaview.py:91
+#: ../src/plugins/view/mediaview.py:92
 #: ../src/plugins/webreport/NarrativeWeb.py:114
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84 ../src/web/utils.py:194
@@ -952,7 +952,7 @@ msgstr "Familiäres Ereignis"
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/MarkerReport.py:383
 #: ../src/plugins/tool/PatchNames.py:224 ../src/plugins/tool/SortEvents.py:55
-#: ../src/plugins/view/eventview.py:81 ../src/plugins/view/mediaview.py:88
+#: ../src/plugins/view/eventview.py:81 ../src/plugins/view/mediaview.py:89
 #: ../src/plugins/view/noteview.py:77 ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/PluginUtils/_PluginWindows.py:219
@@ -997,7 +997,7 @@ msgid "Url"
 msgstr "URL"
 
 #: ../src/ScratchPad.py:391 ../src/gui/editors/displaytabs/webembedlist.py:65
-#: ../src/plugins/view/mediaview.py:89
+#: ../src/plugins/view/mediaview.py:90
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83 ../src/web/utils.py:366
 msgid "Path"
 msgstr "Pfad"
@@ -1040,7 +1040,7 @@ msgstr "Band/Seite: %(pag)s -- %(sourcetext)s"
 #: ../src/gui/selectors/selectplace.py:61
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1338 ../src/plugins/view/mediaview.py:86
+#: ../src/gui/widgets/grampletpane.py:1338 ../src/plugins/view/mediaview.py:87
 #: ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81 ../src/web/utils.py:260
@@ -1074,7 +1074,7 @@ msgstr "Ereignisreferenz"
 msgid "Call Name"
 msgstr "Rufname"
 
-#: ../src/ScratchPad.py:579 ../src/Utils.py:1098
+#: ../src/ScratchPad.py:579 ../src/Utils.py:1097
 #: ../src/gen/display/name.py:118 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:477 ../src/gui/configure.py:478
@@ -1111,12 +1111,12 @@ msgstr "Vorname"
 msgid "Family"
 msgstr "Familie"
 
-#: ../src/ScratchPad.py:581 ../src/Utils.py:1102 ../src/gui/configure.py:481
+#: ../src/ScratchPad.py:581 ../src/Utils.py:1101 ../src/gui/configure.py:481
 #: ../src/gui/editors/editperson.py:284
 msgid "Patronymic"
 msgstr "Patronymikon"
 
-#: ../src/ScratchPad.py:582 ../src/Utils.py:1099
+#: ../src/ScratchPad.py:582 ../src/Utils.py:1098
 #: ../src/gui/editors/editperson.py:275 ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:168
 #: ../src/plugins/tool/PatchNames.py:274 ../src/plugins/tool/PatchNames.py:286
@@ -1129,14 +1129,14 @@ msgstr "Präfix"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:583 ../src/Utils.py:1097
+#: ../src/ScratchPad.py:583 ../src/Utils.py:1096
 #: ../src/gui/editors/editperson.py:284 ../src/plugins/export/ExportCsv.py:330
 #: ../src/plugins/import/ImportCsv.py:166
 #: ../src/plugins/tool/PatchNames.py:262
 msgid "Person|Title"
 msgstr "Titel"
 
-#: ../src/ScratchPad.py:584 ../src/Utils.py:1101 ../src/gui/configure.py:471
+#: ../src/ScratchPad.py:584 ../src/Utils.py:1100 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:480 ../src/gui/configure.py:482
 #: ../src/gui/configure.py:487 ../src/gui/editors/editperson.py:275
@@ -1685,6 +1685,11 @@ msgstr "Person"
 msgid "Child"
 msgstr "Kind"
 
+#. No complete/working translation found
+#: ../src/TransUtils.py:186
+msgid "Translation might not be complete/not working for"
+msgstr "Übersetzung eventuell nicht komplett/nicht funktionsfähig für"
+
 #: ../src/Utils.py:78 ../src/gui/editors/editperson.py:252
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/_MergePerson.py:56
@@ -1882,20 +1887,20 @@ msgstr "Nachfahre todesbezogenes Datum"
 msgid "no evidence"
 msgstr "kein Beleg"
 
-#: ../src/Utils.py:1097
+#: ../src/Utils.py:1096
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1098
+#: ../src/Utils.py:1097
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1099
+#: ../src/Utils.py:1098
 msgid "PREFIX"
 msgstr "PRÄFIX"
 
 #. show surname and first name
-#: ../src/Utils.py:1100 ../src/gui/configure.py:471
+#: ../src/Utils.py:1099 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:477
 #: ../src/gui/configure.py:478 ../src/gui/configure.py:479
 #: ../src/gui/configure.py:480 ../src/gui/configure.py:481
@@ -1910,51 +1915,51 @@ msgstr "PRÄFIX"
 msgid "Surname"
 msgstr "Familienname"
 
-#: ../src/Utils.py:1100 ../src/gui/configure.py:475
+#: ../src/Utils.py:1099 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:482 ../src/gui/configure.py:484
 #: ../src/gui/configure.py:485 ../src/gui/configure.py:486
 #: ../src/gui/configure.py:487 ../src/gui/configure.py:488
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
-#: ../src/Utils.py:1101
+#: ../src/Utils.py:1100
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../src/Utils.py:1102
+#: ../src/Utils.py:1101
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1103 ../src/gui/configure.py:474
+#: ../src/Utils.py:1102 ../src/gui/configure.py:474
 #: ../src/gui/configure.py:476 ../src/gui/configure.py:478
 #: ../src/gui/configure.py:485 ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:164
 msgid "Call"
 msgstr "Rufname"
 
-#: ../src/Utils.py:1103
+#: ../src/Utils.py:1102
 msgid "CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1104 ../src/gui/configure.py:472
+#: ../src/Utils.py:1103 ../src/gui/configure.py:472
 #: ../src/gui/configure.py:477 ../src/gui/configure.py:483
 #: ../src/gui/configure.py:484
 msgid "Common"
 msgstr "Üblich"
 
-#: ../src/Utils.py:1104
+#: ../src/Utils.py:1103
 msgid "COMMON"
 msgstr "ÜBLICH"
 
-#: ../src/Utils.py:1105
+#: ../src/Utils.py:1104
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1105
+#: ../src/Utils.py:1104
 msgid "INITIALS"
 msgstr "INITIALEN"
 
-#: ../src/Utils.py:1211 ../src/Utils.py:1227
+#: ../src/Utils.py:1210 ../src/Utils.py:1226
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
@@ -3179,12 +3184,12 @@ msgstr "Gramplet"
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
-#: ../src/gen/plug/_pluginreg.py:948 ../src/gen/plug/_pluginreg.py:953
+#: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "FEHLER: Lesen der Plug-in Registrierung %(filename)s gescheitert"
 
-#: ../src/gen/plug/_pluginreg.py:967
+#: ../src/gen/plug/_pluginreg.py:970
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -3193,14 +3198,14 @@ msgstr ""
 "FEHLER: Plugin Datei %(filename)s hat die falsche Version: sollte sein \"%"
 "(gramps_version)s\" aber ist aktuell \"%(gramps_target_version)s\"."
 
-#: ../src/gen/plug/_pluginreg.py:986
+#: ../src/gen/plug/_pluginreg.py:989
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "FEHLER: Falsche Pythondatei %(filename)s in der Registrierungsdatei %"
 "(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:994
+#: ../src/gen/plug/_pluginreg.py:997
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
@@ -4277,7 +4282,7 @@ msgid "Gramplets"
 msgstr "Gramplets"
 
 #: ../src/gui/grampsgui.py:122 ../src/gui/grampsgui.py:123
-#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoview.py:293
+#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoview.py:300
 msgid "GeoView"
 msgstr "GeoView"
 
@@ -4289,7 +4294,7 @@ msgstr "Öffentlich"
 #: ../src/plugins/quickview/FilterByName.py:182
 #: ../src/plugins/quickview/quickview.gpr.py:203
 #: ../src/plugins/quickview/References.py:85
-#: ../src/plugins/view/mediaview.py:120 ../src/plugins/view/view.gpr.py:85
+#: ../src/plugins/view/mediaview.py:121 ../src/plugins/view/view.gpr.py:85
 #: ../src/plugins/webreport/NarrativeWeb.py:1010
 #: ../src/plugins/webreport/NarrativeWeb.py:1055
 #: ../src/plugins/webreport/NarrativeWeb.py:2581
@@ -4393,7 +4398,7 @@ msgstr "Auswählen"
 #: ../src/gui/grampsgui.py:144 ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
 #: ../src/gui/editors/displaytabs/gallerytab.py:132
-#: ../src/plugins/view/mediaview.py:235
+#: ../src/plugins/view/mediaview.py:243
 msgid "View"
 msgstr "Ansicht"
 
@@ -4656,7 +4661,7 @@ msgstr "_Seitenleiste"
 msgid "_Toolbar"
 msgstr "_Werkzeugleiste"
 
-#: ../src/gui/viewmanager.py:507 ../src/plugins/view/geoview.py:1044
+#: ../src/gui/viewmanager.py:507 ../src/plugins/view/geoview.py:1092
 msgid "_Filter Sidebar"
 msgstr "_Filter-Seitenleiste"
 
@@ -4843,7 +4848,7 @@ msgid "Select an existing media object"
 msgstr "Ein bestehendes Medienobjekt auswählen"
 
 #: ../src/gui/editors/objectentries.py:305
-#: ../src/plugins/view/mediaview.py:102
+#: ../src/plugins/view/mediaview.py:103
 msgid "Add a new media object"
 msgstr "Neues Medienobjekt hinzufügen"
 
@@ -5941,7 +5946,7 @@ msgid "_Gallery"
 msgstr "_Galerie"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:140
-#: ../src/plugins/view/mediaview.py:239
+#: ../src/plugins/view/mediaview.py:247
 msgid "Open Containing _Folder"
 msgstr "Enthaltenen _Ordner öffnen"
 
@@ -5950,7 +5955,7 @@ msgid "Non existing media found in the Gallery"
 msgstr "Nicht existierendes Medium in der Galerie gefunden"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:478
-#: ../src/plugins/view/mediaview.py:216
+#: ../src/plugins/view/mediaview.py:224
 msgid "Drag Media Object"
 msgstr "Medienobjekt ziehen"
 
@@ -14517,7 +14522,7 @@ msgstr "Auch eine Beziehung mit %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libpersonview.py:97
 #: ../src/plugins/lib/libplaceview.py:99 ../src/plugins/view/eventview.py:84
-#: ../src/plugins/view/familyview.py:78 ../src/plugins/view/mediaview.py:90
+#: ../src/plugins/view/familyview.py:78 ../src/plugins/view/mediaview.py:91
 #: ../src/plugins/view/noteview.py:79 ../src/plugins/view/repoview.py:93
 #: ../src/plugins/view/sourceview.py:81
 msgid "Last Changed"
@@ -18422,11 +18427,11 @@ msgstr "Vorfahren"
 msgid "The view showing relations through a fanchart"
 msgstr "Die Ansicht zeigt Beziehungen durch eine Fächergrafik"
 
-#: ../src/plugins/view/geoview.py:337
+#: ../src/plugins/view/geoview.py:344
 msgid "Clear the entry field in the places selection box."
 msgstr "Lösche das Eingabefeld in dem Orteauswahlfeld."
 
-#: ../src/plugins/view/geoview.py:342
+#: ../src/plugins/view/geoview.py:349
 msgid ""
 "Save the zoom and coordinates between places map, person map, family map and "
 "event map."
@@ -18434,7 +18439,7 @@ msgstr ""
 "Speichert den Zoom zwischen Ortekarte, Personkarte. Familienkarte und "
 "Ereignissekarte."
 
-#: ../src/plugins/view/geoview.py:347
+#: ../src/plugins/view/geoview.py:354
 msgid ""
 "Select the maps provider. You can choose between OpenStreetMap and Google "
 "maps."
@@ -18442,51 +18447,51 @@ msgstr ""
 "Wähle den Kartenanbieter. Du kannst zwischen OpenStreetMap und Google maps "
 "wählen."
 
-#: ../src/plugins/view/geoview.py:376
+#: ../src/plugins/view/geoview.py:383
 msgid "Select the period for which you want to see the places."
 msgstr "Wähle den Zeitraum für den du die Orte sehen willst."
 
-#: ../src/plugins/view/geoview.py:385
+#: ../src/plugins/view/geoview.py:392
 msgid "Prior page."
 msgstr "Vorherige Seite."
 
-#: ../src/plugins/view/geoview.py:389
+#: ../src/plugins/view/geoview.py:396
 msgid "The current page/the last page."
 msgstr "Die aktuelle Seite/die letzte Seite."
 
-#: ../src/plugins/view/geoview.py:393
+#: ../src/plugins/view/geoview.py:400
 msgid "Next page."
 msgstr "Nächste Seite."
 
-#: ../src/plugins/view/geoview.py:401
+#: ../src/plugins/view/geoview.py:408
 msgid "The number of places which have no coordinates."
 msgstr "Anzahl der Orte ohne Koordinaten."
 
-#: ../src/plugins/view/geoview.py:434 ../src/plugins/view/geoview.gpr.py:59
+#: ../src/plugins/view/geoview.py:442 ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "Geografie"
 
-#: ../src/plugins/view/geoview.py:488
+#: ../src/plugins/view/geoview.py:499
 msgid "You can adjust the time period with the two following values."
 msgstr "Du kannst den Zeitraum mit den zwei folgenden  Werten einstellen."
 
-#: ../src/plugins/view/geoview.py:490
+#: ../src/plugins/view/geoview.py:501
 msgid "The number of years before the first event date."
 msgstr "Die Anzahl der Jahre vor dem ersten Ereignisdatum."
 
-#: ../src/plugins/view/geoview.py:494
+#: ../src/plugins/view/geoview.py:505
 msgid "The number of years after the last event date."
 msgstr "Die Anzahl der Jahre nach dem letzten Ereignisdatum."
 
-#: ../src/plugins/view/geoview.py:498
+#: ../src/plugins/view/geoview.py:509
 msgid "Time period adjustment"
 msgstr "Zeitspanne Einstellung"
 
-#: ../src/plugins/view/geoview.py:509
+#: ../src/plugins/view/geoview.py:521
 msgid "Crosshair on the map."
 msgstr "Fadenkreuz auf der Karte."
 
-#: ../src/plugins/view/geoview.py:512
+#: ../src/plugins/view/geoview.py:524
 msgid ""
 "Show the coordinates in the statusbar either in degree\n"
 "either in internal gramps format ( D.D8 )"
@@ -18494,84 +18499,109 @@ msgstr ""
 "Zeigt die Koordinaten in der Statusleiste entweder in Grad\n"
 "oder im internen Grampsformat ( D.D8)"
 
-#: ../src/plugins/view/geoview.py:515
+#: ../src/plugins/view/geoview.py:527
 msgid "The map"
 msgstr "Die Karte"
 
-#: ../src/plugins/view/geoview.py:543
+#: ../src/plugins/view/geoview.py:547
+msgid "Test the network "
+msgstr "Teste das Netzwerk "
+
+#: ../src/plugins/view/geoview.py:550
+msgid "Time out for the network connection test "
+msgstr "Time out für den Netzwerkverbindungstest "
+
+#: ../src/plugins/view/geoview.py:554
+msgid ""
+"Time in seconds between two network tests.\n"
+"Must be greater or equal to 10 secondes"
+msgstr ""
+"Zeit in Sekunden zwischen zwei Netzwerktests.\n"
+"Muss größer gleich 10 Sekunden sein"
+
+#: ../src/plugins/view/geoview.py:559
+msgid ""
+"Host to test for http. Please, change this and select one of your choice."
+msgstr "Host für Http Test. Bitte ändere ihn und verwende einen deiner Wahl."
+
+#: ../src/plugins/view/geoview.py:563
+msgid "The network"
+msgstr "Das Netzwerk"
+
+#: ../src/plugins/view/geoview.py:591
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Wähle den Ort für den du die Infoblase sehen willst."
 
-#: ../src/plugins/view/geoview.py:624
+#: ../src/plugins/view/geoview.py:672
 msgid "Time period"
 msgstr "Zeitspanne"
 
-#: ../src/plugins/view/geoview.py:625
+#: ../src/plugins/view/geoview.py:673
 msgid "years"
 msgstr "Jahre"
 
-#: ../src/plugins/view/geoview.py:631 ../src/plugins/view/geoview.py:951
+#: ../src/plugins/view/geoview.py:679 ../src/plugins/view/geoview.py:999
 msgid "All"
 msgstr "Alles"
 
-#: ../src/plugins/view/geoview.py:998 ../src/plugins/view/geoview.py:1008
+#: ../src/plugins/view/geoview.py:1046 ../src/plugins/view/geoview.py:1056
 msgid "_Add Place"
 msgstr "Ort _hinzufügen"
 
-#: ../src/plugins/view/geoview.py:1000 ../src/plugins/view/geoview.py:1010
+#: ../src/plugins/view/geoview.py:1048 ../src/plugins/view/geoview.py:1058
 msgid ""
 "Add the location centred on the map as a new place in Gramps. Double click "
 "the location to centre on the map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1003 ../src/plugins/view/geoview.py:1013
+#: ../src/plugins/view/geoview.py:1051 ../src/plugins/view/geoview.py:1061
 msgid "_Link Place"
 msgstr "Ort _verlinken"
 
-#: ../src/plugins/view/geoview.py:1005 ../src/plugins/view/geoview.py:1015
+#: ../src/plugins/view/geoview.py:1053 ../src/plugins/view/geoview.py:1063
 msgid ""
 "Link the location centred on the map to a place in Gramps. Double click the "
 "location to centre on the map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1017 ../src/plugins/view/geoview.py:1031
+#: ../src/plugins/view/geoview.py:1065 ../src/plugins/view/geoview.py:1079
 msgid "_All Places"
 msgstr "_Alle Orte"
 
-#: ../src/plugins/view/geoview.py:1018 ../src/plugins/view/geoview.py:1032
+#: ../src/plugins/view/geoview.py:1066 ../src/plugins/view/geoview.py:1080
 msgid "Attempt to view all places in the family tree."
 msgstr "Versuche alle Orte im Stammbaum zu zeigen."
 
-#: ../src/plugins/view/geoview.py:1020 ../src/plugins/view/geoview.py:1034
+#: ../src/plugins/view/geoview.py:1068 ../src/plugins/view/geoview.py:1082
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/plugins/view/geoview.py:1022 ../src/plugins/view/geoview.py:1036
+#: ../src/plugins/view/geoview.py:1070 ../src/plugins/view/geoview.py:1084
 msgid "Attempt to view all the places where the selected people lived."
 msgstr ""
 "Versuche alle Orte zu zeigen in denen die gewählten Personen gewohnt haben."
 
-#: ../src/plugins/view/geoview.py:1024 ../src/plugins/view/geoview.py:1038
+#: ../src/plugins/view/geoview.py:1072 ../src/plugins/view/geoview.py:1086
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/plugins/view/geoview.py:1026 ../src/plugins/view/geoview.py:1040
+#: ../src/plugins/view/geoview.py:1074 ../src/plugins/view/geoview.py:1088
 msgid "Attempt to view places of the selected people's family."
 msgstr "Versuche Orte der Personen der gewählten Familien zu zeigen."
 
-#: ../src/plugins/view/geoview.py:1027 ../src/plugins/view/geoview.py:1041
+#: ../src/plugins/view/geoview.py:1075 ../src/plugins/view/geoview.py:1089
 msgid "_Event"
 msgstr "_Ereignis"
 
-#: ../src/plugins/view/geoview.py:1029 ../src/plugins/view/geoview.py:1043
+#: ../src/plugins/view/geoview.py:1077 ../src/plugins/view/geoview.py:1091
 msgid "Attempt to view places connected to all events."
 msgstr "Versuche die Orte die mit allen Ereignissen verbunden sind zu zeigen."
 
-#: ../src/plugins/view/geoview.py:1236
+#: ../src/plugins/view/geoview.py:1285
 msgid "List of places without coordinates"
 msgstr "Liste der Orte ohne Koordinaten"
 
-#: ../src/plugins/view/geoview.py:1237
+#: ../src/plugins/view/geoview.py:1286
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
@@ -18579,93 +18609,93 @@ msgstr ""
 "Hier ist die Liste aller Orte im Stammbaum für die wir keine Koordinaten "
 "haben.<br> Dies bedeutet keine Längen oder Breitengrade.<p>"
 
-#: ../src/plugins/view/geoview.py:1240
+#: ../src/plugins/view/geoview.py:1289
 msgid "Back to prior page"
 msgstr "Zurück zu vorheriger Seite"
 
-#: ../src/plugins/view/geoview.py:1483
+#: ../src/plugins/view/geoview.py:1532
 msgid "Places list"
 msgstr "Orteliste"
 
-#: ../src/plugins/view/geoview.py:1737
+#: ../src/plugins/view/geoview.py:1786
 msgid "No location."
 msgstr "Kein Ort."
 
-#: ../src/plugins/view/geoview.py:1740
+#: ../src/plugins/view/geoview.py:1789
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Du hast keine Orte mit Koordinaten in deinem Stammbaum."
 
-#: ../src/plugins/view/geoview.py:1743
+#: ../src/plugins/view/geoview.py:1792
 msgid "You are looking at the default map."
 msgstr "Du schaust auf die Standartkarte."
 
-#: ../src/plugins/view/geoview.py:1770
+#: ../src/plugins/view/geoview.py:1819
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : Geburtsort."
 
-#: ../src/plugins/view/geoview.py:1773
+#: ../src/plugins/view/geoview.py:1822
 msgid "birth place."
 msgstr "Geburtsort."
 
-#: ../src/plugins/view/geoview.py:1808
+#: ../src/plugins/view/geoview.py:1857
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : Sterbeort."
 
-#: ../src/plugins/view/geoview.py:1811
+#: ../src/plugins/view/geoview.py:1860
 msgid "death place."
 msgstr "Sterbeort."
 
-#: ../src/plugins/view/geoview.py:1854
+#: ../src/plugins/view/geoview.py:1903
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:1871
+#: ../src/plugins/view/geoview.py:1920
 msgid "All places in the family tree with coordinates."
 msgstr "Alle Orte im Stammbaum mit Koordinaten."
 
-#: ../src/plugins/view/geoview.py:1948
+#: ../src/plugins/view/geoview.py:1997
 msgid "All events in the family tree with coordinates."
 msgstr "Alle Ereignisse im Stammbaum mit Koordinaten."
 
-#: ../src/plugins/view/geoview.py:1973
+#: ../src/plugins/view/geoview.py:2022
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "ID : Vater : %s : %s"
 
-#: ../src/plugins/view/geoview.py:1980
+#: ../src/plugins/view/geoview.py:2029
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "ID : Mutter : %s : %s"
 
-#: ../src/plugins/view/geoview.py:1991
+#: ../src/plugins/view/geoview.py:2040
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "ID : Kind : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:1999
+#: ../src/plugins/view/geoview.py:2048
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "ID : Person : %(id)s %(name)s hat keine Familie."
 
-#: ../src/plugins/view/geoview.py:2005
+#: ../src/plugins/view/geoview.py:2054
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaummit Koordinaten."
 
-#: ../src/plugins/view/geoview.py:2042
+#: ../src/plugins/view/geoview.py:2091
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2061
+#: ../src/plugins/view/geoview.py:2110
 msgid "All event places for"
 msgstr "Alle Ereignis Orte für"
 
-#: ../src/plugins/view/geoview.py:2070
+#: ../src/plugins/view/geoview.py:2119
 msgid ""
 "Cannot center the map. No location with coordinates.The following reasons "
 "are : <ul><li>The filter you use return nothing.</li><li>The active person "
@@ -18679,15 +18709,15 @@ msgstr ""
 "der aktiven Person haben keine Orte mit Koordinaten.</li><li>Du hast keine "
 "Orte.</li><li>Du hast keine aktive Person gesetzt.</li>"
 
-#: ../src/plugins/view/geoview.py:2088
+#: ../src/plugins/view/geoview.py:2137
 msgid "Not yet implemented ..."
 msgstr "Noch nicht implementiert ..."
 
-#: ../src/plugins/view/geoview.py:2238
+#: ../src/plugins/view/geoview.py:2287
 msgid "Start page for the Geography View"
 msgstr "Startseite für die Geografieansicht"
 
-#: ../src/plugins/view/geoview.py:2239
+#: ../src/plugins/view/geoview.py:2288
 msgid ""
 "You don't see a map here for the following reasons :<br><ol><li>Your "
 "database is empty or not yet selected.</li><li>You have not yet selected a "
@@ -18793,27 +18823,27 @@ msgid ""
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:103
+#: ../src/plugins/view/mediaview.py:104
 msgid "Edit the selected media object"
 msgstr "Gewähltes Medienobjekt bearbeiten"
 
-#: ../src/plugins/view/mediaview.py:104
+#: ../src/plugins/view/mediaview.py:105
 msgid "Delete the selected media object"
 msgstr "Das ausgewählte Medienobjekt löschen"
 
-#: ../src/plugins/view/mediaview.py:233
+#: ../src/plugins/view/mediaview.py:241
 msgid "Media Filter Editor"
 msgstr "Filtereditor für Medienobjekte"
 
-#: ../src/plugins/view/mediaview.py:236
+#: ../src/plugins/view/mediaview.py:244
 msgid "View in the default viewer"
 msgstr "In voreingestellten Programm anzeigen"
 
-#: ../src/plugins/view/mediaview.py:240
+#: ../src/plugins/view/mediaview.py:248
 msgid "Open the folder containing the media file"
 msgstr "Öffne den Ordner der die Mediendateien enthält"
 
-#: ../src/plugins/view/mediaview.py:288 ../src/glade/editmedia.glade.h:2
+#: ../src/plugins/view/mediaview.py:296 ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
 msgstr "Doppelklick, um das Bild in einem externen Programm anzuzeigen"
@@ -19460,15 +19490,15 @@ msgid "Place name | Name"
 msgstr "Ortsname"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2278
-#, fuzzy
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type, date (if one is present), and gramps id, Clicking on an "
 "event&#8217;s Gramps ID will load a page for that event."
 msgstr ""
-"Diese Seite enthält einen Index mit allen Orten in der Datenbank, die nach "
-"ihrem Titel sortiert sind. Wenn du auf den Ortstitel klickst, gelangst du "
-"zur Seite des Ortes."
+"Diese Seite enthält einen Index mit allen Ereignissen in der Datenbank, die "
+"nach "
+"ihrem Typ, Datum (wenn vorhanden) und Gramps ID sortiert sind. Klicken auf "
+"eine Grampsereignis ID lädt eine Seite für dieses Ereignis."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2327
 #, python-format
@@ -23944,11 +23974,12 @@ msgid "Invoke date editor"
 msgstr "Datumseditor aufrufen"
 
 #: ../src/glade/editmediaref.glade.h:2 ../src/glade/editeventref.glade.h:2
+#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
-"<b>Anmerkung:</b> Jede Änderung an gemeinsam verwendeten "
+"<b>Anmerkung1:</b> Jede Änderung an gemeinsam verwendeten "
 "Ereignisinformationen werden auch das Ereignis selber und damit auch die "
 "davon abhängigen Personen ändern."
 
