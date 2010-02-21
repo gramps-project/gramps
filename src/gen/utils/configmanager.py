@@ -279,7 +279,10 @@ class ConfigManager(object):
                     ####################### Now, let's test and set:
                     if (name in self.default and 
                         setting in self.default[name]):
-                        if type(value) == type(self.default[name][setting]):
+                        if (isinstance(value, basestring) and
+                            isinstance(self.default[name][setting], basestring)):
+                            self.data[name][setting] = value
+                        elif type(value) == type(self.default[name][setting]):
                             self.data[name][setting] = value
                         else:
                             print >> sys.stderr, ("WARNING: ignoring key with wrong type "
@@ -482,10 +485,11 @@ class ConfigManager(object):
         # Check value to see if right type:
         if type(value) == long:
             value = int(value)
-        if type(value) == unicode:
-            value = str(value)
         if self.has_default(key):
-            if type(self.get_default(key)) != type(value):
+            if (isinstance(self.get_default(key), basestring) and
+                isinstance(value, basestring)):
+                pass # ok
+            elif type(self.get_default(key)) != type(value):
                 raise AttributeError("attempting to set '%s' to wrong type "
                                      "'%s'; should be '%s'" %
                                      (key, type(value), 
