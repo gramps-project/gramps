@@ -41,7 +41,6 @@ import locale
 #
 #-------------------------------------------------------------------------
 import const
-from QuestionDialog import WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -128,12 +127,13 @@ def setup_windows_gettext():
 
     SEE: https://bugzilla.gnome.org/show_bug.cgi?id=574520
 
-    NOTE: officially GTK is builded in a way that allows deployment without
+    NOTE: officially GTK is built in a way that allows deployment without
     gettext runtime library in addition to that for historic reason and
-    compability libraries is build with MS name style convention like
-    "intl.dll" but private builds my use posix/ld-linker traditon like
+    compability libraries are built with MS name style convention like
+    "intl.dll" but private builds may use posix/ld-linker tradition like
     "libintlX-X.dll" which in recent gettext version would be libintl-8.dll
     """
+
     str2translate = "Family Trees - Gramps"
     translated = ""
     # 1. See if there is a intl.dll in Windows/system
@@ -183,8 +183,8 @@ def setup_windows_gettext():
         return
 
     # No complete/working translation found
-    WarningDialog(_("Translation might not be complete/not working for"),
-                    locale.getlocale()[0] )
+    print "Translation might not be complete/not working for",\
+           locale.getlocale()[0]
     
 
 def get_localedomain():
