@@ -11,8 +11,8 @@ AM_INIT_AUTOMAKE([1.6.3 foreign])
 
 AC_CONFIG_MACRO_DIR([m4])
 
-RELEASE=0.SVN$(svnversion -n .)
-dnl RELEASE=0beta
+dnl RELEASE=0.SVN$(svnversion -n .)
+RELEASE=0beta1
 dnl RELEASE=0rc1
 dnl RELEASE=1
 
