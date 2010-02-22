@@ -1,3 +1,28 @@
+Version 3.2.0 (beta1) -- the "I am your father" release.
+* New Plugin System:
+ -> In the Help Menu -> Menu Status, all available plugins are visible.  All
+    plugins can be hidden, saving resources and hiding options you do not need.
+* Faster:
+ -> Many under the hood improvements have occurred that should improve
+    performance enormously.  New features are implemented as plugins that can
+    be hidden.
+ -> Performance improvement example:  Insertion of a new person in a family
+    tree with 30000 people previously took 4 seconds on a 1.4GHz PC running
+    Gramps 3.1, but now takes milliseconds.
+* New Views:
+ -> There are new views, and some existing views have been greatly improved
+ -> People view can now be sorted on the columns
+ -> A Place treeview is present, nicely grouping your places under country
+    groups
+ -> GeoView has left it's beta status behind and shows your data on an online
+    map (OpenStreetMap or Google Maps, a fast internet connection is required)
+ -> Help Menu -> Extra Reports/Tools open a webpage with downloadable views
+* Other Improvements:
+ -> Styled Notes now in most output formats that support styles
+ -> New languages
+ -> Select language in which report should be created (not yet available in
+    all reports)
+
 Version 3.1.3 -- the "What name?" release.
 * contains translation updates, crash fixes, bug fixes, and minor updates.
 * fixes and updates to:
