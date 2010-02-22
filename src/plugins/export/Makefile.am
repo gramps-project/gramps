@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/export
 pkgdata_PYTHON = \
 	export.gpr.py \
 	ExportCsv.py \
+	ExportDjango.py \
 	ExportFtree.py \
 	ExportGedcom.py \
 	ExportGeneWeb.py \

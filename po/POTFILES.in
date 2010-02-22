@@ -381,7 +381,7 @@ src/plugins/drawreport/TimeLine.py
 # plugins/export directory
 src/plugins/export/export.gpr.py
 src/plugins/export/ExportCsv.py
-src/plugins/export/ExportDjango.gpr.py
+src/plugins/export/ExportDjango.py
 src/plugins/export/ExportFtree.py
 src/plugins/export/ExportGedcom.py
 src/plugins/export/ExportGeneWeb.py
@@ -420,7 +420,7 @@ src/plugins/graph/GVRelGraph.py
 # plugins/import directory
 src/plugins/import/import.gpr.py
 src/plugins/import/ImportCsv.py
-src/plugins/import/ImportDjango.gpr.py
+src/plugins/import/ImportDjango.py
 src/plugins/import/ImportDjango.py
 src/plugins/import/ImportGedcom.py
 src/plugins/import/ImportGeneWeb.py
@@ -534,7 +534,6 @@ src/plugins/tool/Verify.py
 #plugins/view directory
 src/plugins/view/eventview.py
 src/plugins/view/familyview.py
-src/plugins/view/fanchartview.gpr.py
 src/plugins/view/fanchartview.py
 src/plugins/view/geoview.py
 src/plugins/view/geoview.gpr.py
@@ -895,8 +894,8 @@ src/plugins/tool/verify.glade
 #
 #	web
 #
-src/web/grampsdb/views.py
-src/web/utils.py
+#src/web/grampsdb/views.py
+#src/web/utils.py
 #
 #	Files to extract from and then merge into
 #
