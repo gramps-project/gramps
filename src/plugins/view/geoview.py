@@ -498,11 +498,11 @@ class GeoView(HtmlView):
         configdialog.add_text(table, 
           _("You can adjust the time period with the two following values."), 1)
         configdialog.add_pos_int_entry(table, 
-                _('The number of years before the first event date.'),
+                _('The number of years before the first event date'),
                 2, 'preferences.timeperiod-before-range',
                 self.config_update_int)
         configdialog.add_pos_int_entry(table, 
-                _('The number of years after the last event date.'),
+                _('The number of years after the last event date'),
                 3, 'preferences.timeperiod-after-range',
                 self.config_update_int)
 
@@ -547,7 +547,7 @@ class GeoView(HtmlView):
                 _('Test the network '),
                 1, 'preferences.network-test')
         configdialog.add_pos_int_entry(table, 
-                _('Time out for the network connection test '),
+                _('Time out for the network connection test'),
                 2, 'preferences.network-timeout',
                 self.config_update_int)
         configdialog.add_pos_int_entry(table, 
