@@ -32,8 +32,9 @@ Media View.
 from gen.ggettext import gettext as _
 import urlparse
 import os
+import sys
 import cPickle as pickle
-
+import urllib
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -201,18 +202,11 @@ class MediaView(ListView):
             for d in [item.strip() for item in data_list]:
                 protocol, site, mfile, j, k, l = urlparse.urlparse(d)
                 if protocol == "file":
-                    name = Utils.fix_encoding(mfile)
+                    name = unicode(urllib.url2pathname(mfile.encode(sys.getfilesystemencoding())))
                     mime = gen.mime.get_type(name)
                     if not gen.mime.is_valid_type(mime):
                         return
                     photo = gen.lib.MediaObject()
-                    #If in Windows, the url from urlparse.urlparse(d) above is incorrect
-                    # It leaves a "/" first in the url and this is not a valid Windows path/file name.
-                    if constfunc.win():
-                        if name[0] == "/":
-                            name = name[1:]
-                        # Then replace all %20 with a space
-                        name = name.replace('%20',' ')
                     photo.set_path(name)
                     photo.set_mime_type(mime)
                     basename = os.path.basename(name)
