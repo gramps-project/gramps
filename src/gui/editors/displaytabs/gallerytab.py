@@ -38,6 +38,8 @@ import urlparse
 import gtk
 import pango
 import os
+import sys
+import urllib
 import gobject
 
 #-------------------------------------------------------------------------
@@ -458,6 +460,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 protocol, site, mfile, j, k, l = urlparse.urlparse(d)
                 if protocol == "file":
                     name = Utils.fix_encoding(mfile)
+                    name = unicode(urllib.url2pathname(name.encode(sys.getfilesystemencoding())))
                     mime = gen.mime.get_type(name)
                     if not gen.mime.is_valid_type(mime):
                         return
