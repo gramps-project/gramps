@@ -2825,9 +2825,9 @@ def importData(database, filename, callback=None, cl=0):
             if database.has_name_group_key(key) :
                 present = database.get_name_group_mapping(key)
                 if not value == present:
-                    msg = _("Your family tree groups name %s together"
-                            " with %s, did not change this grouping to %s") % (
-                                                        key, present, value)
+                    msg = _("Your family tree groups name %(key)s together"
+                            " with %(present)s, did not change this grouping to %(value)s") % {
+                                'key' : key, 'present' : present, 'value' : value }
                     LOG.warn(msg)
             else:
                 database.set_name_group_mapping(key, value)
