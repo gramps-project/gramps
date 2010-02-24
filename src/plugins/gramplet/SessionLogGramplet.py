@@ -81,6 +81,6 @@ class LogGramplet(Gramplet):
                     if mother_handle:
                         mother = self.dbstate.db.get_person_from_handle(mother_handle)
                         mother_name = name_displayer.display(mother)
-                name = _("%s and %s") % (mother_name, father_name)
+                name = _("%(mother)s and %(father)s") % { 'mother' : mother_name, 'father' : father_name }
             self.link(name, ltype, handle)
             self.append_text("\n")
