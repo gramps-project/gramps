@@ -688,7 +688,8 @@ class ProgenParser(object):
             date.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_ABOUT, gen.lib.Date.CAL_GREGORIAN, (0, month, year, None))
             return date
 
-        log.warning(_("date did not match: '%s' (%s)") % (txt.encode('utf-8'), diag_msg or ''))
+        log.warning(_("date did not match: '(text)%s' (%(msg)s)")) % {
+            'text' : txt.encode('utf-8'), 'msg' : diag_msg or '' }
         # Hmmm. Just use the plain text.
         date.set_as_text(txt)
         return date
@@ -1238,9 +1239,11 @@ class ProgenParser(object):
                 father_handle = father > 0 and self.__find_person_handle("I%d" % father) or None
                 mother_handle = mother > 0 and self.__find_person_handle("I%d" % mother) or None
                 if father > 0 and not father_handle:
-                    log.warning(_("cannot find father for I%s (father=%d)") % (pers_id, father))
+                    log.warning(_("cannot find father for I%(person)s (father=%(id)d)")) % {
+                        'person' : pers_id, 'id' : father }
                 elif mother > 0 and not mother_handle:
-                    log.warning(_("cannot find mother for I%s (mother=%d)") % (pers_id, mother))
+                    log.warning(_("cannot find mother for I(person)%s (mother=%(mother)d)")) % {
+                        'person' : pers_id, 'mother' : mother }
                 else:
                     fam = self.fm2fam.get((father_handle, mother_handle), None)
                     if not fam:
