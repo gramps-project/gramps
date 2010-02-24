@@ -1474,8 +1474,8 @@ class CheckIntegrity(object):
 
         if plink > 0:
             self.text.write(ngettext("%(quantity)d broken spouse/family link was fixed\n", \
-            "%(quantity)d broken spouse/family links were found\n", plink) % {
-                'quantity' : plink }   
+            "%(quantity)d broken spouse/family links were found\n", plink)) % {
+                'quantity' : plink }
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1491,9 +1491,8 @@ class CheckIntegrity(object):
                 self.text.write(_("%s was restored to the family of %s\n") % (cn, pn))
 
         if slink > 0:
-            self.text.write(ngettext("%(dup_spouse_family)d duplicate spouse/family link was found\n", \
-            "%(dup_spouse_family)d duplicate spouse/family links were found\n", slink) % {
-                'dup_spouse_family' : slink }                 
+            self.text.write(ngettext("%d duplicate spouse/family link was found\n", \
+            "%d duplicate spouse/family links were found\n", slink) % slink)
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1512,8 +1511,8 @@ class CheckIntegrity(object):
             self.text.write(_("%d family with no parents or children found, removed.\n"))
             self.text.write("\t%(empty_family)s\n") % {'empty_family' : self.empty_family[0] }
         elif efam > 1:
-            self.text.write(_("%(amount)d families with no parents or children, removed.\n") % {
-                'amount' : efam}   
+            self.text.write(_("%(quantity)d families with no parents or children, removed.\n")) % {
+                'quantity' : efam }
 
         if rel:
             self.text.write(ngettext("%d corrupted family relationship fixed\n", \
@@ -1597,7 +1596,7 @@ class CheckIntegrity(object):
                                  'media' : len(self.empty_objects['media']),
                                  'place' : len(self.empty_objects['places']),
                                  'repo' : len(self.empty_objects['repos']),
-                                 'note' : len(self.empty_objects['notes'])  } )
+                                 'note' : len(self.empty_objects['notes']) } )
 
         return errors
 
