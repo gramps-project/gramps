@@ -176,7 +176,8 @@ def _get_subject(options, dbase):
             else:
                 mother_name = _("unknown mother")
                 
-            name = _("%s and %s (%s)") % (father_name, mother_name, family_id)
+            name = _("%(father)s and %(mother)s (%(id)s)") % {
+                'father' : father_name, 'mother' : mother_name, 'id' : family_id }
             return name
         
     return _("Not Applicable")
