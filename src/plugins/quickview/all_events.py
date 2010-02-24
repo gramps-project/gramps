@@ -95,9 +95,8 @@ def run_fam(database, document, family):
     
     # display the results
 
-    sdoc.title(_("Sorted events of family\n %s - %s") % 
-                            (sdb.name(sdb.father(family)), 
-                            sdb.name(sdb.mother(family))))
+    sdoc.title(_("Sorted events of family\n %(father)s - %(mother)s")) % {
+        'father' : sdb.name(sdb.father(family)), 'mother' : sdb.name(sdb.mother(family)) }
     sdoc.paragraph("")
 
     stab.columns(_("Family Member"), _("Event Type"), 
