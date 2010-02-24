@@ -185,7 +185,8 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         if other_person is None: 
             pass
         elif self.person.handle == other_person.handle:
-            rstr = _("%s and %s are the same person.") % (p1, p2)
+            rstr = _("%(person)s and %(active_person)s are the same person.")) % {
+                'person' : p1, 'active_person' : p2 }
             text.append((rstr, ""))
         elif len(rel_strings) == 0:
             rstr = _("%(person)s and %(active_person)s are not related.") % {
@@ -209,8 +210,8 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                 p2c = self.db.get_person_from_handle(common[1])
                 p1str = name_displayer.display(p1c)
                 p2str = name_displayer.display(p2c)
-                commontext = " " + _("Their common ancestors are %s and %s."
-                                    ) % (p1str,p2str)
+                commontext = " " + _("Their common ancestors are %(acentor1)s and %(ancestor2)s.")
+                                    % { 'ancestor1' : p1str, 'ancestor2' : p2str }
             elif length > 2:
                 index = 0
                 commontext = " " + _("Their common ancestors are: ")
