@@ -452,8 +452,8 @@ class PathChange(BatchOp):
         to_text = unicode(self.to_entry.get_text())
         text = _(
             'The following action is to be performed:\n\n'
-            'Operation:\t%s\nReplace:\t\t%s\nWith:\t\t%s'
-            ) % (self.title.replace('_',''), from_text, to_text)
+            'Operation:\t%(title)s\nReplace:\t\t%(src_fname)s\nWith:\t\t%(dest_fname)s')) % {
+             'title' : self.title.replace('_',''), 'src_fname' : from_text, 'dest_fname' : to_text }
         return text
         
     def _prepare(self):
