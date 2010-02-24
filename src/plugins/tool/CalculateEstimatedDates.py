@@ -443,7 +443,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
             if not birth_ref and add_birth_event:
                 other_name = self.sdb.name(other)
                 if other_name:
-                    explanation = _("Added birth event based on %s, from %s") % (evidence, other_name)
+                    explanation = _("Added birth event based on %(evidence)s, from %(name)s") % {
+                        'evidence' : evidence, 'name ' : other_name }
                 else:
                     explanation = _("Added birth event based on %s") % evidence
                 modifier = self.get_modifier("birth")
@@ -458,7 +459,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
             if not death_ref and add_death_event:
                 other_name = self.sdb.name(other)
                 if other_name:
-                    explanation = _("Added death event based on %s, from %s") % (evidence, other_name)
+                    explanation = _("Added death event based on %(evidence)s, from %(person)s") % {
+                    'evidence' : evidence, 'person' : other_name }
                 else:
                     explanation = _("Added death event based on %s") % evidence
                 modifier = self.get_modifier("death")
