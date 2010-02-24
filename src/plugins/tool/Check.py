@@ -1286,11 +1286,9 @@ class CheckIntegrity(object):
                 self.db.get_number_of_places() +
                 self.db.get_number_of_media_objects() +
                 self.db.get_number_of_sources() +
-                self.db.get_number_of_repositories()
-                )
+                self.db.get_number_of_repositories() )
 
-        self.progress.set_pass(_('Looking for note reference problems'),
-                               total)
+        self.progress.set_pass(_('Looking for note reference problems'), total )
         
         for handle in self.db.person_map.keys():
             self.progress.step()
@@ -1475,8 +1473,9 @@ class CheckIntegrity(object):
                 self.text.write(_("%s was removed from the family of %s\n") % (cn, pn))
 
         if plink > 0:
-            self.text.write(ngettext("%d broken spouse/family link was fixed\n", \
-            "%d broken spouse/family links were found\n", plink) % plink)
+            self.text.write(ngettext("%(quantity)d broken spouse/family link was fixed\n", \
+            "%(quantity)d broken spouse/family links were found\n", plink) % {
+                'quantity' : plink }   
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1492,8 +1491,9 @@ class CheckIntegrity(object):
                 self.text.write(_("%s was restored to the family of %s\n") % (cn, pn))
 
         if slink > 0:
-            self.text.write(ngettext("%d duplicate spouse/family link was found\n", \
-            "%d duplicate spouse/family links were found\n", slink) % slink)
+            self.text.write(ngettext("%(dup_spouse_family)d duplicate spouse/family link was found\n", \
+            "%(dup_spouse_family)d duplicate spouse/family links were found\n", slink) % {
+                'dup_spouse_family' : slink }                 
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1510,9 +1510,10 @@ class CheckIntegrity(object):
 
         if efam == 1:
             self.text.write(_("%d family with no parents or children found, removed.\n"))
-            self.text.write("\t%s\n" % self.empty_family[0])
+            self.text.write("\t%(empty_family)s\n") % {'empty_family' : self.empty_family[0] }
         elif efam > 1:
-            self.text.write(_("%d families with no parents or children, removed.\n") % efam)
+            self.text.write(_("%(amount)d families with no parents or children, removed.\n") % {
+                'amount' : efam}   
 
         if rel:
             self.text.write(ngettext("%d corrupted family relationship fixed\n", \
@@ -1579,25 +1580,24 @@ class CheckIntegrity(object):
             "%d invalid name format references were removed\n", name_format) % name_format)
 
         if empty_objs > 0 :
-            self.text.write(_("%d empty objects removed:\n"
-                              "   %d person objects\n"
-                              "   %d family objects\n"
-                              "   %d event objects\n"
-                              "   %d source objects\n"
-                              "   %d media objects\n"
-                              "   %d place objects\n"
-                              "   %d repository objects\n"
-                              "   %d note objects\n"
-                            ) % (empty_objs, 
-                                 len(self.empty_objects['persons']),
-                                 len(self.empty_objects['families']),
-                                 len(self.empty_objects['events']),
-                                 len(self.empty_objects['sources']),
-                                 len(self.empty_objects['media']),
-                                 len(self.empty_objects['places']),
-                                 len(self.empty_objects['repos']),
-                                 len(self.empty_objects['notes']) 
-                                ) )
+            self.text.write(_("%(empty_obj)d empty objects removed:\n"
+                              "   %(person)d person objects\n"
+                              "   %(family)d family objects\n"
+                              "   %(event)d event objects\n"
+                              "   %(source)d source objects\n"
+                              "   %(media)d media objects\n"
+                              "   %(place)d place objects\n"
+                              "   %(repo)d repository objects\n"
+                              "   %(note)d note objects\n" ) % {
+                                 'empty_obj' : empty_objs, 
+                                 'person' : len(self.empty_objects['persons']),
+                                 'family' : len(self.empty_objects['families']),
+                                 'event' : len(self.empty_objects['events']),
+                                 'source' : len(self.empty_objects['sources']),
+                                 'media' : len(self.empty_objects['media']),
+                                 'place' : len(self.empty_objects['places']),
+                                 'repo' : len(self.empty_objects['repos']),
+                                 'note' : len(self.empty_objects['notes'])  } )
 
         return errors
 

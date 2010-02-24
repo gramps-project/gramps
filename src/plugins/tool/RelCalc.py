@@ -43,7 +43,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gen.display.name import displayer as _nd
 import ManagedWindow
 from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from libpersonview import BasePersonView
@@ -100,7 +100,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                                             uistate.get_active('Person'))
         name = ''
         if self.person:
-            name = name_displayer.display(self.person)
+            name = _nd.display(self.person)
         self.title = _('Relationship calculator: %(person_name)s'
                        ) % {'person_name' : name}
         window = self.glade.toplevel
@@ -178,14 +178,15 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         rel_strings, common_an = self.relationship.get_all_relationships(
                                             self.db, self.person, other_person)
 
-        p1 = name_displayer.display(self.person)
-        p2 = name_displayer.display(other_person)
+        p1 = _nd.display(self.person)
+        p2 = _nd.display(other_person)
 
         text = []
         if other_person is None: 
             pass
         elif self.person.handle == other_person.handle:
-            rstr = _("%s and %s are the same person.") % (p1, p2)
+            rstr = _("%(person)s and %(active_person)s are the same person.") % {
+                'person' : p1, 'active_person' : p2}  
             text.append((rstr, ""))
         elif len(rel_strings) == 0:
             rstr = _("%(person)s and %(active_person)s are not related.") % {
@@ -202,13 +203,13 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                 if common[0] in [other_person.handle, self.person.handle]:
                     commontext = ''
                 else :
-                    name = name_displayer.display(person)
+                    name = _nd.display(person)
                     commontext = " " + _("Their common ancestor is %s.") % name
             elif length == 2:
                 p1c = self.db.get_person_from_handle(common[0])
                 p2c = self.db.get_person_from_handle(common[1])
-                p1str = name_displayer.display(p1c)
-                p2str = name_displayer.display(p2c)
+                p1str = _nd.display(p1c)
+                p2str = _nd.display(p2c)
                 commontext = " " + _("Their common ancestors are %s and %s."
                                     ) % (p1str,p2str)
             elif length > 2:
@@ -218,7 +219,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                     person = self.db.get_person_from_handle(person_handle)
                     if index:
                         commontext += ", "
-                    commontext += name_displayer.display(person)
+                    commontext += _nd.display(person)
                     index += 1
                 commontext += "."
             else:
