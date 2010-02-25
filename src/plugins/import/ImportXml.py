@@ -1310,9 +1310,9 @@ class GrampsParser(UpdateCallback):
             if self.db.has_name_group_key(key) :
                 present = self.db.get_name_group_mapping(key)
                 if not value == present:
-                    msg = _("Your family tree groups name %s together"
-                            " with %s, did not change this grouping to %s") % (
-                                                        key, present, value)
+                    msg = _("Your family tree groups name %(key)s together"
+                            " with %(parent)s, did not change this grouping to %(value)s") % {
+                            'key' : key, 'parent' : present, 'value' : value }
                     self.errmsg(msg)
             else:
                 self.db.set_name_group_mapping(key, value)
@@ -2479,11 +2479,11 @@ def version_is_valid(filename, cli):
     parser = VersionParser(filename)
     
     if parser.get_xmlns_version() > libgrampsxml.GRAMPS_XML_VERSION:
-        msg = _("The .gramps file you are importing was made by version %s of "
-                "Gramps, while you are running an older version %s. "
+        msg = _("The .gramps file you are importing was made by version %(newer)s of "
+                "Gramps, while you are running an older version %(older)s. "
                 "The file will not be imported. Please upgrade to the latest "
-                "version of Gramps and try again." 
-                ) % (parser.get_gramps_version(), const.VERSION)
+                "version of Gramps and try again." ) % {
+                'newer' : parser.get_gramps_version(), 'older' : const.VERSION }
         if cli:
             LOG.warn(msg)
             return False

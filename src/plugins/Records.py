@@ -210,9 +210,9 @@ def _find_records(db, filter, callname):
         father = db.get_person_from_handle(father_handle)
         mother = db.get_person_from_handle(mother_handle)
 
-        name = _("%s and %s") % (
-                _person_get_display_name(father, callname),
-                _person_get_display_name(mother, callname))
+        name = _("%(father)s and %(mother)s") % {
+            'father' : _person_get_display_name(father, callname), 
+            'mother' : _person_get_display_name(mother, callname) }
 
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),

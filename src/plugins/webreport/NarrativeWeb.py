@@ -942,6 +942,10 @@ class BasePage(object):
         fname = "/".join(["styles", _NARRATIVESCREEN])
         url2 = self.report.build_url_fname(fname, None, self.up)
 
+        # link to Navigation stylesheet
+        fname = "/".join(["styles", "Web_Alphabet-Vertical.css"])
+        url5 = self.report.build_url_fname(fname, None, self.up)
+
         # Link to _NARRATIVEPRINT stylesheet
         fname = "/".join(["styles", _NARRATIVEPRINT])
         url3 = self.report.build_url_fname(fname, None, self.up)
@@ -2137,8 +2141,11 @@ class PlaceListPage(BasePage):
                 table += thead
 
                 trow =  Html("tr") + (
-                    Html("th", _("Letter"), class_ = "ColumnLetter", inline = True),
-                    Html("th", _("Place name | Name"), class_ = "ColumnName", inline = True)
+                    Html("th", _("Letter"),              class_ = "ColumnLetter", inline = True),
+                    Html("th", _("Place name | Name"),   class_ = "ColumnName", inline = True),
+                    Html("th", _("State"),               class_ = "ColumnState", inline = True),
+                    Html("th", _("Country"),             class_ = "ColumnCtry", inline = True),
+                    Html("th", _("Latitude/ Longitude"), class_ = "ColumnCoordinates", inline = True) 
                     )
                 thead += trow
 
@@ -2158,6 +2165,7 @@ class PlaceListPage(BasePage):
                         continue
 
                     letter = first_letter(place_title)
+                    ml = place.get_main_location()
 
                     trow = Html("tr")
                     tbody += trow
@@ -2175,6 +2183,13 @@ class PlaceListPage(BasePage):
 
                     trow += Html("td", self.place_link(place.handle, place_title, place.gramps_id), 
                         class_ = "ColumnName")
+
+                    trow.extend( Html("td", data, class_ = "Column" + colclass, inline = True)   
+                        for (colclass, data) in [
+                            ["State",         ml.state],
+                            ["Country",       ml.country],
+                            ["Coordinates",   place.lat + "," + place.long] ]
+                            if data or "&nbsp;" )
 
         # add clearline for proper styling
         # add footer section
@@ -5113,6 +5128,10 @@ class NavWebReport(Report):
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
+
+        # copy Navigation stylesheet
+        fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Vertical.css")
+        self.copy_file(fname, "Web_Alphabet-Vertical.css", "styles")
 
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")

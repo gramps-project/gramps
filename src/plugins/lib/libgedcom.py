@@ -5494,8 +5494,8 @@ class GedcomParser(UpdateCallback):
             line = self.__get_next_line()
             if self.__level_is_finished(line, level):
                 if skips and self.want_parse_warnings:
-                    msg = _("skipped %d subordinate(s) at line %d")\
-                            % (skips, line.line - skips)
+                    msg = _("skipped %(skip)d subordinate(s) at line %(line)d") % {
+                        'skip' : skips, 'line' : line.line - skips }
                     self.__warn(msg)
                 return
             skips += 1
