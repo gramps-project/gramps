@@ -30,16 +30,7 @@ see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------------------------------
 # $Id: $
 
- Body Element
------------------------------------------------------ */
-body {
-    font-family: Arial, sans, sans-serif, Helvetica;
-    color: #000;
-    background-color: #FFF;
-    padding: 60px 0px 0px 108px;
-}
-
-/* Header
+ Header
 ----------------------------------------------------- */
 #header  {
     position: fixed;
@@ -49,24 +40,24 @@ body {
     width: 100%;
 }
 
-/* Navigation/ SubNavigation
+/* Alphabet Navigation
 ----------------------------------------------------- */
-div#navigation, div#subnavigation {
+div#alphabet {
     position: fixed;
-    left: 0px;
-    width: 108px;
-    height: 500px;
+    left: 4px;
+    width: 40px;
+    height: 326px;
     overflow-x: auto;
     border-width: 2px 4px 2px 4px;
     border-style: solid;
 }
-div#navigation ul, div#subnavigation ul {
+div#alphabet ul {
     display: inline;
     list-style: none;
     padding: 0px 9px 0px 9px;
     margin: 0;
 }
-div#navigation ul li, div#subnavigation ul li {
+div#alphabet ul li {
     font: bold 14px/100% sans;
     padding: 10px 10px 10px 0px;
     margin:0;
@@ -74,101 +65,17 @@ div#navigation ul li, div#subnavigation ul li {
     border-width: 0px 0px 2px 0px;
     border-style: solid;
 }
-div#navigation ul li:first-child, div#subnavigation ul li:first-child {
+div#alphabet ul li:first-child {
     border-top: 0;
 }
-div#navigation ul li:last-child, div#subnavigation ul li:last-child {
+div#alphabet ul li:last-child {
     border-bottom: 0;
 }
-div#navigation ul li a, div#subnavigation ul li a {
+div#alphabet ul li a {
     text-decoration: none;
     display: block;
     padding: 10px 0px 6px 10px;
 }
-div#navigation ul li a:hover, div#subnavigation ul li a:hover {
-    background-color: #C1B398;
-}
-div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
-    font-weight:bold;
-    font-style: italic;
-    background-color: #453619;
-    color: #FFF;
-}
-div#navigation ul li.CurrentSection a:hover {
-    background-color: #000;
-    color: #FFF;
-}
-div#subnavigation ul li.CurrentSection a {
-    border-width: 0px 0px 2px 0px;
-    border-color: #5D835F;
-}
-
-/* Alphabet Navigation
------------------------------------------------------ */
-div#alphabet {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-div#alphabet ul {
-    list-style:none;
-    min-width: 900px;
-    height: 40px;
-    margin:0;
-    padding: 0px 0px 0px 16px;
-    border-bottom: solid 2px #5D835F;
-}
-div#alphabet ul li {
-    float:left;
-}
-div#alphabet ul li a {
-    display: block;
-    padding: 12px 16px 14px 1px;
-    float:left;
-    font: .8em bold italic small-caps verdana, serif;
-    color: #000;
-    text-decoration:none;
-    margin:0;
-}
 div#alphabet ul li a:hover {
     background-color: #C1B398;
 }
-
-/* Alphabet Navigation
------------------------------------------------------ */
-div#alphabet {
-    width: 100%;
-    margin: 0;
-    background-color: #6AF364;
-}
-div#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding: 0px 0px 0px 16px;
-    border-width: 1px 0px 1px 0px;
-    border-style: solid;
-    border-color: #5D835F;
-}
-div#alphabet ul li:after {
-    content:"  |";
-}
-div#alphabet ul li {
-    margin:0;
-    float:left;
-}
-div#alphabet ul li a {
-    display:block;
-    padding: 4px 8px 4px 8px;
-    float:left;
-    font: normal 16px/100% sans;
-    margin:0;
-    text-decoration:none;
-    color: #000;
-}
-div#alphabet ul li a:hover {
-    background-color: #000;
-    color: #FFF;
-}
-

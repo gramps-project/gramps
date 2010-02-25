@@ -62,6 +62,7 @@ book_categories = {
 CSS_FILES = [
     # First is used as default selection.
     [_("Basic-Ash"),            'Web_Basic-Ash.css'],
+    [_("Basic-Blue"),           'Web_Basic-Blue.css'],
     [_("Basic-Cypress"),        'Web_Basic-Cypress.css'],
     [_("Basic-Lilac"),          'Web_Basic-Lilac.css'],
     [_("Basic-Peach"),          'Web_Basic-Peach.css'],
