@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 00:22+0100\n"
-"PO-Revision-Date: 2010-02-25 00:58+0100\n"
+"POT-Creation-Date: 2010-02-25 18:44+0100\n"
+"PO-Revision-Date: 2010-02-25 22:46+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -629,103 +629,103 @@ msgstr "Verwandtschaftsschleife entdeckt:"
 msgid "Person %(person)s connects to himself via %(relation)s"
 msgstr "Person %(person)s hat eine Verbindung zu sich selbst über %(relation)s"
 
-#: ../src/Relationship.py:1192
+#: ../src/Relationship.py:1193
 msgid "undefined"
 msgstr "undefiniert"
 
-#: ../src/Relationship.py:1668 ../src/plugins/import/ImportCsv.py:289
+#: ../src/Relationship.py:1669 ../src/plugins/import/ImportCsv.py:289
 msgid "husband"
 msgstr "Ehemann"
 
-#: ../src/Relationship.py:1670 ../src/plugins/import/ImportCsv.py:285
+#: ../src/Relationship.py:1671 ../src/plugins/import/ImportCsv.py:285
 msgid "wife"
 msgstr "Ehefrau"
 
-#: ../src/Relationship.py:1672
+#: ../src/Relationship.py:1673
 msgid "gender unknown|spouse"
 msgstr "Partner(in)"
 
-#: ../src/Relationship.py:1675
+#: ../src/Relationship.py:1676
 msgid "ex-husband"
 msgstr "Ex-Ehemann"
 
-#: ../src/Relationship.py:1677
+#: ../src/Relationship.py:1678
 msgid "ex-wife"
 msgstr "Ex-Ehefrau"
 
-#: ../src/Relationship.py:1679
+#: ../src/Relationship.py:1680
 msgid "gender unknown|ex-spouse"
 msgstr "Ex-Partner(in)"
 
-#: ../src/Relationship.py:1682
+#: ../src/Relationship.py:1683
 msgid "unmarried|husband"
 msgstr "Lebensgefährte"
 
-#: ../src/Relationship.py:1684
+#: ../src/Relationship.py:1685
 msgid "unmarried|wife"
 msgstr "Lebensgefährtin"
 
-#: ../src/Relationship.py:1686
+#: ../src/Relationship.py:1687
 msgid "gender unknown,unmarried|spouse"
 msgstr "Partner(in)"
 
-#: ../src/Relationship.py:1689
+#: ../src/Relationship.py:1690
 msgid "unmarried|ex-husband"
 msgstr "Ex-Lebensgefährte"
 
-#: ../src/Relationship.py:1691
+#: ../src/Relationship.py:1692
 msgid "unmarried|ex-wife"
 msgstr "Ex-Lebensgefährtin"
 
-#: ../src/Relationship.py:1693
+#: ../src/Relationship.py:1694
 msgid "gender unknown,unmarried|ex-spouse"
 msgstr "Ex-Lebensgefährt(e/in)"
 
-#: ../src/Relationship.py:1696
+#: ../src/Relationship.py:1697
 msgid "male,civil union|partner"
 msgstr "eingetragener Lebenspartner"
 
-#: ../src/Relationship.py:1698
+#: ../src/Relationship.py:1699
 msgid "female,civil union|partner"
 msgstr "eingetragene Lebenspartnerin"
 
-#: ../src/Relationship.py:1700
+#: ../src/Relationship.py:1701
 msgid "gender unknown,civil union|partner"
 msgstr "eingetragene(r) Lebenspartner(in)"
 
-#: ../src/Relationship.py:1703
+#: ../src/Relationship.py:1704
 msgid "male,civil union|former partner"
 msgstr "früherer eingetragener Lebenspartner"
 
-#: ../src/Relationship.py:1705
+#: ../src/Relationship.py:1706
 msgid "female,civil union|former partner"
 msgstr "frühere eingetragene Lebenspartnerin"
 
-#: ../src/Relationship.py:1707
+#: ../src/Relationship.py:1708
 msgid "gender unknown,civil union|former partner"
 msgstr "frühere(r) eingetragene(r) Lebenspartner(in)"
 
-#: ../src/Relationship.py:1710
+#: ../src/Relationship.py:1711
 msgid "male,unknown relation|partner"
 msgstr "Partner"
 
-#: ../src/Relationship.py:1712
+#: ../src/Relationship.py:1713
 msgid "female,unknown relation|partner"
 msgstr "Partnerin"
 
-#: ../src/Relationship.py:1714
+#: ../src/Relationship.py:1715
 msgid "gender unknown,unknown relation|partner"
 msgstr "Partner(in)"
 
-#: ../src/Relationship.py:1719
+#: ../src/Relationship.py:1720
 msgid "male,unknown relation|former partner"
 msgstr "früherer Partner"
 
-#: ../src/Relationship.py:1721
+#: ../src/Relationship.py:1722
 msgid "female,unknown relation|former partner"
 msgstr "frühere Partnerin"
 
-#: ../src/Relationship.py:1723
+#: ../src/Relationship.py:1724
 msgid "gender unknown,unknown relation|former partner"
 msgstr "frühere(r) Partner(in)"
 
@@ -1655,7 +1655,7 @@ msgstr "Quellen im Aufbewahrungsort"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
 #: ../src/plugins/tool/EventCmp.py:243
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
@@ -1951,7 +1951,7 @@ msgstr "Bearbeitungschronik"
 msgid "Original time"
 msgstr "Ursprüngliche Zeit"
 
-#: ../src/UndoHistory.py:99 ../src/plugins/tool/CalculateEstimatedDates.py:225
+#: ../src/UndoHistory.py:99 ../src/plugins/tool/CalculateEstimatedDates.py:226
 msgid "Action"
 msgstr "Aktion"
 
@@ -3308,7 +3308,7 @@ msgid " Name Editor"
 msgstr " Nameneditor"
 
 #: ../src/gui/configure.py:123 ../src/gui/configure.py:141
-#: ../src/gui/configure.py:1052 ../src/gui/views/pageview.py:464
+#: ../src/gui/configure.py:1052 ../src/gui/views/pageview.py:465
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -4354,13 +4354,13 @@ msgid "List"
 msgstr "Liste"
 
 #: ../src/gui/grampsgui.py:142
-#: ../src/plugins/tool/CalculateEstimatedDates.py:216
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
-#: ../src/plugins/tool/CalculateEstimatedDates.py:385
-#: ../src/plugins/tool/CalculateEstimatedDates.py:399
-#: ../src/plugins/tool/CalculateEstimatedDates.py:404
-#: ../src/plugins/tool/CalculateEstimatedDates.py:409
-#: ../src/plugins/tool/CalculateEstimatedDates.py:420
+#: ../src/plugins/tool/CalculateEstimatedDates.py:217
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:386
+#: ../src/plugins/tool/CalculateEstimatedDates.py:400
+#: ../src/plugins/tool/CalculateEstimatedDates.py:405
+#: ../src/plugins/tool/CalculateEstimatedDates.py:410
+#: ../src/plugins/tool/CalculateEstimatedDates.py:421
 #: ../src/plugins/tool/ChangeNames.py:195
 #: ../src/plugins/tool/ExtractCity.py:538
 #: ../src/plugins/tool/PatchNames.py:218 ../src/glade/mergedata.glade.h:12
@@ -5023,7 +5023,7 @@ msgstr "Mütterlicherseits"
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 msgid "Birth Date"
 msgstr "Geburtsdatum"
 
@@ -5032,7 +5032,7 @@ msgstr "Geburtsdatum"
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/lineage.py:91
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 msgid "Death Date"
 msgstr "Sterbedatum"
 
@@ -6471,12 +6471,12 @@ msgstr "Fehler: %s ist keine gültige Gramps ID"
 msgid "Configure %(cat)s - %(view)s"
 msgstr "Konfiguriere %(cat)s - %(view)s"
 
-#: ../src/gui/views/pageview.py:443
+#: ../src/gui/views/pageview.py:444
 #, python-format
 msgid "%(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s"
 
-#: ../src/gui/views/pageview.py:471
+#: ../src/gui/views/pageview.py:472
 #, python-format
 msgid "Configure %s View"
 msgstr "Ansicht %s konfigurieren"
@@ -9524,7 +9524,7 @@ msgstr "Wo das Miniaturbild im Verhältnis zum Namen erscheinen soll"
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:256
 #: ../src/plugins/tool/CalculateEstimatedDates.py:72
-#: ../src/plugins/tool/CalculateEstimatedDates.py:184
+#: ../src/plugins/tool/CalculateEstimatedDates.py:185
 #: ../src/plugins/tool/SortEvents.py:82
 msgid "Options"
 msgstr "Optionen"
@@ -10032,8 +10032,7 @@ msgid ""
 "change this grouping to %(value)s"
 msgstr ""
 "Ihr Stammbaum gruppiert Name %(key)s zusammen mit %(present)s, Gruppierung "
-"nicht geändert "
-"nach %(value)s"
+"nicht geändert nach %(value)s"
 
 #: ../src/plugins/import/ImportGrdb.py:2842
 msgid "Import database"
@@ -10066,8 +10065,9 @@ msgid "Pro-Gen import"
 msgstr "Pro-Gen importieren"
 
 #: ../src/plugins/import/ImportProGen.py:691
-msgid "date did not match: '(text)%s' (%(msg)s)"
-msgstr "Datum passt nicht: '(text)%s' (%(msg)s)"
+#, python-format
+msgid "date did not match: '%(text)s' (%(msg)s)"
+msgstr "Datum passt nicht: '%(text)s' (%(msg)s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:771
@@ -10330,8 +10330,7 @@ msgid ""
 "change this grouping to %(value)s"
 msgstr ""
 "Ihr Stammbaum gruppiert Name %(key)s zusammen mit %(parent)s, Gruppierung "
-"nicht geändert "
-"nach %(value)s"
+"nicht geändert nach %(value)s"
 
 #: ../src/plugins/import/ImportXml.py:1917
 #, python-format
@@ -10346,10 +10345,9 @@ msgid ""
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
 "Die .gramps Datei die du importierst stammt aus Version %(newer)s von "
-"Gramps, du "
-"benutzt eine ältere Version %(older)s. Die Datei wird nicht importiert. "
-"Bitte "
-"wechsele auf die neuste Version von Gramps und versuche es erneut."
+"Gramps, du benutzt eine ältere Version %(older)s. Die Datei wird nicht "
+"importiert. Bitte wechsele auf die neuste Version von Gramps und versuche es "
+"erneut."
 
 #: ../src/plugins/import/ImportXml.py:2494
 #, python-format
@@ -14529,7 +14527,7 @@ msgstr "Person (%s) löschen"
 #: ../src/plugins/view/pedigreeviewext.py:632
 #: ../src/plugins/view/relview.py:400
 msgid "Person Filter Editor"
-msgstr "Filtereditor für Person"
+msgstr "Filtereditor für Personen"
 
 #: ../src/plugins/lib/libpersonview.py:359
 msgid "Remove the Selected Person"
@@ -16800,12 +16798,12 @@ msgstr "Extreme (nach und vor)"
 msgid "Dates on events are either about or after/before"
 msgstr "Daten von Ereignissen sind entweder um oder nach/vor"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:161
-#: ../src/plugins/tool/CalculateEstimatedDates.py:178
+#: ../src/plugins/tool/CalculateEstimatedDates.py:162
+#: ../src/plugins/tool/CalculateEstimatedDates.py:179
 msgid "Help"
 msgstr "Hilfe"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:163
+#: ../src/plugins/tool/CalculateEstimatedDates.py:164
 #, fuzzy
 msgid ""
 "The Calculate Estimated Dates Tool is used to add and remove birth and death "
@@ -16846,32 +16844,32 @@ msgstr ""
 "vorherigen Ereignisse zu löschen) laufen lassen musst um alle möglichen "
 "Ereignisse hinzuzufügen."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:181
+#: ../src/plugins/tool/CalculateEstimatedDates.py:182
 #: ../src/plugins/tool/tools.gpr.py:35
 msgid "Calculate Estimated Dates"
 msgstr "Geschätzte Daten berechnen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:190
+#: ../src/plugins/tool/CalculateEstimatedDates.py:191
 msgid "Select All"
 msgstr "Alle wählen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:191
+#: ../src/plugins/tool/CalculateEstimatedDates.py:192
 msgid "Select None"
 msgstr "Nichts wählen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:192
+#: ../src/plugins/tool/CalculateEstimatedDates.py:193
 msgid "Toggle Selection"
 msgstr "Auswahl umschalten"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:193
+#: ../src/plugins/tool/CalculateEstimatedDates.py:194
 msgid "Add Selected Events"
 msgstr "Gewählte Ereignisse hinzufügen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:199
+#: ../src/plugins/tool/CalculateEstimatedDates.py:200
 msgid "Remove Events, Notes, and Source and Reselect Data"
 msgstr "Ereignisse, Notizen , Quellen und erneut gewählte Daten entfernen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:200
+#: ../src/plugins/tool/CalculateEstimatedDates.py:201
 msgid ""
 "Are you sure you want to remove previous events, notes, and source and "
 "reselect data?"
@@ -16879,52 +16877,52 @@ msgstr ""
 "Bist du sicher, das du Ereignisse, Notizen , Quellen und erneut gewählte "
 "Daten entfernen willst?"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:201
+#: ../src/plugins/tool/CalculateEstimatedDates.py:202
 msgid "Remove and Run Select Again"
 msgstr "Entfernen und Auswahl erneut starten"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:205
+#: ../src/plugins/tool/CalculateEstimatedDates.py:206
 msgid "Reselect Data"
 msgstr "Daten neu wählen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:206
+#: ../src/plugins/tool/CalculateEstimatedDates.py:207
 msgid "Are you sure you want to reselect data?"
 msgstr "Bist du sich sicher, das du die Daten neu wählen willst?"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:207
+#: ../src/plugins/tool/CalculateEstimatedDates.py:208
 msgid "Run Select Again"
 msgstr "Auswahl erneut ausführen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
+#: ../src/plugins/tool/CalculateEstimatedDates.py:228
 msgid "Evidence"
 msgstr "Beleg"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
+#: ../src/plugins/tool/CalculateEstimatedDates.py:228
 msgid "Relative"
 msgstr "Angehörige"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:228
+#: ../src/plugins/tool/CalculateEstimatedDates.py:229
 msgid "Processing...\n"
 msgstr "Verarbeitung...\n"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:246
+#: ../src/plugins/tool/CalculateEstimatedDates.py:247
 msgid "Removing old estimations... "
 msgstr "Entferne alte Schätzungen... "
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:247
+#: ../src/plugins/tool/CalculateEstimatedDates.py:248
 #, python-format
 msgid "Removing '%s'..."
 msgstr "Entferne '%s'..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:301
+#: ../src/plugins/tool/CalculateEstimatedDates.py:302
 msgid "done!\n"
 msgstr "Fertig!\n"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:302
+#: ../src/plugins/tool/CalculateEstimatedDates.py:303
 msgid "Removed date estimates"
 msgstr "Berechnete Daten entfernt"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:306
+#: ../src/plugins/tool/CalculateEstimatedDates.py:307
 msgid ""
 "Selecting... \n"
 "\n"
@@ -16932,77 +16930,77 @@ msgstr ""
 "Auswählen...\n"
 "\n"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:307
+#: ../src/plugins/tool/CalculateEstimatedDates.py:308
 msgid "Selecting..."
 msgstr "Auswählen..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:342
+#: ../src/plugins/tool/CalculateEstimatedDates.py:343
 msgid "Add birth and death events"
 msgstr "Geburts und Todesereignisse hinzufügen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:344
+#: ../src/plugins/tool/CalculateEstimatedDates.py:345
 msgid "Add birth event"
 msgstr "Geburtereignis hinzufügen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:346
+#: ../src/plugins/tool/CalculateEstimatedDates.py:347
 msgid "Add death event"
 msgstr "Todesereignis hinzufügen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:381
+#: ../src/plugins/tool/CalculateEstimatedDates.py:382
 msgid "No events to be added."
 msgstr "Keine Ereignisse zum hinzufügen."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:423
+#: ../src/plugins/tool/CalculateEstimatedDates.py:424
 msgid "Selecting... "
 msgstr "Auswählen... "
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:424
+#: ../src/plugins/tool/CalculateEstimatedDates.py:425
 #, python-format
 msgid "Adding events '%s'..."
 msgstr "Füge Ereignisse hinzu '%s'..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:446
+#: ../src/plugins/tool/CalculateEstimatedDates.py:447
 #, python-format
 msgid "Added birth event based on %(evidence)s, from %(name)s"
 msgstr "Geburtsereignis basierend auf %(evidence)s, von %(name)s hinzugefügt"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:449
+#: ../src/plugins/tool/CalculateEstimatedDates.py:450
 #, python-format
 msgid "Added birth event based on %s"
 msgstr "Geburtsereignis basierend auf %s hinzugefügt"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:451
+#: ../src/plugins/tool/CalculateEstimatedDates.py:452
 msgid "Estimated birth date"
 msgstr "Geschätztes Geburtsdatum"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:462
+#: ../src/plugins/tool/CalculateEstimatedDates.py:463
 #, python-format
 msgid "Added death event based on %(evidence)s, from %(person)s"
 msgstr "Todesereignis basierend auf %(evidence)s, von %(person)s hinzugefügt"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:465
+#: ../src/plugins/tool/CalculateEstimatedDates.py:466
 #, python-format
 msgid "Added death event based on %s"
 msgstr "Todesereignis basierend auf %s hinzugefügt"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:467
+#: ../src/plugins/tool/CalculateEstimatedDates.py:468
 msgid "Estimated death date"
 msgstr "Geschätztes Sterbedatum"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:477
+#: ../src/plugins/tool/CalculateEstimatedDates.py:478
 msgid " Done! Committing..."
 msgstr "Fertig! Committing..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:479
+#: ../src/plugins/tool/CalculateEstimatedDates.py:480
 msgid "Add date estimates"
 msgstr "Datumsschätzungen hinzufügen"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:482
+#: ../src/plugins/tool/CalculateEstimatedDates.py:483
 #, python-format
 msgid "Added %d events."
 msgstr "%d Ereignisse hinzugefügt."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:510
+#: ../src/plugins/tool/CalculateEstimatedDates.py:511
 msgid "Estimated date"
 msgstr "Geschätztes Datum"
 
@@ -17936,8 +17934,8 @@ msgstr "Der gemeinsame Vorfahre ist %s."
 
 #: ../src/plugins/tool/RelCalc.py:213
 #, python-format
-msgid "Their common ancestors are %(acentor1)s and %(ancestor2)s."
-msgstr "Ihre gemeinsamen Vorfahren sind %(acentor1)s und %(ancestor2)s."
+msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
+msgstr "Ihre gemeinsamen Vorfahren sind %(ancestor1)s und %(ancestor2)s."
 
 #: ../src/plugins/tool/RelCalc.py:217
 msgid "Their common ancestors are: "
@@ -24788,17 +24786,18 @@ msgid "GeneWeb source file"
 msgstr "GeneWeb Quelldatei"
 
 #: ../src/data/tips.xml.in.h:1
-#, fuzzy
 msgid ""
 "<b>Adding Children</b><br/>To add children in Gramps there are two options. "
 "You can find one of their parents in the Families View and open the family. "
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
-"<b>Adding Children</b><br/>To add children in Gramps there are two options. "
-"You can find one of their parents in the Families View and open the family. "
-"Then choose to create a new person or add an existing person. You can also "
-"add children (or siblings) from inside the Family Editor."
+"<b>Kinder hinzufügen</b><br/>Um Kinder in Gramps hinzuzufügen gibt es zwei "
+"Möglichkeiten. "
+"Du kannst einen Elternteil in der Familienansicht finden und die Familie "
+"öffnen. Dann wähle eine neue Person erstellen oder eine bestehende "
+"hinzufügen. Du kannst auch Kinder (oder Geschwister) im Familieneditor "
+"hinzufügen."
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
@@ -24807,7 +24806,8 @@ msgid ""
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>Ein Bild hinzufügen</b>Ein Bild kann zu jeder Galerie oder Medienansicht "
+"<b>Ein Bild hinzufügen</b><br/>Ein Bild kann zu jeder Galerie oder "
+"Medienansicht "
 "durch das Ziehen von einem Dateimanager zu einem Webbrowser hinzugefügt "
 "werden. Aktuell kannst du jede Art von Datei auf diese Weise hinzufügen, "
 "hilfreich für Scans von Dokumenten und andere digitale Quellen."
@@ -24819,7 +24819,8 @@ msgid ""
 "or right click on an individual to access other family members and setting. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Ahnentafelansicht</b>Die Ahnentafelansicht zeigt dir eine traditionelle "
+"<b>Ahnentafelansicht</b><br/>Die Ahnentafelansicht zeigt dir eine "
+"traditionelle "
 "Ahnentafel. Wenn du die Maus über eine Person hältst, siehst du mehr "
 "Informationen über sie, oder klicke mit der rechten Maustaste auf eine "
 "Personen, um auf andere Familienmitglieder oder Einstellungen zuzugreifen. "
@@ -24832,7 +24833,7 @@ msgid ""
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"<b>Buchbericht</b>Der Buchbericht unter &quot;Berichte &gt; Bücher &gt; "
+"<b>Buchbericht</b><br/>Der Buchbericht unter &quot;Berichte &gt; Bücher &gt; "
 "Buchbericht...&quot; erlaubt dir verschiedenen Berichten in einem einzigen "
 "Dokument zu sammeln. Dieser einzelne Bericht ist einfacher zu verteilen als "
 "mehrere Berichte, besonders wenn sie gedruckt werden."
@@ -24845,7 +24846,7 @@ msgid ""
 "Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. "
 "You can also bookmark most of the other objects."
 msgstr ""
-"<b>Personen als Lesezeichen</b>: <br/>Das Lesezeichenmenü ist eine bequeme "
+"<b>Personen als Lesezeichen</b><br/>Das Lesezeichenmenü ist eine bequeme "
 "Möglichkeit um häufig benutzte Personen abzulegen. Wenn du auf eine Person "
 "mit Lesezeichen klickst, wird diese zur aktiven Person. Um ein Lesezeichen "
 "für eine Person zu erzeugen, mache diese zur aktuellen Person, gehe zu &quot;"
@@ -24853,29 +24854,32 @@ msgstr ""
 "auch für die meisten anderen Objekte Lesezeichen anlegen."
 
 #: ../src/data/tips.xml.in.h:6
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under &quot;Tools &gt; "
 "Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
 "well as all common ancestors are reported."
 msgstr ""
-"<b>Berechnung von Verwandtschaften</b>.:Dieses Werkzeug findet man unter "
-"<b>Werkzeuge -&gt; Werkzeuge -&gt; Beziehungen bestimmen</b> und erlaubt dir "
-"zu überprüfen, ob eine Person mit dir oder jemand anderen aus der Datenbank "
-"verwandt ist (Blutsverwandtschaft, nicht Heirat). Es wird eine präzise "
-"Verwandtschaft bis zu den gemeinsamen Vorfahren angezeigt."
+"<b>Berechnung von Verwandtschaften</b><br/>Um zu prüfen, ob zwei Personen in "
+"der Datenbank verwandt sind (Blutsverwandtschaft, nicht durch Heirat) "
+"verwende das Werkzeug &quot;Werkzeuge &gt; Werkzeuge &gt; "
+"Verwandtschaftrechner...&quot;. Die genaue Verwandtschaft wie auch alle "
+"gemeinsamen Vorfahren werden angezeigt."
 
 #: ../src/data/tips.xml.in.h:7
+#, fuzzy
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view juct click on anyone. In the Ancestry View "
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
+"<b>Die aktive Person wechseln</b><br/>Changing the Active Person in views is "
+"easy. In the Relationship view juct click on anyone. In the Ancestry View "
+"doubleclick on the person or right click to select any of their spouses, "
+"siblings, children or parents."
 
 #: ../src/data/tips.xml.in.h:8
-#, fuzzy
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
@@ -24885,16 +24889,16 @@ msgid ""
 "and introducing yourself. Subscription information can be found at &quot;"
 "Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
-"<b> Mitarbeiten an Gramps</b>: Willst du bei GRAMPS helfen, kannst aber "
+"<b>An Gramps mitarbeiten</b><br/>Willst du bei GRAMPS helfen, kannst aber "
 "nicht programmieren? Kein Problem. Ein so großes Projekt wie Gramps benötigt "
 "Menschen mit vielen unterschiedlichen Qualifikationen. Mitarbeit kann sowohl "
 "das Schreiben von Dokumentation, das Testen von Entwicklungversionen als "
 "auch das Helfen bei der Web-Seite beinhalten. Beginne mit dem Eintragen in "
 "die Grampsentwicklermailingliste, gramps-devel und arbeite dich ein. "
-"Informationen zum Anmelden findest du auf lists.sf.net."
+"Informationen zum Anmelden findest du unter &quot;Hilfe &gt; Gramps "
+"Mailinglisten&quot;"
 
 #: ../src/data/tips.xml.in.h:9
-#, fuzzy
 msgid ""
 "<b>Directing Your Research</b><br/>Go from what you know to what you do not. "
 "Always record everything that is known before making conjectures. Often the "
@@ -24902,7 +24906,8 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
-"Gehe von dem aus was du weißt, um zu erfahren, was du nicht weißt. Schreibe "
+"<b>Deine Recherchen steuern</b><br/>Gehe von dem aus was du weißt, um zu "
+"erfahren, was du nicht weißt. Schreibe "
 "immer alles Bekannte auf bevor du Vermutungen aufstellen. Oft können die "
 "vorhandenen Fakten eine Fülle an Anweisungen enthalten. Verbringe nicht die "
 "Zeit damit, Tausende von Aufzeichnungen zu durchsuchen, um eine Spur zu "
@@ -24933,12 +24938,17 @@ msgstr ""
 "Beziehungeneditor geöffnet."
 
 #: ../src/data/tips.xml.in.h:12
+#, fuzzy
 msgid ""
 "<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
 "relationship of a child to it's parents by double clicking the child in the "
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
+"<b>Elternkindbeziehung bearbeiten</b><br/> You can edit the "
+"relationship of a child to it's parents by double clicking the child in the "
+"Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
+"Sponsored, Stepchild and Unknown."
 
 #: ../src/data/tips.xml.in.h:13
 msgid ""
@@ -24970,29 +24980,30 @@ msgstr ""
 "Wählen von <b>Ansicht &gt; Filter</b>."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
 "limited only by your imagination. Custom filters are created from &quot;Edit "
 "&gt; Person Filter Editor&quot;."
 msgstr ""
-"Filter erlauben dir die Personen in der Personenansicht zu limitieren. Zu "
-"den vielen Standardfiltern kannst du maßgeschneiderte Filter anglegen, die "
-"nach mach deinen Vorstellungen gestalten können. Maßgeschneiderte Filter "
-"können unter <b>Werkzeuge &gt; Werkzeuge &gt; Filtereditor</b> angelegt "
-"werden."
+"<b>Filter</b><br/>Filter erlauben dir die Personen in der Personenansicht zu "
+"limitieren. Zu "
+"den vielen vorkonfigurierten Filtern kannst du maßgeschneiderte Filter "
+"anlegen, die "
+"nach deinen Vorstellungen gestalten werden können. Maßgeschneiderte Filter "
+"werden unter &quot;Bearbeiten &gt; Filtereditor für Personen Personen&quot; "
+"angelegt."
 
 #: ../src/data/tips.xml.in.h:16
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "&quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
-"Bist du daran interessiert informiert zu werden, wenn eine neue Version von "
-"Gramps erscheint? Tritt der Gramps Ankündigung Mailingliste auf http://lists."
-"sourceforge.net/lists/listinfo/gramps-announce bei"
+"<b>Gramps Ankündigungen</b><br/>Bist du daran interessiert informiert zu "
+"werden, wenn eine neue Version von "
+"Gramps erscheint? Tritt der Gramps Ankündigung Mailingliste unter "
+"&quot;Hilfe &gt; Gramps Mailinglisten&quot; bei."
 
 #: ../src/data/tips.xml.in.h:17
 #, fuzzy
@@ -25039,13 +25050,13 @@ msgstr ""
 "du im Menü unter <b>Werkzeuge</b> finden."
 
 #: ../src/data/tips.xml.in.h:20
-#, fuzzy
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net"
 msgstr ""
-"Gramps wurde so programmiert, dass neue Übersetzungen einfach mit einem "
+"<b>Gramps Übersetzer</b><br/>Gramps wurde so programmiert, dass neue "
+"Übersetzungen einfach mit einem "
 "kleinen Entwicklungsaufwand integriert werden können. Wenn du am Übersetzen "
 "interessiert bist, sende bitte eine E-Mail an gramps-devel@lists.sf.net"
 
@@ -25055,18 +25066,20 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
+"<b>Gramps für Gnome oder KDE?</b><br/>Für Linuxanwender läuft Gramps egal "
+"welche Desktopumgebung du bevorzugst. Solange die benötigten GTK "
+"Bibliotheken installiert sind, läuft es hervorragend."
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
-"Gramps unterstützt Unicode komplett. Im Grunde werden damit alle "
-"Schriftzeichen von allen Sprachen korrekt angezeigt."
+"<b>Hallo, привет oder 喂</b><br/>Egal welche Schrift du verwendest, Gramps "
+"unterstützt Unicode komplett. Schriftzeichen von allen Sprachen werden "
+"korrekt angezeigt."
 
 #: ../src/data/tips.xml.in.h:23
-#, fuzzy
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -25074,14 +25087,15 @@ msgid ""
 "project.org and creating a Feature Request. Filing a Feature Request is "
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
-"<b>Gramps verbessern</b>: Benutzer sind dazu angeregt, Weiterentwicklungen "
+"<b>Gramps verbessern</b><br/>Benutzer sind dazu angeregt, "
+"Weiterentwicklungen "
 "an Gramps vorzuschlagen. Vorschläge zur Weiterentwicklung können über die "
 "gramps-users oder gramps-devel Mailinglisten gesendet werden, oder durch "
 "erstellen einen Feature Request auf http://bugs.gramps-project.org Das "
-"erstzellen eines Feature Request wird bevorzugt."
+"erstellen eines Feature Request wird bevorzugt aber es kann nützlich sein "
+"deine Ideen in der Mailingliste zu diskutieren."
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a redish "
@@ -25091,7 +25105,10 @@ msgid ""
 msgstr ""
 "<b>Fehlerhafte Daten</b><br/>Jeder trägt gelegentlich Daten mit ungültigem "
 "Format ein. Fehlerhafte Datenformate werden in Gramps mit einem rötlichen "
-"Hintergrund gezeigt. Das Datumsformat wird eingestellt unter &quot;"
+"Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
+"Datumauswahldialogs korrigieren welcher durch das Klicken auf die "
+"Datumauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
+"eingestellt unter &quot;"
 "Bearbeiten &gt; Einstellungen &gt; Anzeige&quot;."
 
 #: ../src/data/tips.xml.in.h:25
@@ -25140,6 +25157,11 @@ msgid ""
 "preset event types. You can add your own event types by typing in the text "
 "field, they will be added to the available events, but not translated."
 msgstr ""
+"<b>Listing Events</b><br/>Events are added using the editor opened with "
+"&quot;Person &gt; Person bearbeiten &gt; Ereignis&quot;. There is a long "
+"list of "
+"preset event types. You can add your own event types by typing in the text "
+"field, they will be added to the available events, aber nicht übersetzt."
 
 #: ../src/data/tips.xml.in.h:29
 #, fuzzy
@@ -25157,17 +25179,18 @@ msgstr ""
 "diesem Namen angezeigt."
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid ""
 "<b>Making a Genealogy Website</b><br/>You can easily export your family tree "
 "to a web page. Select the entire database, family lines or selected "
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web. The Gramps project provides free hosting of websites made with Gramps."
 msgstr ""
-"Du kannst ganz einfach deinen Stammbaum auf eine Web-Seite exportieren. "
+"<b>Genealogische Webseite erstellen</b><br/>Du kannst ganz einfach deinen "
+"Stammbaum auf eine Web-Seite exportieren. "
 "Wähle eine ganze Datenbank, eine Gruppe von Vorfahren oder Nachkommen oder "
-"Personen um eine Sammlung für das Internet fertigzustellen und sie dann "
-"hochzuladen."
+"Personen um eine Sammlung von Webseiten fertig zum Hochladen ins World Wide "
+"Web zu erstellen. Das Gramps-Projekt bietet freien Platz auf Webservern für "
+"mit Gramps erstellte Webseiten."
 
 #: ../src/data/tips.xml.in.h:31
 #, fuzzy
@@ -25211,12 +25234,11 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
-"<b>Medienansichr</b><br/>Die Medienansicht zeigt dir eine Liste aller in der "
+"<b>Medienansicht</b><br/>Die Medienansicht zeigt dir eine Liste aller in der "
 "Datenbank vorhandenen Medienobjekte. Das können Bilder, Videos, "
 "Tonaufnahmen, Tabellen, Dokumente und vieles mehr sein."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid ""
 "<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge..."
 "&quot; allows you to combine separately listed people into one. Select the "
@@ -25225,22 +25247,27 @@ msgid ""
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
-"Die Funktion &quot;Zusammenfassen&quot; erlaubt es separat gelistete "
-"Personen zu einer zu vereinigen. Dies ist sehr nützlich, wenn man zwei "
+"<b>Einträge zusammenfassen</b><br/>Die Funktion &quot;Bearbeiten &gt; "
+"Vergleichen und zusammenfassen...&quot; erlaubt es separat gelistete "
+"Personen zu einer zu vereinigen. Wähle den zweiten Eintrag durch gedrückt "
+"halten der Steuerungstaste (Strg) während du klickst. Dies ist sehr "
+"nützlich, wenn man zwei "
 "Stammbäume mit sich überlappenden Personen oder irrtümlicherweise sich "
-"unterscheidende Namen angelegt hat und zu einer Person vereinigen will."
+"unterscheidende Namen angelegt hat und zu einer Person vereinigen will. Dies "
+"funktioniert auch in der Orte, Quellen und Aufbewahrungsorteansicht."
 
 #: ../src/data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active object such as People, Events and . You can move forward and backward "
 "through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
 "Back&quot; or the arrow buttons."
 msgstr ""
-"Gramps verwaltet eine Liste von vorher ausgewählten Personen. Du kannst in "
-"dieser Liste vor und zurück springen, indem du unter <b> Gehe zu &gt;Vor</b> "
-"und <b>Gehe zu &gt; Zurück</b> benutzt."
+"<b>Vor und zurück navigieren</b><br/>Gramps verwaltet eine Liste von vorher "
+"aktiven Objekten wie Personen und Ereignisse. Du kannst in "
+"dieser Liste vor und zurück springen, durch Verwendung von &quot;Gehe zu "
+"&gt;Vor&quot;"
+"und &quot;Gehe zu &gt; Zurück&quot; oder der Pfeilschaltflächen."
 
 #: ../src/data/tips.xml.in.h:37
 msgid ""
@@ -25263,7 +25290,7 @@ msgid ""
 "tool. For more about Open Source software lookup the Free Software "
 "Foundation and the Open Source Initiative."
 msgstr ""
-"<b>Open Source Software</b><br/>Das Free/Libre and Open Source Software "
+"<b>Open Source Software</b><br/>Das Free/Libre und Open Source Software "
 "(FLOSS) Entwicklungsmodell erlaubt, dass Gramps von jedem Programmierer "
 "erweitert werden kann, soweit alle Quelldateien frei unter dieser Lizenz "
 "erhältlich sind. Es ist also nicht nur wie Freibier, du hast auch die "
@@ -25272,15 +25299,14 @@ msgstr ""
 "Initiative."
 
 #: ../src/data/tips.xml.in.h:39
-#, fuzzy
 msgid ""
 "<b>Ordering Children in a Family</b><br/>The birth order of children in a "
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
-"<b>Kinder in der Familie ordnen</b><br/>The birth order of children in a "
-"family can be set by using drag and drop. This order is preserved even when "
-"they do not have birth dates."
+"<b>Kinder in der Familie ordnen</b><br/>Die Reihenfolge der Kinder in einer "
+"Familie kann durch ziehen und fallen lassen bestimmt werden. Diese Anordnung "
+"bleibt erhalten, auch wenn sie kein Geburtsdatum haben."
 
 #: ../src/data/tips.xml.in.h:40
 #, fuzzy
@@ -25290,10 +25316,11 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
 msgstr ""
-"<b>Organising the Views</b><br/>Many of the views can presented your data as "
+"<b>Die Ansichten organisieren</b><br/>Many of the views can presented your "
+"data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
-"toolbar or under the &quot;View&quot; menu."
+"toolbar or under the &quot;Ansicht&quot; menu."
 
 #: ../src/data/tips.xml.in.h:41
 msgid ""
@@ -25342,7 +25369,6 @@ msgstr ""
 "melden, ist das Gramps bug tracking system auf http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:45
-#, fuzzy
 msgid ""
 "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
 "lets you modify a number of settings, such as the path to your media files, "
@@ -25350,11 +25376,14 @@ msgid ""
 "needs. Each seperate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
-"<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
-"lets you modify a number of settings, such as the path to your media files, "
-"and allows you to adjust many aspects of the Gramps presentation to your "
-"needs. Each seperate view can also be configured under &quot;View &gt; "
-"Configure View...&quot;"
+"<b>Einstellung deiner Vorlieben</b><br/>&quot;Bearbeiten&gt; Einstellungen..."
+"&quot; "
+"ermöglicht dir das Ändern einer Anzahl von Einstellungen, wie z.B. den Pfad "
+"zu deinen Mediendateien, "
+"und das Abstimmen vieler Aspekte der Gramps Darstellung an deine Bedürfnisse."
+" Jede einzelne Ansicht kann ferner konfiguriert werden unter &quot;Ansicht "
+"&gt; "
+"Ansicht konfigurieren...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
@@ -25371,7 +25400,6 @@ msgstr ""
 "Kontrollkästchen  Alle anzeigen ausschalten."
 
 #: ../src/data/tips.xml.in.h:47
-#, fuzzy
 msgid ""
 "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
 "original developer, Don Allingham, by his father. It stand for "
@@ -25380,9 +25408,10 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b></b><br/>Der Name Gramps wurde dem ursprünglichen Etwickler Don Allingham "
+"<b>Namen  sind  Schall  und  Rauch</b><br/>Der Name Gramps wurde dem "
+"ursprünglichen Entwickler Don Allingham "
 "von seinem Vater vorgeschlagen. Er bedeutet <i>Genealogical Research and "
-"Analysis Management Program System (auf Deutsch: Genealogisches Forschungs- "
+"Analysis Management Program System (auf Deutsch: Genealogisches Recherche"
 "und Analyse Management Programm System)</i> Es ist ein voll funktionales "
 "Ahnenforschungsprogramm um genealogische Daten abzulegen, zu bearbeiten und "
 "zu erforschen. Das Datenbankbackend von Gramps ist so robust, dass einige "
@@ -25518,7 +25547,7 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>Das Gramps XML Paket<b><br/>Du kannst deinen Stammbaum in ein Gramps XML "
+"<b>Das Gramps XML Paket</b><br/>Du kannst deinen Stammbaum in ein Gramps XML "
 "Paket exportieren. Dieses Paket ist eine komprimierte Datei, in der deine "
 "Stammbaumdaten und Mediendateien, wie z.B. Bilder, enthalten sind. Diese "
 "Datei ist komplett portabel und somit besonders für Backups oder den "
@@ -25546,7 +25575,7 @@ msgid ""
 "for a birth date in Gramps. Click the Date button next to the date field and "
 "see the Gramps Manual to learn more."
 msgstr ""
-"<b>Bist du dir bei einem Datum unsicher?</b> <br/>Wenn du dir bei einem "
+"<b>Bist du dir bei einem Datum unsicher?</b><br/>Wenn du dir bei einem "
 "vorkommenden Datum unsicher bist, erlaubt dir Gramps einen weiten Umfang an "
 "Daten, die auf einer Vermutung oder Einschätzung beruhen. Beispielsweise ist "
 "&quot;etwa 1908&quot; ein erlaubter Eintrag für ein Geburtsdatum in Gramps. "
@@ -25584,7 +25613,7 @@ msgstr ""
 "Untersuchung &gt; Einzelne Ereignisse vergleichen...&quot; kannst du die "
 "Daten von Personen in deiner Datenbank vergleichen. Das ist nützlich, z.B. "
 "wenn du wünschst, die Geburtsdaten von jedem aus deiner Datenbank "
-"aufzulisten. Du kannst zum eingrezen der Ergebnisse einen Anwenderfilter "
+"aufzulisten. Du kannst zum eingrenzen der Ergebnisse einen Anwenderfilter "
 "verwenden."
 
 #: ../src/data/tips.xml.in.h:63
