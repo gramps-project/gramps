@@ -19,11 +19,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: trunk\n"
+"Project-Id-Version: 3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-20 14:24+0100\n"
-"PO-Revision-Date: 2010-02-20 19:44+0100\n"
-"Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
+"POT-Creation-Date: 2010-02-25 09:56+0100\n"
+"PO-Revision-Date: 2010-02-25 10:02+0100\n"
+"Last-Translator: Jérôme Rapinat<romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +126,7 @@ msgstr "Édition des signets"
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
 #: ../src/gui/selectors/selectperson.py:74
-#: ../src/plugins/BookReport.py:731
+#: ../src/plugins/BookReport.py:732
 #: ../src/plugins/drawreport/TimeLine.py:67
 #: ../src/plugins/lib/libpersonview.py:89
 #: ../src/plugins/textreport/IndivComplete.py:552
@@ -182,7 +182,7 @@ msgstr "Nom"
 #: ../src/plugins/tool/Verify.py:479
 #: ../src/plugins/view/eventview.py:80
 #: ../src/plugins/view/familyview.py:73
-#: ../src/plugins/view/mediaview.py:88
+#: ../src/plugins/view/mediaview.py:89
 #: ../src/plugins/view/noteview.py:76
 #: ../src/plugins/view/relview.py:593
 #: ../src/plugins/view/repoview.py:82
@@ -207,11 +207,11 @@ msgid "ID"
 msgstr "Id"
 
 # trunk
-#: ../src/const.py:189
+#: ../src/const.py:194
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "Gramps (Genealogical Research et Analysis Management Programming System) est un logiciel de généalogie."
 
-#: ../src/const.py:210
+#: ../src/const.py:215
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "Michel Guitel\n"
@@ -221,8 +221,8 @@ msgstr ""
 "Frédéric Chateaux\n"
 "Jérôme Rapinat"
 
-#: ../src/const.py:220
-#: ../src/const.py:221
+#: ../src/const.py:225
+#: ../src/const.py:226
 #: ../src/gen/lib/date.py:1620
 #: ../src/gen/lib/date.py:1634
 msgid "none"
@@ -664,7 +664,7 @@ msgstr ""
 #: ../src/plugins/lib/libplaceview.py:172
 #: ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191
-#: ../src/plugins/view/mediaview.py:251
+#: ../src/plugins/view/mediaview.py:245
 #: ../src/plugins/view/noteview.py:209
 #: ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
@@ -690,111 +690,112 @@ msgstr ""
 msgid "Relationship loop detected:"
 msgstr "Relation en boucle détectée :"
 
+# trunk
 #: ../src/Relationship.py:927
-#, python-format
-msgid "Person %s connects to himself via %s"
+#, fuzzy, python-format
+msgid "Person %(person)s connects to himself via %(relation)s"
 msgstr "L'individu %s est connecté à lui-même via %s"
 
-#: ../src/Relationship.py:1193
+#: ../src/Relationship.py:1192
 msgid "undefined"
 msgstr "non défini(e)"
 
-#: ../src/Relationship.py:1669
+#: ../src/Relationship.py:1668
 #: ../src/plugins/import/ImportCsv.py:289
 msgid "husband"
 msgstr "le mari"
 
-#: ../src/Relationship.py:1671
+#: ../src/Relationship.py:1670
 #: ../src/plugins/import/ImportCsv.py:285
 msgid "wife"
 msgstr "la femme"
 
-#: ../src/Relationship.py:1673
+#: ../src/Relationship.py:1672
 msgid "gender unknown|spouse"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1676
+#: ../src/Relationship.py:1675
 msgid "ex-husband"
 msgstr "l'ancien époux"
 
-#: ../src/Relationship.py:1678
+#: ../src/Relationship.py:1677
 msgid "ex-wife"
 msgstr "l'ancienne épouse"
 
-#: ../src/Relationship.py:1680
+#: ../src/Relationship.py:1679
 msgid "gender unknown|ex-spouse"
 msgstr "l'ancien conjoint"
 
-#: ../src/Relationship.py:1683
+#: ../src/Relationship.py:1682
 msgid "unmarried|husband"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1685
+#: ../src/Relationship.py:1684
 msgid "unmarried|wife"
 msgstr "la conjointe"
 
-#: ../src/Relationship.py:1687
+#: ../src/Relationship.py:1686
 msgid "gender unknown,unmarried|spouse"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1690
+#: ../src/Relationship.py:1689
 msgid "unmarried|ex-husband"
 msgstr "l'ancient conjoint"
 
-#: ../src/Relationship.py:1692
+#: ../src/Relationship.py:1691
 msgid "unmarried|ex-wife"
 msgstr "l'ancienne conjointe"
 
-#: ../src/Relationship.py:1694
+#: ../src/Relationship.py:1693
 msgid "gender unknown,unmarried|ex-spouse"
 msgstr "l'ancienne conjointe"
 
-#: ../src/Relationship.py:1697
+#: ../src/Relationship.py:1696
 msgid "male,civil union|partner"
 msgstr "le compagnon"
 
-#: ../src/Relationship.py:1699
+#: ../src/Relationship.py:1698
 msgid "female,civil union|partner"
 msgstr "la compagne"
 
-#: ../src/Relationship.py:1701
+#: ../src/Relationship.py:1700
 msgid "gender unknown,civil union|partner"
 msgstr "le compagnon"
 
-#: ../src/Relationship.py:1704
+#: ../src/Relationship.py:1703
 msgid "male,civil union|former partner"
 msgstr "l'ancien compagnon"
 
-#: ../src/Relationship.py:1706
+#: ../src/Relationship.py:1705
 msgid "female,civil union|former partner"
 msgstr "l'ancienne compagne"
 
-#: ../src/Relationship.py:1708
+#: ../src/Relationship.py:1707
 msgid "gender unknown,civil union|former partner"
 msgstr "l'ancien compagnon"
 
-#: ../src/Relationship.py:1711
+#: ../src/Relationship.py:1710
 msgid "male,unknown relation|partner"
 msgstr "le concubin"
 
-#: ../src/Relationship.py:1713
+#: ../src/Relationship.py:1712
 msgid "female,unknown relation|partner"
 msgstr "la concubine"
 
-#: ../src/Relationship.py:1715
+#: ../src/Relationship.py:1714
 msgid "gender unknown,unknown relation|partner"
 msgstr "le concubin"
 
-#: ../src/Relationship.py:1720
+#: ../src/Relationship.py:1719
 msgid "male,unknown relation|former partner"
 msgstr "l'ancien concubin"
 
-#: ../src/Relationship.py:1722
+#: ../src/Relationship.py:1721
 msgid "female,unknown relation|former partner"
 msgstr "l'ancienne concubine"
 
 # Pour cette série de chaîne, doit-on reprendre le même format que l'originale, à savoir "genre inconnu, relation inconnue|ex-partenaire" ?
-#: ../src/Relationship.py:1724
+#: ../src/Relationship.py:1723
 msgid "gender unknown,unknown relation|former partner"
 msgstr "l'ancien concubin"
 
@@ -803,7 +804,7 @@ msgstr "l'ancien concubin"
 #: ../src/gui/selectors/selectfamily.py:62
 #: ../src/Merge/_MergePerson.py:164
 #: ../src/plugins/import/ImportCsv.py:216
-#: ../src/plugins/quickview/all_relations.py:300
+#: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:186
 #: ../src/plugins/textreport/FamilyGroup.py:197
 #: ../src/plugins/textreport/IndivComplete.py:302
@@ -823,7 +824,7 @@ msgstr "Père"
 #: ../src/gui/selectors/selectfamily.py:63
 #: ../src/Merge/_MergePerson.py:166
 #: ../src/plugins/import/ImportCsv.py:212
-#: ../src/plugins/quickview/all_relations.py:297
+#: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:203
 #: ../src/plugins/textreport/FamilyGroup.py:214
 #: ../src/plugins/textreport/IndivComplete.py:311
@@ -889,8 +890,8 @@ msgstr "Utilisation du presse-papiers"
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:155
 #: ../src/plugins/graph/GVRelGraph.py:547
-#: ../src/plugins/quickview/all_relations.py:277
-#: ../src/plugins/quickview/all_relations.py:294
+#: ../src/plugins/quickview/all_relations.py:278
+#: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473
 #: ../src/plugins/view/relview.py:438
@@ -932,7 +933,7 @@ msgstr "Adresse"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:54
 #: ../src/plugins/view/eventview.py:82
-#: ../src/plugins/view/mediaview.py:92
+#: ../src/plugins/view/mediaview.py:93
 #: ../src/plugins/webreport/NarrativeWeb.py:114
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
@@ -1056,8 +1057,8 @@ msgstr "Événement familial"
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76
 #: ../src/Merge/_MergePerson.py:183
-#: ../src/plugins/BookReport.py:732
-#: ../src/plugins/BookReport.py:736
+#: ../src/plugins/BookReport.py:733
+#: ../src/plugins/BookReport.py:737
 #: ../src/plugins/quickview/FilterByName.py:112
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
@@ -1068,7 +1069,7 @@ msgstr "Événement familial"
 #: ../src/plugins/tool/PatchNames.py:224
 #: ../src/plugins/tool/SortEvents.py:55
 #: ../src/plugins/view/eventview.py:81
-#: ../src/plugins/view/mediaview.py:89
+#: ../src/plugins/view/mediaview.py:90
 #: ../src/plugins/view/noteview.py:77
 #: ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
@@ -1127,7 +1128,7 @@ msgstr "URL"
 
 #: ../src/ScratchPad.py:391
 #: ../src/gui/editors/displaytabs/webembedlist.py:65
-#: ../src/plugins/view/mediaview.py:90
+#: ../src/plugins/view/mediaview.py:91
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 #: ../src/web/utils.py:366
 msgid "Path"
@@ -1184,7 +1185,7 @@ msgstr "Volume/Page: %(pag)s -- %(sourcetext)s"
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
 #: ../src/gui/widgets/grampletpane.py:1338
-#: ../src/plugins/view/mediaview.py:87
+#: ../src/plugins/view/mediaview.py:88
 #: ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
@@ -1263,7 +1264,7 @@ msgstr "Prénom"
 #: ../src/plugins/gramplet/SessionLogGramplet.py:70
 #: ../src/plugins/import/ImportCsv.py:209
 #: ../src/plugins/quickview/all_events.py:78
-#: ../src/plugins/quickview/all_relations.py:270
+#: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/FilterByName.py:132
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
@@ -1360,7 +1361,7 @@ msgstr "Lien d'individu"
 #: ../src/gen/lib/childreftype.py:74
 #: ../src/gen/lib/eventtype.py:146
 #: ../src/Merge/_MergePerson.py:133
-#: ../src/plugins/quickview/all_relations.py:270
+#: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:91
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
@@ -1780,7 +1781,7 @@ msgstr "Zoulou"
 #: ../src/Spell.py:311
 #: ../src/gen/lib/childreftype.py:73
 #: ../src/gui/configure.py:69
-#: ../src/plugins/tool/Check.py:1507
+#: ../src/plugins/tool/Check.py:1509
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:250
@@ -1893,7 +1894,7 @@ msgstr "Sources dans le dépôt"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
 #: ../src/plugins/tool/EventCmp.py:243
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/web/grampsdb/views.py:377
@@ -2026,6 +2027,7 @@ msgstr "inconnu"
 
 #: ../src/Utils.py:183
 #: ../src/Utils.py:203
+#: ../src/plugins/Records.py:213
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s et %(mother)s"
@@ -2241,7 +2243,7 @@ msgid "Original time"
 msgstr "Temps originel"
 
 #: ../src/UndoHistory.py:99
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
 msgid "Action"
 msgstr "Action"
 
@@ -3066,7 +3068,7 @@ msgstr "entre"
 #: ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449
 #: ../src/Simple/_SimpleTable.py:251
-#: ../src/plugins/quickview/all_relations.py:282
+#: ../src/plugins/quickview/all_relations.py:283
 #: ../src/plugins/view/relview.py:956
 msgid "and"
 msgstr "et"
@@ -3871,7 +3873,7 @@ msgstr "Format du nom"
 
 #: ../src/gui/configure.py:802
 #: ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:945
+#: ../src/plugins/BookReport.py:946
 #: ../src/PluginUtils/_PluginWindows.py:245
 #: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Edit"
@@ -4729,7 +4731,7 @@ msgstr "Public"
 #: ../src/plugins/quickview/FilterByName.py:182
 #: ../src/plugins/quickview/quickview.gpr.py:203
 #: ../src/plugins/quickview/References.py:85
-#: ../src/plugins/view/mediaview.py:121
+#: ../src/plugins/view/mediaview.py:122
 #: ../src/plugins/view/view.gpr.py:85
 #: ../src/plugins/webreport/NarrativeWeb.py:1010
 #: ../src/plugins/webreport/NarrativeWeb.py:1055
@@ -4755,7 +4757,7 @@ msgstr "Notes"
 #: ../src/gui/grampsgui.py:128
 #: ../src/Merge/_MergePerson.py:159
 #: ../src/plugins/gramplet/FanChartGramplet.py:835
-#: ../src/plugins/quickview/all_relations.py:305
+#: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:902
 #: ../src/plugins/view/pedigreeview.py:1476
@@ -4828,13 +4830,13 @@ msgid "List"
 msgstr "Liste"
 
 #: ../src/gui/grampsgui.py:142
-#: ../src/plugins/tool/CalculateEstimatedDates.py:216
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
-#: ../src/plugins/tool/CalculateEstimatedDates.py:385
-#: ../src/plugins/tool/CalculateEstimatedDates.py:399
-#: ../src/plugins/tool/CalculateEstimatedDates.py:404
-#: ../src/plugins/tool/CalculateEstimatedDates.py:409
-#: ../src/plugins/tool/CalculateEstimatedDates.py:420
+#: ../src/plugins/tool/CalculateEstimatedDates.py:217
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:386
+#: ../src/plugins/tool/CalculateEstimatedDates.py:400
+#: ../src/plugins/tool/CalculateEstimatedDates.py:405
+#: ../src/plugins/tool/CalculateEstimatedDates.py:410
+#: ../src/plugins/tool/CalculateEstimatedDates.py:421
 #: ../src/plugins/tool/ChangeNames.py:195
 #: ../src/plugins/tool/ExtractCity.py:538
 #: ../src/plugins/tool/PatchNames.py:218
@@ -4845,8 +4847,8 @@ msgstr "Sélectionner"
 #: ../src/gui/grampsgui.py:144
 #: ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
-#: ../src/gui/editors/displaytabs/gallerytab.py:132
-#: ../src/plugins/view/mediaview.py:243
+#: ../src/gui/editors/displaytabs/gallerytab.py:134
+#: ../src/plugins/view/mediaview.py:237
 msgid "View"
 msgstr "Afficher"
 
@@ -5125,7 +5127,7 @@ msgstr "Barre d'ou_tils"
 # chaîne utilisée dans la vue relation ???
 # trunk
 #: ../src/gui/viewmanager.py:507
-#: ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1095
 msgid "_Filter Sidebar"
 msgstr "Barre de _filtre"
 
@@ -5304,7 +5306,7 @@ msgid "Select an existing media object"
 msgstr "Sélectionner un objet media existant"
 
 #: ../src/gui/editors/objectentries.py:305
-#: ../src/plugins/view/mediaview.py:103
+#: ../src/plugins/view/mediaview.py:104
 msgid "Add a new media object"
 msgstr "Ajouter un nouveau media"
 
@@ -5521,7 +5523,7 @@ msgstr "Maternel"
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 #: ../src/web/utils.py:450
 msgid "Birth Date"
 msgstr "Date de naissance"
@@ -5531,7 +5533,7 @@ msgstr "Date de naissance"
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/lineage.py:91
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 msgid "Death Date"
 msgstr "Date de décès"
 
@@ -6260,7 +6262,7 @@ msgstr "Enlever"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
-#: ../src/gui/editors/displaytabs/gallerytab.py:122
+#: ../src/gui/editors/displaytabs/gallerytab.py:124
 #: ../src/plugins/view/relview.py:391
 msgid "Share"
 msgstr "Partager"
@@ -6406,22 +6408,22 @@ msgstr "%(groupname)s - %(groupnumber)d"
 msgid "Temple"
 msgstr "Temple"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:79
+#: ../src/gui/editors/displaytabs/gallerytab.py:81
 msgid "_Gallery"
 msgstr "_Galerie"
 
 # trunk
-#: ../src/gui/editors/displaytabs/gallerytab.py:140
-#: ../src/plugins/view/mediaview.py:247
+#: ../src/gui/editors/displaytabs/gallerytab.py:142
+#: ../src/plugins/view/mediaview.py:241
 msgid "Open Containing _Folder"
 msgstr "Ouvrir le répertoire de _stockage"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:248
+#: ../src/gui/editors/displaytabs/gallerytab.py:250
 msgid "Non existing media found in the Gallery"
 msgstr "Objet media inexistant trouvé dans la galerie"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:478
-#: ../src/plugins/view/mediaview.py:224
+#: ../src/gui/editors/displaytabs/gallerytab.py:481
+#: ../src/plugins/view/mediaview.py:218
 msgid "Drag Media Object"
 msgstr "Glisser un objet media"
 
@@ -6521,14 +6523,14 @@ msgstr "Définir comme nom par défaut"
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
 #: ../src/gui/views/listview.py:496
-#: ../src/plugins/quickview/all_relations.py:306
+#: ../src/plugins/quickview/all_relations.py:307
 #: ../src/PluginUtils/_GuiOptions.py:917
 msgid "Yes"
 msgstr "Oui"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/views/listview.py:497
-#: ../src/plugins/quickview/all_relations.py:310
+#: ../src/plugins/quickview/all_relations.py:311
 #: ../src/PluginUtils/_GuiOptions.py:916
 msgid "No"
 msgstr "Non"
@@ -7495,7 +7497,7 @@ msgid "Error Detail"
 msgstr "Détail de l'erreur"
 
 #: ../src/plugins/BookReport.py:145
-#: ../src/plugins/BookReport.py:182
+#: ../src/plugins/BookReport.py:183
 msgid "Not Applicable"
 msgstr "Inapplicable"
 
@@ -7509,57 +7511,57 @@ msgstr "père inconnu"
 msgid "unknown mother"
 msgstr "mère inconnue"
 
+# trunk
 #: ../src/plugins/BookReport.py:179
-#: ../src/PluginUtils/_GuiOptions.py:623
-#, python-format
-msgid "%s and %s (%s)"
-msgstr "%s et %s (%s)"
+#, fuzzy, python-format
+msgid "%(father)s and %(mother)s (%(id)s)"
+msgstr "%(father)s et %(mother)s [%(gramps_id)s]"
 
-#: ../src/plugins/BookReport.py:582
+#: ../src/plugins/BookReport.py:583
 msgid "Available Books"
 msgstr "Livres disponibles"
 
-#: ../src/plugins/BookReport.py:594
+#: ../src/plugins/BookReport.py:595
 msgid "Book List"
 msgstr "Liste de livre"
 
-#: ../src/plugins/BookReport.py:682
-#: ../src/plugins/BookReport.py:1116
-#: ../src/plugins/BookReport.py:1164
+#: ../src/plugins/BookReport.py:683
+#: ../src/plugins/BookReport.py:1117
+#: ../src/plugins/BookReport.py:1165
 #: ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Gestionnaire de livre"
 
-#: ../src/plugins/BookReport.py:720
+#: ../src/plugins/BookReport.py:721
 msgid "New Book"
 msgstr "Nouveau livre"
 
-#: ../src/plugins/BookReport.py:723
+#: ../src/plugins/BookReport.py:724
 msgid "_Available items"
 msgstr "_Articles disponibles"
 
-#: ../src/plugins/BookReport.py:727
+#: ../src/plugins/BookReport.py:728
 msgid "Current _book"
 msgstr "_Livre actuel"
 
-#: ../src/plugins/BookReport.py:735
+#: ../src/plugins/BookReport.py:736
 #: ../src/plugins/drawreport/StatisticsChart.py:293
 msgid "Item name"
 msgstr "Nom de l'article"
 
-#: ../src/plugins/BookReport.py:738
+#: ../src/plugins/BookReport.py:739
 msgid "Subject"
 msgstr "Sujet"
 
-#: ../src/plugins/BookReport.py:750
+#: ../src/plugins/BookReport.py:751
 msgid "Book selection list"
 msgstr "Liste de sélection du livre"
 
-#: ../src/plugins/BookReport.py:790
+#: ../src/plugins/BookReport.py:791
 msgid "Different database"
 msgstr "Les bases de données sont différentes"
 
-#: ../src/plugins/BookReport.py:791
+#: ../src/plugins/BookReport.py:792
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -7574,20 +7576,20 @@ msgstr ""
 "\n"
 "De ce fait, cet individu est devenu pour chaque article l'individu principal de la base en cours."
 
-#: ../src/plugins/BookReport.py:939
+#: ../src/plugins/BookReport.py:940
 msgid "Setup"
 msgstr "Configuration"
 
-#: ../src/plugins/BookReport.py:949
+#: ../src/plugins/BookReport.py:950
 msgid "Book Menu"
 msgstr "Menu du livre"
 
-#: ../src/plugins/BookReport.py:972
+#: ../src/plugins/BookReport.py:973
 msgid "Available Items Menu"
 msgstr "Menu des articles disponibles"
 
 # trunk
-#: ../src/plugins/BookReport.py:1167
+#: ../src/plugins/BookReport.py:1168
 msgid "Gramps Book"
 msgstr "Livre Gramps"
 
@@ -7612,12 +7614,6 @@ msgstr "Gramplet Enregistrements"
 #: ../src/plugins/Records.py:385
 msgid "Records"
 msgstr "Enregistrements"
-
-#: ../src/plugins/Records.py:213
-#: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, python-format
-msgid "%s and %s"
-msgstr "%s et %s"
 
 #: ../src/plugins/Records.py:326
 #: ../src/plugins/gramplet/WhatsNext.py:74
@@ -8747,7 +8743,7 @@ msgstr "Le style utilisé pour l'en-tête et les valeurs."
 #: ../src/plugins/textreport/KinshipReport.py:361
 #: ../src/plugins/textreport/MarkerReport.py:467
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
-#: ../src/plugins/textreport/SimpleBookTitle.py:153
+#: ../src/plugins/textreport/SimpleBookTitle.py:154
 #: ../src/plugins/textreport/Summary.py:264
 msgid "The style used for the title of the page."
 msgstr "Le style utilisé pour les titres de page."
@@ -9553,6 +9549,12 @@ msgstr "Édité(e)"
 msgid "Selected"
 msgstr "Sélectionné(e)"
 
+# trunk
+#: ../src/plugins/gramplet/SessionLogGramplet.py:84
+#, fuzzy, python-format
+msgid "%(mother)s and %(father)s"
+msgstr "%(father)s et %(mother)s"
+
 #: ../src/plugins/gramplet/StatsGramplet.py:55
 msgid "Double-click item to see matches"
 msgstr "Double cliquez sur l'item pour voir les résultats"
@@ -10007,7 +10009,7 @@ msgstr "L'emplacement de la miniature associée au nom"
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:256
 #: ../src/plugins/tool/CalculateEstimatedDates.py:72
-#: ../src/plugins/tool/CalculateEstimatedDates.py:184
+#: ../src/plugins/tool/CalculateEstimatedDates.py:185
 #: ../src/plugins/tool/SortEvents.py:82
 msgid "Options"
 msgstr "Options"
@@ -10411,9 +10413,10 @@ msgstr "lieu"
 msgid "%s could not be opened\n"
 msgstr "Gramps n'a pas pu ouvrir %s\n"
 
+# trunk
 #: ../src/plugins/import/ImportCsv.py:333
-#, python-format
-msgid "format error: file %s, line %d: %s"
+#, fuzzy, python-format
+msgid "format error: file %(fname)s, line %(line)d: %(zero)s"
 msgstr "erreur de format : fichier %s, ligne %d : %s"
 
 #: ../src/plugins/import/ImportCsv.py:384
@@ -10486,10 +10489,10 @@ msgstr "%s ouverture impossible"
 msgid "The Database version is not supported by this version of Gramps."
 msgstr "Cette version de la base de données n'est plus supportée par cette version de Gramps."
 
+# trunk
 #: ../src/plugins/import/ImportGrdb.py:2828
-#: ../src/plugins/import/ImportXml.py:1313
-#, python-format
-msgid "Your family tree groups name %s together with %s, did not change this grouping to %s"
+#, fuzzy, python-format
+msgid "Your family tree groups name %(key)s together with %(present)s, did not change this grouping to %(value)s"
 msgstr "Votre arbre familial groupe le nom %s avec %s, ne pas modifier ce regroupement par %s"
 
 #: ../src/plugins/import/ImportGrdb.py:2842
@@ -10522,37 +10525,40 @@ msgstr "Importer depuis Pro-Gen"
 msgid "Pro-Gen import"
 msgstr "Importation Pro-Gen"
 
+# trunk
 #: ../src/plugins/import/ImportProGen.py:691
-#, python-format
-msgid "date did not match: '%s' (%s)"
+#, fuzzy
+msgid "date did not match: '(text)%s' (%(msg)s)"
 msgstr "date n'a pas correspondu : '%s' (%s)"
 
 # Substantif (GNOME fr)
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:770
+#: ../src/plugins/import/ImportProGen.py:771
 msgid "Importing individuals"
 msgstr "Importation des individus"
 
 # Substantif (GNOME fr)
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1045
+#: ../src/plugins/import/ImportProGen.py:1046
 msgid "Importing families"
 msgstr "Importation des familles"
 
 # Substantif (GNOME fr)
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1230
+#: ../src/plugins/import/ImportProGen.py:1231
 msgid "Adding children"
 msgstr "Ajout des enfants"
 
-#: ../src/plugins/import/ImportProGen.py:1241
-#, python-format
-msgid "cannot find father for I%s (father=%d)"
+# trunk
+#: ../src/plugins/import/ImportProGen.py:1242
+#, fuzzy, python-format
+msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr "impossible de trouver le père de I%s (père=%d)"
 
-#: ../src/plugins/import/ImportProGen.py:1243
-#, python-format
-msgid "cannot find mother for I%s (mother=%d)"
+# trunk
+#: ../src/plugins/import/ImportProGen.py:1245
+#, fuzzy
+msgid "cannot find mother for I(person)%s (mother=%(mother)d)"
 msgstr "impossible de trouver la mère de I%s (mère=%d)"
 
 #: ../src/plugins/import/ImportVCard.py:146
@@ -10755,6 +10761,12 @@ msgstr "Importation XML Gramps"
 msgid "Witness name: %s"
 msgstr "Nom du témoin : %s"
 
+# trunk
+#: ../src/plugins/import/ImportXml.py:1313
+#, fuzzy, python-format
+msgid "Your family tree groups name %(key)s together with %(parent)s, did not change this grouping to %(value)s"
+msgstr "Votre arbre familial groupe le nom %s avec %s, ne pas modifier ce regroupement par %s"
+
 #: ../src/plugins/import/ImportXml.py:1917
 #, python-format
 msgid "Witness comment: %s"
@@ -10762,8 +10774,8 @@ msgstr "Commentaire du témoin : %s"
 
 # trunk
 #: ../src/plugins/import/ImportXml.py:2482
-#, python-format
-msgid "The .gramps file you are importing was made by version %s of Gramps, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
+#, fuzzy, python-format
+msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Le fichier .gramps que vous importez provient de la version %s de Gramps. alors que vous utilisez une ancienne version %s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
 
 # trunk
@@ -10853,9 +10865,10 @@ msgid "Line %d: empty note was ignored."
 msgstr "La ligne %d : la note vide a été ignorée."
 
 # à vérifier - contexte
+# trunk
 #: ../src/plugins/lib/libgedcom.py:5497
-#, python-format
-msgid "skipped %d subordinate(s) at line %d"
+#, fuzzy, python-format
+msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "A ignoré %d enregistrement(s) à la ligne %d"
 
 #: ../src/plugins/lib/libgedcom.py:5752
@@ -14270,7 +14283,7 @@ msgstr "Également une relation avec %(spouse)s%(endnotes)s."
 #: ../src/plugins/lib/libplaceview.py:99
 #: ../src/plugins/view/eventview.py:84
 #: ../src/plugins/view/familyview.py:78
-#: ../src/plugins/view/mediaview.py:91
+#: ../src/plugins/view/mediaview.py:92
 #: ../src/plugins/view/noteview.py:79
 #: ../src/plugins/view/repoview.py:93
 #: ../src/plugins/view/sourceview.py:81
@@ -14348,11 +14361,13 @@ msgid "Church Parish"
 msgstr "Paroisse"
 
 #: ../src/plugins/lib/libplaceview.py:97
+#: ../src/plugins/view/geoview.py:921
 #: ../src/plugins/webreport/NarrativeWeb.py:118
 msgid "Latitude"
 msgstr "Latitude"
 
 #: ../src/plugins/lib/libplaceview.py:98
+#: ../src/plugins/view/geoview.py:923
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Longitude"
 msgstr "Longitude"
@@ -14536,14 +14551,16 @@ msgstr " paroisse"
 msgid " state"
 msgstr " région/province"
 
+# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
-#, python-format
-msgid "Latitude not within %s to %s\n"
+#, fuzzy, python-format
+msgid "Latitude not within %(lat1)s to %(lat2)s\n"
 msgstr "Latitude non comprise entre %s et %s\n"
 
+# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
-#, python-format
-msgid "Longitude not within %s to %s"
+#, fuzzy, python-format
+msgid "Longitude not within %(long1)s to %(long2)s"
 msgstr "Longitude non comprise entre %s et %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
@@ -14615,39 +14632,40 @@ msgid "Sorted events of %s"
 msgstr "Événements triés pour %s"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:103
-#: ../src/plugins/quickview/all_events.py:114
+#: ../src/plugins/quickview/all_events.py:102
+#: ../src/plugins/quickview/all_events.py:113
 msgid "Event Type"
 msgstr "Type d'événement"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:104
-#: ../src/plugins/quickview/all_events.py:115
+#: ../src/plugins/quickview/all_events.py:103
+#: ../src/plugins/quickview/all_events.py:114
 msgid "Event Date"
 msgstr "Date de l'événement"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:104
-#: ../src/plugins/quickview/all_events.py:115
+#: ../src/plugins/quickview/all_events.py:103
+#: ../src/plugins/quickview/all_events.py:114
 msgid "Event Place"
 msgstr "Lieu de l'événement"
 
+# trunk
 #. display the results
 #: ../src/plugins/quickview/all_events.py:98
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Sorted events of family\n"
-" %s - %s"
+" %(father)s - %(mother)s"
 msgstr ""
 "Événements familiaux triés\n"
 " %s - %s"
 
-#: ../src/plugins/quickview/all_events.py:103
-#: ../src/plugins/quickview/all_events.py:114
+#: ../src/plugins/quickview/all_events.py:102
+#: ../src/plugins/quickview/all_events.py:113
 msgid "Family Member"
 msgstr "Membre de la famille"
 
-#: ../src/plugins/quickview/all_events.py:113
+#: ../src/plugins/quickview/all_events.py:112
 msgid "Personal events of the children"
 msgstr "Événements individuels des enfants"
 
@@ -14655,15 +14673,16 @@ msgstr "Événements individuels des enfants"
 msgid "Home person not set."
 msgstr "Individu actif non défini."
 
+# trunk
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:188
 #, python-format
-msgid "%s and %s are the same person."
-msgstr "%s et %s est le même individu."
+msgid "%(person)s and %(active_person)s are the same person."
+msgstr "%(person)s et %(active_person)s sont la même personne."
 
 # nota: article is translated in the relationship plugin rel_fr.py
 #: ../src/plugins/quickview/all_relations.py:89
-#: ../src/plugins/tool/RelCalc.py:196
+#: ../src/plugins/tool/RelCalc.py:197
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s est %(relationship)s de %(active_person)s."
@@ -14678,43 +14697,44 @@ msgstr "%(person)s et %(active_person)s ne sont pas en relation."
 msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr "%(person)s et %(active_person)s sont en relation par alliance :"
 
+# trunk
 #: ../src/plugins/quickview/all_relations.py:206
-#, python-format
-msgid "Relationships of %s to %s"
+#, fuzzy, python-format
+msgid "Relationships of %(person)s to %(active_person)s"
 msgstr "Relations de %s à %s"
 
-#: ../src/plugins/quickview/all_relations.py:266
+#: ../src/plugins/quickview/all_relations.py:267
 #, python-format
 msgid "Detailed path from %(person)s to common ancestor"
 msgstr "Chemin détaillé de %(person)s vers l'ascendant commun"
 
-#: ../src/plugins/quickview/all_relations.py:269
+#: ../src/plugins/quickview/all_relations.py:270
 msgid "Name Common ancestor"
 msgstr "Nom de l'ascendant commun"
 
-#: ../src/plugins/quickview/all_relations.py:270
+#: ../src/plugins/quickview/all_relations.py:271
 msgid "Parent"
 msgstr "Parent"
 
-#: ../src/plugins/quickview/all_relations.py:286
+#: ../src/plugins/quickview/all_relations.py:287
 #: ../src/plugins/view/relview.py:383
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Conjoint"
 
-#: ../src/plugins/quickview/all_relations.py:313
+#: ../src/plugins/quickview/all_relations.py:314
 msgid "Partial"
 msgstr "Partiel"
 
-#: ../src/plugins/quickview/all_relations.py:332
+#: ../src/plugins/quickview/all_relations.py:333
 msgid "Remarks with inlaw family"
 msgstr "Remarques pour la famille par alliance"
 
-#: ../src/plugins/quickview/all_relations.py:334
+#: ../src/plugins/quickview/all_relations.py:335
 msgid "Remarks"
 msgstr "Remarques"
 
-#: ../src/plugins/quickview/all_relations.py:336
+#: ../src/plugins/quickview/all_relations.py:337
 msgid "The following problems were encountered:"
 msgstr "Les problèmes suivants ont été rencontrés :"
 
@@ -16332,41 +16352,42 @@ msgstr "Sous-titre du livre"
 msgid "Subtitle string for the book."
 msgstr "Sous-titre du livre."
 
+# trunk
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
-#, python-format
-msgid "Copyright %d %s"
+#, fuzzy, python-format
+msgid "Copyright %(year)d %(name)s"
 msgstr "Droit d'auteur %d %s"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:131
+#: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer"
 msgstr "Pied de page"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:132
+#: ../src/plugins/textreport/SimpleBookTitle.py:133
 msgid "Footer string for the page."
 msgstr "Message au bas de la page."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:135
+#: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Image"
 msgstr "Image"
 
 # trunk
-#: ../src/plugins/textreport/SimpleBookTitle.py:136
+#: ../src/plugins/textreport/SimpleBookTitle.py:137
 msgid "Gramps ID of the media object to use as an image."
 msgstr "L'identifiant Gramps ID de l'objet media utilisé comme image."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:139
+#: ../src/plugins/textreport/SimpleBookTitle.py:140
 msgid "Image Size"
 msgstr "Taille de l'image"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:140
+#: ../src/plugins/textreport/SimpleBookTitle.py:141
 msgid "Size of the image in cm. A value of 0 indicates that the image should be fit to the page."
 msgstr "La taille de l'image en cm. Une valeur de 0 indique que l'image doit être à la taille de la page."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:163
+#: ../src/plugins/textreport/SimpleBookTitle.py:164
 msgid "The style used for the subtitle."
 msgstr "Le style utilisé pour les sous-titres."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:173
+#: ../src/plugins/textreport/SimpleBookTitle.py:174
 msgid "The style used for the footer."
 msgstr "Le style utilisé pour le pied de page."
 
@@ -16640,13 +16661,13 @@ msgid "Dates on events are either about or after/before"
 msgstr "Les dates des événements sont soit estimées soit avant/après "
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:161
-#: ../src/plugins/tool/CalculateEstimatedDates.py:178
+#: ../src/plugins/tool/CalculateEstimatedDates.py:162
+#: ../src/plugins/tool/CalculateEstimatedDates.py:179
 msgid "Help"
 msgstr "Aide"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:163
+#: ../src/plugins/tool/CalculateEstimatedDates.py:164
 msgid ""
 "The Calculate Estimated Dates Tool is used to add and remove birth and death events for people that are missing these events.\n"
 "\n"
@@ -16665,100 +16686,100 @@ msgstr ""
 "L'outil d'estimation des dates est utilisé pour ajouter et enlever des événements naissance et décès chez les individus pour lesquels ces événements manquent.\n"
 " "
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:181
+#: ../src/plugins/tool/CalculateEstimatedDates.py:182
 #: ../src/plugins/tool/tools.gpr.py:35
 msgid "Calculate Estimated Dates"
 msgstr "Calcul des dates estimées"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:190
+#: ../src/plugins/tool/CalculateEstimatedDates.py:191
 msgid "Select All"
 msgstr "Sélectionner tout"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:191
+#: ../src/plugins/tool/CalculateEstimatedDates.py:192
 msgid "Select None"
 msgstr "Ne rien sélectionner"
 
 # trunk
 # à vérifier dans le contexte
-#: ../src/plugins/tool/CalculateEstimatedDates.py:192
+#: ../src/plugins/tool/CalculateEstimatedDates.py:193
 msgid "Toggle Selection"
 msgstr "Sélection du levier"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:193
+#: ../src/plugins/tool/CalculateEstimatedDates.py:194
 msgid "Add Selected Events"
 msgstr "Ajouter les événements sélectionnés"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:199
+#: ../src/plugins/tool/CalculateEstimatedDates.py:200
 msgid "Remove Events, Notes, and Source and Reselect Data"
 msgstr "Enlever les événements, notes et sources et re-sélectionnez les données"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:200
+#: ../src/plugins/tool/CalculateEstimatedDates.py:201
 msgid "Are you sure you want to remove previous events, notes, and source and reselect data?"
 msgstr "Êtes-vous certain(e) de vouloir enlever les événements, notes et sources précédents et de vouloir re-sélectionner les données ?"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:201
+#: ../src/plugins/tool/CalculateEstimatedDates.py:202
 msgid "Remove and Run Select Again"
 msgstr "Enlève and relance la sélection"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:205
+#: ../src/plugins/tool/CalculateEstimatedDates.py:206
 msgid "Reselect Data"
 msgstr "Re-sélection des données"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:206
+#: ../src/plugins/tool/CalculateEstimatedDates.py:207
 msgid "Are you sure you want to reselect data?"
 msgstr "Êtes-vous certain(e) de vouloir re-sélectionner les données ?"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:207
+#: ../src/plugins/tool/CalculateEstimatedDates.py:208
 msgid "Run Select Again"
 msgstr "Re-sélectionnez une nouvelle fois"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
+#: ../src/plugins/tool/CalculateEstimatedDates.py:228
 msgid "Evidence"
 msgstr "Preuve"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
+#: ../src/plugins/tool/CalculateEstimatedDates.py:228
 msgid "Relative"
 msgstr "Parenté"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:228
+#: ../src/plugins/tool/CalculateEstimatedDates.py:229
 msgid "Processing...\n"
 msgstr "Traitement...\n"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:246
+#: ../src/plugins/tool/CalculateEstimatedDates.py:247
 msgid "Removing old estimations... "
 msgstr "Enlèvement des anciennes estimations..."
 
 # Substantif (GNOME fr)
 # enlever car utilisé pour un calcul
-#: ../src/plugins/tool/CalculateEstimatedDates.py:247
+#: ../src/plugins/tool/CalculateEstimatedDates.py:248
 #, python-format
 msgid "Removing '%s'..."
 msgstr "Enlève '%s'..."
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:301
+#: ../src/plugins/tool/CalculateEstimatedDates.py:302
 msgid "done!\n"
 msgstr "terminé !\n"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:302
+#: ../src/plugins/tool/CalculateEstimatedDates.py:303
 msgid "Removed date estimates"
 msgstr "Enlever les dates estimées"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:306
+#: ../src/plugins/tool/CalculateEstimatedDates.py:307
 msgid ""
 "Selecting... \n"
 "\n"
@@ -16767,92 +16788,92 @@ msgstr ""
 "\n"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:307
+#: ../src/plugins/tool/CalculateEstimatedDates.py:308
 msgid "Selecting..."
 msgstr "Sélection..."
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:342
+#: ../src/plugins/tool/CalculateEstimatedDates.py:343
 msgid "Add birth and death events"
 msgstr "Ajouter les événements naissance et décès"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:344
+#: ../src/plugins/tool/CalculateEstimatedDates.py:345
 msgid "Add birth event"
 msgstr "Ajouter l'événement naissance"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:346
+#: ../src/plugins/tool/CalculateEstimatedDates.py:347
 msgid "Add death event"
 msgstr "Ajouter l'événement décès"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:381
+#: ../src/plugins/tool/CalculateEstimatedDates.py:382
 msgid "No events to be added."
 msgstr "Ne pas ajouter d'événements."
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:423
+#: ../src/plugins/tool/CalculateEstimatedDates.py:424
 msgid "Selecting... "
 msgstr "Sélection..."
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:424
+#: ../src/plugins/tool/CalculateEstimatedDates.py:425
 #, python-format
 msgid "Adding events '%s'..."
 msgstr "Ajout d'événements '%s'..."
 
 # trunk
 # à revoir en contexte
-#: ../src/plugins/tool/CalculateEstimatedDates.py:446
-#, python-format
-msgid "Added birth event based on %s, from %s"
+#: ../src/plugins/tool/CalculateEstimatedDates.py:447
+#, fuzzy, python-format
+msgid "Added birth event based on %(evidence)s, from %(name)s"
 msgstr "Naissance ajoutée sur la base de %s, depuis %s"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:448
+#: ../src/plugins/tool/CalculateEstimatedDates.py:450
 #, python-format
 msgid "Added birth event based on %s"
 msgstr "Naissance basée sur %s ajoutée"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:450
+#: ../src/plugins/tool/CalculateEstimatedDates.py:452
 msgid "Estimated birth date"
 msgstr "Date de naissance estimée"
 
 # trunk
 # à revoir en contexte
-#: ../src/plugins/tool/CalculateEstimatedDates.py:461
-#, python-format
-msgid "Added death event based on %s, from %s"
+#: ../src/plugins/tool/CalculateEstimatedDates.py:463
+#, fuzzy, python-format
+msgid "Added death event based on %(evidence)s, from %(person)s"
 msgstr "Décès ajouté sur la base de %s, depuis %s"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:463
+#: ../src/plugins/tool/CalculateEstimatedDates.py:466
 #, python-format
 msgid "Added death event based on %s"
 msgstr "Décès basé sur %s ajouté"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:465
+#: ../src/plugins/tool/CalculateEstimatedDates.py:468
 msgid "Estimated death date"
 msgstr "Date de décès estimée"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:475
+#: ../src/plugins/tool/CalculateEstimatedDates.py:478
 msgid " Done! Committing..."
 msgstr " Terminé ! Changement..."
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:477
+#: ../src/plugins/tool/CalculateEstimatedDates.py:480
 msgid "Add date estimates"
 msgstr "Ajout des dates estimées"
 
 # trunk
-#: ../src/plugins/tool/CalculateEstimatedDates.py:480
+#: ../src/plugins/tool/CalculateEstimatedDates.py:483
 #, python-format
 msgid "Added %d events."
 msgstr "%d événements ajoutés."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:508
+#: ../src/plugins/tool/CalculateEstimatedDates.py:511
 msgid "Estimated date"
 msgstr "Date estimée"
 
@@ -17080,215 +17101,220 @@ msgstr "Aucune erreur trouvée"
 msgid "The database has passed internal checks"
 msgstr "Test de la base de données terminé"
 
-# ngettext
+# trunk
 #: ../src/plugins/tool/Check.py:1461
-#, python-format
-msgid "%d broken child/family link was fixed\n"
-msgid_plural "%d broken child-family links were found\n"
-msgstr[0] "%d lien enfant/famille a été réparé\n"
-msgstr[1] "%d liens enfant/famille ont été réparés\n"
+#, fuzzy, python-format
+msgid "%(quantity)d broken child/family link was fixed\n"
+msgid_plural "%(quantity)d broken child-family links were found\n"
+msgstr[0] "%(quantity)d lien conjoint/famille a été réparé\n"
+msgstr[1] "%(quantity)d liens conjoint/famille ont été réparés\n"
 
 #: ../src/plugins/tool/Check.py:1468
 msgid "Non existing child"
 msgstr "Enfant non existant"
 
+# trunk
 #: ../src/plugins/tool/Check.py:1475
-#, python-format
-msgid "%s was removed from the family of %s\n"
+#, fuzzy, python-format
+msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%s a été supprimé(e) de la famille de %s\n"
 
 # ngettext
-#: ../src/plugins/tool/Check.py:1478
+#: ../src/plugins/tool/Check.py:1479
 #, python-format
-msgid "%d broken spouse/family link was fixed\n"
-msgid_plural "%d broken spouse/family links were found\n"
-msgstr[0] "%d lien conjoint/famille a été réparé\n"
-msgstr[1] "%d liens conjoint/famille ont été réparés\n"
+msgid "%(quantity)d broken spouse/family link was fixed\n"
+msgid_plural "%(quantity)d broken spouse/family links were found\n"
+msgstr[0] "%(quantity)d lien conjoint/famille a été réparé\n"
+msgstr[1] "%(quantity)d liens conjoint/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1485
-#: ../src/plugins/tool/Check.py:1502
+#: ../src/plugins/tool/Check.py:1486
+#: ../src/plugins/tool/Check.py:1504
 msgid "Non existing person"
 msgstr "Individu non existant"
 
-#: ../src/plugins/tool/Check.py:1492
-#: ../src/plugins/tool/Check.py:1509
-#, python-format
-msgid "%s was restored to the family of %s\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1493
+#: ../src/plugins/tool/Check.py:1511
+#, fuzzy, python-format
+msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%s a été restitué(e) dans la famille de %s\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1495
-#, python-format
-msgid "%d duplicate spouse/family link was found\n"
-msgid_plural "%d duplicate spouse/family links were found\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1497
+#, fuzzy, python-format
+msgid "%(quantity)d duplicate spouse/family link was found\n"
+msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%d lien conjoint/famille a été réparé\n"
 msgstr[1] "%d liens conjoint/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1512
+#: ../src/plugins/tool/Check.py:1515
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
 msgstr "%d famille sans parent ni enfant a été trouvée et effacée.\n"
 
-#: ../src/plugins/tool/Check.py:1515
-#, python-format
-msgid "%d families with no parents or children, removed.\n"
-msgstr "%d familles sans parent ni enfant ont été trouvées et effacées.\n"
-
+# trunk
 #: ../src/plugins/tool/Check.py:1518
 #, python-format
-msgid "%d corrupted family relationship fixed\n"
-msgid_plural "%d corrupted family relationship fixed\n"
+msgid "%(quantity)d families with no parents or children, removed.\n"
+msgstr "%(quantity)d familles sans parent ni enfant ont été trouvées et effacées.\n"
+
+# trunk
+#: ../src/plugins/tool/Check.py:1522
+#, fuzzy, python-format
+msgid "%(quantity)d corrupted family relationship fixed\n"
+msgid_plural "%(quantity)d corrupted family relationship fixed\n"
 msgstr[0] "%d relation familiale corrompue a été corrigée\n"
 msgstr[1] "%d relations familiales corrompues ont été corrigées\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1522
-#, python-format
-msgid "%d person was referenced but not found\n"
-msgid_plural "%d persons were referenced, but not found\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1526
+#, fuzzy, python-format
+msgid "%(quantity)d person was referenced but not found\n"
+msgid_plural "%(quantity)d persons were referenced, but not found\n"
 msgstr[0] "%d individu a été référencé, mais non trouvé\n"
 msgstr[1] "%d individus ont été référencés, mais non trouvés\n"
 
-#: ../src/plugins/tool/Check.py:1526
-#, python-format
-msgid "%d date was corrected\n"
-msgid_plural "%d dates were corrected\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1531
+#, fuzzy, python-format
+msgid "%(quantity)d date was corrected\n"
+msgid_plural "%(quantity)d dates were corrected\n"
 msgstr[0] "%d date a été corrigée\n"
 msgstr[1] "%d dates ont été corrigées\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1530
-#, python-format
-msgid "%d repository was referenced but not found\n"
-msgid_plural "%d repositories were referenced, but not found\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1535
+#, fuzzy, python-format
+msgid "%(quantity)d repository was referenced but not found\n"
+msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] "%d dépôt a été référencé, mais non trouvé\n"
 msgstr[1] "%d dépôts ont été référencés, mais non trouvés\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1534
-#, python-format
-msgid "%d media object was referenced, but not found\n"
-msgid_plural "%d media objects were referenced, but not found\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1540
+#, fuzzy, python-format
+msgid "%(quantity)d media object was referenced, but not found\n"
+msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] "%d objet media a été référencé, mais non trouvé\n"
 msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1538
-#, python-format
-msgid "Reference to %d missing media object was kept\n"
-msgid_plural "References to %d media objects were kept\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1544
+#, fuzzy, python-format
+msgid "Reference to %(quantity)d missing media object was kept\n"
+msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Une référence à %d media manquant a été conservée\n"
 msgstr[1] "Les références à %d media manquants ont été conservées\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1542
-#, python-format
-msgid "%d missing media object was replaced\n"
-msgid_plural "%d missing media objects were replaced\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1549
+#, fuzzy, python-format
+msgid "%(quantity)d missing media object was replaced\n"
+msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%d media manquant a été remplacé\n"
 msgstr[1] "%d media manquants ont été remplacés\n"
 
-# ngettext
-# supprimer de la base de données
-#: ../src/plugins/tool/Check.py:1546
-#, python-format
-msgid "%d missing media object was removed\n"
-msgid_plural "%d missing media objects were removed\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1554
+#, fuzzy, python-format
+msgid "%(quantity)d missing media object was removed\n"
+msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%d media manquant a été supprimé\n"
 msgstr[1] "%d media manquants ont été supprimés\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1550
-#, python-format
-msgid "%d invalid event reference was removed\n"
-msgid_plural "%d invalid event references were removed\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1559
+#, fuzzy, python-format
+msgid "%(quantity)d invalid event reference was removed\n"
+msgid_plural "%(quantity)d invalid event references were removed\n"
 msgstr[0] "%d événement non référencé a été enlevé\n"
 msgstr[1] "%d événements non référencés ont été enlevés\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1554
-#, python-format
-msgid "%d invalid birth event name was fixed\n"
-msgid_plural "%d invalid birth event names were fixed\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1564
+#, fuzzy, python-format
+msgid "%(quantity)d invalid birth event name was fixed\n"
+msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%d naissance invalide a été réparée\n"
 msgstr[1] "%d naissances invalides ont été réparées\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1558
-#, python-format
-msgid "%d invalid death event name was fixed\n"
-msgid_plural "%d invalid death event names were fixed\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1569
+#, fuzzy, python-format
+msgid "%(quantity)d invalid death event name was fixed\n"
+msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%d décès invalide a été réparé\n"
 msgstr[1] "%d décès invalides ont été réparés\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1562
-#, python-format
-msgid "%d place was referenced but not found\n"
-msgid_plural "%d places were referenced, but not found\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1574
+#, fuzzy, python-format
+msgid "%(quantity)d place was referenced but not found\n"
+msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%d lieu a été référencé, mais non trouvé\n"
 msgstr[1] "%d lieux ont été référencés, mais non trouvés\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1566
-#, python-format
-msgid "%d source was referenced but not found\n"
-msgid_plural "%d sources were referenced, but not found\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1579
+#, fuzzy, python-format
+msgid "%(quantity)d source was referenced but not found\n"
+msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%d source a été référencée, mais non trouvée\n"
 msgstr[1] "%d sources ont été référencées, mais non trouvées\n"
 
 # ngettext
-#: ../src/plugins/tool/Check.py:1570
+#: ../src/plugins/tool/Check.py:1584
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
 msgstr[0] "%d objet media a été référencé, mais non trouvé\n"
 msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1574
-#, python-format
-msgid "%d note object was referenced but not found\n"
-msgid_plural "%d note objects were referenced but not found\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1588
+#, fuzzy, python-format
+msgid "%(quantity)d note object was referenced but not found\n"
+msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%d note a été référencée, mais non trouvée\n"
 msgstr[1] "%d notes ont été référencées, mais non trouvées\n"
 
-# ngettext
-#: ../src/plugins/tool/Check.py:1578
-#, python-format
-msgid "%d invalid name format reference was removed\n"
-msgid_plural "%d invalid name format references were removed\n"
+# trunk
+#: ../src/plugins/tool/Check.py:1593
+#, fuzzy, python-format
+msgid "%(quantity)d invalid name format reference was removed\n"
+msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%d référence à un format de nom invalide a été enlevée\n"
 msgstr[1] "%d références à un format de nom invalide ont été enlevées\n"
 
-#: ../src/plugins/tool/Check.py:1582
+# trunk
+#: ../src/plugins/tool/Check.py:1598
 #, python-format
 msgid ""
-"%d empty objects removed:\n"
-"   %d person objects\n"
-"   %d family objects\n"
-"   %d event objects\n"
-"   %d source objects\n"
-"   %d media objects\n"
-"   %d place objects\n"
-"   %d repository objects\n"
-"   %d note objects\n"
+"%(empty_obj)d empty objects removed:\n"
+"   %(person)d person objects\n"
+"   %(family)d family objects\n"
+"   %(event)d event objects\n"
+"   %(source)d source objects\n"
+"   %(media)d media objects\n"
+"   %(place)d place objects\n"
+"   %(repo)d repository objects\n"
+"   %(note)d note objects\n"
 msgstr ""
-"%d objets vides ont été enlevés :\n"
-"   %d individus\n"
-"   %d familles\n"
-"   %d événements\n"
-"   %d sources\n"
-"   %d objets media\n"
-"   %d lieux\n"
-"   %d dépôts\n"
-"   %d notes\n"
+"%(empty_obj)d objets vides ont été enlevés :\n"
+"   %(person)d individus\n"
+"   %(family)d familles\n"
+"   %(event)d événements\n"
+"   %(source)d sources\n"
+"   %(media)d objets media\n"
+"   %(place)d lieux\n"
+"   %(repo)d dépôts\n"
+"   %(note)d notes\n"
 
-#: ../src/plugins/tool/Check.py:1627
+#: ../src/plugins/tool/Check.py:1642
 msgid "Integrity Check Results"
 msgstr "Résultats de la vérification de l'intégrité"
 
-#: ../src/plugins/tool/Check.py:1632
+#: ../src/plugins/tool/Check.py:1647
 msgid "Check and Repair"
 msgstr "Vérifier et réparer"
 
@@ -17621,20 +17647,21 @@ msgstr "_Remplacer :"
 msgid "_With:"
 msgstr "_Par :"
 
+# trunk
 #: ../src/plugins/tool/MediaManager.py:454
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
-"Operation:\t%s\n"
-"Replace:\t\t%s\n"
-"With:\t\t%s"
+"Operation:\t%(title)s\n"
+"Replace:\t\t%(src_fname)s\n"
+"With:\t\t%(dest_fname)s"
 msgstr ""
 "L'action suivante doit être exécutée :\n"
 "\n"
-"Action :\t%s\n"
-"Remplacer :\t\t%s\n"
-"Par :\t\t%s"
+"Action :\t%(title)s\n"
+"Remplacer :\t\t%(source)s\n"
+"Par :\t\t%(dest_text)s"
 
 #: ../src/plugins/tool/MediaManager.py:491
 msgid "Convert paths from relative to _absolute"
@@ -17801,22 +17828,23 @@ msgstr "Vous devez activer un individu pour que cet outil fonctionne correctemen
 msgid "Relationship Calculator tool"
 msgstr "Calcul relationnel"
 
-#: ../src/plugins/tool/RelCalc.py:191
+#: ../src/plugins/tool/RelCalc.py:192
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "%(person)s et %(active_person)s ne sont pas en relation."
 
-#: ../src/plugins/tool/RelCalc.py:206
+#: ../src/plugins/tool/RelCalc.py:207
 #, python-format
 msgid "Their common ancestor is %s."
 msgstr "Leur ascendant commun est %s."
 
-#: ../src/plugins/tool/RelCalc.py:212
-#, python-format
-msgid "Their common ancestors are %s and %s."
+# trunk
+#: ../src/plugins/tool/RelCalc.py:213
+#, fuzzy, python-format
+msgid "Their common ancestors are %(acentor1)s and %(ancestor2)s."
 msgstr "Leurs ascendants communs sont %s et %s."
 
-#: ../src/plugins/tool/RelCalc.py:216
+#: ../src/plugins/tool/RelCalc.py:217
 msgid "Their common ancestors are: "
 msgstr "Leurs ascendants communs sont : "
 
@@ -18327,7 +18355,7 @@ msgstr "Nettoyer le champ d'entrée dans la sélection des lieux."
 # trunk
 #: ../src/plugins/view/geoview.py:349
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
-msgstr "Conserve la taille et les coordonnées pour la carte des lieux, la carte de l'individu, la carte de la famille et la carte des événements."
+msgstr "Conserve le zoom et les coordonnées pour la carte des lieux, la carte de l'individu, la carte de la famille et la carte des événements."
 
 # trunk
 #: ../src/plugins/view/geoview.py:354
@@ -18372,13 +18400,13 @@ msgstr "Vous pouvez ajuster la période à l'aide des deux valeurs suivantes."
 
 # trunk
 #: ../src/plugins/view/geoview.py:501
-msgid "The number of years before the first event date."
-msgstr "Le nombre d'années avant le premier événement daté."
+msgid "The number of years before the first event date"
+msgstr "Le nombre d'années avant le premier événement daté"
 
 # trunk
 #: ../src/plugins/view/geoview.py:505
-msgid "The number of years after the last event date."
-msgstr "Le nombre d'années après le dernier événement daté."
+msgid "The number of years after the last event date"
+msgstr "Le nombre d'années après le dernier événement daté"
 
 # trunk
 #: ../src/plugins/view/geoview.py:509
@@ -18411,7 +18439,7 @@ msgstr "Test de la connexion internet"
 
 # trunk
 #: ../src/plugins/view/geoview.py:550
-msgid "Time out for the network connection test "
+msgid "Time out for the network connection test"
 msgstr "Fin du test pour la connexion internet"
 
 # trunk
@@ -18450,190 +18478,195 @@ msgstr "années"
 
 # dans le sens la totalité des dates
 #: ../src/plugins/view/geoview.py:679
-#: ../src/plugins/view/geoview.py:999
+#: ../src/plugins/view/geoview.py:1002
 msgid "All"
 msgstr "L'ensemble"
 
 # trunk
-#: ../src/plugins/view/geoview.py:1046
-#: ../src/plugins/view/geoview.py:1056
+#: ../src/plugins/view/geoview.py:925
+msgid "Zoom"
+msgstr "Zoom"
+
+# trunk
+#: ../src/plugins/view/geoview.py:1049
+#: ../src/plugins/view/geoview.py:1059
 msgid "_Add Place"
 msgstr "_Ajouter un lieu"
 
 # trunk
-#: ../src/plugins/view/geoview.py:1048
-#: ../src/plugins/view/geoview.py:1058
+#: ../src/plugins/view/geoview.py:1051
+#: ../src/plugins/view/geoview.py:1061
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
 msgstr "Ajouter la localisation centrée sur la carte comme un nouveau lieu dans Gramps. Cliquez deux fois sur un emplacement pour le centrer dans la carte."
 
 # trunk
-#: ../src/plugins/view/geoview.py:1051
-#: ../src/plugins/view/geoview.py:1061
+#: ../src/plugins/view/geoview.py:1054
+#: ../src/plugins/view/geoview.py:1064
 msgid "_Link Place"
 msgstr "_Lier à un lieu"
 
 # trunk
-#: ../src/plugins/view/geoview.py:1053
-#: ../src/plugins/view/geoview.py:1063
+#: ../src/plugins/view/geoview.py:1056
+#: ../src/plugins/view/geoview.py:1066
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
 msgstr "Lier la localisation centrée sur la carte d'un lieu présent dans Gramps. Cliquez deux fois sur un emplacement pour le centrer dans la carte."
 
-#: ../src/plugins/view/geoview.py:1065
-#: ../src/plugins/view/geoview.py:1079
+#: ../src/plugins/view/geoview.py:1068
+#: ../src/plugins/view/geoview.py:1082
 msgid "_All Places"
 msgstr "_Les Lieux"
 
-#: ../src/plugins/view/geoview.py:1066
-#: ../src/plugins/view/geoview.py:1080
+#: ../src/plugins/view/geoview.py:1069
+#: ../src/plugins/view/geoview.py:1083
 msgid "Attempt to view all places in the family tree."
 msgstr "Tentative pour afficher les lieux de l'arbre familial."
 
-#: ../src/plugins/view/geoview.py:1068
-#: ../src/plugins/view/geoview.py:1082
+#: ../src/plugins/view/geoview.py:1071
+#: ../src/plugins/view/geoview.py:1085
 msgid "_Person"
 msgstr "_Individu"
 
-#: ../src/plugins/view/geoview.py:1070
-#: ../src/plugins/view/geoview.py:1084
+#: ../src/plugins/view/geoview.py:1073
+#: ../src/plugins/view/geoview.py:1087
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Tentative pour afficher les lieux correspondants aux individus sélectionnés."
 
-#: ../src/plugins/view/geoview.py:1072
-#: ../src/plugins/view/geoview.py:1086
+#: ../src/plugins/view/geoview.py:1075
+#: ../src/plugins/view/geoview.py:1089
 msgid "_Family"
 msgstr "_Famille"
 
-#: ../src/plugins/view/geoview.py:1074
-#: ../src/plugins/view/geoview.py:1088
+#: ../src/plugins/view/geoview.py:1077
+#: ../src/plugins/view/geoview.py:1091
 msgid "Attempt to view places of the selected people's family."
 msgstr "Tentative pour afficher les lieux familiaux de l'individu sélectionné."
 
-#: ../src/plugins/view/geoview.py:1075
-#: ../src/plugins/view/geoview.py:1089
+#: ../src/plugins/view/geoview.py:1078
+#: ../src/plugins/view/geoview.py:1092
 msgid "_Event"
 msgstr "Évén_ement"
 
-#: ../src/plugins/view/geoview.py:1077
-#: ../src/plugins/view/geoview.py:1091
+#: ../src/plugins/view/geoview.py:1080
+#: ../src/plugins/view/geoview.py:1094
 msgid "Attempt to view places connected to all events."
 msgstr "Tentative pour afficher les lieux liés aux événements."
 
-#: ../src/plugins/view/geoview.py:1285
+#: ../src/plugins/view/geoview.py:1288
 msgid "List of places without coordinates"
 msgstr "Liste des lieux sans coordonnées"
 
-#: ../src/plugins/view/geoview.py:1286
+#: ../src/plugins/view/geoview.py:1289
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Voici une liste des lieux de la base de données sans coordonnées.<br> C'est à dire sans longitude ou latitude.<p>"
 
 # trunk
-#: ../src/plugins/view/geoview.py:1289
+#: ../src/plugins/view/geoview.py:1292
 msgid "Back to prior page"
 msgstr "Retour à la page précédente"
 
 # trunk
-#: ../src/plugins/view/geoview.py:1532
+#: ../src/plugins/view/geoview.py:1535
 msgid "Places list"
 msgstr "Liste des lieux"
 
-#: ../src/plugins/view/geoview.py:1786
+#: ../src/plugins/view/geoview.py:1789
 msgid "No location."
 msgstr "Aucun emplacement."
 
-#: ../src/plugins/view/geoview.py:1789
+#: ../src/plugins/view/geoview.py:1792
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Vous n'avez pas de lieux avec coordonnées dans votre base de données."
 
-#: ../src/plugins/view/geoview.py:1792
+#: ../src/plugins/view/geoview.py:1795
 msgid "You are looking at the default map."
 msgstr "Vous regardez la carte par défaut."
 
-#: ../src/plugins/view/geoview.py:1819
+#: ../src/plugins/view/geoview.py:1822
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : lieu de naissance."
 
-#: ../src/plugins/view/geoview.py:1822
+#: ../src/plugins/view/geoview.py:1825
 msgid "birth place."
 msgstr "lieu de naissance."
 
-#: ../src/plugins/view/geoview.py:1857
+#: ../src/plugins/view/geoview.py:1860
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : lieu du décès."
 
-#: ../src/plugins/view/geoview.py:1860
+#: ../src/plugins/view/geoview.py:1863
 msgid "death place."
 msgstr "lieu du décès."
 
-#: ../src/plugins/view/geoview.py:1903
+#: ../src/plugins/view/geoview.py:1906
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:1920
+#: ../src/plugins/view/geoview.py:1923
 msgid "All places in the family tree with coordinates."
 msgstr "Les lieux de la base de données avec coordonnées."
 
-#: ../src/plugins/view/geoview.py:1997
+#: ../src/plugins/view/geoview.py:2000
 msgid "All events in the family tree with coordinates."
 msgstr "Les événements de cette base de données avec coordonnées."
 
 # trunk
-#: ../src/plugins/view/geoview.py:2022
+#: ../src/plugins/view/geoview.py:2025
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Père : %s : %s"
 
 # trunk
-#: ../src/plugins/view/geoview.py:2029
+#: ../src/plugins/view/geoview.py:2032
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Mère : %s : %s"
 
 # trunk
-#: ../src/plugins/view/geoview.py:2040
+#: ../src/plugins/view/geoview.py:2043
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Enfant : %(id)s %(index)d : %(name)s"
 
 # trunk
-#: ../src/plugins/view/geoview.py:2048
+#: ../src/plugins/view/geoview.py:2051
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id : Individu : %(id)s %(name)s n'a pas de famille."
 
-#: ../src/plugins/view/geoview.py:2054
+#: ../src/plugins/view/geoview.py:2057
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Les lieux de la famille de %(name)s avec coordonnées."
 
-#: ../src/plugins/view/geoview.py:2091
+#: ../src/plugins/view/geoview.py:2094
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 # trunk
-#: ../src/plugins/view/geoview.py:2110
+#: ../src/plugins/view/geoview.py:2113
 msgid "All event places for"
 msgstr "Localisation des événements pour"
 
 # trunk
-#: ../src/plugins/view/geoview.py:2119
+#: ../src/plugins/view/geoview.py:2122
 msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr "Impossible de centrer la carte. Aucun emplacement avec coordonnées. Les causes possibles sont : <ul><li>Le filtre utilisé ne trouve rien.</li><li>Soit la personne active n'a pas de lieux avec coordonnées.</li><li>Soit les membres de la famille de la personne active n'ont pas de lieux avec coordonnées.</li><li>Soit vous n'avez pas de lieux dans votre base.</li><li>Soit vous n'avez pas désigné de personne active.</li>"
 
-#: ../src/plugins/view/geoview.py:2137
+#: ../src/plugins/view/geoview.py:2140
 msgid "Not yet implemented ..."
 msgstr "Pas encore implémenté ..."
 
 # trunk
-#: ../src/plugins/view/geoview.py:2287
+#: ../src/plugins/view/geoview.py:2290
 msgid "Start page for the Geography View"
 msgstr "Première page pour la vue Géographie"
 
 # trunk
-#: ../src/plugins/view/geoview.py:2288
+#: ../src/plugins/view/geoview.py:2291
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr "Vous ne voyez pas de carte pour les raisons suivantes : <br><ol><li>Votre base de données est vide ou pas encore sélectionnée.</li><li>Vous n'avez pas encore sélectionné un individu.</li><li>Vous n'avez pas de lieu dans votre base de données.</li><li>Les lieux sélectionnés n'ont pas de coordonnés.</li></ol>"
 
@@ -18660,12 +18693,12 @@ msgstr "Lier à un lieu"
 # trunk
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
-msgstr "Résolution fixe"
+msgstr "Zoom fixe"
 
 # trunk
 #: ../src/plugins/view/geoview.gpr.py:65
 msgid "Free Zoom"
-msgstr "Résolution variable"
+msgstr "Zoom variable"
 
 # trunk
 #: ../src/plugins/view/geoview.gpr.py:66
@@ -18745,29 +18778,29 @@ msgstr ""
 "<br>\n"
 "Par exemple: <b>http://gramps-project.org</p>"
 
-#: ../src/plugins/view/mediaview.py:104
+#: ../src/plugins/view/mediaview.py:105
 msgid "Edit the selected media object"
 msgstr "Éditer l'objet media sélectionné"
 
 # objet sélectionné
-#: ../src/plugins/view/mediaview.py:105
+#: ../src/plugins/view/mediaview.py:106
 msgid "Delete the selected media object"
 msgstr "Supprimer l'objet media sélectionné"
 
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:235
 msgid "Media Filter Editor"
 msgstr "Éditeur de filtre sur l'objet media"
 
-#: ../src/plugins/view/mediaview.py:244
+#: ../src/plugins/view/mediaview.py:238
 msgid "View in the default viewer"
 msgstr "Afficher dans le lecteur par défaut"
 
 # trunk
-#: ../src/plugins/view/mediaview.py:248
+#: ../src/plugins/view/mediaview.py:242
 msgid "Open the folder containing the media file"
 msgstr "Ouvrir le répertoire qui contient le fichier"
 
-#: ../src/plugins/view/mediaview.py:296
+#: ../src/plugins/view/mediaview.py:290
 #: ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
@@ -20451,6 +20484,11 @@ msgstr "Sélectionner l'individu pour le rapport"
 #: ../src/PluginUtils/_GuiOptions.py:532
 msgid "Select a different family"
 msgstr "Sélectionner une famille différente"
+
+#: ../src/PluginUtils/_GuiOptions.py:623
+#, python-format
+msgid "%s and %s (%s)"
+msgstr "%s et %s (%s)"
 
 #: ../src/PluginUtils/_GuiOptions.py:912
 #, python-format
@@ -25233,4 +25271,9 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calenders. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
+
+#~ msgid "%s and %s"
+#~ msgstr "%s et %s"
+#~ msgid "%s and %s are the same person."
+#~ msgstr "%s et %s est le même individu."
 
