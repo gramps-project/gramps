@@ -158,6 +158,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
     def __init__(self, *args, **kwargs):
         PluginWindows.ToolManagedWindowBatch.__init__(self, *args, **kwargs)
+        if self.fail: return
         self.help_page = self.add_page(_("Help"))
         self.write_to_page(self.help_page, 
                            _("The Calculate Estimated Dates Tool is used to add and remove "
