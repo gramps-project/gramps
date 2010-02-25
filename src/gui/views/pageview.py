@@ -435,13 +435,14 @@ class PageView(DbGUIElement):
         if not self.__configure_content:
             self.__configure_content = self._get_configure_page_funcs()
         title = _("Configure %(cat)s - %(view)s") % \
-                        {'cat': self.get_category(), 'view': self.get_title()}
+                        {'cat': self.get_translated_category(), 
+                         'view': self.get_title()}
         try:
             ViewConfigureDialog(self.uistate, self.dbstate, 
                             self.__configure_content,
                             self, self._config, dialogtitle=title,
                             ident=_("%(cat)s - %(view)s") % 
-                                        {'cat': self.get_category(), 
+                                        {'cat': self.get_translated_category(),
                                          'view': self.get_title()})
         except Errors.WindowActiveError:
             return
