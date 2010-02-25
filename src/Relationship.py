@@ -923,9 +923,10 @@ class RelationshipCalculator(object):
                             rel1 == rel2[:len(rel1)]:
                         #loop, keep one message in storage!
                         self.__loopDetected = True
-                        self.__msg += [_("Relationship loop detected:") + \
-                            _("Person %(person)s connects to himself via %(relation)s") ] % {
-                            'person' : person.get_primary_name().get_name(), 'relation' : rel2[len(rel1):] }
+                        self.__msg += [_("Relationship loop detected:") + " " + 
+                                       _("Person %(person)s connects to himself via %(relation)s")  % 
+                                       {'person' : person.get_primary_name().get_name(), 
+                                        'relation' : rel2[len(rel1):] }]
                         return
         elif store:
             pmap[person.handle] = [[rel_str], [rel_fam]]
