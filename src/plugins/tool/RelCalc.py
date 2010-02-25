@@ -210,7 +210,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                 p2c = self.db.get_person_from_handle(common[1])
                 p1str = name_displayer.display(p1c)
                 p2str = name_displayer.display(p2c)
-                commontext = " " + _("Their common ancestors are %(acentor1)s and %(ancestor2)s.")
+                commontext = " " + _("Their common ancestors are %(ancestor1)s and %(ancestor2)s.")
                                     % { 'ancestor1' : p1str, 'ancestor2' : p2str }
             elif length > 2:
                 index = 0

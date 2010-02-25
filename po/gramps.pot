@@ -16951,7 +16951,7 @@ msgstr ""
 
 #: ../src/plugins/tool/RelCalc.py:213
 #, python-format
-msgid "Their common ancestors are %(acentor1)s and %(ancestor2)s."
+msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
 msgstr ""
 
 #: ../src/plugins/tool/RelCalc.py:217

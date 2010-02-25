@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-25 09:56+0100\n"
-"PO-Revision-Date: 2010-02-25 10:02+0100\n"
+"PO-Revision-Date: 2010-02-25 18:11+0100\n"
 "Last-Translator: Jérôme Rapinat<romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -692,9 +692,9 @@ msgstr "Relation en boucle détectée :"
 
 # trunk
 #: ../src/Relationship.py:927
-#, fuzzy, python-format
+#, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
-msgstr "L'individu %s est connecté à lui-même via %s"
+msgstr "L'individu %(person)s est connecté à lui-même via %(relation)s"
 
 #: ../src/Relationship.py:1192
 msgid "undefined"
@@ -7513,9 +7513,9 @@ msgstr "mère inconnue"
 
 # trunk
 #: ../src/plugins/BookReport.py:179
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
-msgstr "%(father)s et %(mother)s [%(gramps_id)s]"
+msgstr "%(father)s et %(mother)s (%(id)s)"
 
 #: ../src/plugins/BookReport.py:583
 msgid "Available Books"
@@ -9551,9 +9551,9 @@ msgstr "Sélectionné(e)"
 
 # trunk
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, fuzzy, python-format
+#, python-format
 msgid "%(mother)s and %(father)s"
-msgstr "%(father)s et %(mother)s"
+msgstr "%(mother)s et %(father)s"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:55
 msgid "Double-click item to see matches"
@@ -10415,9 +10415,9 @@ msgstr "Gramps n'a pas pu ouvrir %s\n"
 
 # trunk
 #: ../src/plugins/import/ImportCsv.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "format error: file %(fname)s, line %(line)d: %(zero)s"
-msgstr "erreur de format : fichier %s, ligne %d : %s"
+msgstr "erreur de format : fichier %(fname)s, ligne %(line)d : %(zero)s"
 
 #: ../src/plugins/import/ImportCsv.py:384
 msgid "CSV Import"
@@ -10491,9 +10491,9 @@ msgstr "Cette version de la base de données n'est plus supportée par cette ver
 
 # trunk
 #: ../src/plugins/import/ImportGrdb.py:2828
-#, fuzzy, python-format
+#, python-format
 msgid "Your family tree groups name %(key)s together with %(present)s, did not change this grouping to %(value)s"
-msgstr "Votre arbre familial groupe le nom %s avec %s, ne pas modifier ce regroupement par %s"
+msgstr "Votre arbre familial groupe le nom %(key)s avec %(present)s, ne pas modifier ce regroupement par %(value)s"
 
 #: ../src/plugins/import/ImportGrdb.py:2842
 msgid "Import database"
@@ -10527,9 +10527,8 @@ msgstr "Importation Pro-Gen"
 
 # trunk
 #: ../src/plugins/import/ImportProGen.py:691
-#, fuzzy
 msgid "date did not match: '(text)%s' (%(msg)s)"
-msgstr "date n'a pas correspondu : '%s' (%s)"
+msgstr "date n'a pas correspondu : '(text)%s' (%(msg)s)"
 
 # Substantif (GNOME fr)
 #. The records are numbered 1..N
@@ -10551,15 +10550,14 @@ msgstr "Ajout des enfants"
 
 # trunk
 #: ../src/plugins/import/ImportProGen.py:1242
-#, fuzzy, python-format
+#, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
-msgstr "impossible de trouver le père de I%s (père=%d)"
+msgstr "impossible de trouver le père de I%(person)s (father=%(id)d)"
 
 # trunk
 #: ../src/plugins/import/ImportProGen.py:1245
-#, fuzzy
 msgid "cannot find mother for I(person)%s (mother=%(mother)d)"
-msgstr "impossible de trouver la mère de I%s (mère=%d)"
+msgstr "impossible de trouver la mère de I(person)%s (mother=%(mother)d)"
 
 #: ../src/plugins/import/ImportVCard.py:146
 msgid "vCard import"
@@ -10763,9 +10761,9 @@ msgstr "Nom du témoin : %s"
 
 # trunk
 #: ../src/plugins/import/ImportXml.py:1313
-#, fuzzy, python-format
+#, python-format
 msgid "Your family tree groups name %(key)s together with %(parent)s, did not change this grouping to %(value)s"
-msgstr "Votre arbre familial groupe le nom %s avec %s, ne pas modifier ce regroupement par %s"
+msgstr "Votre arbre familial groupe le nom %(key)s avec %(parent)s, ne pas modifier ce regroupement par %(value)s"
 
 #: ../src/plugins/import/ImportXml.py:1917
 #, python-format
@@ -10774,9 +10772,9 @@ msgstr "Commentaire du témoin : %s"
 
 # trunk
 #: ../src/plugins/import/ImportXml.py:2482
-#, fuzzy, python-format
+#, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
-msgstr "Le fichier .gramps que vous importez provient de la version %s de Gramps. alors que vous utilisez une ancienne version %s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
+msgstr "Le fichier .gramps que vous importez provient de la version %(newer)s de Gramps. alors que vous utilisez une ancienne version %(older)s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
 
 # trunk
 #: ../src/plugins/import/ImportXml.py:2494
@@ -10867,9 +10865,9 @@ msgstr "La ligne %d : la note vide a été ignorée."
 # à vérifier - contexte
 # trunk
 #: ../src/plugins/lib/libgedcom.py:5497
-#, fuzzy, python-format
+#, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
-msgstr "A ignoré %d enregistrement(s) à la ligne %d"
+msgstr "A ignoré %(skip)d enregistrement(s) à la ligne %(line)d"
 
 #: ../src/plugins/lib/libgedcom.py:5752
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
@@ -14553,15 +14551,15 @@ msgstr " région/province"
 
 # trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Latitude not within %(lat1)s to %(lat2)s\n"
-msgstr "Latitude non comprise entre %s et %s\n"
+msgstr "Latitude non comprise entre %(lat1)s et %(lat2)s\n"
 
 # trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Longitude not within %(long1)s to %(long2)s"
-msgstr "Longitude non comprise entre %s et %s"
+msgstr "Longitude non comprise entre %(long1)s et %(long2)s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
 #: ../src/plugins/mapservices/eniroswedenmap.py:166
@@ -14652,13 +14650,13 @@ msgstr "Lieu de l'événement"
 # trunk
 #. display the results
 #: ../src/plugins/quickview/all_events.py:98
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Sorted events of family\n"
 " %(father)s - %(mother)s"
 msgstr ""
 "Événements familiaux triés\n"
-" %s - %s"
+" %(father)s - %(mother)s"
 
 #: ../src/plugins/quickview/all_events.py:102
 #: ../src/plugins/quickview/all_events.py:113
@@ -14699,9 +14697,9 @@ msgstr "%(person)s et %(active_person)s sont en relation par alliance :"
 
 # trunk
 #: ../src/plugins/quickview/all_relations.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "Relationships of %(person)s to %(active_person)s"
-msgstr "Relations de %s à %s"
+msgstr "Relations de %(person)s à %(active_person)s"
 
 #: ../src/plugins/quickview/all_relations.py:267
 #, python-format
@@ -16354,9 +16352,9 @@ msgstr "Sous-titre du livre."
 
 # trunk
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "Copyright %(year)d %(name)s"
-msgstr "Droit d'auteur %d %s"
+msgstr "Droit d'auteur %(year)d %(name)s"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer"
@@ -16826,9 +16824,9 @@ msgstr "Ajout d'événements '%s'..."
 # trunk
 # à revoir en contexte
 #: ../src/plugins/tool/CalculateEstimatedDates.py:447
-#, fuzzy, python-format
+#, python-format
 msgid "Added birth event based on %(evidence)s, from %(name)s"
-msgstr "Naissance ajoutée sur la base de %s, depuis %s"
+msgstr "Naissance ajoutée sur la base de %(evidence)s, depuis %(name)s"
 
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:450
@@ -16843,9 +16841,9 @@ msgstr "Date de naissance estimée"
 # trunk
 # à revoir en contexte
 #: ../src/plugins/tool/CalculateEstimatedDates.py:463
-#, fuzzy, python-format
+#, python-format
 msgid "Added death event based on %(evidence)s, from %(person)s"
-msgstr "Décès ajouté sur la base de %s, depuis %s"
+msgstr "Décès ajouté sur la base de %(evidence)s, depuis %(person)s"
 
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:466
@@ -17103,11 +17101,11 @@ msgstr "Test de la base de données terminé"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1461
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were found\n"
-msgstr[0] "%(quantity)d lien conjoint/famille a été réparé\n"
-msgstr[1] "%(quantity)d liens conjoint/famille ont été réparés\n"
+msgstr[0] "%(quantity)d lien enfant/famille a été réparé\n"
+msgstr[1] "%(quantity)d liens enfant/famille ont été réparés\n"
 
 #: ../src/plugins/tool/Check.py:1468
 msgid "Non existing child"
@@ -17115,9 +17113,9 @@ msgstr "Enfant non existant"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1475
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
-msgstr "%s a été supprimé(e) de la famille de %s\n"
+msgstr "%(person)s a été supprimé(e) de la famille de %(family)s\n"
 
 # ngettext
 #: ../src/plugins/tool/Check.py:1479
@@ -17135,17 +17133,17 @@ msgstr "Individu non existant"
 # trunk
 #: ../src/plugins/tool/Check.py:1493
 #: ../src/plugins/tool/Check.py:1511
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
-msgstr "%s a été restitué(e) dans la famille de %s\n"
+msgstr "%(person)s a été restitué(e) dans la famille de %(family)s\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1497
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
-msgstr[0] "%d lien conjoint/famille a été réparé\n"
-msgstr[1] "%d liens conjoint/famille ont été réparés\n"
+msgstr[0] "%(quantity)d lien conjoint/famille en double a été trouvé\n"
+msgstr[1] "%(quantity)d liens conjoint/famille en double ont été trouvés\n"
 
 #: ../src/plugins/tool/Check.py:1515
 #, python-format
@@ -17160,107 +17158,107 @@ msgstr "%(quantity)d familles sans parent ni enfant ont été trouvées et effac
 
 # trunk
 #: ../src/plugins/tool/Check.py:1522
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d corrupted family relationship fixed\n"
 msgid_plural "%(quantity)d corrupted family relationship fixed\n"
-msgstr[0] "%d relation familiale corrompue a été corrigée\n"
-msgstr[1] "%d relations familiales corrompues ont été corrigées\n"
+msgstr[0] "%(quantity)d relation familiale corrompue a été corrigée\n"
+msgstr[1] "%(quantity)d relations familiales corrompues ont été corrigées\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1526
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d person was referenced but not found\n"
 msgid_plural "%(quantity)d persons were referenced, but not found\n"
-msgstr[0] "%d individu a été référencé, mais non trouvé\n"
-msgstr[1] "%d individus ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d individu a été référencé, mais non trouvé\n"
+msgstr[1] "%(quantity)d individus ont été référencés, mais non trouvés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1531
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d date was corrected\n"
 msgid_plural "%(quantity)d dates were corrected\n"
-msgstr[0] "%d date a été corrigée\n"
-msgstr[1] "%d dates ont été corrigées\n"
+msgstr[0] "%(quantity)d date a été corrigée\n"
+msgstr[1] "%(quantity)d dates ont été corrigées\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1535
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
-msgstr[0] "%d dépôt a été référencé, mais non trouvé\n"
-msgstr[1] "%d dépôts ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d dépôt a été référencé, mais non trouvé\n"
+msgstr[1] "%(quantity)d dépôts ont été référencés, mais non trouvés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1540
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
-msgstr[0] "%d objet media a été référencé, mais non trouvé\n"
-msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d objet media a été référencé, mais non trouvé\n"
+msgstr[1] "%(quantity)d objets media ont été référencés, mais non trouvés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1544
-#, fuzzy, python-format
+#, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
-msgstr[0] "Une référence à %d media manquant a été conservée\n"
-msgstr[1] "Les références à %d media manquants ont été conservées\n"
+msgstr[0] "Une référence à %(quantity)d media manquant a été conservée\n"
+msgstr[1] "Les références à %(quantity)d media manquants ont été conservées\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1549
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
-msgstr[0] "%d media manquant a été remplacé\n"
-msgstr[1] "%d media manquants ont été remplacés\n"
+msgstr[0] "%(quantity)d media manquant a été remplacé\n"
+msgstr[1] "%(quantity)d media manquants ont été remplacés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1554
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
-msgstr[0] "%d media manquant a été supprimé\n"
-msgstr[1] "%d media manquants ont été supprimés\n"
+msgstr[0] "%(quantity)d media manquant a été supprimé\n"
+msgstr[1] "%(quantity)d media manquants ont été supprimés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1559
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
-msgstr[0] "%d événement non référencé a été enlevé\n"
-msgstr[1] "%d événements non référencés ont été enlevés\n"
+msgstr[0] "%(quantity)d événement non référencé a été enlevé\n"
+msgstr[1] "%(quantity)d événements non référencés ont été enlevés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1564
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
-msgstr[0] "%d naissance invalide a été réparée\n"
-msgstr[1] "%d naissances invalides ont été réparées\n"
+msgstr[0] "%(quantity)d naissance invalide a été réparée\n"
+msgstr[1] "%(quantity)d naissances invalides ont été réparées\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1569
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
-msgstr[0] "%d décès invalide a été réparé\n"
-msgstr[1] "%d décès invalides ont été réparés\n"
+msgstr[0] "%(quantity)d décès invalide a été réparé\n"
+msgstr[1] "%(quantity)d décès invalides ont été réparés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1574
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
-msgstr[0] "%d lieu a été référencé, mais non trouvé\n"
-msgstr[1] "%d lieux ont été référencés, mais non trouvés\n"
+msgstr[0] "%(quantity)d lieu a été référencé, mais non trouvé\n"
+msgstr[1] "%(quantity)d lieux ont été référencés, mais non trouvés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1579
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
-msgstr[0] "%d source a été référencée, mais non trouvée\n"
-msgstr[1] "%d sources ont été référencées, mais non trouvées\n"
+msgstr[0] "%(quantity)d source a été référencée, mais non trouvée\n"
+msgstr[1] "%(quantity)d sources ont été référencées, mais non trouvées\n"
 
 # ngettext
 #: ../src/plugins/tool/Check.py:1584
@@ -17272,19 +17270,19 @@ msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1588
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
-msgstr[0] "%d note a été référencée, mais non trouvée\n"
-msgstr[1] "%d notes ont été référencées, mais non trouvées\n"
+msgstr[0] "%(quantity)d note a été référencée, mais non trouvée\n"
+msgstr[1] "%(quantity)d notes ont été référencées, mais non trouvées\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1593
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
-msgstr[0] "%d référence à un format de nom invalide a été enlevée\n"
-msgstr[1] "%d références à un format de nom invalide ont été enlevées\n"
+msgstr[0] "%(quantity)d référence à un format de nom invalide a été enlevée\n"
+msgstr[1] "%(quantity)d références à un format de nom invalide ont été enlevées\n"
 
 # trunk
 #: ../src/plugins/tool/Check.py:1598
@@ -17649,7 +17647,7 @@ msgstr "_Par :"
 
 # trunk
 #: ../src/plugins/tool/MediaManager.py:454
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -17660,8 +17658,8 @@ msgstr ""
 "L'action suivante doit être exécutée :\n"
 "\n"
 "Action :\t%(title)s\n"
-"Remplacer :\t\t%(source)s\n"
-"Par :\t\t%(dest_text)s"
+"Remplacer :\t\t%(src_fname)s\n"
+"Par :\t\t%(dest_fname)s"
 
 #: ../src/plugins/tool/MediaManager.py:491
 msgid "Convert paths from relative to _absolute"
@@ -17840,9 +17838,9 @@ msgstr "Leur ascendant commun est %s."
 
 # trunk
 #: ../src/plugins/tool/RelCalc.py:213
-#, fuzzy, python-format
-msgid "Their common ancestors are %(acentor1)s and %(ancestor2)s."
-msgstr "Leurs ascendants communs sont %s et %s."
+#, python-format
+msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
+msgstr "Leurs ascendants communs sont %(ancestor1)s et %(ancestor2)s."
 
 #: ../src/plugins/tool/RelCalc.py:217
 msgid "Their common ancestors are: "
