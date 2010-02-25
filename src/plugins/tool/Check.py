@@ -1458,8 +1458,8 @@ class CheckIntegrity(object):
 
         self.text = cStringIO.StringIO()
         if blink > 0:
-            self.text.write(ngettext("%(quantity)d broken child/family link was fixed\n", \
-            "%(quantity)d broken child-family links were found\n", blink)) % ('quantity' : blink }
+            self.text.write(ngettext("%d broken child/family link was fixed\n", \
+            "%d broken child-family links were found\n", blink) % blink )
             for (person_handle, family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
