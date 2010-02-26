@@ -1,15 +1,15 @@
 # translation of GRAMPS to Croatian
 # Copyright (C) 2007 THE GRAMPS'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the GRAMPS package.
-# Josip <josip@pisoj.com>, 2008, 2009, 2010
+# Josip <josip@pisoj.com>, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-20 14:24+0100\n"
-"PO-Revision-Date: 2010-02-24 01:08+0100\n"
+"POT-Creation-Date: 2010-02-25 09:56+0100\n"
+"PO-Revision-Date: 2010-02-27 00:41+0100\n"
 "Last-Translator: Josip <josip@pisoj.com>\n"
-"Language-Team: \n"
+"Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Country: CROATIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: home/jole/svn/gramps/trunk/src\n"
+"X-Poedit-SearchPath-0: home/jole/svn/gramps/gramps32/src\n"
 
 #: ../src/Assistant.py:338
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
@@ -113,7 +113,7 @@ msgstr "Uredi knjižne oznake"
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
 #: ../src/gui/selectors/selectperson.py:74
-#: ../src/plugins/BookReport.py:731
+#: ../src/plugins/BookReport.py:732
 #: ../src/plugins/drawreport/TimeLine.py:67
 #: ../src/plugins/lib/libpersonview.py:89
 #: ../src/plugins/textreport/IndivComplete.py:552
@@ -169,7 +169,7 @@ msgstr "Ime"
 #: ../src/plugins/tool/Verify.py:479
 #: ../src/plugins/view/eventview.py:80
 #: ../src/plugins/view/familyview.py:73
-#: ../src/plugins/view/mediaview.py:88
+#: ../src/plugins/view/mediaview.py:89
 #: ../src/plugins/view/noteview.py:76
 #: ../src/plugins/view/relview.py:593
 #: ../src/plugins/view/repoview.py:82
@@ -193,17 +193,17 @@ msgstr "Ime"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:189
+#: ../src/const.py:194
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System (Rodoslovno istraživački i analitički upravljački programski sustav)) je osobni program za izradu rodoslovlja."
 
 # upisati imena prevodilaca
-#: ../src/const.py:210
+#: ../src/const.py:215
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Josip <josip@pisoj.com>"
 
-#: ../src/const.py:220
-#: ../src/const.py:221
+#: ../src/const.py:225
+#: ../src/const.py:226
 #: ../src/gen/lib/date.py:1620
 #: ../src/gen/lib/date.py:1634
 msgid "none"
@@ -265,31 +265,31 @@ msgstr "Nema aktivne osobe"
 
 #: ../src/DisplayState.py:319
 msgid "No active family"
-msgstr ""
+msgstr "Nema aktivne obitelji"
 
 #: ../src/DisplayState.py:320
 msgid "No active event"
-msgstr ""
+msgstr "Nema aktivnog događaja"
 
 #: ../src/DisplayState.py:321
 msgid "No active place"
-msgstr ""
+msgstr "Nema aktivnog mjesta"
 
 #: ../src/DisplayState.py:322
 msgid "No active source"
-msgstr ""
+msgstr "Nema aktivnog izbora"
 
 #: ../src/DisplayState.py:323
 msgid "No active repository"
-msgstr ""
+msgstr "Nema aktivnog spremišta"
 
 #: ../src/DisplayState.py:324
 msgid "No active media"
-msgstr ""
+msgstr "Nema aktivnog medija"
 
 #: ../src/DisplayState.py:325
 msgid "No active note"
-msgstr ""
+msgstr "Nema aktivne zabilješke"
 
 #. # end
 #. set up ManagedWindow
@@ -621,7 +621,7 @@ msgstr ""
 #: ../src/plugins/lib/libplaceview.py:172
 #: ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191
-#: ../src/plugins/view/mediaview.py:251
+#: ../src/plugins/view/mediaview.py:245
 #: ../src/plugins/view/noteview.py:209
 #: ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
@@ -649,108 +649,108 @@ msgstr "Otkrivena petlja u srodstvu:"
 
 #: ../src/Relationship.py:927
 #, python-format
-msgid "Person %s connects to himself via %s"
-msgstr "Osoba %s je poveza sama sa sobom preko %s"
+msgid "Person %(person)s connects to himself via %(relation)s"
+msgstr "Osoba %(person)s je poveza sama sa sobom preko %(relation)s"
 
-#: ../src/Relationship.py:1193
+#: ../src/Relationship.py:1192
 msgid "undefined"
 msgstr "nedefiniran"
 
-#: ../src/Relationship.py:1669
+#: ../src/Relationship.py:1668
 #: ../src/plugins/import/ImportCsv.py:289
 msgid "husband"
 msgstr "muž"
 
-#: ../src/Relationship.py:1671
+#: ../src/Relationship.py:1670
 #: ../src/plugins/import/ImportCsv.py:285
 msgid "wife"
 msgstr "žena"
 
-#: ../src/Relationship.py:1673
+#: ../src/Relationship.py:1672
 msgid "gender unknown|spouse"
 msgstr "supružnik"
 
-#: ../src/Relationship.py:1676
+#: ../src/Relationship.py:1675
 msgid "ex-husband"
 msgstr "bivši muž"
 
-#: ../src/Relationship.py:1678
+#: ../src/Relationship.py:1677
 msgid "ex-wife"
 msgstr "bivša žena"
 
-#: ../src/Relationship.py:1680
+#: ../src/Relationship.py:1679
 msgid "gender unknown|ex-spouse"
 msgstr "bivši supružnik"
 
-#: ../src/Relationship.py:1683
+#: ../src/Relationship.py:1682
 msgid "unmarried|husband"
 msgstr "nevjenčani muž"
 
-#: ../src/Relationship.py:1685
+#: ../src/Relationship.py:1684
 msgid "unmarried|wife"
 msgstr "nevjenčana žena"
 
-#: ../src/Relationship.py:1687
+#: ../src/Relationship.py:1686
 msgid "gender unknown,unmarried|spouse"
 msgstr "nevjenčani supružnik"
 
-#: ../src/Relationship.py:1690
+#: ../src/Relationship.py:1689
 msgid "unmarried|ex-husband"
 msgstr "bivši nevjenčani muž"
 
-#: ../src/Relationship.py:1692
+#: ../src/Relationship.py:1691
 msgid "unmarried|ex-wife"
 msgstr "bivša nevjenčana žena"
 
-#: ../src/Relationship.py:1694
+#: ../src/Relationship.py:1693
 msgid "gender unknown,unmarried|ex-spouse"
 msgstr "bivši nevjenčani supružnik"
 
-#: ../src/Relationship.py:1697
+#: ../src/Relationship.py:1696
 msgid "male,civil union|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:1699
+#: ../src/Relationship.py:1698
 msgid "female,civil union|partner"
 msgstr "partnerica"
 
-#: ../src/Relationship.py:1701
+#: ../src/Relationship.py:1700
 msgid "gender unknown,civil union|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:1704
+#: ../src/Relationship.py:1703
 msgid "male,civil union|former partner"
 msgstr "bivši partner"
 
-#: ../src/Relationship.py:1706
+#: ../src/Relationship.py:1705
 msgid "female,civil union|former partner"
 msgstr "bivša partnerica"
 
-#: ../src/Relationship.py:1708
+#: ../src/Relationship.py:1707
 msgid "gender unknown,civil union|former partner"
 msgstr "bivši partner"
 
-#: ../src/Relationship.py:1711
+#: ../src/Relationship.py:1710
 msgid "male,unknown relation|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:1713
+#: ../src/Relationship.py:1712
 msgid "female,unknown relation|partner"
 msgstr "partnerica"
 
-#: ../src/Relationship.py:1715
+#: ../src/Relationship.py:1714
 msgid "gender unknown,unknown relation|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:1720
+#: ../src/Relationship.py:1719
 msgid "male,unknown relation|former partner"
 msgstr "bivši partner"
 
-#: ../src/Relationship.py:1722
+#: ../src/Relationship.py:1721
 msgid "female,unknown relation|former partner"
 msgstr "bivša partnerica"
 
-#: ../src/Relationship.py:1724
+#: ../src/Relationship.py:1723
 msgid "gender unknown,unknown relation|former partner"
 msgstr "bivši partner"
 
@@ -759,7 +759,7 @@ msgstr "bivši partner"
 #: ../src/gui/selectors/selectfamily.py:62
 #: ../src/Merge/_MergePerson.py:164
 #: ../src/plugins/import/ImportCsv.py:216
-#: ../src/plugins/quickview/all_relations.py:300
+#: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:186
 #: ../src/plugins/textreport/FamilyGroup.py:197
 #: ../src/plugins/textreport/IndivComplete.py:302
@@ -779,7 +779,7 @@ msgstr "Otac"
 #: ../src/gui/selectors/selectfamily.py:63
 #: ../src/Merge/_MergePerson.py:166
 #: ../src/plugins/import/ImportCsv.py:212
-#: ../src/plugins/quickview/all_relations.py:297
+#: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:203
 #: ../src/plugins/textreport/FamilyGroup.py:214
 #: ../src/plugins/textreport/IndivComplete.py:311
@@ -844,8 +844,8 @@ msgstr "Korištenje odlagališta"
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:155
 #: ../src/plugins/graph/GVRelGraph.py:547
-#: ../src/plugins/quickview/all_relations.py:277
-#: ../src/plugins/quickview/all_relations.py:294
+#: ../src/plugins/quickview/all_relations.py:278
+#: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473
 #: ../src/plugins/view/relview.py:438
@@ -887,7 +887,7 @@ msgstr "Adresa"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:54
 #: ../src/plugins/view/eventview.py:82
-#: ../src/plugins/view/mediaview.py:92
+#: ../src/plugins/view/mediaview.py:93
 #: ../src/plugins/webreport/NarrativeWeb.py:114
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
@@ -1011,8 +1011,8 @@ msgstr "Obiteljski događaj"
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76
 #: ../src/Merge/_MergePerson.py:183
-#: ../src/plugins/BookReport.py:732
-#: ../src/plugins/BookReport.py:736
+#: ../src/plugins/BookReport.py:733
+#: ../src/plugins/BookReport.py:737
 #: ../src/plugins/quickview/FilterByName.py:112
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
@@ -1023,7 +1023,7 @@ msgstr "Obiteljski događaj"
 #: ../src/plugins/tool/PatchNames.py:224
 #: ../src/plugins/tool/SortEvents.py:55
 #: ../src/plugins/view/eventview.py:81
-#: ../src/plugins/view/mediaview.py:89
+#: ../src/plugins/view/mediaview.py:90
 #: ../src/plugins/view/noteview.py:77
 #: ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
@@ -1082,7 +1082,7 @@ msgstr "URL"
 
 #: ../src/ScratchPad.py:391
 #: ../src/gui/editors/displaytabs/webembedlist.py:65
-#: ../src/plugins/view/mediaview.py:90
+#: ../src/plugins/view/mediaview.py:91
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 #: ../src/web/utils.py:366
 msgid "Path"
@@ -1139,7 +1139,7 @@ msgstr "Knjiga/Stranica: %(pag)s -- %(sourcetext)s"
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
 #: ../src/gui/widgets/grampletpane.py:1338
-#: ../src/plugins/view/mediaview.py:87
+#: ../src/plugins/view/mediaview.py:88
 #: ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
@@ -1218,7 +1218,7 @@ msgstr "Ime"
 #: ../src/plugins/gramplet/SessionLogGramplet.py:70
 #: ../src/plugins/import/ImportCsv.py:209
 #: ../src/plugins/quickview/all_events.py:78
-#: ../src/plugins/quickview/all_relations.py:270
+#: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/FilterByName.py:132
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
@@ -1315,7 +1315,7 @@ msgstr "Link Osobe"
 #: ../src/gen/lib/childreftype.py:74
 #: ../src/gen/lib/eventtype.py:146
 #: ../src/Merge/_MergePerson.py:133
-#: ../src/plugins/quickview/all_relations.py:270
+#: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:91
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
@@ -1735,7 +1735,7 @@ msgstr "Zulu"
 #: ../src/Spell.py:311
 #: ../src/gen/lib/childreftype.py:73
 #: ../src/gui/configure.py:69
-#: ../src/plugins/tool/Check.py:1507
+#: ../src/plugins/tool/Check.py:1509
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:250
@@ -1845,7 +1845,7 @@ msgstr "Izvori u spremištu"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
 #: ../src/plugins/tool/EventCmp.py:243
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/web/grampsdb/views.py:377
@@ -1977,17 +1977,18 @@ msgstr "nepoznato"
 
 #: ../src/Utils.py:183
 #: ../src/Utils.py:203
+#: ../src/plugins/Records.py:213
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s i %(mother)s"
 
 #: ../src/Utils.py:470
 msgid "death-related evidence"
-msgstr ""
+msgstr "dokaz smrti"
 
 #: ../src/Utils.py:487
 msgid "birth-related evidence"
-msgstr ""
+msgstr "dokaz rođenja"
 
 #: ../src/Utils.py:492
 #: ../src/plugins/import/ImportCsv.py:263
@@ -2009,11 +2010,11 @@ msgstr "datum smrti braće ili sestara"
 
 #: ../src/Utils.py:552
 msgid "sibling birth-related date"
-msgstr ""
+msgstr "datum povezan s rođenjem braće ili sestara"
 
 #: ../src/Utils.py:563
 msgid "sibling death-related date"
-msgstr ""
+msgstr "datum povezan sa smrću braće ili sestara"
 
 #: ../src/Utils.py:576
 #: ../src/Utils.py:581
@@ -2022,7 +2023,7 @@ msgstr "supružnik, "
 
 #: ../src/Utils.py:599
 msgid "event with spouse"
-msgstr ""
+msgstr "događaj sa supružnikom"
 
 #: ../src/Utils.py:620
 msgid "descendent birth date"
@@ -2034,11 +2035,11 @@ msgstr "datum smrti potomaka"
 
 #: ../src/Utils.py:645
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "datum povezan s rođenjem potomka"
 
 #: ../src/Utils.py:653
 msgid "descendent death-related date"
-msgstr ""
+msgstr "datum povezan sa smrću potomka"
 
 #: ../src/Utils.py:666
 #, python-format
@@ -2058,17 +2059,17 @@ msgstr "datum smrti predaka"
 #: ../src/Utils.py:708
 #: ../src/Utils.py:754
 msgid "ancestor birth-related date"
-msgstr ""
+msgstr "datum povezan s rođenjem pretka"
 
 #: ../src/Utils.py:716
 #: ../src/Utils.py:762
 msgid "ancestor death-related date"
-msgstr ""
+msgstr "datum povezan sa smrću pretka"
 
 #. no evidence, must consider alive
 #: ../src/Utils.py:816
 msgid "no evidence"
-msgstr ""
+msgstr "nema dokaza"
 
 #: ../src/Utils.py:1096
 msgid "Person|TITLE"
@@ -2158,9 +2159,9 @@ msgstr "INICIJALI"
 
 #: ../src/Utils.py:1210
 #: ../src/Utils.py:1226
-#, fuzzy, python-format
+#, python-format
 msgid "%s, ..."
-msgstr ""
+msgstr "%s, ..."
 
 #: ../src/UndoHistory.py:63
 #: ../src/gui/grampsgui.py:156
@@ -2172,7 +2173,7 @@ msgid "Original time"
 msgstr "Originalno vrijeme"
 
 #: ../src/UndoHistory.py:99
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
 msgid "Action"
 msgstr "Akcija"
 
@@ -2208,7 +2209,7 @@ msgstr ""
 #: ../src/cli/arghandler.py:140
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "Greška: Nije pronađena datoteka za uvoz: %s"
 
 #: ../src/cli/arghandler.py:158
 #, python-format
@@ -2234,7 +2235,7 @@ msgstr "DA"
 #: ../src/cli/arghandler.py:181
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr ""
+msgstr "Prepisati će preko postojeće datoteke: %s"
 
 #: ../src/cli/arghandler.py:201
 #, python-format
@@ -2281,7 +2282,7 @@ msgstr ""
 #: ../src/cli/argparser.py:156
 #: ../src/cli/argparser.py:225
 msgid "Error parsing the arguments"
-msgstr ""
+msgstr "Greška pri obradi argumenata"
 
 #: ../src/cli/argparser.py:158
 #, python-format
@@ -2381,18 +2382,18 @@ msgstr "Obiteljsko stablo ne postoji, kao da je izbrisano."
 #: ../src/cli/grampscli.py:300
 #, python-format
 msgid "Error encountered: %s"
-msgstr ""
+msgstr "Greška: %s"
 
 #: ../src/cli/grampscli.py:301
 #: ../src/cli/grampscli.py:307
 #, python-format
 msgid "  Details: %s"
-msgstr ""
+msgstr "Opširno: %s"
 
 #: ../src/cli/grampscli.py:305
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr ""
+msgstr "Greška prilikom parsiranja: %s"
 
 #: ../src/gen/db/base.py:1437
 msgid "Add child to family"
@@ -2939,7 +2940,7 @@ msgstr "između"
 #: ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449
 #: ../src/Simple/_SimpleTable.py:251
-#: ../src/plugins/quickview/all_relations.py:282
+#: ../src/plugins/quickview/all_relations.py:283
 #: ../src/plugins/view/relview.py:956
 msgid "and"
 msgstr "i"
@@ -3341,12 +3342,12 @@ msgstr "Gramplet \"%s\" je pokrenut"
 #: ../src/gen/plug/_gramplet.py:307
 #, python-format
 msgid "Gramplet %s updated"
-msgstr ""
+msgstr "Nadograđen gramplet: %s"
 
 #: ../src/gen/plug/_gramplet.py:316
 #, python-format
 msgid "Gramplet %s caused an error"
-msgstr ""
+msgstr "Gramplet %s je izazvao grešku"
 
 #. -------------------------------------------------------------------------
 #.
@@ -3367,7 +3368,7 @@ msgstr "Nestabilno"
 
 #: ../src/gen/plug/_pluginreg.py:75
 msgid "Quickreport"
-msgstr ""
+msgstr "Brzo izvješće"
 
 #: ../src/gen/plug/_pluginreg.py:76
 msgid "Tool"
@@ -3383,11 +3384,11 @@ msgstr "Izvoznik"
 
 #: ../src/gen/plug/_pluginreg.py:79
 msgid "Doc creator"
-msgstr ""
+msgstr "Kreator dokumenata"
 
 #: ../src/gen/plug/_pluginreg.py:80
 msgid "Plugin lib"
-msgstr ""
+msgstr "Biblioteka dodataka"
 
 #: ../src/gen/plug/_pluginreg.py:81
 msgid "Map service"
@@ -3438,11 +3439,11 @@ msgstr ""
 
 #: ../src/gen/plug/docbackend/docbackend.py:140
 msgid "Close file first"
-msgstr ""
+msgstr "Zatvorite prvo datoteku"
 
 #: ../src/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
-msgstr ""
+msgstr "Nije dan naziv datoteke"
 
 #: ../src/gen/plug/docbackend/docbackend.py:152
 #, python-format
@@ -3700,7 +3701,7 @@ msgstr "Format imena"
 
 #: ../src/gui/configure.py:802
 #: ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:945
+#: ../src/plugins/BookReport.py:946
 #: ../src/PluginUtils/_PluginWindows.py:245
 #: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Edit"
@@ -4255,7 +4256,7 @@ msgstr "Odaberi %s iz liste"
 
 #: ../src/gui/filtereditor.py:349
 msgid "Give or select a source ID, leave empty to find objects with no source."
-msgstr ""
+msgstr "Upišite ili odaberite ID izvora, ostavite prazno za traženje objekta bez izvora."
 
 #: ../src/gui/filtereditor.py:470
 #: ../src/Filters/Rules/_HasEventBase.py:50
@@ -4528,7 +4529,7 @@ msgstr "Javno"
 #: ../src/plugins/quickview/FilterByName.py:182
 #: ../src/plugins/quickview/quickview.gpr.py:203
 #: ../src/plugins/quickview/References.py:85
-#: ../src/plugins/view/mediaview.py:121
+#: ../src/plugins/view/mediaview.py:122
 #: ../src/plugins/view/view.gpr.py:85
 #: ../src/plugins/webreport/NarrativeWeb.py:1010
 #: ../src/plugins/webreport/NarrativeWeb.py:1055
@@ -4554,7 +4555,7 @@ msgstr "Zabilješke"
 #: ../src/gui/grampsgui.py:128
 #: ../src/Merge/_MergePerson.py:159
 #: ../src/plugins/gramplet/FanChartGramplet.py:835
-#: ../src/plugins/quickview/all_relations.py:305
+#: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:902
 #: ../src/plugins/view/pedigreeview.py:1476
@@ -4618,20 +4619,20 @@ msgstr "Alati"
 
 #: ../src/gui/grampsgui.py:140
 msgid "Grouped List"
-msgstr ""
+msgstr "Poredani popis"
 
 #: ../src/gui/grampsgui.py:141
 msgid "List"
-msgstr ""
+msgstr "Popis"
 
 #: ../src/gui/grampsgui.py:142
-#: ../src/plugins/tool/CalculateEstimatedDates.py:216
-#: ../src/plugins/tool/CalculateEstimatedDates.py:225
-#: ../src/plugins/tool/CalculateEstimatedDates.py:385
-#: ../src/plugins/tool/CalculateEstimatedDates.py:399
-#: ../src/plugins/tool/CalculateEstimatedDates.py:404
-#: ../src/plugins/tool/CalculateEstimatedDates.py:409
-#: ../src/plugins/tool/CalculateEstimatedDates.py:420
+#: ../src/plugins/tool/CalculateEstimatedDates.py:217
+#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:386
+#: ../src/plugins/tool/CalculateEstimatedDates.py:400
+#: ../src/plugins/tool/CalculateEstimatedDates.py:405
+#: ../src/plugins/tool/CalculateEstimatedDates.py:410
+#: ../src/plugins/tool/CalculateEstimatedDates.py:421
 #: ../src/plugins/tool/ChangeNames.py:195
 #: ../src/plugins/tool/ExtractCity.py:538
 #: ../src/plugins/tool/PatchNames.py:218
@@ -4642,8 +4643,8 @@ msgstr "Odaberi"
 #: ../src/gui/grampsgui.py:144
 #: ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
-#: ../src/gui/editors/displaytabs/gallerytab.py:132
-#: ../src/plugins/view/mediaview.py:243
+#: ../src/gui/editors/displaytabs/gallerytab.py:134
+#: ../src/plugins/view/mediaview.py:237
 msgid "View"
 msgstr "Pogled"
 
@@ -4706,7 +4707,7 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:203
 msgid "Failed Loading View"
-msgstr ""
+msgstr "Neuspjelo učitavanje pogleda"
 
 #: ../src/gui/grampsgui.py:204
 #, python-format
@@ -4717,11 +4718,11 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:291
 msgid "Error parsing arguments"
-msgstr ""
+msgstr "Greška pri obradi opcija"
 
 #: ../src/gui/utils.py:187
 msgid "Cancelling..."
-msgstr ""
+msgstr "Otkazivanje..."
 
 #: ../src/gui/utils.py:263
 msgid "Please do not force closing this important dialog."
@@ -4887,11 +4888,11 @@ msgstr "_Knjižne oznake"
 
 #: ../src/gui/viewmanager.py:497
 msgid "_Configure View..."
-msgstr ""
+msgstr "_Podešavanje pogleda..."
 
 #: ../src/gui/viewmanager.py:498
 msgid "Configure the active view"
-msgstr ""
+msgstr "Podešavanje aktivnog pogleda"
 
 #: ../src/gui/viewmanager.py:503
 msgid "_Sidebar"
@@ -4902,7 +4903,7 @@ msgid "_Toolbar"
 msgstr "Ala_tna traka"
 
 #: ../src/gui/viewmanager.py:507
-#: ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1095
 msgid "_Filter Sidebar"
 msgstr "_Filtar u bočnom stupcu"
 
@@ -4982,7 +4983,7 @@ msgstr "Samo za čitanje"
 
 #: ../src/gui/viewmanager.py:1564
 msgid "Failed Loading Plugin"
-msgstr ""
+msgstr "Neuspjelo učitavanje dodatka"
 
 #: ../src/gui/viewmanager.py:1565
 msgid ""
@@ -5069,7 +5070,7 @@ msgid "Select an existing media object"
 msgstr "Odaberite postojeći medij"
 
 #: ../src/gui/editors/objectentries.py:305
-#: ../src/plugins/view/mediaview.py:103
+#: ../src/plugins/view/mediaview.py:104
 msgid "Add a new media object"
 msgstr "Dodaj novi medij"
 
@@ -5280,7 +5281,7 @@ msgstr "Majčin"
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 #: ../src/web/utils.py:450
 msgid "Birth Date"
 msgstr "Datum rođenja"
@@ -5290,7 +5291,7 @@ msgstr "Datum rođenja"
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/lineage.py:91
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 msgid "Death Date"
 msgstr "Datum smrti"
 
@@ -5997,7 +5998,7 @@ msgstr "Ukloniti"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
-#: ../src/gui/editors/displaytabs/gallerytab.py:122
+#: ../src/gui/editors/displaytabs/gallerytab.py:124
 #: ../src/plugins/view/relview.py:391
 msgid "Share"
 msgstr "Dijeliti"
@@ -6048,11 +6049,11 @@ msgstr "Obiteljski događaji"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:58
 msgid "Events father"
-msgstr ""
+msgstr "Otac događaja"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:59
 msgid "Events mother"
-msgstr ""
+msgstr "Majka događaja"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:62
 msgid "Add a new family event"
@@ -6131,21 +6132,21 @@ msgstr ""
 msgid "Temple"
 msgstr "Temple"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:79
+#: ../src/gui/editors/displaytabs/gallerytab.py:81
 msgid "_Gallery"
 msgstr "_Galerija"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:140
-#: ../src/plugins/view/mediaview.py:247
+#: ../src/gui/editors/displaytabs/gallerytab.py:142
+#: ../src/plugins/view/mediaview.py:241
 msgid "Open Containing _Folder"
-msgstr ""
+msgstr "Otvari mapu koja sadrži multimedijalnu datoteku"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:248
+#: ../src/gui/editors/displaytabs/gallerytab.py:250
 msgid "Non existing media found in the Gallery"
 msgstr "Pronađeni nepostojeći mediji u galeriji"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:478
-#: ../src/plugins/view/mediaview.py:224
+#: ../src/gui/editors/displaytabs/gallerytab.py:481
+#: ../src/plugins/view/mediaview.py:218
 msgid "Drag Media Object"
 msgstr "Povuci medij"
 
@@ -6240,14 +6241,14 @@ msgstr "Postaviti kao zadano ime"
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
 #: ../src/gui/views/listview.py:496
-#: ../src/plugins/quickview/all_relations.py:306
+#: ../src/plugins/quickview/all_relations.py:307
 #: ../src/PluginUtils/_GuiOptions.py:917
 msgid "Yes"
 msgstr "Da"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/views/listview.py:497
-#: ../src/plugins/quickview/all_relations.py:310
+#: ../src/plugins/quickview/all_relations.py:311
 #: ../src/PluginUtils/_GuiOptions.py:916
 msgid "No"
 msgstr "Ne"
@@ -6302,7 +6303,7 @@ msgstr "Osobni događaji"
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:49
 #, python-format
 msgid "With %(namepartner)s (%(famid)s)"
-msgstr ""
+msgstr "Sa %(namepartner)s (%(famid)s)"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:50
 msgid "<Unknown>"
@@ -6482,7 +6483,7 @@ msgstr "Odaberi događaj"
 #: ../src/gui/selectors/selectevent.py:64
 #: ../src/plugins/view/eventview.py:85
 msgid "Main Participants"
-msgstr ""
+msgstr "Glavni sudionici"
 
 #: ../src/gui/selectors/selectfamily.py:54
 msgid "Select Family"
@@ -6552,7 +6553,7 @@ msgstr "_Uredi..."
 
 #: ../src/gui/views/listview.py:414
 msgid "Active object not visible"
-msgstr ""
+msgstr "Aktivna objekt nije vidljiv"
 
 #: ../src/gui/views/listview.py:425
 #: ../src/gui/views/navigationview.py:243
@@ -6595,7 +6596,7 @@ msgstr "_Izbriši stavku"
 
 #: ../src/gui/views/listview.py:561
 msgid "Column clicked, sorting..."
-msgstr ""
+msgstr "Stupac odabran, sortiranje..."
 
 #: ../src/gui/views/listview.py:869
 msgid "Export View as Spreadsheet"
@@ -6685,31 +6686,29 @@ msgstr "Greška: %s nije valjan GRAMPS ID"
 #: ../src/gui/views/pageview.py:437
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr ""
+msgstr "Postavke %(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:443
 #, python-format
 msgid "%(cat)s - %(view)s"
-msgstr ""
+msgstr "%(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:471
 #, python-format
 msgid "Configure %s View"
-msgstr ""
+msgstr "Podešavanje pogleda: %s"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Countries>"
 msgstr "<Države>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<States>"
-msgstr "Pokrajina/Država"
+msgstr "<Države/pokrajine>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<Counties>"
-msgstr "Nastavi"
+msgstr "<Županije>"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Places>"
@@ -6736,9 +6735,8 @@ msgid "Building People View"
 msgstr "Stvaranje pogleda Osobe"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:508
-#, fuzzy
 msgid "Obtaining all people"
-msgstr "sve osobe"
+msgstr "Prikupljanje svih osoba"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:523
 msgid "Applying filter"
@@ -6746,7 +6744,7 @@ msgstr "Primjena filtra"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:532
 msgid "Constructing column data"
-msgstr ""
+msgstr "Popuna podataka u stupcima"
 
 #: ../src/gui/widgets/buttons.py:148
 msgid "Record is private"
@@ -6782,30 +6780,26 @@ msgid "Number of Columns"
 msgstr "Broj stupaca"
 
 #: ../src/gui/widgets/grampletpane.py:1308
-#, fuzzy
 msgid "Gramplet Layout"
-msgstr "GraphViz smještaj"
+msgstr "Raspored grampleta"
 
 #: ../src/gui/widgets/grampletpane.py:1345
 msgid "Use maximum height available"
-msgstr ""
+msgstr "Koristi najveću dostupnu visinu"
 
 #: ../src/gui/widgets/grampletpane.py:1351
 msgid "Height if not maximized"
 msgstr ""
 
 #: ../src/gui/widgets/grampletpane.py:1358
-#, fuzzy
 msgid "Detached width"
-msgstr "Širina pravokutnika"
+msgstr "Širina odvojenog elementa"
 
 #: ../src/gui/widgets/grampletpane.py:1365
-#, fuzzy
 msgid "Detached height"
-msgstr "Visina pravokutnika"
+msgstr "Visina odvojenog elementa"
 
 #: ../src/gui/widgets/labels.py:109
-#, fuzzy
 msgid ""
 "Click to make this person active\n"
 "Right click to display the edit menu\n"
@@ -6889,9 +6883,9 @@ msgstr "Ovo polje je obavezno"
 
 #. used on AgeOnDateGramplet
 #: ../src/gui/widgets/validatedmaskedentry.py:1693
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is not a valid date value"
-msgstr "'%s' nije valjana vrijednost za ovo polje"
+msgstr "'%s' nije ispravni datum"
 
 #: ../src/Simple/_SimpleTable.py:250
 msgid "Unknown father"
@@ -6923,7 +6917,6 @@ msgid "Private Record"
 msgstr "Zaštićeni podaci"
 
 #: ../src/Merge/_MergePerson.py:53
-#, fuzzy
 msgid "manual|Merge_People"
 msgstr "Spoji osobe"
 
@@ -6996,7 +6989,6 @@ msgid "Merge People"
 msgstr "Spoji Osobe"
 
 #: ../src/Merge/_MergePlace.py:55
-#, fuzzy
 msgid "manual|Merge_Places"
 msgstr "Spoji mjesta"
 
@@ -7007,7 +6999,6 @@ msgid "Merge Places"
 msgstr "Spoji Mjesta"
 
 #: ../src/Merge/_MergeSource.py:53
-#, fuzzy
 msgid "manual|Merge_Sources"
 msgstr "Spoji _izvore"
 
@@ -7051,7 +7042,6 @@ msgid "Report a bug: Step 5 of 5"
 msgstr "Prijava greške: Korak 5 od 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:53
-#, fuzzy
 msgid "Gramps is an Open Source project. Its success depends on its users. User feedback is important. Thank you for taking the time to submit a bug report."
 msgstr "GRAMPS je projekt otvorenog koda. Njegov uspjeh ovisi o njegovim korisnicima. Povratna informacija od korisnika je važna. Zahvaljujemo vam što ste odvojili vrijeme za prijavu izvješća o greški."
 
@@ -7132,7 +7122,6 @@ msgid "This is the final step. Use the buttons on this page to start a web brows
 msgstr "Ovo je završni korak. Koristite gumbe na ovoj stranici za pokretanje internet preglednika i prijavu greške na GRAMPS sustav za praćenje pogrešaka."
 
 #: ../src/GrampsLogger/_ErrorView.py:24
-#, fuzzy
 msgid "manual|General"
 msgstr "Općenito"
 
@@ -7141,14 +7130,12 @@ msgid "Error Report"
 msgstr "Izvješće o greški"
 
 #: ../src/GrampsLogger/_ErrorView.py:73
-#, fuzzy
 msgid "Gramps has experienced an unexpected error"
 msgstr "GRAMPS je doživio neočekivanu pogrešku"
 
 #: ../src/GrampsLogger/_ErrorView.py:82
-#, fuzzy
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "Vaši podaci su sigurni ali je preporučljivo ponovno pokretanje GRAMPS-a"
+msgstr "Vaši podaci su sigurni ali je preporučljivo ponovno pokretanje GRAMPS-a. Ako želite prijaviti problem GRAMPS timu pritisnite gumb Prijavak greške i Pomoćnik za prijavu greški će vam pomoći podnesti prijavu."
 
 #: ../src/GrampsLogger/_ErrorView.py:91
 #: ../src/GrampsLogger/_ErrorView.py:104
@@ -7156,7 +7143,7 @@ msgid "Error Detail"
 msgstr "Pojedinosti o greški"
 
 #: ../src/plugins/BookReport.py:145
-#: ../src/plugins/BookReport.py:182
+#: ../src/plugins/BookReport.py:183
 msgid "Not Applicable"
 msgstr "Nije primjenljivo"
 
@@ -7171,56 +7158,55 @@ msgid "unknown mother"
 msgstr "nepoznata majka"
 
 #: ../src/plugins/BookReport.py:179
-#: ../src/PluginUtils/_GuiOptions.py:623
 #, python-format
-msgid "%s and %s (%s)"
-msgstr "%s i %s (%s)"
+msgid "%(father)s and %(mother)s (%(id)s)"
+msgstr "%(father)s i %(mother)s (%(id)s)"
 
-#: ../src/plugins/BookReport.py:582
+#: ../src/plugins/BookReport.py:583
 msgid "Available Books"
 msgstr "Dostupne knjige"
 
-#: ../src/plugins/BookReport.py:594
+#: ../src/plugins/BookReport.py:595
 msgid "Book List"
 msgstr "Lista knjiga"
 
-#: ../src/plugins/BookReport.py:682
-#: ../src/plugins/BookReport.py:1116
-#: ../src/plugins/BookReport.py:1164
+#: ../src/plugins/BookReport.py:683
+#: ../src/plugins/BookReport.py:1117
+#: ../src/plugins/BookReport.py:1165
 #: ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Knjižno izvješće"
 
-#: ../src/plugins/BookReport.py:720
+#: ../src/plugins/BookReport.py:721
 msgid "New Book"
 msgstr "Nova knjiga"
 
-#: ../src/plugins/BookReport.py:723
+#: ../src/plugins/BookReport.py:724
 msgid "_Available items"
 msgstr "Dostupne st_avke"
 
-#: ../src/plugins/BookReport.py:727
+#: ../src/plugins/BookReport.py:728
 msgid "Current _book"
 msgstr "Trenutna knjiga"
 
-#: ../src/plugins/BookReport.py:735
+#: ../src/plugins/BookReport.py:736
 #: ../src/plugins/drawreport/StatisticsChart.py:293
 msgid "Item name"
 msgstr "Naziv stavke"
 
-#: ../src/plugins/BookReport.py:738
+#: ../src/plugins/BookReport.py:739
 msgid "Subject"
 msgstr "Stavka"
 
-#: ../src/plugins/BookReport.py:750
+#: ../src/plugins/BookReport.py:751
 msgid "Book selection list"
 msgstr "Lista izbora knjiga"
 
-#: ../src/plugins/BookReport.py:790
+#: ../src/plugins/BookReport.py:791
 msgid "Different database"
 msgstr "Druga baza"
 
-#: ../src/plugins/BookReport.py:791
+#: ../src/plugins/BookReport.py:792
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -7235,22 +7221,21 @@ msgstr ""
 "\n"
 "Zbog toga će središnja osoba u svakoj stavci (odlomku) biti postavljena na aktivnu osobu trenutno otvorene baze."
 
-#: ../src/plugins/BookReport.py:939
+#: ../src/plugins/BookReport.py:940
 msgid "Setup"
 msgstr "Postavke"
 
-#: ../src/plugins/BookReport.py:949
+#: ../src/plugins/BookReport.py:950
 msgid "Book Menu"
 msgstr "Izbornik: Knjiga"
 
-#: ../src/plugins/BookReport.py:972
+#: ../src/plugins/BookReport.py:973
 msgid "Available Items Menu"
 msgstr "Dostupne stavke izbornika"
 
-#: ../src/plugins/BookReport.py:1167
-#, fuzzy
+#: ../src/plugins/BookReport.py:1168
 msgid "Gramps Book"
-msgstr "GRAMPS ID"
+msgstr "GRAMPS Knjiga"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -7273,12 +7258,6 @@ msgstr "gramplet: Zapisi"
 #: ../src/plugins/Records.py:385
 msgid "Records"
 msgstr "Zapisi"
-
-#: ../src/plugins/Records.py:213
-#: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, python-format
-msgid "%s and %s"
-msgstr "%s i %s"
 
 #: ../src/plugins/Records.py:326
 #: ../src/plugins/gramplet/WhatsNext.py:74
@@ -7342,7 +7321,6 @@ msgstr "Opcije izvješća"
 
 #: ../src/plugins/Records.py:440
 #: ../src/plugins/drawreport/StatisticsChart.py:900
-#, fuzzy
 msgid "Determines what people are included in the report."
 msgstr "Određuje koje su osobe uključene u izvješće"
 
@@ -7415,9 +7393,8 @@ msgid "The style used for headings."
 msgstr "Korišteni stil podnaslova."
 
 #: ../src/plugins/Records.py:518
-#, fuzzy
 msgid "The style used for the report title."
-msgstr "Korišteni stil naslova"
+msgstr "Korišteni stil naslova izvješća"
 
 #: ../src/plugins/Records.py:527
 msgid "Youngest living person"
@@ -7493,7 +7470,7 @@ msgstr "Obični tekst"
 
 #: ../src/plugins/docgen/docgen.gpr.py:32
 msgid "Generates documents in plain text format (.txt)."
-msgstr ""
+msgstr "Kreiranje dokumenata u jednostavnom tekstualnom formatu (.txt)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:51
 msgid "Print..."
@@ -7509,7 +7486,7 @@ msgstr "HTML"
 
 #: ../src/plugins/docgen/docgen.gpr.py:72
 msgid "Generates documents in HTML format."
-msgstr ""
+msgstr "Izrada dokumenata u HTML formatu."
 
 #: ../src/plugins/docgen/docgen.gpr.py:91
 msgid "LaTeX"
@@ -7517,16 +7494,15 @@ msgstr "LaTeX"
 
 #: ../src/plugins/docgen/docgen.gpr.py:92
 msgid "Generates documents in LaTeX format."
-msgstr ""
+msgstr "Izrada dokumenata u LaTeX formatu."
 
 #: ../src/plugins/docgen/docgen.gpr.py:111
-#, fuzzy
 msgid "OpenDocument Text"
-msgstr "Open Document Tekst"
+msgstr "OpenDocument tekst"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr ""
+msgstr "Kreiranje dokumenata u OpenDocument Text formatu (.odt)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:132
 msgid "PDF document"
@@ -7534,7 +7510,7 @@ msgstr "PDF dokument"
 
 #: ../src/plugins/docgen/docgen.gpr.py:133
 msgid "Generates documents in PDF format (.pdf)."
-msgstr ""
+msgstr "Kreiranje dokumenata u PDF formatu (.pdf)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:152
 #: ../src/ReportBase/_GraphvizReportDialog.py:821
@@ -7543,7 +7519,7 @@ msgstr "PostScript"
 
 #: ../src/plugins/docgen/docgen.gpr.py:153
 msgid "Generates documents in postscript format (.ps)."
-msgstr ""
+msgstr "Kreiranje dokumenata u postscript formatu (.ps)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:172
 msgid "RTF document"
@@ -7551,7 +7527,7 @@ msgstr "RTF dokument"
 
 #: ../src/plugins/docgen/docgen.gpr.py:173
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr ""
+msgstr "Kreiranje dokumenata u Rich Text formatu (.rtf)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:192
 msgid "SVG document"
@@ -7559,7 +7535,7 @@ msgstr "SVG dokument"
 
 #: ../src/plugins/docgen/docgen.gpr.py:193
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr ""
+msgstr "Kreiranje dokumenata u  Scalable Vector Graphics formatu (.svg)"
 
 #: ../src/plugins/docgen/GtkPrint.py:68
 msgid "PyGtk 2.10 or later is required"
@@ -7583,9 +7559,9 @@ msgid "You appear to have set your target directory to a directory used for data
 msgstr "Za odredišni direktorij postavili ste direktorij koji služi za spremanje podataka, što može dovesti do problema u radu. Preporučuje se odabir drugog direktorija za spremanje izrađenih web stranica."
 
 #: ../src/plugins/docgen/HtmlDoc.py:520
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "Nije moguće stvaranje medijskoga direktorija: %s"
+msgstr "Nije moguće stvaranje jpeg formata slike %(name)s"
 
 #: ../src/plugins/docgen/ODFDoc.py:835
 #, python-format
@@ -8380,7 +8356,7 @@ msgstr "Stil korišten za stavke i njihove vrijednosti."
 #: ../src/plugins/textreport/KinshipReport.py:361
 #: ../src/plugins/textreport/MarkerReport.py:467
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
-#: ../src/plugins/textreport/SimpleBookTitle.py:153
+#: ../src/plugins/textreport/SimpleBookTitle.py:154
 #: ../src/plugins/textreport/Summary.py:264
 msgid "The style used for the title of the page."
 msgstr "Stil korišten za naslov stranice."
@@ -8475,10 +8451,9 @@ msgstr "GeneWeb je web bazirani geneaološki program."
 
 #: ../src/plugins/export/export.gpr.py:112
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr ""
+msgstr "Gra_mps XML paket (obiteljsko stablo i mediji)"
 
 #: ../src/plugins/export/export.gpr.py:113
-#, fuzzy
 msgid "Gramps package is an archived XML family tree together with the media object files."
 msgstr "GRAMPS paket je XML baza podataka s uključenim multimedijalnim datotekama."
 
@@ -8488,7 +8463,7 @@ msgstr "Gramps _XML (obiteljsko stablo)"
 
 #: ../src/plugins/export/export.gpr.py:134
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr ""
+msgstr "Gramps XML je potpuna kopija Gramps baze podataka bez multimedijalnih objekata u XML formatu, pogodna za izradu zaštitnih kopija."
 
 #: ../src/plugins/export/export.gpr.py:155
 msgid "vC_alendar"
@@ -9153,6 +9128,11 @@ msgstr "Uređivano"
 msgid "Selected"
 msgstr "Odabrano"
 
+#: ../src/plugins/gramplet/SessionLogGramplet.py:84
+#, python-format
+msgid "%(mother)s and %(father)s"
+msgstr "%(mother)s i %(father)s"
+
 #: ../src/plugins/gramplet/StatsGramplet.py:55
 msgid "Double-click item to see matches"
 msgstr "Dvoklik na stavku za prikaz podudarnosti"
@@ -9284,7 +9264,6 @@ msgid "Enter your TODO list here."
 msgstr "Unesite ovdje vašu listu zadataka."
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:35
-#, fuzzy
 msgid ""
 "Welcome to Gramps!\n"
 "\n"
@@ -9427,7 +9406,6 @@ msgid "Family Lines Graph"
 msgstr "Dijagram obiteljskih ogranaka"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:32
-#, fuzzy
 msgid "Produces family line graphs using GraphViz."
 msgstr "Izrađuje grafikon obiteljskih ogranaka pomoću programa GraphViz."
 
@@ -9600,7 +9578,7 @@ msgstr "Smještaj umanjenih sličica u odnosu na ime"
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:256
 #: ../src/plugins/tool/CalculateEstimatedDates.py:72
-#: ../src/plugins/tool/CalculateEstimatedDates.py:184
+#: ../src/plugins/tool/CalculateEstimatedDates.py:185
 #: ../src/plugins/tool/SortEvents.py:82
 msgid "Options"
 msgstr "Postavke"
@@ -9995,8 +9973,8 @@ msgid "%s could not be opened\n"
 msgstr "%s ne može biti otvoren\n"
 
 #: ../src/plugins/import/ImportCsv.py:333
-#, python-format
-msgid "format error: file %s, line %d: %s"
+#, fuzzy, python-format
+msgid "format error: file %(fname)s, line %(line)d: %(zero)s"
 msgstr "greška u formatu: datoteka %s, redak %d: %s"
 
 #: ../src/plugins/import/ImportCsv.py:384
@@ -10066,10 +10044,9 @@ msgid "The Database version is not supported by this version of Gramps."
 msgstr "Verzija baze nije podržana u ovoj verziji programa GRAMPS."
 
 #: ../src/plugins/import/ImportGrdb.py:2828
-#: ../src/plugins/import/ImportXml.py:1313
 #, python-format
-msgid "Your family tree groups name %s together with %s, did not change this grouping to %s"
-msgstr "Grupno ime %s zajedno sa %s nije promijenilo grupiranje u %s"
+msgid "Your family tree groups name %(key)s together with %(present)s, did not change this grouping to %(value)s"
+msgstr "Grupno ime %(key)s zajedno sa %(present)s nije promijenilo grupiranje u %(value)s"
 
 #: ../src/plugins/import/ImportGrdb.py:2842
 msgid "Import database"
@@ -10102,33 +10079,32 @@ msgid "Pro-Gen import"
 msgstr "Uvoz Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:691
-#, python-format
-msgid "date did not match: '%s' (%s)"
-msgstr "datum ne odgovara: '%s' (%s)"
+msgid "date did not match: '(text)%s' (%(msg)s)"
+msgstr "datum ne odgovara: '(text)%s' (%(msg)s)"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:770
+#: ../src/plugins/import/ImportProGen.py:771
 msgid "Importing individuals"
 msgstr "Uvoz osoba"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1045
+#: ../src/plugins/import/ImportProGen.py:1046
 msgid "Importing families"
 msgstr "Uvoz obitelji"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1230
+#: ../src/plugins/import/ImportProGen.py:1231
 msgid "Adding children"
 msgstr "Dodavanje djece"
 
-#: ../src/plugins/import/ImportProGen.py:1241
-#, python-format
-msgid "cannot find father for I%s (father=%d)"
+#: ../src/plugins/import/ImportProGen.py:1242
+#, fuzzy, python-format
+msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr "nije moguće pronaći oca za I%s (otac=%d)"
 
-#: ../src/plugins/import/ImportProGen.py:1243
-#, python-format
-msgid "cannot find mother for I%s (mother=%d)"
+#: ../src/plugins/import/ImportProGen.py:1245
+#, fuzzy
+msgid "cannot find mother for I(person)%s (mother=%(mother)d)"
 msgstr "nije moguće pronaći majku za I%s (majka=%d)"
 
 #: ../src/plugins/import/ImportVCard.py:146
@@ -10329,6 +10305,11 @@ msgstr "GRAMPS XML uvoz"
 msgid "Witness name: %s"
 msgstr "Imena svjedoka: %s"
 
+#: ../src/plugins/import/ImportXml.py:1313
+#, fuzzy, python-format
+msgid "Your family tree groups name %(key)s together with %(parent)s, did not change this grouping to %(value)s"
+msgstr "Grupno ime %s zajedno sa %s nije promijenilo grupiranje u %s"
+
 #: ../src/plugins/import/ImportXml.py:1917
 #, python-format
 msgid "Witness comment: %s"
@@ -10336,11 +10317,11 @@ msgstr "Komentar svjedoka: %s"
 
 #: ../src/plugins/import/ImportXml.py:2482
 #, fuzzy, python-format
-msgid "The .gramps file you are importing was made by version %s of Gramps, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
+msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "gramps datoteka koju ste pokušali uvesti napravljena je u inačici %s programa GRAMPS dok vi koristite stariju inačicu %s. Datoteka neće biti uvezena. Nadogradite GRAMPS na najnoviju inačicu i pokušajte ponovno."
 
 #: ../src/plugins/import/ImportXml.py:2494
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
 "\n"
@@ -10348,7 +10329,13 @@ msgid ""
 "See\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 " for more info."
-msgstr "gramps datoteka koju ste pokušali uvesti napravljena je u inačici %s programa GRAMPS dok vi koristite stariju inačicu %s. Datoteka neće biti uvezena. Nadogradite GRAMPS na najnoviju inačicu i pokušajte ponovno."
+msgstr ""
+".gramps datoteka koju ste pokušali uvesti napravljena je u inačici %(oldgramps)s programa GRAMPS dok vi koristite noviju inačicu %(newgramps)s.\n"
+"\n"
+"Datoteka neće biti uvezena. Upotrijebite stariju inačicu programa GRAMPS koja podržava inačicu %(xmlversion)s xml formata.\n"
+"Pogledajte\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+" za više informacija."
 
 #: ../src/plugins/import/ImportXml.py:2509
 msgid "The file will not be imported"
@@ -10412,8 +10399,8 @@ msgid "Line %d: empty note was ignored."
 msgstr "Redak %d: prazna zabilješka preskočena."
 
 #: ../src/plugins/lib/libgedcom.py:5497
-#, python-format
-msgid "skipped %d subordinate(s) at line %d"
+#, fuzzy, python-format
+msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "preskočeno %d zavisnih u %d. redku"
 
 #: ../src/plugins/lib/libgedcom.py:5752
@@ -13775,7 +13762,7 @@ msgstr "Veza i sa %(spouse)s%(endnotes)s."
 #: ../src/plugins/lib/libplaceview.py:99
 #: ../src/plugins/view/eventview.py:84
 #: ../src/plugins/view/familyview.py:78
-#: ../src/plugins/view/mediaview.py:91
+#: ../src/plugins/view/mediaview.py:92
 #: ../src/plugins/view/noteview.py:79
 #: ../src/plugins/view/repoview.py:93
 #: ../src/plugins/view/sourceview.py:81
@@ -13846,11 +13833,13 @@ msgid "Church Parish"
 msgstr "Župa"
 
 #: ../src/plugins/lib/libplaceview.py:97
+#: ../src/plugins/view/geoview.py:921
 #: ../src/plugins/webreport/NarrativeWeb.py:118
 msgid "Latitude"
 msgstr "Zemljopisna širina"
 
 #: ../src/plugins/lib/libplaceview.py:98
+#: ../src/plugins/view/geoview.py:923
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Longitude"
 msgstr "Zemljopisna dužina"
@@ -13916,9 +13905,8 @@ msgid "Exactly two places must be selected to perform a merge. A second place ca
 msgstr "Točno dva mjesta moraju biti odabrana za izvođenje spajanja mjesta. Drugu mjesto možete odabrati držeći pritisnutu Ctrl tipku i klikom na odabrano mjesto."
 
 #: ../src/plugins/lib/libplugins.gpr.py:32
-#, fuzzy
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "Pruža informacije o praznicima za različite zemlje"
+msgstr "Omogućava upotrebu Cairo biblioteka za izradu dokumenata."
 
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
@@ -13926,16 +13914,15 @@ msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
-msgstr ""
+msgstr "Omogućava procesuiranje GEDCOM formata"
 
 #: ../src/plugins/lib/libplugins.gpr.py:86
-#, fuzzy
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr "Pruža osnovnu funkcionalnost sustavu mapa."
+msgstr "Pruža osnovnu funkcionalnost GRAMPS XML uvoza/izvoza."
 
 #: ../src/plugins/lib/libplugins.gpr.py:105
 msgid "Base class for ImportGrdb"
-msgstr ""
+msgstr "Osnovna klasa za ImportGrdb"
 
 #: ../src/plugins/lib/libplugins.gpr.py:123
 msgid "Provides holiday information for different countries."
@@ -13958,9 +13945,8 @@ msgid "Provides base functionality for map services."
 msgstr "Pruža osnovnu funkcionalnost sustavu mapa."
 
 #: ../src/plugins/lib/libplugins.gpr.py:212
-#, fuzzy
 msgid "Provides Textual Narration."
-msgstr "Izrađuje tekstualna izvješće o mjestima"
+msgstr "Omogućava tekstualne opise."
 
 #: ../src/plugins/lib/libplugins.gpr.py:229
 msgid "Manages an ODF file implementing DocBackend."
@@ -13968,7 +13954,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:246
 msgid "Provides Textual Translation."
-msgstr ""
+msgstr "Omogućava tekstualne prijevode"
 
 #: ../src/plugins/lib/libplugins.gpr.py:263
 msgid "Provides the Base needed for the List People views."
@@ -13997,7 +13983,7 @@ msgstr "Kina"
 #: ../src/plugins/lib/libtranslate.py:105
 #, python-format
 msgid "%(language)s (%(country)s)"
-msgstr ""
+msgstr "%(language)s (%(country)s)"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -14018,13 +14004,13 @@ msgid " state"
 msgstr " pokrajina/država"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
-#, python-format
-msgid "Latitude not within %s to %s\n"
+#, fuzzy, python-format
+msgid "Latitude not within %(lat1)s to %(lat2)s\n"
 msgstr "Latituda nije između %s i %s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
-#, python-format
-msgid "Longitude not within %s to %s"
+#, fuzzy, python-format
+msgid "Longitude not within %(long1)s to %(long2)s"
 msgstr "Longituda nije između %s i %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
@@ -14095,39 +14081,39 @@ msgid "Sorted events of %s"
 msgstr "%s: razvrstani događaji"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:103
-#: ../src/plugins/quickview/all_events.py:114
+#: ../src/plugins/quickview/all_events.py:102
+#: ../src/plugins/quickview/all_events.py:113
 msgid "Event Type"
 msgstr "Tip događaja"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:104
-#: ../src/plugins/quickview/all_events.py:115
+#: ../src/plugins/quickview/all_events.py:103
+#: ../src/plugins/quickview/all_events.py:114
 msgid "Event Date"
 msgstr "Datum događaja"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:104
-#: ../src/plugins/quickview/all_events.py:115
+#: ../src/plugins/quickview/all_events.py:103
+#: ../src/plugins/quickview/all_events.py:114
 msgid "Event Place"
 msgstr "Mjesto događaja"
 
 #. display the results
 #: ../src/plugins/quickview/all_events.py:98
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Sorted events of family\n"
-" %s - %s"
+" %(father)s - %(mother)s"
 msgstr ""
 "Razvrstani događaji u obitelji\n"
 " %s - %s"
 
-#: ../src/plugins/quickview/all_events.py:103
-#: ../src/plugins/quickview/all_events.py:114
+#: ../src/plugins/quickview/all_events.py:102
+#: ../src/plugins/quickview/all_events.py:113
 msgid "Family Member"
 msgstr "Član Obitelji"
 
-#: ../src/plugins/quickview/all_events.py:113
+#: ../src/plugins/quickview/all_events.py:112
 msgid "Personal events of the children"
 msgstr "Osobni događaji djece"
 
@@ -14137,12 +14123,12 @@ msgstr "Početna osoba nije postavljena."
 
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:188
-#, python-format
-msgid "%s and %s are the same person."
-msgstr "%s i %s su ista osoba."
+#, fuzzy, python-format
+msgid "%(person)s and %(active_person)s are the same person."
+msgstr "%(person)s i %(active_person)s nisu u krvnom srodstvu."
 
 #: ../src/plugins/quickview/all_relations.py:89
-#: ../src/plugins/tool/RelCalc.py:196
+#: ../src/plugins/tool/RelCalc.py:197
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s je %(relationship)s od %(active_person)s."
@@ -14158,42 +14144,42 @@ msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr "Svojtačko srodstvo između %(person)s i %(active_person)s:"
 
 #: ../src/plugins/quickview/all_relations.py:206
-#, python-format
-msgid "Relationships of %s to %s"
+#, fuzzy, python-format
+msgid "Relationships of %(person)s to %(active_person)s"
 msgstr "Srodstvo %s i %s"
 
-#: ../src/plugins/quickview/all_relations.py:266
+#: ../src/plugins/quickview/all_relations.py:267
 #, python-format
 msgid "Detailed path from %(person)s to common ancestor"
 msgstr "Detaljni prikaz povezanosti %(person)s i zajedničkog pretka"
 
-#: ../src/plugins/quickview/all_relations.py:269
+#: ../src/plugins/quickview/all_relations.py:270
 msgid "Name Common ancestor"
 msgstr "Ime zajedničkog pretka"
 
-#: ../src/plugins/quickview/all_relations.py:270
+#: ../src/plugins/quickview/all_relations.py:271
 msgid "Parent"
 msgstr "Roditelj"
 
-#: ../src/plugins/quickview/all_relations.py:286
+#: ../src/plugins/quickview/all_relations.py:287
 #: ../src/plugins/view/relview.py:383
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Partner"
 
-#: ../src/plugins/quickview/all_relations.py:313
+#: ../src/plugins/quickview/all_relations.py:314
 msgid "Partial"
 msgstr "Djelomično"
 
-#: ../src/plugins/quickview/all_relations.py:332
+#: ../src/plugins/quickview/all_relations.py:333
 msgid "Remarks with inlaw family"
 msgstr "Napomene o svojtačkom srodstvu"
 
-#: ../src/plugins/quickview/all_relations.py:334
+#: ../src/plugins/quickview/all_relations.py:335
 msgid "Remarks"
 msgstr "Napomene"
 
-#: ../src/plugins/quickview/all_relations.py:336
+#: ../src/plugins/quickview/all_relations.py:337
 msgid "The following problems were encountered:"
 msgstr "Slijedeći problemi su se pojavili:"
 
@@ -14504,7 +14490,7 @@ msgstr "Reference spremišta"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
-msgstr ""
+msgstr "Prikaz referenci izvora za aktivno spremište"
 
 #: ../src/plugins/quickview/quickview.gpr.py:251
 msgid "Same Surnames"
@@ -14524,9 +14510,8 @@ msgid "Display people with the same given name as a person."
 msgstr "Prikaz osoba sa istim imenom"
 
 #: ../src/plugins/quickview/quickview.gpr.py:279
-#, fuzzy
 msgid "Same Given Names - stand-alone"
-msgstr "Ista imena "
+msgstr "Ista imena (samostojeći)"
 
 #: ../src/plugins/quickview/quickview.gpr.py:299
 msgid "Display a person's siblings."
@@ -14548,9 +14533,8 @@ msgid "Type of media"
 msgstr "Tip medija"
 
 #: ../src/plugins/quickview/Reporef.py:73
-#, fuzzy
 msgid "Call number"
-msgstr "Puziv_ni broj:"
+msgstr "Pozivni broj"
 
 #: ../src/plugins/quickview/SameSurnames.py:39
 msgid "People with incomplete surnames"
@@ -14627,9 +14611,8 @@ msgid "Substring:"
 msgstr "Podniz"
 
 #: ../src/plugins/quickview/SameSurnames.py:51
-#, fuzzy
 msgid "People matching the <surname>"
-msgstr "Osobe <ime>"
+msgstr "Osobe sa prezimenom <prezime>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
@@ -15045,15 +15028,13 @@ msgstr "Koristiti popis djece."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:687
 #: ../src/plugins/textreport/DetDescendantReport.py:776
-#, fuzzy
 msgid "Compute death age"
-msgstr "Izračunat starost"
+msgstr "Izračun starosti u trenutku smrti"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:688
 #: ../src/plugins/textreport/DetDescendantReport.py:777
-#, fuzzy
 msgid "Whether to compute a person's age at death."
-msgstr "Koristiti izračun starosti."
+msgstr "Koristiti izračun starosti u trenutku smrti."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:691
 #: ../src/plugins/textreport/DetDescendantReport.py:780
@@ -15165,9 +15146,8 @@ msgstr "Koristiti reference izvora."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:825
-#, fuzzy
 msgid "Include sources notes"
-msgstr "Uključi izvore"
+msgstr "Uključi zabilješke o izvorima"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetDescendantReport.py:826
@@ -15438,9 +15418,8 @@ msgstr "Uključiti polja za nedostajuće podatke."
 
 #: ../src/plugins/textreport/FamilyGroup.py:708
 #: ../src/plugins/textreport/MarkerReport.py:505
-#, fuzzy
 msgid "The basic style used for the note display."
-msgstr "Osnovni stil prikaza teksta."
+msgstr "Osnovni stil prikaza zabilješki."
 
 #: ../src/plugins/textreport/FamilyGroup.py:717
 msgid "The style used for the text related to the children."
@@ -15456,9 +15435,8 @@ msgstr "Stil teksta za imena roditelja"
 #.
 #. ------------------------------------------------------------------------
 #: ../src/plugins/textreport/IndivComplete.py:60
-#, fuzzy
 msgid "Sections"
-msgstr "Akcija"
+msgstr "Odjeljci"
 
 #. Translated headers for the sections
 #: ../src/plugins/textreport/IndivComplete.py:62
@@ -15503,18 +15481,16 @@ msgid "Female"
 msgstr "Žensko"
 
 #: ../src/plugins/textreport/IndivComplete.py:644
-#, fuzzy
 msgid "Select the filter to be applied to the report."
-msgstr "Odabir filtra koji će biti primijenjen na izvješće"
+msgstr "Odabir filtra koji će biti primijenjen na izvješće."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
 msgid "List events chonologically"
 msgstr "Poredaj događaje kronološki"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-#, fuzzy
 msgid "Whether to sort events into chonological order."
-msgstr "Uključiti prikaz supružnika u izvješću"
+msgstr "Uključiti kronološki prikaz događaja."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
 msgid "Include Source Information"
@@ -15526,9 +15502,8 @@ msgstr "Koristiti zapise izvora."
 
 #. ###############################
 #: ../src/plugins/textreport/IndivComplete.py:666
-#, fuzzy
 msgid "Event groups"
-msgstr "Događaji"
+msgstr "Grupe događaja"
 
 #: ../src/plugins/textreport/IndivComplete.py:667
 msgid "Check if a separate section is required."
@@ -15625,7 +15600,7 @@ msgstr[2] "%(generation)d. generacija sadrži %(count)d osoba. %(percent)s"
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:147
-#, fuzzy, python-format
+#, python-format
 msgid "Total ancestors in generations %(second_generation)d to %(last_generation)d is %(count)d. %(percent)s"
 msgstr "Ukupni broj predaka u generacijama %(second_generation)d do %(last_generation)d je %(count)d. %(percent)s"
 
@@ -15749,38 +15724,38 @@ msgstr "Podnaslov knjige"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
 #, python-format
-msgid "Copyright %d %s"
-msgstr "Autorska prava %d %s"
+msgid "Copyright %(year)d %(name)s"
+msgstr "Autorska prava %(year)d %(name)s"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:131
+#: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer"
 msgstr "Podnožje teksta"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:132
+#: ../src/plugins/textreport/SimpleBookTitle.py:133
 msgid "Footer string for the page."
 msgstr "Tekst podnožja stranice."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:135
+#: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Image"
 msgstr "Slika"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:136
+#: ../src/plugins/textreport/SimpleBookTitle.py:137
 msgid "Gramps ID of the media object to use as an image."
 msgstr "Gramps ID oznaka medija upotrijebljenog za sliku"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:139
+#: ../src/plugins/textreport/SimpleBookTitle.py:140
 msgid "Image Size"
 msgstr "Veličina slike"
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:140
+#: ../src/plugins/textreport/SimpleBookTitle.py:141
 msgid "Size of the image in cm. A value of 0 indicates that the image should be fit to the page."
 msgstr "Veličina slike u cm. Vrijednost 0 označava prilagodbu veličine slike veličini stranice."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:163
+#: ../src/plugins/textreport/SimpleBookTitle.py:164
 msgid "The style used for the subtitle."
 msgstr "Korišteni stil podnaslova."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:173
+#: ../src/plugins/textreport/SimpleBookTitle.py:174
 msgid "The style used for the footer."
 msgstr "Korišteni stil podnožja teksta."
 
@@ -15866,9 +15841,8 @@ msgid "Custom Text"
 msgstr "Prilagođeni tekst"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:76
-#, fuzzy
 msgid "Add custom text to the book report"
-msgstr "Dodati članak knjizi"
+msgstr "Dodavanje članaka knjižnom izvješću"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:97
 msgid "Descendant Report"
@@ -15975,14 +15949,12 @@ msgid "Remove calculated events, notes, and source; occurs immediately on Execut
 msgstr ""
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:96
-#, fuzzy
 msgid "Do not add birth events"
-msgstr " dodan datum rođenja %s"
+msgstr "Ne uključuj rođenja"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:97
-#, fuzzy
 msgid "Add birth events without dates"
-msgstr "događaj rođenja bez datuma"
+msgstr "Uključi rođenja bez datuma"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:98
 msgid "Add birth events with dates"
@@ -15993,18 +15965,16 @@ msgid "Add a birth events with or without estimated dates"
 msgstr ""
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:103
-#, fuzzy
 msgid "Do not add death events"
-msgstr " dodan datum smrti %s"
+msgstr "Ne uključuj smrti"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:104
-#, fuzzy
 msgid "Add death events without dates"
-msgstr "Dodati približne datume rođenja"
+msgstr "Uključi smrti bez datuma"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:105
 msgid "Add death events with dates"
-msgstr ""
+msgstr "Uključi smrti sa datumima"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:106
 msgid "Add death events with or without estimated dates"
@@ -16033,7 +16003,7 @@ msgstr "Procijenjeni datumi"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:129
 msgid "Approximate (about)"
-msgstr ""
+msgstr "Približno"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:130
 msgid "Extremes (after and before)"
@@ -16043,12 +16013,12 @@ msgstr ""
 msgid "Dates on events are either about or after/before"
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:161
-#: ../src/plugins/tool/CalculateEstimatedDates.py:178
+#: ../src/plugins/tool/CalculateEstimatedDates.py:162
+#: ../src/plugins/tool/CalculateEstimatedDates.py:179
 msgid "Help"
 msgstr "Pomoć"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:163
+#: ../src/plugins/tool/CalculateEstimatedDates.py:164
 msgid ""
 "The Calculate Estimated Dates Tool is used to add and remove birth and death events for people that are missing these events.\n"
 "\n"
@@ -16065,158 +16035,159 @@ msgid ""
 "You may have to run the tool repeatedly (without removing previous events) to add all of the events possible."
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:181
+#: ../src/plugins/tool/CalculateEstimatedDates.py:182
 #: ../src/plugins/tool/tools.gpr.py:35
 msgid "Calculate Estimated Dates"
 msgstr "Približni izračun datuma"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:190
+#: ../src/plugins/tool/CalculateEstimatedDates.py:191
 msgid "Select All"
 msgstr "Odaberi sve"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:191
+#: ../src/plugins/tool/CalculateEstimatedDates.py:192
 msgid "Select None"
 msgstr "Odaberi ništa"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:192
+#: ../src/plugins/tool/CalculateEstimatedDates.py:193
 msgid "Toggle Selection"
 msgstr "Promjeni odabir"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:193
+#: ../src/plugins/tool/CalculateEstimatedDates.py:194
 msgid "Add Selected Events"
 msgstr "Dodaj odabrane događaje"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:199
-msgid "Remove Events, Notes, and Source and Reselect Data"
-msgstr ""
-
 #: ../src/plugins/tool/CalculateEstimatedDates.py:200
+msgid "Remove Events, Notes, and Source and Reselect Data"
+msgstr "Ukloniti događaje, zabilješke, izvore i ponovno odabrati podatke"
+
+#: ../src/plugins/tool/CalculateEstimatedDates.py:201
 msgid "Are you sure you want to remove previous events, notes, and source and reselect data?"
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:201
+#: ../src/plugins/tool/CalculateEstimatedDates.py:202
 msgid "Remove and Run Select Again"
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:205
+#: ../src/plugins/tool/CalculateEstimatedDates.py:206
 msgid "Reselect Data"
 msgstr "Reizbor podataka"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:206
-msgid "Are you sure you want to reselect data?"
-msgstr ""
-
 #: ../src/plugins/tool/CalculateEstimatedDates.py:207
-msgid "Run Select Again"
-msgstr ""
+msgid "Are you sure you want to reselect data?"
+msgstr "Jeste li sigurni da ponovno odabrati podatke?"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
+#: ../src/plugins/tool/CalculateEstimatedDates.py:208
+msgid "Run Select Again"
+msgstr "Ponovite odabir"
+
+#: ../src/plugins/tool/CalculateEstimatedDates.py:228
 msgid "Evidence"
 msgstr "Dokaz"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
-msgid "Relative"
-msgstr ""
-
 #: ../src/plugins/tool/CalculateEstimatedDates.py:228
+msgid "Relative"
+msgstr "Pouzdanost"
+
+#: ../src/plugins/tool/CalculateEstimatedDates.py:229
 msgid "Processing...\n"
 msgstr "Obrada...\n"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:246
-msgid "Removing old estimations... "
-msgstr ""
-
 #: ../src/plugins/tool/CalculateEstimatedDates.py:247
+msgid "Removing old estimations... "
+msgstr "Uklanjanje starih procjena..."
+
+#: ../src/plugins/tool/CalculateEstimatedDates.py:248
 #, python-format
 msgid "Removing '%s'..."
 msgstr "Brišem '%s'..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:301
+#: ../src/plugins/tool/CalculateEstimatedDates.py:302
 msgid "done!\n"
 msgstr "gotovo!\n"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:302
+#: ../src/plugins/tool/CalculateEstimatedDates.py:303
 msgid "Removed date estimates"
-msgstr ""
+msgstr "Uklonjeni približni izračuni datuma"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:306
+#: ../src/plugins/tool/CalculateEstimatedDates.py:307
 msgid ""
 "Selecting... \n"
 "\n"
 msgstr ""
+"Odabir... \n"
+"\n"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:307
+#: ../src/plugins/tool/CalculateEstimatedDates.py:308
 msgid "Selecting..."
-msgstr ""
+msgstr "Odabir..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:342
+#: ../src/plugins/tool/CalculateEstimatedDates.py:343
 msgid "Add birth and death events"
-msgstr ""
+msgstr "Uključi rođenja i smrti"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:344
+#: ../src/plugins/tool/CalculateEstimatedDates.py:345
 msgid "Add birth event"
-msgstr ""
+msgstr "Uključi rođenja"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:346
+#: ../src/plugins/tool/CalculateEstimatedDates.py:347
 msgid "Add death event"
-msgstr ""
+msgstr "Uključi smrti"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:381
-#, fuzzy
+#: ../src/plugins/tool/CalculateEstimatedDates.py:382
 msgid "No events to be added."
-msgstr "Nema događaja na ovaj dan"
+msgstr "Nijedan događaj neće biti dodan."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:423
+#: ../src/plugins/tool/CalculateEstimatedDates.py:424
 msgid "Selecting... "
 msgstr "Odabir..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:424
+#: ../src/plugins/tool/CalculateEstimatedDates.py:425
 #, python-format
 msgid "Adding events '%s'..."
-msgstr ""
+msgstr "Dodavanje događaja '%s'..."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:446
+#: ../src/plugins/tool/CalculateEstimatedDates.py:447
 #, python-format
-msgid "Added birth event based on %s, from %s"
+msgid "Added birth event based on %(evidence)s, from %(name)s"
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:448
+#: ../src/plugins/tool/CalculateEstimatedDates.py:450
 #, python-format
 msgid "Added birth event based on %s"
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:450
+#: ../src/plugins/tool/CalculateEstimatedDates.py:452
 msgid "Estimated birth date"
 msgstr "Približni datum rođenja"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:461
+#: ../src/plugins/tool/CalculateEstimatedDates.py:463
 #, python-format
-msgid "Added death event based on %s, from %s"
+msgid "Added death event based on %(evidence)s, from %(person)s"
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:463
+#: ../src/plugins/tool/CalculateEstimatedDates.py:466
 #, python-format
 msgid "Added death event based on %s"
 msgstr ""
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:465
+#: ../src/plugins/tool/CalculateEstimatedDates.py:468
 msgid "Estimated death date"
 msgstr "Približni datum smrti"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:475
+#: ../src/plugins/tool/CalculateEstimatedDates.py:478
 msgid " Done! Committing..."
-msgstr ""
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:477
-msgid "Add date estimates"
-msgstr ""
+msgstr "Završeno! Primjenjivanje..."
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:480
+msgid "Add date estimates"
+msgstr "Dodavanje približni izračuna datuma"
+
+#: ../src/plugins/tool/CalculateEstimatedDates.py:483
 #, python-format
 msgid "Added %d events."
-msgstr ""
+msgstr "Dodano %d događaja."
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:508
+#: ../src/plugins/tool/CalculateEstimatedDates.py:511
 msgid "Estimated date"
 msgstr "Procijenjeni datum"
 
@@ -16381,11 +16352,11 @@ msgstr "Traženje nepravilnosti u referencama osobe"
 
 #: ../src/plugins/tool/Check.py:853
 msgid "Checking people for proper date formats"
-msgstr ""
+msgstr "Provjera ispravnosti formata datuma kod osoba"
 
 #: ../src/plugins/tool/Check.py:944
 msgid "Checking families for proper date formats"
-msgstr ""
+msgstr "Provjera ispravnosti formata datuma kod obitelji"
 
 #: ../src/plugins/tool/Check.py:1001
 msgid "Looking for repository reference problems"
@@ -16417,11 +16388,11 @@ msgstr "Baza podataka je prošla internu provjeru"
 
 #: ../src/plugins/tool/Check.py:1461
 #, python-format
-msgid "%d broken child/family link was fixed\n"
-msgid_plural "%d broken child-family links were found\n"
-msgstr[0] "%d popravljena poveznica dijete/obitelj\n"
-msgstr[1] "%d popravljene poveznice dijete/obitelj\n"
-msgstr[2] "%d popravljenih poveznica dijete/obitelj\n"
+msgid "%(quantity)d broken child/family link was fixed\n"
+msgid_plural "%(quantity)d broken child-family links were found\n"
+msgstr[0] "%(quantity)d popravljena poveznica dijete/obitelj\n"
+msgstr[1] "%(quantity)d popravljene poveznice dijete/obitelj\n"
+msgstr[2] "%(quantity)d popravljenih poveznica dijete/obitelj\n"
 
 #: ../src/plugins/tool/Check.py:1468
 msgid "Non existing child"
@@ -16429,151 +16400,151 @@ msgstr "Nepostojeće dijete"
 
 #: ../src/plugins/tool/Check.py:1475
 #, python-format
-msgid "%s was removed from the family of %s\n"
-msgstr "%s je uklonjen(a) iz obitelji %s\n"
+msgid "%(person)s was removed from the family of %(family)s\n"
+msgstr "%(person)s je uklonjen(a) iz obitelji %(family)s\n"
 
-#: ../src/plugins/tool/Check.py:1478
+#: ../src/plugins/tool/Check.py:1479
 #, python-format
-msgid "%d broken spouse/family link was fixed\n"
-msgid_plural "%d broken spouse/family links were found\n"
-msgstr[0] "%d popravljena poveznica supružnik/obitelj\n"
-msgstr[1] "%d popravljene poveznice supružnik/obitelj\n"
-msgstr[2] "%d popravljenih poveznica supružnik/obitelj\n"
+msgid "%(quantity)d broken spouse/family link was fixed\n"
+msgid_plural "%(quantity)d broken spouse/family links were found\n"
+msgstr[0] "%(quantity)d popravljena poveznica supružnik/obitelj\n"
+msgstr[1] "%(quantity)d popravljene poveznice supružnik/obitelj\n"
+msgstr[2] "%(quantity)d popravljenih poveznica supružnik/obitelj\n"
 
-#: ../src/plugins/tool/Check.py:1485
-#: ../src/plugins/tool/Check.py:1502
+#: ../src/plugins/tool/Check.py:1486
+#: ../src/plugins/tool/Check.py:1504
 msgid "Non existing person"
 msgstr "Nepostojeća osoba"
 
-#: ../src/plugins/tool/Check.py:1492
-#: ../src/plugins/tool/Check.py:1509
-#, python-format
-msgid "%s was restored to the family of %s\n"
+#: ../src/plugins/tool/Check.py:1493
+#: ../src/plugins/tool/Check.py:1511
+#, fuzzy, python-format
+msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%s je vraćen(a) u obitelj %s\n"
 
-#: ../src/plugins/tool/Check.py:1495
-#, python-format
-msgid "%d duplicate spouse/family link was found\n"
-msgid_plural "%d duplicate spouse/family links were found\n"
+#: ../src/plugins/tool/Check.py:1497
+#, fuzzy, python-format
+msgid "%(quantity)d duplicate spouse/family link was found\n"
+msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%d višestruka poveznica supružnik/obitelj\n"
 msgstr[1] "%d višestruke poveznice supružnik/obitelj\n"
 msgstr[2] "%d višestrukih poveznica supružnik/obitelj\n"
 
-#: ../src/plugins/tool/Check.py:1512
+#: ../src/plugins/tool/Check.py:1515
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
 msgstr "%d obitelj bez roditelja ili djece pronađena i uklonjena.\n"
 
-#: ../src/plugins/tool/Check.py:1515
-#, python-format
-msgid "%d families with no parents or children, removed.\n"
+#: ../src/plugins/tool/Check.py:1518
+#, fuzzy, python-format
+msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%d obitelji bez roditelja ili djece uklonjene.\n"
 
-#: ../src/plugins/tool/Check.py:1518
-#, python-format
-msgid "%d corrupted family relationship fixed\n"
-msgid_plural "%d corrupted family relationship fixed\n"
+#: ../src/plugins/tool/Check.py:1522
+#, fuzzy, python-format
+msgid "%(quantity)d corrupted family relationship fixed\n"
+msgid_plural "%(quantity)d corrupted family relationship fixed\n"
 msgstr[0] "%d popravljeni obiteljski odnos\n"
 msgstr[1] "%d popravljena obiteljska odnosa\n"
 msgstr[2] "%d popravljenih obiteljskih odnosa\n"
 
-#: ../src/plugins/tool/Check.py:1522
-#, python-format
-msgid "%d person was referenced but not found\n"
-msgid_plural "%d persons were referenced, but not found\n"
+#: ../src/plugins/tool/Check.py:1526
+#, fuzzy, python-format
+msgid "%(quantity)d person was referenced but not found\n"
+msgid_plural "%(quantity)d persons were referenced, but not found\n"
 msgstr[0] "%d referenca na nepostojeću osobu\n"
 msgstr[1] "%d reference na nepostojeću osobu\n"
 msgstr[2] "%d referenci na nepostojeću osobu\n"
 
-#: ../src/plugins/tool/Check.py:1526
-#, python-format
-msgid "%d date was corrected\n"
-msgid_plural "%d dates were corrected\n"
-msgstr[0] ""
+#: ../src/plugins/tool/Check.py:1531
+#, fuzzy, python-format
+msgid "%(quantity)d date was corrected\n"
+msgid_plural "%(quantity)d dates were corrected\n"
+msgstr[0] "%d datum je ispravljen\n"
 msgstr[1] ""
 msgstr[2] ""
 
-#: ../src/plugins/tool/Check.py:1530
-#, python-format
-msgid "%d repository was referenced but not found\n"
-msgid_plural "%d repositories were referenced, but not found\n"
+#: ../src/plugins/tool/Check.py:1535
+#, fuzzy, python-format
+msgid "%(quantity)d repository was referenced but not found\n"
+msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] "%d referenca na nepostojeće spremište\n"
 msgstr[1] "%d reference na nepostojeće spremište\n"
 msgstr[2] "%d referenci na nepostojeće spremište\n"
 
-#: ../src/plugins/tool/Check.py:1534
-#, python-format
-msgid "%d media object was referenced, but not found\n"
-msgid_plural "%d media objects were referenced, but not found\n"
+#: ../src/plugins/tool/Check.py:1540
+#, fuzzy, python-format
+msgid "%(quantity)d media object was referenced, but not found\n"
+msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] "%d referenca na nepostojeći medijski objekt\n"
 msgstr[1] "%d reference na nepostojeći medijski objekt\n"
 msgstr[2] "%d referenci na nepostojeći medijski objekt\n"
 
-#: ../src/plugins/tool/Check.py:1538
-#, python-format
-msgid "Reference to %d missing media object was kept\n"
-msgid_plural "References to %d media objects were kept\n"
+#: ../src/plugins/tool/Check.py:1544
+#, fuzzy, python-format
+msgid "Reference to %(quantity)d missing media object was kept\n"
+msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "%d referenca na nedostajući medij je zadržana\n"
 msgstr[1] "%d reference na nedostajući medij su zadržane\n"
 msgstr[2] "%d referenci na nedostajući medij su zadržane\n"
 
-#: ../src/plugins/tool/Check.py:1542
-#, python-format
-msgid "%d missing media object was replaced\n"
-msgid_plural "%d missing media objects were replaced\n"
+#: ../src/plugins/tool/Check.py:1549
+#, fuzzy, python-format
+msgid "%(quantity)d missing media object was replaced\n"
+msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%d nedostajući medij je zamijenjen\n"
 msgstr[1] "%d nedostajuća medija su zamijenjena\n"
 msgstr[2] "%d nedostajućih medija je zamijenjeno\n"
 
-#: ../src/plugins/tool/Check.py:1546
-#, python-format
-msgid "%d missing media object was removed\n"
-msgid_plural "%d missing media objects were removed\n"
+#: ../src/plugins/tool/Check.py:1554
+#, fuzzy, python-format
+msgid "%(quantity)d missing media object was removed\n"
+msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%d nedostajući medij je uklonjen\n"
 msgstr[1] "%d nedostajuća medija su uklonjena\n"
 msgstr[2] "%d nedostajućih medija je uklonjeno\n"
 
-#: ../src/plugins/tool/Check.py:1550
-#, python-format
-msgid "%d invalid event reference was removed\n"
-msgid_plural "%d invalid event references were removed\n"
+#: ../src/plugins/tool/Check.py:1559
+#, fuzzy, python-format
+msgid "%(quantity)d invalid event reference was removed\n"
+msgid_plural "%(quantity)d invalid event references were removed\n"
 msgstr[0] "%d neispravna referenca na događaj je uklonjena\n"
 msgstr[1] "%d neispravne reference na događaj su uklonjene\n"
 msgstr[2] "%d neispravnih referenci na događaj je uklonjeno\n"
 
-#: ../src/plugins/tool/Check.py:1554
-#, python-format
-msgid "%d invalid birth event name was fixed\n"
-msgid_plural "%d invalid birth event names were fixed\n"
+#: ../src/plugins/tool/Check.py:1564
+#, fuzzy, python-format
+msgid "%(quantity)d invalid birth event name was fixed\n"
+msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%d neispravni podatak o rođenju je popravljen\n"
 msgstr[1] "%d neispravna podataka o rođenju su popravljena\n"
 msgstr[2] "%d neispravnih podataka o rođenju je popravljeno\n"
 
-#: ../src/plugins/tool/Check.py:1558
-#, python-format
-msgid "%d invalid death event name was fixed\n"
-msgid_plural "%d invalid death event names were fixed\n"
+#: ../src/plugins/tool/Check.py:1569
+#, fuzzy, python-format
+msgid "%(quantity)d invalid death event name was fixed\n"
+msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%d neispravni podatak o smrti je popravljen\n"
 msgstr[1] "%d neispravna podataka o smrti su popravljena\n"
 msgstr[2] "%d neispravnih podataka o smrti je popravljeno\n"
 
-#: ../src/plugins/tool/Check.py:1562
-#, python-format
-msgid "%d place was referenced but not found\n"
-msgid_plural "%d places were referenced, but not found\n"
+#: ../src/plugins/tool/Check.py:1574
+#, fuzzy, python-format
+msgid "%(quantity)d place was referenced but not found\n"
+msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%d mjesto je referncirano ali nije pronađeno\n"
 msgstr[1] "%d mjesta su referncirana ali nisu pronađena\n"
 msgstr[2] "%d mjesta je referncirano ali nije pronađeno\n"
 
-#: ../src/plugins/tool/Check.py:1566
-#, python-format
-msgid "%d source was referenced but not found\n"
-msgid_plural "%d sources were referenced, but not found\n"
+#: ../src/plugins/tool/Check.py:1579
+#, fuzzy, python-format
+msgid "%(quantity)d source was referenced but not found\n"
+msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%d izvor je referenciran ali nije pronađen\n"
 msgstr[1] "%d izvora su referencirana ali nisu pronađena\n"
 msgstr[2] "%d izvora je referencirano ali nije pronađeno\n"
 
-#: ../src/plugins/tool/Check.py:1570
+#: ../src/plugins/tool/Check.py:1584
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
@@ -16581,34 +16552,34 @@ msgstr[0] "%d medij je referenciran ali nedostaje\n"
 msgstr[1] "%d medija su referencirana ali nedostaju\n"
 msgstr[2] "%d medija je referencirano ali nedostaju\n"
 
-#: ../src/plugins/tool/Check.py:1574
-#, python-format
-msgid "%d note object was referenced but not found\n"
-msgid_plural "%d note objects were referenced but not found\n"
+#: ../src/plugins/tool/Check.py:1588
+#, fuzzy, python-format
+msgid "%(quantity)d note object was referenced but not found\n"
+msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%d zabilješka nije pronađena\n"
 msgstr[1] "%d zabilješke nisu pronađene\n"
 msgstr[2] "%d zabilješki nije pronađeno\n"
 
-#: ../src/plugins/tool/Check.py:1578
-#, python-format
-msgid "%d invalid name format reference was removed\n"
-msgid_plural "%d invalid name format references were removed\n"
+#: ../src/plugins/tool/Check.py:1593
+#, fuzzy, python-format
+msgid "%(quantity)d invalid name format reference was removed\n"
+msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%d nepravilni format imena je uklonjen\n"
 msgstr[1] "%d nepravilna formata imena su uklonjena\n"
 msgstr[2] "%d nepravilnih formata imena je uklonjeno\n"
 
-#: ../src/plugins/tool/Check.py:1582
-#, python-format
+#: ../src/plugins/tool/Check.py:1598
+#, fuzzy, python-format
 msgid ""
-"%d empty objects removed:\n"
-"   %d person objects\n"
-"   %d family objects\n"
-"   %d event objects\n"
-"   %d source objects\n"
-"   %d media objects\n"
-"   %d place objects\n"
-"   %d repository objects\n"
-"   %d note objects\n"
+"%(empty_obj)d empty objects removed:\n"
+"   %(person)d person objects\n"
+"   %(family)d family objects\n"
+"   %(event)d event objects\n"
+"   %(source)d source objects\n"
+"   %(media)d media objects\n"
+"   %(place)d place objects\n"
+"   %(repo)d repository objects\n"
+"   %(note)d note objects\n"
 msgstr ""
 "Uklonjeni prazni objekti: %d\n"
 "   Osobe: %d\n"
@@ -16620,11 +16591,11 @@ msgstr ""
 "   Spremišta: %d\n"
 "   Zabilješke: %d\n"
 
-#: ../src/plugins/tool/Check.py:1627
+#: ../src/plugins/tool/Check.py:1642
 msgid "Integrity Check Results"
 msgstr "Rezultati provjere integriteta"
 
-#: ../src/plugins/tool/Check.py:1632
+#: ../src/plugins/tool/Check.py:1647
 msgid "Check and Repair"
 msgstr "Provjeri i popravi"
 
@@ -16705,20 +16676,19 @@ msgstr "Promjena naziva događaja"
 
 #: ../src/plugins/tool/EventNames.py:112
 msgid "Modifications made"
-msgstr ""
+msgstr "Učinjene promjene"
 
 #: ../src/plugins/tool/EventNames.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%s event description has been added"
 msgid_plural "%s event descriptions have been added"
-msgstr[0] "Izvlači opise događaja iz podataka o tim događajima"
-msgstr[1] "Izvlači opise događaja iz podataka o tim događajima"
-msgstr[2] "Izvlači opise događaja iz podataka o tim događajima"
+msgstr[0] "%s opis događaja je dodan"
+msgstr[1] "%s opisa događaja su dodana"
+msgstr[2] "%s opisa događaja je dodano"
 
 #: ../src/plugins/tool/EventNames.py:117
-#, fuzzy
 msgid "No event description has been added."
-msgstr "Nisu dostupni opisi"
+msgstr "Niti jedan opis događaja nije dodan."
 
 #: ../src/plugins/tool/ExtractCity.py:60
 msgid "United States of America"
@@ -16754,7 +16724,6 @@ msgid "No place information could be extracted."
 msgstr "Nisu izvučeni podaci o mjestima."
 
 #: ../src/plugins/tool/ExtractCity.py:527
-#, fuzzy
 msgid "Below is a list of Places with the possible data that can be extracted from the place title. Select the places you wish Gramps to convert."
 msgstr "Ispod se nalazi popis mjesta sa podacima koji mogu biti izvučeni iz njihova imena. Odaberite mjesto koje želite da GRAMPS obradi."
 
@@ -16763,7 +16732,6 @@ msgid "Medium"
 msgstr "Medij"
 
 #: ../src/plugins/tool/FindDupes.py:66
-#, fuzzy
 msgid "manual|Find_Possible_Duplicate_People..."
 msgstr "Traženje mogućih dupliciranih osoba ..."
 
@@ -16843,9 +16811,9 @@ msgid "Referrers of %d"
 msgstr ""
 
 #: ../src/plugins/tool/Leak.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "%d refers to"
-msgstr "%d generacija"
+msgstr "%d se odnosi na"
 
 #: ../src/plugins/tool/MediaManager.py:66
 msgid "manual|Media_Manager..."
@@ -16857,16 +16825,14 @@ msgid "Media Manager"
 msgstr "Upravitelj medija"
 
 #: ../src/plugins/tool/MediaManager.py:91
-#, fuzzy
 msgid "Gramps Media Manager"
-msgstr "Upravitelj medija"
+msgstr "GRAMPS upravitelj medija"
 
 #: ../src/plugins/tool/MediaManager.py:93
 msgid "Selecting operation"
 msgstr "Odabir operacije"
 
 #: ../src/plugins/tool/MediaManager.py:115
-#, fuzzy
 msgid ""
 "This tool allows batch operations on media objects stored in Gramps. An important distinction must be made between a Gramps media object and its file.\n"
 "\n"
@@ -16940,13 +16906,13 @@ msgid "_With:"
 msgstr "_Sa:"
 
 #: ../src/plugins/tool/MediaManager.py:454
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
-"Operation:\t%s\n"
-"Replace:\t\t%s\n"
-"With:\t\t%s"
+"Operation:\t%(title)s\n"
+"Replace:\t\t%(src_fname)s\n"
+"With:\t\t%(dest_fname)s"
 msgstr ""
 "Slijedeće operacije će biti izvršene:\n"
 "\n"
@@ -16971,9 +16937,8 @@ msgid "This tool allows converting absolute media paths to a relative path. The 
 msgstr "Ovaj alat mijenja apsolutne u relativne staze medija. Relativna staza je relativna u odnosu na osnovnu stazu zadanu u postavkama, a ako nje nema u odnosu na vaš početni korisnički direktorij. Relativna staza omogućuje povezivanje lokacije datoteke sa osnovnom stazom koja se može mijenjati u skladu s vašim potrebama."
 
 #: ../src/plugins/tool/NotRelated.py:56
-#, fuzzy
 msgid "manual|Not_Related..."
-msgstr "Nisu povezani ..."
+msgstr "Nisu povezani..."
 
 #: ../src/plugins/tool/NotRelated.py:75
 #, python-format
@@ -16987,43 +16952,42 @@ msgstr "Svi su bazi povezani sa: %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:233
-#, fuzzy, python-format
+#, python-format
 msgid "Setting marker for %d person"
 msgid_plural "Setting marker for %d people"
-msgstr[0] "Postavljanje oznaka za %d osoba"
-msgstr[1] "Postavljanje oznaka za %d osoba"
+msgstr[0] "Postavljanje oznaka za %d osobu"
+msgstr[1] "Postavljanje oznaka za %d osobe"
 msgstr[2] "Postavljanje oznaka za %d osoba"
 
 #. TRANS: No singular form is needed.
 #: ../src/plugins/tool/NotRelated.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Finding relationships between %d person"
 msgid_plural "Finding relationships between %d people"
-msgstr[0] "Traženje povezanosti između %d osoba"
-msgstr[1] "Traženje povezanosti između %d osoba"
+msgstr[0] "Traženje povezanosti između %d osobe"
+msgstr[1] "Traženje povezanosti između %d osobe"
 msgstr[2] "Traženje povezanosti između %d osoba"
 
 #. we have at least 1 "unrelated" person to find
 #: ../src/plugins/tool/NotRelated.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
-msgstr[0] "Traženje 1 osobe"
-msgstr[1] "Traženje 1 osobe"
-msgstr[2] "Traženje 1 osobe"
+msgstr[0] "Traženje %d osobe"
+msgstr[1] "Traženje %d osobe"
+msgstr[2] "Traženje %d osoba"
 
 #: ../src/plugins/tool/NotRelated.py:361
-#, fuzzy, python-format
+#, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
-msgstr[0] "Traženje imena 1 osobe"
-msgstr[1] "Traženje imena 1 osobe"
-msgstr[2] "Traženje imena 1 osobe"
+msgstr[0] "Traženje imena %d osobe"
+msgstr[1] "Traženje imena %d osoba"
+msgstr[2] "Traženje imena %d osoba"
 
 #: ../src/plugins/tool/OwnerEditor.py:54
-#, fuzzy
 msgid "manual|Edit_Database_Owner_Information..."
-msgstr "Uredi podatke o vlasniku baze podataka"
+msgstr "Uredi podatke o vlasniku baze podataka..."
 
 #: ../src/plugins/tool/OwnerEditor.py:98
 msgid "Database Owner Editor"
@@ -17039,7 +17003,6 @@ msgid "Edit database owner information"
 msgstr "Uredi podatke o vlasniku baze podataka"
 
 #: ../src/plugins/tool/PatchNames.py:62
-#, fuzzy
 msgid "manual|Extract_Information_from_Names"
 msgstr "Izvuci podatke iz imena"
 
@@ -17112,22 +17075,22 @@ msgstr "Za ispravan rad ovog alata morate postaviti aktivnu osobu."
 msgid "Relationship Calculator tool"
 msgstr "Alat za izračun srodstva"
 
-#: ../src/plugins/tool/RelCalc.py:191
+#: ../src/plugins/tool/RelCalc.py:192
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "%(person)s i %(active_person)s nisu u krvnom srodstvu."
 
-#: ../src/plugins/tool/RelCalc.py:206
+#: ../src/plugins/tool/RelCalc.py:207
 #, python-format
 msgid "Their common ancestor is %s."
 msgstr "Njihov zajednički predak je %s."
 
-#: ../src/plugins/tool/RelCalc.py:212
-#, python-format
-msgid "Their common ancestors are %s and %s."
+#: ../src/plugins/tool/RelCalc.py:213
+#, fuzzy, python-format
+msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
 msgstr "Njihovi zajednički preci su %s i %s."
 
-#: ../src/plugins/tool/RelCalc.py:216
+#: ../src/plugins/tool/RelCalc.py:217
 msgid "Their common ancestors are: "
 msgstr "Njihovi zajednički preci su: "
 
@@ -17147,9 +17110,8 @@ msgid "Remove unused objects"
 msgstr "Ukloni ne korištene objekte"
 
 #: ../src/plugins/tool/ReorderIds.py:65
-#, fuzzy
 msgid "Reordering Gramps IDs"
-msgstr "Izmjenjivanje redoslijeda ID Obitelji"
+msgstr "Izmjenjivanje redoslijeda GRAMPS ID oznaka"
 
 #: ../src/plugins/tool/ReorderIds.py:73
 msgid "Reordering People IDs"
@@ -17185,9 +17147,8 @@ msgstr "Izmjenjivanje redoslijeda ID oznaka zabilješki"
 
 #: ../src/plugins/tool/ReorderIds.py:159
 #: ../src/plugins/tool/tools.gpr.py:462
-#, fuzzy
 msgid "Reorder Gramps IDs"
-msgstr "Izmjeni redoslijed GRAMPS ID"
+msgstr "Izmjeni redoslijed GRAMPS ID oznaka"
 
 #: ../src/plugins/tool/ReorderIds.py:217
 msgid "Finding and assigning unused IDs"
@@ -17234,9 +17195,8 @@ msgid "Sort family events of the person"
 msgstr "Sortiranje obiteljskih događaja osobe"
 
 #: ../src/plugins/tool/SoundGen.py:46
-#, fuzzy
 msgid "manual|Generate_SoundEx_codes"
-msgstr "Izrada soundex kodova"
+msgstr "Izrada SoundEx kodova"
 
 #: ../src/plugins/tool/SoundGen.py:57
 msgid "SoundEx code generator"
@@ -17287,9 +17247,8 @@ msgid "Aids in the analysis of data by allowing the development of custom filter
 msgstr "Pomaže u analizi podataka omogućavajući stvaranje vlastitih filtra koji mogu biti primijenjeni na bazu radi usporedbe sličnih događaja"
 
 #: ../src/plugins/tool/tools.gpr.py:195
-#, fuzzy
 msgid "Extract Event Description"
-msgstr "Izvuci opise događaja iz njihovih podataka"
+msgstr "Izvuci opise događaja"
 
 #: ../src/plugins/tool/tools.gpr.py:196
 msgid "Extracts event descriptions from the event data"
@@ -17365,7 +17324,6 @@ msgid "Removes unused objects from the database"
 msgstr "Uklanja ne korištene objekte iz baze"
 
 #: ../src/plugins/tool/tools.gpr.py:463
-#, fuzzy
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr "Mijenja GRAMPS ID oznake prema predefiniranim pravilima"
 
@@ -17600,7 +17558,7 @@ msgstr "Rodoslov"
 
 #: ../src/plugins/view/fanchartview.gpr.py:5
 msgid "The view showing relations through a fanchart"
-msgstr ""
+msgstr "Pogled koji prikazuje srodstvo koristeći lepezasti dijagram"
 
 #: ../src/plugins/view/geoview.py:344
 msgid "Clear the entry field in the places selection box."
@@ -17615,59 +17573,49 @@ msgid "Select the maps provider. You can choose between OpenStreetMap and Google
 msgstr ""
 
 #: ../src/plugins/view/geoview.py:383
-#, fuzzy
 msgid "Select the period for which you want to see the places."
-msgstr "Odaberite zemlju za prikaz praznika"
+msgstr "Odaberite period za koji želite vidjeti mjesta"
 
 #: ../src/plugins/view/geoview.py:392
 msgid "Prior page."
 msgstr "Prethodna stranica."
 
 #: ../src/plugins/view/geoview.py:396
-#, fuzzy
 msgid "The current page/the last page."
-msgstr "Prikazuje zadnju stranicu"
+msgstr "Trenutna stranica/prethodna stranica"
 
 #: ../src/plugins/view/geoview.py:400
-#, fuzzy
 msgid "Next page."
-msgstr "mjesto smrti"
+msgstr "Slijedeća stranica"
 
 #: ../src/plugins/view/geoview.py:408
-#, fuzzy
 msgid "The number of places which have no coordinates."
-msgstr "Spisak mjesta bez koordinata"
+msgstr "Broj mjesta koje nemaju zemljopisne koordinate."
 
 #: ../src/plugins/view/geoview.py:442
 #: ../src/plugins/view/geoview.gpr.py:59
-#, fuzzy
 msgid "Geography"
-msgstr "Grafikoni"
+msgstr "Kartografija"
 
 #: ../src/plugins/view/geoview.py:499
-#, fuzzy
 msgid "You can adjust the time period with the two following values."
-msgstr ""
-"Neuspjela promjena imena verzije s porukom o greški:\n"
-"\n"
-"%s"
+msgstr "Možete prilagoditi vremenski period koristeći slijedeće dvije vrijednosti."
 
 #: ../src/plugins/view/geoview.py:501
-#, fuzzy
-msgid "The number of years before the first event date."
-msgstr "Središnja osoba ovog filtra"
+msgid "The number of years before the first event date"
+msgstr "Broj godina prije prvog događaja"
 
 #: ../src/plugins/view/geoview.py:505
-msgid "The number of years after the last event date."
-msgstr ""
+msgid "The number of years after the last event date"
+msgstr "Broj godina nakon zadnjeg događaja"
 
 #: ../src/plugins/view/geoview.py:509
 msgid "Time period adjustment"
-msgstr ""
+msgstr "Prilagodba vremenskih razmaka"
 
 #: ../src/plugins/view/geoview.py:521
 msgid "Crosshair on the map."
-msgstr ""
+msgstr "Fokus kod mapiranja"
 
 #: ../src/plugins/view/geoview.py:524
 msgid ""
@@ -17681,11 +17629,12 @@ msgstr "Karta"
 
 #: ../src/plugins/view/geoview.py:547
 msgid "Test the network "
-msgstr ""
+msgstr "Ispitaj mrežu"
 
 #: ../src/plugins/view/geoview.py:550
-msgid "Time out for the network connection test "
-msgstr ""
+#, fuzzy
+msgid "Time out for the network connection test"
+msgstr "Zabilješka za listopad"
 
 #: ../src/plugins/view/geoview.py:554
 msgid ""
@@ -17714,179 +17663,180 @@ msgid "years"
 msgstr "godine"
 
 #: ../src/plugins/view/geoview.py:679
-#: ../src/plugins/view/geoview.py:999
+#: ../src/plugins/view/geoview.py:1002
 msgid "All"
 msgstr "Sve"
 
-#: ../src/plugins/view/geoview.py:1046
-#: ../src/plugins/view/geoview.py:1056
-#, fuzzy
-msgid "_Add Place"
-msgstr "Sva _mjesta"
+#: ../src/plugins/view/geoview.py:925
+msgid "Zoom"
+msgstr "Zoom"
 
-#: ../src/plugins/view/geoview.py:1048
-#: ../src/plugins/view/geoview.py:1058
-msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
-msgstr ""
+#: ../src/plugins/view/geoview.py:1049
+#: ../src/plugins/view/geoview.py:1059
+msgid "_Add Place"
+msgstr "_Dodaj mjesto"
 
 #: ../src/plugins/view/geoview.py:1051
 #: ../src/plugins/view/geoview.py:1061
-#, fuzzy
-msgid "_Link Place"
-msgstr " Mjesto"
+msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
+msgstr ""
 
-#: ../src/plugins/view/geoview.py:1053
-#: ../src/plugins/view/geoview.py:1063
+#: ../src/plugins/view/geoview.py:1054
+#: ../src/plugins/view/geoview.py:1064
+msgid "_Link Place"
+msgstr "Poveži _mjesto"
+
+#: ../src/plugins/view/geoview.py:1056
+#: ../src/plugins/view/geoview.py:1066
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1065
-#: ../src/plugins/view/geoview.py:1079
+#: ../src/plugins/view/geoview.py:1068
+#: ../src/plugins/view/geoview.py:1082
 msgid "_All Places"
 msgstr "Sva _mjesta"
 
-#: ../src/plugins/view/geoview.py:1066
-#: ../src/plugins/view/geoview.py:1080
+#: ../src/plugins/view/geoview.py:1069
+#: ../src/plugins/view/geoview.py:1083
 msgid "Attempt to view all places in the family tree."
 msgstr "Pokušaj prikaza svih mjesta iz rodoslova"
 
-#: ../src/plugins/view/geoview.py:1068
-#: ../src/plugins/view/geoview.py:1082
+#: ../src/plugins/view/geoview.py:1071
+#: ../src/plugins/view/geoview.py:1085
 msgid "_Person"
 msgstr "_Osoba"
 
-#: ../src/plugins/view/geoview.py:1070
-#: ../src/plugins/view/geoview.py:1084
+#: ../src/plugins/view/geoview.py:1073
+#: ../src/plugins/view/geoview.py:1087
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Pokušaj prikaza svih mjesta gdje su odabrane osobe živjele."
 
-#: ../src/plugins/view/geoview.py:1072
-#: ../src/plugins/view/geoview.py:1086
+#: ../src/plugins/view/geoview.py:1075
+#: ../src/plugins/view/geoview.py:1089
 msgid "_Family"
 msgstr "_Obitelj"
 
-#: ../src/plugins/view/geoview.py:1074
-#: ../src/plugins/view/geoview.py:1088
+#: ../src/plugins/view/geoview.py:1077
+#: ../src/plugins/view/geoview.py:1091
 msgid "Attempt to view places of the selected people's family."
 msgstr "Pokušaj prikaza mjesta obitelji odabrane osobe."
 
-#: ../src/plugins/view/geoview.py:1075
-#: ../src/plugins/view/geoview.py:1089
+#: ../src/plugins/view/geoview.py:1078
+#: ../src/plugins/view/geoview.py:1092
 msgid "_Event"
 msgstr "_Događaj"
 
-#: ../src/plugins/view/geoview.py:1077
-#: ../src/plugins/view/geoview.py:1091
+#: ../src/plugins/view/geoview.py:1080
+#: ../src/plugins/view/geoview.py:1094
 msgid "Attempt to view places connected to all events."
 msgstr "Pokušaj prikaza mjesta povezanih sa svima događajima."
 
-#: ../src/plugins/view/geoview.py:1285
+#: ../src/plugins/view/geoview.py:1288
 msgid "List of places without coordinates"
 msgstr "Spisak mjesta bez koordinata"
 
-#: ../src/plugins/view/geoview.py:1286
+#: ../src/plugins/view/geoview.py:1289
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Ovo je spisak svih mjesta u rodoslovu za koje nema koordinata.<br> Nije poznata zemljopisna širina ili dužina.<p>"
 
-#: ../src/plugins/view/geoview.py:1289
+#: ../src/plugins/view/geoview.py:1292
 msgid "Back to prior page"
 msgstr "Povratak na prethodnu stranicu"
 
-#: ../src/plugins/view/geoview.py:1532
+#: ../src/plugins/view/geoview.py:1535
 msgid "Places list"
 msgstr "Popis mjesta"
 
-#: ../src/plugins/view/geoview.py:1786
+#: ../src/plugins/view/geoview.py:1789
 msgid "No location."
 msgstr "Nema lokacije."
 
-#: ../src/plugins/view/geoview.py:1789
+#: ../src/plugins/view/geoview.py:1792
 msgid "You have no places in your family tree  with coordinates."
 msgstr "U vašem obiteljskom stablu nema mjesta sa koordinatama."
 
-#: ../src/plugins/view/geoview.py:1792
+#: ../src/plugins/view/geoview.py:1795
 msgid "You are looking at the default map."
 msgstr "Gledate predodređenu mapu."
 
-#: ../src/plugins/view/geoview.py:1819
+#: ../src/plugins/view/geoview.py:1822
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : mjesto rođenja."
 
-#: ../src/plugins/view/geoview.py:1822
+#: ../src/plugins/view/geoview.py:1825
 msgid "birth place."
 msgstr "mjesto rođenja"
 
-#: ../src/plugins/view/geoview.py:1857
+#: ../src/plugins/view/geoview.py:1860
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : mjesto smrti."
 
-#: ../src/plugins/view/geoview.py:1860
+#: ../src/plugins/view/geoview.py:1863
 msgid "death place."
 msgstr "mjesto smrti"
 
-#: ../src/plugins/view/geoview.py:1903
+#: ../src/plugins/view/geoview.py:1906
 #, python-format
 msgid "Id : %s"
 msgstr "ID : %s"
 
-#: ../src/plugins/view/geoview.py:1920
+#: ../src/plugins/view/geoview.py:1923
 msgid "All places in the family tree with coordinates."
 msgstr "Sva mjesta iz obiteljskog stabla sa koordinatama."
 
-#: ../src/plugins/view/geoview.py:1997
+#: ../src/plugins/view/geoview.py:2000
 msgid "All events in the family tree with coordinates."
 msgstr "Svi događaji iz obiteljskog stabla sa koordinatama."
 
-#: ../src/plugins/view/geoview.py:2022
+#: ../src/plugins/view/geoview.py:2025
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "ID : Otac : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2029
+#: ../src/plugins/view/geoview.py:2032
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "ID : Majka : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2040
+#: ../src/plugins/view/geoview.py:2043
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "ID : Dijete : %(id)s - %(index)d : %(name)s "
 
-#: ../src/plugins/view/geoview.py:2048
+#: ../src/plugins/view/geoview.py:2051
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2054
+#: ../src/plugins/view/geoview.py:2057
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Sva mjesta sa koordinatama članova obitelji od: %(name)s"
 
-#: ../src/plugins/view/geoview.py:2091
+#: ../src/plugins/view/geoview.py:2094
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2110
+#: ../src/plugins/view/geoview.py:2113
 msgid "All event places for"
 msgstr "Sva mjesta za:"
 
-#: ../src/plugins/view/geoview.py:2119
+#: ../src/plugins/view/geoview.py:2122
 msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2137
+#: ../src/plugins/view/geoview.py:2140
 msgid "Not yet implemented ..."
 msgstr "Još nije napravljeno ..."
 
-#: ../src/plugins/view/geoview.py:2287
-#, fuzzy
+#: ../src/plugins/view/geoview.py:2290
 msgid "Start page for the Geography View"
-msgstr "Početna stranica HTML pogleda"
+msgstr "Početna stranica u pogledu: Kartografija"
 
-#: ../src/plugins/view/geoview.py:2288
+#: ../src/plugins/view/geoview.py:2291
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr ""
 
@@ -17899,14 +17849,12 @@ msgid "The view showing events on an interactive internet map (internet connecti
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:62
-#, fuzzy
 msgid "Add Place"
-msgstr "Sva _mjesta"
+msgstr "Dodaj mjesto"
 
 #: ../src/plugins/view/geoview.gpr.py:63
-#, fuzzy
 msgid "Link Place"
-msgstr " Mjesto"
+msgstr "Poveži mjesto"
 
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
@@ -17978,7 +17926,6 @@ msgid "Start page for the Html View"
 msgstr "Početna stranica HTML pogleda"
 
 #: ../src/plugins/view/htmlrenderer.py:646
-#, fuzzy
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a webpage in this page\n"
 "<br>\n"
@@ -17988,27 +17935,27 @@ msgstr ""
 "<br>\n"
 "Na primjer: <b>http://gramps-project.org</p>"
 
-#: ../src/plugins/view/mediaview.py:104
+#: ../src/plugins/view/mediaview.py:105
 msgid "Edit the selected media object"
 msgstr "Uredi odabrani medij"
 
-#: ../src/plugins/view/mediaview.py:105
+#: ../src/plugins/view/mediaview.py:106
 msgid "Delete the selected media object"
 msgstr "Obriši odabrani medij"
 
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:235
 msgid "Media Filter Editor"
 msgstr "Uređivač filtra Medij"
 
-#: ../src/plugins/view/mediaview.py:244
+#: ../src/plugins/view/mediaview.py:238
 msgid "View in the default viewer"
 msgstr "Prikaz u zadanom pregledniku"
 
-#: ../src/plugins/view/mediaview.py:248
+#: ../src/plugins/view/mediaview.py:242
 msgid "Open the folder containing the media file"
 msgstr "Otvara mapu koja sadrži multimedijalne datoteke"
 
-#: ../src/plugins/view/mediaview.py:296
+#: ../src/plugins/view/mediaview.py:290
 #: ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
@@ -18125,7 +18072,7 @@ msgstr "Pokaži nepoznate osobe"
 
 #: ../src/plugins/view/pedigreeviewext.py:1938
 msgid "Mouse scroll direction"
-msgstr ""
+msgstr "Smjer kotačića miša"
 
 #: ../src/plugins/view/pedigreeviewext.py:1946
 msgid "Top <-> Bottom"
@@ -18170,20 +18117,17 @@ msgstr "Dodati nove roditelje..."
 
 #: ../src/plugins/view/pedigreeviewext.gpr.py:32
 #: ../src/plugins/view/view.gpr.py:122
-#, fuzzy
 msgid "Pedigree View"
-msgstr "Rodoslov"
+msgstr "Pogled Rodoslov"
 
 #: ../src/plugins/view/pedigreeviewext.gpr.py:33
 #: ../src/plugins/view/view.gpr.py:123
-#, fuzzy
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "Računa broj predaka odabrane osobe"
+msgstr "Pogled koji prikazuje rodoslov odabrane osobe"
 
 #: ../src/plugins/view/persontreeview.py:59
-#, fuzzy
 msgid "People Tree View"
-msgstr "Naziv mjesta"
+msgstr "Pogled Osobe"
 
 #: ../src/plugins/view/persontreeview.py:81
 #: ../src/plugins/view/placetreeview.py:82
@@ -18197,23 +18141,20 @@ msgstr "Skupi sve čvorove"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
-#, fuzzy
 msgid "Place Tree View"
-msgstr "Naziv mjesta"
+msgstr "Pogled Mjesta"
 
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
-msgstr ""
+msgstr "Pogled koji prikazuje mjesta u formu stabla"
 
 #: ../src/plugins/view/placetreeview.py:78
-#, fuzzy
 msgid "Expand this Entire Group"
-msgstr "Proširiti odjeljak"
+msgstr "Proširiti čitavu grupu"
 
 #: ../src/plugins/view/placetreeview.py:80
-#, fuzzy
 msgid "Collapse this Entire Group"
-msgstr "Sakupiti odjeljak"
+msgstr "Skupiti čitavu grupu"
 
 #: ../src/plugins/view/relview.py:375
 msgid "_Reorder"
@@ -18331,15 +18272,15 @@ msgid "Add existing child to family"
 msgstr "Dodaj postojeće dijete obitelji"
 
 #: ../src/plugins/view/relview.py:1153
-#, fuzzy, python-format
+#, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
-msgstr "rođ.: %(birth_date)s %(birth_place)s, umr.: %(death_date)s %(death_place)s."
+msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
 #: ../src/plugins/view/relview.py:1160
 #: ../src/plugins/view/relview.py:1162
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s"
-msgstr "%s i %s"
+msgstr "%s %s"
 
 #: ../src/plugins/view/relview.py:1223
 #, python-format
@@ -18388,23 +18329,20 @@ msgid "Add Child to Family"
 msgstr "Dodaj dijete obitelji"
 
 #: ../src/plugins/view/relview.py:1617
-#, fuzzy
 msgid "Use shading"
-msgstr "Čitam"
+msgstr "Koristi sjenčanje"
 
 #: ../src/plugins/view/relview.py:1620
-#, fuzzy
 msgid "Display edit buttons"
-msgstr "Uređivač Imena"
+msgstr "Prikaži tipke za uređivanje"
 
 #: ../src/plugins/view/relview.py:1622
 msgid "View links as website links"
 msgstr "Poveznice kao poveznice na web stranicu"
 
 #: ../src/plugins/view/relview.py:1628
-#, fuzzy
 msgid "Layout"
-msgstr "okolo"
+msgstr "Raspored"
 
 #: ../src/plugins/view/relview.py:1639
 msgid "Show Details"
@@ -18487,9 +18425,8 @@ msgid "Media View"
 msgstr "Pogled Mediji"
 
 #: ../src/plugins/view/view.gpr.py:78
-#, fuzzy
 msgid "The view showing all the media objects"
-msgstr "Uključiti galeriju medijskih datoteka"
+msgstr "Pogled koji prikazuje sve multimedijske datoteke"
 
 #: ../src/plugins/view/view.gpr.py:92
 msgid "Note View"
@@ -18504,39 +18441,32 @@ msgid "Relationship View"
 msgstr "Pogled Srodstvo"
 
 #: ../src/plugins/view/view.gpr.py:108
-#, fuzzy
 msgid "The view showing all relationships of the selected person"
-msgstr "Uključiti srodstvo sa početnom osobom"
+msgstr "Pogled koji pokazuje srodnike odabrane osobe"
 
 #: ../src/plugins/view/view.gpr.py:137
-#, fuzzy
 msgid "Person Tree View"
-msgstr "Link Osobe"
+msgstr "Osobe"
 
 #: ../src/plugins/view/view.gpr.py:138
-#, fuzzy
 msgid "The view showing all people in the family tree"
-msgstr "Pokušaj prikaza svih mjesta iz rodoslova"
+msgstr "Pogled koji prikazuje sve osobe u obiteljskom stablu"
 
 #: ../src/plugins/view/view.gpr.py:152
-#, fuzzy
 msgid "Person View"
-msgstr "Link Osobe"
+msgstr "Osobe"
 
 #: ../src/plugins/view/view.gpr.py:153
-#, fuzzy
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Pokušaj prikaza svih mjesta iz rodoslova"
+msgstr "Pogled koji prikazuje popis osoba u obiteljskom stablu"
 
 #: ../src/plugins/view/view.gpr.py:167
-#, fuzzy
 msgid "Place View"
-msgstr "Naziv mjesta"
+msgstr "Pogled Mjesta"
 
 #: ../src/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "The view showing all the places of the family tree"
-msgstr "Pokušaj prikaza svih mjesta iz rodoslova"
+msgstr "Pogled koji prikazuje sva mjesta iz obiteljskog stabla"
 
 #: ../src/plugins/view/view.gpr.py:182
 msgid "Repository View"
@@ -18567,9 +18497,8 @@ msgid "State/ Province"
 msgstr "Država/Pokrajina"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:558
-#, fuzzy
 msgid "Sealed to "
-msgstr "Sealed to Spouse"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:865
 #, python-format
@@ -18668,21 +18597,20 @@ msgid "Place name | Name"
 msgstr "Naziv mjesta"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2278
-#, fuzzy
 msgid "This page contains an index of all the events in the database, sorted by their type, date (if one is present), and gramps id, Clicking on an event&#8217;s Gramps ID will load a page for that event."
 msgstr "Ova stranica sadrži indeks svih mjesta u bazi, poredanih prema nazivu. Odabirom naziva mjesta otvoriti će se stranica tog mjesta."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2327
 #, python-format
 msgid "Event types beginning with %(eventtype)s"
-msgstr ""
+msgstr "Događaji koji počinju sa: %(eventtype)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2591
 msgid "Previous"
 msgstr "Prijašnje"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2592
-#, fuzzy, python-format
+#, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 msgstr "<strong id=\"GalleryCurrent\">%(page_number)d</strong> od <strong id=\"GalleryTotal\">%(total_pages)d</strong>"
 
@@ -18729,9 +18657,8 @@ msgid "Publication information"
 msgstr "Informacije o publikaciji"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3197
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr "Ova stranica sadrži indeks svih multimedijskih zapisa u bazi, poredanih prema njihovom nazivu. Odabirom naziva medija otvoriti će se njegova stranica.."
+msgstr "Ova stranica sadrži indeks svih multimedijskih zapisa u bazi, poredanih prema njihovom nazivu. Odabirom naziva medija otvoriti će se njegova stranica."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3216
 msgid "Media | Name"
@@ -18822,7 +18749,7 @@ msgstr "Obiteljska web stranica"
 #: ../src/plugins/webreport/NarrativeWeb.py:5081
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr ""
+msgstr "ID=%(grampsid)s, putanja=%(dir)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5086
 msgid "Missing media objects:"
@@ -19027,7 +18954,7 @@ msgstr "Uključiti galeriju medijskih datoteka"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5715
 msgid "Max width of initial image"
-msgstr ""
+msgstr "Najveća širina uvodne slike"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5717
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
@@ -19035,7 +18962,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5721
 msgid "Max height of initial image"
-msgstr ""
+msgstr "Najveća visina uvodne slike"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5723
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
@@ -19098,14 +19025,12 @@ msgid "Whether to include a database download option"
 msgstr "Uključiti opciju za preuzimanje baze podataka"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5779
-#, fuzzy
 msgid "Download page note"
-msgstr "Bilješka početne stranice"
+msgstr "Zabilješka na stranici za preuzimanje"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5780
-#, fuzzy
 msgid "A note to be used on the download page"
-msgstr "Zabilješka na početnoj stranici"
+msgstr "Zabilješka na stranici za preuzimaje"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5783
 #: ../src/plugins/webreport/NarrativeWeb.py:5792
@@ -19115,13 +19040,12 @@ msgstr "Naziv preuzete datoteke"
 #: ../src/plugins/webreport/NarrativeWeb.py:5785
 #: ../src/plugins/webreport/NarrativeWeb.py:5794
 msgid "File to be used for downloading of database"
-msgstr ""
+msgstr "Naziv datoteke za preuzimanje baze"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
-#, fuzzy
 msgid "Description for download"
-msgstr "Opis"
+msgstr "Opis datoteke za preuzimanje"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
 msgid "Smith Family Tree"
@@ -19130,7 +19054,7 @@ msgstr "Obiteljsko stablo obitelji Smith"
 #: ../src/plugins/webreport/NarrativeWeb.py:5789
 #: ../src/plugins/webreport/NarrativeWeb.py:5798
 msgid "Give a description for this file."
-msgstr ""
+msgstr "Unesite opis datoteke"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
 msgid "Johnson Family Tree"
@@ -19213,7 +19137,7 @@ msgstr "Poredaj djecu po starosti"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5850
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Prikazati djecu po starosti ili vremenu unosa"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5854
 msgid "Include event pages"
@@ -19221,30 +19145,27 @@ msgstr "Uključi stranice s događajima"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5855
 msgid "Add a complete events list and relevant pages or not"
-msgstr ""
+msgstr "Dodati potpunu listu događaja i srodnih stranica"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5858
 msgid "Include repository pages"
 msgstr "Uključi stranice sa spremištima"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5859
-#, fuzzy
 msgid "Whether to include the Repository Pages or not?"
-msgstr "Koristiti druga imena."
+msgstr "Uključiti prikaz stranica sa spremištima podataka"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5862
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Uključi GENDEX datoteku (/gendex.txt)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5863
-#, fuzzy
 msgid "Whether to include a GENDEX file or not"
-msgstr "Uključiti datume rođenja"
+msgstr "Uključiti GENDEX datoteku"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5866
-#, fuzzy
 msgid "Include address book pages"
-msgstr "Uključi adrese"
+msgstr "Uključiti  stranice s adresama"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
@@ -19254,7 +19175,7 @@ msgstr ""
 #: ../src/plugins/webreport/WebCal.py:304
 #, python-format
 msgid "Calculating Holidays for year %04d"
-msgstr ""
+msgstr "Računanje praznika za %04d. godinu"
 
 #: ../src/plugins/webreport/WebCal.py:453
 #, python-format
@@ -19488,42 +19409,37 @@ msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr "Izrada jednostraničnog jednostavnog kalendara sa istaknutim datumima"
 
 #: ../src/plugins/webreport/WebCal.py:1538
-#, fuzzy
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Izrada jednostavnog kalendara"
+msgstr "Izradi jednodnevne stranice za jednostavni kalendar"
 
 #: ../src/plugins/webreport/WebCal.py:1540
-#, fuzzy
 msgid "Whether to create one day pages or not"
-msgstr "Izraditi višegodišnji kalendar ili ne."
+msgstr "Izraditi jednodnevne stranice"
 
 #: ../src/plugins/webreport/WebCal.py:1543
 msgid "Link to Narrated Web Report"
 msgstr "Poveznica na obiteljske web stranice"
 
 #: ../src/plugins/webreport/WebCal.py:1544
-#, fuzzy
 msgid "Whether to link data to web report or not"
-msgstr "Uključiti podatke o zabilješkama roditelja."
+msgstr "Povezati podatke sa web stranicom"
 
 #: ../src/plugins/webreport/WebCal.py:1548
-#, fuzzy
 msgid "Link prefix"
-msgstr "prefiks"
+msgstr "Prefiks poveznice"
 
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1728
-#, fuzzy, python-format
+#, python-format
 msgid "%s old"
-msgstr "Podebljano"
+msgstr "%s g."
 
 #: ../src/plugins/webreport/WebCal.py:1728
-#, fuzzy
 msgid "birth"
-msgstr "Rođenje"
+msgstr "r."
 
 #: ../src/plugins/webreport/WebCal.py:1735
 #, python-format
@@ -19586,6 +19502,11 @@ msgstr "Odabir osobe za izvješće"
 #: ../src/PluginUtils/_GuiOptions.py:532
 msgid "Select a different family"
 msgstr "Odabir druge obitelji"
+
+#: ../src/PluginUtils/_GuiOptions.py:623
+#, python-format
+msgid "%s and %s (%s)"
+msgstr "%s i %s (%s)"
 
 #: ../src/PluginUtils/_GuiOptions.py:912
 #, python-format
@@ -19723,13 +19644,13 @@ msgstr "Osvježi"
 
 #: ../src/PluginUtils/_PluginWindows.py:398
 msgid "Refreshing Addon List"
-msgstr ""
+msgstr "Osvježivanje popisa dodataka"
 
 #: ../src/PluginUtils/_PluginWindows.py:399
 #: ../src/PluginUtils/_PluginWindows.py:404
 #: ../src/PluginUtils/_PluginWindows.py:494
 msgid "Reading gramps-project.org..."
-msgstr ""
+msgstr "Čitanje podataka sa gramps-project.org..."
 
 #: ../src/PluginUtils/_PluginWindows.py:422
 msgid "Checking addon..."
@@ -19779,7 +19700,7 @@ msgstr "Pregledavanje '%s'..."
 #: ../src/PluginUtils/_PluginWindows.py:559
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr ""
+msgstr "Greška: datoteka '%s' ne može biti učitana"
 
 #: ../src/PluginUtils/_PluginWindows.py:571
 #, python-format
@@ -19799,11 +19720,11 @@ msgstr "Instaliranje: '%s'..."
 #: ../src/PluginUtils/_PluginWindows.py:590
 #, python-format
 msgid "Registered '%s'"
-msgstr ""
+msgstr "Prijavljen '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:599
 msgid "Load Addon"
-msgstr ""
+msgstr "Učitaj dodatak"
 
 #: ../src/PluginUtils/_PluginWindows.py:650
 msgid "Unavailable"
@@ -19871,7 +19792,7 @@ msgstr "Proizvoljna veličina"
 
 #: ../src/ReportBase/_CommandLineReport.py:403
 msgid "Failed to write report. "
-msgstr ""
+msgstr "Greška zapisivanja izvješća"
 
 #: ../src/ReportBase/_Constants.py:43
 msgid "Text Reports"
@@ -19978,9 +19899,9 @@ msgid "Endnotes"
 msgstr "Završne napomene"
 
 #: ../src/ReportBase/_Endnotes.py:145
-#, fuzzy, python-format
+#, python-format
 msgid "Note %(ind)d - Type: %(type)s"
-msgstr "Napomena: %(id)s - %(context)s"
+msgstr "Zabilješka %(ind)d - Vrsta: %(type)s"
 
 #. -------------------------------------------------------------------------------
 #.
@@ -20535,9 +20456,8 @@ msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh
 msgstr "Pronalazi zapise o osobama promijenjene nakon navedenoga datuma (yyyy-mm-dd hh:mm:ss) ili u vremenskom rasponu ako je naveden i drugi datum"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
-#, fuzzy
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Srodstvo <osobe>"
+msgstr "Srodstvo između <osoba> i osoba koje odgovaraju filtru <filtar>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -20550,14 +20470,12 @@ msgid "Searches over the database starting from a specified person and returns e
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
-#, fuzzy
 msgid "Finding relationship paths"
-msgstr "Urediti srodstvo"
+msgstr "Traženje srodstva"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:135
-#, fuzzy
 msgid "Evaluating people"
-msgstr "Odabir osoba"
+msgstr "Proučavanje osoba"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -21734,7 +21652,6 @@ msgid "Source with <Id>"
 msgstr "Objekt <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a source with a specified Gramps ID"
 msgstr "Pronalazi izvore sa određenom GRAMPS ID oznakom"
 
@@ -21771,14 +21688,12 @@ msgid "Matches sources with a certain reference count"
 msgstr "Pronalazi zabilješke sa određenim zbrojem referenci"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:45
-#, fuzzy
 msgid "Sources with <count> Repository references"
-msgstr "Izvori sa <broj> medija"
+msgstr "Izvori sa <broj> referenci spremišta"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-#, fuzzy
 msgid "Matches sources with certain number repository references"
-msgstr "Pronalazi zabilješke sa određenim zbrojem referenci"
+msgstr "Pronalazi izvore sa određenim brojem referenci spremišta"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -21826,7 +21741,6 @@ msgid "Sources with <Id> matching regular expression"
 msgstr "Izvori čija <ID oznaka> odgovara regularnom izrazu"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr "Pronalazi izvore čija GRAMPS ID oznaka odgovara određenom regularnom izrazu"
 
@@ -21839,9 +21753,8 @@ msgid "Matches every media object in the database"
 msgstr "Pronalazi sve medije u bazi"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-#, fuzzy
 msgid "Media objects changed after <date time>"
-msgstr "Medijski objekti promijenjeni prije <datum>"
+msgstr "Mediji promijenjeni nakon <datum>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given."
@@ -23637,9 +23550,9 @@ msgstr "Korisnik"
 #: ../src/web/grampsdb/views.py:277
 #: ../src/web/grampsdb/views.py:284
 #: ../src/web/grampsdb/views.py:366
-#, fuzzy, python-format
+#, python-format
 msgid "Requested %s does not exist."
-msgstr "Datoteka ne postoji"
+msgstr "Traženi pogled %s ne postoji"
 
 #: ../src/web/grampsdb/views.py:288
 msgid "Requested page type not known"
@@ -23728,12 +23641,11 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:2
 #, fuzzy
 msgid "<b>Adding Images</b><br/>An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser. Actually you can add any type of file like this, useful for scans of documents and other digital sources."
-msgstr "Slike mogu biti dodane u bilo koju galeriju ili pogled Mediji 'povuci i ispusti' tehnikom iz upravitelja datoteka ili web preglednika."
+msgstr "<b>Dodavanje slika</b><br/>Slike mogu biti dodane u bilo koju galeriju ili pogled Mediji 'povuci i ispusti' tehnikom iz upravitelja datoteka ili web preglednika. "
 
 #: ../src/data/tips.xml.in.h:3
-#, fuzzy
 msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and setting. Play with the settings to see the different options."
-msgstr "Pogled Rodoslov prikazuje tradicionalni rodoslovni dijagram. Zadržite miša iznad osobe za prikaz dodatnih podataka o njoj ili desnim klikom na nju otvorite skočni izbornik za brzi odabir njezinih supružnika, braće, sestara i djece."
+msgstr "<b>Pogled Rodoslov</b><br/>Pogled Rodoslov prikazuje tradicionalni rodoslovni dijagram. Zadržite miša iznad osobe za prikaz dodatnih podataka o njoj ili desnim klikom na nju otvorite skočni izbornik za brzi odabir njezinih supružnika, braće, sestara i djece."
 
 #: ../src/data/tips.xml.in.h:4
 #, fuzzy
@@ -24004,876 +23916,14 @@ msgstr "<b>Tko je kad rođen</b>: Alat za usporedbu osobnih događaja omogućava
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calenders. Try the button next to the date field in the Events Editor."
 msgstr ""
 
-#~ msgid "Column Editor"
-#~ msgstr "Uređivač stupaca"
-#~ msgid "_Display format"
-#~ msgstr "_Format prikaza"
-#~ msgid "C_ustom format details"
-#~ msgstr "Pojedinosti prilagođenog prikaza"
-#~ msgid "Use shading in Relationship View"
-#~ msgstr "Koristi sjenčanje u pogledu Srodstvo"
-#~ msgid "Display edit buttons on Relationship View"
-#~ msgstr "Prikaži gumbe za uređivanje u pogledu Srodstvo"
-#~ msgid "civil union"
-#~ msgstr "građanski brak"
-#~ msgid "_Plugin Status"
-#~ msgstr "Status _dodataka"
-#~ msgid "_Filter"
-#~ msgstr "_ Filtar"
-#~ msgid "_Column Editor"
-#~ msgstr "_Uređivač stupaca"
-#~ msgid "Select Place Columns"
-#~ msgstr "Odaberi stupac Mjesto"
-#~ msgid "Edit icons can be enabled in the Preferences dialog"
-#~ msgstr "Ikone za uređivanje mogu biti uključene u dijalogu Postavke"
-#~ msgid "spouses of %s"
-#~ msgstr "Supružnici od %s"
-#~ msgid "Cause of Death"
-#~ msgstr "Uzrok smrti"
-#~ msgid "Select Event Columns"
-#~ msgstr "Odabir stupca Događaji"
-#~ msgid "Select Family Columns"
-#~ msgstr "Odaberi stupce Obiteljske liste"
-#~ msgid "_Column Editor..."
-#~ msgstr "_Uređivač stupaca..."
-
 #, fuzzy
-#~ msgid "_Provider"
-#~ msgstr "Pregled"
-
-#, fuzzy
-#~ msgid "_SaveZoom"
-#~ msgstr "Spremi"
-
-#, fuzzy
-#~ msgid "Selecting stylesheet ..."
-#~ msgstr "Sortiranje datuma ..."
-
-#, fuzzy
-#~ msgid "Select a StyleSheet"
-#~ msgstr "Stylesheet"
-#~ msgid "Set Columns to _1"
-#~ msgstr "Broj stupaca: _1"
-#~ msgid "Set Columns to _2"
-#~ msgstr "Broj stupaca: _2"
-#~ msgid "Set Columns to _3"
-#~ msgstr "Broj stupaca: _3"
-#~ msgid "Select Media Columns"
-#~ msgstr "Odaberi stupac Mediji"
-#~ msgid "Select Note Columns"
-#~ msgstr "Odaberi stupac Događaji"
-#~ msgid "Select Person Columns"
-#~ msgstr "Odaberi stupac Osobe"
-
-#, fuzzy
-#~ msgid "Tree"
-#~ msgstr "Grčki"
-#~ msgid "b. %(birthdate)s, d. %(deathdate)s"
-#~ msgstr "r. %(birthdate)s, u. %(deathdate)s"
-#~ msgid "short for born|b. %s"
-#~ msgstr "r. %s"
-#~ msgid "short for dead|d. %s"
-#~ msgstr "u. %s"
-#~ msgid "Select Repository Columns"
-#~ msgstr "Odabir stupca Spremište"
-#~ msgid "Select Source Columns"
-#~ msgstr "Odabir stupca Izvor"
-#~ msgid "Plugin Status"
-#~ msgstr "Status dodataka"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Different Views</b>: There are twelve different views for navigating "
-#~ "your family: Gramplets, People, Relationships, Family List, Pedigree, "
-#~ "Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each "
-#~ "helps you to achieve one or more specific tasks."
-#~ msgstr ""
-#~ "<b>Različiti pogledi</b>: Postoji devet različitih pogleda na obitelj: "
-#~ "Osobe, Srodstvo, Obiteljska lista, Rodoslov, Događaji, Izvori, Mjesta, "
-#~ "Mediji i Spremišta. Svaki vam omogućava izvršenje jednog ili više "
-#~ "zadataka."
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Setting Your Preferences</b>: Not happy with some default behavior of "
-#~ "Gramps? <b>Edit &gt; Preferences</b> lets you to modify a number of "
-#~ "settings, allowing you to tailor Gramps to your needs."
-#~ msgstr ""
-#~ "<b>Određivanje postavki</b>: Niste zadovoljni pred-određenim ponašanjem "
-#~ "GRAMPS-a? <b>Uredi &gt; Postavke</b> omogućava vam mijenjanje postavki "
-#~ "programa kako biste prilagodili GRAMPS svojim potrebama."
-#~ msgid ""
-#~ "A range of dates can be given by using the format &quot;between January "
-#~ "4, 2000 and March 20, 2003&quot;"
-#~ msgstr ""
-#~ "Vremenski razmak može biti korišten u formatu &quot;od 4. siječnja 2000. "
-#~ "do 20. ožujka 2003.&quot;"
-#~ msgid ""
-#~ "Birth order of children in a family can be set, even if they do not have "
-#~ "birth dates, by using drag and drop."
-#~ msgstr ""
-#~ "Redoslijed ređenja djece u obitelji može biti podešen pomoću 'povuci i "
-#~ "ispusti' tehnike i za osobe bez datuma rođenja."
-#~ msgid ""
-#~ "Custom reports can be created by advanced users under the &quot;"
-#~ "plugin&quot; system. More information on custom reports can be found at "
-#~ "http://developers.gramps-project.org"
-#~ msgstr ""
-#~ "Napredni korisnici mogu kreirati vlastita izvješća koristeći se sustavom "
-#~ "dodataka (&quot;plugina&quot;). Više podataka o korisničkim izvješćima "
-#~ "potražite na http://developers.gramps-project.org"
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps makes every effort to maintain compatibility with GEDCOM, the "
-#~ "general standard of recording genealogical information. Filters exist "
-#~ "that make importing and exporting GEDCOM files trivial."
-#~ msgstr ""
-#~ "GRAMPS pokušava zadržati usklađenost s GEDCOM formatom, glavnim formatom "
-#~ "za prijenos rodoslovnih podataka. Postoje filtri za lagani uvoz i izvoz "
-#~ "GEDCOM datoteka."
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps works even when using KDE, as long as the required GTK libraries "
-#~ "are installed."
-#~ msgstr ""
-#~ "GRAMPS radi i u KDE sučelju ako su instalirane potrebne GTK biblioteke."
-#~ msgid ""
-#~ "Make your data portable --- your family tree data and media can be "
-#~ "exported directly to the GNOME file manager (Nautilus), for burning onto "
-#~ "a CD."
-#~ msgstr ""
-#~ "Napravite vaše podatke prijenosnima --- vaši rodoslovi i multimedija mogu "
-#~ "biti izvezeni direktno u GNOME preglednik datoteka (Nautilus), za prženje "
-#~ "na CD. "
-#~ msgid ""
-#~ "Multiple names can be specified for individuals. Examples are birth name, "
-#~ "marriage name or aliases."
-#~ msgstr ""
-#~ "Osobama mogu biti pridodana višestruka imena. Na primjer: rođeno, "
-#~ "vjenčano ili nadimak."
-
-#, fuzzy
-#~ msgid ""
-#~ "Relationship calculators in Gramps are available in more than fifteen "
-#~ "languages."
-#~ msgstr "Kalkulator srodstva u programu GRAMPS je dostupan u deset jezika."
-#~ msgid ""
-#~ "To easily merge two people, select them both (a second person can be "
-#~ "selected by holding the Control key while clicking) and clicking on "
-#~ "<b>Edit &gt; Fast Merge</b>."
-#~ msgstr ""
-#~ "Dvije osobe moraju biti odabrane za izvođenje spajanja osoba. Drugu osobu "
-#~ "možete odabrati držeći pritisnutu Ctrl tipku i klikom na odabranu osobu."
-
-#, fuzzy
-#~ msgid ""
-#~ "To run Gramps, you need to have GTK installed. But you do not need to be "
-#~ "running the GNOME desktop."
-#~ msgstr ""
-#~ "Za pokretanje GRAMPS-a trebate instalirati GNOME ali ne trebate koristiti "
-#~ "GNOME radno okružje."
-
-#, fuzzy
-#~ msgid ""
-#~ "You can link any electronic media (including non-text information) and "
-#~ "other file types to your Gramps family tree."
-#~ msgstr ""
-#~ "Možete povezati bilo koji elektronički medij (uključujući ne-tekstualne "
-#~ "informacije) i druge vrste datoteka sa vašim GRAMPS obiteljskim stablom."
-#~ msgid "Input family tree \"%s\" does not exist."
-#~ msgstr "Obiteljsko stablo \"%s\" ne postoji"
-#~ msgid "GRAMPS: Import database"
-#~ msgstr "GRAMPS: Uvoz baze podataka"
-#~ msgid "Internet Maps"
-#~ msgstr "Internet Mape"
-#~ msgid ""
-#~ "You need a broadband internet connection to use Internet mapping "
-#~ "applications from within GRAMPS"
-#~ msgstr ""
-#~ "Trebate širokopojasnu internetsku vezu za korištenje internetskih mapa u "
-#~ "GRAMPS-u"
-#~ msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-#~ msgstr ""
-#~ "Dodati GeoPogled u GRAMPS za prikaz vaših podataka u mapama sa interneta"
-#~ msgid ""
-#~ "GeoView uses OpenStreetMap and one other map provider.\n"
-#~ "Choose one of the following map providers:"
-#~ msgstr ""
-#~ "GeoPogled koristi OpenStreetMape i druge pružatelje usluga.\n"
-#~ "Izaberite jednog od sljedećih pružatelja usluga prikaza mapa:"
-#~ msgid "Google Maps"
-#~ msgstr "Google Mape"
-#~ msgid "OpenLayers"
-#~ msgstr "OpenLayeri"
-#~ msgid "Yahoo! Maps"
-#~ msgstr "Yahoo! Mape"
-#~ msgid "Microsoft Maps"
-#~ msgstr "Microsoft Mape"
-#~ msgid "You need to restart GRAMPS for above settings to take effect"
-#~ msgstr "Trebate ponovo pokrenuti GRAMPS sa aktiviranje gornjih postavki"
-#~ msgid "Add Bookmark"
-#~ msgstr "Dodati bilješku"
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Possibly the installation of GRAMPS was incomplete. Make sure the GConf "
-#~ "schema of GRAMPS is properly installed."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Vjerojatno nije dovršena instalacija programa GRAMPS u cjelosti. "
-#~ "Provjerite da li je GRAMPS GConf schema pravilno instalirana."
-#~ msgid "_OpenStreetMap"
-#~ msgstr "_OpenStreet Mape"
-#~ msgid "Select OpenStreetMap Maps"
-#~ msgstr "Odabir OpenStret Mapa"
-#~ msgid "_Google Maps"
-#~ msgstr "_Google Mape"
-#~ msgid "Select Google Maps."
-#~ msgstr "Odabir Google Mapa"
-#~ msgid "_OpenLayers Maps"
-#~ msgstr "_OpenLayers Mape"
-#~ msgid "Select OpenLayers Maps."
-#~ msgstr "Odabir OpenLayers Mapa."
-#~ msgid "_Yahoo! Maps"
-#~ msgstr "_Yahoo! Mape"
-#~ msgid "Select Yahoo Maps."
-#~ msgstr "Odabir Yahoo! Mapa"
-#~ msgid "_Microsoft Maps"
-#~ msgstr "_Microsoft Mape"
-#~ msgid "Select Microsoft Maps"
-#~ msgstr "Odabir Microsoft Mapa"
-#~ msgid ""
-#~ "There are %d markers to display. They are split up over %d pages of %d "
-#~ "markers : "
-#~ msgstr ""
-#~ "Postoji %d oznaka za prikaz, podijeljenih na %d stranica sa po %d "
-#~ "oznakom :"
-#~ msgid "Cannot center the map. No location with coordinates."
-#~ msgstr "Nije moguće centrirati mapu. Nema mjesta sa koordinatama."
-#~ msgid "Id : %(id)s (%(year)s)"
-#~ msgstr "ID : %(id)s (%(year)s)"
-#~ msgid "The active person's family members have no places with coordinates."
-#~ msgstr "Članovi obitelji aktivne osobe nemaju mjesta sa koordinatama."
-#~ msgid "The active person has no places with coordinates."
-#~ msgstr "Aktivna osoba nema mjesta sa koordinatama."
-#~ msgid "Jump to father"
-#~ msgstr "Idi na oca"
-#~ msgid "Go to default person"
-#~ msgstr "Idi na zadanu osobu"
-#~ msgid "Edit selected person"
-#~ msgstr "Uredi odabranu osobu"
-#~ msgid "Select repository"
-#~ msgstr "Odabrati spremište"
-#~ msgid ""
-#~ "The family you are editing has changed. To make sure that the database is "
-#~ "not corrupted, GRAMPS has updated the family to reflect these changes. "
-#~ "Any edits you have made may have been lost."
-#~ msgstr ""
-#~ "Obitelj koju uređujete je promijenjena. Zbog provjere oštećenosti baze "
-#~ "GRAMPS je obnovio podatke o obitelji. Sve napravljene izmjene mogu biti "
-#~ "izgubljene."
-#~ msgid "GRAMPS Book"
-#~ msgstr "GRAMPS Knjiga"
-#~ msgid ""
-#~ "Exporting to CD copies all your data and media object files to the CD "
-#~ "Creator. You may later burn the CD with this data, and that copy will be "
-#~ "completely portable across different machines and binary architectures."
-#~ msgstr ""
-#~ "Izvozom na CD kopirate sve vaše podatke i multimedijske objekte u \"CD "
-#~ "Creator\". Možete kasnije zapržiti te podatke na CD i ta će kopija biti "
-#~ "potpuno prenosiva između različitih računala i binarnih arhitektura."
-#~ msgid "GRAMPS XML export options"
-#~ msgstr "GRAMPS XML postavke izvoza"
-#~ msgid "GRAMPS _XML database"
-#~ msgstr "GRAMPS _XML baza"
-#~ msgid "Import data from GRAMPS packages"
-#~ msgstr "Uvoz podataka iz GRAMPS paketa"
-#~ msgid "The marker '<!-- START -->' was not in the template"
-#~ msgstr "Oznaka '<!-- START -->' nije u predlošku"
-#~ msgid "Template Error"
-#~ msgstr "Greška u predlošku"
-#~ msgid ""
-#~ "Could not open %s\n"
-#~ "Using the default template"
-#~ msgstr ""
-#~ "Ne mogu otvoriti %s\n"
-#~ "Koristeći zadani predložak"
-#~ msgid "Open in %(program_name)s"
-#~ msgstr "Otvoriti u %(program_name)s"
-#~ msgid "SVG (Scalable Vector Graphics)"
-#~ msgstr "SVG (Skalabilna Vektorska Grafika)"
-#~ msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
-#~ msgstr "Kalendar: %(calendar_type)s, složen prema: %(sortby)s"
-#~ msgid "The calendar which determines the year span"
-#~ msgstr "Kalendar za prikaz godišnjih raspona"
-#~ msgid "WriteCD is a GNOME plugin and you are not running GNOME"
-#~ msgstr "WriteCD je GNOME dodatak, a vi ne koristite GNOME"
-#~ msgid "Cannot be loaded because python bindings for GNOME are not installed"
-#~ msgstr "Ne može biti pokrenut! Nisu instalirane poveznice za GNOME"
-#~ msgid "Export to CD"
-#~ msgstr "Izvezi na CD"
-#~ msgid "CD export preparation failed"
-#~ msgstr "Neuspjela priprema izvoza na CD"
-#~ msgid ""
-#~ "%(file_name)s is referenced in the database, but no longer exists. The "
-#~ "file may have been deleted or moved to a different location. You may "
-#~ "choose to either remove the reference from the database, keep the "
-#~ "reference to the missing file, or select a new file."
-#~ msgstr ""
-#~ "%(file_name)s se referencira u bazi ali više ne postoji. Datoteka je "
-#~ "obrisana ili premještena. Možete izabrati između uklanjanja reference iz "
-#~ "baze, zadržavanja reference na nepostojeću datoteku ili stvaranja nove."
-#~ msgid "_Export to CD (portable XML)"
-#~ msgstr "_Izvoz na CD (prijenosni XML)"
-#~ msgid "CSV spreadsheet options"
-#~ msgstr "Postavke CSV tabličnoga proračuna"
-#~ msgid "Web Family Tree export options"
-#~ msgstr "Web Family Tree postavke izvoza"
-#~ msgid "GEDCOM export options"
-#~ msgstr "GEDCOM postavke izvoza"
-#~ msgid "GeneWeb export options"
-#~ msgstr "GeneWeb postavke izvoza"
-#~ msgid "GRAMPS package export options"
-#~ msgstr "Postavke izvoza GRAMPS paketa"
-#~ msgid "vCalendar export options"
-#~ msgstr "vCalendar postavke izvoza"
-#~ msgid "vCard export options"
-#~ msgstr "vCard postavke izvoza"
-#~ msgid "Active person"
-#~ msgstr "Aktivna osoba"
-#~ msgid "Surname, Given"
-#~ msgstr "Prezime, Ime"
-#~ msgid "New person"
-#~ msgstr "Nova Osoba"
-#~ msgid "Add relation"
-#~ msgstr "Dodaj relaciju"
-#~ msgid "No relation to active person"
-#~ msgstr "Nema povezanosti sa aktivnom osobom"
-#~ msgid "Add as a Parent"
-#~ msgstr "Dodaj kao roditelja"
-#~ msgid "Add as a Spouse"
-#~ msgstr "Dodaj kao supružnika"
-#~ msgid "Add as a Sibling"
-#~ msgstr "Dodaj kao brata ili sestru"
-#~ msgid "Add as a Child"
-#~ msgstr "Dodaj kao dijete"
-#~ msgid "Copy Active Data"
-#~ msgstr "Kopiraj aktivne podatke"
-#~ msgid "in"
-#~ msgstr "u:"
-#~ msgid "Gramplet Data Edit: %s"
-#~ msgstr "Gramplet Uređivač podataka: %s"
-#~ msgid "Please provide a name."
-#~ msgstr "Molim unesite ime:"
-#~ msgid "Can't add new person."
-#~ msgstr "Novu osobu nije moguće dodati"
-#~ msgid "Please set an active person."
-#~ msgstr "Postavite aktivnu osobu"
-#~ msgid "Can't add new person as a parent."
-#~ msgstr "Nije moguće dodati novu osobu kao roditelja"
-#~ msgid "Please set the new person's gender."
-#~ msgstr "Odredite spol nove osobe"
-#~ msgid "Can't add new person as a spouse."
-#~ msgstr "Nije moguće dodati novu osobu kao supružnika!"
-#~ msgid "Can't add new person as a sibling."
-#~ msgstr "Nije moguće dodati novu osobu kao brata ili sestru!"
-#~ msgid "Can't add new person as a child."
-#~ msgstr "Nije moguće dodati novu osobu kao dijete!"
-#~ msgid "Please set gender on Active or new person."
-#~ msgstr "Odredite spol aktivnoj ili novoj osobi."
-#~ msgid "Same genders on Active and new person."
-#~ msgstr "Isti spol aktivne i nove osobe."
-#~ msgid "Please set gender on Active person."
-#~ msgstr "Odredite spol aktivne osobe."
-#~ msgid "Gramplet Data Entry: %s"
-#~ msgstr "Gramplet Unos podataka: %s"
-#~ msgid "Data Entry Gramplet"
-#~ msgstr "gramplet: Unos podataka"
-#~ msgid "Data Entry"
-#~ msgstr "Unos podataka"
-#~ msgid "b. %(birth_date)s - %(place)s"
-#~ msgstr "r. %(birth_date)s - %(place)s"
-#~ msgid "b. %(birth_date)s"
-#~ msgstr "r. %(birth_date)s"
-#~ msgid "d. %(death_date)s - %(place)s"
-#~ msgstr "u. %(death_date)s - %(place)s"
-#~ msgid "d. %(death_date)s"
-#~ msgstr "u. %(death_date)s"
-#~ msgid "Read headline news from the GRAMPS wiki"
-#~ msgstr "Čitanje novosti sa GRAMPS wiki stranice"
-#~ msgid "Headline News Gramplet"
-#~ msgstr "Gramplet Novosti"
-#~ msgid "Headline News"
-#~ msgstr "Naslovne novosti"
-#~ msgid "Note Gramplet"
-#~ msgstr "gramplet: Zabilješke"
-#~ msgid "Enter Python expressions"
-#~ msgstr "Unos izraza u Pythonu"
-#~ msgid "class name|Date"
-#~ msgstr "Datum"
-#~ msgid "Python Gramplet"
-#~ msgstr "gramplet: Python"
-#~ msgid "Python Shell"
-#~ msgstr "Python konzola"
-#~ msgid "Welcome to GRAMPS!"
-#~ msgstr "Dobrodošli u GRAMPS!"
-#~ msgid "gramps id"
-#~ msgstr "gramps ID"
-#~ msgid "CSV Spreadheet"
-#~ msgstr "CSV"
-#~ msgid "Eniro map not available for %s"
-#~ msgstr "Eniro mape nisu dostupne za zemlju: %s"
-#~ msgid "Only for Sweden and Denmark"
-#~ msgstr "Samo za Švedsku i Dansku"
-#~ msgid "males"
-#~ msgstr "muškarci"
-#~ msgid "females"
-#~ msgstr "žene"
-#~ msgid "all families"
-#~ msgstr "sve obitelji"
-#~ msgid "RepoRef"
-#~ msgstr "Reference spremišta"
-#~ msgid "b."
-#~ msgstr "r."
-#~ msgid "d."
-#~ msgstr "u."
-#~ msgid "Whether to use Record-style numbering instead of Henry-style."
-#~ msgstr ""
-#~ "Koristiti \"Modified Register\" umjesto \"Henry\" stila numeriranja."
-#~ msgid "%dU"
-#~ msgstr "%dN"
-#~ msgid "%(date)s in %(place)s. "
-#~ msgstr "%(date)s u mjestu %(place)s. "
-#~ msgid "Display detailed results"
-#~ msgstr "Detaljni prikaz rezultata"
-#~ msgid "Show details for every date entered"
-#~ msgstr "Prikazuje detalje o svakom unesenom datumu"
-#~ msgid "Minimum years between two generations"
-#~ msgstr "Najmanji razmak među generacijama"
-#~ msgid "Results"
-#~ msgstr "Rezultati"
-#~ msgid "Replacing...\n"
-#~ msgstr "Zamjena...\n"
-#~ msgid "Calculating estimated dates..."
-#~ msgstr "Približno računanje datuma..."
-#~ msgid "Beta"
-#~ msgstr "Beta"
-#~ msgid "Generate Commandline Plugin Reference"
-#~ msgstr "Parametri naredbi u komandnom redku"
-#~ msgid ""
-#~ "Produces a DocBook XML file that contains a parameter reference of "
-#~ "Reports and Tools."
-#~ msgstr ""
-#~ "Stvara DocBook XML datoteku koja sadržava reference na parametre Izvješća "
-#~ "i Alata."
-#~ msgid "Python Evaluation Window"
-#~ msgstr "Prozor za pregled Python koda"
-#~ msgid "Provides a window that can evaluate python code"
-#~ msgstr "Pruža prozor za pregled Python koda"
-#~ msgid ""
-#~ "%d uncollected objects:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "broj ne-korištenih objekata: %d\n"
-#~ "\n"
-#~ msgid "Show Uncollected Objects"
-#~ msgstr "Prikaz ne korištenih objekata"
-#~ msgid "Provide a window listing all uncollected objects"
-#~ msgstr "Prikazuje prozor sa popisom ne korištenih objekata"
-#~ msgid "GRAMPS Media Manager"
-#~ msgstr "GRAMPS upravitelj medija"
-#~ msgid "Looking for %d people"
-#~ msgstr "Traženje %d osoba"
-#~ msgid "Looking up the names for %d people"
-#~ msgstr "Traženje imena %d osoba"
-#~ msgid ""
-#~ "Searches the entire database and attempts to extract titles, nicknames "
-#~ "and surname prefixes that may be embedded in a person's given name field."
-#~ msgstr ""
-#~ "Pretražuje cijelu bazu podataka u potrazi za titulama, nadimcima i "
-#~ "prefiksima prezimena koja mogu biti uključena u polju za unos osobnog "
-#~ "imena."
-#~ msgid "Reordering GRAMPS IDs"
-#~ msgstr "Izmjenjivanje redoslijeda GRAMPS ID"
-#~ msgid "GRAMPS ID"
-#~ msgstr "GRAMPS ID:"
-#~ msgid "event|Type"
-#~ msgstr "Vrsta"
-#~ msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
-#~ msgstr "%(date)s <span class=\"preposition\">u</span> %(place)s"
-#~ msgid "<span class=\"preposition\">at</span> %(place)s"
-#~ msgstr "<span class=\"preposition\">u</span> %(place)s"
-#~ msgid "<br />%(type)s: %(value)s"
-#~ msgstr "<br />%(type)s: %(value)s"
-#~ msgid "Advanced"
-#~ msgstr "Napredno"
-#~ msgid "Creating year %d calendars"
-#~ msgstr "Izrada kalendara za %d"
-#~ msgid "%(short_name)s"
-#~ msgstr "%(short_name)s"
-#~ msgid ""
-#~ "Enter the ending year for the calendars between 1900 - 3000.  if multiple "
-#~ "years is selected, then only twenty years at any given time"
-#~ msgstr ""
-#~ "Unesite završnu godinu kalendara između 1900 - 3000. Kod višestrukih "
-#~ "odabira najviše dvadeset godina."
-#~ msgid "This prints in January"
-#~ msgstr "ovo piše u siječnju"
-#~ msgid "This prints in February"
-#~ msgstr "ovo piše u veljači"
-#~ msgid "This prints in March"
-#~ msgstr "ovo piše u ožujku"
-#~ msgid "This prints in April"
-#~ msgstr "ovo piše u travnju"
-#~ msgid "This prints in May"
-#~ msgstr "ovo piše u svibnju"
-#~ msgid "This prints in June"
-#~ msgstr "ovo piše u lipnju"
-#~ msgid "This prints in July"
-#~ msgstr "ovo piše u srpnju"
-#~ msgid "This prints in August"
-#~ msgstr "ovo piše u kolovozu"
-#~ msgid "This prints in September"
-#~ msgstr "ovo piše u rujnu"
-#~ msgid "This prints in October"
-#~ msgstr "ovo piše u listopadu"
-#~ msgid "This prints in November"
-#~ msgstr "ovo piše u studenom"
-#~ msgid "This prints in December"
-#~ msgstr "ovo piše u prosincu"
-#~ msgid "%(person)s, <em>birth</em>"
-#~ msgstr "%(person)s, <em>rođenje</em>"
-#~ msgid "%(person)s, <em>%(age)s</em> old"
-#~ msgstr "%(person)s, <em>%(age)s</em> starosti"
-#~ msgid "Print a copy"
-#~ msgstr "Ispiši kopiju"
-#~ msgid "Template"
-#~ msgstr "Predložak"
-#~ msgid "User Template"
-#~ msgstr "Korisnički predložak"
-#~ msgid "Choose File"
-#~ msgstr "Odaberi datoteku"
-#~ msgid "Open with application"
-#~ msgstr "Otvoriti pomoću  programa"
-#~ msgid "Open with default application"
-#~ msgstr "Otvori pomoću programa"
-#~ msgid "unmarried"
-#~ msgstr "nevjenčani"
-#~ msgid "He"
-#~ msgstr "On"
-#~ msgid "She"
-#~ msgstr "Ona"
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s je rođen %(birth_date)s u mjestu %(birth_place)s"
-#~ "%(birth_endnotes)s i umro %(death_date)s u mjestu %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio %(birth_date)s u mjestu %(birth_place)s"
-#~ "%(birth_endnotes)s i umro %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio %(birth_date)s u mjestu %(birth_place)s"
-#~ "%(birth_endnotes)s i umro u mjestu %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s je rođen %(birth_date)s u mjestu: %(birth_place)"
-#~ "s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio %(birth_date)s%(birth_endnotes)s i "
-#~ "umro %(death_date)s u mjestu %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio %(birth_date)s%(birth_endnotes)s i "
-#~ "umro %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio %(birth_date)s%(birth_endnotes)s i "
-#~ "umro u mjestu %(death_place)s%(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s je rođen %(birth_date)s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio u mjestu %(birth_place)s%"
-#~ "(birth_endnotes)s i umro %(death_date)s u mjestu %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio u mjestu %(birth_place)s%"
-#~ "(birth_endnotes)s i umro %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se rodio u mjestu %(birth_place)s%"
-#~ "(birth_endnotes)s i umro u mjestu %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s je rođen u mjestu: %(birth_place)s%"
-#~ "(birth_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s je umro %(death_date)s u mjestu: %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s je umro %(death_date)s%(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s je umro u mjestu: %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila %(birth_date)s u mjestu %"
-#~ "(birth_place)s%(birth_endnotes)s i umrla %(death_date)s u mjestu %"
-#~ "(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila %(birth_date)s u mjestu %"
-#~ "(birth_place)s%(birth_endnotes)s i umrla %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila %(birth_date)s u mjestu %"
-#~ "(birth_place)s%(birth_endnotes)s i umrla u mjestu %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s je rođena %(birth_date)s u mjestu: %"
-#~ "(birth_place)s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila %(birth_date)s%(birth_endnotes)s i "
-#~ "umrla %(death_date)s u mjestu %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila %(birth_date)s%(birth_endnotes)s i "
-#~ "umrla %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila %(birth_date)s%(birth_endnotes)s i "
-#~ "umrla u mjestu %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s je rođena %(birth_date)s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila u mjestu %(birth_place)s%"
-#~ "(birth_endnotes)s i umrla %(death_date)s u mjestu %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se rodila u mjestu %(birth_place)s%"
-#~ "(birth_endnotes)s i umrla %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s je rođena u mjestu %(birth_place)s%"
-#~ "(birth_endnotes)s i umrla u mjestu %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s je rođena u mjestu: %(birth_place)s%"
-#~ "(birth_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s je umrla %(death_date)s u mjestu: %"
-#~ "(death_place)s%(death_endnotes)s."
-#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s je umrla %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s je umrla u mjestu %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgid "%(female_name)s%(endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s."
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "rođ.: %(birth_date)s %(birth_place)s, umr.: %(death_date)s."
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-#~ msgstr "rođ.: %(birth_date)s %(birth_place)s, umr.: %(death_place)s."
-#~ msgid "Born: %(birth_date)s %(birth_place)s."
-#~ msgstr "rođ.: %(birth_date)s %(birth_place)s."
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr "rođ.: %(birth_date)s, umr.: %(death_date)s %(death_place)s."
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s."
-#~ msgstr "rođ.: %(birth_date)s, umr.: %(death_date)s."
-#~ msgid "Born: %(birth_date)s, Died: %(death_place)s."
-#~ msgstr "rođ.: %(birth_date)s, umr: %(death_place)s."
-#~ msgid "Born: %(birth_date)s."
-#~ msgstr "rođ.: %(birth_date)s."
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr "rođ: %(birth_place)s, umr.: %(death_date)s %(death_place)s."
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "rođ.: %(birth_place)s, umr.: %(death_date)s."
-#~ msgid "Born: %(birth_place)s, Died: %(death_place)s."
-#~ msgstr "rođ.: %(birth_place)s, umr.: %(death_place)s."
-#~ msgid "Born: %(birth_place)s."
-#~ msgstr "rođ.: %(birth_place)s."
-#~ msgid "Died: %(death_date)s %(death_place)s."
-#~ msgstr "umr.: %(death_date)s %(death_place)s."
-#~ msgid "Died: %(death_date)s."
-#~ msgstr "umr.: %(death_date)s."
-#~ msgid "Died: %(death_place)s."
-#~ msgstr "umr.: %(death_place)s."
-#~ msgid "Default Template"
-#~ msgstr "Zadani predložak"
-#~ msgid "User Defined Template"
-#~ msgstr "Korisnički definiran predložak"
-#~ msgid "Processing Person records"
-#~ msgstr "Obrada zapisa Osobe"
-#~ msgid "Processing Family records"
-#~ msgstr "Obrada zapisa Obitelj"
-#~ msgid "Processing Event records"
-#~ msgstr "Obrada zapisa Događaji"
-#~ msgid "Processing Place records"
-#~ msgstr "Obrada zapisa Mjesta"
-#~ msgid "Processing Source records"
-#~ msgstr "Obrada zapisa Izvori"
-#~ msgid "Processing Media records"
-#~ msgstr "Obrada zapisa Mediji"
-#~ msgid "Processing Repository records"
-#~ msgstr "Obrada zapisa Spremišta"
-#~ msgid "Processing Note records"
-#~ msgstr "Obrada zapisa Zabilješke"
-#~ msgid "Julian"
-#~ msgstr "Julijanski"
-#~ msgid "Events changed before <date time>"
-#~ msgstr "Događaji promijenjeni prije <datum>"
-#~ msgid "Notes changed before <date time>"
-#~ msgstr "Zabilješke promijenjene prije <datum>"
-#~ msgid ""
-#~ "Matches note records changed since a specified date-time (yyyy-mm-dd hh:"
-#~ "mm:ss) or in the range, if a second date-time is given"
-#~ msgstr ""
-#~ "Pronalazi zabilješke promijenjene nakon navedenoga datuma (yyyy-mm-dd hh:"
-#~ "mm:ss) ili u vremenskom rasponu ako je naveden i drugi datum"
-#~ msgid "Zip/Postal code"
-#~ msgstr "Poštanski broj"
-#~ msgid ""
-#~ "Female\n"
-#~ "Male\n"
-#~ "Unknown"
-#~ msgstr ""
-#~ "Žensko\n"
-#~ "Muško\n"
-#~ "Nepoznato"
-#~ msgid "GRAMPS"
-#~ msgstr "GRAMPS"
-#~ msgid ""
-#~ "January 1\n"
-#~ "March 1\n"
-#~ "March 25\n"
-#~ "September 1\n"
-#~ msgstr ""
-#~ "1. siječnja\n"
-#~ "1. ožujka\n"
-#~ "25. ožujka\n"
-#~ "1. rujna\n"
-#~ msgid ""
-#~ "Very Low\n"
-#~ "Low\n"
-#~ "Normal\n"
-#~ "High\n"
-#~ "Very High"
-#~ msgstr ""
-#~ "Jako nisko\n"
-#~ "Nisko\n"
-#~ "Normalno\n"
-#~ "Visoko\n"
-#~ "Jako visoko"
-#~ msgid "_Zip/Postal code:"
-#~ msgstr "_Poštanski broj:"
-#~ msgid "GRAMPS ID:"
-#~ msgstr "GRAMPS ID:"
-#~ msgid ""
-#~ "All rules must apply\n"
-#~ "At least one rule must apply\n"
-#~ "Exactly one rule must apply"
-#~ msgstr ""
-#~ "Odgovara svim pravilima\n"
-#~ "Odgovara najmanje jednom pravilu\n"
-#~ "Odgovara samo jednom pravilu"
-#~ msgid ""
-#~ "\n"
-#~ "ToDo\n"
-#~ "NotRelated"
-#~ msgstr ""
-#~ "\n"
-#~ "Za Napraviti\n"
-#~ "Nepovezani"
-#~ msgid "*"
-#~ msgstr "*"
-#~ msgid ""
-#~ "default\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UTF8"
-#~ msgstr ""
-#~ "zadano\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UTF8"
-#~ msgid "Copy from DB to Preferences"
-#~ msgstr "Kopiraj iz baze u postavke"
-#~ msgid "Copy from Preferences to DB"
-#~ msgstr "Kopiraj iz postavki u bazu"
-#~ msgid "Exclude _sources"
-#~ msgstr "Isključi izvore"
-#~ msgid "GRAMPS database"
-#~ msgstr "GRAMPS baza"
+#~ msgid "Export Complete: %d second"
+#~ msgid_plural "Export Complete: %d seconds"
+#~ msgstr[0] "Uvoz završen za: %d sekundu"
+#~ msgstr[1] "Uvoz završen za: %d sekunde"
+#~ msgstr[2] "Uvoz završen za: %d sekundi"
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+#~ msgid "%s and %s are the same person."
+#~ msgstr "%s i %s su ista osoba."
 
