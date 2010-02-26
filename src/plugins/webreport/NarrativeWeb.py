@@ -926,9 +926,6 @@ class BasePage(object):
         if self.ext in [".php", ".php3", ".cgi"]:
             del page[0]
 
-        # add narrative specific body id
-        body.attr = 'id = "NarrativeWeb"'
-
         # create additional meta tags
         meta = (Html("meta", attr = _META1) + 
                 Html("meta", attr = _META2, indent = False)
@@ -942,10 +939,6 @@ class BasePage(object):
         fname = "/".join(["styles", _NARRATIVESCREEN])
         url2 = self.report.build_url_fname(fname, None, self.up)
 
-        # Link to Navigation stylesheet
-        fname = "/".join(["styles", "Web_Navigation-Menus.css"])
-        url5 = self.report.build_url_fname(fname, None, self.up)
-
         # Link to _NARRATIVEPRINT stylesheet
         fname = "/".join(["styles", _NARRATIVEPRINT])
         url3 = self.report.build_url_fname(fname, None, self.up)
@@ -957,16 +950,17 @@ class BasePage(object):
         # create stylesheet and favicon links
         links = [Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon"),
              Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet") ]
+             Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet"),
+             Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet") ]
 
         if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
-            links += Html("link", href= url5, type= "text/css", media="screen", rel="stylesheet", indent = True)
-
-        links += Html("link", href = url3, type = "text/css", media = 'print', rel = "stylesheet", indent = True)
+            # Link to Navigation Menus stylesheet
+            fname = "/".join(["styles", "Web_Navigation-Menus.css"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            links += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
         # add additional meta and link tags
-        head += meta
-        head += links
+        head += (meta, links)
 
         # alpha event pages do not need these things
         if key is not _ALPHAEVENT:

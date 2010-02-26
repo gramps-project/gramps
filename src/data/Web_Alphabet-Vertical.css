@@ -1,32 +1,34 @@
-.﻿/*
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright 2008-2009 Rob G. Healey <robhealey1@gmail.com>
-# Copyright 2009 Stephane Charette
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-
+﻿/*
+ **************************************************************************************************
+Copyright Holder and License
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
-Style Name: Visually Impaired Stylesheet
-Style Author: Jason M. Simanek (2008)
-***************************************************************************************************
+Style Name: Web_Alphabet-Vertical.css
+**************************************************************************************************
+This website was created with GRAMPS
+http://www.gramps-project.org
+--------------------------------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
 
-# $Id: Web_Alphabet-Vertical.css 14491 2010-02-25 08:47:00Z robhealey1 $
+Go to http://gramps-project.org to learn more!
+
+--------------------------------------------------------------------------------------------------
+Copyright (C) 2009 Rob G. Healey <robhealey1@gmail.com>
+
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with GRAMPS. If not,
+see <http://www.gnu.org/licenses/>.
+--------------------------------------------------------------------------------------------------
+# $Id: Web_Alphabet-Vertical.css 14493 2010-02-25 14:12:33Z robhealey1 $
 
  Header
 ----------------------------------------------------- */
@@ -39,9 +41,8 @@ Style Author: Jason M. Simanek (2008)
 }
 
 /* Body Element
------------------------------------------------------- */
+----------------------------------------------------- */
 body {
-    font-family: Arial, Helvetica,  Lucina, sans, serif;
     color: #000;
     background-color: #FFF;
     padding: 60px 0px 0px 124px;
@@ -51,9 +52,10 @@ body {
 ----------------------------------------------------- */
 div#navigation {
     position: fixed;
+    top: 66px;
     left: 0px;
     width: 124px;
-    height: 390px;
+    height: 400px;
     overflow-x: auto;
     border-width: 2px 4px 2px 4px;
     border-style: solid;
@@ -66,9 +68,9 @@ div#navigation ul {
 }
 div#navigation ul li {
     font: bold 14px/100% sans;
-#    padding: 10px 10px 10px 0px;
+    padding: 10px 10px 10px 0px;
     margin:0;
-    float: center;
+    float: left;
     border-width: 0px 0px 2px 0px;
     border-style: solid;
 }
@@ -84,14 +86,46 @@ div#navigation ul li a:hover {
     background-color: #C1B398;
 }
 div#navigation ul li.CurrentSection a {
-    font-weight:bold;
-    font-style: italic;
-    background-color: #453619;
     color: #FFF;
+    background-color: #000;
 }
 div#navigation ul li.CurrentSection a:hover {
-    background-color: #000;
-    color: #FFF;
+    border: solid 2px #000;
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: solid 2px #000;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width: 900px;
+    height: 24px;
+    margin:0;
+    padding: 0px 0px 0px 9px;
+    border-bottom: solid 2px #5D835F;
+}
+div#alphabet ul li {
+    float:left;
+}
+div#alphabet ul li:after {
+    content: "| ";
+}
+div#alphabet ul li a {
+    display: block;
+    padding: 5px 16px 14px 1px;
+    float:left;
+    font: .8em bold italic small-caps verdana, serif;
+    color: #000;
+    text-decoration:none;
+    margin:0;
+}
+div#alphabet ul li a:hover {
+    background-color: #C1B398;
 }
 
 /* SubNavigation
@@ -100,6 +134,7 @@ div#subnavigation {
     width: 100%;
     margin: 0;
     padding: 0;
+    border: solid 2px #000;
 }
 div#subnavigation ul {
     list-style:none;
@@ -111,6 +146,9 @@ div#subnavigation ul {
 }
 div#subnavigation ul li {
     float:left;
+}
+div#subnavigation ul li:after {
+    content: "| ";
 }
 div#subnavigation ul li a {
     display: block;
@@ -130,42 +168,7 @@ div#subnavigation ul li.CurrentSection a {
     background-color: #453619;
     color: #FFF;
 }
-div#navigation ul li.CurrentSection a:hover {
+div#subnavigation ul li.CurrentSection a:hover {
     background-color: #000;
     color: #FFF;
-}
-div#subnavigation ul li.CurrentSection a {
-    border-width: 0px 0px 2px 0px;
-    border-color: #5D835F;
-}
-
-/* Alphabet Navigation
------------------------------------------------------ */
-div#alphabet {
-    width: 100%;
-    margin: 0;
-}
-div#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding: 0px 0px 0px 16px;
-    border-width: 2px 0px 4px 0px;
-    border-style: solid;
-}
-div#alphabet ul li:after {
-    content:"  |";
-}
-div#alphabet ul li {
-    margin:0;
-    float:left;
-}
-div#alphabet ul li a {
-    display:block;
-    padding: 4px 8px 4px 8px;
-    float:left;
-    font:bold 16px/100% sans;
-    margin:0;
-    text-decoration:none;
 }
