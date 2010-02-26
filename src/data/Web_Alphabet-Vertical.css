@@ -1,34 +1,32 @@
-﻿/*
- **************************************************************************************************
-Copyright Holder and License
+.﻿/*
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright 2008-2009 Rob G. Healey <robhealey1@gmail.com>
+# Copyright 2009 Stephane Charette
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
-Style Name: Web_Alphabet-Vertical.css
-**************************************************************************************************
-This website was created with GRAMPS
-http://www.gramps-project.org
---------------------------------------------------------------------------------------------------
-GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
-and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+Style Name: Visually Impaired Stylesheet
+Style Author: Jason M. Simanek (2008)
+***************************************************************************************************
 
-Go to http://gramps-project.org to learn more!
-
---------------------------------------------------------------------------------------------------
-Copyright (C) 2009 Rob G. Healey <robhealey1@gmail.com>
-
-This file is part of the GRAMPS program.
-
-GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General
-Public License as published by the Free Software Foundation, version 2 of the License.
-
-GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with GRAMPS. If not,
-see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
-# $Id: $
+# $Id: Web_Alphabet-Vertical.css 14491 2010-02-25 08:47:00Z robhealey1 $
 
  Header
 ----------------------------------------------------- */
@@ -46,7 +44,7 @@ body {
     font-family: Arial, Helvetica,  Lucina, sans, serif;
     color: #000;
     background-color: #FFF;
-    padding: 60px 0px 0px 118px;
+    padding: 60px 0px 0px 124px;
 }
 
 /* Navigation
@@ -54,8 +52,8 @@ body {
 div#navigation {
     position: fixed;
     left: 0px;
-    width: 118px;
-    height: 500px;
+    width: 124px;
+    height: 390px;
     overflow-x: auto;
     border-width: 2px 4px 2px 4px;
     border-style: solid;
@@ -68,17 +66,14 @@ div#navigation ul {
 }
 div#navigation ul li {
     font: bold 14px/100% sans;
-    padding: 10px 10px 10px 0px;
+#    padding: 10px 10px 10px 0px;
     margin:0;
-    float: left;
+    float: center;
     border-width: 0px 0px 2px 0px;
     border-style: solid;
 }
 div#navigation ul li:first-child {
     border-top: 0;
-}
-div#navigation ul li:last-child {
-    border-bottom: 0;
 }
 div#navigation ul li a {
     text-decoration: none;

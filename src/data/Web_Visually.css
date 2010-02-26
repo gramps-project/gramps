@@ -503,9 +503,19 @@ div#IndividualDetail div.subsection table tr td:first-child {
 }
 #Places table.infolist tbody tr td.ColumnName {
     background-color: #FFF;
+    width: 25%;
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
+}
+#Places table.infolist tbody tr td.ColumnState {
+    width: 7%;
+}
+#Places table.infolist tbody tr td.ColumnCountry {
+    width: 7%;
+}
+#Places table.infolist tbody tr td.ColumnCoordinates {
+    width: 15%;
 }
 
 /* EventList and EventDetail

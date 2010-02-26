@@ -960,9 +960,9 @@ class BasePage(object):
              Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet") ]
 
         if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
-            links += Html("link", href= url5, type= "text/css", media="screen", rel="stylesheet")
+            links += Html("link", href= url5, type= "text/css", media="screen", rel="stylesheet", indent = True)
 
-        links += Html("link", href = url3, type = "text/css", media = 'print', rel = "stylesheet")
+        links += Html("link", href = url3, type = "text/css", media = 'print', rel = "stylesheet", indent = True)
 
         # add additional meta and link tags
         head += meta
@@ -2190,7 +2190,7 @@ class PlaceListPage(BasePage):
                         for colclass, data in [
                             ["State",       ml.state],
                             ["Country",     ml.country],
-                            ["Coordinates", (place.lat + ", " + place.long)] ]
+                            ["Coordinates", (place.lat + ", " + place.long) if place.lat and place.long else None] ]
                             if data or "&nbsp;"
                         )
 
@@ -5112,7 +5112,6 @@ class NavWebReport(Report):
         """
 
         # gets the person list and applies the requested filter
-        
         ind_list = self.database.iter_person_handles()
         self.progress.set_pass(_('Applying Filter...'), self.database.get_number_of_people())
         ind_list = self.filter.apply(self.database, ind_list, self.progress)
