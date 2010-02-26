@@ -1476,8 +1476,9 @@ class CheckIntegrity(object):
                 'person' : cn, 'family' : pn }
 
         if plink > 0:
-            self.text.write(ngettext("%(quantity)d broken spouse/family link was fixed\n", \
-            "%(quantity)d broken spouse/family links were found\n", plink)) % { 'quantity' : plink }
+            self.text.write(ngettext("%(quantity)d broken spouse/family link was fixed\n", 
+                                     "%(quantity)d broken spouse/family links were found\n", plink) % {
+                    'quantity' : plink })
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1515,21 +1516,22 @@ class CheckIntegrity(object):
             self.text.write(_("%d family with no parents or children found, removed.\n"))
             self.text.write("\t%s\n" % self.empty_family[0])
         elif efam > 1:
-            self.text.write(_("%(quantity)d families with no parents or children, removed.\n")) % {
-                'quantity' : efam }
+            self.text.write(_("%(quantity)d families with no parents or children, removed.\n") % {
+                    'quantity' : efam })
 
         if rel:
-            self.text.write(ngettext("%(quantity)d corrupted family relationship fixed\n", \
-            "%(quantity)d corrupted family relationship fixed\n", rel)) % { 'quantity' : rel }
+            self.text.write(ngettext("%d corrupted family relationship fixed\n", 
+                                     "%d corrupted family relationship fixed\n", rel) % rel )
 
         if person_references:
-            self.text.write(ngettext("%(quantity)d person was referenced but not found\n", \
-            "%(quantity)d persons were referenced, but not found\n", person_references)) % {
-                'quantity' : person_references }
+            self.text.write(ngettext("%d person was referenced but not found\n", 
+                                     "%d persons were referenced, but not found\n", 
+                                     person_references) % person_references)
         
         if invalid_dates:
-            self.text.write(ngettext("%(quantity)d date was corrected\n", \
-            "%(quantity)d dates were corrected\n", invalid_dates)) % { 'quantity' : invalid_dates }
+            self.text.write(ngettext("%d date was corrected\n", 
+                                     "%d dates were corrected\n", 
+                                     invalid_dates) % invalid_dates)
         
         if repo_references:
             self.text.write(ngettext("%(quantity)d repository was referenced but not found\n", \
