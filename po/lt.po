@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-26 09:00+0100\n"
-"PO-Revision-Date: 2010-02-27 20:20+0300\n"
+"PO-Revision-Date: 2010-02-28 01:07+0300\n"
 "Last-Translator: Artursa Sleinius <asleinius@users.sourceforge.net>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2170,7 +2170,7 @@ msgstr ""
 #: ../src/cli/arghandler.py:140
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "Klaida: Įkeliama byla %s nerasta."
 
 #: ../src/cli/arghandler.py:158
 #, python-format
@@ -2187,11 +2187,11 @@ msgstr ""
 
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
-msgstr ""
+msgstr "Ar galima perrašyti? (taip/ne) "
 
 #: ../src/cli/arghandler.py:180
 msgid "YES"
-msgstr ""
+msgstr "TAIP"
 
 #: ../src/cli/arghandler.py:181
 #, python-format
@@ -4679,7 +4679,7 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:203
 msgid "Failed Loading View"
-msgstr ""
+msgstr "Vaizdo įkėlimas nepavyko"
 
 #: ../src/gui/grampsgui.py:204
 #, python-format
@@ -5718,7 +5718,7 @@ msgstr "Bloga platuma (sintaksė: 18°9'"
 
 #: ../src/gui/editors/editplace.py:216
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr ""
+msgstr "48.21\"P, -18.2412 or -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:218
 msgid "Invalid longitude (syntax: 18°9'"
@@ -5726,7 +5726,7 @@ msgstr "Bloga ilguma (sintaksė: 18°9'"
 
 #: ../src/gui/editors/editplace.py:219
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr ""
+msgstr "48.21\"R, -18.2412 or -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:222
 msgid "Edit Place"
@@ -6678,7 +6678,7 @@ msgstr "<Vietovės>"
 
 #: ../src/gui/views/treemodels/placemodel.py:153
 msgid "EW"
-msgstr ""
+msgstr "RV"
 
 #: ../src/gui/views/treemodels/placemodel.py:156
 msgid "NS"
@@ -7435,7 +7435,7 @@ msgstr "Tik tekstas"
 
 #: ../src/plugins/docgen/docgen.gpr.py:32
 msgid "Generates documents in plain text format (.txt)."
-msgstr ""
+msgstr "Sukuria dokumentus paprastu tekstu (.txt)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:51
 msgid "Print..."
@@ -7443,7 +7443,7 @@ msgstr "Spausdinti..."
 
 #: ../src/plugins/docgen/docgen.gpr.py:52
 msgid "Generates documents and prints them directly."
-msgstr ""
+msgstr "Sukuria dokumentus ir iš karto atspausdina."
 
 #: ../src/plugins/docgen/docgen.gpr.py:71
 msgid "HTML"
@@ -7451,7 +7451,7 @@ msgstr "HTML"
 
 #: ../src/plugins/docgen/docgen.gpr.py:72
 msgid "Generates documents in HTML format."
-msgstr ""
+msgstr "Sukuria dokumentus HTML formatu."
 
 #: ../src/plugins/docgen/docgen.gpr.py:91
 msgid "LaTeX"
@@ -7467,7 +7467,7 @@ msgstr "Atviro Dokumento Teksto formatas"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr ""
+msgstr "Sukuria dokumentus Atviro Dokumento Teksto formatu (.odt)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:132
 msgid "PDF document"
@@ -7475,7 +7475,7 @@ msgstr "PDF dokumentas"
 
 #: ../src/plugins/docgen/docgen.gpr.py:133
 msgid "Generates documents in PDF format (.pdf)."
-msgstr ""
+msgstr "Sukuria dokumentus PDF formatu (.pdf)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:152
 #: ../src/ReportBase/_GraphvizReportDialog.py:821
@@ -7484,7 +7484,7 @@ msgstr "PS (PostScript)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:153
 msgid "Generates documents in postscript format (.ps)."
-msgstr ""
+msgstr "Sukuria dokumentus postscript formatu (.ps)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:172
 msgid "RTF document"
@@ -7492,7 +7492,7 @@ msgstr "RFT dokumentas"
 
 #: ../src/plugins/docgen/docgen.gpr.py:173
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr ""
+msgstr "Sukuria dokumentus raiškiojo teksto formatu (.rtf)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:192
 msgid "SVG document"
@@ -7500,7 +7500,7 @@ msgstr "SVG dokumentas"
 
 #: ../src/plugins/docgen/docgen.gpr.py:193
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr ""
+msgstr " Sukuria dokumentus keičiamo dydžio vektorinės grafikos formatu (.svg)."
 
 #: ../src/plugins/docgen/GtkPrint.py:68
 msgid "PyGtk 2.10 or later is required"
@@ -8416,7 +8416,7 @@ msgstr "GeneWeb yra internetu paremta genealogijos programa."
 
 #: ../src/plugins/export/export.gpr.py:112
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr ""
+msgstr "Gra_mps XML Paketas (šeimos medis ir audio/video)"
 
 #: ../src/plugins/export/export.gpr.py:113
 msgid "Gramps package is an archived XML family tree together with the media object files."
@@ -15455,7 +15455,7 @@ msgstr "Pasirinkite filtrą, kuris turi būti taikomas ataskaitai."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
 msgid "List events chonologically"
-msgstr ""
+msgstr "Išvardinti įvykius chonologiškai"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
 msgid "Whether to sort events into chonological order."
@@ -16146,7 +16146,7 @@ msgstr "Įvertinta mirties data"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:478
 msgid " Done! Committing..."
-msgstr ""
+msgstr "Baigta! Siunčiama..."
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:480
 msgid "Add date estimates"
@@ -17479,7 +17479,7 @@ msgstr "Bloga mirties data"
 
 #: ../src/plugins/tool/Verify.py:1515
 msgid "Marriage date but not married"
-msgstr ""
+msgstr "Santuokos data, bet nevedęs/netekėjusi"
 
 #: ../src/plugins/view/eventview.py:94
 msgid "Add a new event"
@@ -17554,7 +17554,7 @@ msgstr "Vietovių be koordinačių skaičius."
 #: ../src/plugins/view/geoview.py:442
 #: ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
-msgstr ""
+msgstr "Geografija"
 
 #: ../src/plugins/view/geoview.py:499
 msgid "You can adjust the time period with the two following values."
@@ -17572,17 +17572,19 @@ msgstr "Centrinis filtro asmuo"
 
 #: ../src/plugins/view/geoview.py:509
 msgid "Time period adjustment"
-msgstr ""
+msgstr "Laiko tarpo tikslinimas"
 
 #: ../src/plugins/view/geoview.py:521
 msgid "Crosshair on the map."
-msgstr ""
+msgstr "Kryžiukas žemėlapyje."
 
 #: ../src/plugins/view/geoview.py:524
 msgid ""
 "Show the coordinates in the statusbar either in degree\n"
 "either in internal gramps format ( D.D8 )"
 msgstr ""
+"Būsenos juostoje rodyti koordinates arba laipsniais\n"
+"arba vidiniu gramps formatu ( D.D8)"
 
 #: ../src/plugins/view/geoview.py:527
 #, fuzzy
@@ -17602,22 +17604,24 @@ msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 secondes"
 msgstr ""
+"Laikas sekundėmis tarp dviejų  ryšio testų.\n"
+"Turi būti didesnis arba lygus 10 sekundžių"
 
 #: ../src/plugins/view/geoview.py:559
 msgid "Host to test for http. Please, change this and select one of your choice."
-msgstr ""
+msgstr "Kompiuteris http testams. Prašom pakeisti jį ir įrašyti savo norimą."
 
 #: ../src/plugins/view/geoview.py:563
 msgid "The network"
-msgstr ""
+msgstr "Tinklas"
 
 #: ../src/plugins/view/geoview.py:591
 msgid "Select the place for which you want to see the info bubble."
-msgstr ""
+msgstr "Pasirinkite vietovę, kuriai norite matyti  info burbuliuką."
 
 #: ../src/plugins/view/geoview.py:672
 msgid "Time period"
-msgstr ""
+msgstr "Laiko tarpas"
 
 #: ../src/plugins/view/geoview.py:673
 msgid "years"
@@ -17702,7 +17706,7 @@ msgstr "Čia sarašas visų vietovių iš šeimos medžio, kurios neturi koordin
 
 #: ../src/plugins/view/geoview.py:1292
 msgid "Back to prior page"
-msgstr ""
+msgstr "Atgal į prieš tai buvusį puslapį"
 
 #: ../src/plugins/view/geoview.py:1535
 msgid "Places list"
@@ -17769,7 +17773,7 @@ msgstr "Id : Vaikas : %(id)s -  %(index)d :  %(name)s"
 #: ../src/plugins/view/geoview.py:2051
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
-msgstr ""
+msgstr "Id : Asmuo : %(id)s %(name)s neturi šeimos."
 
 #: ../src/plugins/view/geoview.py:2057
 #, python-format
@@ -17803,9 +17807,8 @@ msgid "You don't see a map here for the following reasons :<br><ol><li>Your data
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:50
-#, fuzzy
 msgid "Geographic View"
-msgstr "GraphViz  byla"
+msgstr "Geografinis Vaizdas"
 
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid "The view showing events on an interactive internet map (internet connection needed"
@@ -17821,11 +17824,11 @@ msgstr "Prijungti Vietovę"
 
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
-msgstr ""
+msgstr "Fiksuotas Didinimas"
 
 #: ../src/plugins/view/geoview.gpr.py:65
 msgid "Free Zoom"
-msgstr ""
+msgstr "Laisvas Didinimas"
 
 #: ../src/plugins/view/geoview.gpr.py:66
 msgid "Show Places"
@@ -18095,9 +18098,8 @@ msgid "Ancestry"
 msgstr "Protėviai"
 
 #: ../src/plugins/view/persontreeview.py:59
-#, fuzzy
 msgid "People Tree View"
-msgstr "Vietovės antraštė"
+msgstr "Asmenų Medžio Vaizdas"
 
 #: ../src/plugins/view/persontreeview.py:81
 #: ../src/plugins/view/placetreeview.py:82
@@ -18111,13 +18113,12 @@ msgstr "Suskleisti visus Mazgus"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
-#, fuzzy
 msgid "Place Tree View"
-msgstr "Vietovės antraštė"
+msgstr "Vietovių Medžio Vaizdas"
 
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
-msgstr ""
+msgstr "vaizdas rodantis vietoves medžio formate."
 
 #: ../src/plugins/view/placetreeview.py:78
 #, fuzzy
@@ -18313,7 +18314,7 @@ msgstr "Vardų redaktorius"
 
 #: ../src/plugins/view/relview.py:1622
 msgid "View links as website links"
-msgstr ""
+msgstr "Rodyti nuorodas kaip  internetines nuorodas"
 
 #: ../src/plugins/view/relview.py:1628
 msgid "Layout"
@@ -18377,7 +18378,7 @@ msgstr "Įvykių Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
-msgstr ""
+msgstr "Vaizdas, rodantis visus įvykius"
 
 #: ../src/plugins/view/view.gpr.py:47
 msgid "Family View"
@@ -18385,7 +18386,7 @@ msgstr "Šeimų Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
-msgstr ""
+msgstr "Vaizdas, rodantis visas šeimas"
 
 #: ../src/plugins/view/view.gpr.py:62
 msgid "Gramplet View"
@@ -18393,7 +18394,7 @@ msgstr "Grampletų Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
-msgstr ""
+msgstr "Vaizdas, leidžiantis matyti Grampletus"
 
 #: ../src/plugins/view/view.gpr.py:77
 msgid "Media View"
@@ -18423,9 +18424,8 @@ msgid "The view showing all relationships of the selected person"
 msgstr "Dvigubu pelės paspaudimu iškvieskite ryšių su tėvais redaktorių."
 
 #: ../src/plugins/view/view.gpr.py:137
-#, fuzzy
 msgid "Person Tree View"
-msgstr "Asmenų Vaizdas"
+msgstr "Asmens Medžio Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:138
 #, fuzzy
@@ -18442,9 +18442,8 @@ msgid "The view showing all people in the family tree in a flat list"
 msgstr "Bandome  šeimos medyje rodyti visas vietoves."
 
 #: ../src/plugins/view/view.gpr.py:167
-#, fuzzy
 msgid "Place View"
-msgstr "Vietovės antraštė"
+msgstr "Vietovės Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:168
 #, fuzzy
@@ -18452,22 +18451,20 @@ msgid "The view showing all the places of the family tree"
 msgstr "Bandome  šeimos medyje rodyti visas vietoves."
 
 #: ../src/plugins/view/view.gpr.py:182
-#, fuzzy
 msgid "Repository View"
-msgstr "Saugyklos"
+msgstr "Saugyklos Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:183
 msgid "The view showing all the repositories"
-msgstr ""
+msgstr "Vaizdas, rodantis visas saugyklas"
 
 #: ../src/plugins/view/view.gpr.py:197
-#, fuzzy
 msgid "Source View"
-msgstr "Šaltinio Nuoroda"
+msgstr "Šaltinio Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:198
 msgid "The view showing all the sources"
-msgstr ""
+msgstr "Vaizdas, rodantis visus šaltinius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:119
 msgid "Alternate Locations"
@@ -18493,14 +18490,13 @@ msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> on %(date)s"
 msgstr " %(date)s sugeneruota <a href = \"%(homepage)s\">Gramps</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:880
-#, fuzzy, python-format
+#, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
 msgstr "Sukurta  <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1004
-#, fuzzy
 msgid "Html|Home"
-msgstr "Namai"
+msgstr "Pradinis puslapis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1005
 #: ../src/plugins/webreport/NarrativeWeb.py:2978
@@ -18530,9 +18526,8 @@ msgstr "Susisiekti"
 #: ../src/plugins/webreport/NarrativeWeb.py:1058
 #: ../src/plugins/webreport/NarrativeWeb.py:4711
 #: ../src/plugins/webreport/NarrativeWeb.py:4832
-#, fuzzy
 msgid "Address Book"
-msgstr "Adresas: "
+msgstr "Adresų Knygutė"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1308
 msgid "Gallery"
@@ -18546,9 +18541,8 @@ msgstr "Pasakojamasis"
 #. begin web title
 #: ../src/plugins/webreport/NarrativeWeb.py:1414
 #: ../src/plugins/webreport/NarrativeWeb.py:4738
-#, fuzzy
 msgid "Web Links"
-msgstr "Nuorodos"
+msgstr "Internetinės Nuorodos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1476
 msgid "Confidence"
@@ -18583,9 +18577,8 @@ msgid "Letter"
 msgstr "Raidė"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2141
-#, fuzzy
 msgid "Place name | Name"
-msgstr "Vietovės vardas"
+msgstr "Pavadinimas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2278
 #, fuzzy
@@ -18612,14 +18605,12 @@ msgstr "Sekantis"
 
 #. missing media error message
 #: ../src/plugins/webreport/NarrativeWeb.py:2600
-#, fuzzy
 msgid "The file has been moved or deleted."
-msgstr "Byla buvo perkelta arba ištrinta"
+msgstr "Byla buvo perkelta arba ištrinta."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2735
-#, fuzzy
 msgid "File Type"
-msgstr "Bylos tipas"
+msgstr "Bylos Tipas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2817
 msgid "Missing media object:"
@@ -18635,32 +18626,28 @@ msgid "This page contains an index of all the surnames in the database. Selectin
 msgstr "Šiame puslapyje yra visų duomenų bazėje esančių pavardžių rodyklė. Pasirinkus nuorodą, būsite nukreipti į sąrašą žmonių kurie duomenų bazėje turi tas pačias pavardes."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2900
-#, fuzzy
 msgid "Number of People"
-msgstr "Asmenų skaičius"
+msgstr "Asmenų Skaičius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3066
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
 msgstr "Šiame puslapyje yra visų duomenų bazėje esančių šaltinių rodyklė, išrūšiuota pagal antraštę. Pasirinkus šaltinio vardą, būsite nukreipti į šaltinio puslapį."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3082
-#, fuzzy
 msgid "Source Name|Name"
-msgstr "Šaltinio pastaba"
+msgstr "Pavadinimas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3150
 msgid "Publication information"
 msgstr "Paskelbimo informacija"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3197
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr "Šiame puslapyje yra visų duomenų bazėje esančių audio/video objektų rodyklė, išrūšiuota pagal antraštę. Pasirinkus antraštę, būsite nukreipti į to objekto puslapį."
+msgstr "Šiame puslapyje yra visų duomenų bazėje esančių audio/video objektų rodyklė, išrūšiuota pagal antraštę. Pasirinkus antraštę, būsite nukreipti į to objekto puslapį. Jei po paveikslėliu matote išmatavimus, tai dvigubu pelės paspaudimu pamatysite pilno dydžio versiją. "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3216
-#, fuzzy
 msgid "Media | Name"
-msgstr "Audio/video pastaba"
+msgstr "Pavadinimas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3218
 #, fuzzy
@@ -18668,14 +18655,12 @@ msgid "Mime Type"
 msgstr "Peržiūros tipas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3332
-#, fuzzy
 msgid "File Name"
-msgstr "Bylos vardas"
+msgstr "Bylos Vardas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3334
-#, fuzzy
 msgid "License"
-msgstr "Nuorodos"
+msgstr "Licenzija"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3335
 #, fuzzy
@@ -18758,7 +18743,6 @@ msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, kelias=%(dir)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5086
-#, fuzzy
 msgid "Missing media objects:"
 msgstr "Trūkstamos audio/video bylos:"
 
@@ -18767,9 +18751,8 @@ msgid "Creating individual pages"
 msgstr "Kuriu asmenų puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5192
-#, fuzzy
 msgid "Creating GENDEX file"
-msgstr "Sukurti GENDEX indeksą"
+msgstr "Kuriu GENDEX bylą"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5232
 msgid "Creating surname pages"
@@ -18784,9 +18767,8 @@ msgid "Creating place pages"
 msgstr "Kuriu vietovių puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5273
-#, fuzzy
 msgid "Creating event pages"
-msgstr "Kuriu vietovių puslapius"
+msgstr "Kuriu įvykių puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5280
 #, python-format
@@ -18799,14 +18781,12 @@ msgstr "Kuriu vaizdo/garso puslapius"
 
 #. set progress bar pass for Repositories
 #: ../src/plugins/webreport/NarrativeWeb.py:5341
-#, fuzzy
 msgid "Creating repository pages"
-msgstr "Kuriu šaltinių puslapius"
+msgstr "Kuriu saugyklų puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5398
-#, fuzzy
 msgid "Creating address book pages ..."
-msgstr "Kuriu vietovių puslapius"
+msgstr "Kuriu adresų knygelės puslapius ..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5596
 msgid "Store web pages in .tar.gz archive"
@@ -19036,20 +19016,17 @@ msgid "Whether to include a database download option"
 msgstr "Ar įtraukti duomenų bazės parsisiuntimo galimybę"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5779
-#, fuzzy
 msgid "Download page note"
-msgstr "Namų puslapio pastaba"
+msgstr "Parsiunčiama puslapio pastaba"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5780
-#, fuzzy
 msgid "A note to be used on the download page"
-msgstr "Pastaba, naudojama pagrindiniame puslapyje"
+msgstr "Pastaba, naudojama parsiuntimo puslapyje"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5783
 #: ../src/plugins/webreport/NarrativeWeb.py:5792
-#, fuzzy
 msgid "Download Filename"
-msgstr "Atsisiųsti žemėlapius prisijungus"
+msgstr "Atsisiųsti bylą"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5785
 #: ../src/plugins/webreport/NarrativeWeb.py:5794
@@ -19058,34 +19035,29 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
-#, fuzzy
 msgid "Description for download"
-msgstr "Aprašymas"
+msgstr "Atsisiuntimo aprašymas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
-#, fuzzy
 msgid "Smith Family Tree"
-msgstr "Šeimos medis"
+msgstr "Smith Šeimos medis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5789
 #: ../src/plugins/webreport/NarrativeWeb.py:5798
 msgid "Give a description for this file."
-msgstr ""
+msgstr "Nurodykite bylos aprašymą."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
-#, fuzzy
 msgid "Johnson Family Tree"
-msgstr "Šeimos medis"
+msgstr "Johnson Šeimos medis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
-#, fuzzy
 msgid "Download Copyright License"
-msgstr "Be autorinių teisių įspėjimo"
+msgstr "Parsiųsti Autorinių Teisių  Licenziją"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5804
-#, fuzzy
 msgid "The copyright to be used for ths download file?"
-msgstr "Internetinių bylų naudojama autorinių teisių apsauga"
+msgstr "Parsiunčiamai bylai naudojama autorinių teisių apsauga?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5813
 #: ../src/plugins/webreport/WebCal.py:1525
@@ -19151,27 +19123,24 @@ msgid "Whether to include half and/ or step-siblings with the parents and siblin
 msgstr "Ar su tėvais ir broliais/seserimis  įtraukti pusbrolius /pusseseres ir įbrolius/įseseres"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5849
-#, fuzzy
 msgid "Sort all children in birth order"
-msgstr "Rodyti brolius/seseris pagal gimimo datą"
+msgstr "Rodyti vaikus pagal gimimo datą"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5850
 msgid "Whether to display children in birth order or in entry order?"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5854
-#, fuzzy
 msgid "Include event pages"
-msgstr "Įtraukti  įvykius"
+msgstr "Įtraukti  įvykių puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5855
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5858
-#, fuzzy
 msgid "Include repository pages"
-msgstr "Įtraukti šaltinius"
+msgstr "Įtraukti saugyklų puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5859
 msgid "Whether to include the Repository Pages or not?"
@@ -19179,17 +19148,15 @@ msgstr "Ar įtraukti Saugyklų Puslapius ar ne?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5862
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr ""
+msgstr "Įtraukti GENDEX bylą (/gendex.txt)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5863
-#, fuzzy
 msgid "Whether to include a GENDEX file or not"
-msgstr "Ar įtraukti gimimo stulpelį"
+msgstr "Ar įtraukti GENDEX bylą ar ne"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5866
-#, fuzzy
 msgid "Include address book pages"
-msgstr "Įtraukti adresus"
+msgstr "Įtraukti adresų knygutės puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
@@ -19199,7 +19166,7 @@ msgstr ""
 #: ../src/plugins/webreport/WebCal.py:304
 #, python-format
 msgid "Calculating Holidays for year %04d"
-msgstr ""
+msgstr "Skaičiuojamos Atostogos %04d metams"
 
 #: ../src/plugins/webreport/WebCal.py:453
 #, python-format
@@ -19438,24 +19405,20 @@ msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Kuriu Metų Peržiūros kalendorius"
 
 #: ../src/plugins/webreport/WebCal.py:1540
-#, fuzzy
 msgid "Whether to create one day pages or not"
-msgstr "Ar kurti keleto metų kalendorius ar ne."
+msgstr "Ar kurti kiekvienos dienos puslapius ar ne"
 
 #: ../src/plugins/webreport/WebCal.py:1543
-#, fuzzy
 msgid "Link to Narrated Web Report"
-msgstr "Pasakojamasis Interneto Puslapis"
+msgstr "Nuoroda į Pasakojamąjį Interneto Puslapį"
 
 #: ../src/plugins/webreport/WebCal.py:1544
-#, fuzzy
 msgid "Whether to link data to web report or not"
-msgstr "Ar įtraukti pastabas apie tėvus."
+msgstr "Ar įtraukti duomenis į internetinę ataskaitą ar ne"
 
 #: ../src/plugins/webreport/WebCal.py:1548
-#, fuzzy
 msgid "Link prefix"
-msgstr "priešdėlis"
+msgstr "Nuorodos priešdėlis"
 
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "A Prefix on the links to take you to Narrated Web Report"
@@ -19601,7 +19564,7 @@ msgstr "Paslėptas"
 
 #: ../src/PluginUtils/_PluginWindows.py:189
 msgid "Visible"
-msgstr ""
+msgstr "Matomas"
 
 #: ../src/PluginUtils/_PluginWindows.py:237
 #: ../src/PluginUtils/_PluginWindows.py:288
@@ -19612,7 +19575,7 @@ msgstr "Informacija"
 #: ../src/PluginUtils/_PluginWindows.py:240
 #: ../src/PluginUtils/_PluginWindows.py:291
 msgid "Hide/Unhide"
-msgstr ""
+msgstr "Slėpti/Rodyti"
 
 #. id_col
 #: ../src/PluginUtils/_PluginWindows.py:248
@@ -19679,7 +19642,7 @@ msgstr "Atnaujinamas Papildinių Sąrašas"
 #: ../src/PluginUtils/_PluginWindows.py:404
 #: ../src/PluginUtils/_PluginWindows.py:494
 msgid "Reading gramps-project.org..."
-msgstr ""
+msgstr "Skaitomas gramps-project.org..."
 
 #: ../src/PluginUtils/_PluginWindows.py:422
 msgid "Checking addon..."
@@ -19739,7 +19702,7 @@ msgstr "'%s' yra šiai Gramps versijai."
 #: ../src/PluginUtils/_PluginWindows.py:576
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
-msgstr ""
+msgstr "Klaida: '%s'  viduje nėra  gramps_target_version = '3.2' ..."
 
 #: ../src/PluginUtils/_PluginWindows.py:580
 #, python-format
@@ -19753,7 +19716,7 @@ msgstr "Registruoti '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:599
 msgid "Load Addon"
-msgstr ""
+msgstr "Kaunamas Priedas"
 
 #: ../src/PluginUtils/_PluginWindows.py:650
 msgid "Unavailable"
@@ -19769,7 +19732,7 @@ msgstr "Gerai"
 
 #: ../src/PluginUtils/_PluginWindows.py:817
 msgid "Plugin Error"
-msgstr ""
+msgstr "Įskiepio Klaida"
 
 #: ../src/PluginUtils/_Tool.py:56
 msgid "Debug"
@@ -19821,7 +19784,7 @@ msgstr "Pasirinktas dydis"
 
 #: ../src/ReportBase/_CommandLineReport.py:403
 msgid "Failed to write report. "
-msgstr ""
+msgstr "Nepavyko įrašyti ataskaitos. "
 
 #: ../src/ReportBase/_Constants.py:43
 msgid "Text Reports"
@@ -20310,9 +20273,8 @@ msgid "Objects changed after <date time>"
 msgstr "Objektai, pasikeitę po  <date time>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
-#, fuzzy
 msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given."
-msgstr "Tai objektų įrašai kurie pasikeitė po  nurodytos datos/laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe"
+msgstr "Tai objektų įrašai kurie pasikeitė po  nurodytos datos/laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe."
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
@@ -20483,14 +20445,12 @@ msgid "Persons changed after <date time>"
 msgstr "Asmenys pakeisti po  <date time>"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Tai asmens įrašai, kurie pasikeitė po  nurodytos datos-laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe"
+msgstr "Tai asmens įrašai, kurie pasikeitė po  nurodytos datos-laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
-#, fuzzy
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Ryšiai taip  <asmenų>"
+msgstr "Ryšių kelias  taip  <asmens> ir žmonių atitinkančių <filtrą>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -20503,14 +20463,12 @@ msgid "Searches over the database starting from a specified person and returns e
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
-#, fuzzy
 msgid "Finding relationship paths"
-msgstr "Koreguoti ryšius"
+msgstr "Ieškoma ryšių kelių"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:135
-#, fuzzy
 msgid "Evaluating people"
-msgstr "Renkamės asmenis"
+msgstr "Įvertinami asmenys"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -21104,9 +21062,8 @@ msgid "Families changed after <date time>"
 msgstr "Šeimos, pakeistos po  <date time>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Tai šeimos įrašai, kurie pasikeitė po  nurodytos datos-laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe"
+msgstr "Tai šeimos įrašai, kurie pasikeitė po  nurodytos datos-laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe."
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -21366,9 +21323,8 @@ msgid "Events changed after <date time>"
 msgstr "Įvykiai, pasikeisti po  <date time>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
-msgstr "Tai įvykių įrašai, kurie pasikeitė po  nurodytos datos-laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe"
+msgstr "Tai įvykių įrašai, kurie pasikeitė po  nurodytos datos-laiko  (yyyy-mm-dd hh:mm:ss) arba jei duota antra data tai tame tarpe."
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
@@ -22902,14 +22858,14 @@ msgid "<b>Note</b>"
 msgstr "<b>Pastaba</b>"
 
 #: ../src/glade/editnote.glade.h:2
-#, fuzzy
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. \n"
 "When not checked, notes are automatically cleaned in the reports, which will improve the report layout.\n"
 "Use monospace font to keep preformatting."
 msgstr ""
 "Kai pažymėtas keli  tarpai pastabose bus ir ataskaitose. Jį naudokite formatuodami su tarpais lenteles ir panašiai.\n"
-"Kai nepažymėtas, pastabos automatiškai išvalomos ataskaitose. Tai pagerina atskaitos vaizdą."
+"Kai nepažymėtas, pastabos automatiškai išvalomos ataskaitose. Tai pagerina atskaitos vaizdą.\n"
+"Formatavimui naudokite lygiaplotį (monospace) šriftą."
 
 #: ../src/glade/editnote.glade.h:7
 msgid "_Preformatted"
@@ -23640,9 +23596,8 @@ msgid "<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Fi
 msgstr "<b>Sudubliuoti įrašai</b><br/>&quot;Įrankiai &gt;  Duomenų bazės apdorojimas &gt; Surasti galimus dubliuotus įrašus...&quot; Leidžia surasti (ir sujungti) kelis to paties asmens įrašus, esančius duomenų bazėje."
 
 #: ../src/data/tips.xml.in.h:11
-#, fuzzy
 msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the Relationship Editor."
-msgstr "Du kartus paspaudus kairį pelės klavišą ant vardo, šaltinio, vietovės ar audio/video objekto, daugumoje atvejų les koreguoti objektą. Pastaba: rezultatas galite priklausyti nuo konteksto. Pvz. esant šeimos vaizde paspaudus ant tėvo ar vaiko bus iškviestas ryšių redaktorius."
+msgstr "<b>Objektų Redagavimas</b><br/>Du kartus paspaudus kairį pelės klavišą ant vardo, šaltinio, vietovės ar audio/video objekto, daugumoje atvejų les koreguoti objektą. Pastaba: rezultatas galite priklausyti nuo konteksto. Pvz. esant Šeimos Vaizde paspaudus ant tėvo ar vaiko bus iškviestas Ryšių Redaktorius."
 
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to it's parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
@@ -23653,48 +23608,40 @@ msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added t
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:14
-#, fuzzy
 msgid "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
-msgstr "<b> Asmenų filtras</b> : Asmenų vaizde galima 'filtruoti' asmenis naudojant įvairius kriterijus. Nueikite į Filtrą (vos dešiniau nuo Asmenų piktogramos)  ir pasirinkite vieną iš daugelio pasirinkimų. Pvz.: gali būti rasti  visi įvaikinti asmenys, asmenys be nurodytos gimimo datos. Rezultatui gauti reikia nuspausti Patvirtinti. Jei filtro valdymas nematomas, jį galima aktyvuoti pasirenkant <b> Rodyti &gt;  Filtras </b>."
+msgstr "<b> Asmenų filtras</b> <br/> Asmenų vaizde galima 'filtruoti' asmenis naudojant įvairius kriterijus. Nueikite į  &quot;Taisa &gt; Asmens Filtrų Redaktorius&quot;. Nurodykite vardą ir pridekite jungtinį filtrą  naudodami vieną iš daugelio pasirinkimų. Pvz.: gali būti rasti  visi įvaikinti asmenys, asmenys be nurodytos gimimo datos. Rezultatui gauti reikia  užsaugoti filtrą, pasirinkti jį Filtro Šoniniame Skydelis  ir nuspausti Patvirtinti. Jei Filtro Šoninis Skydelis nematomas, jį galima aktyvuoti pasirenkant  Rodyti &gt;  Filtras."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid "<b>Filters</b><br/>Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created limited only by your imagination. Custom filters are created from &quot;Edit &gt; Person Filter Editor&quot;."
-msgstr "Filtrai įgalina apriboti Asmenų Vaizde matomus  asmenis. Be jau esančių filtrų, galima ir patiems sukurti filtrus. Jų apribojimas yra tik Jūsų fantazija. Papildomi filtrai gali būti sukurti  pasirenkant  <b> Taisa &gt;  Asmenų filtrų redaktorius</b>."
+msgstr "<b>Filtrai</b><br/>Filtrai įgalina apriboti Asmenų Vaizde matomus  asmenis. Be jau esančių filtrų, galima ir patiems sukurti filtrus. Jų apribojimas yra tik Jūsų fantazija. Papildomi filtrai gali būti sukurti  pasirenkant  &quot;Taisa &gt;  Asmenų filtrų redaktorius &quot;."
 
 #: ../src/data/tips.xml.in.h:16
-#, fuzzy
 msgid "<b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;"
-msgstr "Jei norėtumėte būti informuotas  apie naują Gramps versiją? Prisijunkite prie  Gramps-anonsų elektroninės konferencijos adresu http://lists.sourceforge.net/lists/listinfo/gramps-announce"
+msgstr "<b>Gramps Skelbimai</b><br/>Jei norėtumėte būti informuotas  apie naują Gramps versiją? Prisijunkite prie  Gramps-anonsų elektroninės konferencijos &quot;Help &gt; Gramps Elektroninės Konferencijos&quot;"
 
 #: ../src/data/tips.xml.in.h:17
-#, fuzzy
 msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
-msgstr "<b> Gramps elektroninės konferencijos</b>: Norite atsakymo į klausimus apie Gramps? Užsirašykite į  Gramps vartotojų (Gramps-users) konferenciją. Šioje konferencijoje yra daug žmonių, todėl tikėtina, kad atsakymą gausite greitai.   Jei turite klausimų apie Gramps kūrimą, tai bandykite Gramps-devel. Informaciją apie abi konferencijas yra  adresu lists.sf.net."
+msgstr "<b> Gramps elektroninės konferencijos</b><br/> Norite atsakymo į klausimus apie Gramps? Užsirašykite į  Gramps vartotojų (Gramps-users) konferenciją. Šioje konferencijoje yra daug žmonių, todėl tikėtina, kad atsakymą gausite greitai.   Jei turite klausimų apie Gramps kūrimą, tai bandykite Gramps-devel.  Konferencijų sąrašą galima sužinoti &quot;Help &gt; Gramps Elektroninės Konferencijos&quot;."
 
 #: ../src/data/tips.xml.in.h:18
-#, fuzzy
 msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for you family tree then there's a report for that as well."
-msgstr "<b> Gramps Ataskaitos</b> Gramps siūlo daugybę ataskaitų. Tekstinės Ataskaitos yra labai naudingos, jei norite siųsti šeimos medžio rezultatus šeimos nariams elektroniniu paštu."
+msgstr "<b> Gramps Ataskaitos</b><br/> Gramps siūlo daugybę ataskaitų. Grafinės Ataskaitos ir Diagramos lengvai atvaizduoja sudėtingus ryšius,  Tekstinės Ataskaitos yra labai naudingos, jei norite siųsti šeimos medžio rezultatus šeimos nariams elektroniniu paštu. Jei žadate kurti šeimos  internetinį puslapį, tai jam irgi yra pritaikyta ataskaita."
 
 #: ../src/data/tips.xml.in.h:19
-#, fuzzy
 msgid "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow you to undertake operations such as checking the database for errors and consistency. There are research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and many others. All tools can be accessed through the &quot;Tools&quot; menu."
-msgstr "Gramps turi daug papildomų  įrankių. Jei Jums leidžia atlikti tokius uždavinius kaip duomenų bazės patikrinimas nuo klaidų ir logiškumo, taip pat tyrimo ir nagrinėjimo įrankis, toks kaip įvykių palyginimas, sudvejintų įrašų paieška, interaktyvi kilmės peržiūra ir kita. Visi įrankiai gali būti pasiekti per  <b> Įrankiai</b> meniu."
+msgstr "<b>Gramps Įrankiai</b><br/>Gramps turi daug papildomų  įrankių. Jei Jums leidžia atlikti tokius uždavinius kaip duomenų bazės patikrinimas nuo klaidų ir logiškumo, taip pat tyrimo ir nagrinėjimo įrankis, toks kaip įvykių palyginimas, sudvejintų įrašų paieška, interaktyvi kilmės peržiūra ir kita. Visi įrankiai gali būti pasiekti per  &quot;Įrankiai&quot; meniu."
 
 #: ../src/data/tips.xml.in.h:20
-#, fuzzy
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
-msgstr "Gramps sukurtas taip, kad be didesnių  programavimo pastangų  galima išversti į kitas kalbas. Jei domitės dalyvavimu vertime parašykite  į gramps-devel@lists.sf.net"
+msgstr "<b>Gramps Vertimai</b><br/>Gramps sukurtas taip, kad be didesnių  programavimo pastangų  galima išversti į kitas kalbas. Jei domitės dalyvavimu vertime parašykite  į gramps-devel@lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed."
-msgstr "Gramps siūlo  pilną Unikodo palaikymą. Vietinių kalbų simboliai yra atvaizduojami teisingai."
+msgstr "<b>Hello, привет, 喂 ar Labas</b><br/>Gramps siūlo  pilną Unikodo palaikymą. Visų vietinių kalbų simboliai yra atvaizduojami teisingai."
 
 #: ../src/data/tips.xml.in.h:23
 #, fuzzy
