@@ -166,7 +166,7 @@ class EditChildRef(EditSecondary):
 
     def edit_child(self, obj,event):
         if button_activated(event, _LEFT_BUTTON):
-            from _EditPerson import EditPerson
+            from editperson import EditPerson
             handle = self.obj.ref
             try:
                 person = self.db.get_person_from_handle(handle)
