@@ -456,29 +456,31 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
                     self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
-                d = Utils.fix_encoding(sel_data.data.replace('\0',' ').strip())
-                protocol, site, mfile, j, k, l = urlparse.urlparse(d)
-                if protocol == "file":
-                    name = Utils.fix_encoding(mfile)
-                    name = unicode(urllib.url2pathname(name.encode(sys.getfilesystemencoding())))
-                    mime = gen.mime.get_type(name)
-                    if not gen.mime.is_valid_type(mime):
-                        return
-                    photo = gen.lib.MediaObject()
-                    photo.set_path(name)
-                    photo.set_mime_type(mime)
-                    basename = os.path.basename(name)
-                    (root, ext) = os.path.splitext(basename)
-                    photo.set_description(root)
-                    trans = self.dbstate.db.transaction_begin()
-                    self.dbstate.db.add_object(photo, trans)
-                    oref = gen.lib.MediaRef()
-                    oref.set_reference_handle(photo.get_handle())
-                    self.get_data().append(oref)
-                    self.changed = True
-#                    self.dataobj.add_media_reference(oref)
-                    self.dbstate.db.transaction_commit(trans,
-                                                       _("Drag Media Object"))
+                #We assume this is for URI_LIST
+                for file in sel_data.get_uris():
+                    d = Utils.fix_encoding(file.replace('\0',' ').strip())
+                    protocol, site, mfile, j, k, l = urlparse.urlparse(d)
+                    if protocol == "file":
+                        name = Utils.fix_encoding(mfile)
+                        name = unicode(urllib.url2pathname(
+                                    name.encode(sys.getfilesystemencoding())))
+                        mime = gen.mime.get_type(name)
+                        if not gen.mime.is_valid_type(mime):
+                            return
+                        photo = gen.lib.MediaObject()
+                        photo.set_path(name)
+                        photo.set_mime_type(mime)
+                        basename = os.path.basename(name)
+                        (root, ext) = os.path.splitext(basename)
+                        photo.set_description(root)
+                        trans = self.dbstate.db.transaction_begin()
+                        self.dbstate.db.add_object(photo, trans)
+                        oref = gen.lib.MediaRef()
+                        oref.set_reference_handle(photo.get_handle())
+                        self.get_data().append(oref)
+                        self.changed = True
+                        self.dbstate.db.transaction_commit(trans,
+                                                        _("Drag Media Object"))
                     self.rebuild()
 
     def handle_extra_type(self, objtype, obj):

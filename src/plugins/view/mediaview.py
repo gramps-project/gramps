@@ -148,11 +148,12 @@ class MediaView(ListView):
         dnd_types = [ self._DND_TYPE.target() ]
 
         self.list.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types, 
-                                gtk.gdk.ACTION_COPY)
+                                gtk.gdk.ACTION_PRIVATE)
         self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
                                   [self._DND_TYPE.target()], 
                                   gtk.gdk.ACTION_COPY)
-        self.list.connect('drag_data_get', self.drag_data_get)
+        #connected in listview already
+        #self.list.connect('drag_data_get', self.drag_data_get)
         self.list.connect('drag_data_received', self.drag_data_received)
 
     def drag_data_get(self, widget, context, sel_data, info, time):
@@ -194,6 +195,8 @@ class MediaView(ListView):
 
         If the selection data is define, extract the value from sel_data.data, 
         and decide if this is a move or a reorder.
+        The only data we accept on mediaview is dropping a file, so URI_LIST. 
+        We assume this is what we obtain
         """
         if sel_data and sel_data.data:
             cleaned_string = sel_data.data.replace('\0', ' ')
