@@ -21,9 +21,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 09:56+0100\n"
-"PO-Revision-Date: 2010-02-25 18:11+0100\n"
-"Last-Translator: Jérôme Rapinat<romjerome@yahoo.fr>\n"
+"POT-Creation-Date: 2010-02-28 16:18+0100\n"
+"PO-Revision-Date: 2010-02-28 16:22+0100\n"
+"Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -664,7 +664,7 @@ msgstr ""
 #: ../src/plugins/lib/libplaceview.py:172
 #: ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191
-#: ../src/plugins/view/mediaview.py:245
+#: ../src/plugins/view/mediaview.py:248
 #: ../src/plugins/view/noteview.py:209
 #: ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
@@ -696,106 +696,106 @@ msgstr "Relation en boucle détectée :"
 msgid "Person %(person)s connects to himself via %(relation)s"
 msgstr "L'individu %(person)s est connecté à lui-même via %(relation)s"
 
-#: ../src/Relationship.py:1192
+#: ../src/Relationship.py:1193
 msgid "undefined"
 msgstr "non défini(e)"
 
-#: ../src/Relationship.py:1668
+#: ../src/Relationship.py:1669
 #: ../src/plugins/import/ImportCsv.py:289
 msgid "husband"
 msgstr "le mari"
 
-#: ../src/Relationship.py:1670
+#: ../src/Relationship.py:1671
 #: ../src/plugins/import/ImportCsv.py:285
 msgid "wife"
 msgstr "la femme"
 
-#: ../src/Relationship.py:1672
+#: ../src/Relationship.py:1673
 msgid "gender unknown|spouse"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1675
+#: ../src/Relationship.py:1676
 msgid "ex-husband"
 msgstr "l'ancien époux"
 
-#: ../src/Relationship.py:1677
+#: ../src/Relationship.py:1678
 msgid "ex-wife"
 msgstr "l'ancienne épouse"
 
-#: ../src/Relationship.py:1679
+#: ../src/Relationship.py:1680
 msgid "gender unknown|ex-spouse"
 msgstr "l'ancien conjoint"
 
-#: ../src/Relationship.py:1682
+#: ../src/Relationship.py:1683
 msgid "unmarried|husband"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1684
+#: ../src/Relationship.py:1685
 msgid "unmarried|wife"
 msgstr "la conjointe"
 
-#: ../src/Relationship.py:1686
+#: ../src/Relationship.py:1687
 msgid "gender unknown,unmarried|spouse"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1689
+#: ../src/Relationship.py:1690
 msgid "unmarried|ex-husband"
 msgstr "l'ancient conjoint"
 
-#: ../src/Relationship.py:1691
+#: ../src/Relationship.py:1692
 msgid "unmarried|ex-wife"
 msgstr "l'ancienne conjointe"
 
-#: ../src/Relationship.py:1693
+#: ../src/Relationship.py:1694
 msgid "gender unknown,unmarried|ex-spouse"
 msgstr "l'ancienne conjointe"
 
-#: ../src/Relationship.py:1696
+#: ../src/Relationship.py:1697
 msgid "male,civil union|partner"
 msgstr "le compagnon"
 
-#: ../src/Relationship.py:1698
+#: ../src/Relationship.py:1699
 msgid "female,civil union|partner"
 msgstr "la compagne"
 
-#: ../src/Relationship.py:1700
+#: ../src/Relationship.py:1701
 msgid "gender unknown,civil union|partner"
 msgstr "le compagnon"
 
-#: ../src/Relationship.py:1703
+#: ../src/Relationship.py:1704
 msgid "male,civil union|former partner"
 msgstr "l'ancien compagnon"
 
-#: ../src/Relationship.py:1705
+#: ../src/Relationship.py:1706
 msgid "female,civil union|former partner"
 msgstr "l'ancienne compagne"
 
-#: ../src/Relationship.py:1707
+#: ../src/Relationship.py:1708
 msgid "gender unknown,civil union|former partner"
 msgstr "l'ancien compagnon"
 
-#: ../src/Relationship.py:1710
+#: ../src/Relationship.py:1711
 msgid "male,unknown relation|partner"
 msgstr "le concubin"
 
-#: ../src/Relationship.py:1712
+#: ../src/Relationship.py:1713
 msgid "female,unknown relation|partner"
 msgstr "la concubine"
 
-#: ../src/Relationship.py:1714
+#: ../src/Relationship.py:1715
 msgid "gender unknown,unknown relation|partner"
 msgstr "le concubin"
 
-#: ../src/Relationship.py:1719
+#: ../src/Relationship.py:1720
 msgid "male,unknown relation|former partner"
 msgstr "l'ancien concubin"
 
-#: ../src/Relationship.py:1721
+#: ../src/Relationship.py:1722
 msgid "female,unknown relation|former partner"
 msgstr "l'ancienne concubine"
 
 # Pour cette série de chaîne, doit-on reprendre le même format que l'originale, à savoir "genre inconnu, relation inconnue|ex-partenaire" ?
-#: ../src/Relationship.py:1723
+#: ../src/Relationship.py:1724
 msgid "gender unknown,unknown relation|former partner"
 msgstr "l'ancien concubin"
 
@@ -1781,7 +1781,7 @@ msgstr "Zoulou"
 #: ../src/Spell.py:311
 #: ../src/gen/lib/childreftype.py:73
 #: ../src/gui/configure.py:69
-#: ../src/plugins/tool/Check.py:1509
+#: ../src/plugins/tool/Check.py:1510
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:250
@@ -3731,7 +3731,7 @@ msgstr "Éditeur de nom"
 #: ../src/gui/configure.py:123
 #: ../src/gui/configure.py:141
 #: ../src/gui/configure.py:1052
-#: ../src/gui/views/pageview.py:464
+#: ../src/gui/views/pageview.py:465
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -4848,7 +4848,7 @@ msgstr "Sélectionner"
 #: ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
-#: ../src/plugins/view/mediaview.py:237
+#: ../src/plugins/view/mediaview.py:240
 msgid "View"
 msgstr "Afficher"
 
@@ -5136,12 +5136,12 @@ msgid "F_ull Screen"
 msgstr "_Plein Écran"
 
 #: ../src/gui/viewmanager.py:514
-#: ../src/gui/viewmanager.py:1279
+#: ../src/gui/viewmanager.py:1292
 msgid "_Undo"
 msgstr "Ann_uler"
 
 #: ../src/gui/viewmanager.py:519
-#: ../src/gui/viewmanager.py:1296
+#: ../src/gui/viewmanager.py:1309
 msgid "_Redo"
 msgstr "_Rétablir"
 
@@ -5201,22 +5201,32 @@ msgstr "Impossible d'abandonner les changements de la session"
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/gui/viewmanager.py:1201
+# trunk
+#: ../src/gui/viewmanager.py:973
+msgid "No views loaded"
+msgstr "Aucunes vues chargées"
+
+# trunk
+#: ../src/gui/viewmanager.py:974
+msgid "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some plugins of type 'View' are enabled. Then restart Gramps"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:1214
 msgid "Import Statistics"
 msgstr "Les statistiques d'importation"
 
-#: ../src/gui/viewmanager.py:1251
+#: ../src/gui/viewmanager.py:1264
 msgid "Read Only"
 msgstr "Lecture seule"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:1564
+#: ../src/gui/viewmanager.py:1577
 msgid "Failed Loading Plugin"
 msgstr "Greffons ne pouvant être chargé"
 
 # trunk
-#: ../src/gui/viewmanager.py:1565
+#: ../src/gui/viewmanager.py:1578
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -6414,7 +6424,7 @@ msgstr "_Galerie"
 
 # trunk
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:244
 msgid "Open Containing _Folder"
 msgstr "Ouvrir le répertoire de _stockage"
 
@@ -6422,8 +6432,8 @@ msgstr "Ouvrir le répertoire de _stockage"
 msgid "Non existing media found in the Gallery"
 msgstr "Objet media inexistant trouvé dans la galerie"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:481
-#: ../src/plugins/view/mediaview.py:218
+#: ../src/gui/editors/displaytabs/gallerytab.py:483
+#: ../src/plugins/view/mediaview.py:221
 msgid "Drag Media Object"
 msgstr "Glisser un objet media"
 
@@ -7007,14 +7017,14 @@ msgid "Configure %(cat)s - %(view)s"
 msgstr "Configure %(cat)s - %(view)s"
 
 # trunk
-#: ../src/gui/views/pageview.py:443
+#: ../src/gui/views/pageview.py:444
 #, python-format
 msgid "%(cat)s - %(view)s"
 msgstr ""
 
 # à vérifier
 # trunk
-#: ../src/gui/views/pageview.py:471
+#: ../src/gui/views/pageview.py:472
 #, python-format
 msgid "Configure %s View"
 msgstr "Configurer la vue %s"
@@ -10527,8 +10537,9 @@ msgstr "Importation Pro-Gen"
 
 # trunk
 #: ../src/plugins/import/ImportProGen.py:691
-msgid "date did not match: '(text)%s' (%(msg)s)"
-msgstr "date n'a pas correspondu : '(text)%s' (%(msg)s)"
+#, python-format
+msgid "date did not match: '%(text)s' (%(msg)s)"
+msgstr "date n'a pas correspondu : '%(text)s' (%(msg)s)"
 
 # Substantif (GNOME fr)
 #. The records are numbered 1..N
@@ -10556,8 +10567,9 @@ msgstr "impossible de trouver le père de I%(person)s (father=%(id)d)"
 
 # trunk
 #: ../src/plugins/import/ImportProGen.py:1245
-msgid "cannot find mother for I(person)%s (mother=%(mother)d)"
-msgstr "impossible de trouver la mère de I(person)%s (mother=%(mother)d)"
+#, python-format
+msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
+msgstr "impossible de trouver la mère de I%(person)s (mother=%(mother)d)"
 
 #: ../src/plugins/import/ImportVCard.py:146
 msgid "vCard import"
@@ -10829,55 +10841,55 @@ msgstr "Votre fichier GEDCOM est corrompu. Il semble avoir été tronqué."
 msgid "Import from GEDCOM (%s)"
 msgstr "Importé du GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2216
+#: ../src/plugins/lib/libgedcom.py:2217
 msgid "GEDCOM import"
 msgstr "Importation GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:2472
+#: ../src/plugins/lib/libgedcom.py:2473
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "La ligne %d n'a pas été reconnue, elle sera donc ignorée."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4331
+#: ../src/plugins/lib/libgedcom.py:4324
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "La ligne %d : l'événement vide a été ignoré."
 
-#: ../src/plugins/lib/libgedcom.py:5014
-#: ../src/plugins/lib/libgedcom.py:5588
+#: ../src/plugins/lib/libgedcom.py:5012
+#: ../src/plugins/lib/libgedcom.py:5586
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
 
-#: ../src/plugins/lib/libgedcom.py:5358
+#: ../src/plugins/lib/libgedcom.py:5356
 #, python-format
 msgid "Import from %s"
 msgstr "Importer depuis %s"
 
-#: ../src/plugins/lib/libgedcom.py:5446
-#: ../src/plugins/lib/libgedcom.py:5458
+#: ../src/plugins/lib/libgedcom.py:5444
+#: ../src/plugins/lib/libgedcom.py:5456
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "La ligne %d : la note vide a été ignorée."
 
 # à vérifier - contexte
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5497
+#: ../src/plugins/lib/libgedcom.py:5495
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "A ignoré %(skip)d enregistrement(s) à la ligne %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:5752
+#: ../src/plugins/lib/libgedcom.py:5750
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Votre fichier GEDCOM est corrompu. Ce fichier apparaît comme utilisant l'encodage de caractères UTF-16, mais il manque le marqueur BOM."
 
-#: ../src/plugins/lib/libgedcom.py:5755
+#: ../src/plugins/lib/libgedcom.py:5753
 msgid "Your GEDCOM file is empty."
 msgstr "Votre fichier GEDCOM est vide."
 
-#: ../src/plugins/lib/libgedcom.py:5818
+#: ../src/plugins/lib/libgedcom.py:5816
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ligne %d  invalide dans le fichier GEDCOM."
@@ -17125,63 +17137,63 @@ msgid_plural "%(quantity)d broken spouse/family links were found\n"
 msgstr[0] "%(quantity)d lien conjoint/famille a été réparé\n"
 msgstr[1] "%(quantity)d liens conjoint/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1486
-#: ../src/plugins/tool/Check.py:1504
+#: ../src/plugins/tool/Check.py:1487
+#: ../src/plugins/tool/Check.py:1505
 msgid "Non existing person"
 msgstr "Individu non existant"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1493
-#: ../src/plugins/tool/Check.py:1511
+#: ../src/plugins/tool/Check.py:1494
+#: ../src/plugins/tool/Check.py:1512
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s a été restitué(e) dans la famille de %(family)s\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1497
+#: ../src/plugins/tool/Check.py:1498
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d lien conjoint/famille en double a été trouvé\n"
 msgstr[1] "%(quantity)d liens conjoint/famille en double ont été trouvés\n"
 
-#: ../src/plugins/tool/Check.py:1515
+#: ../src/plugins/tool/Check.py:1516
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
 msgstr "%d famille sans parent ni enfant a été trouvée et effacée.\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1518
+#: ../src/plugins/tool/Check.py:1519
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d familles sans parent ni enfant ont été trouvées et effacées.\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1522
+#: ../src/plugins/tool/Check.py:1523
 #, python-format
-msgid "%(quantity)d corrupted family relationship fixed\n"
-msgid_plural "%(quantity)d corrupted family relationship fixed\n"
-msgstr[0] "%(quantity)d relation familiale corrompue a été corrigée\n"
-msgstr[1] "%(quantity)d relations familiales corrompues ont été corrigées\n"
+msgid "%d corrupted family relationship fixed\n"
+msgid_plural "%d corrupted family relationship fixed\n"
+msgstr[0] "%d relation familiale corrompue a été corrigée\n"
+msgstr[1] "%d relations familiales corrompues ont été corrigées\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1526
+#: ../src/plugins/tool/Check.py:1527
 #, python-format
-msgid "%(quantity)d person was referenced but not found\n"
-msgid_plural "%(quantity)d persons were referenced, but not found\n"
-msgstr[0] "%(quantity)d individu a été référencé, mais non trouvé\n"
-msgstr[1] "%(quantity)d individus ont été référencés, mais non trouvés\n"
+msgid "%d person was referenced but not found\n"
+msgid_plural "%d persons were referenced, but not found\n"
+msgstr[0] "%d individu a été référencé, mais non trouvé\n"
+msgstr[1] "%d individus ont été référencés, mais non trouvés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1531
+#: ../src/plugins/tool/Check.py:1532
 #, python-format
-msgid "%(quantity)d date was corrected\n"
-msgid_plural "%(quantity)d dates were corrected\n"
-msgstr[0] "%(quantity)d date a été corrigée\n"
-msgstr[1] "%(quantity)d dates ont été corrigées\n"
+msgid "%d date was corrected\n"
+msgid_plural "%d dates were corrected\n"
+msgstr[0] "%d date a été corrigée\n"
+msgstr[1] "%d dates ont été corrigées\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1535
+#: ../src/plugins/tool/Check.py:1537
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
@@ -17189,7 +17201,7 @@ msgstr[0] "%(quantity)d dépôt a été référencé, mais non trouvé\n"
 msgstr[1] "%(quantity)d dépôts ont été référencés, mais non trouvés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1540
+#: ../src/plugins/tool/Check.py:1542
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
@@ -17197,7 +17209,7 @@ msgstr[0] "%(quantity)d objet media a été référencé, mais non trouvé\n"
 msgstr[1] "%(quantity)d objets media ont été référencés, mais non trouvés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1544
+#: ../src/plugins/tool/Check.py:1546
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
@@ -17205,7 +17217,7 @@ msgstr[0] "Une référence à %(quantity)d media manquant a été conservée\n"
 msgstr[1] "Les références à %(quantity)d media manquants ont été conservées\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1549
+#: ../src/plugins/tool/Check.py:1551
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
@@ -17213,7 +17225,7 @@ msgstr[0] "%(quantity)d media manquant a été remplacé\n"
 msgstr[1] "%(quantity)d media manquants ont été remplacés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1554
+#: ../src/plugins/tool/Check.py:1556
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
@@ -17221,7 +17233,7 @@ msgstr[0] "%(quantity)d media manquant a été supprimé\n"
 msgstr[1] "%(quantity)d media manquants ont été supprimés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1559
+#: ../src/plugins/tool/Check.py:1561
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
@@ -17229,7 +17241,7 @@ msgstr[0] "%(quantity)d événement non référencé a été enlevé\n"
 msgstr[1] "%(quantity)d événements non référencés ont été enlevés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1564
+#: ../src/plugins/tool/Check.py:1566
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
@@ -17237,7 +17249,7 @@ msgstr[0] "%(quantity)d naissance invalide a été réparée\n"
 msgstr[1] "%(quantity)d naissances invalides ont été réparées\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1569
+#: ../src/plugins/tool/Check.py:1571
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
@@ -17245,7 +17257,7 @@ msgstr[0] "%(quantity)d décès invalide a été réparé\n"
 msgstr[1] "%(quantity)d décès invalides ont été réparés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1574
+#: ../src/plugins/tool/Check.py:1576
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
@@ -17253,7 +17265,7 @@ msgstr[0] "%(quantity)d lieu a été référencé, mais non trouvé\n"
 msgstr[1] "%(quantity)d lieux ont été référencés, mais non trouvés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1579
+#: ../src/plugins/tool/Check.py:1581
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
@@ -17261,7 +17273,7 @@ msgstr[0] "%(quantity)d source a été référencée, mais non trouvée\n"
 msgstr[1] "%(quantity)d sources ont été référencées, mais non trouvées\n"
 
 # ngettext
-#: ../src/plugins/tool/Check.py:1584
+#: ../src/plugins/tool/Check.py:1586
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
@@ -17269,7 +17281,7 @@ msgstr[0] "%d objet media a été référencé, mais non trouvé\n"
 msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1588
+#: ../src/plugins/tool/Check.py:1590
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
@@ -17277,7 +17289,7 @@ msgstr[0] "%(quantity)d note a été référencée, mais non trouvée\n"
 msgstr[1] "%(quantity)d notes ont été référencées, mais non trouvées\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1593
+#: ../src/plugins/tool/Check.py:1595
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
@@ -17285,7 +17297,7 @@ msgstr[0] "%(quantity)d référence à un format de nom invalide a été enlevé
 msgstr[1] "%(quantity)d références à un format de nom invalide ont été enlevées\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:1598
+#: ../src/plugins/tool/Check.py:1600
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -17308,11 +17320,11 @@ msgstr ""
 "   %(repo)d dépôts\n"
 "   %(note)d notes\n"
 
-#: ../src/plugins/tool/Check.py:1642
+#: ../src/plugins/tool/Check.py:1644
 msgid "Integrity Check Results"
 msgstr "Résultats de la vérification de l'intégrité"
 
-#: ../src/plugins/tool/Check.py:1647
+#: ../src/plugins/tool/Check.py:1649
 msgid "Check and Repair"
 msgstr "Vérifier et réparer"
 
@@ -18785,20 +18797,20 @@ msgstr "Éditer l'objet media sélectionné"
 msgid "Delete the selected media object"
 msgstr "Supprimer l'objet media sélectionné"
 
-#: ../src/plugins/view/mediaview.py:235
+#: ../src/plugins/view/mediaview.py:238
 msgid "Media Filter Editor"
 msgstr "Éditeur de filtre sur l'objet media"
 
-#: ../src/plugins/view/mediaview.py:238
+#: ../src/plugins/view/mediaview.py:241
 msgid "View in the default viewer"
 msgstr "Afficher dans le lecteur par défaut"
 
 # trunk
-#: ../src/plugins/view/mediaview.py:242
+#: ../src/plugins/view/mediaview.py:245
 msgid "Open the folder containing the media file"
 msgstr "Ouvrir le répertoire qui contient le fichier"
 
-#: ../src/plugins/view/mediaview.py:290
+#: ../src/plugins/view/mediaview.py:293
 #: ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
@@ -24980,7 +24992,7 @@ msgstr "<b>Calcul des relations</b><br/> L'outil, sous &quot;Outils &gt; Utilit
 
 # trunk
 #: ../src/data/tips.xml.in.h:7
-msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view juct click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
+msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
 msgstr "<b>Changement de personne active</b><br/>Le changement de la personne active dans les vues est simple. Dans la vue Relations, cliquez simplement sur quelqu'un. Dans la vue Lignée, cliquez deux fois sur un individu ou utilisez le menu contextuel par un clic du bouton droit de la souris pour sélectionner les conjoints, frères et sœurs, enfants ou parents."
 
 # Substantif (GNOME fr) (aider sonne bien)
