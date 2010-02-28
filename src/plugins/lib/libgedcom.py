@@ -1905,6 +1905,9 @@ class GedcomParser(UpdateCallback):
 
         self.person_fact_parse_tbl = {
             TOKEN_TYPE   : self.__person_fact_type, 
+            TOKEN_SOUR   : self.__person_attr_source, 
+            TOKEN_NOTE   : self.__person_attr_note, 
+            TOKEN_RNOTE  : self.__person_attr_note, 
             }
 
         self.person_attr_parse_tbl = {
@@ -3247,7 +3250,6 @@ class GedcomParser(UpdateCallback):
 
     def __person_fact_type(self, line, state):
         state.attr.set_type(line.data)
-        self.__skip_subordinate_levels(state.level)
         
     def __person_bapl(self, line, state):
         """
