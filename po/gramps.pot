@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 16:18+0100\n"
+"POT-Creation-Date: 2010-02-28 16:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,9 +100,6 @@ msgstr ""
 #: ../src/PluginUtils/_PluginWindows.py:225
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
-#: ../src/web/grampsdb/views.py:212 ../src/web/utils.py:221
-#: ../src/web/utils.py:352 ../src/web/utils.py:384 ../src/web/utils.py:429
-#: ../src/web/utils.py:446
 msgid "Name"
 msgstr ""
 
@@ -141,9 +138,7 @@ msgstr ""
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:80
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:90
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:84 ../src/web/utils.py:193
-#: ../src/web/utils.py:259 ../src/web/utils.py:285 ../src/web/utils.py:385
-#: ../src/web/utils.py:428 ../src/web/utils.py:445
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:84
 msgid "ID"
 msgstr ""
 
@@ -746,7 +741,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/addrembedlist.py:72
 #: ../src/plugins/textreport/FamilyGroup.py:299
 #: ../src/plugins/webreport/NarrativeWeb.py:4736
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:93 ../src/web/utils.py:329
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr ""
 
@@ -769,8 +764,7 @@ msgstr ""
 #: ../src/plugins/view/mediaview.py:93
 #: ../src/plugins/webreport/NarrativeWeb.py:114
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:84 ../src/web/utils.py:194
-#: ../src/web/utils.py:328 ../src/web/utils.py:404
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 msgid "Date"
 msgstr ""
 
@@ -789,7 +783,6 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:129
 #: ../src/plugins/webreport/NarrativeWeb.py:3052
 #: ../src/plugins/webreport/NarrativeWeb.py:3123
-#: ../src/web/grampsdb/views.py:58
 msgid "Sources"
 msgstr ""
 
@@ -816,8 +809,6 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:125
 #: ../src/PluginUtils/_GuiOptions.py:960
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
-#: ../src/web/grampsdb/views.py:272 ../src/web/utils.py:195
-#: ../src/web/utils.py:407
 msgid "Place"
 msgstr ""
 
@@ -839,7 +830,6 @@ msgstr ""
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
-#: ../src/web/grampsdb/views.py:263 ../src/web/utils.py:287
 msgid "Note"
 msgstr ""
 
@@ -882,10 +872,7 @@ msgstr ""
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:86 ../src/web/utils.py:192
-#: ../src/web/utils.py:222 ../src/web/utils.py:286 ../src/web/utils.py:308
-#: ../src/web/utils.py:353 ../src/web/utils.py:365 ../src/web/utils.py:403
-#: ../src/web/utils.py:427
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:86
 msgid "Type"
 msgstr ""
 
@@ -904,8 +891,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:115
 #: ../src/PluginUtils/_PluginWindows.py:228
 #: ../src/PluginUtils/_PluginWindows.py:333
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:91 ../src/web/utils.py:191
-#: ../src/web/utils.py:367
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr ""
 
@@ -920,7 +906,7 @@ msgstr ""
 
 #: ../src/ScratchPad.py:391 ../src/gui/editors/displaytabs/webembedlist.py:65
 #: ../src/plugins/view/mediaview.py:91
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:83 ../src/web/utils.py:366
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr ""
 
@@ -933,7 +919,7 @@ msgstr ""
 #: ../src/ScratchPad.py:904 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/tool/PatchNames.py:227
-#: ../src/plugins/webreport/NarrativeWeb.py:135 ../src/web/utils.py:309
+#: ../src/plugins/webreport/NarrativeWeb.py:135
 msgid "Value"
 msgstr ""
 
@@ -965,14 +951,14 @@ msgstr ""
 #: ../src/gui/widgets/grampletpane.py:1338 ../src/plugins/view/mediaview.py:88
 #: ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:81 ../src/web/utils.py:260
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Title"
 msgstr ""
 
 #. local gettext variables
 #: ../src/ScratchPad.py:502
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:1475 ../src/web/utils.py:262
+#: ../src/plugins/webreport/NarrativeWeb.py:1475
 msgid "Page"
 msgstr ""
 
@@ -1029,7 +1015,7 @@ msgstr ""
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
 #: ../src/plugins/view/relview.py:511 ../src/plugins/view/relview.py:1298
-#: ../src/plugins/view/relview.py:1320 ../src/web/grampsdb/views.py:249
+#: ../src/plugins/view/relview.py:1320
 msgid "Family"
 msgstr ""
 
@@ -1121,7 +1107,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:68
 #: ../src/plugins/view/sourceview.py:78
 #: ../src/plugins/webreport/NarrativeWeb.py:3149
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:80 ../src/web/utils.py:261
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr ""
 
@@ -1531,7 +1517,6 @@ msgstr ""
 #: ../src/gui/filtereditor.py:265 ../src/gui/editors/editrepository.py:66
 #: ../src/gui/editors/editrepository.py:68
 #: ../src/plugins/gramplet/QuickViewGramplet.py:95
-#: ../src/web/grampsdb/views.py:279
 msgid "Repository"
 msgstr ""
 
@@ -1587,7 +1572,6 @@ msgstr ""
 #: ../src/plugins/tool/CalculateEstimatedDates.py:226
 #: ../src/plugins/tool/EventCmp.py:243
 #: ../src/plugins/webreport/NarrativeWeb.py:126
-#: ../src/web/grampsdb/views.py:377
 msgid "Person"
 msgstr ""
 
@@ -3182,7 +3166,7 @@ msgstr ""
 #: ../src/plugins/lib/libplaceview.py:93
 #: ../src/plugins/tool/ExtractCity.py:384 ../src/plugins/view/repoview.py:87
 #: ../src/plugins/webreport/NarrativeWeb.py:110
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88 ../src/web/utils.py:330
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
 msgstr ""
 
@@ -3198,7 +3182,7 @@ msgstr ""
 #: ../src/plugins/lib/libplaceview.py:96
 #: ../src/plugins/tool/ExtractCity.py:387 ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:112
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91 ../src/web/utils.py:332
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr ""
 
@@ -3224,8 +3208,7 @@ msgstr ""
 #: ../src/plugins/import/ImportCsv.py:207
 #: ../src/plugins/quickview/quickview.gpr.py:201
 #: ../src/plugins/quickview/References.py:83
-#: ../src/plugins/quickview/Reporef.py:73 ../src/web/grampsdb/views.py:286
-#: ../src/web/utils.py:224
+#: ../src/plugins/quickview/Reporef.py:73
 msgid "Source"
 msgstr ""
 
@@ -3235,7 +3218,6 @@ msgstr ""
 #: ../src/plugins/quickview/References.py:82
 #: ../src/plugins/webreport/NarrativeWeb.py:116
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
-#: ../src/web/grampsdb/views.py:242
 msgid "Event"
 msgstr ""
 
@@ -3565,7 +3547,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/PluginUtils/_PluginWindows.py:222
-#: ../src/PluginUtils/_PluginWindows.py:275 ../src/web/utils.py:405
+#: ../src/PluginUtils/_PluginWindows.py:275
 msgid "Status"
 msgstr ""
 
@@ -4052,7 +4034,6 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:2272
 #: ../src/plugins/webreport/NarrativeWeb.py:2433
 #: ../src/plugins/webreport/NarrativeWeb.py:3985
-#: ../src/web/grampsdb/views.py:55
 msgid "Events"
 msgstr ""
 
@@ -4097,7 +4078,6 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:1055
 #: ../src/plugins/webreport/NarrativeWeb.py:2581
 #: ../src/plugins/webreport/NarrativeWeb.py:3191
-#: ../src/web/grampsdb/views.py:57 ../src/web/grampsdb/views.py:256
 msgid "Media"
 msgstr ""
 
@@ -4105,7 +4085,6 @@ msgstr ""
 #: ../src/plugins/textreport/MarkerReport.py:366
 #: ../src/plugins/view/noteview.py:109 ../src/plugins/view/view.gpr.py:100
 #: ../src/plugins/webreport/NarrativeWeb.py:121
-#: ../src/web/grampsdb/views.py:56
 msgid "Notes"
 msgstr ""
 
@@ -4146,7 +4125,6 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:1049
 #: ../src/plugins/webreport/NarrativeWeb.py:2113
 #: ../src/plugins/webreport/NarrativeWeb.py:2201
-#: ../src/web/grampsdb/views.py:59
 msgid "Places"
 msgstr ""
 
@@ -4159,7 +4137,6 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:1014
 #: ../src/plugins/webreport/NarrativeWeb.py:4573
 #: ../src/plugins/webreport/NarrativeWeb.py:4641
-#: ../src/web/grampsdb/views.py:60
 msgid "Repositories"
 msgstr ""
 
@@ -4781,7 +4758,7 @@ msgstr ""
 msgid "Move the child down in the childrens list"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:103 ../src/web/utils.py:444
+#: ../src/gui/editors/editfamily.py:103
 msgid "#"
 msgstr ""
 
@@ -4794,15 +4771,15 @@ msgstr ""
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:563
 #: ../src/plugins/webreport/NarrativeWeb.py:3942
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:127 ../src/web/utils.py:447
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:107 ../src/web/utils.py:448
+#: ../src/gui/editors/editfamily.py:107
 msgid "Paternal"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:108 ../src/web/utils.py:449
+#: ../src/gui/editors/editfamily.py:108
 msgid "Maternal"
 msgstr ""
 
@@ -4821,7 +4798,7 @@ msgstr ""
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227 ../src/web/utils.py:450
+#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 msgid "Birth Date"
 msgstr ""
 
@@ -5479,7 +5456,7 @@ msgstr ""
 #: ../src/gui/selectors/selectplace.py:67
 #: ../src/plugins/lib/libplaceview.py:95
 #: ../src/plugins/tool/ExtractCity.py:385 ../src/plugins/view/repoview.py:89
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90 ../src/web/utils.py:331
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
 msgstr ""
 
@@ -5617,7 +5594,7 @@ msgstr ""
 msgid "Move the selected event downwards"
 msgstr ""
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:80 ../src/web/utils.py:196
+#: ../src/gui/editors/displaytabs/eventembedlist.py:80
 msgid "Role"
 msgstr ""
 
@@ -5662,7 +5639,7 @@ msgstr ""
 
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../src/plugins/webreport/NarrativeWeb.py:134 ../src/web/utils.py:406
+#: ../src/plugins/webreport/NarrativeWeb.py:134
 msgid "Temple"
 msgstr ""
 
@@ -5748,11 +5725,11 @@ msgstr ""
 msgid "Move the selected name downwards"
 msgstr ""
 
-#: ../src/gui/editors/displaytabs/nameembedlist.py:75 ../src/web/utils.py:223
+#: ../src/gui/editors/displaytabs/nameembedlist.py:75
 msgid "Group As"
 msgstr ""
 
-#: ../src/gui/editors/displaytabs/nameembedlist.py:77 ../src/web/utils.py:225
+#: ../src/gui/editors/displaytabs/nameembedlist.py:77
 msgid "Note Preview"
 msgstr ""
 
@@ -5887,7 +5864,6 @@ msgid "Move the selected association downwards"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:64
-#: ../src/web/utils.py:386
 msgid "Association"
 msgstr ""
 
@@ -8055,18 +8031,12 @@ msgstr ""
 msgid "Wife"
 msgstr ""
 
-#: ../src/plugins/export/ExportDjango.gpr.py:25
-msgid "Django Export"
-msgstr ""
-
-#: ../src/plugins/export/ExportDjango.gpr.py:26
-#: ../src/plugins/import/ImportDjango.gpr.py:26
-msgid "Django is a web framework working on a configured database"
-msgstr ""
-
-#: ../src/plugins/export/ExportDjango.gpr.py:31
-msgid "Django options"
-msgstr ""
+#: ../src/plugins/export/ExportDjango.py:187
+#, python-format
+msgid "Export Complete: %d second"
+msgid_plural "Export Complete: %d seconds"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/plugins/export/ExportGedcom.py:256
 msgid "Filtering private data"
@@ -9063,7 +9033,6 @@ msgstr ""
 #: ../src/plugins/textreport/MarkerReport.py:190
 #: ../src/plugins/view/familyview.py:105 ../src/plugins/view/view.gpr.py:55
 #: ../src/plugins/webreport/NarrativeWeb.py:4338
-#: ../src/web/grampsdb/views.py:54
 msgid "Families"
 msgstr ""
 
@@ -9561,10 +9530,6 @@ msgstr[1] ""
 
 #: ../src/plugins/import/ImportCsv.py:700
 msgid "CSV import"
-msgstr ""
-
-#: ../src/plugins/import/ImportDjango.gpr.py:25
-msgid "Django Import"
 msgstr ""
 
 #: ../src/plugins/import/ImportDjango.py:186
@@ -15460,11 +15425,9 @@ msgstr ""
 msgid "Marker Report for %s Items"
 msgstr ""
 
-#. Views: [(<Nice name plural>, /<name>/handle, <Model>), ]
 #: ../src/plugins/textreport/MarkerReport.py:103
 #: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:145 ../src/plugins/view/view.gpr.py:161
-#: ../src/web/grampsdb/views.py:53
 msgid "People"
 msgstr ""
 
@@ -17423,20 +17386,6 @@ msgstr ""
 msgid "Family Filter Editor"
 msgstr ""
 
-#: ../src/plugins/view/fanchartview.gpr.py:3
-msgid "Fan Chart View"
-msgstr ""
-
-#: ../src/plugins/view/fanchartview.gpr.py:4
-#: ../src/plugins/view/pedigreeviewext.gpr.py:40
-#: ../src/plugins/view/view.gpr.py:130
-msgid "Ancestry"
-msgstr ""
-
-#: ../src/plugins/view/fanchartview.gpr.py:5
-msgid "The view showing relations through a fanchart"
-msgstr ""
-
 #: ../src/plugins/view/geoview.py:344
 msgid "Clear the entry field in the places selection box."
 msgstr ""
@@ -17894,7 +17843,6 @@ msgstr ""
 #: ../src/plugins/view/pedigreeview.py:1219
 #: ../src/plugins/view/pedigreeview.py:1228
 #: ../src/plugins/webreport/NarrativeWeb.py:3015
-#: ../src/web/grampsdb/views.py:84 ../src/web/grampsdb/views.py:90
 msgid "Home"
 msgstr ""
 
@@ -18003,6 +17951,11 @@ msgstr ""
 #: ../src/plugins/view/pedigreeviewext.gpr.py:33
 #: ../src/plugins/view/view.gpr.py:123
 msgid "The view showing an ancestor pedigree of the selected person"
+msgstr ""
+
+#: ../src/plugins/view/pedigreeviewext.gpr.py:40
+#: ../src/plugins/view/view.gpr.py:130
+msgid "Ancestry"
 msgstr ""
 
 #: ../src/plugins/view/persontreeview.py:59
@@ -23460,75 +23413,6 @@ msgstr ""
 
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
-msgstr ""
-
-#: ../src/web/grampsdb/views.py:101
-msgid "Requested user not found."
-msgstr ""
-
-#: ../src/web/grampsdb/views.py:105
-msgid "User"
-msgstr ""
-
-#: ../src/web/grampsdb/views.py:240 ../src/web/grampsdb/views.py:247
-#: ../src/web/grampsdb/views.py:254 ../src/web/grampsdb/views.py:261
-#: ../src/web/grampsdb/views.py:270 ../src/web/grampsdb/views.py:277
-#: ../src/web/grampsdb/views.py:284 ../src/web/grampsdb/views.py:366
-#, python-format
-msgid "Requested %s does not exist."
-msgstr ""
-
-#: ../src/web/grampsdb/views.py:288
-msgid "Requested page type not known"
-msgstr ""
-
-#: ../src/web/grampsdb/views.py:361
-#, python-format
-msgid "Requested %s is not accessible."
-msgstr ""
-
-#: ../src/web/utils.py:117
-msgid "Error"
-msgstr ""
-
-#: ../src/web/utils.py:213
-msgid "Add event"
-msgstr ""
-
-#: ../src/web/utils.py:251
-msgid "Add name"
-msgstr ""
-
-#: ../src/web/utils.py:276
-msgid "Add source"
-msgstr ""
-
-#: ../src/web/utils.py:300
-msgid "Add note"
-msgstr ""
-
-#: ../src/web/utils.py:320
-msgid "Add attribute"
-msgstr ""
-
-#: ../src/web/utils.py:344
-msgid "Add address"
-msgstr ""
-
-#: ../src/web/utils.py:357
-msgid "Add gallery"
-msgstr ""
-
-#: ../src/web/utils.py:376
-msgid "Add internet"
-msgstr ""
-
-#: ../src/web/utils.py:395
-msgid "Add association"
-msgstr ""
-
-#: ../src/web/utils.py:419
-msgid "Add LDS"
 msgstr ""
 
 #: ../data/gramps.desktop.in.h:1
