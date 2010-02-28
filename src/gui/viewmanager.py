@@ -971,7 +971,7 @@ class ViewManager(CLIManager):
             #not one single view loaded
             WarningDialog(
                 _("No views loaded"), 
-                _("No view plugins plugins are loaded. Go to Help->Plugin "
+                _("No view plugins are loaded. Go to Help->Plugin "
                   "Manager, and make sure some plugins of type 'View' are "
                   "enabled. Then restart Gramps"))
 
