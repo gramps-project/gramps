@@ -960,12 +960,21 @@ class ViewManager(CLIManager):
                                                         uitoolitems)
             #set view cat to last used in this category
             self.notebook_cat[-1].set_current_page(default_cat_views[indexcat])
+    
+        if self.views:
+            self.active_page = self.pages[current_cat][current_cat_view]
+            self.buttons[current_cat].set_active(True)
+            self.active_page.set_active()
+            self.notebook.set_current_page(current_cat)
+            self.notebook_cat[current_cat].set_current_page(current_cat_view)
+        else:
+            #not one single view loaded
+            WarningDialog(
+                _("No views loaded"), 
+                _("No view plugins plugins are loaded. Go to Help->Plugin "
+                  "Manager, and make sure some plugins of type 'View' are "
+                  "enabled. Then restart Gramps"))
 
-        self.active_page = self.pages[current_cat][current_cat_view]
-        self.buttons[current_cat].set_active(True)
-        self.active_page.set_active()
-        self.notebook.set_current_page(current_cat)
-        self.notebook_cat[current_cat].set_current_page(current_cat_view)
 
     def __views_to_show(self, use_last = True):
         """
@@ -1159,36 +1168,40 @@ class ViewManager(CLIManager):
         :Type view_page: integer >=0 to switch to a specific page, or -1 to 
             switch to the active view in the category
         """
-        if view_page == -1:
-            #just show active one
-            view_page = self.notebook_cat[category_page].get_current_page()
-        if self.dbstate.open:
-            self.__disconnect_previous_page()
-            if len(self.pages) > 0:
-                self.active_page = self.pages[category_page][view_page]
-                self.active_page.set_active()
-                newcurpageid = self.views[category_page][view_page][0].id
-                config.set('preferences.last-view', newcurpageid)
-                olddefaults = config.get('preferences.last-views')
-                if len(olddefaults) != len(self.pages): 
-                    #number views changed, we cannot trust the old
-                    olddefaults = [''] * len(self.pages)
-                olddefaults[category_page] = newcurpageid 
-                config.set('preferences.last-views', olddefaults)
-                config.save()
+        if self.notebook_cat:
+            if view_page == -1:
+                #just show active one
+                view_page = self.notebook_cat[category_page].get_current_page()
+            if self.dbstate.open:
+                self.__disconnect_previous_page()
+                if len(self.pages) > 0:
+                    self.active_page = self.pages[category_page][view_page]
+                    self.active_page.set_active()
+                    newcurpageid = self.views[category_page][view_page][0].id
+                    config.set('preferences.last-view', newcurpageid)
+                    olddefaults = config.get('preferences.last-views')
+                    if len(olddefaults) != len(self.pages): 
+                        #number views changed, we cannot trust the old
+                        olddefaults = [''] * len(self.pages)
+                    olddefaults[category_page] = newcurpageid 
+                    config.set('preferences.last-views', olddefaults)
+                    config.save()
 
-                self.__connect_active_page(category_page, view_page)
+                    self.__connect_active_page(category_page, view_page)
 
-                self.uimanager.ensure_update()
+                    self.uimanager.ensure_update()
 
-                while gtk.events_pending():
-                    gtk.main_iteration()
+                    while gtk.events_pending():
+                        gtk.main_iteration()
 
-                self.active_page.change_page()
-                if self._key:
-                    self.uistate.disconnect(self._key)
-                    self._key = self.uistate.connect(
-                        'nameformat-changed', self.active_page.build_tree)
+                    self.active_page.change_page()
+                    if self._key:
+                        self.uistate.disconnect(self._key)
+                        self._key = self.uistate.connect(
+                            'nameformat-changed', self.active_page.build_tree)
+        else:
+            #no views loaded
+            pass
 
     def import_data(self, obj):
         """
