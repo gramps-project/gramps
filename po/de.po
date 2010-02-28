@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 18:44+0100\n"
-"PO-Revision-Date: 2010-02-25 22:46+0100\n"
+"POT-Creation-Date: 2010-02-28 21:51+0100\n"
+"PO-Revision-Date: 2010-02-28 22:03+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -599,7 +599,7 @@ msgstr ""
 #: ../src/plugins/gramplet/gramplet.gpr.py:173
 #: ../src/plugins/lib/libpersonview.py:349
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:212
-#: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:245
+#: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:248
 #: ../src/plugins/view/noteview.py:209 ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
 msgid "Quick View"
@@ -1545,7 +1545,7 @@ msgstr "isiZulu"
 
 #: ../src/Spell.py:175 ../src/Spell.py:309 ../src/Spell.py:311
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:69
-#: ../src/plugins/tool/Check.py:1509
+#: ../src/plugins/tool/Check.py:1510
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:250
@@ -4370,7 +4370,7 @@ msgstr "Auswählen"
 #: ../src/gui/grampsgui.py:144 ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
-#: ../src/plugins/view/mediaview.py:237
+#: ../src/plugins/view/mediaview.py:240
 msgid "View"
 msgstr "Ansicht"
 
@@ -4641,11 +4641,11 @@ msgstr "_Filter-Seitenleiste"
 msgid "F_ull Screen"
 msgstr "Vollbild"
 
-#: ../src/gui/viewmanager.py:514 ../src/gui/viewmanager.py:1279
+#: ../src/gui/viewmanager.py:514 ../src/gui/viewmanager.py:1292
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: ../src/gui/viewmanager.py:519 ../src/gui/viewmanager.py:1296
+#: ../src/gui/viewmanager.py:519 ../src/gui/viewmanager.py:1309
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
@@ -4708,19 +4708,32 @@ msgstr ""
 "Die Änderungen können nicht vollständig zurück genommen werden werden, da "
 "die Nummer der Änderungen das Limit der Sitzung überschritten hat."
 
-#: ../src/gui/viewmanager.py:1201
+#: ../src/gui/viewmanager.py:973
+msgid "No views loaded"
+msgstr "Keine Ansichten geladen"
+
+#: ../src/gui/viewmanager.py:974
+msgid ""
+"No view plugins are loaded. Go to Help->Plugin Manager, and make sure some "
+"plugins of type 'View' are enabled. Then restart Gramps"
+msgstr ""
+"Keine Ansichten Plugins geladen. Gehe zu Hilfe->Plugin Manager und stelle "
+"sicher, das einige Plugins vom Typ &quot;Ansicht&quot; aktiviert sind. Dann "
+"starte Gramps neu"
+
+#: ../src/gui/viewmanager.py:1214
 msgid "Import Statistics"
 msgstr "Importstatistiken"
 
-#: ../src/gui/viewmanager.py:1251
+#: ../src/gui/viewmanager.py:1264
 msgid "Read Only"
 msgstr "Nur lesen"
 
-#: ../src/gui/viewmanager.py:1564
+#: ../src/gui/viewmanager.py:1577
 msgid "Failed Loading Plugin"
 msgstr "Laden des Plug-in fehlgeschlagen"
 
-#: ../src/gui/viewmanager.py:1565
+#: ../src/gui/viewmanager.py:1578
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
@@ -5918,7 +5931,7 @@ msgid "_Gallery"
 msgstr "_Galerie"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:244
 msgid "Open Containing _Folder"
 msgstr "Enthaltenen _Ordner öffnen"
 
@@ -5926,8 +5939,8 @@ msgstr "Enthaltenen _Ordner öffnen"
 msgid "Non existing media found in the Gallery"
 msgstr "Nicht existierendes Medium in der Galerie gefunden"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:481
-#: ../src/plugins/view/mediaview.py:218
+#: ../src/gui/editors/displaytabs/gallerytab.py:483
+#: ../src/plugins/view/mediaview.py:221
 msgid "Drag Media Object"
 msgstr "Medienobjekt ziehen"
 
@@ -10090,8 +10103,9 @@ msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr "kann Vater für I%(person)s (father=%(id)d) nicht finden"
 
 #: ../src/plugins/import/ImportProGen.py:1245
-msgid "cannot find mother for I(person)%s (mother=%(mother)d)"
-msgstr "kann Mutter für I(person)%s (mother=%(mother)d) nicht finden"
+#, python-format
+msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
+msgstr "kann Mutter für I%(person)s (mother=%(mother)d) nicht finden"
 
 #: ../src/plugins/import/ImportVCard.py:146
 msgid "vCard import"
@@ -10412,18 +10426,18 @@ msgstr ""
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2216
+#: ../src/plugins/lib/libgedcom.py:2220
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/plugins/lib/libgedcom.py:2472
+#: ../src/plugins/lib/libgedcom.py:2476
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4331
+#: ../src/plugins/lib/libgedcom.py:4326
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Zeile %d: leere Ereignisnotiz wurde ignoriert."
@@ -17226,54 +17240,54 @@ msgid_plural "%(quantity)d broken spouse/family links were found\n"
 msgstr[0] "%(quantity)d beschädigte Partner/Familie Beziehung repariert\n"
 msgstr[1] "%(quantity)d beschädigte Partner/Familie Beziehungen repariert\n"
 
-#: ../src/plugins/tool/Check.py:1486 ../src/plugins/tool/Check.py:1504
+#: ../src/plugins/tool/Check.py:1487 ../src/plugins/tool/Check.py:1505
 msgid "Non existing person"
 msgstr "Nicht-existierende Person"
 
-#: ../src/plugins/tool/Check.py:1493 ../src/plugins/tool/Check.py:1511
+#: ../src/plugins/tool/Check.py:1494 ../src/plugins/tool/Check.py:1512
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s wurde in der Familie von %(family)s wiederhergestellt\n"
 
-#: ../src/plugins/tool/Check.py:1497
+#: ../src/plugins/tool/Check.py:1498
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d doppelte Partner/Familienverbindung wurde gefunden\n"
 msgstr[1] "%(quantity)d doppelte Partner/Familienverbindungen wurde gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1515
+#: ../src/plugins/tool/Check.py:1516
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
 msgstr "%d Familie ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:1518
+#: ../src/plugins/tool/Check.py:1519
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d Familien ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:1522
+#: ../src/plugins/tool/Check.py:1523
 #, python-format
-msgid "%(quantity)d corrupted family relationship fixed\n"
-msgid_plural "%(quantity)d corrupted family relationship fixed\n"
-msgstr[0] "%(quantity)d beschädigte Familienbeziehung repariert\n"
-msgstr[1] "%(quantity)d beschädigte Familienbeziehungen repariert\n"
+msgid "%d corrupted family relationship fixed\n"
+msgid_plural "%d corrupted family relationship fixed\n"
+msgstr[0] "%d beschädigte Familienbeziehung repariert\n"
+msgstr[1] "%d beschädigte Familienbeziehungen repariert\n"
 
-#: ../src/plugins/tool/Check.py:1526
+#: ../src/plugins/tool/Check.py:1527
 #, python-format
-msgid "%(quantity)d person was referenced but not found\n"
-msgid_plural "%(quantity)d persons were referenced, but not found\n"
-msgstr[0] "%(quantity)d Person wurde referenziert, aber nicht gefunden\n"
-msgstr[1] "%(quantity)d Personen wurden referenziert, aber nicht gefunden\n"
+msgid "%d person was referenced but not found\n"
+msgid_plural "%d persons were referenced, but not found\n"
+msgstr[0] "%d Person wurde referenziert, aber nicht gefunden\n"
+msgstr[1] "%d Personen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1531
+#: ../src/plugins/tool/Check.py:1532
 #, python-format
-msgid "%(quantity)d date was corrected\n"
-msgid_plural "%(quantity)d dates were corrected\n"
-msgstr[0] "%(quantity)d Datum wurde korrigiert\n"
-msgstr[1] "%(quantity)d Daten wurden korrigiert\n"
+msgid "%d date was corrected\n"
+msgid_plural "%d dates were corrected\n"
+msgstr[0] "%d Datum wurde korrigiert\n"
+msgstr[1] "%d Daten wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1535
+#: ../src/plugins/tool/Check.py:1537
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
@@ -17282,7 +17296,7 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d Aufbewahrungsorte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1540
+#: ../src/plugins/tool/Check.py:1542
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
@@ -17290,70 +17304,70 @@ msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1544
+#: ../src/plugins/tool/Check.py:1546
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Referenz zu %(quantity)d fehlenden Medienobjekt wurde behalten\n"
 msgstr[1] "Referenz zu %(quantity)d fehlenden Medienobjekten wurde behalten\n"
 
-#: ../src/plugins/tool/Check.py:1549
+#: ../src/plugins/tool/Check.py:1551
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde ersetzt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden ersetzt\n"
 
-#: ../src/plugins/tool/Check.py:1554
+#: ../src/plugins/tool/Check.py:1556
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde entfernt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1559
+#: ../src/plugins/tool/Check.py:1561
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
 msgstr[0] "%(quantity)d ungültige Ereignisreferenz wurde entfernt\n"
 msgstr[1] "%(quantity)d ungültige Ereignisreferenzen wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1564
+#: ../src/plugins/tool/Check.py:1566
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Geburtsereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Geburtsereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1569
+#: ../src/plugins/tool/Check.py:1571
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Todesereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Todesereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1574
+#: ../src/plugins/tool/Check.py:1576
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d Ort wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Orte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1579
+#: ../src/plugins/tool/Check.py:1581
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d Quelle wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Quellen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1584
+#: ../src/plugins/tool/Check.py:1586
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
 msgstr[0] "%d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1588
+#: ../src/plugins/tool/Check.py:1590
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
@@ -17361,14 +17375,14 @@ msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1593
+#: ../src/plugins/tool/Check.py:1595
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d ungültige Namensformatreferenz wurde entfernt\n"
 msgstr[1] "%(quantity)d ungültige Namensformatreferenzen wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1598
+#: ../src/plugins/tool/Check.py:1600
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -17391,11 +17405,11 @@ msgstr ""
 "   %(repo)d Aufbewahrungsorteobjekte\n"
 "   %(note)d Notizobjekte\n"
 
-#: ../src/plugins/tool/Check.py:1642
+#: ../src/plugins/tool/Check.py:1644
 msgid "Integrity Check Results"
 msgstr "Resultate der Integritätsprüfung"
 
-#: ../src/plugins/tool/Check.py:1647
+#: ../src/plugins/tool/Check.py:1649
 msgid "Check and Repair"
 msgstr "Prüfen und reparieren"
 
@@ -18822,19 +18836,19 @@ msgstr "Gewähltes Medienobjekt bearbeiten"
 msgid "Delete the selected media object"
 msgstr "Das ausgewählte Medienobjekt löschen"
 
-#: ../src/plugins/view/mediaview.py:235
+#: ../src/plugins/view/mediaview.py:238
 msgid "Media Filter Editor"
 msgstr "Filtereditor für Medienobjekte"
 
-#: ../src/plugins/view/mediaview.py:238
+#: ../src/plugins/view/mediaview.py:241
 msgid "View in the default viewer"
 msgstr "In voreingestellten Programm anzeigen"
 
-#: ../src/plugins/view/mediaview.py:242
+#: ../src/plugins/view/mediaview.py:245
 msgid "Open the folder containing the media file"
 msgstr "Öffne den Ordner der die Mediendateien enthält"
 
-#: ../src/plugins/view/mediaview.py:290 ../src/glade/editmedia.glade.h:2
+#: ../src/plugins/view/mediaview.py:293 ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
 msgstr "Doppelklick, um das Bild in einem externen Programm anzuzeigen"
@@ -24793,11 +24807,10 @@ msgid ""
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
 "<b>Kinder hinzufügen</b><br/>Um Kinder in Gramps hinzuzufügen gibt es zwei "
-"Möglichkeiten. "
-"Du kannst einen Elternteil in der Familienansicht finden und die Familie "
-"öffnen. Dann wähle eine neue Person erstellen oder eine bestehende "
-"hinzufügen. Du kannst auch Kinder (oder Geschwister) im Familieneditor "
-"hinzufügen."
+"Möglichkeiten. Du kannst einen Elternteil in der Familienansicht finden und "
+"die Familie öffnen. Dann wähle eine neue Person erstellen oder eine "
+"bestehende hinzufügen. Du kannst auch Kinder (oder Geschwister) im "
+"Familieneditor hinzufügen."
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
@@ -24807,10 +24820,9 @@ msgid ""
 "documents and other digital sources."
 msgstr ""
 "<b>Ein Bild hinzufügen</b><br/>Ein Bild kann zu jeder Galerie oder "
-"Medienansicht "
-"durch das Ziehen von einem Dateimanager zu einem Webbrowser hinzugefügt "
-"werden. Aktuell kannst du jede Art von Datei auf diese Weise hinzufügen, "
-"hilfreich für Scans von Dokumenten und andere digitale Quellen."
+"Medienansicht durch das Ziehen von einem Dateimanager zu einem Webbrowser "
+"hinzugefügt werden. Aktuell kannst du jede Art von Datei auf diese Weise "
+"hinzufügen, hilfreich für Scans von Dokumenten und andere digitale Quellen."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
@@ -24820,11 +24832,11 @@ msgid ""
 "Play with the settings to see the different options."
 msgstr ""
 "<b>Ahnentafelansicht</b><br/>Die Ahnentafelansicht zeigt dir eine "
-"traditionelle "
-"Ahnentafel. Wenn du die Maus über eine Person hältst, siehst du mehr "
-"Informationen über sie, oder klicke mit der rechten Maustaste auf eine "
-"Personen, um auf andere Familienmitglieder oder Einstellungen zuzugreifen. "
-"Spiele mit den Einstellungen um die verschiedenen Optionen zu sehen."
+"traditionelle Ahnentafel. Wenn du die Maus über eine Person hältst, siehst "
+"du mehr Informationen über sie, oder klicke mit der rechten Maustaste auf "
+"eine Personen, um auf andere Familienmitglieder oder Einstellungen "
+"zuzugreifen. Spiele mit den Einstellungen um die verschiedenen Optionen zu "
+"sehen."
 
 #: ../src/data/tips.xml.in.h:4
 msgid ""
@@ -24870,7 +24882,7 @@ msgstr ""
 #, fuzzy
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
-"easy. In the Relationship view juct click on anyone. In the Ancestry View "
+"easy. In the Relationship view just click on anyone. In the Ancestry View "
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
@@ -24907,11 +24919,11 @@ msgid ""
 "other unexplored leads."
 msgstr ""
 "<b>Deine Recherchen steuern</b><br/>Gehe von dem aus was du weißt, um zu "
-"erfahren, was du nicht weißt. Schreibe "
-"immer alles Bekannte auf bevor du Vermutungen aufstellen. Oft können die "
-"vorhandenen Fakten eine Fülle an Anweisungen enthalten. Verbringe nicht die "
-"Zeit damit, Tausende von Aufzeichnungen zu durchsuchen, um eine Spur zu "
-"finden, wenn du andere unentdeckte Anhaltspunkte hast."
+"erfahren, was du nicht weißt. Schreibe immer alles Bekannte auf bevor du "
+"Vermutungen aufstellen. Oft können die vorhandenen Fakten eine Fülle an "
+"Anweisungen enthalten. Verbringe nicht die Zeit damit, Tausende von "
+"Aufzeichnungen zu durchsuchen, um eine Spur zu finden, wenn du andere "
+"unentdeckte Anhaltspunkte hast."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -24945,10 +24957,10 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Elternkindbeziehung bearbeiten</b><br/> You can edit the "
-"relationship of a child to it's parents by double clicking the child in the "
-"Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
-"Sponsored, Stepchild and Unknown."
+"<b>Elternkindbeziehung bearbeiten</b><br/> You can edit the relationship of "
+"a child to it's parents by double clicking the child in the Family Editor. "
+"Relationships can be any of Adopted, Birth, Foster, None, Sponsored, "
+"Stepchild and Unknown."
 
 #: ../src/data/tips.xml.in.h:13
 msgid ""
@@ -24987,12 +24999,10 @@ msgid ""
 "&gt; Person Filter Editor&quot;."
 msgstr ""
 "<b>Filter</b><br/>Filter erlauben dir die Personen in der Personenansicht zu "
-"limitieren. Zu "
-"den vielen vorkonfigurierten Filtern kannst du maßgeschneiderte Filter "
-"anlegen, die "
-"nach deinen Vorstellungen gestalten werden können. Maßgeschneiderte Filter "
-"werden unter &quot;Bearbeiten &gt; Filtereditor für Personen Personen&quot; "
-"angelegt."
+"limitieren. Zu den vielen vorkonfigurierten Filtern kannst du "
+"maßgeschneiderte Filter anlegen, die nach deinen Vorstellungen gestalten "
+"werden können. Maßgeschneiderte Filter werden unter &quot;Bearbeiten &gt; "
+"Filtereditor für Personen Personen&quot; angelegt."
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -25001,9 +25011,9 @@ msgid ""
 "&quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
 "<b>Gramps Ankündigungen</b><br/>Bist du daran interessiert informiert zu "
-"werden, wenn eine neue Version von "
-"Gramps erscheint? Tritt der Gramps Ankündigung Mailingliste unter "
-"&quot;Hilfe &gt; Gramps Mailinglisten&quot; bei."
+"werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps "
+"Ankündigung Mailingliste unter &quot;Hilfe &gt; Gramps Mailinglisten&quot; "
+"bei."
 
 #: ../src/data/tips.xml.in.h:17
 #, fuzzy
@@ -25056,9 +25066,9 @@ msgid ""
 "interested in participating please email gramps-devel@lists.sf.net"
 msgstr ""
 "<b>Gramps Übersetzer</b><br/>Gramps wurde so programmiert, dass neue "
-"Übersetzungen einfach mit einem "
-"kleinen Entwicklungsaufwand integriert werden können. Wenn du am Übersetzen "
-"interessiert bist, sende bitte eine E-Mail an gramps-devel@lists.sf.net"
+"Übersetzungen einfach mit einem kleinen Entwicklungsaufwand integriert "
+"werden können. Wenn du am Übersetzen interessiert bist, sende bitte eine E-"
+"Mail an gramps-devel@lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:21
 msgid ""
@@ -25088,12 +25098,12 @@ msgid ""
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
 "<b>Gramps verbessern</b><br/>Benutzer sind dazu angeregt, "
-"Weiterentwicklungen "
-"an Gramps vorzuschlagen. Vorschläge zur Weiterentwicklung können über die "
-"gramps-users oder gramps-devel Mailinglisten gesendet werden, oder durch "
-"erstellen einen Feature Request auf http://bugs.gramps-project.org Das "
-"erstellen eines Feature Request wird bevorzugt aber es kann nützlich sein "
-"deine Ideen in der Mailingliste zu diskutieren."
+"Weiterentwicklungen an Gramps vorzuschlagen. Vorschläge zur "
+"Weiterentwicklung können über die gramps-users oder gramps-devel "
+"Mailinglisten gesendet werden, oder durch erstellen einen Feature Request "
+"auf http://bugs.gramps-project.org Das erstellen eines Feature Request wird "
+"bevorzugt aber es kann nützlich sein deine Ideen in der Mailingliste zu "
+"diskutieren."
 
 #: ../src/data/tips.xml.in.h:24
 msgid ""
@@ -25108,8 +25118,7 @@ msgstr ""
 "Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
 "Datumauswahldialogs korrigieren welcher durch das Klicken auf die "
 "Datumauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
-"eingestellt unter &quot;"
-"Bearbeiten &gt; Einstellungen &gt; Anzeige&quot;."
+"eingestellt unter &quot;Bearbeiten &gt; Einstellungen &gt; Anzeige&quot;."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -25159,9 +25168,9 @@ msgid ""
 msgstr ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "&quot;Person &gt; Person bearbeiten &gt; Ereignis&quot;. There is a long "
-"list of "
-"preset event types. You can add your own event types by typing in the text "
-"field, they will be added to the available events, aber nicht übersetzt."
+"list of preset event types. You can add your own event types by typing in "
+"the text field, they will be added to the available events, aber nicht "
+"übersetzt."
 
 #: ../src/data/tips.xml.in.h:29
 #, fuzzy
@@ -25186,11 +25195,11 @@ msgid ""
 "Web. The Gramps project provides free hosting of websites made with Gramps."
 msgstr ""
 "<b>Genealogische Webseite erstellen</b><br/>Du kannst ganz einfach deinen "
-"Stammbaum auf eine Web-Seite exportieren. "
-"Wähle eine ganze Datenbank, eine Gruppe von Vorfahren oder Nachkommen oder "
-"Personen um eine Sammlung von Webseiten fertig zum Hochladen ins World Wide "
-"Web zu erstellen. Das Gramps-Projekt bietet freien Platz auf Webservern für "
-"mit Gramps erstellte Webseiten."
+"Stammbaum auf eine Web-Seite exportieren. Wähle eine ganze Datenbank, eine "
+"Gruppe von Vorfahren oder Nachkommen oder Personen um eine Sammlung von "
+"Webseiten fertig zum Hochladen ins World Wide Web zu erstellen. Das Gramps-"
+"Projekt bietet freien Platz auf Webservern für mit Gramps erstellte "
+"Webseiten."
 
 #: ../src/data/tips.xml.in.h:31
 #, fuzzy
@@ -25251,10 +25260,10 @@ msgstr ""
 "Vergleichen und zusammenfassen...&quot; erlaubt es separat gelistete "
 "Personen zu einer zu vereinigen. Wähle den zweiten Eintrag durch gedrückt "
 "halten der Steuerungstaste (Strg) während du klickst. Dies ist sehr "
-"nützlich, wenn man zwei "
-"Stammbäume mit sich überlappenden Personen oder irrtümlicherweise sich "
-"unterscheidende Namen angelegt hat und zu einer Person vereinigen will. Dies "
-"funktioniert auch in der Orte, Quellen und Aufbewahrungsorteansicht."
+"nützlich, wenn man zwei Stammbäume mit sich überlappenden Personen oder "
+"irrtümlicherweise sich unterscheidende Namen angelegt hat und zu einer "
+"Person vereinigen will. Dies funktioniert auch in der Orte, Quellen und "
+"Aufbewahrungsorteansicht."
 
 #: ../src/data/tips.xml.in.h:36
 msgid ""
@@ -25264,10 +25273,9 @@ msgid ""
 "Back&quot; or the arrow buttons."
 msgstr ""
 "<b>Vor und zurück navigieren</b><br/>Gramps verwaltet eine Liste von vorher "
-"aktiven Objekten wie Personen und Ereignisse. Du kannst in "
-"dieser Liste vor und zurück springen, durch Verwendung von &quot;Gehe zu "
-"&gt;Vor&quot;"
-"und &quot;Gehe zu &gt; Zurück&quot; oder der Pfeilschaltflächen."
+"aktiven Objekten wie Personen und Ereignisse. Du kannst in dieser Liste vor "
+"und zurück springen, durch Verwendung von &quot;Gehe zu &gt;Vor&quot;und "
+"&quot;Gehe zu &gt; Zurück&quot; oder der Pfeilschaltflächen."
 
 #: ../src/data/tips.xml.in.h:37
 msgid ""
@@ -25317,9 +25325,8 @@ msgid ""
 "toolbar or under the &quot;View&quot; menu."
 msgstr ""
 "<b>Die Ansichten organisieren</b><br/>Many of the views can presented your "
-"data as "
-"either a hierarchical tree or as a simple list. Each view can also be "
-"configured to the way you like it. Have a look to the right of the top "
+"data as either a hierarchical tree or as a simple list. Each view can also "
+"be configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;Ansicht&quot; menu."
 
 #: ../src/data/tips.xml.in.h:41
@@ -25377,13 +25384,10 @@ msgid ""
 "Configure View...&quot;"
 msgstr ""
 "<b>Einstellung deiner Vorlieben</b><br/>&quot;Bearbeiten&gt; Einstellungen..."
-"&quot; "
-"ermöglicht dir das Ändern einer Anzahl von Einstellungen, wie z.B. den Pfad "
-"zu deinen Mediendateien, "
-"und das Abstimmen vieler Aspekte der Gramps Darstellung an deine Bedürfnisse."
-" Jede einzelne Ansicht kann ferner konfiguriert werden unter &quot;Ansicht "
-"&gt; "
-"Ansicht konfigurieren...&quot;"
+"&quot; ermöglicht dir das Ändern einer Anzahl von Einstellungen, wie z.B. "
+"den Pfad zu deinen Mediendateien, und das Abstimmen vieler Aspekte der "
+"Gramps Darstellung an deine Bedürfnisse. Jede einzelne Ansicht kann ferner "
+"konfiguriert werden unter &quot;Ansicht &gt; Ansicht konfigurieren...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
@@ -25409,13 +25413,13 @@ msgid ""
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
 "<b>Namen  sind  Schall  und  Rauch</b><br/>Der Name Gramps wurde dem "
-"ursprünglichen Entwickler Don Allingham "
-"von seinem Vater vorgeschlagen. Er bedeutet <i>Genealogical Research and "
-"Analysis Management Program System (auf Deutsch: Genealogisches Recherche"
-"und Analyse Management Programm System)</i> Es ist ein voll funktionales "
-"Ahnenforschungsprogramm um genealogische Daten abzulegen, zu bearbeiten und "
-"zu erforschen. Das Datenbankbackend von Gramps ist so robust, dass einige "
-"Benutzer Stammbäume mit Hunderttausende von Personen damit verwalten."
+"ursprünglichen Entwickler Don Allingham von seinem Vater vorgeschlagen. Er "
+"bedeutet <i>Genealogical Research and Analysis Management Program System "
+"(auf Deutsch: Genealogisches Rechercheund Analyse Management Programm System)"
+"</i> Es ist ein voll funktionales Ahnenforschungsprogramm um genealogische "
+"Daten abzulegen, zu bearbeiten und zu erforschen. Das Datenbankbackend von "
+"Gramps ist so robust, dass einige Benutzer Stammbäume mit Hunderttausende "
+"von Personen damit verwalten."
 
 #: ../src/data/tips.xml.in.h:48
 msgid ""
