@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2009-2010  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1814,6 +1814,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RIN    : self.__ignore, 
             TOKEN_NOTE   : self.__repo_note, 
             TOKEN_RNOTE  : self.__repo_note, 
+            TOKEN_CHAN   : self.__repo_chan, 
             }
 
         self.event_parse_tbl = {
@@ -2640,11 +2641,7 @@ class GedcomParser(UpdateCallback):
         self.__add_default_source(person)
 
         # commit the person to the database
-        if person.change:
-            self.dbase.commit_person(person, self.trans, 
-                                     change_time=state.person.change)
-        else:
-            self.dbase.commit_person(person, self.trans)
+        self.dbase.commit_person(person, self.trans, state.person.change)
 
     def __person_sour(self, line, state):
         """
@@ -3682,11 +3679,7 @@ class GedcomParser(UpdateCallback):
         self.__add_default_source(family)
 
         # commit family to database
-        if family.change:
-            self.dbase.commit_family(family, self.trans, 
-                                  change_time=family.change)
-        else:
-            self.dbase.commit_family(family, self.trans)
+        self.dbase.commit_family(family, self.trans, family.change)
     
     def __family_husb(self, line, state):
         """
@@ -4795,7 +4788,7 @@ class GedcomParser(UpdateCallback):
         state.level = level
 
         self.__parse_level(state, self.source_func, self.__undefined)
-        self.dbase.commit_source(state.source, self.trans)
+        self.dbase.commit_source(state.source, self.trans, state.source.change)
 
     def __source_attr(self, line, state):
         """
@@ -4888,6 +4881,15 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__parse_note(line, state.repo_ref, state.level+1)
+
+    def __repo_chan(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__parse_change(line, state.repo, state.level+1)
 
     def __source_abbr(self, line, state):
         """
@@ -4984,11 +4986,7 @@ class GedcomParser(UpdateCallback):
         self.__add_default_source(media)
 
         # commit the person to the database
-        if media.change:
-            self.dbase.commit_media_object(media, self.trans, 
-                                        change_time=media.change)
-        else:
-            self.dbase.commit_media_object(media, self.trans)
+        self.dbase.commit_media_object(media, self.trans, media.change)
 
     def __obje_form(self, line, state):
         """
@@ -5079,7 +5077,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__skip_subordinate_levels(state.level+1)
+        self.__parse_change(line, state.media, state.level+1)
 
     def __person_attr_type(self, line, state):
         """
@@ -5152,7 +5150,7 @@ class GedcomParser(UpdateCallback):
         state.level = 1
         self.__parse_level(state, self.repo_parse_tbl, self.__ignore)
 
-        self.dbase.commit_repository(repo, self.trans)
+        self.dbase.commit_repository(repo, self.trans, repo.change)
 
     def __repo_name(self, line, state):
         """
