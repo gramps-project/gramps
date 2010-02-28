@@ -607,7 +607,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
             node.set_handle(None)
             self.__displayed -= 1
             self.__total -= 1
-        else:
+        elif node.parent: # don't remove the hidden root node
             path = self.on_get_path(node)
             self.nodemap.node(node.parent).remove_child(node, self.nodemap)
             del self.tree[node.ref]
