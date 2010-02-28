@@ -87,6 +87,7 @@
                       <object class="GtkComboBoxEntry" id="markercombo">
                         <property name="visible">True</property>
                         <property name="model">model1</property>
+                        <property name="text_column">0</property>
                         <accelerator key="M" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
                         <child>
                           <object class="GtkCellRendererText" id="renderer1"/>
