@@ -1,7 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
-# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2009-2010  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -568,7 +568,7 @@ class RelationshipView(NavigationView):
         fmt = '<span size="larger" weight="bold">%s</span>'
         text = fmt % cgi.escape(name)
         label = widgets.DualMarkupLabel(text, _GenderCode[person.gender],
-                                        x_align=1, y_align=0)
+                                        x_align=1)
         if self._config.get('preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, 
                                         person.handle)
