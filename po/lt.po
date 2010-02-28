@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-26 09:00+0100\n"
-"PO-Revision-Date: 2010-02-28 01:07+0300\n"
+"PO-Revision-Date: 2010-02-28 22:11+0300\n"
 "Last-Translator: Artursa Sleinius <asleinius@users.sourceforge.net>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1944,11 +1944,11 @@ msgstr "%(father)s ir %(mother)s"
 
 #: ../src/Utils.py:470
 msgid "death-related evidence"
-msgstr ""
+msgstr "su mirtimi susiję įrodymai"
 
 #: ../src/Utils.py:487
 msgid "birth-related evidence"
-msgstr ""
+msgstr "su gimimu susiję įrodymai"
 
 #: ../src/Utils.py:492
 #: ../src/plugins/import/ImportCsv.py:263
@@ -1970,11 +1970,11 @@ msgstr "brolių/seserų mirties data"
 
 #: ../src/Utils.py:552
 msgid "sibling birth-related date"
-msgstr ""
+msgstr "su brolių/seserų gimimu susijusios datos"
 
 #: ../src/Utils.py:563
 msgid "sibling death-related date"
-msgstr ""
+msgstr "su brolių/seserų mirtimi susijusios datos"
 
 #: ../src/Utils.py:576
 #: ../src/Utils.py:581
@@ -1995,11 +1995,11 @@ msgstr "palikuonio mirties data"
 
 #: ../src/Utils.py:645
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "su palikuonių gimimu susijusios datos"
 
 #: ../src/Utils.py:653
 msgid "descendent death-related date"
-msgstr ""
+msgstr "su palikuonių mirtimi susijusios datos"
 
 #: ../src/Utils.py:666
 #, python-format
@@ -2184,6 +2184,9 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
+"ĮSPĖJIMAS: Užsaugoma byla jau yra!\n"
+"ĮSPĖJIMAS: Ji bus perrašyta:\n"
+"   %(name)s"
 
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
@@ -2201,7 +2204,7 @@ msgstr "Bus perrašoma egzistuojanti byla: %s"
 #: ../src/cli/arghandler.py:201
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "KLAIDA: Neatpažintas eksportuojamos bylos %s formatas"
 
 #: ../src/cli/arghandler.py:389
 msgid "Database is locked, cannot open it!"
@@ -3400,22 +3403,22 @@ msgstr "Įvairūs"
 #: ../src/gen/plug/_pluginreg.py:956
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr ""
+msgstr "KLAIDA: Nepavyko nuskaityti įskiepio registracijos %(filename)s"
 
 #: ../src/gen/plug/_pluginreg.py:970
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
-msgstr ""
+msgstr "KLAIDA: Įskiepio byla %(filename)s  yra  \"%(gramps_target_version)s\" versijos, kuri yra netinkama Gramps \"%(gramps_version)s\"."
 
 #: ../src/gen/plug/_pluginreg.py:989
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
-msgstr ""
+msgstr "KLAIDA:  Bloga python byla %(filename)s registrų byloje %(regfile)s"
 
 #: ../src/gen/plug/_pluginreg.py:997
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
-msgstr ""
+msgstr "KLAIDA: Python byla  %(filename)s  neegzistuoja %(regfile)s  registrų byloje"
 
 #: ../src/gen/plug/docbackend/docbackend.py:140
 msgid "Close file first"
@@ -3423,7 +3426,7 @@ msgstr "Pirma uždarykite šitą"
 
 #: ../src/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
-msgstr ""
+msgstr "Nepateiktas bylos vardas"
 
 #: ../src/gen/plug/docbackend/docbackend.py:152
 #, python-format
@@ -3476,7 +3479,7 @@ msgstr "Asmeniškas"
 #: ../src/gui/columnorder.py:86
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr ""
+msgstr "Medžio Vaizdas: Pirmas stulpelis  \"%s\" negali būti pakeistas"
 
 #: ../src/gui/columnorder.py:92
 msgid "Drag and drop the columns to change the order"
@@ -4257,7 +4260,7 @@ msgstr "Nuorodų skaičius:"
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
 #: ../src/Filters/Rules/Source/_HasRepository.py:44
 msgid "Number of instances:"
-msgstr ""
+msgstr "Pasikartojimų skaičius:"
 
 #: ../src/gui/filtereditor.py:476
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
@@ -6103,7 +6106,7 @@ msgstr "_Galerija"
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
 #: ../src/plugins/view/mediaview.py:241
 msgid "Open Containing _Folder"
-msgstr ""
+msgstr "Atidaryti Susijusį _Katalogą"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:250
 msgid "Non existing media found in the Gallery"
@@ -6265,7 +6268,7 @@ msgstr "Asmeniniai Įvykiai"
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:49
 #, python-format
 msgid "With %(namepartner)s (%(famid)s)"
-msgstr ""
+msgstr "Su %(namepartner)s (%(famid)s)"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:50
 msgid "<Unknown>"
@@ -6444,7 +6447,7 @@ msgstr "Pasirinkite įvykį"
 #: ../src/gui/selectors/selectevent.py:64
 #: ../src/plugins/view/eventview.py:85
 msgid "Main Participants"
-msgstr ""
+msgstr "Pagrindiniai Dalyviai"
 
 #: ../src/gui/selectors/selectfamily.py:54
 msgid "Select Family"
@@ -6747,11 +6750,11 @@ msgstr "Grampleto Išdėstymas"
 
 #: ../src/gui/widgets/grampletpane.py:1345
 msgid "Use maximum height available"
-msgstr ""
+msgstr "Naudoti maksimalų galimą aukštį"
 
 #: ../src/gui/widgets/grampletpane.py:1351
 msgid "Height if not maximized"
-msgstr ""
+msgstr "Aukštis neišdidintas"
 
 #: ../src/gui/widgets/grampletpane.py:1358
 #, fuzzy
@@ -13877,7 +13880,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
-msgstr ""
+msgstr "Įgalina GEDCOM apdorojimo funkcionalumą"
 
 #: ../src/plugins/lib/libplugins.gpr.py:86
 msgid "Provides common functionality for Gramps XML import/export."
@@ -15476,7 +15479,7 @@ msgstr "Įvykių grupės"
 
 #: ../src/plugins/textreport/IndivComplete.py:667
 msgid "Check if a separate section is required."
-msgstr ""
+msgstr "Pažymėti, jei reikia naujos pastraipos."
 
 #: ../src/plugins/textreport/IndivComplete.py:720
 msgid "The style used for category labels."
@@ -15913,7 +15916,7 @@ msgstr "Ištrinti anksčiau įkeltus įvykius, pastabas ir šaltinius"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:92
 msgid "Remove calculated events, notes, and source; occurs immediately on Execute"
-msgstr ""
+msgstr "Pašalina apskaičiuotus įvykius, pastabas ir šaltinius; įvykdoma iškart  nuspaudus Vykdyti"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:96
 msgid "Do not add birth events"
@@ -15929,7 +15932,7 @@ msgstr "Įdėti gimimo įvykius su data"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:99
 msgid "Add a birth events with or without estimated dates"
-msgstr ""
+msgstr "Įdėti gimimo įvykius su ar be įvertinamos datos"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:103
 msgid "Do not add death events"
@@ -15945,7 +15948,7 @@ msgstr "Įtraukti mirties įvykius su data"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:106
 msgid "Add death events with or without estimated dates"
-msgstr ""
+msgstr "Įdėti mirties įvykius su ar be įvertinamos datos"
 
 #. -----------------------------------------------------
 #: ../src/plugins/tool/CalculateEstimatedDates.py:110
@@ -15970,15 +15973,15 @@ msgstr "Įvertintos Datos"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:129
 msgid "Approximate (about)"
-msgstr ""
+msgstr "Apytikslė (apie)"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:130
 msgid "Extremes (after and before)"
-msgstr ""
+msgstr "Ekstremalumai (po ir prieš)"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:131
 msgid "Dates on events are either about or after/before"
-msgstr ""
+msgstr "Datos įvykiuose yra arba apie arba po/prieš"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:162
 #: ../src/plugins/tool/CalculateEstimatedDates.py:179
@@ -16025,11 +16028,11 @@ msgstr "Pridėkite Pasirinktus Įvykius"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:200
 msgid "Remove Events, Notes, and Source and Reselect Data"
-msgstr ""
+msgstr "Pašalinti Įvykius, Pastabas ir Šaltinius, bei  pakartotinai  Pažymėti Duomenis"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:201
 msgid "Are you sure you want to remove previous events, notes, and source and reselect data?"
-msgstr ""
+msgstr "Ar įsitikinę, kad norite pašalinti  prieš tai buvusius įvykius, pastabas ir šaltinius, bei pakartotinai pažymėti duomenis?"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:202
 msgid "Remove and Run Select Again"
@@ -16063,7 +16066,7 @@ msgstr "Apdorojimas...\n"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:247
 msgid "Removing old estimations... "
-msgstr ""
+msgstr "Pašalinami seni įverčiai... "
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:248
 #, python-format
@@ -17523,11 +17526,11 @@ msgstr ""
 
 #: ../src/plugins/view/geoview.py:349
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
-msgstr ""
+msgstr "Išsaugoti mastelį ir koordinates tarp vietovių, asmens, šeimos ir įvykių žemėlapių."
 
 #: ../src/plugins/view/geoview.py:354
 msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
-msgstr ""
+msgstr "Pasirinkti žemėlapių tiekėją. Galite rinktis tarp OpenStreetMap ir Google žemėlapių."
 
 #: ../src/plugins/view/geoview.py:383
 #, fuzzy
@@ -17535,9 +17538,8 @@ msgid "Select the period for which you want to see the places."
 msgstr "Norėdami matyti priskirtas valstybines šventes, išsirinkite valstybę"
 
 #: ../src/plugins/view/geoview.py:392
-#, fuzzy
 msgid "Prior page."
-msgstr "gimimo vieta."
+msgstr "Ankstesnis puslapis."
 
 #: ../src/plugins/view/geoview.py:396
 msgid "The current page/the last page."
@@ -17561,14 +17563,12 @@ msgid "You can adjust the time period with the two following values."
 msgstr "Galite pakoreguoti laiko intervalą naudojant dvi reikšmes."
 
 #: ../src/plugins/view/geoview.py:501
-#, fuzzy
 msgid "The number of years before the first event date"
-msgstr "Centrinis filtro asmuo"
+msgstr "Metų skaičius prieš pirmą įvykio datą"
 
 #: ../src/plugins/view/geoview.py:505
-#, fuzzy
 msgid "The number of years after the last event date"
-msgstr "Centrinis filtro asmuo"
+msgstr "Metų skaičius po paskutinio įvykio datos"
 
 #: ../src/plugins/view/geoview.py:509
 msgid "Time period adjustment"
@@ -17587,9 +17587,8 @@ msgstr ""
 "arba vidiniu gramps formatu ( D.D8)"
 
 #: ../src/plugins/view/geoview.py:527
-#, fuzzy
 msgid "The map"
-msgstr "Šventykla"
+msgstr "Žemėlapis"
 
 #: ../src/plugins/view/geoview.py:547
 msgid "Test the network "
@@ -17798,9 +17797,8 @@ msgid "Not yet implemented ..."
 msgstr "Dar neigyvendinta..."
 
 #: ../src/plugins/view/geoview.py:2290
-#, fuzzy
 msgid "Start page for the Geography View"
-msgstr "Pradinis HTML Vaizdo  puslapis"
+msgstr "Pradinis Geografijos Vaizdo  puslapis"
 
 #: ../src/plugins/view/geoview.py:2291
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
@@ -17855,9 +17853,8 @@ msgid "A view allowing to see html pages embedded in Gramps"
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:84
-#, fuzzy
 msgid "Web"
-msgstr "GeneWeb"
+msgstr "Tinklalapis"
 
 #: ../src/plugins/view/grampletview.py:69
 msgid "_Add a gramplet"
@@ -17920,7 +17917,7 @@ msgstr "Žiūrėti nutylima peržiūros programa"
 
 #: ../src/plugins/view/mediaview.py:242
 msgid "Open the folder containing the media file"
-msgstr ""
+msgstr "Atidaryti katalogą kuriame yra audio/video byla"
 
 #: ../src/plugins/view/mediaview.py:290
 #: ../src/glade/editmedia.glade.h:2
@@ -18093,9 +18090,8 @@ msgstr "Suskaičiuoja pažymėto asmens protėvių skaičių"
 
 #: ../src/plugins/view/pedigreeviewext.gpr.py:40
 #: ../src/plugins/view/view.gpr.py:130
-#, fuzzy
 msgid "Ancestry"
-msgstr "Protėviai"
+msgstr "Kilmė"
 
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
@@ -18121,14 +18117,12 @@ msgid "A view displaying places in a tree format."
 msgstr "vaizdas rodantis vietoves medžio formate."
 
 #: ../src/plugins/view/placetreeview.py:78
-#, fuzzy
 msgid "Expand this Entire Group"
-msgstr "Išplėsti šią sekciją"
+msgstr "Išplėsti šią Visą Grupę"
 
 #: ../src/plugins/view/placetreeview.py:80
-#, fuzzy
 msgid "Collapse this Entire Group"
-msgstr "Suskleisti šią sekciją"
+msgstr "Suskleisti šią Visą Grupę"
 
 #: ../src/plugins/view/relview.py:375
 msgid "_Reorder"
@@ -18303,14 +18297,12 @@ msgid "Add Child to Family"
 msgstr "Pridėti į Šeimą Vaiką"
 
 #: ../src/plugins/view/relview.py:1617
-#, fuzzy
 msgid "Use shading"
-msgstr "Skaitome"
+msgstr "Naudoti šešėlius"
 
 #: ../src/plugins/view/relview.py:1620
-#, fuzzy
 msgid "Display edit buttons"
-msgstr "Vardų redaktorius"
+msgstr "Rodyti koregavimo mygtukus"
 
 #: ../src/plugins/view/relview.py:1622
 msgid "View links as website links"
@@ -18401,54 +18393,48 @@ msgid "Media View"
 msgstr "Vaizdo/garso Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:78
-#, fuzzy
 msgid "The view showing all the media objects"
-msgstr "Ar įtraukti audio/video objektų galeriją"
+msgstr "Vaizdas rodantis  visus audio/video objektus"
 
 #: ../src/plugins/view/view.gpr.py:92
 msgid "Note View"
 msgstr "Pastabų Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:93
-#, fuzzy
 msgid "The view showing all the notes"
-msgstr "Byla nebus įkelta"
+msgstr "Vaizdas rodantis visas pastabas"
 
 #: ../src/plugins/view/view.gpr.py:107
 msgid "Relationship View"
 msgstr "Ryšių Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:108
-#, fuzzy
 msgid "The view showing all relationships of the selected person"
-msgstr "Dvigubu pelės paspaudimu iškvieskite ryšių su tėvais redaktorių."
+msgstr "Vaizdas rodantis visus pasirinktų asmenų ryšius"
 
 #: ../src/plugins/view/view.gpr.py:137
 msgid "Person Tree View"
 msgstr "Asmens Medžio Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:138
-#, fuzzy
 msgid "The view showing all people in the family tree"
-msgstr "Bandome  šeimos medyje rodyti visas vietoves."
+msgstr "Vaizdas rodantis visus šeimos medžio asmenis"
 
 #: ../src/plugins/view/view.gpr.py:152
 msgid "Person View"
 msgstr "Asmenų Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:153
-#, fuzzy
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Bandome  šeimos medyje rodyti visas vietoves."
+msgstr "Vaizdas rodantis visus šeimos medžio asmenis plokščiame sąraše"
 
 #: ../src/plugins/view/view.gpr.py:167
 msgid "Place View"
 msgstr "Vietovės Vaizdas"
 
 #: ../src/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "The view showing all the places of the family tree"
-msgstr "Bandome  šeimos medyje rodyti visas vietoves."
+msgstr "Vaizdas rodantis visas šeimos medžio vietoves"
 
 #: ../src/plugins/view/view.gpr.py:182
 msgid "Repository View"
@@ -18475,7 +18461,6 @@ msgid "Postal Code"
 msgstr "Pašto indeksas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:131
-#, fuzzy
 msgid "State/ Province"
 msgstr "Valstija/Provincija"
 
@@ -18588,7 +18573,7 @@ msgstr "Šiame puslapyje yra visų duomenų bazėje esančių vietovių rodyklė
 #: ../src/plugins/webreport/NarrativeWeb.py:2327
 #, python-format
 msgid "Event types beginning with %(eventtype)s"
-msgstr ""
+msgstr "Įvykiai prasidedantis %(eventtype)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2591
 msgid "Previous"
@@ -18663,9 +18648,8 @@ msgid "License"
 msgstr "Licenzija"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3335
-#, fuzzy
 msgid "Last Modified"
-msgstr "Paskutinis pataisymas"
+msgstr "Paskutinis Pataisymas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3688
 msgid "Ancestors"
@@ -18676,7 +18660,6 @@ msgid "Associations"
 msgstr "Ryšiai"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3925
-#, fuzzy
 msgid "Nick Name"
 msgstr "Pravardė"
 
@@ -18945,19 +18928,19 @@ msgstr "Ar įtraukti audio/video objektų galeriją"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5715
 msgid "Max width of initial image"
-msgstr ""
+msgstr "Maksimalus pradinio paveikslo plotis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5717
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
-msgstr ""
+msgstr "Įgalina nustatyti  paveikslo, kuris rodomas audio/video puslapyje maksimalų plotį. Be  limito - įrašyti 0."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5721
 msgid "Max height of initial image"
-msgstr ""
+msgstr "Maksimalus pradinio paveikslo aukštis"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5723
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
-msgstr ""
+msgstr "Įgalina nustatyti  paveikslo, kuris rodomas audio/video puslapyje maksimalų aukštį. Be  limito - įrašyti 0."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5729
 msgid "Suppress Gramps ID"
@@ -19031,7 +19014,7 @@ msgstr "Atsisiųsti bylą"
 #: ../src/plugins/webreport/NarrativeWeb.py:5785
 #: ../src/plugins/webreport/NarrativeWeb.py:5794
 msgid "File to be used for downloading of database"
-msgstr ""
+msgstr "Byla, kuri bus naudojama parsiunčiant duomenų bazę"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
@@ -19128,7 +19111,7 @@ msgstr "Rodyti vaikus pagal gimimo datą"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5850
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Ar vaizduoti vaikus pagal gimimo ar įvedimo eiliškumą?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5854
 msgid "Include event pages"
@@ -19160,7 +19143,7 @@ msgstr "Įtraukti adresų knygutės puslapius"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
-msgstr ""
+msgstr "Ar įdėti Adresų Knygos puslapius ar ne. Juose gali būti elektroniniai adresai, internetiniai puslapiai. Taip pat  asmeniniai adresai/ gyvenimo įvykiai?"
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:304
@@ -19422,7 +19405,7 @@ msgstr "Nuorodos priešdėlis"
 
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
+msgstr "Nuorodų priešdėlis  kad patekti į Pasakojamąjį Interneto Puslapį"
 
 #: ../src/plugins/webreport/WebCal.py:1728
 #, python-format
