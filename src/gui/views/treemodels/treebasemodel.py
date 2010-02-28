@@ -577,8 +577,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 path = self.on_get_path(child_node)
                 node = self.get_iter(path)
                 self.row_inserted(path, node)
-                self.__total += 1
-                self.__displayed += 1
+                if handle:
+                    self.__total += 1
+                    self.__displayed += 1
 
         if handle:
             self.handle2node[handle] = child_node
@@ -613,10 +614,10 @@ class TreeBaseModel(gtk.GenericTreeModel):
             del self.tree[node.ref]
             if node.handle is not None:
                 del self.handle2node[node.handle]
+                self.__displayed -= 1
+                self.__total -= 1
             self.nodemap.del_node(node)
             del node
-            self.__displayed -= 1
-            self.__total -= 1
             
             # emit row_deleted signal
             self.row_deleted(path)
