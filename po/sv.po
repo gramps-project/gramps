@@ -1,4 +1,4 @@
-# translation of svnytt2.po to svenska
+# translation of svnytt.po to svenska
 # Bo Rosén <bo.rosen@home.se>, 2001.
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
@@ -32,10 +32,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: svnytt2\n"
+"Project-Id-Version: svnytt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-27 14:32+0100\n"
-"PO-Revision-Date: 2010-02-27 14:41+0100\n"
+"POT-Creation-Date: 2010-02-28 16:40+0100\n"
+"PO-Revision-Date: 2010-03-01 11:46+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -617,7 +617,7 @@ msgstr ""
 #: ../src/plugins/gramplet/gramplet.gpr.py:173
 #: ../src/plugins/lib/libpersonview.py:349
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:212
-#: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:245
+#: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:248
 #: ../src/plugins/view/noteview.py:209 ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
 msgid "Quick View"
@@ -2512,8 +2512,7 @@ msgstr "Byrå"
 
 #: ../src/gen/lib/attrtype.py:73
 #: ../src/plugins/drawreport/StatisticsChart.py:347
-#: ../src/plugins/gramplet/AgeStats.py:174
-#: ../src/plugins/gramplet/AgeStats.py:321
+#: ../src/plugins/gramplet/AgeStats.py:165
 #: ../src/plugins/quickview/AgeOnDate.py:55
 msgid "Age"
 msgstr "Ålder"
@@ -4363,7 +4362,7 @@ msgstr "Välj"
 #: ../src/gui/grampsgui.py:144 ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
-#: ../src/plugins/view/mediaview.py:237
+#: ../src/plugins/view/mediaview.py:240
 msgid "View"
 msgstr "Visa"
 
@@ -4633,11 +4632,11 @@ msgstr "_Filterpanel"
 msgid "F_ull Screen"
 msgstr "F_ull skärm"
 
-#: ../src/gui/viewmanager.py:514 ../src/gui/viewmanager.py:1279
+#: ../src/gui/viewmanager.py:514 ../src/gui/viewmanager.py:1292
 msgid "_Undo"
 msgstr "_Ångra"
 
-#: ../src/gui/viewmanager.py:519 ../src/gui/viewmanager.py:1296
+#: ../src/gui/viewmanager.py:519 ../src/gui/viewmanager.py:1309
 msgid "_Redo"
 msgstr "Åte_rställ"
 
@@ -4700,19 +4699,29 @@ msgstr ""
 "Ändringar kan inte helt överges eftersom antalet ändringar gjorda under "
 "sessionen överskrider gränsen."
 
-#: ../src/gui/viewmanager.py:1201
+#: ../src/gui/viewmanager.py:973
+msgid "No views loaded"
+msgstr "Inga vyer laddade"
+
+#: ../src/gui/viewmanager.py:974
+msgid ""
+"No view plugins are loaded. Go to Help->Plugin Manager, and make sure some "
+"plugins of type 'View' are enabled. Then restart Gramps"
+msgstr "Inga insticksmoduler för vyer är laddade. Gå till Hjälp->Instickshanterare och säkerställ att några insticksmoduler av typen \"Vy\" är tillgängliga, syns. Starta sedan om Gramps."
+
+#: ../src/gui/viewmanager.py:1214
 msgid "Import Statistics"
 msgstr "Importstatistik"
 
-#: ../src/gui/viewmanager.py:1251
+#: ../src/gui/viewmanager.py:1264
 msgid "Read Only"
 msgstr "Skrivskyddad"
 
-#: ../src/gui/viewmanager.py:1564
+#: ../src/gui/viewmanager.py:1577
 msgid "Failed Loading Plugin"
 msgstr "Misslyckades med att ladda insticksmodul"
 
-#: ../src/gui/viewmanager.py:1565
+#: ../src/gui/viewmanager.py:1578
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
@@ -5897,7 +5906,7 @@ msgid "_Gallery"
 msgstr "_Galleri"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:244
 msgid "Open Containing _Folder"
 msgstr "Öppnar innehålls_mapp"
 
@@ -5905,8 +5914,8 @@ msgstr "Öppnar innehålls_mapp"
 msgid "Non existing media found in the Gallery"
 msgstr "Inget befintligt media funnet i galleriet"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:481
-#: ../src/plugins/view/mediaview.py:218
+#: ../src/gui/editors/displaytabs/gallerytab.py:483
+#: ../src/plugins/view/mediaview.py:221
 msgid "Drag Media Object"
 msgstr "Dra mediaobjekt"
 
@@ -8479,80 +8488,73 @@ msgstr ""
 msgid "Run"
 msgstr "Kör"
 
-#: ../src/plugins/gramplet/AgeStats.py:56
-#: ../src/plugins/gramplet/AgeStats.py:66
+#: ../src/plugins/gramplet/AgeStats.py:47
+#: ../src/plugins/gramplet/AgeStats.py:57
 msgid "Max age"
 msgstr "Max ålder"
 
+#: ../src/plugins/gramplet/AgeStats.py:49
 #: ../src/plugins/gramplet/AgeStats.py:58
-#: ../src/plugins/gramplet/AgeStats.py:67
 msgid "Max age of Mother at birth"
 msgstr "Maximal ålder hos mor vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:60
-#: ../src/plugins/gramplet/AgeStats.py:68
+#: ../src/plugins/gramplet/AgeStats.py:51
+#: ../src/plugins/gramplet/AgeStats.py:59
 msgid "Max age of Father at birth"
 msgstr "Maximal ålder hos far vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:62
-#: ../src/plugins/gramplet/AgeStats.py:69
+#: ../src/plugins/gramplet/AgeStats.py:53
+#: ../src/plugins/gramplet/AgeStats.py:60
 msgid "Chart width"
 msgstr "Diagrambredd"
 
-#: ../src/plugins/gramplet/AgeStats.py:174
-#: ../src/plugins/gramplet/AgeStats.py:175
+#: ../src/plugins/gramplet/AgeStats.py:165
 msgid "Lifespan Age Distribution"
 msgstr "Livslängdsfördelning"
 
-#: ../src/plugins/gramplet/AgeStats.py:176
-#: ../src/plugins/gramplet/AgeStats.py:177
+#: ../src/plugins/gramplet/AgeStats.py:166
 msgid "Father - Child Age Diff Distribution"
 msgstr "Fördelning av far - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:176
-#: ../src/plugins/gramplet/AgeStats.py:178
+#: ../src/plugins/gramplet/AgeStats.py:166
+#: ../src/plugins/gramplet/AgeStats.py:167
 msgid "Diff"
 msgstr "Skillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:178
-#: ../src/plugins/gramplet/AgeStats.py:179
+#: ../src/plugins/gramplet/AgeStats.py:167
 msgid "Mother - Child Age Diff Distribution"
 msgstr "Fördelning av mor - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:236
+#: ../src/plugins/gramplet/AgeStats.py:224
 #: ../src/plugins/gramplet/gramplet.gpr.py:215
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../src/plugins/gramplet/AgeStats.py:237
+#: ../src/plugins/gramplet/AgeStats.py:225
 #: ../src/plugins/webreport/NarrativeWeb.py:4797
 msgid "Total"
 msgstr "Totalt "
 
-#: ../src/plugins/gramplet/AgeStats.py:238
+#: ../src/plugins/gramplet/AgeStats.py:226
 msgid "Minimum"
 msgstr "Minimum"
 
-#: ../src/plugins/gramplet/AgeStats.py:239
+#: ../src/plugins/gramplet/AgeStats.py:227
 msgid "Average"
 msgstr "Medel  "
 
-#: ../src/plugins/gramplet/AgeStats.py:240
+#: ../src/plugins/gramplet/AgeStats.py:228
 msgid "Median"
 msgstr "Median "
 
-#: ../src/plugins/gramplet/AgeStats.py:241
+#: ../src/plugins/gramplet/AgeStats.py:229
 msgid "Maximum"
 msgstr "Maximum"
 
-#: ../src/plugins/gramplet/AgeStats.py:284
+#: ../src/plugins/gramplet/AgeStats.py:272
 #, python-format
 msgid "Double-click to see %d people"
 msgstr "Dubbelklicka för att kunna se %d personer"
-
-#: ../src/plugins/gramplet/AgeStats.py:322 ../src/plugins/tool/Leak.py:83
-msgid "Number"
-msgstr "Antal"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
 #, python-format
@@ -10351,43 +10353,43 @@ msgstr "Din GEDCOM-fil är trasig. Den verkar ha blivit avkortad."
 msgid "Import from GEDCOM (%s)"
 msgstr "Import från GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2216
+#: ../src/plugins/lib/libgedcom.py:2217
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
-#: ../src/plugins/lib/libgedcom.py:2472
+#: ../src/plugins/lib/libgedcom.py:2473
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Rad %d gick inte att förstå, så den ignorerades."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4331
+#: ../src/plugins/lib/libgedcom.py:4324
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Rad %d: tom händelsenotis ignorerades."
 
-#: ../src/plugins/lib/libgedcom.py:5014 ../src/plugins/lib/libgedcom.py:5588
+#: ../src/plugins/lib/libgedcom.py:5012 ../src/plugins/lib/libgedcom.py:5586
 #, python-format
 msgid "Could not import %s"
 msgstr "Kunde inte importera %s"
 
-#: ../src/plugins/lib/libgedcom.py:5358
+#: ../src/plugins/lib/libgedcom.py:5356
 #, python-format
 msgid "Import from %s"
 msgstr "Import från %s"
 
-#: ../src/plugins/lib/libgedcom.py:5446 ../src/plugins/lib/libgedcom.py:5458
+#: ../src/plugins/lib/libgedcom.py:5444 ../src/plugins/lib/libgedcom.py:5456
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Rad %d: tom notis ignorerades."
 
-#: ../src/plugins/lib/libgedcom.py:5497
+#: ../src/plugins/lib/libgedcom.py:5495
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "hoppade över %(skip)d underordnad(e) på rad %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:5752
+#: ../src/plugins/lib/libgedcom.py:5750
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -10395,11 +10397,11 @@ msgstr ""
 "Din GEDCOM-fil är förstörd. Filen verkar varar kodad med UTF16-"
 "teckenuppsättning, men saknar BOM-markering."
 
-#: ../src/plugins/lib/libgedcom.py:5755
+#: ../src/plugins/lib/libgedcom.py:5753
 msgid "Your GEDCOM file is empty."
 msgstr "Din GEDCOM-fil är tom."
 
-#: ../src/plugins/lib/libgedcom.py:5818
+#: ../src/plugins/lib/libgedcom.py:5816
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ogiltig rad %d i GEDCOM-fil."
@@ -17256,6 +17258,10 @@ msgstr "Slå samman misstänkta dubbletter"
 msgid "Uncollected Objects Tool"
 msgstr "Verktyg för ej skräpsamlade objekt"
 
+#: ../src/plugins/tool/Leak.py:83
+msgid "Number"
+msgstr "Antal"
+
 #: ../src/plugins/tool/Leak.py:87
 msgid "Uncollected object"
 msgstr "Ej skräpsamlade objekt"
@@ -18458,19 +18464,19 @@ msgstr "Redigera det valda mediaobjektet"
 msgid "Delete the selected media object"
 msgstr "Radera det valda mediaobjektet"
 
-#: ../src/plugins/view/mediaview.py:235
+#: ../src/plugins/view/mediaview.py:238
 msgid "Media Filter Editor"
 msgstr "Redigera mediafilter"
 
-#: ../src/plugins/view/mediaview.py:238
+#: ../src/plugins/view/mediaview.py:241
 msgid "View in the default viewer"
 msgstr "Visa i standardvisaren"
 
-#: ../src/plugins/view/mediaview.py:242
+#: ../src/plugins/view/mediaview.py:245
 msgid "Open the folder containing the media file"
 msgstr "Öppnar den mapp, som innehåller mediafil"
 
-#: ../src/plugins/view/mediaview.py:290 ../src/glade/editmedia.glade.h:2
+#: ../src/plugins/view/mediaview.py:293 ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
 msgstr "Dubbelklicka på bilden för att visa den i ett visningsprogram"
@@ -24433,7 +24439,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:7
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
-"easy. In the Relationship view juct click on anyone. In the Ancestry View "
+"easy. In the Relationship view just click on anyone. In the Ancestry View "
 "doubleclick on the person or right click to select any of their spouses, "
 "siblings, children or parents."
 msgstr ""
