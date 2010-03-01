@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-26 09:00+0100\n"
-"PO-Revision-Date: 2010-02-26 11:21+0100\n"
+"POT-Creation-Date: 2010-02-28 16:40+0100\n"
+"PO-Revision-Date: 2010-03-01 11:22+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -643,7 +643,7 @@ msgstr ""
 #: ../src/plugins/lib/libplaceview.py:172
 #: ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191
-#: ../src/plugins/view/mediaview.py:245
+#: ../src/plugins/view/mediaview.py:248
 #: ../src/plugins/view/noteview.py:209
 #: ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
@@ -4727,7 +4727,7 @@ msgstr "Selecteren"
 #: ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
-#: ../src/plugins/view/mediaview.py:237
+#: ../src/plugins/view/mediaview.py:240
 msgid "View"
 msgstr "Weergeven"
 
@@ -5003,12 +5003,12 @@ msgid "F_ull Screen"
 msgstr "Volledig beeld"
 
 #: ../src/gui/viewmanager.py:514
-#: ../src/gui/viewmanager.py:1279
+#: ../src/gui/viewmanager.py:1292
 msgid "_Undo"
 msgstr "Ongedaan maken"
 
 #: ../src/gui/viewmanager.py:519
-#: ../src/gui/viewmanager.py:1296
+#: ../src/gui/viewmanager.py:1309
 msgid "_Redo"
 msgstr "Opnieuw"
 
@@ -5064,19 +5064,27 @@ msgstr "Kan deze veranderingen aan deze sessie niet ongedaan maken"
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Veranderingen kunnen niet volledig ongedaan gemaakt worden omdat het aantal veranderingen van de sessie het maximum overschrijdt."
 
-#: ../src/gui/viewmanager.py:1201
+#: ../src/gui/viewmanager.py:973
+msgid "No views loaded"
+msgstr "Geen schermen geladen."
+
+#: ../src/gui/viewmanager.py:974
+msgid "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some plugins of type 'View' are enabled. Then restart Gramps"
+msgstr "Er zijn geen scherm-plugins geladen. Ga naar Hulp->Plugin-beheerder en stel zeker dat sommige plugins van het type 'Scherm' zijn geactiveerd. Herstart Gramps vervolgens"
+
+#: ../src/gui/viewmanager.py:1214
 msgid "Import Statistics"
 msgstr "Statistieken importeren"
 
-#: ../src/gui/viewmanager.py:1251
+#: ../src/gui/viewmanager.py:1264
 msgid "Read Only"
 msgstr "Alleen lezen"
 
-#: ../src/gui/viewmanager.py:1564
+#: ../src/gui/viewmanager.py:1577
 msgid "Failed Loading Plugin"
 msgstr "Laden van de 'plugin' mislukte"
 
-#: ../src/gui/viewmanager.py:1565
+#: ../src/gui/viewmanager.py:1578
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -6244,7 +6252,7 @@ msgid "_Gallery"
 msgstr "Ga_lerij"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:244
 msgid "Open Containing _Folder"
 msgstr "Open de map"
 
@@ -6252,8 +6260,8 @@ msgstr "Open de map"
 msgid "Non existing media found in the Gallery"
 msgstr "Onbestaande media gevonden in de galerij"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:481
-#: ../src/plugins/view/mediaview.py:218
+#: ../src/gui/editors/displaytabs/gallerytab.py:483
+#: ../src/plugins/view/mediaview.py:221
 msgid "Drag Media Object"
 msgstr "Media-object slepen"
 
@@ -8851,7 +8859,7 @@ msgstr "Rechtsklikken om aan te passen"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:150
 msgid "   sp. "
-msgstr "echtgnt.   "
+msgstr "    echtgnt.   "
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:553
 msgid ""
@@ -8969,7 +8977,7 @@ msgstr "Afstammelingen"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:99
 msgid "Fan Chart Gramplet"
-msgstr "Waaiergramplet"
+msgstr "Waaiergrafiek-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:114
 msgid "FAQ Gramplet"
@@ -10502,12 +10510,12 @@ msgstr "Uw GEDCOM bestand is corrupt. Het lijkt erop dat bepaaldegegevens niet v
 msgid "Import from GEDCOM (%s)"
 msgstr "Geïmporteerd uit GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2216
+#: ../src/plugins/lib/libgedcom.py:2217
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
 # Let op, ipv waarschuwing
-#: ../src/plugins/lib/libgedcom.py:2472
+#: ../src/plugins/lib/libgedcom.py:2473
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
@@ -10515,43 +10523,43 @@ msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
 # Let op, ipv waarschuwing
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4331
+#: ../src/plugins/lib/libgedcom.py:4324
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Regel %d: lege gebeurtenis opmerking werd genegeerd."
 
-#: ../src/plugins/lib/libgedcom.py:5014
-#: ../src/plugins/lib/libgedcom.py:5588
+#: ../src/plugins/lib/libgedcom.py:5012
+#: ../src/plugins/lib/libgedcom.py:5586
 #, python-format
 msgid "Could not import %s"
 msgstr "Kon %s niet importeren"
 
-#: ../src/plugins/lib/libgedcom.py:5358
+#: ../src/plugins/lib/libgedcom.py:5356
 #, python-format
 msgid "Import from %s"
 msgstr "Geïmporteerd uit %s"
 
 # Let op, ipv waarschuwing
-#: ../src/plugins/lib/libgedcom.py:5446
-#: ../src/plugins/lib/libgedcom.py:5458
+#: ../src/plugins/lib/libgedcom.py:5444
+#: ../src/plugins/lib/libgedcom.py:5456
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Regel %d: lege opmerking werd genegeerd."
 
-#: ../src/plugins/lib/libgedcom.py:5497
+#: ../src/plugins/lib/libgedcom.py:5495
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "sloeg %(skip)d subordinaten over op lijn %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:5752
+#: ../src/plugins/lib/libgedcom.py:5750
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Uw GEDCOM-bestand is beschadigd. Het bestand lijkt met de karakterset UTF16 te zijn gecodeerd, maar de BOM-aanduiding ontbreekt."
 
-#: ../src/plugins/lib/libgedcom.py:5755
+#: ../src/plugins/lib/libgedcom.py:5753
 msgid "Your GEDCOM file is empty."
 msgstr "Uw GEDCOM-bestand is leeg."
 
-#: ../src/plugins/lib/libgedcom.py:5818
+#: ../src/plugins/lib/libgedcom.py:5816
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Foute lijn%d in GEDCOM bestand."
@@ -18024,7 +18032,7 @@ msgstr "U ziet geen kaart om de volgende redenen :<br><ol><li>Uw gegevensbestand
 
 #: ../src/plugins/view/geoview.gpr.py:50
 msgid "Geographic View"
-msgstr "Goegrafisch scherm"
+msgstr "Geografisch scherm"
 
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid "The view showing events on an interactive internet map (internet connection needed"
@@ -18037,7 +18045,7 @@ msgstr "Locatie toevoegen"
 
 #: ../src/plugins/view/geoview.gpr.py:63
 msgid "Link Place"
-msgstr " Locatie verbinden"
+msgstr "Locatie verbinden"
 
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
@@ -18129,21 +18137,21 @@ msgstr "Het geselecteerde media-object bewerken"
 msgid "Delete the selected media object"
 msgstr "Het geselecteerde media-object verwijderen"
 
-#: ../src/plugins/view/mediaview.py:235
+#: ../src/plugins/view/mediaview.py:238
 msgid "Media Filter Editor"
 msgstr "Mediafilter bewerken"
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
-#: ../src/plugins/view/mediaview.py:238
+#: ../src/plugins/view/mediaview.py:241
 msgid "View in the default viewer"
 msgstr "Toon in het standaardscherm"
 
-#: ../src/plugins/view/mediaview.py:242
+#: ../src/plugins/view/mediaview.py:245
 msgid "Open the folder containing the media file"
 msgstr "Open de map die het mediabestand bevat"
 
-#: ../src/plugins/view/mediaview.py:290
+#: ../src/plugins/view/mediaview.py:293
 #: ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
@@ -23877,8 +23885,8 @@ msgid "<b>Calculating Relationships</b><br/>To check if two people in the databa
 msgstr "<b>Berekenen van verwantschap</b><br/>Dit hulpmiddel, onder &quot;Hulpmiddelen &gt; Hulpprogramma &gt; Berekenen verwantschap...&quot;</b> laat toe om te controleren of iemand in de familie aan u verwant is (bloedverwantschap geen huwelijk). De juiste verwantschap wordt weergegeven alsook de gemeenschappelijke voorouders."
 
 #: ../src/data/tips.xml.in.h:7
-msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view juct click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
-msgstr "<b>De active persoon wisselen</b><br/>De actieve persoon wisselen in de verschillende schermen is zeer eenvoudig. In het relatiescherm klikt u op gelijk welke persoon. In het stamboomscherm klikt u tweemaal op een persoon of rechtklikken om een echtgeno(o)t(e), broer of zus of ouders te selecteren."
+msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
+msgstr "<b>De actieve persoon wisselen</b><br/>De actieve persoon wisselen in de verschillende schermen is zeer eenvoudig. In het relatiescherm klikt u op gelijk welke persoon. In het stamboomscherm klikt u tweemaal op een persoon of rechtklikken om een echtgeno(o)t(e), broer of zus of ouders te selecteren."
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;"
