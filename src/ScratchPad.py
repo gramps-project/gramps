@@ -948,33 +948,52 @@ class ScratchPadListView(object):
 
     def database_changed(self,db):
         self._db = db
+        # Note: delete event is emitted before the delete, so checking
+        #        if valid on this is useless !
         db_signals = (
             'person-update',
             'person-rebuild',
             'family-update',
-            'family-delete',
             'family-rebuild',
             'source-update',
             'source-rebuild',
             'place-update',
-            'place-delete',
             'place-rebuild',
             'media-update',
-            'media-delete',
             'media-rebuild',
             'event-update',
             'event-rebuild',
             'repository-update',
-            'repository-rebuild'
+            'repository-rebuild',
+            'note-rebuild'
             )
 
         for signal in db_signals:
             self._db.connect(signal,self.remove_invalid_objects)
 
-        self._db.connect('person-delete', gen_del_obj(self.delete_object, 'person-link'))
-        self._db.connect('source-delete', gen_del_obj(self.delete_object, 'source-link'))
-        self._db.connect('repository-delete', gen_del_obj(self.delete_object, 'repo-link'))
-        self._db.connect('event-delete', gen_del_obj(self.delete_object, 'pevent'))
+        self._db.connect('person-delete', 
+                         gen_del_obj(self.delete_object, 'person-link'))
+        self._db.connect('person-delete', 
+                         gen_del_obj(self.delete_object_ref, 'personref'))
+        self._db.connect('source-delete',
+                         gen_del_obj(self.delete_object, 'source-link'))
+        self._db.connect('source-delete',
+                         gen_del_obj(self.delete_object_ref, 'srcref'))
+        self._db.connect('repository-delete',
+                         gen_del_obj(self.delete_object, 'repo-link'))
+        self._db.connect('event-delete',
+                         gen_del_obj(self.delete_object, 'pevent'))
+        self._db.connect('event-delete',
+                         gen_del_obj(self.delete_object_ref, 'eventref'))
+        self._db.connect('media-delete',
+                         gen_del_obj(self.delete_object, 'mediaobj'))
+        self._db.connect('media-delete',
+                         gen_del_obj(self.delete_object_ref, 'mediaref'))
+        self._db.connect('place-delete',
+                         gen_del_obj(self.delete_object, 'place-link'))
+        self._db.connect('note-delete',
+                         gen_del_obj(self.delete_object, 'note-link'))
+        # family-delete not needed, cannot be dragged!
 
         self.remove_invalid_objects()
 
@@ -996,6 +1015,16 @@ class ScratchPadListView(object):
                     if data[2] in handle_list:
                         model.remove(o.iter)
     
+    def delete_object_ref(self, handle_list, link_type):
+        model = self._widget.get_model()
+
+        if model:
+            for o in model:
+                if o[0] == link_type:
+                    data = o[1]._obj.get_reference_handle()
+                    if data in handle_list:
+                        model.remove(o.iter)
+                        
     # Method to manage the wrapper classes.
     
     def register_wrapper_classes(self):
@@ -1153,7 +1182,6 @@ class ScratchPadListView(object):
         # remember time for double drop workaround.
         self._previous_drop_time = realTime
 
-
     # proxy methods to provide access to the real widget functions.
     
     def set_model(self,model=None):
@@ -1236,6 +1264,10 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         
         
         self.object_list.set_model(ScratchPadWindow.otree)
+        
+        #Database might have changed, objects might have been removed,
+        #we need to reevaluate if all data is valid
+        self.object_list.remove_invalid_objects()
         
         self.top.connect_signals({
             "on_close_scratchpad" : self.close,
