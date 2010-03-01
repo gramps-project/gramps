@@ -82,7 +82,6 @@ msgstr "Adresse électronique :"
 msgid "manual|Bookmarks"
 msgstr "Signets"
 
-# trunk
 #: ../src/Bookmarks.py:197
 #, python-format
 msgid "%(title)s - Gramps"
@@ -206,7 +205,6 @@ msgstr "Nom"
 msgid "ID"
 msgstr "Id"
 
-# trunk
 #: ../src/const.py:194
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "Gramps (Genealogical Research et Analysis Management Programming System) est un logiciel de généalogie."
@@ -280,42 +278,34 @@ msgstr "Mauvaise date"
 msgid "Date selection"
 msgstr "Sélection de la date"
 
-# trunk
 #: ../src/DisplayState.py:318
 msgid "No active person"
 msgstr "Aucun individu actif"
 
-# trunk
 #: ../src/DisplayState.py:319
 msgid "No active family"
 msgstr "Aucune famille active"
 
-# trunk
 #: ../src/DisplayState.py:320
 msgid "No active event"
 msgstr "Aucun événement actif"
 
-# trunk
 #: ../src/DisplayState.py:321
 msgid "No active place"
 msgstr "Aucun lieu actif"
 
-# trunk
 #: ../src/DisplayState.py:322
 msgid "No active source"
 msgstr "Aucune source active"
 
-# trunk
 #: ../src/DisplayState.py:323
 msgid "No active repository"
 msgstr "Aucun dépôt actif"
 
-# trunk
 #: ../src/DisplayState.py:324
 msgid "No active media"
 msgstr "Aucun object media actif"
 
-# trunk
 #: ../src/DisplayState.py:325
 msgid "No active note"
 msgstr "Aucune note active"
@@ -352,7 +342,6 @@ msgstr "Veuillez patienter pendant la sélection et l'exportation des données"
 msgid "Summary"
 msgstr "Résumé"
 
-# trunk
 #: ../src/ExportAssistant.py:456
 #, python-format
 msgid ""
@@ -401,7 +390,6 @@ msgstr ""
 msgid "Your data has been saved"
 msgstr "Vos données ont été enregistrées"
 
-# trunk
 #: ../src/ExportAssistant.py:504
 msgid ""
 "The copy of your data has been successfully saved. You may press Close button now to continue.\n"
@@ -410,7 +398,7 @@ msgid ""
 msgstr ""
 "Une copie de vos données a été enregistrée avec succès. Cliquez sur Fermer pour continuer.\n"
 "\n"
-"Note : La base de données ouverte dans Gramps n'est PAS le fichier que vous venez d'enregistrer. Vos prochaines modifications ne seront pas présentes dans la copie que vous venez d'effectuer. "
+"Note : la base de données ouverte dans Gramps n'est PAS le fichier que vous venez d'enregistrer. Vos prochaines modifications ne seront pas présentes dans la copie que vous venez d'effectuer. "
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:512
@@ -433,7 +421,6 @@ msgstr ""
 "\n"
 "Note : La base de données ouverte actuellement n'a pas de problème. La copie que vous avez essayé de faire n'a pas été enregistrée."
 
-# trunk
 #: ../src/ExportAssistant.py:543
 msgid ""
 "Under normal circumstances, Gramps does not require you to directly save your changes. All changes you make are immediately saved to the database.\n"
@@ -442,11 +429,11 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"Vous ne devriez pas avoir à enregistrer vos modifications dans Gramps. Toutes les modifications effectuées sont immediatement enregistrées dans la base de données.\n"
+"Vous ne devriez pas avoir à enregistrer vos modifications dans Gramps. Toutes les modifications effectuées sont immédiatement enregistrées dans la base de données.\n"
 "\n"
 "Ce processus vous permet d'enregistrer une copie de vos données dans un des formats supportés par Gramps. Cela peut être utilisé pour effectuer une copie de vos données, sauvegarder vos données ou les convertir dans un format qui permettra le transfert vers un autre logiciel.\n"
 "\n"
-"Si vous changez d'avis au cours de ce processus, cliquez sur le bouton &quot; Annuler &quot;. Votre base de données actuelle restera inchangée."
+"Si vous changez d'avis au cours de ce processus, cliquez sur le bouton Annuler. Votre base de données actuelle restera inchangée."
 
 #: ../src/ExportOptions.py:78
 msgid "_Person Filter"
@@ -539,7 +526,6 @@ msgstr ""
 "\n"
 "==== Contributeurs ====\n"
 
-# trunk
 #: ../src/GrampsAboutDialog.py:81
 msgid ""
 "Much of Gramps' artwork is either from\n"
@@ -555,12 +541,10 @@ msgstr ""
 "et partage des conditions initiales à \n"
 "l'identique 2.5."
 
-# trunk
 #: ../src/GrampsAboutDialog.py:96
 msgid "Gramps Homepage"
 msgstr "Page d'accueil de Gramps"
 
-# trunk
 #: ../src/gramps.py:90
 #, python-format
 msgid ""
@@ -568,7 +552,7 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Votre version de Python ne remplit pas toutes les conditions requises. Python %d.%d.%d (ou supérieur) est nécessaire pour éxecuter Gramps.\n"
+"Votre version de Python ne remplit pas toutes les conditions requises. Python %d.%d.%d (ou supérieur) est nécessaire pour exécuter Gramps.\n"
 "\n"
 "Gramps va maintenant s'arrêter."
 
@@ -577,12 +561,10 @@ msgstr ""
 msgid "Configuration error"
 msgstr "Erreur de configuration"
 
-# trunk
 #: ../src/gramps.py:162
 msgid "Error reading configuration"
 msgstr "Erreur à la lecture de la configuration"
 
-# trunk
 #: ../src/gramps.py:166
 #, python-format
 msgid ""
@@ -618,7 +600,6 @@ msgstr "%(west_longitude)s O"
 msgid "Error detected in database"
 msgstr "Erreur détectée dans la base de données"
 
-# trunk
 #: ../src/QuestionDialog.py:192
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved by running the \"Check and Repair Database\" tool.\n"
@@ -690,7 +671,6 @@ msgstr ""
 msgid "Relationship loop detected:"
 msgstr "Relation en boucle détectée :"
 
-# trunk
 #: ../src/Relationship.py:927
 #, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
@@ -1793,14 +1773,12 @@ msgstr "Zoulou"
 msgid "None"
 msgstr "Aucun"
 
-# trunk
 #: ../src/Spell.py:210
 #: ../src/Spell.py:221
 #, python-format
 msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
 msgstr "Attention: le vérificateur orthographique est limité à la langue '%s'; installez pyenchant/python-enchant pour de meilleurs options."
 
-# trunk
 #. FIXME: this does not work anymore since 10/2008!!!
 #. if pyenchant is installed we can avoid it, otherwise
 #. perhaps future gtkspell3 will offer a solution.
@@ -1929,7 +1907,6 @@ msgstr "masculin"
 msgid "female"
 msgstr "féminin"
 
-# trunk
 #: ../src/Utils.py:80
 msgid "gender|unknown"
 msgstr "inconnu"
@@ -2032,12 +2009,10 @@ msgstr "inconnu"
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s et %(mother)s"
 
-# trunk
 #: ../src/Utils.py:470
 msgid "death-related evidence"
 msgstr "décès-preuve reliée"
 
-# trunk
 #: ../src/Utils.py:487
 msgid "birth-related evidence"
 msgstr "naissance-preuve reliée"
@@ -2052,53 +2027,43 @@ msgstr "date de décès"
 msgid "birth date"
 msgstr "date de naissance"
 
-# trunk
 #: ../src/Utils.py:526
 msgid "sibling birth date"
 msgstr "date de naissance d'un frère ou d'une sœur"
 
-# trunk
 #: ../src/Utils.py:538
 msgid "sibling death date"
 msgstr "date de décès d'un frère ou d'une sœur"
 
-# trunk
 #: ../src/Utils.py:552
 msgid "sibling birth-related date"
 msgstr "naissance frère ou sœur-date reliée"
 
-# trunk
 #: ../src/Utils.py:563
 msgid "sibling death-related date"
 msgstr "décès frère ou sœur-date reliée"
 
-# trunk
 #: ../src/Utils.py:576
 #: ../src/Utils.py:581
 msgid "a spouse, "
 msgstr "un conjoint,"
 
-# trunk
 #: ../src/Utils.py:599
 msgid "event with spouse"
 msgstr "événement avec le conjoint"
 
-# trunk
 #: ../src/Utils.py:620
 msgid "descendent birth date"
 msgstr "date de naissance d'un descendant"
 
-# trunk
 #: ../src/Utils.py:629
 msgid "descendent death date"
 msgstr "date de décès d'un descendant"
 
-# trunk
 #: ../src/Utils.py:645
 msgid "descendent birth-related date"
 msgstr "naissance descendant-date reliée"
 
-# trunk
 #: ../src/Utils.py:653
 msgid "descendent death-related date"
 msgstr "décès descendant-date reliée"
@@ -2108,31 +2073,26 @@ msgstr "décès descendant-date reliée"
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Erreur de base de données : %s est défini comme son propre ascendant"
 
-# trunk
 #: ../src/Utils.py:687
 #: ../src/Utils.py:733
 msgid "ancestor birth date"
 msgstr "date de naissance d'un ascendant"
 
-# trunk
 #: ../src/Utils.py:697
 #: ../src/Utils.py:743
 msgid "ancestor death date"
 msgstr "date de décès d'un ascendant"
 
-# trunk
 #: ../src/Utils.py:708
 #: ../src/Utils.py:754
 msgid "ancestor birth-related date"
 msgstr "naissance ascendant-date reliée"
 
-# trunk
 #: ../src/Utils.py:716
 #: ../src/Utils.py:762
 msgid "ancestor death-related date"
 msgstr "décès ascendant-date reliée"
 
-# trunk
 #. no evidence, must consider alive
 #: ../src/Utils.py:816
 msgid "no evidence"
@@ -2267,7 +2227,6 @@ msgstr "Base de données ouverte"
 msgid "History cleared"
 msgstr "Historique effacé"
 
-# trunk
 #: ../src/cli/arghandler.py:127
 #, python-format
 msgid ""
@@ -2277,19 +2236,16 @@ msgstr ""
 "Erreur: l'entrée \"%s\" n'existe pas.\n"
 "Si il s'agit du format GEDCOM, Gramps-xml ou grdb, utilisez plutôt l'option -i pour l'importer dans un arbre familial. "
 
-# trunk
 #: ../src/cli/arghandler.py:140
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr "Erreur : le fichier %s à importer est introuvable."
 
-# trunk
 #: ../src/cli/arghandler.py:158
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Erreur : type non reconnu : \"%(format)s\" pour le fichier à importer : %(filename)s"
 
-# trunk
 #: ../src/cli/arghandler.py:174
 #, python-format
 msgid ""
@@ -2301,24 +2257,20 @@ msgstr ""
 "ATTENTION: il sera écrasé :\n"
 "    %(name)s"
 
-# trunk
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
 msgstr "D'accord pour écraser ? (oui/non)"
 
-# trunk
 #: ../src/cli/arghandler.py:180
 msgid "YES"
 msgstr "OUI"
 
 # enlever la référence
-# trunk
 #: ../src/cli/arghandler.py:181
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr "Écrasera le fichier existant : %s"
 
-# trunk
 #: ../src/cli/arghandler.py:201
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
@@ -2337,7 +2289,6 @@ msgstr "  Info : %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "La base de données doit être récupérée, impossible à ouvrir !"
 
-# trunk
 #. Note: Make sure to edit const.py POPT_TABLE too!
 #: ../src/cli/argparser.py:50
 msgid ""
@@ -2379,15 +2330,13 @@ msgstr ""
 "  -d, --debug=LOGGER_NAME                Active les logs de déboguage\n"
 "  -l                                     Liste les arbres familiaux\n"
 "  -L                                     Liste les arbres familiaux en détail\n"
-"  -u, --force-unlock                     Force le dévérouillage de l'arbre familial\n"
+"  -u, --force-unlock                     Force le déverrouillage de l'arbre familial\n"
 
-# trunk
 #: ../src/cli/argparser.py:156
 #: ../src/cli/argparser.py:225
 msgid "Error parsing the arguments"
 msgstr "Erreur de parsing des arguments"
 
-# trunk
 #: ../src/cli/argparser.py:158
 #, python-format
 msgid ""
@@ -2397,7 +2346,6 @@ msgstr ""
 "Erreur dans le parsage de l'argument : %s\n"
 "Saisissez gramps --help pour un aperçu des commandes, ou consultez les pages du manuel."
 
-# trunk
 #: ../src/cli/argparser.py:226
 #, python-format
 msgid ""
@@ -2446,13 +2394,11 @@ msgstr "Jamais"
 msgid "Locked by %s"
 msgstr "Verrouillé par %s"
 
-# trunk
 #: ../src/cli/grampscli.py:76
 #, python-format
 msgid "WARNING: %s"
 msgstr "ATTENTION : %s"
 
-# trunk
 #: ../src/cli/grampscli.py:83
 #: ../src/cli/grampscli.py:207
 #, python-format
@@ -2491,21 +2437,18 @@ msgstr "Impossible de charger l'arbre familial récent."
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Cet arbre familial n'existe pas, puisqu'il a été supprimé."
 
-# trunk
 #. already errors encountered. Show first one on terminal and exit
 #: ../src/cli/grampscli.py:300
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Erreur rencontrée : %s"
 
-# trunk
 #: ../src/cli/grampscli.py:301
 #: ../src/cli/grampscli.py:307
 #, python-format
 msgid "  Details: %s"
 msgstr "  Détails : %s"
 
-# trunk
 #: ../src/cli/grampscli.py:305
 #, python-format
 msgid "Error encountered in argument parsing: %s"
@@ -2535,7 +2478,6 @@ msgstr "Enlever le père de la famille"
 msgid "Remove mother from family"
 msgstr "Enlever la mère de la famille"
 
-# trunk
 #: ../src/gen/db/exceptions.py:66
 #: ../src/plugins/import/ImportGrdb.py:2684
 msgid ""
@@ -2545,7 +2487,6 @@ msgstr ""
 "Cette version de la base de données n'est pas supportée par cette version de Gramps.\n"
 "Veuillez mettre à jour la version correspondante ou utilisez XML pour transférer les données d'une version à l'autre."
 
-# trunk
 #: ../src/gen/db/exceptions.py:79
 msgid ""
 "You cannot open this database without upgrading it.\n"
@@ -2573,7 +2514,6 @@ msgstr "Ann_uler %s"
 msgid "_Redo %s"
 msgstr "_Rétablir %s"
 
-# trunk
 #: ../src/gen/display/name.py:114
 msgid "Default format (defined by Gramps preferences)"
 msgstr "Format par défaut (défini par les préférences de Gramps)"
@@ -3115,37 +3055,30 @@ msgstr[1] "%d jours"
 msgid "0 days"
 msgstr "0 jour"
 
-# trunk
 #: ../src/gen/lib/date.py:660
 msgid "calendar|Gregorian"
 msgstr "Grégorien"
 
-# trunk
 #: ../src/gen/lib/date.py:661
 msgid "calendar|Julian"
 msgstr "Julien"
 
-# trunk
 #: ../src/gen/lib/date.py:662
 msgid "calendar|Hebrew"
 msgstr "Hébreu"
 
-# trunk
 #: ../src/gen/lib/date.py:663
 msgid "calendar|French Republican"
 msgstr "Républicain (France)"
 
-# trunk
 #: ../src/gen/lib/date.py:664
 msgid "calendar|Persian"
 msgstr "Persan"
 
-# trunk
 #: ../src/gen/lib/date.py:665
 msgid "calendar|Islamic"
 msgstr "Islamique"
 
-# trunk
 #: ../src/gen/lib/date.py:666
 msgid "calendar|Swedish"
 msgstr "Suédois"
@@ -3383,17 +3316,14 @@ msgstr "Annulation de mariage"
 msgid "Alternate Marriage"
 msgstr "Mariage alternatif"
 
-# trunk
 #: ../src/gen/lib/eventtype.py:192
 msgid "birth abbreviation|b"
 msgstr "n"
 
-# d
 #: ../src/gen/lib/eventtype.py:193
 msgid "death abbreviation|d"
 msgstr "d"
 
-# trunk
 #: ../src/gen/lib/eventtype.py:194
 msgid "marriage abbreviation|m"
 msgstr "m"
@@ -3480,7 +3410,6 @@ msgstr "Incorrect"
 msgid "Gramplet %s is running"
 msgstr "Le gramplet %s est en action"
 
-# trunk
 #: ../src/gen/plug/_gramplet.py:293
 #: ../src/gen/plug/_gramplet.py:301
 #: ../src/gen/plug/_gramplet.py:307
@@ -3488,7 +3417,6 @@ msgstr "Le gramplet %s est en action"
 msgid "Gramplet %s updated"
 msgstr "Le gramplet %s est mis à jour"
 
-# trunk
 #: ../src/gen/plug/_gramplet.py:316
 #, python-format
 msgid "Gramplet %s caused an error"
@@ -3507,47 +3435,38 @@ msgstr "Aucune description fournie"
 msgid "Stable"
 msgstr "Stable"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:57
 msgid "Unstable"
 msgstr "Instable"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:75
 msgid "Quickreport"
 msgstr "Rapport express"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:76
 msgid "Tool"
 msgstr "Outil"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:77
 msgid "Importer"
 msgstr "Importer"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:78
 msgid "Exporter"
 msgstr "Exporter"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:79
 msgid "Doc creator"
 msgstr "Créateur de doc"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:80
 msgid "Plugin lib"
-msgstr "Greffon lib"
+msgstr "Bibliothèque Greffon"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:81
 msgid "Map service"
 msgstr "Service cartographique"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:82
 msgid "Gramps View"
 msgstr "Vue Gramps"
@@ -3565,48 +3484,40 @@ msgstr "Relations"
 msgid "Gramplet"
 msgstr "Gramplet"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:426
 #: ../src/gui/views/pageview.py:111
 msgid "Miscellaneous"
 msgstr "Divers"
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:951
 #: ../src/gen/plug/_pluginreg.py:956
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "ERREUR : échec à la lecture de l'enregistrement du greffon %(filename)s."
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:970
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr "ERREUR : le fichier greffon %(filename)s est prévu pour \"%(gramps_target_version)s\" qui est invalide dans Gramps \"%(gramps_version)s\"."
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:989
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr "ERREUR : le fichier python %(filename)s est mal enregistré dans %(regfile)s."
 
-# trunk
 #: ../src/gen/plug/_pluginreg.py:997
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "ERREUR : le fichier python %(filename)s enregistré dans %(regfile)s n'existe pas."
 
-# trunk
 #: ../src/gen/plug/docbackend/docbackend.py:140
 msgid "Close file first"
 msgstr "Fermez d'abord le fichier"
 
-# trunk
 #: ../src/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
 msgstr "Aucun nom de fichier donné"
 
-# trunk
 #: ../src/gen/plug/docbackend/docbackend.py:152
 #, python-format
 msgid "File %s already open, close it first."
@@ -3655,13 +3566,11 @@ msgstr "Impossible de créer %s"
 msgid "Private"
 msgstr "Privé"
 
-# trunk
 #: ../src/gui/columnorder.py:86
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
 msgstr "Vue en arbre : la première colonne \"%s\" ne peut pas être modifiée"
 
-# trunk
 #: ../src/gui/columnorder.py:92
 msgid "Drag and drop the columns to change the order"
 msgstr "Glissez et déposez les colonnes pour changer l'ordre"
@@ -3722,7 +3631,7 @@ msgstr ""
 "  <b>Initiales</b>   - premières lettres du prénom\n"
 "</tt>\n"
 "Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. Parenthèses et virgules\n"
-"seront enlevées des champs vides. Un texte autre apparaîtra littérallement."
+"seront enlevées des champs vides. Un texte autre apparaîtra littéralement."
 
 #: ../src/gui/configure.py:123
 msgid " Name Editor"
@@ -3814,22 +3723,18 @@ msgstr "Événement"
 msgid "ID Formats"
 msgstr "Formats ID"
 
-# trunk
 #: ../src/gui/configure.py:396
 msgid "Suppress warning when adding parents to a child."
 msgstr "Supprimer l'avertissement quand on ajoute des parents à un enfant."
 
-# trunk
 #: ../src/gui/configure.py:400
 msgid "Suppress warning when cancelling with changed data."
 msgstr "Supprimer l'avertissement quand on annule une donnée modifiée."
 
-# trunk
 #: ../src/gui/configure.py:404
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Supprimer l'avertissement sur l'absence de chercheur lors de l'exportation d'un GEDCOM."
 
-# trunk
 #: ../src/gui/configure.py:409
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Afficher la boîte de dialogue d'état des greffons quand il y a une erreur au chargement de ces derniers."
@@ -3843,12 +3748,10 @@ msgstr "Messages d'alerte"
 msgid "Marker Colors"
 msgstr "Couleurs du marqueur"
 
-# trunk
 #: ../src/gui/configure.py:589
 msgid "This format exists already."
 msgstr "Ce format existe déjà."
 
-# trunk
 #: ../src/gui/configure.py:611
 #: ../src/gui/configure.py:1123
 msgid "Invalid or incomplete format definition."
@@ -3883,7 +3786,6 @@ msgstr "Éditer"
 msgid "Date format"
 msgstr "Format de date"
 
-# trunk
 #: ../src/gui/configure.py:832
 msgid "Calendar on reports"
 msgstr "Calendrier pour les rapports"
@@ -3936,11 +3838,10 @@ msgstr "Enregistrement privé"
 msgid "Change is not immediate"
 msgstr "Le changement n'est pas immédiat"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/configure.py:910
 msgid "Changing the data format will not take effect until the next time Gramps is started."
-msgstr "Le changement du format des données ne prendra effet qu'après le redémarrage de Gramps."
+msgstr "Le changement du format des données ne prendra effet que après le redémarrage de Gramps."
 
 #: ../src/gui/configure.py:924
 msgid "Date about range"
@@ -4041,7 +3942,6 @@ msgstr "_Continuer malgré tout"
 msgid "_Modify format"
 msgstr "_Modifier le format"
 
-# trunk
 #: ../src/gui/configure.py:1110
 msgid "Both Format name and definition have to be defined."
 msgstr "Les deux formats nom et définition doivent être définis."
@@ -4071,12 +3971,10 @@ msgstr "_Poursuivre l'importation"
 msgid "_Stop"
 msgstr "Ann_uler"
 
-# trunk
 #: ../src/gui/dbloader.py:122
 msgid "Gramps: Import database"
 msgstr "Gramps : Importation d'une base de données"
 
-# trunk
 #: ../src/gui/dbloader.py:181
 #, python-format
 msgid ""
@@ -4451,7 +4349,6 @@ msgstr "Sélectionner..."
 msgid "Select %s from a list"
 msgstr "Sélectionner %s depuis une liste"
 
-# trunk
 #: ../src/gui/filtereditor.py:349
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr "Donnez ou sélectionnez un identifiant source, laissez le vide pour trouver les objets sans source."
@@ -4666,7 +4563,6 @@ msgstr "Supprimer le filtre"
 msgid "Family Trees"
 msgstr "Arbres familiaux"
 
-# trunk
 #: ../src/gui/grampsgui.py:112
 msgid "Configure"
 msgstr "Configuration"
@@ -4819,12 +4715,10 @@ msgstr "Ajouter un conjoint"
 msgid "Tools"
 msgstr "Outils"
 
-# trunk
 #: ../src/gui/grampsgui.py:140
 msgid "Grouped List"
-msgstr "Liste de groupe"
+msgstr "Liste groupée"
 
-# trunk
 #: ../src/gui/grampsgui.py:141
 msgid "List"
 msgstr "Liste"
@@ -4881,12 +4775,10 @@ msgstr "Importer"
 msgid "URL"
 msgstr "URL"
 
-# trunk
 #: ../src/gui/grampsgui.py:169
 msgid "Danger: This is unstable code!"
 msgstr "Danger : ce code est instable !"
 
-# trunk
 #: ../src/gui/grampsgui.py:170
 msgid ""
 "This Gramps 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
@@ -4903,7 +4795,7 @@ msgstr ""
 "Gramps 3.x-trunk est une version de développement. Cette version n'est pas prévue pour un usage normal. Utilisez-là à vos risques.\n"
 "\n"
 "Cette version peut:\n"
-"1) Fonctionner différement de vos attentes.\n"
+"1) Fonctionner différemment de vos attentes.\n"
 "2) Ne pas fonctionner.\n"
 "3) Planter souvent.\n"
 "4) Corrompre vos données.\n"
@@ -4911,12 +4803,10 @@ msgstr ""
 "\n"
 "<b>SAUVEGARDER</b> vos bases de données existantes avant de les ouvrir avec cette version, soyez certain(e) d'exporter vos données au format XML."
 
-# trunk
 #: ../src/gui/grampsgui.py:203
 msgid "Failed Loading View"
 msgstr "Échec au chargement de la vue"
 
-# trunk
 #: ../src/gui/grampsgui.py:204
 #, python-format
 msgid ""
@@ -4926,12 +4816,10 @@ msgstr ""
 "La vue %(name)s n'est pas chargée. Voir le menu Aide, Statut du greffon pour plus d'informations.\n"
 "Utilisez http://bugs.gramps-project.org pour soumettre des bogues sur les vues officielles, sinon contactez l'auteur de la vue : (%(firstauthoremail)s)."
 
-# trunk
 #: ../src/gui/grampsgui.py:291
 msgid "Error parsing arguments"
 msgstr "Erreur de parsing des arguments"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/utils.py:187
 msgid "Cancelling..."
@@ -4954,7 +4842,7 @@ msgid "File does not exist"
 msgstr "Fichier inexistant"
 
 # Utilisé dans le menu "Rapports" et dans "Rapports > Livre > Gestionnaire de livre > Articles disponibles"
-# Ce dernier devrait être au singullier
+# Ce dernier devrait être au singulier
 #. -------------------------------------------------------------------------
 #.
 #. Constants
@@ -5016,15 +4904,13 @@ msgstr "_Préférences..."
 msgid "_Help"
 msgstr "Aid_e"
 
-# trunk
 #: ../src/gui/viewmanager.py:433
 msgid "Gramps _Home Page"
 msgstr "Page d'accueil de _Gramps"
 
-# trunk
 #: ../src/gui/viewmanager.py:435
 msgid "Gramps _Mailing Lists"
-msgstr "Liste de diffusion de Gra_mps"
+msgstr "Listes de diffusion de Gra_mps"
 
 #: ../src/gui/viewmanager.py:437
 msgid "_Report a Bug"
@@ -5038,7 +4924,6 @@ msgstr "R_apports et outils supplémentaires"
 msgid "_About"
 msgstr "À _propos"
 
-# trunk
 #: ../src/gui/viewmanager.py:443
 msgid "_Plugin Manager"
 msgstr "_Gestionnaire de greffons"
@@ -5259,7 +5144,7 @@ msgstr "Impossible d'importer %s"
 #: ../src/gui/editors/addmedia.py:159
 #, python-format
 msgid "Directory specified in preferences: Base path for relative media paths: %s does not exist. Change preferences or do not use relative path when importing"
-msgstr "Répertoire spécifié dans les préférences. Le chemin relatif de base pour les media : %s n'existe pas. Changez vos préférences ou n'utilisez pas dechemin relatif lors de l'importation"
+msgstr "Répertoire spécifié dans les préférences. Le chemin relatif de base pour les media : %s n'existe pas. Changez vos préférences ou n'utilisez pas de chemin relatif lors de l'importation"
 
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
@@ -18342,7 +18227,7 @@ msgstr "Éditeur de filtre sur la famille"
 # trunk
 #: ../src/plugins/view/fanchartview.gpr.py:3
 msgid "Fan Chart View"
-msgstr "Vue roue des ascendants"
+msgstr "Vue roue"
 
 # trunk
 # Ancêtres, Aïeux ?
@@ -18981,7 +18866,7 @@ msgstr "Ajouter des nouveaux parents..."
 #: ../src/plugins/view/pedigreeviewext.gpr.py:32
 #: ../src/plugins/view/view.gpr.py:122
 msgid "Pedigree View"
-msgstr "Vue Pedigree Alt"
+msgstr "Vue Arbre"
 
 # trunk
 #: ../src/plugins/view/pedigreeviewext.gpr.py:33
@@ -19763,7 +19648,7 @@ msgstr "Le répertoire de destination pour les fichiers internet"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5611
 msgid "Web site title"
-msgstr "Choisir un titre pour le site"
+msgstr "Titre du site"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5611
 msgid "My Family Tree"
@@ -19780,7 +19665,7 @@ msgstr "Sélectionnez un filtre pour restreindre les individus qui apparaîtront
 #: ../src/plugins/webreport/NarrativeWeb.py:5637
 #: ../src/plugins/webreport/WebCal.py:1370
 msgid "File extension"
-msgstr "Extension de fichier"
+msgstr "Extension"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5640
 #: ../src/plugins/webreport/WebCal.py:1373
@@ -19816,7 +19701,7 @@ msgstr "Inclure ou non un arbre des ascendants sur chaque page des individus"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5661
 msgid "Graph generations"
-msgstr "Graphique des générations"
+msgstr "Générations"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5666
 msgid "The number of generations to include in the ancestor graph"
@@ -19933,7 +19818,7 @@ msgstr "Vie privée"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5739
 msgid "Include records marked private"
-msgstr "Inclure les enregistrements marqués comme privés"
+msgstr "Inclure les enregistrements privés"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5740
 msgid "Whether to include private objects"
@@ -19962,7 +19847,7 @@ msgstr "Gestion des individus vivants"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5757
 msgid "Years from death to consider living"
-msgstr "Années depuis le décès pour considérer comme vivant"
+msgstr "Années depuis le décès"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5759
 msgid "This allows you to restrict information on people who have not been dead for very long"
@@ -19979,12 +19864,12 @@ msgstr "Inclure ou non une option pour télécharger une base de données"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5779
 msgid "Download page note"
-msgstr "Note de la page Télécharger"
+msgstr "Note de la page"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5780
 msgid "A note to be used on the download page"
-msgstr "La note utilisée pour la page Télécharger"
+msgstr "La note utilisée pour la page"
 
 # à vérifier !
 # trunk
@@ -20003,7 +19888,7 @@ msgstr "Fichier prévu pour être téléchargé"
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
 msgid "Description for download"
-msgstr "Description pour le téléchargement"
+msgstr "Description du téléchargement"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
@@ -20024,7 +19909,7 @@ msgstr "Arbre de la famille Bernard"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
 msgid "Download Copyright License"
-msgstr "Droit d'utilisation pour le téléchargement"
+msgstr "Licence pour le téléchargement"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5804
