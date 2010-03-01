@@ -292,9 +292,6 @@ class BasePersonView(ListView):
         # delete the person from the database
         self.dbstate.db.delete_person_from_database(person, trans)
 
-        # remove the person from the list
-        self.remove_from_person_list(person)
-
         # commit the transaction
         self.dbstate.db.transaction_commit(trans, active_name)
 
@@ -303,17 +300,6 @@ class BasePersonView(ListView):
                                            self.navigation_group())
         history.back()
         self.uistate.set_busy_cursor(False)
-
-    def remove_from_person_list(self, person):
-        """Remove the selected person from the list. A person object is
-        expected, not an ID"""
-        node = self.model.get_node(person.get_handle())
-        path = self.model.on_get_path(node)
-        (col, row) = path
-        if row > 0:
-            self.selection.select_path((col, row))
-        elif row == 0 and self.model.on_get_iter(path):
-            self.selection.select_path(path)
 
     def dummy_report(self, obj):
         """ For the xml UI definition of popup to work, the submenu 
