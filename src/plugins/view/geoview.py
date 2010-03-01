@@ -640,7 +640,7 @@ class GeoView(HtmlView):
         """
         prefix = widget.get_text().lower()
         count = 0
-        found = "inconnu"
+        found = _("Unknown")
         if event.keyval == KEY_TAB:
             for place in self.plist:
                 if prefix in place[0].lower():
