@@ -137,13 +137,13 @@ class DateDisplayDE(DateDisplay):
     """
     German language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = (  u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",  
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    long_months = (  u"", u"Januar", u"Februar", u"März", u"April", u"Mai", 
+                    u"Juni", u"Juli", u"August", u"September", u"Oktober", 
+                    u"November", u"Dezember" )
+    
+    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"Mai", u"Jun",  
+                     u"Jul", u"Aug", u"Sep", u"Okt", u"Nov", u"Dez" )
 
     calendar = (
         "", u" (julianisch)", u" (hebräisch)", 
