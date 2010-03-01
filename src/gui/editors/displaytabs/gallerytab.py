@@ -456,14 +456,13 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
                     self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
-                #We assume this is for URI_LIST for Linux. For Windows split sel_data.data
+        #modern file managers provide URI_LIST. For Windows split sel_data.data
                 if constfunc.win():
                     files = sel_data.data.split('\n')
                 else:
                     files =  sel_data.get_uris()
                 for file in files:
                     d = Utils.fix_encoding(file.replace('\0',' ').strip())
-                    print repr(d)
                     protocol, site, mfile, j, k, l = urlparse.urlparse(d)
                     if protocol == "file":
                         name = Utils.fix_encoding(mfile)

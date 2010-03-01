@@ -147,8 +147,9 @@ class MediaView(ListView):
 
         dnd_types = [ self._DND_TYPE.target() ]
 
-        self.list.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types, 
-                                gtk.gdk.ACTION_PRIVATE)
+        self.list.drag_dest_set(gtk.DEST_DEFAULT_MOTION|gtk.DEST_DEFAULT_DROP, 
+                                dnd_types, 
+                                gtk.gdk.ACTION_MOVE|gtk.gdk.ACTION_COPY)
         self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
                                   [self._DND_TYPE.target()], 
                                   gtk.gdk.ACTION_COPY)
@@ -198,27 +199,33 @@ class MediaView(ListView):
         The only data we accept on mediaview is dropping a file, so URI_LIST. 
         We assume this is what we obtain
         """
-        if sel_data and sel_data.data:
-            cleaned_string = sel_data.data.replace('\0', ' ')
-            cleaned_string = cleaned_string.replace("\r", " ").strip()
-            data_list = Utils.fix_encoding(cleaned_string).split('\n')
-            for d in [item.strip() for item in data_list]:
-                protocol, site, mfile, j, k, l = urlparse.urlparse(d)
-                if protocol == "file":
-                    name = unicode(urllib.url2pathname(mfile.encode(sys.getfilesystemencoding())))
-                    mime = gen.mime.get_type(name)
-                    if not gen.mime.is_valid_type(mime):
-                        return
-                    photo = gen.lib.MediaObject()
-                    photo.set_path(name)
-                    photo.set_mime_type(mime)
-                    basename = os.path.basename(name)
-                    (root, ext) = os.path.splitext(basename)
-                    photo.set_description(root)
-                    trans = self.dbstate.db.transaction_begin()
-                    self.dbstate.db.add_object(photo, trans)
-                    self.dbstate.db.transaction_commit(trans, 
-                                                       _("Drag Media Object"))
+        if not sel_data:
+            return
+        #modern file managers provide URI_LIST. For Windows split sel_data.data
+        if constfunc.win():
+            files = sel_data.data.split('\n')
+        else:
+            files =  sel_data.get_uris()
+        for file in files:
+            clean_string = Utils.fix_encoding(
+                            file.replace('\0',' ').replace("\r", " ").strip())
+            protocol, site, mfile, j, k, l = urlparse.urlparse(clean_string)
+            if protocol == "file":
+                name = unicode(urllib.url2pathname(
+                                mfile.encode(sys.getfilesystemencoding())))
+                mime = gen.mime.get_type(name)
+                if not gen.mime.is_valid_type(mime):
+                    return
+                photo = gen.lib.MediaObject()
+                photo.set_path(name)
+                photo.set_mime_type(mime)
+                basename = os.path.basename(name)
+                (root, ext) = os.path.splitext(basename)
+                photo.set_description(root)
+                trans = self.dbstate.db.transaction_begin()
+                self.dbstate.db.add_object(photo, trans)
+                self.dbstate.db.transaction_commit(trans, 
+                                                   _("Drag Media Object"))
         widget.emit_stop_by_name('drag_data_received')
                 
     def get_bookmarks(self):
