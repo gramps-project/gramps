@@ -536,16 +536,22 @@ class GuiFamilyOption(gtk.HBox):
         
     def __initialize_family(self):
         """
-        Find a family to initialize the option with. Any family will do, but
-        try to find a family that the user is likely interested in.
+        Find a family to initialize the option with. If there is no  active
+        family, try to find a family that the user is likely interested in.
         """
         family_list = []
         
-        # First try the family of the active person
-        person_handle = self.__uistate.get_active('Person')
-        person = self.__dbstate.db.get_person_from_handle(person_handle)
-        if person:
-            family_list = person.get_family_handle_list()
+        # Use the active family if one is selected
+        family = self.__uistate.get_active('Family')
+        if family:
+            family_list = [family]
+            
+        if not family_list:
+            # Next try the family of the active person
+            person_handle = self.__uistate.get_active('Person')
+            person = self.__dbstate.db.get_person_from_handle(person_handle)
+            if person:
+                family_list = person.get_family_handle_list()
             
         if not family_list:
             # Next try the family of the default person in the database.
@@ -558,6 +564,8 @@ class GuiFamilyOption(gtk.HBox):
             for family in self.__db.iter_family_handles():
                 self.__update_family(family)
                 break
+        else:
+            self.__update_family(family_list[0])
 
     def __get_family_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
