@@ -1605,7 +1605,7 @@ class CheckIntegrity(object):
                               "   %(media)d media objects\n"
                               "   %(place)d place objects\n"
                               "   %(repo)d repository objects\n"
-                              "   %(note)d note objects\n" )) % {
+                              "   %(note)d note objects\n" ) % {
                                  'empty_obj' : empty_objs, 
                                  'person' : len(self.empty_objects['persons']),
                                  'family' : len(self.empty_objects['families']),
@@ -1614,7 +1614,7 @@ class CheckIntegrity(object):
                                  'media' : len(self.empty_objects['media']),
                                  'place' : len(self.empty_objects['places']),
                                  'repo' : len(self.empty_objects['repos']),
-                                 'note' : len(self.empty_objects['notes']) }
+                                 'note' : len(self.empty_objects['notes']) } )
 
         return errors
 
