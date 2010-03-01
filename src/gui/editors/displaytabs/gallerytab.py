@@ -368,7 +368,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                       DdTargets.MEDIAOBJ.target()]
 
         self.iconlist.enable_model_drag_dest(dnd_types,
-                                         gtk.gdk.ACTION_COPY)
+                                    gtk.gdk.ACTION_MOVE|gtk.gdk.ACTION_COPY)
         self.iconlist.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
                                   [self._DND_TYPE.target()],
                                   gtk.gdk.ACTION_COPY)
