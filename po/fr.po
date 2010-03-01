@@ -19761,7 +19761,7 @@ msgstr "L'image utilisée pour contacter l'auteur"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5702
 msgid "HTML user header"
-msgstr "En-tête HTML personnalisé"
+msgstr "En-tête HTML"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5703
 msgid "A note to be used as the page header"
@@ -19769,7 +19769,7 @@ msgstr "La note utilisée pour l'en-tête de la page"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5706
 msgid "HTML user footer"
-msgstr "Pied de page HTML personnalisé"
+msgstr "Pied de page HTML"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5707
 msgid "A note to be used as the page footer"
@@ -19876,7 +19876,7 @@ msgstr "La note utilisée pour la page"
 #: ../src/plugins/webreport/NarrativeWeb.py:5783
 #: ../src/plugins/webreport/NarrativeWeb.py:5792
 msgid "Download Filename"
-msgstr "Nom du fichier à télécharger"
+msgstr "Nom du fichier"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5785
@@ -19888,7 +19888,7 @@ msgstr "Fichier prévu pour être téléchargé"
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
 msgid "Description for download"
-msgstr "Description du téléchargement"
+msgstr "Description"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
@@ -19909,7 +19909,7 @@ msgstr "Arbre de la famille Bernard"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
 msgid "Download Copyright License"
-msgstr "Licence pour le téléchargement"
+msgstr "Licence"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5804
