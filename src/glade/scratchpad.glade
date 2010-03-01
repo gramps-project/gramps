@@ -8,10 +8,10 @@
     <property name="default_width">500</property>
     <property name="default_height">300</property>
     <property name="type_hint">dialog</property>
-    <signal name="delete_event" handler="on_scratch_pad_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow86">
             <property name="visible">True</property>
@@ -58,7 +58,6 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_clear_all_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
