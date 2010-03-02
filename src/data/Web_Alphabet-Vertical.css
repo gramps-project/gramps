@@ -45,7 +45,7 @@ see <http://www.gnu.org/licenses/>.
 body {
     color: #000;
     background-color: #FFF;
-    padding: 60px 0px 0px 124px;
+    padding: 60px 0px 0px 128px;
 }
 
 /* Navigation
@@ -54,8 +54,8 @@ div#navigation {
     position: fixed;
     top: 66px;
     left: 0px;
-    width: 124px;
-    height: 400px;
+    width: 128px;
+    height: 495px;
     overflow-x: auto;
     border-width: 2px 4px 2px 4px;
     border-style: solid;
@@ -83,11 +83,11 @@ div#navigation ul li a {
     padding: 10px 0px 6px 10px;
 }
 div#navigation ul li a:hover {
-    background-color: #C1B398;
+
 }
 div#navigation ul li.CurrentSection a {
     color: #FFF;
-    background-color: #000;
+    background-color: #00029D;
 }
 div#navigation ul li.CurrentSection a:hover {
     border: solid 2px #000;
@@ -107,25 +107,28 @@ div#alphabet ul {
     height: 24px;
     margin:0;
     padding: 0px 0px 0px 9px;
-    border-bottom: solid 2px #5D835F;
+    border-bottom: solid 2px #000;
 }
 div#alphabet ul li {
-    float:left;
+    float: left;
+}
+div#alphabet ul li:first-child {
+    margin-left: 10px;
 }
 div#alphabet ul li:after {
     content: "| ";
 }
 div#alphabet ul li a {
     display: block;
-    padding: 5px 16px 14px 1px;
-    float:left;
+    padding: 4px 8px 8px 8px;
+    float: left;
     font: .8em bold italic small-caps verdana, serif;
     color: #000;
     text-decoration:none;
     margin:0;
 }
 div#alphabet ul li a:hover {
-    background-color: #C1B398;
+
 }
 
 /* SubNavigation
