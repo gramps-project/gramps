@@ -6,13 +6,13 @@
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
-# Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009.
+# Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 16:40+0100\n"
-"PO-Revision-Date: 2009-10-28 20:24+0100\n"
+"PO-Revision-Date: 2010-03-02 22:30+0100\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -1565,6 +1565,8 @@ msgid ""
 "Warning: spelling checker language limited to locale '%s'; install pyenchant/"
 "python-enchant for better options."
 msgstr ""
+"Advarsel: stavekontroll er begrenset til '%s'; installer pyenchant/python-"
+"enchant for flere muligheter."
 
 #. FIXME: this does not work anymore since 10/2008!!!
 #. if pyenchant is installed we can avoid it, otherwise
@@ -1575,6 +1577,8 @@ msgid ""
 "Warning: spelling checker disabled; install pyenchant/python-enchant to "
 "enable."
 msgstr ""
+"Advarsel: stavekontroll er deaktivert; installer pyenchant/python-enchant "
+"for å aktivere igjen."
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
 #: ../src/gui/viewmanager.py:449
@@ -1779,11 +1783,11 @@ msgstr "%(father)s og %(mother)s"
 
 #: ../src/Utils.py:470
 msgid "death-related evidence"
-msgstr ""
+msgstr "dødsrelatert bevis"
 
 #: ../src/Utils.py:487
 msgid "birth-related evidence"
-msgstr ""
+msgstr "fødselsrelatert bevis"
 
 #: ../src/Utils.py:492 ../src/plugins/import/ImportCsv.py:263
 msgid "death date"
@@ -1803,11 +1807,11 @@ msgstr "Søskens dødsdato"
 
 #: ../src/Utils.py:552
 msgid "sibling birth-related date"
-msgstr ""
+msgstr "søskens fødselsrelaterte dato"
 
 #: ../src/Utils.py:563
 msgid "sibling death-related date"
-msgstr ""
+msgstr "søskens dødsrelaterte dato"
 
 #: ../src/Utils.py:576 ../src/Utils.py:581
 msgid "a spouse, "
@@ -1827,11 +1831,11 @@ msgstr "etterkommers dødsdato"
 
 #: ../src/Utils.py:645
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "etterkommers fødselsrelaterte dato"
 
 #: ../src/Utils.py:653
 msgid "descendent death-related date"
-msgstr ""
+msgstr "etterkommers dødsrelaterte dato"
 
 #: ../src/Utils.py:666
 #, python-format
@@ -1848,11 +1852,11 @@ msgstr "anes dødsdato"
 
 #: ../src/Utils.py:708 ../src/Utils.py:754
 msgid "ancestor birth-related date"
-msgstr ""
+msgstr "anes fødselsrelaterte dato"
 
 #: ../src/Utils.py:716 ../src/Utils.py:762
 msgid "ancestor death-related date"
-msgstr ""
+msgstr "anes dødsrelaterte dato"
 
 #. no evidence, must consider alive
 #: ../src/Utils.py:816
@@ -1934,7 +1938,7 @@ msgstr "INITIALER"
 #: ../src/Utils.py:1210 ../src/Utils.py:1226
 #, python-format
 msgid "%s, ..."
-msgstr ""
+msgstr "%s, ..."
 
 #: ../src/UndoHistory.py:63 ../src/gui/grampsgui.py:156
 msgid "Undo History"
@@ -1982,12 +1986,12 @@ msgstr ""
 #: ../src/cli/arghandler.py:140
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "Feil: Fila %s som skal importeres finnes ikke."
 
 #: ../src/cli/arghandler.py:158
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr ""
+msgstr "Feil: Ukjent filtype: \"%(format)s\" for importert fil %(filename)s"
 
 #: ../src/cli/arghandler.py:174
 #, python-format
@@ -1996,6 +2000,9 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
+"ADVARSEL: Fil for lagring filles allerede!\n"
+"ADVARSEL: Den vil bli overskrevet:\n"
+"   %(name)s"
 
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
@@ -2013,7 +2020,7 @@ msgstr "Vil overskrive den eksisterende fila: %s"
 #: ../src/cli/arghandler.py:201
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "FEIL: Ukjent format for eksportfil %s"
 
 #: ../src/cli/arghandler.py:389
 msgid "Database is locked, cannot open it!"
@@ -2062,6 +2069,8 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
+"Feil ved innlesing av argumenter: %s \n"
+"Skriv gramps --help for en oversikt over kommandoer, eller les manualsidene."
 
 #: ../src/cli/argparser.py:226
 #, python-format
@@ -2069,6 +2078,8 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode,supply at least one input file to process."
 msgstr ""
+"Feil ved innlesing av argumenter: %s \n"
+"For å bruke kommandomodus må du angi minst en fil som skal leses inn."
 
 #. -------------------------------------------------------------------------
 #.
@@ -2109,12 +2120,12 @@ msgstr "Låst av %s"
 #: ../src/cli/grampscli.py:76
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "ADVARSEL: %s"
 
 #: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:207
 #, python-format
 msgid "ERROR: %s"
-msgstr ""
+msgstr "FEIL: %s"
 
 #: ../src/cli/grampscli.py:139 ../src/gui/dbloader.py:277
 msgid "Read only database"
@@ -2158,7 +2169,7 @@ msgstr "  Detaljer: %s"
 #: ../src/cli/grampscli.py:305
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr ""
+msgstr "Det ble oppdaget en feil ved innlesing av argumentene: %s"
 
 #: ../src/gen/db/base.py:1437
 msgid "Add child to family"
@@ -3100,11 +3111,11 @@ msgstr "Eksporter"
 
 #: ../src/gen/plug/_pluginreg.py:79
 msgid "Doc creator"
-msgstr ""
+msgstr "Doc creator"
 
 #: ../src/gen/plug/_pluginreg.py:80
 msgid "Plugin lib"
-msgstr ""
+msgstr "Programtilleggbibliotek"
 
 #: ../src/gen/plug/_pluginreg.py:81
 msgid "Map service"
@@ -3157,7 +3168,7 @@ msgstr "Lukk fila først"
 
 #: ../src/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
-msgstr ""
+msgstr "Ingen filnavn angitt"
 
 #: ../src/gen/plug/docbackend/docbackend.py:152
 #, python-format
@@ -3198,11 +3209,11 @@ msgstr "Privat"
 #: ../src/gui/columnorder.py:86
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr ""
+msgstr "Trevisning: første kolonne \"%s\" kan ikke endres"
 
 #: ../src/gui/columnorder.py:92
 msgid "Drag and drop the columns to change the order"
-msgstr ""
+msgstr "Dra og slipp kolonnen for å endre rekkefølgen"
 
 #: ../src/gui/columnorder.py:120 ../src/gui/configure.py:872
 msgid "Display"
@@ -4356,7 +4367,7 @@ msgstr "Lenke"
 
 #: ../src/gui/grampsgui.py:169
 msgid "Danger: This is unstable code!"
-msgstr ""
+msgstr "Fare: Dette er ustabil kode!"
 
 #: ../src/gui/grampsgui.py:170
 msgid ""
@@ -4553,7 +4564,7 @@ msgstr "_Bokmerker"
 
 #: ../src/gui/viewmanager.py:497
 msgid "_Configure View..."
-msgstr ""
+msgstr "_Konfigurere visning..."
 
 #: ../src/gui/viewmanager.py:498
 msgid "Configure the active view"
@@ -6498,14 +6509,12 @@ msgid "Height if not maximized"
 msgstr ""
 
 #: ../src/gui/widgets/grampletpane.py:1358
-#, fuzzy
 msgid "Detached width"
-msgstr "Rektangelbredde:"
+msgstr "Bredde, frikoblet"
 
 #: ../src/gui/widgets/grampletpane.py:1365
-#, fuzzy
 msgid "Detached height"
-msgstr "Rektangelhøyde:"
+msgstr "Høyde, frikoblet"
 
 #: ../src/gui/widgets/labels.py:109
 msgid ""
@@ -8429,9 +8438,10 @@ msgid ""
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column ,and double-click the row to view or edit."
 msgstr ""
-"Skriv inn en gyldig dato (f.eks. YYYY-MM-DD) i tekstboksen under og klikk Kjør. Dette "
-"vil beregne alder på alle personer i Slektstreet ditt ved den angitte datoen. Du kan da "
-"sortere på alder og dobbeltklikke på en rad for å se eller redigere."
+"Skriv inn en gyldig dato (f.eks. YYYY-MM-DD) i tekstboksen under og klikk "
+"Kjør. Dette vil beregne alder på alle personer i Slektstreet ditt ved den "
+"angitte datoen. Du kan da sortere på alder og dobbeltklikke på en rad for å "
+"se eller redigere."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
 msgid "Run"
@@ -9073,7 +9083,6 @@ msgid "Enter your TODO list here."
 msgstr "Legg inn data i din TODO-liste her."
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:35
-#, fuzzy
 msgid ""
 "Welcome to Gramps!\n"
 "\n"
@@ -9105,13 +9114,13 @@ msgid ""
 msgstr ""
 "Velkommen til Gramps!\n"
 "\n"
-"Gramps er en programpakke for slektsforskning. Selv om den likner på andre "
+"Gramps er en programpakke for slektsforskning. Selv om den ligner på andre "
 "slektsforskerprogram tilbyr Gramps noen unike og kraftige muligheter.\n"
 "\n"
-"Gramps er et åpent kildekodeprogram, noe som betyr at du står fritt til å "
-"kopiere og distribuere det til hvem som helst. Det utvikles og vedlikeholdes "
-"av et verdensomspennende nettverk av frivillige som har som felles mål å "
-"gjøre Gramps til et kraftig, men samtidig enkelt å bruke.\n"
+"Gramps er et program med åpen kildekode, noe som betyr at du står fritt til "
+"å kopiere og distribuere det til hvem som helst. Det utvikles og "
+"vedlikeholdes av et verdensomspennende nettverk av frivillige som har som "
+"felles mål å gjøre Gramps til et kraftig, men samtidig enkelt å bruke.\n"
 "\n"
 "Komme igang\n"
 "\n"
@@ -9121,13 +9130,13 @@ msgstr ""
 "vennligst les Brukerveiledningen eller on-line-manualen på http://gramps-"
 "project.org.\n"
 "\n"
-"Du leser nå fra \"Gramplets\"-siden hvor du kan legge til dine egne "
-"gramplets.\n"
+"Du leser nå fra \"Smågramps\"-siden hvor du kan legge til dine egne "
+"smågramps.\n"
 "\n"
 "Du kan høyreklikke på bakgrunnen på denne siden for å legge til nye "
-"gramplets og endre antall kolonner. Du kan også dra knappen Egenskaper for å "
-"flytte grampleten på denne siden, og frakoble den til å flyte over Gramps. "
-"Hvis du lukker Gramps mens en gramplet er frakoblet vil den åpnes som "
+"smågramps og endre antall kolonner. Du kan også dra knappen Egenskaper for å "
+"flytte smågrampsen på denne siden, og frakoble den til å flyte over Gramps. "
+"Hvis du lukker Gramps mens en smågramps er frakoblet vil den åpnes som "
 "frakoblet neste gang du starter Gramps."
 
 #: ../src/plugins/gramplet/WhatsNext.py:93
@@ -9925,8 +9934,8 @@ msgid ""
 "Your family tree groups name %(key)s together with %(present)s, did not "
 "change this grouping to %(value)s"
 msgstr ""
-"Ditt familietre grupperer navn %(key)s sammen med %(present)s, endret ikke denne "
-"grupperingen til %(value)s"
+"Ditt familietre grupperer navn %(key)s sammen med %(present)s, endret ikke "
+"denne grupperingen til %(value)s"
 
 #: ../src/plugins/import/ImportGrdb.py:2842
 msgid "Import database"
@@ -10224,8 +10233,8 @@ msgid ""
 "Your family tree groups name %(key)s together with %(parent)s, did not "
 "change this grouping to %(value)s"
 msgstr ""
-"Ditt familietre grupperer navn %(key)s sammen med %(parent)s, endret ikke denne "
-"grupperingen til %(value)s"
+"Ditt familietre grupperer navn %(key)s sammen med %(parent)s, endret ikke "
+"denne grupperingen til %(value)s"
 
 #: ../src/plugins/import/ImportXml.py:1917
 #, python-format
@@ -10239,9 +10248,9 @@ msgid ""
 "while you are running an older version %(older)s. The file will not be "
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
-".gramps-fila du importerer ble laget med Gramps versjon %(newer)s, men du kjører en "
-"eldre versjon %(older)s. Filen vil ikke bli importert. Vennligst oppgrader til "
-"siste versjon av Gramps og prøv på nytt."
+".gramps-fila du importerer ble laget med Gramps versjon %(newer)s, men du "
+"kjører en eldre versjon %(older)s. Filen vil ikke bli importert. Vennligst "
+"oppgrader til siste versjon av Gramps og prøv på nytt."
 
 #: ../src/plugins/import/ImportXml.py:2494
 #, python-format
@@ -16702,7 +16711,8 @@ msgstr "Fjern datoestimater"
 msgid ""
 "Selecting... \n"
 "\n"
-msgstr "Velger... \n"
+msgstr ""
+"Velger... \n"
 "\n"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:308
@@ -17293,13 +17303,12 @@ msgid "No place information could be extracted."
 msgstr "Ingen stedsinformasjon kunne hentes ut."
 
 #: ../src/plugins/tool/ExtractCity.py:527
-#, fuzzy
 msgid ""
 "Below is a list of Places with the possible data that can be extracted from "
 "the place title. Select the places you wish Gramps to convert."
 msgstr ""
-"Under er en liste over Steder med de data som kan hentes ut fra tittelen. "
-"Velg det stedet du ønsker at Gramps skal konvertere."
+"Under er en liste over steder med de data som kan hentes ut fra "
+"stedstittelen. Velg det stedet du ønsker at Gramps skal konvertere."
 
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Medium"
@@ -17396,16 +17405,14 @@ msgid "Media Manager"
 msgstr "Mediabehandler"
 
 #: ../src/plugins/tool/MediaManager.py:91
-#, fuzzy
 msgid "Gramps Media Manager"
-msgstr "Mediabehandler"
+msgstr "Gramps Mediabehandler"
 
 #: ../src/plugins/tool/MediaManager.py:93
 msgid "Selecting operation"
 msgstr "Velger operasjon"
 
 #: ../src/plugins/tool/MediaManager.py:115
-#, fuzzy
 msgid ""
 "This tool allows batch operations on media objects stored in Gramps. An "
 "important distinction must be made between a Gramps media object and its "
@@ -17424,14 +17431,14 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Dette verktøyet tillater batchoperasjoner på medieobjekter som er lagret i "
+"Dette verktøyet tillater masseoperasjoner på medieobjekter som er lagret i "
 "Gramps.  En viktig forskjell må synliggjøres mellom et Gramps-medieobjekt og "
 "filen det kommer fra.\n"
 "\n"
 "Gramps-medieobjektet er en samling data om medieobjektets fil: filnavnet og/"
 "eller stien, beskrivelsen, IDen, notater, kildereferanser osv.  Disse data "
-"<b>inkluderer ikke selve filen</b>\n"
-". \n"
+"<b>inkluderer ikke selve filen</b>.\n"
+"\n"
 "Filene som inneholder bilde, lyd, video osv, finnes som separate filer på "
 "din harddisk.  Disse filene håndteres ikke av Gramps selv, og blir ikke "
 "importert i Gramps-databasen.  Gramps-databasen lagrer bare filnavnet og "
@@ -18751,7 +18758,6 @@ msgid "Ancestry"
 msgstr ""
 
 #: ../src/plugins/view/persontreeview.py:59
-#, fuzzy
 msgid "People Tree View"
 msgstr "Stamtavlevisning"
 
@@ -18767,7 +18773,6 @@ msgstr "Slå sammen alle knutepunkt"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
-#, fuzzy
 msgid "Place Tree View"
 msgstr "Stedsnavnvisning"
 
@@ -18940,23 +18945,20 @@ msgid "Add Child to Family"
 msgstr "Legg til et barn til familien"
 
 #: ../src/plugins/view/relview.py:1617
-#, fuzzy
 msgid "Use shading"
-msgstr "Avstand mellom knutepunkt"
+msgstr "Bruk skyggelegging"
 
 #: ../src/plugins/view/relview.py:1620
-#, fuzzy
 msgid "Display edit buttons"
-msgstr "Vis Navnebehandler"
+msgstr "Vis redigeringsknapper"
 
 #: ../src/plugins/view/relview.py:1622
 msgid "View links as website links"
 msgstr ""
 
 #: ../src/plugins/view/relview.py:1628
-#, fuzzy
 msgid "Layout"
-msgstr "omkring"
+msgstr "Utseende"
 
 #: ../src/plugins/view/relview.py:1639
 msgid "Show Details"
@@ -19064,7 +19066,6 @@ msgid "The view showing all relationships of the selected person"
 msgstr "Visningen som viser alle slektsforholdene til den valgte personen"
 
 #: ../src/plugins/view/view.gpr.py:137
-#, fuzzy
 msgid "Person Tree View"
 msgstr "Personvisning"
 
@@ -19077,9 +19078,8 @@ msgid "Person View"
 msgstr "Personvisning"
 
 #: ../src/plugins/view/view.gpr.py:153
-#, fuzzy
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Visningen viser alle personer i slektstreet"
+msgstr "Visningen viser alle personer i slektstreet som en flat liste"
 
 #: ../src/plugins/view/view.gpr.py:167
 msgid "Place View"
@@ -19122,7 +19122,7 @@ msgid "Sealed to "
 msgstr "Bundet til "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:865
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> on %(date)s"
 msgstr "Generert av <a href=\"%(homepage)s\">Gramps</a> %(date)s"
 
@@ -19236,15 +19236,15 @@ msgid "Place name | Name"
 msgstr "Stedsnavn"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2278
-#, fuzzy
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type, date (if one is present), and gramps id, Clicking on an "
 "event&#8217;s Gramps ID will load a page for that event."
 msgstr ""
-" Denne siden inneholder en oversikt over alle stedene i databasen, sortert "
-"etter stedsnavn. Ved å klikke på stedsnavnet, vil du komme til en egen side "
-"for dette stedet."
+" Denne siden inneholder en oversikt over alle hendelsene i databasen, "
+"sortert etter type, dato (hvis det er angitt) og gramps id. Ved å klikke på "
+"en hendelse&#8217;s Gramps ID vil du komme til en egen side for denne "
+"hendelsen."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2327
 #, python-format
@@ -19334,9 +19334,8 @@ msgid "Media | Name"
 msgstr "Media"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3218
-#, fuzzy
 msgid "Mime Type"
-msgstr "Velg type"
+msgstr "Filtype"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3332
 msgid "File Name"
@@ -19434,7 +19433,6 @@ msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5086
-#, fuzzy
 msgid "Missing media objects:"
 msgstr "Manglende mediaobjekter:"
 
@@ -19463,9 +19461,9 @@ msgid "Creating event pages"
 msgstr "Lager side over hendelser"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5280
-#, fuzzy, python-format
+#, python-format
 msgid "Creating event page %02d of %02d"
-msgstr "Lager side over hendelser"
+msgstr "Lager hendelsesside %02d av %02d"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5290
 msgid "Creating media pages"
@@ -19657,9 +19655,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5729
-#, fuzzy
 msgid "Suppress Gramps ID"
-msgstr "Ikke ta med Gramps-id-ene"
+msgstr "Ikke ta med Gramps IDene"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5730
 msgid "Whether to include the Gramps ID of objects"
@@ -19934,7 +19931,7 @@ msgstr "%(spouse)s og %(person)s"
 
 #. Display date as user set in preferences
 #: ../src/plugins/webreport/WebCal.py:1209
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
 msgstr "Generert av <a href=\"http://gramps-project.org\">Gramps</a> %(date)s"
@@ -20296,14 +20293,12 @@ msgid "Load"
 msgstr "Last"
 
 #: ../src/PluginUtils/_PluginWindows.py:254
-#, fuzzy
 msgid "Registered Plugins"
 msgstr "Registrerte programtillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:267
-#, fuzzy
 msgid "Loaded"
-msgstr "Last"
+msgstr "Lastet"
 
 #: ../src/PluginUtils/_PluginWindows.py:271
 msgid "File"
@@ -20314,35 +20309,33 @@ msgid "Message"
 msgstr "Beskjed"
 
 #: ../src/PluginUtils/_PluginWindows.py:305
-#, fuzzy
 msgid "Loaded Plugins"
 msgstr "Lastede programtillegg"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../src/PluginUtils/_PluginWindows.py:325
-#, fuzzy
 msgid "Addon Name"
-msgstr "Kolonnenavn"
+msgstr "Navn på tillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:340
 msgid "Path to Addon:"
-msgstr ""
+msgstr "Sti til tillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:357
 msgid "Install Addon"
-msgstr ""
+msgstr "Installere tillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:360
 msgid "Install All Addons"
-msgstr ""
+msgstr "Installere alle tillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:363
 msgid "Refresh Addon List"
-msgstr ""
+msgstr "Gjenoppbygg tilleggsliste"
 
 #: ../src/PluginUtils/_PluginWindows.py:368
 msgid "Install Addons"
-msgstr ""
+msgstr "Installere tillegg"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
@@ -20352,67 +20345,63 @@ msgstr "Last på nytt"
 
 #: ../src/PluginUtils/_PluginWindows.py:398
 msgid "Refreshing Addon List"
-msgstr ""
+msgstr "Gjenoppbygger tilleggsliste"
 
 #: ../src/PluginUtils/_PluginWindows.py:399
 #: ../src/PluginUtils/_PluginWindows.py:404
 #: ../src/PluginUtils/_PluginWindows.py:494
 msgid "Reading gramps-project.org..."
-msgstr ""
+msgstr "Leser gramps-project.org..."
 
 #: ../src/PluginUtils/_PluginWindows.py:422
-#, fuzzy
 msgid "Checking addon..."
-msgstr "Samler data..."
+msgstr "Sjekker tillegg..."
 
 #: ../src/PluginUtils/_PluginWindows.py:430
-#, fuzzy
 msgid "Unknown Help URL"
-msgstr "Ukjent"
+msgstr "Ukjent URL for Hjelp"
 
 #: ../src/PluginUtils/_PluginWindows.py:441
-#, fuzzy
 msgid "Unknown URL"
-msgstr "Ukjent"
+msgstr "Ukjent URL"
 
 #: ../src/PluginUtils/_PluginWindows.py:477
 msgid "Install all Addons"
-msgstr ""
+msgstr "Installere alle tillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:477
-#, fuzzy
 msgid "Installing..."
-msgstr "Beregner...\n"
+msgstr "Installerer..."
 
 #: ../src/PluginUtils/_PluginWindows.py:493
 msgid "Installing Addon"
-msgstr ""
+msgstr "Installerer tillegg"
 
 #: ../src/PluginUtils/_PluginWindows.py:522
 #: ../src/PluginUtils/_PluginWindows.py:528
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to open '%s'"
-msgstr "Kunne ikke åpne %s"
+msgstr "Kan ikke åpne '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:539
-#, fuzzy, python-format
+#, python-format
 msgid "Error: cannot open '%s'"
-msgstr "Kunne ikke åpne %s"
+msgstr "Feil: kan ikke åpne '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:542
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr ""
+msgstr "Feil: ukjent filtype: '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:547
-#, fuzzy, python-format
+#, python-format
 msgid "Examining '%s'..."
-msgstr "Fjerner '%s'..."
+msgstr "Undersøker '%s'..."
 
 #: ../src/PluginUtils/_PluginWindows.py:559
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr ""
+msgstr "Feil i fila '%s': kan ikke laste."
 
 #: ../src/PluginUtils/_PluginWindows.py:571
 #, python-format
@@ -20422,7 +20411,7 @@ msgstr "'%s' er for denne versjonen av Gramps."
 #: ../src/PluginUtils/_PluginWindows.py:576
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
-msgstr ""
+msgstr "Feil: mangler gramps_target_version = '3.2' i '%s'..."
 
 #: ../src/PluginUtils/_PluginWindows.py:580
 #, python-format
@@ -21040,13 +21029,12 @@ msgid "Objects changed after <date time>"
 msgstr "Objekter endret etter <dato tid>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
-#, fuzzy
 msgid ""
 "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in range, if a second date/time is given."
 msgstr ""
 "Samsvarer med poster som er endret etter et angitt tidspunkt/dato (yyyy-mm-"
-"dd hh:mm:ss) eller iløpet av et tidsrom om to tidspunkt/datoer er angitt"
+"dd hh:mm:ss) eller iløpet av et tidsrom om to tidspunkt/datoer er angitt."
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
@@ -21134,9 +21122,8 @@ msgid "Object with <Id>"
 msgstr "Objekter med <Id>"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:47
-#, fuzzy
 msgid "Matches objects with a specified Gramps ID"
-msgstr "Samsvarer med objekter med en spesifikk Gramps ID"
+msgstr "Samsvarer med objekter med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:48
@@ -21203,7 +21190,6 @@ msgid "Objects with <Id>"
 msgstr "Objekter med <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
-#, fuzzy
 msgid "Matches objects whose Gramps ID matches the regular expression"
 msgstr ""
 "Samsvarer med objekter hvor Gramps ID samsvarer med det regulære uttrykket"
@@ -21229,18 +21215,16 @@ msgid "Persons changed after <date time>"
 msgstr "Personer som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Samsvarer med personer som er endret etter en angitt dato (yyyy-mm-dd hh:mm:"
-"ss) eller innenfor et tidsrom om to datoer er angitt"
+"ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
-#, fuzzy
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Relasjonslinje mellom <persons>"
+msgstr "Relasjonslinje mellom <person> og personer som samsvarer med <filter>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -21412,9 +21396,8 @@ msgstr "Person med <Id>"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
-#, fuzzy
 msgid "Matches person with a specified Gramps ID"
-msgstr " Samsvarer med personen med en bestemt Gramps ID"
+msgstr " Samsvarer med personen med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Person/_HasLDS.py:46
 msgid "People with <count> LDS events"
@@ -21426,7 +21409,7 @@ msgstr "Samsvarer med personer med et bestemt antall LDS-hendelser"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
-msgstr "Personer med <marker>"
+msgstr "Personer med <markering>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
 msgid "Matches people with a marker of a particular value"
@@ -21861,9 +21844,8 @@ msgid "People with <Id> matching regular expression"
 msgstr "Personer med <Id> som samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr "Samsvarer med personer  hvor Gramps ID samsvarer med regulært uttrykk"
+msgstr "Samsvarer med personer hvor Gramps ID samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
 msgid "Expression:"
@@ -21879,7 +21861,7 @@ msgstr "Samsvarer med personers navn med et bestemt regulært uttrykk"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
-msgstr "Relasjonslinje mellom <persons>"
+msgstr "Relasjonslinje mellom <personer>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
 msgid ""
@@ -21918,13 +21900,12 @@ msgid "Families changed after <date time>"
 msgstr "Familier som endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Samsvarer med familier som er endret etter en angitt dato (yyyy-mm-dd hh:mm:"
-"ss) eller innenfor et tidsrom om to datoer er angitt"
+"ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -21937,9 +21918,8 @@ msgid "Families with child with the <Id>"
 msgstr "Familier med barn som har <Id>"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
-#, fuzzy
 msgid "Matches families where child has a specified Gramps ID"
-msgstr "Samsvarer med familier hvor barn har en spesifikk Gramps ID"
+msgstr "Samsvarer med familier hvor barn har en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
@@ -21969,9 +21949,8 @@ msgid "Families with father with the <Id>"
 msgstr "Familier med en far som har <Id>"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose father has a specified Gramps ID"
-msgstr "Samsvarer med familier som har en far med en spesifikk Gramps ID"
+msgstr "Samsvarer med familier som har en far med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
@@ -22019,9 +21998,8 @@ msgid "Family with <Id>"
 msgstr "Familie med <Id>"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a family with a specified Gramps ID"
-msgstr "Samsvarer med en familie som har en spesifikk Gramps ID"
+msgstr "Samsvarer med en familie som har en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Family/_HasLDS.py:46
 msgid "Families with <count> LDS events"
@@ -22113,9 +22091,8 @@ msgid "Families with mother with the <Id>"
 msgstr "Familier som har mor med <id>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr "Samsvarer med familier som har en mor med en spesifikk Gramps ID"
+msgstr "Samsvarer med familier som har en mor med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
@@ -22190,9 +22167,9 @@ msgid "Families with <Id> matching regular expression"
 msgstr "Familier med <Id> samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches families whose Gramps ID matches the regular expression"
-msgstr "Samsvarende familer hvor Gramps ID samsvarermed regulært uttrykk"
+msgstr ""
+"Samsvarende familer hvor Gramps ID samsvarer med det regulære uttrykket"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
@@ -22207,13 +22184,12 @@ msgid "Events changed after <date time>"
 msgstr "Hendelser som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
 "Samsvarer med hendelser som er endret etter en angitt dato (yyyy-mm-dd hh:mm:"
-"ss) eller innenfor et tidsrom om to datoer er angitt"
+"ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
@@ -22253,13 +22229,12 @@ msgid "Event with <Id>"
 msgstr "Hendelser med <Id>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Samsvarer med en hendelse med en bestemt Gramps ID"
+msgstr "Samsvarer med en hendelse med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:45
 msgid "Events with <marker>"
-msgstr "Hendelser med <marker>"
+msgstr "Hendelser med <markering>"
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:46
 msgid "Matches Events with a marker of a particular value"
@@ -22349,10 +22324,9 @@ msgid "Events with <Id> matching regular expression"
 msgstr "Hendelser med <Id> som samsvarer med et regulært uttrykk"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
-"Samsvarer med hendelser hvor Gramps ID samsvarer med et regulært uttrykk"
+"Samsvarer med hendelser hvor Gramps ID samsvarer med det regulære uttrykket"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 msgid "Every place"
@@ -22367,13 +22341,12 @@ msgid "Places changed after <date time>"
 msgstr "Steder som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Samsvarer med steder som er endret etter en angitt dato (yyyy-mm-dd hh:mm:"
-"ss) eller innenfor et tidsrom om to datoer er angitt"
+"ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
 msgid "Places with <count> media"
@@ -22388,9 +22361,8 @@ msgid "Place with <Id>"
 msgstr "Sted med <Id>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a place with a specified Gramps ID"
-msgstr "Samsvarer med et sted med en spesifikk Gramps ID"
+msgstr "Samsvarer med et sted med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:46
 msgid "Places with no latitude or longitude given"
@@ -22532,11 +22504,10 @@ msgid "Places with <Id> matching regular expression"
 msgstr "Steder med <Id> samsvarer med et regulært uttrykk"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr ""
-"Samsvarer med steder som har en Gramps ID som samsvarer med et regulært "
-"uttrykk"
+"Samsvarer med steder som har en Gramps ID som samsvarer med det regulære "
+"uttrykket"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -22551,13 +22522,12 @@ msgid "Sources changed after <date time>"
 msgstr "Kilder som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Samsvarer med kilder som er endret etter en angitt dato (yyyy-mm-dd hh:mm:"
-"ss) eller innenfor et tidsrom om to datoer er angitt"
+"ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
 msgid "Sources with <count> media"
@@ -22572,9 +22542,8 @@ msgid "Source with <Id>"
 msgstr "Kilder med <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Samsvarer med en kilde med en spesifikk Gramps ID"
+msgstr "Samsvarer med en kilde med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
 msgid "Sources having <count> notes"
@@ -22613,14 +22582,12 @@ msgid "Matches sources with a certain reference count"
 msgstr "Samsvarer med kilder som er referert til et bestemt antall ganger"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:45
-#, fuzzy
 msgid "Sources with <count> Repository references"
-msgstr "Vise henvisning til oppbevaringssted"
+msgstr "Kilder med <antall> oppbevaringssteder"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-#, fuzzy
 msgid "Matches sources with certain number repository references"
-msgstr "Samsvarer med kilder som er referert til et bestemt antall ganger"
+msgstr "Samsvarer med kilder med et bestemt antall oppbevaringssteder"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -22667,10 +22634,10 @@ msgid "Sources with <Id> matching regular expression"
 msgstr "Kilder med <Id> samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr ""
-"Samsvarer med kilder som har en Gramps ID som samsvarer med regulært uttrykk"
+"Samsvarer med kilder som har en Gramps ID som samsvarer med det regulære "
+"uttrykket"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -22685,13 +22652,12 @@ msgid "Media objects changed after <date time>"
 msgstr "Mediaobjekt som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
 "Samsvarer med mediaobjekter som er endret etter en angitt dato (yyyy-mm-dd "
-"hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt"
+"hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:46
 msgid "Media objects with the attribute <attribute>"
@@ -22706,9 +22672,8 @@ msgid "Media object with <Id>"
 msgstr "Mediaobjekt med <Id>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Samsvarer med et mediaobjekt med en spesifikk Gramps ID"
+msgstr "Samsvarer med et mediaobjekt med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -22778,7 +22743,6 @@ msgid "Media Objects with <Id> matching regular expression"
 msgstr "Mediaobjekter med <id> samsvarer med et regulært uttrykk"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr ""
 "Samsvarende mediaobjekter hvor Gramps ID samsvarer med det regulære uttrykket"
@@ -22796,26 +22760,24 @@ msgid "Repositories changed after <date time>"
 msgstr "Oppbevaringssteder som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
 msgstr ""
 "Samsvarer med oppbevaringssteder som er endret etter en angitt dato (yyyy-mm-"
-"dd hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt"
+"dd hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
 msgstr "Oppbevaringssted med <Id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Samsvarer med oppbevaringsstedet med en spesifikk Gramps ID"
+msgstr "Samsvarer med oppbevaringsstedet med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Oppbevaringssteder med tekstfelt som inneholder <substring>"
+msgstr "Oppbevaringssteder med tekstfelt som inneholder <delstreng>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
@@ -22825,7 +22787,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
-msgstr "Oppbevaringssteder med notat som inneholder <regular expression>"
+msgstr "Oppbevaringssteder med notat som inneholder <regulært uttrykk>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid ""
@@ -22868,10 +22830,9 @@ msgid "Repositories with <Id> matching regular expression"
 msgstr "Oppbevaringssteder med <Id> samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Samsvarer med oppbevaringssted hvor Gramps ID samsvarer med det regulære "
+"Samsvarer med oppbevaringssteder hvor Gramps ID samsvarer med det regulære "
 "uttrykket"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
@@ -22895,26 +22856,24 @@ msgid "Notes changed after <date time>"
 msgstr "Notater som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Samsvarer med notater som er endret etter en angitt dato (yyyy-mm-dd hh:mm:"
-"ss) eller innenfor et tidsrom om to datoer er angitt"
+"ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
 msgstr "Notat med <Id>"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Samsvarer med et notat med en bestemt Gramps-ID"
+msgstr "Samsvarer med et notat med en angitt Gramps ID"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:45
 msgid "Notes with <marker>"
-msgstr "Notater med <marker>"
+msgstr "Notater med <markering>"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:46
 msgid "Matches Notes with a marker of a particular value"
@@ -22972,9 +22931,9 @@ msgid "Notes with <Id> matching regular expression"
 msgstr "Notater med <Id> samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr "Samsvarer med notater hvor Gramps ID samsvarer med et regulært uttrykk"
+msgstr ""
+"Samsvarer med notater hvor Gramps ID samsvarer med det regulære uttrykk"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
 msgid "Notes marked private"
@@ -23033,9 +22992,8 @@ msgid "Church parish"
 msgstr "Kirkesogn"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
-#, fuzzy
 msgid "ZIP/Postal code"
-msgstr "Postnummer:"
+msgstr "Postnummer"
 
 #: ../src/plugins/docgen/gtkprint.glade.h:1
 msgid "Closes print preview window"
@@ -23223,9 +23181,8 @@ msgid "_Display on startup"
 msgstr "_Vis ved oppstart"
 
 #: ../src/glade/displaystate.glade.h:1
-#, fuzzy
 msgid "Gramps"
-msgstr "Grafer"
+msgstr "Gramps"
 
 #: ../src/glade/addmedia.glade.h:1 ../src/glade/editmedia.glade.h:1
 #: ../src/glade/editmediaref.glade.h:3
@@ -23556,7 +23513,6 @@ msgid "<b>Version description</b>"
 msgstr "<b>Versjonsbeskrivelse</b>"
 
 #: ../src/glade/dbman.glade.h:2
-#, fuzzy
 msgid "Family Trees - Gramps"
 msgstr "Slektstrær - Gramps"
 
@@ -23565,7 +23521,6 @@ msgid "Re_pair"
 msgstr "Re_parer"
 
 #: ../src/glade/dbman.glade.h:4
-#, fuzzy
 msgid "Revision comment - Gramps"
 msgstr "Revisjonskommentar - Gramps"
 
@@ -23806,7 +23761,6 @@ msgid "<b>Note</b>"
 msgstr "<b>Notat</b>"
 
 #: ../src/glade/editnote.glade.h:2
-#, fuzzy
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use "
 "this to add formatting layout with spaces, eg a table. \n"
@@ -23817,8 +23771,9 @@ msgstr ""
 "Er dette aktivert vil mellomrom i notatene dine bli bevart i rapportene. "
 "Dette kan brukes til å formattere utseendet med mellomrom f.eks. i "
 "tabeller.\n"
-"Er denne ikke merket vil notater automatisk bli vasket i rapportene, noe som "
-"kan gi et bedre utseende på rapportene."
+"Er denne ikke markert vil notater automatisk bli vasket i rapportene, noe "
+"som kan gi et bedre utseende på rapportene.\n"
+"bruk skrifttyper med fast bredde for å beholde formattering."
 
 #: ../src/glade/editnote.glade.h:7
 msgid "_Preformatted"
@@ -24143,7 +24098,6 @@ msgid "Save current set of configured selections"
 msgstr "Lagre de innstillingene du har gjort"
 
 #: ../src/plugins/tool/changenames.glade.h:1
-#, fuzzy
 msgid ""
 "Below is a list of the family names that \n"
 "Gramps can convert to correct capitalization. \n"
@@ -24252,7 +24206,6 @@ msgid "File:"
 msgstr "Fil:"
 
 #: ../src/plugins/import/importgedcom.glade.h:12
-#, fuzzy
 msgid "Gramps - GEDCOM Encoding"
 msgstr "Gramps - GEDCOM Tegnkoding"
 
@@ -24300,7 +24253,6 @@ msgid "Use soundex codes"
 msgstr "Bruk soundex-koder"
 
 #: ../src/plugins/tool/patchnames.glade.h:1
-#, fuzzy
 msgid ""
 "Below is a list of the nicknames, titles and family name prefixes that "
 "Gramps can extract from the \n"
@@ -24510,7 +24462,6 @@ msgid "_Identify invalid dates"
 msgstr "_Identifisere ugyldige datoer"
 
 #: ../data/gramps.desktop.in.h:1
-#, fuzzy
 msgid "Gramps Genealogy System"
 msgstr "Gramps Slektsforskersystem"
 
@@ -24520,19 +24471,16 @@ msgid ""
 msgstr "Håndtere slektsforskerinformasjon, utføre slektsforskning og analyse"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "Gramps XML database"
 msgstr "Gramps XML-database"
 
 #: ../data/gramps.keys.in.h:4 ../data/gramps.xml.in.h:4
-#, fuzzy
 msgid "Gramps database"
-msgstr "Importer database"
+msgstr "Gramps database"
 
 #: ../data/gramps.keys.in.h:5 ../data/gramps.xml.in.h:5
-#, fuzzy
 msgid "Gramps package"
-msgstr "Gramps-pakke"
+msgstr "Grampspakke"
 
 #: ../data/gramps.xml.in.h:2
 msgid "GeneWeb source file"
@@ -24547,40 +24495,42 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:2
-#, fuzzy
 msgid ""
 "<b>Adding Images</b><br/>An image can be added to any gallery or the Media "
 "View by dragging and dropping it from a file manager or a web browser. "
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"Et bilde kan legges til et vilkålig galleri eller Media visning, ved å dra "
-"og slipp fra en filbehandler eller nettleser."
+"<b>Legge til bilder</b><br/>Et bilde kan legges til et vilkålig galleri "
+"eller Media visning, ved å dra og slippe fra en filbehandler eller "
+"nettleser. Du kan faktisk legge til hvilken som helst type fil på denne "
+"måten. Dette kan være nyttig for skannede dokumenter og andre digitale "
+"kilder."
 
 #: ../src/data/tips.xml.in.h:3
-#, fuzzy
 msgid ""
 "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and setting. "
 "Play with the settings to see the different options."
 msgstr ""
-"Stamtavle visningen viser et tradisjonelt stamtavle diagram. Hold musa over "
-"en person for å se mer informasjon om denne personen, eller høyreklikk på en "
-"person for å få en meny så du rask kan få tilgang til dens ektefelle, "
-"søsken, barn eller foreldre."
+"<b>Stamtavlevisning</b><br/>Stamtavlevisningen viser et tradisjonelt "
+"stamtavlediagram. Hold musa over en person for å se mer informasjon om denne "
+"personen, eller høyreklikk på en person for å få en meny hvor du raskt kan "
+"få tilgang til andre familiemedlemmer og innstillinger. Endre på "
+"innstillingene for å se de ulike mulighetene."
 
 #: ../src/data/tips.xml.in.h:4
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; "
 "Book Report...&quot;, allows you to collect a variety of reports into a "
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"Bokrapporten, <b>Rapporter &gt; Bok &gt; Bokrapport</b>, lar brukere samle "
-"en mengde rapporter i et enkelt dokument. Denne rapporten er enklere å "
-"distribuere enn flere rapporter, spesielt når den er skal skrives ut."
+"<b>Bokrapport</b><br/>Bokrapporten under &quot;Rapporter &gt; Bøker &gt; "
+"Bokrapport...&quot; lar brukere samle en mengde rapporter i ett enkelt "
+"dokument. Denne rapporten er enklere å distribuere enn flere rapporter, "
+"spesielt når den skal skrives ut."
 
 #: ../src/data/tips.xml.in.h:5
 #, fuzzy
@@ -24708,7 +24658,8 @@ msgstr ""
 "av de flere forhåndsvalgte filtrene. For eksempel, alle adobterte personer i "
 "familietreet. På denne måten kan man for eksempel også enkelt finne personer "
 "som mangler fødselsdato. For å få resultatet, trykk på Bruk. Hvis "
-"filtermenyen ikke er synlig, skru de på ved å velg &quot;Vis &gt; Filter&quot;."
+"filtermenyen ikke er synlig, skru de på ved å velg &quot;Vis &gt; "
+"Filter&quot;."
 
 #: ../src/data/tips.xml.in.h:15
 msgid ""
@@ -24719,8 +24670,8 @@ msgid ""
 msgstr ""
 "Filtre lar deg begrense hva som blir vist i Personvisningen. I tillegg til "
 "de mange forhåndsdefinerte filterne, kan man også lage tilpassede filtre som "
-"bare kan begrenses av fantasien.  Tilpassede filtre kan lages fra "
-"&quot;Redigere&gt;Lage personfilter&quot;."
+"bare kan begrenses av fantasien.  Tilpassede filtre kan lages fra &quot;"
+"Redigere&gt;Lage personfilter&quot;."
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -24729,8 +24680,8 @@ msgid ""
 "&quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
 "<b>Gramps annonserer</b><br/>Interessert i å bli informert om når en ny "
-"versjon av Gramps blir lansert? Meld deg på e-postlista for Gramps-annonseringer "
-" fra &quot;Hjelp &gt; Gramps E-postlister&quot;"
+"versjon av Gramps blir lansert? Meld deg på e-postlista for Gramps-"
+"annonseringer  fra &quot;Hjelp &gt; Gramps E-postlister&quot;"
 
 #: ../src/data/tips.xml.in.h:17
 #, fuzzy
@@ -24794,12 +24745,12 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
-"Gramps tilbyr full Unicode-støtte. Særtegn for alle språk skal vises riktig."
+"<b>Hei, привет eler 喂</b><br/>Hva som helst, Gramps tilbyr full Unicode-"
+"støtte. Særtegn for alle språk skal vises riktig."
 
 #: ../src/data/tips.xml.in.h:23
 #, fuzzy
@@ -25270,16 +25221,14 @@ msgstr ""
 "enkeltfil, i stedet for mange html-filer."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
-"Usikker på hva en knapp gjør? Hold musa over knappen, og et verktøytips vil "
-"komme frem."
+"<b>Hva er den til for?</b><br/>Usikker på hva en knapp gjør? Hold musa over "
+"knappen, og et verktøytips vil komme frem."
 
 #: ../src/data/tips.xml.in.h:62
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and "
 "exploration &gt; Compare Individual Events...&quot; you can compare the data "
@@ -25287,10 +25236,11 @@ msgid ""
 "the birth dates of everyone in your database. You can use a custom filter to "
 "narrow the results."
 msgstr ""
-"<b>Hvem ble født når</b>: 'Sammenlign enkelthendelser' verktøyet, lar deg "
-"sammenligne data for alle (eller noen) personer i din database. Dette er "
-"praktisk, hvis du for eksempel ønsker å liste fødselsdatoer for alle i din "
-"database."
+"<b>Hvem ble født når?</b><br/>Under &quot;Verktøy &gt; Analysere og utforske "
+"&gt; Sammenligne enkelthendelser...&quot; kan du sammenligne data for alle "
+"(eller noen) personer i din database. Hvis du vil kan du for eksempel få en "
+"liste over alle fødselsdatoer for alle i din database. Du kan bruke filtrene "
+"for å redusere resultatene."
 
 #: ../src/data/tips.xml.in.h:63
 msgid ""
