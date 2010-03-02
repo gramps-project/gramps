@@ -1025,6 +1025,7 @@ class GeoView(HtmlView):
               <separator/>
               <menuitem action="AddPlaceMenu"/>
               <menuitem action="LinkPlaceMenu"/>
+              <menuitem action="FilterEdit"/>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -1092,9 +1093,8 @@ class GeoView(HtmlView):
         self._add_action('EventMapsMenu', 'geo-show-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
-        self._add_toggle_action('Filter', None, _('_Filter Sidebar'), 
-                                callback=self.filter_toggle_action,
-                                value=config.get('interface.filter'))
+        self._add_toggle_action('FilterEdit', None, _('_Filter Sidebar'), 
+                                callback=self.filter_toggle_action)
         config.connect('interface.filter', self.filter_toggle)
 
     def go_back(self, button): # pylint: disable-msg=W0613
@@ -2252,7 +2252,6 @@ class GeoView(HtmlView):
                 self.filter.hide()
                 active = False
             config.set('interface.filter', active)
-            self.build_tree()
 
     def filter_clicked(self):
         """
