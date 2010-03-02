@@ -1,34 +1,30 @@
 /*
- **************************************************************************************************
-Copyright Holder and License
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright 2008-2010 Rob G. Healey <robhealey1@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
-Style Name: Web_Alphabet-Horizontal.css
-**************************************************************************************************
-This website was created with GRAMPS
-http://www.gramps-project.org
---------------------------------------------------------------------------------------------------
-GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
-and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+Style Name: Web_Alphabet-Horizontal Stylesheet
+***************************************************************************************************
 
-Go to http://gramps-project.org to learn more!
-
---------------------------------------------------------------------------------------------------
-Copyright (C) 2009 Rob G. Healey <robhealey1@gmail.com>
-
-This file is part of the GRAMPS program.
-
-GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General
-Public License as published by the Free Software Foundation, version 2 of the License.
-
-GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with GRAMPS. If not,
-see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
-# $Id: $
+# $Id: Web_Alphabet-Horizontal.css 14559 2010-03-02 01:16:46Z robhealey1 $
 
  Header
 ----------------------------------------------------- */
@@ -41,20 +37,19 @@ div#header  {
     margin: 0;
 }
 
-/*                       NarrativeWeb Navigation
+/* Body Element
 --------------------------------------------------------------------------------------- */
-body#NarrativeWeb div#navigation {
-    position: fixed;
-    left: 0px;
+body {
+    color: #000;
+    background-color: #FFF;
+    padding: 0;
+    margin: 0;
     width: 100%;
 }
 
 /* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphabet {
-    position: fixed;
-    top: 130px;
-    left: 0px;
     width: 100%;
     margin: 0;
 }
@@ -81,4 +76,51 @@ div#alphabet ul li a {
     font:bold 16px/100% sans;
     margin:0;
     text-decoration:none;
+}
+
+/* Navigation
+----------------------------------------------------- */
+div#navigation, div#subnavigation {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: solid 2px #000;
+}
+div#navigation ul, div#subnavigation ul {
+    list-style:none;
+    min-width: 900px;
+    height: 24px;
+    margin:0;
+    padding: 0px 0px 0px 9px;
+    border-bottom: solid 2px #000;
+}
+div#navigation ul li, div#subnavigation ul li {
+    float: left;
+}
+div#navigation ul li:first-child, div#subnavigation ul li:first-child {
+    margin-left: 10px;
+}
+div#navigation ul li:after, div#subnavigation ul li:after {
+    content: "| ";
+}
+div#navigation ul li a, div#subnavigation ul li a {
+    display: block;
+    padding: 4px 8px 4px 8px;
+    float: left;
+    font: .8em bold italic small-caps verdana, serif;
+    color: #000;
+    text-decoration:none;
+    margin:0;
+}
+div#navigation ul li a:hover, div#subnavigation ul li a:hover {
+
+}
+div#navigation ul li.CurrentSection a,
+div#subnavigation ul li.CurrentSection a {
+    background-color: #00029D;
+    color: #FFF;
+}
+div#navigation ul li.CurrentSection a:hover,
+div#subnavigation ul li.CurrentSection a:hover {
+    background-color: #000;
 }

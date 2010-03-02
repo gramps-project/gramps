@@ -5676,8 +5676,8 @@ class NavWebOptions(MenuReportOptions):
         self.__css.connect("value-changed", self.__stylesheet_changed)
 
         _NAVIGATION_OPTS = [
-            ["Horizontal", _("Horizontal -- No Change")],
-            ["Vertical",   _("Vertical")]
+            [_("Horizontal -- No Change"), "Horizontal"],
+            [_("Vertical"),                "Vertical"]
             ]
         self.__navigation = EnumeratedListOption(_("Navigation Layout"), _NAVIGATION_OPTS[0][1])
         for layout in _NAVIGATION_OPTS:
