@@ -52,6 +52,7 @@ LOG = logging.getLogger(".clidbman")
 import gen.db
 from gen.plug import BasePluginManager
 import config
+import constfunc
 
 #-------------------------------------------------------------------------
 #
@@ -367,6 +368,13 @@ def time_val(dirpath):
     meta = os.path.join(dirpath, META_NAME)
     if os.path.isfile(meta):
         tval = os.stat(meta)[9]
+        # This gives creation date in Windows, but correct date in Linux
+        if constfunc.win():
+            # Try to use last modified date instead in Windows
+            # and check that it is later than the creation date.
+            tval_mod = os.stat(meta)[8]
+            if tval_mod > tval:
+                tval = tval_mod
         last = time.strftime('%x %X', time.localtime(tval))
     else:
         tval = 0
