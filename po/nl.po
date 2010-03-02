@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-28 16:40+0100\n"
-"PO-Revision-Date: 2010-03-01 11:22+0100\n"
+"PO-Revision-Date: 2010-03-02 11:29+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -6690,7 +6690,7 @@ msgstr "Er werd méér dan één item geslecteerd om te verwijderen. Telkens vra
 
 #: ../src/gui/views/listview.py:507
 msgid "This item is currently being used. Deleting it will remove it from the database and from all other items that reference it."
-msgstr "Dit item is momenteel in gebruik. Als u dit itim verwijdert zal het uit het gegevensbestand worden verwijderd en uit alle items die ernaar verwijzen."
+msgstr "Dit item is momenteel in gebruik. Als u dit item verwijdert zal het uit het gegevensbestand worden verwijderd en uit alle items die ernaar verwijzen."
 
 #: ../src/gui/views/listview.py:511
 #: ../src/plugins/view/familyview.py:220
@@ -7069,7 +7069,7 @@ msgstr "Echtgenoten kunnen niet samengevoegd worden. Om deze personen toch samen
 #: ../src/Merge/_MergePerson.py:280
 #: ../src/Merge/_MergePerson.py:317
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
-msgstr "Een ouder een een kind kunnen niet samengevoegd worden. Om deze personen toch samen te voegen moet u eerst de relatie tussen hen verbreken."
+msgstr "Een ouder en een kind kunnen niet samengevoegd worden. Om deze personen toch samen te voegen moet u eerst de relatie tussen hen verbreken."
 
 #: ../src/Merge/_MergePerson.py:142
 #: ../src/plugins/textreport/IndivComplete.py:328
@@ -7364,7 +7364,7 @@ msgstr "Gramps-boek"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
-msgstr "Maakt boek aan, met verschillende verslagen."
+msgstr "Maakt een boek aan met verschillende verslagen."
 
 #: ../src/plugins/records.gpr.py:32
 msgid "Records Report"
@@ -7377,7 +7377,7 @@ msgstr "Toont interessante records van personen en families"
 
 #: ../src/plugins/records.gpr.py:48
 msgid "Records Gramplet"
-msgstr "Recordsgramplet"
+msgstr "Records-gramplet"
 
 # rapportages
 #: ../src/plugins/records.gpr.py:59
@@ -8095,7 +8095,7 @@ msgstr "h."
 #: ../src/plugins/drawreport/DescendTree.py:146
 #, python-format
 msgid "Descendant Chart for %s"
-msgstr "Afstammelingsverslag voor %s"
+msgstr "Afstammelingenverslag voor %s"
 
 #: ../src/plugins/drawreport/DescendTree.py:512
 msgid "Show Sp_ouses"
@@ -8609,7 +8609,7 @@ msgstr "vCard"
 
 #: ../src/plugins/export/export.gpr.py:176
 msgid "vCard is used in many addressbook and pim applications."
-msgstr "vCard wordt in veelal adresboek- en pim-toepassingen gebruikt."
+msgstr "vCard wordt in veel agenda- en pim-toepassingen gebruikt."
 
 #: ../src/plugins/export/ExportCsv.py:330
 #: ../src/plugins/import/ImportCsv.py:182
@@ -8932,7 +8932,7 @@ msgstr "Totaal aantal personen"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:30
 msgid "Age on Date Gramplet"
-msgstr "Leeftijd op datum gramplet"
+msgstr "<i>'Leeftijd op datum'</i>-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:37
 #: ../src/plugins/quickview/quickview.gpr.py:31
@@ -8941,7 +8941,7 @@ msgstr "Leeftijd op datum"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:42
 msgid "Age Stats Gramplet"
-msgstr "Leeftijdsstatistiekengramplet"
+msgstr "Leeftijdsstatistieken-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:48
 msgid "Age Stats"
@@ -8949,7 +8949,7 @@ msgstr "Leeftijdsstatistiek"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:57
 msgid "Attributes Gramplet"
-msgstr "Kenmerkengramplet"
+msgstr "Kenmerken-gramplet"
 
 #. ------------------------------------------------------------------------
 #.
@@ -8965,11 +8965,11 @@ msgstr "Kenmerken"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:72
 msgid "Calendar Gramplet"
-msgstr "Kalendergramplet"
+msgstr "Kalender-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:84
 msgid "Descendant Gramplet"
-msgstr "Afstammelingengramplet"
+msgstr "Afstammelingen-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:90
 msgid "Descendants"
@@ -8989,7 +8989,7 @@ msgstr "_FAQ"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:126
 msgid "Given Name Cloud Gramplet"
-msgstr "Voornamenwolkgramplet"
+msgstr "Voornamenwolk-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:132
 msgid "Given Name Cloud"
@@ -8997,11 +8997,11 @@ msgstr "Voornamenwolk"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:139
 msgid "Pedigree Gramplet"
-msgstr "Stamboomgramplet"
+msgstr "Stamboom-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:154
 msgid "Plugin Manager Gramplet"
-msgstr "Plugin-beheerdergramplet"
+msgstr "<i>'Plugin-beheerder'</i>-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:160
 #: ../src/PluginUtils/_PluginWindows.py:193
@@ -9010,11 +9010,11 @@ msgstr "Plugin-beheerder"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:167
 msgid "Quick View Gramplet"
-msgstr "Snelschermgramplet"
+msgstr "Snelscherm-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:182
 msgid "Relatives Gramplet"
-msgstr "Aanverwantengramplet"
+msgstr "Aanverwanten-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:187
 msgid "Relatives"
@@ -9022,7 +9022,7 @@ msgstr "Verwanten"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:196
 msgid "Session Log Gramplet"
-msgstr "Loggramplet"
+msgstr "Log-gramplet"
 
 # Huwelijkszegen?
 #: ../src/plugins/gramplet/gramplet.gpr.py:202
@@ -9031,11 +9031,11 @@ msgstr "Log sessie"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:209
 msgid "Statistics Gramplet"
-msgstr "Statistiekengramplet"
+msgstr "Statistieken-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:222
 msgid "Surname Cloud Gramplet"
-msgstr "Achternamenwolkgramplet"
+msgstr "Achternamenwolk-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:228
 msgid "Surname Cloud"
@@ -9043,7 +9043,7 @@ msgstr "Achternamenwolk"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:235
 msgid "TODO Gramplet"
-msgstr "NOG TE DOEN gramplet"
+msgstr "'NOG TE DOEN'-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:241
 msgid "TODO List"
@@ -9051,7 +9051,7 @@ msgstr "NOG TE DOEN lijst"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:248
 msgid "Top Surnames Gramplet"
-msgstr "Top achternamen gramplet"
+msgstr "'Top achternamen'-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:253
 msgid "Top Surnames"
@@ -9059,7 +9059,7 @@ msgstr "Top achternamen"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:260
 msgid "Welcome Gramplet"
-msgstr "Welkomgramplet"
+msgstr "Welkom-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:266
 msgid "Welcome to Gramps!"
@@ -9067,7 +9067,7 @@ msgstr "Welkom bij Gramps!"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:273
 msgid "What's Next Gramplet"
-msgstr "Volgende stappen-gramplet"
+msgstr "'Volgende stappen'-gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:279
 msgid "What's Next?"
@@ -14928,7 +14928,7 @@ msgstr "Zweedse relatieberekenaar"
 #: ../src/plugins/textreport/AncestorReport.py:178
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel verslag voor %s"
+msgstr "<i>Ahnentafel</i>-verslag voor %s"
 
 #: ../src/plugins/textreport/AncestorReport.py:263
 #: ../src/plugins/textreport/DetAncestralReport.py:667
@@ -14977,7 +14977,7 @@ msgstr "De gebruikte stijl voor de generatiehoofding."
 #: ../src/plugins/textreport/BirthdayReport.py:410
 #: ../src/plugins/textreport/textplugins.gpr.py:53
 msgid "Birthday and Anniversary Report"
-msgstr "Geboortedatum en verjaardagsverslag"
+msgstr "Geboortedatum- en verjaardagsverslag"
 
 #: ../src/plugins/textreport/BirthdayReport.py:162
 #, python-format
@@ -15070,7 +15070,7 @@ msgstr "De gebruikte stijl voor de weergave van echtgenoot niveau %d."
 #: ../src/plugins/textreport/DetAncestralReport.py:162
 #, python-format
 msgid "Ancestral Report for %s"
-msgstr "Voorouder-rapport voor %s"
+msgstr "Vooroudersverslag voor %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:238
 #: ../src/plugins/textreport/DetDescendantReport.py:336
@@ -15386,7 +15386,7 @@ msgstr "De gebruikte stijl voor de algemene detailgegevens."
 #: ../src/plugins/textreport/DetDescendantReport.py:244
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr "Afstammeling-rapport voor %(person_name)s"
+msgstr "Afstammelingenverslag voor %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:742
 msgid "Numbering system"
@@ -15440,7 +15440,7 @@ msgstr "Al of niet het afstammingspad van de startpersoon naar elke afstammeling
 #: ../src/plugins/textreport/EndOfLineReport.py:137
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Eindelijnverslag voor %s"
+msgstr "Eindelijnsverslag voor %s"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:143
 #, python-format
@@ -15487,13 +15487,13 @@ msgstr "%dU"
 #: ../src/plugins/textreport/FamilyGroup.py:531
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Genereert familiegroepsrapport %d"
+msgstr "Genereert familiegroepsverslag %d"
 
 #: ../src/plugins/textreport/FamilyGroup.py:533
 #: ../src/plugins/textreport/FamilyGroup.py:582
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
-msgstr "Familiegroep-rapport"
+msgstr "Familiegroepsverslag"
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:605
@@ -15519,11 +15519,11 @@ msgstr "Generatie nummering (enkel recursief)"
 
 #: ../src/plugins/textreport/FamilyGroup.py:620
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "Al of niet de generatie toevoegen aan ieder verslag (enkel recursief)."
+msgstr "Al of niet de generatie toevoegen aan ieder verslag (enkel bij optie recursief)."
 
 #: ../src/plugins/textreport/FamilyGroup.py:624
 msgid "Parent Events"
-msgstr "Gebeurtenissen Ouders"
+msgstr "Gebeurtenissen ouders"
 
 #: ../src/plugins/textreport/FamilyGroup.py:625
 msgid "Whether to include events for parents."
@@ -15567,7 +15567,7 @@ msgstr "Al of niet de huwelijksinformatie van de ouders toevoegen."
 
 #: ../src/plugins/textreport/FamilyGroup.py:650
 msgid "Dates of Relatives"
-msgstr "Datum van verwanten"
+msgstr "Datums van de verwanten"
 
 #: ../src/plugins/textreport/FamilyGroup.py:651
 msgid "Whether to include dates for relatives (father, mother, spouse)."
@@ -15575,7 +15575,7 @@ msgstr "Al of niet de datums van verwanten [vader, moeder, echtgeno(o)t(e)] toev
 
 #: ../src/plugins/textreport/FamilyGroup.py:655
 msgid "Children Marriages"
-msgstr "Kindhuwelijken"
+msgstr "Huwelijken van de kinderen"
 
 #: ../src/plugins/textreport/FamilyGroup.py:656
 msgid "Whether to include marriage information for children."
@@ -15740,7 +15740,7 @@ msgstr "De gebruikte basisstijl voor de ondertitels."
 #: ../src/plugins/textreport/MarkerReport.py:82
 #, python-format
 msgid "Marker Report for %s Items"
-msgstr "Aanduisingsverslag voor %s elementen"
+msgstr "Aanduidingsverslag voor %s elementen"
 
 # Mensen
 #: ../src/plugins/textreport/MarkerReport.py:103
@@ -15946,7 +15946,7 @@ msgstr "De gebruikte stijl voor de voetnoot."
 #: ../src/plugins/textreport/Summary.py:76
 #: ../src/plugins/textreport/textplugins.gpr.py:342
 msgid "Database Summary Report"
-msgstr "Overzicht gegevensbestand verslag"
+msgstr "<i>Overzicht gegevensbestand</i>-verslag"
 
 #: ../src/plugins/textreport/Summary.py:143
 #, python-format
@@ -16010,11 +16010,11 @@ msgstr "Totale grootte van media-objecten: %d bytes"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:31
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel verslag"
+msgstr "<i>Ahnentafel</i>-verslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:32
 msgid "Produces a textual ancestral report"
-msgstr "Levert een tekstueel voorouder-rapport"
+msgstr "Levert een tekstueel vooroudersverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:54
 msgid "Produces a report of birthdays and anniversaries"
@@ -16038,11 +16038,11 @@ msgstr "Genereert een lijst met afstammelingen van de actieve persoon"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:119
 msgid "Detailed Ancestral Report"
-msgstr "Gedetailleerd voorouderverslag"
+msgstr "Gedetailleerd vooroudersverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:120
 msgid "Produces a detailed ancestral report"
-msgstr "Levert een gedetailleerd voorouder-rapport"
+msgstr "Levert een gedetailleerd vooroudersverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:141
 msgid "Detailed Descendant Report"
@@ -16050,15 +16050,15 @@ msgstr "Gedetailleerd afstammelingenverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:142
 msgid "Produces a detailed descendant report"
-msgstr "Levert een gedetailleerd afstammeling-rapport"
+msgstr "Levert een gedetailleerd afstammelingenverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:163
 msgid "End of Line Report"
-msgstr "Eindelijnverslag"
+msgstr "Eindelijnsverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:164
 msgid "Produces a textual end of line report"
-msgstr "Levert een eindeijnverslag in tekstvorm"
+msgstr "Levert een eindelijnsverslag in tekstvorm"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:186
 msgid "Produces a family group report showing information on a set of parents and their children."
@@ -16066,11 +16066,11 @@ msgstr "Maakt een familiegroepsverslag met informatie over een stel ouders en hu
 
 #: ../src/plugins/textreport/textplugins.gpr.py:208
 msgid "Complete Individual Report"
-msgstr "Volledig persoonverslag"
+msgstr "Volledig persoonsverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:209
 msgid "Produces a complete report on the selected people"
-msgstr "Levert een volledig rapport voor de geselecteerde personen"
+msgstr "Levert een volledig verslag voor de geselecteerde personen"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:230
 msgid "Kinship Report"
@@ -16078,7 +16078,7 @@ msgstr "Verwantschapsverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:231
 msgid "Produces a textual report of kinship for a given person"
-msgstr "Levert een tekstverslag met verwantschappen van een persoon"
+msgstr "Levert een tekstverslag met de verwantschappen van een persoon"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:252
 msgid "Marker Report"
@@ -16091,7 +16091,7 @@ msgstr "Maakt een lijst van personen met een bepaalde aanduiding"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:275
 msgid "Number of Ancestors Report"
-msgstr "Aantal voorouders verslag"
+msgstr "<i>Aantal voorouders</i>-verslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:276
 msgid "Counts number of ancestors of selected person"
@@ -16099,7 +16099,7 @@ msgstr "Telt het aantal voorouders van de geselecteerde persoon"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:298
 msgid "Produces a textual place report"
-msgstr "Levert een tekstueel locatieverslag"
+msgstr "Levert een locatieverslag in tekstvorm"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:320
 msgid "Title Page"
@@ -16107,7 +16107,7 @@ msgstr "Titelpagina"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:321
 msgid "Produces a title page for book reports."
-msgstr "maakt een titelpagina voor boekverslagen aan."
+msgstr "Maakt een titelpagina voor boekverslagen aan."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:343
 msgid "Provides a summary of the current database"
@@ -19647,7 +19647,7 @@ msgstr "verbindingsprefix"
 
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr "Een prefix voor de links die naar het Webverslag verwijzen"
+msgstr "Een prefix voor de links die naar het webverslag verwijzen"
 
 #: ../src/plugins/webreport/WebCal.py:1728
 #, python-format
@@ -19752,12 +19752,12 @@ msgstr "Toepassen"
 
 #: ../src/PluginUtils/_PluginDialogs.py:277
 msgid "Report Selection"
-msgstr "Verslagkeuze"
+msgstr "Verslagskeuze"
 
 #: ../src/PluginUtils/_PluginDialogs.py:278
 #: ../src/glade/plugins.glade.h:4
 msgid "Select a report from those available on the left."
-msgstr "Kies een rapport uit de lijst aan de linkerkant."
+msgstr "Kies een verslag uit de lijst aan de linkerkant."
 
 #: ../src/PluginUtils/_PluginDialogs.py:279
 msgid "_Generate"
@@ -20430,7 +20430,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:580
 msgid "You must select an active person for this report to work properly."
-msgstr "Opdat dit rapport correct zou werken moet u een actieve persoon kiezen."
+msgstr "Opdat dit verslag correct zou werken moet u een actieve persoon kiezen."
 
 #: ../src/ReportBase/_StyleEditor.py:88
 msgid "Document Styles"
@@ -23156,7 +23156,7 @@ msgid ""
 msgstr ""
 "Wanneer actief worden de spaties in uw opmerking weerhouden in de verslagen. Gebruik dit om een lay-out met spaties toe te voegen zoals een tabel bijvoorbeeld.\n"
 "Wanneer dit niet aangeduid is worden opmerkingen automatisch aangepast voor de  verslagen, zodat de lay-out van het verslag wordt verbeterd.\n"
-"Gebruik een monospace lettertype om het formaat te behouden."
+"Gebruik een 'monospace'-lettertype om het formaat te behouden."
 
 #: ../src/glade/editnote.glade.h:7
 msgid "_Preformatted"
@@ -23874,7 +23874,7 @@ msgstr "<b>Het Stamboomscherm</b><br/>Het stamboomscherm toont een traditionele 
 
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; Book Report...&quot;, allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr "<b>Boekverslag</b><br/>Het boekverslag rapport &quot;Verslagen &gt; Boeken &gt; Boekverslag...&quot;, laat gebruikers toe om verscheidene rapporten te bundelen in één document. Dit document is eenvoudiger te verdelen dan verschillende aparte documenten, zeker wanneer deze afgedrukt worden."
+msgstr "<b>Boekverslag</b><br/>Het boekverslag onder &quot;Verslagen &gt; Boeken &gt; Boekverslag...&quot;, laat gebruikers toe om verscheidene verslagen te bundelen in één document. Dit document is eenvoudiger te verdelen dan verschillende aparte documenten, zeker wanneer deze afgedrukt worden."
 
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects."
@@ -23930,7 +23930,7 @@ msgstr "<b>Gramps-nieuwsgroepen</b><br/>Wilt u antwoorden op uw vragen over Gram
 
 #: ../src/data/tips.xml.in.h:18
 msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for you family tree then there's a report for that as well."
-msgstr "<b>Gramps-verslagen</b><br/>Gramps biedt een brede waaier van mogelijke verslagen. De tekstverslagen zijn zeer handig indien u de resultaten van uw familiestamboom naar uw familieleden wilt sturen via e-mail. De grafische verslgen kunnen eenvoudig complexe relaties weergeven. Wenst u van uw familistamboom een website maken, dan is daar een speciaal verslag voor om dit te doen."
+msgstr "<b>Gramps-verslagen</b><br/>Gramps biedt een brede waaier van mogelijke verslagen. De tekstverslagen zijn zeer handig indien u de resultaten van uw familiestamboom naar uw familieleden wilt sturen via e-mail. De grafische verslgen kunnen eenvoudig complexe relaties weergeven. Wenst u van uw familiestamboom een website maken, dan is daar een speciaal verslag voor om dit te doen."
 
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow you to undertake operations such as checking the database for errors and consistency. There are research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and many others. All tools can be accessed through the &quot;Tools&quot; menu."
@@ -24022,7 +24022,7 @@ msgstr "<b>de schermen organiseren</b><br/>Vele schermen kunnen uw gegevens als 
 
 #: ../src/data/tips.xml.in.h:41
 msgid "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public."
-msgstr "<b>Privacy in Gramps</b><br/>Gramps helpt om bepaalde persoonlijke informatie te beschermen door deze informatie als 'privaat' te merken. Gegevens kunnen op deze wijze geweerd worden uit rapporten en gegevens die geëxporteerd worden. Let op het hangslot; daarmee wisselt u tussen de aanduiding privaat en publiek."
+msgstr "<b>Privacy in Gramps</b><br/>Gramps helpt om bepaalde persoonlijke informatie te beschermen door deze informatie als 'privaat' te merken. Gegevens kunnen op deze wijze weggelaten worden uit verslagen en gegevens die geëxporteerd worden. Let op het hangslot; daarmee wisselt u tussen de aanduiding privaat en publiek."
 
 #: ../src/data/tips.xml.in.h:42
 msgid "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;Help &gt; User Manual&quot;. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
