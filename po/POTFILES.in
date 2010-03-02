@@ -535,6 +535,7 @@ src/plugins/tool/Verify.py
 src/plugins/view/eventview.py
 src/plugins/view/familyview.py
 src/plugins/view/fanchartview.py
+src/plugins/view/fanchartview.gpr.py
 src/plugins/view/geoview.py
 src/plugins/view/geoview.gpr.py
 src/plugins/view/grampletview.py
