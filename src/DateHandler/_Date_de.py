@@ -56,27 +56,87 @@ class DateParserDE(DateParser):
     month_to_int[u"jan"]    = 1
     month_to_int[u"jänner"] = 1
     month_to_int[u"jän"]    = 1
-    # Add other common latin, local and historical variants  
+
+    # Add other common latin, 
+
     month_to_int[u"januaris"] = 1
+    month_to_int[u"januarii"] = 1
+    month_to_int[u"januarius"] = 1
+    month_to_int[u"februaris"] = 2
+    month_to_int[u"februarii"] = 2
+    month_to_int[u"februarius"] = 2
+    month_to_int[u"martii"] = 3
+    month_to_int[u"martius"] = 3
+    month_to_int[u"aprilis"] = 4
+    month_to_int[u"maius"] = 5
+    month_to_int[u"maii"] = 5
+    month_to_int[u"junius"] = 6
+    month_to_int[u"junii"] = 6
+    month_to_int[u"julius"] = 7
+    month_to_int[u"julii"] = 7
+    month_to_int[u"augustus"] = 8
+    month_to_int[u"augusti"] = 8
+    month_to_int[u"septembris"] = 9
+    month_to_int[u"7bris"] = 9
+    month_to_int[u"september"] = 9
+    month_to_int[u"october"] = 10
+    month_to_int[u"octobris"] = 10
+    month_to_int[u"8bris"] = 10
+    month_to_int[u"novembris"] = 11
+    month_to_int[u"9bris"] = 11
+    month_to_int[u"november"] = 11
+    month_to_int[u"decembris"] = 12
+    month_to_int[u"10bris"] = 12
+    month_to_int[u"xbris"] = 12
+    month_to_int[u"december"] = 12
+
+    # local and historical variants  
+
     month_to_int[u"jenner"] = 1
     month_to_int[u"feber"]  = 2
-    month_to_int[u"februaris"]  = 2
     month_to_int[u"merz"]  = 3
-    month_to_int[u"aprilis"]  = 4
-    month_to_int[u"maius"]  = 5
-    month_to_int[u"junius"]  = 6
-    month_to_int[u"julius"]  = 7
     month_to_int[u"augst"]  = 8
     month_to_int[u"7ber"]  = 9
-    month_to_int[u"7bris"]  = 9
     month_to_int[u"8ber"]  = 10
-    month_to_int[u"8bris"]  = 10
     month_to_int[u"9ber"]  = 11
-    month_to_int[u"9bris"]  = 11
     month_to_int[u"10ber"]  = 12
-    month_to_int[u"10bris"]  = 12
     month_to_int[u"xber"]  = 12
-    month_to_int[u"xbris"]  = 12
+
+    # old german names
+
+    month_to_int[u"hartung"] = 1
+    month_to_int[u"eismond"] = 1
+    month_to_int[u"hornung"] = 2
+    month_to_int[u"schmelzmond"] = 2
+    month_to_int[u"taumond"] = 2
+    month_to_int[u"narrenmond"] = 2
+    month_to_int[u"rebmond"] = 2
+    month_to_int[u"hintester"] = 2
+    month_to_int[u"lenzing"] = 3
+    month_to_int[u"lenzmond"] = 3
+    month_to_int[u"launing"] = 4
+    month_to_int[u"ostermond"] = 4
+    month_to_int[u"winnemond"] = 5
+    month_to_int[u"weidenmonat"] = 5
+    month_to_int[u"blumenmond"] = 5
+    month_to_int[u"brachet"] = 6
+    month_to_int[u"brachmond"] = 6
+    month_to_int[u"heuert"] = 7
+    month_to_int[u"heumond"] = 7
+    month_to_int[u"ernting"] = 8
+    month_to_int[u"erntemond"] = 8
+    month_to_int[u"bisemond"] = 8
+    month_to_int[u"scheiding"] = 9
+    month_to_int[u"herbstmond"] = 9
+    month_to_int[u"gilbhard"] = 10
+    month_to_int[u"gilbhart"] = 10
+    month_to_int[u"windmond"] = 11
+    month_to_int[u"nebelung"] = 11
+    month_to_int[u"wintermond"] = 11
+    month_to_int[u"julmond"] = 12
+    month_to_int[u"heilmond"] = 12
+    month_to_int[u"christmond"] = 12
+    month_to_int[u"dustermond"] = 12
     
     modifier_to_int = {
         u'vor'    : Date.MOD_BEFORE, 
@@ -142,7 +202,7 @@ class DateDisplayDE(DateDisplay):
                     u"Juni", u"Juli", u"August", u"September", u"Oktober", 
                     u"November", u"Dezember" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"Mai", u"Jun",  
+    short_months = ( u"", u"Jan", u"Feb", u"Mär", u"Apr", u"Mai", u"Jun",  
                      u"Jul", u"Aug", u"Sep", u"Okt", u"Nov", u"Dez" )
 
     calendar = (
