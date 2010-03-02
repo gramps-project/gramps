@@ -8,6 +8,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/view
 pkgdata_PYTHON = \
 	eventview.py \
 	familyview.py \
+	fanchartview.gpr.py \
+	fanchartview.py \
 	geoview.py \
 	geoview.gpr.py \
 	grampletview.py \
