@@ -80,10 +80,22 @@ class History(gen.utils.Callback):
         'mru-changed' : (list, )
         }
 
-    def __init__(self):
+    def __init__(self, dbstate, nav_type):
         gen.utils.Callback.__init__(self)
         self.clear()
 
+        dbstate.connect('database-changed', self.connect_signals)
+        self.signal_map = {}
+        self.signal_map[nav_type.lower() + '-delete'] = self.handles_removed
+        self.signal_map[nav_type.lower() + '-rebuild'] = self.history_changed
+
+    def connect_signals(self, dbstate):
+        """
+        Connects database signals when the database has changed.
+        """
+        for sig in self.signal_map:
+            dbstate.connect(sig, self.signal_map[sig])
+            
     def clear(self):
         """
         Clears the history, resetting the values back to their defaults
@@ -191,6 +203,22 @@ class History(gen.utils.Callback):
         if not self.at_end():
             self.history = self.history[0:self.index+1]
 
+    def handles_removed(self, handle_list):
+        """
+        Called in response to an object-delete signal.
+        Removes a list of handles from the history.
+        """
+        for handle in handle_list:
+            self.remove(handle)
+            
+    def history_changed(self):
+        """
+        Called in response to an object-rebuild signal.
+        Objects in the history list may have been deleted.
+        """
+        self.clear()
+        self.emit('mru-changed', (self.mru, ))
+        
 #-------------------------------------------------------------------------
 #
 # Recent Docs Menu
@@ -370,13 +398,13 @@ class DisplayState(gen.utils.Callback):
         """
         return self.history_lookup.get((nav_type, nav_group))
 
-    def register(self, nav_type, nav_group):
+    def register(self, dbstate, nav_type, nav_group):
         """
         Create a history and navigation object for the specified
         navigation type and group, if they don't exist.
         """
         if (nav_type, nav_group) not in self.history_lookup:
-            history = History()
+            history = History(dbstate, nav_type)
             self.history_lookup[(nav_type, nav_group)] = history
 
     def get_active(self, nav_type, nav_group=0):
