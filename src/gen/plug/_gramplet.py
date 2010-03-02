@@ -68,7 +68,7 @@ class Gramplet(object):
         Connect the given method to the active-changed signal for the
         navigation type requested. 
         """
-        self.uistate.register(nav_type, self.nav_group)
+        self.uistate.register(self.dbstate, nav_type, self.nav_group)
         history = self.uistate.get_history(nav_type, self.nav_group)
         self.connect(history, "active-changed", method)
 

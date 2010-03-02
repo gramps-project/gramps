@@ -297,10 +297,6 @@ class BasePersonView(ListView):
         # commit the transaction
         self.dbstate.db.transaction_commit(trans, active_name)
 
-        # select the previously active person, turn off the busy cursor
-        history = self.uistate.get_history(self.navigation_type(),
-                                           self.navigation_group())
-        history.remove(person.handle)
         self.uistate.set_busy_cursor(False)
 
     def dummy_report(self, obj):

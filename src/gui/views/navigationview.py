@@ -92,7 +92,7 @@ class NavigationView(PageView):
         self.nav_group = nav_group
         self.mru_active = DISABLED
 
-        self.uistate.register(self.navigation_type(), self.nav_group)
+        self.uistate.register(state, self.navigation_type(), self.nav_group)
 
     
     def navigation_type(self):
