@@ -290,6 +290,8 @@ class BasePersonView(ListView):
         active_name = _("Delete Person (%s)") % name_displayer.display(person)
 
         # delete the person from the database
+        # Above will emit person-delete, which removes the person via 
+        # callback to the model, so row delete is signaled
         self.dbstate.db.delete_person_from_database(person, trans)
 
         # commit the transaction
@@ -298,7 +300,7 @@ class BasePersonView(ListView):
         # select the previously active person, turn off the busy cursor
         history = self.uistate.get_history(self.navigation_type(),
                                            self.navigation_group())
-        history.back()
+        history.remove(person.handle)
         self.uistate.set_busy_cursor(False)
 
     def dummy_report(self, obj):
