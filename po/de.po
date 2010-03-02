@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-01 20:41+0100\n"
-"PO-Revision-Date: 2010-03-01 21:53+0100\n"
+"POT-Creation-Date: 2010-03-02 17:58+0100\n"
+"PO-Revision-Date: 2010-03-02 21:22+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -212,35 +212,35 @@ msgstr "Ungültiges Datum"
 msgid "Date selection"
 msgstr "Datumsauswahl"
 
-#: ../src/DisplayState.py:318
+#: ../src/DisplayState.py:346
 msgid "No active person"
 msgstr "Keine aktive Person"
 
-#: ../src/DisplayState.py:319
+#: ../src/DisplayState.py:347
 msgid "No active family"
 msgstr "Keine aktive Familie"
 
-#: ../src/DisplayState.py:320
+#: ../src/DisplayState.py:348
 msgid "No active event"
 msgstr "Kein aktives Ereignis"
 
-#: ../src/DisplayState.py:321
+#: ../src/DisplayState.py:349
 msgid "No active place"
 msgstr "Kein aktiver Ort"
 
-#: ../src/DisplayState.py:322
+#: ../src/DisplayState.py:350
 msgid "No active source"
 msgstr "Keine aktive Quelle"
 
-#: ../src/DisplayState.py:323
+#: ../src/DisplayState.py:351
 msgid "No active repository"
 msgstr "Kein aktiver Aufbewahrungsort"
 
-#: ../src/DisplayState.py:324
+#: ../src/DisplayState.py:352
 msgid "No active media"
 msgstr "Keine aktiven Medien"
 
-#: ../src/DisplayState.py:325
+#: ../src/DisplayState.py:353
 msgid "No active note"
 msgstr "Keine aktive Notiz"
 
@@ -597,7 +597,7 @@ msgstr ""
 #: ../src/QuickReports.py:80 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:160 ../src/docgen/TextBufDoc.py:162
 #: ../src/plugins/gramplet/gramplet.gpr.py:173
-#: ../src/plugins/lib/libpersonview.py:335
+#: ../src/plugins/lib/libpersonview.py:333
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:255
 #: ../src/plugins/view/noteview.py:209 ../src/plugins/view/repoview.py:152
@@ -791,7 +791,7 @@ msgstr "Beziehungen neu ordnen: %s"
 msgid "manual|Using_the_Clipboard"
 msgstr "Benutzen_der_Zwischenablage"
 
-#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:395
+#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:403
 #: ../src/gen/lib/urltype.py:54 ../src/gen/lib/notetype.py:76
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/attrtype.py:62
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/srcmediatype.py:62
@@ -806,8 +806,9 @@ msgstr "Benutzen_der_Zwischenablage"
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
-#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/relview.py:438
-#: ../src/plugins/view/relview.py:975 ../src/plugins/view/relview.py:1022
+#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:643
+#: ../src/plugins/view/relview.py:438 ../src/plugins/view/relview.py:975
+#: ../src/plugins/view/relview.py:1022
 #: ../src/plugins/webreport/NarrativeWeb.py:1516
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -2110,33 +2111,33 @@ msgstr ""
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/cli/clidbman.py:62
+#: ../src/cli/clidbman.py:63
 msgid "Family Tree"
 msgstr "Family Tree"
 
-#: ../src/cli/clidbman.py:213
+#: ../src/cli/clidbman.py:214
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Starte Import, %s"
 
-#: ../src/cli/clidbman.py:219
+#: ../src/cli/clidbman.py:220
 msgid "Import finished..."
 msgstr "Import abgeschlossen..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:273 ../src/plugins/import/ImportCsv.py:387
+#: ../src/cli/clidbman.py:274 ../src/plugins/import/ImportCsv.py:387
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
-#: ../src/cli/clidbman.py:333
+#: ../src/cli/clidbman.py:334
 msgid "Could not make database directory: "
 msgstr "Konnte Datenbankverzeichnis nicht erstellen: "
 
-#: ../src/cli/clidbman.py:373
+#: ../src/cli/clidbman.py:381
 msgid "Never"
 msgstr "Nie"
 
-#: ../src/cli/clidbman.py:392
+#: ../src/cli/clidbman.py:400
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
@@ -4633,9 +4634,9 @@ msgstr "_Seitenleiste"
 msgid "_Toolbar"
 msgstr "_Werkzeugleiste"
 
-#: ../src/gui/viewmanager.py:507 ../src/plugins/view/geoview.py:1095
+#: ../src/gui/viewmanager.py:507 ../src/plugins/view/geoview.py:1096
 msgid "_Filter Sidebar"
-msgstr "_Filter-Seitenleiste"
+msgstr "_Filterseitenleiste"
 
 #: ../src/gui/viewmanager.py:509
 msgid "F_ull Screen"
@@ -6328,19 +6329,19 @@ msgstr "Aufbewahrungsort wählen"
 msgid "Select Source"
 msgstr "Quelle wählen"
 
-#: ../src/gui/views/listview.py:197 ../src/plugins/lib/libpersonview.py:342
+#: ../src/gui/views/listview.py:197 ../src/plugins/lib/libpersonview.py:340
 msgid "_Add..."
 msgstr "_Hinzufügen..."
 
-#: ../src/gui/views/listview.py:199 ../src/plugins/lib/libpersonview.py:344
+#: ../src/gui/views/listview.py:199 ../src/plugins/lib/libpersonview.py:342
 msgid "_Remove"
 msgstr "_Entfernen"
 
-#: ../src/gui/views/listview.py:201 ../src/plugins/lib/libpersonview.py:350
+#: ../src/gui/views/listview.py:201 ../src/plugins/lib/libpersonview.py:348
 msgid "Export View..."
 msgstr "Ansicht exportieren..."
 
-#: ../src/gui/views/listview.py:207 ../src/plugins/lib/libpersonview.py:333
+#: ../src/gui/views/listview.py:207 ../src/plugins/lib/libpersonview.py:331
 msgid "action|_Edit..."
 msgstr "_Bearbeiten..."
 
@@ -6725,10 +6726,10 @@ msgstr "Personen vergleichen"
 #: ../src/Merge/_MergePerson.py:91 ../src/Merge/_MergePerson.py:96
 #: ../src/Merge/_MergePerson.py:272 ../src/Merge/_MergePerson.py:279
 #: ../src/Merge/_MergePerson.py:311 ../src/Merge/_MergePerson.py:316
-#: ../src/plugins/lib/libpersonview.py:373
-#: ../src/plugins/lib/libpersonview.py:386
-#: ../src/plugins/lib/libpersonview.py:397
-#: ../src/plugins/lib/libpersonview.py:411
+#: ../src/plugins/lib/libpersonview.py:371
+#: ../src/plugins/lib/libpersonview.py:384
+#: ../src/plugins/lib/libpersonview.py:395
+#: ../src/plugins/lib/libpersonview.py:409
 msgid "Cannot merge people"
 msgstr "Kann Personen nicht zusammenfassen"
 
@@ -14510,12 +14511,12 @@ msgid "Last Changed"
 msgstr "Letzte Änderung"
 
 #: ../src/plugins/lib/libpersonview.py:108
-#: ../src/plugins/lib/libpersonview.py:343
+#: ../src/plugins/lib/libpersonview.py:341
 msgid "Add a new person"
 msgstr "Neue Person hinzufügen"
 
 #: ../src/plugins/lib/libpersonview.py:109
-#: ../src/plugins/lib/libpersonview.py:334
+#: ../src/plugins/lib/libpersonview.py:332
 msgid "Edit the selected person"
 msgstr "Gewählte Person bearbeiten"
 
@@ -14536,29 +14537,29 @@ msgstr "_Person löschen"
 msgid "Delete Person (%s)"
 msgstr "Person (%s) löschen"
 
-#: ../src/plugins/lib/libpersonview.py:331
+#: ../src/plugins/lib/libpersonview.py:329
 #: ../src/plugins/view/pedigreeview.py:505
 #: ../src/plugins/view/pedigreeviewext.py:632
 #: ../src/plugins/view/relview.py:400
 msgid "Person Filter Editor"
 msgstr "Filtereditor für Personen"
 
-#: ../src/plugins/lib/libpersonview.py:345
+#: ../src/plugins/lib/libpersonview.py:343
 msgid "Remove the Selected Person"
 msgstr "Gewählte Person löschen"
 
-#: ../src/plugins/lib/libpersonview.py:346
+#: ../src/plugins/lib/libpersonview.py:344
 msgid "Compare and _Merge..."
 msgstr "_Vergleichen und Zusammenfassen..."
 
-#: ../src/plugins/lib/libpersonview.py:348
+#: ../src/plugins/lib/libpersonview.py:346
 msgid "_Fast Merge..."
 msgstr "Schnell _zusammenführen..."
 
-#: ../src/plugins/lib/libpersonview.py:374
-#: ../src/plugins/lib/libpersonview.py:387
-#: ../src/plugins/lib/libpersonview.py:398
-#: ../src/plugins/lib/libpersonview.py:412
+#: ../src/plugins/lib/libpersonview.py:372
+#: ../src/plugins/lib/libpersonview.py:385
+#: ../src/plugins/lib/libpersonview.py:396
+#: ../src/plugins/lib/libpersonview.py:410
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -16818,7 +16819,6 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:164
-#, fuzzy
 msgid ""
 "The Calculate Estimated Dates Tool is used to add and remove birth and death "
 "events for people that are missing these events.\n"
@@ -16844,17 +16844,17 @@ msgstr ""
 "\n"
 "Verwendung:\n"
 "1. Gehe zu dem Optionenreiter\n"
-"2. Check the [ ] Remove option to remove previous estimates\n"
+"2. Hake die [] Entfernen Option an um die vorherigen Schätzungen zu "
+"entfernen\n"
 "3. Select the Add date options to date events with or without dates\n"
 "4. Klicke auf Ausführen\n"
-"5. Select the people with which to add events\n"
+"5. Wähle die Personen mit denen Ereignisse hinzugefügt werden\n"
 "6. Klicke auf die &quot;Gewähltes Ereignis hinzufügen&quot; Schaltfläche zum "
 "erstellen\n"
 "\n"
 "ACHTUNG: wenn du beschließt, ein Ereignis permanent zu machen, entferne es "
-"von der Quelle. "
-"Sonst wird es entfernt, wenn du das nächste Mal diese Ereignisse automatisch "
-"entfernst.\n"
+"von der Quelle. Sonst wird es entfernt, wenn du das nächste Mal diese "
+"Ereignisse automatisch entfernst.\n"
 "\n"
 "Es kann sein, das du das Werkzeug mehrmals hintereinander (ohne die "
 "vorherigen Ereignisse zu löschen) laufen lassen musst um alle möglichen "
@@ -18418,6 +18418,20 @@ msgstr "Gewählte Familie löschen"
 msgid "Family Filter Editor"
 msgstr "Familienfiltereditor"
 
+#: ../src/plugins/view/fanchartview.gpr.py:3
+msgid "Fan Chart View"
+msgstr "Fächergrafikansicht"
+
+#: ../src/plugins/view/fanchartview.gpr.py:4
+#: ../src/plugins/view/pedigreeviewext.gpr.py:40
+#: ../src/plugins/view/view.gpr.py:130
+msgid "Ancestry"
+msgstr "Vorfahren"
+
+#: ../src/plugins/view/fanchartview.gpr.py:5
+msgid "The view showing relations through a fanchart"
+msgstr "Die Ansicht zeigt Beziehungen durch eine Fächergrafik"
+
 #: ../src/plugins/view/geoview.py:344
 msgid "Clear the entry field in the places selection box."
 msgstr "Lösche das Eingabefeld in dem Orteauswahlfeld."
@@ -18539,11 +18553,11 @@ msgstr "Alles"
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../src/plugins/view/geoview.py:1049 ../src/plugins/view/geoview.py:1059
+#: ../src/plugins/view/geoview.py:1050 ../src/plugins/view/geoview.py:1060
 msgid "_Add Place"
 msgstr "Ort _hinzufügen"
 
-#: ../src/plugins/view/geoview.py:1051 ../src/plugins/view/geoview.py:1061
+#: ../src/plugins/view/geoview.py:1052 ../src/plugins/view/geoview.py:1062
 msgid ""
 "Add the location centred on the map as a new place in Gramps. Double click "
 "the location to centre on the map."
@@ -18551,11 +18565,11 @@ msgstr ""
 "Füge die Lokation von der Mitte der Karte als neuen Ort zu Gramps. Klicke "
 "die Lokation doppelt um sie auf der Karte zu zentrieren."
 
-#: ../src/plugins/view/geoview.py:1054 ../src/plugins/view/geoview.py:1064
+#: ../src/plugins/view/geoview.py:1055 ../src/plugins/view/geoview.py:1065
 msgid "_Link Place"
 msgstr "Ort _verlinken"
 
-#: ../src/plugins/view/geoview.py:1056 ../src/plugins/view/geoview.py:1066
+#: ../src/plugins/view/geoview.py:1057 ../src/plugins/view/geoview.py:1067
 msgid ""
 "Link the location centred on the map to a place in Gramps. Double click the "
 "location to centre on the map."
@@ -18563,36 +18577,36 @@ msgstr ""
 "Verknüpfe die Lokation von der Mitte der Karte mit einem Ort in Gramps. "
 "Klicke die Lokation doppelt um sie auf der Karte zu zentrieren."
 
-#: ../src/plugins/view/geoview.py:1068 ../src/plugins/view/geoview.py:1082
+#: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
 msgid "_All Places"
 msgstr "_Alle Orte"
 
-#: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
+#: ../src/plugins/view/geoview.py:1070 ../src/plugins/view/geoview.py:1084
 msgid "Attempt to view all places in the family tree."
 msgstr "Versuche alle Orte im Stammbaum zu zeigen."
 
-#: ../src/plugins/view/geoview.py:1071 ../src/plugins/view/geoview.py:1085
+#: ../src/plugins/view/geoview.py:1072 ../src/plugins/view/geoview.py:1086
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/plugins/view/geoview.py:1073 ../src/plugins/view/geoview.py:1087
+#: ../src/plugins/view/geoview.py:1074 ../src/plugins/view/geoview.py:1088
 msgid "Attempt to view all the places where the selected people lived."
 msgstr ""
 "Versuche alle Orte zu zeigen in denen die gewählten Personen gewohnt haben."
 
-#: ../src/plugins/view/geoview.py:1075 ../src/plugins/view/geoview.py:1089
+#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/plugins/view/geoview.py:1077 ../src/plugins/view/geoview.py:1091
+#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
 msgid "Attempt to view places of the selected people's family."
 msgstr "Versuche Orte der Personen der gewählten Familien zu zeigen."
 
-#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1079 ../src/plugins/view/geoview.py:1093
 msgid "_Event"
 msgstr "_Ereignis"
 
-#: ../src/plugins/view/geoview.py:1080 ../src/plugins/view/geoview.py:1094
+#: ../src/plugins/view/geoview.py:1081 ../src/plugins/view/geoview.py:1095
 msgid "Attempt to view places connected to all events."
 msgstr "Versuche die Orte die mit allen Ereignissen verbunden sind zu zeigen."
 
@@ -18712,11 +18726,11 @@ msgstr ""
 msgid "Not yet implemented ..."
 msgstr "Noch nicht implementiert ..."
 
-#: ../src/plugins/view/geoview.py:2290
+#: ../src/plugins/view/geoview.py:2289
 msgid "Start page for the Geography View"
 msgstr "Startseite für die Geografieansicht"
 
-#: ../src/plugins/view/geoview.py:2291
+#: ../src/plugins/view/geoview.py:2290
 msgid ""
 "You don't see a map here for the following reasons :<br><ol><li>Your "
 "database is empty or not yet selected.</li><li>You have not yet selected a "
@@ -19015,11 +19029,6 @@ msgstr "Ahnentafelansicht"
 #: ../src/plugins/view/view.gpr.py:123
 msgid "The view showing an ancestor pedigree of the selected person"
 msgstr "Die Ansicht zeigt eine Ahnentafel der gewählten Person"
-
-#: ../src/plugins/view/pedigreeviewext.gpr.py:40
-#: ../src/plugins/view/view.gpr.py:130
-msgid "Ancestry"
-msgstr "Vorfahren"
 
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
@@ -20134,8 +20143,8 @@ msgid ""
 "Whether to add Address Book pages or not which can include e-mail and "
 "website addresses and personal address/ residence events?"
 msgstr ""
-"Ob eine Adressbuchseite aufgenommen wird oder nicht, welche E-mail-, "
-"Webseiten-, und persönliche Adressen und Wohnortereignisse enthalten kann."
+"Soll eine Adressbuchseite aufgenommen werden oder nicht, welche E-mail-, "
+"Webseiten-, und persönliche Adressen und Wohnortereignisse enthalten kann?"
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:304
@@ -21524,6 +21533,11 @@ msgid ""
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
 msgstr ""
+"Suchen über die Datenbank starten bei einer bestimmten Person und liefern "
+"jeden zwischen dieser und einer Reihe von durch einen Filter festgelegten "
+"Zielpersonen. Dies erzeugt eine Reihe von Beziehungspfaden (auch "
+"angeheiterte) zwischen der festgelegten Person und den Zielpersonen. Jeder "
+"Pfad ist nicht unbedingt der Kürzeste."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
 msgid "Finding relationship paths"
@@ -24959,26 +24973,23 @@ msgid ""
 msgstr ""
 "<b>Elternkindbeziehung bearbeiten</b><br/> Du kannst die Beziehung eines "
 "Kindes zu seinen Eltern durch doppelklicken des Kindes im Familieneditor "
-"bearbeiten. "
-"Beziehung kann jede Art sein von Adoptiert, Geburt, Pflege, Keine, "
-"Gefördert, Stief und Unbekannt."
+"bearbeiten. Beziehung kann jede Art sein von Adoptiert, Geburt, Pflege, "
+"Keine, Gefördert, Stief und Unbekannt."
 
 #: ../src/data/tips.xml.in.h:13
-#, fuzzy
 msgid ""
 "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
 "Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; "
 "Extra Reports/Tools&quot;. This is the best way for advanced users to "
 "experiment and create new functionality."
 msgstr ""
-"<b>Extra Berichte und Werkzeuge</b><br/>Extra tools and reports can be added "
-"to "
-"Gramps with the &quot;Addon&quot; system. See them under &quot;Hilfe &gt; "
-"Extra Reports/Tools&quot;. Dies ist der Beste Weg für fortgeschrittene "
+"<b>Extra Berichte und Werkzeuge</b><br/>Zusätzliche Werkzeuge und Berichte "
+"können in Gramps mit dem &quot;Erweiterung&quot; System hinzugefügt werden. "
+"Siehe unter &quot;Hilfe &gt; Extra Berichte/Werkzeuge&quot;. Dies ist der "
+"Beste Weg für fortgeschrittene "
 "Anwender zum Experimentieren und neue Funktionen erstellen."
 
 #: ../src/data/tips.xml.in.h:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to &quot;Edit &gt; Person "
@@ -24989,14 +25000,16 @@ msgid ""
 "select it at the bottom of the Filter Sidebar, then click Apply. If the "
 "Filter Sidebar is not visible, select View &gt; Filter."
 msgstr ""
-"<b>Personen filtern</b>: In der Personenansicht kannst du nach vielen "
-"Kriterien Personen filtern. Gehe zum Filter (Du findest Ihn gleich neben dem "
-"Personenicon) und wähle einen der vielen verschiedenen Werte. Zum Beispiel "
-"kannst du auswählen, dass alle adoptierten Personen im Stammbaum angezeigt "
-"werden. Personen, deren Geburtsdatum unbekannt ist, können auch "
-"herausgefiltert werden. Um Ergebnisse angezeigt zu bekommen, klicke auf "
-"Anwenden. Wenn der Filter nicht ersichtlich ist, aktiviere ihn durch das "
-"Wählen von <b>Ansicht &gt; Filter</b>."
+"<b>Personen filtern</b><br/>In der Personenansicht kannst du Personen nach "
+"vielen Kriterien &quot;filtern&quot;. Um einen neuen Filter zu definieren, "
+"gehe zu &quot;Bearbeiten &gt; Filtereditor für Personen&quot;. Dort kannst "
+"du deinem Filter einen Namen geben und Regeln unter Verwendung von "
+"vorgegebenen Regeln hinzufügen und kombinieren. Zum Beispiel kannst du einen "
+"Filter erstellen um alle adoptierten Personen im Stammbaum zu finden. "
+"Personen ohne angegebenes Geburtsdatum können ebenso gefiltert werden. Um "
+"das Ergebnis zu erhalten, speichere ihn und wähle ihn unten in der "
+"Filterseitenleiste und klicke auf anwenden. Wenn die Filterseitenleiste "
+"nicht sichtbar ist, wähle Ansicht &gt; Filterseitenleiste."
 
 #: ../src/data/tips.xml.in.h:15
 msgid ""
@@ -25019,11 +25032,10 @@ msgid ""
 msgstr ""
 "<b>Gramps Ankündigungen</b><br/>Bist du daran interessiert informiert zu "
 "werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps "
-"Ankündigung Mailingliste unter &quot;Hilfe &gt; Gramps Mailinglisten&quot; "
-"bei."
+"Ankündigung Mailingliste bei unter &quot;Hilfe &gt; Gramps "
+"Mailinglisten&quot;"
 
 #: ../src/data/tips.xml.in.h:17
-#, fuzzy
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -25031,14 +25043,14 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
 msgstr ""
-"<b>Gramps Mailinglisten</b><br/> Willst du deine Erfahrungen über Gramps "
-"weitergeben? Probiere die gramps-users Liste aus. Viele Menschen sind auf "
+"<b>Gramps Mailinglisten</b><br/> Willst du Antworten zu deinen Fragen über "
+"Gramps? Probiere die gramps-users Liste aus. Viele Menschen sind auf "
 "der Liste, Du bekommst normalerweise schnell eine Antwort. Hast du Fragen an "
-"die Entwicklung von GRAMPS, probiere gramps-devel. Auf list.sf.net findest "
-"du über beide Mailinglisten Informationen."
+"die Entwicklung von GRAMPS, probiere die gramps-devel Liste. Du kannst die "
+"Listen durch die Auswahl von &quot;Hilfe &gt; Gramps Mailinglisten&quot; "
+"sehen."
 
 #: ../src/data/tips.xml.in.h:18
-#, fuzzy
 msgid ""
 "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The "
 "Graphical Reports and Graphs can present complex relationships easily and "
@@ -25046,9 +25058,12 @@ msgid ""
 "your family tree to members of the family via email. If you're ready to make "
 "a website for you family tree then there's a report for that as well."
 msgstr ""
-"<b>Gramps Berichte</b>: Gramps bietet dir viele verschiedene Möglichkeiten "
-"an Berichten. Die Textberichte sind vor allem für das Versenden von "
-"Ergebnissen deines Stammbaumes an Familienmitglieder via E-Mail geeignet."
+"<b>Gramps Berichte</b><br/> Gramps bietet eine große Vielfalt an Berichten. "
+"Die grafischen Berichte und Grafiken können komplexe "
+"Verwandtschaftsverhältnisse einfach darstellen und die schriftlichen "
+"Berichte sind besonders nützlich, wenn du die Ergebnisse deines Stammbaum "
+"via E-Mail an Familienmitglieder senden willst. Wenn du eine Webseite für "
+"deinen Stammbaum erstellen willst, gibt es auch hierfür einen Bericht."
 
 #: ../src/data/tips.xml.in.h:19
 msgid ""
@@ -25059,12 +25074,11 @@ msgid ""
 "All tools can be accessed through the &quot;Tools&quot; menu."
 msgstr ""
 "<b>Gramps Werkzeuge</b><br/> Gramps enthält eine Menge von nützlichen "
-"Werkzeugen. Diese erlauben "
-"Operationen wie die Überprüfung der Datenbank auf Fehler und Konsistenz "
-"einfach durchzuführen. Zum Beispiel Forschung- und Analysewerkzeuge, "
-"Vergleich von Ereignissen, das Finden von doppelten Personen, eine "
-"interaktive Übersicht der Nachkommen und vieles mehr. Alle Werkzeuge kannst "
-"du im Menü unter &quot;Werkzeuge&quot; finden."
+"Werkzeugen. Diese erlauben Operationen wie die Überprüfung der Datenbank auf "
+"Fehler und Konsistenz einfach durchzuführen. Zum Beispiel Forschung- und "
+"Analysewerkzeuge, Vergleich von Ereignissen, das Finden von doppelten "
+"Personen, eine interaktive Übersicht der Nachkommen und vieles mehr. Alle "
+"Werkzeuge kannst du im Menü unter &quot;Werkzeuge&quot; finden."
 
 #: ../src/data/tips.xml.in.h:20
 msgid ""
@@ -25148,12 +25162,12 @@ msgid ""
 "source."
 msgstr ""
 "<b>Gute Datensätze aufbewahren</b><br/> Sei genau beim Aufschreiben von "
-"genealogischen Informationen. Stell nicht "
-"eine Hypothese auf, während du erste Informationen hast, schreibe genau auf, "
-"wie du es siehst. Verwende eingeklammerte Kommentare um Anfügungen, "
-"Löschungen und Kommentare anzugeben. Es ist zu empfehlen das Lateinische "
-"&quot;sic&quot; zu verwenden um die genaue Niederschrift zu bestätigen, wenn "
-"ein Fehler in der Quelle enthalten ist."
+"genealogischen Informationen. Stell nicht eine Hypothese auf, während du "
+"erste Informationen hast, schreibe genau auf, wie du es siehst. Verwende "
+"eingeklammerte Kommentare um Anfügungen, Löschungen und Kommentare "
+"anzugeben. Es ist zu empfehlen das Lateinische &quot;sic&quot; zu verwenden "
+"um die genaue Niederschrift zu bestätigen, wenn ein Fehler in der Quelle "
+"enthalten ist."
 
 #: ../src/data/tips.xml.in.h:27
 msgid ""
@@ -25180,7 +25194,6 @@ msgstr ""
 "übersetzt."
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid ""
 "<b>Locating People</b><br/>By default, each surname in the People View is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
@@ -25192,7 +25205,10 @@ msgstr ""
 "<b>Personen lokalisieren</b><br/>Als Standard wird jeder Familiennamen in "
 "der Personenansicht nur einmal gelistet. Durch das Klicken auf den Pfeil "
 "links neben einem Namen wird die Liste aufgeklappt und alle Personen mit "
-"diesem Namen angezeigt."
+"diesem Namen werden angezeigt. Um einen Familiennamen aus einer langen Liste "
+"zu lokalisieren, wähle einen Familiennamen (keine Person) fange an zu tippen."
+" Die Ansicht springt zu dem ersten Familiennamen der mit deinen eingegebenen "
+"Buchstaben übereinstimmt."
 
 #: ../src/data/tips.xml.in.h:30
 msgid ""
@@ -25209,17 +25225,16 @@ msgstr ""
 "Webseiten."
 
 #: ../src/data/tips.xml.in.h:31
-#, fuzzy
 msgid ""
 "<b>Managing Names</b><br/>It is easy to manage people with several names in "
 "Gramps. In the Person Editor select the Names tab. You can add names of "
 "different types and set the prefered name by dragging it to the Prefered "
 "Name section."
 msgstr ""
-"<b>Namen verwalten</b><br/>It is easy to manage people with several names in "
-"Gramps. In the Person Editor select the Names tab. You can add names of "
-"different types and set the prefered name by dragging it to the Prefered "
-"Name section."
+"<b>Namen verwalten</b><br/>Es ist einfach Personen mit verschiedenen Namen "
+"in Gramps zu verwalten. Wähle im Personeneditor den Namenreiter. Du kannst "
+"Namen verschiedensten Typs hinzufügen und den bevorzugten durch ziehen in "
+"den Bevorzugter Name Bereich setzen."
 
 #: ../src/data/tips.xml.in.h:32
 msgid ""
@@ -25324,17 +25339,16 @@ msgstr ""
 "bleibt erhalten, auch wenn sie kein Geburtsdatum haben."
 
 #: ../src/data/tips.xml.in.h:40
-#, fuzzy
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can presented your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
 msgstr ""
-"<b>Die Ansichten organisieren</b><br/>Many of the views can presented your "
-"data as either a hierarchical tree or as a simple list. Each view can also "
-"be configured to the way you like it. Have a look to the right of the top "
-"toolbar or under the &quot;Ansicht&quot; menu."
+"<b>Die Ansichten organisieren</b><br/>Viele Ansichten können deine Daten in "
+"einer hierarchischen Baumtruktur oder als einfache Liste darstellen. Jede "
+"Ansicht kann auch an deine Wünsche angepasst werden. Schaue rechts in der "
+"oberen Werkzeugleiste unter dem &quot;Ansicht&quot;enmenü."
 
 #: ../src/data/tips.xml.in.h:41
 msgid ""
@@ -25573,7 +25587,7 @@ msgid ""
 "home person is the person who is selected when the database is opened or "
 "when the home button is pressed."
 msgstr ""
-"<b> Die Hauptperson<b><br/>Jeder kann in Gramps als Hauptperson (Proband) "
+"<b> Die Hauptperson</b><br/>Jeder kann in Gramps als Hauptperson (Proband) "
 "ausgewählt werden. Verwende &quot;Bearbeiten &gt; Hauptperson setzen&quot; "
 "in der Personenansicht. Die Hauptperson ist jene Person, die beim Öffnen der "
 "Datenbank oder durch das Drücken der Anfang Schaltfläche angezeigt wird."
@@ -25659,12 +25673,6 @@ msgstr ""
 
 #~ msgid "Django Import"
 #~ msgstr "Django Import"
-
-#~ msgid "Fan Chart View"
-#~ msgstr "Fächergrafikansicht"
-
-#~ msgid "The view showing relations through a fanchart"
-#~ msgstr "Die Ansicht zeigt Beziehungen durch eine Fächergrafik"
 
 #~ msgid "Requested user not found."
 #~ msgstr "Abgefragter Anwender nicht gefunden."
