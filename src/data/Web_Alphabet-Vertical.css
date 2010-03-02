@@ -120,7 +120,7 @@ div#alphabet ul li:after {
 }
 div#alphabet ul li a {
     display: block;
-    padding: 4px 8px 8px 8px;
+    padding: 4px 8px 4px 8px;
     float: left;
     font: .8em bold italic small-caps verdana, serif;
     color: #000;
