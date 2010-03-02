@@ -1856,9 +1856,8 @@ msgstr ""
 
 #. no evidence, must consider alive
 #: ../src/Utils.py:816
-#, fuzzy
 msgid "no evidence"
-msgstr "Bosted"
+msgstr "Ingen bevis"
 
 #: ../src/Utils.py:1096
 msgid "Person|TITLE"
@@ -2963,19 +2962,16 @@ msgid "Alternate Marriage"
 msgstr "Alternativt ekteskap"
 
 #: ../src/gen/lib/eventtype.py:192
-#, fuzzy
 msgid "birth abbreviation|b"
-msgstr "Forkortelse"
+msgstr "b"
 
 #: ../src/gen/lib/eventtype.py:193
-#, fuzzy
 msgid "death abbreviation|d"
-msgstr "Forkortelse"
+msgstr "d"
 
 #: ../src/gen/lib/eventtype.py:194
-#, fuzzy
 msgid "marriage abbreviation|m"
-msgstr "Forkortelse"
+msgstr "g"
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -3341,24 +3337,20 @@ msgid "ID Formats"
 msgstr "ID-format"
 
 #: ../src/gui/configure.py:396
-#, fuzzy
 msgid "Suppress warning when adding parents to a child."
-msgstr "Ikke vis advarsel når det legges foreldre til et barn"
+msgstr "Ikke vis advarsel når det legges foreldre til et barn."
 
 #: ../src/gui/configure.py:400
-#, fuzzy
 msgid "Suppress warning when cancelling with changed data."
-msgstr "Skjul advarsel når endring av data avbrytes"
+msgstr "Skjul advarsel når endring av data avbrytes."
 
 #: ../src/gui/configure.py:404
-#, fuzzy
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
-msgstr "Skjul advarsler om manglende forsker når det eksporteres til GEDCOM"
+msgstr "Skjul advarsler om manglende forsker når det eksporteres til GEDCOM."
 
 #: ../src/gui/configure.py:409
-#, fuzzy
 msgid "Show plugin status dialog on plugin load error."
-msgstr "Vis status for programtillegg når innlasting av programtillegg feiler"
+msgstr "Vis status for programtillegg når innlasting av programtillegg feiler."
 
 #: ../src/gui/configure.py:412
 msgid "Warnings"
@@ -3369,14 +3361,12 @@ msgid "Marker Colors"
 msgstr "Markeringsfarger"
 
 #: ../src/gui/configure.py:589
-#, fuzzy
 msgid "This format exists already."
-msgstr "Dette formatet finnes allerede"
+msgstr "Dette formatet finnes allerede."
 
 #: ../src/gui/configure.py:611 ../src/gui/configure.py:1123
-#, fuzzy
 msgid "Invalid or incomplete format definition."
-msgstr "Ugtldig eller ikke komplett formatdefinisjon"
+msgstr "Ugtldig eller ikke komplett formatdefinisjon."
 
 #: ../src/gui/configure.py:628
 msgid "Format"
@@ -3405,9 +3395,8 @@ msgid "Date format"
 msgstr "Datoformat"
 
 #: ../src/gui/configure.py:832
-#, fuzzy
 msgid "Calendar on reports"
-msgstr "Kalenderrapport"
+msgstr "Kalender på rapporter"
 
 #: ../src/gui/configure.py:845
 msgid "Surname guessing"
@@ -3563,9 +3552,8 @@ msgid "_Modify format"
 msgstr "_Modifisere format"
 
 #: ../src/gui/configure.py:1110
-#, fuzzy
 msgid "Both Format name and definition have to be defined."
-msgstr "Både Formater navn og definisjon må defineres"
+msgstr "Både formatene for navn og definisjon må defineres."
 
 #: ../src/gui/dbloader.py:109 ../src/PluginUtils/_Tool.py:104
 msgid "Undo history warning"
@@ -4404,9 +4392,8 @@ msgid "Error parsing arguments"
 msgstr "Feil ved tolkning av argumenter"
 
 #: ../src/gui/utils.py:187
-#, fuzzy
 msgid "Cancelling..."
-msgstr "Beregner...\n"
+msgstr "Avbryter..."
 
 #: ../src/gui/utils.py:263
 msgid "Please do not force closing this important dialog."
@@ -4501,9 +4488,8 @@ msgid "_About"
 msgstr "O_m"
 
 #: ../src/gui/viewmanager.py:443
-#, fuzzy
 msgid "_Plugin Manager"
-msgstr "Behandler for programtillegg"
+msgstr "_Behandler for programtillegg"
 
 #: ../src/gui/viewmanager.py:445
 msgid "_FAQ"
@@ -4570,9 +4556,8 @@ msgid "_Configure View..."
 msgstr ""
 
 #: ../src/gui/viewmanager.py:498
-#, fuzzy
 msgid "Configure the active view"
-msgstr "Sett opp det valgte elementet"
+msgstr "Sett opp den valgte visningen"
 
 #: ../src/gui/viewmanager.py:503
 msgid "_Sidebar"
@@ -4658,9 +4643,8 @@ msgstr ""
 "overskrider grensen."
 
 #: ../src/gui/viewmanager.py:973
-#, fuzzy
 msgid "No views loaded"
-msgstr "Ingen Slektstre er lastet."
+msgstr "Ingen visninger er lastet"
 
 #: ../src/gui/viewmanager.py:974
 msgid ""
@@ -6243,9 +6227,8 @@ msgid "Select Place"
 msgstr "Velg sted"
 
 #: ../src/gui/selectors/selectplace.py:64
-#, fuzzy
 msgid "Parish"
-msgstr " prestegjeld"
+msgstr "Prestegjeld"
 
 #: ../src/gui/selectors/selectrepository.py:54
 msgid "Select Repository"
@@ -6344,9 +6327,8 @@ msgid "Updating display..."
 msgstr "Oppdater visningen ..."
 
 #: ../src/gui/views/listview.py:1069
-#, fuzzy
 msgid "Columns"
-msgstr "Kolonnenavn"
+msgstr "Kolonner"
 
 #: ../src/gui/views/navigationview.py:239
 #, python-format
@@ -6500,14 +6482,12 @@ msgid "Unnamed Gramplet"
 msgstr "Smågramps uten navn"
 
 #: ../src/gui/widgets/grampletpane.py:1303
-#, fuzzy
 msgid "Number of Columns"
-msgstr "Antall barn"
+msgstr "Antall kolonner"
 
 #: ../src/gui/widgets/grampletpane.py:1308
-#, fuzzy
 msgid "Gramplet Layout"
-msgstr "Innstillinger for GraphViz"
+msgstr "Innstillinger for Smågramps"
 
 #: ../src/gui/widgets/grampletpane.py:1345
 msgid "Use maximum height available"
@@ -6528,14 +6508,14 @@ msgid "Detached height"
 msgstr "Rektangelhøyde:"
 
 #: ../src/gui/widgets/labels.py:109
-#, fuzzy
 msgid ""
 "Click to make this person active\n"
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
-"Klikk for å gjøre personen aktiv\n"
-"Høyreklikk for å vise redigeringsmenyen"
+"Klikk for å gjøre denne personen aktiv\n"
+"Høyreklikk for å vise redigeringsmenyen\n"
+"Klikk redigeringsikonet (gjør det tilgjengelig i oppsettet) for å redigere"
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
@@ -6612,9 +6592,9 @@ msgstr "Dette feltet er obligatorisk"
 
 #. used on AgeOnDateGramplet
 #: ../src/gui/widgets/validatedmaskedentry.py:1693
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is not a valid date value"
-msgstr "'%s' er ikke en gyldig verdi for dette feltet"
+msgstr "'%s' er ikke en gyldig dato"
 
 #: ../src/Simple/_SimpleTable.py:250
 msgid "Unknown father"
@@ -7118,9 +7098,8 @@ msgstr "Innstillinger for rapporter"
 
 #: ../src/plugins/Records.py:440
 #: ../src/plugins/drawreport/StatisticsChart.py:900
-#, fuzzy
 msgid "Determines what people are included in the report."
-msgstr "Beregner hvilke personer som skal tas med i rapporten"
+msgstr "Beregner hvilke personer som skal tas med i rapporten."
 
 #: ../src/plugins/Records.py:444
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -7189,9 +7168,8 @@ msgid "The style used for headings."
 msgstr "Stilen som brukes på titler."
 
 #: ../src/plugins/Records.py:518
-#, fuzzy
 msgid "The style used for the report title."
-msgstr "Stil som brukes på rapporttittelen"
+msgstr "Stilen som brukes på rapporttittelen."
 
 #: ../src/plugins/Records.py:527
 msgid "Youngest living person"
@@ -7294,14 +7272,12 @@ msgid "Generates documents in LaTeX format."
 msgstr "Lager dokumenter i LaTeX-format."
 
 #: ../src/plugins/docgen/docgen.gpr.py:111
-#, fuzzy
 msgid "OpenDocument Text"
-msgstr "Open Document tekst"
+msgstr "OpenDocument tekst"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
-#, fuzzy
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr "Lager dokumenter i PDF-format (.pdf)."
+msgstr "Lager dokumenter i OpenDocument Tekstformat (.odt)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:132
 msgid "PDF document"
@@ -7714,7 +7690,6 @@ msgstr "Tekstområde 2"
 
 #: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:418
-#, fuzzy
 msgid "Produced with Gramps"
 msgstr "Laget med Gramps"
 
@@ -8075,9 +8050,8 @@ msgstr "%s (personer):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:905
 #: ../src/plugins/textreport/IndivComplete.py:649
-#, fuzzy
 msgid "The center person for the filter."
-msgstr "Senterpersonen for filteret"
+msgstr "Senterpersonen for filteret."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 msgid "Sort chart items by"
@@ -8100,9 +8074,8 @@ msgid "People Born After"
 msgstr "Personer født etter"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:926
-#, fuzzy
 msgid "Birth year from which to include people."
-msgstr "Fødselsår for personene som skal være med"
+msgstr "Fødselsår for personene som skal være med."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:929
 msgid "People Born Before"
@@ -8117,9 +8090,8 @@ msgid "Include people without known birth years"
 msgstr "Ta med personer uten fødselsår"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:936
-#, fuzzy
 msgid "Whether to include people without known birth years."
-msgstr "Ta med personer uten kjent fødselsår"
+msgstr "Om personer uten kjent fødselsår skal tas med."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:940
 msgid "Genders included"
@@ -8149,9 +8121,8 @@ msgid "Charts 2"
 msgstr "Diagrammer 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:966
-#, fuzzy
 msgid "Include charts with indicated data."
-msgstr "Ta med diagram med markerte data"
+msgstr "Ta med diagram med markerte data."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1006
 msgid "The style used for the items and values."
@@ -8202,9 +8173,8 @@ msgid "Calculating timeline..."
 msgstr "Beregner tidslinje..."
 
 #: ../src/plugins/drawreport/TimeLine.py:225
-#, fuzzy, python-format
 msgid "Sorted by %s"
-msgstr "Låst av %s"
+msgstr "Sortert på %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:324
 msgid "Determines what people are included in the report"
@@ -8267,24 +8237,20 @@ msgid "GeneWeb is a web based genealogy program."
 msgstr "&quot;GeneWeb&quot; er et nettbasert slektsforskningsprogram."
 
 #: ../src/plugins/export/export.gpr.py:112
-#, fuzzy
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Gramps _XML slektstre"
+msgstr "Gramps _XML-pakke (databasen med alle media)"
 
 #: ../src/plugins/export/export.gpr.py:113
-#, fuzzy
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
-msgstr "Gramps-pakke er en arkivert XML-database sammen med mediaobjektfiler."
+msgstr "Gramps-pakke er en arkivert XML-database sammen med mediaobjektfilene."
 
 #: ../src/plugins/export/export.gpr.py:133
-#, fuzzy
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps _XML slektstre"
+msgstr "Gramps _XML (slektsdatabase)"
 
 #: ../src/plugins/export/export.gpr.py:134
-#, fuzzy
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
@@ -8347,11 +8313,11 @@ msgid "Wife"
 msgstr "Kone"
 
 #: ../src/plugins/export/ExportDjango.py:187
-#, fuzzy, python-format
+#, python-format
 msgid "Export Complete: %d second"
 msgid_plural "Export Complete: %d seconds"
-msgstr[0] "Importen er fullført: %d sekund"
-msgstr[1] "Importen er fullført: %d sekunder"
+msgstr[0] "Eksporten er fullført: %d sekund"
+msgstr[1] "Eksporten er fullført: %d sekunder"
 
 #: ../src/plugins/export/ExportGedcom.py:256
 msgid "Filtering private data"
@@ -8458,14 +8424,13 @@ msgid "Enter a date, click Run"
 msgstr "Skriv inn en dato, klikk Kjør"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
-#, fuzzy
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This "
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column ,and double-click the row to view or edit."
 msgstr ""
-"Skriv inn en dato i tekstboksen under og klikk Kjør. Dette vil beregne alder "
-"på alle personer i Slektstreet ditt ved den angitte datoen. Du kan da "
+"Skriv inn en gyldig dato (f.eks. YYYY-MM-DD) i tekstboksen under og klikk Kjør. Dette "
+"vil beregne alder på alle personer i Slektstreet ditt ved den angitte datoen. Du kan da "
 "sortere på alder og dobbeltklikke på en rad for å se eller redigere."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
@@ -8773,9 +8738,8 @@ msgid "Welcome Gramplet"
 msgstr "Smågramps for velkommen"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:266
-#, fuzzy
 msgid "Welcome to Gramps!"
-msgstr "Smågramps for velkommen"
+msgstr "Velkommen til Gramps!"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:273
 msgid "What's Next Gramplet"
@@ -8792,15 +8756,13 @@ msgstr "Største antall generasjoner"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
 #: ../src/plugins/gramplet/PedigreeGramplet.py:69
-#, fuzzy
 msgid "Show dates"
-msgstr "Vis bilder"
+msgstr "Vis datoer"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 #: ../src/plugins/gramplet/PedigreeGramplet.py:70
-#, fuzzy
 msgid "Line type"
-msgstr "Velg type"
+msgstr "Linjetype"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:218
 #, python-format
@@ -8977,9 +8939,8 @@ msgid "Selected"
 msgstr "Valgt"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, fuzzy, python-format
 msgid "%(mother)s and %(father)s"
-msgstr "%(father)s og %(mother)s"
+msgstr "%(mother)s og %(father)s"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:55
 msgid "Double-click item to see matches"
@@ -9089,21 +9050,18 @@ msgstr "Totalt antall etternavn som vises"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:162
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:170
-#, fuzzy
 msgid "Number of surnames"
-msgstr "Antall familier"
+msgstr "Antall etternavn"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:164
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:171
-#, fuzzy
 msgid "Min font size"
-msgstr "Skriftstørrelse"
+msgstr "Minste skriftstørrelse"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:166
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
-#, fuzzy
 msgid "Max font size"
-msgstr "Skriftstørrelse"
+msgstr "Største skriftstørrelse"
 
 #. GUI setup:
 #: ../src/plugins/gramplet/ToDoGramplet.py:37
@@ -9285,27 +9243,24 @@ msgid "Family Lines Graph"
 msgstr "Graf for Slektslinjer"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:32
-#, fuzzy
 msgid "Produces family line graphs using GraphViz."
-msgstr "Lager en familielinjegraf ved å bruke GraphViz"
+msgstr "Lager en familielinjegraf ved å bruke GraphViz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
 msgstr "Timeglasstavle"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:55
-#, fuzzy
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Lager en timeglassrapport med Graphviz"
+msgstr "Lager en timeglassrapport med Graphviz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
 msgstr "Relasjonsgraf"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:77
-#, fuzzy
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Lager en slektsgraf med GraphViz"
+msgstr "Lager en slektsgraf med GraphViz."
 
 #. ------------------------------------------------------------------------
 #.
@@ -9739,12 +9694,10 @@ msgid "Import data from GeneWeb files"
 msgstr "Importere data fra GenWeb-filer"
 
 #: ../src/plugins/import/import.gpr.py:88
-#, fuzzy
 msgid "Gramps package (portable XML)"
-msgstr "Gramps-pakke (portable XML)"
+msgstr "Gramps-pakke (flyttbar XML)"
 
 #: ../src/plugins/import/import.gpr.py:89
-#, fuzzy
 msgid ""
 "Import data from a Gramps package (an archived XML family tree together with "
 "the media object files."
@@ -9753,12 +9706,10 @@ msgstr ""
 "med mediaobjektfiler."
 
 #: ../src/plugins/import/import.gpr.py:107
-#, fuzzy
 msgid "Gramps XML Family Tree"
 msgstr "Gramps XML Slektstre"
 
 #: ../src/plugins/import/import.gpr.py:108
-#, fuzzy
 msgid ""
 "The Gramps XML format is a text version of a family tree. It is read-write "
 "compatible with the present Gramps database format."
@@ -9767,12 +9718,10 @@ msgstr ""
 "skrivekompatibelt med det nåværende databaseformatet til Gramps."
 
 #: ../src/plugins/import/import.gpr.py:128
-#, fuzzy
 msgid "Gramps 2.x database"
 msgstr "Gramps 2.x-database"
 
 #: ../src/plugins/import/import.gpr.py:129
-#, fuzzy
 msgid "Import data from Gramps 2.x database files"
 msgstr "Importere data fra Gramps 2.x-databasefiler"
 
@@ -10320,7 +10269,7 @@ msgid "The file will not be imported"
 msgstr "Fila vil ikke bli importert"
 
 #: ../src/plugins/import/ImportXml.py:2512
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -14445,24 +14394,20 @@ msgid "Longitude"
 msgstr "Lengdegrad"
 
 #: ../src/plugins/lib/libplaceview.py:115
-#, fuzzy
 msgid "Edit the selected place"
-msgstr "Rediger det valgte navnet"
+msgstr "Rediger det valgte stedet"
 
 #: ../src/plugins/lib/libplaceview.py:116
-#, fuzzy
 msgid "Delete the selected place"
-msgstr "Slett den valgte regelen"
+msgstr "Slett det valgte stedet"
 
 #: ../src/plugins/lib/libplaceview.py:158
-#, fuzzy
 msgid "_Merge..."
-msgstr "Flett sa_mmen"
+msgstr "Flett sa_mmen..."
 
 #: ../src/plugins/lib/libplaceview.py:160
-#, fuzzy
 msgid "Loading..."
-msgstr "Laster inn programtillegg..."
+msgstr "Laster inn..."
 
 #: ../src/plugins/lib/libplaceview.py:161
 msgid ""
@@ -14471,9 +14416,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/lib/libplaceview.py:164
-#, fuzzy
 msgid "Select a Map Service"
-msgstr "Velg kilde"
+msgstr "Velg karttjeneste"
 
 #: ../src/plugins/lib/libplaceview.py:166
 msgid "_Look up with Map Service"
@@ -14486,23 +14430,20 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/lib/libplaceview.py:170
-#, fuzzy
 msgid "Place Filter Editor"
-msgstr "Lage personfilter"
+msgstr "Lage stedsfilter"
 
 #: ../src/plugins/lib/libplaceview.py:258
-#, fuzzy
 msgid "No map service is available."
-msgstr "Ingen beskrivelse tilgjengelig"
+msgstr "Ingen karttjeneste er tilgjengelig."
 
 #: ../src/plugins/lib/libplaceview.py:259
 msgid "Check your installation."
 msgstr ""
 
 #: ../src/plugins/lib/libplaceview.py:267
-#, fuzzy
 msgid "No place selected."
-msgstr "Ingen regel ble valgt"
+msgstr "Ingen steder er valgt."
 
 #: ../src/plugins/lib/libplaceview.py:268
 msgid ""
@@ -14511,20 +14452,18 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/lib/libplaceview.py:404
-#, fuzzy
 msgid "Cannot merge places."
-msgstr "Kan ikke flette sammen kilder."
+msgstr "Kan ikke flette sammen steder."
 
 #: ../src/plugins/lib/libplaceview.py:405
-#, fuzzy
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
-"Nøyaktig to personer må velges for å gjennomføre en sammensmelting.  Person "
+"Nøyaktig to steder må velges for å gjennomføre en sammensmelting.  Sted "
 "nummer to kan velges ved å holde inne CTRL-tasten når det klikkes på ønsket "
-"person."
+"sted."
 
 #: ../src/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
@@ -14575,9 +14514,8 @@ msgid "Manages an ODF file implementing DocBackend."
 msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:246
-#, fuzzy
 msgid "Provides Textual Translation."
-msgstr "Lager en tekstbasert rapport."
+msgstr "Lager en tekstbasert oversettelse."
 
 #: ../src/plugins/lib/libplugins.gpr.py:263
 msgid "Provides the Base needed for the List People views."
@@ -14588,24 +14526,20 @@ msgid "Provides the Base needed for the List Place views."
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:74
-#, fuzzy
 msgid "Albanian"
-msgstr "aserbadjansk"
+msgstr "albansk"
 
 #: ../src/plugins/lib/libtranslate.py:77
-#, fuzzy
 msgid "Chinese"
-msgstr "Vitner"
+msgstr "kinesisk"
 
 #: ../src/plugins/lib/libtranslate.py:81
-#, fuzzy
 msgid "Brazil"
-msgstr "Begravelse"
+msgstr "Brasil"
 
 #: ../src/plugins/lib/libtranslate.py:82
-#, fuzzy
 msgid "China"
-msgstr "ikrokort"
+msgstr "Kina"
 
 #: ../src/plugins/lib/libtranslate.py:105
 #, python-format
@@ -15064,9 +14998,8 @@ msgid "Display a person's events, both personal and family."
 msgstr "Viser en persons hendelser, både personlige og familiære."
 
 #: ../src/plugins/quickview/quickview.gpr.py:86
-#, fuzzy
 msgid "All Family Events"
-msgstr "Familiehendelser"
+msgstr "Alle familiehendelser"
 
 #: ../src/plugins/quickview/quickview.gpr.py:87
 msgid "Display the family and family members events."
@@ -15147,9 +15080,8 @@ msgid "Display people with the same given name as a person."
 msgstr "Viser personer med samme fornavn som en person."
 
 #: ../src/plugins/quickview/quickview.gpr.py:279
-#, fuzzy
 msgid "Same Given Names - stand-alone"
-msgstr "Samme fornavn"
+msgstr "Samme fornavn - selvstendig"
 
 #: ../src/plugins/quickview/quickview.gpr.py:299
 msgid "Display a person's siblings."
@@ -15350,9 +15282,8 @@ msgid "French Relationship Calculator"
 msgstr "Fransk relasjonsberegning"
 
 #: ../src/plugins/rel/relplugins.gpr.py:123
-#, fuzzy
 msgid "Croatian Relationship Calculator"
-msgstr "Italiensk relasjonsberegning"
+msgstr "Kroatisk relasjonsberegning"
 
 #: ../src/plugins/rel/relplugins.gpr.py:137
 msgid "Hungarian Relationship Calculator"
@@ -15416,9 +15347,8 @@ msgid "Indicates if a line break should follow the name."
 msgstr "Indikerer om linjeskift skal komme etter navnet."
 
 #: ../src/plugins/textreport/AncestorReport.py:272
-#, fuzzy
 msgid "Translation"
-msgstr "Uteksaminering"
+msgstr "Oversettelse"
 
 #: ../src/plugins/textreport/AncestorReport.py:274
 #: ../src/ReportBase/_StyleComboBox.py:65
@@ -15428,9 +15358,8 @@ msgid "default"
 msgstr "standard"
 
 #: ../src/plugins/textreport/AncestorReport.py:277
-#, fuzzy
 msgid "The translation to be used for the report."
-msgstr "Filendelsen som skal brukes på nettsidene"
+msgstr "Oversettelsen som skal brukes på rapporten."
 
 #: ../src/plugins/textreport/AncestorReport.py:334
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -16127,13 +16056,12 @@ msgid "Female"
 msgstr "Kvinne"
 
 #: ../src/plugins/textreport/IndivComplete.py:644
-#, fuzzy
 msgid "Select the filter to be applied to the report."
-msgstr "Velg filteret som skal brukes på rapporten"
+msgstr "Velg filteret som skal brukes til rapporten."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
 msgid "List events chonologically"
-msgstr ""
+msgstr "Liste hendelsene kronologisk"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
 msgid "Whether to sort events into chonological order."
@@ -16700,28 +16628,24 @@ msgid "Calculate Estimated Dates"
 msgstr "Beregne estimerte datoer"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:191
-#, fuzzy
 msgid "Select All"
-msgstr "Velg en fil"
+msgstr "Velg alle"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:192
-#, fuzzy
 msgid "Select None"
-msgstr "Velg Notat"
+msgstr "Velg Ingen"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:193
-#, fuzzy
 msgid "Toggle Selection"
-msgstr "Valg av verktøy"
+msgstr "Markere valget"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:194
-#, fuzzy
 msgid "Add Selected Events"
-msgstr "Velg hendelse"
+msgstr "Legg til valgte hendelser"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:200
 msgid "Remove Events, Notes, and Source and Reselect Data"
-msgstr ""
+msgstr "Fjern hendelser, notater og kilder, og velg data om igjen"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:201
 msgid ""
@@ -16730,34 +16654,28 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:202
-#, fuzzy
 msgid "Remove and Run Select Again"
-msgstr "Fjern den valgte personen"
+msgstr "Fjern og kjør velgeren om igjen"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:206
-#, fuzzy
 msgid "Reselect Data"
-msgstr "Velg far"
+msgstr "Velg data om igjen"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:207
-#, fuzzy
 msgid "Are you sure you want to reselect data?"
-msgstr "Er du sikker på at du vil tømme angrehistorikken?"
+msgstr "Er du sikker på at du vil velge data om igjen?"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:208
-#, fuzzy
 msgid "Run Select Again"
-msgstr "Valg av rapport"
+msgstr "Kjør velgeren om igjen"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:228
-#, fuzzy
 msgid "Evidence"
-msgstr "Bosted"
+msgstr "Bevis"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:228
-#, fuzzy
 msgid "Relative"
-msgstr "Slektninger"
+msgstr "Slektning"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:229
 msgid "Processing...\n"
@@ -16773,26 +16691,23 @@ msgid "Removing '%s'..."
 msgstr "Fjerner '%s'..."
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:302
-#, fuzzy
 msgid "done!\n"
-msgstr "Gjort!\n"
+msgstr "gjort!\n"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:303
-#, fuzzy
 msgid "Removed date estimates"
-msgstr "Fjern det eksisterende navnet"
+msgstr "Fjern datoestimater"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:307
-#, fuzzy
 msgid ""
 "Selecting... \n"
 "\n"
-msgstr "Velg ..."
+msgstr "Velger... \n"
+"\n"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:308
-#, fuzzy
 msgid "Selecting..."
-msgstr "Velg ..."
+msgstr "Velger..."
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:343
 msgid "Add birth and death events"
@@ -24778,7 +24693,6 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:14
-#, fuzzy
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to &quot;Edit &gt; Person "
@@ -24794,10 +24708,9 @@ msgstr ""
 "av de flere forhåndsvalgte filtrene. For eksempel, alle adobterte personer i "
 "familietreet. På denne måten kan man for eksempel også enkelt finne personer "
 "som mangler fødselsdato. For å få resultatet, trykk på Bruk. Hvis "
-"filtermenyen ikke er synlig, skru de på ved å velg <b>Vis &gt; Filter</b>."
+"filtermenyen ikke er synlig, skru de på ved å velg &quot;Vis &gt; Filter&quot;."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
@@ -24807,18 +24720,17 @@ msgstr ""
 "Filtre lar deg begrense hva som blir vist i Personvisningen. I tillegg til "
 "de mange forhåndsdefinerte filterne, kan man også lage tilpassede filtre som "
 "bare kan begrenses av fantasien.  Tilpassede filtre kan lages fra "
-"<b>Redigere&gt;Lage personfilter</b>."
+"&quot;Redigere&gt;Lage personfilter&quot;."
 
 #: ../src/data/tips.xml.in.h:16
-#, fuzzy
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "&quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
-"Interessert i å bli informert om når en ny versjon av Gramps blir sluppet? "
-"Meld deg på e-postlista for Gramps-annonseringer ved å gå inn på http://"
-"lists.sourceforge.net/lists/listinfo/gramps-announce"
+"<b>Gramps annonserer</b><br/>Interessert i å bli informert om når en ny "
+"versjon av Gramps blir lansert? Meld deg på e-postlista for Gramps-annonseringer "
+" fra &quot;Hjelp &gt; Gramps E-postlister&quot;"
 
 #: ../src/data/tips.xml.in.h:17
 #, fuzzy
@@ -25388,491 +25300,3 @@ msgid ""
 "different calenders. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
-
-#~ msgid "Column Editor"
-#~ msgstr "Kolonnebehandler"
-
-#~ msgid "_Display format"
-#~ msgstr "_Visningsformat"
-
-#~ msgid "C_ustom format details"
-#~ msgstr "Tilpassede formateringsdetaljer"
-
-#~ msgid "Use shading in Relationship View"
-#~ msgstr "Bruk skyggelegging i relasjonsvisning"
-
-#~ msgid "Display edit buttons on Relationship View"
-#~ msgstr "Vis endringsknappene på Slektskapvisning"
-
-#~ msgid "Processing Person records"
-#~ msgstr "Behandler personposter"
-
-#~ msgid "Processing Family records"
-#~ msgstr "Behandler familieposter"
-
-#~ msgid "Processing Event records"
-#~ msgstr "Behandler hendelsesposter"
-
-#~ msgid "Processing Place records"
-#~ msgstr "Behandler stedsposter"
-
-#~ msgid "Processing Source records"
-#~ msgstr "Behandler kildeposter"
-
-#~ msgid "Processing Media records"
-#~ msgstr "Behandler mediaposter"
-
-#~ msgid "Processing Repository records"
-#~ msgstr "Behandler oppbevaringsstedsposter"
-
-#~ msgid "Processing Note records"
-#~ msgstr "Behandler notatposter"
-
-#~ msgid "_Plugin Status"
-#~ msgstr "Status for _programtillegg"
-
-#~ msgid "_Filter"
-#~ msgstr "_Filter"
-
-#~ msgid "The calendar which determines the year span"
-#~ msgstr "Kalenderen som bestemmer årsintervallet"
-
-#~ msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
-#~ msgstr "%(calendar_type)s kalender, sortert på %(sortby)s"
-
-#, fuzzy
-#~ msgid "Gram_ps package (portable XML)"
-#~ msgstr "GRAM_PS-pakke (portable XML)"
-
-#~ msgid "SQLite Export"
-#~ msgstr "SQLite-eksport"
-
-#~ msgid "SQLite is a common local database format"
-#~ msgstr "SQLite er et vanlig lokalt databaseformat"
-
-#~ msgid "Django options"
-#~ msgstr "Djangovalg"
-
-#~ msgid "b. %(birth_date)s - %(place)s"
-#~ msgstr "f. %(birth_date)s - %(place)s"
-
-#~ msgid "b. %(birth_date)s"
-#~ msgstr "f. %(birth_date)s"
-
-#~ msgid "d. %(death_date)s - %(place)s"
-#~ msgstr "d. %(death_date)s - %(place)s"
-
-#~ msgid "d. %(death_date)s"
-#~ msgstr "d. %(death_date)s"
-
-#~ msgid "Headline News Gramplet"
-#~ msgstr "Nyhetsoversikt Smågramps"
-
-#~ msgid "Note Gramplet"
-#~ msgstr "Notat Smågramps"
-
-#~ msgid "Python Gramplet"
-#~ msgstr "Python Smågramps"
-
-#~ msgid "SQLite Import"
-#~ msgstr "SQLite-import"
-
-#~ msgid "Gramps id"
-#~ msgstr "Gramps id"
-
-#~ msgid "Eniro map not available for %s"
-#~ msgstr "Enirokart er ikke tilgjengelig for %s"
-
-#~ msgid "Only for Sweden and Denmark"
-#~ msgstr "Bare for Sverige og Danmark"
-
-#~ msgid "%s and %s are the same person."
-#~ msgstr "%s og %s er den samme personen."
-
-#~ msgid "males"
-#~ msgstr "menn"
-
-#~ msgid "females"
-#~ msgstr "kvinner"
-
-#~ msgid "all families"
-#~ msgstr "alle filer"
-
-#~ msgid "All Names of All People"
-#~ msgstr "Alle navn til alle personer"
-
-#~ msgid "All names of all people"
-#~ msgstr "Alle navn til alle personer"
-
-#~ msgid "b."
-#~ msgstr "f."
-
-#~ msgid "d."
-#~ msgstr "d."
-
-#~ msgid "spouses of %s"
-#~ msgstr "partnere til %s"
-
-#~ msgid "Display detailed results"
-#~ msgstr "Vis detaljerte resultat"
-
-#~ msgid "Show details for every date entered"
-#~ msgstr "Vis detaljer for alle datoer som er skrevet inn"
-
-#~ msgid "Config"
-#~ msgstr "Innstilling"
-
-#~ msgid "Minimum years between two generations"
-#~ msgstr "Minste antall år mellom to generasjoner"
-
-#~ msgid "Results"
-#~ msgstr "Resultater"
-
-#~ msgid "Replacing...\n"
-#~ msgstr "Erstatter...\n"
-
-#~ msgid "Calculating estimated dates..."
-#~ msgstr "Beregner estimerte datoer..."
-
-#~ msgid "Cause of Death"
-#~ msgstr "Dødsårsak"
-
-#~ msgid "Show Uncollected Objects"
-#~ msgstr "Vis ukoblede objekter"
-
-#~ msgid "Generate Testcases for Persons and Families"
-#~ msgstr "Lage testeksempler for personer og familier"
-
-#~ msgid "_Column Editor"
-#~ msgstr "_Kolonnebehandler"
-
-#~ msgid "Select Event Columns"
-#~ msgstr "Velg hendelseskolonner"
-
-#~ msgid "Select Family Columns"
-#~ msgstr "Velg kolonner for familieliste"
-
-#~ msgid "_OpenStreetMap"
-#~ msgstr "_OpenStreetMap"
-
-#~ msgid "Select OpenStreetMap Maps"
-#~ msgstr "Velg OpenStreetMap Kart"
-
-#~ msgid "_Google Maps"
-#~ msgstr "_Google Kart"
-
-#~ msgid "Select Google Maps."
-#~ msgstr "Velg Google Kart."
-
-#~ msgid "Selecting stylesheet ..."
-#~ msgstr "Velger stilsett..."
-
-#~ msgid "Select a StyleSheet"
-#~ msgstr "Velg et stilsett"
-
-#~ msgid "Set Columns to _1"
-#~ msgstr "Sett antall kolonner til _1"
-
-#~ msgid "Set Columns to _2"
-#~ msgstr "Sett antall kolonner til _2"
-
-#~ msgid "Set Columns to _3"
-#~ msgstr "Sett antall kolonner til _3"
-
-#~ msgid "Select Media Columns"
-#~ msgstr "Velg mediakolonner"
-
-#~ msgid "Select Note Columns"
-#~ msgstr "Velg notatkolonner"
-
-#~ msgid "Select Person Columns"
-#~ msgstr "Velg personkolonner"
-
-#~ msgid "b. %(birthdate)s, d. %(deathdate)s"
-#~ msgstr "f. %(birthdate)s, d. %(deathdate)s"
-
-#~ msgid "short for born|b. %s"
-#~ msgstr "f. %s"
-
-#~ msgid "short for dead|d. %s"
-#~ msgstr "d. %s"
-
-#~ msgid "Select Repository Columns"
-#~ msgstr "Velg oppbevaringsstedskolonner"
-
-#~ msgid "Select Source Columns"
-#~ msgstr "Velg kildekolonner"
-
-#~ msgid ""
-#~ "This page contains an index of all the events in the database, sorted by "
-#~ "their type, date (if one is present), and person&#8217;s surname.  "
-#~ "Clicking on an event&#8217;s type will take you to that event&#8217;s "
-#~ "page.  Clicking on a person&#8217;s name will take you to that "
-#~ "person&#8217;s page.  The person&#8217;s name will only be shown once for "
-#~ "their events."
-#~ msgstr ""
-#~ "Denne siden inneholder en oversikt over alle hendelsene i databasen, "
-#~ "sortert etter type, dato (hvis den finnes) og personens etternavn.  Ved å "
-#~ "klikke på hendelsens navn vil du komme til en egen side for denne "
-#~ "personen.  Personens navn vil bare vises en gang for personens hendelser."
-
-#~ msgid "%(type)s of %(name)s"
-#~ msgstr "%(type)s %(name)s"
-
-#~ msgid "Address Book List"
-#~ msgstr "Adressebokliste"
-
-#~ msgid "Whether to add exif tags to the media page or not?"
-#~ msgstr "Om exif-informasjon skal legges til på mediasiden eller ikke?"
-
-#~ msgid " starting with %s"
-#~ msgstr "Starter med %s"
-
-#~ msgid "Plugin Status"
-#~ msgstr "Status for programtillegg"
-
-#~ msgid "Edit icons can be enabled in the Preferences dialog"
-#~ msgstr "Endringsikoner kan vises i vinduet for Innstillinger"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Adding Children</b>: To add children in Gramps make either of the "
-#~ "parents the Active Person then switch to the Family View. If the child is "
-#~ "already in the database, click on the third button down to the right of "
-#~ "the Children list. If the person is not already in the database, click on "
-#~ "the second button down to the right of the Children list. After the "
-#~ "child's information is entered they will automatically be listed as a "
-#~ "child of the Active Person."
-#~ msgstr ""
-#~ "<b>Legge til barn</b>: For å legge til barn i Gramps, angi en av "
-#~ "foreldrene som aktiv person, gå så til Familievisningen. Hvis barnet "
-#~ "allerede er i databasen, velg den tredje knappen på høyre side av Barn-"
-#~ "lista. Hvis barnet ikke er i databasen, klikk på den andre knappen på "
-#~ "høyre side av Barn-lista. Etter at barn informasjonen er tastet inn, vil "
-#~ "de automatisk bli listet som et barn av den aktive personen."
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Changing The Preferred Name</b>: It is easy to manage people with "
-#~ "several names in Gramps. Make the person the Active Person, doubleclick "
-#~ "on the record, and select the Names tab. Different types of names can be "
-#~ "added. For example, Married Name, Birth Name, etc. Selecting a preferred "
-#~ "name is just a matter of right-clicking on the name and choosing the only "
-#~ "item in the menu."
-#~ msgstr ""
-#~ "<b>Endre foretrukket navn</b>: Det er lett å håndtere personer med flere "
-#~ "navn i Gramps. Sett personen som aktiv person, dobbelklikk på personen, "
-#~ "og velg Navn fanen. Forskjellige navn kan bli lagt til, slik som: Navn "
-#~ "som gift, fødselsnavn, o.l. For å velge et foretrukket navn, høyreklikk "
-#~ "på det ønskede navnet, og velg det eneste alternativet i menyen."
-
-#~ msgid ""
-#~ "<b>Different Views</b>: There are twelve different views for navigating "
-#~ "your family: Gramplets, People, Relationships, Family List, Pedigree, "
-#~ "Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each "
-#~ "helps you to achieve one or more specific tasks."
-#~ msgstr ""
-#~ "<b>Forskjellige visninger</b>: Det er tolv ulike visninger for å navigere "
-#~ "i dine slektsdata: Smågramps, Personer, Slektskap, Familieliste, "
-#~ "Stamtavle, Hendelser, Kilder, Steder, Media, Oppbevaringssteder, Notater "
-#~ "og HTML-kart. Alle disse hjelper deg å utføre en eller flere av dine "
-#~ "oppgaver."
-
-# Sponset? betyr egentlig at man i gamle dager tok til
-# seg barn som ikke var ens egne ... men hva bør dette være på norsk?
-# tror ikke sponset er noe fornuftig ord dessverre ... -Jørgen
-#~ msgid ""
-#~ "<b>Editing The Relationship of a Child</b>: Not all children are related "
-#~ "by birth to their parents. You can edit the relationship of a child to "
-#~ "each parent by making the child the active person. In the Relationship "
-#~ "View, click on the third icon to the right of the &quot;Parents:&quot; "
-#~ "entry. This brings up the Family Editor. Now select the child, right-"
-#~ "click and choose &quot;Edit relationship&quot;. Here you can set the "
-#~ "relationship between the child and its father and mother. Relationships "
-#~ "can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and "
-#~ "Unknown."
-#~ msgstr ""
-#~ "<b>Endre relasjonen til et barn</b>: Ikke alle barn er relatert til sine "
-#~ "foreldre ved en fødsel. Du kan endre relasjonen for et barn til hver av "
-#~ "foreldrene ved å velge barnet som aktiv person. I Relasjonsvisningen "
-#~ "velger du tredje ikon fra høyre for &quot;Foreldrefeltet&quot;.  Dette "
-#~ "åpner Familieeditoren. Velg så barnet, høyreklikk og velg &quot;Endre "
-#~ "relasjon&quot;. Her kan du sette relasjon mellom barnet og dets mor og "
-#~ "far.. Relasjonen kan være enten Fødsel, Adoptert, Stebarn, Fadderbarn, "
-#~ "Fosterbarn eller Ukjent."
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Gramps Manual</b>: The Gramps manual is quite elaborate and well "
-#~ "written. It includes details on keybindings and includes some useful tips "
-#~ "that will help you in your genealogy work. Check it out."
-#~ msgstr ""
-#~ "<b>Gramps-manual</b>: Gramps-manualen er ganske utfyllende og bra "
-#~ "skrevet. Den inneholder detaljer om hurtigtaster og inneholder noen "
-#~ "nyttige tips som vil hjelpe deg i ditt slektsforskningsarbeide. Sjekk den "
-#~ "ut."
-
-#~ msgid ""
-#~ "<b>Listing Events</b>: Events in the life of any individual may be added "
-#~ "to the database via the <b>Person &gt; Edit Person &gt; Events</b> "
-#~ "option. This space can be used to include a wide range of options ranging "
-#~ "from adoptions, to baptisms (and other religious ceremonies), burials, "
-#~ "causes of death, Census listings, degrees earned, elections, emigration, "
-#~ "military service, nobility titles, occupations, ordination, property, "
-#~ "religion, retirement, wills, etc."
-#~ msgstr ""
-#~ "<b>Liste hendelser</b>: En hendelse kan legges til en person i databasen "
-#~ "via <b>Personer &gt; Rediger &gt; Hendelser</b>. Her kan du legge til alt "
-#~ "fra adopsjon, dåp (og andre religiøse sermonier), begravelse, dødsårsak, "
-#~ "folketelling, utdannelse, valgt, emigrert, militærtjeneste, adelstittler, "
-#~ "yrke, ordinering, eiendom, religion, pensjonist, testamente o.l."
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Setting Your Preferences</b>: Not happy with some default behavior of "
-#~ "Gramps? <b>Edit &gt; Preferences</b> lets you to modify a number of "
-#~ "settings, allowing you to tailor Gramps to your needs."
-#~ msgstr ""
-#~ "<b>Endre dine innstillinger</b>: Ikke fornøyd med noen av "
-#~ "standardinnstillingene i Gramps? <b>Rediger &gt; Foretrukne "
-#~ "innstillinger</b> lar deg endre flere verdier for innstillinger, slik at "
-#~ "du tilpasser Gramps til ditt behov."
-
-#~ msgid ""
-#~ "<b>Shifting a Family View</b>: Changing the Active Person in the "
-#~ "Relationships View is easy. Just doubleclick on the name of a person to "
-#~ "make it the active one."
-#~ msgstr ""
-#~ "<b>Bytte i Familievisning</b>: Å endre Aktiv Person i Slektskapvisning er "
-#~ "enkelt.  Bare dobbeltklikk på et navn til en person for å gjøre denne til "
-#~ "aktiv person."
-
-#~ msgid ""
-#~ "A range of dates can be given by using the format &quot;between January "
-#~ "4, 2000 and March 20, 2003&quot;"
-#~ msgstr ""
-#~ "En datorekke kan angis ved å bruke formatet &quot;mellom 4. januar 2000 "
-#~ "og 20. mars 2003&quot; (Fungerer ikke på norsk. Bruk engelsk inntil "
-#~ "feilen er funnet. Eks. &quot;between January 4, 2000 and March 20, "
-#~ "2003&quot;)"
-
-#~ msgid ""
-#~ "An alternate name can be selected as a person's preferred name by "
-#~ "selecting the desired name in the person's name list, bringing up the "
-#~ "context menu by clicking the right mouse button, and selecting &quot;set "
-#~ "as default name&quot; from the menu."
-#~ msgstr ""
-#~ "Et alternativt navn kan velges som en persons foretrukne navn. Velg først "
-#~ "det ønskede navnet i personens navneliste, før du høyreklikker på dette "
-#~ "for å få opp valgmenyen, og velger &quot;Sett som standardnavn&quot; fra "
-#~ "menyen."
-
-#~ msgid ""
-#~ "Birth order of children in a family can be set, even if they do not have "
-#~ "birth dates, by using drag and drop."
-#~ msgstr ""
-#~ "Fødselsrekkefølgen for barn i familievisningen kan settes, hvis det "
-#~ "mangler fødselsdato, kan de dras og slippes."
-
-#~ msgid ""
-#~ "Custom reports can be created by advanced users under the &quot;"
-#~ "plugin&quot; system. More information on custom reports can be found at "
-#~ "http://developers.gramps-project.org"
-#~ msgstr ""
-#~ "Tilpassede rapporter kan lages av avanserte brukere under &quot;"
-#~ "programtillegg&quot;-systemet. Mer informasjon om tilpassede rapporter "
-#~ "kan du finne på http://developers.gramps-project.org"
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps allows you to generate a number of reports (both text and "
-#~ "graphical) based on your genealogical information. There is great "
-#~ "flexibility in selecting what people are included in the reports as well "
-#~ "as the output format (html, pdf, Open Document Text, RTF, LaTeX and plain "
-#~ "text). Experiment with the reports under the <b>Reports</b> menu to get "
-#~ "an idea of how powerful Gramps is."
-#~ msgstr ""
-#~ "Gramps lar deg lage mange rapporter (både tekstrapporter og grafiske "
-#~ "rapporter) basert på slektsgranskermaterialet ditt. Det er mange valg for "
-#~ "hvilke personer som skal være med i rapportene i tillegg til mange "
-#~ "utskriftsformat (html, pdf, Open Document Text, RTF, LaTeX og ren tekst). "
-#~ "Prøv deg frem med rapporter under menyen for<b>Rapporter</b> for å få en "
-#~ "ide om hvor kraftfull Gramps er."
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps has some unique features, including the ability to input any piece "
-#~ "of information directly into Gramps. All data in the data base can be "
-#~ "rearranged/manipulated to assist the user in doing research, analysis and "
-#~ "correlation with the potential of filling relationship gaps."
-#~ msgstr ""
-#~ "Gramps har en del smarte funksjoner. Du kan for eksempel sette inn "
-#~ "hvilken som helst informasjon direkte inn i Gramps. Alle data i databasen "
-#~ "kan bli omorganisert/manipulert for å hjelpe brukeren i arbeidet med "
-#~ "analyser og slektskap for å få fylt inn tomrom."
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps makes every effort to maintain compatibility with GEDCOM, the "
-#~ "general standard of recording genealogical information. Filters exist "
-#~ "that make importing and exporting GEDCOM files trivial."
-#~ msgstr ""
-#~ "Gramps er, så godt det lar seg gjøre, kompatibel med GEDCOM, den "
-#~ "generelle standarden for å lagre slektsforskningsinformasjon. Det "
-#~ "eksisterer filtre som gjør import og eksport av GEDCOM-filer enkelt."
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps works even when using KDE, as long as the required GTK libraries "
-#~ "are installed."
-#~ msgstr ""
-#~ "Gramps fungerer også når man bruker KDE, så lenge de nødvendige GTK-"
-#~ "Oppbevaringsstederene er installert."
-
-#~ msgid ""
-#~ "Make your data portable --- your family tree data and media can be "
-#~ "exported directly to the GNOME file manager (Nautilus), for burning onto "
-#~ "a CD."
-#~ msgstr ""
-#~ "Gjør dine data flyttbare --- dataene for ditt familietre og all annen "
-#~ "media kan eksporteres direkte til GNOME-filbehandleren (Nautilus) for "
-#~ "brenning til en CD."
-
-#~ msgid ""
-#~ "Multiple names can be specified for individuals. Examples are birth name, "
-#~ "marriage name or aliases."
-#~ msgstr ""
-#~ "Flere navn kan angis for hvert enkelt individ. Eksempler er fødselsnavn, "
-#~ "ekteskapsnavn og aliaser."
-
-#, fuzzy
-#~ msgid ""
-#~ "Relationship calculators in Gramps are available in more than fifteen "
-#~ "languages."
-#~ msgstr "Slektskapskalkulator i Gramps er tilgjengelig på mer enn 15 språk."
-
-#~ msgid ""
-#~ "To easily merge two people, select them both (a second person can be "
-#~ "selected by holding the Control key while clicking) and clicking on "
-#~ "<b>Edit &gt; Fast Merge</b>."
-#~ msgstr ""
-#~ "For å flette sammen to personer må du velge dem begge (den andre personen "
-#~ "kan bli valgt ved å holde nede &quot;Ctrl&quot;-tasten samtidig som man "
-#~ "trykker på personen), før du trykker på <b>Rediger &gt; Hurtig fletting</"
-#~ "b>."
-
-#, fuzzy
-#~ msgid ""
-#~ "To run Gramps, you need to have GTK installed. But you do not need to be "
-#~ "running the GNOME desktop."
-#~ msgstr ""
-#~ "For å kjøre Gramps må du ha installert GTK. Men du trenger ikke å kjøre "
-#~ "skrivebordsmiljøet GNOME."
-
-#, fuzzy
-#~ msgid ""
-#~ "You can link any electronic media (including non-text information) and "
-#~ "other file types to your Gramps family tree."
-#~ msgstr ""
-#~ "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst "
-#~ "informasjon) og andre filtyper til ditt Gramps-familietre."
