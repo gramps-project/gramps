@@ -445,7 +445,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 other_name = self.sdb.name(other)
                 if other_name:
                     explanation = _("Added birth event based on %(evidence)s, from %(name)s") % {
-                        'evidence' : evidence, 'name ' : other_name }
+                        'evidence' : evidence, 'name' : other_name }
                 else:
                     explanation = _("Added birth event based on %s") % evidence
                 modifier = self.get_modifier("birth")
