@@ -1178,7 +1178,7 @@ div#Addresses {
 }
 div#Addresses table.infolist {
     font-size: 12px;
-    background- color: #D8F3D6;
+    background-color: #D8F3D6;
 }
 div#Addresses table.infolist tbody tr td {
     border-bottom: solid 1px #5D835F;
@@ -1193,7 +1193,7 @@ div#Addresses table.infolist tbody tr td.ColumnCity {
     width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCounty {
-    with: 8%;
+    width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnState {
     width: 12%;
