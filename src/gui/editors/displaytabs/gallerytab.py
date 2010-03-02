@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2009-2010  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -202,7 +202,6 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.iconlist.set_margin(12)
         self.iconlist.set_spacing(24)
         self.iconlist.set_reorderable(True)
-        self.iconlist.set_item_width(item_width)
         self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
         
         # connect the signals
