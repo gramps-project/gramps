@@ -627,6 +627,13 @@ class FlatBaseModel(gtk.GenericTreeModel):
             node = self.get_iter(path)
             self.row_changed(path, node)
 
+    def handle2path(self, handle):
+        """
+        Obtain from a handle, a path.
+        Part of common api with flat/treebasemodel
+        """
+        return self.on_get_path(handle)
+
     def on_get_flags(self):
         """
         Returns the GtkTreeModelFlags for this particular type of model

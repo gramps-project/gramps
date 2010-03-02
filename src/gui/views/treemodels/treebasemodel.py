@@ -228,7 +228,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
                 the hierarchy.  Each entry is a node object.
     handle2node A dictionary of gramps handles.  Each entry is a node object.
     nodemap     A NodeMap, mapping id's of the nodes to the node objects. Node
-                refer to other notes via id's in a linked list form.
+                refer to other nodes via id's in a linked list form.
     
     The model obtains data from database as needed and holds a cache of most
     recently used data.
@@ -724,6 +724,13 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Get the node for a handle.
         """
         return self.handle2node.get(handle)
+
+    def handle2path(self, handle):
+        """
+        Obtain from a handle, a path.
+        Part of common api with flat/treebasemodel
+        """
+        return self.on_get_path(self.get_node(handle))
 
     # The following implement the public interface of gtk.GenericTreeModel
 
