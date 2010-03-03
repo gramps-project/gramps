@@ -1,4 +1,4 @@
-.﻿/*
+﻿/*
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -47,6 +47,17 @@ Females     Web_Gender_Female.png
 
  NarrativeWeb Styles
 --------------------------------------------------------------------------------------------  */
+
+/* Navigation
+----------------------------------------------------- */
+div#navigation ul li.CurrentSection a {
+    color: #FFF;
+    background-color: #00029D;
+}
+div#navigation ul li.CurrentSection a:hover {
+    border: solid 2px #13A926;
+    background-color: #000;
+}
 
 /* General Elements
 ----------------------------------------------------- */
@@ -489,20 +500,24 @@ div#IndividualDetail div.subsection table tr td:first-child {
 
 /* Places
 ----------------------------------------------------- */
-#Places {
+div#Places {
     margin: 0;
     padding: 0;
 }
-#Places table.infolist tbody tr td.ColumnLetter {
+
+div#Places table.infolist tbnody tr td {
+    border-bottom: dashed 1px #000;
+}
+div#Places table.infolist tbody tr td.ColumnLetter {
     background-color: #D8F3D6;
 }
-#Places table.infolist tbody tr td.ColumnLetter a:hover {
+div#Places table.infolist tbody tr td.ColumnLetter a:hover {
     background: none;
 }
-#Places table.infolist tbody tr td.ColumnName {
+div#Places table.infolist tbody tr td.ColumnName {
     background-color: #FFF;
 }
-#Places table.infolist tbody tr td.ColumnName a {
+div#Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
 }
 
