@@ -14560,7 +14560,7 @@ msgstr "Les problèmes suivants ont été rencontrés :"
 #: ../src/plugins/quickview/AttributeMatch.py:32
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Individus avec un l'attribut '%s'"
+msgstr "Individus avec l'attribut '%s'"
 
 #: ../src/plugins/quickview/AttributeMatch.py:45
 #, python-format
@@ -16418,7 +16418,7 @@ msgstr "Ajouter les événements naissance avec les dates"
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:99
 msgid "Add a birth events with or without estimated dates"
-msgstr "Ajouter une événement naissance avec ou sans dates estimées"
+msgstr "Ajouter un événement naissance avec ou sans dates estimées"
 
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:103
@@ -16438,7 +16438,7 @@ msgstr "Ajouter les événements décès avec les dates"
 # trunk
 #: ../src/plugins/tool/CalculateEstimatedDates.py:106
 msgid "Add death events with or without estimated dates"
-msgstr "Ajouter une événement décès avec ou sans dates estimées"
+msgstr "Ajouter un événement décès avec ou sans dates estimées"
 
 #. -----------------------------------------------------
 #: ../src/plugins/tool/CalculateEstimatedDates.py:110
