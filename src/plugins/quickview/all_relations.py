@@ -77,8 +77,8 @@ class AllRelReport():
         p1 = self.sdb.name(self.person)
         if self.person.handle == self.home_person.handle :
             self.sdoc.paragraph(_FMT_VOID % (
-                _("%(person)s and %(active_person)s are the same person."))) % {
-                'person' : p1, 'active_person' : p2 } 
+                _("%(person)s and %(active_person)s are the same person.")) % {
+                'person' : p1, 'active_person' : p2 }) 
             return
 
         #check if not a family too:
@@ -203,8 +203,8 @@ class AllRelReport():
         """
         p2 = self.sdb.name(self.home_person)
         p1 = self.sdb.name(self.person)
-        self.sdoc.title(_("Relationships of %(person)s to %(active_person)s")) % {
-            'person' : p1 ,'active_person' : p2 }
+        self.sdoc.title(_("Relationships of %(person)s to %(active_person)s") % {
+            'person' : p1 ,'active_person' : p2 })
         self.sdoc.paragraph("")
 
     def print_details_header(self, relations, pers1, pers2, 
