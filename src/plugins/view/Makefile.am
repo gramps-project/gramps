@@ -17,8 +17,6 @@ pkgdata_PYTHON = \
 	mediaview.py \
 	noteview.py \
 	pedigreeview.py \
-	pedigreeviewext.py \
-	pedigreeviewext.gpr.py \
 	personlistview.py \
 	persontreeview.py \
 	placelistview.py \
