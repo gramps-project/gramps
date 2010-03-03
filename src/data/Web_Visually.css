@@ -1,4 +1,4 @@
-.﻿/*
+﻿/*
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -49,6 +49,16 @@ Females     Web_Gender_Female.png
 
  NarrativeWeb Styles
 --------------------------------------------------------------------------------------------  */
+div#alphabet ul li {
+    background-color: #6AF364;
+}
+div#navigation ul li.CurrentSection a {
+    background-color: #000;
+    color: #FFF;
+}
+div#navigation ul li.CurrentSection a:hover {
+    background-color: 696969;
+}
 
 /* General Elements
 ----------------------------------------------------- */
