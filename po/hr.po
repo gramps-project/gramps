@@ -1,16 +1,16 @@
 # translation of GRAMPS to Croatian
 # Copyright (C) 2007 THE GRAMPS'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the GRAMPS package.
-# Josip <josip@pisoj.com>, 2008, 2009, 2010.
+# Josip <josip@pisoj.com>, 2008, 2009, 2010
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 16:40+0100\n"
-"PO-Revision-Date: 2010-02-28 23:19+0100\n"
+"POT-Creation-Date: 2010-03-02 10:59+0100\n"
+"PO-Revision-Date: 2010-03-04 01:29+0100\n"
 "Last-Translator: Josip <josip@pisoj.com>\n"
-"Language-Team: Croatian\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -127,7 +127,7 @@ msgstr "Uredi knjižne oznake"
 #: ../src/plugins/webreport/NarrativeWeb.py:1809
 #: ../src/plugins/webreport/NarrativeWeb.py:1988
 #: ../src/plugins/webreport/NarrativeWeb.py:4735
-#: ../src/PluginUtils/_GuiOptions.py:820
+#: ../src/PluginUtils/_GuiOptions.py:828
 #: ../src/PluginUtils/_PluginWindows.py:225
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
@@ -169,8 +169,8 @@ msgstr "Ime"
 #: ../src/plugins/view/relview.py:593
 #: ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77
-#: ../src/PluginUtils/_GuiOptions.py:821
-#: ../src/PluginUtils/_GuiOptions.py:961
+#: ../src/PluginUtils/_GuiOptions.py:829
+#: ../src/PluginUtils/_GuiOptions.py:969
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
@@ -606,11 +606,11 @@ msgstr ""
 #: ../src/docgen/TextBufDoc.py:160
 #: ../src/docgen/TextBufDoc.py:162
 #: ../src/plugins/gramplet/gramplet.gpr.py:173
-#: ../src/plugins/lib/libpersonview.py:349
+#: ../src/plugins/lib/libpersonview.py:335
 #: ../src/plugins/lib/libplaceview.py:172
 #: ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191
-#: ../src/plugins/view/mediaview.py:248
+#: ../src/plugins/view/mediaview.py:255
 #: ../src/plugins/view/noteview.py:209
 #: ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
@@ -815,7 +815,7 @@ msgid "manual|Using_the_Clipboard"
 msgstr "Korištenje odlagališta"
 
 #: ../src/ScratchPad.py:89
-#: ../src/cli/clidbman.py:395
+#: ../src/cli/clidbman.py:403
 #: ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76
 #: ../src/gen/lib/repotype.py:59
@@ -837,6 +837,7 @@ msgstr "Korištenje odlagališta"
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473
+#: ../src/plugins/view/geoview.py:643
 #: ../src/plugins/view/relview.py:438
 #: ../src/plugins/view/relview.py:975
 #: ../src/plugins/view/relview.py:1022
@@ -931,7 +932,7 @@ msgstr "Link na događaj"
 #: ../src/plugins/tool/SortEvents.py:58
 #: ../src/plugins/view/eventview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:125
-#: ../src/PluginUtils/_GuiOptions.py:960
+#: ../src/PluginUtils/_GuiOptions.py:968
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 msgid "Place"
 msgstr "Mjesto"
@@ -1319,8 +1320,8 @@ msgstr "Informacije o publikaciji"
 msgid "Repository Link"
 msgstr "Link Spremište"
 
-#: ../src/ScratchPad.py:1216
-#: ../src/ScratchPad.py:1253
+#: ../src/ScratchPad.py:1244
+#: ../src/ScratchPad.py:1285
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Odlagalište"
@@ -2061,7 +2062,7 @@ msgstr "PREFIKS"
 #: ../src/plugins/webreport/NarrativeWeb.py:1964
 #: ../src/plugins/webreport/NarrativeWeb.py:2894
 #: ../src/PluginUtils/_GuiOptions.py:85
-#: ../src/PluginUtils/_GuiOptions.py:1077
+#: ../src/PluginUtils/_GuiOptions.py:1085
 msgid "Surname"
 msgstr "Prezime"
 
@@ -2242,6 +2243,25 @@ msgid ""
 "  -L                                     List Family Trees in Detail\n"
 "  -u, --force-unlock                     Force unlock of family tree\n"
 msgstr ""
+"\n"
+"Upotreba: gramps.py [POSTAVKE...]\n"
+"  --load-modules=MODUL1,MODUL2,...     Dinamički moduli za učitanje\n"
+"\n"
+"Postavke pomoći\n"
+"  -?, --help                             Prikazuje ovu poruku\n"
+"  --usage                                Prikazuje kratka uputstva za upotrebu\n"
+"\n"
+"Postavke programa\n"
+"  -O, --open=OBITELJSKO_STABLO                 Otvara obiteljsko stablo\n"
+"  -i, --import=DATOTEKA                  Uvoz datoteke\n"
+"  -e, --export=DATOTEKA                 Izvoz datoteke\n"
+"  -f, --format=FORMAT                    Odabir formata obiteljskog stabla\n"
+"  -a, --action=ACTION                    Odabir akcije\n"
+"  -p, --options=OPTIONS_STRING           Odabir postavki\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l                                     Popis obiteljskih stabala\n"
+"  -L                                     Detaljni popis obiteljskih stabala\n"
+"  -u, --force-unlock                     Prisilno otključavanje obiteljskog stabla\n"
 
 #: ../src/cli/argparser.py:156
 #: ../src/cli/argparser.py:225
@@ -2271,34 +2291,34 @@ msgstr ""
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/cli/clidbman.py:62
+#: ../src/cli/clidbman.py:63
 msgid "Family Tree"
 msgstr "Obiteljsko stablo"
 
-#: ../src/cli/clidbman.py:213
+#: ../src/cli/clidbman.py:214
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Početak uvoza, %s"
 
-#: ../src/cli/clidbman.py:219
+#: ../src/cli/clidbman.py:220
 msgid "Import finished..."
 msgstr "Uvoz završen..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:273
+#: ../src/cli/clidbman.py:274
 #: ../src/plugins/import/ImportCsv.py:387
 msgid "Importing data..."
 msgstr "Uvoz podataka..."
 
-#: ../src/cli/clidbman.py:333
+#: ../src/cli/clidbman.py:334
 msgid "Could not make database directory: "
 msgstr "Nije moguće izraditi mapu baze podataka: "
 
-#: ../src/cli/clidbman.py:373
+#: ../src/cli/clidbman.py:381
 msgid "Never"
 msgstr "Nikada"
 
-#: ../src/cli/clidbman.py:392
+#: ../src/cli/clidbman.py:400
 #, python-format
 msgid "Locked by %s"
 msgstr "Zaključano od: %s"
@@ -4600,7 +4620,7 @@ msgstr "Odaberi"
 #: ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:512
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
-#: ../src/plugins/view/mediaview.py:240
+#: ../src/plugins/view/mediaview.py:247
 msgid "View"
 msgstr "Pogled"
 
@@ -5024,7 +5044,7 @@ msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Za odabir medija koristite povuci i ispusti metodu ili gumbe"
 
 #: ../src/gui/editors/objectentries.py:302
-#: ../src/PluginUtils/_GuiOptions.py:782
+#: ../src/PluginUtils/_GuiOptions.py:790
 msgid "No image given, click button to select one"
 msgstr "Nije odabrana slika, pritisnite gumb za odabir jedne"
 
@@ -5033,7 +5053,7 @@ msgid "Edit media object"
 msgstr "Uredi Medij"
 
 #: ../src/gui/editors/objectentries.py:304
-#: ../src/PluginUtils/_GuiOptions.py:757
+#: ../src/PluginUtils/_GuiOptions.py:765
 msgid "Select an existing media object"
 msgstr "Odaberite postojeći medij"
 
@@ -5051,7 +5071,7 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Za odabir zabilješke koristite povuci i ispusti metodu ili gumbe"
 
 #: ../src/gui/editors/objectentries.py:353
-#: ../src/PluginUtils/_GuiOptions.py:705
+#: ../src/PluginUtils/_GuiOptions.py:713
 msgid "No note given, click button to select one"
 msgstr "Nije odabrana zabilješka, pritisnite gumb za odabir jedne"
 
@@ -5062,7 +5082,7 @@ msgid "Edit Note"
 msgstr "Urediti zabilješku"
 
 #: ../src/gui/editors/objectentries.py:355
-#: ../src/PluginUtils/_GuiOptions.py:675
+#: ../src/PluginUtils/_GuiOptions.py:683
 msgid "Select an existing note"
 msgstr "Odaberi postojeću zabilješku"
 
@@ -5311,6 +5331,8 @@ msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be due to a change in one of the main views, for example a source used here is deleted in the source view.\n"
 "To make sure the information shown is still correct, the data shown has been updated. Some edits you have made may have been lost."
 msgstr ""
+"%(object)s koji uređujete  je promijenjen izvan ovog uređivača. To može biti zbog promjena u jednom od glavnih pogleda, npr. kada je izvor korišten ovdje obrisan u pogledu Izvori.\n"
+"Prikazani podaci su osvježeni da bi se osigurala njihova točnost i neke vaše promjene su možda izgubljene."
 
 #: ../src/gui/editors/editfamily.py:509
 #: ../src/plugins/import/ImportCsv.py:281
@@ -6097,7 +6119,7 @@ msgid "_Gallery"
 msgstr "_Galerija"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
-#: ../src/plugins/view/mediaview.py:244
+#: ../src/plugins/view/mediaview.py:251
 msgid "Open Containing _Folder"
 msgstr "Otvari mapu koja sadrži multimedijalnu datoteku"
 
@@ -6105,8 +6127,8 @@ msgstr "Otvari mapu koja sadrži multimedijalnu datoteku"
 msgid "Non existing media found in the Gallery"
 msgstr "Pronađeni nepostojeći mediji u galeriji"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:483
-#: ../src/plugins/view/mediaview.py:221
+#: ../src/gui/editors/displaytabs/gallerytab.py:487
+#: ../src/plugins/view/mediaview.py:228
 msgid "Drag Media Object"
 msgstr "Povuci medij"
 
@@ -6200,14 +6222,14 @@ msgstr "Postaviti kao zadano ime"
 #: ../src/gui/editors/displaytabs/namemodel.py:52
 #: ../src/gui/views/listview.py:496
 #: ../src/plugins/quickview/all_relations.py:307
-#: ../src/PluginUtils/_GuiOptions.py:917
+#: ../src/PluginUtils/_GuiOptions.py:925
 msgid "Yes"
 msgstr "Da"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/views/listview.py:497
 #: ../src/plugins/quickview/all_relations.py:311
-#: ../src/PluginUtils/_GuiOptions.py:916
+#: ../src/PluginUtils/_GuiOptions.py:924
 msgid "No"
 msgstr "Ne"
 
@@ -6464,7 +6486,7 @@ msgid "Select Media Object"
 msgstr "Odaberi Medij"
 
 #: ../src/gui/selectors/selectperson.py:67
-#: ../src/PluginUtils/_GuiOptions.py:914
+#: ../src/PluginUtils/_GuiOptions.py:922
 msgid "Select Person"
 msgstr "Odaberi osobu"
 
@@ -6489,22 +6511,22 @@ msgid "Select Source"
 msgstr "Odaberi Izvor"
 
 #: ../src/gui/views/listview.py:197
-#: ../src/plugins/lib/libpersonview.py:356
+#: ../src/plugins/lib/libpersonview.py:342
 msgid "_Add..."
 msgstr "_Dodaj..."
 
 #: ../src/gui/views/listview.py:199
-#: ../src/plugins/lib/libpersonview.py:358
+#: ../src/plugins/lib/libpersonview.py:344
 msgid "_Remove"
 msgstr "_Ukloni"
 
 #: ../src/gui/views/listview.py:201
-#: ../src/plugins/lib/libpersonview.py:364
+#: ../src/plugins/lib/libpersonview.py:350
 msgid "Export View..."
 msgstr "Izvoz pogleda..."
 
 #: ../src/gui/views/listview.py:207
-#: ../src/plugins/lib/libpersonview.py:347
+#: ../src/plugins/lib/libpersonview.py:333
 msgid "action|_Edit..."
 msgstr "_Uredi..."
 
@@ -6887,10 +6909,10 @@ msgstr "Usporedi Osobe"
 #: ../src/Merge/_MergePerson.py:279
 #: ../src/Merge/_MergePerson.py:311
 #: ../src/Merge/_MergePerson.py:316
-#: ../src/plugins/lib/libpersonview.py:387
-#: ../src/plugins/lib/libpersonview.py:400
+#: ../src/plugins/lib/libpersonview.py:373
+#: ../src/plugins/lib/libpersonview.py:386
+#: ../src/plugins/lib/libpersonview.py:397
 #: ../src/plugins/lib/libpersonview.py:411
-#: ../src/plugins/lib/libpersonview.py:425
 msgid "Cannot merge people"
 msgstr "Ne mogu spojiti osobe"
 
@@ -7105,12 +7127,12 @@ msgid "Not Applicable"
 msgstr "Nije primjenljivo"
 
 #: ../src/plugins/BookReport.py:171
-#: ../src/PluginUtils/_GuiOptions.py:615
+#: ../src/PluginUtils/_GuiOptions.py:623
 msgid "unknown father"
 msgstr "nepoznat otac"
 
 #: ../src/plugins/BookReport.py:177
-#: ../src/PluginUtils/_GuiOptions.py:621
+#: ../src/PluginUtils/_GuiOptions.py:629
 msgid "unknown mother"
 msgstr "nepoznata majka"
 
@@ -10097,7 +10119,7 @@ msgstr "Nije moguće postaviti osnovnu stazu medija"
 #: ../src/plugins/import/ImportGpkg.py:117
 #, python-format
 msgid "The family tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr ""
+msgstr "Obiteljsko stablo u koje ste uvezli podatke koristi osnovnu putanju do medija: %(orig_path)s. Uvezeni multimedijski objekti koriste relativnu putanju u odnosu na: %(path)s. Možete promijeniti putanju do medija u postavkama ili je pretvoriti u već postojeću. Možete to učiniti premještanjem multimedije na novo mjesto i korištenjem Upravitelja medija."
 
 #. -------------------------------------------------------------------------
 #.
@@ -10299,6 +10321,12 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "for more info."
 msgstr ""
+".gramps datoteka koju pokušavate uvesti je napravljena u inačici %(oldgramps)s programa Gramps dok vi koristite noviju inačicu  %(newgramps)s.\n"
+"\n"
+"Provjerite ispravnost i cjelovitost uvezenih podataka. U slučaju problema molimo vas da prijavite grešku i u međuvremenu koristite stariju inačicu programa za uvoz xml podataka inačice %(xmlversion)s.\n"
+"Pogledajte\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"za više podataka."
 
 #: ../src/plugins/import/ImportXml.py:2529
 msgid "Old xml file"
@@ -10313,53 +10341,53 @@ msgstr "Vaša GEDCOM datoteka je oštečena. Izgleda da je skraćena."
 msgid "Import from GEDCOM (%s)"
 msgstr "Uvoz iz GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2217
+#: ../src/plugins/lib/libgedcom.py:2220
 msgid "GEDCOM import"
 msgstr "GEDCOM Uvoz"
 
-#: ../src/plugins/lib/libgedcom.py:2473
+#: ../src/plugins/lib/libgedcom.py:2476
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Linija %d nije razumljiva te je stoga ignorirana."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4324
+#: ../src/plugins/lib/libgedcom.py:4326
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Linija %d: prazna zabilješka o događaju te je stoga ignorirana."
 
-#: ../src/plugins/lib/libgedcom.py:5012
-#: ../src/plugins/lib/libgedcom.py:5586
+#: ../src/plugins/lib/libgedcom.py:5014
+#: ../src/plugins/lib/libgedcom.py:5588
 #, python-format
 msgid "Could not import %s"
 msgstr "Ne mogu uvesti %s"
 
-#: ../src/plugins/lib/libgedcom.py:5356
+#: ../src/plugins/lib/libgedcom.py:5358
 #, python-format
 msgid "Import from %s"
 msgstr "Uvezi iz %s"
 
-#: ../src/plugins/lib/libgedcom.py:5444
-#: ../src/plugins/lib/libgedcom.py:5456
+#: ../src/plugins/lib/libgedcom.py:5446
+#: ../src/plugins/lib/libgedcom.py:5458
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Redak %d: prazna zabilješka preskočena."
 
-#: ../src/plugins/lib/libgedcom.py:5495
+#: ../src/plugins/lib/libgedcom.py:5497
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "preskočeno %(skip)d zavisnih u %(line)d. redku"
 
-#: ../src/plugins/lib/libgedcom.py:5750
+#: ../src/plugins/lib/libgedcom.py:5752
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Vaša GEDCOM datoteka je oštećena. Izgleda da datoteka koristi UTF-16 kodirani znakovni skup ali nema BOM oznake."
 
-#: ../src/plugins/lib/libgedcom.py:5753
+#: ../src/plugins/lib/libgedcom.py:5755
 msgid "Your GEDCOM file is empty."
 msgstr "Vaša GEDCOM datoteka je prazna."
 
-#: ../src/plugins/lib/libgedcom.py:5816
+#: ../src/plugins/lib/libgedcom.py:5818
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Neispravna linija %d u GEDCOM datoteki."
@@ -13718,12 +13746,12 @@ msgid "Last Changed"
 msgstr "Zadnja promjena"
 
 #: ../src/plugins/lib/libpersonview.py:108
-#: ../src/plugins/lib/libpersonview.py:357
+#: ../src/plugins/lib/libpersonview.py:343
 msgid "Add a new person"
 msgstr "Dodaj novu osobu"
 
 #: ../src/plugins/lib/libpersonview.py:109
-#: ../src/plugins/lib/libpersonview.py:348
+#: ../src/plugins/lib/libpersonview.py:334
 msgid "Edit the selected person"
 msgstr "Uredi odabranu osobu"
 
@@ -13744,29 +13772,29 @@ msgstr "_Obriši Osobu"
 msgid "Delete Person (%s)"
 msgstr "Obriši Osobu (%s)"
 
-#: ../src/plugins/lib/libpersonview.py:345
+#: ../src/plugins/lib/libpersonview.py:331
 #: ../src/plugins/view/pedigreeview.py:505
 #: ../src/plugins/view/pedigreeviewext.py:632
 #: ../src/plugins/view/relview.py:400
 msgid "Person Filter Editor"
 msgstr "Uređivač filtera Osobe"
 
-#: ../src/plugins/lib/libpersonview.py:359
+#: ../src/plugins/lib/libpersonview.py:345
 msgid "Remove the Selected Person"
 msgstr "Ukloni odabranu osobu"
 
-#: ../src/plugins/lib/libpersonview.py:360
+#: ../src/plugins/lib/libpersonview.py:346
 msgid "Compare and _Merge..."
 msgstr "_Usporedi i spoji"
 
-#: ../src/plugins/lib/libpersonview.py:362
+#: ../src/plugins/lib/libpersonview.py:348
 msgid "_Fast Merge..."
 msgstr "_Brzo spajanje..."
 
-#: ../src/plugins/lib/libpersonview.py:388
-#: ../src/plugins/lib/libpersonview.py:401
+#: ../src/plugins/lib/libpersonview.py:374
+#: ../src/plugins/lib/libpersonview.py:387
+#: ../src/plugins/lib/libpersonview.py:398
 #: ../src/plugins/lib/libpersonview.py:412
-#: ../src/plugins/lib/libpersonview.py:426
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
 msgstr "Dvije osobe moraju biti odabrane za izvođenje spajanja osoba. Drugu osobu možete odabrati držeći pritisnutu Ctrl tipku i klikom na odabranu osobu."
 
@@ -13858,7 +13886,7 @@ msgstr "Omogućava upotrebu Cairo biblioteka za izradu dokumenata."
 
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
-msgstr ""
+msgstr "Pomoćna klasa za formatiranje"
 
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
@@ -15980,6 +16008,19 @@ msgid ""
 "\n"
 "You may have to run the tool repeatedly (without removing previous events) to add all of the events possible."
 msgstr ""
+"Alat Približni izračun datuma koristi se za dodavanje ili uklanjanje događaja poput rođenja, smrti i slično za osobe kojima ti podaci nedostaju.\n"
+"\n"
+"Način upotrebe:\n"
+"1. Go to the Options tab\n"
+"2. Check the [ ] Remove option to remove previous estimates\n"
+"3. Select the Add date options to date events with or without dates\n"
+"4. Click on Execute\n"
+"5. Select the people with which to add events\n"
+"6. Click on 'Add Selected Events' button to create\n"
+"\n"
+"NOTES: if you decide to make an event permanent, remove it from the Source. Otherwise, it will get removed the next time you automatically remove these events.\n"
+"\n"
+"You may have to run the tool repeatedly (without removing previous events) to add all of the events possible."
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:182
 #: ../src/plugins/tool/tools.gpr.py:35
@@ -17492,6 +17533,20 @@ msgstr "Obriši odabranu obitelj"
 msgid "Family Filter Editor"
 msgstr "Uređivač Filtra Obitelji"
 
+#: ../src/plugins/view/fanchartview.gpr.py:3
+msgid "Fan Chart View"
+msgstr "Lepezasti dijagram"
+
+#: ../src/plugins/view/fanchartview.gpr.py:4
+#: ../src/plugins/view/pedigreeviewext.gpr.py:40
+#: ../src/plugins/view/view.gpr.py:130
+msgid "Ancestry"
+msgstr "Rodoslov"
+
+#: ../src/plugins/view/fanchartview.gpr.py:5
+msgid "The view showing relations through a fanchart"
+msgstr "Pogled koji prikazuje srodstvo koristeći lepezasti dijagram"
+
 #: ../src/plugins/view/geoview.py:344
 msgid "Clear the entry field in the places selection box."
 msgstr "Briše polje za unos u okviru za odabir mjesta."
@@ -17761,7 +17816,7 @@ msgstr "Sva mjesta za:"
 
 #: ../src/plugins/view/geoview.py:2122
 msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
-msgstr ""
+msgstr "Nije moguće centrirati mapu. Nema mjesta sa koordinatama. Mogući razlozi su : <ul><li>Filtar koji koristite ne vraća niša.</li><li>Aktivna osoba nema mjesta sa koordinatama.</li><li>Članovi obitelji aktivne osobe nemaju mjesta sa koordinatama.</li><li>Nema mjesta.</li><li>Nije postavljena aktivna osoba.</li>"
 
 #: ../src/plugins/view/geoview.py:2140
 msgid "Not yet implemented ..."
@@ -17878,19 +17933,19 @@ msgstr "Uredi odabrani medij"
 msgid "Delete the selected media object"
 msgstr "Obriši odabrani medij"
 
-#: ../src/plugins/view/mediaview.py:238
+#: ../src/plugins/view/mediaview.py:245
 msgid "Media Filter Editor"
 msgstr "Uređivač filtra Medij"
 
-#: ../src/plugins/view/mediaview.py:241
+#: ../src/plugins/view/mediaview.py:248
 msgid "View in the default viewer"
 msgstr "Prikaz u zadanom pregledniku"
 
-#: ../src/plugins/view/mediaview.py:245
+#: ../src/plugins/view/mediaview.py:252
 msgid "Open the folder containing the media file"
 msgstr "Otvara mapu koja sadrži multimedijalne datoteke"
 
-#: ../src/plugins/view/mediaview.py:293
+#: ../src/plugins/view/mediaview.py:300
 #: ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
@@ -18057,11 +18112,6 @@ msgstr "Pogled Rodoslov"
 #: ../src/plugins/view/view.gpr.py:123
 msgid "The view showing an ancestor pedigree of the selected person"
 msgstr "Pogled koji prikazuje rodoslov odabrane osobe"
-
-#: ../src/plugins/view/pedigreeviewext.gpr.py:40
-#: ../src/plugins/view/view.gpr.py:130
-msgid "Ancestry"
-msgstr "Rodoslov"
 
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
@@ -19441,26 +19491,26 @@ msgstr "Odabir osobe za izvješće"
 msgid "Select a different family"
 msgstr "Odabir druge obitelji"
 
-#: ../src/PluginUtils/_GuiOptions.py:623
+#: ../src/PluginUtils/_GuiOptions.py:631
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s i %s (%s)"
 
-#: ../src/PluginUtils/_GuiOptions.py:912
+#: ../src/PluginUtils/_GuiOptions.py:920
 #, python-format
 msgid "Also include %s?"
 msgstr "Uključi i %s?"
 
-#: ../src/PluginUtils/_GuiOptions.py:1078
+#: ../src/PluginUtils/_GuiOptions.py:1086
 msgid "Colour"
 msgstr "Boja"
 
-#: ../src/PluginUtils/_GuiOptions.py:1252
+#: ../src/PluginUtils/_GuiOptions.py:1260
 #: ../src/ReportBase/_ReportDialog.py:430
 msgid "Save As"
 msgstr "Spremi kao"
 
-#: ../src/PluginUtils/_GuiOptions.py:1324
+#: ../src/PluginUtils/_GuiOptions.py:1332
 #: ../src/ReportBase/_ReportDialog.py:287
 #: ../src/ReportBase/_StyleEditor.py:100
 msgid "Style Editor"
@@ -19572,7 +19622,7 @@ msgstr "Osvježi popis dodataka"
 
 #: ../src/PluginUtils/_PluginWindows.py:368
 msgid "Install Addons"
-msgstr "Instalacija doddataka"
+msgstr "Instalacija dodataka"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
@@ -20405,7 +20455,7 @@ msgstr "Filtri: Srodstvo"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
 msgid "Searches over the database starting from a specified person and returns everyone between that person and a set of target people specified with a filter.  This produces a set of relationship paths (including by marriage) between the specified person and the target people.  Each path is not necessarily the shortest path."
-msgstr ""
+msgstr "Pretražuje bazu podataka počevši od odabrane osobe i pronalazi sve osobe između početne i osoba specificiranih u filtru, vraćajući niz rodoslovnih veza između tih osoba (uključujući i srodstva po vjenčanju). Svaki od ovih nizova nije nužno i najkraći!"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
 msgid "Finding relationship paths"
@@ -23759,12 +23809,6 @@ msgstr ""
 
 #~ msgid "Django Import"
 #~ msgstr "Uvoz Django"
-
-#~ msgid "Fan Chart View"
-#~ msgstr "Lepezasti dijagram"
-
-#~ msgid "The view showing relations through a fanchart"
-#~ msgstr "Pogled koji prikazuje srodstvo koristeći lepezasti dijagram"
 
 #~ msgid "Requested user not found."
 #~ msgstr "Traženi korisnik nije pronađen."
