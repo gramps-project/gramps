@@ -1472,8 +1472,8 @@ class CheckIntegrity(object):
                 except:
                     pn = _("Unknown")
                 self.text.write('\t')
-                self.text.write(_("%(person)s was removed from the family of %(family)s\n")) % {
-                'person' : cn, 'family' : pn }
+                self.text.write(_("%(person)s was removed from the family of %(family)s\n") % {
+                'person' : cn, 'family' : pn } )
 
         if plink > 0:
             self.text.write(ngettext("%(quantity)d broken spouse/family link was fixed\n", 
@@ -1491,8 +1491,8 @@ class CheckIntegrity(object):
                 else:
                     pn = family_handle
                 self.text.write('\t')
-                self.text.write(_("%(person)s was restored to the family of %(family)s\n")) % {
-                    'person' : cn, 'family' : pn }
+                self.text.write(_("%(person)s was restored to the family of %(family)s\n") % {
+                    'person' : cn, 'family' : pn } )
 
         if slink > 0:
             self.text.write(ngettext("%(quantity)d duplicate spouse/family link was found\n", \
@@ -1509,8 +1509,8 @@ class CheckIntegrity(object):
                 else:
                     pn = _("None")
                 self.text.write('\t')
-                self.text.write(_("%(person)s was restored to the family of %(family)s\n")) % {
-                    'person' : cn, 'family' : pn }
+                self.text.write(_("%(person)s was restored to the family of %(family)s\n") % {
+                    'person' : cn, 'family' : pn } )
 
         if efam == 1:
             self.text.write(_("%d family with no parents or children found, removed.\n"))
