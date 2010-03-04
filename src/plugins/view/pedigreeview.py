@@ -1140,8 +1140,8 @@ class PedigreeView(NavigationView):
                         mrela = lst[i-1][1]
 
                     line = LineWidget(lst[((i+1)/2)-1][4],
-                                      last_pbw, mrela,
-                                      pbw, frela,
+                                      last_pbw, frela,
+                                      pbw, mrela,
                                       self.tree_direction)
                         
                     if lst[i] and lst[i][2]:
