@@ -453,7 +453,7 @@ class PathChange(BatchOp):
         text = _(
             'The following action is to be performed:\n\n'
             'Operation:\t%(title)s\nReplace:\t\t%(src_fname)s\nWith:\t\t%(dest_fname)s') % {
-             'title' : self.title.replace('_',''), 'src_fname' : from_text, 'dest_fname' : to_text })
+             'title' : self.title.replace('_',''), 'src_fname' : from_text, 'dest_fname' : to_text }
         return text
         
     def _prepare(self):
