@@ -1239,11 +1239,11 @@ class ProgenParser(object):
                 father_handle = father > 0 and self.__find_person_handle("I%d" % father) or None
                 mother_handle = mother > 0 and self.__find_person_handle("I%d" % mother) or None
                 if father > 0 and not father_handle:
-                    log.warning(_("cannot find father for I%(person)s (father=%(id)d)")) % {
-                        'person' : pers_id, 'id' : father }
+                    log.warning(_("cannot find father for I%(person)s (father=%(id)d)") % {
+                        'person' : pers_id, 'id' : father } )
                 elif mother > 0 and not mother_handle:
-                    log.warning(_("cannot find mother for I%(person)s (mother=%(mother)d)")) % {
-                        'person' : pers_id, 'mother' : mother }
+                    log.warning(_("cannot find mother for I%(person)s (mother=%(mother)d)") % {
+                        'person' : pers_id, 'mother' : mother } )
                 else:
                     fam = self.fm2fam.get((father_handle, mother_handle), None)
                     if not fam:
