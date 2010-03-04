@@ -330,8 +330,8 @@ class CSVParser(object):
         try:
             data = [[r.strip() for r in row] for row in reader]
         except csv.Error, e:
-            ErrorDialog(_('format error: file %(fname)s, line %(line)d: %(zero)s')) % {
-                        'fname' : self.filename, 'line' : reader.line_num, 'zero' : e }
+            ErrorDialog(_('format error: file %(fname)s, line %(line)d: %(zero)s') % {
+                        'fname' : self.filename, 'line' : reader.line_num, 'zero' : e })
             try:
                 fp.close()
             except:
