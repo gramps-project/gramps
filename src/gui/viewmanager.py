@@ -32,7 +32,6 @@ Manages the main window and the pluggable views
 #
 #-------------------------------------------------------------------------
 import os
-
 from gen.ggettext import gettext as _
 from cStringIO import StringIO
 from collections import defaultdict
@@ -884,7 +883,13 @@ class ViewManager(CLIManager):
             self.pages.append([])
             nrpage = 0
             for pdata, page_def in cat_views:
-                page = page_def(self.dbstate, self.uistate)
+                try:
+                    page = page_def(self.dbstate, self.uistate)
+                except:
+                    import traceback
+                    LOG.warn("View '%s' failed to load." % pdata.id)
+                    traceback.print_exc()
+                    continue
                 # Category is (string, trans):
                 page.set_category(pdata.category)
                 page.set_ident(page.get_category() + '_' + pdata.id)
