@@ -688,8 +688,8 @@ class ProgenParser(object):
             date.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_ABOUT, gen.lib.Date.CAL_GREGORIAN, (0, month, year, None))
             return date
 
-        log.warning(_("date did not match: '%(text)s' (%(msg)s)")) % {
-            'text' : txt.encode('utf-8'), 'msg' : diag_msg or '' }
+        log.warning(_("date did not match: '%(text)s' (%(msg)s)") % {
+            'text' : txt.encode('utf-8'), 'msg' : diag_msg or '' } )
         # Hmmm. Just use the plain text.
         date.set_as_text(txt)
         return date
