@@ -4883,7 +4883,7 @@ msgstr "_Foire aux questions (FAQ)"
 
 #: ../src/gui/viewmanager.py:446
 msgid "_Key Bindings"
-msgstr "Raccourcis clavier"
+msgstr "Raccourcis _clavier"
 
 #: ../src/gui/viewmanager.py:447
 msgid "_User Manual"
@@ -4916,7 +4916,7 @@ msgstr "Fenê_tres"
 
 #: ../src/gui/viewmanager.py:488
 msgid "Clip_board"
-msgstr "Presse-papiers"
+msgstr "_Presse-papiers"
 
 #: ../src/gui/viewmanager.py:489
 msgid "Open the Clipboard dialog"
@@ -4958,8 +4958,6 @@ msgstr "_Barre latérale"
 msgid "_Toolbar"
 msgstr "Barre d'ou_tils"
 
-# chaîne utilisée dans la vue relation ???
-# trunk
 #: ../src/gui/viewmanager.py:507
 #: ../src/plugins/view/geoview.py:1095
 msgid "_Filter Sidebar"
@@ -4999,7 +4997,6 @@ msgstr "Chargement des greffons..."
 msgid "Ready"
 msgstr "Prêt"
 
-# trunk
 # Substantif (GNOME fr)
 #. registering plugins
 #: ../src/gui/viewmanager.py:652
@@ -5035,12 +5032,10 @@ msgstr "Impossible d'abandonner les changements de la session"
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-# trunk
 #: ../src/gui/viewmanager.py:973
 msgid "No views loaded"
 msgstr "Aucunes vues chargées"
 
-# trunk
 #: ../src/gui/viewmanager.py:974
 msgid "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some plugins of type 'View' are enabled. Then restart Gramps"
 msgstr "Aucun greffon vue n'est chargé. Allez dans Aide -> Gestionnaire de greffons, et vérifiez que quelques greffons du type 'Vue' sont activés. Puis relancez Gramps"
@@ -5053,13 +5048,11 @@ msgstr "Les statistiques d'importation"
 msgid "Read Only"
 msgstr "Lecture seule"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/viewmanager.py:1577
 msgid "Failed Loading Plugin"
-msgstr "Greffons ne pouvant être chargé"
+msgstr "Échec au chargement du greffon"
 
-# trunk
 #: ../src/gui/viewmanager.py:1578
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -5089,18 +5082,16 @@ msgstr "Le fichier indiqué est introuvable."
 msgid "Cannot import %s"
 msgstr "Impossible d'importer %s"
 
-# trunk
 #: ../src/gui/editors/addmedia.py:159
 #, python-format
 msgid "Directory specified in preferences: Base path for relative media paths: %s does not exist. Change preferences or do not use relative path when importing"
-msgstr "Répertoire spécifié dans les préférences. Le chemin relatif de base pour les media : %s n'existe pas. Changez vos préférences ou n'utilisez pas de chemin relatif lors de l'importation"
+msgstr "Répertoire spécifié dans les préférences. Le chemin relatif de base pour les media : %s n'existe pas. Changez vos préférences ou n'utilisez pas de chemin relatif lors de l'importation."
 
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
 msgid "Cannot display %s"
 msgstr "Impossible d'afficher %s"
 
-# trunk
 #: ../src/gui/editors/addmedia.py:223
 msgid "Gramps is not able to display the image file. This may be caused by a corrupt file."
 msgstr "Gramps ne peut pas afficher cette image. Le fichier est peut-être corrompu."
@@ -5255,7 +5246,6 @@ msgstr "Aucune donnée n'existe pour cet événement. Veuillez entrer une donné
 msgid "Cannot save event. ID already exists."
 msgstr "Impossible d'enregistrer l'événement. L'identifiant existe déjà."
 
-# trunk
 #: ../src/gui/editors/editevent.py:239
 #: ../src/gui/editors/editmedia.py:266
 #: ../src/gui/editors/editperson.py:726
@@ -5425,7 +5415,6 @@ msgstr "Il est possible de créer accidentellement de multiples familles avec le
 msgid "Family has changed"
 msgstr "La famille a été modifiée"
 
-# trunk
 #: ../src/gui/editors/editfamily.py:504
 #, python-format
 msgid ""
@@ -5541,7 +5530,6 @@ msgstr "Aucune donnée n'existe pour cette famille. Veuillez entrer une donnée 
 msgid "Cannot save family. ID already exists."
 msgstr "Impossible d'enregistrer la famille. L'identifiant existe déjà."
 
-# trunk
 #: ../src/gui/editors/editfamily.py:1009
 #: ../src/gui/editors/editnote.py:307
 #, python-format
@@ -5842,7 +5830,6 @@ msgstr "Nouveau lieu"
 msgid "Invalid latitude (syntax: 18°9'"
 msgstr "Latitude invalide (syntaxe : 18°9'"
 
-# trunk
 #: ../src/gui/editors/editplace.py:216
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 ou -18:9:48.21)"
@@ -5851,7 +5838,6 @@ msgstr "48.21\"S, -18.2412 ou -18:9:48.21)"
 msgid "Invalid longitude (syntax: 18°9'"
 msgstr "Longitude invalide (syntaxe : 18°9'"
 
-# trunk
 #: ../src/gui/editors/editplace.py:219
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 ou -18:9:48.21)"
@@ -6082,7 +6068,6 @@ msgstr "_Références"
 msgid "Edit reference"
 msgstr "Éditer la référence"
 
-# trunk
 #: ../src/gui/editors/displaytabs/backrefmodel.py:48
 #, python-format
 msgid "%(part1)s - %(part2)s"
@@ -6146,33 +6131,27 @@ msgstr "Clé"
 msgid "_Data"
 msgstr "_Données"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:57
 msgid "Family Events"
 msgstr "Événements familiaux"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:58
 msgid "Events father"
 msgstr "Événements du père"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:59
 msgid "Events mother"
 msgstr "Événements de la mère"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:62
 msgid "Add a new family event"
 msgstr "Ajouter un nouvel événement familial"
 
 # enlever la référence à l'événement
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:63
 msgid "Remove the selected family event"
 msgstr "Enlever l'événement familial sélectionné"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Edit the selected family event or edit person"
 msgstr "Éditer l'événement familial ou individuel sélectionné"
@@ -6209,7 +6188,6 @@ msgstr ""
 "\n"
 "Pour éditer cette référence à l'événement, vous devez fermer l'événement."
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:251
 msgid "Cannot share this reference"
 msgstr "Impossible de partager cette référence"
@@ -6221,17 +6199,14 @@ msgstr "Impossible de partager cette référence"
 msgid "Cannot edit this reference"
 msgstr "Impossible d'éditer cette référence"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:304
 msgid "Cannot change Person"
 msgstr "Impossible de changer d'individu"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventembedlist.py:305
 msgid "You cannot change Person events in the Family Editor"
 msgstr "Vous ne pouvez pas modifier les événements de l'individu dans l'éditeur de famille"
 
-# trunk
 #: ../src/gui/editors/displaytabs/eventrefmodel.py:63
 #: ../src/gui/editors/displaytabs/namemodel.py:62
 #, python-format
@@ -6248,7 +6223,6 @@ msgstr "Temple"
 msgid "_Gallery"
 msgstr "_Galerie"
 
-# trunk
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
 #: ../src/plugins/view/mediaview.py:251
 msgid "Open Containing _Folder"
@@ -6332,12 +6306,10 @@ msgstr "Déplacer le nom sélectionné vers le haut"
 msgid "Move the selected name downwards"
 msgstr "Déplacer le nom sélectionné vers le bas"
 
-# trunk
 #: ../src/gui/editors/displaytabs/nameembedlist.py:75
 msgid "Group As"
 msgstr "Grouper sous"
 
-# trunk
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
 msgid "Note Preview"
 msgstr "Aperçu de la note"
@@ -6369,12 +6341,10 @@ msgstr "Oui"
 msgid "No"
 msgstr "Non"
 
-# trunk
 #: ../src/gui/editors/displaytabs/namemodel.py:58
 msgid "Preferred name"
 msgstr "Nom préféré"
 
-# trunk
 #: ../src/gui/editors/displaytabs/namemodel.py:60
 msgid "Alternative names"
 msgstr "Noms alternatifs"
@@ -6417,54 +6387,44 @@ msgstr "Aperçu"
 msgid "_Notes"
 msgstr "_Notes"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:48
 msgid "Personal Events"
 msgstr "Événements individuels"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:49
 #, python-format
 msgid "With %(namepartner)s (%(famid)s)"
 msgstr "Avec %(namepartner)s (%(famid)s)"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:50
 msgid "<Unknown>"
 msgstr "<Inconnu>"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:53
 msgid "Add a new personal event"
 msgstr "Ajouter un événement individuel"
 
 # enlever la référence à l'événement
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:54
 msgid "Remove the selected personal event"
 msgstr "Enlever l'événement individuel sélectionné"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:55
 msgid "Edit the selected personal event or edit family"
 msgstr "Éditer l'événement individuel ou familial sélectionné"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Move the selected event upwards or change family order"
 msgstr "Déplacer l'événement sélectionné vers le haut ou changer l'ordre de la famille"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Move the selected event downwards or change family order"
 msgstr "Déplacer l'événement sélectionné vers le bas ou changer l'ordre de la famille"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:126
 msgid "Cannot change Family"
 msgstr "Impossible de changer de famille"
 
-# trunk
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:127
 msgid "You cannot change Family events in the Person Editor"
 msgstr "Vous ne pouvez pas modifier les événements familiaux dans l'éditeur de l'individu"
@@ -6605,7 +6565,7 @@ msgstr "Déplacer l'adresse internet sélectionnée vers le bas"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:58
 msgid "Jump to the selected web address"
-msgstr "Aller vers l'adresse internet sélectionnée vers le haut"
+msgstr "Aller à l'adresse internet sélectionnée"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:71
 msgid "_Internet"
@@ -6615,7 +6575,6 @@ msgstr "_Internet"
 msgid "Select Event"
 msgstr "Sélectionner l'événement"
 
-# trunk
 #: ../src/gui/selectors/selectevent.py:64
 #: ../src/plugins/view/eventview.py:85
 msgid "Main Participants"
@@ -6655,7 +6614,6 @@ msgstr "Dernière modification"
 msgid "Select Place"
 msgstr "Sélectionner le lieu"
 
-# trunk
 #: ../src/gui/selectors/selectplace.py:64
 msgid "Parish"
 msgstr "Paroisse"
@@ -6689,7 +6647,6 @@ msgstr "Exporter l'affichage..."
 msgid "action|_Edit..."
 msgstr "É_diter..."
 
-# trunk
 #: ../src/gui/views/listview.py:414
 msgid "Active object not visible"
 msgstr "Objet actif non visible"
@@ -6736,7 +6693,6 @@ msgstr "Supprimer %s ?"
 msgid "_Delete Item"
 msgstr "_Supprimer l'article"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/views/listview.py:561
 msgid "Column clicked, sorting..."
@@ -6755,7 +6711,6 @@ msgstr "Format :"
 msgid "CSV"
 msgstr "CSV"
 
-# trunk
 #: ../src/gui/views/listview.py:883
 msgid "OpenDocument Spreadsheet"
 msgstr "Classeur OpenDocument"
@@ -6767,7 +6722,6 @@ msgstr "Classeur OpenDocument"
 msgid "Updating display..."
 msgstr "Chargement en cours..."
 
-# trunk
 #: ../src/gui/views/listview.py:1069
 msgid "Columns"
 msgstr "Colonnes"
@@ -6821,19 +6775,16 @@ msgstr "Aller à l'individu par défaut"
 msgid "Set _Home Person"
 msgstr "Définir comme s_ouche"
 
-# trunk
 #: ../src/gui/views/navigationview.py:326
 #: ../src/gui/views/navigationview.py:330
 msgid "Jump to by Gramps ID"
 msgstr "Aller à l'identifiant Gramps"
 
-# trunk
 #: ../src/gui/views/navigationview.py:355
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "Erreur : %s n'est pas un ID Gramps valide"
 
-# trunk
 #: ../src/gui/views/pageview.py:437
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
@@ -6852,66 +6803,54 @@ msgstr ""
 msgid "Configure %s View"
 msgstr "Configurer la vue %s"
 
-# trunk
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Countries>"
 msgstr "<Pays>"
 
-# trunk
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<States>"
 msgstr "<Régions>"
 
-# trunk
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Counties>"
 msgstr "<Départements>"
 
-# trunk
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Places>"
 msgstr "<Lieux>"
 
-# trunk
 #: ../src/gui/views/treemodels/placemodel.py:153
 msgid "EW"
 msgstr "EO"
 
-# trunk
 #: ../src/gui/views/treemodels/placemodel.py:156
 msgid "NS"
 msgstr "NS"
 
-# trunk
 #: ../src/gui/views/treemodels/placemodel.py:336
 msgid "<no name>"
 msgstr "<pas de nom>"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/views/treemodels/treebasemodel.py:481
 msgid "Building View"
 msgstr "Construction de la vue"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/views/treemodels/treebasemodel.py:504
 msgid "Building People View"
 msgstr "Construction de la vue Individus"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/views/treemodels/treebasemodel.py:508
 msgid "Obtaining all people"
 msgstr "Obtention de tous les individus"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/gui/views/treemodels/treebasemodel.py:523
 msgid "Applying filter"
 msgstr "Application du filtre"
 
-# trunk
 #: ../src/gui/views/treemodels/treebasemodel.py:532
 msgid "Constructing column data"
 msgstr "Construction des données sur la colonne"
@@ -6945,32 +6884,26 @@ msgstr "Un clic droit pour ajouter des gramplets"
 msgid "Unnamed Gramplet"
 msgstr "Gramplet sans nom"
 
-# trunk
 #: ../src/gui/widgets/grampletpane.py:1303
 msgid "Number of Columns"
 msgstr "Nombre de colonnes"
 
-# trunk
 #: ../src/gui/widgets/grampletpane.py:1308
 msgid "Gramplet Layout"
 msgstr "Mise en page Gramplet"
 
-# trunk
 #: ../src/gui/widgets/grampletpane.py:1345
 msgid "Use maximum height available"
 msgstr "Utilisation de la hauteur maximale disponible"
 
-# trunk
 #: ../src/gui/widgets/grampletpane.py:1351
 msgid "Height if not maximized"
-msgstr "La hauteur n'est pas maximale"
+msgstr "La hauteur n'est pas maximisée"
 
-# trunk
 #: ../src/gui/widgets/grampletpane.py:1358
 msgid "Detached width"
 msgstr "Largeur détachée"
 
-# trunk
 #: ../src/gui/widgets/grampletpane.py:1365
 msgid "Detached height"
 msgstr "Hauteur détachée"
@@ -7871,7 +7804,7 @@ msgstr "Affiche le format de sortie dans la fenêtre."
 #: ../src/plugins/drawreport/AncestorTree.py:477
 #: ../src/plugins/drawreport/DescendTree.py:504
 msgid "Sc_ale to fit on a single page"
-msgstr "Adaptation à une page"
+msgstr "_Adaptation à une page"
 
 #: ../src/plugins/drawreport/AncestorTree.py:478
 #: ../src/plugins/drawreport/DescendTree.py:505
@@ -18146,12 +18079,10 @@ msgstr "Supprimer la famille sélectionnée"
 msgid "Family Filter Editor"
 msgstr "Éditeur de filtre sur la famille"
 
-# trunk
 #: ../src/plugins/view/fanchartview.gpr.py:3
 msgid "Fan Chart View"
-msgstr "Vue roue"
+msgstr "Vue Roue"
 
-# trunk
 # Ancêtres, Aïeux ?
 #: ../src/plugins/view/fanchartview.gpr.py:4
 #: ../src/plugins/view/pedigreeviewext.gpr.py:40
@@ -18159,83 +18090,67 @@ msgstr "Vue roue"
 msgid "Ancestry"
 msgstr "Lignée"
 
-# trunk
 #: ../src/plugins/view/fanchartview.gpr.py:5
 msgid "The view showing relations through a fanchart"
 msgstr "Cette vue affiche toutes les relations dans une roue"
 
-# trunk
 #: ../src/plugins/view/geoview.py:344
 msgid "Clear the entry field in the places selection box."
 msgstr "Nettoyer le champ d'entrée dans la sélection des lieux."
 
-# trunk
 #: ../src/plugins/view/geoview.py:349
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
 msgstr "Conserve le zoom et les coordonnées pour la carte des lieux, la carte de l'individu, la carte de la famille et la carte des événements."
 
-# trunk
 #: ../src/plugins/view/geoview.py:354
 msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
 msgstr "Sélectionnez le fournisseur de cartes. Vous pouvez choisir entre OpenStreetMap et les cartes Google."
 
-# trunk
 #: ../src/plugins/view/geoview.py:383
 msgid "Select the period for which you want to see the places."
 msgstr "Sélectionnez la période pour laquelle vous désirez voir les lieux."
 
-# trunk
 #: ../src/plugins/view/geoview.py:392
 msgid "Prior page."
 msgstr "Page précédente."
 
-# trunk
 #: ../src/plugins/view/geoview.py:396
 msgid "The current page/the last page."
 msgstr "La page actuelle/la dernière page."
 
-# trunk
 #: ../src/plugins/view/geoview.py:400
 msgid "Next page."
 msgstr "Page suivante."
 
-# trunk
 #: ../src/plugins/view/geoview.py:408
 msgid "The number of places which have no coordinates."
 msgstr "Le nombre de lieux sans coordonnées."
 
-# trunk
 #: ../src/plugins/view/geoview.py:442
 #: ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "Géographie"
 
-# trunk
 #: ../src/plugins/view/geoview.py:499
 msgid "You can adjust the time period with the two following values."
 msgstr "Vous pouvez ajuster la période à l'aide des deux valeurs suivantes."
 
-# trunk
 #: ../src/plugins/view/geoview.py:501
 msgid "The number of years before the first event date"
 msgstr "Le nombre d'années avant le premier événement daté"
 
-# trunk
 #: ../src/plugins/view/geoview.py:505
 msgid "The number of years after the last event date"
 msgstr "Le nombre d'années après le dernier événement daté"
 
-# trunk
 #: ../src/plugins/view/geoview.py:509
 msgid "Time period adjustment"
 msgstr "Ajustement de la période"
 
-# trunk
 #: ../src/plugins/view/geoview.py:521
 msgid "Crosshair on the map."
 msgstr "Croix sur la carte."
 
-# trunk
 #: ../src/plugins/view/geoview.py:524
 msgid ""
 "Show the coordinates in the statusbar either in degree\n"
@@ -18244,12 +18159,10 @@ msgstr ""
 "Affiche les coordonnées dans la barre de statut soit en degré\n"
 "soit dans le format interne à Gramps ( D.D8 )"
 
-# trunk
 #: ../src/plugins/view/geoview.py:527
 msgid "The map"
 msgstr "La carte"
 
-# trunk
 #: ../src/plugins/view/geoview.py:547
 msgid "Test the network "
 msgstr "Test de la connexion internet"
