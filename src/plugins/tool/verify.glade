@@ -7,9 +7,11 @@
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkVBox" id="vbox6">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
@@ -701,10 +703,12 @@
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkVBox" id="vbox5">
             <property name="visible">True</property>
             <property name="border_width">6</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="title2">
@@ -741,6 +745,7 @@
                 <child>
                   <object class="GtkVBox" id="vbox7">
                     <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
                       <placeholder/>

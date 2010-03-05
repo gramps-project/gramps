@@ -419,6 +419,8 @@ class VerifyResults(ManagedWindow):
     
         self.top.connect_signals({
             "destroy_passed_object"  : self.close,
+            "on_verify_ok_clicked"   : self.__dummy,
+            "on_help_clicked"        : self.__dummy,
             })
 
         self.warn_tree = self.top.get_object('warn_tree')
@@ -491,6 +493,12 @@ class VerifyResults(ManagedWindow):
        
         self.window.show()
         self.window_shown = False
+
+    def __dummy(self, obj):
+        """dummy callback, needed because VerifyResults is in same glade file
+        as Verify, so callbacks of Verify must be defined.
+        """
+        pass
 
     def load_ignored(self,db_filename):
         md5sum = md5(db_filename)
