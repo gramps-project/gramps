@@ -88,12 +88,13 @@ class StyleListDisplay(object):
                                   _('Document Styles')         )
                                              
         self.top.connect_signals({
-            "destroy_passed_object" : self.__close, 
+            "destroy_passed_object" : self.__close,
             "on_ok_clicked" : self.on_ok_clicked, 
             "on_add_clicked" : self.on_add_clicked, 
             "on_delete_clicked" : self.on_delete_clicked, 
             "on_button_press" : self.on_button_press, 
-            "on_edit_clicked" : self.on_edit_clicked
+            "on_edit_clicked" : self.on_edit_clicked,
+            "on_save_style_clicked" : dummy_callback,
             })
 
         title_label = self.top.get_object('title')
@@ -198,7 +199,12 @@ class StyleEditor(object):
         
         self.top.connect_signals({
             "on_save_style_clicked" : self.on_save_style_clicked, 
-            "destroy_passed_object" : self.__close, 
+            "destroy_passed_object" : self.__close,
+            "on_ok_clicked" : dummy_callback, 
+            "on_add_clicked" : dummy_callback, 
+            "on_delete_clicked" : dummy_callback, 
+            "on_button_press" : dummy_callback, 
+            "on_edit_clicked" : dummy_callback,
             })
 
         self.pname = self.top.get_object('pname')
@@ -363,3 +369,10 @@ class StyleEditor(object):
         self.current_name =  store.get_value(node, 0)
         self.current_p = objs[0]
         self.draw()
+
+def dummy_callback(obj):
+    """Dummy callback to satisfy gtkbuilder on connect of signals. 
+    There are two widgets in the glade file, although only one is needed, 
+    the signals of the other must be connected too
+    """
+    pass
