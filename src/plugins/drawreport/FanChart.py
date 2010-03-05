@@ -27,7 +27,13 @@
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-from math import pi, cos, sin
+from math import pi, cos, sin, log10
+
+def log2(val):
+	"""
+	Calculate the log base 2 of a value.
+	"""
+	return int(log10(val)/log10(2))
 
 #------------------------------------------------------------------------
 #
@@ -39,7 +45,6 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions
-from SubstKeywords import SubstKeywords
 import config
 
 #------------------------------------------------------------------------
@@ -172,11 +177,8 @@ class FanChart(Report):
         Report.__init__(self, database, options_class)
 
         self.height = 0
-        self.lines = 0
-        self.display = "%n"
         self.map = [None] * 2**self.max_generations
         self.text = {}
-        self.box_width = 0
 
     def apply_filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
@@ -186,17 +188,7 @@ class FanChart(Report):
         if (not person_handle) or (index >= 2**self.max_generations):
             return
         self.map[index-1] = person_handle
-
-        subst = SubstKeywords(self.database,person_handle)
-        self.text[index-1] = map(subst.replace, self.display)
-
-        style_sheet = self.doc.get_style_sheet()
-        self.font = style_sheet.get_paragraph_style('text_style').get_font()
-        for line in self.text[index-1]:
-            self.box_width = max(self.box_width,
-                                    self.doc.string_width(self.font,line))
-
-        self.lines = max(self.lines,len(self.text[index-1]))    
+        self.text[index-1] = self.get_info(person_handle, log2(index))
 
         person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
@@ -344,9 +336,7 @@ class FanChart(Report):
             if self.map[index]:
                 if (generation == 0) and self.circle == FULL_CIRCLE:
                     yc = y
-                self.doc.rotate_text(text_style,
-                                     self.get_info(self.map[index],
-                                                   generation),
+                self.doc.rotate_text(text_style, self.text[index],
                                      xc, yc, text_angle)
             text_angle += delta
 
@@ -376,14 +366,10 @@ class FanChart(Report):
             text_angle += delta
             if self.map[index]:
                 if self.radial == RADIAL_UPRIGHT and (start_angle >= 90) and (start_angle < 270):
-                    self.doc.rotate_text(text_style,
-                                         self.get_info(self.map[index],
-                                                       generation),
+                    self.doc.rotate_text(text_style, self.text[index],
                                          xc, yc, text_angle + 180)
                 else:
-                    self.doc.rotate_text(text_style,
-                                         self.get_info(self.map[index],
-                                                       generation),
+                    self.doc.rotate_text(text_style, self.text[index],
                                          xc, yc, text_angle)
 
 #------------------------------------------------------------------------
