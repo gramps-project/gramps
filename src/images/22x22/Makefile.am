@@ -19,10 +19,12 @@ dist_pkgdata_DATA = \
 	gramps-bookmark-edit.png \
 	gramps-bookmark-new.png \
 	gramps-bookmark.png \
+        gramps-config.png \
 	gramps-date-edit.png \
 	gramps-date.png \
 	gramps-event.png \
 	gramps-family.png \
+        gramps-fanchart.png \
 	gramps-font-bgcolor.png \
 	gramps-font-color.png \
 	gramps-font.png \
@@ -50,6 +52,7 @@ dist_pkgdata_DATA = \
 	gramps-tree-list.png \
 	gramps-tree-select.png \
 	gramps-unlock.png \
+        gramps-view.png \
 	gramps-viewmedia.png \
 	gramps-zoom-best-fit.png \
 	gramps-zoom-fit-width.png \
