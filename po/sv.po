@@ -1,8 +1,4 @@
 # translation of svnytt.po to svenska
-# Bo Rosén <bo.rosen@home.se>, 2001.
-# Jens Arvidsson <jya@sverige.nu>, 2002-2005.
-# Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
-# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010.
 # translation of svny.1.po to
 # translation of sv.1.po to
 # translation of nytt_sv2.po to
@@ -30,18 +26,22 @@
 # state               län/delstat
 # undo history        redigeringshistorik#
 # $Id$
+# Bo Rosén <bo.rosen@home.se>, 2001.
+# Jens Arvidsson <jya@sverige.nu>, 2002-2005.
+# Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
+# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: svnytt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-02 10:59+0100\n"
-"PO-Revision-Date: 2010-03-02 13:38+0100\n"
-"Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team: svenska <sv@li.org>\n"
+"PO-Revision-Date: 2010-03-05 12:00+0100\n"
+"Last-Translator: \n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:47
@@ -3010,11 +3010,11 @@ msgstr "Alternativt giftermål"
 
 #: ../src/gen/lib/eventtype.py:192
 msgid "birth abbreviation|b"
-msgstr "f."
+msgstr "f"
 
 #: ../src/gen/lib/eventtype.py:193
 msgid "death abbreviation|d"
-msgstr "d."
+msgstr "d"
 
 #: ../src/gen/lib/eventtype.py:194
 msgid "marriage abbreviation|m"
@@ -25173,4 +25173,5 @@ msgstr ""
 "formatet &quot;mellan 4 january 2000 och 20 mars 2003&quot;. Du kan även "
 "indikera konfidensnivån på ett datum samt även välja mellan flera olika "
 "kalendrar. Prova knappen bredvid datumfältet i händelseredigeraren."
+
 
