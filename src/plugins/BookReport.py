@@ -899,12 +899,24 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                                      item.get_name(),
                                      item.get_translated_name(),
                                      self.track)
-        response = item_dialog.window.run()
-        if response == gtk.RESPONSE_OK:
-            subject = _get_subject(option_class, self.db)
-            self.book_model.model.set_value(the_iter, 2, subject)
-            self.book.set_item(row, item)
-        item_dialog.close()
+
+        while True:
+            response = item_dialog.window.run()
+            if response == gtk.RESPONSE_OK:
+                # dialog will be closed by connect, now continue work while
+                # rest of dialog is unresponsive, release when finished
+                subject = _get_subject(option_class, self.db)
+                self.book_model.model.set_value(the_iter, 2, subject)
+                self.book.set_item(row, item)
+                item_dialog.close()
+                break
+            elif response == gtk.RESPONSE_CANCEL:
+                item_dialog.close()
+                break
+            elif response == gtk.RESPONSE_DELETE_EVENT:
+                #just stop, in ManagedWindow, delete-event is already coupled to
+                #correct action.
+                break
 
     def book_button_press(self, obj, event):
         """

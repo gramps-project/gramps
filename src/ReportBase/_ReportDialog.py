@@ -639,7 +639,10 @@ def report(dbstate, uistate, person, report_class, options_class,
             except:
                 LOG.error("Failed to run report.", exc_info=True)
             break
-        elif (response == gtk.RESPONSE_DELETE_EVENT or
-              response == gtk.RESPONSE_CANCEL):
+        elif response == gtk.RESPONSE_CANCEL:
             dialog.close()
+            break
+        elif response == gtk.RESPONSE_DELETE_EVENT:
+            #just stop, in ManagedWindow, delete-event is already coupled to
+            #correct action.
             break
