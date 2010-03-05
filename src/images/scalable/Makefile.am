@@ -5,7 +5,7 @@ SUBDIRS =
 pkgdatadir = $(datadir)/@PACKAGE@/images/scalable
 
 dist_pkgdata_DATA = \
-geo-place-add.svg
+        geo-place-add.svg \
 	geo-fixed-zoom.svg \
 	geo-free-zoom.svg \
 	geo-place-add.svg \
