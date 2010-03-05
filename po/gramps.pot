@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-02 10:59+0100\n"
+"POT-Creation-Date: 2010-03-05 10:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -531,7 +531,6 @@ msgid "Quick View"
 msgstr ""
 
 #: ../src/Relationship.py:797 ../src/plugins/view/pedigreeview.py:1175
-#: ../src/plugins/view/pedigreeviewext.py:1840
 msgid "Relationship loop detected"
 msgstr ""
 
@@ -713,7 +712,7 @@ msgstr ""
 msgid "manual|Using_the_Clipboard"
 msgstr ""
 
-#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:403
+#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:395
 #: ../src/gen/lib/urltype.py:54 ../src/gen/lib/notetype.py:76
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/attrtype.py:62
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/srcmediatype.py:62
@@ -1987,33 +1986,33 @@ msgstr ""
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/cli/clidbman.py:63
+#: ../src/cli/clidbman.py:62
 msgid "Family Tree"
 msgstr ""
 
-#: ../src/cli/clidbman.py:214
+#: ../src/cli/clidbman.py:213
 #, python-format
 msgid "Starting Import, %s"
 msgstr ""
 
-#: ../src/cli/clidbman.py:220
+#: ../src/cli/clidbman.py:219
 msgid "Import finished..."
 msgstr ""
 
 #. Create a new database
-#: ../src/cli/clidbman.py:274 ../src/plugins/import/ImportCsv.py:387
+#: ../src/cli/clidbman.py:273 ../src/plugins/import/ImportCsv.py:387
 msgid "Importing data..."
 msgstr ""
 
-#: ../src/cli/clidbman.py:334
+#: ../src/cli/clidbman.py:333
 msgid "Could not make database directory: "
 msgstr ""
 
-#: ../src/cli/clidbman.py:381
+#: ../src/cli/clidbman.py:373
 msgid "Never"
 msgstr ""
 
-#: ../src/cli/clidbman.py:400
+#: ../src/cli/clidbman.py:392
 #, python-format
 msgid "Locked by %s"
 msgstr ""
@@ -4096,10 +4095,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:902
-#: ../src/plugins/view/pedigreeview.py:1476
-#: ../src/plugins/view/pedigreeviewext.py:2244
-#: ../src/plugins/view/relview.py:498 ../src/plugins/view/relview.py:828
-#: ../src/plugins/view/relview.py:862
+#: ../src/plugins/view/pedigreeview.py:1476 ../src/plugins/view/relview.py:498
+#: ../src/plugins/view/relview.py:828 ../src/plugins/view/relview.py:862
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr ""
@@ -4114,7 +4111,6 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:131 ../src/plugins/gramplet/gramplet.gpr.py:144
 #: ../src/plugins/view/pedigreeview.py:371
-#: ../src/plugins/view/pedigreeviewext.py:486
 #: ../src/plugins/webreport/NarrativeWeb.py:3831
 msgid "Pedigree"
 msgstr ""
@@ -6461,7 +6457,6 @@ msgstr ""
 #: ../src/plugins/textreport/KinshipReport.py:110
 #: ../src/plugins/view/fanchartview.py:788
 #: ../src/plugins/view/pedigreeview.py:1362
-#: ../src/plugins/view/pedigreeviewext.py:2124
 msgid "Spouses"
 msgstr ""
 
@@ -7094,14 +7089,12 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:53
 #: ../src/plugins/drawreport/DescendTree.py:46
 #: ../src/plugins/view/pedigreeview.py:76
-#: ../src/plugins/view/pedigreeviewext.py:77
 msgid "short for born|b."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:54
 #: ../src/plugins/drawreport/DescendTree.py:48
 #: ../src/plugins/view/pedigreeview.py:77
-#: ../src/plugins/view/pedigreeviewext.py:78
 msgid "short for died|d."
 msgstr ""
 
@@ -8262,8 +8255,6 @@ msgstr ""
 #: ../src/plugins/view/fanchartview.py:760
 #: ../src/plugins/view/pedigreeview.py:1314
 #: ../src/plugins/view/pedigreeview.py:1334
-#: ../src/plugins/view/pedigreeviewext.py:2073
-#: ../src/plugins/view/pedigreeviewext.py:2094
 msgid "People Menu"
 msgstr ""
 
@@ -8271,9 +8262,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:755
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:822
-#: ../src/plugins/view/pedigreeview.py:1396
-#: ../src/plugins/view/pedigreeviewext.py:2159
-#: ../src/plugins/view/relview.py:878
+#: ../src/plugins/view/pedigreeview.py:1396 ../src/plugins/view/relview.py:878
 #: ../src/plugins/webreport/NarrativeWeb.py:4154
 msgid "Siblings"
 msgstr ""
@@ -8284,7 +8273,6 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:865
 #: ../src/plugins/view/pedigreeview.py:1439
-#: ../src/plugins/view/pedigreeviewext.py:2204
 #: ../src/plugins/view/relview.py:1337
 #: ../src/plugins/webreport/NarrativeWeb.py:4353
 msgid "Children"
@@ -8294,7 +8282,6 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:872
 #: ../src/plugins/view/fanchartview.py:939
 #: ../src/plugins/view/pedigreeview.py:1513
-#: ../src/plugins/view/pedigreeviewext.py:2292
 msgid "Related"
 msgstr ""
 
@@ -13651,9 +13638,7 @@ msgid "Delete Person (%s)"
 msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:331
-#: ../src/plugins/view/pedigreeview.py:505
-#: ../src/plugins/view/pedigreeviewext.py:632
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/pedigreeview.py:505 ../src/plugins/view/relview.py:400
 msgid "Person Filter Editor"
 msgstr ""
 
@@ -17392,7 +17377,6 @@ msgid "Fan Chart View"
 msgstr ""
 
 #: ../src/plugins/view/fanchartview.gpr.py:4
-#: ../src/plugins/view/pedigreeviewext.gpr.py:40
 #: ../src/plugins/view/view.gpr.py:130
 msgid "Ancestry"
 msgstr ""
@@ -17816,37 +17800,30 @@ msgid "Note Filter Editor"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:78
-#: ../src/plugins/view/pedigreeviewext.py:79
 msgid "short for baptized|bap."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:79
-#: ../src/plugins/view/pedigreeviewext.py:80
 msgid "short for chistianized|chr."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:80
-#: ../src/plugins/view/pedigreeviewext.py:81
 msgid "short for buried|bur."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:81
-#: ../src/plugins/view/pedigreeviewext.py:82
 msgid "short for cremated|crem."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:893
-#: ../src/plugins/view/pedigreeviewext.py:1215
 msgid "Jump to child..."
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:911
-#: ../src/plugins/view/pedigreeviewext.py:1261
 msgid "Jump to mother"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1176
-#: ../src/plugins/view/pedigreeviewext.py:1841
 msgid "A person was found to be his/her own ancestor."
 msgstr ""
 
@@ -17862,32 +17839,26 @@ msgid "Home"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1242
-#: ../src/plugins/view/pedigreeviewext.py:1906
 msgid "Show images"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1251
-#: ../src/plugins/view/pedigreeviewext.py:1916
 msgid "Show marriage data"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1260
-#: ../src/plugins/view/pedigreeviewext.py:1964
 msgid "Tree style"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1267
-#: ../src/plugins/view/pedigreeviewext.py:1972
 msgid "Version A"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1274
-#: ../src/plugins/view/pedigreeviewext.py:1979
 msgid "Version B"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1286
-#: ../src/plugins/view/pedigreeviewext.py:1997
 msgid "Tree size"
 msgstr ""
 
@@ -17896,8 +17867,6 @@ msgid "Automatic"
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1301
-#: ../src/plugins/view/pedigreeviewext.py:2007
-#: ../src/plugins/view/pedigreeviewext.py:2018
 #, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
@@ -17905,67 +17874,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../src/plugins/view/pedigreeview.py:1564
-#: ../src/plugins/view/pedigreeviewext.py:2341
 msgid "Family Menu"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:1927
-msgid "Show unknown peoples"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:1938
-msgid "Mouse scroll direction"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:1946
-msgid "Top <-> Bottom"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:1953
-msgid "Left <-> Right"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:1986
-msgid "Version C"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:2025
-msgid "Tree direction"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:2033
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
-msgid "Vertical (top to bottom)"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:2040
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
-msgid "Vertical (bottom to top)"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:2047
-#: ../src/ReportBase/_GraphvizReportDialog.py:73
-msgid "Horizontal (left to right)"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:2054
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
-msgid "Horizontal (right to left)"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.py:2281
-#: ../src/plugins/view/relview.py:389
-msgid "Add New Parents..."
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.gpr.py:32
-#: ../src/plugins/view/view.gpr.py:122
-msgid "Pedigree View"
-msgstr ""
-
-#: ../src/plugins/view/pedigreeviewext.gpr.py:33
-#: ../src/plugins/view/view.gpr.py:123
-msgid "The view showing an ancestor pedigree of the selected person"
 msgstr ""
 
 #: ../src/plugins/view/persontreeview.py:59
@@ -18027,6 +17936,10 @@ msgstr ""
 #: ../src/plugins/view/relview.py:388 ../src/plugins/view/relview.py:390
 #: ../src/plugins/view/relview.py:775
 msgid "Add a new set of parents"
+msgstr ""
+
+#: ../src/plugins/view/relview.py:389
+msgid "Add New Parents..."
 msgstr ""
 
 #: ../src/plugins/view/relview.py:392 ../src/plugins/view/relview.py:396
@@ -18272,6 +18185,14 @@ msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:108
 msgid "The view showing all relationships of the selected person"
+msgstr ""
+
+#: ../src/plugins/view/view.gpr.py:122
+msgid "Pedigree View"
+msgstr ""
+
+#: ../src/plugins/view/view.gpr.py:123
+msgid "The view showing an ancestor pedigree of the selected person"
 msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:137
@@ -19788,6 +19709,22 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "TrueType / FreeSans"
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
+msgid "Vertical (top to bottom)"
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
+msgid "Vertical (bottom to top)"
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
+msgid "Horizontal (left to right)"
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
+msgid "Horizontal (right to left)"
 msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:76
