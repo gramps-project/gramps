@@ -573,7 +573,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                     # another register function doesn't have gramps_target_version
                     if gpr_file in good_gpr:
                         s.remove(gpr_file)
-                    callback("   " + (_("Error: missing gramps_target_version = '3.2' in '%s'...") % gpr_file)  + "\n")
+                    callback("   " + (_("Error: missing gramps_target_version in '%s'...") % gpr_file)  + "\n")
         if len(good_gpr) > 0:
             # Now, install the ok ones
             file_obj.extractall(const.USER_PLUGINS)
