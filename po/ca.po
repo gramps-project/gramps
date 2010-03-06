@@ -4,15 +4,15 @@
 # Aquest fitxer es distribueix segons la mateixa llicència que Gramps
 #
 # Joan Creus <joan punt creus a gmail punt com>, 2008.
-# Joan Creus <joan.creus at gmail dot com>, 2008, 2009.
+# Joan Creus <joan.creus at gmail dot com>, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-02 10:59+0100\n"
-"PO-Revision-Date: 2009-02-26 00:04+0100\n"
+"PO-Revision-Date: 2010-03-07 00:28+0100\n"
 "Last-Translator: Joan Creus <joan.creus at gmail dot com>\n"
-"Language-Team: Català <ca@li.org>\n"
+"Language-Team: Català <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,9 +62,9 @@ msgid "manual|Bookmarks"
 msgstr ""
 
 #: ../src/Bookmarks.py:197
-#, fuzzy, python-format
+#, python-format
 msgid "%(title)s - Gramps"
-msgstr "%(title)s - GRAMPS"
+msgstr "%(title)s - Gramps"
 
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
@@ -145,9 +145,8 @@ msgid "ID"
 msgstr "Id"
 
 #: ../src/const.py:194
-#, fuzzy
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
-msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System - Sistema de Programació de Gestió de la Recerca i Anàlisi Genealògiques) és un programa de genealogia personal."
+msgstr "Gramps (Genealogical Research and Analysis Management Programming System - Sistema de Programació de Gestió de la Recerca i Anàlisi Genealògiques) és un programa de genealogia personal."
 
 #: ../src/const.py:215
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -211,39 +210,32 @@ msgid "No active person"
 msgstr "No hi ha persona activa"
 
 #: ../src/DisplayState.py:319
-#, fuzzy
 msgid "No active family"
-msgstr "No es pot desar la família"
+msgstr "No hi ha família activa"
 
 #: ../src/DisplayState.py:320
-#, fuzzy
 msgid "No active event"
-msgstr "No hi ha persona activa"
+msgstr "No hi ha esdeveniment actiu"
 
 #: ../src/DisplayState.py:321
-#, fuzzy
 msgid "No active place"
-msgstr "No hi ha persona activa"
+msgstr "No hi ha lloc actiu"
 
 #: ../src/DisplayState.py:322
-#, fuzzy
 msgid "No active source"
-msgstr "No hi ha persona activa"
+msgstr "No hi ha font activa"
 
 #: ../src/DisplayState.py:323
-#, fuzzy
 msgid "No active repository"
-msgstr "No es pot desar el repositori"
+msgstr "No hi ha repositori actiu"
 
 #: ../src/DisplayState.py:324
-#, fuzzy
 msgid "No active media"
-msgstr "No hi ha persona activa"
+msgstr "No hi ha medis actius"
 
 #: ../src/DisplayState.py:325
-#, fuzzy
 msgid "No active note"
-msgstr "No hi ha persona activa"
+msgstr "No hi ha nota activa"
 
 #. # end
 #. set up ManagedWindow
@@ -276,7 +268,7 @@ msgid "Summary"
 msgstr "Resum"
 
 #: ../src/ExportAssistant.py:456
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be exported as follows:\n"
 "\n"
@@ -284,11 +276,9 @@ msgid ""
 "\n"
 "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
 msgstr ""
-"Les dades es desaran de la següent manera:\n"
+"Les dades s'exportaran de la següent manera:\n"
 "\n"
 "Format:\t%s\n"
-"Nom:\t%s\n"
-"Carpeta:\t%s\n"
 "\n"
 "Premi Aplicar per continuar, Enrere per revisar les opcions, o Cancel·lar per aturar"
 
@@ -326,7 +316,6 @@ msgid "Your data has been saved"
 msgstr "Les dades s'han desat"
 
 #: ../src/ExportAssistant.py:504
-#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press Close button now to continue.\n"
 "\n"
@@ -334,7 +323,7 @@ msgid ""
 msgstr ""
 "La còpia de les dades s'ha desat amb èxit. Ara pot prémer el botó Tancar per continuar.\n"
 "\n"
-"Nota: la base de dades oberta actualment a la finestra GRAMPS NO és el fitxer que s'acaba de desar. Les edicions futures de la base de dades oberta actualment no modificaran la còpia que s'acaba de fer. "
+"Nota: la base de dades oberta actualment a la finestra Gramps NO és el fitxer que s'acaba de desar. Les edicions futures de la base de dades oberta actualment no modificaran la còpia que s'acaba de fer. "
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:512
@@ -357,7 +346,6 @@ msgstr ""
 "Nota: la base de dades que està oberta ara mateix no té cap problema. Només és una còpia de les dades que no s'ha pogut desar."
 
 #: ../src/ExportAssistant.py:543
-#, fuzzy
 msgid ""
 "Under normal circumstances, Gramps does not require you to directly save your changes. All changes you make are immediately saved to the database.\n"
 "\n"
@@ -365,9 +353,9 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"En circumstàncies normals, GRAMPS no requereix desar els canvis explícitament. Tots els canvis que es fan es desen immediatament a la base de dades.\n"
+"En circumstàncies normals, Gramps no requereix desar els canvis explícitament. Tots els canvis que es fan es desen immediatament a la base de dades.\n"
 "\n"
-"Aquest procés li ajudarà a desar una còpia de les dades en qualsevol dels formats que suporta GRAMPS. Això es pot fer servir per copiar les dades, per desar una còpia de seguretat, o convertir-la a un format que permeti la transferència a un programa diferent.\n"
+"Aquest procés li ajudarà a desar una còpia de les dades en qualsevol dels formats que suporta Gramps. Això es pot fer servir per copiar les dades, per desar una còpia de seguretat, o convertir-la a un format que permeti la transferència a un programa diferent.\n"
 "\n"
 "Si canvia d'opinió durant aquest procés, pot prémer el botó de Cancel·lar sense por en qualsevol moment, i la base de dades actual seguirà intacta."
 
@@ -456,7 +444,6 @@ msgstr ""
 "==== Contribuïdors ====\n"
 
 #: ../src/GrampsAboutDialog.py:81
-#, fuzzy
 msgid ""
 "Much of Gramps' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
@@ -464,39 +451,37 @@ msgid ""
 "Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
-"Moltes de les imatges utilitzades dins de GRAMPS\n"
+"Moltes de les imatges utilitzades dins de Gramps\n"
 "són o bé del Projecte Tango, o en deriven.\n"
 " Aquestes imatges estan disponibles sota la\n"
 "llicència Creative Commons Reconeixement - \n"
 "CompartirIgual 2.5."
 
 #: ../src/GrampsAboutDialog.py:96
-#, fuzzy
 msgid "Gramps Homepage"
-msgstr "Pàgina principal de GRAMPS"
+msgstr "Pàgina principal de Gramps"
 
 #: ../src/gramps.py:90
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least python %d.%d.%d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"La versió de Python no compleix els requeriments. Cal almenys la versió de python %d.%d.%d per executar GRAMPS.\n"
+"La versió de Python no compleix els requeriments. Cal almenys la versió de python %d.%d.%d per executar Gramps.\n"
 "\n"
-"GRAMPS s'aturarà."
+"Gramps s'aturarà."
 
 #: ../src/gramps.py:158 ../src/gramps.py:165
 msgid "Configuration error"
 msgstr "Error de configuració"
 
 #: ../src/gramps.py:162
-#, fuzzy
 msgid "Error reading configuration"
-msgstr "Error llegint %s"
+msgstr "Error llegint configuració"
 
 #: ../src/gramps.py:166
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
 "\n"
@@ -504,7 +489,7 @@ msgid ""
 msgstr ""
 "No s'ha pogut trobar la definició per al tipus-MIME %s \n"
 "\n"
-"Possiblement la instal·lació de GRAMPS és incompleta. Asseguri's que els tipus-MIME de GRAMPS estan instal·lats correctament."
+"Possiblement la instal·lació de Gramps és incompleta. Asseguri's que els tipus-MIME de Gramps estan instal·lats correctament."
 
 #: ../src/PlaceUtils.py:50
 #, python-format
@@ -531,14 +516,13 @@ msgid "Error detected in database"
 msgstr "Detectat error a la base de dades"
 
 #: ../src/QuestionDialog.py:192
-#, fuzzy
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved by running the \"Check and Repair Database\" tool.\n"
 "\n"
 "If this problem continues to exist after running this tool, please file a bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
-"GRAMPS ha detectat un error a la base de dades. Normalment es pot resoldre executant l'eina de \"Comprovar i Reparar la Base de dades\".\n"
+"Gramps ha detectat un error a la base de dades. Normalment es pot resoldre executant l'eina de \"Comprovar i Reparar la Base de dades\".\n"
 "\n"
 "Si aquest problema continua després d'executar aquesta eina, informi si us plau del problema a http://bugs.gramps-project.org\n"
 "\n"
@@ -548,9 +532,8 @@ msgid "Low level database corruption detected"
 msgstr "Detectada corrupció de la base de dades a nivell baix"
 
 #: ../src/QuestionDialog.py:203 ../src/cli/grampscli.py:95
-#, fuzzy
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired by from the Family Tree Manager. Select the database and click on the Repair button"
-msgstr "GRAMPS ha detectat un problema a la base de dades Berkeley de nivell inferior. Això es pot reparar des del Gestor d'Arbres Genealògics. Seleccioni la base de dades i cliqui el botó Reparar"
+msgstr "Gramps ha detectat un problema a la base de dades Berkeley de nivell inferior. Això es pot reparar des del Gestor d'Arbres Genealògics. Seleccioni la base de dades i cliqui el botó Reparar"
 
 #: ../src/QuestionDialog.py:316 ../src/gui/utils.py:262
 msgid "Attempt to force closing the dialog"
@@ -594,9 +577,9 @@ msgid "Relationship loop detected:"
 msgstr "S'ha detectat un bucle de parentesc:"
 
 #: ../src/Relationship.py:927
-#, fuzzy, python-format
+#, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
-msgstr "La persona %s connecta amb si mateixa via %s"
+msgstr "La persona %(person)s connecta amb si mateixa via %(relation)s"
 
 #: ../src/Relationship.py:1193
 msgid "undefined"
@@ -1530,7 +1513,7 @@ msgstr "Cap"
 #: ../src/Spell.py:210 ../src/Spell.py:221
 #, python-format
 msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
-msgstr ""
+msgstr "Avís: llengua del corrector ortogràfic limitada a locale '%s'; instal·lar pyenchant-python-enchant per opcions millors."
 
 #. FIXME: this does not work anymore since 10/2008!!!
 #. if pyenchant is installed we can avoid it, otherwise
@@ -1538,7 +1521,7 @@ msgstr ""
 #. if we didn't see a match on lang, then there is no spell check
 #: ../src/Spell.py:228 ../src/Spell.py:234
 msgid "Warning: spelling checker disabled; install pyenchant/python-enchant to enable."
-msgstr ""
+msgstr "Avís: corrector ortogràfic desactivat: instal·lar pyenchant/python-enchant per activar."
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
 #: ../src/gui/viewmanager.py:449
@@ -1647,9 +1630,8 @@ msgid "female"
 msgstr "dona"
 
 #: ../src/Utils.py:80
-#, fuzzy
 msgid "gender|unknown"
-msgstr "Gènere desconegut"
+msgstr "desconegut"
 
 #: ../src/Utils.py:84
 msgid "Invalid"
@@ -1739,11 +1721,11 @@ msgstr "%(father)s i %(mother)s"
 
 #: ../src/Utils.py:470
 msgid "death-related evidence"
-msgstr ""
+msgstr "proves relacionades amb defunció"
 
 #: ../src/Utils.py:487
 msgid "birth-related evidence"
-msgstr ""
+msgstr "proves relacionades amb naixement"
 
 #: ../src/Utils.py:492 ../src/plugins/import/ImportCsv.py:263
 msgid "death date"
@@ -1754,50 +1736,44 @@ msgid "birth date"
 msgstr "data de naixement"
 
 #: ../src/Utils.py:526
-#, fuzzy
 msgid "sibling birth date"
-msgstr "Data de naixement no vàlida"
+msgstr "data de naixement d'un germà"
 
 #: ../src/Utils.py:538
-#, fuzzy
 msgid "sibling death date"
-msgstr "Data de defunció no vàlida"
+msgstr "data de defunció d'un germà"
 
 #: ../src/Utils.py:552
 msgid "sibling birth-related date"
-msgstr ""
+msgstr "data relacionada amb el naixement d'un germà"
 
 #: ../src/Utils.py:563
 msgid "sibling death-related date"
-msgstr ""
+msgstr "data relacionada amb la defunció d'un germà"
 
 #: ../src/Utils.py:576 ../src/Utils.py:581
-#, fuzzy
 msgid "a spouse, "
-msgstr "Cònjuge"
+msgstr "un cònjuge, "
 
 #: ../src/Utils.py:599
-#, fuzzy
 msgid "event with spouse"
-msgstr "Esdeveniment amb <Id>"
+msgstr "esdeveniment amb cònjuge"
 
 #: ../src/Utils.py:620
-#, fuzzy
 msgid "descendent birth date"
-msgstr "Afegir dates de naixement estimades"
+msgstr "data de naixement de descendent"
 
 #: ../src/Utils.py:629
-#, fuzzy
 msgid "descendent death date"
-msgstr "Afegir dates de defunció estimades"
+msgstr "data de defunció de descendent"
 
 #: ../src/Utils.py:645
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "data relacionada amb el naixement de descendent"
 
 #: ../src/Utils.py:653
 msgid "descendent death-related date"
-msgstr ""
+msgstr "data de relacionada amb la defunció de descendent"
 
 #: ../src/Utils.py:666
 #, python-format
@@ -1805,28 +1781,25 @@ msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Error de base de dades: %s està definit com avantpassat de si mateix"
 
 #: ../src/Utils.py:687 ../src/Utils.py:733
-#, fuzzy
 msgid "ancestor birth date"
-msgstr "data de naixement"
+msgstr "data de naixement d'avantpassat"
 
 #: ../src/Utils.py:697 ../src/Utils.py:743
-#, fuzzy
 msgid "ancestor death date"
-msgstr "data de defunció"
+msgstr "data de defunció d'avantpassat"
 
 #: ../src/Utils.py:708 ../src/Utils.py:754
 msgid "ancestor birth-related date"
-msgstr ""
+msgstr "data relacionada amb el naixement d'avantpassat"
 
 #: ../src/Utils.py:716 ../src/Utils.py:762
 msgid "ancestor death-related date"
-msgstr ""
+msgstr "data relacionada amb la defunció d'avantpassat"
 
 #. no evidence, must consider alive
 #: ../src/Utils.py:816
-#, fuzzy
 msgid "no evidence"
-msgstr "Residència"
+msgstr "sense proves"
 
 #: ../src/Utils.py:1096
 msgid "Person|TITLE"
@@ -1903,7 +1876,7 @@ msgstr "INICIALS\t"
 #: ../src/Utils.py:1210 ../src/Utils.py:1226
 #, python-format
 msgid "%s, ..."
-msgstr ""
+msgstr "%s, ..."
 
 #: ../src/UndoHistory.py:63 ../src/gui/grampsgui.py:156
 msgid "Undo History"
@@ -1938,21 +1911,23 @@ msgid "History cleared"
 msgstr "Historial esborrat"
 
 #: ../src/cli/arghandler.py:127
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family tree instead."
-msgstr "Si és gedcom, gramps-xml o grdb, utilitzi l'opció -i per importar-lo en un arbre genealògic"
+msgstr ""
+"Error: L'arbre genealògic d'entrada \"%s\" no existeix.\n"
+"Si és GEDCOM, Gramps-xml o grdb, utilitzi l'opció -i per importar-lo en un arbre genealògic"
 
 #: ../src/cli/arghandler.py:140
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr ""
+msgstr "Error: fitxer d'importació %s no trobat."
 
 #: ../src/cli/arghandler.py:158
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr ""
+msgstr "Error: Tipus no reconegut: \"%(format)s\" per fitxer d'importació: %(filename)s"
 
 #: ../src/cli/arghandler.py:174
 #, python-format
@@ -1961,24 +1936,27 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
+"AVÍS: El fitxer de sortida ja existeix!\n"
+"AVÍS: Se sobreescriurà:\n"
+"   %(name)s"
 
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
-msgstr ""
+msgstr "D'acord amb sobreescriure'l? (sí/no) "
 
 #: ../src/cli/arghandler.py:180
 msgid "YES"
-msgstr ""
+msgstr "SÍ"
 
 #: ../src/cli/arghandler.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Esborrar l'adreça existent"
+msgstr "Se sobreescriurà el fitxer existent: %s"
 
 #: ../src/cli/arghandler.py:201
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "ERROR: Format no reconegut per fitxer d'exportació %s"
 
 #: ../src/cli/arghandler.py:389
 msgid "Database is locked, cannot open it!"
@@ -2016,11 +1994,29 @@ msgid ""
 "  -L                                     List Family Trees in Detail\n"
 "  -u, --force-unlock                     Force unlock of family tree\n"
 msgstr ""
+"\n"
+"Ús: gramps.py [OPCIÓ...]\n"
+"  --load-modules=MODUL1,MODUL2,...     Mòduls dinàmics a carregar\n"
+"\n"
+"Opcions d'ajuda\n"
+"  -?, --help                             Mostrar aquest missatge d'ajuda\n"
+"  --usage                                Mostrar missatge breu sobre l'ús\n"
+"\n"
+"Opcions d'aplicació\n"
+"  -O, --open=ARBRE_GEN                 Obrir arbre genealògic\n"
+"  -i, --import=FITXER                    Importar fitxer\n"
+"  -e, --export=FITXER                    Exportar fitxer\n"
+"  -f, --format=FORMAT                    Especificar format d'arbre genealògic\n"
+"  -a, --action=ACCIÓ                    Especificar acció\n"
+"  -p, --options=CADENA_OPCIONS         Especificar opcions\n"
+"  -d, --debug=NOM_REGISTRE               Activar registre de depuració\n"
+"  -l                                     Llistar Arbres Genealògics\n"
+"  -L                                     Llistat Detallat d'Arbres Genealògics\n"
+"  -u, --force-unlock                     Forçar desbloqueig  d'arbre genealògic\n"
 
 #: ../src/cli/argparser.py:156 ../src/cli/argparser.py:225
-#, fuzzy
 msgid "Error parsing the arguments"
-msgstr "Error desant document d'estil"
+msgstr "Error processant els arguments"
 
 #: ../src/cli/argparser.py:158
 #, python-format
@@ -2028,6 +2024,8 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
+"Error processant els arguments: %s \n"
+"Escrigui gramps --help per un resum de les comandes, o llegeixi el manual."
 
 #: ../src/cli/argparser.py:226
 #, python-format
@@ -2035,6 +2033,8 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode,supply at least one input file to process."
 msgstr ""
+"Error processant els arguments: %s\n"
+"Per fer-ho servir al mode de línia de comandes, proporcioni almenys un fitxer d'entrada a processar."
 
 #. -------------------------------------------------------------------------
 #.
@@ -2075,12 +2075,12 @@ msgstr "Bloquejat per %s"
 #: ../src/cli/grampscli.py:76
 #, python-format
 msgid "WARNING: %s"
-msgstr ""
+msgstr "AVÍS: %s"
 
 #: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:207
 #, python-format
 msgid "ERROR: %s"
-msgstr ""
+msgstr "ERROR: %s"
 
 #: ../src/cli/grampscli.py:139 ../src/gui/dbloader.py:277
 msgid "Read only database"
@@ -2112,19 +2112,19 @@ msgstr "L'arbre genealògic no existeix, ja que ha estat esborrat."
 
 #. already errors encountered. Show first one on terminal and exit
 #: ../src/cli/grampscli.py:300
-#, fuzzy, python-format
+#, python-format
 msgid "Error encountered: %s"
-msgstr "Error llegint %s"
+msgstr "Trobat error: %s"
 
 #: ../src/cli/grampscli.py:301 ../src/cli/grampscli.py:307
-#, fuzzy, python-format
+#, python-format
 msgid "  Details: %s"
-msgstr "  Famílies: %d\n"
+msgstr "  Detalls: %s"
 
 #: ../src/cli/grampscli.py:305
 #, python-format
 msgid "Error encountered in argument parsing: %s"
-msgstr ""
+msgstr "Trobat error en la interpretació dels arguments: %s"
 
 #: ../src/gen/db/base.py:1437
 msgid "Add child to family"
@@ -2147,23 +2147,21 @@ msgid "Remove mother from family"
 msgstr "Esborrar mare de la família"
 
 #: ../src/gen/db/exceptions.py:66 ../src/plugins/import/ImportGrdb.py:2684
-#, fuzzy
 msgid ""
 "The database version is not supported by this version of Gramps.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
 msgstr ""
-"La versió de la base de dades no està suportada per aquesta versió de GRAMPS.\n"
+"La versió de la base de dades no està suportada per aquesta versió de Gramps.\n"
 "Si us plau pugi a la versió corresponent, o faci servir XML per portar les dades entre versions de base de dades diferents."
 
 #: ../src/gen/db/exceptions.py:79
-#, fuzzy
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
 "You might want to make a backup copy first."
 msgstr ""
 "No pot obrir aquesta base de dades sense actualitzar-la.\n"
-"Si l'actualitza, no podrà fer servir versions anteriors de GRAMPS.\n"
+"Si l'actualitza, no podrà fer servir versions anteriors de Gramps.\n"
 "És convenient fer primer una còpia de seguretat."
 
 #: ../src/gen/db/undoredo.py:250 ../src/gen/db/undoredo.py:286
@@ -2180,9 +2178,8 @@ msgid "_Redo %s"
 msgstr "_Refer %s"
 
 #: ../src/gen/display/name.py:114
-#, fuzzy
 msgid "Default format (defined by Gramps preferences)"
-msgstr "Format predeterminat (definit per les preferències de GRAMPS)"
+msgstr "Format predeterminat (definit per les preferències de Gramps)"
 
 #: ../src/gen/display/name.py:115
 msgid "Surname, Given Patronymic"
@@ -2676,37 +2673,30 @@ msgid "0 days"
 msgstr "0 dies"
 
 #: ../src/gen/lib/date.py:660
-#, fuzzy
 msgid "calendar|Gregorian"
 msgstr "Gregorià"
 
 #: ../src/gen/lib/date.py:661
-#, fuzzy
 msgid "calendar|Julian"
-msgstr "Calendari"
+msgstr "Julià"
 
 #: ../src/gen/lib/date.py:662
-#, fuzzy
 msgid "calendar|Hebrew"
-msgstr "Calendari"
+msgstr "Hebreu"
 
 #: ../src/gen/lib/date.py:663
-#, fuzzy
 msgid "calendar|French Republican"
 msgstr "Republicà Francès"
 
 #: ../src/gen/lib/date.py:664
-#, fuzzy
 msgid "calendar|Persian"
 msgstr "Persa"
 
 #: ../src/gen/lib/date.py:665
-#, fuzzy
 msgid "calendar|Islamic"
 msgstr "Islàmic"
 
 #: ../src/gen/lib/date.py:666
-#, fuzzy
 msgid "calendar|Swedish"
 msgstr "Suec"
 
@@ -2935,19 +2925,16 @@ msgid "Alternate Marriage"
 msgstr "Casament Alternatiu"
 
 #: ../src/gen/lib/eventtype.py:192
-#, fuzzy
 msgid "birth abbreviation|b"
-msgstr "Abreviació"
+msgstr "n"
 
 #: ../src/gen/lib/eventtype.py:193
-#, fuzzy
 msgid "death abbreviation|d"
-msgstr "Abreviació"
+msgstr "d"
 
 #: ../src/gen/lib/eventtype.py:194
-#, fuzzy
 msgid "marriage abbreviation|m"
-msgstr "Abreviació"
+msgstr "c"
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -3032,14 +3019,14 @@ msgstr "El Gramplet %s s'està executant"
 
 #: ../src/gen/plug/_gramplet.py:293 ../src/gen/plug/_gramplet.py:301
 #: ../src/gen/plug/_gramplet.py:307
-#, fuzzy, python-format
+#, python-format
 msgid "Gramplet %s updated"
-msgstr "Gramplets"
+msgstr "Gramplet %s actualitzat"
 
 #: ../src/gen/plug/_gramplet.py:316
-#, fuzzy, python-format
+#, python-format
 msgid "Gramplet %s caused an error"
-msgstr "El Gramplet %s s'està executant"
+msgstr "El Gramplet %s ha provocat un error"
 
 #. -------------------------------------------------------------------------
 #.
@@ -3055,47 +3042,40 @@ msgid "Stable"
 msgstr "Estable"
 
 #: ../src/gen/plug/_pluginreg.py:57
-#, fuzzy
 msgid "Unstable"
-msgstr "Estable"
+msgstr "Inestable"
 
 #: ../src/gen/plug/_pluginreg.py:75
 msgid "Quickreport"
-msgstr ""
+msgstr "Informe ràpid"
 
 #: ../src/gen/plug/_pluginreg.py:76
-#, fuzzy
 msgid "Tool"
-msgstr "Eines"
+msgstr "Eina"
 
 #: ../src/gen/plug/_pluginreg.py:77
-#, fuzzy
 msgid "Importer"
-msgstr "Importar"
+msgstr "Importador"
 
 #: ../src/gen/plug/_pluginreg.py:78
-#, fuzzy
 msgid "Exporter"
-msgstr "Exportar"
+msgstr "Exportador"
 
 #: ../src/gen/plug/_pluginreg.py:79
 msgid "Doc creator"
-msgstr ""
+msgstr "Creador de documentació"
 
 #: ../src/gen/plug/_pluginreg.py:80
-#, fuzzy
 msgid "Plugin lib"
-msgstr "Estat de connector"
+msgstr "Llibreria de connectors"
 
 #: ../src/gen/plug/_pluginreg.py:81
-#, fuzzy
 msgid "Map service"
-msgstr "Servei Militar"
+msgstr "Servei de mapes"
 
 #: ../src/gen/plug/_pluginreg.py:82
-#, fuzzy
 msgid "Gramps View"
-msgstr "Id Gramps"
+msgstr "Vista de Gramps"
 
 #: ../src/gen/plug/_pluginreg.py:83 ../src/gui/grampsgui.py:134
 #: ../src/plugins/view/relview.py:132 ../src/plugins/view/view.gpr.py:115
@@ -3108,43 +3088,41 @@ msgid "Gramplet"
 msgstr "Gramplet"
 
 #: ../src/gen/plug/_pluginreg.py:426 ../src/gui/views/pageview.py:111
-#, fuzzy
 msgid "Miscellaneous"
-msgstr "Filtres diversos"
+msgstr "Miscel·lània"
 
 #: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr ""
+msgstr "ERROR: Problema llegint el registre del connector %(filename)s"
 
 #: ../src/gen/plug/_pluginreg.py:970
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
-msgstr ""
+msgstr "ERROR: El fitxer de connector %(filename)s té una versió de \"%(gramps_target_version)s\" que no és vàlida per a Gramps \"%(gramps_version)s\"."
 
 #: ../src/gen/plug/_pluginreg.py:989
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
-msgstr ""
+msgstr "ERROR: Fitxer de python incorrecte %(filename)s al fitxer de registre %(regfile)s"
 
 #: ../src/gen/plug/_pluginreg.py:997
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
-msgstr ""
+msgstr "ERROR: El fitxer de python %(filename)s al fitxer de registre %(regfile)s no existeix"
 
 #: ../src/gen/plug/docbackend/docbackend.py:140
-#, fuzzy
 msgid "Close file first"
-msgstr "Filtres de fill"
+msgstr "Primer, tancar el fitxer"
 
 #: ../src/gen/plug/docbackend/docbackend.py:150
 msgid "No filename given"
-msgstr ""
+msgstr "No s'ha donat nom de fitxer"
 
 #: ../src/gen/plug/docbackend/docbackend.py:152
-#, fuzzy, python-format
+#, python-format
 msgid "File %s already open, close it first."
-msgstr "El fitxer ja existeix"
+msgstr "El fitxer %s ja està obert, tanqui'l primer."
 
 #: ../src/gen/plug/docbackend/docbackend.py:158
 #: ../src/gen/plug/docbackend/docbackend.py:161 ../src/docgen/ODSTab.py:73
@@ -3180,11 +3158,11 @@ msgstr "Privat"
 #: ../src/gui/columnorder.py:86
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr ""
+msgstr "Vista d'Arbre: la primera columna \"%s\" no es pot canviar"
 
 #: ../src/gui/columnorder.py:92
 msgid "Drag and drop the columns to change the order"
-msgstr ""
+msgstr "Arrossegar i deixar les columnes per canviar l'ordre"
 
 #: ../src/gui/columnorder.py:120 ../src/gui/configure.py:872
 msgid "Display"
@@ -3318,24 +3296,20 @@ msgid "ID Formats"
 msgstr "Formats d'Id"
 
 #: ../src/gui/configure.py:396
-#, fuzzy
 msgid "Suppress warning when adding parents to a child."
-msgstr "Suprimir l'avís quan s'afegeixen progenitors a un fill"
+msgstr "Suprimir l'avís quan s'afegeixen progenitors a un fill."
 
 #: ../src/gui/configure.py:400
-#, fuzzy
 msgid "Suppress warning when cancelling with changed data."
-msgstr "Suprimir l'avís quan es cancel·li amb dades modificades"
+msgstr "Suprimir l'avís quan es cancel·li amb dades modificades."
 
 #: ../src/gui/configure.py:404
-#, fuzzy
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
-msgstr "Suprimir l'avís sobre investigador inexistent quan s'exporti a GEDCOM"
+msgstr "Suprimir l'avís sobre investigador inexistent quan s'exporti a GEDCOM."
 
 #: ../src/gui/configure.py:409
-#, fuzzy
 msgid "Show plugin status dialog on plugin load error."
-msgstr "Mostrar el diàleg d'estat del connector quan hi hagi un error de càrrega del connector"
+msgstr "Mostrar el diàleg d'estat del connector quan hi hagi un error de càrrega del connector."
 
 #: ../src/gui/configure.py:412
 msgid "Warnings"
@@ -3346,14 +3320,12 @@ msgid "Marker Colors"
 msgstr "Colors de Ressaltat"
 
 #: ../src/gui/configure.py:589
-#, fuzzy
 msgid "This format exists already."
-msgstr "Aquest format ja existeix"
+msgstr "Aquest format ja existeix."
 
 #: ../src/gui/configure.py:611 ../src/gui/configure.py:1123
-#, fuzzy
 msgid "Invalid or incomplete format definition."
-msgstr "Definició de format no vàlida o incompleta"
+msgstr "Definició de format no vàlida o incompleta."
 
 #: ../src/gui/configure.py:628
 msgid "Format"
@@ -3382,9 +3354,8 @@ msgid "Date format"
 msgstr "Format de data"
 
 #: ../src/gui/configure.py:832
-#, fuzzy
 msgid "Calendar on reports"
-msgstr "Informe de Calendari"
+msgstr "Calendari als informes"
 
 #: ../src/gui/configure.py:845
 msgid "Surname guessing"
@@ -3435,9 +3406,8 @@ msgid "Change is not immediate"
 msgstr "El canvi no és immediat"
 
 #: ../src/gui/configure.py:910
-#, fuzzy
 msgid "Changing the data format will not take effect until the next time Gramps is started."
-msgstr "Canviar el format de dades no tindrà efecte fins la propera vegada que s'engegui GRAMPS."
+msgstr "Canviar el format de dades no tindrà efecte fins la propera vegada que s'engegui Gramps."
 
 #: ../src/gui/configure.py:924
 msgid "Date about range"
@@ -3538,9 +3508,8 @@ msgid "_Modify format"
 msgstr "_Modificar el format"
 
 #: ../src/gui/configure.py:1110
-#, fuzzy
 msgid "Both Format name and definition have to be defined."
-msgstr "Cal definir tant el nom de Format com la definició"
+msgstr "Cal definir tant el nom de Format com la definició."
 
 #: ../src/gui/dbloader.py:109 ../src/PluginUtils/_Tool.py:104
 msgid "Undo history warning"
@@ -3565,20 +3534,19 @@ msgid "_Stop"
 msgstr "_Aturar"
 
 #: ../src/gui/dbloader.py:122
-#, fuzzy
 msgid "Gramps: Import database"
-msgstr "Importar base de dades"
+msgstr "Gramps: Importar base de dades"
 
 #: ../src/gui/dbloader.py:181
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
 "\n"
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and others."
 msgstr ""
-"El tipus de fitxer \"%s\" és desconegut per GRAMPS.\n"
+"El tipus de fitxer \"%s\" és desconegut per Gramps.\n"
 "\n"
-"Els tipus vàlids són: base de dades GRAMPS, XML de GRAMPS, paquet GRAMPS, GEDCOM, i d'altres."
+"Els tipus vàlids són: base de dades Gramps, XML de Gramps, paquet Gramps, GEDCOM, i d'altres."
 
 #: ../src/gui/dbloader.py:205 ../src/gui/dbloader.py:211
 msgid "Cannot open file"
@@ -3661,9 +3629,8 @@ msgid "Break the lock on the '%s' database?"
 msgstr "Forçar el desbloqueig de la base de dades '%s'?"
 
 #: ../src/gui/dbman.py:366
-#, fuzzy
 msgid "Gramps believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
-msgstr "GRAMPS creu que hi ha algú més editant de forma activa aquesta base de dades. No pot editar aquesta base de dades mentre està bloquejada. Si ningú no l'està editant, pot forçar-ne el desbloqueig sense perill. No obstant, si algú altre l'està editant i en força el desbloqueig, pot corrompre la base de dades."
+msgstr "Gramps creu que hi ha algú més editant de forma activa aquesta base de dades. No pot editar aquesta base de dades mentre està bloquejada. Si ningú no l'està editant, pot forçar-ne el desbloqueig sense perill. No obstant, si algú altre l'està editant i en força el desbloqueig, pot corrompre la base de dades."
 
 #: ../src/gui/dbman.py:372
 msgid "Break lock"
@@ -3921,7 +3888,7 @@ msgstr "Seleccionar %s d'una llista"
 
 #: ../src/gui/filtereditor.py:349
 msgid "Give or select a source ID, leave empty to find objects with no source."
-msgstr ""
+msgstr "Donar o seleccionar un Id de font, deixar buit per trobar objectes sense font."
 
 #: ../src/gui/filtereditor.py:470 ../src/Filters/Rules/_HasEventBase.py:50
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -4127,9 +4094,8 @@ msgid "Family Trees"
 msgstr "Arbres Genealògics"
 
 #: ../src/gui/grampsgui.py:112
-#, fuzzy
 msgid "Configure"
-msgstr "Configuració"
+msgstr "Configurar"
 
 #: ../src/gui/grampsgui.py:114
 msgid "Edit Date"
@@ -4258,14 +4224,12 @@ msgid "Tools"
 msgstr "Eines"
 
 #: ../src/gui/grampsgui.py:140
-#, fuzzy
 msgid "Grouped List"
-msgstr "Ag_rupar com:"
+msgstr "Llista Agrupada"
 
 #: ../src/gui/grampsgui.py:141
-#, fuzzy
 msgid "List"
-msgstr "Llista de Llibres"
+msgstr "Llista"
 
 #: ../src/gui/grampsgui.py:142
 #: ../src/plugins/tool/CalculateEstimatedDates.py:217
@@ -4321,7 +4285,6 @@ msgid "Danger: This is unstable code!"
 msgstr "Atenció: Això és codi inestable!"
 
 #: ../src/gui/grampsgui.py:170
-#, fuzzy
 msgid ""
 "This Gramps 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
@@ -4334,7 +4297,7 @@ msgid ""
 "\n"
 "<b>BACKUP</b> your existing databases before opening them with this version, and make sure to export your data to XML every now and then."
 msgstr ""
-"Aquesta versió GRAMPS 3.x-trunk és de desenvolupament. No està pensada per a l'ús normal. Utilitzi-la sota la seva responsabilitat.\n"
+"Aquesta versió Gramps 3.x-trunk és de desenvolupament. No està pensada per a l'ús normal. Utilitzi-la sota la seva responsabilitat.\n"
 "\n"
 "Aquesta versió pot:\n"
 "1) Funcionar de forma diferent de l'esperada.\n"
@@ -4347,7 +4310,7 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:203
 msgid "Failed Loading View"
-msgstr ""
+msgstr "No s'ha pogut carregar la vista"
 
 #: ../src/gui/grampsgui.py:204
 #, python-format
@@ -4355,16 +4318,16 @@ msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official views, contact the view author (%(firstauthoremail)s) otherwise. "
 msgstr ""
+"La vista %(name)s no s'ha carregat. Veure el Menú d'Ajuda, Gestor de Connectors per més informació.\n"
+"Utilitzi http://bugs.gramps-project.org per notificar errors a les vistes oficials; contacti amb l'autor de la vista (%(firstauthoremail)s) per les altres. "
 
 #: ../src/gui/grampsgui.py:291
-#, fuzzy
 msgid "Error parsing arguments"
-msgstr "Error llegint %s"
+msgstr "Error processant els arguments"
 
 #: ../src/gui/utils.py:187
-#, fuzzy
 msgid "Cancelling..."
-msgstr "Calculant...\n"
+msgstr "Cancel·lant..."
 
 #: ../src/gui/utils.py:263
 msgid "Please do not force closing this important dialog."
@@ -4439,14 +4402,12 @@ msgid "_Help"
 msgstr "Aj_uda"
 
 #: ../src/gui/viewmanager.py:433
-#, fuzzy
 msgid "Gramps _Home Page"
-msgstr "Pà_gina Principal de GRAMPS"
+msgstr "Pà_gina Principal de Gramps"
 
 #: ../src/gui/viewmanager.py:435
-#, fuzzy
 msgid "Gramps _Mailing Lists"
-msgstr "_Llistes de Correu GRAMPS"
+msgstr "_Llistes de Correu Gramps"
 
 #: ../src/gui/viewmanager.py:437
 msgid "_Report a Bug"
@@ -4461,9 +4422,8 @@ msgid "_About"
 msgstr "_Quant a"
 
 #: ../src/gui/viewmanager.py:443
-#, fuzzy
 msgid "_Plugin Manager"
-msgstr "Gestor de Medis Audiovisuals"
+msgstr "Gestor de _Connectors"
 
 #: ../src/gui/viewmanager.py:445
 msgid "_FAQ"
@@ -4526,14 +4486,12 @@ msgid "_Bookmarks"
 msgstr "_Punts d'Interès"
 
 #: ../src/gui/viewmanager.py:497
-#, fuzzy
 msgid "_Configure View..."
-msgstr "Exporta Vista..."
+msgstr "_Configurar Vista..."
 
 #: ../src/gui/viewmanager.py:498
-#, fuzzy
 msgid "Configure the active view"
-msgstr "Configurar element seleccionat actualment"
+msgstr "Configurar la vista activa"
 
 #: ../src/gui/viewmanager.py:503
 msgid "_Sidebar"
@@ -4579,9 +4537,8 @@ msgstr "Llestos"
 
 #. registering plugins
 #: ../src/gui/viewmanager.py:652
-#, fuzzy
 msgid "Registering plugins..."
-msgstr "Carregant connectors..."
+msgstr "Registrant connectors..."
 
 #: ../src/gui/viewmanager.py:689
 msgid "Autobackup..."
@@ -4612,13 +4569,12 @@ msgid "Changes cannot be completely abandoned because the number of changes made
 msgstr "Els canvis no es poden abandonar totalment perquè el nombre de canvis fets durant la sessió ha sobrepassat el límit."
 
 #: ../src/gui/viewmanager.py:973
-#, fuzzy
 msgid "No views loaded"
-msgstr "No s'ha carregat cap Arbre Genealògic."
+msgstr "No s'ha carregat cap vista"
 
 #: ../src/gui/viewmanager.py:974
 msgid "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some plugins of type 'View' are enabled. Then restart Gramps"
-msgstr ""
+msgstr "No hi ha carregat cap connector de vista. Vagi a Ajuda->Gestor de Connectors, i asseguri's que hi ha activat algun connector de tipus 'Vista'. Després, aturi i torni a arrencar Gramps"
 
 #: ../src/gui/viewmanager.py:1214
 msgid "Import Statistics"
@@ -4629,15 +4585,16 @@ msgid "Read Only"
 msgstr "Només Lectura"
 
 #: ../src/gui/viewmanager.py:1577
-#, fuzzy
 msgid "Failed Loading Plugin"
-msgstr "Carregant connectors..."
+msgstr "No s'ha pogut carregar connector"
 
 #: ../src/gui/viewmanager.py:1578
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
 msgstr ""
+"El connector no s'ha carregat. Veure el Menú d'Ajuda, Gestor de Connectors per més informació.\n"
+"Utilitzi http://bugs.gramps-project.org per informar d'errors als connectors oficials; per als altres, contacti amb l'autor del connector. "
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
@@ -4671,9 +4628,8 @@ msgid "Cannot display %s"
 msgstr "No es pot mostrar %s"
 
 #: ../src/gui/editors/addmedia.py:223
-#, fuzzy
 msgid "Gramps is not able to display the image file. This may be caused by a corrupt file."
-msgstr "GRAMPS no pot mostrar el fitxer d'imatge. Pot ser degut a un fitxer corromput."
+msgstr "Gramps no pot mostrar el fitxer d'imatge. Pot ser degut a un fitxer corromput."
 
 #: ../src/gui/editors/objectentries.py:249
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -4818,9 +4774,9 @@ msgstr "No es pot desar l'esdeveniment. L'Id ja existeix."
 #: ../src/gui/editors/editperson.py:726 ../src/gui/editors/editplace.py:298
 #: ../src/gui/editors/editrepository.py:171
 #: ../src/gui/editors/editsource.py:189
-#, fuzzy, python-format
+#, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
-msgstr "Ha intentat d'utilitzar n l'Id de GRAMPS %(id)s, que ja existeix. Aquest valor ja està agafat per '%(prim_object)s'. Si us plau introdueixi un Id diferent, o deixi'l en blanc per agafar automàticament el següent valor d'Id disponible."
+msgstr "Ha intentat d'utilitzar l'Id de Gramps %(id)s, que ja existeix. Aquest valor ja està agafat per '%(prim_object)s'. Si us plau introdueixi un Id diferent, o deixi'l en blanc per agafar automàticament el següent valor d'Id disponible."
 
 #: ../src/gui/editors/editevent.py:252
 msgid "The event type cannot be empty"
@@ -4978,6 +4934,8 @@ msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be due to a change in one of the main views, for example a source used here is deleted in the source view.\n"
 "To make sure the information shown is still correct, the data shown has been updated. Some edits you have made may have been lost."
 msgstr ""
+"La %(object)s que està editant ha canviat fora d'aquest editor. Això pot ser degut a un canvi en una de les vistes principals, per exemple, una font que es faci servir aquí que s'hagi esborrat a la vista de fonts.\n"
+"Per assegurar-se que la informació mostrada encara és correcta, s'han actualitzat les dades mostrades. Algunes edicions que pugui haver fet es poden haver perdut."
 
 #: ../src/gui/editors/editfamily.py:509 ../src/plugins/import/ImportCsv.py:281
 #: ../src/plugins/view/familyview.py:222
@@ -5078,9 +5036,9 @@ msgid "Cannot save family. ID already exists."
 msgstr "No es pot desar la família. L'Id ja existeix."
 
 #: ../src/gui/editors/editfamily.py:1009 ../src/gui/editors/editnote.py:307
-#, fuzzy, python-format
+#, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
-msgstr "Ha intentat d'utilitzar n l'Id de GRAMPS %(id)s, que ja existeix. Aquest valor ja està en ús. Si us plau introdueixi un Id diferent, o deixi'l en blanc per agafar automàticament el següent valor d'Id disponible."
+msgstr "Ha intentat d'utilitzar l'Id de Gramps %(id)s, que ja existeix. Aquest valor ja està en ús. Si us plau introdueixi un Id diferent, o deixi'l en blanc per agafar automàticament el següent valor d'Id disponible."
 
 #: ../src/gui/editors/editfamily.py:1048
 msgid "Add Family"
@@ -5365,7 +5323,7 @@ msgstr "Latitud no vàlida (sintaxi: 18°9'"
 
 #: ../src/gui/editors/editplace.py:216
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr ""
+msgstr "48.21\"S, -18.2412 o -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:218
 msgid "Invalid longitude (syntax: 18°9'"
@@ -5373,7 +5331,7 @@ msgstr "Longitud no vàlida (sintaxi: 18°9'"
 
 #: ../src/gui/editors/editplace.py:219
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr ""
+msgstr "48.21\"E, -18.2412 o -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:222
 msgid "Edit Place"
@@ -5593,9 +5551,9 @@ msgid "Edit reference"
 msgstr "Editar referència"
 
 #: ../src/gui/editors/displaytabs/backrefmodel.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "%(part1)s - %(part2)s"
-msgstr "%(date)s a %(place)s"
+msgstr "%(part1)s - %(part2)s"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
 #: ../src/plugins/view/relview.py:387
@@ -5654,9 +5612,8 @@ msgid "_Data"
 msgstr "_Dades"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:57
-#, fuzzy
 msgid "Family Events"
-msgstr "Esdeveniment de Família"
+msgstr "Esdeveniments de Família"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:58
 #, fuzzy
@@ -5669,19 +5626,16 @@ msgid "Events mother"
 msgstr "Nota d'Esdeveniment"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:62
-#, fuzzy
 msgid "Add a new family event"
-msgstr "Afegir família nova"
+msgstr "Afegir nou esdeveniment de família"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:63
-#, fuzzy
 msgid "Remove the selected family event"
-msgstr "Esborrar l'esdeveniment seleccionat"
+msgstr "Esborrar l'esdeveniment de família seleccionat"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:64
-#, fuzzy
 msgid "Edit the selected family event or edit person"
-msgstr "Editar la família seleccionada"
+msgstr "Editar l'esdeveniment de família seleccionat o editar la persona"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:65
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:56
@@ -5716,9 +5670,8 @@ msgstr ""
 "Per editar aquesta referència d'esdeveniment, cal tancar l'esdeveniment."
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:251
-#, fuzzy
 msgid "Cannot share this reference"
-msgstr "No es pot editar aquesta referència"
+msgstr "No es pot compartir aquesta referència"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:265
 #: ../src/gui/editors/displaytabs/eventembedlist.py:327
@@ -5728,19 +5681,18 @@ msgid "Cannot edit this reference"
 msgstr "No es pot editar aquesta referència"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:304
-#, fuzzy
 msgid "Cannot change Person"
-msgstr "No es pot desar la persona"
+msgstr "No es pot modificar Persona"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:305
 msgid "You cannot change Person events in the Family Editor"
-msgstr ""
+msgstr "No es poden modificar esdeveniments de Persona a l'Editor de Famílies"
 
 #: ../src/gui/editors/displaytabs/eventrefmodel.py:63
 #: ../src/gui/editors/displaytabs/namemodel.py:62
 #, python-format
 msgid "%(groupname)s - %(groupnumber)d"
-msgstr ""
+msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:64
@@ -5755,7 +5707,7 @@ msgstr "_Galeria"
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
 #: ../src/plugins/view/mediaview.py:251
 msgid "Open Containing _Folder"
-msgstr ""
+msgstr "Obrir _Carpeta Contenidora"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:250
 msgid "Non existing media found in the Gallery"
@@ -5831,14 +5783,12 @@ msgid "Move the selected name downwards"
 msgstr "Moure el nom seleccionat cap avall"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:75
-#, fuzzy
 msgid "Group As"
-msgstr "Ag_rupar com:"
+msgstr "Agrupar com"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
-#, fuzzy
 msgid "Note Preview"
-msgstr "Vista prèvia"
+msgstr "Vista prèvia de Nota"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:85
 msgid "_Names"
@@ -5868,14 +5818,12 @@ msgid "No"
 msgstr "No"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:58
-#, fuzzy
 msgid "Preferred name"
-msgstr "<b>Nom preferit</b>"
+msgstr "Nom preferit"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:60
-#, fuzzy
 msgid "Alternative names"
-msgstr "Noms Alternatius"
+msgstr "Noms alternatius"
 
 #: ../src/gui/editors/displaytabs/notetab.py:65
 msgid "Create and add a new note"
@@ -5912,54 +5860,45 @@ msgid "_Notes"
 msgstr "_Notes"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:48
-#, fuzzy
 msgid "Personal Events"
-msgstr "Esdeveniment personal:"
+msgstr "Esdeveniments Personals"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:49
 #, python-format
 msgid "With %(namepartner)s (%(famid)s)"
-msgstr ""
+msgstr "Amb %(namepartner)s (%(famid)s)"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:50
-#, fuzzy
 msgid "<Unknown>"
-msgstr "Desconegut"
+msgstr "<Desconegut>"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:53
-#, fuzzy
 msgid "Add a new personal event"
-msgstr "Afegir persona nova"
+msgstr "Afegir nou esdeveniment personal"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:54
-#, fuzzy
 msgid "Remove the selected personal event"
-msgstr "Esborrar l'esdeveniment seleccionat"
+msgstr "Esborrar l'esdeveniment personal seleccionat"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:55
-#, fuzzy
 msgid "Edit the selected personal event or edit family"
-msgstr "Editar la família seleccionada"
+msgstr "Editar l'esdeveniment personal seleccionat o editar família"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:57
-#, fuzzy
 msgid "Move the selected event upwards or change family order"
-msgstr "Moure l'esdeveniment seleccionat cap amunt"
+msgstr "Moure l'esdeveniment seleccionat cap amunt o canviar l'ordre de la família"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:58
-#, fuzzy
 msgid "Move the selected event downwards or change family order"
-msgstr "Moure l'esdeveniment seleccionat cap avall"
+msgstr "Moure l'esdeveniment seleccionat cap avall o canviar l'ordre de la família"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:126
-#, fuzzy
 msgid "Cannot change Family"
-msgstr "No es pot desar la família"
+msgstr "No es pot modificar la Família"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:127
-#, fuzzy
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Ordenar esdeveniments familiars de la persona"
+msgstr "No es poden modificar esdeveniments de Família a l'Editor de Persones"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:52
 msgid "Create and add a new association"
@@ -6105,7 +6044,7 @@ msgstr "Seleccionar Esdeveniment"
 
 #: ../src/gui/selectors/selectevent.py:64 ../src/plugins/view/eventview.py:85
 msgid "Main Participants"
-msgstr ""
+msgstr "Participants Principals"
 
 #: ../src/gui/selectors/selectfamily.py:54
 msgid "Select Family"
@@ -6141,9 +6080,8 @@ msgid "Select Place"
 msgstr "Seleccionar Lloc"
 
 #: ../src/gui/selectors/selectplace.py:64
-#, fuzzy
 msgid "Parish"
-msgstr "parròquia"
+msgstr "Parròquia"
 
 #: ../src/gui/selectors/selectrepository.py:54
 msgid "Select Repository"
@@ -6170,9 +6108,8 @@ msgid "action|_Edit..."
 msgstr "_Edita..."
 
 #: ../src/gui/views/listview.py:414
-#, fuzzy
 msgid "Active object not visible"
-msgstr "Persona activa no visible"
+msgstr "Objecte actiu no visible"
 
 #: ../src/gui/views/listview.py:425 ../src/gui/views/navigationview.py:243
 #: ../src/plugins/view/familyview.py:206
@@ -6210,9 +6147,8 @@ msgid "_Delete Item"
 msgstr "Esborrar _Element"
 
 #: ../src/gui/views/listview.py:561
-#, fuzzy
 msgid "Column clicked, sorting..."
-msgstr "Editor de _Columnes..."
+msgstr "Columna clicada, ordenant..."
 
 #: ../src/gui/views/listview.py:869
 msgid "Export View as Spreadsheet"
@@ -6227,9 +6163,8 @@ msgid "CSV"
 msgstr "CSV"
 
 #: ../src/gui/views/listview.py:883
-#, fuzzy
 msgid "OpenDocument Spreadsheet"
-msgstr "Full de càlcul d'Open Document"
+msgstr "Full de càlcul d'OpenDocument"
 
 #: ../src/gui/views/listview.py:1003 ../src/gui/views/listview.py:1023
 #: ../src/Filters/_SearchBar.py:146
@@ -6237,9 +6172,8 @@ msgid "Updating display..."
 msgstr "Actualitzant visualització..."
 
 #: ../src/gui/views/listview.py:1069
-#, fuzzy
 msgid "Columns"
-msgstr "Nom de Columna"
+msgstr "Columnes"
 
 #: ../src/gui/views/navigationview.py:239
 #, python-format
@@ -6292,49 +6226,44 @@ msgstr "Fixar Persona _Base"
 
 #: ../src/gui/views/navigationview.py:326
 #: ../src/gui/views/navigationview.py:330
-#, fuzzy
 msgid "Jump to by Gramps ID"
-msgstr "Saltar per Id de GRAMPS"
+msgstr "Saltar per Id de Gramps"
 
 #: ../src/gui/views/navigationview.py:355
-#, fuzzy, python-format
+#, python-format
 msgid "Error: %s is not a valid Gramps ID"
-msgstr "Error: %s no és un Id vàlid de GRAMPS"
+msgstr "Error: %s no és un Id vàlid de Gramps"
 
 #: ../src/gui/views/pageview.py:437
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr ""
+msgstr "Configurar %(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:444
-#, fuzzy, python-format
+#, python-format
 msgid "%(cat)s - %(view)s"
-msgstr "%(date)s a %(place)s"
+msgstr "%(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:472
-#, fuzzy, python-format
+#, python-format
 msgid "Configure %s View"
-msgstr "Configuració"
+msgstr "Configurar Vista de %s"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<Countries>"
-msgstr "País"
+msgstr "<Països>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<States>"
-msgstr "Estat"
+msgstr "<Estats>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<Counties>"
-msgstr "Continuar"
+msgstr "<Comarques>"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
-#, fuzzy
 msgid "<Places>"
-msgstr "Llocs"
+msgstr "<Llocs>"
 
 #: ../src/gui/views/treemodels/placemodel.py:153
 msgid "EW"
@@ -6345,33 +6274,28 @@ msgid "NS"
 msgstr ""
 
 #: ../src/gui/views/treemodels/placemodel.py:336
-#, fuzzy
 msgid "<no name>"
-msgstr "Nom de pila"
+msgstr "<sense nom>"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:481
-#, fuzzy
 msgid "Building View"
-msgstr "Construir dades"
+msgstr "Construint Vista"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:504
-#, fuzzy
 msgid "Building People View"
-msgstr "Persones Vives"
+msgstr "Construint Vista de Persones"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:508
-#, fuzzy
 msgid "Obtaining all people"
-msgstr "tothom"
+msgstr "Obtenint totes les persones"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:523
-#, fuzzy
 msgid "Applying filter"
-msgstr "Aplicant Filtre..."
+msgstr "Aplicant filtre"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:532
 msgid "Constructing column data"
-msgstr ""
+msgstr "Construint dades de la columna"
 
 #: ../src/gui/widgets/buttons.py:148
 msgid "Record is private"
@@ -6403,42 +6327,38 @@ msgid "Unnamed Gramplet"
 msgstr "Gramplet sense nom"
 
 #: ../src/gui/widgets/grampletpane.py:1303
-#, fuzzy
 msgid "Number of Columns"
-msgstr "Nombre de Fills"
+msgstr "Nombre de Columnes"
 
 #: ../src/gui/widgets/grampletpane.py:1308
-#, fuzzy
 msgid "Gramplet Layout"
-msgstr "Distribució de GraphViz"
+msgstr "Col·locació de Gramplets"
 
 #: ../src/gui/widgets/grampletpane.py:1345
 msgid "Use maximum height available"
-msgstr ""
+msgstr "Utilitzar la màxima alçada disponible"
 
 #: ../src/gui/widgets/grampletpane.py:1351
 msgid "Height if not maximized"
-msgstr ""
+msgstr "Alçada si no està maximitzat"
 
 #: ../src/gui/widgets/grampletpane.py:1358
-#, fuzzy
 msgid "Detached width"
-msgstr "Amplada de rectange:"
+msgstr "Amplada desenganxada"
 
 #: ../src/gui/widgets/grampletpane.py:1365
-#, fuzzy
 msgid "Detached height"
-msgstr "Alçada de rectangle:"
+msgstr "Alçada desenganxada"
 
 #: ../src/gui/widgets/labels.py:109
-#, fuzzy
 msgid ""
 "Click to make this person active\n"
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
-"Clicar per fer activa una persona\n"
-"Clicar amb botó dret per mostrar el menú d'edició"
+"Clicar per fer activa aquesta persona\n"
+"Clicar amb botó dret per mostrar el menú d'edició\n"
+"Clicar la icona d'Edició (activar al diàleg de configuració) per editar"
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
@@ -6515,9 +6435,9 @@ msgstr "Aquest camp és obligatori"
 
 #. used on AgeOnDateGramplet
 #: ../src/gui/widgets/validatedmaskedentry.py:1693
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is not a valid date value"
-msgstr "'%s' no és un valor vàlid per aquest camp"
+msgstr "'%s' no és un valor de data vàlid"
 
 #: ../src/Simple/_SimpleTable.py:250
 msgid "Unknown father"
@@ -6664,9 +6584,8 @@ msgid "Report a bug: Step 5 of 5"
 msgstr "Informar d'un problema: Pas 5 de 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:53
-#, fuzzy
 msgid "Gramps is an Open Source project. Its success depends on its users. User feedback is important. Thank you for taking the time to submit a bug report."
-msgstr "GRAMPS és un projecte de Codi Obert. El seu èxit depèn dels usuaris. És important l'opinió dels usuaris. Gràcies per dedicar el seu temps a fer un informe d'errors."
+msgstr "Gramps és un projecte de Codi Obert. El seu èxit depèn dels usuaris. És important l'opinió dels usuaris. Gràcies per dedicar el seu temps a fer un informe d'errors."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:159
 msgid "If you can see that there is any personal information included in the error please remove it."
@@ -6753,14 +6672,12 @@ msgid "Error Report"
 msgstr "Informe d'Error"
 
 #: ../src/GrampsLogger/_ErrorView.py:73
-#, fuzzy
 msgid "Gramps has experienced an unexpected error"
-msgstr "GRAMPS ha patit un error inesperat"
+msgstr "Gramps ha patit un error inesperat"
 
 #: ../src/GrampsLogger/_ErrorView.py:82
-#, fuzzy
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "Les dades no perillen però és aconsellable de rearrencar GRAMPS immediatament. Si vol informar del problema a l'equip de desenvolupament de GRAMPS, cliqui si us plau Informe i l'Assistent d'Informe d'Error l'ajudarà a fer un informe d'error."
+msgstr "Les dades no perillen però és aconsellable de rearrencar Gramps immediatament. Si vol informar del problema a l'equip de desenvolupament de Gramps, cliqui si us plau Informe i l'Assistent d'Informe d'Error l'ajudarà a fer un informe d'error."
 
 #: ../src/GrampsLogger/_ErrorView.py:91 ../src/GrampsLogger/_ErrorView.py:104
 msgid "Error Detail"
@@ -6779,9 +6696,9 @@ msgid "unknown mother"
 msgstr "mare desconeguda"
 
 #: ../src/plugins/BookReport.py:179
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
-msgstr "%(father)s i %(mother)s [%(gramps_id)s]"
+msgstr "%(father)s i %(mother)s (%(id)s)"
 
 #: ../src/plugins/BookReport.py:583
 msgid "Available Books"
@@ -6853,9 +6770,8 @@ msgid "Available Items Menu"
 msgstr "Menú d'Elements Disponibles"
 
 #: ../src/plugins/BookReport.py:1168
-#, fuzzy
 msgid "Gramps Book"
-msgstr "Id Gramps"
+msgstr "Llibre Gramps"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -6937,9 +6853,8 @@ msgstr "Opcions d'Informe"
 
 #: ../src/plugins/Records.py:440
 #: ../src/plugins/drawreport/StatisticsChart.py:900
-#, fuzzy
 msgid "Determines what people are included in the report."
-msgstr "Determina quines persones s'inclouen a l'informe"
+msgstr "Determina quines persones s'inclouen a l'informe."
 
 #: ../src/plugins/Records.py:444
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -7008,9 +6923,8 @@ msgid "The style used for headings."
 msgstr "L'estil utilitzat per als encapçalaments."
 
 #: ../src/plugins/Records.py:518
-#, fuzzy
 msgid "The style used for the report title."
-msgstr "L'estil utilitzat per al títol de l'informe"
+msgstr "L'estil utilitzat per al títol de l'informe."
 
 #: ../src/plugins/Records.py:527
 msgid "Youngest living person"
@@ -7086,7 +7000,7 @@ msgstr "Text pla"
 
 #: ../src/plugins/docgen/docgen.gpr.py:32
 msgid "Generates documents in plain text format (.txt)."
-msgstr ""
+msgstr "Genera documents en format de text pla (.txt)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:51
 msgid "Print..."
@@ -7094,7 +7008,7 @@ msgstr "Imprimir..."
 
 #: ../src/plugins/docgen/docgen.gpr.py:52
 msgid "Generates documents and prints them directly."
-msgstr ""
+msgstr "Genera documents i els imprimeix directament."
 
 #: ../src/plugins/docgen/docgen.gpr.py:71
 msgid "HTML"
@@ -7102,7 +7016,7 @@ msgstr "HTML"
 
 #: ../src/plugins/docgen/docgen.gpr.py:72
 msgid "Generates documents in HTML format."
-msgstr ""
+msgstr "Genera documents en format HTML."
 
 #: ../src/plugins/docgen/docgen.gpr.py:91
 msgid "LaTeX"
@@ -7110,25 +7024,23 @@ msgstr "LaTeX"
 
 #: ../src/plugins/docgen/docgen.gpr.py:92
 msgid "Generates documents in LaTeX format."
-msgstr ""
+msgstr "Genera documents en format LaTeX."
 
 #: ../src/plugins/docgen/docgen.gpr.py:111
-#, fuzzy
 msgid "OpenDocument Text"
-msgstr "Open Document Text"
+msgstr "OpenDocument Text"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr ""
+msgstr "Genera documents en format OpenDocument Text (.odt)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:132
-#, fuzzy
 msgid "PDF document"
-msgstr "document RTF"
+msgstr "document PDF"
 
 #: ../src/plugins/docgen/docgen.gpr.py:133
 msgid "Generates documents in PDF format (.pdf)."
-msgstr ""
+msgstr "Genera documents en format PDF (.pdf)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:152
 #: ../src/ReportBase/_GraphvizReportDialog.py:821
@@ -7137,7 +7049,7 @@ msgstr "PostScript"
 
 #: ../src/plugins/docgen/docgen.gpr.py:153
 msgid "Generates documents in postscript format (.ps)."
-msgstr ""
+msgstr "Genera documents en format postscript (.ps)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:172
 msgid "RTF document"
@@ -7145,16 +7057,15 @@ msgstr "document RTF"
 
 #: ../src/plugins/docgen/docgen.gpr.py:173
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr ""
+msgstr "Genera documents en format Rich Text (.rtf)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:192
-#, fuzzy
 msgid "SVG document"
-msgstr "document RTF"
+msgstr "document SVG"
 
 #: ../src/plugins/docgen/docgen.gpr.py:193
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr ""
+msgstr "Genera documents en format Scalable Vector Graphics (.svg)."
 
 #: ../src/plugins/docgen/GtkPrint.py:68
 msgid "PyGtk 2.10 or later is required"
@@ -7178,14 +7089,14 @@ msgid "You appear to have set your target directory to a directory used for data
 msgstr "Sembla que ha posat com a directori destí un directori que es fa servir per emmagatzemar dades. Això podria crear problemes amb la gestió de fitxers. Es recomana que sospesi de fer servir un altre directori per emmagatzemar les pàgines web generades."
 
 #: ../src/plugins/docgen/HtmlDoc.py:520
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "No s'ha pogut crear la carpeta de medis audiovisuals %s"
+msgstr "No s'ha pogut crear la versió jpeg de la imatge %(name)s"
 
 #: ../src/plugins/docgen/ODFDoc.py:835
-#, fuzzy, python-format
+#, python-format
 msgid "Could not open %s"
-msgstr "No s'ha pogut obrir el fitxer: %s"
+msgstr "No s'ha pogut obrir %s"
 
 #. ------------------------------------------------------------------------
 #.
@@ -7219,9 +7130,9 @@ msgstr "d."
 #: ../src/plugins/textreport/EndOfLineReport.py:72
 #: ../src/plugins/textreport/KinshipReport.py:86
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:75
-#, fuzzy, python-format
+#, python-format
 msgid "Person %s is not in the Database"
-msgstr "Concorda amb totes les notes de la base de dades"
+msgstr "La persona %s no és a la Base de Dades"
 
 #: ../src/plugins/drawreport/AncestorTree.py:196
 #, python-format
@@ -7526,9 +7437,8 @@ msgstr "Àrea de Text 2"
 
 #: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:418
-#, fuzzy
 msgid "Produced with Gramps"
-msgstr "Creat amb GRAMPS"
+msgstr "Creat amb Gramps"
 
 #: ../src/plugins/drawreport/Calendar.py:462
 #: ../src/plugins/textreport/BirthdayReport.py:419
@@ -7885,9 +7795,8 @@ msgstr "%s (persones):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:905
 #: ../src/plugins/textreport/IndivComplete.py:649
-#, fuzzy
 msgid "The center person for the filter."
-msgstr "La persona central del filtre"
+msgstr "La persona central del filtre."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 msgid "Sort chart items by"
@@ -7910,9 +7819,8 @@ msgid "People Born After"
 msgstr "Persones Nascudes Des de"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:926
-#, fuzzy
 msgid "Birth year from which to include people."
-msgstr "Any de naixement a partir del qual s'han d'incloure les persones"
+msgstr "Any de naixement a partir del qual s'han d'incloure les persones."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:929
 msgid "People Born Before"
@@ -7927,9 +7835,8 @@ msgid "Include people without known birth years"
 msgstr "Incloure persones sense any de naixement conegut"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:936
-#, fuzzy
 msgid "Whether to include people without known birth years."
-msgstr "Si s'han d'incloure les persones de les quals no se sap l'any de naixement"
+msgstr "Si s'han d'incloure les persones de les quals no se sap l'any de naixement."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:940
 msgid "Genders included"
@@ -7956,9 +7863,8 @@ msgid "Charts 2"
 msgstr "Gràfiques 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:966
-#, fuzzy
 msgid "Include charts with indicated data."
-msgstr "Incloure gràfiques amb les dades indicades"
+msgstr "Incloure gràfiques amb les dades indicades."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1006
 msgid "The style used for the items and values."
@@ -8009,9 +7915,9 @@ msgid "Calculating timeline..."
 msgstr "Calculant línia temporal..."
 
 #: ../src/plugins/drawreport/TimeLine.py:225
-#, fuzzy, python-format
+#, python-format
 msgid "Sorted by %s"
-msgstr "Bloquejat per %s"
+msgstr "Ordenat per %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:324
 msgid "Determines what people are included in the report"
@@ -8049,9 +7955,8 @@ msgid "_Web Family Tree"
 msgstr "Arbre Genealògic _Web"
 
 #: ../src/plugins/export/export.gpr.py:52
-#, fuzzy
 msgid "Web Family Tree format"
-msgstr "Format de l'Arbre Genealògic Web."
+msgstr "Format de l'Arbre Genealògic Web"
 
 #: ../src/plugins/export/export.gpr.py:71
 msgid "GE_DCOM"
@@ -8072,21 +7977,19 @@ msgstr "Geneweb és un programa de genealogia sobre web."
 
 #: ../src/plugins/export/export.gpr.py:112
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr ""
+msgstr "Paquet Gra_mps XML (arbre genealògic i audiovisuals)"
 
 #: ../src/plugins/export/export.gpr.py:113
-#, fuzzy
 msgid "Gramps package is an archived XML family tree together with the media object files."
-msgstr "Un paquet GRAMPS és una base de dades XML arxivada juntament amb els fitxers de medis audiovisuals."
+msgstr "Un paquet Gramps és una base de dades XML arxivada juntament amb els fitxers de medis audiovisuals."
 
 #: ../src/plugins/export/export.gpr.py:133
-#, fuzzy
 msgid "Gramps _XML (family tree)"
-msgstr "Esborrar arbre genealògic"
+msgstr "Gramps _XML (arbre genealògic)"
 
 #: ../src/plugins/export/export.gpr.py:134
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr ""
+msgstr "Una exportació de Gramps XML és una còpia XML d'arxiu completa d'un arbre genealògic Gramps sense els fitxers audiovisuals. Apropiat per a còpies de seguretat."
 
 #: ../src/plugins/export/export.gpr.py:155
 msgid "vC_alendar"
@@ -8141,11 +8044,11 @@ msgid "Wife"
 msgstr "Muller"
 
 #: ../src/plugins/export/ExportDjango.py:187
-#, fuzzy, python-format
+#, python-format
 msgid "Export Complete: %d second"
 msgid_plural "Export Complete: %d seconds"
-msgstr[0] "Importació Finalitzada: %d segon"
-msgstr[1] "Importació Finalitzada: %d segons"
+msgstr[0] "Exportació Finalitzada: %d segon"
+msgstr[1] "Exportació Finalitzada: %d segons"
 
 #: ../src/plugins/export/ExportGedcom.py:256
 msgid "Filtering private data"
@@ -8242,9 +8145,8 @@ msgid "Enter a date, click Run"
 msgstr "Introdueixi una data, cliqui Executar"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
-#, fuzzy
 msgid "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column ,and double-click the row to view or edit."
-msgstr "Introdueixi una data a sota, i cliqui Executar. Això calcularà les edats de tothom del seu Arbre Genealògica en aquella data. Després es pot ordenar per la columna d'edat, i fer doble clic a la fila per veure o editar."
+msgstr "Introdueixi una data vàlida (com AAAA-MM-DD) a sota, i cliqui Executar. Això calcularà les edats de tothom del seu Arbre Genealògic en aquella data. Després es pot ordenar per la columna d'edat, i fer doble clic a la fila per veure o editar."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
 msgid "Run"
@@ -8490,15 +8392,13 @@ msgid "Pedigree Gramplet"
 msgstr "Gramplet de Pedigrí"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:154
-#, fuzzy
 msgid "Plugin Manager Gramplet"
-msgstr "Gramplet sense nom"
+msgstr "Gramplet del Gestor de Connectors"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:160
 #: ../src/PluginUtils/_PluginWindows.py:193
-#, fuzzy
 msgid "Plugin Manager"
-msgstr "Gestor de Medis Audiovisuals"
+msgstr "Gestor de Connectors"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:167
 msgid "Quick View Gramplet"
@@ -8553,9 +8453,8 @@ msgid "Welcome Gramplet"
 msgstr "Gramplet de Benvinguda"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:266
-#, fuzzy
 msgid "Welcome to Gramps!"
-msgstr "Gramplet de Benvinguda"
+msgstr "Benvingut a Gramps!"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:273
 msgid "What's Next Gramplet"
@@ -8572,15 +8471,13 @@ msgstr "Màx generacions"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
 #: ../src/plugins/gramplet/PedigreeGramplet.py:69
-#, fuzzy
 msgid "Show dates"
-msgstr "Mostrar imatges"
+msgstr "Mostrar dates"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 #: ../src/plugins/gramplet/PedigreeGramplet.py:70
-#, fuzzy
 msgid "Line type"
-msgstr "Tipus de fitxer"
+msgstr "Tipus de línia"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:218
 #, python-format
@@ -8749,9 +8646,9 @@ msgid "Selected"
 msgstr "Seleccionats"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, fuzzy, python-format
+#, python-format
 msgid "%(mother)s and %(father)s"
-msgstr "%(father)s i %(mother)s"
+msgstr "%(mother)s i %(father)s"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:55
 msgid "Double-click item to see matches"
@@ -8861,21 +8758,18 @@ msgstr "Total de cognoms mostrats"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:162
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:170
-#, fuzzy
 msgid "Number of surnames"
-msgstr "Nombre de famílies"
+msgstr "Nombre de cognoms"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:164
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:171
-#, fuzzy
 msgid "Min font size"
-msgstr "Mida de lletra"
+msgstr "Mida de lletra mínima"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:166
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
-#, fuzzy
 msgid "Max font size"
-msgstr "Mida de lletra"
+msgstr "Mida de lletra màxima"
 
 #. GUI setup:
 #: ../src/plugins/gramplet/ToDoGramplet.py:37
@@ -8887,7 +8781,6 @@ msgid "Enter your TODO list here."
 msgstr "Introdueixi la seva llista de coses a fer aquí."
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:35
-#, fuzzy
 msgid ""
 "Welcome to Gramps!\n"
 "\n"
@@ -8903,11 +8796,11 @@ msgid ""
 "\n"
 "You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above Gramps. If you close Gramps with a gramplet detached, it will re-open detached the next time you start Gramps."
 msgstr ""
-"Benvingut a GRAMPS!\n"
+"Benvingut a Gramps!\n"
 "\n"
-"GRAMPS és un paquet de programari dissenyat per a la recerca genealògica. Encara que s'assembla a d'altres programes genealògics, GRAMPS ofereix algunes funcionalitats úniques i potents.\n"
+"Gramps és un paquet de programari dissenyat per a la recerca genealògica. Encara que s'assembla a d'altres programes genealògics, Gramps ofereix algunes funcionalitats úniques i potents.\n"
 "\n"
-"GRAMPS és programari de codi obert, cosa que significa que és lliure de fer-ne còpies i distribuir-lo a qualsevol que li vingui de gust. El desenvolupa i el manté un equip internacional de voluntaris l'objectiu del qual és fer que GRAMPS sigui potent, i al mateix temps fàcil d'utilitzar.\n"
+"Gramps és programari de codi obert, cosa que significa que és lliure de fer-ne còpies i distribuir-lo a qualsevol que li vingui de gust. El desenvolupa i el manté un equip internacional de voluntaris l'objectiu del qual és fer que Gramps sigui potent, i al mateix temps fàcil d'utilitzar.\n"
 "\n"
 "Per començar\n"
 "\n"
@@ -8915,7 +8808,7 @@ msgstr ""
 "\n"
 "Ara ho està llegint des de la pàgina de \"Gramplets\", on es poden afegir els propis gramplets.\n"
 "\n"
-"Pot clicar amb el botó dret al fons d'aquesta pàgina per afegir gramplets nous i modificar el nombre de columnes. També es pot arrossegar el botó de Propietats per recol·locar el gramplet dins de la pàgina, i desenganxar el gramplet perquè floti per damunt de GRAMPS. Si tanca GRAMPS amb un gramplet desenganxat, es tornarà a obrir desenganxat la propera vegada que s'engegui GRAMPS."
+"Pot clicar amb el botó dret al fons d'aquesta pàgina per afegir gramplets nous i modificar el nombre de columnes. També es pot arrossegar el botó de Propietats per recol·locar el gramplet dins de la pàgina, i desenganxar el gramplet perquè floti per damunt de Gramps. Si tanca Gramps amb un gramplet desenganxat, es tornarà a obrir desenganxat la propera vegada que s'engegui Gramps."
 
 #: ../src/plugins/gramplet/WhatsNext.py:93
 msgid "No Home Person set."
@@ -8959,9 +8852,8 @@ msgid ", "
 msgstr ", "
 
 #: ../src/plugins/gramplet/WhatsNext.py:300
-#, fuzzy
 msgid "person not complete"
-msgstr "Persona base no fixada."
+msgstr "persona incompleta"
 
 #: ../src/plugins/gramplet/WhatsNext.py:319
 #: ../src/plugins/gramplet/WhatsNext.py:326
@@ -8985,9 +8877,8 @@ msgid "relation type unknown"
 msgstr "tipus de relació desconegut"
 
 #: ../src/plugins/gramplet/WhatsNext.py:384
-#, fuzzy
 msgid "family not complete"
-msgstr "data incompleta"
+msgstr "família incompleta"
 
 #: ../src/plugins/gramplet/WhatsNext.py:399
 msgid "date unknown"
@@ -9032,27 +8923,24 @@ msgid "Family Lines Graph"
 msgstr "Graf de Línies Familiars"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:32
-#, fuzzy
 msgid "Produces family line graphs using GraphViz."
-msgstr "Crea grafs de línies familiars fent servir GraphViz"
+msgstr "Crea grafs de línies familiars fent servir GraphViz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
 msgstr "Informe en Rellotge de Sorra"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:55
-#, fuzzy
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Crea un graf en forma de rellotge de sorra amb Graphviz"
+msgstr "Crea un graf en forma de rellotge de sorra amb Graphviz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
 msgstr "Graf de Relacions"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:77
-#, fuzzy
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Produeix grafs de relacions amb Graphviz"
+msgstr "Produeix grafs de relacions amb Graphviz."
 
 #. ------------------------------------------------------------------------
 #.
@@ -9445,34 +9333,28 @@ msgid "Import data from GeneWeb files"
 msgstr "Importar dades de fitxers GeneWeb"
 
 #: ../src/plugins/import/import.gpr.py:88
-#, fuzzy
 msgid "Gramps package (portable XML)"
-msgstr "_Paquet GRAMPS (XML portable)"
+msgstr "Paquet Gramps (XML portable)"
 
 #: ../src/plugins/import/import.gpr.py:89
-#, fuzzy
 msgid "Import data from a Gramps package (an archived XML family tree together with the media object files."
-msgstr "Un paquet GRAMPS és una base de dades XML arxivada juntament amb els fitxers de medis audiovisuals."
+msgstr "Importar dades d'un paquet Gramps (un arbre genealògic XML arxivat juntament amb els fitxers de medis audiovisuals)."
 
 #: ../src/plugins/import/import.gpr.py:107
-#, fuzzy
 msgid "Gramps XML Family Tree"
-msgstr "El Meu Arbre Genealògic"
+msgstr "Arbre Genealògic Gramps XML"
 
 #: ../src/plugins/import/import.gpr.py:108
-#, fuzzy
 msgid "The Gramps XML format is a text version of a family tree. It is read-write compatible with the present Gramps database format."
-msgstr "La base de dades GRAMPS XML és una versió en text d'un arbre genealògic. Es compatible a nivell de lectura i escriptura amb el format de base de dades GRAMPS actual."
+msgstr "El format Gramps XML és una versió en text d'un arbre genealògic. Es compatible a nivell de lectura i escriptura amb el format de base de dades Gramps actual."
 
 #: ../src/plugins/import/import.gpr.py:128
-#, fuzzy
 msgid "Gramps 2.x database"
-msgstr "Base de dades GRAMPS 2.x"
+msgstr "Base de dades Gramps 2.x"
 
 #: ../src/plugins/import/import.gpr.py:129
-#, fuzzy
 msgid "Import data from Gramps 2.x database files"
-msgstr "Importar dades de fitxers de base de dades GRAMPS 2.x"
+msgstr "Importar dades de fitxers de base de dades Gramps 2.x"
 
 #: ../src/plugins/import/import.gpr.py:146
 msgid "Pro-Gen"
@@ -9505,9 +9387,8 @@ msgstr "Causa de defunció"
 #: ../src/plugins/import/ImportCsv.py:200
 #: ../src/plugins/import/ImportCsv.py:272
 #: ../src/plugins/webreport/NarrativeWeb.py:117
-#, fuzzy
 msgid "Gramps ID"
-msgstr "Id Gramps: %s "
+msgstr "Id Gramps"
 
 #: ../src/plugins/import/ImportCsv.py:214
 msgid "Parent2"
@@ -9604,9 +9485,9 @@ msgid "%s could not be opened\n"
 msgstr "%s no s'ha pogut obrir\n"
 
 #: ../src/plugins/import/ImportCsv.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "format error: file %(fname)s, line %(line)d: %(zero)s"
-msgstr "error de format: fitxer %s, línia %d: %s"
+msgstr "error de format: fitxer %(fname)s, línia %(line)d: %(zero)s"
 
 #: ../src/plugins/import/ImportCsv.py:384
 msgid "CSV Import"
@@ -9631,9 +9512,8 @@ msgid "CSV import"
 msgstr "Importació CSV"
 
 #: ../src/plugins/import/ImportDjango.py:186
-#, fuzzy
 msgid "Django import"
-msgstr "No es pot importar %s"
+msgstr "Importació Django"
 
 #: ../src/plugins/import/ImportGedcom.py:117
 msgid "Invalid GEDCOM file"
@@ -9667,14 +9547,13 @@ msgid "%s could not be opened"
 msgstr "%s no s'ha pogut obrir"
 
 #: ../src/plugins/import/ImportGrdb.py:2691
-#, fuzzy
 msgid "The Database version is not supported by this version of Gramps."
-msgstr "Aquesta versió de Base de Dades no està suportada per aquesta versió de GRAMPS."
+msgstr "La versió de la Base de Dades no està suportada per aquesta versió de Gramps."
 
 #: ../src/plugins/import/ImportGrdb.py:2828
-#, fuzzy, python-format
+#, python-format
 msgid "Your family tree groups name %(key)s together with %(present)s, did not change this grouping to %(value)s"
-msgstr "L'arbre genealògic ajunta el nom %s amb %s, no s'ha canviat aquesta agrupació a %s"
+msgstr "El seu arbre genealògic ajunta el nom %(key)s amb %(present)s, no s'ha canviat aquesta agrupació a %(value)s"
 
 #: ../src/plugins/import/ImportGrdb.py:2842
 msgid "Import database"
@@ -9707,9 +9586,9 @@ msgid "Pro-Gen import"
 msgstr "Importació Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:691
-#, fuzzy, python-format
+#, python-format
 msgid "date did not match: '%(text)s' (%(msg)s)"
-msgstr "la data no concorda: '%s' (%s)"
+msgstr "la data no concorda: '%(text)s' (%(msg)s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:771
@@ -9727,14 +9606,14 @@ msgid "Adding children"
 msgstr "Afegint fills"
 
 #: ../src/plugins/import/ImportProGen.py:1242
-#, fuzzy, python-format
+#, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
-msgstr "no es pot trobar el pare de I%s (pare=%d)"
+msgstr "no es pot trobar el pare de I%(person)s (pare=%(id)d)"
 
 #: ../src/plugins/import/ImportProGen.py:1245
-#, fuzzy, python-format
+#, python-format
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
-msgstr "no es pot trobar la mare de I%s (pare=%d)"
+msgstr "no es pot trobar la mare de I%(person)s (mare=%(mother)d)"
 
 #: ../src/plugins/import/ImportVCard.py:146
 msgid "vCard import"
@@ -9802,9 +9681,8 @@ msgid "Error reading %s"
 msgstr "Error llegint %s"
 
 #: ../src/plugins/import/ImportXml.py:139
-#, fuzzy
 msgid "The file is probably either corrupt or not a valid Gramps database."
-msgstr "El fitxer és probablement o bé corrupte o no és una base de dades GRAMPS vàlida."
+msgstr "El fitxer és probablement o bé corrupte o no és una base de dades Gramps vàlida."
 
 #: ../src/plugins/import/ImportXml.py:243
 #, python-format
@@ -9925,9 +9803,8 @@ msgid "The opened file has media path %s, which conflicts with the media path of
 msgstr "El fitxer obert té una carpeta de medis audiovisuals %s, que està en conflicte amb la carpeta de medis de l'arbre genealògic on està important. S'ha conservat la carpeta de medis original. Copiï els fitxers al directori correcte o canviï la carpeta de medis audiovisuals a les Preferències."
 
 #: ../src/plugins/import/ImportXml.py:782
-#, fuzzy
 msgid "Gramps XML import"
-msgstr "Importació de GRAMPS XML"
+msgstr "Importació de Gramps XML"
 
 #: ../src/plugins/import/ImportXml.py:889
 #: ../src/plugins/import/ImportXml.py:2026
@@ -9936,9 +9813,9 @@ msgid "Witness name: %s"
 msgstr "Nom de testimoni: %s"
 
 #: ../src/plugins/import/ImportXml.py:1313
-#, fuzzy, python-format
+#, python-format
 msgid "Your family tree groups name %(key)s together with %(parent)s, did not change this grouping to %(value)s"
-msgstr "L'arbre genealògic ajunta el nom %s amb %s, no s'ha canviat aquesta agrupació a %s"
+msgstr "El seu arbre genealògic ajunta el nom %(key)s amb %(parent)s, no s'ha canviat aquesta agrupació a %(value)s"
 
 #: ../src/plugins/import/ImportXml.py:1917
 #, python-format
@@ -9946,12 +9823,12 @@ msgid "Witness comment: %s"
 msgstr "Comentari del testimoni: %s"
 
 #: ../src/plugins/import/ImportXml.py:2482
-#, fuzzy, python-format
+#, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
-msgstr "El fitxer .gramps que està important va ser creat per la versió %s de GRAMPS, mentre que està executant una versió més vella, la %s. El fitxer no s'importarà. Si us plau instal·li l'última versió de GRAMPS i torni-ho a provar."
+msgstr "El fitxer .gramps que està important va ser creat per la versió %(newer)s de Gramps, mentre que està executant una versió més vella, la %(older)s. El fitxer no s'importarà. Si us plau instal·li l'última versió de Gramps i torni-ho a provar."
 
 #: ../src/plugins/import/ImportXml.py:2494
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
 "\n"
@@ -9959,12 +9836,17 @@ msgid ""
 "See\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 " for more info."
-msgstr "El fitxer .gramps que està important va ser creat per la versió %s de GRAMPS, mentre que està executant una versió més vella, la %s. El fitxer no s'importarà. Si us plau instal·li l'última versió de GRAMPS i torni-ho a provar."
+msgstr ""
+"El fitxer .gramps que està important va ser creat per la versió %(oldgramps)s de Gramps, mentre que n'està executant una versió més recent, la %(newgramps)s.\n"
+"\n"
+"El fitxer no s'importarà. Si us plau faci servir una versió més antiga de Gramps que suporti la versió %(xmlversion)s d'xml.\n"
+"Veure\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+" per més informació."
 
 #: ../src/plugins/import/ImportXml.py:2509
-#, fuzzy
 msgid "The file will not be imported"
-msgstr "%s no s'ha pogut importar"
+msgstr "El fitxer no s'importarà"
 
 #: ../src/plugins/import/ImportXml.py:2512
 #, python-format
@@ -9976,11 +9858,16 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "for more info."
 msgstr ""
+"El fitxer .gramps que està important va ser creat per la versió %(oldgramps)s de Gramps, mentre que n'està executant una versió molt més recent, la %(newgramps)s.\n"
+"\n"
+"Asseguri's després de la importació que tot s'ha importat de forma correcta. En cas de problemes, si us plau notifiqui l'error i utilitzi una versió més vella de Gramps mentrestant per importar aquest fitxer, que és de la versió %(xmlversion)s de l'xml.\n"
+"Veure\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"per més informació."
 
 #: ../src/plugins/import/ImportXml.py:2529
-#, fuzzy
 msgid "Old xml file"
-msgstr "Tots els fitxers"
+msgstr "Antic fitxer xml"
 
 #: ../src/plugins/lib/libgedcom.py:1598
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -10023,9 +9910,9 @@ msgid "Line %d: empty note was ignored."
 msgstr "Línia %d: s'ha ignora una nota buida."
 
 #: ../src/plugins/lib/libgedcom.py:5497
-#, fuzzy, python-format
+#, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
-msgstr "saltades %d subordinada(es) a la línia %d"
+msgstr "saltades %(skip)d subordinada(es) a la línia %(line)d"
 
 #: ../src/plugins/lib/libgedcom.py:5752
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
@@ -10043,9 +9930,8 @@ msgstr "Línia %d no vàlida al fitxer GEDCOM."
 #. First is used as default selection.
 #. As seen on the internet, ISO-xxx are listed as capital letters
 #: ../src/plugins/lib/libhtmlconst.py:50
-#, fuzzy
 msgid "Unicode UTF-8 (recommended)"
-msgstr "Unicode (recomanat)"
+msgstr "Unicode UTF-8 (recomanat)"
 
 #: ../src/plugins/lib/libhtmlconst.py:106
 msgid "Standard copyright"
@@ -13389,7 +13275,6 @@ msgid "Edit the selected person"
 msgstr "Editar la persona seleccionada"
 
 #: ../src/plugins/lib/libpersonview.py:110
-#, fuzzy
 msgid "Delete the selected person"
 msgstr "Esborrar persona seleccionada"
 
@@ -13469,9 +13354,8 @@ msgid "Loading..."
 msgstr "Carregant..."
 
 #: ../src/plugins/lib/libplaceview.py:161
-#, fuzzy
 msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ...)"
-msgstr "Intentar de veure les ubicacions seleccionades amb un servei de mapes (OpenstreetMap, Google Maps, ...)"
+msgstr "Intentar de veure les ubicacions seleccionades amb un Servei de Mapes (OpenstreetMap, Google Maps, ...)"
 
 #: ../src/plugins/lib/libplaceview.py:164
 msgid "Select a Map Service"
@@ -13482,7 +13366,6 @@ msgid "_Look up with Map Service"
 msgstr "_Buscar amb Servei de Mapes"
 
 #: ../src/plugins/lib/libplaceview.py:168
-#, fuzzy
 msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ...)"
 msgstr "Intentar de veure aquesta ubicació amb un Servei de Mapes (Openstreet Map, Google Maps, ...)"
 
@@ -13491,13 +13374,12 @@ msgid "Place Filter Editor"
 msgstr "Editor de Filtres de Lloc"
 
 #: ../src/plugins/lib/libplaceview.py:258
-#, fuzzy
 msgid "No map service is available."
-msgstr "Sense descripció"
+msgstr "No hi ha cap servei de mapes disponible."
 
 #: ../src/plugins/lib/libplaceview.py:259
 msgid "Check your installation."
-msgstr ""
+msgstr "Comprovi la instal·lació."
 
 #: ../src/plugins/lib/libplaceview.py:267
 msgid "No place selected."
@@ -13516,26 +13398,24 @@ msgid "Exactly two places must be selected to perform a merge. A second place ca
 msgstr "S'han de seleccionar exactament dos llocs per fer una combinació. Es pot seleccionar el segon lloc mantenint premuda la tecla de control mentre es clica el lloc desitjat."
 
 #: ../src/plugins/lib/libplugins.gpr.py:32
-#, fuzzy
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "Proporciona informació de festes per diferents països."
+msgstr "Proporciona una llibreria per generar documents utilitzant Cairo."
 
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
-msgstr ""
+msgstr "Proporciona una classe FormattingHelper per cadenes comunes"
 
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
-msgstr ""
+msgstr "Proporciona funcionalitat de procés de GEDCOM"
 
 #: ../src/plugins/lib/libplugins.gpr.py:86
-#, fuzzy
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr "Proporciona les funcions bàsiques per serveis de mapes."
+msgstr "Proporciona funcions comunes per a la importació/exportació de Gramps XML."
 
 #: ../src/plugins/lib/libplugins.gpr.py:105
 msgid "Base class for ImportGrdb"
-msgstr ""
+msgstr "Classe base per ImportGrdb"
 
 #: ../src/plugins/lib/libplugins.gpr.py:123
 msgid "Provides holiday information for different countries."
@@ -13558,9 +13438,8 @@ msgid "Provides base functionality for map services."
 msgstr "Proporciona les funcions bàsiques per serveis de mapes."
 
 #: ../src/plugins/lib/libplugins.gpr.py:212
-#, fuzzy
 msgid "Provides Textual Narration."
-msgstr "Produeix un informe sobre un lloc en text"
+msgstr "Proporciona Narració Textual."
 
 #: ../src/plugins/lib/libplugins.gpr.py:229
 msgid "Manages an ODF file implementing DocBackend."
@@ -13579,29 +13458,25 @@ msgid "Provides the Base needed for the List Place views."
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:74
-#, fuzzy
 msgid "Albanian"
-msgstr "Abandonar"
+msgstr "Albanès"
 
 #: ../src/plugins/lib/libtranslate.py:77
-#, fuzzy
 msgid "Chinese"
-msgstr "Testimonis"
+msgstr "Xinès"
 
 #: ../src/plugins/lib/libtranslate.py:81
-#, fuzzy
 msgid "Brazil"
-msgstr "Enterrament"
+msgstr "Brasil"
 
 #: ../src/plugins/lib/libtranslate.py:82
-#, fuzzy
 msgid "China"
-msgstr "Chewa"
+msgstr "Xina"
 
 #: ../src/plugins/lib/libtranslate.py:105
 #, python-format
 msgid "%(language)s (%(country)s)"
-msgstr ""
+msgstr "%(language)s (%(country)s)"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -13622,20 +13497,20 @@ msgid " state"
 msgstr " estat"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Latitude not within %(lat1)s to %(lat2)s\n"
-msgstr "La latitud no és entre %s i %s\n"
+msgstr "La latitud no és entre %(lat1)s i %(lat2)s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Longitude not within %(long1)s to %(long2)s"
-msgstr "La longitud no és entre %s i %s"
+msgstr "La longitud no és entre %(long1)s i %(long2)s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
 #: ../src/plugins/mapservices/eniroswedenmap.py:166
 #: ../src/plugins/mapservices/eniroswedenmap.py:171
 msgid "Eniro map not available"
-msgstr "mapa d'Eniro no disponible"
+msgstr "Mapa d'Eniro no disponible"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:167
 msgid "Coordinates needed in Denmark"
@@ -13718,13 +13593,13 @@ msgstr "Lloc d'Esdeveniment"
 
 #. display the results
 #: ../src/plugins/quickview/all_events.py:98
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Sorted events of family\n"
 " %(father)s - %(mother)s"
 msgstr ""
 "Esdeveniments familiars per ordre\n"
-" %s - %s"
+" %(father)s - %(mother)s"
 
 #: ../src/plugins/quickview/all_events.py:102
 #: ../src/plugins/quickview/all_events.py:113
@@ -13741,9 +13616,9 @@ msgstr "Persona base no fixada."
 
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:188
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s and %(active_person)s are the same person."
-msgstr "%(person)s i %(active_person)s no tenen parentesc."
+msgstr "%(person)s i %(active_person)s són la mateixa persona."
 
 #: ../src/plugins/quickview/all_relations.py:89
 #: ../src/plugins/tool/RelCalc.py:197
@@ -13762,9 +13637,9 @@ msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr "%(person)s i %(active_person)s tenen els següents parentescs polítics:"
 
 #: ../src/plugins/quickview/all_relations.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "Relationships of %(person)s to %(active_person)s"
-msgstr "Relacions de %s amb %s"
+msgstr "Relacions de %(person)s amb %(active_person)s"
 
 #: ../src/plugins/quickview/all_relations.py:267
 #, python-format
@@ -13812,77 +13687,62 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr "Hi ha %d persones amb un nom d'atribut que concorda.\n"
 
 #: ../src/plugins/quickview/FilterByName.py:41
-#, fuzzy
 msgid "Filtering_on|all people"
-msgstr "Filtrant per %s"
+msgstr "tothom"
 
 #: ../src/plugins/quickview/FilterByName.py:42
-#, fuzzy
 msgid "Filtering_on|males"
-msgstr "Filtrant per %s"
+msgstr "homes"
 
 #: ../src/plugins/quickview/FilterByName.py:43
-#, fuzzy
 msgid "Filtering_on|females"
-msgstr "Filtrant per %s"
+msgstr "dones"
 
 #: ../src/plugins/quickview/FilterByName.py:45
-#, fuzzy
 msgid "Filtering_on|people with unknown gender"
 msgstr "persones de gènere desconegut"
 
 #: ../src/plugins/quickview/FilterByName.py:47
-#, fuzzy
 msgid "Filtering_on|people with incomplete names"
 msgstr "persones amb noms incomplets"
 
 #: ../src/plugins/quickview/FilterByName.py:49
-#, fuzzy
 msgid "Filtering_on|people with missing birth dates"
 msgstr "persones sense data de naixement"
 
 #: ../src/plugins/quickview/FilterByName.py:50
-#, fuzzy
 msgid "Filtering_on|disconnected people"
 msgstr "persones desconnectades"
 
 #: ../src/plugins/quickview/FilterByName.py:51
-#, fuzzy
 msgid "Filtering_on|all families"
-msgstr "Escrivint famílies"
+msgstr "totes les famílies"
 
 #: ../src/plugins/quickview/FilterByName.py:52
-#, fuzzy
 msgid "Filtering_on|unique surnames"
 msgstr "cognoms únics"
 
 #: ../src/plugins/quickview/FilterByName.py:53
-#, fuzzy
 msgid "Filtering_on|people with media"
 msgstr "persones amb audiovisuals"
 
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy
 msgid "Filtering_on|media references"
 msgstr "referències a audiovisuals"
 
 #: ../src/plugins/quickview/FilterByName.py:55
-#, fuzzy
 msgid "Filtering_on|unique media"
 msgstr "audiovisuals únics"
 
 #: ../src/plugins/quickview/FilterByName.py:56
-#, fuzzy
 msgid "Filtering_on|missing media"
 msgstr "audiovisuals que faltin"
 
 #: ../src/plugins/quickview/FilterByName.py:57
-#, fuzzy
 msgid "Filtering_on|media by size"
 msgstr "audiovisuals per mida"
 
 #: ../src/plugins/quickview/FilterByName.py:58
-#, fuzzy
 msgid "Filtering_on|list of people"
 msgstr "llista de persones"
 
@@ -14062,9 +13922,8 @@ msgid "Display a person's events, both personal and family."
 msgstr "Visualitzar els esdeveniments d'una persona, tant personals com familiars."
 
 #: ../src/plugins/quickview/quickview.gpr.py:86
-#, fuzzy
 msgid "All Family Events"
-msgstr "Esdeveniment de Família"
+msgstr "Tots els Esdeveniments de Família"
 
 #: ../src/plugins/quickview/quickview.gpr.py:87
 msgid "Display the family and family members events."
@@ -14117,14 +13976,12 @@ msgid "Display references for a %s"
 msgstr "Mostra les referències per a %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:230
-#, fuzzy
 msgid "Show Repository Reference"
-msgstr "Referència a Repositori"
+msgstr "Mostrar Referència a Repositori"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
-#, fuzzy
 msgid "Display the repository reference for sources related to the active repository"
-msgstr "Mostrar RepoRef per fonts relacionades amb el repositori actiu"
+msgstr "Mostrar la referència al repositori per fonts relacionades amb el repositori actiu"
 
 #: ../src/plugins/quickview/quickview.gpr.py:251
 msgid "Same Surnames"
@@ -14144,9 +14001,8 @@ msgid "Display people with the same given name as a person."
 msgstr "Mostra les persones que tenen el mateix nom de pila que una persona."
 
 #: ../src/plugins/quickview/quickview.gpr.py:279
-#, fuzzy
 msgid "Same Given Names - stand-alone"
-msgstr "Noms de Pila Iguals"
+msgstr "Noms de Pila Iguals - tots sols"
 
 #: ../src/plugins/quickview/quickview.gpr.py:299
 msgid "Display a person's siblings."
@@ -14164,14 +14020,12 @@ msgid "No references for this %s"
 msgstr "No hi ha referències a %s"
 
 #: ../src/plugins/quickview/Reporef.py:73
-#, fuzzy
 msgid "Type of media"
-msgstr "Tipus de graf"
+msgstr "Tipus de medi"
 
 #: ../src/plugins/quickview/Reporef.py:73
-#, fuzzy
 msgid "Call number"
-msgstr "Nú_mero de Referència:"
+msgstr "Número de Referència"
 
 #: ../src/plugins/quickview/SameSurnames.py:39
 msgid "People with incomplete surnames"
@@ -14248,9 +14102,8 @@ msgid "Substring:"
 msgstr "Subcadena:"
 
 #: ../src/plugins/quickview/SameSurnames.py:51
-#, fuzzy
 msgid "People matching the <surname>"
-msgstr "Persones que concordin amb <nom>"
+msgstr "Persones que concordin amb <cognom>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
@@ -14307,9 +14160,8 @@ msgid "self"
 msgstr "la mateixa persona"
 
 #: ../src/plugins/rel/relplugins.gpr.py:32
-#, fuzzy
 msgid "Czech Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Txeca"
 
 #: ../src/plugins/rel/relplugins.gpr.py:33
 #: ../src/plugins/rel/relplugins.gpr.py:46
@@ -14327,84 +14179,68 @@ msgstr "Calculadora de Parentesc"
 #: ../src/plugins/rel/relplugins.gpr.py:230
 #: ../src/plugins/rel/relplugins.gpr.py:246
 #: ../src/plugins/rel/relplugins.gpr.py:260
-#, fuzzy
 msgid "Calculates relationships between people"
-msgstr "Calcula el parentesc entre dues persones"
+msgstr "Calcula els parentescs entre persones"
 
 #: ../src/plugins/rel/relplugins.gpr.py:45
-#, fuzzy
 msgid "Danish Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Danesa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:61
-#, fuzzy
 msgid "German Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Alemanya"
 
 #: ../src/plugins/rel/relplugins.gpr.py:76
-#, fuzzy
 msgid "Spanish Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Espanyola"
 
 #: ../src/plugins/rel/relplugins.gpr.py:91
-#, fuzzy
 msgid "Finnish Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Finesa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:106
-#, fuzzy
 msgid "French Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Francesa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:123
-#, fuzzy
 msgid "Croatian Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Croata"
 
 #: ../src/plugins/rel/relplugins.gpr.py:137
-#, fuzzy
 msgid "Hungarian Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Hongaresa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:150
-#, fuzzy
 msgid "Italian Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Italiana"
 
 #: ../src/plugins/rel/relplugins.gpr.py:163
-#, fuzzy
 msgid "Dutch Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Holandesa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:180
-#, fuzzy
 msgid "Norwegian Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Noruega"
 
 #: ../src/plugins/rel/relplugins.gpr.py:197
-#, fuzzy
 msgid "Polish Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Polonesa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:213
-#, fuzzy
 msgid "Portuguese Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Portuguesa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:229
-#, fuzzy
 msgid "Russian Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Russa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:245
-#, fuzzy
 msgid "Slovak Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Eslovaca"
 
 #: ../src/plugins/rel/relplugins.gpr.py:259
-#, fuzzy
 msgid "Swedish Relationship Calculator"
-msgstr "Calculadora de Parentesc"
+msgstr "Calculadora de Parentesc Sueca"
 
 #: ../src/plugins/textreport/AncestorReport.py:178
 #, python-format
@@ -14432,9 +14268,8 @@ msgid "Indicates if a line break should follow the name."
 msgstr "Indica si un salt de línia hauria de seguir el nom."
 
 #: ../src/plugins/textreport/AncestorReport.py:272
-#, fuzzy
 msgid "Translation"
-msgstr "Graduació"
+msgstr "Traducció"
 
 #: ../src/plugins/textreport/AncestorReport.py:274
 #: ../src/ReportBase/_StyleComboBox.py:65
@@ -14444,9 +14279,8 @@ msgid "default"
 msgstr "predeterminat"
 
 #: ../src/plugins/textreport/AncestorReport.py:277
-#, fuzzy
 msgid "The translation to be used for the report."
-msgstr "L'extensió que s'ha de fer servir per als fitxers web"
+msgstr "La traducció que s'ha de fer servir per a l'informe."
 
 #: ../src/plugins/textreport/AncestorReport.py:334
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -14684,15 +14518,13 @@ msgstr "Si s'han de llistar els fills."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:687
 #: ../src/plugins/textreport/DetDescendantReport.py:776
-#, fuzzy
 msgid "Compute death age"
-msgstr "Calcular edat"
+msgstr "Calcular l'edat de defunció"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:688
 #: ../src/plugins/textreport/DetDescendantReport.py:777
-#, fuzzy
 msgid "Whether to compute a person's age at death."
-msgstr "Si s'ha de calcular l'edat."
+msgstr "Si s'ha de calcular l'edat d'una persona a la seva mort."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:691
 #: ../src/plugins/textreport/DetDescendantReport.py:780
@@ -14804,14 +14636,13 @@ msgstr "Si s'han d'incloure referències a les fonts."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:825
-#, fuzzy
 msgid "Include sources notes"
-msgstr "Incloure fonts"
+msgstr "Incloure notes de fonts"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetDescendantReport.py:826
 msgid "Whether to include source notes in the Endnotes section. Only works if Include sources is selected."
-msgstr ""
+msgstr "Si s'han d'incloure notes de fonts a la secció de Notes Finals. Només funciona si s'ha seleccionat Incloure Fonts."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:740
 #: ../src/plugins/textreport/DetDescendantReport.py:846
@@ -14869,32 +14700,28 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Report de Descendents per %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:742
-#, fuzzy
 msgid "Numbering system"
-msgstr "El nombre ha de ser:"
+msgstr "Sistema de numeració"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:744
-#, fuzzy
 msgid "Henry numbering"
-msgstr "Números del dia al calendari"
+msgstr "Numeració Henry"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:745
 msgid "d'Aboville numbering"
-msgstr ""
+msgstr "Numeració d'Aboville"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:747
-#, fuzzy
 msgid "Record (Modified Register) numbering"
-msgstr "Utilitzar l'estil de numeració de Registre Modificat"
+msgstr "Numeració de Registre Modificat"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:748
 msgid "The numbering system to be used"
-msgstr ""
+msgstr "El sistema de numeració a utilitzar"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:784
-#, fuzzy
 msgid "Use complete sentences"
-msgstr "Utilitzar Frases Senceres"
+msgstr "Utilitzar frases senceres"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:830
 #: ../src/plugins/textreport/KinshipReport.py:337
@@ -14907,20 +14734,19 @@ msgstr "Si s'ha d'incloure informació detallada dels esposos."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:834
 msgid "Include sign of succession ('+') in child-list"
-msgstr ""
+msgstr "Incloure senyal de successió ('+') a la llista de fills"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:836
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
-msgstr ""
+msgstr "Si s'ha d'incloure un senyal ('+') abans del número de descendent a la llista de fills per indicar que un fill té successió."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:841
-#, fuzzy
 msgid "Include path to start-person"
-msgstr "Incloure relacions amb la persona central"
+msgstr "Incloure camí fins a la persona inicial"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:842
 msgid "Whether to include the path of descendancy from the start-person to each descendant."
-msgstr ""
+msgstr "Si s'ha d'incloure el camí de descendència des de la persona inicial fins a cada descendent."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:137
 #, python-format
@@ -14965,9 +14791,9 @@ msgid "acronym for female|F"
 msgstr "D"
 
 #: ../src/plugins/textreport/FamilyGroup.py:437
-#, fuzzy, python-format
+#, python-format
 msgid "acronym for unknown|%dU"
-msgstr "H"
+msgstr "%dN"
 
 #: ../src/plugins/textreport/FamilyGroup.py:531
 #, python-format
@@ -15082,9 +14908,8 @@ msgstr "Si s'han d'incloure els camps per la informació que falti."
 
 #: ../src/plugins/textreport/FamilyGroup.py:708
 #: ../src/plugins/textreport/MarkerReport.py:505
-#, fuzzy
 msgid "The basic style used for the note display."
-msgstr "L'estil bàsic que es fa servir per mostrar el text."
+msgstr "L'estil bàsic que es fa servir per mostrar les notes."
 
 #: ../src/plugins/textreport/FamilyGroup.py:717
 msgid "The style used for the text related to the children."
@@ -15100,9 +14925,8 @@ msgstr "L'estil utilitzat per al nom dels pares"
 #.
 #. ------------------------------------------------------------------------
 #: ../src/plugins/textreport/IndivComplete.py:60
-#, fuzzy
 msgid "Sections"
-msgstr "Acció"
+msgstr "Seccions"
 
 #. Translated headers for the sections
 #: ../src/plugins/textreport/IndivComplete.py:62
@@ -15110,9 +14934,9 @@ msgid "Individual Facts"
 msgstr "Fets Individuals"
 
 #: ../src/plugins/textreport/IndivComplete.py:187
-#, fuzzy, python-format
+#, python-format
 msgid "%s in %s. "
-msgstr "%s i %s"
+msgstr "%s en %s. "
 
 #: ../src/plugins/textreport/IndivComplete.py:274
 msgid "Alternate Parents"
@@ -15147,18 +14971,16 @@ msgid "Female"
 msgstr "Dona"
 
 #: ../src/plugins/textreport/IndivComplete.py:644
-#, fuzzy
 msgid "Select the filter to be applied to the report."
-msgstr "Seleccionar el filtre a aplicar a l'informe"
+msgstr "Seleccionar el filtre a aplicar a l'informe."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
 msgid "List events chonologically"
-msgstr ""
+msgstr "Llistar esdeveniments cronològicament"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-#, fuzzy
 msgid "Whether to sort events into chonological order."
-msgstr "Si s'han de mostrar els cònjuges a l'arbre."
+msgstr "Si s'han d'ordenar els esdeveniments en ordre cronològic."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
 msgid "Include Source Information"
@@ -15170,13 +14992,12 @@ msgstr "Si s'han de citar les fonts."
 
 #. ###############################
 #: ../src/plugins/textreport/IndivComplete.py:666
-#, fuzzy
 msgid "Event groups"
-msgstr "Esdeveniments"
+msgstr "Grups d'esdeveniments"
 
 #: ../src/plugins/textreport/IndivComplete.py:667
 msgid "Check if a separate section is required."
-msgstr ""
+msgstr "Comprovar si cal una secció separada."
 
 #: ../src/plugins/textreport/IndivComplete.py:720
 msgid "The style used for category labels."
@@ -15388,9 +15209,9 @@ msgid "Subtitle string for the book."
 msgstr "Cadena de subtítol per al llibre."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "Copyright %(year)d %(name)s"
-msgstr "Copyright %d %s"
+msgstr "Copyright %(year)d %(name)s"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer"
@@ -15406,7 +15227,7 @@ msgstr "Imatge"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:137
 msgid "Gramps ID of the media object to use as an image."
-msgstr "Id GRAMPS de l'objecte audiovisual que s'ha d'utilitzar com a imatge."
+msgstr "Id Gramps de l'objecte audiovisual que s'ha d'utilitzar com a imatge."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:140
 msgid "Image Size"
@@ -15506,9 +15327,8 @@ msgid "Custom Text"
 msgstr "Text Personalitzat"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:76
-#, fuzzy
 msgid "Add custom text to the book report"
-msgstr "Afegir un element al llibre"
+msgstr "Afegir text personalitzat a l'informe de llibre"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:97
 msgid "Descendant Report"
@@ -15607,51 +15427,44 @@ msgid "Source to remove and/or add"
 msgstr "Font a treure i/o afegir"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:91
-#, fuzzy
 msgid "Remove previously added events, notes, and source"
-msgstr "Treure dates afegides prèviament"
+msgstr "Treure esdeveniments, notes i fonts afegits prèviament"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:92
 msgid "Remove calculated events, notes, and source; occurs immediately on Execute"
-msgstr ""
+msgstr "Treure esdeveniments, notes i fonts afegits prèviament; es fa immediatament en Executar"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:96
-#, fuzzy
 msgid "Do not add birth events"
-msgstr "afegit naixement el %s"
+msgstr "No afegir esdeveniments de naixement"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:97
-#, fuzzy
 msgid "Add birth events without dates"
-msgstr "esdeveniment de naixement, però sense data"
+msgstr "Afegir esdeveniments de naixement sense dates"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:98
-#, fuzzy
 msgid "Add birth events with dates"
-msgstr "esdeveniment de naixement, però sense data"
+msgstr "Afegir esdeveniments de naixement amb dates"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:99
 msgid "Add a birth events with or without estimated dates"
-msgstr ""
+msgstr "Afegir esdeveniments de naixement amb o sense dates estimades"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:103
-#, fuzzy
 msgid "Do not add death events"
-msgstr "afegida defunció el %s"
+msgstr "No afegir esdeveniments de defunció"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:104
-#, fuzzy
 msgid "Add death events without dates"
-msgstr "Afegir dates de naixement estimades"
+msgstr "Afegir esdeveniments de defunció sense dates"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:105
-#, fuzzy
 msgid "Add death events with dates"
-msgstr "Afegir dates de naixement estimades"
+msgstr "Afegir esdeveniments de defunció amb dates"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:106
 msgid "Add death events with or without estimated dates"
-msgstr ""
+msgstr "Afegir esdeveniments de defunció amb o sense dates estimades"
 
 #. -----------------------------------------------------
 #: ../src/plugins/tool/CalculateEstimatedDates.py:110
@@ -15671,9 +15484,8 @@ msgid "Average years between two generations"
 msgstr "Els anys entre dues generacions, en mitjana"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:128
-#, fuzzy
 msgid "Estimated Dates"
-msgstr "Data estimada"
+msgstr "Dates Estimades"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:129
 msgid "Approximate (about)"
@@ -15681,7 +15493,7 @@ msgstr ""
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:130
 msgid "Extremes (after and before)"
-msgstr ""
+msgstr "Extrems (abans i després)"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:131
 msgid "Dates on events are either about or after/before"
@@ -23632,921 +23444,3 @@ msgstr "<b>Qui Va Néixer Quan</b>: l'eina 'Comparar esdeveniments individuals' 
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calenders. Try the button next to the date field in the Events Editor."
 msgstr ""
 
-#~ msgid "Input family tree \"%s\" does not exist."
-#~ msgstr "L'arbre genealògic d'entrada \"%s\" no existeix."
-
-#~ msgid "Column Editor"
-#~ msgstr "Editor de Columnes"
-
-#~ msgid "GRAMPS: Import database"
-#~ msgstr "GRAMPS: Importar base de dades"
-
-#~ msgid "Internet Maps"
-#~ msgstr "Mapes d'Internet"
-
-#~ msgid "You need a broadband internet connection to use Internet mapping applications from within GRAMPS"
-#~ msgstr "Cal una connexió a Internet de banda ampla per fer servir aplicacions de mapes d'Internet dins de GRAMPS"
-
-#~ msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-#~ msgstr "Afegir GeoView a GRAMPS per mostrar mapes d'Internet basats en les seves dades."
-
-#~ msgid ""
-#~ "GeoView uses OpenStreetMap and one other map provider.\n"
-#~ "Choose one of the following map providers:"
-#~ msgstr ""
-#~ "GeoView fa servir OpenStreetMap i un altre proveïdor de mapes.\n"
-#~ "Triï un dels següents proveïdors de mapes:"
-
-#~ msgid "Google Maps"
-#~ msgstr "Google Maps"
-
-#~ msgid "OpenLayers"
-#~ msgstr "OpenLayers"
-
-#~ msgid "Yahoo! Maps"
-#~ msgstr "Yahoo! Maps"
-
-#~ msgid "Microsoft Maps"
-#~ msgstr "Microsoft Maps"
-
-#~ msgid "You need to restart GRAMPS for above settings to take effect"
-#~ msgstr "Call tornar a arrencar GRAMPS perquè aquesta configuració tingui efecte"
-
-#~ msgid "_Display format"
-#~ msgstr "_Format de visualització"
-
-#~ msgid "C_ustom format details"
-#~ msgstr "Detalls del format _personalitzat"
-
-#~ msgid "Use shading in Relationship View"
-#~ msgstr "Fer servir ombres a la Vista de Relació"
-
-#~ msgid "Display edit buttons on Relationship View"
-#~ msgstr "Mostrar botons d'edició a la Vista de Relació"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Afegir Punt d'interès"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Possibly the installation of GRAMPS was incomplete. Make sure the GConf schema of GRAMPS is properly installed."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Possiblement la instal·lació de GRAMPS ha estat incompleta. Asseguri's que l'esquema GConf de GRAMPS està instal·lat correctament."
-
-#~ msgid "_Filter"
-#~ msgstr "_Filtre"
-
-#~ msgid "_Plugin Status"
-#~ msgstr "Estat dels _Connectors"
-
-#~ msgid "_Column Editor"
-#~ msgstr "Editor de _Columnes"
-
-#~ msgid "Select Event Columns"
-#~ msgstr "Seleccionar Columnes d'Esdeveniments"
-
-#~ msgid "Select Family Columns"
-#~ msgstr "Seleccionar Columnes de Famílies"
-
-#~ msgid "_OpenStreetMap"
-#~ msgstr "_OpenStreetMap"
-
-#~ msgid "Select OpenStreetMap Maps"
-#~ msgstr "Seleccionar Mapes OpenStreetMap"
-
-#~ msgid "_Google Maps"
-#~ msgstr "_Google Maps"
-
-#~ msgid "Select Google Maps."
-#~ msgstr "Seleccionar Google Maps."
-
-#~ msgid "_OpenLayers Maps"
-#~ msgstr "_OpenLayers Maps"
-
-#~ msgid "Select OpenLayers Maps."
-#~ msgstr "Seleccionar Mapes OpenLayers."
-
-#~ msgid "_Yahoo! Maps"
-#~ msgstr "_Yahoo! Maps"
-
-#~ msgid "Select Yahoo Maps."
-#~ msgstr "Seleccionar Yahoo Maps."
-
-#~ msgid "_Microsoft Maps"
-#~ msgstr "_Microsoft Maps"
-
-#~ msgid "Select Microsoft Maps"
-#~ msgstr "Seleccionar Microsoft Maps"
-
-#~ msgid "There are %d markers to display. They are split up over %d pages of %d markers : "
-#~ msgstr "Hi ha %d marcadors per visualitzar. Estan repartits per %d pàgines de %d marcadors : "
-
-#~ msgid "Cannot center the map. No location with coordinates."
-#~ msgstr "No es pot centrar el mapa. No hi ha posició amb coordenades."
-
-#~ msgid "Id : %(id)s (%(year)s)"
-#~ msgstr "Id : %(id)s (%(year)s)"
-
-#~ msgid "The active person's family members have no places with coordinates."
-#~ msgstr "Els membres de la família de la persona activa no tenen cap lloc amb coordenades."
-
-#~ msgid "No active person set."
-#~ msgstr "No s'ha fixat la persona activa."
-
-#~ msgid "The active person has no places with coordinates."
-#~ msgstr "La persona activa no té llocs amb coordenades."
-
-#~ msgid "Select Media Columns"
-#~ msgstr "Seleccionar Columnes d'Audiovisuals"
-
-#~ msgid "Set Columns to _1"
-#~ msgstr "Fixar _1 Columna"
-
-#~ msgid "Set Columns to _2"
-#~ msgstr "Fixar _2 Columnes"
-
-#~ msgid "Set Columns to _3"
-#~ msgstr "Fixar _3 Columnes"
-
-#~ msgid "Select Note Columns"
-#~ msgstr "Seleccionar Columnes de Nota"
-
-#~ msgid "Jump to father"
-#~ msgstr "Saltar cap al pare"
-
-#~ msgid "Select Person Columns"
-#~ msgstr "Seleccionar Columnes de Persona"
-
-#~ msgid "Go to default person"
-#~ msgstr "Anar a la persona predeterminada"
-
-#~ msgid "Edit selected person"
-#~ msgstr "Editar persona seleccionada"
-
-#~ msgid "Select Place Columns"
-#~ msgstr "Seleccionar Columnes de Lloc"
-
-#~ msgid "b. %(birthdate)s, d. %(deathdate)s"
-#~ msgstr "n. %(birthdate)s, d. %(deathdate)s"
-
-#~ msgid "short for born|b. %s"
-#~ msgstr "n. %s"
-
-#~ msgid "short for dead|d. %s"
-#~ msgstr "d. %s"
-
-#~ msgid "Select Repository Columns"
-#~ msgstr "Seleccionar Columnes de Repositori"
-
-#~ msgid "Select Source Columns"
-#~ msgstr "Selecciona Columnes de Font"
-
-#~ msgid "Select repository"
-#~ msgstr "Seleccionar repositori"
-
-#~ msgid "The family you are editing has changed. To make sure that the database is not corrupted, GRAMPS has updated the family to reflect these changes. Any edits you have made may have been lost."
-#~ msgstr "La família que està editant ha canviat. Per assegurar-se que la base de dades no es corromp, GRAMPS ha actualitzat la família per reflectir aquests canvis. Qualsevol edició que hagi fet pot haver-se perdut."
-
-#~ msgid "GRAMPS Book"
-#~ msgstr "Llibre de GRAMPS"
-
-#~ msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
-#~ msgstr "Exportar a CD copia totes les dades i fitxers audiovisuals al Creador de CD. Més endavant pot gravar el CD amb aquestes dades, i aquesta còpia serà completament portable a màquines i arquitectures binàries diferents."
-
-#~ msgid "GRAMPS XML export options"
-#~ msgstr "Opcions d'exportació de GRAMPS XML"
-
-#~ msgid "GRAMPS _XML database"
-#~ msgstr "Base de dades _XML GRAMPS"
-
-#~ msgid "Import data from GRAMPS packages"
-#~ msgstr "Importar dades des de paquets GRAMPS"
-
-#~ msgid "The marker '<!-- START -->' was not in the template"
-#~ msgstr "La marca '<!-- START -->' no era a la plantilla"
-
-#~ msgid "Template Error"
-#~ msgstr "Error de Plantilla"
-
-#~ msgid ""
-#~ "Could not open %s\n"
-#~ "Using the default template"
-#~ msgstr ""
-#~ "No s'ha pogut obrir %s\n"
-#~ "Es fa servir la plantilla predeterminada"
-
-#~ msgid "Open in %(program_name)s"
-#~ msgstr "Obrir a %(program_name)s"
-
-#~ msgid "SVG (Scalable Vector Graphics)"
-#~ msgstr "SVG (Scalable Vector Graphics)"
-
-#~ msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
-#~ msgstr "Calendari %(calendar_type)s, ordenat per %(sortby)s"
-
-#~ msgid "The calendar which determines the year span"
-#~ msgstr "El calendari que determina l'extensió d'anys"
-
-#~ msgid "WriteCD is a GNOME plugin and you are not running GNOME"
-#~ msgstr "WriteCD és un connector per GNOME i no s'està executant GNOME"
-
-#~ msgid "Cannot be loaded because python bindings for GNOME are not installed"
-#~ msgstr "No es pot carregar perquè no estan instal·lades les associacions de python per a GNOME"
-
-#~ msgid "Export to CD"
-#~ msgstr "Exportar a CD"
-
-#~ msgid "CD export preparation failed"
-#~ msgstr "La preparació de l'exportació a CD ha fallat"
-
-#~ msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
-#~ msgstr "%(file_name)s està referenciat a la base de dades, però ja no existeix. El fitxer pot haver estat esborrat o desplaçat a un lloc diferent. Pot decidir o treure la referència de la base de dades, o mantenir la referència al fitxer inexistent, o seleccionar un fitxer nou."
-
-#~ msgid "_Export to CD (portable XML)"
-#~ msgstr "_Exportar a CD (XML portable)"
-
-#~ msgid "CSV spreadsheet options"
-#~ msgstr "Opcions de full CSV"
-
-#~ msgid "Web Family Tree export options"
-#~ msgstr "Opcions d'exportació de l'Arbre Genealògic Web"
-
-#~ msgid "GEDCOM export options"
-#~ msgstr "Opcions d'exportació GEDCOM"
-
-#~ msgid "GeneWeb export options"
-#~ msgstr "Opcions d'exportació de GeneWeb"
-
-#~ msgid "GRAMPS package export options"
-#~ msgstr "Opcions d'exportació de paquet GRAMPS"
-
-#~ msgid "vCalendar export options"
-#~ msgstr "Opcions d'exportació vCalendar"
-
-#~ msgid "vCard export options"
-#~ msgstr "Opcions d'exportació vCard"
-
-#~ msgid "Active person"
-#~ msgstr "Persona activa"
-
-#~ msgid "Surname, Given"
-#~ msgstr "Cognom, Nom"
-
-#~ msgid "Save"
-#~ msgstr "Desar"
-
-#~ msgid "New person"
-#~ msgstr "Persona nova"
-
-#~ msgid "Add relation"
-#~ msgstr "Afegir relació"
-
-#~ msgid "No relation to active person"
-#~ msgstr "No hi ha relació amb la persona activa"
-
-#~ msgid "Add as a Parent"
-#~ msgstr "Afegir com a Pare"
-
-#~ msgid "Add as a Spouse"
-#~ msgstr "Afegir com a Cònjuge"
-
-#~ msgid "Add as a Sibling"
-#~ msgstr "Afegir com a Germà"
-
-#~ msgid "Add as a Child"
-#~ msgstr "Afegir com a Fill"
-
-#~ msgid "Copy Active Data"
-#~ msgstr "Copiar Dades Actives"
-
-#~ msgid "in"
-#~ msgstr "a"
-
-#~ msgid "Gramplet Data Edit: %s"
-#~ msgstr "Edició de Dades en Gramplet: %s"
-
-#~ msgid "Please provide a name."
-#~ msgstr "Si us plau introdueixi un nom."
-
-#~ msgid "Can't add new person."
-#~ msgstr "No es pot afegir una persona nova."
-
-#~ msgid "Please set an active person."
-#~ msgstr "Fixi si us plau una persona activa."
-
-#~ msgid "Can't add new person as a parent."
-#~ msgstr "No es pot afegir persona nova com a progenitor."
-
-#~ msgid "Please set the new person's gender."
-#~ msgstr "Digui si us plau el gènere de la persona nova."
-
-#~ msgid "Can't add new person as a spouse."
-#~ msgstr "No es pot afegir persona nova com a cònjuge."
-
-#~ msgid "Can't add new person as a sibling."
-#~ msgstr "No es pot afegir persona nova com a germà."
-
-#~ msgid "Can't add new person as a child."
-#~ msgstr "No es pot afegir persona nova com a fill."
-
-#~ msgid "Please set gender on Active or new person."
-#~ msgstr "Si us plau, fixi el gènere de la persona Activa o nova."
-
-#~ msgid "Same genders on Active and new person."
-#~ msgstr "Gèneres iguals a la persona nova i activa."
-
-#~ msgid "Please set gender on Active person."
-#~ msgstr "Si us plau fixi el gènere de la persona Activa."
-
-#~ msgid "Gramplet Data Entry: %s"
-#~ msgstr "Introducció de Dades amb Gramplet: %s"
-
-#~ msgid "Data Entry Gramplet"
-#~ msgstr "Gramplet d'Introducció de Dades"
-
-#~ msgid "Data Entry"
-#~ msgstr "Introducció de Dades"
-
-#~ msgid "b. %(birth_date)s - %(place)s"
-#~ msgstr "n. %(birth_date)s - %(place)s"
-
-#~ msgid "b. %(birth_date)s"
-#~ msgstr "n. %(birth_date)s"
-
-#~ msgid "d. %(death_date)s - %(place)s"
-#~ msgstr "d. %(death_date)s - %(place)s"
-
-#~ msgid "d. %(death_date)s"
-#~ msgstr "d. %(death_date)s"
-
-#~ msgid "Read headline news from the GRAMPS wiki"
-#~ msgstr "Llegir capçaleres de notícies des de la wiki de GRAMPS"
-
-#~ msgid "Error"
-#~ msgstr "Error"
-
-#~ msgid "Headline News Gramplet"
-#~ msgstr "Gramplet de Capçaleres de Notícies"
-
-#~ msgid "Headline News"
-#~ msgstr "Capçaleres de Notícies"
-
-#~ msgid "Note Gramplet"
-#~ msgstr "Gramplet de Notes"
-
-#~ msgid "Enter Python expressions"
-#~ msgstr "Introdueixi expressions de Python"
-
-#~ msgid "class name|Date"
-#~ msgstr "Date"
-
-#~ msgid "Python Gramplet"
-#~ msgstr "Gramplet Python"
-
-#~ msgid "Python Shell"
-#~ msgstr "Intèrpret Python"
-
-#~ msgid "Welcome to GRAMPS!"
-#~ msgstr "Benvingut a GRAMPS!"
-
-#~ msgid "gramps id"
-#~ msgstr "id gramps"
-
-#~ msgid "CSV Spreadheet"
-#~ msgstr "Full de càlcul CSV"
-
-#~ msgid "Eniro map not available for %s"
-#~ msgstr "Mapa Eniro no disponible per %s"
-
-#~ msgid "Only for Sweden and Denmark"
-#~ msgstr "Només per Suècia i Dinamarca"
-
-#~ msgid "%s and %s are the same person."
-#~ msgstr "%s i %s són la mateixa persona."
-
-#~ msgid "males"
-#~ msgstr "homes"
-
-#~ msgid "females"
-#~ msgstr "dones"
-
-#~ msgid "all families"
-#~ msgstr "totes les famílies"
-
-#~ msgid "RepoRef"
-#~ msgstr "RepoRef"
-
-#~ msgid "b."
-#~ msgstr "n."
-
-#~ msgid "d."
-#~ msgstr "d."
-
-#~ msgid "Whether to use Record-style numbering instead of Henry-style."
-#~ msgstr "Si s'ha d'utilitzar estil de numeració de Registre en comptes d'Henry."
-
-#~ msgid "%dU"
-#~ msgstr "%dNA"
-
-#~ msgid "%(date)s in %(place)s. "
-#~ msgstr "%(date)s a %(place)s. "
-
-#~ msgid "spouses of %s"
-#~ msgstr "cònjuges de %s"
-
-#~ msgid "Display detailed results"
-#~ msgstr "Mostrar resultats detallats"
-
-#~ msgid "Show details for every date entered"
-#~ msgstr "Mostrar detalls per cada data introduïda"
-
-#~ msgid "Minimum years between two generations"
-#~ msgstr "El mínim d'anys que ha de passar entre dues generacions"
-
-#~ msgid "Results"
-#~ msgstr "Resultats"
-
-#~ msgid "Replacing...\n"
-#~ msgstr "Reemplaçant...\n"
-
-#~ msgid "Calculating estimated dates..."
-#~ msgstr "Calculant dates estimades..."
-
-#~ msgid "Beta"
-#~ msgstr "Beta"
-
-#~ msgid "Python Evaluation Window"
-#~ msgstr "Finestra d'Avaluació Python"
-
-#~ msgid "Provides a window that can evaluate python code"
-#~ msgstr "Proporciona una finestra que pot avaluar codi python"
-
-#~ msgid "Show Uncollected Objects"
-#~ msgstr "Mostrar Objectes No Recollits"
-
-#~ msgid "Provide a window listing all uncollected objects"
-#~ msgstr "Proporciona una finestra que llista tots els objectes no recollits"
-
-#~ msgid "GRAMPS Media Manager"
-#~ msgstr "Gestor GRAMPS de Medis Audiovisuals"
-
-#~ msgid "Looking for %d people"
-#~ msgstr "Buscant %d persones"
-
-#~ msgid "Looking up the names for %d people"
-#~ msgstr "Consultant els noms de %d persones"
-
-#~ msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
-#~ msgstr "Busca per tota la base de dades i intenta d'extreure títols, malnoms i prefixos del cognom que puguin estar posats dins del camp de nom de pila d'una persona."
-
-#~ msgid "Cause of Death"
-#~ msgstr "Causa de Defunció"
-
-#~ msgid "Reordering GRAMPS IDs"
-#~ msgstr "Reordenant els Ids GRAMPS"
-
-#~ msgid "GRAMPS ID"
-#~ msgstr "Id GRAMPS"
-
-#~ msgid "event|Type"
-#~ msgstr "Tipus"
-
-#~ msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
-#~ msgstr "%(date)s <span class=\"preposition\">a</span> %(place)s"
-
-#~ msgid "<span class=\"preposition\">at</span> %(place)s"
-#~ msgstr "<span class=\"preposition\">a</span> %(place)s"
-
-#~ msgid "<br />%(type)s: %(value)s"
-#~ msgstr "<br />%(type)s: %(value)s"
-
-#~ msgid "Advanced"
-#~ msgstr "Avançat"
-
-#~ msgid "Creating year %d calendars"
-#~ msgstr "Creant calendaris de l'any %d"
-
-#~ msgid "%(short_name)s"
-#~ msgstr "%(short_name)s"
-
-#~ msgid "Enter the ending year for the calendars between 1900 - 3000.  if multiple years is selected, then only twenty years at any given time"
-#~ msgstr "Introdueixi l'any de fi per als calendaris entre 1900 i 3000. Si se seleccionen múltiples anys, només fins a vint anys"
-
-#~ msgid "This prints in January"
-#~ msgstr "Això surt el gener"
-
-#~ msgid "This prints in February"
-#~ msgstr "Això surt el febrer"
-
-#~ msgid "This prints in March"
-#~ msgstr "Això surt el març"
-
-#~ msgid "This prints in April"
-#~ msgstr "Això surt l'abril"
-
-#~ msgid "This prints in May"
-#~ msgstr "Això surt el maig"
-
-#~ msgid "This prints in June"
-#~ msgstr "Això surt el juny"
-
-#~ msgid "This prints in July"
-#~ msgstr "Això surt el juliol"
-
-#~ msgid "This prints in August"
-#~ msgstr "Això surt l'agost"
-
-#~ msgid "This prints in September"
-#~ msgstr "Això surt el setembre"
-
-#~ msgid "This prints in October"
-#~ msgstr "Això surt l'octubre"
-
-#~ msgid "This prints in November"
-#~ msgstr "Això surt el novembre"
-
-#~ msgid "This prints in December"
-#~ msgstr "Això surt el desembre"
-
-#~ msgid "Print a copy"
-#~ msgstr "Imprimir una còpia"
-
-#~ msgid "Template"
-#~ msgstr "Plantilla"
-
-#~ msgid "User Template"
-#~ msgstr "Plantilla d'Usuari"
-
-#~ msgid "Choose File"
-#~ msgstr "Triar Fitxer"
-
-#~ msgid "Open with application"
-#~ msgstr "Obrir amb aplicació"
-
-#~ msgid "Open with default application"
-#~ msgstr "Obrir amb aplicació predeterminada"
-
-#~ msgid "unmarried"
-#~ msgstr "no casat"
-
-#~ msgid "civil union"
-#~ msgstr "unió civil"
-
-#~ msgid "He"
-#~ msgstr "Ell"
-
-#~ msgid "She"
-#~ msgstr "Ella"
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s, i va morir a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s, i va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s, i va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s, i va morir a%(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s, i va morir a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s va morir a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s, i va morir a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s a %(birth_place)s%(birth_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s, i va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s, i va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s, i va morir a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer %(birth_date)s%(birth_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s, i va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s, i va morir a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va néixer a %(birth_place)s%(birth_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va morir %(death_date)s a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va morir %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s va morir a %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s."
-
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "Naixement: %(birth_date)s %(birth_place)s, Mort: %(death_date)s."
-
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-#~ msgstr "Naixement: %(birth_date)s %(birth_place)s, Mort: %(death_place)s."
-
-#~ msgid "Born: %(birth_date)s %(birth_place)s."
-#~ msgstr "Naixement: %(birth_date)s %(birth_place)s."
-
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr "Naixement: %(birth_date)s, Mort: %(death_date)s %(death_place)s."
-
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s."
-#~ msgstr "Naixement: %(birth_date)s, Mort: %(death_date)s."
-
-#~ msgid "Born: %(birth_date)s, Died: %(death_place)s."
-#~ msgstr "Naixement: %(birth_date)s, Mort: %(death_place)s."
-
-#~ msgid "Born: %(birth_date)s."
-#~ msgstr "Naixement: %(birth_date)s."
-
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr "Naixement: %(birth_place)s, Mort: %(death_date)s %(death_place)s."
-
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "Naixement: %(birth_place)s, Mort: %(death_date)s."
-
-#~ msgid "Born: %(birth_place)s, Died: %(death_place)s."
-#~ msgstr "Naixement: %(birth_place)s, Mort: %(death_place)s."
-
-#~ msgid "Born: %(birth_place)s."
-#~ msgstr "Naixement: %(birth_place)s."
-
-#~ msgid "Died: %(death_date)s %(death_place)s."
-#~ msgstr "Mort: %(death_date)s %(death_place)s."
-
-#~ msgid "Died: %(death_date)s."
-#~ msgstr "Mort: %(death_date)s."
-
-#~ msgid "Died: %(death_place)s."
-#~ msgstr "Mort: %(death_place)s."
-
-#~ msgid "Default Template"
-#~ msgstr "Plantilla Predeterminada"
-
-#~ msgid "User Defined Template"
-#~ msgstr "Plantilla Definida per l'Usuari"
-
-#~ msgid "Processing Person records"
-#~ msgstr "Processant registres de Persona"
-
-#~ msgid "Processing Family records"
-#~ msgstr "Processant registres de Família"
-
-#~ msgid "Processing Event records"
-#~ msgstr "Processant registres d'Esdeveniment"
-
-#~ msgid "Processing Place records"
-#~ msgstr "Processant registres de Lloc"
-
-#~ msgid "Processing Source records"
-#~ msgstr "Processant registres de Font"
-
-#~ msgid "Processing Media records"
-#~ msgstr "Processant registres de medis audiovisuals"
-
-#~ msgid "Processing Repository records"
-#~ msgstr "Processant registres de Repositori"
-
-#~ msgid "Processing Note records"
-#~ msgstr "Processant registres de Nota"
-
-#~ msgid "Zip/Postal code"
-#~ msgstr "Codi postal"
-
-#~ msgid "Edit icons can be enabled in the Preferences dialog"
-#~ msgstr "Les icones d'edició es poden habilitar al diàleg de Preferències"
-
-#~ msgid ""
-#~ "Female\n"
-#~ "Male\n"
-#~ "Unknown"
-#~ msgstr ""
-#~ "Dona\n"
-#~ "Home\n"
-#~ "Desconegut"
-
-#~ msgid "GRAMPS"
-#~ msgstr "GRAMPS"
-
-#~ msgid ""
-#~ "January 1\n"
-#~ "March 1\n"
-#~ "March 25\n"
-#~ "September 1\n"
-#~ msgstr ""
-#~ "1 de gener\n"
-#~ "1 de març\n"
-#~ "25 de març\n"
-#~ "1 de setembre\n"
-
-#~ msgid ""
-#~ "Very Low\n"
-#~ "Low\n"
-#~ "Normal\n"
-#~ "High\n"
-#~ "Very High"
-#~ msgstr ""
-#~ "Molt Baix\n"
-#~ "Baix\n"
-#~ "Normal\n"
-#~ "Alt\n"
-#~ "Molt Alt"
-
-#~ msgid "_Zip/Postal code:"
-#~ msgstr "Codi _Postal:"
-
-#~ msgid "GRAMPS ID:"
-#~ msgstr "Id GRAMPS:"
-
-#~ msgid ""
-#~ "All rules must apply\n"
-#~ "At least one rule must apply\n"
-#~ "Exactly one rule must apply"
-#~ msgstr ""
-#~ "Totes les regles s'han de complir\n"
-#~ "Almenys una regla s'ha de complir\n"
-#~ "Exactament una regla s'ha de complir"
-
-#~ msgid ""
-#~ "\n"
-#~ "ToDo\n"
-#~ "NotRelated"
-#~ msgstr ""
-#~ "\n"
-#~ "Per Fer\n"
-#~ "NoRelacionats"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid ""
-#~ "default\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UTF8"
-#~ msgstr ""
-#~ "default\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UTF8"
-
-#~ msgid "Copy from DB to Preferences"
-#~ msgstr "Copiar de BD a Preferències"
-
-#~ msgid "Copy from Preferences to DB"
-#~ msgstr "Copiar de Preferències a BD"
-
-#~ msgid "Exclude _sources"
-#~ msgstr "Excloure _fonts"
-
-#~ msgid "GRAMPS database"
-#~ msgstr "Base de dades GRAMPS"
-
-#~ msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
-#~ msgstr "<b>Afegir Fills</b>: Per afegir fills a GRAMPS, cal fer qualsevol dels pares la Persona Activa i llavors canviar a la Vista de Família. Si el fill ja és a la base de dades, clicar el tercer botó comptant des de dalt, a la dreta de la llista de Fills. Després d'introduir la informació del fill, quedarà automàticament llistat com a fill de la Persona Activa."
-
-#~ msgid "<b>Changing The Preferred Name</b>: It is easy to manage people with several names in GRAMPS. Make the person the Active Person, doubleclick on the record, and select the Names tab. Different types of names can be added. For example, Married Name, Birth Name, etc. Selecting a preferred name is just a matter of right-clicking on the name and choosing the only item in the menu."
-#~ msgstr "<b>Canviar el Nom Preferit</b>: És fàcil gestionar persones amb noms diversos a GRAMPS. Cal fer que aquesta persona sigui la Persona Activa, fer doble clic sobre el registre, i seleccionar la pestana de Noms. Es poden afegir diferents tipus de noms. Per exemple, Nom de Casat, Nom de Pila, etc. Seleccionar un nom preferit només és qüestió de fer-hi clic amb el botó dret i triar l'única opció del menú."
-
-#~ msgid "<b>Different Views</b>: There are twelve different views for navigating your family: Gramplets, People, Relationships, Family List, Pedigree, Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each helps you to achieve one or more specific tasks."
-#~ msgstr "<b>Vistes Diferents</b>: Hi ha dotze vistes diferents per navegar per la família: Gramplets, Persones, Relacions, Llista de Famílies, Pedigrí, Esdeveniments, Fonts, Llocs, Audiovisuals, Repositoris, Notes i Mapes HTML. Cadascuna permet d'aconseguir una o més tasques específiques."
-
-#~ msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
-#~ msgstr "<b>Edició de les Relacions d'un Fill</b>: No tots els fills estan relacionats per naixement amb els seus pares. Es pot editar la relació d'un fill amb cada pare fent que el fill sigui la persona activa. A la Vista de Relació, clicar a la tercera icona a la dreta de l'entrada de &quot;Pares&quot;. Això fa aparèixer l'Editor de Família. Ara cal seleccionar el fill, clicar amb el botó dret, i seleccionar &quot;Editar relació &quot;. Aquí es pot fixar la relació entre el fill i els seus pare i mare. Les Relacions possibles són Adoptat, Naixement, Acollida, Cap, Patrocinat, Fillastre i Desconegut."
-
-#~ msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
-#~ msgstr "<b>Manual de GRAMPS</b>: El manual de GRAMPS és força treballat i ben escrit. Inclou detalls sobre les tecles i també inclou consells útils per al treball genealògic. De moment, només en anglès."
-
-#~ msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
-#~ msgstr "<b>Llistar Esdeveniments</b>: Els esdeveniments de la vida de qualsevol individu es poden afegir a la base de dades amb l'opció <b>Persones &gt; Editar Persona &gt; pestanya d'Esdeveniments</b>. Aquest espai es pot fer servir per incloure una colla de possibilitats, des d'adopcions a batejos (i altres cerimònies religioses), enterraments, causes de defunció, llistats del cens, títols obtinguts, eleccions, emigració, servei militar, títols nobiliaris, ocupacions, ordenació, propietat, religió, jubilació, testaments, etc."
-
-#~ msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-#~ msgstr "<b>Canviar les Preferències</b>: No li agrada algun comportament predeterminat de GRAMPS? <b>Edita &gt; Preferències</b> permet de modificar una colla d'opcions, per tal d'adaptar GRAMPS a les seves necessitats."
-
-#~ msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Relationships View is easy. Just doubleclick on the name of a person to make it the active one."
-#~ msgstr "<b>Variar una Vista Familiar</b>: Canviar la Persona Activa de la Vista de Relacions és fàcil. Només cal fer doble clic al nom d'una persona perquè passi a ser l'activa."
-
-#~ msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
-#~ msgstr "Es pot donar un rang de dates fent servir el format &quot;entre el 4 de gener de 2000 i el 20 de març de 2003.&quot;"
-
-#~ msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting &quot;set as default name&quot; from the menu."
-#~ msgstr "Es pot seleccionar un nom alternatiu com a nom preferit d'una persona seleccionant el nom desitjat a la llista de noms de la persona, clicant el botó dret del ratolí perquè surti el menú de context, i seleccionant &quot;posar com a nom predeterminat&quot; des del menú."
-
-#~ msgid "Birth order of children in a family can be set, even if they do not have birth dates, by using drag and drop."
-#~ msgstr "L'ordre de naixement dins d'una família es pot fixar, encara que no es tinguin les dates de naixement, arrossegat i deixant amb el ratolí."
-
-#~ msgid "Custom reports can be created by advanced users under the &quot;plugin&quot; system. More information on custom reports can be found at http://developers.gramps-project.org"
-#~ msgstr "Els usuaris avançats poden crear informes a mida amb el sistema de &quot;connectors&quot;. Es pot trobar més informació sobre informes a mida a http://developers.gramps-project.org"
-
-#~ msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, Open Document Text, RTF, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
-#~ msgstr "GRAMPS li permet de generar una colla d'informes (tant de text com gràfics) basats en la seva informació genealògica. Hi ha una gran flexibilitat per seleccionar quines persones surten als informes així com el format de sortida (html, pdf, Open Document Text, RTF, LaTeX i text pla). Experimenti amb els informes del menú <b>Informes</b> per fer-se una idea de la potència de GRAMPS."
-
-#~ msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
-#~ msgstr "GRAMPS té algunes funcionalitats úniques, com ara la capacitat d'introduir qualsevol tipus d'informació directament a GRAMPS. Totes les dades de la base de dades es poden reubicar/manipular per ajudar a l'usuari a fer recerca, anàlisi i correlacions amb el potencial d'omplir buits en les relacions."
-
-#~ msgid "GRAMPS is freely distributable under the General Public License, see http://www.gnu.org/licenses/licenses.html#GPL"
-#~ msgstr "GRAMPS es pot distribuir lliurement sota la Llicència Pública GPL, veure http://www.gnu.org/licenses/licenses.html#GPL (Traducció no oficial al català a http://www.gnu.org/licenses/translations.ca.html#GPL)"
-
-#~ msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
-#~ msgstr "GRAMPS fa tots els esforços possibles per mantenir la compatibilitat amb GEDCOM, l'estàndard habitual per registrar informació genealògica. Existeixen filtres que fan trivial la importació i l'exportació de fitxers GEDCOM."
-
-#~ msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
-#~ msgstr "GRAMPS funciona fins i tot en KDE, mentre s'hagin instal·lat les llibreries de GTK que calen."
-
-#~ msgid "Make your data portable --- your family tree data and media can be exported directly to the GNOME file manager (Nautilus), for burning onto a CD."
-#~ msgstr "Faci portables les seves dades --- les dades del seu arbre genealògic i els medis audiovisuals es poden exportar directament al gestor de fitxers de GNOME (Nautilus), per crear-ne un CD."
-
-#~ msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
-#~ msgstr "Es poden especificar noms múltiples per als individus. Alguns exemples són el nom de pila, el nom de casat o malnoms."
-
-#~ msgid "Relationship calculators in GRAMPS are available in more than fifteen languages."
-#~ msgstr "Existeixen calculadores de parentesc en GRAMPS per més de quinze llengües."
-
-#~ msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
-#~ msgstr "El model de desenvolupament lliure i de codi obert (FLOSS) significa que GRAMPS es pot millorar per qualsevol programador ja que tot el codi font és disponible lliurement sota la seva llicència."
-
-#~ msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
-#~ msgstr "Per combinar dues persones fàcilment, seleccioni les dues (es pot seleccionar una segona persona prement la tecla de Control mentre es clica) i clicant a <b>Edita &gt; Combinar Ràpid</b>."
-
-#~ msgid "To run GRAMPS, you need to have GTK installed. But you do not need to be running the GNOME desktop."
-#~ msgstr "Per executar GRAMPS, cal tenir instal·lat el GTK. Però no cal estar executant l'escriptori GNOME."
-
-#~ msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
-#~ msgstr "Pot enllaçar qualsevol medi electrònic (inclosa informació no textual) i d'altres tipus de fitxer al seu arbre genealògic de GRAMPS."
-
-#~ msgid ""
-#~ "%d uncollected objects:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "%d objectes no recollits:\n"
-#~ "\n"
-
-#~ msgid "%(person)s, <em>birth</em>"
-#~ msgstr "%(person)s, <em>naixement</em>"
-
-#~ msgid "%(person)s, <em>%(age)s</em> old"
-#~ msgstr "%(person)s, <em>%(age)s</em> anys"
-
-#~ msgid "Julian"
-#~ msgstr "Julià"
