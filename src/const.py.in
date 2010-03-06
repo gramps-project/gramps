@@ -42,10 +42,10 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
 if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
-    VERSION        = "3.2.0"
+    VERSION        = "3.3.0"
 else:
     VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = (3, 2, 0)
+VERSION_TUPLE  = (3, 3, 0)
 
 #-------------------------------------------------------------------------
 #
@@ -59,8 +59,8 @@ URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_3.2_Wiki_Manual"
 WIKI_FAQ = "FAQ"
 WIKI_KEYBINDINGS = "Gramps_3.2_Wiki_Manual_-_Keybindings"
-WIKI_EXTRAPLUGINS= "3.2_Addons"
-WIKI_EXTRAPLUGINS_RAWDATA = "Plugins3.2&action=raw"
+WIKI_EXTRAPLUGINS= "3.3_Addons"
+WIKI_EXTRAPLUGINS_RAWDATA = "Plugins3.3&action=raw"
 
 #-------------------------------------------------------------------------
 #

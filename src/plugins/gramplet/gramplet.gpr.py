@@ -29,7 +29,7 @@ register(GRAMPLET,
          id="Age on Date Gramplet", 
          name=_("Age on Date Gramplet"), 
          version="2.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          status = STABLE,
          fname="AgeOnDateGramplet.py",
          height=200,
@@ -49,7 +49,7 @@ register(GRAMPLET,
          detached_width = 600,
          detached_height = 450,
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -64,7 +64,7 @@ register(GRAMPLET,
          detached_width = 325,
          detached_height = 250,
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -76,7 +76,7 @@ register(GRAMPLET,
          gramplet = 'CalendarGramplet',
          gramplet_title=_("Calendar"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -91,7 +91,7 @@ register(GRAMPLET,
          detached_width = 500,
          detached_height = 500,
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -106,7 +106,7 @@ register(GRAMPLET,
          detached_width = 475,
          gramplet_title=_("Fan Chart"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -118,7 +118,7 @@ register(GRAMPLET,
          gramplet = 'FAQGramplet',
          gramplet_title=_("FAQ"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -131,7 +131,7 @@ register(GRAMPLET,
          gramplet = 'GivenNameCloudGramplet',
          gramplet_title=_("Given Name Cloud"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -146,7 +146,7 @@ register(GRAMPLET,
          detached_width = 600,
          detached_height = 400,
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -159,7 +159,7 @@ register(GRAMPLET,
          gramplet = 'PluginManagerGramplet',
          gramplet_title=_("Plugin Manager"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -174,7 +174,7 @@ register(GRAMPLET,
          detached_width = 600,
          detached_height = 400,
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -188,7 +188,7 @@ register(GRAMPLET,
          detached_width = 250,
          detached_height = 300,
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -201,7 +201,7 @@ register(GRAMPLET,
          gramplet = 'LogGramplet',
          gramplet_title=_("Session Log"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -214,7 +214,7 @@ register(GRAMPLET,
          gramplet = 'StatsGramplet',
          gramplet_title=_("Statistics"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -227,7 +227,7 @@ register(GRAMPLET,
          gramplet = 'SurnameCloudGramplet',
          gramplet_title=_("Surname Cloud"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -240,7 +240,7 @@ register(GRAMPLET,
          gramplet = 'TODOGramplet',
          gramplet_title=_("TODO List"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -252,7 +252,7 @@ register(GRAMPLET,
          gramplet = 'TopSurnamesGramplet',
          gramplet_title=_("Top Surnames"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -265,7 +265,7 @@ register(GRAMPLET,
          gramplet = 'make_welcome_content',
          gramplet_title=_("Welcome to Gramps!"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
 
 register(GRAMPLET, 
@@ -278,5 +278,5 @@ register(GRAMPLET,
          gramplet = 'WhatNextGramplet',
          gramplet_title = _("What's Next?"),
          version="1.0.0",
-         gramps_target_version="3.2",
+         gramps_target_version="3.3",
          )
