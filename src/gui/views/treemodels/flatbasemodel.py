@@ -584,7 +584,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Row is only added if search/filter data is such that it must be shown
         """
         data = self.map(handle)
-        insert_val = (conv_unicode_tosrtkey_ongtk(self.sort_func(data)), handle)
+        insert_val = (map(conv_unicode_tosrtkey_ongtk, self.sort_func(data)),
+                            handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
@@ -602,7 +603,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         self.clear_cache(handle)
         data = self.map(handle)
-        delete_val = (conv_unicode_tosrtkey_ongtk(self.sort_func(data)), handle)
+        delete_val = (map(conv_unicode_tosrtkey_ongtk, self.sort_func(data)),
+                            handle)
         delete_path = self.node_map.delete(delete_val)
         #delete_path is an integer from 0 to n-1
         if delete_path is not None: 
@@ -614,7 +616,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
-        newsortkey = conv_unicode_tosrtkey_ongtk(self.sort_func(self.map(
+        newsortkey = map(conv_unicode_tosrtkey_ongtk, self.sort_func(self.map(
                             handle)))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering
