@@ -566,9 +566,12 @@ class PedigreeView(NavigationView):
             self.bookmarks.redraw()
 
     def person_rebuild(self,dummy=None):
-        self.format_helper.clear_cache()
-        self.dirty = True
-        self.rebuild_trees(self.get_active())
+        if self.active:
+            self.format_helper.clear_cache()
+            self.dirty = True
+            self.rebuild_trees(self.get_active())
+        else:
+            self.dirty = True
 
     def request_resize(self):
         self.size_request_cb(self.notebook.parent,None,None)

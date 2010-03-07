@@ -211,55 +211,72 @@ class RelationshipView(NavigationView):
         self.redraw()
 
     def person_update(self, handle_list):
-        person  = self.get_active()
-        if person:
-            while not self.change_person(person):
-                pass
+        if self.active:
+            person  = self.get_active()
+            if person:
+                while not self.change_person(person):
+                    pass
+            else:
+                self.change_person(None)
         else:
-            self.change_person(None)
+            self.dirty = True
 
     def person_rebuild(self):
         """Large change to person database"""
         if self.active:
             self.bookmarks.redraw()
-        person  = self.get_active()
-        if person:
-            while not self.change_person(person):
-                pass
+            person  = self.get_active()
+            if person:
+                while not self.change_person(person):
+                    pass
+            else:
+                self.change_person(None)
         else:
-            self.change_person(None)
+            self.dirty = True
 
     def family_update(self, handle_list):
-        person  = self.get_active()
-        if person:
-            while not self.change_person(person):
-                pass
+        if self.active:
+            person  = self.get_active()
+            if person:
+                while not self.change_person(person):
+                    pass
+            else:
+                self.change_person(None)
         else:
-            self.change_person(None)
+            self.dirty = True
 
     def family_add(self, handle_list):
-        person  = self.get_active()
-        if person:
-            while not self.change_person(person):
-                pass
+        if self.active:
+            person  = self.get_active()
+            if person:
+                while not self.change_person(person):
+                    pass
+            else:
+                self.change_person(None)
         else:
-            self.change_person(None)
+            self.dirty = True
 
     def family_delete(self, handle_list):
-        person  = self.get_active()
-        if person:
-            while not self.change_person(person):
-                pass
+        if self.active:
+            person  = self.get_active()
+            if person:
+                while not self.change_person(person):
+                    pass
+            else:
+                self.change_person(None)
         else:
-            self.change_person(None)
+            self.dirty = True
 
     def family_rebuild(self):
-        person  = self.get_active()
-        if person:
-            while not self.change_person(person):
-                pass
+        if self.active:
+            person  = self.get_active()
+            if person:
+                while not self.change_person(person):
+                    pass
+            else:
+                self.change_person(None)
         else:
-            self.change_person(None)
+            self.dirty = True
 
     def change_page(self):
         NavigationView.change_page(self)
@@ -553,6 +570,7 @@ class RelationshipView(NavigationView):
         self.uistate.modify_statusbar(self.dbstate)
 
         self.order_action.set_sensitive(self.reorder_sensitive)
+        self.dirty = False
 
         return True
 
