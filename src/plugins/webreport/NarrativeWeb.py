@@ -4148,7 +4148,8 @@ class IndividualPage(BasePage):
                             childlist = [child_ref.ref for child_ref in child_ref_list]
                             sibling.update(childlist)
 
-                    # now that we have all natural siblings, display them...    
+                    # now that we have all siblings in families of the person,
+                    # display them...    
                     if sibling:
                         trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
@@ -4177,148 +4178,159 @@ class IndividualPage(BasePage):
                     # Also try to identify half-siblings
                     half_siblings = set()
 
-                    # if we have a known father...
-                    showallsiblings = self.report.options['showhalfsiblings']
-                    if father_handle and showallsiblings:
-                        # 1) get all of the families in which this father is involved
-                        # 2) get all of the children from those families
-                        # 3) if the children are not already listed as siblings...
-                        # 4) then remember those children since we're going to list them
-                        father = db.get_person_from_handle(father_handle)
-                        for family_handle in father.get_family_handle_list():
-                            family = db.get_family_from_handle(family_handle)
-                            for half_child_ref in family.get_child_ref_list():
-                                half_child_handle = half_child_ref.ref
-                                if half_child_handle not in sibling:
-                                    if half_child_handle != self.person.handle:
-                                        # we have a new step/half sibling
-                                        half_siblings.add(half_child_handle)
-
-                    # do the same thing with the mother (see "father" just above):
-                    if mother_handle and showallsiblings:
-                        mother = db.get_person_from_handle(mother_handle)
-                        for family_handle in mother.get_family_handle_list():
-                            family = db.get_family_from_handle(family_handle)
-                            for half_child_ref in family.get_child_ref_list():
-                                half_child_handle = half_child_ref.ref
-                                if half_child_handle not in sibling:
-                                    if half_child_handle != self.person.handle:
-                                        # we have a new half sibling
-                                        half_siblings.add(half_child_handle)
-
-                    # now that we have all half- siblings, display them...    
-                    if half_siblings:
-                        trow = Html("tr") + (
-                            Html("td", _("Half Siblings"), class_ = "ColumnAttribute", inline = True)
-                            )
-                        table += trow
-
-                        tcell = Html("td", class_ = "ColumnValue")
-                        trow += tcell
-
-                        ordered = Html("ol")
-                        tcell += ordered
-
-                        if birthorder:
-                            kids = sorted(add_birthdate(db, half_siblings))
-
-                            ordered.extend(
-                                self.display_child_link(child_handle)
-                                for birth_date, child_handle in kids)
-                        else:
-                            ordered += map(self.display_child_link, half_siblings)
-
-                    # get step-siblings
-                    if showallsiblings:
-                        step_siblings = set()
-
-                        # to find the step-siblings, we need to identify
-                        # all of the families that can be linked back to
-                        # the current person, and then extract the children
-                        # from those families
-                        all_family_handles = set()
-                        all_parent_handles = set()
-                        tmp_parent_handles = set()
-
-                        # first we queue up the parents we know about
-                        if mother_handle:
-                            tmp_parent_handles.add(mother_handle)
-                        if father_handle:
-                            tmp_parent_handles.add(father_handle)
-
-                        while len(tmp_parent_handles):
-                            # pop the next parent from the set
-                            parent_handle = tmp_parent_handles.pop()
-
-                            # add this parent to our official list
-                            all_parent_handles.add(parent_handle)
-
-                            # get all families with this parent
-                            parent = db.get_person_from_handle(parent_handle)
-                            for family_handle in parent.get_family_handle_list():
-
-                                all_family_handles.add(family_handle)
-
-                                # we already have 1 parent from this family
-                                # (see "parent" above) so now see if we need
-                                # to queue up the other parent
-                                family = db.get_family_from_handle(family_handle)
-                                tmp_mother_handle = family.get_mother_handle()
-                                if  tmp_mother_handle and \
-                                    tmp_mother_handle != parent and \
-                                    tmp_mother_handle not in tmp_parent_handles and \
-                                    tmp_mother_handle not in all_parent_handles:
-                                    tmp_parent_handles.add(tmp_mother_handle)
-                                tmp_father_handle = family.get_father_handle()
-                                if  tmp_father_handle and \
-                                    tmp_father_handle != parent and \
-                                    tmp_father_handle not in tmp_parent_handles and \
-                                    tmp_father_handle not in all_parent_handles:
-                                    tmp_parent_handles.add(tmp_father_handle)
-
-                        # once we get here, we have all of the families
-                        # that could result in step-siblings; note that
-                        # we can only have step-siblings if the number
-                        # of families involved is > 1
-
-                        if len(all_family_handles) > 1:
-                            while len(all_family_handles):
-                                # pop the next family from the set
-                                family_handle = all_family_handles.pop()
-                                # look in this family for children we haven't yet seen
-                                family = db.get_family_from_handle(family_handle)
-                                for step_child_ref in family.get_child_ref_list():
-                                    step_child_handle = step_child_ref.ref
-                                    if step_child_handle not in sibling and \
-                                           step_child_handle not in half_siblings and \
-                                           step_child_handle != self.person.handle:
-                                        # we have a new step sibling
-                                        step_siblings.add(step_child_handle)
-
-                        # now that we have all step- siblings, display them...    
-                        if len(step_siblings):
-                            trow = Html("tr") + (
-                                Html("td", _("Step Siblings"), class_ = "ColumnAttribute", inline = True)
-                                )
-                            table += trow
-
-                            tcell = Html("td", class_ = "ColumnValue")
-                            trow += tcell
-
-                            ordered = Html("ol")
-                            tcell += ordered
-
-                            if birthorder:
-                                kids = []
-                                kids = sorted(add_birthdate(db, step_siblings))
-
-                                ordered.extend(
-                                    self.display_child_link(child_handle)
-                                        for birth_date, child_handle in kids)
-
-                            else:
-                                ordered += map(self.display_child_link,
-                                                                step_siblings)
+                    ## FOLLOWING CODE IS WRONG, AS showallsiblings = False
+                    ## THIS CODE WILL NOT RUN
+                    ## TO FIX: the code only works if the user has his
+                    ## half/step siblings in a specific way in the database,
+                    ## however this way is not the official way
+                    ## The official way is:
+                    ##    1. step or half siblings _must_ be present 
+                    ##       somewhere in the same family. So the search
+                    ##       here over other families is wrong
+                    ##    2. to determine the relationship, only the child
+                    ##       relationship must be looked at, nothing else! 
+                    showallsiblings = False #self.report.options['showhalfsiblings']
+##                    # if we have a known father...
+##                    if father_handle and showallsiblings:
+##                        # 1) get all of the families in which this father is involved
+##                        # 2) get all of the children from those families
+##                        # 3) if the children are not already listed as siblings...
+##                        # 4) then remember those children since we're going to list them
+##                        father = db.get_person_from_handle(father_handle)
+##                        for family_handle in father.get_family_handle_list():
+##                            family = db.get_family_from_handle(family_handle)
+##                            for half_child_ref in family.get_child_ref_list():
+##                                half_child_handle = half_child_ref.ref
+##                                if half_child_handle not in sibling:
+##                                    if half_child_handle != self.person.handle:
+##                                        # we have a new step/half sibling
+##                                        half_siblings.add(half_child_handle)
+##
+##                    # do the same thing with the mother (see "father" just above):
+##                    if mother_handle and showallsiblings:
+##                        mother = db.get_person_from_handle(mother_handle)
+##                        for family_handle in mother.get_family_handle_list():
+##                            family = db.get_family_from_handle(family_handle)
+##                            for half_child_ref in family.get_child_ref_list():
+##                                half_child_handle = half_child_ref.ref
+##                                if half_child_handle not in sibling:
+##                                    if half_child_handle != self.person.handle:
+##                                        # we have a new half sibling
+##                                        half_siblings.add(half_child_handle)
+##
+##                    # now that we have all half- siblings, display them...    
+##                    if half_siblings:
+##                        trow = Html("tr") + (
+##                            Html("td", _("Half Siblings"), class_ = "ColumnAttribute", inline = True)
+##                            )
+##                        table += trow
+##
+##                        tcell = Html("td", class_ = "ColumnValue")
+##                        trow += tcell
+##
+##                        ordered = Html("ol")
+##                        tcell += ordered
+##
+##                        if birthorder:
+##                            kids = sorted(add_birthdate(db, half_siblings))
+##
+##                            ordered.extend(
+##                                self.display_child_link(child_handle)
+##                                for birth_date, child_handle in kids)
+##                        else:
+##                            ordered += map(self.display_child_link, half_siblings)
+##
+##                    # get step-siblings
+##                    if showallsiblings:
+##                        step_siblings = set()
+##
+##                        # to find the step-siblings, we need to identify
+##                        # all of the families that can be linked back to
+##                        # the current person, and then extract the children
+##                        # from those families
+##                        all_family_handles = set()
+##                        all_parent_handles = set()
+##                        tmp_parent_handles = set()
+##
+##                        # first we queue up the parents we know about
+##                        if mother_handle:
+##                            tmp_parent_handles.add(mother_handle)
+##                        if father_handle:
+##                            tmp_parent_handles.add(father_handle)
+##
+##                        while len(tmp_parent_handles):
+##                            # pop the next parent from the set
+##                            parent_handle = tmp_parent_handles.pop()
+##
+##                            # add this parent to our official list
+##                            all_parent_handles.add(parent_handle)
+##
+##                            # get all families with this parent
+##                            parent = db.get_person_from_handle(parent_handle)
+##                            for family_handle in parent.get_family_handle_list():
+##
+##                                all_family_handles.add(family_handle)
+##
+##                                # we already have 1 parent from this family
+##                                # (see "parent" above) so now see if we need
+##                                # to queue up the other parent
+##                                family = db.get_family_from_handle(family_handle)
+##                                tmp_mother_handle = family.get_mother_handle()
+##                                if  tmp_mother_handle and \
+##                                    tmp_mother_handle != parent and \
+##                                    tmp_mother_handle not in tmp_parent_handles and \
+##                                    tmp_mother_handle not in all_parent_handles:
+##                                    tmp_parent_handles.add(tmp_mother_handle)
+##                                tmp_father_handle = family.get_father_handle()
+##                                if  tmp_father_handle and \
+##                                    tmp_father_handle != parent and \
+##                                    tmp_father_handle not in tmp_parent_handles and \
+##                                    tmp_father_handle not in all_parent_handles:
+##                                    tmp_parent_handles.add(tmp_father_handle)
+##
+##                        # once we get here, we have all of the families
+##                        # that could result in step-siblings; note that
+##                        # we can only have step-siblings if the number
+##                        # of families involved is > 1
+##
+##                        if len(all_family_handles) > 1:
+##                            while len(all_family_handles):
+##                                # pop the next family from the set
+##                                family_handle = all_family_handles.pop()
+##                                # look in this family for children we haven't yet seen
+##                                family = db.get_family_from_handle(family_handle)
+##                                for step_child_ref in family.get_child_ref_list():
+##                                    step_child_handle = step_child_ref.ref
+##                                    if step_child_handle not in sibling and \
+##                                           step_child_handle not in half_siblings and \
+##                                           step_child_handle != self.person.handle:
+##                                        # we have a new step sibling
+##                                        step_siblings.add(step_child_handle)
+##
+##                        # now that we have all step- siblings, display them...    
+##                        if len(step_siblings):
+##                            trow = Html("tr") + (
+##                                Html("td", _("Step Siblings"), class_ = "ColumnAttribute", inline = True)
+##                                )
+##                            table += trow
+##
+##                            tcell = Html("td", class_ = "ColumnValue")
+##                            trow += tcell
+##
+##                            ordered = Html("ol")
+##                            tcell += ordered
+##
+##                            if birthorder:
+##                                kids = []
+##                                kids = sorted(add_birthdate(db, step_siblings))
+##
+##                                ordered.extend(
+##                                    self.display_child_link(child_handle)
+##                                        for birth_date, child_handle in kids)
+##
+##                            else:
+##                                ordered += map(self.display_child_link,
+##                                                                step_siblings)
 
         # return parents division to its caller
         return section
@@ -5840,11 +5852,12 @@ class NavWebOptions(MenuReportOptions):
         showparents.set_help(_('Whether to include a parents column'))
         menu.add_option(category_name, 'showparents', showparents)
 
-        showallsiblings = BooleanOption(_("Include half and/ or "
-                                           "step-siblings on the individual pages"), False)
-        showallsiblings.set_help(_( "Whether to include half and/ or "
-                                    "step-siblings with the parents and siblings"))
-        menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
+        # This is programmed wrong, remove
+        #showallsiblings = BooleanOption(_("Include half and/ or "
+        #                                   "step-siblings on the individual pages"), False)
+        #showallsiblings.set_help(_( "Whether to include half and/ or "
+        #                            "step-siblings with the parents and siblings"))
+        #menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
 
         birthorder = BooleanOption(_('Sort all children in birth order'), False)
         birthorder.set_help(_('Whether to display children in birth order'
