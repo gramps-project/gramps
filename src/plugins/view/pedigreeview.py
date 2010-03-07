@@ -858,13 +858,16 @@ class PedigreeView(NavigationView):
 
     def person_rebuild(self, dummy=None):
         """Callback function for signals of change database."""
-        self.format_helper.clear_cache()
-        self.dirty = True
-        self.rebuild_trees(self.get_active())
+        if self.active:
+            self.format_helper.clear_cache()
+            self.dirty = True
+            self.rebuild_trees(self.get_active())
+        else:
+            self.dirty = True
 
     def rebuild_trees(self, person_handle):
         """
-        Rebild tree with root person_handle.
+        Rebuild tree with root person_handle.
         Called from many fuctions, when need full redraw tree.
         """
         person = None
