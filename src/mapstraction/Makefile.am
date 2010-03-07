@@ -5,7 +5,8 @@
 pkgdatadir = $(datadir)/@PACKAGE@/mapstraction
 
 dist_pkgdata_DATA = \
-	mapstraction.js
+	mapstraction.js \
+	crosshairs.png
 
 
 
