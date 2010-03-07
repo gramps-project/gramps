@@ -6,7 +6,6 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/tool
 
 pkgdata_PYTHON = \
-	CalculateEstimatedDates.py \
 	ChangeNames.py \
 	ChangeTypes.py \
 	Check.py \
@@ -55,7 +54,6 @@ GLADEFILES = \
 	soundgen.glade \
 	verify.glade
 
-	
 dist_pkgdata_DATA = $(GLADEFILES)
 
 # Clean up all the byte-compiled files

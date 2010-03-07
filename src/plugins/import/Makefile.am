@@ -8,7 +8,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/import
 pkgdata_PYTHON = \
 	import.gpr.py \
 	ImportCsv.py \
-	ImportDjango.py \
 	ImportGedcom.py \
 	ImportGeneWeb.py \
 	ImportGpkg.py \
