@@ -55,7 +55,13 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
     FN   = 4  # first name
 
     def __init__(self, source=None, data=None):
-        """Create a new Name instance, copying from the source if provided."""
+        """Create a new Name instance, copying from the source if provided.
+        We should connect here to 'person-groupname-rebuild' and do something
+        correct when first parameter is the name, and second parameter is
+        different from the group here. However, that would be complicated and
+        no real errors that cannot be ammended can be done if group is 
+        saved differently.
+        """
         PrivacyBase.__init__(self, source)
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)

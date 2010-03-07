@@ -708,7 +708,7 @@ class ListView(NavigationView):
         else:
             self.dirty = True
 
-    def object_build(self):
+    def object_build(self, *args):
         """
         Called when the tree must be rebuilt and bookmarks redrawn.
         """
