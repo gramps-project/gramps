@@ -558,6 +558,7 @@ class FanChartWidget(gtk.Widget):
             text, person, parents, child = self.data[generation][selected]
             if person and self.context_popup_callback:
                 self.context_popup_callback(widget, event, person.handle)
+                return True
         self.queue_draw()
         return True
 
