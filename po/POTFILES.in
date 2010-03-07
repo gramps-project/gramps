@@ -381,7 +381,6 @@ src/plugins/drawreport/TimeLine.py
 # plugins/export directory
 src/plugins/export/export.gpr.py
 src/plugins/export/ExportCsv.py
-src/plugins/export/ExportDjango.py
 src/plugins/export/ExportFtree.py
 src/plugins/export/ExportGedcom.py
 src/plugins/export/ExportGeneWeb.py
@@ -421,8 +420,6 @@ src/plugins/graph/GVRelGraph.py
 # plugins/import directory
 src/plugins/import/import.gpr.py
 src/plugins/import/ImportCsv.py
-src/plugins/import/ImportDjango.py
-src/plugins/import/ImportDjango.py
 src/plugins/import/ImportGedcom.py
 src/plugins/import/ImportGeneWeb.py
 src/plugins/import/ImportGrdb.py
@@ -507,7 +504,6 @@ src/plugins/textreport/Summary.py
 src/plugins/textreport/textplugins.gpr.py
 
 # plugins/tool directory
-src/plugins/tool/CalculateEstimatedDates.py
 src/plugins/tool/ChangeNames.py
 src/plugins/tool/ChangeTypes.py
 src/plugins/tool/Check.py

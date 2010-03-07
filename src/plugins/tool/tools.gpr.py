@@ -26,28 +26,6 @@ GRAMPS registration file
 
 #------------------------------------------------------------------------
 #
-# Calculate Estimated Dates
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'calculateestimateddates',
-name  = _("Calculate Estimated Dates"),
-description =  _("Calculates estimated dates for birth and death."),
-version = '0.90',
-gramps_target_version = '3.2',
-status = UNSTABLE,
-fname = 'CalculateEstimatedDates.py',
-authors = ["Douglas S. Blank"],
-authors_email = ["dblank@cs.brynmawr.edu"],
-category = TOOL_DBPROC,
-toolclass = 'CalcToolManagedWindow',
-optionclass = 'CalcEstDateOptions',
-tool_modes = [TOOL_MODE_GUI]
-  )
-
-#------------------------------------------------------------------------
-#
 # Fix Capitalization of Family Names
 #
 #------------------------------------------------------------------------
