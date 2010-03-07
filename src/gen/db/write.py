@@ -193,6 +193,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     # 3. Special signal for change in home person
     __signals__['home-person-changed'] = None
+    
+    # 4. Signal for change in person group name, parameters are 
+    __signals__['person-groupname-rebuild'] = (unicode, unicode)
 
     def __init__(self):
         """Create a new GrampsDB."""
@@ -1265,13 +1268,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.name_group) as txn:
-                name = str(name)
-                data = txn.get(name)
+                sname = str(name)
+                data = txn.get(sname)
                 if data is not None:
-                    txn.delete(name)
+                    txn.delete(sname)
                 if group is not None:
-                    txn.put(name, group)
-            self.emit('person-rebuild')
+                    txn.put(sname, group)
+            if group == None:
+                grouppar = u''
+            else:
+                grouppar = group
+            self.emit('person-groupname-rebuild', (name, grouppar))
 
     def sort_surname_list(self):
         self.surname_list.sort(key=locale.strxfrm)

@@ -120,6 +120,7 @@ class BasePersonView(ListView):
             'person-update'  : self.row_update,
             'person-delete'  : self.row_delete,
             'person-rebuild' : self.object_build,
+            'person-groupname-rebuild' : self.object_build,
             }
  
         ListView.__init__(
