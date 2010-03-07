@@ -12091,7 +12091,7 @@ msgstr ""
 "referències al a font, etc. Aquestes dades <b>no inclouen el propi fitxer</"
 "b>.\n"
 "\n"
-"Els fitxers que contenen imatges, so, video, etc, existeixen per separat al "
+"Els fitxers que contenen imatges, so, vídeo, etc, existeixen per separat al "
 "disc dur. Aquests fitxers no els gestiona GRAMPS i no estan inclosos dins de "
 "la base de dades GRAMPS. La base de dades GRAMPS només emmagatzema el camí i "
 "els noms de fitxer.\n"
@@ -12835,7 +12835,7 @@ msgstr "Generat per <a href=\"http://gramps-project.org\">GRAMPS</a> el %(date)s
 #: ../src/plugins/webreport/NarrativeWeb.py:307
 #, python-format
 msgid "Created for <a href=\"%s\">%s</a>"
-msgstr "Created per a <a href=\"%s\">%s</a>"
+msgstr "Creat per a <a href=\"%s\">%s</a>"
 
 #. An optional link to a home page
 #: ../src/plugins/webreport/NarrativeWeb.py:402
@@ -20518,7 +20518,7 @@ msgstr "Concorda amb les famílies que tinguin un cert nombre d'elements a la ga
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
-msgstr "Familia amb <Id>"
+msgstr "Família amb <Id>"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified GRAMPS ID"
@@ -20760,7 +20760,7 @@ msgstr "Esdeveniment amb <Id>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
 msgid "Matches an event with a specified GRAMPS ID"
-msgstr "Concorda amb un esdeviment que tingui un Id GRAMPS especificat"
+msgstr "Concorda amb un esdeveniment que tingui un Id GRAMPS especificat"
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:45
 msgid "Events with <marker>"
@@ -22406,8 +22406,8 @@ msgid ""
 "When not checked, notes are automatically cleaned in the reports, which will "
 "improve the report layout."
 msgstr ""
-"Quan estigui actiu, les espais en blanc de la seva nota es respectaran als "
-"informes. Utilitzi-ho per afegir espaiat amb espais, com ara una taula. \n"
+"Quan estigui actiu, els espais en blanc de la seva nota es respectaran als "
+"informes. Utilitzi-ho per donar format amb espais, com ara una taula. \n"
 "Quan no es marqui, les notes es netegen automàticament als informes, cosa "
 "que millorarà la distribució de l'informe."
 
@@ -23003,7 +23003,7 @@ msgid ""
 msgstr ""
 "A sota hi ha una llista dels malnoms, títols i prefixos de nom familiar que "
 "GRAMPS pot extreure de la \n"
-"base de dades actuals. Si accepta els canvis, GRAMPS modificarà les "
+"base de dades actual. Si accepta els canvis, GRAMPS modificarà les "
 "entrades\n"
 "que s'han seleccionat."
 
@@ -23441,7 +23441,7 @@ msgid ""
 "listed only once. By clicking on the arrow to the left of a name, the list "
 "will expand to show all individuals with that last name."
 msgstr ""
-"<v>Trobar Persones</b>: Per defecte, cada cognom de la Vista de Persones es "
+"<b>Trobar Persones</b>: Per defecte, cada cognom de la Vista de Persones es "
 "llista només un cop. Clicant a la fletxa de l'esquerra d'un nom, la llista "
 "s'expandeix per mostrar tots els individus amb aquest cognom."
 
@@ -23588,7 +23588,7 @@ msgid ""
 "dropping it from a file manager or a web browser."
 msgstr ""
 "Es pot afegir una imatge a qualsevol galeria o a la Vista de Medis "
-"Audiovisualsarrossegant-la i deixant-la des d'un gestor de fitxers o un "
+"Audiovisuals arrossegant-la i deixant-la des d'un gestor de fitxers o un "
 "navegador."
 
 #: ../src/data/tips.xml.in.h:31
