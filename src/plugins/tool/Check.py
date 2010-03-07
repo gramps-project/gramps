@@ -1459,7 +1459,7 @@ class CheckIntegrity(object):
         self.text = cStringIO.StringIO()
         if blink > 0:
             self.text.write(ngettext("%(quantity)d broken child/family link was fixed\n", \
-            "%(quantity)d broken child-family links were found\n", blink) % { 'quantity' : blink } )
+            "%(quantity)d broken child-family links were fixed\n", blink) % { 'quantity' : blink } )
             for (person_handle, family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1477,7 +1477,7 @@ class CheckIntegrity(object):
 
         if plink > 0:
             self.text.write(ngettext("%(quantity)d broken spouse/family link was fixed\n", 
-                                     "%(quantity)d broken spouse/family links were found\n", plink) % {
+                                     "%(quantity)d broken spouse/family links were fixed\n", plink) % {
                     'quantity' : plink })
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
