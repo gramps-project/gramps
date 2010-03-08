@@ -28,6 +28,7 @@ Provide soundex calculation
 #
 #-------------------------------------------------------------------------
 import string
+import unicodedata
 
 #-------------------------------------------------------------------------
 #
@@ -45,11 +46,11 @@ TABLE  = string.maketrans('ABCDEFGIJKLMNOPQRSTUVXYZ',
 #-------------------------------------------------------------------------
 def soundex(strval):
     "Return the soundex value to a string argument."
-
-    strval = strval.upper().strip()
+    
+    strval = unicodedata.normalize('NFKD', 
+                strval.upper().strip()).encode('ASCII', 'ignore')
     if not strval:
         return "Z000"
-    strval = strval.encode('iso-8859-1')
     str2 = strval[0]
     strval = strval.translate(TABLE, IGNORE)
     if not strval:
