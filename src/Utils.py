@@ -456,18 +456,20 @@ class ProbablyAlive(object):
         # If the recorded death year is before current year then
         # things are simple.
         if death_ref and death_ref.get_role().is_primary():
-            death = self.db.get_event_from_handle(death_ref.ref)
-            if death and death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
-                death_date = death.get_date_object()
+            if death_ref:
+                death = self.db.get_event_from_handle(death_ref.ref)
+                if death and death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
+                    death_date = death.get_date_object()
 
         # Look for Cause Of Death, Burial or Cremation events.
         # These are fairly good indications that someone's not alive.
         if not death_date:
             for ev_ref in person.get_primary_event_ref_list():
-                ev = self.db.get_event_from_handle(ev_ref.ref)
-                if ev and ev.type.is_death_fallback():
-                    death_date = ev.get_date_object()
-                    explain = _("death-related evidence")
+                if ev_ref:
+                    ev = self.db.get_event_from_handle(ev_ref.ref)
+                    if ev and ev.type.is_death_fallback():
+                        death_date = ev.get_date_object()
+                        explain = _("death-related evidence")
 
         # If they were born within X years before current year then
         # assume they are alive (we already know they are not dead).
@@ -838,7 +840,7 @@ def probably_alive(person, db,
             return False
     # FIXME: use match here:
     # if the current_date is before birth, not alive:
-    if (birth - current_date)[0] >= 0:
+    if (birth - current_date)[0] > 0:
         if return_range:
             return (False, birth, death, explain, relative)
         else:
