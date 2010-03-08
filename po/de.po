@@ -8,18 +8,19 @@
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010.
+# Mirko Leonhaeuser <mirko@leonhaeuser.de>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-07 21:07+0100\n"
-"PO-Revision-Date: 2010-03-07 22:01+0100\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
-"Language-Team: German <kde-i18n-de@kde.org>\n"
+"POT-Creation-Date: 2010-03-08 09:42+0100\n"
+"PO-Revision-Date: 2010-03-08 14:07+0100\n"
+"Last-Translator: Mirko Leonhaeuser <mirko@leonhaeuser.de>\n"
+"Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:47
@@ -1060,7 +1061,7 @@ msgstr "Ereignisreferenz"
 msgid "Call Name"
 msgstr "Rufname"
 
-#: ../src/ScratchPad.py:579 ../src/Utils.py:1097
+#: ../src/ScratchPad.py:579 ../src/Utils.py:1099
 #: ../src/gen/display/name.py:118 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:477 ../src/gui/configure.py:478
@@ -1097,12 +1098,12 @@ msgstr "Vorname"
 msgid "Family"
 msgstr "Familie"
 
-#: ../src/ScratchPad.py:581 ../src/Utils.py:1101 ../src/gui/configure.py:481
+#: ../src/ScratchPad.py:581 ../src/Utils.py:1103 ../src/gui/configure.py:481
 #: ../src/gui/editors/editperson.py:284
 msgid "Patronymic"
 msgstr "Patronymikon"
 
-#: ../src/ScratchPad.py:582 ../src/Utils.py:1098
+#: ../src/ScratchPad.py:582 ../src/Utils.py:1100
 #: ../src/gui/editors/editperson.py:275 ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:168
 #: ../src/plugins/tool/PatchNames.py:274 ../src/plugins/tool/PatchNames.py:286
@@ -1115,14 +1116,14 @@ msgstr "Präfix"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:583 ../src/Utils.py:1096
+#: ../src/ScratchPad.py:583 ../src/Utils.py:1098
 #: ../src/gui/editors/editperson.py:284 ../src/plugins/export/ExportCsv.py:330
 #: ../src/plugins/import/ImportCsv.py:166
 #: ../src/plugins/tool/PatchNames.py:262
 msgid "Person|Title"
 msgstr "Titel"
 
-#: ../src/ScratchPad.py:584 ../src/Utils.py:1100 ../src/gui/configure.py:471
+#: ../src/ScratchPad.py:584 ../src/Utils.py:1102 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:480 ../src/gui/configure.py:482
 #: ../src/gui/configure.py:487 ../src/gui/editors/editperson.py:275
@@ -1166,7 +1167,6 @@ msgstr "Personenverknüpfung"
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/tool/CalculateEstimatedDates.py:95
 #: ../src/plugins/view/relview.py:621
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
@@ -1655,7 +1655,6 @@ msgstr "Quellen im Aufbewahrungsort"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
 #: ../src/plugins/tool/EventCmp.py:243
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
@@ -1783,103 +1782,102 @@ msgstr "unbekannt"
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
 
-#: ../src/Utils.py:470
+#: ../src/Utils.py:472
 msgid "death-related evidence"
 msgstr "Todesbezogener Beleg"
 
-#: ../src/Utils.py:487
+#: ../src/Utils.py:489
 msgid "birth-related evidence"
 msgstr "Geburtsbezogener Beleg"
 
-#: ../src/Utils.py:492 ../src/plugins/import/ImportCsv.py:263
+#: ../src/Utils.py:494 ../src/plugins/import/ImportCsv.py:263
 msgid "death date"
 msgstr "Sterbedatum"
 
-#: ../src/Utils.py:497 ../src/plugins/import/ImportCsv.py:254
+#: ../src/Utils.py:499 ../src/plugins/import/ImportCsv.py:254
 msgid "birth date"
 msgstr "Geburtsdatum"
 
-#: ../src/Utils.py:526
+#: ../src/Utils.py:528
 msgid "sibling birth date"
 msgstr "Geschwister Geburtsdatum"
 
-#: ../src/Utils.py:538
+#: ../src/Utils.py:540
 msgid "sibling death date"
 msgstr "Geschwister Todesdatum"
 
-#: ../src/Utils.py:552
+#: ../src/Utils.py:554
 msgid "sibling birth-related date"
 msgstr "Geschwister geburtsbezogenes Datum"
 
-#: ../src/Utils.py:563
+#: ../src/Utils.py:565
 msgid "sibling death-related date"
 msgstr "Geschwister todesbezogenes Datum"
 
-#: ../src/Utils.py:576 ../src/Utils.py:581
+#: ../src/Utils.py:578 ../src/Utils.py:583
 msgid "a spouse, "
 msgstr "ein Ehepartner, "
 
-#: ../src/Utils.py:599
+#: ../src/Utils.py:601
 msgid "event with spouse"
 msgstr "Ereignisse mit Partner(in)"
 
-#: ../src/Utils.py:620
+#: ../src/Utils.py:622
 msgid "descendent birth date"
 msgstr "Nachfahre Geburtsdatum"
 
-#: ../src/Utils.py:629
+#: ../src/Utils.py:631
 msgid "descendent death date"
 msgstr "Nachfahre Todesdatum"
 
-#: ../src/Utils.py:645
+#: ../src/Utils.py:647
 msgid "descendent birth-related date"
 msgstr "Nachfahre geburtsbezogenes Datum"
 
-#: ../src/Utils.py:653
+#: ../src/Utils.py:655
 msgid "descendent death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
-#: ../src/Utils.py:666
+#: ../src/Utils.py:668
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
-msgstr ""
-"Datenbankfehler: %s wurde als Ihr oder sein eigene(r) Vorfahre festgelegt"
+msgstr "Datenbankfehler: %s wurde als Ihr oder sein eigene(r) Vorfahre festgelegt"
 
-#: ../src/Utils.py:687 ../src/Utils.py:733
+#: ../src/Utils.py:689 ../src/Utils.py:735
 msgid "ancestor birth date"
 msgstr "Vorfahre Geburtsdatum"
 
-#: ../src/Utils.py:697 ../src/Utils.py:743
+#: ../src/Utils.py:699 ../src/Utils.py:745
 msgid "ancestor death date"
 msgstr "Vorfahre Sterbedatum"
 
-#: ../src/Utils.py:708 ../src/Utils.py:754
+#: ../src/Utils.py:710 ../src/Utils.py:756
 msgid "ancestor birth-related date"
 msgstr "Nachfahre geburtsbezoges Datum"
 
-#: ../src/Utils.py:716 ../src/Utils.py:762
+#: ../src/Utils.py:718 ../src/Utils.py:764
 msgid "ancestor death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
 #. no evidence, must consider alive
-#: ../src/Utils.py:816
+#: ../src/Utils.py:818
 msgid "no evidence"
 msgstr "kein Beleg"
 
-#: ../src/Utils.py:1096
+#: ../src/Utils.py:1098
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1097
+#: ../src/Utils.py:1099
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1098
+#: ../src/Utils.py:1100
 msgid "PREFIX"
 msgstr "PRÄFIX"
 
 #. show surname and first name
-#: ../src/Utils.py:1099 ../src/gui/configure.py:471
+#: ../src/Utils.py:1101 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:477
 #: ../src/gui/configure.py:478 ../src/gui/configure.py:479
 #: ../src/gui/configure.py:480 ../src/gui/configure.py:481
@@ -1894,51 +1892,51 @@ msgstr "PRÄFIX"
 msgid "Surname"
 msgstr "Familienname"
 
-#: ../src/Utils.py:1099 ../src/gui/configure.py:475
+#: ../src/Utils.py:1101 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:482 ../src/gui/configure.py:484
 #: ../src/gui/configure.py:485 ../src/gui/configure.py:486
 #: ../src/gui/configure.py:487 ../src/gui/configure.py:488
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
-#: ../src/Utils.py:1100
+#: ../src/Utils.py:1102
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../src/Utils.py:1101
+#: ../src/Utils.py:1103
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1102 ../src/gui/configure.py:474
+#: ../src/Utils.py:1104 ../src/gui/configure.py:474
 #: ../src/gui/configure.py:476 ../src/gui/configure.py:478
 #: ../src/gui/configure.py:485 ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:164
 msgid "Call"
 msgstr "Rufname"
 
-#: ../src/Utils.py:1102
+#: ../src/Utils.py:1104
 msgid "CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1103 ../src/gui/configure.py:472
+#: ../src/Utils.py:1105 ../src/gui/configure.py:472
 #: ../src/gui/configure.py:477 ../src/gui/configure.py:483
 #: ../src/gui/configure.py:484
 msgid "Common"
 msgstr "Üblich"
 
-#: ../src/Utils.py:1103
+#: ../src/Utils.py:1105
 msgid "COMMON"
 msgstr "ÜBLICH"
 
-#: ../src/Utils.py:1104
+#: ../src/Utils.py:1106
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1104
+#: ../src/Utils.py:1106
 msgid "INITIALS"
 msgstr "INITIALEN"
 
-#: ../src/Utils.py:1210 ../src/Utils.py:1226
+#: ../src/Utils.py:1212 ../src/Utils.py:1228
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
@@ -1951,7 +1949,7 @@ msgstr "Bearbeitungschronik"
 msgid "Original time"
 msgstr "Ursprüngliche Zeit"
 
-#: ../src/UndoHistory.py:99 ../src/plugins/tool/CalculateEstimatedDates.py:226
+#: ../src/UndoHistory.py:99
 msgid "Action"
 msgstr "Aktion"
 
@@ -2353,7 +2351,6 @@ msgid "Transcript"
 msgstr "Abschrift"
 
 #: ../src/gen/lib/notetype.py:81
-#: ../src/plugins/tool/CalculateEstimatedDates.py:86
 msgid "Source text"
 msgstr "Quellentext"
 
@@ -2820,7 +2817,6 @@ msgstr "Name nach der Hochzeit"
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/tool/CalculateEstimatedDates.py:102
 #: ../src/plugins/view/relview.py:632 ../src/plugins/view/relview.py:657
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
@@ -3186,8 +3182,7 @@ msgstr ""
 
 #: ../src/gen/plug/_pluginreg.py:997
 #, python-format
-msgid ""
-"ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
+msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
 "FEHLER: Pythondatei %(filename)s in Registrierungsdatei %(regfile)s "
 "existiert nicht"
@@ -3513,7 +3508,6 @@ msgid "Maximum age probably alive"
 msgstr "Maximales Alter wahrscheinlich am leben"
 
 #: ../src/gui/configure.py:936
-#: ../src/plugins/tool/CalculateEstimatedDates.py:116
 msgid "Maximum sibling age difference"
 msgstr "Maximaler Altersabstand von Geschwistern"
 
@@ -3522,7 +3516,6 @@ msgid "Minimum years between generations"
 msgstr "Minimaler Abstand in Jahre zwischen Generationen"
 
 #: ../src/gui/configure.py:942
-#: ../src/plugins/tool/CalculateEstimatedDates.py:122
 msgid "Average years between generations"
 msgstr "Durchschnittlicher Abstand zwischen Generationen in Jahren"
 
@@ -3799,10 +3792,8 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
 #: ../src/gui/dbman.py:546
-msgid ""
-"Removing this version will prevent you from extracting it in the future."
-msgstr ""
-"Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
+msgid "Removing this version will prevent you from extracting it in the future."
+msgstr "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
 #: ../src/gui/dbman.py:548
 msgid "Remove version"
@@ -4178,7 +4169,6 @@ msgstr "Filtertest"
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:346
 #: ../src/plugins/textreport/IndivComplete.py:642
-#: ../src/plugins/tool/CalculateEstimatedDates.py:74
 #: ../src/plugins/tool/SortEvents.py:167
 #: ../src/plugins/webreport/NarrativeWeb.py:5627
 #: ../src/plugins/webreport/WebCal.py:1349
@@ -4236,7 +4226,7 @@ msgstr "Ereignisse"
 
 #: ../src/gui/grampsgui.py:117 ../src/plugins/drawreport/drawplugins.gpr.py:98
 #: ../src/plugins/gramplet/gramplet.gpr.py:113
-#: ../src/plugins/view/fanchartview.py:569
+#: ../src/plugins/view/fanchartview.py:570
 msgid "Fan Chart"
 msgstr "Fächergrafik"
 
@@ -4288,10 +4278,10 @@ msgstr "Notizen"
 #. Go over parents and build their menu
 #. don't show rest
 #: ../src/gui/grampsgui.py:128 ../src/Merge/_MergePerson.py:159
-#: ../src/plugins/gramplet/FanChartGramplet.py:835
+#: ../src/plugins/gramplet/FanChartGramplet.py:836
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
-#: ../src/plugins/view/fanchartview.py:902
+#: ../src/plugins/view/fanchartview.py:903
 #: ../src/plugins/view/pedigreeview.py:1479 ../src/plugins/view/relview.py:515
 #: ../src/plugins/view/relview.py:846 ../src/plugins/view/relview.py:880
 #: ../src/plugins/webreport/NarrativeWeb.py:122
@@ -4350,15 +4340,7 @@ msgstr "Gruppierte Liste"
 msgid "List"
 msgstr "Liste"
 
-#: ../src/gui/grampsgui.py:142
-#: ../src/plugins/tool/CalculateEstimatedDates.py:217
-#: ../src/plugins/tool/CalculateEstimatedDates.py:226
-#: ../src/plugins/tool/CalculateEstimatedDates.py:386
-#: ../src/plugins/tool/CalculateEstimatedDates.py:400
-#: ../src/plugins/tool/CalculateEstimatedDates.py:405
-#: ../src/plugins/tool/CalculateEstimatedDates.py:410
-#: ../src/plugins/tool/CalculateEstimatedDates.py:421
-#: ../src/plugins/tool/ChangeNames.py:195
+#: ../src/gui/grampsgui.py:142 ../src/plugins/tool/ChangeNames.py:195
 #: ../src/plugins/tool/ExtractCity.py:538
 #: ../src/plugins/tool/PatchNames.py:218 ../src/glade/mergedata.glade.h:12
 msgid "Select"
@@ -4812,8 +4794,7 @@ msgstr "Ort löschen"
 
 #: ../src/gui/editors/objectentries.py:300
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr ""
-"Um ein Medienobjekt auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
+msgstr "Um ein Medienobjekt auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
 
 #: ../src/gui/editors/objectentries.py:302
 #: ../src/PluginUtils/_GuiOptions.py:790
@@ -5033,7 +5014,6 @@ msgstr "Mütterlicherseits"
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 msgid "Birth Date"
 msgstr "Geburtsdatum"
 
@@ -5042,7 +5022,6 @@ msgstr "Geburtsdatum"
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/lineage.py:91
-#: ../src/plugins/tool/CalculateEstimatedDates.py:227
 msgid "Death Date"
 msgstr "Sterbedatum"
 
@@ -5285,8 +5264,7 @@ msgid "Cannot save media object"
 msgstr "Kann Medienobjekt nicht speichern"
 
 #: ../src/gui/editors/editmedia.py:256
-msgid ""
-"No data exists for this media object. Please enter data or cancel the edit."
+msgid "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
 "Es existieren keine Daten für dieses Medienobjekt. Bitte gib Daten ein oder "
 "brich die Bearbeitung ab."
@@ -5623,8 +5601,7 @@ msgid "Cannot save repository"
 msgstr "Konnte Aufbewahrungsort nicht speichern"
 
 #: ../src/gui/editors/editrepository.py:161
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Es existieren keine Daten für diesen Aufbewahrungsort. Bitte gib Daten ein "
 "oder brich die Bearbeitung ab."
@@ -6109,13 +6086,11 @@ msgstr "Bearbeite das gewählte persönliche Ereignis oder die Familie"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Move the selected event upwards or change family order"
-msgstr ""
-"Verschiebe gewähltes Ereignis nach oben oder ändere die Familienreihenfolge"
+msgstr "Verschiebe gewähltes Ereignis nach oben oder ändere die Familienreihenfolge"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Move the selected event downwards or change family order"
-msgstr ""
-"Verschiebe gewähltes Ereignis nach unten oder ändere die Familienreihenfolge"
+msgstr "Verschiebe gewähltes Ereignis nach unten oder ändere die Familienreihenfolge"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:126
 msgid "Cannot change Family"
@@ -6362,8 +6337,7 @@ msgstr "Gewählte Elemente löschen?"
 msgid ""
 "More than one item has been selected for deletion. Ask before deleting each "
 "one?"
-msgstr ""
-"Mehr als ein Element wurden zum löschen gewählt. Vor jedem löschen fragen?"
+msgstr "Mehr als ein Element wurden zum löschen gewählt. Vor jedem löschen fragen?"
 
 #: ../src/gui/views/listview.py:507
 msgid ""
@@ -6424,8 +6398,7 @@ msgstr "Lesezeichen für %s gesetzt"
 #: ../src/gui/views/navigationview.py:244
 #: ../src/plugins/view/familyview.py:207
 msgid "A bookmark could not be set because no one was selected."
-msgstr ""
-"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+msgstr "Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
 
 #: ../src/gui/views/navigationview.py:259
 msgid "_Add Bookmark"
@@ -6557,8 +6530,7 @@ msgstr "Diesen Abschnitt einklappen"
 
 #: ../src/gui/widgets/grampletpane.py:165
 msgid "Drag Properties Button to move and click it for setup"
-msgstr ""
-"Eigenschaftenschaltfläche zum verschieben ziehen und klicken zum einrichten"
+msgstr "Eigenschaftenschaltfläche zum verschieben ziehen und klicken zum einrichten"
 
 #. build the GUI:
 #: ../src/gui/widgets/grampletpane.py:819
@@ -6762,9 +6734,9 @@ msgstr "Keine Eltern gefunden"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:170
-#: ../src/plugins/gramplet/FanChartGramplet.py:721
+#: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:110
-#: ../src/plugins/view/fanchartview.py:788
+#: ../src/plugins/view/fanchartview.py:789
 #: ../src/plugins/view/pedigreeview.py:1365
 msgid "Spouses"
 msgstr "(Ehe-)Partner"
@@ -6916,8 +6888,7 @@ msgstr "Weitere Informationen"
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
-msgstr ""
-"Hier besteht die Möglichkeit zu beschreiben, wie der Fehler entstanden ist."
+msgstr "Hier besteht die Möglichkeit zu beschreiben, wie der Fehler entstanden ist."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:358
 msgid ""
@@ -7200,7 +7171,6 @@ msgstr "Legt fest welche Personen im Bericht enthalten sind."
 #: ../src/plugins/drawreport/TimeLine.py:328
 #: ../src/plugins/graph/GVRelGraph.py:474
 #: ../src/plugins/textreport/IndivComplete.py:648
-#: ../src/plugins/tool/CalculateEstimatedDates.py:79
 #: ../src/plugins/tool/SortEvents.py:172
 #: ../src/plugins/webreport/NarrativeWeb.py:5633
 #: ../src/plugins/webreport/WebCal.py:1355
@@ -7209,7 +7179,6 @@ msgstr "Filter Person"
 
 #: ../src/plugins/Records.py:445 ../src/plugins/drawreport/TimeLine.py:329
 #: ../src/plugins/graph/GVRelGraph.py:475
-#: ../src/plugins/tool/CalculateEstimatedDates.py:80
 #: ../src/plugins/tool/SortEvents.py:173
 #: ../src/plugins/webreport/NarrativeWeb.py:5634
 #: ../src/plugins/webreport/WebCal.py:1356
@@ -8127,14 +8096,12 @@ msgstr "Sortiere Daten..."
 #: ../src/plugins/drawreport/StatisticsChart.py:743
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"%(genders)s zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
+msgstr "%(genders)s zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:745
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
-"Personen zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
+msgstr "Personen zwischen %(year_from)04d-%(year_to)04d: %(chart_title)s geboren"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:776
 msgid "Saving charts..."
@@ -8197,16 +8164,14 @@ msgstr "Geschlechter aufnehmen"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:945
 msgid "Select which genders are included into statistics."
-msgstr ""
-"Wähle aus, welche Geschlechter in die Statistik aufgenommen werden sollen."
+msgstr "Wähle aus, welche Geschlechter in die Statistik aufgenommen werden sollen."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:949
 msgid "Max. items for a pie"
 msgstr "Max. Stücke für ein Tortendiagramm"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:950
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Mit weniger Einträgen wird ein Tortendiagramm mit Legende verwendet anstatt "
 "eines Balkendiagramms."
@@ -8412,13 +8377,6 @@ msgstr "Ehemann"
 #: ../src/plugins/webreport/NarrativeWeb.py:4412
 msgid "Wife"
 msgstr "Ehefrau"
-
-#: ../src/plugins/export/ExportDjango.py:187
-#, python-format
-msgid "Export Complete: %d second"
-msgid_plural "Export Complete: %d seconds"
-msgstr[0] "Exmport abgeschlossen: %d Sekunde"
-msgstr[1] "Exmport abgeschlossen: %d Sekunden"
 
 #: ../src/plugins/export/ExportGedcom.py:256
 msgid "Filtering private data"
@@ -8642,7 +8600,7 @@ msgstr "Zum bearbeiten rechts-klicken"
 msgid "   sp. "
 msgstr "   ..+ "
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:553
+#: ../src/plugins/gramplet/FanChartGramplet.py:554
 msgid ""
 "Click to expand/contract person\n"
 "Right-click for options\n"
@@ -8652,27 +8610,27 @@ msgstr ""
 "Rechtsklick für Optionen\n"
 "Klicken und ziehen auf einer Freifläche zum drehen"
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:693
-#: ../src/plugins/view/fanchartview.py:760
+#: ../src/plugins/gramplet/FanChartGramplet.py:694
+#: ../src/plugins/view/fanchartview.py:761
 #: ../src/plugins/view/pedigreeview.py:1317
 #: ../src/plugins/view/pedigreeview.py:1337
 msgid "People Menu"
 msgstr "Personenmenü"
 
 #. Go over siblings and build their menu
-#: ../src/plugins/gramplet/FanChartGramplet.py:755
+#: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
-#: ../src/plugins/view/fanchartview.py:822
+#: ../src/plugins/view/fanchartview.py:823
 #: ../src/plugins/view/pedigreeview.py:1399 ../src/plugins/view/relview.py:896
 #: ../src/plugins/webreport/NarrativeWeb.py:4155
 msgid "Siblings"
 msgstr "Geschwister"
 
 #. Go over children and build their menu
-#: ../src/plugins/gramplet/FanChartGramplet.py:798
+#: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:559
 #: ../src/plugins/textreport/IndivComplete.py:419
-#: ../src/plugins/view/fanchartview.py:865
+#: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1442
 #: ../src/plugins/view/relview.py:1355
 #: ../src/plugins/webreport/NarrativeWeb.py:4365
@@ -8680,8 +8638,8 @@ msgid "Children"
 msgstr "Kinder"
 
 #. Go over parents and build their menu
-#: ../src/plugins/gramplet/FanChartGramplet.py:872
-#: ../src/plugins/view/fanchartview.py:939
+#: ../src/plugins/gramplet/FanChartGramplet.py:873
+#: ../src/plugins/view/fanchartview.py:940
 #: ../src/plugins/view/pedigreeview.py:1516
 msgid "Related"
 msgstr "Verknüpft"
@@ -8702,26 +8660,26 @@ msgid ""
 "_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of "
 "spouses?</a>\n"
 msgstr ""
-"  1. <a wiki='De:Gramps_3."
-"2_Wiki_Handbuch_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Wie ändere "
-"ich die Reihenfolge von Partnern?</a>\n"
+"  1. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-"
+"_FAQ#How_do_I_change_the_order_of_spouses.3F'>Wie ändere ich die Reihenfolge "
+"von Partnern?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:40
 msgid ""
 "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it "
 "necessary to update Gramps every time an update is released?</a>\n"
 msgstr ""
-"  2. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>"
-"Ist es nötig Gramps nach jeder veröffentlichten Aktualisierung zu "
-"aktualisieren?</a>\n"
+"  2. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-"
+"_FAQ#How_do_I_upgrade_GRAMPS.3F'>Ist es nötig Gramps nach jeder "
+"veröffentlichten Aktualisierung zu aktualisieren?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:41
 msgid ""
 "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>How do "
 "I make backups safely?</a>\n"
 msgstr ""
-"  3. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-_FAQ#How_do_I_keep_backups.3F'>"
-"Wie erstelle ich gute Sicherungen?</a>\n"
+"  3. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-"
+"_FAQ#How_do_I_keep_backups.3F'>Wie erstelle ich gute Sicherungen?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:42
 msgid ""
@@ -8729,10 +8687,9 @@ msgid ""
 "_part_1#Editing_Information_About_Relationships'>How should information "
 "about marriages be entered?</a>\n"
 msgstr ""
-"  4. <a wiki='De:Gramps_3."
-"2_Wiki_Handbuch_-_Daten_eingeben_und_bearbeiten:_Ausführlich_-_Teil_1#Informa"
-"tionen_.C3.BCber_Beziehungen_bearbeiten'>Wie sollten Informationen zu "
-"Hochzeiten eingegeben werden?</a>\n"
+"  4. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-_Daten_eingeben_und_bearbeiten:"
+"_Ausführlich_-_Teil_1#Informationen_.C3.BCber_Beziehungen_bearbeiten'>Wie "
+"sollten Informationen zu Hochzeiten eingegeben werden?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:43
 msgid ""
@@ -8740,10 +8697,9 @@ msgid ""
 "_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's "
 "the difference between a residence and an address?</a>\n"
 msgstr ""
-"  5. <a wiki='De:Gramps_3."
-"2_Wiki_Handbuch_-_FAQ#Was_ist_der_Unterschied_zwischen_einem_Wohnort_und_eine"
-"r_Adresse.3F'>Was ist der Unterschied zwischen einem Wohnort und einer "
-"Adresse?</a>\n"
+"  5. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-"
+"_FAQ#Was_ist_der_Unterschied_zwischen_einem_Wohnort_und_einer_Adresse.3F'>Was "
+"ist der Unterschied zwischen einem Wohnort und einer Adresse?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 msgid ""
@@ -8751,18 +8707,17 @@ msgid ""
 "_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a "
 "website with Gramps and my tree?</a>\n"
 msgstr ""
-"  6. <a wiki='De:Gramps_3."
-"2_Wiki_Handbuch_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>"
-"Wie kann ich eine Webseite mit Gramps und meinem Stammbaum erstellen?</a>\n"
+"  6. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-"
+"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Wie kann ich eine "
+"Webseite mit Gramps und meinem Stammbaum erstellen?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
-#, fuzzy
 msgid ""
 "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
 "ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
 msgstr ""
 "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
-"ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
+"ts21786114.html#a21786114'>Wie gebe ich den Beruf einer Person ein</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:46
 msgid ""
@@ -8770,14 +8725,13 @@ msgid ""
 "_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a "
 "bug?</a>\n"
 msgstr ""
-"  8. <a wiki='De:Gramps_3."
-"2_Wiki_Handbuch_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Was tue ich "
-"wenn ich einen Fehler gefunden habe?</a>\n"
+"  8. <a wiki='De:Gramps_3.2_Wiki_Handbuch_-"
+"_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Was tue ich wenn ich einen "
+"Fehler gefunden habe?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
-msgstr ""
-"  9. <a wiki='Portal:Using_GRAMPS'>Gibt es ein Handbuch für Gramps?</a>\n"
+msgstr "  9. <a wiki='Portal:Using_GRAMPS'>Gibt es ein Handbuch für Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:48
 msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
@@ -8785,7 +8739,7 @@ msgstr " 10. <a wiki='Category:Tutorials'>Sind Anleitungen verfügbar?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 msgid " 11. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
-msgstr ""
+msgstr " 11. <a wiki='Category:How_do_I...'>Wie kann ich ...?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 msgid " 12. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
@@ -8828,7 +8782,7 @@ msgstr "Alter Statistiken Gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
-msgstr ""
+msgstr "Gramplet zeigt Graphen verschiedener Alter"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:50
 msgid "Age Stats"
@@ -8860,8 +8814,7 @@ msgstr "Kalender Gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
 msgid "Gramplet showing calendar and events on specfic dates in history"
-msgstr ""
-"Gramplet zeigt Kalender und Ereignisse an bestimmten Daten in der Geschichte"
+msgstr "Gramplet zeigt Kalender und Ereignisse an bestimmten Daten in der Geschichte"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:88
 msgid "Descendant Gramplet"
@@ -8881,8 +8834,7 @@ msgstr "Fächergrafik Gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:105
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
-msgstr ""
-"Gramplet zeigt die direkten Vorfahren der aktiven Person als Fächergrafik"
+msgstr "Gramplet zeigt die direkten Vorfahren der aktiven Person als Fächergrafik"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:120
 msgid "FAQ Gramplet"
@@ -8935,7 +8887,7 @@ msgstr "Schnellansicht Gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:178
 msgid "Gramplet showing an active item Quick View"
-msgstr ""
+msgstr "Gramplet zeigt eine Schnellansicht aktiver Objekte"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:193
 msgid "Relatives Gramplet"
@@ -9023,7 +8975,7 @@ msgstr "\"Was nun?\"-Gramplet"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:292
 msgid "Gramplet suggesting items to research"
-msgstr ""
+msgstr "Gramplet schlägt zu erforschende Punkte vor"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:298
 msgid "What's Next?"
@@ -9599,8 +9551,7 @@ msgstr "Den Kindern folgen um \"Familienlinien\" fest zu stellen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:123
 msgid "Children will be considered when determining \"family lines\"."
-msgstr ""
-"Kinder werden in betracht gezogen wenn \"Familienlinien\" bestimmt werden."
+msgstr "Kinder werden in betracht gezogen wenn \"Familienlinien\" bestimmt werden."
 
 #: ../src/plugins/graph/GVFamilyLines.py:128
 msgid "Try to remove extra people and families"
@@ -9707,8 +9658,6 @@ msgstr "Wo das Miniaturbild im Verhältnis zum Namen erscheinen soll"
 #. ---------------------
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:256
-#: ../src/plugins/tool/CalculateEstimatedDates.py:72
-#: ../src/plugins/tool/CalculateEstimatedDates.py:185
 #: ../src/plugins/tool/SortEvents.py:82
 msgid "Options"
 msgstr "Optionen"
@@ -9741,8 +9690,7 @@ msgstr "Abgerundete Ecken verwenden"
 #: ../src/plugins/graph/GVHourGlass.py:287
 #: ../src/plugins/graph/GVRelGraph.py:565
 msgid "Use rounded corners to differentiate between women and men."
-msgstr ""
-"Benutze abgerundete Ecken um zwischen Frauen und Männern zu unterscheiden."
+msgstr "Benutze abgerundete Ecken um zwischen Frauen und Männern zu unterscheiden."
 
 #: ../src/plugins/graph/GVFamilyLines.py:224
 msgid "Include dates"
@@ -9782,18 +9730,15 @@ msgstr "Anzahl der Kinder aufnehmen"
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
-msgstr ""
-"Ob die Anzahl der Kinder für Familien mit mehr als einem Kind enthalten sind."
+msgstr "Ob die Anzahl der Kinder für Familien mit mehr als einem Kind enthalten sind."
 
 #: ../src/plugins/graph/GVFamilyLines.py:248
 msgid "Include private records"
 msgstr "Private Daten aufnehmen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:249
-msgid ""
-"Whether to include names, dates, and families that are marked as private."
-msgstr ""
-"Ob Namen, Daten und Familien die als privat markiert sind enthalten sind."
+msgid "Whether to include names, dates, and families that are marked as private."
+msgstr "Ob Namen, Daten und Familien die als privat markiert sind enthalten sind."
 
 #: ../src/plugins/graph/GVFamilyLines.py:402
 msgid "Generating Family Lines"
@@ -9953,8 +9898,7 @@ msgstr "Nicht-leiblich Verwandtschaft durch gestrichelte Linie andeuten"
 
 #: ../src/plugins/graph/GVRelGraph.py:571
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr ""
-"Nicht-leibliche Verwandtschaft erscheint im Graph als gestrichelte Linie."
+msgstr "Nicht-leibliche Verwandtschaft erscheint im Graph als gestrichelte Linie."
 
 #: ../src/plugins/graph/GVRelGraph.py:575
 msgid "Show family nodes"
@@ -9962,8 +9906,7 @@ msgstr "Familienknoten anzeigen"
 
 #: ../src/plugins/graph/GVRelGraph.py:576
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, gezeigt."
+msgstr "Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, gezeigt."
 
 #: ../src/plugins/import/import.gpr.py:34
 msgid "Import data from CSV files"
@@ -10156,7 +10099,6 @@ msgid "Reading data..."
 msgstr "Lese Daten..."
 
 #: ../src/plugins/import/ImportCsv.py:699
-#: ../src/plugins/import/ImportDjango.py:185
 #: ../src/plugins/import/ImportGeneWeb.py:179
 #: ../src/plugins/import/ImportVCard.py:144
 #, python-format
@@ -10168,10 +10110,6 @@ msgstr[1] "Import abgeschlossen: %d Sekunden"
 #: ../src/plugins/import/ImportCsv.py:700
 msgid "CSV import"
 msgstr "CSV Import"
-
-#: ../src/plugins/import/ImportDjango.py:186
-msgid "Django import"
-msgstr "Django Import"
 
 #: ../src/plugins/import/ImportGedcom.py:117
 msgid "Invalid GEDCOM file"
@@ -10206,8 +10144,7 @@ msgstr "%s konnte nicht geöffnet werden"
 
 #: ../src/plugins/import/ImportGrdb.py:2691
 msgid "The Database version is not supported by this version of Gramps."
-msgstr ""
-"Die Version der Datenbank wird von dieser Gramps Version nicht unterstützt."
+msgstr "Die Version der Datenbank wird von dieser Gramps Version nicht unterstützt."
 
 #: ../src/plugins/import/ImportGrdb.py:2828
 #, python-format
@@ -10296,8 +10233,7 @@ msgstr "In Medienverzeichnis %s kann nicht geschrieben werden"
 #. it, have him remove it!
 #: ../src/plugins/import/ImportGpkg.py:81
 #, python-format
-msgid ""
-"Media directory %s exists. Delete it first, then restart the import process"
+msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 "Medienverzeichnis %s existiert. Lösche es erst und wiederhole danach den "
 "Importvorgang"
@@ -10589,8 +10525,7 @@ msgstr "Alte XML Datei"
 
 #: ../src/plugins/lib/libgedcom.py:1598
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr ""
-"Deine GEDCOM-Datei ist beschädigt. Vermutlich ist die Datei unvollständig."
+msgstr "Deine GEDCOM-Datei ist beschädigt. Vermutlich ist die Datei unvollständig."
 
 #: ../src/plugins/lib/libgedcom.py:1663
 #, python-format
@@ -10671,8 +10606,7 @@ msgstr "Creative Commons - Namensnennung, Keine Bearbeitung"
 
 #: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr ""
-"Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
+msgstr "Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
 
 #: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Non-commercial"
@@ -10695,8 +10629,7 @@ msgstr "Keine Copyrightnotiz"
 #: ../src/plugins/lib/libnarrate.py:79
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:80
 #, python-format
@@ -10731,8 +10664,7 @@ msgstr "Geboren %(birth_date)s in %(birth_place)s."
 #: ../src/plugins/lib/libnarrate.py:93
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s wurde %(modified_date)s in %(birth_place)s geboren."
+msgstr "%(unknown_gender_name)s wurde %(modified_date)s in %(birth_place)s geboren."
 
 #: ../src/plugins/lib/libnarrate.py:94
 #, python-format
@@ -10837,8 +10769,7 @@ msgstr "Geboren %(modified_date)s."
 #: ../src/plugins/lib/libnarrate.py:135
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s wurde im %(month_year)s in %(birth_place)s geboren."
+msgstr "%(unknown_gender_name)s wurde im %(month_year)s in %(birth_place)s geboren."
 
 #: ../src/plugins/lib/libnarrate.py:136
 #, python-format
@@ -11075,24 +11006,18 @@ msgstr "Er starb am %(death_date)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:208
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:209
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:210
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:213
 #, python-format
@@ -11101,24 +11026,18 @@ msgstr "Sie starb am %(death_date)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:214
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:215
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:216
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:220 ../src/plugins/lib/libnarrate.py:267
 #, python-format
@@ -11276,20 +11195,17 @@ msgstr "Er starb am %(death_date)s in %(death_place)s."
 #: ../src/plugins/lib/libnarrate.py:255
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:256
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:257
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:260
 #, python-format
@@ -11299,21 +11215,17 @@ msgstr "Sie starb am %(death_date)s in %(death_place)s."
 #: ../src/plugins/lib/libnarrate.py:261
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:262
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgstr "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:263
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
+msgstr "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:276
 #, python-format
@@ -11322,24 +11234,18 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:277
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:278
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Monaten."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:279
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:282
 #, python-format
@@ -11468,23 +11374,18 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:324
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:325
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Monaten."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:326
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
+msgstr "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:329
 #, python-format
@@ -11721,24 +11622,18 @@ msgstr "Er starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:396
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:397
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:401
 #, python-format
@@ -11747,24 +11642,18 @@ msgstr "Sie starb im %(month_year)s in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:402
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:403
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:404
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgstr "Sie starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:408
 #, python-format
@@ -11793,24 +11682,18 @@ msgstr "%(unknown_gender_name)s starb im %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:418
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:419
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Monaten."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:420
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgstr "%(unknown_gender_name)s starb im %(month_year)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:423
 #, python-format
@@ -11939,25 +11822,20 @@ msgstr "%(unknown_gender_name)s starb in %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:465
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Jahren."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgstr "%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/plugins/lib/libnarrate.py:466
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d "
 "Monaten."
 
 #: ../src/plugins/lib/libnarrate.py:467
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Tagen."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgstr "%(unknown_gender_name)s starb in %(death_place)s im Alter von %(age)d Tagen."
 
 #: ../src/plugins/lib/libnarrate.py:470
 #, python-format
@@ -12186,8 +12064,7 @@ msgstr "Starb (mit %(age)d Tagen)."
 
 #: ../src/plugins/lib/libnarrate.py:564
 #, python-format
-msgid ""
-"%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(male_name)s wurde begraben am %(burial_date)s in %(burial_place)s%"
 "(endnotes)s."
@@ -12222,10 +12099,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:573
 #, python-format
-msgid ""
-"This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Die Person wurde am %(burial_date)s in %(burial_place)s%(endnotes)s begraben."
+msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Die Person wurde am %(burial_date)s in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:575
 #, python-format
@@ -12269,8 +12144,7 @@ msgstr "Begraben am %(burial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:596
 #, python-format
-msgid ""
-"%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(male_name)s wurde begraben im %(month_year)s in %(burial_place)s%(endnotes)"
 "s."
@@ -12282,8 +12156,7 @@ msgstr "Er wurde im %(month_year)s in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:600
 #, python-format
-msgid ""
-"%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(female_name)s wurde begraben im %(month_year)s in %(burial_place)s%"
 "(endnotes)s."
@@ -12304,10 +12177,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:605
 #, python-format
-msgid ""
-"This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Die Person wurde im %(month_year)s in %(burial_place)s%(endnotes)s begraben."
+msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Die Person wurde im %(month_year)s in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:607
 #, python-format
@@ -12351,8 +12222,7 @@ msgstr "Begraben im %(month_year)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:628
 #, python-format
-msgid ""
-"%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(male_name)s wurde %(modified_date)s in %(burial_place)s%(endnotes)s "
 "begraben."
@@ -12364,8 +12234,7 @@ msgstr "Er wurde %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:632
 #, python-format
-msgid ""
-"%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(female_name)s wurde %(modified_date)s in %(burial_place)s begraben%"
 "(endnotes)s ."
@@ -12386,10 +12255,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:637
 #, python-format
-msgid ""
-"This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Die Person wurde %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
+msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Die Person wurde %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:639
 #, python-format
@@ -12454,8 +12321,7 @@ msgstr "Sie wurde in %(burial_place)s%(endnotes)s begraben."
 #: ../src/plugins/lib/libnarrate.py:668
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
+msgstr "%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:669
 #, python-format
@@ -12528,8 +12394,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:702
 #, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:705
 #, python-format
@@ -12628,8 +12493,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:738
 #, python-format
-msgid ""
-"This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 "Diese Person wurde im %(month_year)s in %(baptism_place)s getauft%(endnotes)"
 "s."
@@ -12679,8 +12543,7 @@ msgstr "Getauft im %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr ""
-"%(male_name)s %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr "%(male_name)s %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:762
 #, python-format
@@ -12712,8 +12575,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:770
 #, python-format
-msgid ""
-"This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 "Diese Person wurde %(modified_date)s in %(baptism_place)s getauft%(endnotes)"
 "s."
@@ -12781,8 +12643,7 @@ msgstr "Sie wurde in %(baptism_place)s getauft%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:801
 #, python-format
 msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:802
 #, python-format
@@ -12910,10 +12771,8 @@ msgstr "Sie wurde getauft am %(christening_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:854
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde getauft am %(christening_date)s%(endnotes)s."
+msgid "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde getauft am %(christening_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:855
 #, python-format
@@ -12936,10 +12795,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:863
 #, python-format
-msgid ""
-"He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"Er wurde getauft im %(month_year)s in %(christening_place)s%(endnotes)s."
+msgid "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
+msgstr "Er wurde getauft im %(month_year)s in %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:866
 #, python-format
@@ -12952,10 +12809,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:867
 #, python-format
-msgid ""
-"She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"Sie wurde getauft im %(month_year)s in %(christening_place)s%(endnotes)s."
+msgid "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
+msgstr "Sie wurde getauft im %(month_year)s in %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:870
 #, python-format
@@ -13026,10 +12881,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:895
 #, python-format
-msgid ""
-"He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"Er wurde getauft %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgid "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgstr "Er wurde getauft %(modified_date)s in %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:898
 #, python-format
@@ -13042,10 +12895,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:899
 #, python-format
-msgid ""
-"She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr ""
-"Sie wurde getauft %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgid "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgstr "Sie wurde getauft %(modified_date)s in %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:902
 #, python-format
@@ -13127,10 +12978,8 @@ msgstr "Sie wurde getauft in %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:934
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde getauft in %(christening_place)s%(endnotes)s."
+msgid "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde getauft in %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:935
 #, python-format
@@ -13404,25 +13253,20 @@ msgstr "Tochter von %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1076
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Diese Person heiratete %(spouse)s im %(partial_date)s in %(place)s%(endnotes)"
 "s."
 
 #: ../src/plugins/lib/libnarrate.py:1077
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Diese Person heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1078
 #, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Diese Person heiratete %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Diese Person heiratete %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1081
 #, python-format
@@ -13498,47 +13342,38 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1106
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1109
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1110
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Sie heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1111
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Sie heiratete auch %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1114
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1115
 #, python-format
@@ -13613,8 +13448,7 @@ msgstr "Heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -14119,8 +13953,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1285
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
 "Auch eine uneheliche Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)"
 "s."
@@ -14128,13 +13961,11 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1286
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
-"Auch eine uneheliche Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
+msgstr "Auch eine uneheliche Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1287
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr "Uneheliche Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1292
@@ -14148,17 +13979,13 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1293
 #, python-format
-msgid ""
-"He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er hatte eine uneheliche Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
+msgid "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Er hatte eine uneheliche Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1294
 #, python-format
-msgid ""
-"She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Sie hatte eine uneheliche Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
+msgid "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Sie hatte eine uneheliche Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1295 ../src/plugins/lib/libnarrate.py:1302
 #, python-format
@@ -14195,8 +14022,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1306
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
-"Diese Person hatte eine uneheliche Beziehung mit %(spouse)s%(endnotes)s."
+msgstr "Diese Person hatte eine uneheliche Beziehung mit %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1307
 #, python-format
@@ -14215,10 +14041,8 @@ msgstr "Uneheliche Beziehung mit %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1313
 #, python-format
-msgid ""
-"This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr ""
-"Diese Person hatte auch eine uneheliche Beziehung mit %(spouse)s%(endnotes)s."
+msgid "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
+msgstr "Diese Person hatte auch eine uneheliche Beziehung mit %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1314
 #, python-format
@@ -14323,8 +14147,7 @@ msgstr "Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1344
 #, python-format
-msgid ""
-"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Beziehung mit %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1350
@@ -14410,23 +14233,19 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1365
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Auch eine Beziehung mit %(spouse)s im %(partial_date)s in %(place)s%"
 "(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1366
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Auch eine Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Auch eine Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1367
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Auch eine Beziehung mit %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
 "s."
@@ -14442,16 +14261,14 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1374
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Diese Person hatte eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)"
 "s."
 
 #: ../src/plugins/lib/libnarrate.py:1375
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 "Diese Person hatte eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)"
 "s."
@@ -14459,8 +14276,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1378
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1379
 #, python-format
@@ -14475,8 +14291,7 @@ msgstr "Er hatte eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1383
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Sie hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Sie hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1384
 #, python-format
@@ -14532,45 +14347,33 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1401
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Er hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Er hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1402
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Er hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Er hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1403
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Er hatte auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Er hatte auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1406
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Sie hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Sie hatte auch eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1407
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Sie hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Sie hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1408
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Sie hatte auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Sie hatte auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1411
 #, python-format
@@ -14589,10 +14392,8 @@ msgstr "Auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1418
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Diese Person hatte eine Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Diese Person hatte eine Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1419
 #, python-format
@@ -14611,8 +14412,7 @@ msgstr "Auch eine Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1425
 #, python-format
-msgid ""
-"This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Diese Person hatte auch eine Beziehung mit %(spouse)s in %(place)s%(endnotes)"
 "s."
@@ -14837,8 +14637,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
-msgstr ""
-"Liefert eine Bibliothek zum benutzen von Cairo zum erstellen von Dokumenten."
+msgstr "Liefert eine Bibliothek zum benutzen von Cairo zum erstellen von Dokumenten."
 
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
@@ -15073,8 +14872,7 @@ msgstr "%(person)s und %(active_person)s sind nicht direkt verwandt."
 #: ../src/plugins/quickview/all_relations.py:152
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr ""
-"%(person)s und %(active_person)s haben folgende angeheiratete Beziehungen:"
+msgstr "%(person)s und %(active_person)s haben folgende angeheiratete Beziehungen:"
 
 #: ../src/plugins/quickview/all_relations.py:206
 #, python-format
@@ -15429,8 +15227,7 @@ msgid "Show Repository Reference"
 msgstr "Zeigt Aufbewahrungsortereferenz"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
-msgid ""
-"Display the repository reference for sources related to the active repository"
+msgid "Display the repository reference for sources related to the active repository"
 msgstr ""
 "Zeigt Aufbewahrungsortereferenz für Quellen die zum aktiven Aufbewahrungsort "
 "gehören"
@@ -15588,10 +15385,8 @@ msgstr "Personen mit dem Familiennamen '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] ""
-"Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
-msgstr[1] ""
-"Es gibt %d Personen mit einem Passenden Namen oder alternativ Namen.\n"
+msgstr[0] "Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
+msgstr[1] "Es gibt %d Personen mit einem Passenden Namen oder alternativ Namen.\n"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:147
@@ -15836,8 +15631,7 @@ msgstr "Der Stil, der für Anzeigen der Stufe %d verwendet wird."
 #: ../src/plugins/textreport/DescendReport.py:228
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr ""
-"Der Stil, der für der Anzeigen der Stufe des Ehepartners %d verwendet wird."
+msgstr "Der Stil, der für der Anzeigen der Stufe des Ehepartners %d verwendet wird."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:162
 #, python-format
@@ -16893,301 +16687,6 @@ msgstr "Erstellt eine Titelseite für Buchberichte."
 msgid "Provides a summary of the current database"
 msgstr "Erstellt eine Übersicht über die aktuelle Datenbank"
 
-#: ../src/plugins/tool/CalculateEstimatedDates.py:75
-msgid "Select filter to restrict people"
-msgstr "Filter wählen um Personen zu beschränken"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:87
-msgid "Calculated Date Estimates"
-msgstr "Berechnete Datumsschätzungen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:88
-msgid "Source to remove and/or add"
-msgstr "Quelle zum entfernen und/oder hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:91
-msgid "Remove previously added events, notes, and source"
-msgstr "Zuvor hinzugefügte Ereignisse, Notizen und Quellen entfernen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:92
-msgid ""
-"Remove calculated events, notes, and source; occurs immediately on Execute"
-msgstr ""
-"Berechnete Ereignisse, Notizen und Quellen entfernen: Wird sofort nach Start "
-"ausgeführt"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:96
-msgid "Do not add birth events"
-msgstr "Geburtsereignisse nicht hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:97
-msgid "Add birth events without dates"
-msgstr "Geburtereignisse ohne Datum hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:98
-msgid "Add birth events with dates"
-msgstr "Geburtereignisse mit Datum hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:99
-msgid "Add a birth events with or without estimated dates"
-msgstr "Fügt Geburtsereignisse mit oder ohne berechnete Daten hinzu"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:103
-msgid "Do not add death events"
-msgstr "Todesereignisse nicht hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:104
-msgid "Add death events without dates"
-msgstr "Todesdatum ohne Datum hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:105
-msgid "Add death events with dates"
-msgstr "Todesereignisse mit Datum hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:106
-msgid "Add death events with or without estimated dates"
-msgstr "Fügt Todesereignisse mit oder ohne berechnete Daten hinzu"
-
-#. -----------------------------------------------------
-#: ../src/plugins/tool/CalculateEstimatedDates.py:110
-msgid "Maximum age"
-msgstr "Maximales Alter"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:113
-msgid "Maximum age that one can live to"
-msgstr "Maximales Alter das eine Person erreichen kann"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:119
-msgid "Maximum age difference between siblings"
-msgstr "Maximaler Altersabstand zwischen Geschwistern"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:125
-msgid "Average years between two generations"
-msgstr "Durchschnittlicher Abstand zwischen zwei Generationen in Jahren"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:128
-msgid "Estimated Dates"
-msgstr "Geschätzte Daten"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:129
-msgid "Approximate (about)"
-msgstr "Circa (um)"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:130
-msgid "Extremes (after and before)"
-msgstr "Extreme (nach und vor)"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:131
-msgid "Dates on events are either about or after/before"
-msgstr "Daten von Ereignissen sind entweder um oder nach/vor"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:162
-#: ../src/plugins/tool/CalculateEstimatedDates.py:179
-msgid "Help"
-msgstr "Hilfe"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:164
-msgid ""
-"The Calculate Estimated Dates Tool is used to add and remove birth and death "
-"events for people that are missing these events.\n"
-"\n"
-"To use:\n"
-"1. Go to the Options tab\n"
-"2. Check the [ ] Remove option to remove previous estimates\n"
-"3. Select the Add date options to date events with or without dates\n"
-"4. Click on Execute\n"
-"5. Select the people with which to add events\n"
-"6. Click on 'Add Selected Events' button to create\n"
-"\n"
-"NOTES: if you decide to make an event permanent, remove it from the Source. "
-"Otherwise, it will get removed the next time you automatically remove these "
-"events.\n"
-"\n"
-"You may have to run the tool repeatedly (without removing previous events) "
-"to add all of the events possible."
-msgstr ""
-"Das geschätzte Daten berechnen Werkzeug wird verwendet um Geburts- und "
-"Sterbeereignisse zu Personen hinzuzufügen und zu entfernen, dehnen diese "
-"fehlen.\n"
-"\n"
-"Verwendung:\n"
-"1. Gehe zu dem Optionenreiter\n"
-"2. Hake die [] Entfernen Option an um die vorherigen Schätzungen zu "
-"entfernen\n"
-"3. Select the Add date options to date events with or without dates\n"
-"4. Klicke auf Ausführen\n"
-"5. Wähle die Personen mit denen Ereignisse hinzugefügt werden\n"
-"6. Klicke auf die &quot;Gewähltes Ereignis hinzufügen&quot; Schaltfläche zum "
-"erstellen\n"
-"\n"
-"ACHTUNG: wenn du beschließt, ein Ereignis permanent zu machen, entferne es "
-"von der Quelle. Sonst wird es entfernt, wenn du das nächste Mal diese "
-"Ereignisse automatisch entfernst.\n"
-"\n"
-"Es kann sein, das du das Werkzeug mehrmals hintereinander (ohne die "
-"vorherigen Ereignisse zu löschen) laufen lassen musst um alle möglichen "
-"Ereignisse hinzuzufügen."
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:182
-#: ../src/plugins/tool/tools.gpr.py:35
-msgid "Calculate Estimated Dates"
-msgstr "Geschätzte Daten berechnen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:191
-msgid "Select All"
-msgstr "Alle wählen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:192
-msgid "Select None"
-msgstr "Nichts wählen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:193
-msgid "Toggle Selection"
-msgstr "Auswahl umschalten"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:194
-msgid "Add Selected Events"
-msgstr "Gewählte Ereignisse hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:200
-msgid "Remove Events, Notes, and Source and Reselect Data"
-msgstr "Ereignisse, Notizen , Quellen und erneut gewählte Daten entfernen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:201
-msgid ""
-"Are you sure you want to remove previous events, notes, and source and "
-"reselect data?"
-msgstr ""
-"Bist du sicher, das du Ereignisse, Notizen , Quellen und erneut gewählte "
-"Daten entfernen willst?"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:202
-msgid "Remove and Run Select Again"
-msgstr "Entfernen und Auswahl erneut starten"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:206
-msgid "Reselect Data"
-msgstr "Daten neu wählen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:207
-msgid "Are you sure you want to reselect data?"
-msgstr "Bist du sich sicher, das du die Daten neu wählen willst?"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:208
-msgid "Run Select Again"
-msgstr "Auswahl erneut ausführen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:228
-msgid "Evidence"
-msgstr "Beleg"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:228
-msgid "Relative"
-msgstr "Angehörige"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:229
-msgid "Processing...\n"
-msgstr "Verarbeitung...\n"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:247
-msgid "Removing old estimations... "
-msgstr "Entferne alte Schätzungen... "
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:248
-#, python-format
-msgid "Removing '%s'..."
-msgstr "Entferne '%s'..."
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:302
-msgid "done!\n"
-msgstr "Fertig!\n"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:303
-msgid "Removed date estimates"
-msgstr "Berechnete Daten entfernt"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:307
-msgid ""
-"Selecting... \n"
-"\n"
-msgstr ""
-"Auswählen...\n"
-"\n"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:308
-msgid "Selecting..."
-msgstr "Auswählen..."
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:343
-msgid "Add birth and death events"
-msgstr "Geburts und Todesereignisse hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:345
-msgid "Add birth event"
-msgstr "Geburtereignis hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:347
-msgid "Add death event"
-msgstr "Todesereignis hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:382
-msgid "No events to be added."
-msgstr "Keine Ereignisse zum hinzufügen."
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:424
-msgid "Selecting... "
-msgstr "Auswählen... "
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:425
-#, python-format
-msgid "Adding events '%s'..."
-msgstr "Füge Ereignisse hinzu '%s'..."
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:447
-#, python-format
-msgid "Added birth event based on %(evidence)s, from %(name)s"
-msgstr "Geburtsereignis basierend auf %(evidence)s, von %(name)s hinzugefügt"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:450
-#, python-format
-msgid "Added birth event based on %s"
-msgstr "Geburtsereignis basierend auf %s hinzugefügt"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:452
-msgid "Estimated birth date"
-msgstr "Geschätztes Geburtsdatum"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:463
-#, python-format
-msgid "Added death event based on %(evidence)s, from %(person)s"
-msgstr "Todesereignis basierend auf %(evidence)s, von %(person)s hinzugefügt"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:466
-#, python-format
-msgid "Added death event based on %s"
-msgstr "Todesereignis basierend auf %s hinzugefügt"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:468
-msgid "Estimated death date"
-msgstr "Geschätztes Sterbedatum"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:478
-msgid " Done! Committing..."
-msgstr "Fertig! Committing..."
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:480
-msgid "Add date estimates"
-msgstr "Datumsschätzungen hinzufügen"
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:483
-#, python-format
-msgid "Added %d events."
-msgstr "%d Ereignisse hinzugefügt."
-
-#: ../src/plugins/tool/CalculateEstimatedDates.py:511
-msgid "Estimated date"
-msgstr "Geschätztes Datum"
-
 #: ../src/plugins/tool/ChangeNames.py:66
 msgid "manual|Fix_Capitalization_of_Family_Names..."
 msgstr "Großschreibung_von_Familiennamen_korrigieren..."
@@ -17461,18 +16960,15 @@ msgstr[1] "%d Daten wurden korrigiert\n"
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
-msgstr[0] ""
-"%(quantity)d Aufbewahrungsort wurde referenziert, aber nicht gefunden\n"
-msgstr[1] ""
-"%(quantity)d Aufbewahrungsorte wurden referenziert, aber nicht gefunden\n"
+msgstr[0] "%(quantity)d Aufbewahrungsort wurde referenziert, aber nicht gefunden\n"
+msgstr[1] "%(quantity)d Aufbewahrungsorte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1542
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] ""
-"%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[1] "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1546
 #, python-format
@@ -17542,8 +17038,7 @@ msgstr[1] "%d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] ""
-"%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[1] "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1595
 #, python-format
@@ -17722,7 +17217,7 @@ msgstr "Mittel"
 msgid "manual|Find_Possible_Duplicate_People..."
 msgstr "Finde_Mögliche_Doppelte_Personen..."
 
-#: ../src/plugins/tool/FindDupes.py:126 ../src/plugins/tool/tools.gpr.py:240
+#: ../src/plugins/tool/FindDupes.py:126 ../src/plugins/tool/tools.gpr.py:218
 msgid "Find Possible Duplicate People"
 msgstr "Finde Mögliche Doppelte Personen"
 
@@ -17804,7 +17299,7 @@ msgstr "%d bezieht sich auf"
 msgid "manual|Media_Manager..."
 msgstr "Medienverwalter..."
 
-#: ../src/plugins/tool/MediaManager.py:87 ../src/plugins/tool/tools.gpr.py:285
+#: ../src/plugins/tool/MediaManager.py:87 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
 msgstr "Medienverwalter"
 
@@ -18175,7 +17670,7 @@ msgstr "Aufbewahrungsort-IDs neu ordnen"
 msgid "Reordering Note IDs"
 msgstr "Notiz-IDs neu ordnen"
 
-#: ../src/plugins/tool/ReorderIds.py:159 ../src/plugins/tool/tools.gpr.py:462
+#: ../src/plugins/tool/ReorderIds.py:159 ../src/plugins/tool/tools.gpr.py:440
 msgid "Reorder Gramps IDs"
 msgstr "Ordne Gramps-IDs neu"
 
@@ -18231,51 +17726,45 @@ msgstr "SoundEx-Codes_erstellen"
 msgid "SoundEx code generator"
 msgstr "SoundEx-Code-Generator"
 
-#: ../src/plugins/tool/tools.gpr.py:36
-msgid "Calculates estimated dates for birth and death."
-msgstr "Berechnet geschätzte Daten für Geburt und Tod."
-
-#: ../src/plugins/tool/tools.gpr.py:57
+#: ../src/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
 msgstr "Großschreibung von Familiennamen korrigieren"
 
-#: ../src/plugins/tool/tools.gpr.py:58
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+#: ../src/plugins/tool/tools.gpr.py:36
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
 "Durchsucht die gesamte Datenbank und versucht die Großschreibung der Namen "
 "zu korrigieren."
 
-#: ../src/plugins/tool/tools.gpr.py:80
+#: ../src/plugins/tool/tools.gpr.py:58
 msgid "Rename Event Types"
 msgstr "Ereignistypen umbenennen"
 
-#: ../src/plugins/tool/tools.gpr.py:81
+#: ../src/plugins/tool/tools.gpr.py:59
 msgid "Allows all the events of a certain name to be renamed to a new name."
 msgstr "Erlaubt alle Ereignisse eines bestimmten Namens umzubenennen."
 
-#: ../src/plugins/tool/tools.gpr.py:103
+#: ../src/plugins/tool/tools.gpr.py:81
 msgid "Check and Repair Database"
 msgstr "Datenbank prüfen und reparieren"
 
-#: ../src/plugins/tool/tools.gpr.py:104
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
+#: ../src/plugins/tool/tools.gpr.py:82
+msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Überprüft die Datenbank und repariert die Probleme soweit möglich"
 
-#: ../src/plugins/tool/tools.gpr.py:126
+#: ../src/plugins/tool/tools.gpr.py:104
 msgid "Interactive Descendant Browser"
 msgstr "Interaktiver Nachkommenbrowser"
 
-#: ../src/plugins/tool/tools.gpr.py:127
+#: ../src/plugins/tool/tools.gpr.py:105
 msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Erstellt eine interaktive Baumstruktur für die aktive Person"
 
-#: ../src/plugins/tool/tools.gpr.py:171
+#: ../src/plugins/tool/tools.gpr.py:149
 msgid "Compare Individual Events"
 msgstr "Einzelne Ereignisse Vergleichen"
 
-#: ../src/plugins/tool/tools.gpr.py:172
+#: ../src/plugins/tool/tools.gpr.py:150
 msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
@@ -18283,24 +17772,23 @@ msgstr ""
 "Hilft bei der Analyse der Daten durch die Möglichkeit, eigene Filter zu "
 "entwickeln und auf die Datenbank anzuwenden, um ähnliche Ereignisse zu finden"
 
-#: ../src/plugins/tool/tools.gpr.py:195
+#: ../src/plugins/tool/tools.gpr.py:173
 msgid "Extract Event Description"
 msgstr "Ereignisbeschreibung Extrahieren"
 
-#: ../src/plugins/tool/tools.gpr.py:196
+#: ../src/plugins/tool/tools.gpr.py:174
 msgid "Extracts event descriptions from the event data"
 msgstr "Extrahiert Ereignisbeschreibung aus Ereignisdaten"
 
-#: ../src/plugins/tool/tools.gpr.py:217
+#: ../src/plugins/tool/tools.gpr.py:195
 msgid "Extract Place Data from a Place Title"
 msgstr "Extrahiere Ortsdaten aus Ortstitel"
 
-#: ../src/plugins/tool/tools.gpr.py:218
+#: ../src/plugins/tool/tools.gpr.py:196
 msgid "Attempts to extract city and state/province from a place title"
-msgstr ""
-"Versuche, Stadt und Bundesland/Provinz von einem Ortstitel zu extrahieren"
+msgstr "Versuche, Stadt und Bundesland/Provinz von einem Ortstitel zu extrahieren"
 
-#: ../src/plugins/tool/tools.gpr.py:241
+#: ../src/plugins/tool/tools.gpr.py:219
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
@@ -18308,84 +17796,83 @@ msgstr ""
 "Durchsucht die gesamte Datenbank nach Einträgen, die die gleiche Person "
 "repräsentieren könnten."
 
-#: ../src/plugins/tool/tools.gpr.py:286
+#: ../src/plugins/tool/tools.gpr.py:264
 msgid "Manages batch operations on media files"
 msgstr "Verwaltet Stapeloperationen von Mediendateien"
 
-#: ../src/plugins/tool/tools.gpr.py:307
+#: ../src/plugins/tool/tools.gpr.py:285
 msgid "Not Related"
 msgstr "Nicht verwandt"
 
-#: ../src/plugins/tool/tools.gpr.py:308
+#: ../src/plugins/tool/tools.gpr.py:286
 msgid "Find people who are not in any way related to the selected person"
-msgstr ""
-"Findet Personen die überhauptnicht mit der gewählten Person verwandt sind"
+msgstr "Findet Personen die überhauptnicht mit der gewählten Person verwandt sind"
 
-#: ../src/plugins/tool/tools.gpr.py:330
+#: ../src/plugins/tool/tools.gpr.py:308
 msgid "Edit Database Owner Information"
 msgstr "Datenbankeigner Informationen bearbeiten"
 
-#: ../src/plugins/tool/tools.gpr.py:331 ../src/plugins/tool/tools.gpr.py:353
+#: ../src/plugins/tool/tools.gpr.py:309 ../src/plugins/tool/tools.gpr.py:331
 msgid "Allow editing database owner information."
 msgstr "Erlaubt das bearbeiten der Datenbankeignerinformation."
 
-#: ../src/plugins/tool/tools.gpr.py:352
+#: ../src/plugins/tool/tools.gpr.py:330
 msgid "Extract Information from Names"
 msgstr "Information aus Namen extrahieren"
 
-#: ../src/plugins/tool/tools.gpr.py:374
+#: ../src/plugins/tool/tools.gpr.py:352
 msgid "Rebuild Secondary Indices"
 msgstr "Neuaufbau sekundäre Indexe"
 
-#: ../src/plugins/tool/tools.gpr.py:375
+#: ../src/plugins/tool/tools.gpr.py:353
 msgid "Rebuilds secondary indices"
 msgstr "Erstellt sekundäre Indexe"
 
-#: ../src/plugins/tool/tools.gpr.py:396
+#: ../src/plugins/tool/tools.gpr.py:374
 msgid "Rebuild Reference Maps"
 msgstr "Interne Referenzen neu erstellen"
 
-#: ../src/plugins/tool/tools.gpr.py:397
+#: ../src/plugins/tool/tools.gpr.py:375
 msgid "Rebuilds reference maps"
 msgstr "Erstellt interne Referenzen neu"
 
-#: ../src/plugins/tool/tools.gpr.py:418
+#: ../src/plugins/tool/tools.gpr.py:396
 msgid "Relationship Calculator"
 msgstr "Verwandtschaftrechner"
 
-#: ../src/plugins/tool/tools.gpr.py:419
+#: ../src/plugins/tool/tools.gpr.py:397
 msgid "Calculates the relationship between two people"
 msgstr "Berechnet die Verwandtschaftbeziehung zwischen zwei Personen"
 
-#: ../src/plugins/tool/tools.gpr.py:440
+#: ../src/plugins/tool/tools.gpr.py:418
 msgid "Remove Unused Objects"
 msgstr "Unbenutzte Objekte entfernen"
 
-#: ../src/plugins/tool/tools.gpr.py:441
+#: ../src/plugins/tool/tools.gpr.py:419
 msgid "Removes unused objects from the database"
 msgstr "Löscht nicht referenzierte (unbenutzte) Objekte aus der Datenbank"
 
-#: ../src/plugins/tool/tools.gpr.py:463
+#: ../src/plugins/tool/tools.gpr.py:441
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr "Ordnet die Gramps-IDs nach Gramps Vorgabe Regeln neu."
 
-#: ../src/plugins/tool/tools.gpr.py:485 ../src/plugins/tool/tools.gpr.py:486
+#: ../src/plugins/tool/tools.gpr.py:463 ../src/plugins/tool/tools.gpr.py:464
 msgid "Sorts events"
 msgstr "Sortiert Ereignisse"
 
-#: ../src/plugins/tool/tools.gpr.py:507
+#: ../src/plugins/tool/tools.gpr.py:485
 msgid "Generate SoundEx Codes"
 msgstr "SoundEx-Codes erstellen"
 
-#: ../src/plugins/tool/tools.gpr.py:508
+#: ../src/plugins/tool/tools.gpr.py:486
 msgid "Generates SoundEx codes for names"
 msgstr "Erzeugt SoundEx-Codes für Namen"
 
-#: ../src/plugins/tool/tools.gpr.py:529
+#: ../src/plugins/tool/tools.gpr.py:507
 msgid "Verify the Data"
 msgstr "Die Daten überprüfen"
 
-#: ../src/plugins/tool/tools.gpr.py:530
+#: ../src/plugins/tool/tools.gpr.py:508
 msgid "Verifies the data against user-defined tests"
 msgstr "Überprüft die Daten gegen benutzerdefinierte Tests"
 
@@ -18692,8 +18179,7 @@ msgstr ""
 "Muss größer gleich 10 Sekunden sein"
 
 #: ../src/plugins/view/geoview.py:559
-msgid ""
-"Host to test for http. Please, change this and select one of your choice."
+msgid "Host to test for http. Please, change this and select one of your choice."
 msgstr "Host für Http Test. Bitte ändere ihn und verwende einen deiner Wahl."
 
 #: ../src/plugins/view/geoview.py:563
@@ -18758,8 +18244,7 @@ msgstr "_Person"
 
 #: ../src/plugins/view/geoview.py:1074 ../src/plugins/view/geoview.py:1088
 msgid "Attempt to view all the places where the selected people lived."
-msgstr ""
-"Versuche alle Orte zu zeigen in denen die gewählten Personen gewohnt haben."
+msgstr "Versuche alle Orte zu zeigen in denen die gewählten Personen gewohnt haben."
 
 #: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
 msgid "_Family"
@@ -18862,8 +18347,7 @@ msgstr "ID : Person : %(id)s %(name)s hat keine Familie."
 
 #: ../src/plugins/view/geoview.py:2057
 #, python-format
-msgid ""
-"All %(name)s people's family places in the family tree with coordinates."
+msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaummit Koordinaten."
 
 #: ../src/plugins/view/geoview.py:2094
@@ -18959,8 +18443,7 @@ msgstr "HTML Ansicht"
 
 #: ../src/plugins/view/geoview.gpr.py:77
 msgid "A view allowing to see html pages embedded in Gramps"
-msgstr ""
-"Diese Ansicht ermöglicht das anzeigen von HTML-Seiten eingebunden in Gramps"
+msgstr "Diese Ansicht ermöglicht das anzeigen von HTML-Seiten eingebunden in Gramps"
 
 #: ../src/plugins/view/geoview.gpr.py:84
 msgid "Web"
@@ -19879,8 +19362,7 @@ msgstr "Der Titel der Webseite"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5629
 msgid "Select filter to restrict people that appear on web site"
-msgstr ""
-"Filter wählen um Personen, die auf der Webseite erscheinen zu begrenzen"
+msgstr "Filter wählen um Personen, die auf der Webseite erscheinen zu begrenzen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5649
 #: ../src/plugins/webreport/WebCal.py:1371
@@ -20206,8 +19688,7 @@ msgstr "Ereignisseiten aufnehmen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5868
 msgid "Add a complete events list and relevant pages or not"
-msgstr ""
-"Eine komplette Ereignisliste und entsprechende Seiten aufnehmen oder nicht"
+msgstr "Eine komplette Ereignisliste und entsprechende Seiten aufnehmen oder nicht"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5871
 msgid "Include repository pages"
@@ -20246,8 +19727,7 @@ msgstr "Berechne Feiertage für das Jahr %04d"
 #: ../src/plugins/webreport/WebCal.py:454
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr ""
-"Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
+msgstr "Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
 #: ../src/plugins/webreport/WebCal.py:458
 #, python-format
@@ -20306,10 +19786,8 @@ msgstr "%(spouse)s und %(person)s"
 #. Display date as user set in preferences
 #: ../src/plugins/webreport/WebCal.py:1210
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
-msgstr ""
-"Erstellt mit <a href=\"http://gramps-project.org\">Gramps</a> am %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
+msgstr "Erstellt mit <a href=\"http://gramps-project.org\">Gramps</a> am %(date)s"
 
 #. Create progress meter bar
 #: ../src/plugins/webreport/WebCal.py:1256
@@ -20369,8 +19847,7 @@ msgid "Home link"
 msgstr "Heimat Link"
 
 #: ../src/plugins/webreport/WebCal.py:1449
-msgid ""
-"The link to be included to direct the user to the main page of the web site"
+msgid "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Der Link der aufgenommen wird um den Benutzer auf die Hauptseite des "
 "Webauftritt zu leiten"
@@ -20509,8 +19986,7 @@ msgstr "Linkpräfix"
 
 #: ../src/plugins/webreport/WebCal.py:1550
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
-"Ein Präfix an den Links um dich zum kommentierten Webbericht zu bringen"
+msgstr "Ein Präfix an den Links um dich zum kommentierten Webbericht zu bringen"
 
 #: ../src/plugins/webreport/WebCal.py:1729
 #, python-format
@@ -20966,8 +20442,7 @@ msgstr "CSS Datei"
 
 #: ../src/ReportBase/_Endnotes.py:50
 msgid "The basic style used for the endnotes source display."
-msgstr ""
-"Der Standardstil, der für die Schlussnotizen Quellenanzeige verwendet wird."
+msgstr "Der Standardstil, der für die Schlussnotizen Quellenanzeige verwendet wird."
 
 #: ../src/ReportBase/_Endnotes.py:58
 msgid "The basic style used for the endnotes reference display."
@@ -20975,8 +20450,7 @@ msgstr "Der Standardstil, der für die Schlussnotizen Referenz verwendet wird."
 
 #: ../src/ReportBase/_Endnotes.py:65
 msgid "The basic style used for the endnotes notes display."
-msgstr ""
-"Der Standardstil, der zum anzeigen der Schlussnotizen Notizen verwendet wird."
+msgstr "Der Standardstil, der zum anzeigen der Schlussnotizen Notizen verwendet wird."
 
 #: ../src/ReportBase/_Endnotes.py:109
 msgid "Endnotes"
@@ -21326,8 +20800,7 @@ msgid "File already exists"
 msgstr "Datei existiert bereits"
 
 #: ../src/ReportBase/_ReportDialog.py:492
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kannst entscheiden, ob die Datei überschrieben wird oder den gewählten "
 "Dateinamen ändern."
@@ -21401,8 +20874,7 @@ msgstr ""
 #: ../src/Filters/_FilterParser.py:128
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr ""
-"FEHLER: Filter %s konnte nicht korrekt geladen werden.  Bearbeite den Filter!"
+msgstr "FEHLER: Filter %s konnte nicht korrekt geladen werden.  Bearbeite den Filter!"
 
 #: ../src/Filters/_SearchBar.py:92
 #, python-format
@@ -21623,8 +21095,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr ""
-"Verwandtschaftspfad zwischen <Person> und Personen entsprechend <Filter>"
+msgstr "Verwandtschaftspfad zwischen <Person> und Personen entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -21680,8 +21151,7 @@ msgstr "Familien mit unvollständigen Ereignissen"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event of the family"
-msgstr ""
-"Enthält Personen mit fehlendem Datum oder Ort in einem Ereignis der Familie"
+msgstr "Enthält Personen mit fehlendem Datum oder Ort in einem Ereignis der Familie"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
 msgid "People with <count> addresses"
@@ -21720,8 +21190,7 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Hat gemeinsame Vorfahren mit einem <Filter>treffer"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Entspricht Personen, die einen gemeinsamen Vorfahren mit jemandem haben, der/"
 "die im Filter enthalten ist"
@@ -21753,8 +21222,7 @@ msgstr "Als vollständig gekennzeichnete Personen"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:48
 msgid "Matches all people whose records are complete"
-msgstr ""
-"Entspricht allen Personen, deren Daten als vollständig gekennzeichnet sind"
+msgstr "Entspricht allen Personen, deren Daten als vollständig gekennzeichnet sind"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:48
 msgid "People with the <death data>"
@@ -21794,8 +21262,7 @@ msgstr "Personen mit <Anzahl> Medien"
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:44
 msgid "Matches people with a certain number of items in the gallery"
-msgstr ""
-"Entspricht Personen mit einer bestimmten Anzahl von Objekten in der Galerie"
+msgstr "Entspricht Personen mit einer bestimmten Anzahl von Objekten in der Galerie"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
@@ -22076,8 +21543,7 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
 "Generationen entfernt"
@@ -22096,8 +21562,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr ""
-"Ist ein Nachkomme von <Personen> und weniger als <N> Generationen entfernt"
+msgstr "Ist ein Nachkomme von <Personen> und weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid ""
@@ -22407,8 +21872,7 @@ msgstr "Familien mit <Anzahl> Medien"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:44
 msgid "Matches families with a certain number of items in the gallery"
-msgstr ""
-"Entspricht Familien mit einer bestimmten Anzahl von Objekten in der Galerie"
+msgstr "Entspricht Familien mit einer bestimmten Anzahl von Objekten in der Galerie"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
@@ -22524,8 +21988,7 @@ msgstr "Familien mit Mutter mit dem <Namen>"
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr ""
-"Liefert Familien, deren Mutter einen bestimmten Namen oder Namensteil hat"
+msgstr "Liefert Familien, deren Mutter einen bestimmten Namen oder Namensteil hat"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
 msgid "Families with father matching the <name>"
@@ -22569,8 +22032,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr ""
-"Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
+msgstr "Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
@@ -22586,8 +22048,7 @@ msgstr "Familien mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert alle Familien, deren Gramps ID dem regulären Ausdruck entspricht"
+msgstr "Liefert alle Familien, deren Gramps ID dem regulären Ausdruck entspricht"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
@@ -22728,8 +22189,7 @@ msgstr "Ereignisse von Personen die dem <Personenfilter> entsprechen"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:53
 msgid "Matches events of persons matched by the specified person filter name"
-msgstr ""
-"Passt auf Ereignisse von Personen die dem gegeben Personenfilter entsprechen"
+msgstr "Passt auf Ereignisse von Personen die dem gegeben Personenfilter entsprechen"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
 msgid "Events with source matching the <source filter>"
@@ -22737,8 +22197,7 @@ msgstr "Ereignisse mit Quellen die dem <Quellenfilter> entsprechen"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:50
 msgid "Matches events with sources that match the specified source filter name"
-msgstr ""
-"Passt auf Ereignisse mit Quellen die dem gegebenen Quellenfilter entsprechen"
+msgstr "Passt auf Ereignisse mit Quellen die dem gegebenen Quellenfilter entsprechen"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
@@ -22746,8 +22205,7 @@ msgstr "Ereignisse mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert alle Ereignisse, deren Gramps ID dem regulären Ausdruck entspricht"
+msgstr "Liefert alle Ereignisse, deren Gramps ID dem regulären Ausdruck entspricht"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 msgid "Every place"
@@ -22776,8 +22234,7 @@ msgstr "Orte mit <Anzahl> Medien"
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:44
 msgid "Matches places with a certain number of items in the gallery"
-msgstr ""
-"Entspricht Orten mit einer bestimmten Anzahl von Objekten in der Galerie"
+msgstr "Entspricht Orten mit einer bestimmten Anzahl von Objekten in der Galerie"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
@@ -22929,8 +22386,7 @@ msgstr "Orte mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert Orte, deren Gramps ID dem gegebenen regulären Ausdruck entspricht"
+msgstr "Liefert Orte, deren Gramps ID dem gegebenen regulären Ausdruck entspricht"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -22959,8 +22415,7 @@ msgstr "Quellen mit <Anzahl> Medien"
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:44
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr ""
-"Entspricht Quellen mit einer bestimmten Anzahl von Objekten in der Galerie"
+msgstr "Entspricht Quellen mit einer bestimmten Anzahl von Objekten in der Galerie"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
@@ -23012,8 +22467,7 @@ msgstr "Quellen mit <Zahl> Aufbewahrungsorte Referenzen"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
 msgid "Matches sources with certain number repository references"
-msgstr ""
-"Passt auf Quellen mit einer bestimmten Anzahl von Aufbewahrungsortereferenzen"
+msgstr "Passt auf Quellen mit einer bestimmten Anzahl von Aufbewahrungsortereferenzen"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -23061,8 +22515,7 @@ msgstr "Quellen mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
-msgstr ""
-"Liefert Quellen, deren Gramps ID dem gegebenen regulären Ausdruck entsprechen"
+msgstr "Liefert Quellen, deren Gramps ID dem gegebenen regulären Ausdruck entsprechen"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -23134,8 +22587,7 @@ msgid "Media objects having notes containing <regular expression>"
 msgstr "Multimedia-Objkte mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
 "Liefert Multimedia-Objekte, deren Notizen einen Text entsprechend einem "
 "regulären Ausdruck enthalten"
@@ -23218,8 +22670,7 @@ msgid "Repositories having notes containing <regular expression>"
 msgstr "Aufbewahrungsorte mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
 "Liefert Aufbewahrungsorte, deren Notizen einen Text entsprechend einem "
 "regulärem Ausdruck enthalten"
@@ -23322,8 +22773,7 @@ msgstr "Notizen die <Regulärem Ausdruck> enthalten"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
-msgstr ""
-"Liefert Notizen die Text, entsprechend eines regulären Ausdrucks enthalten"
+msgstr "Liefert Notizen die Text, entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
@@ -23570,10 +23020,8 @@ msgid "_Type:"
 msgstr "_Typ:"
 
 #: ../src/glade/editperson.glade.h:24
-msgid ""
-"part of a person's name indicating the family to which the person belongs"
-msgstr ""
-"Teil des Namens einer Person, die die Familie zeigt zu der die Person gehört"
+msgid "part of a person's name indicating the family to which the person belongs"
+msgstr "Teil des Namens einer Person, die die Familie zeigt zu der die Person gehört"
 
 #: ../src/glade/grampletpane.glade.h:1
 msgid "<b><i>Gramplet</i></b>"
@@ -24332,8 +23780,7 @@ msgid "Place 2"
 msgstr "Ort 2"
 
 #: ../src/glade/mergedata.glade.h:13
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr "Wähle die Hauptperson für das Zusammenfassen aus."
 
 #: ../src/glade/mergedata.glade.h:15
@@ -24739,8 +24186,7 @@ msgstr "SoundEx-Code:"
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr ""
-"<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
+msgstr "<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
@@ -24900,8 +24346,7 @@ msgid "Gramps Genealogy System"
 msgstr "Gramps Genealogiesystem"
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
+msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
 "Verwaltet genealogische Informationen, organisiert genealogische Forschung "
 "und Analyse"
@@ -25762,1129 +25207,3 @@ msgstr ""
 "zwischen sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche "
 "neben dem Datumsfeld im Ereigniseditor."
 
-#~ msgid "Half Siblings"
-#~ msgstr "Halbgeschwister"
-
-#~ msgid "Step Siblings"
-#~ msgstr "Stiefgeschwister"
-
-#~ msgid "Include half and/ or step-siblings on the individual pages"
-#~ msgstr "Mit Halb- und/oder Stiefgeschwistern auf den Personenseiten"
-
-#~ msgid ""
-#~ "Whether to include half and/ or step-siblings with the parents and "
-#~ "siblings"
-#~ msgstr ""
-#~ "Ob Halb- und/oder Stiefgeschwister mit Eltern und Geschwistern "
-#~ "aufgenommen werden"
-
-#~ msgid "Show unknown peoples"
-#~ msgstr "Zeigt unbekannte Personen"
-
-#~ msgid "Mouse scroll direction"
-#~ msgstr "Maus Rollrichtung"
-
-#~ msgid "Top <-> Bottom"
-#~ msgstr "Oben <-> Unten"
-
-#~ msgid "Left <-> Right"
-#~ msgstr "Links <-> Rechts"
-
-#~ msgid "Version C"
-#~ msgstr "Version C"
-
-#~ msgid "Tree direction"
-#~ msgstr "Baumausrichtung"
-
-#~ msgid "%s and %s"
-#~ msgstr "%s und %s"
-
-#~ msgid "%s and %s are the same person."
-#~ msgstr "%s und %s sind die selbe Person."
-
-#~ msgid "Django Export"
-#~ msgstr "Django Export"
-
-#~ msgid "Django is a web framework working on a configured database"
-#~ msgstr ""
-#~ "Django ist ein Webrahmen der mit einer konfigurierten Datenbank arbeitet"
-
-#~ msgid "Django options"
-#~ msgstr "Django Optionen"
-
-#~ msgid "Django Import"
-#~ msgstr "Django Import"
-
-#~ msgid "Requested user not found."
-#~ msgstr "Abgefragter Anwender nicht gefunden."
-
-#~ msgid "User"
-#~ msgstr "Anwender"
-
-#~ msgid "Requested %s does not exist."
-#~ msgstr "Angeforderte %s existiert nicht."
-
-#~ msgid "Requested page type not known"
-#~ msgstr "Der angeforderte Seitentyp ist nicht bekannt"
-
-#~ msgid "Requested %s is not accessible."
-#~ msgstr "Auf angefordertes %s kann nicht zugegriffen werden."
-
-#~ msgid "Error"
-#~ msgstr "Fehler"
-
-#~ msgid "Add event"
-#~ msgstr "Ereignis hinzufügen"
-
-#~ msgid "Add name"
-#~ msgstr "Name hinzufügen"
-
-#~ msgid "Add source"
-#~ msgstr "Quelle hinzufügen"
-
-#~ msgid "Add note"
-#~ msgstr "Notiz hinzufügen"
-
-#~ msgid "Add attribute"
-#~ msgstr "Attribut hinzufügen"
-
-#~ msgid "Add address"
-#~ msgstr "Adresse hinzufügen"
-
-#~ msgid "Add gallery"
-#~ msgstr "Galerie hinzufügen"
-
-#~ msgid "Add internet"
-#~ msgstr "Internet hinzufügen"
-
-#~ msgid "Add association"
-#~ msgstr "Verknüpfung hinzufügen"
-
-#~ msgid "Add LDS"
-#~ msgstr "HLT hinzufügen"
-
-#~ msgid "Translation might not be complete/not working for"
-#~ msgstr "Übersetzung eventuell nicht komplett/nicht funktionsfähig für"
-
-#~ msgid "No active %(navigation_type)s"
-#~ msgstr "Kein aktiver %(navigation_type)s"
-
-#~ msgid "b. %(birthdate)s, d. %(deathdate)s"
-#~ msgstr "* %(birthdate)s, † %(deathdate)s"
-
-#~ msgid "short for born|b. %s"
-#~ msgstr "* %s"
-
-#~ msgid "short for dead|d. %s"
-#~ msgstr "† %s"
-
-#~ msgid "Use alternate provider."
-#~ msgstr "Alternativen Anbieter verwenden."
-
-#~ msgid "Map provider"
-#~ msgstr "Kartenanbieter"
-
-#~ msgid "_Provider"
-#~ msgstr "_Anbieter"
-
-#~ msgid "_Save Zoom"
-#~ msgstr "Zoom _speichern"
-
-#~ msgid "Set Columns to _1"
-#~ msgstr "Setze Spalten auf _1"
-
-#~ msgid "Set Columns to _2"
-#~ msgstr "Setze Spalten auf _2"
-
-#~ msgid "Set Columns to _3"
-#~ msgstr "Setze Spalten auf _3"
-
-#~ msgid ""
-#~ "<b>Adding Children</b>: To add children in Gramps make either of the "
-#~ "parents the Active Person then switch to the Family View. If the child is "
-#~ "already in the database, click on the third button down to the right of "
-#~ "the Children list. If the person is not already in the database, click on "
-#~ "the second button down to the right of the Children list. After the "
-#~ "child's information is entered they will automatically be listed as a "
-#~ "child of the Active Person."
-#~ msgstr ""
-#~ "<b>Kind hinzufügen</b>: Um Kinder in Gramps hinzuzufügen, wähle einen "
-#~ "Elternteil und wechsele in die Familienansicht. Wenn das Kind bereits in "
-#~ "der Datenbank vorhanden ist, klicke auf die dritte Schaltfläche oben "
-#~ "rechts in der Kinderliste. Wenn die Person nicht in der Datenbank "
-#~ "vorhanden ist, klicke dort auf die zweite Schaltfläche. Nachdem die "
-#~ "Informationen über das Kind eingegeben worden sind, wird es automatisch "
-#~ "als Kind der aktiven Personen erscheinen."
-
-#~ msgid ""
-#~ "<b>Changing The Preferred Name</b>: It is easy to manage people with "
-#~ "several names in Gramps. Make the person the Active Person, doubleclick "
-#~ "on the record, and select the Names tab. Different types of names can be "
-#~ "added. For example, Married Name, Birth Name, etc. Selecting a preferred "
-#~ "name is just a matter of right-clicking on the name and choosing the only "
-#~ "item in the menu."
-#~ msgstr ""
-#~ "<b>Bevorzugten Namen ändern</b>: In Gramps ist es einfach Personen mit "
-#~ "verschiedenen Namen zu verwalten. Mache die Person zur aktiven Person "
-#~ "indem du mit einem Doppelklick den Bearbeitungmodus gelangst und den "
-#~ "Reiter &quot;Namen&quot; auswählen. Es können verschiedene Typen von "
-#~ "Namen hinzugefügt werden, wie etwa Ehename, Geburtsname, usw. Um den "
-#~ "bevorzugten Namen zu wählen, klicke einfach auf den Namen und wählen nur "
-#~ "den Eintrag aus dem Menü aus."
-
-#~ msgid ""
-#~ "<b>Different Views</b>: There are twelve different views for navigating "
-#~ "your family: Gramplets, People, Relationships, Family List, Pedigree, "
-#~ "Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each "
-#~ "helps you to achieve one or more specific tasks."
-#~ msgstr ""
-#~ "<b>Verschiedene Ansichten</b>. Es gibt zwölf verschiedene Ansichten um "
-#~ "durch deine Familie zu navigieren: Gramplets, Personen, Beziehungen, "
-#~ "Familienliste, Ahnentafel, Ereignisse, Quellen, Orte, Medien, "
-#~ "Aufbewahrungsorte Notizen und HTML Karten Jede hilft dir eine oder "
-#~ "mehrere bestimmte Aufgaben durchzuführen."
-
-#~ msgid ""
-#~ "<b>Editing The Relationship of a Child</b>: Not all children are related "
-#~ "by birth to their parents. You can edit the relationship of a child to "
-#~ "each parent by making the child the active person. In the Relationship "
-#~ "View, click on the third icon to the right of the &quot;Parents:&quot; "
-#~ "entry. This brings up the Family Editor. Now select the child, right-"
-#~ "click and choose &quot;Edit relationship&quot;. Here you can set the "
-#~ "relationship between the child and its father and mother. Relationships "
-#~ "can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and "
-#~ "Unknown."
-#~ msgstr ""
-#~ "<b>Bearbeiten der Verwandtschaft eines Kindes</b>: Nicht alle Kinder sind "
-#~ "durch Geburt mit ihren Eltern verbunden. Du kannst die Verwandtschaft "
-#~ "eines Kindes zu jedem Elternteil durch das Auswählen des Kindes "
-#~ "bearbeiten. In der Beziehungenansicht klicke auf die dritte Schaltfläche "
-#~ "rechts neben dem &quot;Eltern:&quot; Eintrag. Dies öffnet den "
-#~ "Familieneditor. Nun wähle das Kind  rechtsklick und wähle &quot;Eltern/"
-#~ "Kind-Beziehung bearbeiten&quot;. Hier kannst du die Beziehung zwischen "
-#~ "dem Kind und seinem Vater und seiner Mutter bearbeiten. Verwandtschaft "
-#~ "kann Geburt, Adoptiert, Stiefkind, Gefördert, Pflegekind und unbekannt "
-#~ "sein."
-
-#~ msgid ""
-#~ "<b>Gramps Manual</b>: The Gramps manual is quite elaborate and well "
-#~ "written. It includes details on keybindings and includes some useful tips "
-#~ "that will help you in your genealogy work. Check it out."
-#~ msgstr ""
-#~ "<b>Das Gramps Benutzerhandbuch</b>: Das Gramps Benutzerhandbuch ist sehr "
-#~ "ausführlich und gut geschrieben. Es enthält Details über die Handhabung "
-#~ "und enthält einige nützliche Tipps, die dir bei deiner genealogischen "
-#~ "Arbeit helfen wird. Probiere es aus."
-
-#~ msgid ""
-#~ "<b>Listing Events</b>: Events in the life of any individual may be added "
-#~ "to the database via the <b>Person &gt; Edit Person &gt; Events</b> "
-#~ "option. This space can be used to include a wide range of options ranging "
-#~ "from adoptions, to baptisms (and other religious ceremonies), burials, "
-#~ "causes of death, Census listings, degrees earned, elections, emigration, "
-#~ "military service, nobility titles, occupations, ordination, property, "
-#~ "religion, retirement, wills, etc."
-#~ msgstr ""
-#~ "<b>Ereignisse auflisten</b>: Ereignisse im Leben von jeder Person können "
-#~ "über die Option <b>Person &gt; Person bearbeiten &gt; Ereignisse</b> "
-#~ "hinzugefügt werden. Der Platz dazu benutzt werden um eine weite Spanne an "
-#~ "Optionen von Adoptionen, bis Taufen (und andere religiöse Zeremonien), "
-#~ "Beerdigungen, Todesursache, Volkszählung, errungener Akademischer Grad, "
-#~ "Wahlen, Auswanderung, Militärdienst, Adelstiteln, Berufe, Ordination, "
-#~ "Eigenschaft, Religion, Pensionierung, letzter Wille usw. hinzuzufügen."
-
-#~ msgid ""
-#~ "<b>Setting Your Preferences</b>: Not happy with some default behavior of "
-#~ "Gramps? <b>Edit &gt; Preferences</b> lets you to modify a number of "
-#~ "settings, allowing you to tailor Gramps to your needs."
-#~ msgstr ""
-#~ "<b>Eigene Einstellungen vornehmen</b>: Bist du nicht mit einigen "
-#~ "Standardeinstellungen von Gramps zufrieden? Unter <b>Bearbeiten &gt; "
-#~ "Einstellungen </b> kannst du eine Menge an Einstellungen nach deinen "
-#~ "Wünschen modifizieren."
-
-#~ msgid ""
-#~ "<b>Shifting a Family View</b>: Changing the Active Person in the "
-#~ "Relationships View is easy. Just doubleclick on the name of a person to "
-#~ "make it the active one."
-#~ msgstr ""
-#~ "<b>Eine Familienansicht wechseln</b>: Das ändern der aktiven Person in "
-#~ "der Beziehungenansicht ist einfach. Einfach einen Doppelklick auf den "
-#~ "Personennamen um es zur aktiven Person zu machen."
-
-#~ msgid ""
-#~ "A range of dates can be given by using the format &quot;between January "
-#~ "4, 2000 and March 20, 2003&quot;"
-#~ msgstr ""
-#~ "Eine Zeitspanne von Daten kann durch das folgende Format angegeben "
-#~ "werden: &quot;zwischen 4. Januar 2000 und 20. März 2003&quot;"
-
-#~ msgid ""
-#~ "An alternate name can be selected as a person's preferred name by "
-#~ "selecting the desired name in the person's name list, bringing up the "
-#~ "context menu by clicking the right mouse button, and selecting &quot;set "
-#~ "as default name&quot; from the menu."
-#~ msgstr ""
-#~ "Ein alternativer Name kann als bevorzugter Namen durch das Wählen des "
-#~ "gewünschten Namens in der Namensliste der Person gewählt werden, indem "
-#~ "man darauf mit der rechten Maustaste klickt und im Kontextmenü klickt und "
-#~ "es aus dem Menü auswählt."
-
-#~ msgid ""
-#~ "Birth order of children in a family can be set, even if they do not have "
-#~ "birth dates, by using drag and drop."
-#~ msgstr ""
-#~ "Kinder können in einer Familie per drag &amp; drop geordnet werden, auch "
-#~ "wenn keine Geburtsdaten vorhanden sind."
-
-#~ msgid ""
-#~ "Custom reports can be created by advanced users under the &quot;"
-#~ "plugin&quot; system. More information on custom reports can be found at "
-#~ "http://developers.gramps-project.org"
-#~ msgstr ""
-#~ "Maßgeschneiderte Berichte können von erfahrenen Benutzern mit dem &quot;"
-#~ "plugin&quot; System erstellt werden. Mehr Informationen über "
-#~ "maßgeschneiderte Berichte findet man auf http://developers.gramps-project."
-#~ "org"
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps allows you to generate a number of reports (both text and "
-#~ "graphical) based on your genealogical information. There is great "
-#~ "flexibility in selecting what people are included in the reports as well "
-#~ "as the output format (html, pdf, OpenDocument Text, RTF, LaTeX and plain "
-#~ "text). Experiment with the reports under the <b>Reports</b> menu to get "
-#~ "an idea of how powerful Gramps is."
-#~ msgstr ""
-#~ "Gramps erlaubt dir eine Menge an Berichten (sowohl Text als auch "
-#~ "grafisch) zu erstellen, die deine genealogische Informationen enthalten. "
-#~ "Eine große Flexibilität gibt es sowohl bei der Auswahl der Personen für "
-#~ "den Bericht als auch für das Ausgabeformat (HTML, PDF, Open Document, "
-#~ "RTF, LaTeX und normaler Text). Probiere die Berichte im Menü unter "
-#~ "<b>Berichte</b> um einen Einblick zu bekommen, wie mächtig Gramps ist."
-
-#~ msgid ""
-#~ "Gramps has some unique features, including the ability to input any piece "
-#~ "of information directly into Gramps. All data in the data base can be "
-#~ "rearranged/manipulated to assist the user in doing research, analysis and "
-#~ "correlation with the potential of filling relationship gaps."
-#~ msgstr ""
-#~ "Gramps hat einige einzigartige Eigenschaften wie etwa die Möglichkeit "
-#~ "einen Informationsteil direkt in GRAMPS zu importieren. Alle Daten in der "
-#~ "Datenbank können neu angeordnet/geändert werden, um dem Benutzer während "
-#~ "des Forschens zu helfen Auswertungen und Beziehungen vorzunehmen, mit der "
-#~ "Möglichkeit eine Verwandtschaftlücke zu füllen."
-
-#~ msgid ""
-#~ "Gramps makes every effort to maintain compatibility with GEDCOM, the "
-#~ "general standard of recording genealogical information. Filters exist "
-#~ "that make importing and exporting GEDCOM files trivial."
-#~ msgstr ""
-#~ "Gramps unternimmt jede Anstrengung um Kompatibilität mit GEDCOM "
-#~ "herzustellen, der allgemeine Standard um genealogische Informationen zu "
-#~ "archivieren. Es existieren Filter, die es einfach machen, GEDCOM Dateien "
-#~ "zu importieren und exportieren."
-
-#~ msgid ""
-#~ "Gramps works even when using KDE, as long as the required GTK libraries "
-#~ "are installed."
-#~ msgstr ""
-#~ "Gramps arbeitet auch unter KDE, soweit die benötigten GTK Bibliotheken "
-#~ "installiert sind."
-
-#~ msgid ""
-#~ "Make your data portable --- your family tree data and media can be "
-#~ "exported directly to the GNOME file manager (Nautilus), for burning onto "
-#~ "a CD."
-#~ msgstr ""
-#~ "Mach deine Daten portabel -- Du kannst deine Stammbaumdaten und "
-#~ "Multimediaobjekte direkt in den GNOME Dateimanager (Nautilus) "
-#~ "exportieren, um sie auf eine CD zu brennen."
-
-#~ msgid ""
-#~ "Multiple names can be specified for individuals. Examples are birth name, "
-#~ "marriage name or aliases."
-#~ msgstr ""
-#~ "Es können mehrere Namen präzise Personen zugeordnet werden. Zum Beispiel "
-#~ "Geburtsname, Name nach Heirat oder Alias."
-
-#~ msgid ""
-#~ "Relationship calculators in Gramps are available in more than fifteen "
-#~ "languages."
-#~ msgstr ""
-#~ "Für Gramps sind Verwandtschaftrechner in mehr als fünfzehn Sprachen "
-#~ "verfügbar."
-
-#~ msgid ""
-#~ "To easily merge two people, select them both (a second person can be "
-#~ "selected by holding the Control key while clicking) and clicking on "
-#~ "<b>Edit &gt; Fast Merge</b>."
-#~ msgstr ""
-#~ "Um zwei Personen einfach zusammenzufügen, wähle beide aus (eine zweite "
-#~ "Person kann durch Anklicken bei gehaltener Strg-Taste gewählt werden), "
-#~ "danach klicke auf <b>Bearbeiten &gt; Schnell zusammenfassen/</b>."
-
-#~ msgid ""
-#~ "To run Gramps, you need to have GTK installed. But you do not need to be "
-#~ "running the GNOME desktop."
-#~ msgstr ""
-#~ "Um Gramps zu benutzen, benötigst du GTK. Aber du musst nicht den GNOME "
-#~ "Desktop verwenden."
-
-#~ msgid ""
-#~ "You can link any electronic media (including non-text information) and "
-#~ "other file types to your Gramps family tree."
-#~ msgstr ""
-#~ "Du kannst jedes elektronische Medienobjekt (einschließlich nicht-Text- "
-#~ "Informationen) und andere Dateitypen mit deinen Gramps Stammbaum "
-#~ "verbinden."
-
-#~ msgid "Column Editor"
-#~ msgstr "Spalteneditor"
-
-#~ msgid "_Display format"
-#~ msgstr "_Anzeigeformat"
-
-#~ msgid "C_ustom format details"
-#~ msgstr "_Details zum selbstdefinierten Format"
-
-#~ msgid "Use shading in Relationship View"
-#~ msgstr "Benutze Schattierungen in der Beziehungenansicht"
-
-#~ msgid "Display edit buttons on Relationship View"
-#~ msgstr "Zeige Bearbeiten Schaltflächen in der Beziehungenansicht"
-
-#~ msgid "_Plugin Status"
-#~ msgstr "_PlugIn Status"
-
-#~ msgid "_Filter"
-#~ msgstr "_Filter"
-
-#~ msgid "_Column Editor"
-#~ msgstr "_Spalteneditor"
-
-#~ msgid "Select Place Columns"
-#~ msgstr "Ortespalten auswählen"
-
-#~ msgid "Edit icons can be enabled in the Preferences dialog"
-#~ msgstr ""
-#~ "Bearbeiten-Schaltflächen können in den Einstellungen aktiviert werden"
-
-#~ msgid "Cause of Death"
-#~ msgstr "Todesursache"
-
-#~ msgid "Select Event Columns"
-#~ msgstr "Ereignisspalten auswählen"
-
-#~ msgid "Select Family Columns"
-#~ msgstr "Familienspalten wählen"
-
-#~ msgid "_Column Editor..."
-#~ msgstr "_Spalteneditor..."
-
-#~ msgid "Selecting stylesheet ..."
-#~ msgstr "Wähle Layoutdokument ..."
-
-#~ msgid "Reload the map with new style."
-#~ msgstr "Karte mit neuem Layout neu laden."
-
-#~ msgid "Select a StyleSheet"
-#~ msgstr "Eine Layoutvorlage wählen"
-
-#~ msgid "Select Media Columns"
-#~ msgstr "Medienspalten auswählen"
-
-#~ msgid "Select Note Columns"
-#~ msgstr "Notizspalten auswählen"
-
-#~ msgid "Select Person Columns"
-#~ msgstr "Personenspalten auswählen"
-
-#~ msgid "Tree"
-#~ msgstr "Baum"
-
-#~ msgid "Select Repository Columns"
-#~ msgstr "Aufbewahrungsortespalten auswählen"
-
-#~ msgid "Select Source Columns"
-#~ msgstr "Quellenspalten auswählen"
-
-#~ msgid "Plugin Status"
-#~ msgstr "PlugIn-Status"
-
-#~ msgid "%(event_abbrev)s %(birth_date)s - %(place)s"
-#~ msgstr "%(event_abbrev)s %(birth_date)s - %(place)s"
-
-#~ msgid "%(event_abbrev)s %(birth_date)s"
-#~ msgstr "%(event_abbrev)s %(birth_date)s"
-
-#~ msgid "%(event_abbrev)s %(death_date)s - %(place)s"
-#~ msgstr "%(event_abbrev)s %(death_date)s - %(place)s"
-
-#~ msgid "%(event_abbrev)s %(death_date)s"
-#~ msgstr "%(event_abbrev)s %(death_date)s"
-
-#~ msgid "spouses of %s"
-#~ msgstr "Partner von %s"
-
-#~ msgid "Display detailed results"
-#~ msgstr "Zeige ausführliche Ergebnisse"
-
-#~ msgid "Show details for every date entered"
-#~ msgstr "Zeige Details für jedes eingegebene Datum"
-
-#~ msgid "Config"
-#~ msgstr "Konfiguration"
-
-#~ msgid "Minimum years between two generations"
-#~ msgstr "Minimaler Abstand in Jahre zwischen zwei Generationen"
-
-#~ msgid "Results"
-#~ msgstr "Ergebnisse"
-
-#~ msgid "Replacing...\n"
-#~ msgstr "Ersetze...\n"
-
-#~ msgid "Calculating...\n"
-#~ msgstr "Berechne...\n"
-
-#~ msgid "Calculating estimated dates..."
-#~ msgstr "Berechne geschätzte Daten..."
-
-#~ msgid "Check Localized Date Displayer and Parser"
-#~ msgstr "Überprüfe lokalisierten Datumsparser und Anzeige"
-
-#~ msgid "Dump Gender Statistics"
-#~ msgstr "Geschlechtsstatistik ausgeben"
-
-#~ msgid "Python Evaluation Window"
-#~ msgstr "Python Bewertungsfenster"
-
-#~ msgid "Provides a window that can evaluate python code"
-#~ msgstr "Liefert ein Fenster das Pythonkode bewerten kann"
-
-#~ msgid "Show Uncollected Objects"
-#~ msgstr "Zeige nicht erfasste Objekte"
-
-#~ msgid "Provide a window listing all uncollected objects"
-#~ msgstr ""
-#~ "Liefert ein Fenster in dem alle nicht erfassten Objekte gelistet sind"
-
-#~ msgid "Generate Testcases for Persons and Families"
-#~ msgstr "Erstellt Musterfälle für Personen und Familien"
-
-#~ msgid "Processing Person records"
-#~ msgstr "Verarbeitung der Personendatensätze"
-
-#~ msgid "Processing Family records"
-#~ msgstr "Verarbeitung der Familiendatensätze"
-
-#~ msgid "Processing Event records"
-#~ msgstr "Verarbeitung der Ereignisdatensätze"
-
-#~ msgid "Processing Place records"
-#~ msgstr "Verarbeitung der Ortedatensätze"
-
-#~ msgid "Processing Source records"
-#~ msgstr "Verarbeitung der Quellendatensätze"
-
-#~ msgid "Processing Media records"
-#~ msgstr "Verarbeitung der Mediendatensätze"
-
-#~ msgid "Processing Repository records"
-#~ msgstr "Verarbeitung der Aufbewahrungsortedatensätze"
-
-#~ msgid "Processing Note records"
-#~ msgstr "Verarbeitung der Notizendatensätze"
-
-#~ msgid "Date format on reports"
-#~ msgstr "Datumsformat für Berichte"
-
-#~ msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
-#~ msgstr "%(calendar_type)s Kalender, Sortiert nach %(sortby)s"
-
-#~ msgid "The calendar which determines the year span"
-#~ msgstr "Der Kalender der den Jahresabstand bestimmt"
-
-#~ msgid "_OpenStreetMap"
-#~ msgstr "_OpenStreetMap"
-
-#~ msgid "Select OpenStreetMap Maps"
-#~ msgstr "OpenStreetMap wählen"
-
-#~ msgid "_Google Maps"
-#~ msgstr "_Google Maps"
-
-#~ msgid "Select Google Maps."
-#~ msgstr "Google Maps auswählen."
-
-#~ msgid "SQLite Export"
-#~ msgstr "SQLite Export"
-
-#~ msgid "SQLite is a common local database format"
-#~ msgstr "SQLite ist ein gebräuchliches Datenbankformat"
-
-#~ msgid "b. %(birth_date)s"
-#~ msgstr "* %(birth_date)s"
-
-#~ msgid "d. %(death_date)s - %(place)s"
-#~ msgstr "† %(death_date)s - %(place)s"
-
-#~ msgid "d. %(death_date)s"
-#~ msgstr "† %(death_date)s"
-
-#~ msgid "Deep Connections Gramplet"
-#~ msgstr "Tiefe Verbindungen Gramplet"
-
-#~ msgid "Deep Connections"
-#~ msgstr "Tiefe Verbindungen"
-
-#~ msgid "Headline News Gramplet"
-#~ msgstr "Schlagzeilen Gramplet"
-
-#~ msgid "Headline News"
-#~ msgstr "Schlagzeilen"
-
-#~ msgid "Note Gramplet"
-#~ msgstr "Notiz Gramplet"
-
-#~ msgid "Python Gramplet"
-#~ msgstr "Python Gramplet"
-
-#~ msgid "Python Shell"
-#~ msgstr "Python Shell"
-
-#~ msgid "SQLite Import"
-#~ msgstr "SQLite Import"
-
-#~ msgid "All Names of All People"
-#~ msgstr "Alle Namen Aller Personen"
-
-#~ msgid "All names of all people"
-#~ msgstr "Alle Namen aller Personen"
-
-#~ msgid "b."
-#~ msgstr "*"
-
-#~ msgid "d."
-#~ msgstr "†"
-
-#~ msgid "%(eventtype)s"
-#~ msgstr "%(eventtype)s"
-
-#~ msgid "%(type)s of %(name)s"
-#~ msgstr "%(type)s von %(name)s"
-
-#~ msgid "Image Exif Tags/ Keys"
-#~ msgstr "Bild Exif Marken/ Schlüssel"
-
-#~ msgid "Whether to add exif tags to the media page or not?"
-#~ msgstr "Ob exif Marken zu einer Medienseite hinzugefügt werden oder nicht?"
-
-#, fuzzy
-#~ msgid "Charts"
-#~ msgstr "Grafiken 1"
-
-#~ msgid "Gra_mps package (portable XML)"
-#~ msgstr "Gra_mps-Paket (portables XML)"
-
-#~ msgid "Eniro map not available for %s"
-#~ msgstr "Eniro Karte nicht verfügbar für %s"
-
-#~ msgid "Only for Sweden and Denmark"
-#~ msgstr "Nur für Schweden und Dänemark"
-
-#~ msgid "males"
-#~ msgstr "Männer"
-
-#~ msgid "females"
-#~ msgstr "Frauen"
-
-#~ msgid "all families"
-#~ msgstr "Alle Familien"
-
-#~ msgid ""
-#~ "This page contains an index of all the events in the database, sorted by "
-#~ "their type, date (if one is present), and person&#8217;s surname.  "
-#~ "Clicking on an event&#8217;s type will take you to that event&#8217;s "
-#~ "page.  Clicking on a person&#8217;s name will take you to that "
-#~ "person&#8217;s page.  The person&#8217;s name will only be shown once for "
-#~ "their events."
-#~ msgstr ""
-#~ "Diese Seite enthält einen Index mit allen Ereignissen der Datenbank, die "
-#~ "nach ihrem Typ, Datum (wenn vorhanden) und Personen Nachnamen geordnet "
-#~ "sind. Durch Klicken auf den Ereignistyp gelangst du zur Seite des "
-#~ "Ereignisses. Durch klicken auf einePerson gelangst du zur Seite der "
-#~ "Person. Der Name der Person wird nur einmal für ihre Ereignisse angezeigt."
-
-#~ msgid "Address Book List"
-#~ msgstr "Adressbuchliste"
-
-#~ msgid "Gram_ps package (portable XML)"
-#~ msgstr "Gram_ps-Paket (portables XML)"
-
-#~ msgid "GRAMPS View"
-#~ msgstr "GRAMPS Ansicht"
-
-#~ msgid "GRAMPS: Import database"
-#~ msgstr "GRAMPS: Datenbank importieren"
-
-#~ msgid "GRAMPS Book"
-#~ msgstr "GRAMPS-Buch"
-
-#~ msgid "Welcome to GRAMPS!"
-#~ msgstr "Willkommen zu GRAMPS!"
-
-#~ msgid "gramps id"
-#~ msgstr "Gramps id"
-
-#~ msgid "GRAMPS Media Manager"
-#~ msgstr "GRAMPS-Medienverwalter"
-
-#~ msgid "Reordering GRAMPS IDs"
-#~ msgstr "GRAMPS-IDs neu ordnen"
-
-#~ msgid "GRAMPS ID"
-#~ msgstr "GRAMPS ID:"
-
-#~ msgid " starting with %s"
-#~ msgstr " starte mit %s"
-
-#~ msgid "Zip/Postal code"
-#~ msgstr "Postleitzahl"
-
-#~ msgid "GRAMPS"
-#~ msgstr "GRAMPS"
-
-#~ msgid "_Zip/Postal code:"
-#~ msgstr "Plz/Postleit_zahl:"
-
-#~ msgid "GRAMPS ID:"
-#~ msgstr "GRAMPS ID:"
-
-#~ msgid "GRAMPS database"
-#~ msgstr "GRAMPS-Datenbank"
-
-#~ msgid "Internet Maps"
-#~ msgstr "Internetkarten"
-
-#~ msgid ""
-#~ "You need a broadband internet connection to use Internet mapping "
-#~ "applications from within GRAMPS"
-#~ msgstr ""
-#~ "Du benötigst eine Breitbandinternetverbindung um Internetkarten zu "
-#~ "verwenden. Anwendungen innerhalb von GRAMPS"
-
-#~ msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-#~ msgstr ""
-#~ "GeoView zu GRAMPS hinzufügen zeigt Internetkarten die auf deinen Daten "
-#~ "beruhen."
-
-#~ msgid ""
-#~ "GeoView uses OpenStreetMap and one other map provider.\n"
-#~ "Choose one of the following map providers:"
-#~ msgstr ""
-#~ "GeoView verwendet OpenStreetMap und einen anderen Kartenanbieter.\n"
-#~ "Wähle einen der folgenden Anbieter:"
-
-#~ msgid "Google Maps"
-#~ msgstr "Google Maps"
-
-#~ msgid "OpenLayers"
-#~ msgstr "OpenLayers"
-
-#~ msgid "Yahoo! Maps"
-#~ msgstr "Yahoo! Maps"
-
-#~ msgid "Microsoft Maps"
-#~ msgstr "Microsoft Maps"
-
-#~ msgid "You need to restart GRAMPS for above settings to take effect"
-#~ msgstr ""
-#~ "GRAMPS muss neu gestartet werden damit die obigen Einstellungen wirksam "
-#~ "werden"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Lesezeichen hinzufügen"
-
-#~ msgid "_OpenLayers Maps"
-#~ msgstr "_OpenLayers Maps"
-
-#~ msgid "Select OpenLayers Maps."
-#~ msgstr "OpenLayers Maps auswählen."
-
-#~ msgid "_Yahoo! Maps"
-#~ msgstr "_Yahoo! Maps"
-
-#~ msgid "Select Yahoo Maps."
-#~ msgstr "Yahoo! Maps auswählen."
-
-#~ msgid "_Microsoft Maps"
-#~ msgstr "_Microsoft Maps"
-
-#~ msgid "Select Microsoft Maps"
-#~ msgstr "Microsoft Maps auswählen"
-
-#~ msgid ""
-#~ "There are %d markers to display. They are split up over %d pages of %d "
-#~ "markers : "
-#~ msgstr ""
-#~ "Es gibt %d Marker zum anzeigen. Diese sind verteilt über %d Seiten mit %d "
-#~ "Markern : "
-
-#~ msgid "You have "
-#~ msgstr "Du hast"
-
-#~ msgid " places without coordinates."
-#~ msgstr " Orte ohne Koordinaten"
-
-#~ msgid "Cannot center the map. No location with coordinates."
-#~ msgstr "Kann Karte nicht zentrieren. Keine Orte mit Koordinaten."
-
-#~ msgid "The active person's family members have no places with coordinates."
-#~ msgstr ""
-#~ "Die Familienmitglieder der aktiven Person haben keine Orte mit "
-#~ "Koordinaten."
-
-#~ msgid "The active person has no places with coordinates."
-#~ msgstr "Die aktive Person hat keine Orte mit Koordinaten."
-
-#~ msgid "Jump to father"
-#~ msgstr "Springe zu Vater"
-
-#~ msgid "Go to default person"
-#~ msgstr "Gehe zur Hauptperson"
-
-#~ msgid "Edit selected person"
-#~ msgstr "Gewählte Person bearbeiten"
-
-#~ msgid "Select repository"
-#~ msgstr "Aufbewahrungsort auswählen"
-
-#~ msgid "GRAMPS XML export options"
-#~ msgstr "GRAMPS XML Exportoptionen"
-
-#~ msgid "Import data from GRAMPS packages"
-#~ msgstr "Daten aus GRAMPS-Paketen importieren"
-
-#~ msgid "SVG (Scalable Vector Graphics)"
-#~ msgstr "SVG (Skalierbare Vektor Grafiken)"
-
-#~ msgid "CSV spreadsheet options"
-#~ msgstr "CSV-Tabelle Optionen"
-
-#~ msgid "Web Family Tree export options"
-#~ msgstr "Web Family Tree-Exportoptionen"
-
-#~ msgid "GEDCOM export options"
-#~ msgstr "GEDCOM-Exportoptionen"
-
-#~ msgid "GeneWeb export options"
-#~ msgstr "GeneWeb-Exportoptionen"
-
-#~ msgid "GRAMPS package export options"
-#~ msgstr "GRAMPS Packet Exportoptionen"
-
-#~ msgid "vCalendar export options"
-#~ msgstr "vKalender-Export-Optionen"
-
-#~ msgid "vCard export options"
-#~ msgstr "vKarte-Export-Optionen"
-
-#~ msgid "CSV Spreadheet"
-#~ msgstr "CSV Tabelle"
-
-#~ msgid "RepoRef"
-#~ msgstr "RepoRef"
-
-#~ msgid "Whether to use Record-style numbering instead of Henry-style."
-#~ msgstr ""
-#~ "Ob Datensatzart Nummerierung anstatt Henry-Nummerierung verwendet wird."
-
-#~ msgid "%(date)s in %(place)s. "
-#~ msgstr "%(date)s in %(place)s. "
-
-#~ msgid "Beta"
-#~ msgstr "Beta"
-
-#~ msgid ""
-#~ "Searches the entire database and attempts to extract titles, nicknames "
-#~ "and surname prefixes that may be embedded in a person's given name field."
-#~ msgstr ""
-#~ "Durchsucht die gesamte Datenbank und versucht Titel, Spitznamen und "
-#~ "Präfixe zu Familiennamen zu extrahieren, die in das Feld Vorname einer "
-#~ "Person eingebettet sind."
-
-#~ msgid "Advanced"
-#~ msgstr "Erweitert"
-
-#~ msgid "Horizontal"
-#~ msgstr "Horizontal"
-
-#~ msgid "Vertical"
-#~ msgstr "Vertikal"
-
-#~ msgid "%(short_name)s"
-#~ msgstr "%(short_name)s"
-
-#~ msgid ", <em>"
-#~ msgstr ", <em>"
-
-#~ msgid "unmarried"
-#~ msgstr "unverheiratet"
-
-#~ msgid "civil union"
-#~ msgstr "Gesetzliche Partnerschaft"
-
-#~ msgid "He"
-#~ msgstr "Er"
-
-#~ msgid "She"
-#~ msgstr "Sie"
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s, "
-#~ "und starb %(death_date)s in %(death_place)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s, "
-#~ "und starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s, "
-#~ "und starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s."
-
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s starb %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(male_name)s%(endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)"
-#~ "s%(birth_endnotes)s, und starb %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)"
-#~ "s%(birth_endnotes)s, und starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)"
-#~ "s%(birth_endnotes)s, und starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-#~ "(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s in %(birth_place)"
-#~ "s%(birth_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)"
-#~ "s, und starb %(death_date)s in %(death_place)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)"
-#~ "s, und starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)"
-#~ "s, und starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren %(birth_date)s%(birth_endnotes)"
-#~ "s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s, und starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s wurde geboren in %(birth_place)s%"
-#~ "(birth_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s starb %(death_date)s in %(death_place)s%"
-#~ "(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s starb %(death_date)s%(death_endnotes)s."
-
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s starb in %(death_place)s%(death_endnotes)s."
-
-#~ msgid "%(female_name)s%(endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s."
-
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "* %(birth_date)s %(birth_place)s, † %(death_date)s."
-
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-#~ msgstr ""
-#~ "Geboren: %(birth_date)s %(birth_place)s, Gestorben: %(death_place)s."
-
-#~ msgid "Born: %(birth_date)s %(birth_place)s."
-#~ msgstr "Geboren: %(birth_date)s %(birth_place)s."
-
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr "Geboren: %(birth_date)s, Gestorben %(death_date)s %(death_place)s."
-
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s."
-#~ msgstr "Geboren: %(birth_date)s, Gestorben: %(death_date)s."
-
-#~ msgid "Born: %(birth_date)s, Died: %(death_place)s."
-#~ msgstr "Geboren: %(birth_date)s, Gestorben: %(death_place)s."
-
-#~ msgid "Born: %(birth_date)s."
-#~ msgstr "Geboren: %(birth_date)s."
-
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr ""
-#~ "Geboren: %(birth_place)s, Gestorben: %(death_date)s %(death_place)s."
-
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "Geboren: %(birth_place)s, Gestorben: %(death_date)s."
-
-#~ msgid "Born: %(birth_place)s, Died: %(death_place)s."
-#~ msgstr "Geboren: %(birth_place)s, Gestorben: %(death_place)s."
-
-#~ msgid "Born: %(birth_place)s."
-#~ msgstr "Geboren: %(birth_place)s."
-
-#~ msgid "Died: %(death_date)s %(death_place)s."
-#~ msgstr "Gestorben: %(death_date)s %(death_place)s."
-
-#~ msgid "Died: %(death_date)s."
-#~ msgstr "Starb: %(death_date)s."
-
-#~ msgid "Died: %(death_place)s."
-#~ msgstr "Starb: %(death_place)s."
