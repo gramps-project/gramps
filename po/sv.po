@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: svnytt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-08 12:28+0100\n"
-"PO-Revision-Date: 2010-03-08 12:51+0100\n"
+"POT-Creation-Date: 2010-03-08 13:06+0100\n"
+"PO-Revision-Date: 2010-03-08 13:07+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -8701,8 +8701,8 @@ msgid ""
 "bug?</a>\n"
 msgstr ""
 "  8. <a wiki='Gramps_3.2_Wiki_Manual_-"
-"_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>vad gör jag om jag hitta ett "
-"fel?</a>\n"
+"_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>vad gör jag om jag hitta ett fel?"
+"</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
@@ -8790,7 +8790,7 @@ msgid "Calendar Gramplet"
 msgstr "Gramplet med kalender"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
-msgid "Gramplet showing calendar and events on specfic dates in history"
+msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr "Gramplet med almanacka och händelser för särskilda datum i historien"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:88
