@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-05 10:24+0100\n"
-"PO-Revision-Date: 2010-03-07 23:17+0300\n"
+"POT-Creation-Date: 2010-03-07 17:37+0100\n"
+"PO-Revision-Date: 2010-03-08 22:09+0300\n"
 "Last-Translator: Artursa Sleinius <asleinius@users.sourceforge.net>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr "Tvarkyti žymeles"
 #: ../src/plugins/tool/NotRelated.py:114
 #: ../src/plugins/tool/PatchNames.py:230
 #: ../src/plugins/tool/RemoveUnused.py:198
-#: ../src/plugins/tool/Verify.py:486
+#: ../src/plugins/tool/Verify.py:488
 #: ../src/plugins/view/repoview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:1809
 #: ../src/plugins/webreport/NarrativeWeb.py:1988
@@ -159,7 +159,7 @@ msgstr "Vardas"
 #: ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56
-#: ../src/plugins/tool/Verify.py:479
+#: ../src/plugins/tool/Verify.py:481
 #: ../src/plugins/view/eventview.py:80
 #: ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89
@@ -245,35 +245,35 @@ msgstr "Bloga Data"
 msgid "Date selection"
 msgstr "Datos pasirinkimas"
 
-#: ../src/DisplayState.py:318
+#: ../src/DisplayState.py:346
 msgid "No active person"
 msgstr "Nėra aktyvaus asmens"
 
-#: ../src/DisplayState.py:319
+#: ../src/DisplayState.py:347
 msgid "No active family"
 msgstr "Nėra aktyvios šeimos"
 
-#: ../src/DisplayState.py:320
+#: ../src/DisplayState.py:348
 msgid "No active event"
 msgstr "Nėra aktyvus įvykio"
 
-#: ../src/DisplayState.py:321
+#: ../src/DisplayState.py:349
 msgid "No active place"
 msgstr "Nėra aktyvios vietovės"
 
-#: ../src/DisplayState.py:322
+#: ../src/DisplayState.py:350
 msgid "No active source"
 msgstr "Nėra aktyvus šaltinio"
 
-#: ../src/DisplayState.py:323
+#: ../src/DisplayState.py:351
 msgid "No active repository"
 msgstr "Nėra aktyvios saugyklos"
 
-#: ../src/DisplayState.py:324
+#: ../src/DisplayState.py:352
 msgid "No active media"
 msgstr "Nėra aktyvus  audio/video"
 
-#: ../src/DisplayState.py:325
+#: ../src/DisplayState.py:353
 msgid "No active note"
 msgstr "Nėra aktyvios pastabos"
 
@@ -603,8 +603,8 @@ msgstr ""
 #: ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:160
 #: ../src/docgen/TextBufDoc.py:162
-#: ../src/plugins/gramplet/gramplet.gpr.py:173
-#: ../src/plugins/lib/libpersonview.py:335
+#: ../src/plugins/gramplet/gramplet.gpr.py:184
+#: ../src/plugins/lib/libpersonview.py:333
 #: ../src/plugins/lib/libplaceview.py:172
 #: ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191
@@ -812,7 +812,7 @@ msgid "manual|Using_the_Clipboard"
 msgstr "Laikinos_talpyklės_naudojimas"
 
 #: ../src/ScratchPad.py:89
-#: ../src/cli/clidbman.py:395
+#: ../src/cli/clidbman.py:403
 #: ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76
 #: ../src/gen/lib/repotype.py:59
@@ -1726,7 +1726,7 @@ msgstr "Įspėjimas: kalbos tikrinimas uždraustas;  norėdami  jį įgalinti  �
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
 #: ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:449
+#: ../src/gui/viewmanager.py:448
 msgid "Tip of the Day"
 msgstr "Dienos patarimas"
 
@@ -2289,34 +2289,34 @@ msgstr ""
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/cli/clidbman.py:62
+#: ../src/cli/clidbman.py:63
 msgid "Family Tree"
 msgstr "Šeimos medis"
 
-#: ../src/cli/clidbman.py:213
+#: ../src/cli/clidbman.py:214
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Pradedamas %s įkėlimas"
 
-#: ../src/cli/clidbman.py:219
+#: ../src/cli/clidbman.py:220
 msgid "Import finished..."
 msgstr "Duomenų įkėlimas baigtas..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:273
+#: ../src/cli/clidbman.py:274
 #: ../src/plugins/import/ImportCsv.py:387
 msgid "Importing data..."
 msgstr "Įkeliami duomenys..."
 
-#: ../src/cli/clidbman.py:333
+#: ../src/cli/clidbman.py:334
 msgid "Could not make database directory: "
 msgstr "Nepavyko sukurti duomenų bazės direktorijos: "
 
-#: ../src/cli/clidbman.py:373
+#: ../src/cli/clidbman.py:381
 msgid "Never"
 msgstr "Niekada"
 
-#: ../src/cli/clidbman.py:392
+#: ../src/cli/clidbman.py:400
 #, python-format
 msgid "Locked by %s"
 msgstr "Užrakinta %s"
@@ -3682,7 +3682,7 @@ msgstr "Vardo formatas"
 
 #: ../src/gui/configure.py:802
 #: ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:946
+#: ../src/plugins/BookReport.py:958
 #: ../src/PluginUtils/_PluginWindows.py:245
 #: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Edit"
@@ -3924,7 +3924,7 @@ msgid "Upgrade now"
 msgstr "Atnaujinti dabar"
 
 #: ../src/gui/dbloader.py:298
-#: ../src/gui/viewmanager.py:708
+#: ../src/gui/viewmanager.py:707
 #: ../src/plugins/view/familyview.py:223
 msgid "Cancel"
 msgstr "Atšaukti"
@@ -4469,7 +4469,7 @@ msgstr "Įvykiai"
 
 #: ../src/gui/grampsgui.py:117
 #: ../src/plugins/drawreport/drawplugins.gpr.py:98
-#: ../src/plugins/gramplet/gramplet.gpr.py:107
+#: ../src/plugins/gramplet/gramplet.gpr.py:113
 #: ../src/plugins/view/fanchartview.py:569
 msgid "Fan Chart"
 msgstr "Ventiliatoriaus Diagrama"
@@ -4552,7 +4552,7 @@ msgid "Select Parents"
 msgstr "Pasirinkite Tėvus"
 
 #: ../src/gui/grampsgui.py:131
-#: ../src/plugins/gramplet/gramplet.gpr.py:144
+#: ../src/plugins/gramplet/gramplet.gpr.py:153
 #: ../src/plugins/view/pedigreeview.py:371
 #: ../src/plugins/webreport/NarrativeWeb.py:3831
 msgid "Pedigree"
@@ -4724,251 +4724,251 @@ msgstr "Tokios bylos nėra"
 #. Private Constants
 #.
 #. ------------------------------------------------------------------------
-#: ../src/gui/viewmanager.py:88
+#: ../src/gui/viewmanager.py:87
 #: ../src/plugins/BookReport.py:93
 #: ../src/PluginUtils/_PluginDialogs.py:57
 msgid "Unsupported"
 msgstr "Nepalaikoma"
 
-#: ../src/gui/viewmanager.py:405
+#: ../src/gui/viewmanager.py:404
 msgid "Connect to a recent database"
 msgstr "Prisijungti prie paskutinės duomenų bazės"
 
-#: ../src/gui/viewmanager.py:421
+#: ../src/gui/viewmanager.py:420
 msgid "_Family Trees"
 msgstr "_Šeimų Medžiai"
 
-#: ../src/gui/viewmanager.py:422
+#: ../src/gui/viewmanager.py:421
 msgid "_Manage Family Trees..."
 msgstr "_Valdyti  Šeimos Medžius..."
 
-#: ../src/gui/viewmanager.py:423
+#: ../src/gui/viewmanager.py:422
 msgid "Manage databases"
 msgstr "Valdyti duomenų bazes"
 
-#: ../src/gui/viewmanager.py:424
+#: ../src/gui/viewmanager.py:423
 msgid "Open _Recent"
 msgstr "Atidaryti _paskutinius"
 
-#: ../src/gui/viewmanager.py:425
+#: ../src/gui/viewmanager.py:424
 msgid "Open an existing database"
 msgstr "Atidaryti egzistuojančią  duomenų bazę"
 
-#: ../src/gui/viewmanager.py:426
+#: ../src/gui/viewmanager.py:425
 msgid "_Quit"
 msgstr "_Baigti"
 
-#: ../src/gui/viewmanager.py:428
+#: ../src/gui/viewmanager.py:427
 msgid "_View"
 msgstr "_Rodinys"
 
-#: ../src/gui/viewmanager.py:429
-#: ../src/gui/viewmanager.py:494
+#: ../src/gui/viewmanager.py:428
+#: ../src/gui/viewmanager.py:493
 msgid "_Edit"
 msgstr "_Taisa"
 
-#: ../src/gui/viewmanager.py:430
+#: ../src/gui/viewmanager.py:429
 msgid "_Preferences..."
 msgstr "Pari_nktys..."
 
-#: ../src/gui/viewmanager.py:432
+#: ../src/gui/viewmanager.py:431
 msgid "_Help"
 msgstr "_Pagalba"
 
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:432
 msgid "Gramps _Home Page"
 msgstr "Gramps _Namų Puslapis"
 
-#: ../src/gui/viewmanager.py:435
+#: ../src/gui/viewmanager.py:434
 msgid "Gramps _Mailing Lists"
 msgstr "Gramps _Pašto Konferencija"
 
-#: ../src/gui/viewmanager.py:437
+#: ../src/gui/viewmanager.py:436
 msgid "_Report a Bug"
 msgstr "_Pateikti Klaidos Ataskaitą"
 
-#: ../src/gui/viewmanager.py:439
+#: ../src/gui/viewmanager.py:438
 msgid "_Extra Reports/Tools"
 msgstr "_Daugiau Ataskaitų/Įrankių"
 
-#: ../src/gui/viewmanager.py:441
+#: ../src/gui/viewmanager.py:440
 msgid "_About"
 msgstr "_Apie"
 
-#: ../src/gui/viewmanager.py:443
+#: ../src/gui/viewmanager.py:442
 msgid "_Plugin Manager"
 msgstr "_Įskiepių Tvarkymas"
 
-#: ../src/gui/viewmanager.py:445
+#: ../src/gui/viewmanager.py:444
 msgid "_FAQ"
 msgstr "_DUK"
 
-#: ../src/gui/viewmanager.py:446
+#: ../src/gui/viewmanager.py:445
 msgid "_Key Bindings"
 msgstr "_Klavišų susiejimai"
 
-#: ../src/gui/viewmanager.py:447
+#: ../src/gui/viewmanager.py:446
 msgid "_User Manual"
 msgstr "_Vartotojo vadovas"
 
-#: ../src/gui/viewmanager.py:454
+#: ../src/gui/viewmanager.py:453
 msgid "_Export..."
 msgstr "_Eksportuoti..."
 
-#: ../src/gui/viewmanager.py:457
+#: ../src/gui/viewmanager.py:456
 msgid "_Abandon Changes and Quit"
 msgstr "A_tsisakyti Pakeitimų ir Išeiti"
 
-#: ../src/gui/viewmanager.py:458
-#: ../src/gui/viewmanager.py:461
+#: ../src/gui/viewmanager.py:457
+#: ../src/gui/viewmanager.py:460
 msgid "_Reports"
 msgstr "_Ataskaitos"
 
-#: ../src/gui/viewmanager.py:459
+#: ../src/gui/viewmanager.py:458
 msgid "Open the reports dialog"
 msgstr "Atidaryti ataskaitų  dialogą"
 
-#: ../src/gui/viewmanager.py:460
+#: ../src/gui/viewmanager.py:459
 msgid "_Go"
 msgstr "_Eiti"
 
-#: ../src/gui/viewmanager.py:462
+#: ../src/gui/viewmanager.py:461
 msgid "_Windows"
 msgstr "_Langai"
 
-#: ../src/gui/viewmanager.py:488
+#: ../src/gui/viewmanager.py:487
 msgid "Clip_board"
 msgstr "Talpyklė"
 
-#: ../src/gui/viewmanager.py:489
+#: ../src/gui/viewmanager.py:488
 msgid "Open the Clipboard dialog"
 msgstr "Atidaryti talpyklės dialogą"
 
-#: ../src/gui/viewmanager.py:490
+#: ../src/gui/viewmanager.py:489
 msgid "_Import..."
 msgstr "_Importuoti..."
 
-#: ../src/gui/viewmanager.py:492
-#: ../src/gui/viewmanager.py:496
+#: ../src/gui/viewmanager.py:491
+#: ../src/gui/viewmanager.py:495
 msgid "_Tools"
 msgstr "_Įrankiai"
 
-#: ../src/gui/viewmanager.py:493
+#: ../src/gui/viewmanager.py:492
 msgid "Open the tools dialog"
 msgstr "Atidaryti įrankių  dialogą"
 
-#: ../src/gui/viewmanager.py:495
+#: ../src/gui/viewmanager.py:494
 msgid "_Bookmarks"
 msgstr "_Žymelės"
 
-#: ../src/gui/viewmanager.py:497
+#: ../src/gui/viewmanager.py:496
 msgid "_Configure View..."
 msgstr "_Nustatyti Vaizdą.."
 
-#: ../src/gui/viewmanager.py:498
+#: ../src/gui/viewmanager.py:497
 msgid "Configure the active view"
 msgstr "Nustatyti aktyvų vaizdą"
 
-#: ../src/gui/viewmanager.py:503
+#: ../src/gui/viewmanager.py:502
 msgid "_Sidebar"
 msgstr "_Šoninė juosta"
 
-#: ../src/gui/viewmanager.py:505
+#: ../src/gui/viewmanager.py:504
 msgid "_Toolbar"
 msgstr "_Įrankių juosta"
 
-#: ../src/gui/viewmanager.py:507
-#: ../src/plugins/view/geoview.py:1095
+#: ../src/gui/viewmanager.py:506
+#: ../src/plugins/view/geoview.py:1096
 msgid "_Filter Sidebar"
 msgstr "_Filtro Šoninis Skydelis"
 
-#: ../src/gui/viewmanager.py:509
+#: ../src/gui/viewmanager.py:508
 msgid "F_ull Screen"
 msgstr "P_ilnas ekranas"
 
-#: ../src/gui/viewmanager.py:514
-#: ../src/gui/viewmanager.py:1292
+#: ../src/gui/viewmanager.py:513
+#: ../src/gui/viewmanager.py:1297
 msgid "_Undo"
 msgstr "Atša_ukti"
 
-#: ../src/gui/viewmanager.py:519
-#: ../src/gui/viewmanager.py:1309
+#: ../src/gui/viewmanager.py:518
+#: ../src/gui/viewmanager.py:1314
 msgid "_Redo"
 msgstr "_Grąžinti"
 
-#: ../src/gui/viewmanager.py:525
+#: ../src/gui/viewmanager.py:524
 msgid "Undo History..."
 msgstr "Atšaukimų Istorija..."
 
-#: ../src/gui/viewmanager.py:539
+#: ../src/gui/viewmanager.py:538
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Klavišas %s  nėra susietas"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:637
+#: ../src/gui/viewmanager.py:636
 msgid "Loading plugins..."
 msgstr "Įkeliami įskiepiai..."
 
-#: ../src/gui/viewmanager.py:644
-#: ../src/gui/viewmanager.py:659
+#: ../src/gui/viewmanager.py:643
+#: ../src/gui/viewmanager.py:658
 msgid "Ready"
 msgstr "Pasiruošęs"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:652
+#: ../src/gui/viewmanager.py:651
 msgid "Registering plugins..."
 msgstr "Įkeliami įskiepiai..."
 
-#: ../src/gui/viewmanager.py:689
+#: ../src/gui/viewmanager.py:688
 msgid "Autobackup..."
 msgstr "Automatinis kopijos darymas..."
 
-#: ../src/gui/viewmanager.py:693
+#: ../src/gui/viewmanager.py:692
 msgid "Error saving backup data"
 msgstr "Klaida išsaugant atsarginę kopiją"
 
-#: ../src/gui/viewmanager.py:704
+#: ../src/gui/viewmanager.py:703
 msgid "Abort changes?"
 msgstr "Atšaukti pakeitimus?"
 
-#: ../src/gui/viewmanager.py:705
+#: ../src/gui/viewmanager.py:704
 msgid "Aborting changes will return the database to the state is was before you started this editing session."
 msgstr "Pakeitimų atšaukimas gražins duomenų bazę į būseną, kuri buvo prieš pradedant šį koregavimą."
 
-#: ../src/gui/viewmanager.py:707
+#: ../src/gui/viewmanager.py:706
 msgid "Abort changes"
 msgstr "Atšaukti pakeitimus"
 
-#: ../src/gui/viewmanager.py:717
+#: ../src/gui/viewmanager.py:716
 msgid "Cannot abandon session's changes"
 msgstr "Negalima atsisakyti sesijos pakeitimų"
 
-#: ../src/gui/viewmanager.py:718
+#: ../src/gui/viewmanager.py:717
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Negalima visiškai atsisakyti pakeitimų, kadangi  pataisymų skaičius šioje sesijoje viršijo limitą."
 
-#: ../src/gui/viewmanager.py:973
+#: ../src/gui/viewmanager.py:978
 msgid "No views loaded"
 msgstr "Neužkrautas nė vienas vaizdas"
 
-#: ../src/gui/viewmanager.py:974
+#: ../src/gui/viewmanager.py:979
 msgid "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some plugins of type 'View' are enabled. Then restart Gramps"
 msgstr "Neužkrauti  vaizdo įskiepiai. Nueikite į Pagalba -> Įskiepių Tvarkymas ir įsitikinkite kad kai kurie \"Vaizdas\" įskiepiai  yra įgalinti. Po to perkraukite Gramps"
 
-#: ../src/gui/viewmanager.py:1214
+#: ../src/gui/viewmanager.py:1219
 msgid "Import Statistics"
 msgstr "Įkėlimo Statistika"
 
-#: ../src/gui/viewmanager.py:1264
+#: ../src/gui/viewmanager.py:1269
 msgid "Read Only"
 msgstr "Tik skaitymui"
 
-#: ../src/gui/viewmanager.py:1577
+#: ../src/gui/viewmanager.py:1582
 msgid "Failed Loading Plugin"
 msgstr "Nepavyko Įkelti Įskiepio"
 
-#: ../src/gui/viewmanager.py:1578
+#: ../src/gui/viewmanager.py:1583
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -6118,11 +6118,11 @@ msgstr "_Galerija"
 msgid "Open Containing _Folder"
 msgstr "Atidaryti Susijusį _Katalogą"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:250
+#: ../src/gui/editors/displaytabs/gallerytab.py:249
 msgid "Non existing media found in the Gallery"
 msgstr "Galerijoje rastas neegzistuojantis audio/video objektas"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:487
+#: ../src/gui/editors/displaytabs/gallerytab.py:486
 #: ../src/plugins/view/mediaview.py:228
 msgid "Drag Media Object"
 msgstr "Pertempti vaizdo/garso bylą"
@@ -6506,22 +6506,22 @@ msgid "Select Source"
 msgstr "Pasirinkite šaltinį"
 
 #: ../src/gui/views/listview.py:197
-#: ../src/plugins/lib/libpersonview.py:342
+#: ../src/plugins/lib/libpersonview.py:340
 msgid "_Add..."
 msgstr "_Įdėti..."
 
 #: ../src/gui/views/listview.py:199
-#: ../src/plugins/lib/libpersonview.py:344
+#: ../src/plugins/lib/libpersonview.py:342
 msgid "_Remove"
 msgstr "_Pašalinti"
 
 #: ../src/gui/views/listview.py:201
-#: ../src/plugins/lib/libpersonview.py:350
+#: ../src/plugins/lib/libpersonview.py:348
 msgid "Export View..."
 msgstr "Eksportuoti Vaizdą.."
 
 #: ../src/gui/views/listview.py:207
-#: ../src/plugins/lib/libpersonview.py:333
+#: ../src/plugins/lib/libpersonview.py:331
 msgid "action|_Edit..."
 msgstr "_Redaguoti..."
 
@@ -6870,24 +6870,24 @@ msgstr "Nežinomas tėvas"
 msgid "Unknown mother"
 msgstr "Nežinoma motina"
 
-#: ../src/config.py:265
+#: ../src/config.py:258
 msgid "Missing Given Name"
 msgstr "Trūksta Vardo"
 
-#: ../src/config.py:266
+#: ../src/config.py:259
 msgid "Missing Record"
 msgstr "Trūksta įrašo"
 
-#: ../src/config.py:267
+#: ../src/config.py:260
 msgid "Missing Surname"
 msgstr "Trūksta Pavardės"
 
-#: ../src/config.py:274
-#: ../src/config.py:276
+#: ../src/config.py:267
+#: ../src/config.py:269
 msgid "Living"
 msgstr "Gyvenantys"
 
-#: ../src/config.py:275
+#: ../src/config.py:268
 msgid "Private Record"
 msgstr "Asmeninis Įrašas"
 
@@ -6905,10 +6905,10 @@ msgstr "Palyginti asmenis"
 #: ../src/Merge/_MergePerson.py:279
 #: ../src/Merge/_MergePerson.py:311
 #: ../src/Merge/_MergePerson.py:316
-#: ../src/plugins/lib/libpersonview.py:373
-#: ../src/plugins/lib/libpersonview.py:386
-#: ../src/plugins/lib/libpersonview.py:397
-#: ../src/plugins/lib/libpersonview.py:411
+#: ../src/plugins/lib/libpersonview.py:371
+#: ../src/plugins/lib/libpersonview.py:384
+#: ../src/plugins/lib/libpersonview.py:395
+#: ../src/plugins/lib/libpersonview.py:409
 msgid "Cannot merge people"
 msgstr "Negalima sujungti asmenų"
 
@@ -7145,8 +7145,8 @@ msgid "Book List"
 msgstr "Knygų sąrašas"
 
 #: ../src/plugins/BookReport.py:683
-#: ../src/plugins/BookReport.py:1117
-#: ../src/plugins/BookReport.py:1165
+#: ../src/plugins/BookReport.py:1129
+#: ../src/plugins/BookReport.py:1177
 #: ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Knygos tipo ataskaita"
@@ -7195,19 +7195,19 @@ msgstr ""
 "\n"
 "Todėl pagrindinis asmuo kaskart yra nustatytas į šiuo metu  atidarytos duomenų bazės aktyvų asmenį."
 
-#: ../src/plugins/BookReport.py:940
+#: ../src/plugins/BookReport.py:952
 msgid "Setup"
 msgstr "Suderinimas"
 
-#: ../src/plugins/BookReport.py:950
+#: ../src/plugins/BookReport.py:962
 msgid "Book Menu"
 msgstr "Knygos meniu"
 
-#: ../src/plugins/BookReport.py:973
+#: ../src/plugins/BookReport.py:985
 msgid "Available Items Menu"
 msgstr "Galimi Meniu punktai"
 
-#: ../src/plugins/BookReport.py:1168
+#: ../src/plugins/BookReport.py:1180
 msgid "Gramps Book"
 msgstr "Gramps knyga"
 
@@ -7962,7 +7962,7 @@ msgid "Produces a graphical ancestral tree"
 msgstr "Sukuriama grafinė protėvių medžio diagrama"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:54
-#: ../src/plugins/gramplet/gramplet.gpr.py:77
+#: ../src/plugins/gramplet/gramplet.gpr.py:81
 msgid "Calendar"
 msgstr "Kalendorius"
 
@@ -8638,7 +8638,7 @@ msgid "Mother - Child Age Diff Distribution"
 msgstr "Motinos - Vaiko Amžiaus Skirtumų Pasiskirstymas"
 
 #: ../src/plugins/gramplet/AgeStats.py:224
-#: ../src/plugins/gramplet/gramplet.gpr.py:215
+#: ../src/plugins/gramplet/gramplet.gpr.py:229
 msgid "Statistics"
 msgstr "Statistika"
 
@@ -8747,6 +8747,62 @@ msgstr "Vaikai"
 msgid "Related"
 msgstr "Susijęs"
 
+#: ../src/plugins/gramplet/FaqGramplet.py:38
+msgid ""
+"<a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Frequently Asked Questions</a> (need connection to internet)\n"
+"\n"
+msgstr ""
+"<a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Dažniausiai Užduodami Klausimai</a> (reikalingas interneto ryšys)\n"
+"\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:39
+msgid "  1. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of spouses?</a>\n"
+msgstr "  1. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Kaip pakeisti sutuoktinių rūšiavimą?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:40
+msgid "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it necessary to update Gramps every time an update is released?</a>\n"
+msgstr "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Ar reikia atnaujinti Gramps kiekvieną kartą kai išleidžiamas atnaujinimas?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:41
+msgid "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups safely?</a>\n"
+msgstr "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>Kaip saugiai padaryti atsargines kopijas?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:42
+msgid "  4. <a wiki='Gramps_3.2_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1#Editing_Information_About_Relationships'>How should information about marriages be entered?</a>\n"
+msgstr "  4. <a wiki='Gramps_3.2_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1#Editing_Information_About_Relationships'>Kaip turi būti įvesta informacija apie santuokas?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:43
+msgid "  5. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's the difference between a residence and an address?</a>\n"
+msgstr "  5. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Koks skirtumas tarp vietovės ir adreso?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:44
+msgid "  6. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a website with Gramps and my tree?</a>\n"
+msgstr "  6. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Kaip su Gramps ir mano medžiu padaryti inernetinį puslapį ?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:45
+msgid "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
+msgstr "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Kaip užrašyti asmens užsiėmimą?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:46
+msgid "  8. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n"
+msgstr "  8. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Ką daryti radus programinę klaidą?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:47
+msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
+msgstr "  9. <a wiki='Portal:Using_GRAMPS'>Ar yra Gramps vartotojo dokumentacija?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:48
+msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
+msgstr " 10. <a wiki='Category:Tutorials'>Ar egzistuoja  instrukcijos?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:49
+msgid " 11. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
+msgstr " 11. <a wiki='Category:How_do_I...'>Kaip aš ...?</a>\n"
+
+#: ../src/plugins/gramplet/FaqGramplet.py:50
+msgid " 12. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
+msgstr " 12. <a wiki='How_you_can_help'>Kaip aš galiu pradėti Gramps?</a>\n"
+
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
 msgstr "Dvigubu pelės paspaudimu ant vardo sužinokite detales"
@@ -8769,22 +8825,34 @@ msgstr "Iš viso asmenų"
 msgid "Age on Date Gramplet"
 msgstr "Amžiaus nurodytą datą Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:37
+#: ../src/plugins/gramplet/gramplet.gpr.py:31
+msgid "Gramplet showing ages of living people on a specific date"
+msgstr "Grampletas rodantis konkrečia data  gyvų asmenų amžių"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:38
 #: ../src/plugins/quickview/quickview.gpr.py:31
 msgid "Age on Date"
 msgstr "Amžius nurodytą datą"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:42
+#: ../src/plugins/gramplet/gramplet.gpr.py:43
 msgid "Age Stats Gramplet"
 msgstr "Amžiaus statistikos Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:48
+#: ../src/plugins/gramplet/gramplet.gpr.py:44
+msgid "Gramplet showing graphs of various ages"
+msgstr "Grampletas  rodantis įvairių amžių diagramas"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:50
 msgid "Age Stats"
 msgstr "Amžiaus statistika"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:57
+#: ../src/plugins/gramplet/gramplet.gpr.py:59
 msgid "Attributes Gramplet"
 msgstr "Parametrų Grampletas"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:60
+msgid "Gramplet showing active person's attributes"
+msgstr "Grampletas rodantis aktyvaus asmens  atributus"
 
 #. ------------------------------------------------------------------------
 #.
@@ -8793,117 +8861,181 @@ msgstr "Parametrų Grampletas"
 #. ------------------------------------------------------------------------
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
-#: ../src/plugins/gramplet/gramplet.gpr.py:63
+#: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:108
 msgid "Attributes"
 msgstr "Požymiai"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:72
+#: ../src/plugins/gramplet/gramplet.gpr.py:75
 msgid "Calendar Gramplet"
 msgstr "Kalendoriaus grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:84
+#: ../src/plugins/gramplet/gramplet.gpr.py:76
+msgid "Gramplet showing calendar and events on specfic dates in history"
+msgstr "Grampletas rodantis kalendorių ir  konkrečios dienos įvykius istorijoje"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:88
 msgid "Descendant Gramplet"
 msgstr "Palikuonių Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:90
+#: ../src/plugins/gramplet/gramplet.gpr.py:89
+msgid "Gramplet showing active person's descendants"
+msgstr "Grampletas rodantis aktyvaus asmens palikuonis"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:95
 msgid "Descendants"
 msgstr "Palikuonys"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:99
+#: ../src/plugins/gramplet/gramplet.gpr.py:104
 msgid "Fan Chart Gramplet"
 msgstr "Ventiliatoriaus Diagramos Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:114
+#: ../src/plugins/gramplet/gramplet.gpr.py:105
+msgid "Gramplet showing active person's direct ancestors as a fanchart"
+msgstr "Grampletas ventiliatoriaus diagramoje rodantis aktyvaus asmens tiesioginius protėvius"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:120
 msgid "FAQ Gramplet"
 msgstr "DUK Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:119
+#: ../src/plugins/gramplet/gramplet.gpr.py:121
+msgid "Gramplet showing frequently asked questions"
+msgstr "Grampletas rodantis dažniausiai užduodamus klausimus"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:126
 msgid "FAQ"
 msgstr "DUK"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:126
+#: ../src/plugins/gramplet/gramplet.gpr.py:133
 msgid "Given Name Cloud Gramplet"
 msgstr "Vardų Debesies Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:132
+#: ../src/plugins/gramplet/gramplet.gpr.py:134
+msgid "Gramplet showing all given names as a text cloud"
+msgstr "Grampletas  kaip tekstą rodantis visus vardus"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:140
 msgid "Given Name Cloud"
 msgstr "Duotų Vardų Debesis"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:139
+#: ../src/plugins/gramplet/gramplet.gpr.py:147
 msgid "Pedigree Gramplet"
 msgstr "Kilmės grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:154
+#: ../src/plugins/gramplet/gramplet.gpr.py:148
+msgid "Gramplet showing active person's ancestors"
+msgstr "Grampletas rodantis aktyvaus asmens  protėvius"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:163
 msgid "Plugin Manager Gramplet"
 msgstr "Įskiepių Tvarkymas Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:160
+#: ../src/plugins/gramplet/gramplet.gpr.py:164
+msgid "Gramplet showing available third-party plugins (addons)"
+msgstr "Grampletas rodantis pasiekiamus trečių šalių įskiepius (priedus)"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:170
 #: ../src/PluginUtils/_PluginWindows.py:193
 msgid "Plugin Manager"
 msgstr "Įskiepių Tvarkymas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:167
+#: ../src/plugins/gramplet/gramplet.gpr.py:177
 msgid "Quick View Gramplet"
 msgstr "Greitos Peržiūros Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:182
+#: ../src/plugins/gramplet/gramplet.gpr.py:178
+msgid "Gramplet showing an active item Quick View"
+msgstr "Grampletas Greitame Vaizde rodantis  aktyvų įrašą"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:193
 msgid "Relatives Gramplet"
 msgstr "Giminaičių grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:187
+#: ../src/plugins/gramplet/gramplet.gpr.py:194
+msgid "Gramplet showing active person's relatives"
+msgstr "Grampletas rodantis aktyvaus asmens  giminaičius"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:199
 msgid "Relatives"
 msgstr "Giminaičiai"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:196
+#: ../src/plugins/gramplet/gramplet.gpr.py:208
 msgid "Session Log Gramplet"
 msgstr "Sesijos žurnalo grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:202
+#: ../src/plugins/gramplet/gramplet.gpr.py:209
+msgid "Gramplet showing all activity for this session"
+msgstr "Grampletas rodantis visą šios sesijos aktyvumą"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:215
 msgid "Session Log"
 msgstr "Sesijos žurnalas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:209
+#: ../src/plugins/gramplet/gramplet.gpr.py:222
 msgid "Statistics Gramplet"
 msgstr "Statistikos grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:222
+#: ../src/plugins/gramplet/gramplet.gpr.py:223
+msgid "Gramplet showing summary data of the family tree"
+msgstr "Grampletas rodantis šeimos medžio apibendrintus duomenis"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:236
 msgid "Surname Cloud Gramplet"
 msgstr "Pavardžių Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:228
+#: ../src/plugins/gramplet/gramplet.gpr.py:237
+msgid "Gramplet showing all surnames as a text cloud"
+msgstr "Grampletas kaip tekstą  rodantis visas pavardes"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:243
 msgid "Surname Cloud"
 msgstr "Pavardžių debesis"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:235
+#: ../src/plugins/gramplet/gramplet.gpr.py:250
 msgid "TODO Gramplet"
 msgstr "Dar padaryti (TODO) Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:241
+#: ../src/plugins/gramplet/gramplet.gpr.py:251
+msgid "Gramplet for generic notes"
+msgstr "Grampletas  bendroms pastaboms"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:257
 msgid "TODO List"
 msgstr "Sąrašas ką dar padaryti (TODO)"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:248
+#: ../src/plugins/gramplet/gramplet.gpr.py:264
 msgid "Top Surnames Gramplet"
 msgstr "Dažniausių pavardžių grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:253
+#: ../src/plugins/gramplet/gramplet.gpr.py:265
+msgid "Gramplet showing most frequent surnames in this tree"
+msgstr "Grampletas rodantis dažniausias medyje pasikartojančias pavardes"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:270
 msgid "Top Surnames"
 msgstr "Dažniausios pavardės"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:260
+#: ../src/plugins/gramplet/gramplet.gpr.py:277
 msgid "Welcome Gramplet"
 msgstr "Pasisveikinimo Grampletas"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:266
+#: ../src/plugins/gramplet/gramplet.gpr.py:278
+msgid "Gramplet showing a welcome message"
+msgstr "Grampletas rodantis pasisveikinimo pranešimą"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:284
 msgid "Welcome to Gramps!"
 msgstr "Sveiki atvykę į Gramps!"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:273
+#: ../src/plugins/gramplet/gramplet.gpr.py:291
 msgid "What's Next Gramplet"
 msgstr " Grampletas Kas Toliau"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:279
+#: ../src/plugins/gramplet/gramplet.gpr.py:292
+msgid "Gramplet suggesting items to research"
+msgstr "Grampleto siūlomi įrašai tyrinėjimui"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:298
 msgid "What's Next?"
 msgstr "Kas toliau?"
 
@@ -13734,12 +13866,12 @@ msgid "Last Changed"
 msgstr "Paskutinis pakeitimas"
 
 #: ../src/plugins/lib/libpersonview.py:108
-#: ../src/plugins/lib/libpersonview.py:343
+#: ../src/plugins/lib/libpersonview.py:341
 msgid "Add a new person"
 msgstr "Pridėti naują asmenį"
 
 #: ../src/plugins/lib/libpersonview.py:109
-#: ../src/plugins/lib/libpersonview.py:334
+#: ../src/plugins/lib/libpersonview.py:332
 msgid "Edit the selected person"
 msgstr "Koreguoti pažymėtą asmenį"
 
@@ -13760,28 +13892,28 @@ msgstr "_Ištrinti Asmenį"
 msgid "Delete Person (%s)"
 msgstr "Ištrinti Asmenį (%s)"
 
-#: ../src/plugins/lib/libpersonview.py:331
+#: ../src/plugins/lib/libpersonview.py:329
 #: ../src/plugins/view/pedigreeview.py:505
 #: ../src/plugins/view/relview.py:400
 msgid "Person Filter Editor"
 msgstr "Asmenų filtrų redaktorius"
 
-#: ../src/plugins/lib/libpersonview.py:345
+#: ../src/plugins/lib/libpersonview.py:343
 msgid "Remove the Selected Person"
 msgstr "Ištrinti Pažymėtą Asmenį"
 
-#: ../src/plugins/lib/libpersonview.py:346
+#: ../src/plugins/lib/libpersonview.py:344
 msgid "Compare and _Merge..."
 msgstr "Palyginti ir _Sujungti..."
 
-#: ../src/plugins/lib/libpersonview.py:348
+#: ../src/plugins/lib/libpersonview.py:346
 msgid "_Fast Merge..."
 msgstr "Greitas Sujun_gimas..."
 
-#: ../src/plugins/lib/libpersonview.py:374
-#: ../src/plugins/lib/libpersonview.py:387
-#: ../src/plugins/lib/libpersonview.py:398
-#: ../src/plugins/lib/libpersonview.py:412
+#: ../src/plugins/lib/libpersonview.py:372
+#: ../src/plugins/lib/libpersonview.py:385
+#: ../src/plugins/lib/libpersonview.py:396
+#: ../src/plugins/lib/libpersonview.py:410
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
 msgstr "Norint atlikti sujungimą, turi būti pažymėti du asmenys. Antras asmuo gali būti pažymėtas laikant nuspaustą Valdymo (CTRL) klavišą ir pele išsirinkus norimą asmenį."
 
@@ -14338,7 +14470,7 @@ msgstr "Nerasta gimimo ryšio  su vaiku"
 
 #: ../src/plugins/quickview/lineage.py:156
 #: ../src/plugins/quickview/lineage.py:176
-#: ../src/plugins/tool/Verify.py:914
+#: ../src/plugins/tool/Verify.py:922
 msgid "Unknown gender"
 msgstr "Nežinoma lytis"
 
@@ -17063,7 +17195,7 @@ msgstr "Nenaudojami objektai"
 #. Add mark column
 #. Add ignore column
 #: ../src/plugins/tool/RemoveUnused.py:181
-#: ../src/plugins/tool/Verify.py:461
+#: ../src/plugins/tool/Verify.py:463
 msgid "Mark"
 msgstr "Pažymėti"
 
@@ -17323,152 +17455,152 @@ msgid "Database Verification Results"
 msgstr "Duomenų bazės patikrinimo rezultatai"
 
 #. Add column with the warning text
-#: ../src/plugins/tool/Verify.py:472
+#: ../src/plugins/tool/Verify.py:474
 msgid "Warning"
 msgstr "Įspėjimas"
 
-#: ../src/plugins/tool/Verify.py:552
+#: ../src/plugins/tool/Verify.py:560
 msgid "_Show all"
 msgstr "_Rodyti visus"
 
-#: ../src/plugins/tool/Verify.py:562
+#: ../src/plugins/tool/Verify.py:570
 #: ../src/plugins/tool/verify.glade.h:22
 msgid "_Hide marked"
 msgstr "_Paslėpti pasirinktus"
 
-#: ../src/plugins/tool/Verify.py:815
+#: ../src/plugins/tool/Verify.py:823
 msgid "Baptism before birth"
 msgstr "Krikštas prieš gimimą"
 
-#: ../src/plugins/tool/Verify.py:829
+#: ../src/plugins/tool/Verify.py:837
 msgid "Death before baptism"
 msgstr "Mirtis prieš  krikštą"
 
-#: ../src/plugins/tool/Verify.py:843
+#: ../src/plugins/tool/Verify.py:851
 msgid "Burial before birth"
 msgstr "Laidotuvės prieš gimimą"
 
-#: ../src/plugins/tool/Verify.py:857
+#: ../src/plugins/tool/Verify.py:865
 msgid "Burial before death"
 msgstr "Laidotuvės prieš mirtį"
 
-#: ../src/plugins/tool/Verify.py:871
+#: ../src/plugins/tool/Verify.py:879
 msgid "Death before birth"
 msgstr "Mirtis prieš gimimą"
 
-#: ../src/plugins/tool/Verify.py:885
+#: ../src/plugins/tool/Verify.py:893
 msgid "Burial before baptism"
 msgstr "Laidotuvės prieš krikštą"
 
-#: ../src/plugins/tool/Verify.py:903
+#: ../src/plugins/tool/Verify.py:911
 msgid "Old age at death"
 msgstr "Mirė senyvas"
 
-#: ../src/plugins/tool/Verify.py:924
+#: ../src/plugins/tool/Verify.py:932
 msgid "Multiple parents"
 msgstr "Keletas tėvų"
 
-#: ../src/plugins/tool/Verify.py:941
+#: ../src/plugins/tool/Verify.py:949
 msgid "Married often"
 msgstr "Dažna santuoka"
 
-#: ../src/plugins/tool/Verify.py:960
+#: ../src/plugins/tool/Verify.py:968
 msgid "Old and unmarried"
 msgstr "Senyvas/a ir nevedęs/netekėjusi"
 
-#: ../src/plugins/tool/Verify.py:987
+#: ../src/plugins/tool/Verify.py:995
 msgid "Too many children"
 msgstr "Per daug vaikų"
 
-#: ../src/plugins/tool/Verify.py:1002
+#: ../src/plugins/tool/Verify.py:1010
 msgid "Same sex marriage"
 msgstr "Tos pačios lyties santuoka"
 
-#: ../src/plugins/tool/Verify.py:1012
+#: ../src/plugins/tool/Verify.py:1020
 msgid "Female husband"
 msgstr "Moteris vyras"
 
-#: ../src/plugins/tool/Verify.py:1022
+#: ../src/plugins/tool/Verify.py:1030
 msgid "Male wife"
 msgstr "Vyras žmona"
 
-#: ../src/plugins/tool/Verify.py:1049
+#: ../src/plugins/tool/Verify.py:1057
 msgid "Husband and wife with the same surname"
 msgstr "Vyras ir žmona su ta pačia pavarde"
 
-#: ../src/plugins/tool/Verify.py:1074
+#: ../src/plugins/tool/Verify.py:1082
 msgid "Large age difference between spouses"
 msgstr "Didelis amžiaus skirtumas tarp sutuoktinių"
 
-#: ../src/plugins/tool/Verify.py:1105
+#: ../src/plugins/tool/Verify.py:1113
 msgid "Marriage before birth"
 msgstr "Santuoka prieš gimimą"
 
-#: ../src/plugins/tool/Verify.py:1136
+#: ../src/plugins/tool/Verify.py:1144
 msgid "Marriage after death"
 msgstr "Santuoka po mirties"
 
-#: ../src/plugins/tool/Verify.py:1170
+#: ../src/plugins/tool/Verify.py:1178
 msgid "Early marriage"
 msgstr "Ankstyva santuoka"
 
-#: ../src/plugins/tool/Verify.py:1202
+#: ../src/plugins/tool/Verify.py:1210
 msgid "Late marriage"
 msgstr "Vėlyva santuoka"
 
-#: ../src/plugins/tool/Verify.py:1263
+#: ../src/plugins/tool/Verify.py:1271
 msgid "Old father"
 msgstr "Senyvas tėvas"
 
-#: ../src/plugins/tool/Verify.py:1266
+#: ../src/plugins/tool/Verify.py:1274
 msgid "Old mother"
 msgstr "Senyva motina"
 
-#: ../src/plugins/tool/Verify.py:1308
+#: ../src/plugins/tool/Verify.py:1316
 msgid "Young father"
 msgstr "Jaunas tėvas"
 
-#: ../src/plugins/tool/Verify.py:1311
+#: ../src/plugins/tool/Verify.py:1319
 msgid "Young mother"
 msgstr "Jauna motina"
 
-#: ../src/plugins/tool/Verify.py:1350
+#: ../src/plugins/tool/Verify.py:1358
 msgid "Unborn father"
 msgstr "Negimęs tėvas"
 
-#: ../src/plugins/tool/Verify.py:1353
+#: ../src/plugins/tool/Verify.py:1361
 msgid "Unborn mother"
 msgstr "Negimusi motina"
 
-#: ../src/plugins/tool/Verify.py:1398
+#: ../src/plugins/tool/Verify.py:1406
 msgid "Dead father"
 msgstr "Miręs tėvas"
 
-#: ../src/plugins/tool/Verify.py:1401
+#: ../src/plugins/tool/Verify.py:1409
 msgid "Dead mother"
 msgstr "Mirusi motina"
 
-#: ../src/plugins/tool/Verify.py:1423
+#: ../src/plugins/tool/Verify.py:1431
 msgid "Large year span for all children"
 msgstr "Didelis metų tarpsnis tarp  visų vaikų"
 
-#: ../src/plugins/tool/Verify.py:1445
+#: ../src/plugins/tool/Verify.py:1453
 msgid "Large age differences between children"
 msgstr "Didelis amžiaus skirtumas  tarp vaikų"
 
-#: ../src/plugins/tool/Verify.py:1455
+#: ../src/plugins/tool/Verify.py:1463
 msgid "Disconnected individual"
 msgstr "Nesusijęs asmuo"
 
-#: ../src/plugins/tool/Verify.py:1477
+#: ../src/plugins/tool/Verify.py:1485
 msgid "Invalid birth date"
 msgstr "Bloga gimimo data"
 
-#: ../src/plugins/tool/Verify.py:1499
+#: ../src/plugins/tool/Verify.py:1507
 msgid "Invalid death date"
 msgstr "Bloga mirties data"
 
-#: ../src/plugins/tool/Verify.py:1515
+#: ../src/plugins/tool/Verify.py:1523
 msgid "Marriage date but not married"
 msgstr "Santuokos data, bet nevedęs/netekėjusi"
 
@@ -17635,63 +17767,63 @@ msgstr "Visi"
 msgid "Zoom"
 msgstr "Padidinti"
 
-#: ../src/plugins/view/geoview.py:1049
-#: ../src/plugins/view/geoview.py:1059
+#: ../src/plugins/view/geoview.py:1050
+#: ../src/plugins/view/geoview.py:1060
 msgid "_Add Place"
 msgstr "_Pridėti  Vietovę"
 
-#: ../src/plugins/view/geoview.py:1051
-#: ../src/plugins/view/geoview.py:1061
+#: ../src/plugins/view/geoview.py:1052
+#: ../src/plugins/view/geoview.py:1062
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
 msgstr "Įtraukite vietovę centruotą žemėlapyje, kaip naują vietovę Gramps. Du kartus paspaudus kairį pelės klavišą centruoti žemėlapyje."
 
-#: ../src/plugins/view/geoview.py:1054
-#: ../src/plugins/view/geoview.py:1064
+#: ../src/plugins/view/geoview.py:1055
+#: ../src/plugins/view/geoview.py:1065
 msgid "_Link Place"
 msgstr "P_rijungti Vietovę"
 
-#: ../src/plugins/view/geoview.py:1056
-#: ../src/plugins/view/geoview.py:1066
+#: ../src/plugins/view/geoview.py:1057
+#: ../src/plugins/view/geoview.py:1067
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
 msgstr "Susiekite vietovę centruotą žemėlapyje, kaip vietovę Gramps. Du kartus paspaudus kairį pelės klavišą centruoti žemėlapyje."
 
-#: ../src/plugins/view/geoview.py:1068
-#: ../src/plugins/view/geoview.py:1082
+#: ../src/plugins/view/geoview.py:1069
+#: ../src/plugins/view/geoview.py:1083
 msgid "_All Places"
 msgstr "_Visos Vietovės"
 
-#: ../src/plugins/view/geoview.py:1069
-#: ../src/plugins/view/geoview.py:1083
+#: ../src/plugins/view/geoview.py:1070
+#: ../src/plugins/view/geoview.py:1084
 msgid "Attempt to view all places in the family tree."
 msgstr "Bandome  šeimos medyje rodyti visas vietoves."
 
-#: ../src/plugins/view/geoview.py:1071
-#: ../src/plugins/view/geoview.py:1085
+#: ../src/plugins/view/geoview.py:1072
+#: ../src/plugins/view/geoview.py:1086
 msgid "_Person"
 msgstr "_Asmuo"
 
-#: ../src/plugins/view/geoview.py:1073
-#: ../src/plugins/view/geoview.py:1087
+#: ../src/plugins/view/geoview.py:1074
+#: ../src/plugins/view/geoview.py:1088
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Bandome rodyti visas vietoves, kur pažymėtas asmuo gyveno."
 
-#: ../src/plugins/view/geoview.py:1075
-#: ../src/plugins/view/geoview.py:1089
+#: ../src/plugins/view/geoview.py:1076
+#: ../src/plugins/view/geoview.py:1090
 msgid "_Family"
 msgstr "_Šeima"
 
-#: ../src/plugins/view/geoview.py:1077
-#: ../src/plugins/view/geoview.py:1091
+#: ../src/plugins/view/geoview.py:1078
+#: ../src/plugins/view/geoview.py:1092
 msgid "Attempt to view places of the selected people's family."
 msgstr "Bandymas atvaizduoti pažymėto asmens šeimos vietoves."
 
-#: ../src/plugins/view/geoview.py:1078
-#: ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1079
+#: ../src/plugins/view/geoview.py:1093
 msgid "_Event"
 msgstr "_Įvykis"
 
-#: ../src/plugins/view/geoview.py:1080
-#: ../src/plugins/view/geoview.py:1094
+#: ../src/plugins/view/geoview.py:1081
+#: ../src/plugins/view/geoview.py:1095
 msgid "Attempt to view places connected to all events."
 msgstr "Bandymas atvaizduoti vietoves susietas su įvykiais."
 
@@ -17796,11 +17928,11 @@ msgstr "Negalima centruoti Žemėlapio. Nėra vietovės su koordinatėmis. Gali 
 msgid "Not yet implemented ..."
 msgstr "Dar neigyvendinta..."
 
-#: ../src/plugins/view/geoview.py:2290
+#: ../src/plugins/view/geoview.py:2289
 msgid "Start page for the Geography View"
 msgstr "Pradinis Geografijos Vaizdo  puslapis"
 
-#: ../src/plugins/view/geoview.py:2291
+#: ../src/plugins/view/geoview.py:2290
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr "Žemėlapio nematote dėl šių priežaščių :<br><ol><li>Duomenų bazė tuščia arba dar nepasirinkta.</li><li>Dar nepasirinkote asmens.</li><li>Duomenų bazėje nėra vietovių.</li><li>Pasirinktos vietovės neturi koordinačių.</li></ol>"
 
@@ -19423,7 +19555,7 @@ msgstr "Išsaugoti kaip"
 
 #: ../src/PluginUtils/_GuiOptions.py:1332
 #: ../src/ReportBase/_ReportDialog.py:287
-#: ../src/ReportBase/_StyleEditor.py:100
+#: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style Editor"
 msgstr "Stilių redaktorius"
 
@@ -20063,7 +20195,7 @@ msgstr "Parinktys"
 
 #. Styles Frame
 #: ../src/ReportBase/_ReportDialog.py:283
-#: ../src/ReportBase/_StyleEditor.py:104
+#: ../src/ReportBase/_StyleEditor.py:105
 msgid "Style"
 msgstr "Stilius"
 
@@ -20128,24 +20260,24 @@ msgstr "Norint kad ši ataskaita  veiktų teisingai, reikia pasirinkti aktyvų a
 msgid "Document Styles"
 msgstr "Dokumento stiliai"
 
-#: ../src/ReportBase/_StyleEditor.py:142
+#: ../src/ReportBase/_StyleEditor.py:143
 msgid "Error saving stylesheet"
 msgstr "Klaida išsaugant stylesheet"
 
-#: ../src/ReportBase/_StyleEditor.py:209
+#: ../src/ReportBase/_StyleEditor.py:215
 msgid "Style editor"
 msgstr "Stilių redaktorius"
 
-#: ../src/ReportBase/_StyleEditor.py:210
+#: ../src/ReportBase/_StyleEditor.py:216
 #: ../src/glade/styleeditor.glade.h:34
 msgid "point size|pt"
 msgstr "pt"
 
-#: ../src/ReportBase/_StyleEditor.py:212
+#: ../src/ReportBase/_StyleEditor.py:218
 msgid "Paragraph"
 msgstr "Pastraipa"
 
-#: ../src/ReportBase/_StyleEditor.py:243
+#: ../src/ReportBase/_StyleEditor.py:249
 msgid "No description available"
 msgstr "Nėra aprašymo"
 
@@ -23728,9 +23860,8 @@ msgid "<b>The Gramps XML Package</b><br/>You can export your Family Tree as a Gr
 msgstr "Jūs galite pakeisti duomenis į Gramps paketo formatą, kuris yra suspausta byla, turinti visą šeimos medžio informaciją ir visas bylas, kurios yra susietos su šia duomenų baze (pvz. nuotraukos). Ji yra pilnai perkeliamas, todėl labai naudingas archyvinėms kopijoms arba dalinantis su kitais Gramps naudotojais. Jis yra geriau už GEDCOM tuo atžvilgiu, kad užsaugant ir įkeliant duomenis neprarandama informacija."
 
 #: ../src/data/tips.xml.in.h:58
-#, fuzzy
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Net kuris asmuo gali būti nustatytas 'namų asmeniu'.  Tam naudokite <b>Redaguoti &gt; Nustatyti  Namų Asmenį </b>. Namų asmuo yra  asmuo kuris būna aktyvus atidarius duomenų bazę arba nuspaudus  mygtuką 'Namai'."
+msgstr "<b>Namų Asmuo</b><br/>Bet kuris asmuo gali būti nustatytas 'namų asmeniu'.  Tam  Asmenų Vaizde naudokite &quot;Taisa &gt; Nustatyti  Namų Asmenį &quot; Namų asmuo yra  asmuo kuris būna aktyvus atidarius duomenų bazę arba nuspaudus  mygtuką 'Namai'."
 
 #: ../src/data/tips.xml.in.h:59
 msgid "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more."
@@ -23750,7 +23881,7 @@ msgstr "<b> Kas Kada Gimė?</b><br/>&quot;Įrankiai &gt; Analizė  ir Tyrinėjim
 
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calenders. Try the button next to the date field in the Events Editor."
-msgstr ""
+msgstr "<b>Darbas su Datomis</b><br/> Datų intervalas gali būti nurodomas naudojant formatą t &quot; Tarp 2000 Sausio 4 ir  2003 Kovo 20t &quot; Kaip pat galite nurodyti datos  tikslumo lygį arba net pasirinkti iš vieno iš septynių skirtingų kalendorių. Įvykių Redaktoriuje pabandykite mygtuką, esantį šalia datos."
 
 #~ msgid "Show unknown peoples"
 #~ msgstr "Rodyti nežinomus asmenis"
@@ -24552,8 +24683,6 @@ msgstr ""
 #~ msgstr "Įveskite SQL užklausą"
 #~ msgid "News"
 #~ msgstr "Naujienos"
-#~ msgid "Active Person's Relatives"
-#~ msgstr "Aktyvaus Asmens Giminaičiai"
 #~ msgid "Whether to compress tree."
 #~ msgstr "Ar suspausti medį."
 #~ msgid "%(event_name)s: %(date)s, %(place)s"
