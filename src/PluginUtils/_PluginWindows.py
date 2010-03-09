@@ -659,7 +659,6 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             # i = (filename, module, pdata)
             pdata = i[2]
             modname = i[1].__name__
-            descr = self.__pmgr.get_module_description(modname)
             hidden = pdata.id in self.hidden
             if hidden:
                 hiddenstr = self.HIDDEN
@@ -667,7 +666,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                 hiddenstr = self.AVAILABLE
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
-                i[0], descr, None, pdata.id, hiddenstr])
+                i[0], pdata.description, None, pdata.id, hiddenstr])
         
     def __populate_reg_list(self):
         """ Build list of registered plugins"""
