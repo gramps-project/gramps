@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: svnytt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-08 13:06+0100\n"
-"PO-Revision-Date: 2010-03-08 13:07+0100\n"
+"POT-Creation-Date: 2010-03-09 13:53+0100\n"
+"PO-Revision-Date: 2010-03-09 13:54+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -17502,7 +17502,7 @@ msgid "Database Owner Editor"
 msgstr "Databasägarredigerare"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1181
+#: ../src/PluginUtils/_PluginWindows.py:1185
 msgid "Main window"
 msgstr "Huvudfönster"
 
@@ -20244,38 +20244,48 @@ msgstr "Fel i '%s'-fil: kan ej ladda."
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' är för denna version av Gramps."
 
-#: ../src/PluginUtils/_PluginWindows.py:576
+#. If the plugin is for another version; inform and do nothing
+#: ../src/PluginUtils/_PluginWindows.py:574, python-format
+msgid "'%s' is for NOT this version of Gramps."
+msgstr "'%s' är EJ för denna version av Gramps."
+
+#: ../src/PluginUtils/_PluginWindows.py:575
+#, python-format
+msgid "It is for version %d.%d"
+msgstr "Den är för version %d.%d"
+
+#: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Fel: saknar gramps_target_version = \"3.2\" i '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:580
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installerar '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:590
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registrerade '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:599
+#: ../src/PluginUtils/_PluginWindows.py:604
 msgid "Load Addon"
 msgstr "Ladda tillägg"
 
-#: ../src/PluginUtils/_PluginWindows.py:650
+#: ../src/PluginUtils/_PluginWindows.py:655
 msgid "Unavailable"
 msgstr "Otillgänglig"
 
-#: ../src/PluginUtils/_PluginWindows.py:654
+#: ../src/PluginUtils/_PluginWindows.py:659
 msgid "Fail"
 msgstr "Fel"
 
-#: ../src/PluginUtils/_PluginWindows.py:669
+#: ../src/PluginUtils/_PluginWindows.py:673
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:817
+#: ../src/PluginUtils/_PluginWindows.py:821
 msgid "Plugin Error"
 msgstr "Insticksmodulfel"
 
