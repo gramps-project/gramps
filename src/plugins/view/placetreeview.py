@@ -101,6 +101,13 @@ class PlaceTreeView(PlaceBaseView):
                 <menuitem action="EditBook"/>
               </placeholder>
             </menu>
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+                <separator/>
+              </placeholder>
+            </menu>
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>
@@ -114,6 +121,10 @@ class PlaceTreeView(PlaceBaseView):
             </menu>
           </menubar>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
