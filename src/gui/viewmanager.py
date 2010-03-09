@@ -762,8 +762,6 @@ class ViewManager(CLIManager):
         """
         try:
             GrampsPreferences(self.uistate, self.dbstate)
-            self._key = self.uistate.connect('nameformat-changed', 
-                                             self.active_page.build_tree)
         except Errors.WindowActiveError:
             return
 
@@ -972,6 +970,8 @@ class ViewManager(CLIManager):
             self.active_page.set_active()
             self.notebook.set_current_page(current_cat)
             self.notebook_cat[current_cat].set_current_page(current_cat_view)
+            self._key = self.uistate.connect('nameformat-changed', 
+                                             self.active_page.build_tree)
         else:
             #not one single view loaded
             WarningDialog(
