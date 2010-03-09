@@ -11,6 +11,7 @@
       <object class="GtkVBox" id="vbox2">
         <property name="visible">True</property>
         <property name="border_width">6</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="title">
             <property name="visible">True</property>
@@ -60,14 +61,14 @@ Select the names you wish Gramps to convert. </property>
             <property name="spacing">6</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="button6">
-                <property name="label">gtk-cancel</property>
+              <object class="GtkButton" id="help">
+                <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="receives_default">False</property>
+                <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="changenames"/>
+                <signal name="clicked" handler="on_help_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -76,14 +77,14 @@ Select the names you wish Gramps to convert. </property>
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button5">
-                <property name="label" translatable="yes">_Accept changes and close</property>
+              <object class="GtkButton" id="button6">
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_ok_clicked" object="changenames"/>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="destroy_passed_object" object="changenames"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -91,10 +92,27 @@ Select the names you wish Gramps to convert. </property>
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkButton" id="button5">
+                <property name="label" translatable="yes">_Accept changes and close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_ok_clicked" object="changenames"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="padding">6</property>
+            <property name="pack_type">end</property>
             <property name="position">3</property>
           </packing>
         </child>
