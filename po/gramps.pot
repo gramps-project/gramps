@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-09 10:35+0100\n"
+"POT-Creation-Date: 2010-03-09 17:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16617,7 +16617,7 @@ msgid "Database Owner Editor"
 msgstr ""
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1180
+#: ../src/PluginUtils/_PluginWindows.py:1185
 msgid "Main window"
 msgstr ""
 
@@ -19335,38 +19335,49 @@ msgstr ""
 msgid "'%s' is for this version of Gramps."
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:576
+#. If the plugin is for another version; inform and do nothing
+#: ../src/PluginUtils/_PluginWindows.py:574
+#, python-format
+msgid "'%s' is for NOT this version of Gramps."
+msgstr ""
+
+#: ../src/PluginUtils/_PluginWindows.py:575
+#, python-format
+msgid "It is for version %d.%d"
+msgstr ""
+
+#: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:580
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "Installing '%s'..."
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:590
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Registered '%s'"
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:599
+#: ../src/PluginUtils/_PluginWindows.py:604
 msgid "Load Addon"
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:650
+#: ../src/PluginUtils/_PluginWindows.py:655
 msgid "Unavailable"
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:654
+#: ../src/PluginUtils/_PluginWindows.py:659
 msgid "Fail"
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:668
+#: ../src/PluginUtils/_PluginWindows.py:673
 msgid "OK"
 msgstr ""
 
-#: ../src/PluginUtils/_PluginWindows.py:816
+#: ../src/PluginUtils/_PluginWindows.py:821
 msgid "Plugin Error"
 msgstr ""
 
