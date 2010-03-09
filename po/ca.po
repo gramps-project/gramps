@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-05 10:24+0100\n"
-"PO-Revision-Date: 2010-03-07 17:48+0100\n"
+"POT-Creation-Date: 2010-03-07 17:37+0100\n"
+"PO-Revision-Date: 2010-03-09 02:22+0100\n"
 "Last-Translator: Joan Creus <joan.creus at gmail dot com>\n"
 "Language-Team: Català <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr "Endreçar Punts d'interès"
 #: ../src/plugins/textreport/IndivComplete.py:552
 #: ../src/plugins/textreport/MarkerReport.py:120
 #: ../src/plugins/tool/NotRelated.py:114 ../src/plugins/tool/PatchNames.py:230
-#: ../src/plugins/tool/RemoveUnused.py:198 ../src/plugins/tool/Verify.py:486
+#: ../src/plugins/tool/RemoveUnused.py:198 ../src/plugins/tool/Verify.py:488
 #: ../src/plugins/view/repoview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:1809
 #: ../src/plugins/webreport/NarrativeWeb.py:1988
@@ -127,7 +127,7 @@ msgstr "Nom"
 #: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:243
 #: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
-#: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:479
+#: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89 ../src/plugins/view/noteview.py:76
 #: ../src/plugins/view/relview.py:593 ../src/plugins/view/repoview.py:82
@@ -210,35 +210,35 @@ msgstr "Data Incorrecta"
 msgid "Date selection"
 msgstr "Selecció de Data"
 
-#: ../src/DisplayState.py:318
+#: ../src/DisplayState.py:346
 msgid "No active person"
 msgstr "No hi ha persona activa"
 
-#: ../src/DisplayState.py:319
+#: ../src/DisplayState.py:347
 msgid "No active family"
 msgstr "No hi ha família activa"
 
-#: ../src/DisplayState.py:320
+#: ../src/DisplayState.py:348
 msgid "No active event"
 msgstr "No hi ha esdeveniment actiu"
 
-#: ../src/DisplayState.py:321
+#: ../src/DisplayState.py:349
 msgid "No active place"
 msgstr "No hi ha lloc actiu"
 
-#: ../src/DisplayState.py:322
+#: ../src/DisplayState.py:350
 msgid "No active source"
 msgstr "No hi ha font activa"
 
-#: ../src/DisplayState.py:323
+#: ../src/DisplayState.py:351
 msgid "No active repository"
 msgstr "No hi ha repositori actiu"
 
-#: ../src/DisplayState.py:324
+#: ../src/DisplayState.py:352
 msgid "No active media"
 msgstr "No hi ha medis actius"
 
-#: ../src/DisplayState.py:325
+#: ../src/DisplayState.py:353
 msgid "No active note"
 msgstr "No hi ha nota activa"
 
@@ -592,8 +592,8 @@ msgstr ""
 
 #: ../src/QuickReports.py:80 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:160 ../src/docgen/TextBufDoc.py:162
-#: ../src/plugins/gramplet/gramplet.gpr.py:173
-#: ../src/plugins/lib/libpersonview.py:335
+#: ../src/plugins/gramplet/gramplet.gpr.py:184
+#: ../src/plugins/lib/libpersonview.py:333
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:255
 #: ../src/plugins/view/noteview.py:209 ../src/plugins/view/repoview.py:152
@@ -786,7 +786,7 @@ msgstr "Reordenar Relacions: %s"
 msgid "manual|Using_the_Clipboard"
 msgstr ""
 
-#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:395
+#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:403
 #: ../src/gen/lib/urltype.py:54 ../src/gen/lib/notetype.py:76
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/attrtype.py:62
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/srcmediatype.py:62
@@ -1575,7 +1575,7 @@ msgstr ""
 "per activar."
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:449
+#: ../src/gui/viewmanager.py:448
 msgid "Tip of the Day"
 msgstr "Consell del Dia"
 
@@ -2104,33 +2104,33 @@ msgstr ""
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/cli/clidbman.py:62
+#: ../src/cli/clidbman.py:63
 msgid "Family Tree"
 msgstr "Arbre genealògic"
 
-#: ../src/cli/clidbman.py:213
+#: ../src/cli/clidbman.py:214
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Començant la Importació, %s"
 
-#: ../src/cli/clidbman.py:219
+#: ../src/cli/clidbman.py:220
 msgid "Import finished..."
 msgstr "Importació finalitzada..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:273 ../src/plugins/import/ImportCsv.py:387
+#: ../src/cli/clidbman.py:274 ../src/plugins/import/ImportCsv.py:387
 msgid "Importing data..."
 msgstr "Important dades..."
 
-#: ../src/cli/clidbman.py:333
+#: ../src/cli/clidbman.py:334
 msgid "Could not make database directory: "
 msgstr "No s'ha pogut crear el directori de base de dades: "
 
-#: ../src/cli/clidbman.py:373
+#: ../src/cli/clidbman.py:381
 msgid "Never"
 msgstr "Mai"
 
-#: ../src/cli/clidbman.py:392
+#: ../src/cli/clidbman.py:400
 #, python-format
 msgid "Locked by %s"
 msgstr "Bloquejat per %s"
@@ -3423,7 +3423,7 @@ msgid "Name format"
 msgstr "Format de nom"
 
 #: ../src/gui/configure.py:802 ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:946 ../src/PluginUtils/_PluginWindows.py:245
+#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:245
 #: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Edit"
 msgstr "Edita"
@@ -3676,7 +3676,7 @@ msgstr "Cal actualitzar la base de dades!"
 msgid "Upgrade now"
 msgstr "Actualitzar ara"
 
-#: ../src/gui/dbloader.py:298 ../src/gui/viewmanager.py:708
+#: ../src/gui/dbloader.py:298 ../src/gui/viewmanager.py:707
 #: ../src/plugins/view/familyview.py:223
 msgid "Cancel"
 msgstr "Cancel·lar"
@@ -4224,7 +4224,7 @@ msgid "Events"
 msgstr "Esdeveniments"
 
 #: ../src/gui/grampsgui.py:117 ../src/plugins/drawreport/drawplugins.gpr.py:98
-#: ../src/plugins/gramplet/gramplet.gpr.py:107
+#: ../src/plugins/gramplet/gramplet.gpr.py:113
 #: ../src/plugins/view/fanchartview.py:569
 msgid "Fan Chart"
 msgstr "Gràfica en Ventall"
@@ -4295,7 +4295,7 @@ msgstr "Afegir Pares"
 msgid "Select Parents"
 msgstr "Seleccionar Pares"
 
-#: ../src/gui/grampsgui.py:131 ../src/plugins/gramplet/gramplet.gpr.py:144
+#: ../src/gui/grampsgui.py:131 ../src/plugins/gramplet/gramplet.gpr.py:153
 #: ../src/plugins/view/pedigreeview.py:371
 #: ../src/plugins/webreport/NarrativeWeb.py:3831
 msgid "Pedigree"
@@ -4471,207 +4471,207 @@ msgstr "El fitxer no existeix"
 #. Private Constants
 #.
 #. ------------------------------------------------------------------------
-#: ../src/gui/viewmanager.py:88 ../src/plugins/BookReport.py:93
+#: ../src/gui/viewmanager.py:87 ../src/plugins/BookReport.py:93
 #: ../src/PluginUtils/_PluginDialogs.py:57
 msgid "Unsupported"
 msgstr "No suportat"
 
-#: ../src/gui/viewmanager.py:405
+#: ../src/gui/viewmanager.py:404
 msgid "Connect to a recent database"
 msgstr "Connectar a base de dades recent"
 
-#: ../src/gui/viewmanager.py:421
+#: ../src/gui/viewmanager.py:420
 msgid "_Family Trees"
 msgstr "_Arbres Genealògics"
 
-#: ../src/gui/viewmanager.py:422
+#: ../src/gui/viewmanager.py:421
 msgid "_Manage Family Trees..."
 msgstr "_Gestió d'Arbres Genealògics..."
 
-#: ../src/gui/viewmanager.py:423
+#: ../src/gui/viewmanager.py:422
 msgid "Manage databases"
 msgstr "Gestió de bases de dades"
 
-#: ../src/gui/viewmanager.py:424
+#: ../src/gui/viewmanager.py:423
 msgid "Open _Recent"
 msgstr "Obrir _Recent"
 
-#: ../src/gui/viewmanager.py:425
+#: ../src/gui/viewmanager.py:424
 msgid "Open an existing database"
 msgstr "Obrir base de dades existent"
 
-#: ../src/gui/viewmanager.py:426
+#: ../src/gui/viewmanager.py:425
 msgid "_Quit"
 msgstr "_Plega"
 
-#: ../src/gui/viewmanager.py:428
+#: ../src/gui/viewmanager.py:427
 msgid "_View"
 msgstr "_Visualitza"
 
-#: ../src/gui/viewmanager.py:429 ../src/gui/viewmanager.py:494
+#: ../src/gui/viewmanager.py:428 ../src/gui/viewmanager.py:493
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/gui/viewmanager.py:430
+#: ../src/gui/viewmanager.py:429
 msgid "_Preferences..."
 msgstr "_Preferències..."
 
-#: ../src/gui/viewmanager.py:432
+#: ../src/gui/viewmanager.py:431
 msgid "_Help"
 msgstr "Aj_uda"
 
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:432
 msgid "Gramps _Home Page"
 msgstr "Pà_gina Principal de Gramps"
 
-#: ../src/gui/viewmanager.py:435
+#: ../src/gui/viewmanager.py:434
 msgid "Gramps _Mailing Lists"
 msgstr "_Llistes de Correu Gramps"
 
-#: ../src/gui/viewmanager.py:437
+#: ../src/gui/viewmanager.py:436
 msgid "_Report a Bug"
 msgstr "_Informar d'un Error"
 
-#: ../src/gui/viewmanager.py:439
+#: ../src/gui/viewmanager.py:438
 msgid "_Extra Reports/Tools"
 msgstr "Més Informes/_Eines"
 
-#: ../src/gui/viewmanager.py:441
+#: ../src/gui/viewmanager.py:440
 msgid "_About"
 msgstr "_Quant a"
 
-#: ../src/gui/viewmanager.py:443
+#: ../src/gui/viewmanager.py:442
 msgid "_Plugin Manager"
 msgstr "Gestor de _Connectors"
 
-#: ../src/gui/viewmanager.py:445
+#: ../src/gui/viewmanager.py:444
 msgid "_FAQ"
 msgstr "_PMF"
 
-#: ../src/gui/viewmanager.py:446
+#: ../src/gui/viewmanager.py:445
 msgid "_Key Bindings"
 msgstr "_Associacions de Tecles"
 
-#: ../src/gui/viewmanager.py:447
+#: ../src/gui/viewmanager.py:446
 msgid "_User Manual"
 msgstr "_Manual d'Usuari"
 
-#: ../src/gui/viewmanager.py:454
+#: ../src/gui/viewmanager.py:453
 msgid "_Export..."
 msgstr "_Exporta..."
 
-#: ../src/gui/viewmanager.py:457
+#: ../src/gui/viewmanager.py:456
 msgid "_Abandon Changes and Quit"
 msgstr "_Abandonar Canvis i Plegar"
 
-#: ../src/gui/viewmanager.py:458 ../src/gui/viewmanager.py:461
+#: ../src/gui/viewmanager.py:457 ../src/gui/viewmanager.py:460
 msgid "_Reports"
 msgstr "_Informes"
 
-#: ../src/gui/viewmanager.py:459
+#: ../src/gui/viewmanager.py:458
 msgid "Open the reports dialog"
 msgstr "Obrir el diàleg d'informes"
 
-#: ../src/gui/viewmanager.py:460
+#: ../src/gui/viewmanager.py:459
 msgid "_Go"
 msgstr "_Saltar"
 
-#: ../src/gui/viewmanager.py:462
+#: ../src/gui/viewmanager.py:461
 msgid "_Windows"
 msgstr "_Finestres"
 
-#: ../src/gui/viewmanager.py:488
+#: ../src/gui/viewmanager.py:487
 msgid "Clip_board"
 msgstr "Po_rtapapers"
 
-#: ../src/gui/viewmanager.py:489
+#: ../src/gui/viewmanager.py:488
 msgid "Open the Clipboard dialog"
 msgstr "Obrir el diàleg del Portapapers"
 
-#: ../src/gui/viewmanager.py:490
+#: ../src/gui/viewmanager.py:489
 msgid "_Import..."
 msgstr "_Importa..."
 
-#: ../src/gui/viewmanager.py:492 ../src/gui/viewmanager.py:496
+#: ../src/gui/viewmanager.py:491 ../src/gui/viewmanager.py:495
 msgid "_Tools"
 msgstr "Ei_nes"
 
-#: ../src/gui/viewmanager.py:493
+#: ../src/gui/viewmanager.py:492
 msgid "Open the tools dialog"
 msgstr "Obrir el diàleg d'eines"
 
-#: ../src/gui/viewmanager.py:495
+#: ../src/gui/viewmanager.py:494
 msgid "_Bookmarks"
 msgstr "_Punts d'Interès"
 
-#: ../src/gui/viewmanager.py:497
+#: ../src/gui/viewmanager.py:496
 msgid "_Configure View..."
 msgstr "_Configurar Vista..."
 
-#: ../src/gui/viewmanager.py:498
+#: ../src/gui/viewmanager.py:497
 msgid "Configure the active view"
 msgstr "Configurar la vista activa"
 
-#: ../src/gui/viewmanager.py:503
+#: ../src/gui/viewmanager.py:502
 msgid "_Sidebar"
 msgstr "Barra _Lateral"
 
-#: ../src/gui/viewmanager.py:505
+#: ../src/gui/viewmanager.py:504
 msgid "_Toolbar"
 msgstr "Barra d'_Eines"
 
-#: ../src/gui/viewmanager.py:507 ../src/plugins/view/geoview.py:1095
+#: ../src/gui/viewmanager.py:506 ../src/plugins/view/geoview.py:1096
 msgid "_Filter Sidebar"
 msgstr "Barra de _Filtre"
 
-#: ../src/gui/viewmanager.py:509
+#: ../src/gui/viewmanager.py:508
 msgid "F_ull Screen"
 msgstr "Pantalla _Sencera"
 
-#: ../src/gui/viewmanager.py:514 ../src/gui/viewmanager.py:1292
+#: ../src/gui/viewmanager.py:513 ../src/gui/viewmanager.py:1297
 msgid "_Undo"
 msgstr "_Desfer"
 
-#: ../src/gui/viewmanager.py:519 ../src/gui/viewmanager.py:1309
+#: ../src/gui/viewmanager.py:518 ../src/gui/viewmanager.py:1314
 msgid "_Redo"
 msgstr "_Refer"
 
-#: ../src/gui/viewmanager.py:525
+#: ../src/gui/viewmanager.py:524
 msgid "Undo History..."
 msgstr "Historial de Modificacions..."
 
-#: ../src/gui/viewmanager.py:539
+#: ../src/gui/viewmanager.py:538
 #, python-format
 msgid "Key %s is not bound"
 msgstr "La tecla %s no està associada"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:637
+#: ../src/gui/viewmanager.py:636
 msgid "Loading plugins..."
 msgstr "Carregant connectors..."
 
-#: ../src/gui/viewmanager.py:644 ../src/gui/viewmanager.py:659
+#: ../src/gui/viewmanager.py:643 ../src/gui/viewmanager.py:658
 msgid "Ready"
 msgstr "Llestos"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:652
+#: ../src/gui/viewmanager.py:651
 msgid "Registering plugins..."
 msgstr "Registrant connectors..."
 
-#: ../src/gui/viewmanager.py:689
+#: ../src/gui/viewmanager.py:688
 msgid "Autobackup..."
 msgstr "Còpia de seguretat automàtica..."
 
-#: ../src/gui/viewmanager.py:693
+#: ../src/gui/viewmanager.py:692
 msgid "Error saving backup data"
 msgstr "Error desant la còpia de seguretat"
 
-#: ../src/gui/viewmanager.py:704
+#: ../src/gui/viewmanager.py:703
 msgid "Abort changes?"
 msgstr "Avortar els canvis?"
 
-#: ../src/gui/viewmanager.py:705
+#: ../src/gui/viewmanager.py:704
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
@@ -4679,15 +4679,15 @@ msgstr ""
 "Avortar els canvis retornarà la base de dades a l'estat en què es trobava "
 "abans de començar aquesta sessió d'edició."
 
-#: ../src/gui/viewmanager.py:707
+#: ../src/gui/viewmanager.py:706
 msgid "Abort changes"
 msgstr "Avortar canvis"
 
-#: ../src/gui/viewmanager.py:717
+#: ../src/gui/viewmanager.py:716
 msgid "Cannot abandon session's changes"
 msgstr "No es poden abandonar els canvis de la sessió"
 
-#: ../src/gui/viewmanager.py:718
+#: ../src/gui/viewmanager.py:717
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -4695,11 +4695,11 @@ msgstr ""
 "Els canvis no es poden abandonar totalment perquè el nombre de canvis fets "
 "durant la sessió ha sobrepassat el límit."
 
-#: ../src/gui/viewmanager.py:973
+#: ../src/gui/viewmanager.py:978
 msgid "No views loaded"
 msgstr "No s'ha carregat cap vista"
 
-#: ../src/gui/viewmanager.py:974
+#: ../src/gui/viewmanager.py:979
 msgid ""
 "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some "
 "plugins of type 'View' are enabled. Then restart Gramps"
@@ -4708,19 +4708,19 @@ msgstr ""
 "Connectors, i asseguri's que hi ha activat algun connector de tipus 'Vista'. "
 "Després, aturi i torni a arrencar Gramps"
 
-#: ../src/gui/viewmanager.py:1214
+#: ../src/gui/viewmanager.py:1219
 msgid "Import Statistics"
 msgstr "Importar Estadístiques"
 
-#: ../src/gui/viewmanager.py:1264
+#: ../src/gui/viewmanager.py:1269
 msgid "Read Only"
 msgstr "Només Lectura"
 
-#: ../src/gui/viewmanager.py:1577
+#: ../src/gui/viewmanager.py:1582
 msgid "Failed Loading Plugin"
 msgstr "No s'ha pogut carregar connector"
 
-#: ../src/gui/viewmanager.py:1578
+#: ../src/gui/viewmanager.py:1583
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
@@ -5920,11 +5920,11 @@ msgstr "_Galeria"
 msgid "Open Containing _Folder"
 msgstr "Obrir _Carpeta Contenidora"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:250
+#: ../src/gui/editors/displaytabs/gallerytab.py:249
 msgid "Non existing media found in the Gallery"
 msgstr "Medis audiovisuals no existents trobats a la Galeria"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:487
+#: ../src/gui/editors/displaytabs/gallerytab.py:486
 #: ../src/plugins/view/mediaview.py:228
 msgid "Drag Media Object"
 msgstr "Arrossegar Objecte Audiovisual"
@@ -6311,19 +6311,19 @@ msgstr "Seleccionar Repositori"
 msgid "Select Source"
 msgstr "Seleccionar Font"
 
-#: ../src/gui/views/listview.py:197 ../src/plugins/lib/libpersonview.py:342
+#: ../src/gui/views/listview.py:197 ../src/plugins/lib/libpersonview.py:340
 msgid "_Add..."
 msgstr "_Afegir..."
 
-#: ../src/gui/views/listview.py:199 ../src/plugins/lib/libpersonview.py:344
+#: ../src/gui/views/listview.py:199 ../src/plugins/lib/libpersonview.py:342
 msgid "_Remove"
 msgstr "_Treure"
 
-#: ../src/gui/views/listview.py:201 ../src/plugins/lib/libpersonview.py:350
+#: ../src/gui/views/listview.py:201 ../src/plugins/lib/libpersonview.py:348
 msgid "Export View..."
 msgstr "Exporta Vista..."
 
-#: ../src/gui/views/listview.py:207 ../src/plugins/lib/libpersonview.py:333
+#: ../src/gui/views/listview.py:207 ../src/plugins/lib/libpersonview.py:331
 msgid "action|_Edit..."
 msgstr "_Edita..."
 
@@ -6677,23 +6677,23 @@ msgstr "Pare desconegut"
 msgid "Unknown mother"
 msgstr "mare desconeguda"
 
-#: ../src/config.py:265
+#: ../src/config.py:258
 msgid "Missing Given Name"
 msgstr "Falta el Nom de Pila"
 
-#: ../src/config.py:266
+#: ../src/config.py:259
 msgid "Missing Record"
 msgstr "Falta Registre"
 
-#: ../src/config.py:267
+#: ../src/config.py:260
 msgid "Missing Surname"
 msgstr "Falta el Cognom"
 
-#: ../src/config.py:274 ../src/config.py:276
+#: ../src/config.py:267 ../src/config.py:269
 msgid "Living"
 msgstr "Viu"
 
-#: ../src/config.py:275
+#: ../src/config.py:268
 msgid "Private Record"
 msgstr "Registre Privat"
 
@@ -6708,10 +6708,10 @@ msgstr "Comparar Persones"
 #: ../src/Merge/_MergePerson.py:91 ../src/Merge/_MergePerson.py:96
 #: ../src/Merge/_MergePerson.py:272 ../src/Merge/_MergePerson.py:279
 #: ../src/Merge/_MergePerson.py:311 ../src/Merge/_MergePerson.py:316
-#: ../src/plugins/lib/libpersonview.py:373
-#: ../src/plugins/lib/libpersonview.py:386
-#: ../src/plugins/lib/libpersonview.py:397
-#: ../src/plugins/lib/libpersonview.py:411
+#: ../src/plugins/lib/libpersonview.py:371
+#: ../src/plugins/lib/libpersonview.py:384
+#: ../src/plugins/lib/libpersonview.py:395
+#: ../src/plugins/lib/libpersonview.py:409
 msgid "Cannot merge people"
 msgstr "No es poden combinar persones"
 
@@ -7027,8 +7027,8 @@ msgstr "Llibres Disponibles"
 msgid "Book List"
 msgstr "Llista de Llibres"
 
-#: ../src/plugins/BookReport.py:683 ../src/plugins/BookReport.py:1117
-#: ../src/plugins/BookReport.py:1165 ../src/plugins/bookreport.gpr.py:31
+#: ../src/plugins/BookReport.py:683 ../src/plugins/BookReport.py:1129
+#: ../src/plugins/BookReport.py:1177 ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Informe de Llibres"
 
@@ -7078,19 +7078,19 @@ msgstr ""
 "Per tant, la persona central de cada element es fixa a la persona activa de "
 "la base de dades oberta actualment."
 
-#: ../src/plugins/BookReport.py:940
+#: ../src/plugins/BookReport.py:952
 msgid "Setup"
 msgstr "Configuració"
 
-#: ../src/plugins/BookReport.py:950
+#: ../src/plugins/BookReport.py:962
 msgid "Book Menu"
 msgstr "Menú de Llibre"
 
-#: ../src/plugins/BookReport.py:973
+#: ../src/plugins/BookReport.py:985
 msgid "Available Items Menu"
 msgstr "Menú d'Elements Disponibles"
 
-#: ../src/plugins/BookReport.py:1168
+#: ../src/plugins/BookReport.py:1180
 msgid "Gramps Book"
 msgstr "Llibre Gramps"
 
@@ -7847,7 +7847,7 @@ msgid "Produces a graphical ancestral tree"
 msgstr "Produeix un arbre gràfic d'avantpassats"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:54
-#: ../src/plugins/gramplet/gramplet.gpr.py:77
+#: ../src/plugins/gramplet/gramplet.gpr.py:81
 msgid "Calendar"
 msgstr "Calendari"
 
@@ -8558,7 +8558,7 @@ msgid "Mother - Child Age Diff Distribution"
 msgstr "Distribució de la diferència d'edat Mare-Fills"
 
 #: ../src/plugins/gramplet/AgeStats.py:224
-#: ../src/plugins/gramplet/gramplet.gpr.py:215
+#: ../src/plugins/gramplet/gramplet.gpr.py:229
 msgid "Statistics"
 msgstr "Estadístiques"
 
@@ -8666,6 +8666,82 @@ msgstr "Fills"
 msgid "Related"
 msgstr "Parents"
 
+#: ../src/plugins/gramplet/FaqGramplet.py:38
+msgid ""
+"<a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Frequently Asked Questions</a> (need "
+"connection to internet)\n"
+"\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:39
+msgid ""
+"  1. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of "
+"spouses?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:40
+msgid ""
+"  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it "
+"necessary to update Gramps every time an update is released?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:41
+msgid ""
+"  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>How do "
+"I make backups safely?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:42
+msgid ""
+"  4. <a wiki='Gramps_3.2_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-"
+"_part_1#Editing_Information_About_Relationships'>How should information "
+"about marriages be entered?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:43
+msgid ""
+"  5. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's "
+"the difference between a residence and an address?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:44
+msgid ""
+"  6. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a "
+"website with Gramps and my tree?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:45
+msgid ""
+"  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
+"ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:46
+msgid ""
+"  8. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a "
+"bug?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:47
+msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:48
+msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:49
+msgid " 11. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/FaqGramplet.py:50
+msgid " 12. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
+msgstr ""
+
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
 msgstr "Fer doble clic al nom per detalls"
@@ -8688,22 +8764,35 @@ msgstr "Total de persones"
 msgid "Age on Date Gramplet"
 msgstr "Gramplet d'Edat en una Data"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:37
+#: ../src/plugins/gramplet/gramplet.gpr.py:31
+msgid "Gramplet showing ages of living people on a specific date"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:38
 #: ../src/plugins/quickview/quickview.gpr.py:31
 msgid "Age on Date"
 msgstr "Edat en Data"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:42
+#: ../src/plugins/gramplet/gramplet.gpr.py:43
 msgid "Age Stats Gramplet"
 msgstr "Gramplet d'Estadístiques d'Edats"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:48
+#: ../src/plugins/gramplet/gramplet.gpr.py:44
+msgid "Gramplet showing graphs of various ages"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:50
 msgid "Age Stats"
 msgstr "Estadístiques d'Edats"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:57
+#: ../src/plugins/gramplet/gramplet.gpr.py:59
 msgid "Attributes Gramplet"
 msgstr "Gramplet d'Atributs"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:60
+#, fuzzy
+msgid "Gramplet showing active person's attributes"
+msgstr "Persones amb l'<atribut> personal"
 
 #. ------------------------------------------------------------------------
 #.
@@ -8712,117 +8801,183 @@ msgstr "Gramplet d'Atributs"
 #. ------------------------------------------------------------------------
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
-#: ../src/plugins/gramplet/gramplet.gpr.py:63
+#: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:108
 msgid "Attributes"
 msgstr "Atributs"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:72
+#: ../src/plugins/gramplet/gramplet.gpr.py:75
 msgid "Calendar Gramplet"
 msgstr "Gramplet de Calendari"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:84
+#: ../src/plugins/gramplet/gramplet.gpr.py:76
+msgid "Gramplet showing calendar and events on specfic dates in history"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:88
 msgid "Descendant Gramplet"
 msgstr "Gramplet de Descendents"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:90
+#: ../src/plugins/gramplet/gramplet.gpr.py:89
+msgid "Gramplet showing active person's descendants"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:95
 msgid "Descendants"
 msgstr "Descendents"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:99
+#: ../src/plugins/gramplet/gramplet.gpr.py:104
 msgid "Fan Chart Gramplet"
 msgstr "Gramplet de Gràfica en Ventall"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:114
+#: ../src/plugins/gramplet/gramplet.gpr.py:105
+msgid "Gramplet showing active person's direct ancestors as a fanchart"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:120
 msgid "FAQ Gramplet"
 msgstr "Gramplet de PMF"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:119
+#: ../src/plugins/gramplet/gramplet.gpr.py:121
+msgid "Gramplet showing frequently asked questions"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:126
 msgid "FAQ"
 msgstr "PMF"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:126
+#: ../src/plugins/gramplet/gramplet.gpr.py:133
 msgid "Given Name Cloud Gramplet"
 msgstr "Gramplet de Núvol de Noms"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:132
+#: ../src/plugins/gramplet/gramplet.gpr.py:134
+msgid "Gramplet showing all given names as a text cloud"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:140
 msgid "Given Name Cloud"
 msgstr "Núvol de Noms"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:139
+#: ../src/plugins/gramplet/gramplet.gpr.py:147
 msgid "Pedigree Gramplet"
 msgstr "Gramplet de Pedigrí"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:154
+#: ../src/plugins/gramplet/gramplet.gpr.py:148
+msgid "Gramplet showing active person's ancestors"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:163
 msgid "Plugin Manager Gramplet"
 msgstr "Gramplet del Gestor de Connectors"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:160
+#: ../src/plugins/gramplet/gramplet.gpr.py:164
+msgid "Gramplet showing available third-party plugins (addons)"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:170
 #: ../src/PluginUtils/_PluginWindows.py:193
 msgid "Plugin Manager"
 msgstr "Gestor de Connectors"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:167
+#: ../src/plugins/gramplet/gramplet.gpr.py:177
 msgid "Quick View Gramplet"
 msgstr "Gramplet de Vistes Ràpides"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:182
+#: ../src/plugins/gramplet/gramplet.gpr.py:178
+msgid "Gramplet showing an active item Quick View"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:193
 msgid "Relatives Gramplet"
 msgstr "Gramplet de Parents"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:187
+#: ../src/plugins/gramplet/gramplet.gpr.py:194
+msgid "Gramplet showing active person's relatives"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:199
 msgid "Relatives"
 msgstr "Parents"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:196
+#: ../src/plugins/gramplet/gramplet.gpr.py:208
 msgid "Session Log Gramplet"
 msgstr "Gramplet de Registre de Sessió"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:202
+#: ../src/plugins/gramplet/gramplet.gpr.py:209
+msgid "Gramplet showing all activity for this session"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:215
 msgid "Session Log"
 msgstr "Registre de Sessió"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:209
+#: ../src/plugins/gramplet/gramplet.gpr.py:222
 msgid "Statistics Gramplet"
 msgstr "Gramplet d'Estadístiques"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:222
+#: ../src/plugins/gramplet/gramplet.gpr.py:223
+#, fuzzy
+msgid "Gramplet showing summary data of the family tree"
+msgstr "Intentar de veure tots els llocs de l'arbre genealògic."
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:236
 msgid "Surname Cloud Gramplet"
 msgstr "Gramplet de Núvol de Cognom"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:228
+#: ../src/plugins/gramplet/gramplet.gpr.py:237
+msgid "Gramplet showing all surnames as a text cloud"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:243
 msgid "Surname Cloud"
 msgstr "Núvol de Cognom"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:235
+#: ../src/plugins/gramplet/gramplet.gpr.py:250
 msgid "TODO Gramplet"
 msgstr "Gramplet de coses a fer"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:241
+#: ../src/plugins/gramplet/gramplet.gpr.py:251
+#, fuzzy
+msgid "Gramplet for generic notes"
+msgstr "Generacions del graf"
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:257
 msgid "TODO List"
 msgstr "Llista de coses a fer"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:248
+#: ../src/plugins/gramplet/gramplet.gpr.py:264
 msgid "Top Surnames Gramplet"
 msgstr "Gramplet de Cognoms més Freqüents"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:253
+#: ../src/plugins/gramplet/gramplet.gpr.py:265
+msgid "Gramplet showing most frequent surnames in this tree"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:270
 msgid "Top Surnames"
 msgstr "Cognoms més Freqüents"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:260
+#: ../src/plugins/gramplet/gramplet.gpr.py:277
 msgid "Welcome Gramplet"
 msgstr "Gramplet de Benvinguda"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:266
+#: ../src/plugins/gramplet/gramplet.gpr.py:278
+msgid "Gramplet showing a welcome message"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:284
 msgid "Welcome to Gramps!"
 msgstr "Benvingut a Gramps!"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:273
+#: ../src/plugins/gramplet/gramplet.gpr.py:291
 msgid "What's Next Gramplet"
 msgstr "Gramplet de Què Ve Ara"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:279
+#: ../src/plugins/gramplet/gramplet.gpr.py:292
+msgid "Gramplet suggesting items to research"
+msgstr ""
+
+#: ../src/plugins/gramplet/gramplet.gpr.py:298
 msgid "What's Next?"
 msgstr "Què Ve Ara?"
 
@@ -14349,12 +14504,12 @@ msgid "Last Changed"
 msgstr "Canviat per última vegada"
 
 #: ../src/plugins/lib/libpersonview.py:108
-#: ../src/plugins/lib/libpersonview.py:343
+#: ../src/plugins/lib/libpersonview.py:341
 msgid "Add a new person"
 msgstr "Afegir persona nova"
 
 #: ../src/plugins/lib/libpersonview.py:109
-#: ../src/plugins/lib/libpersonview.py:334
+#: ../src/plugins/lib/libpersonview.py:332
 msgid "Edit the selected person"
 msgstr "Editar la persona seleccionada"
 
@@ -14375,27 +14530,27 @@ msgstr "_Esborrar Persona"
 msgid "Delete Person (%s)"
 msgstr "Esborrar Persona (%s)"
 
-#: ../src/plugins/lib/libpersonview.py:331
+#: ../src/plugins/lib/libpersonview.py:329
 #: ../src/plugins/view/pedigreeview.py:505 ../src/plugins/view/relview.py:400
 msgid "Person Filter Editor"
 msgstr "Editor de Filtres de Persones"
 
-#: ../src/plugins/lib/libpersonview.py:345
+#: ../src/plugins/lib/libpersonview.py:343
 msgid "Remove the Selected Person"
 msgstr "Esborrar Persona Seleccionada"
 
-#: ../src/plugins/lib/libpersonview.py:346
+#: ../src/plugins/lib/libpersonview.py:344
 msgid "Compare and _Merge..."
 msgstr "C_omparar i Combinar..."
 
-#: ../src/plugins/lib/libpersonview.py:348
+#: ../src/plugins/lib/libpersonview.py:346
 msgid "_Fast Merge..."
 msgstr "Co_mbinar Ràpid..."
 
-#: ../src/plugins/lib/libpersonview.py:374
-#: ../src/plugins/lib/libpersonview.py:387
-#: ../src/plugins/lib/libpersonview.py:398
-#: ../src/plugins/lib/libpersonview.py:412
+#: ../src/plugins/lib/libpersonview.py:372
+#: ../src/plugins/lib/libpersonview.py:385
+#: ../src/plugins/lib/libpersonview.py:396
+#: ../src/plugins/lib/libpersonview.py:410
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -14529,15 +14684,15 @@ msgstr "Proporciona informació de festes per diferents països."
 
 #: ../src/plugins/lib/libplugins.gpr.py:141
 msgid "Manages a HTML file implementing DocBackend."
-msgstr ""
+msgstr "Gestiona un fitxer HTML que implementa DocBackend."
 
 #: ../src/plugins/lib/libplugins.gpr.py:159
 msgid "Common constants for html files."
-msgstr ""
+msgstr "Constants comunes per fitxers html."
 
 #: ../src/plugins/lib/libplugins.gpr.py:177
 msgid "Manages an HTML DOM tree."
-msgstr ""
+msgstr "Gestiona un arbre HTML DOM."
 
 #: ../src/plugins/lib/libplugins.gpr.py:195
 msgid "Provides base functionality for map services."
@@ -14549,19 +14704,19 @@ msgstr "Proporciona Narració Textual."
 
 #: ../src/plugins/lib/libplugins.gpr.py:229
 msgid "Manages an ODF file implementing DocBackend."
-msgstr ""
+msgstr "Gestiona un fitxer ODF que implementa DocBackend."
 
 #: ../src/plugins/lib/libplugins.gpr.py:246
 msgid "Provides Textual Translation."
-msgstr ""
+msgstr "Proporciona Traducció Textual."
 
 #: ../src/plugins/lib/libplugins.gpr.py:263
 msgid "Provides the Base needed for the List People views."
-msgstr ""
+msgstr "Proporciona la Base que cal per les vistes de Llistar Persones."
 
 #: ../src/plugins/lib/libplugins.gpr.py:280
 msgid "Provides the Base needed for the List Place views."
-msgstr ""
+msgstr "Proporciona la Base que cal per les vistes de Llistar Llocs."
 
 #: ../src/plugins/lib/libtranslate.py:74
 msgid "Albanian"
@@ -14980,7 +15135,7 @@ msgid "No birth relation with child"
 msgstr "No hi ha relació de naixement amb el fill"
 
 #: ../src/plugins/quickview/lineage.py:156
-#: ../src/plugins/quickview/lineage.py:176 ../src/plugins/tool/Verify.py:914
+#: ../src/plugins/quickview/lineage.py:176 ../src/plugins/tool/Verify.py:922
 msgid "Unknown gender"
 msgstr "Gènere desconegut"
 
@@ -17505,7 +17660,8 @@ msgstr ""
 "\n"
 "Els fitxers que contenen imatges, so, vídeo, etc, existeixen per separat al "
 "disc dur. Aquests fitxers no els gestiona Gramps i no estan inclosos dins de "
-"la base de dades Gramps. La base de dades Gramps només emmagatzema el camí i els noms de fitxer.\n"
+"la base de dades Gramps. La base de dades Gramps només emmagatzema el camí i "
+"els noms de fitxer.\n"
 "\n"
 "Aquesta eina només permet de modificar els registres dins de la base de "
 "dades Gramps. Si vol moure o canviar el nom dels fitxers, ha de fer-ho pel "
@@ -17788,7 +17944,7 @@ msgstr "Objectes no utilitzats"
 
 #. Add mark column
 #. Add ignore column
-#: ../src/plugins/tool/RemoveUnused.py:181 ../src/plugins/tool/Verify.py:461
+#: ../src/plugins/tool/RemoveUnused.py:181 ../src/plugins/tool/Verify.py:463
 msgid "Mark"
 msgstr "Marcar"
 
@@ -18060,151 +18216,151 @@ msgid "Database Verification Results"
 msgstr "Resultats de Verificació de la Base de Dades"
 
 #. Add column with the warning text
-#: ../src/plugins/tool/Verify.py:472
+#: ../src/plugins/tool/Verify.py:474
 msgid "Warning"
 msgstr "Avís"
 
-#: ../src/plugins/tool/Verify.py:552
+#: ../src/plugins/tool/Verify.py:560
 msgid "_Show all"
 msgstr "_Mostrar tothom"
 
-#: ../src/plugins/tool/Verify.py:562 ../src/plugins/tool/verify.glade.h:22
+#: ../src/plugins/tool/Verify.py:570 ../src/plugins/tool/verify.glade.h:22
 msgid "_Hide marked"
 msgstr "_Amagar els marcats"
 
-#: ../src/plugins/tool/Verify.py:815
+#: ../src/plugins/tool/Verify.py:823
 msgid "Baptism before birth"
 msgstr "Bateix abans de naixement"
 
-#: ../src/plugins/tool/Verify.py:829
+#: ../src/plugins/tool/Verify.py:837
 msgid "Death before baptism"
 msgstr "Mort abans de bateig"
 
-#: ../src/plugins/tool/Verify.py:843
+#: ../src/plugins/tool/Verify.py:851
 msgid "Burial before birth"
 msgstr "Enterrament previ al naixement"
 
-#: ../src/plugins/tool/Verify.py:857
+#: ../src/plugins/tool/Verify.py:865
 msgid "Burial before death"
 msgstr "Enterrament previ a la mort"
 
-#: ../src/plugins/tool/Verify.py:871
+#: ../src/plugins/tool/Verify.py:879
 msgid "Death before birth"
 msgstr "Mort abans de naixement"
 
-#: ../src/plugins/tool/Verify.py:885
+#: ../src/plugins/tool/Verify.py:893
 msgid "Burial before baptism"
 msgstr "Enterrament previ al bateig"
 
-#: ../src/plugins/tool/Verify.py:903
+#: ../src/plugins/tool/Verify.py:911
 msgid "Old age at death"
 msgstr "Edat avançada en morir"
 
-#: ../src/plugins/tool/Verify.py:924
+#: ../src/plugins/tool/Verify.py:932
 msgid "Multiple parents"
 msgstr "Múltiples pares"
 
-#: ../src/plugins/tool/Verify.py:941
+#: ../src/plugins/tool/Verify.py:949
 msgid "Married often"
 msgstr "Casat sovint"
 
-#: ../src/plugins/tool/Verify.py:960
+#: ../src/plugins/tool/Verify.py:968
 msgid "Old and unmarried"
 msgstr "Vell i no casat"
 
-#: ../src/plugins/tool/Verify.py:987
+#: ../src/plugins/tool/Verify.py:995
 msgid "Too many children"
 msgstr "Massa fills"
 
-#: ../src/plugins/tool/Verify.py:1002
+#: ../src/plugins/tool/Verify.py:1010
 msgid "Same sex marriage"
 msgstr "Casament entre persones del mateix sexe"
 
-#: ../src/plugins/tool/Verify.py:1012
+#: ../src/plugins/tool/Verify.py:1020
 msgid "Female husband"
 msgstr "Marit femení"
 
-#: ../src/plugins/tool/Verify.py:1022
+#: ../src/plugins/tool/Verify.py:1030
 msgid "Male wife"
 msgstr "Muller masculina"
 
-#: ../src/plugins/tool/Verify.py:1049
+#: ../src/plugins/tool/Verify.py:1057
 msgid "Husband and wife with the same surname"
 msgstr "Marit i muller amb el mateix cognom"
 
-#: ../src/plugins/tool/Verify.py:1074
+#: ../src/plugins/tool/Verify.py:1082
 msgid "Large age difference between spouses"
 msgstr "Diferència gran d'edat entre cònjuges"
 
-#: ../src/plugins/tool/Verify.py:1105
+#: ../src/plugins/tool/Verify.py:1113
 msgid "Marriage before birth"
 msgstr "Casament abans del naixement"
 
-#: ../src/plugins/tool/Verify.py:1136
+#: ../src/plugins/tool/Verify.py:1144
 msgid "Marriage after death"
 msgstr "Casament després de mort"
 
-#: ../src/plugins/tool/Verify.py:1170
+#: ../src/plugins/tool/Verify.py:1178
 msgid "Early marriage"
 msgstr "Casament abans d'hora"
 
-#: ../src/plugins/tool/Verify.py:1202
+#: ../src/plugins/tool/Verify.py:1210
 msgid "Late marriage"
 msgstr "Casament tardà"
 
-#: ../src/plugins/tool/Verify.py:1263
+#: ../src/plugins/tool/Verify.py:1271
 msgid "Old father"
 msgstr "Pare vell"
 
-#: ../src/plugins/tool/Verify.py:1266
+#: ../src/plugins/tool/Verify.py:1274
 msgid "Old mother"
 msgstr "Mare vella"
 
-#: ../src/plugins/tool/Verify.py:1308
+#: ../src/plugins/tool/Verify.py:1316
 msgid "Young father"
 msgstr "Pare jove"
 
-#: ../src/plugins/tool/Verify.py:1311
+#: ../src/plugins/tool/Verify.py:1319
 msgid "Young mother"
 msgstr "Mare jove"
 
-#: ../src/plugins/tool/Verify.py:1350
+#: ../src/plugins/tool/Verify.py:1358
 msgid "Unborn father"
 msgstr "Pare no nascut"
 
-#: ../src/plugins/tool/Verify.py:1353
+#: ../src/plugins/tool/Verify.py:1361
 msgid "Unborn mother"
 msgstr "Mare no nascuda"
 
-#: ../src/plugins/tool/Verify.py:1398
+#: ../src/plugins/tool/Verify.py:1406
 msgid "Dead father"
 msgstr "Pare mort"
 
-#: ../src/plugins/tool/Verify.py:1401
+#: ../src/plugins/tool/Verify.py:1409
 msgid "Dead mother"
 msgstr "Mare morta"
 
-#: ../src/plugins/tool/Verify.py:1423
+#: ../src/plugins/tool/Verify.py:1431
 msgid "Large year span for all children"
 msgstr "Rang d'anys gran per tots els fills"
 
-#: ../src/plugins/tool/Verify.py:1445
+#: ../src/plugins/tool/Verify.py:1453
 msgid "Large age differences between children"
 msgstr "Diferències grans d'edat entre fills"
 
-#: ../src/plugins/tool/Verify.py:1455
+#: ../src/plugins/tool/Verify.py:1463
 msgid "Disconnected individual"
 msgstr "Individu desconnectat"
 
-#: ../src/plugins/tool/Verify.py:1477
+#: ../src/plugins/tool/Verify.py:1485
 msgid "Invalid birth date"
 msgstr "Data de naixement no vàlida"
 
-#: ../src/plugins/tool/Verify.py:1499
+#: ../src/plugins/tool/Verify.py:1507
 msgid "Invalid death date"
 msgstr "Data de defunció no vàlida"
 
-#: ../src/plugins/tool/Verify.py:1515
+#: ../src/plugins/tool/Verify.py:1523
 msgid "Marriage date but not married"
 msgstr "Data de casament però no casat"
 
@@ -18265,13 +18421,17 @@ msgstr "Esborrar el camp d'entrada a la caixa de selecció de llocs."
 msgid ""
 "Save the zoom and coordinates between places map, person map, family map and "
 "event map."
-msgstr "Desar l'ampliació i coordenades entre el mapa de llocs, el mapa de persones, el mapa de famílies i el mapa d'esdeveniments."
+msgstr ""
+"Desar l'ampliació i coordenades entre el mapa de llocs, el mapa de persones, "
+"el mapa de famílies i el mapa d'esdeveniments."
 
 #: ../src/plugins/view/geoview.py:354
 msgid ""
 "Select the maps provider. You can choose between OpenStreetMap and Google "
 "maps."
-msgstr "Seleccionar el proveïdor de mapes. Pot triar entre OpenStreetMap i Google Maps."
+msgstr ""
+"Seleccionar el proveïdor de mapes. Pot triar entre OpenStreetMap i Google "
+"Maps."
 
 #: ../src/plugins/view/geoview.py:383
 msgid "Select the period for which you want to see the places."
@@ -18373,55 +18533,59 @@ msgstr "Tots"
 msgid "Zoom"
 msgstr "Ampliació"
 
-#: ../src/plugins/view/geoview.py:1049 ../src/plugins/view/geoview.py:1059
+#: ../src/plugins/view/geoview.py:1050 ../src/plugins/view/geoview.py:1060
 msgid "_Add Place"
 msgstr "_Afegir Lloc"
 
-#: ../src/plugins/view/geoview.py:1051 ../src/plugins/view/geoview.py:1061
+#: ../src/plugins/view/geoview.py:1052 ../src/plugins/view/geoview.py:1062
 msgid ""
 "Add the location centred on the map as a new place in Gramps. Double click "
 "the location to centre on the map."
-msgstr "Afegir la ubicació centrada al mapa com a nou lloc dins de Gramps. Faci doble clic a la ubicació per centrar-la al mapa."
+msgstr ""
+"Afegir la ubicació centrada al mapa com a nou lloc dins de Gramps. Faci "
+"doble clic a la ubicació per centrar-la al mapa."
 
-#: ../src/plugins/view/geoview.py:1054 ../src/plugins/view/geoview.py:1064
+#: ../src/plugins/view/geoview.py:1055 ../src/plugins/view/geoview.py:1065
 msgid "_Link Place"
 msgstr "Enllaçar _Lloc"
 
-#: ../src/plugins/view/geoview.py:1056 ../src/plugins/view/geoview.py:1066
+#: ../src/plugins/view/geoview.py:1057 ../src/plugins/view/geoview.py:1067
 msgid ""
 "Link the location centred on the map to a place in Gramps. Double click the "
 "location to centre on the map."
-msgstr "Enllaçar la ubicació centrada al mapa a un lloc de Gramps. Faci doble clic a la ubicació per centrar-la al mapa."
+msgstr ""
+"Enllaçar la ubicació centrada al mapa a un lloc de Gramps. Faci doble clic a "
+"la ubicació per centrar-la al mapa."
 
-#: ../src/plugins/view/geoview.py:1068 ../src/plugins/view/geoview.py:1082
+#: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
 msgid "_All Places"
 msgstr "_Tots els Llocs"
 
-#: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
+#: ../src/plugins/view/geoview.py:1070 ../src/plugins/view/geoview.py:1084
 msgid "Attempt to view all places in the family tree."
 msgstr "Intentar de veure tots els llocs de l'arbre genealògic."
 
-#: ../src/plugins/view/geoview.py:1071 ../src/plugins/view/geoview.py:1085
+#: ../src/plugins/view/geoview.py:1072 ../src/plugins/view/geoview.py:1086
 msgid "_Person"
 msgstr "_Persona"
 
-#: ../src/plugins/view/geoview.py:1073 ../src/plugins/view/geoview.py:1087
+#: ../src/plugins/view/geoview.py:1074 ../src/plugins/view/geoview.py:1088
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Intentar de veure tots els llocs on han viscut les persones seleccionades."
 
-#: ../src/plugins/view/geoview.py:1075 ../src/plugins/view/geoview.py:1089
+#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
 msgid "_Family"
 msgstr "_Família"
 
-#: ../src/plugins/view/geoview.py:1077 ../src/plugins/view/geoview.py:1091
+#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
 msgid "Attempt to view places of the selected people's family."
 msgstr "Intentar de veure els llocs de la família de la persona seleccionada."
 
-#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1079 ../src/plugins/view/geoview.py:1093
 msgid "_Event"
 msgstr "_Esdeveniment"
 
-#: ../src/plugins/view/geoview.py:1080 ../src/plugins/view/geoview.py:1094
+#: ../src/plugins/view/geoview.py:1081 ../src/plugins/view/geoview.py:1095
 msgid "Attempt to view places connected to all events."
 msgstr "Intentar de veure els llocs connectats amb tots els esdeveniments."
 
@@ -18537,11 +18701,11 @@ msgstr ""
 msgid "Not yet implemented ..."
 msgstr "No implementat, encara ..."
 
-#: ../src/plugins/view/geoview.py:2290
+#: ../src/plugins/view/geoview.py:2289
 msgid "Start page for the Geography View"
 msgstr "Pàgina d'inici per la Vista de Geografia"
 
-#: ../src/plugins/view/geoview.py:2291
+#: ../src/plugins/view/geoview.py:2290
 msgid ""
 "You don't see a map here for the following reasons :<br><ol><li>Your "
 "database is empty or not yet selected.</li><li>You have not yet selected a "
@@ -18557,7 +18721,9 @@ msgstr "Vista Geogràfica"
 msgid ""
 "The view showing events on an interactive internet map (internet connection "
 "needed"
-msgstr "La vista que mostra els esdeveniments en un mapa interactiu d'Internet (cal connexió a Internet)"
+msgstr ""
+"La vista que mostra els esdeveniments en un mapa interactiu d'Internet (cal "
+"connexió a Internet)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
@@ -19030,44 +19196,39 @@ msgstr "Vista d'Esdeveniment"
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
-msgstr ""
+msgstr "La vista que mostra tots els esdeveniments"
 
 #: ../src/plugins/view/view.gpr.py:47
-#, fuzzy
 msgid "Family View"
-msgstr "Famílies"
+msgstr "Vista de Família"
 
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
-msgstr ""
+msgstr "La vista que mostra totes les famílies"
 
 #: ../src/plugins/view/view.gpr.py:62
-#, fuzzy
 msgid "Gramplet View"
-msgstr "Gramplet"
+msgstr "Vista de Gramplets"
 
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
-msgstr ""
+msgstr "La vista que permet de veure els Gramplets"
 
 #: ../src/plugins/view/view.gpr.py:77
-#, fuzzy
 msgid "Media View"
-msgstr "Tipus de Medi"
+msgstr "Vista de Medis"
 
 #: ../src/plugins/view/view.gpr.py:78
-#, fuzzy
 msgid "The view showing all the media objects"
-msgstr "Si s'ha d'incloure una galeria d'objectes de medis audiovisuals"
+msgstr "La vista que mostra tots els objectes de medis audiovisuals"
 
 #: ../src/plugins/view/view.gpr.py:92
-#, fuzzy
 msgid "Note View"
-msgstr "Mida de la nota"
+msgstr "Vista de Notes"
 
 #: ../src/plugins/view/view.gpr.py:93
 msgid "The view showing all the notes"
-msgstr ""
+msgstr "La vista que mostra totes les notes"
 
 #: ../src/plugins/view/view.gpr.py:107
 #, fuzzy
@@ -19090,66 +19251,56 @@ msgid "The view showing an ancestor pedigree of the selected person"
 msgstr "Compta el nombre d'avantpassats de la persona seleccionada"
 
 #: ../src/plugins/view/view.gpr.py:137
-#, fuzzy
 msgid "Person Tree View"
-msgstr "Títol"
+msgstr "Vista de l'Arbre de Persones"
 
 #: ../src/plugins/view/view.gpr.py:138
-#, fuzzy
 msgid "The view showing all people in the family tree"
-msgstr "Intentar de veure tots els llocs de l'arbre genealògic."
+msgstr "La vista que mostra totes les persones de l'arbre genealògic"
 
 #: ../src/plugins/view/view.gpr.py:152
-#, fuzzy
 msgid "Person View"
-msgstr "Enllaç a Persona"
+msgstr "Vista de Persona"
 
 #: ../src/plugins/view/view.gpr.py:153
-#, fuzzy
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Intentar de veure tots els llocs de l'arbre genealògic."
+msgstr "La vista que mostra totes les persones de l'arbre genealògic en una llista plana"
 
 #: ../src/plugins/view/view.gpr.py:167
-#, fuzzy
 msgid "Place View"
-msgstr "Títol de lloc"
+msgstr "Vista de Llocs"
 
 #: ../src/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "The view showing all the places of the family tree"
-msgstr "Intentar de veure tots els llocs de l'arbre genealògic."
+msgstr "La vista que mostra tots els llocs de l'arbre genealògic"
 
 #: ../src/plugins/view/view.gpr.py:182
-#, fuzzy
 msgid "Repository View"
-msgstr "Repositoris"
+msgstr "Vista de Repositoris"
 
 #: ../src/plugins/view/view.gpr.py:183
 msgid "The view showing all the repositories"
-msgstr ""
+msgstr "La vista que mostra tots els repositoris"
 
 #: ../src/plugins/view/view.gpr.py:197
-#, fuzzy
 msgid "Source View"
-msgstr "Enllaç a Font"
+msgstr "Vista de Fonts"
 
 #: ../src/plugins/view/view.gpr.py:198
 msgid "The view showing all the sources"
-msgstr ""
+msgstr "La vista que mostra totes les fonts"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:119
 msgid "Alternate Locations"
 msgstr "Ubicacions Alternatives"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:128
-#, fuzzy
 msgid "Postal Code"
 msgstr "Codi Postal"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:131
-#, fuzzy
 msgid "State/ Province"
-msgstr "Estat/Província"
+msgstr "Estat/ Província"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:558
 msgid "Sealed to "
@@ -19166,7 +19317,6 @@ msgid " Created for <a href = \"%s\">%s</a>"
 msgstr " Creat per a <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1004
-#, fuzzy
 msgid "Html|Home"
 msgstr "Base"
 
@@ -19198,9 +19348,8 @@ msgstr "Contacte"
 #: ../src/plugins/webreport/NarrativeWeb.py:1058
 #: ../src/plugins/webreport/NarrativeWeb.py:4711
 #: ../src/plugins/webreport/NarrativeWeb.py:4832
-#, fuzzy
 msgid "Address Book"
-msgstr "Adreça: "
+msgstr "Agenda"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1308
 msgid "Gallery"
@@ -19214,9 +19363,8 @@ msgstr "Explicació"
 #. begin web title
 #: ../src/plugins/webreport/NarrativeWeb.py:1414
 #: ../src/plugins/webreport/NarrativeWeb.py:4738
-#, fuzzy
 msgid "Web Links"
-msgstr "Enllaços web"
+msgstr "Enllaços Web"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1476
 msgid "Confidence"
@@ -19269,37 +19417,34 @@ msgid "Letter"
 msgstr "Lletra"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2141
-#, fuzzy
 msgid "Place name | Name"
-msgstr "Nom de Lloc"
+msgstr " Nom de Lloc"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2278
-#, fuzzy
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type, date (if one is present), and gramps id, Clicking on an "
 "event&#8217;s Gramps ID will load a page for that event."
 msgstr ""
-"Aquesta pàgina conté un índex de tots els llocs de la base de dades, "
-"ordenats pel seu títol. Si es clica en un lloc, s'anirà a la pàgina d'aquest "
-"lloc."
+"Aquesta pàgina conté un índex de tots els esdeveniments de la base de dades, "
+"ordenats pel seu tipus, data (si n'hi ha), i Id gramps. Si es clica a l'Id Gramps d'un esdeveniment, s'anirà a la pàgina d'aquest esdeveniment."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2327
 #, python-format
 msgid "Event types beginning with %(eventtype)s"
-msgstr ""
+msgstr "Tipus d'esdeveniment que comencin per %(eventtype)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2591
 msgid "Previous"
 msgstr "Previ"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2592
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = "
 "\"GalleryTotal\">%(total_pages)d</strong>"
 msgstr ""
-"<strong id=\"GalleryCurrent\">%(page_number)d</strong> de <strong id="
+"<strong id = \"GalleryCurrent\">%(page_number)d</strong> de <strong id = "
 "\"GalleryTotal\">%(total_pages)d</strong>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2597
@@ -19308,14 +19453,12 @@ msgstr "Següent"
 
 #. missing media error message
 #: ../src/plugins/webreport/NarrativeWeb.py:2600
-#, fuzzy
 msgid "The file has been moved or deleted."
-msgstr "El fitxer s'ha mogut o esborrat"
+msgstr "El fitxer s'ha mogut o esborrat."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2735
-#, fuzzy
 msgid "File Type"
-msgstr "Tipus de fitxer"
+msgstr "Tipus de Fitxer"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2817
 msgid "Missing media object:"
@@ -19337,9 +19480,8 @@ msgstr ""
 "dades amb aquest mateix cognom."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2900
-#, fuzzy
 msgid "Number of People"
-msgstr "Nombre de persones"
+msgstr "Nombre de Persones"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3066
 msgid ""
@@ -19352,15 +19494,14 @@ msgstr ""
 "d'aquesta font."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3082
-#, fuzzy
 msgid "Source Name|Name"
-msgstr "Nota de Font"
+msgstr "Nom de Font"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3150
 msgid "Publication information"
 msgstr "Informació de publicació"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3197
+#:
 #, fuzzy
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
@@ -19370,32 +19511,27 @@ msgid ""
 msgstr ""
 "Aquesta pàgina conté un índex de tots els objectes audiovisuals de la base "
 "de dades, ordenats per títol. Si es clica al títol, s'anirà a la pàgina de "
-"cada objecte."
+"l'objecte corresponent. Si veu damunt d'una imatge, cliqui-la per veure'n la versió de mida sencera.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3216
-#, fuzzy
 msgid "Media | Name"
-msgstr "Nota de Medi Audiovisual"
+msgstr "Nom de Medi Audiovisual"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3218
-#, fuzzy
 msgid "Mime Type"
-msgstr "Tipus de Vista"
+msgstr "Tipus Mime"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3332
-#, fuzzy
 msgid "File Name"
-msgstr "Nom de fitxer"
+msgstr "Nom de Fitxer"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3334
-#, fuzzy
 msgid "License"
-msgstr "Llicència Matrimonial"
+msgstr "Llicència"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3335
-#, fuzzy
 msgid "Last Modified"
-msgstr "Última modificació"
+msgstr "Última Modificació"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3688
 msgid "Ancestors"
@@ -19406,7 +19542,6 @@ msgid "Associations"
 msgstr "Associacions"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3925
-#, fuzzy
 msgid "Nick Name"
 msgstr "Malnom"
 
@@ -19427,24 +19562,21 @@ msgid "Step Siblings"
 msgstr "Germanastres"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4579
-#, fuzzy
 msgid ""
 "This page contains an index of all the repositories in the database, sorted "
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
-"Aquesta pàgina conté un índex de totes les fonts de la base de dades, "
-"ordenades per títol. Si es clica al títol d'una font, s'anirà a la pàgina "
-"d'aquesta font."
+"Aquesta pàgina conté un índex de tots els repositoris de la base de dades, "
+"ordenats per títol. Si es clica al títol d'un repositori, s'anirà a la pàgina "
+"d'aquest repositori."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4594
-#, fuzzy
 msgid "Repository |Name"
-msgstr "Nota de Repositori"
+msgstr "Nom de Repositori"
 
 #. Internet Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4718
-#, fuzzy
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their surname. Selecting the person&#8217;s name will take you to their "
@@ -19452,7 +19584,7 @@ msgid ""
 msgstr ""
 "Aquesta pàgina conté un índex de tots els individus de la base de dades, "
 "ordenats per cognom. Seleccionar el nom de la persona el portarà a la pàgina "
-"individual d'aquesta persona."
+"individual d'aquesta persona a l'Agenda."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4985
 #, python-format
@@ -19482,21 +19614,19 @@ msgstr "Informe de Web Explicat"
 #: ../src/plugins/webreport/NarrativeWeb.py:5081
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr ""
+msgstr "Id=%(grampsid)s, camí=%(dir)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5086
-#, fuzzy
 msgid "Missing media objects:"
-msgstr "Falta objecte audiovisual:"
+msgstr "Objectes audiovisuals que falten:"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5175
 msgid "Creating individual pages"
 msgstr "Creant pàgines individuals"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5192
-#, fuzzy
 msgid "Creating GENDEX file"
-msgstr "Error de lectura al fitxer GEDCOM"
+msgstr "Creant fitxer GENDEX"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5232
 msgid "Creating surname pages"
@@ -19511,14 +19641,13 @@ msgid "Creating place pages"
 msgstr "Creant pàgines de lloc"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5273
-#, fuzzy
 msgid "Creating event pages"
-msgstr "Creant pàgines de lloc"
+msgstr "Creant pàgines d'esdeveniment"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5280
 #, python-format
 msgid "Creating event page %02d of %02d"
-msgstr ""
+msgstr "Creant pàgina d'esdeveniment %02d de %02d"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5290
 msgid "Creating media pages"
@@ -19526,14 +19655,12 @@ msgstr "Creant pàgines d'objectes audiovisuals"
 
 #. set progress bar pass for Repositories
 #: ../src/plugins/webreport/NarrativeWeb.py:5341
-#, fuzzy
 msgid "Creating repository pages"
-msgstr "Creant pàgines de font"
+msgstr "Creant pàgines de repositori"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5398
-#, fuzzy
 msgid "Creating address book pages ..."
-msgstr "Creant pàgines de lloc"
+msgstr "Creant pàgines d'agenda ..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5596
 msgid "Store web pages in .tar.gz archive"
@@ -19692,26 +19819,25 @@ msgstr "Si s'ha d'incloure una galeria d'objectes de medis audiovisuals"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5715
 msgid "Max width of initial image"
-msgstr ""
+msgstr "Amplada màxima d'imatge inicial"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5717
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
-msgstr ""
+msgstr "Això li permet de fixar l'amplada màxima de la imatge que es mostra a la pàgina d'audiovisuals. Deixar a 0 perquè no hi hagi límit."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5721
 msgid "Max height of initial image"
-msgstr ""
+msgstr "Alçada màxima d'imatge inicial"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5723
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
-msgstr ""
+msgstr "Això li permet de fixar l'alçada màxima de la imatge que es mostra a la pàgina d'audiovisuals. Deixar a 0 perquè no hi hagi límit."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5729
-#, fuzzy
 msgid "Suppress Gramps ID"
 msgstr "Suprimir Id Gramps"
 
@@ -19772,62 +19898,53 @@ msgid "Whether to include a database download option"
 msgstr "Si s'ha d'incloure una opció per baixar-se la base de dades"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5779
-#, fuzzy
 msgid "Download page note"
-msgstr "Nota de la pàgina inicial"
+msgstr "Nota de la pàgina de baixades"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5780
-#, fuzzy
 msgid "A note to be used on the download page"
-msgstr "Una nota per utilitzar a la pàgina inicial"
+msgstr "Una nota per utilitzar a la pàgina de baixades"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5783
 #: ../src/plugins/webreport/NarrativeWeb.py:5792
-#, fuzzy
 msgid "Download Filename"
-msgstr "Nom de fitxer no vàlid"
+msgstr "Nom de fitxer de baixada"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5785
 #: ../src/plugins/webreport/NarrativeWeb.py:5794
 msgid "File to be used for downloading of database"
-msgstr ""
+msgstr "Fitxer a utilitzar per baixar la base de dades"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
-#, fuzzy
 msgid "Description for download"
-msgstr "Descripció"
+msgstr "Descripció per baixada"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5788
-#, fuzzy
 msgid "Smith Family Tree"
-msgstr "Arbre genealògic"
+msgstr "Arbre genealògic dels Smith"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5789
 #: ../src/plugins/webreport/NarrativeWeb.py:5798
 msgid "Give a description for this file."
-msgstr ""
+msgstr "Donar una descripció per aquest fitxer."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
-#, fuzzy
 msgid "Johnson Family Tree"
-msgstr "Arbre genealògic"
+msgstr "Arbre genealògic dels Johnson"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
-#, fuzzy
 msgid "Download Copyright License"
-msgstr "Sense nota de copyright"
+msgstr "Llicència de Copyright per la baixada"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5804
-#, fuzzy
 msgid "The copyright to be used for ths download file?"
-msgstr "El copyright que s'ha de fer servir per als fitxers web"
+msgstr "El copyright que s'ha de fer servir per als fitxers de baixada?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5813
 #: ../src/plugins/webreport/WebCal.py:1525
-#, fuzzy
 msgid "Advanced Options"
-msgstr "Opcions de Paper"
+msgstr "Opcions Avançades"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5815
 #: ../src/plugins/webreport/WebCal.py:1527
@@ -19891,70 +20008,64 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5849
 msgid "Sort all children in birth order"
-msgstr ""
+msgstr "Ordenar tots els fills per ordre de naixement"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5850
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Si s'han de mostrar els fills per ordre de naixement o per ordre d'introducció"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5854
-#, fuzzy
 msgid "Include event pages"
-msgstr "Incloure esdeveniments"
+msgstr "Incloure pàgines d'esdeveniments"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5855
 msgid "Add a complete events list and relevant pages or not"
-msgstr ""
+msgstr "Afegir una llista completa d'esdeveniments i les pàgines rellevants o no"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5858
-#, fuzzy
 msgid "Include repository pages"
-msgstr "Incloure fonts"
+msgstr "Incloure pàgines de repositori"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5859
-#, fuzzy
 msgid "Whether to include the Repository Pages or not?"
-msgstr "Si s'han d'incloure altres noms."
+msgstr "Si s'han d'incloure les Pàgines de Repositori o no"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5862
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr ""
+msgstr "Incloure fitxer GENDEX (/gendex.txt)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5863
-#, fuzzy
 msgid "Whether to include a GENDEX file or not"
-msgstr "Si s'ha d'incloure una columna de naixements"
+msgstr "Si s'ha d'incloure un fitxer GENDEX o no"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5866
-#, fuzzy
 msgid "Include address book pages"
-msgstr "Incloure adreces"
+msgstr "Incloure pàgines d'agenda"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid ""
 "Whether to add Address Book pages or not which can include e-mail and "
 "website addresses and personal address/ residence events?"
-msgstr ""
+msgstr "Si s'han d'afegir o no pàgines d'Agenda, que poden incloure adreces de correu i de web o esdeveniments d'adreça personal/residència."
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:304
 #, python-format
 msgid "Calculating Holidays for year %04d"
-msgstr ""
+msgstr "Calculant Festes per l'any %04d"
 
 #: ../src/plugins/webreport/WebCal.py:453
-#, fuzzy, python-format
+#, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr "Created per a <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
+msgstr "Creat per a <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
 #: ../src/plugins/webreport/WebCal.py:457
-#, fuzzy, python-format
+#, python-format
 msgid "Created for %(author)s"
-msgstr "Creat per a %(author)s\n"
+msgstr "Creat per a %(author)s"
 
 #. An optional link to a home page
 #: ../src/plugins/webreport/WebCal.py:529
-#, fuzzy
 msgid "html|Home"
 msgstr "Base"
 
@@ -19972,9 +20083,8 @@ msgstr "Donant format als mesos ..."
 #. Number of directory levels up to get to root
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:901
-#, fuzzy
 msgid "Creating Year At A Glance calendar"
-msgstr "Creant calendaris d'Any en un Cop d'Ull"
+msgstr "Creant calendari d'Any en un Cop d'Ull"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:907
@@ -20004,7 +20114,7 @@ msgstr "%(spouse)s i %(person)s"
 
 #. Display date as user set in preferences
 #: ../src/plugins/webreport/WebCal.py:1209
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
 msgstr "Generat per <a href=\"http://gramps-project.org\">Gramps</a> el %(date)s"
 
@@ -20054,9 +20164,8 @@ msgid "End Year for the Calendar(s)"
 msgstr "Any final per al(s) calendari(s)"
 
 #: ../src/plugins/webreport/WebCal.py:1410
-#, fuzzy
 msgid "Enter the ending year for the calendars between 1900 - 3000."
-msgstr "Introdueixi l'any d'inici per als calendaris entre 1900 i 3000"
+msgstr "Introdueixi l'any final per als calendaris entre 1900 i 3000."
 
 #: ../src/plugins/webreport/WebCal.py:1427
 msgid "Holidays will be included for the selected country"
@@ -20077,36 +20186,32 @@ msgid "Jan - Jun Notes"
 msgstr "Notes Gen - Jun"
 
 #: ../src/plugins/webreport/WebCal.py:1470
-#, fuzzy
 msgid "January Note"
-msgstr "Nota Gen"
+msgstr "Nota Gener"
 
 #: ../src/plugins/webreport/WebCal.py:1471
 msgid "The note for the month of January"
 msgstr "La nota per al mes de gener"
 
 #: ../src/plugins/webreport/WebCal.py:1474
-#, fuzzy
 msgid "February Note"
-msgstr "Nota Feb"
+msgstr "Nota Febrer"
 
 #: ../src/plugins/webreport/WebCal.py:1475
 msgid "The note for the month of February"
 msgstr "La nota per al mes de febrer"
 
 #: ../src/plugins/webreport/WebCal.py:1478
-#, fuzzy
 msgid "March Note"
-msgstr "Nota Mar"
+msgstr "Nota Març"
 
 #: ../src/plugins/webreport/WebCal.py:1479
 msgid "The note for the month of March"
 msgstr "La nota per al mes de març"
 
 #: ../src/plugins/webreport/WebCal.py:1482
-#, fuzzy
 msgid "April Note"
-msgstr "Nota Abr"
+msgstr "Nota Abril"
 
 #: ../src/plugins/webreport/WebCal.py:1483
 msgid "The note for the month of April"
@@ -20121,9 +20226,8 @@ msgid "The note for the month of May"
 msgstr "La nota per al mes de maig"
 
 #: ../src/plugins/webreport/WebCal.py:1490
-#, fuzzy
 msgid "June Note"
-msgstr "Nota Jun"
+msgstr "Nota Juny"
 
 #: ../src/plugins/webreport/WebCal.py:1491
 msgid "The note for the month of June"
@@ -20134,63 +20238,56 @@ msgid "Jul - Dec Notes"
 msgstr "Notes Jul - Des"
 
 #: ../src/plugins/webreport/WebCal.py:1496
-#, fuzzy
 msgid "July Note"
-msgstr "Nota Jul"
+msgstr "Nota Juliol"
 
 #: ../src/plugins/webreport/WebCal.py:1497
 msgid "The note for the month of July"
 msgstr "La nota per al mes de juliol"
 
 #: ../src/plugins/webreport/WebCal.py:1500
-#, fuzzy
 msgid "August Note"
-msgstr "Nota Ago"
+msgstr "Nota Agost"
 
 #: ../src/plugins/webreport/WebCal.py:1501
 msgid "The note for the month of August"
 msgstr "La nota per al mes d'agost"
 
 #: ../src/plugins/webreport/WebCal.py:1504
-#, fuzzy
 msgid "September Note"
-msgstr "Nota Set"
+msgstr "Nota Setembre"
 
 #: ../src/plugins/webreport/WebCal.py:1505
 msgid "The note for the month of September"
 msgstr "La nota per al mes de setembre"
 
 #: ../src/plugins/webreport/WebCal.py:1508
-#, fuzzy
 msgid "October Note"
-msgstr "Nota Oct"
+msgstr "Nota Octubre"
 
 #: ../src/plugins/webreport/WebCal.py:1509
 msgid "The note for the month of October"
 msgstr "La nota per al mes d'octubre"
 
 #: ../src/plugins/webreport/WebCal.py:1512
-#, fuzzy
 msgid "November Note"
-msgstr "Nota Nov"
+msgstr "Nota Novembre"
 
 #: ../src/plugins/webreport/WebCal.py:1513
 msgid "The note for the month of November"
 msgstr "La nota per al mes de novembre"
 
 #: ../src/plugins/webreport/WebCal.py:1516
-#, fuzzy
 msgid "December Note"
-msgstr "Nota Des"
+msgstr "Nota Desembre"
 
 #: ../src/plugins/webreport/WebCal.py:1517
 msgid "The note for the month of December"
 msgstr "La nota per al mes de desembre"
 
 #: ../src/plugins/webreport/WebCal.py:1533
-#, fuzzy
 msgid "Create \"Year At A Glance\" Calendar"
-msgstr "Crear Calendari(s) \"Any en un Cop d'Ull\""
+msgstr "Crear Calendari \"Any en un Cop d'Ull\""
 
 #: ../src/plugins/webreport/WebCal.py:1534
 msgid "Whether to create A one-page mini calendar with dates highlighted"
@@ -20199,33 +20296,28 @@ msgstr ""
 "ressaltades"
 
 #: ../src/plugins/webreport/WebCal.py:1538
-#, fuzzy
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Creant calendaris d'Any en un Cop d'Ull"
+msgstr "Crear pàgines d'esdeveniment d'un dia per al calendari d'Any en un Cop d'Ull"
 
 #: ../src/plugins/webreport/WebCal.py:1540
-#, fuzzy
 msgid "Whether to create one day pages or not"
-msgstr "Si s'han de crear múltiples calendaris d'any o no."
+msgstr "Si s'han de crear pàgines d'un dia o no"
 
 #: ../src/plugins/webreport/WebCal.py:1543
-#, fuzzy
 msgid "Link to Narrated Web Report"
-msgstr "Informe de Web Explicat"
+msgstr "Enllaçar a l'Informe de Web Explicat"
 
 #: ../src/plugins/webreport/WebCal.py:1544
-#, fuzzy
 msgid "Whether to link data to web report or not"
-msgstr "Si s'han d'incloure notes per als pares."
+msgstr "Si s'han d'enllaçar les dades cap a l'informe web o no"
 
 #: ../src/plugins/webreport/WebCal.py:1548
-#, fuzzy
 msgid "Link prefix"
-msgstr "prefix"
+msgstr "Prefix d'enllaç"
 
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
+msgstr "Un prefix als enllaços que et porti a l'Informe de Web Explicat"
 
 #: ../src/plugins/webreport/WebCal.py:1728
 #, python-format
@@ -20318,7 +20410,7 @@ msgstr "Desar Com"
 
 #: ../src/PluginUtils/_GuiOptions.py:1332
 #: ../src/ReportBase/_ReportDialog.py:287
-#: ../src/ReportBase/_StyleEditor.py:100
+#: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style Editor"
 msgstr "Editor d'Estils"
 
@@ -20444,7 +20536,7 @@ msgstr ""
 #: ../src/PluginUtils/_PluginWindows.py:404
 #: ../src/PluginUtils/_PluginWindows.py:494
 msgid "Reading gramps-project.org..."
-msgstr ""
+msgstr "Llegint gramps-project.org..."
 
 #: ../src/PluginUtils/_PluginWindows.py:422
 #, fuzzy
@@ -20452,23 +20544,20 @@ msgid "Checking addon..."
 msgstr "Recollint dades..."
 
 #: ../src/PluginUtils/_PluginWindows.py:430
-#, fuzzy
 msgid "Unknown Help URL"
-msgstr "Desconegut"
+msgstr "URL d'Ajuda Desconeguda"
 
 #: ../src/PluginUtils/_PluginWindows.py:441
-#, fuzzy
 msgid "Unknown URL"
-msgstr "Desconegut"
+msgstr "URL Desconeguda"
 
 #: ../src/PluginUtils/_PluginWindows.py:477
 msgid "Install all Addons"
 msgstr ""
 
 #: ../src/PluginUtils/_PluginWindows.py:477
-#, fuzzy
 msgid "Installing..."
-msgstr "Calculant...\n"
+msgstr "Instal·lant..."
 
 #: ../src/PluginUtils/_PluginWindows.py:493
 msgid "Installing Addon"
@@ -20478,47 +20567,47 @@ msgstr ""
 #: ../src/PluginUtils/_PluginWindows.py:528
 #, python-format
 msgid "Unable to open '%s'"
-msgstr ""
+msgstr "No es pot obrir '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:539
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr ""
+msgstr "Error: no es pot obrir '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:542
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr ""
+msgstr "Error: tipus de fitxer desconegut: '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:547
-#, fuzzy, python-format
+#, python-format
 msgid "Examining '%s'..."
-msgstr "Traient '%s'..."
+msgstr "Examinant '%s'..."
 
 #: ../src/PluginUtils/_PluginWindows.py:559
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr ""
+msgstr "Error en fitxer '%s': no es pot carregar."
 
 #: ../src/PluginUtils/_PluginWindows.py:571
 #, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr ""
+msgstr "'%s' és per aquesta versió de Gramps."
 
 #: ../src/PluginUtils/_PluginWindows.py:576
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
-msgstr ""
+msgstr "Error: falta gramps_target_version = '3.2' a '%s'..."
 
 #: ../src/PluginUtils/_PluginWindows.py:580
-#, fuzzy, python-format
+#, python-format
 msgid "Installing '%s'..."
-msgstr "Traient '%s'..."
+msgstr "Instal·lant '%s'..."
 
 #: ../src/PluginUtils/_PluginWindows.py:590
 #, python-format
 msgid "Registered '%s'"
-msgstr ""
+msgstr "Registrat '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:599
 msgid "Load Addon"
@@ -20538,7 +20627,7 @@ msgstr "OK"
 
 #: ../src/PluginUtils/_PluginWindows.py:817
 msgid "Plugin Error"
-msgstr ""
+msgstr "Error de Connector"
 
 #: ../src/PluginUtils/_Tool.py:56
 msgid "Debug"
@@ -20594,7 +20683,7 @@ msgstr "Mida Personalitzada"
 
 #: ../src/ReportBase/_CommandLineReport.py:403
 msgid "Failed to write report. "
-msgstr ""
+msgstr "No s'ha pogut escriure l'informe. "
 
 #: ../src/ReportBase/_Constants.py:43
 msgid "Text Reports"
@@ -20681,9 +20770,8 @@ msgid "Open with default viewer"
 msgstr "Obrir amb el visor predeterminat"
 
 #: ../src/ReportBase/_DocReportDialog.py:198
-#, fuzzy
 msgid "CSS file"
-msgstr "Seleccionar fitxer"
+msgstr "Fitxer CSS"
 
 #: ../src/ReportBase/_Endnotes.py:50
 msgid "The basic style used for the endnotes source display."
@@ -20694,9 +20782,8 @@ msgid "The basic style used for the endnotes reference display."
 msgstr "L'estil bàsic utilitzat per mostrar la referència de les notes finals."
 
 #: ../src/ReportBase/_Endnotes.py:65
-#, fuzzy
 msgid "The basic style used for the endnotes notes display."
-msgstr "L'estil bàsic utilitzat per mostrar la font de les notes finals."
+msgstr "L'estil bàsic utilitzat per mostrar les notes de les notes finals."
 
 #: ../src/ReportBase/_Endnotes.py:109
 msgid "Endnotes"
@@ -20809,9 +20896,8 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr "Gràfics Vectorials Estructurats (SVG)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:833
-#, fuzzy
 msgid "Compressed Structured Vector Graphs (SVGZ)"
-msgstr "Gràfics Vectorials Estructurats (SVG) Comprimit"
+msgstr "Gràfics Vectorials Estructurats Comprimits (SVGZ)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:839
 msgid "JPEG image"
@@ -20860,7 +20946,6 @@ msgid "Number of Horizontal Pages"
 msgstr "Nombre de Pàgines en Horitzontal"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:963
-#, fuzzy
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -20868,14 +20953,13 @@ msgid ""
 msgstr ""
 "GraphViz pot crear grafs molt grans estenent el graf per una graella "
 "rectangular de pàgines. Això controla el nombre de pàgines de la graella en "
-"horitzontal. Només és vàlid per dot, postscript i pdf via Ghostscript."
+"horitzontal. Només és vàlid per dot i pdf via Ghostscript."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:970
 msgid "Number of Vertical Pages"
 msgstr "Nombre de Pàgines en Vertical"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:971
-#, fuzzy
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -20883,7 +20967,7 @@ msgid ""
 msgstr ""
 "GraphViz pot crear grafs molt grans estenent el graf per una graella "
 "rectangular de pàgines. Això controla el nombre de pàgines de la graella en "
-"vertical. Només és vàlid per dot, postscript i pdf via Ghostscript."
+"vertical. Només és vàlid per dot i pdf via Ghostscript."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:978
 msgid "Paging Direction"
@@ -20958,14 +21042,10 @@ msgid "Use subgraphs"
 msgstr "Uilitzar subgrafs"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1037
-#, fuzzy
 msgid ""
 "Subgraphs can help GraphViz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
-msgstr ""
-"Els subgrafs poden ajudar a GraphViz a col·locar alguns nodes enllaçats més "
-"junts entre si, però per grafs no trivials donarà com a resultat línies més "
-"llargues i grafs més grans."
+msgstr "Els subgrafs poden ajudar a GraphViz a col·locar els cònjuges junts, però per grafs no trivials donarà com a resultat línies més llargues i grafs més grans."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:1047
@@ -21015,7 +21095,7 @@ msgstr "Configuració"
 
 #. Styles Frame
 #: ../src/ReportBase/_ReportDialog.py:283
-#: ../src/ReportBase/_StyleEditor.py:104
+#: ../src/ReportBase/_StyleEditor.py:105
 msgid "Style"
 msgstr "Estil"
 
@@ -21082,23 +21162,23 @@ msgstr ""
 msgid "Document Styles"
 msgstr "Estils de Document"
 
-#: ../src/ReportBase/_StyleEditor.py:142
+#: ../src/ReportBase/_StyleEditor.py:143
 msgid "Error saving stylesheet"
 msgstr "Error desant document d'estil"
 
-#: ../src/ReportBase/_StyleEditor.py:209
+#: ../src/ReportBase/_StyleEditor.py:215
 msgid "Style editor"
 msgstr "Editor d'estils"
 
-#: ../src/ReportBase/_StyleEditor.py:210 ../src/glade/styleeditor.glade.h:34
+#: ../src/ReportBase/_StyleEditor.py:216 ../src/glade/styleeditor.glade.h:34
 msgid "point size|pt"
 msgstr "pts"
 
-#: ../src/ReportBase/_StyleEditor.py:212
+#: ../src/ReportBase/_StyleEditor.py:218
 msgid "Paragraph"
 msgstr "Paràgraf"
 
-#: ../src/ReportBase/_StyleEditor.py:243
+#: ../src/ReportBase/_StyleEditor.py:249
 msgid "No description available"
 msgstr "Sense descripció"
 
@@ -21148,14 +21228,13 @@ msgid "Objects changed after <date time>"
 msgstr "Objectes canviats després de <data hora>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
-#, fuzzy
 msgid ""
 "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in range, if a second date/time is given."
 msgstr ""
 "Concorda amb registres d'objecte canviats després d'una data/hora "
 "especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data/"
-"hora"
+"hora."
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
@@ -21245,7 +21324,6 @@ msgid "Object with <Id>"
 msgstr "Objecte amb <Id>"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:47
-#, fuzzy
 msgid "Matches objects with a specified Gramps ID"
 msgstr "Concorda objectes amb un Id Gramps concret"
 
@@ -21314,7 +21392,6 @@ msgid "Objects with <Id>"
 msgstr "Objectes amb <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
-#, fuzzy
 msgid "Matches objects whose Gramps ID matches the regular expression"
 msgstr "Concorda amb objectes l'Id Gramps dels quals concordi amb l'expressió regular"
 
@@ -21339,19 +21416,17 @@ msgid "Persons changed after <date time>"
 msgstr "Persones modificades després de <data hora>"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
-#, fuzzy
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Concorda amb registres de persona modificats després d'una data-hora "
 "especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data-"
-"hora"
+"hora."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
-#, fuzzy
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Camí de parentesc entre <persones>"
+msgstr "Camí de parentesc entre <persona> i la gent que compleixi el <filtre>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -21366,7 +21441,7 @@ msgid ""
 "filter.  This produces a set of relationship paths (including by marriage) "
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
-msgstr ""
+msgstr "Busca per la base de dades començant des d'una persona especificada i retorna tothom entre aquesta persona i un grup de persones objectiu especificades amb un filtre. Això produeix un conjunt de camins de parentesc (inclosos els de casament) entre la persona especificada i el grup objectiu. Cada camí no és necessàriament el més curt."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
 msgid "Finding relationship paths"
@@ -24399,8 +24474,7 @@ msgid ""
 msgstr ""
 "A sota hi ha una llista dels malnoms, títols i prefixos de nom familiar que "
 "Gramps pot extreure de la \n"
-"base de dades actual. Si accepta els canvis, Gramps modificarà les "
-"entrades\n"
+"base de dades actual. Si accepta els canvis, Gramps modificarà les entrades\n"
 "que s'han seleccionat."
 
 #: ../src/plugins/tool/patchnames.glade.h:4
@@ -24630,6 +24704,10 @@ msgid ""
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
+"<b>Afegir Fills</b><br/>Per afegir fills a Gramps hi ha dues opcions. Es pot "
+"trobar un dels pares a la Vista de Famílies i obrir la família. Llavors es "
+"pot triar si es crea una persona nova o se n'hi afegeix una d'existent. "
+"També es poden afegir fills (o germans) des de dins de l'Editor de Famílies."
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
@@ -24637,7 +24715,11 @@ msgid ""
 "View by dragging and dropping it from a file manager or a web browser. "
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
-msgstr "<b>Afegir Imatges</b><br/>Es pot afegir una imatge a qualsevol galeria o a la Vista de Medis Audiovisuals arrossegant-la i deixant-la des d'un gestor de fitxers o un navegador. De fet es pot afegir qualsevol tipus de fitxer així; és útil per documents escanejats i altres fonts digitals."
+msgstr ""
+"<b>Afegir Imatges</b><br/>Es pot afegir una imatge a qualsevol galeria o a "
+"la Vista de Medis Audiovisuals arrossegant-la i deixant-la des d'un gestor "
+"de fitxers o un navegador. De fet es pot afegir qualsevol tipus de fitxer "
+"així; és útil per documents escanejats i altres fonts digitals."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
@@ -24645,49 +24727,41 @@ msgid ""
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and setting. "
 "Play with the settings to see the different options."
-msgstr "<b>Vista d'Avantpassats</b><br/>La Vista d'Avantpassats mostra un esquema de pedigrí tradicional. Mantingui el ratolí sobre un individu per veure'n més informació o faci clic dret sobre algú per accedir a altres membres de la família i configuracions. Provi les configuracions per veure les diferents opcions."
+msgstr ""
+"<b>Vista d'Avantpassats</b><br/>La Vista d'Avantpassats mostra un esquema de "
+"pedigrí tradicional. Mantingui el ratolí sobre un individu per veure'n més "
+"informació o faci clic dret sobre algú per accedir a altres membres de la "
+"família i configuracions. Provi les configuracions per veure les diferents "
+"opcions."
 
 #: ../src/data/tips.xml.in.h:4
-#, fuzzy
 msgid ""
 "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; "
 "Book Report...&quot;, allows you to collect a variety of reports into a "
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"L'informe de Llibre, <b>Informes &gt; Llibres &gt; Informe de Llibre</b>, "
-"permet als usuaris de recopilar un reguitzell d'informes en un sol document. "
-"Aquest informe únic és més fàcil de distribuir que informes múltiples, "
-"especialment quan s'imprimeix."
+"<b>Informes de Llibre</b><br/>L'informe de Llibre, a &quot;Informes &gt; "
+"Llibres &gt; Informe de Llibre...&quot;, li permet de recopilar un "
+"reguitzell d'informes en un sol document. Aquest informe únic és més fàcil "
+"de distribuir que informes múltiples, especialment quan s'imprimeix."
 
 #: ../src/data/tips.xml.in.h:5
-#, fuzzy
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
 "make that person the Active Person. To bookmark someone make them the Active "
 "Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. "
 "You can also bookmark most of the other objects."
-msgstr ""
-"<b>Marcar Individus com a Punts d'Interès</b>: El menú de Punts d'Interès al "
-"capdamunt de la finestra és un lloc pràctic per guardar els noms de persones "
-"que es facin servir sovint. Clicar en un punt d'interès farà que aquesta "
-"persona sigui l'Activa. Per crear un punt d'interès per una persona, cal fer-"
-"la la Persona Activa, fer clic amb el botó dret sobre el seu nom, i "
-"seleccionar 'afegir punt d'interès'."
+msgstr "<b>Marcar Individus com a Punts d'Interès</b><br/>El menú de Punts d'Interès és un lloc pràctic per guardar els noms de persones que es facin servir sovint. Seleccionar un punt d'interès farà que aquesta persona sigui l'Activa. Per crear un punt d'interès per alguna persona, cal fer-la la Persona Activa, i llavors anar a &quot;Punts d'Interes &gt; Afegir punt d'interès&quot; o prémer Ctrl+D. També es poden posar com a punts d'interès la majoria dels altre objectes."
 
 #: ../src/data/tips.xml.in.h:6
-#, fuzzy
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under &quot;Tools &gt; "
 "Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
 "well as all common ancestors are reported."
-msgstr ""
-"<b>Càlcul de Parentesc</b>: Aquesta eina, sota <b>Eines &gt; Utilitats &gt; "
-"Calculadora de Parentesc</b> permet de comprovar si algú de la família està "
-"emparentat (per sang, no casament) amb vostè. S'informa del parentesc precís "
-"així com dels avantpassats en comú."
+msgstr "<b>Càlcul de Parentesc</b><br/>Per comprovar si dues persones de la base de dades estan emparentades (per sang, no casament) provi l'eina que hi ha a &quot;Eines &gt; Utilitats &gt; Calculadora de Parentesc...&quot;. S'informa del parentesc precís així com dels avantpassats en comú."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -24951,7 +25025,10 @@ msgid ""
 "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the "
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
-msgstr "<b>Dreceres de Teclat</b><br/>Està cansat de treure la mà del teclat per fer servir el ratolí? Moltes funcions de Gramps tenen dreceres de teclat. Si n'hi ha una per alguna funció, es mostra a la banda dreta del menú."
+msgstr ""
+"<b>Dreceres de Teclat</b><br/>Està cansat de treure la mà del teclat per fer "
+"servir el ratolí? Moltes funcions de Gramps tenen dreceres de teclat. Si "
+"n'hi ha una per alguna funció, es mostra a la banda dreta del menú."
 
 #: ../src/data/tips.xml.in.h:28
 msgid ""
@@ -24970,8 +25047,12 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Trobar Persones</b><br/>Per defecte, cada cognom de la Vista de Persones es llista només un cop. Clicant a la fletxa de l'esquerra d'un nom, la llista "
-"s'expandeix per mostrar tots els individus amb aquest cognom. Per localitzar qualsevol Nom de Família d'una llista llarga, seleccioni un Nom de Família (no una persona) i comenci a escriure'l. La vista saltarà al primer Nom de Família que concordi amb les lletres que escrigui."
+"<b>Trobar Persones</b><br/>Per defecte, cada cognom de la Vista de Persones "
+"es llista només un cop. Clicant a la fletxa de l'esquerra d'un nom, la "
+"llista s'expandeix per mostrar tots els individus amb aquest cognom. Per "
+"localitzar qualsevol Nom de Família d'una llista llarga, seleccioni un Nom "
+"de Família (no una persona) i comenci a escriure'l. La vista saltarà al "
+"primer Nom de Família que concordi amb les lletres que escrigui."
 
 #: ../src/data/tips.xml.in.h:30
 msgid ""
@@ -24979,7 +25060,12 @@ msgid ""
 "to a web page. Select the entire database, family lines or selected "
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web. The Gramps project provides free hosting of websites made with Gramps."
-msgstr "<b>Fer un Lloc Web Genealògic</b><br/>Pot exportar fàcilment el seu arbre genealògic a una pàgina web. Seleccioni la base de dades sencera, línies familiars o individus concrets i creï una col·lecció de pàgines web a punt de pujar a un servidor web. El projecte Gramps proporciona l'hostatjament gratuït per webs fets amb Gramps."
+msgstr ""
+"<b>Fer un Lloc Web Genealògic</b><br/>Pot exportar fàcilment el seu arbre "
+"genealògic a una pàgina web. Seleccioni la base de dades sencera, línies "
+"familiars o individus concrets i creï una col·lecció de pàgines web a punt "
+"de pujar a un servidor web. El projecte Gramps proporciona l'hostatjament "
+"gratuït per webs fets amb Gramps."
 
 #: ../src/data/tips.xml.in.h:31
 msgid ""
