@@ -157,9 +157,13 @@ class PrintVlliers(Printinfo):
         self.num = {0:1}
     
     def print_person(self, level, person):
-        self.doc.start_paragraph("DR-Level%d" % min(level, 32),
-                                 self.pama[level-1] +
-                                 str(self.num[level-1]) + ".")
+        
+        num = self.pama[level-1]
+        if level > 1:
+            num += str(self.num[level-1])
+        num += "."
+        
+        self.doc.start_paragraph("DR-Level%d" % min(level, 32), num)
         mark = ReportUtils.get_person_mark(self.database, person)
         self.doc.write_text(name_displayer.display(person), mark)
         self.dump_dates(person)
