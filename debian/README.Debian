@@ -3,9 +3,16 @@ gramps for Debian
 
 This is the Debian package of GRAMPS.
 
-If you do not install python-reportlab (gramps Recommends it be
-installed) then you will be able to create usable PDF files only if
-your database contains solely latin (iso-8859-1) characters. Reportlab
-will generate PDF files containing non-latin characters although they
-are quite large as the font must be included in the file.
+Regarding the extra dependencies:
 
+Recommends: graphviz
+  Enable creation of graphs 
+Recommends: python-gtkmozembed
+Recommends: python-webkit
+  Enable html rendering for Geographic view and Web view. If both
+  are installed webkit will be used. python-gtkmozembed may be more
+  stable.
+Suggests: ttf-freefont
+  Allows more fonts in reports
+Suggests: python-gtkspell python-enchant
+  allows spell checking in the notes. Both need to be installed.

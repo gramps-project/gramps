@@ -1,20 +1,265 @@
-gramps (3.0.0-1) gutsy; urgency=low
+gramps (3.2.0-0beta1) unstable; urgency=low
+
+  * New upstream release
+  * works with gtk 2.19. Closes: #566958
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 05 Mar 2010 14:05:39 -0500
+
+gramps (3.1.3-2) unstable; urgency=low
+
+  * Switch to dpkg-source 3.0 (quilt) format
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 05 Jan 2010 20:04:30 -0500
+
+gramps (3.1.3-1) unstable; urgency=low
 
   * New upstream release
 
- -- Stephane Charette <stephanecharette@gmail.com>  Mon, 31 Mar 2008 19:42:05 -0700
+ -- James A. Treacy <treacy@debian.org>  Sun, 06 Dec 2009 13:46:48 -0500
 
-gramps (2.90.0-0beta) unstable; urgency=low
+gramps (3.1.2-2) unstable; urgency=low
+
+  * allow python >= 2.5. Closes: #547150
+  * fix Relationship Graph to use new format for URLs. Closes: #532559
+  * Web report creation fixed. Closes: #537355
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 17 Nov 2009 11:38:43 -0500
+
+gramps (3.1.2-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * debian/control: drop Recommends on python-gnome2-desktop: it is now
+    gone and none of its modules are used anyhow (Closes: #541560)
+
+ -- Stefano Zacchiroli <zack@debian.org>  Thu, 08 Oct 2009 13:52:35 +0200
+
+gramps (3.1.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Replace Recommends on python-gnome2-extras with python-gtkspell
+  * Do not create the directory /etc/gconf/schemas/. Closes: Bug#525683
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 07 Jun 2009 14:01:16 -0400
+
+gramps (3.1.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 10 Mar 2009 09:26:52 -0400
+
+gramps (3.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * link /usr/share/common-licenses/GPL-2 from /usr/share/gramps/COPYING
+    so gramps can find the file.
+
+ -- James A. Treacy <treacy@debian.org>  Sat, 07 Mar 2009 22:03:09 -0500
+
+gramps (3.0.4-1) unstable; urgency=low
+
+  * New upstream version. Closes: #506621, #506818
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 07 Dec 2008 21:39:55 -0500
+
+gramps (3.0.3-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 20 Oct 2008 20:43:35 -0400
+
+gramps (3.0.2-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- James A. Treacy <treacy@debian.org>  Sat, 27 Sep 2008 17:25:09 -0400
+
+gramps (3.0.1-2) unstable; urgency=low
+
+  * Remove dependency on gnome-doc-utils and scrollkeeper
+  * Disable spell checking in src/Spell.py due to the spell checker
+    crashing. Closes: #492212
+    Spell checking will be reenabled once the offending package is
+    identified and fixed.
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 29 Aug 2008 11:09:04 -0400
+
+gramps (3.0.1-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 19 May 2008 09:38:28 -0400
+
+gramps (3.0.0-6) unstable; urgency=low
+
+  * Fix typo in _EditChildRef.py which can cause gramps to crash. Closes: #476163
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 15 Apr 2008 23:37:04 -0400
+
+gramps (3.0.0-5) unstable; urgency=low
+
+  * Remove gtkspell Recommends as it is now provided by python-gnome2-extras.
+    Closes: Bug#474755
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 07 Apr 2008 17:25:18 -0400
+
+gramps (3.0.0-4) unstable; urgency=low
+
+  * Fix the binary package python dependency properly. A recent python
+    (>= 2.4.4-6) is needed to ensure python2.5 is supported properly.
+    Closes: #474056
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 03 Apr 2008 09:46:28 -0400
+
+gramps (3.0.0-3) unstable; urgency=low
+
+  * Build-Depends on Python2.5. Closes: Bug#473946, #474056
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 02 Apr 2008 08:28:27 -0400
+
+gramps (3.0.0-2) unstable; urgency=low
+
+  * Explicitly require python version >= 2.5
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 26 Mar 2008 09:34:25 -0400
+
+gramps (3.0.0-1) unstable; urgency=low
+
+  * New upstream release. Closes: #472681
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 25 Mar 2008 09:35:00 -0400
+
+gramps (2.2.10-2) unstable; urgency=low
+
+  * Remove build dependency on python-xml. Closes: Bug#468625
+
+ -- James A. Treacy <treacy@debian.org>  Fri, 29 Feb 2008 13:30:11 -0500
+
+gramps (2.2.10-1) unstable; urgency=low
+
+  * New upstream release
+  * Added dh_icons to debian/rules. Closes: #454761
+  * Remove version from scrollkeeper dependency. Closes: #456600
+  * Fixed typos in description. Closes: #433559
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 14 Jan 2008 09:57:25 -0500
+
+gramps (2.2.9-2) unstable; urgency=low
+
+  * Move debhelper to Build-Depends. Closes: #447948
+
+ -- James A. Treacy <treacy@debian.org>  Wed, 24 Oct 2007 20:03:36 -0400
+
+gramps (2.2.9-1) unstable; urgency=low
 
   * New upstream release
 
- -- Stephane Charette <stephanecharette@gmail.com>  Wed, 16 Jan 2008 21:45:00 -0800
+ -- James A. Treacy <treacy@debian.org>  Thu, 18 Oct 2007 13:14:30 -0400
 
-gramps (2.1.6-1) unstable; urgency=low
+gramps (2.2.8-2) unstable; urgency=low
+
+  * Work around a bug in gnome-python-extras which caused a deallocation
+    of the TextView in the check if a spell checker is present.
+    Closes: #445864
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 09 Oct 2007 17:26:54 -0400
+
+gramps (2.2.8-1) unstable; urgency=low
+
+  * New Upstream version
+  * Misleading error message changed. Closes: #418033
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 28 May 2007 21:00:51 -0400
+
+gramps (2.2.7-2) unstable; urgency=low
+
+  * Added dependency on librsvg2-common
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 23 Apr 2007 19:32:00 -0400
+
+gramps (2.2.7-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- James A. Treacy <treacy@debian.org>  Sun, 22 Apr 2007 20:08:55 -0400
+
+gramps (2.2.6-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 29 Jan 2007 20:12:05 -0500
+
+gramps (2.2.5-0rc1-1) unstable; urgency=low
+
+  * rc1 of 2.2.5
+
+ -- James A. Treacy <treacy@debian.org>  Thu, 25 Jan 2007 23:04:24 -0500
+
+gramps (2.2.4-1) unstable; urgency=low
 
   * New upstream release
 
- -- Alex Roitman <shura@gramps-project.org>  Thu, 22 Jun 2006 13:28:14 -0700
+ -- James A. Treacy <treacy@debian.org>  Wed, 27 Dec 2006 18:04:11 -0500
+
+gramps (2.2.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 27 Nov 2006 00:27:23 -0500
+
+gramps (2.2.2-2) unstable; urgency=low
+
+  * call dh_desktop in debian/rules so .desktop file is registered. Closes: Bug#398423
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 13 Nov 2006 20:26:00 -0500
+
+gramps (2.2.2-1) unstable; urgency=low
+
+  * Bumped upstream version number. 2.2.1-3 and -4 should have been 2.2.2
+
+ -- James A. Treacy <treacy@debian.org>  Sat,  4 Nov 2006 16:34:47 -0500
+
+gramps (2.2.1-4) unstable; urgency=low
+
+  * add missing Build-Depends-Indep. Closes: #396874
+
+ -- James A. Treacy <treacy@debian.org>  Fri,  3 Nov 2006 11:03:35 -0500
+
+gramps (2.2.1-3) unstable; urgency=low
+
+  * New Upstream release
+
+ -- James A. Treacy <treacy@debian.org>  Fri,  3 Nov 2006 08:07:38 -0500
+
+gramps (2.2.1-2) unstable; urgency=low
+
+  * Upload to sid
+
+ -- James A. Treacy <treacy@debian.org>  Wed,  1 Nov 2006 20:50:28 -0500
+
+gramps (2.2.1-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- James A. Treacy <treacy@debian.org>  Mon, 30 Oct 2006 10:32:43 -0500
+
+gramps (2.1.95-1) experimental; urgency=low
+
+  * Beta release of version 2.2
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 29 Aug 2006 11:40:08 -0400
+
+
+gramps (2.1.90-1) experimental; urgency=low
+
+  * Beta release of version 2.2
+
+ -- James A. Treacy <treacy@debian.org>  Tue, 25 Jul 2006 00:18:15 -0400
+
+gramps (2.0.11-2) unstable; urgency=low
+
+  * Complies with new python policy
+
+ -- James A. Treacy <treacy@debian.org>  Wed,  5 Jul 2006 14:47:56 -0400
 
 gramps (2.0.11-1) unstable; urgency=low
 
