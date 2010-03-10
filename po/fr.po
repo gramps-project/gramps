@@ -4252,7 +4252,7 @@ msgstr "Attribut de l'événement :"
 #: ../src/gui/filtereditor.py:97
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 msgid "Media attribute:"
-msgstr "Attribut de l'objet media :"
+msgstr "Attribut du medium :"
 
 #: ../src/gui/filtereditor.py:98
 #: ../src/Filters/Rules/Person/_HasRelationship.py:47
@@ -5114,7 +5114,7 @@ msgstr "Aucune image choisie, cliquez sur le bouton pour en sélectionner une"
 
 #: ../src/gui/editors/objectentries.py:303
 msgid "Edit media object"
-msgstr "Éditer l'objet media"
+msgstr "Éditer le medium"
 
 #: ../src/gui/editors/objectentries.py:304
 #: ../src/PluginUtils/_GuiOptions.py:765
@@ -5124,7 +5124,7 @@ msgstr "Sélectionner un objet media existant"
 #: ../src/gui/editors/objectentries.py:305
 #: ../src/plugins/view/mediaview.py:104
 msgid "Add a new media object"
-msgstr "Ajouter un nouveau media"
+msgstr "Ajouter un nouveau medium"
 
 # enlever la référence au media
 #: ../src/gui/editors/objectentries.py:306
@@ -5563,11 +5563,11 @@ msgstr "Nouveau media"
 
 #: ../src/gui/editors/editmedia.py:217
 msgid "Edit Media Object"
-msgstr "Éditer l'objet media"
+msgstr "Éditer le medium"
 
 #: ../src/gui/editors/editmedia.py:255
 msgid "Cannot save media object"
-msgstr "Impossible d'enregistrer l'objet media"
+msgstr "Impossible d'enregistrer le medium"
 
 #: ../src/gui/editors/editmedia.py:256
 msgid "No data exists for this media object. Please enter data or cancel the edit."
@@ -5575,24 +5575,24 @@ msgstr "Aucune donnée n'existe pour cet objet media. Veuillez entrer une donné
 
 #: ../src/gui/editors/editmedia.py:265
 msgid "Cannot save media object. ID already exists."
-msgstr "Impossible d'enregistrer l'objet media. L'identifiant existe déjà."
+msgstr "Impossible d'enregistrer le medium. L'identifiant existe déjà."
 
 #: ../src/gui/editors/editmedia.py:283
 #: ../src/gui/editors/editmediaref.py:547
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "Ajouter l'objet media (%s)"
+msgstr "Ajouter le medium (%s)"
 
 #: ../src/gui/editors/editmedia.py:288
 #: ../src/gui/editors/editmediaref.py:543
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Éditer l'objet media (%s)"
+msgstr "Éditer le medium (%s)"
 
 # enlever la référence au media
 #: ../src/gui/editors/editmedia.py:374
 msgid "Remove Media Object"
-msgstr "Enlever un objet media"
+msgstr "Enlever un medium"
 
 #: ../src/gui/editors/editmediaref.py:79
 #: ../src/gui/editors/editmediaref.py:368
@@ -6767,7 +6767,7 @@ msgstr "Erreur : %s n'est pas un ID Gramps valide"
 #: ../src/gui/views/pageview.py:437
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr "Configure %(cat)s - %(view)s"
+msgstr "Configuration de la catégorie %(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:444
 #, python-format
@@ -7239,10 +7239,11 @@ msgstr "Vos données seront sauvegardées mais il est conseillé de redémarrer 
 msgid "Error Detail"
 msgstr "Détail de l'erreur"
 
+# dans le sens pas d'options dans le rapport
 #: ../src/plugins/BookReport.py:145
 #: ../src/plugins/BookReport.py:183
 msgid "Not Applicable"
-msgstr "Inapplicable"
+msgstr "Aucune option"
 
 #: ../src/plugins/BookReport.py:171
 #: ../src/PluginUtils/_GuiOptions.py:623
@@ -8974,17 +8975,17 @@ msgstr "  9. <a wiki='Portal:Using_GRAMPS'>Existe t'il un manuel pour Gramps ?</
 # trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:48
 msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
-msgstr " 10. <a wiki='Category:Tutorials'>Existe t'il des tutoriels ?</a>\n"
+msgstr " 10. <a wiki='Category:Fr:Tutorials'>Existe t'il des tutoriels ?</a>\n"
 
 # trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 msgid " 11. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
-msgstr " 11. <a wiki='Category:How_do_I...'>Comment je fais pour ...?</a>\n"
+msgstr " 11. <a wiki='Category:Fr:Comment_je...'>Comment je fais pour ...?</a>\n"
 
 # trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 msgid " 12. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr " 12. <a wiki='How_you_can_help'>Comment je peux aider Gramps ?</a>\n"
+msgstr " 12. <a wiki='How_you_can_help/fr'>Comment je peux aider Gramps ?</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -10524,7 +10525,7 @@ msgstr "  Événement %(id)s\n"
 #: ../src/plugins/import/ImportXml.py:253
 #, python-format
 msgid "  Media Object %(id)s\n"
-msgstr "  Objet Media%(id)s\n"
+msgstr "  Objet Media %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:255
 #, python-format
@@ -14304,7 +14305,7 @@ msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fu
 # trunk
 #: ../src/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "Fournit une librairie pour générer des documents avec Cairo."
+msgstr "Fournit une bibliothèque pour générer des documents avec Cairo."
 
 # trunk
 #: ../src/plugins/lib/libplugins.gpr.py:51
@@ -14539,7 +14540,6 @@ msgstr "Événements individuels des enfants"
 msgid "Home person not set."
 msgstr "Individu actif non défini."
 
-# trunk
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:188
 #, python-format
@@ -14563,7 +14563,6 @@ msgstr "%(person)s et %(active_person)s ne sont pas en relation."
 msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr "%(person)s et %(active_person)s sont en relation par alliance :"
 
-# trunk
 #: ../src/plugins/quickview/all_relations.py:206
 #, python-format
 msgid "Relationships of %(person)s to %(active_person)s"
@@ -14637,32 +14636,26 @@ msgstr "les individus sans genre"
 msgid "Filtering_on|people with incomplete names"
 msgstr "les individus avec des noms incomplets"
 
-# trunk
 #: ../src/plugins/quickview/FilterByName.py:49
 msgid "Filtering_on|people with missing birth dates"
 msgstr "les individus sans date de naissance"
 
-# trunk
 #: ../src/plugins/quickview/FilterByName.py:50
 msgid "Filtering_on|disconnected people"
 msgstr "les individus déconnectés"
 
-# trunk
 #: ../src/plugins/quickview/FilterByName.py:51
 msgid "Filtering_on|all families"
 msgstr "les familles"
 
-# trunk
 #: ../src/plugins/quickview/FilterByName.py:52
 msgid "Filtering_on|unique surnames"
 msgstr "les noms présents"
 
-# trunk
 #: ../src/plugins/quickview/FilterByName.py:53
 msgid "Filtering_on|people with media"
 msgstr "les individus avec des images"
 
-# trunk
 #: ../src/plugins/quickview/FilterByName.py:54
 msgid "Filtering_on|media references"
 msgstr "les références de media"
@@ -14740,7 +14733,7 @@ msgstr "Media présent"
 
 #: ../src/plugins/quickview/FilterByName.py:173
 msgid "Missing Media"
-msgstr "Objet media manquant"
+msgstr "Medium manquant"
 
 #: ../src/plugins/quickview/FilterByName.py:182
 msgid "Size in bytes"
@@ -16055,6 +16048,7 @@ msgstr "Le style de base utilisé pour les sous-titres."
 msgid "Marker Report for %s Items"
 msgstr "Rapport du marqueur %s"
 
+# Liste d'individus dans plugins/view/view.gpr.py:152
 #: ../src/plugins/textreport/MarkerReport.py:103
 #: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:145
@@ -16237,7 +16231,7 @@ msgstr "Image"
 # trunk
 #: ../src/plugins/textreport/SimpleBookTitle.py:137
 msgid "Gramps ID of the media object to use as an image."
-msgstr "L'identifiant Gramps ID de l'objet media utilisé comme image."
+msgstr "L'identifiant Gramps ID du medium utilisé comme image."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:140
 msgid "Image Size"
@@ -16633,7 +16627,7 @@ msgstr "Recherche de problèmes dans la référence de la source"
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/Check.py:1196
 msgid "Looking for media object reference problems"
-msgstr "Recherche de problèmes dans la référence de l'objet media"
+msgstr "Recherche de problèmes dans la référence du medium"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/Check.py:1292
@@ -17134,7 +17128,7 @@ msgid ""
 msgstr ""
 "Cet outil permet des opérations groupées sur les objets media stockés dans Gramps. Une distinction importante doit être faite entre un objet media de Gramps et son fichier.\n"
 "\n"
-"L'objet media de Gramps est une collection de données sur un fichier objet media : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
+"L'objet media de Gramps est une collection de données sur un fichier medium : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
 "\n"
 "Les fichiers contenant une image, du son, de la vidéo, etc. existent séparément sur votre disque dur. Ces fichiers ne sont pas gérés par Gramps et ne sont pas inclus dans la base de données Gramps. La base de données Gramps ne stocke que le chemin et les noms de fichiers.\n"
 "\n"
@@ -18303,25 +18297,24 @@ msgstr ""
 
 #: ../src/plugins/view/mediaview.py:105
 msgid "Edit the selected media object"
-msgstr "Éditer l'objet media sélectionné"
+msgstr "Éditer le medium sélectionné"
 
 # objet sélectionné
 #: ../src/plugins/view/mediaview.py:106
 msgid "Delete the selected media object"
-msgstr "Supprimer l'objet media sélectionné"
+msgstr "Supprimer le medium sélectionné"
 
 #: ../src/plugins/view/mediaview.py:245
 msgid "Media Filter Editor"
-msgstr "Éditeur de filtre sur l'objet media"
+msgstr "Éditeur de filtre sur le medium"
 
 #: ../src/plugins/view/mediaview.py:248
 msgid "View in the default viewer"
 msgstr "Afficher dans le lecteur par défaut"
 
-# trunk
 #: ../src/plugins/view/mediaview.py:252
 msgid "Open the folder containing the media file"
-msgstr "Ouvrir le répertoire qui contient le fichier"
+msgstr "Ouvrir le répertoire qui contient le medium"
 
 #: ../src/plugins/view/mediaview.py:300
 #: ../src/glade/editmedia.glade.h:2
@@ -18417,7 +18410,6 @@ msgstr[1] "%d générations"
 msgid "Family Menu"
 msgstr "Menu Famille"
 
-# trunk
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
 msgstr "Groupe d'individus"
@@ -18432,24 +18424,20 @@ msgstr "Déployer tous les nœuds"
 msgid "Collapse all Nodes"
 msgstr "Fermer tous les nœuds"
 
-# trunk
 # Vue lieux
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
 msgid "Place Tree View"
 msgstr "Groupe de lieux"
 
-# trunk
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
 msgstr "Une vue affichant les lieux dans un format hiérarchisé."
 
-# trunk
 #: ../src/plugins/view/placetreeview.py:78
 msgid "Expand this Entire Group"
 msgstr "Déployer le groupe entier"
 
-# trunk
 #: ../src/plugins/view/placetreeview.py:80
 msgid "Collapse this Entire Group"
 msgstr "Compresser le groupe entier"
@@ -18580,7 +18568,6 @@ msgstr "Ajouter un enfant existant à la famille"
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-# trunk
 #: ../src/plugins/view/relview.py:1178
 #: ../src/plugins/view/relview.py:1180
 #, python-format
@@ -18633,22 +18620,18 @@ msgstr " (pas d'enfant)"
 msgid "Add Child to Family"
 msgstr "Ajouter un enfant à la famille"
 
-# trunk
 #: ../src/plugins/view/relview.py:1635
 msgid "Use shading"
 msgstr "Utiliser les nuances"
 
-# trunk
 #: ../src/plugins/view/relview.py:1638
 msgid "Display edit buttons"
 msgstr "Afficher les boutons d'édition"
 
-# trunk
 #: ../src/plugins/view/relview.py:1640
 msgid "View links as website links"
 msgstr "Les liens dans le style internet"
 
-# trunk
 #: ../src/plugins/view/relview.py:1646
 msgid "Layout"
 msgstr "Mise en page"
@@ -18707,130 +18690,105 @@ msgstr "Impossible de fusionner les sources."
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une fusion. La deuxième source peut être sélectionnée en maintenant la touche Contrôle (Ctrl) et en cliquant sur la source désirée."
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:32
 msgid "Event View"
-msgstr "Vue Événement"
+msgstr "Vue Événements"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
 msgstr "Cette vue affiche tous les événements"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:47
 msgid "Family View"
-msgstr "Vue Famille"
+msgstr "Vue Familles"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
 msgstr "Cette vue affiche toutes les familles"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:62
 msgid "Gramplet View"
-msgstr "Vue Gramplet"
+msgstr "Vue Gramplets"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
 msgstr "Cette vue permet de voir les Gramplets"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:77
 msgid "Media View"
 msgstr "Vue Media"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:78
 msgid "The view showing all the media objects"
 msgstr "Cette vue affiche tous les objets media"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:92
 msgid "Note View"
-msgstr "Vue Note"
+msgstr "Vue Notes"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:93
 msgid "The view showing all the notes"
 msgstr "Cette vue affiche toutes les notes"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:107
 msgid "Relationship View"
-msgstr "Vue Relation"
+msgstr "Vue Relations"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:108
 msgid "The view showing all relationships of the selected person"
 msgstr "Cette vue affiche toutes les relations de la personne sélectionnée"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:122
 msgid "Pedigree View"
 msgstr "Vue Arbre"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:123
 msgid "The view showing an ancestor pedigree of the selected person"
 msgstr "Cette vue affiche un arbre des ascendants de la personne sélectionnée"
 
-# trunk
-# Vue
 #: ../src/plugins/view/view.gpr.py:137
 msgid "Person Tree View"
-msgstr "Individus groupés"
+msgstr "Groupe d'individus"
 
-# trunk
+# Person Tree View
 #: ../src/plugins/view/view.gpr.py:138
 msgid "The view showing all people in the family tree"
-msgstr "Cette vue affiche toutes les personnes de l'arbre familial"
+msgstr "Cette vue affiche toutes les personnes de l'arbre familial par groupe"
 
-# trunk
 # Vue
 #: ../src/plugins/view/view.gpr.py:152
 msgid "Person View"
 msgstr "Liste d'individus"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:153
 msgid "The view showing all people in the family tree in a flat list"
 msgstr "Cette vue affiche toutes les personnes de l'arbre familial dans une liste simple"
 
-# trunk
 # vue
 #: ../src/plugins/view/view.gpr.py:167
 msgid "Place View"
 msgstr "Liste de lieux"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:168
 msgid "The view showing all the places of the family tree"
 msgstr "Cette vue affiche tous les lieux de l'arbre familial"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:182
 msgid "Repository View"
-msgstr "Vue Dépôt"
+msgstr "Vue Dépôts"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:183
 msgid "The view showing all the repositories"
 msgstr "Cette vue affiche tous les dépôts"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:197
 msgid "Source View"
-msgstr "Vue Source"
+msgstr "Vue Sources"
 
-# trunk
 #: ../src/plugins/view/view.gpr.py:198
 msgid "The view showing all the sources"
 msgstr "Cette vue affiche toutes les sources"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:119
 msgid "Alternate Locations"
 msgstr "Noms alternatifs"
@@ -18844,24 +18802,20 @@ msgstr "Code lieu"
 msgid "State/ Province"
 msgstr "Région/Province"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:558
 msgid "Sealed to "
 msgstr "Lié à "
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:865
 #, python-format
 msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> on %(date)s"
 msgstr "Généré par <a href = \"%(homepage)s\">Gramps</a> le %(date)s"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:880
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
 msgstr "Créé pour <a href = \"%s\">%s</a>"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:1004
 msgid "Html|Home"
 msgstr "Accueil"
@@ -18889,14 +18843,14 @@ msgstr "Télécharger"
 msgid "Contact"
 msgstr "Contact"
 
-# trunk
+# espace limité dans le menu
 #. Add xml, doctype, meta and stylesheets
 #: ../src/plugins/webreport/NarrativeWeb.py:1015
 #: ../src/plugins/webreport/NarrativeWeb.py:1058
 #: ../src/plugins/webreport/NarrativeWeb.py:4723
 #: ../src/plugins/webreport/NarrativeWeb.py:4844
 msgid "Address Book"
-msgstr "Carnet d'adresses : "
+msgstr "Adresses"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1308
 msgid "Gallery"
@@ -18908,7 +18862,6 @@ msgstr "Galerie"
 msgid "Narrative"
 msgstr "Anecdote"
 
-# trunk
 #. begin web title
 #: ../src/plugins/webreport/NarrativeWeb.py:1414
 #: ../src/plugins/webreport/NarrativeWeb.py:4750
@@ -18947,17 +18900,14 @@ msgstr "Cette page contient un index de tous les lieux de la base de données, c
 msgid "Letter"
 msgstr "Lettre"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2141
 msgid "Place name | Name"
 msgstr "Nom du lieu"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2278
 msgid "This page contains an index of all the events in the database, sorted by their type, date (if one is present), and gramps id, Clicking on an event&#8217;s Gramps ID will load a page for that event."
 msgstr "Cette page contient un index de tous les événements de la base de données, classés par titre, identifiant Gramps et dates (si présent). Cliquez sur un événement pour accéder à ce type d'événement."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2327
 #, python-format
 msgid "Event types beginning with %(eventtype)s"
@@ -18967,7 +18917,6 @@ msgstr "Types d'événement commençant par %(eventtype)s"
 msgid "Previous"
 msgstr "Précédent"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2592
 #, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
@@ -18999,45 +18948,38 @@ msgstr "Patronymes par compte individuel"
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr "Cette page contient un index de tous les patronymes de la base de données. Sélectionnez un lien pour accéder à la liste des individus portant ce nom."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2900
 msgid "Number of People"
 msgstr "Nombre d'individus"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3066
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
-msgstr "Cette page contient un index de toutes les sources de la base de données, classées par titre. Cliquez sur une source pour accéder à sa page."
+msgstr "Cette page contient un index de toutes les sources de la base de données, classées par nom. Cliquez sur une source pour accéder à sa page."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3082
 msgid "Source Name|Name"
-msgstr "Titre de la source"
+msgstr "Nom de la source"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3150
 msgid "Publication information"
 msgstr "Informations de publication"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3197
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr "Cette page contient un index de tous les objet media de la base de données, classés par titre. Cliquer sur un titre va ouvrir sa page. Si la taille de l'image n'est pas suffisante, cliquez sur l'image pour la voir dans sa taille réelle."
+msgstr "Cette page contient un index de tous les objets media de la base de données, classés par nom. Cliquez sur le nom pour ouvrir la page. Si la taille de l'image n'est pas suffisante, cliquez sur l'image pour la voir dans sa taille réelle."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3216
 msgid "Media | Name"
 msgstr "Nom du medium"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3218
 msgid "Mime Type"
 msgstr "Type mime"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3332
 msgid "File Name"
-msgstr "Nom de fichier"
+msgstr "Nom du fichier"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3334
 msgid "License"
 msgstr "Autorisation d'utilisation"
@@ -19050,13 +18992,10 @@ msgstr "Dernière modification"
 msgid "Ancestors"
 msgstr "Ascendants"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3743
 msgid "Associations"
 msgstr "Associations"
 
-# ou Nom de Nick !!!
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3925
 msgid "Nick Name"
 msgstr "Surnom"
@@ -19065,26 +19004,22 @@ msgstr "Surnom"
 msgid "Age at Death"
 msgstr "Âge au décès"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4034
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Ordinance Mormons"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4591
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Cette page contient un index de tous les dépôts de la base de données, classés par titre. Cliquez sur le titre d'un dépôt pour accéder à sa page."
+msgstr "Cette page contient un index de tous les dépôts de la base de données, classés par nom. Cliquez sur le nom d'un dépôt pour accéder à sa page."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4606
 msgid "Repository |Name"
 msgstr "Nom du dépôt"
 
-# trunk
 #. Internet Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4730
 msgid "This page contains an index of all the individuals in the database, sorted by their surname. Selecting the person&#8217;s name will take you to their Address Book&#8217;s individual page."
-msgstr "Cette page contient un index de tous les individus de la base de données, classés par nom. Sélectionnez le nom d'un individu pour accéder à sa page."
+msgstr "Cette page contient un index de tous les individus de la base de données, classés par nom de famille. Sélectionnez le nom d'un individu pour accéder à sa page."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4997
 #, python-format
@@ -19112,23 +19047,20 @@ msgstr "L'archive doit être un fichier, pas un répertoire"
 msgid "Narrated Web Site Report"
 msgstr "Saga sur internet"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5093
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, chemin=%(dir)s"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5098
 msgid "Missing media objects:"
-msgstr "Objet media manquant :"
+msgstr "Objets media manquants :"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/webreport/NarrativeWeb.py:5187
 msgid "Creating individual pages"
 msgstr "Création des pages pour l'individu"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5204
 msgid "Creating GENDEX file"
 msgstr "Création d'un fichier GENDEX"
@@ -19148,13 +19080,11 @@ msgstr "Création des pages pour la source"
 msgid "Creating place pages"
 msgstr "Création des pages pour le lieu"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/plugins/webreport/NarrativeWeb.py:5285
 msgid "Creating event pages"
 msgstr "Création des pages pour l'événement"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/plugins/webreport/NarrativeWeb.py:5292
 #, python-format
@@ -19164,20 +19094,18 @@ msgstr "Création de la page %02d sur %02d pour l'événement"
 # Substantif (GNOME fr)
 #: ../src/plugins/webreport/NarrativeWeb.py:5302
 msgid "Creating media pages"
-msgstr "Création des pages pour l'objet media"
+msgstr "Création des pages pour le medium"
 
 # Substantif (GNOME fr)
-# trunk
 #. set progress bar pass for Repositories
 #: ../src/plugins/webreport/NarrativeWeb.py:5353
 msgid "Creating repository pages"
 msgstr "Création des pages dépôt"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5410
 msgid "Creating address book pages ..."
-msgstr "Création des pages carnet d'adresses ..."
+msgstr "Création des pages adresses ..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5608
 msgid "Store web pages in .tar.gz archive"
@@ -19334,27 +19262,22 @@ msgstr "Inclure images et media"
 msgid "Whether to include a gallery of media objects"
 msgstr "Inclure ou non une galerie des objets media"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5727
 msgid "Max width of initial image"
 msgstr "Largeur max de l'image initiale"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5729
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la largeur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5733
 msgid "Max height of initial image"
 msgstr "Hauteur max de l'image initiale"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5735
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la hauteur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5741
 msgid "Suppress Gramps ID"
 msgstr "Supprimer les identifiants Gramps"
@@ -19412,15 +19335,17 @@ msgstr "Inclure une page téléchargement"
 msgid "Whether to include a database download option"
 msgstr "Inclure ou non une option pour télécharger une base de données"
 
+# à vérifier !
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5791
 msgid "Download page note"
-msgstr "Note de la page"
+msgstr "Note de la page Télécharger"
 
+# à vérifier !
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5792
 msgid "A note to be used on the download page"
-msgstr "La note utilisée pour la page"
+msgstr "La note utilisée pour la page Télécharger"
 
 # à vérifier !
 # trunk
@@ -19429,40 +19354,35 @@ msgstr "La note utilisée pour la page"
 msgid "Download Filename"
 msgstr "Nom du fichier"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5797
 #: ../src/plugins/webreport/NarrativeWeb.py:5806
 msgid "File to be used for downloading of database"
 msgstr "Fichier prévu pour être téléchargé"
 
-# trunk
+# espace limité
 #: ../src/plugins/webreport/NarrativeWeb.py:5800
 #: ../src/plugins/webreport/NarrativeWeb.py:5809
 msgid "Description for download"
 msgstr "Description"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5800
 msgid "Smith Family Tree"
 msgstr "Arbre de la famille Martin"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
 #: ../src/plugins/webreport/NarrativeWeb.py:5810
 msgid "Give a description for this file."
 msgstr "Donnez une description pour ce fichier."
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5809
 msgid "Johnson Family Tree"
 msgstr "Arbre de la famille Bernard"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5813
 msgid "Download Copyright License"
 msgstr "Licence"
 
-# trunk
+# typo dans le code
 #: ../src/plugins/webreport/NarrativeWeb.py:5816
 msgid "The copyright to be used for ths download file?"
 msgstr "Le droit d'auteur défini pour ce fichier ?"
@@ -19522,7 +19442,6 @@ msgstr "Inclure une colonne pour les parents dans les pages index"
 msgid "Whether to include a parents column"
 msgstr "Inclure ou non une colonne parents"
 
-# trunk
 #. This is programmed wrong, remove
 #. showallsiblings = BooleanOption(_("Include half and/ or "
 #. "step-siblings on the individual pages"), False)
@@ -19533,71 +19452,58 @@ msgstr "Inclure ou non une colonne parents"
 msgid "Sort all children in birth order"
 msgstr "Trier les enfants selon la date de naissance"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5863
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel ?"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid "Include event pages"
 msgstr "Inclure les pages événement"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5868
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Ajouter ou non une liste complète des événements et pages liées"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5871
 msgid "Include repository pages"
 msgstr "Inclure les pages dépôt"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5872
 msgid "Whether to include the Repository Pages or not?"
 msgstr "Inclure ou non des pages dépôt ?"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5875
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Inclure un fichier GENDEX (gendex.txt)"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5876
 msgid "Whether to include a GENDEX file or not"
 msgstr "Inclure ou non un fichier GENDEX"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5879
 msgid "Include address book pages"
-msgstr "Inclure les carnets d'adresses"
+msgstr "Inclure les pages adresses"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5880
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
-msgstr "Ajouter ou non un carnet d'adresse qui peut être des adresses de messagerie, des adresses de site internet, des adresses individuelles et des événements résidence ?"
+msgstr "Ajouter ou non les adresses qui peuvent être des adresses de messagerie, des adresses de site internet, des adresses individuelles et des événements résidence ?"
 
-# trunk
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:305
 #, python-format
 msgid "Calculating Holidays for year %04d"
 msgstr "Calcul des jours fériés pour l'année %04d"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:454
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 msgstr "Créé pour <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:458
 #, python-format
 msgid "Created for %(author)s"
 msgstr "Créé pour %(author)s"
 
-# trunk
 #. An optional link to a home page
 #: ../src/plugins/webreport/WebCal.py:530
 msgid "html|Home"
@@ -19642,7 +19548,6 @@ msgstr "Un jour dans une année"
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s et %(person)s"
 
-# trunk
 #. Display date as user set in preferences
 #: ../src/plugins/webreport/WebCal.py:1210
 #, python-format
@@ -19824,43 +19729,36 @@ msgstr "Créer un calendrier \"annuel\" résumé sur une page"
 msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr "Créer ou non une page avec un calendrier miniature dont les dates sont mises en relief"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1539
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Créé les pages événement pour un jour du calendrier résumé"
+msgstr "Créer les pages événement pour un jour du calendrier résumé"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1541
 msgid "Whether to create one day pages or not"
 msgstr "Créer ou non des pages pour un jour"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1544
 msgid "Link to Narrated Web Report"
 msgstr "Lien vers le rapport Saga sur internet"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1545
 msgid "Whether to link data to web report or not"
 msgstr "Inclure ou non un lien vers le rapport Saga"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "Link prefix"
 msgstr "Lien préfixe"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1550
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "Un préfixe sur le lien pour vous diriger vers le rapport internet"
 
-# trunk
+# attention "ans" est ajouté par gen.lib 
 #: ../src/plugins/webreport/WebCal.py:1729
 #, python-format
 msgid "%s old"
 msgstr "%s"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1729
 msgid "birth"
 msgstr "naissance"
@@ -19992,42 +19890,35 @@ msgstr "Exécute_r"
 msgid "Run selected tool"
 msgstr "Exécuter l'outil sélectionné"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:187
 msgid "Hidden"
 msgstr "Caché"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:189
 msgid "Visible"
 msgstr "Visible"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:237
 #: ../src/PluginUtils/_PluginWindows.py:288
 msgid "Info"
 msgstr "Info"
 
-# trunk
 #. id_col
 #: ../src/PluginUtils/_PluginWindows.py:240
 #: ../src/PluginUtils/_PluginWindows.py:291
 msgid "Hide/Unhide"
 msgstr "Cacher/Afficher"
 
-# trunk
 #. id_col
 #: ../src/PluginUtils/_PluginWindows.py:248
 #: ../src/PluginUtils/_PluginWindows.py:300
 msgid "Load"
 msgstr "Charger"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:254
 msgid "Registered Plugins"
 msgstr "Greffons enregistrés"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:267
 msgid "Loaded"
 msgstr "Chargé"
@@ -20040,42 +19931,35 @@ msgstr "Fichier"
 msgid "Message"
 msgstr "Message"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/PluginUtils/_PluginWindows.py:305
 msgid "Loaded Plugins"
 msgstr "Greffons chargés"
 
-# trunk
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../src/PluginUtils/_PluginWindows.py:325
 msgid "Addon Name"
 msgstr "Nom du greffon ajouté"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:340
 msgid "Path to Addon:"
 msgstr "Chemin vers le greffon additionnel :"
 
-# trunk
 # bouton
 #: ../src/PluginUtils/_PluginWindows.py:357
 msgid "Install Addon"
 msgstr "Installer le greffon"
 
-# trunk
 # bouton
 #: ../src/PluginUtils/_PluginWindows.py:360
 msgid "Install All Addons"
 msgstr "Tout installer"
 
-# trunk
 # bouton
 #: ../src/PluginUtils/_PluginWindows.py:363
 msgid "Refresh Addon List"
 msgstr "Actualiser la liste"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:368
 msgid "Install Addons"
 msgstr "Installation des greffons"
@@ -20086,13 +19970,11 @@ msgstr "Installation des greffons"
 msgid "Reload"
 msgstr "Recharger"
 
-# trunk
 # bouton
 #: ../src/PluginUtils/_PluginWindows.py:398
 msgid "Refreshing Addon List"
 msgstr "Actualisation de la liste"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:399
 #: ../src/PluginUtils/_PluginWindows.py:404
 #: ../src/PluginUtils/_PluginWindows.py:494
@@ -20100,47 +19982,39 @@ msgid "Reading gramps-project.org..."
 msgstr "Lecture depuis gramps-project.org..."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:422
 msgid "Checking addon..."
 msgstr "Vérification du greffon..."
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:430
 msgid "Unknown Help URL"
 msgstr "URL d'aide inconnu"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:441
 msgid "Unknown URL"
 msgstr "URL inconnu"
 
-# trunk
 # bouton
 #: ../src/PluginUtils/_PluginWindows.py:477
 msgid "Install all Addons"
 msgstr "Tout installer"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:477
 msgid "Installing..."
 msgstr "Installation..."
 
-# trunk
 # bouton
 #: ../src/PluginUtils/_PluginWindows.py:493
 msgid "Installing Addon"
 msgstr "Installation du greffon"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:522
 #: ../src/PluginUtils/_PluginWindows.py:528
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Impossible d'ouvrir '%s'"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:539
 #, python-format
 msgid "Error: cannot open '%s'"
@@ -23565,7 +23439,7 @@ msgstr "Coin 2 : X"
 
 #: ../src/glade/editmediaref.glade.h:10
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
-msgstr "Si l'objet media est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
+msgstr "Si le medium est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
 
 #: ../src/glade/editmediaref.glade.h:13
 msgid "_Path:"
