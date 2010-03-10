@@ -33,6 +33,7 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import const
 import gen.lib
 from glade import Glade
 from displaytabs import (SourceEmbedList, NoteTab, GalleryTab, 
@@ -42,6 +43,15 @@ from gui.widgets import (PrivacyButton, MonitoredEntry,
 from editreference import RefTab, EditReference
 
 from objectentries import PlaceEntry
+
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_2' % const.URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Editing_Event_References')
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +101,7 @@ class EditEventRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_object('cancel'))
-        self.define_help_button(self.top.get_object('help'))
+        self.define_help_button(self.top.get_object('help'),self.on_help_button_clicked)
 
     def _connect_db_signals(self):
         """
@@ -248,6 +258,10 @@ class EditEventRef(EditReference):
             self.update(self.source_ref,self.source)
 
         self.close()
+
+    def on_help_button_clicked(self, obj):
+        """Display the relevant portion of GRAMPS manual"""
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
 class EditFamilyEventRef(EditEventRef):
 
