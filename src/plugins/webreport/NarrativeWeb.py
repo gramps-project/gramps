@@ -7,7 +7,7 @@
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
-# Copyright (C) 2008-2009  Rob G. Healey <robhealey1@gmail.com>	
+# Copyright (C) 2008-2010  Rob G. Healey <robhealey1@gmail.com>	
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -4734,7 +4734,8 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, 
+            _("Address Book")), _KEYPERSON)
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
@@ -4771,7 +4772,7 @@ class AddressBookListPage(BasePage):
                 table += tbody
 
                 # local counters for total line
-                index, countadd, countres, counturl = 0, 0, 0, 0
+                index, countadd, countres, counturl, countfb = 0, 0, 0, 0, 0
 
                 for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
                     person = db.get_person_from_handle(person_handle)
@@ -4780,6 +4781,7 @@ class AddressBookListPage(BasePage):
                     address = None
                     residence = None
                     weblinks = None
+                    facebook = None
 
                     # has address but no residence event
                     if has_add and not has_res:
@@ -4860,25 +4862,19 @@ class AddressBookPage(BasePage):
         # begin address book page division and section title
         with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
             body += addressbookdetail
-
             addressbookdetail += Html("h3", self.get_name(person), inline = True)
+
+            # individual has an address
+            if has_add:
+                addressbookdetail += self.display_addr_list(has_add, None)
+
+            # individual has a residence
+            if has_res:
+                addressbookdetail += self.dump_residence(has_res)
 
             # individual has a url
             if has_url:
                 addressbookdetail += self.display_url_list(has_url)
-
-            # individual has an address, and not a residence event
-            if has_add and not has_res:
-                addressbookdetail += self.display_addr_list(has_add, None)
-
-            # individual has a residence event and no addresses
-            elif has_res and not has_add:
-                addressbookdetail += self.dump_residence(has_res)
-
-            # individual has both
-            elif has_add and has_res:
-                addressbookdetail += self.display_addr_list(has_add, None)
-                addressbookdetail += self.dump_residence(has_res)
 
         # add fullclear for proper styling
         # and footer section to page
@@ -5402,12 +5398,12 @@ class NavWebReport(Report):
 
             has_add = None
             has_url = None
+            has_res = None
             if addrlist:
                 has_add = addrlist
             if urllist:
                 has_url = urllist
 
-            has_res = None
             for event_ref in evt_ref_list:
                 event = db.get_event_from_handle(event_ref.ref)
 
@@ -5427,9 +5423,10 @@ class NavWebReport(Report):
         # Determine if we build Address Book
         if has_url_address:
             has_url_address.sort()
-            AddressBookListPage(self, self.title, has_url_address)
 
             self.progress.set_pass(_("Creating address book pages ..."), len(has_url_address))
+
+            AddressBookListPage(self, self.title, has_url_address)
 
             for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
                 self.progress.step()

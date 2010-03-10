@@ -777,33 +777,6 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
 }
 
-/* Internet Address Book
------------------------------------------------------- */
-div#InternetAddressBook {
-    margin: 0;
-    padding: 0;
-}
-div#InternetAddressBook table.addressbook {
-    margin: .3em 0 .3em 0;
-}
-div#InternetAddressBook table.addressbook tbody tr.BeginName {
-    border-top: solid 1px #000;
-}
-div#InternetAddressBook table.addressbook tbody tr td {
-    background-color: #FFF;
-    border-bottom: dashed 1px #000;
-}
-div#InternetAddressBook table.addressbook tbody tr td.ColumnType {
-    background-color: #EAEEF4;
-    width: 15%;
-}
-div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
-    width: 30%;
-}
-div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
-    width: 70%;
-}
-
 /* Address Book
 ------------------------------------------------------ */
 div#AddressBookList, AddressBookDetail {
