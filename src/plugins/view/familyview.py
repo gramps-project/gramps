@@ -114,8 +114,8 @@ class FamilyView(ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             }
 
-        config.connect("interface.filter",
-                          self.filter_toggle)
+        config.connect("interface.filter", self.filter_toggle)
+        uistate.connect('nameformat-changed', self.build_tree)
 
     def navigation_type(self):
         return 'Family'

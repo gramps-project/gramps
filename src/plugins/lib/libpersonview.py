@@ -138,6 +138,7 @@ class BasePersonView(ListView):
             }
 
         config.connect("interface.filter", self.filter_toggle)
+        uistate.connect('nameformat-changed', self.build_tree)
 
     def navigation_type(self):
         return 'Person'

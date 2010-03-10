@@ -255,7 +255,6 @@ class ViewManager(CLIManager):
         self.button_handlers = []
         self.buttons = []
         self.merge_ids = []
-        self._key = None
         self.toolactions = None
         self.tool_menu_ui_id = None
         self.reportactions = None
@@ -970,8 +969,6 @@ class ViewManager(CLIManager):
             self.active_page.set_active()
             self.notebook.set_current_page(current_cat)
             self.notebook_cat[current_cat].set_current_page(current_cat_view)
-            self._key = self.uistate.connect('nameformat-changed', 
-                                             self.active_page.build_tree)
         else:
             #not one single view loaded
             WarningDialog(
@@ -1200,10 +1197,6 @@ class ViewManager(CLIManager):
                         gtk.main_iteration()
 
                     self.active_page.change_page()
-                    if self._key:
-                        self.uistate.disconnect(self._key)
-                        self._key = self.uistate.connect(
-                            'nameformat-changed', self.active_page.build_tree)
         else:
             #no views loaded
             pass

@@ -378,6 +378,8 @@ class PedigreeView(NavigationView):
 
         self.dbstate = dbstate
         self.dbstate.connect('database-changed',self.change_db)
+        uistate.connect('nameformat-changed', self.person_rebuild)
+        
         #self.dbstate.connect('active-changed',self.goto_active_person)
         self.force_size = config.get('interface.pedview-tree-size') # Automatic resize
         self.tree_style = config.get('interface.pedview-layout') # Nice tree
