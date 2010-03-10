@@ -607,6 +607,7 @@ class EditFamily(EditPrimary):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'), self.save)
         self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_help_button(self.top.get_object('button119'))
 
     def _can_be_replaced(self):
         pass

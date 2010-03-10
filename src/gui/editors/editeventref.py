@@ -91,8 +91,7 @@ class EditEventRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_object('cancel'))
-        # FIXME: activate when help page is available
-        #self.define_help_button(self.top.get_object('help'))
+        self.define_help_button(self.top.get_object('help'))
 
     def _connect_db_signals(self):
         """
