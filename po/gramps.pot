@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-09 16:53+0100\n"
+"POT-Creation-Date: 2010-03-10 21:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,7 +128,7 @@ msgstr ""
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89 ../src/plugins/view/noteview.py:76
-#: ../src/plugins/view/relview.py:611 ../src/plugins/view/repoview.py:82
+#: ../src/plugins/view/relview.py:612 ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77 ../src/PluginUtils/_GuiOptions.py:829
 #: ../src/PluginUtils/_GuiOptions.py:969
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -522,7 +522,7 @@ msgstr ""
 #: ../src/QuickReports.py:80 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:160 ../src/docgen/TextBufDoc.py:162
 #: ../src/plugins/gramplet/gramplet.gpr.py:184
-#: ../src/plugins/lib/libpersonview.py:334
+#: ../src/plugins/lib/libpersonview.py:335
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191 ../src/plugins/view/mediaview.py:255
 #: ../src/plugins/view/noteview.py:209 ../src/plugins/view/repoview.py:152
@@ -530,7 +530,7 @@ msgstr ""
 msgid "Quick View"
 msgstr ""
 
-#: ../src/Relationship.py:797 ../src/plugins/view/pedigreeview.py:1178
+#: ../src/Relationship.py:797 ../src/plugins/view/pedigreeview.py:1180
 msgid "Relationship loop detected"
 msgstr ""
 
@@ -660,7 +660,7 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:304
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/MarkerReport.py:207
-#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:881
+#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:4136
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -677,7 +677,7 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:313
 #: ../src/plugins/textreport/IndivComplete.py:605
 #: ../src/plugins/textreport/MarkerReport.py:213
-#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:882
+#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4143
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -687,7 +687,7 @@ msgstr ""
 #: ../src/Reorder.py:38 ../src/gui/selectors/selectperson.py:81
 #: ../src/Merge/_MergePerson.py:180 ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/textreport/FamilyGroup.py:494
-#: ../src/plugins/view/relview.py:1340
+#: ../src/plugins/view/relview.py:1341
 #: ../src/plugins/webreport/NarrativeWeb.py:563
 msgid "Spouse"
 msgstr ""
@@ -728,8 +728,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:643
-#: ../src/plugins/view/relview.py:455 ../src/plugins/view/relview.py:993
-#: ../src/plugins/view/relview.py:1040
+#: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
+#: ../src/plugins/view/relview.py:1041
 #: ../src/plugins/webreport/NarrativeWeb.py:1516
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -1014,8 +1014,8 @@ msgstr ""
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
-#: ../src/plugins/view/relview.py:528 ../src/plugins/view/relview.py:1316
-#: ../src/plugins/view/relview.py:1338
+#: ../src/plugins/view/relview.py:529 ../src/plugins/view/relview.py:1317
+#: ../src/plugins/view/relview.py:1339
 msgid "Family"
 msgstr ""
 
@@ -1088,7 +1088,7 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/view/relview.py:621
+#: ../src/plugins/view/relview.py:622
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
 msgstr ""
@@ -1496,7 +1496,7 @@ msgid ""
 msgstr ""
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:448
+#: ../src/gui/viewmanager.py:447
 msgid "Tip of the Day"
 msgstr ""
 
@@ -1677,7 +1677,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:572
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
-#: ../src/plugins/view/relview.py:659
+#: ../src/plugins/view/relview.py:660
 #: ../src/plugins/webreport/NarrativeWeb.py:3481
 #: ../src/plugins/webreport/NarrativeWeb.py:4423
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -2204,7 +2204,7 @@ msgid "FTP"
 msgstr ""
 
 #: ../src/gen/lib/notetype.py:78 ../src/gui/configure.py:977
-#: ../src/gui/editors/editeventref.py:76 ../src/gui/editors/editmediaref.py:89
+#: ../src/gui/editors/editeventref.py:86 ../src/gui/editors/editmediaref.py:89
 #: ../src/gui/editors/editreporef.py:72 ../src/gui/editors/editsourceref.py:74
 #: ../src/gui/editors/editsourceref.py:80 ../src/glade/editmediaref.glade.h:9
 #: ../src/glade/editname.glade.h:7
@@ -2567,7 +2567,7 @@ msgstr ""
 #: ../src/gen/lib/date.py:327 ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449 ../src/Simple/_SimpleTable.py:251
 #: ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:974
+#: ../src/plugins/view/relview.py:975
 msgid "and"
 msgstr ""
 
@@ -2686,7 +2686,7 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/view/relview.py:632 ../src/plugins/view/relview.py:657
+#: ../src/plugins/view/relview.py:633 ../src/plugins/view/relview.py:658
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
 msgstr ""
@@ -2821,7 +2821,7 @@ msgstr ""
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/textreport/FamilyGroup.py:357
-#: ../src/plugins/view/relview.py:1256
+#: ../src/plugins/view/relview.py:1257
 msgid "Marriage"
 msgstr ""
 
@@ -3507,7 +3507,7 @@ msgstr ""
 msgid "Upgrade now"
 msgstr ""
 
-#: ../src/gui/dbloader.py:298 ../src/gui/viewmanager.py:707
+#: ../src/gui/dbloader.py:298 ../src/gui/viewmanager.py:706
 #: ../src/plugins/view/familyview.py:223
 msgid "Cancel"
 msgstr ""
@@ -4088,8 +4088,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:903
-#: ../src/plugins/view/pedigreeview.py:1479 ../src/plugins/view/relview.py:515
-#: ../src/plugins/view/relview.py:846 ../src/plugins/view/relview.py:880
+#: ../src/plugins/view/pedigreeview.py:1481 ../src/plugins/view/relview.py:516
+#: ../src/plugins/view/relview.py:847 ../src/plugins/view/relview.py:881
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr ""
@@ -4256,244 +4256,244 @@ msgstr ""
 msgid "Unsupported"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:404
+#: ../src/gui/viewmanager.py:403
 msgid "Connect to a recent database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:420
+#: ../src/gui/viewmanager.py:419
 msgid "_Family Trees"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:421
+#: ../src/gui/viewmanager.py:420
 msgid "_Manage Family Trees..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:422
+#: ../src/gui/viewmanager.py:421
 msgid "Manage databases"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:423
+#: ../src/gui/viewmanager.py:422
 msgid "Open _Recent"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:424
+#: ../src/gui/viewmanager.py:423
 msgid "Open an existing database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:425
+#: ../src/gui/viewmanager.py:424
 msgid "_Quit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:427
+#: ../src/gui/viewmanager.py:426
 msgid "_View"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:428 ../src/gui/viewmanager.py:493
+#: ../src/gui/viewmanager.py:427 ../src/gui/viewmanager.py:492
 msgid "_Edit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:429
+#: ../src/gui/viewmanager.py:428
 msgid "_Preferences..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:431
+#: ../src/gui/viewmanager.py:430
 msgid "_Help"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:432
+#: ../src/gui/viewmanager.py:431
 msgid "Gramps _Home Page"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:434
+#: ../src/gui/viewmanager.py:433
 msgid "Gramps _Mailing Lists"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:436
+#: ../src/gui/viewmanager.py:435
 msgid "_Report a Bug"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:438
+#: ../src/gui/viewmanager.py:437
 msgid "_Extra Reports/Tools"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:440
+#: ../src/gui/viewmanager.py:439
 msgid "_About"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:442
+#: ../src/gui/viewmanager.py:441
 msgid "_Plugin Manager"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:444
+#: ../src/gui/viewmanager.py:443
 msgid "_FAQ"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:445
+#: ../src/gui/viewmanager.py:444
 msgid "_Key Bindings"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:446
+#: ../src/gui/viewmanager.py:445
 msgid "_User Manual"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:453
+#: ../src/gui/viewmanager.py:452
 msgid "_Export..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:456
+#: ../src/gui/viewmanager.py:455
 msgid "_Abandon Changes and Quit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:457 ../src/gui/viewmanager.py:460
+#: ../src/gui/viewmanager.py:456 ../src/gui/viewmanager.py:459
 msgid "_Reports"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:458
+#: ../src/gui/viewmanager.py:457
 msgid "Open the reports dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:459
+#: ../src/gui/viewmanager.py:458
 msgid "_Go"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:461
+#: ../src/gui/viewmanager.py:460
 msgid "_Windows"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:487
+#: ../src/gui/viewmanager.py:486
 msgid "Clip_board"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:488
+#: ../src/gui/viewmanager.py:487
 msgid "Open the Clipboard dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:489
+#: ../src/gui/viewmanager.py:488
 msgid "_Import..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:491 ../src/gui/viewmanager.py:495
+#: ../src/gui/viewmanager.py:490 ../src/gui/viewmanager.py:494
 msgid "_Tools"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:492
+#: ../src/gui/viewmanager.py:491
 msgid "Open the tools dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:494
+#: ../src/gui/viewmanager.py:493
 msgid "_Bookmarks"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:496
+#: ../src/gui/viewmanager.py:495
 msgid "_Configure View..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:497
+#: ../src/gui/viewmanager.py:496
 msgid "Configure the active view"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:502
+#: ../src/gui/viewmanager.py:501
 msgid "_Sidebar"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:504
+#: ../src/gui/viewmanager.py:503
 msgid "_Toolbar"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:506 ../src/plugins/view/geoview.py:1096
+#: ../src/gui/viewmanager.py:505 ../src/plugins/view/geoview.py:1096
 msgid "_Filter Sidebar"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:508
+#: ../src/gui/viewmanager.py:507
 msgid "F_ull Screen"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:513 ../src/gui/viewmanager.py:1297
+#: ../src/gui/viewmanager.py:512 ../src/gui/viewmanager.py:1290
 msgid "_Undo"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:518 ../src/gui/viewmanager.py:1314
+#: ../src/gui/viewmanager.py:517 ../src/gui/viewmanager.py:1307
 msgid "_Redo"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:524
+#: ../src/gui/viewmanager.py:523
 msgid "Undo History..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:538
+#: ../src/gui/viewmanager.py:537
 #, python-format
 msgid "Key %s is not bound"
 msgstr ""
 
 #. load plugins
-#: ../src/gui/viewmanager.py:636
+#: ../src/gui/viewmanager.py:635
 msgid "Loading plugins..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:643 ../src/gui/viewmanager.py:658
+#: ../src/gui/viewmanager.py:642 ../src/gui/viewmanager.py:657
 msgid "Ready"
 msgstr ""
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:651
+#: ../src/gui/viewmanager.py:650
 msgid "Registering plugins..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:688
+#: ../src/gui/viewmanager.py:687
 msgid "Autobackup..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:692
+#: ../src/gui/viewmanager.py:691
 msgid "Error saving backup data"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:703
+#: ../src/gui/viewmanager.py:702
 msgid "Abort changes?"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:704
+#: ../src/gui/viewmanager.py:703
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:706
+#: ../src/gui/viewmanager.py:705
 msgid "Abort changes"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:716
+#: ../src/gui/viewmanager.py:715
 msgid "Cannot abandon session's changes"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:717
+#: ../src/gui/viewmanager.py:716
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:978
+#: ../src/gui/viewmanager.py:975
 msgid "No views loaded"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:979
+#: ../src/gui/viewmanager.py:976
 msgid ""
 "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some "
 "plugins of type 'View' are enabled. Then restart Gramps"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1219
+#: ../src/gui/viewmanager.py:1212
 msgid "Import Statistics"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1269
+#: ../src/gui/viewmanager.py:1262
 msgid "Read Only"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1582
+#: ../src/gui/viewmanager.py:1575
 msgid "Failed Loading Plugin"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1583
+#: ../src/gui/viewmanager.py:1576
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
@@ -4653,12 +4653,12 @@ msgstr ""
 msgid "manual|Editing_Information_About_Events"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:95 ../src/gui/editors/editeventref.py:232
+#: ../src/gui/editors/editevent.py:95 ../src/gui/editors/editeventref.py:241
 #, python-format
 msgid "Event: %s"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:234
+#: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:243
 msgid "New Event"
 msgstr ""
 
@@ -4693,7 +4693,7 @@ msgstr ""
 msgid "The event type cannot be empty"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:259 ../src/gui/editors/editeventref.py:245
+#: ../src/gui/editors/editevent.py:259 ../src/gui/editors/editeventref.py:254
 msgid "Add Event"
 msgstr ""
 
@@ -4702,17 +4702,21 @@ msgstr ""
 msgid "Delete Event (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:65
-#: ../src/gui/editors/editeventref.py:235
+#: ../src/gui/editors/editeventref.py:54
+msgid "manual|Editing_Event_References"
+msgstr ""
+
+#: ../src/gui/editors/editeventref.py:75
+#: ../src/gui/editors/editeventref.py:244
 msgid "Event Reference Editor"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:82 ../src/gui/editors/editmediaref.py:95
+#: ../src/gui/editors/editeventref.py:92 ../src/gui/editors/editmediaref.py:95
 #: ../src/gui/editors/editname.py:122 ../src/gui/editors/editreporef.py:78
 msgid "_General"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:242
+#: ../src/gui/editors/editeventref.py:251
 msgid "Modify Event"
 msgstr ""
 
@@ -4821,7 +4825,7 @@ msgid "Edit relationship"
 msgstr ""
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1514
+#: ../src/plugins/view/relview.py:1515
 msgid "Select Child"
 msgstr ""
 
@@ -4860,7 +4864,7 @@ msgstr ""
 msgid "New Family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:546 ../src/gui/editors/editfamily.py:1079
+#: ../src/gui/editors/editfamily.py:546 ../src/gui/editors/editfamily.py:1080
 msgid "Edit Family"
 msgstr ""
 
@@ -4888,71 +4892,71 @@ msgstr ""
 msgid "Remove the person as the father"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:794
+#: ../src/gui/editors/editfamily.py:795
 msgid "Select Mother"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:839
+#: ../src/gui/editors/editfamily.py:840
 msgid "Select Father"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:863
+#: ../src/gui/editors/editfamily.py:864
 msgid "Duplicate Family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:864
+#: ../src/gui/editors/editfamily.py:865
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:905
+#: ../src/gui/editors/editfamily.py:906
 msgid "Baptism:"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:912
+#: ../src/gui/editors/editfamily.py:913
 msgid "Burial:"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:914 ../src/plugins/view/relview.py:593
-#: ../src/plugins/view/relview.py:987 ../src/plugins/view/relview.py:1035
-#: ../src/plugins/view/relview.py:1116 ../src/plugins/view/relview.py:1222
+#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:594
+#: ../src/plugins/view/relview.py:988 ../src/plugins/view/relview.py:1036
+#: ../src/plugins/view/relview.py:1117 ../src/plugins/view/relview.py:1223
 #, python-format
 msgid "Edit %s"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:982
+#: ../src/gui/editors/editfamily.py:983
 msgid "A father cannot be his own child"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:983
+#: ../src/gui/editors/editfamily.py:984
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:992
+#: ../src/gui/editors/editfamily.py:993
 msgid "A mother cannot be her own child"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:993
+#: ../src/gui/editors/editfamily.py:994
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1000
+#: ../src/gui/editors/editfamily.py:1001
 msgid "Cannot save family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1001
+#: ../src/gui/editors/editfamily.py:1002
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1008
+#: ../src/gui/editors/editfamily.py:1009
 msgid "Cannot save family. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1009 ../src/gui/editors/editnote.py:307
+#: ../src/gui/editors/editfamily.py:1010 ../src/gui/editors/editnote.py:307
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -4960,7 +4964,7 @@ msgid ""
 "next available ID value."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1048
+#: ../src/gui/editors/editfamily.py:1049
 msgid "Add Family"
 msgstr ""
 
@@ -5482,7 +5486,7 @@ msgid "%(part1)s - %(part2)s"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
-#: ../src/plugins/view/relview.py:404
+#: ../src/plugins/view/relview.py:405
 msgid "Add"
 msgstr ""
 
@@ -5493,7 +5497,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
 #: ../src/gui/editors/displaytabs/gallerytab.py:124
-#: ../src/plugins/view/relview.py:408
+#: ../src/plugins/view/relview.py:409
 msgid "Share"
 msgstr ""
 
@@ -6012,19 +6016,19 @@ msgstr ""
 msgid "Select Source"
 msgstr ""
 
-#: ../src/gui/views/listview.py:197 ../src/plugins/lib/libpersonview.py:341
+#: ../src/gui/views/listview.py:197 ../src/plugins/lib/libpersonview.py:342
 msgid "_Add..."
 msgstr ""
 
-#: ../src/gui/views/listview.py:199 ../src/plugins/lib/libpersonview.py:343
+#: ../src/gui/views/listview.py:199 ../src/plugins/lib/libpersonview.py:344
 msgid "_Remove"
 msgstr ""
 
-#: ../src/gui/views/listview.py:201 ../src/plugins/lib/libpersonview.py:349
+#: ../src/gui/views/listview.py:201 ../src/plugins/lib/libpersonview.py:350
 msgid "Export View..."
 msgstr ""
 
-#: ../src/gui/views/listview.py:207 ../src/plugins/lib/libpersonview.py:332
+#: ../src/gui/views/listview.py:207 ../src/plugins/lib/libpersonview.py:333
 msgid "action|_Edit..."
 msgstr ""
 
@@ -6061,7 +6065,7 @@ msgstr ""
 msgid "Deleting item will remove it from the database."
 msgstr ""
 
-#: ../src/gui/views/listview.py:518 ../src/plugins/lib/libpersonview.py:274
+#: ../src/gui/views/listview.py:518 ../src/plugins/lib/libpersonview.py:275
 #: ../src/plugins/view/familyview.py:222
 #, python-format
 msgid "Delete %s?"
@@ -6400,10 +6404,10 @@ msgstr ""
 #: ../src/Merge/_MergePerson.py:91 ../src/Merge/_MergePerson.py:96
 #: ../src/Merge/_MergePerson.py:272 ../src/Merge/_MergePerson.py:279
 #: ../src/Merge/_MergePerson.py:311 ../src/Merge/_MergePerson.py:316
-#: ../src/plugins/lib/libpersonview.py:372
-#: ../src/plugins/lib/libpersonview.py:385
-#: ../src/plugins/lib/libpersonview.py:396
-#: ../src/plugins/lib/libpersonview.py:410
+#: ../src/plugins/lib/libpersonview.py:373
+#: ../src/plugins/lib/libpersonview.py:386
+#: ../src/plugins/lib/libpersonview.py:397
+#: ../src/plugins/lib/libpersonview.py:411
 msgid "Cannot merge people"
 msgstr ""
 
@@ -6439,7 +6443,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:110
 #: ../src/plugins/view/fanchartview.py:789
-#: ../src/plugins/view/pedigreeview.py:1365
+#: ../src/plugins/view/pedigreeview.py:1367
 msgid "Spouses"
 msgstr ""
 
@@ -8227,8 +8231,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:761
-#: ../src/plugins/view/pedigreeview.py:1317
-#: ../src/plugins/view/pedigreeview.py:1337
+#: ../src/plugins/view/pedigreeview.py:1319
+#: ../src/plugins/view/pedigreeview.py:1339
 msgid "People Menu"
 msgstr ""
 
@@ -8236,7 +8240,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:823
-#: ../src/plugins/view/pedigreeview.py:1399 ../src/plugins/view/relview.py:896
+#: ../src/plugins/view/pedigreeview.py:1401 ../src/plugins/view/relview.py:897
 #: ../src/plugins/webreport/NarrativeWeb.py:4155
 msgid "Siblings"
 msgstr ""
@@ -8246,8 +8250,8 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:559
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:866
-#: ../src/plugins/view/pedigreeview.py:1442
-#: ../src/plugins/view/relview.py:1355
+#: ../src/plugins/view/pedigreeview.py:1444
+#: ../src/plugins/view/relview.py:1356
 #: ../src/plugins/webreport/NarrativeWeb.py:4365
 msgid "Children"
 msgstr ""
@@ -8255,7 +8259,7 @@ msgstr ""
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:873
 #: ../src/plugins/view/fanchartview.py:940
-#: ../src/plugins/view/pedigreeview.py:1516
+#: ../src/plugins/view/pedigreeview.py:1518
 msgid "Related"
 msgstr ""
 
@@ -8403,7 +8407,7 @@ msgid "Calendar Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
-msgid "Gramplet showing calendar and events on specfic dates in history"
+msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:88
@@ -13730,12 +13734,12 @@ msgid "Last Changed"
 msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:108
-#: ../src/plugins/lib/libpersonview.py:342
+#: ../src/plugins/lib/libpersonview.py:343
 msgid "Add a new person"
 msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:109
-#: ../src/plugins/lib/libpersonview.py:333
+#: ../src/plugins/lib/libpersonview.py:334
 msgid "Edit the selected person"
 msgstr ""
 
@@ -13743,40 +13747,40 @@ msgstr ""
 msgid "Delete the selected person"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:271
+#: ../src/plugins/lib/libpersonview.py:272
 msgid "Deleting the person will remove the person from the database."
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:276
+#: ../src/plugins/lib/libpersonview.py:277
 msgid "_Delete Person"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:291
+#: ../src/plugins/lib/libpersonview.py:292
 #, python-format
 msgid "Delete Person (%s)"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:330
-#: ../src/plugins/view/pedigreeview.py:505 ../src/plugins/view/relview.py:417
+#: ../src/plugins/lib/libpersonview.py:331
+#: ../src/plugins/view/pedigreeview.py:507 ../src/plugins/view/relview.py:418
 msgid "Person Filter Editor"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:344
+#: ../src/plugins/lib/libpersonview.py:345
 msgid "Remove the Selected Person"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:345
+#: ../src/plugins/lib/libpersonview.py:346
 msgid "Compare and _Merge..."
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:347
+#: ../src/plugins/lib/libpersonview.py:348
 msgid "_Fast Merge..."
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:373
-#: ../src/plugins/lib/libpersonview.py:386
-#: ../src/plugins/lib/libpersonview.py:397
-#: ../src/plugins/lib/libpersonview.py:411
+#: ../src/plugins/lib/libpersonview.py:374
+#: ../src/plugins/lib/libpersonview.py:387
+#: ../src/plugins/lib/libpersonview.py:398
+#: ../src/plugins/lib/libpersonview.py:412
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -14124,7 +14128,7 @@ msgid "Parent"
 msgstr ""
 
 #: ../src/plugins/quickview/all_relations.py:287
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/relview.py:401
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr ""
@@ -14956,7 +14960,7 @@ msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-#: ../src/plugins/view/relview.py:1663
+#: ../src/plugins/view/relview.py:1664
 msgid "Content"
 msgstr ""
 
@@ -17662,15 +17666,15 @@ msgstr ""
 msgid "short for cremated|crem."
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:896
+#: ../src/plugins/view/pedigreeview.py:898
 msgid "Jump to child..."
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:914
+#: ../src/plugins/view/pedigreeview.py:916
 msgid "Jump to mother"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1179
+#: ../src/plugins/view/pedigreeview.py:1181
 msgid "A person was found to be his/her own ancestor."
 msgstr ""
 
@@ -17679,48 +17683,48 @@ msgstr ""
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/plugins/view/pedigreeview.py:1222
-#: ../src/plugins/view/pedigreeview.py:1231
+#: ../src/plugins/view/pedigreeview.py:1224
+#: ../src/plugins/view/pedigreeview.py:1233
 #: ../src/plugins/webreport/NarrativeWeb.py:3015
 msgid "Home"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1245
+#: ../src/plugins/view/pedigreeview.py:1247
 msgid "Show images"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1254
+#: ../src/plugins/view/pedigreeview.py:1256
 msgid "Show marriage data"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1263
+#: ../src/plugins/view/pedigreeview.py:1265
 msgid "Tree style"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1270
+#: ../src/plugins/view/pedigreeview.py:1272
 msgid "Version A"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1277
+#: ../src/plugins/view/pedigreeview.py:1279
 msgid "Version B"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1289
+#: ../src/plugins/view/pedigreeview.py:1291
 msgid "Tree size"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1296
+#: ../src/plugins/view/pedigreeview.py:1298
 msgid "Automatic"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1304
+#: ../src/plugins/view/pedigreeview.py:1306
 #, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/view/pedigreeview.py:1567
+#: ../src/plugins/view/pedigreeview.py:1569
 msgid "Family Menu"
 msgstr ""
 
@@ -17755,187 +17759,187 @@ msgstr ""
 msgid "Collapse this Entire Group"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:392
+#: ../src/plugins/view/relview.py:393
 msgid "_Reorder"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:393
+#: ../src/plugins/view/relview.py:394
 msgid "Change order of parents and families"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:398
+#: ../src/plugins/view/relview.py:399
 msgid "Edit..."
 msgstr ""
 
-#: ../src/plugins/view/relview.py:399
+#: ../src/plugins/view/relview.py:400
 msgid "Edit the active person"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:401 ../src/plugins/view/relview.py:403
-#: ../src/plugins/view/relview.py:799
+#: ../src/plugins/view/relview.py:402 ../src/plugins/view/relview.py:404
+#: ../src/plugins/view/relview.py:800
 msgid "Add a new family with person as parent"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:402
+#: ../src/plugins/view/relview.py:403
 msgid "Add Partner..."
 msgstr ""
 
-#: ../src/plugins/view/relview.py:405 ../src/plugins/view/relview.py:407
-#: ../src/plugins/view/relview.py:793
+#: ../src/plugins/view/relview.py:406 ../src/plugins/view/relview.py:408
+#: ../src/plugins/view/relview.py:794
 msgid "Add a new set of parents"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:406
+#: ../src/plugins/view/relview.py:407
 msgid "Add New Parents..."
 msgstr ""
 
-#: ../src/plugins/view/relview.py:409 ../src/plugins/view/relview.py:413
-#: ../src/plugins/view/relview.py:794
+#: ../src/plugins/view/relview.py:410 ../src/plugins/view/relview.py:414
+#: ../src/plugins/view/relview.py:795
 msgid "Add person as child to an existing family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:412
+#: ../src/plugins/view/relview.py:413
 msgid "Add Existing Parents..."
 msgstr ""
 
-#: ../src/plugins/view/relview.py:652
+#: ../src/plugins/view/relview.py:653
 msgid "Alive"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:710 ../src/plugins/view/relview.py:737
+#: ../src/plugins/view/relview.py:711 ../src/plugins/view/relview.py:738
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:795
+#: ../src/plugins/view/relview.py:796
 msgid "Edit parents"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:796
+#: ../src/plugins/view/relview.py:797
 msgid "Reorder parents"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:797
+#: ../src/plugins/view/relview.py:798
 msgid "Remove person as child of these parents"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:801
+#: ../src/plugins/view/relview.py:802
 msgid "Edit family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:803
 msgid "Reorder families"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:803
+#: ../src/plugins/view/relview.py:804
 msgid "Remove person as parent in this family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:856 ../src/plugins/view/relview.py:912
+#: ../src/plugins/view/relview.py:857 ../src/plugins/view/relview.py:913
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/view/relview.py:861 ../src/plugins/view/relview.py:917
+#: ../src/plugins/view/relview.py:862 ../src/plugins/view/relview.py:918
 msgid " (1 brother)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:863 ../src/plugins/view/relview.py:919
+#: ../src/plugins/view/relview.py:864 ../src/plugins/view/relview.py:920
 msgid " (1 sister)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:865 ../src/plugins/view/relview.py:921
+#: ../src/plugins/view/relview.py:866 ../src/plugins/view/relview.py:922
 msgid " (1 sibling)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:867 ../src/plugins/view/relview.py:923
+#: ../src/plugins/view/relview.py:868 ../src/plugins/view/relview.py:924
 msgid " (only child)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:938 ../src/plugins/view/relview.py:1387
+#: ../src/plugins/view/relview.py:939 ../src/plugins/view/relview.py:1388
 msgid "Add new child to family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:942 ../src/plugins/view/relview.py:1391
+#: ../src/plugins/view/relview.py:943 ../src/plugins/view/relview.py:1392
 msgid "Add existing child to family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1171
+#: ../src/plugins/view/relview.py:1172
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1178 ../src/plugins/view/relview.py:1180
+#: ../src/plugins/view/relview.py:1179 ../src/plugins/view/relview.py:1181
 #, python-format
 msgid "%s %s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1241
+#: ../src/plugins/view/relview.py:1242
 #, python-format
 msgid "Relationship type: %s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1283
+#: ../src/plugins/view/relview.py:1284
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1287
+#: ../src/plugins/view/relview.py:1288
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1291
+#: ../src/plugins/view/relview.py:1292
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1302
+#: ../src/plugins/view/relview.py:1303
 msgid "Broken family detected"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1303
+#: ../src/plugins/view/relview.py:1304
 msgid "Please run the Check and Repair Database tool"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1324 ../src/plugins/view/relview.py:1370
+#: ../src/plugins/view/relview.py:1325 ../src/plugins/view/relview.py:1371
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/view/relview.py:1326 ../src/plugins/view/relview.py:1372
+#: ../src/plugins/view/relview.py:1327 ../src/plugins/view/relview.py:1373
 msgid " (no children)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1502
+#: ../src/plugins/view/relview.py:1503
 msgid "Add Child to Family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1635
+#: ../src/plugins/view/relview.py:1636
 msgid "Use shading"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1638
+#: ../src/plugins/view/relview.py:1639
 msgid "Display edit buttons"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1640
+#: ../src/plugins/view/relview.py:1641
 msgid "View links as website links"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1646
+#: ../src/plugins/view/relview.py:1647
 msgid "Layout"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1657
+#: ../src/plugins/view/relview.py:1658
 msgid "Show Details"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1660
+#: ../src/plugins/view/relview.py:1661
 msgid "Show Siblings"
 msgstr ""
 
