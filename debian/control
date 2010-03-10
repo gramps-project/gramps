@@ -1,23 +1,27 @@
 Source: gramps
 Section: gnome
 Priority: optional
-Maintainer: James A. Treacy <treacy@debian.org>
-Build-Depends-Indep: debhelper (>=5.0.37.2), python-xml, python-gnome2, python-glade2, scrollkeeper, libglib2.0-dev, build-essential, gnome-doc-utils, intltool, xsltproc, python-central (>= 0.4.17)
-Standards-Version: 3.6.2
-XS-Python-Version: current
+Maintainer: Stéphane Charette <stephanecharette@gmail.com>
+Build-Depends-Indep: libxml-parser-perl, python-gtk2, gettext, libgconf2-dev, python-central (>= 0.5.6), python, intltool
+Build-Depends:  debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: http://www.gramps-project.org/
+XS-Python-Version: >=2.5
 
 Package: gramps
 Architecture: all
-Depends: ${python:Depends}, python-gnome2, python-glade2, ${misc:Depends}
-Replaces: gramps-manual, gramps-extending-doc, gramps-help
-Conflicts: gramps-manual, gramps-extending-doc, gramps-common
-Recommends: graphviz, ttf-freefont, python-reportlab, python-gnome2-extras
-Description: Genealogical Research and Analysis Management Program
- GRAMPS, the Genealogical Research and Analysis Management Programming
- System, is an Open Source genealogy program written in Python, using
- the GTK/GNOME interface.
- GRAMPS has the ability to import GEDCOM files that are used in such
- programs as FamilyTree Maker for Windows and can produce reports
- in various formats such as the popular ABIWord and OpenOffice.org
- formats as well as HTML and PDF.
+Depends: ${python:Depends}, librsvg2-common, python-gtk2, xdg-utils, ${misc:Depends}
+Replaces: gramps-manual, gramps-extending-doc
+Conflicts: gramps-manual, gramps-extending-doc, gramps-common, python-gtk-1.2
+Recommends: graphviz, python-webkit, python-gtkmozembed
+Suggests: ttf-freefont, python-enchant, python-gtkspell
+Description: Genealogical research program
+ GRAMPS is an Open Source genealogy program written in Python, using
+ the GTK/GNOME interface. It is an extremely flexible program fitting
+ the needs for both the amateur genealogist and serious genealogical
+ researcher.
+ GRAMPS has the ability to import GEDCOM files exported from many
+ proprietary genealogy programs and can produce a large number of
+ reports in many popular formats.
+XB-Python-Version: ${python:Versions}
 
