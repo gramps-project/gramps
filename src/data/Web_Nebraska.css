@@ -821,7 +821,7 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
 
 /* Address Book
 ------------------------------------------------------ */
-div#AddressBookList {
+div#AddressBookList, div#AddressBookDetail {
     margin: 0;
     padding: 0;
 }
@@ -831,16 +831,23 @@ div#AddressBookList table.addressbook {
 div#AddressBookList table.addressbook tbody tr.BeginName {
     border-top: solid 1px #000;
 }
+div#AddressBookList table.addressbook tbody tr.Totals td {
+    background-color: #F6F2EE;
+}
 div#AddressBookList table.addressbook tbody tr td {
     background-color: #FFF;
     border-bottom: dashed 1px #000;
 }
 div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
     background-color: #F6F2EE;
-    width: 15%;
+    width: 4%;
 }
 div#AddressBookList table.addressbook tbody tr td.ColumnName {
-    width: 30%;
+    width: 70%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName a {
+    display: block;
+    padding: 6px 0px 6px 0px;
 }
 div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
     width: 8%;
