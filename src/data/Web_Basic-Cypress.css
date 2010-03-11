@@ -835,9 +835,6 @@ div#AddressBookList, AddressBookDetail {
 div#AddressBookList table.addressbook {
     margin: .3em 0 .3em 0;
 }
-div#AddressBookList table.addressbook tbody tr.Totals {
-    border: solid 1px #000;
-}
 div#AddressBookList tble.addressbook tbody tr.Totals td {
     text-align: left;
     background-color: #E0E0E6;
