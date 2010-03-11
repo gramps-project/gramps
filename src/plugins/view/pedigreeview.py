@@ -696,6 +696,9 @@ class PedigreeView(NavigationView):
         """Called when the page changes."""
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
+        if self.dirty:
+            self.rebuild_trees(self.get_active())
+            self.dirty = False
 
     def get_stock(self):
         """
@@ -859,12 +862,10 @@ class PedigreeView(NavigationView):
 
     def person_rebuild(self, dummy=None):
         """Callback function for signals of change database."""
+        self.format_helper.clear_cache()
+        self.dirty = True
         if self.active:
-            self.format_helper.clear_cache()
-            self.dirty = True
             self.rebuild_trees(self.get_active())
-        else:
-            self.dirty = True
 
     def rebuild_trees(self, person_handle):
         """
