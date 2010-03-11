@@ -1205,7 +1205,8 @@ class PedigreeView(NavigationView):
                     y_pos = _delta / 2 + offset * _delta -1 + _height / 2
                     width = 1
                     height = 1
-                    if self.tree_style == 0 and level < 2:
+                    if self.tree_style == 0 and level < 2 and size > 4:
+                        # Boxes can be bigger for lowest levels on larger trees.
                         y_pos -= 2
                         height += 4
                 else:
