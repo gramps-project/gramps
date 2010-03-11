@@ -1435,21 +1435,21 @@ class BasePage(object):
                     if not uri.startswith("mailto:"):
                         list += Html("a",descr,  href = 'mailto: %s' % uri)
                     else:
-                        list += Html("a", descr, href = "%s" % uri)
+                        list += Html("a", descr, href = uri)
 
                 # Web Site address
                 elif _type == UrlType.WEB_HOME:
                     if not uri.startswith("http://"):
                         list += Html("a", descr, href = 'http://%s' % uri)
                     else:
-                        list += Html("a", href = "%s" % uri)
+                        list += Html("a", href = uri)
 
                 # FTP server address
                 elif _type == UrlType.WEB_FTP:
                     if not uri.startswith("ftp://"):
                         list += Html("a", descr, href = 'ftp://%s' % uri)
                     else:
-                        list += Html("a", drscr, href = "%s" % uri) 
+                        list += Html("a", drscr, href = uri) 
 
                 # custom type
                 else:
