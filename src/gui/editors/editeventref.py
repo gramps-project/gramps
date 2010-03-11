@@ -101,7 +101,7 @@ class EditEventRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_object('cancel'))
-        self.define_help_button(self.top.get_object('help'),self.on_help_button_clicked)
+        self.define_help_button(self.top.get_object('help'), WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _connect_db_signals(self):
         """
@@ -258,10 +258,6 @@ class EditEventRef(EditReference):
             self.update(self.source_ref,self.source)
 
         self.close()
-
-    def on_help_button_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
 class EditFamilyEventRef(EditEventRef):
 
