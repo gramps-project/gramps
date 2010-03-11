@@ -390,6 +390,9 @@ class PedigreeView(NavigationView):
     def change_page(self):
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
+        if self.dirty:
+            self.rebuild_trees(self.get_active())
+            self.dirty = False
 
     def init_parent_signals_cb(self, widget, event):
         # required to properly bootstrap the signal handlers.
@@ -568,12 +571,10 @@ class PedigreeView(NavigationView):
             self.bookmarks.redraw()
 
     def person_rebuild(self,dummy=None):
+        self.format_helper.clear_cache()
+        self.dirty = True
         if self.active:
-            self.format_helper.clear_cache()
-            self.dirty = True
             self.rebuild_trees(self.get_active())
-        else:
-            self.dirty = True
 
     def request_resize(self):
         self.size_request_cb(self.notebook.parent,None,None)
