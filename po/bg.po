@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-10 21:40+0100\n"
-"PO-Revision-Date: 2010-03-11 11:51+0200\n"
+"PO-Revision-Date: 2010-03-11 18:04+0200\n"
 "Last-Translator: Boril Gourinov <boril.gourinov@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -160,10 +160,13 @@ msgstr ""
 #: ../src/const.py:215
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"ПРЕВОДАЧИ /по азбучен ред/: Борил Гуринов boril.gourinov@gmail.com, Камен "
-"Найденов pau4o@pixel-bg.com, Светослав Стефанов lfu.project@gmail.com\n"
+"ПРЕВОДАЧИ /по азбучен ред/: \n"
+"Борил Гуринов boril.gourinov@gmail.com, \n"
+"Камен Найденов pau4o@pixel-bg.com, \n"
+"Светослав Стефанов lfu.project@gmail.com\n"
 "\n"
-"С предложения за превода се обръщайте към Борил Гуринов"
+"С предложения за превода се обръщайте \n"
+"към Борил Гуринов"
 
 #: ../src/const.py:225 ../src/const.py:226 ../src/gen/lib/date.py:1620
 #: ../src/gen/lib/date.py:1634
@@ -660,7 +663,7 @@ msgstr "полът неизвестен бивш/а съпруг/а"
 
 #: ../src/Relationship.py:1683
 msgid "unmarried|husband"
-msgstr "без бракбез брак съпруг"
+msgstr "без брак съпруг"
 
 #: ../src/Relationship.py:1685
 msgid "unmarried|wife"
@@ -2952,7 +2955,7 @@ msgstr "Завещание"
 #: ../src/plugins/textreport/FamilyGroup.py:357
 #: ../src/plugins/view/relview.py:1257
 msgid "Marriage"
-msgstr "В брак"
+msgstr "Брак"
 
 #: ../src/gen/lib/eventtype.py:180
 msgid "Marriage Settlement"
@@ -16238,7 +16241,7 @@ msgstr "Единични факти"
 #: ../src/plugins/textreport/IndivComplete.py:187
 #, python-format
 msgid "%s in %s. "
-msgstr "%s и %s. "
+msgstr "%s в %s. "
 
 #: ../src/plugins/textreport/IndivComplete.py:274
 msgid "Alternate Parents"
@@ -18174,7 +18177,7 @@ msgstr "Брой с местата без координати."
 
 #: ../src/plugins/view/geoview.py:442 ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
-msgstr "Геогрофия"
+msgstr "География"
 
 #: ../src/plugins/view/geoview.py:499
 msgid "You can adjust the time period with the two following values."
@@ -18800,7 +18803,7 @@ msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 #: ../src/plugins/view/relview.py:1179 ../src/plugins/view/relview.py:1181
 #, python-format
 msgid "%s %s"
-msgstr "%s и %s"
+msgstr "%s %s"
 
 #: ../src/plugins/view/relview.py:1242
 #, python-format
@@ -20436,7 +20439,7 @@ msgstr "Книги"
 
 #: ../src/ReportBase/_Constants.py:48
 msgid "Graphs"
-msgstr "Графи"
+msgstr "Диаграми"
 
 #: ../src/ReportBase/_Constants.py:53
 msgid "Graphics"
