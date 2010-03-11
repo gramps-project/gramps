@@ -1003,7 +1003,7 @@ class PedigreeView(NavigationView):
             ymax = 2 ** size          
         elif self.tree_style == 1:
             xmax = 2 * size + 2
-            ymax = [0, 8, 12, 14, 30][size - 1]
+            ymax = [0, 10, 14, 16, 32][size - 1]
         elif self.tree_style == 2:
             # For style C change tree depth if they real size less then max.
             if self.show_unknown_people:
