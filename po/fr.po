@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-09 16:53+0100\n"
-"PO-Revision-Date: 2010-03-09 16:58+0100\n"
+"POT-Creation-Date: 2010-03-10 21:40+0100\n"
+"PO-Revision-Date: 2010-03-11 16:24+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "Nom"
 #: ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89
 #: ../src/plugins/view/noteview.py:76
-#: ../src/plugins/view/relview.py:611
+#: ../src/plugins/view/relview.py:612
 #: ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77
 #: ../src/PluginUtils/_GuiOptions.py:829
@@ -292,7 +292,7 @@ msgstr "Aucun dépôt actif"
 
 #: ../src/DisplayState.py:352
 msgid "No active media"
-msgstr "Aucun objet media actif"
+msgstr "Aucun objet medium actif"
 
 #: ../src/DisplayState.py:353
 msgid "No active note"
@@ -605,7 +605,6 @@ msgstr ""
 msgid "Low level database corruption detected"
 msgstr "Corruption de bas niveau détectée dans la base de données"
 
-# trunk
 #: ../src/QuestionDialog.py:203
 #: ../src/cli/grampscli.py:95
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired by from the Family Tree Manager. Select the database and click on the Repair button"
@@ -629,7 +628,7 @@ msgstr ""
 #: ../src/docgen/TextBufDoc.py:160
 #: ../src/docgen/TextBufDoc.py:162
 #: ../src/plugins/gramplet/gramplet.gpr.py:184
-#: ../src/plugins/lib/libpersonview.py:334
+#: ../src/plugins/lib/libpersonview.py:335
 #: ../src/plugins/lib/libplaceview.py:172
 #: ../src/plugins/view/eventview.py:212
 #: ../src/plugins/view/familyview.py:191
@@ -641,7 +640,7 @@ msgid "Quick View"
 msgstr "Rapport express"
 
 #: ../src/Relationship.py:797
-#: ../src/plugins/view/pedigreeview.py:1178
+#: ../src/plugins/view/pedigreeview.py:1180
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
 
@@ -779,7 +778,7 @@ msgstr "l'ancien concubin"
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/MarkerReport.py:207
 #: ../src/plugins/view/familyview.py:74
-#: ../src/plugins/view/relview.py:881
+#: ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:4136
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -799,7 +798,7 @@ msgstr "Père"
 #: ../src/plugins/textreport/IndivComplete.py:605
 #: ../src/plugins/textreport/MarkerReport.py:213
 #: ../src/plugins/view/familyview.py:75
-#: ../src/plugins/view/relview.py:882
+#: ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4143
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -811,7 +810,7 @@ msgstr "Mère"
 #: ../src/Merge/_MergePerson.py:180
 #: ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/textreport/FamilyGroup.py:494
-#: ../src/plugins/view/relview.py:1340
+#: ../src/plugins/view/relview.py:1341
 #: ../src/plugins/webreport/NarrativeWeb.py:563
 msgid "Spouse"
 msgstr "Conjoint"
@@ -862,9 +861,9 @@ msgstr "Utilisation du presse-papiers"
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473
 #: ../src/plugins/view/geoview.py:643
-#: ../src/plugins/view/relview.py:455
-#: ../src/plugins/view/relview.py:993
-#: ../src/plugins/view/relview.py:1040
+#: ../src/plugins/view/relview.py:456
+#: ../src/plugins/view/relview.py:994
+#: ../src/plugins/view/relview.py:1041
 #: ../src/plugins/webreport/NarrativeWeb.py:1516
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -1157,7 +1156,7 @@ msgstr "Numéro d'appel"
 
 #: ../src/ScratchPad.py:530
 msgid "Media Type"
-msgstr "Type de media"
+msgstr "Type de medium"
 
 #: ../src/ScratchPad.py:542
 msgid "Event Reference"
@@ -1213,9 +1212,9 @@ msgstr "Prénom"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
-#: ../src/plugins/view/relview.py:528
-#: ../src/plugins/view/relview.py:1316
-#: ../src/plugins/view/relview.py:1338
+#: ../src/plugins/view/relview.py:529
+#: ../src/plugins/view/relview.py:1317
+#: ../src/plugins/view/relview.py:1339
 msgid "Family"
 msgstr "Famille"
 
@@ -1282,12 +1281,12 @@ msgstr "Texte"
 #: ../src/gui/filtereditor.py:264
 #: ../src/gui/editors/editperson.py:509
 msgid "Media Object"
-msgstr "Objet media"
+msgstr "Objet medium"
 
 #: ../src/ScratchPad.py:664
 #: ../src/ScratchPad.py:676
 msgid "Media Reference"
-msgstr "Référence de media"
+msgstr "Référence de medium"
 
 #: ../src/ScratchPad.py:690
 #: ../src/gui/editors/editpersonref.py:159
@@ -1309,7 +1308,7 @@ msgstr "Lien d'individu"
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/view/relview.py:621
+#: ../src/plugins/view/relview.py:622
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
 msgstr "Naissance"
@@ -1752,7 +1751,7 @@ msgstr "Mise en garde : la vérification orthographique est désactivée; instal
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
 #: ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:448
+#: ../src/gui/viewmanager.py:447
 msgid "Tip of the Day"
 msgstr "Astuce du jour"
 
@@ -1953,7 +1952,7 @@ msgstr "Les données peuvent être récupérées en annulant l'opération ou en 
 #: ../src/plugins/textreport/DetDescendantReport.py:572
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
-#: ../src/plugins/view/relview.py:659
+#: ../src/plugins/view/relview.py:660
 #: ../src/plugins/webreport/NarrativeWeb.py:3481
 #: ../src/plugins/webreport/NarrativeWeb.py:4423
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -2574,7 +2573,7 @@ msgstr "FTP"
 
 #: ../src/gen/lib/notetype.py:78
 #: ../src/gui/configure.py:977
-#: ../src/gui/editors/editeventref.py:76
+#: ../src/gui/editors/editeventref.py:86
 #: ../src/gui/editors/editmediaref.py:89
 #: ../src/gui/editors/editreporef.py:72
 #: ../src/gui/editors/editsourceref.py:74
@@ -2665,11 +2664,11 @@ msgstr "Note de la référence du dépôt"
 
 #: ../src/gen/lib/notetype.py:102
 msgid "Media Note"
-msgstr "Note du media"
+msgstr "Note du medium"
 
 #: ../src/gen/lib/notetype.py:103
 msgid "Media Reference Note"
-msgstr "Note de la référence du media"
+msgstr "Note de la référence du medium"
 
 #: ../src/gen/lib/notetype.py:104
 msgid "Child Reference Note"
@@ -2964,7 +2963,7 @@ msgstr "entre"
 #: ../src/gen/lib/date.py:449
 #: ../src/Simple/_SimpleTable.py:251
 #: ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:974
+#: ../src/plugins/view/relview.py:975
 msgid "and"
 msgstr "et"
 
@@ -3087,8 +3086,8 @@ msgstr "Nom marital (nom de famille de l'époux)"
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/view/relview.py:632
-#: ../src/plugins/view/relview.py:657
+#: ../src/plugins/view/relview.py:633
+#: ../src/plugins/view/relview.py:658
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
 msgstr "Décès"
@@ -3227,7 +3226,7 @@ msgstr "Testament / Inventaire après décès"
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/textreport/FamilyGroup.py:357
-#: ../src/plugins/view/relview.py:1256
+#: ../src/plugins/view/relview.py:1257
 msgid "Marriage"
 msgstr "Mariage"
 
@@ -3968,7 +3967,7 @@ msgid "Upgrade now"
 msgstr "Mettre à jour maintenant"
 
 #: ../src/gui/dbloader.py:298
-#: ../src/gui/viewmanager.py:707
+#: ../src/gui/viewmanager.py:706
 #: ../src/plugins/view/familyview.py:223
 msgid "Cancel"
 msgstr "Annuler"
@@ -4017,7 +4016,6 @@ msgstr "Dernière modification"
 msgid "Break the lock on the '%s' database?"
 msgstr "Enlever le verrou sur la base de données '%s' ?"
 
-# trunk
 #: ../src/gui/dbman.py:366
 msgid "Gramps believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
 msgstr "Gramps pense que cette base de données est en cours d'édition. Vous ne pouvez pas l'éditer tant qu'elle est verrouillée. Si personne n'édite la base de données vous pouvez enlever le verrou en toute sécurité. Toutefois, si quelqu'un d'autre édite cette base de données et que vous cassez le verrou, vous pouvez la corrompre."
@@ -4597,10 +4595,10 @@ msgstr "Notes"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:903
-#: ../src/plugins/view/pedigreeview.py:1479
-#: ../src/plugins/view/relview.py:515
-#: ../src/plugins/view/relview.py:846
-#: ../src/plugins/view/relview.py:880
+#: ../src/plugins/view/pedigreeview.py:1481
+#: ../src/plugins/view/relview.py:516
+#: ../src/plugins/view/relview.py:847
+#: ../src/plugins/view/relview.py:881
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr "Parents"
@@ -4789,252 +4787,250 @@ msgstr "Fichier inexistant"
 msgid "Unsupported"
 msgstr "Non supportés"
 
-#: ../src/gui/viewmanager.py:404
+#: ../src/gui/viewmanager.py:403
 msgid "Connect to a recent database"
 msgstr "Connecter à une base de données récente"
 
-#: ../src/gui/viewmanager.py:420
+#: ../src/gui/viewmanager.py:419
 msgid "_Family Trees"
 msgstr "Arbres _familiaux"
 
-#: ../src/gui/viewmanager.py:421
+#: ../src/gui/viewmanager.py:420
 msgid "_Manage Family Trees..."
 msgstr "_Gestion des arbres familiaux..."
 
-#: ../src/gui/viewmanager.py:422
+#: ../src/gui/viewmanager.py:421
 msgid "Manage databases"
 msgstr "Gestion des bases de données"
 
-#: ../src/gui/viewmanager.py:423
+#: ../src/gui/viewmanager.py:422
 msgid "Open _Recent"
 msgstr "Fichiers _récemment ouverts"
 
-#: ../src/gui/viewmanager.py:424
+#: ../src/gui/viewmanager.py:423
 msgid "Open an existing database"
 msgstr "Ouvrir une base de données existante"
 
-#: ../src/gui/viewmanager.py:425
+#: ../src/gui/viewmanager.py:424
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: ../src/gui/viewmanager.py:427
+#: ../src/gui/viewmanager.py:426
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/gui/viewmanager.py:428
-#: ../src/gui/viewmanager.py:493
+#: ../src/gui/viewmanager.py:427
+#: ../src/gui/viewmanager.py:492
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../src/gui/viewmanager.py:429
+#: ../src/gui/viewmanager.py:428
 msgid "_Preferences..."
 msgstr "_Préférences..."
 
-#: ../src/gui/viewmanager.py:431
+#: ../src/gui/viewmanager.py:430
 msgid "_Help"
 msgstr "Aid_e"
 
-#: ../src/gui/viewmanager.py:432
+#: ../src/gui/viewmanager.py:431
 msgid "Gramps _Home Page"
 msgstr "Page d'accueil de _Gramps"
 
-#: ../src/gui/viewmanager.py:434
+#: ../src/gui/viewmanager.py:433
 msgid "Gramps _Mailing Lists"
 msgstr "Listes de diffusion de Gra_mps"
 
-#: ../src/gui/viewmanager.py:436
+#: ../src/gui/viewmanager.py:435
 msgid "_Report a Bug"
 msgstr "_Rapporter un bogue"
 
-#: ../src/gui/viewmanager.py:438
+#: ../src/gui/viewmanager.py:437
 msgid "_Extra Reports/Tools"
 msgstr "R_apports et outils supplémentaires"
 
-#: ../src/gui/viewmanager.py:440
+#: ../src/gui/viewmanager.py:439
 msgid "_About"
 msgstr "À _propos"
 
-#: ../src/gui/viewmanager.py:442
+#: ../src/gui/viewmanager.py:441
 msgid "_Plugin Manager"
 msgstr "_Gestionnaire de greffons"
 
-#: ../src/gui/viewmanager.py:444
+#: ../src/gui/viewmanager.py:443
 msgid "_FAQ"
 msgstr "_Foire aux questions (FAQ)"
 
-#: ../src/gui/viewmanager.py:445
+#: ../src/gui/viewmanager.py:444
 msgid "_Key Bindings"
 msgstr "Raccourcis _clavier"
 
-#: ../src/gui/viewmanager.py:446
+#: ../src/gui/viewmanager.py:445
 msgid "_User Manual"
 msgstr "_Manuel utilisateur"
 
-#: ../src/gui/viewmanager.py:453
+#: ../src/gui/viewmanager.py:452
 msgid "_Export..."
 msgstr "_Exporter..."
 
-#: ../src/gui/viewmanager.py:456
+#: ../src/gui/viewmanager.py:455
 msgid "_Abandon Changes and Quit"
 msgstr "_Abandonner les modifications et quitter"
 
-#: ../src/gui/viewmanager.py:457
-#: ../src/gui/viewmanager.py:460
+#: ../src/gui/viewmanager.py:456
+#: ../src/gui/viewmanager.py:459
 msgid "_Reports"
 msgstr "_Rapports"
 
-#: ../src/gui/viewmanager.py:458
+#: ../src/gui/viewmanager.py:457
 msgid "Open the reports dialog"
 msgstr "Ouvrir le dialogue des rapports"
 
-#: ../src/gui/viewmanager.py:459
+#: ../src/gui/viewmanager.py:458
 msgid "_Go"
 msgstr "A_ller à"
 
-#: ../src/gui/viewmanager.py:461
+#: ../src/gui/viewmanager.py:460
 msgid "_Windows"
 msgstr "Fenê_tres"
 
-#: ../src/gui/viewmanager.py:487
+#: ../src/gui/viewmanager.py:486
 msgid "Clip_board"
 msgstr "_Presse-papiers"
 
-#: ../src/gui/viewmanager.py:488
+#: ../src/gui/viewmanager.py:487
 msgid "Open the Clipboard dialog"
 msgstr "Ouvrir le presse-papiers"
 
-#: ../src/gui/viewmanager.py:489
+#: ../src/gui/viewmanager.py:488
 msgid "_Import..."
 msgstr "_Importer..."
 
-#: ../src/gui/viewmanager.py:491
-#: ../src/gui/viewmanager.py:495
+#: ../src/gui/viewmanager.py:490
+#: ../src/gui/viewmanager.py:494
 msgid "_Tools"
 msgstr "_Outils"
 
-#: ../src/gui/viewmanager.py:492
+#: ../src/gui/viewmanager.py:491
 msgid "Open the tools dialog"
 msgstr "Ouvrir le dialogue d'outils"
 
-#: ../src/gui/viewmanager.py:494
+#: ../src/gui/viewmanager.py:493
 msgid "_Bookmarks"
 msgstr "_Signets"
 
 # à vérifier
-# trunk
-#: ../src/gui/viewmanager.py:496
+#: ../src/gui/viewmanager.py:495
 msgid "_Configure View..."
 msgstr "_Configurer la vue..."
 
-# trunk
-#: ../src/gui/viewmanager.py:497
+#: ../src/gui/viewmanager.py:496
 msgid "Configure the active view"
 msgstr "Configurer la vue active"
 
-#: ../src/gui/viewmanager.py:502
+#: ../src/gui/viewmanager.py:501
 msgid "_Sidebar"
 msgstr "_Barre latérale"
 
-#: ../src/gui/viewmanager.py:504
+#: ../src/gui/viewmanager.py:503
 msgid "_Toolbar"
 msgstr "Barre d'ou_tils"
 
-#: ../src/gui/viewmanager.py:506
+#: ../src/gui/viewmanager.py:505
 #: ../src/plugins/view/geoview.py:1096
 msgid "_Filter Sidebar"
 msgstr "Barre de _filtre"
 
-#: ../src/gui/viewmanager.py:508
+#: ../src/gui/viewmanager.py:507
 msgid "F_ull Screen"
 msgstr "_Plein Écran"
 
-#: ../src/gui/viewmanager.py:513
-#: ../src/gui/viewmanager.py:1297
+#: ../src/gui/viewmanager.py:512
+#: ../src/gui/viewmanager.py:1290
 msgid "_Undo"
 msgstr "Ann_uler"
 
-#: ../src/gui/viewmanager.py:518
-#: ../src/gui/viewmanager.py:1314
+#: ../src/gui/viewmanager.py:517
+#: ../src/gui/viewmanager.py:1307
 msgid "_Redo"
 msgstr "_Rétablir"
 
-#: ../src/gui/viewmanager.py:524
+#: ../src/gui/viewmanager.py:523
 msgid "Undo History..."
 msgstr "Défaire l'historique..."
 
-#: ../src/gui/viewmanager.py:538
+#: ../src/gui/viewmanager.py:537
 #, python-format
 msgid "Key %s is not bound"
 msgstr "La clé %s n'est pas définie"
 
 # Substantif (GNOME fr)
 #. load plugins
-#: ../src/gui/viewmanager.py:636
+#: ../src/gui/viewmanager.py:635
 msgid "Loading plugins..."
 msgstr "Chargement des greffons..."
 
-#: ../src/gui/viewmanager.py:643
-#: ../src/gui/viewmanager.py:658
+#: ../src/gui/viewmanager.py:642
+#: ../src/gui/viewmanager.py:657
 msgid "Ready"
 msgstr "Prêt"
 
 # Substantif (GNOME fr)
 #. registering plugins
-#: ../src/gui/viewmanager.py:651
+#: ../src/gui/viewmanager.py:650
 msgid "Registering plugins..."
 msgstr "Enregistrement des greffons..."
 
-#: ../src/gui/viewmanager.py:688
+#: ../src/gui/viewmanager.py:687
 msgid "Autobackup..."
 msgstr "Sauvegarde automatique..."
 
-#: ../src/gui/viewmanager.py:692
+#: ../src/gui/viewmanager.py:691
 msgid "Error saving backup data"
 msgstr "Erreur d'enregistrement des données de sauvegarde"
 
-#: ../src/gui/viewmanager.py:703
+#: ../src/gui/viewmanager.py:702
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:704
+#: ../src/gui/viewmanager.py:703
 msgid "Aborting changes will return the database to the state is was before you started this editing session."
 msgstr "L'abandon des changements ramènera la base de données à son état du début de session."
 
-#: ../src/gui/viewmanager.py:706
+#: ../src/gui/viewmanager.py:705
 msgid "Abort changes"
 msgstr "Abandonner les changements"
 
-#: ../src/gui/viewmanager.py:716
+#: ../src/gui/viewmanager.py:715
 msgid "Cannot abandon session's changes"
 msgstr "Impossible d'abandonner les changements de la session"
 
-#: ../src/gui/viewmanager.py:717
+#: ../src/gui/viewmanager.py:716
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/gui/viewmanager.py:978
+#: ../src/gui/viewmanager.py:975
 msgid "No views loaded"
 msgstr "Aucunes vues chargées"
 
-#: ../src/gui/viewmanager.py:979
+#: ../src/gui/viewmanager.py:976
 msgid "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some plugins of type 'View' are enabled. Then restart Gramps"
 msgstr "Aucun greffon vue n'est chargé. Allez dans Aide -> Gestionnaire de greffons, et vérifiez que quelques greffons du type 'Vue' sont activés. Puis relancez Gramps"
 
-#: ../src/gui/viewmanager.py:1219
+#: ../src/gui/viewmanager.py:1212
 msgid "Import Statistics"
 msgstr "Les statistiques d'importation"
 
-#: ../src/gui/viewmanager.py:1269
+#: ../src/gui/viewmanager.py:1262
 msgid "Read Only"
 msgstr "Lecture seule"
 
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:1582
+#: ../src/gui/viewmanager.py:1575
 msgid "Failed Loading Plugin"
 msgstr "Échec au chargement du greffon"
 
-#: ../src/gui/viewmanager.py:1583
+#: ../src/gui/viewmanager.py:1576
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -5044,11 +5040,11 @@ msgstr ""
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
-msgstr "Sélectionner un objet media"
+msgstr "Sélectionner un objet medium"
 
 #: ../src/gui/editors/addmedia.py:137
 msgid "Select media object"
-msgstr "Sélectionner un objet media"
+msgstr "Sélectionner un objet medium"
 
 #: ../src/gui/editors/addmedia.py:147
 msgid "Import failed"
@@ -5105,7 +5101,7 @@ msgstr "Enlever le lieu"
 
 #: ../src/gui/editors/objectentries.py:300
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr "Pour sélectionner un objet media, faites un glisser-déposer ou utilisez les boutons"
+msgstr "Pour sélectionner un objet medium, faites un glisser-déposer ou utilisez les boutons"
 
 #: ../src/gui/editors/objectentries.py:302
 #: ../src/PluginUtils/_GuiOptions.py:790
@@ -5119,7 +5115,7 @@ msgstr "Éditer le medium"
 #: ../src/gui/editors/objectentries.py:304
 #: ../src/PluginUtils/_GuiOptions.py:765
 msgid "Select an existing media object"
-msgstr "Sélectionner un objet media existant"
+msgstr "Sélectionner un objet medium existant"
 
 #: ../src/gui/editors/objectentries.py:305
 #: ../src/plugins/view/mediaview.py:104
@@ -5129,7 +5125,7 @@ msgstr "Ajouter un nouveau medium"
 # enlever la référence au media
 #: ../src/gui/editors/objectentries.py:306
 msgid "Remove media object"
-msgstr "Enlever un objet media"
+msgstr "Enlever un objet medium"
 
 #: ../src/gui/editors/objectentries.py:351
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -5199,13 +5195,13 @@ msgid "manual|Editing_Information_About_Events"
 msgstr "Édition de l'information sur les événements"
 
 #: ../src/gui/editors/editevent.py:95
-#: ../src/gui/editors/editeventref.py:232
+#: ../src/gui/editors/editeventref.py:241
 #, python-format
 msgid "Event: %s"
 msgstr "Événement : %s"
 
 #: ../src/gui/editors/editevent.py:97
-#: ../src/gui/editors/editeventref.py:234
+#: ../src/gui/editors/editeventref.py:243
 msgid "New Event"
 msgstr "Nouvel événement"
 
@@ -5242,7 +5238,7 @@ msgid "The event type cannot be empty"
 msgstr "Cet événement ne peut pas être vide"
 
 #: ../src/gui/editors/editevent.py:259
-#: ../src/gui/editors/editeventref.py:245
+#: ../src/gui/editors/editeventref.py:254
 msgid "Add Event"
 msgstr "Ajouter un événement"
 
@@ -5252,19 +5248,24 @@ msgstr "Ajouter un événement"
 msgid "Delete Event (%s)"
 msgstr "Supprimer l'événement (%s)"
 
-#: ../src/gui/editors/editeventref.py:65
-#: ../src/gui/editors/editeventref.py:235
+# manuel wiki
+#: ../src/gui/editors/editeventref.py:54
+msgid "manual|Editing_Event_References"
+msgstr "Édition_des_références_de_l'événement"
+
+#: ../src/gui/editors/editeventref.py:75
+#: ../src/gui/editors/editeventref.py:244
 msgid "Event Reference Editor"
 msgstr "Éditeur de référence d'événement"
 
-#: ../src/gui/editors/editeventref.py:82
+#: ../src/gui/editors/editeventref.py:92
 #: ../src/gui/editors/editmediaref.py:95
 #: ../src/gui/editors/editname.py:122
 #: ../src/gui/editors/editreporef.py:78
 msgid "_General"
 msgstr "_Général"
 
-#: ../src/gui/editors/editeventref.py:242
+#: ../src/gui/editors/editeventref.py:251
 msgid "Modify Event"
 msgstr "Modifier l'événement"
 
@@ -5377,7 +5378,7 @@ msgstr "Éditer la relation"
 
 #: ../src/gui/editors/editfamily.py:241
 #: ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1514
+#: ../src/plugins/view/relview.py:1515
 msgid "Select Child"
 msgstr "Sélectionner un enfant"
 
@@ -5415,7 +5416,7 @@ msgid "New Family"
 msgstr "Nouvelle famille"
 
 #: ../src/gui/editors/editfamily.py:546
-#: ../src/gui/editors/editfamily.py:1079
+#: ../src/gui/editors/editfamily.py:1080
 msgid "Edit Family"
 msgstr "Éditer la famille"
 
@@ -5445,77 +5446,77 @@ msgstr "Ajouter un nouvel individu en tant que père"
 msgid "Remove the person as the father"
 msgstr "Enlever l'individu en tant que père"
 
-#: ../src/gui/editors/editfamily.py:794
+#: ../src/gui/editors/editfamily.py:795
 msgid "Select Mother"
 msgstr "Sélectionner la mère"
 
-#: ../src/gui/editors/editfamily.py:839
+#: ../src/gui/editors/editfamily.py:840
 msgid "Select Father"
 msgstr "Sélectionner le père"
 
-#: ../src/gui/editors/editfamily.py:863
+#: ../src/gui/editors/editfamily.py:864
 msgid "Duplicate Family"
 msgstr "Famille double"
 
-#: ../src/gui/editors/editfamily.py:864
+#: ../src/gui/editors/editfamily.py:865
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr "Une famille avec ces parents existe déjà dans la base de données. Si vous l'enregistrez, vous créerez une famille dupliquée. Il est recommandé d'annuler l'édition de cette fenêtre et de sélectionner la famille existante"
 
-#: ../src/gui/editors/editfamily.py:905
+#: ../src/gui/editors/editfamily.py:906
 msgid "Baptism:"
 msgstr "Baptême :"
 
-#: ../src/gui/editors/editfamily.py:912
+#: ../src/gui/editors/editfamily.py:913
 msgid "Burial:"
 msgstr "Inhumation :"
 
-#: ../src/gui/editors/editfamily.py:914
-#: ../src/plugins/view/relview.py:593
-#: ../src/plugins/view/relview.py:987
-#: ../src/plugins/view/relview.py:1035
-#: ../src/plugins/view/relview.py:1116
-#: ../src/plugins/view/relview.py:1222
+#: ../src/gui/editors/editfamily.py:915
+#: ../src/plugins/view/relview.py:594
+#: ../src/plugins/view/relview.py:988
+#: ../src/plugins/view/relview.py:1036
+#: ../src/plugins/view/relview.py:1117
+#: ../src/plugins/view/relview.py:1223
 #, python-format
 msgid "Edit %s"
 msgstr "Éditer %s"
 
-#: ../src/gui/editors/editfamily.py:982
+#: ../src/gui/editors/editfamily.py:983
 msgid "A father cannot be his own child"
 msgstr "Un père ne peut pas être son propre enfant"
 
-#: ../src/gui/editors/editfamily.py:983
+#: ../src/gui/editors/editfamily.py:984
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s est défini comme le père et l'enfant de la famille."
 
-#: ../src/gui/editors/editfamily.py:992
+#: ../src/gui/editors/editfamily.py:993
 msgid "A mother cannot be her own child"
 msgstr "Une mère ne peut pas être son propre enfant"
 
-#: ../src/gui/editors/editfamily.py:993
+#: ../src/gui/editors/editfamily.py:994
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s est définie comme la mère et l'enfant de la famille."
 
-#: ../src/gui/editors/editfamily.py:1000
+#: ../src/gui/editors/editfamily.py:1001
 msgid "Cannot save family"
 msgstr "Impossible d'enregistrer la famille"
 
-#: ../src/gui/editors/editfamily.py:1001
+#: ../src/gui/editors/editfamily.py:1002
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Aucune donnée n'existe pour cette famille. Veuillez entrer une donnée ou annuler l'édition."
 
-#: ../src/gui/editors/editfamily.py:1008
+#: ../src/gui/editors/editfamily.py:1009
 msgid "Cannot save family. ID already exists."
 msgstr "Impossible d'enregistrer la famille. L'identifiant existe déjà."
 
-#: ../src/gui/editors/editfamily.py:1009
+#: ../src/gui/editors/editfamily.py:1010
 #: ../src/gui/editors/editnote.py:307
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Vous tentez d'utiliser la valeur de l'identifiant Gramps %(id)s. Cette valeur est déjà utilisée. Veuillez entrer un identifiant différent ou ne mettez rien pour obtenir la valeur du prochain identifiant disponible."
 
-#: ../src/gui/editors/editfamily.py:1048
+#: ../src/gui/editors/editfamily.py:1049
 msgid "Add Family"
 msgstr "Ajouter une famille"
 
@@ -5571,7 +5572,7 @@ msgstr "Impossible d'enregistrer le medium"
 
 #: ../src/gui/editors/editmedia.py:256
 msgid "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "Aucune donnée n'existe pour cet objet media. Veuillez entrer une donnée ou annuler l'édition."
+msgstr "Aucune donnée n'existe pour cet objet medium. Veuillez entrer une donnée ou annuler l'édition."
 
 #: ../src/gui/editors/editmedia.py:265
 msgid "Cannot save media object. ID already exists."
@@ -5597,7 +5598,7 @@ msgstr "Enlever un medium"
 #: ../src/gui/editors/editmediaref.py:79
 #: ../src/gui/editors/editmediaref.py:368
 msgid "Media Reference Editor"
-msgstr "Éditeur de référence de media"
+msgstr "Éditeur de référence de medium"
 
 #: ../src/gui/editors/editmediaref.py:81
 #: ../src/gui/editors/editmediaref.py:82
@@ -6053,7 +6054,7 @@ msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s - %(part2)s"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
-#: ../src/plugins/view/relview.py:404
+#: ../src/plugins/view/relview.py:405
 msgid "Add"
 msgstr "Ajouter"
 
@@ -6065,7 +6066,7 @@ msgstr "Enlever"
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
 #: ../src/gui/editors/displaytabs/gallerytab.py:124
-#: ../src/plugins/view/relview.py:408
+#: ../src/plugins/view/relview.py:409
 msgid "Share"
 msgstr "Partager"
 
@@ -6209,12 +6210,12 @@ msgstr "Ouvrir le répertoire de _stockage"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:249
 msgid "Non existing media found in the Gallery"
-msgstr "Objet media inexistant trouvé dans la galerie"
+msgstr "Objet medium inexistant trouvé dans la galerie"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:486
 #: ../src/plugins/view/mediaview.py:228
 msgid "Drag Media Object"
-msgstr "Glisser un objet media"
+msgstr "Glisser un objet medium"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:51
 msgid "Create and add a new LDS ordinance"
@@ -6578,7 +6579,7 @@ msgstr "Marqueur"
 
 #: ../src/gui/selectors/selectobject.py:61
 msgid "Select Media Object"
-msgstr "Sélectionner un objet media"
+msgstr "Sélectionner un objet medium"
 
 #: ../src/gui/selectors/selectperson.py:67
 #: ../src/PluginUtils/_GuiOptions.py:922
@@ -6606,23 +6607,23 @@ msgid "Select Source"
 msgstr "Sélectionner la source"
 
 #: ../src/gui/views/listview.py:197
-#: ../src/plugins/lib/libpersonview.py:341
+#: ../src/plugins/lib/libpersonview.py:342
 msgid "_Add..."
 msgstr "_Ajouter..."
 
 # Supprimer car efface un objet de la base
 #: ../src/gui/views/listview.py:199
-#: ../src/plugins/lib/libpersonview.py:343
+#: ../src/plugins/lib/libpersonview.py:344
 msgid "_Remove"
 msgstr "_Supprimer"
 
 #: ../src/gui/views/listview.py:201
-#: ../src/plugins/lib/libpersonview.py:349
+#: ../src/plugins/lib/libpersonview.py:350
 msgid "Export View..."
 msgstr "Exporter l'affichage..."
 
 #: ../src/gui/views/listview.py:207
-#: ../src/plugins/lib/libpersonview.py:332
+#: ../src/plugins/lib/libpersonview.py:333
 msgid "action|_Edit..."
 msgstr "É_diter..."
 
@@ -6660,7 +6661,7 @@ msgid "Deleting item will remove it from the database."
 msgstr "La suppression de l'article l'enlèvera de la base de données."
 
 #: ../src/gui/views/listview.py:518
-#: ../src/plugins/lib/libpersonview.py:274
+#: ../src/plugins/lib/libpersonview.py:275
 #: ../src/plugins/view/familyview.py:222
 #, python-format
 msgid "Delete %s?"
@@ -6775,7 +6776,6 @@ msgid "%(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s"
 
 # à vérifier
-# trunk
 #: ../src/gui/views/pageview.py:472
 #, python-format
 msgid "Configure %s View"
@@ -6886,7 +6886,6 @@ msgstr "Largeur détachée"
 msgid "Detached height"
 msgstr "Hauteur détachée"
 
-# trunk
 #: ../src/gui/widgets/labels.py:109
 msgid ""
 "Click to make this person active\n"
@@ -6971,7 +6970,6 @@ msgstr "'%s' n'est pas une valeur valide pour ce champ"
 msgid "This field is mandatory"
 msgstr "Ce champ est obligatoire"
 
-# trunk
 #. used on AgeOnDateGramplet
 #: ../src/gui/widgets/validatedmaskedentry.py:1693
 #, python-format
@@ -7022,10 +7020,10 @@ msgstr "Comparaison des individus"
 #: ../src/Merge/_MergePerson.py:279
 #: ../src/Merge/_MergePerson.py:311
 #: ../src/Merge/_MergePerson.py:316
-#: ../src/plugins/lib/libpersonview.py:372
-#: ../src/plugins/lib/libpersonview.py:385
-#: ../src/plugins/lib/libpersonview.py:396
-#: ../src/plugins/lib/libpersonview.py:410
+#: ../src/plugins/lib/libpersonview.py:373
+#: ../src/plugins/lib/libpersonview.py:386
+#: ../src/plugins/lib/libpersonview.py:397
+#: ../src/plugins/lib/libpersonview.py:411
 msgid "Cannot merge people"
 msgstr "Impossible de fusionner les individus"
 
@@ -7060,7 +7058,7 @@ msgstr "Aucun parent"
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:110
 #: ../src/plugins/view/fanchartview.py:789
-#: ../src/plugins/view/pedigreeview.py:1365
+#: ../src/plugins/view/pedigreeview.py:1367
 msgid "Spouses"
 msgstr "Conjoints"
 
@@ -7134,10 +7132,9 @@ msgstr "Rapporter un bogue : Étape 4 sur 5"
 msgid "Report a bug: Step 5 of 5"
 msgstr "Rapporter un bogue : Étape 5 sur 5"
 
-# trunk
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:53
 msgid "Gramps is an Open Source project. Its success depends on its users. User feedback is important. Thank you for taking the time to submit a bug report."
-msgstr "Gramps est un logiciel libre. Son succès dépend de ses utilisateurs. Le retour est important. N'hésitez surtout pas à prendre un peu de temps pour soumettre un rapport de bogue."
+msgstr "Gramps est un projet de logiciel libre. Son succès dépend de ses utilisateurs. Le retour est important. N'hésitez surtout pas à prendre un peu de temps pour soumettre un rapport de bogue."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:159
 msgid "If you can see that there is any personal information included in the error please remove it."
@@ -7224,15 +7221,13 @@ msgstr "Général"
 msgid "Error Report"
 msgstr "Rapport d'erreur"
 
-# trunk
 #: ../src/GrampsLogger/_ErrorView.py:73
 msgid "Gramps has experienced an unexpected error"
 msgstr "Gramps a rencontré une erreur inattendue"
 
-# trunk
 #: ../src/GrampsLogger/_ErrorView.py:82
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "Vos données seront sauvegardées mais il est conseillé de redémarrer Gramps immédiatement. Si vous voulez rapporter ce problème à l'équipe de Gramps veuillez cliquer sur Rapport et l'assistant de rapport d'erreur vous guidera pour la rédaction du rapport de bogue."
+msgstr "Vos données sont en sécurité mais il est conseillé de redémarrer Gramps immédiatement. Si vous voulez rapporter ce problème à l'équipe de Gramps veuillez cliquer sur Rapport et l'assistant de rapport d'erreur vous guidera pour la rédaction du rapport de bogue."
 
 #: ../src/GrampsLogger/_ErrorView.py:91
 #: ../src/GrampsLogger/_ErrorView.py:104
@@ -7255,7 +7250,6 @@ msgstr "père inconnu"
 msgid "unknown mother"
 msgstr "mère inconnue"
 
-# trunk
 #: ../src/plugins/BookReport.py:179
 #, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
@@ -7332,7 +7326,6 @@ msgstr "Menu du livre"
 msgid "Available Items Menu"
 msgstr "Menu des articles disponibles"
 
-# trunk
 #: ../src/plugins/BookReport.py:1180
 msgid "Gramps Book"
 msgstr "Livre Gramps"
@@ -7419,7 +7412,6 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 msgid "Report Options"
 msgstr "Options du rapport"
 
-# trunk
 #: ../src/plugins/Records.py:440
 #: ../src/plugins/drawreport/StatisticsChart.py:900
 msgid "Determines what people are included in the report."
@@ -7491,7 +7483,6 @@ msgstr "Le style de base pour afficher du texte."
 msgid "The style used for headings."
 msgstr "Le style utilisé pour les en-têtes."
 
-# trunk
 #: ../src/plugins/Records.py:518
 msgid "The style used for the report title."
 msgstr "Le style utilisé pour le titre du rapport."
@@ -7568,7 +7559,6 @@ msgstr "Le mariage le plus long"
 msgid "Plain Text"
 msgstr "Texte brut"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:32
 msgid "Generates documents in plain text format (.txt)."
 msgstr "Génère des documents au format texte (.txt)."
@@ -7577,7 +7567,6 @@ msgstr "Génère des documents au format texte (.txt)."
 msgid "Print..."
 msgstr "Imprimer..."
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:52
 msgid "Generates documents and prints them directly."
 msgstr "Génère des documents et les imprime directement."
@@ -7586,7 +7575,6 @@ msgstr "Génère des documents et les imprime directement."
 msgid "HTML"
 msgstr "HTML"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:72
 msgid "Generates documents in HTML format."
 msgstr "Génère des documents au format HTML."
@@ -7595,27 +7583,22 @@ msgstr "Génère des documents au format HTML."
 msgid "LaTeX"
 msgstr "LaTeX"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:92
 msgid "Generates documents in LaTeX format."
 msgstr "Génère des documents au format LaTeX."
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:111
 msgid "OpenDocument Text"
 msgstr "OpenDocument Texte"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
 msgstr "Génère des documents au format OpenDocument Text (.odt)."
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:132
 msgid "PDF document"
 msgstr "Document PDF"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:133
 msgid "Generates documents in PDF format (.pdf)."
 msgstr "Génère des documents au format PDF (.pdf)."
@@ -7625,7 +7608,6 @@ msgstr "Génère des documents au format PDF (.pdf)."
 msgid "PostScript"
 msgstr "PostScript"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:153
 msgid "Generates documents in postscript format (.ps)."
 msgstr "Génère des documents au format postscript (.ps)."
@@ -7634,17 +7616,14 @@ msgstr "Génère des documents au format postscript (.ps)."
 msgid "RTF document"
 msgstr "Document RTF"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:173
 msgid "Generates documents in Rich Text format (.rtf)."
 msgstr "Génère des documents au format Rich Text (.rtf)."
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:192
 msgid "SVG document"
 msgstr "Document SVG"
 
-# trunk
 #: ../src/plugins/docgen/docgen.gpr.py:193
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
 msgstr "Génère des documents au format Scalable Vector Graphics (.svg)."
@@ -7671,13 +7650,11 @@ msgstr "Possible erreur de destination"
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Il semble que le répertoire cible est le répertoire de stockage des données. Cela peut générer des problèmes dans la gestion de fichier. Il est recommandé d'utiliser un répertoire différent pour stocker les pages internet générées."
 
-# trunk
 #: ../src/plugins/docgen/HtmlDoc.py:520
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Impossible de créer une version jpeg de l'image %(name)s"
 
-# trunk
 #: ../src/plugins/docgen/ODFDoc.py:835
 #, python-format
 msgid "Could not open %s"
@@ -7700,7 +7677,6 @@ msgstr "n."
 msgid "short for died|d."
 msgstr "d."
 
-# trunk
 #: ../src/plugins/drawreport/AncestorTree.py:193
 #: ../src/plugins/drawreport/Calendar.py:93
 #: ../src/plugins/drawreport/DescendTree.py:141
@@ -8023,11 +7999,10 @@ msgstr "Première ligne du texte en bas du calendrier"
 msgid "Text Area 2"
 msgstr "Sous-titre 2"
 
-# trunk
 #: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:418
 msgid "Produced with Gramps"
-msgstr "Généré par Gramps"
+msgstr "Généré avec Gramps"
 
 #: ../src/plugins/drawreport/Calendar.py:462
 #: ../src/plugins/textreport/BirthdayReport.py:419
@@ -8387,7 +8362,6 @@ msgstr "Enregistrement des diagrammes..."
 msgid "%s (persons):"
 msgstr "%s (individus) :"
 
-# trunk
 #: ../src/plugins/drawreport/StatisticsChart.py:905
 #: ../src/plugins/textreport/IndivComplete.py:649
 msgid "The center person for the filter."
@@ -8414,7 +8388,6 @@ msgstr "Inverser l'ordre de tri."
 msgid "People Born After"
 msgstr "Individus nés après"
 
-# trunk
 #: ../src/plugins/drawreport/StatisticsChart.py:926
 msgid "Birth year from which to include people."
 msgstr "Année de naissance depuis laquelle inclure les individus."
@@ -8433,7 +8406,6 @@ msgid "Include people without known birth years"
 msgstr "Individus sans année de naissance"
 
 # à vérifier
-# trunk
 #: ../src/plugins/drawreport/StatisticsChart.py:936
 msgid "Whether to include people without known birth years."
 msgstr "Inclure ou non les individus sans année de naissance connue."
@@ -8462,7 +8434,6 @@ msgstr "Graphiques 1"
 msgid "Charts 2"
 msgstr "Graphiques 2"
 
-# trunk
 #: ../src/plugins/drawreport/StatisticsChart.py:966
 msgid "Include charts with indicated data."
 msgstr "Inclure des graphiques avec la donnée indiquée."
@@ -8518,7 +8489,6 @@ msgstr "Tri des dates..."
 msgid "Calculating timeline..."
 msgstr "Calcul de la période..."
 
-# trunk
 #: ../src/plugins/drawreport/TimeLine.py:225
 #, python-format
 msgid "Sorted by %s"
@@ -8560,7 +8530,6 @@ msgstr "CSV est un format courant de tableur."
 msgid "_Web Family Tree"
 msgstr "_Web Family Tree"
 
-# trunk
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree format"
 msgstr "Format Web Family Tree"
@@ -8582,22 +8551,18 @@ msgstr "_GeneWeb"
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb est un logiciel de généalogie basé sur un serveur et un navigateur internet."
 
-# trunk
 #: ../src/plugins/export/export.gpr.py:112
 msgid "Gra_mps XML Package (family tree and media)"
 msgstr "Paquet Gra_mps XML (Arbre familial et media)"
 
-# trunk
 #: ../src/plugins/export/export.gpr.py:113
 msgid "Gramps package is an archived XML family tree together with the media object files."
 msgstr "Le paquet Gramps est une base de données XML comprenant les fichiers media."
 
-# trunk
 #: ../src/plugins/export/export.gpr.py:133
 msgid "Gramps _XML (family tree)"
 msgstr "Base de données Gramps _XML (Arbre familial)"
 
-# trunk
 #: ../src/plugins/export/export.gpr.py:134
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
 msgstr "L'exportation au format Gramps XML est une archive au format XML de votre base de données Gramps sans les objets media. Approprié pour les sauvegardes. "
@@ -8759,7 +8724,6 @@ msgstr "La base de données ne peut pas être enregistrée car vous ne possédez
 msgid "Enter a date, click Run"
 msgstr "Entrez une date, puis cliquez sur Exécuter"
 
-# trunk
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
 msgid "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column ,and double-click the row to view or edit."
 msgstr "Entrez une date valide (telle que AAAA-MM-JJ) dans le champ suivant et cliquez sur Exécuter. Ceci calculera les âges de tous les individus de votre arbre familial pour cette date. Vous pourrez trier la colonne âge, et double cliquer sur la ligne pour éditer."
@@ -8885,8 +8849,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:761
-#: ../src/plugins/view/pedigreeview.py:1317
-#: ../src/plugins/view/pedigreeview.py:1337
+#: ../src/plugins/view/pedigreeview.py:1319
+#: ../src/plugins/view/pedigreeview.py:1339
 msgid "People Menu"
 msgstr "Menu Individus"
 
@@ -8894,8 +8858,8 @@ msgstr "Menu Individus"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:823
-#: ../src/plugins/view/pedigreeview.py:1399
-#: ../src/plugins/view/relview.py:896
+#: ../src/plugins/view/pedigreeview.py:1401
+#: ../src/plugins/view/relview.py:897
 #: ../src/plugins/webreport/NarrativeWeb.py:4155
 msgid "Siblings"
 msgstr "Frères et sœurs"
@@ -8905,8 +8869,8 @@ msgstr "Frères et sœurs"
 #: ../src/plugins/textreport/FamilyGroup.py:559
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:866
-#: ../src/plugins/view/pedigreeview.py:1442
-#: ../src/plugins/view/relview.py:1355
+#: ../src/plugins/view/pedigreeview.py:1444
+#: ../src/plugins/view/relview.py:1356
 #: ../src/plugins/webreport/NarrativeWeb.py:4365
 msgid "Children"
 msgstr "Enfants"
@@ -8914,11 +8878,10 @@ msgstr "Enfants"
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:873
 #: ../src/plugins/view/fanchartview.py:940
-#: ../src/plugins/view/pedigreeview.py:1516
+#: ../src/plugins/view/pedigreeview.py:1518
 msgid "Related"
 msgstr "en relation avec"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:38
 msgid ""
 "<a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Frequently Asked Questions</a> (need connection to internet)\n"
@@ -8927,65 +8890,53 @@ msgstr ""
 "<a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Foire aux questions</a> (nécessite une connexion internet)\n"
 "\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:39
 msgid "  1. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of spouses?</a>\n"
 msgstr "  1. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Comment changer l'ordre des conjoints ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:40
 msgid "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it necessary to update Gramps every time an update is released?</a>\n"
 msgstr "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Est-il nécessaire de mettre à jour Gramps à chaque nouvelle version ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:41
 msgid "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups safely?</a>\n"
 msgstr "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Comment faire des sauvegardes ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:42
 msgid "  4. <a wiki='Gramps_3.2_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1#Editing_Information_About_Relationships'>How should information about marriages be entered?</a>\n"
 msgstr "  4. <a wiki='Gramps_3.2_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1'>Comment saisir les informations sur le mariage ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:43
 msgid "  5. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's the difference between a residence and an address?</a>\n"
 msgstr "  5. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Quelle est la différence entre une résidence et une adresse ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 msgid "  6. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a website with Gramps and my tree?</a>\n"
 msgstr "  6. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Comment générer un site internet avec mes données ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 msgid "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
 msgstr "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Comment je saisis la profession ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:46
 msgid "  8. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n"
 msgstr "  8. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Que faire si je trouve une erreur ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
 msgstr "  9. <a wiki='Portal:Using_GRAMPS'>Existe t'il un manuel pour Gramps ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:48
 msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
 msgstr " 10. <a wiki='Category:Fr:Tutorials'>Existe t'il des tutoriels ?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 msgid " 11. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
 msgstr " 11. <a wiki='Category:Fr:Comment_je...'>Comment je fais pour ...?</a>\n"
 
-# trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 msgid " 12. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr " 12. <a wiki='How_you_can_help/fr'>Comment je peux aider Gramps ?</a>\n"
+msgstr " 12. <a wiki='How_you_can_help'>Comment je peux aider Gramps ?</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -9009,7 +8960,6 @@ msgstr "Total des individus"
 msgid "Age on Date Gramplet"
 msgstr "Gramplet Âge"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramplet showing ages of living people on a specific date"
 msgstr "Gramplet affichant les âges des individus vivants à une date définie"
@@ -9023,7 +8973,6 @@ msgstr "Âge à la date"
 msgid "Age Stats Gramplet"
 msgstr "Gramplet Âge statistiques"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
 msgstr "Gramplet affichant des pyramides des âges"
@@ -9036,7 +8985,6 @@ msgstr "Âge statistiques"
 msgid "Attributes Gramplet"
 msgstr "Gramplet Attributs"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:60
 msgid "Gramplet showing active person's attributes"
 msgstr "Gramplet affichant les attributs de l'individu actif"
@@ -9057,16 +9005,14 @@ msgstr "Attributs"
 msgid "Calendar Gramplet"
 msgstr "Gramplet Calendrier"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
-msgid "Gramplet showing calendar and events on specfic dates in history"
+msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr "Gramplet affichant un calendrier et les événements pour des dates spécifiques dans l'histoire"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:88
 msgid "Descendant Gramplet"
 msgstr "Gramplet Descendants"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
 msgid "Gramplet showing active person's descendants"
 msgstr "Gramplet affichant les descendants de l'individu actif"
@@ -9079,22 +9025,18 @@ msgstr "Descendants"
 msgid "Fan Chart Gramplet"
 msgstr "Gramplet Roue des ascendants"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:105
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr "Gramplet affichant dans une roue les ascendants directs de l'individu actif"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:120
 msgid "FAQ Gramplet"
 msgstr "Gramplet FAQ"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:121
 msgid "Gramplet showing frequently asked questions"
-msgstr "Gramplet affichant le Foire aux questions"
+msgstr "Gramplet affichant la Foire Aux Questions"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:126
 msgid "FAQ"
 msgstr "Foire aux questions"
@@ -9103,7 +9045,6 @@ msgstr "Foire aux questions"
 msgid "Given Name Cloud Gramplet"
 msgstr "Gramplet Nuage de prénoms"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:134
 msgid "Gramplet showing all given names as a text cloud"
 msgstr "Gramplet affichant tous les prénoms dans un nuage"
@@ -9116,22 +9057,18 @@ msgstr "Nuage de prénoms"
 msgid "Pedigree Gramplet"
 msgstr "Gramplet Arbre"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:148
 msgid "Gramplet showing active person's ancestors"
 msgstr "Gramplet affichant les ascendants de l'individu actif"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:163
 msgid "Plugin Manager Gramplet"
 msgstr "Gramplet Gestionnaire de greffons"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:164
 msgid "Gramplet showing available third-party plugins (addons)"
 msgstr "Gramplet affichant les greffons additionnels disponibles (addons)"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:170
 #: ../src/PluginUtils/_PluginWindows.py:193
 msgid "Plugin Manager"
@@ -9141,7 +9078,6 @@ msgstr "Gestionnaire de greffons"
 msgid "Quick View Gramplet"
 msgstr "Gramplet Vue express"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:178
 msgid "Gramplet showing an active item Quick View"
 msgstr "Gramplet affichant la vue express active"
@@ -9150,7 +9086,6 @@ msgstr "Gramplet affichant la vue express active"
 msgid "Relatives Gramplet"
 msgstr "Gramplet Parenté"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:194
 msgid "Gramplet showing active person's relatives"
 msgstr "Gramplet affichant les parentés de l'individu actif "
@@ -9163,7 +9098,6 @@ msgstr "Parentés"
 msgid "Session Log Gramplet"
 msgstr "Gramplet Log de session"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:209
 msgid "Gramplet showing all activity for this session"
 msgstr "Gramplet affichant toutes les activités pour cette session"
@@ -9176,7 +9110,6 @@ msgstr "Log de session"
 msgid "Statistics Gramplet"
 msgstr "Gramplet Statistiques"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:223
 msgid "Gramplet showing summary data of the family tree"
 msgstr "Gramplet affichant un résumé des données de votre arbre"
@@ -9185,7 +9118,6 @@ msgstr "Gramplet affichant un résumé des données de votre arbre"
 msgid "Surname Cloud Gramplet"
 msgstr "Gramplet Nuage de noms de famille"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:237
 msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Gramplet affichant tous les noms de famille dans un nuage"
@@ -9198,7 +9130,6 @@ msgstr "Nuage de noms de famille"
 msgid "TODO Gramplet"
 msgstr "Gramplet À faire"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:251
 msgid "Gramplet for generic notes"
 msgstr "Gramplet pour des notes génériques"
@@ -9211,7 +9142,6 @@ msgstr "Liste À faire"
 msgid "Top Surnames Gramplet"
 msgstr "Gramplet Noms de famille"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:265
 msgid "Gramplet showing most frequent surnames in this tree"
 msgstr "Gramplet affichant les noms de famille les plus fréquents dans l'arbre"
@@ -9224,12 +9154,10 @@ msgstr "Principaux noms de famille"
 msgid "Welcome Gramplet"
 msgstr "Gramplet Bienvenu"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:278
 msgid "Gramplet showing a welcome message"
 msgstr "Gramplet affichant le message de bienvenu"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:284
 msgid "Welcome to Gramps!"
 msgstr "Bienvenu dans Gramps !"
@@ -9238,7 +9166,6 @@ msgstr "Bienvenu dans Gramps !"
 msgid "What's Next Gramplet"
 msgstr "Gramplet Et maintenant ?"
 
-# trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:292
 msgid "Gramplet suggesting items to research"
 msgstr "Gramplet suggérant des pistes de recherche"
@@ -9252,13 +9179,11 @@ msgstr "Et maintenant ?"
 msgid "Max generations"
 msgstr "Maximum de générations"
 
-# trunk
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
 #: ../src/plugins/gramplet/PedigreeGramplet.py:69
 msgid "Show dates"
 msgstr "Afficher les dates"
 
-# trunk
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 #: ../src/plugins/gramplet/PedigreeGramplet.py:70
 msgid "Line type"
@@ -9432,7 +9357,6 @@ msgstr "Édité(e)"
 msgid "Selected"
 msgstr "Sélectionné(e)"
 
-# trunk
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
 #, python-format
 msgid "%(mother)s and %(father)s"
@@ -9544,23 +9468,20 @@ msgstr "Total des noms présents"
 msgid "Total surnames showing"
 msgstr "Total des noms affichés"
 
-# trunk
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:162
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:170
 msgid "Number of surnames"
 msgstr "Nombre de noms de famille"
 
-# trunk
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:164
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:171
 msgid "Min font size"
-msgstr "Taille de la police minimale"
+msgstr "Taille minimale de la police"
 
-# trunk
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:166
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
 msgid "Max font size"
-msgstr "Taille de la police maximale"
+msgstr "Taille maximale de la police"
 
 #. GUI setup:
 #: ../src/plugins/gramplet/ToDoGramplet.py:37
@@ -9571,7 +9492,6 @@ msgstr "Entrez un texte"
 msgid "Enter your TODO list here."
 msgstr "Entrez votre liste À faire ici."
 
-# trunk
 #: ../src/plugins/gramplet/WelcomeGramplet.py:35
 msgid ""
 "Welcome to Gramps!\n"
@@ -9643,10 +9563,9 @@ msgstr ": %(list)s\n"
 msgid ", "
 msgstr ", "
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:300
 msgid "person not complete"
-msgstr "individu non complet"
+msgstr "individu incomplet"
 
 #: ../src/plugins/gramplet/WhatsNext.py:319
 #: ../src/plugins/gramplet/WhatsNext.py:326
@@ -9669,10 +9588,9 @@ msgstr "mariage manquant"
 msgid "relation type unknown"
 msgstr "type de relation inconnu"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:384
 msgid "family not complete"
-msgstr "famille non complète"
+msgstr "famille incomplète"
 
 #: ../src/plugins/gramplet/WhatsNext.py:399
 msgid "date unknown"
@@ -9716,25 +9634,22 @@ msgstr ": %s\n"
 msgid "Family Lines Graph"
 msgstr "Graphique de lignées familiales"
 
-# trunk
 #: ../src/plugins/graph/graphplugins.gpr.py:32
 msgid "Produces family line graphs using GraphViz."
-msgstr "Génère des graphiques de lignée familiale avec GraphViz."
+msgstr "Génère des graphiques de lignées familiales avec GraphViz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
 msgstr "Sablier"
 
-# trunk
 #: ../src/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Produit un graphique sablier avec Graphviz."
+msgstr "Produit un graphique en sablier avec Graphviz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
 msgstr "Graphique relationnel"
 
-# trunk
 #: ../src/plugins/graph/graphplugins.gpr.py:77
 msgid "Produces relationship graphs using Graphviz."
 msgstr "Génère des graphiques relationnels avec GraphViz."
@@ -10134,32 +10049,26 @@ msgstr "GeneWeb"
 msgid "Import data from GeneWeb files"
 msgstr "Importer les données depuis des fichiers GeneWeb"
 
-# trunk
 #: ../src/plugins/import/import.gpr.py:88
 msgid "Gramps package (portable XML)"
 msgstr "Paquet Gramps (XML portable)"
 
-# trunk
 #: ../src/plugins/import/import.gpr.py:89
 msgid "Import data from a Gramps package (an archived XML family tree together with the media object files."
 msgstr "Le paquet Gramps est une base de données XML comprenant les fichiers media."
 
-# trunk
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
 msgstr "Arbre généalogique Gramps XML"
 
-# trunk
 #: ../src/plugins/import/import.gpr.py:108
 msgid "The Gramps XML format is a text version of a family tree. It is read-write compatible with the present Gramps database format."
-msgstr "La base de données Gramps XML est une version textuelle de l'arbre familial. Il est compatible en lecture et écriture avec le format de base de données Gramps actuel."
+msgstr "La base de données Gramps XML est une version textuelle de l'arbre familial. Ce fichier est compatible en lecture et écriture avec le format de base de données Gramps actuel."
 
-# trunk
 #: ../src/plugins/import/import.gpr.py:128
 msgid "Gramps 2.x database"
 msgstr "Base de données Gramps 2.x"
 
-# trunk
 #: ../src/plugins/import/import.gpr.py:129
 msgid "Import data from Gramps 2.x database files"
 msgstr "Importer les données depuis des bases de données Gramps 2.x"
@@ -10192,7 +10101,6 @@ msgstr "nom usuel"
 msgid "Death cause"
 msgstr "date de décès"
 
-# trunk
 #: ../src/plugins/import/ImportCsv.py:200
 #: ../src/plugins/import/ImportCsv.py:272
 #: ../src/plugins/webreport/NarrativeWeb.py:117
@@ -10293,7 +10201,6 @@ msgstr "lieu"
 msgid "%s could not be opened\n"
 msgstr "Gramps n'a pas pu ouvrir %s\n"
 
-# trunk
 #: ../src/plugins/import/ImportCsv.py:333
 #, python-format
 msgid "format error: file %(fname)s, line %(line)d: %(zero)s"
@@ -10353,12 +10260,10 @@ msgstr "Reconstruire la table de référence"
 msgid "%s could not be opened"
 msgstr "%s ouverture impossible"
 
-# trunk
 #: ../src/plugins/import/ImportGrdb.py:2691
 msgid "The Database version is not supported by this version of Gramps."
-msgstr "Cette version de la base de données n'est plus supportée par cette version de Gramps."
+msgstr "Cette version de la base de données n'est pas supportée par cette version de Gramps."
 
-# trunk
 #: ../src/plugins/import/ImportGrdb.py:2828
 #, python-format
 msgid "Your family tree groups name %(key)s together with %(present)s, did not change this grouping to %(value)s"
@@ -10394,11 +10299,10 @@ msgstr "Importer depuis Pro-Gen"
 msgid "Pro-Gen import"
 msgstr "Importation Pro-Gen"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:691
 #, python-format
 msgid "date did not match: '%(text)s' (%(msg)s)"
-msgstr "date n'a pas correspondu : '%(text)s' (%(msg)s)"
+msgstr "date non correspondante : '%(text)s' (%(msg)s)"
 
 # Substantif (GNOME fr)
 #. The records are numbered 1..N
@@ -10418,13 +10322,11 @@ msgstr "Importation des familles"
 msgid "Adding children"
 msgstr "Ajout des enfants"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:1242
 #, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr "impossible de trouver le père de I%(person)s (father=%(id)d)"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:1245
 #, python-format
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
@@ -10497,7 +10399,6 @@ msgstr "%(event_name)s de %(person)s"
 msgid "Error reading %s"
 msgstr "Erreur de lecture de %s"
 
-# trunk
 #: ../src/plugins/import/ImportXml.py:139
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Ce fichier est probablement corrompu ou n'est pas une base Gramps valide."
@@ -10525,7 +10426,7 @@ msgstr "  Événement %(id)s\n"
 #: ../src/plugins/import/ImportXml.py:253
 #, python-format
 msgid "  Media Object %(id)s\n"
-msgstr "  Objet Media %(id)s\n"
+msgstr "  Objet Medium %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:255
 #, python-format
@@ -10619,7 +10520,6 @@ msgstr "Impossible de changer le chemin media"
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin media de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin media de la base de données dans les Préférences."
 
-# trunk
 #: ../src/plugins/import/ImportXml.py:782
 msgid "Gramps XML import"
 msgstr "Importation XML Gramps"
@@ -10630,7 +10530,6 @@ msgstr "Importation XML Gramps"
 msgid "Witness name: %s"
 msgstr "Nom du témoin : %s"
 
-# trunk
 #: ../src/plugins/import/ImportXml.py:1313
 #, python-format
 msgid "Your family tree groups name %(key)s together with %(parent)s, did not change this grouping to %(value)s"
@@ -10641,13 +10540,11 @@ msgstr "Votre arbre familial groupe le nom %(key)s avec %(parent)s, ne pas modif
 msgid "Witness comment: %s"
 msgstr "Commentaire du témoin : %s"
 
-# trunk
 #: ../src/plugins/import/ImportXml.py:2482
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Le fichier .gramps que vous importez provient de la version %(newer)s de Gramps. alors que vous utilisez une ancienne version %(older)s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
 
-# trunk
 #: ../src/plugins/import/ImportXml.py:2494
 #, python-format
 msgid ""
@@ -10669,7 +10566,6 @@ msgstr ""
 msgid "The file will not be imported"
 msgstr "Le fichier n'a pas pu être importé"
 
-# trunk
 #: ../src/plugins/import/ImportXml.py:2512
 #, python-format
 msgid ""
@@ -10734,7 +10630,6 @@ msgid "Line %d: empty note was ignored."
 msgstr "La ligne %d : la note vide a été ignorée."
 
 # à vérifier - contexte
-# trunk
 #: ../src/plugins/lib/libgedcom.py:5497
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
@@ -14160,61 +14055,60 @@ msgid "Last Changed"
 msgstr "Dernière modification"
 
 #: ../src/plugins/lib/libpersonview.py:108
-#: ../src/plugins/lib/libpersonview.py:342
+#: ../src/plugins/lib/libpersonview.py:343
 msgid "Add a new person"
 msgstr "Ajouter un nouvel individu"
 
 #: ../src/plugins/lib/libpersonview.py:109
-#: ../src/plugins/lib/libpersonview.py:333
+#: ../src/plugins/lib/libpersonview.py:334
 msgid "Edit the selected person"
 msgstr "Éditer l'individu sélectionné"
 
-# trunk
 # objet sélectionné
 #: ../src/plugins/lib/libpersonview.py:110
 msgid "Delete the selected person"
 msgstr "Supprimer l'individu sélectionné"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/lib/libpersonview.py:271
+#: ../src/plugins/lib/libpersonview.py:272
 msgid "Deleting the person will remove the person from the database."
 msgstr "La suppression de l'individu l'enlèvera de la base de données."
 
 # objet sélectionné
-#: ../src/plugins/lib/libpersonview.py:276
+#: ../src/plugins/lib/libpersonview.py:277
 msgid "_Delete Person"
 msgstr "_Supprimer l'individu"
 
 # objet sélectionné
-#: ../src/plugins/lib/libpersonview.py:291
+#: ../src/plugins/lib/libpersonview.py:292
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Supprimer l'individu (%s)"
 
-#: ../src/plugins/lib/libpersonview.py:330
-#: ../src/plugins/view/pedigreeview.py:505
-#: ../src/plugins/view/relview.py:417
+#: ../src/plugins/lib/libpersonview.py:331
+#: ../src/plugins/view/pedigreeview.py:507
+#: ../src/plugins/view/relview.py:418
 msgid "Person Filter Editor"
 msgstr "Éditeur de filtre sur l'individu"
 
 # objet sélectionné
 # supprimer pour marquer la disparition de l'objet
-#: ../src/plugins/lib/libpersonview.py:344
+#: ../src/plugins/lib/libpersonview.py:345
 msgid "Remove the Selected Person"
 msgstr "Supprimer l'individu sélectionné"
 
-#: ../src/plugins/lib/libpersonview.py:345
+#: ../src/plugins/lib/libpersonview.py:346
 msgid "Compare and _Merge..."
 msgstr "_Comparer et fusionner..."
 
-#: ../src/plugins/lib/libpersonview.py:347
+#: ../src/plugins/lib/libpersonview.py:348
 msgid "_Fast Merge..."
 msgstr "_Fusion rapide..."
 
-#: ../src/plugins/lib/libpersonview.py:373
-#: ../src/plugins/lib/libpersonview.py:386
-#: ../src/plugins/lib/libpersonview.py:397
-#: ../src/plugins/lib/libpersonview.py:411
+#: ../src/plugins/lib/libpersonview.py:374
+#: ../src/plugins/lib/libpersonview.py:387
+#: ../src/plugins/lib/libpersonview.py:398
+#: ../src/plugins/lib/libpersonview.py:412
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
 msgstr "Exactement deux individus doivent être sélectionnés pour accomplir une fusion. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl) lors du clic sur l'individu désiré."
 
@@ -14302,26 +14196,22 @@ msgstr "Impossible de fusionner les lieux."
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fusion. Le deuxième lieu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et en cliquant sur le lieu désiré."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
 msgstr "Fournit une bibliothèque pour générer des documents avec Cairo."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
-msgstr "Fournit une classe FormattingHelper pour des chaînes communes"
+msgstr "Fournit une classe d'aide au format pour des chaînes communes"
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
-msgstr "Fournit des fonctionnalités dans le traitement GEDCOM"
+msgstr "Fournit les fonctionnalités dans le traitement GEDCOM"
 
 #: ../src/plugins/lib/libplugins.gpr.py:86
 msgid "Provides common functionality for Gramps XML import/export."
 msgstr "Fournit une fonctionnalité commune pour l'importation et l'exportation Gramps XML."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:105
 msgid "Base class for ImportGrdb"
 msgstr "Classe de base pour ImportGrdb"
@@ -14330,17 +14220,14 @@ msgstr "Classe de base pour ImportGrdb"
 msgid "Provides holiday information for different countries."
 msgstr "Fournit l'information sur les jours fériés selon les pays."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:141
 msgid "Manages a HTML file implementing DocBackend."
 msgstr "Gère un fichier HTML en implémentant DocBackend."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:159
 msgid "Common constants for html files."
 msgstr "Constantes communes aux fichiers html."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:177
 msgid "Manages an HTML DOM tree."
 msgstr "Gère une hiérarchie DOM au format HTML."
@@ -14349,47 +14236,38 @@ msgstr "Gère une hiérarchie DOM au format HTML."
 msgid "Provides base functionality for map services."
 msgstr "Fournit une base fonctionnelle pour les services cartographiques."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:212
 msgid "Provides Textual Narration."
 msgstr "Produit un texte narratif."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:229
 msgid "Manages an ODF file implementing DocBackend."
 msgstr "Gère un fichier ODF en implémentant DocBackend."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:246
 msgid "Provides Textual Translation."
-msgstr "Produit un traduction textuelle."
+msgstr "Produit une traduction textuelle."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:263
 msgid "Provides the Base needed for the List People views."
 msgstr "Fournit la base nécessaire à la liste dans les vues Individus."
 
-# trunk
 #: ../src/plugins/lib/libplugins.gpr.py:280
 msgid "Provides the Base needed for the List Place views."
 msgstr "Fournit la base nécessaire à la liste dans les vues Lieux."
 
-# trunk
 #: ../src/plugins/lib/libtranslate.py:74
 msgid "Albanian"
 msgstr "Albanais"
 
-# trunk
 #: ../src/plugins/lib/libtranslate.py:77
 msgid "Chinese"
 msgstr "Chinois"
 
-# trunk
 #: ../src/plugins/lib/libtranslate.py:81
 msgid "Brazil"
 msgstr "Brésilien"
 
-# trunk
 #: ../src/plugins/lib/libtranslate.py:82
 msgid "China"
 msgstr "Chine"
@@ -14418,13 +14296,11 @@ msgstr " paroisse"
 msgid " state"
 msgstr " région/province"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
 #, python-format
 msgid "Latitude not within %(lat1)s to %(lat2)s\n"
 msgstr "Latitude non comprise entre %(lat1)s et %(lat2)s\n"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Longitude not within %(long1)s to %(long2)s"
@@ -14452,7 +14328,6 @@ msgstr ""
 msgid "EniroMaps"
 msgstr "EniroMaps"
 
-# trunk
 #: ../src/plugins/mapservices/mapservice.gpr.py:32
 msgid "Opens on kartor.eniro.se"
 msgstr "Ouvrir avec kartor.eniro.se"
@@ -14516,7 +14391,6 @@ msgstr "Date de l'événement"
 msgid "Event Place"
 msgstr "Lieu de l'événement"
 
-# trunk
 #. display the results
 #: ../src/plugins/quickview/all_events.py:98
 #, python-format
@@ -14582,7 +14456,7 @@ msgid "Parent"
 msgstr "Parent"
 
 #: ../src/plugins/quickview/all_relations.py:287
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/relview.py:401
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Conjoint"
@@ -14660,18 +14534,19 @@ msgstr "les individus avec des images"
 msgid "Filtering_on|media references"
 msgstr "les références de media"
 
-# trunk
+# un medium
 #: ../src/plugins/quickview/FilterByName.py:55
 msgid "Filtering_on|unique media"
-msgstr "l'objet media présent"
+msgstr "l'objet medium présent"
 
+# un medium
 #: ../src/plugins/quickview/FilterByName.py:56
 msgid "Filtering_on|missing media"
-msgstr "l'objet media manquant"
+msgstr "l'objet medium manquant"
 
 #: ../src/plugins/quickview/FilterByName.py:57
 msgid "Filtering_on|media by size"
-msgstr "la taille du media"
+msgstr "la taille du medium"
 
 #: ../src/plugins/quickview/FilterByName.py:58
 msgid "Filtering_on|list of people"
@@ -14856,7 +14731,6 @@ msgstr "Tous les événements"
 msgid "Display a person's events, both personal and family."
 msgstr "Affiche les événements individuels, pour l'individu et sa famille."
 
-# trunk
 #: ../src/plugins/quickview/quickview.gpr.py:86
 msgid "All Family Events"
 msgstr "Tous les événements familiaux"
@@ -14911,12 +14785,10 @@ msgstr "Références (%s)"
 msgid "Display references for a %s"
 msgstr "Affiche les références pour %s"
 
-# trunk
 #: ../src/plugins/quickview/quickview.gpr.py:230
 msgid "Show Repository Reference"
 msgstr "Affiche la référence du dépôt"
 
-# trunk
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
 msgstr "Affiche la référence des sources liées au dépôt actif"
@@ -14929,6 +14801,7 @@ msgstr "Même nom de famille"
 msgid "Display people with the same surname as a person."
 msgstr "Affiche les individus porteurs du même nom de famille."
 
+# pourquoi pluriel ? un même prénom
 #: ../src/plugins/quickview/quickview.gpr.py:265
 msgid "Same Given Names"
 msgstr "Même prénom"
@@ -14938,10 +14811,10 @@ msgstr "Même prénom"
 msgid "Display people with the same given name as a person."
 msgstr "Affiche les individus porteurs du même prénom."
 
-# trunk
+# pourquoi pluriel ? un même prénom
 #: ../src/plugins/quickview/quickview.gpr.py:279
 msgid "Same Given Names - stand-alone"
-msgstr "Même prénom"
+msgstr "Même prénom - indépendant"
 
 #: ../src/plugins/quickview/quickview.gpr.py:299
 msgid "Display a person's siblings."
@@ -14960,9 +14833,8 @@ msgstr "Aucune référence pour %s"
 
 #: ../src/plugins/quickview/Reporef.py:73
 msgid "Type of media"
-msgstr "Type de media"
+msgstr "Type de medium"
 
-# trunk
 #: ../src/plugins/quickview/Reporef.py:73
 msgid "Call number"
 msgstr "Numéro d'identifiant"
@@ -15042,7 +14914,6 @@ msgstr "Filtres généraux"
 msgid "Substring:"
 msgstr "Sous-chaîne :"
 
-# trunk
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/plugins/quickview/SameSurnames.py:51
 msgid "People matching the <surname>"
@@ -15107,12 +14978,10 @@ msgstr "Frère ou sœur"
 msgid "self"
 msgstr "L'individu actif"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:32
 msgid "Czech Relationship Calculator"
 msgstr "Calcul relationnel tchèque"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:33
 #: ../src/plugins/rel/relplugins.gpr.py:46
 #: ../src/plugins/rel/relplugins.gpr.py:62
@@ -15132,77 +15001,62 @@ msgstr "Calcul relationnel tchèque"
 msgid "Calculates relationships between people"
 msgstr "Calcul des relations entre deux individus"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:45
 msgid "Danish Relationship Calculator"
 msgstr "Calcul relationnel danois"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:61
 msgid "German Relationship Calculator"
 msgstr "Calcul relationnel allemand"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:76
 msgid "Spanish Relationship Calculator"
 msgstr "Calcul relationnel espagnol"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:91
 msgid "Finnish Relationship Calculator"
 msgstr "Calcul relationnel finlandais"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:106
 msgid "French Relationship Calculator"
 msgstr "Calcul relationnel français"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:123
 msgid "Croatian Relationship Calculator"
 msgstr "Calcul relationnel croate"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:137
 msgid "Hungarian Relationship Calculator"
 msgstr "Calcul relationnel hongrois"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:150
 msgid "Italian Relationship Calculator"
 msgstr "Calcul relationnel italien"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:163
 msgid "Dutch Relationship Calculator"
 msgstr "Calcul relationnel hollandais"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:180
 msgid "Norwegian Relationship Calculator"
 msgstr "Calcul relationnel norvégien"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:197
 msgid "Polish Relationship Calculator"
 msgstr "Calcul relationnel polonais"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:213
 msgid "Portuguese Relationship Calculator"
 msgstr "Calcul relationnel portugais"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:229
 msgid "Russian Relationship Calculator"
 msgstr "Calcul relationnel russe"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:245
 msgid "Slovak Relationship Calculator"
 msgstr "Calcul relationnel slovaque"
 
-# trunk
 #: ../src/plugins/rel/relplugins.gpr.py:259
 msgid "Swedish Relationship Calculator"
 msgstr "Calcul relationnel suédois"
@@ -15233,7 +15087,6 @@ msgstr "Ajouter une ligne après chaque nom"
 msgid "Indicates if a line break should follow the name."
 msgstr "Indique si une ligne vide doit suivre le nom."
 
-# trunk
 #: ../src/plugins/textreport/AncestorReport.py:272
 msgid "Translation"
 msgstr "Traduction"
@@ -15245,7 +15098,6 @@ msgstr "Traduction"
 msgid "default"
 msgstr "défaut"
 
-# trunk
 #: ../src/plugins/textreport/AncestorReport.py:277
 msgid "The translation to be used for the report."
 msgstr "La traduction à utiliser pour le rapport."
@@ -15455,7 +15307,7 @@ msgstr "Relation avec : %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-#: ../src/plugins/view/relview.py:1663
+#: ../src/plugins/view/relview.py:1664
 msgid "Content"
 msgstr "Contenu"
 
@@ -15489,13 +15341,11 @@ msgstr "Lister les enfants"
 msgid "Whether to list children."
 msgstr "Lister ou non les enfants."
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:687
 #: ../src/plugins/textreport/DetDescendantReport.py:776
 msgid "Compute death age"
 msgstr "Calculer l'âge au décès"
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:688
 #: ../src/plugins/textreport/DetDescendantReport.py:777
 msgid "Whether to compute a person's age at death."
@@ -15609,13 +15459,11 @@ msgstr "Inclure les sources"
 msgid "Whether to include source references."
 msgstr "Inclure ou non les références de la source."
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:825
 msgid "Include sources notes"
 msgstr "Inclure les notes des sources"
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetDescendantReport.py:826
 msgid "Whether to include source notes in the Endnotes section. Only works if Include sources is selected."
@@ -15677,32 +15525,26 @@ msgstr "Style pour l'ajout de détails additionnels."
 msgid "Descendant Report for %(person_name)s"
 msgstr "Liste détaillée des descendants de %(person_name)s"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:742
 msgid "Numbering system"
 msgstr "Système de numérotation"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Henry numbering"
 msgstr "Numérotation Henry"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:745
 msgid "d'Aboville numbering"
 msgstr "Numérotation d'Aboville"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:747
 msgid "Record (Modified Register) numbering"
 msgstr "Numérotation Enregistrement"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:748
 msgid "The numbering system to be used"
 msgstr "Le système de numérotation à utiliser"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:784
 msgid "Use complete sentences"
 msgstr "Utiliser les phrases complètes"
@@ -15716,22 +15558,18 @@ msgstr "Inclure les conjoints"
 msgid "Whether to include detailed spouse information."
 msgstr "Inclure ou non les informations détaillées concernant le conjoint."
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:834
 msgid "Include sign of succession ('+') in child-list"
 msgstr "Inclure le signe d'une descendance ('+') dans la liste des enfants"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:836
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
 msgstr "Inclure ou non un signe ('+') avant le numéro du descendant dans la liste des enfants pour indiquer que l'enfant a une descendance."
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:841
 msgid "Include path to start-person"
-msgstr "Inclure un chemin vers la personne centrale"
+msgstr "Inclure un chemin vers la personne de départ"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:842
 msgid "Whether to include the path of descendancy from the start-person to each descendant."
 msgstr "Inclure ou non la lignée des descendants de l'individu de départ vers chaque descendant."
@@ -15908,7 +15746,6 @@ msgstr "Le style utilisé pour le texte relatif aux enfants."
 msgid "The style used for the parent's name"
 msgstr "Le style utilisé pour le nom des parents"
 
-# trunk
 #. ------------------------------------------------------------------------
 #.
 #. Global variables
@@ -15923,11 +15760,11 @@ msgstr "Sections"
 msgid "Individual Facts"
 msgstr "Faits individuels"
 
-# trunk
+# in Place.
 #: ../src/plugins/textreport/IndivComplete.py:187
 #, python-format
 msgid "%s in %s. "
-msgstr "%s dans %s."
+msgstr "%s à %s."
 
 #: ../src/plugins/textreport/IndivComplete.py:274
 msgid "Alternate Parents"
@@ -15961,17 +15798,14 @@ msgstr "Masculin"
 msgid "Female"
 msgstr "Féminin"
 
-# trunk
 #: ../src/plugins/textreport/IndivComplete.py:644
 msgid "Select the filter to be applied to the report."
-msgstr "Sélectionne le filtre à appliquer au rapport."
+msgstr "Sélectionner le filtre à appliquer au rapport."
 
-# trunk
 #: ../src/plugins/textreport/IndivComplete.py:655
 msgid "List events chonologically"
 msgstr "Lister les événements chronologiquement"
 
-# trunk
 #: ../src/plugins/textreport/IndivComplete.py:656
 msgid "Whether to sort events into chonological order."
 msgstr "Trier ou non les événements dans l'ordre chronologique."
@@ -15984,13 +15818,11 @@ msgstr "Inclure les informations concernant la source"
 msgid "Whether to cite sources."
 msgstr "Citer ou non les sources."
 
-# trunk
 #. ###############################
 #: ../src/plugins/textreport/IndivComplete.py:666
 msgid "Event groups"
 msgstr "Groupes d'événements"
 
-# trunk
 #: ../src/plugins/textreport/IndivComplete.py:667
 msgid "Check if a separate section is required."
 msgstr "Vérifier si une section séparée est nécessaire"
@@ -16210,7 +16042,6 @@ msgstr "Sous-titre du livre"
 msgid "Subtitle string for the book."
 msgstr "Sous-titre du livre."
 
-# trunk
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
 #, python-format
 msgid "Copyright %(year)d %(name)s"
@@ -16228,7 +16059,6 @@ msgstr "Message au bas de la page."
 msgid "Image"
 msgstr "Image"
 
-# trunk
 #: ../src/plugins/textreport/SimpleBookTitle.py:137
 msgid "Gramps ID of the media object to use as an image."
 msgstr "L'identifiant Gramps ID du medium utilisé comme image."
@@ -16330,7 +16160,6 @@ msgstr "Produit un rapport sur les jours de naissance et anniversaires"
 msgid "Custom Text"
 msgstr "Texte personnalisé"
 
-# trunk
 #: ../src/plugins/textreport/textplugins.gpr.py:76
 msgid "Add custom text to the book report"
 msgstr "Ajouter un texte personnalisé au rapport livre"
@@ -16528,7 +16357,7 @@ msgstr "Recherche d'objets non référencés"
 
 #: ../src/plugins/tool/Check.py:560
 msgid "Media object could not be found"
-msgstr "L'objet media est introuvable"
+msgstr "L'objet medium est introuvable"
 
 #: ../src/plugins/tool/Check.py:561
 #, python-format
@@ -16643,7 +16472,6 @@ msgstr "Aucune erreur trouvée"
 msgid "The database has passed internal checks"
 msgstr "Test de la base de données terminé"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1461
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
@@ -16655,7 +16483,6 @@ msgstr[1] "%(quantity)d liens enfant/famille ont été réparés\n"
 msgid "Non existing child"
 msgstr "Enfant non existant"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1475
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
@@ -16674,14 +16501,12 @@ msgstr[1] "%(quantity)d liens conjoint/famille ont été réparés\n"
 msgid "Non existing person"
 msgstr "Individu non existant"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1494
 #: ../src/plugins/tool/Check.py:1512
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s a été restitué(e) dans la famille de %(family)s\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1498
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
@@ -16694,13 +16519,11 @@ msgstr[1] "%(quantity)d liens conjoint/famille en double ont été trouvés\n"
 msgid "%d family with no parents or children found, removed.\n"
 msgstr "%d famille sans parent ni enfant a été trouvée et effacée.\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1519
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d familles sans parent ni enfant ont été trouvées et effacées.\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1523
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
@@ -16708,7 +16531,6 @@ msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d relation familiale corrompue a été corrigée\n"
 msgstr[1] "%d relations familiales corrompues ont été corrigées\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1527
 #, python-format
 msgid "%d person was referenced but not found\n"
@@ -16716,7 +16538,6 @@ msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d individu a été référencé, mais non trouvé\n"
 msgstr[1] "%d individus ont été référencés, mais non trouvés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1532
 #, python-format
 msgid "%d date was corrected\n"
@@ -16724,7 +16545,6 @@ msgid_plural "%d dates were corrected\n"
 msgstr[0] "%d date a été corrigée\n"
 msgstr[1] "%d dates ont été corrigées\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1537
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
@@ -16732,39 +16552,34 @@ msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] "%(quantity)d dépôt a été référencé, mais non trouvé\n"
 msgstr[1] "%(quantity)d dépôts ont été référencés, mais non trouvés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1542
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
-msgstr[0] "%(quantity)d objet media a été référencé, mais non trouvé\n"
+msgstr[0] "%(quantity)d objet medium a été référencé, mais non trouvé\n"
 msgstr[1] "%(quantity)d objets media ont été référencés, mais non trouvés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1546
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
-msgstr[0] "Une référence à %(quantity)d media manquant a été conservée\n"
+msgstr[0] "Une référence à %(quantity)d medium manquant a été conservée\n"
 msgstr[1] "Les références à %(quantity)d media manquants ont été conservées\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1551
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
-msgstr[0] "%(quantity)d media manquant a été remplacé\n"
+msgstr[0] "%(quantity)d medium manquant a été remplacé\n"
 msgstr[1] "%(quantity)d media manquants ont été remplacés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1556
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
-msgstr[0] "%(quantity)d media manquant a été supprimé\n"
+msgstr[0] "%(quantity)d medium manquant a été supprimé\n"
 msgstr[1] "%(quantity)d media manquants ont été supprimés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1561
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
@@ -16772,7 +16587,6 @@ msgid_plural "%(quantity)d invalid event references were removed\n"
 msgstr[0] "%(quantity)d événement non référencé a été enlevé\n"
 msgstr[1] "%(quantity)d événements non référencés ont été enlevés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1566
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
@@ -16780,7 +16594,6 @@ msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d naissance invalide a été réparée\n"
 msgstr[1] "%(quantity)d naissances invalides ont été réparées\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1571
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
@@ -16788,7 +16601,6 @@ msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d décès invalide a été réparé\n"
 msgstr[1] "%(quantity)d décès invalides ont été réparés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1576
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
@@ -16796,7 +16608,6 @@ msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d lieu a été référencé, mais non trouvé\n"
 msgstr[1] "%(quantity)d lieux ont été référencés, mais non trouvés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1581
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
@@ -16809,10 +16620,9 @@ msgstr[1] "%(quantity)d sources ont été référencées, mais non trouvées\n"
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
-msgstr[0] "%d objet media a été référencé, mais non trouvé\n"
+msgstr[0] "%d objet medium a été référencé, mais non trouvé\n"
 msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1590
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
@@ -16820,7 +16630,6 @@ msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d note a été référencée, mais non trouvée\n"
 msgstr[1] "%(quantity)d notes ont été référencées, mais non trouvées\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1595
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
@@ -16828,7 +16637,6 @@ msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d référence à un format de nom invalide a été enlevée\n"
 msgstr[1] "%(quantity)d références à un format de nom invalide ont été enlevées\n"
 
-# trunk
 #: ../src/plugins/tool/Check.py:1600
 #, python-format
 msgid ""
@@ -16874,7 +16682,6 @@ msgstr "Navigateur de descendance : %s"
 msgid "Descendant Browser tool"
 msgstr "Navigateur de descendance"
 
-# trunk
 #: ../src/plugins/tool/Eval.py:53
 msgid "Python evaluation window"
 msgstr "Terminal d'évaluation Python"
@@ -16992,7 +16799,6 @@ msgstr "Recherche des champs de lieu"
 msgid "No place information could be extracted."
 msgstr "Aucune information sur le lieu n'a pu être extraite."
 
-# trunk
 #: ../src/plugins/tool/ExtractCity.py:527
 msgid "Below is a list of Places with the possible data that can be extracted from the place title. Select the places you wish Gramps to convert."
 msgstr "Voici une liste de lieux dont les données peuvent être extraites depuis le titre. Sélectionnez les lieux que vous souhaitez convertir."
@@ -17067,35 +16873,28 @@ msgstr "Second individu"
 msgid "Merge candidates"
 msgstr "Candidats à la fusion"
 
-# trunk
 #: ../src/plugins/tool/Leak.py:62
 msgid "Uncollected Objects Tool"
 msgstr "Outil de déboguage des objets"
 
-# trunk
 #: ../src/plugins/tool/Leak.py:83
 msgid "Number"
 msgstr "Nombre"
 
-# trunk
 #: ../src/plugins/tool/Leak.py:87
 msgid "Uncollected object"
 msgstr "Objet non chargé"
 
-# trunk
 #: ../src/plugins/tool/Leak.py:126
 #, python-format
 msgid "Referrers of %d"
 msgstr "Se rapporte à %d"
 
-# ngettext
-# trunk
 #: ../src/plugins/tool/Leak.py:137
 #, python-format
 msgid "%d refers to"
 msgstr "%d réfère à "
 
-# trunk
 #: ../src/plugins/tool/MediaManager.py:66
 msgid "manual|Media_Manager..."
 msgstr "Gestionnaire de media"
@@ -17105,7 +16904,6 @@ msgstr "Gestionnaire de media"
 msgid "Media Manager"
 msgstr "Gérer les media"
 
-# trunk
 #: ../src/plugins/tool/MediaManager.py:91
 msgid "Gramps Media Manager"
 msgstr "Gestionnaire de media"
@@ -17115,7 +16913,6 @@ msgstr "Gestionnaire de media"
 msgid "Selecting operation"
 msgstr "Sélection de l'opération"
 
-# trunk
 #: ../src/plugins/tool/MediaManager.py:115
 msgid ""
 "This tool allows batch operations on media objects stored in Gramps. An important distinction must be made between a Gramps media object and its file.\n"
@@ -17126,9 +16923,9 @@ msgid ""
 "\n"
 "This tool allows you to only modify the records within your Gramps database. If you want to move or rename the files then you need to do it on your own, outside of Gramps. Then you can adjust the paths using this tool so that the media objects store the correct file locations."
 msgstr ""
-"Cet outil permet des opérations groupées sur les objets media stockés dans Gramps. Une distinction importante doit être faite entre un objet media de Gramps et son fichier.\n"
+"Cet outil permet des opérations groupées sur les objets media stockés dans Gramps. Une distinction importante doit être faite entre un objet medium de Gramps et son fichier.\n"
 "\n"
-"L'objet media de Gramps est une collection de données sur un fichier medium : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
+"L'objet medium de Gramps est une collection de données sur un fichier medium : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
 "\n"
 "Les fichiers contenant une image, du son, de la vidéo, etc. existent séparément sur votre disque dur. Ces fichiers ne sont pas gérés par Gramps et ne sont pas inclus dans la base de données Gramps. La base de données Gramps ne stocke que le chemin et les noms de fichiers.\n"
 "\n"
@@ -17189,7 +16986,6 @@ msgstr "_Remplacer :"
 msgid "_With:"
 msgstr "_Par :"
 
-# trunk
 #: ../src/plugins/tool/MediaManager.py:454
 #, python-format
 msgid ""
@@ -17235,7 +17031,6 @@ msgstr "Non lié à \"%s\""
 msgid "Everyone in the database is related to %s"
 msgstr "Tout le monde dans cette base de données est lié à %s"
 
-# trunk
 # Substantif (GNOME fr)
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:233
@@ -17245,7 +17040,6 @@ msgid_plural "Setting marker for %d people"
 msgstr[0] "Définition du marqueur pour %d individu"
 msgstr[1] "Définition du marqueur pour %d individus"
 
-# trunk
 # Substantif (GNOME fr)
 #. TRANS: No singular form is needed.
 #: ../src/plugins/tool/NotRelated.py:267
@@ -17255,7 +17049,6 @@ msgid_plural "Finding relationships between %d people"
 msgstr[0] "Trouve les relations entre %d individu"
 msgstr[1] "Trouve les relations entre %d individus"
 
-# trunk
 # Substantif (GNOME fr)
 #. we have at least 1 "unrelated" person to find
 #: ../src/plugins/tool/NotRelated.py:336
@@ -17265,7 +17058,6 @@ msgid_plural "Looking for %d people"
 msgstr[0] "Recherche pour %d individu"
 msgstr[1] "Recherche pour %d individus"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/NotRelated.py:361
 #, python-format
@@ -17380,7 +17172,6 @@ msgstr "%(person)s et %(active_person)s ne sont pas en relation."
 msgid "Their common ancestor is %s."
 msgstr "Leur ascendant commun est %s."
 
-# trunk
 #: ../src/plugins/tool/RelCalc.py:213
 #, python-format
 msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
@@ -17408,7 +17199,6 @@ msgid "Remove unused objects"
 msgstr "Supprimer les objets non référencés"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/tool/ReorderIds.py:65
 msgid "Reordering Gramps IDs"
 msgstr "Réorganisation des identifiants Gramps"
@@ -17453,7 +17243,6 @@ msgstr "Réorganisation des identifiants des dépôts"
 msgid "Reordering Note IDs"
 msgstr "Réorganiser des identifiants des notes"
 
-# trunk
 #: ../src/plugins/tool/ReorderIds.py:159
 #: ../src/plugins/tool/tools.gpr.py:440
 msgid "Reorder Gramps IDs"
@@ -17558,7 +17347,6 @@ msgstr "Comparaison d'événements individuels"
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
 msgstr "Aide à l'analyse des données autorisant le développement de filtres personnalisés pour rechercher des événements similaires"
 
-# trunk
 #: ../src/plugins/tool/tools.gpr.py:173
 msgid "Extract Event Description"
 msgstr "Extraire les descriptions de l'événement"
@@ -17639,7 +17427,6 @@ msgstr "Supprimer les objets non référencés"
 msgid "Removes unused objects from the database"
 msgstr "Supprime les objets non référencés de la base de données"
 
-# trunk
 #: ../src/plugins/tool/tools.gpr.py:441
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr "Réorganise les identifiants Gramps en fonction des règles par défaut."
@@ -17824,7 +17611,6 @@ msgstr "Date de naissance invalide"
 msgid "Invalid death date"
 msgstr "Date de décès invalide"
 
-# trunk
 #: ../src/plugins/tool/Verify.py:1523
 msgid "Marriage date but not married"
 msgstr "Date de mariage mais pas mariés"
@@ -17954,12 +17740,10 @@ msgstr "La carte"
 msgid "Test the network "
 msgstr "Test de la connexion internet"
 
-# trunk
 #: ../src/plugins/view/geoview.py:550
 msgid "Time out for the network connection test"
 msgstr "Fin du test pour la connexion internet"
 
-# trunk
 #: ../src/plugins/view/geoview.py:554
 msgid ""
 "Time in seconds between two network tests.\n"
@@ -17968,27 +17752,22 @@ msgstr ""
 "Temps en secondes entre deux tests de l'hôte.\n"
 "Doit être supérieur ou égal à 10 secondes"
 
-# trunk
 #: ../src/plugins/view/geoview.py:559
 msgid "Host to test for http. Please, change this and select one of your choice."
 msgstr "Test de l'hôte pour http. S'il vous plaît, changez et sélectionnez d'après votre choix."
 
-# trunk
 #: ../src/plugins/view/geoview.py:563
 msgid "The network"
 msgstr "La connexion internet"
 
-# trunk
 #: ../src/plugins/view/geoview.py:591
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Sélectionnez le lieu pour lequel vous désirez voir l'info-bulle."
 
-# trunk
 #: ../src/plugins/view/geoview.py:672
 msgid "Time period"
 msgstr "Période"
 
-# trunk
 #: ../src/plugins/view/geoview.py:673
 msgid "years"
 msgstr "années"
@@ -17999,34 +17778,29 @@ msgstr "années"
 msgid "All"
 msgstr "L'ensemble"
 
-# trunk
 #: ../src/plugins/view/geoview.py:925
 msgid "Zoom"
 msgstr "Zoom"
 
-# trunk
 #: ../src/plugins/view/geoview.py:1050
 #: ../src/plugins/view/geoview.py:1060
 msgid "_Add Place"
 msgstr "_Ajouter un lieu"
 
-# trunk
 #: ../src/plugins/view/geoview.py:1052
 #: ../src/plugins/view/geoview.py:1062
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
-msgstr "Ajouter la localisation centrée sur la carte comme un nouveau lieu dans Gramps. Cliquez deux fois sur un emplacement pour le centrer dans la carte."
+msgstr "Ajouter un emplacement centré sur la carte comme un nouveau lieu dans Gramps. Cliquez deux fois sur ce lieu pour le centrer dans la carte."
 
-# trunk
 #: ../src/plugins/view/geoview.py:1055
 #: ../src/plugins/view/geoview.py:1065
 msgid "_Link Place"
 msgstr "_Lier à un lieu"
 
-# trunk
 #: ../src/plugins/view/geoview.py:1057
 #: ../src/plugins/view/geoview.py:1067
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
-msgstr "Lier la localisation centrée sur la carte d'un lieu présent dans Gramps. Cliquez deux fois sur un emplacement pour le centrer dans la carte."
+msgstr "Lier l'emplacement centré sur la carte à un lieu présent dans Gramps. Cliquez deux fois sur ce lieu pour le centrer dans la carte."
 
 #: ../src/plugins/view/geoview.py:1069
 #: ../src/plugins/view/geoview.py:1083
@@ -18076,12 +17850,10 @@ msgstr "Liste des lieux sans coordonnées"
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Voici une liste des lieux de la base de données sans coordonnées.<br> C'est à dire sans longitude ou latitude.<p>"
 
-# trunk
 #: ../src/plugins/view/geoview.py:1292
 msgid "Back to prior page"
 msgstr "Retour à la page précédente"
 
-# trunk
 #: ../src/plugins/view/geoview.py:1535
 msgid "Places list"
 msgstr "Liste des lieux"
@@ -18129,25 +17901,21 @@ msgstr "Les lieux de la base de données avec coordonnées."
 msgid "All events in the family tree with coordinates."
 msgstr "Les événements de cette base de données avec coordonnées."
 
-# trunk
 #: ../src/plugins/view/geoview.py:2025
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Père : %s : %s"
 
-# trunk
 #: ../src/plugins/view/geoview.py:2032
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Mère : %s : %s"
 
-# trunk
 #: ../src/plugins/view/geoview.py:2043
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
-msgstr "Id : Enfant : %(id)s %(index)d : %(name)s"
+msgstr "Id : Enfant : %(id)s - %(index)d : %(name)s"
 
-# trunk
 #: ../src/plugins/view/geoview.py:2051
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
@@ -18163,12 +17931,10 @@ msgstr "Les lieux de la famille de %(name)s avec coordonnées."
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-# trunk
 #: ../src/plugins/view/geoview.py:2113
 msgid "All event places for"
 msgstr "Localisation des événements pour"
 
-# trunk
 #: ../src/plugins/view/geoview.py:2122
 msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr "Impossible de centrer la carte. Aucun emplacement avec coordonnées. Les causes possibles sont : <ul><li>Le filtre utilisé ne trouve rien.</li><li>Soit la personne active n'a pas de lieux avec coordonnées.</li><li>Soit les membres de la famille de la personne active n'ont pas de lieux avec coordonnées.</li><li>Soit vous n'avez pas de lieux dans votre base.</li><li>Soit vous n'avez pas désigné de personne active.</li>"
@@ -18177,77 +17943,62 @@ msgstr "Impossible de centrer la carte. Aucun emplacement avec coordonnées. Les
 msgid "Not yet implemented ..."
 msgstr "Pas encore implémenté ..."
 
-# trunk
 #: ../src/plugins/view/geoview.py:2289
 msgid "Start page for the Geography View"
 msgstr "Première page pour la vue Géographie"
 
-# trunk
 #: ../src/plugins/view/geoview.py:2290
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
-msgstr "Vous ne voyez pas de carte pour les raisons suivantes : <br><ol><li>Votre base de données est vide ou pas encore sélectionnée.</li><li>Vous n'avez pas encore sélectionné un individu.</li><li>Vous n'avez pas de lieu dans votre base de données.</li><li>Les lieux sélectionnés n'ont pas de coordonnés.</li></ol>"
+msgstr "Vous ne voyez pas de carte pour les raisons suivantes : <br><ol><li>Votre base de données est vide ou pas encore sélectionnée.</li><li>Vous n'avez pas encore sélectionné un individu.</li><li>Vous n'avez pas de lieu dans votre base de données.</li><li>Les lieux sélectionnés n'ont pas de coordonnées.</li></ol>"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:50
 msgid "Geographic View"
 msgstr "Vue Géographique"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid "The view showing events on an interactive internet map (internet connection needed"
 msgstr "Cette vue affiche les événements sur une carte internet interactive (une connexion internet est nécessaire"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
 msgstr "Ajouter un lieu"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:63
 msgid "Link Place"
 msgstr "Lier à un lieu"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
 msgstr "Zoom fixe"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:65
 msgid "Free Zoom"
 msgstr "Zoom variable"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:66
 msgid "Show Places"
 msgstr "Afficher les lieux"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:67
 msgid "Show Person"
 msgstr "Afficher l'individu"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:68
 msgid "Show Family"
 msgstr "Afficher la famille"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:69
 msgid "Show Events"
 msgstr "Afficher les événements"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:76
 msgid "Html View"
 msgstr "Vue HTML"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:77
 msgid "A view allowing to see html pages embedded in Gramps"
 msgstr "Une vue permettant de voir des pages html embarquées dans Gramps"
 
-# trunk
 #: ../src/plugins/view/geoview.gpr.py:84
 msgid "Web"
 msgstr "Internet"
@@ -18347,15 +18098,15 @@ msgstr "inh."
 msgid "short for cremated|crem."
 msgstr "crem."
 
-#: ../src/plugins/view/pedigreeview.py:896
+#: ../src/plugins/view/pedigreeview.py:898
 msgid "Jump to child..."
 msgstr "Aller à l'enfant..."
 
-#: ../src/plugins/view/pedigreeview.py:914
+#: ../src/plugins/view/pedigreeview.py:916
 msgid "Jump to mother"
 msgstr "Aller à la mère"
 
-#: ../src/plugins/view/pedigreeview.py:1179
+#: ../src/plugins/view/pedigreeview.py:1181
 msgid "A person was found to be his/her own ancestor."
 msgstr "Un individu est défini comme son propre ascendant."
 
@@ -18364,49 +18115,49 @@ msgstr "Un individu est défini comme son propre ascendant."
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/plugins/view/pedigreeview.py:1222
-#: ../src/plugins/view/pedigreeview.py:1231
+#: ../src/plugins/view/pedigreeview.py:1224
+#: ../src/plugins/view/pedigreeview.py:1233
 #: ../src/plugins/webreport/NarrativeWeb.py:3015
 msgid "Home"
 msgstr "Souche"
 
-#: ../src/plugins/view/pedigreeview.py:1245
+#: ../src/plugins/view/pedigreeview.py:1247
 msgid "Show images"
 msgstr "Afficher les images"
 
-#: ../src/plugins/view/pedigreeview.py:1254
+#: ../src/plugins/view/pedigreeview.py:1256
 msgid "Show marriage data"
 msgstr "Afficher les données du mariage"
 
-#: ../src/plugins/view/pedigreeview.py:1263
+#: ../src/plugins/view/pedigreeview.py:1265
 msgid "Tree style"
 msgstr "Style de l'arbre"
 
-#: ../src/plugins/view/pedigreeview.py:1270
+#: ../src/plugins/view/pedigreeview.py:1272
 msgid "Version A"
 msgstr "Version A"
 
-#: ../src/plugins/view/pedigreeview.py:1277
+#: ../src/plugins/view/pedigreeview.py:1279
 msgid "Version B"
 msgstr "Version B"
 
-#: ../src/plugins/view/pedigreeview.py:1289
+#: ../src/plugins/view/pedigreeview.py:1291
 msgid "Tree size"
 msgstr "Taille de l'arbre"
 
-#: ../src/plugins/view/pedigreeview.py:1296
+#: ../src/plugins/view/pedigreeview.py:1298
 msgid "Automatic"
 msgstr "Automatique"
 
 # ngettext
-#: ../src/plugins/view/pedigreeview.py:1304
+#: ../src/plugins/view/pedigreeview.py:1306
 #, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
 msgstr[0] "%d génération"
 msgstr[1] "%d générations"
 
-#: ../src/plugins/view/pedigreeview.py:1567
+#: ../src/plugins/view/pedigreeview.py:1569
 msgid "Family Menu"
 msgstr "Menu Famille"
 
@@ -18442,205 +18193,205 @@ msgstr "Déployer le groupe entier"
 msgid "Collapse this Entire Group"
 msgstr "Compresser le groupe entier"
 
-#: ../src/plugins/view/relview.py:392
+#: ../src/plugins/view/relview.py:393
 msgid "_Reorder"
 msgstr "_Réorganiser"
 
-#: ../src/plugins/view/relview.py:393
+#: ../src/plugins/view/relview.py:394
 msgid "Change order of parents and families"
 msgstr "Changer l'ordre des parents et familles"
 
-#: ../src/plugins/view/relview.py:398
+#: ../src/plugins/view/relview.py:399
 msgid "Edit..."
 msgstr "Éditer..."
 
-#: ../src/plugins/view/relview.py:399
+#: ../src/plugins/view/relview.py:400
 msgid "Edit the active person"
 msgstr "Éditer l'individu actif"
 
-#: ../src/plugins/view/relview.py:401
-#: ../src/plugins/view/relview.py:403
-#: ../src/plugins/view/relview.py:799
+#: ../src/plugins/view/relview.py:402
+#: ../src/plugins/view/relview.py:404
+#: ../src/plugins/view/relview.py:800
 msgid "Add a new family with person as parent"
 msgstr "Ajouter une nouvelle famille dont l'individu est le parent"
 
-#: ../src/plugins/view/relview.py:402
+#: ../src/plugins/view/relview.py:403
 msgid "Add Partner..."
 msgstr "Ajouter un conjoint..."
 
-#: ../src/plugins/view/relview.py:405
-#: ../src/plugins/view/relview.py:407
-#: ../src/plugins/view/relview.py:793
+#: ../src/plugins/view/relview.py:406
+#: ../src/plugins/view/relview.py:408
+#: ../src/plugins/view/relview.py:794
 msgid "Add a new set of parents"
 msgstr "Ajouter un nouveau couple de parents"
 
-#: ../src/plugins/view/relview.py:406
+#: ../src/plugins/view/relview.py:407
 msgid "Add New Parents..."
 msgstr "Ajouter des nouveaux parents..."
 
-#: ../src/plugins/view/relview.py:409
-#: ../src/plugins/view/relview.py:413
-#: ../src/plugins/view/relview.py:794
+#: ../src/plugins/view/relview.py:410
+#: ../src/plugins/view/relview.py:414
+#: ../src/plugins/view/relview.py:795
 msgid "Add person as child to an existing family"
 msgstr "Définir l'individu comme enfant d'une famille existante"
 
-#: ../src/plugins/view/relview.py:412
+#: ../src/plugins/view/relview.py:413
 msgid "Add Existing Parents..."
 msgstr "Ajouter des parents existants..."
 
-#: ../src/plugins/view/relview.py:652
+#: ../src/plugins/view/relview.py:653
 msgid "Alive"
 msgstr "En vie"
 
-#: ../src/plugins/view/relview.py:710
-#: ../src/plugins/view/relview.py:737
+#: ../src/plugins/view/relview.py:711
+#: ../src/plugins/view/relview.py:738
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s à %(place)s"
 
-#: ../src/plugins/view/relview.py:795
+#: ../src/plugins/view/relview.py:796
 msgid "Edit parents"
 msgstr "Éditer les parents"
 
-#: ../src/plugins/view/relview.py:796
+#: ../src/plugins/view/relview.py:797
 msgid "Reorder parents"
 msgstr "Réorganiser les parents"
 
 # enlever la référence aux parents
-#: ../src/plugins/view/relview.py:797
+#: ../src/plugins/view/relview.py:798
 msgid "Remove person as child of these parents"
 msgstr "Enlever l'individu comme enfant de ces parents"
 
-#: ../src/plugins/view/relview.py:801
+#: ../src/plugins/view/relview.py:802
 msgid "Edit family"
 msgstr "Éditer la famille"
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:803
 msgid "Reorder families"
 msgstr "Réorganiser les familles"
 
 # enlever la référence au père
-#: ../src/plugins/view/relview.py:803
+#: ../src/plugins/view/relview.py:804
 msgid "Remove person as parent in this family"
 msgstr "Enlever l'individu comme parent dans cette famille"
 
 # ngettext
-#: ../src/plugins/view/relview.py:856
-#: ../src/plugins/view/relview.py:912
+#: ../src/plugins/view/relview.py:857
+#: ../src/plugins/view/relview.py:913
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] "(%d frère ou sœur)"
 msgstr[1] "(%d frères et sœurs)"
 
-#: ../src/plugins/view/relview.py:861
-#: ../src/plugins/view/relview.py:917
+#: ../src/plugins/view/relview.py:862
+#: ../src/plugins/view/relview.py:918
 msgid " (1 brother)"
 msgstr " (1 frère)"
 
-#: ../src/plugins/view/relview.py:863
-#: ../src/plugins/view/relview.py:919
+#: ../src/plugins/view/relview.py:864
+#: ../src/plugins/view/relview.py:920
 msgid " (1 sister)"
 msgstr " (1 sœur)"
 
-#: ../src/plugins/view/relview.py:865
-#: ../src/plugins/view/relview.py:921
+#: ../src/plugins/view/relview.py:866
+#: ../src/plugins/view/relview.py:922
 msgid " (1 sibling)"
 msgstr " (1 frère ou sœur)"
 
-#: ../src/plugins/view/relview.py:867
-#: ../src/plugins/view/relview.py:923
+#: ../src/plugins/view/relview.py:868
+#: ../src/plugins/view/relview.py:924
 msgid " (only child)"
 msgstr " (enfant unique)"
 
-#: ../src/plugins/view/relview.py:938
-#: ../src/plugins/view/relview.py:1387
+#: ../src/plugins/view/relview.py:939
+#: ../src/plugins/view/relview.py:1388
 msgid "Add new child to family"
 msgstr "Ajouter un nouvel enfant à la famille"
 
-#: ../src/plugins/view/relview.py:942
-#: ../src/plugins/view/relview.py:1391
+#: ../src/plugins/view/relview.py:943
+#: ../src/plugins/view/relview.py:1392
 msgid "Add existing child to family"
 msgstr "Ajouter un enfant existant à la famille"
 
-#: ../src/plugins/view/relview.py:1171
+#: ../src/plugins/view/relview.py:1172
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../src/plugins/view/relview.py:1178
-#: ../src/plugins/view/relview.py:1180
+#: ../src/plugins/view/relview.py:1179
+#: ../src/plugins/view/relview.py:1181
 #, python-format
 msgid "%s %s"
 msgstr "%s %s"
 
-#: ../src/plugins/view/relview.py:1241
+#: ../src/plugins/view/relview.py:1242
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Type de relation : %s"
 
-#: ../src/plugins/view/relview.py:1283
+#: ../src/plugins/view/relview.py:1284
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s : %(date)s à %(place)s"
 
-#: ../src/plugins/view/relview.py:1287
+#: ../src/plugins/view/relview.py:1288
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s : %(date)s"
 
-#: ../src/plugins/view/relview.py:1291
+#: ../src/plugins/view/relview.py:1292
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s : %(place)s"
 
-#: ../src/plugins/view/relview.py:1302
+#: ../src/plugins/view/relview.py:1303
 msgid "Broken family detected"
 msgstr "Famille brisée détectée"
 
-#: ../src/plugins/view/relview.py:1303
+#: ../src/plugins/view/relview.py:1304
 msgid "Please run the Check and Repair Database tool"
 msgstr "Veuillez lancer l'outil Vérifier et réparer la base de données"
 
 # ngettext
-#: ../src/plugins/view/relview.py:1324
-#: ../src/plugins/view/relview.py:1370
+#: ../src/plugins/view/relview.py:1325
+#: ../src/plugins/view/relview.py:1371
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d enfant)"
 msgstr[1] " (%d enfants)"
 
-#: ../src/plugins/view/relview.py:1326
-#: ../src/plugins/view/relview.py:1372
+#: ../src/plugins/view/relview.py:1327
+#: ../src/plugins/view/relview.py:1373
 msgid " (no children)"
 msgstr " (pas d'enfant)"
 
-#: ../src/plugins/view/relview.py:1502
+#: ../src/plugins/view/relview.py:1503
 msgid "Add Child to Family"
 msgstr "Ajouter un enfant à la famille"
 
-#: ../src/plugins/view/relview.py:1635
+#: ../src/plugins/view/relview.py:1636
 msgid "Use shading"
 msgstr "Utiliser les nuances"
 
-#: ../src/plugins/view/relview.py:1638
+#: ../src/plugins/view/relview.py:1639
 msgid "Display edit buttons"
 msgstr "Afficher les boutons d'édition"
 
-#: ../src/plugins/view/relview.py:1640
+#: ../src/plugins/view/relview.py:1641
 msgid "View links as website links"
 msgstr "Les liens dans le style internet"
 
-#: ../src/plugins/view/relview.py:1646
+#: ../src/plugins/view/relview.py:1647
 msgid "Layout"
 msgstr "Mise en page"
 
-#: ../src/plugins/view/relview.py:1657
+#: ../src/plugins/view/relview.py:1658
 msgid "Show Details"
 msgstr "Afficher les détails"
 
-#: ../src/plugins/view/relview.py:1660
+#: ../src/plugins/view/relview.py:1661
 msgid "Show Siblings"
 msgstr "Afficher les frères et sœurs"
 
@@ -18937,7 +18688,7 @@ msgstr "Type de fichier"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2817
 msgid "Missing media object:"
-msgstr "Objet media absent :"
+msgstr "Objet medium absent :"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2853
 msgid "Surnames by person count"
@@ -19753,7 +19504,7 @@ msgstr "Lien préfixe"
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "Un préfixe sur le lien pour vous diriger vers le rapport internet"
 
-# attention "ans" est ajouté par gen.lib 
+# attention "ans" est ajouté par gen.lib
 #: ../src/plugins/webreport/WebCal.py:1729
 #, python-format
 msgid "%s old"
@@ -20678,11 +20429,11 @@ msgstr "Seulement les dates au format iso aaaa-mm-jj hh:mm:ss, avec la période 
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
-msgstr "Chaque objet"
+msgstr "Tous les objets"
 
 #: ../src/Filters/Rules/_Everything.py:47
 msgid "Matches every object in the database"
-msgstr "Correspond à chaque objet de la base de données"
+msgstr "Correspond à tous les objets de la base de données"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
 msgid "Attribute:"
@@ -21528,12 +21279,12 @@ msgstr "Individus avec le même <nom>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
-msgstr "Chaque famille"
+msgstr "Toutes les familles"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
 msgid "Matches every family in the database"
-msgstr "Correspond à chaque famille de la base"
+msgstr "Correspond à toutes les familles de la base"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
 msgid "Families changed after <date time>"
@@ -21630,7 +21381,7 @@ msgstr "Correspond aux familles ayant un événement de même valeur"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:43
 msgid "Families with <count> media"
-msgstr "Familles avec un <nombre> d'objet media"
+msgstr "Familles avec un <nombre> d'objets media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasGallery.py:44
@@ -21824,12 +21575,12 @@ msgstr "Correspond aux familles dont l'ID Gramps contient l'expression rationnel
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
-msgstr "Chaque événement"
+msgstr "Tous les événements"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
 msgid "Matches every event in the database"
-msgstr "Correspond à chaque événement de la base"
+msgstr "Correspond à tous les événements de la base"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:23
 msgid "Events changed after <date time>"
@@ -21868,7 +21619,7 @@ msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
 msgid "Events with <count> media"
-msgstr "Événements avec un <nombre> d'objet media"
+msgstr "Événements avec un <nombre> d'objets media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
@@ -21991,7 +21742,7 @@ msgstr "Correspond aux événements dont l'ID Gramps contient une expression rat
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 msgid "Every place"
-msgstr "Chaque lieu"
+msgstr "Tous les lieux"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
@@ -22174,7 +21925,7 @@ msgstr "Correspond aux lieux dont l'ID Gramps contient une expression rationnell
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
-msgstr "Chaque source"
+msgstr "Toutes les sources"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_AllSources.py:46
@@ -22313,7 +22064,7 @@ msgstr "Correspond aux sources dont l'ID Gramps contient une expression rationne
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
-msgstr "Chaque objet media"
+msgstr "Tous les media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
@@ -22339,12 +22090,12 @@ msgstr "Correspond aux objets media avec un attribut de même valeur"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Objet media avec l'<Id>"
+msgstr "Objet medium avec l'<Id>"
 
 # trunk
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Correspond à un objet media avec l'identifiant Gramps spécifié"
+msgstr "Correspond à un objet medium avec l'identifiant Gramps spécifié"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -22424,7 +22175,7 @@ msgstr "Correspond aux objets media dont l'ID Gramps contient une expression rat
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
-msgstr "Chaque dépôt"
+msgstr "Tous les dépôts"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
@@ -22522,7 +22273,7 @@ msgstr "Correspond aux dépôts marqués comme privés"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:45
 msgid "Every note"
-msgstr "Chaque note"
+msgstr "Toutes les notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Note/_AllNotes.py:46
@@ -23288,7 +23039,7 @@ msgstr "_Numéro d'appel :"
 # éviter le raccourci sur le y ou le p
 #: ../src/glade/editreporef.glade.h:10
 msgid "_Media Type:"
-msgstr "_Type de media :"
+msgstr "_Type de medium :"
 
 #: ../src/glade/editpersonref.glade.h:2
 msgid "_Association:"
