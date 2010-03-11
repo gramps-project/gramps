@@ -1,4 +1,4 @@
-.﻿/*
+﻿/*
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -49,10 +49,15 @@ Females     Web_Gender_Female.png
 
  NarrativeWeb Styles
 --------------------------------------------------------------------------------------------  */
-body {
-    font-family: Arial, sans, sans-serif, Helvetica;
-    color: #000;
-    background-color: #FFF;
+div#alphabet ul li {
+    background-color: #6AF364;
+}
+div#navigation ul li.CurrentSection a {
+    background-color: #000;
+    color: #FFF;
+}
+div#navigation ul li.CurrentSection a:hover {
+    background-color: 696969;
 }
 
 /* General Elements
@@ -266,90 +271,6 @@ div#footer p#copyright img {
     font:normal 1em/1.2em serif;
     margin:0;
     padding:0;
-}
-
-/* Navigation
------------------------------------------------------ */
-div#navigation, div#subnavigation {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-div#navigation ul, div#subnavigation ul {
-    list-style:none;
-    min-width: 900px;
-    height: 40px;
-    margin:0;
-    padding: 0px 0px 0px 16px;
-    border-bottom: solid 2px #5D835F;
-}
-div#navigation ul li, div#subnavigation ul li {
-    float:left;
-}
-div#navigation ul li a, div#subnavigation ul li a {
-    display: block;
-    padding: 12px 16px 14px 1px;
-    float:left;
-    font: .8em bold italic small-caps verdana, serif;
-    color: #000;
-    text-decoration:none;
-    margin:0;
-}
-div#navigation ul li a:hover, div#subnavigation ul li a:hover {
-    background-color: #C1B398;
-}
-div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
-    font-weight:bold;
-    font-style: italic;
-    background-color: #453619;
-    color: #FFF;
-}
-div#navigation ul li.CurrentSection a:hover {
-    background-color: #000;
-    color: #FFF;
-}
-div#subnavigation ul li.CurrentSection a {
-    border-width: 0px 0px 2px 0px;
-    border-color: #5D835F;
-}
-i0
-
-/* Alphabet Navigation
------------------------------------------------------ */
-div#alphabet {
-    width: 100%;
-    margin: 0;
-    background-color: #6AF364;
-}
-div#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding: 0px 0px 0px 16px;
-    border-width: 1px 0px 1px 0px;
-    border-style: solid;
-    border-color: #5D835F;
-}
-div#alphabet ul li:after {
-    content:"  |";
-}
-div#alphabet ul li {
-    margin:0;
-    float:left;
-}
-div#alphabet ul li a {
-    display:block;
-    padding: 4px 8px 4px 8px;
-    float:left;
-    font: normal 16px/100% sans;
-    margin:0;
-    text-decoration:none;
-    color: #000;
-}
-div#alphabet ul li a:hover {
-    background-color: #000;
-    color: #FFF;
 }
 
 /* Main Table

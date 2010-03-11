@@ -819,31 +819,37 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
 }
 
-/* Internet Address Book
+/* Address Book
 ------------------------------------------------------ */
-div#InternetAddressBook {
+div#AddressBookList {
     margin: 0;
     padding: 0;
 }
-div#InternetAddressBook table.addressbook {
+div#AddressBookList table.addressbook {
     margin: .3em 0 .3em 0;
 }
-div#InternetAddressBook table.addressbook tbody tr.BeginName {
+div#AddressBookList table.addressbook tbody tr.BeginName {
     border-top: solid 1px #000;
 }
-div#InternetAddressBook table.addressbook tbody tr td {
+div#AddressBookList table.addressbook tbody tr td {
     background-color: #FFF;
     border-bottom: dashed 1px #000;
 }
-div#InternetAddressBook table.addressbook tbody tr td.ColumnType {
+div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
     background-color: #F6F2EE;
     width: 15%;
 }
-div#InternetAddressBook table.addressbook tbody tr td.ColumnName {
+div#AddressBookList table.addressbook tbody tr td.ColumnName {
     width: 30%;
 }
-div#InternetAddressBook table.addressbook tbody tr td.ColumnLink {
-    width: 70%;
+div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
+    width: 8%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnResidence {
+    width: 8%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
+    width: 8%;
 }
 
 /* Subsections

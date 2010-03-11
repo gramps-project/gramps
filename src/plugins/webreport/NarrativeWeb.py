@@ -7,7 +7,7 @@
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
-# Copyright (C) 2008-2009  Rob G. Healey <robhealey1@gmail.com>	
+# Copyright (C) 2008-2010  Rob G. Healey <robhealey1@gmail.com>	
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -926,9 +926,6 @@ class BasePage(object):
         if self.ext in [".php", ".php3", ".cgi"]:
             del page[0]
 
-        # add narrative specific body id
-        body.attr = 'id = "NarrativeWeb"'
-
         # create additional meta tags
         meta = (Html("meta", attr = _META1) + 
                 Html("meta", attr = _META2, indent = False)
@@ -951,11 +948,17 @@ class BasePage(object):
         url4 = self.report.build_url_image("favicon.ico", "images", self.up)
 
         # create stylesheet and favicon links
-        links = [Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon"),
+        links = Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon") + (
              Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet"),
              Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url3, type = "text/css", media = 'print', rel = "stylesheet")
-             ]
+             Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet")
+             )
+
+        if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+            # Link to Navigation Menus stylesheet
+            fname = "/".join(["styles", "Web_Navigation-Menus.css"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            links.extend( Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet") )
 
         # add additional meta and link tags
         head += meta
@@ -1003,8 +1006,8 @@ class BasePage(object):
         navs = [
             (self.report.index_fname,   _("Html|Home"),             self.report.use_home),
             (self.report.intro_fname,    _("Introduction"),         self.report.use_intro),
-            (self.report.surname_fname, _("Surnames"),              True),
             ('individuals',             _("Individuals"),           True),
+            (self.report.surname_fname, _("Surnames"),              True),
             ('places',                  _("Places"),                True),
             ('events',                  _("Events"),                self.report.inc_events), 
             ('media',                   _("Media"),                 self.create_media),
@@ -2136,11 +2139,16 @@ class PlaceListPage(BasePage):
                 thead = Html("thead")
                 table += thead
 
-                trow =  Html("tr") + (
-                    Html("th", _("Letter"), class_ = "ColumnLetter", inline = True),
-                    Html("th", _("Place name | Name"), class_ = "ColumnName", inline = True)
-                    )
+                trow =  Html("tr")
                 thead += trow
+                trow.extend( Html("th", label, class_ = "Column" + colclass, inline = True)
+                    for label, colclass in [
+                        [_("Letter"),              "Letter"],
+                        [_("Place Name | Name"),   "Name"],
+                        [_("State"),               "State"],
+                        [_("Country"),             "Country"], 
+                        [_("Latitude/ Longitude"), "Coordinates"] ]
+                    )
 
                 sort = Sort.Sort(db)
                 handle_list = sorted(place_handles, key = sort.by_place_title_key)
@@ -2153,9 +2161,7 @@ class PlaceListPage(BasePage):
                 for handle in handle_list:
                     place = db.get_place_from_handle(handle)
                     place_title = ReportUtils.place_name(db, handle)
-
-                    if not place_title:
-                        continue
+                    ml = place.get_main_location()
 
                     letter = first_letter(place_title)
 
@@ -2175,6 +2181,14 @@ class PlaceListPage(BasePage):
 
                     trow += Html("td", self.place_link(place.handle, place_title, place.gramps_id), 
                         class_ = "ColumnName")
+
+                    trow.extend( Html("td", data, class_ = "Column" + colclass, inline = True)
+                        for colclass, data in [
+                            ["State",       ml.state],
+                            ["Country",     ml.country],
+                            ["Coordinates", (place.lat + ", " + place.long) if place.lat and place.long else None] ]
+                            if data or "&nbsp;"
+                        )
 
         # add clearline for proper styling
         # add footer section
@@ -4720,7 +4734,8 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, 
+            _("Address Book")), _KEYPERSON)
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
@@ -4757,7 +4772,7 @@ class AddressBookListPage(BasePage):
                 table += tbody
 
                 # local counters for total line
-                index, countadd, countres, counturl = 0, 0, 0, 0
+                index, countadd, countres, counturl, countfb = 0, 0, 0, 0, 0
 
                 for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
                     person = db.get_person_from_handle(person_handle)
@@ -4766,6 +4781,7 @@ class AddressBookListPage(BasePage):
                     address = None
                     residence = None
                     weblinks = None
+                    facebook = None
 
                     # has address but no residence event
                     if has_add and not has_res:
@@ -4846,25 +4862,19 @@ class AddressBookPage(BasePage):
         # begin address book page division and section title
         with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
             body += addressbookdetail
-
             addressbookdetail += Html("h3", self.get_name(person), inline = True)
+
+            # individual has an address
+            if has_add:
+                addressbookdetail += self.display_addr_list(has_add, None)
+
+            # individual has a residence
+            if has_res:
+                addressbookdetail += self.dump_residence(has_res)
 
             # individual has a url
             if has_url:
                 addressbookdetail += self.display_url_list(has_url)
-
-            # individual has an address, and not a residence event
-            if has_add and not has_res:
-                addressbookdetail += self.display_addr_list(has_add, None)
-
-            # individual has a residence event and no addresses
-            elif has_res and not has_add:
-                addressbookdetail += self.dump_residence(has_res)
-
-            # individual has both
-            elif has_add and has_res:
-                addressbookdetail += self.display_addr_list(has_add, None)
-                addressbookdetail += self.dump_residence(has_res)
 
         # add fullclear for proper styling
         # and footer section to page
@@ -4915,6 +4925,7 @@ class NavWebReport(Report):
         self.target_path = self.options['target']
         self.ext = self.options['ext']
         self.css = self.options['css']
+        self.navigation = self.options["navigation"]
 
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
@@ -5105,7 +5116,6 @@ class NavWebReport(Report):
         """
 
         # gets the person list and applies the requested filter
-        
         ind_list = self.database.iter_person_handles()
         self.progress.set_pass(_('Applying Filter...'), self.database.get_number_of_people())
         ind_list = self.filter.apply(self.database, ind_list, self.progress)
@@ -5125,6 +5135,14 @@ class NavWebReport(Report):
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
+
+        # copy Navigation Menu Layout if Blue or Visually is being used
+        if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
+            if self.navigation == "Horizontal":
+                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
+            else:
+                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Vertical.css")
+            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
@@ -5380,12 +5398,12 @@ class NavWebReport(Report):
 
             has_add = None
             has_url = None
+            has_res = None
             if addrlist:
                 has_add = addrlist
             if urllist:
                 has_url = urllist
 
-            has_res = None
             for event_ref in evt_ref_list:
                 event = db.get_event_from_handle(event_ref.ref)
 
@@ -5405,9 +5423,10 @@ class NavWebReport(Report):
         # Determine if we build Address Book
         if has_url_address:
             has_url_address.sort()
-            AddressBookListPage(self, self.title, has_url_address)
 
             self.progress.set_pass(_("Creating address book pages ..."), len(has_url_address))
+
+            AddressBookListPage(self, self.title, has_url_address)
 
             for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
                 self.progress.step()
@@ -5658,11 +5677,24 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
+        self.__css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
         for style in CSS_FILES:
-            css.add_item(style[1], style[0])
-        css.set_help( _('The stylesheet to be used for the web page'))
-        menu.add_option(category_name, "css", css)
+            self.__css.add_item(style[1], style[0])
+        self.__css.set_help( _('The stylesheet to be used for the web pages'))
+        menu.add_option(category_name, "css", self.__css)
+        self.__css.connect("value-changed", self.__stylesheet_changed)
+
+        _NAVIGATION_OPTS = [
+            [_("Horizontal -- No Change"), "Horizontal"],
+            [_("Vertical"),                "Vertical"]
+            ]
+        self.__navigation = EnumeratedListOption(_("Navigation Layout"), _NAVIGATION_OPTS[0][1])
+        for layout in _NAVIGATION_OPTS:
+            self.__navigation.add_item(layout[1], layout[0])
+        self.__navigation.set_help(_("Choose which layout for the Navigation Menus."))
+        menu.add_option(category_name, "navigation", self.__navigation)
+
+        self.__stylesheet_changed()
 
         self.__graph = BooleanOption(_("Include ancestor graph"), True)
         self.__graph.set_help(_('Whether to include an ancestor graph '
@@ -5912,6 +5944,17 @@ class NavWebOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
+
+    def __stylesheet_changed(self):
+        """
+        Handles the changing nature of the stylesheet
+        """
+
+        css_opts = self.__css.get_value()
+        if css_opts in ["Web_Basic-Blue.css", "Web_Visually.css"]:   
+            self.__navigation.set_available(True)
+        else:
+            self.__navigation.set_available(False)
 
     def __graph_changed(self):
         """
