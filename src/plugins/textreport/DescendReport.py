@@ -43,13 +43,74 @@ from gen.ggettext import gettext as _
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import NumberOption, PersonOption, BooleanOption, EnumeratedListOption
-from gen.display.name import displayer as name_displayer
+from gen.display.name import displayer as _nd
 from Errors import ReportError
 from ReportBase import Report, ReportUtils, MenuReportOptions
 import DateHandler
 import Sort
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
+
+#------------------------------------------------------------------------
+#
+# PrintSimple
+#   Simple numbering system
+#
+#------------------------------------------------------------------------
+class PrintSimple():
+    def number(self, level):
+        return "%d." % level
+    
+    
+#------------------------------------------------------------------------
+#
+# PrintVlliers
+#   de_Villiers_Pama numbering system
+#
+#------------------------------------------------------------------------
+class PrintVlliers():
+    def __init__(self):
+        self.pama = 'abcdefghijklmnopqrstuvwxyz'
+        self.num = {0:1}
+    
+    def number(self, level):
+        to_return = self.pama[level-1]
+        if level > 1:
+            to_return += str(self.num[level-1])
+        to_return += "."
+        
+        self.num[level] = 1
+        self.num[level-1] = self.num[level-1] + 1
+
+        return to_return
+    
+
+#------------------------------------------------------------------------
+#
+# class PrintMeurgey
+#   Meurgey_de_Tupigny numbering system
+#
+#------------------------------------------------------------------------
+class PrintMeurgey():
+    def __init__(self):
+        self.childnum = [""]
+    
+    def number(self, level):
+        if level == 1:
+            dash = ""
+        else:
+            dash = "-"
+            if len(self.childnum) < level:
+                self.childnum.append(1)
+        
+        to_return = ReportUtils.roman(level) + dash + \
+                    str(self.childnum[level-1]) + "."
+
+        if level > 1:
+            self.childnum[level-1] += 1
+        
+        return to_return
+    
 
 #------------------------------------------------------------------------
 #
@@ -61,147 +122,77 @@ class Printinfo():
     A base class used to help make the individual numbering system classes.
     This class must first be initialized with set_class_vars
     """
-    doc = None
-    database = None
-    
-    def set_class_vars(self, doc, database, showspouse):
-        Printinfo.doc = doc
-        Printinfo.database = database
-        Printinfo.showspouse = showspouse
-    
-    def dump_dates(self, person):
-        birth = get_birth_or_fallback(Printinfo.database, person)
-        death = get_death_or_fallback(Printinfo.database, person)
+    def __init__(self, doc, database, numbering, showmarriage):
+        #classes
+        self.doc = doc
+        self.database = database
+        self.numbering = numbering
+        #variables
+        self.showmarriage = showmarriage
 
-        if birth or death:
-            Printinfo.doc.write_text(' (')
-
-        if birth:
-            birth_date = DateHandler.get_date(birth)
-            bplace_handle = birth.get_place_handle()
-            if bplace_handle:
-                birth_place = Printinfo.database.get_place_from_handle(
-                    bplace_handle).get_title()
-                Printinfo.doc.write_text("%(event_abbrev)s %(birth_date)s - %(place)s" % {
-                    'event_abbrev': birth.type.get_abbreviation(),
-                    'birth_date' : birth_date,
-                    'place' : birth_place,
+    def __date_place(self,event):
+        if event:
+            date = DateHandler.get_date(event)
+            place_handle = event.get_place_handle()
+            if place_handle:
+                place = self.database.get_place_from_handle(
+                    place_handle).get_title()
+                return("%(event_abbrev)s %(date)s - %(place)s" % {
+                    'event_abbrev': event.type.get_abbreviation(),
+                    'date' : date,
+                    'place' : place,
                     })
             else:
-                Printinfo.doc.write_text("%(event_abbrev)s %(birth_date)s" % {
-                    'event_abbrev': birth.type.get_abbreviation(),
-                    'birth_date' : birth_date
+                return("%(event_abbrev)s %(date)s" % {
+                    'event_abbrev': event.type.get_abbreviation(),
+                    'date' : date
                     })
+        return ""
 
-        if death:
-            death_date = DateHandler.get_date(death)
-            dplace_handle = death.get_place_handle()
-            if birth:
-                Printinfo.doc.write_text(', ')
-            if dplace_handle:
-                death_place = Printinfo.database.get_place_from_handle(
-                    dplace_handle).get_title()
-                Printinfo.doc.write_text("%(event_abbrev)s %(death_date)s - %(place)s" % {
-                    'event_abbrev': death.type.get_abbreviation(),
-                    'death_date' : death_date,
-                    'place' : death_place,
-                    })
-            else:
-                Printinfo.doc.write_text("%(event_abbrev)s %(death_date)s" % {
-                    'event_abbrev': death.type.get_abbreviation(),
-                    'death_date' : death_date
-                    })
+    def dump_string(self, person, family=None):
+        string = self.__date_place(get_birth_or_fallback(self.database, \
+                                                    person))
 
-        if birth or death:
-            Printinfo.doc.write_text(')')
-            
-    def print_person(level, person):
-        pass
+        tmp = self.__date_place(get_death_or_fallback(self.database, person))
+        if string and tmp:
+            string += ", "
+        string += tmp
+        
+        if string:
+            string = " (" + string + ")"
+
+        if family is not None:
+            tmp = self.__date_place(ReportUtils.find_marriage(self.database,
+                                                              family))
+            if tmp:
+                if string:
+                    string += ", "
+                string += tmp
+
+        self.doc.write_text(string)
+
+    def print_person(self, level, person):
+        display_num = self.numbering.number(level)
+        self.doc.start_paragraph("DR-Level%d" % min(level, 32), display_num)
+        mark = ReportUtils.get_person_mark(self.database, person)
+        self.doc.write_text(_nd.display(person), mark)
+        self.dump_string(person)
+        self.doc.end_paragraph()
     
-    def print_spouse(self, level, spouse_handle):
+    def print_spouse(self, level, spouse_handle, family_handle):
         #Currently print_spouses is the same for all numbering systems.
-        if spouse_handle and Printinfo.showspouse:
+        if spouse_handle:
             spouse = self.database.get_person_from_handle(spouse_handle)
             mark = ReportUtils.get_person_mark(self.database, spouse)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
-            name = name_displayer.display(spouse)
+            name = _nd.display(spouse)
             self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
-            self.dump_dates(spouse)
+            if self.showmarriage:
+                self.dump_string(spouse, family_handle)
+            else:
+                self.dump_string(spouse)
             self.doc.end_paragraph()
 
-
-#------------------------------------------------------------------------
-#
-# PrintSimple
-#   Simple numbering system
-#
-#------------------------------------------------------------------------
-class PrintSimple(Printinfo):
-    def print_person(self, level, person):
-        self.doc.start_paragraph("DR-Level%d" % min(level, 32), "%d." % level)
-        mark = ReportUtils.get_person_mark(self.database, person)
-        self.doc.write_text(name_displayer.display(person), mark)
-        self.dump_dates(person)
-        self.doc.end_paragraph()
-    
-    
-#------------------------------------------------------------------------
-#
-# PrintVlliers
-#   de_Villiers_Pama numbering system
-#
-#------------------------------------------------------------------------
-class PrintVlliers(Printinfo):
-    def __init__(self):
-        self.pama = 'abcdefghijklmnopqrstuvwxyz'
-        self.num = {0:1}
-    
-    def print_person(self, level, person):
-        
-        num = self.pama[level-1]
-        if level > 1:
-            num += str(self.num[level-1])
-        num += "."
-        
-        self.doc.start_paragraph("DR-Level%d" % min(level, 32), num)
-        mark = ReportUtils.get_person_mark(self.database, person)
-        self.doc.write_text(name_displayer.display(person), mark)
-        self.dump_dates(person)
-        self.doc.end_paragraph()
-        
-        self.num[level] = 1
-        self.num[level-1] = self.num[level-1] + 1
-        
-
-
-#------------------------------------------------------------------------
-#
-# class PrintMeurgey
-#   Meurgey_de_Tupigny numbering system
-#
-#------------------------------------------------------------------------
-class PrintMeurgey(Printinfo):
-    def __init__(self):
-        self.childnum = [""]
-    
-    def print_person(self, level, person):
-        if level == 1:
-            dash = ""
-        else:
-            dash = "-"
-            if len(self.childnum) < level:
-                self.childnum.append(1)
-
-        self.doc.start_paragraph("DR-Level%d" % min(level, 32),
-                                 ReportUtils.roman(level)
-                                 + dash + str(self.childnum[level-1]) + ".")
-        if level > 1:
-            self.childnum[level-1] += 1
-        mark = ReportUtils.get_person_mark(self.database, person)
-        self.doc.write_text(name_displayer.display(person), mark)
-        self.dump_dates(person)
-        self.doc.end_paragraph()
-        
 
 #------------------------------------------------------------------------
 #
@@ -232,7 +223,7 @@ class RecurseDown():
             family = self.database.get_family_from_handle(family_handle)
 
             spouse_handle = ReportUtils.find_spouse(person, family)
-            self.objPrint.print_spouse(level, spouse_handle)
+            self.objPrint.print_spouse(level, spouse_handle, family)
 
             if level >= self.max_generations:
                 continue
@@ -241,6 +232,7 @@ class RecurseDown():
             for child_ref in childlist:
                 child = self.database.get_person_from_handle(child_ref.ref)
                 self.recurse(level+1, child)
+
 
 #------------------------------------------------------------------------
 #
@@ -268,7 +260,6 @@ class DescendantReport(Report):
 
         menu = options_class.menu
         self.max_generations = menu.get_option_by_name('gen').get_value()
-        self.numbering     = menu.get_option_by_name('numbering').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
@@ -278,29 +269,29 @@ class DescendantReport(Report):
         self.by_birthdate = sort.by_birthdate
     
         #Initialize the Printinfo class    
-        p = Printinfo()
-        p.set_class_vars(self.doc, database,
-                         menu.get_option_by_name('shows').get_value())
+        numbering = menu.get_option_by_name('numbering').get_value()
+        if numbering == "Simple":
+            obj = PrintSimple()
+        elif numbering == "de Villiers/Pama":
+            obj = PrintVlliers()
+        elif numbering == "Meurgey de Tupigny":
+            obj = PrintMeurgey()
+        else:
+            raise AttributeError("no such numbering: '%s'" % self.numbering)
+
+        self.objPrint = Printinfo(self.doc, database, obj,
+                                  menu.get_option_by_name('marrs').get_value())
     
     
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
-        name = name_displayer.display(self.center_person)
+        name = _nd.display(self.center_person)
         title = _("Descendants of %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
-        if self.numbering == "Simple":
-            obj = PrintSimple()
-        elif self.numbering == "de Villiers/Pama":
-            obj = PrintVlliers()
-        elif self.numbering == "Meurgey de Tupigny":
-            obj = PrintMeurgey()
-        else:
-            raise AttributeError("no such numbering: '%s'" % self.numbering)
-
-        recurse = RecurseDown(self.max_generations, self.database, obj)
+        recurse = RecurseDown(self.max_generations, self.database, self.objPrint)
         recurse.recurse(1, self.center_person)
 
 #------------------------------------------------------------------------
@@ -336,9 +327,9 @@ class DescendantOptions(MenuReportOptions):
         gen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name, "gen", gen)
 
-        shows = BooleanOption(_('Show Sp_ouses'), True)
-        shows.set_help(_("Whether to show spouses in the report."))
-        menu.add_option(category_name, "shows", shows)
+        marrs = BooleanOption(_('Show Marriage info'), False)
+        marrs.set_help(_("Whether to show marriage informaiton in the report."))
+        menu.add_option(category_name, "marrs", marrs)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Report."""
