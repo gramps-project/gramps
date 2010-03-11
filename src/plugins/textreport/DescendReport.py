@@ -68,7 +68,7 @@ class PrintSimple():
 #   de_Villiers_Pama numbering system
 #
 #------------------------------------------------------------------------
-class PrintVlliers():
+class PrintVilliers():
     def __init__(self):
         self.pama = 'abcdefghijklmnopqrstuvwxyz'
         self.num = {0:1}
@@ -165,9 +165,7 @@ class Printinfo():
             tmp = self.__date_place(ReportUtils.find_marriage(self.database,
                                                               family))
             if tmp:
-                if string:
-                    string += ", "
-                string += tmp
+                string += ", " + tmp
 
         self.doc.write_text(string)
 
@@ -273,7 +271,7 @@ class DescendantReport(Report):
         if numbering == "Simple":
             obj = PrintSimple()
         elif numbering == "de Villiers/Pama":
-            obj = PrintVlliers()
+            obj = PrintVilliers()
         elif numbering == "Meurgey de Tupigny":
             obj = PrintMeurgey()
         else:
@@ -327,8 +325,8 @@ class DescendantOptions(MenuReportOptions):
         gen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name, "gen", gen)
 
-        marrs = BooleanOption(_('Show Marriage info'), False)
-        marrs.set_help(_("Whether to show marriage informaiton in the report."))
+        marrs = BooleanOption(_('Show marriage info'), False)
+        marrs.set_help(_("Whether to show marriage information in the report."))
         menu.add_option(category_name, "marrs", marrs)
 
     def make_default_style(self, default_style):
