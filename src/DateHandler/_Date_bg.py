@@ -50,53 +50,50 @@ from _DateHandler import register_datehandler
 class DateParserBG(DateParser):
 
     modifier_to_int = {
-        u'преди'    : Date.MOD_BEFORE, 
-        u'пр.'    : Date.MOD_BEFORE,
-        u'пр'    : Date.MOD_BEFORE,
-        u'след' : Date.MOD_AFTER,
-        u'сл.'    : Date.MOD_AFTER,
-        u'сл'    : Date.MOD_AFTER,
-        u'ок' : Date.MOD_ABOUT,
-        u'ок.'   : Date.MOD_ABOUT,
-        u'около'    : Date.MOD_ABOUT,
-        u'примерно'  : Date.MOD_ABOUT,
-        u'прим'     : Date.MOD_ABOUT,
-        u'прим.'     : Date.MOD_ABOUT,
+        u'преди'          : Date.MOD_BEFORE, 
+        u'пр.'            : Date.MOD_BEFORE,
+        u'пр'             : Date.MOD_BEFORE,
+        u'след'           : Date.MOD_AFTER,
+        u'сл.'            : Date.MOD_AFTER,
+        u'сл'             : Date.MOD_AFTER,
+        u'ок'             : Date.MOD_ABOUT,
+        u'ок.'            : Date.MOD_ABOUT,
+        u'около'          : Date.MOD_ABOUT,
+        u'примерно'       : Date.MOD_ABOUT,
+        u'прим'           : Date.MOD_ABOUT,
+        u'прим.'          : Date.MOD_ABOUT,
         u'приблизително'  : Date.MOD_ABOUT,
-        u'приб.'  : Date.MOD_ABOUT,
-        u'прибл.'  : Date.MOD_ABOUT,
-        u'приб'  : Date.MOD_ABOUT,
-        u'прибл'  : Date.MOD_ABOUT,
+        u'приб.'          : Date.MOD_ABOUT,
+        u'прибл.'         : Date.MOD_ABOUT,
+        u'приб'           : Date.MOD_ABOUT,
+        u'прибл'          : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'григориански' : Date.CAL_GREGORIAN, 
-        u'г'            : Date.CAL_GREGORIAN, 
-        u'юлиански'     : Date.CAL_JULIAN, 
-        u'ю'            : Date.CAL_JULIAN, 
-        u'еврейски'         : Date.CAL_HEBREW, 
-        u'е'         : Date.CAL_HEBREW, 
-        u'ислямски'         : Date.CAL_ISLAMIC, 
-        u'и'                 : Date.CAL_ISLAMIC, 
-        u'френски републикански': Date.CAL_FRENCH, 
-        u'републикански': Date.CAL_FRENCH,
-        u'фр.реп.': Date.CAL_FRENCH,
-        u'р'                 : Date.CAL_FRENCH,
-        u'френски'                 : Date.CAL_FRENCH,
-        u'фр.'                 : Date.CAL_FRENCH,
+        u'григориански'          : Date.CAL_GREGORIAN, 
+        u'г'                     : Date.CAL_GREGORIAN, 
+        u'юлиански'              : Date.CAL_JULIAN, 
+        u'ю'                     : Date.CAL_JULIAN, 
+        u'еврейски'              : Date.CAL_HEBREW, 
+        u'е'                     : Date.CAL_HEBREW, 
+        u'ислямски'              : Date.CAL_ISLAMIC, 
+        u'и'                     : Date.CAL_ISLAMIC, 
+        u'френски републикански' : Date.CAL_FRENCH, 
+        u'републикански'         : Date.CAL_FRENCH,
+        u'фр.реп.'               : Date.CAL_FRENCH,
+        u'р'                     : Date.CAL_FRENCH,
+        u'френски'               : Date.CAL_FRENCH,
+        u'фр.'                   : Date.CAL_FRENCH,
         u'персийски'             : Date.CAL_PERSIAN, 
-        u'п'             : Date.CAL_PERSIAN, 
+        u'п'                     : Date.CAL_PERSIAN, 
         }
 
     quality_to_int = {
         u'приблизително'  : Date.QUAL_ESTIMATED,
-        u'прибл.'       : Date.QUAL_ESTIMATED,
-        u'прибл'       : Date.QUAL_ESTIMATED,
+        u'прибл.'         : Date.QUAL_ESTIMATED,
         u'изчислено'      : Date.QUAL_CALCULATED,
-        u'изчисл.'       : Date.QUAL_CALCULATED,
-        u'изч.' : Date.QUAL_CALCULATED,
-        u'изчисл'       : Date.QUAL_CALCULATED,
-        u'изч' : Date.QUAL_CALCULATED,
+        u'изчисл.'        : Date.QUAL_CALCULATED,
+        u'изч.'           : Date.QUAL_CALCULATED,
         }
 
     hebrew_to_int = {
@@ -169,14 +166,14 @@ class DateParserBG(DateParser):
         DateParser.init_strings(self)
         _span_1 = [u'от']
         _span_2 = [u'до']
-        _range_1 = [u'между', u'меж\.', u'меж']
+        _range_1 = [u'между']
         _range_2 = [u'и']
-        self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
-                                    ('|'.join(_span_1), '|'.join(_span_2)), 
-                                    re.IGNORECASE)
-        self._range    = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                    ('|'.join(_range_1), '|'.join(_range_2)), 
-                                    re.IGNORECASE)
+        self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
+                                 ('|'.join(_span_1), '|'.join(_span_2)), 
+                                 re.IGNORECASE)
+        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                 ('|'.join(_range_1), '|'.join(_range_2)), 
+                                 re.IGNORECASE)
         
 #-------------------------------------------------------------------------
 #
@@ -191,7 +188,7 @@ class DateDisplayBG(DateDisplay):
                     u"юни", u"юли", u"август", u"септември", u"октомври", 
                     u"ноември", u"декември" )
     
-    short_months = ( u"", u"ян", u"февр", u"март", u"апр", u"май", u"юни", 
+    short_months = ( u"", u"яну", u"февр", u"март", u"апр", u"май", u"юни", 
                      u"юли", u"авг", u"септ", u"окт", u"ное", u"дек" )
     
 
@@ -205,20 +202,14 @@ class DateDisplayBG(DateDisplay):
         u" (шведски)"
         )
 
-    _mod_str = (
-        u"", 
-        u"преди ", 
-        u"след ", 
-        u"около ", 
-        u"", u"", u"")
+    _mod_str = ("", "преди ", "след ", "около ", "", "", "")
     
-    _qual_str = (u"", u"по преценка ", u"пресметнато ")
+    _qual_str = ("", "приблизително ", "изчислено ")
 
     _bce_str = u"%s пр. Хр."
 
     formats = (
-        "ГГГГ-ММ-ДД (ISO)", "Числов", "Месец Ден, Год.", 
-        "МЕС ДД, ГГГГГ", "Ден Месец, Год.", "ДД МЕС, ГГГГГ"
+        "ГГГГ-ММ-ДД (ISO)", "Числов", "Ден Месец Год", "ДД ММ ГГГГГ"
         )
 
     hebrew = ( u"", 
@@ -301,21 +292,19 @@ class DateDisplayBG(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sс %s %s %s%s" % (qual_str, d1, u'преди', d2, 
-                                       self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str, u'от', d1, u'до', d2, self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str, u'между', d1, u'и', 
-                                        d2, self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str, u'между', d1, u'и', d2, self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], 
-                                 text, self.calendar[cal])
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, self.calendar[cal])
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('bg_BG', 'bg', 'bulgarian', 'Bulgarian'), DateParserBG, DateDisplayBG)
+register_datehandler(('bg_BG', 'bg', 'bulgarian', 'Bulgarian'), 
+    DateParserBG, DateDisplayBG)
