@@ -320,6 +320,7 @@ src/Merge/_MergePlace.py
 src/Merge/_MergeSource.py
 
 # DateHandler package
+src/DateHandler/_Date_bg.py
 src/DateHandler/_Date_cs.py
 src/DateHandler/_Date_de.py
 src/DateHandler/_DateDisplay.py
