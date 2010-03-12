@@ -301,6 +301,8 @@ class GeoView(HtmlView):
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
+
+    def build_widget(self):
         self.no_network = False
         self.placeslist = []
         self.displaytype = "person"
@@ -428,6 +430,7 @@ class GeoView(HtmlView):
         self.crosspath = urlparse.urlunsplit(('file', '',
                                               URL_SEP.join(fpath.split(os.sep)),
                                               '', ''))
+        return HtmlView.build_widget(self)
 
     def can_configure(self):
         """
