@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-11 19:18+0100\n"
-"PO-Revision-Date: 2010-03-12 02:43+0100\n"
+"PO-Revision-Date: 2010-03-12 17:57+0100\n"
 "Last-Translator: Joan Creus <joan.creus at gmail dot com>\n"
 "Language-Team: Català <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4492,7 +4492,7 @@ msgstr "_Plega"
 
 #: ../src/gui/viewmanager.py:426
 msgid "_View"
-msgstr "_Visualitza"
+msgstr "_Vista"
 
 #: ../src/gui/viewmanager.py:427 ../src/gui/viewmanager.py:492
 msgid "_Edit"
@@ -8662,18 +8662,20 @@ msgid ""
 "_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of "
 "spouses?</a>\n"
 msgstr ""
+"  1. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#How_do_I_change_the_order_of_spouses.3F'>Com modifico l'ordre dels cònjuges?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:40
 msgid ""
 "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it "
 "necessary to update Gramps every time an update is released?</a>\n"
-msgstr ""
+msgstr "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Cal actualitzar Gramps cada vegada que surt una nova versió?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:41
 msgid ""
 "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>How do "
 "I make backups safely?</a>\n"
-msgstr ""
+msgstr "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>Com puc fer còpies de seguretat?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:42
 msgid ""
@@ -8681,6 +8683,8 @@ msgid ""
 "_part_1#Editing_Information_About_Relationships'>How should information "
 "about marriages be entered?</a>\n"
 msgstr ""
+"  4. <a wiki='Gramps_3.2_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-"
+"_part_1#Editing_Information_About_Relationships'>Com s'ha d'introduir la informació sobre casaments?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:43
 msgid ""
@@ -8688,6 +8692,8 @@ msgid ""
 "_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's "
 "the difference between a residence and an address?</a>\n"
 msgstr ""
+"  5. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Quina diferència hi ha entre una residència i una adreça?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 msgid ""
@@ -8695,12 +8701,16 @@ msgid ""
 "_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a "
 "website with Gramps and my tree?</a>\n"
 msgstr ""
+"  6. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Com puc fer un web amb Gramps i el meu arbre genealògic?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 msgid ""
 "  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
 "ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
 msgstr ""
+"  7. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
+"ts21786114.html#a21786114'>Com registro l'ofici d'algú?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:46
 msgid ""
@@ -8708,22 +8718,24 @@ msgid ""
 "_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a "
 "bug?</a>\n"
 msgstr ""
+"  8. <a wiki='Gramps_3.2_Wiki_Manual_-"
+"_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Què faig si he trobat un error de programa?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
-msgstr ""
+msgstr "  9. <a wiki='Portal:Using_GRAMPS'>Hi ha un manual per Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:48
 msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
-msgstr ""
+msgstr " 10. <a wiki='Category:Tutorials'>Hi ha mètodes d'aprenentatge disponibles?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 msgid " 11. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
-msgstr ""
+msgstr " 11. <a wiki='Category:How_do_I...'>Com puc ...?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 msgid " 12. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr ""
+msgstr " 12. <a wiki='How_you_can_help'>Com puc ajudar amb Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -18921,9 +18933,8 @@ msgid "Pedigree View"
 msgstr "Pedigrí"
 
 #: ../src/plugins/view/view.gpr.py:123
-#, fuzzy
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "Compta el nombre d'avantpassats de la persona seleccionada"
+msgstr "La vista que mostra un pedigrí dels avantpassats de la persona seleccionada"
 
 #: ../src/plugins/view/view.gpr.py:137
 msgid "Person Tree View"
@@ -24573,7 +24584,7 @@ msgid ""
 msgstr ""
 "<b>Filtrar Persones</b><br/>A la Vista de Persones, es poden 'filtrar' "
 "individus segons criteris molt variats. Per definir un filtre nou, vagi a "
-"&quot;Edició &gt; Editor de Filtres de Persones&quot;. Allà pot posar nom al "
+"&quot;Edita &gt; Editor de Filtres de Persones&quot;. Allà pot posar nom al "
 "seu filtre i afegir i combinar regles fent servir la multitud de regles "
 "predeterminades. Per exemple, es pot definir un filtre per localitzar totes "
 "les persones adoptades de l'arbre genealògic. També es poden filtrar les "
@@ -24707,7 +24718,7 @@ msgstr ""
 "un format no vàlid. Els formats de data incorrectes sortiran a Gramps amb un "
 "fons vermellós. Pot arreglar la data utilitzant el diàleg de Selecció de "
 "Data, que es pot obrir clicant al botó de data. El format de la data es fixa "
-"a &quot;Edició &gt; Preferències &gt; Mostrar&quot;."
+"a &quot;Edita &gt; Preferències &gt; Mostrar&quot;."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -24840,7 +24851,7 @@ msgid ""
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
-"<b>Combinar Entrades</b><br/>La funció &quot;Edició &gt; Comparar i "
+"<b>Combinar Entrades</b><br/>La funció &quot;Edita &gt; Comparar i "
 "Combinar...&quot; li permet de combinar persones llistades per separat en "
 "una de sola. Seleccioni la segona entrada mantenint premuda la tecla de "
 "Control mentre clica. Això és molt útil per combinar dues bases de dades que "
@@ -24882,7 +24893,7 @@ msgid ""
 msgstr ""
 "<b>Programari de Codi Obert</b><br/>El model de desenvolupament Lliure i de "
 "Codi Obert (FLOSS) significa que qualsevol programador pot estendre Gramps, "
-"perquè tot el codi font és disponible lliurament sota la seva llicència. Per "
+"perquè tot el codi font és disponible lliurement sota la seva llicència. Per "
 "tant, no és només la gratuïtat, és també la llibertat d'estudiar i modificar "
 "l'eina. Per més informació sobre el programari de Codi Obert busqui la Free "
 "Software Foundation i la Open Source Initiative."
@@ -24947,7 +24958,7 @@ msgid ""
 "and allows you to adjust many aspects of the Gramps presentation to your "
 "needs. Each seperate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
-msgstr ""
+msgstr "<b>Fixar les Preferències</b><br/>&quot;Edita &gt; Preferències...&quot; li permet de modificar una colla de paràmetres, com ara el camí als fitxers audiovisuals, i li permet d'adaptar molts aspectes de la presentació de Gramps a les seves necessitats. Cada vista es pot configurar també per separat a &quot;Vista &gt; Configurar Vista...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
@@ -25061,10 +25072,9 @@ msgid ""
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
 "rights and restrictions of this license."
-msgstr ""
+msgstr "<b>La Llicència de Programari de Gramps</b><br/>Té la llibertat d'utilitzar i compartir Gramps amb els altres. Gramps es pot distribuir lliurement sota la Llicència Pública General de GNU, veure http://www.gnu.org/licenses/licenses.html#GPL per llegir sobre els drets i les restriccions d'aquesta llicència. Una traducció no oficial al català és a http://ca.dodds.net/gnu/gpl.ca.html."
 
 #: ../src/data/tips.xml.in.h:57
-#, fuzzy
 msgid ""
 "<b>The Gramps XML Package</b><br/>You can export your Family Tree as a "
 "Gramps XML Package. This is a compressed file containing your family tree "
@@ -25072,29 +25082,17 @@ msgid ""
 "This file is completely portable so is useful for backups or sharing with "
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
-msgstr ""
-"Pot convertir les seves dades en un paquet de Gramps, que és un fitxer "
-"comprimit que conté les dades del seu arbre genealògic i inclou tots els "
-"altres fitxers que fa servir la base de dades, com ara imatges. Aquest "
-"fitxer és completament portable, i per tant és útil per còpies de seguretat "
-"o per compartir amb d'altres usuaris de Gramps. Aquest format té avantatges "
-"sobre GEDCOM en el fet que no es perd mai cap informació en exportar ni "
-"importar."
+msgstr "<b>El Paquet XML de Gramps</b><br/>Pot exportar el seu arbre genealògic com a paquet XML de Gramps. Es tracta d'un fitxer comprimit que conté les dades del seu arbre genealògic i inclou tots els altres fitxers que fa servir la base de dades, com ara imatges. Aquest fitxer és completament portable, i per tant és útil per còpies de seguretat o per compartir amb d'altres usuaris de Gramps. Aquest format té un avantatge clau sobre GEDCOM en el fet que no es perd mai cap informació en exportar ni importar."
 
 #: ../src/data/tips.xml.in.h:58
-#, fuzzy
 msgid ""
 "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
 "Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The "
 "home person is the person who is selected when the database is opened or "
 "when the home button is pressed."
-msgstr ""
-"Es pot triar qualsevol com a 'persona base' dins de Gramps. Faci <b>Edita "
-"&gt; Fixar Persona Base</b>. La persona base és la persona que se selecciona "
-"quan s'obre la base de dades o quan es prem el botó de 'la casa'."
+msgstr "<b>La Persona Base</b><br/>Es pot triar qualsevol com a Persona Base dins de Gramps. Faci &quot;Edita &gt; Fixar Persona Base&quot; a la Vista de Persones. La persona base és la persona que se selecciona quan s'obre la base de dades o quan es prem el botó de 'la casa'."
 
 #: ../src/data/tips.xml.in.h:59
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -25102,46 +25100,30 @@ msgid ""
 "for a birth date in Gramps. Click the Date button next to the date field and "
 "see the Gramps Manual to learn more."
 msgstr ""
-"<b>No està segur d'una data?</b> Si no està segur de la data en què va "
-"ocórrer un esdeveniment (per exemple un naixement o defunció), Gramps li "
-"permet d'introduir una colla de formats de data basats en una suposició o "
-"estimació. Per exemple, &quot;al voltant de 1908&quot; és una entrada vàlida "
-"per una data de naixement a Gramps. Veure el manual a la wiki de Gramps per "
-"una descripció completa de les opcions d'introducció de dates."
+"<b>No està segur d'una data?</b><br/>Si no està segur de la data en què va "
+"ocórrer un esdeveniment, Gramps li permet d'introduir una colla de formats de data basats en una suposició o estimació. Per exemple, &quot;al voltant de 1908&quot; és una entrada vàlida per una data de naixement a Gramps. Cliqui el botó del costat del camp de data i vegi el manual de Gramps per aprendre'n més."
 
 #: ../src/data/tips.xml.in.h:60
-#, fuzzy
 msgid ""
 "<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family "
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
-msgstr ""
-"Gramps pot exportar dades al format Web Family Tree (WFT). Aquest format "
-"permet mostrar un arbre genealògic en línia amb un sol fitxer, en comptes de "
-"molts fitxers html."
+msgstr "<b>Format de l'Arbre Genealògic Web</b><br/>Gramps pot exportar dades al format Web Family Tree (WFT). Aquest format permet mostrar un arbre genealògic en línia amb un sol fitxer, en comptes de molts fitxers html."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
-msgstr ""
-"No està segur del que fa algun botó? Deixi el ratolí al damunt d'un botó i "
-"apareixerà un petit text d'ajuda."
+msgstr "<b>Per Què És Això?</b><br/>No està segur del que fa algun botó? Deixi el ratolí al damunt d'un botó i apareixerà un petit text d'ajuda."
 
 #: ../src/data/tips.xml.in.h:62
-#, fuzzy
 msgid ""
 "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and "
 "exploration &gt; Compare Individual Events...&quot; you can compare the data "
 "of individuals in your database. This is useful, say, if you wish to list "
 "the birth dates of everyone in your database. You can use a custom filter to "
 "narrow the results."
-msgstr ""
-"<b>Qui Va Néixer Quan</b>: l'eina 'Comparar esdeveniments individuals' "
-"permet de comparar dades de tots (o alguns de) els individus de la base de "
-"dades. Això és útil, per exemple, si es volen llistar les dates de naixement "
-"de tothom de la base de dades."
+msgstr "<b>Qui Va Néixer Quan?</b><br/>A &quot;Eines &gt;Anàlisi i Exploració &gt; Comparar Esdeveniments Individuals...&quot; pot comparar dades dels individus de la base de dades. Això és útil, per exemple, si es volen llistar les dates de naixement de tothom de la base de dades. Pot utilitzar un filtre personalitzat per reduir el nombre de resultats."
 
 #: ../src/data/tips.xml.in.h:63
 msgid ""
@@ -25150,5 +25132,5 @@ msgid ""
 "indicate the level of confidence in a date and even choose between seven "
 "different calenders. Try the button next to the date field in the Events "
 "Editor."
-msgstr ""
+msgstr "<b>Treballar amb Dates</b><br/>Es pot donar un rang de dates fent servir el format &quot;entre 4 de gener de 2000 i 20 de març de 2003&quot;. També pot indicar el nivell de confiança en una data i fins i tot triar entre set calendaris diferents. Provi el botó del costat del camp de data a l'Editor d'Esdeveniments."
 
