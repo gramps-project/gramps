@@ -19,11 +19,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.2\n"
+"Project-Id-Version: 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-10 21:40+0100\n"
-"PO-Revision-Date: 2010-03-11 16:24+0100\n"
-"Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
+"POT-Creation-Date: 2010-03-12 16:47+0100\n"
+"PO-Revision-Date: 2010-03-12 18:48+0100\n"
+"Last-Translator: Jérôme Rapinat<romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,9 +135,9 @@ msgstr "Édition des signets"
 #: ../src/plugins/tool/RemoveUnused.py:198
 #: ../src/plugins/tool/Verify.py:488
 #: ../src/plugins/view/repoview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:1809
-#: ../src/plugins/webreport/NarrativeWeb.py:1988
-#: ../src/plugins/webreport/NarrativeWeb.py:4747
+#: ../src/plugins/webreport/NarrativeWeb.py:1806
+#: ../src/plugins/webreport/NarrativeWeb.py:1985
+#: ../src/plugins/webreport/NarrativeWeb.py:4756
 #: ../src/PluginUtils/_GuiOptions.py:828
 #: ../src/PluginUtils/_PluginWindows.py:225
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
@@ -779,7 +779,7 @@ msgstr "l'ancien concubin"
 #: ../src/plugins/textreport/MarkerReport.py:207
 #: ../src/plugins/view/familyview.py:74
 #: ../src/plugins/view/relview.py:882
-#: ../src/plugins/webreport/NarrativeWeb.py:4136
+#: ../src/plugins/webreport/NarrativeWeb.py:4144
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Père"
@@ -799,7 +799,7 @@ msgstr "Père"
 #: ../src/plugins/textreport/MarkerReport.py:213
 #: ../src/plugins/view/familyview.py:75
 #: ../src/plugins/view/relview.py:883
-#: ../src/plugins/webreport/NarrativeWeb.py:4143
+#: ../src/plugins/webreport/NarrativeWeb.py:4151
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Mère"
@@ -818,7 +818,7 @@ msgstr "Conjoint"
 #: ../src/Reorder.py:38
 #: ../src/plugins/textreport/MarkerReport.py:219
 #: ../src/plugins/view/familyview.py:76
-#: ../src/plugins/webreport/NarrativeWeb.py:3755
+#: ../src/plugins/webreport/NarrativeWeb.py:3763
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "Relation"
@@ -864,7 +864,7 @@ msgstr "Utilisation du presse-papiers"
 #: ../src/plugins/view/relview.py:456
 #: ../src/plugins/view/relview.py:994
 #: ../src/plugins/view/relview.py:1041
-#: ../src/plugins/webreport/NarrativeWeb.py:1516
+#: ../src/plugins/webreport/NarrativeWeb.py:1513
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
 msgstr "Inconnu"
@@ -876,7 +876,7 @@ msgstr "Inconnu"
 #: ../src/gui/editors/editaddress.py:147
 #: ../src/gui/editors/displaytabs/addrembedlist.py:72
 #: ../src/plugins/textreport/FamilyGroup.py:299
-#: ../src/plugins/webreport/NarrativeWeb.py:4748
+#: ../src/plugins/webreport/NarrativeWeb.py:4757
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "Adresse"
@@ -926,8 +926,8 @@ msgstr "Téléphone"
 #: ../src/plugins/view/sourceview.py:111
 #: ../src/plugins/view/view.gpr.py:205
 #: ../src/plugins/webreport/NarrativeWeb.py:129
-#: ../src/plugins/webreport/NarrativeWeb.py:3052
-#: ../src/plugins/webreport/NarrativeWeb.py:3123
+#: ../src/plugins/webreport/NarrativeWeb.py:3060
+#: ../src/plugins/webreport/NarrativeWeb.py:3131
 msgid "Sources"
 msgstr "Sources"
 
@@ -1140,7 +1140,7 @@ msgstr "Titre"
 #. local gettext variables
 #: ../src/ScratchPad.py:502
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:1475
+#: ../src/plugins/webreport/NarrativeWeb.py:1472
 msgid "Page"
 msgstr "Page"
 
@@ -1163,7 +1163,7 @@ msgid "Event Reference"
 msgstr "Référence d'événement"
 
 #: ../src/ScratchPad.py:578
-#: ../src/plugins/webreport/NarrativeWeb.py:3915
+#: ../src/plugins/webreport/NarrativeWeb.py:3923
 msgid "Call Name"
 msgstr "Nom usuel"
 
@@ -1269,7 +1269,7 @@ msgstr "Suffixe"
 #: ../src/gui/configure.py:898
 #: ../src/plugins/textreport/CustomBookText.py:115
 #: ../src/plugins/textreport/MarkerReport.py:389
-#: ../src/plugins/webreport/NarrativeWeb.py:1477
+#: ../src/plugins/webreport/NarrativeWeb.py:1474
 #: ../src/ReportBase/_Constants.py:52
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
 msgid "Text"
@@ -1320,14 +1320,14 @@ msgstr "Lien de source"
 
 #: ../src/ScratchPad.py:786
 #: ../src/plugins/view/sourceview.py:79
-#: ../src/plugins/webreport/NarrativeWeb.py:3151
+#: ../src/plugins/webreport/NarrativeWeb.py:3159
 msgid "Abbreviation"
 msgstr "Abréviation"
 
 #: ../src/ScratchPad.py:787
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:68
 #: ../src/plugins/view/sourceview.py:78
-#: ../src/plugins/webreport/NarrativeWeb.py:3149
+#: ../src/plugins/webreport/NarrativeWeb.py:3157
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Auteur"
@@ -1850,7 +1850,7 @@ msgstr "Enfant"
 #: ../src/gui/editors/editperson.py:252
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/_MergePerson.py:56
-#: ../src/plugins/webreport/NarrativeWeb.py:3479
+#: ../src/plugins/webreport/NarrativeWeb.py:3487
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "masculin"
@@ -1859,7 +1859,7 @@ msgstr "masculin"
 #: ../src/gui/editors/editperson.py:251
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/_MergePerson.py:56
-#: ../src/plugins/webreport/NarrativeWeb.py:3480
+#: ../src/plugins/webreport/NarrativeWeb.py:3488
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
 msgstr "féminin"
@@ -1885,7 +1885,7 @@ msgstr "Haut"
 
 #: ../src/Utils.py:89
 #: ../src/gui/editors/editsourceref.py:137
-#: ../src/plugins/webreport/NarrativeWeb.py:1517
+#: ../src/plugins/webreport/NarrativeWeb.py:1514
 msgid "Normal"
 msgstr "Normal"
 
@@ -1953,8 +1953,8 @@ msgstr "Les données peuvent être récupérées en annulant l'opération ou en 
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
 #: ../src/plugins/view/relview.py:660
-#: ../src/plugins/webreport/NarrativeWeb.py:3481
-#: ../src/plugins/webreport/NarrativeWeb.py:4423
+#: ../src/plugins/webreport/NarrativeWeb.py:3489
+#: ../src/plugins/webreport/NarrativeWeb.py:4431
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr "inconnu"
@@ -2003,7 +2003,7 @@ msgstr "décès frère ou sœur-date reliée"
 #: ../src/Utils.py:578
 #: ../src/Utils.py:583
 msgid "a spouse, "
-msgstr "un conjoint,"
+msgstr "un conjoint, "
 
 #: ../src/Utils.py:601
 msgid "event with spouse"
@@ -2080,9 +2080,9 @@ msgstr "PRÉFIXE"
 #: ../src/plugins/export/ExportCsv.py:328
 #: ../src/plugins/import/ImportCsv.py:156
 #: ../src/plugins/quickview/FilterByName.py:143
-#: ../src/plugins/webreport/NarrativeWeb.py:1808
-#: ../src/plugins/webreport/NarrativeWeb.py:1964
-#: ../src/plugins/webreport/NarrativeWeb.py:2894
+#: ../src/plugins/webreport/NarrativeWeb.py:1805
+#: ../src/plugins/webreport/NarrativeWeb.py:1961
+#: ../src/plugins/webreport/NarrativeWeb.py:2902
 #: ../src/PluginUtils/_GuiOptions.py:85
 #: ../src/PluginUtils/_GuiOptions.py:1085
 msgid "Surname"
@@ -3208,8 +3208,8 @@ msgid "Religion"
 msgstr "Religion"
 
 #: ../src/gen/lib/eventtype.py:176
-#: ../src/plugins/webreport/NarrativeWeb.py:1722
-#: ../src/plugins/webreport/NarrativeWeb.py:4749
+#: ../src/plugins/webreport/NarrativeWeb.py:1719
+#: ../src/plugins/webreport/NarrativeWeb.py:4758
 msgid "Residence"
 msgstr "Résidence"
 
@@ -3509,7 +3509,7 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le."
 #: ../src/plugins/export/ExportVCalendar.py:200
 #: ../src/plugins/export/ExportVCard.py:173
 #: ../src/plugins/export/ExportVCard.py:177
-#: ../src/plugins/webreport/NarrativeWeb.py:5036
+#: ../src/plugins/webreport/NarrativeWeb.py:5040
 #, python-format
 msgid "Could not create %s"
 msgstr "Impossible de créer %s"
@@ -3623,6 +3623,7 @@ msgstr "Région/Province"
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:112
+#: ../src/plugins/webreport/NarrativeWeb.py:2143
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr "Pays"
@@ -3717,7 +3718,7 @@ msgstr "Exemple"
 #: ../src/gui/configure.py:798
 #: ../src/plugins/drawreport/Calendar.py:409
 #: ../src/plugins/textreport/BirthdayReport.py:361
-#: ../src/plugins/webreport/NarrativeWeb.py:5643
+#: ../src/plugins/webreport/NarrativeWeb.py:5647
 #: ../src/plugins/webreport/WebCal.py:1365
 msgid "Name format"
 msgstr "Format du nom"
@@ -4475,7 +4476,7 @@ msgstr "Test du filtre"
 #: ../src/plugins/textreport/BirthdayReport.py:346
 #: ../src/plugins/textreport/IndivComplete.py:642
 #: ../src/plugins/tool/SortEvents.py:167
-#: ../src/plugins/webreport/NarrativeWeb.py:5627
+#: ../src/plugins/webreport/NarrativeWeb.py:5631
 #: ../src/plugins/webreport/WebCal.py:1349
 msgid "Filter"
 msgstr "Filtre"
@@ -4519,11 +4520,11 @@ msgstr "Éditer la date"
 #: ../src/plugins/textreport/MarkerReport.py:280
 #: ../src/plugins/view/eventview.py:112
 #: ../src/plugins/view/view.gpr.py:40
-#: ../src/plugins/webreport/NarrativeWeb.py:1009
-#: ../src/plugins/webreport/NarrativeWeb.py:1052
-#: ../src/plugins/webreport/NarrativeWeb.py:2272
-#: ../src/plugins/webreport/NarrativeWeb.py:2433
-#: ../src/plugins/webreport/NarrativeWeb.py:3985
+#: ../src/plugins/webreport/NarrativeWeb.py:1006
+#: ../src/plugins/webreport/NarrativeWeb.py:1049
+#: ../src/plugins/webreport/NarrativeWeb.py:2280
+#: ../src/plugins/webreport/NarrativeWeb.py:2441
+#: ../src/plugins/webreport/NarrativeWeb.py:3993
 msgid "Events"
 msgstr "Événements"
 
@@ -4571,10 +4572,10 @@ msgstr "Public"
 #: ../src/plugins/quickview/References.py:85
 #: ../src/plugins/view/mediaview.py:122
 #: ../src/plugins/view/view.gpr.py:85
-#: ../src/plugins/webreport/NarrativeWeb.py:1010
-#: ../src/plugins/webreport/NarrativeWeb.py:1055
-#: ../src/plugins/webreport/NarrativeWeb.py:2581
-#: ../src/plugins/webreport/NarrativeWeb.py:3191
+#: ../src/plugins/webreport/NarrativeWeb.py:1007
+#: ../src/plugins/webreport/NarrativeWeb.py:1052
+#: ../src/plugins/webreport/NarrativeWeb.py:2589
+#: ../src/plugins/webreport/NarrativeWeb.py:3199
 msgid "Media"
 msgstr "Media"
 
@@ -4614,7 +4615,7 @@ msgstr "Sélectionner les parents"
 #: ../src/gui/grampsgui.py:131
 #: ../src/plugins/gramplet/gramplet.gpr.py:153
 #: ../src/plugins/view/pedigreeview.py:371
-#: ../src/plugins/webreport/NarrativeWeb.py:3831
+#: ../src/plugins/webreport/NarrativeWeb.py:3839
 msgid "Pedigree"
 msgstr "Arbre généalogique"
 
@@ -4622,10 +4623,10 @@ msgstr "Arbre généalogique"
 #: ../src/plugins/view/placelistview.py:52
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:175
-#: ../src/plugins/webreport/NarrativeWeb.py:1008
-#: ../src/plugins/webreport/NarrativeWeb.py:1049
-#: ../src/plugins/webreport/NarrativeWeb.py:2113
-#: ../src/plugins/webreport/NarrativeWeb.py:2201
+#: ../src/plugins/webreport/NarrativeWeb.py:1005
+#: ../src/plugins/webreport/NarrativeWeb.py:1046
+#: ../src/plugins/webreport/NarrativeWeb.py:2110
+#: ../src/plugins/webreport/NarrativeWeb.py:2209
 msgid "Places"
 msgstr "Lieux"
 
@@ -4636,9 +4637,9 @@ msgstr "Rapports"
 #: ../src/gui/grampsgui.py:136
 #: ../src/plugins/view/repoview.py:127
 #: ../src/plugins/view/view.gpr.py:190
-#: ../src/plugins/webreport/NarrativeWeb.py:1014
-#: ../src/plugins/webreport/NarrativeWeb.py:4585
-#: ../src/plugins/webreport/NarrativeWeb.py:4653
+#: ../src/plugins/webreport/NarrativeWeb.py:1011
+#: ../src/plugins/webreport/NarrativeWeb.py:4593
+#: ../src/plugins/webreport/NarrativeWeb.py:4661
 msgid "Repositories"
 msgstr "Dépôts"
 
@@ -5307,7 +5308,7 @@ msgstr "Numéro"
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:563
-#: ../src/plugins/webreport/NarrativeWeb.py:3942
+#: ../src/plugins/webreport/NarrativeWeb.py:3950
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
 msgstr "Genre"
@@ -6007,6 +6008,7 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 #: ../src/plugins/lib/libplaceview.py:95
 #: ../src/plugins/tool/ExtractCity.py:385
 #: ../src/plugins/view/repoview.py:89
+#: ../src/plugins/webreport/NarrativeWeb.py:2142
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
 msgstr "Région/Province"
@@ -7406,7 +7408,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:174
 #: ../src/plugins/textreport/PlaceReport.py:253
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:5606
+#: ../src/plugins/webreport/NarrativeWeb.py:5610
 #: ../src/plugins/webreport/WebCal.py:1337
 #: ../src/ReportBase/_ReportDialog.py:326
 msgid "Report Options"
@@ -7423,7 +7425,7 @@ msgstr "Détermine quels individus seront inclus dans le rapport."
 #: ../src/plugins/graph/GVRelGraph.py:474
 #: ../src/plugins/textreport/IndivComplete.py:648
 #: ../src/plugins/tool/SortEvents.py:172
-#: ../src/plugins/webreport/NarrativeWeb.py:5633
+#: ../src/plugins/webreport/NarrativeWeb.py:5637
 #: ../src/plugins/webreport/WebCal.py:1355
 msgid "Filter Person"
 msgstr "Filtre sur l'individu"
@@ -7432,7 +7434,7 @@ msgstr "Filtre sur l'individu"
 #: ../src/plugins/drawreport/TimeLine.py:329
 #: ../src/plugins/graph/GVRelGraph.py:475
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:5634
+#: ../src/plugins/webreport/NarrativeWeb.py:5638
 #: ../src/plugins/webreport/WebCal.py:1356
 msgid "The center person for the filter"
 msgstr "L'individu central pour ce filtre"
@@ -7639,13 +7641,13 @@ msgid "of %d"
 msgstr "sur %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:266
-#: ../src/plugins/webreport/NarrativeWeb.py:5566
+#: ../src/plugins/webreport/NarrativeWeb.py:5570
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "Possible destination error"
 msgstr "Possible erreur de destination"
 
 #: ../src/plugins/docgen/HtmlDoc.py:267
-#: ../src/plugins/webreport/NarrativeWeb.py:5567
+#: ../src/plugins/webreport/NarrativeWeb.py:5571
 #: ../src/plugins/webreport/WebCal.py:248
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Il semble que le répertoire cible est le répertoire de stockage des données. Cela peut générer des problèmes dans la gestion de fichier. Il est recommandé d'utiliser un répertoire différent pour stocker les pages internet générées."
@@ -7799,7 +7801,7 @@ msgstr "Formatage des mois..."
 # Substantif (GNOME fr)
 #: ../src/plugins/drawreport/Calendar.py:253
 #: ../src/plugins/textreport/BirthdayReport.py:201
-#: ../src/plugins/webreport/NarrativeWeb.py:5110
+#: ../src/plugins/webreport/NarrativeWeb.py:5113
 #: ../src/plugins/webreport/WebCal.py:1093
 msgid "Applying Filter..."
 msgstr "Application du filtre..."
@@ -7879,7 +7881,7 @@ msgstr "L'individu central pour ce rapport"
 
 #: ../src/plugins/drawreport/Calendar.py:412
 #: ../src/plugins/textreport/BirthdayReport.py:364
-#: ../src/plugins/webreport/NarrativeWeb.py:5646
+#: ../src/plugins/webreport/NarrativeWeb.py:5650
 #: ../src/plugins/webreport/WebCal.py:1368
 msgid "Select the format to display names"
 msgstr "Sélection du format d'affichage pour le nom"
@@ -8608,14 +8610,14 @@ msgstr "Source du décès"
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:217
 #: ../src/plugins/textreport/FamilyGroup.py:540
-#: ../src/plugins/webreport/NarrativeWeb.py:4410
+#: ../src/plugins/webreport/NarrativeWeb.py:4418
 msgid "Husband"
 msgstr "Mari"
 
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:213
 #: ../src/plugins/textreport/FamilyGroup.py:549
-#: ../src/plugins/webreport/NarrativeWeb.py:4412
+#: ../src/plugins/webreport/NarrativeWeb.py:4420
 msgid "Wife"
 msgstr "Femme"
 
@@ -8778,7 +8780,7 @@ msgid "Statistics"
 msgstr "Statistiques"
 
 #: ../src/plugins/gramplet/AgeStats.py:225
-#: ../src/plugins/webreport/NarrativeWeb.py:4809
+#: ../src/plugins/webreport/NarrativeWeb.py:4819
 msgid "Total"
 msgstr "Total"
 
@@ -8860,7 +8862,7 @@ msgstr "Menu Individus"
 #: ../src/plugins/view/fanchartview.py:823
 #: ../src/plugins/view/pedigreeview.py:1401
 #: ../src/plugins/view/relview.py:897
-#: ../src/plugins/webreport/NarrativeWeb.py:4155
+#: ../src/plugins/webreport/NarrativeWeb.py:4163
 msgid "Siblings"
 msgstr "Frères et sœurs"
 
@@ -8871,7 +8873,7 @@ msgstr "Frères et sœurs"
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1444
 #: ../src/plugins/view/relview.py:1356
-#: ../src/plugins/webreport/NarrativeWeb.py:4365
+#: ../src/plugins/webreport/NarrativeWeb.py:4373
 msgid "Children"
 msgstr "Enfants"
 
@@ -9088,7 +9090,7 @@ msgstr "Gramplet Parenté"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:194
 msgid "Gramplet showing active person's relatives"
-msgstr "Gramplet affichant les parentés de l'individu actif "
+msgstr "Gramplet affichant les parentés de l'individu actif"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:199
 msgid "Relatives"
@@ -9370,9 +9372,9 @@ msgstr "Double cliquez sur l'item pour voir les résultats"
 #: ../src/plugins/gramplet/StatsGramplet.py:129
 #: ../src/plugins/graph/GVFamilyLines.py:144
 #: ../src/plugins/textreport/Summary.py:99
-#: ../src/plugins/webreport/NarrativeWeb.py:1007
-#: ../src/plugins/webreport/NarrativeWeb.py:1043
-#: ../src/plugins/webreport/NarrativeWeb.py:1780
+#: ../src/plugins/webreport/NarrativeWeb.py:1003
+#: ../src/plugins/webreport/NarrativeWeb.py:1040
+#: ../src/plugins/webreport/NarrativeWeb.py:1777
 msgid "Individuals"
 msgstr "Individus"
 
@@ -9745,7 +9747,7 @@ msgstr "La couleur utilisée quand le genre est inconnu."
 #: ../src/plugins/textreport/MarkerReport.py:190
 #: ../src/plugins/view/familyview.py:105
 #: ../src/plugins/view/view.gpr.py:55
-#: ../src/plugins/webreport/NarrativeWeb.py:4350
+#: ../src/plugins/webreport/NarrativeWeb.py:4358
 msgid "Families"
 msgstr "Familles"
 
@@ -15384,7 +15386,7 @@ msgstr "Ajouter ou non les références du descendant dans la liste de l'enfant.
 #: ../src/plugins/textreport/DetAncestralReport.py:705
 #: ../src/plugins/textreport/DetDescendantReport.py:795
 #: ../src/plugins/textreport/FamilyGroup.py:615
-#: ../src/plugins/webreport/NarrativeWeb.py:5764
+#: ../src/plugins/webreport/NarrativeWeb.py:5768
 msgid "Include"
 msgstr "Inclure"
 
@@ -15764,7 +15766,7 @@ msgstr "Faits individuels"
 #: ../src/plugins/textreport/IndivComplete.py:187
 #, python-format
 msgid "%s in %s. "
-msgstr "%s à %s."
+msgstr "%s à %s. "
 
 #: ../src/plugins/textreport/IndivComplete.py:274
 msgid "Alternate Parents"
@@ -15780,10 +15782,10 @@ msgid "Summary of %s"
 msgstr "Fiche de %s"
 
 #: ../src/plugins/textreport/IndivComplete.py:546
-#: ../src/plugins/webreport/NarrativeWeb.py:1134
-#: ../src/plugins/webreport/NarrativeWeb.py:1279
-#: ../src/plugins/webreport/NarrativeWeb.py:1356
-#: ../src/plugins/webreport/NarrativeWeb.py:1372
+#: ../src/plugins/webreport/NarrativeWeb.py:1131
+#: ../src/plugins/webreport/NarrativeWeb.py:1276
+#: ../src/plugins/webreport/NarrativeWeb.py:1353
+#: ../src/plugins/webreport/NarrativeWeb.py:1369
 #: ../src/ReportBase/_ReportUtils.py:141
 msgid "Could not add photo to page"
 msgstr "Impossible d'ajouter une photo à cette page"
@@ -15825,7 +15827,7 @@ msgstr "Groupes d'événements"
 
 #: ../src/plugins/textreport/IndivComplete.py:667
 msgid "Check if a separate section is required."
-msgstr "Vérifier si une section séparée est nécessaire"
+msgstr "Vérifier si une section séparée est nécessaire."
 
 #: ../src/plugins/textreport/IndivComplete.py:720
 msgid "The style used for category labels."
@@ -16893,7 +16895,7 @@ msgstr "Se rapporte à %d"
 #: ../src/plugins/tool/Leak.py:137
 #, python-format
 msgid "%d refers to"
-msgstr "%d réfère à "
+msgstr "%d réfère à"
 
 #: ../src/plugins/tool/MediaManager.py:66
 msgid "manual|Media_Manager..."
@@ -17738,7 +17740,7 @@ msgstr "La carte"
 
 #: ../src/plugins/view/geoview.py:547
 msgid "Test the network "
-msgstr "Test de la connexion internet"
+msgstr "Test de la connexion internet "
 
 #: ../src/plugins/view/geoview.py:550
 msgid "Time out for the network connection test"
@@ -18117,7 +18119,7 @@ msgstr "Un individu est défini comme son propre ascendant."
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/plugins/view/pedigreeview.py:1224
 #: ../src/plugins/view/pedigreeview.py:1233
-#: ../src/plugins/webreport/NarrativeWeb.py:3015
+#: ../src/plugins/webreport/NarrativeWeb.py:3023
 msgid "Home"
 msgstr "Souche"
 
@@ -18567,629 +18569,631 @@ msgstr "Généré par <a href = \"%(homepage)s\">Gramps</a> le %(date)s"
 msgid " Created for <a href = \"%s\">%s</a>"
 msgstr "Créé pour <a href = \"%s\">%s</a>"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1004
+#: ../src/plugins/webreport/NarrativeWeb.py:1001
 msgid "Html|Home"
 msgstr "Accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1005
-#: ../src/plugins/webreport/NarrativeWeb.py:2978
+#: ../src/plugins/webreport/NarrativeWeb.py:1002
+#: ../src/plugins/webreport/NarrativeWeb.py:2986
 msgid "Introduction"
 msgstr "Introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1006
+#: ../src/plugins/webreport/NarrativeWeb.py:1004
+#: ../src/plugins/webreport/NarrativeWeb.py:1035
 #: ../src/plugins/webreport/NarrativeWeb.py:1038
-#: ../src/plugins/webreport/NarrativeWeb.py:1041
-#: ../src/plugins/webreport/NarrativeWeb.py:2850
+#: ../src/plugins/webreport/NarrativeWeb.py:2858
 msgid "Surnames"
 msgstr "Noms de famille"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1011
-#: ../src/plugins/webreport/NarrativeWeb.py:3309
-#: ../src/plugins/webreport/NarrativeWeb.py:5784
+#: ../src/plugins/webreport/NarrativeWeb.py:1008
+#: ../src/plugins/webreport/NarrativeWeb.py:3317
+#: ../src/plugins/webreport/NarrativeWeb.py:5788
 msgid "Download"
 msgstr "Télécharger"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1012
-#: ../src/plugins/webreport/NarrativeWeb.py:3416
+#: ../src/plugins/webreport/NarrativeWeb.py:1009
+#: ../src/plugins/webreport/NarrativeWeb.py:3424
 msgid "Contact"
 msgstr "Contact"
 
 # espace limité dans le menu
-#. Add xml, doctype, meta and stylesheets
-#: ../src/plugins/webreport/NarrativeWeb.py:1015
-#: ../src/plugins/webreport/NarrativeWeb.py:1058
-#: ../src/plugins/webreport/NarrativeWeb.py:4723
-#: ../src/plugins/webreport/NarrativeWeb.py:4844
+#: ../src/plugins/webreport/NarrativeWeb.py:1012
+#: ../src/plugins/webreport/NarrativeWeb.py:1055
+#: ../src/plugins/webreport/NarrativeWeb.py:4732
+#: ../src/plugins/webreport/NarrativeWeb.py:4854
 msgid "Address Book"
 msgstr "Adresses"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1308
+#: ../src/plugins/webreport/NarrativeWeb.py:1305
 msgid "Gallery"
 msgstr "Galerie"
 
 # ou récit ? saga ?
 #. add section title
-#: ../src/plugins/webreport/NarrativeWeb.py:1397
+#: ../src/plugins/webreport/NarrativeWeb.py:1394
 msgid "Narrative"
 msgstr "Anecdote"
 
 #. begin web title
-#: ../src/plugins/webreport/NarrativeWeb.py:1414
-#: ../src/plugins/webreport/NarrativeWeb.py:4750
+#: ../src/plugins/webreport/NarrativeWeb.py:1411
+#: ../src/plugins/webreport/NarrativeWeb.py:4759
 msgid "Web Links"
 msgstr "Liens internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1476
+#: ../src/plugins/webreport/NarrativeWeb.py:1473
 msgid "Confidence"
 msgstr "Niveau de confiance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1481
+#: ../src/plugins/webreport/NarrativeWeb.py:1478
 msgid "Source References"
 msgstr "Références des sources"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1555
+#: ../src/plugins/webreport/NarrativeWeb.py:1552
 msgid "References"
 msgstr "Références"
 
 #. Individual List page message
-#: ../src/plugins/webreport/NarrativeWeb.py:1787
+#: ../src/plugins/webreport/NarrativeWeb.py:1784
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Cette page contient un index de tous les individus de la base de données, classés par nom. Sélectionnez le nom d'un individu pour accéder à sa page."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1973
+#: ../src/plugins/webreport/NarrativeWeb.py:1970
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Cette page contient un index de tous les individus de la base de données avec le nom de famille %s. Sélectionnez le nom d'un individu pour accéder à sa page."
 
+# titre = nom
 #. place list page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2120
+#: ../src/plugins/webreport/NarrativeWeb.py:2117
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
-msgstr "Cette page contient un index de tous les lieux de la base de données, classés par titre. Cliquez sur le titre d'un lieux pour accéder à sa page."
+msgstr "Cette page contient un index de tous les lieux de la base de données, classés par nom. Cliquez sur le lieux pour accéder à sa page."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2140
-#: ../src/plugins/webreport/NarrativeWeb.py:2887
+#: ../src/plugins/webreport/NarrativeWeb.py:2895
 msgid "Letter"
 msgstr "Lettre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2141
-msgid "Place name | Name"
+msgid "Place Name | Name"
 msgstr "Nom du lieu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2278
-msgid "This page contains an index of all the events in the database, sorted by their type, date (if one is present), and gramps id, Clicking on an event&#8217;s Gramps ID will load a page for that event."
-msgstr "Cette page contient un index de tous les événements de la base de données, classés par titre, identifiant Gramps et dates (si présent). Cliquez sur un événement pour accéder à ce type d'événement."
+#: ../src/plugins/webreport/NarrativeWeb.py:2144
+msgid "Latitude/ Longitude"
+msgstr "Latitude / Longitude"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2327
+#: ../src/plugins/webreport/NarrativeWeb.py:2286
+msgid "This page contains an index of all the events in the database, sorted by their type, date (if one is present), and gramps id, Clicking on an event&#8217;s Gramps ID will load a page for that event."
+msgstr "Cette page contient un index de tous les événements de la base de données, classés par nom, identifiant Gramps et dates (si présent). Cliquez sur un événement pour accéder à ce type d'événement."
+
+#: ../src/plugins/webreport/NarrativeWeb.py:2335
 #, python-format
 msgid "Event types beginning with %(eventtype)s"
 msgstr "Types d'événement commençant par %(eventtype)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2591
+#: ../src/plugins/webreport/NarrativeWeb.py:2599
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2592
+#: ../src/plugins/webreport/NarrativeWeb.py:2600
 #, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 msgstr "<strong id = \"GalleryCurrent\">%(page_number)d</strong> sur <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2597
+#: ../src/plugins/webreport/NarrativeWeb.py:2605
 msgid "Next"
 msgstr "Suivant"
 
 #. missing media error message
-#: ../src/plugins/webreport/NarrativeWeb.py:2600
+#: ../src/plugins/webreport/NarrativeWeb.py:2608
 msgid "The file has been moved or deleted."
 msgstr "Ce fichier a été déplacé ou supprimé."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2735
+#: ../src/plugins/webreport/NarrativeWeb.py:2743
 msgid "File Type"
 msgstr "Type de fichier"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2817
+#: ../src/plugins/webreport/NarrativeWeb.py:2825
 msgid "Missing media object:"
 msgstr "Objet medium absent :"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2853
+#: ../src/plugins/webreport/NarrativeWeb.py:2861
 msgid "Surnames by person count"
 msgstr "Patronymes par compte individuel"
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2860
+#: ../src/plugins/webreport/NarrativeWeb.py:2868
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr "Cette page contient un index de tous les patronymes de la base de données. Sélectionnez un lien pour accéder à la liste des individus portant ce nom."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2900
+#: ../src/plugins/webreport/NarrativeWeb.py:2908
 msgid "Number of People"
 msgstr "Nombre d'individus"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3066
+# titre = nom
+#: ../src/plugins/webreport/NarrativeWeb.py:3074
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
 msgstr "Cette page contient un index de toutes les sources de la base de données, classées par nom. Cliquez sur une source pour accéder à sa page."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3082
+#: ../src/plugins/webreport/NarrativeWeb.py:3090
 msgid "Source Name|Name"
 msgstr "Nom de la source"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3150
+#: ../src/plugins/webreport/NarrativeWeb.py:3158
 msgid "Publication information"
 msgstr "Informations de publication"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3197
+# titre = nom
+#: ../src/plugins/webreport/NarrativeWeb.py:3205
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
 msgstr "Cette page contient un index de tous les objets media de la base de données, classés par nom. Cliquez sur le nom pour ouvrir la page. Si la taille de l'image n'est pas suffisante, cliquez sur l'image pour la voir dans sa taille réelle."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3216
+#: ../src/plugins/webreport/NarrativeWeb.py:3224
 msgid "Media | Name"
 msgstr "Nom du medium"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3218
+#: ../src/plugins/webreport/NarrativeWeb.py:3226
 msgid "Mime Type"
 msgstr "Type mime"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3332
+#: ../src/plugins/webreport/NarrativeWeb.py:3340
 msgid "File Name"
 msgstr "Nom du fichier"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3334
+#: ../src/plugins/webreport/NarrativeWeb.py:3342
 msgid "License"
 msgstr "Autorisation d'utilisation"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3335
+#: ../src/plugins/webreport/NarrativeWeb.py:3343
 msgid "Last Modified"
 msgstr "Dernière modification"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3688
+#: ../src/plugins/webreport/NarrativeWeb.py:3696
 msgid "Ancestors"
 msgstr "Ascendants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3743
+#: ../src/plugins/webreport/NarrativeWeb.py:3751
 msgid "Associations"
 msgstr "Associations"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3925
+#: ../src/plugins/webreport/NarrativeWeb.py:3933
 msgid "Nick Name"
 msgstr "Surnom"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3963
+#: ../src/plugins/webreport/NarrativeWeb.py:3971
 msgid "Age at Death"
 msgstr "Âge au décès"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4034
+#: ../src/plugins/webreport/NarrativeWeb.py:4042
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Ordinance Mormons"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4591
+# titre = nom
+#: ../src/plugins/webreport/NarrativeWeb.py:4599
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
 msgstr "Cette page contient un index de tous les dépôts de la base de données, classés par nom. Cliquez sur le nom d'un dépôt pour accéder à sa page."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4606
+#: ../src/plugins/webreport/NarrativeWeb.py:4614
 msgid "Repository |Name"
 msgstr "Nom du dépôt"
 
 #. Internet Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:4730
+#: ../src/plugins/webreport/NarrativeWeb.py:4739
 msgid "This page contains an index of all the individuals in the database, sorted by their surname. Selecting the person&#8217;s name will take you to their Address Book&#8217;s individual page."
 msgstr "Cette page contient un index de tous les individus de la base de données, classés par nom de famille. Sélectionnez le nom d'un individu pour accéder à sa page."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4997
+#: ../src/plugins/webreport/NarrativeWeb.py:5001
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Ni %s ni %s ne sont des répertoires"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5004
 #: ../src/plugins/webreport/NarrativeWeb.py:5008
-#: ../src/plugins/webreport/NarrativeWeb.py:5021
+#: ../src/plugins/webreport/NarrativeWeb.py:5012
 #: ../src/plugins/webreport/NarrativeWeb.py:5025
+#: ../src/plugins/webreport/NarrativeWeb.py:5029
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Impossible de créer le répertoire : %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5030
+#: ../src/plugins/webreport/NarrativeWeb.py:5034
 msgid "Invalid file name"
 msgstr "Nom de fichier invalide"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5031
+#: ../src/plugins/webreport/NarrativeWeb.py:5035
 msgid "The archive file must be a file, not a directory"
 msgstr "L'archive doit être un fichier, pas un répertoire"
 
 # Site internet descriptif ou narratif ?
-#: ../src/plugins/webreport/NarrativeWeb.py:5040
+#: ../src/plugins/webreport/NarrativeWeb.py:5044
 msgid "Narrated Web Site Report"
 msgstr "Saga sur internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5093
+#: ../src/plugins/webreport/NarrativeWeb.py:5097
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, chemin=%(dir)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5098
+#: ../src/plugins/webreport/NarrativeWeb.py:5102
 msgid "Missing media objects:"
 msgstr "Objets media manquants :"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5187
+#: ../src/plugins/webreport/NarrativeWeb.py:5190
 msgid "Creating individual pages"
 msgstr "Création des pages pour l'individu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5204
+#: ../src/plugins/webreport/NarrativeWeb.py:5207
 msgid "Creating GENDEX file"
 msgstr "Création d'un fichier GENDEX"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5244
+#: ../src/plugins/webreport/NarrativeWeb.py:5247
 msgid "Creating surname pages"
 msgstr "Création des pages pour le patronyme"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5258
+#: ../src/plugins/webreport/NarrativeWeb.py:5261
 msgid "Creating source pages"
 msgstr "Création des pages pour la source"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5268
+#: ../src/plugins/webreport/NarrativeWeb.py:5271
 msgid "Creating place pages"
 msgstr "Création des pages pour le lieu"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5285
+#: ../src/plugins/webreport/NarrativeWeb.py:5288
 msgid "Creating event pages"
 msgstr "Création des pages pour l'événement"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5292
+#: ../src/plugins/webreport/NarrativeWeb.py:5295
 #, python-format
 msgid "Creating event page %02d of %02d"
 msgstr "Création de la page %02d sur %02d pour l'événement"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5302
+#: ../src/plugins/webreport/NarrativeWeb.py:5305
 msgid "Creating media pages"
 msgstr "Création des pages pour le medium"
 
 # Substantif (GNOME fr)
 #. set progress bar pass for Repositories
-#: ../src/plugins/webreport/NarrativeWeb.py:5353
+#: ../src/plugins/webreport/NarrativeWeb.py:5356
 msgid "Creating repository pages"
 msgstr "Création des pages dépôt"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5410
+#: ../src/plugins/webreport/NarrativeWeb.py:5412
 msgid "Creating address book pages ..."
 msgstr "Création des pages adresses ..."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5608
+#: ../src/plugins/webreport/NarrativeWeb.py:5612
 msgid "Store web pages in .tar.gz archive"
 msgstr "Extrait les pages Web en archive .tar.gz"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5610
+#: ../src/plugins/webreport/NarrativeWeb.py:5614
 msgid "Whether to store the web pages in an archive file"
 msgstr "Conserver ou non les pages internet dans un format d'archive"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5615
+#: ../src/plugins/webreport/NarrativeWeb.py:5619
 #: ../src/plugins/webreport/WebCal.py:1339
 msgid "Destination"
 msgstr "Destination"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5617
+#: ../src/plugins/webreport/NarrativeWeb.py:5621
 #: ../src/plugins/webreport/WebCal.py:1341
 msgid "The destination directory for the web files"
 msgstr "Le répertoire de destination pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5623
+#: ../src/plugins/webreport/NarrativeWeb.py:5627
 msgid "Web site title"
 msgstr "Titre du site"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5623
+#: ../src/plugins/webreport/NarrativeWeb.py:5627
 msgid "My Family Tree"
 msgstr "Mon arbre généalogique"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5624
+#: ../src/plugins/webreport/NarrativeWeb.py:5628
 msgid "The title of the web site"
 msgstr "Le titre du site internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5629
+#: ../src/plugins/webreport/NarrativeWeb.py:5633
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Sélectionnez un filtre pour restreindre les individus qui apparaîtront dans le site web"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5649
+#: ../src/plugins/webreport/NarrativeWeb.py:5653
 #: ../src/plugins/webreport/WebCal.py:1371
 msgid "File extension"
 msgstr "Extension"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5652
+#: ../src/plugins/webreport/NarrativeWeb.py:5656
 #: ../src/plugins/webreport/WebCal.py:1374
 msgid "The extension to be used for the web files"
 msgstr "L'extension utilisée pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5655
+#: ../src/plugins/webreport/NarrativeWeb.py:5659
 #: ../src/plugins/webreport/WebCal.py:1377
 msgid "Copyright"
 msgstr "Licence"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5658
+#: ../src/plugins/webreport/NarrativeWeb.py:5662
 #: ../src/plugins/webreport/WebCal.py:1380
 msgid "The copyright to be used for the web files"
 msgstr "Le droit d'auteur utilisé pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5661
+#: ../src/plugins/webreport/NarrativeWeb.py:5665
 #: ../src/plugins/webreport/WebCal.py:1383
 msgid "StyleSheet"
 msgstr "Feuille de style"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5664
-msgid "The stylesheet to be used for the web page"
-msgstr "La feuille de style utilisée pour la page internet"
+#: ../src/plugins/webreport/NarrativeWeb.py:5668
+msgid "The stylesheet to be used for the web pages"
+msgstr "La feuille de style utilisée pour les pages internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5667
+#: ../src/plugins/webreport/NarrativeWeb.py:5671
 msgid "Include ancestor graph"
 msgstr "Inclure un arbre des ascendants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5668
+#: ../src/plugins/webreport/NarrativeWeb.py:5672
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Inclure ou non un arbre des ascendants sur chaque page des individus"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5673
+#: ../src/plugins/webreport/NarrativeWeb.py:5677
 msgid "Graph generations"
 msgstr "Générations"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5678
+#: ../src/plugins/webreport/NarrativeWeb.py:5682
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Le nombre de générations à inclure dans l'arbre des ascendants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5688
+#: ../src/plugins/webreport/NarrativeWeb.py:5692
 msgid "Page Generation"
 msgstr "Création de page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5690
+#: ../src/plugins/webreport/NarrativeWeb.py:5694
 msgid "Home page note"
 msgstr "Note de la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5691
+#: ../src/plugins/webreport/NarrativeWeb.py:5695
 msgid "A note to be used on the home page"
 msgstr "La note utilisée pour la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5694
+#: ../src/plugins/webreport/NarrativeWeb.py:5698
 msgid "Home page image"
 msgstr "Image de la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5695
+#: ../src/plugins/webreport/NarrativeWeb.py:5699
 msgid "An image to be used on the home page"
 msgstr "L'image utilisée en page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5698
+#: ../src/plugins/webreport/NarrativeWeb.py:5702
 msgid "Introduction note"
 msgstr "Note d'introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5699
+#: ../src/plugins/webreport/NarrativeWeb.py:5703
 msgid "A note to be used as the introduction"
 msgstr "La note utilisée en introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5702
+#: ../src/plugins/webreport/NarrativeWeb.py:5706
 msgid "Introduction image"
 msgstr "Image d'introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5703
+#: ../src/plugins/webreport/NarrativeWeb.py:5707
 msgid "An image to be used as the introduction"
 msgstr "L'image utilisée en introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5706
+#: ../src/plugins/webreport/NarrativeWeb.py:5710
 msgid "Publisher contact note"
 msgstr "Note de la page contact"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5707
+#: ../src/plugins/webreport/NarrativeWeb.py:5711
 msgid "A note to be used as the publisher contact"
 msgstr "La note utilisée pour contacter l'auteur"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5710
+#: ../src/plugins/webreport/NarrativeWeb.py:5714
 msgid "Publisher contact image"
 msgstr "Image de la page contact"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5711
+#: ../src/plugins/webreport/NarrativeWeb.py:5715
 msgid "An image to be used as the publisher contact"
 msgstr "L'image utilisée pour contacter l'auteur"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5714
+#: ../src/plugins/webreport/NarrativeWeb.py:5718
 msgid "HTML user header"
 msgstr "En-tête HTML"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5715
+#: ../src/plugins/webreport/NarrativeWeb.py:5719
 msgid "A note to be used as the page header"
 msgstr "La note utilisée pour l'en-tête de la page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5718
+#: ../src/plugins/webreport/NarrativeWeb.py:5722
 msgid "HTML user footer"
 msgstr "Pied de page HTML"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5719
+#: ../src/plugins/webreport/NarrativeWeb.py:5723
 msgid "A note to be used as the page footer"
 msgstr "La note utilisée pour le pied de page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5722
+#: ../src/plugins/webreport/NarrativeWeb.py:5726
 msgid "Include images and media objects"
 msgstr "Inclure images et media"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5723
+#: ../src/plugins/webreport/NarrativeWeb.py:5727
 msgid "Whether to include a gallery of media objects"
 msgstr "Inclure ou non une galerie des objets media"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5727
+#: ../src/plugins/webreport/NarrativeWeb.py:5731
 msgid "Max width of initial image"
 msgstr "Largeur max de l'image initiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5729
+#: ../src/plugins/webreport/NarrativeWeb.py:5733
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la largeur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5733
+#: ../src/plugins/webreport/NarrativeWeb.py:5737
 msgid "Max height of initial image"
 msgstr "Hauteur max de l'image initiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5735
+#: ../src/plugins/webreport/NarrativeWeb.py:5739
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la hauteur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5741
+#: ../src/plugins/webreport/NarrativeWeb.py:5745
 msgid "Suppress Gramps ID"
 msgstr "Supprimer les identifiants Gramps"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5742
+#: ../src/plugins/webreport/NarrativeWeb.py:5746
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Inclure ou non les identifiants Gramps des objets"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5749
+#: ../src/plugins/webreport/NarrativeWeb.py:5753
 msgid "Privacy"
 msgstr "Vie privée"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5751
+#: ../src/plugins/webreport/NarrativeWeb.py:5755
 msgid "Include records marked private"
 msgstr "Inclure les enregistrements privés"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5752
+#: ../src/plugins/webreport/NarrativeWeb.py:5756
 msgid "Whether to include private objects"
 msgstr "Inclure ou non les objets privés"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5755
+#: ../src/plugins/webreport/NarrativeWeb.py:5759
 msgid "Living People"
 msgstr "Individus vivants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5758
+#: ../src/plugins/webreport/NarrativeWeb.py:5762
 msgid "Exclude"
 msgstr "Exclure"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5760
+#: ../src/plugins/webreport/NarrativeWeb.py:5764
 msgid "Include Last Name Only"
 msgstr "N'inclure que le nom"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5762
+#: ../src/plugins/webreport/NarrativeWeb.py:5766
 msgid "Include Full Name Only"
 msgstr "Inclure le nom complet"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:5765
+#: ../src/plugins/webreport/NarrativeWeb.py:5769
 msgid "How to handle living people"
 msgstr "Gestion des individus vivants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5769
+#: ../src/plugins/webreport/NarrativeWeb.py:5773
 msgid "Years from death to consider living"
 msgstr "Années depuis le décès"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5771
+#: ../src/plugins/webreport/NarrativeWeb.py:5775
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Ceci vous permet de restreindre l'information sur les individus décédés il y a peu de temps"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5786
+#: ../src/plugins/webreport/NarrativeWeb.py:5790
 msgid "Include download page"
 msgstr "Inclure une page téléchargement"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5787
+#: ../src/plugins/webreport/NarrativeWeb.py:5791
 msgid "Whether to include a database download option"
 msgstr "Inclure ou non une option pour télécharger une base de données"
 
-# à vérifier !
-# trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:5791
+#: ../src/plugins/webreport/NarrativeWeb.py:5795
 msgid "Download page note"
 msgstr "Note de la page Télécharger"
 
-# à vérifier !
-# trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:5792
+#: ../src/plugins/webreport/NarrativeWeb.py:5796
 msgid "A note to be used on the download page"
 msgstr "La note utilisée pour la page Télécharger"
 
-# à vérifier !
-# trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:5795
-#: ../src/plugins/webreport/NarrativeWeb.py:5804
+# espace limité sur la fenêtre
+#: ../src/plugins/webreport/NarrativeWeb.py:5799
+#: ../src/plugins/webreport/NarrativeWeb.py:5808
 msgid "Download Filename"
 msgstr "Nom du fichier"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5797
-#: ../src/plugins/webreport/NarrativeWeb.py:5806
+#: ../src/plugins/webreport/NarrativeWeb.py:5801
+#: ../src/plugins/webreport/NarrativeWeb.py:5810
 msgid "File to be used for downloading of database"
 msgstr "Fichier prévu pour être téléchargé"
 
 # espace limité
-#: ../src/plugins/webreport/NarrativeWeb.py:5800
-#: ../src/plugins/webreport/NarrativeWeb.py:5809
+#: ../src/plugins/webreport/NarrativeWeb.py:5804
+#: ../src/plugins/webreport/NarrativeWeb.py:5813
 msgid "Description for download"
 msgstr "Description"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5800
+#: ../src/plugins/webreport/NarrativeWeb.py:5804
 msgid "Smith Family Tree"
 msgstr "Arbre de la famille Martin"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5801
-#: ../src/plugins/webreport/NarrativeWeb.py:5810
+#: ../src/plugins/webreport/NarrativeWeb.py:5805
+#: ../src/plugins/webreport/NarrativeWeb.py:5814
 msgid "Give a description for this file."
 msgstr "Donnez une description pour ce fichier."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5809
+#: ../src/plugins/webreport/NarrativeWeb.py:5813
 msgid "Johnson Family Tree"
 msgstr "Arbre de la famille Bernard"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5813
+#: ../src/plugins/webreport/NarrativeWeb.py:5817
 msgid "Download Copyright License"
 msgstr "Licence"
 
 # typo dans le code
-#: ../src/plugins/webreport/NarrativeWeb.py:5816
+#: ../src/plugins/webreport/NarrativeWeb.py:5820
 msgid "The copyright to be used for ths download file?"
 msgstr "Le droit d'auteur défini pour ce fichier ?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5825
+#: ../src/plugins/webreport/NarrativeWeb.py:5829
 #: ../src/plugins/webreport/WebCal.py:1526
 msgid "Advanced Options"
 msgstr "Options avancées"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5827
+#: ../src/plugins/webreport/NarrativeWeb.py:5831
 #: ../src/plugins/webreport/WebCal.py:1528
 msgid "Character set encoding"
 msgstr "Encodage de caractères"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5830
+#: ../src/plugins/webreport/NarrativeWeb.py:5834
 #: ../src/plugins/webreport/WebCal.py:1531
 msgid "The encoding to be used for the web files"
 msgstr "L'encodage utilisé pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5833
+#: ../src/plugins/webreport/NarrativeWeb.py:5837
 msgid "Include link to home person on every page"
 msgstr "Inclure un lien vers l'individu souche dans chaque page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5834
+#: ../src/plugins/webreport/NarrativeWeb.py:5838
 msgid "Whether to include a link to the home person"
 msgstr "Inclure ou non un lien vers l'individu souche"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5837
+#: ../src/plugins/webreport/NarrativeWeb.py:5841
 msgid "Include a column for birth dates on the index pages"
 msgstr "Inclure une colonne pour les dates de naissance dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5838
+#: ../src/plugins/webreport/NarrativeWeb.py:5842
 msgid "Whether to include a birth column"
 msgstr "Inclure ou non une colonne naissance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5841
+#: ../src/plugins/webreport/NarrativeWeb.py:5845
 msgid "Include a column for death dates on the index pages"
 msgstr "Inclure une colonne pour les dates de décès dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5842
+#: ../src/plugins/webreport/NarrativeWeb.py:5846
 msgid "Whether to include a death column"
 msgstr "Inclure ou non une colonne décès"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5845
+#: ../src/plugins/webreport/NarrativeWeb.py:5849
 msgid "Include a column for partners on the index pages"
 msgstr "Inclure une colonne pour les conjoints dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5847
+#: ../src/plugins/webreport/NarrativeWeb.py:5851
 msgid "Whether to include a partners column"
 msgstr "Inclure ou non une colonne conjoints"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5850
+#: ../src/plugins/webreport/NarrativeWeb.py:5854
 msgid "Include a column for parents on the index pages"
 msgstr "Inclure une colonne pour les parents dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5852
+#: ../src/plugins/webreport/NarrativeWeb.py:5856
 msgid "Whether to include a parents column"
 msgstr "Inclure ou non une colonne parents"
 
@@ -19199,43 +19203,43 @@ msgstr "Inclure ou non une colonne parents"
 #. showallsiblings.set_help(_( "Whether to include half and/ or "
 #. "step-siblings with the parents and siblings"))
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-#: ../src/plugins/webreport/NarrativeWeb.py:5862
+#: ../src/plugins/webreport/NarrativeWeb.py:5866
 msgid "Sort all children in birth order"
 msgstr "Trier les enfants selon la date de naissance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5863
+#: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel ?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5867
+#: ../src/plugins/webreport/NarrativeWeb.py:5871
 msgid "Include event pages"
 msgstr "Inclure les pages événement"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5868
+#: ../src/plugins/webreport/NarrativeWeb.py:5872
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Ajouter ou non une liste complète des événements et pages liées"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5871
+#: ../src/plugins/webreport/NarrativeWeb.py:5875
 msgid "Include repository pages"
 msgstr "Inclure les pages dépôt"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5872
+#: ../src/plugins/webreport/NarrativeWeb.py:5876
 msgid "Whether to include the Repository Pages or not?"
 msgstr "Inclure ou non des pages dépôt ?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5875
+#: ../src/plugins/webreport/NarrativeWeb.py:5879
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Inclure un fichier GENDEX (gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5876
+#: ../src/plugins/webreport/NarrativeWeb.py:5880
 msgid "Whether to include a GENDEX file or not"
 msgstr "Inclure ou non un fichier GENDEX"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5879
+#: ../src/plugins/webreport/NarrativeWeb.py:5883
 msgid "Include address book pages"
 msgstr "Inclure les pages adresses"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5880
+#: ../src/plugins/webreport/NarrativeWeb.py:5884
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
 msgstr "Ajouter ou non les adresses qui peuvent être des adresses de messagerie, des adresses de site internet, des adresses individuelles et des événements résidence ?"
 
@@ -19771,64 +19775,54 @@ msgstr "Impossible d'ouvrir '%s'"
 msgid "Error: cannot open '%s'"
 msgstr "Erreur : Impossible d'ouvrir '%s'"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:542
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Erreur : type de fichier inconnu : '%s'"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:547
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Examine '%s'..."
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:559
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Erreur dans le fichier '%s' : impossible à charger."
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:571
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' est pour cette version de Gramps."
 
-# trunk
 #. If the plugin is for another version; inform and do nothing
 #: ../src/PluginUtils/_PluginWindows.py:574
 #, python-format
 msgid "'%s' is for NOT this version of Gramps."
 msgstr "'%s' N'EST PAS PRÉVU pour cette version de Gramps."
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:575
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Prévu pour la version %d.%d"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Erreur: gramps_target_version = '3.2' dans '%s' manquant"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installation de '%s'..."
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Registered '%s'"
 msgstr "'%s' enregistré"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:604
 msgid "Load Addon"
 msgstr "Charge du greffon"
@@ -19845,7 +19839,6 @@ msgstr "Échec"
 msgid "OK"
 msgstr "OK"
 
-# trunk
 #: ../src/PluginUtils/_PluginWindows.py:821
 msgid "Plugin Error"
 msgstr "Erreur de greffon"
@@ -19899,7 +19892,6 @@ msgstr "_Poursuivre avec cet outil"
 msgid "Custom Size"
 msgstr "Taille personnalisée"
 
-# trunk
 #: ../src/ReportBase/_CommandLineReport.py:403
 msgid "Failed to write report. "
 msgstr "Échec à l'écriture du rapport."
@@ -19989,7 +19981,6 @@ msgstr "Format de sortie"
 msgid "Open with default viewer"
 msgstr "Ouvrir avec le lecteur par défaut"
 
-# trunk
 #: ../src/ReportBase/_DocReportDialog.py:198
 msgid "CSS file"
 msgstr "fichier CSS"
@@ -20002,7 +19993,6 @@ msgstr "Le style de base utilisé pour afficher les annotations de la source."
 msgid "The basic style used for the endnotes reference display."
 msgstr "Le style de base utilisé pour afficher les annotations de la référence."
 
-# trunk
 #: ../src/ReportBase/_Endnotes.py:65
 msgid "The basic style used for the endnotes notes display."
 msgstr "Le style de base utilisé pour afficher les notes de la source."
@@ -20011,11 +20001,10 @@ msgstr "Le style de base utilisé pour afficher les notes de la source."
 msgid "Endnotes"
 msgstr "Références bibliographiques"
 
-# trunk
 #: ../src/ReportBase/_Endnotes.py:145
 #, python-format
 msgid "Note %(ind)d - Type: %(type)s"
-msgstr "Note %(ind)d - Type: %(type)s"
+msgstr "Note %(ind)d - Type : %(type)s"
 
 #. -------------------------------------------------------------------------------
 #.
@@ -20413,7 +20402,6 @@ msgstr "mais avant :"
 msgid "Objects changed after <date time>"
 msgstr "Objets modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
 msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given."
 msgstr "Correspond aux enregistrements modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -20501,7 +20489,6 @@ msgstr "Filtres événements"
 msgid "Object with <Id>"
 msgstr "Objets avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/_HasGrampsId.py:47
 msgid "Matches objects with a specified Gramps ID"
 msgstr "Correspond aux objets avec l'identifiant Gramps spécifié"
@@ -20571,7 +20558,6 @@ msgstr "Correspond aux objets trouvés par le filtre spécifié"
 msgid "Objects with <Id>"
 msgstr "Objets avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
 msgid "Matches objects whose Gramps ID matches the regular expression"
 msgstr "Correspond aux objets dont l'ID Gramps contient une expression rationnelle"
@@ -20598,15 +20584,13 @@ msgstr "Correspond aux marqueurs avec un type particulier"
 msgid "Persons changed after <date time>"
 msgstr "Individus modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux individus modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
-# trunk
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Chemin relationnel entre <l'individu> et les individus correspondant au <filtre> "
+msgstr "Chemin relationnel entre <l'individu> et les individus correspondant au <filtre>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -20614,18 +20598,15 @@ msgstr "Chemin relationnel entre <l'individu> et les individus correspondant au 
 msgid "Relationship filters"
 msgstr "Filtres relationnels"
 
-# trunk
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
 msgid "Searches over the database starting from a specified person and returns everyone between that person and a set of target people specified with a filter.  This produces a set of relationship paths (including by marriage) between the specified person and the target people.  Each path is not necessarily the shortest path."
 msgstr "Recherche dans la base de données en commençant par une personne spécifiée pour trouver tous les individus entre cette personne et un groupe d'individus spécifiés par le filtre. Ceci génère des liens relationnels (incluant les mariages) entre la personne spécifiée et les individus ciblés. Les chemins ne sont pas toujours les plus courts."
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
 msgid "Finding relationship paths"
 msgstr "Trouve les chemins relationnels"
 
-# trunk
 # Substantif (GNOME fr)
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:135
 msgid "Evaluating people"
@@ -20782,7 +20763,6 @@ msgstr "Correspond aux individus ayant un nombre d'articles dans la galerie"
 msgid "Person with <Id>"
 msgstr "Individus avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
 msgid "Matches person with a specified Gramps ID"
@@ -21235,7 +21215,6 @@ msgstr "Correspond aux individus sans indication de décès ou qui ne sont pas t
 msgid "People with <Id> matching regular expression"
 msgstr "Individus avec l'<Id> correspondant à une expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose Gramps ID matches the regular expression"
 msgstr "Correspond aux individus dont l'ID Gramps contient une expression rationnelle"
@@ -21290,7 +21269,6 @@ msgstr "Correspond à toutes les familles de la base"
 msgid "Families changed after <date time>"
 msgstr "Familles modifiées après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux familles modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -21305,7 +21283,6 @@ msgstr "Identifiant de l'individu :"
 msgid "Families with child with the <Id>"
 msgstr "Familles dont l'enfant a l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
 msgid "Matches families where child has a specified Gramps ID"
 msgstr "Correspond aux familles dont l'enfant a un identifiant Gramps spécifié"
@@ -21339,7 +21316,6 @@ msgstr "Correspond aux familles marquées comme privées"
 msgid "Families with father with the <Id>"
 msgstr "Familles dont le père a l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified Gramps ID"
 msgstr "Correspond aux familles dont le père a un identifiant Gramps spécifié"
@@ -21392,7 +21368,6 @@ msgstr "Correspond aux familles ayant un nombre d'article dans la galerie"
 msgid "Family with <Id>"
 msgstr "Familles avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified Gramps ID"
 msgstr "Correspond aux familles avec l'identifiant Gramps spécifié"
@@ -21491,7 +21466,6 @@ msgstr "Correspond aux familles trouvées par le filtre spécifié"
 msgid "Families with mother with the <Id>"
 msgstr "Familles dont la mère a l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified Gramps ID"
 msgstr "Correspond aux familles dont la mère a un identifiant Gramps spécifié"
@@ -21568,7 +21542,6 @@ msgstr "Correspond aux familles dont le nom de l'enfant contient une expression 
 msgid "Families with <Id> matching regular expression"
 msgstr "Familles avec un <Id> correspondant à l'expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose Gramps ID matches the regular expression"
 msgstr "Correspond aux familles dont l'ID Gramps contient l'expression rationnelle"
@@ -21586,7 +21559,6 @@ msgstr "Correspond à tous les événements de la base"
 msgid "Events changed after <date time>"
 msgstr "Événements modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
 msgstr "Correspond aux événements modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -21630,7 +21602,6 @@ msgstr "Correspond aux événements ayant un nombre d'article dans la galerie"
 msgid "Event with <Id>"
 msgstr "Événement avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
 msgid "Matches an event with a specified Gramps ID"
 msgstr "Correspond à l'événement avec l'identifiant Gramps spécifié"
@@ -21680,16 +21651,16 @@ msgstr "Événements avec un <nombre> de références"
 msgid "Matches events with a certain reference count"
 msgstr "Correspond aux événements ayant un nombre de références"
 
-# trunk
+# pluriel dans le code ?
 #: ../src/Filters/Rules/Event/_HasSource.py:43
 msgid "Events with <count> source"
-msgstr "Événements avec un <nombre> de source"
+msgstr "Événements avec un <nombre> de sources"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
+# pluriel dans le code ?
 #: ../src/Filters/Rules/Event/_HasSource.py:44
 msgid "Matches events with a certain number of items in the source"
-msgstr "Correspond aux événements ayant un nombre d'articles dans la source"
+msgstr "Correspond aux événements ayant un nombre de sources"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
@@ -21735,7 +21706,6 @@ msgstr "Correspond aux événements dont les sources correspondent au filtre sur
 msgid "Events with <Id> matching regular expression"
 msgstr "Événements avec un <Id> correspondant à l'expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr "Correspond aux événements dont l'ID Gramps contient une expression rationnelle"
@@ -21749,12 +21719,10 @@ msgstr "Tous les lieux"
 msgid "Matches every place in the database"
 msgstr "Correspond à tous les lieux de la base"
 
-# trunk
 #: ../src/Filters/Rules/Place/_ChangedSince.py:23
 msgid "Places changed after <date time>"
 msgstr "Lieux modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux lieux modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -21772,7 +21740,6 @@ msgstr "Correspond aux lieux ayant un nombre d'article dans la galerie"
 msgid "Place with <Id>"
 msgstr "Lieux avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
 msgid "Matches a place with a specified Gramps ID"
 msgstr "Correspond à un lieu avec l'identifiant Gramps spécifié"
@@ -21918,7 +21885,6 @@ msgstr "Correspond aux lieux marqués comme privés"
 msgid "Places with <Id> matching regular expression"
 msgstr "Lieux avec l'<Id> correspondant à une expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr "Correspond aux lieux dont l'ID Gramps contient une expression rationnelle"
@@ -21936,7 +21902,6 @@ msgstr "Correspond à toutes les sources de la base"
 msgid "Sources changed after <date time>"
 msgstr "Sources modifiées après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Source/_ChangedSince.py:24
 msgid "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux sources modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -21954,7 +21919,6 @@ msgstr "Correspond aux sources ayant un nombre d'article dans la galerie"
 msgid "Source with <Id>"
 msgstr "Source avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified Gramps ID"
 msgstr "Correspond à une source avec l'identifiant Gramps spécifié"
@@ -21995,12 +21959,10 @@ msgstr "Sources avec un <nombre> de références"
 msgid "Matches sources with a certain reference count"
 msgstr "Correspond aux sources ayant un nombre de références"
 
-# trunk
 #: ../src/Filters/Rules/Source/_HasRepository.py:45
 msgid "Sources with <count> Repository references"
 msgstr "Sources avec un <nombre> de références de dépôt"
 
-# trunk
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
 msgid "Matches sources with certain number repository references"
@@ -22057,7 +22019,6 @@ msgstr "Correspond aux sources marquées comme privées"
 msgid "Sources with <Id> matching regular expression"
 msgstr "Sources avec un <Id> correspondant à l'expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr "Correspond aux sources dont l'ID Gramps contient une expression rationnelle"
@@ -22075,7 +22036,6 @@ msgstr "Correspond à tous les objets media de la base"
 msgid "Media objects changed after <date time>"
 msgstr "Objets media modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given."
 msgstr "Correspond aux media modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -22092,7 +22052,6 @@ msgstr "Correspond aux objets media avec un attribut de même valeur"
 msgid "Media object with <Id>"
 msgstr "Objet medium avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified Gramps ID"
 msgstr "Correspond à un objet medium avec l'identifiant Gramps spécifié"
@@ -22168,7 +22127,6 @@ msgstr "Correspond aux objets media marqués comme privés"
 msgid "Media Objects with <Id> matching regular expression"
 msgstr "Objets media avec l'<Id> correspondant à une expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr "Correspond aux objets media dont l'ID Gramps contient une expression rationnelle"
@@ -22186,7 +22144,6 @@ msgstr "Correspond à tous les dépôts de la base"
 msgid "Repositories changed after <date time>"
 msgstr "Dépôts modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
 msgstr "Correspond aux dépôts modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -22195,7 +22152,6 @@ msgstr "Correspond aux dépôts modifiés après une date spécifiée (aaaa-mm-j
 msgid "Repository with <Id>"
 msgstr "Dépôt avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified Gramps ID"
 msgstr "Correspond à un dépôt avec l'identifiant Gramps spécifié"
@@ -22257,7 +22213,6 @@ msgstr "Correspond aux dépôts trouvés par le filtre spécifié"
 msgid "Repositories with <Id> matching regular expression"
 msgstr "Dépôts avec un <Id> correspondant à l'expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr "Correspond aux dépôts dont l'ID Gramps contient une expression rationnelle"
@@ -22284,7 +22239,6 @@ msgstr "Correspond à toutes les notes de la base"
 msgid "Notes changed after <date time>"
 msgstr "Notes modifiées après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux notes modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -22293,7 +22247,6 @@ msgstr "Correspond aux notes modifiées après une date spécifiée (aaaa-mm-jj 
 msgid "Note with <Id>"
 msgstr "Note avec l'<Id>"
 
-# trunk
 #: ../src/Filters/Rules/Note/_HasIdOf.py:46
 msgid "Matches a note with a specified Gramps ID"
 msgstr "Correspond à une note avec l'identifiant Gramps spécifié"
@@ -22363,7 +22316,6 @@ msgstr "Correspond aux notes trouvées par un filtre spécifié"
 msgid "Notes with <Id> matching regular expression"
 msgstr "Notes avec un <Id> correspondant à l'expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose Gramps ID matches the regular expression"
 msgstr "Correspond aux notes dont l'ID Gramps contient une expression rationnelle"
@@ -22425,7 +22377,7 @@ msgstr "Publication"
 msgid "Church parish"
 msgstr "Paroisse"
 
-# trunk
+# INSEE, postal, Belgique, Canada ...
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "ZIP/Postal code"
 msgstr "Code lieu"
@@ -22639,7 +22591,6 @@ msgstr "<b>Relations parentales</b>"
 msgid "_Display on startup"
 msgstr "_Afficher au démarrage"
 
-# trunk
 #: ../src/glade/displaystate.glade.h:1
 msgid "Gramps"
 msgstr "Gramps"
@@ -22977,16 +22928,14 @@ msgstr "_Souligné"
 msgid "<b>Version description</b>"
 msgstr "<b>Description de la version</b>"
 
-# trunk
 #: ../src/glade/dbman.glade.h:2
 msgid "Family Trees - Gramps"
-msgstr "Arbre familiaux - Gramps"
+msgstr "Arbres familiaux - Gramps"
 
 #: ../src/glade/dbman.glade.h:3
 msgid "Re_pair"
 msgstr "Ré_parer"
 
-# trunk
 #: ../src/glade/dbman.glade.h:4
 msgid "Revision comment - Gramps"
 msgstr "Commentaire de révision - Gramps"
@@ -23237,7 +23186,6 @@ msgstr "_Statut :"
 msgid "<b>Note</b>"
 msgstr "<b>Note</b>"
 
-# trunk
 #: ../src/glade/editnote.glade.h:2
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. \n"
@@ -23246,7 +23194,7 @@ msgid ""
 msgstr ""
 "Si activé, l'espacement de votre note sera respecté dans les rapports. Utilisez-le pour ajouter un format avec espaces, par exemple un tableau.\n"
 "Si désactivé, les notes sont automatiquement nettoyées dans les rapports, ce qui améliorera le rendu du rapport.\n"
-"Utilisez la police de caractère monospace pour conserver le formatage."
+"Utilisez la police de caractère monospace pour conserver le préformatage."
 
 # une note
 #: ../src/glade/editnote.glade.h:7
@@ -23353,7 +23301,6 @@ msgstr "<b>Sélection du titre</b>"
 msgid "Abbreviation:"
 msgstr "Abréviation :"
 
-# trunk
 #: ../src/glade/mergedata.glade.h:6
 msgid "Gramps ID:"
 msgstr "id Gramps :"
@@ -23498,7 +23445,6 @@ msgstr "Métrique"
 msgid "Orientation:"
 msgstr "Orientation :"
 
-# trunk
 #: ../src/glade/papermenu.glade.h:7
 msgid "Paper Settings"
 msgstr "Propriétés du papier"
@@ -23573,7 +23519,6 @@ msgstr "Supprimer l'élément sélectionné du livre"
 msgid "Save current set of configured selections"
 msgstr "Enregistrer la configuration en cours"
 
-# trunk
 #: ../src/plugins/tool/changenames.glade.h:1
 msgid ""
 "Below is a list of the family names that \n"
@@ -23674,7 +23619,6 @@ msgstr "Familles"
 msgid "File:"
 msgstr "Fichier :"
 
-# trunk
 #: ../src/plugins/import/importgedcom.glade.h:12
 msgid "Gramps - GEDCOM Encoding"
 msgstr "Gramps - Encodage GEDCOM"
@@ -23716,7 +23660,6 @@ msgstr "Veuillez patienter, cela peut prendre quelques instants."
 msgid "Use soundex codes"
 msgstr "Utiliser les codes SoundEx"
 
-# trunk
 #: ../src/plugins/tool/patchnames.glade.h:1
 msgid ""
 "Below is a list of the nicknames, titles and family name prefixes that Gramps can extract from the \n"
@@ -23735,7 +23678,6 @@ msgstr "_Accepter et fermer"
 msgid "- default -"
 msgstr "- défaut -"
 
-# trunk
 #: ../src/plugins/tool/phpgedview.glade.h:2
 msgid "<b>phpGedView import</b>"
 msgstr "<b>Importation phpGedView</b>"
@@ -23744,7 +23686,6 @@ msgstr "<b>Importation phpGedView</b>"
 msgid "Password:"
 msgstr "Mot de passe :"
 
-# trunk
 #: ../src/plugins/tool/phpgedview.glade.h:6
 msgid "Username:"
 msgstr "Nom d'utilisateur :"
@@ -23753,7 +23694,6 @@ msgstr "Nom d'utilisateur :"
 msgid "http://"
 msgstr "http://"
 
-# trunk
 #: ../src/plugins/tool/phpgedview.glade.h:8
 msgid "phpGedView import"
 msgstr "Importation phpGedView"
@@ -23926,7 +23866,6 @@ msgstr "Estimer les a_bsences de dates"
 msgid "_Identify invalid dates"
 msgstr "_Identifie les dates invalides"
 
-# trunk
 #: ../data/gramps.desktop.in.h:1
 msgid "Gramps Genealogy System"
 msgstr "Gramps système de généalogie"
@@ -23935,19 +23874,16 @@ msgstr "Gramps système de généalogie"
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Gestion des informations généalogiques, optimisation de la recherche et de l'analyse"
 
-# trunk
 #: ../data/gramps.keys.in.h:3
 #: ../data/gramps.xml.in.h:3
 msgid "Gramps XML database"
 msgstr "Base de données Gramps XML"
 
-# trunk
 #: ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
 msgid "Gramps database"
 msgstr "Base de données Gramps"
 
-# trunk
 #: ../data/gramps.keys.in.h:5
 #: ../data/gramps.xml.in.h:5
 msgid "Gramps package"
@@ -23957,326 +23893,262 @@ msgstr "Paquet Gramps"
 msgid "GeneWeb source file"
 msgstr "Fichier source GeneWeb"
 
-# trunk
+# Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b><br/>To add children in Gramps there are two options. You can find one of their parents in the Families View and open the family. Then choose to create a new person or add an existing person. You can also add children (or siblings) from inside the Family Editor."
-msgstr "<b>Ajout d'enfants</b><br/>Pour ajouter des enfants dans Gramps il y a deux options. Vous pouvez trouver l'un des deux parents dans la vue Famille et ouvrir la famille. Puis choisissez de créer un enfant ou d'ajouter un individu existant. Vous pouvez également ajouter des enfants (ou des frères et sœurs) depuis l'éditeur de famille."
+msgstr "<b>Ajout d'enfants</b><br/>Pour ajouter des enfants dans Gramps il y a deux options. Vous pouvez trouver l'un des deux parents dans la vue Familles et ouvrir la famille. Puis choisissez de créer un enfant ou d'ajouter un individu existant. Vous pouvez également ajouter des enfants (ou des frères et sœurs) depuis l'éditeur de famille."
 
-# trunk
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Adding Images</b><br/>An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser. Actually you can add any type of file like this, useful for scans of documents and other digital sources."
 msgstr "<b>Ajout d'images</b><br/>Une image peut être ajoutée à n'importe quelle galerie par un simple glisser-déposer depuis un gestionnaire de fichiers ou un navigateur internet. Actuellement vous pouvez ajouter tout type d'images, c'est pratique pour les numérisations de documents ou d'autres sources."
 
-# trunk
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and setting. Play with the settings to see the different options."
-msgstr "<b>La Vue Lignée</b><br/> La vue Lignée affiche un arbre traditionnel. Gardez la souris au-dessus d'un individu pour afficher plus d'informations le concernant. Faites un clic droit sur un individu pour afficher un menu contextuel qui vous permettra d'accéder rapidement au conjoint, aux enfants ou aux parents. Regardez la configuration pour accéder aux différentes options."
+msgstr "<b>La Vue Lignée</b><br/>La vue Lignée affiche un arbre traditionnel. Gardez la souris au-dessus d'un individu pour afficher plus d'informations le concernant. Faites un clic droit sur un individu pour afficher un menu contextuel qui vous permettra d'accéder rapidement aux conjoints, aux enfants ou aux parents. Jouez avec la configuration pour trouver les différentes options."
 
-# trunk
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; Book Report...&quot;, allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
 msgstr "<b>Les rapports de livre</b><br/>Rapport &gt; Livres &gt; Gestionnaire de Livres permet aux utilisateurs une multitude de rapports dans un seul document. Ce rapport unique est plus facile à partager que de nombreux rapports, surtout pour l'impression."
 
-# Substantif (GNOME fr)
-# trunk
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects."
 msgstr "<b>Signets</b><br/>Le menu Signets conserve les noms des objets utilisés fréquemment sous forme de signet. Cliquez sur un de ces signets rendra l'objet actif. Pour créer le signet, rendez l'objet désiré actif et sélectionnez &quot;Signets &gt; Ajouter un signet&quot; ou appuyez sur Ctrl+D."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported."
 msgstr "<b>Calcul des relations</b><br/> L'outil, sous &quot;Outils &gt; Utilitaires &gt; Calcul Relationnel&quot; vous permet de vérifier si personne d'autre dans la famille ne vous est relié (par le sang, non marié). Les relations précises tout comme les ascendants communs sont rapportés."
 
-# trunk
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
 msgstr "<b>Changement de personne active</b><br/>Le changement de la personne active dans les vues est simple. Dans la vue Relations, cliquez simplement sur quelqu'un. Dans la vue Lignée, cliquez deux fois sur un individu ou utilisez le menu contextuel par un clic du bouton droit de la souris pour sélectionner les conjoints, frères et sœurs, enfants ou parents."
 
 # Substantif (GNOME fr) (aider sonne bien)
-# trunk
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr "<b>Aider Gramps</b><br/>Vous voulez aider Gramps mais vous ne pouvez pas programmer ? Ce n'est pas un problème. Pour un aussi grand projet que Gramps les besoins sont divers. Documentation ou tests des versions en développement font parti de l'aide recherchée. Commencez par vous inscrire à la liste des développeurs de Gramps, gramps-devel. Les modalités d'inscription sont disponibles sur lists.sf.net."
 
-# trunk
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Directing Your Research</b><br/>Go from what you know to what you do not. Always record everything that is known before making conjectures. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
 msgstr "<b>Direction de vos recherches</b><br/>Allez de ce que vous savez vers ce que vous ne savez pas. Enregistrez toujours tout ce qui est connu avant de faire des hypothèses. Connaître les faits avérés permet souvent de déterminer des directions de recherche. Ne perdez pas de temps à consulter des milliers de documents dans l'espoir de trouver une piste alors que celles qui vous avez ne sont pas encore explorées."
 
-# trunk
 #: ../src/data/tips.xml.in.h:10
 msgid "<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find Possible Duplicate People...&quot; allows you to locate (and merge) entries of the same person entered more than once in the database."
-msgstr "<b>Entrées doubles</b><br/> L'outil &quot;Modification de la base de données &gt; Recherche de doublons&quot;  vous permet de trouver et éventuellement de fusionner les entrées d'un même individu."
+msgstr "<b>Entrées doubles</b><br/> L'outil &quot;Modification de la base de données &gt; Recherche de doublons&quot; vous permet de trouver et éventuellement de fusionner les entrées d'un même individu."
 
-# trunk
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the Relationship Editor."
-msgstr "<b>Édition d'objets</b><br/>Dans la plupart des cas, en double-cliquant sur un nom, une source, un lieu ou un media, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquez sur un parent ou un enfant ouvre l'éditeur de relations."
+msgstr "<b>Édition d'objets</b><br/>Dans la plupart des cas, en double-cliquant sur un nom, une source ou un lieu, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquez sur un parent ou un enfant ouvre l'éditeur de relations."
 
-# trunk
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to it's parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
 msgstr "<b>Édition de la relation parent-enfant</b><br/>Vous pouvez éditer la relation d'un enfant avec ses parents en cliquant deux fois sur l'enfant dans l'éditeur de famille. Les relations peuvent être du type Adopté, Naissance, Aucun, Enfant du conjoint, En nourrice, Parrainé et Inconnu."
 
-# trunk
 #: ../src/data/tips.xml.in.h:13
 msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; Extra Reports/Tools&quot;. This is the best way for advanced users to experiment and create new functionality."
 msgstr "<b>Rapports et outils supplémentaires</b><br/>Des outils et rapports supplémentaires peuvent être ajoutés à Gramps via un système &quot;Addon&quot;. Voir sous &quot;Aide &gt; Rapports/Outils supplémentaires&quot;. C'est le meilleur moyen pour les utilisateurs avancés d'expérimenter et de créer de nouvelles fonctionnalités."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/data/tips.xml.in.h:14
 msgid "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgstr "<b>Filtrage des individus</b><br/>Dans la vue Individus, vous pouvez filtrer les individus selon plusieurs critères. Sélectionnez &quot;Affichage &gt; Barre de filtre&quot; et choisissez un des nombreux filtres présents. Par exemple, les enfants adoptés peuvent être localisés. Les individus sans date de naissance peuvent également être filtrés. Pour obtenir ce tri, cliquez sur Rechercher. Si la barre de filtre n'est pas visible, activez-la par Affichage &gt; Barre de filtre."
 
-# trunk
 #: ../src/data/tips.xml.in.h:15
 msgid "<b>Filters</b><br/>Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created limited only by your imagination. Custom filters are created from &quot;Edit &gt; Person Filter Editor&quot;."
 msgstr "<b>Les filtres</b><br/>Les filtres permettent de limiter l'affichage dans la vue Individus. En plus des filtres prédéfinis, d'autres filtres (personnalisés) peuvent être créés ce qui ne limite ces filtres qu'à votre imagination. Ces filtres sont éditables via <b>Édition &gt; Éditeur de filtre sur l'individu</b>."
 
-# trunk
 #: ../src/data/tips.xml.in.h:16
 msgid "<b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr "<b>Les annonces Gramps</b><br/>Vous voulez être alerté par la sortie des dernières versions de Gramps ? Rejoignez-nous sur la liste gramps-annonce via &quot;Aide &gt; Listes Gramps&quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
 msgstr "<b>Gramps mailing listes</b><br/>Vous voulez des réponses à vos questions sur Gramps ? Allez voir la liste des utilisateurs de Gramps (gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez ainsi avoir une réponse rapide. Si vous avez des questions sur le développement de Gramps, essayez gramps-devel. Toutes les informations sur les listes de diffusion peuvent être trouvées sur lists.sf.net. Vous pouvez également y accéder en sélectionnant &quot;Aide &gt; Listes Gramps&quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:18
 msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for you family tree then there's a report for that as well."
 msgstr "<b>Rapports Gramps</b><br/>Gramps permet d'éditer de nombreux rapports. Le rapport de texte est particulièrement utile si vous voulez diffuser votre arbre généalogique aux membres de votre famille sur support numérique (message électronique, CD, etc.)."
 
-# trunk
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow you to undertake operations such as checking the database for errors and consistency. There are research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and many others. All tools can be accessed through the &quot;Tools&quot; menu."
 msgstr "<b>Les outils Gramps</b><br/>Gramps possède des outils puissants. Ils permettent d'exécuter des opérations comme la recherche d'erreurs et d'inconstance de la base de données, aussi bien que la recherche et l'analyse via la comparaison d'événements, de trouver des doublons d'individus, d'utiliser un navigateur de descendants, etc. Ces outils sont accessibles par le menu &quot;Outils&quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:20
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
 msgstr "<b>Les traductions</b><br/>Gramps est prévu pour que toutes nouvelles traductions puissent facilement être ajoutées avec un minimum d'effort. Si vous êtes intéressé(e) pour participer à sa traduction, envoyez un message à la liste gramps-devel@lists.sf.net."
 
-# trunk
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
 
-# trunk
 #: ../src/data/tips.xml.in.h:22
 msgid "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed."
 msgstr "<b>Hello, привет or 喂</b><br/>Quel que soit vos caractères, Gramps offre un support unicode total. Les caractères de chaque langue s'affichent correctement."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/data/tips.xml.in.h:23
 msgid "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to Gramps. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by going to http://bugs.gramps-project.org and creating a Feature Request. Filing a Feature Request is preferred but it can be good to discuss your ideas on the email lists."
 msgstr "<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer des améliorations pour Gramps. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/. Il est également apprécié d'en discuter sur l'une des listes Gramps."
 
-# trunk
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a redish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
-msgstr "<b>Dates incorrectes</b> <br/>Tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le format de la date est défini dans &quot;Édition &gt; Préférences &gt; Affichage&quot;."
+msgstr "<b>Dates incorrectes</b><br/>Tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le format de la date est défini dans &quot;Édition &gt; Préférences &gt; Affichage&quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
 msgstr "<b>Filtre inversé</b><br/>Les filtres peuvent facilement être inversés en utilisant l'option &quot;Inverser les résultats&quot;. Par exemple, en inversant &quot;Individus avec enfants&quot; vous obtenez tous les individus sans enfant."
 
-# trunk
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>Keeping Good Records</b><br/>Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
-msgstr "<b>Conservez de bons enregistrements</b><br/>Soyez précis quand vous enregistrez vos informations généalogiques. Évitez les hypothèses quand vous éditez les informations principales ; écrivez-les exactement comme vous les avez vues. Utilisez des parenthèses pour vos ajouts, suppressions ou commentaires. Utiliser la locution latine &quot;sic&quot; pour confirmer la fidélité de la transcription et indiquer ainsi ce qui pourrait être une erreur des sources."
+msgstr "<b>Conservez de bons enregistrements</b><br/>Soyez précis quand vous enregistrez vos informations généalogiques. Évitez les hypothèses quand vous éditez les informations principales ; écrivez-les exactement comme vous les avez vues. Utilisez des parenthèses pour vos ajouts, suppressions ou commentaires. La locution latine 'sic' est recommandée pour confirmer la fidélité de la transcription et indiquer ainsi ce qui pourrait être une erreur des sources."
 
-# trunk
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
 msgstr "<b>Les raccourcis claviers</b><br/>Fatigué(e) de lâcher le clavier pour la souris ? De nombreuses fonctions de Gramps possèdent un raccourci clavier. Ils sont renseignés sur la droite des menus."
 
-# trunk
 #: ../src/data/tips.xml.in.h:28
 msgid "<b>Listing Events</b><br/>Events are added using the editor opened with &quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of preset event types. You can add your own event types by typing in the text field, they will be added to the available events, but not translated."
 msgstr "<b>Liste des événéments</b><br/>Les événements sont ajoutés en utilisant l'éditeur disponible dans l'&quot;Individus &gt; Édition de l'individu &gt; Événements&quot;. Il existe une longue liste de types d'événement. Vous pouvez ajouter vos propres types d'événements en les saisissant dans le champ textuel, ils seront ajoutés à la liste des événements disponibles, mais non-traduits."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/data/tips.xml.in.h:29
 msgid "<b>Locating People</b><br/>By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter."
 msgstr "<b>Localisation des individus</b><br/>Par défaut, chaque nom de famille dans la vue Individus est listé une seule fois. Cliquez sur la flèche à la gauche du nom pour dérouler la liste et afficher tous les individus avec le même patronyme. Pour retrouver un nom de famille dans une longue liste, sélectionnez un nom de famille (pas une personne) et commencez par saisir. La vue va automatiquement trouver les premiers noms de famille qui correspondent aux premières lettres entrées."
 
-# trunk
 #: ../src/data/tips.xml.in.h:30
 msgid "<b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web. The Gramps project provides free hosting of websites made with Gramps."
 msgstr "<b>Faire un site internet</b><br/>Vous pouvez facilement exporter votre arbre vers une page internet. Sélectionnez toute la base, une lignée ou un individu vers un ensemble de pages internet prêtes à être mises sur le World Wide Web. Le projet Gramps fournit un hébergement gratuit pour les sites internet générés avec Gramps."
 
-# trunk
 #: ../src/data/tips.xml.in.h:31
 msgid "<b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the prefered name by dragging it to the Prefered Name section."
 msgstr "<b>Gestion des noms</b><br/>Il est facile de gérer des individus avec plusieurs noms dans Gramps. Dans l'éditeur d'individu, sélectionnez l'onglet Noms. Vous pouvez ajouter différents types et de définir le nom préféré en le glissant dans la section Nom d'usage."
 
 # comté, province (Canada, Belgique)
-# trunk
 #: ../src/data/tips.xml.in.h:32
 msgid "<b>Managing Places</b><br/>The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
 msgstr "<b>Gérer les lieux</b><br/>La vue Lieux affiche une liste de lieux. Cette liste peut être triée selon différents critères, comme la ville, le département (comté) ou la région (province)."
 
-# trunk
 #: ../src/data/tips.xml.in.h:33
 msgid "<b>Managing Sources</b><br/>The Sources View shows a list of all sources in a single window. From here you can edit your sources, merge duplicates and see which individuals reference each source. You can use filters to group your sources."
 msgstr "<b>Gérer les sources</b><br/>La vue Sources affiche une liste de toutes les sources. Double-cliquez sur une source pour l'éditer, lui ajouter des notes ou consulter la liste des individus qui la référencent."
 
-# trunk
 #: ../src/data/tips.xml.in.h:34
 msgid "<b>Media View</b><br/>The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
 msgstr "<b>La vue Media</b><br/>La vue Media affiche une liste de tous les media. Ces media peuvent être des images, des vidéos, des fichiers audio, des documents bureautique, etc."
 
-# trunk
 #: ../src/data/tips.xml.in.h:35
 msgid "<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge...&quot; allows you to combine separately listed people into one. Select the second entry by holding the Control key as you click. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual. This also works for the Places, Sources and Repositories views."
 msgstr "<b>Fusionner des entrées</b><br/>La fonction &quot;Fusionner&quot; vous permet de combiner les personnes listées séparément en une seule liste. C'est très utile pour fusionner deux bases de données dont les individus se chevauchent ou pour combiner deux fiches d'une même personne entrée avec des noms différents. Ceci fonctionne également pour les lieux, les sources et les dépôts."
 
-# trunk
 #: ../src/data/tips.xml.in.h:36
 msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active object such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
-msgstr "<b>Navigateur Précédent et Suivant</b><br/>Gramps conserve une liste des objets actifs tels que les individus, événements lorsque vous naviguez dans votre base de données. Vous pouvez avancer et reculer dans la liste à l'aide de &quot;Aller à &gt; Suivant&quot; et &quot;Aller à  &gt; Précédent&quot;."
+msgstr "<b>Navigation Précédent et Suivant</b><br/>Gramps conserve une liste des objets actifs tels que les individus, événements lorsque vous naviguez dans votre base de données. Vous pouvez avancer et reculer dans la liste à l'aide de &quot;Aller à &gt; Suivant&quot; et &quot;Aller à  &gt; Précédent&quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:37
 msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
 msgstr "<b>No Speaka de English ?</b><br/>Gramps a été traduit dans plus de 20 langues. Si Gramps existe dans votre langue et qu'elle ne s'affiche pas, activez la langue par défaut de votre système et redémarrez Gramps."
 
-# trunk
 #: ../src/data/tips.xml.in.h:38
 msgid "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative."
-msgstr "<b>Logiciel libre et open sources</b><br/>Le modèle de développement Free/Libre et Open Source Software (FLOSS) signifie que Gramps peut être étendu par un programmeur tant que le code source est librement disponible sous cette licence. Il ne s'agit pas seulement de la gratuité, c'est également la liberté de l'étudier et le modifier. Pour plus d'informations sur les logiciels libres et l'open source vous pouvez consulter les projets de la Free Software Foundation et de l'Open Source Initiative."
+msgstr "<b>Logiciel libre et open sources</b><br/>Le modèle de développement Free/Libre et Open Source Software (FLOSS) signifie que Gramps peut être étendu par un programmeur tant que le code source est librement disponible sous cette licence. Il ne s'agit pas seulement de la gratuité, c'est également la liberté d'étudier et de modifier. Pour plus d'informations sur les logiciels libres et l'open source vous pouvez consulter les projets de la Free Software Foundation et de l'Open Source Initiative."
 
-# trunk
 #: ../src/data/tips.xml.in.h:39
 msgid "<b>Ordering Children in a Family</b><br/>The birth order of children in a family can be set by using drag and drop. This order is preserved even when they do not have birth dates."
 msgstr "<b>Tri des enfants dans la famille</b><br/>L'ordre de naissance des enfants dans la famille peut être défini en utilisant le glisser-déposer. Cet ordre est préservé même si vous n'avez pas de dates de naissance."
 
-# trunk
 #: ../src/data/tips.xml.in.h:40
 msgid "<b>Organising the Views</b><br/>Many of the views can presented your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
 msgstr "<b>Organisation des vues</b><br/>Quelques vues peuvent représenter vos données soit sous forme d'arbre hiérarchisé soit sous forme de simple liste. Chaque vue peut également être configurée comme vous le souhaitez. Regardez à la droite de la barre d'outils ou dans le menu &quot;Affichage&quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:41
 msgid "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public."
 msgstr "<b>La vie privée dans Gramps</b><br/>Gramps vous aide à conserver les informations personnelles en sécurité par la possibilité de marquer des informations comme privées. Les données privées peuvent être exclues des rapports et des exportations."
 
-# trunk
 #: ../src/data/tips.xml.in.h:42
 msgid "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;Help &gt; User Manual&quot;. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
 msgstr "<b>La lecture du manuel</b><br/>N'oubliez pas de lire le manuel d'utilisation de Gramps, &quot;Aide &gt; Manuel utilisateur&quot;. Les développeurs ont travaillé dur pour permettre que la plupart des options soient intuitives mais le manuel comprend des informations qui vous feront gagner du temps et de l'efficacité."
 
-# trunk
 #: ../src/data/tips.xml.in.h:43
 msgid "<b>Record Your Sources</b><br/>Information collected about your family is only as good as the source it came from. Take the time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
 msgstr "<b>Enregistrez vos sources</b><br/>Les informations collectées sur votre famille restent la seule véritable source. Prenez le temps d'enregistrer tous les détails de vos informations. Chaque fois que c'est possible, demandez une copie des documents originaux."
 
-# trunk
 #: ../src/data/tips.xml.in.h:44
 msgid "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
 msgstr "<b>Rapporter un problème dans Gramps</b><br/>Le meilleur moyen de rapporter un bogue dans Gramps est d'utiliser le système de suivi de bogue, http://bugs.gramps-project.org"
 
-# trunk
 #: ../src/data/tips.xml.in.h:45
 msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each seperate view can also be configured under &quot;View &gt; Configure View...&quot;"
-msgstr "<b>Définir vos préférences</b><br/>&quot;Édition &gt; Préférences...&quot; vous permet de modifier des options de configuration, tel que le chemin vers vos fichiers media et d'ajuster selon vos besoins certains aspects liés à la représentation dans Gramps. Chaque vue séparée peut également être configurée sous &quot;Vue &gt; Configurer la vue...&quot;."
+msgstr "<b>Définir vos préférences</b><br/>&quot;Édition &gt; Préférences...&quot; vous permet de modifier des options de configuration, tel que le chemin vers vos fichiers media et d'ajuster selon vos besoins certains aspects liés à la représentation dans Gramps. Chaque vue séparée peut également être configurée sous &quot;Affichage &gt; Configurer la vue...&quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:46
 msgid "<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case Gramps is wrong in making this choice, you can override the filter by checking the Show All checkbutton."
-msgstr "<b>Afficher tous les choix</b><br/>Quand vous ajoutez un conjoint ou un enfant, la liste des individus est filtrée pour n'afficher que les individus pouvant avoir ce statut (basé sur les dates de la base de données). Si Gramps a tort, vous pouvez imposer ce filtre en cochant &quot; Tout Afficher &quot;."
+msgstr "<b>Afficher tous les choix</b><br/>Quand vous ajoutez un conjoint ou un enfant, la liste des individus est filtrée pour n'afficher que les individus pouvant avoir ce statut (basé sur les dates de la base de données). Si Gramps a tort, vous pouvez ignorer ce filtre en cochant &quot; Tout Afficher &quot;."
 
-# trunk
 #: ../src/data/tips.xml.in.h:47
 msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stand for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
 msgstr "<b>Que fait Gramps ?</b><br/>Le nom Gramps a été suggéré au développeur original, Don Allingham, par son père, pour définir <i>Genealogical Research et Analysis Management Program System</i>. Il s'agit d'un programme de généalogie avec des fonctions vous permettant de stocker, éditer et rechercher vos données généalogiques. La base de données est robuste, ainsi certains utilisateurs gèrent près de 100 000 individus."
 
-# trunk
 #: ../src/data/tips.xml.in.h:48
 msgid "<b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx Codes...&quot;."
 msgstr "<b>SoundEx peut vous aider dans vos recherches familiales</b><br/>SoundEx résout un grand problème en généalogie ---Comment retranscrire les variations d'orthographe. L'utilitaire SoundEx choisit un patronyme et génère une forme simplifiée de ses équivalences. Connaître le code SoundEx d'un patronyme est très utile pour les recensements (microfiche) à la bibliothèque ou autre. Pour obtenir le code SoundEx d'un patronyme, sélectionnez &quot;Outils &gt; Utilitaires &gt; Générer les codes SoundEx&quot;."
 
-# Substantif (GNOME fr)
-# trunk
 #: ../src/data/tips.xml.in.h:49
 msgid "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people."
 msgstr "<b>Un nouvel arbre généalogique</b><br/>Une bonne idée pour commencer une généalogie est d'éditer tous les membres de votre famille dans une base de données (utilisez &quot;Édition &gt; Ajouter&quot; ou cliquez sur le bouton &quot;Ajouter&quot; dans la vue Individus). Puis allez dans la vue Relations et créez les relations entre les individus."
 
-# trunk
 #: ../src/data/tips.xml.in.h:50
 msgid "<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr "<b>Parlez à vos grand parents avant qu'il soit trop tard</b><br/>Vos plus anciens parents peuvent être la plus importante source d'informations. Ils savent des choses qui ne seront jamais écrites. Ils peuvent vous fournir de vraies pépites et vous conduire sur des nouvelles pistes. Enfin, vous entendrez des histoires passionnantes. N'oubliez pas d'enregistrer vos conversations !"
+msgstr "<b>Parlez à vos grand parents avant qu'il ne soit trop tard</b><br/>Vos plus anciens parents peuvent être la plus importante source d'informations. Ils savent des choses qui ne seront jamais écrites. Ils peuvent vous fournir de vraies pépites et vous conduire sur des nouvelles pistes. Enfin, vous entendrez des histoires passionnantes. N'oubliez pas d'enregistrer vos conversations !"
 
 # Récits pour Narratives plutôt que sagas...
-# trunk
 #: ../src/data/tips.xml.in.h:51
 msgid "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about dates and names. It is about people. Be descriptive. Include why things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
-msgstr "<b>Le 'Comment et Pourquoi' de votre généalogie</b><br/>La généalogie n'est pas seulement des dates et des noms. C'est aussi des individus. Soyez descriptif. Ajouter le <b>pourquoi</b> de chaque action, pour que vos descendants comprennent les événements. Les anecdotes sont un bon moyen de perpétuer l'histoire familiale."
+msgstr "<b>Le 'Comment et Pourquoi' de votre généalogie</b><br/>La généalogie ce n'est pas seulement des dates et des noms. C'est aussi des individus. Soyez descriptif. Ajoutez le <b>pourquoi</b> de chaque action, pour que vos descendants comprennent les événements. Les anecdotes sont un bon moyen de perpétuer l'histoire familiale."
 
-# trunk
 #: ../src/data/tips.xml.in.h:52
 msgid "<b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children."
-msgstr "<b>La vue familiale</b><br/>La vue Familles est utilisée pour afficher une famille classique --- les parents, conjoints et enfants d'un individu."
+msgstr "<b>La vue familiale</b><br/>La vue Familles est utilisée pour afficher une famille classique, les parents, conjoints et enfants d'un individu."
 
-# trunk
 #: ../src/data/tips.xml.in.h:53
 msgid "<b>The GEDCOM File Format</b><br/>Gramps allows you to import from, and export to, the GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange Gramps information to and from users of most other genealogy programs. Filters exist that make importing and exporting GEDCOM files trivial."
 msgstr "<b>Le format de fichier GEDCOM</b><br/>Gramps vous permet d'importer et d'exporter des fichiers GEDCOM. Il y a un bon support du standard GEDCOM version 5.5. Vous pouvez donc échanger vos données Gramps avec les utilisateurs de la plupart des autres logiciels de généalogie. Des filtres vous permettent d'importer et d'exporter les fichiers GEDCOM plus facilement."
 
-# trunk
 #: ../src/data/tips.xml.in.h:54
 msgid "<b>The Gramps Code</b><br/>Gramps is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. Gramps is supported on any computer system where these programs have been ported. Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr "<b>Le code de Gramps</b><br/>Gramps est écrit dans un langage informatique appelé Python. Il utilise les bibliothèques GTK et GNOME pour l'interface graphique. Gramps est supporté par tous les systèmes pour lesquels ces bibliothèques existent. Gramps fonctionne sous Linux, BSD, Solaris, Windows et Mac OS X."
 
-# trunk
 #: ../src/data/tips.xml.in.h:55
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/"
 msgstr "<b>La page du projet Gramps</b><br/>Le site internet de Gramps se trouve à http://gramps-project.org/"
 
-# trunk
 #: ../src/data/tips.xml.in.h:56
 msgid "<b>The Gramps Software License</b><br/>You are free to use and share Gramps with others. Gramps is freely distributable under the GNU General Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the rights and restrictions of this license."
 msgstr "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est librement distribué sous General Public Licence, voir http://www.gnu.org/licenses/licenses.html#GPL"
 
-# trunk
 #: ../src/data/tips.xml.in.h:57
 msgid "<b>The Gramps XML Package</b><br/>You can export your Family Tree as a Gramps XML Package. This is a compressed file containing your family tree data and all the media files connected to the database (images for example). This file is completely portable so is useful for backups or sharing with other Gramps users. This format has the key advantage over GEDCOM that no information is ever lost when exporting and importing."
 msgstr "<b>Le paquet Gramps XML</b><br/>Vous pouvez convertir vos données en un paquet Gramps. Ce paquet est un fichier compressé de votre arbre familial et il comprend tous les fichiers utilisés par la base de données, comme les media (les images par exemple). Ce fichier est totalement portable. Cela facilite les sauvegardes et le partage des données avec d'autres utilisateurs de Gramps. Ce format a l'avantage par rapport au GEDCOM de ne perdre aucune donnée lors de l'importation et de l'exportation."
 
-# trunk
 #: ../src/data/tips.xml.in.h:58
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
 msgstr "<b>La souche de l'arbre familial</b><br/>Dans Gramps, n'importe quel individu peut être défini comme souche. Utilisez &quot;Édition &gt; Définir comme souche&quot;. Cette personne est sélectionnée quand la base est ouverte ou quand vous cliquez sur le bouton Souche."
 
-# trunk
 #: ../src/data/tips.xml.in.h:59
 msgid "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more."
 msgstr "<b>Pas sûr(e) d'une date ?</b><br/>Si vous n'êtes pas sûr(e) d'une date ou d'un événement (naissance ou décès), Gramps vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans Gramps. Voir la section Édition des dates du manuel wiki de Gramps pour une description complète des options de date."
 
-# trunk
 #: ../src/data/tips.xml.in.h:60
 msgid "<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
 msgstr "<b>Le format Web Family Tree</b><br/>Gramps peut exporter des données au format Web Family Tree (WFT). Ce format permet à l'arbre généalogique de s'afficher dans un seul fichier plutôt qu'en plusieurs fichiers HTML."
 
-# trunk
 #: ../src/data/tips.xml.in.h:61
 msgid "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
 msgstr "<b>À quoi çà sert ?</b><br/>Incertain(e) de l'action d'un bouton ? Passez simplement la souris au-dessus et une info-bulle s'affichera."
 
-# trunk
 #: ../src/data/tips.xml.in.h:62
 msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results."
 msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels permet de comparer toutes les données des individus de la base. C'est utile si vous voulez une liste des dates de naissance de tous les individus de votre base. Vous pouvez utiliser un filtre personnalisé pour limiter les résultats."
 
-# trunk
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calenders. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
