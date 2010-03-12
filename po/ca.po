@@ -13430,7 +13430,7 @@ msgstr "Cop d'Ull a l'Any"
 #: ../src/plugins/webreport/WebCal.py:480
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
-msgstr "Created per a <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
+msgstr "Creat per a <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 
 #: ../src/plugins/webreport/WebCal.py:485
 #, python-format
@@ -23262,7 +23262,7 @@ msgid ""
 "introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr ""
 "<b>Contribuir a GRAMPS</b>: Vol ajudar amb GRAMPS però no sap programar? Cap "
-"problema. Un projecte tan gros com GRAMPS necessita gent a molta varietat de "
+"problema. Un projecte tan gros com GRAMPS necessita gent amb molta varietat de "
 "capacitats. Les contribucions poden anar des d'escriure documentació a "
 "provar versions de desenvolupament o ajudar amb el lloc web. Comenci "
 "subscrivint-se a la llista de distribució dels desenvolupadors de GRAMPS, "
@@ -23783,7 +23783,7 @@ msgid ""
 "computer system where these programs have been ported."
 msgstr ""
 "GRAMPS està escrit en el llenguatge de programació Python fent servir les "
-"llibreries GTK i GNOME per a l'interfície gràfica. GRAMPS està suportat per "
+"llibreries GTK i GNOME per a la interfície gràfica. GRAMPS està suportat per "
 "qualsevol sistema informàtic al qual s'hagin portat aquests programes."
 
 #: ../src/data/tips.xml.in.h:48
@@ -23857,7 +23857,7 @@ msgid ""
 "parent or child will bring up the relationship editor."
 msgstr ""
 "En la majoria de casos, fer un doble clic sobre un nom, font, lloc, o medi "
-"farà sortir una finestra que li permetrà editar l'objecte. Fixis que el "
+"farà sortir una finestra que li permetrà editar l'objecte. Fixi's que el "
 "resultat pot dependre del context. Per exemple, a la Vista de família, "
 "clicar en un pare o fill farà sortir l'editor de relacions."
 
@@ -23902,7 +23902,7 @@ msgid ""
 msgstr ""
 "La funció 'combinar' li permet de combinar persones llistades per separat en "
 "una de sola. Això és molt útil per combinar dues bases de dades que tinguin "
-"gent en comú, o combinar noms diferents introduits erròniament per un sol "
+"gent en comú, o combinar noms diferents introduïts erròniament per un sol "
 "individu."
 
 #: ../src/data/tips.xml.in.h:60
