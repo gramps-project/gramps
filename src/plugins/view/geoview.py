@@ -696,7 +696,7 @@ class GeoView(HtmlView):
             return
         if widget.get_active():
             self.last_year = widget
-            self._set_markersonpage(widget)
+            self._set_markers_and_crosshair_on_page(widget)
 
     def _ask_new_page(self, widget, data=None): # pylint: disable-msg=W0613
         """
@@ -972,9 +972,9 @@ class GeoView(HtmlView):
         self._savezoomandposition()
         if self.displaytype != "places":
             # Need to wait the page is loaded to set the markers.
-            gobject.timeout_add(1500, self._set_markersonpage, self.last_year)
+            gobject.timeout_add(1500, self._set_markers_and_crosshair_on_page, self.last_year)
 
-    def _set_markersonpage(self, widget):
+    def _set_markers_and_crosshair_on_page(self, widget):
         """
         get the year to select then call javascript
         """
@@ -993,6 +993,9 @@ class GeoView(HtmlView):
                 elif year != "no":
                     self.last_selected_year = year
                     self._call_js_selectmarkers(year)
+        self.renderer.execute_script("javascript:addcrosshair('%d','%s')" % 
+                      (self._config.get("preferences.crosshair"),
+                       self.crosspath))
 
     def _call_js_selectmarkers(self, year):
         """
