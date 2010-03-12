@@ -6,13 +6,14 @@
 pkgdatadir = $(datadir)/@PACKAGE@/DateHandler
 
 pkgdata_PYTHON = \
-        _Date_ca.py\
+	_Date_bg.py\
+	_Date_ca.py\
 	_Date_cs.py\
 	_Date_de.py\
 	_Date_es.py\
 	_Date_fi.py\
 	_Date_fr.py\
-        _Date_hr.py\
+	_Date_hr.py\
 	_Date_it.py\
 	_Date_lt.py\
 	_Date_nb.py\
