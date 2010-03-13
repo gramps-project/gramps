@@ -1798,6 +1798,9 @@ def get_relationship_calculator(reinit=False):
                 lang = locale.getdefaultlocale()[0]
             lang_set = False
         __RELCALC_CLASS = RelationshipCalculator
+        # If lang not set default to English relationship calulator
+        if not lang:
+            return __RELCALC_CLASS()
         # See if lang begins with en_, English_ or english_
         # If so return standard relationship calculator.
         enlang = lang.split('_')[0].lower()
