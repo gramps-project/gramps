@@ -2912,7 +2912,7 @@ msgstr "n"
 
 #: ../src/gen/lib/eventtype.py:193
 msgid "death abbreviation|d"
-msgstr "d"
+msgstr "f"
 
 #: ../src/gen/lib/eventtype.py:194
 msgid "marriage abbreviation|m"
@@ -7135,7 +7135,7 @@ msgstr "n."
 #: ../src/plugins/drawreport/DescendTree.py:48
 #: ../src/plugins/view/pedigreeview.py:77
 msgid "short for died|d."
-msgstr "d."
+msgstr "f."
 
 #: ../src/plugins/drawreport/AncestorTree.py:193
 #: ../src/plugins/drawreport/Calendar.py:93
@@ -8014,7 +8014,7 @@ msgstr "_XML Gramps (árbol genealógico)"
 
 #: ../src/plugins/export/export.gpr.py:134
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr ""
+msgstr "La exportación XML Gramps es una copia completa en formato XML de un árbol genealógico sin los archivos de los objetos audiovisuales.  Este formato es apropiado para salvaguardar la información."
 
 #: ../src/plugins/export/export.gpr.py:155
 msgid "vC_alendar"
@@ -8279,6 +8279,9 @@ msgid ""
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
+"Haga clic para expandir/contraer la persona\n"
+"Use el botón derecho para las opciones\n"
+"Pinche y arrastre en un área abierta para rotar"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:761
@@ -8393,7 +8396,7 @@ msgstr "Bloque de edad a una fecha"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramplet showing ages of living people on a specific date"
-msgstr ""
+msgstr "Bloque que muestra las edades de personas vivas en una fecha dada"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:38
 #: ../src/plugins/quickview/quickview.gpr.py:31
@@ -8407,7 +8410,7 @@ msgstr "Bloque de edad a una fecha"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
-msgstr ""
+msgstr "Bloque que muestra gráficos de diversas edades"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:50
 msgid "Age Stats"
@@ -8440,7 +8443,7 @@ msgstr "Bloque de calendario"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
 msgid "Gramplet showing calendar and events on specific dates in history"
-msgstr ""
+msgstr "Bloque que muestra el calendario y los eventos en fechas concretas en la historia"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:88
 msgid "Descendant Gramplet"
@@ -8448,7 +8451,7 @@ msgstr "Bloque de descendientes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
 msgid "Gramplet showing active person's descendants"
-msgstr ""
+msgstr "Bloque que muestra los descendientes de la persona activa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:95
 msgid "Descendants"
@@ -8460,16 +8463,15 @@ msgstr "Bloque de abanico"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:105
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
-msgstr ""
+msgstr "Bloque que muestra los ascendientes directos de la persona activa mediante un diagrama en abanico"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:120
-#, fuzzy
 msgid "FAQ Gramplet"
-msgstr "Bloque"
+msgstr "Bloque de preguntas frecuentes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:121
 msgid "Gramplet showing frequently asked questions"
-msgstr ""
+msgstr "Bloque que muestra las preguntas frecuentes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:126
 msgid "FAQ"
@@ -8481,7 +8483,7 @@ msgstr "Bloque de nube de nombres de pila"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:134
 msgid "Gramplet showing all given names as a text cloud"
-msgstr ""
+msgstr "Bloque que muestra todos los nombres de pila como una nube de texto"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:140
 msgid "Given Name Cloud"
@@ -8493,45 +8495,40 @@ msgstr "Bloque árbol de ascendientes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:148
 msgid "Gramplet showing active person's ancestors"
-msgstr ""
+msgstr "Bloque que muestra los ascendientes de la persona activa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:163
-#, fuzzy
 msgid "Plugin Manager Gramplet"
-msgstr "Bloque sin nombre"
+msgstr "Bloque gestor de módulos de extensión"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:164
 msgid "Gramplet showing available third-party plugins (addons)"
-msgstr ""
+msgstr "Bloque que muestra los módulos de extensión de terceros disponibles"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:170
 #: ../src/PluginUtils/_PluginWindows.py:193
-#, fuzzy
 msgid "Plugin Manager"
-msgstr "Gestor de objetos"
+msgstr "Gestor de módulos de extensión"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:177
-#, fuzzy
 msgid "Quick View Gramplet"
-msgstr "Vista rápida"
+msgstr "Bloque de vista rápida"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:178
 msgid "Gramplet showing an active item Quick View"
-msgstr ""
+msgstr "Bloque que muestra la vista rápida de un elemento activo"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:193
 msgid "Relatives Gramplet"
 msgstr "Bloque de relaciones"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:194
-#, fuzzy
 msgid "Gramplet showing active person's relatives"
-msgstr "Parientes de la persona activa"
+msgstr "Bloque que muestra los parientes de la persona activa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:199
-#, fuzzy
 msgid "Relatives"
-msgstr "Relacionados"
+msgstr "Parientes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:208
 msgid "Session Log Gramplet"
@@ -8539,7 +8536,7 @@ msgstr "Bloque de diario de la sesión"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:209
 msgid "Gramplet showing all activity for this session"
-msgstr ""
+msgstr "Bloque que muestra toda la actividad para esta sesión"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:215
 msgid "Session Log"
@@ -8550,9 +8547,8 @@ msgid "Statistics Gramplet"
 msgstr "Bloque de estadisticas"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:223
-#, fuzzy
 msgid "Gramplet showing summary data of the family tree"
-msgstr "Intentar ver todos los lugares del árbol genealógico."
+msgstr "Bloque que muestra los datos de resumen del árbol genealógico"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:236
 msgid "Surname Cloud Gramplet"
@@ -8560,7 +8556,7 @@ msgstr "Bloque de nube de apellidos"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:237
 msgid "Gramplet showing all surnames as a text cloud"
-msgstr ""
+msgstr "Bloque que muestra todos los apellidos como una nube de texto"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:243
 msgid "Surname Cloud"
@@ -8571,9 +8567,8 @@ msgid "TODO Gramplet"
 msgstr "Bloque de tareas pendientes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:251
-#, fuzzy
 msgid "Gramplet for generic notes"
-msgstr "Generaciones para el diagrama"
+msgstr "Bloque para notas genéricas"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:257
 msgid "TODO List"
@@ -8597,12 +8592,11 @@ msgstr "Bloque de bienvenida"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:278
 msgid "Gramplet showing a welcome message"
-msgstr ""
+msgstr "Bloque que muestra un mensaje de bienvenida"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:284
-#, fuzzy
 msgid "Welcome to Gramps!"
-msgstr "Bloque de bienvenida"
+msgstr "Bienvenido/a a Gramps"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:291
 #, fuzzy
@@ -8619,26 +8613,23 @@ msgstr ""
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:59
 #: ../src/plugins/gramplet/PedigreeGramplet.py:68
-#, fuzzy
 msgid "Max generations"
-msgstr "%d generaciones"
+msgstr "Generaciones máximas"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
 #: ../src/plugins/gramplet/PedigreeGramplet.py:69
-#, fuzzy
 msgid "Show dates"
-msgstr "Mostrar imágenes"
+msgstr "Mostrar fechas"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 #: ../src/plugins/gramplet/PedigreeGramplet.py:70
-#, fuzzy
 msgid "Line type"
-msgstr "Tipo de archivo"
+msgstr "Tipo de línea"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:218
-#, fuzzy, python-format
+#, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
-msgstr "Nació: %(birth_date)s, Falleció: %(death_date)s."
+msgstr "(n. %(birthdate)s, f. %(deathdate)s)"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:223
 #, python-format
@@ -13808,9 +13799,9 @@ msgstr "No se ha establecido una persona inicial."
 
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:188
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s and %(active_person)s are the same person."
-msgstr "%(person)s y %(active_person)s no están emparentados."
+msgstr "%(person)s y %(active_person)s son la misma persona."
 
 #: ../src/plugins/quickview/all_relations.py:89
 #: ../src/plugins/tool/RelCalc.py:197
@@ -13829,9 +13820,9 @@ msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr "%(person)s y %(active_person)s tienen los siguientes parentescos políticos:"
 
 #: ../src/plugins/quickview/all_relations.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "Relationships of %(person)s to %(active_person)s"
-msgstr "Parentescos de %s a %s"
+msgstr "Parentescos de %(person)s con %(active_person)s"
 
 #: ../src/plugins/quickview/all_relations.py:267
 #, python-format
@@ -13879,79 +13870,64 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr "Hay %d personas con un nombre de atributo que coinciden.\n"
 
 #: ../src/plugins/quickview/FilterByName.py:41
-#, fuzzy
 msgid "Filtering_on|all people"
-msgstr "Filtrando personas vivas"
+msgstr "todas las personas"
 
 #: ../src/plugins/quickview/FilterByName.py:42
-#, fuzzy
 msgid "Filtering_on|males"
-msgstr "Filtrando por %s"
+msgstr "hombres"
 
 #: ../src/plugins/quickview/FilterByName.py:43
-#, fuzzy
 msgid "Filtering_on|females"
-msgstr "Filtrando por %s"
+msgstr "mujeres"
 
 #: ../src/plugins/quickview/FilterByName.py:45
-#, fuzzy
 msgid "Filtering_on|people with unknown gender"
 msgstr "personas de sexo desconocido"
 
 #: ../src/plugins/quickview/FilterByName.py:47
-#, fuzzy
 msgid "Filtering_on|people with incomplete names"
 msgstr "personas con nombres incompletos"
 
 #: ../src/plugins/quickview/FilterByName.py:49
-#, fuzzy
 msgid "Filtering_on|people with missing birth dates"
 msgstr "personas sin fecha de nacimiento conocida"
 
 #: ../src/plugins/quickview/FilterByName.py:50
-#, fuzzy
 msgid "Filtering_on|disconnected people"
 msgstr "personas desconectadas"
 
 #: ../src/plugins/quickview/FilterByName.py:51
-#, fuzzy
 msgid "Filtering_on|all families"
-msgstr "Escribiendo familias"
+msgstr "todas las familias"
 
 #: ../src/plugins/quickview/FilterByName.py:52
-#, fuzzy
 msgid "Filtering_on|unique surnames"
 msgstr "apellidos distintos"
 
 #: ../src/plugins/quickview/FilterByName.py:53
-#, fuzzy
 msgid "Filtering_on|people with media"
 msgstr "personas que tienen audiovisuales"
 
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy
 msgid "Filtering_on|media references"
 msgstr "referencias a audivisuales"
 
 #: ../src/plugins/quickview/FilterByName.py:55
-#, fuzzy
 msgid "Filtering_on|unique media"
 msgstr "audiovisual distinto"
 
 #: ../src/plugins/quickview/FilterByName.py:56
-#, fuzzy
 msgid "Filtering_on|missing media"
 msgstr "audiovisual perdido"
 
 #: ../src/plugins/quickview/FilterByName.py:57
-#, fuzzy
 msgid "Filtering_on|media by size"
 msgstr "audiovisual por tamaño"
 
 #: ../src/plugins/quickview/FilterByName.py:58
-#, fuzzy
 msgid "Filtering_on|list of people"
-msgstr "Filtrando personas vivas"
+msgstr "lista de personas"
 
 #: ../src/plugins/quickview/FilterByName.py:71
 #: ../src/plugins/quickview/FilterByName.py:73
@@ -14129,9 +14105,8 @@ msgid "Display a person's events, both personal and family."
 msgstr "Mostrar los eventos de una persona, tanto personales como familiares."
 
 #: ../src/plugins/quickview/quickview.gpr.py:86
-#, fuzzy
 msgid "All Family Events"
-msgstr "Evento Familiar"
+msgstr "Todos los eventos familiares"
 
 #: ../src/plugins/quickview/quickview.gpr.py:87
 msgid "Display the family and family members events."
@@ -14184,13 +14159,12 @@ msgid "Display references for a %s"
 msgstr "Mostrar referencias a %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:230
-#, fuzzy
 msgid "Show Repository Reference"
-msgstr "Referencia a repositorio"
+msgstr "Mostrar referencia a repositorio"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
-msgstr ""
+msgstr "Mostrar la referencia al repositorio para las fuentes relacionadas con el repositorio activo"
 
 #: ../src/plugins/quickview/quickview.gpr.py:251
 msgid "Same Surnames"
@@ -14210,9 +14184,8 @@ msgid "Display people with the same given name as a person."
 msgstr "Agrupar todas las personas con el mismo nombre de pila que una persona."
 
 #: ../src/plugins/quickview/quickview.gpr.py:279
-#, fuzzy
 msgid "Same Given Names - stand-alone"
-msgstr "Mismos nombres de pila"
+msgstr "Mismos nombres de pila - Independiente"
 
 #: ../src/plugins/quickview/quickview.gpr.py:299
 msgid "Display a person's siblings."
@@ -14230,14 +14203,12 @@ msgid "No references for this %s"
 msgstr "No hay referencias para %s"
 
 #: ../src/plugins/quickview/Reporef.py:73
-#, fuzzy
 msgid "Type of media"
-msgstr "Tipo de diagrama"
+msgstr "Tipo de audiovisual"
 
 #: ../src/plugins/quickview/Reporef.py:73
-#, fuzzy
 msgid "Call number"
-msgstr "_Signatura:"
+msgstr "Signatura"
 
 #: ../src/plugins/quickview/SameSurnames.py:39
 msgid "People with incomplete surnames"
@@ -14314,9 +14285,8 @@ msgid "Substring:"
 msgstr "Subcadena:"
 
 #: ../src/plugins/quickview/SameSurnames.py:51
-#, fuzzy
 msgid "People matching the <surname>"
-msgstr "Personas que coinciden con <nombre>"
+msgstr "Personas que coinciden con <apellido>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
@@ -14373,9 +14343,8 @@ msgid "self"
 msgstr "la persona activa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:32
-#, fuzzy
 msgid "Czech Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco checo"
 
 #: ../src/plugins/rel/relplugins.gpr.py:33
 #: ../src/plugins/rel/relplugins.gpr.py:46
@@ -14393,84 +14362,68 @@ msgstr "Calculador de parentesco"
 #: ../src/plugins/rel/relplugins.gpr.py:230
 #: ../src/plugins/rel/relplugins.gpr.py:246
 #: ../src/plugins/rel/relplugins.gpr.py:260
-#, fuzzy
 msgid "Calculates relationships between people"
-msgstr "Calcula el parentesco entre dos personas"
+msgstr "Calcula el parentesco entre personas"
 
 #: ../src/plugins/rel/relplugins.gpr.py:45
-#, fuzzy
 msgid "Danish Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco danés"
 
 #: ../src/plugins/rel/relplugins.gpr.py:61
-#, fuzzy
 msgid "German Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco alemán"
 
 #: ../src/plugins/rel/relplugins.gpr.py:76
-#, fuzzy
 msgid "Spanish Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco español"
 
 #: ../src/plugins/rel/relplugins.gpr.py:91
-#, fuzzy
 msgid "Finnish Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco finlandés"
 
 #: ../src/plugins/rel/relplugins.gpr.py:106
-#, fuzzy
 msgid "French Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco francés"
 
 #: ../src/plugins/rel/relplugins.gpr.py:123
-#, fuzzy
 msgid "Croatian Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco croata"
 
 #: ../src/plugins/rel/relplugins.gpr.py:137
-#, fuzzy
 msgid "Hungarian Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco húngaro"
 
 #: ../src/plugins/rel/relplugins.gpr.py:150
-#, fuzzy
 msgid "Italian Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco italiano"
 
 #: ../src/plugins/rel/relplugins.gpr.py:163
-#, fuzzy
 msgid "Dutch Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco neerlandés"
 
 #: ../src/plugins/rel/relplugins.gpr.py:180
-#, fuzzy
 msgid "Norwegian Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco noruego"
 
 #: ../src/plugins/rel/relplugins.gpr.py:197
-#, fuzzy
 msgid "Polish Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco polaco"
 
 #: ../src/plugins/rel/relplugins.gpr.py:213
-#, fuzzy
 msgid "Portuguese Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco portugués"
 
 #: ../src/plugins/rel/relplugins.gpr.py:229
-#, fuzzy
 msgid "Russian Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco ruso"
 
 #: ../src/plugins/rel/relplugins.gpr.py:245
-#, fuzzy
 msgid "Slovak Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco eslovaco"
 
 #: ../src/plugins/rel/relplugins.gpr.py:259
-#, fuzzy
 msgid "Swedish Relationship Calculator"
-msgstr "Calculador de parentesco"
+msgstr "Calculador de parentesco sueco"
 
 #: ../src/plugins/textreport/AncestorReport.py:178
 #, python-format
@@ -14498,9 +14451,8 @@ msgid "Indicates if a line break should follow the name."
 msgstr "Indica si el nombre debe estar seguido por un salto de línea."
 
 #: ../src/plugins/textreport/AncestorReport.py:272
-#, fuzzy
 msgid "Translation"
-msgstr "Graduación"
+msgstr "Traducción"
 
 #: ../src/plugins/textreport/AncestorReport.py:274
 #: ../src/ReportBase/_StyleComboBox.py:65
@@ -14510,9 +14462,8 @@ msgid "default"
 msgstr "predefinido"
 
 #: ../src/plugins/textreport/AncestorReport.py:277
-#, fuzzy
 msgid "The translation to be used for the report."
-msgstr "La extensión a utilizar para los archivos web"
+msgstr "La traducción a utilizar para el reporte."
 
 #: ../src/plugins/textreport/AncestorReport.py:334
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -14750,15 +14701,13 @@ msgstr "Si se deben listar los hijos."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:687
 #: ../src/plugins/textreport/DetDescendantReport.py:776
-#, fuzzy
 msgid "Compute death age"
-msgstr "Calcular edad"
+msgstr "Calcular edad de defunción"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:688
 #: ../src/plugins/textreport/DetDescendantReport.py:777
-#, fuzzy
 msgid "Whether to compute a person's age at death."
-msgstr "Si se debe calcular la edad."
+msgstr "Si se debe calcular la edad de una persona a su defunción."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:691
 #: ../src/plugins/textreport/DetDescendantReport.py:780
@@ -14870,14 +14819,13 @@ msgstr "Si se deben incluir referencias a las fuentes."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:825
-#, fuzzy
 msgid "Include sources notes"
-msgstr "Incluir fuentes"
+msgstr "Incluir notas para las fuentes"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetDescendantReport.py:826
 msgid "Whether to include source notes in the Endnotes section. Only works if Include sources is selected."
-msgstr ""
+msgstr "Si se deben incluir notas de las fuentes en la sección de Notas finales,  Sólo es efectivo si se ha seleccionado incluir fuentes."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:740
 #: ../src/plugins/textreport/DetDescendantReport.py:846
@@ -14935,29 +14883,27 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Reporte detallado para %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:742
-#, fuzzy
 msgid "Numbering system"
-msgstr "El número debe ser:"
+msgstr "Sistema de numeración"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:744
-#, fuzzy
 msgid "Henry numbering"
-msgstr "Números de día del mes"
+msgstr "Numeración Henry"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:745
 msgid "d'Aboville numbering"
-msgstr ""
+msgstr "Numeración d'Aboville"
 
+# TBC
 #: ../src/plugins/textreport/DetDescendantReport.py:747
 msgid "Record (Modified Register) numbering"
-msgstr ""
+msgstr "Numeración"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:748
 msgid "The numbering system to be used"
-msgstr ""
+msgstr "El sistema de numeración a utilizar"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:784
-#, fuzzy
 msgid "Use complete sentences"
 msgstr "Usar frases completas"
 
@@ -14979,13 +14925,12 @@ msgid "Whether to include a sign ('+') before the descendant number in the child
 msgstr ""
 
 #: ../src/plugins/textreport/DetDescendantReport.py:841
-#, fuzzy
 msgid "Include path to start-person"
-msgstr "Incluir parentesco con la persona inicial"
+msgstr "Incluir línea con la persona inicial"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:842
 msgid "Whether to include the path of descendancy from the start-person to each descendant."
-msgstr ""
+msgstr "Si se debe incluir la línea de descendencia con la persona inicial para cada descendiente."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:137
 #, python-format
@@ -15030,9 +14975,9 @@ msgid "acronym for female|F"
 msgstr "F"
 
 #: ../src/plugins/textreport/FamilyGroup.py:437
-#, fuzzy, python-format
+#, python-format
 msgid "acronym for unknown|%dU"
-msgstr "M"
+msgstr "%d?"
 
 #: ../src/plugins/textreport/FamilyGroup.py:531
 #, python-format
@@ -15147,9 +15092,8 @@ msgstr "Si se deben incluir campos para la información que falta."
 
 #: ../src/plugins/textreport/FamilyGroup.py:708
 #: ../src/plugins/textreport/MarkerReport.py:505
-#, fuzzy
 msgid "The basic style used for the note display."
-msgstr "Estilo básico para la presentación de texto."
+msgstr "Estilo básico para la presentación de notas."
 
 #: ../src/plugins/textreport/FamilyGroup.py:717
 msgid "The style used for the text related to the children."
@@ -15165,9 +15109,8 @@ msgstr "Estilo utilizado para el nombre del padre o de la madre"
 #.
 #. ------------------------------------------------------------------------
 #: ../src/plugins/textreport/IndivComplete.py:60
-#, fuzzy
 msgid "Sections"
-msgstr "Sección %s"
+msgstr "Secciones"
 
 #. Translated headers for the sections
 #: ../src/plugins/textreport/IndivComplete.py:62
@@ -15175,13 +15118,13 @@ msgid "Individual Facts"
 msgstr "Datos de la Persona"
 
 #: ../src/plugins/textreport/IndivComplete.py:187
-#, fuzzy, python-format
+#, python-format
 msgid "%s in %s. "
-msgstr "%s y %s"
+msgstr "%s en %s "
 
 #: ../src/plugins/textreport/IndivComplete.py:274
 msgid "Alternate Parents"
-msgstr "Padres Alternativos"
+msgstr "Padres alternativos"
 
 #: ../src/plugins/textreport/IndivComplete.py:386
 msgid "Marriages/Children"
@@ -15212,22 +15155,20 @@ msgid "Female"
 msgstr "Femenino"
 
 #: ../src/plugins/textreport/IndivComplete.py:644
-#, fuzzy
 msgid "Select the filter to be applied to the report."
-msgstr "Seleccione el filtro a aplicar al reporte"
+msgstr "Seleccione el filtro a aplicar al reporte."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
 msgid "List events chonologically"
-msgstr ""
+msgstr "Listar los eventos de forma cronológica"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-#, fuzzy
 msgid "Whether to sort events into chonological order."
-msgstr "Si se deben mostrar cónyuges en el árbol."
+msgstr "Si se deben ordenar los eventos de forma cronológica."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
 msgid "Include Source Information"
-msgstr "Incluir Información de las fuentes"
+msgstr "Incluir información de las fuentes"
 
 #: ../src/plugins/textreport/IndivComplete.py:660
 msgid "Whether to cite sources."
@@ -15235,13 +15176,12 @@ msgstr "Si se deben citar las fuentes."
 
 #. ###############################
 #: ../src/plugins/textreport/IndivComplete.py:666
-#, fuzzy
 msgid "Event groups"
-msgstr "Eventos"
+msgstr "Grupos de eventos"
 
 #: ../src/plugins/textreport/IndivComplete.py:667
 msgid "Check if a separate section is required."
-msgstr ""
+msgstr "Comprobar si se requiere una sección separada."
 
 #: ../src/plugins/textreport/IndivComplete.py:720
 msgid "The style used for category labels."
@@ -15357,12 +15297,12 @@ msgid "Parish: %s "
 msgstr "Parroquia: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:122
-#, fuzzy, python-format
+#, python-format
 msgid "City: %s "
 msgstr "Ciudad: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "County: %s "
 msgstr "Condado: %s "
 
@@ -15453,9 +15393,9 @@ msgid "Subtitle string for the book."
 msgstr "Subtítulo del libro."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "Copyright %(year)d %(name)s"
-msgstr "Copyright %d %s"
+msgstr "© Copyright %(year)d %(name)s"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer"
@@ -15571,9 +15511,8 @@ msgid "Custom Text"
 msgstr "Texto Personalizado"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:76
-#, fuzzy
 msgid "Add custom text to the book report"
-msgstr "Agregar un elemento al libro"
+msgstr "Agregar texto personalizado al reporte de libro"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:97
 msgid "Descendant Report"
@@ -15719,11 +15658,11 @@ msgid "No event record was modified."
 msgstr "Ningún registro de evento fue modificado."
 
 #: ../src/plugins/tool/ChangeTypes.py:135
-#, fuzzy, python-format
+#, python-format
 msgid "%d event record was modified."
 msgid_plural "%d event records were modified."
-msgstr[0] "1 registro de evento fue modificado."
-msgstr[1] "1 registro de evento fue modificado."
+msgstr[0] "%d registro de evento fue modificado."
+msgstr[1] "%d registros de eventos fueron modificados."
 
 #: ../src/plugins/tool/Check.py:198
 msgid "Check Integrity"
@@ -15853,123 +15792,123 @@ msgid "The database has passed internal checks"
 msgstr "La base de datos ha pasado con éxito las comprobaciones internas"
 
 #: ../src/plugins/tool/Check.py:1461
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were found\n"
-msgstr[0] "1 enlace dañado hijo/familia fue arreglado\n"
-msgstr[1] "1 enlace dañado hijo/familia fue arreglado\n"
+msgstr[0] "%(quantity)d enlace dañado hijo/familia fue arreglado\n"
+msgstr[1] "%(quantity)d enlaces dañados hijo/familia fueron arreglados\n"
 
 #: ../src/plugins/tool/Check.py:1468
 msgid "Non existing child"
 msgstr "Hijo inexistente"
 
 #: ../src/plugins/tool/Check.py:1475
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
-msgstr "%s fue eliminado de la familia de %s\n"
+msgstr "%(person)s fue eliminado de la familia de %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1479
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were found\n"
-msgstr[0] "1 enlace dañado de cónyuge/familia fue arreglado\n"
-msgstr[1] "1 enlace dañado de cónyuge/familia fue arreglado\n"
+msgstr[0] "%(quantity)d enlace dañado de cónyuge/familia fue arreglado\n"
+msgstr[1] "%(quantity)d enlaces dañados de cónyuge/familia fueron arreglados\n"
 
 #: ../src/plugins/tool/Check.py:1487 ../src/plugins/tool/Check.py:1505
 msgid "Non existing person"
 msgstr "Persona inexistente"
 
 #: ../src/plugins/tool/Check.py:1494 ../src/plugins/tool/Check.py:1512
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
-msgstr "%s fue restaurado a la familia de %s\n"
+msgstr "%(person)s fue restaurado a la familia de %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1498
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
-msgstr[0] "Se encontró 1 enlace duplicado de cónyuge/familia\n"
-msgstr[1] "Se encontró 1 enlace duplicado de cónyuge/familia\n"
+msgstr[0] "Se encontró %(quantity)d enlace duplicado de cónyuge/familia\n"
+msgstr[1] "Se encontraron %(quantity)d enlaces duplicados de cónyuge/familia\n"
 
 #: ../src/plugins/tool/Check.py:1516
-#, fuzzy, python-format
+#, python-format
 msgid "%d family with no parents or children found, removed.\n"
-msgstr "Se encontró 1 familia sin padres ni hijos, eliminada.\n"
+msgstr "Se encontró %d familia sin padres ni hijos, eliminada.\n"
 
 #: ../src/plugins/tool/Check.py:1519
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
-msgstr "Se encontraron %d familias sin padres ni hijos, eliminadas.\n"
+msgstr "Se encontraron %(quantity)d familias sin padres ni hijos, eliminadas.\n"
 
 #: ../src/plugins/tool/Check.py:1523
-#, fuzzy, python-format
+#, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
-msgstr[0] "%d relaciones familiares incorrectas fueron arregladas\n"
+msgstr[0] "%d relación familiar incorrecta fue arreglada\n"
 msgstr[1] "%d relaciones familiares incorrectas fueron arregladas\n"
 
 #: ../src/plugins/tool/Check.py:1527
-#, fuzzy, python-format
+#, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
-msgstr[0] "1 persona referenciada inexistente\n"
-msgstr[1] "1 persona referenciada inexistente\n"
+msgstr[0] "%d persona referenciada inexistente\n"
+msgstr[1] "%d personas referenciadas inexistentes\n"
 
 #: ../src/plugins/tool/Check.py:1532
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d fecha fue corregida"
+msgstr[1] "%d fechas fueron corregidas"
 
 #: ../src/plugins/tool/Check.py:1537
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
-msgstr[0] "1 repositorio referenciado inexistente\n"
-msgstr[1] "1 repositorio referenciado inexistente\n"
+msgstr[0] "%(quantity)d repositorio referenciado inexistente\n"
+msgstr[1] "%(quantity)d repositorios referenciados inexistentes\n"
 
 #: ../src/plugins/tool/Check.py:1542
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
-msgstr[0] "1 objeto audiovisual referenciado inexistente\n"
-msgstr[1] "1 objeto audiovisual referenciado inexistente\n"
+msgstr[0] "%(quantity)d objeto audiovisual referenciado inexistente\n"
+msgstr[1] "%(quantity)d objetos audiovisuales referenciados inexistentes\n"
 
 #: ../src/plugins/tool/Check.py:1546
-#, fuzzy, python-format
+#, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
-msgstr[0] "Se mantuvo la referencia a un objeto audiovisual que faltaba\n"
-msgstr[1] "Se mantuvo la referencia a un objeto audiovisual que faltaba\n"
+msgstr[0] "Se mantuvo la referencia a %(quantity)d objeto audiovisual que faltaba\n"
+msgstr[1] "Se mantuvieron las referencias a %(quantity)d objetos audiovisuales que faltaban\n"
 
 #: ../src/plugins/tool/Check.py:1551
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
-msgstr[0] "Faltaba 1 objeto audiovisual y fue reemplazado\n"
-msgstr[1] "Faltaba 1 objeto audiovisual y fue reemplazado\n"
+msgstr[0] "Faltaba %(quantity)d objeto audiovisual y fue reemplazado\n"
+msgstr[1] "Faltaban %(quantity)d objetos audiovisuales y fueron reemplazados\n"
 
 #: ../src/plugins/tool/Check.py:1556
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
-msgstr[0] "Faltaba 1 objeto audiovisual y fue eliminado\n"
-msgstr[1] "Faltaba 1 objeto audiovisual y fue eliminado\n"
+msgstr[0] "Faltaba %(quantity)d objeto audiovisual y fue eliminado\n"
+msgstr[1] "Faltaban %(quantity)d objetos audiovisuales y fueron eliminados\n"
 
 #: ../src/plugins/tool/Check.py:1561
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
-msgstr[0] "Se eliminó una referencia inválida a un evento\n"
-msgstr[1] "Se eliminó una referencia inválida a un evento\n"
+msgstr[0] "Se eliminó %(quantity)d referencia inválida a un evento\n"
+msgstr[1] "Se eliminaron %(quantity)d referencias inválidas a eventos\n"
 
 #: ../src/plugins/tool/Check.py:1566
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
-msgstr[0] "Se reparó un nombre de evento de nacimiento inválido\n"
-msgstr[1] "Se reparó un nombre de evento de nacimiento inválido\n"
+msgstr[0] "Se reparó %(quantity)d nombre de evento de nacimiento inválido\n"
+msgstr[1] "Se repararon %(quantity)d nombres de eventos de nacimiento inválidos\n"
 
 #: ../src/plugins/tool/Check.py:1571
 #, fuzzy, python-format
@@ -16119,9 +16058,8 @@ msgid "Event name changes"
 msgstr "Cambio del nombre del evento"
 
 #: ../src/plugins/tool/EventNames.py:112
-#, fuzzy
 msgid "Modifications made"
-msgstr "No se hicieron modificaciones"
+msgstr "Se hicieron modificaciones"
 
 #: ../src/plugins/tool/EventNames.py:113
 #, fuzzy, python-format
@@ -16241,9 +16179,8 @@ msgid "Uncollected Objects Tool"
 msgstr "Herramienta de objetos perdidos"
 
 #: ../src/plugins/tool/Leak.py:83
-#, fuzzy
 msgid "Number"
-msgstr "Número de catálogo"
+msgstr "Número"
 
 #: ../src/plugins/tool/Leak.py:87
 #, fuzzy
@@ -16270,9 +16207,8 @@ msgid "Media Manager"
 msgstr "Gestor de objetos"
 
 #: ../src/plugins/tool/MediaManager.py:91
-#, fuzzy
 msgid "Gramps Media Manager"
-msgstr "Gestor de objetos"
+msgstr "Gestor de objetos de Gramps"
 
 #: ../src/plugins/tool/MediaManager.py:93
 msgid "Selecting operation"
@@ -16352,7 +16288,7 @@ msgid "_With:"
 msgstr "_Por:"
 
 #: ../src/plugins/tool/MediaManager.py:454
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -16362,9 +16298,9 @@ msgid ""
 msgstr ""
 "Se va a realizar la siguiente acción:\n"
 "\n"
-"Operación:\t%s\n"
-"Subcadena:\t\t%s\n"
-"Con:\t\t%s"
+"Operación:\t%(title)s\n"
+"Sustituir:\t%(src_fname)s\n"
+"Por:\t\t%(dest_fname)s"
 
 #: ../src/plugins/tool/MediaManager.py:491
 msgid "Convert paths from relative to _absolute"
@@ -16379,9 +16315,8 @@ msgid "Convert paths from absolute to r_elative"
 msgstr "Convertir rutas de absolutas a r_elativas"
 
 #: ../src/plugins/tool/MediaManager.py:526
-#, fuzzy
 msgid "This tool allows converting absolute media paths to a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, user's directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Esta herramiente permite convertir rutas absolutas a los archivos de objetos en rutas relativas. La ruta relativa lo es respecto a la ruta base dada en Preferencias o, si no se fijó un valor, su Carpeta personal.  Una ruta relative le permite relacionar la ubicación del archivo con una ruta base que puede cambiar según sus necesidades."
+msgstr "Esta herramiente permite convertir rutas absolutas a los archivos de objetos en rutas relativas. La ruta relativa lo es respecto a la ruta base dada en Preferencias o, si no se fijó un valor, su Carpeta personal.  Una ruta relativa le permite relacionar la ubicación del archivo con una ruta base que puede cambiar según sus necesidades."
 
 #: ../src/plugins/tool/NotRelated.py:56
 msgid "manual|Not_Related..."
@@ -16399,34 +16334,34 @@ msgstr "Todos en la base de datos están relacionados con %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:233
-#, fuzzy, python-format
+#, python-format
 msgid "Setting marker for %d person"
 msgid_plural "Setting marker for %d people"
-msgstr[0] "Fijando marcador para %d personas"
+msgstr[0] "Fijando marcador para %d persona"
 msgstr[1] "Fijando marcador para %d personas"
 
 #. TRANS: No singular form is needed.
 #: ../src/plugins/tool/NotRelated.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Finding relationships between %d person"
 msgid_plural "Finding relationships between %d people"
-msgstr[0] "Calcula el parentesco entre %d personas"
+msgstr[0] "Calcula el parentesco entre %d persona"
 msgstr[1] "Calcula el parentesco entre %d personas"
 
 #. we have at least 1 "unrelated" person to find
 #: ../src/plugins/tool/NotRelated.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
-msgstr[0] "Buscando 1 persona"
-msgstr[1] "Buscando 1 persona"
+msgstr[0] "Buscando %d persona"
+msgstr[1] "Buscando %d personas"
 
 #: ../src/plugins/tool/NotRelated.py:361
-#, fuzzy, python-format
+#, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
-msgstr[0] "Buscando el nombre de 1 persona"
-msgstr[1] "Buscando el nombre de 1 persona"
+msgstr[0] "Buscando el nombre de %d persona"
+msgstr[1] "Buscando el nombre de %d personas"
 
 #: ../src/plugins/tool/OwnerEditor.py:54
 msgid "manual|Edit_Database_Owner_Information..."
@@ -16446,7 +16381,6 @@ msgid "Edit database owner information"
 msgstr "Editar información del propietario de la base de datos"
 
 #: ../src/plugins/tool/PatchNames.py:62
-#, fuzzy
 msgid "manual|Extract_Information_from_Names"
 msgstr "Extraer la información de los nombres"
 
@@ -16463,9 +16397,8 @@ msgid "Analyzing names"
 msgstr "Analizando nombres"
 
 #: ../src/plugins/tool/PatchNames.py:187
-#, fuzzy
 msgid "No titles, nicknames or prefixes were found"
-msgstr "No se encontraron títulos o apodos"
+msgstr "No se encontraron títulos, apodos o prefijos"
 
 #: ../src/plugins/tool/PatchNames.py:347
 msgid "Extract information from names"
@@ -16552,9 +16485,8 @@ msgid "Remove unused objects"
 msgstr "Eliminar objetos sin uso"
 
 #: ../src/plugins/tool/ReorderIds.py:65
-#, fuzzy
 msgid "Reordering Gramps IDs"
-msgstr "Reordenando los números de identificación de familias"
+msgstr "Reordenando los números de identificación de Gramps"
 
 #: ../src/plugins/tool/ReorderIds.py:73
 msgid "Reordering People IDs"
@@ -16597,44 +16529,36 @@ msgid "Finding and assigning unused IDs"
 msgstr "Buscando y asignando los IDs no utilizados"
 
 #: ../src/plugins/tool/SortEvents.py:76
-#, fuzzy
 msgid "Sort Events"
-msgstr "Eventos de los padres"
+msgstr "Ordenando eventos"
 
 #: ../src/plugins/tool/SortEvents.py:102
-#, fuzzy
 msgid "Sort event changes"
-msgstr "Descartar cambios"
+msgstr "Ordenando cambios a los eventos"
 
 #: ../src/plugins/tool/SortEvents.py:112
-#, fuzzy
 msgid "Sorting personal events..."
-msgstr "Clasificando datos..."
+msgstr "Ordenando eventos personales..."
 
 #: ../src/plugins/tool/SortEvents.py:134
-#, fuzzy
 msgid "Sorting family events..."
-msgstr "Clasificando datos..."
+msgstr "Ordenando eventos familiares..."
 
 #: ../src/plugins/tool/SortEvents.py:165
-#, fuzzy
 msgid "Tool Options"
-msgstr "Opciones del árbol"
+msgstr "Opciones de la herramienta"
 
 #: ../src/plugins/tool/SortEvents.py:168
-#, fuzzy
 msgid "Select the people to sort"
-msgstr "Borrar la fuente seleccionada"
+msgstr "Seleccionar las personas a clasificar"
 
 #: ../src/plugins/tool/SortEvents.py:187
-#, fuzzy
 msgid "Sort descending"
-msgstr "Clasificando"
+msgstr "Clasificar en orden descendente"
 
 #: ../src/plugins/tool/SortEvents.py:188
-#, fuzzy
 msgid "Set the sort order"
-msgstr "Marque para invertír el orden."
+msgstr "Fijar el orden de clasificación"
 
 #: ../src/plugins/tool/SortEvents.py:191
 #, fuzzy
