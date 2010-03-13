@@ -52,20 +52,26 @@ from _DateHandler import register_datehandler
 class DateParserPT(DateParser):
 
     modifier_to_int = {
-        u'antes de'   : Date.MOD_BEFORE, 
-        u'antes'      : Date.MOD_BEFORE, 
-        u'ant.'       : Date.MOD_BEFORE, 
-        u'ant'        : Date.MOD_BEFORE, 
-        u'após'       : Date.MOD_AFTER,
-        u'aprox.'     : Date.MOD_ABOUT,
-        u'aprox'      : Date.MOD_ABOUT,
-        u'apr.'       : Date.MOD_ABOUT,
-        u'apr'        : Date.MOD_ABOUT,
-        u'cerca de'   : Date.MOD_ABOUT,
-        u'ca.'        : Date.MOD_ABOUT,
-        u'ca'         : Date.MOD_ABOUT,
-        u'c.'         : Date.MOD_ABOUT,
-        u'até'       : Date.MOD_ABOUT,
+        u'antes de'     : Date.MOD_BEFORE, 
+        u'antes'        : Date.MOD_BEFORE, 
+        u'ant.'         : Date.MOD_BEFORE, 
+        u'ant'          : Date.MOD_BEFORE, 
+        u'até'          : Date.MOD_BEFORE,
+        u'depois de'    : Date.MOD_AFTER,
+        u'depois'       : Date.MOD_AFTER,
+        u'dep.'         : Date.MOD_AFTER,
+        u'dep'          : Date.MOD_AFTER,
+        u'aprox.'       : Date.MOD_ABOUT,
+        u'aprox'        : Date.MOD_ABOUT,
+        u'apr.'         : Date.MOD_ABOUT,
+        u'apr'          : Date.MOD_ABOUT,
+        u'cerca de'     : Date.MOD_ABOUT,
+        u'ca.'          : Date.MOD_ABOUT,
+        u'ca'           : Date.MOD_ABOUT,
+        u'c.'           : Date.MOD_ABOUT,
+        u'por volta de' : Date.MOD_ABOUT,
+        u'por volta'    : Date.MOD_ABOUT,
+        u'pvd.'         : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
@@ -116,21 +122,20 @@ class DateDisplayPT(DateDisplay):
     """
     Portuguese language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( u"", u"Janeiro", u"Fevereiro", u"Março", u"Abril", u"Maio", 
+                    u"Junho", u"Julho", u"Agosto", u"Setembro", u"Outubro", 
+                    u"Novembro", u"Dezembro" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"Jan", u"Fev", u"Mar", u"Abr", u"Mai", u"Jun", 
+                     u"Jul", u"Ago", u"Set", u"Out", u"Nov", u"Dez" )
     
     calendar = (
         "", u" (Juliano)", u" (Hebreu)", 
         u" (Revolucionário)", u" (Persa)", u" (Islâmico)", 
-        u" (Swedish)" 
+        u" (Sueco)" 
         )
 
-    _mod_str = ("",u"antes de ",u"depois de ",u"até ","","","")
+    _mod_str = ("",u"antes de ",u"depois de ",u"por volta de ","","","")
 
     _qual_str = ("","estimado ","calculado ")
 
