@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-11 19:18+0100\n"
-"PO-Revision-Date: 2010-03-13 01:08+0100\n"
+"PO-Revision-Date: 2010-03-13 18:09+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -656,7 +656,7 @@ msgstr ""
 #: ../src/plugins/view/noteview.py:209 ../src/plugins/view/repoview.py:152
 #: ../src/plugins/view/sourceview.py:137
 msgid "Quick View"
-msgstr "Vista rapida"
+msgstr "Anteprima"
 
 #: ../src/Relationship.py:797 ../src/plugins/view/pedigreeview.py:1181
 msgid "Relationship loop detected"
@@ -2573,7 +2573,7 @@ msgstr "Adozione"
 
 #: ../src/gen/lib/childreftype.py:76
 msgid "Stepchild"
-msgstr "Figliastro"
+msgstr "Figliastro/a"
 
 #: ../src/gen/lib/childreftype.py:77
 msgid "Sponsored"
@@ -3148,7 +3148,7 @@ msgid "Gramplet %s updated"
 msgstr "Gramplet %s aggiornata"
 
 #: ../src/gen/plug/_gramplet.py:316
-#, fuzzy, python-format
+#, python-format
 msgid "Gramplet %s caused an error"
 msgstr "La gramplet %s ha causato un errore"
 
@@ -3190,7 +3190,6 @@ msgid "Doc creator"
 msgstr "Generatore di documenti"
 
 #: ../src/gen/plug/_pluginreg.py:80
-#, fuzzy
 msgid "Plugin lib"
 msgstr "Libreria plugin"
 
@@ -8974,11 +8973,11 @@ msgstr "Gestore plugin"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:177
 msgid "Quick View Gramplet"
-msgstr "Gramplet Viste rapide"
+msgstr "Gramplet Anteprima"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:178
 msgid "Gramplet showing an active item Quick View"
-msgstr ""
+msgstr "Gramplet che mostra un'anteprima dell'elemento attivo"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:193
 msgid "Relatives Gramplet"
@@ -9185,7 +9184,7 @@ msgstr "Tipo vista"
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
 #: ../src/plugins/gramplet/QuickViewGramplet.py:121
 msgid "Quick Views"
-msgstr "Viste rapide"
+msgstr "Anteprime"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:42
 msgid "Click name to make person active\n"
@@ -14970,19 +14969,16 @@ msgid "Manages an ODF file implementing DocBackend."
 msgstr "Gestisce un file ODF che implementa DocBackend."
 
 #: ../src/plugins/lib/libplugins.gpr.py:246
-#, fuzzy
 msgid "Provides Textual Translation."
 msgstr "Fornisce una traduzione testuale."
 
 #: ../src/plugins/lib/libplugins.gpr.py:263
-#, fuzzy
 msgid "Provides the Base needed for the List People views."
-msgstr "Fornisce la base richiesta per la vista elenco persone."
+msgstr "Fornisce la clsse base richiesta per la vista elenco persone."
 
 #: ../src/plugins/lib/libplugins.gpr.py:280
-#, fuzzy
 msgid "Provides the Base needed for the List Place views."
-msgstr "Fornisce la base richiesta per la vista elenco luoghi."
+msgstr "Fornisce la classe base richiesta per la vista elenco luoghi."
 
 #: ../src/plugins/lib/libtranslate.py:74
 msgid "Albanian"
@@ -15543,7 +15539,6 @@ msgid "Display people with the same given name as a person."
 msgstr "Mostra le persone con lo stesso nome di una certa persona."
 
 #: ../src/plugins/quickview/quickview.gpr.py:279
-#, fuzzy
 msgid "Same Given Names - stand-alone"
 msgstr "Stesso nome - indipendente"
 
@@ -15704,7 +15699,6 @@ msgid "self"
 msgstr "se stesso"
 
 #: ../src/plugins/rel/relplugins.gpr.py:32
-#, fuzzy
 msgid "Czech Relationship Calculator"
 msgstr "Calcolatrice relazioni ceca"
 
@@ -15728,77 +15722,62 @@ msgid "Calculates relationships between people"
 msgstr "Calcola le relazioni tra le persone"
 
 #: ../src/plugins/rel/relplugins.gpr.py:45
-#, fuzzy
 msgid "Danish Relationship Calculator"
 msgstr "Calcolatrice relazioni danese"
 
 #: ../src/plugins/rel/relplugins.gpr.py:61
-#, fuzzy
 msgid "German Relationship Calculator"
 msgstr "Calcolatrice relazioni tedesca"
 
 #: ../src/plugins/rel/relplugins.gpr.py:76
-#, fuzzy
 msgid "Spanish Relationship Calculator"
 msgstr "Calcolatrice relazioni spagnola"
 
 #: ../src/plugins/rel/relplugins.gpr.py:91
-#, fuzzy
 msgid "Finnish Relationship Calculator"
 msgstr "Calcolatrice relazioni finlandese"
 
 #: ../src/plugins/rel/relplugins.gpr.py:106
-#, fuzzy
 msgid "French Relationship Calculator"
 msgstr "Calcolatrice relazioni francese"
 
 #: ../src/plugins/rel/relplugins.gpr.py:123
-#, fuzzy
 msgid "Croatian Relationship Calculator"
 msgstr "Calcolatrice relazioni italiana"
 
 #: ../src/plugins/rel/relplugins.gpr.py:137
-#, fuzzy
 msgid "Hungarian Relationship Calculator"
 msgstr "Calcolatrice relazioni ungherese"
 
 #: ../src/plugins/rel/relplugins.gpr.py:150
-#, fuzzy
 msgid "Italian Relationship Calculator"
 msgstr "Calcolatrice relazioni italiana"
 
 #: ../src/plugins/rel/relplugins.gpr.py:163
-#, fuzzy
 msgid "Dutch Relationship Calculator"
 msgstr "Calcolatrice relazioni olandese"
 
 #: ../src/plugins/rel/relplugins.gpr.py:180
-#, fuzzy
 msgid "Norwegian Relationship Calculator"
 msgstr "Calcolatrice relazioni norvegese"
 
 #: ../src/plugins/rel/relplugins.gpr.py:197
-#, fuzzy
 msgid "Polish Relationship Calculator"
 msgstr "Calcolatrice relazioni polacca"
 
 #: ../src/plugins/rel/relplugins.gpr.py:213
-#, fuzzy
 msgid "Portuguese Relationship Calculator"
 msgstr "Calcolatrice relazioni portoghese"
 
 #: ../src/plugins/rel/relplugins.gpr.py:229
-#, fuzzy
 msgid "Russian Relationship Calculator"
 msgstr "Calcolatrice relazioni russa"
 
 #: ../src/plugins/rel/relplugins.gpr.py:245
-#, fuzzy
 msgid "Slovak Relationship Calculator"
 msgstr "Calcolatrice relazioni slovacca"
 
 #: ../src/plugins/rel/relplugins.gpr.py:259
-#, fuzzy
 msgid "Swedish Relationship Calculator"
 msgstr "Calcolatrice relazioni svedese"
 
@@ -19548,6 +19527,7 @@ msgstr "Fonte"
 msgid "Publication information"
 msgstr "Informazioni pubblicazione"
 
+# What is a densions?
 #: ../src/plugins/webreport/NarrativeWeb.py:3205
 #, fuzzy
 msgid ""
@@ -21512,7 +21492,6 @@ msgid "Relationship filters"
 msgstr "Filtri relazione"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
-#, fuzzy
 msgid ""
 "Searches over the database starting from a specified person and returns "
 "everyone between that person and a set of target people specified with a "
@@ -21521,10 +21500,11 @@ msgid ""
 "necessarily the shortest path."
 msgstr ""
 "Cerca nel database a partire da una persona specificata e restituisce tutte "
-"le persone tra quella specificata ed un insieme di persone-obbiettivo "
-"specificate con un filtro.  Questo produce un insieme di percorsi di "
-"relazioni (inclusi quelli di matrimonio) tra la persona specificata e gli "
-"obbiettivi.  Ogni percorso non è necessariamente il percorso più breve."
+"le persone tra quella specificata ed un insieme di persone-obiettivo "
+"specificate con un filtro. In questo modo viene prodotto un insieme di "
+"percorsi di relazioni (incluse quelle per matrimonio) tra la persona "
+"specificata e le persone-obiettivo. Ogni percorso non è necessariamente "
+"quello più breve."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:134
 msgid "Finding relationship paths"
@@ -24909,6 +24889,12 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
+"<b>Indirizzare la ricerca</b><br/>Partite da quello che conoscete per "
+"arrivare a quello che non conoscete. Registrate sempre tutto quello che è "
+"noto prima di iniziare con le congetture. Spesso i fatti disponibili "
+"suggeriscono svariate direzioni per ulteriori ricerche. Non sprecate tempo "
+"spulciando migliaia di informazioni sperando di trovare una traccia, quando "
+"ci sono altri indizi non analizzati."
 
 #: ../src/data/tips.xml.in.h:10
 msgid ""
@@ -24940,6 +24926,11 @@ msgid ""
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
+"<b>Modificare la relazione genitore-figlio</b><br/>È possibile modificare la "
+"relazione di un figlio con i propri genitori facendo doppio clic sul figlio "
+"nell'editor delle famiglie. I tipo possibili di relazioni sono adozione, "
+"nascita, affidamento, nessuno, adozione a distanza, figliastro/a e "
+"sconosciuto."
 
 #: ../src/data/tips.xml.in.h:13
 msgid ""
@@ -24954,6 +24945,7 @@ msgstr ""
 "Strumenti&quot;. Questo è il modo migliore per gli utenti avanzati per poter "
 "sperimentare e creare nuove funzionalità."
 
+# XXX Search?, not Apply; View &gt; Filter -> View &gt; Filter Sidebar
 #: ../src/data/tips.xml.in.h:14
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
@@ -24965,6 +24957,16 @@ msgid ""
 "select it at the bottom of the Filter Sidebar, then click Apply. If the "
 "Filter Sidebar is not visible, select View &gt; Filter."
 msgstr ""
+"<b>Filtri per le persone</b><br/>Nella vista persone è possibile filtrare le "
+"persone in base a vari criteri. Nuovi filtri sono definibili da &quot;"
+"Modifica &gt; Editor filtri persone&quot;. Da là è possibile dare un nome al "
+"filtro e aggiungere e combinare regole usando le varie regole predefinite. "
+"Ad esempio, è possibile definire un filtro per trovare nell'albero "
+"genealogico tutte le persone adottate. Anche le persone senza una data di "
+"nascita possono essere filtrate. Per ottenere i risultati, salvare il filtro "
+"e selezionarlo dalla barra laterale filtri, in basso, quindi fare clic su "
+"Applica. Se la barra laterale dei filtri non è visibile, selezionare "
+"Visualizza &gt; Filtro."
 
 #: ../src/data/tips.xml.in.h:15
 msgid ""
@@ -25060,7 +25062,7 @@ msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
-"<b>Hello, привет or 喂</b><br/>Qualsiasi sia il metodo di scrittura usato, "
+"<b>Hello, привет o 喂</b><br/>Qualsiasi sia il metodo di scrittura usato, "
 "Gramps offre pieno supporto ad Unicode. I caratteri di ogni linguaggio sono "
 "visualizzati correttamente."
 
@@ -25113,6 +25115,13 @@ msgid ""
 "confirm the accurate transcription of what appears to be an error in a "
 "source."
 msgstr ""
+"<b>Mantenere dei registri accurati</b><br/>Siate accurati quando registrate "
+"le informazioni genealogiche. Non fate assunzioni quando registrate le "
+"informazioni primarie: riportatele esattamente per come le vedete. Usate "
+"commenti tra parentesi per indicare le aggiunte, le cancellazioni e i "
+"commenti. L'uso della parola latina «sic» è consigliato per confermare "
+"l'accurata trascrizione di quelli che appaiono essere degli errore nelle "
+"fonti."
 
 #: ../src/data/tips.xml.in.h:27
 msgid ""
@@ -25147,8 +25156,8 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Individuare le persone</b>Di base, ogni cognome nella vista persone è "
-"elencato una sola volta. Facendo clic sulla freccia a sinistra di un nome, "
+"<b>Individuare le persone</b><br/>Di base, ogni cognome nella vista persone "
+"è elencato una sola volta. Facendo clic sulla freccia a sinistra di un nome, "
 "la lista si espande per mostrare tutte le persone con quel cognome. Per "
 "individuare un qualsiasi cognome da un elenco lungo, basta selezionare un "
 "cognome (non una persona) e iniziare a digitare. La vista passerà al primo "
@@ -25221,6 +25230,13 @@ msgid ""
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
+"<b>Fondere le voci</b><br/>La funzione &quot;Modifica &gt; Confronta e "
+"fondi...&quot; consente di combinare delle persone elencate separatamente in "
+"una sola voce. Seleziona la seconda voce tenendo premuto il pulsante Control "
+"mentre si fa clic. Questo è molto utile per combinare due database con "
+"persone ripetute, o per combinare lo stesso individuo inserito per errore "
+"con nomi diversi. La funzione è disponibile anche per le viste luoghi, fonti "
+"e depositi."
 
 #: ../src/data/tips.xml.in.h:36
 msgid ""
@@ -25380,7 +25396,6 @@ msgstr ""
 "migliaia di persone."
 
 #: ../src/data/tips.xml.in.h:48
-#, fuzzy
 msgid ""
 "<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
 "standing problem in genealogy, how to handle spelling variations. The "
@@ -25396,9 +25411,9 @@ msgstr ""
 "di ortografia. Il programma SoundEx prende un cognome e genera una forma "
 "semplificata, uguale per tutti i nomi con lo stesso suono. Conoscere il "
 "codice SoundEx per un cognome è molto utile quando si cerca nei dati dei "
-"censimenti (microfiche) in una biblioteca o altre strutture di ricerca. Per "
-"ricavare i codici SoundEx per i cognomi nel database, selezionare &quot;"
-"Strumenti &gt; Utilità &gt; Genera codici SoundEx...&quot;"
+"censimenti (microfiche) in una biblioteca o in altre strutture di ricerca. "
+"Per ricavare i codici SoundEx per i cognomi nel database, selezionare &quot;"
+"Strumenti &gt; Utilità &gt; Genera codici SoundEx...&quot;."
 
 #: ../src/data/tips.xml.in.h:49
 msgid ""
@@ -25536,6 +25551,11 @@ msgid ""
 "for a birth date in Gramps. Click the Date button next to the date field and "
 "see the Gramps Manual to learn more."
 msgstr ""
+"<b>Una data incerta?</b><br/>Se la data in cui un evento si è verificato non "
+"è certa, Gramps consente di inserire una vasta gamma di formati di data "
+"basati su supposizioni o stime. Per esempio, &quot;circa 1908&quot; è una "
+"valore valido per una data di nascita in Gramps. Fare clic sul pulsante Data "
+"accanto al campo data e controllare il manuale di Gramps per saperne di più."
 
 #: ../src/data/tips.xml.in.h:60
 msgid ""
