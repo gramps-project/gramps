@@ -115,6 +115,7 @@ class DateParserHR(DateParser):
     month_to_int[u"septembar"]  = 9
     month_to_int[u"septembra"]  = 9
     month_to_int[u"ix"]  = 9
+    month_to_int[u"7ber"]  = 9
     
     month_to_int[u"listopad"]  = 10
     month_to_int[u"listopada"]  = 10
@@ -122,6 +123,7 @@ class DateParserHR(DateParser):
     month_to_int[u"oktobar"]  = 10
     month_to_int[u"oktobra"]  = 10
     month_to_int[u"x"]  = 10
+    month_to_int[u"8ber"]  = 10
     
     month_to_int[u"studeni"]  = 11
     month_to_int[u"studenog"]  = 11
@@ -129,6 +131,7 @@ class DateParserHR(DateParser):
     month_to_int[u"novembar"]  = 11
     month_to_int[u"novembra"]  = 11
     month_to_int[u"xi"]  = 11
+    month_to_int[u"9ber"]  = 11
     
     month_to_int[u"prosinac"]  = 12
     month_to_int[u"prosinca"]  = 12
@@ -160,7 +163,7 @@ class DateParserHR(DateParser):
         u'franc.'         : Date.CAL_FRENCH,
         u'perzijski'       : Date.CAL_PERSIAN,
         u'perz. '       : Date.CAL_PERSIAN,
-        u'swedish'      : Date.CAL_SWEDISH, 
+        u'švedski'      : Date.CAL_SWEDISH, 
         u's'            : Date.CAL_SWEDISH, 
         }
 
