@@ -70,6 +70,10 @@ from gui.views.pageview import PageView
 from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
 from Filters.SideBar import PlaceSidebarFilter, EventSidebarFilter
+from gui.views.navigationview import NavigationView
+import Bookmarks
+from Utils import navigation_label
+
 
 #-------------------------------------------------------------------------
 #
@@ -108,6 +112,23 @@ from htmlrenderer import HtmlView
 #covert to unicode for better hadnling of path in Windows
 GEOVIEW_SUBPATH = unicode(Utils.get_empty_tempdir('geoview'), sys.getfilesystemencoding())
 NB_MARKERS_PER_PAGE = 200
+
+DISABLED = -1
+MRU_SIZE = 10
+
+MRU_TOP = [
+    '<ui>'
+    '<menubar name="MenuBar">'
+    '<menu action="GoMenu">'
+    '<placeholder name="CommonHistory">'
+    ]
+
+MRU_BTM = [
+    '</placeholder>'
+    '</menu>'
+    '</menubar>'
+    '</ui>'
+    ]
 
 #-------------------------------------------------------------------------
 #
@@ -301,6 +322,18 @@ class GeoView(HtmlView):
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
+        self.fwd_action = None
+        self.back_action = None
+        self.book_action = None
+        self.other_action = None
+        self.active_signal = None
+        self.mru_signal = None
+        self.nav_group = 0
+        self.mru_active = DISABLED
+
+        self.uistate.register(dbstate, self.navigation_type(), self.nav_group)
+        self.bookmarks = Bookmarks.PersonBookmarks(self.dbstate, self.uistate,
+                                 dbstate.db.get_bookmarks(), self.goto_handle)
 
     def build_widget(self):
         self.no_network = False
@@ -861,6 +894,10 @@ class GeoView(HtmlView):
         """
         self.key_active_changed = self.dbstate.connect('active-changed',
                                                        self._goto_active_person)
+        hobj = self.get_history()
+        self.active_signal = hobj.connect('active-changed', self._goto_active_person)
+        self.mru_signal = hobj.connect('mru-changed', self.update_mru_menu)
+        self.update_mru_menu(hobj.mru)
         self._goto_active_person()
         self.filter.hide() # hide the filter
         self.active = True
@@ -1044,6 +1081,11 @@ class GeoView(HtmlView):
               <toolitem action="EventMaps"/>
               <toolitem action="AllPlacesMaps"/>
             </placeholder>
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+              <toolitem action="HomePerson"/>
+            </placeholder>
           </toolbar>
         </ui>'''
 
@@ -1052,6 +1094,52 @@ class GeoView(HtmlView):
         Required define_actions function for PageView. Builds the action
         group information required. 
         """
+        #NavigationView.define_actions(self)
+        #self.bookmark_actions()
+        self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
+        self.book_action.add_actions([
+            ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
+             '<control>d', None, self.add_bookmark), 
+            ('EditBook', 'gramps-bookmark-edit', 
+             _("%(title)s...") % {'title': _("Organize Bookmarks")}, 
+             '<shift><control>b', None, 
+             self.edit_bookmarks), 
+            ])
+
+        self._add_action_group(self.book_action)
+
+        #self.navigation_actions()
+        # add the Forward action group to handle the Forward button
+        self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
+        self.fwd_action.add_actions([
+            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+             "<ALT>Right", _("Go to the next person in the history"), 
+             self.fwd_clicked)
+            ])
+
+        # add the Backward action group to handle the Forward button
+        self.back_action = gtk.ActionGroup(self.title + '/Backward')
+        self.back_action.add_actions([
+            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+             "<ALT>Left", _("Go to the previous person in the history"), 
+             self.back_clicked)
+            ])
+
+        self._add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
+                         accel="<Alt>Home", 
+                         tip=_("Go to the default person"), callback=self.home)
+
+        self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
+        self.other_action.add_actions([
+                ('SetActive', gtk.STOCK_HOME, _("Set _Home Person"), None, 
+                 None, self.set_default_person), 
+                ])
+
+        self._add_action_group(self.back_action)
+        self._add_action_group(self.fwd_action)
+        self._add_action_group(self.other_action)
+
+        # geoview actions
         self._add_action('AddPlace', 'geo-place-add', 
             _('_Add Place'),
             callback=self._add_place,
@@ -1103,6 +1191,210 @@ class GeoView(HtmlView):
                                 callback=self.filter_toggle_action)
         config.connect('interface.filter', self.filter_toggle)
 
+    ####################################################################
+    # BOOKMARKS
+    ####################################################################
+    def add_bookmark(self, obj):
+        """
+        Add a bookmark to the list.
+        """
+        from gen.display.name import displayer as name_displayer
+
+        active_handle = self.uistate.get_active('Person')
+        active_person = self.dbstate.db.get_person_from_handle(active_handle)
+        if active_person:
+            self.bookmarks.add(active_handle)
+            name = name_displayer.display(active_person)
+            self.uistate.push_message(self.dbstate, 
+                                      _("%s has been bookmarked") % name)
+        else:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+
+    def edit_bookmarks(self, obj):
+        """
+        Call the bookmark editor.
+        """
+        self.bookmarks.edit()
+
+    def bookmark_actions(self):
+        """
+        Define the bookmark menu actions.
+        """
+        self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
+        self.book_action.add_actions([
+            ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
+             '<control>d', None, self.add_bookmark), 
+            ('EditBook', 'gramps-bookmark-edit', 
+             _("%(title)s...") % {'title': _("Organize Bookmarks")}, 
+             '<shift><control>b', None, 
+             self.edit_bookmarks), 
+            ])
+
+        self._add_action_group(self.book_action)
+
+    ####################################################################
+    # NAVIGATION
+    ####################################################################
+    def set_default_person(self, obj):
+        """
+        Set the default person.
+        """
+        active = self.uistate.get_active('Person')
+        if active:
+            self.dbstate.db.set_default_person_handle(active)
+
+    def home(self, obj):
+        """
+        Move to the default person.
+        """
+        defperson = self.dbstate.db.get_default_person()
+        if defperson:
+            self.change_active(defperson.get_handle())
+
+    def jump(self):
+        """
+        A dialog to move to a Gramps ID entered by the user.
+        """
+        dialog = gtk.Dialog(_('Jump to by Gramps ID'), None, 
+                            gtk.DIALOG_NO_SEPARATOR)
+        dialog.set_border_width(12)
+        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % 
+                          _('Jump to by Gramps ID'))
+        label.set_use_markup(True)
+        dialog.vbox.add(label)
+        dialog.vbox.set_spacing(10)
+        dialog.vbox.set_border_width(12)
+        hbox = gtk.HBox()
+        hbox.pack_start(gtk.Label("%s: " % _('ID')), False)
+        text = gtk.Entry()
+        text.set_activates_default(True)
+        hbox.pack_start(text, False)
+        dialog.vbox.pack_start(hbox, False)
+        dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
+                           gtk.STOCK_JUMP_TO, gtk.RESPONSE_OK)
+        dialog.set_default_response(gtk.RESPONSE_OK)
+        dialog.vbox.show_all()
+        
+        if dialog.run() == gtk.RESPONSE_OK:
+            gid = text.get_text()
+            handle = self.get_handle_from_gramps_id(gid)
+            if handle is not None:
+                self.change_active(handle)
+                self.goto_handle(handle)
+            else:
+                self.uistate.push_message(
+                    self.dbstate, 
+                    _("Error: %s is not a valid Gramps ID") % gid)
+        dialog.destroy()
+
+    def get_handle_from_gramps_id(self, gid):
+        """
+        Get an object handle from its Gramps ID.
+        Needs to be implemented by the inheriting class.
+        """
+        pass
+
+    def goto_handle(self, handle):
+        self.change_person(handle)
+
+    def fwd_clicked(self, obj):
+        """
+        Move forward one object in the history.
+        """
+        hobj = self.get_history()
+        hobj.lock = True
+        if not hobj.at_end():
+            hobj.forward()
+            self.uistate.modify_statusbar(self.dbstate)
+        self.fwd_action.set_sensitive(not hobj.at_end())
+        self.back_action.set_sensitive(True)
+        hobj.lock = False
+
+    def back_clicked(self, obj):
+        """
+        Move backward one object in the history.
+        """
+        hobj = self.get_history()
+        hobj.lock = True
+        if not hobj.at_front():
+            hobj.back()
+            self.uistate.modify_statusbar(self.dbstate)
+        self.back_action.set_sensitive(not hobj.at_front())
+        self.fwd_action.set_sensitive(True)
+        hobj.lock = False
+
+    def navigation_group(self):
+        """
+        Return the navigation group.
+        """
+        return self.nav_group
+
+    def navigation_type(self):
+        return 'Person'
+
+    def get_history(self):
+        """
+        Return the history object.
+        """
+        return self.uistate.get_history(self.navigation_type(),
+                                        self.navigation_group())
+
+    ####################################################################
+    # MRU functions
+    ####################################################################
+    
+    def mru_disable(self):
+        """
+        Remove the UI and action groups for the MRU list.
+        """
+        if self.mru_active != DISABLED:
+            self.uistate.uimanager.remove_ui(self.mru_active)
+            self.uistate.uimanager.remove_action_group(self.mru_action)
+            self.mru_active = DISABLED
+
+    def mru_enable(self):
+        """
+        Enables the UI and action groups for the MRU list.
+        """
+        if self.mru_active == DISABLED:
+            self.uistate.uimanager.insert_action_group(self.mru_action, 1)
+            self.mru_active = self.uistate.uimanager.add_ui_from_string(self.mru_ui)
+            self.uistate.uimanager.ensure_update()
+
+    def update_mru_menu(self, items):
+        """
+        Builds the UI and action group for the MRU list.
+        """
+        self.mru_disable()
+        nav_type = self.navigation_type()
+        hobj = self.get_history()
+        menu_len = min(len(items) - 1, MRU_SIZE)
+        
+        entry = '<menuitem action="%s%02d"/>'
+        data = [entry % (nav_type, index) for index in range(0, menu_len)]
+        self.mru_ui = "".join(MRU_TOP) + "".join(data) + "".join(MRU_BTM)
+        
+        mitems = items[-MRU_SIZE - 1:-1] # Ignore current handle
+        mitems.reverse()
+        data = []
+        for index, handle in enumerate(mitems):
+            name, obj = navigation_label(self.dbstate.db, nav_type, handle)
+            data.append(('%s%02d'%(nav_type, index), None,  name,
+                         "<alt>%d" % index, None,
+                         _make_callback(hobj.push, handle)))
+ 
+        self.mru_action = gtk.ActionGroup(nav_type)
+        self.mru_action.add_actions(data)
+        self.mru_enable()
+
+    ####################################################################
+    # End MRU functions
+    ####################################################################
+      
     def go_back(self, button): # pylint: disable-msg=W0613
         """
         Go to the previous loaded url.
@@ -1130,7 +1422,13 @@ class GeoView(HtmlView):
           4. set icon and label of the menutoolbutton now that it is realized
           5. store label so it can be changed when selection changes
         """
-        PageView.change_page(self)
+        hobj = self.get_history()
+        self.fwd_action.set_sensitive(not hobj.at_end())
+        self.back_action.set_sensitive(not hobj.at_front())
+        self.other_action.set_sensitive(not self.dbstate.db.readonly)
+        self.uistate.modify_statusbar(self.dbstate)
+        #PageView.change_page(self)
+        self.uistate.clear_filter_results()
         self._set_lock_unlock(config.get('geoview.lock'))
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
