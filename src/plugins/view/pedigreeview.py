@@ -905,7 +905,7 @@ class PedigreeView(NavigationView):
             l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[1]:
                 l.connect("clicked",self.on_childmenu_changed,lst[1][0].handle)
-                l.set_tooltip_text(("Jump to father"))
+                l.set_tooltip_text(_("Jump to father"))
             else:
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/4))
