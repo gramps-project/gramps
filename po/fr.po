@@ -18108,6 +18108,10 @@ msgstr "Aller à l'enfant..."
 msgid "Jump to mother"
 msgstr "Aller à la mère"
 
+#: ../src/plugins/view/pedigreeview.py:908
+msgid "Jump to father"
+msgstr "Aller au père"
+
 #: ../src/plugins/view/pedigreeview.py:1181
 msgid "A person was found to be his/her own ancestor."
 msgstr "Un individu est défini comme son propre ascendant."
