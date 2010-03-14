@@ -1253,7 +1253,7 @@ class PedigreeView(NavigationView):
             if lst[1]:
                 button.connect("clicked", self.cb_childmenu_changed,
                           lst[1][0].handle)
-                button.set_tooltip_text(("Jump to father"))
+                button.set_tooltip_text(_("Jump to father"))
             else:
                 button.set_sensitive(False)
                 
