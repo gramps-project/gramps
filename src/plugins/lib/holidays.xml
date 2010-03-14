@@ -452,7 +452,6 @@
     <date name="Armistice Day" value="*/11/11" type="secular" />
     <date name="Remembrance Sunday" value="*/2/sun/nov" type="secular" />
   </country>
-  <country>
   <country name="България">
     <date name="Нова Година" value="*/1/1" type="national" />
     <date name="Освобождение на България от Османско иго" value="*/3/3" type="national" />
@@ -521,5 +520,5 @@
     <date name="Възнесение господне" value="2010/5/13" type="religious" />
     <date name="Възнесение господне" value="2011/6/2" type="religious" />
     <date name="Възнесение господне" value="2012/5/24" type="religious" />
-  </country>
+  </country> 
 </calendar>
