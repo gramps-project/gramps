@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-02 10:59+0100\n"
-"PO-Revision-Date: 2010-03-14 08:03+0100\n"
+"PO-Revision-Date: 2010-03-14 09:19+0100\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "MIME-Version: 1.0\n"
@@ -3014,14 +3014,14 @@ msgstr "El bloque %s está funcionando"
 
 #: ../src/gen/plug/_gramplet.py:293 ../src/gen/plug/_gramplet.py:301
 #: ../src/gen/plug/_gramplet.py:307
-#, fuzzy, python-format
+#, python-format
 msgid "Gramplet %s updated"
-msgstr "Importar una base de datos"
+msgstr "Bloque %s actualizado"
 
 #: ../src/gen/plug/_gramplet.py:316
-#, fuzzy, python-format
+#, python-format
 msgid "Gramplet %s caused an error"
-msgstr "El bloque %s está funcionando"
+msgstr "El bloque %s causó un error"
 
 #. -------------------------------------------------------------------------
 #.
@@ -3061,18 +3061,16 @@ msgid "Doc creator"
 msgstr "Creador de documentos"
 
 #: ../src/gen/plug/_pluginreg.py:80
-#, fuzzy
 msgid "Plugin lib"
-msgstr "Estado del módulo de extensión"
+msgstr "Biblioteca de módulos de extensión"
 
 #: ../src/gen/plug/_pluginreg.py:81
 msgid "Map service"
 msgstr "Servicio de mapas"
 
 #: ../src/gen/plug/_pluginreg.py:82
-#, fuzzy
 msgid "Gramps View"
-msgstr "Id gramps"
+msgstr "Vista Gramps"
 
 #: ../src/gen/plug/_pluginreg.py:83 ../src/gui/grampsgui.py:134
 #: ../src/plugins/view/relview.py:132 ../src/plugins/view/view.gpr.py:115
@@ -3529,12 +3527,11 @@ msgid "_Stop"
 msgstr "_Parar"
 
 #: ../src/gui/dbloader.py:122
-#, fuzzy
 msgid "Gramps: Import database"
-msgstr "Importar una base de datos"
+msgstr "Gramps: Importar una base de datos"
 
 #: ../src/gui/dbloader.py:181
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
 "\n"
@@ -3570,9 +3567,8 @@ msgid "This file incorrectly identifies its character set, so it cannot be accur
 msgstr "Este archivo indica de forma incorrecta su juego de caracteres, por lo que no se puede importar exactamente.  Cambie el juego de caracteres e impórtelo de nuevo"
 
 #: ../src/gui/dbloader.py:295
-#, fuzzy
 msgid "Need to upgrade database!"
-msgstr "Crear una _nueva base de datos"
+msgstr "Es necesario actualizar el formato de la base de datos"
 
 #: ../src/gui/dbloader.py:297
 msgid "Upgrade now"
@@ -6413,11 +6409,11 @@ msgstr "Copiar _dirección de correo electrónico"
 
 #: ../src/gui/widgets/styledtexteditor.py:325
 msgid "_Open Link"
-msgstr "_Abrir vínculo"
+msgstr "_Abrir enlace"
 
 #: ../src/gui/widgets/styledtexteditor.py:326
 msgid "Copy _Link Address"
-msgstr "Copiar dirección del _vínculo"
+msgstr "Copiar dirección del _enlace"
 
 #: ../src/gui/widgets/styledtexteditor.py:361
 msgid "Italic"
@@ -6469,9 +6465,9 @@ msgstr "Este campo es obligatorio"
 
 #. used on AgeOnDateGramplet
 #: ../src/gui/widgets/validatedmaskedentry.py:1693
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is not a valid date value"
-msgstr "'%s' no es un valor válido para este campo"
+msgstr "'%s' no es una fecha válida"
 
 #: ../src/Simple/_SimpleTable.py:250
 msgid "Unknown father"
@@ -6634,7 +6630,7 @@ msgstr "Ésta es la información detallada de error de Gramps, no se preocupe si
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:227
 msgid "Please check the information below and correct anything that you know to be wrong or remove anything that you would rather not have included in the bug report."
-msgstr "Por favor, comprueba la información siguiente y corrija cualquier cosa que sepa que es incorrecta o elimine lo que no le guste que aparezca en el informe de error."
+msgstr "Por favor, compruebe la información siguiente y corrija cualquier cosa que sepa que es incorrecta o elimine lo que no le guste que aparezca en el reporte de error."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:274
 msgid "System Information"
@@ -6709,9 +6705,8 @@ msgid "Gramps has experienced an unexpected error"
 msgstr "Gramps ha experimentado un error inesperado"
 
 #: ../src/GrampsLogger/_ErrorView.py:82
-#, fuzzy
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "Sus datos estarán seguros pero se recomienda que rearranque Gramps inmediatamente.  Si desea reportar el problema al equipo de Gramps, pulse en Reportes y Asistente para Reportar Errores que le ayudará a confeccionar el reporte de error."
+msgstr "Sus datos estarán seguros pero se recomienda que rearranque Gramps inmediatamente.  Si desea reportar el problema al equipo de Gramps, pulse en Reportes y el Asistente para Reportar Errores que le ayudará a confeccionar el reporte de error."
 
 #: ../src/GrampsLogger/_ErrorView.py:91 ../src/GrampsLogger/_ErrorView.py:104
 msgid "Error Detail"
@@ -6730,9 +6725,9 @@ msgid "unknown mother"
 msgstr "madre desconocida"
 
 #: ../src/plugins/BookReport.py:179
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
-msgstr "%(father)s y %(mother)s [%(gramps_id)s]"
+msgstr "%(father)s y %(mother)s (%(id)s)"
 
 #: ../src/plugins/BookReport.py:583
 msgid "Available Books"
@@ -6804,9 +6799,8 @@ msgid "Available Items Menu"
 msgstr "Menú de elementos disponibles"
 
 #: ../src/plugins/BookReport.py:1180
-#, fuzzy
 msgid "Gramps Book"
-msgstr "Id gramps"
+msgstr "Libro Gramps"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -6888,9 +6882,8 @@ msgstr "Opciones del reporte"
 
 #: ../src/plugins/Records.py:440
 #: ../src/plugins/drawreport/StatisticsChart.py:900
-#, fuzzy
 msgid "Determines what people are included in the report."
-msgstr "Determina qué personas se incluyen en el informe"
+msgstr "Determina qué personas se incluyen en el reporte."
 
 #: ../src/plugins/Records.py:444
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -7957,7 +7950,7 @@ msgstr "Bloqueado por %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:324
 msgid "Determines what people are included in the report"
-msgstr "Determina qué personas se incluyen en el informe"
+msgstr "Determina qué personas se incluyen en el reporte"
 
 #: ../src/plugins/drawreport/TimeLine.py:335
 #: ../src/plugins/tool/SortEvents.py:179
@@ -15256,7 +15249,7 @@ msgstr "Id"
 
 #: ../src/plugins/textreport/MarkerReport.py:450
 msgid "The marker to use for the report"
-msgstr "Marcador a utilizar para el informe"
+msgstr "Marcador a utilizar para el reporte"
 
 #: ../src/plugins/textreport/MarkerReport.py:498
 msgid "The basic style used for table headings."
@@ -17438,7 +17431,7 @@ msgstr "Vista de lugares en árbol"
 
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
-msgstr "Vista que muestra los lugares en forma de árbol"
+msgstr "Vista que muestra los lugares en forma de árbol."
 
 #: ../src/plugins/view/placetreeview.py:78
 msgid "Expand this Entire Group"
@@ -17556,14 +17549,14 @@ msgid "Add existing child to family"
 msgstr "Agregar un hijo existente a la familia"
 
 #: ../src/plugins/view/relview.py:1172
-#, fuzzy, python-format
+#, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
-msgstr "Nació: %(birth_date)s %(birth_place)s, Falleció: %(death_date)s %(death_place)s."
+msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
 #: ../src/plugins/view/relview.py:1179 ../src/plugins/view/relview.py:1181
-#, fuzzy, python-format
+#, python-format
 msgid "%s %s"
-msgstr "%s y %s"
+msgstr "%s %s"
 
 #: ../src/plugins/view/relview.py:1242
 #, python-format
@@ -17609,18 +17602,16 @@ msgid "Add Child to Family"
 msgstr "Agregar hijo a la familia"
 
 #: ../src/plugins/view/relview.py:1636
-#, fuzzy
 msgid "Use shading"
-msgstr "Lectura"
+msgstr "Usar sombreado"
 
 #: ../src/plugins/view/relview.py:1639
-#, fuzzy
 msgid "Display edit buttons"
-msgstr "Mostrar el editor de nombres"
+msgstr "Mostrar los botones de edición"
 
 #: ../src/plugins/view/relview.py:1641
 msgid "View links as website links"
-msgstr ""
+msgstr "Ver enlaces como enlaces a páginas web"
 
 #: ../src/plugins/view/relview.py:1647
 msgid "Layout"
@@ -17731,58 +17722,48 @@ msgid "Pedigree View"
 msgstr "Vista de árbol"
 
 #: ../src/plugins/view/view.gpr.py:123
-#, fuzzy
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "Cuenta el número de ascendientes de la persona seleccionada"
+msgstr "Vista que muestra los ascendientes de la persona seleccionada"
 
 #: ../src/plugins/view/view.gpr.py:137
-#, fuzzy
 msgid "Person Tree View"
-msgstr "Vista de _persona"
+msgstr "Vista de árbol de personas"
 
 #: ../src/plugins/view/view.gpr.py:138
-#, fuzzy
 msgid "The view showing all people in the family tree"
-msgstr "Intentar ver todos los lugares del árbol genealógico."
+msgstr "Vista que muestra todas las personas en el árbol genealógico"
 
 #: ../src/plugins/view/view.gpr.py:152
-#, fuzzy
 msgid "Person View"
-msgstr "Vista de _persona"
+msgstr "Vista de personas"
 
 #: ../src/plugins/view/view.gpr.py:153
-#, fuzzy
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Intentar ver todos los lugares del árbol genealógico."
+msgstr "Vista que muestra todas las personas del árbol genealógico en forma de lista"
 
 #: ../src/plugins/view/view.gpr.py:167
-#, fuzzy
 msgid "Place View"
-msgstr "Nombre del lugar"
+msgstr "Vista de lugares"
 
 #: ../src/plugins/view/view.gpr.py:168
-#, fuzzy
 msgid "The view showing all the places of the family tree"
-msgstr "Intentar ver todos los lugares del árbol genealógico."
+msgstr "Vista que muestra todos los lugares del árbol genealógico"
 
 #: ../src/plugins/view/view.gpr.py:182
-#, fuzzy
 msgid "Repository View"
-msgstr "Repositorios"
+msgstr "Vista de repositorios"
 
 #: ../src/plugins/view/view.gpr.py:183
-#, fuzzy
 msgid "The view showing all the repositories"
-msgstr "Borrar repositorios sin uso"
+msgstr "Vista que muestra todos los repositorios"
 
 #: ../src/plugins/view/view.gpr.py:197
-#, fuzzy
 msgid "Source View"
-msgstr "Enlace a fuente"
+msgstr "Vista de fuentes"
 
 #: ../src/plugins/view/view.gpr.py:198
 msgid "The view showing all the sources"
-msgstr ""
+msgstr "Vista que muestra todas las fuentes"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:119
 msgid "Alternate Locations"
@@ -17793,7 +17774,6 @@ msgid "Postal Code"
 msgstr "Código Postal"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:131
-#, fuzzy
 msgid "State/ Province"
 msgstr "Estado/Provincia"
 
@@ -17807,14 +17787,13 @@ msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> on %(date)s"
 msgstr "Generado por <a href=\"%(homepage)s\">Gramps</a> el %(date)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:880
-#, fuzzy, python-format
+#, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
-msgstr "<br />para <a href=\"%s\">%s</a>"
+msgstr " Creado por <a href = \"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
-#, fuzzy
 msgid "Html|Home"
-msgstr "Inicio"
+msgstr "Página inicial"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1002
 #: ../src/plugins/webreport/NarrativeWeb.py:2986
@@ -17843,9 +17822,8 @@ msgstr "Contacto"
 #: ../src/plugins/webreport/NarrativeWeb.py:1055
 #: ../src/plugins/webreport/NarrativeWeb.py:4732
 #: ../src/plugins/webreport/NarrativeWeb.py:4854
-#, fuzzy
 msgid "Address Book"
-msgstr "Dirección: "
+msgstr "Libreta de direcciones"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1305
 msgid "Gallery"
@@ -18485,49 +18463,45 @@ msgid "Include repository pages"
 msgstr "Incluir páginas de repositorios"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5876
-#, fuzzy
 msgid "Whether to include the Repository Pages or not?"
-msgstr "Si se deben incluir otros nombres."
+msgstr "Si se deben incluir o no las páginas de repositorios"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5879
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr ""
+msgstr "Incluir archivo GENDEX (/gendex.txt)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5880
-#, fuzzy
 msgid "Whether to include a GENDEX file or not"
-msgstr "Incluir una columna de nacimiento"
+msgstr "Si se debe incluir o no un archivo GENDEX"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5883
-#, fuzzy
 msgid "Include address book pages"
-msgstr "Incluir direcciones"
+msgstr "Incluir páginas de la libreta de direcciones"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5884
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
-msgstr ""
+msgstr "Si se deben incluir o no páginas de libreta de direcciones que pueden incluir dorecciones de correo electrónico y páginas web, así como datos de direcciones personales o eventos de residencia"
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:305
 #, python-format
 msgid "Calculating Holidays for year %04d"
-msgstr ""
+msgstr "Calculando festividades para el año %04d"
 
 #: ../src/plugins/webreport/WebCal.py:454
-#, fuzzy, python-format
+#, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr "Creado para <a href=\"mailto:%(email)s?subject=Calendario Web\">%(author)s</a>\n"
+msgstr "Creado para <a href=\"mailto:%(email)s?subject=Calendario Web\">%(author)s</a>"
 
 #: ../src/plugins/webreport/WebCal.py:458
-#, fuzzy, python-format
+#, python-format
 msgid "Created for %(author)s"
-msgstr "Creado para %(author)s\n"
+msgstr "Creado para %(author)s"
 
 #. An optional link to a home page
 #: ../src/plugins/webreport/WebCal.py:530
-#, fuzzy
 msgid "html|Home"
-msgstr "Inicio"
+msgstr "Página web personal"
 
 #. Add a link for year_glance() if requested
 #: ../src/plugins/webreport/WebCal.py:534
@@ -18538,7 +18512,6 @@ msgstr "Lugar de Fallecimiento"
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
 #: ../src/plugins/webreport/WebCal.py:838
-#, fuzzy
 msgid "Formatting months ..."
 msgstr "Dando formato a los meses..."
 
@@ -18565,11 +18538,9 @@ msgid "One Day Within A Year"
 msgstr "Un día del año"
 
 #: ../src/plugins/webreport/WebCal.py:1190
-#, fuzzy, python-format
+#, python-format
 msgid "%(spouse)s and %(person)s"
-msgstr ""
-"%(spouse)s con\n"
-" %(person)s, %(nyears)d"
+msgstr "%(spouse)s con %(person)s"
 
 #. Display date as user set in preferences
 #: ../src/plugins/webreport/WebCal.py:1210
@@ -18579,9 +18550,8 @@ msgstr "Generado por <a href=\"http://gramps-project.org\">Gramps</a> el %(date)
 
 #. Create progress meter bar
 #: ../src/plugins/webreport/WebCal.py:1256
-#, fuzzy
 msgid "Web Calendar Report"
-msgstr "Reporte de calendario"
+msgstr "Reporte de calendario web"
 
 #: ../src/plugins/webreport/WebCal.py:1345
 msgid "Calendar Title"
@@ -18596,9 +18566,8 @@ msgid "The title of the calendar"
 msgstr "El título del calendario"
 
 #: ../src/plugins/webreport/WebCal.py:1386
-#, fuzzy
 msgid "The Style Sheet to be used for the web page"
-msgstr "Estilo utilizado para el título de la página."
+msgstr "Hoja de estilo utilizada para la página web"
 
 #: ../src/plugins/webreport/WebCal.py:1393
 msgid "Content Options"
@@ -18625,9 +18594,8 @@ msgid "End Year for the Calendar(s)"
 msgstr "Año final para los calendarios"
 
 #: ../src/plugins/webreport/WebCal.py:1411
-#, fuzzy
 msgid "Enter the ending year for the calendars between 1900 - 3000."
-msgstr "Introducir el año de comienzo para los calendarios entre 1900 y 3000"
+msgstr "Introducir el año final para los calendarios entre 1900 y 3000."
 
 #: ../src/plugins/webreport/WebCal.py:1428
 msgid "Holidays will be included for the selected country"
@@ -18643,10 +18611,9 @@ msgstr "El enlace a incluir para llevar al usuario a la página principal del si
 
 #: ../src/plugins/webreport/WebCal.py:1469
 msgid "Jan - Jun Notes"
-msgstr "Notes de enero a junio"
+msgstr "Notas de enero a junio"
 
 #: ../src/plugins/webreport/WebCal.py:1471
-#, fuzzy
 msgid "January Note"
 msgstr "Nota de enero"
 
@@ -18655,7 +18622,6 @@ msgid "The note for the month of January"
 msgstr "Nota del mes de enero"
 
 #: ../src/plugins/webreport/WebCal.py:1475
-#, fuzzy
 msgid "February Note"
 msgstr "Nota de febrero"
 
@@ -18664,7 +18630,6 @@ msgid "The note for the month of February"
 msgstr "Nota del mes de febrero"
 
 #: ../src/plugins/webreport/WebCal.py:1479
-#, fuzzy
 msgid "March Note"
 msgstr "Nota de marzo"
 
@@ -18673,7 +18638,6 @@ msgid "The note for the month of March"
 msgstr "Nota del mes de marzo"
 
 #: ../src/plugins/webreport/WebCal.py:1483
-#, fuzzy
 msgid "April Note"
 msgstr "Nota de abril"
 
@@ -18690,7 +18654,6 @@ msgid "The note for the month of May"
 msgstr "Nota del mes de mayo"
 
 #: ../src/plugins/webreport/WebCal.py:1491
-#, fuzzy
 msgid "June Note"
 msgstr "Nota de junio"
 
@@ -18703,7 +18666,6 @@ msgid "Jul - Dec Notes"
 msgstr "Notas de julio a diciembre"
 
 #: ../src/plugins/webreport/WebCal.py:1497
-#, fuzzy
 msgid "July Note"
 msgstr "Nota de julio"
 
@@ -18712,7 +18674,6 @@ msgid "The note for the month of July"
 msgstr "Nota del mes de julio"
 
 #: ../src/plugins/webreport/WebCal.py:1501
-#, fuzzy
 msgid "August Note"
 msgstr "Nota de agosto"
 
@@ -18721,7 +18682,6 @@ msgid "The note for the month of August"
 msgstr "Nota del mes de agosto"
 
 #: ../src/plugins/webreport/WebCal.py:1505
-#, fuzzy
 msgid "September Note"
 msgstr "Nota de septiembre"
 
@@ -18730,7 +18690,6 @@ msgid "The note for the month of September"
 msgstr "Nota del mes de septiembre"
 
 #: ../src/plugins/webreport/WebCal.py:1509
-#, fuzzy
 msgid "October Note"
 msgstr "Nota de octubre"
 
@@ -18739,7 +18698,6 @@ msgid "The note for the month of October"
 msgstr "Nota del mes de octubre"
 
 #: ../src/plugins/webreport/WebCal.py:1513
-#, fuzzy
 msgid "November Note"
 msgstr "Nota de noviembre"
 
@@ -18748,7 +18706,6 @@ msgid "The note for the month of November"
 msgstr "Nota del mes de noviembre"
 
 #: ../src/plugins/webreport/WebCal.py:1517
-#, fuzzy
 msgid "December Note"
 msgstr "Nota de diciembre"
 
@@ -18795,14 +18752,13 @@ msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1729
-#, fuzzy, python-format
+#, python-format
 msgid "%s old"
-msgstr "Negrillas"
+msgstr "%s de edad"
 
 #: ../src/plugins/webreport/WebCal.py:1729
-#, fuzzy
 msgid "birth"
-msgstr "Nacimiento"
+msgstr "nacimiento"
 
 #: ../src/plugins/webreport/WebCal.py:1736
 #, python-format
@@ -18928,42 +18884,37 @@ msgid "Run selected tool"
 msgstr "Ejecutar la herramienta soleccionada"
 
 #: ../src/PluginUtils/_PluginWindows.py:187
-#, fuzzy
 msgid "Hidden"
-msgstr "Manual"
+msgstr "Oculto"
 
 #: ../src/PluginUtils/_PluginWindows.py:189
 msgid "Visible"
-msgstr ""
+msgstr "Visible"
 
 #: ../src/PluginUtils/_PluginWindows.py:237
 #: ../src/PluginUtils/_PluginWindows.py:288
-#, fuzzy
 msgid "Info"
-msgstr "Infante"
+msgstr "Información"
 
 #. id_col
 #: ../src/PluginUtils/_PluginWindows.py:240
 #: ../src/PluginUtils/_PluginWindows.py:291
 msgid "Hide/Unhide"
-msgstr ""
+msgstr "Ocultar/Mostrar"
 
 #. id_col
 #: ../src/PluginUtils/_PluginWindows.py:248
 #: ../src/PluginUtils/_PluginWindows.py:300
-#, fuzzy
 msgid "Load"
-msgstr "Relacionados"
+msgstr "Cargar"
 
 #: ../src/PluginUtils/_PluginWindows.py:254
-#, fuzzy
 msgid "Registered Plugins"
-msgstr "Recargar módulos"
+msgstr "Módulos de extensión registrados"
 
 #: ../src/PluginUtils/_PluginWindows.py:267
-#, fuzzy
 msgid "Loaded"
-msgstr "Relacionados"
+msgstr "Cargados"
 
 #: ../src/PluginUtils/_PluginWindows.py:271
 msgid "File"
@@ -18974,106 +18925,99 @@ msgid "Message"
 msgstr "Mensaje"
 
 #: ../src/PluginUtils/_PluginWindows.py:305
-#, fuzzy
 msgid "Loaded Plugins"
-msgstr "Recargar módulos"
+msgstr "Módulos de extensión cargados"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../src/PluginUtils/_PluginWindows.py:325
-#, fuzzy
 msgid "Addon Name"
-msgstr "Agregar familia"
+msgstr "Nombre de la extensión"
 
 #: ../src/PluginUtils/_PluginWindows.py:340
 msgid "Path to Addon:"
-msgstr ""
+msgstr "Ruta a la extensión:"
 
 #: ../src/PluginUtils/_PluginWindows.py:357
 msgid "Install Addon"
-msgstr ""
+msgstr "Instalar extensión"
 
 #: ../src/PluginUtils/_PluginWindows.py:360
 msgid "Install All Addons"
-msgstr ""
+msgstr "Instalar todas las extensiones"
 
 #: ../src/PluginUtils/_PluginWindows.py:363
 msgid "Refresh Addon List"
-msgstr ""
+msgstr "Refrescar la lista de las extensiones"
 
 #: ../src/PluginUtils/_PluginWindows.py:368
 msgid "Install Addons"
-msgstr ""
+msgstr "Instalar extensiones"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
 #: ../src/PluginUtils/_PluginWindows.py:376
-#, fuzzy
 msgid "Reload"
-msgstr "Relacionados"
+msgstr "Recargar"
 
 #: ../src/PluginUtils/_PluginWindows.py:398
 msgid "Refreshing Addon List"
-msgstr ""
+msgstr "Refrescando la lista de extensiones"
 
 #: ../src/PluginUtils/_PluginWindows.py:399
 #: ../src/PluginUtils/_PluginWindows.py:404
 #: ../src/PluginUtils/_PluginWindows.py:494
 msgid "Reading gramps-project.org..."
-msgstr ""
+msgstr "Leyendo de gramps-project.org..."
 
 #: ../src/PluginUtils/_PluginWindows.py:422
-#, fuzzy
 msgid "Checking addon..."
-msgstr "Comprobando datos"
+msgstr "Comprobando la extensión..."
 
 #: ../src/PluginUtils/_PluginWindows.py:430
-#, fuzzy
 msgid "Unknown Help URL"
-msgstr "Tipo desconocido: %s"
+msgstr "URL de ayuda desconocida"
 
 #: ../src/PluginUtils/_PluginWindows.py:441
-#, fuzzy
 msgid "Unknown URL"
-msgstr "Desconocido"
+msgstr "URL desconocida"
 
 #: ../src/PluginUtils/_PluginWindows.py:477
 msgid "Install all Addons"
-msgstr ""
+msgstr "Instalar todas las extensiones"
 
 #: ../src/PluginUtils/_PluginWindows.py:477
-#, fuzzy
 msgid "Installing..."
-msgstr "Calculando...\n"
+msgstr "Instalando..."
 
 #: ../src/PluginUtils/_PluginWindows.py:493
 msgid "Installing Addon"
-msgstr ""
+msgstr "Instalando extensión"
 
 #: ../src/PluginUtils/_PluginWindows.py:522
 #: ../src/PluginUtils/_PluginWindows.py:528
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to open '%s'"
-msgstr "No se pudo abrir %s"
+msgstr "No se pudo abrir '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:539
-#, fuzzy, python-format
+#, python-format
 msgid "Error: cannot open '%s'"
-msgstr "No se pudo abrir %s"
+msgstr "Error: no se pudo abrir '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:542
-#, fuzzy, python-format
+#, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "Tipo desconocido: %s"
+msgstr "Error: tipo de archivo desconocido: '%s'"
 
 #: ../src/PluginUtils/_PluginWindows.py:547
-#, fuzzy, python-format
+#, python-format
 msgid "Examining '%s'..."
-msgstr "Eliminando '%s'..."
+msgstr "Examinando '%s'..."
 
 #: ../src/PluginUtils/_PluginWindows.py:559
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr ""
+msgstr "Error en el archivo '%s': no se pudo cargar."
 
 #: ../src/PluginUtils/_PluginWindows.py:571
 #, python-format
@@ -19097,9 +19041,9 @@ msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr ""
 
 #: ../src/PluginUtils/_PluginWindows.py:585
-#, fuzzy, python-format
+#, python-format
 msgid "Installing '%s'..."
-msgstr "Eliminando '%s'..."
+msgstr "Instalando '%s'..."
 
 #: ../src/PluginUtils/_PluginWindows.py:595
 #, fuzzy, python-format
@@ -19108,7 +19052,7 @@ msgstr "Recargar módulos"
 
 #: ../src/PluginUtils/_PluginWindows.py:604
 msgid "Load Addon"
-msgstr ""
+msgstr "Cargar extensión"
 
 #: ../src/PluginUtils/_PluginWindows.py:655
 msgid "Unavailable"
@@ -19123,9 +19067,8 @@ msgid "OK"
 msgstr "Correcto"
 
 #: ../src/PluginUtils/_PluginWindows.py:821
-#, fuzzy
 msgid "Plugin Error"
-msgstr "Estado del módulo de extensión"
+msgstr "Error del módulo de extensión"
 
 #: ../src/PluginUtils/_Tool.py:56
 msgid "Debug"
@@ -19175,7 +19118,7 @@ msgstr "Tamaño Personalizado"
 
 #: ../src/ReportBase/_CommandLineReport.py:403
 msgid "Failed to write report. "
-msgstr ""
+msgstr "Fallo al escribir el reporte. "
 
 #: ../src/ReportBase/_Constants.py:43
 msgid "Text Reports"
@@ -19262,9 +19205,8 @@ msgid "Open with default viewer"
 msgstr "Abrir con el visor predeterminado"
 
 #: ../src/ReportBase/_DocReportDialog.py:198
-#, fuzzy
 msgid "CSS file"
-msgstr "Seleccionar archivo"
+msgstr "Archivo CSS"
 
 #: ../src/ReportBase/_Endnotes.py:50
 msgid "The basic style used for the endnotes source display."
@@ -19275,18 +19217,17 @@ msgid "The basic style used for the endnotes reference display."
 msgstr "Estilo básico para la presentación de las referencias en las notas finales."
 
 #: ../src/ReportBase/_Endnotes.py:65
-#, fuzzy
 msgid "The basic style used for the endnotes notes display."
-msgstr "Estilo básico para la presentación del texto de las notas finales."
+msgstr "Estilo básico para la presentación de las notas finales."
 
 #: ../src/ReportBase/_Endnotes.py:109
 msgid "Endnotes"
 msgstr "Notas finales"
 
 #: ../src/ReportBase/_Endnotes.py:145
-#, fuzzy, python-format
+#, python-format
 msgid "Note %(ind)d - Type: %(type)s"
-msgstr "Nota: %(id)s - %(context)s"
+msgstr "Nota %(ind)d - Tipo: %(type)s"
 
 #. -------------------------------------------------------------------------------
 #.
@@ -23178,33 +23119,28 @@ msgid "<b>Organising the Views</b><br/>Many of the views can presented your data
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:41
-#, fuzzy
 msgid "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public."
-msgstr "GRAMPS le ayuda a proteger la información de carácter personal si la marca como privada. Los datos marcados como privados pueden excluirse de los informes y las exportaciones de datos."
+msgstr "<b>Privacidad en Gramps</b><br/>Gramps le ayuda a proteger la información de carácter personal si la marca como privada. Los datos marcados como privados pueden excluirse de los reportes y las exportaciones de datos. Fíjese en el candado que permite marcar los registros como privados o públicos."
 
 #: ../src/data/tips.xml.in.h:42
-#, fuzzy
 msgid "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;Help &gt; User Manual&quot;. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr "No olvide leer el manual de GRAMPS, <b>Ayuda &gt; Manual de usuario</b>. Los desarrolladores han dedicado un gran esfuerzo en hacer la mayoría de las operaciones intuitivas, pero el manual está repleto de información que hará más productivo el tiempo que dedique a la genealogía."
+msgstr "<b>Lea el manual</b><br/>No olvide leer el manual de Gramps, &quot;Ayuda &gt; Manual de usuario&quot;. Los desarrolladores han dedicado un gran esfuerzo en hacer la mayoría de las operaciones intuitivas, pero el manual está repleto de información que hará más productivo el tiempo que dedique a la genealogía."
 
 #: ../src/data/tips.xml.in.h:43
-#, fuzzy
 msgid "<b>Record Your Sources</b><br/>Information collected about your family is only as good as the source it came from. Take the time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
-msgstr "<b>Buen consejo de genealogía</b>: La información que ha recogido de su familia vale lo que valen las fuentes de las que la extrajo. Dedique tiempo y esfuerzo a registrar todos los detalles de dónde la obtuvo. Siempre que sea posible, obtenga una copia de los documentos originales."
+msgstr "<b>Tome nota de las fuentes</b><br/>La información que ha recogido de su familia vale lo que valen las fuentes de las que la extrajo. Dedique tiempo y esfuerzo a registrar todos los detalles de dónde la obtuvo. Siempre que sea posible, obtenga una copia de los documentos originales."
 
 #: ../src/data/tips.xml.in.h:44
-#, fuzzy
 msgid "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
-msgstr "La mejor forma de reportar un defecto de GRAMPS es utilizar el sistema de seguimiento de defectos de GRAMPS en http://bugs.gramps-project.org"
+msgstr "<b>Reportar errores en Gramps</b><br/>La mejor forma de reportar un defecto de Gramps es utilizar el sistema de seguimiento de defectos de Gramps en http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:45
 msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each seperate view can also be configured under &quot;View &gt; Configure View...&quot;"
-msgstr ""
+msgstr "<b>Fijar preferencias</b><br/>&quot;Editar &gt; Preferencias...&quot; le permite modificar una serie de ajustes, como la ruta a sus archivos audiovisuales, y le permite ajustar a sus necesidades muchos aspectos de la presentación de Gramps. Cada vista separada puede configurarse también en &quot;Vista &gt; Configurar vista...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
-#, fuzzy
 msgid "<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case Gramps is wrong in making this choice, you can override the filter by checking the Show All checkbutton."
-msgstr "<b>Casilla Mostrar Todos</b>: Al agregra un cónyuge o un hijo, sólo se muestran inicialmente las personas que podrían cumplir ese papel (en función del sexo o las fechas). Si no le satisface este filtro, puede desactivarlo marcando la casilla &quot;Mostrar todos&quot;."
+msgstr "<b>Casilla Mostrar todos</b><br/>Al agregar una persona existente como cónyuge, sólo se muestran inicialmente las personas que podrían cumplir ese papel (en función del sexo o las fechas). Si no le satisface este filtro, puede desactivarlo marcando la casilla &quot;Mostrar todos&quot;."
 
 #: ../src/data/tips.xml.in.h:47
 #, fuzzy
@@ -23295,23 +23231,6 @@ msgstr ""
 #~ msgid_plural "Export Complete: %d seconds"
 #~ msgstr[0] "Importación terminada: %d segundo"
 #~ msgstr[1] "Importación terminada: %d segundos"
-
-#, fuzzy
-#~ msgid "Django import"
-#~ msgstr "No se pudo importar %s"
-
-#~ msgid "Select filter to restrict people"
-#~ msgstr "Seleccione filtro para restringir las personas"
-
-#~ msgid "Calculated Date Estimates"
-#~ msgstr "Estimaciones de las fechas calculadas"
-
-#~ msgid "Source to remove and/or add"
-#~ msgstr "Fuente a eliminar y/o agregar"
-
-#, fuzzy
-#~ msgid "Remove previously added events, notes, and source"
-#~ msgstr "Eliminar fechas agregadas previamente"
 
 #, fuzzy
 #~ msgid "Do not add birth events"
@@ -23621,9 +23540,6 @@ msgstr ""
 #~ "Su versión de Python no cumple los requisitos. Se requiere al menos python %d.%d.%d para usar GRAMPS.\n"
 #~ "\n"
 #~ "GRAMPS se cerrará ahora."
-
-#~ msgid "Jump to by GRAMPS ID"
-#~ msgstr "Ir a un ID GRAMPS"
 
 #~ msgid "Error: %s is not a valid GRAMPS ID"
 #~ msgstr "Error: %s no es un ID GRAMPS válido"
@@ -24454,9 +24370,6 @@ msgstr ""
 #~ msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
 #~ msgstr "GRAMPS tiene algunas características distintivas, incluyendo la posibilidad de introducir cualquir tipo de información directamente en GRAMPS. Todos los datos de la base de datos pueden reorganizarse y manipularse para ayudar al usuario en la investigación, el análisis y la correlación con el fin de encontrar huecos familiares a rellenar."
 
-#~ msgid "GRAMPS helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports."
-#~ msgstr "GRAMPS le ayuda a proteger la información de carácter personal si la marca como privada. Los datos marcados como privados pueden excluirse de los informes y las exportaciones de datos."
-
 #~ msgid "GRAMPS is freely distributable under the General Public License, see http://www.gnu.org/licenses/licenses.html#GPL"
 #~ msgstr "GRAMPS puede distribuirse libremente siguiendo la Licencia Pública General de GNU, véase http://www.gnu.org/licenses/licenses.html#GPL"
 
@@ -24589,10 +24502,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Django options"
 #~ msgstr "Opciones de Página"
-
-#, fuzzy
-#~ msgid "Django Import"
-#~ msgstr "Importar"
 
 #~ msgid "%s and %s are the same person."
 #~ msgstr "%s y %s son la misma persona."
