@@ -622,7 +622,7 @@ class FanChartView(NavigationView):
         '''
 
     def build_tree(self):
-        self.main()
+        pass # will build when active_changes
 
     def active_changed(self, handle):
         """
