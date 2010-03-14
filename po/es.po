@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-02 10:59+0100\n"
-"PO-Revision-Date: 2009-03-05 12:05+0100\n"
+"PO-Revision-Date: 2010-03-14 08:03+0100\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "MIME-Version: 1.0\n"
@@ -1933,6 +1933,9 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
+"AVISO: El archivo de salida ya existe.\n"
+"AVISO: Resultará sobreescrito:\n"
+"   %(name)s"
 
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
@@ -3093,17 +3096,17 @@ msgstr "ERROR: Falló la lectura del módulo de extensión a registrar %(filenam
 #: ../src/gen/plug/_pluginreg.py:970
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
-msgstr ""
+msgstr "ERROR: El archivo del módulo de extensión %(filename)s tiene versión \"%(gramps_target_version)s\" que no es válida en Gramps \"%(gramps_version)s\"."
 
 #: ../src/gen/plug/_pluginreg.py:989
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
-msgstr ""
+msgstr "ERROR: Archivo python incorrecto %(filename)s en el archivo de registro %(regfile)s"
 
 #: ../src/gen/plug/_pluginreg.py:997
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
-msgstr ""
+msgstr "ERROR: El archivo python %(filename)s mencionado en el archivo de registro %(regfile)s no existe"
 
 #: ../src/gen/plug/docbackend/docbackend.py:140
 msgid "Close file first"
@@ -3152,11 +3155,11 @@ msgstr "Privado"
 #: ../src/gui/columnorder.py:86
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr ""
+msgstr "Vista de árbol: No se puede cambiar la primera columna \"%s\""
 
 #: ../src/gui/columnorder.py:92
 msgid "Drag and drop the columns to change the order"
-msgstr ""
+msgstr "Arrastre y suelte las columnas para cambiar el orden"
 
 #: ../src/gui/columnorder.py:120 ../src/gui/configure.py:872
 msgid "Display"
@@ -4111,7 +4114,7 @@ msgstr "Eventos"
 #: ../src/plugins/gramplet/gramplet.gpr.py:113
 #: ../src/plugins/view/fanchartview.py:570
 msgid "Fan Chart"
-msgstr "Diagrama en Abanico"
+msgstr "Diagrama en abanico"
 
 #: ../src/gui/grampsgui.py:118
 msgid "Font"
@@ -4304,16 +4307,16 @@ msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official views, contact the view author (%(firstauthoremail)s) otherwise. "
 msgstr ""
+"No se pudo cargar la vista %(name)s. Para más información, vea el menú de Ayuda, Gestor de módulos de extensión.\n"
+"Use http://bugs.gramps-project.org para reportar problemas en las vistas oficiales, contacte con el autor de la vista (%(firstauthoremail)s) en los demás casos. "
 
 #: ../src/gui/grampsgui.py:291
-#, fuzzy
 msgid "Error parsing arguments"
-msgstr "Error al añadir un cónyuge"
+msgstr "Error al analizar los argumentos"
 
 #: ../src/gui/utils.py:187
-#, fuzzy
 msgid "Cancelling..."
-msgstr "Calculando...\n"
+msgstr "Cancelando..."
 
 #: ../src/gui/utils.py:263
 msgid "Please do not force closing this important dialog."
@@ -6398,15 +6401,15 @@ msgstr "Información de progreso"
 #. spell checker submenu
 #: ../src/gui/widgets/styledtexteditor.py:311
 msgid "Spell"
-msgstr ""
+msgstr "Ortografía"
 
 #: ../src/gui/widgets/styledtexteditor.py:322
 msgid "_Send Mail To..."
-msgstr ""
+msgstr "_Enviar correo electrónico a..."
 
 #: ../src/gui/widgets/styledtexteditor.py:323
 msgid "Copy _E-mail Address"
-msgstr ""
+msgstr "Copiar _dirección de correo electrónico"
 
 #: ../src/gui/widgets/styledtexteditor.py:325
 msgid "_Open Link"
@@ -6906,7 +6909,7 @@ msgstr "Persona del filtro"
 #: ../src/plugins/webreport/NarrativeWeb.py:5638
 #: ../src/plugins/webreport/WebCal.py:1356
 msgid "The center person for the filter"
-msgstr "Persona central para le filtro"
+msgstr "Persona central para el filtro"
 
 #: ../src/plugins/Records.py:451
 msgid "Use call name"
@@ -7825,9 +7828,8 @@ msgstr "%s (personas):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:905
 #: ../src/plugins/textreport/IndivComplete.py:649
-#, fuzzy
 msgid "The center person for the filter."
-msgstr "Persona central para le filtro"
+msgstr "Persona central para el filtro."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 msgid "Sort chart items by"
@@ -8590,7 +8592,7 @@ msgstr "Bloque de apellidos más frecuentes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:265
 msgid "Gramplet showing most frequent surnames in this tree"
-msgstr ""
+msgstr "Bloque que muestra los apellidos más frecuentes en este árbol genealógico"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:270
 msgid "Top Surnames"
@@ -8615,7 +8617,7 @@ msgstr "Bloque de estadisticas"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:292
 msgid "Gramplet suggesting items to research"
-msgstr ""
+msgstr "Bloque con sugerencias de temas a investigar"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:298
 msgid "What's Next?"
@@ -9172,7 +9174,7 @@ msgstr "Se considerarán los padres y sus ascendientes para determinar las \"lí
 
 #: ../src/plugins/graph/GVFamilyLines.py:121
 msgid "Follow children to determine \"family lines\""
-msgstr ""
+msgstr "Seguir los hijos para determinar las \"líneas familiares\""
 
 #: ../src/plugins/graph/GVFamilyLines.py:123
 msgid "Children will be considered when determining \"family lines\"."
@@ -13562,13 +13564,12 @@ msgid "Place Filter Editor"
 msgstr "Editor de filtros de lugares"
 
 #: ../src/plugins/lib/libplaceview.py:258
-#, fuzzy
 msgid "No map service is available."
-msgstr "No hay una descripción disponible"
+msgstr "No hay disponible ningún servicio de mapas."
 
 #: ../src/plugins/lib/libplaceview.py:259
 msgid "Check your installation."
-msgstr ""
+msgstr "Compruebe su instalación."
 
 #: ../src/plugins/lib/libplaceview.py:267
 msgid "No place selected."
@@ -13597,7 +13598,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
-msgstr ""
+msgstr "Proporciona la capacidad de procesar archivos GEDCOM"
 
 #: ../src/plugins/lib/libplugins.gpr.py:86
 msgid "Provides common functionality for Gramps XML import/export."
@@ -13605,7 +13606,7 @@ msgstr "Proporciona la funcionalidad común a todas las importaciones y exportac
 
 #: ../src/plugins/lib/libplugins.gpr.py:105
 msgid "Base class for ImportGrdb"
-msgstr ""
+msgstr "Clase base para ImportGrdb"
 
 #: ../src/plugins/lib/libplugins.gpr.py:123
 msgid "Provides holiday information for different countries."
@@ -13613,65 +13614,61 @@ msgstr "Proporciona información de festividades en distintos países."
 
 #: ../src/plugins/lib/libplugins.gpr.py:141
 msgid "Manages a HTML file implementing DocBackend."
-msgstr ""
+msgstr "Gestiona un archivo HTML que implementa DocBackend."
 
 #: ../src/plugins/lib/libplugins.gpr.py:159
 msgid "Common constants for html files."
-msgstr ""
+msgstr "Constantes comunes para los archivos html."
 
 #: ../src/plugins/lib/libplugins.gpr.py:177
 msgid "Manages an HTML DOM tree."
-msgstr ""
+msgstr "Gestiona un árbol DOM HTML."
 
 #: ../src/plugins/lib/libplugins.gpr.py:195
 msgid "Provides base functionality for map services."
 msgstr "Proporciona la funcionalidad básica para los servicios de mapas."
 
+# TBC
 #: ../src/plugins/lib/libplugins.gpr.py:212
-#, fuzzy
 msgid "Provides Textual Narration."
-msgstr "Entrega un texto con el reporte de lugares"
+msgstr "Proporciona narración textual."
 
 #: ../src/plugins/lib/libplugins.gpr.py:229
 msgid "Manages an ODF file implementing DocBackend."
-msgstr ""
+msgstr "Gestiona un archivo ODF que implementa DocBackend."
 
 #: ../src/plugins/lib/libplugins.gpr.py:246
 msgid "Provides Textual Translation."
-msgstr ""
+msgstr "Proporciona traducción de textos."
 
 #: ../src/plugins/lib/libplugins.gpr.py:263
 msgid "Provides the Base needed for the List People views."
-msgstr ""
+msgstr "Proporciona la base necesaria para las vistas de listados de personas."
 
 #: ../src/plugins/lib/libplugins.gpr.py:280
 msgid "Provides the Base needed for the List Place views."
-msgstr ""
+msgstr "Proporciona la base necesaria para las vistas de listados de lugares."
 
 #: ../src/plugins/lib/libtranslate.py:74
-#, fuzzy
 msgid "Albanian"
-msgstr "Abandonar"
+msgstr "Albano"
 
 #: ../src/plugins/lib/libtranslate.py:77
-#, fuzzy
 msgid "Chinese"
-msgstr "Testigos"
+msgstr "Chino"
 
 #: ../src/plugins/lib/libtranslate.py:81
-#, fuzzy
 msgid "Brazil"
-msgstr "Entierro"
+msgstr "Brasil"
 
 #: ../src/plugins/lib/libtranslate.py:82
-#, fuzzy
 msgid "China"
-msgstr "Chichewa"
+msgstr "China"
 
 #: ../src/plugins/lib/libtranslate.py:105
 #, python-format
 msgid "%(language)s (%(country)s)"
-msgstr ""
+msgstr "%(language)s (%(country)s)"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -13692,14 +13689,14 @@ msgid " state"
 msgstr " estado/provincia"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Latitude not within %(lat1)s to %(lat2)s\n"
-msgstr "La latitud no está comprendida entre %s y %s\n"
+msgstr "La latitud no está comprendida entre %(lat1)s y %(lat2)s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Longitude not within %(long1)s to %(long2)s"
-msgstr "La longitud no está comprendida entre %s y %s"
+msgstr "La longitud no está comprendida entre %(long1)s y %(long2)s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
 #: ../src/plugins/mapservices/eniroswedenmap.py:166
@@ -13754,11 +13751,11 @@ msgid "People probably alive and their ages on %s"
 msgstr "Personas probablemente vivas y sus edades en %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:67
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "%d matches.\n"
-msgstr "%d meses"
+msgstr "\n%d coincidencias.\n"
 
 #. display the results
 #: ../src/plugins/quickview/all_events.py:56
@@ -13786,13 +13783,13 @@ msgstr "Lugar del evento"
 
 #. display the results
 #: ../src/plugins/quickview/all_events.py:98
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Sorted events of family\n"
 " %(father)s - %(mother)s"
 msgstr ""
 "Eventos ordenados de la familia\n"
-" %s - %s"
+" %(father)s - %(mother)s"
 
 #: ../src/plugins/quickview/all_events.py:102
 #: ../src/plugins/quickview/all_events.py:113
@@ -14928,11 +14925,11 @@ msgstr "Si se debe incluir información detallada de los cónyuges."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:834
 msgid "Include sign of succession ('+') in child-list"
-msgstr ""
+msgstr "Incluir signo de sucesión ('+') en la lista de hijos"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:836
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
-msgstr ""
+msgstr "Si se debe incluir un signo ('+') antes del número de descendiente en la lista de hijos para indicar un hijo con sucesión."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:841
 msgid "Include path to start-person"
@@ -15767,11 +15764,11 @@ msgstr "Buscando problemas en las referencias a personas"
 
 #: ../src/plugins/tool/Check.py:853
 msgid "Checking people for proper date formats"
-msgstr ""
+msgstr "Comprobando en las personas que los formatos de fecha son correctos"
 
 #: ../src/plugins/tool/Check.py:944
 msgid "Checking families for proper date formats"
-msgstr ""
+msgstr "Comprobando en las familias que los formatos de fecha son correctos"
 
 #: ../src/plugins/tool/Check.py:1001
 msgid "Looking for repository reference problems"
@@ -15921,14 +15918,14 @@ msgstr[0] "Se reparó %(quantity)d nombre de evento de nacimiento inválido\n"
 msgstr[1] "Se repararon %(quantity)d nombres de eventos de nacimiento inválidos\n"
 
 #: ../src/plugins/tool/Check.py:1571
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
-msgstr[0] "Se reparó un nombre de evento de defunción inválido\n"
-msgstr[1] "Se reparó un nombre de evento de defunción inválido\n"
+msgstr[0] "Se reparó %(quantity)d nombre de evento de defunción inválido\n"
+msgstr[1] "Se repararon %(quantity)d nombres de eventos de defunción inválidos\n"
 
 #: ../src/plugins/tool/Check.py:1576
-#, fuzzy, python-format
+#, python-format, fuzzy
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "1 lugar referenciado inexistente\n"
@@ -16193,28 +16190,27 @@ msgid "Number"
 msgstr "Número"
 
 #: ../src/plugins/tool/Leak.py:87
-#, fuzzy
 msgid "Uncollected object"
-msgstr "No hay objectos perdidos\n"
+msgstr "Objecto perdido"
 
+# TBC
 #: ../src/plugins/tool/Leak.py:126
 #, python-format
 msgid "Referrers of %d"
-msgstr ""
+msgstr "Referencian %d"
 
 #: ../src/plugins/tool/Leak.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "%d refers to"
-msgstr "%d generación"
+msgstr "%d referencias a"
 
 #: ../src/plugins/tool/MediaManager.py:66
-#, fuzzy
 msgid "manual|Media_Manager..."
-msgstr "Editar Matrimonio"
+msgstr "Gestor de objetos audiovisuales..."
 
 #: ../src/plugins/tool/MediaManager.py:87 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
-msgstr "Gestor de objetos"
+msgstr "Gestor de objetos audiovisuales"
 
 #: ../src/plugins/tool/MediaManager.py:91
 msgid "Gramps Media Manager"
@@ -16886,13 +16882,12 @@ msgid "Invalid birth date"
 msgstr "Personas sin fecha de nacimiento"
 
 #: ../src/plugins/tool/Verify.py:1507
-#, fuzzy
 msgid "Invalid death date"
-msgstr "Nombre de archivo inválido"
+msgstr "Fecha de defunción inválida"
 
 #: ../src/plugins/tool/Verify.py:1523
 msgid "Marriage date but not married"
-msgstr ""
+msgstr "Hay fecha de matrimonio en una pareja que no se casó"
 
 #: ../src/plugins/view/eventview.py:94
 msgid "Add a new event"
@@ -16931,61 +16926,53 @@ msgid "Family Filter Editor"
 msgstr "Editor de filtros de nombres"
 
 #: ../src/plugins/view/fanchartview.gpr.py:3
-#, fuzzy
 msgid "Fan Chart View"
-msgstr "Diagrama en Abanico"
+msgstr "Vista de diagrama en abanico"
 
 #: ../src/plugins/view/fanchartview.gpr.py:4
 #: ../src/plugins/view/view.gpr.py:130
-#, fuzzy
 msgid "Ancestry"
-msgstr "Ascendientes"
+msgstr "Ascendencia"
 
 #: ../src/plugins/view/fanchartview.gpr.py:5
 msgid "The view showing relations through a fanchart"
-msgstr ""
+msgstr "Vista que muestra las relaciones mediante un diagrama en abanico"
 
 #: ../src/plugins/view/geoview.py:344
 msgid "Clear the entry field in the places selection box."
-msgstr ""
+msgstr "Borrar el campo de entrada en la casilla de selección de lugares."
 
 #: ../src/plugins/view/geoview.py:349
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
-msgstr ""
+msgstr "Salvar el nivel de ampliación y las coordenadas entre el mapa de lugares, el mapa de personas, el mapa de familias y el mapa de eventos."
 
 #: ../src/plugins/view/geoview.py:354
 msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
-msgstr ""
+msgstr "Seleccionar el proveedor de mapas. Puede escoger entre OpenStreetMap y Mapas Google."
 
 #: ../src/plugins/view/geoview.py:383
-#, fuzzy
 msgid "Select the period for which you want to see the places."
-msgstr "Seleccione el país para ver los festivos asociados"
+msgstr "Seleccione el periodo para el que desea ver los lugares."
 
 #: ../src/plugins/view/geoview.py:392
-#, fuzzy
 msgid "Prior page."
-msgstr "lugar de nacimiento."
+msgstr "Página anterior."
 
 #: ../src/plugins/view/geoview.py:396
-#, fuzzy
 msgid "The current page/the last page."
-msgstr "Muestra la última página"
+msgstr "Página actual/última página."
 
 #: ../src/plugins/view/geoview.py:400
-#, fuzzy
 msgid "Next page."
-msgstr "Página índice"
+msgstr "Siguiente página."
 
 #: ../src/plugins/view/geoview.py:408
-#, fuzzy
 msgid "The number of places which have no coordinates."
-msgstr "Lista de lugares sin coordenadas"
+msgstr "El número de lugares sin coordenadas."
 
 #: ../src/plugins/view/geoview.py:442 ../src/plugins/view/geoview.gpr.py:59
-#, fuzzy
 msgid "Geography"
-msgstr "Gráficos"
+msgstr "Geografía"
 
 #: ../src/plugins/view/geoview.py:499
 #, fuzzy
@@ -16996,18 +16983,16 @@ msgstr ""
 "%s"
 
 #: ../src/plugins/view/geoview.py:501
-#, fuzzy
 msgid "The number of years before the first event date"
-msgstr "Persona central para le filtro"
+msgstr "Años antes de la fecha del primer evento"
 
 #: ../src/plugins/view/geoview.py:505
-#, fuzzy
 msgid "The number of years after the last event date"
-msgstr "Número de generaciones a incluir en el árbol"
+msgstr "Años después de la fecha del último evento"
 
 #: ../src/plugins/view/geoview.py:509
 msgid "Time period adjustment"
-msgstr ""
+msgstr "Ajuste del periodo temporal"
 
 #: ../src/plugins/view/geoview.py:521
 msgid "Crosshair on the map."
@@ -17020,73 +17005,68 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/view/geoview.py:527
-#, fuzzy
 msgid "The map"
-msgstr "Templo"
+msgstr "El mapa"
 
 #: ../src/plugins/view/geoview.py:547
-#, fuzzy
 msgid "Test the network "
-msgstr "Generador de casos de prueba"
+msgstr "Probar la red "
 
 #: ../src/plugins/view/geoview.py:550
-#, fuzzy
 msgid "Time out for the network connection test"
-msgstr "Nota del mes de octubre"
+msgstr "Tiempo de espera para la prueba de la conexión a red"
 
 #: ../src/plugins/view/geoview.py:554
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 secondes"
 msgstr ""
+"Tiempo en segundos entre dos pruebas de red.\n"
+"Debe ser al menos 10 segundos"
 
 #: ../src/plugins/view/geoview.py:559
 msgid "Host to test for http. Please, change this and select one of your choice."
-msgstr ""
+msgstr "Servidor a probar con http.  Por favor, cambie este valor y seleccione uno de su elección."
 
 #: ../src/plugins/view/geoview.py:563
 msgid "The network"
-msgstr ""
+msgstr "La red"
 
 #: ../src/plugins/view/geoview.py:591
 msgid "Select the place for which you want to see the info bubble."
-msgstr ""
+msgstr "Seleccione el lugar para el que desea ver la burbuja de información."
 
 #: ../src/plugins/view/geoview.py:672
 msgid "Time period"
-msgstr ""
+msgstr "Periodo temporal"
 
 #: ../src/plugins/view/geoview.py:673
-#, fuzzy
 msgid "years"
-msgstr "Comentarios"
+msgstr "años"
 
 #: ../src/plugins/view/geoview.py:679 ../src/plugins/view/geoview.py:1002
 msgid "All"
 msgstr "Todos"
 
 #: ../src/plugins/view/geoview.py:925
-#, fuzzy
 msgid "Zoom"
-msgstr "Acercar"
+msgstr "Acercar/alejar"
 
 #: ../src/plugins/view/geoview.py:1050 ../src/plugins/view/geoview.py:1060
-#, fuzzy
 msgid "_Add Place"
-msgstr "_Todos los lugares"
+msgstr "_Agregar lugar"
 
 #: ../src/plugins/view/geoview.py:1052 ../src/plugins/view/geoview.py:1062
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
-msgstr ""
+msgstr "Agregar la ubicación en el centro del mapa como un nuevo lugar en Gramps. Haga doble clic para llevar una ubicación al centro del mapa."
 
 #: ../src/plugins/view/geoview.py:1055 ../src/plugins/view/geoview.py:1065
-#, fuzzy
 msgid "_Link Place"
-msgstr " Lugar"
+msgstr "_Vincular lugar"
 
 #: ../src/plugins/view/geoview.py:1057 ../src/plugins/view/geoview.py:1067
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
-msgstr ""
+msgstr "Vincule la ubicación en el centro del mapa a un lugar en Gramps. Haga doble clic para llevar una ubicación al centro del mapa."
 
 #: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
 msgid "_All Places"
@@ -17130,12 +17110,11 @@ msgstr "Ésta es la lista de todos los lugares del árbol genealógico para los 
 
 #: ../src/plugins/view/geoview.py:1292
 msgid "Back to prior page"
-msgstr ""
+msgstr "Volver a la página anterior"
 
 #: ../src/plugins/view/geoview.py:1535
-#, fuzzy
 msgid "Places list"
-msgstr "Nombre del lugar"
+msgstr "Lista de lugares"
 
 #: ../src/plugins/view/geoview.py:1789
 msgid "No location."
@@ -17181,24 +17160,24 @@ msgid "All events in the family tree with coordinates."
 msgstr "Todos los eventos en el árbol genealógico con coordenadas."
 
 #: ../src/plugins/view/geoview.py:2025
-#, fuzzy, python-format
+#, python-format
 msgid "Id : Father : %s : %s"
-msgstr "Id : Padre : %s"
+msgstr "Id : Padre : %s : %s"
 
 #: ../src/plugins/view/geoview.py:2032
-#, fuzzy, python-format
+#, python-format
 msgid "Id : Mother : %s : %s"
-msgstr "Id : Madre : %s"
+msgstr "Id : Madre : %s : %s"
 
 #: ../src/plugins/view/geoview.py:2043
-#, fuzzy, python-format
+#, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
-msgstr "Id : Hijo : %(id)s %(index)d"
+msgstr "Id : Hijo : %(id)s - %(index)d : %(name)s"
 
 #: ../src/plugins/view/geoview.py:2051
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
-msgstr ""
+msgstr "Id : Persona : %(id)s %(name)s no tiene familia."
 
 #: ../src/plugins/view/geoview.py:2057
 #, python-format
@@ -17211,9 +17190,8 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/plugins/view/geoview.py:2113
-#, fuzzy
 msgid "All event places for"
-msgstr "Todos los lugares de eventos de %s."
+msgstr "Todos los lugares de eventos de"
 
 #: ../src/plugins/view/geoview.py:2122
 msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
@@ -17224,74 +17202,64 @@ msgid "Not yet implemented ..."
 msgstr "No implementado aún ..."
 
 #: ../src/plugins/view/geoview.py:2289
-#, fuzzy
 msgid "Start page for the Geography View"
-msgstr "Año del calendario"
+msgstr "Página inicial para la vista geográfica"
 
 #: ../src/plugins/view/geoview.py:2290
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:50
-#, fuzzy
 msgid "Geographic View"
-msgstr "Archivo dot de GraphViz"
+msgstr "Vista geográfica"
 
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid "The view showing events on an interactive internet map (internet connection needed"
-msgstr ""
+msgstr "Vista que muestra los eventos en un mapa interactivo en Internet (se requiere conexión a Internet)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
-#, fuzzy
 msgid "Add Place"
-msgstr "_Todos los lugares"
+msgstr "Agregar lugar"
 
 #: ../src/plugins/view/geoview.gpr.py:63
-#, fuzzy
 msgid "Link Place"
-msgstr " Lugar"
+msgstr "Vincular lugar"
 
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
-msgstr ""
+msgstr "Ampliación fija"
 
 #: ../src/plugins/view/geoview.gpr.py:65
 msgid "Free Zoom"
-msgstr ""
+msgstr "Ampliación libre"
 
 #: ../src/plugins/view/geoview.gpr.py:66
-#, fuzzy
 msgid "Show Places"
-msgstr "Mostrar imágenes"
+msgstr "Mostrar lugares"
 
 #: ../src/plugins/view/geoview.gpr.py:67
-#, fuzzy
 msgid "Show Person"
-msgstr "Nueva persona"
+msgstr "Mostrar persona"
 
 #: ../src/plugins/view/geoview.gpr.py:68
-#, fuzzy
 msgid "Show Family"
-msgstr "Compartir familia"
+msgstr "Mostrar familia"
 
 #: ../src/plugins/view/geoview.gpr.py:69
-#, fuzzy
 msgid "Show Events"
-msgstr "Eventos de los padres"
+msgstr "Mostrar eventos"
 
 #: ../src/plugins/view/geoview.gpr.py:76
-#, fuzzy
 msgid "Html View"
-msgstr "Ver"
+msgstr "Vista HTML"
 
 #: ../src/plugins/view/geoview.gpr.py:77
 msgid "A view allowing to see html pages embedded in Gramps"
-msgstr ""
+msgstr "Vista que permite ver páginas HTML empotradas Gramps"
 
 #: ../src/plugins/view/geoview.gpr.py:84
-#, fuzzy
 msgid "Web"
-msgstr "GeneWeb"
+msgstr "Web"
 
 #: ../src/plugins/view/grampletview.py:69
 msgid "_Add a gramplet"
@@ -17302,9 +17270,8 @@ msgid "_Undelete gramplet"
 msgstr "_Deshacer borrado de un bloque"
 
 #: ../src/plugins/view/htmlrenderer.py:421
-#, fuzzy
 msgid "HtmlView"
-msgstr "Ver"
+msgstr "HtmlView"
 
 #: ../src/plugins/view/htmlrenderer.py:592
 msgid "Go to the previous page in the history"
@@ -17357,7 +17324,7 @@ msgstr "Ver en el visor predefinido"
 
 #: ../src/plugins/view/mediaview.py:252
 msgid "Open the folder containing the media file"
-msgstr ""
+msgstr "Abrir la carpeta que contiene el archivo audiovisual"
 
 #: ../src/plugins/view/mediaview.py:300 ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:8
@@ -17451,9 +17418,8 @@ msgid "Family Menu"
 msgstr "Menú de familia"
 
 #: ../src/plugins/view/persontreeview.py:59
-#, fuzzy
 msgid "People Tree View"
-msgstr "Nombre del lugar"
+msgstr "Vista de personas en árbol"
 
 #: ../src/plugins/view/persontreeview.py:81
 #: ../src/plugins/view/placetreeview.py:82
@@ -17467,23 +17433,20 @@ msgstr "Colapsar todos los nodos"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
-#, fuzzy
 msgid "Place Tree View"
-msgstr "Nombre del lugar"
+msgstr "Vista de lugares en árbol"
 
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
-msgstr ""
+msgstr "Vista que muestra los lugares en forma de árbol"
 
 #: ../src/plugins/view/placetreeview.py:78
-#, fuzzy
 msgid "Expand this Entire Group"
-msgstr "Expandir esta sección"
+msgstr "Expandir este grupo entero"
 
 #: ../src/plugins/view/placetreeview.py:80
-#, fuzzy
 msgid "Collapse this Entire Group"
-msgstr "Colapsar esta sección"
+msgstr "Colapsar este grupo entero"
 
 #: ../src/plugins/view/relview.py:393
 msgid "_Reorder"
@@ -17660,9 +17623,8 @@ msgid "View links as website links"
 msgstr ""
 
 #: ../src/plugins/view/relview.py:1647
-#, fuzzy
 msgid "Layout"
-msgstr "hacia"
+msgstr "Disposición"
 
 #: ../src/plugins/view/relview.py:1658
 msgid "Show Details"
@@ -17717,66 +17679,56 @@ msgid "Exactly two sources must be selected to perform a merge. A second source 
 msgstr "Para realizar una mezcla deben seleccionarse exactamente dos fuentes. Se puede seleccionar una segunda fuente manteniendo pulsada la tecla control mientras se pulsa en la fuente deseada."
 
 #: ../src/plugins/view/view.gpr.py:32
-#, fuzzy
 msgid "Event View"
-msgstr "Enlace a evento"
+msgstr "Vista de eventos"
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
-msgstr ""
+msgstr "Vista que muestra todos los eventos"
 
 #: ../src/plugins/view/view.gpr.py:47
-#, fuzzy
 msgid "Family View"
-msgstr "Vista de _familia"
+msgstr "Vista de familias"
 
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
-msgstr ""
+msgstr "Vista que muestra todas las familias"
 
 #: ../src/plugins/view/view.gpr.py:62
-#, fuzzy
 msgid "Gramplet View"
-msgstr "Bloque"
+msgstr "Vista de bloques"
 
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
-msgstr ""
+msgstr "Vista que permite ver bloques"
 
 #: ../src/plugins/view/view.gpr.py:77
-#, fuzzy
 msgid "Media View"
-msgstr "Tipo de objeto"
+msgstr "Vista de objetos audiovisuales"
 
 #: ../src/plugins/view/view.gpr.py:78
-#, fuzzy
 msgid "The view showing all the media objects"
-msgstr "Incluir galería de y objetos audiovisuales"
+msgstr "Vista que muestra todos los objetos audiovisuales"
 
 #: ../src/plugins/view/view.gpr.py:92
-#, fuzzy
 msgid "Note View"
-msgstr "Tamaño de la nota"
+msgstr "Vista de notas"
 
 #: ../src/plugins/view/view.gpr.py:93
-#, fuzzy
 msgid "The view showing all the notes"
-msgstr "No se pudo importar %s"
+msgstr "Vista que muestra todas las notas"
 
 #: ../src/plugins/view/view.gpr.py:107
-#, fuzzy
 msgid "Relationship View"
-msgstr "Relación"
+msgstr "Vista de relaciones"
 
 #: ../src/plugins/view/view.gpr.py:108
-#, fuzzy
 msgid "The view showing all relationships of the selected person"
-msgstr "Pulse dos veces para modificar la relación con los padres seleccionados"
+msgstr "Vista que muestra todas las relaciones de la persona seleccionada"
 
 #: ../src/plugins/view/view.gpr.py:122
-#, fuzzy
 msgid "Pedigree View"
-msgstr "Árbol"
+msgstr "Vista de árbol"
 
 #: ../src/plugins/view/view.gpr.py:123
 #, fuzzy
@@ -18128,7 +18080,6 @@ msgid "Creating individual pages"
 msgstr "Creando las páginas de personas"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5207
-#, fuzzy
 msgid "Creating GENDEX file"
 msgstr "Crear un índice GENDEX"
 
@@ -18515,25 +18466,23 @@ msgstr "Incluir una columna de padres"
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
 #: ../src/plugins/webreport/NarrativeWeb.py:5866
 msgid "Sort all children in birth order"
-msgstr ""
+msgstr "Clasificar los hijos por orden de nacimiento"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5867
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Si se deben mostrar los hijos por orden de nacimiento o en el orden en que figuran"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5871
-#, fuzzy
 msgid "Include event pages"
-msgstr "Incluir eventos"
+msgstr "Incluir páginas de eventos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5872
 msgid "Add a complete events list and relevant pages or not"
-msgstr ""
+msgstr "Incluir o no una lista completa de eventos y páginas relevantes"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5875
-#, fuzzy
 msgid "Include repository pages"
-msgstr "Incluir fuentes"
+msgstr "Incluir páginas de repositorios"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5876
 #, fuzzy
@@ -29678,9 +29627,6 @@ msgstr ""
 
 #~ msgid "Section %s"
 #~ msgstr "Sección %s"
-
-#~ msgid "Create a GENDEX index"
-#~ msgstr "Crear un índice GENDEX"
 
 #~ msgid "Index page"
 #~ msgstr "Página índice"
