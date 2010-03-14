@@ -452,4 +452,74 @@
     <date name="Armistice Day" value="*/11/11" type="secular" />
     <date name="Remembrance Sunday" value="*/2/sun/nov" type="secular" />
   </country>
+  <country>
+  <country name="България">
+    <date name="Нова Година" value="*/1/1" type="national" />
+    <date name="Освобождение на България от Османско иго" value="*/3/3" type="national" />
+    <date name="Ден на труда" value="*/5/1" type="national" />
+    <date name="Ден на храбростта и Българската армия" value="*/5/6" type="national" />
+    <date name="Гергьовден" value="*/5/6" type="religious" />
+    <date name="Ден на българската просвета и култура и на славянската писменост" value="*/5/24" type="national" />
+    <date name="Ден на Съединението на България" value="*/9/6" type="national" />
+    <date name="Ден на Независимостта на България" value="*/9/22" type="national" />
+    <date name="Ден на народните будители" value="*/10/1" type="national" />
+    <date name="Бъдни вечер" value="*/12/24" type="national" />
+    <date name="Рождество Христово, Коледа" value="*/12/25" type="national" />
+    <date name="Рождество Христово, Коледа" value="*/12/26" type="national" />
+    <date name="Васильовден" value="*/1/1" type="religious" />
+    <date name="Св. Йоан Кръстител (Ивановден)" value="*/1/6" type="religious" />
+    <date name="Богоявление (Йордановден)" value="*/1/7" type="religious" />
+    <date name="Антоновден" value="*/1/17" type="religious" />
+    <date name="Атанасовден" value="*/1/18" type="religious" />
+    <date name="Трифон Зарезан (стар ст.)" value="*/2/1" type="religious" />
+    <date name="Сретение Господне" value="*/2/2" type="religious" />
+    <date name="Св. Симеон" value="*/2/3" type="religious" />
+    <date name="Св. Валентин" value="*/2/14" type="religious" />
+    <date name="Трифон Зарезан" value="*/2/14" type="religious" />
+    <date name="Благовещение" value="*/3/25" type="religious" />
+    <date name="Св. цар Борис" value="*/5/2" type="religious" />
+    <date name="Св. Св.Кирил и Методий" value="*/5/11" type="religious" />
+    <date name="Св.Богородица" value="*/6/11" type="religious" />
+    <date name="Еньовден" value="*/6/24" type="religious" />
+    <date name="Петровден" value="*/6/29" type="religious" />
+    <date name="Св. Седмочисленици" value="*/7/27" type="religious" />
+    <date name="Илинден" value="*/7/20" type="religious" />
+    <date name="Рождество Богородично (Малка Богородица)" value="*/9/8" type="religious" />
+    <date name="Кръстовден" value="*/9/14" type="religious" />
+    <date name="Петковден" value="*/10/14" type="religious" />
+    <date name="Димитровден" value="*/10/26" type="religious" />
+    <date name="Архангеловден" value="*/11/8" type="religious" />
+    <date name="Въведение Богородично" value="*/11/21" type="religious" />
+    <date name="Андреевден" value="*/11/30" type="religious" />
+    <date name="Св. Варвара" value="*/12/4" type="religious" />
+    <date name="Св. Сава" value="*/12/5" type="religious" />
+    <date name="Никулден" value="*/12/6" type="religious" />
+    <date name="Игнажден" value="*/12/20" type="religious" />
+    <date name="Стефановден" value="*/12/27" type="religious" />
+    <date name="Великден" value="2010/4/4" type="religious" />
+    <date name="Великден" value="2011/4/24" type="religious" />
+    <date name="Великден" value="2012/4/15" type="religious" />
+    <date name="Великден" value="2013/5/5" type="religious" />
+    <date name="Великден" value="2014/4/20" type="religious" />
+    <date name="Великден" value="2015/4/12" type="religious" />
+    <date name="Великден" value="2016/5/1" type="religious" />
+    <date name="Великден" value="2017/4/16" type="religious" />
+    <date name="Великден" value="2018/4/8" type="religious" />
+    <date name="Великден" value="2019/4/28" type="religious" />
+    <date name="Великден" value="2020/4/19" type="religious" />
+    <date name="Цветница" value="2010/4/4" offset="-7" type="religious" />
+    <date name="Цветница" value="2011/4/24" offset="-7" type="religious" />
+    <date name="Цветница" value="2012/4/15" offset="-7" type="religious" />
+    <date name="Цветница" value="2013/5/5" offset="-7" type="religious" />
+    <date name="Цветница" value="2014/4/20" offset="-7" type="religious" />
+    <date name="Цветница" value="2015/4/12" offset="-7" type="religious" />
+    <date name="Цветница" value="2016/5/1" offset="-7" type="religious" />
+    <date name="Цветница" value="2017/4/16" offset="-7" type="religious" />
+    <date name="Цветница" value="2018/4/8" offset="-7" type="religious" />
+    <date name="Цветница" value="2019/4/28" offset="-7" type="religious" />
+    <date name="Цветница" value="2020/4/19" offset="-7" type="religious" />
+    <date name="Възнесение господне" value="2010/5/13" type="religious" />
+    <date name="Възнесение господне" value="2011/6/2" type="religious" />
+    <date name="Възнесение господне" value="2012/5/24" type="religious" />
+  </country>
 </calendar>
