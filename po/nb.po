@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-11 19:18+0100\n"
+"POT-Creation-Date: 2010-03-15 16:28+0100\n"
 "PO-Revision-Date: 2010-03-08 08:21+0100\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -765,7 +765,7 @@ msgstr "Bruk av Utklippstavlen"
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
-#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:643
+#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
 #: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
 #: ../src/plugins/view/relview.py:1041
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
@@ -4491,7 +4491,7 @@ msgstr "_Sidestolpe"
 msgid "_Toolbar"
 msgstr "Verk_tøylinje"
 
-#: ../src/gui/viewmanager.py:505 ../src/plugins/view/geoview.py:1096
+#: ../src/gui/viewmanager.py:505 ../src/plugins/view/geoview.py:1102
 msgid "_Filter Sidebar"
 msgstr "_Filtersidestolpe"
 
@@ -13424,12 +13424,12 @@ msgstr "Stedsnavn"
 msgid "Church Parish"
 msgstr "Sogn"
 
-#: ../src/plugins/lib/libplaceview.py:97 ../src/plugins/view/geoview.py:921
+#: ../src/plugins/lib/libplaceview.py:97 ../src/plugins/view/geoview.py:924
 #: ../src/plugins/webreport/NarrativeWeb.py:118
 msgid "Latitude"
 msgstr "Breddegrad"
 
-#: ../src/plugins/lib/libplaceview.py:98 ../src/plugins/view/geoview.py:923
+#: ../src/plugins/lib/libplaceview.py:98 ../src/plugins/view/geoview.py:926
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Longitude"
 msgstr "Lengdegrad"
@@ -16836,63 +16836,63 @@ msgstr "Aner"
 msgid "The view showing relations through a fanchart"
 msgstr "Visningen viser relasjonene som en viftetavle"
 
-#: ../src/plugins/view/geoview.py:344
+#: ../src/plugins/view/geoview.py:346
 msgid "Clear the entry field in the places selection box."
 msgstr "Tøm innholdet i tekstfeltet i stedsvalgboksen."
 
-#: ../src/plugins/view/geoview.py:349
+#: ../src/plugins/view/geoview.py:351
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
 msgstr "Lagre forstørrelse og koordinater mellom stedskart, personkart, famiekart og hendelseskart."
 
-#: ../src/plugins/view/geoview.py:354
+#: ../src/plugins/view/geoview.py:356
 msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
 msgstr "Velg karttjeneste. Du kan velge mellom OpenStreetMap og Google Maps."
 
-#: ../src/plugins/view/geoview.py:383
+#: ../src/plugins/view/geoview.py:385
 msgid "Select the period for which you want to see the places."
 msgstr "Velg perioden for når du vil se steder."
 
-#: ../src/plugins/view/geoview.py:392
+#: ../src/plugins/view/geoview.py:394
 msgid "Prior page."
 msgstr "Forrige side."
 
-#: ../src/plugins/view/geoview.py:396
+#: ../src/plugins/view/geoview.py:398
 msgid "The current page/the last page."
 msgstr "Denne side/siste side."
 
-#: ../src/plugins/view/geoview.py:400
+#: ../src/plugins/view/geoview.py:402
 msgid "Next page."
 msgstr "Neste side."
 
-#: ../src/plugins/view/geoview.py:408
+#: ../src/plugins/view/geoview.py:410
 msgid "The number of places which have no coordinates."
 msgstr "Antall steder som ikke har koordinater."
 
-#: ../src/plugins/view/geoview.py:442 ../src/plugins/view/geoview.gpr.py:59
+#: ../src/plugins/view/geoview.py:445 ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "Geografi"
 
-#: ../src/plugins/view/geoview.py:499
+#: ../src/plugins/view/geoview.py:502
 msgid "You can adjust the time period with the two following values."
 msgstr "Du kan justere tidsperioden med de to følgende verdiene."
 
-#: ../src/plugins/view/geoview.py:501
+#: ../src/plugins/view/geoview.py:504
 msgid "The number of years before the first event date"
 msgstr "Antall år før første hendelsesdato"
 
-#: ../src/plugins/view/geoview.py:505
+#: ../src/plugins/view/geoview.py:508
 msgid "The number of years after the last event date"
 msgstr "Antall år etter siste hendelsesdato"
 
-#: ../src/plugins/view/geoview.py:509
+#: ../src/plugins/view/geoview.py:512
 msgid "Time period adjustment"
 msgstr "Justering av tidsperiode"
 
-#: ../src/plugins/view/geoview.py:521
+#: ../src/plugins/view/geoview.py:524
 msgid "Crosshair on the map."
 msgstr "Kryss på kartet."
 
-#: ../src/plugins/view/geoview.py:524
+#: ../src/plugins/view/geoview.py:527
 msgid ""
 "Show the coordinates in the statusbar either in degree\n"
 "either in internal gramps format ( D.D8 )"
@@ -16900,19 +16900,19 @@ msgstr ""
 "Vis koordinater i statuslinja enten i grader\n"
 "eller med Gramps internerne format ( D.D8 )"
 
-#: ../src/plugins/view/geoview.py:527
+#: ../src/plugins/view/geoview.py:530
 msgid "The map"
 msgstr "Kartet"
 
-#: ../src/plugins/view/geoview.py:547
+#: ../src/plugins/view/geoview.py:550
 msgid "Test the network "
 msgstr "Test nettverket "
 
-#: ../src/plugins/view/geoview.py:550
+#: ../src/plugins/view/geoview.py:553
 msgid "Time out for the network connection test"
 msgstr "Tidsavbrudd for testen av nettverksforbindelsen"
 
-#: ../src/plugins/view/geoview.py:554
+#: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 secondes"
@@ -16920,188 +16920,188 @@ msgstr ""
 "Tiden i sekunder mellom to nettverkstester.\n"
 "Må være mer eller lik 10 sekunder"
 
-#: ../src/plugins/view/geoview.py:559
+#: ../src/plugins/view/geoview.py:562
 msgid "Host to test for http. Please, change this and select one of your choice."
 msgstr "Vert for å teste http. Endre denne og velg en som passer deg."
 
-#: ../src/plugins/view/geoview.py:563
+#: ../src/plugins/view/geoview.py:566
 msgid "The network"
 msgstr "Nettverket"
 
-#: ../src/plugins/view/geoview.py:591
+#: ../src/plugins/view/geoview.py:594
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Velg stedet for hvor du vil se informasjonsboblen."
 
-#: ../src/plugins/view/geoview.py:672
+#: ../src/plugins/view/geoview.py:675
 msgid "Time period"
 msgstr "Tidsperiode"
 
-#: ../src/plugins/view/geoview.py:673
+#: ../src/plugins/view/geoview.py:676
 msgid "years"
 msgstr "år"
 
-#: ../src/plugins/view/geoview.py:679 ../src/plugins/view/geoview.py:1002
+#: ../src/plugins/view/geoview.py:682 ../src/plugins/view/geoview.py:1008
 msgid "All"
 msgstr "Alle"
 
-#: ../src/plugins/view/geoview.py:925
+#: ../src/plugins/view/geoview.py:928
 msgid "Zoom"
 msgstr "Forstørre"
 
-#: ../src/plugins/view/geoview.py:1050 ../src/plugins/view/geoview.py:1060
+#: ../src/plugins/view/geoview.py:1056 ../src/plugins/view/geoview.py:1066
 msgid "_Add Place"
 msgstr "_Legg til sted"
 
-#: ../src/plugins/view/geoview.py:1052 ../src/plugins/view/geoview.py:1062
+#: ../src/plugins/view/geoview.py:1058 ../src/plugins/view/geoview.py:1068
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
 msgstr "Legg til stedet som er sentrert på kartet som et nytt sted i Gramps. Dobbeltklikk på stedet for å sentrere på kartet."
 
-#: ../src/plugins/view/geoview.py:1055 ../src/plugins/view/geoview.py:1065
+#: ../src/plugins/view/geoview.py:1061 ../src/plugins/view/geoview.py:1071
 msgid "_Link Place"
 msgstr "L_enke sted"
 
-#: ../src/plugins/view/geoview.py:1057 ../src/plugins/view/geoview.py:1067
+#: ../src/plugins/view/geoview.py:1063 ../src/plugins/view/geoview.py:1073
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
 msgstr "Lenke stedet midt på kartet til et sted i Gramps. Dobbeltklikk på et punkt på kartet for å sentrere kartet."
 
-#: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
+#: ../src/plugins/view/geoview.py:1075 ../src/plugins/view/geoview.py:1089
 msgid "_All Places"
 msgstr "_Alle steder"
 
-#: ../src/plugins/view/geoview.py:1070 ../src/plugins/view/geoview.py:1084
+#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
 msgid "Attempt to view all places in the family tree."
 msgstr "Forsøke å vise alle stedene i slektstreet."
 
-#: ../src/plugins/view/geoview.py:1072 ../src/plugins/view/geoview.py:1086
+#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/plugins/view/geoview.py:1074 ../src/plugins/view/geoview.py:1088
+#: ../src/plugins/view/geoview.py:1080 ../src/plugins/view/geoview.py:1094
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Forsøke å vise alle stedene hvor de valgte personene lever."
 
-#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
+#: ../src/plugins/view/geoview.py:1082 ../src/plugins/view/geoview.py:1096
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1084 ../src/plugins/view/geoview.py:1098
 msgid "Attempt to view places of the selected people's family."
 msgstr "Forsøke å vise steder til de valgte personers familier."
 
-#: ../src/plugins/view/geoview.py:1079 ../src/plugins/view/geoview.py:1093
+#: ../src/plugins/view/geoview.py:1085 ../src/plugins/view/geoview.py:1099
 msgid "_Event"
 msgstr "Hen_delse"
 
-#: ../src/plugins/view/geoview.py:1081 ../src/plugins/view/geoview.py:1095
+#: ../src/plugins/view/geoview.py:1087 ../src/plugins/view/geoview.py:1101
 msgid "Attempt to view places connected to all events."
 msgstr "Forsøke å vise steder som er tilknyttet alle hendelsene."
 
-#: ../src/plugins/view/geoview.py:1288
+#: ../src/plugins/view/geoview.py:1294
 msgid "List of places without coordinates"
 msgstr "Liste over steder uten koordinater"
 
-#: ../src/plugins/view/geoview.py:1289
+#: ../src/plugins/view/geoview.py:1295
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Her er en liste over alle steder i slektstreet som er uten koordinater.<br> Dette betyr ingen lenge- eller breddegrader.<p>"
 
-#: ../src/plugins/view/geoview.py:1292
+#: ../src/plugins/view/geoview.py:1298
 msgid "Back to prior page"
 msgstr "Tilbake til forrige side"
 
-#: ../src/plugins/view/geoview.py:1535
+#: ../src/plugins/view/geoview.py:1541
 msgid "Places list"
 msgstr "Liste over stedsnavn"
 
-#: ../src/plugins/view/geoview.py:1789
+#: ../src/plugins/view/geoview.py:1795
 msgid "No location."
 msgstr "Ingen plassering."
 
-#: ../src/plugins/view/geoview.py:1792
+#: ../src/plugins/view/geoview.py:1798
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Du har ingen steder med koordinater i slektstreet ditt."
 
-#: ../src/plugins/view/geoview.py:1795
+#: ../src/plugins/view/geoview.py:1801
 msgid "You are looking at the default map."
 msgstr "Du ser på standardkartet."
 
-#: ../src/plugins/view/geoview.py:1822
+#: ../src/plugins/view/geoview.py:1828
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : fødested."
 
-#: ../src/plugins/view/geoview.py:1825
+#: ../src/plugins/view/geoview.py:1831
 msgid "birth place."
 msgstr "fødested."
 
-#: ../src/plugins/view/geoview.py:1860
+#: ../src/plugins/view/geoview.py:1866
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : dødssted."
 
-#: ../src/plugins/view/geoview.py:1863
+#: ../src/plugins/view/geoview.py:1869
 msgid "death place."
 msgstr "dødssted."
 
-#: ../src/plugins/view/geoview.py:1906
+#: ../src/plugins/view/geoview.py:1912
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:1923
+#: ../src/plugins/view/geoview.py:1929
 msgid "All places in the family tree with coordinates."
 msgstr "Alle steder i slektstreet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2000
+#: ../src/plugins/view/geoview.py:2006
 msgid "All events in the family tree with coordinates."
 msgstr "Alle hendelser i slektstreet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2025
+#: ../src/plugins/view/geoview.py:2031
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Far : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2032
+#: ../src/plugins/view/geoview.py:2038
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Mor : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2043
+#: ../src/plugins/view/geoview.py:2049
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Barn : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2051
+#: ../src/plugins/view/geoview.py:2057
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id : Person : %(id)s %(name)s har ingen familie."
 
-#: ../src/plugins/view/geoview.py:2057
+#: ../src/plugins/view/geoview.py:2063
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s familiesteder i slektstreet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2094
+#: ../src/plugins/view/geoview.py:2100
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2113
+#: ../src/plugins/view/geoview.py:2119
 msgid "All event places for"
 msgstr "Alle hendelsessteder for"
 
-#: ../src/plugins/view/geoview.py:2122
+#: ../src/plugins/view/geoview.py:2128
 msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr "Kan ikke sentrere kartet. Ingen steder med koordinater. Årsakene er : <ul><li>Filteret du brukte fant ingenting.</li><li>Den aktive personen har ingen steder med koordinater.</li><li>Den aktive personens familiemedlemmer har ingen steder med koordinater.</li><li>Du har ingen steder.</li><li>Du har ikke valgt noen aktiv person.</li>"
 
-#: ../src/plugins/view/geoview.py:2140
+#: ../src/plugins/view/geoview.py:2146
 msgid "Not yet implemented ..."
 msgstr "Ikke implementert enda ..."
 
-#: ../src/plugins/view/geoview.py:2289
+#: ../src/plugins/view/geoview.py:2295
 msgid "Start page for the Geography View"
 msgstr "Startside for Geografivisning"
 
-#: ../src/plugins/view/geoview.py:2290
+#: ../src/plugins/view/geoview.py:2296
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr "Du ser ikke kart her på grunn av at:<br><ol><li>din database er tom eller ikke valgt enda</li><li>du ikke har valgt en person</li><li>Du ikke har noen steder i databasen din</li><li>Det valgte stedet ikke har noen koordinater</li></ol>"
 
@@ -17252,6 +17252,10 @@ msgstr "krem."
 #: ../src/plugins/view/pedigreeview.py:899
 msgid "Jump to child..."
 msgstr "Gå til barn..."
+
+#: ../src/plugins/view/pedigreeview.py:908
+msgid "Jump to father"
+msgstr "Hopp til far"
 
 #: ../src/plugins/view/pedigreeview.py:917
 msgid "Jump to mother"
@@ -17842,7 +17846,7 @@ msgid "Publication information"
 msgstr "Publikasjonsinformasjon"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3205
-msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
+msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
 msgstr "Denne siden inneholder en oversikt over alle mediaobjektene i databasen, sortert etter tittel. Ved å klikke på mediaobjektstittelen vil du komme til en egen side for dette mediaobjektet.  Hvis du ser bildets størrelse over bildet kan du klikke på bildet for å se det i full størrelse.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3224
@@ -18242,7 +18246,7 @@ msgid "Download Copyright License"
 msgstr "Last ned opphavsrettlisens"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5820
-msgid "The copyright to be used for ths download file?"
+msgid "The copyright to be used for this download file?"
 msgstr "Opphavsrett som skal brukes for denne nedlastbare fila?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5829
