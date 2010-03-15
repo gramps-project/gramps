@@ -524,8 +524,8 @@ class GeoView(HtmlView):
                 _('Crosshair on the map.'),
                 1, 'preferences.crosshair')
         configdialog.add_checkbox(table,
-                _('Show the coordinates in the statusbar either in degree'
-                  '\neither in internal gramps format ( D.D8 )'),
+                _('Show the coordinates in the statusbar either in degrees'
+                  '\nor in internal gramps format ( D.D8 )'),
                 2, 'preferences.coordinates-in-degree')
         return _('The map'), table
 
@@ -555,7 +555,7 @@ class GeoView(HtmlView):
                 self.config_update_int)
         configdialog.add_pos_int_entry(table, 
                 _('Time in seconds between two network tests.'
-                  '\nMust be greater or equal to 10 secondes'),
+                  '\nMust be greater or equal to 10 seconds'),
                 3, 'preferences.network-periodicity',
                 self.config_update_int)
         configdialog.add_text(table,
@@ -2126,8 +2126,8 @@ class GeoView(HtmlView):
         if center:
             page = self._create_message_page(
               _("Cannot center the map. No location with coordinates."
-                "The following reasons are : <ul>"
-                "<li>The filter you use return nothing.</li>"
+                "That may happen for one of the following reasons : <ul>"
+                "<li>The filter you use returned nothing.</li>"
                 "<li>The active person has no places with coordinates.</li>"
                 "<li>The active person's family members have no places "
                 "with coordinates.</li><li>You have no places.</li>"
@@ -2293,11 +2293,11 @@ class GeoView(HtmlView):
         </html>
         """ % { 'height' : 600,
                 'title'  : _('Start page for the Geography View'),
-                'content': _('You don\'t see a map here for the following '
+                'content': _('You don\'t see a map here for one of the following '
                              'reasons :<br><ol>'
                              '<li>Your database is empty or not yet selected.'
-                             '</li><li>You have not yet selected a person.</li>'
-                             '<li>You have no place in your database.</li>'
+                             '</li><li>You have not selected a person yet.</li>'
+                             '<li>You have no places in your database.</li>'
                              '<li>The selected places have no coordinates.</li>'
                              '</ol>')
         }

@@ -49,7 +49,7 @@ if not (TOOLKIT == NOWEB):
     id    = 'geoview',
     name  = _("Geographic View"),
     description =  _("The view showing events on an interactive internet map "
-                     "(internet connection needed"),
+                     "(internet connection needed)"),
     version = '1.0',
     gramps_target_version = '3.2',
     status = STABLE,
