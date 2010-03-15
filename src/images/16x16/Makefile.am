@@ -5,6 +5,7 @@ SUBDIRS =
 pkgdatadir = $(datadir)/@PACKAGE@/images/16x16
 
 dist_pkgdata_DATA = \
+        geo-free-zoom.png \
         geo-fixed-zoom.png \
 	gramps-address.png \
 	gramps-attribute.png \
