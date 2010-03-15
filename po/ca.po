@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-11 19:18+0100\n"
-"PO-Revision-Date: 2010-03-12 17:57+0100\n"
+"POT-Creation-Date: 2010-03-15 16:28+0100\n"
+"PO-Revision-Date: 2010-03-15 22:19+0100\n"
 "Last-Translator: Joan Creus <joan.creus at gmail dot com>\n"
 "Language-Team: Català <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -801,7 +801,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
-#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:643
+#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
 #: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
 #: ../src/plugins/view/relview.py:1041
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
@@ -4606,7 +4606,7 @@ msgstr "Barra _Lateral"
 msgid "_Toolbar"
 msgstr "Barra d'_Eines"
 
-#: ../src/gui/viewmanager.py:505 ../src/plugins/view/geoview.py:1096
+#: ../src/gui/viewmanager.py:505 ../src/plugins/view/geoview.py:1102
 msgid "_Filter Sidebar"
 msgstr "Barra de _Filtre"
 
@@ -4743,7 +4743,7 @@ msgstr "No es pot importar %s"
 msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
-msgstr ""
+msgstr "Directori especificat a les preferències: el camí relatiu de base per als medis audiovisuals: %s no existeix. Modifiqui les preferències o no utilitzi camins relatius en importar"
 
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
@@ -5813,14 +5813,12 @@ msgid "Family Events"
 msgstr "Esdeveniments de Família"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:58
-#, fuzzy
 msgid "Events father"
-msgstr "Data d'Esdeveniment"
+msgstr "Esdeveniments del pare"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:59
-#, fuzzy
 msgid "Events mother"
-msgstr "Nota d'Esdeveniment"
+msgstr "Esdeveniments de la mare"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:62
 msgid "Add a new family event"
@@ -6487,11 +6485,11 @@ msgstr "<Llocs>"
 
 #: ../src/gui/views/treemodels/placemodel.py:153
 msgid "EW"
-msgstr ""
+msgstr "EO"
 
 #: ../src/gui/views/treemodels/placemodel.py:156
 msgid "NS"
-msgstr ""
+msgstr "NS"
 
 #: ../src/gui/views/treemodels/placemodel.py:336
 msgid "<no name>"
@@ -8653,7 +8651,8 @@ msgid ""
 "connection to internet)\n"
 "\n"
 msgstr ""
-"<a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Frequently Asked Questions (Preguntes Més Freqüents)</a> (cal connexió a Internet)\n"
+"<a wiki='Gramps_3.2_Wiki_Manual_-_FAQ'>Frequently Asked Questions (Preguntes "
+"Més Freqüents)</a> (cal connexió a Internet)\n"
 "\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:39
@@ -8663,19 +8662,24 @@ msgid ""
 "spouses?</a>\n"
 msgstr ""
 "  1. <a wiki='Gramps_3.2_Wiki_Manual_-"
-"_FAQ#How_do_I_change_the_order_of_spouses.3F'>Com modifico l'ordre dels cònjuges?</a>\n"
+"_FAQ#How_do_I_change_the_order_of_spouses.3F'>Com modifico l'ordre dels "
+"cònjuges?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:40
 msgid ""
 "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it "
 "necessary to update Gramps every time an update is released?</a>\n"
-msgstr "  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Cal actualitzar Gramps cada vegada que surt una nova versió?</a>\n"
+msgstr ""
+"  2. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Cal "
+"actualitzar Gramps cada vegada que surt una nova versió?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:41
 msgid ""
 "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>How do "
 "I make backups safely?</a>\n"
-msgstr "  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>Com puc fer còpies de seguretat?</a>\n"
+msgstr ""
+"  3. <a wiki='Gramps_3.2_Wiki_Manual_-_FAQ#How_do_I_keep_backups.3F'>Com puc "
+"fer còpies de seguretat?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:42
 msgid ""
@@ -8684,7 +8688,8 @@ msgid ""
 "about marriages be entered?</a>\n"
 msgstr ""
 "  4. <a wiki='Gramps_3.2_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-"
-"_part_1#Editing_Information_About_Relationships'>Com s'ha d'introduir la informació sobre casaments?</a>\n"
+"_part_1#Editing_Information_About_Relationships'>Com s'ha d'introduir la "
+"informació sobre casaments?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:43
 msgid ""
@@ -8693,7 +8698,8 @@ msgid ""
 "the difference between a residence and an address?</a>\n"
 msgstr ""
 "  5. <a wiki='Gramps_3.2_Wiki_Manual_-"
-"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Quina diferència hi ha entre una residència i una adreça?</a>\n"
+"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Quina "
+"diferència hi ha entre una residència i una adreça?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 msgid ""
@@ -8702,7 +8708,8 @@ msgid ""
 "website with Gramps and my tree?</a>\n"
 msgstr ""
 "  6. <a wiki='Gramps_3.2_Wiki_Manual_-"
-"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Com puc fer un web amb Gramps i el meu arbre genealògic?</a>\n"
+"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Com puc fer un web "
+"amb Gramps i el meu arbre genealògic?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 msgid ""
@@ -8719,7 +8726,8 @@ msgid ""
 "bug?</a>\n"
 msgstr ""
 "  8. <a wiki='Gramps_3.2_Wiki_Manual_-"
-"_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Què faig si he trobat un error de programa?</a>\n"
+"_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Què faig si he trobat un error "
+"de programa?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
@@ -8727,7 +8735,9 @@ msgstr "  9. <a wiki='Portal:Using_GRAMPS'>Hi ha un manual per Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:48
 msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
-msgstr " 10. <a wiki='Category:Tutorials'>Hi ha mètodes d'aprenentatge disponibles?</a>\n"
+msgstr ""
+" 10. <a wiki='Category:Tutorials'>Hi ha mètodes d'aprenentatge disponibles?</"
+"a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 msgid " 11. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
@@ -8806,7 +8816,9 @@ msgstr "Gramplet de Calendari"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
 msgid "Gramplet showing calendar and events on specific dates in history"
-msgstr "Gramplet que mostra el calendari i els esdeveniments en dates específiques de la història"
+msgstr ""
+"Gramplet que mostra el calendari i els esdeveniments en dates específiques "
+"de la història"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:88
 msgid "Descendant Gramplet"
@@ -8826,7 +8838,9 @@ msgstr "Gramplet de Gràfica en Ventall"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:105
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
-msgstr "Gramplet que mostra els avantpassats directes de la persona activa en forma de gràfica de ventall"
+msgstr ""
+"Gramplet que mostra els avantpassats directes de la persona activa en forma "
+"de gràfica de ventall"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:120
 msgid "FAQ Gramplet"
@@ -8866,7 +8880,9 @@ msgstr "Gramplet del Gestor de Connectors"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:164
 msgid "Gramplet showing available third-party plugins (addons)"
-msgstr "Gramplet que mostra els connectors (complements) disponibles d'altres proveïdors"
+msgstr ""
+"Gramplet que mostra els connectors (complements) disponibles d'altres "
+"proveïdors"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:170
 #: ../src/PluginUtils/_PluginWindows.py:193
@@ -14555,12 +14571,12 @@ msgstr "Nom de Lloc"
 msgid "Church Parish"
 msgstr "Parròquia"
 
-#: ../src/plugins/lib/libplaceview.py:97 ../src/plugins/view/geoview.py:921
+#: ../src/plugins/lib/libplaceview.py:97 ../src/plugins/view/geoview.py:924
 #: ../src/plugins/webreport/NarrativeWeb.py:118
 msgid "Latitude"
 msgstr "Latitud"
 
-#: ../src/plugins/lib/libplaceview.py:98 ../src/plugins/view/geoview.py:923
+#: ../src/plugins/lib/libplaceview.py:98 ../src/plugins/view/geoview.py:926
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Longitude"
 msgstr "Longitud"
@@ -18102,11 +18118,11 @@ msgstr "Avantpassats"
 msgid "The view showing relations through a fanchart"
 msgstr "La vista que mostra els parentescos mitjançant una gràfica en ventall"
 
-#: ../src/plugins/view/geoview.py:344
+#: ../src/plugins/view/geoview.py:346
 msgid "Clear the entry field in the places selection box."
 msgstr "Esborrar el camp d'entrada a la caixa de selecció de llocs."
 
-#: ../src/plugins/view/geoview.py:349
+#: ../src/plugins/view/geoview.py:351
 msgid ""
 "Save the zoom and coordinates between places map, person map, family map and "
 "event map."
@@ -18114,7 +18130,7 @@ msgstr ""
 "Desar l'ampliació i coordenades entre el mapa de llocs, el mapa de persones, "
 "el mapa de famílies i el mapa d'esdeveniments."
 
-#: ../src/plugins/view/geoview.py:354
+#: ../src/plugins/view/geoview.py:356
 msgid ""
 "Select the maps provider. You can choose between OpenStreetMap and Google "
 "maps."
@@ -18122,51 +18138,51 @@ msgstr ""
 "Seleccionar el proveïdor de mapes. Pot triar entre OpenStreetMap i Google "
 "Maps."
 
-#: ../src/plugins/view/geoview.py:383
+#: ../src/plugins/view/geoview.py:385
 msgid "Select the period for which you want to see the places."
 msgstr "Seleccionar el període per al qual vol veure els llocs."
 
-#: ../src/plugins/view/geoview.py:392
+#: ../src/plugins/view/geoview.py:394
 msgid "Prior page."
 msgstr "Pàgina anterior."
 
-#: ../src/plugins/view/geoview.py:396
+#: ../src/plugins/view/geoview.py:398
 msgid "The current page/the last page."
 msgstr "La pàgina actual/l'última pàgina."
 
-#: ../src/plugins/view/geoview.py:400
+#: ../src/plugins/view/geoview.py:402
 msgid "Next page."
 msgstr "Pàgina següent."
 
-#: ../src/plugins/view/geoview.py:408
+#: ../src/plugins/view/geoview.py:410
 msgid "The number of places which have no coordinates."
 msgstr "El nombre de llocs que no tenen coordenades."
 
-#: ../src/plugins/view/geoview.py:442 ../src/plugins/view/geoview.gpr.py:59
+#: ../src/plugins/view/geoview.py:445 ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "Geografia"
 
-#: ../src/plugins/view/geoview.py:499
+#: ../src/plugins/view/geoview.py:502
 msgid "You can adjust the time period with the two following values."
 msgstr "Pot ajustar el període de temps amb els dos valors següents."
 
-#: ../src/plugins/view/geoview.py:501
+#: ../src/plugins/view/geoview.py:504
 msgid "The number of years before the first event date"
 msgstr "El nombre d'anys abans de la data del primer esdeveniment"
 
-#: ../src/plugins/view/geoview.py:505
+#: ../src/plugins/view/geoview.py:508
 msgid "The number of years after the last event date"
 msgstr "El nombre d'anys després de l'última data d'esdeveniment"
 
-#: ../src/plugins/view/geoview.py:509
+#: ../src/plugins/view/geoview.py:512
 msgid "Time period adjustment"
 msgstr "Ajust del període de temps"
 
-#: ../src/plugins/view/geoview.py:521
+#: ../src/plugins/view/geoview.py:524
 msgid "Crosshair on the map."
 msgstr "Punt de mira al mapa."
 
-#: ../src/plugins/view/geoview.py:524
+#: ../src/plugins/view/geoview.py:527
 msgid ""
 "Show the coordinates in the statusbar either in degree\n"
 "either in internal gramps format ( D.D8 )"
@@ -18174,19 +18190,19 @@ msgstr ""
 "Mostrar les coordenades a la barra d'estat o bé en graus\n"
 "o bé en el format intern de Gramps (D.D8 )"
 
-#: ../src/plugins/view/geoview.py:527
+#: ../src/plugins/view/geoview.py:530
 msgid "The map"
 msgstr "El mapa"
 
-#: ../src/plugins/view/geoview.py:547
+#: ../src/plugins/view/geoview.py:550
 msgid "Test the network "
 msgstr "Comprovar la xarxa "
 
-#: ../src/plugins/view/geoview.py:550
+#: ../src/plugins/view/geoview.py:553
 msgid "Time out for the network connection test"
 msgstr "Temps d'espera per la prova de connexió de xarxa"
 
-#: ../src/plugins/view/geoview.py:554
+#: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 secondes"
@@ -18194,39 +18210,39 @@ msgstr ""
 "Temps en segons entre dues proves de xarxa.\n"
 "Ha de ser més gran o igual de 10 segons"
 
-#: ../src/plugins/view/geoview.py:559
+#: ../src/plugins/view/geoview.py:562
 msgid "Host to test for http. Please, change this and select one of your choice."
 msgstr "Host per comprovar http. Si us plau, canviï'l i seleccioni'n un."
 
-#: ../src/plugins/view/geoview.py:563
+#: ../src/plugins/view/geoview.py:566
 msgid "The network"
 msgstr "La xarxa"
 
-#: ../src/plugins/view/geoview.py:591
+#: ../src/plugins/view/geoview.py:594
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Seleccionar el lloc per al qual vol veure la bombolla d'informació."
 
-#: ../src/plugins/view/geoview.py:672
+#: ../src/plugins/view/geoview.py:675
 msgid "Time period"
 msgstr "Període de temps"
 
-#: ../src/plugins/view/geoview.py:673
+#: ../src/plugins/view/geoview.py:676
 msgid "years"
 msgstr "anys"
 
-#: ../src/plugins/view/geoview.py:679 ../src/plugins/view/geoview.py:1002
+#: ../src/plugins/view/geoview.py:682 ../src/plugins/view/geoview.py:1008
 msgid "All"
 msgstr "Tots"
 
-#: ../src/plugins/view/geoview.py:925
+#: ../src/plugins/view/geoview.py:928
 msgid "Zoom"
 msgstr "Ampliació"
 
-#: ../src/plugins/view/geoview.py:1050 ../src/plugins/view/geoview.py:1060
+#: ../src/plugins/view/geoview.py:1056 ../src/plugins/view/geoview.py:1066
 msgid "_Add Place"
 msgstr "_Afegir Lloc"
 
-#: ../src/plugins/view/geoview.py:1052 ../src/plugins/view/geoview.py:1062
+#: ../src/plugins/view/geoview.py:1058 ../src/plugins/view/geoview.py:1068
 msgid ""
 "Add the location centred on the map as a new place in Gramps. Double click "
 "the location to centre on the map."
@@ -18234,11 +18250,11 @@ msgstr ""
 "Afegir la ubicació centrada al mapa com a nou lloc dins de Gramps. Faci "
 "doble clic a la ubicació per centrar-la al mapa."
 
-#: ../src/plugins/view/geoview.py:1055 ../src/plugins/view/geoview.py:1065
+#: ../src/plugins/view/geoview.py:1061 ../src/plugins/view/geoview.py:1071
 msgid "_Link Place"
 msgstr "Enllaçar _Lloc"
 
-#: ../src/plugins/view/geoview.py:1057 ../src/plugins/view/geoview.py:1067
+#: ../src/plugins/view/geoview.py:1063 ../src/plugins/view/geoview.py:1073
 msgid ""
 "Link the location centred on the map to a place in Gramps. Double click the "
 "location to centre on the map."
@@ -18246,43 +18262,43 @@ msgstr ""
 "Enllaçar la ubicació centrada al mapa a un lloc de Gramps. Faci doble clic a "
 "la ubicació per centrar-la al mapa."
 
-#: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
+#: ../src/plugins/view/geoview.py:1075 ../src/plugins/view/geoview.py:1089
 msgid "_All Places"
 msgstr "_Tots els Llocs"
 
-#: ../src/plugins/view/geoview.py:1070 ../src/plugins/view/geoview.py:1084
+#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
 msgid "Attempt to view all places in the family tree."
 msgstr "Intentar de veure tots els llocs de l'arbre genealògic."
 
-#: ../src/plugins/view/geoview.py:1072 ../src/plugins/view/geoview.py:1086
+#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
 msgid "_Person"
 msgstr "_Persona"
 
-#: ../src/plugins/view/geoview.py:1074 ../src/plugins/view/geoview.py:1088
+#: ../src/plugins/view/geoview.py:1080 ../src/plugins/view/geoview.py:1094
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Intentar de veure tots els llocs on han viscut les persones seleccionades."
 
-#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
+#: ../src/plugins/view/geoview.py:1082 ../src/plugins/view/geoview.py:1096
 msgid "_Family"
 msgstr "_Família"
 
-#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1084 ../src/plugins/view/geoview.py:1098
 msgid "Attempt to view places of the selected people's family."
 msgstr "Intentar de veure els llocs de la família de la persona seleccionada."
 
-#: ../src/plugins/view/geoview.py:1079 ../src/plugins/view/geoview.py:1093
+#: ../src/plugins/view/geoview.py:1085 ../src/plugins/view/geoview.py:1099
 msgid "_Event"
 msgstr "_Esdeveniment"
 
-#: ../src/plugins/view/geoview.py:1081 ../src/plugins/view/geoview.py:1095
+#: ../src/plugins/view/geoview.py:1087 ../src/plugins/view/geoview.py:1101
 msgid "Attempt to view places connected to all events."
 msgstr "Intentar de veure els llocs connectats amb tots els esdeveniments."
 
-#: ../src/plugins/view/geoview.py:1288
+#: ../src/plugins/view/geoview.py:1294
 msgid "List of places without coordinates"
 msgstr "Llista de llocs sense coordenades"
 
-#: ../src/plugins/view/geoview.py:1289
+#: ../src/plugins/view/geoview.py:1295
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
@@ -18290,117 +18306,117 @@ msgstr ""
 "Aquí hi ha la llista de tots els llocs de l'arbre genealògic per als quals "
 "no tenim coordenades.<br> Això vol que no hi ha ni longitud ni latitud.<p>"
 
-#: ../src/plugins/view/geoview.py:1292
+#: ../src/plugins/view/geoview.py:1298
 msgid "Back to prior page"
 msgstr "Tornar a la pàgina anterior"
 
-#: ../src/plugins/view/geoview.py:1535
+#: ../src/plugins/view/geoview.py:1541
 msgid "Places list"
 msgstr "Llista de llocs"
 
-#: ../src/plugins/view/geoview.py:1789
+#: ../src/plugins/view/geoview.py:1795
 msgid "No location."
 msgstr "Cap ubicació."
 
-#: ../src/plugins/view/geoview.py:1792
+#: ../src/plugins/view/geoview.py:1798
 msgid "You have no places in your family tree  with coordinates."
 msgstr "No hi ha cap lloc a l'arbre genealògic amb coordenades."
 
-#: ../src/plugins/view/geoview.py:1795
+#: ../src/plugins/view/geoview.py:1801
 msgid "You are looking at the default map."
 msgstr "Aquest és el mapa predeterminat."
 
-#: ../src/plugins/view/geoview.py:1822
+#: ../src/plugins/view/geoview.py:1828
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : lloc de naixement."
 
-#: ../src/plugins/view/geoview.py:1825
+#: ../src/plugins/view/geoview.py:1831
 msgid "birth place."
 msgstr "lloc de naixement."
 
-#: ../src/plugins/view/geoview.py:1860
+#: ../src/plugins/view/geoview.py:1866
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : lloc de defunció."
 
-#: ../src/plugins/view/geoview.py:1863
+#: ../src/plugins/view/geoview.py:1869
 msgid "death place."
 msgstr "lloc de defunció."
 
-#: ../src/plugins/view/geoview.py:1906
+#: ../src/plugins/view/geoview.py:1912
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:1923
+#: ../src/plugins/view/geoview.py:1929
 msgid "All places in the family tree with coordinates."
 msgstr "Tots els llocs de l'arbre genealògic amb coordenades."
 
-#: ../src/plugins/view/geoview.py:2000
+#: ../src/plugins/view/geoview.py:2006
 msgid "All events in the family tree with coordinates."
 msgstr "Tots els esdeveniments de l'arbre genealògic amb coordenades."
 
-#: ../src/plugins/view/geoview.py:2025
+#: ../src/plugins/view/geoview.py:2031
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Pare : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2032
+#: ../src/plugins/view/geoview.py:2038
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Mare : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2043
+#: ../src/plugins/view/geoview.py:2049
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Fill : %(id)s %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2051
+#: ../src/plugins/view/geoview.py:2057
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id : Persona : %(id)s %(name)s no té família."
 
-#: ../src/plugins/view/geoview.py:2057
+#: ../src/plugins/view/geoview.py:2063
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr ""
 "Tots els llocs de la família de la persona %(name)s de l'arbre genealògic "
 "amb coordenades."
 
-#: ../src/plugins/view/geoview.py:2094
+#: ../src/plugins/view/geoview.py:2100
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2113
+#: ../src/plugins/view/geoview.py:2119
 msgid "All event places for"
 msgstr "Tots els llocs d'esdeveniment per"
 
-#: ../src/plugins/view/geoview.py:2122
+#: ../src/plugins/view/geoview.py:2128
 msgid ""
 "Cannot center the map. No location with coordinates.The following reasons "
 "are : <ul><li>The filter you use return nothing.</li><li>The active person "
 "has no places with coordinates.</li><li>The active person's family members "
 "have no places with coordinates.</li><li>You have no places.</li><li>You "
 "have no active person set.</li>"
-msgstr ""
+msgstr "No es pot centrar el mapa. No hi ha cap ubicació amb coordenades. Pot ser per algun dels següents motius: <ul><li>El filtre que fa servir no ha retornat res.</li><li>La persona activa no té llocs amb coordenades.</li><li>Els membres de la família de la persona activa no tenen llocs amb coordenades.</li><li>No té llocs.</li><li>No té fixada cap persona activa.</li>"
 
-#: ../src/plugins/view/geoview.py:2140
+#: ../src/plugins/view/geoview.py:2146
 msgid "Not yet implemented ..."
 msgstr "No implementat, encara ..."
 
-#: ../src/plugins/view/geoview.py:2289
+#: ../src/plugins/view/geoview.py:2295
 msgid "Start page for the Geography View"
 msgstr "Pàgina d'inici per la Vista de Geografia"
 
-#: ../src/plugins/view/geoview.py:2290
+#: ../src/plugins/view/geoview.py:2296
 msgid ""
 "You don't see a map here for the following reasons :<br><ol><li>Your "
 "database is empty or not yet selected.</li><li>You have not yet selected a "
 "person.</li><li>You have no place in your database.</li><li>The selected "
 "places have no coordinates.</li></ol>"
-msgstr ""
+msgstr "No veu un mapa aquí per alguna de les següents raons:<br><ol><li>La base de dades és buida o encara no s'ha seleccionat.</li><li>No ha seleccionat encara cap persona.</li><li>No té llocs a la base de dades.</li><li>Els llocs seleccionats no tenen coordenades.</li></ol>"
 
 #: ../src/plugins/view/geoview.gpr.py:50
 msgid "Geographic View"
@@ -18555,6 +18571,10 @@ msgstr "crem."
 #: ../src/plugins/view/pedigreeview.py:899
 msgid "Jump to child..."
 msgstr "Saltar cap al fill..."
+
+#: ../src/plugins/view/pedigreeview.py:908
+msgid "Jump to father"
+msgstr "Saltar cap al pare"
 
 #: ../src/plugins/view/pedigreeview.py:917
 msgid "Jump to mother"
@@ -18928,9 +18948,8 @@ msgid "The view showing all relationships of the selected person"
 msgstr "La vista que mostra totes les relacions de la persona seleccionada"
 
 #: ../src/plugins/view/view.gpr.py:122
-#, fuzzy
 msgid "Pedigree View"
-msgstr "Pedigrí"
+msgstr "Vista de Pedigrí"
 
 #: ../src/plugins/view/view.gpr.py:123
 msgid "The view showing an ancestor pedigree of the selected person"
@@ -19194,17 +19213,15 @@ msgid "Publication information"
 msgstr "Informació de publicació"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3205
-#, fuzzy
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
-"object&#8217;s page.  If you see media size densions above an image, click "
+"object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
 "Aquesta pàgina conté un índex de tots els objectes audiovisuals de la base "
 "de dades, ordenats per títol. Si es clica al títol, s'anirà a la pàgina de "
-"l'objecte corresponent. Si veu damunt d'una imatge, cliqui-la per veure'n la "
-"versió de mida sencera.  "
+"l'objecte corresponent. Si veu les dimensions del medi damunt d'una imatge, cliqui-la per veure'n la versió de mida sencera.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3224
 msgid "Media | Name"
@@ -19627,8 +19644,8 @@ msgid "Download Copyright License"
 msgstr "Llicència de Copyright per la baixada"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5820
-msgid "The copyright to be used for ths download file?"
-msgstr "El copyright que s'ha de fer servir per als fitxers de baixada?"
+msgid "The copyright to be used for this download file?"
+msgstr "El copyright que s'ha de fer servir per aquest fitxer de baixada?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5829
 #: ../src/plugins/webreport/WebCal.py:1526
@@ -24481,7 +24498,6 @@ msgstr ""
 "del parentesc precís així com dels avantpassats en comú."
 
 #: ../src/data/tips.xml.in.h:7
-#, fuzzy
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Ancestry View "
@@ -24489,7 +24505,7 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Canviar la Persona Activa</b><br/>Canviar la Persona Activa a les vistes "
-"és fàcil. A la vista de "
+"és fàcil. A la vista de Relació cliqui a qualsevol persona. A la vista d'Avantpassats faci doble clic a la persona o clic dret per seleccionar qualsevol dels seus cònjuges, germans, fills o pares."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -24914,7 +24930,11 @@ msgid ""
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
-msgstr "<b>Organitzar les Vistes</b><br/>Moltes de les vistes poden presentar les dades o bé com un arbre jeràrquic o com una simple llista. Cada vista pot també configurar-se de la manera que li agradi. Doni un cop d'ull a la dreta de la barra d'eines superior o al menú &quot;Vista&quot;."
+msgstr ""
+"<b>Organitzar les Vistes</b><br/>Moltes de les vistes poden presentar les "
+"dades o bé com un arbre jeràrquic o com una simple llista. Cada vista pot "
+"també configurar-se de la manera que li agradi. Doni un cop d'ull a la dreta "
+"de la barra d'eines superior o al menú &quot;Vista&quot;."
 
 #: ../src/data/tips.xml.in.h:41
 msgid ""
@@ -24922,7 +24942,12 @@ msgid ""
 "secure by allowing you to mark information as private. Data marked as "
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
-msgstr "<b>Privacitat a Gramps</b><br/>Gramps l'ajuda a mantenir segura la seva informació personal permetent-li de marcar informació com a privada. Les dades marcades com a privades poden excloure's dels informes i les exportacions de dades. Busqui el candau que commuta els registres entre privats i públics."
+msgstr ""
+"<b>Privacitat a Gramps</b><br/>Gramps l'ajuda a mantenir segura la seva "
+"informació personal permetent-li de marcar informació com a privada. Les "
+"dades marcades com a privades poden excloure's dels informes i les "
+"exportacions de dades. Busqui el candau que commuta els registres entre "
+"privats i públics."
 
 #: ../src/data/tips.xml.in.h:42
 msgid ""
@@ -24930,7 +24955,12 @@ msgid ""
 "Help &gt; User Manual&quot;. The developers have worked hard to make most "
 "operations intuitive but the manual is full of information that will make "
 "your time spent on genealogy more productive."
-msgstr "<b>Llegeixi el Manual<b><br/>No s'oblidi de llegir el manual de Gramps, &quot;Ajuda &gt; Manual d'Usuari&quot;. Els desenvolupadors han treballat molt per fer que la majoria de les operacions siguin intuïtives, però el manual és ple d'informació que farà més productiu el temps que dediqui a la genealogia."
+msgstr ""
+"<b>Llegeixi el Manual<b><br/>No s'oblidi de llegir el manual de Gramps, "
+"&quot;Ajuda &gt; Manual d'Usuari&quot;. Els desenvolupadors han treballat "
+"molt per fer que la majoria de les operacions siguin intuïtives, però el "
+"manual és ple d'informació que farà més productiu el temps que dediqui a la "
+"genealogia."
 
 #: ../src/data/tips.xml.in.h:43
 msgid ""
@@ -24939,17 +24969,20 @@ msgid ""
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
-"<b>Registri les Fonts</b><br/>La informació recollida sobre la família "
-"només és igual de bona que la font de la qual s'ha obtingut. Prengui's el "
-"temps i les molèsties que calguin per enregistrar tots els detalls sobre "
-"l'origen de la informació. Sempre que sigui possible, guardi una còpia dels "
-"documents originals."
+"<b>Registri les Fonts</b><br/>La informació recollida sobre la família només "
+"és igual de bona que la font de la qual s'ha obtingut. Prengui's el temps i "
+"les molèsties que calguin per enregistrar tots els detalls sobre l'origen de "
+"la informació. Sempre que sigui possible, guardi una còpia dels documents "
+"originals."
 
 #: ../src/data/tips.xml.in.h:44
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
-msgstr "<b>Informar d'Errors a Gramps</b><br/>La millor manera d'informar d'un error de programa a Gramps és fer servir el seu sistema de seguiment d'errors a http://bugs.gramps-project.org"
+msgstr ""
+"<b>Informar d'Errors a Gramps</b><br/>La millor manera d'informar d'un error "
+"de programa a Gramps és fer servir el seu sistema de seguiment d'errors a "
+"http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:45
 msgid ""
@@ -24958,7 +24991,12 @@ msgid ""
 "and allows you to adjust many aspects of the Gramps presentation to your "
 "needs. Each seperate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
-msgstr "<b>Fixar les Preferències</b><br/>&quot;Edita &gt; Preferències...&quot; li permet de modificar una colla de paràmetres, com ara el camí als fitxers audiovisuals, i li permet d'adaptar molts aspectes de la presentació de Gramps a les seves necessitats. Cada vista es pot configurar també per separat a &quot;Vista &gt; Configurar Vista...&quot;"
+msgstr ""
+"<b>Fixar les Preferències</b><br/>&quot;Edita &gt; Preferències...&quot; li "
+"permet de modificar una colla de paràmetres, com ara el camí als fitxers "
+"audiovisuals, i li permet d'adaptar molts aspectes de la presentació de "
+"Gramps a les seves necessitats. Cada vista es pot configurar també per "
+"separat a &quot;Vista &gt; Configurar Vista...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
@@ -24968,8 +25006,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Botó de Mostrar Tothom</b><br/>Quan s'afegeix una persona existent com a cònjuge o fill, la llista de gent que apareix es filtra per mostrar només persones que podrien, sent realistes, assumir aquest paper (basant-se en les dates de la base de dades). En cas que Gramps s'equivoqui en fer aquesta elecció, pot saltar-se "
-"aquest filtre marcant el botó de Mostrar Tothom."
+"<b>Botó de Mostrar Tothom</b><br/>Quan s'afegeix una persona existent com a "
+"cònjuge o fill, la llista de gent que apareix es filtra per mostrar només "
+"persones que podrien, sent realistes, assumir aquest paper (basant-se en les "
+"dates de la base de dades). En cas que Gramps s'equivoqui en fer aquesta "
+"elecció, pot saltar-se aquest filtre marcant el botó de Mostrar Tothom."
 
 #: ../src/data/tips.xml.in.h:47
 msgid ""
@@ -24979,7 +25020,15 @@ msgid ""
 "full-featured genealogy program letting you store, edit, and research "
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
-msgstr "<b>Què me'n dius, del Nom?</b><br/>El nom Gramps el va suggerir el pare del desenvolupador original, Don Allingham. Gramps vol dir <i>Genealogical Research and Analysis Management Program System</i>, és a dir Sistema de Programació de Gestió de la Recerca i Anàlisi Genealògiques. És un programa de genealogia de plena funcionalitat que li deixa emmagatzemar, editar i fer recerca de dades genealògiques. El motor de base de dades de Gramps és tan robust que alguns usuaris poden gestionar genealogies que contenen cents de milers de persones."
+msgstr ""
+"<b>Què me'n dius, del Nom?</b><br/>El nom Gramps el va suggerir el pare del "
+"desenvolupador original, Don Allingham. Gramps vol dir <i>Genealogical "
+"Research and Analysis Management Program System</i>, és a dir Sistema de "
+"Programació de Gestió de la Recerca i Anàlisi Genealògiques. És un programa "
+"de genealogia de plena funcionalitat que li deixa emmagatzemar, editar i fer "
+"recerca de dades genealògiques. El motor de base de dades de Gramps és tan "
+"robust que alguns usuaris poden gestionar genealogies que contenen cents de "
+"milers de persones."
 
 #: ../src/data/tips.xml.in.h:48
 msgid ""
@@ -24992,8 +25041,8 @@ msgid ""
 "your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx "
 "Codes...&quot;."
 msgstr ""
-"<b>SoundEx pot ajudar en la recerca familiar</b><br/>SoundEx resol un problema "
-"antic en genealogia: què fer-ne de les variacions ortogràfiques. La "
+"<b>SoundEx pot ajudar en la recerca familiar</b><br/>SoundEx resol un "
+"problema antic en genealogia: què fer-ne de les variacions ortogràfiques. La "
 "utilitat SoundEx agafa un cognom i en genera una forma simplificada que és "
 "equivalent per a noms que sonin de forma semblant. Conèixer el Codi SoundEx "
 "d'un cognom és molt pràctic per la recerca de fitxer de dades del Cens "
@@ -25009,8 +25058,11 @@ msgid ""
 "button from the People View). Then go to the Relationship View and create "
 "relationships between people."
 msgstr ""
-"<b>Començar un Nou Arbre de Família</b><br/>: Una bona manera de començar un nou arbre de família és introduir tots els membres de la família a la base de "
-"dades fent servir la Vista de Persones (amb &quot;Edita &gt; Afegir...&quot; o clicar el botó Afegir Persona Nova de la Vista de Persones). Després, vagi a la Vista de Relació per crear les relacions entre persones."
+"<b>Començar un Nou Arbre de Família</b><br/>: Una bona manera de començar un "
+"nou arbre de família és introduir tots els membres de la família a la base "
+"de dades fent servir la Vista de Persones (amb &quot;Edita &gt; Afegir..."
+"&quot; o clicar el botó Afegir Persona Nova de la Vista de Persones). "
+"Després, vagi a la Vista de Relació per crear les relacions entre persones."
 
 #: ../src/data/tips.xml.in.h:50
 msgid ""
@@ -25021,11 +25073,12 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
-"<b>Parli amb els Parents Abans No Sigui Massa Tard</b><br/>Els seus parents més grans poden ser la seva font d'informació més important. Sovint saben coses "
-"sobre la família que no s'han posat mai per escrit. Podrien donar petites "
-"informacions sobre gent que algun dia poden desembocar en una nova via de "
-"recerca. Com a mínim, podrà sentir alguna història boníssima. No s'oblidi de "
-"gravar les converses!"
+"<b>Parli amb els Parents Abans No Sigui Massa Tard</b><br/>Els seus parents "
+"més grans poden ser la seva font d'informació més important. Sovint saben "
+"coses sobre la família que no s'han posat mai per escrit. Podrien donar "
+"petites informacions sobre gent que algun dia poden desembocar en una nova "
+"via de recerca. Com a mínim, podrà sentir alguna història boníssima. No "
+"s'oblidi de gravar les converses!"
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
@@ -25033,15 +25086,20 @@ msgid ""
 "dates and names. It is about people. Be descriptive. Include why things "
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
-msgstr "<b>El 'Com i el Per què' de la Seva Genealogia</b>La genealogia no tracta només de dates i noms. Tracta sobretot de persones. Sigui descriptiu. Inclogui el per què les coses van anar així, i com els descendents van ser influïts pels esdeveniments pels quals van haver de viure. Les narracions són fonamentals per donar vida a la història de la seva família."
+msgstr ""
+"<b>El 'Com i el Per què' de la Seva Genealogia</b>La genealogia no tracta "
+"només de dates i noms. Tracta sobretot de persones. Sigui descriptiu. "
+"Inclogui el per què les coses van anar així, i com els descendents van ser "
+"influïts pels esdeveniments pels quals van haver de viure. Les narracions "
+"són fonamentals per donar vida a la història de la seva família."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>La Vista de Família</b><br/>La Vista de Família es fa servir per mostrar una "
-"unitat familiar típica com a dos pares i els seus fills."
+"<b>La Vista de Família</b><br/>La Vista de Família es fa servir per mostrar "
+"una unitat familiar típica com a dos pares i els seus fills."
 
 #: ../src/data/tips.xml.in.h:53
 msgid ""
@@ -25050,7 +25108,12 @@ msgid ""
 "standard GEDCOM version 5.5, so you can exchange Gramps information to and "
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
-msgstr "<b>El Format de Fitxer GEDCOM</b><br/>Gramps li permet d'importar i exportar en format GEDCOM. Hi ha un suport generalitzat per la versió 5.5 de GEDCOM, l'estàndard de la indústria, de manera que es pot intercanviar informació de Gramps amb els usuaris de la majoria dels altres programes de genealogia. Hi ha filtres que fan que sigui trivial importar i exportar fitxers GEDCOM."
+msgstr ""
+"<b>El Format de Fitxer GEDCOM</b><br/>Gramps li permet d'importar i exportar "
+"en format GEDCOM. Hi ha un suport generalitzat per la versió 5.5 de GEDCOM, "
+"l'estàndard de la indústria, de manera que es pot intercanviar informació de "
+"Gramps amb els usuaris de la majoria dels altres programes de genealogia. Hi "
+"ha filtres que fan que sigui trivial importar i exportar fitxers GEDCOM."
 
 #: ../src/data/tips.xml.in.h:54
 msgid ""
@@ -25058,13 +25121,20 @@ msgid ""
 "Python using the GTK and GNOME libraries for the graphical interface. Gramps "
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
-msgstr "<b>El Codi Gramps</b><br/>Gramps està escrit en el llenguatge de programació Python fent servir les llibreries GTK i GNOME per a la interfície gràfica. Gramps està suportat per qualsevol sistema informàtic al qual s'hagin portat aquests programes. S'ha comprovat que funciona en Linux, BSD, Solaris, Windows i Mac OS X."
+msgstr ""
+"<b>El Codi Gramps</b><br/>Gramps està escrit en el llenguatge de programació "
+"Python fent servir les llibreries GTK i GNOME per a la interfície gràfica. "
+"Gramps està suportat per qualsevol sistema informàtic al qual s'hagin portat "
+"aquests programes. S'ha comprovat que funciona en Linux, BSD, Solaris, "
+"Windows i Mac OS X."
 
 #: ../src/data/tips.xml.in.h:55
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/"
-msgstr "<b>La Pàgina Principal de Gramps</b><br/>La pàgina principal de Gramps és a http://gramps-project.org/"
+msgstr ""
+"<b>La Pàgina Principal de Gramps</b><br/>La pàgina principal de Gramps és a "
+"http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:56
 msgid ""
@@ -25072,7 +25142,13 @@ msgid ""
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
 "rights and restrictions of this license."
-msgstr "<b>La Llicència de Programari de Gramps</b><br/>Té la llibertat d'utilitzar i compartir Gramps amb els altres. Gramps es pot distribuir lliurement sota la Llicència Pública General de GNU, veure http://www.gnu.org/licenses/licenses.html#GPL per llegir sobre els drets i les restriccions d'aquesta llicència. Una traducció no oficial al català és a http://ca.dodds.net/gnu/gpl.ca.html."
+msgstr ""
+"<b>La Llicència de Programari de Gramps</b><br/>Té la llibertat d'utilitzar "
+"i compartir Gramps amb els altres. Gramps es pot distribuir lliurement sota "
+"la Llicència Pública General de GNU, veure http://www.gnu.org/licenses/"
+"licenses.html#GPL per llegir sobre els drets i les restriccions d'aquesta "
+"llicència. Una traducció no oficial al català és a http://ca.dodds.net/gnu/"
+"gpl.ca.html."
 
 #: ../src/data/tips.xml.in.h:57
 msgid ""
@@ -25082,7 +25158,14 @@ msgid ""
 "This file is completely portable so is useful for backups or sharing with "
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
-msgstr "<b>El Paquet XML de Gramps</b><br/>Pot exportar el seu arbre genealògic com a paquet XML de Gramps. Es tracta d'un fitxer comprimit que conté les dades del seu arbre genealògic i inclou tots els altres fitxers que fa servir la base de dades, com ara imatges. Aquest fitxer és completament portable, i per tant és útil per còpies de seguretat o per compartir amb d'altres usuaris de Gramps. Aquest format té un avantatge clau sobre GEDCOM en el fet que no es perd mai cap informació en exportar ni importar."
+msgstr ""
+"<b>El Paquet XML de Gramps</b><br/>Pot exportar el seu arbre genealògic com "
+"a paquet XML de Gramps. Es tracta d'un fitxer comprimit que conté les dades "
+"del seu arbre genealògic i inclou tots els altres fitxers que fa servir la "
+"base de dades, com ara imatges. Aquest fitxer és completament portable, i "
+"per tant és útil per còpies de seguretat o per compartir amb d'altres "
+"usuaris de Gramps. Aquest format té un avantatge clau sobre GEDCOM en el fet "
+"que no es perd mai cap informació en exportar ni importar."
 
 #: ../src/data/tips.xml.in.h:58
 msgid ""
@@ -25090,7 +25173,11 @@ msgid ""
 "Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The "
 "home person is the person who is selected when the database is opened or "
 "when the home button is pressed."
-msgstr "<b>La Persona Base</b><br/>Es pot triar qualsevol com a Persona Base dins de Gramps. Faci &quot;Edita &gt; Fixar Persona Base&quot; a la Vista de Persones. La persona base és la persona que se selecciona quan s'obre la base de dades o quan es prem el botó de 'la casa'."
+msgstr ""
+"<b>La Persona Base</b><br/>Es pot triar qualsevol com a Persona Base dins de "
+"Gramps. Faci &quot;Edita &gt; Fixar Persona Base&quot; a la Vista de "
+"Persones. La persona base és la persona que se selecciona quan s'obre la "
+"base de dades o quan es prem el botó de 'la casa'."
 
 #: ../src/data/tips.xml.in.h:59
 msgid ""
@@ -25101,20 +25188,29 @@ msgid ""
 "see the Gramps Manual to learn more."
 msgstr ""
 "<b>No està segur d'una data?</b><br/>Si no està segur de la data en què va "
-"ocórrer un esdeveniment, Gramps li permet d'introduir una colla de formats de data basats en una suposició o estimació. Per exemple, &quot;al voltant de 1908&quot; és una entrada vàlida per una data de naixement a Gramps. Cliqui el botó del costat del camp de data i vegi el manual de Gramps per aprendre'n més."
+"ocórrer un esdeveniment, Gramps li permet d'introduir una colla de formats "
+"de data basats en una suposició o estimació. Per exemple, &quot;al voltant "
+"de 1908&quot; és una entrada vàlida per una data de naixement a Gramps. "
+"Cliqui el botó del costat del camp de data i vegi el manual de Gramps per "
+"aprendre'n més."
 
 #: ../src/data/tips.xml.in.h:60
 msgid ""
 "<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family "
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
-msgstr "<b>Format de l'Arbre Genealògic Web</b><br/>Gramps pot exportar dades al format Web Family Tree (WFT). Aquest format permet mostrar un arbre genealògic en línia amb un sol fitxer, en comptes de molts fitxers html."
+msgstr ""
+"<b>Format de l'Arbre Genealògic Web</b><br/>Gramps pot exportar dades al "
+"format Web Family Tree (WFT). Aquest format permet mostrar un arbre "
+"genealògic en línia amb un sol fitxer, en comptes de molts fitxers html."
 
 #: ../src/data/tips.xml.in.h:61
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
-msgstr "<b>Per Què És Això?</b><br/>No està segur del que fa algun botó? Deixi el ratolí al damunt d'un botó i apareixerà un petit text d'ajuda."
+msgstr ""
+"<b>Per Què És Això?</b><br/>No està segur del que fa algun botó? Deixi el "
+"ratolí al damunt d'un botó i apareixerà un petit text d'ajuda."
 
 #: ../src/data/tips.xml.in.h:62
 msgid ""
@@ -25123,7 +25219,12 @@ msgid ""
 "of individuals in your database. This is useful, say, if you wish to list "
 "the birth dates of everyone in your database. You can use a custom filter to "
 "narrow the results."
-msgstr "<b>Qui Va Néixer Quan?</b><br/>A &quot;Eines &gt;Anàlisi i Exploració &gt; Comparar Esdeveniments Individuals...&quot; pot comparar dades dels individus de la base de dades. Això és útil, per exemple, si es volen llistar les dates de naixement de tothom de la base de dades. Pot utilitzar un filtre personalitzat per reduir el nombre de resultats."
+msgstr ""
+"<b>Qui Va Néixer Quan?</b><br/>A &quot;Eines &gt;Anàlisi i Exploració &gt; "
+"Comparar Esdeveniments Individuals...&quot; pot comparar dades dels "
+"individus de la base de dades. Això és útil, per exemple, si es volen "
+"llistar les dates de naixement de tothom de la base de dades. Pot utilitzar "
+"un filtre personalitzat per reduir el nombre de resultats."
 
 #: ../src/data/tips.xml.in.h:63
 msgid ""
@@ -25132,5 +25233,10 @@ msgid ""
 "indicate the level of confidence in a date and even choose between seven "
 "different calenders. Try the button next to the date field in the Events "
 "Editor."
-msgstr "<b>Treballar amb Dates</b><br/>Es pot donar un rang de dates fent servir el format &quot;entre 4 de gener de 2000 i 20 de març de 2003&quot;. També pot indicar el nivell de confiança en una data i fins i tot triar entre set calendaris diferents. Provi el botó del costat del camp de data a l'Editor d'Esdeveniments."
+msgstr ""
+"<b>Treballar amb Dates</b><br/>Es pot donar un rang de dates fent servir el "
+"format &quot;entre 4 de gener de 2000 i 20 de març de 2003&quot;. També pot "
+"indicar el nivell de confiança en una data i fins i tot triar entre set "
+"calendaris diferents. Provi el botó del costat del camp de data a l'Editor "
+"d'Esdeveniments."
 
