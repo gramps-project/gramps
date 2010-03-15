@@ -3205,7 +3205,7 @@ class MediaListPage(BasePage):
             msg = _("This page contains an index of all the media objects "
                           "in the database, sorted by their title. Clicking on "
                           "the title will take you to that media object&#8217;s page.  "
-                          "If you see media size densions above an image, click on the "
+                          "If you see media size dimensions above an image, click on the "
                           "image to see the full sized version.  ")
             medialist += Html("p", msg, id = "description")
 
@@ -5817,7 +5817,7 @@ class NavWebOptions(MenuReportOptions):
         self.__dl_cright = EnumeratedListOption(_('Download Copyright License'), 0 )
         for index, copt in enumerate(_COPY_OPTIONS):
             self.__dl_cright.add_item(index, copt)
-        self.__dl_cright.set_help( _("The copyright to be used for ths download file?"))
+        self.__dl_cright.set_help( _("The copyright to be used for this download file?"))
         menu.add_option(category_name, "dl_cright", self.__dl_cright)
 
         self.__download_changed()
