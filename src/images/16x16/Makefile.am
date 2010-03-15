@@ -5,17 +5,25 @@ SUBDIRS =
 pkgdatadir = $(datadir)/@PACKAGE@/images/16x16
 
 dist_pkgdata_DATA = \
-        geo-free-zoom.png \
         geo-fixed-zoom.png \
+        geo-free-zoom.png \
+        geo-place-add.png \
+        geo-place-link.png \
+        geo-show-event.png \
+        geo-show-family.png \
+        geo-show-person.png \
+        geo-show-place.png \
 	gramps-address.png \
 	gramps-attribute.png \
 	gramps-bookmark-delete.png \
 	gramps-bookmark-edit.png \
 	gramps-bookmark-new.png \
 	gramps-bookmark.png \
-	gramps-date-edit.png \
+	gramps-config.png \
 	gramps-date.png \
+	gramps-date-edit.png \
 	gramps-event.png \
+	gramps-fanchart.png \
 	gramps-family.png \
 	gramps-font-bgcolor.png \
 	gramps-font-color.png \
