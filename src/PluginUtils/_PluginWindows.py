@@ -571,7 +571,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                         callback("   " + (_("'%s' is for this version of Gramps.") % gpr_file)  + "\n")
                     else:
                         # If the plugin is for another version; inform and do nothing
-                        callback("   " + (_("'%s' is for NOT this version of Gramps.") % gpr_file)  + "\n")
+                        callback("   " + (_("'%s' is NOT for this version of Gramps.") % gpr_file)  + "\n")
                         callback("   " + (_("It is for version %d.%d" % vtup)  + "\n"))
                         continue
                 else:

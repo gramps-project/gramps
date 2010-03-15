@@ -652,8 +652,8 @@ class IndivCompleteOptions(MenuReportOptions):
         
         self.__update_filters()
         
-        sort = BooleanOption(_("List events chonologically"), True)
-        sort.set_help(_("Whether to sort events into chonological order."))
+        sort = BooleanOption(_("List events chronologically"), True)
+        sort.set_help(_("Whether to sort events into chronological order."))
         menu.add_option(category_name, "sort", sort)
         
         cites = BooleanOption(_("Include Source Information"), True)

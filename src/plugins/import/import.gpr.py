@@ -87,7 +87,7 @@ plg = newplugin()
 plg.id    = 'im_gpkg'
 plg.name  = _('Gramps package (portable XML)')
 plg.description =  _('Import data from a Gramps package (an archived XML '
-                     'family tree together with the media object files.')
+                     'family tree together with the media object files.)')
 plg.version = '1.0'
 plg.gramps_target_version = '3.2'
 plg.status = STABLE
