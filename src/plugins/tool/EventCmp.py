@@ -126,10 +126,9 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         self.filterDialog.connect_signals({
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
-            "on_filters_delete_event": self.close,
             "on_help_clicked"        : self.on_help_clicked,
             "destroy_passed_object"  : self.close,
-            "on_delete_event"        : self.close,
+            "on_write_table"         : self.__dummy,
             })
     
         window = self.filterDialog.toplevel
@@ -143,8 +142,13 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         uistate.connect('filters-changed', self.on_filters_changed)
 
         self.show()
-        
-        
+
+    def __dummy(self, obj):
+        """dummy callback, needed because widget is in same glade file
+        as another widget, so callbacks must be defined to avoid warnings.
+        """
+        pass
+
     def on_filters_changed(self, name_space):
         if name_space == 'Person':
             all_filter = GenericFilter()
@@ -227,6 +231,8 @@ class DisplayChart(ManagedWindow.ManagedWindow):
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
+            "on_apply_clicked"      : self.__dummy,
+            "on_editor_clicked"     : self.__dummy,
             })
 
         window = self.topDialog.toplevel
@@ -249,6 +255,12 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.build_row_data()
         self.draw_display()
         self.show()
+
+    def __dummy(self, obj):
+        """dummy callback, needed because widget is in same glade file
+        as another widget, so callbacks must be defined to avoid warnings.
+        """
+        pass
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
