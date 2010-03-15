@@ -13,10 +13,10 @@
     <property name="default_height">400</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
-    <signal name="delete_event" handler="on_view_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox3">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child>
           <object class="GtkTable" id="mytable">
@@ -129,10 +129,10 @@
     <property name="default_width">400</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
-    <signal name="delete_event" handler="on_filters_delete_event"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox5">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child>
           <object class="GtkTable" id="table1">
