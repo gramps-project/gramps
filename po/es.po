@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-02 10:59+0100\n"
-"PO-Revision-Date: 2010-03-14 16:33+0100\n"
+"PO-Revision-Date: 2010-03-15 07:20+0100\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "MIME-Version: 1.0\n"
@@ -1873,7 +1873,7 @@ msgstr "INICIALES"
 #: ../src/Utils.py:1212 ../src/Utils.py:1228
 #, python-format
 msgid "%s, ..."
-msgstr ""
+msgstr "%s, ..."
 
 #: ../src/UndoHistory.py:63 ../src/gui/grampsgui.py:156
 msgid "Undo History"
@@ -15966,16 +15966,15 @@ msgid "Modifications made"
 msgstr "Se hicieron modificaciones"
 
 #: ../src/plugins/tool/EventNames.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%s event description has been added"
 msgid_plural "%s event descriptions have been added"
-msgstr[0] "Extraer descripciones para los eventos a partir de sus datos"
-msgstr[1] "Extraer descripciones para los eventos a partir de sus datos"
+msgstr[0] "Se ha agregado %s descripción de evento"
+msgstr[1] "Se han agregado %s descripciones de eventos"
 
 #: ../src/plugins/tool/EventNames.py:117
-#, fuzzy
 msgid "No event description has been added."
-msgstr "No se dió una descripción"
+msgstr "No se ha agregado ninguna descripción de evento."
 
 #: ../src/plugins/tool/ExtractCity.py:60
 msgid "United States of America"
@@ -16365,9 +16364,9 @@ msgid "Their common ancestor is %s."
 msgstr "Su ascendiente común es %s."
 
 #: ../src/plugins/tool/RelCalc.py:213
-#, fuzzy, python-format
+#, python-format
 msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
-msgstr "Sus ascendientes comúnes son %s y %s."
+msgstr "Sus ascendientes comúnes son %(ancestor1)s y %(ancestor2)s."
 
 #: ../src/plugins/tool/RelCalc.py:217
 msgid "Their common ancestors are: "
@@ -16464,14 +16463,12 @@ msgid "Set the sort order"
 msgstr "Fijar el orden de clasificación"
 
 #: ../src/plugins/tool/SortEvents.py:191
-#, fuzzy
 msgid "Include family events"
 msgstr "Incluir eventos familiares"
 
 #: ../src/plugins/tool/SortEvents.py:192
-#, fuzzy
 msgid "Sort family events of the person"
-msgstr "Miembros de las familias descendientes de una <persona>"
+msgstr "Ordenar los eventos familiares de la persona"
 
 #: ../src/plugins/tool/SoundGen.py:46
 msgid "manual|Generate_SoundEx_codes"
@@ -16522,9 +16519,8 @@ msgid "Aids in the analysis of data by allowing the development of custom filter
 msgstr "Ayuda en el análisis de la información permitiendo el desarrollo de filtos personalizados que pueden ser aplicados a la base de datos para encontrar eventos similares"
 
 #: ../src/plugins/tool/tools.gpr.py:173
-#, fuzzy
 msgid "Extract Event Description"
-msgstr "Extraer descripciones para los eventos a partir de sus datos"
+msgstr "Extraer descripciones para los eventos"
 
 #: ../src/plugins/tool/tools.gpr.py:174
 msgid "Extracts event descriptions from the event data"
@@ -16599,14 +16595,12 @@ msgid "Removes unused objects from the database"
 msgstr "Elimina de la base de datos objetos no utilizados"
 
 #: ../src/plugins/tool/tools.gpr.py:441
-#, fuzzy
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr "Reordena los números de identificación gramps de acuerdo con las reglas predefinidas de gramps."
 
 #: ../src/plugins/tool/tools.gpr.py:463 ../src/plugins/tool/tools.gpr.py:464
-#, fuzzy
 msgid "Sorts events"
-msgstr "Eventos clasificados de %s"
+msgstr "Ordena eventos"
 
 #: ../src/plugins/tool/tools.gpr.py:485
 msgid "Generate SoundEx Codes"
@@ -16774,9 +16768,8 @@ msgid "Disconnected individual"
 msgstr "Persona sin parientes"
 
 #: ../src/plugins/tool/Verify.py:1485
-#, fuzzy
 msgid "Invalid birth date"
-msgstr "Personas sin fecha de nacimiento"
+msgstr "Fecha de nacimiento inválida"
 
 #: ../src/plugins/tool/Verify.py:1507
 msgid "Invalid death date"
@@ -16872,12 +16865,8 @@ msgid "Geography"
 msgstr "Geografía"
 
 #: ../src/plugins/view/geoview.py:499
-#, fuzzy
 msgid "You can adjust the time period with the two following values."
-msgstr ""
-"El intento de cambiar el nombre a una versión falló con el siguiente mensaje:\n"
-"\n"
-"%s"
+msgstr "Puede ajustar el periodo temporal con los dos valores siguientes."
 
 #: ../src/plugins/view/geoview.py:501
 msgid "The number of years before the first event date"
@@ -16900,6 +16889,8 @@ msgid ""
 "Show the coordinates in the statusbar either in degree\n"
 "either in internal gramps format ( D.D8 )"
 msgstr ""
+"Mostrar las coordenadas en la barra de estado bien en grados o\n"
+"en el formato interno de Gramps ( D.D8 )"
 
 #: ../src/plugins/view/geoview.py:527
 msgid "The map"
@@ -17092,7 +17083,7 @@ msgstr "Todos los lugares de eventos de"
 
 #: ../src/plugins/view/geoview.py:2122
 msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
-msgstr ""
+msgstr "No se pudo centrar el mapa. No hay ubicación con esas coordenadas. Las posibles razones son: <ul><li>El filtro escogido no seleccionó ningún registro.</li><li>La persona activa no tiene lugares con coordenadas.</li><li>Los miembros de la familia de la persona activa no tienen lugares con coordenadas.</li><li>No tiene lugares.</li><li>No hay persona activa.</li>"
 
 #: ../src/plugins/view/geoview.py:2140
 msgid "Not yet implemented ..."
@@ -17104,7 +17095,7 @@ msgstr "Página inicial para la vista geográfica"
 
 #: ../src/plugins/view/geoview.py:2290
 msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
-msgstr ""
+msgstr "No se muestra un mapa aquí porque:<br><ol><li>Su base de datos está vacía o no la ha seleccionado aún.</li><li>No ha seleccionado una persona aún.</li><li>No hay lugares en su base de datos.</li><li>Los lugares seleccionados no tienen coordenadas.</li></ol>"
 
 #: ../src/plugins/view/geoview.gpr.py:50
 msgid "Geographic View"
@@ -17188,12 +17179,10 @@ msgid "Stop and reload the page."
 msgstr "Parar y recargar la página."
 
 #: ../src/plugins/view/htmlrenderer.py:645
-#, fuzzy
 msgid "Start page for the Html View"
-msgstr "Año del calendario"
+msgstr "Página inicial para la vista HTML"
 
 #: ../src/plugins/view/htmlrenderer.py:646
-#, fuzzy
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a webpage in this page\n"
 "<br>\n"
@@ -17741,7 +17730,6 @@ msgstr "Narrativa"
 #. begin web title
 #: ../src/plugins/webreport/NarrativeWeb.py:1411
 #: ../src/plugins/webreport/NarrativeWeb.py:4759
-#, fuzzy
 msgid "Web Links"
 msgstr "Enlaces web"
 
@@ -17778,33 +17766,30 @@ msgid "Letter"
 msgstr "Letra"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2141
-#, fuzzy
 msgid "Place Name | Name"
-msgstr "Editor de Nombres"
+msgstr "Nombre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2144
-#, fuzzy
 msgid "Latitude/ Longitude"
-msgstr "Longitud"
+msgstr "Latitud/ Longitud"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2286
-#, fuzzy
 msgid "This page contains an index of all the events in the database, sorted by their type, date (if one is present), and gramps id, Clicking on an event&#8217;s Gramps ID will load a page for that event."
-msgstr "Esta página contiene un índice de todas los lugares de la base de datos ordenadas por su nombre.  Hacer clic en el nombre de un lugar le llevará a la página de ese lugar."
+msgstr "Esta página contiene un índice de todos los eventos de la base de datos ordenadas por su tipo, fecha (si consta) e ID Gramps.  Hacer clic en el ID Gramps de un evento le llevará a la página de ese evento."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2335
 #, python-format
 msgid "Event types beginning with %(eventtype)s"
-msgstr ""
+msgstr "Tipos de evento que empiezan por %(eventtype)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2599
 msgid "Previous"
 msgstr "Anterior"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2600
-#, fuzzy, python-format
+#, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
-msgstr "<strong id=\"GalleryCurrent\">%(page_number)d</strong> de <strong id=\"GalleryTotal\">%(total_pages)d</strong>"
+msgstr "<strong id = \"GalleryCurrent\">%(page_number)d</strong> de <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2605
 msgid "Next"
@@ -17812,12 +17797,10 @@ msgstr "Siguiente"
 
 #. missing media error message
 #: ../src/plugins/webreport/NarrativeWeb.py:2608
-#, fuzzy
 msgid "The file has been moved or deleted."
-msgstr "El archivo ha sido movido o borrado"
+msgstr "El archivo ha sido movido o borrado."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2743
-#, fuzzy
 msgid "File Type"
 msgstr "Tipo de archivo"
 
@@ -17835,7 +17818,6 @@ msgid "This page contains an index of all the surnames in the database. Selectin
 msgstr "Esta página contiene el índice de los apellidos presentes en la base de datos. Seleccionar este enlace llevará a la lista de personas que tienen este mismo apellido."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2908
-#, fuzzy
 msgid "Number of People"
 msgstr "Número de personas"
 
@@ -17844,41 +17826,34 @@ msgid "This page contains an index of all the sources in the database, sorted by
 msgstr "Esta página contiene un índice de todas las fuentes de la base de datos ordenadas por su título.  Hacer clic en el título de una fuente le llevará a la página de esa fuente."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3090
-#, fuzzy
 msgid "Source Name|Name"
-msgstr "Nota de fuente"
+msgstr "Nombre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3158
 msgid "Publication information"
 msgstr "Información de la publicación"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3205
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr "Esta página contiene un índice de todos los objetos de la base de datos ordenados por su título.  Hacer clic en el título de un objeto le llevará a la página de ese objeto."
+msgstr "Esta página contiene un índice de todos los objetos de la base de datos ordenados por su título.  Hacer clic en el título de un objeto le llevará a la página de ese objeto.  Si sobre una imagen se ven datos de sus dimensiones, al hacer clic en la imagen se verá a su tamaño completo original.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3224
-#, fuzzy
 msgid "Media | Name"
-msgstr "Nota de objeto audiovisual"
+msgstr "Nombre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3226
-#, fuzzy
 msgid "Mime Type"
-msgstr "Tipo de archivo"
+msgstr "Tipo MIME"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3340
-#, fuzzy
 msgid "File Name"
-msgstr "Nombre del Archivo"
+msgstr "Nombre del archivo"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3342
-#, fuzzy
 msgid "License"
-msgstr "Enlaces"
+msgstr "Licencia"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3343
-#, fuzzy
 msgid "Last Modified"
 msgstr "Modificado por última vez"
 
@@ -17891,19 +17866,16 @@ msgid "Associations"
 msgstr "Asociaciones"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3933
-#, fuzzy
 msgid "Nick Name"
 msgstr "Apodo"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3971
-#, fuzzy
 msgid "Age at Death"
 msgstr "Edad de defunción"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4042
-#, fuzzy
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr "Crear y agregar una nueva ordenanza SUD"
+msgstr "Ordenanza SUD"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4599
 #, fuzzy
@@ -17911,9 +17883,8 @@ msgid "This page contains an index of all the repositories in the database, sort
 msgstr "Esta página contiene un índice de todas las fuentes de la base de datos ordenadas por su título.  Hacer clic en el título de una fuente le llevará a la página de esa fuente."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4614
-#, fuzzy
 msgid "Repository |Name"
-msgstr "Nota de repositorio"
+msgstr "Nombre"
 
 #. Internet Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4739
@@ -17943,14 +17914,13 @@ msgid "The archive file must be a file, not a directory"
 msgstr "La ruta debe corresponder a un archivo, no a un directorio"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5044
-#, fuzzy
 msgid "Narrated Web Site Report"
-msgstr "Sitio web detallado"
+msgstr "Reporte de sitio web detallado"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5097
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr ""
+msgstr "ID=%(grampsid)s, ruta=%(dir)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5102
 #, fuzzy
@@ -17978,14 +17948,13 @@ msgid "Creating place pages"
 msgstr "Creando las páginas de lugares"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5288
-#, fuzzy
 msgid "Creating event pages"
-msgstr "Creando las páginas de lugares"
+msgstr "Creando las páginas de eventos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5295
 #, python-format
 msgid "Creating event page %02d of %02d"
-msgstr ""
+msgstr "Creando la página de evento %02d de %02d"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5305
 msgid "Creating media pages"
@@ -17993,21 +17962,18 @@ msgstr "Creando las páginas de objetos"
 
 #. set progress bar pass for Repositories
 #: ../src/plugins/webreport/NarrativeWeb.py:5356
-#, fuzzy
 msgid "Creating repository pages"
-msgstr "Creando las páginas de fuentes"
+msgstr "Creando las páginas de repositorios"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5412
-#, fuzzy
 msgid "Creating address book pages ..."
-msgstr "Creando las páginas de lugares"
+msgstr "Creando las páginas de libreta de direcciones ..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5612
 msgid "Store web pages in .tar.gz archive"
 msgstr "Almacenar las páginas web en un archivo .tar.gz"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5614
-#, fuzzy
 msgid "Whether to store the web pages in an archive file"
 msgstr "Si se deben almacenar las páginas web en un archivo"
 
@@ -18034,9 +18000,8 @@ msgid "The title of the web site"
 msgstr "Título del sitio web"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5633
-#, fuzzy
 msgid "Select filter to restrict people that appear on web site"
-msgstr "Seleccionar filtro para restringir las personas que aparecen en los archivos web"
+msgstr "Seleccionar filtro para restringir las personas que aparecen en el sitio web"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5653
 #: ../src/plugins/webreport/WebCal.py:1371
@@ -18060,14 +18025,12 @@ msgstr "Indicación de copyright a utilizar en los archivos web"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5665
 #: ../src/plugins/webreport/WebCal.py:1383
-#, fuzzy
 msgid "StyleSheet"
 msgstr "Hoja de estilo"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5668
-#, fuzzy
 msgid "The stylesheet to be used for the web pages"
-msgstr "Hoja de estilo a utilizar en los archivos web"
+msgstr "Hoja de estilo a utilizar en las páginas web"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5671
 msgid "Include ancestor graph"
@@ -18163,7 +18126,7 @@ msgstr "Incluir galería de y objetos audiovisuales"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5731
 msgid "Max width of initial image"
-msgstr ""
+msgstr "Anchura máxima de la imagen inicial"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5733
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
@@ -18171,7 +18134,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5737
 msgid "Max height of initial image"
-msgstr ""
+msgstr "Altura máxima de la imagen inicial"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5739
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
@@ -18234,56 +18197,48 @@ msgid "Whether to include a database download option"
 msgstr "Incluir opción de descarga de la base de datos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5795
-#, fuzzy
 msgid "Download page note"
-msgstr "Nota para la página de inicio"
+msgstr "Nota para la página de descarga"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5796
-#, fuzzy
 msgid "A note to be used on the download page"
-msgstr "Nota a utilizar en la página de inicio"
+msgstr "Nota a utilizar en la página de descarga"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5799
 #: ../src/plugins/webreport/NarrativeWeb.py:5808
-#, fuzzy
 msgid "Download Filename"
-msgstr "Descargar mapas de la red"
+msgstr "Nombre de archivo de descarga"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
 #: ../src/plugins/webreport/NarrativeWeb.py:5810
 msgid "File to be used for downloading of database"
-msgstr ""
+msgstr "Archivo a utilizar para la descarga de la base de datos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5804
 #: ../src/plugins/webreport/NarrativeWeb.py:5813
-#, fuzzy
 msgid "Description for download"
-msgstr "Descripción"
+msgstr "Descripción de la descarga"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5804
-#, fuzzy
 msgid "Smith Family Tree"
-msgstr "Árbol genealógico"
+msgstr "Árbol genealógico de los García"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5805
 #: ../src/plugins/webreport/NarrativeWeb.py:5814
 msgid "Give a description for this file."
-msgstr ""
+msgstr "De una descripción de este archivo."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5813
-#, fuzzy
 msgid "Johnson Family Tree"
-msgstr "Árbol genealógico"
+msgstr "Árbol genealógico de los López"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5817
-#, fuzzy
 msgid "Download Copyright License"
-msgstr "Sin indicación de propiedad intelectual"
+msgstr "Indicación de propiedad intelectual de la descarga"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5820
-#, fuzzy
 msgid "The copyright to be used for ths download file?"
-msgstr "Indicación de copyright a utilizar en los archivos web"
+msgstr "¿Indicación de copyright a utilizar en los archivo descargado?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5829
 #: ../src/plugins/webreport/WebCal.py:1526
