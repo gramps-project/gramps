@@ -1,4 +1,4 @@
-Version 3.2.0 (beta1) -- the "I am your father" release.
+Version 3.2.0 -- the "I am your father" release.
 * New Plugin System:
  -> In the Help Menu -> Menu Status, all available plugins are visible.  All
     plugins can be hidden, saving resources and hiding options you do not need.
