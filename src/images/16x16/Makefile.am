@@ -52,6 +52,7 @@ dist_pkgdata_DATA = \
 	gramps-tree-list.png \
 	gramps-tree-select.png \
 	gramps-unlock.png \
+	gramps-view.png \
 	gramps-viewmedia.png \
 	gramps-zoom-best-fit.png \
 	gramps-zoom-fit-width.png \
