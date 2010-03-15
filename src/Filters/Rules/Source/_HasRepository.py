@@ -43,7 +43,7 @@ class HasRepository(Rule):
 
     labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = _('Sources with <count> Repository references')
-    description = _("Matches sources with certain number repository references")
+    description = _("Matches sources with a certain number of repository references")
     category    = _('General filters')
 
     def prepare(self, db):

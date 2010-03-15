@@ -171,7 +171,7 @@ class ArgHandler(object):
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if os.path.exists(fullpath):
-            self.__error(_("WARNING: Output file already exist!\n"
+            self.__error(_("WARNING: Output file already exists!\n"
                     "WARNING: It will be overwritten:\n   %(name)s") % \
                     {'name' : fullpath})
             answer = None
