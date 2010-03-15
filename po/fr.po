@@ -5556,12 +5556,12 @@ msgstr "Éditeur d'emplacement"
 #: ../src/gui/editors/editmediaref.py:365
 #, python-format
 msgid "Media: %s"
-msgstr "Media : %s"
+msgstr "Medium : %s"
 
 #: ../src/gui/editors/editmedia.py:87
 #: ../src/gui/editors/editmediaref.py:367
 msgid "New Media"
-msgstr "Nouveau media"
+msgstr "Nouveau medium"
 
 #: ../src/gui/editors/editmedia.py:217
 msgid "Edit Media Object"
@@ -17256,9 +17256,10 @@ msgstr "Réorganiser des identifiants Gramps"
 msgid "Finding and assigning unused IDs"
 msgstr "Recherche et assignation d'un ID non utilisé"
 
+# nom de l'outil
 #: ../src/plugins/tool/SortEvents.py:76
 msgid "Sort Events"
-msgstr "Tri des événements"
+msgstr "Trier les événements"
 
 # à vérifier
 #: ../src/plugins/tool/SortEvents.py:102
@@ -17433,10 +17434,11 @@ msgstr "Supprime les objets non référencés de la base de données"
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr "Réorganise les identifiants Gramps en fonction des règles par défaut."
 
+# nom de l'outil
 #: ../src/plugins/tool/tools.gpr.py:463
 #: ../src/plugins/tool/tools.gpr.py:464
 msgid "Sorts events"
-msgstr "Tri les événements"
+msgstr "Trier les événements"
 
 #: ../src/plugins/tool/tools.gpr.py:485
 msgid "Generate SoundEx Codes"
@@ -22567,9 +22569,10 @@ msgstr "partie du nom indiquant la famille dont l'individu appartient"
 msgid "<b><i>Gramplet</i></b>"
 msgstr "<b><i>Gramplet</i></b>"
 
+# enlever
 #: ../src/glade/grampletpane.glade.h:2
 msgid "Click to delete gramplet from view"
-msgstr "Cliquez pour supprimer le gramplet de la vue"
+msgstr "Cliquez pour enlever le gramplet de la vue"
 
 #: ../src/glade/grampletpane.glade.h:3
 msgid "Click to expand/collapse"
