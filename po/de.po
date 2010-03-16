@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-15 20:07+0100\n"
-"PO-Revision-Date: 2010-03-15 20:39+0100\n"
+"POT-Creation-Date: 2010-03-16 20:03+0100\n"
+"PO-Revision-Date: 2010-03-16 20:59+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -126,7 +126,7 @@ msgstr "Name"
 #: ../src/gui/selectors/selectsource.py:62
 #: ../src/gui/views/navigationview.py:336 ../src/Merge/_MergePerson.py:127
 #: ../src/plugins/lib/libpersonview.py:90
-#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
@@ -416,7 +416,7 @@ msgstr "_Keine nicht verknüpfte Datensätze einschließen"
 #: ../src/plugins/export/ExportFtree.py:77
 #: ../src/plugins/export/ExportGeneWeb.py:82
 #: ../src/plugins/export/ExportVCalendar.py:77
-#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:151
+#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:155
 #: ../src/ReportBase/_ReportUtils.py:265
 msgid "Entire Database"
 msgstr "Gesamte Datenbank"
@@ -1653,7 +1653,7 @@ msgstr "Quellen im Aufbewahrungsort"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
 msgstr "Person"
@@ -1995,7 +1995,7 @@ msgstr "Fehler: Unerkannter Typ: \"%(format)s\" für Importdatei: %(filename)s"
 #: ../src/cli/arghandler.py:174
 #, python-format
 msgid ""
-"WARNING: Output file already exist!\n"
+"WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
@@ -9936,10 +9936,10 @@ msgstr "Gramps-Paket (portables XML)"
 #: ../src/plugins/import/import.gpr.py:89
 msgid ""
 "Import data from a Gramps package (an archived XML family tree together with "
-"the media object files."
+"the media object files.)"
 msgstr ""
-"Importiere Daten von einem Gramps-Paket (eine archivierte XML-Stammbaum "
-"zusammen mit den Medienobjektdateien)."
+"Importiere Daten von einem Gramps-Paket (ein archivierter XML-Stammbaum "
+"zusammen mit den Medienobjektdateien.)"
 
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
@@ -16240,11 +16240,11 @@ msgid "Select the filter to be applied to the report."
 msgstr "Filter wählen um ihn auf den Bericht anzuwenden."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
-msgid "List events chonologically"
+msgid "List events chronologically"
 msgstr "Listet Ereignisse chronologisch"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-msgid "Whether to sort events into chonological order."
+msgid "Whether to sort events into chronological order."
 msgstr "Ob Ereignisse in chronologischer Reihenfolge sortiert werden."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
@@ -16727,7 +16727,7 @@ msgstr "Ursprünglicher Name"
 msgid "Capitalization Change"
 msgstr "Änderungen der Großschreibung"
 
-#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:284
+#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:296
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
@@ -17103,52 +17103,52 @@ msgstr "Python Bewertungsfenster"
 msgid "manual|Compare_Individual_Events..."
 msgstr "Einzelne_Ereignisse_vergleichen..."
 
-#: ../src/plugins/tool/EventCmp.py:138
+#: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
 msgstr "Filterauswahl für Ereignisvergleich"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Filter selection"
 msgstr "Filterauswahl"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Event Comparison tool"
 msgstr "Ereignisvergleichs-Werkzeug"
 
-#: ../src/plugins/tool/EventCmp.py:174
+#: ../src/plugins/tool/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Ereignisse vergleichen"
 
-#: ../src/plugins/tool/EventCmp.py:175
+#: ../src/plugins/tool/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Wählen von Personen"
 
-#: ../src/plugins/tool/EventCmp.py:187
+#: ../src/plugins/tool/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Keine Treffer gefunden"
 
-#: ../src/plugins/tool/EventCmp.py:235 ../src/plugins/tool/EventCmp.py:258
+#: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:270
 msgid "Event Comparison Results"
 msgstr "Ereignisvergleichs-Resultate"
 
-#: ../src/plugins/tool/EventCmp.py:245
+#: ../src/plugins/tool/EventCmp.py:251
 msgid " Date"
 msgstr " Datum"
 
 #. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:247
+#: ../src/plugins/tool/EventCmp.py:253
 msgid " Place"
 msgstr " Ort"
 
-#: ../src/plugins/tool/EventCmp.py:291
+#: ../src/plugins/tool/EventCmp.py:303
 msgid "Comparing Events"
 msgstr "Ereignisse Vergleichen"
 
-#: ../src/plugins/tool/EventCmp.py:292
+#: ../src/plugins/tool/EventCmp.py:304
 msgid "Building data"
 msgstr "Daten erstellen"
 
-#: ../src/plugins/tool/EventCmp.py:372
+#: ../src/plugins/tool/EventCmp.py:384
 msgid "Select filename"
 msgstr "Dateinamen wählen"
 
@@ -17524,7 +17524,7 @@ msgid "Database Owner Editor"
 msgstr "Datenbankeignerereditor"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1185
+#: ../src/PluginUtils/_PluginWindows.py:1194
 msgid "Main window"
 msgstr "Hauptfenster"
 
@@ -18156,8 +18156,8 @@ msgstr "Fadenkreuz auf der Karte."
 
 #: ../src/plugins/view/geoview.py:527
 msgid ""
-"Show the coordinates in the statusbar either in degree\n"
-"either in internal gramps format ( D.D8 )"
+"Show the coordinates in the statusbar either in degrees\n"
+"or in internal gramps format ( D.D8 )"
 msgstr ""
 "Zeigt die Koordinaten in der Statusleiste entweder in Grad\n"
 "oder im internen Grampsformat ( D.D8)"
@@ -18177,7 +18177,7 @@ msgstr "Time out für den Netzwerkverbindungstest"
 #: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
-"Must be greater or equal to 10 secondes"
+"Must be greater or equal to 10 seconds"
 msgstr ""
 "Zeit in Sekunden zwischen zwei Netzwerktests.\n"
 "Muss größer gleich 10 Sekunden sein"
@@ -18365,11 +18365,11 @@ msgstr "Alle Ereignis Orte für"
 
 #: ../src/plugins/view/geoview.py:2128
 msgid ""
-"Cannot center the map. No location with coordinates.The following reasons "
-"are : <ul><li>The filter you use return nothing.</li><li>The active person "
-"has no places with coordinates.</li><li>The active person's family members "
-"have no places with coordinates.</li><li>You have no places.</li><li>You "
-"have no active person set.</li>"
+"Cannot center the map. No location with coordinates.That may happen for one "
+"of the following reasons : <ul><li>The filter you use returned nothing.</"
+"li><li>The active person has no places with coordinates.</li><li>The active "
+"person's family members have no places with coordinates.</li><li>You have no "
+"places.</li><li>You have no active person set.</li>"
 msgstr ""
 "Kann Karte nicht zentrieren. Kein Ort mit Koordinaten. Die folgenden Gründe "
 "sind:<ul><li>Der Filter, den du verwendest liefert nichts.</li><li>Die "
@@ -18387,10 +18387,10 @@ msgstr "Startseite für die Geografieansicht"
 
 #: ../src/plugins/view/geoview.py:2296
 msgid ""
-"You don't see a map here for the following reasons :<br><ol><li>Your "
-"database is empty or not yet selected.</li><li>You have not yet selected a "
-"person.</li><li>You have no place in your database.</li><li>The selected "
-"places have no coordinates.</li></ol>"
+"You don't see a map here for one of the following reasons :<br><ol><li>Your "
+"database is empty or not yet selected.</li><li>You have not selected a "
+"person yet.</li><li>You have no places in your database.</li><li>The "
+"selected places have no coordinates.</li></ol>"
 msgstr ""
 "Du siehst hier aus den folgenden Gründen keine Karte:<br><ol><li>Deine "
 "Datenbank ist leer oder nicht gewählt.</li><li>Du hast noch keine Person "
@@ -18404,10 +18404,10 @@ msgstr "Geografische Ansicht"
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid ""
 "The view showing events on an interactive internet map (internet connection "
-"needed"
+"needed)"
 msgstr ""
 "Die Ansicht zeigt Ereignisse auf einer interaktiven Internetkarte "
-"(Internetverbindung benötigt"
+"(Internetverbindung benötigt)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
@@ -20185,136 +20185,136 @@ msgstr "Addonname"
 msgid "Path to Addon:"
 msgstr "Pfad zur Erweiterung:"
 
-#: ../src/PluginUtils/_PluginWindows.py:357
+#: ../src/PluginUtils/_PluginWindows.py:360
 msgid "Install Addon"
 msgstr "Addon installieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:360
+#: ../src/PluginUtils/_PluginWindows.py:363
 msgid "Install All Addons"
 msgstr "Alle Addons installieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:363
+#: ../src/PluginUtils/_PluginWindows.py:366
 msgid "Refresh Addon List"
 msgstr "Addonliste aktualisieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:368
+#: ../src/PluginUtils/_PluginWindows.py:371
 msgid "Install Addons"
 msgstr "Addons installieren"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:376
+#: ../src/PluginUtils/_PluginWindows.py:379
 msgid "Reload"
 msgstr "Neu laden"
 
-#: ../src/PluginUtils/_PluginWindows.py:398
+#: ../src/PluginUtils/_PluginWindows.py:401
 msgid "Refreshing Addon List"
 msgstr "Addonliste aktualisieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:399
-#: ../src/PluginUtils/_PluginWindows.py:404
-#: ../src/PluginUtils/_PluginWindows.py:494
+#: ../src/PluginUtils/_PluginWindows.py:402
+#: ../src/PluginUtils/_PluginWindows.py:407
+#: ../src/PluginUtils/_PluginWindows.py:497
 msgid "Reading gramps-project.org..."
 msgstr "Lese gramps-project.org..."
 
-#: ../src/PluginUtils/_PluginWindows.py:422
+#: ../src/PluginUtils/_PluginWindows.py:425
 msgid "Checking addon..."
 msgstr "Überprüfe Addon..."
 
-#: ../src/PluginUtils/_PluginWindows.py:430
+#: ../src/PluginUtils/_PluginWindows.py:433
 msgid "Unknown Help URL"
 msgstr "Unbekannte Hilfe URL"
 
-#: ../src/PluginUtils/_PluginWindows.py:441
+#: ../src/PluginUtils/_PluginWindows.py:444
 msgid "Unknown URL"
 msgstr "Unbekannte URL"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:480
 msgid "Install all Addons"
 msgstr "Alle Addons installieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:480
 msgid "Installing..."
 msgstr "Installiere..."
 
-#: ../src/PluginUtils/_PluginWindows.py:493
+#: ../src/PluginUtils/_PluginWindows.py:496
 msgid "Installing Addon"
 msgstr "Installiere Addon"
 
-#: ../src/PluginUtils/_PluginWindows.py:522
-#: ../src/PluginUtils/_PluginWindows.py:528
+#: ../src/PluginUtils/_PluginWindows.py:525
+#: ../src/PluginUtils/_PluginWindows.py:531
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Kann '%s' nicht öffnen"
 
-#: ../src/PluginUtils/_PluginWindows.py:539
+#: ../src/PluginUtils/_PluginWindows.py:542
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Fehler: Kann '%s' nicht öffnen"
 
-#: ../src/PluginUtils/_PluginWindows.py:542
+#: ../src/PluginUtils/_PluginWindows.py:545
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Fehler: unbekannter Dateityp: '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:547
+#: ../src/PluginUtils/_PluginWindows.py:550
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Untersuche '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:559
+#: ../src/PluginUtils/_PluginWindows.py:562
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Fehler in '%s' Datei: kann nicht geladen werden."
 
-#: ../src/PluginUtils/_PluginWindows.py:571
+#: ../src/PluginUtils/_PluginWindows.py:574
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' ist für diese Gramps Version."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:574
+#: ../src/PluginUtils/_PluginWindows.py:577
 #, python-format
-msgid "'%s' is for NOT this version of Gramps."
+msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' ist NICHT für diese Gramps Version."
 
-#: ../src/PluginUtils/_PluginWindows.py:575
+#: ../src/PluginUtils/_PluginWindows.py:578
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Es ist für Version %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:581
+#: ../src/PluginUtils/_PluginWindows.py:584
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Fehler: fehlende gramps_ziel_version = '3.2' in '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:585
+#: ../src/PluginUtils/_PluginWindows.py:588
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installiere '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:595
+#: ../src/PluginUtils/_PluginWindows.py:598
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registriert '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:604
+#: ../src/PluginUtils/_PluginWindows.py:607
 msgid "Load Addon"
 msgstr "Addon laden"
 
-#: ../src/PluginUtils/_PluginWindows.py:655
+#: ../src/PluginUtils/_PluginWindows.py:664
 msgid "Unavailable"
 msgstr "Nicht verfügbar"
 
-#: ../src/PluginUtils/_PluginWindows.py:659
+#: ../src/PluginUtils/_PluginWindows.py:668
 msgid "Fail"
 msgstr "Fehler"
 
-#: ../src/PluginUtils/_PluginWindows.py:673
+#: ../src/PluginUtils/_PluginWindows.py:682
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:821
+#: ../src/PluginUtils/_PluginWindows.py:830
 msgid "Plugin Error"
 msgstr "PlugIn Fehler"
 
@@ -22488,7 +22488,7 @@ msgid "Sources with <count> Repository references"
 msgstr "Quellen mit <Zahl> Aufbewahrungsorte Referenzen"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-msgid "Matches sources with certain number repository references"
+msgid "Matches sources with a certain number of repository references"
 msgstr "Passt auf Quellen mit einer bestimmten Anzahl von Aufbewahrungsortereferenzen"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
@@ -24418,7 +24418,7 @@ msgstr ""
 msgid ""
 "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
-"or right click on an individual to access other family members and setting. "
+"or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
 "<b>Ahnentafelansicht</b><br/>Die Ahnentafelansicht zeigt dir eine "
@@ -24541,11 +24541,11 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:12
 msgid ""
 "<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
-"relationship of a child to it's parents by double clicking the child in the "
+"relationship of a child to its parents by double clicking the child in the "
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Elternkindbeziehung bearbeiten</b><br/> Du kannst die Beziehung eines "
+"<b>Eltern-Kindbeziehung bearbeiten</b><br/> Du kannst die Beziehung eines "
 "Kindes zu seinen Eltern durch doppelklicken des Kindes im Familieneditor "
 "bearbeiten. Beziehung kann jede Art sein von Adoptiert, Geburt, Pflege, "
 "Keine, Gefördert, Stief und Unbekannt."
@@ -24630,7 +24630,7 @@ msgid ""
 "Graphical Reports and Graphs can present complex relationships easily and "
 "the Text Reports are particularly useful if you want to send the results of "
 "your family tree to members of the family via email. If you're ready to make "
-"a website for you family tree then there's a report for that as well."
+"a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>Gramps Berichte</b><br/> Gramps bietet eine große Vielfalt an Berichten. "
 "Die grafischen Berichte und Grafiken können komplexe "
@@ -24703,7 +24703,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:24
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-"invalid format. Incorrect date formats will show up in Gramps with a redish "
+"invalid format. Incorrect date formats will show up in Gramps with a reddish "
 "background. You can fix the date using the Date Selection dialog which can "
 "be opened by clicking on the date button. The format of the date is set "
 "under &quot;Edit &gt; Preferences &gt; Display&quot;."
@@ -24864,9 +24864,9 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:36
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active object such as People, Events and . You can move forward and backward "
-"through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
-"Back&quot; or the arrow buttons."
+"active objects such as People, Events and . You can move forward and "
+"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
+"&gt; Back&quot; or the arrow buttons."
 msgstr ""
 "<b>Vor und zurück navigieren</b><br/>Gramps verwaltet eine Liste von vorher "
 "aktiven Objekten wie Personen und Ereignisse. Du kannst in dieser Liste vor "
@@ -24914,7 +24914,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid ""
-"<b>Organising the Views</b><br/>Many of the views can presented your data as "
+"<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
@@ -24975,7 +24975,7 @@ msgid ""
 "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
 "lets you modify a number of settings, such as the path to your media files, "
 "and allows you to adjust many aspects of the Gramps presentation to your "
-"needs. Each seperate view can also be configured under &quot;View &gt; "
+"needs. Each separate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
 "<b>Einstellung deiner Vorlieben</b><br/>&quot;Bearbeiten&gt; Einstellungen..."
@@ -25001,13 +25001,13 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:47
 msgid ""
 "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
-"original developer, Don Allingham, by his father. It stand for "
+"original developer, Don Allingham, by his father. It stands for "
 "<i>Genealogical Research and Analysis Management Program System</i>. It is a "
 "full-featured genealogy program letting you store, edit, and research "
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>Namen  sind  Schall  und  Rauch</b><br/>Der Name Gramps wurde dem "
+"<b>Namen sind Schall und Rauch</b><br/>Der Name Gramps wurde dem "
 "ursprünglichen Entwickler Don Allingham von seinem Vater vorgeschlagen. Er "
 "bedeutet <i>Genealogical Research and Analysis Management Program System "
 "(auf Deutsch: Genealogisches Rechercheund Analyse Management Programm System)"
@@ -25220,7 +25220,7 @@ msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
 "indicate the level of confidence in a date and even choose between seven "
-"different calenders. Try the button next to the date field in the Events "
+"different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
 "<b>Mit Daten arbeiten</b><br/>Ein Zeitraum von Daten kann durch die "
