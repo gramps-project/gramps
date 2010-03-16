@@ -1,8 +1,4 @@
 # translation of sv.po to svenska
-# Bo Rosén <bo.rosen@home.se>, 2001.
-# Jens Arvidsson <jya@sverige.nu>, 2002-2005.
-# Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
-# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010.
 # translation of svny.1.po to
 # translation of sv.1.po to
 # translation of nytt_sv2.po to
@@ -30,18 +26,22 @@
 # state               län/delstat
 # undo history        redigeringshistorik#
 # $Id$
+# Bo Rosén <bo.rosen@home.se>, 2001.
+# Jens Arvidsson <jya@sverige.nu>, 2002-2005.
+# Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
+# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-14 11:08+0100\n"
-"PO-Revision-Date: 2010-03-14 11:09+0100\n"
+"POT-Creation-Date: 2010-03-16 08:41+0100\n"
+"PO-Revision-Date: 2010-03-16 08:46+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team: svenska <sv@li.org>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:47
@@ -149,7 +149,7 @@ msgstr "Namn"
 #: ../src/gui/selectors/selectsource.py:62
 #: ../src/gui/views/navigationview.py:336 ../src/Merge/_MergePerson.py:127
 #: ../src/plugins/lib/libpersonview.py:90
-#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
@@ -435,7 +435,7 @@ msgstr "Ta inte med _olänkade poster"
 #: ../src/plugins/export/ExportFtree.py:77
 #: ../src/plugins/export/ExportGeneWeb.py:82
 #: ../src/plugins/export/ExportVCalendar.py:77
-#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:151
+#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:155
 #: ../src/ReportBase/_ReportUtils.py:265
 msgid "Entire Database"
 msgstr "Hela databasen"
@@ -1671,7 +1671,7 @@ msgstr "Källor på arkivplats"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
 msgstr "Person"
@@ -1737,7 +1737,8 @@ msgstr "Ett registrerat eller samboförhållande mellan man och kvinna"
 
 #: ../src/Utils.py:97
 msgid "No legal or common-law relationship between man and woman"
-msgstr "Inget äktenskap eller registrerat samboförhållande mellan man och kvinna"
+msgstr ""
+"Inget äktenskap eller registrerat samboförhållande mellan man och kvinna"
 
 #: ../src/Utils.py:99
 msgid "An established relationship between members of the same sex"
@@ -2006,10 +2007,9 @@ msgstr "Fel: importfil %s saknas."
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Fel: okänd typ: \"%(format)s\" för filimport: %(filename)s"
 
-#: ../src/cli/arghandler.py:174
-#, python-format
+#: ../src/cli/arghandler.py:174, python-format
 msgid ""
-"WARNING: Output file already exist!\n"
+"WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
@@ -2509,8 +2509,7 @@ msgstr "Byrå"
 
 #: ../src/gen/lib/attrtype.py:73
 #: ../src/plugins/drawreport/StatisticsChart.py:347
-#: ../src/plugins/gramplet/AgeStats.py:174
-#: ../src/plugins/gramplet/AgeStats.py:321
+#: ../src/plugins/gramplet/AgeStats.py:165
 #: ../src/plugins/quickview/AgeOnDate.py:55
 msgid "Age"
 msgstr "Ålder"
@@ -3174,7 +3173,8 @@ msgstr "Diverse"
 #: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "FEL: Misslyckades med att läsa registrering för instickmodul %(filename)s"
+msgstr ""
+"FEL: Misslyckades med att läsa registrering för instickmodul %(filename)s"
 
 #: ../src/gen/plug/_pluginreg.py:970
 #, python-format
@@ -3192,7 +3192,8 @@ msgstr "FEL: Felaktig python-fil %(filename)s i registerfil %(regfile)s"
 
 #: ../src/gen/plug/_pluginreg.py:997
 #, python-format
-msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
+msgid ""
+"ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "FEL: Python-fil %(filename)s i registerfil %(regfile)s saknas"
 
 #: ../src/gen/plug/docbackend/docbackend.py:140
@@ -3794,7 +3795,8 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Tag bort '%(revision)s'-versionen av '%(database)s'"
 
 #: ../src/gui/dbman.py:546
-msgid "Removing this version will prevent you from extracting it in the future."
+msgid ""
+"Removing this version will prevent you from extracting it in the future."
 msgstr "Genom att ta bort denna version kan du senare inte extrahera den."
 
 #: ../src/gui/dbman.py:548
@@ -3993,7 +3995,8 @@ msgstr "Välj %s från lista"
 
 #: ../src/gui/filtereditor.py:349
 msgid "Give or select a source ID, leave empty to find objects with no source."
-msgstr "Ange eller välj en käll-ID, lämna tomt så hittas alla objekt utan källa."
+msgstr ""
+"Ange eller välj en käll-ID, lämna tomt så hittas alla objekt utan källa."
 
 #: ../src/gui/filtereditor.py:470 ../src/Filters/Rules/_HasEventBase.py:50
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -4759,7 +4762,8 @@ msgstr "Kan inte visa %s"
 msgid ""
 "Gramps is not able to display the image file. This may be caused by a "
 "corrupt file."
-msgstr "Gramps kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
+msgstr ""
+"Gramps kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
 
 #: ../src/gui/editors/objectentries.py:249
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -4894,7 +4898,8 @@ msgstr "Kan inte spara händelse"
 
 #: ../src/gui/editors/editevent.py:229
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr "Inga uppgifter finns för denna händelse. Ange sådana eller avbryt redigering."
+msgstr ""
+"Inga uppgifter finns för denna händelse. Ange sådana eller avbryt redigering."
 
 #: ../src/gui/editors/editevent.py:238
 msgid "Cannot save event. ID already exists."
@@ -5256,7 +5261,8 @@ msgid "Cannot save media object"
 msgstr "Kan inte spara mediaobjekt"
 
 #: ../src/gui/editors/editmedia.py:256
-msgid "No data exists for this media object. Please enter data or cancel the edit."
+msgid ""
+"No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
 "Inga uppgifter finns för detta mediaobjekt. Ange sådana eller avbryt "
 "redigeringen."
@@ -5368,7 +5374,8 @@ msgstr "Kan inte spara notis"
 
 #: ../src/gui/editors/editnote.py:299
 msgid "No data exists for this note. Please enter data or cancel the edit."
-msgstr "Inga uppgifter finns för denna notis. Ange sådana eller avbryt redigeringen."
+msgstr ""
+"Inga uppgifter finns för denna notis. Ange sådana eller avbryt redigeringen."
 
 #: ../src/gui/editors/editnote.py:306
 msgid "Cannot save note. ID already exists."
@@ -5554,7 +5561,8 @@ msgstr "Spara ändringar?"
 
 #: ../src/gui/editors/editprimary.py:206
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Om du stänger utan att spara, så kommer de ändringar du gjort att förloras"
+msgstr ""
+"Om du stänger utan att spara, så kommer de ändringar du gjort att förloras"
 
 #: ../src/gui/editors/editreporef.py:62
 msgid "Repository Reference Editor"
@@ -5591,7 +5599,8 @@ msgid "Cannot save repository"
 msgstr "Kan inte spara arkivplats"
 
 #: ../src/gui/editors/editrepository.py:161
-msgid "No data exists for this repository. Please enter data or cancel the edit."
+msgid ""
+"No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Inga uppgifter finns för den här arkivplatsen. Ange sådana eller avbryt "
 "redigeringen."
@@ -6823,7 +6832,8 @@ msgstr ""
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
-msgstr "Om du ser att det finns någon personlig information i felet, så ta bort den."
+msgstr ""
+"Om du ser att det finns någon personlig information i felet, så ta bort den."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:204
 msgid "Error Details"
@@ -7179,7 +7189,8 @@ msgstr "Byt ut förnamn mot tilltalsnamn"
 
 #: ../src/plugins/Records.py:455
 msgid "Underline call name in first name / add call name to first name"
-msgstr "Stryk under tilltalsnamn bland förnamn / lägg till tilltalsnamn till förnamn"
+msgstr ""
+"Stryk under tilltalsnamn bland förnamn / lägg till tilltalsnamn till förnamn"
 
 #: ../src/plugins/Records.py:461
 msgid "Person Records"
@@ -8144,7 +8155,8 @@ msgid "Max. items for a pie"
 msgstr "Max antal objekt för en cirkel"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:950
-msgid "With fewer items pie chart and legend will be used instead of a bar chart."
+msgid ""
+"With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Med färre poster kommer cirkeldiagram med teckenförklaring att användas i "
 "stället för stapeldiagram."
@@ -8282,7 +8294,8 @@ msgstr "Gra_mps-XML-paket (släktträd och media)"
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
-msgstr "Gramps-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
+msgstr ""
+"Gramps-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
 
 #: ../src/plugins/export/export.gpr.py:133
 msgid "Gramps _XML (family tree)"
@@ -8466,80 +8479,73 @@ msgstr ""
 msgid "Run"
 msgstr "Kör"
 
-#: ../src/plugins/gramplet/AgeStats.py:56
-#: ../src/plugins/gramplet/AgeStats.py:66
+#: ../src/plugins/gramplet/AgeStats.py:47
+#: ../src/plugins/gramplet/AgeStats.py:57
 msgid "Max age"
 msgstr "Max ålder"
 
+#: ../src/plugins/gramplet/AgeStats.py:49
 #: ../src/plugins/gramplet/AgeStats.py:58
-#: ../src/plugins/gramplet/AgeStats.py:67
 msgid "Max age of Mother at birth"
 msgstr "Maximal ålder hos mor vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:60
-#: ../src/plugins/gramplet/AgeStats.py:68
+#: ../src/plugins/gramplet/AgeStats.py:51
+#: ../src/plugins/gramplet/AgeStats.py:59
 msgid "Max age of Father at birth"
 msgstr "Maximal ålder hos far vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:62
-#: ../src/plugins/gramplet/AgeStats.py:69
+#: ../src/plugins/gramplet/AgeStats.py:53
+#: ../src/plugins/gramplet/AgeStats.py:60
 msgid "Chart width"
 msgstr "Diagrambredd"
 
-#: ../src/plugins/gramplet/AgeStats.py:174
-#: ../src/plugins/gramplet/AgeStats.py:175
+#: ../src/plugins/gramplet/AgeStats.py:165
 msgid "Lifespan Age Distribution"
 msgstr "Livslängdsfördelning"
 
-#: ../src/plugins/gramplet/AgeStats.py:176
-#: ../src/plugins/gramplet/AgeStats.py:177
+#: ../src/plugins/gramplet/AgeStats.py:166
 msgid "Father - Child Age Diff Distribution"
 msgstr "Fördelning av far - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:176
-#: ../src/plugins/gramplet/AgeStats.py:178
+#: ../src/plugins/gramplet/AgeStats.py:166
+#: ../src/plugins/gramplet/AgeStats.py:167
 msgid "Diff"
 msgstr "Skillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:178
-#: ../src/plugins/gramplet/AgeStats.py:179
+#: ../src/plugins/gramplet/AgeStats.py:167
 msgid "Mother - Child Age Diff Distribution"
 msgstr "Fördelning av mor - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:236
+#: ../src/plugins/gramplet/AgeStats.py:224
 #: ../src/plugins/gramplet/gramplet.gpr.py:229
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../src/plugins/gramplet/AgeStats.py:237
+#: ../src/plugins/gramplet/AgeStats.py:225
 #: ../src/plugins/webreport/NarrativeWeb.py:4819
 msgid "Total"
 msgstr "Totalt "
 
-#: ../src/plugins/gramplet/AgeStats.py:238
+#: ../src/plugins/gramplet/AgeStats.py:226
 msgid "Minimum"
 msgstr "Minimum"
 
-#: ../src/plugins/gramplet/AgeStats.py:239
+#: ../src/plugins/gramplet/AgeStats.py:227
 msgid "Average"
 msgstr "Medel  "
 
-#: ../src/plugins/gramplet/AgeStats.py:240
+#: ../src/plugins/gramplet/AgeStats.py:228
 msgid "Median"
 msgstr "Median "
 
-#: ../src/plugins/gramplet/AgeStats.py:241
+#: ../src/plugins/gramplet/AgeStats.py:229
 msgid "Maximum"
 msgstr "Maximum"
 
-#: ../src/plugins/gramplet/AgeStats.py:284
+#: ../src/plugins/gramplet/AgeStats.py:272
 #, python-format
 msgid "Double-click to see %d people"
 msgstr "Dubbelklicka för att kunna se %d personer"
-
-#: ../src/plugins/gramplet/AgeStats.py:322 ../src/plugins/tool/Leak.py:83
-msgid "Number"
-msgstr "Antal"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
 #, python-format
@@ -8705,7 +8711,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "  9. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
-msgstr "  9. <a wiki='Portal:Using_GRAMPS'>Finns det en handbok för Gramps?</a>\n"
+msgstr ""
+"  9. <a wiki='Portal:Using_GRAMPS'>Finns det en handbok för Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:48
 msgid " 10. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
@@ -8717,7 +8724,8 @@ msgstr " 11. <a wiki='Category:How_do_I...'>Hur gör jag ...?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 msgid " 12. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr " 12. <a wiki='How_you_can_help'>Hur kan jag hjälpa till med Gramps?</a>\n"
+msgstr ""
+" 12. <a wiki='How_you_can_help'>Hur kan jag hjälpa till med Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -9516,7 +9524,8 @@ msgstr "Följ föräldrar för att bestämma släktlinjer"
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
-msgstr "Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
+msgstr ""
+"Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
 
 #: ../src/plugins/graph/GVFamilyLines.py:121
 msgid "Follow children to determine \"family lines\""
@@ -9710,8 +9719,10 @@ msgid "Include private records"
 msgstr "Ta med privata poster"
 
 #: ../src/plugins/graph/GVFamilyLines.py:249
-msgid "Whether to include names, dates, and families that are marked as private."
-msgstr "Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
+msgid ""
+"Whether to include names, dates, and families that are marked as private."
+msgstr ""
+"Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
 
 #: ../src/plugins/graph/GVFamilyLines.py:402
 msgid "Generating Family Lines"
@@ -9871,7 +9882,8 @@ msgstr "Indikera icke-födelserelationer med punkterade linjer"
 
 #: ../src/plugins/graph/GVRelGraph.py:571
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
+msgstr ""
+"Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
 
 #: ../src/plugins/graph/GVRelGraph.py:575
 msgid "Show family nodes"
@@ -9879,7 +9891,8 @@ msgstr "Visa familjenoder"
 
 #: ../src/plugins/graph/GVRelGraph.py:576
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
+msgstr ""
+"Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
 #: ../src/plugins/import/import.gpr.py:34
 msgid "Import data from CSV files"
@@ -9905,7 +9918,7 @@ msgstr "Gramps-paket (portabel XML)"
 #: ../src/plugins/import/import.gpr.py:89
 msgid ""
 "Import data from a Gramps package (an archived XML family tree together with "
-"the media object files."
+"the media object files.)"
 msgstr ""
 "Importera data från ett Gramps-paket (en arkiverad XML-databas tillsammans "
 "med mediaobjektfiler)."
@@ -10206,7 +10219,8 @@ msgstr "Mediamappen %s är inte skrivbar"
 #. it, have him remove it!
 #: ../src/plugins/import/ImportGpkg.py:81
 #, python-format
-msgid "Media directory %s exists. Delete it first, then restart the import process"
+msgid ""
+"Media directory %s exists. Delete it first, then restart the import process"
 msgstr "Mediamappen %s finns. Radera den först och starta sedan om importen."
 
 #: ../src/plugins/import/ImportGpkg.py:90
@@ -10278,7 +10292,8 @@ msgstr "Fel vid läsning av %s"
 
 #: ../src/plugins/import/ImportXml.py:139
 msgid "The file is probably either corrupt or not a valid Gramps database."
-msgstr "Filen är antagligen antingen felaktig eller inte en giltig Gramps-databas."
+msgstr ""
+"Filen är antagligen antingen felaktig eller inte en giltig Gramps-databas."
 
 #: ../src/plugins/import/ImportXml.py:243
 #, python-format
@@ -10889,14 +10904,16 @@ msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d months."
-msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr ""
+"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:191
 #, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d days."
-msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr ""
+"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:194
 #, python-format
@@ -10908,21 +10925,24 @@ msgstr "%(female_name)s dog %(death_date)s i %(death_place)s."
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d years."
-msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
+msgstr ""
+"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:196
 #, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d months."
-msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr ""
+"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:197
 #, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d days."
-msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr ""
+"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:201
 #, python-format
@@ -10957,17 +10977,20 @@ msgstr "Han dog %(death_date)s i %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:208
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:209
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:210
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:213
@@ -10977,17 +11000,20 @@ msgstr "Hon dog %(death_date)s i %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:214
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:215
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:216
 #, python-format
-msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:220 ../src/plugins/lib/libnarrate.py:267
@@ -11059,14 +11085,16 @@ msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr ""
+"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:238
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr ""
+"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:241
 #, python-format
@@ -11078,21 +11106,24 @@ msgstr "%(female_name)s dog %(death_date)s i %(death_place)s."
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
+msgstr ""
+"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:243
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr ""
+"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:244
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr ""
+"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:248
 #, python-format
@@ -11152,7 +11183,8 @@ msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:262
 #, python-format
-msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:263
@@ -11167,17 +11199,20 @@ msgstr "%(unknown_gender_name)s dog %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:277
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:278
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:279
 #, python-format
-msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid ""
+"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:282
@@ -11307,12 +11342,14 @@ msgstr "%(unknown_gender_name)s dog %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:324
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:325
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:326
@@ -11469,14 +11506,16 @@ msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d months."
-msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
+msgstr ""
+"%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:379
 #, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d days."
-msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
+msgstr ""
+"%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:382
 #, python-format
@@ -11488,21 +11527,24 @@ msgstr "%(female_name)s dog %(month_year)s i %(death_place)s."
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
-msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
+msgstr ""
+"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:384
 #, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
-msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
+msgstr ""
+"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:385
 #, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d days."
-msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
+msgstr ""
+"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:389
 #, python-format
@@ -11537,17 +11579,20 @@ msgstr "Han dog %(month_year)s i %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:396
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:397
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:401
@@ -11557,17 +11602,20 @@ msgstr "Hon dog %(month_year)s i %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:402
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:403
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:404
 #, python-format
-msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:408
@@ -11597,17 +11645,20 @@ msgstr "%(unknown_gender_name)s dog %(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:418
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:419
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:420
 #, python-format
-msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid ""
+"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:423
@@ -11737,17 +11788,20 @@ msgstr "%(unknown_gender_name)s dog i %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:465
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d år gammal."
 
 #: ../src/plugins/lib/libnarrate.py:466
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/plugins/lib/libnarrate.py:467
 #, python-format
-msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid ""
+"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/plugins/lib/libnarrate.py:470
@@ -11977,8 +12031,10 @@ msgstr "Dog (vid %(age)d dagars ålder)."
 
 #: ../src/plugins/lib/libnarrate.py:564
 #, python-format
-msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgid ""
+"%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:565
 #, python-format
@@ -11990,7 +12046,8 @@ msgstr "Han begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
 "s."
-msgstr "%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:569
 #, python-format
@@ -12008,7 +12065,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:573
 #, python-format
-msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgid ""
+"This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr "Denna person begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:575
@@ -12053,8 +12111,10 @@ msgstr "Begravd %(burial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:596
 #, python-format
-msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid ""
+"%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:597
 #, python-format
@@ -12063,8 +12123,10 @@ msgstr "Han begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:600
 #, python-format
-msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid ""
+"%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:601
 #, python-format
@@ -12082,8 +12144,10 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:605
 #, python-format
-msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Denna person begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid ""
+"This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"Denna person begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:607
 #, python-format
@@ -12127,8 +12191,10 @@ msgstr "Begravd i %(month_year)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:628
 #, python-format
-msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid ""
+"%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:629
 #, python-format
@@ -12137,8 +12203,10 @@ msgstr "Han begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:632
 #, python-format
-msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid ""
+"%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:633
 #, python-format
@@ -12156,8 +12224,10 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:637
 #, python-format
-msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Denna person begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid ""
+"This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"Denna person begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:639
 #, python-format
@@ -12286,7 +12356,8 @@ msgstr "Han döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:702
 #, python-format
@@ -12366,7 +12437,8 @@ msgstr "Han döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:734
 #, python-format
@@ -12384,7 +12456,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:738
 #, python-format
-msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgid ""
+"This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr "Denna person döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:740
@@ -12432,7 +12505,8 @@ msgstr "Döpt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr "%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:762
 #, python-format
@@ -12444,7 +12518,8 @@ msgstr "Han döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:766
 #, python-format
@@ -12462,7 +12537,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:770
 #, python-format
-msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgid ""
+"This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Denna person döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:772
@@ -12621,7 +12697,8 @@ msgstr ""
 msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "Denna person döptes %(christening_date)s i %(christening_place)s%(endnotes)s."
+msgstr ""
+"Denna person döptes %(christening_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:841
 #, python-format
@@ -12650,7 +12727,8 @@ msgstr "Hon döptes %(christening_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:854
 #, python-format
-msgid "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
+msgid ""
+"%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s döptes %(christening_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:855
@@ -12668,11 +12746,13 @@ msgstr "Döpt %(christening_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "%(male_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:863
 #, python-format
-msgid "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
+msgid ""
+"He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Han döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:866
@@ -12680,11 +12760,13 @@ msgstr "Han döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:867
 #, python-format
-msgid "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
+msgid ""
+"She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Hon döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:870
@@ -12701,7 +12783,8 @@ msgstr ""
 msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "Denna person döptes %(month_year)s i %(christening_place)s%(endnotes)s."
+msgstr ""
+"Denna person döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:873
 #, python-format
@@ -12748,11 +12831,13 @@ msgstr "Döpt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "%(male_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:895
 #, python-format
-msgid "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgid ""
+"He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Han döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:898
@@ -12760,11 +12845,13 @@ msgstr "Han döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:899
 #, python-format
-msgid "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgid ""
+"She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Hon döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:902
@@ -12781,7 +12868,8 @@ msgstr ""
 msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "Denna person döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
+msgstr ""
+"Denna person döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:905
 #, python-format
@@ -12845,7 +12933,8 @@ msgstr "Hon döptes i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:934
 #, python-format
-msgid "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
+msgid ""
+"%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s döptes i %(christening_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:935
@@ -13120,18 +13209,24 @@ msgstr "Dotter till %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1076
 #, python-format
-msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Personen gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Personen gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1077
 #, python-format
-msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Personen gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Personen gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1078
 #, python-format
-msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Personen gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgid ""
+"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Personen gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1081
 #, python-format
@@ -13146,7 +13241,8 @@ msgstr "Han gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1083
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1086
 #, python-format
@@ -13161,7 +13257,8 @@ msgstr "Hon gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1088
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1091
 #, python-format
@@ -13192,7 +13289,8 @@ msgstr ""
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr "Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1101
 #, python-format
@@ -13205,8 +13303,10 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
-msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid ""
+"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
@@ -13216,12 +13316,15 @@ msgstr "Han gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1106
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1109
 #, python-format
-msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid ""
+"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1110
 #, python-format
@@ -13231,7 +13334,8 @@ msgstr "Hon gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1111
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1114
 #, python-format
@@ -13534,21 +13638,24 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Ogift förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Ogift förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1217 ../src/plugins/lib/libnarrate.py:1240
 #, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr "Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1218 ../src/plugins/lib/libnarrate.py:1241
 #, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Ogift förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Ogift förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1224
 #, python-format
@@ -13663,42 +13770,48 @@ msgstr ""
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr "Han hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr ""
+"Han hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1253
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr "Han hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr ""
+"Han hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1254
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)"
 "s."
-msgstr "Han hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Han hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1257
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr "Hon hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr ""
+"Hon hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1258
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr "Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr ""
+"Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1259
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr "Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1262
 #, python-format
@@ -13798,8 +13911,10 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1285
 #, python-format
-msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
+msgid ""
+"Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr ""
+"Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1286
 #, python-format
@@ -13808,8 +13923,10 @@ msgstr "Även ett ogift förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1287
 #, python-format
-msgid "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Även ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid ""
+"Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Även ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1292
 #, python-format
@@ -13822,12 +13939,14 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1293
 #, python-format
-msgid "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid ""
+"He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Han hade ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1294
 #, python-format
-msgid "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid ""
+"She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Hon hade ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1295 ../src/plugins/lib/libnarrate.py:1302
@@ -13849,14 +13968,16 @@ msgstr ""
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)"
 "s."
-msgstr "Han hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgstr ""
+"Han hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1301
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s%"
 "(endnotes)s."
-msgstr "Hon hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgstr ""
+"Hon hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1306
 #, python-format
@@ -13880,7 +14001,8 @@ msgstr "Ogift förhållande med %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1313
 #, python-format
-msgid "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
+msgid ""
+"This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr "Denna person hade ett ogift förhållande med %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1314
@@ -13986,7 +14108,8 @@ msgstr "Förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1344
 #, python-format
-msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid ""
+"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1350
@@ -14072,17 +14195,22 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1365
 #, python-format
-msgid "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Även ett förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid ""
+"Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Även ett förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1366
 #, python-format
-msgid "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Även ett förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgid ""
+"Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Även ett förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1367
 #, python-format
-msgid "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid ""
+"Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Även ett förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)"
 "s."
@@ -14098,14 +14226,16 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1374
 #, python-format
-msgid "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid ""
+"This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Denna person hade ett förhållande med %(spouse)s på %(full_date)s%(endnotes)"
 "s."
 
 #: ../src/plugins/lib/libnarrate.py:1375
 #, python-format
-msgid "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgid ""
+"This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 "Denna person hade ett förhållande med %(spouse)s %(modified_date)s%(endnotes)"
 "s."
@@ -14113,7 +14243,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1378
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Han hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr ""
+"Han hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1379
 #, python-format
@@ -14128,7 +14259,8 @@ msgstr "Han hade ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s.
 #: ../src/plugins/lib/libnarrate.py:1383
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hon hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr ""
+"Hon hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1384
 #, python-format
@@ -14184,33 +14316,45 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1401
 #, python-format
-msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Han hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgid ""
+"He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+"Han hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1402
 #, python-format
-msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han hade också ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgid ""
+"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+"Han hade också ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1403
 #, python-format
-msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid ""
+"He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Han hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1406
 #, python-format
-msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hon hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgid ""
+"She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr ""
+"Hon hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1407
 #, python-format
-msgid "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hon hade också ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
+msgid ""
+"She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr ""
+"Hon hade också ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1408
 #, python-format
-msgid "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Hon hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid ""
+"She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr ""
+"Hon hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1411
 #, python-format
@@ -14229,8 +14373,10 @@ msgstr "Även ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1418
 #, python-format
-msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Denna person hade ett förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgid ""
+"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr ""
+"Denna person hade ett förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1419
 #, python-format
@@ -14249,7 +14395,8 @@ msgstr "Förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1425
 #, python-format
-msgid "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid ""
+"This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Denna person hade också ett förhållande med %(spouse)s i %(place)s%(endnotes)"
 "s."
@@ -15065,8 +15212,10 @@ msgid "Show Repository Reference"
 msgstr "Visa arkivplatsreferens"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
-msgid "Display the repository reference for sources related to the active repository"
-msgstr "Visa arkivplatsreferensen för källor relaterade till den aktiva arkivplatsen"
+msgid ""
+"Display the repository reference for sources related to the active repository"
+msgstr ""
+"Visa arkivplatsreferensen för källor relaterade till den aktiva arkivplatsen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:251
 msgid "Same Surnames"
@@ -15221,8 +15370,10 @@ msgstr "Personer med efternamnet '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] "Det finns %d människa med ett passande namn eller alternativt namn.\n"
-msgstr[1] "Det finns %d människor med ett passande namn eller alternativt namn.\n"
+msgstr[0] ""
+"Det finns %d människa med ett passande namn eller alternativt namn.\n"
+msgstr[1] ""
+"Det finns %d människor med ett passande namn eller alternativt namn.\n"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:147
@@ -16072,11 +16223,11 @@ msgid "Select the filter to be applied to the report."
 msgstr "Välj det filter som skall tillämpas för rapporten."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
-msgid "List events chonologically"
+msgid "List events chronologically"
 msgstr "Lista händelser kronologiskt"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-msgid "Whether to sort events into chonological order."
+msgid "Whether to sort events into chronological order."
 msgstr "Huruvida sortera händelser kronologiskt."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
@@ -16182,7 +16333,8 @@ msgstr "Antal anor för %s"
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
 msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
 msgstr[0] "Generation %(generation)d utgörs av %(count)d individ. %(percent)s"
-msgstr[1] "Generation %(generation)d utgörs av %(count)d individer. %(percent)s"
+msgstr[1] ""
+"Generation %(generation)d utgörs av %(count)d individer. %(percent)s"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
@@ -16563,7 +16715,7 @@ msgstr "Ursprungligt namn"
 msgid "Capitalization Change"
 msgstr "Skiftlägesändring"
 
-#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:284
+#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:296
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
@@ -16939,52 +17091,52 @@ msgstr "Fönster för Python"
 msgid "manual|Compare_Individual_Events..."
 msgstr ""
 
-#: ../src/plugins/tool/EventCmp.py:138
+#: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
 msgstr "Händelsejämförelsefilterval"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Filter selection"
 msgstr "Filterval"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Event Comparison tool"
 msgstr "Verktyg för händelsejämförelse"
 
-#: ../src/plugins/tool/EventCmp.py:174
+#: ../src/plugins/tool/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Jämför händelser"
 
-#: ../src/plugins/tool/EventCmp.py:175
+#: ../src/plugins/tool/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Väljer personer"
 
-#: ../src/plugins/tool/EventCmp.py:187
+#: ../src/plugins/tool/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Inga träffar upptäcktes"
 
-#: ../src/plugins/tool/EventCmp.py:235 ../src/plugins/tool/EventCmp.py:258
+#: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:270
 msgid "Event Comparison Results"
 msgstr "Resultat av händelsejämförelse"
 
-#: ../src/plugins/tool/EventCmp.py:245
+#: ../src/plugins/tool/EventCmp.py:251
 msgid " Date"
 msgstr " Datum"
 
 #. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:247
+#: ../src/plugins/tool/EventCmp.py:253
 msgid " Place"
 msgstr " Plats"
 
-#: ../src/plugins/tool/EventCmp.py:291
+#: ../src/plugins/tool/EventCmp.py:303
 msgid "Comparing Events"
 msgstr "Jämför händelser"
 
-#: ../src/plugins/tool/EventCmp.py:292
+#: ../src/plugins/tool/EventCmp.py:304
 msgid "Building data"
 msgstr "Konstruerar data"
 
-#: ../src/plugins/tool/EventCmp.py:372
+#: ../src/plugins/tool/EventCmp.py:384
 msgid "Select filename"
 msgstr "Välj fil"
 
@@ -17115,6 +17267,10 @@ msgstr "Slå samman misstänkta dubbletter"
 #: ../src/plugins/tool/Leak.py:62
 msgid "Uncollected Objects Tool"
 msgstr "Verktyg för ej skräpsamlade objekt"
+
+#: ../src/plugins/tool/Leak.py:83
+msgid "Number"
+msgstr "Antal"
 
 #: ../src/plugins/tool/Leak.py:87
 msgid "Uncollected object"
@@ -17424,7 +17580,8 @@ msgstr "Ingen aktiv person har valts"
 
 #: ../src/plugins/tool/RelCalc.py:148 ../src/PluginUtils/_Tool.py:133
 msgid "You must select an active person for this tool to work properly."
-msgstr "Du måste välja en aktiv person för att det här verktyget skall fungera."
+msgstr ""
+"Du måste välja en aktiv person för att det här verktyget skall fungera."
 
 #: ../src/plugins/tool/RelCalc.py:164
 msgid "Relationship Calculator tool"
@@ -17560,7 +17717,8 @@ msgid "Fix Capitalization of Family Names"
 msgstr "Normera stor bokstav för efternamn"
 
 #: ../src/plugins/tool/tools.gpr.py:36
-msgid "Searches the entire database and attempts to fix capitalization of the names."
+msgid ""
+"Searches the entire database and attempts to fix capitalization of the names."
 msgstr "Söker i hela databasen och försöker rätta stor bokstav för efternamn."
 
 #: ../src/plugins/tool/tools.gpr.py:58
@@ -17576,7 +17734,8 @@ msgid "Check and Repair Database"
 msgstr "Kontrollera och reparera"
 
 #: ../src/plugins/tool/tools.gpr.py:82
-msgid "Checks the database for integrity problems, fixing the problems that it can"
+msgid ""
+"Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt."
 
 #: ../src/plugins/tool/tools.gpr.py:104
@@ -17977,8 +18136,8 @@ msgstr "Hårkors på kartan."
 
 #: ../src/plugins/view/geoview.py:527
 msgid ""
-"Show the coordinates in the statusbar either in degree\n"
-"either in internal gramps format ( D.D8 )"
+"Show the coordinates in the statusbar either in degrees\n"
+"or in internal gramps format ( D.D8 )"
 msgstr ""
 "Visa koordinater i statusraden i antingen grader\n"
 "eller i Gramps interna format ( D.D8 )"
@@ -17998,13 +18157,14 @@ msgstr "Time-out för nätverksanslutningstestet"
 #: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
-"Must be greater or equal to 10 secondes"
+"Must be greater or equal to 10 seconds"
 msgstr ""
 "Tid i sekunder mellan två nätverkstester.\n"
 "Måste vara minst 10 sekunder."
 
 #: ../src/plugins/view/geoview.py:562
-msgid "Host to test for http. Please, change this and select one of your choice."
+msgid ""
+"Host to test for http. Please, change this and select one of your choice."
 msgstr "Värd för http. Ändra detta till något som passar dig."
 
 #: ../src/plugins/view/geoview.py:566
@@ -18172,8 +18332,10 @@ msgstr "Id : Person : %(id)s %(name)s har ingen familj."
 
 #: ../src/plugins/view/geoview.py:2063
 #, python-format
-msgid "All %(name)s people's family places in the family tree with coordinates."
-msgstr "Samtliga %(name)s personers familjers platser i släktträd med koordinater."
+msgid ""
+"All %(name)s people's family places in the family tree with coordinates."
+msgstr ""
+"Samtliga %(name)s personers familjers platser i släktträd med koordinater."
 
 #: ../src/plugins/view/geoview.py:2100
 #, python-format
@@ -18186,11 +18348,11 @@ msgstr "Samtliga platser med händelser för"
 
 #: ../src/plugins/view/geoview.py:2128
 msgid ""
-"Cannot center the map. No location with coordinates.The following reasons "
-"are : <ul><li>The filter you use return nothing.</li><li>The active person "
-"has no places with coordinates.</li><li>The active person's family members "
-"have no places with coordinates.</li><li>You have no places.</li><li>You "
-"have no active person set.</li>"
+"Cannot center the map. No location with coordinates.That may happen for one "
+"of the following reasons : <ul><li>The filter you use returned nothing.</"
+"li><li>The active person has no places with coordinates.</li><li>The active "
+"person's family members have no places with coordinates.</li><li>You have no "
+"places.</li><li>You have no active person set.</li>"
 msgstr ""
 "Kan ej centrera kartan. Ingen plats med koordinater finns. Orsakerna är som "
 "följer: <ul><li>Den aktiva personen har inga platser med koordinater.</"
@@ -18208,10 +18370,10 @@ msgstr "Begynnelsesida för den geografisk vyn"
 
 #: ../src/plugins/view/geoview.py:2296
 msgid ""
-"You don't see a map here for the following reasons :<br><ol><li>Your "
-"database is empty or not yet selected.</li><li>You have not yet selected a "
-"person.</li><li>You have no place in your database.</li><li>The selected "
-"places have no coordinates.</li></ol>"
+"You don't see a map here for one of the following reasons :<br><ol><li>Your "
+"database is empty or not yet selected.</li><li>You have not selected a "
+"person yet.</li><li>You have no places in your database.</li><li>The "
+"selected places have no coordinates.</li></ol>"
 msgstr ""
 "Du ser ingen karta på grund av :<br><ol><li>Din databas är tom eller inte "
 "ännu vald.</li><li>Du har inte ännu valt en person.</li><li>Du har inga "
@@ -18225,7 +18387,7 @@ msgstr "Geografisk vy"
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid ""
 "The view showing events on an interactive internet map (internet connection "
-"needed"
+"needed)"
 msgstr ""
 "Vyn visar händelser på en interaktiva internet-karta. (Du måste vara "
 "uppkopplad.)"
@@ -19010,7 +19172,7 @@ msgstr "Publiceringsinformation"
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
-"object&#8217;s page.  If you see media size densions above an image, click "
+"object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
 "Denna sida är en förteckning över alla mediaobjekt i databasen, sorterad "
@@ -19191,7 +19353,8 @@ msgstr "Webbplatsens titel"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5633
 msgid "Select filter to restrict people that appear on web site"
-msgstr "Välj ett filter, som begränsar vilka personer, som visas på en hemsida."
+msgstr ""
+"Välj ett filter, som begränsar vilka personer, som visas på en hemsida."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5653
 #: ../src/plugins/webreport/WebCal.py:1371
@@ -19439,7 +19602,7 @@ msgid "Download Copyright License"
 msgstr "Ladda ner copyrightlicens"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5820
-msgid "The copyright to be used for ths download file?"
+msgid "The copyright to be used for this download file?"
 msgstr "Den copyright, som skall användas för denna nedladdningsfil?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5829
@@ -19616,7 +19779,8 @@ msgstr "%(spouse)s och %(person)s"
 #. Display date as user set in preferences
 #: ../src/plugins/webreport/WebCal.py:1210
 #, python-format
-msgid "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
+msgid ""
+"Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
 msgstr "Skapad av <a href=\"http://gramps-project.org\">Gramps</a> %(date)s"
 
 #. Create progress meter bar
@@ -19677,7 +19841,8 @@ msgid "Home link"
 msgstr "Hemlänk"
 
 #: ../src/plugins/webreport/WebCal.py:1449
-msgid "The link to be included to direct the user to the main page of the web site"
+msgid ""
+"The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Den länk, som skall tas med, för att hänvisa användaren till webbplatsens "
 "huvudsida"
@@ -20092,9 +20257,8 @@ msgid "'%s' is for this version of Gramps."
 msgstr "'%s' är för denna version av Gramps."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:574
-#, python-format
-msgid "'%s' is for NOT this version of Gramps."
+#: ../src/PluginUtils/_PluginWindows.py:574, python-format
+msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' är EJ för denna version av Gramps."
 
 #: ../src/PluginUtils/_PluginWindows.py:575
@@ -20296,7 +20460,8 @@ msgstr ""
 
 #: ../src/ReportBase/_Endnotes.py:65
 msgid "The basic style used for the endnotes notes display."
-msgstr "Den grundläggande mall, som används vid visning av notförteckningens notiser."
+msgstr ""
+"Den grundläggande mall, som används vid visning av notförteckningens notiser."
 
 #: ../src/ReportBase/_Endnotes.py:109
 msgid "Endnotes"
@@ -20452,7 +20617,8 @@ msgstr "Riktning för diagram"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:958
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
+msgstr ""
+"Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:962
 msgid "Number of Horizontal Pages"
@@ -20645,7 +20811,8 @@ msgid "File already exists"
 msgstr "Filen finns redan"
 
 #: ../src/ReportBase/_ReportDialog.py:492
-msgid "You can choose to either overwrite the file, or change the selected filename."
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
@@ -21039,7 +21206,8 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Personer med en ana gemensam med <filter>träff"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid "Matches people that have a common ancestor with anybody matched by a filter"
+msgid ""
+"Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Matchar personer, som har en ana gemensam\n"
 "med någon som matchas av ett filter "
@@ -21402,7 +21570,8 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Anor till förvald person inte mer än <N> generationer bort"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid "Matches ancestors of the default person not more than N generations away"
+msgid ""
+"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Matchar anor till förvald person\n"
 "mindre än N generationer bort"
@@ -22303,7 +22472,7 @@ msgid "Sources with <count> Repository references"
 msgstr "Källor med <antal> arkivplatsreferenser"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-msgid "Matches sources with certain number repository references"
+msgid "Matches sources with a certain number of repository references"
 msgstr "Matchar källor med ett viss antal arkivplatsreferenser"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
@@ -22421,7 +22590,8 @@ msgid "Media objects having notes containing <regular expression>"
 msgstr "Mediaobjekt med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-msgid "Matches media objects whose notes contain text matching a regular expression"
+msgid ""
+"Matches media objects whose notes contain text matching a regular expression"
 msgstr "Matchar mediaobjekt vars notiser matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
@@ -22497,7 +22667,8 @@ msgid "Repositories having notes containing <regular expression>"
 msgstr "Arkivplatser med <reguljärt uttryck> i notiser"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-msgid "Matches repositories whose notes contain text matching a regular expression"
+msgid ""
+"Matches repositories whose notes contain text matching a regular expression"
 msgstr "Matchar arkivplatser vars notiser matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
@@ -22843,7 +23014,8 @@ msgid "_Type:"
 msgstr "_Typ:"
 
 #: ../src/glade/editperson.glade.h:24
-msgid "part of a person's name indicating the family to which the person belongs"
+msgid ""
+"part of a person's name indicating the family to which the person belongs"
 msgstr "del av en person namn, som visar till vilken familj personen hör"
 
 #: ../src/glade/grampletpane.glade.h:1
@@ -23601,7 +23773,8 @@ msgid "Place 2"
 msgstr "Plats 2"
 
 #: ../src/glade/mergedata.glade.h:13
-msgid "Select the person that will provide the primary data for the merged person."
+msgid ""
+"Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Välj den person som kommer att tillhandahålla primärdata för den "
 "sammanslagna personen."
@@ -24161,7 +24334,8 @@ msgid "Gramps Genealogy System"
 msgstr "Gramps Genealogisystem"
 
 #: ../data/gramps.desktop.in.h:2
-msgid "Manage genealogical information, perform genealogical research and analysis"
+msgid ""
+"Manage genealogical information, perform genealogical research and analysis"
 msgstr "Hantera genealogiska data, utför genealogisk forskning och analys"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
@@ -24208,7 +24382,7 @@ msgstr ""
 msgid ""
 "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
-"or right click on an individual to access other family members and setting. "
+"or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
 "<b>Antavelsvyn</b><br/>Antavelsvyn visar ett traditionellt antavla. Håll "
@@ -24325,7 +24499,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:12
 msgid ""
 "<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
-"relationship of a child to it's parents by double clicking the child in the "
+"relationship of a child to its parents by double clicking the child in the "
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
@@ -24409,7 +24583,7 @@ msgid ""
 "Graphical Reports and Graphs can present complex relationships easily and "
 "the Text Reports are particularly useful if you want to send the results of "
 "your family tree to members of the family via email. If you're ready to make "
-"a website for you family tree then there's a report for that as well."
+"a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>Gramps-rapporter</b><br/>Gramps erbjuder ett stort antal rapporter. De "
 "grafiska rapporterna och diagrammen kan visa på komplicerade släktskap på "
@@ -24478,7 +24652,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:24
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-"invalid format. Incorrect date formats will show up in Gramps with a redish "
+"invalid format. Incorrect date formats will show up in Gramps with a reddish "
 "background. You can fix the date using the Date Selection dialog which can "
 "be opened by clicking on the date button. The format of the date is set "
 "under &quot;Edit &gt; Preferences &gt; Display&quot;."
@@ -24630,9 +24804,9 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:36
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active object such as People, Events and . You can move forward and backward "
-"through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
-"Back&quot; or the arrow buttons."
+"active objects such as People, Events and . You can move forward and "
+"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
+"&gt; Back&quot; or the arrow buttons."
 msgstr ""
 "<b>Navigering bakåt och framåt</b><br/>Gramps har en lista med tidigare "
 "aktiva personer. Du kan gå framåt och bakåt genom listan genom att använda "
@@ -24677,7 +24851,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid ""
-"<b>Organising the Views</b><br/>Many of the views can presented your data as "
+"<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
@@ -24738,7 +24912,7 @@ msgid ""
 "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
 "lets you modify a number of settings, such as the path to your media files, "
 "and allows you to adjust many aspects of the Gramps presentation to your "
-"needs. Each seperate view can also be configured under &quot;View &gt; "
+"needs. Each separate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
 "<b>Justering av inställningar</b><br/>&quot;Redigera &gt; Inställningar..."
@@ -24764,13 +24938,13 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:47
 msgid ""
 "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
-"original developer, Don Allingham, by his father. It stand for "
+"original developer, Don Allingham, by his father. It stands for "
 "<i>Genealogical Research and Analysis Management Program System</i>. It is a "
 "full-featured genealogy program letting you store, edit, and research "
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>So vad betyder ett namn?</b><br/>Gramps förselogs av fadern till den "
+"<b>Så vad betyder ett namn?</b><br/>Gramps förselogs av fadern till den "
 "ursprunglige utvecklare, Don Allingham. Gramps kan uttolkas som "
 "<i>Genealogical Research and Analysis Management Program System</i>. Med "
 "andra ord, det är ett personligt släktforskningsprogram där du kan lagra, "
@@ -24879,7 +25053,8 @@ msgstr ""
 msgid ""
 "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
 "project.org/"
-msgstr "<b>Gramps hemsida</b><br/>Gramps hemsida finns på http://gramps-project.org/"
+msgstr ""
+"<b>Gramps hemsida</b><br/>Gramps hemsida finns på http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:56
 msgid ""
@@ -24972,7 +25147,7 @@ msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
 "indicate the level of confidence in a date and even choose between seven "
-"different calenders. Try the button next to the date field in the Events "
+"different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
 "<b>Arbeta med datum</b><br/>Ett datumintervall kan ges geom att använda "
@@ -24980,3 +25155,5 @@ msgstr ""
 "indikera konfidensnivån på ett datum samt även välja mellan flera olika "
 "kalendrar. Prova knappen bredvid datumfältet i händelseredigeraren."
 
+#~ msgid "'%s' is for NOT this version of Gramps."
+#~ msgstr "'%s' är EJ för denna version av Gramps."
