@@ -350,7 +350,10 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
         scrolled_window.add(self.addon_list)
         install_page.pack_start(scrolled_window)
-        install_page.pack_start(install_row, expand=True, fill=False)
+        #add some spce under the scrollbar
+        install_page.pack_start(gtk.Label(''), expand=False, fill=False)
+        #path to addon path line
+        install_page.pack_start(install_row, expand=False, fill=False)
 
         hbutbox = gtk.HButtonBox()
         hbutbox.set_layout(gtk.BUTTONBOX_SPREAD)
@@ -606,8 +609,14 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                                              gtk.RESPONSE_CANCEL,
                                              gtk.STOCK_OPEN,
                                              gtk.RESPONSE_OK))
-        name = os.path.abspath(self.install_addon_path.get_text())
-        fcd.set_current_name(name)
+        name = self.install_addon_path.get_text()
+        dir = os.path.dirname(name)
+        if not os.path.isdir(dir):
+            dir = const.USER_HOME
+            name = ''
+        elif not os.path.isfile(name):
+            name = ''
+        fcd.set_current_folder(dir)
         if name:
             fcd.set_filename(name)
 
