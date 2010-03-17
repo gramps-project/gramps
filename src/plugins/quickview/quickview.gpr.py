@@ -227,7 +227,7 @@ for (category, item, trans) in refitems:
 
 register(QUICKREPORT, 
 id    = 'RepoRef',
-name  = _("Show Repository Reference"),
+name  = _("Repository References"),
 description =  _("Display the repository reference for sources related to"
                  " the active repository"),
 version = '1.0',
