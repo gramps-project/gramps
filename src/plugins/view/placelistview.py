@@ -49,5 +49,5 @@ class PlaceListView(PlaceBaseView):
     """
     def __init__(self, dbstate, uistate):
         PlaceBaseView.__init__(self, dbstate, uistate,
-                               _('Places'), PlaceListModel,
+                               _('Place View'), PlaceListModel,
                                nav_group=0)
