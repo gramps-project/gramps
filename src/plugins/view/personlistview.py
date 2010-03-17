@@ -56,5 +56,5 @@ class PersonListView(BasePersonView):
     """
     def __init__(self, dbstate, uistate, nav_group=0):
         BasePersonView.__init__(self, dbstate, uistate,
-                               _('People'), PersonListModel,
+                               _('Person View'), PersonListModel,
                                nav_group=nav_group)
