@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-16 20:03+0100\n"
-"PO-Revision-Date: 2010-03-16 20:59+0100\n"
+"POT-Creation-Date: 2010-03-17 19:33+0100\n"
+"PO-Revision-Date: 2010-03-17 19:39+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4301,8 +4301,7 @@ msgstr "Eltern wählen"
 msgid "Pedigree"
 msgstr "Ahnentafel"
 
-#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placelistview.py:52
-#: ../src/plugins/view/placetreeview.gpr.py:11
+#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:175
 #: ../src/plugins/webreport/NarrativeWeb.py:1005
 #: ../src/plugins/webreport/NarrativeWeb.py:1046
@@ -15227,8 +15226,8 @@ msgid "Display references for a %s"
 msgstr "Referenzen für ein %s anzeigen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:230
-msgid "Show Repository Reference"
-msgstr "Zeigt Aufbewahrungsortereferenz"
+msgid "Repository References"
+msgstr "Aufbewahrungsortreferenz"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
@@ -16316,7 +16315,6 @@ msgid "Marker Report for %s Items"
 msgstr "Markerbericht für %s Objekte"
 
 #: ../src/plugins/textreport/MarkerReport.py:103
-#: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:145 ../src/plugins/view/view.gpr.py:161
 msgid "People"
 msgstr "Personen"
@@ -18613,6 +18611,11 @@ msgstr[1] "%d Generationen"
 msgid "Family Menu"
 msgstr "Familienmenü"
 
+#: ../src/plugins/view/personlistview.py:59
+#: ../src/plugins/view/view.gpr.py:152
+msgid "Person View"
+msgstr "Personenansicht"
+
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
 msgstr "Personenbaumansicht"
@@ -18626,6 +18629,10 @@ msgstr "Alle Knoten aufklappen"
 #: ../src/plugins/view/placetreeview.py:84
 msgid "Collapse all Nodes"
 msgstr "Alle Knoten schließen"
+
+#: ../src/plugins/view/placelistview.py:52 ../src/plugins/view/view.gpr.py:167
+msgid "Place View"
+msgstr "Orteansicht"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
@@ -18942,17 +18949,9 @@ msgstr "Personenbaumansicht"
 msgid "The view showing all people in the family tree"
 msgstr "Die Ansicht zeigt alle Personen im Stammbaum"
 
-#: ../src/plugins/view/view.gpr.py:152
-msgid "Person View"
-msgstr "Personenansicht"
-
 #: ../src/plugins/view/view.gpr.py:153
 msgid "The view showing all people in the family tree in a flat list"
 msgstr "Die Ansicht zeigt alle Personen im Stammbaum in einer flachen Liste"
-
-#: ../src/plugins/view/view.gpr.py:167
-msgid "Place View"
-msgstr "Orteansicht"
 
 #: ../src/plugins/view/view.gpr.py:168
 msgid "The view showing all the places of the family tree"
