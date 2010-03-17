@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-11 19:18+0100\n"
-"PO-Revision-Date: 2010-03-13 14:58+0200\n"
+"POT-Creation-Date: 2010-03-15 16:28+0100\n"
+"PO-Revision-Date: 2010-03-17 23:04+0200\n"
 "Last-Translator: Boril Gourinov <boril.gourinov@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -810,7 +810,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
-#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:643
+#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
 #: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
 #: ../src/plugins/view/relview.py:1041
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
@@ -4460,7 +4460,7 @@ msgstr "Свързване към последно отваряната база
 
 #: ../src/gui/viewmanager.py:419
 msgid "_Family Trees"
-msgstr "_Родословни дървета"
+msgstr "Родословни дърв_ета"
 
 #: ../src/gui/viewmanager.py:420
 msgid "_Manage Family Trees..."
@@ -4512,7 +4512,7 @@ msgstr "Докладване за _грешка"
 
 #: ../src/gui/viewmanager.py:437
 msgid "_Extra Reports/Tools"
-msgstr "Д_опълнителни Доклади/Инструменти"
+msgstr "Допълнителни Доклади/_Инструменти"
 
 #: ../src/gui/viewmanager.py:439
 msgid "_About"
@@ -4520,7 +4520,7 @@ msgstr "_Относно"
 
 #: ../src/gui/viewmanager.py:441
 msgid "_Plugin Manager"
-msgstr "Управление на приставките"
+msgstr "_Управление на приставките"
 
 #: ../src/gui/viewmanager.py:443
 msgid "_FAQ"
@@ -4598,7 +4598,7 @@ msgstr "_Странична лента"
 msgid "_Toolbar"
 msgstr "_Лента с инструменти"
 
-#: ../src/gui/viewmanager.py:505 ../src/plugins/view/geoview.py:1096
+#: ../src/gui/viewmanager.py:505 ../src/plugins/view/geoview.py:1102
 msgid "_Filter Sidebar"
 msgstr "Странична лента с _Филтри"
 
@@ -14594,12 +14594,12 @@ msgstr "Име на място"
 msgid "Church Parish"
 msgstr "Църковна енория"
 
-#: ../src/plugins/lib/libplaceview.py:97 ../src/plugins/view/geoview.py:921
+#: ../src/plugins/lib/libplaceview.py:97 ../src/plugins/view/geoview.py:924
 #: ../src/plugins/webreport/NarrativeWeb.py:118
 msgid "Latitude"
 msgstr "Географска ширина"
 
-#: ../src/plugins/lib/libplaceview.py:98 ../src/plugins/view/geoview.py:923
+#: ../src/plugins/lib/libplaceview.py:98 ../src/plugins/view/geoview.py:926
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Longitude"
 msgstr "Географска дължина"
@@ -18137,11 +18137,11 @@ msgstr "Прародители"
 msgid "The view showing relations through a fanchart"
 msgstr "Изглед показващ семейните връзки с кръгова диаграма"
 
-#: ../src/plugins/view/geoview.py:344
+#: ../src/plugins/view/geoview.py:346
 msgid "Clear the entry field in the places selection box."
 msgstr "Изчиства входящите полета в кутията за избор на места."
 
-#: ../src/plugins/view/geoview.py:349
+#: ../src/plugins/view/geoview.py:351
 msgid ""
 "Save the zoom and coordinates between places map, person map, family map and "
 "event map."
@@ -18149,7 +18149,7 @@ msgstr ""
 "Запазва мащаба и координатите между картата на местата, картата на лицата, "
 "картата на семействата и картата на събитията."
 
-#: ../src/plugins/view/geoview.py:354
+#: ../src/plugins/view/geoview.py:356
 msgid ""
 "Select the maps provider. You can choose between OpenStreetMap and Google "
 "maps."
@@ -18157,51 +18157,51 @@ msgstr ""
 "Изберете доставчик на картографски услуги. Може да избирате между "
 "OpenStreetMap и Google maps."
 
-#: ../src/plugins/view/geoview.py:383
+#: ../src/plugins/view/geoview.py:385
 msgid "Select the period for which you want to see the places."
 msgstr "Изберете период за който да видите местата."
 
-#: ../src/plugins/view/geoview.py:392
+#: ../src/plugins/view/geoview.py:394
 msgid "Prior page."
 msgstr "Предишна страница."
 
-#: ../src/plugins/view/geoview.py:396
+#: ../src/plugins/view/geoview.py:398
 msgid "The current page/the last page."
 msgstr "Настоящата/последната страница."
 
-#: ../src/plugins/view/geoview.py:400
+#: ../src/plugins/view/geoview.py:402
 msgid "Next page."
 msgstr "Следваща страница."
 
-#: ../src/plugins/view/geoview.py:408
+#: ../src/plugins/view/geoview.py:410
 msgid "The number of places which have no coordinates."
 msgstr "Брой с местата без координати."
 
-#: ../src/plugins/view/geoview.py:442 ../src/plugins/view/geoview.gpr.py:59
+#: ../src/plugins/view/geoview.py:445 ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "География"
 
-#: ../src/plugins/view/geoview.py:499
+#: ../src/plugins/view/geoview.py:502
 msgid "You can adjust the time period with the two following values."
 msgstr "Може да настроите времевия период със следните стойности."
 
-#: ../src/plugins/view/geoview.py:501
+#: ../src/plugins/view/geoview.py:504
 msgid "The number of years before the first event date"
 msgstr "Брой на годините преди датата на първото събитие"
 
-#: ../src/plugins/view/geoview.py:505
+#: ../src/plugins/view/geoview.py:508
 msgid "The number of years after the last event date"
 msgstr "Брой на годините след датата на последното събитие"
 
-#: ../src/plugins/view/geoview.py:509
+#: ../src/plugins/view/geoview.py:512
 msgid "Time period adjustment"
 msgstr "Настройка на времевия период"
 
-#: ../src/plugins/view/geoview.py:521
+#: ../src/plugins/view/geoview.py:524
 msgid "Crosshair on the map."
 msgstr "Кръстче на картата."
 
-#: ../src/plugins/view/geoview.py:524
+#: ../src/plugins/view/geoview.py:527
 msgid ""
 "Show the coordinates in the statusbar either in degree\n"
 "either in internal gramps format ( D.D8 )"
@@ -18209,19 +18209,19 @@ msgstr ""
 "Показване на координатите в лентата за състоянието или в градуси\n"
 "или във вътрешният формат на Gramps (D.D8)"
 
-#: ../src/plugins/view/geoview.py:527
+#: ../src/plugins/view/geoview.py:530
 msgid "The map"
 msgstr "Картата"
 
-#: ../src/plugins/view/geoview.py:547
+#: ../src/plugins/view/geoview.py:550
 msgid "Test the network "
 msgstr "Проверка на мрежата "
 
-#: ../src/plugins/view/geoview.py:550
+#: ../src/plugins/view/geoview.py:553
 msgid "Time out for the network connection test"
 msgstr "Време за изчакване при проверка на мрежовата връзка"
 
-#: ../src/plugins/view/geoview.py:554
+#: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 secondes"
@@ -18229,42 +18229,42 @@ msgstr ""
 "Време в секунде между два мрежови теста.\n"
 "Трябва да бъде равен или по-голям от 10 секунди"
 
-#: ../src/plugins/view/geoview.py:559
+#: ../src/plugins/view/geoview.py:562
 msgid ""
 "Host to test for http. Please, change this and select one of your choice."
 msgstr ""
 "Хост с който да се тества http. Моля, променете го и изберете някой по ваш "
 "избор."
 
-#: ../src/plugins/view/geoview.py:563
+#: ../src/plugins/view/geoview.py:566
 msgid "The network"
 msgstr "Мрежата"
 
-#: ../src/plugins/view/geoview.py:591
+#: ../src/plugins/view/geoview.py:594
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Изберете място за което искате да видите инфобалон."
 
-#: ../src/plugins/view/geoview.py:672
+#: ../src/plugins/view/geoview.py:675
 msgid "Time period"
 msgstr "Времеви период"
 
-#: ../src/plugins/view/geoview.py:673
+#: ../src/plugins/view/geoview.py:676
 msgid "years"
 msgstr "Коментари"
 
-#: ../src/plugins/view/geoview.py:679 ../src/plugins/view/geoview.py:1002
+#: ../src/plugins/view/geoview.py:682 ../src/plugins/view/geoview.py:1008
 msgid "All"
 msgstr "Всички"
 
-#: ../src/plugins/view/geoview.py:925
+#: ../src/plugins/view/geoview.py:928
 msgid "Zoom"
 msgstr "Приближаване"
 
-#: ../src/plugins/view/geoview.py:1050 ../src/plugins/view/geoview.py:1060
+#: ../src/plugins/view/geoview.py:1056 ../src/plugins/view/geoview.py:1066
 msgid "_Add Place"
 msgstr "_Добавя място"
 
-#: ../src/plugins/view/geoview.py:1052 ../src/plugins/view/geoview.py:1062
+#: ../src/plugins/view/geoview.py:1058 ../src/plugins/view/geoview.py:1068
 msgid ""
 "Add the location centred on the map as a new place in Gramps. Double click "
 "the location to centre on the map."
@@ -18272,11 +18272,11 @@ msgstr ""
 "Добавете местоположението в центъра на картата като място в Gramps. Щракнете "
 "два пъти върху местоположението за да центрирате картата."
 
-#: ../src/plugins/view/geoview.py:1055 ../src/plugins/view/geoview.py:1065
+#: ../src/plugins/view/geoview.py:1061 ../src/plugins/view/geoview.py:1071
 msgid "_Link Place"
 msgstr "С_вързва Място"
 
-#: ../src/plugins/view/geoview.py:1057 ../src/plugins/view/geoview.py:1067
+#: ../src/plugins/view/geoview.py:1063 ../src/plugins/view/geoview.py:1073
 msgid ""
 "Link the location centred on the map to a place in Gramps. Double click the "
 "location to centre on the map."
@@ -18284,43 +18284,43 @@ msgstr ""
 "Свързва местоположението в центъра на картата към място в Gramps. Щракнете "
 "два пъти върху местоположението за да центрирате картата."
 
-#: ../src/plugins/view/geoview.py:1069 ../src/plugins/view/geoview.py:1083
+#: ../src/plugins/view/geoview.py:1075 ../src/plugins/view/geoview.py:1089
 msgid "_All Places"
 msgstr "_Всички Места"
 
-#: ../src/plugins/view/geoview.py:1070 ../src/plugins/view/geoview.py:1084
+#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
 msgid "Attempt to view all places in the family tree."
 msgstr "Опитва да покаже всички места в родословното дърво."
 
-#: ../src/plugins/view/geoview.py:1072 ../src/plugins/view/geoview.py:1086
+#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
 msgid "_Person"
 msgstr "_Лице"
 
-#: ../src/plugins/view/geoview.py:1074 ../src/plugins/view/geoview.py:1088
+#: ../src/plugins/view/geoview.py:1080 ../src/plugins/view/geoview.py:1094
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Опитва да покаже всички места където живеят избраните хора."
 
-#: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
+#: ../src/plugins/view/geoview.py:1082 ../src/plugins/view/geoview.py:1096
 msgid "_Family"
 msgstr "_Семейство"
 
-#: ../src/plugins/view/geoview.py:1078 ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1084 ../src/plugins/view/geoview.py:1098
 msgid "Attempt to view places of the selected people's family."
 msgstr "Опитва да покаже местата където са семействата на избраните хора."
 
-#: ../src/plugins/view/geoview.py:1079 ../src/plugins/view/geoview.py:1093
+#: ../src/plugins/view/geoview.py:1085 ../src/plugins/view/geoview.py:1099
 msgid "_Event"
 msgstr "С_ъбитие"
 
-#: ../src/plugins/view/geoview.py:1081 ../src/plugins/view/geoview.py:1095
+#: ../src/plugins/view/geoview.py:1087 ../src/plugins/view/geoview.py:1101
 msgid "Attempt to view places connected to all events."
 msgstr "Опитва да покаже местата свързани с всички събития."
 
-#: ../src/plugins/view/geoview.py:1288
+#: ../src/plugins/view/geoview.py:1294
 msgid "List of places without coordinates"
 msgstr "Списък с местата без координати"
 
-#: ../src/plugins/view/geoview.py:1289
+#: ../src/plugins/view/geoview.py:1295
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
@@ -18328,93 +18328,93 @@ msgstr ""
 "Това е списък на всички места от родословното дърво за които няма координати."
 "<br>Тоест нама географски дължина и ширина.<p>"
 
-#: ../src/plugins/view/geoview.py:1292
+#: ../src/plugins/view/geoview.py:1298
 msgid "Back to prior page"
 msgstr "Обратно на предшестващата страница"
 
-#: ../src/plugins/view/geoview.py:1535
+#: ../src/plugins/view/geoview.py:1541
 msgid "Places list"
 msgstr "Име на населеното място"
 
-#: ../src/plugins/view/geoview.py:1789
+#: ../src/plugins/view/geoview.py:1795
 msgid "No location."
 msgstr "Нама местоположение."
 
-#: ../src/plugins/view/geoview.py:1792
+#: ../src/plugins/view/geoview.py:1798
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Във вашето родословно дърво нямате места с координати ."
 
-#: ../src/plugins/view/geoview.py:1795
+#: ../src/plugins/view/geoview.py:1801
 msgid "You are looking at the default map."
 msgstr "Виждате картата по подразбиране."
 
-#: ../src/plugins/view/geoview.py:1822
+#: ../src/plugins/view/geoview.py:1828
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : месторождение."
 
-#: ../src/plugins/view/geoview.py:1825
+#: ../src/plugins/view/geoview.py:1831
 msgid "birth place."
 msgstr "място на раждане."
 
-#: ../src/plugins/view/geoview.py:1860
+#: ../src/plugins/view/geoview.py:1866
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : Място на смъртта."
 
-#: ../src/plugins/view/geoview.py:1863
+#: ../src/plugins/view/geoview.py:1869
 msgid "death place."
 msgstr "място на смъртта."
 
-#: ../src/plugins/view/geoview.py:1906
+#: ../src/plugins/view/geoview.py:1912
 #, python-format
 msgid "Id : %s"
 msgstr "Индекс : %s"
 
-#: ../src/plugins/view/geoview.py:1923
+#: ../src/plugins/view/geoview.py:1929
 msgid "All places in the family tree with coordinates."
 msgstr "Всички места в родословното дърво с координати."
 
-#: ../src/plugins/view/geoview.py:2000
+#: ../src/plugins/view/geoview.py:2006
 msgid "All events in the family tree with coordinates."
 msgstr "Всички събития в родословното дърво с координати."
 
-#: ../src/plugins/view/geoview.py:2025
+#: ../src/plugins/view/geoview.py:2031
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Индекс : Баща : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2032
+#: ../src/plugins/view/geoview.py:2038
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Индекс : Майка : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2043
+#: ../src/plugins/view/geoview.py:2049
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Индекс : Дете : %(id)s — %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2051
+#: ../src/plugins/view/geoview.py:2057
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Индекс : Лице : %(id)s %(name)s нама семеъство."
 
-#: ../src/plugins/view/geoview.py:2057
+#: ../src/plugins/view/geoview.py:2063
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Всички %(name)s места на семейства от родословното дърво с координати."
 
-#: ../src/plugins/view/geoview.py:2094
+#: ../src/plugins/view/geoview.py:2100
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2113
+#: ../src/plugins/view/geoview.py:2119
 msgid "All event places for"
 msgstr "Всички места със събития за"
 
-#: ../src/plugins/view/geoview.py:2122
+#: ../src/plugins/view/geoview.py:2128
 msgid ""
 "Cannot center the map. No location with coordinates.The following reasons "
 "are : <ul><li>The filter you use return nothing.</li><li>The active person "
@@ -18428,15 +18428,15 @@ msgstr ""
 "семейството на текущото лице нямат места с координати.</li><li>Вие нямате "
 "координати.</li><li>Не сте избрали активно лице.</li>"
 
-#: ../src/plugins/view/geoview.py:2140
+#: ../src/plugins/view/geoview.py:2146
 msgid "Not yet implemented ..."
 msgstr "Още не е реализирано..."
 
-#: ../src/plugins/view/geoview.py:2289
+#: ../src/plugins/view/geoview.py:2295
 msgid "Start page for the Geography View"
 msgstr "Начална страница за HTML изгледа"
 
-#: ../src/plugins/view/geoview.py:2290
+#: ../src/plugins/view/geoview.py:2296
 msgid ""
 "You don't see a map here for the following reasons :<br><ol><li>Your "
 "database is empty or not yet selected.</li><li>You have not yet selected a "
@@ -18600,6 +18600,10 @@ msgstr "крем."
 #: ../src/plugins/view/pedigreeview.py:899
 msgid "Jump to child..."
 msgstr "По наследствена линия..."
+
+#: ../src/plugins/view/pedigreeview.py:908
+msgid "Jump to father"
+msgstr "По бащина линия"
 
 #: ../src/plugins/view/pedigreeview.py:917
 msgid "Jump to mother"
@@ -19235,13 +19239,13 @@ msgstr "Информация за публикацията"
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
-"object&#8217;s page.  If you see media size densions above an image, click "
+"object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
 "Тази страница съдържа индекс на всички медийни обект в базата данни, "
 "сортирани по име. Избирането на името на медиен обект ще зареди страницата "
-"му. За някои обекти които не са показани в пълен размер щракнете два пъти "
-"върху тях за да ги видите изцяло.  "
+"му. За някои обекти които не са показани в пълен размер ще видите размери "
+"над изображението им. Щракнете два пъти върху него за да ги видите изцяло.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3224
 msgid "Media | Name"
@@ -19625,16 +19629,16 @@ msgstr "Дали да се включва възможност за свалян
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5795
 msgid "Download page note"
-msgstr "Бележка на домашната страница"
+msgstr "Бележка на страницата за сваляне"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5796
 msgid "A note to be used on the download page"
-msgstr "Бележка, която ще се използва на началната страница"
+msgstr "Бележка, която ще се използва на страницата за сваляне"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5799
 #: ../src/plugins/webreport/NarrativeWeb.py:5808
 msgid "Download Filename"
-msgstr "Име на файл за сваляне #1"
+msgstr "Име на файл за сваляне"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
 #: ../src/plugins/webreport/NarrativeWeb.py:5810
@@ -19664,8 +19668,8 @@ msgid "Download Copyright License"
 msgstr "Копирайт лиценз при сваляне"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5820
-msgid "The copyright to be used for ths download file?"
-msgstr "Какъв копирайт лиценз да се ползва при свалянето на файл?"
+msgid "The copyright to be used for this download file?"
+msgstr "Какъв копирайт да се ползва за този свален на файл?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5829
 #: ../src/plugins/webreport/WebCal.py:1526
@@ -19692,7 +19696,7 @@ msgstr "Дали да се включва връзка към основното
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5841
 msgid "Include a column for birth dates on the index pages"
-msgstr "Включва графа с датите на ражданията в индексната страница"
+msgstr "Включва колона за датите на ражданията в индексната страница"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5842
 msgid "Whether to include a birth column"
@@ -19738,7 +19742,7 @@ msgstr "Дали децата да се показват по ред нараж�
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5871
 msgid "Include event pages"
-msgstr "Включване на събитията"
+msgstr "Включване на страници за събитията"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5872
 msgid "Add a complete events list and relevant pages or not"
@@ -19747,7 +19751,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5875
 msgid "Include repository pages"
-msgstr "Включване на източници"
+msgstr "Включване на страници за източниците"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5876
 msgid "Whether to include the Repository Pages or not?"
@@ -19763,7 +19767,7 @@ msgstr "Дали да се включва GENDEX файл или не"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5883
 msgid "Include address book pages"
-msgstr "Включване на адресите"
+msgstr "Включване на странци с адресите"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5884
 msgid ""
@@ -19810,13 +19814,13 @@ msgstr "Форматиране на месеците..."
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:902
 msgid "Creating Year At A Glance calendar"
-msgstr "Създаване на календар Цяла-Година-с-Един-Поглед"
+msgstr "Създаване на календар Поглед върху годината"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:908
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr "%(year)d, с един поглед"
+msgstr "Поглед върху %(year)d"
 
 #: ../src/plugins/webreport/WebCal.py:922
 msgid ""
@@ -19831,7 +19835,7 @@ msgstr ""
 #. page title
 #: ../src/plugins/webreport/WebCal.py:978
 msgid "One Day Within A Year"
-msgstr "Един ден в годината"
+msgstr "Един ден от годината"
 
 #: ../src/plugins/webreport/WebCal.py:1190
 #, python-format
@@ -19885,7 +19889,7 @@ msgstr "Начална година за календара"
 
 #: ../src/plugins/webreport/WebCal.py:1405
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "Въведете началната година за календарите между 1900 - 3000"
+msgstr "Въведете началната година за календарите между 1900 — 3000"
 
 #: ../src/plugins/webreport/WebCal.py:1409
 msgid "End Year for the Calendar(s)"
@@ -19912,121 +19916,121 @@ msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1469
 msgid "Jan - Jun Notes"
-msgstr "Бележки Яну - Юни"
+msgstr "Бележки яну — юни"
 
 #: ../src/plugins/webreport/WebCal.py:1471
 msgid "January Note"
-msgstr "Бележка Яну"
+msgstr "Бележка за януари"
 
 #: ../src/plugins/webreport/WebCal.py:1472
 msgid "The note for the month of January"
-msgstr "Бележката за месец Януари"
+msgstr "Бележката за месец януари"
 
 #: ../src/plugins/webreport/WebCal.py:1475
 msgid "February Note"
-msgstr "Бележка Фев"
+msgstr "Бележка зя февруари"
 
 #: ../src/plugins/webreport/WebCal.py:1476
 msgid "The note for the month of February"
-msgstr "Бележката за месец Февруари"
+msgstr "Бележката за месец февруари"
 
 #: ../src/plugins/webreport/WebCal.py:1479
 msgid "March Note"
-msgstr "Бележка Мар"
+msgstr "Бележка за март"
 
 #: ../src/plugins/webreport/WebCal.py:1480
 msgid "The note for the month of March"
-msgstr "Бележката за месец Март"
+msgstr "Бележката за месец март"
 
 #: ../src/plugins/webreport/WebCal.py:1483
 msgid "April Note"
-msgstr "Бележка Апр"
+msgstr "Бележка за април"
 
 #: ../src/plugins/webreport/WebCal.py:1484
 msgid "The note for the month of April"
-msgstr "Бележката за месец Април"
+msgstr "Бележката за месец април"
 
 #: ../src/plugins/webreport/WebCal.py:1487
 msgid "May Note"
-msgstr "Бележка Май"
+msgstr "Бележка за май"
 
 #: ../src/plugins/webreport/WebCal.py:1488
 msgid "The note for the month of May"
-msgstr "Бележката за месец Май"
+msgstr "Бележката за месец май"
 
 #: ../src/plugins/webreport/WebCal.py:1491
 msgid "June Note"
-msgstr "Бележка Юни"
+msgstr "Бележка юни"
 
 #: ../src/plugins/webreport/WebCal.py:1492
 msgid "The note for the month of June"
-msgstr "Бележката за месец Юни"
+msgstr "Бележката за месец юни"
 
 #: ../src/plugins/webreport/WebCal.py:1495
 msgid "Jul - Dec Notes"
-msgstr "Бележки Юли - Дек"
+msgstr "Бележки юли — дек"
 
 #: ../src/plugins/webreport/WebCal.py:1497
 msgid "July Note"
-msgstr "Бележка Юли"
+msgstr "Бележка юли"
 
 #: ../src/plugins/webreport/WebCal.py:1498
 msgid "The note for the month of July"
-msgstr "Бележката за месец Юли"
+msgstr "Бележката за месец юли"
 
 #: ../src/plugins/webreport/WebCal.py:1501
 msgid "August Note"
-msgstr "Бележка Авг"
+msgstr "Бележка за август"
 
 #: ../src/plugins/webreport/WebCal.py:1502
 msgid "The note for the month of August"
-msgstr "Бележката за месец Август"
+msgstr "Бележката за месец август"
 
 #: ../src/plugins/webreport/WebCal.py:1505
 msgid "September Note"
-msgstr "Бележка Сеп"
+msgstr "Бележка за септември"
 
 #: ../src/plugins/webreport/WebCal.py:1506
 msgid "The note for the month of September"
-msgstr "Бележката за месец Септември"
+msgstr "Бележката за месец септември"
 
 #: ../src/plugins/webreport/WebCal.py:1509
 msgid "October Note"
-msgstr "Бележка Окт"
+msgstr "Бележка за октомври"
 
 #: ../src/plugins/webreport/WebCal.py:1510
 msgid "The note for the month of October"
-msgstr "Бележката за месец Октомври"
+msgstr "Бележката за месец октомври"
 
 #: ../src/plugins/webreport/WebCal.py:1513
 msgid "November Note"
-msgstr "Бележка Окт"
+msgstr "Бележка за ноември"
 
 #: ../src/plugins/webreport/WebCal.py:1514
 msgid "The note for the month of November"
-msgstr "Бележката за месец Ноември"
+msgstr "Бележката за месец ноември"
 
 #: ../src/plugins/webreport/WebCal.py:1517
 msgid "December Note"
-msgstr "Бележка Дек"
+msgstr "Бележка за декември"
 
 #: ../src/plugins/webreport/WebCal.py:1518
 msgid "The note for the month of December"
-msgstr "Бележката за месец Декември"
+msgstr "Бележката за месец декември"
 
 #: ../src/plugins/webreport/WebCal.py:1534
 msgid "Create \"Year At A Glance\" Calendar"
-msgstr "Създаване на календар „Цяла Година с Един Поглед“"
+msgstr "Създаване на календар „Поглед върху годината“"
 
 #: ../src/plugins/webreport/WebCal.py:1535
 msgid "Whether to create A one-page mini calendar with dates highlighted"
-msgstr "Дали да се създаде календар от една страница с осветени дати"
+msgstr "Дали да се създаде мини календар от една страница с осветени дати"
 
 #: ../src/plugins/webreport/WebCal.py:1539
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr ""
-"Създаване на страници за събития от един ден за календари „Цяла Година с "
-"Един Поглед“"
+"Създаване на страници за събития от един ден за календари „Поглед върху "
+"годината“"
 
 #: ../src/plugins/webreport/WebCal.py:1541
 msgid "Whether to create one day pages or not"
@@ -21384,7 +21388,7 @@ msgstr "Наричан/а:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "People with the <name>"
-msgstr "Хора с името <name>"
+msgstr "Хора с името <име>"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:54
 #: ../src/Filters/Rules/Person/_SearchName.py:48
@@ -21393,7 +21397,7 @@ msgstr "Подбира хора с определено (частично) им�
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
-msgstr "Лица, имащи бележки"
+msgstr "Лица, имащи <брой> бележки"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:47
 msgid "Matches people having a certain number of notes"
@@ -21401,7 +21405,7 @@ msgstr "Подбира хора, имащи бележка"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 msgid "People having notes containing <substring>"
-msgstr "Хора с бележки, съдържащи <substring>"
+msgstr "Хора с бележки, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches people whose notes contain text matching a substring"
@@ -21409,7 +21413,7 @@ msgstr "Подбира хора с бележки, съдържащи текст
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
-msgstr "Хора с бележки, съдържащи <regular expression>"
+msgstr "Хора с бележки, съдържащи <регулярен израз>"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -21426,7 +21430,7 @@ msgstr "Брой деца:"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:49
 msgid "People with the <relationships>"
-msgstr "Хора с <relationships>"
+msgstr "Хора с <връзки>"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:50
 msgid "Matches people with a particular relationship"
@@ -21447,7 +21451,7 @@ msgstr "Семейни филтри"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
 msgid "People with <count> source"
-msgstr "Хора с източник"
+msgstr "Хора с <брой> източници"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
 msgid "Matches people with a certain number of items in the source"
@@ -21455,7 +21459,7 @@ msgstr "Подбира места с определен брой отпратк�
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
-msgstr "Хора с <source>"
+msgstr "Хора с <източник>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 msgid "Matches people who have a particular source"
@@ -21463,7 +21467,7 @@ msgstr "Подбира хора с точно определен източни�
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
-msgstr "Хора със записи, съдържащи <substring>"
+msgstr "Хора със записи, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Matches people whose records contain text matching a substring"
@@ -21503,7 +21507,7 @@ msgstr "Подбира хора с липсващо лично или фамил
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:48
 msgid "Ancestors of <filter> match"
-msgstr "Прародителите на <filter> съвпадат"
+msgstr "Прародителите на <филтър> съвпадат"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:50
 msgid "Matches people that are ancestors of anybody matched by a filter"
@@ -21511,7 +21515,7 @@ msgstr "Подбира хора, които са прародители на н�
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:46
 msgid "Ancestors of <person>"
-msgstr "Прародители на <person>"
+msgstr "Прародители на <човек>"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:48
 msgid "Matches people that are ancestors of a specified person"
@@ -21527,7 +21531,7 @@ msgstr "Подбира хората в списъка с отметките"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:47
 msgid "Children of <filter> match"
-msgstr "Децата на <filter> съвпадат"
+msgstr "Децата на <филтър> съвпадат"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:49
 msgid "Matches children of anybody matched by a filter"
@@ -21563,7 +21567,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:48
 msgid "Descendants of <filter> match"
-msgstr "Наследниците на <filter> съвпадат"
+msgstr "Наследниците на <филтър> съвпадат"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
@@ -21571,7 +21575,7 @@ msgstr "Подбира хора, които са наследници на ня�
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
 msgid "Descendants of <person>"
-msgstr "Наследници на <person>"
+msgstr "Наследници на <човек>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:49
 msgid "Matches all descendants for the specified person"
@@ -21609,7 +21613,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "Прародители на <person>, отдалечени на не повече от <N> поколения"
+msgstr "Прародители на <човек>, отдалечени на не повече от <N> поколения"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid ""
@@ -21621,7 +21625,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "Наследници на <person>, отдалечен на не повече от <N> поколения"
+msgstr "Наследници на <човек>, отдалечен на не повече от <N> поколения"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid ""
@@ -21637,7 +21641,7 @@ msgstr "Подбира всички мъже"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Прародители на <person>, отдалечени на най-малко <N> поколения"
+msgstr "Прародители на <човек>, отдалечени на най-малко <N> поколения"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
 msgid ""
@@ -21649,7 +21653,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Наследници на <person>, отдалечени поне на <N> поколения"
+msgstr "Наследници на <човек>, отдалечени поне на <N> поколения"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
 msgid ""
@@ -21661,7 +21665,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:47
 msgid "Parents of <filter> match"
-msgstr "Родителите от <filter> съвпадат"
+msgstr "Родителите от <филтър> съвпадат"
 
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:49
 msgid "Matches parents of anybody matched by a filter"
@@ -21669,7 +21673,7 @@ msgstr "Подбира родители на някого, отговарящ н
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:46
 msgid "Siblings of <filter> match"
-msgstr "Братята и сестрите <filter> съвпадат"
+msgstr "Братята и сестрите <филтър> съвпадат"
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:48
 msgid "Matches siblings of anybody matched by a filter"
@@ -21677,7 +21681,7 @@ msgstr "Подбира братя/сестри на някого, отговар
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:47
 msgid "Spouses of <filter> match"
-msgstr "Съпрузите на <filter> съвпадат"
+msgstr "Съпрузите на <фиртър> съвпадат"
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:48
 msgid "Matches people married to anybody matching a filter"
@@ -21693,7 +21697,7 @@ msgstr "Подбира хора, които са свидетели в няка�
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
 msgid "Persons with events matching the <event filter>"
-msgstr "Хора със събития, отговарящи на <event filter>"
+msgstr "Хора със събития, отговарящи на <филтър за сабития>"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:54
 msgid "Matches persons who have events that match a certain event filter"
@@ -21702,7 +21706,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
-msgstr "Хора, отговарящи на <filter>"
+msgstr "Хора, отговарящи на <филтър>"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
@@ -21762,11 +21766,11 @@ msgstr "Подбира хора с липсващата дата или мяст
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
 msgid "On date:"
-msgstr " На дата"
+msgstr "На дата:"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "People probably alive"
-msgstr "Хора , които вероятно са живи"
+msgstr "Хора, които вероятно са живи"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:47
 msgid "Matches people without indications of death that are not too old"
@@ -21774,7 +21778,7 @@ msgstr "Подбира хора без индикации да са почина
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 msgid "People with <Id> matching regular expression"
-msgstr "Хора с <Id> , отговарящ на регулярен израз"
+msgstr "Хора с <индекс>, отговарящ на регулярен израз"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -21786,7 +21790,7 @@ msgstr "Регулярен израз:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
-msgstr "Хора, отговарящи на <regex_name>"
+msgstr "Хора, отговарящи на <име на регулярен израз>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:49
 msgid "Matches people's names with a specified regular expression"
@@ -21794,7 +21798,7 @@ msgstr "Подбира имена на хора с определен регул
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
-msgstr "Роднински връзки между <persons>"
+msgstr "Роднински връзки между <хора>"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
 msgid ""
@@ -21818,7 +21822,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "People matching the <name>"
-msgstr "Хора, отговарящи на <name>"
+msgstr "Хора, отговарящи на <име>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
@@ -21830,7 +21834,7 @@ msgstr "Подбира всяко семейство в базата данни"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
 msgid "Families changed after <date time>"
-msgstr "Семейства, отговарящи на <filter>"
+msgstr "Семейства, променени след <дата/час>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid ""
@@ -21848,7 +21852,7 @@ msgstr "Индекс на лицето:"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
-msgstr "Семейства с дете с <Id>"
+msgstr "Семейства с дете с <индекс>"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
 msgid "Matches families where child has a specified Gramps ID"
@@ -21863,7 +21867,7 @@ msgstr "Филтри за деца"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
 msgid "Families with child with the <name>"
-msgstr "Семейства с дете с името <name>"
+msgstr "Семейства с дете с името <име>"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
 msgid "Matches families where child has a specified (partial) name"
@@ -21879,7 +21883,7 @@ msgstr "Подбира семейства, отбелязани като пов�
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
-msgstr "Семейства с баща с <Id>"
+msgstr "Семейства с баща с <индекс>"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified Gramps ID"
@@ -21894,7 +21898,7 @@ msgstr "Филтри за бащата"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
 msgid "Families with father with the <name>"
-msgstr "Семейства с баща с името <name>"
+msgstr "Семейства с баща с името <име>"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
@@ -21903,7 +21907,7 @@ msgstr "Подбира семейства, в които бащата има о�
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
 msgid "Families with the family <attribute>"
-msgstr "Семейства със семеен атрибут <attribute>"
+msgstr "Семейства със семеен атрибут <признак>"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
 msgid "Matches families with the family attribute of a particular value"
@@ -21911,7 +21915,7 @@ msgstr "Подбира семейства със семеен признак с 
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
 msgid "Families with the <event>"
-msgstr "Семейства с <event>"
+msgstr "Семейства с <събитие>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
 msgid "Matches families with an event of a particular value"
@@ -21919,7 +21923,7 @@ msgstr "Подбира семейства със събития с опреде�
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:43
 msgid "Families with <count> media"
-msgstr "Семейства с <count> медии"
+msgstr "Семейства с <брой> медии"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:44
 msgid "Matches families with a certain number of items in the gallery"
@@ -21927,7 +21931,7 @@ msgstr "Подбира семейства с медиен обект в гале
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
-msgstr "Семейство с <Id>"
+msgstr "Семейство с <индекс>"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified Gramps ID"
@@ -21935,7 +21939,7 @@ msgstr "Подбира семейство с определен Gramps инде�
 
 #: ../src/Filters/Rules/Family/_HasLDS.py:46
 msgid "Families with <count> LDS events"
-msgstr "Семейства с <count> събития в Мормонска църква"
+msgstr "Семейства с <брой> събития в Мормонска църква"
 
 #: ../src/Filters/Rules/Family/_HasLDS.py:47
 msgid "Matches families with a certain number of LDS events"
@@ -21943,7 +21947,7 @@ msgstr "Подбира семейства със събитие в Мормон�
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 msgid "Families with <marker>"
-msgstr "Семейства с <marker>"
+msgstr "Семейства с <маркер>"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
 msgid "Matches Families with a marker of a particular value"
@@ -21951,15 +21955,15 @@ msgstr "Подбира семейства с маркер с точно опре
 
 #: ../src/Filters/Rules/Family/_HasNote.py:46
 msgid "Families having <count> notes"
-msgstr "Лица, имащи бележка"
+msgstr "Лица, имащи <брой> бележки"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:47
 msgid "Matches families having a certain number notes"
-msgstr "Подбира хора, които имат бележка"
+msgstr "Подбира хора, които имат определен брой бележки"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
-msgstr "Семейства с бележки, съдържащи <substring>"
+msgstr "Семейства с бележки, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches families whose notes contain text matching a substring"
@@ -21967,7 +21971,7 @@ msgstr "Подбира семейства с бележки, съдържащи 
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:42
 msgid "Families having notes containing <regular expression>"
-msgstr "Семейства с бележки, съдържащи <regular expression>"
+msgstr "Семейства с бележки, съдържащи <регулярен израз>"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
@@ -21976,7 +21980,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
 msgid "Families with a reference count of <count>"
-msgstr "Семейства с брой на отпратките, възлизащ на <count>"
+msgstr "Семейства с брой на отпратките, възлизащ на <брой>"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
 msgid "Matches family objects with a certain reference count"
@@ -21992,7 +21996,7 @@ msgstr "Подбира семейства с тип на взаимоотнош�
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
 msgid "Families with <count> source"
-msgstr "Семейства с източник"
+msgstr "Семейства с <брой> източници"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
 msgid "Matches families with a certain number of items in the source"
@@ -22008,7 +22012,7 @@ msgstr "Подбира хората в списъка с отметките"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
-msgstr "Семейства, отговарящи на <filter>"
+msgstr "Семейства, отговарящи на <филтър>"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
@@ -22016,7 +22020,7 @@ msgstr "Подбира семейства отговарящи на посоче
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
-msgstr "Семейства с майка с <Id>"
+msgstr "Семейства с майка с <индекс>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -22031,7 +22035,7 @@ msgstr "Филтри за майката"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
-msgstr "Семейства с майка с <name>"
+msgstr "Семейства с майка с <име>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
@@ -22040,11 +22044,11 @@ msgstr "Подбира семейства, в които майката има �
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
 msgid "Families with father matching the <name>"
-msgstr "Семейства с баща, отговарящ на <name>"
+msgstr "Семейства с баща, отговарящ на <име>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
 msgid "Families with any child matching the <name>"
-msgstr "Семейства с дете, отговарящо на <name>"
+msgstr "Семейства с дете, отговарящо на <име>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
@@ -22053,11 +22057,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
-msgstr "Семейства с майка, отговаряща на <name>"
+msgstr "Семейства с майка, отговаряща на <име>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
 msgid "Families with father matching the <regex_name>"
-msgstr "Семейства с баща, отговарящ на <regex_name>"
+msgstr "Семейства с баща, отговарящ на <регулярен израз за име>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
 msgid ""
@@ -22069,7 +22073,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
 msgid "Families with mother matching the <regex_name>"
-msgstr "Семейства с майка, отговаряща на <regex_name>"
+msgstr "Семейства с майка, отговаряща на <регулярен израз за име>"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
 msgid ""
@@ -22081,7 +22085,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr "Семейства с дете, отговарящо на <regex_name>"
+msgstr "Семейства с дете, отговарящо на <регулярен израз за име>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
@@ -22093,7 +22097,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
 msgid "Families with <Id> matching regular expression"
-msgstr "Семейства с <Id>, отговарящ на регулярен израз"
+msgstr "Семейства с <индекс>, отговарящ на регулярен израз"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -22109,7 +22113,7 @@ msgstr "Подбира всяко събитие в базата данни"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:23
 msgid "Events changed after <date time>"
-msgstr "Събития, отговарящи на <filter>"
+msgstr "Събития, променяни след <дата/час>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid ""
@@ -22129,7 +22133,7 @@ msgstr "Подбира събития, отбелязани като повер�
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:46
 msgid "Events with the attribute <attribute>"
-msgstr "Събития с признака <attribute>"
+msgstr "Събития с признака <признак>"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:47
 msgid "Matches events with the event attribute of a particular value"
@@ -22137,7 +22141,7 @@ msgstr "Подбира събития с тип на признака с опр�
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
 msgid "Events with <data>"
-msgstr "Събития с <data>"
+msgstr "Събития с <дата>"
 
 #: ../src/Filters/Rules/Event/_HasData.py:50
 msgid "Matches events with data of a particular value"
@@ -22145,7 +22149,7 @@ msgstr "Подбира събития с дата с определена сто
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
 msgid "Events with <count> media"
-msgstr "Събития с <count> медии"
+msgstr "Събития с <брой> медии"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
 msgid "Matches events with a certain number of items in the gallery"
@@ -22153,7 +22157,7 @@ msgstr "Подбира събития с медиен обект в галери
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
-msgstr "Събитие с <Id>"
+msgstr "Събитие с <индекс>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
 msgid "Matches an event with a specified Gramps ID"
@@ -22161,7 +22165,7 @@ msgstr "Подбира събитие с определен Gramps индекс"
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:45
 msgid "Events with <marker>"
-msgstr "Събития с <marker>"
+msgstr "Събития с <маркер>"
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:46
 msgid "Matches Events with a marker of a particular value"
@@ -22169,7 +22173,7 @@ msgstr "Подбира семейства с маркер с определен�
 
 #: ../src/Filters/Rules/Event/_HasNote.py:46
 msgid "Events having <count> notes"
-msgstr "Събития, имащи бележки"
+msgstr "Събития, имащи <брой> бележки"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:47
 msgid "Matches events having a certain number of notes"
@@ -22177,7 +22181,7 @@ msgstr "Подбира събития с определен брой отпра�
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
-msgstr "Събития с бележки, съдържащи <substring>"
+msgstr "Събития с бележки, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
@@ -22185,7 +22189,7 @@ msgstr "Подбира събития с бележки, съдържащи те
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
 msgid "Events having notes containing <regular expression>"
-msgstr "Събития с бележки, съдържащи <regular expression>"
+msgstr "Събития с бележки, съдържащи <регулярен израз>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -22194,7 +22198,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
 msgid "Events with a reference count of <count>"
-msgstr "Събития с брой на отпратките, възлизащ на <count>"
+msgstr "Събития с брой на отпратките, възлизащ на <брой>"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:44
 msgid "Matches events with a certain reference count"
@@ -22202,7 +22206,7 @@ msgstr "Подбира събития с определен брой отпра�
 
 #: ../src/Filters/Rules/Event/_HasSource.py:43
 msgid "Events with <count> source"
-msgstr "Събития с <count> медии"
+msgstr "Събития с <брой> медии"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:44
 msgid "Matches events with a certain number of items in the source"
@@ -22218,7 +22222,7 @@ msgstr "Подбира събития с точно определения ти�
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
-msgstr "Събития, отговарящи на <filter>"
+msgstr "Събития, отговарящи на <филтър>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
 msgid "Matches events matched by the specified filter name"
@@ -22226,7 +22230,7 @@ msgstr "Подбира събития, отговарящи на посочен�
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:52
 msgid "Events of persons matching the <person filter>"
-msgstr "Събития на лица, отговарящи на <person filter>"
+msgstr "Събития на лица, отговарящи на <филтър за човек>"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:53
 msgid "Matches events of persons matched by the specified person filter name"
@@ -22234,7 +22238,7 @@ msgstr "Подбира събития, подбрани от зададения 
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
 msgid "Events with source matching the <source filter>"
-msgstr "Събития с източник, отговарящ на <source filter>"
+msgstr "Събития с източник, отговарящ на <филтър за източник>"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:50
 msgid "Matches events with sources that match the specified source filter name"
@@ -22244,7 +22248,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
-msgstr "Събития с <Id> , отговарящ на регулярен израз"
+msgstr "Събития с <инсекс>, отговарящ на регулярен израз"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -22260,7 +22264,7 @@ msgstr "Подбира всяко място в базата данни"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:23
 msgid "Places changed after <date time>"
-msgstr "Места променени след <date time>"
+msgstr "Места променени след <дата/час>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid ""
@@ -22272,7 +22276,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
 msgid "Places with <count> media"
-msgstr "Места с <count> медии"
+msgstr "Места с <брой> медии"
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:44
 msgid "Matches places with a certain number of items in the gallery"
@@ -22280,7 +22284,7 @@ msgstr "Подбира места с медиен обект в галерият
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
-msgstr "Място с <Id>"
+msgstr "Място с <индекс>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
 msgid "Matches a place with a specified Gramps ID"
@@ -22301,7 +22305,7 @@ msgstr "Филтри Позиция"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:46
 msgid "Places having <count> notes"
-msgstr "Места, имащи бележки"
+msgstr "Места, имащи <брой> бележки"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:47
 msgid "Matches places having a certain number of notes"
@@ -22309,7 +22313,7 @@ msgstr "Подбира места с определен брой отпратк�
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
-msgstr "Места с бележки, съдържащи <substring>"
+msgstr "Места с бележки, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
@@ -22317,7 +22321,7 @@ msgstr "Подбира места с бележки, съдържащи текс
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 msgid "Places having notes containing <regular expression>"
-msgstr "Места с бележки, съдържащи <regular expression>"
+msgstr "Места с бележки, съдържащи <регулярен израз>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
@@ -22354,7 +22358,7 @@ msgstr "Подбира места с точно определени парам�
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:43
 msgid "Places with a reference count of <count>"
-msgstr "Места с брой на отпратките, възлизащ на <count>"
+msgstr "Места с брой на отпратките, възлизащ на <брой>"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
 msgid "Matches places with a certain reference count"
@@ -22392,7 +22396,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
 msgid "Places matching the <filter>"
-msgstr "Места, отговарящи <filter>"
+msgstr "Места, отговарящи <филтър>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
 msgid "Matches places matched by the specified filter name"
@@ -22400,15 +22404,15 @@ msgstr "Подбира места, отговарящи на посоченот�
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:51
 msgid "Places of events matching the <event filter>"
-msgstr "Места на събития, отговарящи на <event filter>"
+msgstr "Места на събития, отговарящи на <филтър за събития>"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:52
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
-"Подбира места, където са се случили събития, отговарящи на посоченото име на "
-"филтъра на събитието"
+"Подбира места, където са се случили събития, отговарящи на посоченият "
+"филтъра с име"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
 msgid "Places marked private"
@@ -22420,7 +22424,7 @@ msgstr "Подбира места, отбелязани като поверит�
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
 msgid "Places with <Id> matching regular expression"
-msgstr "Места с <Id> , отговарящ на регулярен израз"
+msgstr "Места с <индекс> , отговарящ на регулярен израз"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -22436,7 +22440,7 @@ msgstr "Подбира всеки източник в базата данни"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:23
 msgid "Sources changed after <date time>"
-msgstr "Източници, отговарящи на <filter>"
+msgstr "Източници, променяни след <дата/час>"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:24
 msgid ""
@@ -22448,7 +22452,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
 msgid "Sources with <count> media"
-msgstr "Източници с <count> медии"
+msgstr "Източници с <брой> медии"
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:44
 msgid "Matches sources with a certain number of items in the gallery"
@@ -22456,7 +22460,7 @@ msgstr "Подбира източници с медиен обект в гале
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
-msgstr "Източник с <Id>"
+msgstr "Източник с <индекс>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified Gramps ID"
@@ -22464,7 +22468,7 @@ msgstr "Подбира източник с определен Gramps индек�
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
 msgid "Sources having <count> notes"
-msgstr "Лица, имащи бележки"
+msgstr "Лица, имащи <брой> бележки"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:47
 msgid "Matches sources having a certain number of notes"
@@ -22472,7 +22476,7 @@ msgstr "Подбира източници с определен брой отп�
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
-msgstr "Източници с бележки, съдържащи <regular expression>"
+msgstr "Източници с бележки, съдържащи <регулярен израз>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
@@ -22481,7 +22485,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
 msgid "Sources having notes containing <substring>"
-msgstr "Източници с бележки, съдържащи <substring>"
+msgstr "Източници с бележки, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
@@ -22489,7 +22493,7 @@ msgstr "Подбира източници с бележки, съдържащи 
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
 msgid "Sources with a reference count of <count>"
-msgstr "Източници с брой на отпратките, възлизащ на <count>"
+msgstr "Източници с брой на отпратките, възлизащ на <брой>"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
 msgid "Matches sources with a certain reference count"
@@ -22497,7 +22501,7 @@ msgstr "Подбира източници с определен брой отп�
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:45
 msgid "Sources with <count> Repository references"
-msgstr "Източници с <count> отпратки към хранилища"
+msgstr "Източници с <брой> отпратки към хранилища"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
 msgid "Matches sources with certain number repository references"
@@ -22529,7 +22533,7 @@ msgstr "Подбира източници с точно определени п�
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
-msgstr "Източници, отговарящи на <filter>"
+msgstr "Източници, отговарящи на <филтър>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
@@ -22545,7 +22549,7 @@ msgstr "Подбира източници, отбелязани като пов�
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
 msgid "Sources with <Id> matching regular expression"
-msgstr "Източници с <Id> , отговарящ на регулярен израз"
+msgstr "Източници с <индекс> , отговарящ на регулярен израз"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -22561,7 +22565,7 @@ msgstr "Подбира всеки медиен обект в базата дан
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
 msgid "Media objects changed after <date time>"
-msgstr "Медийни обекти, отговарящи на <filter>"
+msgstr "Медийни обекти, променяни след <дата/час>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid ""
@@ -22573,7 +22577,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:46
 msgid "Media objects with the attribute <attribute>"
-msgstr "Медийни обекти с признак <attribute>"
+msgstr "Медийни обекти с признак <признак>"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:47
 msgid "Matches media objects with the attribute of a particular value"
@@ -22581,7 +22585,7 @@ msgstr "Подбира медийни обекти с точно определ�
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Медиен обект с <Id>"
+msgstr "Медиен обект с <индекс>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified Gramps ID"
@@ -22650,7 +22654,7 @@ msgstr "Подбира медийни обекти, посочени като п
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Медийни обекти с <Id>, отговарящ на регулярен израз"
+msgstr "Медийни обекти с <индекс>, отговарящ на регулярен израз"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -22667,7 +22671,7 @@ msgstr "Подбира всяко хранилище в базата данни"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 msgid "Repositories changed after <date time>"
-msgstr "Хранилища, отговарящи на <filter>"
+msgstr "Хранилища, променяни след <дата/час>"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid ""
@@ -22679,7 +22683,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
-msgstr "Хранилище с <Id>"
+msgstr "Хранилище с <индекс>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified Gramps ID"
@@ -22687,7 +22691,7 @@ msgstr "Подбира хранилище с определен Gramps инде�
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Хранилища, имащи бележки, съдържащи <substring>"
+msgstr "Хранилища, имащи бележки, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
@@ -22695,7 +22699,7 @@ msgstr "Подбира хранилища с бележки, съдържащи 
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
-msgstr "Източници, имащи бележки, съдържащи <regular expression>"
+msgstr "Източници, имащи бележки, съдържащи <регулярен израз>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid ""
@@ -22705,7 +22709,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr "Хранилища с брой на отпратките, възлизащ на <count>"
+msgstr "Хранилища с брой на отпратките, възлизащ на <брой>"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
@@ -22726,7 +22730,7 @@ msgstr "Подбира хранилища, отговарящи на точно 
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr "Хранилища, отговарящи на <filter>"
+msgstr "Хранилища, отговарящи на <филтър>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
@@ -22734,7 +22738,7 @@ msgstr "Подбира хранилища, отговарящи на посоч�
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Хранилища с <Id>, отговарящ на регулярен израз"
+msgstr "Хранилища с <индекс>, отговарящ на регулярен израз"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -22758,7 +22762,7 @@ msgstr "Подбира всички бележки от базата данни"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
 msgid "Notes changed after <date time>"
-msgstr "Бележки, отговарящи на <filter>"
+msgstr "Бележки, променяни след <дата/час>"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
@@ -22770,7 +22774,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
-msgstr "Бележка с <Id>"
+msgstr "Бележка с <индекс>"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:46
 msgid "Matches a note with a specified Gramps ID"
@@ -22778,7 +22782,7 @@ msgstr "Подбира бележка с определен Gramps индекс"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:45
 msgid "Notes with <marker>"
-msgstr "Бележки с <marker>"
+msgstr "Бележки с <маркер>"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:46
 msgid "Matches Notes with a marker of a particular value"
@@ -22786,7 +22790,7 @@ msgstr "Подбира бележки с маркер с точно опреде
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
-msgstr "Бележки, съдържащи <substring>"
+msgstr "Бележки, съдържащи <подниз>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
 msgid "Matches notes who contain text matching a substring"
@@ -22794,7 +22798,7 @@ msgstr "Подбира бележки, съдържащи текст, съотв
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
 msgid "Notes containing <regular expression>"
-msgstr "Бележки съдържащи <regular expression>"
+msgstr "Бележки съдържащи <регулярен израз>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
@@ -22815,7 +22819,7 @@ msgstr "Подбира бележки с точно определени пар�
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:43
 msgid "Notes with a reference count of <count>"
-msgstr "Бележки с брой на отпратките, възлизащ на <count>"
+msgstr "Бележки с брой на отпратките, възлизащ на <брой>"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:44
 msgid "Matches notes with a certain reference count"
@@ -22823,7 +22827,7 @@ msgstr "Подбира бележки с определен брой отпра�
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
-msgstr "Бележки, отговарящи на <filter>"
+msgstr "Бележки, отговарящи на <филтър>"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:46
 msgid "Matches notes matched by the specified filter name"
@@ -22831,15 +22835,15 @@ msgstr "Подбира бележки, отговарящи на посочен�
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:48
 msgid "Notes with <Id> matching regular expression"
-msgstr "Бележки с <Ид> съвпадащ с регулярен израз"
+msgstr "Бележки с <индекс> съвпадащ с регулярен израз"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr "Подбира бележки с ИД на Gramps, отговарящ на регулярния израз"
+msgstr "Подбира бележки с индекс на Gramps, отговарящ на регулярния израз"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
 msgid "Notes marked private"
-msgstr "Бележки, маркирани като лични"
+msgstr "Бележки, маркирани като поверителни"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
@@ -22895,7 +22899,7 @@ msgstr "Църковна енория"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "ZIP/Postal code"
-msgstr "ZIP/Пощенски код:"
+msgstr "ZIP/Пощенски код"
 
 #: ../src/plugins/docgen/gtkprint.glade.h:1
 msgid "Closes print preview window"
@@ -22972,7 +22976,7 @@ msgstr "Приемане на промените и затваряне на пр
 
 #: ../src/glade/editperson.glade.h:6 ../src/glade/editname.glade.h:4
 msgid "Call _Name:"
-msgstr "Прякор/Псевдоним:"
+msgstr "_Прякор/Псевдоним:"
 
 #: ../src/glade/editperson.glade.h:7
 msgid "Edit the preferred name"
@@ -23042,7 +23046,7 @@ msgstr "_Маркер:"
 #: ../src/glade/editfamily.glade.h:12 ../src/glade/editmediaref.glade.h:15
 #: ../src/glade/editnote.glade.h:8 ../src/glade/editname.glade.h:18
 msgid "_Type:"
-msgstr "Ти_п:"
+msgstr "_Тип:"
 
 #: ../src/glade/editperson.glade.h:24
 msgid ""
@@ -23098,7 +23102,7 @@ msgstr "Обръщане в относителен път"
 #: ../src/glade/editmedia.glade.h:8 ../src/glade/editmediaref.glade.h:14
 #: ../src/glade/editsourceref.glade.h:12
 msgid "_Title:"
-msgstr "_Титла:"
+msgstr "Титл_а:"
 
 #: ../src/glade/questiondialog.glade.h:1
 msgid "Close _without saving"
@@ -23144,7 +23148,7 @@ msgstr "Пре_махване на обект"
 
 #: ../src/glade/questiondialog.glade.h:10
 msgid "_Select File"
-msgstr "Избор на файл"
+msgstr "Избор на _файл"
 
 #: ../src/glade/questiondialog.glade.h:11
 msgid "_Use this selection for all missing media files"
@@ -23179,12 +23183,12 @@ msgid ""
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
 "Използват се следните договорки:\n"
-"<tt> <b>%f</b> - Лично име    <b>%F</b> - GIVEN NAME\n"
-" <b>%l</b> - Фамилия     <b>%L</b> - SURNAME\n"
-" <b>%t</b> - Титла      <b>%T</b> - TITLE\n"
-" <b>%p</b> - Представка      <b>%P</b> - PREFIX\n"
-" <b>%s</b> - Наставка      <b>%S</b> - SUFFIX\n"
-" <b>%c</b> - Наричан/а    <b>%C</b> - CALL NAME\n"
+"<tt> <b>%f</b> - Лично име    <b>%F</b> - ЛИЧНО\n"
+" <b>%l</b> - Фамилия     <b>%L</b> - ФАМИЛИЯ\n"
+" <b>%t</b> - Титла      <b>%T</b> - ТИТЛА\n"
+" <b>%p</b> - Представка      <b>%P</b> - ПРЕДСТАВКА\n"
+" <b>%s</b> - Наставка      <b>%S</b> - НАСТАВКА\n"
+" <b>%c</b> - ПРЯКОР    <b>%C</b> - ПРЯКОР\n"
 " <b>%y</b> - Бащино    <b>%Y</b> - PATRONYMIC</tt>"
 
 #: ../src/glade/dateedit.glade.h:1
@@ -26501,9 +26505,6 @@ msgstr ""
 
 #~ msgid "GRAMPS database"
 #~ msgstr "База данни на GRAMPS"
-
-#~ msgid "Jump to father"
-#~ msgstr "По бащина линия"
 
 #~ msgid "Python Evaluation Window"
 #~ msgstr "Прозорец Оценка на Питон"
