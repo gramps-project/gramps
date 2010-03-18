@@ -799,8 +799,8 @@ Location: %(fpath)s
         model, node = selection.get_selected()
         if not node:
             return
-        id = model.get_value(node, id_col)
-        pdata = self.__preg.get_plugin(id)
+        idv = model.get_value(node, id_col)
+        pdata = self.__preg.get_plugin(idv)
         self.__pmgr.load_plugin(pdata)
         self.__rebuild_load_list()
 
