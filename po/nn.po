@@ -18129,7 +18129,7 @@ msgstr "Generert av <a href=\"%(homepage)s\">GRAMPS</a> %(date)s"
 #: ../src/plugins/webreport/NarrativeWeb.py:880
 #, fuzzy, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
-msgstr "Laga for <a href=\"%s\">%s</a>"
+msgstr " Laga for <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1004
 #, fuzzy

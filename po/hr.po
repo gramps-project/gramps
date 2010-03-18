@@ -18242,7 +18242,7 @@ msgstr "Izrađeno programom <a href = \"%(homepage)s\">GRAMPS</a>  %(date)s"
 #: ../src/plugins/webreport/NarrativeWeb.py:880
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
-msgstr "Izradio <a href = \"%s\">%s</a>"
+msgstr " Izradio <a href = \"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
 msgid "Html|Home"

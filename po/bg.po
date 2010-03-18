@@ -19048,7 +19048,7 @@ msgstr "Създаден чрез<a href=\"%(homepage)s\"> Gramps</a> на %(dat
 #: ../src/plugins/webreport/NarrativeWeb.py:880
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
-msgstr "Създадено за <a href=\"%s\">%s</a>"
+msgstr " Създадено за <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
 msgid "Html|Home"

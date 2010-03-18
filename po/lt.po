@@ -18539,7 +18539,7 @@ msgstr " %(date)s sugeneruota <a href = \"%(homepage)s\">Gramps</a>"
 #: ../src/plugins/webreport/NarrativeWeb.py:880
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
-msgstr "Sukurta  <a href=\"%s\">%s</a>"
+msgstr " Sukurta  <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1004
 msgid "Html|Home"
