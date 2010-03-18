@@ -142,11 +142,11 @@ class BasePluginManager(object):
         """
         if pdata.id in self.__loaded_plugins:
             return self.__loaded_plugins[pdata.id]
-        reload = False
+        need_reload = False
         filename = pdata.fname
         if filename in self.__attempt_list:
             #new attempt after a fail, a reload needed
-            reload = True
+            need_reload = True
             dellist = []
             for index, data in enumerate(self.__failmsg_list):
                 if data[0] == filename:
@@ -160,7 +160,7 @@ class BasePluginManager(object):
         plugin = pdata.mod_name
         try: 
             _module = __import__(plugin)
-            if reload:
+            if need_reload:
                 # For some strange reason second importing of a failed plugin
                 # results in success. Then reload reveals the actual error.
                 # Looks like a bug in Python.
