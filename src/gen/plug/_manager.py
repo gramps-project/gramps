@@ -142,17 +142,36 @@ class BasePluginManager(object):
         """
         if pdata.id in self.__loaded_plugins:
             return self.__loaded_plugins[pdata.id]
+        reload = False
         filename = pdata.fname
-        self.__attempt_list.append(filename)
+        if filename in self.__attempt_list:
+            #new attempt after a fail, a reload needed
+            reload = True
+            dellist = []
+            for index, data in enumerate(self.__failmsg_list):
+                if data[0] == filename:
+                    dellist.append(index)
+            dellist.reverse()
+            for index in dellist:
+                del self.__failmsg_list[index]
+                    
+        else:
+            self.__attempt_list.append(filename)
         plugin = pdata.mod_name
         try: 
             _module = __import__(plugin)
+            if reload:
+                # For some strange reason second importing of a failed plugin
+                # results in success. Then reload reveals the actual error.
+                # Looks like a bug in Python.
+                reload(_module)
             self.__success_list.append((filename, _module, pdata))
             self.__loaded_plugins[pdata.id] = _module
             self.__mod2text[_module.__name__] = pdata.description
             return _module
         except:
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
+
         return None
 
     def empty_managed_plugins(self):
@@ -174,7 +193,8 @@ class BasePluginManager(object):
         # attempt to reload all plugins that have succeeded in the past
         self.empty_managed_plugins()
 
-        for plugin in self.__success_list:
+        dellist = []
+        for (index, plugin) in enumerate(self.__success_list):
             filename = plugin[0]
             pdata = plugin[2]
             filename = filename.replace('pyc','py')
@@ -182,7 +202,11 @@ class BasePluginManager(object):
             try: 
                 reload(plugin[1])
             except:
+                dellist.append(index)
                 self.__failmsg_list.append((filename, sys.exc_info(), pdata))
+        dellist.reverse()
+        for index in dellist:
+            del self.__success_list[index]
             
         # Remove previously good plugins that are now bad
         # from the registered lists
