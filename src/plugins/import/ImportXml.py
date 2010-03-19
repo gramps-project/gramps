@@ -1748,7 +1748,7 @@ class GrampsParser(UpdateCallback):
             rng_day = 0
 
         if "cformat" in attrs:
-            cal = gen.lib.Date.calendar_names.index(attrs['calendar'])
+            cal = gen.lib.Date.calendar_names.index(attrs['cformat'])
         else:
             cal = gen.lib.Date.CAL_GREGORIAN
 
