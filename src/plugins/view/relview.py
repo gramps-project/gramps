@@ -96,6 +96,7 @@ _SDATA_START  = 2
 _SDATA_STOP   = 4
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_SPACE = gtk.gdk.keyval_from_name("space")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
 
@@ -1705,7 +1706,7 @@ def button_activated(event, mouse_button):
     if (event.type == gtk.gdk.BUTTON_PRESS and \
         event.button == mouse_button) or \
        (event.type == gtk.gdk.KEY_PRESS and \
-        event.keyval in (_RETURN, _KP_ENTER)):
+        event.keyval in (_RETURN, _KP_ENTER, _SPACE)):
         return True
     else:
         return False
