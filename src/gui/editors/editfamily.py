@@ -202,7 +202,7 @@ class ChildEmbedList(EmbeddedList):
         return [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), 
                 (0, 8), (0, 9)]
 
-    def add_button_clicked(self, obj):
+    def add_button_clicked(self, obj=None):
         person = gen.lib.Person()
         autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
@@ -231,7 +231,7 @@ class ChildEmbedList(EmbeddedList):
     def child_ref_edited(self, person):
         self.rebuild()
 
-    def share_button_clicked(self, obj):
+    def share_button_clicked(self, obj=None):
         # it only makes sense to skip those who are already in the family
         skip_list = [self.family.get_father_handle(), \
                      self.family.get_mother_handle()] + \
@@ -253,7 +253,7 @@ class ChildEmbedList(EmbeddedList):
         SelectPerson(self.dbstate, self.uistate, self.track,
                      _("Select Child"), skip=skip_list)
 
-    def del_button_clicked(self, obj):
+    def del_button_clicked(self, obj=None):
         handle = self.get_selected()
         if handle:
             for ref in self.family.get_child_ref_list():
@@ -261,7 +261,7 @@ class ChildEmbedList(EmbeddedList):
                     self.family.remove_child_ref(ref)
             self.rebuild()
 
-    def edit_button_clicked(self, obj):
+    def edit_button_clicked(self, obj=None):
         handle = self.get_selected()
         if handle:
             self.call_edit_childref(handle)
@@ -278,7 +278,7 @@ class ChildEmbedList(EmbeddedList):
                     pass
                 break
 
-    def edit_child_button_clicked(self, obj):
+    def edit_child_button_clicked(self, obj=None):
         handle = self.get_selected()
         if handle:
             for ref in self.family.get_child_ref_list():
