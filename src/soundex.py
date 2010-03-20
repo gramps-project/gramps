@@ -48,7 +48,7 @@ def soundex(strval):
     "Return the soundex value to a string argument."
 
     strval = unicodedata.normalize('NFKD', 
-                    strval.upper().strip()).encode('ASCII', 'ignore')
+                    unicode(strval.upper().strip())).encode('ASCII', 'ignore')
     if not strval:
         return "Z000"
     strval = strval.encode('iso-8859-1')
