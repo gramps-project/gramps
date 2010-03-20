@@ -1442,7 +1442,7 @@ class BasePage(object):
                     if not uri.startswith("http://"):
                         list += Html("a", descr, href = 'http://%s' % uri)
                     else:
-                        list += Html("a", href = uri)
+                        list += Html("a", descr, href = uri)
 
                 # FTP server address
                 elif _type == UrlType.WEB_FTP:
