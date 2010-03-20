@@ -1443,7 +1443,7 @@ class BasePage(object):
                     if not uri.startswith("ftp://"):
                         list += Html("a", descr, href = 'ftp://%s' % uri)
                     else:
-                        list += Html("a", drscr, href = "%s" % uri) 
+                        list += Html("a", descr, href = "%s" % uri) 
 
                 # custom type
                 else:
