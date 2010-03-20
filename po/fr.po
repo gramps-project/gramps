@@ -19,11 +19,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.2.0\n"
+"Project-Id-Version: 3.2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-12 16:47+0100\n"
-"PO-Revision-Date: 2010-03-12 18:48+0100\n"
-"Last-Translator: Jérôme Rapinat<romjerome@yahoo.fr>\n"
+"POT-Creation-Date: 2010-03-20 17:34+0100\n"
+"PO-Revision-Date: 2010-03-20 17:44+0100\n"
+"Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -167,7 +167,7 @@ msgstr "Nom"
 #: ../src/Merge/_MergePerson.py:127
 #: ../src/plugins/lib/libpersonview.py:90
 #: ../src/plugins/lib/libplaceview.py:90
-#: ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/tool/NotRelated.py:115
 #: ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
@@ -177,7 +177,7 @@ msgstr "Nom"
 #: ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89
 #: ../src/plugins/view/noteview.py:76
-#: ../src/plugins/view/relview.py:612
+#: ../src/plugins/view/relview.py:613
 #: ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77
 #: ../src/PluginUtils/_GuiOptions.py:829
@@ -451,7 +451,7 @@ msgstr "_Ne pas inclure les enregistrements non-liés"
 #: ../src/plugins/export/ExportGeneWeb.py:82
 #: ../src/plugins/export/ExportVCalendar.py:77
 #: ../src/plugins/export/ExportVCard.py:76
-#: ../src/plugins/tool/EventCmp.py:151
+#: ../src/plugins/tool/EventCmp.py:155
 #: ../src/ReportBase/_ReportUtils.py:265
 msgid "Entire Database"
 msgstr "Toute la base de données"
@@ -640,7 +640,7 @@ msgid "Quick View"
 msgstr "Rapport express"
 
 #: ../src/Relationship.py:797
-#: ../src/plugins/view/pedigreeview.py:1180
+#: ../src/plugins/view/pedigreeview.py:1181
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
 
@@ -778,7 +778,7 @@ msgstr "l'ancien concubin"
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/MarkerReport.py:207
 #: ../src/plugins/view/familyview.py:74
-#: ../src/plugins/view/relview.py:882
+#: ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4144
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -798,7 +798,7 @@ msgstr "Père"
 #: ../src/plugins/textreport/IndivComplete.py:605
 #: ../src/plugins/textreport/MarkerReport.py:213
 #: ../src/plugins/view/familyview.py:75
-#: ../src/plugins/view/relview.py:883
+#: ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4151
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -810,7 +810,7 @@ msgstr "Mère"
 #: ../src/Merge/_MergePerson.py:180
 #: ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/textreport/FamilyGroup.py:494
-#: ../src/plugins/view/relview.py:1341
+#: ../src/plugins/view/relview.py:1342
 #: ../src/plugins/webreport/NarrativeWeb.py:563
 msgid "Spouse"
 msgstr "Conjoint"
@@ -860,10 +860,10 @@ msgstr "Utilisation du presse-papiers"
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473
-#: ../src/plugins/view/geoview.py:643
-#: ../src/plugins/view/relview.py:456
-#: ../src/plugins/view/relview.py:994
-#: ../src/plugins/view/relview.py:1041
+#: ../src/plugins/view/geoview.py:646
+#: ../src/plugins/view/relview.py:457
+#: ../src/plugins/view/relview.py:995
+#: ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -1212,9 +1212,9 @@ msgstr "Prénom"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
-#: ../src/plugins/view/relview.py:529
-#: ../src/plugins/view/relview.py:1317
-#: ../src/plugins/view/relview.py:1339
+#: ../src/plugins/view/relview.py:530
+#: ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/relview.py:1340
 msgid "Family"
 msgstr "Famille"
 
@@ -1308,7 +1308,7 @@ msgstr "Lien d'individu"
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/view/relview.py:622
+#: ../src/plugins/view/relview.py:623
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
 msgstr "Naissance"
@@ -1831,7 +1831,7 @@ msgstr "Sources dans le dépôt"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
 msgstr "Individu"
@@ -1952,7 +1952,7 @@ msgstr "Les données peuvent être récupérées en annulant l'opération ou en 
 #: ../src/plugins/textreport/DetDescendantReport.py:572
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
-#: ../src/plugins/view/relview.py:660
+#: ../src/plugins/view/relview.py:661
 #: ../src/plugins/webreport/NarrativeWeb.py:3489
 #: ../src/plugins/webreport/NarrativeWeb.py:4431
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -2204,7 +2204,7 @@ msgstr "Erreur : type non reconnu : \"%(format)s\" pour le fichier à importer :
 #: ../src/cli/arghandler.py:174
 #, python-format
 msgid ""
-"WARNING: Output file already exist!\n"
+"WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
@@ -2963,7 +2963,7 @@ msgstr "entre"
 #: ../src/gen/lib/date.py:449
 #: ../src/Simple/_SimpleTable.py:251
 #: ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:975
+#: ../src/plugins/view/relview.py:976
 msgid "and"
 msgstr "et"
 
@@ -3086,8 +3086,8 @@ msgstr "Nom marital (nom de famille de l'époux)"
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/view/relview.py:633
-#: ../src/plugins/view/relview.py:658
+#: ../src/plugins/view/relview.py:634
+#: ../src/plugins/view/relview.py:659
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
 msgstr "Décès"
@@ -3226,7 +3226,7 @@ msgstr "Testament / Inventaire après décès"
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/textreport/FamilyGroup.py:357
-#: ../src/plugins/view/relview.py:1257
+#: ../src/plugins/view/relview.py:1258
 msgid "Marriage"
 msgstr "Mariage"
 
@@ -3426,7 +3426,7 @@ msgstr "Vue Gramps"
 
 #: ../src/gen/plug/_pluginreg.py:83
 #: ../src/gui/grampsgui.py:134
-#: ../src/plugins/view/relview.py:132
+#: ../src/plugins/view/relview.py:133
 #: ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
 msgstr "Relations"
@@ -4596,10 +4596,10 @@ msgstr "Notes"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:903
-#: ../src/plugins/view/pedigreeview.py:1481
-#: ../src/plugins/view/relview.py:516
-#: ../src/plugins/view/relview.py:847
-#: ../src/plugins/view/relview.py:881
+#: ../src/plugins/view/pedigreeview.py:1482
+#: ../src/plugins/view/relview.py:517
+#: ../src/plugins/view/relview.py:848
+#: ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr "Parents"
@@ -4620,7 +4620,6 @@ msgid "Pedigree"
 msgstr "Arbre généalogique"
 
 #: ../src/gui/grampsgui.py:133
-#: ../src/plugins/view/placelistview.py:52
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:175
 #: ../src/plugins/webreport/NarrativeWeb.py:1005
@@ -4937,7 +4936,7 @@ msgid "_Toolbar"
 msgstr "Barre d'ou_tils"
 
 #: ../src/gui/viewmanager.py:505
-#: ../src/plugins/view/geoview.py:1096
+#: ../src/plugins/view/geoview.py:1102
 msgid "_Filter Sidebar"
 msgstr "Barre de _filtre"
 
@@ -5379,7 +5378,7 @@ msgstr "Éditer la relation"
 
 #: ../src/gui/editors/editfamily.py:241
 #: ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1515
+#: ../src/plugins/view/relview.py:1516
 msgid "Select Child"
 msgstr "Sélectionner un enfant"
 
@@ -5472,11 +5471,11 @@ msgid "Burial:"
 msgstr "Inhumation :"
 
 #: ../src/gui/editors/editfamily.py:915
-#: ../src/plugins/view/relview.py:594
-#: ../src/plugins/view/relview.py:988
-#: ../src/plugins/view/relview.py:1036
-#: ../src/plugins/view/relview.py:1117
-#: ../src/plugins/view/relview.py:1223
+#: ../src/plugins/view/relview.py:595
+#: ../src/plugins/view/relview.py:989
+#: ../src/plugins/view/relview.py:1037
+#: ../src/plugins/view/relview.py:1118
+#: ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Éditer %s"
@@ -6056,7 +6055,7 @@ msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s - %(part2)s"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
-#: ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:406
 msgid "Add"
 msgstr "Ajouter"
 
@@ -6068,7 +6067,7 @@ msgstr "Enlever"
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
 #: ../src/gui/editors/displaytabs/gallerytab.py:124
-#: ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:410
 msgid "Share"
 msgstr "Partager"
 
@@ -7060,7 +7059,7 @@ msgstr "Aucun parent"
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:110
 #: ../src/plugins/view/fanchartview.py:789
-#: ../src/plugins/view/pedigreeview.py:1367
+#: ../src/plugins/view/pedigreeview.py:1368
 msgid "Spouses"
 msgstr "Conjoints"
 
@@ -8851,8 +8850,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:761
-#: ../src/plugins/view/pedigreeview.py:1319
-#: ../src/plugins/view/pedigreeview.py:1339
+#: ../src/plugins/view/pedigreeview.py:1320
+#: ../src/plugins/view/pedigreeview.py:1340
 msgid "People Menu"
 msgstr "Menu Individus"
 
@@ -8860,8 +8859,8 @@ msgstr "Menu Individus"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:823
-#: ../src/plugins/view/pedigreeview.py:1401
-#: ../src/plugins/view/relview.py:897
+#: ../src/plugins/view/pedigreeview.py:1402
+#: ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:4163
 msgid "Siblings"
 msgstr "Frères et sœurs"
@@ -8871,8 +8870,8 @@ msgstr "Frères et sœurs"
 #: ../src/plugins/textreport/FamilyGroup.py:559
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:866
-#: ../src/plugins/view/pedigreeview.py:1444
-#: ../src/plugins/view/relview.py:1356
+#: ../src/plugins/view/pedigreeview.py:1445
+#: ../src/plugins/view/relview.py:1357
 #: ../src/plugins/webreport/NarrativeWeb.py:4373
 msgid "Children"
 msgstr "Enfants"
@@ -8880,7 +8879,7 @@ msgstr "Enfants"
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:873
 #: ../src/plugins/view/fanchartview.py:940
-#: ../src/plugins/view/pedigreeview.py:1518
+#: ../src/plugins/view/pedigreeview.py:1519
 msgid "Related"
 msgstr "en relation avec"
 
@@ -10056,8 +10055,8 @@ msgid "Gramps package (portable XML)"
 msgstr "Paquet Gramps (XML portable)"
 
 #: ../src/plugins/import/import.gpr.py:89
-msgid "Import data from a Gramps package (an archived XML family tree together with the media object files."
-msgstr "Le paquet Gramps est une base de données XML comprenant les fichiers media."
+msgid "Import data from a Gramps package (an archived XML family tree together with the media object files.)"
+msgstr "Importer les données depuis un paquet Gramps (une archive avec la base de données XML et les fichiers media.)"
 
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
@@ -14088,8 +14087,8 @@ msgid "Delete Person (%s)"
 msgstr "Supprimer l'individu (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:331
-#: ../src/plugins/view/pedigreeview.py:507
-#: ../src/plugins/view/relview.py:418
+#: ../src/plugins/view/pedigreeview.py:510
+#: ../src/plugins/view/relview.py:419
 msgid "Person Filter Editor"
 msgstr "Éditeur de filtre sur l'individu"
 
@@ -14125,13 +14124,13 @@ msgid "Church Parish"
 msgstr "Paroisse"
 
 #: ../src/plugins/lib/libplaceview.py:97
-#: ../src/plugins/view/geoview.py:921
+#: ../src/plugins/view/geoview.py:924
 #: ../src/plugins/webreport/NarrativeWeb.py:118
 msgid "Latitude"
 msgstr "Latitude"
 
 #: ../src/plugins/lib/libplaceview.py:98
-#: ../src/plugins/view/geoview.py:923
+#: ../src/plugins/view/geoview.py:926
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Longitude"
 msgstr "Longitude"
@@ -14458,7 +14457,7 @@ msgid "Parent"
 msgstr "Parent"
 
 #: ../src/plugins/quickview/all_relations.py:287
-#: ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/relview.py:402
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Conjoint"
@@ -14788,8 +14787,8 @@ msgid "Display references for a %s"
 msgstr "Affiche les références pour %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:230
-msgid "Show Repository Reference"
-msgstr "Affiche la référence du dépôt"
+msgid "Repository References"
+msgstr "Références du dépôt"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
@@ -15309,7 +15308,7 @@ msgstr "Relation avec : %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-#: ../src/plugins/view/relview.py:1664
+#: ../src/plugins/view/relview.py:1665
 msgid "Content"
 msgstr "Contenu"
 
@@ -15805,11 +15804,11 @@ msgid "Select the filter to be applied to the report."
 msgstr "Sélectionner le filtre à appliquer au rapport."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
-msgid "List events chonologically"
+msgid "List events chronologically"
 msgstr "Lister les événements chronologiquement"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-msgid "Whether to sort events into chonological order."
+msgid "Whether to sort events into chronological order."
 msgstr "Trier ou non les événements dans l'ordre chronologique."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
@@ -15884,7 +15883,6 @@ msgstr "Rapport du marqueur %s"
 
 # Liste d'individus dans plugins/view/view.gpr.py:152
 #: ../src/plugins/textreport/MarkerReport.py:103
-#: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:145
 #: ../src/plugins/view/view.gpr.py:161
 msgid "People"
@@ -16291,7 +16289,7 @@ msgstr "Changement de la casse"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/ChangeNames.py:209
-#: ../src/plugins/tool/EventCmp.py:284
+#: ../src/plugins/tool/EventCmp.py:296
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
@@ -16693,57 +16691,57 @@ msgstr "Terminal d'évaluation Python"
 msgid "manual|Compare_Individual_Events..."
 msgstr "Comparaison_des_événements_individuels..."
 
-#: ../src/plugins/tool/EventCmp.py:138
+#: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
 msgstr "Sélection du filtre des événements de comparaison"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Filter selection"
 msgstr "Sélection du filtre"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Event Comparison tool"
 msgstr "Outil de comparaison d'événements"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/EventCmp.py:174
+#: ../src/plugins/tool/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Comparaison d'événements"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/EventCmp.py:175
+#: ../src/plugins/tool/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Choix d'un individu"
 
-#: ../src/plugins/tool/EventCmp.py:187
+#: ../src/plugins/tool/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Aucune correspondance n'a été trouvée"
 
-#: ../src/plugins/tool/EventCmp.py:235
-#: ../src/plugins/tool/EventCmp.py:258
+#: ../src/plugins/tool/EventCmp.py:241
+#: ../src/plugins/tool/EventCmp.py:270
 msgid "Event Comparison Results"
 msgstr "Résultats de comparaison d'événements"
 
-#: ../src/plugins/tool/EventCmp.py:245
+#: ../src/plugins/tool/EventCmp.py:251
 msgid " Date"
 msgstr " Date"
 
 #. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:247
+#: ../src/plugins/tool/EventCmp.py:253
 msgid " Place"
 msgstr " Lieu"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/EventCmp.py:291
+#: ../src/plugins/tool/EventCmp.py:303
 msgid "Comparing Events"
 msgstr "Comparaison d'événements"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/EventCmp.py:292
+#: ../src/plugins/tool/EventCmp.py:304
 msgid "Building data"
 msgstr "Construction des données"
 
-#: ../src/plugins/tool/EventCmp.py:372
+#: ../src/plugins/tool/EventCmp.py:384
 msgid "Select filename"
 msgstr "Sélectionner un nom de fichier"
 
@@ -17078,7 +17076,7 @@ msgid "Database Owner Editor"
 msgstr "Éditeur du propriétaire de la base de données"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1185
+#: ../src/PluginUtils/_PluginWindows.py:1194
 msgid "Main window"
 msgstr "Fenêtre principale"
 
@@ -17671,288 +17669,288 @@ msgstr "Lignée"
 msgid "The view showing relations through a fanchart"
 msgstr "Cette vue affiche toutes les relations dans une roue"
 
-#: ../src/plugins/view/geoview.py:344
+#: ../src/plugins/view/geoview.py:346
 msgid "Clear the entry field in the places selection box."
 msgstr "Nettoyer le champ d'entrée dans la sélection des lieux."
 
-#: ../src/plugins/view/geoview.py:349
+#: ../src/plugins/view/geoview.py:351
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
 msgstr "Conserve le zoom et les coordonnées pour la carte des lieux, la carte de l'individu, la carte de la famille et la carte des événements."
 
-#: ../src/plugins/view/geoview.py:354
+#: ../src/plugins/view/geoview.py:356
 msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
 msgstr "Sélectionnez le fournisseur de cartes. Vous pouvez choisir entre OpenStreetMap et les cartes Google."
 
-#: ../src/plugins/view/geoview.py:383
+#: ../src/plugins/view/geoview.py:385
 msgid "Select the period for which you want to see the places."
 msgstr "Sélectionnez la période pour laquelle vous désirez voir les lieux."
 
-#: ../src/plugins/view/geoview.py:392
+#: ../src/plugins/view/geoview.py:394
 msgid "Prior page."
 msgstr "Page précédente."
 
-#: ../src/plugins/view/geoview.py:396
+#: ../src/plugins/view/geoview.py:398
 msgid "The current page/the last page."
 msgstr "La page actuelle/la dernière page."
 
-#: ../src/plugins/view/geoview.py:400
+#: ../src/plugins/view/geoview.py:402
 msgid "Next page."
 msgstr "Page suivante."
 
-#: ../src/plugins/view/geoview.py:408
+#: ../src/plugins/view/geoview.py:410
 msgid "The number of places which have no coordinates."
 msgstr "Le nombre de lieux sans coordonnées."
 
-#: ../src/plugins/view/geoview.py:442
+#: ../src/plugins/view/geoview.py:445
 #: ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "Géographie"
 
-#: ../src/plugins/view/geoview.py:499
+#: ../src/plugins/view/geoview.py:502
 msgid "You can adjust the time period with the two following values."
 msgstr "Vous pouvez ajuster la période à l'aide des deux valeurs suivantes."
 
-#: ../src/plugins/view/geoview.py:501
+#: ../src/plugins/view/geoview.py:504
 msgid "The number of years before the first event date"
 msgstr "Le nombre d'années avant le premier événement daté"
 
-#: ../src/plugins/view/geoview.py:505
+#: ../src/plugins/view/geoview.py:508
 msgid "The number of years after the last event date"
 msgstr "Le nombre d'années après le dernier événement daté"
 
-#: ../src/plugins/view/geoview.py:509
+#: ../src/plugins/view/geoview.py:512
 msgid "Time period adjustment"
 msgstr "Ajustement de la période"
 
-#: ../src/plugins/view/geoview.py:521
+#: ../src/plugins/view/geoview.py:524
 msgid "Crosshair on the map."
 msgstr "Croix sur la carte."
 
-#: ../src/plugins/view/geoview.py:524
+#: ../src/plugins/view/geoview.py:527
 msgid ""
-"Show the coordinates in the statusbar either in degree\n"
-"either in internal gramps format ( D.D8 )"
+"Show the coordinates in the statusbar either in degrees\n"
+"or in internal gramps format ( D.D8 )"
 msgstr ""
 "Affiche les coordonnées dans la barre de statut soit en degré\n"
 "soit dans le format interne à Gramps ( D.D8 )"
 
-#: ../src/plugins/view/geoview.py:527
+#: ../src/plugins/view/geoview.py:530
 msgid "The map"
 msgstr "La carte"
 
-#: ../src/plugins/view/geoview.py:547
+#: ../src/plugins/view/geoview.py:550
 msgid "Test the network "
 msgstr "Test de la connexion internet "
 
-#: ../src/plugins/view/geoview.py:550
+#: ../src/plugins/view/geoview.py:553
 msgid "Time out for the network connection test"
 msgstr "Fin du test pour la connexion internet"
 
-#: ../src/plugins/view/geoview.py:554
+#: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
-"Must be greater or equal to 10 secondes"
+"Must be greater or equal to 10 seconds"
 msgstr ""
 "Temps en secondes entre deux tests de l'hôte.\n"
 "Doit être supérieur ou égal à 10 secondes"
 
-#: ../src/plugins/view/geoview.py:559
+#: ../src/plugins/view/geoview.py:562
 msgid "Host to test for http. Please, change this and select one of your choice."
 msgstr "Test de l'hôte pour http. S'il vous plaît, changez et sélectionnez d'après votre choix."
 
-#: ../src/plugins/view/geoview.py:563
+#: ../src/plugins/view/geoview.py:566
 msgid "The network"
 msgstr "La connexion internet"
 
-#: ../src/plugins/view/geoview.py:591
+#: ../src/plugins/view/geoview.py:594
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Sélectionnez le lieu pour lequel vous désirez voir l'info-bulle."
 
-#: ../src/plugins/view/geoview.py:672
+#: ../src/plugins/view/geoview.py:675
 msgid "Time period"
 msgstr "Période"
 
-#: ../src/plugins/view/geoview.py:673
+#: ../src/plugins/view/geoview.py:676
 msgid "years"
 msgstr "années"
 
 # dans le sens la totalité des dates
-#: ../src/plugins/view/geoview.py:679
-#: ../src/plugins/view/geoview.py:1002
+#: ../src/plugins/view/geoview.py:682
+#: ../src/plugins/view/geoview.py:1008
 msgid "All"
 msgstr "L'ensemble"
 
-#: ../src/plugins/view/geoview.py:925
+#: ../src/plugins/view/geoview.py:928
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../src/plugins/view/geoview.py:1050
-#: ../src/plugins/view/geoview.py:1060
+#: ../src/plugins/view/geoview.py:1056
+#: ../src/plugins/view/geoview.py:1066
 msgid "_Add Place"
 msgstr "_Ajouter un lieu"
 
-#: ../src/plugins/view/geoview.py:1052
-#: ../src/plugins/view/geoview.py:1062
+#: ../src/plugins/view/geoview.py:1058
+#: ../src/plugins/view/geoview.py:1068
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
 msgstr "Ajouter un emplacement centré sur la carte comme un nouveau lieu dans Gramps. Cliquez deux fois sur ce lieu pour le centrer dans la carte."
 
-#: ../src/plugins/view/geoview.py:1055
-#: ../src/plugins/view/geoview.py:1065
+#: ../src/plugins/view/geoview.py:1061
+#: ../src/plugins/view/geoview.py:1071
 msgid "_Link Place"
 msgstr "_Lier à un lieu"
 
-#: ../src/plugins/view/geoview.py:1057
-#: ../src/plugins/view/geoview.py:1067
+#: ../src/plugins/view/geoview.py:1063
+#: ../src/plugins/view/geoview.py:1073
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
 msgstr "Lier l'emplacement centré sur la carte à un lieu présent dans Gramps. Cliquez deux fois sur ce lieu pour le centrer dans la carte."
 
-#: ../src/plugins/view/geoview.py:1069
-#: ../src/plugins/view/geoview.py:1083
+#: ../src/plugins/view/geoview.py:1075
+#: ../src/plugins/view/geoview.py:1089
 msgid "_All Places"
 msgstr "_Les Lieux"
 
-#: ../src/plugins/view/geoview.py:1070
-#: ../src/plugins/view/geoview.py:1084
+#: ../src/plugins/view/geoview.py:1076
+#: ../src/plugins/view/geoview.py:1090
 msgid "Attempt to view all places in the family tree."
 msgstr "Tentative pour afficher les lieux de l'arbre familial."
 
-#: ../src/plugins/view/geoview.py:1072
-#: ../src/plugins/view/geoview.py:1086
+#: ../src/plugins/view/geoview.py:1078
+#: ../src/plugins/view/geoview.py:1092
 msgid "_Person"
 msgstr "_Individu"
 
-#: ../src/plugins/view/geoview.py:1074
-#: ../src/plugins/view/geoview.py:1088
+#: ../src/plugins/view/geoview.py:1080
+#: ../src/plugins/view/geoview.py:1094
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Tentative pour afficher les lieux correspondants aux individus sélectionnés."
 
-#: ../src/plugins/view/geoview.py:1076
-#: ../src/plugins/view/geoview.py:1090
+#: ../src/plugins/view/geoview.py:1082
+#: ../src/plugins/view/geoview.py:1096
 msgid "_Family"
 msgstr "_Famille"
 
-#: ../src/plugins/view/geoview.py:1078
-#: ../src/plugins/view/geoview.py:1092
+#: ../src/plugins/view/geoview.py:1084
+#: ../src/plugins/view/geoview.py:1098
 msgid "Attempt to view places of the selected people's family."
 msgstr "Tentative pour afficher les lieux familiaux de l'individu sélectionné."
 
-#: ../src/plugins/view/geoview.py:1079
-#: ../src/plugins/view/geoview.py:1093
+#: ../src/plugins/view/geoview.py:1085
+#: ../src/plugins/view/geoview.py:1099
 msgid "_Event"
 msgstr "Évén_ement"
 
-#: ../src/plugins/view/geoview.py:1081
-#: ../src/plugins/view/geoview.py:1095
+#: ../src/plugins/view/geoview.py:1087
+#: ../src/plugins/view/geoview.py:1101
 msgid "Attempt to view places connected to all events."
 msgstr "Tentative pour afficher les lieux liés aux événements."
 
-#: ../src/plugins/view/geoview.py:1288
+#: ../src/plugins/view/geoview.py:1294
 msgid "List of places without coordinates"
 msgstr "Liste des lieux sans coordonnées"
 
-#: ../src/plugins/view/geoview.py:1289
+#: ../src/plugins/view/geoview.py:1295
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Voici une liste des lieux de la base de données sans coordonnées.<br> C'est à dire sans longitude ou latitude.<p>"
 
-#: ../src/plugins/view/geoview.py:1292
+#: ../src/plugins/view/geoview.py:1298
 msgid "Back to prior page"
 msgstr "Retour à la page précédente"
 
-#: ../src/plugins/view/geoview.py:1535
+#: ../src/plugins/view/geoview.py:1541
 msgid "Places list"
 msgstr "Liste des lieux"
 
-#: ../src/plugins/view/geoview.py:1789
+#: ../src/plugins/view/geoview.py:1795
 msgid "No location."
 msgstr "Aucun emplacement."
 
-#: ../src/plugins/view/geoview.py:1792
+#: ../src/plugins/view/geoview.py:1798
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Vous n'avez pas de lieux avec coordonnées dans votre base de données."
 
-#: ../src/plugins/view/geoview.py:1795
+#: ../src/plugins/view/geoview.py:1801
 msgid "You are looking at the default map."
 msgstr "Vous regardez la carte par défaut."
 
-#: ../src/plugins/view/geoview.py:1822
+#: ../src/plugins/view/geoview.py:1828
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : lieu de naissance."
 
-#: ../src/plugins/view/geoview.py:1825
+#: ../src/plugins/view/geoview.py:1831
 msgid "birth place."
 msgstr "lieu de naissance."
 
-#: ../src/plugins/view/geoview.py:1860
+#: ../src/plugins/view/geoview.py:1866
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : lieu du décès."
 
-#: ../src/plugins/view/geoview.py:1863
+#: ../src/plugins/view/geoview.py:1869
 msgid "death place."
 msgstr "lieu du décès."
 
-#: ../src/plugins/view/geoview.py:1906
+#: ../src/plugins/view/geoview.py:1912
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:1923
+#: ../src/plugins/view/geoview.py:1929
 msgid "All places in the family tree with coordinates."
 msgstr "Les lieux de la base de données avec coordonnées."
 
-#: ../src/plugins/view/geoview.py:2000
+#: ../src/plugins/view/geoview.py:2006
 msgid "All events in the family tree with coordinates."
 msgstr "Les événements de cette base de données avec coordonnées."
 
-#: ../src/plugins/view/geoview.py:2025
+#: ../src/plugins/view/geoview.py:2031
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Père : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2032
+#: ../src/plugins/view/geoview.py:2038
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Mère : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2043
+#: ../src/plugins/view/geoview.py:2049
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Enfant : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2051
+#: ../src/plugins/view/geoview.py:2057
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id : Individu : %(id)s %(name)s n'a pas de famille."
 
-#: ../src/plugins/view/geoview.py:2057
+#: ../src/plugins/view/geoview.py:2063
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Les lieux de la famille de %(name)s avec coordonnées."
 
-#: ../src/plugins/view/geoview.py:2094
+#: ../src/plugins/view/geoview.py:2100
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2113
+#: ../src/plugins/view/geoview.py:2119
 msgid "All event places for"
 msgstr "Localisation des événements pour"
 
-#: ../src/plugins/view/geoview.py:2122
-msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
+#: ../src/plugins/view/geoview.py:2128
+msgid "Cannot center the map. No location with coordinates.That may happen for one of the following reasons : <ul><li>The filter you use returned nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr "Impossible de centrer la carte. Aucun emplacement avec coordonnées. Les causes possibles sont : <ul><li>Le filtre utilisé ne trouve rien.</li><li>Soit la personne active n'a pas de lieux avec coordonnées.</li><li>Soit les membres de la famille de la personne active n'ont pas de lieux avec coordonnées.</li><li>Soit vous n'avez pas de lieux dans votre base.</li><li>Soit vous n'avez pas désigné de personne active.</li>"
 
-#: ../src/plugins/view/geoview.py:2140
+#: ../src/plugins/view/geoview.py:2146
 msgid "Not yet implemented ..."
 msgstr "Pas encore implémenté ..."
 
-#: ../src/plugins/view/geoview.py:2289
+#: ../src/plugins/view/geoview.py:2295
 msgid "Start page for the Geography View"
 msgstr "Première page pour la vue Géographie"
 
-#: ../src/plugins/view/geoview.py:2290
-msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
+#: ../src/plugins/view/geoview.py:2296
+msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr "Vous ne voyez pas de carte pour les raisons suivantes : <br><ol><li>Votre base de données est vide ou pas encore sélectionnée.</li><li>Vous n'avez pas encore sélectionné un individu.</li><li>Vous n'avez pas de lieu dans votre base de données.</li><li>Les lieux sélectionnés n'ont pas de coordonnées.</li></ol>"
 
 #: ../src/plugins/view/geoview.gpr.py:50
@@ -17960,8 +17958,8 @@ msgid "Geographic View"
 msgstr "Vue Géographique"
 
 #: ../src/plugins/view/geoview.gpr.py:51
-msgid "The view showing events on an interactive internet map (internet connection needed"
-msgstr "Cette vue affiche les événements sur une carte internet interactive (une connexion internet est nécessaire"
+msgid "The view showing events on an interactive internet map (internet connection needed)"
+msgstr "Cette vue affiche les événements sur une carte internet interactive (une connexion internet est nécessaire)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
@@ -18102,19 +18100,19 @@ msgstr "inh."
 msgid "short for cremated|crem."
 msgstr "crem."
 
-#: ../src/plugins/view/pedigreeview.py:898
+#: ../src/plugins/view/pedigreeview.py:899
 msgid "Jump to child..."
 msgstr "Aller à l'enfant..."
-
-#: ../src/plugins/view/pedigreeview.py:916
-msgid "Jump to mother"
-msgstr "Aller à la mère"
 
 #: ../src/plugins/view/pedigreeview.py:908
 msgid "Jump to father"
 msgstr "Aller au père"
 
-#: ../src/plugins/view/pedigreeview.py:1181
+#: ../src/plugins/view/pedigreeview.py:917
+msgid "Jump to mother"
+msgstr "Aller à la mère"
+
+#: ../src/plugins/view/pedigreeview.py:1182
 msgid "A person was found to be his/her own ancestor."
 msgstr "Un individu est défini comme son propre ascendant."
 
@@ -18123,51 +18121,57 @@ msgstr "Un individu est défini comme son propre ascendant."
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/plugins/view/pedigreeview.py:1224
-#: ../src/plugins/view/pedigreeview.py:1233
+#: ../src/plugins/view/pedigreeview.py:1225
+#: ../src/plugins/view/pedigreeview.py:1234
 #: ../src/plugins/webreport/NarrativeWeb.py:3023
 msgid "Home"
 msgstr "Souche"
 
-#: ../src/plugins/view/pedigreeview.py:1247
+#: ../src/plugins/view/pedigreeview.py:1248
 msgid "Show images"
 msgstr "Afficher les images"
 
-#: ../src/plugins/view/pedigreeview.py:1256
+#: ../src/plugins/view/pedigreeview.py:1257
 msgid "Show marriage data"
 msgstr "Afficher les données du mariage"
 
-#: ../src/plugins/view/pedigreeview.py:1265
+#: ../src/plugins/view/pedigreeview.py:1266
 msgid "Tree style"
 msgstr "Style de l'arbre"
 
-#: ../src/plugins/view/pedigreeview.py:1272
+#: ../src/plugins/view/pedigreeview.py:1273
 msgid "Version A"
 msgstr "Version A"
 
-#: ../src/plugins/view/pedigreeview.py:1279
+#: ../src/plugins/view/pedigreeview.py:1280
 msgid "Version B"
 msgstr "Version B"
 
-#: ../src/plugins/view/pedigreeview.py:1291
+#: ../src/plugins/view/pedigreeview.py:1292
 msgid "Tree size"
 msgstr "Taille de l'arbre"
 
-#: ../src/plugins/view/pedigreeview.py:1298
+#: ../src/plugins/view/pedigreeview.py:1299
 msgid "Automatic"
 msgstr "Automatique"
 
 # ngettext
-#: ../src/plugins/view/pedigreeview.py:1306
+#: ../src/plugins/view/pedigreeview.py:1307
 #, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
 msgstr[0] "%d génération"
 msgstr[1] "%d générations"
 
-#: ../src/plugins/view/pedigreeview.py:1569
+#: ../src/plugins/view/pedigreeview.py:1570
 msgid "Family Menu"
 msgstr "Menu Famille"
+
+# Vue
+#: ../src/plugins/view/personlistview.py:59
+#: ../src/plugins/view/view.gpr.py:152
+msgid "Person View"
+msgstr "Liste d'individus"
 
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
@@ -18182,6 +18186,12 @@ msgstr "Déployer tous les nœuds"
 #: ../src/plugins/view/placetreeview.py:84
 msgid "Collapse all Nodes"
 msgstr "Fermer tous les nœuds"
+
+# vue
+#: ../src/plugins/view/placelistview.py:52
+#: ../src/plugins/view/view.gpr.py:167
+msgid "Place View"
+msgstr "Liste de lieux"
 
 # Vue lieux
 #: ../src/plugins/view/placetreeview.gpr.py:3
@@ -18201,205 +18211,205 @@ msgstr "Déployer le groupe entier"
 msgid "Collapse this Entire Group"
 msgstr "Compresser le groupe entier"
 
-#: ../src/plugins/view/relview.py:393
+#: ../src/plugins/view/relview.py:394
 msgid "_Reorder"
 msgstr "_Réorganiser"
 
-#: ../src/plugins/view/relview.py:394
+#: ../src/plugins/view/relview.py:395
 msgid "Change order of parents and families"
 msgstr "Changer l'ordre des parents et familles"
 
-#: ../src/plugins/view/relview.py:399
+#: ../src/plugins/view/relview.py:400
 msgid "Edit..."
 msgstr "Éditer..."
 
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/relview.py:401
 msgid "Edit the active person"
 msgstr "Éditer l'individu actif"
 
-#: ../src/plugins/view/relview.py:402
-#: ../src/plugins/view/relview.py:404
-#: ../src/plugins/view/relview.py:800
+#: ../src/plugins/view/relview.py:403
+#: ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:801
 msgid "Add a new family with person as parent"
 msgstr "Ajouter une nouvelle famille dont l'individu est le parent"
 
-#: ../src/plugins/view/relview.py:403
+#: ../src/plugins/view/relview.py:404
 msgid "Add Partner..."
 msgstr "Ajouter un conjoint..."
 
-#: ../src/plugins/view/relview.py:406
-#: ../src/plugins/view/relview.py:408
-#: ../src/plugins/view/relview.py:794
+#: ../src/plugins/view/relview.py:407
+#: ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:795
 msgid "Add a new set of parents"
 msgstr "Ajouter un nouveau couple de parents"
 
-#: ../src/plugins/view/relview.py:407
+#: ../src/plugins/view/relview.py:408
 msgid "Add New Parents..."
 msgstr "Ajouter des nouveaux parents..."
 
-#: ../src/plugins/view/relview.py:410
-#: ../src/plugins/view/relview.py:414
-#: ../src/plugins/view/relview.py:795
+#: ../src/plugins/view/relview.py:411
+#: ../src/plugins/view/relview.py:415
+#: ../src/plugins/view/relview.py:796
 msgid "Add person as child to an existing family"
 msgstr "Définir l'individu comme enfant d'une famille existante"
 
-#: ../src/plugins/view/relview.py:413
+#: ../src/plugins/view/relview.py:414
 msgid "Add Existing Parents..."
 msgstr "Ajouter des parents existants..."
 
-#: ../src/plugins/view/relview.py:653
+#: ../src/plugins/view/relview.py:654
 msgid "Alive"
 msgstr "En vie"
 
-#: ../src/plugins/view/relview.py:711
-#: ../src/plugins/view/relview.py:738
+#: ../src/plugins/view/relview.py:712
+#: ../src/plugins/view/relview.py:739
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s à %(place)s"
 
-#: ../src/plugins/view/relview.py:796
+#: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
 msgstr "Éditer les parents"
 
-#: ../src/plugins/view/relview.py:797
+#: ../src/plugins/view/relview.py:798
 msgid "Reorder parents"
 msgstr "Réorganiser les parents"
 
 # enlever la référence aux parents
-#: ../src/plugins/view/relview.py:798
+#: ../src/plugins/view/relview.py:799
 msgid "Remove person as child of these parents"
 msgstr "Enlever l'individu comme enfant de ces parents"
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:803
 msgid "Edit family"
 msgstr "Éditer la famille"
 
-#: ../src/plugins/view/relview.py:803
+#: ../src/plugins/view/relview.py:804
 msgid "Reorder families"
 msgstr "Réorganiser les familles"
 
 # enlever la référence au père
-#: ../src/plugins/view/relview.py:804
+#: ../src/plugins/view/relview.py:805
 msgid "Remove person as parent in this family"
 msgstr "Enlever l'individu comme parent dans cette famille"
 
 # ngettext
-#: ../src/plugins/view/relview.py:857
-#: ../src/plugins/view/relview.py:913
+#: ../src/plugins/view/relview.py:858
+#: ../src/plugins/view/relview.py:914
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] "(%d frère ou sœur)"
 msgstr[1] "(%d frères et sœurs)"
 
-#: ../src/plugins/view/relview.py:862
-#: ../src/plugins/view/relview.py:918
+#: ../src/plugins/view/relview.py:863
+#: ../src/plugins/view/relview.py:919
 msgid " (1 brother)"
 msgstr " (1 frère)"
 
-#: ../src/plugins/view/relview.py:864
-#: ../src/plugins/view/relview.py:920
+#: ../src/plugins/view/relview.py:865
+#: ../src/plugins/view/relview.py:921
 msgid " (1 sister)"
 msgstr " (1 sœur)"
 
-#: ../src/plugins/view/relview.py:866
-#: ../src/plugins/view/relview.py:922
+#: ../src/plugins/view/relview.py:867
+#: ../src/plugins/view/relview.py:923
 msgid " (1 sibling)"
 msgstr " (1 frère ou sœur)"
 
-#: ../src/plugins/view/relview.py:868
-#: ../src/plugins/view/relview.py:924
+#: ../src/plugins/view/relview.py:869
+#: ../src/plugins/view/relview.py:925
 msgid " (only child)"
 msgstr " (enfant unique)"
 
-#: ../src/plugins/view/relview.py:939
-#: ../src/plugins/view/relview.py:1388
+#: ../src/plugins/view/relview.py:940
+#: ../src/plugins/view/relview.py:1389
 msgid "Add new child to family"
 msgstr "Ajouter un nouvel enfant à la famille"
 
-#: ../src/plugins/view/relview.py:943
-#: ../src/plugins/view/relview.py:1392
+#: ../src/plugins/view/relview.py:944
+#: ../src/plugins/view/relview.py:1393
 msgid "Add existing child to family"
 msgstr "Ajouter un enfant existant à la famille"
 
-#: ../src/plugins/view/relview.py:1172
+#: ../src/plugins/view/relview.py:1173
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../src/plugins/view/relview.py:1179
-#: ../src/plugins/view/relview.py:1181
+#: ../src/plugins/view/relview.py:1180
+#: ../src/plugins/view/relview.py:1182
 #, python-format
 msgid "%s %s"
 msgstr "%s %s"
 
-#: ../src/plugins/view/relview.py:1242
+#: ../src/plugins/view/relview.py:1243
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Type de relation : %s"
 
-#: ../src/plugins/view/relview.py:1284
+#: ../src/plugins/view/relview.py:1285
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s : %(date)s à %(place)s"
 
-#: ../src/plugins/view/relview.py:1288
+#: ../src/plugins/view/relview.py:1289
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s : %(date)s"
 
-#: ../src/plugins/view/relview.py:1292
+#: ../src/plugins/view/relview.py:1293
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s : %(place)s"
 
-#: ../src/plugins/view/relview.py:1303
+#: ../src/plugins/view/relview.py:1304
 msgid "Broken family detected"
 msgstr "Famille brisée détectée"
 
-#: ../src/plugins/view/relview.py:1304
+#: ../src/plugins/view/relview.py:1305
 msgid "Please run the Check and Repair Database tool"
 msgstr "Veuillez lancer l'outil Vérifier et réparer la base de données"
 
 # ngettext
-#: ../src/plugins/view/relview.py:1325
-#: ../src/plugins/view/relview.py:1371
+#: ../src/plugins/view/relview.py:1326
+#: ../src/plugins/view/relview.py:1372
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d enfant)"
 msgstr[1] " (%d enfants)"
 
-#: ../src/plugins/view/relview.py:1327
-#: ../src/plugins/view/relview.py:1373
+#: ../src/plugins/view/relview.py:1328
+#: ../src/plugins/view/relview.py:1374
 msgid " (no children)"
 msgstr " (pas d'enfant)"
 
-#: ../src/plugins/view/relview.py:1503
+#: ../src/plugins/view/relview.py:1504
 msgid "Add Child to Family"
 msgstr "Ajouter un enfant à la famille"
 
-#: ../src/plugins/view/relview.py:1636
+#: ../src/plugins/view/relview.py:1637
 msgid "Use shading"
 msgstr "Utiliser les nuances"
 
-#: ../src/plugins/view/relview.py:1639
+#: ../src/plugins/view/relview.py:1640
 msgid "Display edit buttons"
 msgstr "Afficher les boutons d'édition"
 
-#: ../src/plugins/view/relview.py:1641
+#: ../src/plugins/view/relview.py:1642
 msgid "View links as website links"
 msgstr "Les liens dans le style internet"
 
-#: ../src/plugins/view/relview.py:1647
+#: ../src/plugins/view/relview.py:1648
 msgid "Layout"
 msgstr "Mise en page"
 
-#: ../src/plugins/view/relview.py:1658
+#: ../src/plugins/view/relview.py:1659
 msgid "Show Details"
 msgstr "Afficher les détails"
 
-#: ../src/plugins/view/relview.py:1661
+#: ../src/plugins/view/relview.py:1662
 msgid "Show Siblings"
 msgstr "Afficher les frères et sœurs"
 
@@ -18514,19 +18524,9 @@ msgstr "Groupe d'individus"
 msgid "The view showing all people in the family tree"
 msgstr "Cette vue affiche toutes les personnes de l'arbre familial par groupe"
 
-# Vue
-#: ../src/plugins/view/view.gpr.py:152
-msgid "Person View"
-msgstr "Liste d'individus"
-
 #: ../src/plugins/view/view.gpr.py:153
 msgid "The view showing all people in the family tree in a flat list"
 msgstr "Cette vue affiche toutes les personnes de l'arbre familial dans une liste simple"
-
-# vue
-#: ../src/plugins/view/view.gpr.py:167
-msgid "Place View"
-msgstr "Liste de lieux"
 
 #: ../src/plugins/view/view.gpr.py:168
 msgid "The view showing all the places of the family tree"
@@ -18731,8 +18731,8 @@ msgstr "Informations de publication"
 
 # titre = nom
 #: ../src/plugins/webreport/NarrativeWeb.py:3205
-msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr "Cette page contient un index de tous les objets media de la base de données, classés par nom. Cliquez sur le nom pour ouvrir la page. Si la taille de l'image n'est pas suffisante, cliquez sur l'image pour la voir dans sa taille réelle."
+msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
+msgstr "Cette page contient un index de tous les objets media de la base de données, classés par nom. Cliquez sur le nom pour ouvrir la page. Si vous voyez les dimensions au-dessus de l'image, cliquez sur l'image pour la voir dans sa taille réelle."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3224
 msgid "Media | Name"
@@ -19144,9 +19144,8 @@ msgstr "Arbre de la famille Bernard"
 msgid "Download Copyright License"
 msgstr "Licence"
 
-# typo dans le code
 #: ../src/plugins/webreport/NarrativeWeb.py:5820
-msgid "The copyright to be used for ths download file?"
+msgid "The copyright to be used for this download file?"
 msgstr "Le droit d'auteur défini pour ce fichier ?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5829
@@ -19164,13 +19163,15 @@ msgstr "Encodage de caractères"
 msgid "The encoding to be used for the web files"
 msgstr "L'encodage utilisé pour les fichiers internet"
 
+# pas la souche du programme, mais du rapport
 #: ../src/plugins/webreport/NarrativeWeb.py:5837
 msgid "Include link to home person on every page"
-msgstr "Inclure un lien vers l'individu souche dans chaque page"
+msgstr "Inclure un lien vers l'individu de départ dans chaque page"
 
+# pas la souche du programme, mais du rapport
 #: ../src/plugins/webreport/NarrativeWeb.py:5838
 msgid "Whether to include a link to the home person"
-msgstr "Inclure ou non un lien vers l'individu souche"
+msgstr "Inclure ou non un lien vers l'individu de départ"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5841
 msgid "Include a column for birth dates on the index pages"
@@ -19708,145 +19709,145 @@ msgid "Path to Addon:"
 msgstr "Chemin vers le greffon additionnel :"
 
 # bouton
-#: ../src/PluginUtils/_PluginWindows.py:357
+#: ../src/PluginUtils/_PluginWindows.py:360
 msgid "Install Addon"
 msgstr "Installer le greffon"
 
 # bouton
-#: ../src/PluginUtils/_PluginWindows.py:360
+#: ../src/PluginUtils/_PluginWindows.py:363
 msgid "Install All Addons"
 msgstr "Tout installer"
 
 # bouton
-#: ../src/PluginUtils/_PluginWindows.py:363
+#: ../src/PluginUtils/_PluginWindows.py:366
 msgid "Refresh Addon List"
 msgstr "Actualiser la liste"
 
-#: ../src/PluginUtils/_PluginWindows.py:368
+#: ../src/PluginUtils/_PluginWindows.py:371
 msgid "Install Addons"
 msgstr "Installation des greffons"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:376
+#: ../src/PluginUtils/_PluginWindows.py:379
 msgid "Reload"
 msgstr "Recharger"
 
 # bouton
-#: ../src/PluginUtils/_PluginWindows.py:398
+#: ../src/PluginUtils/_PluginWindows.py:401
 msgid "Refreshing Addon List"
 msgstr "Actualisation de la liste"
 
-#: ../src/PluginUtils/_PluginWindows.py:399
-#: ../src/PluginUtils/_PluginWindows.py:404
-#: ../src/PluginUtils/_PluginWindows.py:494
+#: ../src/PluginUtils/_PluginWindows.py:402
+#: ../src/PluginUtils/_PluginWindows.py:407
+#: ../src/PluginUtils/_PluginWindows.py:497
 msgid "Reading gramps-project.org..."
 msgstr "Lecture depuis gramps-project.org..."
 
 # Substantif (GNOME fr)
-#: ../src/PluginUtils/_PluginWindows.py:422
+#: ../src/PluginUtils/_PluginWindows.py:425
 msgid "Checking addon..."
 msgstr "Vérification du greffon..."
 
-#: ../src/PluginUtils/_PluginWindows.py:430
+#: ../src/PluginUtils/_PluginWindows.py:433
 msgid "Unknown Help URL"
 msgstr "URL d'aide inconnu"
 
-#: ../src/PluginUtils/_PluginWindows.py:441
+#: ../src/PluginUtils/_PluginWindows.py:444
 msgid "Unknown URL"
 msgstr "URL inconnu"
 
 # bouton
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:480
 msgid "Install all Addons"
 msgstr "Tout installer"
 
 # Substantif (GNOME fr)
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:480
 msgid "Installing..."
 msgstr "Installation..."
 
 # bouton
-#: ../src/PluginUtils/_PluginWindows.py:493
+#: ../src/PluginUtils/_PluginWindows.py:496
 msgid "Installing Addon"
 msgstr "Installation du greffon"
 
-#: ../src/PluginUtils/_PluginWindows.py:522
-#: ../src/PluginUtils/_PluginWindows.py:528
+#: ../src/PluginUtils/_PluginWindows.py:525
+#: ../src/PluginUtils/_PluginWindows.py:531
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Impossible d'ouvrir '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:539
+#: ../src/PluginUtils/_PluginWindows.py:542
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Erreur : Impossible d'ouvrir '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:542
+#: ../src/PluginUtils/_PluginWindows.py:545
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Erreur : type de fichier inconnu : '%s'"
 
 # Substantif (GNOME fr)
-#: ../src/PluginUtils/_PluginWindows.py:547
+#: ../src/PluginUtils/_PluginWindows.py:550
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Examine '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:559
+#: ../src/PluginUtils/_PluginWindows.py:562
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Erreur dans le fichier '%s' : impossible à charger."
 
-#: ../src/PluginUtils/_PluginWindows.py:571
+#: ../src/PluginUtils/_PluginWindows.py:574
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' est pour cette version de Gramps."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:574
+#: ../src/PluginUtils/_PluginWindows.py:577
 #, python-format
-msgid "'%s' is for NOT this version of Gramps."
-msgstr "'%s' N'EST PAS PRÉVU pour cette version de Gramps."
+msgid "'%s' is NOT for this version of Gramps."
+msgstr "'%s'  N'EST PAS PRÉVU pour cette version de Gramps."
 
-#: ../src/PluginUtils/_PluginWindows.py:575
+#: ../src/PluginUtils/_PluginWindows.py:578
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Prévu pour la version %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:581
+#: ../src/PluginUtils/_PluginWindows.py:584
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Erreur: gramps_target_version = '3.2' dans '%s' manquant"
 
 # Substantif (GNOME fr)
-#: ../src/PluginUtils/_PluginWindows.py:585
+#: ../src/PluginUtils/_PluginWindows.py:588
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installation de '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:595
+#: ../src/PluginUtils/_PluginWindows.py:598
 #, python-format
 msgid "Registered '%s'"
 msgstr "'%s' enregistré"
 
-#: ../src/PluginUtils/_PluginWindows.py:604
+#: ../src/PluginUtils/_PluginWindows.py:607
 msgid "Load Addon"
 msgstr "Charge du greffon"
 
-#: ../src/PluginUtils/_PluginWindows.py:655
+#: ../src/PluginUtils/_PluginWindows.py:664
 msgid "Unavailable"
 msgstr "Non-disponible"
 
-#: ../src/PluginUtils/_PluginWindows.py:659
+#: ../src/PluginUtils/_PluginWindows.py:668
 msgid "Fail"
 msgstr "Échec"
 
-#: ../src/PluginUtils/_PluginWindows.py:673
+#: ../src/PluginUtils/_PluginWindows.py:682
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:821
+#: ../src/PluginUtils/_PluginWindows.py:830
 msgid "Plugin Error"
 msgstr "Erreur de greffon"
 
@@ -21972,7 +21973,7 @@ msgstr "Sources avec un <nombre> de références de dépôt"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-msgid "Matches sources with certain number repository references"
+msgid "Matches sources with a certain number of repository references"
 msgstr "Correspond aux sources ayant un nombre de références de dépôt"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
@@ -23911,7 +23912,7 @@ msgid "<b>Adding Images</b><br/>An image can be added to any gallery or the Medi
 msgstr "<b>Ajout d'images</b><br/>Une image peut être ajoutée à n'importe quelle galerie par un simple glisser-déposer depuis un gestionnaire de fichiers ou un navigateur internet. Actuellement vous pouvez ajouter tout type d'images, c'est pratique pour les numérisations de documents ou d'autres sources."
 
 #: ../src/data/tips.xml.in.h:3
-msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and setting. Play with the settings to see the different options."
+msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options."
 msgstr "<b>La Vue Lignée</b><br/>La vue Lignée affiche un arbre traditionnel. Gardez la souris au-dessus d'un individu pour afficher plus d'informations le concernant. Faites un clic droit sur un individu pour afficher un menu contextuel qui vous permettra d'accéder rapidement aux conjoints, aux enfants ou aux parents. Jouez avec la configuration pour trouver les différentes options."
 
 #: ../src/data/tips.xml.in.h:4
@@ -23949,7 +23950,7 @@ msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, sourc
 msgstr "<b>Édition d'objets</b><br/>Dans la plupart des cas, en double-cliquant sur un nom, une source ou un lieu, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquez sur un parent ou un enfant ouvre l'éditeur de relations."
 
 #: ../src/data/tips.xml.in.h:12
-msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to it's parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
+msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to its parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
 msgstr "<b>Édition de la relation parent-enfant</b><br/>Vous pouvez éditer la relation d'un enfant avec ses parents en cliquant deux fois sur l'enfant dans l'éditeur de famille. Les relations peuvent être du type Adopté, Naissance, Aucun, Enfant du conjoint, En nourrice, Parrainé et Inconnu."
 
 #: ../src/data/tips.xml.in.h:13
@@ -23974,7 +23975,7 @@ msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gram
 msgstr "<b>Gramps mailing listes</b><br/>Vous voulez des réponses à vos questions sur Gramps ? Allez voir la liste des utilisateurs de Gramps (gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez ainsi avoir une réponse rapide. Si vous avez des questions sur le développement de Gramps, essayez gramps-devel. Toutes les informations sur les listes de diffusion peuvent être trouvées sur lists.sf.net. Vous pouvez également y accéder en sélectionnant &quot;Aide &gt; Listes Gramps&quot;."
 
 #: ../src/data/tips.xml.in.h:18
-msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for you family tree then there's a report for that as well."
+msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well."
 msgstr "<b>Rapports Gramps</b><br/>Gramps permet d'éditer de nombreux rapports. Le rapport de texte est particulièrement utile si vous voulez diffuser votre arbre généalogique aux membres de votre famille sur support numérique (message électronique, CD, etc.)."
 
 #: ../src/data/tips.xml.in.h:19
@@ -23999,7 +24000,7 @@ msgid "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements 
 msgstr "<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer des améliorations pour Gramps. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/. Il est également apprécié d'en discuter sur l'une des listes Gramps."
 
 #: ../src/data/tips.xml.in.h:24
-msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a redish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
+msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a reddish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
 msgstr "<b>Dates incorrectes</b><br/>Tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le format de la date est défini dans &quot;Édition &gt; Préférences &gt; Affichage&quot;."
 
 #: ../src/data/tips.xml.in.h:25
@@ -24049,7 +24050,7 @@ msgid "<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge
 msgstr "<b>Fusionner des entrées</b><br/>La fonction &quot;Fusionner&quot; vous permet de combiner les personnes listées séparément en une seule liste. C'est très utile pour fusionner deux bases de données dont les individus se chevauchent ou pour combiner deux fiches d'une même personne entrée avec des noms différents. Ceci fonctionne également pour les lieux, les sources et les dépôts."
 
 #: ../src/data/tips.xml.in.h:36
-msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active object such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
+msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
 msgstr "<b>Navigation Précédent et Suivant</b><br/>Gramps conserve une liste des objets actifs tels que les individus, événements lorsque vous naviguez dans votre base de données. Vous pouvez avancer et reculer dans la liste à l'aide de &quot;Aller à &gt; Suivant&quot; et &quot;Aller à  &gt; Précédent&quot;."
 
 #: ../src/data/tips.xml.in.h:37
@@ -24065,7 +24066,7 @@ msgid "<b>Ordering Children in a Family</b><br/>The birth order of children in a
 msgstr "<b>Tri des enfants dans la famille</b><br/>L'ordre de naissance des enfants dans la famille peut être défini en utilisant le glisser-déposer. Cet ordre est préservé même si vous n'avez pas de dates de naissance."
 
 #: ../src/data/tips.xml.in.h:40
-msgid "<b>Organising the Views</b><br/>Many of the views can presented your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
+msgid "<b>Organising the Views</b><br/>Many of the views can present your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
 msgstr "<b>Organisation des vues</b><br/>Quelques vues peuvent représenter vos données soit sous forme d'arbre hiérarchisé soit sous forme de simple liste. Chaque vue peut également être configurée comme vous le souhaitez. Regardez à la droite de la barre d'outils ou dans le menu &quot;Affichage&quot;."
 
 #: ../src/data/tips.xml.in.h:41
@@ -24085,7 +24086,7 @@ msgid "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramp
 msgstr "<b>Rapporter un problème dans Gramps</b><br/>Le meilleur moyen de rapporter un bogue dans Gramps est d'utiliser le système de suivi de bogue, http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:45
-msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each seperate view can also be configured under &quot;View &gt; Configure View...&quot;"
+msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;"
 msgstr "<b>Définir vos préférences</b><br/>&quot;Édition &gt; Préférences...&quot; vous permet de modifier des options de configuration, tel que le chemin vers vos fichiers media et d'ajuster selon vos besoins certains aspects liés à la représentation dans Gramps. Chaque vue séparée peut également être configurée sous &quot;Affichage &gt; Configurer la vue...&quot;."
 
 #: ../src/data/tips.xml.in.h:46
@@ -24093,7 +24094,7 @@ msgid "<b>Show All Checkbutton</b><br/>When adding an existing person as a spous
 msgstr "<b>Afficher tous les choix</b><br/>Quand vous ajoutez un conjoint ou un enfant, la liste des individus est filtrée pour n'afficher que les individus pouvant avoir ce statut (basé sur les dates de la base de données). Si Gramps a tort, vous pouvez ignorer ce filtre en cochant &quot; Tout Afficher &quot;."
 
 #: ../src/data/tips.xml.in.h:47
-msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stand for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
+msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stands for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
 msgstr "<b>Que fait Gramps ?</b><br/>Le nom Gramps a été suggéré au développeur original, Don Allingham, par son père, pour définir <i>Genealogical Research et Analysis Management Program System</i>. Il s'agit d'un programme de généalogie avec des fonctions vous permettant de stocker, éditer et rechercher vos données généalogiques. La base de données est robuste, ainsi certains utilisateurs gèrent près de 100 000 individus."
 
 #: ../src/data/tips.xml.in.h:48
@@ -24158,6 +24159,11 @@ msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and explora
 msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels permet de comparer toutes les données des individus de la base. C'est utile si vous voulez une liste des dates de naissance de tous les individus de votre base. Vous pouvez utiliser un filtre personnalisé pour limiter les résultats."
 
 #: ../src/data/tips.xml.in.h:63
-msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calenders. Try the button next to the date field in the Events Editor."
+msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
+
+#~ msgid "Show Repository Reference"
+#~ msgstr "Affiche la référence du dépôt"
+#~ msgid "'%s' is for NOT this version of Gramps."
+#~ msgstr "'%s' N'EST PAS PRÉVU pour cette version de Gramps."
 
