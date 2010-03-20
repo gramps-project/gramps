@@ -1,10 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007          Thom Sturgill
+# Copyright (C) 2007      Thom Sturgill
 # Copyright (C) 2007-2009 Brian G. Matherly
-# Copyright (C) 2008-2009 Rob G. Healey <robhealey1@gmail.com>
-# Copyright (C) 2008          Jason Simanek
+# Copyright (C) 2008-2010 Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2008      Jason Simanek
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,14 +25,9 @@
 
 """
 Web Calendar generator.
-
-Refactoring. This is an ongoing job until this plugin is in a better shape.
 """
-from __future__ import with_statement
 #------------------------------------------------------------------------
-#
 # python modules
-#
 #------------------------------------------------------------------------
 import os, codecs, shutil, re
 import datetime, calendar
@@ -41,19 +36,15 @@ from gen.ggettext import ngettext
 from itertools import imap
 
 #------------------------------------------------------------------------
-#
 # Set up logging
-#
 #------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".WebPage")
 
 #------------------------------------------------------------------------
-#
 # GRAMPS module
-#
 #------------------------------------------------------------------------
-from gen.lib import date, Date, Name, Person, NameType, EventType
+import gen.lib
 import const
 import constfunc
 from ReportBase import Report, ReportUtils, MenuReportOptions, CSS_FILES
@@ -67,7 +58,6 @@ from gui.utils import ProgressMeter
 from DateHandler import displayer as _dd
 
 from gen.display.name import displayer as _nd
-from DateHandler import displayer as _dd
 
 import libholiday
 from libhtml import Html
@@ -76,7 +66,6 @@ from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend
-import Utils
 #------------------------------------------------------------------------
 #
 # constants
@@ -151,7 +140,7 @@ class WebCalReport(Report):
         self.email = researcher.email
 
         # set to today's date
-        self.today = date.Today()
+        self.today = gen.lib.date.Today()
 
         self.warn_dir = True            # Only give warning once.
 
@@ -280,11 +269,11 @@ class WebCalReport(Report):
 
         if month > 0:
             try:
-                event_date = Date(year, month, day)
+                event_date = gen.lib.Date(year, month, day)
             except ValueError:
-                event_date = Date.EMPTY
+                event_date = gen.lib.Date.EMPTY
         else:
-            event_date = Date.EMPTY            # Incomplete date....
+            event_date = gen.lib.Date.EMPTY            # Incomplete date....
 
         day_list.append((text, event, event_date))
         month_dict[day] = day_list
@@ -727,7 +716,7 @@ class WebCalReport(Report):
                             bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
 
                             # date is an instance because of subtracting abilities in date.py
-                            event_date = Date(thisday.year, thisday.month, thisday.day)
+                            event_date = gen.lib.Date(thisday.year, thisday.month, thisday.day)
 
                             # get events for this day
                             day_list = get_day_list(event_date, holiday_list, bday_anniv_list) 
@@ -776,8 +765,8 @@ class WebCalReport(Report):
                                     tcell += unordered
 
                                     for nyears, date, text, event in day_list:
-                                        unordered += Html("li", text, inline = False if event == 'Anniversary' 
-                                            else True)
+                                        unordered += Html("li", text, inline = False 
+                                            if event == 'Anniversary' else True)
 
                             # no events for this day
                             else: 
@@ -839,7 +828,6 @@ class WebCalReport(Report):
 
         for month in range(1, 13):
 
-            # Name the file, and create it
             cal_fname = get_full_month_name(month)
             of = self.create_file(cal_fname, str(year))
 
@@ -901,7 +889,6 @@ class WebCalReport(Report):
         # generate progress pass for "Year At A Glance"
         self.progress.set_pass(_('Creating Year At A Glance calendar'), 12)
 
-        # Name the file, and create it
         of = self.create_file('fullyearlinked', str(year))
 
         # page title
@@ -971,7 +958,6 @@ class WebCalReport(Report):
         year = event_date.get_year()
         month = event_date.get_month()
 
-        # Name the file, and crate it (see code in calendar_build)
         od = self.create_file(fname_date, str(year))
 
         # page title
@@ -1063,19 +1049,19 @@ class WebCalReport(Report):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for name in names:
-            if int(name.get_type()) == NameType.MARRIED:
+            if int(name.get_type()) == gen.lib.NameType.MARRIED:
                 married_name = name
                 break
 
         # Now, decide which to use:
         if maiden_name is not None:
             if married_name is not None:
-                name = Name(married_name)
+                name = gen.lib.Name(married_name)
             else:
-                name = Name(primary_name)
+                name = gen.lib.Name(primary_name)
                 name.set_surname(maiden_name)
         else:
-            name = Name(primary_name)
+            name = gen.lib.Name(primary_name)
         name.set_display_as(self.name_format)
         return _nd.display_name(name)
 
@@ -1099,13 +1085,13 @@ class WebCalReport(Report):
 
             family_list = person.get_family_handle_list()
             birth_ref = person.get_birth_ref()
-            birth_date = Date.EMPTY
+            birth_date = gen.lib.Date.EMPTY
             if birth_ref:
                 birth_event = db.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
 
             # determine birthday information???
-            if (self.birthday and birth_date is not Date.EMPTY):
+            if (self.birthday and birth_date is not gen.lib.Date.EMPTY):
 
                 year = birth_date.get_year() or this_year
                 month = birth_date.get_month() or 1
@@ -1113,11 +1099,11 @@ class WebCalReport(Report):
 
                 # date to figure if someone is still alive
                 # current year of calendar, month nd day is their birth month and birth day 
-                prob_alive_date = Date(this_year, month, day)
+                prob_alive_date = gen.lib.Date(this_year, month, day)
 
                 # add some things to handle maiden name:
                 father_surname = None # husband, actually
-                if person.gender == Person.FEMALE:
+                if person.gender == gen.lib.Person.FEMALE:
 
                     # get husband's last name:
                     if self.maiden_name in ['spouse_first', 'spouse_last']: 
@@ -1133,7 +1119,8 @@ class WebCalReport(Report):
                                 if father_handle:
                                     father = db.get_person_from_handle(father_handle)
                                     if father is not None:
-                                        father_surname = _get_regular_surname(person.gender, father.primary_name)
+                                        father_surname = _get_regular_surname(person.gender, 
+                                            father.primary_name)
                 short_name = self.get_name(person, father_surname)
                 alive = probably_alive(person, db, prob_alive_date)
                 if (self.alive and alive) or not self.alive:
@@ -1167,13 +1154,13 @@ class WebCalReport(Report):
                         marriage_event = get_marriage_event(db, fam)
                         if marriage_event:
                             event_date = marriage_event.get_date_object()
-                            if event_date is not Date.EMPTY:
+                            if event_date is not gen.lib.Date.EMPTY:
                                 year = event_date.get_year()
                                 month = event_date.get_month()
                                 day = event_date.get_day()
 
                                 # date to figure if someone is still alive
-                                prob_alive_date = Date(this_year, month, day)
+                                prob_alive_date = gen.lib.Date(this_year, month, day)
 
                                 if self.link_to_narweb:
                                     spouse_name = Html("a", spouse_name,
@@ -1208,7 +1195,8 @@ class WebCalReport(Report):
 
             # Display date as user set in preferences
             msg = _('Generated by <a href="http://gramps-project.org">'
-                    'Gramps</a> on %(date)s') % {'date' : _dd.display(date.Today())}
+                    'Gramps</a> on %(date)s') % {'date' : _dd.display(
+                        gen.lib.date.Today())}
             footer += Html("p", msg, id = 'createdate')
 
             copy_nr = self.copy
@@ -1393,7 +1381,7 @@ class WebCalOptions(MenuReportOptions):
         category_name = _("Content Options")
 
         # set to today's date for use in menu, etc.
-        today = date.Today()
+        today = gen.lib.date.Today()
 
         self.__multiyear = BooleanOption(_('Create multiple year calendars'), False)
         self.__multiyear.set_help(_('Whether to create Multiple year calendars or not.'))
@@ -1607,7 +1595,7 @@ def _get_regular_surname(sex, name):
     prefix = name.get_surname_prefix()
     if prefix:
         surname = prefix + " " + surname
-    if sex is not Person.FEMALE:
+    if sex is not gen.lib.Person.FEMALE:
         suffix = name.get_suffix()
         if suffix:
             surname = surname + ", " + suffix
@@ -1699,7 +1687,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     # birthday/ anniversary on this day
     # Date.EMPTY signifies an incomplete date for an event. See add_day_item()
     bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
-                       if d != Date.EMPTY]
+                       if d != gen.lib.Date.EMPTY]
 
     # number of years have to be at least zero
     bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
