@@ -91,7 +91,9 @@ class LdsTemples(object):
         """
         returns a list of temple codes, temple name tuples
         """
-        return [(code, name) for name, code in self.__temple_codes.iteritems()]
+        return sorted([(code, name) for name, code 
+                       in self.__temple_codes.iteritems()],
+                      key=lambda v: v[1])
  
     def __start_element(self, tag, attrs):
         """
