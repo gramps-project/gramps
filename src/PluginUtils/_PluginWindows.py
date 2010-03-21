@@ -200,7 +200,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
-        self.window.set_size_request(600, 400)
+        self.window.set_size_request(750, 400)
         self.window.connect('response', self.close)
         
         notebook = gtk.Notebook()
@@ -218,15 +218,18 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.list_reg.connect('button-press-event', self.button_press_reg)
         col0_reg = gtk.TreeViewColumn(_('Type'), gtk.CellRendererText(), text=0)
         col0_reg.set_sort_column_id(0)
+        col0_reg.set_resizable(True)
         self.list_reg.append_column(col0_reg)
         col = gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(), markup=1)
         col.set_sort_column_id(1)
         self.list_reg.append_column(col)
         col2_reg = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(), text=2)
         col2_reg.set_sort_column_id(2)
+        col2_reg.set_resizable(True)
         self.list_reg.append_column(col2_reg)
         col = gtk.TreeViewColumn(_('Description'), gtk.CellRendererText(), text=3)
         col.set_sort_column_id(3)
+        col.set_resizable(True)
         self.list_reg.append_column(col)
         self.list_reg.set_search_column(2)
 
@@ -267,10 +270,12 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         col = gtk.TreeViewColumn(_('Loaded'), gtk.CellRendererText(),
                                  markup=0)
         col.set_sort_column_id(0)
+        col.set_resizable(True)
         self.list.append_column(col)
         col1 = gtk.TreeViewColumn(_('File'), gtk.CellRendererText(), 
                                   text=1)
         col1.set_sort_column_id(1)
+        col1.set_resizable(True)
         self.list.append_column(col1)
         col = gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(), 
                                  markup=5)
@@ -278,6 +283,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.list.append_column(col)
         col2 = gtk.TreeViewColumn(_('Message'), gtk.CellRendererText(), text=2)
         col2.set_sort_column_id(2)
+        col2.set_resizable(True)
         self.list.append_column(col2)
         self.list.set_search_column(1)
 
@@ -385,6 +391,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         
         self.window.show_all()
         self.__populate_lists()
+        self.list_reg.columns_autosize()
 
     def __refresh_addon_list(self, obj):
         """

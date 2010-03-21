@@ -348,7 +348,7 @@ class BasePluginManager(object):
                     if (pdata.export_options and 
                         hasattr(mod, pdata.export_options)):
                         options = getattr(mod, pdata.export_options)
-                    exp = gen.plug.ExportPlugin(name=pdata.name, 
+                    exp = gen.plug.ExportPlugin(name=pdata.name_accell, 
                         description     = pdata.description,
                         export_function = getattr(mod, pdata.export_function),
                         extension       = pdata.extension,
