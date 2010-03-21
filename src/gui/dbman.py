@@ -255,7 +255,8 @@ class DbManager(CLIDbManager):
         'edited' signal, so that we can change the name when the user changes
         the column.
 
-        The last modified column simply displays the last modification time.
+        The last accessed column simply displays the last time famtree was 
+        opened.
         """
 
         # build the database name column
@@ -278,9 +279,9 @@ class DbManager(CLIDbManager):
                                          stock_id=STOCK_COL)
         self.dblist.append_column(icon_column)
 
-        # build the last modified column
+        # build the last accessed column
         render = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(_('Last modified'), render, text=DATE_COL)
+        column = gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
         column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
 
