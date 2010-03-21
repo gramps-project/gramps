@@ -28,7 +28,8 @@
 
 plg = newplugin()
 plg.id    = 'ex_csv'
-plg.name  = _("Comma _Separated Values Spreadsheet (CSV)")
+plg.name  = _("Comma Separated Values Spreadsheet (CSV)")
+plg.name_accell  = _("Comma _Separated Values Spreadsheet (CSV)")
 plg.description =  _("CSV is a common spreadsheet format.")
 plg.version = '1.0'
 plg.gramps_target_version = '3.2'
@@ -48,7 +49,8 @@ plg.extension = "csv"
 
 plg = newplugin()
 plg.id    = 'ex_webfamtree'
-plg.name  = _('_Web Family Tree')
+plg.name  = _('Web Family Tree')
+plg.name_accell  = _('_Web Family Tree')
 plg.description =  _("Web Family Tree format")
 plg.version = '1.0'
 plg.gramps_target_version = '3.2'
@@ -68,7 +70,8 @@ plg.extension = "wft"
 
 plg = newplugin()
 plg.id    = 'ex_ged'
-plg.name  = _('GE_DCOM')
+plg.name  = _('GEDCOM')
+plg.name_accell  = _('GE_DCOM')
 plg.description =  _('GEDCOM is used to transfer data between genealogy programs. '
                 'Most genealogy software will accept a GEDCOM file as input.')
 plg.version = '1.0'
@@ -89,7 +92,8 @@ plg.extension = "ged"
 
 plg = newplugin()
 plg.id    = 'ex_geneweb'
-plg.name  = _('_GeneWeb')
+plg.name  = _('GeneWeb')
+plg.name_accell  = _('_GeneWeb')
 plg.description =  _('GeneWeb is a web based genealogy program.')
 plg.version = '1.0'
 plg.gramps_target_version = '3.2'
@@ -109,7 +113,8 @@ plg.extension = "gw"
 
 plg = newplugin()
 plg.id    = 'ex_gpkg'
-plg.name  = _('Gra_mps XML Package (family tree and media)')
+plg.name  = _('Gramps XML Package (family tree and media)')
+plg.name_accell  = _('Gra_mps XML Package (family tree and media)')
 plg.description =  _('Gramps package is an archived XML family tree together '
                  'with the media object files.')
 plg.version = '1.0'
@@ -130,7 +135,8 @@ plg.extension = "gpkg"
 
 plg = newplugin()
 plg.id    = 'ex_gramps'
-plg.name  = _('Gramps _XML (family tree)')
+plg.name  = _('Gramps XML (family tree)')
+plg.name_accell  = _('Gramps _XML (family tree)')
 plg.description =  _('Gramps XML export is a complete archived XML backup of a' 
                  ' Gramps family tree without the media object files.'
                  ' Suitable for backup purposes.')
@@ -152,7 +158,8 @@ plg.extension = "gramps"
 
 plg = newplugin()
 plg.id    = 'ex_vcal'
-plg.name  = _('vC_alendar')
+plg.name  = _('vCalendar')
+plg.name_accell  = _('vC_alendar')
 plg.description =  _('vCalendar is used in many calendaring and pim applications.')
 plg.version = '1.0'
 plg.gramps_target_version = '3.2'
@@ -172,7 +179,8 @@ plg.extension = "vcs"
 
 plg = newplugin()
 plg.id    = 'ex_vcard'
-plg.name  = _('_vCard')
+plg.name  = _('vCard')
+plg.name_accell  = _('_vCard')
 plg.description =  _('vCard is used in many addressbook and pim applications.')
 plg.version = '1.0'
 plg.gramps_target_version = '3.2'
@@ -183,4 +191,3 @@ plg.export_function = 'exportData'
 plg.export_options = 'CardWriterOptionBox'
 plg.export_options_title = ('vCard export options')
 plg.extension = "vcf"
-

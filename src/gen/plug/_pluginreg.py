@@ -168,6 +168,10 @@ class PluginData(object):
        settings.
     .. attribute:: name
        A friendly name to call this plugin (normally translated)
+    .. attribute:: name_accell
+       A friendly name to call this plugin (normally translated), with an 
+       accellerator present (eg '_Descendant report', with D to be accellerator
+       key
     .. attribute:: description
        A friendly description of what the plugin does
     .. attribute:: version
@@ -305,6 +309,7 @@ class PluginData(object):
         #base attributes
         self._id = None
         self._name = None
+        self._name_accell = None
         self._version = None
         self._gramps_target_version = None
         self._description = None
@@ -372,6 +377,15 @@ class PluginData(object):
     def _get_name(self):
         return self._name
     
+    def _set_name_accell(self, name):
+        self._name_accell = name
+
+    def _get_name_accell(self):
+        if self._name_accell is None:
+            return self._name
+        else:
+            return self._name_accell
+
     def _set_description(self, description):
         self._description = description
 
@@ -476,8 +490,9 @@ class PluginData(object):
     def _set_icondir(self, icondir):
         self._icondir = icondir
 
-    id = property(_get_id, _set_id)   
+    id = property(_get_id, _set_id)
     name = property(_get_name, _set_name)
+    name_accell = property(_get_name_accell, _set_name_accell)
     description = property(_get_description, _set_description) 
     version = property(_get_version, _set_version) 
     gramps_target_version = property(_get_gramps_target_version, 
