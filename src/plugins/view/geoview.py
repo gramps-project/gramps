@@ -1660,7 +1660,7 @@ class GeoView(HtmlView):
         ipath = os.path.join(const.ROOT_DIR, 'images/22x22/', '%s.png' % value )
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(ipath.split(os.sep)), '', ''))
-        self.mapview.write("my_marker.setIcon(\"%s\",[22,22]);" % upath)
+        self.mapview.write("my_marker.setIcon(\"%s\",[22,22],[0,22]);" % upath)
         self.mapview.write("my_marker.setShadowIcon(\"%s\",[0,0]);" % upath)
 
     def _show_title(self, title):
