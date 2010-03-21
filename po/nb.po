@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-15 16:28+0100\n"
+"POT-Creation-Date: 2010-03-21 17:03+0100\n"
 "PO-Revision-Date: 2010-03-08 08:21+0100\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -103,7 +103,7 @@ msgstr "Organisere bokmerker"
 #: ../src/plugins/webreport/NarrativeWeb.py:1985
 #: ../src/plugins/webreport/NarrativeWeb.py:4756
 #: ../src/PluginUtils/_GuiOptions.py:828
-#: ../src/PluginUtils/_PluginWindows.py:225
+#: ../src/PluginUtils/_PluginWindows.py:226
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -128,13 +128,13 @@ msgstr "Navn"
 #: ../src/gui/selectors/selectsource.py:62
 #: ../src/gui/views/navigationview.py:336 ../src/Merge/_MergePerson.py:127
 #: ../src/plugins/lib/libpersonview.py:90
-#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89 ../src/plugins/view/noteview.py:76
-#: ../src/plugins/view/relview.py:612 ../src/plugins/view/repoview.py:82
+#: ../src/plugins/view/relview.py:613 ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77 ../src/PluginUtils/_GuiOptions.py:829
 #: ../src/PluginUtils/_GuiOptions.py:969
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -392,7 +392,7 @@ msgstr "_Ikke ta med ulenkede poster"
 #: ../src/plugins/export/ExportFtree.py:77
 #: ../src/plugins/export/ExportGeneWeb.py:82
 #: ../src/plugins/export/ExportVCalendar.py:77
-#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:151
+#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:155
 #: ../src/ReportBase/_ReportUtils.py:265
 msgid "Entire Database"
 msgstr "Hele databasen"
@@ -698,7 +698,7 @@ msgstr "tidligere partner"
 #: ../src/plugins/textreport/IndivComplete.py:304
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/MarkerReport.py:207
-#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:882
+#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4144
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -715,7 +715,7 @@ msgstr "Far"
 #: ../src/plugins/textreport/IndivComplete.py:313
 #: ../src/plugins/textreport/IndivComplete.py:605
 #: ../src/plugins/textreport/MarkerReport.py:213
-#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:883
+#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4151
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -725,7 +725,7 @@ msgstr "Mor"
 #: ../src/Reorder.py:38 ../src/gui/selectors/selectperson.py:81
 #: ../src/Merge/_MergePerson.py:180 ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/textreport/FamilyGroup.py:494
-#: ../src/plugins/view/relview.py:1341
+#: ../src/plugins/view/relview.py:1342
 #: ../src/plugins/webreport/NarrativeWeb.py:563
 msgid "Spouse"
 msgstr "Ektefelle"
@@ -766,8 +766,8 @@ msgstr "Bruk av Utklippstavlen"
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
-#: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
-#: ../src/plugins/view/relview.py:1041
+#: ../src/plugins/view/relview.py:457 ../src/plugins/view/relview.py:995
+#: ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -906,7 +906,7 @@ msgstr "Familiehendelser"
 #: ../src/plugins/view/noteview.py:77 ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/PluginUtils/_PluginWindows.py:219
-#: ../src/PluginUtils/_PluginWindows.py:329
+#: ../src/PluginUtils/_PluginWindows.py:335
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
@@ -927,8 +927,8 @@ msgstr "Årsak"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:57 ../src/plugins/view/eventview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:115
-#: ../src/PluginUtils/_PluginWindows.py:228
-#: ../src/PluginUtils/_PluginWindows.py:333
+#: ../src/PluginUtils/_PluginWindows.py:230
+#: ../src/PluginUtils/_PluginWindows.py:339
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "Beskrivelse"
@@ -1052,8 +1052,8 @@ msgstr "Fornavn"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
-#: ../src/plugins/view/relview.py:529 ../src/plugins/view/relview.py:1317
-#: ../src/plugins/view/relview.py:1339
+#: ../src/plugins/view/relview.py:530 ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/relview.py:1340
 msgid "Family"
 msgstr "Familie"
 
@@ -1126,7 +1126,7 @@ msgstr "Personlenke"
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/view/relview.py:622
+#: ../src/plugins/view/relview.py:623
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
 msgstr "Født"
@@ -1605,7 +1605,7 @@ msgstr "Kilder i oppbevaringssted"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
 msgstr "Person"
@@ -1712,7 +1712,7 @@ msgstr "Dataene kan kun gjenopprettes ved hjelp av &quot;Angre&quot;-operasjonen
 #: ../src/plugins/textreport/DetDescendantReport.py:572
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
-#: ../src/plugins/view/relview.py:660
+#: ../src/plugins/view/relview.py:661
 #: ../src/plugins/webreport/NarrativeWeb.py:3489
 #: ../src/plugins/webreport/NarrativeWeb.py:4431
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -1937,7 +1937,7 @@ msgstr "Feil: Ukjent filtype: \"%(format)s\" for importert fil %(filename)s"
 #: ../src/cli/arghandler.py:174
 #, python-format
 msgid ""
-"WARNING: Output file already exist!\n"
+"WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
@@ -2633,7 +2633,7 @@ msgstr "mellom"
 #: ../src/gen/lib/date.py:327 ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449 ../src/Simple/_SimpleTable.py:251
 #: ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:975
+#: ../src/plugins/view/relview.py:976
 msgid "and"
 msgstr "og"
 
@@ -2752,7 +2752,7 @@ msgstr "Navn som gift"
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/view/relview.py:633 ../src/plugins/view/relview.py:658
+#: ../src/plugins/view/relview.py:634 ../src/plugins/view/relview.py:659
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
 msgstr "Død"
@@ -2887,7 +2887,7 @@ msgstr "Testamente"
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/textreport/FamilyGroup.py:357
-#: ../src/plugins/view/relview.py:1257
+#: ../src/plugins/view/relview.py:1258
 msgid "Marriage"
 msgstr "Ekteskap"
 
@@ -3081,35 +3081,35 @@ msgid "Gramps View"
 msgstr "Smågrampsvisning"
 
 #: ../src/gen/plug/_pluginreg.py:83 ../src/gui/grampsgui.py:134
-#: ../src/plugins/view/relview.py:132 ../src/plugins/view/view.gpr.py:115
+#: ../src/plugins/view/relview.py:133 ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
 msgstr "Slektskap"
 
-#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:357
+#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:362
 #: ../src/gui/widgets/grampletpane.py:202
 msgid "Gramplet"
 msgstr "Smågramps"
 
-#: ../src/gen/plug/_pluginreg.py:426 ../src/gui/views/pageview.py:111
+#: ../src/gen/plug/_pluginreg.py:440 ../src/gui/views/pageview.py:111
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
+#: ../src/gen/plug/_pluginreg.py:966 ../src/gen/plug/_pluginreg.py:971
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "FEIL: Klarte ikke å lese registrering av programtillegg %(filename)s"
 
-#: ../src/gen/plug/_pluginreg.py:970
+#: ../src/gen/plug/_pluginreg.py:985
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr "FEIL: Programtilleggfil %(filename)s er for versjon \"%(gramps_target_version)s\" som er ugyldig for versjon \"%(gramps_version)s\" av Gramps."
 
-#: ../src/gen/plug/_pluginreg.py:989
+#: ../src/gen/plug/_pluginreg.py:1004
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr "FEIL: Feil pythonfil %(filename)s i registerfil %(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:997
+#: ../src/gen/plug/_pluginreg.py:1012
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "FEIL: Pythonfil %(filename)s i registerfil %(regfile)s finnes ikke"
@@ -3348,8 +3348,8 @@ msgid "Name format"
 msgstr "Navneformat"
 
 #: ../src/gui/configure.py:802 ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:245
-#: ../src/PluginUtils/_PluginWindows.py:297
+#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:248
+#: ../src/PluginUtils/_PluginWindows.py:303
 msgid "Edit"
 msgstr "Rediger"
 
@@ -3608,41 +3608,41 @@ msgstr "_Hent ut"
 msgid "_Archive"
 msgstr "_Arkiver"
 
-#: ../src/gui/dbman.py:267
+#: ../src/gui/dbman.py:268
 msgid "Family tree name"
 msgstr "Navn på familietre"
 
-#: ../src/gui/dbman.py:277
+#: ../src/gui/dbman.py:278
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/plugins/webreport/NarrativeWeb.py:130
-#: ../src/PluginUtils/_PluginWindows.py:222
-#: ../src/PluginUtils/_PluginWindows.py:275
+#: ../src/PluginUtils/_PluginWindows.py:223
+#: ../src/PluginUtils/_PluginWindows.py:280
 msgid "Status"
 msgstr "Status"
 
-#: ../src/gui/dbman.py:283
-msgid "Last modified"
-msgstr "Sist endret"
+#: ../src/gui/dbman.py:284
+msgid "Last accessed"
+msgstr "Sist åpnet"
 
-#: ../src/gui/dbman.py:365
+#: ../src/gui/dbman.py:366
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Bryt låsen på databasen '%s'?"
 
-#: ../src/gui/dbman.py:366
+#: ../src/gui/dbman.py:367
 msgid "Gramps believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
 msgstr "Gramps antar at noen andre utfører endringer i denne databasen.  Du kan ikke utføre endringer i denne databasen mens den er låst.  Hvis ingen andre utfører endringer i databasen kan du trygt bryte låsen.  Hvis derimot noen andre utfører endringer i databasen, og du bryter låsen, kan du ødelegge databasen."
 
-#: ../src/gui/dbman.py:372
+#: ../src/gui/dbman.py:373
 msgid "Break lock"
 msgstr "Bryt låsen"
 
-#: ../src/gui/dbman.py:449
+#: ../src/gui/dbman.py:450
 msgid "Rename failed"
 msgstr "Omdøping feilet"
 
-#: ../src/gui/dbman.py:450
+#: ../src/gui/dbman.py:451
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -3653,61 +3653,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:465
+#: ../src/gui/dbman.py:466
 msgid "Could not rename the Family Tree."
 msgstr "Kunne ikke endre navn på Slektstreet."
 
-#: ../src/gui/dbman.py:466
+#: ../src/gui/dbman.py:467
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Dette Slektstreet eksisterer allerede.  Velg et unikt navn."
 
-#: ../src/gui/dbman.py:479
+#: ../src/gui/dbman.py:480
 msgid "Could not rename family tree"
 msgstr "Kunne ikke omdøpe fila"
 
-#: ../src/gui/dbman.py:513
+#: ../src/gui/dbman.py:514
 msgid "Extracting archive..."
 msgstr "Henter ut data..."
 
-#: ../src/gui/dbman.py:518
+#: ../src/gui/dbman.py:519
 msgid "Importing archive..."
 msgstr "Importerer data..."
 
-#: ../src/gui/dbman.py:534
+#: ../src/gui/dbman.py:535
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Fjerne slektstreet '%s'?"
 
-#: ../src/gui/dbman.py:535
+#: ../src/gui/dbman.py:536
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Fjerning av dette slektstreet vil ødelegge dataene permanent."
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:537
 msgid "Remove family tree"
 msgstr "Fjerne slektstreet"
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:543
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Fjern revisjon '%(revision)s versjon av %(database)s"
 
-#: ../src/gui/dbman.py:546
+#: ../src/gui/dbman.py:547
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Fjerner du denne versjonsn vil du ikke ha mulighet til å hente den tilbake igjen senere."
 
-#: ../src/gui/dbman.py:548
+#: ../src/gui/dbman.py:549
 msgid "Remove version"
 msgstr "Fjern versjon"
 
-#: ../src/gui/dbman.py:577
+#: ../src/gui/dbman.py:578
 msgid "Could not delete family tree"
 msgstr "Kunne ikke fjerne familietreet"
 
-#: ../src/gui/dbman.py:602
+#: ../src/gui/dbman.py:603
 msgid "Deletion failed"
 msgstr "Sletting feilet"
 
-#: ../src/gui/dbman.py:603
+#: ../src/gui/dbman.py:604
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -3718,23 +3718,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:647
 msgid "Rebuilding database from backup files"
 msgstr "Gjenoppbygger database fra sikkerhetskopi"
 
-#: ../src/gui/dbman.py:651
+#: ../src/gui/dbman.py:652
 msgid "Error restoring backup data"
 msgstr "Feil ved innhenting av data fra sikkerhetskopi"
 
-#: ../src/gui/dbman.py:686
+#: ../src/gui/dbman.py:687
 msgid "Could not create family tree"
 msgstr "Kunne ikke opprette familietre"
 
-#: ../src/gui/dbman.py:800
+#: ../src/gui/dbman.py:801
 msgid "Retrieve failed"
 msgstr "Innhenting feilet"
 
-#: ../src/gui/dbman.py:801
+#: ../src/gui/dbman.py:802
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -3745,11 +3745,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:841 ../src/gui/dbman.py:869
+#: ../src/gui/dbman.py:842 ../src/gui/dbman.py:870
 msgid "Archiving failed"
 msgstr "Arkivering feilet"
 
-#: ../src/gui/dbman.py:842
+#: ../src/gui/dbman.py:843
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -3760,15 +3760,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:847
+#: ../src/gui/dbman.py:848
 msgid "Creating data to be archived..."
 msgstr "Lager data som skal arkiveres..."
 
-#: ../src/gui/dbman.py:856
+#: ../src/gui/dbman.py:857
 msgid "Saving archive..."
 msgstr "Lagrer arkiv..."
 
-#: ../src/gui/dbman.py:870
+#: ../src/gui/dbman.py:871
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -4171,8 +4171,8 @@ msgstr "Notater"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:903
-#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:516
-#: ../src/plugins/view/relview.py:847 ../src/plugins/view/relview.py:881
+#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:517
+#: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr "Foreldre"
@@ -4191,8 +4191,7 @@ msgstr "Velg foreldre"
 msgid "Pedigree"
 msgstr "Stamtavle"
 
-#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placelistview.py:52
-#: ../src/plugins/view/placetreeview.gpr.py:11
+#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:175
 #: ../src/plugins/webreport/NarrativeWeb.py:1005
 #: ../src/plugins/webreport/NarrativeWeb.py:1046
@@ -4904,7 +4903,7 @@ msgid "Edit relationship"
 msgstr "Endre relasjon"
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1515
+#: ../src/plugins/view/relview.py:1516
 msgid "Select Child"
 msgstr "Velg barn"
 
@@ -4990,9 +4989,9 @@ msgstr "Dåp (voksen):"
 msgid "Burial:"
 msgstr "Begravelse:"
 
-#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:594
-#: ../src/plugins/view/relview.py:988 ../src/plugins/view/relview.py:1036
-#: ../src/plugins/view/relview.py:1117 ../src/plugins/view/relview.py:1223
+#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:595
+#: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
+#: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Rediger %s"
@@ -5549,7 +5548,7 @@ msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s - %(part2)s"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
-#: ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:406
 msgid "Add"
 msgstr "Legg til"
 
@@ -5560,7 +5559,7 @@ msgstr "Fjern"
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
 #: ../src/gui/editors/displaytabs/gallerytab.py:124
-#: ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:410
 msgid "Share"
 msgstr "Del"
 
@@ -7929,67 +7928,103 @@ msgstr "Stil som brukes på årstallsmerkelapper."
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
+msgid "Comma Separated Values Spreadsheet (CSV)"
+msgstr "Regneark med kommaseparerte verdier (CSV)"
+
+#: ../src/plugins/export/export.gpr.py:32
 msgid "Comma _Separated Values Spreadsheet (CSV)"
 msgstr "Regneark med komma_separerte verdier (CSV)"
 
-#: ../src/plugins/export/export.gpr.py:32
+#: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV er et vanlig regnearkformat."
 
-#: ../src/plugins/export/export.gpr.py:51
+#: ../src/plugins/export/export.gpr.py:52
+msgid "Web Family Tree"
+msgstr "Web Family Tree"
+
+#: ../src/plugins/export/export.gpr.py:53
 msgid "_Web Family Tree"
 msgstr "_Web Family Tree"
 
-#: ../src/plugins/export/export.gpr.py:52
+#: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
 msgstr "Web Family Tree-format"
 
-#: ../src/plugins/export/export.gpr.py:71
+#: ../src/plugins/export/export.gpr.py:73
+#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
+msgstr "GEDCOM"
+
+#: ../src/plugins/export/export.gpr.py:74
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/plugins/export/export.gpr.py:72
+#: ../src/plugins/export/export.gpr.py:75
 #: ../src/plugins/import/import.gpr.py:52
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
 msgstr "GEDCOM brukes til å overføre data mellom slektsforskningsprogrammer. De fleste slektsforskningsprogram vil godta en GEDCOM-fil som inndata."
 
-#: ../src/plugins/export/export.gpr.py:92
+#: ../src/plugins/export/export.gpr.py:95
+#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
+msgid "GeneWeb"
+msgstr "GeneWeb"
+
+#: ../src/plugins/export/export.gpr.py:96
 msgid "_GeneWeb"
 msgstr "_GeneWeb"
 
-#: ../src/plugins/export/export.gpr.py:93
+#: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
 msgstr "&quot;GeneWeb&quot; er et nettbasert slektsforskningsprogram."
 
-#: ../src/plugins/export/export.gpr.py:112
+#: ../src/plugins/export/export.gpr.py:116
+msgid "Gramps XML Package (family tree and media)"
+msgstr "Gramps XML-pakke (databasen med alle media)"
+
+#: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
 msgstr "Gramps _XML-pakke (databasen med alle media)"
 
-#: ../src/plugins/export/export.gpr.py:113
+#: ../src/plugins/export/export.gpr.py:118
 msgid "Gramps package is an archived XML family tree together with the media object files."
 msgstr "Gramps-pakke er en arkivert XML-database sammen med mediaobjektfilene."
 
-#: ../src/plugins/export/export.gpr.py:133
+#: ../src/plugins/export/export.gpr.py:138
+msgid "Gramps XML (family tree)"
+msgstr "Gramps XML (slektsdatabase)"
+
+#: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
 msgstr "Gramps _XML (slektsdatabase)"
 
-#: ../src/plugins/export/export.gpr.py:134
+#: ../src/plugins/export/export.gpr.py:140
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
 msgstr "Eksport til Gramps XML gir en fullstendig kopi av Gramps-databasen uten mediaobjektene som en XML-fil. Denne er nyttig for sikkerhetskopiformål."
 
-#: ../src/plugins/export/export.gpr.py:155
+#: ../src/plugins/export/export.gpr.py:161
+msgid "vCalendar"
+msgstr "vCalendar"
+
+#: ../src/plugins/export/export.gpr.py:162
 msgid "vC_alendar"
 msgstr "vC_alendar"
 
-#: ../src/plugins/export/export.gpr.py:156
+#: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and pim applications."
 msgstr "vCalendar brukes av mange kalendere og &quot;syvende sans&quot;-programmer."
 
-#: ../src/plugins/export/export.gpr.py:175
+#: ../src/plugins/export/export.gpr.py:182
+#: ../src/plugins/import/import.gpr.py:164
+msgid "vCard"
+msgstr "vCard"
+
+#: ../src/plugins/export/export.gpr.py:183
 msgid "_vCard"
 msgstr "_vCard"
 
-#: ../src/plugins/export/export.gpr.py:176
+#: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard brukes av mange adressebok og &quot;syvende sans&quot;-programmer."
 
@@ -8254,7 +8289,7 @@ msgstr "Personmeny"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:823
-#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:897
+#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:4163
 msgid "Siblings"
 msgstr "Søsken"
@@ -8265,7 +8300,7 @@ msgstr "Søsken"
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1445
-#: ../src/plugins/view/relview.py:1356
+#: ../src/plugins/view/relview.py:1357
 #: ../src/plugins/webreport/NarrativeWeb.py:4373
 msgid "Children"
 msgstr "Barn"
@@ -9422,15 +9457,6 @@ msgstr "Familier vises som ovaler, forbundet til foreldre og barn."
 msgid "Import data from CSV files"
 msgstr "Importere data fra CSV-filer"
 
-#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
-#: ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr "GEDCOM"
-
-#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
-msgid "GeneWeb"
-msgstr "GeneWeb"
-
 #: ../src/plugins/import/import.gpr.py:71
 msgid "Import data from GeneWeb files"
 msgstr "Importere data fra GenWeb-filer"
@@ -9440,8 +9466,8 @@ msgid "Gramps package (portable XML)"
 msgstr "Gramps-pakke (flyttbar XML)"
 
 #: ../src/plugins/import/import.gpr.py:89
-msgid "Import data from a Gramps package (an archived XML family tree together with the media object files."
-msgstr "Importere data fra en Gramps-pakke (en arkivert XML-slektsdatabase sammen med mediaobjektfiler."
+msgid "Import data from a Gramps package (an archived XML family tree together with the media object files.)"
+msgstr "Importere data fra en Gramps-pakke (en arkivert XML-slektsdatabase sammen med mediaobjektfiler.)"
 
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
@@ -9466,10 +9492,6 @@ msgstr "Pro-Gen"
 #: ../src/plugins/import/import.gpr.py:147
 msgid "Import data from Pro-Gen files"
 msgstr "Importere data fra Pro-Genfiler"
-
-#: ../src/plugins/import/import.gpr.py:164
-msgid "vCard"
-msgstr "vCard"
 
 #: ../src/plugins/import/import.gpr.py:165
 msgid "Import data from vCard files"
@@ -13391,7 +13413,7 @@ msgid "Delete Person (%s)"
 msgstr "Slett person (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:331
-#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:418
+#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:419
 msgid "Person Filter Editor"
 msgstr "Lage personfilter"
 
@@ -13752,7 +13774,7 @@ msgid "Parent"
 msgstr "Forelder"
 
 #: ../src/plugins/quickview/all_relations.py:287
-#: ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/relview.py:402
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Partner"
@@ -14073,8 +14095,8 @@ msgid "Display references for a %s"
 msgstr "Vis referanser for en %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:230
-msgid "Show Repository Reference"
-msgstr "Vise henvisning til oppbevaringssted"
+msgid "Repository References"
+msgstr "Henvisning til Oppbevaringssted"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
@@ -14579,7 +14601,7 @@ msgstr "Slektskap med: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-#: ../src/plugins/view/relview.py:1664
+#: ../src/plugins/view/relview.py:1665
 msgid "Content"
 msgstr "Innhold"
 
@@ -15072,11 +15094,11 @@ msgid "Select the filter to be applied to the report."
 msgstr "Velg filteret som skal brukes til rapporten."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
-msgid "List events chonologically"
-msgstr "Liste hendelsene kronologisk"
+msgid "List events chronologically"
+msgstr "Liste hendelser kronologisk"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-msgid "Whether to sort events into chonological order."
+msgid "Whether to sort events into chronological order."
 msgstr "Om hendelser skal sorteres i kronologisk rekkefølge."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
@@ -15148,7 +15170,6 @@ msgid "Marker Report for %s Items"
 msgstr "Markeringsrapport for %s element"
 
 #: ../src/plugins/textreport/MarkerReport.py:103
-#: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:145 ../src/plugins/view/view.gpr.py:161
 msgid "People"
 msgstr "Personer"
@@ -15547,7 +15568,7 @@ msgstr "Opprinnelige navn"
 msgid "Capitalization Change"
 msgstr "Endringer i store/små bokstaver"
 
-#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:284
+#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:296
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
@@ -15917,52 +15938,52 @@ msgstr "Meldingsvindu for Python"
 msgid "manual|Compare_Individual_Events..."
 msgstr "Sammenligne enkelthendelser..."
 
-#: ../src/plugins/tool/EventCmp.py:138
+#: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
 msgstr "Filtervalg for sammenligning av hendelser"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Filter selection"
 msgstr "Filtervalg"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Event Comparison tool"
 msgstr "Verktøy for sammenligning av hendelser"
 
-#: ../src/plugins/tool/EventCmp.py:174
+#: ../src/plugins/tool/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Sammenlign hendelser"
 
-#: ../src/plugins/tool/EventCmp.py:175
+#: ../src/plugins/tool/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Velger personer"
 
-#: ../src/plugins/tool/EventCmp.py:187
+#: ../src/plugins/tool/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Ingen treff ble funnet"
 
-#: ../src/plugins/tool/EventCmp.py:235 ../src/plugins/tool/EventCmp.py:258
+#: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:270
 msgid "Event Comparison Results"
 msgstr "Resultat av hendelsessammenligning"
 
-#: ../src/plugins/tool/EventCmp.py:245
+#: ../src/plugins/tool/EventCmp.py:251
 msgid " Date"
 msgstr " Dato"
 
 #. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:247
+#: ../src/plugins/tool/EventCmp.py:253
 msgid " Place"
 msgstr " Sted"
 
-#: ../src/plugins/tool/EventCmp.py:291
+#: ../src/plugins/tool/EventCmp.py:303
 msgid "Comparing Events"
 msgstr "Sammenligne hendelser"
 
-#: ../src/plugins/tool/EventCmp.py:292
+#: ../src/plugins/tool/EventCmp.py:304
 msgid "Building data"
 msgstr "Bygger data"
 
-#: ../src/plugins/tool/EventCmp.py:372
+#: ../src/plugins/tool/EventCmp.py:384
 msgid "Select filename"
 msgstr "Velg en fil"
 
@@ -16282,7 +16303,7 @@ msgid "Database Owner Editor"
 msgstr "Behandler for databaseeier"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1185
+#: ../src/PluginUtils/_PluginWindows.py:1201
 msgid "Main window"
 msgstr "Hovedvindu"
 
@@ -16894,11 +16915,11 @@ msgstr "Kryss på kartet."
 
 #: ../src/plugins/view/geoview.py:527
 msgid ""
-"Show the coordinates in the statusbar either in degree\n"
-"either in internal gramps format ( D.D8 )"
+"Show the coordinates in the statusbar either in degrees\n"
+"or in internal gramps format ( D.D8 )"
 msgstr ""
 "Vis koordinater i statuslinja enten i grader\n"
-"eller med Gramps internerne format ( D.D8 )"
+"eller med Gramps interne format ( D.D8 )"
 
 #: ../src/plugins/view/geoview.py:530
 msgid "The map"
@@ -16915,7 +16936,7 @@ msgstr "Tidsavbrudd for testen av nettverksforbindelsen"
 #: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
-"Must be greater or equal to 10 secondes"
+"Must be greater or equal to 10 seconds"
 msgstr ""
 "Tiden i sekunder mellom to nettverkstester.\n"
 "Må være mer eller lik 10 sekunder"
@@ -17090,7 +17111,7 @@ msgid "All event places for"
 msgstr "Alle hendelsessteder for"
 
 #: ../src/plugins/view/geoview.py:2128
-msgid "Cannot center the map. No location with coordinates.The following reasons are : <ul><li>The filter you use return nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
+msgid "Cannot center the map. No location with coordinates.That may happen for one of the following reasons : <ul><li>The filter you use returned nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr "Kan ikke sentrere kartet. Ingen steder med koordinater. Årsakene er : <ul><li>Filteret du brukte fant ingenting.</li><li>Den aktive personen har ingen steder med koordinater.</li><li>Den aktive personens familiemedlemmer har ingen steder med koordinater.</li><li>Du har ingen steder.</li><li>Du har ikke valgt noen aktiv person.</li>"
 
 #: ../src/plugins/view/geoview.py:2146
@@ -17102,15 +17123,15 @@ msgid "Start page for the Geography View"
 msgstr "Startside for Geografivisning"
 
 #: ../src/plugins/view/geoview.py:2296
-msgid "You don't see a map here for the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not yet selected a person.</li><li>You have no place in your database.</li><li>The selected places have no coordinates.</li></ol>"
-msgstr "Du ser ikke kart her på grunn av at:<br><ol><li>din database er tom eller ikke valgt enda</li><li>du ikke har valgt en person</li><li>Du ikke har noen steder i databasen din</li><li>Det valgte stedet ikke har noen koordinater</li></ol>"
+msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
+msgstr "Du ser ikke kart her på grunn av at:<br><ol><li>din database er tom eller ikke valgt enda</li><li>du ikke har valgt en person</li><li>Du ikke har noen steder i databasen din</li><li>De valgte stedene ikke har noen koordinater</li></ol>"
 
 #: ../src/plugins/view/geoview.gpr.py:50
 msgid "Geographic View"
 msgstr "Geografivisning"
 
 #: ../src/plugins/view/geoview.gpr.py:51
-msgid "The view showing events on an interactive internet map (internet connection needed"
+msgid "The view showing events on an interactive internet map (internet connection needed)"
 msgstr "Visningen viser hendelser på et interaktivt internettkart (internettkobling kreves)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
@@ -17315,6 +17336,11 @@ msgstr[1] "%d generasjoner"
 msgid "Family Menu"
 msgstr "Familiemeny"
 
+#: ../src/plugins/view/personlistview.py:59
+#: ../src/plugins/view/view.gpr.py:152
+msgid "Person View"
+msgstr "Personvisning"
+
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
 msgstr "Stamtavlevisning"
@@ -17328,6 +17354,10 @@ msgstr "Utvid alle knutepunkt"
 #: ../src/plugins/view/placetreeview.py:84
 msgid "Collapse all Nodes"
 msgstr "Slå sammen alle knutepunkt"
+
+#: ../src/plugins/view/placelistview.py:52 ../src/plugins/view/view.gpr.py:167
+msgid "Place View"
+msgstr "Stedsnavnvisning"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
@@ -17346,187 +17376,187 @@ msgstr "Utvide dette denne gruppen"
 msgid "Collapse this Entire Group"
 msgstr "Slå sammen hele denne gruppen"
 
-#: ../src/plugins/view/relview.py:393
+#: ../src/plugins/view/relview.py:394
 msgid "_Reorder"
 msgstr "_Sortere"
 
-#: ../src/plugins/view/relview.py:394
+#: ../src/plugins/view/relview.py:395
 msgid "Change order of parents and families"
 msgstr "Endre rekkefølge for foreldre og familier"
 
-#: ../src/plugins/view/relview.py:399
+#: ../src/plugins/view/relview.py:400
 msgid "Edit..."
 msgstr "Rediger..."
 
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/relview.py:401
 msgid "Edit the active person"
 msgstr "Redigerer den aktive personen"
 
-#: ../src/plugins/view/relview.py:402 ../src/plugins/view/relview.py:404
-#: ../src/plugins/view/relview.py:800
+#: ../src/plugins/view/relview.py:403 ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:801
 msgid "Add a new family with person as parent"
 msgstr "Legg til en ny familie med person som foreldre"
 
-#: ../src/plugins/view/relview.py:403
+#: ../src/plugins/view/relview.py:404
 msgid "Add Partner..."
 msgstr "Legg til partner..."
 
-#: ../src/plugins/view/relview.py:406 ../src/plugins/view/relview.py:408
-#: ../src/plugins/view/relview.py:794
+#: ../src/plugins/view/relview.py:407 ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:795
 msgid "Add a new set of parents"
 msgstr "Legger til et nytt sett med foreldre"
 
-#: ../src/plugins/view/relview.py:407
+#: ../src/plugins/view/relview.py:408
 msgid "Add New Parents..."
 msgstr "Legg til nye foreldre..."
 
-#: ../src/plugins/view/relview.py:410 ../src/plugins/view/relview.py:414
-#: ../src/plugins/view/relview.py:795
+#: ../src/plugins/view/relview.py:411 ../src/plugins/view/relview.py:415
+#: ../src/plugins/view/relview.py:796
 msgid "Add person as child to an existing family"
 msgstr "Legg til personen som barn i en eksisterende familie"
 
-#: ../src/plugins/view/relview.py:413
+#: ../src/plugins/view/relview.py:414
 msgid "Add Existing Parents..."
 msgstr "Legg til eksisterende foreldre..."
 
-#: ../src/plugins/view/relview.py:653
+#: ../src/plugins/view/relview.py:654
 msgid "Alive"
 msgstr "Levende"
 
-#: ../src/plugins/view/relview.py:711 ../src/plugins/view/relview.py:738
+#: ../src/plugins/view/relview.py:712 ../src/plugins/view/relview.py:739
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s i %(place)s"
 
-#: ../src/plugins/view/relview.py:796
+#: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
 msgstr "Rediger foreldre"
 
-#: ../src/plugins/view/relview.py:797
+#: ../src/plugins/view/relview.py:798
 msgid "Reorder parents"
 msgstr "Endre rekkefølge på foreldre"
 
-#: ../src/plugins/view/relview.py:798
+#: ../src/plugins/view/relview.py:799
 msgid "Remove person as child of these parents"
 msgstr "Fjern personen som barn av disse foreldrene"
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:803
 msgid "Edit family"
 msgstr "Rediger familie"
 
-#: ../src/plugins/view/relview.py:803
+#: ../src/plugins/view/relview.py:804
 msgid "Reorder families"
 msgstr "Reorganiserer familier"
 
-#: ../src/plugins/view/relview.py:804
+#: ../src/plugins/view/relview.py:805
 msgid "Remove person as parent in this family"
 msgstr "Fjern personen som foreldre i denne familien"
 
-#: ../src/plugins/view/relview.py:857 ../src/plugins/view/relview.py:913
+#: ../src/plugins/view/relview.py:858 ../src/plugins/view/relview.py:914
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] " (%d søsken)"
 msgstr[1] " (%d søsken)"
 
-#: ../src/plugins/view/relview.py:862 ../src/plugins/view/relview.py:918
+#: ../src/plugins/view/relview.py:863 ../src/plugins/view/relview.py:919
 msgid " (1 brother)"
 msgstr " (1 bror)"
 
-#: ../src/plugins/view/relview.py:864 ../src/plugins/view/relview.py:920
+#: ../src/plugins/view/relview.py:865 ../src/plugins/view/relview.py:921
 msgid " (1 sister)"
 msgstr " (1 søster)"
 
-#: ../src/plugins/view/relview.py:866 ../src/plugins/view/relview.py:922
+#: ../src/plugins/view/relview.py:867 ../src/plugins/view/relview.py:923
 msgid " (1 sibling)"
 msgstr " (1 søsken)"
 
-#: ../src/plugins/view/relview.py:868 ../src/plugins/view/relview.py:924
+#: ../src/plugins/view/relview.py:869 ../src/plugins/view/relview.py:925
 msgid " (only child)"
 msgstr " (enebarn)"
 
-#: ../src/plugins/view/relview.py:939 ../src/plugins/view/relview.py:1388
+#: ../src/plugins/view/relview.py:940 ../src/plugins/view/relview.py:1389
 msgid "Add new child to family"
 msgstr "Legg til et barn til familien"
 
-#: ../src/plugins/view/relview.py:943 ../src/plugins/view/relview.py:1392
+#: ../src/plugins/view/relview.py:944 ../src/plugins/view/relview.py:1393
 msgid "Add existing child to family"
 msgstr "Legg til et eksisterende barn til familien"
 
-#: ../src/plugins/view/relview.py:1172
+#: ../src/plugins/view/relview.py:1173
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../src/plugins/view/relview.py:1179 ../src/plugins/view/relview.py:1181
+#: ../src/plugins/view/relview.py:1180 ../src/plugins/view/relview.py:1182
 #, python-format
 msgid "%s %s"
 msgstr "%s %s"
 
-#: ../src/plugins/view/relview.py:1242
+#: ../src/plugins/view/relview.py:1243
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Relasjonstype: %s"
 
-#: ../src/plugins/view/relview.py:1284
+#: ../src/plugins/view/relview.py:1285
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s i %(place)s"
 
-#: ../src/plugins/view/relview.py:1288
+#: ../src/plugins/view/relview.py:1289
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/plugins/view/relview.py:1292
+#: ../src/plugins/view/relview.py:1293
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/plugins/view/relview.py:1303
+#: ../src/plugins/view/relview.py:1304
 msgid "Broken family detected"
 msgstr "Oppdaget en ødelagt familie"
 
-#: ../src/plugins/view/relview.py:1304
+#: ../src/plugins/view/relview.py:1305
 msgid "Please run the Check and Repair Database tool"
 msgstr "Kjør verktøyet Kontroller og reparer database"
 
-#: ../src/plugins/view/relview.py:1325 ../src/plugins/view/relview.py:1371
+#: ../src/plugins/view/relview.py:1326 ../src/plugins/view/relview.py:1372
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d barn)"
 msgstr[1] " (%d barn)"
 
-#: ../src/plugins/view/relview.py:1327 ../src/plugins/view/relview.py:1373
+#: ../src/plugins/view/relview.py:1328 ../src/plugins/view/relview.py:1374
 msgid " (no children)"
 msgstr " (ingen barn)"
 
-#: ../src/plugins/view/relview.py:1503
+#: ../src/plugins/view/relview.py:1504
 msgid "Add Child to Family"
 msgstr "Legg til et barn til familien"
 
-#: ../src/plugins/view/relview.py:1636
+#: ../src/plugins/view/relview.py:1637
 msgid "Use shading"
 msgstr "Bruk skyggelegging"
 
-#: ../src/plugins/view/relview.py:1639
+#: ../src/plugins/view/relview.py:1640
 msgid "Display edit buttons"
 msgstr "Vis redigeringsknapper"
 
-#: ../src/plugins/view/relview.py:1641
+#: ../src/plugins/view/relview.py:1642
 msgid "View links as website links"
 msgstr "Vise lenker som nettsidelenker"
 
-#: ../src/plugins/view/relview.py:1647
+#: ../src/plugins/view/relview.py:1648
 msgid "Layout"
 msgstr "Utseende"
 
-#: ../src/plugins/view/relview.py:1658
+#: ../src/plugins/view/relview.py:1659
 msgid "Show Details"
 msgstr "Vis detaljer"
 
-#: ../src/plugins/view/relview.py:1661
+#: ../src/plugins/view/relview.py:1662
 msgid "Show Siblings"
 msgstr "Vis søsken"
 
@@ -17638,17 +17668,9 @@ msgstr "Personvisning"
 msgid "The view showing all people in the family tree"
 msgstr "Visningen viser alle personer i slektstreet"
 
-#: ../src/plugins/view/view.gpr.py:152
-msgid "Person View"
-msgstr "Personvisning"
-
 #: ../src/plugins/view/view.gpr.py:153
 msgid "The view showing all people in the family tree in a flat list"
 msgstr "Visningen viser alle personer i slektstreet som en flat liste"
-
-#: ../src/plugins/view/view.gpr.py:167
-msgid "Place View"
-msgstr "Stedsnavnvisning"
 
 #: ../src/plugins/view/view.gpr.py:168
 msgid "The view showing all the places of the family tree"
@@ -18751,182 +18773,182 @@ msgstr "Skjult"
 msgid "Visible"
 msgstr "Synlig"
 
-#: ../src/PluginUtils/_PluginWindows.py:237
-#: ../src/PluginUtils/_PluginWindows.py:288
+#: ../src/PluginUtils/_PluginWindows.py:240
+#: ../src/PluginUtils/_PluginWindows.py:294
 msgid "Info"
 msgstr "Info"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:240
-#: ../src/PluginUtils/_PluginWindows.py:291
+#: ../src/PluginUtils/_PluginWindows.py:243
+#: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Hide/Unhide"
 msgstr "Skjul/Vis"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:248
-#: ../src/PluginUtils/_PluginWindows.py:300
+#: ../src/PluginUtils/_PluginWindows.py:251
+#: ../src/PluginUtils/_PluginWindows.py:306
 msgid "Load"
 msgstr "Last"
 
-#: ../src/PluginUtils/_PluginWindows.py:254
+#: ../src/PluginUtils/_PluginWindows.py:257
 msgid "Registered Plugins"
 msgstr "Registrerte programtillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:267
+#: ../src/PluginUtils/_PluginWindows.py:270
 msgid "Loaded"
 msgstr "Lastet"
 
-#: ../src/PluginUtils/_PluginWindows.py:271
+#: ../src/PluginUtils/_PluginWindows.py:275
 msgid "File"
 msgstr "Fil"
 
-#: ../src/PluginUtils/_PluginWindows.py:279
+#: ../src/PluginUtils/_PluginWindows.py:284
 msgid "Message"
 msgstr "Beskjed"
 
-#: ../src/PluginUtils/_PluginWindows.py:305
+#: ../src/PluginUtils/_PluginWindows.py:311
 msgid "Loaded Plugins"
 msgstr "Lastede programtillegg"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
-#: ../src/PluginUtils/_PluginWindows.py:325
+#: ../src/PluginUtils/_PluginWindows.py:331
 msgid "Addon Name"
 msgstr "Navn på tillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:340
+#: ../src/PluginUtils/_PluginWindows.py:346
 msgid "Path to Addon:"
 msgstr "Sti til tillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:357
+#: ../src/PluginUtils/_PluginWindows.py:366
 msgid "Install Addon"
 msgstr "Installere tillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:360
+#: ../src/PluginUtils/_PluginWindows.py:369
 msgid "Install All Addons"
 msgstr "Installere alle tillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:363
+#: ../src/PluginUtils/_PluginWindows.py:372
 msgid "Refresh Addon List"
 msgstr "Gjenoppbygg tilleggsliste"
 
-#: ../src/PluginUtils/_PluginWindows.py:368
+#: ../src/PluginUtils/_PluginWindows.py:377
 msgid "Install Addons"
 msgstr "Installere tillegg"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:376
+#: ../src/PluginUtils/_PluginWindows.py:385
 msgid "Reload"
 msgstr "Last på nytt"
 
-#: ../src/PluginUtils/_PluginWindows.py:398
+#: ../src/PluginUtils/_PluginWindows.py:408
 msgid "Refreshing Addon List"
 msgstr "Gjenoppbygger tilleggsliste"
 
-#: ../src/PluginUtils/_PluginWindows.py:399
-#: ../src/PluginUtils/_PluginWindows.py:404
-#: ../src/PluginUtils/_PluginWindows.py:494
+#: ../src/PluginUtils/_PluginWindows.py:409
+#: ../src/PluginUtils/_PluginWindows.py:414
+#: ../src/PluginUtils/_PluginWindows.py:504
 msgid "Reading gramps-project.org..."
 msgstr "Leser gramps-project.org..."
 
-#: ../src/PluginUtils/_PluginWindows.py:422
+#: ../src/PluginUtils/_PluginWindows.py:432
 msgid "Checking addon..."
 msgstr "Sjekker tillegg..."
 
-#: ../src/PluginUtils/_PluginWindows.py:430
+#: ../src/PluginUtils/_PluginWindows.py:440
 msgid "Unknown Help URL"
 msgstr "Ukjent URL for Hjelp"
 
-#: ../src/PluginUtils/_PluginWindows.py:441
+#: ../src/PluginUtils/_PluginWindows.py:451
 msgid "Unknown URL"
 msgstr "Ukjent URL"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Install all Addons"
 msgstr "Installere alle tillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Installing..."
 msgstr "Installerer..."
 
-#: ../src/PluginUtils/_PluginWindows.py:493
+#: ../src/PluginUtils/_PluginWindows.py:503
 msgid "Installing Addon"
 msgstr "Installerer tillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:522
-#: ../src/PluginUtils/_PluginWindows.py:528
+#: ../src/PluginUtils/_PluginWindows.py:532
+#: ../src/PluginUtils/_PluginWindows.py:538
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Kan ikke åpne '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:539
+#: ../src/PluginUtils/_PluginWindows.py:549
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Feil: kan ikke åpne '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:542
+#: ../src/PluginUtils/_PluginWindows.py:552
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Feil: ukjent filtype: '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:547
+#: ../src/PluginUtils/_PluginWindows.py:557
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Undersøker '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:559
+#: ../src/PluginUtils/_PluginWindows.py:569
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Feil i fila '%s': kan ikke laste."
 
-#: ../src/PluginUtils/_PluginWindows.py:571
+#: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' er for denne versjonen av Gramps."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:574
+#: ../src/PluginUtils/_PluginWindows.py:584
 #, python-format
-msgid "'%s' is for NOT this version of Gramps."
+msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' er IKKE for denne versjonen av Gramps."
 
-#: ../src/PluginUtils/_PluginWindows.py:575
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Den er for versjon %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:581
+#: ../src/PluginUtils/_PluginWindows.py:591
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Feil: mangler gramps_target_version = '3.2' i '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:585
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installerer '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:595
+#: ../src/PluginUtils/_PluginWindows.py:605
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registrerte ''%s"
 
-#: ../src/PluginUtils/_PluginWindows.py:604
+#: ../src/PluginUtils/_PluginWindows.py:614
 msgid "Load Addon"
 msgstr "Last inn programtillegg"
 
-#: ../src/PluginUtils/_PluginWindows.py:655
+#: ../src/PluginUtils/_PluginWindows.py:671
 msgid "Unavailable"
 msgstr "Utilgjengelig"
 
-#: ../src/PluginUtils/_PluginWindows.py:659
+#: ../src/PluginUtils/_PluginWindows.py:675
 msgid "Fail"
 msgstr "Feile"
 
-#: ../src/PluginUtils/_PluginWindows.py:673
+#: ../src/PluginUtils/_PluginWindows.py:689
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:821
+#: ../src/PluginUtils/_PluginWindows.py:837
 msgid "Plugin Error"
 msgstr "Feil for programtillegg"
 
@@ -20892,8 +20914,8 @@ msgid "Sources with <count> Repository references"
 msgstr "Kilder med <antall> oppbevaringssteder"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-msgid "Matches sources with certain number repository references"
-msgstr "Samsvarer med kilder med et bestemt antall oppbevaringssteder"
+msgid "Matches sources with a certain number of repository references"
+msgstr "Samsvarer med kilder med et bestemt antall referanser til oppbevaringssteder"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -22712,7 +22734,7 @@ msgid "<b>Adding Images</b><br/>An image can be added to any gallery or the Medi
 msgstr "<b>Legge til bilder</b><br/>Et bilde kan legges til et vilkålig galleri eller Media visning, ved å dra og slippe fra en filbehandler eller nettleser. Du kan faktisk legge til hvilken som helst type fil på denne måten. Dette kan være nyttig for skannede dokumenter og andre digitale kilder."
 
 #: ../src/data/tips.xml.in.h:3
-msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and setting. Play with the settings to see the different options."
+msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options."
 msgstr "<b>Stamtavlevisning</b><br/>Stamtavlevisningen viser et tradisjonelt stamtavlediagram. Hold musa over en person for å se mer informasjon om denne personen, eller høyreklikk på en person for å få en meny hvor du raskt kan få tilgang til andre familiemedlemmer og innstillinger. Endre på innstillingene for å se de ulike mulighetene."
 
 #: ../src/data/tips.xml.in.h:4
@@ -22748,7 +22770,7 @@ msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, sourc
 msgstr "<b>Endre objekter</b><br/>I de fleste tilfeller vil du få frem et redigeringsvindu ved å dobbelklikke på navn, kilde, sted eller media posten. Husk at resultatet kan være avhengig av sammenhengen. For eksempel, i familievisning, når man klikker på en forelder eller et barn, vil du få opp relasjonsredigeringsvinduet."
 
 #: ../src/data/tips.xml.in.h:12
-msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to it's parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
+msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to its parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
 msgstr "<b>Endre slektsforhold foreldre-barn</b><br/> Du kan endre slektsforholdet for et barn til sine foreldre ved å dobbektklikke på barnet i Familieberedigeringsvinduet. Slektskapet kan være Adoptert, Født, Foster, Ingen, Pleie, Stebarn eller Ukjent."
 
 #: ../src/data/tips.xml.in.h:13
@@ -22772,7 +22794,7 @@ msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gram
 msgstr "<b>Gramps e-postlister</b><br/>Ønsker du svar på dine forespørsler om Gramps? Sjekk ut gramps-user e-postlista. Det er mange personer på lista, så det er sannsynlig at du får raskt svar. Hvis du har et spørsmål om utviklingen av Gramps, prøv lista gramps-devel. Informasjon om ved å velge &quot;Hjelp&gt; Gramps e-postlister&quot;."
 
 #: ../src/data/tips.xml.in.h:18
-msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for you family tree then there's a report for that as well."
+msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well."
 msgstr "<b>Gramps rapporter</b><br/>Gramps tilbyr et vidt spekter med rapporter. De grafiske rapportene og grafene kan presentere komplekse slektskap på en enkel måte. Tekstrapporter er spesielt nyttige hvis du ønsker å sende resultater fra din slektsdatabase til familiemedlemmer på e-post. Hvis du er klar for å lage en Internettside for ditt slektstre finnes det egne rapporter for det også."
 
 #: ../src/data/tips.xml.in.h:19
@@ -22796,7 +22818,7 @@ msgid "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements 
 msgstr "<b>Forbedre Gramps</b><br/>Brukere er oppfordret til å etterspørre forbedringer i Gramps. Å etterspørre forbedringer i Gramps kan gjøres ved å sende e-post til e-postlistene gramps-user eller gramps-devel, eller ved å lage et &quot;Funksjonalitetsønske&quot; på http://bugs.gramps-project.org. Det foretrukne er å legge inn et &quot;Funksjonalitetsønske&quot;, men det kan være fint å diskutere dine ideer på e-postelistene også."
 
 #: ../src/data/tips.xml.in.h:24
-msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a redish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
+msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a reddish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
 msgstr "<b>Feil datoer</b><br/>Alle taster fra tid til annen datoer med feil format. Datoer med feil format vil vises ved at lampen ved siden av datoen er rød. Grønn betyr at datoen er gyldig og gul betyr at datoen er akseptert. Datobehandleren kan startes ved å trykke på den fargede lampen. Formatet for datoen angis under &quot;Redigere &gt; Innstillinger &gt; Vis&quot;."
 
 #: ../src/data/tips.xml.in.h:25
@@ -22844,8 +22866,8 @@ msgid "<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge
 msgstr "<b>Flett sammen</b><br/>Funksjonen &quot;Redigere&gt; Sammenligne og slå sammen...&quot; lar deg slå to personer sammen til en. Hold nede CTRL-tasten og klikk på to personer. Dette er nyttig om du kombinerer to databaser der samme person går igjen i begge databasene, eller om du har skrevet inn samme person flere ganger i databasen. Dette fungerer også for steder, kilder og oppbevaringssteder."
 
 #: ../src/data/tips.xml.in.h:36
-msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active object such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
-msgstr "<b>Navigere frem og tilbake</b><br/>Gramps har en liste over tidligere valgte aktive personer. Du kan flytte deg fremover og bakover gjennom lista ved å bruke &quot;Gå &gt; Fremover&quot; og &quot;Gå &gt; Tilbake&quot; (eller bruk piltastene)."
+msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
+msgstr "<b>Navigere frem og tilbake</b><br/>Gramps har en liste over tidligere valgte aktive personer. Du kan flytte deg fremover og bakover gjennom lista ved å bruke &quot;Gå &gt; Fremover&quot; og &quot;Gå &gt; Tilbake&quot;, eller bruk piltastene."
 
 #: ../src/data/tips.xml.in.h:37
 msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
@@ -22860,7 +22882,7 @@ msgid "<b>Ordering Children in a Family</b><br/>The birth order of children in a
 msgstr "<b>Sortere barn i en familie</b><br/>Fødselsrekkefølgen i en familie kan settes ved dra og slipp. Denne sorteringen bevares selv om de ikke har fødselsdatoer."
 
 #: ../src/data/tips.xml.in.h:40
-msgid "<b>Organising the Views</b><br/>Many of the views can presented your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
+msgid "<b>Organising the Views</b><br/>Many of the views can present your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
 msgstr "<b>Organisere visningene</b><br/>Mange visninger kan presentere dine data som hierarkiske trær eller som enkle lister. Hver visning kan også settes opp slik du selv vil. Se til høyre for den øverste verktøylinja eller under menyen &quot;Vis&quot;."
 
 #: ../src/data/tips.xml.in.h:41
@@ -22880,15 +22902,15 @@ msgid "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramp
 msgstr "<b>Rapportere feil i Gramps</b><br/>Den beste måten å rapportere en feil i Gramps på, er ved å bruke Gramps sitt feilsporingssystem på http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:45
-msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each seperate view can also be configured under &quot;View &gt; Configure View...&quot;"
-msgstr "<b>Sette dine innstillinger</b><br/>&quot;Redigere &gt; Innstillinger...&quot; lar deg endre mange innstillinger, f.eks. sti til mediakatalogen eller mange andre innstillinger på hvordan Gramps skal vises for å gjøre det mest mulig attraktivt for deg. Hver visning kan også settes opp under &quot;Vis &gt; Innstillinger for visning...&quot;"
+msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;"
+msgstr "<b>Angi dine innstillinger</b><br/>&quot;Redigere &gt; Innstillinger...&quot; lar deg endre mange innstillinger, f.eks. sti til mediakatalogen eller mange andre innstillinger på hvordan Gramps skal vises for å gjøre det mest mulig attraktivt for deg. Hver visning kan også settes opp under &quot;Vis &gt; Innstillinger for visning...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
 msgid "<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case Gramps is wrong in making this choice, you can override the filter by checking the Show All checkbutton."
 msgstr "<b>Vis alle</b><br/>Når man legger til en ektefelle eller et barn, er lista over personer som vises filtrert til å vise bare personer som realistisk sett kan passe i rollen (basert på datoer i databasen). I tilfelle Gramps har tatt feil med dette valget kan du overstyre filteret ved å krysse av for Vis alle."
 
 #: ../src/data/tips.xml.in.h:47
-msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stand for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
+msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stands for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
 msgstr "<b>Hva betyr Gramps?</b><br/>Navnet Gramps ble foreslått av faren til den opprinnelige utvikleren, Don Allingham. Gramps er et akronym for <i>Genealogical Research and Analysis Management Program System</i>. Det er fullstendig sleksforskningsprogram, som lar deg lagre, redigere og utforske slekstsdata. Gramps database-bakstykke er så robust at noen brukere behandler slektsdata som inneholder hundretusener av personer."
 
 #: ../src/data/tips.xml.in.h:48
@@ -22952,5 +22974,5 @@ msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and explora
 msgstr "<b>Hvem ble født når?</b><br/>Under &quot;Verktøy &gt; Analysere og utforske &gt; Sammenligne enkelthendelser...&quot; kan du sammenligne data for alle (eller noen) personer i din database. Hvis du vil kan du for eksempel få en liste over alle fødselsdatoer for alle i din database. Du kan bruke filtrene for å redusere resultatene."
 
 #: ../src/data/tips.xml.in.h:63
-msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calenders. Try the button next to the date field in the Events Editor."
+msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Arbeide med datoer</b><br/>En serie med datoer can angis ved å bruke formatet &quot;mellom 4.januar 2000 og 20.mars 2003&quot;. Du kan også indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
