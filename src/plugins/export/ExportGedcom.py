@@ -47,6 +47,7 @@ from gen.updatecallback import UpdateCallback
 from Utils import media_path_full
 import gen.proxy
 from QuestionDialog import ErrorDialog
+from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #
@@ -1366,6 +1367,8 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(level, "PLAC", place_name.replace('\r', ' '))
         longitude = place.get_longitude()
         latitude = place.get_latitude()
+        if longitude and latitude:
+            (latitude, longitude) = conv_lat_lon(latitude, longitude, "GEDCOM")
         if longitude and latitude:
             self.__writeln(level+1, "MAP")
             self.__writeln(level+2, 'LATI', latitude)
