@@ -241,6 +241,38 @@ def __convert_using_classic_repr(stringValue, typedeg):
 
     return __convert_structure_to_float(sign, degs, mins, secs)
 
+def __convert_using_modgedcom_repr(val, typedeg):
+    """ helper function that tries to convert the string using the
+    modified GEDCOM representation where direction [NSEW] is appended
+    instead of prepended. This particular representation is the result
+    of value normalization done on values passed to this function
+    """
+    if typedeg == 'lat':
+        pos = val.find('N')
+        if pos >= 0:
+            stringValue = val[:pos]
+        else:
+            pos = val.find('S')
+            if pos >= 0:
+                stringValue = '-' + val[:pos]
+            else:
+                return None
+    else:
+        pos = val.find('E')
+        if pos >= 0:
+            stringValue = val[:pos]
+        else:
+            pos = val.find('W')
+            if pos >= 0:
+                stringValue = '-' + val[:pos]
+            else:
+                return None
+    try : 
+        v = float(stringValue)      
+        return v
+    except ValueError :
+        return None;
+
 def __convert_float_val(val, typedeg = "lat"):
     # function converting input to float, recognizing decimal input, or 
     # degree notation input. Only english input
@@ -269,6 +301,11 @@ def __convert_float_val(val, typedeg = "lat"):
     # format: XX° YY' ZZ" [NSWE]
     v = __convert_using_classic_repr(val, typedeg) 
     if v is not None : 
+        return v
+
+    # format XX.YYYY[NSWE]
+    v = __convert_using_modgedcom_repr(val, typedeg)
+    if v is not None :
         return v
     
     # no format succeeded
@@ -364,6 +401,24 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         else:
             return ("%.8f" % lat_float , str_lon)
     
+    if format == "GEDCOM":
+        # The 5.5.1 spec is inconsistent.  Length is supposedly 5 to 8 chars,
+        # but the sample values are longer, using up to 6 fraction digits.
+        # As a compromise, we will produce up to 6 fraction digits, but only
+        # if necessary
+        # correct possible roundoff error
+        if lon_float >= 0:
+            str_lon = "%.6f" % (lon_float)
+            if str_lon == "180.000000":
+                str_lon ="W180.000000"
+            else:
+                str_lon = "E" + str_lon
+        else:
+            str_lon = "W" + "%.6f" % (-lon_float)
+        str_lon = str_lon[:-5] + str_lon[-5:].rstrip("0") 
+        str_lat = ("%s%.6f" % (("N", lat_float) if lat_float >= 0 else ("S", -lat_float)))
+        str_lat = str_lat[:-5] + str_lat[-5:].rstrip("0") 
+        return (str_lat, str_lon)
     
     deg_lat = int(lat_float)
     deg_lon = int(lon_float)
@@ -624,6 +679,7 @@ if __name__ == '__main__':
         format5 = "ISO-DM"
         format6 = "ISO-DMS"
         format7 = "RT90"
+        format8 = "GEDCOM"
         print "Testing conv_lat_lon function, "+text+':'
         res1, res2 = conv_lat_lon(lat1,lon1,format0)
         print lat1,lon1,"in format",format0, "is   ",res1,res2
@@ -641,6 +697,8 @@ if __name__ == '__main__':
         print lat1,lon1,"in format",format6, "is",res
         res1, res2 = conv_lat_lon(lat1,lon1,format7)
         print lat1,lon1,"in format",format7, "is",res1,res2,"\n"
+        res1, res2 = conv_lat_lon(lat1,lon1,format8)
+        print lat1,lon1,"in format",format8, "is",res1,res2,"\n"
     
     def test_formats_fail(lat1,lon1,text=''):
         print "This test should make conv_lat_lon function fail, "+text+":"
@@ -686,6 +744,8 @@ if __name__ == '__main__':
     test_formats_fail(lat,lon)
     # test precision
     lat, lon =  u' 50°59.99"S', u'  2°59\'59.99"E'
+    test_formats_success(lat,lon)
+    lat, lon = 'N50.849888888888', 'E2.885897222222'
     test_formats_success(lat,lon)
     # to large value of lat
     lat, lon =  '90.849888888888', '2.885897222222'
