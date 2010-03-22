@@ -40,5 +40,5 @@ from Filters.Rules._HasSourceBase import HasSourceBase
 class HasSource(HasSourceBase):
     """Events with sources"""
 
-    name        = _('Events with <count> source')
-    description = _("Matches events with a certain number of items in the source")
+    name        = _('Events with <count> sources')
+    description = _("Matches events with a certain number of sources connected to it")

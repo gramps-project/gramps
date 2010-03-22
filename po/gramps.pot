@@ -20414,11 +20414,11 @@ msgid "Family filters"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-msgid "People with <count> source"
+msgid "People with <count> sources"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-msgid "Matches people with a certain number of items in the source"
+msgid "Matches people with a certain number of sources connected to it"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
