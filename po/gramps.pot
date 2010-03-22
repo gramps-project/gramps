@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-22 17:53+0100\n"
+"POT-Creation-Date: 2010-03-22 18:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20437,11 +20437,11 @@ msgid "Family filters"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-msgid "People with <count> source"
+msgid "People with <count> sources"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-msgid "Matches people with a certain number of items in the source"
+msgid "Matches people with a number of sources connected to it"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
@@ -20955,11 +20955,11 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-msgid "Families with <count> source"
+msgid "Families with <count> sources"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-msgid "Matches families with a certain number of items in the source"
+msgid "Matches families with a number of sources connected to it"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45

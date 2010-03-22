@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-22 17:53+0100\n"
-"PO-Revision-Date: 2010-03-22 17:58+0100\n"
+"POT-Creation-Date: 2010-03-22 18:13+0100\n"
+"PO-Revision-Date: 2010-03-22 18:15+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20913,13 +20913,13 @@ msgid "Family filters"
 msgstr "Filtres familiaux"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-msgid "People with <count> source"
-msgstr "Individus avec un <nombre> de source"
+msgid "People with <count> sources"
+msgstr "Individus avec un <nombre> de sources"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-msgid "Matches people with a certain number of items in the source"
-msgstr "Correspond aux individus ayant un nombre d'articles dans la source"
+msgid "Matches people with a number of sources connected to it"
+msgstr "Correspond aux individus ayant un nombre de sources connectées"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
@@ -21466,13 +21466,13 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr "Correspond aux familles ayant un type de relation de même valeur"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-msgid "Families with <count> source"
-msgstr "Familles avec un <nombre> de source"
+msgid "Families with <count> sources"
+msgstr "Familles avec un <nombre> de sources"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-msgid "Matches families with a certain number of items in the source"
-msgstr "Correspond aux familles avec un nombre d'article dans la source"
+msgid "Matches families with a number of sources connected to it"
+msgstr "Correspond aux familles ayant un nombre de sources connectées"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -24182,11 +24182,4 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
-
-#~ msgid "Last modified"
-#~ msgstr "Dernière modification"
-#~ msgid "Show Repository Reference"
-#~ msgstr "Affiche la référence du dépôt"
-#~ msgid "'%s' is for NOT this version of Gramps."
-#~ msgstr "'%s' N'EST PAS PRÉVU pour cette version de Gramps."
 
