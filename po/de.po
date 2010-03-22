@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-17 19:33+0100\n"
-"PO-Revision-Date: 2010-03-17 19:39+0100\n"
+"POT-Creation-Date: 2010-03-22 20:46+0100\n"
+"PO-Revision-Date: 2010-03-22 21:19+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "Lesezeichen organisieren"
 #: ../src/plugins/webreport/NarrativeWeb.py:1985
 #: ../src/plugins/webreport/NarrativeWeb.py:4756
 #: ../src/PluginUtils/_GuiOptions.py:828
-#: ../src/PluginUtils/_PluginWindows.py:225
+#: ../src/PluginUtils/_PluginWindows.py:226
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -132,7 +132,7 @@ msgstr "Name"
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89 ../src/plugins/view/noteview.py:76
-#: ../src/plugins/view/relview.py:612 ../src/plugins/view/repoview.py:82
+#: ../src/plugins/view/relview.py:613 ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77 ../src/PluginUtils/_GuiOptions.py:829
 #: ../src/PluginUtils/_GuiOptions.py:969
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -737,7 +737,7 @@ msgstr "frühere(r) Partner(in)"
 #: ../src/plugins/textreport/IndivComplete.py:304
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/MarkerReport.py:207
-#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:882
+#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4144
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -754,7 +754,7 @@ msgstr "Vater"
 #: ../src/plugins/textreport/IndivComplete.py:313
 #: ../src/plugins/textreport/IndivComplete.py:605
 #: ../src/plugins/textreport/MarkerReport.py:213
-#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:883
+#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4151
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -764,7 +764,7 @@ msgstr "Mutter"
 #: ../src/Reorder.py:38 ../src/gui/selectors/selectperson.py:81
 #: ../src/Merge/_MergePerson.py:180 ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/textreport/FamilyGroup.py:494
-#: ../src/plugins/view/relview.py:1341
+#: ../src/plugins/view/relview.py:1342
 #: ../src/plugins/webreport/NarrativeWeb.py:563
 msgid "Spouse"
 msgstr "Ehepartner"
@@ -805,8 +805,8 @@ msgstr "Benutzen_der_Zwischenablage"
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
-#: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
-#: ../src/plugins/view/relview.py:1041
+#: ../src/plugins/view/relview.py:457 ../src/plugins/view/relview.py:995
+#: ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -945,7 +945,7 @@ msgstr "Familiäres Ereignis"
 #: ../src/plugins/view/noteview.py:77 ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/PluginUtils/_PluginWindows.py:219
-#: ../src/PluginUtils/_PluginWindows.py:329
+#: ../src/PluginUtils/_PluginWindows.py:335
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
@@ -966,8 +966,8 @@ msgstr "Ursache"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:57 ../src/plugins/view/eventview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:115
-#: ../src/PluginUtils/_PluginWindows.py:228
-#: ../src/PluginUtils/_PluginWindows.py:333
+#: ../src/PluginUtils/_PluginWindows.py:230
+#: ../src/PluginUtils/_PluginWindows.py:339
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "Beschreibung"
@@ -1091,8 +1091,8 @@ msgstr "Vorname"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
-#: ../src/plugins/view/relview.py:529 ../src/plugins/view/relview.py:1317
-#: ../src/plugins/view/relview.py:1339
+#: ../src/plugins/view/relview.py:530 ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/relview.py:1340
 msgid "Family"
 msgstr "Familie"
 
@@ -1165,7 +1165,7 @@ msgstr "Personenverknüpfung"
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/view/relview.py:622
+#: ../src/plugins/view/relview.py:623
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
 msgstr "Geburt"
@@ -1768,7 +1768,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:572
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
-#: ../src/plugins/view/relview.py:660
+#: ../src/plugins/view/relview.py:661
 #: ../src/plugins/webreport/NarrativeWeb.py:3489
 #: ../src/plugins/webreport/NarrativeWeb.py:4431
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -2696,7 +2696,7 @@ msgstr "zwischen"
 #: ../src/gen/lib/date.py:327 ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449 ../src/Simple/_SimpleTable.py:251
 #: ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:975
+#: ../src/plugins/view/relview.py:976
 msgid "and"
 msgstr "und"
 
@@ -2815,7 +2815,7 @@ msgstr "Name nach der Hochzeit"
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/view/relview.py:633 ../src/plugins/view/relview.py:658
+#: ../src/plugins/view/relview.py:634 ../src/plugins/view/relview.py:659
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
 msgstr "Tod"
@@ -2950,7 +2950,7 @@ msgstr "Testament"
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/textreport/FamilyGroup.py:357
-#: ../src/plugins/view/relview.py:1257
+#: ../src/plugins/view/relview.py:1258
 msgid "Marriage"
 msgstr "Hochzeit"
 
@@ -3144,25 +3144,25 @@ msgid "Gramps View"
 msgstr "Grampsansicht"
 
 #: ../src/gen/plug/_pluginreg.py:83 ../src/gui/grampsgui.py:134
-#: ../src/plugins/view/relview.py:132 ../src/plugins/view/view.gpr.py:115
+#: ../src/plugins/view/relview.py:133 ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
 msgstr "Beziehungen"
 
-#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:357
+#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:362
 #: ../src/gui/widgets/grampletpane.py:202
 msgid "Gramplet"
 msgstr "Gramplet"
 
-#: ../src/gen/plug/_pluginreg.py:426 ../src/gui/views/pageview.py:111
+#: ../src/gen/plug/_pluginreg.py:440 ../src/gui/views/pageview.py:111
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
-#: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
+#: ../src/gen/plug/_pluginreg.py:966 ../src/gen/plug/_pluginreg.py:971
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "FEHLER: Lesen der Plug-in Registrierung %(filename)s gescheitert"
 
-#: ../src/gen/plug/_pluginreg.py:970
+#: ../src/gen/plug/_pluginreg.py:985
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -3171,14 +3171,14 @@ msgstr ""
 "FEHLER: Plugin Datei %(filename)s hat die falsche Version: sollte sein \"%"
 "(gramps_version)s\" aber ist aktuell \"%(gramps_target_version)s\"."
 
-#: ../src/gen/plug/_pluginreg.py:989
+#: ../src/gen/plug/_pluginreg.py:1004
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "FEHLER: Falsche Pythondatei %(filename)s in der Registrierungsdatei %"
 "(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:997
+#: ../src/gen/plug/_pluginreg.py:1012
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
@@ -3421,8 +3421,8 @@ msgid "Name format"
 msgstr "Namenformat"
 
 #: ../src/gui/configure.py:802 ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:245
-#: ../src/PluginUtils/_PluginWindows.py:297
+#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:248
+#: ../src/PluginUtils/_PluginWindows.py:303
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -3697,29 +3697,29 @@ msgstr "_Extrahieren"
 msgid "_Archive"
 msgstr "_Archiv"
 
-#: ../src/gui/dbman.py:267
+#: ../src/gui/dbman.py:268
 msgid "Family tree name"
 msgstr "Stammbaumname:"
 
-#: ../src/gui/dbman.py:277
+#: ../src/gui/dbman.py:278
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/plugins/webreport/NarrativeWeb.py:130
-#: ../src/PluginUtils/_PluginWindows.py:222
-#: ../src/PluginUtils/_PluginWindows.py:275
+#: ../src/PluginUtils/_PluginWindows.py:223
+#: ../src/PluginUtils/_PluginWindows.py:280
 msgid "Status"
 msgstr "Status"
 
-#: ../src/gui/dbman.py:283
-msgid "Last modified"
-msgstr "Zuletzt geändert"
+#: ../src/gui/dbman.py:284
+msgid "Last accessed"
+msgstr "Letzter Zugriff"
 
-#: ../src/gui/dbman.py:365
+#: ../src/gui/dbman.py:366
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Sperre der Datenbank '%s' aufheben?"
 
-#: ../src/gui/dbman.py:366
+#: ../src/gui/dbman.py:367
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -3732,15 +3732,15 @@ msgstr ""
 "Jedoch wenn jemand anderes die Datenbank bearbeitet und du die Sperrung "
 "aufhebst, kannst du die Datenbank beschädigen."
 
-#: ../src/gui/dbman.py:372
+#: ../src/gui/dbman.py:373
 msgid "Break lock"
 msgstr "Sperre aufheben"
 
-#: ../src/gui/dbman.py:449
+#: ../src/gui/dbman.py:450
 msgid "Rename failed"
 msgstr "Umbenennung ist fehlgeschlagen"
 
-#: ../src/gui/dbman.py:450
+#: ../src/gui/dbman.py:451
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -3752,61 +3752,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:465
+#: ../src/gui/dbman.py:466
 msgid "Could not rename the Family Tree."
 msgstr "Kann diesen Stammbaum nicht umbenennen."
 
-#: ../src/gui/dbman.py:466
+#: ../src/gui/dbman.py:467
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Stammbaum besteht bereits, wähle einen einmaligen Namen."
 
-#: ../src/gui/dbman.py:479
+#: ../src/gui/dbman.py:480
 msgid "Could not rename family tree"
 msgstr "Kann Stammbaum nicht umbenennen"
 
-#: ../src/gui/dbman.py:513
+#: ../src/gui/dbman.py:514
 msgid "Extracting archive..."
 msgstr "Entpacke Archiv..."
 
-#: ../src/gui/dbman.py:518
+#: ../src/gui/dbman.py:519
 msgid "Importing archive..."
 msgstr "Importiere Archiv..."
 
-#: ../src/gui/dbman.py:534
+#: ../src/gui/dbman.py:535
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Den '%s' Stammbaum entfernen?"
 
-#: ../src/gui/dbman.py:535
+#: ../src/gui/dbman.py:536
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Das Entfernen dieses Stammbaum zerstört die Daten dauerhaft."
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:537
 msgid "Remove family tree"
 msgstr "Entferne Stammbaum"
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:543
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
-#: ../src/gui/dbman.py:546
+#: ../src/gui/dbman.py:547
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
-#: ../src/gui/dbman.py:548
+#: ../src/gui/dbman.py:549
 msgid "Remove version"
 msgstr "Entferne Version"
 
-#: ../src/gui/dbman.py:577
+#: ../src/gui/dbman.py:578
 msgid "Could not delete family tree"
 msgstr "Kann Stammbaum nicht löschen"
 
-#: ../src/gui/dbman.py:602
+#: ../src/gui/dbman.py:603
 msgid "Deletion failed"
 msgstr "Löschung fehlgeschlagen"
 
-#: ../src/gui/dbman.py:603
+#: ../src/gui/dbman.py:604
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -3818,23 +3818,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:647
 msgid "Rebuilding database from backup files"
 msgstr "Datenbank aus Sicherungsdateien wiederherstellen"
 
-#: ../src/gui/dbman.py:651
+#: ../src/gui/dbman.py:652
 msgid "Error restoring backup data"
 msgstr "Fehler beim wiederherstellen der Sicherungsdaten"
 
-#: ../src/gui/dbman.py:686
+#: ../src/gui/dbman.py:687
 msgid "Could not create family tree"
 msgstr "Konnte Stammbaum nicht erstellen"
 
-#: ../src/gui/dbman.py:800
+#: ../src/gui/dbman.py:801
 msgid "Retrieve failed"
 msgstr "Abfrage fehlgeschlagen"
 
-#: ../src/gui/dbman.py:801
+#: ../src/gui/dbman.py:802
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -3845,11 +3845,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:841 ../src/gui/dbman.py:869
+#: ../src/gui/dbman.py:842 ../src/gui/dbman.py:870
 msgid "Archiving failed"
 msgstr "Archivierung ist fehlgeschlagen"
 
-#: ../src/gui/dbman.py:842
+#: ../src/gui/dbman.py:843
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -3861,15 +3861,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:847
+#: ../src/gui/dbman.py:848
 msgid "Creating data to be archived..."
 msgstr "Erstelle zu archivierende Daten..."
 
-#: ../src/gui/dbman.py:856
+#: ../src/gui/dbman.py:857
 msgid "Saving archive..."
 msgstr "Speichere Archiv..."
 
-#: ../src/gui/dbman.py:870
+#: ../src/gui/dbman.py:871
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -4281,8 +4281,8 @@ msgstr "Notizen"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:903
-#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:516
-#: ../src/plugins/view/relview.py:847 ../src/plugins/view/relview.py:881
+#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:517
+#: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr "Eltern"
@@ -5057,7 +5057,7 @@ msgid "Edit relationship"
 msgstr "Beziehung bearbeiten"
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1515
+#: ../src/plugins/view/relview.py:1516
 msgid "Select Child"
 msgstr "Wähle Kind"
 
@@ -5166,9 +5166,9 @@ msgstr "Taufe:"
 msgid "Burial:"
 msgstr "Beerdigung:"
 
-#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:594
-#: ../src/plugins/view/relview.py:988 ../src/plugins/view/relview.py:1036
-#: ../src/plugins/view/relview.py:1117 ../src/plugins/view/relview.py:1223
+#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:595
+#: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
+#: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Bearbeiten von %s"
@@ -5757,7 +5757,7 @@ msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s - %(part2)s"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
-#: ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:406
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -5768,7 +5768,7 @@ msgstr "Entfernen"
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
 #: ../src/gui/editors/displaytabs/gallerytab.py:124
-#: ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:410
 msgid "Share"
 msgstr "Beteiligen"
 
@@ -8268,26 +8268,40 @@ msgstr "Der Stil, der für die Beschriftung der Jahre verwendet wird."
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
+msgid "Comma Separated Values Spreadsheet (CSV)"
+msgstr "Durch Komma getrennte Wertetabelle (CSV)"
+
+#: ../src/plugins/export/export.gpr.py:32
 msgid "Comma _Separated Values Spreadsheet (CSV)"
 msgstr "Durch _Komma getrennte Werte Tabelle (CSV)"
 
-#: ../src/plugins/export/export.gpr.py:32
+#: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV ist ein gebräuchliches Tabellenformat."
 
-#: ../src/plugins/export/export.gpr.py:51
+#: ../src/plugins/export/export.gpr.py:52
+msgid "Web Family Tree"
+msgstr "Web Family Tree"
+
+#: ../src/plugins/export/export.gpr.py:53
 msgid "_Web Family Tree"
 msgstr "_Web Family Tree"
 
-#: ../src/plugins/export/export.gpr.py:52
+#: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
 msgstr "Web Family Tree Format"
 
-#: ../src/plugins/export/export.gpr.py:71
+#: ../src/plugins/export/export.gpr.py:73
+#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
+msgstr "GEDCOM"
+
+#: ../src/plugins/export/export.gpr.py:74
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/plugins/export/export.gpr.py:72
+#: ../src/plugins/export/export.gpr.py:75
 #: ../src/plugins/import/import.gpr.py:52
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
@@ -8297,19 +8311,28 @@ msgstr ""
 "transferieren. Die meisten Genealogieprogramme können GEDCOM-Dateien "
 "importieren."
 
-#: ../src/plugins/export/export.gpr.py:92
+#: ../src/plugins/export/export.gpr.py:95
+#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
+msgid "GeneWeb"
+msgstr "GeneWeb"
+
+#: ../src/plugins/export/export.gpr.py:96
 msgid "_GeneWeb"
 msgstr "_GeneWeb"
 
-#: ../src/plugins/export/export.gpr.py:93
+#: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb ist ein webbasiertes Ahnenforschungsprogramm."
 
-#: ../src/plugins/export/export.gpr.py:112
+#: ../src/plugins/export/export.gpr.py:116
+msgid "Gramps XML Package (family tree and media)"
+msgstr "Gramps-XML Paket (Stammbaum und Medien)"
+
+#: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
 msgstr "Gra_mps-XML Paket (Stammbaum und Medien)"
 
-#: ../src/plugins/export/export.gpr.py:113
+#: ../src/plugins/export/export.gpr.py:118
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
@@ -8317,11 +8340,15 @@ msgstr ""
 "Das Gramps-Paket ist ein archivierter XML-Stammbaum zusammen mit den "
 "Medienobjektdateien."
 
-#: ../src/plugins/export/export.gpr.py:133
+#: ../src/plugins/export/export.gpr.py:138
+msgid "Gramps XML (family tree)"
+msgstr "Gramps XML (Stammbaum)"
+
+#: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
 msgstr "Gramps _XML (Stammbaum)"
 
-#: ../src/plugins/export/export.gpr.py:134
+#: ../src/plugins/export/export.gpr.py:140
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
@@ -8329,19 +8356,28 @@ msgstr ""
 "Der Gramps-XML Export ist eine komplett archivierte XML-Sicherung des "
 "GrampsStammbaum ohne die Medienobjektdateien. Passend für Sicherungszwecke."
 
-#: ../src/plugins/export/export.gpr.py:155
+#: ../src/plugins/export/export.gpr.py:161
+msgid "vCalendar"
+msgstr "vKalender"
+
+#: ../src/plugins/export/export.gpr.py:162
 msgid "vC_alendar"
 msgstr "vK_alender"
 
-#: ../src/plugins/export/export.gpr.py:156
+#: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and pim applications."
 msgstr "vKalender wird von vielen Kalender- und PIM-Anwendungen verwendet."
 
-#: ../src/plugins/export/export.gpr.py:175
+#: ../src/plugins/export/export.gpr.py:182
+#: ../src/plugins/import/import.gpr.py:164
+msgid "vCard"
+msgstr "vKarte"
+
+#: ../src/plugins/export/export.gpr.py:183
 msgid "_vCard"
 msgstr "_vKarte"
 
-#: ../src/plugins/export/export.gpr.py:176
+#: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vKarte wird von vielen Adressbuch- und PIM-Anwendungen verwendet."
 
@@ -8624,7 +8660,7 @@ msgstr "Personenmenü"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:823
-#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:897
+#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:4163
 msgid "Siblings"
 msgstr "Geschwister"
@@ -8635,7 +8671,7 @@ msgstr "Geschwister"
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1445
-#: ../src/plugins/view/relview.py:1356
+#: ../src/plugins/view/relview.py:1357
 #: ../src/plugins/webreport/NarrativeWeb.py:4373
 msgid "Children"
 msgstr "Kinder"
@@ -9915,15 +9951,6 @@ msgstr "Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, geze
 msgid "Import data from CSV files"
 msgstr "Daten aus CSV-Dateien importieren"
 
-#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
-#: ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr "GEDCOM"
-
-#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
-msgid "GeneWeb"
-msgstr "GeneWeb"
-
 #: ../src/plugins/import/import.gpr.py:71
 msgid "Import data from GeneWeb files"
 msgstr "Daten aus GeneWeb-Dateien importieren"
@@ -9967,10 +9994,6 @@ msgstr "Pro-Gen"
 #: ../src/plugins/import/import.gpr.py:147
 msgid "Import data from Pro-Gen files"
 msgstr "Daten aus Pro-Gen Dateien importieren"
-
-#: ../src/plugins/import/import.gpr.py:164
-msgid "vCard"
-msgstr "vKarte"
 
 #: ../src/plugins/import/import.gpr.py:165
 msgid "Import data from vCard files"
@@ -14511,7 +14534,7 @@ msgid "Delete Person (%s)"
 msgstr "Person (%s) löschen"
 
 #: ../src/plugins/lib/libpersonview.py:331
-#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:418
+#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:419
 msgid "Person Filter Editor"
 msgstr "Filtereditor für Personen"
 
@@ -14896,7 +14919,7 @@ msgid "Parent"
 msgstr "Elter"
 
 #: ../src/plugins/quickview/all_relations.py:287
-#: ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/relview.py:402
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Partner"
@@ -15734,7 +15757,7 @@ msgstr "Beziehung mit: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-#: ../src/plugins/view/relview.py:1664
+#: ../src/plugins/view/relview.py:1665
 msgid "Content"
 msgstr "Inhalt"
 
@@ -17522,7 +17545,7 @@ msgid "Database Owner Editor"
 msgstr "Datenbankeignerereditor"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1194
+#: ../src/PluginUtils/_PluginWindows.py:1201
 msgid "Main window"
 msgstr "Hauptfenster"
 
@@ -18651,187 +18674,187 @@ msgstr "Diese komplette Gruppe ausklappen"
 msgid "Collapse this Entire Group"
 msgstr "Diese komplette Gruppe einklappen"
 
-#: ../src/plugins/view/relview.py:393
+#: ../src/plugins/view/relview.py:394
 msgid "_Reorder"
 msgstr "Neu _ordnen"
 
-#: ../src/plugins/view/relview.py:394
+#: ../src/plugins/view/relview.py:395
 msgid "Change order of parents and families"
 msgstr "Reihenfolge von Eltern und Familien ändern"
 
-#: ../src/plugins/view/relview.py:399
+#: ../src/plugins/view/relview.py:400
 msgid "Edit..."
 msgstr "Bearbeiten..."
 
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/relview.py:401
 msgid "Edit the active person"
 msgstr "Bearbeitet die aktive Person"
 
-#: ../src/plugins/view/relview.py:402 ../src/plugins/view/relview.py:404
-#: ../src/plugins/view/relview.py:800
+#: ../src/plugins/view/relview.py:403 ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:801
 msgid "Add a new family with person as parent"
 msgstr "Eine neue Familie mit aktiver Person als Elter hinzufügen"
 
-#: ../src/plugins/view/relview.py:403
+#: ../src/plugins/view/relview.py:404
 msgid "Add Partner..."
 msgstr "Partner hinzufügen..."
 
-#: ../src/plugins/view/relview.py:406 ../src/plugins/view/relview.py:408
-#: ../src/plugins/view/relview.py:794
+#: ../src/plugins/view/relview.py:407 ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:795
 msgid "Add a new set of parents"
 msgstr "Neues Elternpaar hinzufügen"
 
-#: ../src/plugins/view/relview.py:407
+#: ../src/plugins/view/relview.py:408
 msgid "Add New Parents..."
 msgstr "Neue Eltern hinzufügen..."
 
-#: ../src/plugins/view/relview.py:410 ../src/plugins/view/relview.py:414
-#: ../src/plugins/view/relview.py:795
+#: ../src/plugins/view/relview.py:411 ../src/plugins/view/relview.py:415
+#: ../src/plugins/view/relview.py:796
 msgid "Add person as child to an existing family"
 msgstr "Person als Kind zu bestehender Familie hinzufügen"
 
-#: ../src/plugins/view/relview.py:413
+#: ../src/plugins/view/relview.py:414
 msgid "Add Existing Parents..."
 msgstr "Existierende Eltern hinzufügen..."
 
-#: ../src/plugins/view/relview.py:653
+#: ../src/plugins/view/relview.py:654
 msgid "Alive"
 msgstr "Lebt"
 
-#: ../src/plugins/view/relview.py:711 ../src/plugins/view/relview.py:738
+#: ../src/plugins/view/relview.py:712 ../src/plugins/view/relview.py:739
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s in %(place)s"
 
-#: ../src/plugins/view/relview.py:796
+#: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
 msgstr "Eltern bearbeiten"
 
-#: ../src/plugins/view/relview.py:797
+#: ../src/plugins/view/relview.py:798
 msgid "Reorder parents"
 msgstr "Eltern neu ordnen"
 
-#: ../src/plugins/view/relview.py:798
+#: ../src/plugins/view/relview.py:799
 msgid "Remove person as child of these parents"
 msgstr "Entferne Person als Kind dieser Eltern"
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:803
 msgid "Edit family"
 msgstr "Familie bearbeiten"
 
-#: ../src/plugins/view/relview.py:803
+#: ../src/plugins/view/relview.py:804
 msgid "Reorder families"
 msgstr "Familien wieder ordnen"
 
-#: ../src/plugins/view/relview.py:804
+#: ../src/plugins/view/relview.py:805
 msgid "Remove person as parent in this family"
 msgstr "Entferne Person als Elter in dieser Familie"
 
-#: ../src/plugins/view/relview.py:857 ../src/plugins/view/relview.py:913
+#: ../src/plugins/view/relview.py:858 ../src/plugins/view/relview.py:914
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] "(%d Geschwister)"
 msgstr[1] "(%d Geschwister)"
 
-#: ../src/plugins/view/relview.py:862 ../src/plugins/view/relview.py:918
+#: ../src/plugins/view/relview.py:863 ../src/plugins/view/relview.py:919
 msgid " (1 brother)"
 msgstr "(1 Bruder)"
 
-#: ../src/plugins/view/relview.py:864 ../src/plugins/view/relview.py:920
+#: ../src/plugins/view/relview.py:865 ../src/plugins/view/relview.py:921
 msgid " (1 sister)"
 msgstr "(1 Schwester)"
 
-#: ../src/plugins/view/relview.py:866 ../src/plugins/view/relview.py:922
+#: ../src/plugins/view/relview.py:867 ../src/plugins/view/relview.py:923
 msgid " (1 sibling)"
 msgstr "(1 Geschwister)"
 
-#: ../src/plugins/view/relview.py:868 ../src/plugins/view/relview.py:924
+#: ../src/plugins/view/relview.py:869 ../src/plugins/view/relview.py:925
 msgid " (only child)"
 msgstr "(Einzelkind)"
 
-#: ../src/plugins/view/relview.py:939 ../src/plugins/view/relview.py:1388
+#: ../src/plugins/view/relview.py:940 ../src/plugins/view/relview.py:1389
 msgid "Add new child to family"
 msgstr "Neues Kind zur Familie hinzufügen"
 
-#: ../src/plugins/view/relview.py:943 ../src/plugins/view/relview.py:1392
+#: ../src/plugins/view/relview.py:944 ../src/plugins/view/relview.py:1393
 msgid "Add existing child to family"
 msgstr "Bestehendes Kind zur Familie hinzufügen"
 
-#: ../src/plugins/view/relview.py:1172
+#: ../src/plugins/view/relview.py:1173
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../src/plugins/view/relview.py:1179 ../src/plugins/view/relview.py:1181
+#: ../src/plugins/view/relview.py:1180 ../src/plugins/view/relview.py:1182
 #, python-format
 msgid "%s %s"
 msgstr "%s %s"
 
-#: ../src/plugins/view/relview.py:1242
+#: ../src/plugins/view/relview.py:1243
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Beziehungstyp: %s"
 
-#: ../src/plugins/view/relview.py:1284
+#: ../src/plugins/view/relview.py:1285
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s, in %(place)s"
 
-#: ../src/plugins/view/relview.py:1288
+#: ../src/plugins/view/relview.py:1289
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/plugins/view/relview.py:1292
+#: ../src/plugins/view/relview.py:1293
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/plugins/view/relview.py:1303
+#: ../src/plugins/view/relview.py:1304
 msgid "Broken family detected"
 msgstr "Fehler in Familie entdeckt"
 
-#: ../src/plugins/view/relview.py:1304
+#: ../src/plugins/view/relview.py:1305
 msgid "Please run the Check and Repair Database tool"
 msgstr "Bitte benutze das Werkzeug \"Datenbank prüfen und reparieren\""
 
-#: ../src/plugins/view/relview.py:1325 ../src/plugins/view/relview.py:1371
+#: ../src/plugins/view/relview.py:1326 ../src/plugins/view/relview.py:1372
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] "(%d Kind)"
 msgstr[1] "(%d Kinder)"
 
-#: ../src/plugins/view/relview.py:1327 ../src/plugins/view/relview.py:1373
+#: ../src/plugins/view/relview.py:1328 ../src/plugins/view/relview.py:1374
 msgid " (no children)"
 msgstr " (keine Kinder)"
 
-#: ../src/plugins/view/relview.py:1503
+#: ../src/plugins/view/relview.py:1504
 msgid "Add Child to Family"
 msgstr "Kind zur Familie hinzufügen"
 
-#: ../src/plugins/view/relview.py:1636
+#: ../src/plugins/view/relview.py:1637
 msgid "Use shading"
 msgstr "Verwende Schattierung"
 
-#: ../src/plugins/view/relview.py:1639
+#: ../src/plugins/view/relview.py:1640
 msgid "Display edit buttons"
 msgstr "Bearbeitenschaltflächen anzeigen"
 
-#: ../src/plugins/view/relview.py:1641
+#: ../src/plugins/view/relview.py:1642
 msgid "View links as website links"
 msgstr "Zeige Verknüpfungen als Weblinks"
 
-#: ../src/plugins/view/relview.py:1647
+#: ../src/plugins/view/relview.py:1648
 msgid "Layout"
 msgstr "Layout"
 
-#: ../src/plugins/view/relview.py:1658
+#: ../src/plugins/view/relview.py:1659
 msgid "Show Details"
 msgstr "Details zeigen"
 
-#: ../src/plugins/view/relview.py:1661
+#: ../src/plugins/view/relview.py:1662
 msgid "Show Siblings"
 msgstr "Geschwister zeigen"
 
@@ -20138,182 +20161,182 @@ msgstr "Verdeckt"
 msgid "Visible"
 msgstr "Sichtbar"
 
-#: ../src/PluginUtils/_PluginWindows.py:237
-#: ../src/PluginUtils/_PluginWindows.py:288
+#: ../src/PluginUtils/_PluginWindows.py:240
+#: ../src/PluginUtils/_PluginWindows.py:294
 msgid "Info"
 msgstr "Info"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:240
-#: ../src/PluginUtils/_PluginWindows.py:291
+#: ../src/PluginUtils/_PluginWindows.py:243
+#: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Hide/Unhide"
 msgstr "Verbergen/Aufdecken"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:248
-#: ../src/PluginUtils/_PluginWindows.py:300
+#: ../src/PluginUtils/_PluginWindows.py:251
+#: ../src/PluginUtils/_PluginWindows.py:306
 msgid "Load"
 msgstr "Lade"
 
-#: ../src/PluginUtils/_PluginWindows.py:254
+#: ../src/PluginUtils/_PluginWindows.py:257
 msgid "Registered Plugins"
 msgstr "Registrierte Plug-ins"
 
-#: ../src/PluginUtils/_PluginWindows.py:267
+#: ../src/PluginUtils/_PluginWindows.py:270
 msgid "Loaded"
 msgstr "Geladen"
 
-#: ../src/PluginUtils/_PluginWindows.py:271
+#: ../src/PluginUtils/_PluginWindows.py:275
 msgid "File"
 msgstr "Datei"
 
-#: ../src/PluginUtils/_PluginWindows.py:279
+#: ../src/PluginUtils/_PluginWindows.py:284
 msgid "Message"
 msgstr "Nachricht"
 
-#: ../src/PluginUtils/_PluginWindows.py:305
+#: ../src/PluginUtils/_PluginWindows.py:311
 msgid "Loaded Plugins"
 msgstr "Geladene Plug-ins"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
-#: ../src/PluginUtils/_PluginWindows.py:325
+#: ../src/PluginUtils/_PluginWindows.py:331
 msgid "Addon Name"
 msgstr "Addonname"
 
-#: ../src/PluginUtils/_PluginWindows.py:340
+#: ../src/PluginUtils/_PluginWindows.py:346
 msgid "Path to Addon:"
 msgstr "Pfad zur Erweiterung:"
 
-#: ../src/PluginUtils/_PluginWindows.py:360
+#: ../src/PluginUtils/_PluginWindows.py:366
 msgid "Install Addon"
 msgstr "Addon installieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:363
+#: ../src/PluginUtils/_PluginWindows.py:369
 msgid "Install All Addons"
 msgstr "Alle Addons installieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:366
+#: ../src/PluginUtils/_PluginWindows.py:372
 msgid "Refresh Addon List"
 msgstr "Addonliste aktualisieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:371
+#: ../src/PluginUtils/_PluginWindows.py:377
 msgid "Install Addons"
 msgstr "Addons installieren"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:379
+#: ../src/PluginUtils/_PluginWindows.py:385
 msgid "Reload"
 msgstr "Neu laden"
 
-#: ../src/PluginUtils/_PluginWindows.py:401
+#: ../src/PluginUtils/_PluginWindows.py:408
 msgid "Refreshing Addon List"
 msgstr "Addonliste aktualisieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:402
-#: ../src/PluginUtils/_PluginWindows.py:407
-#: ../src/PluginUtils/_PluginWindows.py:497
+#: ../src/PluginUtils/_PluginWindows.py:409
+#: ../src/PluginUtils/_PluginWindows.py:414
+#: ../src/PluginUtils/_PluginWindows.py:504
 msgid "Reading gramps-project.org..."
 msgstr "Lese gramps-project.org..."
 
-#: ../src/PluginUtils/_PluginWindows.py:425
+#: ../src/PluginUtils/_PluginWindows.py:432
 msgid "Checking addon..."
 msgstr "Überprüfe Addon..."
 
-#: ../src/PluginUtils/_PluginWindows.py:433
+#: ../src/PluginUtils/_PluginWindows.py:440
 msgid "Unknown Help URL"
 msgstr "Unbekannte Hilfe URL"
 
-#: ../src/PluginUtils/_PluginWindows.py:444
+#: ../src/PluginUtils/_PluginWindows.py:451
 msgid "Unknown URL"
 msgstr "Unbekannte URL"
 
-#: ../src/PluginUtils/_PluginWindows.py:480
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Install all Addons"
 msgstr "Alle Addons installieren"
 
-#: ../src/PluginUtils/_PluginWindows.py:480
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Installing..."
 msgstr "Installiere..."
 
-#: ../src/PluginUtils/_PluginWindows.py:496
+#: ../src/PluginUtils/_PluginWindows.py:503
 msgid "Installing Addon"
 msgstr "Installiere Addon"
 
-#: ../src/PluginUtils/_PluginWindows.py:525
-#: ../src/PluginUtils/_PluginWindows.py:531
+#: ../src/PluginUtils/_PluginWindows.py:532
+#: ../src/PluginUtils/_PluginWindows.py:538
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Kann '%s' nicht öffnen"
 
-#: ../src/PluginUtils/_PluginWindows.py:542
+#: ../src/PluginUtils/_PluginWindows.py:549
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Fehler: Kann '%s' nicht öffnen"
 
-#: ../src/PluginUtils/_PluginWindows.py:545
+#: ../src/PluginUtils/_PluginWindows.py:552
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Fehler: unbekannter Dateityp: '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:550
+#: ../src/PluginUtils/_PluginWindows.py:557
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Untersuche '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:562
+#: ../src/PluginUtils/_PluginWindows.py:569
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Fehler in '%s' Datei: kann nicht geladen werden."
 
-#: ../src/PluginUtils/_PluginWindows.py:574
+#: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' ist für diese Gramps Version."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:577
+#: ../src/PluginUtils/_PluginWindows.py:584
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' ist NICHT für diese Gramps Version."
 
-#: ../src/PluginUtils/_PluginWindows.py:578
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Es ist für Version %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:584
+#: ../src/PluginUtils/_PluginWindows.py:591
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Fehler: fehlende gramps_ziel_version = '3.2' in '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:588
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installiere '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:598
+#: ../src/PluginUtils/_PluginWindows.py:605
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registriert '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:607
+#: ../src/PluginUtils/_PluginWindows.py:614
 msgid "Load Addon"
 msgstr "Addon laden"
 
-#: ../src/PluginUtils/_PluginWindows.py:664
+#: ../src/PluginUtils/_PluginWindows.py:671
 msgid "Unavailable"
 msgstr "Nicht verfügbar"
 
-#: ../src/PluginUtils/_PluginWindows.py:668
+#: ../src/PluginUtils/_PluginWindows.py:675
 msgid "Fail"
 msgstr "Fehler"
 
-#: ../src/PluginUtils/_PluginWindows.py:682
+#: ../src/PluginUtils/_PluginWindows.py:689
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:830
+#: ../src/PluginUtils/_PluginWindows.py:837
 msgid "Plugin Error"
 msgstr "PlugIn Fehler"
 
@@ -21406,12 +21429,12 @@ msgid "Family filters"
 msgstr "Familienfilter"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-msgid "People with <count> source"
+msgid "People with <count> sources"
 msgstr "Personen mit <Anzahl> Quellen"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-msgid "Matches people with a certain number of items in the source"
-msgstr "Entspricht Personen mit einer bestimten Anzahl von Quellen"
+msgid "Matches people with a certain number of sources connected to it"
+msgstr "Entspricht Personen, mit einer bestimmten Anzahl von mit ihnen verbundenen Quellen"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
@@ -21964,12 +21987,12 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr "Liefert Familien mit einer bestimmten Art der Beziehung"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-msgid "Families with <count> source"
+msgid "Families with <count> sources"
 msgstr "Familien mit <Anzahl> Quellen"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-msgid "Matches families with a certain number of items in the source"
-msgstr "Entspricht Familien mit einer bestimmten Anzahl von Quellen"
+msgid "Matches families with a certain number of sources connected to it"
+msgstr "Entspricht Familien mit einer bestimmten Anzahl von mit ihen verknüpften Quellen"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -22179,14 +22202,12 @@ msgid "Matches events with a certain reference count"
 msgstr "Passt auf Ereignisse mit gegebener Anzahl Referenzen"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:43
-msgid "Events with <count> source"
+msgid "Events with <count> sources"
 msgstr "Ereignisse mit <Anzahl> Quellen"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:44
-msgid "Matches events with a certain number of items in the source"
-msgstr ""
-"Entspricht Ereignissen mit einer bestimmten Anzahl von Objekten in den "
-"Quellen"
+msgid "Matches events with a certain number of sources connected to it"
+msgstr "Entspricht Ereignissen mit einer bestimmten Anzahl von Quellen, die mit ihnen verknüpft sind"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
