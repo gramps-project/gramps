@@ -43,7 +43,7 @@ class HasSourceBase(Rule):
 
     labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = _('Objects with <count> sources')
-    description = _("Matches objects that have a certain number of sources")
+    description = _("Matches objects that have a certain number of sources connected to it")
     category    = _('General filters')
 
     def prepare(self, db):
