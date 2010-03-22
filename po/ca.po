@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-15 16:28+0100\n"
-"PO-Revision-Date: 2010-03-15 22:19+0100\n"
+"POT-Creation-Date: 2010-03-22 18:13+0100\n"
+"PO-Revision-Date: 2010-03-22 23:52+0100\n"
 "Last-Translator: Joan Creus <joan.creus at gmail dot com>\n"
 "Language-Team: Català <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr "Endreçar Punts d'interès"
 #: ../src/plugins/webreport/NarrativeWeb.py:1985
 #: ../src/plugins/webreport/NarrativeWeb.py:4756
 #: ../src/PluginUtils/_GuiOptions.py:828
-#: ../src/PluginUtils/_PluginWindows.py:225
+#: ../src/PluginUtils/_PluginWindows.py:226
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -124,13 +124,13 @@ msgstr "Nom"
 #: ../src/gui/selectors/selectsource.py:62
 #: ../src/gui/views/navigationview.py:336 ../src/Merge/_MergePerson.py:127
 #: ../src/plugins/lib/libpersonview.py:90
-#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89 ../src/plugins/view/noteview.py:76
-#: ../src/plugins/view/relview.py:612 ../src/plugins/view/repoview.py:82
+#: ../src/plugins/view/relview.py:613 ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77 ../src/PluginUtils/_GuiOptions.py:829
 #: ../src/PluginUtils/_GuiOptions.py:969
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -413,7 +413,7 @@ msgstr "N_o incloure registres no enllaçats"
 #: ../src/plugins/export/ExportFtree.py:77
 #: ../src/plugins/export/ExportGeneWeb.py:82
 #: ../src/plugins/export/ExportVCalendar.py:77
-#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:151
+#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:155
 #: ../src/ReportBase/_ReportUtils.py:265
 msgid "Entire Database"
 msgstr "Base de Dades Sencera"
@@ -734,7 +734,7 @@ msgstr "antic company"
 #: ../src/plugins/textreport/IndivComplete.py:304
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/MarkerReport.py:207
-#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:882
+#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4144
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -751,7 +751,7 @@ msgstr "Pare"
 #: ../src/plugins/textreport/IndivComplete.py:313
 #: ../src/plugins/textreport/IndivComplete.py:605
 #: ../src/plugins/textreport/MarkerReport.py:213
-#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:883
+#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4151
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -761,7 +761,7 @@ msgstr "Mare"
 #: ../src/Reorder.py:38 ../src/gui/selectors/selectperson.py:81
 #: ../src/Merge/_MergePerson.py:180 ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/textreport/FamilyGroup.py:494
-#: ../src/plugins/view/relview.py:1341
+#: ../src/plugins/view/relview.py:1342
 #: ../src/plugins/webreport/NarrativeWeb.py:563
 msgid "Spouse"
 msgstr "Cònjuge"
@@ -802,8 +802,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
-#: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
-#: ../src/plugins/view/relview.py:1041
+#: ../src/plugins/view/relview.py:457 ../src/plugins/view/relview.py:995
+#: ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -942,7 +942,7 @@ msgstr "Esdeveniment de Família"
 #: ../src/plugins/view/noteview.py:77 ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/PluginUtils/_PluginWindows.py:219
-#: ../src/PluginUtils/_PluginWindows.py:329
+#: ../src/PluginUtils/_PluginWindows.py:335
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
@@ -963,8 +963,8 @@ msgstr "Causa"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:57 ../src/plugins/view/eventview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:115
-#: ../src/PluginUtils/_PluginWindows.py:228
-#: ../src/PluginUtils/_PluginWindows.py:333
+#: ../src/PluginUtils/_PluginWindows.py:230
+#: ../src/PluginUtils/_PluginWindows.py:339
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "Descripció"
@@ -1088,8 +1088,8 @@ msgstr "Nom"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
-#: ../src/plugins/view/relview.py:529 ../src/plugins/view/relview.py:1317
-#: ../src/plugins/view/relview.py:1339
+#: ../src/plugins/view/relview.py:530 ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/relview.py:1340
 msgid "Family"
 msgstr "Família"
 
@@ -1162,7 +1162,7 @@ msgstr "Enllaç a Persona"
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/view/relview.py:622
+#: ../src/plugins/view/relview.py:623
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
 msgstr "Naixement"
@@ -1649,7 +1649,7 @@ msgstr "Fonts del repositori"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
 msgstr "Persona"
@@ -1760,7 +1760,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:572
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
-#: ../src/plugins/view/relview.py:660
+#: ../src/plugins/view/relview.py:661
 #: ../src/plugins/webreport/NarrativeWeb.py:3489
 #: ../src/plugins/webreport/NarrativeWeb.py:4431
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -1989,7 +1989,7 @@ msgstr ""
 #: ../src/cli/arghandler.py:174
 #, python-format
 msgid ""
-"WARNING: Output file already exist!\n"
+"WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
@@ -2692,7 +2692,7 @@ msgstr "entre"
 #: ../src/gen/lib/date.py:327 ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449 ../src/Simple/_SimpleTable.py:251
 #: ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:975
+#: ../src/plugins/view/relview.py:976
 msgid "and"
 msgstr "i"
 
@@ -2811,7 +2811,7 @@ msgstr "Nom de Casat"
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/view/relview.py:633 ../src/plugins/view/relview.py:658
+#: ../src/plugins/view/relview.py:634 ../src/plugins/view/relview.py:659
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
 msgstr "Defunció"
@@ -2946,7 +2946,7 @@ msgstr "Testament"
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/textreport/FamilyGroup.py:357
-#: ../src/plugins/view/relview.py:1257
+#: ../src/plugins/view/relview.py:1258
 msgid "Marriage"
 msgstr "Casament"
 
@@ -3140,25 +3140,25 @@ msgid "Gramps View"
 msgstr "Vista de Gramps"
 
 #: ../src/gen/plug/_pluginreg.py:83 ../src/gui/grampsgui.py:134
-#: ../src/plugins/view/relview.py:132 ../src/plugins/view/view.gpr.py:115
+#: ../src/plugins/view/relview.py:133 ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
 msgstr "Relacions"
 
-#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:357
+#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:362
 #: ../src/gui/widgets/grampletpane.py:202
 msgid "Gramplet"
 msgstr "Gramplet"
 
-#: ../src/gen/plug/_pluginreg.py:426 ../src/gui/views/pageview.py:111
+#: ../src/gen/plug/_pluginreg.py:440 ../src/gui/views/pageview.py:111
 msgid "Miscellaneous"
 msgstr "Miscel·lània"
 
-#: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
+#: ../src/gen/plug/_pluginreg.py:966 ../src/gen/plug/_pluginreg.py:971
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "ERROR: Problema llegint el registre del connector %(filename)s"
 
-#: ../src/gen/plug/_pluginreg.py:970
+#: ../src/gen/plug/_pluginreg.py:985
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -3168,14 +3168,14 @@ msgstr ""
 "(gramps_target_version)s\" que no és vàlida per a Gramps \"%(gramps_version)s"
 "\"."
 
-#: ../src/gen/plug/_pluginreg.py:989
+#: ../src/gen/plug/_pluginreg.py:1004
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "ERROR: Fitxer de python incorrecte %(filename)s al fitxer de registre %"
 "(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:997
+#: ../src/gen/plug/_pluginreg.py:1012
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr ""
@@ -3420,8 +3420,8 @@ msgid "Name format"
 msgstr "Format de nom"
 
 #: ../src/gui/configure.py:802 ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:245
-#: ../src/PluginUtils/_PluginWindows.py:297
+#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:248
+#: ../src/PluginUtils/_PluginWindows.py:303
 msgid "Edit"
 msgstr "Edita"
 
@@ -3696,29 +3696,29 @@ msgstr "_Extreure"
 msgid "_Archive"
 msgstr "_Arxiu"
 
-#: ../src/gui/dbman.py:267
+#: ../src/gui/dbman.py:268
 msgid "Family tree name"
 msgstr "Nom d'arbre genealògic"
 
-#: ../src/gui/dbman.py:277
+#: ../src/gui/dbman.py:278
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/plugins/webreport/NarrativeWeb.py:130
-#: ../src/PluginUtils/_PluginWindows.py:222
-#: ../src/PluginUtils/_PluginWindows.py:275
+#: ../src/PluginUtils/_PluginWindows.py:223
+#: ../src/PluginUtils/_PluginWindows.py:280
 msgid "Status"
 msgstr "Estat"
 
-#: ../src/gui/dbman.py:283
-msgid "Last modified"
-msgstr "Última modificació"
+#: ../src/gui/dbman.py:284
+msgid "Last accessed"
+msgstr "Accedit per última vegada"
 
-#: ../src/gui/dbman.py:365
+#: ../src/gui/dbman.py:366
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Forçar el desbloqueig de la base de dades '%s'?"
 
-#: ../src/gui/dbman.py:366
+#: ../src/gui/dbman.py:367
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -3731,15 +3731,15 @@ msgstr ""
 "algú altre l'està editant i en força el desbloqueig, pot corrompre la base "
 "de dades."
 
-#: ../src/gui/dbman.py:372
+#: ../src/gui/dbman.py:373
 msgid "Break lock"
 msgstr "Forçar el desbloqueig"
 
-#: ../src/gui/dbman.py:449
+#: ../src/gui/dbman.py:450
 msgid "Rename failed"
 msgstr "El canvi de nom ha fallat"
 
-#: ../src/gui/dbman.py:450
+#: ../src/gui/dbman.py:451
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -3750,61 +3750,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:465
+#: ../src/gui/dbman.py:466
 msgid "Could not rename the Family Tree."
 msgstr "No s'ha pogut canviar el nom de l'Arbre Genealògic."
 
-#: ../src/gui/dbman.py:466
+#: ../src/gui/dbman.py:467
 msgid "Family Tree already exists, choose a unique name."
 msgstr "L'Arbre Genealògic ja existeix, triï un nom únic."
 
-#: ../src/gui/dbman.py:479
+#: ../src/gui/dbman.py:480
 msgid "Could not rename family tree"
 msgstr "No s'ha pogut canviar el nom de l'arbre genealògic"
 
-#: ../src/gui/dbman.py:513
+#: ../src/gui/dbman.py:514
 msgid "Extracting archive..."
 msgstr "Extraient arxiu..."
 
-#: ../src/gui/dbman.py:518
+#: ../src/gui/dbman.py:519
 msgid "Importing archive..."
 msgstr "Important arxiu..."
 
-#: ../src/gui/dbman.py:534
+#: ../src/gui/dbman.py:535
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Esborrar l'arbre genealògic '%s'?"
 
-#: ../src/gui/dbman.py:535
+#: ../src/gui/dbman.py:536
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Esborrar aquest arbre genealògic eliminarà les dades de forma permanent."
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:537
 msgid "Remove family tree"
 msgstr "Esborrar arbre genealògic"
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:543
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Esborrar la versió '%(revision)s' de '%(database)s'"
 
-#: ../src/gui/dbman.py:546
+#: ../src/gui/dbman.py:547
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Esborrar aquesta versió evitarà que la pugui extreure en el futur."
 
-#: ../src/gui/dbman.py:548
+#: ../src/gui/dbman.py:549
 msgid "Remove version"
 msgstr "Esborrar versió"
 
-#: ../src/gui/dbman.py:577
+#: ../src/gui/dbman.py:578
 msgid "Could not delete family tree"
 msgstr "No s'ha pogut esborrar l'arbre genealògic"
 
-#: ../src/gui/dbman.py:602
+#: ../src/gui/dbman.py:603
 msgid "Deletion failed"
 msgstr "L'acció d'esborrar ha fallat"
 
-#: ../src/gui/dbman.py:603
+#: ../src/gui/dbman.py:604
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -3815,23 +3815,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:647
 msgid "Rebuilding database from backup files"
 msgstr "Reconstruint la base de dades a partir de fitxers de còpia de seguretat"
 
-#: ../src/gui/dbman.py:651
+#: ../src/gui/dbman.py:652
 msgid "Error restoring backup data"
 msgstr "Error recuperant les dades de còpia de seguretat"
 
-#: ../src/gui/dbman.py:686
+#: ../src/gui/dbman.py:687
 msgid "Could not create family tree"
 msgstr "No s'ha pogut crear l'arbre genealògic"
 
-#: ../src/gui/dbman.py:800
+#: ../src/gui/dbman.py:801
 msgid "Retrieve failed"
 msgstr "La recuperació ha fallat"
 
-#: ../src/gui/dbman.py:801
+#: ../src/gui/dbman.py:802
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -3842,11 +3842,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:841 ../src/gui/dbman.py:869
+#: ../src/gui/dbman.py:842 ../src/gui/dbman.py:870
 msgid "Archiving failed"
 msgstr "Arxivar ha fallat"
 
-#: ../src/gui/dbman.py:842
+#: ../src/gui/dbman.py:843
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -3857,15 +3857,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:847
+#: ../src/gui/dbman.py:848
 msgid "Creating data to be archived..."
 msgstr "Creant dades a arxivar..."
 
-#: ../src/gui/dbman.py:856
+#: ../src/gui/dbman.py:857
 msgid "Saving archive..."
 msgstr "Desant arxiu..."
 
-#: ../src/gui/dbman.py:870
+#: ../src/gui/dbman.py:871
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -4275,8 +4275,8 @@ msgstr "Notes"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:903
-#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:516
-#: ../src/plugins/view/relview.py:847 ../src/plugins/view/relview.py:881
+#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:517
+#: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr "Pares"
@@ -4295,8 +4295,7 @@ msgstr "Seleccionar Pares"
 msgid "Pedigree"
 msgstr "Pedigrí"
 
-#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placelistview.py:52
-#: ../src/plugins/view/placetreeview.gpr.py:11
+#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:175
 #: ../src/plugins/webreport/NarrativeWeb.py:1005
 #: ../src/plugins/webreport/NarrativeWeb.py:1046
@@ -4743,7 +4742,10 @@ msgstr "No es pot importar %s"
 msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
-msgstr "Directori especificat a les preferències: el camí relatiu de base per als medis audiovisuals: %s no existeix. Modifiqui les preferències o no utilitzi camins relatius en importar"
+msgstr ""
+"Directori especificat a les preferències: el camí relatiu de base per als "
+"medis audiovisuals: %s no existeix. Modifiqui les preferències o no utilitzi "
+"camins relatius en importar"
 
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
@@ -5055,7 +5057,7 @@ msgid "Edit relationship"
 msgstr "Editar relació"
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1515
+#: ../src/plugins/view/relview.py:1516
 msgid "Select Child"
 msgstr "Seleccionar Fill"
 
@@ -5162,9 +5164,9 @@ msgstr "Bateig:"
 msgid "Burial:"
 msgstr "Enterrament:"
 
-#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:594
-#: ../src/plugins/view/relview.py:988 ../src/plugins/view/relview.py:1036
-#: ../src/plugins/view/relview.py:1117 ../src/plugins/view/relview.py:1223
+#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:595
+#: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
+#: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Editar %s"
@@ -5753,7 +5755,7 @@ msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s - %(part2)s"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
-#: ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:406
 msgid "Add"
 msgstr "Afegir"
 
@@ -5764,7 +5766,7 @@ msgstr "Esborrar"
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
 #: ../src/gui/editors/displaytabs/gallerytab.py:124
-#: ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:410
 msgid "Share"
 msgstr "Compartir"
 
@@ -8264,26 +8266,40 @@ msgstr "L'estil utilitzat per les etiquetes d'any."
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
+msgid "Comma Separated Values Spreadsheet (CSV)"
+msgstr "Full de càlcul amb Valors Separats per Comes (CSV)"
+
+#: ../src/plugins/export/export.gpr.py:32
 msgid "Comma _Separated Values Spreadsheet (CSV)"
 msgstr "Full de càlcul amb Valors _Separats per Comes (CSV)"
 
-#: ../src/plugins/export/export.gpr.py:32
+#: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV és un format de full de càlcul comú."
 
-#: ../src/plugins/export/export.gpr.py:51
+#: ../src/plugins/export/export.gpr.py:52
+msgid "Web Family Tree"
+msgstr "Arbre Genealògic Web"
+
+#: ../src/plugins/export/export.gpr.py:53
 msgid "_Web Family Tree"
 msgstr "Arbre Genealògic _Web"
 
-#: ../src/plugins/export/export.gpr.py:52
+#: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
 msgstr "Format de l'Arbre Genealògic Web"
 
-#: ../src/plugins/export/export.gpr.py:71
+#: ../src/plugins/export/export.gpr.py:73
+#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
+msgstr "GEDCOM"
+
+#: ../src/plugins/export/export.gpr.py:74
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/plugins/export/export.gpr.py:72
+#: ../src/plugins/export/export.gpr.py:75
 #: ../src/plugins/import/import.gpr.py:52
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
@@ -8292,19 +8308,28 @@ msgstr ""
 "GEDCOM es fa servir per transferir dades entre programes de genealogia. La "
 "major part del programari de genealogia accepta fitxers GEDCOM d'entrada."
 
-#: ../src/plugins/export/export.gpr.py:92
+#: ../src/plugins/export/export.gpr.py:95
+#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
+msgid "GeneWeb"
+msgstr "GeneWeb"
+
+#: ../src/plugins/export/export.gpr.py:96
 msgid "_GeneWeb"
 msgstr "_GeneWeb"
 
-#: ../src/plugins/export/export.gpr.py:93
+#: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
 msgstr "Geneweb és un programa de genealogia sobre web."
 
-#: ../src/plugins/export/export.gpr.py:112
+#: ../src/plugins/export/export.gpr.py:116
+msgid "Gramps XML Package (family tree and media)"
+msgstr "Paquet Gramps XML (arbre genealògic i audiovisuals)"
+
+#: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
 msgstr "Paquet Gra_mps XML (arbre genealògic i audiovisuals)"
 
-#: ../src/plugins/export/export.gpr.py:113
+#: ../src/plugins/export/export.gpr.py:118
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
@@ -8312,11 +8337,15 @@ msgstr ""
 "Un paquet Gramps és una base de dades XML arxivada juntament amb els fitxers "
 "de medis audiovisuals."
 
-#: ../src/plugins/export/export.gpr.py:133
+#: ../src/plugins/export/export.gpr.py:138
+msgid "Gramps XML (family tree)"
+msgstr "Gramps XML (arbre genealògic)"
+
+#: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
 msgstr "Gramps _XML (arbre genealògic)"
 
-#: ../src/plugins/export/export.gpr.py:134
+#: ../src/plugins/export/export.gpr.py:140
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
@@ -8325,21 +8354,30 @@ msgstr ""
 "genealògic Gramps sense els fitxers audiovisuals. Apropiat per a còpies de "
 "seguretat."
 
-#: ../src/plugins/export/export.gpr.py:155
+#: ../src/plugins/export/export.gpr.py:161
+msgid "vCalendar"
+msgstr "vCalendar"
+
+#: ../src/plugins/export/export.gpr.py:162
 msgid "vC_alendar"
 msgstr "vC_alendar"
 
-#: ../src/plugins/export/export.gpr.py:156
+#: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and pim applications."
 msgstr ""
 "El format vCalendar es fa servir en moltes aplicacions de calendari i gestió "
 "d'informació personal."
 
-#: ../src/plugins/export/export.gpr.py:175
+#: ../src/plugins/export/export.gpr.py:182
+#: ../src/plugins/import/import.gpr.py:164
+msgid "vCard"
+msgstr "vCard"
+
+#: ../src/plugins/export/export.gpr.py:183
 msgid "_vCard"
 msgstr "_vCard"
 
-#: ../src/plugins/export/export.gpr.py:176
+#: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard es fa servir en moltes aplicacions d'agenda i informació personal."
 
@@ -8622,7 +8660,7 @@ msgstr "Menú de Persones"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:823
-#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:897
+#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:4163
 msgid "Siblings"
 msgstr "Germans"
@@ -8633,7 +8671,7 @@ msgstr "Germans"
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1445
-#: ../src/plugins/view/relview.py:1356
+#: ../src/plugins/view/relview.py:1357
 #: ../src/plugins/webreport/NarrativeWeb.py:4373
 msgid "Children"
 msgstr "Fills"
@@ -9926,15 +9964,6 @@ msgstr "Les famílies sortiran com a el·lipses, associades amb pares i fills."
 msgid "Import data from CSV files"
 msgstr "Importar dades de fitxers CSV"
 
-#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
-#: ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr "GEDCOM"
-
-#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
-msgid "GeneWeb"
-msgstr "GeneWeb"
-
 #: ../src/plugins/import/import.gpr.py:71
 msgid "Import data from GeneWeb files"
 msgstr "Importar dades de fitxers GeneWeb"
@@ -9946,7 +9975,7 @@ msgstr "Paquet Gramps (XML portable)"
 #: ../src/plugins/import/import.gpr.py:89
 msgid ""
 "Import data from a Gramps package (an archived XML family tree together with "
-"the media object files."
+"the media object files.)"
 msgstr ""
 "Importar dades d'un paquet Gramps (un arbre genealògic XML arxivat juntament "
 "amb els fitxers de medis audiovisuals)."
@@ -9979,10 +10008,6 @@ msgstr "Pro-Gen"
 #: ../src/plugins/import/import.gpr.py:147
 msgid "Import data from Pro-Gen files"
 msgstr "Importar dades de fitxers Pro-Gen"
-
-#: ../src/plugins/import/import.gpr.py:164
-msgid "vCard"
-msgstr "vCard"
 
 #: ../src/plugins/import/import.gpr.py:165
 msgid "Import data from vCard files"
@@ -14532,7 +14557,7 @@ msgid "Delete Person (%s)"
 msgstr "Esborrar Persona (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:331
-#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:418
+#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:419
 msgid "Person Filter Editor"
 msgstr "Editor de Filtres de Persones"
 
@@ -14917,7 +14942,7 @@ msgid "Parent"
 msgstr "Progenitor"
 
 #: ../src/plugins/quickview/all_relations.py:287
-#: ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/relview.py:402
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Company"
@@ -15247,8 +15272,8 @@ msgid "Display references for a %s"
 msgstr "Mostra les referències per a %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:230
-msgid "Show Repository Reference"
-msgstr "Mostrar Referència a Repositori"
+msgid "Repository References"
+msgstr "Referències a Repositori"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
@@ -15755,7 +15780,7 @@ msgstr "Relació amb: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-#: ../src/plugins/view/relview.py:1664
+#: ../src/plugins/view/relview.py:1665
 msgid "Content"
 msgstr "Contingut"
 
@@ -16262,11 +16287,11 @@ msgid "Select the filter to be applied to the report."
 msgstr "Seleccionar el filtre a aplicar a l'informe."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
-msgid "List events chonologically"
+msgid "List events chronologically"
 msgstr "Llistar esdeveniments cronològicament"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-msgid "Whether to sort events into chonological order."
+msgid "Whether to sort events into chronological order."
 msgstr "Si s'han d'ordenar els esdeveniments en ordre cronològic."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
@@ -16338,7 +16363,6 @@ msgid "Marker Report for %s Items"
 msgstr "Informe de Marcador per %s Elements"
 
 #: ../src/plugins/textreport/MarkerReport.py:103
-#: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:145 ../src/plugins/view/view.gpr.py:161
 msgid "People"
 msgstr "Persones"
@@ -16749,7 +16773,7 @@ msgstr "Nom Original"
 msgid "Capitalization Change"
 msgstr "Canvi de majúscules/minúscules"
 
-#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:284
+#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:296
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
@@ -17126,52 +17150,52 @@ msgstr "Finestra d'avaluació python"
 msgid "manual|Compare_Individual_Events..."
 msgstr "Comparar Esdeveniments Individuals"
 
-#: ../src/plugins/tool/EventCmp.py:138
+#: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
 msgstr "Selecció de filtre de comparació d'esdeveniments"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Filter selection"
 msgstr "Selecció de filtre"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Event Comparison tool"
 msgstr "Eina de comparació d'esdeveniments"
 
-#: ../src/plugins/tool/EventCmp.py:174
+#: ../src/plugins/tool/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Comparar esdeveniments"
 
-#: ../src/plugins/tool/EventCmp.py:175
+#: ../src/plugins/tool/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Seleccionant persones"
 
-#: ../src/plugins/tool/EventCmp.py:187
+#: ../src/plugins/tool/EventCmp.py:191
 msgid "No matches were found"
 msgstr "No s'han trobat concordàncies"
 
-#: ../src/plugins/tool/EventCmp.py:235 ../src/plugins/tool/EventCmp.py:258
+#: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:270
 msgid "Event Comparison Results"
 msgstr "Resultats de la Comparació d'Esdeveniments"
 
-#: ../src/plugins/tool/EventCmp.py:245
+#: ../src/plugins/tool/EventCmp.py:251
 msgid " Date"
 msgstr " Data"
 
 #. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:247
+#: ../src/plugins/tool/EventCmp.py:253
 msgid " Place"
 msgstr " Lloc"
 
-#: ../src/plugins/tool/EventCmp.py:291
+#: ../src/plugins/tool/EventCmp.py:303
 msgid "Comparing Events"
 msgstr "Comparació d'Esdeveniments"
 
-#: ../src/plugins/tool/EventCmp.py:292
+#: ../src/plugins/tool/EventCmp.py:304
 msgid "Building data"
 msgstr "Construir dades"
 
-#: ../src/plugins/tool/EventCmp.py:372
+#: ../src/plugins/tool/EventCmp.py:384
 msgid "Select filename"
 msgstr "Seleccionar nom de fitxer"
 
@@ -17549,7 +17573,7 @@ msgid "Database Owner Editor"
 msgstr "Editor del Propietari de la Base de Dades"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1185
+#: ../src/PluginUtils/_PluginWindows.py:1201
 msgid "Main window"
 msgstr "Finestra principal"
 
@@ -18184,8 +18208,8 @@ msgstr "Punt de mira al mapa."
 
 #: ../src/plugins/view/geoview.py:527
 msgid ""
-"Show the coordinates in the statusbar either in degree\n"
-"either in internal gramps format ( D.D8 )"
+"Show the coordinates in the statusbar either in degrees\n"
+"or in internal gramps format ( D.D8 )"
 msgstr ""
 "Mostrar les coordenades a la barra d'estat o bé en graus\n"
 "o bé en el format intern de Gramps (D.D8 )"
@@ -18205,10 +18229,10 @@ msgstr "Temps d'espera per la prova de connexió de xarxa"
 #: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
-"Must be greater or equal to 10 secondes"
+"Must be greater or equal to 10 seconds"
 msgstr ""
 "Temps en segons entre dues proves de xarxa.\n"
-"Ha de ser més gran o igual de 10 segons"
+"Ha de ser més gran o igual a 10 segons"
 
 #: ../src/plugins/view/geoview.py:562
 msgid "Host to test for http. Please, change this and select one of your choice."
@@ -18395,12 +18419,16 @@ msgstr "Tots els llocs d'esdeveniment per"
 
 #: ../src/plugins/view/geoview.py:2128
 msgid ""
-"Cannot center the map. No location with coordinates.The following reasons "
-"are : <ul><li>The filter you use return nothing.</li><li>The active person "
-"has no places with coordinates.</li><li>The active person's family members "
-"have no places with coordinates.</li><li>You have no places.</li><li>You "
-"have no active person set.</li>"
-msgstr "No es pot centrar el mapa. No hi ha cap ubicació amb coordenades. Pot ser per algun dels següents motius: <ul><li>El filtre que fa servir no ha retornat res.</li><li>La persona activa no té llocs amb coordenades.</li><li>Els membres de la família de la persona activa no tenen llocs amb coordenades.</li><li>No té llocs.</li><li>No té fixada cap persona activa.</li>"
+"Cannot center the map. No location with coordinates.That may happen for one "
+"of the following reasons : <ul><li>The filter you use returned nothing.</"
+"li><li>The active person has no places with coordinates.</li><li>The active "
+"person's family members have no places with coordinates.</li><li>You have no "
+"places.</li><li>You have no active person set.</li>"
+msgstr ""
+"No es pot centrar el mapa. No hi ha cap ubicació amb coordenades. Pot ser "
+"per algun dels següents motius: <ul><li>El filtre que fa servir no ha "
+"retornat res.</li><li>La persona activa no té llocs amb coordenades.</li><li>Els membres de la família de la persona activa no tenen llocs amb "
+"coordenades.</li><li>No té llocs.</li><li>No té fixada cap persona activa.</li>"
 
 #: ../src/plugins/view/geoview.py:2146
 msgid "Not yet implemented ..."
@@ -18412,11 +18440,15 @@ msgstr "Pàgina d'inici per la Vista de Geografia"
 
 #: ../src/plugins/view/geoview.py:2296
 msgid ""
-"You don't see a map here for the following reasons :<br><ol><li>Your "
-"database is empty or not yet selected.</li><li>You have not yet selected a "
-"person.</li><li>You have no place in your database.</li><li>The selected "
-"places have no coordinates.</li></ol>"
-msgstr "No veu un mapa aquí per alguna de les següents raons:<br><ol><li>La base de dades és buida o encara no s'ha seleccionat.</li><li>No ha seleccionat encara cap persona.</li><li>No té llocs a la base de dades.</li><li>Els llocs seleccionats no tenen coordenades.</li></ol>"
+"You don't see a map here for one of the following reasons :<br><ol><li>Your "
+"database is empty or not yet selected.</li><li>You have not selected a "
+"person yet.</li><li>You have no places in your database.</li><li>The "
+"selected places have no coordinates.</li></ol>"
+msgstr ""
+"No veu un mapa aquí per alguna de les següents raons:<br><ol><li>La base de "
+"dades és buida o encara no s'ha seleccionat.</li><li>No ha seleccionat "
+"encara cap persona.</li><li>No té llocs a la base de dades.</li><li>Els "
+"llocs seleccionats no tenen coordenades.</li></ol>"
 
 #: ../src/plugins/view/geoview.gpr.py:50
 msgid "Geographic View"
@@ -18425,7 +18457,7 @@ msgstr "Vista Geogràfica"
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid ""
 "The view showing events on an interactive internet map (internet connection "
-"needed"
+"needed)"
 msgstr ""
 "La vista que mostra els esdeveniments en un mapa interactiu d'Internet (cal "
 "connexió a Internet)"
@@ -18634,6 +18666,11 @@ msgstr[1] "%d generacions"
 msgid "Family Menu"
 msgstr "Menú de Família"
 
+#: ../src/plugins/view/personlistview.py:59
+#: ../src/plugins/view/view.gpr.py:152
+msgid "Person View"
+msgstr "Vista de Persona"
+
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
 msgstr "Vista en Arbre de Persones"
@@ -18647,6 +18684,10 @@ msgstr "Expandir tots els Nodes"
 #: ../src/plugins/view/placetreeview.py:84
 msgid "Collapse all Nodes"
 msgstr "Col·lapsar tots els Nodes"
+
+#: ../src/plugins/view/placelistview.py:52 ../src/plugins/view/view.gpr.py:167
+msgid "Place View"
+msgstr "Vista de Llocs"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
@@ -18665,187 +18706,187 @@ msgstr "Expandir aquest Grup Sencer"
 msgid "Collapse this Entire Group"
 msgstr "Col·lapsar aquest Grup Sencer"
 
-#: ../src/plugins/view/relview.py:393
+#: ../src/plugins/view/relview.py:394
 msgid "_Reorder"
 msgstr "_Reordenar"
 
-#: ../src/plugins/view/relview.py:394
+#: ../src/plugins/view/relview.py:395
 msgid "Change order of parents and families"
 msgstr "Canviar l'ordre de pares i famílies"
 
-#: ../src/plugins/view/relview.py:399
+#: ../src/plugins/view/relview.py:400
 msgid "Edit..."
 msgstr "Editar..."
 
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/relview.py:401
 msgid "Edit the active person"
 msgstr "Editar la persona activa"
 
-#: ../src/plugins/view/relview.py:402 ../src/plugins/view/relview.py:404
-#: ../src/plugins/view/relview.py:800
+#: ../src/plugins/view/relview.py:403 ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:801
 msgid "Add a new family with person as parent"
 msgstr "Afegir una família nova amb la persona com a progenitor"
 
-#: ../src/plugins/view/relview.py:403
+#: ../src/plugins/view/relview.py:404
 msgid "Add Partner..."
 msgstr "Afegir Company..."
 
-#: ../src/plugins/view/relview.py:406 ../src/plugins/view/relview.py:408
-#: ../src/plugins/view/relview.py:794
+#: ../src/plugins/view/relview.py:407 ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:795
 msgid "Add a new set of parents"
 msgstr "Afegir una nova parella de pares"
 
-#: ../src/plugins/view/relview.py:407
+#: ../src/plugins/view/relview.py:408
 msgid "Add New Parents..."
 msgstr "Afegir Pares Nous..."
 
-#: ../src/plugins/view/relview.py:410 ../src/plugins/view/relview.py:414
-#: ../src/plugins/view/relview.py:795
+#: ../src/plugins/view/relview.py:411 ../src/plugins/view/relview.py:415
+#: ../src/plugins/view/relview.py:796
 msgid "Add person as child to an existing family"
 msgstr "Afegir persona com a fill a una família existent"
 
-#: ../src/plugins/view/relview.py:413
+#: ../src/plugins/view/relview.py:414
 msgid "Add Existing Parents..."
 msgstr "Afegir a Pares Existents..."
 
-#: ../src/plugins/view/relview.py:653
+#: ../src/plugins/view/relview.py:654
 msgid "Alive"
 msgstr "Viu"
 
-#: ../src/plugins/view/relview.py:711 ../src/plugins/view/relview.py:738
+#: ../src/plugins/view/relview.py:712 ../src/plugins/view/relview.py:739
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s a %(place)s"
 
-#: ../src/plugins/view/relview.py:796
+#: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
 msgstr "Editar pares"
 
-#: ../src/plugins/view/relview.py:797
+#: ../src/plugins/view/relview.py:798
 msgid "Reorder parents"
 msgstr "Reordenar els pares"
 
-#: ../src/plugins/view/relview.py:798
+#: ../src/plugins/view/relview.py:799
 msgid "Remove person as child of these parents"
 msgstr "Treure persona com a fill d'aquests pares"
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:803
 msgid "Edit family"
 msgstr "Editar família"
 
-#: ../src/plugins/view/relview.py:803
+#: ../src/plugins/view/relview.py:804
 msgid "Reorder families"
 msgstr "Reordenar famílies"
 
-#: ../src/plugins/view/relview.py:804
+#: ../src/plugins/view/relview.py:805
 msgid "Remove person as parent in this family"
 msgstr "Treure persona com a pare d'aquesta família"
 
-#: ../src/plugins/view/relview.py:857 ../src/plugins/view/relview.py:913
+#: ../src/plugins/view/relview.py:858 ../src/plugins/view/relview.py:914
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] " (%d germà)"
 msgstr[1] " (%d germans)"
 
-#: ../src/plugins/view/relview.py:862 ../src/plugins/view/relview.py:918
+#: ../src/plugins/view/relview.py:863 ../src/plugins/view/relview.py:919
 msgid " (1 brother)"
 msgstr " (1 germà)"
 
-#: ../src/plugins/view/relview.py:864 ../src/plugins/view/relview.py:920
+#: ../src/plugins/view/relview.py:865 ../src/plugins/view/relview.py:921
 msgid " (1 sister)"
 msgstr " (1 germana)"
 
-#: ../src/plugins/view/relview.py:866 ../src/plugins/view/relview.py:922
+#: ../src/plugins/view/relview.py:867 ../src/plugins/view/relview.py:923
 msgid " (1 sibling)"
 msgstr " (1 germà)"
 
-#: ../src/plugins/view/relview.py:868 ../src/plugins/view/relview.py:924
+#: ../src/plugins/view/relview.py:869 ../src/plugins/view/relview.py:925
 msgid " (only child)"
 msgstr " (fill únic)"
 
-#: ../src/plugins/view/relview.py:939 ../src/plugins/view/relview.py:1388
+#: ../src/plugins/view/relview.py:940 ../src/plugins/view/relview.py:1389
 msgid "Add new child to family"
 msgstr "Afegir nou fill a família"
 
-#: ../src/plugins/view/relview.py:943 ../src/plugins/view/relview.py:1392
+#: ../src/plugins/view/relview.py:944 ../src/plugins/view/relview.py:1393
 msgid "Add existing child to family"
 msgstr "Afegir un fill existent a família"
 
-#: ../src/plugins/view/relview.py:1172
+#: ../src/plugins/view/relview.py:1173
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../src/plugins/view/relview.py:1179 ../src/plugins/view/relview.py:1181
+#: ../src/plugins/view/relview.py:1180 ../src/plugins/view/relview.py:1182
 #, python-format
 msgid "%s %s"
 msgstr "%s %s"
 
-#: ../src/plugins/view/relview.py:1242
+#: ../src/plugins/view/relview.py:1243
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Tipus de relació: %s"
 
-#: ../src/plugins/view/relview.py:1284
+#: ../src/plugins/view/relview.py:1285
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s a %(place)s"
 
-#: ../src/plugins/view/relview.py:1288
+#: ../src/plugins/view/relview.py:1289
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/plugins/view/relview.py:1292
+#: ../src/plugins/view/relview.py:1293
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/plugins/view/relview.py:1303
+#: ../src/plugins/view/relview.py:1304
 msgid "Broken family detected"
 msgstr "Detectada família incoherent"
 
-#: ../src/plugins/view/relview.py:1304
+#: ../src/plugins/view/relview.py:1305
 msgid "Please run the Check and Repair Database tool"
 msgstr "Si us plau, executi l'eina de Comprovar i Reparar la Base de Dades"
 
-#: ../src/plugins/view/relview.py:1325 ../src/plugins/view/relview.py:1371
+#: ../src/plugins/view/relview.py:1326 ../src/plugins/view/relview.py:1372
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d fill)"
 msgstr[1] " (%d fills)"
 
-#: ../src/plugins/view/relview.py:1327 ../src/plugins/view/relview.py:1373
+#: ../src/plugins/view/relview.py:1328 ../src/plugins/view/relview.py:1374
 msgid " (no children)"
 msgstr " (sense fills)"
 
-#: ../src/plugins/view/relview.py:1503
+#: ../src/plugins/view/relview.py:1504
 msgid "Add Child to Family"
 msgstr "Afegir Fill a Família"
 
-#: ../src/plugins/view/relview.py:1636
+#: ../src/plugins/view/relview.py:1637
 msgid "Use shading"
 msgstr "Utilitzar ombrejat"
 
-#: ../src/plugins/view/relview.py:1639
+#: ../src/plugins/view/relview.py:1640
 msgid "Display edit buttons"
 msgstr "Mostrar botons d'edició"
 
-#: ../src/plugins/view/relview.py:1641
+#: ../src/plugins/view/relview.py:1642
 msgid "View links as website links"
 msgstr "Veure enllaços com enllaços web"
 
-#: ../src/plugins/view/relview.py:1647
+#: ../src/plugins/view/relview.py:1648
 msgid "Layout"
 msgstr "Col·locació"
 
-#: ../src/plugins/view/relview.py:1658
+#: ../src/plugins/view/relview.py:1659
 msgid "Show Details"
 msgstr "Mostrar Detalls"
 
-#: ../src/plugins/view/relview.py:1661
+#: ../src/plugins/view/relview.py:1662
 msgid "Show Siblings"
 msgstr "Mostrar Germans"
 
@@ -18963,19 +19004,11 @@ msgstr "Vista de l'Arbre de Persones"
 msgid "The view showing all people in the family tree"
 msgstr "La vista que mostra totes les persones de l'arbre genealògic"
 
-#: ../src/plugins/view/view.gpr.py:152
-msgid "Person View"
-msgstr "Vista de Persona"
-
 #: ../src/plugins/view/view.gpr.py:153
 msgid "The view showing all people in the family tree in a flat list"
 msgstr ""
 "La vista que mostra totes les persones de l'arbre genealògic en una llista "
 "plana"
-
-#: ../src/plugins/view/view.gpr.py:167
-msgid "Place View"
-msgstr "Vista de Llocs"
 
 #: ../src/plugins/view/view.gpr.py:168
 msgid "The view showing all the places of the family tree"
@@ -19221,7 +19254,8 @@ msgid ""
 msgstr ""
 "Aquesta pàgina conté un índex de tots els objectes audiovisuals de la base "
 "de dades, ordenats per títol. Si es clica al títol, s'anirà a la pàgina de "
-"l'objecte corresponent. Si veu les dimensions del medi damunt d'una imatge, cliqui-la per veure'n la versió de mida sencera.  "
+"l'objecte corresponent. Si veu les dimensions del medi damunt d'una imatge, "
+"cliqui-la per veure'n la versió de mida sencera.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3224
 msgid "Media | Name"
@@ -20165,182 +20199,182 @@ msgstr "Amagat"
 msgid "Visible"
 msgstr "Visible"
 
-#: ../src/PluginUtils/_PluginWindows.py:237
-#: ../src/PluginUtils/_PluginWindows.py:288
+#: ../src/PluginUtils/_PluginWindows.py:240
+#: ../src/PluginUtils/_PluginWindows.py:294
 msgid "Info"
 msgstr "Info"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:240
-#: ../src/PluginUtils/_PluginWindows.py:291
+#: ../src/PluginUtils/_PluginWindows.py:243
+#: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Hide/Unhide"
 msgstr "Amagar/Mostrar"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:248
-#: ../src/PluginUtils/_PluginWindows.py:300
+#: ../src/PluginUtils/_PluginWindows.py:251
+#: ../src/PluginUtils/_PluginWindows.py:306
 msgid "Load"
 msgstr "Carregar"
 
-#: ../src/PluginUtils/_PluginWindows.py:254
+#: ../src/PluginUtils/_PluginWindows.py:257
 msgid "Registered Plugins"
 msgstr "Connectors Registrats"
 
-#: ../src/PluginUtils/_PluginWindows.py:267
+#: ../src/PluginUtils/_PluginWindows.py:270
 msgid "Loaded"
 msgstr "Carregat"
 
-#: ../src/PluginUtils/_PluginWindows.py:271
+#: ../src/PluginUtils/_PluginWindows.py:275
 msgid "File"
 msgstr "Fitxer"
 
-#: ../src/PluginUtils/_PluginWindows.py:279
+#: ../src/PluginUtils/_PluginWindows.py:284
 msgid "Message"
 msgstr "Missatge"
 
-#: ../src/PluginUtils/_PluginWindows.py:305
+#: ../src/PluginUtils/_PluginWindows.py:311
 msgid "Loaded Plugins"
 msgstr "Connectors Carregats"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
-#: ../src/PluginUtils/_PluginWindows.py:325
+#: ../src/PluginUtils/_PluginWindows.py:331
 msgid "Addon Name"
 msgstr "Nom de Complement"
 
-#: ../src/PluginUtils/_PluginWindows.py:340
+#: ../src/PluginUtils/_PluginWindows.py:346
 msgid "Path to Addon:"
 msgstr "Camí al Complement:"
 
-#: ../src/PluginUtils/_PluginWindows.py:357
+#: ../src/PluginUtils/_PluginWindows.py:366
 msgid "Install Addon"
 msgstr "Instal·lar Complement"
 
-#: ../src/PluginUtils/_PluginWindows.py:360
+#: ../src/PluginUtils/_PluginWindows.py:369
 msgid "Install All Addons"
 msgstr "Instal·lar Tots els Complements"
 
-#: ../src/PluginUtils/_PluginWindows.py:363
+#: ../src/PluginUtils/_PluginWindows.py:372
 msgid "Refresh Addon List"
 msgstr "Refrescar Llista de Complements"
 
-#: ../src/PluginUtils/_PluginWindows.py:368
+#: ../src/PluginUtils/_PluginWindows.py:377
 msgid "Install Addons"
 msgstr "Instal·lar Complements"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:376
+#: ../src/PluginUtils/_PluginWindows.py:385
 msgid "Reload"
 msgstr "Recarregar"
 
-#: ../src/PluginUtils/_PluginWindows.py:398
+#: ../src/PluginUtils/_PluginWindows.py:408
 msgid "Refreshing Addon List"
 msgstr "Refrescant la Llista de Complements"
 
-#: ../src/PluginUtils/_PluginWindows.py:399
-#: ../src/PluginUtils/_PluginWindows.py:404
-#: ../src/PluginUtils/_PluginWindows.py:494
+#: ../src/PluginUtils/_PluginWindows.py:409
+#: ../src/PluginUtils/_PluginWindows.py:414
+#: ../src/PluginUtils/_PluginWindows.py:504
 msgid "Reading gramps-project.org..."
 msgstr "Llegint gramps-project.org..."
 
-#: ../src/PluginUtils/_PluginWindows.py:422
+#: ../src/PluginUtils/_PluginWindows.py:432
 msgid "Checking addon..."
 msgstr "Comprovant complement..."
 
-#: ../src/PluginUtils/_PluginWindows.py:430
+#: ../src/PluginUtils/_PluginWindows.py:440
 msgid "Unknown Help URL"
 msgstr "URL d'Ajuda Desconeguda"
 
-#: ../src/PluginUtils/_PluginWindows.py:441
+#: ../src/PluginUtils/_PluginWindows.py:451
 msgid "Unknown URL"
 msgstr "URL Desconeguda"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Install all Addons"
 msgstr "Instal·lar tots els Complements"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Installing..."
 msgstr "Instal·lant..."
 
-#: ../src/PluginUtils/_PluginWindows.py:493
+#: ../src/PluginUtils/_PluginWindows.py:503
 msgid "Installing Addon"
 msgstr "Instal·lant Complement"
 
-#: ../src/PluginUtils/_PluginWindows.py:522
-#: ../src/PluginUtils/_PluginWindows.py:528
+#: ../src/PluginUtils/_PluginWindows.py:532
+#: ../src/PluginUtils/_PluginWindows.py:538
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "No es pot obrir '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:539
+#: ../src/PluginUtils/_PluginWindows.py:549
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Error: no es pot obrir '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:542
+#: ../src/PluginUtils/_PluginWindows.py:552
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Error: tipus de fitxer desconegut: '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:547
+#: ../src/PluginUtils/_PluginWindows.py:557
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Examinant '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:559
+#: ../src/PluginUtils/_PluginWindows.py:569
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Error en fitxer '%s': no es pot carregar."
 
-#: ../src/PluginUtils/_PluginWindows.py:571
+#: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' és per aquesta versió de Gramps."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:574
+#: ../src/PluginUtils/_PluginWindows.py:584
 #, python-format
-msgid "'%s' is for NOT this version of Gramps."
+msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' NO és per aquesta versió de Gramps."
 
-#: ../src/PluginUtils/_PluginWindows.py:575
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "És per la versió %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:581
+#: ../src/PluginUtils/_PluginWindows.py:591
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Error: falta gramps_target_version = '3.2' a '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:585
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Instal·lant '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:595
+#: ../src/PluginUtils/_PluginWindows.py:605
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registrat '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:604
+#: ../src/PluginUtils/_PluginWindows.py:614
 msgid "Load Addon"
 msgstr "Carregar Complement"
 
-#: ../src/PluginUtils/_PluginWindows.py:655
+#: ../src/PluginUtils/_PluginWindows.py:671
 msgid "Unavailable"
 msgstr "No disponible"
 
-#: ../src/PluginUtils/_PluginWindows.py:659
+#: ../src/PluginUtils/_PluginWindows.py:675
 msgid "Fail"
 msgstr "Fallat"
 
-#: ../src/PluginUtils/_PluginWindows.py:673
+#: ../src/PluginUtils/_PluginWindows.py:689
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:821
+#: ../src/PluginUtils/_PluginWindows.py:837
 msgid "Plugin Error"
 msgstr "Error de Connector"
 
@@ -21434,12 +21468,12 @@ msgid "Family filters"
 msgstr "Filtres de família"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-msgid "People with <count> source"
+msgid "People with <count> sources"
 msgstr "Persones amb <nombre> fonts"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-msgid "Matches people with a certain number of items in the source"
-msgstr "Concorda amb persones que tinguin un cert nombre d'elements a les fonts"
+msgid "Matches people with a number of sources connected to it"
+msgstr "Concorda amb persones que estiguin connectades amb un cert nombre de fonts"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
@@ -21993,12 +22027,12 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr "Concorda amb persones que tinguin el tipus de relació amb un valor concret"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-msgid "Families with <count> source"
-msgstr "Persones amb <nombre> fonts"
+msgid "Families with <count> sources"
+msgstr "Famílies amb <nombre> fonts"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-msgid "Matches families with a certain number of items in the source"
-msgstr "Concorda amb les famílies que tinguin un cert nombre d'elements a la font"
+msgid "Matches families with a number of sources connected to it"
+msgstr "Concorda amb les famílies que estiguin connectades amb un cert nombre de fonts"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -22210,12 +22244,12 @@ msgid "Matches events with a certain reference count"
 msgstr "Concorda amb esdeveniments que tinguin un cert nombre de referències"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:43
-msgid "Events with <count> source"
+msgid "Events with <count> sources"
 msgstr "Esdeveniments amb <nombre> fonts"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:44
-msgid "Matches events with a certain number of items in the source"
-msgstr "Concorda amb esdeveniments que tinguin un cert nombre d'elements a les fonts"
+msgid "Matches events with a certain number of sources connected to it"
+msgstr "Concorda amb esdeveniments que estiguin connectats amb un cert nombre de fonts"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
@@ -22522,7 +22556,7 @@ msgid "Sources with <count> Repository references"
 msgstr "Fonts amb <nombre> referències a repositori"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-msgid "Matches sources with certain number repository references"
+msgid "Matches sources with a certain number of repository references"
 msgstr "Concorda amb fonts que tinguin un cert nombre de referències a repositori"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
@@ -24448,7 +24482,7 @@ msgstr ""
 msgid ""
 "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
-"or right click on an individual to access other family members and setting. "
+"or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
 "<b>Vista d'Avantpassats</b><br/>La Vista d'Avantpassats mostra un esquema de "
@@ -24505,7 +24539,9 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Canviar la Persona Activa</b><br/>Canviar la Persona Activa a les vistes "
-"és fàcil. A la vista de Relació cliqui a qualsevol persona. A la vista d'Avantpassats faci doble clic a la persona o clic dret per seleccionar qualsevol dels seus cònjuges, germans, fills o pares."
+"és fàcil. A la vista de Relació cliqui a qualsevol persona. A la vista "
+"d'Avantpassats faci doble clic a la persona o clic dret per seleccionar "
+"qualsevol dels seus cònjuges, germans, fills o pares."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -24566,7 +24602,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:12
 msgid ""
 "<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
-"relationship of a child to it's parents by double clicking the child in the "
+"relationship of a child to its parents by double clicking the child in the "
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
@@ -24653,7 +24689,7 @@ msgid ""
 "Graphical Reports and Graphs can present complex relationships easily and "
 "the Text Reports are particularly useful if you want to send the results of "
 "your family tree to members of the family via email. If you're ready to make "
-"a website for you family tree then there's a report for that as well."
+"a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>Informes Gramps</b><br/>Gramps ofereix una gran varietat d'informes. Els "
 "Informes Gràfics i els Grafs poden presentar relacions complexes fàcilment, "
@@ -24725,7 +24761,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:24
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-"invalid format. Incorrect date formats will show up in Gramps with a redish "
+"invalid format. Incorrect date formats will show up in Gramps with a reddish "
 "background. You can fix the date using the Date Selection dialog which can "
 "be opened by clicking on the date button. The format of the date is set "
 "under &quot;Edit &gt; Preferences &gt; Display&quot;."
@@ -24878,9 +24914,9 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:36
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active object such as People, Events and . You can move forward and backward "
-"through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
-"Back&quot; or the arrow buttons."
+"active objects such as People, Events and . You can move forward and "
+"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
+"&gt; Back&quot; or the arrow buttons."
 msgstr ""
 "<b>Navegar Endavant i Enrere</b><br/>Gramps manté una llista dels objectes "
 "actius prèviament, como ara Persones, Esdeveniments i . Pot moure's endavant "
@@ -24926,7 +24962,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid ""
-"<b>Organising the Views</b><br/>Many of the views can presented your data as "
+"<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
@@ -24989,7 +25025,7 @@ msgid ""
 "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
 "lets you modify a number of settings, such as the path to your media files, "
 "and allows you to adjust many aspects of the Gramps presentation to your "
-"needs. Each seperate view can also be configured under &quot;View &gt; "
+"needs. Each separate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
 "<b>Fixar les Preferències</b><br/>&quot;Edita &gt; Preferències...&quot; li "
@@ -25015,7 +25051,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:47
 msgid ""
 "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
-"original developer, Don Allingham, by his father. It stand for "
+"original developer, Don Allingham, by his father. It stands for "
 "<i>Genealogical Research and Analysis Management Program System</i>. It is a "
 "full-featured genealogy program letting you store, edit, and research "
 "genealogical data. The Gramps database back end is so robust that some users "
@@ -25027,8 +25063,7 @@ msgstr ""
 "Programació de Gestió de la Recerca i Anàlisi Genealògiques. És un programa "
 "de genealogia de plena funcionalitat que li deixa emmagatzemar, editar i fer "
 "recerca de dades genealògiques. El motor de base de dades de Gramps és tan "
-"robust que alguns usuaris poden gestionar genealogies que contenen cents de "
-"milers de persones."
+"robust que alguns usuaris poden gestionar genealogies que contenen centenars de milers de persones."
 
 #: ../src/data/tips.xml.in.h:48
 msgid ""
@@ -25231,7 +25266,7 @@ msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
 "indicate the level of confidence in a date and even choose between seven "
-"different calenders. Try the button next to the date field in the Events "
+"different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
 "<b>Treballar amb Dates</b><br/>Es pot donar un rang de dates fent servir el "
