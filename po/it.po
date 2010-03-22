@@ -61,8 +61,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-20 17:34+0100\n"
-"PO-Revision-Date: 2010-03-13 18:09+0100\n"
+"POT-Creation-Date: 2010-03-22 18:13+0100\n"
+"PO-Revision-Date: 2010-03-22 23:25+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -152,7 +152,7 @@ msgstr "Organizza segnalibri"
 #: ../src/plugins/webreport/NarrativeWeb.py:1985
 #: ../src/plugins/webreport/NarrativeWeb.py:4756
 #: ../src/PluginUtils/_GuiOptions.py:828
-#: ../src/PluginUtils/_PluginWindows.py:225
+#: ../src/PluginUtils/_PluginWindows.py:226
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -1000,7 +1000,7 @@ msgstr "Eventi familiari"
 #: ../src/plugins/view/noteview.py:77 ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/PluginUtils/_PluginWindows.py:219
-#: ../src/PluginUtils/_PluginWindows.py:329
+#: ../src/PluginUtils/_PluginWindows.py:335
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
@@ -1021,8 +1021,8 @@ msgstr "Causa"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:57 ../src/plugins/view/eventview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:115
-#: ../src/PluginUtils/_PluginWindows.py:228
-#: ../src/PluginUtils/_PluginWindows.py:333
+#: ../src/PluginUtils/_PluginWindows.py:230
+#: ../src/PluginUtils/_PluginWindows.py:339
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "Descrizione"
@@ -3206,22 +3206,22 @@ msgstr "Vista Gramps"
 msgid "Relationships"
 msgstr "Relazioni"
 
-#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:357
+#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:362
 #: ../src/gui/widgets/grampletpane.py:202
 msgid "Gramplet"
 msgstr "Gramplet"
 
-#: ../src/gen/plug/_pluginreg.py:426 ../src/gui/views/pageview.py:111
+#: ../src/gen/plug/_pluginreg.py:440 ../src/gui/views/pageview.py:111
 msgid "Miscellaneous"
 msgstr "Varie"
 
-#: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
+#: ../src/gen/plug/_pluginreg.py:966 ../src/gen/plug/_pluginreg.py:971
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr ""
 "ERRORE: lettura della registrazione del plugin %(filename)s non riuscita"
 
-#: ../src/gen/plug/_pluginreg.py:970
+#: ../src/gen/plug/_pluginreg.py:985
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -3230,14 +3230,14 @@ msgstr ""
 "ERRORE: la versione del plugin %(filename)s è «%(gramps_target_version)s», e "
 "non è valida per Gramps «%(gramps_version)s»."
 
-#: ../src/gen/plug/_pluginreg.py:989
+#: ../src/gen/plug/_pluginreg.py:1004
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "ERRORE: file python %(filename)s non corretto nel file di registro %(regfile)"
 "s"
 
-#: ../src/gen/plug/_pluginreg.py:997
+#: ../src/gen/plug/_pluginreg.py:1012
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
@@ -3485,8 +3485,8 @@ msgid "Name format"
 msgstr "Formato nome"
 
 #: ../src/gui/configure.py:802 ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:245
-#: ../src/PluginUtils/_PluginWindows.py:297
+#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:248
+#: ../src/PluginUtils/_PluginWindows.py:303
 msgid "Edit"
 msgstr "Modifica"
 
@@ -3761,29 +3761,29 @@ msgstr "_Estrai"
 msgid "_Archive"
 msgstr "_Archivia"
 
-#: ../src/gui/dbman.py:267
+#: ../src/gui/dbman.py:268
 msgid "Family tree name"
 msgstr "Nome albero genealogico"
 
-#: ../src/gui/dbman.py:277
+#: ../src/gui/dbman.py:278
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/plugins/webreport/NarrativeWeb.py:130
-#: ../src/PluginUtils/_PluginWindows.py:222
-#: ../src/PluginUtils/_PluginWindows.py:275
+#: ../src/PluginUtils/_PluginWindows.py:223
+#: ../src/PluginUtils/_PluginWindows.py:280
 msgid "Status"
 msgstr "Stato"
 
-#: ../src/gui/dbman.py:283
-msgid "Last modified"
-msgstr "Ultima modifica"
+#: ../src/gui/dbman.py:284
+msgid "Last accessed"
+msgstr "Ultimo accesso"
 
-#: ../src/gui/dbman.py:365
+#: ../src/gui/dbman.py:366
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Rimuovere il blocco sul database «%s»?"
 
-#: ../src/gui/dbman.py:366
+#: ../src/gui/dbman.py:367
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -3796,15 +3796,15 @@ msgstr ""
 "se effettivamente qualcun'altro sta modificando il database e il blocco "
 "viene forzato, il database potrebbe essere danneggiato."
 
-#: ../src/gui/dbman.py:372
+#: ../src/gui/dbman.py:373
 msgid "Break lock"
 msgstr "Rimuovi blocco"
 
-#: ../src/gui/dbman.py:449
+#: ../src/gui/dbman.py:450
 msgid "Rename failed"
 msgstr "Rinominazione non riuscita"
 
-#: ../src/gui/dbman.py:450
+#: ../src/gui/dbman.py:451
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -3816,66 +3816,66 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:465
+#: ../src/gui/dbman.py:466
 msgid "Could not rename the Family Tree."
 msgstr "Impossibile rinominare l'albero genealogico."
 
-#: ../src/gui/dbman.py:466
+#: ../src/gui/dbman.py:467
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Albero genealogico già esistente, scegliere un nome univoco."
 
-#: ../src/gui/dbman.py:479
+#: ../src/gui/dbman.py:480
 msgid "Could not rename family tree"
 msgstr "Impossibile rinominare l'albero genealogico"
 
-#: ../src/gui/dbman.py:513
+#: ../src/gui/dbman.py:514
 msgid "Extracting archive..."
 msgstr "Estrazione archivio..."
 
-#: ../src/gui/dbman.py:518
+#: ../src/gui/dbman.py:519
 msgid "Importing archive..."
 msgstr "Importazione archivio..."
 
-#: ../src/gui/dbman.py:534
+#: ../src/gui/dbman.py:535
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Rimuovere l'albero genealogico «%s»?"
 
-#: ../src/gui/dbman.py:535
+#: ../src/gui/dbman.py:536
 msgid "Removing this family tree will permanently destroy the data."
 msgstr ""
 "La rimozione di questo albero genealogico comporta la cancellazione "
 "definitiva dei relativi dati."
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:537
 msgid "Remove family tree"
 msgstr "Rimuovi albero genealogico"
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:543
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Rimovere la versione «%(revision)s» di «%(database)s»"
 
-#: ../src/gui/dbman.py:546
+#: ../src/gui/dbman.py:547
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 "La rimozione di questa versione ne impedirà l'estrazione in un momento "
 "successivo."
 
-#: ../src/gui/dbman.py:548
+#: ../src/gui/dbman.py:549
 msgid "Remove version"
 msgstr "Rimuovi versione"
 
-#: ../src/gui/dbman.py:577
+#: ../src/gui/dbman.py:578
 msgid "Could not delete family tree"
 msgstr "Impossibile eliminare l'albero genealogico"
 
-#: ../src/gui/dbman.py:602
+#: ../src/gui/dbman.py:603
 msgid "Deletion failed"
 msgstr "Eliminazione non riuscita"
 
-#: ../src/gui/dbman.py:603
+#: ../src/gui/dbman.py:604
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -3887,23 +3887,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:647
 msgid "Rebuilding database from backup files"
 msgstr "Ricostruzione database dai file di backup"
 
-#: ../src/gui/dbman.py:651
+#: ../src/gui/dbman.py:652
 msgid "Error restoring backup data"
 msgstr "Errore nel ripristino della copia di sicurezza"
 
-#: ../src/gui/dbman.py:686
+#: ../src/gui/dbman.py:687
 msgid "Could not create family tree"
 msgstr "Impossibile creare l'albero genealogico"
 
-#: ../src/gui/dbman.py:800
+#: ../src/gui/dbman.py:801
 msgid "Retrieve failed"
 msgstr "Recupero non riuscito"
 
-#: ../src/gui/dbman.py:801
+#: ../src/gui/dbman.py:802
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -3915,11 +3915,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:841 ../src/gui/dbman.py:869
+#: ../src/gui/dbman.py:842 ../src/gui/dbman.py:870
 msgid "Archiving failed"
 msgstr "Archiviazione non riuscita"
 
-#: ../src/gui/dbman.py:842
+#: ../src/gui/dbman.py:843
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -3931,15 +3931,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:847
+#: ../src/gui/dbman.py:848
 msgid "Creating data to be archived..."
 msgstr "Creazione dati da archiviare..."
 
-#: ../src/gui/dbman.py:856
+#: ../src/gui/dbman.py:857
 msgid "Saving archive..."
 msgstr "Salvataggio archivio..."
 
-#: ../src/gui/dbman.py:870
+#: ../src/gui/dbman.py:871
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -8358,26 +8358,40 @@ msgstr "Lo stile usato per le etichette degli anni."
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
+msgid "Comma Separated Values Spreadsheet (CSV)"
+msgstr "Foglio di calcolo Comma Separated Values (CSV)"
+
+#: ../src/plugins/export/export.gpr.py:32
 msgid "Comma _Separated Values Spreadsheet (CSV)"
 msgstr "Foglio di calcolo Comma _Separated Values (CSV)"
 
-#: ../src/plugins/export/export.gpr.py:32
+#: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV è un formato diffuso per fogli di calcolo."
 
-#: ../src/plugins/export/export.gpr.py:51
+#: ../src/plugins/export/export.gpr.py:52
+msgid "Web Family Tree"
+msgstr "Web Family Tree"
+
+#: ../src/plugins/export/export.gpr.py:53
 msgid "_Web Family Tree"
 msgstr "_Web Family Tree"
 
-#: ../src/plugins/export/export.gpr.py:52
+#: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
 msgstr "Formato Web Family Tree"
 
-#: ../src/plugins/export/export.gpr.py:71
+#: ../src/plugins/export/export.gpr.py:73
+#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
+msgstr "GEDCOM"
+
+#: ../src/plugins/export/export.gpr.py:74
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/plugins/export/export.gpr.py:72
+#: ../src/plugins/export/export.gpr.py:75
 #: ../src/plugins/import/import.gpr.py:52
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
@@ -8386,19 +8400,28 @@ msgstr ""
 "GEDCOM è utilizzato per trasferire dati tra programmi di genealogia. Molti "
 "programmi di genealogia possono leggere file GEDCOM."
 
-#: ../src/plugins/export/export.gpr.py:92
+#: ../src/plugins/export/export.gpr.py:95
+#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
+msgid "GeneWeb"
+msgstr "GeneWeb"
+
+#: ../src/plugins/export/export.gpr.py:96
 msgid "_GeneWeb"
 msgstr "_GeneWeb"
 
-#: ../src/plugins/export/export.gpr.py:93
+#: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb è un programma web di genealogia."
 
-#: ../src/plugins/export/export.gpr.py:112
+#: ../src/plugins/export/export.gpr.py:116
+msgid "Gramps XML Package (family tree and media)"
+msgstr "Pacchetto Gramps XML (albero genealogico e oggetti multimediali)"
+
+#: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
 msgstr "Pacchetto Gra_mps XML (albero genealogico e oggetti multimediali)"
 
-#: ../src/plugins/export/export.gpr.py:113
+#: ../src/plugins/export/export.gpr.py:118
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
@@ -8406,11 +8429,15 @@ msgstr ""
 "Un pacchetto Gramps è costituito dall'albero genealogico in formato XML, "
 "aggregato ai file multimediali."
 
-#: ../src/plugins/export/export.gpr.py:133
+#: ../src/plugins/export/export.gpr.py:138
+msgid "Gramps XML (family tree)"
+msgstr "Gramps XML (albero genealogico)"
+
+#: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
 msgstr "Gramps _XML (albero genealogico)"
 
-#: ../src/plugins/export/export.gpr.py:134
+#: ../src/plugins/export/export.gpr.py:140
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
@@ -8418,20 +8445,29 @@ msgstr ""
 "L'esportazione in Gramps XML produce un archivio XML completo del database "
 "Gramps senza gli oggetti multimediali. Adatto per il backup."
 
-#: ../src/plugins/export/export.gpr.py:155
+#: ../src/plugins/export/export.gpr.py:161
+msgid "vCalendar"
+msgstr "vCalendar"
+
+#: ../src/plugins/export/export.gpr.py:162
 msgid "vC_alendar"
 msgstr "vC_alendar"
 
-#: ../src/plugins/export/export.gpr.py:156
+#: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and pim applications."
 msgstr ""
 "vCalendar è un formato usato in molte applicazioni di calendario e di PIM."
 
-#: ../src/plugins/export/export.gpr.py:175
+#: ../src/plugins/export/export.gpr.py:182
+#: ../src/plugins/import/import.gpr.py:164
+msgid "vCard"
+msgstr "vCard"
+
+#: ../src/plugins/export/export.gpr.py:183
 msgid "_vCard"
 msgstr "_vCard"
 
-#: ../src/plugins/export/export.gpr.py:176
+#: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard è un formato usato in molte applicazioni di rubrica e di PIM."
 
@@ -10022,15 +10058,6 @@ msgstr ""
 msgid "Import data from CSV files"
 msgstr "Importa dati da file CSV"
 
-#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
-#: ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr "GEDCOM"
-
-#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
-msgid "GeneWeb"
-msgstr "GeneWeb"
-
 #: ../src/plugins/import/import.gpr.py:71
 msgid "Import data from GeneWeb files"
 msgstr "Importa dati da file GeneWeb"
@@ -10075,10 +10102,6 @@ msgstr "Pro-Gen"
 #: ../src/plugins/import/import.gpr.py:147
 msgid "Import data from Pro-Gen files"
 msgstr "Importa dati da file Pro-Gen"
-
-#: ../src/plugins/import/import.gpr.py:164
-msgid "vCard"
-msgstr "vCard"
 
 #: ../src/plugins/import/import.gpr.py:165
 msgid "Import data from vCard files"
@@ -17853,7 +17876,7 @@ msgid "Database Owner Editor"
 msgstr "Editor proprietario del database"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1194
+#: ../src/PluginUtils/_PluginWindows.py:1201
 msgid "Main window"
 msgstr "Finestra principale"
 
@@ -20503,182 +20526,182 @@ msgstr "Nascosto"
 msgid "Visible"
 msgstr "Visibile"
 
-#: ../src/PluginUtils/_PluginWindows.py:237
-#: ../src/PluginUtils/_PluginWindows.py:288
+#: ../src/PluginUtils/_PluginWindows.py:240
+#: ../src/PluginUtils/_PluginWindows.py:294
 msgid "Info"
 msgstr "Info"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:240
-#: ../src/PluginUtils/_PluginWindows.py:291
+#: ../src/PluginUtils/_PluginWindows.py:243
+#: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Hide/Unhide"
 msgstr "Nasconde/Mostra"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:248
-#: ../src/PluginUtils/_PluginWindows.py:300
+#: ../src/PluginUtils/_PluginWindows.py:251
+#: ../src/PluginUtils/_PluginWindows.py:306
 msgid "Load"
 msgstr "Carica"
 
-#: ../src/PluginUtils/_PluginWindows.py:254
+#: ../src/PluginUtils/_PluginWindows.py:257
 msgid "Registered Plugins"
 msgstr "Plugin registrati"
 
-#: ../src/PluginUtils/_PluginWindows.py:267
+#: ../src/PluginUtils/_PluginWindows.py:270
 msgid "Loaded"
 msgstr "Caricato"
 
-#: ../src/PluginUtils/_PluginWindows.py:271
+#: ../src/PluginUtils/_PluginWindows.py:275
 msgid "File"
 msgstr "File"
 
-#: ../src/PluginUtils/_PluginWindows.py:279
+#: ../src/PluginUtils/_PluginWindows.py:284
 msgid "Message"
 msgstr "Messaggio"
 
-#: ../src/PluginUtils/_PluginWindows.py:305
+#: ../src/PluginUtils/_PluginWindows.py:311
 msgid "Loaded Plugins"
 msgstr "Plugin caricati"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
-#: ../src/PluginUtils/_PluginWindows.py:325
+#: ../src/PluginUtils/_PluginWindows.py:331
 msgid "Addon Name"
 msgstr "Nome componente aggiuntivo"
 
-#: ../src/PluginUtils/_PluginWindows.py:340
+#: ../src/PluginUtils/_PluginWindows.py:346
 msgid "Path to Addon:"
 msgstr "Percorso per il componente aggiuntivo:"
 
-#: ../src/PluginUtils/_PluginWindows.py:360
+#: ../src/PluginUtils/_PluginWindows.py:366
 msgid "Install Addon"
 msgstr "Installa componente aggiuntivo"
 
-#: ../src/PluginUtils/_PluginWindows.py:363
+#: ../src/PluginUtils/_PluginWindows.py:369
 msgid "Install All Addons"
 msgstr "Installa tutti i componenti aggiuntivi"
 
-#: ../src/PluginUtils/_PluginWindows.py:366
+#: ../src/PluginUtils/_PluginWindows.py:372
 msgid "Refresh Addon List"
 msgstr "Aggiorna l'elenco dei componenti aggiuntivi"
 
-#: ../src/PluginUtils/_PluginWindows.py:371
+#: ../src/PluginUtils/_PluginWindows.py:377
 msgid "Install Addons"
 msgstr "Installa componenti aggiuntivi"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:379
+#: ../src/PluginUtils/_PluginWindows.py:385
 msgid "Reload"
 msgstr "Ricarica"
 
-#: ../src/PluginUtils/_PluginWindows.py:401
+#: ../src/PluginUtils/_PluginWindows.py:408
 msgid "Refreshing Addon List"
 msgstr "Aggiornamento elenco componenti aggiuntivi"
 
-#: ../src/PluginUtils/_PluginWindows.py:402
-#: ../src/PluginUtils/_PluginWindows.py:407
-#: ../src/PluginUtils/_PluginWindows.py:497
+#: ../src/PluginUtils/_PluginWindows.py:409
+#: ../src/PluginUtils/_PluginWindows.py:414
+#: ../src/PluginUtils/_PluginWindows.py:504
 msgid "Reading gramps-project.org..."
 msgstr "Lettura di gramps-project.org..."
 
-#: ../src/PluginUtils/_PluginWindows.py:425
+#: ../src/PluginUtils/_PluginWindows.py:432
 msgid "Checking addon..."
 msgstr "Controllo componenti aggiuntivi..."
 
-#: ../src/PluginUtils/_PluginWindows.py:433
+#: ../src/PluginUtils/_PluginWindows.py:440
 msgid "Unknown Help URL"
 msgstr "URL di aiuto sconosciuto"
 
-#: ../src/PluginUtils/_PluginWindows.py:444
+#: ../src/PluginUtils/_PluginWindows.py:451
 msgid "Unknown URL"
 msgstr "URL sconosciuto"
 
-#: ../src/PluginUtils/_PluginWindows.py:480
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Install all Addons"
 msgstr "Installa tutti i componenti aggiuntivi"
 
-#: ../src/PluginUtils/_PluginWindows.py:480
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Installing..."
 msgstr "Installazione..."
 
-#: ../src/PluginUtils/_PluginWindows.py:496
+#: ../src/PluginUtils/_PluginWindows.py:503
 msgid "Installing Addon"
 msgstr "Installazione componente aggiuntivo"
 
-#: ../src/PluginUtils/_PluginWindows.py:525
-#: ../src/PluginUtils/_PluginWindows.py:531
+#: ../src/PluginUtils/_PluginWindows.py:532
+#: ../src/PluginUtils/_PluginWindows.py:538
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Impossibile aprire «%s»"
 
-#: ../src/PluginUtils/_PluginWindows.py:542
+#: ../src/PluginUtils/_PluginWindows.py:549
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Errore: impossibile aprire «%s»"
 
-#: ../src/PluginUtils/_PluginWindows.py:545
+#: ../src/PluginUtils/_PluginWindows.py:552
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Errore: tipo di file sconosciuto: «%s»"
 
-#: ../src/PluginUtils/_PluginWindows.py:550
+#: ../src/PluginUtils/_PluginWindows.py:557
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Controllo di «%s»..."
 
-#: ../src/PluginUtils/_PluginWindows.py:562
+#: ../src/PluginUtils/_PluginWindows.py:569
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Errore nel file «%s»: impossibile caricare."
 
-#: ../src/PluginUtils/_PluginWindows.py:574
+#: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "«%s» è per questa versione di Gramps."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:577
+#: ../src/PluginUtils/_PluginWindows.py:584
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "«%s» NON è per questa versione di Gramps."
 
-#: ../src/PluginUtils/_PluginWindows.py:578
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "È per la versione %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:584
+#: ../src/PluginUtils/_PluginWindows.py:591
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Errore: gramps_target_version = '3.2' mancante in «%s»..."
 
-#: ../src/PluginUtils/_PluginWindows.py:588
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installazione di «%s»..."
 
-#: ../src/PluginUtils/_PluginWindows.py:598
+#: ../src/PluginUtils/_PluginWindows.py:605
 #, python-format
 msgid "Registered '%s'"
 msgstr "«%s» registrato"
 
-#: ../src/PluginUtils/_PluginWindows.py:607
+#: ../src/PluginUtils/_PluginWindows.py:614
 msgid "Load Addon"
 msgstr "Carica componente aggiuntivo"
 
-#: ../src/PluginUtils/_PluginWindows.py:664
+#: ../src/PluginUtils/_PluginWindows.py:671
 msgid "Unavailable"
 msgstr "Non disponibile"
 
-#: ../src/PluginUtils/_PluginWindows.py:668
+#: ../src/PluginUtils/_PluginWindows.py:675
 msgid "Fail"
 msgstr "Non riuscito"
 
-#: ../src/PluginUtils/_PluginWindows.py:682
+#: ../src/PluginUtils/_PluginWindows.py:689
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:830
+#: ../src/PluginUtils/_PluginWindows.py:837
 msgid "Plugin Error"
 msgstr "Errore plugin"
 
@@ -21795,12 +21818,12 @@ msgid "Family filters"
 msgstr "Filtri famiglia"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-msgid "People with <count> source"
+msgid "People with <count> sources"
 msgstr "Persone con <totale> fonti"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-msgid "Matches people with a certain number of items in the source"
-msgstr "Estrae le persone con un certo numero di oggetti nelle fonti"
+msgid "Matches people with a number of sources connected to it"
+msgstr "Estrae le persone con un certo numero di fonti connesse ad esse"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
@@ -22346,12 +22369,12 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr "Estrae le famiglie con un particolare tipo di relazione"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-msgid "Families with <count> source"
+msgid "Families with <count> sources"
 msgstr "Famiglie con <totale> fonti"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-msgid "Matches families with a certain number of items in the source"
-msgstr "Estrae le famiglie con un certo numero di oggetti nelle fonti"
+msgid "Matches families with a number of sources connected to it"
+msgstr "Estrae le famiglie con un certo numero di fonti connesse ad esse"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -22564,12 +22587,12 @@ msgid "Matches events with a certain reference count"
 msgstr "Estrae gli eventi con un certo numero di riferimenti"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:43
-msgid "Events with <count> source"
+msgid "Events with <count> sources"
 msgstr "Eventi con <totale> fonti"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:44
-msgid "Matches events with a certain number of items in the source"
-msgstr "Estrae gli eventi con un certo numero di oggetti nelle fonti"
+msgid "Matches events with a certain number of sources connected to it"
+msgstr "Estrae gli eventi con un certo numero di fonti connesse ad essi"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
@@ -25617,6 +25640,12 @@ msgstr ""
 "possibile anche indicare il livello di fiducia in una data ed anche "
 "scegliere tra sette diversi calendari. Basta usare il pulsante vicino al "
 "campo della data nell'editor degli eventi."
+
+#~ msgid "Last modified"
+#~ msgstr "Ultima modifica"
+
+#~ msgid "Matches people with a certain number of items in the source"
+#~ msgstr "Estrae le persone con un certo numero di oggetti nelle fonti"
 
 #~ msgid "Show Repository Reference"
 #~ msgstr "Mostra riferimento al deposito"
