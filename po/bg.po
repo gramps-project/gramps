@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-15 16:28+0100\n"
-"PO-Revision-Date: 2010-03-17 23:04+0200\n"
+"POT-Creation-Date: 2010-03-22 18:13+0100\n"
+"PO-Revision-Date: 2010-03-23 22:00+0200\n"
 "Last-Translator: Boril Gourinov <boril.gourinov@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr "Организиране на отметките"
 #: ../src/plugins/webreport/NarrativeWeb.py:1985
 #: ../src/plugins/webreport/NarrativeWeb.py:4756
 #: ../src/PluginUtils/_GuiOptions.py:828
-#: ../src/PluginUtils/_PluginWindows.py:225
+#: ../src/PluginUtils/_PluginWindows.py:226
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -128,13 +128,13 @@ msgstr "Име"
 #: ../src/gui/selectors/selectsource.py:62
 #: ../src/gui/views/navigationview.py:336 ../src/Merge/_MergePerson.py:127
 #: ../src/plugins/lib/libpersonview.py:90
-#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
 #: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89 ../src/plugins/view/noteview.py:76
-#: ../src/plugins/view/relview.py:612 ../src/plugins/view/repoview.py:82
+#: ../src/plugins/view/relview.py:613 ../src/plugins/view/repoview.py:82
 #: ../src/plugins/view/sourceview.py:77 ../src/PluginUtils/_GuiOptions.py:829
 #: ../src/PluginUtils/_GuiOptions.py:969
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -423,7 +423,7 @@ msgstr "Да не се _включват несвързани записи"
 #: ../src/plugins/export/ExportFtree.py:77
 #: ../src/plugins/export/ExportGeneWeb.py:82
 #: ../src/plugins/export/ExportVCalendar.py:77
-#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:151
+#: ../src/plugins/export/ExportVCard.py:76 ../src/plugins/tool/EventCmp.py:155
 #: ../src/ReportBase/_ReportUtils.py:265
 msgid "Entire Database"
 msgstr "Цялата база от данни"
@@ -743,7 +743,7 @@ msgstr "неизвестен пол, неизвестна връзка бивш 
 #: ../src/plugins/textreport/IndivComplete.py:304
 #: ../src/plugins/textreport/IndivComplete.py:600
 #: ../src/plugins/textreport/MarkerReport.py:207
-#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:882
+#: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4144
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -760,7 +760,7 @@ msgstr "Баща"
 #: ../src/plugins/textreport/IndivComplete.py:313
 #: ../src/plugins/textreport/IndivComplete.py:605
 #: ../src/plugins/textreport/MarkerReport.py:213
-#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:883
+#: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4151
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -770,7 +770,7 @@ msgstr "Майка"
 #: ../src/Reorder.py:38 ../src/gui/selectors/selectperson.py:81
 #: ../src/Merge/_MergePerson.py:180 ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/textreport/FamilyGroup.py:494
-#: ../src/plugins/view/relview.py:1341
+#: ../src/plugins/view/relview.py:1342
 #: ../src/plugins/webreport/NarrativeWeb.py:563
 msgid "Spouse"
 msgstr "Съпруг/а"
@@ -811,8 +811,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
-#: ../src/plugins/view/relview.py:456 ../src/plugins/view/relview.py:994
-#: ../src/plugins/view/relview.py:1041
+#: ../src/plugins/view/relview.py:457 ../src/plugins/view/relview.py:995
+#: ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:1513
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
@@ -951,7 +951,7 @@ msgstr "Семейно събитие"
 #: ../src/plugins/view/noteview.py:77 ../src/plugins/view/repoview.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/PluginUtils/_PluginWindows.py:219
-#: ../src/PluginUtils/_PluginWindows.py:329
+#: ../src/PluginUtils/_PluginWindows.py:335
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
@@ -972,8 +972,8 @@ msgstr "Основание"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:57 ../src/plugins/view/eventview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:115
-#: ../src/PluginUtils/_PluginWindows.py:228
-#: ../src/PluginUtils/_PluginWindows.py:333
+#: ../src/PluginUtils/_PluginWindows.py:230
+#: ../src/PluginUtils/_PluginWindows.py:339
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "Описание"
@@ -1097,8 +1097,8 @@ msgstr "Собствено"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:81
 #: ../src/plugins/textreport/IndivComplete.py:72
-#: ../src/plugins/view/relview.py:529 ../src/plugins/view/relview.py:1317
-#: ../src/plugins/view/relview.py:1339
+#: ../src/plugins/view/relview.py:530 ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/relview.py:1340
 msgid "Family"
 msgstr "Семейство"
 
@@ -1171,7 +1171,7 @@ msgstr "Връзка към лице"
 #: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
 #: ../src/plugins/textreport/MarkerReport.py:126
-#: ../src/plugins/view/relview.py:622
+#: ../src/plugins/view/relview.py:623
 #: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Birth"
 msgstr "Раждане"
@@ -1658,7 +1658,7 @@ msgstr "Източник в хранилището"
 #: ../src/plugins/quickview/References.py:80
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/tool/EventCmp.py:243
+#: ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 msgid "Person"
 msgstr "Лице"
@@ -1769,7 +1769,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:572
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #: ../src/plugins/textreport/IndivComplete.py:405
-#: ../src/plugins/view/relview.py:660
+#: ../src/plugins/view/relview.py:661
 #: ../src/plugins/webreport/NarrativeWeb.py:3489
 #: ../src/plugins/webreport/NarrativeWeb.py:4431
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -1996,7 +1996,7 @@ msgstr "Грешка: Непознат тип – „%(format)s“ за внас
 #: ../src/cli/arghandler.py:174
 #, python-format
 msgid ""
-"WARNING: Output file already exist!\n"
+"WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
@@ -2699,7 +2699,7 @@ msgstr "между"
 #: ../src/gen/lib/date.py:327 ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449 ../src/Simple/_SimpleTable.py:251
 #: ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:975
+#: ../src/plugins/view/relview.py:976
 msgid "and"
 msgstr "и"
 
@@ -2818,7 +2818,7 @@ msgstr "Име след брак"
 #: ../src/plugins/textreport/FamilyGroup.py:458
 #: ../src/plugins/textreport/FamilyGroup.py:460
 #: ../src/plugins/textreport/MarkerReport.py:132
-#: ../src/plugins/view/relview.py:633 ../src/plugins/view/relview.py:658
+#: ../src/plugins/view/relview.py:634 ../src/plugins/view/relview.py:659
 #: ../src/plugins/webreport/NarrativeWeb.py:113
 msgid "Death"
 msgstr "Смърт"
@@ -2953,7 +2953,7 @@ msgstr "Завещание"
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/textreport/FamilyGroup.py:357
-#: ../src/plugins/view/relview.py:1257
+#: ../src/plugins/view/relview.py:1258
 msgid "Marriage"
 msgstr "Брак"
 
@@ -3147,25 +3147,25 @@ msgid "Gramps View"
 msgstr "Gramps изглед"
 
 #: ../src/gen/plug/_pluginreg.py:83 ../src/gui/grampsgui.py:134
-#: ../src/plugins/view/relview.py:132 ../src/plugins/view/view.gpr.py:115
+#: ../src/plugins/view/relview.py:133 ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
 msgstr "Роднински връзки"
 
-#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:357
+#: ../src/gen/plug/_pluginreg.py:84 ../src/gen/plug/_pluginreg.py:362
 #: ../src/gui/widgets/grampletpane.py:202
 msgid "Gramplet"
 msgstr "Грамплет"
 
-#: ../src/gen/plug/_pluginreg.py:426 ../src/gui/views/pageview.py:111
+#: ../src/gen/plug/_pluginreg.py:440 ../src/gui/views/pageview.py:111
 msgid "Miscellaneous"
 msgstr "Разни"
 
-#: ../src/gen/plug/_pluginreg.py:951 ../src/gen/plug/_pluginreg.py:956
+#: ../src/gen/plug/_pluginreg.py:966 ../src/gen/plug/_pluginreg.py:971
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "ГРЕШКА: Пропадна четенето на регистрацията на добавката %(filename)s"
 
-#: ../src/gen/plug/_pluginreg.py:970
+#: ../src/gen/plug/_pluginreg.py:985
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -3174,13 +3174,13 @@ msgstr ""
 "ГРЕШКА: Файлът на добавката %(filename)s е с версия „%(gramps_target_version)"
 "s“, която е невалидна за Gramps „%(gramps_version)s“."
 
-#: ../src/gen/plug/_pluginreg.py:989
+#: ../src/gen/plug/_pluginreg.py:1004
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "ГРЕШКА: грешен файл на python %(filename)s в регистровия файл %(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:997
+#: ../src/gen/plug/_pluginreg.py:1012
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
@@ -3426,8 +3426,8 @@ msgid "Name format"
 msgstr "Формат на името"
 
 #: ../src/gui/configure.py:802 ../src/gui/editors/displaytabs/buttontab.py:70
-#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:245
-#: ../src/PluginUtils/_PluginWindows.py:297
+#: ../src/plugins/BookReport.py:958 ../src/PluginUtils/_PluginWindows.py:248
+#: ../src/PluginUtils/_PluginWindows.py:303
 msgid "Edit"
 msgstr "Редактиране"
 
@@ -3701,29 +3701,29 @@ msgstr "_Извличане"
 msgid "_Archive"
 msgstr "_Архивиране"
 
-#: ../src/gui/dbman.py:267
+#: ../src/gui/dbman.py:268
 msgid "Family tree name"
 msgstr "Име на родословното дърво"
 
-#: ../src/gui/dbman.py:277
+#: ../src/gui/dbman.py:278
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/plugins/webreport/NarrativeWeb.py:130
-#: ../src/PluginUtils/_PluginWindows.py:222
-#: ../src/PluginUtils/_PluginWindows.py:275
+#: ../src/PluginUtils/_PluginWindows.py:223
+#: ../src/PluginUtils/_PluginWindows.py:280
 msgid "Status"
 msgstr "Статус"
 
-#: ../src/gui/dbman.py:283
-msgid "Last modified"
-msgstr "Последна промяна"
+#: ../src/gui/dbman.py:284
+msgid "Last accessed"
+msgstr "Последно променен"
 
-#: ../src/gui/dbman.py:365
+#: ../src/gui/dbman.py:366
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Принудително отключване на базата данни '%s'?"
 
-#: ../src/gui/dbman.py:366
+#: ../src/gui/dbman.py:367
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -3735,15 +3735,15 @@ msgstr ""
 "безопасно да я отключите принудително. Ако обаче някой я редактира и вие "
 "направите принудително отключване, можете да повредите базата данни."
 
-#: ../src/gui/dbman.py:372
+#: ../src/gui/dbman.py:373
 msgid "Break lock"
 msgstr "Принудително отключване"
 
-#: ../src/gui/dbman.py:449
+#: ../src/gui/dbman.py:450
 msgid "Rename failed"
 msgstr "Преименуването се провали"
 
-#: ../src/gui/dbman.py:450
+#: ../src/gui/dbman.py:451
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -3754,62 +3754,62 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:465
+#: ../src/gui/dbman.py:466
 msgid "Could not rename the Family Tree."
 msgstr "Родословното дърво не може да бъде преименувано."
 
-#: ../src/gui/dbman.py:466
+#: ../src/gui/dbman.py:467
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Родословното дърво вече съществува, изберете уникално име."
 
-#: ../src/gui/dbman.py:479
+#: ../src/gui/dbman.py:480
 msgid "Could not rename family tree"
 msgstr "Родословното дърво не може да бъде преименувано"
 
-#: ../src/gui/dbman.py:513
+#: ../src/gui/dbman.py:514
 msgid "Extracting archive..."
 msgstr "Извличане от архив..."
 
-#: ../src/gui/dbman.py:518
+#: ../src/gui/dbman.py:519
 msgid "Importing archive..."
 msgstr "Внасяне на архив..."
 
-#: ../src/gui/dbman.py:534
+#: ../src/gui/dbman.py:535
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Да се премахне ли родословното дърво '%s'?"
 
-#: ../src/gui/dbman.py:535
+#: ../src/gui/dbman.py:536
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Премахването на това родословно дърво ще изтрие данните безвъзвратно."
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:537
 msgid "Remove family tree"
 msgstr "Премахване на родословно дърво"
 
-#: ../src/gui/dbman.py:542
+#: ../src/gui/dbman.py:543
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Премахване на версия „%(revision)s“ на „%(database)s“"
 
-#: ../src/gui/dbman.py:546
+#: ../src/gui/dbman.py:547
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr "Премахването на тази версия ще попречи на извличането ѝ в бъдеще."
 
-#: ../src/gui/dbman.py:548
+#: ../src/gui/dbman.py:549
 msgid "Remove version"
 msgstr "Премахване на версия"
 
-#: ../src/gui/dbman.py:577
+#: ../src/gui/dbman.py:578
 msgid "Could not delete family tree"
 msgstr "Родословното дърво не може да бъде изтрито"
 
-#: ../src/gui/dbman.py:602
+#: ../src/gui/dbman.py:603
 msgid "Deletion failed"
 msgstr "Изтриването се провали"
 
-#: ../src/gui/dbman.py:603
+#: ../src/gui/dbman.py:604
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -3820,23 +3820,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:646
+#: ../src/gui/dbman.py:647
 msgid "Rebuilding database from backup files"
 msgstr "Възстановяване на база от данни от резервни файлове"
 
-#: ../src/gui/dbman.py:651
+#: ../src/gui/dbman.py:652
 msgid "Error restoring backup data"
 msgstr "Грешка при възстановяване на резервните данни"
 
-#: ../src/gui/dbman.py:686
+#: ../src/gui/dbman.py:687
 msgid "Could not create family tree"
 msgstr "Не може да се създаде родословно дърво"
 
-#: ../src/gui/dbman.py:800
+#: ../src/gui/dbman.py:801
 msgid "Retrieve failed"
 msgstr "Възстановяването се провали"
 
-#: ../src/gui/dbman.py:801
+#: ../src/gui/dbman.py:802
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -3847,11 +3847,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:841 ../src/gui/dbman.py:869
+#: ../src/gui/dbman.py:842 ../src/gui/dbman.py:870
 msgid "Archiving failed"
 msgstr "Архивирането се провали"
 
-#: ../src/gui/dbman.py:842
+#: ../src/gui/dbman.py:843
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -3862,15 +3862,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:847
+#: ../src/gui/dbman.py:848
 msgid "Creating data to be archived..."
 msgstr "Създаване на данни за архивиране..."
 
-#: ../src/gui/dbman.py:856
+#: ../src/gui/dbman.py:857
 msgid "Saving archive..."
 msgstr "Запазване на архива..."
 
-#: ../src/gui/dbman.py:870
+#: ../src/gui/dbman.py:871
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -4281,8 +4281,8 @@ msgstr "Бележки"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
 #: ../src/plugins/view/fanchartview.py:903
-#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:516
-#: ../src/plugins/view/relview.py:847 ../src/plugins/view/relview.py:881
+#: ../src/plugins/view/pedigreeview.py:1482 ../src/plugins/view/relview.py:517
+#: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Parents"
 msgstr "Родители"
@@ -4301,8 +4301,7 @@ msgstr "Избор на родители"
 msgid "Pedigree"
 msgstr "Родословно дърво"
 
-#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placelistview.py:52
-#: ../src/plugins/view/placetreeview.gpr.py:11
+#: ../src/gui/grampsgui.py:133 ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:175
 #: ../src/plugins/webreport/NarrativeWeb.py:1005
 #: ../src/plugins/webreport/NarrativeWeb.py:1046
@@ -5044,7 +5043,7 @@ msgid "Edit relationship"
 msgstr "Редактиране на семейната връзка"
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1515
+#: ../src/plugins/view/relview.py:1516
 msgid "Select Child"
 msgstr "Избор на дете"
 
@@ -5150,9 +5149,9 @@ msgstr "Кръщене:"
 msgid "Burial:"
 msgstr "Погребение:"
 
-#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:594
-#: ../src/plugins/view/relview.py:988 ../src/plugins/view/relview.py:1036
-#: ../src/plugins/view/relview.py:1117 ../src/plugins/view/relview.py:1223
+#: ../src/gui/editors/editfamily.py:915 ../src/plugins/view/relview.py:595
+#: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
+#: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Редактира %s"
@@ -5741,7 +5740,7 @@ msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s — %(part2)s"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:68
-#: ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:406
 msgid "Add"
 msgstr "Добавяне"
 
@@ -5752,7 +5751,7 @@ msgstr "Премахване"
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:120
 #: ../src/gui/editors/displaytabs/gallerytab.py:124
-#: ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:410
 msgid "Share"
 msgstr "Споделяне"
 
@@ -8250,26 +8249,40 @@ msgstr "Стилът, използван за етикетите на годин
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
-msgid "Comma _Separated Values Spreadsheet (CSV)"
+msgid "Comma Separated Values Spreadsheet (CSV)"
 msgstr "Таблица с разделяне със запетайки (CSV)"
 
 #: ../src/plugins/export/export.gpr.py:32
+msgid "Comma _Separated Values Spreadsheet (CSV)"
+msgstr "Таблица с _разделяне със запетайки (CSV)"
+
+#: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
 msgstr "CSV е разпространен формат за електронни таблици."
 
-#: ../src/plugins/export/export.gpr.py:51
-msgid "_Web Family Tree"
-msgstr "_Уеб Родословно дърво"
-
 #: ../src/plugins/export/export.gpr.py:52
+msgid "Web Family Tree"
+msgstr "Уеб родословно дърво"
+
+#: ../src/plugins/export/export.gpr.py:53
+msgid "_Web Family Tree"
+msgstr "_Уеб родословно дърво"
+
+#: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
 msgstr "Формат на Уеб Родословно дърво"
 
-#: ../src/plugins/export/export.gpr.py:71
+#: ../src/plugins/export/export.gpr.py:73
+#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
+msgstr "GEDCOM"
+
+#: ../src/plugins/export/export.gpr.py:74
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/plugins/export/export.gpr.py:72
+#: ../src/plugins/export/export.gpr.py:75
 #: ../src/plugins/import/import.gpr.py:52
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
@@ -8278,19 +8291,28 @@ msgstr ""
 "Файловият формат GEDCOM се използва за прехвърляне на информация между "
 "генеалогични програми. Повечето генеалогичен софтуер приема GEDCOM файлове."
 
-#: ../src/plugins/export/export.gpr.py:92
+#: ../src/plugins/export/export.gpr.py:95
+#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
+msgid "GeneWeb"
+msgstr "GeneWeb"
+
+#: ../src/plugins/export/export.gpr.py:96
 msgid "_GeneWeb"
 msgstr "_GeneWeb"
 
-#: ../src/plugins/export/export.gpr.py:93
+#: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb е Интернет базирана програма за генеалогия."
 
-#: ../src/plugins/export/export.gpr.py:112
+#: ../src/plugins/export/export.gpr.py:116
+msgid "Gramps XML Package (family tree and media)"
+msgstr "Gramps XML Пакет (родословно дърво и медия)"
+
+#: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
 msgstr "Gra_mps XML Пакет (родословно дърво и медия)"
 
-#: ../src/plugins/export/export.gpr.py:113
+#: ../src/plugins/export/export.gpr.py:118
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
@@ -8298,11 +8320,15 @@ msgstr ""
 "Gramps пакетът е компресирана XML база данни заедно с мултимедийните "
 "документи."
 
-#: ../src/plugins/export/export.gpr.py:133
+#: ../src/plugins/export/export.gpr.py:138
+msgid "Gramps XML (family tree)"
+msgstr "Gramps XML (родословно дърво)"
+
+#: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
 msgstr "Gramps _XML (родословно дърво)"
 
-#: ../src/plugins/export/export.gpr.py:134
+#: ../src/plugins/export/export.gpr.py:140
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
@@ -8310,21 +8336,30 @@ msgstr ""
 "Експортирането в Gramps XML е пълно архивирано копие на базата данни на  "
 "Gramps без медия файловете. Подходящо е за архивни нужди."
 
-#: ../src/plugins/export/export.gpr.py:155
+#: ../src/plugins/export/export.gpr.py:161
+msgid "vCalendar"
+msgstr "vCalendar"
+
+#: ../src/plugins/export/export.gpr.py:162
 msgid "vC_alendar"
 msgstr "vC_alendar"
 
-#: ../src/plugins/export/export.gpr.py:156
+#: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and pim applications."
 msgstr ""
 "vCalendar се използва от много програми за календари и организиране на "
 "личната информация."
 
-#: ../src/plugins/export/export.gpr.py:175
+#: ../src/plugins/export/export.gpr.py:182
+#: ../src/plugins/import/import.gpr.py:164
+msgid "vCard"
+msgstr "vCard"
+
+#: ../src/plugins/export/export.gpr.py:183
 msgid "_vCard"
 msgstr "_vCard"
 
-#: ../src/plugins/export/export.gpr.py:176
+#: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard се използва в много приложения за адресна книга и органайзер."
 
@@ -8386,7 +8421,7 @@ msgstr "Филтриране на несвързаните записи"
 
 #: ../src/plugins/export/ExportGedcom.py:459
 msgid "Writing individuals"
-msgstr "Запис на лица"
+msgstr "Записване на лица"
 
 #: ../src/plugins/export/ExportGedcom.py:801
 msgid "Writing families"
@@ -8606,7 +8641,7 @@ msgstr "Меню за лицата"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:298
 #: ../src/plugins/view/fanchartview.py:823
-#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:897
+#: ../src/plugins/view/pedigreeview.py:1402 ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:4163
 msgid "Siblings"
 msgstr "Братя и сестри"
@@ -8617,7 +8652,7 @@ msgstr "Братя и сестри"
 #: ../src/plugins/textreport/IndivComplete.py:419
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1445
-#: ../src/plugins/view/relview.py:1356
+#: ../src/plugins/view/relview.py:1357
 #: ../src/plugins/webreport/NarrativeWeb.py:4373
 msgid "Children"
 msgstr "Деца"
@@ -9902,15 +9937,6 @@ msgstr "Семействата ще се покажат като елипси с
 msgid "Import data from CSV files"
 msgstr "Внасяне на данни от файл CSV"
 
-#: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
-#: ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr "GEDCOM"
-
-#: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
-msgid "GeneWeb"
-msgstr "GeneWeb"
-
 #: ../src/plugins/import/import.gpr.py:71
 msgid "Import data from GeneWeb files"
 msgstr "Внасяне на данни от файлове GeneWeb"
@@ -9922,14 +9948,14 @@ msgstr "Gramps пакет (преместваем XML)"
 #: ../src/plugins/import/import.gpr.py:89
 msgid ""
 "Import data from a Gramps package (an archived XML family tree together with "
-"the media object files."
+"the media object files.)"
 msgstr ""
 "Внася информация от Gramps пакет (компресирана XML база данни заедно с "
-"мултимедийните документи)."
+"мултимедийните документи.)"
 
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
-msgstr "Моето родословно дърво"
+msgstr "Gramps XML родословно дърво"
 
 #: ../src/plugins/import/import.gpr.py:108
 msgid ""
@@ -9955,10 +9981,6 @@ msgstr "Pro-Gen"
 #: ../src/plugins/import/import.gpr.py:147
 msgid "Import data from Pro-Gen files"
 msgstr "Внасяне на данни от файлове Pro-Gen"
-
-#: ../src/plugins/import/import.gpr.py:164
-msgid "vCard"
-msgstr "vCard"
 
 #: ../src/plugins/import/import.gpr.py:165
 msgid "Import data from vCard files"
@@ -14555,7 +14577,7 @@ msgid "Delete Person (%s)"
 msgstr "Изтриване на лице (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:331
-#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:418
+#: ../src/plugins/view/pedigreeview.py:510 ../src/plugins/view/relview.py:419
 msgid "Person Filter Editor"
 msgstr "Редактор на филтъра за лицата"
 
@@ -14940,7 +14962,7 @@ msgid "Parent"
 msgstr "Родител"
 
 #: ../src/plugins/quickview/all_relations.py:287
-#: ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/relview.py:402
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Partner"
 msgstr "Партньор"
@@ -15269,7 +15291,7 @@ msgid "Display references for a %s"
 msgstr "Показване на отпратките за %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:230
-msgid "Show Repository Reference"
+msgid "Repository References"
 msgstr "Отпратка към хранилище"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
@@ -15777,7 +15799,7 @@ msgstr "Роднинство с: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:672
 #: ../src/plugins/textreport/DetDescendantReport.py:761
-#: ../src/plugins/view/relview.py:1664
+#: ../src/plugins/view/relview.py:1665
 msgid "Content"
 msgstr "Съдържание"
 
@@ -16282,11 +16304,11 @@ msgid "Select the filter to be applied to the report."
 msgstr "Изберете филтър, който да бъде приложен към доклада."
 
 #: ../src/plugins/textreport/IndivComplete.py:655
-msgid "List events chonologically"
+msgid "List events chronologically"
 msgstr "Изброява събитията хронологически"
 
 #: ../src/plugins/textreport/IndivComplete.py:656
-msgid "Whether to sort events into chonological order."
+msgid "Whether to sort events into chronological order."
 msgstr "Дали да се показват събитията в хронологически ред."
 
 #: ../src/plugins/textreport/IndivComplete.py:659
@@ -16358,7 +16380,6 @@ msgid "Marker Report for %s Items"
 msgstr "Доклад за маркери за %s елемента"
 
 #: ../src/plugins/textreport/MarkerReport.py:103
-#: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:145 ../src/plugins/view/view.gpr.py:161
 msgid "People"
 msgstr "Хора"
@@ -16769,7 +16790,7 @@ msgstr "Истинско име"
 msgid "Capitalization Change"
 msgstr "Промяна в изписването с главни букви"
 
-#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:284
+#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:296
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
@@ -17149,52 +17170,52 @@ msgstr "Прозорец за оценка на Питон"
 msgid "manual|Compare_Individual_Events..."
 msgstr ""
 
-#: ../src/plugins/tool/EventCmp.py:138
+#: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
 msgstr "Избор на филтър за сравняване на събития"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Filter selection"
 msgstr "Избор на филтър"
 
-#: ../src/plugins/tool/EventCmp.py:162
+#: ../src/plugins/tool/EventCmp.py:166
 msgid "Event Comparison tool"
 msgstr "Инструмент за сравняване на събития"
 
-#: ../src/plugins/tool/EventCmp.py:174
+#: ../src/plugins/tool/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Сравняване на събития"
 
-#: ../src/plugins/tool/EventCmp.py:175
+#: ../src/plugins/tool/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Избиране на лица"
 
-#: ../src/plugins/tool/EventCmp.py:187
+#: ../src/plugins/tool/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Не са открити съвпадения"
 
-#: ../src/plugins/tool/EventCmp.py:235 ../src/plugins/tool/EventCmp.py:258
+#: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:270
 msgid "Event Comparison Results"
 msgstr "Резултати от сравняване на събития"
 
-#: ../src/plugins/tool/EventCmp.py:245
+#: ../src/plugins/tool/EventCmp.py:251
 msgid " Date"
 msgstr " Дата"
 
 #. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:247
+#: ../src/plugins/tool/EventCmp.py:253
 msgid " Place"
 msgstr " Място"
 
-#: ../src/plugins/tool/EventCmp.py:291
+#: ../src/plugins/tool/EventCmp.py:303
 msgid "Comparing Events"
 msgstr "Сравняване на събития"
 
-#: ../src/plugins/tool/EventCmp.py:292
+#: ../src/plugins/tool/EventCmp.py:304
 msgid "Building data"
 msgstr "Дата на създаване"
 
-#: ../src/plugins/tool/EventCmp.py:372
+#: ../src/plugins/tool/EventCmp.py:384
 msgid "Select filename"
 msgstr "Избор на файл"
 
@@ -17567,7 +17588,7 @@ msgid "Database Owner Editor"
 msgstr "Редактор на собственика на базата данни"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1185
+#: ../src/PluginUtils/_PluginWindows.py:1201
 msgid "Main window"
 msgstr "Главен прозорец"
 
@@ -18203,11 +18224,11 @@ msgstr "Кръстче на картата."
 
 #: ../src/plugins/view/geoview.py:527
 msgid ""
-"Show the coordinates in the statusbar either in degree\n"
-"either in internal gramps format ( D.D8 )"
+"Show the coordinates in the statusbar either in degrees\n"
+"or in internal gramps format ( D.D8 )"
 msgstr ""
 "Показване на координатите в лентата за състоянието или в градуси\n"
-"или във вътрешният формат на Gramps (D.D8)"
+"или във вътрешният формат на Gramps ( D.D8 )"
 
 #: ../src/plugins/view/geoview.py:530
 msgid "The map"
@@ -18224,17 +18245,17 @@ msgstr "Време за изчакване при проверка на мреж
 #: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
-"Must be greater or equal to 10 secondes"
+"Must be greater or equal to 10 seconds"
 msgstr ""
-"Време в секунде между два мрежови теста.\n"
+"Време в секунди между два мрежови теста.\n"
 "Трябва да бъде равен или по-голям от 10 секунди"
 
 #: ../src/plugins/view/geoview.py:562
 msgid ""
 "Host to test for http. Please, change this and select one of your choice."
 msgstr ""
-"Хост с който да се тества http. Моля, променете го и изберете някой по ваш "
-"избор."
+"Хост с който да се тества http. Моля, променете го и изберете някой, който "
+"ви харесва."
 
 #: ../src/plugins/view/geoview.py:566
 msgid "The network"
@@ -18250,7 +18271,7 @@ msgstr "Времеви период"
 
 #: ../src/plugins/view/geoview.py:676
 msgid "years"
-msgstr "Коментари"
+msgstr "годни"
 
 #: ../src/plugins/view/geoview.py:682 ../src/plugins/view/geoview.py:1008
 msgid "All"
@@ -18416,11 +18437,11 @@ msgstr "Всички места със събития за"
 
 #: ../src/plugins/view/geoview.py:2128
 msgid ""
-"Cannot center the map. No location with coordinates.The following reasons "
-"are : <ul><li>The filter you use return nothing.</li><li>The active person "
-"has no places with coordinates.</li><li>The active person's family members "
-"have no places with coordinates.</li><li>You have no places.</li><li>You "
-"have no active person set.</li>"
+"Cannot center the map. No location with coordinates.That may happen for one "
+"of the following reasons : <ul><li>The filter you use returned nothing.</"
+"li><li>The active person has no places with coordinates.</li><li>The active "
+"person's family members have no places with coordinates.</li><li>You have no "
+"places.</li><li>You have no active person set.</li>"
 msgstr ""
 "Не може да се центрира картата. Няма местоположение с координати. Причините "
 "може да са следните: <ul><li>Филтърът който сте използвали не е върнал нищо."
@@ -18438,10 +18459,10 @@ msgstr "Начална страница за HTML изгледа"
 
 #: ../src/plugins/view/geoview.py:2296
 msgid ""
-"You don't see a map here for the following reasons :<br><ol><li>Your "
-"database is empty or not yet selected.</li><li>You have not yet selected a "
-"person.</li><li>You have no place in your database.</li><li>The selected "
-"places have no coordinates.</li></ol>"
+"You don't see a map here for one of the following reasons :<br><ol><li>Your "
+"database is empty or not yet selected.</li><li>You have not selected a "
+"person yet.</li><li>You have no places in your database.</li><li>The "
+"selected places have no coordinates.</li></ol>"
 msgstr ""
 "Не виждате карта по следните причини:<br><ol><li>Вашата база от данни е "
 "празна или не е избрана.</li><li>Не сте избрали никой.</li><li>Нямате места "
@@ -18454,10 +18475,10 @@ msgstr "Географски изглед"
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid ""
 "The view showing events on an interactive internet map (internet connection "
-"needed"
+"needed)"
 msgstr ""
-"Този изглед показва събития на интерактивна интернет карта — нужна е "
-"работеща интернет връзка"
+"Този изглед показва събития на интерактивна интернет карта (нужна е работеща "
+"интернет връзка)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
@@ -18663,6 +18684,11 @@ msgstr[1] "%d поколения"
 msgid "Family Menu"
 msgstr "Семейно меню"
 
+#: ../src/plugins/view/personlistview.py:59
+#: ../src/plugins/view/view.gpr.py:152
+msgid "Person View"
+msgstr "Лице"
+
 #: ../src/plugins/view/persontreeview.py:59
 msgid "People Tree View"
 msgstr "Дървовиден изглед с хора"
@@ -18676,6 +18702,10 @@ msgstr "Разгъване на всички разклонения"
 #: ../src/plugins/view/placetreeview.py:84
 msgid "Collapse all Nodes"
 msgstr "Свиване на всички разклонения"
+
+#: ../src/plugins/view/placelistview.py:52 ../src/plugins/view/view.gpr.py:167
+msgid "Place View"
+msgstr "Места"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:57
@@ -18694,187 +18724,187 @@ msgstr "Разгъване на този раздел"
 msgid "Collapse this Entire Group"
 msgstr "Свиване на този раздел"
 
-#: ../src/plugins/view/relview.py:393
+#: ../src/plugins/view/relview.py:394
 msgid "_Reorder"
 msgstr "_Преподреди"
 
-#: ../src/plugins/view/relview.py:394
+#: ../src/plugins/view/relview.py:395
 msgid "Change order of parents and families"
 msgstr "Промяна на реда на родителите и семействата"
 
-#: ../src/plugins/view/relview.py:399
+#: ../src/plugins/view/relview.py:400
 msgid "Edit..."
 msgstr "Редактиране..."
 
-#: ../src/plugins/view/relview.py:400
+#: ../src/plugins/view/relview.py:401
 msgid "Edit the active person"
 msgstr "Редактиране на активното лице"
 
-#: ../src/plugins/view/relview.py:402 ../src/plugins/view/relview.py:404
-#: ../src/plugins/view/relview.py:800
+#: ../src/plugins/view/relview.py:403 ../src/plugins/view/relview.py:405
+#: ../src/plugins/view/relview.py:801
 msgid "Add a new family with person as parent"
 msgstr "Добавяне на ново семейство с лицето като родител"
 
-#: ../src/plugins/view/relview.py:403
+#: ../src/plugins/view/relview.py:404
 msgid "Add Partner..."
 msgstr "Добавяне на партньор..."
 
-#: ../src/plugins/view/relview.py:406 ../src/plugins/view/relview.py:408
-#: ../src/plugins/view/relview.py:794
+#: ../src/plugins/view/relview.py:407 ../src/plugins/view/relview.py:409
+#: ../src/plugins/view/relview.py:795
 msgid "Add a new set of parents"
 msgstr "Добавяни на нова група родители"
 
-#: ../src/plugins/view/relview.py:407
+#: ../src/plugins/view/relview.py:408
 msgid "Add New Parents..."
 msgstr "Добавяне на нови родители..."
 
-#: ../src/plugins/view/relview.py:410 ../src/plugins/view/relview.py:414
-#: ../src/plugins/view/relview.py:795
+#: ../src/plugins/view/relview.py:411 ../src/plugins/view/relview.py:415
+#: ../src/plugins/view/relview.py:796
 msgid "Add person as child to an existing family"
 msgstr "Добавяне на лице като дете в съществуващо семейство"
 
-#: ../src/plugins/view/relview.py:413
+#: ../src/plugins/view/relview.py:414
 msgid "Add Existing Parents..."
 msgstr "Добавяне на съществуващи родители..."
 
-#: ../src/plugins/view/relview.py:653
+#: ../src/plugins/view/relview.py:654
 msgid "Alive"
 msgstr "Жив"
 
-#: ../src/plugins/view/relview.py:711 ../src/plugins/view/relview.py:738
+#: ../src/plugins/view/relview.py:712 ../src/plugins/view/relview.py:739
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "В %(place)s на %(date)s"
 
-#: ../src/plugins/view/relview.py:796
+#: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
 msgstr "Редактиране на родители"
 
-#: ../src/plugins/view/relview.py:797
+#: ../src/plugins/view/relview.py:798
 msgid "Reorder parents"
 msgstr "Преподреждане на родители"
 
-#: ../src/plugins/view/relview.py:798
+#: ../src/plugins/view/relview.py:799
 msgid "Remove person as child of these parents"
 msgstr "Премахване на лице като дете на тези родители"
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:803
 msgid "Edit family"
 msgstr "Редактиране на семейство"
 
-#: ../src/plugins/view/relview.py:803
+#: ../src/plugins/view/relview.py:804
 msgid "Reorder families"
 msgstr "Преподреди семействата"
 
-#: ../src/plugins/view/relview.py:804
+#: ../src/plugins/view/relview.py:805
 msgid "Remove person as parent in this family"
 msgstr "Премахване на лице като родител в това семейство"
 
-#: ../src/plugins/view/relview.py:857 ../src/plugins/view/relview.py:913
+#: ../src/plugins/view/relview.py:858 ../src/plugins/view/relview.py:914
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] " (%d брат/сетра)"
 msgstr[1] " (%d братя/сестри)"
 
-#: ../src/plugins/view/relview.py:862 ../src/plugins/view/relview.py:918
+#: ../src/plugins/view/relview.py:863 ../src/plugins/view/relview.py:919
 msgid " (1 brother)"
 msgstr " (1 брат)"
 
-#: ../src/plugins/view/relview.py:864 ../src/plugins/view/relview.py:920
+#: ../src/plugins/view/relview.py:865 ../src/plugins/view/relview.py:921
 msgid " (1 sister)"
 msgstr " (1 сестра)"
 
-#: ../src/plugins/view/relview.py:866 ../src/plugins/view/relview.py:922
+#: ../src/plugins/view/relview.py:867 ../src/plugins/view/relview.py:923
 msgid " (1 sibling)"
 msgstr " (1 брат/сестра)"
 
-#: ../src/plugins/view/relview.py:868 ../src/plugins/view/relview.py:924
+#: ../src/plugins/view/relview.py:869 ../src/plugins/view/relview.py:925
 msgid " (only child)"
 msgstr " (единствено дете)"
 
-#: ../src/plugins/view/relview.py:939 ../src/plugins/view/relview.py:1388
+#: ../src/plugins/view/relview.py:940 ../src/plugins/view/relview.py:1389
 msgid "Add new child to family"
 msgstr "Добавяне на ново дете към семейството"
 
-#: ../src/plugins/view/relview.py:943 ../src/plugins/view/relview.py:1392
+#: ../src/plugins/view/relview.py:944 ../src/plugins/view/relview.py:1393
 msgid "Add existing child to family"
 msgstr "Добавяне на съществуващо дете към семейството"
 
-#: ../src/plugins/view/relview.py:1172
+#: ../src/plugins/view/relview.py:1173
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../src/plugins/view/relview.py:1179 ../src/plugins/view/relview.py:1181
+#: ../src/plugins/view/relview.py:1180 ../src/plugins/view/relview.py:1182
 #, python-format
 msgid "%s %s"
 msgstr "%s %s"
 
-#: ../src/plugins/view/relview.py:1242
+#: ../src/plugins/view/relview.py:1243
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Семейна връзка тип: %s"
 
-#: ../src/plugins/view/relview.py:1284
+#: ../src/plugins/view/relview.py:1285
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: в %(place)s на %(date)s"
 
-#: ../src/plugins/view/relview.py:1288
+#: ../src/plugins/view/relview.py:1289
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: на %(date)s"
 
-#: ../src/plugins/view/relview.py:1292
+#: ../src/plugins/view/relview.py:1293
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: в %(place)s"
 
-#: ../src/plugins/view/relview.py:1303
+#: ../src/plugins/view/relview.py:1304
 msgid "Broken family detected"
 msgstr "Открито е непълно семейство"
 
-#: ../src/plugins/view/relview.py:1304
+#: ../src/plugins/view/relview.py:1305
 msgid "Please run the Check and Repair Database tool"
 msgstr "Моля стартирай „Проверка и поправка на базата от данни“"
 
-#: ../src/plugins/view/relview.py:1325 ../src/plugins/view/relview.py:1371
+#: ../src/plugins/view/relview.py:1326 ../src/plugins/view/relview.py:1372
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d дете)"
 msgstr[1] " (%d деца)"
 
-#: ../src/plugins/view/relview.py:1327 ../src/plugins/view/relview.py:1373
+#: ../src/plugins/view/relview.py:1328 ../src/plugins/view/relview.py:1374
 msgid " (no children)"
 msgstr " (без деца)"
 
-#: ../src/plugins/view/relview.py:1503
+#: ../src/plugins/view/relview.py:1504
 msgid "Add Child to Family"
 msgstr "Добавяне на дете към семейството"
 
-#: ../src/plugins/view/relview.py:1636
+#: ../src/plugins/view/relview.py:1637
 msgid "Use shading"
 msgstr "Използване на засенчване"
 
-#: ../src/plugins/view/relview.py:1639
+#: ../src/plugins/view/relview.py:1640
 msgid "Display edit buttons"
 msgstr "Показва бутони за редактиране"
 
-#: ../src/plugins/view/relview.py:1641
+#: ../src/plugins/view/relview.py:1642
 msgid "View links as website links"
 msgstr "Показва връзките като връзки към уебсайт"
 
-#: ../src/plugins/view/relview.py:1647
+#: ../src/plugins/view/relview.py:1648
 msgid "Layout"
 msgstr "Оформление"
 
-#: ../src/plugins/view/relview.py:1658
+#: ../src/plugins/view/relview.py:1659
 msgid "Show Details"
 msgstr "Показване на подробности"
 
-#: ../src/plugins/view/relview.py:1661
+#: ../src/plugins/view/relview.py:1662
 msgid "Show Siblings"
 msgstr "Показване на братята и сестрите"
 
@@ -18992,17 +19022,9 @@ msgstr "Дървовиден изглед за лице"
 msgid "The view showing all people in the family tree"
 msgstr "Изгледът показва всички места в родословното дърво"
 
-#: ../src/plugins/view/view.gpr.py:152
-msgid "Person View"
-msgstr "Лице"
-
 #: ../src/plugins/view/view.gpr.py:153
 msgid "The view showing all people in the family tree in a flat list"
 msgstr "Изгледът показва всички места в родословното дърво"
-
-#: ../src/plugins/view/view.gpr.py:167
-msgid "Place View"
-msgstr "Места"
 
 #: ../src/plugins/view/view.gpr.py:168
 msgid "The view showing all the places of the family tree"
@@ -19048,7 +19070,7 @@ msgstr "Създаден чрез<a href=\"%(homepage)s\"> Gramps</a> на %(dat
 #: ../src/plugins/webreport/NarrativeWeb.py:880
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
-msgstr " Създадено за <a href=\"%s\">%s</a>"
+msgstr "Създадено за <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
 msgid "Html|Home"
@@ -20192,182 +20214,182 @@ msgstr "Скрит"
 msgid "Visible"
 msgstr "Видим"
 
-#: ../src/PluginUtils/_PluginWindows.py:237
-#: ../src/PluginUtils/_PluginWindows.py:288
+#: ../src/PluginUtils/_PluginWindows.py:240
+#: ../src/PluginUtils/_PluginWindows.py:294
 msgid "Info"
 msgstr "Информация"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:240
-#: ../src/PluginUtils/_PluginWindows.py:291
+#: ../src/PluginUtils/_PluginWindows.py:243
+#: ../src/PluginUtils/_PluginWindows.py:297
 msgid "Hide/Unhide"
 msgstr "Скриване/Показване"
 
 #. id_col
-#: ../src/PluginUtils/_PluginWindows.py:248
-#: ../src/PluginUtils/_PluginWindows.py:300
+#: ../src/PluginUtils/_PluginWindows.py:251
+#: ../src/PluginUtils/_PluginWindows.py:306
 msgid "Load"
 msgstr "Зареждане"
 
-#: ../src/PluginUtils/_PluginWindows.py:254
+#: ../src/PluginUtils/_PluginWindows.py:257
 msgid "Registered Plugins"
 msgstr "Регистрирани разширения"
 
-#: ../src/PluginUtils/_PluginWindows.py:267
+#: ../src/PluginUtils/_PluginWindows.py:270
 msgid "Loaded"
 msgstr "Заредени"
 
-#: ../src/PluginUtils/_PluginWindows.py:271
+#: ../src/PluginUtils/_PluginWindows.py:275
 msgid "File"
 msgstr "Файл"
 
-#: ../src/PluginUtils/_PluginWindows.py:279
+#: ../src/PluginUtils/_PluginWindows.py:284
 msgid "Message"
 msgstr "Съобщение"
 
-#: ../src/PluginUtils/_PluginWindows.py:305
+#: ../src/PluginUtils/_PluginWindows.py:311
 msgid "Loaded Plugins"
 msgstr "Заредени разширения"
 
 #. self.addon_list.connect('button-press-event', self.button_press)
-#: ../src/PluginUtils/_PluginWindows.py:325
+#: ../src/PluginUtils/_PluginWindows.py:331
 msgid "Addon Name"
 msgstr "Име на добавката"
 
-#: ../src/PluginUtils/_PluginWindows.py:340
+#: ../src/PluginUtils/_PluginWindows.py:346
 msgid "Path to Addon:"
 msgstr "Път към добавката:"
 
-#: ../src/PluginUtils/_PluginWindows.py:357
+#: ../src/PluginUtils/_PluginWindows.py:366
 msgid "Install Addon"
 msgstr "Инсталиране на добавка"
 
-#: ../src/PluginUtils/_PluginWindows.py:360
+#: ../src/PluginUtils/_PluginWindows.py:369
 msgid "Install All Addons"
 msgstr "Инсталира всички добавки"
 
-#: ../src/PluginUtils/_PluginWindows.py:363
+#: ../src/PluginUtils/_PluginWindows.py:372
 msgid "Refresh Addon List"
 msgstr "Опресняване на списъка с добавките"
 
-#: ../src/PluginUtils/_PluginWindows.py:368
+#: ../src/PluginUtils/_PluginWindows.py:377
 msgid "Install Addons"
 msgstr "Инсталиране на добавки"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:376
+#: ../src/PluginUtils/_PluginWindows.py:385
 msgid "Reload"
 msgstr "Презареждане"
 
-#: ../src/PluginUtils/_PluginWindows.py:398
+#: ../src/PluginUtils/_PluginWindows.py:408
 msgid "Refreshing Addon List"
 msgstr "Опресняване на списъка с добавките"
 
-#: ../src/PluginUtils/_PluginWindows.py:399
-#: ../src/PluginUtils/_PluginWindows.py:404
-#: ../src/PluginUtils/_PluginWindows.py:494
+#: ../src/PluginUtils/_PluginWindows.py:409
+#: ../src/PluginUtils/_PluginWindows.py:414
+#: ../src/PluginUtils/_PluginWindows.py:504
 msgid "Reading gramps-project.org..."
 msgstr "Чете gramps-project.org..."
 
-#: ../src/PluginUtils/_PluginWindows.py:422
+#: ../src/PluginUtils/_PluginWindows.py:432
 msgid "Checking addon..."
 msgstr "Проверка на добавка..."
 
-#: ../src/PluginUtils/_PluginWindows.py:430
+#: ../src/PluginUtils/_PluginWindows.py:440
 msgid "Unknown Help URL"
 msgstr "Неизвестен URL за Помощта"
 
-#: ../src/PluginUtils/_PluginWindows.py:441
+#: ../src/PluginUtils/_PluginWindows.py:451
 msgid "Unknown URL"
 msgstr "Неизвестен URL"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Install all Addons"
 msgstr "Инсталира всички добавки"
 
-#: ../src/PluginUtils/_PluginWindows.py:477
+#: ../src/PluginUtils/_PluginWindows.py:487
 msgid "Installing..."
 msgstr "Инсталиране..."
 
-#: ../src/PluginUtils/_PluginWindows.py:493
+#: ../src/PluginUtils/_PluginWindows.py:503
 msgid "Installing Addon"
 msgstr "Инсталиране на добавка"
 
-#: ../src/PluginUtils/_PluginWindows.py:522
-#: ../src/PluginUtils/_PluginWindows.py:528
+#: ../src/PluginUtils/_PluginWindows.py:532
+#: ../src/PluginUtils/_PluginWindows.py:538
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Не може да се отвори „%s“"
 
-#: ../src/PluginUtils/_PluginWindows.py:539
+#: ../src/PluginUtils/_PluginWindows.py:549
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "ГРЕШКА: не може да се отвори „%s“"
 
-#: ../src/PluginUtils/_PluginWindows.py:542
+#: ../src/PluginUtils/_PluginWindows.py:552
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "ГРЕШКА: неизвестен файлов тип „%s“"
 
-#: ../src/PluginUtils/_PluginWindows.py:547
+#: ../src/PluginUtils/_PluginWindows.py:557
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Изучава „%s“..."
 
-#: ../src/PluginUtils/_PluginWindows.py:559
+#: ../src/PluginUtils/_PluginWindows.py:569
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Грешка във файл „%s“: не можи да се зареди."
 
-#: ../src/PluginUtils/_PluginWindows.py:571
+#: ../src/PluginUtils/_PluginWindows.py:581
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "„%s“ е за тази версия на Gramps."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:574
+#: ../src/PluginUtils/_PluginWindows.py:584
 #, python-format
-msgid "'%s' is for NOT this version of Gramps."
+msgid "'%s' is NOT for this version of Gramps."
 msgstr "„%s“ НЕ е за тази версия на Gramps."
 
-#: ../src/PluginUtils/_PluginWindows.py:575
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Той е за версия %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:581
+#: ../src/PluginUtils/_PluginWindows.py:591
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "ГРЕШКА: липсва gramps_целева версия = „3.2“ в „%s“..."
 
-#: ../src/PluginUtils/_PluginWindows.py:585
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Инсталиране „%s“..."
 
-#: ../src/PluginUtils/_PluginWindows.py:595
+#: ../src/PluginUtils/_PluginWindows.py:605
 #, python-format
 msgid "Registered '%s'"
 msgstr "Регистриран „%s“"
 
-#: ../src/PluginUtils/_PluginWindows.py:604
+#: ../src/PluginUtils/_PluginWindows.py:614
 msgid "Load Addon"
 msgstr "Зареждане на добавката"
 
-#: ../src/PluginUtils/_PluginWindows.py:655
+#: ../src/PluginUtils/_PluginWindows.py:671
 msgid "Unavailable"
 msgstr "Не е на разположение"
 
-#: ../src/PluginUtils/_PluginWindows.py:659
+#: ../src/PluginUtils/_PluginWindows.py:675
 msgid "Fail"
 msgstr "Провал"
 
-#: ../src/PluginUtils/_PluginWindows.py:673
+#: ../src/PluginUtils/_PluginWindows.py:689
 msgid "OK"
 msgstr "Добре"
 
-#: ../src/PluginUtils/_PluginWindows.py:821
+#: ../src/PluginUtils/_PluginWindows.py:837
 msgid "Plugin Error"
 msgstr "Грешка в добавката"
 
@@ -21450,12 +21472,12 @@ msgid "Family filters"
 msgstr "Семейни филтри"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-msgid "People with <count> source"
+msgid "People with <count> sources"
 msgstr "Хора с <брой> източници"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-msgid "Matches people with a certain number of items in the source"
-msgstr "Подбира места с определен брой отпратки"
+msgid "Matches people with a number of sources connected to it"
+msgstr "Подбира хора с определен брой източници свързани към тях"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
@@ -21995,12 +22017,12 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr "Подбира семейства с тип на взаимоотношения с определена стойност"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-msgid "Families with <count> source"
+msgid "Families with <count> sources"
 msgstr "Семейства с <брой> източници"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-msgid "Matches families with a certain number of items in the source"
-msgstr "Подбира семейства с определен брой отпратки"
+msgid "Matches families with a number of sources connected to it"
+msgstr "Подбира семейства с определен брой източници свързани с тях"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -22205,12 +22227,12 @@ msgid "Matches events with a certain reference count"
 msgstr "Подбира събития с определен брой отпратки"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:43
-msgid "Events with <count> source"
-msgstr "Събития с <брой> медии"
+msgid "Events with <count> sources"
+msgstr "Събития с <брой> източници"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:44
-msgid "Matches events with a certain number of items in the source"
-msgstr "Подбира места с определен брой отпратки"
+msgid "Matches events with a certain number of sources connected to it"
+msgstr "Подбира места с определен брой източници свързани с тях"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
@@ -22504,7 +22526,7 @@ msgid "Sources with <count> Repository references"
 msgstr "Източници с <брой> отпратки към хранилища"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-msgid "Matches sources with certain number repository references"
+msgid "Matches sources with a certain number of repository references"
 msgstr "Подбира източници с определен брой отпратки към хранилища"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
@@ -24422,15 +24444,14 @@ msgstr ""
 msgid ""
 "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
-"or right click on an individual to access other family members and setting. "
+"or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
 "<b>Прародители</b><br/>Изгледът Прародители показва традиционна диаграма на "
 "родословно дърво. Задръжте мишката върху дадено лице, за да видите "
 "допълнителна информация или щракнете с десен бутон на него, за да видите "
-"меню с бърз достът до брачните партньори, братята/сестрите, децата или "
-"родителите на лицето. Поиграйте си с настройките за да видите различните "
-"възможности."
+"меню с бърз достът до другите членове на семейството и настройките. "
+"Поиграйте си с настройките за да видите различните възможности."
 
 #: ../src/data/tips.xml.in.h:4
 msgid ""
@@ -24543,7 +24564,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:12
 msgid ""
 "<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
-"relationship of a child to it's parents by double clicking the child in the "
+"relationship of a child to its parents by double clicking the child in the "
 "Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
 "Sponsored, Stepchild and Unknown."
 msgstr ""
@@ -24631,7 +24652,7 @@ msgid ""
 "Graphical Reports and Graphs can present complex relationships easily and "
 "the Text Reports are particularly useful if you want to send the results of "
 "your family tree to members of the family via email. If you're ready to make "
-"a website for you family tree then there's a report for that as well."
+"a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>Доклади на Gramps</b><br/>Gramps предлага богат набор от доклади. "
 "Графичните доклади и схеми могат да представят лесно сложни взаимовръзки, а "
@@ -24701,7 +24722,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:24
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-"invalid format. Incorrect date formats will show up in Gramps with a redish "
+"invalid format. Incorrect date formats will show up in Gramps with a reddish "
 "background. You can fix the date using the Date Selection dialog which can "
 "be opened by clicking on the date button. The format of the date is set "
 "under &quot;Edit &gt; Preferences &gt; Display&quot;."
@@ -24850,9 +24871,9 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:36
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active object such as People, Events and . You can move forward and backward "
-"through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
-"Back&quot; or the arrow buttons."
+"active objects such as People, Events and . You can move forward and "
+"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
+"&gt; Back&quot; or the arrow buttons."
 msgstr ""
 "<b>Придвжване Напред-Назад</b><br/>Gramps разполага с списък от предишните "
 "активни обекти, като Хора, Събития и т.н. Вие може да се движите в тоз "
@@ -24901,15 +24922,15 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid ""
-"<b>Organising the Views</b><br/>Many of the views can presented your data as "
+"<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
 msgstr ""
 "<b>Организиране на изгледите</b><br/>Много от изгледите могат да представят "
 "вашата информация като йерархично дърво или като прост списък. Всеки изглед "
-"може да се конфигурира по начин както желаете. Погледнете в дясната чест на "
-"горната лента с инструменти или вижте на менюто &quot;Изглед&quot;."
+"може да се конфигурира по ваш вкус. Погледнете в дясната чест на горната "
+"лента с инструменти или вижте на менюто &quot;Изглед&quot;."
 
 #: ../src/data/tips.xml.in.h:41
 msgid ""
@@ -24965,7 +24986,7 @@ msgid ""
 "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
 "lets you modify a number of settings, such as the path to your media files, "
 "and allows you to adjust many aspects of the Gramps presentation to your "
-"needs. Each seperate view can also be configured under &quot;View &gt; "
+"needs. Each separate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
 "<b>Установяване на предпочитанията</b><br/>&quot;Редактиране &gt; "
@@ -24992,13 +25013,13 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:47
 msgid ""
 "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
-"original developer, Don Allingham, by his father. It stand for "
+"original developer, Don Allingham, by his father. It stands for "
 "<i>Genealogical Research and Analysis Management Program System</i>. It is a "
 "full-featured genealogy program letting you store, edit, and research "
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>Какво озночава името на програмата?</b><br/>Името Gramps е предложено на "
+"<b>Какво означава името на програмата?</b><br/>Името Gramps е предложено на "
 "оригиналният разработчик, Don Allingham, от неговият баща. То означава "
 "<i>Genealogical Research and Analysis Management Program System — Генеаложка "
 "програмна ситема за изследване, анализ и управление</i>. Тя е "
@@ -25209,14 +25230,26 @@ msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
 "indicate the level of confidence in a date and even choose between seven "
-"different calenders. Try the button next to the date field in the Events "
+"different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
-"<b>Работа с дати</b><br/>Един времеви интервал може да се зададе използайки "
+"<b>Работа с дати</b><br/>Един времеви интервал може да се зададе ползвайки "
 "израз като &quot;между 4 януари 2000 и 20 март 2003&quot;. Може и да "
 "зададете степен на доверие за дадена дата и дори да изберете между различни "
 "календари. Опитайте бутонът до полето за добавяне на дата в редактора на "
 "събития."
+
+#~ msgid "Last modified"
+#~ msgstr "Последна промяна"
+
+#~ msgid "Show Repository Reference"
+#~ msgstr "Отпратка към хранилище"
+
+#~ msgid "'%s' is for NOT this version of Gramps."
+#~ msgstr "„%s“ НЕ е за тази версия на Gramps."
+
+#~ msgid "Matches people with a certain number of items in the source"
+#~ msgstr "Подбира места с определен брой отпратки"
 
 #~ msgid "Export Complete: %d second"
 #~ msgid_plural "Export Complete: %d seconds"
