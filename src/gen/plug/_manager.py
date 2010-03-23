@@ -90,6 +90,7 @@ class BasePluginManager(object):
         self.__success_list      = []
 
         self.__mod2text          = {}
+        self.__modules           = {}
         
         self.__pgr = PluginRegister.get_instance()
         self.__registereddir_set = set()
@@ -144,9 +145,17 @@ class BasePluginManager(object):
             return self.__loaded_plugins[pdata.id]
         need_reload = False
         filename = pdata.fname
+        if filename in self.__modules:
+            #filename is loaded already, a different plugin in this module
+            _module = self.__modules[filename]
+            self.__success_list.append((filename, _module, pdata))
+            self.__loaded_plugins[pdata.id] = _module
+            self.__mod2text[_module.__name__] += ' - ' + pdata.description
+            return _module
         if filename in self.__attempt_list:
-            #new attempt after a fail, a reload needed
+            #new load attempt after a fail, a reload needed
             need_reload = True
+            #remove previous fail of the plugins in this file
             dellist = []
             for index, data in enumerate(self.__failmsg_list):
                 if data[0] == filename:
@@ -154,7 +163,6 @@ class BasePluginManager(object):
             dellist.reverse()
             for index in dellist:
                 del self.__failmsg_list[index]
-                    
         else:
             self.__attempt_list.append(filename)
         plugin = pdata.mod_name
@@ -166,6 +174,7 @@ class BasePluginManager(object):
                 # Looks like a bug in Python.
                 reload(_module)
             self.__success_list.append((filename, _module, pdata))
+            self.__modules[filename] = _module
             self.__loaded_plugins[pdata.id] = _module
             self.__mod2text[_module.__name__] = pdata.description
             return _module
@@ -192,18 +201,28 @@ class BasePluginManager(object):
     
         # attempt to reload all plugins that have succeeded in the past
         self.empty_managed_plugins()
-
+        self.__loaded_plugins = {}
+        
+        oldmodules = self.__modules
+        self.__modules = {}
         dellist = []
+        #reload first modules that loaded successfully previously
         for (index, plugin) in enumerate(self.__success_list):
             filename = plugin[0]
             pdata = plugin[2]
             filename = filename.replace('pyc','py')
             filename = filename.replace('pyo','py')
+            if filename in self.__modules:
+                #module already reloaded, a second plugin in same module
+                continue
             try: 
                 reload(plugin[1])
+                self.__modules[filename] = plugin[1]
+                self.__loaded_plugins[pdata.id] = plugin[1]
             except:
                 dellist.append(index)
                 self.__failmsg_list.append((filename, sys.exc_info(), pdata))
+
         dellist.reverse()
         for index in dellist:
             del self.__success_list[index]
@@ -214,21 +233,7 @@ class BasePluginManager(object):
     
         # attempt to load the plugins that have failed in the past
         for (filename, message, pdata) in oldfailmsg:
-            name = os.path.split(filename)
-            match = pymod.match(name[1])
-            if not match:
-                continue
-            self.__attempt_list.append(filename)
-            plugin = match.groups()[0]
-            try: 
-                # For some strange reason second importing of a failed plugin
-                # results in success. Then reload reveals the actual error.
-                # Looks like a bug in Python.
-                _module = __import__(plugin)
-                reload(_module)
-                self.__success_list.append((filename, _module, pdata))
-            except:
-                self.__failmsg_list.append((filename, sys.exc_info(), pdata))
+            self.load_plugin(pdata)
 
     def get_fail_list(self):
         """ Return the list of failed plugins. """
