@@ -37,6 +37,7 @@ import gen.lib
 from gen.display.name import displayer as name_displayer
 from eventembedlist import EventEmbedList
 from eventrefmodel import EventRefModel
+import Errors
 
 #-------------------------------------------------------------------------
 #
