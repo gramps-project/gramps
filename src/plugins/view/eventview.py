@@ -84,6 +84,8 @@ class EventView(ListView):
         _('Last Changed'),
         _('Main Participants'),
         ]
+    # columns that contain markup
+    MARKUP_COLS = [COL_DATE]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_DESCR, COL_ID, COL_TYPE, COL_DATE, COL_PLACE]),
@@ -115,7 +117,8 @@ class EventView(ListView):
             signal_map, dbstate.db.get_event_bookmarks(),
             Bookmarks.EventBookmarks, nav_group,
             multiple=True,
-            filter_class=EventSidebarFilter)
+            filter_class=EventSidebarFilter,
+            markup = EventView.MARKUP_COLS)
             
         self.func_list = {
             '<CONTROL>J' : self.jump,

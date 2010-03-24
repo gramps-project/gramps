@@ -25,6 +25,7 @@
 #
 #-------------------------------------------------------------------------
 import time
+import cgi
 import logging
 log = logging.getLogger(".")
 
@@ -45,6 +46,7 @@ import GrampsLocale
 import DateHandler
 import gen.lib
 import Utils
+import config
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -59,6 +61,8 @@ COLUMN_DATE        = 3
 COLUMN_DESCRIPTION = 4
 COLUMN_PLACE       = 5
 COLUMN_CHANGE      = 10
+
+INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
 #-------------------------------------------------------------------------
 #
@@ -122,14 +126,25 @@ class EventModel(FlatBaseModel):
         if data[COLUMN_DATE]:
             event = gen.lib.Event()
             event.unserialize(data)
-            return DateHandler.get_date(event)
+            date_str =  DateHandler.get_date(event)
+            if date_str != "":
+                retval = cgi.escape(date_str)
+            if not DateHandler.get_date_valid(event):
+                return INVALID_DATE_FORMAT % retval
+            else:
+                return retval
         return u''
 
     def sort_date(self,data):
         if data[COLUMN_DATE]:
             event = gen.lib.Event()
             event.unserialize(data)
-            return "%09d" % event.get_date_object().get_sort_value()
+            retval = "%09d" % event.get_date_object().get_sort_value()
+            if not DateHandler.get_date_valid(event):
+                return INVALID_DATE_FORMAT % retval
+            else:
+                return retval
+            
         return u''
 
     def column_handle(self,data):

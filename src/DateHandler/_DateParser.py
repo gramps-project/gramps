@@ -154,11 +154,17 @@ class DateParser(object):
     modifier_after_to_int = {}
 
     hebrew_to_int = {
-        "tishri"  : 1,   "heshvan" : 2,   "kislev"  : 3,
-        "tevet"   : 4,   "shevat"  : 5,   "adari"   : 6,
-        "adarii"  : 7,   "nisan"   : 8,   "iyyar"   : 9,
-        "sivan"   : 10,  "tammuz"  : 11,  "av"      : 12,
-        "elul"    : 13,
+        u"tishri"  : 1,   u"heshvan" : 2,   u"kislev"  : 3,
+        u"tevet"   : 4,   u"shevat"  : 5,   u"adari"   : 6,
+        u"adarii"  : 7,   u"nisan"   : 8,   u"iyyar"   : 9,
+        u"sivan"   : 10,  u"tammuz"  : 11,  u"av"      : 12,
+        u"elul"    : 13,
+        #alternative spelling
+        u"cheshvan": 2,   u"adar sheni":  7, u"iyar"    : 9,
+        #GEDCOM months
+        u"tsh" : 1, u"csh": 5, u"ksl": 3, u"tvt": 4, u"shv": 5, u"adr": 6, 
+        u"ads" : 7, u"nsn": 8, u"iyr": 9, u"svn":10, u"tmz":11, u"aav":12,
+        u"ell":13,
         }
 
     french_to_int = {
@@ -168,7 +174,15 @@ class DateParser(object):
         u'germinal'     : 7,    u'floréal' : 8,
         u'prairial'     : 9,    u'messidor'   : 10,
         u'thermidor'    : 11,   u'fructidor'  : 12,
-        u'extra'        : 13
+        u'extra'        : 13,
+        #GEDCOM months
+        u'vend'    : 1,    u'brum' : 2,
+        u'frim'    : 3,    u'nivo' : 4,
+        u'pluv'    : 5,    u'vent' : 6,
+        u'germ'    : 7,    u'flor' : 8,
+        u'prai'    : 9,    u'mess' : 10,
+        u'ther'    : 11,   u'fruc' : 12,
+        u'comp'    : 13,
         }
 
     islamic_to_int = {
@@ -430,7 +444,6 @@ class DateParser(object):
                 m = 0
             else:
                 m = mmap[groups[1].lower()]
-
             d = self._get_int(groups[0])
 
             if groups[2] is None:
@@ -586,11 +599,15 @@ class DateParser(object):
             text_parser = self.parser[cal]
             (text1, bc1) = self.match_bce(match.group('start'))
             start = self._parse_subdate(text1, text_parser)
+            if start == Date.EMPTY and text1 != "":
+                return 0
             if bc1:
                 start = self.invert_year(start)
 
             (text2, bc2) = self.match_bce(match.group('stop'))
             stop = self._parse_subdate(text2, text_parser)
+            if stop == Date.EMPTY and text2 != "":
+                return 0
             if bc2:
                 stop = self.invert_year(stop)
 
@@ -609,11 +626,15 @@ class DateParser(object):
             text_parser = self.parser[cal]
             (text1, bc1) = self.match_bce(match.group('start'))
             start = self._parse_subdate(text1, text_parser)
+            if start == Date.EMPTY and text1 != "":
+                return 0
             if bc1:
                 start = self.invert_year(start)
 
             (text2, bc2) = self.match_bce(match.group('stop'))
             stop = self._parse_subdate(text2, text_parser)
+            if stop == Date.EMPTY and text2 != "":
+                return 0
             if bc2:
                 stop = self.invert_year(stop)
             
@@ -666,7 +687,10 @@ class DateParser(object):
                 start = self._parse_subdate(grps[0], self.parser[cal])
                 mod = self.modifier_after_to_int.get(grps[1].lower(),
                                                      Date.MOD_NONE)
-                if bc:
+                if start == Date.EMPTY:
+                    date.set_modifier(Date.MOD_TEXTONLY)
+                    date.set_text_value(text)
+                elif bc:
                     date.set(qual, mod, cal, self.invert_year(start), newyear=ny)
                 else:
                     date.set(qual, mod, cal, start, newyear=ny)
@@ -676,7 +700,10 @@ class DateParser(object):
             grps = match.groups()
             start = self._parse_subdate(grps[0])
             mod = Date.MOD_ABOUT
-            if bc:
+            if start == Date.EMPTY:
+                date.set_modifier(Date.MOD_TEXTONLY)
+                date.set_text_value(text)
+            elif bc:
                 date.set(qual, mod, cal, self.invert_year(start), newyear=ny)
             else:
                 date.set(qual, mod, cal, start, newyear=ny)
@@ -712,6 +739,8 @@ class DateParser(object):
             if subdate == Date.EMPTY and text != "":
                 date.set_as_text(text)
                 return
+            #else:
+            #    print 'valid subdate', text, subdate
         except:
             date.set_as_text(text)
             return

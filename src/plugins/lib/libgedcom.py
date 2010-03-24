@@ -87,7 +87,7 @@ all lines until the next level 2 token is found (in this case, skipping the
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import os
+import os, sys
 import re
 import time
 import codecs
@@ -428,10 +428,10 @@ MEDIA_MAP = {
 # Integer to GEDCOM tag mappings for constants
 #
 #-------------------------------------------------------------------------
-CALENDAR_MAP = {
-    "FRENCH R" : gen.lib.Date.CAL_FRENCH,
-    "JULIAN"   : gen.lib.Date.CAL_JULIAN,
-    "HEBREW"   : gen.lib.Date.CAL_HEBREW,
+CALENDAR_MAP_GEDCOM2XML = {
+    u"FRENCH R" : gen.lib.Date.CAL_FRENCH,
+    u"JULIAN"   : gen.lib.Date.CAL_JULIAN,
+    u"HEBREW"   : gen.lib.Date.CAL_HEBREW,
 }
 
 QUALITY_MAP = {
@@ -574,6 +574,21 @@ CALENDAR_MAP = {
     gen.lib.Date.CAL_SWEDISH : (MONTH, '@#DUNKNOWN@'), 
     }
 
+CALENDAR_MAP_PARSESTRING = {
+    gen.lib.Date.CAL_HEBREW : ' (h)', 
+    gen.lib.Date.CAL_FRENCH : ' (f)', 
+    gen.lib.Date.CAL_JULIAN : ' (j)', 
+    gen.lib.Date.CAL_SWEDISH : ' (s)', 
+    }
+
+#how wrong calendar use is shown
+CALENDAR_MAP_WRONGSTRING = {
+    gen.lib.Date.CAL_HEBREW : ' <hebrew>', 
+    gen.lib.Date.CAL_FRENCH : ' <french rep>', 
+    gen.lib.Date.CAL_JULIAN : ' <julian>', 
+    gen.lib.Date.CAL_SWEDISH : ' <swedish>', 
+    }
+
 DATE_MODIFIER = {
     gen.lib.Date.MOD_ABOUT   : "ABT", 
     gen.lib.Date.MOD_BEFORE  : "BEF", 
@@ -601,7 +616,11 @@ PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 MOD   = re.compile(r"\s*(INT|EST|CAL)\s+(.*)$")
 CAL   = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D?([^@]+)@\s*(.*)$")
 RANGE = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
+RANGE1 = re.compile(r"\s*BET\s+\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
+RANGE2 = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+\s*(.*)$")
 SPAN  = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
+SPAN1  = re.compile(r"\s*FROM\s+\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
+SPAN2  = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+\s*(.*)$")
 NAME_RE    = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 
@@ -643,6 +662,7 @@ class Lexer(object):
         try:
             return GedLine(self.current_list.pop())
         except:
+            LOG.debug('Error in reading Gedcom line', exc_info=True)
             return None
 
     def __fix_token_cont(self, data):
@@ -734,72 +754,99 @@ class GedLine(object):
         Converts the specified text to a gen.lib.Date object.
         """
         dateobj = gen.lib.Date()
-    
         text = text.replace('BET ABT','EST BET') # Horrible hack for importing
                                                  # illegal GEDCOM from
                                                  # Apple Macintosh Classic
                                                  # 'Gene' program
-    
-        try:
-            # extract out the MOD line
-            match = MOD.match(text)
-            if match:
-                (mod, text) = match.groups()
-                qual = QUALITY_MAP.get(mod, gen.lib.Date.QUAL_NONE)
-            else:
-                qual = gen.lib.Date.QUAL_NONE
-    
-            # parse the range if we match, if so, return
-            match = RANGE.match(text)
-            if match:
-                (cal1, data1, cal2, data2) = match.groups()
-    
-                cal = CALENDAR_MAP.get(cal1, gen.lib.Date.CAL_GREGORIAN)
-                        
-                start = GedLine.__DATE_CNV.parse(data1)
-                stop =  GedLine.__DATE_CNV.parse(data2)
-                dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_RANGE, cal,
-                            start.get_start_date() + stop.get_start_date())
-                dateobj.set_quality(qual)
-                return dateobj
-    
-            # parse a span if we match
-            match = SPAN.match(text)
+
+        # extract out the MOD line
+        match = MOD.match(text)
+        mod = ''
+        if match:
+            (mod, text) = match.groups()
+            qual = QUALITY_MAP.get(mod, gen.lib.Date.QUAL_NONE)
+            mod += ' '
+        else:
+            qual = gen.lib.Date.QUAL_NONE
+
+        # parse the range if we match, if so, return
+        match = RANGE.match(text)
+        match1 = RANGE1.match(text)
+        match2 = RANGE2.match(text)
+        if match or match1 or match2:
             if match:
                 (cal1, data1, cal2, data2) = match.groups()
-    
-                cal = CALENDAR_MAP.get(cal1, gen.lib.Date.CAL_GREGORIAN)
-                        
-                start = GedLine.__DATE_CNV.parse(data1)
-                stop =  GedLine.__DATE_CNV.parse(data2)
-                dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_SPAN, cal,
-                            start.get_start_date() + stop.get_start_date())
-                dateobj.set_quality(qual)
-                return dateobj
+            elif match1:
+                cal1 = gen.lib.Date.CAL_GREGORIAN
+                (data1, cal2, data2) = match1.groups()
+            elif match2:
+                cal2 = gen.lib.Date.CAL_GREGORIAN
+                (cal1, data1, data2) = match2.groups()
+            cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, gen.lib.Date.CAL_GREGORIAN)
+            cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, gen.lib.Date.CAL_GREGORIAN)
+            if cal1 != cal2:
+                #not supported by GRAMPS, import as text, we construct a string
+                # that the parser will not parse as a correct date
+                return GedLine.__DATE_CNV.parse('%sbetween %s%s and %s%s' % 
+                        (mod, data1, CALENDAR_MAP_WRONGSTRING.get(cal1, ''),
+                         CALENDAR_MAP_WRONGSTRING.get(cal2, ''), data2))
             
-            match = CAL.match(text)
+            #add hebrew, ... calendar so that months are recognized
+            data1 += CALENDAR_MAP_PARSESTRING.get(cal1, '')
+            data2 += CALENDAR_MAP_PARSESTRING.get(cal2, '')
+            start = GedLine.__DATE_CNV.parse(data1)
+            stop =  GedLine.__DATE_CNV.parse(data2)
+            dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_RANGE, cal1,
+                        start.get_start_date() + stop.get_start_date())
+            dateobj.set_quality(qual)
+            return dateobj
+
+        # parse a span if we match
+        match = SPAN.match(text)
+        match1 = SPAN1.match(text)
+        match2 = SPAN2.match(text)
+        if match or match1 or match2:
             if match:
-                (abt, cal, data) = match.groups()
-                if abt:
-                    dateobj = GedLine.__DATE_CNV.parse("%s %s" % (abt, data))
-                else:
-                    dateobj = GedLine.__DATE_CNV.parse(data)
-                dateobj.set_calendar(
-                            CALENDAR_MAP.get(cal, gen.lib.Date.CAL_GREGORIAN))
-                dateobj.set_quality(qual)
-                return dateobj
-    
-            dateobj = GedLine.__DATE_CNV.parse(text)
+                (cal1, data1, cal2, data2) = match.groups()
+            elif match1:
+                cal1 = gen.lib.Date.CAL_GREGORIAN
+                (data1, cal2, data2) = match1.groups()
+            elif match2:
+                cal2 = gen.lib.Date.CAL_GREGORIAN
+                (cal1, data1, data2) = match2.groups()
+            cal1 = CALENDAR_MAP_GEDCOM2XML.get(cal1, gen.lib.Date.CAL_GREGORIAN)
+            cal2 = CALENDAR_MAP_GEDCOM2XML.get(cal2, gen.lib.Date.CAL_GREGORIAN)
+            if cal1 != cal2:
+                #not supported by GRAMPS, import as text, we construct a string
+                # that the parser will not parse as a correct date
+                return GedLine.__DATE_CNV.parse('%sfrom %s%s to %s%s' % 
+                        (mod, data1, CALENDAR_MAP_WRONGSTRING.get(cal1, ''),
+                         CALENDAR_MAP_WRONGSTRING.get(cal2, ''), data2))
+            #add hebrew, ... calendar so that months are recognized
+            data1 += CALENDAR_MAP_PARSESTRING.get(cal1, '')
+            data2 += CALENDAR_MAP_PARSESTRING.get(cal2, '')
+            start = GedLine.__DATE_CNV.parse(data1)
+            stop =  GedLine.__DATE_CNV.parse(data2)
+            dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_SPAN, cal1,
+                        start.get_start_date() + stop.get_start_date())
             dateobj.set_quality(qual)
             return dateobj
         
-        # FIXME: explain where/why an IOError might arise
-        # and also: is such a long try-clause needed
-        # having this fallback invites "what about other exceptions?"
-        except IOError:
-            # fallback strategy (evidently)
-            return GedLine.__DATE_CNV.set_text(text)
-    
+        match = CAL.match(text)
+        if match:
+            (abt, call, data) = match.groups()
+            call = CALENDAR_MAP_GEDCOM2XML.get(call, gen.lib.Date.CAL_GREGORIAN)
+            data += CALENDAR_MAP_PARSESTRING.get(call, '')
+            if abt:
+                dateobj = GedLine.__DATE_CNV.parse("%s %s" % (abt, data))
+            else:
+                dateobj = GedLine.__DATE_CNV.parse(data)
+            dateobj.set_quality(qual)
+            return dateobj
+        dateobj = GedLine.__DATE_CNV.parse(text)
+        dateobj.set_quality(qual)
+        return dateobj
+
     def __init__(self, data):
         """
         If the level is 0, then this is a top level instance. In this case, 
