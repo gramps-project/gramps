@@ -493,7 +493,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         """
         Return the headings of the levels in the hierarchy.
         """
-        return ['Group As', 'Name']
+        return [_('Group As'), _('Name')]
 
     def column_header(self, node):
         return node.name
