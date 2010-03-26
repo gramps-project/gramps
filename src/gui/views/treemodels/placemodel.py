@@ -271,7 +271,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         """
         Return the headings of the levels in the hierarchy.
         """
-        return ['Country', 'State', 'County', 'Place Name']
+        return [_('Country'), _('State'), _('County'), _('Place')]
 
     def add_row(self, handle, data):
         """
