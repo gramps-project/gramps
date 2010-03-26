@@ -29,12 +29,10 @@ Style Name: Web_Alphabet-Horizontal Stylesheet
  Header
 ----------------------------------------------------- */
 div#header  {
-    position: fixed;
-    top: 0px;
-    left: 0px;
     overflow: auto;
     width: 100%;
     margin: 0;
+    padding: 0;
 }
 
 /* Body Element

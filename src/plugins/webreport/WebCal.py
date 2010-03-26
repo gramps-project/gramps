@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -318,6 +320,11 @@ class WebCalReport(Report):
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, _CALENDARSCREEN, "styles")
 
+        # copy Navigation Menu Layout if Blue or Visually is being used
+        if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
+            fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
+            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
+
         # copy print stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, _CALENDARPRINT, "styles")
@@ -378,7 +385,7 @@ class WebCalReport(Report):
 # ---------------------------------------------------------------------------------------
 #                       Beginning of Calendar Creation
 # ---------------------------------------------------------------------------------------
-    def write_header(self, nr_up, body_id, title, add_print=True):
+    def write_header(self, nr_up, title, body_id = None, add_print = True):
         """
         This creates the header for the Calendars
         'nr_up' - number of directory levels up, started from current page, to the
@@ -399,6 +406,10 @@ class WebCalReport(Report):
 
         page, head, body = Html.page(title, self.encoding, xmllang)
 
+        # add body id tag if not None
+        if body_id is not None:
+            body.attr = "id = '%(idtag)s'" % { 'idtag' : body_id }
+
         # GRAMPS favicon
         fname1 = os.path.join(subdirs, "images", "favicon.ico")
 
@@ -411,23 +422,24 @@ class WebCalReport(Report):
             )
 
         # links for GRAMPS favicon and stylesheets
-        links = Html("link", rel='shortcut icon', href=fname1, 
-            type = "image/x-icon") + (
-            Html("link",rel="stylesheet", href=fname2, type="text/css", media= "screen",
-                indent = False)
+        links = Html("link", rel='shortcut icon', href=fname1, type = "image/x-icon") + (
+            Html("link",rel="stylesheet", href=fname2, type="text/css", media= "screen", indent = False)
             )
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
             fname = os.path.join(subdirs, "styles", _CALENDARPRINT)
-            links += Html("link",rel="stylesheet", href=fname,type="text/css", media="print", 
-                indent = False)
+            links += Html("link",rel="stylesheet", href=fname,type="text/css", media="print", indent = False)
+
+        # add horizontal menu if css == Blue or Visually because there is no menus
+        if self.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+
+            # Link to Navigation Menus stylesheet
+            fname = os.path.join(subdirs, "styles", "Web_Navigation-Menus.css")
+            links.extend( Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet") )
 
         # add meta tags and links to head section
         head += (meta, links)
-
-        # replace standard body element with custom one
-        body.attr = 'id="%s"' % body_id    
 
         # start header division section
         header = Html("div", id="header") + (
@@ -517,7 +529,9 @@ class WebCalReport(Report):
 
         # An optional link to a home page
         navs.append((self.home_link,  _('html|Home'),  add_home))
-        navs.extend((month, month, True) for month in range(1,13))
+        navs.extend(
+            (month, month, True) for month in range(1,13)
+        )
 
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
@@ -833,7 +847,7 @@ class WebCalReport(Report):
 
             # Add xml, doctype, meta and stylesheets
             # body has already been added to webcal  already once
-            webcal, body = self.write_header(nr_up, 'WebCal', self.title_text)
+            webcal, body = self.write_header(nr_up, self.title_text)
 
             # create Year Navigation menu
             if (self.multiyear and ((self.end_year - self.start_year) > 0)):
@@ -896,7 +910,7 @@ class WebCalReport(Report):
 
         # Create page header
         # body has already been added to yearglance  already once
-        yearglance, body = self.write_header(nr_up, 'fullyearlinked', title, False)
+        yearglance, body = self.write_header(nr_up, title, "fullyearlinked", False)
 
         # create Year Navigation menu
         if (self.multiyear and ((self.end_year - self.start_year) > 0)):
@@ -964,7 +978,7 @@ class WebCalReport(Report):
         title =  _('One Day Within A Year')
 
         # create page header
-        oneday, body = self.write_header(nr_up, 'OneDay', title)
+        oneday, body = self.write_header(nr_up, title, "OneDay")
 
         # create Year Navigation menu
         if (self.multiyear and ((self.end_year - self.start_year) > 0)):
@@ -1371,7 +1385,7 @@ class WebCalOptions(MenuReportOptions):
         css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
         for style in CSS_FILES:
             css.add_item(style[1], style[0])
-        css.set_help( _('The Style Sheet to be used for the web page'))
+        css.set_help( _('The stylesheet to be used for the web pages'))
         menu.add_option(category_name, "css", css)
 
     def __add_content_options(self, menu):
