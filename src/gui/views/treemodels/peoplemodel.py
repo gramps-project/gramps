@@ -131,7 +131,7 @@ class PeopleBaseModel(object):
             self.sort_death_day,
             self.column_death_place,
             self.column_spouse,
-            self.column_change,
+            self.sort_change,
             self.column_int_id,
             self.column_marker_text,
             self.column_marker_color,
@@ -219,6 +219,9 @@ class PeopleBaseModel(object):
     def column_id(self, data):
         return data[COLUMN_ID]
         
+    def sort_change(self,data):
+        return "%012x" % data[COLUMN_CHANGE]
+
     def column_change(self, data):
         return unicode(
             time.strftime('%x %X',
