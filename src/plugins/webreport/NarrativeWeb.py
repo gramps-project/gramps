@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -425,9 +427,14 @@ class BasePage(object):
         # return unordered note list to its callers
         return ul
 
-    def display_event_row(self, evt, evt_ref, showplc, showdescr, showsrc, subdirs, hyp):
+    def display_event_row(self, evt, evt_ref, subdirs, hyp):
         """
         display the event row for IndividualPage
+
+        @param: evt = Event
+        @param: evt_ref = event reference
+        @param: subdirs = add [".."] * 3 for subdirectories or not
+        @params: hyp = add a hyperlink or not
         """
         db = self.report.database
 
@@ -453,12 +460,19 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr, subdirs)
+        event_data = self.get_event_data(evt, evt_ref, True, False, subdirs)
 
         trow.extend(
             Html("td", data or "&nbsp;", class_ = "Column" + colclass,
                 inline = (not data or colclass == "Date"))
             for (label, colclass, data) in event_data)
+
+        # get event notes
+        notelist = evt.get_note_list()
+        notelist.extend( evt_ref.get_note_list() )
+        if notelist:
+            notelist = self.dump_notes( notelist ) or "&nbsp;"
+            trow += Html("td", notelist, class_ = "ColumnNotes")
 
         # get event source references
         srcrefs = self.get_citation_links( evt.get_source_references() ) or "&nbsp;"
@@ -954,6 +968,12 @@ class BasePage(object):
              Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet")
              )
 
+        if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+            # Link to Navigation Menus stylesheet
+            fname = "/".join(["styles", "Web_Navigation-Menus.css"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            links.extend( Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet") )
+
         # add additional meta and link tags
         head += meta
         head += links
@@ -1429,21 +1449,21 @@ class BasePage(object):
                     if not uri.startswith("mailto:"):
                         list += Html("a",descr,  href = 'mailto: %s' % uri)
                     else:
-                        list += Html("a", descr, href = "%s" % uri)
+                        list += Html("a", descr, href = uri)
 
                 # Web Site address
                 elif _type == UrlType.WEB_HOME:
                     if not uri.startswith("http://"):
                         list += Html("a", descr, href = 'http://%s' % uri)
                     else:
-                        list += Html("a", descr, href = "%s" % uri)
+                        list += Html("a", descr, href = uri)
 
                 # FTP server address
                 elif _type == UrlType.WEB_FTP:
                     if not uri.startswith("ftp://"):
                         list += Html("a", descr, href = 'ftp://%s' % uri)
                     else:
-                        list += Html("a", descr, href = "%s" % uri) 
+                        list += Html("a", descr, href = uri) 
 
                 # custom type
                 else:
@@ -3999,12 +4019,7 @@ class IndividualPage(BasePage):
                 thead = Html("thead")
                 table += thead
 
-                """
-                @param: show place
-                @param: show description
-                @param: show source references
-                """
-                thead += self.display_event_header(True, True, True)
+                thead += self.display_event_header()
 
                 tbody = Html("tbody")
                 table += tbody
@@ -4016,13 +4031,10 @@ class IndividualPage(BasePage):
                     """
                     @param: event object
                     @param: event_ref = event reference
-                    @param: show place or not?
-                    @param: show description or not?
-                    @param: show source references or not?
                     @param: subdirs = True or False
                     @param: hyp = show hyperlinked evt type or not?
                     """
-                    tbody += self.display_event_row(event, evt_ref, True, True, True, True, True)
+                    tbody += self.display_event_row(event, evt_ref, True, True)
  
         # return section to its caller
         return section
@@ -4507,34 +4519,22 @@ class IndividualPage(BasePage):
                                    )
         return ped
 
-    def display_event_header(self, showplc, showdescr, showsrc):
+    def display_event_header(self):
         """
         will print the event header row for display_event_row() and
             format_event()
-
-        @param: showplc = show place
-        @param: showdescr = show description
-        @param: showsrc = show source references
         """ 
-        # position 0 = translatable label, position 1 = column class, and
-        # position 2 = data
-        event_header_row = [
-            (_EVENT, "Event"),
-            (DHEAD, "Date") ]
-
-        if showplc:
-            event_header_row.append((PHEAD, "Place"))
-
-        if showdescr:
-            event_header_row.append((DESCRHEAD, "Description"))
-
-        if showsrc:
-            event_header_row.append((SHEAD, "Sources"))
 
         trow = Html("tr")
         trow.extend(
             Html("th", label, class_ = "Column" + colclass, inline = True)
-            for (label, colclass) in event_header_row)
+            for (label, colclass) in  [
+                (_EVENT, "Event"),
+                (DHEAD, "Date"),
+                (PHEAD, "Place"),
+                (NHEAD,  "Notes"),
+                (SHEAD, "Sources") ]
+            )
 
         # return header row to its callers
         return trow
@@ -4551,12 +4551,7 @@ class IndividualPage(BasePage):
             table += thead
 
             # attach event header row
-            """
-            @param: show place
-            @param: show description
-            @param: show source references
-            """
-            thead += self.display_event_header(True, True, True)
+            thead += self.display_event_header()
 
             # begin table body
             tbody = Html("tbody")
@@ -4569,13 +4564,10 @@ class IndividualPage(BasePage):
                 """
                 @param: event object
                 @param: event_ref = event reference
-                @param: show place or not?
-                @param: show description or not?
-                @param: show source references or not?
                 @param: up = True or False: attach subdirs or not?
                 @param: hyp = show hyperlinked evt type or not?
                 """
-                tbody += self.display_event_row(event, event_ref, True, True, True, True, True)
+                tbody += self.display_event_row(event, event_ref, True, True)
 
         # return table to its callers
         return table
@@ -4919,6 +4911,7 @@ class NavWebReport(Report):
         self.target_path = self.options['target']
         self.ext = self.options['ext']
         self.css = self.options['css']
+        self.navigation = self.options["navigation"]
 
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
@@ -4928,7 +4921,7 @@ class NavWebReport(Report):
         # name format option
         self.name_format = self.options['name_format']
 
-        # create event pages or not?
+        # create an event pages or not?
         self.inc_events = self.options['inc_events']
 
         # include repository page or not?
@@ -5128,6 +5121,14 @@ class NavWebReport(Report):
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
+
+        # copy Navigation Menu Layout if Blue or Visually is being used
+        if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
+            if self.navigation == "Horizontal":
+                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
+            else:
+                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Vertical.css")
+            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
@@ -5662,11 +5663,24 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
+        self.__css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
         for style in CSS_FILES:
-            css.add_item(style[1], style[0])
-        css.set_help( _('The stylesheet to be used for the web pages'))
-        menu.add_option(category_name, "css", css)
+            self.__css.add_item(style[1], style[0])
+        self.__css.set_help( _('The stylesheet to be used for the web pages'))
+        menu.add_option(category_name, "css", self.__css)
+        self.__css.connect("value-changed", self.__stylesheet_changed)
+
+        _NAVIGATION_OPTS = [
+            [_("Horizontal -- No Change"), "Horizontal"],
+            [_("Vertical"),                "Vertical"]
+            ]
+        self.__navigation = EnumeratedListOption(_("Navigation Layout"), _NAVIGATION_OPTS[0][1])
+        for layout in _NAVIGATION_OPTS:
+            self.__navigation.add_item(layout[1], layout[0])
+        self.__navigation.set_help(_("Choose which layout for the Navigation Menus."))
+        menu.add_option(category_name, "navigation", self.__navigation)
+
+        self.__stylesheet_changed()
 
         self.__graph = BooleanOption(_("Include ancestor graph"), True)
         self.__graph.set_help(_('Whether to include an ancestor graph '
@@ -5916,6 +5930,17 @@ class NavWebOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
+
+    def __stylesheet_changed(self):
+        """
+        Handles the changing nature of the stylesheet
+        """
+
+        css_opts = self.__css.get_value()
+        if css_opts in ["Web_Basic-Blue.css", "Web_Visually.css"]:   
+            self.__navigation.set_available(True)
+        else:
+            self.__navigation.set_available(False)
 
     def __graph_changed(self):
         """
