@@ -425,9 +425,14 @@ class BasePage(object):
         # return unordered note list to its callers
         return ul
 
-    def display_event_row(self, evt, evt_ref, showplc, showdescr, showsrc, subdirs, hyp):
+    def display_event_row(self, evt, evt_ref, subdirs, hyp):
         """
         display the event row for IndividualPage
+
+        @param: evt = Event
+        @param: evt_ref = event reference
+        @param: subdirs = add [".."] * 3 for subdirectories or not
+        @params: hyp = add a hyperlink or not
         """
         db = self.report.database
 
@@ -453,12 +458,19 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, showplc, showdescr, subdirs)
+        event_data = self.get_event_data(evt, evt_ref, False, False, subdirs)
 
         trow.extend(
             Html("td", data or "&nbsp;", class_ = "Column" + colclass,
                 inline = (not data or colclass == "Date"))
             for (label, colclass, data) in event_data)
+
+        # get event notes
+        notelist = evt.get_note_list()
+        notelist.extend( evt_ref.get_note_list() )
+        if notelist:
+            notelist = self.dump_notes( notelist ) or "&nbsp;"
+            trow += Html("td", notelist, class_ = "ColumnNotes")
 
         # get event source references
         srcrefs = self.get_citation_links( evt.get_source_references() ) or "&nbsp;"
@@ -4005,12 +4017,7 @@ class IndividualPage(BasePage):
                 thead = Html("thead")
                 table += thead
 
-                """
-                @param: show place
-                @param: show description
-                @param: show source references
-                """
-                thead += self.display_event_header(True, True, True)
+                thead += self.display_event_header()
 
                 tbody = Html("tbody")
                 table += tbody
@@ -4022,13 +4029,10 @@ class IndividualPage(BasePage):
                     """
                     @param: event object
                     @param: event_ref = event reference
-                    @param: show place or not?
-                    @param: show description or not?
-                    @param: show source references or not?
                     @param: subdirs = True or False
                     @param: hyp = show hyperlinked evt type or not?
                     """
-                    tbody += self.display_event_row(event, evt_ref, True, True, True, True, True)
+                    tbody += self.display_event_row(event, evt_ref, True, True)
  
         # return section to its caller
         return section
@@ -4513,34 +4517,21 @@ class IndividualPage(BasePage):
                                    )
         return ped
 
-    def display_event_header(self, showplc, showdescr, showsrc):
+    def display_event_header(self):
         """
         will print the event header row for display_event_row() and
             format_event()
-
-        @param: showplc = show place
-        @param: showdescr = show description
-        @param: showsrc = show source references
         """ 
-        # position 0 = translatable label, position 1 = column class, and
-        # position 2 = data
-        event_header_row = [
-            (_EVENT, "Event"),
-            (DHEAD, "Date") ]
-
-        if showplc:
-            event_header_row.append((PHEAD, "Place"))
-
-        if showdescr:
-            event_header_row.append((DESCRHEAD, "Description"))
-
-        if showsrc:
-            event_header_row.append((SHEAD, "Sources"))
 
         trow = Html("tr")
         trow.extend(
             Html("th", label, class_ = "Column" + colclass, inline = True)
-            for (label, colclass) in event_header_row)
+            for (label, colclass) in  [
+                (_EVENT, "Event"),
+                (DHEAD, "Date"),
+                (NHEAD,  "Notes"),
+                (SHEAD, "Sources") ]
+            )
 
         # return header row to its callers
         return trow
@@ -4557,12 +4548,7 @@ class IndividualPage(BasePage):
             table += thead
 
             # attach event header row
-            """
-            @param: show place
-            @param: show description
-            @param: show source references
-            """
-            thead += self.display_event_header(True, True, True)
+            thead += self.display_event_header()
 
             # begin table body
             tbody = Html("tbody")
@@ -4575,13 +4561,10 @@ class IndividualPage(BasePage):
                 """
                 @param: event object
                 @param: event_ref = event reference
-                @param: show place or not?
-                @param: show description or not?
-                @param: show source references or not?
                 @param: up = True or False: attach subdirs or not?
                 @param: hyp = show hyperlinked evt type or not?
                 """
-                tbody += self.display_event_row(event, event_ref, True, True, True, True, True)
+                tbody += self.display_event_row(event, event_ref, True, True)
 
         # return table to its callers
         return table
