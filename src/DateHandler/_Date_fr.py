@@ -58,6 +58,16 @@ class DateParserFR(DateParser):
 
     month_to_int = DateParser.month_to_int
 
+    # Short months not the same as long months
+
+    month_to_int[u"janv"] = 1
+    month_to_int[u"févr"] = 2
+    month_to_int[u"juil"] = 7
+    month_to_int[u"sept"] = 9
+    month_to_int[u"oct"] = 10
+    month_to_int[u"nov"] = 11
+    month_to_int[u"déc"] = 12
+
     # Add common value
 
     month_to_int[u"bluviose"] = 5
