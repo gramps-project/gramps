@@ -18597,7 +18597,7 @@ msgstr "Généré par <a href = \"%(homepage)s\">Gramps</a> le %(date)s"
 #: ../src/plugins/webreport/NarrativeWeb.py:880
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
-msgstr " Créé pour <a href = \"%s\">%s</a>"
+msgstr " et créé pour <a href = \"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
 msgid "Html|Home"
