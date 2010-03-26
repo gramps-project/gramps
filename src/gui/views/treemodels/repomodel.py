@@ -87,7 +87,7 @@ class RepositoryModel(FlatBaseModel):
             self.column_country,
             self.column_email,
             self.column_search_url,
-            self.column_change,           
+            self.sort_change,           
             self.column_handle,            
             ]
         
@@ -215,6 +215,9 @@ class RepositoryModel(FlatBaseModel):
 
     def column_tooltip(self,data):
         return ""
+
+    def sort_change(self,data):
+        return "%012x" % data[7]
 
     def column_change(self,data):
         return unicode(time.strftime('%x %X',time.localtime(data[7])),
