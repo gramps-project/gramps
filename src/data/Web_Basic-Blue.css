@@ -590,13 +590,13 @@ div#EventList table.alphaevent tbody tr td.ColumnType a:hover {
 }
 div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
     background-color: #FFF;
-    width: 12%;
+    width: 10%;
 }
 div#EventList table.alphaevent tbody tr td.ColumnDate {
     width: 20%;
 }
 div#EventList table.alphaevent tbody tr td.ColumnPerson {
-    width: 60%;
+    width: 50%;
 }
 div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
 div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
