@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -458,7 +460,7 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, False, False, subdirs)
+        event_data = self.get_event_data(evt, evt_ref, True, False, subdirs)
 
         trow.extend(
             Html("td", data or "&nbsp;", class_ = "Column" + colclass,
@@ -4529,6 +4531,7 @@ class IndividualPage(BasePage):
             for (label, colclass) in  [
                 (_EVENT, "Event"),
                 (DHEAD, "Date"),
+                (PHEAD, "Place"),
                 (NHEAD,  "Notes"),
                 (SHEAD, "Sources") ]
             )
