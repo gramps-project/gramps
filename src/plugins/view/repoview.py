@@ -96,11 +96,11 @@ class RepositoryView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
                              ]),
-        ('columns.order', [COL_NAME, COL_ID, COL_ZIP, COL_CITY, COL_TYPE, 
+        ('columns.rank', [COL_NAME, COL_ID, COL_ZIP, COL_CITY, COL_TYPE, 
                            COL_URL, COL_STREET, COL_COUNTY, COL_STATE, 
                            COL_COUNTRY, COL_EMAIL, COL_SURL,
                            COL_CHAN]),
-        ('columns.sizecol', [200, 75, 100, 100, 100, 250, 100, 100, 100,
+        ('columns.size', [200, 75, 100, 100, 100, 250, 100, 100, 100,
                              100, 100, 100, 100])
         )    
     ADD_MSG = _("Add a new repository")

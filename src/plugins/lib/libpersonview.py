@@ -101,9 +101,9 @@ class BasePersonView(ListView):
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
-        ('columns.order', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
+        ('columns.rank', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
                            COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_CHAN]),
-        ('columns.sizecol', [250, 75, 75, 100, 175, 100, 175, 100, 100])
+        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 100])
         )  
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")

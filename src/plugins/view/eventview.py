@@ -89,9 +89,9 @@ class EventView(ListView):
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_DESCR, COL_ID, COL_TYPE, COL_DATE, COL_PLACE]),
-        ('columns.order', [COL_DESCR, COL_ID, COL_TYPE, COL_PARTIC, COL_DATE,
+        ('columns.rank', [COL_DESCR, COL_ID, COL_TYPE, COL_PARTIC, COL_DATE,
                            COL_PLACE, COL_CHAN]),
-        ('columns.sizecol', [200, 75, 100, 230, 150, 200, 100])
+        ('columns.size', [200, 75, 100, 230, 150, 200, 100])
         )    
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")

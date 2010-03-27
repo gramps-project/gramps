@@ -77,7 +77,7 @@ COUNTRYLEVELS = {
 #-------------------------------------------------------------------------
 class PlaceBaseModel(object):
 
-    HANDLE_COL = 12
+    HANDLE_COL = 13
 
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor
@@ -95,6 +95,7 @@ class PlaceBaseModel(object):
             self.column_longitude,
             self.column_change,
             self.column_street,
+            self.column_place_name,
             self.column_handle,
             self.column_tooltip
             ]
@@ -111,6 +112,7 @@ class PlaceBaseModel(object):
             self.sort_longitude,
             self.sort_change,
             self.column_street,
+            self.column_place_name,
             self.column_handle,
             ]
 
@@ -120,7 +122,7 @@ class PlaceBaseModel(object):
     def column_handle(self, data):
         return unicode(data[0])
 
-    def column_name(self, data):
+    def column_place_name(self, data):
         return unicode(data[2])
 
     def __format_degrees(self, angle, sign_str):
@@ -238,8 +240,11 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
                  skip=set(), sort_map=None):
 
         PlaceBaseModel.__init__(self, db)
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=13,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=14,
                            search=search, skip=skip, sort_map=sort_map)
+
+    def column_name(self, data):
+        return unicode(data[2])
 
 #-------------------------------------------------------------------------
 #
@@ -255,7 +260,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
 
         PlaceBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,
-                                tooltip_column=13,
+                                tooltip_column=14,
                                 search=search, skip=skip, sort_map=sort_map,
                                 nrgroups = 3,
                                 group_can_have_handle = True)
@@ -265,7 +270,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         PlaceBaseModel
         """
         self.number_items = self.db.get_number_of_places
-        self.hmap = [self.column_header] + [None]*12
+        self.hmap = [self.column_header] + [None]*13
 
     def get_tree_levels(self):
         """
