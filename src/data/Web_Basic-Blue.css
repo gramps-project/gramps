@@ -874,7 +874,7 @@ div#AddressBookList, AddressBookDetail {
     width: 100%;
 }
 div#AddressBookList table.addressbook {
-    margin: .3em 0 .3em 0;
+
 }
 div#AddressBookList table.addressbook tbody tr.Totals {
     border: solid 1px #000;
@@ -1221,6 +1221,28 @@ div#summaryarea table.infolist tbody tr td.ColumnAttribute {
 
 /* Subsections : Weblinks
 ----------------------------------------------------- */
+div#WebLinks {
+    margin : 0 auto;
+    padding: 0;
+}
+
+table.weblinks tr td {
+    background-color: #BCEAF6;
+    border-bottom: dashed 1px #000;
+}
+table.weblinks tr td.ColumnRowLabel {
+    width: 5%;
+}
+table.weblinks tr td.ColumnType {
+    width: 30%;
+}
+table.weblinks tr td.ColumnPath {
+    background-color: #FFF;
+    width: 435;
+}
+table.weblinks tr td.ColumnDescription {
+    width: 30%;
+}
 
 /* Subsections : Pedigree
 ----------------------------------------------------- */
