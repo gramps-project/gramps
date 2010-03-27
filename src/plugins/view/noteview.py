@@ -81,9 +81,9 @@ class NoteView(ListView):
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE, COL_MARKER]),
-        ('columns.order', [COL_PREVIEW, COL_ID, COL_TYPE, COL_MARKER,
+        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_MARKER,
                            COL_CHAN]),
-        ('columns.sizecol', [350, 75, 100, 100, 100]))
+        ('columns.size', [350, 75, 100, 100, 100]))
 
     ADD_MSG     = _("Add a new note")
     EDIT_MSG    = _("Edit the selected note")

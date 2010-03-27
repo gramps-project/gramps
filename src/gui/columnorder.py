@@ -128,8 +128,8 @@ class ColumnOrder(gtk.VBox):
         self.apply_button.connect('clicked', self.__on_apply)
 
         #obtain the columns from config file
-        self.oldorder = self.config.get('columns.order')
-        self.oldsize = self.config.get('columns.sizecol')
+        self.oldorder = self.config.get('columns.rank')
+        self.oldsize = self.config.get('columns.size')
         self.oldvis =  self.config.get('columns.visible')
         colord = []
         for val, size in zip(self.oldorder, self.oldsize):
@@ -166,8 +166,8 @@ class ColumnOrder(gtk.VBox):
                 newvis.append(index)
             neworder.append(index)
             newsize.append(size)
-        self.config.set('columns.order', neworder)
-        self.config.set('columns.sizecol', newsize)
+        self.config.set('columns.rank', neworder)
+        self.config.set('columns.size', newsize)
         self.config.set('columns.visible', newvis)
         self.config.save()
         if self.on_apply:

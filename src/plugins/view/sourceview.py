@@ -83,9 +83,9 @@ class SourceView(ListView):
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
-        ('columns.order', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
+        ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
                            COL_CHAN]),
-        ('columns.sizecol', [200, 75, 150, 100, 150, 100])
+        ('columns.size', [200, 75, 150, 100, 150, 100])
         )    
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")

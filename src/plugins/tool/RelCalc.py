@@ -78,11 +78,11 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
 
         #set the columns to see
         for data in BasePersonView.CONFIGSETTINGS:
-            if data[0] == 'columns.order':
+            if data[0] == 'columns.rank':
                 colord = data[1]
             elif data[0] == 'columns.visible':
                 colvis = data[1]
-            elif data[0] == 'columns.sizecol':
+            elif data[0] == 'columns.size':
                 colsize = data[1]
         self.colord = []
         for col, size in zip(colord, colsize):

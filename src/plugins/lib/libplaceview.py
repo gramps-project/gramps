@@ -105,10 +105,10 @@ class PlaceBaseView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_CITY, COL_STATE
                              ]),
-        ('columns.order', [COL_NAME, COL_ID, COL_STREET, COL_ZIP, COL_CITY, 
+        ('columns.rank', [COL_NAME, COL_ID, COL_STREET, COL_ZIP, COL_CITY, 
                            COL_COUNTY, COL_STATE, COL_COUNTRY, COL_LAT,
                            COL_LON, COL_PARISH, COL_CHAN]),
-        ('columns.sizecol', [250, 75, 100, 100, 100, 100, 150, 150, 150, 
+        ('columns.size', [250, 75, 100, 100, 100, 100, 150, 150, 150, 
                              150, 150, 100])
         )    
     ADD_MSG     = _("Add a new place")
@@ -136,8 +136,8 @@ class PlaceBaseView(ListView):
         self.mapservicedata = {}
 
         ListView.__init__(
-            self, title, dbstate, uistate, PlaceBaseView.COLUMN_NAMES,
-            len(PlaceBaseView.COLUMN_NAMES), 
+            self, title, dbstate, uistate, self.COLUMN_NAMES,
+            len(self.COLUMN_NAMES), 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
             Bookmarks.PlaceBookmarks, nav_group,

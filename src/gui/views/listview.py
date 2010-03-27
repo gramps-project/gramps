@@ -81,8 +81,8 @@ class ListView(NavigationView):
     #listview config settings that are always present related to the columns
     CONFIGSETTINGS = (
         ('columns.visible', []),
-        ('columns.order', []),
-        ('columns.sizecol', [])
+        ('columns.rank', []),
+        ('columns.size', [])
         )
     ADD_MSG = ""
     EDIT_MSG = ""
@@ -472,8 +472,8 @@ class ListView(NavigationView):
             modelcol: column in the datamodel this column is build of
             size: size the column should have
         """
-        order = self._config.get('columns.order')
-        size = self._config.get('columns.sizecol')
+        order = self._config.get('columns.rank')
+        size = self._config.get('columns.size')
         vis =  self._config.get('columns.visible')
         colord = []
         for val, size in zip(order, size):
@@ -1055,7 +1055,7 @@ class ListView(NavigationView):
         """
         #func = self.config_callback(self.build_tree)
         #self._config.connect('columns.visible', func)
-        #self._config.connect('columns.order', func)
+        #self._config.connect('columns.rank', func)
         pass
 
     def _get_configure_page_funcs(self):

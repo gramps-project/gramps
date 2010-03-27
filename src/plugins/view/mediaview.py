@@ -96,9 +96,9 @@ class MediaView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
                              COL_DATE]),
-        ('columns.order', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
+        ('columns.rank', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
                            COL_DATE, COL_CHAN]),
-        ('columns.sizecol', [200, 75, 100, 200, 150, 150])
+        ('columns.size', [200, 75, 100, 200, 150, 150])
         )    
     
     ADD_MSG     = _("Add a new media object")

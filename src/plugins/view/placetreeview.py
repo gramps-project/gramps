@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009-2010  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,6 +51,45 @@ class PlaceTreeView(PlaceBaseView):
     """
     A hierarchical view of the top three levels of places.
     """
+    COL_PLACE = 0
+    COL_ID = 1
+    COL_PARISH = 2
+    COL_ZIP = 3
+    COL_CITY = 4
+    COL_COUNTY = 5
+    COL_STATE = 6
+    COL_COUNTRY = 7
+    COL_LAT = 8
+    COL_LON = 9
+    COL_CHAN = 10
+    COL_STREET = 11
+    COL_NAME = 12
+    # name of the columns
+    COLUMN_NAMES = [
+        _('Place'),
+        _('ID'),
+        _('Church Parish'),
+        _('ZIP/Postal Code'),
+        _('City'),
+        _('County'),
+        _('State'),
+        _('Country'),
+        _('Latitude'),
+        _('Longitude'),
+        _('Last Changed'),
+        _('Street'),
+        _('Place Name'),
+        ]
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_PLACE, COL_ID, COL_STREET, COL_CITY, COL_STATE
+                             ]),
+        ('columns.rank', [COL_PLACE, COL_ID, COL_STREET, COL_ZIP, COL_CITY, 
+                           COL_COUNTY, COL_STATE, COL_COUNTRY, COL_LAT,
+                           COL_LON, COL_PARISH, COL_CHAN, COL_NAME]),
+        ('columns.size', [250, 75, 100, 100, 100, 100, 150, 150, 150, 
+                             150, 150, 100, 150])
+        )
 
     def __init__(self, dbstate, uistate):
         PlaceBaseView.__init__(self, dbstate, uistate,

@@ -81,9 +81,9 @@ class FamilyView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
                              COL_MARDATE]),
-        ('columns.order', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
+        ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
                            COL_MARDATE, COL_CHAN]),
-        ('columns.sizecol', [75, 200, 200, 100, 100, 100])
+        ('columns.size', [75, 200, 200, 100, 100, 100])
         )    
 
     ADD_MSG     = _("Add a new family")
