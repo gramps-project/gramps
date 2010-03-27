@@ -69,7 +69,8 @@ class SubstKeywords(object):
         """Create a new object and associates a person with it."""
 
         person = database.get_person_from_handle(person_handle)
-        self.n = name_displayer.display(person)
+        self.n = person.get_primary_name().get_first_name() + " " + \
+            person.get_primary_name().get_surname() #Issue ID:  2878
         self.N = name_displayer.sorted(person)
         self.b = ""
         self.B = ""
