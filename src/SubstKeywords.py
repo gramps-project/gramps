@@ -22,7 +22,7 @@
 
 """
 Provide the SubstKeywords class that will replace keywords in a passed
-string with informatin about the person. For sample:
+string with information about the person. For sample:
 
 foo = SubstKeywords(person)
 print foo.replace('$n was born on $b.')
