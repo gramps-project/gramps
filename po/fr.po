@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 3.2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-27 08:56+0100\n"
-"PO-Revision-Date: 2010-03-27 09:01+0100\n"
+"PO-Revision-Date: 2010-03-27 09:22+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18633,7 +18633,7 @@ msgstr "Télécharger"
 msgid "Contact"
 msgstr "Contact"
 
-# espace limité dans le menu
+# espace limité dans la fenêtre, bug #3596
 #: ../src/plugins/webreport/NarrativeWeb.py:1032
 #: ../src/plugins/webreport/NarrativeWeb.py:1075
 #: ../src/plugins/webreport/NarrativeWeb.py:4749
@@ -18975,9 +18975,10 @@ msgstr "Horizontale -- Aucun changement"
 msgid "Vertical"
 msgstr "Verticale"
 
+# espace limité dans la fenêtre, bug #3596
 #: ../src/plugins/webreport/NarrativeWeb.py:5702
 msgid "Navigation Layout"
-msgstr "Mise en page de la navigation"
+msgstr "Navigation"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5705
 msgid "Choose which layout for the Navigation Menus."
@@ -19051,6 +19052,7 @@ msgstr "Image de la page contact"
 msgid "An image to be used as the publisher contact"
 msgstr "L'image utilisée pour contacter l'auteur"
 
+# espace limité dans la fenêtre, bug #3596
 #: ../src/plugins/webreport/NarrativeWeb.py:5757
 msgid "HTML user header"
 msgstr "En-tête HTML"
@@ -19059,6 +19061,7 @@ msgstr "En-tête HTML"
 msgid "A note to be used as the page header"
 msgstr "La note utilisée pour l'en-tête de la page"
 
+# espace limité dans la fenêtre, bug #3596
 #: ../src/plugins/webreport/NarrativeWeb.py:5761
 msgid "HTML user footer"
 msgstr "Pied de page HTML"
@@ -19156,7 +19159,7 @@ msgstr "Note de la page Télécharger"
 msgid "A note to be used on the download page"
 msgstr "La note utilisée pour la page Télécharger"
 
-# espace limité sur la fenêtre
+# espace limité dans la fenêtre, bug #3596
 #: ../src/plugins/webreport/NarrativeWeb.py:5838
 #: ../src/plugins/webreport/NarrativeWeb.py:5847
 msgid "Download Filename"
@@ -19167,7 +19170,7 @@ msgstr "Nom du fichier"
 msgid "File to be used for downloading of database"
 msgstr "Fichier prévu pour être téléchargé"
 
-# espace limité
+# espace limité dans la fenêtre, bug #3596
 #: ../src/plugins/webreport/NarrativeWeb.py:5843
 #: ../src/plugins/webreport/NarrativeWeb.py:5852
 msgid "Description for download"
@@ -19186,6 +19189,7 @@ msgstr "Donnez une description pour ce fichier."
 msgid "Johnson Family Tree"
 msgstr "Arbre de la famille Bernard"
 
+# espace limité dans la fenêtre, bug #3596
 #: ../src/plugins/webreport/NarrativeWeb.py:5856
 msgid "Download Copyright License"
 msgstr "Licence"
