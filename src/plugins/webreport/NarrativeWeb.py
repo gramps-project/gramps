@@ -1425,49 +1425,74 @@ class BasePage(object):
             return None
 
         # begin web links division
-        with Html("div", class_ = "subsection", id = "weblinks") as section:
+        with Html("div", class_ = "subsection", id = "WebLinks") as section:
 
             # begin web title
             section += Html("h4", _("Web Links"), inline = True)  
 
-            # ordered list
-            ordered = Html("ol")
-            section += ordered
+            # begin weblinks table
+            with Html("table", class_ = "infolist weblinks") as table: 
+                section += table
 
-            for url in urllist:
-                uri = url.get_path()
-                descr = url.get_description()
-                if not descr:
-                    descr = uri
-                _type = url.get_type()
+                thead = Html("thead")
+                table += thead
 
-                list = Html("li")
-                ordered += list
+                trow = Html("tr")
+                thead += trow
+
+                trow.extend(
+                    Html('th', label, class_ = "Column" + colclass, inline = True)
+                    for (label, colclass) in [
+                        ("&nbsp;",   "RowLabel"), 
+                        (THEAD,      "Type"),
+                        (_("Path"),  "Path"),
+                         (DESCRHEAD, "Description") ]
+                    )
+
+                tbody = Html("tbody")
+                table += tbody
+
+                index = 0
+                for url in urllist:
+
+                    trow = Html("tr")
+                    tbody += trow
  
-                # Email address
-                if _type == UrlType.EMAIL:
-                    if not uri.startswith("mailto:"):
-                        list += Html("a",descr,  href = 'mailto: %s' % uri)
-                    else:
-                        list += Html("a", descr, href = uri)
+                    _type = url.get_type()
+                    uri = url.get_path()
+                    descr = url.get_description()
 
-                # Web Site address
-                elif _type == UrlType.WEB_HOME:
-                    if not uri.startswith("http://"):
-                        list += Html("a", descr, href = 'http://%s' % uri)
-                    else:
-                        list += Html("a", descr, href = uri)
+                    if not descr:
+                        descr = uri
 
-                # FTP server address
-                elif _type == UrlType.WEB_FTP:
-                    if not uri.startswith("ftp://"):
-                        list += Html("a", descr, href = 'ftp://%s' % uri)
-                    else:
-                        list += Html("a", descr, href = uri) 
+                    trow.extend(
+                        Html("td", index + 1, class_ = "ColumnRowLabel", inline = True)
+                        )
+ 
+                    # Email address
+                    if _type == UrlType.EMAIL:
+                        if not uri.startswith("mailto:"):
+                            uri = "mailto: %(email)s" % { 'email' : uri }
 
-                # custom type
-                else:
-                    list += Html("a", descr, href = uri)
+                    # Web Site address
+                    elif _type == UrlType.WEB_HOME:
+                        if not uri.startswith("http://"):
+                            uri = "http://%(website)s" % { "website" : uri } 
+
+                    # FTP server address
+                    elif _type == UrlType.WEB_FTP:
+                        if not uri.startswith("ftp://"):
+                            uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
+
+                    uri = Html("a", descr, href = uri)
+                    trow.extend(
+                        Html("td", data, class_ = "Column" + colclass)
+                        for (data, colclass) in [
+                            (str(_type), "Type"),
+                            (uri,        "Path"),
+                            (descr,      "Description") ]
+                        )  
+                    index += 1
                 
         # return web links to its caller
         return section
