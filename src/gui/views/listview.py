@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
-# Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
@@ -483,6 +483,9 @@ class ListView(NavigationView):
                 colord.append((0, val, size))
         return colord
 
+    def get_column_widths(self):
+             return [column.get_width() for column in self.columns]
+
     def remove_selected_objects(self):
         """
         Function to remove selected objects
@@ -861,6 +864,24 @@ class ListView(NavigationView):
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 
+    def on_delete(self):
+        """
+        Save the column widths when the view is shutdown.
+        """
+        widths = self.get_column_widths()
+        order = self._config.get('columns.rank')
+        size = self._config.get('columns.size')
+        vis =  self._config.get('columns.visible')
+        newsize = []
+        index = 0
+        for val, size in zip(order, size):
+            if val in vis:
+                size = widths[index]
+                index += 1
+            newsize.append(size)
+        self._config.set('columns.size', newsize)
+        self._config.save()
+
     ####################################################################
     # Export data
     ####################################################################
@@ -1067,6 +1088,7 @@ class ListView(NavigationView):
         """
         def columnpage(configdialog):
             return _('Columns'), ColumnOrder(self._config, self.COLUMN_NAMES,
+                                            self.get_column_widths(),
                                             self.set_column_order,
                                             tree=self.type_list()==LISTTREE)
         return [columnpage]
