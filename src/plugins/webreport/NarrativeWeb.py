@@ -2699,9 +2699,6 @@ class MediaPage(BasePage):
 
                             # TODO. Convert disk path to URL.
                             url = self.report.build_url_fname(initial_image_path, None, self.up)
-                            if initial_image_path != newpath:
-                                scalemsg = Html("p", "(%d x %d)" % (width, height), inline = True)
-                                summaryarea += scalemsg
                             with Html("div", id="GalleryDisplay", style = 'width: %dpx; height: %dpx' % (new_width, 
                                 new_height)) as mediadisplay:
                                 summaryarea += mediadisplay
