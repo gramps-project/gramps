@@ -968,12 +968,6 @@ class BasePage(object):
              Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet")
              )
 
-        if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
-            # Link to Navigation Menus stylesheet
-            fname = "/".join(["styles", "Web_Navigation-Menus.css"])
-            url = self.report.build_url_fname(fname, None, self.up)
-            links.extend( Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet") )
-
         # add additional meta and link tags
         head += meta
         head += links
@@ -4933,7 +4927,6 @@ class NavWebReport(Report):
         self.target_path = self.options['target']
         self.ext = self.options['ext']
         self.css = self.options['css']
-        self.navigation = self.options["navigation"]
 
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
@@ -5143,14 +5136,6 @@ class NavWebReport(Report):
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
-
-        # copy Navigation Menu Layout if Blue or Visually is being used
-        if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
-            if self.navigation == "Horizontal":
-                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
-            else:
-                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Vertical.css")
-            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
@@ -5685,24 +5670,11 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        self.__css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
+        css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
         for style in CSS_FILES:
-            self.__css.add_item(style[1], style[0])
-        self.__css.set_help( _('The stylesheet to be used for the web pages'))
-        menu.add_option(category_name, "css", self.__css)
-        self.__css.connect("value-changed", self.__stylesheet_changed)
-
-        _NAVIGATION_OPTS = [
-            [_("Horizontal -- No Change"), "Horizontal"],
-            [_("Vertical"),                "Vertical"]
-            ]
-        self.__navigation = EnumeratedListOption(_("Navigation Layout"), _NAVIGATION_OPTS[0][1])
-        for layout in _NAVIGATION_OPTS:
-            self.__navigation.add_item(layout[1], layout[0])
-        self.__navigation.set_help(_("Choose which layout for the Navigation Menus."))
-        menu.add_option(category_name, "navigation", self.__navigation)
-
-        self.__stylesheet_changed()
+            css.add_item(style[1], style[0])
+        css.set_help( _('The stylesheet to be used for the web pages'))
+        menu.add_option(category_name, "css", css)
 
         self.__graph = BooleanOption(_("Include ancestor graph"), True)
         self.__graph.set_help(_('Whether to include an ancestor graph '
@@ -5952,17 +5924,6 @@ class NavWebOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
-
-    def __stylesheet_changed(self):
-        """
-        Handles the changing nature of the stylesheet
-        """
-
-        css_opts = self.__css.get_value()
-        if css_opts in ["Web_Basic-Blue.css", "Web_Visually.css"]:   
-            self.__navigation.set_available(True)
-        else:
-            self.__navigation.set_available(False)
 
     def __graph_changed(self):
         """
