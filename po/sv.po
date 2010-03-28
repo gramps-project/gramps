@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-27 08:56+0100\n"
-"PO-Revision-Date: 2010-03-27 10:16+0100\n"
+"PO-Revision-Date: 2010-03-28 17:15+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -2376,7 +2376,7 @@ msgstr "Citat"
 #: ../src/gen/lib/notetype.py:83 ../src/gen/plug/_pluginreg.py:74
 #: ../src/GrampsLogger/_ErrorView.py:112
 msgid "Report"
-msgstr "Rapportera"
+msgstr "Rapport"
 
 #: ../src/gen/lib/notetype.py:87
 msgid "Person Note"
