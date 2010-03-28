@@ -2676,7 +2676,7 @@ class MediaPage(BasePage):
                                                                        # a max of zero is ignored
 
                             scale_h = (float(max_height)/height) or 1
-                            scale = min(scale_w, scale_h)
+                            scale = min(scale_w, scale_h, 1.0)
                             new_width = int(width*scale)
                             new_height = int(height*scale)
                             if scale < 0.8:
