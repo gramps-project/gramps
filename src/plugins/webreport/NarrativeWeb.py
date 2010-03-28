@@ -6,7 +6,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Copyright (C) 2007-2009  Gary Burton <gary.burton@zen.co.uk>
-# Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
+# Copyright (C) 2007-2010  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
 # Copyright (C) 2008-2010  Rob G. Healey <robhealey1@gmail.com>	
@@ -891,7 +891,7 @@ class BasePage(object):
                         self.up)
 
                     home_person_name = self.get_name(home_person)
-                    msg += _(' Created for <a href = "%s">%s</a>') % (
+                    msg += '<br/>' + _(' Created for <a href = "%s">%s</a>') % (
                                 home_person_url, home_person_name)
 
             # creation date
