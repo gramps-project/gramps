@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2003  Donald N. Allingham
 # Copyright (C) 2010       Benny Malengier
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,12 +62,13 @@ class ColumnOrder(gtk.VBox):
     Column ordering selection widget
     """
 
-    def __init__(self, config, column_names, on_apply, tree=False):
+    def __init__(self, config, column_names, widths, on_apply, tree=False):
         """
         Create the Column Ordering widget based on config
         
         config: a configuration file with column data
         column_names: translated names for the possible columns
+        widths: the widths of the visible columns
         on_apply: function to run when apply is clicked
         tree: are the columns for a treeview, if so, the first columns is not
             changable
@@ -132,8 +134,11 @@ class ColumnOrder(gtk.VBox):
         self.oldsize = self.config.get('columns.size')
         self.oldvis =  self.config.get('columns.visible')
         colord = []
+        index = 0
         for val, size in zip(self.oldorder, self.oldsize):
             if val in self.oldvis:
+                size = widths[index]
+                index += 1
                 colord.append((1, val, size))
             else:
                 colord.append((0, val, size))
