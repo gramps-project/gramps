@@ -136,8 +136,8 @@ class PlaceBaseView(ListView):
         self.mapservicedata = {}
 
         ListView.__init__(
-            self, title, dbstate, uistate, self.COLUMN_NAMES,
-            len(self.COLUMN_NAMES), 
+            self, title, dbstate, uistate,
+            self.COLUMN_NAMES, 13, 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
             Bookmarks.PlaceBookmarks, nav_group,
