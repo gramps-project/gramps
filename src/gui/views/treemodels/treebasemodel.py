@@ -670,8 +670,11 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Add a row to the model.
         """
         cput = time.clock()
-        data = self.map(handle)
-        self.add_row(handle, data)
+        if not self.search or \
+                (self.search and self.search.match(handle, self.db)):
+            #row needs to be added to the model
+            data = self.map(handle)
+            self.add_row(handle, data)
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
                     str(time.clock() - cput) + ' sec')
@@ -681,9 +684,11 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Delete a row from the model.
         """
         cput = time.clock()
-        self.clear_cache(handle)
-
         node = self.get_node(handle)
+        if node is None:
+            return # row not currently displayed
+
+        self.clear_cache(handle)
         parent = self.nodemap.node(node.parent)
         self.remove_node(node)
         
@@ -706,6 +711,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Update a row in the model.
         """
+        if self.get_node(handle) is None:
+            return # row not currently displayed
+
         self.delete_row_by_handle(handle)
         self.add_row_by_handle(handle)
         
