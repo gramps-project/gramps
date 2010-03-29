@@ -1922,7 +1922,7 @@ msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Chyba: neznámy typ \"%(format)s\" importovaného súboru: %(filename)s"
 
 #: ../src/cli/arghandler.py:174
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
