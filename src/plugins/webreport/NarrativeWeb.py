@@ -36,7 +36,6 @@ Narrative Web Page generator.
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import with_statement
 import gc
 import os
 import sys
@@ -69,7 +68,7 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import gen.lib
-from gen.lib import UrlType, EventType, Person, date, Date, ChildRefType, \
+from gen.lib import UrlType, date, Date, \
                     FamilyRelType, NameType, Name
 import const
 import Sort
@@ -1904,7 +1903,7 @@ class IndividualListPage(BasePage):
                             birth = db.get_event_from_handle(birth_ref.ref)
                             if birth:
                                 birth_date = _dd.display(birth.get_date_object())
-                                if birth.get_type() == EventType.BIRTH:
+                                if birth.get_type() == gen.lib.EventType.BIRTH:
                                     tcell += birth_date
                                 else:
                                     tcell += Html('em', birth_date)
@@ -2065,7 +2064,7 @@ class SurnamePage(BasePage):
                             birth = db.get_event_from_handle(birth_ref.ref)
                             if birth:  
                                 birth_date = _dd.display(birth.get_date_object())
-                                if birth.get_type() == EventType.BIRTH:
+                                if birth.get_type() == gen.lib.EventType.BIRTH:
                                     tcell += birth_date
                                 else:
                                     tcell += Html('em', birth_date)
@@ -3526,9 +3525,9 @@ class IndividualPage(BasePage):
     This class is used to write HTML for an individual.
     """
     gender_map = {
-        Person.MALE    : _('male'),
-        Person.FEMALE  : _('female'),
-        Person.UNKNOWN : _('unknown'),
+        gen.lib.Person.MALE    : _('male'),
+        gen.lib.Person.FEMALE  : _('female'),
+        gen.lib.Person.UNKNOWN : _('unknown'),
         }
 
     def __init__(self, report, title, person, ind_list, place_list, src_list, attribute_list):
@@ -3655,9 +3654,9 @@ class IndividualPage(BasePage):
         top = center - _HEIGHT/2
         xoff = _XOFFSET+col*(_WIDTH+_HGAP)
         sex = person.gender
-        if sex == Person.MALE:
+        if sex == gen.lib.Person.MALE:
             divclass = "male"
-        elif sex == Person.FEMALE:
+        elif sex == gen.lib.Person.FEMALE:
             divclass = "female"
         else:
             divclass = "unknown"
@@ -4117,7 +4116,7 @@ class IndividualPage(BasePage):
         else:
             person_name = self.get_name(person)
             tcell2 += person_name
-        if rel and rel != ChildRefType(ChildRefType.BIRTH):
+        if rel and rel != gen.lib.ChildRefType(gen.lib.ChildRefType.BIRTH):
             tcell2 += '&nbsp;&nbsp;&nbsp;(%s)' % str(rel)
 
         # return table columns to its caller
@@ -4448,9 +4447,9 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         if reltype == FamilyRelType.MARRIED:
-            if gender == Person.FEMALE:
+            if gender == gen.lib.Person.FEMALE:
                 relstr = _("Husband")
-            elif gender == Person.MALE:
+            elif gender == gen.lib.Person.MALE:
                 relstr = _("Wife")
             else:
                 relstr = _PARTNER
@@ -4751,8 +4750,10 @@ class AddressBookListPage(BasePage):
 
             # Internet Address Book Page message
             msg = _("This page contains an index of all the individuals in the "
-                    "database, sorted by their surname. Selecting the person&#8217;s "
-                    "name will take you to their Address Book&#8217;s individual page.")
+                "database, sorted by their surname, with one of the "
+                "following: Address, Residence, or Web Links. Selecting the "
+                "person&#8217;s name will take you to their Address "
+                "Book&#8217;s individual page.")
             addressbooklist += Html("p", msg, id = "description")
 
             # begin Address Book table
@@ -4765,16 +4766,15 @@ class AddressBookListPage(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                header_row = [
-                    ["&nbsp;",       "RowLabel"],
-                    [_("Name"),      "Name"],
-                    [_("Address"),   "Address"],
-                    [_("Residence"), "Residence"],
-                    [_("Web Links"), "WebLinks"] ]
-
                 trow.extend(
                     Html("th", label, class_="Column" + colclass, inline=True)
-                    for (label, colclass) in header_row)
+                    for (label, colclass) in [
+                        ["&nbsp;",       "RowLabel"],
+                        [_("Name"),      "Name"],
+                        [_("Address"),   "Address"],
+                        [_("Residence"), "Residence"],
+                        [_("Web Links"), "WebLinks"] ]
+                        )
 
                 tbody = Html("tbody")
                 table += tbody
@@ -6076,7 +6076,7 @@ def _get_short_name(gender, name):
     prefix = name.get_surname_prefix()
     if prefix:
         short_name = prefix + " " + short_name
-    if gender == Person.FEMALE:
+    if gender == gen.lib.Person.FEMALE:
         return short_name
     else: 
         suffix = name.get_suffix()
