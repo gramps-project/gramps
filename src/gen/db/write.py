@@ -1298,7 +1298,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return
         name = unicode(person.get_primary_name().get_surname())
         i = bisect.bisect(self.surname_list, name)
-        if 0 < i < len(self.surname_list):
+        if 0 < i <= len(self.surname_list):
             if self.surname_list[i-1] != name:
                 self.surname_list.insert(i, name)
         else:
