@@ -101,6 +101,7 @@ class DbLoader(CLIDbLoader):
         self.uistate.progress.hide()
 
     def import_file(self):
+        self.import_info = None
         # First thing first: import is a batch transaction
         # so we will lose the undo history. Warn the user.
 
