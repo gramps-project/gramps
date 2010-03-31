@@ -68,8 +68,7 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import gen.lib
-from gen.lib import UrlType, date, Date, \
-                    FamilyRelType, NameType, Name
+from gen.lib import UrlType, date, FamilyRelType
 import const
 import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
@@ -792,18 +791,18 @@ class BasePage(object):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for name in names:
-            if int(name.get_type()) == NameType.MARRIED:
+            if int(name.get_type()) == gen.lib.NameType.MARRIED:
                 married_name = name
                 break # use first
         # Now, decide which to use:
         if maiden_name is not None:
             if married_name is not None:
-                name = Name(married_name)
+                name = gen.lib.Name(married_name)
             else:
-                name = Name(primary_name)
+                name = gen.lib.Name(primary_name)
                 name.set_surname(maiden_name)
         else:
-            name = Name(primary_name)
+            name = gen.lib.Name(primary_name)
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
@@ -2384,7 +2383,7 @@ class EventListPage(BasePage):
                         # event date
                         tcell = Html("td", class_ = "ColumnDate", inline = True)
                         trow += tcell
-                        if date and date is not Date.EMPTY:
+                        if date and date is not gen.lib.Date.EMPTY:
                             tcell += _dd.display(date)
                         else:
                             tcell += "&nbsp;"   
@@ -2788,7 +2787,7 @@ class MediaPage(BasePage):
 
                     # media date
                     date = media.get_date_object()
-                    if date and date is not Date.EMPTY:
+                    if date and date is not gen.lib.Date.EMPTY:
                         trow = Html("tr") + (
                             Html("td", DHEAD, class_ = "ColumnAttribute", inline = True),
                             Html("td", _dd.display(date), class_ = "ColumnValue", inline = True)
@@ -3994,14 +3993,14 @@ class IndividualPage(BasePage):
                 table += trow
 
                 # Age At Death???
-                birth_date = Date.EMPTY
+                birth_date = gen.lib.Date.EMPTY
                 birth_ref = self.person.get_birth_ref()
                 if birth_ref:
                     birth = db.get_event_from_handle(birth_ref.ref)
                     if birth: 
                         birth_date = birth.get_date_object()
 
-                if birth_date and birth_date is not Date.EMPTY:
+                if birth_date and birth_date is not gen.lib.Date.EMPTY:
                     alive = Utils.probably_alive(self.person, db, date.Today() )
 
                     death_date = _find_death_date(db, self.person)
@@ -6221,7 +6220,7 @@ def add_birthdate(db, childlist):
             if birth:
                 birth_date = birth.get_date_object()
         else:
-            birth_date = Date(2199, 12, 31)
+            birth_date = gen.lib.Date(2199, 12, 31)
         sorted_children.append((birth_date, child_handle))
 
     # return the list of child handles and their birthdates
