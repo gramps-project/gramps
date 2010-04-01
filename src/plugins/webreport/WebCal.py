@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -322,7 +321,7 @@ class WebCalReport(Report):
 
         # copy Navigation Menu Layout if Blue or Visually is being used
         if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
-            fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
+            fname = os.path.join(const.DATA_DIR, "Web_Navigation-Horizontal.css")
             self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy print stylesheet

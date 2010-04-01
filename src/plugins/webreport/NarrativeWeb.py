@@ -5162,9 +5162,9 @@ class NavWebReport(Report):
         # copy Navigation Menu Layout if Blue or Visually is being used
         if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
             if self.navigation == "Horizontal":
-                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Horizontal.css")
+                fname = os.path.join(const.DATA_DIR, "Web_Navigation-Horizontal.css")
             else:
-                fname = os.path.join(const.DATA_DIR, "Web_Alphabet-Vertical.css")
+                fname = os.path.join(const.DATA_DIR, "Web_Navigation-Vertical.css")
             self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy printer stylesheet
