@@ -79,6 +79,10 @@ class SearchBar(object):
         return self.filterbar
         
     def setup_filter( self, column_data ):
+        """
+        column_data is a list of tuples:
+        [(trans_col_name, index, use_exact), ...]
+        """
         self.filter_model.clear()
         old_value = self.filter_list.get_active()
         
@@ -88,11 +92,17 @@ class SearchBar(object):
         self.filter_list.add_attribute(cell, 'text', 0)
 
         maxval = 0
-        for col, index in column_data:
-            rule = _("%s contains") % col
+        for col, index, exact in column_data:
+            if exact:
+                rule = _("%s is") % col
+            else:
+                rule = _("%s contains") % col
             self.filter_model.append(row=[rule, index, False])
             maxval += 1
-            rule = _("%s does not contain") % col
+            if exact:
+                rule = _("%s is not") % col
+            else:
+                rule = _("%s does not contain") % col
             self.filter_model.append(row=[rule, index, True])
             maxval += 1
             

@@ -231,7 +231,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         Builds the default filters and add them to the filter bar.
         """
-        cols = [(pair[3], pair[1])
+        cols = [(pair[3], pair[1], pair[0] in self.eaxct_search())
                     for pair in self.column_order()
                         if pair[0]
                 ]

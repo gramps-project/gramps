@@ -358,7 +358,7 @@ class ListView(NavigationView):
     def setup_filter(self):
         """Build the default filters and add them to the filter menu."""
         self.search_bar.setup_filter(
-            [(self.colinfo[pair[1]], pair[1])
+            [(self.colinfo[pair[1]], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order() if pair[0]])
 
     ####################################################################
