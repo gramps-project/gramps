@@ -98,6 +98,9 @@ from libhtmlbackend import HtmlBackend
 
 from libgedcom import make_gedcom_date
 
+# import library to access SQL database
+from libaccess import *
+
 #------------------------------------------------------------------------
 #
 # constants
@@ -326,6 +329,12 @@ class BasePage(object):
         return trow
 
     def get_citation_links(self, source_ref_list):
+        """
+        get citation link from the source reference list
+
+        @param: source_ref_list = list of source references
+        """
+
         gid_list = []
         lnk = (self.report.cur_fname, self.page_title, self.gid)
 
@@ -743,18 +752,23 @@ class BasePage(object):
         # return summaryarea division to its callers
         return summaryarea
 
-    def addressbook_link(self, handle, up = False):
-        """ createsa hyperlink for an address book link based on person's handle """
-        db = self.report.database
+    def addressbook_link(self, person_handle, up = False):
+        """
+        createsa hyperlink for an address book link based on person's handle
 
-        url = self.report.build_url_fname_html(handle, "addr", up)
-        person = db.get_person_from_handle(handle)
-        person_name = self.get_name(person)
+        @param: person_handle = person's handle from the database
+        #param: up = rather to add subdirs or not?
+        """
 
-        addr_hyper = Html("a", person_name, href = url, title = html_escape(person_name))
+        url = self.report.build_url_fname_html(person_handle, "addr", up)
+        person = self.report.database.get_person_from_handle(person_handle)
+        if person.gender == gen.lib.Person.FEMALE:
+            person_name = self.get_name(person, person.get_primary_name().get_surname() )
+        else:
+            person_name = self.get_name(person)
 
         # return addressbook hyperlink to its caller
-        return addr_hyper
+        return Html("a", person_name, href = url, title = html_escape(person_name))
 
     def get_copyright_license(self, copyright, up = False):
         """
@@ -781,6 +795,9 @@ class BasePage(object):
         """ 
         Return person's name, unless maiden_name given, unless married_name 
         listed. 
+
+        @param: person = person object from database
+        @param: maiden_name = Female's family surname
         """
 
         # name_format is the name format that you set in options
@@ -794,6 +811,7 @@ class BasePage(object):
             if int(name.get_type()) == gen.lib.NameType.MARRIED:
                 married_name = name
                 break # use first
+
         # Now, decide which to use:
         if maiden_name is not None:
             if married_name is not None:
@@ -1027,7 +1045,7 @@ class BasePage(object):
             ('contact',                 _("Contact"),               self.report.use_contact),
             ('sources',                 SHEAD,                      True),
             ('repositories',            _("Repositories"),          inc_repos),
-            ("addressbook",             _("Address Book"),          self.report.addressbook)
+            ("addressbook",             _("Address Book"),          self.report.inc_addressbook)
                 ]
 
         navigation = Html("div", id = 'navigation')
@@ -4731,7 +4749,6 @@ class AddressBookListPage(BasePage):
         address/ Residence events
 
         @param: has_url_address -- a list of (sort_name, person_handle, has_add, has_rtes, and has_url
-
         """
         BasePage.__init__(self, report, title)
         db = report.database
@@ -4740,8 +4757,7 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header("%s - %s" % (title, 
-            _("Address Book")), _KEYPERSON)
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
@@ -4782,13 +4798,10 @@ class AddressBookListPage(BasePage):
                 index, countadd, countres, counturl, countfb = 0, 0, 0, 0, 0
 
                 for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
-                    person = db.get_person_from_handle(person_handle)
-                    index += 1
 
                     address = None
                     residence = None
                     weblinks = None
-                    facebook = None
 
                     # has address but no residence event
                     if has_add and not has_res:
@@ -4815,22 +4828,21 @@ class AddressBookListPage(BasePage):
                     trow = Html("tr")
                     tbody += trow
 
-                    header_row = [
-                        ["RowLabel",  index],
-                        ["Name",      self.addressbook_link(person_handle)],
-                        ["Address",   address],
-                        ["Residence", residence],
-                        ["WebLinks",  weblinks] ]
- 
                     trow.extend(
-                        Html("td", data or "&nbsp;",
-                            class_="Column" + colclass, inline=True)
-                        for (colclass, data) in header_row)
+                        Html("td", data or "&nbsp;", class_="Column" + colclass, inline = True)
+                        for (colclass, data) in [
+                            ["RowLabel",  index + 1],
+                            ["Name",      self.addressbook_link(person_handle)],
+                            ["Address",   address],
+                            ["Residence", residence],
+                            ["WebLinks",  weblinks] ]
+                            )
+                    index += 1
 
                 # create totals row for table
                 trow = Html("tr", class_ = "Totals") + (
                     Html("td", _("Total"), classs_ = "ColumnRowlabel", inline = True),
-                    Html("td", index, class_ = "ColumnName", inline = True),
+                    Html("td", "&nbsp;", class_ = "ColumnName", inline = True),
                     Html("td", countadd, class_ = "ColumnAddress", inline = True),
                     Html("td", countres, class_ = "ColumnResidence", inline = True),
                     Html("td", counturl, class_ = "ColumnWebLinks", inline = True)
@@ -4977,7 +4989,7 @@ class NavWebReport(Report):
         self.birthorder = self.options['birthorder']
 
         # get option for Internet Address Book
-        self.addressbook = self.options["addressbook"]
+        self.inc_addressbook = self.options["inc_addressbook"]
 
         if self.use_home:
             self.index_fname = "index"
@@ -5057,6 +5069,9 @@ class NavWebReport(Report):
 
         self.progress = ProgressMeter(_("Narrated Web Site Report"), '')
 
+        # initialize database for use with libaccess library
+        init(self.database)
+
         # Build the person list
         ind_list = self.build_person_list()
 
@@ -5075,7 +5090,7 @@ class NavWebReport(Report):
         # build classes SurnameListPage and SurnamePage
         self.surname_pages(ind_list)
 
-        # build PlaceListPage and PlacePage
+        # build classes PlaceListPage and PlacePage
         self.place_pages(place_list, source_list)
 
         # build classes EventListPage and EventPage
@@ -5085,23 +5100,24 @@ class NavWebReport(Report):
         # build classes SourceListPage and SourcePage
         self.source_pages(source_list)
 
-        # build MediaListPage and MediaPage
+        # build classes MediaListPage and MediaPage
         if self.inc_gallery:
             self.gallery_pages(source_list)
 
-        # Build source pages a second time to pick up sources referenced
+        # Build classes source pages a second time to pick up sources referenced
         # by galleries
         self.source_pages(source_list)
 
         # build classes RepositoryListPage and RepositoryPage
-        repolist = self.database.get_repository_handles()
-        if len(repolist):
-            self.repository_pages(repolist)
+        if self.inc_repository:
+            repolist = self.database.get_repository_handles()
+            if len(repolist):
+                self.repository_pages(repolist)
 
 
-        # build class InternetAddressBook
-        if self.addressbook:
-            self.address_book_page(ind_list)
+        # build classes ddressBookList and AddressBookPage
+        if self.inc_addressbook:
+            self.addressbook_pages(ind_list)
 
         # if an archive is being used, close it?
         if self.archive:
@@ -5363,42 +5379,45 @@ class NavWebReport(Report):
         will create RepositoryPage() and RepositoryListPage()
         """
 
-        db = self.database
         repos_dict = {}
 
         # Sort the repositories
         for handle in repolist:
-            repo = db.get_repository_from_handle(handle)
+            repo = self.database.get_repository_from_handle(handle)
             key = repo.name + str(repo.get_gramps_id())
             repos_dict[key] = (repo, handle)
             
-        keys = sorted(repos_dict, key=locale.strxfrm)
+        keys = sorted(repos_dict, key = locale.strxfrm)
 
         # set progress bar pass for Repositories
-        self.progress.set_pass(_('Creating repository pages'), len(repos_dict))
+        repo_size = len(repos_dict)
+        self.progress.set_pass(_('Creating repository pages'), repo_size)
 
         # RepositoryListPage Class
         RepositoryListPage(self, self.title, repos_dict, keys)
 
+        count = 1
         for index, key in enumerate(keys):
+            self.progress.set_header(_("Creating repository page %d of %d" % (count, repo_size)))
             (repo, handle) = repos_dict[key]
 
             # RepositoryPage Class
             RepositoryPage(self, self.title, repo, handle, repo.gramps_id)
 
+            # increment progress bar 
             self.progress.step()
+            count += 1
 
-    def address_book_page(self, ind_list):
+    def addressbook_pages(self, ind_list):
         """
         Creates classes AddressBookListPage and AddressBookPage
         """
 
-        db = self.database
         has_url_address = []
 
         for person_handle in ind_list:
 
-            person = db.get_person_from_handle(person_handle)
+            person = self.database.get_person_from_handle(person_handle)
             addrlist = person.get_address_list()
             evt_ref_list = person.get_event_ref_list()
             urllist = person.get_url_list()
@@ -5406,13 +5425,14 @@ class NavWebReport(Report):
             has_add = None
             has_url = None
             has_res = None
+
             if addrlist:
                 has_add = addrlist
             if urllist:
                 has_url = urllist
 
             for event_ref in evt_ref_list:
-                event = db.get_event_from_handle(event_ref.ref)
+                event = self.database.get_event_from_handle(event_ref.ref)
 
                 # get event type
                 evt_type = str(event.get_type() )
@@ -5431,14 +5451,20 @@ class NavWebReport(Report):
         if has_url_address:
             has_url_address.sort()
 
-            self.progress.set_pass(_("Creating address book pages ..."), len(has_url_address))
+            addr_size = len( has_url_address )
+            self.progress.set_pass(_("Creating address book pages ..."), addr_size)
 
             AddressBookListPage(self, self.title, has_url_address)
 
+            count = 1 
             for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
-                self.progress.step()
+                self.progress.set_header(_("Creating address book page %d of %d" % (count, addr_size))) 
 
                 AddressBookPage(self, self.title, person_handle, has_add, has_res, has_url)
+
+                # increment progress bar
+                self.progress.step()
+                count += 1
 
     def build_subdirs(self, subdir, fname, up = False):
         """
@@ -5899,8 +5925,7 @@ class NavWebOptions(MenuReportOptions):
         #menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
 
         birthorder = BooleanOption(_('Sort all children in birth order'), False)
-        birthorder.set_help(_('Whether to display children in birth order'
-                              ' or in entry order?'))
+        birthorder.set_help(_('Whether to display children in birth order or in entry order?'))
         menu.add_option(category_name, 'birthorder', birthorder)
 
         inc_events = BooleanOption(_('Include event pages'), False)
@@ -5915,10 +5940,10 @@ class NavWebOptions(MenuReportOptions):
         inc_gendex.set_help(_('Whether to include a GENDEX file or not'))
         menu.add_option(category_name, 'inc_gendex', inc_gendex)
 
-        addressbook = BooleanOption(_("Include address book pages"), False)
-        addressbook.set_help(_("Whether to add Address Book pages or not which can include"
-                                " e-mail and website addresses and personal address/ residence events?"))
-        menu.add_option(category_name, "addressbook", addressbook)
+        inc_addressbook = BooleanOption(_("Include address book pages"), False)
+        inc_addressbook.set_help(_("Whether to add Address Book pages or not which can include"
+                                    " e-mail and website addresses and personal address/ residence events?"))
+        menu.add_option(category_name, "inc_addressbook", inc_addressbook)
 
     def __archive_changed(self):
         """

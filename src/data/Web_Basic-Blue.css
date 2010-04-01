@@ -870,8 +870,7 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
 ------------------------------------------------------ */
 div#AddressBookList, AddressBookDetail {
     margin: 0;
-    padding: 0 14px 0 14px;
-    width: 965px;
+    padding: 0;
 }
 div#AddressBookList table.addressbook {
 
@@ -1105,7 +1104,7 @@ div#Addresses {
     padding: 0;
 }
 div#Addresses table.infolist {
-    font-size: 12px;
+    font-size: 10px;
     background-color: #70B1ED;
 }
 div#Addresses table.infolist tbody tr td {
@@ -1124,7 +1123,7 @@ div#Addresses table.infolist tbody tr td.ColumnCounty {
     width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnState {
-    width: 12%;
+    width: 8%;
 }
 div#Addresses table.infolist tbody tr td.ColumnCntry {
     width: 5%;
@@ -1133,7 +1132,7 @@ div#Addresses table.infolist tbody tr td.ColumnPostalcode {
     width: 10%;
 }
 div#Addresses table.infolist tbody tr td.ColumnPhone {
-    width: 15%;
+    width: 12%;
 }
 
 /* Subsections : Gallery
