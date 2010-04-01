@@ -606,6 +606,9 @@ class ProbablyAlive(object):
         def descendants_too_old (person, years):
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
+                if not family: 
+                    # can happen with LivingProxyDb(PrivateProxyDb(db))
+                    continue
                 for child_ref in family.get_child_ref_list():
                     child_handle = child_ref.ref
                     child = self.db.get_person_from_handle(child_handle)
@@ -675,6 +678,9 @@ class ProbablyAlive(object):
             family_handle = person.get_main_parents_family_handle()
             if family_handle:                
                 family = self.db.get_family_from_handle(family_handle)
+                if not family: 
+                    # can happen with LivingProxyDb(PrivateProxyDb(db))
+                    return (None, None, "", None)
                 father_handle = family.get_father_handle()
                 if father_handle:
                     father = self.db.get_person_from_handle(father_handle)
