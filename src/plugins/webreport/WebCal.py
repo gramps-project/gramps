@@ -1105,11 +1105,12 @@ class WebCalReport(Report):
                 birth_date = birth_event.get_date_object()
 
             # determine birthday information???
-            if (self.birthday and birth_date is not Date.EMPTY):
+            if (self.birthday and birth_date is not Date.EMPTY
+                and birth_date.is_valid()):
 
                 year = birth_date.get_year() or this_year
-                month = birth_date.get_month() or 1
-                day = birth_date.get_day() or 1
+                month = birth_date.get_month()
+                day = birth_date.get_day()
 
                 # date to figure if someone is still alive
                 # current year of calendar, month nd day is their birth month and birth day 
@@ -1167,7 +1168,7 @@ class WebCalReport(Report):
                         marriage_event = get_marriage_event(db, fam)
                         if marriage_event:
                             event_date = marriage_event.get_date_object()
-                            if event_date is not Date.EMPTY:
+                            if event_date is not Date.EMPTY and event_date.is_valid():
                                 year = event_date.get_year()
                                 month = event_date.get_month()
                                 day = event_date.get_day()
