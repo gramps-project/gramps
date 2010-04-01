@@ -224,7 +224,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def __open_db(self, file_name, table_name, dbtype=db.DB_HASH, flags=0):
         dbmap = db.DB(self.env)
-        dbmap.set_pagesize(DBPAGE)
         dbmap.set_flags(flags)
 
         fname = os.path.join(file_name, table_name + DBEXT)
@@ -237,7 +236,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def __open_shelf(self, file_name, table_name, dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
-        dbmap.db.set_pagesize(DBPAGE)
 
         fname = os.path.join(file_name, table_name + DBEXT)
 
