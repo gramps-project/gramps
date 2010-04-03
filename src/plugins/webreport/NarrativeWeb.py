@@ -348,7 +348,7 @@ class BasePage(object):
                 index, key = self.bibli.add_reference(ref)
                 id_ = "%d%s" % (index+1, key)
                 text += '<a href="#sref%s">%s</a>' % (id_, id_)
-            text += "</sup>"
+            text += "</sup> "
 
         # return citation list text to its callers
         return text
