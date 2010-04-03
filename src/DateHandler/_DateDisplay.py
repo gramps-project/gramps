@@ -139,12 +139,17 @@ class DateDisplay(object):
         Formats the extra items (calendar, newyear) for a date.
         """
         scal = self.calendar[cal]
-        snewyear = self.newyear[newyear]
+        if isinstance(newyear, int) and newyear <= len(self.newyear):
+            snewyear = self.newyear[newyear]
+        elif isinstance(newyear, (list, tuple)):
+            snewyear = "%s-%s" % (newyear[0], newyear[1])
+        else:
+            snewyear = "Err"
         retval = ""
         for item in [scal, snewyear]:
             if item:
                 if retval:
-                    retval += ","
+                    retval += ", "
                 retval += item
         if retval:
             return " (%s)" % retval

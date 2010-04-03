@@ -119,16 +119,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="newyear">
+                      <object class="GtkEntry" id="newyear">
                         <property name="visible">True</property>
-                        <property name="model">newyear_model</property>
+                        <property name="tooltip_text"
+                        translatable="yes">Month-Day of first day of new year (e.g., "Jan1", "Mar1", "3-1", "3-25")</property>
                         <accelerator key="w" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
-                        <child>
-                          <object class="GtkCellRendererText" id="renderer1"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
                       </object>
                       <packing>
                         <property name="position">3</property>
@@ -598,26 +593,6 @@
       <!-- column-name gchararray1 -->
       <column type="gchararray"/>
     </columns>
-  </object>
-  <object class="GtkListStore" id="newyear_model">
-    <columns>
-      <!-- column-name gchararray2 -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">January 1</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">March 1</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">March 25</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">September 1</col>
-      </row>
-    </data>
   </object>
   <object class="GtkListStore" id="quality_model">
     <columns>

@@ -317,20 +317,25 @@ class DateParser(object):
         self._imon_str = self.re_longest_first(self.islamic_to_int.keys())
         self._smon_str = self.re_longest_first(self.swedish_to_int.keys())
         self._cal_str  = self.re_longest_first(self.calendar_to_int.keys())
-        self._ny_str = self.re_longest_first(self.newyear_to_int.keys())
+        self._ny_str   = self.re_longest_first(self.newyear_to_int.keys())
 
         # bce, calendar type and quality may be either at the end or at
         # the beginning of the given date string, therefore they will
         # be parsed from the middle and will be in match.group(2).
-        self._bce_re   = re.compile("(.*)\s+%s( ?.*)" % self._bce_str)
+        self._bce_re    = re.compile("(.*)\s+%s( ?.*)" % self._bce_str)
 
-        self._cal      = re.compile("(.*)\s+\(%s\)( ?.*)" % self._cal_str,
-                                    re.IGNORECASE)
-        self._calny    = re.compile("(.*)\s+\(%s,%s\)( ?.*)" % (self._cal_str,
-                                                                self._ny_str),
-                                   re.IGNORECASE)
-        self._ny    = re.compile("(.*)\s+\(%s\)( ?.*)" % self._ny_str,
-                                 re.IGNORECASE)
+        self._cal       = re.compile("(.*)\s+\(%s\)( ?.*)" % self._cal_str,
+                                     re.IGNORECASE)
+        self._calny     = re.compile("(.*)\s+\(%s,\s*%s\)( ?.*)" % (self._cal_str,
+                                                                    self._ny_str),
+                                     re.IGNORECASE)
+        self._calny_iso = re.compile("(.*)\s+\(%s,\s*(\d{1,2}-\d{1,2})\)( ?.*)" % self._cal_str,
+                                     re.IGNORECASE)
+
+        self._ny        = re.compile("(.*)\s+\(%s\)( ?.*)" % self._ny_str,
+                                     re.IGNORECASE)
+        self._ny_iso    = re.compile("(.*)\s+\((\d{1,2}-\d{1,2})\)( ?.*)")
+
         self._qual     = re.compile("(.* ?)%s\s+(.+)" % self._qual_str,
                                     re.IGNORECASE)
         
@@ -562,6 +567,12 @@ class DateParser(object):
             cal = self.calendar_to_int[match.group(2).lower()]
             newyear = self.newyear_to_int[match.group(3).lower()]
             text = match.group(1) + match.group(4)
+        else:
+            match = self._calny_iso.match(text)
+            if match:
+                cal = self.calendar_to_int[match.group(2).lower()]
+                newyear = tuple([int(s) for s in match.group(3).split("-")])
+                text = match.group(1) + match.group(4)
         return (text, cal, newyear)
 
     def match_newyear(self, text, newyear):
@@ -574,6 +585,11 @@ class DateParser(object):
         if match:
             newyear = self.newyear_to_int[match.group(2).lower()]
             text = match.group(1) + match.group(3)
+        else:
+            match = self._ny_iso.match(text)
+            if match:
+                newyear = tuple([int(s) for s in match.group(2).split("-")])
+                text = match.group(1) + match.group(3)
         return (text, newyear)
 
     def match_quality(self, text, qual):

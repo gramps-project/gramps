@@ -1012,16 +1012,7 @@ class Date(object):
         else:
             pref = ""
 
-        if self.newyear == Date.NEWYEAR_JAN1:
-            ny = ""
-        elif self.newyear == Date.NEWYEAR_MAR1:
-            ny = "Mar1"
-        elif self.newyear == Date.NEWYEAR_MAR25:
-            ny = "Mar25"
-        elif self.newyear == Date.NEWYEAR_SEP1:
-            ny = "Sep1"
-        else:
-            ny = "Err"
+        ny = self.newyear_str()
             
         if self.calendar != Date.CAL_GREGORIAN:
             if ny:
@@ -1052,6 +1043,46 @@ class Date(object):
                 self.dateval[Date._POS_YR], self.dateval[Date._POS_MON], 
                 self.dateval[Date._POS_DAY])
         return "%s%s%s%s" % (qual, pref, val, cal)
+
+    def newyear_to_str(self):
+        """
+        Return the string representation of the newyear.
+        """
+        if self.newyear == Date.NEWYEAR_JAN1:
+            ny = ""
+        elif self.newyear == Date.NEWYEAR_MAR1:
+            ny = "Mar1"
+        elif self.newyear == Date.NEWYEAR_MAR25:
+            ny = "Mar25"
+        elif self.newyear == Date.NEWYEAR_SEP1:
+            ny = "Sep1"
+        elif isinstance(self.newyear, (list, tuple)):
+            ny = "%s-%s" % (self.newyear[0], self.newyear[1])
+        else:
+            ny = "Err"
+        return ny
+
+    def newyear_to_code(self, string):
+        """
+        Return the code of a newyear string.
+        """
+        string = string.strip().lower()
+        if string == "" or string == "jan1":
+            code = Date.NEWYEAR_JAN1
+        elif string == "mar1":
+            code = Date.NEWYEAR_MAR1
+        elif self.newyear == "mar25":
+            code = Date.NEWYEAR_MAR25
+        elif self.newyear == "sep1":
+            code = Date.NEWYEAR_SEP1
+        elif "-" in string:
+            try:
+                code = tuple([int(n) for n in string.split("-")])
+            except:
+                code = 0
+        else:
+            code = 0
+        return code
 
     def get_sort_value(self):
         """
@@ -1429,6 +1460,8 @@ class Date(object):
                      (DD, MM, YY, slash1, DD, MM, YY, slash2)
           text     - A text string holding either the verbatim user input
                      or a comment relating to the date.
+          newyear  - The newyear code, or tuple representing (month, day)
+                     of newyear day.
 
         The sort value is recalculated.
         """
@@ -1479,6 +1512,10 @@ class Date(object):
                 split = (3, 25)
             elif ny == Date.NEWYEAR_SEP1:
                 split = (9, 1)
+            elif isinstance(ny, (list, tuple)):
+                split = ny
+            else:
+                split = (0, 0)
             if (self.get_month(), self.get_day()) >= split:
                 d1 = Date(self.get_year(), 1, 1)
                 d1.set_calendar(self.calendar)

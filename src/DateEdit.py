@@ -186,7 +186,6 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         """
         Initiate and display the dialog.
         """
-
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
         
         # Create self.date as a copy of the given Date object.
@@ -240,7 +239,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         
         self.dual_dated = self.top.get_object('dualdated')
         self.new_year = self.top.get_object('newyear')
-        self.new_year.set_active(self.date.get_new_year())
+        self.new_year.set_text(self.date.newyear_to_str())
 
         # Disable second date controls if not compound date
         if not self.date.is_compound():
@@ -341,7 +340,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 self.start_year.get_value_as_int(),
                 self.dual_dated.get_active())
         calendar = self.calendar_box.get_active()
-        newyear = self.new_year.get_active()
+        newyear = self.date.newyear_to_code(self.new_year.get_text())
         return (quality, modifier, calendar, value, text, newyear)
 
     def switch_type(self, obj):
