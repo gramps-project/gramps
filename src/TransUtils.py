@@ -51,8 +51,12 @@ if "GRAMPSI18N" in os.environ:
     LOCALEDIR = os.environ["GRAMPSI18N"]
 elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
     LOCALEDIR = os.path.join(const.ROOT_DIR, "lang")
-else:
+elif os.path.exists(os.path.join(const.PREFIXDIR, "share/locale")):
     LOCALEDIR = os.path.join(const.PREFIXDIR, "share/locale")
+else: 
+    print 'Locale dir does not exist at' + os.path.join(const.PREFIXDIR, "share/locale")
+    print 'Running ./configure --prefix=YourPrefixDir might fix the problem' 
+    LOCALEDIR = None
 
 LOCALEDOMAIN = 'gramps'
 
@@ -237,6 +241,9 @@ def get_available_translations():
     """
     languages = ["en"]
     
+    if LOCALEDIR is None:
+        return languages
+
     for langdir in os.listdir(LOCALEDIR):
         mofilename = os.path.join( LOCALEDIR, langdir, 
                                    "LC_MESSAGES", "%s.mo" % LOCALEDOMAIN )
