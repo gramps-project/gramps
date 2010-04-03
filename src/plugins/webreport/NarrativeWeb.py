@@ -3333,7 +3333,6 @@ class DownloadPage(BasePage):
 
         # menu options for class
         # download and description #1
-        downloadnote = self.report.downloadnote
 
         dlfname1 = self.report.dl_fname1
         dldescr1 = self.report.dl_descr1
@@ -3356,90 +3355,90 @@ class DownloadPage(BasePage):
         with Html("div", class_ = "content", id = "Download") as download:
             body += download
 
-            # download page note
-            if downloadnote:
-                note = db.get_note_from_gramps_id(downloadnote)
-                note_text = self.get_note_format(note)
-                download += Html("p", note_text, id = "description")
+            msg = _("This page is for the user/ creator of this Family Tree/ "
+                "Narrative website to share a couple of files with you "
+                "regarding their family.  If there are any files listed "
+                "below, clicking on them will allow you to download them.")
+            download += Html("p", msg, id = "description")
 
-            # begin download table and table head
-            with Html("table", class_ = "infolist download") as table:
-                download += table
+            if dlfname1 or dlfname2:   
+                # begin download table and table head
+                with Html("table", class_ = "infolist download") as table:
+                    download += table
 
-                thead = Html("thead")
-                table += thead
+                    thead = Html("thead")
+                    table += thead
 
-                trow = Html("tr")
-                thead += trow
+                    trow = Html("tr")
+                    thead += trow
 
-                header_row = [
-                    (_("File Name"),     "Filename"),
-                    (DESCRHEAD,          "Description"),
-                    (_("License"),       "License"),
-                    (_("Last Modified"), "Modified") ]
+                    trow.extend(
+                        Html("th", label, class_ = colclass, inline = True)
+                        for (label, colclass) in [
+                            (_("File Name"),     "Filename"),
+                            (DESCRHEAD,          "Description"),
+                            (_("License"),       "License"),
+                            (_("Last Modified"), "Modified") ]
+                            ) 
 
-                trow.extend(
-                    Html("th", label, class_ = colclass, inline = True)
-                    for (label, colclass) in header_row)
+                    # if dlfname1 is not None, show it???
+                    if dlfname1:
 
-                # if dlfname1 is not None, show it???
-                if dlfname1:
+                        # table body
+                        tbody = Html("tbody")
+                        table += tbody
 
-                    # table body
-                    tbody = Html("tbody")
-                    table += tbody
+                        trow = Html("tr", id = 'Row01')
+                        tbody += trow
 
-                    trow = Html("tr", id = 'Row01')
-                    tbody += trow
+                        fname = os.path.basename(dlfname1)
+                        tcell = ( Html("td", class_ = "Filename") +
+                            Html("a", fname, href = dlfname1, alt = dldescr1)
+                            )
+                        trow += tcell
 
-                    fname = os.path.basename(dlfname1)
-                    tcell = ( Html("td", class_ = "Filename") +
-                        Html("a", fname, href = dlfname1, alt = dldescr1)
-                        )
-                    trow += tcell
+                        dldescr1 = dldescr1 or "&nbsp;"
+                        trow += Html("td", dldescr1, class_ = "Description", inline = True)
 
-                    dldescr1 = dldescr1 or "&nbsp;"
-                    trow += Html("td", dldescr1, class_ = "Description", inline = True)
+                        copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
+                        trow += Html("td", copyright, class_ = "License")
 
-                    copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
-                    trow += Html("td", copyright, class_ = "License")
+                        tcell = Html("td", class_ = "Modified", inline = True)
+                        trow += tcell 
+                        if os.path.exists(dlfname1):
+                            modified = os.stat(dlfname1).st_mtime
+                            last_mod = datetime.datetime.fromtimestamp(modified)
+                            tcell += last_mod
+                        else:
+                            tcell += "&nbsp;"
 
-                    tcell = Html("td", class_ = "Modified", inline = True)
-                    trow += tcell 
-                    if os.path.exists(dlfname1):
-                        modified = os.stat(dlfname1).st_mtime
-                        last_mod = datetime.datetime.fromtimestamp(modified)
-                        tcell += last_mod
-                    else:
-                        tcell += "&nbsp;"
+                    # if download filename #2, show it???
+                    if dlfname2:
 
-                # if download filename #2, show it???
-                if dlfname2:
+                        # begin row #2
+                        trow = Html("tr", id = 'Row02')
+                        tbody += trow
 
-                    # begin row #2
-                    trow = Html("tr", id = 'Row02')
-                    tbody += trow
+                        fname = os.path.basename(dlfname2)
+                        tcell = ( Html("td", class_ = "Filename") +
+                            Html("a", fname, href = dlfname2, alt = dldescr2)
+                            )  
+                        trow += tcell
 
-                    fname = os.path.basename(dlfname2)
-                    tcell = ( Html("td", class_ = "Filename") +
-                        Html("a", fname, href = dlfname2, alt = dldescr2)
-                        )  
-                    trow += tcell
+                        dldescr2 = dldescr2 or "&nbsp;"
+                        trow += Html("td", dldescr2, class_ = "Description", inline = True)
 
-                    dldescr2 = dldescr2 or "&nbsp;"
-                    trow += Html("td", dldescr2, class_ = "Description", inline = True)
+                        copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
+                        trow += Html("td", copyright, class_ = "License", inline = True)
 
-                    copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
-                    trow += Html("td", copyright, class_ = "License", inline = True)
-
-                    tcell = Html("td", id = 'Col04', class_ = "Modified",  inline = True)
-                    trow += tcell
-                    if os.path.exists(dlfname2):
-                        modified = os.stat(dlfname2).st_mtime
-                        last_mod = datetime.datetime.fromtimestamp(modified)
-                        tcell += last_mod
-                    else:
-                        tcell += "&nbsp;"
+                        tcell = Html("td", id = 'Col04', class_ = "Modified",  inline = True)
+                        trow += tcell
+                        if os.path.exists(dlfname2):
+                            modified = os.stat(dlfname2).st_mtime
+                            last_mod = datetime.datetime.fromtimestamp(modified)
+                            tcell += last_mod
+                        else:
+                            tcell += "&nbsp;"
 
         # clear line for proper styling
         # create footer section
