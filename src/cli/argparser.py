@@ -66,6 +66,7 @@ Application options
   -l                                     List Family Trees
   -L                                     List Family Trees in Detail
   -u, --force-unlock                     Force unlock of family tree
+  -s, --settings                         Show settings and versions
 """)
 
 #-------------------------------------------------------------------------

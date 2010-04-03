@@ -2,7 +2,9 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2009 Benny Malengier
+# Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2009-2010  Stephen George
+# Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -147,6 +149,93 @@ def build_user_paths():
         elif not os.path.isdir(path):
             os.mkdir(path)
 
+def show_settings():
+    """
+    Shows settings of all of the major components.
+    """
+    py_str = '%d.%d.%d' % sys.version_info[:3]
+    try:
+        import gtk
+        try:
+            gtkver_str = '%d.%d.%d' % gtk.gtk_version 
+        except : # any failure to 'get' the version
+            gtkver_str = 'unknown version'
+        try:
+            pygtkver_str = '%d.%d.%d' % gtk.pygtk_version
+        except :# any failure to 'get' the version
+            pygtkver_str = 'unknown version'
+    except ImportError:
+        gtkver_str = 'not found'
+        pygtkver_str = 'not found'
+    #exept TypeError: To handle back formatting on version split
+
+    try:
+        import gobject
+        try:
+            gobjectver_str = '%d.%d.%d' % gobject.pygobject_version
+        except :# any failure to 'get' the version
+            gobjectver_str = 'unknown version'
+
+    except ImportError:
+        gobjectver_str = 'not found'
+
+    try:
+        import cairo
+        try:
+            cairover_str = '%d.%d.%d' % cairo.version_info 
+        except :# any failure to 'get' the version
+            cairover_str = 'unknown version'
+
+    except ImportError:
+        cairover_str = 'not found'
+
+    try:
+        import bsddb
+        bsddb_str = bsddb.__version__
+    except:
+        bsddb_str = 'not found'
+
+    try: 
+        import const
+        gramps_str = const.VERSION
+    except:
+        gramps_str = 'not found'
+
+    if hasattr(os, "uname"):
+        operating_system = os.uname()[0]
+        kernel = os.uname()[2]
+    else:
+        operating_system = sys.platform
+        kernel = None
+
+    lang_str = os.environ.get('LANG','not set')
+    language_str = os.environ.get('LANGUAGE','not set')
+    grampsi18n_str = os.environ.get('GRAMPSI18N','not set')
+    grampsdir_str = os.environ.get('GRAMPSDIR','not set')
+
+    print "Gramps Settings:"
+    print "----------------"
+    print ' python    : %s' % py_str
+    print ' gramps    : %s' % gramps_str
+    print ' gtk++     : %s' % gtkver_str
+    print ' pygtk     : %s' % pygtkver_str
+    print ' gobject   : %s' % gobjectver_str
+    print ' bsddb     : %s' % bsddb_str
+    print ' cairo     : %s' % cairover_str
+    print ' o.s.      : %s' % operating_system
+    if kernel:
+        print ' kernel    : %s' % kernel
+    print
+    print "Environment settings:"
+    print "---------------------"
+    print ' LANG      : %s' % lang_str
+    print ' LANGUAGE  : %s' % language_str
+    print ' GRAMPSI18N: %s' % grampsi18n_str
+    print ' GRAMPSDIR : %s' % grampsdir_str
+    print ' PYTHONPATH:'
+    for folder in sys.path:
+        print "   ", folder
+
 def run():
     error = []
     
@@ -171,6 +260,11 @@ def run():
     
     #we start with parsing the arguments to determine if we have a cli or a
     # gui session
+
+    if "-s" in sys.argv or "--settings" in sys.argv:
+        show_settings()
+        return error
+
     from cli.argparser import ArgParser
     argpars = ArgParser(sys.argv)
     
