@@ -61,14 +61,14 @@ from collections import defaultdict
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".WebPage")
+log = logging.getLogger(".NarrativeWeb")
 
 #------------------------------------------------------------------------
 # GRAMPS module
 #------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import gen.lib
-from gen.lib import UrlType, date, FamilyRelType
+from gen.lib import UrlType, date, Date, FamilyRelType
 import const
 import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
@@ -97,9 +97,6 @@ from libhtml import Html
 from libhtmlbackend import HtmlBackend
 
 from libgedcom import make_gedcom_date
-
-# import library to access SQL database
-from libaccess import *
 
 #------------------------------------------------------------------------
 #
@@ -1916,15 +1913,9 @@ class IndividualListPage(BasePage):
                         tcell = Html("td", class_ = "ColumnBirth", inline = True)
                         trow += tcell
 
-                        birth_ref = person.get_birth_ref()
-                        if birth_ref:
-                            birth = db.get_event_from_handle(birth_ref.ref)
-                            if birth:
-                                birth_date = _dd.display(birth.get_date_object())
-                                if birth.get_type() == gen.lib.EventType.BIRTH:
-                                    tcell += birth_date
-                                else:
-                                    tcell += Html('em', birth_date)
+                        birth_date = _find_birth_date(db, person)
+                        if birth_date is not None:
+                            tcell += birth_date
                         else:
                             tcell += "&nbsp;"
 
@@ -4794,9 +4785,7 @@ class AddressBookListPage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                # local counters for total line
-                index, countadd, countres, counturl, countfb = 0, 0, 0, 0, 0
-
+                index = 1
                 for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
 
                     address = None
@@ -4806,24 +4795,19 @@ class AddressBookListPage(BasePage):
                     # has address but no residence event
                     if has_add and not has_res:
                         address = "X"
-                        countadd += 1
 
                     # has residence, but no addresses
                     elif has_res and not has_add:
                         residence = "X" 
-                        countres += 1
 
                     # has residence and addresses too
                     elif has_add and has_res:
                         address = "X"
                         residence = "X" 
-                        countadd += 1
-                        countres += 1
 
                     # has Web Links
                     if has_url:
                         weblinks = "X"
-                        counturl += 1
 
                     trow = Html("tr")
                     tbody += trow
@@ -4831,23 +4815,13 @@ class AddressBookListPage(BasePage):
                     trow.extend(
                         Html("td", data or "&nbsp;", class_="Column" + colclass, inline = True)
                         for (colclass, data) in [
-                            ["RowLabel",  index + 1],
+                            ["RowLabel",  index],
                             ["Name",      self.addressbook_link(person_handle)],
                             ["Address",   address],
                             ["Residence", residence],
                             ["WebLinks",  weblinks] ]
                             )
                     index += 1
-
-                # create totals row for table
-                trow = Html("tr", class_ = "Totals") + (
-                    Html("td", _("Total"), classs_ = "ColumnRowlabel", inline = True),
-                    Html("td", "&nbsp;", class_ = "ColumnName", inline = True),
-                    Html("td", countadd, class_ = "ColumnAddress", inline = True),
-                    Html("td", countres, class_ = "ColumnResidence", inline = True),
-                    Html("td", counturl, class_ = "ColumnWebLinks", inline = True)
-                    )
-                tbody += trow
 
         # Add footer and clearline
         footer = self.write_footer()
@@ -5067,9 +5041,6 @@ class NavWebReport(Report):
                 return
 
         self.progress = ProgressMeter(_("Narrated Web Site Report"), '')
-
-        # initialize database for use with libaccess library
-        init(self.database)
 
         # Build the person list
         ind_list = self.build_person_list()
@@ -6243,6 +6214,19 @@ def add_birthdate(db, childlist):
 
     # return the list of child handles and their birthdates
     return sorted_children
+
+def _find_birth_date(db, person):
+    birth_ref = person.get_birth_ref()
+    if birth_ref:
+        birth = db.get_event_from_handle(birth_ref.ref)
+        return birth.get_date_object()
+    else:
+        event_list = person.get_primary_event_ref_list()
+        for event_ref in event_list:
+            event = db.get_event_from_handle(event_ref.ref)
+            if event.get_type().is_birth_fallback():
+                return event.get_date_object()
+    return None
 
 def _find_death_date(db, person):
     death_ref = person.get_death_ref()
