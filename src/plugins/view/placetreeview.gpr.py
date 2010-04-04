@@ -10,4 +10,5 @@ register(VIEW,
          authors_email = [""],
          category = ("Places", _("Places")),
          viewclass = 'PlaceTreeView',
+         stock_icon = 'gramps-tree-group',
   )

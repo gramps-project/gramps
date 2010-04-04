@@ -62,15 +62,13 @@ from QuestionDialog import ErrorDialog
 import config
 import Utils
 from constfunc import win
-from gui.pluginmanager import GuiPluginManager, base_reg_stock_icons
-from gen.plug import (START, END)
+from gui.pluginmanager import base_reg_stock_icons
 
 #-------------------------------------------------------------------------
 #
 # Functions
 #
 #-------------------------------------------------------------------------
-
 
 def register_stock_icons ():
     """
@@ -185,53 +183,6 @@ def _display_welcome_message():
         config.set('behavior.autoload', False)
 #        config.set('behavior.betawarn', True)
         config.set('behavior.betawarn', config.get('behavior.betawarn'))
-
-def construct_view_order():
-    """
-    Query the views and determine what views to show and in which order
-    
-    :Returns: a list of lists containing tuples (view_id, viewclass)
-    """
-    pmgr = GuiPluginManager.get_instance()
-    view_list = pmgr.get_reg_views()
-    viewstoshow = {}
-    for pdata in view_list:
-        mod = pmgr.load_plugin(pdata)
-        if not mod or not hasattr(mod, pdata.viewclass):
-            #import of plugin failed
-            ErrorDialog(
-                _('Failed Loading View'), 
-                _('The view %(name)s did not load. See Help Menu, Plugin Manager'
-                  ' for more info.\nUse http://bugs.gramps-project.org to'
-                  ' submit bugs of official views, contact the view '
-                  'author (%(firstauthoremail)s) otherwise. ') % {
-                    'name': pdata.name,
-                    'firstauthoremail': pdata.authors_email[0] if 
-                            pdata.authors_email else '...'})
-            continue
-        viewclass = getattr(mod, pdata.viewclass)
-        # pdata.category is (string, trans-string):
-        if pdata.category[0] in viewstoshow:
-            if pdata.order == START:
-                viewstoshow[pdata.category[0]].insert(0, ((pdata, viewclass)))
-            else:
-                viewstoshow[pdata.category[0]].append((pdata, viewclass))
-        else:
-            viewstoshow[pdata.category[0]] = [(pdata, viewclass)]
-    
-    resultorder = []
-    # First, get those in order defined, if exists:
-    for item in config.get("interface.view-categories"):
-        if item in viewstoshow:
-            resultorder.append(viewstoshow[item])
-    # Next, get the rest in some order:
-    viewstoshow_names = viewstoshow.keys()
-    viewstoshow_names.sort()
-    for item in viewstoshow_names:
-        if viewstoshow[item] in resultorder:
-            continue
-        resultorder.append(viewstoshow[item])
-    return resultorder
     
 #-------------------------------------------------------------------------
 #
@@ -256,11 +207,7 @@ class Gramps(object):
         
         dbstate = DbState.DbState()
         self.vm = ViewManager(dbstate, config.get("interface.view-categories"))
-        
-        #now we determine which views are present, which to show, and we 
-        #instruct the viewmanager to show them
-        vieworder = construct_view_order()
-        self.vm.init_interface(vieworder)
+        self.vm.init_interface()
 
         #act based on the given arguments
         ah = ArgHandler(dbstate, argparser, self.vm, self.argerrorfunc, 
@@ -289,7 +236,6 @@ class Gramps(object):
     def argerrorfunc(self, string):
         """ Show basic errors in argument handling in GUI fashion"""
         ErrorDialog(_("Error parsing arguments"), string)
-        
 
 #-------------------------------------------------------------------------
 #

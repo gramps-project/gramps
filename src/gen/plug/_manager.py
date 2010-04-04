@@ -288,6 +288,11 @@ class BasePluginManager(object):
         """
         return self.__pgr.gramplet_plugins()
     
+    def get_reg_sidebars(self):
+        """ Return list of registered sidebars.
+        """
+        return self.__pgr.sidebar_plugins()
+    
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
         return self.__external_opt_dict

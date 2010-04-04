@@ -4,6 +4,7 @@
 # Copyright (C) 2005-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,6 +62,7 @@ from PluginUtils import Tool, PluginWindows, \
     ReportPluginDialog, ToolPluginDialog, gui_tool
 from gen.plug import REPORT
 from gui.pluginmanager import GuiPluginManager
+from gen.plug import (START, END)
 import Relationship
 import ReportBase
 import DisplayState
@@ -78,6 +80,7 @@ from gui.configure import GrampsPreferences
 from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
+from gui.sidebar import Sidebar
 
 #-------------------------------------------------------------------------
 #
@@ -183,20 +186,6 @@ UIDEFAULT = '''<ui>
 </ui>
 '''
 
-UICATEGORY = '''<ui>
-<menubar name="MenuBar">
-  <menu action="ViewMenu">
-    <placeholder name="ViewsInCategory">%s
-    </placeholder>
-  </menu>
-</menubar>
-<toolbar name="ToolBar">
-  <placeholder name="ViewsInCategory">%s
-  </placeholder>
-</toolbar>
-</ui>
-'''
-
 WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
@@ -234,13 +223,14 @@ class ViewManager(CLIManager):
 
     The View Manager does not have to know the number of views, the type of
     views, or any other details about the views. It simply provides the 
-    method of containing each view, and switching between the views.
+    method of containing each view, and has methods for creating, deleting and
+    switching between the views.
     
     """
 
     def __init__(self, dbstate, view_category_order):
         """
-        The viewmanager is initialiste with a dbstate on which GRAMPS is 
+        The viewmanager is initialised with a dbstate on which GRAMPS is 
         working, and a fixed view_category_order, which is the order in which
         the view categories are accessible in the sidebar.
         """
@@ -248,12 +238,8 @@ class ViewManager(CLIManager):
         self.view_category_order = view_category_order
         #set pluginmanager to GUI one
         self._pmgr = GuiPluginManager.get_instance()
-        self.page_is_changing = False
         self.active_page = None
-        self.views = []
         self.pages = []
-        self.button_handlers = []
-        self.buttons = []
         self.merge_ids = []
         self.toolactions = None
         self.tool_menu_ui_id = None
@@ -294,12 +280,13 @@ class ViewManager(CLIManager):
 
         vbox = gtk.VBox()
         self.window.add(vbox)
-        hbox = gtk.HBox()
+        hpane = gtk.HPaned()
         self.ebox = gtk.EventBox()
-        self.bbox = gtk.VBox()
-        self.ebox.add(self.bbox)
-        hbox.pack_start(self.ebox, False)
-        hbox.show_all()
+        
+        self.sidebar = Sidebar(self)
+        self.ebox.add(self.sidebar.get_top())
+        hpane.add1(self.ebox)
+        hpane.show_all()
 
         self.notebook = gtk.Notebook()
         self.notebook.set_scrollable(True)
@@ -309,12 +296,12 @@ class ViewManager(CLIManager):
         self.__init_lists()
         self.__build_ui_manager()
 
-        hbox.pack_start(self.notebook, True)
+        hpane.add2(self.notebook)
         self.menubar = self.uimanager.get_widget('/MenuBar')
         self.toolbar = self.uimanager.get_widget('/ToolBar')
         vbox.pack_start(self.menubar, False)
         vbox.pack_start(self.toolbar, False)
-        vbox.add(hbox)
+        vbox.add(hpane)
         vbox.pack_end(self.__setup_statusbar(), False)
         vbox.show()
 
@@ -358,6 +345,21 @@ class ViewManager(CLIManager):
         # But we need to realize it here to have gtk.gdk.window handy
         self.window.realize()
 
+    def __load_sidebar_plugins(self):
+        """
+        Load the sidebar plugins.
+        """
+        for pdata in self._pmgr.get_reg_sidebars():
+            module = self._pmgr.load_plugin(pdata)
+            if not module:
+                print "Error loading sidebar '%s': skipping content" \
+                                                                % pdata.name
+                continue
+                
+            sidebar_class = getattr(module, pdata.sidebarclass)
+            sidebar_page = sidebar_class(self.dbstate, self.uistate)
+            self.sidebar.add(pdata.menu_label, sidebar_page)
+
     def __setup_statusbar(self):
         """
         Create the statusbar that sits at the bottom of the window
@@ -387,10 +389,8 @@ class ViewManager(CLIManager):
         """
         if self.show_sidebar:
             self.ebox.show()
-            self.notebook.set_show_tabs(False)
         else:
             self.ebox.hide()
-            self.notebook.set_show_tabs(True)
 
     def __build_open_button(self):
         """
@@ -406,10 +406,17 @@ class ViewManager(CLIManager):
 
     def __connect_signals(self):
         """
-        connects the signals needed
+        Connects the signals needed
         """
         self.window.connect('delete-event', self.quit)
-        self.notebook.connect('switch-page', self.change_category)
+        self.notebook.connect('switch-page', self.view_changed)
+
+    def view_changed(self, notebook, page, page_num):
+        """
+        Called when the notebook page is changed.
+        """
+        self.sidebar.view_changed(page_num)
+        self.__change_page(page_num)
 
     def __init_lists(self):
         """
@@ -547,11 +554,9 @@ class ViewManager(CLIManager):
             new_page = 0
         else:
             new_page = current_page + 1
-        if self.show_sidebar:
-            #cause a click signal
-            self.buttons[new_page].set_active(True)
-        else:
-            self.notebook.set_current_page(new_page)
+        self.sidebar.handlers_block()
+        self.notebook.set_current_page(new_page)
+        self.sidebar.handlers_unblock()
 
     def __prev_view(self, action):
         """
@@ -564,19 +569,16 @@ class ViewManager(CLIManager):
             new_page = len(self.pages)-1
         else:
             new_page = current_page - 1
-        if self.show_sidebar:
-            #cause a click signal
-            self.buttons[new_page].set_active(True)
-        else:
-            self.notebook.set_current_page(new_page)
+        self.sidebar.handlers_block()
+        self.notebook.set_current_page(new_page)
+        self.sidebar.handlers_unblock()
 
-    def init_interface(self, vieworder):
+    def init_interface(self):
         """
         Initialize the interface, creating the pages as given in vieworder
         """
-        self.views = vieworder
         self.__init_lists()
-        self.__create_pages()
+        self.__load_sidebar_plugins()
 
         if not self.file_loaded:
             self.actiongroup.set_visible(False)
@@ -787,12 +789,10 @@ class ViewManager(CLIManager):
         """
         if obj.get_active():
             self.ebox.show()
-            self.notebook.set_show_tabs(False)
             config.set('interface.view', True)
             self.show_sidebar = True
         else:
             self.ebox.hide()
-            self.notebook.set_show_tabs(True)
             config.set('interface.view', False)
             self.show_sidebar = False
         config.save()
@@ -823,267 +823,71 @@ class ViewManager(CLIManager):
             config.set('interface.fullscreen', False)
         config.save()
     
-    def view_toggle(self, radioaction, current, category_page):
-        """
-        Go to the views in category_page, with in category: view_page
-        The view has id id_page
-        This is the only method that can call change of views in a category
-        """
-        self.__vb_handlers_block()
-        if self.notebook.get_current_page() != category_page:
-            raise Error, 'Error changing view, category is not active'
-        cat_notebook = self.notebook_cat[category_page]
-        view_page = radioaction.get_current_value()
-        if self.notebook_cat[category_page].get_current_page() != view_page:
-            self.notebook_cat[category_page].set_current_page(view_page)
-        self.__change_view(category_page, view_page)
-        self.__vb_handlers_unblock()
+    def create_page(self, pdata, page_def):
+        try:
+            page = page_def(self.dbstate, self.uistate)
+        except:
+            import traceback
+            LOG.warn("View '%s' failed to load." % pdata.id)
+            traceback.print_exc()
+            return
+        # Category is (string, trans):
+        page.set_category(pdata.category)
+        page.set_ident(page.get_category() + '_' + pdata.id)
+        page_title = page.get_title()
+        page_category = page.get_category()
+        page_translated_category = page.get_translated_category()
+        page_stock = page.get_stock()
+        
+        page.define_actions()
+        try:
+            page_display = page.get_display()
+        except:
+            import traceback
+            print "ERROR: '%s' failed to create view" % pdata.name
+            traceback.print_exc()
+            return
+        page_display.show_all()
+        page.post()
+        self.pages.append(page)
+        
+        # create icon/label for workspace notebook
+        hbox = gtk.HBox()
+        image = gtk.Image()
+        image.set_from_stock(page_stock, gtk.ICON_SIZE_MENU)
+        hbox.pack_start(image, False)
+        hbox.add(gtk.Label(pdata.name))
+        hbox.show_all()
 
-    def __switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
-        """
-        Switches the page based on drag and drop
-        """
-        self.__vb_handlers_block()
-        if self.notebook.get_current_page() != page_no:
-            self.notebook.set_current_page(page_no)
-        self.__vb_handlers_unblock()
+        page_num = self.notebook.append_page(page_display, hbox)
+        return page_num
+        
+    def goto_page(self, page_num):
+        self.sidebar.handlers_block()
+        self.notebook.set_current_page(page_num)
+        self.sidebar.handlers_unblock()
+        
+        self.__change_page(page_num)
+
+    def __change_page(self, page_num):
+        self.__disconnect_previous_page()
+        
+        self.active_page = self.pages[page_num]
+        self.active_page.set_active()
+        self.__connect_active_page(page_num)
+        
+        self.uimanager.ensure_update()
+        while gtk.events_pending():
+            gtk.main_iteration()
+
+        self.active_page.change_page()
 
     def __delete_pages(self):
         """
         Calls on_delete() for each view
         """
-        for pages in self.pages:
-            for page in pages:
-                page.on_delete()
-
-    def __create_pages(self):
-        """
-        Create the Views
-        """
-        self.pages = []
-        self.ui_category = {}
-        self.view_toggle_actions = {}
-        self.cat_view_group = None
-
-        use_text = config.get('interface.sidebar-text')
-        #obtain which views should be the active ones
-        current_cat, current_cat_view, default_cat_views = \
-                self.__views_to_show(config.get('preferences.use-last-view'))
-
-        for indexcat, cat_views in enumerate(self.views):
-            #for every category, we create a button in the sidebar and a main
-            #workspace in which to show the view
-            nr_views = len(cat_views)
-            uimenuitems = ''
-            uitoolitems = ''
-            self.view_toggle_actions[indexcat] = []
-            self.pages.append([])
-            nrpage = 0
-            for pdata, page_def in cat_views:
-                try:
-                    page = page_def(self.dbstate, self.uistate)
-                except:
-                    import traceback
-                    LOG.warn("View '%s' failed to load." % pdata.id)
-                    traceback.print_exc()
-                    continue
-                # Category is (string, trans):
-                page.set_category(pdata.category)
-                page.set_ident(page.get_category() + '_' + pdata.id)
-                page_title = page.get_title()
-                page_category = page.get_category()
-                page_translated_category = page.get_translated_category()
-                page_stock = page.get_stock()
-
-                if nrpage == 0:
-                    #the first page of this category, used to obtain
-                    #category workspace notebook
-                    notebook = gtk.Notebook()
-                    notebook.set_scrollable(False)
-                    notebook.set_show_tabs(False)
-                    notebook.show()
-                    self.notebook_cat.append(notebook)
-                    # create icon/label for workspace notebook
-                    hbox = gtk.HBox()
-                    image = gtk.Image()
-                    image.set_from_stock(page_stock, gtk.ICON_SIZE_MENU)
-                    hbox.pack_start(image, False)
-                    hbox.add(gtk.Label(page_translated_category))
-                    hbox.show_all()
-                    page_cat = self.notebook.append_page(notebook, hbox)
-                    # Enable view switching during DnD
-                    hbox.drag_dest_set(0, [], 0)
-                    hbox.connect('drag_motion', self.__switch_page_on_dnd, 
-                                page_cat)
-
-                    # create the button and add it to the sidebar
-                    button = self.__make_sidebar_button(use_text, indexcat, 
-                                                        page_translated_category, 
-                                                        page_stock)
-
-                    self.bbox.pack_start(button, False)
-                    self.buttons.append(button)
-                    
-                    # Enable view switching during DnD
-                    button.drag_dest_set(0, [], 0)
-                    button.connect('drag_motion', self.__switch_page_on_dnd, 
-                                    page_cat)
-
-                # create view page and add to category notebook
-                page.define_actions()
-                try:
-                    page_display = page.get_display()
-                except:
-                    import traceback
-                    print "ERROR: '%s' failed to create view" % pdata.name
-                    traceback.print_exc()
-                    continue
-                page_display.show_all()
-                page.post()
-                page_no = self.notebook_cat[-1].append_page(page_display, 
-                                                        gtk.Label(page_title))
-                self.pages[-1].append(page)
-                pageid = (pdata.id + '_%i' % nrpage)
-                uimenuitems += '\n<menuitem action="%s"/>' % pageid
-                uitoolitems += '\n<toolitem action="%s"/>' % pageid
-                # id, stock, button text, UI, tooltip, page
-                if nrpage < 9:
-                    modifier = "<CONTROL>%d" % ((nrpage % 9) + 1)
-                else:
-                    modifier = ""
-                self.view_toggle_actions[indexcat].append((pageid, 
-                            page.get_viewtype_stock(),
-                            pdata.name, modifier, page_title, nrpage))
-
-                nrpage += 1
-            if nr_views > 1:
-                #allow for switching views in a category
-                self.ui_category[indexcat] = UICATEGORY % (uimenuitems,
-                                                        uitoolitems)
-            #set view cat to last used in this category
-            self.notebook_cat[-1].set_current_page(default_cat_views[indexcat])
-    
-        if self.views:
-            self.active_page = self.pages[current_cat][current_cat_view]
-            self.buttons[current_cat].set_active(True)
-            self.active_page.set_active()
-            self.notebook.set_current_page(current_cat)
-            self.notebook_cat[current_cat].set_current_page(current_cat_view)
-        else:
-            #not one single view loaded
-            WarningDialog(
-                _("No views loaded"), 
-                _("No view plugins are loaded. Go to Help->Plugin "
-                  "Manager, and make sure some plugins of type 'View' are "
-                  "enabled. Then restart Gramps"))
-
-
-    def __views_to_show(self, use_last = True):
-        """
-        Determine based on preference setting which views should be shown
-        """
-        current_cat = 0 
-        current_cat_view = 0
-        default_cat_views = [0] * len(self.views)
-        if use_last:
-            current_page_id = config.get('preferences.last-view')
-            default_page_ids = config.get('preferences.last-views')
-            found = False
-            for indexcat, cat_views in enumerate(self.views):
-                cat_view = 0
-                for pdata, page_def in cat_views:
-                    if not found:
-                        if pdata.id == current_page_id:
-                                current_cat = indexcat
-                                current_cat_view = cat_view
-                                default_cat_views[indexcat] = cat_view
-                                found = True
-                                break
-                    if pdata.id in default_page_ids:
-                        default_cat_views[indexcat] = cat_view
-                    cat_view += 1
-            if not found:
-                current_cat = 0 
-                current_cat_view = 0
-        return current_cat, current_cat_view, default_cat_views
-
-    def __make_sidebar_button(self, use_text, index, page_title, page_stock):
-        """
-        Create the sidebar button. The page_title is the text associated with
-        the button.
-        """
-
-        # create the button
-        button = gtk.ToggleButton()
-        button.set_relief(gtk.RELIEF_NONE)
-        button.set_alignment(0, 0.5)
-
-        # add the tooltip
-        button.set_tooltip_text(page_title)
-        #self.tips.set_tip(button, page_title)
-
-        # connect the signal, along with the index as user data
-        handler_id = button.connect('clicked', self.__vb_clicked, index)
-        self.button_handlers.append(handler_id)
-        button.show()
-
-        # add the image. If we are using text, use the BUTTON (larger) size. 
-        # otherwise, use the smaller size
-        hbox = gtk.HBox()
-        hbox.show()
-        image = gtk.Image()
-        if use_text:
-            image.set_from_stock(page_stock, gtk.ICON_SIZE_BUTTON)
-        else:
-            image.set_from_stock(page_stock, gtk.ICON_SIZE_DND)
-        image.show()
-        hbox.pack_start(image, False, False)
-        hbox.set_spacing(4)
-
-        # add text if requested
-        if use_text:
-            label = gtk.Label(page_title)
-            label.show()
-            hbox.pack_start(label, False, True)
-            
-        button.add(hbox)
-        return button
-
-    def __vb_clicked(self, button, index):
-        """
-        Called when the button causes a page change
-        """
-        if config.get('interface.view'):
-            self.__vb_handlers_block()
-            self.notebook.set_current_page(index)
-
-            # If the click is on the same view we're in, 
-            # restore the button state to active
-            if not button.get_active():
-                button.set_active(True)
-            self.__vb_handlers_unblock()
-
-    def __vb_handlers_block(self):
-        """
-        Block signals to the buttons to prevent spurious events
-        """
-        for idx in range(len(self.buttons)):
-            self.buttons[idx].handler_block(self.button_handlers[idx])
-        
-    def __vb_handlers_unblock(self):
-        """
-        Unblock signals to the buttons
-        """
-        for idx in range(len(self.buttons)):
-            self.buttons[idx].handler_unblock(self.button_handlers[idx])
-
-    def __set_active_button(self, num):
-        """
-        Set the corresponding button active, while setting the others
-        inactive
-        """
-        for idx in range(len(self.buttons)):
-            self.buttons[idx].set_active(idx==num)
+        for page in self.pages:
+            page.on_delete()
 
     def __disconnect_previous_page(self):
         """
@@ -1098,11 +902,8 @@ class ViewManager(CLIManager):
             for grp in groups:
                 if grp in self.uimanager.get_action_groups(): 
                     self.uimanager.remove_action_group(grp)
-            if self.cat_view_group:
-                if self.cat_view_group in self.uimanager.get_action_groups(): 
-                    self.uimanager.remove_action_group(self.cat_view_group)
 
-    def __connect_active_page(self, category_page, view_page):
+    def __connect_active_page(self, page_num):
         """
         Inserts the action groups associated with the current page
         into the UIManager
@@ -1117,89 +918,11 @@ class ViewManager(CLIManager):
             mergeid = self.uimanager.add_ui_from_string(uidef)
             self.merge_ids.append(mergeid)
         
-        if category_page in self.ui_category:
-            #add entries for the different views in the category
-            self.cat_view_group = gtk.ActionGroup('categoryviews')
-            self.cat_view_group.add_radio_actions(
-                    self.view_toggle_actions[category_page], value=view_page, 
-                    on_change=self.view_toggle, user_data=category_page)
-            self.cat_view_group.set_sensitive(True)
-            self.uimanager.insert_action_group(self.cat_view_group, 1)
-            mergeid = self.uimanager.add_ui_from_string(self.ui_category[
-                                category_page])
-            self.merge_ids.append(mergeid)
-        
         configaction = self.actiongroup.get_action('ConfigView')
         if self.active_page.can_configure():
             configaction.set_sensitive(True)
         else:
             configaction.set_sensitive(False)
-
-    def change_category(self, obj, page, num=-1):
-        """
-        Wrapper for the __do_change_category, to prevent entering into the 
-        routine while already in it.
-        """
-        if not self.page_is_changing:
-            self.page_is_changing = True
-            self.__do_change_category(num)
-            self.page_is_changing = False
-
-    def __do_change_category(self, num):
-        """
-        Change the category to the new category
-        """
-        if num == -1:
-            num = self.notebook.get_current_page()
-
-        # set button of current page active
-        self.__set_active_button(num)
-        # now do view specific change
-        self.__change_view(num)
-
-    def __change_view(self, category_page, view_page=-1):
-        """
-        Change a view in a category. 
-        
-        :Param category_page: the category number the view is in
-        :Type category_page: integer >= 0
-        
-        :Param view_page: the view page number to switch to. If -1 is passed
-            the currently already active view in the category is switched to.
-            Use this when a category changes.
-        :Type view_page: integer >=0 to switch to a specific page, or -1 to 
-            switch to the active view in the category
-        """
-        if self.notebook_cat:
-            if view_page == -1:
-                #just show active one
-                view_page = self.notebook_cat[category_page].get_current_page()
-            if self.dbstate.open:
-                self.__disconnect_previous_page()
-                if len(self.pages) > 0:
-                    self.active_page = self.pages[category_page][view_page]
-                    self.active_page.set_active()
-                    newcurpageid = self.views[category_page][view_page][0].id
-                    config.set('preferences.last-view', newcurpageid)
-                    olddefaults = config.get('preferences.last-views')
-                    if len(olddefaults) != len(self.pages): 
-                        #number views changed, we cannot trust the old
-                        olddefaults = [''] * len(self.pages)
-                    olddefaults[category_page] = newcurpageid 
-                    config.set('preferences.last-views', olddefaults)
-                    config.save()
-
-                    self.__connect_active_page(category_page, view_page)
-
-                    self.uimanager.ensure_update()
-
-                    while gtk.events_pending():
-                        gtk.main_iteration()
-
-                    self.active_page.change_page()
-        else:
-            #no views loaded
-            pass
 
     def import_data(self, obj):
         """
@@ -1267,7 +990,6 @@ class ViewManager(CLIManager):
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(True)
 
-        self.change_category(None, None)
         self.actiongroup.set_visible(True)
         self.readonlygroup.set_visible(True)
         
@@ -1597,3 +1319,79 @@ def make_plugin_callback(pdata, dbstate, uistate):
     Makes a callback for a report/tool menu item
     """
     return lambda x: run_plugin(pdata, dbstate, uistate)
+
+def get_available_views():
+    """
+    Query the views and determine what views to show and in which order
+    
+    :Returns: a list of lists containing tuples (view_id, viewclass)
+    """
+    pmgr = GuiPluginManager.get_instance()
+    view_list = pmgr.get_reg_views()
+    viewstoshow = {}
+    for pdata in view_list:
+        mod = pmgr.load_plugin(pdata)
+        if not mod or not hasattr(mod, pdata.viewclass):
+            #import of plugin failed
+            ErrorDialog(
+                _('Failed Loading View'), 
+                _('The view %(name)s did not load. See Help Menu, Plugin Manager'
+                  ' for more info.\nUse http://bugs.gramps-project.org to'
+                  ' submit bugs of official views, contact the view '
+                  'author (%(firstauthoremail)s) otherwise. ') % {
+                    'name': pdata.name,
+                    'firstauthoremail': pdata.authors_email[0] if 
+                            pdata.authors_email else '...'})
+            continue
+        viewclass = getattr(mod, pdata.viewclass)
+        # pdata.category is (string, trans-string):
+        if pdata.category[0] in viewstoshow:
+            if pdata.order == START:
+                viewstoshow[pdata.category[0]].insert(0, ((pdata, viewclass)))
+            else:
+                viewstoshow[pdata.category[0]].append((pdata, viewclass))
+        else:
+            viewstoshow[pdata.category[0]] = [(pdata, viewclass)]
+    
+    resultorder = []
+    # First, get those in order defined, if exists:
+    for item in config.get("interface.view-categories"):
+        if item in viewstoshow:
+            resultorder.append(viewstoshow[item])
+    # Next, get the rest in some order:
+    viewstoshow_names = viewstoshow.keys()
+    viewstoshow_names.sort()
+    for item in viewstoshow_names:
+        if viewstoshow[item] in resultorder:
+            continue
+        resultorder.append(viewstoshow[item])
+    return resultorder
+
+def views_to_show(views, use_last=True):
+    """
+    Determine based on preference setting which views should be shown
+    """
+    current_cat = 0 
+    current_cat_view = 0
+    default_cat_views = [0] * len(views)
+    if use_last:
+        current_page_id = config.get('preferences.last-view')
+        default_page_ids = config.get('preferences.last-views')
+        found = False
+        for indexcat, cat_views in enumerate(views):
+            cat_view = 0
+            for pdata, page_def in cat_views:
+                if not found:
+                    if pdata.id == current_page_id:
+                        current_cat = indexcat
+                        current_cat_view = cat_view
+                        default_cat_views[indexcat] = cat_view
+                        found = True
+                        break
+                if pdata.id in default_page_ids:
+                    default_cat_views[indexcat] = cat_view
+                cat_view += 1
+        if not found:
+            current_cat = 0 
+            current_cat_view = 0
+    return current_cat, current_cat_view, default_cat_views

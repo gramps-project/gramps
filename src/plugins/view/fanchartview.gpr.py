@@ -10,4 +10,5 @@ register(VIEW,
          authors = [u"Douglas S. Blank"],
          authors_email = ["doug.blank@gmail.com"],
          viewclass = 'FanChartView',
+         stock_icon = 'gramps-fanchart',
   )

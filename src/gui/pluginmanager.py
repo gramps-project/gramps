@@ -289,6 +289,12 @@ class GuiPluginManager(gen.utils.Callback):
         return [plg for plg in self.basemgr.get_reg_gramplets() 
                                 if plg.id not in self.__hidden_plugins]
 
+    def get_reg_sidebars(self):
+        """ Return list of non hidden registered sidebars
+        """
+        return [plg for plg in self.basemgr.get_reg_sidebars()
+                                if plg.id not in self.__hidden_plugins]
+
     def get_reg_importers(self):
         """ Return list of registered importers
         """

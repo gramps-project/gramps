@@ -68,8 +68,9 @@ MAPSERVICE  = 7
 VIEW        = 8
 RELCALC     = 9
 GRAMPLET    = 10
-PTYPE       = [ REPORT , QUICKREPORT, TOOL, IMPORT,
-                EXPORT, DOCGEN, GENERAL, MAPSERVICE, VIEW, RELCALC, GRAMPLET]
+SIDEBAR     = 11
+PTYPE       = [REPORT , QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
+               MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR]
 PTYPE_STR   = {
         REPORT: _('Report') , 
         QUICKREPORT: _('Quickreport'), 
@@ -82,6 +83,7 @@ PTYPE_STR   = {
         VIEW: _('Gramps View'), 
         RELCALC: _('Relationships'), 
         GRAMPLET: _('Gramplet'),
+        SIDEBAR: _('Sidebar'),
         }
 
 #possible report categories
@@ -301,6 +303,14 @@ class PluginData(object):
        the view is appended to the list of views. If START, then the view is
        prepended. Only set START if you want a view to be the first in the
        order of views
+    .. attribute:: stock_icon
+       The icon in the toolbar or sidebar used to select the view
+
+    Attributes for SIDEBAR plugins
+    .. attribute:: sidebarclass
+       The class that defines the sidebar.
+    .. attribute:: menu_label
+       A label to use on the seltion menu.
     """
 
     def __init__(self):
@@ -364,6 +374,10 @@ class PluginData(object):
         #VIEW attr
         self._viewclass = None
         self._order = END
+        self._stock_icon = None
+        #SIDEBAR attr
+        self._sidebarclass = None
+        self._menu_label = ''
     
     def _set_id(self, id):
        self._id = id
@@ -811,10 +825,38 @@ class PluginData(object):
     def _get_order(self):
         return self._order
 
-    viewclass = property(_get_viewclass, _set_viewclass)
-    order     = property(_get_order, _set_order)
-    
+    def _set_stock_icon(self, stock_icon):
+        if not self._ptype == VIEW:
+            raise ValueError, 'stock_icon may only be set for VIEW plugins'
+        self._stock_icon = stock_icon
 
+    def _get_stock_icon(self):
+        return self._stock_icon
+       
+    viewclass = property(_get_viewclass, _set_viewclass)
+    order = property(_get_order, _set_order)
+    stock_icon = property(_get_stock_icon, _set_stock_icon)
+
+    #SIDEBAR attributes
+    def _set_sidebarclass(self, sidebarclass):
+        if not self._ptype == SIDEBAR:
+            raise ValueError, 'sidebarclass may only be set for SIDEBAR plugins'
+        self._sidebarclass = sidebarclass
+
+    def _get_sidebarclass(self):
+        return self._sidebarclass
+        
+    def _set_menu_label(self, menu_label):
+        if not self._ptype == SIDEBAR:
+            raise ValueError, 'menu_label may only be set for SIDEBAR plugins'
+        self._menu_label = menu_label
+
+    def _get_menu_label(self):
+        return self._menu_label
+
+    sidebarclass = property(_get_sidebarclass, _set_sidebarclass)
+    menu_label   = property(_get_menu_label, _set_menu_label)
+  
 def newplugin():
     """
     Function to create a new plugindata object, add it to list of 
@@ -865,6 +907,7 @@ def make_environment(**kwargs):
         'VIEW': VIEW,
         'RELCALC': RELCALC,
         'GRAMPLET': GRAMPLET,
+        'SIDEBAR': SIDEBAR,
         'CATEGORY_TEXT': CATEGORY_TEXT,
         'CATEGORY_DRAW': CATEGORY_DRAW,
         'CATEGORY_CODE': CATEGORY_CODE,
@@ -1106,6 +1149,11 @@ class PluginRegister(object):
         """Return a list of PluginData that are of type GRAMPLET
         """
         return self.type_plugins(GRAMPLET)
+        
+    def sidebar_plugins(self):
+        """Return a list of PluginData that are of type SIDEBAR
+        """
+        return self.type_plugins(SIDEBAR)
 
     def filter_load_on_reg(self):
         """Return a list of PluginData that have load_on_reg == True

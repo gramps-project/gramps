@@ -140,6 +140,7 @@ src/plugins/lib/Makefile
 src/plugins/mapservices/Makefile
 src/plugins/quickview/Makefile
 src/plugins/rel/Makefile
+src/plugins/sidebar/Makefile
 src/plugins/textreport/Makefile
 src/plugins/tool/Makefile
 src/plugins/view/Makefile

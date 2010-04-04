@@ -21,6 +21,7 @@ pkgdata_PYTHON = \
 	filtereditor.py \
 	grampsgui.py \
 	pluginmanager.py \
+	sidebar.py \
 	utils.py \
 	viewmanager.py
 

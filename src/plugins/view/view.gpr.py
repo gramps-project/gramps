@@ -130,6 +130,7 @@ authors_email = ["http://gramps-project.org"],
 category = ("Ancestry", _("Ancestry")),
 viewclass = 'PedigreeView',
 order = START,
+stock_icon = 'gramps-pedigree',
   )
 
 register(VIEW, 
@@ -145,6 +146,7 @@ authors_email = ["http://gramps-project.org"],
 category = ("People", _("People")),
 viewclass = 'PersonTreeView',
 order = START,
+stock_icon = 'gramps-tree-group',
   )
 
 register(VIEW, 
@@ -161,7 +163,9 @@ authors_email = ["http://gramps-project.org"],
 category = ("People", _("People")),
 viewclass = 'PersonListView',
 order = START,
+stock_icon = 'gramps-tree-list',
   )
+  
 register(VIEW, 
 id    = 'placelistview',
 name  = _("Place View"),
@@ -175,6 +179,7 @@ authors_email = ["http://gramps-project.org"],
 category = ("Places", _("Places")),
 viewclass = 'PlaceListView',
 order = START,
+stock_icon = 'gramps-tree-list',
   )
 
 register(VIEW, 
