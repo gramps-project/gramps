@@ -152,7 +152,7 @@ class DbReadBase(object):
 
     def find_next_repository_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Respository object based 
+        Return the next available GRAMPS' ID for a Repository object based 
         off the repository ID prefix.
         """
         raise NotImplementedError

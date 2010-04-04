@@ -216,7 +216,7 @@ class GenericFilter(object):
         If progress given, it will be used to indicate progress of the
         Filtering
         
-        If typleind is given, id_list is supposed to consist of a list of 
+        If tupleind is given, id_list is supposed to consist of a list of 
         tuples, with the handle being index tupleind. So 
         handle_0 = id_list[0][tupleind]
         
