@@ -56,7 +56,7 @@ def twips(cm):
 
 #------------------------------------------------------------------------
 #
-# Rich Text Format Document interface. The current inteface does not
+# Rich Text Format Document interface. The current interface does not
 # use style sheets. Instead it writes raw formatting.
 #
 #------------------------------------------------------------------------
@@ -417,8 +417,8 @@ class RTFDoc(BaseDoc,TextDoc):
                     # Replace all LF's with space and reformat.
                     line = line.replace('\n',' ')
                     line = ' '.join(line.split())
-                    # If rememberd first char is LF, insert in front of lines
-                    #This takes care of the case with even number of empry lines.
+                    # If remembered first char is LF, insert in front of lines
+                    #This takes care of the case with even number of empty lines.
                     if firstchar == '\n':
                         line = firstchar + line
                     #Insert LF's if not first line.
