@@ -143,7 +143,7 @@ def setup_windows_gettext():
     # 1. See if there is a intl.dll in Windows/system
     os_path = os.environ['PATH']
     intl_path = 'c:\\WINDOWS\\system\\intl.dll'
-    if os.path.isfile(intl_path):
+    if os.path.isfile(intl_path) and not LOCALEDIR is None:
         libintl = init_windows_gettext(intl_path)
         # Now check for translation.
         translated = test_trans(str2translate,libintl)
@@ -153,7 +153,7 @@ def setup_windows_gettext():
 
     #2. See if there is a libintl-8.dll in the current path
     intl_path = find_intl('\\libintl-8.dll')
-    if intl_path:
+    if intl_path and not LOCALEDIR is None:
         libintl = init_windows_gettext(intl_path)
         # Now check for translation.
         translated = test_trans(str2translate,libintl)
@@ -163,7 +163,7 @@ def setup_windows_gettext():
 
     #3. See if there is another intl.dll in current path
     intl_path = find_intl('\\intl.dll')
-    if intl_path:
+    if intl_path and not LOCALEDIR is None:
         libintl = init_windows_gettext(intl_path)
         # Now check for translation.
         translated = test_trans(str2translate,libintl)
