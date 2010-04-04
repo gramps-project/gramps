@@ -168,15 +168,6 @@ class DateParserFR(DateParser):
         u'suédois': Date.CAL_SWEDISH,
         u's': Date.CAL_SWEDISH,
         }
-        
-    # newyear_to_int = DAteParser.newyear_to_int
-
-    newyear_to_int = {
-        u"1 jan":  Date.NEWYEAR_JAN1,
-        u"1 mars":  Date.NEWYEAR_MAR1,
-        u"25 mars": Date.NEWYEAR_MAR25, 
-        u"1 sep" : Date.NEWYEAR_SEP1,
-        }
 
     quality_to_int = {
         u'estimée': Date.QUAL_ESTIMATED,
@@ -266,8 +257,6 @@ class DateDisplayFR(DateDisplay):
 
     calendar = ("", u"Julien", u"Hébreu", u"Révolutionnaire",
                 u"Perse", u"Islamique", u"Suédois")
-
-    newyear = ("", u"1 mars", u"25 mars", u"1 sep")
 
     _mod_str = ("", u"avant ", u"après ", u"vers ", "", "", "")
 
@@ -411,19 +400,19 @@ class DateDisplayFR(DateDisplay):
         elif start == Date.EMPTY:
             return ""
         elif mod == Date.MOD_SPAN:
-            date1 = (self.display_cal)[cal](start)
-            date2 = (self.display_cal)[cal](date.get_stop_date())
+            date1 = self.display_cal[cal](start)
+            date2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'de', date1, u'à', 
             date2, scal)
         elif mod == Date.MOD_RANGE:
-            date1 = (self.display_cal)[cal](start)
-            date2 = (self.display_cal)[cal](date.get_stop_date())
+            date1 = self.display_cal[cal](start)
+            date2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'entre', date1, u'et',
                     date2, scal)
         else:
-            text = (self.display_cal)[date.get_calendar()](start)
+            text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, (self._mod_str)[mod], text, 
             scal)
