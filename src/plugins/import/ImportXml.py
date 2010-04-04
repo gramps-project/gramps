@@ -1771,7 +1771,11 @@ class GrampsParser(UpdateCallback):
 
         newyear = gen.lib.Date.NEWYEAR_JAN1
         if 'newyear' in attrs:
-            newyear = int(attrs['newyear'])
+            newyear = attrs['newyear']
+            if newyear.isdigit():
+                newyear = int(newyear)
+            else:
+                newyear = gen.lib.Date.newyear_to_code(newyear)
 
         date_value.set(qual, mode, cal, 
                        (day, month, year, dualdated, 
@@ -1848,7 +1852,11 @@ class GrampsParser(UpdateCallback):
 
         newyear = gen.lib.Date.NEWYEAR_JAN1
         if 'newyear' in attrs:
-            newyear = int(attrs['newyear'])
+            newyear = attrs['newyear']
+            if newyear.isdigit():
+                newyear = int(newyear)
+            else:
+                newyear = gen.lib.Date.newyear_to_code(newyear)
 
         date_value.set(qual, mod, cal, (day, month, year, dualdated), 
                        newyear=newyear)

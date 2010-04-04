@@ -340,7 +340,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 self.start_year.get_value_as_int(),
                 self.dual_dated.get_active())
         calendar = self.calendar_box.get_active()
-        newyear = self.date.newyear_to_code(self.new_year.get_text())
+        newyear = Date.newyear_to_code(self.new_year.get_text())
         return (quality, modifier, calendar, value, text, newyear)
 
     def switch_type(self, obj):

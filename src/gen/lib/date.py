@@ -1062,18 +1062,20 @@ class Date(object):
             ny = "Err"
         return ny
 
-    def newyear_to_code(self, string):
+    @staticmethod
+    def newyear_to_code(string):
         """
-        Return the code of a newyear string.
+        Return newyear code of string, where string is:
+           '', 'Jan1', 'Mar1', '3-25', '9-1', etc.
         """
         string = string.strip().lower()
         if string == "" or string == "jan1":
             code = Date.NEWYEAR_JAN1
         elif string == "mar1":
             code = Date.NEWYEAR_MAR1
-        elif self.newyear == "mar25":
+        elif string == "mar25":
             code = Date.NEWYEAR_MAR25
-        elif self.newyear == "sep1":
+        elif string == "sep1":
             code = Date.NEWYEAR_SEP1
         elif "-" in string:
             try:
@@ -1762,3 +1764,4 @@ def lookup_calendar(calendar):
         if calendar.lower() == calendar_name.lower():
             return pos
     raise AttributeError("invalid calendar: '%s'" % calendar)
+

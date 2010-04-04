@@ -804,9 +804,9 @@ class GrampsXmlWriter(UpdateCallback):
         else:
             dualdated_str = ''
 
-        newyear = date.get_new_year()
-        if newyear != gen.lib.Date.NEWYEAR_JAN1:
-            newyear_str = ' newyear="%d"' % newyear
+        newyear = date.newyear_to_str()
+        if newyear:
+            newyear_str = ' newyear="%s"' % newyear
         else:
             newyear_str = ''
 
