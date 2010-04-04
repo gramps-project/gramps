@@ -1192,12 +1192,14 @@ table.weblinks tr td.ColumnDescription {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    height:65px;
+    max-width:80px auto;
+    max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    height:65px;
+    max-width:80px auto;
+    max-height:65px;
     margin:0 auto;
 }
 #treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
