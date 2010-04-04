@@ -1012,7 +1012,7 @@ class Date(object):
         else:
             pref = ""
 
-        ny = self.newyear_str()
+        ny = self.newyear_to_str()
             
         if self.calendar != Date.CAL_GREGORIAN:
             if ny:
