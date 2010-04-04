@@ -441,7 +441,7 @@ class BasePage(object):
         @param: evt = Event
         @param: evt_ref = event reference
         @param: subdirs = add [".."] * 3 for subdirectories or not
-        @params: hyp = add a hyperlink or not
+        @param: hyp = add a hyperlink or not
         """
         db = self.report.database
 
@@ -489,7 +489,7 @@ class BasePage(object):
         return trow 
 
     def event_link(self, eventtype, handle, gid = None, up = False):
-        """ createsa hyperlink for an event based on its type """
+        """ creates a hyperlink for an event based on its type """
 
         url = self.report.build_url_fname_html(handle, "evt", up)
 
@@ -754,7 +754,7 @@ class BasePage(object):
 
     def addressbook_link(self, person_handle, up = False):
         """
-        createsa hyperlink for an address book link based on person's handle
+        creates a hyperlink for an address book link based on person's handle
 
         @param: person_handle = person's handle from the database
         #param: up = rather to add subdirs or not?
