@@ -199,56 +199,55 @@ p#user_header {
     background-color:#542;
 }
 
-/* Navigation
+/* Navigation / SubNavigation
 ----------------------------------------------------- */
-#navigation, #subnavigation {
-    margin:0;
-    padding:0;
+div#navigation, div#subnavigation {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: solid 2px #000;
 }
-#navigation ul, #subnavigation ul {
+div#navigation ul, div#subnavigation ul {
     list-style:none;
-    min-width:770px;
-    height:32px;
+    min-width: 900px;
+    height: 24px;
     margin:0;
-    padding:0 0 0 5px;
-    background-color:#A97;
-    border-bottom:solid 1px #542;
+    padding: 0px 0px 0px 9px;
+    border-bottom: solid 2px #000;
 }
-#navigation ul li, #subnavigation ul li {
-    margin:0;
-    float:left;
+div#navigation ul li, div#subnavigation ul li {
+    float: left;
 }
-#navigation ul li a, #subnavigation ul li a {
-    display:block;
-    float:left;
-    font:normal 16px/100% serif;
-    color:#542;
+div#navigation ul li:first-child, div#subnavigation ul li:first-child {
+    margin-left: 10px;
+}
+div#navigation ul li:after, div#subnavigation ul li:after {
+    content: "| ";
+}
+div#navigation ul li a, div#subnavigation ul li a {
+    bakground-color: #A97;
+    display: block;
+    padding: 4px 8px 4px 8px;
+    float: left;
+    font: .8em bold italic small-caps verdana, serif;
+    color: #000;
     text-decoration:none;
     margin:0;
-    padding:6px 10px;
-
 }
-#navigation ul li a:hover, #subnavigation ul li a:hover {
-    background-color:#C1B398;
-    border-bottom:solid 1px #542;
+div#navigation ul li a:hover, div#subnavigation ul li a:hover {
+   background-color: #FFF;
+    color: #453619;
 }
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
-    font-size:19px;
-    margin-top:-6px;
-    padding-top:11px;
-    padding-bottom:8px;
-    border-right:solid 1px #542;
-    border-left:solid 1px #542;
-    border-bottom:solid 1px #FFF;
-    background-color:#FFF;
+div#navigation ul li.CurrentSection a,
+div#subnavigation ul li.CurrentSection a {
+    background-color: #C1B398;
+    color: #000;
 }
-#navigation ul li.CurrentSection a:hover {
-    background-color:#FFF;
+div#navigation ul li.CurrentSection a:hover,
+div#subnavigation ul li.CurrentSection a:hover {
+    background-color: #000;
+    color: #FFF;
 }
-#subnavigation ul li.CurrentSection a {
-    border-width:0 0 1px 0;
-}
-
 /* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphabet {
