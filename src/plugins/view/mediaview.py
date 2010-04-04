@@ -179,7 +179,7 @@ class MediaView(ListView):
 
     def drag_info(self):
         """
-        Return the type of DND targetst that this view will accept. For Media 
+        Return the type of DND targets that this view will accept. For Media 
         View, we will accept media objects.
         """
         return DdTargets.MEDIAOBJ

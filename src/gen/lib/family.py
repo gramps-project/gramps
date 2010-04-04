@@ -99,9 +99,9 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         This method is used to convert the object into a form that can easily 
         be saved to a database.
 
-        These elements may be primative Python types (string, integers),
+        These elements may be primitive Python types (string, integers),
         complex Python types (lists or tuples, or Python objects. If the
-        target database cannot handle complex types (such as objectes or
+        target database cannot handle complex types (such as objects or
         lists), the database is responsible for converting the data into
         a form that it can use.
 

@@ -132,7 +132,7 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         return self.attribute_list + self.source_list
 
     def set_rectangle(self, coord):
-        """Set subection of an image."""
+        """Set subsection of an image."""
         self.rect = coord
 
     def get_rectangle(self):
