@@ -48,16 +48,86 @@ Females     Web_Gender_Female.png
 # $Id$
 
  NarrativeWeb Styles
---------------------------------------------------------------------------------------------  */
-div#alphabet ul li {
+--------------------------------------------------------------------------------------------
+
+ Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
     background-color: #6AF364;
 }
-div#navigation ul li.CurrentSection a {
+div#alphabet ul li:after {
+    content:"  |";
+}
+div#alphabet ul li {
+    margin:0;
+    float:left;
+}
+div#alphabet ul li a {
+    display:block;
+    padding: 4px 8px 4px 8px;
+    float:left;
+    font:bold 16px/100% sans;
+    margin:0;
+    text-decoration:none;
+}
+
+/* Navigation
+----------------------------------------------------- */
+div#navigation, div#subnavigation {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: solid 2px #000;
+}
+div#navigation ul, div#subnavigation ul {
+    list-style:none;
+    min-width: 900px;
+    height: 24px;
+    margin:0;
+    padding: 0px 0px 0px 9px;
+    border-bottom: solid 2px #000;
+    background-color: #6AF364;
+}
+div#navigation ul li, div#subnavigation ul li {
+    float: left;
+}
+div#navigation ul li:first-child, div#subnavigation ul li:first-child {
+    margin-left: 3px;
+}
+div#navigation ul li:after, div#subnavigation ul li:after {
+    content: "| ";
+}
+div#navigation ul li a, div#subnavigation ul li a {
+    display: block;
+    padding: 4px 6px 4px 6px;
+    float: left;
+    font: .8em bold italic small-caps verdana, serif;
+    color: #000;
+    text-decoration:none;
+    margin:0;
+}
+div#navigation ul li a:hover, div#subnavigation ul li a:hover {
+
+}
+div#navigation ul li.CurrentSection a,
+div#subnavigation ul li.CurrentSection a {
     background-color: #000;
     color: #FFF;
 }
-div#navigation ul li.CurrentSection a:hover {
-    background-color: 696969;
+div#navigation ul li.CurrentSection a:hover,
+div#subnavigation ul li.CurrentSection a:hover {
+    background-color: #000;
 }
 
 /* General Elements
