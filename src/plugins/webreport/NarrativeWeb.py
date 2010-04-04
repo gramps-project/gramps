@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -4946,7 +4945,6 @@ class NavWebReport(Report):
 
         # Download Options Tab
         self.inc_download = self.options['incdownload']
-        self.downloadnote = self.options['downloadnote']
         self.dl_fname1 = self.options['down_fname1']
         self.dl_descr1 = self.options['dl_descr1']
         self.dl_fname2 = self.options['down_fname2']
@@ -5087,10 +5085,10 @@ class NavWebReport(Report):
         self.source_pages(source_list)
 
         # build classes RepositoryListPage and RepositoryPage
-        repolist = self.database.get_repository_handles()
-        if len(repolist):
-            self.repository_pages(repolist)
-
+        if self.inc_repository:
+            repolist = self.database.get_repository_handles()
+            if len(repolist):
+                self.repository_pages(repolist)
 
         # build class InternetAddressBook
         if self.addressbook:
@@ -5799,10 +5797,6 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'incdownload', self.__incdownload)
         self.__incdownload.connect('value-changed', self.__download_changed)
 
-        self.__downloadnote = NoteOption(_('Download page note'))
-        self.__downloadnote.set_help( _("A note to be used on the download page"))
-        menu.add_option(category_name, "downloadnote", self.__downloadnote)
-
         self.__down_fname1 = DestinationOption(_("Download Filename"),
             os.path.join(const.USER_HOME, ""))
         self.__down_fname1.set_help(_("File to be used for downloading of database"))
@@ -5957,14 +5951,12 @@ class NavWebOptions(MenuReportOptions):
         """
 
         if self.__incdownload.get_value():
-            self.__downloadnote.set_available(True)
             self.__down_fname1.set_available(True)
             self.__dl_descr1.set_available(True)
             self.__down_fname2.set_available(True)
             self.__dl_descr2.set_available(True)
             self.__dl_cright.set_available(True)
         else:
-            self.__downloadnote.set_available(False)
             self.__down_fname1.set_available(False)
             self.__dl_descr1.set_available(False)
             self.__down_fname2.set_available(False)
