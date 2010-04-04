@@ -219,7 +219,7 @@ div#navigation ul li, div#subnavigation ul li {
     float: left;
 }
 div#navigation ul li:first-child, div#subnavigation ul li:first-child {
-    margin-left: 10px;
+    margin-left: 4px;
 }
 div#navigation ul li:after, div#subnavigation ul li:after {
     content: "| ";
@@ -227,7 +227,7 @@ div#navigation ul li:after, div#subnavigation ul li:after {
 div#navigation ul li a, div#subnavigation ul li a {
     bakground-color: #A97;
     display: block;
-    padding: 4px 8px 4px 8px;
+    padding: 4px 3px 4px 3px;
     float: left;
     font: .8em bold italic small-caps verdana, serif;
     color: #000;
