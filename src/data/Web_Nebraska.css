@@ -726,22 +726,22 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     margin-right:.4em;
 }
 #streetaddress {
-    width:85%;
+    width: 100%;
 }
 #city:after {
-    content:",";
+    content: ",";
 }
 #country {
-    clear:left;
+    clear: left;
 }
 #email {
-    clear:left;
+    clear: left;
 }
 #email a {
-    text-decoration:none;
+    text-decoration: none;
 }
 #email a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 /* Download 
