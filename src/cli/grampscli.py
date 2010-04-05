@@ -106,7 +106,7 @@ class CLIDbLoader(object):
     
     def _pulse_progress(self, value):
         """
-        Convenience method to allow to show a progress bar if wantedon load
+        Convenience method to allow to show a progress bar if wanted on load
         actions. Inherit if needed
         """
         pass
@@ -126,7 +126,7 @@ class CLIDbLoader(object):
         
         This method should only return on success.
         Returning on failure makes no sense, because we cannot recover,
-        since database has already beeen changed.
+        since database has already been changed.
         Therefore, any errors should raise exceptions.
 
         On success, return with the disabled signals. The post-load routine

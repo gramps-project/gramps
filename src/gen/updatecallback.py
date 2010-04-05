@@ -43,7 +43,7 @@ import time
 class UpdateCallback(object):
     """
     Basic class providing way of calling the callback to update
-    things during lenghty operations.
+    things during lengthy operations.
     """
 
     def __init__(self, callback, interval=1):

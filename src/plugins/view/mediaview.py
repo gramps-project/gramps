@@ -230,7 +230,7 @@ class MediaView(ListView):
                 
     def get_bookmarks(self):
         """
-        Return the booksmarks associated with this view
+        Return the bookmarks associated with this view
         """
         return self.dbstate.db.get_media_bookmarks()
 
