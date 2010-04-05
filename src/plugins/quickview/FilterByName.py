@@ -76,28 +76,28 @@ def run(database, document, filter_name, *args, **kwargs):
     if (filter_name == 'all people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
-            stab.row(person, sdb.birth_date_obj(person),
+            stab.row(person, sdb.birth_or_fallback(person),
                      str(person.get_primary_name().get_type()))
             matches += 1
     elif (filter_name == 'males'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             if person.gender == Person.MALE:
-                stab.row(person, sdb.birth_date_obj(person),
+                stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
     elif (filter_name == 'females'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             if person.gender == Person.FEMALE:
-                stab.row(person, sdb.birth_date_obj(person),
+                stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
     elif (filter_name == 'people with unknown gender'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             if person.gender not in [Person.FEMALE, Person.MALE]:
-                stab.row(person, sdb.birth_date_obj(person),
+                stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
     elif (filter_name == 'people with incomplete names'):
@@ -105,7 +105,7 @@ def run(database, document, filter_name, *args, **kwargs):
         for person in database.iter_people():
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 if name.get_group_name() == "" or name.get_first_name() == "":
-                    stab.row(person, sdb.birth_date_obj(person),
+                    stab.row(person, sdb.birth_or_fallback(person),
                              str(person.get_primary_name().get_type()))
                     matches += 1
     elif (filter_name == 'people with missing birth dates'):
@@ -125,7 +125,7 @@ def run(database, document, filter_name, *args, **kwargs):
         for person in database.iter_people():
             if ((not person.get_main_parents_family_handle()) and 
                 (not len(person.get_family_handle_list()))):
-                stab.row(person, sdb.birth_date_obj(person),
+                stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
     elif (filter_name == 'all families'):
@@ -193,7 +193,7 @@ def run(database, document, filter_name, *args, **kwargs):
         handles = kwargs["handles"]
         for person_handle in handles:
             person = database.get_person_from_handle(person_handle)
-            stab.row(person, sdb.birth_date_obj(person),
+            stab.row(person, sdb.birth_or_fallback(person),
                      str(person.get_primary_name().get_type()))
             matches += 1
     else:

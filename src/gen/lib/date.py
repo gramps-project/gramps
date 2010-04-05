@@ -683,6 +683,7 @@ class Date(object):
             pass # source is ok
         else:
             raise AttributeError, "invalid args to Date: %s" % source
+        self.format = None
         #### ok, process either date or tuple
         if isinstance(source, tuple):
             self.calendar = Date.CAL_GREGORIAN

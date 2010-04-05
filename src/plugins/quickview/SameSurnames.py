@@ -118,7 +118,7 @@ def run(database, document, person):
     matches = 0
     for person_handle in people:
         person = database.get_person_from_handle(person_handle)
-        stab.row(person, sdb.birth_date_obj(person),
+        stab.row(person, sdb.birth_or_fallback(person),
                  str(person.get_primary_name().get_type()))
         matches += 1
 
@@ -159,7 +159,7 @@ def run_given(database, document, person):
     matches = 0
     for person_handle in people:
         person = database.get_person_from_handle(person_handle)
-        stab.row(person, sdb.birth_date_obj(person),
+        stab.row(person, sdb.birth_or_fallback(person),
                  str(person.get_primary_name().get_type()))
         matches += 1
 

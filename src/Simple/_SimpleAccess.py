@@ -27,6 +27,7 @@ from types import NoneType
 import gen.lib
 import DateHandler
 import Utils
+import gen.utils
 
 from gen.display.name import displayer as name_displayer
 from gen.lib import EventType
@@ -515,6 +516,21 @@ class SimpleAccess(object):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, gen.lib.Person.get_birth_ref)
 
+
+    def birth_or_fallback(self, person):
+        """
+        Return the date of the person's birth or fallback event.
+
+        @param person: Person object
+        @type person: L{gen.lib.Person}
+        @return: Returns the date when the person's birth or fallback.
+        @rtype: L{gen.lib.Date}
+        """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
+        return gen.utils.get_birth_or_fallback(self.dbase, 
+                                               person, "<i>%s</i>").date
+
     def birth_place(self, person):
         """
         Return a string indicating the place of the person's birth.
@@ -553,6 +569,20 @@ class SimpleAccess(object):
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, gen.lib.Person.get_death_ref)
+
+    def death_or_fallback(self, person):
+        """
+        Return the date of the person's death or fallback event.
+
+        @param person: Person object
+        @type person: L{gen.lib.Person}
+        @return: Returns the date of the person's death or fallback.
+        @rtype: L{gen.lib.Date}
+        """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
+        return gen.utils.get_death_or_fallback(self.dbase, 
+                                               person, "<i>%s</i>").date
 
     def death_place(self, person):
         """

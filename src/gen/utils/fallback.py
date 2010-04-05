@@ -24,7 +24,7 @@
 Functional database interface for getting events, or fallback events.
 """
 
-def get_birth_or_fallback(db, person):
+def get_birth_or_fallback(db, person, format=None):
     """
     Get BIRTH event from a person, or fallback to an event around
     the time of birth.
@@ -41,10 +41,12 @@ def get_birth_or_fallback(db, person):
             if (event
                 and event.type.is_birth_fallback()
                 and event_ref.role.is_primary()):
+                if format:
+                    event.date.format = format
                 return event
     return None    
     
-def get_death_or_fallback(db, person):
+def get_death_or_fallback(db, person, format=None):
     """
     Get a DEATH event from a person, or fallback to an
     event around the time of death.
@@ -61,5 +63,8 @@ def get_death_or_fallback(db, person):
             if (event
                 and event.type.is_death_fallback()
                 and event_ref.role.is_primary()):
+                if format:
+                    event.date.format = format
                 return event
     return None    
+

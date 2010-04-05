@@ -285,6 +285,9 @@ class SimpleTable(object):
                 text = DateHandler.displayer.display(item)
                 retval.append(text)
                 if item.get_valid():
+                    if item.format:
+                        self.set_cell_markup(col, row, 
+                                             item.format % cgi.escape(text))
                     self.row_sort_val(col, item.sortval)
                 else:
                     # sort before others:
@@ -292,7 +295,7 @@ class SimpleTable(object):
                     # give formatted version:
                     invalid_date_format = config.get('preferences.invalid-date-format')
                     self.set_cell_markup(col, row,
-                                         invalid_date_format % text)
+                                         invalid_date_format % cgi.escape(text))
                 if (self.__link_col == col or link is None):
                     link = ('Date', item)
             elif isinstance(item, gen.lib.Span):
