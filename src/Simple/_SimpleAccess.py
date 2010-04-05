@@ -528,8 +528,12 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return gen.utils.get_birth_or_fallback(self.dbase, 
-                                               person, "<i>%s</i>").date
+        event = gen.utils.get_birth_or_fallback(self.dbase, 
+                                                person, "<i>%s</i>")
+        if event:
+            return event.date
+        else:
+            return gen.lib.Date()
 
     def birth_place(self, person):
         """
@@ -581,8 +585,12 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return gen.utils.get_death_or_fallback(self.dbase, 
-                                               person, "<i>%s</i>").date
+        event = gen.utils.get_death_or_fallback(self.dbase, 
+                                                person, "<i>%s</i>")
+        if event:
+            return event.date
+        else:
+            return gen.lib.Date()
 
     def death_place(self, person):
         """
