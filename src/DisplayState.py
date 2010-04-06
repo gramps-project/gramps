@@ -409,7 +409,7 @@ class DisplayState(gen.utils.Callback):
 
     def get_active(self, nav_type, nav_group=0):
         """
-        Return the handle for the active obejct specified by the given
+        Return the handle for the active object specified by the given
         navigation type and group.
         """
         history = self.get_history(nav_type, nav_group)
