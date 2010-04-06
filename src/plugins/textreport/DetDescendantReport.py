@@ -83,20 +83,26 @@ class DetDescendantReport(Report):
         
         gen           - Maximum number of generations to include.
         pagebgg       - Whether to include page breaks between generations.
-        firstName     - Whether to use first names instead of pronouns.
-        fulldate      - Whether to use full dates instead of just year.
-        listchildren  - Whether to list children.
-        inc_mates     - Whether to include information about spouses
-        inc_notes     - Whether to include notes.
-        inc_attrs     - Whether to include attributes
-        blankPlace    - Whether to replace missing Places with ___________.
-        blankDate     - Whether to replace missing Dates with ___________.
-        calcageflag   - Whether to compute age.
-        dubperson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
+        fulldates     - Whether to use full dates instead of just year.
+        listc         - Whether to list children.
+        incnotes      - Whether to include notes.
+        usecall       - Whether to use the call name as the first name.
+        repplace      - Whether to replace missing Places with ___________.
+        repdate       - Whether to replace missing Dates with ___________.
+        computeage    - Whether to compute age.
+        omitda        - Whether to omit duplicate ancestors (e.g. when distant cousins marry).
         verbose       - Whether to use complete sentences.
-        numbering     - The descendency numbering system to be utilized.
-        childref      - Whether to add descendant references in child list.
-        addimages     - Whether to include images.
+        numbering     - The descendancy numbering system to be utilized.
+        desref        - Whether to add descendant references in child list.
+        incphotos     - Whether to include images.
+        incnames      - Whether to include other names.
+        incevents     - Whether to include events.
+        incaddresses  - Whether to include addresses.
+        incsrcnotes   - Whether to include source notes in the Endnotes section. Only works if Include sources is selected.
+        incmates      - Whether to include information about spouses
+        incattrs      - Whether to include attributes
+        incpaths      - Whether to include the path of descendancy from the start-person to each descendant.
+        incssign      - Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession.
         pid           - The Gramps ID of the center person for the report.
         """
         Report.__init__(self, database, options_class)
