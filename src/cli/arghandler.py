@@ -472,7 +472,7 @@ class ArgHandler(object):
                 # name exists, but is not in the list of valid report names
                 msg = "Unknown report name."
             else:
-                msg = "Report name not given. Please use -p name=reportname."
+                msg = "Report name not given. Please use one of [-p|--options] name=reportname."
             
             print "%s\n Available names are:" % msg
             for pdata in _cl_list:
@@ -509,7 +509,7 @@ class ArgHandler(object):
                         return
                 msg = "Unknown tool name."
             else:
-                msg = "Tool name not given. Please use -p name=toolname."
+                msg = "Tool name not given. Please use one of [-p|--options] name=toolname."
             
             print "%s\n Available names are:" % msg
             for pdata in _cli_tool_list:
