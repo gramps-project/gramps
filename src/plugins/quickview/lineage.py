@@ -53,7 +53,7 @@ def run_father(database, document, person):
     sd.paragraph(_(""
         "This report shows the father lineage, also called patronymic lineage"
         " or Y-line."
-        " People in this lineage all share the same Y-chromosone."
+        " People in this lineage all share the same Y-chromosome."
         ))
     sd.paragraph("")
     stab = SimpleTable(sa)
@@ -82,8 +82,8 @@ def run_mother(database, document, person):
     sd.paragraph("")
     sd.paragraph(_(""
         "This report shows the mother lineage, also called matronymic lineage "
-        "or M-line."
-        " People in this lineage all share the same RNA."
+        "mtDNA lineage."
+        " People in this lineage all share the same Mitochondrial DNA (mtDNA)."
         ))
     sd.paragraph("")
     
@@ -163,8 +163,8 @@ def make_details_child(gender, person, sa, sd, database) :
         male/female lineage
     """
     def make_child_line(child, prepend, generation) :
-        """ Recursively called funcion to write one child line
-            Person is the child, prepend is the string that preceeds it
+        """ Recursively called function to write one child line
+            Person is the child, prepend is the string that precedes it
             on print. As the recursion grows, prepend is increased
             Gen is the generation level
         """
