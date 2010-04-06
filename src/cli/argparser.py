@@ -88,7 +88,8 @@ class ArgParser(object):
         5/ -f, --format=FORMAT : format after a -i or -e option
         6/ -a, --action: An action (possible: 'check', 'summary', 'report', 
                             'tool')
-        7/ -u, --force-unlock: A locked database can be unlocked by giving this
+        7/ -p, --options=OPTIONS_STRING : specify options
+        8/ -u, --force-unlock: A locked database can be unlocked by giving this
                 argument when opening it
     
     If the filename (no flags) is specified, the interactive session is 
@@ -146,7 +147,8 @@ class ArgParser(object):
         5/ -f, --format=FORMAT : format after a -i or -e option
         6/ -a, --action: An action (possible: 'check', 'summary', 'report', 
                             'tool')
-        7/ -u, --force-unlock: A locked database can be unlocked by giving this
+        7/ -p, --options=OPTIONS_STRING : specify options
+        8/ -u, --force-unlock: A locked database can be unlocked by giving this
                 argument when opening it
                             
         """
