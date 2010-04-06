@@ -35,6 +35,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import config
+from gui.basesidebar import BaseSidebar
 from gui.viewmanager import get_available_views, views_to_show
 
 #-------------------------------------------------------------------------
@@ -75,7 +76,7 @@ CATEGORY_ICON = {
 # CategorySidebar class
 #
 #-------------------------------------------------------------------------
-class CategorySidebar(object):
+class CategorySidebar(BaseSidebar):
     """
     A sidebar displaying a column of toggle buttons that allows the user to
     change the current view.
