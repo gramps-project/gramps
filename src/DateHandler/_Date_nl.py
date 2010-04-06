@@ -65,6 +65,9 @@ class DateParserNL(DateParser):
     month_to_int[u"feber"]  = 2
     month_to_int[u"februaris"]  = 2
     month_to_int[u"merz"]  = 3
+    #make sure on all distro mrt and maa are accepted
+    month_to_int[u"maa"]  = 3
+    month_to_int[u"mrt"]  = 3
     month_to_int[u"aprilis"]  = 4
     month_to_int[u"maius"]  = 5
     month_to_int[u"junius"]  = 6
@@ -143,7 +146,7 @@ class DateDisplayNL(DateDisplay):
                     u"juni", u"juli", u"augustus", u"september", u"oktober", 
                     u"november", u"december" )
     
-    short_months = ( u"", u"jan", u"feb", u"maa", u"apr", u"mei", u"jun", 
+    short_months = ( u"", u"jan", u"feb", u"mrt", u"apr", u"mei", u"jun", 
                      u"jul", u"aug", u"sep", u"okt", u"nov", u"dec" )
     
     calendar = (
