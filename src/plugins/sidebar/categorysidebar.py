@@ -172,6 +172,9 @@ class CategorySidebar(BaseSidebar):
         view_id = self.views[cat_num][view_num][0].id
         config.set('preferences.last-view', view_id)
         last_views = config.get('preferences.last-views')
+        if len(last_views) != len(self.views):
+            # If the number of categories has changed then reset the defaults
+            last_views = [''] * len(self.views)
         last_views[cat_num] = view_id 
         config.set('preferences.last-views', last_views)
         config.save()
