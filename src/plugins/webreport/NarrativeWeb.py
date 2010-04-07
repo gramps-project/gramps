@@ -962,9 +962,9 @@ class BasePage(object):
 
         # create stylesheet and favicon links
         links = Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon") + (
-             Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet")
+             Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet", indent = False),
+             Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet", indent = False),
+             Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet", indent = False)
              )
 
         # add additional meta and link tags
