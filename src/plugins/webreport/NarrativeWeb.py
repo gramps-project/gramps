@@ -1004,13 +1004,12 @@ class BasePage(object):
             header_note = self.report.options['headernote']
             if header_note:
                 note = db.get_note_from_gramps_id(header_note)
-                note_text = self.get_note_format(note)
 
                 user_header = Html("div", id = 'user_header')
                 headerdiv += user_header  
  
                 # attach note
-                user_header += note_text
+                user_header += note.get_text()
 
             # Begin Navigation Menu
             body += self.display_nav_links(title)
