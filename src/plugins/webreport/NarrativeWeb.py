@@ -977,16 +977,16 @@ class BasePage(object):
 
         # create stylesheet and favicon links
         links = Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon") + (
-             Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet"),
-             Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet")
+             Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet", indent = False),
+             Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet", indent = False),
+             Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet", indent = False)
              )
 
         if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
             # Link to Navigation Menus stylesheet
             fname = "/".join(["styles", "Web_Navigation-Menus.css"])
             url = self.report.build_url_fname(fname, None, self.up)
-            links.extend( Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet") )
+            links.extend( Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False) )
 
         # add additional meta and link tags
         head += meta
