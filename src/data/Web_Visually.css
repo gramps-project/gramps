@@ -297,7 +297,7 @@ div#footer {
     overflow: auto;
     clear: both;
     font-size: 12px;
-    margin: 0;
+    margin-top: 10px;
     color: #FFF;
     background-color: #542;
     border-top: solid 8px #5D835F;
@@ -886,13 +886,17 @@ div#Download table.download td.Modified {
 
 /* Sources
 ----------------------------------------------------- */
-#Sources {  }
-
+#Sources {
+    margin: 0;
+    padding: 0;
+}
 div#Sources table.infolist tbody tr td {
     background-color: #D8F3D6;
+    border-bottom: dashed 1px #000;
 }
 div#Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
+    width: 5%;
 }
 div#Sources table.infolist tbody tr td.ColumnName {
     padding:0;
@@ -913,23 +917,29 @@ div#SourceDetail div#references ol li {
 ------------------------------------------------------ */
 div#RepositoryList {
     margin: 0;
-    padding: 0;
+    padding: 0 14px 0 14px;
+    width: 965px;
+}
+div#RepositoryList table.repolist {
+    width: 100%;
 }
 div#RepositoryList table.repolist tbody tr td {
     background-color: #D8F3D6;
+    border-bottom: dashed 1px #000;
 }
 div#RepositoryList table.repolist tbody tr td a {
     display: block;
     padding: .3em 10px;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
-    width: 9%;
+    width: 5%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnType {
     width: 15%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
+    width: 80%;
 }
 
 /* Address Book
