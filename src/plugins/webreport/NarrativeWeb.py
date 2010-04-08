@@ -896,14 +896,12 @@ class BasePage(object):
 
             # optional "link-home" feature; see bug report #2736
             if self.report.options['linkhome']:
-                home_person = db.get_default_person()
-                if home_person:
+                center_person = db.get_person_from_gramps_id(self.report.options['pid'])
+                if center_person:
                     home_person_url = self.report.build_url_fname_html(
-                        home_person.handle, 
-                        "ppl", 
-                        self.up)
+                        center_person.handle, "ppl", self.up)
 
-                    home_person_name = self.get_name(home_person)
+                    home_person_name = self.get_name(center_person)
                     msg += _(' Created for <a href = "%s">%s</a>') % (
                                 home_person_url, home_person_name)
 
