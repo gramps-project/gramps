@@ -459,7 +459,7 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, True, False, subdirs)
+        event_data = self.get_event_data(evt, evt_ref, subdirs)
 
         trow.extend(
             Html("td", data or "&nbsp;", class_ = "Column" + colclass,
@@ -470,8 +470,10 @@ class BasePage(object):
         notelist = evt.get_note_list()
         notelist.extend( evt_ref.get_note_list() )
         if notelist:
-            notelist = self.dump_notes( notelist ) or "&nbsp;"
-            trow += Html("td", notelist, class_ = "ColumnNotes")
+            notelist = self.dump_notes( notelist )
+        else:
+            notelist = "&nbsp;"
+        trow += Html("td", notelist, class_ = "ColumnNotes")
 
         # get event source references
         srcrefs = self.get_citation_links( evt.get_source_references() ) or "&nbsp;"
@@ -499,15 +501,14 @@ class BasePage(object):
         else:
             return eventtype
 
-    def get_event_data(self, evt, evt_ref, showplc, showdescr, up, gid = None):
+    def get_event_data(self, evt, evt_ref, up, gid = None):
         """
         retrieve event data from event and evt_ref
 
         @param: evt = event from database
         @param: evt_ref = eent reference
-        @param: showplc = show the event place or not?
-        @param: showdescr = to show the event description or not?
         @param: up = either True or False; add subdirs or not?
+        @param: gid = gramps_id
         """
         db = self.report.database
 
@@ -526,15 +527,9 @@ class BasePage(object):
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
         info = [
-               [DHEAD, "Date", _dd.display(evt.get_date_object() )]
+               [DHEAD, "Date", _dd.display(evt.get_date_object() )],
+               [PHEAD, "Place", place_hyper] 
                ]
-
-        if showplc:
-            info.append([PHEAD, "Place", place_hyper])
-
-        if showdescr:
-            descr = evt.get_description()
-            info.append([DESCRHEAD, "Description", descr])
 
         # return event data information to its callers
         return info                        
@@ -2497,7 +2492,7 @@ class EventPage(BasePage):
                 """
                 for more information: see get_event_data()
                 """ 
-                event_data = self.get_event_data(event, event_handle, True, True, subdirs, evt_gid)
+                event_data = self.get_event_data(event, event_handle, subdirs, evt_gid)
 
                 for (label, colclass, data) in event_data:
                     if data:
