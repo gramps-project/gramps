@@ -38,7 +38,7 @@ from Filters.Rules._HasNoteSubstrBase import HasNoteSubstrBase
 # "Media having notes that contain a substring"
 #-------------------------------------------------------------------------
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
-    """Media having notes containing <subtring>"""
+    """Media having notes containing <substring>"""
 
     name        = _('Media objects having notes containing <substring>')
     description = _("Matches media objects whose notes contain text "

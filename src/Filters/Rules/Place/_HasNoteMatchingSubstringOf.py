@@ -38,7 +38,7 @@ from Filters.Rules._HasNoteSubstrBase import HasNoteSubstrBase
 # "Events having notes that contain a substring"
 #-------------------------------------------------------------------------
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
-    """Places having notes containing <subtring>"""
+    """Places having notes containing <substring>"""
 
     name        = _('Places having notes containing <substring>')
     description = _("Matches places whose notes contain text "

@@ -38,7 +38,7 @@ from Filters.Rules._HasNoteSubstrBase import HasNoteSubstrBase
 # "People having notes that contain a substring"
 #-------------------------------------------------------------------------
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
-    """People having notes containing <subtring>"""
+    """People having notes containing <substring>"""
 
     name        = _('People having notes containing <substring>')
     description = _("Matches people whose notes contain text matching a substring")

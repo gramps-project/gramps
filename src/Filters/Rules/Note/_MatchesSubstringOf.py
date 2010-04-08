@@ -39,7 +39,7 @@ from Filters.Rules import Rule
 # "Events having notes that contain a substring"
 #-------------------------------------------------------------------------
 class MatchesSubstringOf(Rule):
-    """Notes having notes containing <subtring>"""
+    """Notes having notes containing <substring>"""
 
     labels      = [ _('Substring:')]
     name        = _('Notes containing <substring>')
