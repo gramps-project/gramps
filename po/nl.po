@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-01 16:08+0200\n"
-"PO-Revision-Date: 2010-04-01 20:29+0100\n"
+"PO-Revision-Date: 2010-04-08 16:04+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -22784,7 +22784,7 @@ msgstr "<b>Gedeelde informatie</b>"
 
 #: ../src/glade/editreporef.glade.h:7
 msgid "Call n_umber:"
-msgstr "Telefoonnummer:"
+msgstr "Identificatienummer:"
 
 #: ../src/glade/editreporef.glade.h:10
 msgid "_Media Type:"
