@@ -34,13 +34,12 @@
 # lineage	     lijn
 # u gebruiken
 # telkens werkwoord achteraan plaatsen
-
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-28 18:02+0200\n"
-"PO-Revision-Date: 2010-04-02 07:59+0100\n"
+"PO-Revision-Date: 2010-04-08 16:08+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -22795,7 +22794,7 @@ msgstr "<b>Gedeelde informatie</b>"
 
 #: ../src/glade/editreporef.glade.h:7
 msgid "Call n_umber:"
-msgstr "Telefoonnummer:"
+msgstr "Identificatienummer:"
 
 #: ../src/glade/editreporef.glade.h:10
 msgid "_Media Type:"
