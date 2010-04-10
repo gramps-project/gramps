@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-01 16:08+0200\n"
-"PO-Revision-Date: 2010-04-08 16:04+0100\n"
+"PO-Revision-Date: 2010-04-10 08:42+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -2493,7 +2493,7 @@ msgstr "%s opnieuw doen"
 
 #: ../src/gen/display/name.py:114
 msgid "Default format (defined by Gramps preferences)"
-msgstr "Standaard formaat (gedefinieerd in Gramps-voorkeuren)"
+msgstr "Standaardformaat (gedefinieerd in Gramps-voorkeuren)"
 
 #: ../src/gen/display/name.py:115
 msgid "Surname, Given Patronymic"
@@ -6346,7 +6346,7 @@ msgstr "_Namen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:112
 msgid "Set as default name"
-msgstr "Sla op als standaard naam"
+msgstr "Als standaardnaam opslaan"
 
 #. -------------------------------------------------------------------------
 #.
@@ -20438,7 +20438,7 @@ msgstr "Reguliere uitdrukking:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 msgid "Objects having notes containing <regular expression>"
-msgstr "Vindt objecten met notities welke de <reguliere uitdrukking> bevatten"
+msgstr "Objecten met notities welke de <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 msgid "Matches objects whose notes contain text matching a regular expression"
@@ -20446,7 +20446,7 @@ msgstr "Vindt objecten waarvan de notities tekst bevatten die met een reguliere 
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
 msgid "Objects having notes containing <substring>"
-msgstr "Vindt objecten met notities, welke de <deeltekenreeks> bevatten"
+msgstr "Objecten met notities die de <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
 msgid "Matches objects whose notes contain text matching a substring"
@@ -20462,7 +20462,7 @@ msgstr "Vindt media-objecten waarnaar een bepaald aantal maal verwezen wordt"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
 msgid "Objects with records containing <substring>"
-msgstr "Vindt objecten waarvan de gegevens <deeltekenreeks> bevatten"
+msgstr "Objecten waarvan de gegevens <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
 msgid "Matches objects whose records contain text matching a substring"
@@ -20753,7 +20753,7 @@ msgstr "Vindt personen met een bepaald aantal notities"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 msgid "People having notes containing <substring>"
-msgstr "Vindt personen met notities, welke een <deeltekenreeks> bevatten"
+msgstr "Personen met notities die een <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches people whose notes contain text matching a substring"
@@ -20761,7 +20761,7 @@ msgstr "Vindt personen van wie de notities tekst bevatten die met een bepaalde d
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
-msgstr "Vindt personen met notities die <reguliere uitdrukking> bevatten"
+msgstr "Personen met notities die <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -20895,7 +20895,7 @@ msgstr "Standaardpersoon"
 # Vindt de filter genaamd?
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:47
 msgid "Matches the default person"
-msgstr "Vindt de standaarpersoon"
+msgstr "De standaardpersoon zoeken"
 
 # afstammelingen
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:51
@@ -21284,7 +21284,7 @@ msgstr "Vindt families met een bepaald aantal notities"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
-msgstr "Vindt families waarvan de notities die <deeltekenreeks> bevatten"
+msgstr "Families waarvan de notities die <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches families whose notes contain text matching a substring"
@@ -21292,7 +21292,7 @@ msgstr "Vindt families waarvan de notities tekst bevatten die met deeltekenreeks
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:42
 msgid "Families having notes containing <regular expression>"
-msgstr "Vindt families waarvan de notities <reguliere uitdrukking> bevatten"
+msgstr "Families waarvan de notities <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
@@ -21490,7 +21490,7 @@ msgstr "Vindt gebeurtenissen met een bepaald aantal notitities"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
-msgstr "Vindt gebeurtenissen waarvan de notities <deeltekenreeks> bevatten"
+msgstr "Gebeurtenissen waarvan de notities <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
@@ -21498,7 +21498,7 @@ msgstr "Vindt gebeurtenissen waarvan de notities tekst bevatten die met deelteke
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
 msgid "Events having notes containing <regular expression>"
-msgstr "Vindt gebeurtenissen met notities die <reguliere uitdrukking> bevatten"
+msgstr "Gebeurtenissen met notities die <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -21620,7 +21620,7 @@ msgstr "Vindt locaties met een bepaald aantal notities"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
-msgstr "Vindt locaties waarvan de notities <deeltekenreeks> bevatten"
+msgstr "Locaties waarvan de notities <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
@@ -21628,7 +21628,7 @@ msgstr "Vindt locaties waarvan de notities tekst bevatten die met deeltekenreeks
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 msgid "Places having notes containing <regular expression>"
-msgstr "Vindt locaties met notities die <reguliere uitdrukking> bevatten"
+msgstr "Locaties met notities die <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
@@ -21670,7 +21670,7 @@ msgstr "Locaties waaobjecten waarnaar <x aantal keer> naar verwezen wordt"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
 msgid "Matches places with a certain reference count"
-msgstr "Locaties waarnaar een bepaald aantal maal naar verwezen wordt"
+msgstr "Vindt locaties waarnaar een bepaald aantal maal naar verwezen wordt"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Latitude:"
@@ -21773,7 +21773,7 @@ msgstr "Vindt bronnen met een bepaald aantal notities"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
-msgstr "Vindt bronnen waarvan de notities een <reguliere uitdrukking> bevatten"
+msgstr "Bronnen waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
@@ -21781,7 +21781,7 @@ msgstr "Vindt bronnen waarvan de notities tekst bevatten die met een reguliere u
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
 msgid "Sources having notes containing <substring>"
-msgstr "Vindt bronnenpersonen met notities die <deeltekenreeks> bevatten"
+msgstr "Bronnen met notities die <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
@@ -21822,7 +21822,7 @@ msgstr "Publicatie:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
 msgid "Sources matching parameters"
-msgstr "Bron parameters"
+msgstr "Bronnen met  parameters"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:50
 msgid "Matches sources with particular parameters"
@@ -21898,7 +21898,7 @@ msgstr "Pad:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr "Parameters voor media-objecten"
+msgstr "Media-objecten met parameters"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
@@ -21906,7 +21906,7 @@ msgstr "Vindt media-objecten die bepaalde parameters"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Vindt media-objecten met notities die <deeltekenreeks> bevatten"
+msgstr "Media-objecten met notities die <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
@@ -21914,7 +21914,7 @@ msgstr "Vindt media-objecten van wie de notities tekst bevatten die met een deel
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Vindt media-objecten met notities die <reguliere uitdrukking> bevatten"
+msgstr "Media-objecten met notities die <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
@@ -21979,7 +21979,7 @@ msgstr "Vindt bibliotheken met een gespecificeerde Gramps ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Vindt bibliotheken met notities die <substring> bevatten"
+msgstr "Bibliotheken met notities die <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
@@ -21987,7 +21987,7 @@ msgstr "Vindt bibliotheken waarvan wie de notities tekst bevatten die met deelte
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
-msgstr "Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
+msgstr "Bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
@@ -22044,7 +22044,7 @@ msgstr "Alle opmerkingen"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:46
 msgid "Matches every note in the database"
-msgstr "Vindt alle opmerkingen in het gegevensbestan"
+msgstr "Vindt alle opmerkingen in het gegevensbestand"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
 msgid "Notes changed after <date time>"
@@ -22073,7 +22073,7 @@ msgstr "Vindt alle opmerkingen waarvan de aanduiding een bepaalde waarde heeft"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
-msgstr "Vindt opmerkingen die de <deeltekenreeks> bevatten"
+msgstr "Opmerkingen die de <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
 msgid "Matches notes who contain text matching a substring"
@@ -22081,7 +22081,7 @@ msgstr "Vindt opmerkingen die tekst bevatten die met een deeltekenreeks overeenk
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
 msgid "Notes containing <regular expression>"
-msgstr "Vindt opmerkingen die de <reguliere uitdrukking> bevatten"
+msgstr "Opmerkingen die de <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
@@ -22093,7 +22093,7 @@ msgstr "Tekst:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
-msgstr "Opmerkingen parameters"
+msgstr "Opmerkingen met parameters"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:51
 msgid "Matches Notes with particular parameters"
@@ -23153,7 +23153,7 @@ msgstr "<b>Regellijst</b>"
 
 #: ../src/glade/rule.glade.h:5
 msgid "<b>Selected Rule</b>"
-msgstr "<b>Geselecteerd regel</b>"
+msgstr "<b>Geselecteerde regel</b>"
 
 #: ../src/glade/rule.glade.h:6
 msgid "<b>Values</b>"
@@ -23842,7 +23842,7 @@ msgstr "<b>Voor- en achterwaarts navigeren</b><br/>Gramps onderhoudt een lijst m
 
 #: ../src/data/tips.xml.in.h:37
 msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
-msgstr "<b>U spreekt geen engels?</b><br/>Vrijwilligers hebben Gramps vertaald in meer dan 20 talen. Als Gramps ondersteuning heeft voor uw taal maar deze niet wordt getoond, stel dan de standaardtaal in op uw computer en start Gramps opnieuw op."
+msgstr "<b>U spreekt geen Engels?</b><br/>Vrijwilligers hebben Gramps vertaald in meer dan 20 talen. Als Gramps ondersteuning heeft voor uw taal maar deze niet wordt getoond, stel dan de standaardtaal in op uw computer en start Gramps opnieuw op."
 
 #: ../src/data/tips.xml.in.h:38
 msgid "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative."
