@@ -52,7 +52,7 @@ class Sidebar(object):
         select_button = gtk.ToggleButton()
         select_button.set_relief(gtk.RELIEF_NONE)
         select_hbox = gtk.HBox()
-        self.title_label = gtk.Label('Category')
+        self.title_label = gtk.Label('')
         arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_NONE)
         select_hbox.pack_start(self.title_label, False)
         select_hbox.pack_end(arrow, False)
@@ -91,8 +91,8 @@ class Sidebar(object):
         """
         Add a page to the sidebar for a plugin.
         """
-        index = self.notebook.append_page(sidebar.get_top(), gtk.Label(title))
         self.pages.append((title, sidebar))
+        index = self.notebook.append_page(sidebar.get_top(), gtk.Label(title))
 
         menu_item = gtk.MenuItem(title)
         menu_item.connect('activate', self.cb_menu_activate, index)

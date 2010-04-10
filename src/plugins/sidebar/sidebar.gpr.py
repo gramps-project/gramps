@@ -36,5 +36,5 @@ fname = 'categorysidebar.py',
 authors = [u"Nick Hall"],
 authors_email = ["nick__hall@hotmail.com"],
 sidebarclass = 'CategorySidebar',
-menu_label = 'Category'
+menu_label = _('Category')
 )
