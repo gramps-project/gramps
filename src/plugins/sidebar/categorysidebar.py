@@ -88,8 +88,7 @@ class CategorySidebar(BaseSidebar):
         self.buttons = []
         self.button_handlers = []
 
-        self.vbox = gtk.VBox()
-
+        self.window = gtk.ScrolledWindow()
         self.pages = {}
         self.page_defs = {}
         
@@ -97,6 +96,11 @@ class CategorySidebar(BaseSidebar):
         self.view_toggle_actions = {}
         self.cat_view_group = None
         self.merge_ids = []
+
+        vbox = gtk.VBox()
+        self.window.add_with_viewport(vbox)
+        self.window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.window.show()
         
         self.views = get_available_views()
         defaults = views_to_show(self.views,
@@ -119,13 +123,13 @@ class CategorySidebar(BaseSidebar):
                     # create the button and add it to the sidebar
                     button = self.__make_sidebar_button(use_text, cat_num,
                                                         category, cat_icon)
-                    self.vbox.pack_start(button, False)
+                    vbox.pack_start(button, False)
                     
                     # Enable view switching during DnD
                     button.drag_dest_set(0, [], 0)
                     button.connect('drag_motion', self.cb_switch_page_on_dnd,
                                    cat_num)
-                    self.vbox.show_all()
+                    vbox.show_all()
 
                 self.page_defs[(cat_num, view_num)] = page
 
@@ -156,7 +160,7 @@ class CategorySidebar(BaseSidebar):
         """
         Return the top container widget for the GUI.
         """
-        return self.vbox
+        return self.window
 
     def view_changed(self, page_num):
         """
