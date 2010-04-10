@@ -251,9 +251,9 @@ class DateDisplaySR_latin(DateDisplay):
         )
     
     calendar = (
-        "", u" (julijanski)", u" (hebrejski)", 
-        u" (francuski republikanski)", u" (persijski)", u" (islamski)",
-        u" (švedski)" 
+        "", u"julijanski", u"hebrejski", 
+        u"francuski republikanski", u"persijski", u"islamski",
+        u"švedski" 
         )
 
     _mod_str = ("", "pre ", "posle ", "oko ", "", "", "")
@@ -334,6 +334,7 @@ class DateDisplaySR_latin(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
         
@@ -344,17 +345,20 @@ class DateDisplaySR_latin(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'od', d_1, u'do', d_2,
-                                                            self.calendar[cal])
+                                                            scal)
         elif mod == Date.MOD_RANGE:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'između', d_1, u'i', d_2, 
-                                                            self.calendar[cal])
+                                                            scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
+            scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
-                                                self.calendar[cal])
+                                                scal)
 
 
 #-------------------------------------------------------------------------

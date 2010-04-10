@@ -115,6 +115,7 @@ class DateParserHR(DateParser):
     month_to_int[u"septembar"]  = 9
     month_to_int[u"septembra"]  = 9
     month_to_int[u"ix"]  = 9
+    month_to_int[u"7ber"]  = 9
     
     month_to_int[u"listopad"]  = 10
     month_to_int[u"listopada"]  = 10
@@ -122,6 +123,7 @@ class DateParserHR(DateParser):
     month_to_int[u"oktobar"]  = 10
     month_to_int[u"oktobra"]  = 10
     month_to_int[u"x"]  = 10
+    month_to_int[u"8ber"]  = 10
     
     month_to_int[u"studeni"]  = 11
     month_to_int[u"studenog"]  = 11
@@ -129,6 +131,7 @@ class DateParserHR(DateParser):
     month_to_int[u"novembar"]  = 11
     month_to_int[u"novembra"]  = 11
     month_to_int[u"xi"]  = 11
+    month_to_int[u"9ber"]  = 11
     
     month_to_int[u"prosinac"]  = 12
     month_to_int[u"prosinca"]  = 12
@@ -160,7 +163,7 @@ class DateParserHR(DateParser):
         u'franc.'         : Date.CAL_FRENCH,
         u'perzijski'       : Date.CAL_PERSIAN,
         u'perz. '       : Date.CAL_PERSIAN,
-        u'swedish'      : Date.CAL_SWEDISH, 
+        u'švedski'      : Date.CAL_SWEDISH, 
         u's'            : Date.CAL_SWEDISH, 
         }
 
@@ -224,9 +227,9 @@ class DateDisplayHR(DateDisplay):
         )
     
     calendar = (
-        "", u" (julijanski)", u" (hebrejski)", 
-        u" (francuski republikanski)", u" (perzijski)", u" (islamski)",
-        u" (swedish)" 
+        "", u"julijanski", u"hebrejski", 
+        u"francuski republikanski", u"perzijski", u"islamski",
+        u"swedish" 
         )
 
     _mod_str = ("", "prije ", "poslije ", "okolo ", "", "", "")
@@ -319,6 +322,7 @@ class DateDisplayHR(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
         
@@ -329,17 +333,20 @@ class DateDisplayHR(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'od', d_1, u'do', d_2,
-                                                            self.calendar[cal])
+                                                            scal)
         elif mod == Date.MOD_RANGE:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'između', d_1, u'i', d_2, 
-                                                            self.calendar[cal])
+                                                            scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
+            scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
-                                                self.calendar[cal])
+                                                scal)
 
 #-------------------------------------------------------------------------
 #

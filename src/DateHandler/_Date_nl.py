@@ -150,9 +150,9 @@ class DateDisplayNL(DateDisplay):
                      u"jul", u"aug", u"sep", u"okt", u"nov", u"dec" )
     
     calendar = (
-        "", u" (juliaans)", u" (hebreeuws)", 
-        u" (franse republiek)", u" (persisch)", u" (islamitisch)",
-        u" (zweeds)" )
+        "", u"juliaans", u"hebreeuws", 
+        u"franse republiek", u"persisch", u"islamitisch",
+        u"zweeds" )
 
     _mod_str = ("", u"voor ", u"na ", u"rond ", "", "", "")
     
@@ -234,6 +234,7 @@ class DateDisplayNL(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
         
@@ -244,17 +245,20 @@ class DateDisplayNL(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'van', d1, 
-                                        u'tot', d2, self.calendar[cal])
+                                        u'tot', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%stussen %s en %s%s" % (qual_str, d1, d2, 
-                                            self.calendar[cal])
+                                            scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
+            scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
-                                 self.calendar[cal])
+                                 scal)
 
 #-------------------------------------------------------------------------
 #
