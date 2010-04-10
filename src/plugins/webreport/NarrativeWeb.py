@@ -883,7 +883,7 @@ class BasePage(object):
 
                     home_person_name = self.get_name(center_person)
                     # carriage return was added by Stephane Charette to force it down one line
-                    msg += _('<br /> Created for <a href = "%s">%s</a>') % (
+                    msg += '<br/>' + _(' Created for <a href = "%s">%s</a>') % (
                                 home_person_url, home_person_name)
 
             # creation date
