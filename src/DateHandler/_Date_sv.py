@@ -64,7 +64,7 @@ class DateParserSv(DateParser):
         u'c:a'     : Date.MOD_ABOUT
         }
 
-    bce = ["f Kr"]
+    bce = [u"f Kr"]
 
     calendar_to_int = {
         u'gregoriansk   '      : Date.CAL_GREGORIAN, 
@@ -128,20 +128,20 @@ class DateDisplaySv(DateDisplay):
         )
 
     calendar = (
-        "", 
-        " (juliansk)", 
-        " (hebreisk)", 
-        " (fransk republikansk)", 
-        " (persisk)", 
-        " (islamisk)", 
-        " (svensk)"
+        u"", 
+        u" (juliansk)", 
+        u" (hebreisk)", 
+        u" (fransk republikansk)", 
+        u" (persisk)", 
+        u" (islamisk)", 
+        u" (svensk)"
         )
     
-    _mod_str = ("", u"före ", u"efter ", u"c:a ", "", "", "")
+    _mod_str = (u"", u"före ", u"efter ", u"c:a ", u"", u"", u"")
 
-    _qual_str = ("", u"uppskattat ", u"beräknat ")
+    _qual_str = (u"", u"uppskattat ", u"beräknat ")
     
-    _bce_str = "%s f Kr"
+    _bce_str = u"%s f Kr"
 
     def display(self, date):
         """
