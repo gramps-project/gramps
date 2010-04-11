@@ -171,7 +171,7 @@ LANGUAGES = {
 class Spell(object):
     """Attach a gtkspell instance to the passed TextView instance.
     """
-    lang = locale.getlocale()[0]
+    lang = locale.getlocale()[0] or "en"
     _installed_languages = {'off': _('None')}
     
     if HAVE_ENCHANT and HAVE_GTKSPELL:
@@ -194,19 +194,15 @@ class Spell(object):
 
     elif not HAVE_ENCHANT and HAVE_GTKSPELL:
         # if lang is None, default to en:
-        if lang == None:
-            locale_lang_code = "en"
-        else:
-            locale_lang_code = lang
         tested = False
         #we try a hack to get the locale language. 
         for (lang_code, lang_name) in LANGUAGES.items():
             # if this lang is the current locale:
-            if (locale_lang_code == lang_code):
+            if (lang == lang_code):
                 tested = True
                 # if it is english, we know it works:
-                if locale_lang_code == "en":
-                    _installed_languages[locale_lang_code] = lang_name
+                if lang == "en":
+                    _installed_languages[lang] = lang_name
                     print _("Warning: spelling checker language limited to "
                             "locale '%s'; install pyenchant/python-enchant "
                             "for better options.") % "en"
