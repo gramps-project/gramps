@@ -3910,6 +3910,9 @@ class IndividualPage(BasePage):
 
                 # Names [and their sources]
                 for name in all_names:
+                    pname = _nd.display_name(name)
+                    if name == primary_name:
+                        pname += self.get_citation_links(self.person.get_source_references() ) 
                     pname =  _nd.display_name(name)
                     pname += self.get_citation_links( name.get_source_references() )
 
@@ -3955,7 +3958,6 @@ class IndividualPage(BasePage):
                 # display the nickname attribute
                 nick_name = self.person.get_nick_name()
                 if nick_name and nick_name != first_name:
-                    nick_name += self.get_citation_links(self.person.get_source_references() )
                     trow = Html("tr") + (
                         Html("td", _("Nick Name"), class_ = "ColumnAttribute", inline = True),
                         Html("td", nick_name, class_ = "ColumnValue", inline = True)
