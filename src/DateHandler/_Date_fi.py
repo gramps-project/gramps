@@ -163,25 +163,21 @@ class DateDisplayFI(DateDisplay):
         if mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            text = u"%s - %s%s" % (d1, d2, scal)
+            text = u"%s - %s" % (d1, d2)
         elif mod == Date.MOD_RANGE:
             stop = date.get_stop_date()
             if start[0] == start[1] == 0 and stop[0] == 0 and stop[1] == 0:
                 d1 = self.display_cal[cal](start)
                 d2 = self.display_cal[cal](stop)
-                scal = self.format_extras(cal, newyear)
-                text = u"vuosien %s ja %s välillä%s" % (d1, d2, scal)
+                text = u"vuosien %s ja %s välillä" % (d1, d2)
             else:
                 d1 = self.display_cal[cal](start)
                 d2 = self.display_cal[cal](stop)
-                scal = self.format_extras(cal, newyear)
-                text = u"%s ja %s välillä%s" % (d1, d2, scal)
+                text = u"%s ja %s välillä" % (d1, d2)
         else:
             text = self.display_cal[date.get_calendar()](start)
-            scal = self.format_extras(cal, newyear)
             if mod == Date.MOD_AFTER:
-                text = text + u" jälkeen%s" % scal
+                text = text + u" jälkeen"
             elif mod == Date.MOD_ABOUT:
                 text = u"noin " + text
             elif mod == Date.MOD_BEFORE:
@@ -191,7 +187,7 @@ class DateDisplayFI(DateDisplay):
             # prepend quality
             text = u"%s %s" % (self._qual_str[qual], text)
             
-        if cal:
+        if cal or newyear:
             # append calendar type
             scal = self.format_extras(cal, newyear)
             text = u"%s %s" % (text, scal)
