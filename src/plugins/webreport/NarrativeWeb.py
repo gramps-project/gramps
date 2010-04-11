@@ -306,24 +306,27 @@ class BasePage(object):
         trow = Html("tr")
 
         attr_data_row = [
-            ("Type",     str(attr.get_type() ) ),
-            ("Value",    attr.get_value() ) ]
+            ("Type",          "&nbsp;"),
+            ("Attribute",     "&nbsp;"),     
+            ("AttrType",      str(attr.get_type() ) ),
+            ("AttrValue",     attr.get_value() ) ]
+
+        # get attribute note list    
+        notelist = self.dump_notes(attr.get_note_list() ) or "&nbsp;"
+        attr_data_row.append(("AttrNotes", notelist))
 
         if showsrc:
             srcrefs = self.get_citation_links(attr.get_source_references()) or "&nbsp;"
-            attr_data_row.append(("Sources", srcrefs))
- 
-        # get attribute note list    
-        notelist = self.dump_notes(attr.get_note_list() ) or "&nbsp;"
-        attr_data_row.append(("Notes", notelist))
+        else:
+            srcrefs = "&nbsp;"
+        attr_data_row.append(("AttrSources", srcrefs))
 
         # display attribute list
         trow.extend(
-            Html("td", data, class_ = "Column" + colclass,
-                inline = (colclass == "Type" or colclass == "Sources"))
+            Html("td", data, class_ = "Column" + colclass, inline = True)
             for (colclass, data) in attr_data_row)
 
-        # return table row to its caller
+        # return table row to its callers
         return trow
 
     def get_citation_links(self, source_ref_list):
@@ -826,15 +829,16 @@ class BasePage(object):
                 trow = Html("tr")
                 thead += trow
 
-                header_row = [
-                    (THEAD,    "Type"),
-                    (VHEAD,    "Value"),
-                    (SHEAD,    "Sources"),
-                    (NHEAD,    "Notes") ]
-
                 trow.extend(
                     Html("th", label, class_ = "Column" + colclass, inline = True)
-                    for (label, colclass) in header_row)                  
+                    for (label, colclass) in [
+                        ("&nbsp;", "Type"),
+                        ("&nbsp;", "Attribute"),
+                        (_("Attribute/ Type"),    "AttrType"),
+                        (VHEAD,    "AttrValue"),
+                        (NHEAD,    "AttrNotes"),
+                        (SHEAD,    "AttrSources") ]
+                        )
                     
                 # begin table body
                 tbody = Html("tbody")
@@ -2555,16 +2559,13 @@ class EventPage(BasePage):
                         first_person = False
 
             # Narrative subsection
-#           evt_ref = event.get_reference()
             notelist = event.get_note_list()
-#           notelist.extend(evt_ref.get_note_list() )
             notelist = self.display_note_list(notelist)
             if notelist is not None:
                 eventdetail += notelist
 
-            # get attribute list
+            # Attribute subsection
             attrlist = event.get_attribute_list()
-#           attrlist.extend(evt_ref.get_attribute_list() )
             attrlist = self.display_attr_list(attrlist, True)
             if attrlist is not None:
                 eventdetail += attrlist
@@ -3515,7 +3516,7 @@ class IndividualPage(BasePage):
         Person.UNKNOWN : _('unknown'),
         }
 
-    def __init__(self, report, title, person, ind_list, place_list, src_list, attribute_list):
+    def __init__(self, report, title, person, ind_list, place_list, src_list):
         BasePage.__init__(self, report, title, person.gramps_id)
         self.person = person
         self.ind_list = ind_list
@@ -3593,8 +3594,8 @@ class IndividualPage(BasePage):
             if sect8 is not None:
                 individualdetail += sect8
 
-            # display attributes
-            sect9 = self.display_attr_list(attribute_list, True)
+            # display personal attributes and source references if any
+            sect9 = self.display_attr_list(person.get_attribute_list(), True)
             if sect9 is not None:
                 individualdetail += sect9
 
@@ -4419,12 +4420,45 @@ class IndividualPage(BasePage):
                             )
                         table += trow
 
+                    # family attributes
+                    attrlist = family.get_attribute_list()
+                    if attrlist:
+                        with Html("table", class_ = "infolist attrlist") as attrTable:
+                            table += attrTable
+
+                            thead = Html("thead")
+                            attrTable += thead
+
+                            trow = Html("tr")
+                            thead += trow
+
+                            trow.extend(
+                                Html("th", label, class_ = "Column" + colclass, inline = True)
+                                for (label, colclass) in [
+                                    ("&nbsp;",             "Type"),
+                                    ("&nbsp;",             "Attribute"),  
+                                    (_("Attribute/ Type"), "AttrType"),
+                                    (_("Value"),           "AttrValue"),
+                                    (NHEAD,                "AttrNotes"),
+                                    (SHEAD,                "AttrSources") ]
+                                    )
+
+                            tbody = Html("tbody")
+                            attrTable += tbody
+ 
+                            tbody.extend(
+                                self.dump_attribute(attr, True)
+                                for attr in attrlist)
+
         # return section to its caller
         return section
 
     def display_partner(self, family, table):
         """
         display an individual's partner
+
+        @param: family = an individual family object
+        @param: table = an HTML table
         """
 
         gender = self.person.gender
@@ -4473,11 +4507,11 @@ class IndividualPage(BasePage):
             trow = Html("tr") + (
                 Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
                 Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                Html("td", self.format_event(family_events), class_ = "ColumnValue")
+                Html("td", self.format_events(family_events) )
                 )
             table += trow
 
-        # return table to its caller
+         # return table to its caller
         return table
 
     def pedigree_person(self, person):
@@ -4528,7 +4562,7 @@ class IndividualPage(BasePage):
     def display_event_header(self):
         """
         will print the event header row for display_event_row() and
-            format_event()
+            format_events()
         """ 
 
         trow = Html("tr")
@@ -4545,7 +4579,7 @@ class IndividualPage(BasePage):
         # return header row to its callers
         return trow
 
-    def format_event(self, eventlist):
+    def format_events(self, eventlist):
         """
         displays the event row for events such as marriage and divorce
         """
@@ -5166,22 +5200,6 @@ class NavWebReport(Report):
             from_path = os.path.join(const.IMAGE_DIR, fname)
             self.copy_file(from_path, fname, "images")
 
-    def build_attributes(self, person):
-        """ build a list of attributes for each person """
-        db = self.database
-
-        # get personal attributes
-        attribute_list = person.get_attribute_list()
-
-        for family_handle in person.get_family_handle_list():
-            family = db.get_family_from_handle(family_handle)
-
-            # get family attributes
-            attribute_list.extend(family.get_attribute_list() )
-
-        # return attributes to its caller
-        return attribute_list
-
     def person_pages(self, ind_list, place_list, source_list):
 
         self.progress.set_pass(_('Creating individual pages'), len(ind_list) + 1)
@@ -5195,10 +5213,7 @@ class NavWebReport(Report):
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
 
-            # get attributes for each person
-            attribute_list = self.build_attributes(person)
-
-            IndividualPage(self, self.title, person, ind_list, place_list, source_list, attribute_list)
+            IndividualPage(self, self.title, person, ind_list, place_list, source_list)
 
         if self.inc_gendex:
             self.progress.set_pass(_('Creating GENDEX file'), len(ind_list))

@@ -48,86 +48,16 @@ Females     Web_Gender_Female.png
 # $Id$
 
  NarrativeWeb Styles
---------------------------------------------------------------------------------------------
-
- Alphabet Navigation
------------------------------------------------------ */
-div#alphabet {
-    width: 100%;
-    margin: 0;
-}
-div#alphabet ul {
-    list-style:none;
-    min-width:770px;
-    height:24px;
-    margin:0;
-    padding: 0px 0px 0px 16px;
-    border-width: 2px 0px 4px 0px;
-    border-style: solid;
-    background-color: #6AF364;
-}
-div#alphabet ul li:after {
-    content:"  |";
-}
+--------------------------------------------------------------------------------------------  */
 div#alphabet ul li {
-    margin:0;
-    float:left;
-}
-div#alphabet ul li a {
-    display:block;
-    padding: 4px 8px 4px 8px;
-    float:left;
-    font:bold 16px/100% sans;
-    margin:0;
-    text-decoration:none;
-}
-
-/* Navigation
------------------------------------------------------ */
-div#navigation, div#subnavigation {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: solid 2px #000;
-}
-div#navigation ul, div#subnavigation ul {
-    list-style:none;
-    min-width: 900px;
-    height: 24px;
-    margin:0;
-    padding: 0px 0px 0px 9px;
-    border-bottom: solid 2px #000;
     background-color: #6AF364;
 }
-div#navigation ul li, div#subnavigation ul li {
-    float: left;
-}
-div#navigation ul li:first-child, div#subnavigation ul li:first-child {
-    margin-left: 3px;
-}
-div#navigation ul li:after, div#subnavigation ul li:after {
-    content: "| ";
-}
-div#navigation ul li a, div#subnavigation ul li a {
-    display: block;
-    padding: 4px 6px 4px 6px;
-    float: left;
-    font: .8em bold italic small-caps verdana, serif;
-    color: #000;
-    text-decoration:none;
-    margin:0;
-}
-div#navigation ul li a:hover, div#subnavigation ul li a:hover {
-
-}
-div#navigation ul li.CurrentSection a,
-div#subnavigation ul li.CurrentSection a {
+div#navigation ul li.CurrentSection a {
     background-color: #000;
     color: #FFF;
 }
-div#navigation ul li.CurrentSection a:hover,
-div#subnavigation ul li.CurrentSection a:hover {
-    background-color: #000;
+div#navigation ul li.CurrentSection a:hover {
+    background-color: 696969;
 }
 
 /* General Elements
@@ -297,7 +227,7 @@ div#footer {
     overflow: auto;
     clear: both;
     font-size: 12px;
-    margin-top: 10px;
+    margin: 0;
     color: #FFF;
     background-color: #542;
     border-top: solid 8px #5D835F;
@@ -317,7 +247,7 @@ div#footer img {
 }
 div#footer p#createdate {
     float:left;
-    width: 60%;
+    width:60%;
     text-align:left;
     margin-left:10px;
 }
@@ -886,17 +816,13 @@ div#Download table.download td.Modified {
 
 /* Sources
 ----------------------------------------------------- */
-#Sources {
-    margin: 0;
-    padding: 0;
-}
+#Sources {  }
+
 div#Sources table.infolist tbody tr td {
     background-color: #D8F3D6;
-    border-bottom: dashed 1px #000;
 }
 div#Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
-    width: 5%;
 }
 div#Sources table.infolist tbody tr td.ColumnName {
     padding:0;
@@ -917,29 +843,23 @@ div#SourceDetail div#references ol li {
 ------------------------------------------------------ */
 div#RepositoryList {
     margin: 0;
-    padding: 0 14px 0 14px;
-    width: 965px;
-}
-div#RepositoryList table.repolist {
-    width: 100%;
+    padding: 0;
 }
 div#RepositoryList table.repolist tbody tr td {
     background-color: #D8F3D6;
-    border-bottom: dashed 1px #000;
 }
 div#RepositoryList table.repolist tbody tr td a {
     display: block;
     padding: .3em 10px;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
-    width: 5%;
+    width: 9%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnType {
     width: 15%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnName {
     background-color: #FFF;
-    width: 80%;
 }
 
 /* Address Book
@@ -1071,31 +991,39 @@ div#attributes {
 table.attrlist {
     width: 100%;
 }
-table.attrlist tbody tr {
-    border: solid 1px #5D835F;
+table.attrlist thead tr th.ColumnType {
+    border: none;
+    background: none;
+}
+table.attrlist thead tr th.ColumnAttribute {
+    border: none;
+    background: none;
 }
 table.attrlist tbody tr td {
     background-color: #D8F3D6;
+    border-bottom: dashed 1px #5D835F;
 }
 table.attrlist tbody tr td.ColumnType {
-    width: 200px;
+    border: none;
+    background: none;
 }
 table.attrlist tbody tr td.ColumnAttribute {
-    width: 10%;
+    border: none;
+    background: none;
 }
-table.attrlist tbody tr td.ColumnValue {
-    width: 250px;
+table.attrlist tbody tr td.ColumnAttrType {
+    width: 15%;
 }
-table.attrlist tbody tr td.ColumnSources {
-    background-color: #FFF;
-    width: 100px;
+table.attrlist tbody tr td.ColumnAttrValue {
+    width: 15%;
 }
-table.attrlist tbody tr td.ColumnNotes {
-    width: 400px;
-}
-div#attributes table.attrlist tbody tr td.ColumnNotes {
-    width: 400px;
+table.attrlist tbody tr td.ColumnAttrNotes {
+    width: 45%;
     background-color: #D8F3D6;
+}
+table.attrlist tbody tr td.ColumnAttrSources {
+    background-color: #FFF;
+    width: 15%;
 }
 
 /* Subsections : Parents
@@ -1432,12 +1360,14 @@ div#pedigree {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    height:65px;
+    max-width:80px auto;
+    max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    height:65px;
+    max-width:80px auto;
+    max-height:65px;
     margin:0 auto;
 }
 #treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
