@@ -612,6 +612,7 @@ class MergePeople(object):
             if child_ref.ref == old_handle:
                 if new_handle not in [ref.ref for ref in new_ref_list]:
                     new_ref = gen.lib.ChildRef()
+                    new_ref.unserialize(child_ref.serialize())
                     new_ref.ref = new_handle
                     new_ref_list.append(new_ref)
             elif child_ref.ref not in [ref.ref for ref in new_ref_list]:
