@@ -433,8 +433,9 @@ class MergePeople(object):
 
         self.db.set_birth_death_index(new)
 
-        # copy attributes
-        new.set_attribute_list(self.p1.get_attribute_list() +
+        # add other attributes to new, which may alreay have 
+        # some attributes from the merger
+        map(new.add_attribute, self.p1.get_attribute_list() +
                                self.p2.get_attribute_list())
 
         # copy addresses
