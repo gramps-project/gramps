@@ -129,12 +129,12 @@ class DateDisplaySv(DateDisplay):
 
     calendar = (
         u"", 
-        u" (juliansk)", 
-        u" (hebreisk)", 
-        u" (fransk republikansk)", 
-        u" (persisk)", 
-        u" (islamisk)", 
-        u" (svensk)"
+        u"juliansk", 
+        u"hebreisk", 
+        u"fransk republikansk", 
+        u"persisk", 
+        u"islamisk", 
+        u"svensk"
         )
     
     _mod_str = (u"", u"före ", u"efter ", u"c:a ", u"", u"", u"")
@@ -151,6 +151,7 @@ class DateDisplaySv(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
 
@@ -161,16 +162,19 @@ class DateDisplaySv(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return u"%sfrån %s till %s%s" % (qual_str, d1, d2, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return u"%sfrån %s till %s%s" % (qual_str, d1, d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return u"%smellan %s och %s%s" % (qual_str, d1, d2, 
-                                              self.calendar[cal])
+                                              scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
+            scal = self.format_extras(cal, newyear)
             return u"%s%s%s%s" % (qual_str, self._mod_str[mod], 
-                                 text, self.calendar[cal])
+                                 text, scal)
 
 #-------------------------------------------------------------------------
 #

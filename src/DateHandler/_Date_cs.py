@@ -111,9 +111,9 @@ class DateDisplayCZ(DateDisplay):
                      u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
 
     calendar = (
-        "", u" (juliánský)", u" (hebrejský)", 
-        u" (republikánský)", u" (perský)", u" (islámský)", 
-        u" (swedish)" 
+        "", u"juliánský", u"hebrejský", 
+        u"republikánský", u"perský", u"islámský", 
+        u"swedish" 
         )
 
     _mod_str = ("", u"před ", u"po ", u"kolem ", "", "", "")
@@ -133,6 +133,7 @@ class DateDisplayCZ(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
         
@@ -143,17 +144,20 @@ class DateDisplayCZ(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'od', d1, 
-                                        u'do', d2, self.calendar[cal])
+                                        u'do', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'mezi', 
-                                        d1, u'a', d2, self.calendar[cal])
+                                        d1, u'a', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
+            scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod],
-                                 text, self.calendar[cal])
+                                 text, scal)
 
 #-------------------------------------------------------------------------
 #

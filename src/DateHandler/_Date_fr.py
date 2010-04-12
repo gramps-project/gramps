@@ -58,14 +58,13 @@ class DateParserFR(DateParser):
 
     month_to_int = DateParser.month_to_int
 
-    # Short months not the same as long months
+    # Custom short months not the same as long months
 
     month_to_int[u"janv"] = 1
     month_to_int[u"févr"] = 2
     month_to_int[u"juil"] = 7
     month_to_int[u"sept"] = 9
     month_to_int[u"oct"] = 10
-    month_to_int[u"nov"] = 11
     month_to_int[u"déc"] = 12
 
     # Add common value
@@ -240,7 +239,6 @@ class DateParserFR(DateParser):
         self._stext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' %
                                   self._smon_str, re.IGNORECASE)
 
-
 #-------------------------------------------------------------------------
 #
 # French display
@@ -257,8 +255,8 @@ class DateDisplayFR(DateDisplay):
     short_months = ( u"", u"janv", u"févr", u"mars", u"avril", u"mai", u"juin", 
                      u"juil", u"août", u"sept", u"oct", u"nov", u"déc" )
 
-    calendar = ("", u" (Julien)", u" (Hébreu)", u" (Révolutionnaire)",
-                u" (Perse)", u" (Islamique)", u" (Suédois)")
+    calendar = ("", u"Julien", u"Hébreu", u"Révolutionnaire",
+                u"Perse", u"Islamique", u"Suédois")
 
     _mod_str = ("", u"avant ", u"après ", u"vers ", "", "", "")
 
@@ -393,6 +391,7 @@ class DateDisplayFR(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = (self._qual_str)[qual]
 
@@ -401,20 +400,22 @@ class DateDisplayFR(DateDisplay):
         elif start == Date.EMPTY:
             return ""
         elif mod == Date.MOD_SPAN:
-            date1 = (self.display_cal)[cal](start)
-            date2 = (self.display_cal)[cal](date.get_stop_date())
+            date1 = self.display_cal[cal](start)
+            date2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'de', date1, u'à', 
-            date2, (self.calendar)[cal])
+            date2, scal)
         elif mod == Date.MOD_RANGE:
-            date1 = (self.display_cal)[cal](start)
-            date2 = (self.display_cal)[cal](date.get_stop_date())
+            date1 = self.display_cal[cal](start)
+            date2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
             return "%s%s %s %s %s%s" % (qual_str, u'entre', date1, u'et',
-                    date2, (self.calendar)[cal])
+                    date2, scal)
         else:
-            text = (self.display_cal)[date.get_calendar()](start)
+            text = self.display_cal[date.get_calendar()](start)
+            scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, (self._mod_str)[mod], text, 
-            (self.calendar)[cal])
-
+            scal)
 
 #-------------------------------------------------------------------------
 #

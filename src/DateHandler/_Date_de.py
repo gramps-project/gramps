@@ -206,9 +206,9 @@ class DateDisplayDE(DateDisplay):
                      u"Jul", u"Aug", u"Sep", u"Okt", u"Nov", u"Dez" )
 
     calendar = (
-        "", u" (julianisch)", u" (hebräisch)", 
-        u" (französisch republikanisch)", u" (persisch)", u" (islamisch)", 
-        u" (schwedisch)" 
+        "", u"julianisch", u"hebräisch", 
+        u"französisch republikanisch", u"persisch", u"islamisch", 
+        u"schwedisch" 
         )
 
     _mod_str = ("", u"vor ", u"nach ", u"etwa ", "", "", "")
@@ -289,6 +289,7 @@ class DateDisplayDE(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
         
@@ -299,14 +300,17 @@ class DateDisplayDE(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str, u'von', d1, u'bis', d2, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%s%s %s %s %s%s" % (qual_str, u'von', d1, u'bis', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%szwischen %s und %s%s" % (qual_str, d1, d2, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%szwischen %s und %s%s" % (qual_str, d1, d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
 #-------------------------------------------------------------------------
 #

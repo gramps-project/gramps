@@ -125,13 +125,13 @@ class DateDisplayFI(DateDisplay):
                      u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
     
     calendar = ("", 
-        u"(juliaaninen)", 
-	u"(heprealainen)", 
-        u"(ranskan v.)", 
-	u"(persialainen)", 
-	u"(islamilainen)", 
-    u" (svensk)" 
-    )
+        u"juliaaninen", 
+        u"heprealainen", 
+        u"ranskan v.", 
+        u"persialainen", 
+        u"islamilainen", 
+        u"svensk" 
+        )
 
     _qual_str = (u"", u"arviolta", u"laskettuna")
     
@@ -139,7 +139,7 @@ class DateDisplayFI(DateDisplay):
 
     formats = (
         "VVVV-KK-PP (ISO)", 
-	"PP.KK.VVVV"
+        "PP.KK.VVVV"
         )
     
     def display(self, date):
@@ -150,6 +150,7 @@ class DateDisplayFI(DateDisplay):
         qual = date.get_quality()
         cal = date.get_calendar()
         start = date.get_start_date()
+        newyear = date.get_new_year()
         
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
@@ -185,9 +186,11 @@ class DateDisplayFI(DateDisplay):
         if qual:
             # prepend quality
             text = u"%s %s" % (self._qual_str[qual], text)
-        if cal:
+            
+        if cal or newyear:
             # append calendar type
-            text = u"%s %s" % (text, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            text = u"%s %s" % (text, scal)
     
         return text
 
