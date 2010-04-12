@@ -593,7 +593,7 @@ div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
     content:"+ ";
 }
 div#EventDetail h3 {
-    font-size: xxx-large;
+    font-size: 1.4em;
 }
 div#EventDetail table.eventlist {
     margin: .5cm 0 .3cm 1.5cm;
@@ -698,10 +698,10 @@ table.download {
     margin: .5em 0 .5em 0;
     border: solid 1px #000;
     width: 100%;
-    nackground-color: #CCC;
+    background-color: #CCC;
 }
 table.download img {
-    float:center;
+    /* float:center; */
 }
 table.download tbody tr#Row02 {
     border-bottom:solid 1px #000;
@@ -1206,13 +1206,13 @@ table.weblinks tr td.ColumnDescription {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-	max-width:80px auto;
+	max-width:80px;
     max-height:65px;
     margin:0 auto;
 }
@@ -1466,5 +1466,5 @@ table.oneday tbody tr td.ColumnText {
     width: 85%;
 }
 table.oneday tbody tr td.ColumnEvent {
-    width; 10%;
+    width: 10%;
 }
