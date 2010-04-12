@@ -1236,13 +1236,13 @@ div#pedigree {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
 }
