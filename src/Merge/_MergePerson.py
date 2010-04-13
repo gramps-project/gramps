@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -433,7 +434,8 @@ class MergePeople(object):
 
         self.db.set_birth_death_index(new)
 
-        # copy attributes
+        # add other attributes to new, which may already have
+        # some attributes from the merger
         map(new.add_attribute, self.p1.get_attribute_list() +
                                self.p2.get_attribute_list())
 
@@ -594,33 +596,69 @@ class MergePeople(object):
                                    self.old_handle, trans)
             new.add_parent_family_handle(family_handle)
                     
+    def merge_childref(self, ref_one, ref_two):
+        """
+        Add the content of two child-references together where ref_one is the
+        preferred.
+
+        Data typically lost is: mrel/frel of ref_two.
+        """
+        self.copy_note(ref_one, ref_two)
+        self.copy_sources(ref_one, ref_two)
+        ref_one.set_privacy(ref_one.get_privacy() or ref_two.get_privacy())
+        one_frel = ref_one.get_father_relation()
+        one_mrel = ref_one.get_mother_relation()
+        two_frel = ref_two.get_father_relation()
+        two_mrel = ref_two.get_mother_relation()
+        if (one_mrel != two_mrel) or (one_frel != two_frel):
+            if one_mrel == gen.lib.ChildRefType.UNKNOWN:
+                ref_one.set_mother_relation(two_mrel)
+            if one_frel == gen.lib.ChildRefType.UNKNOWN:
+                ref_one.set_father_relation(two_frel)
+
     def convert_child_ids(self, fhandle, new_handle, old_handle, trans):
         """
         Search the family associated with fhandle, and replace 
         old handle with the new handle in all child references.
+
+        There are three situations: The child references list contains
+        a reference to new_handle, but not old_handle, vice versa and 
+        references to both new AND old_handle. In the first case nothing needs
+        to be done, in the second case the old_handle needs replacement by
+        new_handle and in the latter case the references must be merged.
+
+        :param fhandle: Handle of the family to process.
+        :type fhandle: database handle
+        :param new_handle: Handle that should replace any old_handle.
+        :type new_handle: database handle
+        :param old_handle: Handle of obsolete person.
+        :type old_handle: database handle
+        :param trans: database transaction
+        :type trans: I don't know, probably string
         """
         family = self.db.get_family_from_handle(fhandle)
         orig_ref_list = family.get_child_ref_list()
         new_ref_list = []
 
-        # loop through original child list. If a handle matches the
-        # old handle, replace it with the new handle if the new handle
-        # is not already in the list
+        old_ref = [x for x in orig_ref_list if x.ref == old_handle]
+        if old_ref:
+            old_ref = old_ref[0]
+        new_ref = [x for x in orig_ref_list if x.ref == new_handle]
+        if new_ref:
+            new_ref = new_ref[0]
 
-        for child_ref in orig_ref_list:
-            if child_ref.ref == old_handle:
-                if new_handle not in [ref.ref for ref in new_ref_list]:
-                    new_ref = gen.lib.ChildRef()
-                    new_ref.unserialize(child_ref.serialize())
-                    new_ref.ref = new_handle
-                    new_ref_list.append(new_ref)
-            elif child_ref.ref not in [ref.ref for ref in new_ref_list]:
+        if old_ref:
+            for child_ref in orig_ref_list:
+                if child_ref.ref == old_handle:
+                    if new_ref:
+                        continue # go on to child_ref.ref == new_handle
+                    else:
+                        child_ref.ref = new_handle
+                elif child_ref.ref == new_handle:
+                    self.merge_childref(child_ref, old_ref)
                 new_ref_list.append(child_ref)
 
-        # compare the new list with the original list. If this list
-        # is different, we need to save the changes to the database.
-        if [ref.ref for ref in new_ref_list] \
-               != [ref.ref for ref in orig_ref_list]:
+            # save changes to database
             family.set_child_ref_list(new_ref_list)
             self.db.commit_family(family, trans)
     
@@ -770,6 +808,27 @@ class MergePeople(object):
         return myfamily
 
     def merge_existing_family(self, new, src_family, tgt_family, trans):
+        """
+        Removes the family object that becomes superfluous because of the
+        merger of a person.
+
+        If a person is merged with another, there can be a situation that two
+        families that are in the database also need to merge; that is one
+        family stays on and receives extra data, the other family is removed.
+        Removal of a family involves removal of parentin attributes in a person,
+        removal of childof attributes from children and actual removal of the
+        family from the db. The merging of data from both families is performed
+        in its own method.
+
+        :param new: The person that is merging.
+        :type new: :class:`~gen.lib.person.Person`
+        :param src_family: Family `new` is a parent in and that will be removed.
+        :type src_family: :class:`~gen.lib.family.Family`
+        :param tgt_family: Family `new` is and will stay a parent in.
+        :type src_family: :class:`~gen.lib.family.Family`
+        :param trans: db-transaction
+        :type trans: I do not know, string probably
+        """
 
         src_family_handle = src_family.get_handle()
         
@@ -814,13 +873,38 @@ class MergePeople(object):
             new.add_family_handle(tgt_family.get_handle())
 
     def merge_family_pair(self, tgt_family, src_family, trans):
+        """
+        Add data from src_family to tgt_family.
 
-        tgt_family_child_handles = \
-            [ref.ref for ref in tgt_family.get_child_ref_list()]
+        This is typically called when src_family is about to be removed because
+        it became superfluous by a person merger. The data transfered from
+        source to target family is everything except id, father and mother.
+        Data typically lost is: marker and rel of the src-family.
+
+        Missing: lds_ord, Merged Gramps ID attribute and privacy; make own patch
+
+        :param tgt_family: Family receiving data from src_family.
+        :type src_family: :class:`~gen.lib.family.Family`
+        :param src_family: Family adding data to tgt_family.
+        :type src_family: :class:`~gen.lib.family.Family`
+        :param trans: db-transaction
+        :type trans: I do not know, string probably
+        """
+        childrefs_in_both = {}
+        tgtlist = tgt_family.get_child_ref_list()
+        for child_ref in src_family.get_child_ref_list():
+            for tgt_child_ref in tgtlist:
+                if tgt_child_ref.ref == child_ref.ref:
+                    childrefs_in_both[child_ref.ref] = tgt_child_ref
+                    break
+
         # copy children from source to target
         for child_ref in src_family.get_child_ref_list():
             child_handle = child_ref.ref
-            if child_handle not in tgt_family_child_handles:
+            if child_handle in childrefs_in_both:
+                tgt_child_ref = childrefs_in_both[child_handle]
+                self.merge_childref(tgt_child_ref, child_ref)
+            else:
                 child = self.db.get_person_from_handle(child_handle)
                 parents = child.get_parent_family_handle_list()
                 tgt_family.add_child_ref(child_ref)
