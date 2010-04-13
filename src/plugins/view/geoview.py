@@ -1504,6 +1504,8 @@ class GeoView(HtmlView):
         """
         if not self.endinit:
             return
+        if not self.dbstate.db.is_open():
+            return
         if self.nbmarkers > 0 :
             # While the db is not loaded, we have 0 markers.
             self._savezoomandposition()
