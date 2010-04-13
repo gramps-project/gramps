@@ -5586,7 +5586,7 @@ class GedcomParser(UpdateCallback):
         """
         tstr = None
         dstr = None
-        
+        dobj = None
         while True:
             line = self.__get_next_line()
             if self.__level_is_finished(line, level):
