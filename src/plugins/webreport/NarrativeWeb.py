@@ -3939,6 +3939,10 @@ class IndividualPage(BasePage):
                     # which doesn't exactly look very nice printed on the web page
                     if pname[:2] == ', ':
                         pname = pname[2:]
+                    if name != primary_name:
+                        datetext = _dd.display(name.date)
+                        if datetext:
+                            pname = datetext + ': ' + pname
 
                     type_ = str( name.get_type() )
                     trow = Html("tr") + (
