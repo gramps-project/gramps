@@ -1189,12 +1189,16 @@ class BasePage(object):
             _name    = ""
             _linkurl = "#"
             if classname == "Person":
-                _obj = db.get_person_from_handle( newhandle )
-                # what is the shortest possible name we could use for this person?
-                _name = _obj.get_primary_name().get_call_name()
-                if not _name or _name == "":
-                    _name = _obj.get_primary_name().get_first_name()
-                _linkurl = self.report.build_url_fname_html(_obj.handle, "ppl", True)
+                # Is this a person for whom we have built a page:
+                if newhandle in self.report.person_handles:
+                    # If so, let's add a link to them:
+                    _obj = db.get_person_from_handle( newhandle )
+                    if _obj:
+                        # what is the shortest possible name we could use for this person?
+                        _name = _obj.get_primary_name().get_call_name()
+                        if not _name or _name == "":
+                            _name = _obj.get_primary_name().get_first_name()
+                            _linkurl = self.report.build_url_fname_html(_obj.handle, "ppl", True)
             elif classname == "Family":
                 _obj = db.get_family_from_handle( newhandle )
                 partner1_handle = _obj.get_father_handle()
@@ -5105,10 +5109,12 @@ class NavWebReport(Report):
         """
 
         # gets the person list and applies the requested filter
+        self.person_handles = {}
         ind_list = self.database.iter_person_handles()
         self.progress.set_pass(_('Applying Filter...'), self.database.get_number_of_people())
         ind_list = self.filter.apply(self.database, ind_list, self.progress)
-
+        for handle in ind_list:
+            self.person_handles[handle] = True
         return ind_list
 
     def copy_narrated_files(self):
