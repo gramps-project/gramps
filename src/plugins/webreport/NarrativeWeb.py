@@ -1926,7 +1926,7 @@ class IndividualListPage(BasePage):
 
                         death_date = _find_death_date(db, person)
                         if death_date is not None:
-                            tcell += death_date
+                            tcell += _dd.display(death_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -2087,7 +2087,7 @@ class SurnamePage(BasePage):
 
                         death_date = _find_death_date(db, person)
                         if death_date is not None:
-                            tcell += death_date
+                            tcell += _dd.display(death_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -6234,7 +6234,8 @@ def _find_death_date(db, person):
     death_ref = person.get_death_ref()
     if death_ref:
         death = db.get_event_from_handle(death_ref.ref)
-        return death.get_date_object()
+        if death:
+            return death.get_date_object()
     else:
         event_list = person.get_primary_event_ref_list()
         for event_ref in event_list:
