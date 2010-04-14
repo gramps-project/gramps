@@ -1436,10 +1436,9 @@ class BasePage(object):
                 trow.extend(
                     Html('th', label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
-                        ("&nbsp;",   "RowLabel"), 
-                        (THEAD,      "Type"),
-                        (_("Path"),  "Path"),
-                         (DESCRHEAD, "Description") ]
+                        ("&nbsp;",                "RowLabel"), 
+                        (THEAD,                   "Type"),
+                         (_("Link/ Description"), "Description") ]
                     )
 
                 tbody = Html("tbody")
@@ -1477,12 +1476,11 @@ class BasePage(object):
                         if not uri.startswith("ftp://"):
                             uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
 
-                    uri = Html("a", descr, href = uri)
+                    descr = Html("a", descr, href = uri, title = html_escape(descr) )
                     trow.extend(
-                        Html("td", data, class_ = "Column" + colclass)
+                        Html("td", data, class_ = "Column" + colclass, inline = True)
                         for (data, colclass) in [
                             (str(_type), "Type"),
-                            (uri,        "Path"),
                             (descr,      "Description") ]
                         )  
                     index += 1

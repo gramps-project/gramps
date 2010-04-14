@@ -1088,19 +1088,15 @@ table.weblinks tr td {
     border-bottom: dashed 1px #000;
 }
 table.weblinks tr td.ColumnRowLabel {
-    width: 5%;
+    width: 6%;
 }
 table.weblinks tr td.ColumnType {
     width: 30%;
 }
-table.weblinks tr td.ColumnPath {
-    background-color: #FFF;
-    width: 435;
-}
 table.weblinks tr td.ColumnDescription {
+    background-color: #FFF;
     width: 30%;
 }
-
 
 /* Subsections : Pedigree
 ----------------------------------------------------- */
