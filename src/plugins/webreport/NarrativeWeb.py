@@ -1660,7 +1660,9 @@ class BasePage(object):
         return hyper
 
     def dump_place(self, place, table, gid):
-        """ dump a place from the database """
+        """
+        dump a place's information from within the database
+        """
 
         if not self.noid and gid:
             trow = Html("tr") + (
@@ -1669,27 +1671,27 @@ class BasePage(object):
                 )
             table += trow
 
-            if place.main_loc:
-                ml = place.get_main_location()
-                if ml and not ml.is_empty():
-                    for val in [
-                        (LATITUDE,  place.lat),
-                        (LONGITUDE, place.long), 
-                        (STREET,    ml.street),
-                        (CITY,      ml.city),
-                        (PARISH,    ml.parish),
-                        (COUNTY,    ml.county),
-                        (STATE,     ml.state),
-                        (POSTAL,    ml.postal),
-                        (COUNTRY,   ml.country),
-                        (LOCATIONS, place.get_alternate_locations() ) ]:
+        if place.main_loc:
+            ml = place.get_main_location()
+            if ml and not ml.is_empty():
+                for val in [
+                    (LATITUDE,  place.lat),
+                    (LONGITUDE, place.long), 
+                    (STREET,    ml.street),
+                    (CITY,      ml.city),
+                    (PARISH,    ml.parish),
+                    (COUNTY,    ml.county),
+                    (STATE,     ml.state),
+                    (POSTAL,    ml.postal),
+                    (COUNTRY,   ml.country),
+                    (LOCATIONS, place.get_alternate_locations() ) ]:
 
-                        if val[1]:
-                            trow = Html("tr") + (
-                                Html("td", val[0], class_ = "ColumnAttribute", inline = True),
-                                Html("td", val[1], class_ = "ColumnValue", inline = True)
-                                )
-                            table += trow
+                    if val[1]:
+                        trow = Html("tr") + (
+                            Html("td", val[0], class_ = "ColumnAttribute", inline = True),
+                            Html("td", val[1], class_ = "ColumnValue", inline = True)
+                            )
+                        table += trow
 
         # return place table to its callers
         return table
