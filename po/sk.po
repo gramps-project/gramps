@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-22 18:13+0100\n"
-"PO-Revision-Date: 2010-03-28 16:22+0100\n"
+"PO-Revision-Date: 2010-04-13 10:41+0100\n"
 "Last-Translator: Lubo Vasko <pgval at inmail dot sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -223,7 +223,7 @@ msgstr "Žiaden aktívny zdroj"
 
 #: ../src/DisplayState.py:351
 msgid "No active repository"
-msgstr "Žiaden aktívny archiv"
+msgstr "Žiaden aktívny archív"
 
 #: ../src/DisplayState.py:352
 msgid "No active media"
@@ -305,7 +305,7 @@ msgid ""
 msgstr ""
 "Zvolený názov súboru/adresára sa nedá nájsť/vytvoriť.\n"
 "\n"
-"Pre návrat slačte Späť a zvoľte platný názov súboru."
+"Pre návrat stlačte Späť a zvoľte platný názov súboru."
 
 #: ../src/ExportAssistant.py:502
 msgid "Your data has been saved"
@@ -2153,7 +2153,7 @@ msgid ""
 "You might want to make a backup copy first."
 msgstr ""
 "Túto databázu nie je možné otvoriť bez upgrade.\n"
-"Po ugrade už ale nebudete môcť použiť predcházajúcu verziu Gramps.\n"
+"Po upgrade už ale nebudete môcť použiť predcházajúcu verziu Gramps.\n"
 "Pravdepodobne si predtým budete chcieť urobit zálohu."
 
 #: ../src/gen/db/undoredo.py:250 ../src/gen/db/undoredo.py:286
@@ -2408,7 +2408,7 @@ msgstr "Počet detí"
 
 #: ../src/gen/lib/attrtype.py:69
 msgid "Social Security Number"
-msgstr "Čislo sociálneho zabezpečenia"
+msgstr "Číslo sociálneho zabezpečenia"
 
 #: ../src/gen/lib/attrtype.py:70 ../src/plugins/tool/PatchNames.py:250
 msgid "Nickname"
@@ -3844,7 +3844,7 @@ msgstr "Typ vzťahu:"
 
 #: ../src/gui/filtereditor.py:99 ../src/Filters/Rules/_HasMarkerBase.py:47
 msgid "Marker type:"
-msgstr "Typ makera:"
+msgstr "Typ markera:"
 
 #: ../src/gui/filtereditor.py:100 ../src/Filters/Rules/Note/_HasNote.py:48
 msgid "Note type:"
@@ -4756,7 +4756,7 @@ msgstr "Pokúsili ste sa použiť existujúce Gramps ID s hodnotou %(id)s. Táto
 
 #: ../src/gui/editors/editevent.py:252
 msgid "The event type cannot be empty"
-msgstr "Musi byť uvedený typ udalosti"
+msgstr "Musí byť uvedený typ udalosti"
 
 #: ../src/gui/editors/editevent.py:259 ../src/gui/editors/editeventref.py:254
 msgid "Add Event"
@@ -5065,7 +5065,7 @@ msgstr "Editovať mediálny objekt"
 
 #: ../src/gui/editors/editmedia.py:255
 msgid "Cannot save media object"
-msgstr "Mediály objekt sa nedá uložiť"
+msgstr "Mediálny objekt sa nedá uložiť"
 
 #: ../src/gui/editors/editmedia.py:256
 msgid "No data exists for this media object. Please enter data or cancel the edit."
@@ -5233,7 +5233,7 @@ msgstr "Údaje osoby sa nedajú uložiť"
 
 #: ../src/gui/editors/editperson.py:716
 msgid "No data exists for this person. Please enter data or cancel the edit."
-msgstr "Pre túto osobu nexistujú žiadne údaje. Zadajte dáta alebo zrušte editovanie."
+msgstr "Pre túto osobu neexistujú žiadne údaje. Zadajte dáta alebo zrušte editovanie."
 
 #: ../src/gui/editors/editperson.py:725
 msgid "Cannot save person. ID already exists."
@@ -5280,7 +5280,7 @@ msgstr "Nebola označená žiadna osoba"
 
 #: ../src/gui/editors/editpersonref.py:176
 msgid "You must either select a person or Cancel the edit"
-msgstr "Musíte označit osobu, alebo zrušiť editovanie"
+msgstr "Musíte označiť osobu, alebo zrušiť editovanie"
 
 #: ../src/gui/editors/editplace.py:126
 msgid "_Location"
@@ -5366,7 +5366,7 @@ msgstr "Nový archív"
 
 #: ../src/gui/editors/editreporef.py:186
 msgid "Repo Reference Editor"
-msgstr "Editor odkazov archivu"
+msgstr "Editor odkazov archívu"
 
 #: ../src/gui/editors/editreporef.py:193
 msgid "Modify Repository"
@@ -5382,7 +5382,7 @@ msgstr "Editovať archív"
 
 #: ../src/gui/editors/editrepository.py:160
 msgid "Cannot save repository"
-msgstr "Archiv nemožno uložiť"
+msgstr "Archív nemožno uložiť"
 
 #: ../src/gui/editors/editrepository.py:161
 msgid "No data exists for this repository. Please enter data or cancel the edit."
@@ -5390,7 +5390,7 @@ msgstr "Pre tento archív nie sú k dispozícii nijaké dáta. Zadajte dáta ale
 
 #: ../src/gui/editors/editrepository.py:170
 msgid "Cannot save repository. ID already exists."
-msgstr "Archiv nemožno uložiť. ID už existuje."
+msgstr "Archív nemožno uložiť. ID už existuje."
 
 #: ../src/gui/editors/editrepository.py:183
 #, python-format
@@ -5470,7 +5470,7 @@ msgstr "Vytvoriť a priradiť novú adresu"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:62
 msgid "Remove the existing address"
-msgstr "Odstrániť exitujúcu adresu"
+msgstr "Odstrániť existujúcu adresu"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:63
 msgid "Edit the selected address"
@@ -6272,7 +6272,7 @@ msgstr "Použije sa filter"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:532
 msgid "Constructing column data"
-msgstr "Zostavuje sa sĺpec dát"
+msgstr "Zostavuje sa stĺpec dát"
 
 #: ../src/gui/widgets/buttons.py:148
 msgid "Record is private"
@@ -6292,7 +6292,7 @@ msgstr "Zmenšiť túto časť"
 
 #: ../src/gui/widgets/grampletpane.py:165
 msgid "Drag Properties Button to move and click it for setup"
-msgstr "Tlačitkom vlastnosti presunúť, kliknutím nastaviť"
+msgstr "Tlačítkom vlastnosti presunúť, kliknutím nastaviť"
 
 #. build the GUI:
 #: ../src/gui/widgets/grampletpane.py:819
@@ -6333,7 +6333,7 @@ msgid ""
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
-"Kliknutím označite osobu ako aktívnu\n"
+"Kliknutím označíte osobu ako aktívnu\n"
 "Kliknutie pravým tlačítkom otvorí menu pre editovanieKliknutie na ikonu otvorí editovanie"
 
 #: ../src/gui/widgets/progressdialog.py:292
@@ -6618,7 +6618,7 @@ msgstr "Pomocou dvoch tlačítok dole najprv skopírujte bug report do schránky
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:438
 msgid "Use this button to start a web browser and file a bug report on the Gramps bug tracking system."
-msgstr "Týmto tlačitkom otvorte web prehliadač a oznámte správu o chybe do systému Gramps pre záznamy o chybách."
+msgstr "Týmto tlačítkom otvorte web prehliadač a oznámte správu o chybe do systému Gramps pre záznamy o chybách."
 
 #. clip_label = gtk.Label(_("If your email program fails to start you can use this button "
 #. "to copy the bug report onto the clipboard. Then start your "
@@ -6652,7 +6652,7 @@ msgstr "V programe Gramps sa vyskytla chyba"
 
 #: ../src/GrampsLogger/_ErrorView.py:82
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "Vaše dáta sú neporušené, ale odporúčame, aby ste Gramps ihneď  reštartovali. Ak si želáte problém ohlásiť teamu Gramps-u, kliknite na Report a pomocnik vám pomôže zostaviť oznámenie o chybe."
+msgstr "Vaše dáta sú neporušené, ale odporúčame, aby ste Gramps ihneď  reštartovali. Ak si želáte problém ohlásiť teamu Gramps-u, kliknite na Report a pomocník vám pomôže zostaviť oznámenie o chybe."
 
 #: ../src/GrampsLogger/_ErrorView.py:91 ../src/GrampsLogger/_ErrorView.py:104
 msgid "Error Detail"
@@ -7005,7 +7005,7 @@ msgstr "Text Open Dokument"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr "Vytvorí dokumenty vo formáte OpenDocument Text format (.odt)."
+msgstr "Vytvorí dokumenty vo formáte OpenDocument Text (.odt)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:132
 msgid "PDF document"
@@ -7577,7 +7577,7 @@ msgstr "v závislosti od generácie"
 
 #: ../src/plugins/drawreport/FanChart.py:426
 msgid "Background color is either white or generation dependent"
-msgstr "Farba pozadia je buď bliela, alebo závisí od generácie"
+msgstr "Farba pozadia je buď biela, alebo závisí od generácie"
 
 #: ../src/plugins/drawreport/FanChart.py:430
 msgid "Orientation of radial texts"
@@ -8248,7 +8248,7 @@ msgstr "Aktívna osoba nebola označená."
 #: ../src/plugins/gramplet/DescendGramplet.py:153
 #: ../src/plugins/gramplet/PedigreeGramplet.py:160
 msgid "Click to make active\n"
-msgstr "Klikom zmeniť na aktívnu\n"
+msgstr "Kliknutím zmeniť na aktívnu\n"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:136
 #: ../src/plugins/gramplet/DescendGramplet.py:154
@@ -8401,7 +8401,7 @@ msgstr "Gramplet zobrazí grafy pre rôzne vekové skupiny"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:50
 msgid "Age Stats"
-msgstr "Śtatistika -vek"
+msgstr "Štatistika -vek"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:59
 msgid "Attributes Gramplet"
@@ -8590,7 +8590,7 @@ msgstr "Gramplet Čo doplniť"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:292
 msgid "Gramplet suggesting items to research"
-msgstr "Gramplet s návhmi na ďalšie skúmanie"
+msgstr "Gramplet s návrhmi na ďalšie skúmanie"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:298
 msgid "What's Next?"
@@ -8705,7 +8705,7 @@ msgstr "Náhľad"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:42
 msgid "Click name to make person active\n"
-msgstr "Klikom na meno sa osoba zmení na aktívnu\n"
+msgstr "Kliknutím na meno sa osoba zmení na aktívnu\n"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:43
 msgid "Right-click name to edit person"
@@ -8798,7 +8798,7 @@ msgstr "Osoby"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:131
 msgid "Number of individuals"
-msgstr "Počet jednotlicov"
+msgstr "Počet jednotlivcov"
 
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:135
@@ -8932,7 +8932,7 @@ msgstr ""
 "\n"
 "Gramps je software určený pre genealogický výskum. Podobá sa na ostatné genealogické programy, ale má oproti iným naviac niektoré účinné a unikátne nástroje.\n"
 "\n"
-"Gramps je software typu Open Source, čo znači, že je možné ho voľne šíriť a kopírovať. Vyvíja ho tím dobrovoľníkov z celého sveta ktorých cieľom je aby bol Gramps čo najvýkonnejší pri zachovaní jednoduchosti pri jeho používaní.\n"
+"Gramps je software typu Open Source, čo značí, že je možné ho voľne šíriť a kopírovať. Vyvíja ho tím dobrovoľníkov z celého sveta ktorých cieľom je, aby bol Gramps čo najvýkonnejší pri zachovaní jednoduchosti pri jeho používaní.\n"
 "\n"
 "Začíname\n"
 "\n"
@@ -9311,7 +9311,7 @@ msgstr "Hľadanie predkov a detí"
 
 #: ../src/plugins/graph/GVFamilyLines.py:431
 msgid "Writing family lines"
-msgstr "Zapisujú sa rodinné linie"
+msgstr "Zapisujú sa rodinné línie"
 
 #: ../src/plugins/graph/GVFamilyLines.py:972
 #, python-format
@@ -9483,7 +9483,7 @@ msgstr "Pro-Gen"
 
 #: ../src/plugins/import/import.gpr.py:147
 msgid "Import data from Pro-Gen files"
-msgstr "Import dát zo súborv Pro-Gen"
+msgstr "Import dát zo súborov Pro-Gen"
 
 #: ../src/plugins/import/import.gpr.py:165
 msgid "Import data from vCard files"
@@ -9769,7 +9769,7 @@ msgstr "Základ pre cestu k médiám nenájdený"
 #: ../src/plugins/import/ImportGpkg.py:117
 #, python-format
 msgid "The family tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr "Rodinný strom ktorý ste importovali mal nastavenú cestu k médiám: %(orig_path)s.Importované mediálne objekty majú relatívnu cestu %(path)s.Nastavenie cesty sa dá zmeniť v Preferenciách, alebo môžete importované médiá presunúť aby boli dostupné z existujúcej. Toto sa vykoná pomocou správcu médií, voľbou 'Upraviť cestu k médiám'."
+msgstr "Rodinný strom ktorý ste importovali mal nastavenú cestu k médiám: %(orig_path)s. Importované mediálne objekty majú relatívnu cestu %(path)s. Nastavenie cesty sa dá zmeniť v Preferenciách, alebo môžete importované médiá presunúť aby boli dostupné z existujúcej. Toto sa vykoná pomocou správcu médií, voľbou 'Upraviť cestu k médiám'."
 
 #. -------------------------------------------------------------------------
 #.
@@ -13450,7 +13450,7 @@ msgstr "Editovať zvolenú lokalitu"
 
 #: ../src/plugins/lib/libplaceview.py:116
 msgid "Delete the selected place"
-msgstr "Vymazať zvolené lokalitu"
+msgstr "Vymazať zvolenú lokalitu"
 
 #: ../src/plugins/lib/libplaceview.py:158
 msgid "_Merge..."
@@ -13617,7 +13617,7 @@ msgstr "dĺžka nie je v rozsahu %(long1)s to %(long2)s"
 #: ../src/plugins/mapservices/eniroswedenmap.py:166
 #: ../src/plugins/mapservices/eniroswedenmap.py:171
 msgid "Eniro map not available"
-msgstr "Mapa eniro nedostupná"
+msgstr "Mapa Eniro nedostupná"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:167
 msgid "Coordinates needed in Denmark"
@@ -14088,7 +14088,7 @@ msgstr "Odkaz na archív"
 
 #: ../src/plugins/quickview/quickview.gpr.py:231
 msgid "Display the repository reference for sources related to the active repository"
-msgstr "Zobraziť RepoReferencie pre zdroje spojené s aktivnym archívom"
+msgstr "Zobraziť RepoReferencie pre zdroje spojené s aktívnym archívom"
 
 #: ../src/plugins/quickview/quickview.gpr.py:251
 msgid "Same Surnames"
@@ -14808,7 +14808,7 @@ msgstr "Podrobná výstupná zostava potomkov osoby: %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:742
 msgid "Numbering system"
-msgstr "Systém čislovania"
+msgstr "Systém číslovania"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Henry numbering"
@@ -14824,7 +14824,7 @@ msgstr "Použiť štýl číslovania (modifikovaný reg.)"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:748
 msgid "The numbering system to be used"
-msgstr "Systém pre čislovanie"
+msgstr "Systém pre číslovanie"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:784
 msgid "Use complete sentences"
@@ -15358,7 +15358,7 @@ msgstr "Databáza - Súhrn"
 #: ../src/plugins/textreport/Summary.py:143
 #, python-format
 msgid "Number of individuals: %d"
-msgstr "Počet jednotlicov: %d"
+msgstr "Počet jednotlivcov: %d"
 
 #: ../src/plugins/textreport/Summary.py:147
 #, python-format
@@ -15461,7 +15461,7 @@ msgstr "Vytvorí podrobnú výstupnú zostavu potomkov"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:163
 msgid "End of Line Report"
-msgstr "Zostava Koniec linie"
+msgstr "Zostava Koniec línie"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:164
 msgid "Produces a textual end of line report"
@@ -16142,7 +16142,7 @@ msgid ""
 "\n"
 "This tool allows you to only modify the records within your Gramps database. If you want to move or rename the files then you need to do it on your own, outside of Gramps. Then you can adjust the paths using this tool so that the media objects store the correct file locations."
 msgstr ""
-"Tento nástroj umožnuje dávkové spracovanie mediálnych objektov uložených v Grampse. Je dôležité rozlišovať medzi mediálnym objektom Grampsu a jeho súborom.\n"
+"Tento nástroj umožňuje dávkové spracovanie mediálnych objektov uložených v Grampse. Je dôležité rozlišovať medzi mediálnym objektom Grampsu a jeho súborom.\n"
 "\n"
 "Mediálny objekt Grampsu je kolekciou dát o súbore mediálneho objektu: názov súboru a prípadne cesta, popis, ID, poznámky, zdrojové referencie,atď. Sú to dáta ktoré <b>neobsahujú samotný súbor</b>.\n"
 "\n"
@@ -16226,7 +16226,7 @@ msgstr "Previesť cesty z relatívnych na _absolútne"
 
 #: ../src/plugins/tool/MediaManager.py:492
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends user's directory."
-msgstr "Tento nástroj umožnuje previesť relatívnu cestu k mediálnym objektom na absolútnu. Základná cesta je tá, ktorú uvádzajú Preferencie, alebo do vášho domovského priečinka, v prípade že nebola definovaná."
+msgstr "Tento nástroj umožňuje previesť relatívnu cestu k mediálnym objektom na absolútnu. Základná cesta je tá, ktorú uvádzajú Preferencie, alebo do vášho domovského priečinka, v prípade že nebola definovaná."
 
 #: ../src/plugins/tool/MediaManager.py:525
 msgid "Convert paths from absolute to r_elative"
@@ -16234,7 +16234,7 @@ msgstr "Previesť cesty z absolútnych na r_elatívne"
 
 #: ../src/plugins/tool/MediaManager.py:526
 msgid "This tool allows converting absolute media paths to a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, user's directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Tento nástroj umožnuje previesť absolútnu cestu k mediálnym objektom na relatívnu. Relatívna cesta sa uvádza vzhľadom k základnej ceste. Ak táto nebola zadaná v Preferenciách, potom vzľadom k domovskému priečinku. Relatívna cesta umožňuje viazať údaj o umiestnení na základnú cestu ktorú môžete upraviť podľa potreby."
+msgstr "Tento nástroj umožňuje previesť absolútnu cestu k mediálnym objektom na relatívnu. Relatívna cesta sa uvádza vzhľadom k základnej ceste. Ak táto nebola zadaná v Preferenciách, potom vzhľadom k domovskému priečinku. Relatívna cesta umožňuje viazať údaj o umiestnení na základnú cestu ktorú môžete upraviť podľa potreby."
 
 #: ../src/plugins/tool/NotRelated.py:56
 msgid "manual|Not_Related..."
@@ -16468,7 +16468,7 @@ msgstr "Nastavenia-voľby"
 
 #: ../src/plugins/tool/SortEvents.py:168
 msgid "Select the people to sort"
-msgstr "Označit osoby na triedenie"
+msgstr "Označiť osoby na triedenie"
 
 #: ../src/plugins/tool/SortEvents.py:187
 msgid "Sort descending"
@@ -16898,7 +16898,7 @@ msgstr "Nastavenie obdobia"
 
 #: ../src/plugins/view/geoview.py:524
 msgid "Crosshair on the map."
-msgstr "zameriavací križik na mape."
+msgstr "zameriavací kríž na mape."
 
 #: ../src/plugins/view/geoview.py:527
 msgid ""
@@ -16962,15 +16962,15 @@ msgstr "Pridať lokalitu"
 
 #: ../src/plugins/view/geoview.py:1058 ../src/plugins/view/geoview.py:1068
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
-msgstr "Pridať miesto v stede mapy ako novú lokalitu do Grampsu. Dvojklikom centrovať."
+msgstr "Pridať miesto v strede mapy ako novú lokalitu do Grampsu. Dvojklikom centrovať."
 
 #: ../src/plugins/view/geoview.py:1061 ../src/plugins/view/geoview.py:1071
 msgid "_Link Place"
-msgstr "Lokalita_link"
+msgstr "Pripojiť miesto"
 
 #: ../src/plugins/view/geoview.py:1063 ../src/plugins/view/geoview.py:1073
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
-msgstr "Priopojiť miesto v strede mapy k lokalite Grampsu. Vystrediť dvojklikom."
+msgstr "Pripojiť miesto v strede mapy k lokalite Grampsu. Vystrediť dvojklikom."
 
 #: ../src/plugins/view/geoview.py:1075 ../src/plugins/view/geoview.py:1089
 msgid "_All Places"
@@ -17597,7 +17597,7 @@ msgstr "Pohľad Udalosti"
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
-msgstr "Zobraznie všetkých udalostí"
+msgstr "Zobrazenie všetkých udalostí"
 
 #: ../src/plugins/view/view.gpr.py:47
 msgid "Family View"
@@ -18148,7 +18148,7 @@ msgstr "Max šírka úvodného obrázka"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5733
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
-msgstr "Nastavenie max šírky obrázka na stránke pre mediá. Hodnota 0 je pre neobmedzené."
+msgstr "Nastavenie max šírky obrázka na stránke pre médiá. Hodnota 0 je pre neobmedzené."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5737
 msgid "Max height of initial image"
@@ -18204,7 +18204,7 @@ msgstr "Počet rokov od úmrtia počas ktorých sú údaje považované za živ�
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5775
 msgid "This allows you to restrict information on people who have not been dead for very long"
-msgstr "Toto umožnuje vylúčiť informácie o osobách ktoré nezomreli veľmi dávno"
+msgstr "Toto umožňuje vylúčiť informácie o osobách ktoré nezomreli veľmi dávno"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5790
 msgid "Include download page"
@@ -18225,7 +18225,7 @@ msgstr "Použiť poznámku na stránke pre download"
 #: ../src/plugins/webreport/NarrativeWeb.py:5799
 #: ../src/plugins/webreport/NarrativeWeb.py:5808
 msgid "Download Filename"
-msgstr "Download súbor meno"
+msgstr "Download súbor s názvom"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5801
 #: ../src/plugins/webreport/NarrativeWeb.py:5810
@@ -18395,7 +18395,7 @@ msgstr "Prebieha formátovanie mesiacov..."
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:902
 msgid "Creating Year At A Glance calendar"
-msgstr "Vytváranie kalenára typu zbežný pohľad"
+msgstr "Vytváranie kalendára typu zbežný pohľad"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:908
@@ -18598,7 +18598,7 @@ msgstr "Otázka-vytvoriť mini-kalendár so zvýraznenými dátumami"
 
 #: ../src/plugins/webreport/WebCal.py:1539
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Vytváranie kalenára typu zbežný pohľad"
+msgstr "Vytváranie kalendára typu zbežný pohľad"
 
 #: ../src/plugins/webreport/WebCal.py:1541
 msgid "Whether to create one day pages or not"
@@ -18610,11 +18610,11 @@ msgstr "Link na Podrobná web stránka"
 
 #: ../src/plugins/webreport/WebCal.py:1545
 msgid "Whether to link data to web report or not"
-msgstr "Otázka-pripojit link na web výstup"
+msgstr "Otázka-pripojiť link na web výstup"
 
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "Link prefix"
-msgstr "pripojit prefix"
+msgstr "pripojiť prefix"
 
 #: ../src/plugins/webreport/WebCal.py:1550
 msgid "A Prefix on the links to take you to Narrated Web Report"
@@ -18816,7 +18816,7 @@ msgstr "inštalovať všetky doplnky"
 
 #: ../src/PluginUtils/_PluginWindows.py:372
 msgid "Refresh Addon List"
-msgstr "Znouvunačitanie zoznamu doplnkov"
+msgstr "Znovunačítanie zoznamu doplnkov"
 
 #: ../src/PluginUtils/_PluginWindows.py:377
 msgid "Install Addons"
@@ -18836,7 +18836,7 @@ msgstr "Obnovenie zoznamu doplnkov"
 #: ../src/PluginUtils/_PluginWindows.py:414
 #: ../src/PluginUtils/_PluginWindows.py:504
 msgid "Reading gramps-project.org..."
-msgstr "Načitavanie gramps-project.org..."
+msgstr "Načítavanie gramps-project.org..."
 
 #: ../src/PluginUtils/_PluginWindows.py:432
 msgid "Checking addon..."
@@ -18983,7 +18983,7 @@ msgstr "_Použiť tento nástroj"
 #: ../src/ReportBase/_PaperMenu.py:200 ../src/ReportBase/_PaperMenu.py:261
 #: ../src/ReportBase/_PaperMenu.py:360 ../src/ReportBase/_PaperMenu.py:382
 msgid "Custom Size"
-msgstr "Rozmer definovaný užívatelom"
+msgstr "Rozmer definovaný užívateľom"
 
 #: ../src/ReportBase/_CommandLineReport.py:403
 msgid "Failed to write report. "
@@ -19230,7 +19230,7 @@ msgstr "Zvoľte skupinu fontov. Ak sa nezobrazujú niektoré medzinár. znaky, p
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:950
 msgid "The font size, in points."
-msgstr "Veľkost písma (v bodoch)."
+msgstr "Veľkosť písma (v bodoch)."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:953
 msgid "Graph Direction"
@@ -19242,7 +19242,7 @@ msgstr "Ako má graf postupovať, zhora dole alebo zľava doprava."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:962
 msgid "Number of Horizontal Pages"
-msgstr "Počet horizontálych strán"
+msgstr "Počet horizontálnych strán"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:963
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
@@ -21063,7 +21063,7 @@ msgstr "Archívy zmenené po <date time>"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
-msgstr "Vyhľadá záznamy archivov zmenené po dátume v tvare date:time (yyyy-mm-dd hh:mm:ss) alebo v rozsahu, ak je zadaný aj druhý dátum."
+msgstr "Vyhľadá záznamy archívov zmenené po dátume v tvare date:time (yyyy-mm-dd hh:mm:ss) alebo v rozsahu, ak je zadaný aj druhý dátum."
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
@@ -21140,7 +21140,7 @@ msgstr "každá poznámka"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:46
 msgid "Matches every note in the database"
-msgstr "Vyhovuje každéj pozn.v databáze"
+msgstr "Vyhovuje každej pozn.v databáze"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
 msgid "Notes changed after <date time>"
