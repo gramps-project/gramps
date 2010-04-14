@@ -3933,6 +3933,8 @@ class IndividualPage(BasePage):
                 # Names [and their sources]
                 for name in all_names:
                     pname =  _nd.display_name(name)
+                    if name == primary_name:
+                        pname += self.get_citation_links(self.person.get_source_references() ) 
                     pname += self.get_citation_links( name.get_source_references() )
 
                     # if we have just a firstname, then the name is preceeded by ", "
