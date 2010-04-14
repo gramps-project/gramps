@@ -1110,52 +1110,18 @@ class BasePage(object):
                     newpath, thumb_path = self.report.prepare_copy_media(obj)
                     self.report.copy_file(Utils.media_path_full(db, obj.get_path()), newpath)
 
-                    # get media rectangles
-                    _region_items = self.media_ref_ewgions(obj_handle, obj)
-                    if len(_region_items):
-                        with Html("div") as mediadisplay:
+                    # begin image
+                    image = Html("img")
+                    img_attr = ''
+                    if height:
+                        img_attr += 'height = "%d"'  % height
+                    img_attr += ' src = "%s" alt = "%s"' % (newpath, obj.get_description())
 
-                            # Feature #2634; display the mouse-selectable regions.
-                            # See the large block at the top of this function where
-                            # the various regions are stored in _region_items
-                            ordered = Html("ol", class_ = "RegionBox")
-                            mediadisplay += ordered
-                            while len(_region_items):
-                                (name, x, y, w, h, linkurl) = _region_items.pop()
-                                ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
-                                    % (x, y, w, h)) +(
-                                    Html("a", name, href = linkurl)
-                                    )       
+                    # add image attributes to image
+                    image.attr = img_attr
 
-                                # begin image
-                                image = Html("img")
-                                mediadisplay += image
-                                img_attr = ''
-                                if height:
-                                    img_attr += 'height = "%d"'  % height
-                                img_attr += ' src = "%s" alt = "%s"' % (newpath, obj.get_description())
-
-                                # add image attributes to image
-                                image.attr = img_attr
-
-                                # return image with media behaviours styling
-                                return mediadisplay
-
-                    # media has no media references
-                    else:
-
-                        # begin image
-                        image = Html("img")
-                        img_attr = ''
-                        if height:
-                            img_attr += 'height = "%d"'  % height
-                        img_attr += ' src = "%s" alt = "%s"' % (newpath, obj.get_description())
-
-                        # add image attributes to image
-                        image.attr = img_attr
-
-                        # return an image
-                        return image   
+                    # return an image
+                    return image   
 
                 except (IOError, OSError), msg:
                     WarningDialog(_("Could not add photo to page"), str(msg))
@@ -1163,7 +1129,7 @@ class BasePage(object):
         # no image to return
         return None
 
-    def media_ref_ewgions(self, handle, media):
+    def media_ref_rect_regions(self, handle, media):
 
         """
         *************************************
@@ -1275,24 +1241,6 @@ class BasePage(object):
             if mime_type:
                 try:
 
-                    # get media rectangles
-                    _region_items = self.media_ref_ewgions(photo_handle, photo)
-                    if len(_region_items):
-                        with Html("div") as mediadisplay:
-                            snapshot += mediadisplay
-
-                            # Feature #2634; display the mouse-selectable regions.
-                            # See the large block at the top of this function where
-                            # the various regions are stored in _region_items
-                            ordered = Html("ol", class_ = "RegionBox")
-                            mediadisplay += ordered
-                            while len(_region_items):
-                                (name, x, y, w, h, linkurl) = _region_items.pop()
-                                ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
-                                    % (x, y, w, h)) +(
-                                    Html("a", name, href = linkurl)
-                                    )       
-
                     lnkref = (self.report.cur_fname, self.page_title, self.gid)
                     self.report.add_lnkref_to_photo(photo, lnkref)
                     real_path, newpath = self.report.prepare_copy_media(photo)
@@ -1353,24 +1301,6 @@ class BasePage(object):
 
                 if mime_type:
                     try:
-
-                        # get media rectangles
-                        _region_items = self.media_ref_ewgions(photo_handle, photo)
-                        if len(_region_items):
-                            with Html("div") as mediadisplay:
-                                section += mediadisplay
-
-                                # Feature #2634; display the mouse-selectable regions.
-                                # See the large block at the top of this function where
-                                # the various regions are stored in _region_items
-                                ordered = Html("ol", class_ = "RegionBox")
-                                mediadisplay += ordered
-                                while len(_region_items):
-                                    (name, x, y, w, h, linkurl) = _region_items.pop()
-                                    ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
-                                        % (x, y, w, h)) +(
-                                        Html("a", name, href = linkurl)
-                                        )       
 
                         lnkref = (self.report.cur_fname, self.page_title, self.gid)
                         self.report.add_lnkref_to_photo(photo, lnkref)
@@ -1457,10 +1387,9 @@ class BasePage(object):
                 trow.extend(
                     Html('th', label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
-                        ("&nbsp;",   "RowLabel"), 
-                        (THEAD,      "Type"),
-                        (_("Path"),  "Path"),
-                         (DESCRHEAD, "Description") ]
+                        ("&nbsp;",                "RowLabel"), 
+                        (THEAD,                   "Type"),
+                         (_("Link/ Description"), "Description") ]
                     )
 
                 tbody = Html("tbody")
@@ -1498,12 +1427,11 @@ class BasePage(object):
                         if not uri.startswith("ftp://"):
                             uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
 
-                    uri = Html("a", descr, href = uri)
+                    descr = Html("a", descr, href = uri, title = html_escape(descr))
                     trow.extend(
                         Html("td", data, class_ = "Column" + colclass)
                         for (data, colclass) in [
                             (str(_type), "Type"),
-                            (uri,        "Path"),
                             (descr,      "Description") ]
                         )  
                     index += 1
@@ -2617,7 +2545,7 @@ class MediaPage(BasePage):
         BasePage.__init__(self, report, title, media.gramps_id)
 
         # get media rectangles
-        _region_items = self.media_ref_ewgions(handle, media)
+        _region_items = self.media_ref_rect_regions(handle, media)
 
         of = self.report.create_file(handle, "img")
         self.up = True
