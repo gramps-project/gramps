@@ -1709,7 +1709,9 @@ class BasePage(object):
         return hyper
 
     def dump_place(self, place, table, gid):
-        """ dump a place from the database """
+        """
+        dump a place information from the database
+        """
 
         if not self.noid and gid:
             trow = Html("tr") + (
@@ -1718,29 +1720,29 @@ class BasePage(object):
                 )
             table += trow
 
-            if place.main_loc:
-                ml = place.get_main_location()
-                if ml and not ml.is_empty():
-                    for val in [
-                        (LATITUDE,  place.lat),
-                        (LONGITUDE, place.long), 
-                        (STREET,    ml.street),
-                        (CITY,      ml.city),
-                        (PARISH,    ml.parish),
-                        (COUNTY,    ml.county),
-                        (STATE,     ml.state),
-                        (POSTAL,    ml.postal),
-                        (COUNTRY,   ml.country),
-                        (LOCATIONS, place.get_alternate_locations() ) ]:
+        if place.main_loc:
+            ml = place.get_main_location()
+            if ml and not ml.is_empty():
+                for val in [
+                    (LATITUDE,  place.lat),
+                    (LONGITUDE, place.long), 
+                    (STREET,    ml.street),
+                    (CITY,      ml.city),
+                    (PARISH,    ml.parish),
+                    (COUNTY,    ml.county),
+                    (STATE,     ml.state),
+                    (POSTAL,    ml.postal),
+                    (COUNTRY,   ml.country),
+                    (LOCATIONS, place.get_alternate_locations() ) ]:
 
-                        if val[1]:
-                            trow = Html("tr") + (
-                                Html("td", val[0], class_ = "ColumnAttribute", inline = True),
-                                Html("td", val[1], class_ = "ColumnValue", inline = True)
-                                )
-                            table += trow
+                    if val[1]:
+                        trow = Html("tr") + (
+                            Html("td", val[0], class_ = "ColumnAttribute", inline = True),
+                            Html("td", val[1], class_ = "ColumnValue", inline = True)
+                            )
+                        table += trow
 
-        # return place table to its callers
+        # return place table to its caller
         return table
 
     def dump_residence(self, has_res):
@@ -2232,16 +2234,19 @@ class PlaceListPage(BasePage):
 class PlacePage(BasePage):
 
     def __init__(self, report, title, place_handle, src_list, place_list):
-        """ creates the individual place pages """
+        """
+        creates the individual place pages
+        """
+
         self.bibli = Bibliography()
         db = report.database
 
-        place = db.get_place_from_handle(place_handle)
+        place = report.database.get_place_from_handle(place_handle)
         BasePage.__init__(self, report, title, place.gramps_id)
 
-        of = self.report.create_file(place.get_handle(), "plc")
+        of = self.report.create_file(place_handle, "plc")
         self.up = True
-        self.page_title = ReportUtils.place_name(db, place_handle)
+        self.page_title = ReportUtils.place_name(report.database, place_handle)
         placepage, body = self.write_header(_("Places"), _KEYPLACE)
 
         # begin PlaceDetail Division
