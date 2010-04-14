@@ -104,13 +104,12 @@ class DateDisplaySK(DateDisplay):
     """
     Slovak language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( u"", u"január", u"február", u"marec", u"apríl", u"máj", 
+                    u"jún", u"júl", u"august", u"september", u"október", 
+                    u"november", u"december" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"máj", u"jún", 
+                     u"júl", u"aug", u"sep", u"okt", u"nov", u"dec" )
     
     calendar = (
         "", u"juliánský", u"hebrejský", 
