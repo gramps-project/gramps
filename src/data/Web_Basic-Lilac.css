@@ -953,6 +953,47 @@ div#addresses table.infolist tbody tr td.ColumnValue {
 
 /* Subsections : Attributes
 ----------------------------------------------------- */
+div#attributes {
+    margin: 0;
+    padding: 0;
+}
+table.attrlist {
+    width: 100%;
+}
+table.attrlist thead tr th.ColumnType {
+    border: none;
+    background: none;
+}
+table.attrlist thead tr th.ColumnAttribute {
+    border: none;
+    background: none;
+}
+table.attrlist tbody tr td {
+    background-color: #E0E0E9;
+    border-bottom: dashed 1px #000;
+}
+table.attrlist tbody tr td.ColumnType {
+    border: none;
+    background: none;
+}
+table.attrlist tbody tr td.ColumnAttribute {
+    border: none;
+    background: none;
+}
+table.attrlist tbody tr td.ColumnAttrType {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnAttrValue {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnAttrNotes {
+    width: 45%;
+    background-color: #D8F3D6;
+}
+table.attrlist tbody tr td.ColumnAttrSources {
+    background-color: #FFF;
+    width: 15%;
+}
 
 /* Subsections : Gallery
 ----------------------------------------------------- */
@@ -1028,10 +1069,6 @@ table.weblinks tr td.ColumnRowLabel {
 }
 table.weblinks tr td.ColumnType {
     width: 30%;
-}
-table.weblinks tr td.ColumnPath {
-    background-color: #FFF;
-    width: 435;
 }
 table.weblinks tr td.ColumnDescription {
     width: 30%;

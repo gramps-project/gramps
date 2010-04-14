@@ -995,31 +995,39 @@ div#attributes {
 table.attrlist {
     width: 100%;
 }
-table.attrlist tbody tr {
-    border: solid 1px #000;
+table.attrlist thead tr th.ColumnType {
+    border: none;
+    background: none;
+}
+table.attrlist thead tr th.ColumnAttribute {
+    border: none;
+    background: none;
 }
 table.attrlist tbody tr td {
-    background-color: #70B1ED;
+    background-color: #7081E0;
+    border-bottom: dashed 1px #000;
 }
 table.attrlist tbody tr td.ColumnType {
-    width: 200px;
+    border: none;
+    background: none;
 }
 table.attrlist tbody tr td.ColumnAttribute {
-    width: 10%;
+    border: none;
+    background: none;
 }
-table.attrlist tbody tr td.ColumnValue {
-    width: 250px;
+table.attrlist tbody tr td.ColumnAttrType {
+    width: 15%;
 }
-table.attrlist tbody tr td.ColumnSources {
+table.attrlist tbody tr td.ColumnAttrValue {
+    width: 15%;
+}
+table.attrlist tbody tr td.ColumnAttrNotes {
+    width: 45%;
+    background-color: #D8F3D6;
+}
+table.attrlist tbody tr td.ColumnAttrSources {
     background-color: #FFF;
-    width: 100px;
-}
-table.attrlist tbody tr td.ColumnNotes {
-    width: 400px;
-}
-div#attributes table.attrlist tbody tr td.ColumnNotes {
-    width: 400px;
-    background-color: #70B1ED;
+    width: 15%;
 }
 
 /* Subsections : Parents
@@ -1235,11 +1243,8 @@ table.weblinks tr td.ColumnRowLabel {
 table.weblinks tr td.ColumnType {
     width: 30%;
 }
-table.weblinks tr td.ColumnPath {
-    background-color: #FFF;
-    width: 435;
-}
 table.weblinks tr td.ColumnDescription {
+    background-color: #FFF;
     width: 30%;
 }
 
