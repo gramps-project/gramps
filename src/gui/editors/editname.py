@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 #               2008-2009  Benny Malengier
 #               2009       Gary Burton
+#               2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -135,8 +136,13 @@ class EditName(EditSecondary):
     def _post_init(self):
         """if there is override, set the override toggle active
         """
-        if self.original_group_set or self.global_group_set :
+        if self.original_group_set:
             self.group_over.set_active(True)
+        else:
+            # The glade file correctly sets group_as widget editable=False.
+            # At this stage of initialization self.group_as.obj.get_editable()
+            # is however still true, correct that.
+            self.group_as.enable(False)
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('button119'))
@@ -303,15 +309,18 @@ class EditName(EditSecondary):
         
     def on_group_over_toggled(self, obj):
         """ group over changes, if activated, enable edit,
-            if unactivated, go back to surname.
+            if unactivated, go back to surname/global_group_as.
         """
         self.toggle_dirty = False
         #enable group as box
         self.group_as.enable(obj.get_active())
         
         if not obj.get_active():
-            surname = self.obj.get_surname()
-            self.group_as.set_text(surname)
+            if self.global_group_set:
+                self.group_as.set_text(self.global_group_as)
+            else:
+                surname = self.obj.get_surname()
+                self.group_as.set_text(surname)
 
     def save(self,*obj):
         """Save the name setting. All is ok, except grouping. We need to 
@@ -415,3 +424,15 @@ class EditName(EditSecondary):
             if self.callback:
                 self.callback(self.obj)
             self.close()
+
+    def _cleanup_on_exit(self):
+        """
+        Somehow it was decided that a database value of group="" is represented
+        in the GUI by a widget with a group="surname" which is disabled. So if
+        the group_as widget is disabled then remove the group from the name
+        otherwise gramps thinks the name has changed resulting in asking if
+        data must be saved, and also bug 1892 occurs on reopening of the editor.
+        """
+        # can't use group_over, see Note in gen/lib/name/Name.set_group_as().
+        if not self.group_as.obj.get_editable():
+            self.obj.set_group_as("")
