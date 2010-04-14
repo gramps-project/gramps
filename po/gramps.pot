@@ -23819,3 +23819,7 @@ msgid ""
 "different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
+
+#: ../src/plugins/webreport/NarrativeWeb.py:1441
+msgid "Link/ Description"
+msgstr ""
