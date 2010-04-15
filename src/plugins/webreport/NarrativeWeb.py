@@ -1539,7 +1539,6 @@ class BasePage(object):
         # local gettext variables
         _PAGE = _("Page")
         _CONFIDENCE = _("Confidence")
-        _TEXT = _("Text")
 
         db = self.report.database
         with Html("div", id = "sourcerefs", class_ = "subsection") as section:
@@ -1590,7 +1589,7 @@ class BasePage(object):
                         if data)                                                    
                         
                     tmp.extend("%s: %s" %
-                                (_TEXT,
+                                (db.get_note_from_handle(handle).type,
                                 self.get_note_format(
                                     db.get_note_from_handle(handle)
                                 )) for handle in sref.get_note_list())
