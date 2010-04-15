@@ -873,7 +873,7 @@ div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
     width: 8%;
 }
 div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
-    text-align: cemter;
+    text-align: center;
     width: 12%;
 }
 
@@ -1025,7 +1025,7 @@ table.attrlist thead tr th.ColumnAttribute {
 }
 table.attrlist tbody tr td {
     border-bottom: dashed 1px #000;
-
+}
 table.attrlist tbody tr td.ColumnType {
     border: none;
     background: none;
