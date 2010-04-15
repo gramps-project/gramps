@@ -25,7 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +43,7 @@ from gtk.gdk import pixbuf_new_from_file
 import const
 import config
 from glade import Glade
+from gen.ggettext import gettext as _
 
 try:
     ICON = pixbuf_new_from_file(const.ICON)
@@ -186,6 +187,7 @@ class ErrorDialog(gtk.MessageDialog):
 
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
+        msg = unicode(msg.decode(sys.getfilesystemencoding()))
         ErrorDialog.__init__(
             self,
             _('Error detected in database'),
@@ -193,17 +195,18 @@ class RunDatabaseRepair(ErrorDialog):
               'usually be resolved by running the "Check and Repair Database" '
               'tool.\n\nIf this problem continues to exist after running this '
               'tool, please file a bug report at '
-              'http://bugs.gramps-project.org\n\n') + str(msg), parent)
+              'http://bugs.gramps-project.org\n\n') + msg, parent)
 
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
+        msg = unicode(msg.decode(sys.getfilesystemencoding()))
         ErrorDialog.__init__(
             self,
             _("Low level database corruption detected"),
             _("Gramps has detected a problem in the underlying "
               "Berkeley database. This can be repaired by from "
               "the Family Tree Manager. Select the database and "
-              'click on the Repair button') + '\n\n' + str(msg), parent)
+              'click on the Repair button') + '\n\n' + msg, parent)
 
 class WarningDialog(gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
