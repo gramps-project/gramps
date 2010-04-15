@@ -3820,10 +3820,9 @@ class IndividualPage(BasePage):
                     tbody += trow
 
                     index = 0
-                    for data in [
-                        [person_ref.get_relation()],
-                        [self.get_citation_links(person_ref.get_source_references())],
-                        [self.dump_notes(person_ref.get_note_list())] ]: 
+                    for data in [person_ref.get_relation(),
+                                 self.get_citation_links(person_ref.get_source_references()),
+                                 self.dump_notes(person_ref.get_note_list())]: 
 
                         # get colclass from assoc_row
                         colclass = assoc_row[index][1]
