@@ -1,0 +1,168 @@
+﻿/*
+# encoding: utf-8
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright 2008-2010 Rob G. Healey <robhealey1@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+**************************************************************************************************
+GRAMPS Cascading Style Sheet
+Style Name: Web_Navigation-Vertical Stylesheet
+***************************************************************************************************
+
+# $Id: Web_Alphabet-Vertical.css 14559 2010-03-02 01:16:46Z robhealey1 $
+
+ Header
+----------------------------------------------------- */
+#header  {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow: auto;
+    width: 100%;
+}
+
+/* Body Element
+----------------------------------------------------- */
+body {
+    color: #000;
+    background-color: #FFF;
+    padding: 60px 0px 0px 128px;
+}
+
+/* Navigation
+----------------------------------------------------- */
+div#navigation {
+    position: fixed;
+    top: 66px;
+    left: 0px;
+    width: 128px;
+    height: 495px;
+    overflow-x: auto;
+    border-width: 2px 4px 2px 4px;
+    border-style: solid;
+}
+div#navigation ul {
+    display: inline;
+    list-style: none;
+    height: 24px;
+    padding: 0px 9px 0px 9px;
+    margin: 0;
+}
+div#navigation ul li {
+    font: bold 14px/100% sans;
+    margin: 0;
+    float: left;
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
+}
+div#navigation ul li:first-child {
+    border-top: 0;
+    margin-top: 10px;
+}
+div#navigation ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 8px 8px 8px 8px;
+}
+div#navigation ul li a:hover {
+
+}
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: solid 2px #000;
+}
+div#alphabet ul {
+    list-style:none;
+    min-width: 900px;
+    height: 24px;
+    margin:0;
+    padding: 0px 0px 0px 9px;
+    border-bottom: solid 2px #000;
+}
+div#alphabet ul li {
+    float: left;
+}
+div#alphabet ul li:first-child {
+    margin-left: 10px;
+}
+div#alphabet ul li:after {
+    content: "| ";
+}
+div#alphabet ul li a {
+    display: block;
+    padding: 4px 8px 4px 8px;
+    float: left;
+    font: .8em bold italic small-caps verdana, serif;
+    color: #000;
+    text-decoration:none;
+    margin:0;
+}
+div#alphabet ul li a:hover {
+
+}
+
+/* SubNavigation
+----------------------------------------------------- */
+div#subnavigation {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: solid 2px #000;
+}
+div#subnavigation ul {
+    list-style:none;
+    min-width: 900px;
+    height: 40px;
+    margin:0;
+    padding: 0px 0px 0px 16px;
+    border-bottom: solid 2px #5D835F;
+}
+div#subnavigation ul li {
+    float:left;
+}
+div#subnavigation ul li:after {
+    content: "| ";
+}
+div#subnavigation ul li a {
+    display: block;
+    padding: 12px 16px 14px 1px;
+    float:left;
+    font: .8em bold italic small-caps verdana, serif;
+    color: #000;
+    text-decoration:none;
+    margin:0;
+}
+div#subnavigation ul li a:hover {
+    background-color: #C1B398;
+}
+div#subnavigation ul li.CurrentSection a {
+    font-weight:bold;
+    font-style: italic;
+    background-color: #453619;
+    color: #FFF;
+}
+div#subnavigation ul li.CurrentSection a:hover {
+    background-color: #000;
+    color: #FFF;
+}
