@@ -4669,10 +4669,11 @@ class RepositoryListPage(BasePage):
                     trow += Html("td", rtype, class_ = "ColumnType", inline = True)
 
                     # repository name and hyperlink
-                    repo_title = html_escape(repo.name)
-                    if repo_title:
-                        trow += Html("td", self.repository_link(handle, repo_title, repo.gramps_id), 
+                    if repo.name:
+                        trow += Html("td", self.repository_link(handle, repo.name, repo.gramps_id), 
                             class_ = "ColumnName")
+                    else:
+                        trow += Html("td", "&nbsp;", class_ = "ColumnName")
 
         # add clearline for proper styling
         # add footer section
