@@ -2244,7 +2244,7 @@ class PlaceListPage(BasePage):
                         for colclass, data in [
                             ["State",       ml.state],
                             ["Country",     ml.country],
-                            ["Coordinates", (place.lat + ", " + place.long) if place.lat and place.long else None] ]
+                            ["Coordinates", (place.lat + ", " + place.long) if place.lat and place.long else "&nbsp;"] ]
                             if data or "&nbsp;"
                         )
 
