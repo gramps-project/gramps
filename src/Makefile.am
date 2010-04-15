@@ -28,6 +28,7 @@ gdir_PYTHON = \
 	Bookmarks.py\
 	config.py\
 	const.py\
+        constfunc.py\
 	DateEdit.py\
 	Date.py\
 	DbState.py\
