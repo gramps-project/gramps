@@ -3678,10 +3678,26 @@ class IndividualPage(BasePage):
                     photo = db.get_object_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
                     if mime_type:
-                        (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
-                        thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
-                        if constfunc.win():
-                            thumbnailUrl = thumbnailUrl.replace('\\',"/")
+                        region = self.media_ref_region_to_object(photo_handle, person)
+                        if region:
+                            lnkref = (self.report.cur_fname, self.page_title, self.gid)
+                            self.report.add_lnkref_to_photo(photo, lnkref)
+
+                            # make a thumbnail of this region
+                            newpath = copy_thumbnail(self.report, photo_handle, photo, region)
+                            # TODO. Check if build_url_fname can be used.
+                            newpath = "/".join(['..']*3 + [newpath])
+                            if constfunc.win():
+                                newpath = newpath.replace('\\',"/")
+                            thumbnailUrl = newpath
+                            #snapshot += self.media_link(photo_handle, newpath, '', up = True)
+
+                        else:
+                            (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
+                            thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
+                            if constfunc.win():
+                                thumbnailUrl = thumbnailUrl.replace('\\',"/")
+
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             boxbg += self.person_link(url, person, name_style = True, 
                 thumbnailUrl=thumbnailUrl)
