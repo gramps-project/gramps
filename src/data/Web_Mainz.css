@@ -641,7 +641,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 /* Gallery
 ----------------------------------------------------- */
 #Gallery {
-    margin: 0;
+    margin: auto;
     padding: 0;
 }
 #Gallery table.infolist tbody tr td {
@@ -819,7 +819,7 @@ table.download td.Modified {
 /* Repositories
 ------------------------------------------------------ */
 div#RepositoryList, div#RepositoryDetail {
-    margin: 0;
+    margin: auto;
     padding: 0;
 }
 div#RepositoryList table.repolist tbody tr td {
