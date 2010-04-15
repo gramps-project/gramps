@@ -4695,7 +4695,7 @@ class RepositoryPage(BasePage):
     """
 
     def __init__(self, report, title, repo, handle, gid = None):
-        BasePage.__init__(self, report, title)
+        BasePage.__init__(self, report, title, gid)
         db = report.database
 
         of = self.report.create_file(handle, 'repo')
@@ -4713,21 +4713,24 @@ class RepositoryPage(BasePage):
             with Html("table", class_ = "infolist repolist") as table:
                 repositorydetail += table
 
-                # repository type
-                trow = Html("tr") + (
-                    Html("td", THEAD, class_ = "ColumnType", inline = True),
-                    Html("td", str(repo.type), class_ = "ColumnAttribute", inline = True)
-                    )
-                table += trow
-
+                tbody = Html("tbody")
+                table += tbody
+ 
                 # GRAMPS ID
                 if not self.noid and gid:
                     # repo gramps id
                     trow = Html("tr") + (
-                        Html("td", GRAMPSID, class_ = "ColumnType", inline = True),
-                        Html("td", gid, class_ = "ColumnAttribute", inline = True)
+                        Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
+                        Html("td", gid, class_ = "ColumnValue", inline = True)
                         )
-                    table += trow
+                    tbody += trow
+
+                # repository type
+                trow = Html("tr") + (
+                    Html("td", THEAD, class_ = "ColumnAttribute", inline = True),
+                    Html("td", str(repo.type), class_ = "ColumnValue", inline = True)
+                    )
+                tbody += trow
 
             # repository: address(es)
             addresses = self.dump_addresses(repo.get_address_list(), False)
