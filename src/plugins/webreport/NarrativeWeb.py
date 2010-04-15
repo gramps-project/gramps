@@ -503,7 +503,10 @@ class BasePage(object):
         notelist.extend( evt_ref.get_note_list() )
         if notelist:
             notelist = self.dump_notes( notelist ) or "&nbsp;"
-            trow += Html("td", notelist, class_ = "ColumnNotes")
+        else:
+            notelist = "&nbsp;"
+
+        trow += Html("td", notelist, class_ = "ColumnNotes")
 
         # get event source references
         srcrefs = self.get_citation_links( evt.get_source_references() ) or "&nbsp;"
