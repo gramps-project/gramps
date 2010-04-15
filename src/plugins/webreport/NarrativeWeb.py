@@ -5437,14 +5437,13 @@ class NavWebReport(Report):
                 data = (sort_name, person_handle, has_add, has_res, has_url)
                 has_url_address.append(data)
 
+        AddressBookListPage(self, self.title, has_url_address)
         # Determine if we build Address Book
         if has_url_address:
             has_url_address.sort()
 
             addr_size = len( has_url_address )
             self.progress.set_pass(_("Creating address book pages ..."), addr_size)
-
-            AddressBookListPage(self, self.title, has_url_address)
 
             count = 1 
             for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:

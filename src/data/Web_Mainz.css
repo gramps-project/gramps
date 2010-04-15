@@ -842,7 +842,7 @@ div#RepositoryList table.repolist tbody tr td.ColumnName {
 /* Address Book
 ------------------------------------------------------ */
 div#AddressBookList, AddressBookDetail {
-    margin: 0;
+    margin: auto;
     padding: 0;
 }
 div#AddressBookList table.addressbook {
