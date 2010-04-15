@@ -3155,11 +3155,11 @@ class SourceListPage(BasePage):
 
 class SourcePage(BasePage):
 
-    def __init__(self, report, title, handle, src_list):
+    def __init__(self, report, title, handle, src_list, gid = None):
         db = report.database 
 
         source = db.get_source_from_handle(handle)
-        BasePage.__init__(self, report, title, source.gramps_id)
+        BasePage.__init__(self, report, title, gid)
 
         of = self.report.create_file(source.get_handle(), "src")
         self.up = True
@@ -3185,19 +3185,21 @@ class SourcePage(BasePage):
                 table += tbody
 
                 grampsid = None
-                if not self.noid:
-                    grampsid = source.gramps_id
+                if not self.noid and gid:
+                    grampsid = gid
 
-                    for (label, val) in [(GRAMPSID, grampsid),
-                                        (_("Author"), source.author),
-                                        (_("Publication information"), source.pubinfo),
-                                        (_("Abbreviation"), source.abbrev)]:
-                        if val:
-                            trow = Html("tr") + (
-                                Html("td", label, class_ = "ColumnAttribute"),
-                                Html("td", val, class_ = "ColumnValue")
-                                )
-                            tbody += trow
+                for (label, val) in [
+                    (GRAMPSID,                     grampsid),
+                    (_("Author"),                  source.author),
+                    (_("Publication information"), source.pubinfo),
+                    (_("Abbreviation"),            source.abbrev) ]:
+
+                    if val:
+                        trow = Html("tr") + (
+                            Html("td", label, class_ = "ColumnAttribute"),
+                            Html("td", val, class_ = "ColumnValue")
+                            )
+                        tbody += trow
 
             # additional media
             sourcemedia = self.display_additional_images_as_gallery(media_list)
@@ -3205,15 +3207,14 @@ class SourcePage(BasePage):
                 section += sourcemedia
 
             # additional notes
-            notelist = source.get_note_list()
-            if notelist:
-                notelist = self.display_note_list(notelist)
+            notelist = self.display_note_list( source.get_note_list() )
+            if notelist is not None: 
                 section += notelist
 
             # references
-            src_references = self.display_references(src_list[source.handle])
-            if src_references is not None:
-                section += src_references
+            references = self.display_references(src_list[source.handle])
+            if references is not None:
+                section += references
 
         # add clearline for proper styling
         # add footer section
