@@ -60,7 +60,8 @@ body {
     font-family:Georgia, serif;
     color:#7D5925;
     margin:0;
-    padding:0;
+    padding:0 14px 0 14px;
+    width: 965px;
     background:url(../images/Web_Mainz_Bkgd.png) #FFF2C6 repeat;
 }
 div {
@@ -515,6 +516,9 @@ table.individuallist tbody tr td.ColumnName a {
 
 /* Sources
 ----------------------------------------------------- */
+#Sources table.infolist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
 #Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
 }
@@ -637,6 +641,13 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 
 /* Gallery
 ----------------------------------------------------- */
+#Gallery {
+    margin: 0;
+    padding: 0;
+}
+#Gallery table.infolist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
 #Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
     padding-bottom:0;
 }
@@ -808,9 +819,12 @@ table.download td.Modified {
 
 /* Repositories
 ------------------------------------------------------ */
-div#RepositoryList { }
-
+div#RepositoryList, div#RepositoryDetail {
+    margin: 0;
+    padding: 0;
+}
 div#RepositoryList table.repolist tbody tr td {
+    border-bottom: dashed 1px #000;
 }
 div#RepositoryList table.repolist tbody tr td a {
     display: block;
@@ -820,10 +834,47 @@ div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
     width: 9%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnType {
-    width: 15%;
+    width: 20%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnName {
-    background-color: #FFF;
+    width: 100%;
+}
+
+/* Address Book
+------------------------------------------------------ */
+div#AddressBookList, AddressBookDetail {
+    margin: 0;
+    padding: 0;
+}
+div#AddressBookList table.addressbook {
+    margin: .3em 0 .3em 0;
+}
+div#AddressBookList table.addressbook tbody tr td {
+    text-align: left;
+    border-bottom: dashed 1px #000;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
+    width: 6%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName {
+    text-align: left;
+    width: 70%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnName a {
+    display: block;
+    padding: 6px 0px 6px 0px;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
+    text-align: center;
+    width: 8%;
+}
+div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
+    text-align: center;
+    width: 8%;
+}
+div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
+    text-align: cemter;
+    width: 12%;
 }
 
 /* SubSection
@@ -1062,19 +1113,16 @@ div#WebLinks {
     margin : 0 auto;
     padding: 0;
 }
-
 table.weblinks tr td {
-    background-color: #FFFFE7;
     border-bottom: dashed 1px #000;
 }
 table.weblinks tr td.ColumnRowLabel {
-    width: 5%;
+    width: 6%;
 }
 table.weblinks tr td.ColumnType {
-    width: 30%;
+    width: 40%;
 }
 table.weblinks tr td.ColumnDescription {
-    background-color: #FFF;
     width: 30%;
 }
 
@@ -1242,16 +1290,16 @@ table.weblinks tr td.ColumnDescription {
 /* Footer
 ----------------------------------------------------- */
 #footer {
-    clear:both;
+    clear: both;
     width: 100%;
     height: 60px;
-    font-size:12px;
-    line-height:130%;
-    font-family:sans-serif;
-    margin:0 auto;
-    padding:15px 0 0 0;
+    font-size: 10px;
+    line-height: 130%;
+    font-family: sans-serif;
+    margin: 0 auto;
+    padding: 15px 0 0 0;
     color: #000;
-    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 bottom left repeat;
     border-top:dashed 1px #7D5925;
 }
 #footer a, #footer a:visited {
@@ -1262,19 +1310,19 @@ table.weblinks tr td.ColumnDescription {
     text-decoration:underline;
 }
 #footer img {
-    border:0;
-    margin:0 auto;
-    vertical-align:middle;
+    border: 0;
+    margin: 0 auto;
+    vertical-align: middle;
 }
 #footer p#createdate {
-    float:left;
-    width:40%;
-    text-align:left;
-    margin-left:10px;
+    float: left;
+    width: 60%;
+    text-align: left;
+    margin-left: 10px;
 }
 #footer p#copyright {
     float:right;
-    width:40%;
+    width: 60%;
     text-align:right;
     margin-right:10px;
 }
