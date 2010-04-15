@@ -61,7 +61,6 @@ body {
     color:#7D5925;
     margin:0;
     padding:0 14px 0 14px;
-    width: 965px;
     background:url(../images/Web_Mainz_Bkgd.png) #FFF2C6 repeat;
 }
 div {
@@ -178,7 +177,7 @@ a:visited {
 /* Header
 ----------------------------------------------------- */
 #header {
-    width: 100%;
+    width: 965px;
     margin:0 auto;
     padding:5em 0 2px 0;
     background:url(../images/Web_Mainz_Header.png) repeat-x top left;
@@ -215,7 +214,7 @@ table tr.odd {
 ----------------------------------------------------- */
 #navigation, #subnavigation {
     font-family:sans-serif;
-    width: 100%;
+    width: 965px;
     margin:0 auto;
     padding:0;
     background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
@@ -1291,7 +1290,7 @@ table.weblinks tr td.ColumnDescription {
 ----------------------------------------------------- */
 #footer {
     clear: both;
-    width: 100%;
+    width: 965px;
     height: 60px;
     font-size: 10px;
     line-height: 130%;
