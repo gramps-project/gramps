@@ -1090,7 +1090,7 @@ class BasePage(object):
                     self.report.copy_file(Utils.media_path_full(db, obj.get_path()), newpath)
 
                     # get media rectangles
-                    _region_items = self.media_ref_ewgions(obj_handle, obj)
+                    _region_items = self.media_ref_regions(obj_handle, obj)
                     if len(_region_items):
                         with Html("div") as mediadisplay:
 
@@ -1142,7 +1142,7 @@ class BasePage(object):
         # no image to return
         return None
 
-    def media_ref_ewgions(self, handle, media):
+    def media_ref_regions(self, handle, media):
 
         """
         *************************************
@@ -1255,7 +1255,7 @@ class BasePage(object):
                 try:
 
                     # get media rectangles
-                    _region_items = self.media_ref_ewgions(photo_handle, photo)
+                    _region_items = self.media_ref_regions(photo_handle, photo)
                     if len(_region_items):
                         with Html("div") as mediadisplay:
                             snapshot += mediadisplay
@@ -1334,7 +1334,7 @@ class BasePage(object):
                     try:
 
                         # get media rectangles
-                        _region_items = self.media_ref_ewgions(photo_handle, photo)
+                        _region_items = self.media_ref_regions(photo_handle, photo)
                         if len(_region_items):
                             with Html("div") as mediadisplay:
                                 section += mediadisplay
@@ -2602,7 +2602,7 @@ class MediaPage(BasePage):
         BasePage.__init__(self, report, title, media.gramps_id)
 
         # get media rectangles
-        _region_items = self.media_ref_ewgions(handle, media)
+        _region_items = self.media_ref_regions(handle, media)
 
         of = self.report.create_file(handle, "img")
         self.up = True
