@@ -203,12 +203,17 @@ class TextDoc(object):
         """
         raise NotImplementedError
 
-    def write_styled_note(self, styledtext, format, style_name):
+    def write_styled_note(self, styledtext, format, style_name,
+                          contains_html=False):
         """
         Convenience function to write a styledtext to the cairo doc. 
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
+        contains_html: bool, the backend should not check if html is present. 
+            If contains_html=True, then the textdoc is free to handle that in 
+            some way. Eg, a textdoc could remove all tags, or could make sure
+            a link is clickable. 
         
         overwrite this method if the backend supports styled notes
         """

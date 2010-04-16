@@ -1286,12 +1286,17 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             self.write_text(line)
             self.end_paragraph()
 
-    def write_styled_note(self, styledtext, format, style_name):
+    def write_styled_note(self, styledtext, format, style_name,                                                   
+                          contains_html=False):
         """
         Convenience function to write a styledtext to the cairo doc. 
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
-        style_name : name of the style to use for default presentation
+        style_name : name of the style to use for default presentation                                          
+        contains_html: bool, the backend should not check if html is present.                                     
+            If contains_html=True, then the textdoc is free to handle that in                                     
+            some way. Eg, a textdoc could remove all tags, or could make sure                                     
+            a link is clickable. CairoDoc does nothing different for html notes
         """
         text = str(styledtext)
 
@@ -1352,7 +1357,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
                         text
         """
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
-        self.__write_text(text, markup=True)
+        self.__write_text(markuptext, markup=True)
     
     def add_media_object(self, name, pos, x_cm, y_cm, alt=''):
         new_image = GtkDocPicture(pos, name, x_cm, y_cm)

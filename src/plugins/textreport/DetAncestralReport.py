@@ -40,7 +40,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.display.name import displayer as _nd
 from Errors import ReportError
-from gen.lib import EventType, FamilyRelType, Person
+from gen.lib import EventType, FamilyRelType, Person, NoteType
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
@@ -281,7 +281,9 @@ class DetAncestorReport(Report):
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
-                                           note.get_format(),"DAR-Entry")
+                                           note.get_format(), "DAR-Entry",
+                                           contains_html= note.get_type() \
+                                                        == NoteType.HTML_CODE)
 
         first = True
         if self.inc_names:
@@ -417,7 +419,9 @@ class DetAncestorReport(Report):
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
-                                           note.get_format(),"DAR-MoreDetails")
+                                           note.get_format(),"DAR-MoreDetails",
+                                           contains_html= note.get_type() \
+                                                        == NoteType.HTML_CODE)
                 
     def write_parents(self, person):
         family_handle = person.get_main_parents_family_handle()

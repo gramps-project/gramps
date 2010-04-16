@@ -41,7 +41,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.display.name import displayer as _nd
 from Errors import ReportError
-from gen.lib import FamilyRelType, Person
+from gen.lib import FamilyRelType, Person, NoteType
 from gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 
                            EnumeratedListOption)
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, 
@@ -412,7 +412,8 @@ class DetDescendantReport(Report):
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
-                                           note.get_format(),"DDR-MoreDetails")
+                        note.get_format(),"DDR-MoreDetails",
+                        contains_html= note.get_type() == NoteType.HTML_CODE)
 
     def __write_parents(self, person):
         family_handle = person.get_main_parents_family_handle()
@@ -637,7 +638,8 @@ class DetDescendantReport(Report):
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
-                                           note.get_format(),"DDR-Entry")
+                        note.get_format(),"DDR-Entry",
+                        contains_html= note.get_type() == NoteType.HTML_CODE)
 
         first = True
         if self.inc_names:

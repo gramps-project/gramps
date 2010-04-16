@@ -24,6 +24,7 @@
 Provide utilities for printing endnotes in text reports.
 """
 from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
+from gen.lib import NoteType
 from gen.ggettext import gettext as _
 
 def add_endnote_styles(style_sheet):
@@ -147,7 +148,9 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
                                 'type': str(note.get_type())})
                 doc.end_paragraph()
                 doc.write_styled_note(note.get_styledtext(), 
-                                               note.get_format(),'Endnotes-Notes')
+                                        note.get_format(),'Endnotes-Notes',
+                                        contains_html= note.get_type() \
+                                                        == NoteType.HTML_CODE)
                 ind += 1
 
 def _format_source_text(source):
