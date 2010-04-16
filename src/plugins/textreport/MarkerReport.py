@@ -40,7 +40,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                         TableStyle, TableCellStyle, FONT_SANS_SERIF, 
                         INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gen.lib import MarkerType
+from gen.lib import MarkerType, NoteType
 from Filters import GenericFilterFactory, Rules
 from gen.display.name import displayer as name_displayer
 import DateHandler
@@ -412,7 +412,9 @@ class MarkerReport(Report):
             
             self.doc.start_cell('MR-TableCell', 2)
             self.doc.write_styled_note(note.get_styledtext(),
-                                       note.get_format(), 'MR-Note')
+                                       note.get_format(), 'MR-Note',
+                                       contains_html= note.get_type() \
+                                                        == NoteType.HTML_CODE)
             self.doc.end_cell()
             
             self.doc.end_row()

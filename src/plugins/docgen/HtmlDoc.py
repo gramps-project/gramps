@@ -467,12 +467,18 @@ class HtmlDoc(BaseDoc, TextDoc):
         #end div element
         self.__reduce_list()
 
-    def write_styled_note(self, styledtext, format, style_name):
+    def write_styled_note(self, styledtext, format, style_name,
+                          contains_html=False):
         """
         Convenience function to write a styledtext to the html doc. 
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
+        contains_html: bool, the backend should not check if html is present. 
+            If contains_html=True, then the textdoc is free to handle that in 
+            some way. Eg, a textdoc could remove all tags, or could make sure
+            a link is clickable. HtmlDoc will show the html as pure text, so 
+            no escaping will happen.
         """
         text = str(styledtext)
 
@@ -481,7 +487,13 @@ class HtmlDoc(BaseDoc, TextDoc):
         markuptext = self._backend.add_markup_from_styled(text, s_tags, 
                                                           split='\n\n')
         self.htmllist += [Html('div', id='grampsstylednote')]
-        if format == 1:
+        if contains_html:
+            #just dump the note out as it is. Adding markup would be dangerous
+            # as it could destroy the html. If html code, one can do the 
+            self.start_paragraph(style_name)
+            self.__write_text(text, markup=True)
+            self.end_paragraph()
+        elif format == 1:
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
             #FIXME: following split should be regex to match \n\s*\n instead?

@@ -603,13 +603,20 @@ class LaTeXDoc(BaseDoc, TextDoc):
         text = text.replace('\\_'*13, '\\underline{\hspace{3cm}}')
         self._backend.write(text)
 
-    def write_styled_note(self, styledtext, format, style_name):
+    def write_styled_note(self, styledtext, format, style_name,
+                          contains_html=False):
         """
         Convenience function to write a styledtext to the latex doc. 
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
+        contains_html: bool, the backend should not check if html is present. 
+            If contains_html=True, then the textdoc is free to handle that in 
+            some way. Eg, a textdoc could remove all tags, or could make sure
+            a link is clickable. LatexDoc ignores notes that contain html
         """
+        if contains_html:
+            return
         text = str(styledtext)
 
         s_tags = styledtext.get_tags()

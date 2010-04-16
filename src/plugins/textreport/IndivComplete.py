@@ -37,7 +37,7 @@ from collections import defaultdict
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import EventRoleType, EventType, Person
+from gen.lib import EventRoleType, EventType, Person, NoteType
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                              TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                              PARA_ALIGN_CENTER)
@@ -216,7 +216,8 @@ class IndivCompleteReport(Report):
             note = self.database.get_note_from_handle(notehandle)
             text = note.get_styledtext()
             note_format = note.get_format()
-            self.doc.write_styled_note(text, note_format, 'IDS-Normal')
+            self.doc.write_styled_note(text, note_format, 'IDS-Normal',
+                        contains_html= note.get_type() == NoteType.HTML_CODE)
         
         self.doc.end_cell()
         self.doc.end_row()
@@ -253,7 +254,8 @@ class IndivCompleteReport(Report):
             note_format = note.get_format()
             self.doc.start_row()
             self.doc.start_cell('IDS-NormalCell', 2)
-            self.doc.write_styled_note(text, note_format, 'IDS-Normal')
+            self.doc.write_styled_note(text, note_format, 'IDS-Normal',
+                        contains_html= note.get_type() == NoteType.HTML_CODE)
             
             self.doc.end_cell()
             self.doc.end_row()

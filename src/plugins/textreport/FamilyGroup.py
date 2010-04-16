@@ -236,7 +236,9 @@ class FamilyGroup(Report):
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContentsEnd", 2)
         self.doc.write_styled_note(note.get_styledtext(),
-                                   note.get_format(), 'FGR-Note')
+                                            note.get_format(), 'FGR-Note',
+                                            contains_html= note.get_type() == \
+                                                gen.lib.NoteType.HTML_CODE)
         self.doc.end_cell()
         self.doc.end_row()
     

@@ -69,7 +69,7 @@ log = logging.getLogger(".NarrativeWeb")
 #------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import gen.lib
-from gen.lib import UrlType, date, Date, FamilyRelType
+from gen.lib import UrlType, date, Date, FamilyRelType, NoteType
 import const
 import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
@@ -393,7 +393,8 @@ class BasePage(object):
  
         # styled notes
         htmlnotetext = self.styled_note(note.get_styledtext(),
-                                        note.get_format())
+                                        note.get_format(), contains_html = 
+                                        note.get_type() == NoteType.HTML_CODE)
         text = htmlnotetext or Html("p", note_text)
 
         # return text of the note to its callers
@@ -406,9 +407,9 @@ class BasePage(object):
 #
 #################################################
 
-    def styled_note(self, styledtext, format):
+    def styled_note(self, styledtext, format, contains_html=False):
         """
-         styledtext : assumed a StyledText object to write
+        styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
         """
@@ -422,7 +423,9 @@ class BasePage(object):
         markuptext = self._backend.add_markup_from_styled(text, s_tags,
                                                          split='\n\n')
         htmllist = Html("div", id = "grampsstylednote")
-        if format == 1:
+        if contains_html:
+            htmllist.extend((Html('p') + text))
+        elif format == 1:
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
             htmllist += Html("pre", indent=None) + markuptext.split('\n\n')
@@ -1500,7 +1503,8 @@ class BasePage(object):
 
                     # Web Site address
                     elif _type == UrlType.WEB_HOME:
-                        if not uri.startswith("http://"):
+                        if not (uri.startswith("http://") or 
+                                uri.startswith("https://")):
                             uri = "http://%(website)s" % { "website" : uri } 
 
                     # FTP server address
