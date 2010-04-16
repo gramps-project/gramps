@@ -110,6 +110,7 @@ def resize_to_jpeg_buffer(source, width, height):
     filed, dest = tempfile.mkstemp()
     img = gtk.gdk.pixbuf_new_from_file(source)
     scaled = img.scale_simple(int(width), int(height), gtk.gdk.INTERP_BILINEAR)
+    os.close(filed)
     scaled.save(dest, 'jpeg')
     ofile = open(dest, mode='rb')
     data = ofile.read()
