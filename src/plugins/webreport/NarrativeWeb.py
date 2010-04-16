@@ -2662,10 +2662,14 @@ class MediaPage(BasePage):
                             (width, height) = ImgManip.image_size(orig_image_path)
                             max_width = self.report.options['maxinitialimagewidth']
                             max_height = self.report.options['maxinitialimageheight']
-                            scale_w = (float(max_width)/width) or 1    # the 'or 1' is so that
-                                                                       # a max of zero is ignored
+                            if width != 0 and height != 0:
+                                scale_w = (float(max_width)/width) or 1    # the 'or 1' is so that
+                                                                           # a max of zero is ignored
 
-                            scale_h = (float(max_height)/height) or 1
+                                scale_h = (float(max_height)/height) or 1
+                            else:
+                                scale_w = 1.0
+                                scale_h = 1.0
                             scale = min(scale_w, scale_h, 1.0)
                             new_width = int(width*scale)
                             new_height = int(height*scale)
