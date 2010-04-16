@@ -64,7 +64,7 @@ body {
     background:url(../images/Web_Mainz_Bkgd.png) #FFF2C6 repeat;
 }
 div {
-    margin:0;
+    margin: 0;
     padding:0;
 }
 img {
@@ -768,7 +768,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 ----------------------------------------------------- */
 #Download { 
     padding: 0;
-    width: 100%;
+    width: 965;
     height: 350px;
 }
 table.download {
