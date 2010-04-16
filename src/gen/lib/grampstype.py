@@ -177,8 +177,10 @@ class GrampsType(object):
         """
         if self.__value == self._CUSTOM:
             return self.__string
-        else:
+        elif self.__value in self._I2EMAP:
             return self._I2EMAP[self.__value]
+        else:
+            return _UNKNOWN
 
     def serialize(self):
         """Convert the object to a serialized tuple of data. """
