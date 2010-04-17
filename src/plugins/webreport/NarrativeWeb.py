@@ -450,7 +450,7 @@ class BasePage(object):
         ul = Html("p")
         for notehandle in notelist:
             ul.extend(
-                Html("p", str(db.get_note_from_handle(notehandle).type))
+                Html("i", str(db.get_note_from_handle(notehandle).type))
                 )
             ul.extend(
                 self.get_note_format(db.get_note_from_handle(notehandle))
@@ -503,10 +503,26 @@ class BasePage(object):
         notelist = evt.get_note_list()
         notelist.extend( evt_ref.get_note_list() )
         if notelist:
-            notelist = self.dump_notes( notelist )
+            htmllist = self.dump_notes( notelist )
         else:
-            notelist = "&nbsp;"
-        trow += Html("td", notelist, class_ = "ColumnNotes")
+            htmllist = "&nbsp;"
+
+        # if the event or event reference has a attributes attached to it,
+        # get the text and format it correctly
+        attrlist = evt.get_attribute_list()
+        attrlist.extend(evt_ref.get_attribute_list())
+        for attr in attrlist:
+            htmllist.extend ( Html (
+                "p",
+                _("%(type)s: %(value)s") % {
+                'type'     : Html("b", attr.get_type()),
+                'value'    : attr.get_value() } ))
+            #also output notes attached to the attributes
+            notelist = attr.get_note_list()
+            if notelist:
+                htmllist.extend ( self.dump_notes( notelist ) or "&nbsp;" )
+
+        trow += Html("td", htmllist, class_ = "ColumnNotes")
 
         # get event source references
         srcrefs = self.get_citation_links( evt.get_source_references() ) or "&nbsp;"
