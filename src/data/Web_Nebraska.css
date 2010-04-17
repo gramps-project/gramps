@@ -205,11 +205,9 @@ div#navigation, div#subnavigation {
     width: 100%;
     margin: 0;
     padding: 0;
-    border: solid 2px #000;
 }
 div#navigation ul, div#subnavigation ul {
     list-style:none;
-    min-width: 900px;
     height: 24px;
     margin:0;
     padding: 0px 0px 0px 9px;
@@ -225,7 +223,7 @@ div#navigation ul li:after, div#subnavigation ul li:after {
     content: "| ";
 }
 div#navigation ul li a, div#subnavigation ul li a {
-    bakground-color: #A97;
+    background-color: #A97;
     display: block;
     padding: 4px 8px 4px 8px;
     float: left;
@@ -257,7 +255,6 @@ div#alphabet {
 }
 div#alphabet ul {
     list-style:none;
-    min-width:770px;
     height:24px;
     margin:0;
     padding: 0px 0px 0px 16px;
@@ -308,7 +305,6 @@ table.infolist tr th a:hover {
 table.infolist tr td {
     font:normal 1.1em/1.4em serif;
     vertical-align:middle;
-    padding:.1em 10px;
 }
 table.infolist tr td a {
     display:block;
@@ -602,10 +598,7 @@ div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
     content:"+ ";
 }
 div#EventDetail h3 {
-    font-size: xxx-large;
-}
-div#EventDetail h3:first-lettr {
-    color: #453619;
+    font-size: 1em;;
 }
 div#EventDetail table.eventlist {
     margin: .5cm 0 .3cm 1.5cm;
@@ -754,7 +747,7 @@ table.download {
     width:100%;
 }
 table.download img {
-    float:center;
+    text-align:center;
 }
 table.download thead tr th {
     text-align:center;
@@ -1236,13 +1229,13 @@ div#pedigree {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
 }
@@ -1533,5 +1526,5 @@ table.oneday tbody tr td.ColumnText {
     width: 85%;
 }
 table.oneday tbody tr td.ColumnEvent {
-    width; 10%;
+    width: 10%;
 }
