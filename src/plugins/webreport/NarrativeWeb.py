@@ -374,7 +374,7 @@ class BasePage(object):
             for ref in gid_list:
                 index, key = self.bibli.add_reference(ref)
                 id_ = "%d%s" % (index+1, key)
-                text += '<a href="#sref%s">%s</a>' % (id_, id_)
+                text += ' <a href="#sref%s">[%s]</a>' % (id_, id_)
 
         # return citation list text to its callers
         return text
@@ -447,13 +447,16 @@ class BasePage(object):
         db = self.report.database
 
         # begin unordered list
-        ul = Html("ul")
-        ul.extend(
-            self.get_note_format(
-                db.get_note_from_handle(notehandle))
-            for notehandle in notelist)
+        ul = Html("p")
+        for notehandle in notelist:
+            ul.extend(
+                Html("p", str(db.get_note_from_handle(notehandle).type))
+                )
+            ul.extend(
+                self.get_note_format(db.get_note_from_handle(notehandle))
+                )
 
-        # return unordered note list to its callers
+        # return note list to its callers
         return ul
 
     def display_event_row(self, evt, evt_ref, subdirs, hyp):
@@ -1634,8 +1637,9 @@ class BasePage(object):
 
                     if tmp:
                         list1 = Html("li", inline = True) + (
-                            Html("a", "; &nbsp; ".join(tmp),
-                                name = "sref%d%s" % (cindex, key))
+                            Html("a", "<br/> ".join(tmp),
+                                 style="text-decoration: none;",
+                                 name="sref%d%s" % (cindex, key))
                             )
 
                         ordered1 += list1

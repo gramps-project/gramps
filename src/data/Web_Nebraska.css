@@ -971,10 +971,8 @@ table.attrlist tbody tr td.ColumnAttrValue {
 }
 table.attrlist tbody tr td.ColumnAttrNotes {
     width: 45%;
-    background-color: #D8F3D6;
 }
 table.attrlist tbody tr td.ColumnAttrSources {
-    background-color: #FFF;
     width: 15%;
 }
 

@@ -305,7 +305,7 @@ div#alphabet ul li a:hover {
 ----------------------------------------------------- */
 table {
     font-size:14px;
-    margin:0 15px 1em 15px;
+    margin:0;
     padding:0;
     border:none;
     border-collapse:collapse;
@@ -1041,10 +1041,8 @@ table.attrlist tbody tr td.ColumnAttrValue {
 }
 table.attrlist tbody tr td.ColumnAttrNotes {
     width: 45%;
-    background-color: #D8F3D6;
 }
 table.attrlist tbody tr td.ColumnAttrSources {
-    background-color: #FFF;
     width: 15%;
 }
 
