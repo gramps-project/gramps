@@ -927,7 +927,7 @@ class BasePage(object):
             # optional "link-home" feature; see bug report #2736
             if self.report.options['linkhome']:
                 center_person = db.get_person_from_gramps_id(self.report.options['pid'])
-                if center_person:
+                if center_person and center_person.handle in self.report.person_handles:
                     center_person_url = self.report.build_url_fname_html(
                         center_person.handle, "ppl", self.up)
 
@@ -5891,8 +5891,8 @@ class NavWebOptions(MenuReportOptions):
         encoding.set_help( _("The encoding to be used for the web files"))
         menu.add_option(category_name, "encoding", encoding)
 
-        linkhome = BooleanOption(_('Include link to home person on every page'), False)
-        linkhome.set_help(_('Whether to include a link to the home person'))
+        linkhome = BooleanOption(_('Include link to active person on every page'), False)
+        linkhome.set_help(_('Include a link to the active person (if they have a webpage)'))
         menu.add_option(category_name, 'linkhome', linkhome)
 
         showbirth = BooleanOption(_("Include a column for birth dates on the index pages"), True)
