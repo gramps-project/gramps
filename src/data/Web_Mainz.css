@@ -1227,13 +1227,13 @@ table.weblinks tr td.ColumnDescription {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
 }
@@ -1289,7 +1289,7 @@ table.weblinks tr td.ColumnDescription {
 #footer {
     clear: both;
     width: 965px;
-    height: 60px;
+    height: 100px;
     font-size: 10px;
     line-height: 130%;
     font-family: sans-serif;
