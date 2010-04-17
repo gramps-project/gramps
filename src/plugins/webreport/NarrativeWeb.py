@@ -257,6 +257,32 @@ def format_date(date):
         return val
     return ""
 
+def copy_thumbnail(report, handle, photo, region=None):
+    """
+    Given a handle (and optional region) make (if needed) an
+    up-to-date cache of a thumbnail, and call report.copy_file
+    to copy the cached thumbnail to the website.
+    Return the new path to the image.
+    """
+    db = report.database 
+    to_dir = report.build_path('thumb', handle)
+    if region:
+        to_path = os.path.join(to_dir, handle) + ('%d,%d-%d,%d.png' % region)
+    else:
+        to_path = os.path.join(to_dir, handle) + '.png'
+    if photo.get_mime_type():
+        from_path = ThumbNails.get_thumbnail_path(Utils.media_path_full(
+                                                        db,
+                                                        photo.get_path()),
+                                                  photo.get_mime_type(),
+                                                  region)
+        if not os.path.isfile(from_path):
+            from_path = os.path.join(const.IMAGE_DIR, "document.png")
+    else:
+        from_path = os.path.join(const.IMAGE_DIR, "document.png")
+    report.copy_file(from_path, to_path)
+    return to_path
+
 class BasePage(object):
     """
     This is the base class to write certain HTML pages.
@@ -1091,7 +1117,7 @@ class BasePage(object):
                     self.report.copy_file(Utils.media_path_full(db, obj.get_path()), newpath)
 
                     # get media rectangles
-                    _region_items = self.media_ref_regions(obj_handle, obj)
+                    _region_items = self.media_ref_regions(obj_handle)
                     if len(_region_items):
                         with Html("div") as mediadisplay:
 
@@ -1143,7 +1169,7 @@ class BasePage(object):
         # no image to return
         return None
 
-    def media_ref_regions(self, handle, media):
+    def media_ref_regions(self, handle):
 
         """
         *************************************
@@ -1239,7 +1265,19 @@ class BasePage(object):
         # return media rectangles to its callers
         return _region_items
 
-    def display_first_image_as_thumbnail( self, photolist = None):
+    def media_ref_region_to_object(self, media_handle, obj):
+        """
+        Return a region of this image if it refers to this object.
+        """
+        # get a list of all media refs for this object
+        for mediaref in obj.get_media_list():
+            # is this mediaref for this image?  do we have a rect?
+            if (mediaref.ref == media_handle and 
+                mediaref.rect is not None):
+                return mediaref.rect # (x1, y1, x2, y2)
+        return None
+
+    def display_first_image_as_thumbnail( self, photolist, object):
         db = self.report.database 
 
         if not photolist or not self.create_media:
@@ -1253,43 +1291,60 @@ class BasePage(object):
         with Html("div", class_ = "snapshot") as snapshot:
 
             if mime_type:
-                try:
 
-                    # get media rectangles
-                    _region_items = self.media_ref_regions(photo_handle, photo)
-                    if len(_region_items):
-                        with Html("div") as mediadisplay:
-                            snapshot += mediadisplay
-
-                            # Feature #2634; display the mouse-selectable regions.
-                            # See the large block at the top of this function where
-                            # the various regions are stored in _region_items
-                            ordered = Html("ol", class_ = "RegionBox")
-                            mediadisplay += ordered
-                            while len(_region_items):
-                                (name, x, y, w, h, linkurl) = _region_items.pop()
-                                ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
-                                    % (x, y, w, h)) +(
-                                    Html("a", name, href = linkurl)
-                                    )       
-
+                region = self.media_ref_region_to_object(photo_handle, object)
+                if region:
                     lnkref = (self.report.cur_fname, self.page_title, self.gid)
                     self.report.add_lnkref_to_photo(photo, lnkref)
-                    real_path, newpath = self.report.prepare_copy_media(photo)
 
+                    # make a thumbnail of this region
+                    newpath = copy_thumbnail(self.report, photo_handle, photo, region)
                     # TODO. Check if build_url_fname can be used.
                     newpath = "/".join(['..']*3 + [newpath])
                     if constfunc.win():
                         newpath = newpath.replace('\\',"/")
 
-                    # begin hyperlink
-                    # description is given only for the purpose of the alt tag in img element
                     snapshot += self.media_link(photo_handle, newpath, '', up = True)
+                else:
+                    _region_items = self.media_ref_regions(photo_handle)
+                    if len(_region_items):
+                        with Html("div", id="GalleryDisplay") as mediadisplay:
+                            ordered = Html("ol", class_ = "RegionBox")
+                            snapshot += mediadisplay
+                            mediadisplay += ordered
+                            while len(_region_items):
+                                (name, x, y, w, h, linkurl) = _region_items.pop()
+                                ordered += Html("li", 
+                                                style="left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
+                                                % (x, y, w, h)) + Html("a", name, href = linkurl)
+                            lnkref = (self.report.cur_fname, self.page_title, self.gid)
+                            self.report.add_lnkref_to_photo(photo, lnkref)
+                            real_path, newpath = self.report.prepare_copy_media(photo)
+  
+                            # TODO. Check if build_url_fname can be used.
+                            newpath = "/".join(['..']*3 + [newpath])
+                            if constfunc.win():
+                                newpath = newpath.replace('\\',"/")
+                            # Need to add link to mediadisplay to get the links:
+                            mediadisplay += self.media_link(photo_handle, newpath, '', up = True)
+                    else:
+                        try:
+                            lnkref = (self.report.cur_fname, self.page_title, self.gid)
+                            self.report.add_lnkref_to_photo(photo, lnkref)
+                            real_path, newpath = self.report.prepare_copy_media(photo)
 
-                except (IOError, OSError), msg:
-                    WarningDialog(_("Could not add photo to page"), str(msg))
+                            # TODO. Check if build_url_fname can be used.
+                            newpath = "/".join(['..']*3 + [newpath])
+                            if constfunc.win():
+                                newpath = newpath.replace('\\',"/")
+
+                            # begin hyperlink
+                            # description is given only for the purpose of the alt tag in img element
+                            snapshot += self.media_link(photo_handle, newpath, '', up = True)
+
+                        except (IOError, OSError), msg:
+                            WarningDialog(_("Could not add photo to page"), str(msg))
             else:
-
                 # get media description
                 descr = photo.get_description()
 
@@ -1308,18 +1363,31 @@ class BasePage(object):
         # return snapshot division to its callers
         return snapshot
 
-    def display_additional_images_as_gallery( self, photolist = None):
+    def display_additional_images_as_gallery(self, photolist, object):
 
         if not photolist or not self.create_media:
             return None
         db = self.report.database
+
+        # make referenced images have the same order as in media list:
+        photolist_handles = {}
+        for mediaref in photolist:
+            photolist_handles[mediaref.get_reference_handle()] = mediaref
+        photolist_ordered = []
+        for photoref in object.get_media_list():
+            if photoref.ref in photolist_handles:
+                photo = photolist_handles[photoref.ref]
+                photolist_ordered.append(photo)
+                photolist.remove(photo)
+        # and add any that are left (should there be any?)
+        photolist_ordered += photolist
 
         # begin individualgallery division and section title
         with Html("div", class_ = "subsection", id = "indivgallery") as section: 
             section += Html("h4", _("Gallery"), inline = True)
 
             displayed = []
-            for mediaref in photolist:
+            for mediaref in photolist_ordered:
 
                 photo_handle = mediaref.get_reference_handle()
                 photo = db.get_object_from_handle(photo_handle)
@@ -1335,7 +1403,7 @@ class BasePage(object):
                     try:
 
                         # get media rectangles
-                        _region_items = self.media_ref_regions(photo_handle, photo)
+                        _region_items = self.media_ref_regions(photo_handle)
                         if len(_region_items):
                             with Html("div") as mediadisplay:
                                 section += mediadisplay
@@ -2255,7 +2323,7 @@ class PlacePage(BasePage):
             body += placedetail
 
             media_list = place.get_media_list()
-            thumbnail = self.display_first_image_as_thumbnail(media_list)
+            thumbnail = self.display_first_image_as_thumbnail(media_list, place)
             if thumbnail is not None:
                 placedetail += thumbnail
 
@@ -2274,7 +2342,7 @@ class PlacePage(BasePage):
 
             # place gallery
             if self.create_media:
-                placegallery = self.display_additional_images_as_gallery(media_list)
+                placegallery = self.display_additional_images_as_gallery(media_list, place)
                 if placegallery is not None:
                     placedetail += placegallery
 
@@ -2603,7 +2671,7 @@ class MediaPage(BasePage):
         BasePage.__init__(self, report, title, media.gramps_id)
 
         # get media rectangles
-        _region_items = self.media_ref_regions(handle, media)
+        _region_items = self.media_ref_regions(handle)
 
         of = self.report.create_file(handle, "img")
         self.up = True
@@ -3175,7 +3243,7 @@ class SourcePage(BasePage):
             body += section 
 
             media_list = source.get_media_list()
-            thumbnail = self.display_first_image_as_thumbnail(media_list)
+            thumbnail = self.display_first_image_as_thumbnail(media_list, source)
             if thumbnail is not None:
                 section += thumbnail
 
@@ -3207,7 +3275,7 @@ class SourcePage(BasePage):
                         tbody += trow
 
             # additional media
-            sourcemedia = self.display_additional_images_as_gallery(media_list)
+            sourcemedia = self.display_additional_images_as_gallery(media_list, source)
             if sourcemedia is not None:
                 section += sourcemedia
 
@@ -3581,10 +3649,8 @@ class IndividualPage(BasePage):
             if sect6 is not None:
                 individualdetail += sect6
 
-            media_list = []
             photo_list = self.person.get_media_list()
-            if len(photo_list) > 1:
-                media_list = photo_list[1:]
+            media_list = photo_list[:]
             for handle in self.person.get_family_handle_list():
                 family = db.get_family_from_handle(handle)
                 media_list += family.get_media_list()
@@ -3597,7 +3663,7 @@ class IndividualPage(BasePage):
                     media_list += event.get_media_list()
 
             # display additional images as gallery
-            sect7 = self.display_additional_images_as_gallery(media_list)
+            sect7 = self.display_additional_images_as_gallery(media_list, self.person)
             if sect7 is not None:
                 individualdetail += sect7
 
@@ -3674,10 +3740,22 @@ class IndividualPage(BasePage):
                     photo = db.get_object_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
                     if mime_type:
-                        (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
-                        thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
-                        if constfunc.win():
-                            thumbnailUrl = thumbnailUrl.replace('\\',"/")
+                        region = self.media_ref_region_to_object(photo_handle, person)
+                        if region:
+                            # make a thumbnail of this region
+                            newpath = copy_thumbnail(self.report, photo_handle, photo, region)
+                            # TODO. Check if build_url_fname can be used.
+                            newpath = "/".join(['..']*3 + [newpath])
+                            if constfunc.win():
+                                newpath = newpath.replace('\\',"/")
+                            thumbnailUrl = newpath
+                            #snapshot += self.media_link(photo_handle, newpath, '', up = True)
+
+                        else:
+                            (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
+                            thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
+                            if constfunc.win():
+                                thumbnailUrl = thumbnailUrl.replace('\\',"/")
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             boxbg += self.person_link(url, person, name_style = True, 
                 thumbnailUrl=thumbnailUrl)
@@ -3906,7 +3984,7 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         self.page_title = self.sort_name
-        thumbnail = self.display_first_image_as_thumbnail(self.person.get_media_list() )
+        thumbnail = self.display_first_image_as_thumbnail(self.person.get_media_list(), self.person)
 
         section_title = Html("h3", self.get_name(self.person), inline = True)
 
