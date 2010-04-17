@@ -2652,7 +2652,8 @@ def importData(database, filename, callback=None, cl=0):
     # Since we don't want to modify the file being imported, 
     # we create new temp file into which we will copy the imported file
     orig_filename = os.path.normpath(filename)
-    new_filename = tempfile.mkstemp()[1]
+    new_file_id, new_filename = tempfile.mkstemp()
+    os.close(new_file_id)
     new_env_name = tempfile.mkdtemp()
 
     # determine old env dir and make db work with new env dir
