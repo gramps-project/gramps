@@ -4528,9 +4528,6 @@ class IndividualPage(BasePage):
                 )
             table += trow
 
-         # return table to its caller
-        return table
-
     def pedigree_person(self, person):
         """
         will produce a hyperlink for a pedigree person ...
