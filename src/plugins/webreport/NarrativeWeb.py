@@ -338,7 +338,7 @@ class BasePage(object):
             ("AttrValue",     attr.get_value() ) ]
 
         # get attribute note list    
-        notelist = self.dump_notes(attr.get_note_list() ) or "&nbsp;"
+        notelist = self.dump_notes(attr.get_note_list() )
         attr_data_row.append(("AttrNotes", notelist))
 
         if showsrc:
@@ -443,7 +443,7 @@ class BasePage(object):
         """
 
         if not notelist:
-            return "&nbsp;"
+            return Html("p")
         db = self.report.database
 
         # begin unordered list
@@ -505,7 +505,7 @@ class BasePage(object):
         if notelist:
             htmllist = self.dump_notes( notelist )
         else:
-            htmllist = "&nbsp;"
+            htmllist = Html("p")
 
         # if the event or event reference has a attributes attached to it,
         # get the text and format it correctly
@@ -520,7 +520,7 @@ class BasePage(object):
             #also output notes attached to the attributes
             notelist = attr.get_note_list()
             if notelist:
-                htmllist.extend ( self.dump_notes( notelist ) or "&nbsp;" )
+                htmllist.extend (self.dump_notes( notelist ))
 
         trow += Html("td", htmllist, class_ = "ColumnNotes")
 
