@@ -938,7 +938,6 @@ table.attrlist tbody tr td.ColumnValue {
     width: 250px;
 }
 table.attrlist tbody tr td.ColumnSources {
-    background-color: #FFF;
     width: 100px;
 }
 table.attrlist tbody tr td.ColumnNotes {
@@ -946,7 +945,6 @@ table.attrlist tbody tr td.ColumnNotes {
 }
 div#attributes table.attrlist tbody tr td.ColumnNotes {
     width: 400px;
-    background-color: #D8F3D6;
 }
 
 /* Subsections : Parents
