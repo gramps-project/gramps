@@ -1598,7 +1598,7 @@ class BasePage(object):
 
                 # Note. 'path' already has a filename extension
                 url = self.report.build_url_fname(path, None, self.up)
-                list += self.person_link(url, name, None, gid = gid)
+                list += self.person_link(url, name or _("Unknown"), None, gid = gid)
 
         # return references division to its caller
         return section
