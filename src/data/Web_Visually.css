@@ -59,6 +59,16 @@ div#navigation ul li.CurrentSection a {
 div#navigation ul li.CurrentSection a:hover {
     background-color: 696969;
 }
+div#subnavigation ul li.CurrentSection a {
+    font-weight:bold;
+    font-style: italic;
+    background-color: #453619;
+    color: #FFF;
+}
+div#subnavigation ul li.CurrentSection a:hover {
+    background-color: #000;
+    color: #FFF;
+}
 
 /* General Elements
 ----------------------------------------------------- */
