@@ -462,6 +462,27 @@ def copy_notes(db, original_obj, clean_obj):
         note = db.get_note_from_handle(note_handle)
         if not note.get_privacy():
             clean_obj.add_note(note_handle)
+
+def copy_associations(db, original_obj, clean_obj):
+    """
+    Copies associations from one object to another - excluding
+    references to private notes.
+
+    @param db: GRAMPS database to which the references belongs
+    @type db: DbBase
+    @param original_obj: Object that may have private references
+    @type original_obj: Base
+    @param clean_obj: Object that will have only non-private references
+    @type original_obj: Base
+    @returns: Nothing
+    """
+    new_person_ref_list = []
+    for person_ref in original_obj.get_person_ref_list():
+        if not person_ref.get_privacy():
+            associated_person = db.get_person_from_handle(person_ref.ref)
+            if associated_person and not associated_person.get_privacy():
+                new_person_ref_list.append(person_ref)
+    clean_obj.set_person_ref_list(new_person_ref_list)
             
 def copy_attributes(db, original_obj, clean_obj):
     """
@@ -791,6 +812,7 @@ def sanitize_person(db, person):
     copy_media_ref_list(db, person, new_person)
     copy_lds_ords(db, person, new_person)
     copy_notes(db, person, new_person)
+    copy_associations(db, person, new_person)
     
     return new_person
 
