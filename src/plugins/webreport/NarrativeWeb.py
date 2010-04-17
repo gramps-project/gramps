@@ -1150,6 +1150,8 @@ class BasePage(object):
         pic_id = self.report.options[option_name]
         if pic_id:
             obj = db.get_object_from_gramps_id(pic_id)
+            if obj is None:
+                return None
             obj_handle = obj.handle
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
