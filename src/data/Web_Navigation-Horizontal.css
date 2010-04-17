@@ -110,15 +110,3 @@ div#navigation ul li a, div#subnavigation ul li a {
     text-decoration:none;
     margin:0;
 }
-div#navigation ul li a:hover, div#subnavigation ul li a:hover {
-
-}
-div#navigation ul li.CurrentSection a,
-div#subnavigation ul li.CurrentSection a {
-    background-color: #00029D;
-    color: #FFF;
-}
-div#navigation ul li.CurrentSection a:hover,
-div#subnavigation ul li.CurrentSection a:hover {
-    background-color: #000;
-}
