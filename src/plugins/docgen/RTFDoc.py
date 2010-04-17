@@ -444,7 +444,6 @@ class RTFDoc(BaseDoc,TextDoc):
             self.start_paragraph(style_name)
             self.write_text('\n')
             self.end_paragraph()
-        print
 
     def write_endnotes_ref(self,text,style_name):
         """
@@ -479,7 +478,12 @@ class RTFDoc(BaseDoc,TextDoc):
 
         for i in text:
             if ord(i) > 127:
-                self.text += '\\\'%2x' % ord(i)
+                if ord(i) < 256:
+                    self.text += '\\\'%2x' % ord(i)
+                else:
+                    # If (uni)code with more than 8 bits: 
+                    # RTF req valus in decimal, not hex.
+                    self.text += '\\uc1\\u%d\\uc0' % ord(i)
             elif i == '{' or i == '}' :
                 self.text += '\\%s' % i
             else:
