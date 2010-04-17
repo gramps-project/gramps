@@ -1340,7 +1340,6 @@ class BasePage(object):
                         except (IOError, OSError), msg:
                             WarningDialog(_("Could not add photo to page"), str(msg))
             else:
-
                 # get media description
                 descr = photo.get_description()
 
@@ -1359,18 +1358,31 @@ class BasePage(object):
         # return snapshot division to its callers
         return snapshot
 
-    def display_additional_images_as_gallery( self, photolist = None):
+    def display_additional_images_as_gallery(self, photolist, object):
 
         if not photolist or not self.create_media:
             return None
         db = self.report.database
+
+        # make referenced images have the same order as in media list:
+        photolist_handles = {}
+        for mediaref in photolist:
+            photolist_handles[mediaref.get_reference_handle()] = mediaref
+        photolist_ordered = []
+        for photoref in object.get_media_list():
+            if photoref.ref in photolist_handles:
+                photo = photolist_handles[photoref.ref]
+                photolist_ordered.append(photo)
+                photolist.remove(photo)
+        # and add any that are left (should there be any?)
+        photolist_ordered += photolist
 
         # begin individualgallery division and section title
         with Html("div", class_ = "subsection", id = "indivgallery") as section: 
             section += Html("h4", _("Gallery"), inline = True)
 
             displayed = []
-            for mediaref in photolist:
+            for mediaref in photolist_ordered:
 
                 photo_handle = mediaref.get_reference_handle()
                 photo = db.get_object_from_handle(photo_handle)
@@ -2298,7 +2310,7 @@ class PlacePage(BasePage):
 
             # place gallery
             if self.create_media:
-                placegallery = self.display_additional_images_as_gallery(media_list)
+                placegallery = self.display_additional_images_as_gallery(media_list, place)
                 if placegallery is not None:
                     placedetail += placegallery
 
@@ -3217,7 +3229,7 @@ class SourcePage(BasePage):
                         tbody += trow
 
             # additional media
-            sourcemedia = self.display_additional_images_as_gallery(media_list)
+            sourcemedia = self.display_additional_images_as_gallery(media_list, source)
             if sourcemedia is not None:
                 section += sourcemedia
 
@@ -3591,10 +3603,8 @@ class IndividualPage(BasePage):
             if sect6 is not None:
                 individualdetail += sect6
 
-            media_list = []
             photo_list = self.person.get_media_list()
-            if len(photo_list) > 1:
-                media_list = photo_list[1:]
+            media_list = photo_list[:]
             for handle in self.person.get_family_handle_list():
                 family = db.get_family_from_handle(handle)
                 media_list += family.get_media_list()
@@ -3607,7 +3617,7 @@ class IndividualPage(BasePage):
                     media_list += event.get_media_list()
 
             # display additional images as gallery
-            sect7 = self.display_additional_images_as_gallery(media_list)
+            sect7 = self.display_additional_images_as_gallery(media_list, self.person)
             if sect7 is not None:
                 individualdetail += sect7
 
@@ -3686,9 +3696,6 @@ class IndividualPage(BasePage):
                     if mime_type:
                         region = self.media_ref_region_to_object(photo_handle, person)
                         if region:
-                            lnkref = (self.report.cur_fname, self.page_title, self.gid)
-                            self.report.add_lnkref_to_photo(photo, lnkref)
-
                             # make a thumbnail of this region
                             newpath = copy_thumbnail(self.report, photo_handle, photo, region)
                             # TODO. Check if build_url_fname can be used.
