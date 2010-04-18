@@ -69,11 +69,16 @@ class AgeStatsGramplet(Gramplet):
             self.max_father_diff = int(self.gui.data[2])
             self.chart_width = int(self.gui.data[3])
 
-    def on_save(self):
+    def save_update_options(self, widget=None):
+        self.max_age = int(self.get_option(_("Max age")).get_value())
+        self.max_mother_diff = int(self.get_option(_("Max age of Mother at birth")).get_value())
+        self.max_father_diff = int(self.get_option(_("Max age of Father at birth")).get_value())
+        self.chart_width = int(self.get_option(_("Chart width")).get_value())
         self.gui.data = [self.max_age, 
                          self.max_mother_diff, 
                          self.max_father_diff, 
                          self.chart_width]
+        self.update()
 
     def db_changed(self):
         self.update()

@@ -75,8 +75,12 @@ class PedigreeGramplet(Gramplet):
             self.show_dates = int(self.gui.data[1])
             self.box_mode = self.gui.data[2] # "ASCII" or "UTF"
 
-    def on_save(self):
+    def save_update_options(self, widget=None):
+        self.max_generations = int(self.get_option(_("Max generations")).get_value())
+        self.show_dates = int(self.get_option(_("Show dates")).get_value())
+        self.box_mode = self.get_option(_("Line type")).get_value()
         self.gui.data = [self.max_generations, self.show_dates, self.box_mode]
+        self.update()
 
     def db_changed(self):
         """
