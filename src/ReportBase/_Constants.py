@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2001-2006 Donald N. Allingham
+# Copyright (C)      2010 Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,6 +63,7 @@ book_categories = {
 CSS_FILES = [
     # First is used as default selection.
     [_("Basic-Ash"),            'Web_Basic-Ash.css'],
+    [_("Basic-Blue"),           'Web_Basic-Blue.css'],
     [_("Basic-Cypress"),        'Web_Basic-Cypress.css'],
     [_("Basic-Lilac"),          'Web_Basic-Lilac.css'],
     [_("Basic-Peach"),          'Web_Basic-Peach.css'],

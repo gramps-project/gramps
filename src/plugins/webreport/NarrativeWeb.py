@@ -986,6 +986,8 @@ class BasePage(object):
         meta = (Html("meta", attr = _META1) + 
                 Html("meta", attr = _META2, indent = False)
                )
+        # add meta tags to the head section
+        head += meta
 
         # Link to media reference regions behaviour stylesheet
         fname = "/".join(["styles", "behaviour.css"])
@@ -1010,8 +1012,14 @@ class BasePage(object):
              Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet", indent = False)
              )
 
-        # add additional meta and link tags
-        head += meta
+        # Link to Navigation Menus stylesheet
+        if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+            fname = "/".join(["styles", "Web_Navigation-Menus.css"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            links.extend(
+                Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
+                )
+        # add link tags to head section
         head += links
 
         # alpha event pages do not need these things
@@ -5069,6 +5077,7 @@ class NavWebReport(Report):
         self.target_path = self.options['target']
         self.ext = self.options['ext']
         self.css = self.options['css']
+        self.navigation = self.options["navigation"]
 
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
@@ -5283,6 +5292,14 @@ class NavWebReport(Report):
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
+
+        # copy Navigation Menu Layout if Blue or Visually is being used
+        if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
+            if self.navigation == "Horizontal":
+                fname = os.path.join(const.DATA_DIR, "Web_Navigation-Horizontal.css")
+            else:
+                fname = os.path.join(const.DATA_DIR, "Web_Navigation-Vertical.css")
+            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         imgs = []
 
@@ -5793,11 +5810,24 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
+        self.__css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
         for style in CSS_FILES:
-            css.add_item(style[1], style[0])
-        css.set_help( _('The stylesheet to be used for the web pages'))
-        menu.add_option(category_name, "css", css)
+            self.__css.add_item(style[1], style[0])
+        self.__css.set_help( _('The stylesheet to be used for the web pages'))
+        menu.add_option(category_name, "css", self.__css)
+        self.__css.connect("value-changed", self.__stylesheet_changed)
+
+        _NAVIGATION_OPTS = [
+            [_("Horizontal -- No Change"), "Horizontal"],
+            [_("Vertical"),                "Vertical"]
+            ]
+        self.__navigation = EnumeratedListOption(_("Navigation Layout"), _NAVIGATION_OPTS[0][1])
+        for layout in _NAVIGATION_OPTS:
+            self.__navigation.add_item(layout[1], layout[0])
+        self.__navigation.set_help(_("Choose which layout for the Navigation Menus."))
+        menu.add_option(category_name, "navigation", self.__navigation)
+
+        self.__stylesheet_changed()
 
         self.__graph = BooleanOption(_("Include ancestor graph"), True)
         self.__graph.set_help(_('Whether to include an ancestor graph '
@@ -6043,6 +6073,17 @@ class NavWebOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
+
+    def __stylesheet_changed(self):
+        """
+        Handles the changing nature of the stylesheet
+        """
+
+        css_opts = self.__css.get_value()
+        if css_opts in ["Web_Basic-Blue.css", "Web_Visually.css"]:   
+            self.__navigation.set_available(True)
+        else:
+            self.__navigation.set_available(False)
 
     def __graph_changed(self):
         """
