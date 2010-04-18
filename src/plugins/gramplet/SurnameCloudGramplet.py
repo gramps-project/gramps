@@ -78,8 +78,12 @@ class SurnameCloudGramplet(Gramplet):
             self.min_font = int(self.gui.data[1])
             self.max_font = int(self.gui.data[2])
 
-    def on_save(self):
+    def save_update_options(self, widget=None):
+        self.top_size = int(self.get_option(_("Number of surnames")).get_value())
+        self.min_font = int(self.get_option(_("Min font size")).get_value())
+        self.max_font = int(self.get_option(_("Max font size")).get_value())
         self.gui.data = [self.top_size, self.min_font, self.max_font]
+        self.update()
 
     def main(self):
         self.set_text(_("Processing...") + "\n")
@@ -117,8 +121,6 @@ class SurnameCloudGramplet(Gramplet):
             cloud_values.append( count )
 
         cloud_names.sort(key=lambda k:k[1])
-        counts = list(set(cloud_values))
-        counts.sort(reverse=True)
         line = 0
         ### All done!
         # Now, find out how many we can display without going over top_size:
@@ -129,14 +131,22 @@ class SurnameCloudGramplet(Gramplet):
         total = 0
         include_greater_than = 0
         for s in sums:
-            if total + totals[s] <= self.top_size_option.get_value():
+            if total + totals[s] <= self.top_size:
                 total += totals[s]
             else:
                 include_greater_than = s
                 break
-        mins = self.min_option.get_value()
-        maxs = self.max_option.get_value()
+        # now, limit counts to only include those that we can display:
+        
+        mins = self.min_font
+        maxs = self.max_font
         # Ok, now we can show those counts > include_greater_than:
+        good_counts = []
+        for (count, surname) in cloud_names: # surname_sort:
+            if count > include_greater_than:
+                good_counts.append(count)
+        counts = list(set(good_counts))
+        counts.sort(reverse=True)
         showing = 0
         self.set_text("")
         for (count, surname) in cloud_names: # surname_sort:
