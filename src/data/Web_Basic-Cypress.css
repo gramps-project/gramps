@@ -611,10 +611,7 @@ div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
     content:"+ ";
 }
 div#EventDetail h3 {
-    font-size: xxx-large;
-}
-div#EventDetail h3:first-lettr {
-    color: #5D835F;
+    font-size: 1em;
 }
 div#EventDetail table.eventlist {
     margin: .5cm 0 .3cm 1.5cm;
@@ -763,7 +760,7 @@ table.download {
     width:100%;
 }
 table.download img {
-    float:center;
+    text-align:center;
 }
 table.download thead tr th {
     text-align:center;
@@ -868,7 +865,7 @@ div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
 
 /* Subsections
 ----------------------------------------------------- */
-#Home, #Introduction, {
+#Home, #Introduction {
     padding:1.5em 0 3em 0;
 }
 #Home p, #Introduction p, #Contact p {
@@ -1227,13 +1224,13 @@ table.weblinks tr td.ColumnDescription {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
 }
@@ -1469,5 +1466,5 @@ table.oneday tbody tr td.ColumnText {
     width: 85%;
 }
 table.oneday tbody tr td.ColumnEvent {
-    width; 10%;
+    width: 10%;
 }

@@ -304,7 +304,7 @@ table.infolist tr td {
     font:normal 1.1em/1.4em serif;
     vertical-align:middle;
     border-bottom: dashed 1px #000;
-    background-color: #BCEAF6
+    background-color: #BCEAF6;
     padding: 6px 0 6px 10px;
 }
 table.infolist tr td a {
@@ -763,7 +763,7 @@ div#Download table.download {
     width: 100%;
 }
 div#Download table.download img {
-    float:center;
+    text-align:center;
 }
 div#Download table.download tbody tr#Row02 {
     border-bottom: solid 2px #000;
@@ -918,7 +918,7 @@ div#events h4 {
     line-height:12px;
     text-transform:uppercase;
     color: #000;
-    padding-top:6px 0 4px 0;
+    padding:6px 0 4px 0;
     background-color: #70B1ED;
 }
 #IndividualDetail div#events table.infolist thead tr th:first-child {
@@ -1301,13 +1301,13 @@ div#pedigree {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    max-width:80px auto;
+    max-width:80px;
     max-height:65px;
     margin:0 auto;
 }
@@ -1558,5 +1558,5 @@ table.oneday tbody tr td.ColumnText {
     width: 85%;
 }
 table.oneday tbody tr td.ColumnEvent {
-    width; 10%;
+    width: 10%;
 }
