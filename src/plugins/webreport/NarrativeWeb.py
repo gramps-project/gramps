@@ -1017,8 +1017,8 @@ class BasePage(object):
         url3 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to GRAMPS favicon
-        fname = "/".join(['images', 'favicon.ico'])
-        url4 = self.report.build_url_image("favicon.ico", "images", self.up)
+        fname = "/".join(['images', 'favicon2.ico'])
+        url4 = self.report.build_url_image("favicon2.ico", "images", self.up)
 
         # create stylesheet and favicon links
         links = Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon") + (
@@ -1027,12 +1027,13 @@ class BasePage(object):
              Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet", indent = False)
              )
 
+        # Link to Navigation Menus stylesheet
         if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
-            # Link to Navigation Menus stylesheet
             fname = "/".join(["styles", "Web_Navigation-Menus.css"])
             url = self.report.build_url_fname(fname, None, self.up)
-            links.extend( Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False) )
-
+            links.extend(
+                Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
+                )
         # add additional meta and link tags
         head += meta
         head += links
@@ -5198,7 +5199,7 @@ class NavWebReport(Report):
         # Mainz stylesheet graphics
         # will only be used if Mainz is slected as the stylesheet
         Mainz_images = ["Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
-                                     "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
+                        "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
 
         # Copy Mainz Style Images
         if self.css == "Web_Mainz.css":
@@ -5210,7 +5211,7 @@ class NavWebReport(Report):
             imgs += ["somerights20.gif"]
 
         # include GRAMPS favicon
-        imgs += ["favicon.ico"]
+        imgs += ["favicon2.ico"]
 
         # we need the blank image gif neede by behaviour.css
         imgs += ["blank.gif"]
@@ -5221,9 +5222,7 @@ class NavWebReport(Report):
         # copy Ancestor Tree graphics if needed???
         if self.graph:
             imgs += ["Web_Gender_Female.png",
-                     "Web_Gender_FemaleFFF.png",
-                     "Web_Gender_Male.png",
-                     "Web_Gender_MaleFFF.png"]
+                     "Web_Gender_Male.png" ]
 
         for fname in imgs:
             from_path = os.path.join(const.IMAGE_DIR, fname)
