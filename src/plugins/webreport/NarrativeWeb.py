@@ -5792,11 +5792,17 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, "introimg", introimg)
 
         contactnote = NoteOption(_("Publisher contact note"))
-        contactnote.set_help( _("A note to be used as the publisher contact"))
+        contactnote.set_help( _("A note to be used as the publisher contact."+
+                                "\nIf no publisher information is given," +
+                                "\nno contact page will be created")
+                              )
         menu.add_option(category_name, "contactnote", contactnote)
 
         contactimg = MediaOption(_("Publisher contact image"))
-        contactimg.set_help( _("An image to be used as the publisher contact"))
+        contactimg.set_help( _("An image to be used as the publisher contact." +
+                               "\nIf no publisher information is given," +
+                               "\nno contact page will be created")
+                             )
         menu.add_option(category_name, "contactimg", contactimg)
 
         headernote = NoteOption(_('HTML user header'))
