@@ -485,6 +485,9 @@ class BasePage(object):
 
         # get event type and hyperlink to it or not?
         etype = str(evt.type)
+        if (not evt_ref.get_role().is_primary() and 
+            not evt_ref.get_role().is_family()):
+            etype += " (%s)" % evt_ref.get_role()
         evt_hyper = self.event_link(etype, evt_ref.ref, evt.gramps_id, subdirs) if hyp else etype
         trow += Html("td", evt_hyper, class_ = "ColumnEvent")
 
@@ -3713,15 +3716,15 @@ class IndividualPage(BasePage):
             if sect10 is not None:
                 individualdetail += sect10
 
-            # display sources
-            sect11 = self.display_ind_sources(self.person)
-            if sect11 is not None:
-                individualdetail += sect11
-
             # display associations
             assocs = self.person.get_person_ref_list()
             if assocs:
                 individualdetail += self.display_ind_associations(assocs)
+
+            # display sources
+            sect11 = self.display_ind_sources(self.person)
+            if sect11 is not None:
+                individualdetail += sect11
 
             # display pedigree
             sect13 = self.display_ind_pedigree()
