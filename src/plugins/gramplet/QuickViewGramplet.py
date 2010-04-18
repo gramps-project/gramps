@@ -60,18 +60,18 @@ class QuickViewGramplet(Gramplet):
         if len(self.gui.data) != 2:
             self.gui.data[:] = ["Person", None]
 
-    def on_save(self):
+    def save_update_options(self, widget=None):
         qv_type = self.get_option(_("View Type"))
         quick_type = qv_type.get_value()
         qv_option = self.get_option(_("Quick Views"))
         quick_view = qv_option.get_value()
         self.gui.data[:] = [quick_type, quick_view]
+        self.update()
 
     def main(self):
-        qv_type = self.get_option(_("View Type"))
-        quick_type = qv_type.get_value()
+        quick_type = self.gui.data[0]
         qv_option = self.get_option(_("Quick Views"))
-        quick_view = qv_option.get_value()
+        quick_view = self.gui.data[1] or qv_option.get_value()
         try:
             active_handle = self.get_active(quick_type)
         except:
@@ -119,7 +119,8 @@ class QuickViewGramplet(Gramplet):
                     "Repository": CATEGORY_QR_REPOSITORY}
         qv_option = self.get_option(_("View Type"))
         list_option = self.get_option(_("Quick Views"))
-        list_option.clear()
         qv_list = get_quick_report_list(code_map[qv_option.get_value()])
+        list_option.clear()
         for pdata in qv_list:
             list_option.add_item(pdata.id, pdata.name)
+
