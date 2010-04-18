@@ -1234,9 +1234,9 @@ class BasePage(object):
                     if _obj:
                         # what is the shortest possible name we could use for this person?
                         _name = _obj.get_primary_name().get_call_name()
-                        if not _name or _name == "":
+                        if not _name:
                             _name = _obj.get_primary_name().get_first_name()
-                            _linkurl = self.report.build_url_fname_html(_obj.handle, "ppl", True)
+                        _linkurl = self.report.build_url_fname_html(_obj.handle, "ppl", True)
             elif classname == "Family":
                 _obj = db.get_family_from_handle( newhandle )
                 partner1_handle = _obj.get_father_handle()
