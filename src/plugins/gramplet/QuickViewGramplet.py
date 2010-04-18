@@ -119,7 +119,6 @@ class QuickViewGramplet(Gramplet):
                     "Repository": CATEGORY_QR_REPOSITORY}
         qv_option = self.get_option(_("View Type"))
         list_option = self.get_option(_("Quick Views"))
-        list_option.clear()
         qv_list = get_quick_report_list(code_map[qv_option.get_value()])
         for pdata in qv_list:
             list_option.add_item(pdata.id, pdata.name)
