@@ -515,27 +515,25 @@ div#events table.eventlist tbody tr td.ColumnPlace a {
     padding: 2px 70px 2px 0px;
 }
 table.eventlist tbody tr td {
-    background-color: #FFF;
     border-bottom: dashed 1px #5D835F;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 20%;
+    width: 10%;
 }
 table.eventlist tbody tr td.ColumnDate {
-    background-color: #D8F3D6;
-    width: 16%;
+    width: 10%;
 }
 table.eventlist tbody tr td.ColumnPlace {
-    background-color: #FFF;
+    width: 20%;
+}
+table.eventlist tbody tr td.ColumnDescription {
+    width: 20%;
+}
+table.eventlist tbody tr td.ColumnNotes {
     width: 35%;
 }
 table.eventlist tbody tr td.ColumnSources {
-    background-color: #FFF;
-    width: 12%;
-}
-table.eventlist tbody tr td.ColumnNotes {
-    background-color: #D8F3D6;
-    width: 25%;
+    width: 5%;
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;

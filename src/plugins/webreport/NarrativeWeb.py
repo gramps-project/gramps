@@ -567,20 +567,21 @@ class BasePage(object):
         # get place name
         place = None
         place_handle = evt.get_place_handle()
+        place_hyper = None
+        evt_desc = evt.get_description()
         if place_handle:
             place = db.get_place_from_handle(place_handle)
-
-        place_hyper = None
-        if place: 
-            place_name = ReportUtils.place_name(db, place_handle)
-            place_hyper = self.place_link(place_handle, place_name, up = up)
+            if place: 
+                place_name = ReportUtils.place_name(db, place_handle)
+                place_hyper = self.place_link(place_handle, place_name, up = up)
 
         # wrap it all up and return to its callers
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
         info = [
                [DHEAD, "Date", _dd.display(evt.get_date_object() )],
-               [PHEAD, "Place", place_hyper] 
+               [PHEAD, "Place", place_hyper],
+               [DESCRHEAD, "Description", evt_desc] 
                ]
 
         # return event data information to its callers
@@ -4697,7 +4698,8 @@ class IndividualPage(BasePage):
                 (_EVENT, "Event"),
                 (DHEAD, "Date"),
                 (PHEAD, "Place"),
-                (NHEAD,  "Notes"),
+                (DESCRHEAD, "Description"),
+                (NHEAD, "Notes"),
                 (SHEAD, "Sources") ]
             )
 

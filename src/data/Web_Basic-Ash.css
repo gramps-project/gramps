@@ -531,19 +531,22 @@ table.eventlist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 20%;
+    width: 10%;
 }
 table.eventlist tbody tr td.ColumnDate {
-    width: 20%;
+    width: 10%;
 }
 table.eventlist tbody tr td.ColumnPlace {
+    width: 20%;
+}
+table.eventlist tbody tr td.ColumnDescription {
+    width: 20%;
+}
+table.eventlist tbody tr td.ColumnNotes {
     width: 35%;
 }
 table.eventlist tbody tr td.ColumnSources {
-    width: 12%;
-}
-table.eventlist tbody tr td.ColumnNotes {
-    width: 25%;
+    width: 5%;
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 30%;
