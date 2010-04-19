@@ -3858,9 +3858,11 @@ class IndividualPage(BasePage):
                 thead += trow
 
                 assoc_row = [
+                    (_("Person"),       'Person'),
                     (_('Relationship'), 'Relationship'),
+                    (NHEAD,             'Notes'),
                     (SHEAD,             'Sources'),
-                    (NHEAD,             'Notes') ]
+                    ]
 
                 trow.extend(
                     Html("th", label, class_="Column" + colclass, inline=True)
@@ -3870,14 +3872,23 @@ class IndividualPage(BasePage):
                 table += tbody
 
                 for person_ref in assoclist:
-
+                    if person_ref.ref not in self.report.person_handles:
+                        continue
                     trow = Html("tr")
                     tbody += trow
 
+                    person = self.report.database.get_person_from_handle(person_ref.ref)
+                    url = self.report.build_url_fname_html(person.handle, "ppl", True)
+                    person_name = self.get_name(person)
+                    person_link = Html("a", person_name, href=url, title=html_escape(person_name))
+
                     index = 0
-                    for data in [person_ref.get_relation(),
-                                 self.get_citation_links(person_ref.get_source_references()),
-                                 self.dump_notes(person_ref.get_note_list())]: 
+                    for data in [
+                        person_link,
+                        person_ref.get_relation(),
+                        self.dump_notes(person_ref.get_note_list()),
+                        self.get_citation_links(person_ref.get_source_references()),
+                        ]: 
 
                         # get colclass from assoc_row
                         colclass = assoc_row[index][1]
