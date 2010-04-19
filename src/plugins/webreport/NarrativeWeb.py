@@ -69,7 +69,7 @@ log = logging.getLogger(".WebPage")
 from gen.ggettext import sgettext as _
 import gen.lib
 from gen.lib import UrlType, EventType, Person, date, Date, ChildRefType, \
-                    FamilyRelType, NameType, Name, NoteType
+                    FamilyRelType, NameType, Name, NoteType, EventRoleType
 import const
 import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
@@ -459,7 +459,7 @@ class BasePage(object):
         # return note list to its callers
         return ul
 
-    def display_event_row(self, evt, evt_ref, subdirs, hyp):
+    def display_event_row(self, evt, evt_ref, subdirs, hyp, omit):
         """
         display the event row for IndividualPage
 
@@ -467,6 +467,7 @@ class BasePage(object):
         @param: evt_ref = event reference
         @param: subdirs = add [".."] * 3 for subdirectories or not
         @params: hyp = add a hyperlink or not
+        @params: omit = role to be omitted in output
         """
         db = self.report.database
 
@@ -485,8 +486,7 @@ class BasePage(object):
 
         # get event type and hyperlink to it or not?
         etype = str(evt.type)
-        if (not evt_ref.get_role().is_primary() and 
-            not evt_ref.get_role().is_family()):
+        if not evt_ref.get_role() == omit:
             etype += " (%s)" % evt_ref.get_role()
         evt_hyper = self.event_link(etype, evt_ref.ref, evt.gramps_id, subdirs) if hyp else etype
         trow += Html("td", evt_hyper, class_ = "ColumnEvent")
@@ -4180,8 +4180,10 @@ class IndividualPage(BasePage):
                     @param: event_ref = event reference
                     @param: subdirs = True or False
                     @param: hyp = show hyperlinked evt type or not?
+                    @params: omit = role to be omitted in output
                     """
-                    tbody += self.display_event_row(event, evt_ref, True, True)
+                    tbody += self.display_event_row(event, evt_ref, True, True,
+                    EventRoleType.PRIMARY)
  
         # return section to its caller
         return section
@@ -4744,8 +4746,10 @@ class IndividualPage(BasePage):
                 @param: event_ref = event reference
                 @param: up = True or False: attach subdirs or not?
                 @param: hyp = show hyperlinked evt type or not?
+                @params: omit = role to be omitted in output
                 """
-                tbody += self.display_event_row(event, event_ref, True, True)
+                tbody += self.display_event_row(event, event_ref, True, True,
+                EventRoleType.FAMILY)
 
         # return table to its callers
         return table
