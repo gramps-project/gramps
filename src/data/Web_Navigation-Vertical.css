@@ -156,13 +156,3 @@ div#subnavigation ul li a {
 div#subnavigation ul li a:hover {
     background-color: #C1B398;
 }
-div#subnavigation ul li.CurrentSection a {
-    font-weight:bold;
-    font-style: italic;
-    background-color: #453619;
-    color: #FFF;
-}
-div#subnavigation ul li.CurrentSection a:hover {
-    background-color: #000;
-    color: #FFF;
-}
