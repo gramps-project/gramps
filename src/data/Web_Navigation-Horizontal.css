@@ -27,7 +27,15 @@ Style Name: Web_Navigation-Horizontal Stylesheet
 
 # $Id: Web_Navigation-Horizontal.css 15207 2010-04-17 16:50:00Z robhealey1 $
 
- Alphabet Navigation
+ Body Element
+----------------------------------------------------- */
+body {
+    margin: 0 auto;
+    padding: 0 14px 0 14px;
+    width: 965px;
+}
+
+/*  lphabet Navigation
 ----------------------------------------------------- */
 div#alphabet {
     width: 100%;

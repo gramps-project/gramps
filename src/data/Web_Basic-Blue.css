@@ -48,8 +48,8 @@ Females     Web_Gender_Female.png
  NarrativeWeb Styles
 -------------------------------------------------------------------------------------------- */
 body {
-    margin: 0 auto;
-    padding: 0 14px 0 14px;
+    background-color :#FFF;
+    color: #000;
 }
 div#alphabet, div#navigation, div#subnavigation {
     border-top: solid 2px #000;
@@ -316,7 +316,8 @@ table.infolist thead tr th a {
     color: #000;
 }
 table.infolist thead tr th a:hover {
-    background-color: #C1B398;
+    background-color: #00029D;
+    color: #FFF;
 }
 table.infolist tr td {
     font: normal 1.1em/1.4em serif;
@@ -380,6 +381,9 @@ table.surnamelist thead tr th.ColumnSurname,
 #Surnames table.surnamelist tbody tr td.ColumnSurname {
     width:50%;
 }
+table.surnamelist thead tr th.ColumnSurname a {
+    color: #FFF;
+}
 table.surnamelist thead tr th {
     padding:0;
 }
@@ -397,7 +401,8 @@ table.surnamelist tbody tr td.ColumnLetter a {
 }
 table#SortByName thead tr th.ColumnSurname, 
 table#SortByCount thead tr th.ColumnQuantity {
-    background-color: #C1B398;
+    background-color: #00029D;
+    color: #FFF;
 }
 table#SortByName thead tr th.ColumnSurname a:after, 
 table#SortByCount thead tr th.ColumnQuantity a:after {
@@ -433,7 +438,8 @@ table.surname tbody tr td.ColumnName a span.grampsid {
     color: #000;
 }
 table.surname tbody tr td.ColumnName:hover {
-    background-color: #C1B398;
+    background-color: #00029D;
+    color: #FFF;
 }
 table.surname thead tr th.ColumnParents, 
 table.surname tbody tr td.ColumnParents {
@@ -525,19 +531,15 @@ table.eventlist tbody tr td.ColumnEvent {
     width: 20%;
 }
 table.eventlist tbody tr td.ColumnDate {
-    background-color: #D8F3D6;
     width: 16%;
 }
 table.eventlist tbody tr td.ColumnPlace {
-    background-color: #FFF;
     width: 35%;
 }
 table.eventlist tbody tr td.ColumnSources {
-    background-color: #FFF;
     width: 12%;
 }
 table.eventlist tbody tr td.ColumnNotes {
-    background-color: #D8F3D6;
     width: 25%;
 }
 table.eventlist tbody tr td.ColumnPerson {
@@ -547,7 +549,7 @@ table.eventlist tbody tr td.ColumnPartner {
     width: 35%;
 }
 div#EventList table.eventlist tbody tr.BeginName {
-    border-top: solid 1px #5D835F;
+    border-top: solid 1px #000;
 }
 div#EventList table.eventlist tbody tr td {
     padding: 4px 0px 4px 0px;
@@ -557,7 +559,7 @@ div#EventList table.alphaevent {
     margin: 0;
 }
 div#EventList table.alphaevent tbody tr.BeginEvent {
-    border-top: solid 1px #5D835F;
+    border-top: solid 1px #000;
 }
 div#EventList table.alphaevent tbody tr td.ColumnType {
     width: 15%;
@@ -591,18 +593,17 @@ div#EventDetail table.eventlist {
     width: 100%;
 }
 div#EventDetail table.eventlist tbody tr {
-    border-top: dashed 1px #5D835F;
+    border-top: dashed 1px #000;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
     text-transform: uppercase;
     width: 20%;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnDate {
-    background-color: #D8F3D6;
-    border-top: solid 1px #5D835F;
+    border-top: solid 1px #000;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnPerson {
-    background-color: #D8F3D6;
+    background-color: #000;
 }
     
 /* Gallery
@@ -680,7 +681,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnPerson {
     margin: 1.5em 0 0 0;
     border-style: solid;
     border-width: 2px 0 1px 0;
-    border-color: #5D835F;
+    border-color: #000;
 }
 #GalleryDetail table.exifdata {
     margin: .2em 0 .2em 0;
@@ -975,15 +976,13 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
 
 /* Subsections : Families
 ----------------------------------------------------- */
+div#families {
+    background-color: #FFF;
+    margin: 0;
+    padding: 0;
+}
 div#families table.infolist {
     margin: .3cm 0 .3cm 0;
-}
-
-div#families table.infolist tbody tr.BeginFamily {
-    border-top: dashed 1px #000;
-}
-div#families table.infolist tbody tr td.ColumnValue {
-    background-color: #FFF;
 }
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top:0;
@@ -1390,8 +1389,8 @@ div#pedigree {
 .calendar thead tr th.weekday {
     font-style:italic;
     color: #000;
-    background-color: #6AF364;
-    border: solid 2px #5D835F;
+    background-color: #BCEAF6;
+    border: solid 2px #000;
 }
 .calendar tfoot tr td {
     padding:.7em 5% 1em 5%;
@@ -1422,7 +1421,7 @@ div#pedigree {
     padding:0;
     border-width:1px 0 0 1px;
     border-style:solid;
-    border-color: #5D835F;
+    border-color: #000;
 }
 .calendar tbody tr td.weekday {
     background-color: #FFF;
@@ -1431,13 +1430,13 @@ div#pedigree {
     background-color: #D8F3D6;
 }
 .calendar tbody tr td.saturday {
-    border-right: solid 1px #5D835F;
+    border-right: solid 1px #000;
  }
 .calendar tbody tr td.sunday {
-    border-left: solid 1px #5D835F;
+    border-left: solid 1px #000;
 }
 .calendar tbody tr td:first-child {
-    border-left: solid 1px #5D835F;
+    border-left: solid 1px #000;
 }
 .calendar tbody tr:first-child td {
     border-top:none;
@@ -1456,7 +1455,7 @@ div#pedigree {
     width:92%;
     margin:0 4%;
     padding:.2em 0 .3em 0;
-    border-top: dashed 1px #5D835F;
+    border-top: dashed 1px #000;
 }
 .calendar tbody tr td ul li:first-child {
     border:none;
@@ -1537,7 +1536,7 @@ table.oneday {
     padding: 0;
 }
 table.oneday tbody tr td {
-    border-bottom: dashed 1px #5D835F;
+    border-bottom: dashed 1px #000;
 }
 table.oneday tbody tr td.ColumnRowLabel {
     width: 5%;
