@@ -331,10 +331,11 @@ def get_unicode_path(path):
     :rtype:      unicode
     :returns:     The Unicode version of path.
     """
-    if constfunc.win():
-        return unicode(path)
-    else:
-        return unicode(path,sys.getfilesystemencoding())
+    # Don't make unicode of unicode as this does not work
+    # with parameter for encoding.
+    if type(path) == type(u""):
+        return path
+    return unicode(path,sys.getfilesystemencoding())
 
 
 #-------------------------------------------------------------------------
@@ -1353,7 +1354,7 @@ def navigation_label(db, nav_type, handle):
             label = " ".join(label.split())
             # When strings are cut, make sure they are unicode
             #otherwise you may end of with cutting within an utf-8 sequence
-            label = unicode(label)
+            label = get_unicode_path(label)
             if len(label) > 40:
                 label = label[:40] + "..."
 
