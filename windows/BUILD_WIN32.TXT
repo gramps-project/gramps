@@ -1,0 +1,97 @@
+
+HOW TO CREATE A WINDOWS INSTALLER
+
+Introduction.
+=============
+It is possible to build two types of installer
+ 
+    - Release installer, intended for end user. The release installer is built from the 
+      release tarball.
+
+    - Development installer, used for testing nsis install script, and packaging issues.
+      This installer is not intended for end user. Instalation of a Development installer
+      will overwrite an already installed released Gramps application. Running a development
+      installer will warn with dialog that the installer is not an official release.
+
+The following procedure is capable of creating a Windows installer from either Windows 
+or Linux OS's as long as the correct tools are installed.
+
+The following programs are required to be installed and on the path
+    - python
+    - nsis  at least V2.42  (http://nsis.sourceforge.net  or  apt-get install nsis)
+    - msgfmt                (for windows http://gnuwin32.sourceforge.net/packages/gettext.htm)
+    
+    Extra tools for development installer build
+    - svn                   (subversion )
+    
+Release Installer
+=================
+To create an offical release of gramps download the required tarball for a release 
+from sourceforge. The files that are contained within the tarball consist of the files
+that make up an offical release.
+
+i.e.
+
+    WINDOWS
+        [PATH_TO_SCRIPT]\build_GrampsWin32.py -t TARBALL_PATH
+            or 
+        c:\python26\python [PATH_TO_SCRIPT]\build_GrampsWin32.py  -t TARBALL_PATH
+        
+    LINUX
+        python2.6 [PATH_TO_SCRIPT]/build_GrampsWin32.py -t TARBALL_PATH
+
+where TARBALL path is the path to the tarball including the tarball name.
+The build will happen on the dir you run the script from, you can also 
+control the build dir with the -oDIR,  --out=DIR  options 
+
+
+Development installer - Build from within SVN version tree.
+===========================================================
+NOTE: This installer will package ALL plugins that are part of SVN version
+      control into the installer, even if it's not intended for end user.
+
+      ** The offical RELEASE of GRAMPS is built from tarball. (see above)**
+      
+It works with a subversion working copy of Gramps, it automatically 
+queries configure.in to get the correct gramps version number that 
+includes the SVN revision number.
+
+Procedure:
+From the command prompt, change to the path 
+[GRAMPS_SVN]\windows\builder
+
+Run the build script with no arguments, the script will assume it's being run
+from a gramps subversion working copy, and then commence the build.
+
+It will export the sources from svn to create the correct directory image,
+complile the langauage files, and package all up into the installer.
+
+i.e.
+    WINDOWS
+        build_GrampsWin32.py 
+            or 
+        c:\python26\python build_GrampsWin32.py 
+        
+    LINUX
+        python2.6 build_GrampsWin32.py
+        
+============== Build Script Options ================================================
+>build_GrampsWin32.py --help
+
+Create Gramps Windows Installer.
+Usage:
+    python build_GrampsWin32.py [options] [repository_path]
+
+Arguments:
+    repository_path                   Path to the repository to build GRAMPS from, this can be either
+                                        - The root path of a SVN working copy
+                                        - A tarball that has been saved on local disk
+                                        - Left blank to build the SVN working copy this file is part of
+Options:
+    -h,     --help                This help message.
+    -oDIR,  --out=DIR             Directory to build files (optional)
+            --nsis_only           Build NSIS only (does not Clean & Build All)
+    -t      --tarball             Build release version from Tarball.
+    -mDIR, --msgdir=DIR           Directory to msgfmt.exe
+    
+==========================================================================================
