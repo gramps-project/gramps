@@ -332,8 +332,6 @@ class BasePage(object):
         trow = Html("tr")
 
         attr_data_row = [
-            ("Type",          "&nbsp;"),
-            ("Attribute",     "&nbsp;"),     
             ("AttrType",      str(attr.get_type() ) ),
             ("AttrValue",     attr.get_value() ) ]
 
@@ -866,7 +864,7 @@ class BasePage(object):
             return None
 
         # begin attributes division and section title
-        with Html("div", class_ = "ubsection", id = "attributes") as section:
+        with Html("div", class_ = "subsection", id = "attributes") as section:
             section += Html("h4", AHEAD,  inline = True)
 
             # begin attributes table
@@ -882,8 +880,6 @@ class BasePage(object):
                 trow.extend(
                     Html("th", label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
-                        ("&nbsp;", "Type"),
-                        ("&nbsp;", "Attribute"),
                         (_("Attribute/ Type"),    "AttrType"),
                         (VHEAD,    "AttrValue"),
                         (NHEAD,    "AttrNotes"),
@@ -4566,8 +4562,14 @@ class IndividualPage(BasePage):
                     # family attributes
                     attrlist = family.get_attribute_list()
                     if attrlist:
+                        attr_trow = Html("tr")
+                        attr_tcol = Html("td", class_="ColumnValue")
+                        table += attr_trow
+                        attr_trow += Html("td", class_="ColumnType")
+                        attr_trow += Html("td", class_="ColumnAttribute")
+                        attr_trow += attr_tcol
                         with Html("table", class_ = "infolist attrlist") as attrTable:
-                            table += attrTable
+                            attr_tcol += attrTable
 
                             thead = Html("thead")
                             attrTable += thead
@@ -4578,8 +4580,6 @@ class IndividualPage(BasePage):
                             trow.extend(
                                 Html("th", label, class_ = "Column" + colclass, inline = True)
                                 for (label, colclass) in [
-                                    ("&nbsp;",             "Type"),
-                                    ("&nbsp;",             "Attribute"),  
                                     (_("Attribute/ Type"), "AttrType"),
                                     (_("Value"),           "AttrValue"),
                                     (NHEAD,                "AttrNotes"),
