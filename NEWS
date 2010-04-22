@@ -1,3 +1,14 @@
+Version 3.2.1 -- the "One of those men is my father" release.
+* Many bug fixes:
+ -> fixed missing icons
+ -> load/reload plugins must unload old plugins
+ -> import/export fixes (date ranges, underscore, latitude/longitude)
+ -> narrative web crash fixes and many updates, html notes, css updates
+ -> geoview fixes and updates
+ -> unicode error in soundex
+ -> fixed crash on data entry
+* Translation updates: bg, ca, de, es, fr, he, hr, it, nb, nl, sk, sv
+
 Version 3.2.0 -- the "I am your father" release.
 * New Plugin System:
  -> In the Help Menu -> Menu Status, all available plugins are visible.  All
