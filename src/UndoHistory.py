@@ -61,13 +61,13 @@ class UndoHistory(ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate):
 
         self.title = _("Undo History")
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.db = dbstate.db
         self.undodb = self.db.undodb
         self.dbstate = dbstate
 
-        window = gtk.Dialog("",uistate.window,
-                            gtk.DIALOG_DESTROY_WITH_PARENT,None)
+        window = gtk.Dialog("", uistate.window,
+                            gtk.DIALOG_DESTROY_WITH_PARENT, None)
 
         self.undo_button = window.add_button(gtk.STOCK_UNDO,
                                              gtk.RESPONSE_REJECT)
@@ -79,11 +79,11 @@ class UndoHistory(ManagedWindow.ManagedWindow):
                                               gtk.RESPONSE_CLOSE)
      
         self.set_window(window, None, self.title)
-        self.window.set_size_request(400,200)
+        self.window.set_size_request(400, 200)
         self.window.connect('response', self._response)
 
         scrolled_window = gtk.ScrolledWindow()
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.tree = gtk.TreeView()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
                                    gobject.TYPE_STRING, gobject.TYPE_STRING)
@@ -94,10 +94,10 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.tree.set_rules_hint(True)
         self.tree.append_column(
             gtk.TreeViewColumn(_('Original time'), self.renderer,
-                               text=0,foreground=2,background=3))
+                               text=0, foreground=2, background=3))
         self.tree.append_column(
             gtk.TreeViewColumn(_('Action'), self.renderer,
-                               text=1,foreground=2,background=3))
+                               text=1, foreground=2, background=3))
 
         scrolled_window.add(self.tree)
         self.window.vbox.add(scrolled_window)
@@ -106,7 +106,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self._build_model()
         self._update_ui()
         
-        self.selection.connect('changed',self._selection_changed)
+        self.selection.connect('changed', self._selection_changed)
         self.show()
 
     def _selection_changed(self, obj):
@@ -115,63 +115,62 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             return
         path = self.model.get_path(node)
         
-        start = min(path[0],self.undodb.undoindex+1)
-        end = max(path[0],self.undodb.undoindex+1)
+        start = min(path[0], self.undodb.undoindex+1)
+        end = max(path[0], self.undodb.undoindex+1)
 
-        self._paint_rows(0,len(self.model)-1,False)
-        self._paint_rows(start,end,True)
+        self._paint_rows(0, len(self.model)-1, False)
+        self._paint_rows(start, end, True)
 
         if path[0] < self.undodb.undoindex+1:
             self.redo_button.set_sensitive(False)
             self.undo_button.set_sensitive(self.undodb.undo_available())
-        if path[0] > self.undodb.undoindex+1:
+
+        elif path[0] > self.undodb.undoindex+1:
             self.undo_button.set_sensitive(False)
             self.redo_button.set_sensitive(self.undodb.redo_available())
-        if path[0] == self.undodb.undoindex+1:
+
+        else: #path[0] == self.undodb.undoindex+1
             self.undo_button.set_sensitive(self.undodb.undo_available())
             self.redo_button.set_sensitive(self.undodb.redo_available())
 
-    def _paint_rows(self,start,end,selected=False):
+    def _paint_rows(self, start, end, selected=False):
         if selected:
-            (fg,bg) = get_colors(self.tree,gtk.STATE_SELECTED)
+            (fg, bg) = get_colors(self.tree, gtk.STATE_SELECTED)
         else:
             fg = bg = None
 
-        for idx in range(start,end+1):
+        for idx in range(start, end+1):
             the_iter = self.model.get_iter( (idx,) )
-            self.model.set(the_iter,2,fg)
-            self.model.set(the_iter,3,bg)
+            self.model.set(the_iter, 2, fg)
+            self.model.set(the_iter, 3, bg)
             
-    def _response(self, obj,response_id):
+    def _response(self, obj, response_id):
         if response_id == gtk.RESPONSE_CLOSE:
             self.close(obj)
+
         elif response_id == gtk.RESPONSE_REJECT:
             (model, node) = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node)
             nsteps = path[0]-self.undodb.undoindex-1
-            if nsteps == 0:
-                self._move(-1)
-            else:
-                self._move(nsteps)
+            self._move(nsteps or -1)
+
         elif response_id == gtk.RESPONSE_ACCEPT:
             (model, node) = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node)
             nsteps = path[0]-self.undodb.undoindex-1
-            if nsteps == 0:
-                self._move(1)
-            else:
-                self._move(nsteps)
+            self._move(nsteps or 1)
+
         elif response_id == gtk.RESPONSE_APPLY:
             self._clear_clicked()
         elif response_id == gtk.RESPONSE_DELETE_EVENT:
             self.close(obj)
 
     def build_menu_names(self, obj):
-        return (self.title,None)
+        return (self.title, None)
 
     def _clear_clicked(self, obj=None):
         QuestionDialog(_("Delete confirmation"),
@@ -189,24 +188,22 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         if self.db.redo_callback:
             self.db.redo_callback(None)
 
-    def _move(self,steps=-1):
+    def _move(self, steps=-1):
         if steps == 0 :
             return
-        elif steps < 0:
-            func = self.db.undo
-        elif steps > 0:
-            func = self.db.redo
+        func = self.db.undo if steps < 0 else self.db.redo
 
         for step in range(abs(steps)):
             func(False)
         self.update()
 
     def _update_ui(self):
-        self._paint_rows(0,len(self.model)-1,False)
+        self._paint_rows(0, len(self.model)-1, False)
         self.undo_button.set_sensitive(self.undodb.undo_available())
         self.redo_button.set_sensitive(self.undodb.redo_available())
         self.clear_button.set_sensitive(
-            self.undodb.undo_available() or self.undodb.redo_available() )
+            self.undodb.undo_available() or self.undodb.redo_available()
+            )
 
     def _build_model(self):
         self.model.clear()
@@ -218,14 +215,14 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             else:
                 mod_text = _('History cleared')
             time_text = time.ctime(self.undodb.undo_history_timestamp)           
-            self.model.append(row=[time_text,mod_text,fg,bg])
+            self.model.append(row=[time_text, mod_text, fg, bg])
 
         # Get the not-None portion of transaction list
         translist = filter(None, self.undodb.translist)
         for transaction in translist:
             time_text = time.ctime(transaction.timestamp)
             mod_text = transaction.get_description()
-            self.model.append(row=[time_text,mod_text,fg,bg])
+            self.model.append(row=[time_text, mod_text, fg, bg])
         path = (self.undodb.undoindex+1,)
         self.selection.select_path(path)
 
@@ -239,11 +236,11 @@ def gtk_color_to_str(color):
                                     color.blue/256)
     return color_str
 
-def get_colors(obj,state):
+def get_colors(obj, state):
     fg_color = obj.style.fg[state]
     bg_color = obj.style.bg[state]
 
     fg_color_str = gtk_color_to_str(fg_color)
     bg_color_str = gtk_color_to_str(bg_color)
 
-    return (fg_color_str,bg_color_str)
+    return (fg_color_str, bg_color_str)
