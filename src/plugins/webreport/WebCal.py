@@ -500,10 +500,11 @@ class WebCalReport(Report):
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                unordered += Html("li", attr=cs, inline = True) + (
+                unordered += Html("li", attr = cs, inline = True) + (
 
                     # create hyperlink
-                    Html("a", str(cal_year), href = url, title = "Year %04d" % cal_year, inline = True)
+                    Html("a", str(cal_year), href = url, title = _("Sub Navigation Menu Item: "
+                        "Year %04d" % cal_year), inline = True)
                     )
 
         # return yearnav to its caller
@@ -572,7 +573,7 @@ class WebCalReport(Report):
                 unordered += Html("li", attr = cs, inline = True) + (
 
                     # create hyperlink
-                    Html("a", nav_text, href = url, title=url_fname, inline = True)
+                    Html("a", nav_text, href = url, title = _("Main Navigation Menu Item: %s" % url_fname), inline = True)
                     )
 
         # return monthnav to its caller
@@ -1104,8 +1105,7 @@ class WebCalReport(Report):
                 birth_date = birth_event.get_date_object()
 
             # determine birthday information???
-            if (self.birthday and birth_date is not gen.lib.Date.EMPTY
-                and birth_date.is_valid()):
+            if (self.birthday and birth_date is not gen.lib.Date.EMPTY and birth_date.is_valid()):
 
                 year = birth_date.get_year() or this_year
                 month = birth_date.get_month()
@@ -1134,7 +1134,7 @@ class WebCalReport(Report):
                                     father = db.get_person_from_handle(father_handle)
                                     if father is not None:
                                         father_surname = _get_regular_surname(person.gender, 
-                                            father.primary_name)
+                                            father.get_primary_name())
                 short_name = self.get_name(person, father_surname)
                 alive = probably_alive(person, db, prob_alive_date)
                 if (self.alive and alive) or not self.alive:
