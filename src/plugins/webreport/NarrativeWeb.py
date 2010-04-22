@@ -143,7 +143,7 @@ _NARRATIVESCREEN = "narrative-screen.css"
 _NARRATIVEPRINT = "narrative-print.css"
 
 # variables for alphabet_navigation()
-_KEYPERSON, _KEYPLACE, _KEYEVENT = 0, 1, 2
+_KEYPERSON, _KEYPLACE, _KEYEVENT, _ALPHAEVENT = 0, 1, 2, 3
 
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
@@ -980,7 +980,7 @@ class BasePage(object):
         # return footer to its callers
         return footer
 
-    def write_header(self, title):
+    def write_header(self, title, key):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
@@ -1042,29 +1042,29 @@ class BasePage(object):
         head += meta
         head += links
 
-        # begin header section
-        headerdiv = (Html("div", id = 'header') +
-            Html("h1", html_escape(self.title_str), id = "SiteTitle", inline = True)
-            )
-        body += headerdiv
+        # alpha event pages do not need these things
+        if key is not _ALPHAEVENT:
 
-        header_note = self.report.options['headernote']
-        if header_note:
-            note = db.get_note_from_gramps_id(header_note)
+            # begin header section
+            headerdiv = (Html("div", id = 'header') +
+                Html("h1", html_escape(self.title_str), id = "SiteTitle", inline = True)
+                )
+            body += headerdiv
 
-            user_header = Html("div", id = 'user_header')
-            headerdiv += user_header  
+            header_note = self.report.options['headernote']
+            if header_note:
+                note = db.get_note_from_gramps_id(header_note)
+
+                user_header = Html("div", id = 'user_header')
+                headerdiv += user_header  
  
-            # attach note
-            user_header += note.get()
+                # attach note
+                user_header += note.get()
 
-        # Begin Navigation Menu
-        body += self.display_nav_links(title)
+            # Begin Navigation Menu
+            body += self.display_nav_links(title)
 
-        # Add page title for the printed page as there is no navigation menus for reference
-        body += Html("h2", title, inline = True)
-
-        # return to its callers: page and body
+        # return to its caller, page and body
         return page, body
 
     def display_nav_links(self, currentsection):
@@ -1141,7 +1141,7 @@ class BasePage(object):
 
             cs = 'class = "CurrentSection"' if cs else ""
             ul += (Html("li", attr = cs, inline = True) +
-                   Html("a", nav_text, href = url, title = _("Main navigation item: %s" % nav_text))
+                   Html("a", nav_text, href = url)
                   )
 
         navigation += ul
@@ -1157,7 +1157,6 @@ class BasePage(object):
             obj = db.get_object_from_gramps_id(pic_id)
             if obj is None:
                 return None
-
             obj_handle = obj.handle
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
@@ -1730,8 +1729,8 @@ class BasePage(object):
         with Html("div", class_ = "thumbnail") as thumbnail:
 
             # begin hyperlink
-            hyper = (Html("a", href = url, title = html_escape(name)) +
-                     Html("img", src = img_url, alt = html_escape(name)) )
+            hyper = (Html("a", href = url, title = name) +
+                     Html("img", src=img_url, alt = name) )
             thumbnail += hyper
 
             if usedescr:
@@ -1748,7 +1747,7 @@ class BasePage(object):
         thumbnail = Html("div", class_ = "thumbnail")
 
         # begin hyperlink
-        hyper = Html("a", href = url, title = html_escape(name))
+        hyper = Html("a", href = url, title = name)
         thumbnail += hyper
 
         url = self.report.build_url_image("document.png", "images", up)
@@ -1885,7 +1884,7 @@ class IndividualListPage(BasePage):
         showparents = report.options['showparents']
 
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_("Individuals"))
+        indlistpage, body = self.write_header(_("Individuals"), _KEYPERSON)
 
         # begin Individuals division
         with Html("div", class_ = "content", id = "Individuals") as individuallist:
@@ -1898,8 +1897,8 @@ class IndividualListPage(BasePage):
             individuallist += Html("p", msg, id = "description")
 
             # add alphabet navigation
-            menu_set = get_first_letters(db, person_handle_list, _KEYPERSON)
-            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            menu_set = get_first_letters(db, person_handle_list, _KEYPERSON) 
+            alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPERSON)
             if alpha_nav is not None:
                 individuallist += alpha_nav
 
@@ -2063,7 +2062,7 @@ class SurnamePage(BasePage):
 
         of = self.report.create_file(name_to_md5(surname), "srn")
         self.up = True
-        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname))
+        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname), _KEYPERSON)
 
         # begin SurnameDetail division
         with Html("div", class_ = "content", id = "SurnameDetail") as surnamedetail:
@@ -2212,7 +2211,7 @@ class PlaceListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_("Places"))
+        placelistpage, body = self.write_header(_("Places"), _KEYPLACE)
 
         # begin places division
         with Html("div", class_ = "content", id = "Places") as placelist:
@@ -2226,7 +2225,7 @@ class PlaceListPage(BasePage):
 
             # begin alphabet navigation
             menu_set = get_first_letters(db, place_handles, _KEYPLACE) 
-            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPLACE)
             if alpha_nav is not None:
                 placelist += alpha_nav
 
@@ -2311,7 +2310,7 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), "plc")
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        placepage, body = self.write_header(_("Places"))
+        placepage, body = self.write_header(_("Places"), _KEYPLACE)
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2382,7 +2381,7 @@ class EventListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("events")
-        eventslistpage, body = self.write_header(_("Events"))
+        eventslistpage, body = self.write_header(_("Events"), _KEYEVENT)
 
         # begin events list  division
         with Html("div", class_ = "content", id = "EventList") as eventlist:
@@ -2394,8 +2393,7 @@ class EventListPage(BasePage):
             eventlist += Html("p", msg, id = "description")
 
             # get alphabet navigation for class EventListPage
-            menu_set = get_first_letters(db, event_types, _KEYEVENT)
-            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            alpha_nav, event_types = alphabet_navigation(event_types, _ALPHAEVENT)
             if alpha_nav is not None:
                 eventlist += alpha_nav
 
@@ -2412,19 +2410,18 @@ class EventListPage(BasePage):
                 trow.extend(
                     Html("th", label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
-                        [_("Letter"), "Letter"],
-                        [THEAD,       "Type"],
-                        [DHEAD,       "Date"],
-                        [GRAMPSID,    "GRAMPSID"],
-                        [_PERSON,     "Person"] ]
+                        [THEAD,    "Type"],
+                        [DHEAD,    "Date"],
+                        [GRAMPSID, "GRAMPSID"],
+                        [_PERSON,  "Person"] ]
                     ) 
 
                 tbody = Html("tbody")
                 table += tbody
 
                 # separate events by their type and then thier event handles
-                displayed = []
-                for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
+                for (evt_type, datalist) in sort_event_types(db, event_types, 
+                        event_handle_list):
                     first_event = True
 
                     for (date, gid, event_handle) in datalist:
@@ -2433,23 +2430,14 @@ class EventListPage(BasePage):
                         trow = Html("tr")
                         tbody += trow
 
-                        # display first letter if it is the first one
-                        tcell = Html("td", class_ = "ColumnLetter", inline = True)
-                        trow += tcell
-
-                        ltr = evt_type[0]
-                        if ltr in displayed:
-                            tcell += "&nbsp;"
-                        else:
-                            trow.attr = 'class = "BeginLetter" ' 
-                            tcell += Html("a", ltr, name = ltr, title = "Events beginning with letter %s" % ltr, 
-                                inline = True)
-
                         # display Event type if first in the list
                         tcell = Html("td", class_ = "ColumnType", inline = True)
                         trow += tcell
                         if first_event:
-                            tcell += evt_type
+                            trow.attr = 'class = "BeginEvent"'
+                            tcell += Html("a", evt_type, name = evt_type, 
+                                title = _("Event types beginning with %(eventtype)s") % {
+                                    'eventtype': evt_type}, inline = True)
                         else:
                             tcell += "&nbsp;" 
 
@@ -2515,8 +2503,7 @@ class EventListPage(BasePage):
                                 first_person = False
                         else:
                             tcell += "&nbsp;" 
-                        first_event = False
-                        displayed.append(ltr)
+                        first_event = False    
 
         # add clearline for proper styling
         # add footer section
@@ -2555,7 +2542,7 @@ class EventPage(BasePage):
         self.bibli = Bibliography()
 
         of = self.report.create_file(event_handle, "evt")
-        eventpage, body = self.write_header(_("Events"))
+        eventpage, body = self.write_header(_("Events"), _KEYEVENT)
 
         # start event detail division
         with Html("div", class_ = "content", id = "EventDetail") as eventdetail:
@@ -2703,7 +2690,7 @@ class MediaPage(BasePage):
 
         copy_thumbnail(self.report, handle, media)
         self.page_title = media.get_description()
-        mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title))
+        mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title), _KEYPERSON)
 
         # begin MediaDetail division
         with Html("div", class_ = "content", id = "GalleryDetail") as mediadetail:
@@ -2797,9 +2784,9 @@ class MediaPage(BasePage):
                                     url = self.report.build_url_fname(newpath, 
                                                 None, self.up)
                                 mediadisplay += Html("a", href = url) + (
-                                    Html("img", width = new_width, 
-                                         height = new_height, src = url,
-                                         alt = html_escape(self.page_title))
+                                    Html("img", width=new_width, 
+                                         height=new_height, src=url,
+                                         alt=html_escape(self.page_title))
                                         )
                     else:
                         dirname = tempfile.mkdtemp()
@@ -2826,7 +2813,7 @@ class MediaPage(BasePage):
                             if target_exists:
                                 # TODO. Convert disk path to URL
                                 url = self.report.build_url_fname(newpath, None, self.up)
-                                hyper = Html("a", href = url, title = html_escape(self.page_title)) + (
+                                hyper = Html("a", href = url) + (
                                     Html("img", src = img_url, alt = html_escape(self.page_title))
                                     )
                                 mediadisplay += hyper
@@ -2956,10 +2943,10 @@ class SurnameListPage(BasePage):
 
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelistpage, body = self.write_header(_('Surnames'))
+            surnamelistpage, body = self.write_header(_('Surnames'), _KEYPERSON)
         else:
             of = self.report.create_file("surnames_count")
-            surnamelistpage, body = self.write_header(_('Surnames by person count'))
+            surnamelistpage, body = self.write_header(_('Surnames by person count'), _KEYPERSON)
 
         # begin surnames division
         with Html("div", class_ = "content", id = "surnames") as surnamelist:
@@ -2976,7 +2963,7 @@ class SurnameListPage(BasePage):
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
                 menu_set = get_first_letters(db, person_handle_list, _KEYPERSON)
-                alpha_nav, menu_set = alphabet_navigation(menu_set)
+                alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPERSON)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
 
@@ -3084,7 +3071,7 @@ class IntroductionPage(BasePage):
         db = report.database
 
         of = self.report.create_file(report.intro_fname)
-        intropage, body = self.write_header(_('Introduction'))
+        intropage, body = self.write_header(_('Introduction'), _KEYPERSON)
 
         # begin Introduction division
         with Html("div", class_ = "content", id = "Introduction") as section:
@@ -3121,7 +3108,7 @@ class HomePage(BasePage):
         db = report.database
 
         of = self.report.create_file("index")
-        homepage, body = self.write_header(_('Home'))
+        homepage, body = self.write_header(_('Home'), _KEYPERSON)
 
         # begin home division
         with Html("div", class_ = "content", id = "Home") as section:
@@ -3158,7 +3145,7 @@ class SourceListPage(BasePage):
         source_dict = {}
 
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_("Sources"))
+        sourcelistpage, body = self.write_header(_("Sources"), _KEYPERSON)
 
         # begin source list division
         with Html("div", class_ = "content", id = "Sources") as sourceslist:
@@ -3229,7 +3216,7 @@ class SourcePage(BasePage):
 
         of = self.report.create_file(source.get_handle(), "src")
         self.up = True
-        sourcepage, body = self.write_header(_('Sources'))
+        sourcepage, body = self.write_header(_('Sources'), _KEYPERSON)
 
         # begin source detail division
         with Html("div", class_ = "content", id = "SourceDetail") as section:
@@ -3298,7 +3285,7 @@ class MediaListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("media")
-        medialistpage, body = self.write_header(_('Media'))
+        medialistpage, body = self.write_header(_('Media'), _KEYPERSON)
 
         # begin gallery division
         with Html("div", class_ = "content", id = "Gallery") as medialist:
@@ -3415,7 +3402,7 @@ class DownloadPage(BasePage):
             return
 
         of = self.report.create_file("download")
-        downloadpage, body = self.write_header(_('Download'))
+        downloadpage, body = self.write_header(_('Download'), _KEYPERSON)
 
         # begin download page and table
         with Html("div", class_ = "content", id = "Download") as download:
@@ -3522,7 +3509,7 @@ class ContactPage(BasePage):
         db = report.database
 
         of = self.report.create_file("contact")
-        contactpage, body = self.write_header(_('Contact'))
+        contactpage, body = self.write_header(_('Contact'), _KEYPERSON)
 
         # begin contact division
         with Html("div", class_ = "content", id = "Contact") as section:
@@ -3603,7 +3590,7 @@ class IndividualPage(BasePage):
 
         of = self.report.create_file(person.handle, "ppl")
         self.up = True
-        indivdetpage, body = self.write_header(self.sort_name)
+        indivdetpage, body = self.write_header(self.sort_name, _KEYPERSON)
 
         # begin individualdetail division
         with Html("div", class_ = "content", id = 'IndividualDetail') as individualdetail:
@@ -4690,7 +4677,7 @@ class RepositoryListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("repositories")
-        repolistpage, body = self.write_header(_("Repositories"))
+        repolistpage, body = self.write_header(_("Repositories"), _KEYPERSON)
 
         # begin RepositoryList division
         with Html("div", class_ = "content", id = "RepositoryList") as repositorylist:
@@ -4759,7 +4746,7 @@ class RepositoryPage(BasePage):
 
         of = self.report.create_file(handle, 'repo')
         self.up = True
-        repositorypage, body = self.write_header(_('Repositories'))
+        repositorypage, body = self.write_header(_('Repositories'), _KEYPERSON)
 
         # begin RepositoryDetail division and page title
         with Html("div", class_ = "content", id = "RepositoryDetail") as repositorydetail:
@@ -4831,7 +4818,7 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header(_("Address Book"))
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
@@ -4933,7 +4920,7 @@ class AddressBookPage(BasePage):
 
         # set the file name and open file
         of = self.report.create_file(person_handle, "addr")
-        addressbookpage, body = self.write_header(_("Address Book"))
+        addressbookpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
 
         # begin address book page division and section title
         with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
@@ -5372,19 +5359,23 @@ class NavWebReport(Report):
         a dump of all the events sorted by event type, date, and surname
         for classes EventListPage and EventPage
         """
+        db = self.database
 
         # set up progress bar for event pages; using ind list
-        event_handle_list, event_types = build_event_data(self.database, ind_list)
+        event_handle_list, event_types = build_event_data(db, ind_list)
         self.progress.set_pass(_("Creating event pages"), len(event_handle_list))
 
         # send all data to the events list page
         EventListPage(self, self.title, event_types, event_handle_list)
 
+        index = 0
         for event_handle in event_handle_list:
+            self.progress.set_header(_("Creating event page %02d of %02d") % (index + 1, len(event_handle_list)))
 
             # create individual event pages
             EventPage(self, self.title, event_handle)
 
+            index += 1
             self.progress.step()
 
     def gallery_pages(self, source_list):
@@ -5445,7 +5436,9 @@ class NavWebReport(Report):
         # RepositoryListPage Class
         RepositoryListPage(self, self.title, repos_dict, keys)
 
+        count = 1
         for index, key in enumerate(keys):
+            self.progress.set_header(_("Creating repository page %d of %d" % (count, repo_size)))
             (repo, handle) = repos_dict[key]
 
             # RepositoryPage Class
@@ -5453,6 +5446,7 @@ class NavWebReport(Report):
 
             # increment progress bar 
             self.progress.step()
+            count += 1
 
     def addressbook_pages(self, ind_list):
         """
@@ -5501,12 +5495,15 @@ class NavWebReport(Report):
             addr_size = len( has_url_address )
             self.progress.set_pass(_("Creating address book pages ..."), addr_size)
 
+            count = 1 
             for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
+                self.progress.set_header(_("Creating address book page %d of %d" % (count, addr_size))) 
 
                 AddressBookPage(self, self.title, person_handle, has_add, has_res, has_url)
 
                 # increment progress bar
                 self.progress.step()
+                count += 1
 
     def build_subdirs(self, subdir, fname, up = False):
         """
@@ -6172,46 +6169,30 @@ def first_letter(string):
     return letter
 
 def get_first_letters(db, handle_list, key):
-    """
-    return a dictionary for the first letters
-
-    @param: habdle_list = a dictionary of handle or event types
-    @param: key = _KEYPERSON, _KEYPLACE, or _KEYEVENT
-    """
+    """ key is _PLACE or _PERSON ...."""
  
     first_letters = []
 
-    if key == _KEYEVENT:
-        for evttype in handle_list:
-            first_letters.append(evttype[0])
+    for handle in handle_list:
+        if key == _KEYPERSON:
+            keyname = __get_person_keyname(db, handle)
+        else:
+            keyname = __get_place_keyname(db, handle) 
+        ltr = first_letter(keyname)
 
-    else:
+        if ltr is not ",":
+            first_letters.append(ltr)
 
-        for handle in handle_list:
-            if key == _KEYPERSON:
-                keyname = __get_person_keyname(db, handle)
-            else:
-                keyname = __get_place_keyname(db, handle) 
-            ltr = first_letter(keyname)
-
-            if ltr is not ",":
-                first_letters.append(ltr)
-
-    # return first letters from data to its callers
     return first_letters
 
-def alphabet_navigation(menu_set):
+def alphabet_navigation(menu_set, alphakey):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
 
     @param: menu_set -- a dictionary of either letters or words
+    @param: alphakey -- either Person, Place, or AlphaEvent
     """
-
-    # if no letters or words, return None to its callers
-    if not menu_set:
-        return None, []
-
     sorted_set = defaultdict(int)
     # The comment below from the glibc locale sv_SE in
     # localedata/locales/sv_SE :
@@ -6226,6 +6207,7 @@ def alphabet_navigation(menu_set):
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     #
     (lang_country, modifier ) = locale.getlocale()
+    ltr = get_first_letters
 
     for menu_item in menu_set:
         sorted_set[menu_item] += 1
@@ -6233,12 +6215,20 @@ def alphabet_navigation(menu_set):
     # remove the number of each occurance of each letter
     sorted_alpha_index = sorted(sorted_set, key = locale.strxfrm)
 
-    # remove any commas and spaces from the letter set
-    sorted_alpha_index = [(menu_item) for menu_item in sorted_alpha_index 
-        if menu_item not in [ ",", " "]]
+    # remove any commas from the letter set
+    sorted_alpha_index = [(menu_item) for menu_item in sorted_alpha_index if menu_item != ","]
+
+    # remove any single spaces from the letter set also
+    # Event Types can and do have spaces, so leave them alone for now...
+    if alphakey is not _ALPHAEVENT:  
+        sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != " "]
+
+    # if no letters or words, return None to its callers
+    if not sorted_alpha_index:
+        return None, []
 
     num_ltrs = len(sorted_alpha_index)
-    num_of_cols = 32
+    num_of_cols = 34 if alphakey is not _ALPHAEVENT else 10
     num_of_rows = ((num_ltrs // num_of_cols) + 1)
 
     # begin alphabet navigation division
@@ -6255,14 +6245,10 @@ def alphabet_navigation(menu_set):
                 unordered += list
 
                 menu_item = sorted_alpha_index[index]
-
-                # adding for Visually Impaired screen readers and braille writers
-                title_str = _("Alphabet Navigation Item: %s" % menu_item)
-
                 if lang_country == "sv_SE" and menu_item == u'V':
-                    hyper = Html("a", "V,W", href = "#V,W", title = title_str)
+                    hyper = Html("a", "V,W", href = "#V,W", alt = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href = "#%s" % menu_item, title = title_str)
+                    hyper = Html("a", menu_item, href = "#%s" % menu_item, alt = html_escape(menu_item))
                 list += hyper
 
                 # increase letter/ word in sorted_alpha_index
