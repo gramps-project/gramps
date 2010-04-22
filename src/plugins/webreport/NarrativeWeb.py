@@ -1170,7 +1170,8 @@ class BasePage(object):
                     img_attr = ''
                     if height:
                         img_attr += 'height = "%d"'  % height
-                    img_attr += ' src = "%s" alt = "%s"' % (newpath, obj.get_description())
+                    img_attr += ' src = "%s" alt = "%s" title = "%s"' % (newpath, obj.get_description(),
+                        obj.get_description() )
 
                     # add image attributes to image
                     image.attr = img_attr
@@ -1703,7 +1704,8 @@ class BasePage(object):
             # 2. insert thumbnail if there is one, otherwise insert class = "noThumb"
             if thumbnailUrl:
                 hyper += (Html("span", class_ = "thumbnail") +
-                          Html("img", src = thumbnailUrl, alt = "Image of " + person_name)
+                          Html("img", src = thumbnailUrl, alt = "Image of " + person_name,
+                              title = "Image of " + person_name)
                         )
             else:
                 hyper.attr += ' class= "noThumb"'
@@ -1730,7 +1732,7 @@ class BasePage(object):
 
             # begin hyperlink
             hyper = (Html("a", href = url, title = name) +
-                     Html("img", src=img_url, alt = name) )
+                     Html("img", src = img_url, alt = name) )
             thumbnail += hyper
 
             if usedescr:
@@ -1751,7 +1753,7 @@ class BasePage(object):
         thumbnail += hyper
 
         url = self.report.build_url_image("document.png", "images", up)
-        hyper += Html("img", src = url, alt = html_escape(name))
+        hyper += Html("img", src = url, alt = html_escape(name), title = html_escape(name))
 
         if usedescr:
             hyper += Html("p", html_escape(name), inline = True)
@@ -2784,9 +2786,9 @@ class MediaPage(BasePage):
                                     url = self.report.build_url_fname(newpath, 
                                                 None, self.up)
                                 mediadisplay += Html("a", href = url) + (
-                                    Html("img", width=new_width, 
-                                         height=new_height, src=url,
-                                         alt=html_escape(self.page_title))
+                                    Html("img", width = new_width, 
+                                         height = new_height, src = url,
+                                         alt = html_escape(self.page_title), title = html_escape(self.page_title))
                                         )
                     else:
                         dirname = tempfile.mkdtemp()
@@ -2813,7 +2815,7 @@ class MediaPage(BasePage):
                             if target_exists:
                                 # TODO. Convert disk path to URL
                                 url = self.report.build_url_fname(newpath, None, self.up)
-                                hyper = Html("a", href = url) + (
+                                hyper = Html("a", href = url, title = html_escape(self.page_title)) + (
                                     Html("img", src = img_url, alt = html_escape(self.page_title))
                                     )
                                 mediadisplay += hyper
@@ -2823,7 +2825,8 @@ class MediaPage(BasePage):
                     with Html("div", id = "GalleryDisplay") as mediadisplay:
                         summaryarea += mediadisplay
                         url = self.report.build_url_image("document.png", "images", self.up)
-                        mediadisplay += Html("img", src = url, alt = html_escape(self.page_title))
+                        mediadisplay += Html("img", src = url, alt = html_escape(self.page_title),
+                            title = html_escape(self.page_title))
 
                 # media title
                 title = Html("h3", html_escape(self.page_title.strip()), inline = True)
