@@ -22,10 +22,10 @@
 
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
-Style Name: Web_Navigation-Vertical Stylesheet
+Style Name: Web_Navigation-Vertical.css Stylesheet
 ***************************************************************************************************
 
-# $Id: Web_Alphabet-Vertical.css 14559 2010-03-02 01:16:46Z robhealey1 $
+# $Id: Web_Navigation-Vertical.css 15241 2010-04-19 11:07:00Z robhealey1 $
 
  Header
 ----------------------------------------------------- */
@@ -35,6 +35,7 @@ Style Name: Web_Navigation-Vertical Stylesheet
     left: 0px;
     overflow: auto;
     width: 100%;
+    height: 65px;
 }
 
 /* Body Element
@@ -42,46 +43,7 @@ Style Name: Web_Navigation-Vertical Stylesheet
 body {
     color: #000;
     background-color: #FFF;
-    padding: 60px 0px 0px 128px;
-}
-
-/* Navigation
------------------------------------------------------ */
-div#navigation {
-    position: fixed;
-    top: 66px;
-    left: 0px;
-    width: 128px;
-    height: 495px;
-    overflow-x: auto;
-    border-width: 2px 4px 2px 4px;
-    border-style: solid;
-}
-div#navigation ul {
-    display: inline;
-    list-style: none;
-    height: 24px;
-    padding: 0px 9px 0px 9px;
-    margin: 0;
-}
-div#navigation ul li {
-    font: bold 14px/100% sans;
-    margin: 0;
-    float: left;
-    border-width: 0px 0px 2px 0px;
-    border-style: solid;
-}
-div#navigation ul li:first-child {
-    border-top: 0;
-    margin-top: 10px;
-}
-div#navigation ul li a {
-    text-decoration: none;
-    display: block;
-    padding: 8px 8px 8px 8px;
-}
-div#navigation ul li a:hover {
-
+    padding: 60px 0px 0px 136px;
 }
 
 /* Alphabet Navigation
@@ -118,8 +80,36 @@ div#alphabet ul li a {
     text-decoration:none;
     margin:0;
 }
-div#alphabet ul li a:hover {
 
+/* Navigation
+----------------------------------------------------- */
+div#navigation {
+    position: fixed;
+    left: 0px;
+    top: 55px;
+}
+div#navigation ul {
+    width: 132px;
+    height: 424px;
+    list-style: none;
+    padding: 0px 0px 0px 8px;
+    border: solid 4px #000;
+}
+div#navigation ul li {
+    display: inline;
+    font: bold 14px/100% sans;
+    float: left;
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
+}
+div#navigation ul li:first-child {
+    border-top: none;
+    padding-top: 20px;
+}
+div#navigation ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 8px;
 }
 
 /* SubNavigation
