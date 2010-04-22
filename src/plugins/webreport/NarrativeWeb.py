@@ -1070,14 +1070,14 @@ class BasePage(object):
     def display_nav_links(self, currentsection):
         """
         Creates the navigation menu
-        """
 
-        db = self.report.database
+        @param: currentsection = which menu item are you on
+        """
 
         # include repositories or not?
         inc_repos = True   
         if not self.report.inc_repository or \
-            len(db.get_repository_handles()) == 0:
+            len(self.report.database.get_repository_handles()) == 0:
                 inc_repos = False  
 
         navs = [
@@ -1141,7 +1141,7 @@ class BasePage(object):
 
             cs = 'class = "CurrentSection"' if cs else ""
             ul += (Html("li", attr = cs, inline = True) +
-                   Html("a", nav_text, href = url)
+                   Html("a", nav_text, href = url, title = "Main Navigation Item " + nav_text)
                   )
 
         navigation += ul
@@ -6248,10 +6248,15 @@ def alphabet_navigation(menu_set, alphakey):
                 unordered += list
 
                 menu_item = sorted_alpha_index[index]
+
+                # adding title to hyperlink menu for screen readers and braille writers
+                title_str = _("Alphabet Navigation Menu Item " + menu_item)
+
                 if lang_country == "sv_SE" and menu_item == u'V':
                     hyper = Html("a", "V,W", href = "#V,W", alt = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href = "#%s" % menu_item, alt = html_escape(menu_item))
+                    hyper = Html("a", menu_item, href = menu_item, alt = menu_item)
+                hyper.attr += 'title="%s"' % title_str
                 list += hyper
 
                 # increase letter/ word in sorted_alpha_index
