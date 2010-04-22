@@ -14,6 +14,7 @@ SUBDIRS = \
 	mapservices \
 	quickview \
 	rel \
+        sidebar \
 	textreport \
 	tool \
 	view \

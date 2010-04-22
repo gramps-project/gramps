@@ -26,3 +26,4 @@ src/plugins/gramplet/HeadlineNewsGramplet.py
 src/plugins/quickview/AllNames.py
 src/plugins/quickview/Query.py
 src/ReportBase/_DocReportDialog.py
+src/plugins/sidebar/sidebar.gpr.py
