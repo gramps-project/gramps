@@ -980,12 +980,11 @@ class BasePage(object):
         # return footer to its callers
         return footer
 
-    def write_header(self, title, key):
+    def write_header(self, title):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
         """
-        db = self.report.database
 
         # Header constants
         xmllang = Utils.xml_lang()
@@ -1042,27 +1041,24 @@ class BasePage(object):
         head += meta
         head += links
 
-        # alpha event pages do not need these things
-        if key is not _ALPHAEVENT:
+        # begin header section
+        headerdiv = (Html("div", id = 'header') +
+            Html("h1", html_escape(self.title_str), id = "SiteTitle", inline = True)
+            )
+        body += headerdiv
 
-            # begin header section
-            headerdiv = (Html("div", id = 'header') +
-                Html("h1", html_escape(self.title_str), id = "SiteTitle", inline = True)
-                )
-            body += headerdiv
+        header_note = self.report.options['headernote']
+        if header_note:
+            note = db.get_note_from_gramps_id(header_note)
 
-            header_note = self.report.options['headernote']
-            if header_note:
-                note = db.get_note_from_gramps_id(header_note)
-
-                user_header = Html("div", id = 'user_header')
-                headerdiv += user_header  
+            user_header = Html("div", id = 'user_header')
+            headerdiv += user_header  
  
-                # attach note
-                user_header += note.get()
+            # attach note
+            user_header += note.get()
 
-            # Begin Navigation Menu
-            body += self.display_nav_links(title)
+        # Begin Navigation Menu
+        body += self.display_nav_links(title)
 
         # return to its caller, page and body
         return page, body
@@ -1886,7 +1882,7 @@ class IndividualListPage(BasePage):
         showparents = report.options['showparents']
 
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_("Individuals"), _KEYPERSON)
+        indlistpage, body = self.write_header(_("Individuals"))
 
         # begin Individuals division
         with Html("div", class_ = "content", id = "Individuals") as individuallist:
@@ -2064,7 +2060,7 @@ class SurnamePage(BasePage):
 
         of = self.report.create_file(name_to_md5(surname), "srn")
         self.up = True
-        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname), _KEYPERSON)
+        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname))
 
         # begin SurnameDetail division
         with Html("div", class_ = "content", id = "SurnameDetail") as surnamedetail:
@@ -2213,7 +2209,7 @@ class PlaceListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_("Places"), _KEYPLACE)
+        placelistpage, body = self.write_header(_("Places"))
 
         # begin places division
         with Html("div", class_ = "content", id = "Places") as placelist:
@@ -2312,7 +2308,7 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), "plc")
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        placepage, body = self.write_header(_("Places"), _KEYPLACE)
+        placepage, body = self.write_header(_("Places"))
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2383,7 +2379,7 @@ class EventListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("events")
-        eventslistpage, body = self.write_header(_("Events"), _KEYEVENT)
+        eventslistpage, body = self.write_header(_("Events"))
 
         # begin events list  division
         with Html("div", class_ = "content", id = "EventList") as eventlist:
@@ -2544,7 +2540,7 @@ class EventPage(BasePage):
         self.bibli = Bibliography()
 
         of = self.report.create_file(event_handle, "evt")
-        eventpage, body = self.write_header(_("Events"), _KEYEVENT)
+        eventpage, body = self.write_header(_("Events"))
 
         # start event detail division
         with Html("div", class_ = "content", id = "EventDetail") as eventdetail:
@@ -2692,7 +2688,7 @@ class MediaPage(BasePage):
 
         copy_thumbnail(self.report, handle, media)
         self.page_title = media.get_description()
-        mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title), _KEYPERSON)
+        mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title))
 
         # begin MediaDetail division
         with Html("div", class_ = "content", id = "GalleryDetail") as mediadetail:
@@ -2946,10 +2942,10 @@ class SurnameListPage(BasePage):
 
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelistpage, body = self.write_header(_('Surnames'), _KEYPERSON)
+            surnamelistpage, body = self.write_header(_('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
-            surnamelistpage, body = self.write_header(_('Surnames by person count'), _KEYPERSON)
+            surnamelistpage, body = self.write_header(_('Surnames by person count'))
 
         # begin surnames division
         with Html("div", class_ = "content", id = "surnames") as surnamelist:
@@ -3074,7 +3070,7 @@ class IntroductionPage(BasePage):
         db = report.database
 
         of = self.report.create_file(report.intro_fname)
-        intropage, body = self.write_header(_('Introduction'), _KEYPERSON)
+        intropage, body = self.write_header(_('Introduction'))
 
         # begin Introduction division
         with Html("div", class_ = "content", id = "Introduction") as section:
@@ -3111,7 +3107,7 @@ class HomePage(BasePage):
         db = report.database
 
         of = self.report.create_file("index")
-        homepage, body = self.write_header(_('Home'), _KEYPERSON)
+        homepage, body = self.write_header(_('Home'))
 
         # begin home division
         with Html("div", class_ = "content", id = "Home") as section:
@@ -3148,7 +3144,7 @@ class SourceListPage(BasePage):
         source_dict = {}
 
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_("Sources"), _KEYPERSON)
+        sourcelistpage, body = self.write_header(_("Sources"))
 
         # begin source list division
         with Html("div", class_ = "content", id = "Sources") as sourceslist:
@@ -3219,7 +3215,7 @@ class SourcePage(BasePage):
 
         of = self.report.create_file(source.get_handle(), "src")
         self.up = True
-        sourcepage, body = self.write_header(_('Sources'), _KEYPERSON)
+        sourcepage, body = self.write_header(_('Sources'))
 
         # begin source detail division
         with Html("div", class_ = "content", id = "SourceDetail") as section:
@@ -3288,7 +3284,7 @@ class MediaListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("media")
-        medialistpage, body = self.write_header(_('Media'), _KEYPERSON)
+        medialistpage, body = self.write_header(_('Media'))
 
         # begin gallery division
         with Html("div", class_ = "content", id = "Gallery") as medialist:
@@ -3405,7 +3401,7 @@ class DownloadPage(BasePage):
             return
 
         of = self.report.create_file("download")
-        downloadpage, body = self.write_header(_('Download'), _KEYPERSON)
+        downloadpage, body = self.write_header(_('Download'))
 
         # begin download page and table
         with Html("div", class_ = "content", id = "Download") as download:
@@ -3512,7 +3508,7 @@ class ContactPage(BasePage):
         db = report.database
 
         of = self.report.create_file("contact")
-        contactpage, body = self.write_header(_('Contact'), _KEYPERSON)
+        contactpage, body = self.write_header(_('Contact'))
 
         # begin contact division
         with Html("div", class_ = "content", id = "Contact") as section:
@@ -3593,7 +3589,7 @@ class IndividualPage(BasePage):
 
         of = self.report.create_file(person.handle, "ppl")
         self.up = True
-        indivdetpage, body = self.write_header(self.sort_name, _KEYPERSON)
+        indivdetpage, body = self.write_header(self.sort_name)
 
         # begin individualdetail division
         with Html("div", class_ = "content", id = 'IndividualDetail') as individualdetail:
@@ -4680,7 +4676,7 @@ class RepositoryListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("repositories")
-        repolistpage, body = self.write_header(_("Repositories"), _KEYPERSON)
+        repolistpage, body = self.write_header(_("Repositories"))
 
         # begin RepositoryList division
         with Html("div", class_ = "content", id = "RepositoryList") as repositorylist:
@@ -4749,7 +4745,7 @@ class RepositoryPage(BasePage):
 
         of = self.report.create_file(handle, 'repo')
         self.up = True
-        repositorypage, body = self.write_header(_('Repositories'), _KEYPERSON)
+        repositorypage, body = self.write_header(_('Repositories'))
 
         # begin RepositoryDetail division and page title
         with Html("div", class_ = "content", id = "RepositoryDetail") as repositorydetail:
@@ -4821,7 +4817,7 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
+        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")))
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
@@ -4923,7 +4919,7 @@ class AddressBookPage(BasePage):
 
         # set the file name and open file
         of = self.report.create_file(person_handle, "addr")
-        addressbookpage, body = self.write_header("%s - %s" % (title, _("Address Book")), _KEYPERSON)
+        addressbookpage, body = self.write_header("%s - %s" % (title, _("Address Book")))
 
         # begin address book page division and section title
         with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
@@ -5371,14 +5367,11 @@ class NavWebReport(Report):
         # send all data to the events list page
         EventListPage(self, self.title, event_types, event_handle_list)
 
-        index = 0
         for event_handle in event_handle_list:
-            self.progress.set_header(_("Creating event page %02d of %02d") % (index + 1, len(event_handle_list)))
 
             # create individual event pages
             EventPage(self, self.title, event_handle)
 
-            index += 1
             self.progress.step()
 
     def gallery_pages(self, source_list):
@@ -5439,9 +5432,7 @@ class NavWebReport(Report):
         # RepositoryListPage Class
         RepositoryListPage(self, self.title, repos_dict, keys)
 
-        count = 1
         for index, key in enumerate(keys):
-            self.progress.set_header(_("Creating repository page %d of %d" % (count, repo_size)))
             (repo, handle) = repos_dict[key]
 
             # RepositoryPage Class
@@ -5449,7 +5440,6 @@ class NavWebReport(Report):
 
             # increment progress bar 
             self.progress.step()
-            count += 1
 
     def addressbook_pages(self, ind_list):
         """
@@ -5498,15 +5488,12 @@ class NavWebReport(Report):
             addr_size = len( has_url_address )
             self.progress.set_pass(_("Creating address book pages ..."), addr_size)
 
-            count = 1 
             for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
-                self.progress.set_header(_("Creating address book page %d of %d" % (count, addr_size))) 
 
                 AddressBookPage(self, self.title, person_handle, has_add, has_res, has_url)
 
                 # increment progress bar
                 self.progress.step()
-                count += 1
 
     def build_subdirs(self, subdir, fname, up = False):
         """
