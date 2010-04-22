@@ -143,7 +143,7 @@ h1 {
     font:normal 2em/1.2em serif;
 }
 h2 {
-    font:bold 2em/1.2em sans;
+    display: none;
 }
 h3 {
     font:normal 2em/1.2em serif;
@@ -503,13 +503,22 @@ div#Places {
     padding: 0;
 }
 div#Places table.infolist tbody tr td.ColumnLetter {
-    background-color: #BCEAF6;
+    width: 6%;
 }
 div#Places table.infolist tbody tr td.ColumnLetter a:hover {
     background: none;
 }
-div#Places table.infolist tbody tr td.ColumnName a {
-    padding:.1em 10px .3em 10px;
+div#Places table.infolist tbody tr td.ColumnName {
+    width: 45%;
+}
+div#Places table.infolist tbody tr td.ColumnState {
+    width: 8%;
+}
+div#Places table.infolist tbody tr td.ColumnCountry {
+    width: 8%;
+}
+div#Places table.infolist tbody tr td.ColumnCoordinates {
+    width: 25%;
 }
 
 /* EventList and EventDetail
