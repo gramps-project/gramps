@@ -27,9 +27,12 @@
 """
 Web Calendar generator.
 """
+
 #------------------------------------------------------------------------
 # python modules
 #------------------------------------------------------------------------
+from __future__ import print_function
+from functools import partial
 import os, codecs, shutil, re
 import datetime, calendar
 from gen.ggettext import sgettext as _
@@ -1241,7 +1244,7 @@ class WebCalReport(Report):
         """
 
         # writes the file out from the page variable; Html instance
-        page.write(lambda line: of.write(line + '\n'))
+        page.write(partial(print, file=of.write))
 
         # close the file now...
         self.close_file(of)

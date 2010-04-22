@@ -26,6 +26,8 @@
 #
 #------------------------------------------------------------------------
 
+from __future__ import print_function
+
 """
 HTML operations.
 
@@ -94,18 +96,6 @@ _START_CLOSE = set([
     'meta', 
     'param'
     ])
-
-#------------------------------------------------------------------------
-#
-# Helper functions.
-#
-#------------------------------------------------------------------------
-
-def print_(line):
-    """
-    Print function
-    """
-    print line
 
 #------------------------------------------------------------------------
 #
@@ -383,7 +373,7 @@ class Html(list):
 #
     iterkeys = itervalues = iteritems = __iter__
 #
-    def write(self, method=print_, indent='\t', tabs=''):
+    def write(self, method=print, indent='\t', tabs=''):
         """
         Output function: performs an insertion-order tree traversal
         and calls supplied method for each item found.

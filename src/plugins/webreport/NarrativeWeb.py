@@ -37,6 +37,8 @@ Narrative Web Page generator.
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ print_function
+from functools import partial
 import gc
 import os
 import sys
@@ -1861,7 +1863,7 @@ class BasePage(object):
             src/plugins/lib/libhtml.py
         """
 
-        htmlinstance.write(lambda line: of.write(line + '\n')) 
+        htmlinstance.write(partial(print, file=of)) 
 
         # closes the file
         self.report.close_file(of)
@@ -5640,8 +5642,8 @@ class NavWebReport(Report):
                 try:
                     shutil.copyfile(from_fname, dest)
                 except:
-                    print "Copying error: %s" % sys.exc_info()[1]
-                    print "Continuing..."
+                    print("Copying error: %s" % sys.exc_info()[1])
+                    print("Continuing...")
             elif self.warn_dir:
                 WarningDialog(
                     _("Possible destination error") + "\n" +
