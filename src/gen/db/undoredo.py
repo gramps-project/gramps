@@ -35,6 +35,7 @@ import time, os
 import cPickle as pickle
 from bsddb import db
 from gen.ggettext import gettext as _
+from collections import deque
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +54,8 @@ import Errors
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
                db.DBPageNotFoundError, db.DBInvalidArgError)
                
-_SIGBASE = ('person', 'family', 'source', 'event', 'media',
-            'place', 'repository', 'reference', 'note')
+_SIGBASE = ('person', 'family', 'source', 'event', 'media', 'place',
+            'repository', 'reference', 'note', 'undoq', 'redoq')
 #-------------------------------------------------------------------------
 #
 # DbUndo class
@@ -91,6 +92,8 @@ class DbUndo(object):
         """
         Clear the undo/redo list (but not the backing storage)
         """
+        self.undoq = deque()
+        self.redoq = deque()
         self.translist = []
         self.undoindex = -1
         self.undo_history_timestamp = time.time()
@@ -161,6 +164,7 @@ class DbUndo(object):
         txn.timestamp = time.time()
 
         # If we're within our undo limit, add this transaction
+        self.undoq.append(txn)
         self.undoindex += 1
         if self.undoindex < DBUNDO:
             if self.undoindex >= len(self.translist):
@@ -168,17 +172,21 @@ class DbUndo(object):
             else:
                 self.translist[self.undoindex] = txn
             del self.translist[self.undoindex+1:]
+            self.redoq.clear()
 
         # Otherwise, we've exceeded our undo limit
         else:
             self.db.abort_possible = False
             self.undo_history_timestamp = time.time()
             self.translist[-1] = txn
+            self.redoq.clear()
 
     def undo_available(self):
         """
         Return boolean of whether or not there's a possibility of undo.
         """
+        #print "Undo available:", bool(self.undoq)
+        return len(self.undoq)
         if 0 <= self.undoindex < len(self.translist):
             return True
         return False
@@ -187,6 +195,8 @@ class DbUndo(object):
         """
         Return boolean of whether or not there's a possibility of redo.
         """
+        #print "Redo available:", bool(self.redoq)
+        return len(self.redoq)
         if 0 <= self.undoindex+1 < len(self.translist):
             return True
         return False
@@ -229,7 +239,11 @@ class DbUndo(object):
         Access the last committed transaction, and revert the data to the 
         state before the transaction was committed.
         """
-        transaction = self.translist[self.undoindex]
+        txn = self.undoq.pop()
+        self.redoq.append(txn)
+        #transaction = self.translist[self.undoindex]
+        #assert transaction == txn
+        transaction = txn
         db = self.db
         self.undoindex -= 1
         subitems = transaction.get_recnos(reverse=True)
@@ -262,12 +276,15 @@ class DbUndo(object):
 
     def __redo(self, db=None, update_history=True):
         """
-        Accesse the last undone transaction, and revert the data to the state 
+        Access the last undone transaction, and revert the data to the state 
         before the transaction was undone.
         """
-
+        txn = self.redoq.pop()
+        self.undoq.append(txn)
         self.undoindex += 1
-        transaction = self.translist[self.undoindex]
+        #transaction = self.translist[self.undoindex]
+        #assert transaction == txn
+        transaction = txn
         db = self.db
         subitems = transaction.get_recnos()
 
@@ -287,8 +304,9 @@ class DbUndo(object):
                                    % transaction.get_description())
 
         if db.redo_callback:
-            if self.redo_available():
-                new_transaction = self.translist[self.undoindex+1]
+            if len(self.redoq) > 1:
+                #new_transaction = self.translist[self.undoindex+1]
+                new_transaction = self.redoq[-2]
                 db.redo_callback(_("_Redo %s")
                                    % new_transaction.get_description())
             else:
@@ -331,7 +349,12 @@ class DbUndo(object):
 
         except DBERRS, msg:
             self.db._log_error()
-            raise Errors.DbError(msg)        
+            raise Errors.DbError(msg)
+
+    @property
+    def undo_count(self):
+        """Number of undo requests in the queue"""
+        return len(self.undoq)
 
 class DbUndoList(DbUndo):
     """

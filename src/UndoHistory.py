@@ -29,6 +29,7 @@
 #------------------------------------------------------------------------
 import time
 from gen.ggettext import gettext as _
+from itertools import chain
 
 #-------------------------------------------------------------------------
 #
@@ -110,27 +111,25 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.show()
 
     def _selection_changed(self, obj):
+        assert self.undodb.undo_count == self.undodb.undoindex + 1
         (model, node) = self.selection.get_selected()
         if not node:
             return
         path = self.model.get_path(node)
-        
-        start = min(path[0], self.undodb.undoindex+1)
-        end = max(path[0], self.undodb.undoindex+1)
+        start = min(path[0], self.undodb.undo_count)
+        end = max(path[0], self.undodb.undo_count)
 
         self._paint_rows(0, len(self.model)-1, False)
         self._paint_rows(start, end, True)
 
-        if path[0] < self.undodb.undoindex+1:
+        if path[0] < self.undodb.undo_count:
+            # This transaction is an undo candidate
             self.redo_button.set_sensitive(False)
             self.undo_button.set_sensitive(self.undodb.undo_available())
 
-        elif path[0] > self.undodb.undoindex+1:
+        else: # path[0] >= self.undodb.undo_count:
+            # This transaction is an redo candidate
             self.undo_button.set_sensitive(False)
-            self.redo_button.set_sensitive(self.undodb.redo_available())
-
-        else: #path[0] == self.undodb.undoindex+1
-            self.undo_button.set_sensitive(self.undodb.undo_available())
             self.redo_button.set_sensitive(self.undodb.redo_available())
 
     def _paint_rows(self, start, end, selected=False):
@@ -145,23 +144,26 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             self.model.set(the_iter, 3, bg)
             
     def _response(self, obj, response_id):
+        assert self.undodb.undo_count == self.undodb.undoindex + 1
         if response_id == gtk.RESPONSE_CLOSE:
             self.close(obj)
 
         elif response_id == gtk.RESPONSE_REJECT:
+            # Undo the selected entries
             (model, node) = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node)
-            nsteps = path[0]-self.undodb.undoindex-1
+            nsteps = path[0]-self.undodb.undo_count-1
             self._move(nsteps or -1)
 
         elif response_id == gtk.RESPONSE_ACCEPT:
+            # Redo the selected entries
             (model, node) = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node)
-            nsteps = path[0]-self.undodb.undoindex-1
+            nsteps = path[0]-self.undodb.undo_count
             self._move(nsteps or 1)
 
         elif response_id == gtk.RESPONSE_APPLY:
@@ -181,7 +183,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
     def clear(self):
         self.undodb.clear()
-        self.undodb.abort_possible = False
+        self.db.abort_possible = False
         self.update()
         if self.db.undo_callback:
             self.db.undo_callback(None)
@@ -206,6 +208,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             )
 
     def _build_model(self):
+        assert self.undodb.undoindex+1 == len(self.undodb.undoq)
         self.model.clear()
         fg = bg = None
 
@@ -217,13 +220,12 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             time_text = time.ctime(self.undodb.undo_history_timestamp)           
             self.model.append(row=[time_text, mod_text, fg, bg])
 
-        # Get the not-None portion of transaction list
-        translist = filter(None, self.undodb.translist)
-        for transaction in translist:
-            time_text = time.ctime(transaction.timestamp)
-            mod_text = transaction.get_description()
+        # Add the undo and redo queues to the model
+        for txn in chain(self.undodb.undoq, reversed(self.undodb.redoq)):
+            time_text = time.ctime(txn.timestamp)
+            mod_text = txn.get_description()
             self.model.append(row=[time_text, mod_text, fg, bg])
-        path = (self.undodb.undoindex+1,)
+        path = (self.undodb.undo_count,)
         self.selection.select_path(path)
 
     def update(self):
