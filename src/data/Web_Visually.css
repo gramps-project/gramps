@@ -578,6 +578,9 @@ div#EventList table.eventlist tbody tr.BeginName {
 div#EventList table.eventlist tbody tr td {
     padding: 4px 0px 4px 0px;
 }
+div#EventList table.infolist tbody tr td.ColumnLetter a:hover {
+    background: none;
+}
 div#EventList table.alphaevent {
     padding: .3em 0 .3em 0;
     margin: 0;

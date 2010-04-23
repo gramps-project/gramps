@@ -530,12 +530,6 @@ div#EventList, div#EventDetail {
 div#events table.eventlist {
     margin-top: .3cm;
 }
-div#events table.eventlist tbody tr td.ColumnEvent a {
-    padding: 2px 100px 2px 10px;
-}
-div#events table.eventlist tbody tr td.ColumnPlace a {
-    padding: 2px 70px 2px 0px;
-}
 table.eventlist tbody tr td.ColumnEvent {
     width: 20%;
 }
@@ -556,6 +550,9 @@ table.eventlist tbody tr td.ColumnPerson {
 }
 table.eventlist tbody tr td.ColumnPartner {
     width: 35%;
+}
+div#EventList table.infolist tbody tr td.ColumnLetter a:hover {
+    background: none;
 }
 div#EventList table.eventlist tbody tr.BeginName {
     border-top: solid 1px #000;

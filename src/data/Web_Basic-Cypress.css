@@ -572,18 +572,15 @@ table.eventlist tbody tr td.ColumnPerson {
 table.eventlist tbody tr td.ColumnPartner {
     width: 35%;
 }
-div#EventList table.eventlist tbody tr td.ColumnEvent a,
-div#EventList table.eventlist tbody tr td.ColumnPerson a,
-div#EventList table.eventlist tbody tr td.ColumnPartner a {
-    display: block;
-    padding: .9em 10px;
-}
 div#EventList table.alphaevent {
     padding: .3em 0 .3em 0;
     margin: 0;
 }
 div#EventList table.alphaevent tbody tr.BeginEvent {
     border-top: solid 1px #000;
+}
+div#EventList table.infolist tbody tr td.ColumnLetter a:hover {
+    background: none;
 }
 div#EventList table.alphaevent tbody tr td {
     border-bottom: dashed 1px #000;
