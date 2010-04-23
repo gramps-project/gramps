@@ -37,7 +37,7 @@ Narrative Web Page generator.
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ print_function
+from __future__ import print_function
 from functools import partial
 import gc
 import os
@@ -1898,7 +1898,7 @@ class IndividualListPage(BasePage):
 
             # add alphabet navigation
             menu_set = get_first_letters(db, person_handle_list, _KEYPERSON) 
-            alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPERSON)
+            alpha_nav, menu_set = alphabet_navigation(menu_set)
             if alpha_nav is not None:
                 individuallist += alpha_nav
 
@@ -2225,7 +2225,7 @@ class PlaceListPage(BasePage):
 
             # begin alphabet navigation
             menu_set = get_first_letters(db, place_handles, _KEYPLACE) 
-            alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPLACE)
+            alpha_nav, menu_set = alphabet_navigation(menu_set)
             if alpha_nav is not None:
                 placelist += alpha_nav
 
@@ -2393,7 +2393,8 @@ class EventListPage(BasePage):
             eventlist += Html("p", msg, id = "description")
 
             # get alphabet navigation for class EventListPage
-            alpha_nav, event_types = alphabet_navigation(event_types, _ALPHAEVENT)
+            menu_set = get_first_letters(db, event_types, _ALPHAEVENT)
+            alpha_nav, menu_set = alphabet_navigation(menu_set)
             if alpha_nav is not None:
                 eventlist += alpha_nav
 
@@ -2410,18 +2411,19 @@ class EventListPage(BasePage):
                 trow.extend(
                     Html("th", label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
-                        [THEAD,    "Type"],
-                        [DHEAD,    "Date"],
-                        [GRAMPSID, "GRAMPSID"],
-                        [_PERSON,  "Person"] ]
+                        [_("Letter"),  "Letter"], 
+                        [THEAD,        "Type"],
+                        [DHEAD,        "Date"],
+                        [GRAMPSID,     "GRAMPSID"],
+                        [_PERSON,      "Person"] ]
                     ) 
 
                 tbody = Html("tbody")
                 table += tbody
 
                 # separate events by their type and then thier event handles
-                for (evt_type, datalist) in sort_event_types(db, event_types, 
-                        event_handle_list):
+                displayed = []
+                for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
                     first_event = True
 
                     for (date, gid, event_handle) in datalist:
@@ -2430,14 +2432,22 @@ class EventListPage(BasePage):
                         trow = Html("tr")
                         tbody += trow
 
+                        # set up hyperlinked letter for alphabet_navigation
+                        tcell = Html("td", class_ = "ColumnLetter", inline = True)
+                        trow += tcell
+                        ltr = evt_type[0].capitalize()
+                        if ltr in displayed:
+                            tcell += "&nbsp;"
+                        else:
+                            trow.attr = 'class = "BeginLetter"'
+                            tcell += Html("a", ltr, name = ltr, 
+                                title = _("Event types beginning with letter " + ltr), inline = True)
+  
                         # display Event type if first in the list
                         tcell = Html("td", class_ = "ColumnType", inline = True)
                         trow += tcell
                         if first_event:
-                            trow.attr = 'class = "BeginEvent"'
-                            tcell += Html("a", evt_type, name = evt_type, 
-                                title = _("Event types beginning with %(eventtype)s") % {
-                                    'eventtype': evt_type}, inline = True)
+                            tcell += evt_type
                         else:
                             tcell += "&nbsp;" 
 
@@ -2503,7 +2513,8 @@ class EventListPage(BasePage):
                                 first_person = False
                         else:
                             tcell += "&nbsp;" 
-                        first_event = False    
+                        first_event = False
+                        displayed.append(ltr)   
 
         # add clearline for proper styling
         # add footer section
@@ -2964,7 +2975,7 @@ class SurnameListPage(BasePage):
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
                 menu_set = get_first_letters(db, person_handle_list, _KEYPERSON)
-                alpha_nav, menu_set = alphabet_navigation(menu_set, _KEYPERSON)
+                alpha_nav, menu_set = alphabet_navigation(menu_set)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
 
@@ -6160,30 +6171,43 @@ def first_letter(string):
         letter = u'V,W'
     return letter
 
-def get_first_letters(db, handle_list, key):
-    """ key is _PLACE or _PERSON ...."""
+def get_first_letters(db, menu_set, key):
+    """
+    get the first letters of the menu_set
+
+    @param: db = report database
+    @param: menu_set = one of a handle list for either person or place handles 
+        or an evt types list
+    @param: key = either a person, place, or event type
+    """
  
     first_letters = []
 
-    for handle in handle_list:
+    for menu_item in menu_set:
+
         if key == _KEYPERSON:
-            keyname = __get_person_keyname(db, handle)
+            keyname = __get_person_keyname(db, menu_item)
+
+        elif key == _KEYPLACE:
+            keyname = __get_place_keyname(db, menu_item)
+
         else:
-            keyname = __get_place_keyname(db, handle) 
+            keyname = menu_item
         ltr = first_letter(keyname)
 
-        if ltr is not ",":
+
+        if ltr not in [",", " "]:
             first_letters.append(ltr)
 
+    # return menu set letters for alphabet_navigation
     return first_letters
 
-def alphabet_navigation(menu_set, alphakey):
+def alphabet_navigation(menu_set):
     """
     Will create the alphabet navigation bar for classes IndividualListPage,
     SurnameListPage, PlaceListPage, and EventList
 
     @param: menu_set -- a dictionary of either letters or words
-    @param: alphakey -- either Person, Place, or AlphaEvent
     """
     sorted_set = defaultdict(int)
     # The comment below from the glibc locale sv_SE in
@@ -6199,7 +6223,6 @@ def alphabet_navigation(menu_set, alphakey):
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     #
     (lang_country, modifier ) = locale.getlocale()
-    ltr = get_first_letters
 
     for menu_item in menu_set:
         sorted_set[menu_item] += 1
@@ -6207,20 +6230,12 @@ def alphabet_navigation(menu_set, alphakey):
     # remove the number of each occurance of each letter
     sorted_alpha_index = sorted(sorted_set, key = locale.strxfrm)
 
-    # remove any commas from the letter set
-    sorted_alpha_index = [(menu_item) for menu_item in sorted_alpha_index if menu_item != ","]
-
-    # remove any single spaces from the letter set also
-    # Event Types can and do have spaces, so leave them alone for now...
-    if alphakey is not _ALPHAEVENT:  
-        sorted_alpha_index = [(ltr) for ltr in sorted_alpha_index if ltr != " "]
-
-    # if no letters or words, return None to its callers
+    # if no letters, return None to its callers
     if not sorted_alpha_index:
         return None, []
 
     num_ltrs = len(sorted_alpha_index)
-    num_of_cols = 34 if alphakey is not _ALPHAEVENT else 10
+    num_of_cols = 32
     num_of_rows = ((num_ltrs // num_of_cols) + 1)
 
     # begin alphabet navigation division
@@ -6244,8 +6259,8 @@ def alphabet_navigation(menu_set, alphakey):
                 if lang_country == "sv_SE" and menu_item == u'V':
                     hyper = Html("a", "V,W", href = "#V,W", alt = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href = menu_item, alt = menu_item)
-                hyper.attr += 'title="%s"' % title_str
+                    hyper = Html("a", menu_item, href = "#%s" % menu_item, alt = menu_item)
+                hyper.attr += ' title = "%s"' % title_str
                 list += hyper
 
                 # increase letter/ word in sorted_alpha_index
