@@ -42,10 +42,10 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
 if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
-    VERSION        = "3.2.1"
+    VERSION        = "3.2.2"
 else:
     VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = (3, 2, 1)
+VERSION_TUPLE  = (3, 2, 2)
 
 #-------------------------------------------------------------------------
 #
