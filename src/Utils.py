@@ -824,8 +824,8 @@ def probably_alive(person, db,
         # no evidence, must consider alive
         return (True, None, None, _("no evidence"), None)
     # must have est dates from here:
-    # SPECIAL CASE: Today:
-    if current_date.match(gen.lib.date.Today(), "=="):
+    # SPECIAL CASE: Today and Future:
+    if current_date.match(gen.lib.date.Today(), ">="):
         if person.get_death_ref():
             # if death in the future: (impossible, unless guess)
             # if return_range:
