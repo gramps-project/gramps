@@ -1,3 +1,8 @@
+Version 3.2.2 -- the "Mea navis aëricumbens anguillis abundat" release.
+* This release is a quick fix to a problem introduced by NarrativeWeb in the previous release.
+* Also includes a few small fixes and translation updates to hr and it.
+* See the release notes from the 3.2.1 release for the full list of changes and translation updates.
+
 Version 3.2.1 -- the "One of those men is my father" release.
 * Many bug fixes:
  -> fixed missing icons
