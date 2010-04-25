@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-01 16:08+0200\n"
-"PO-Revision-Date: 2010-04-08 23:10+0100\n"
+"POT-Creation-Date: 2010-04-20 09:27+0200\n"
+"PO-Revision-Date: 2010-04-25 03:03+0100\n"
 "Last-Translator: Josip <josip@pisoj.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -74,11 +74,9 @@ msgstr "Knjižne oznake"
 msgid "%(title)s - Gramps"
 msgstr "%(title)s - GRAMPS"
 
-#. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
-#. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
 #: ../src/Bookmarks.py:197
 #: ../src/Bookmarks.py:205
-#: ../src/gui/grampsgui.py:111
+#: ../src/gui/grampsgui.py:112
 #: ../src/gui/views/navigationview.py:262
 msgid "Organize Bookmarks"
 msgstr "Uredi knjižne oznake"
@@ -107,7 +105,7 @@ msgstr "Uredi knjižne oznake"
 #: ../src/gui/filtereditor.py:695
 #: ../src/gui/filtereditor.py:847
 #: ../src/gui/editors/editfamily.py:105
-#: ../src/gui/editors/editname.py:273
+#: ../src/gui/editors/editname.py:279
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
@@ -116,16 +114,16 @@ msgstr "Uredi knjižne oznake"
 #: ../src/plugins/BookReport.py:732
 #: ../src/plugins/drawreport/TimeLine.py:67
 #: ../src/plugins/lib/libpersonview.py:89
-#: ../src/plugins/textreport/IndivComplete.py:552
+#: ../src/plugins/textreport/IndivComplete.py:554
 #: ../src/plugins/textreport/MarkerReport.py:120
 #: ../src/plugins/tool/NotRelated.py:114
 #: ../src/plugins/tool/PatchNames.py:230
 #: ../src/plugins/tool/RemoveUnused.py:198
 #: ../src/plugins/tool/Verify.py:488
 #: ../src/plugins/view/repoview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:1845
-#: ../src/plugins/webreport/NarrativeWeb.py:2024
-#: ../src/plugins/webreport/NarrativeWeb.py:4764
+#: ../src/plugins/webreport/NarrativeWeb.py:1948
+#: ../src/plugins/webreport/NarrativeWeb.py:2127
+#: ../src/plugins/webreport/NarrativeWeb.py:4935
 #: ../src/PluginUtils/_GuiOptions.py:828
 #: ../src/PluginUtils/_PluginWindows.py:226
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
@@ -152,7 +150,7 @@ msgstr "Ime"
 #: ../src/gui/selectors/selectrepository.py:62
 #: ../src/gui/selectors/selectsource.py:62
 #: ../src/gui/views/navigationview.py:336
-#: ../src/Merge/_MergePerson.py:127
+#: ../src/Merge/_MergePerson.py:128
 #: ../src/plugins/lib/libpersonview.py:90
 #: ../src/plugins/lib/libplaceview.py:90
 #: ../src/plugins/tool/EventCmp.py:249
@@ -562,11 +560,11 @@ msgstr "%(east_longitude)s I"
 msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s Z"
 
-#: ../src/QuestionDialog.py:191
+#: ../src/QuestionDialog.py:193
 msgid "Error detected in database"
 msgstr "Otkrivena greška u bazi"
 
-#: ../src/QuestionDialog.py:192
+#: ../src/QuestionDialog.py:194
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved by running the \"Check and Repair Database\" tool.\n"
 "\n"
@@ -578,22 +576,22 @@ msgstr ""
 "Ako se greška bude ponavljala i nakon pokretanja ovog alata, prijavite grešku na http://bugs.gramps-project.org\n"
 "\n"
 
-#: ../src/QuestionDialog.py:202
+#: ../src/QuestionDialog.py:205
 #: ../src/cli/grampscli.py:93
 msgid "Low level database corruption detected"
 msgstr "Otkrivena korupcija baze na nižoj razini"
 
-#: ../src/QuestionDialog.py:203
+#: ../src/QuestionDialog.py:206
 #: ../src/cli/grampscli.py:95
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired by from the Family Tree Manager. Select the database and click on the Repair button"
 msgstr "GRAMPS je otkrio problem u Berkely bazi podataka. To može biti ispravljeno u upravitelju obiteljskih stabala. Odaberite bazu i kliknite na gumb Popravi"
 
-#: ../src/QuestionDialog.py:316
+#: ../src/QuestionDialog.py:319
 #: ../src/gui/utils.py:262
 msgid "Attempt to force closing the dialog"
 msgstr "Pokušaj nasilnog zatvaranja dijaloga"
 
-#: ../src/QuestionDialog.py:317
+#: ../src/QuestionDialog.py:320
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -745,18 +743,18 @@ msgstr "bivši partner"
 #: ../src/Reorder.py:37
 #: ../src/ToolTips.py:232
 #: ../src/gui/selectors/selectfamily.py:62
-#: ../src/Merge/_MergePerson.py:164
+#: ../src/Merge/_MergePerson.py:165
 #: ../src/plugins/import/ImportCsv.py:216
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:186
 #: ../src/plugins/textreport/FamilyGroup.py:197
-#: ../src/plugins/textreport/IndivComplete.py:302
 #: ../src/plugins/textreport/IndivComplete.py:304
-#: ../src/plugins/textreport/IndivComplete.py:600
+#: ../src/plugins/textreport/IndivComplete.py:306
+#: ../src/plugins/textreport/IndivComplete.py:602
 #: ../src/plugins/textreport/MarkerReport.py:207
 #: ../src/plugins/view/familyview.py:74
 #: ../src/plugins/view/relview.py:883
-#: ../src/plugins/webreport/NarrativeWeb.py:4172
+#: ../src/plugins/webreport/NarrativeWeb.py:4306
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Otac"
@@ -765,18 +763,18 @@ msgstr "Otac"
 #: ../src/Reorder.py:37
 #: ../src/ToolTips.py:237
 #: ../src/gui/selectors/selectfamily.py:63
-#: ../src/Merge/_MergePerson.py:166
+#: ../src/Merge/_MergePerson.py:167
 #: ../src/plugins/import/ImportCsv.py:212
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:203
 #: ../src/plugins/textreport/FamilyGroup.py:214
-#: ../src/plugins/textreport/IndivComplete.py:311
 #: ../src/plugins/textreport/IndivComplete.py:313
-#: ../src/plugins/textreport/IndivComplete.py:605
+#: ../src/plugins/textreport/IndivComplete.py:315
+#: ../src/plugins/textreport/IndivComplete.py:607
 #: ../src/plugins/textreport/MarkerReport.py:213
 #: ../src/plugins/view/familyview.py:75
 #: ../src/plugins/view/relview.py:884
-#: ../src/plugins/webreport/NarrativeWeb.py:4179
+#: ../src/plugins/webreport/NarrativeWeb.py:4313
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Majka"
@@ -784,18 +782,18 @@ msgstr "Majka"
 #. finish the label's missing piece
 #: ../src/Reorder.py:38
 #: ../src/gui/selectors/selectperson.py:81
-#: ../src/Merge/_MergePerson.py:180
+#: ../src/Merge/_MergePerson.py:181
 #: ../src/plugins/lib/libpersonview.py:96
-#: ../src/plugins/textreport/FamilyGroup.py:494
+#: ../src/plugins/textreport/FamilyGroup.py:496
 #: ../src/plugins/view/relview.py:1342
-#: ../src/plugins/webreport/NarrativeWeb.py:577
+#: ../src/plugins/webreport/NarrativeWeb.py:624
 msgid "Spouse"
 msgstr "Supružnik"
 
 #: ../src/Reorder.py:38
 #: ../src/plugins/textreport/MarkerReport.py:219
 #: ../src/plugins/view/familyview.py:76
-#: ../src/plugins/webreport/NarrativeWeb.py:3799
+#: ../src/plugins/webreport/NarrativeWeb.py:3917
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "Srodstvo"
@@ -816,7 +814,7 @@ msgstr "Korištenje odlagališta"
 #: ../src/ScratchPad.py:89
 #: ../src/cli/clidbman.py:403
 #: ../src/gen/lib/urltype.py:54
-#: ../src/gen/lib/notetype.py:76
+#: ../src/gen/lib/notetype.py:78
 #: ../src/gen/lib/repotype.py:59
 #: ../src/gen/lib/attrtype.py:62
 #: ../src/gen/lib/childreftype.py:79
@@ -834,13 +832,14 @@ msgstr "Korištenje odlagališta"
 #: ../src/plugins/graph/GVRelGraph.py:547
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
-#: ../src/plugins/textreport/IndivComplete.py:569
+#: ../src/plugins/textreport/IndivComplete.py:571
 #: ../src/plugins/tool/Check.py:1473
 #: ../src/plugins/view/geoview.py:646
 #: ../src/plugins/view/relview.py:457
 #: ../src/plugins/view/relview.py:995
 #: ../src/plugins/view/relview.py:1042
-#: ../src/plugins/webreport/NarrativeWeb.py:1552
+#: ../src/plugins/webreport/NarrativeWeb.py:1652
+#: ../src/plugins/webreport/NarrativeWeb.py:1704
 #: ../src/glade/editperson.glade.h:18
 msgid "Unknown"
 msgstr "Nepoznato"
@@ -851,15 +850,15 @@ msgstr "Nepoznato"
 #: ../src/gui/grampsgui.py:107
 #: ../src/gui/editors/editaddress.py:147
 #: ../src/gui/editors/displaytabs/addrembedlist.py:72
-#: ../src/plugins/textreport/FamilyGroup.py:299
-#: ../src/plugins/webreport/NarrativeWeb.py:4765
+#: ../src/plugins/textreport/FamilyGroup.py:301
+#: ../src/plugins/webreport/NarrativeWeb.py:4936
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "Adresa"
 
 #: ../src/ScratchPad.py:165
 #: ../src/ScratchPad.py:356
-#: ../src/gui/grampsgui.py:113
+#: ../src/gui/grampsgui.py:114
 #: ../src/gui/editors/displaytabs/addrembedlist.py:71
 #: ../src/gui/editors/displaytabs/eventembedlist.py:78
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:52
@@ -876,7 +875,7 @@ msgstr "Adresa"
 #: ../src/plugins/tool/SortEvents.py:54
 #: ../src/plugins/view/eventview.py:82
 #: ../src/plugins/view/mediaview.py:93
-#: ../src/plugins/webreport/NarrativeWeb.py:116
+#: ../src/plugins/webreport/NarrativeWeb.py:115
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 msgid "Date"
@@ -898,12 +897,12 @@ msgstr "Telefon"
 #: ../src/ScratchPad.py:180
 #: ../src/ScratchPad.py:424
 #: ../src/ScratchPad.py:457
-#: ../src/gui/grampsgui.py:137
+#: ../src/gui/grampsgui.py:138
 #: ../src/plugins/view/sourceview.py:111
 #: ../src/plugins/view/view.gpr.py:205
-#: ../src/plugins/webreport/NarrativeWeb.py:131
-#: ../src/plugins/webreport/NarrativeWeb.py:3096
-#: ../src/plugins/webreport/NarrativeWeb.py:3167
+#: ../src/plugins/webreport/NarrativeWeb.py:130
+#: ../src/plugins/webreport/NarrativeWeb.py:3203
+#: ../src/plugins/webreport/NarrativeWeb.py:3274
 msgid "Sources"
 msgstr "Izvori"
 
@@ -932,7 +931,7 @@ msgstr "Link na događaj"
 #: ../src/plugins/tool/SortEvents.py:58
 #: ../src/plugins/view/eventview.py:83
 #: ../src/plugins/view/placetreeview.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:127
+#: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/PluginUtils/_GuiOptions.py:968
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 msgid "Place"
@@ -951,7 +950,7 @@ msgstr "Mjesto"
 #: ../src/plugins/import/ImportCsv.py:176
 #: ../src/plugins/quickview/quickview.gpr.py:204
 #: ../src/plugins/quickview/References.py:86
-#: ../src/plugins/textreport/FamilyGroup.py:317
+#: ../src/plugins/textreport/FamilyGroup.py:319
 #: ../src/ReportBase/_GraphvizReportDialog.py:1044
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
@@ -991,7 +990,7 @@ msgstr "Obiteljski događaj"
 #: ../src/gui/selectors/selectevent.py:63
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76
-#: ../src/Merge/_MergePerson.py:183
+#: ../src/Merge/_MergePerson.py:184
 #: ../src/plugins/BookReport.py:733
 #: ../src/plugins/BookReport.py:737
 #: ../src/plugins/quickview/FilterByName.py:112
@@ -1007,7 +1006,7 @@ msgstr "Obiteljski događaj"
 #: ../src/plugins/view/mediaview.py:90
 #: ../src/plugins/view/noteview.py:77
 #: ../src/plugins/view/repoview.py:83
-#: ../src/plugins/webreport/NarrativeWeb.py:135
+#: ../src/plugins/webreport/NarrativeWeb.py:134
 #: ../src/PluginUtils/_PluginWindows.py:219
 #: ../src/PluginUtils/_PluginWindows.py:335
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
@@ -1032,7 +1031,7 @@ msgstr "Uzrok"
 #: ../src/plugins/textreport/PlaceReport.py:151
 #: ../src/plugins/tool/SortEvents.py:57
 #: ../src/plugins/view/eventview.py:79
-#: ../src/plugins/webreport/NarrativeWeb.py:117
+#: ../src/plugins/webreport/NarrativeWeb.py:116
 #: ../src/PluginUtils/_PluginWindows.py:230
 #: ../src/PluginUtils/_PluginWindows.py:339
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
@@ -1054,7 +1053,6 @@ msgstr "URL"
 #: ../src/ScratchPad.py:391
 #: ../src/gui/editors/displaytabs/webembedlist.py:65
 #: ../src/plugins/view/mediaview.py:91
-#: ../src/plugins/webreport/NarrativeWeb.py:1442
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr "Putanja"
@@ -1073,7 +1071,8 @@ msgstr "Svojstvo"
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/tool/PatchNames.py:227
-#: ../src/plugins/webreport/NarrativeWeb.py:137
+#: ../src/plugins/webreport/NarrativeWeb.py:136
+#: ../src/plugins/webreport/NarrativeWeb.py:4584
 msgid "Value"
 msgstr "Vrijednost"
 
@@ -1119,7 +1118,7 @@ msgstr "Naziv"
 #. local gettext variables
 #: ../src/ScratchPad.py:502
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:1511
+#: ../src/plugins/webreport/NarrativeWeb.py:1612
 msgid "Page"
 msgstr "Stranica"
 
@@ -1142,12 +1141,12 @@ msgid "Event Reference"
 msgstr "Reference Događaja"
 
 #: ../src/ScratchPad.py:578
-#: ../src/plugins/webreport/NarrativeWeb.py:3959
+#: ../src/plugins/webreport/NarrativeWeb.py:4092
 msgid "Call Name"
 msgstr "Nadimak"
 
 #: ../src/ScratchPad.py:579
-#: ../src/Utils.py:1099
+#: ../src/Utils.py:1106
 #: ../src/gen/display/name.py:118
 #: ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473
@@ -1176,7 +1175,7 @@ msgstr "Ime"
 #: ../src/gen/lib/eventroletype.py:66
 #: ../src/gui/configure.py:374
 #: ../src/gui/filtereditor.py:260
-#: ../src/gui/grampsgui.py:116
+#: ../src/gui/grampsgui.py:117
 #: ../src/gui/editors/editfamily.py:540
 #: ../src/plugins/export/ExportCsv.py:452
 #: ../src/plugins/gramplet/QuickViewGramplet.py:92
@@ -1198,14 +1197,14 @@ msgid "Family"
 msgstr "Obitelj"
 
 #: ../src/ScratchPad.py:581
-#: ../src/Utils.py:1103
+#: ../src/Utils.py:1110
 #: ../src/gui/configure.py:481
 #: ../src/gui/editors/editperson.py:284
 msgid "Patronymic"
 msgstr "Patronim"
 
 #: ../src/ScratchPad.py:582
-#: ../src/Utils.py:1100
+#: ../src/Utils.py:1107
 #: ../src/gui/editors/editperson.py:275
 #: ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:168
@@ -1221,7 +1220,7 @@ msgstr "Prefiks"
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
 #: ../src/ScratchPad.py:583
-#: ../src/Utils.py:1098
+#: ../src/Utils.py:1105
 #: ../src/gui/editors/editperson.py:284
 #: ../src/plugins/export/ExportCsv.py:330
 #: ../src/plugins/import/ImportCsv.py:166
@@ -1230,7 +1229,7 @@ msgid "Person|Title"
 msgstr "Titula"
 
 #: ../src/ScratchPad.py:584
-#: ../src/Utils.py:1102
+#: ../src/Utils.py:1109
 #: ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473
 #: ../src/gui/configure.py:475
@@ -1248,8 +1247,7 @@ msgstr "Sufiks"
 #: ../src/gui/configure.py:898
 #: ../src/plugins/textreport/CustomBookText.py:115
 #: ../src/plugins/textreport/MarkerReport.py:389
-#: ../src/plugins/webreport/NarrativeWeb.py:1513
-#: ../src/ReportBase/_Constants.py:52
+#: ../src/ReportBase/_Constants.py:53
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
 msgid "Text"
 msgstr "Tekst"
@@ -1281,14 +1279,14 @@ msgstr "Link Osobe"
 #: ../src/ToolTips.py:199
 #: ../src/gen/lib/childreftype.py:74
 #: ../src/gen/lib/eventtype.py:146
-#: ../src/Merge/_MergePerson.py:133
+#: ../src/Merge/_MergePerson.py:134
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:91
-#: ../src/plugins/textreport/FamilyGroup.py:452
 #: ../src/plugins/textreport/FamilyGroup.py:454
+#: ../src/plugins/textreport/FamilyGroup.py:456
 #: ../src/plugins/textreport/MarkerReport.py:126
 #: ../src/plugins/view/relview.py:623
-#: ../src/plugins/webreport/NarrativeWeb.py:111
+#: ../src/plugins/webreport/NarrativeWeb.py:110
 msgid "Birth"
 msgstr "Rođenje"
 
@@ -1299,14 +1297,14 @@ msgstr "Link Izvor"
 
 #: ../src/ScratchPad.py:786
 #: ../src/plugins/view/sourceview.py:79
-#: ../src/plugins/webreport/NarrativeWeb.py:3195
+#: ../src/plugins/webreport/NarrativeWeb.py:3303
 msgid "Abbreviation"
 msgstr "Skraćenica"
 
 #: ../src/ScratchPad.py:787
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:68
 #: ../src/plugins/view/sourceview.py:78
-#: ../src/plugins/webreport/NarrativeWeb.py:3193
+#: ../src/plugins/webreport/NarrativeWeb.py:3301
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Autor"
@@ -1696,8 +1694,8 @@ msgid "Zulu"
 msgstr "Zulu"
 
 #: ../src/Spell.py:175
-#: ../src/Spell.py:309
-#: ../src/Spell.py:311
+#: ../src/Spell.py:305
+#: ../src/Spell.py:307
 #: ../src/gen/lib/childreftype.py:73
 #: ../src/gui/configure.py:69
 #: ../src/plugins/tool/Check.py:1510
@@ -1712,8 +1710,8 @@ msgstr "Zulu"
 msgid "None"
 msgstr "Ništa"
 
-#: ../src/Spell.py:210
-#: ../src/Spell.py:221
+#: ../src/Spell.py:206
+#: ../src/Spell.py:217
 #, python-format
 msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
 msgstr "Upozorenje: provjera pravopisa samo za jezike: '%s'; instalirajte pyenchant/python-enchant za više mogućnosti."
@@ -1722,8 +1720,8 @@ msgstr "Upozorenje: provjera pravopisa samo za jezike: '%s'; instalirajte pyench
 #. if pyenchant is installed we can avoid it, otherwise
 #. perhaps future gtkspell3 will offer a solution.
 #. if we didn't see a match on lang, then there is no spell check
-#: ../src/Spell.py:228
-#: ../src/Spell.py:234
+#: ../src/Spell.py:224
+#: ../src/Spell.py:230
 msgid "Warning: spelling checker disabled; install pyenchant/python-enchant to enable."
 msgstr "Upozorenje: provjera pravopisa je onemogućena; instalirajte pyenchant/python-enchant za njezino omogućavanje"
 
@@ -1784,7 +1782,7 @@ msgstr "Izvori u spremištu"
 #: ../src/ToolTips.py:197
 #: ../src/gui/configure.py:372
 #: ../src/gui/filtereditor.py:259
-#: ../src/gui/grampsgui.py:132
+#: ../src/gui/grampsgui.py:133
 #: ../src/plugins/export/ExportCsv.py:328
 #: ../src/plugins/gramplet/QuickViewGramplet.py:90
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
@@ -1810,14 +1808,15 @@ msgstr "Izvori u spremištu"
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:149
 #: ../src/plugins/tool/EventCmp.py:249
-#: ../src/plugins/webreport/NarrativeWeb.py:128
+#: ../src/plugins/webreport/NarrativeWeb.py:127
+#: ../src/plugins/webreport/NarrativeWeb.py:3916
 msgid "Person"
 msgstr "Osoba"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:242
 #: ../src/gen/lib/ldsord.py:102
-#: ../src/Merge/_MergePerson.py:191
+#: ../src/Merge/_MergePerson.py:192
 #: ../src/plugins/export/ExportCsv.py:452
 #: ../src/plugins/import/ImportCsv.py:205
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
@@ -1827,8 +1826,8 @@ msgstr "Dijete"
 #: ../src/Utils.py:78
 #: ../src/gui/editors/editperson.py:252
 #: ../src/gui/views/treemodels/peoplemodel.py:96
-#: ../src/Merge/_MergePerson.py:56
-#: ../src/plugins/webreport/NarrativeWeb.py:3523
+#: ../src/Merge/_MergePerson.py:57
+#: ../src/plugins/webreport/NarrativeWeb.py:3630
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "muško"
@@ -1836,8 +1835,8 @@ msgstr "muško"
 #: ../src/Utils.py:79
 #: ../src/gui/editors/editperson.py:251
 #: ../src/gui/views/treemodels/peoplemodel.py:96
-#: ../src/Merge/_MergePerson.py:56
-#: ../src/plugins/webreport/NarrativeWeb.py:3524
+#: ../src/Merge/_MergePerson.py:57
+#: ../src/plugins/webreport/NarrativeWeb.py:3631
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
 msgstr "žensko"
@@ -1863,7 +1862,7 @@ msgstr "Visoko"
 
 #: ../src/Utils.py:89
 #: ../src/gui/editors/editsourceref.py:137
-#: ../src/plugins/webreport/NarrativeWeb.py:1553
+#: ../src/plugins/webreport/NarrativeWeb.py:1653
 msgid "Normal"
 msgstr "Normalno"
 
@@ -1918,21 +1917,21 @@ msgstr "Podaci mogu biti povraćeni  samo poništavanjem prethodnih koraka ili i
 #: ../src/gen/mime/_winmime.py:55
 #: ../src/gui/editors/editperson.py:253
 #: ../src/gui/views/treemodels/peoplemodel.py:96
-#: ../src/Merge/_MergePerson.py:56
+#: ../src/Merge/_MergePerson.py:57
 #: ../src/plugins/gramplet/SessionLogGramplet.py:72
 #: ../src/plugins/gramplet/SessionLogGramplet.py:73
-#: ../src/plugins/textreport/DetAncestralReport.py:481
-#: ../src/plugins/textreport/DetAncestralReport.py:488
-#: ../src/plugins/textreport/DetAncestralReport.py:531
-#: ../src/plugins/textreport/DetAncestralReport.py:538
-#: ../src/plugins/textreport/DetDescendantReport.py:501
-#: ../src/plugins/textreport/DetDescendantReport.py:508
-#: ../src/plugins/textreport/DetDescendantReport.py:572
-#: ../src/plugins/textreport/DetDescendantReport.py:579
-#: ../src/plugins/textreport/IndivComplete.py:405
+#: ../src/plugins/textreport/DetAncestralReport.py:485
+#: ../src/plugins/textreport/DetAncestralReport.py:492
+#: ../src/plugins/textreport/DetAncestralReport.py:535
+#: ../src/plugins/textreport/DetAncestralReport.py:542
+#: ../src/plugins/textreport/DetDescendantReport.py:502
+#: ../src/plugins/textreport/DetDescendantReport.py:509
+#: ../src/plugins/textreport/DetDescendantReport.py:573
+#: ../src/plugins/textreport/DetDescendantReport.py:580
+#: ../src/plugins/textreport/IndivComplete.py:407
 #: ../src/plugins/view/relview.py:661
-#: ../src/plugins/webreport/NarrativeWeb.py:3525
-#: ../src/plugins/webreport/NarrativeWeb.py:4459
+#: ../src/plugins/webreport/NarrativeWeb.py:3632
+#: ../src/plugins/webreport/NarrativeWeb.py:4626
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr "nepoznato"
@@ -1944,109 +1943,109 @@ msgstr "nepoznato"
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s i %(mother)s"
 
-#: ../src/Utils.py:472
+#: ../src/Utils.py:473
 msgid "death-related evidence"
 msgstr "dokaz smrti"
 
-#: ../src/Utils.py:489
+#: ../src/Utils.py:490
 msgid "birth-related evidence"
 msgstr "dokaz rođenja"
 
-#: ../src/Utils.py:494
+#: ../src/Utils.py:495
 #: ../src/plugins/import/ImportCsv.py:263
 msgid "death date"
 msgstr "datum smrti"
 
-#: ../src/Utils.py:499
+#: ../src/Utils.py:500
 #: ../src/plugins/import/ImportCsv.py:254
 msgid "birth date"
 msgstr "datum rođenja"
 
-#: ../src/Utils.py:528
+#: ../src/Utils.py:529
 msgid "sibling birth date"
 msgstr "datum rođenja braće ili sestara"
 
-#: ../src/Utils.py:540
+#: ../src/Utils.py:541
 msgid "sibling death date"
 msgstr "datum smrti braće ili sestara"
 
-#: ../src/Utils.py:554
+#: ../src/Utils.py:555
 msgid "sibling birth-related date"
 msgstr "datum povezan s rođenjem braće ili sestara"
 
-#: ../src/Utils.py:565
+#: ../src/Utils.py:566
 msgid "sibling death-related date"
 msgstr "datum povezan sa smrću braće ili sestara"
 
-#: ../src/Utils.py:578
-#: ../src/Utils.py:583
+#: ../src/Utils.py:579
+#: ../src/Utils.py:584
 msgid "a spouse, "
 msgstr "supružnik, "
 
-#: ../src/Utils.py:601
+#: ../src/Utils.py:602
 msgid "event with spouse"
 msgstr "događaj sa supružnikom"
 
-#: ../src/Utils.py:622
+#: ../src/Utils.py:626
 msgid "descendent birth date"
 msgstr "datum rođenja potomaka"
 
-#: ../src/Utils.py:631
+#: ../src/Utils.py:635
 msgid "descendent death date"
 msgstr "datum smrti potomaka"
 
-#: ../src/Utils.py:647
+#: ../src/Utils.py:651
 msgid "descendent birth-related date"
 msgstr "datum povezan s rođenjem potomka"
 
-#: ../src/Utils.py:655
+#: ../src/Utils.py:659
 msgid "descendent death-related date"
 msgstr "datum povezan sa smrću potomka"
 
-#: ../src/Utils.py:668
+#: ../src/Utils.py:672
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Greška u bazi: %s je definiran(a) kao svoj vlastiti predak"
 
-#: ../src/Utils.py:689
-#: ../src/Utils.py:735
+#: ../src/Utils.py:696
+#: ../src/Utils.py:742
 msgid "ancestor birth date"
 msgstr "datum rođenja predaka"
 
-#: ../src/Utils.py:699
-#: ../src/Utils.py:745
+#: ../src/Utils.py:706
+#: ../src/Utils.py:752
 msgid "ancestor death date"
 msgstr "datum smrti predaka"
 
-#: ../src/Utils.py:710
-#: ../src/Utils.py:756
+#: ../src/Utils.py:717
+#: ../src/Utils.py:763
 msgid "ancestor birth-related date"
 msgstr "datum povezan s rođenjem pretka"
 
-#: ../src/Utils.py:718
-#: ../src/Utils.py:764
+#: ../src/Utils.py:725
+#: ../src/Utils.py:771
 msgid "ancestor death-related date"
 msgstr "datum povezan sa smrću pretka"
 
 #. no evidence, must consider alive
-#: ../src/Utils.py:818
+#: ../src/Utils.py:825
 msgid "no evidence"
 msgstr "nema dokaza"
 
-#: ../src/Utils.py:1098
+#: ../src/Utils.py:1105
 msgid "Person|TITLE"
 msgstr "TITULA"
 
-#: ../src/Utils.py:1099
+#: ../src/Utils.py:1106
 msgid "GIVEN"
 msgstr "IME"
 
-#: ../src/Utils.py:1100
+#: ../src/Utils.py:1107
 msgid "PREFIX"
 msgstr "PREFIKS"
 
 #. show surname and first name
-#: ../src/Utils.py:1101
+#: ../src/Utils.py:1108
 #: ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473
 #: ../src/gui/configure.py:477
@@ -2058,15 +2057,15 @@ msgstr "PREFIKS"
 #: ../src/plugins/export/ExportCsv.py:328
 #: ../src/plugins/import/ImportCsv.py:156
 #: ../src/plugins/quickview/FilterByName.py:143
-#: ../src/plugins/webreport/NarrativeWeb.py:1844
-#: ../src/plugins/webreport/NarrativeWeb.py:2000
-#: ../src/plugins/webreport/NarrativeWeb.py:2938
+#: ../src/plugins/webreport/NarrativeWeb.py:1947
+#: ../src/plugins/webreport/NarrativeWeb.py:2103
+#: ../src/plugins/webreport/NarrativeWeb.py:3045
 #: ../src/PluginUtils/_GuiOptions.py:85
 #: ../src/PluginUtils/_GuiOptions.py:1085
 msgid "Surname"
 msgstr "Prezime"
 
-#: ../src/Utils.py:1101
+#: ../src/Utils.py:1108
 #: ../src/gui/configure.py:475
 #: ../src/gui/configure.py:482
 #: ../src/gui/configure.py:484
@@ -2077,15 +2076,15 @@ msgstr "Prezime"
 msgid "SURNAME"
 msgstr "PREZIME"
 
-#: ../src/Utils.py:1102
+#: ../src/Utils.py:1109
 msgid "SUFFIX"
 msgstr "SUFIKS"
 
-#: ../src/Utils.py:1103
+#: ../src/Utils.py:1110
 msgid "PATRONYMIC"
 msgstr "PATRONIM"
 
-#: ../src/Utils.py:1104
+#: ../src/Utils.py:1111
 #: ../src/gui/configure.py:474
 #: ../src/gui/configure.py:476
 #: ../src/gui/configure.py:478
@@ -2095,11 +2094,11 @@ msgstr "PATRONIM"
 msgid "Call"
 msgstr "Nadimak"
 
-#: ../src/Utils.py:1104
+#: ../src/Utils.py:1111
 msgid "CALL"
 msgstr "UOBIČAJENO IME"
 
-#: ../src/Utils.py:1105
+#: ../src/Utils.py:1112
 #: ../src/gui/configure.py:472
 #: ../src/gui/configure.py:477
 #: ../src/gui/configure.py:483
@@ -2107,26 +2106,26 @@ msgstr "UOBIČAJENO IME"
 msgid "Common"
 msgstr "Uobičajeno"
 
-#: ../src/Utils.py:1105
+#: ../src/Utils.py:1112
 msgid "COMMON"
 msgstr "SKRAĆENI OBLIK"
 
-#: ../src/Utils.py:1106
+#: ../src/Utils.py:1113
 msgid "Initials"
 msgstr "Inicijali"
 
-#: ../src/Utils.py:1106
+#: ../src/Utils.py:1113
 msgid "INITIALS"
 msgstr "INICIJALI"
 
-#: ../src/Utils.py:1212
-#: ../src/Utils.py:1228
+#: ../src/Utils.py:1219
+#: ../src/Utils.py:1235
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
 
 #: ../src/UndoHistory.py:63
-#: ../src/gui/grampsgui.py:156
+#: ../src/gui/grampsgui.py:157
 msgid "Undo History"
 msgstr "Povrati prethodne korake"
 
@@ -2403,7 +2402,7 @@ msgid "Remove mother from family"
 msgstr "Ukloni majku iz obitelji"
 
 #: ../src/gen/db/exceptions.py:66
-#: ../src/plugins/import/ImportGrdb.py:2684
+#: ../src/plugins/import/ImportGrdb.py:2685
 msgid ""
 "The database version is not supported by this version of Gramps.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
@@ -2509,7 +2508,7 @@ msgid "initials"
 msgstr "inicijali"
 
 #: ../src/gen/lib/urltype.py:55
-#: ../src/gen/lib/notetype.py:77
+#: ../src/gen/lib/notetype.py:79
 #: ../src/gen/lib/repotype.py:60
 #: ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:80
@@ -2540,7 +2539,7 @@ msgstr "Pretraži web"
 msgid "FTP"
 msgstr "FTP"
 
-#: ../src/gen/lib/notetype.py:78
+#: ../src/gen/lib/notetype.py:80
 #: ../src/gui/configure.py:977
 #: ../src/gui/editors/editeventref.py:86
 #: ../src/gui/editors/editmediaref.py:89
@@ -2552,94 +2551,98 @@ msgstr "FTP"
 msgid "General"
 msgstr "Osnovno"
 
-#: ../src/gen/lib/notetype.py:79
+#: ../src/gen/lib/notetype.py:81
 msgid "Research"
 msgstr "Istraživanje"
 
-#: ../src/gen/lib/notetype.py:80
+#: ../src/gen/lib/notetype.py:82
 msgid "Transcript"
 msgstr "Prijepis"
 
-#: ../src/gen/lib/notetype.py:81
+#: ../src/gen/lib/notetype.py:83
 msgid "Source text"
 msgstr "Tekst Izvora"
 
-#: ../src/gen/lib/notetype.py:82
+#: ../src/gen/lib/notetype.py:84
 msgid "Citation"
 msgstr "Navod"
 
-#: ../src/gen/lib/notetype.py:83
+#: ../src/gen/lib/notetype.py:85
 #: ../src/gen/plug/_pluginreg.py:74
 #: ../src/GrampsLogger/_ErrorView.py:112
 msgid "Report"
 msgstr "Izvješće"
 
-#: ../src/gen/lib/notetype.py:87
+#: ../src/gen/lib/notetype.py:86
+msgid "Html code"
+msgstr "Html kod"
+
+#: ../src/gen/lib/notetype.py:90
 msgid "Person Note"
 msgstr "Zabilješka: osoba"
 
-#: ../src/gen/lib/notetype.py:88
+#: ../src/gen/lib/notetype.py:91
 msgid "Name Note"
 msgstr "Zabilješka: ime"
 
-#: ../src/gen/lib/notetype.py:89
+#: ../src/gen/lib/notetype.py:92
 msgid "Attribute Note"
 msgstr "Zabilješka: svojstvo"
 
-#: ../src/gen/lib/notetype.py:90
+#: ../src/gen/lib/notetype.py:93
 msgid "Address Note"
 msgstr "Zabilješka: adresa"
 
-#: ../src/gen/lib/notetype.py:91
+#: ../src/gen/lib/notetype.py:94
 msgid "Association Note"
 msgstr "Zabilješka: poveznica"
 
-#: ../src/gen/lib/notetype.py:92
+#: ../src/gen/lib/notetype.py:95
 msgid "LDS Note"
 msgstr "Zabilješka: LDS"
 
-#: ../src/gen/lib/notetype.py:93
+#: ../src/gen/lib/notetype.py:96
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:118
 msgid "Family Note"
 msgstr "Obiteljska zabilješka"
 
-#: ../src/gen/lib/notetype.py:94
+#: ../src/gen/lib/notetype.py:97
 msgid "Event Note"
 msgstr "Zabilješka: događaj"
 
-#: ../src/gen/lib/notetype.py:95
+#: ../src/gen/lib/notetype.py:98
 msgid "Event Reference Note"
 msgstr "Zabilješka: reference događaja"
 
-#: ../src/gen/lib/notetype.py:96
+#: ../src/gen/lib/notetype.py:99
 msgid "Source Note"
 msgstr "Zabilješka: izvor"
 
-#: ../src/gen/lib/notetype.py:97
+#: ../src/gen/lib/notetype.py:100
 msgid "Source Reference Note"
 msgstr "Zabilješka: reference izvora"
 
-#: ../src/gen/lib/notetype.py:98
+#: ../src/gen/lib/notetype.py:101
 msgid "Place Note"
 msgstr "Zabilješka: mjesto"
 
-#: ../src/gen/lib/notetype.py:99
+#: ../src/gen/lib/notetype.py:102
 msgid "Repository Note"
 msgstr "Zabilješka: spremište"
 
-#: ../src/gen/lib/notetype.py:100
+#: ../src/gen/lib/notetype.py:103
 msgid "Repository Reference Note"
 msgstr "Zabilješka: reference spremišta"
 
-#: ../src/gen/lib/notetype.py:102
+#: ../src/gen/lib/notetype.py:105
 msgid "Media Note"
 msgstr "Zabilješka: mediji"
 
-#: ../src/gen/lib/notetype.py:103
+#: ../src/gen/lib/notetype.py:106
 msgid "Media Reference Note"
 msgstr "Zabilješka: reference medija"
 
-#: ../src/gen/lib/notetype.py:104
+#: ../src/gen/lib/notetype.py:107
 msgid "Child Reference Note"
 msgstr "Zabilješka: reference djece"
 
@@ -2710,7 +2713,7 @@ msgstr "Agencija"
 
 #: ../src/gen/lib/attrtype.py:73
 #: ../src/plugins/drawreport/StatisticsChart.py:347
-#: ../src/plugins/gramplet/AgeStats.py:165
+#: ../src/plugins/gramplet/AgeStats.py:170
 #: ../src/plugins/quickview/AgeOnDate.py:55
 msgid "Age"
 msgstr "Starost"
@@ -3046,13 +3049,13 @@ msgid "Married Name"
 msgstr "udana"
 
 #: ../src/gen/lib/eventtype.py:147
-#: ../src/Merge/_MergePerson.py:137
-#: ../src/plugins/textreport/FamilyGroup.py:458
+#: ../src/Merge/_MergePerson.py:138
 #: ../src/plugins/textreport/FamilyGroup.py:460
+#: ../src/plugins/textreport/FamilyGroup.py:462
 #: ../src/plugins/textreport/MarkerReport.py:132
 #: ../src/plugins/view/relview.py:634
 #: ../src/plugins/view/relview.py:659
-#: ../src/plugins/webreport/NarrativeWeb.py:115
+#: ../src/plugins/webreport/NarrativeWeb.py:114
 msgid "Death"
 msgstr "Smrt"
 
@@ -3171,8 +3174,8 @@ msgid "Religion"
 msgstr "Religija"
 
 #: ../src/gen/lib/eventtype.py:176
-#: ../src/plugins/webreport/NarrativeWeb.py:1758
-#: ../src/plugins/webreport/NarrativeWeb.py:4766
+#: ../src/plugins/webreport/NarrativeWeb.py:1861
+#: ../src/plugins/webreport/NarrativeWeb.py:4937
 msgid "Residence"
 msgstr "Boravište"
 
@@ -3185,10 +3188,10 @@ msgid "Will"
 msgstr "Oporuka"
 
 #: ../src/gen/lib/eventtype.py:179
-#: ../src/Merge/_MergePerson.py:187
+#: ../src/Merge/_MergePerson.py:188
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:220
-#: ../src/plugins/textreport/FamilyGroup.py:357
+#: ../src/plugins/textreport/FamilyGroup.py:359
 #: ../src/plugins/view/relview.py:1258
 msgid "Marriage"
 msgstr "Vjenčanje"
@@ -3384,7 +3387,7 @@ msgid "Gramps View"
 msgstr "GRAMPS pogled"
 
 #: ../src/gen/plug/_pluginreg.py:83
-#: ../src/gui/grampsgui.py:134
+#: ../src/gui/grampsgui.py:135
 #: ../src/plugins/view/relview.py:133
 #: ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
@@ -3461,20 +3464,20 @@ msgstr "Datoteka %s je već otvorena, prvo je zatvorite."
 #: ../src/plugins/docgen/SvgDrawDoc.py:80
 #: ../src/plugins/export/ExportCsv.py:295
 #: ../src/plugins/export/ExportCsv.py:299
-#: ../src/plugins/export/ExportGedcom.py:1408
+#: ../src/plugins/export/ExportGedcom.py:1410
 #: ../src/plugins/export/ExportGeneWeb.py:217
 #: ../src/plugins/export/ExportGeneWeb.py:221
 #: ../src/plugins/export/ExportVCalendar.py:196
 #: ../src/plugins/export/ExportVCalendar.py:200
 #: ../src/plugins/export/ExportVCard.py:173
 #: ../src/plugins/export/ExportVCard.py:177
-#: ../src/plugins/webreport/NarrativeWeb.py:5048
+#: ../src/plugins/webreport/NarrativeWeb.py:5219
 #, python-format
 msgid "Could not create %s"
 msgstr "Ne mogu kreirati %s"
 
-#: ../src/gen/proxy/private.py:735
-#: ../src/gui/grampsgui.py:143
+#: ../src/gen/proxy/private.py:756
+#: ../src/gui/grampsgui.py:144
 msgid "Private"
 msgstr "Privatno"
 
@@ -3564,7 +3567,7 @@ msgstr "Postavke"
 #: ../src/plugins/tool/ExtractCity.py:384
 #: ../src/plugins/view/placetreeview.py:73
 #: ../src/plugins/view/repoview.py:87
-#: ../src/plugins/webreport/NarrativeWeb.py:112
+#: ../src/plugins/webreport/NarrativeWeb.py:111
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
 msgstr "Grad"
@@ -3583,8 +3586,8 @@ msgstr "Država/Pokrajina"
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
 #: ../src/plugins/view/repoview.py:90
-#: ../src/plugins/webreport/NarrativeWeb.py:114
-#: ../src/plugins/webreport/NarrativeWeb.py:2182
+#: ../src/plugins/webreport/NarrativeWeb.py:113
+#: ../src/plugins/webreport/NarrativeWeb.py:2285
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr "Zemlja"
@@ -3598,7 +3601,7 @@ msgid "ZIP/Postal Code"
 msgstr "Poštanski broj"
 
 #: ../src/gui/configure.py:360
-#: ../src/plugins/webreport/NarrativeWeb.py:129
+#: ../src/plugins/webreport/NarrativeWeb.py:128
 msgid "Phone"
 msgstr "Telefon"
 
@@ -3625,7 +3628,7 @@ msgstr "Izvor"
 #: ../src/plugins/gramplet/QuickViewGramplet.py:91
 #: ../src/plugins/quickview/quickview.gpr.py:200
 #: ../src/plugins/quickview/References.py:82
-#: ../src/plugins/webreport/NarrativeWeb.py:118
+#: ../src/plugins/webreport/NarrativeWeb.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
 msgid "Event"
 msgstr "Događaj"
@@ -3679,7 +3682,7 @@ msgstr "Primjer"
 #: ../src/gui/configure.py:798
 #: ../src/plugins/drawreport/Calendar.py:409
 #: ../src/plugins/textreport/BirthdayReport.py:361
-#: ../src/plugins/webreport/NarrativeWeb.py:5655
+#: ../src/plugins/webreport/NarrativeWeb.py:5816
 #: ../src/plugins/webreport/WebCal.py:1366
 msgid "Name format"
 msgstr "Format imena"
@@ -3959,7 +3962,7 @@ msgstr "Naziv obiteljskog stabla"
 #: ../src/gui/dbman.py:278
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
-#: ../src/plugins/webreport/NarrativeWeb.py:132
+#: ../src/plugins/webreport/NarrativeWeb.py:131
 #: ../src/PluginUtils/_PluginWindows.py:223
 #: ../src/PluginUtils/_PluginWindows.py:280
 msgid "Status"
@@ -4415,9 +4418,9 @@ msgstr "proba filtra"
 #: ../src/plugins/graph/GVRelGraph.py:468
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:346
-#: ../src/plugins/textreport/IndivComplete.py:642
+#: ../src/plugins/textreport/IndivComplete.py:644
 #: ../src/plugins/tool/SortEvents.py:167
-#: ../src/plugins/webreport/NarrativeWeb.py:5639
+#: ../src/plugins/webreport/NarrativeWeb.py:5800
 #: ../src/plugins/webreport/WebCal.py:1350
 msgid "Filter"
 msgstr "Filtar"
@@ -4446,91 +4449,97 @@ msgstr "Obrisati filtar"
 msgid "Family Trees"
 msgstr "Obiteljska stabla"
 
-#: ../src/gui/grampsgui.py:112
+#. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
+#. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
+#: ../src/gui/grampsgui.py:111
+msgid "_Add bookmark"
+msgstr "_Dodaj knjižnu oznaku"
+
+#: ../src/gui/grampsgui.py:113
 msgid "Configure"
 msgstr "Postavke"
 
-#: ../src/gui/grampsgui.py:114
+#: ../src/gui/grampsgui.py:115
 msgid "Edit Date"
 msgstr "Uredi datum"
 
-#: ../src/gui/grampsgui.py:115
-#: ../src/Merge/_MergePerson.py:149
+#: ../src/gui/grampsgui.py:116
+#: ../src/Merge/_MergePerson.py:150
 #: ../src/plugins/textreport/MarkerReport.py:280
 #: ../src/plugins/view/eventview.py:114
 #: ../src/plugins/view/view.gpr.py:40
-#: ../src/plugins/webreport/NarrativeWeb.py:1020
-#: ../src/plugins/webreport/NarrativeWeb.py:1063
-#: ../src/plugins/webreport/NarrativeWeb.py:2319
-#: ../src/plugins/webreport/NarrativeWeb.py:2480
-#: ../src/plugins/webreport/NarrativeWeb.py:4029
+#: ../src/plugins/webreport/NarrativeWeb.py:1074
+#: ../src/plugins/webreport/NarrativeWeb.py:1117
+#: ../src/plugins/webreport/NarrativeWeb.py:2425
+#: ../src/plugins/webreport/NarrativeWeb.py:2586
+#: ../src/plugins/webreport/NarrativeWeb.py:4161
 msgid "Events"
 msgstr "Događaji"
 
-#: ../src/gui/grampsgui.py:117
+#: ../src/gui/grampsgui.py:118
 #: ../src/plugins/drawreport/drawplugins.gpr.py:98
 #: ../src/plugins/gramplet/gramplet.gpr.py:113
 #: ../src/plugins/view/fanchartview.py:570
 msgid "Fan Chart"
 msgstr "Lepezasti dijagram"
 
-#: ../src/gui/grampsgui.py:118
+#: ../src/gui/grampsgui.py:119
 msgid "Font"
 msgstr "Pismo"
 
-#: ../src/gui/grampsgui.py:119
+#: ../src/gui/grampsgui.py:120
 #: ../src/gui/widgets/styledtexteditor.py:373
 msgid "Font Color"
 msgstr "Boja pisma"
 
-#: ../src/gui/grampsgui.py:120
+#: ../src/gui/grampsgui.py:121
 msgid "Font Background Color"
 msgstr "Boje pozadine pisma"
 
-#: ../src/gui/grampsgui.py:121
+#: ../src/gui/grampsgui.py:122
 #: ../src/plugins/view/grampletview.py:52
 #: ../src/plugins/view/view.gpr.py:70
 msgid "Gramplets"
 msgstr "Grampleti"
 
-#: ../src/gui/grampsgui.py:122
 #: ../src/gui/grampsgui.py:123
 #: ../src/gui/grampsgui.py:124
+#: ../src/gui/grampsgui.py:125
 #: ../src/plugins/view/geoview.py:300
 msgid "GeoView"
 msgstr "Geo pogled"
 
-#: ../src/gui/grampsgui.py:125
+#: ../src/gui/grampsgui.py:126
 msgid "Public"
 msgstr "Javno"
 
-#: ../src/gui/grampsgui.py:126
+#: ../src/gui/grampsgui.py:127
 #: ../src/plugins/gramplet/QuickViewGramplet.py:93
 #: ../src/plugins/quickview/FilterByName.py:182
 #: ../src/plugins/quickview/quickview.gpr.py:203
 #: ../src/plugins/quickview/References.py:85
 #: ../src/plugins/view/mediaview.py:122
 #: ../src/plugins/view/view.gpr.py:85
-#: ../src/plugins/webreport/NarrativeWeb.py:1021
-#: ../src/plugins/webreport/NarrativeWeb.py:1066
-#: ../src/plugins/webreport/NarrativeWeb.py:2628
-#: ../src/plugins/webreport/NarrativeWeb.py:3235
+#: ../src/plugins/webreport/NarrativeWeb.py:1075
+#: ../src/plugins/webreport/NarrativeWeb.py:1120
+#: ../src/plugins/webreport/NarrativeWeb.py:2731
+#: ../src/plugins/webreport/NarrativeWeb.py:3343
 msgid "Media"
 msgstr "Mediji"
 
-#: ../src/gui/grampsgui.py:127
-#: ../src/plugins/textreport/IndivComplete.py:245
+#: ../src/gui/grampsgui.py:128
+#: ../src/plugins/textreport/IndivComplete.py:246
 #: ../src/plugins/textreport/MarkerReport.py:366
 #: ../src/plugins/view/noteview.py:109
 #: ../src/plugins/view/view.gpr.py:100
-#: ../src/plugins/webreport/NarrativeWeb.py:123
+#: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Notes"
 msgstr "Zabilješke"
 
 #. Go over parents and build their menu
 #. don't show rest
-#: ../src/gui/grampsgui.py:128
-#: ../src/Merge/_MergePerson.py:159
+#: ../src/gui/grampsgui.py:129
+#: ../src/Merge/_MergePerson.py:160
 #: ../src/plugins/gramplet/FanChartGramplet.py:836
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:116
@@ -4539,65 +4548,65 @@ msgstr "Zabilješke"
 #: ../src/plugins/view/relview.py:517
 #: ../src/plugins/view/relview.py:848
 #: ../src/plugins/view/relview.py:882
-#: ../src/plugins/webreport/NarrativeWeb.py:124
+#: ../src/plugins/webreport/NarrativeWeb.py:123
 msgid "Parents"
 msgstr "Roditelji"
 
-#: ../src/gui/grampsgui.py:129
+#: ../src/gui/grampsgui.py:130
 msgid "Add Parents"
 msgstr "Dodaj roditelje"
 
-#: ../src/gui/grampsgui.py:130
+#: ../src/gui/grampsgui.py:131
 msgid "Select Parents"
 msgstr "Odaberi roditelje"
 
-#: ../src/gui/grampsgui.py:131
+#: ../src/gui/grampsgui.py:132
 #: ../src/plugins/gramplet/gramplet.gpr.py:153
 #: ../src/plugins/view/pedigreeview.py:371
-#: ../src/plugins/webreport/NarrativeWeb.py:3875
+#: ../src/plugins/webreport/NarrativeWeb.py:4002
 msgid "Pedigree"
 msgstr "Rodoslov"
 
-#: ../src/gui/grampsgui.py:133
+#: ../src/gui/grampsgui.py:134
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:175
-#: ../src/plugins/webreport/NarrativeWeb.py:1019
-#: ../src/plugins/webreport/NarrativeWeb.py:1060
-#: ../src/plugins/webreport/NarrativeWeb.py:2149
-#: ../src/plugins/webreport/NarrativeWeb.py:2248
+#: ../src/plugins/webreport/NarrativeWeb.py:1073
+#: ../src/plugins/webreport/NarrativeWeb.py:1114
+#: ../src/plugins/webreport/NarrativeWeb.py:2252
+#: ../src/plugins/webreport/NarrativeWeb.py:2354
 msgid "Places"
 msgstr "Mjesta"
 
-#: ../src/gui/grampsgui.py:135
+#: ../src/gui/grampsgui.py:136
 msgid "Reports"
 msgstr "Izvješća"
 
-#: ../src/gui/grampsgui.py:136
+#: ../src/gui/grampsgui.py:137
 #: ../src/plugins/view/repoview.py:127
 #: ../src/plugins/view/view.gpr.py:190
-#: ../src/plugins/webreport/NarrativeWeb.py:1025
-#: ../src/plugins/webreport/NarrativeWeb.py:4601
-#: ../src/plugins/webreport/NarrativeWeb.py:4669
+#: ../src/plugins/webreport/NarrativeWeb.py:1079
+#: ../src/plugins/webreport/NarrativeWeb.py:4768
+#: ../src/plugins/webreport/NarrativeWeb.py:4837
 msgid "Repositories"
 msgstr "Spremišta"
 
-#: ../src/gui/grampsgui.py:138
+#: ../src/gui/grampsgui.py:139
 msgid "Add Spouse"
 msgstr "Dodaj supružnika"
 
-#: ../src/gui/grampsgui.py:139
+#: ../src/gui/grampsgui.py:140
 msgid "Tools"
 msgstr "Alati"
 
-#: ../src/gui/grampsgui.py:140
+#: ../src/gui/grampsgui.py:141
 msgid "Grouped List"
 msgstr "Poredani popis"
 
-#: ../src/gui/grampsgui.py:141
+#: ../src/gui/grampsgui.py:142
 msgid "List"
 msgstr "Popis"
 
-#: ../src/gui/grampsgui.py:142
+#: ../src/gui/grampsgui.py:143
 #: ../src/plugins/tool/ChangeNames.py:195
 #: ../src/plugins/tool/ExtractCity.py:538
 #: ../src/plugins/tool/PatchNames.py:218
@@ -4605,48 +4614,48 @@ msgstr "Popis"
 msgid "Select"
 msgstr "Odaberi"
 
-#: ../src/gui/grampsgui.py:144
 #: ../src/gui/grampsgui.py:145
+#: ../src/gui/grampsgui.py:146
 #: ../src/gui/editors/editperson.py:512
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
 #: ../src/plugins/view/mediaview.py:247
 msgid "View"
 msgstr "Pogled"
 
-#: ../src/gui/grampsgui.py:146
+#: ../src/gui/grampsgui.py:147
 msgid "Zoom In"
 msgstr "Povećaj"
 
-#: ../src/gui/grampsgui.py:147
+#: ../src/gui/grampsgui.py:148
 msgid "Zoom Out"
 msgstr "Umanji"
 
-#: ../src/gui/grampsgui.py:148
+#: ../src/gui/grampsgui.py:149
 msgid "Fit Width"
 msgstr "Prilagodi širinu"
 
-#: ../src/gui/grampsgui.py:149
+#: ../src/gui/grampsgui.py:150
 msgid "Fit Page"
 msgstr "Prilagodi stranici"
 
-#: ../src/gui/grampsgui.py:154
+#: ../src/gui/grampsgui.py:155
 msgid "Export"
 msgstr "Izvoz"
 
-#: ../src/gui/grampsgui.py:155
+#: ../src/gui/grampsgui.py:156
 msgid "Import"
 msgstr "Uvoz"
 
-#: ../src/gui/grampsgui.py:157
+#: ../src/gui/grampsgui.py:158
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:94
 msgid "URL"
 msgstr "URL"
 
-#: ../src/gui/grampsgui.py:169
+#: ../src/gui/grampsgui.py:170
 msgid "Danger: This is unstable code!"
 msgstr "Upozorenje: Ovo je neprovjereni kod!"
 
-#: ../src/gui/grampsgui.py:170
+#: ../src/gui/grampsgui.py:171
 msgid ""
 "This Gramps 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
@@ -4670,11 +4679,11 @@ msgstr ""
 "\n"
 "<b>IZRADITE ZAŠTITNU KOPIJU</b> vaše baze podataka prije njezinog otvaranja u ovoj inačici programa i povremeno izvezite podatke u XML format."
 
-#: ../src/gui/grampsgui.py:203
+#: ../src/gui/grampsgui.py:204
 msgid "Failed Loading View"
 msgstr "Neuspjelo učitavanje pogleda"
 
-#: ../src/gui/grampsgui.py:204
+#: ../src/gui/grampsgui.py:205
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -4683,7 +4692,7 @@ msgstr ""
 "Pogled %(name)s nije učitan. Pogledajte izbornik Pomoć, Upravitelj dodataka za više informacija.\n"
 "Koristite http://bugs.gramps-project.org za prijavak greški službenih pogledaa, a u ostalim slučajevima kontaktirajte autora (%(firstauthoremail)s) direktno."
 
-#: ../src/gui/grampsgui.py:291
+#: ../src/gui/grampsgui.py:292
 msgid "Error parsing arguments"
 msgstr "Greška pri obradi opcija"
 
@@ -4701,7 +4710,7 @@ msgid "Error Opening File"
 msgstr "Pogreška tijekom otvaranje datoteke"
 
 #: ../src/gui/utils.py:293
-#: ../src/plugins/textreport/IndivComplete.py:547
+#: ../src/plugins/textreport/IndivComplete.py:549
 #: ../src/ReportBase/_ReportUtils.py:142
 msgid "File does not exist"
 msgstr "Datoteka ne postoji"
@@ -5184,7 +5193,7 @@ msgstr "uređivač referenci događaja"
 
 #: ../src/gui/editors/editeventref.py:92
 #: ../src/gui/editors/editmediaref.py:95
-#: ../src/gui/editors/editname.py:122
+#: ../src/gui/editors/editname.py:123
 #: ../src/gui/editors/editreporef.py:78
 msgid "_General"
 msgstr "_Osnovno"
@@ -5223,14 +5232,14 @@ msgstr "#"
 
 #: ../src/gui/editors/editfamily.py:106
 #: ../src/gui/selectors/selectperson.py:76
-#: ../src/Merge/_MergePerson.py:129
+#: ../src/Merge/_MergePerson.py:130
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:330
 #: ../src/plugins/import/ImportCsv.py:172
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/textreport/IndivComplete.py:563
-#: ../src/plugins/webreport/NarrativeWeb.py:3986
+#: ../src/plugins/textreport/IndivComplete.py:565
+#: ../src/plugins/webreport/NarrativeWeb.py:4118
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
 msgstr "Spol"
@@ -5524,46 +5533,46 @@ msgstr "Uređivač Referenci: Medij"
 msgid "Y coordinate|Y"
 msgstr "X koordinata"
 
-#: ../src/gui/editors/editname.py:115
-#: ../src/gui/editors/editname.py:276
+#: ../src/gui/editors/editname.py:116
+#: ../src/gui/editors/editname.py:282
 msgid "Name Editor"
 msgstr "Uređivač Imena"
 
-#: ../src/gui/editors/editname.py:275
+#: ../src/gui/editors/editname.py:281
 msgid "New Name"
 msgstr "Novo Ime"
 
-#: ../src/gui/editors/editname.py:339
+#: ../src/gui/editors/editname.py:348
 msgid "Break global name grouping?"
 msgstr "Poništi globalno sortiranje po imenu?"
 
-#: ../src/gui/editors/editname.py:340
+#: ../src/gui/editors/editname.py:349
 #, python-format
 msgid "All people with the name of %(surname)s will no longer be grouped with the name of %(group_name)s."
 msgstr "Sve osobe s prezimenom %(surname)s više neće biti posložene zajedno sa prezimenom %(group_name)s."
 
-#: ../src/gui/editors/editname.py:344
+#: ../src/gui/editors/editname.py:353
 msgid "Continue"
 msgstr "Nastavi"
 
-#: ../src/gui/editors/editname.py:345
+#: ../src/gui/editors/editname.py:354
 msgid "Return to Name Editor"
 msgstr "Povratak u Uređivač Imena"
 
-#: ../src/gui/editors/editname.py:370
+#: ../src/gui/editors/editname.py:379
 msgid "Group all people with the same name?"
 msgstr "Posložiti sve osobe istog imena?"
 
-#: ../src/gui/editors/editname.py:371
+#: ../src/gui/editors/editname.py:380
 #, python-format
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
 msgstr "Možete odrediti sortiranje svih imena %(surname)s zajedno sa imenom %(group_name)s ili samo ovo određeno ime."
 
-#: ../src/gui/editors/editname.py:376
+#: ../src/gui/editors/editname.py:385
 msgid "Group all"
 msgstr "Posložiti sve"
 
-#: ../src/gui/editors/editname.py:377
+#: ../src/gui/editors/editname.py:386
 msgid "Group this name only"
 msgstr "Posloži samo odabrano ime"
 
@@ -5919,7 +5928,7 @@ msgstr "Pomaknuti odabranu adresu prema dnu"
 #: ../src/plugins/tool/ExtractCity.py:385
 #: ../src/plugins/view/placetreeview.py:75
 #: ../src/plugins/view/repoview.py:89
-#: ../src/plugins/webreport/NarrativeWeb.py:2181
+#: ../src/plugins/webreport/NarrativeWeb.py:2284
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
 msgstr "Država"
@@ -6104,7 +6113,7 @@ msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../src/plugins/webreport/NarrativeWeb.py:136
+#: ../src/plugins/webreport/NarrativeWeb.py:135
 msgid "Temple"
 msgstr "Temple"
 
@@ -6155,7 +6164,7 @@ msgstr "_CIK"
 #: ../src/plugins/lib/libplaceview.py:100
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/view/repoview.py:85
-#: ../src/plugins/webreport/NarrativeWeb.py:134
+#: ../src/plugins/webreport/NarrativeWeb.py:133
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "Street"
 msgstr "Ulica"
@@ -6166,7 +6175,7 @@ msgstr "Ulica"
 #: ../src/plugins/lib/libplaceview.py:94
 #: ../src/plugins/view/placetreeview.py:74
 #: ../src/plugins/view/repoview.py:88
-#: ../src/plugins/webreport/NarrativeWeb.py:113
+#: ../src/plugins/webreport/NarrativeWeb.py:112
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
 msgid "County"
 msgstr "Okrug"
@@ -6471,7 +6480,7 @@ msgid "Select Note"
 msgstr "Odaberi zabilješku"
 
 #: ../src/gui/selectors/selectnote.py:69
-#: ../src/plugins/textreport/MarkerReport.py:439
+#: ../src/plugins/textreport/MarkerReport.py:441
 #: ../src/plugins/tool/NotRelated.py:117
 #: ../src/plugins/view/noteview.py:78
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
@@ -6893,20 +6902,20 @@ msgstr "Živuči"
 msgid "Private Record"
 msgstr "Zaštićeni podaci"
 
-#: ../src/Merge/_MergePerson.py:53
+#: ../src/Merge/_MergePerson.py:54
 msgid "manual|Merge_People"
 msgstr "Spoji osobe"
 
-#: ../src/Merge/_MergePerson.py:76
+#: ../src/Merge/_MergePerson.py:77
 msgid "Compare People"
 msgstr "Usporedi Osobe"
 
-#: ../src/Merge/_MergePerson.py:91
-#: ../src/Merge/_MergePerson.py:96
-#: ../src/Merge/_MergePerson.py:272
-#: ../src/Merge/_MergePerson.py:279
-#: ../src/Merge/_MergePerson.py:311
-#: ../src/Merge/_MergePerson.py:316
+#: ../src/Merge/_MergePerson.py:92
+#: ../src/Merge/_MergePerson.py:97
+#: ../src/Merge/_MergePerson.py:273
+#: ../src/Merge/_MergePerson.py:280
+#: ../src/Merge/_MergePerson.py:312
+#: ../src/Merge/_MergePerson.py:317
 #: ../src/plugins/lib/libpersonview.py:373
 #: ../src/plugins/lib/libpersonview.py:386
 #: ../src/plugins/lib/libpersonview.py:397
@@ -6914,34 +6923,34 @@ msgstr "Usporedi Osobe"
 msgid "Cannot merge people"
 msgstr "Ne mogu spojiti osobe"
 
-#: ../src/Merge/_MergePerson.py:92
-#: ../src/Merge/_MergePerson.py:273
-#: ../src/Merge/_MergePerson.py:312
+#: ../src/Merge/_MergePerson.py:93
+#: ../src/Merge/_MergePerson.py:274
+#: ../src/Merge/_MergePerson.py:313
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Supružnici ne mogu niti spojeni. Da biste spojili te osobe prvo morate prekinuti odnose među njima."
 
-#: ../src/Merge/_MergePerson.py:97
-#: ../src/Merge/_MergePerson.py:280
-#: ../src/Merge/_MergePerson.py:317
+#: ../src/Merge/_MergePerson.py:98
+#: ../src/Merge/_MergePerson.py:281
+#: ../src/Merge/_MergePerson.py:318
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Roditelj i dijete ne mogu biti spojeni. Da bi spojili te osobe prvo morate prekinuti odnose među njima."
 
-#: ../src/Merge/_MergePerson.py:142
-#: ../src/plugins/textreport/IndivComplete.py:328
+#: ../src/Merge/_MergePerson.py:143
+#: ../src/plugins/textreport/IndivComplete.py:330
 msgid "Alternate Names"
 msgstr "Izmjena imena"
 
-#: ../src/Merge/_MergePerson.py:162
-#: ../src/Merge/_MergePerson.py:176
+#: ../src/Merge/_MergePerson.py:163
+#: ../src/Merge/_MergePerson.py:177
 msgid "Family ID"
 msgstr "Obitelj ID"
 
-#: ../src/Merge/_MergePerson.py:168
+#: ../src/Merge/_MergePerson.py:169
 msgid "No parents found"
 msgstr "Roditelji nisu pronađeni"
 
 #. Go over spouses and build their menu
-#: ../src/Merge/_MergePerson.py:170
+#: ../src/Merge/_MergePerson.py:171
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:110
 #: ../src/plugins/view/fanchartview.py:789
@@ -6949,18 +6958,18 @@ msgstr "Roditelji nisu pronađeni"
 msgid "Spouses"
 msgstr "Supružnici"
 
-#: ../src/Merge/_MergePerson.py:194
+#: ../src/Merge/_MergePerson.py:195
 msgid "No spouses or children found"
 msgstr "Supružnici ili djeca nisu pronađeni"
 
-#: ../src/Merge/_MergePerson.py:198
-#: ../src/plugins/textreport/IndivComplete.py:358
-#: ../src/plugins/webreport/NarrativeWeb.py:645
+#: ../src/Merge/_MergePerson.py:199
+#: ../src/plugins/textreport/IndivComplete.py:360
+#: ../src/plugins/webreport/NarrativeWeb.py:692
 msgid "Addresses"
 msgstr "Adrese"
 
-#: ../src/Merge/_MergePerson.py:291
-#: ../src/Merge/_MergePerson.py:331
+#: ../src/Merge/_MergePerson.py:292
+#: ../src/Merge/_MergePerson.py:332
 msgid "Merge People"
 msgstr "Spoji Osobe"
 
@@ -7257,7 +7266,7 @@ msgstr "Nije učitano obiteljsko stablo."
 #: ../src/plugins/Records.py:334
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:85
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:66
 msgid "Processing..."
 msgstr "Obrađujem..."
@@ -7279,17 +7288,17 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/AncestorReport.py:253
 #: ../src/plugins/textreport/BirthdayReport.py:339
 #: ../src/plugins/textreport/DescendReport.py:184
-#: ../src/plugins/textreport/DetAncestralReport.py:657
-#: ../src/plugins/textreport/DetDescendantReport.py:736
+#: ../src/plugins/textreport/DetAncestralReport.py:661
+#: ../src/plugins/textreport/DetDescendantReport.py:738
 #: ../src/plugins/textreport/EndOfLineReport.py:237
-#: ../src/plugins/textreport/FamilyGroup.py:602
-#: ../src/plugins/textreport/IndivComplete.py:639
+#: ../src/plugins/textreport/FamilyGroup.py:604
+#: ../src/plugins/textreport/IndivComplete.py:641
 #: ../src/plugins/textreport/KinshipReport.py:323
-#: ../src/plugins/textreport/MarkerReport.py:437
+#: ../src/plugins/textreport/MarkerReport.py:439
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:174
 #: ../src/plugins/textreport/PlaceReport.py:253
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:5618
+#: ../src/plugins/webreport/NarrativeWeb.py:5779
 #: ../src/plugins/webreport/WebCal.py:1338
 #: ../src/ReportBase/_ReportDialog.py:326
 msgid "Report Options"
@@ -7304,9 +7313,9 @@ msgstr "Određuje koje su osobe uključene u izvješće"
 #: ../src/plugins/drawreport/StatisticsChart.py:904
 #: ../src/plugins/drawreport/TimeLine.py:328
 #: ../src/plugins/graph/GVRelGraph.py:474
-#: ../src/plugins/textreport/IndivComplete.py:648
+#: ../src/plugins/textreport/IndivComplete.py:650
 #: ../src/plugins/tool/SortEvents.py:172
-#: ../src/plugins/webreport/NarrativeWeb.py:5645
+#: ../src/plugins/webreport/NarrativeWeb.py:5806
 #: ../src/plugins/webreport/WebCal.py:1356
 msgid "Filter Person"
 msgstr "Filtar osoba"
@@ -7315,7 +7324,7 @@ msgstr "Filtar osoba"
 #: ../src/plugins/drawreport/TimeLine.py:329
 #: ../src/plugins/graph/GVRelGraph.py:475
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:5646
+#: ../src/plugins/webreport/NarrativeWeb.py:5807
 #: ../src/plugins/webreport/WebCal.py:1357
 msgid "The center person for the filter"
 msgstr "Središnja osoba ovog filtra"
@@ -7349,14 +7358,14 @@ msgstr "Zapisi o obiteljima"
 #: ../src/plugins/drawreport/DescendTree.py:524
 #: ../src/plugins/drawreport/FanChart.py:467
 #: ../src/plugins/textreport/AncestorReport.py:344
-#: ../src/plugins/textreport/DetAncestralReport.py:806
-#: ../src/plugins/textreport/DetDescendantReport.py:912
+#: ../src/plugins/textreport/DetAncestralReport.py:810
+#: ../src/plugins/textreport/DetDescendantReport.py:914
 #: ../src/plugins/textreport/EndOfLineReport.py:274
 #: ../src/plugins/textreport/EndOfLineReport.py:292
-#: ../src/plugins/textreport/FamilyGroup.py:696
-#: ../src/plugins/textreport/IndivComplete.py:740
+#: ../src/plugins/textreport/FamilyGroup.py:698
+#: ../src/plugins/textreport/IndivComplete.py:742
 #: ../src/plugins/textreport/KinshipReport.py:379
-#: ../src/plugins/textreport/MarkerReport.py:487
+#: ../src/plugins/textreport/MarkerReport.py:489
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:199
 #: ../src/plugins/textreport/Summary.py:283
 msgid "The basic style used for the text display."
@@ -7521,18 +7530,18 @@ msgid "of %d"
 msgstr "od %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:266
-#: ../src/plugins/webreport/NarrativeWeb.py:5578
+#: ../src/plugins/webreport/NarrativeWeb.py:5739
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "Possible destination error"
 msgstr "Greška mogućeg odredišta"
 
 #: ../src/plugins/docgen/HtmlDoc.py:267
-#: ../src/plugins/webreport/NarrativeWeb.py:5579
+#: ../src/plugins/webreport/NarrativeWeb.py:5740
 #: ../src/plugins/webreport/WebCal.py:248
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Za odredišni direktorij postavili ste direktorij koji služi za spremanje podataka, što može dovesti do problema u radu. Preporučuje se odabir drugog direktorija za spremanje izrađenih web stranica."
 
-#: ../src/plugins/docgen/HtmlDoc.py:520
+#: ../src/plugins/docgen/HtmlDoc.py:532
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Nije moguće stvaranje jpeg formata slike %(name)s"
@@ -7594,8 +7603,8 @@ msgstr "Postavke izvješća"
 #: ../src/plugins/textreport/AncestorReport.py:255
 #: ../src/plugins/textreport/BirthdayReport.py:351
 #: ../src/plugins/textreport/DescendReport.py:186
-#: ../src/plugins/textreport/DetAncestralReport.py:659
-#: ../src/plugins/textreport/DetDescendantReport.py:738
+#: ../src/plugins/textreport/DetAncestralReport.py:663
+#: ../src/plugins/textreport/DetDescendantReport.py:740
 #: ../src/plugins/textreport/EndOfLineReport.py:239
 #: ../src/plugins/textreport/KinshipReport.py:325
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:176
@@ -7612,8 +7621,8 @@ msgstr "Središnja osoba ovog izvješća"
 #: ../src/plugins/drawreport/FanChart.py:411
 #: ../src/plugins/textreport/AncestorReport.py:259
 #: ../src/plugins/textreport/DescendReport.py:190
-#: ../src/plugins/textreport/DetAncestralReport.py:663
-#: ../src/plugins/textreport/DetDescendantReport.py:751
+#: ../src/plugins/textreport/DetAncestralReport.py:667
+#: ../src/plugins/textreport/DetDescendantReport.py:753
 msgid "Generations"
 msgstr "Generacije"
 
@@ -7678,7 +7687,7 @@ msgstr "Formatiranje mjeseci..."
 
 #: ../src/plugins/drawreport/Calendar.py:253
 #: ../src/plugins/textreport/BirthdayReport.py:201
-#: ../src/plugins/webreport/NarrativeWeb.py:5121
+#: ../src/plugins/webreport/NarrativeWeb.py:5293
 #: ../src/plugins/webreport/WebCal.py:1093
 msgid "Applying Filter..."
 msgstr "Primjena filtra ..."
@@ -7751,8 +7760,8 @@ msgstr "Odabir filtra za ograničavanje osoba koje će se pojaviti u izvješću"
 #: ../src/plugins/textreport/AncestorReport.py:256
 #: ../src/plugins/textreport/BirthdayReport.py:352
 #: ../src/plugins/textreport/DescendReport.py:187
-#: ../src/plugins/textreport/DetAncestralReport.py:660
-#: ../src/plugins/textreport/DetDescendantReport.py:739
+#: ../src/plugins/textreport/DetAncestralReport.py:664
+#: ../src/plugins/textreport/DetDescendantReport.py:741
 #: ../src/plugins/textreport/EndOfLineReport.py:240
 #: ../src/plugins/textreport/KinshipReport.py:326
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:177
@@ -7761,7 +7770,7 @@ msgstr "Središnja osoba ovog izvješća"
 
 #: ../src/plugins/drawreport/Calendar.py:412
 #: ../src/plugins/textreport/BirthdayReport.py:364
-#: ../src/plugins/webreport/NarrativeWeb.py:5658
+#: ../src/plugins/webreport/NarrativeWeb.py:5819
 #: ../src/plugins/webreport/WebCal.py:1369
 msgid "Select the format to display names"
 msgstr "Odabir prikaza imena"
@@ -8007,8 +8016,8 @@ msgstr " %(person)s - Lepezasti dijagram za %(generations)d generacija"
 #: ../src/plugins/drawreport/FanChart.py:412
 #: ../src/plugins/textreport/AncestorReport.py:260
 #: ../src/plugins/textreport/DescendReport.py:191
-#: ../src/plugins/textreport/DetAncestralReport.py:664
-#: ../src/plugins/textreport/DetDescendantReport.py:752
+#: ../src/plugins/textreport/DetAncestralReport.py:668
+#: ../src/plugins/textreport/DetDescendantReport.py:754
 msgid "The number of generations to include in the report"
 msgstr "Broj generacija uključenih u izvješće"
 
@@ -8240,7 +8249,7 @@ msgid "%s (persons):"
 msgstr "%s (persons):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:905
-#: ../src/plugins/textreport/IndivComplete.py:649
+#: ../src/plugins/textreport/IndivComplete.py:651
 msgid "The center person for the filter."
 msgstr "Središnja osoba ovog filtra."
 
@@ -8320,13 +8329,13 @@ msgstr "Stil korišten za stavke i njihove vrijednosti."
 #: ../src/plugins/drawreport/TimeLine.py:391
 #: ../src/plugins/textreport/AncestorReport.py:321
 #: ../src/plugins/textreport/DescendReport.py:207
-#: ../src/plugins/textreport/DetAncestralReport.py:760
-#: ../src/plugins/textreport/DetDescendantReport.py:866
+#: ../src/plugins/textreport/DetAncestralReport.py:764
+#: ../src/plugins/textreport/DetDescendantReport.py:868
 #: ../src/plugins/textreport/EndOfLineReport.py:256
-#: ../src/plugins/textreport/FamilyGroup.py:687
-#: ../src/plugins/textreport/IndivComplete.py:708
+#: ../src/plugins/textreport/FamilyGroup.py:689
+#: ../src/plugins/textreport/IndivComplete.py:710
 #: ../src/plugins/textreport/KinshipReport.py:361
-#: ../src/plugins/textreport/MarkerReport.py:467
+#: ../src/plugins/textreport/MarkerReport.py:469
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
 #: ../src/plugins/textreport/SimpleBookTitle.py:154
 #: ../src/plugins/textreport/Summary.py:264
@@ -8515,15 +8524,15 @@ msgstr "Izvor smrti"
 
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:217
-#: ../src/plugins/textreport/FamilyGroup.py:540
-#: ../src/plugins/webreport/NarrativeWeb.py:4446
+#: ../src/plugins/textreport/FamilyGroup.py:542
+#: ../src/plugins/webreport/NarrativeWeb.py:4613
 msgid "Husband"
 msgstr "Muž"
 
 #: ../src/plugins/export/ExportCsv.py:408
 #: ../src/plugins/import/ImportCsv.py:213
-#: ../src/plugins/textreport/FamilyGroup.py:549
-#: ../src/plugins/webreport/NarrativeWeb.py:4448
+#: ../src/plugins/textreport/FamilyGroup.py:551
+#: ../src/plugins/webreport/NarrativeWeb.py:4615
 msgid "Wife"
 msgstr "Žena"
 
@@ -8547,27 +8556,27 @@ msgstr "Primjena odabranoga filtra zabilješki"
 msgid "Filtering unlinked records"
 msgstr "Filtriranje nepovezanih zapisa"
 
-#: ../src/plugins/export/ExportGedcom.py:460
+#: ../src/plugins/export/ExportGedcom.py:462
 msgid "Writing individuals"
 msgstr "Zapisivanje osoba"
 
-#: ../src/plugins/export/ExportGedcom.py:802
+#: ../src/plugins/export/ExportGedcom.py:804
 msgid "Writing families"
 msgstr "Zapisivanje obitelji"
 
-#: ../src/plugins/export/ExportGedcom.py:956
+#: ../src/plugins/export/ExportGedcom.py:958
 msgid "Writing sources"
 msgstr "Zapisivanje izvora"
 
-#: ../src/plugins/export/ExportGedcom.py:990
+#: ../src/plugins/export/ExportGedcom.py:992
 msgid "Writing notes"
 msgstr "Zapisivanje zabilješki"
 
-#: ../src/plugins/export/ExportGedcom.py:1027
+#: ../src/plugins/export/ExportGedcom.py:1029
 msgid "Writing repositories"
 msgstr "Zapisivanje spremišta"
 
-#: ../src/plugins/export/ExportGedcom.py:1411
+#: ../src/plugins/export/ExportGedcom.py:1413
 msgid "Export failed"
 msgstr "Izvoz neuspješan"
 
@@ -8602,18 +8611,18 @@ msgstr "Smrt od %s"
 msgid "Anniversary: %s"
 msgstr "Godišnjica: %s"
 
-#: ../src/plugins/export/ExportXml.py:125
-#: ../src/plugins/export/ExportXml.py:135
-#: ../src/plugins/export/ExportXml.py:153
+#: ../src/plugins/export/ExportXml.py:126
+#: ../src/plugins/export/ExportXml.py:136
+#: ../src/plugins/export/ExportXml.py:154
 #, python-format
 msgid "Failure writing %s"
 msgstr "Greška pri zapisivanju %s"
 
-#: ../src/plugins/export/ExportXml.py:126
+#: ../src/plugins/export/ExportXml.py:127
 msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
 msgstr "Baza ne može biti spremljena pošto nemate pravo pisanja po direktoriju. Provjerite da li imate pravo pisanja i pokušajte opet."
 
-#: ../src/plugins/export/ExportXml.py:136
+#: ../src/plugins/export/ExportXml.py:137
 msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
 msgstr "Baza ne može biti spremljena pošto nemate pravo pisanja po direktoriju. Provjerite da li imate pravo pisanja i pokušajte opet."
 
@@ -8632,68 +8641,72 @@ msgstr "Pokreni"
 
 #: ../src/plugins/gramplet/AgeStats.py:47
 #: ../src/plugins/gramplet/AgeStats.py:57
+#: ../src/plugins/gramplet/AgeStats.py:73
 msgid "Max age"
 msgstr "Najveća starost"
 
 #: ../src/plugins/gramplet/AgeStats.py:49
 #: ../src/plugins/gramplet/AgeStats.py:58
+#: ../src/plugins/gramplet/AgeStats.py:74
 msgid "Max age of Mother at birth"
 msgstr "Najviša dobna granica za majčinstvo"
 
 #: ../src/plugins/gramplet/AgeStats.py:51
 #: ../src/plugins/gramplet/AgeStats.py:59
+#: ../src/plugins/gramplet/AgeStats.py:75
 msgid "Max age of Father at birth"
 msgstr "Najviša dobna granica za očinstvo"
 
 #: ../src/plugins/gramplet/AgeStats.py:53
 #: ../src/plugins/gramplet/AgeStats.py:60
+#: ../src/plugins/gramplet/AgeStats.py:76
 msgid "Chart width"
 msgstr "Širina prikaza"
 
-#: ../src/plugins/gramplet/AgeStats.py:165
+#: ../src/plugins/gramplet/AgeStats.py:170
 msgid "Lifespan Age Distribution"
 msgstr "Duljina života"
 
-#: ../src/plugins/gramplet/AgeStats.py:166
+#: ../src/plugins/gramplet/AgeStats.py:171
 msgid "Father - Child Age Diff Distribution"
 msgstr "Starosna razlika otac-dijete"
 
-#: ../src/plugins/gramplet/AgeStats.py:166
-#: ../src/plugins/gramplet/AgeStats.py:167
+#: ../src/plugins/gramplet/AgeStats.py:171
+#: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Diff"
 msgstr "Razlika"
 
-#: ../src/plugins/gramplet/AgeStats.py:167
+#: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Mother - Child Age Diff Distribution"
 msgstr "Starosna razlika majka-dijete"
 
-#: ../src/plugins/gramplet/AgeStats.py:224
+#: ../src/plugins/gramplet/AgeStats.py:229
 #: ../src/plugins/gramplet/gramplet.gpr.py:229
 msgid "Statistics"
 msgstr "Statistike"
 
-#: ../src/plugins/gramplet/AgeStats.py:225
-#: ../src/plugins/webreport/NarrativeWeb.py:4827
+#: ../src/plugins/gramplet/AgeStats.py:230
+#: ../src/plugins/webreport/NarrativeWeb.py:4998
 msgid "Total"
 msgstr "Ukupno"
 
-#: ../src/plugins/gramplet/AgeStats.py:226
+#: ../src/plugins/gramplet/AgeStats.py:231
 msgid "Minimum"
 msgstr "Najmanje"
 
-#: ../src/plugins/gramplet/AgeStats.py:227
+#: ../src/plugins/gramplet/AgeStats.py:232
 msgid "Average"
 msgstr "Prosječno"
 
-#: ../src/plugins/gramplet/AgeStats.py:228
+#: ../src/plugins/gramplet/AgeStats.py:233
 msgid "Median"
 msgstr "Srednje"
 
-#: ../src/plugins/gramplet/AgeStats.py:229
+#: ../src/plugins/gramplet/AgeStats.py:234
 msgid "Maximum"
 msgstr "Najviše"
 
-#: ../src/plugins/gramplet/AgeStats.py:272
+#: ../src/plugins/gramplet/AgeStats.py:277
 #, python-format
 msgid "Double-click to see %d people"
 msgstr "Dvostruki klik za prikaz %d osoba"
@@ -8718,13 +8731,13 @@ msgstr "Nije odabrana aktivna osoba"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:135
 #: ../src/plugins/gramplet/DescendGramplet.py:153
-#: ../src/plugins/gramplet/PedigreeGramplet.py:160
+#: ../src/plugins/gramplet/PedigreeGramplet.py:164
 msgid "Click to make active\n"
 msgstr "Klik za postavljanje aktivnim\n"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:136
 #: ../src/plugins/gramplet/DescendGramplet.py:154
-#: ../src/plugins/gramplet/PedigreeGramplet.py:161
+#: ../src/plugins/gramplet/PedigreeGramplet.py:165
 msgid "Right-click to edit"
 msgstr "Desni-klik za uređivanje"
 
@@ -8755,18 +8768,18 @@ msgstr "Meni Osobe"
 #: ../src/plugins/view/fanchartview.py:823
 #: ../src/plugins/view/pedigreeview.py:1402
 #: ../src/plugins/view/relview.py:898
-#: ../src/plugins/webreport/NarrativeWeb.py:4191
+#: ../src/plugins/webreport/NarrativeWeb.py:4325
 msgid "Siblings"
 msgstr "Braća i sestre"
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
-#: ../src/plugins/textreport/FamilyGroup.py:559
-#: ../src/plugins/textreport/IndivComplete.py:419
+#: ../src/plugins/textreport/FamilyGroup.py:561
+#: ../src/plugins/textreport/IndivComplete.py:421
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1445
 #: ../src/plugins/view/relview.py:1357
-#: ../src/plugins/webreport/NarrativeWeb.py:4401
+#: ../src/plugins/webreport/NarrativeWeb.py:4535
 msgid "Children"
 msgstr "Djeca"
 
@@ -8846,7 +8859,7 @@ msgid "Total given names showing"
 msgstr "Ukupni broj imena"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:158
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:168
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:109
 msgid "Total people"
 msgstr "Broj osoba"
@@ -8892,7 +8905,7 @@ msgstr "Gramplet koji prikazuje svojstva aktivne osobe"
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
-#: ../src/plugins/webreport/NarrativeWeb.py:110
+#: ../src/plugins/webreport/NarrativeWeb.py:109
 msgid "Attributes"
 msgstr "Svojstva"
 
@@ -9071,35 +9084,38 @@ msgstr "Kako dalje?"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:59
 #: ../src/plugins/gramplet/PedigreeGramplet.py:68
+#: ../src/plugins/gramplet/PedigreeGramplet.py:79
 msgid "Max generations"
 msgstr "Najveći broj generacija"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
 #: ../src/plugins/gramplet/PedigreeGramplet.py:69
+#: ../src/plugins/gramplet/PedigreeGramplet.py:80
 msgid "Show dates"
 msgstr "Pokaži datume"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 #: ../src/plugins/gramplet/PedigreeGramplet.py:70
+#: ../src/plugins/gramplet/PedigreeGramplet.py:81
 msgid "Line type"
 msgstr "Vrsta linija"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:218
+#: ../src/plugins/gramplet/PedigreeGramplet.py:222
 #, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
 msgstr "(r. %(birthdate)s, u. %(deathdate)s)"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:223
+#: ../src/plugins/gramplet/PedigreeGramplet.py:227
 #, python-format
 msgid "(b. %s)"
 msgstr "(r. %s)"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:225
+#: ../src/plugins/gramplet/PedigreeGramplet.py:229
 #, python-format
 msgid "(d. %s)"
 msgstr "(u. %s)"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:247
+#: ../src/plugins/gramplet/PedigreeGramplet.py:251
 msgid ""
 "\n"
 "Breakdown by generation:\n"
@@ -9107,24 +9123,24 @@ msgstr ""
 "\n"
 "Broj osoba po generacijama:\n"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:249
+#: ../src/plugins/gramplet/PedigreeGramplet.py:253
 msgid "percent sign or text string|%"
 msgstr "%"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:256
+#: ../src/plugins/gramplet/PedigreeGramplet.py:260
 msgid "Generation 1"
 msgstr "Generacija 1"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:257
+#: ../src/plugins/gramplet/PedigreeGramplet.py:261
 msgid "Double-click to see people in generation"
 msgstr "Dvostruki klik za prikaz osoba u gegeraciji"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:259
+#: ../src/plugins/gramplet/PedigreeGramplet.py:263
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
 msgstr " ima 1 od 1 osobe (%(percent)s complete)\n"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:262
+#: ../src/plugins/gramplet/PedigreeGramplet.py:266
 #: ../src/plugins/textreport/AncestorReport.py:201
 #: ../src/plugins/textreport/DetAncestralReport.py:174
 #: ../src/plugins/textreport/DetDescendantReport.py:256
@@ -9133,12 +9149,12 @@ msgstr " ima 1 od 1 osobe (%(percent)s complete)\n"
 msgid "Generation %d"
 msgstr "Generacija %d"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:263
+#: ../src/plugins/gramplet/PedigreeGramplet.py:267
 #, python-format
 msgid "Double-click to see people in generation %d"
 msgstr "Dvostruki klik za prikaz osoba u generaciji %d"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:266
+#: ../src/plugins/gramplet/PedigreeGramplet.py:270
 #, python-format
 msgid " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
 msgid_plural " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
@@ -9146,15 +9162,15 @@ msgstr[0] " sadrži %(count_person)d od %(max_count_person)d osobe (%(percent)s 
 msgstr[1] "  sadrži %(count_person)d od %(max_count_person)d osobe (%(percent)s završeno)\n"
 msgstr[2] "  sadrži %(count_person)d od %(max_count_person)d osoba (%(percent)s završeno)\n"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:269
+#: ../src/plugins/gramplet/PedigreeGramplet.py:273
 msgid "All generations"
 msgstr "Sve generacije"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:270
+#: ../src/plugins/gramplet/PedigreeGramplet.py:274
 msgid "Double-click to see all generations"
 msgstr "Dvoklik za prikaz svih generacija"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:272
+#: ../src/plugins/gramplet/PedigreeGramplet.py:276
 #, python-format
 msgid " have %d individual\n"
 msgid_plural " have %d individuals\n"
@@ -9164,7 +9180,6 @@ msgstr[2] " imaju %d osoba\n"
 
 #. Add types:
 #: ../src/plugins/gramplet/QuickViewGramplet.py:64
-#: ../src/plugins/gramplet/QuickViewGramplet.py:71
 #: ../src/plugins/gramplet/QuickViewGramplet.py:89
 #: ../src/plugins/gramplet/QuickViewGramplet.py:109
 #: ../src/plugins/gramplet/QuickViewGramplet.py:120
@@ -9265,9 +9280,9 @@ msgstr "Dvoklik na stavku za prikaz podudarnosti"
 #: ../src/plugins/gramplet/StatsGramplet.py:129
 #: ../src/plugins/graph/GVFamilyLines.py:144
 #: ../src/plugins/textreport/Summary.py:99
-#: ../src/plugins/webreport/NarrativeWeb.py:1017
-#: ../src/plugins/webreport/NarrativeWeb.py:1054
-#: ../src/plugins/webreport/NarrativeWeb.py:1816
+#: ../src/plugins/webreport/NarrativeWeb.py:1071
+#: ../src/plugins/webreport/NarrativeWeb.py:1108
+#: ../src/plugins/webreport/NarrativeWeb.py:1919
 msgid "Individuals"
 msgstr "Osobe"
 
@@ -9354,29 +9369,32 @@ msgstr "Nedostajući mediji"
 msgid "Double-click surname for details"
 msgstr "Dvoklik na prezime za pojedinosti"
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:155
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:82
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:180
+msgid "Number of surnames"
+msgstr "Broj prezimena"
+
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:83
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
+msgid "Min font size"
+msgstr "najmanja veličina pisma"
+
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:84
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:176
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
+msgid "Max font size"
+msgstr "najveća veličina pisma"
+
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:165
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:107
 msgid "Total unique surnames"
 msgstr "Broj jedinstvenih prezimena"
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:157
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:167
 msgid "Total surnames showing"
 msgstr "Broj prikazanih jedinstvena prezimena"
-
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:162
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:170
-msgid "Number of surnames"
-msgstr "Broj prezimena"
-
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:164
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:171
-msgid "Min font size"
-msgstr "najmanja veličina pisma"
-
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:166
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
-msgid "Max font size"
-msgstr "najveća veličina pisma"
 
 #. GUI setup:
 #: ../src/plugins/gramplet/ToDoGramplet.py:37
@@ -9640,7 +9658,7 @@ msgstr "Boja za prikaz osoba nepoznatog spola."
 #: ../src/plugins/textreport/MarkerReport.py:190
 #: ../src/plugins/view/familyview.py:105
 #: ../src/plugins/view/view.gpr.py:55
-#: ../src/plugins/webreport/NarrativeWeb.py:4386
+#: ../src/plugins/webreport/NarrativeWeb.py:4520
 msgid "Families"
 msgstr "Obitelji"
 
@@ -9980,7 +9998,7 @@ msgstr "Uzrok smrti"
 
 #: ../src/plugins/import/ImportCsv.py:200
 #: ../src/plugins/import/ImportCsv.py:272
-#: ../src/plugins/webreport/NarrativeWeb.py:119
+#: ../src/plugins/webreport/NarrativeWeb.py:118
 msgid "Gramps ID"
 msgstr "GRAMPS ID"
 
@@ -10126,8 +10144,8 @@ msgstr "Uvoz GeneWeb"
 msgid "Rebuild reference map"
 msgstr "Preoblikuj mapu referenci"
 
-#: ../src/plugins/import/ImportGrdb.py:2677
-#: ../src/plugins/import/ImportGrdb.py:2690
+#: ../src/plugins/import/ImportGrdb.py:2678
+#: ../src/plugins/import/ImportGrdb.py:2691
 #: ../src/plugins/import/ImportProGen.py:70
 #: ../src/plugins/import/ImportProGen.py:79
 #: ../src/plugins/import/ImportXml.py:2464
@@ -10136,16 +10154,16 @@ msgstr "Preoblikuj mapu referenci"
 msgid "%s could not be opened"
 msgstr "%s ne može biti otvoren"
 
-#: ../src/plugins/import/ImportGrdb.py:2691
+#: ../src/plugins/import/ImportGrdb.py:2692
 msgid "The Database version is not supported by this version of Gramps."
 msgstr "Verzija baze nije podržana u ovoj verziji programa GRAMPS."
 
-#: ../src/plugins/import/ImportGrdb.py:2828
+#: ../src/plugins/import/ImportGrdb.py:2829
 #, python-format
 msgid "Your family tree groups name %(key)s together with %(present)s, did not change this grouping to %(value)s"
 msgstr "Grupno ime %(key)s zajedno sa %(present)s nije promijenilo grupiranje u %(value)s"
 
-#: ../src/plugins/import/ImportGrdb.py:2842
+#: ../src/plugins/import/ImportGrdb.py:2843
 msgid "Import database"
 msgstr "Uvezi bazu podataka"
 
@@ -13934,21 +13952,21 @@ msgstr "Naziv mjesta"
 
 #: ../src/plugins/lib/libplaceview.py:91
 #: ../src/plugins/view/placetreeview.py:71
-#: ../src/plugins/webreport/NarrativeWeb.py:125
+#: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Church Parish"
 msgstr "Župa"
 
 #: ../src/plugins/lib/libplaceview.py:97
 #: ../src/plugins/view/geoview.py:924
 #: ../src/plugins/view/placetreeview.py:77
-#: ../src/plugins/webreport/NarrativeWeb.py:120
+#: ../src/plugins/webreport/NarrativeWeb.py:119
 msgid "Latitude"
 msgstr "Zemljopisna širina"
 
 #: ../src/plugins/lib/libplaceview.py:98
 #: ../src/plugins/view/geoview.py:926
 #: ../src/plugins/view/placetreeview.py:78
-#: ../src/plugins/webreport/NarrativeWeb.py:122
+#: ../src/plugins/webreport/NarrativeWeb.py:121
 msgid "Longitude"
 msgstr "Zemljopisna dužina"
 
@@ -14271,7 +14289,7 @@ msgstr "Roditelj"
 
 #: ../src/plugins/quickview/all_relations.py:287
 #: ../src/plugins/view/relview.py:402
-#: ../src/plugins/webreport/NarrativeWeb.py:126
+#: ../src/plugins/webreport/NarrativeWeb.py:125
 msgid "Partner"
 msgstr "Partner"
 
@@ -14866,14 +14884,14 @@ msgid "Ahnentafel Report for %s"
 msgstr "Izvješće o precima - %s"
 
 #: ../src/plugins/textreport/AncestorReport.py:263
-#: ../src/plugins/textreport/DetAncestralReport.py:667
-#: ../src/plugins/textreport/DetDescendantReport.py:756
+#: ../src/plugins/textreport/DetAncestralReport.py:671
+#: ../src/plugins/textreport/DetDescendantReport.py:758
 msgid "Page break between generations"
 msgstr "Prijelom stranica između generacija"
 
 #: ../src/plugins/textreport/AncestorReport.py:265
-#: ../src/plugins/textreport/DetAncestralReport.py:669
-#: ../src/plugins/textreport/DetDescendantReport.py:758
+#: ../src/plugins/textreport/DetAncestralReport.py:673
+#: ../src/plugins/textreport/DetDescendantReport.py:760
 msgid "Whether to start a new page after each generation."
 msgstr "Početi sa novom stranicom nakon svake generacije."
 
@@ -14901,9 +14919,9 @@ msgid "The translation to be used for the report."
 msgstr "Prijevod korišten u izvješću."
 
 #: ../src/plugins/textreport/AncestorReport.py:334
-#: ../src/plugins/textreport/DetAncestralReport.py:770
-#: ../src/plugins/textreport/DetDescendantReport.py:876
-#: ../src/ReportBase/_Endnotes.py:43
+#: ../src/plugins/textreport/DetAncestralReport.py:774
+#: ../src/plugins/textreport/DetDescendantReport.py:878
+#: ../src/ReportBase/_Endnotes.py:44
 msgid "The style used for the generation header."
 msgstr "Stil korišten za zaglavlja o generacijama."
 
@@ -15014,301 +15032,301 @@ msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s je ista osoba kao [%(id_str)s]."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:279
-#: ../src/plugins/textreport/DetDescendantReport.py:635
+#: ../src/plugins/textreport/DetDescendantReport.py:636
 #, python-format
 msgid "Notes for %s"
 msgstr "Zabilješke o %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:291
-#: ../src/plugins/textreport/DetAncestralReport.py:314
-#: ../src/plugins/textreport/DetAncestralReport.py:325
-#: ../src/plugins/textreport/DetAncestralReport.py:344
-#: ../src/plugins/textreport/DetDescendantReport.py:647
-#: ../src/plugins/textreport/DetDescendantReport.py:665
-#: ../src/plugins/textreport/DetDescendantReport.py:676
-#: ../src/plugins/textreport/DetDescendantReport.py:695
+#: ../src/plugins/textreport/DetAncestralReport.py:293
+#: ../src/plugins/textreport/DetAncestralReport.py:316
+#: ../src/plugins/textreport/DetAncestralReport.py:327
+#: ../src/plugins/textreport/DetAncestralReport.py:346
+#: ../src/plugins/textreport/DetDescendantReport.py:649
+#: ../src/plugins/textreport/DetDescendantReport.py:667
+#: ../src/plugins/textreport/DetDescendantReport.py:678
+#: ../src/plugins/textreport/DetDescendantReport.py:697
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Više o osobi %(person_name)s:"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:298
-#: ../src/plugins/textreport/DetDescendantReport.py:654
+#: ../src/plugins/textreport/DetAncestralReport.py:300
+#: ../src/plugins/textreport/DetDescendantReport.py:656
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:333
-#: ../src/plugins/textreport/DetDescendantReport.py:684
+#: ../src/plugins/textreport/DetAncestralReport.py:335
+#: ../src/plugins/textreport/DetDescendantReport.py:686
 msgid "Address: "
 msgstr "Adresa: "
 
-#: ../src/plugins/textreport/DetAncestralReport.py:351
-#: ../src/plugins/textreport/DetAncestralReport.py:403
+#: ../src/plugins/textreport/DetAncestralReport.py:353
+#: ../src/plugins/textreport/DetAncestralReport.py:405
 #: ../src/plugins/textreport/DetDescendantReport.py:398
-#: ../src/plugins/textreport/DetDescendantReport.py:702
+#: ../src/plugins/textreport/DetDescendantReport.py:704
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:373
+#: ../src/plugins/textreport/DetAncestralReport.py:375
 #: ../src/plugins/textreport/DetDescendantReport.py:368
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s i %(place)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:376
+#: ../src/plugins/textreport/DetAncestralReport.py:378
 #: ../src/plugins/textreport/DetDescendantReport.py:371
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:378
+#: ../src/plugins/textreport/DetAncestralReport.py:380
 #: ../src/plugins/textreport/DetDescendantReport.py:373
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:390
+#: ../src/plugins/textreport/DetAncestralReport.py:392
 #: ../src/plugins/textreport/DetDescendantReport.py:385
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:492
-#: ../src/plugins/textreport/DetDescendantReport.py:512
+#: ../src/plugins/textreport/DetAncestralReport.py:496
+#: ../src/plugins/textreport/DetDescendantReport.py:513
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Djeca od %(mother_name)s i %(father_name)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:545
-#: ../src/plugins/textreport/DetDescendantReport.py:586
+#: ../src/plugins/textreport/DetAncestralReport.py:549
+#: ../src/plugins/textreport/DetDescendantReport.py:587
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Više o %(mother_name)s i %(father_name)s:"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:597
-#: ../src/plugins/textreport/DetDescendantReport.py:479
+#: ../src/plugins/textreport/DetAncestralReport.py:601
+#: ../src/plugins/textreport/DetDescendantReport.py:480
 #, python-format
 msgid "Spouse: %s"
 msgstr "Supružnik: %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:599
-#: ../src/plugins/textreport/DetDescendantReport.py:481
+#: ../src/plugins/textreport/DetAncestralReport.py:603
+#: ../src/plugins/textreport/DetDescendantReport.py:482
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Srodstvo sa: %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:672
-#: ../src/plugins/textreport/DetDescendantReport.py:761
+#: ../src/plugins/textreport/DetAncestralReport.py:676
+#: ../src/plugins/textreport/DetDescendantReport.py:763
 #: ../src/plugins/view/relview.py:1665
 msgid "Content"
 msgstr "Sadržaj"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:674
-#: ../src/plugins/textreport/DetDescendantReport.py:763
+#: ../src/plugins/textreport/DetAncestralReport.py:678
+#: ../src/plugins/textreport/DetDescendantReport.py:765
 msgid "Use callname for common name"
 msgstr "Koristi nadimak kao uobičajeno ime"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:675
-#: ../src/plugins/textreport/DetDescendantReport.py:764
+#: ../src/plugins/textreport/DetAncestralReport.py:679
+#: ../src/plugins/textreport/DetDescendantReport.py:766
 msgid "Whether to use the call name as the first name."
 msgstr "Koristiti nadimke kao uobičajeno ime."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:679
-#: ../src/plugins/textreport/DetDescendantReport.py:767
+#: ../src/plugins/textreport/DetAncestralReport.py:683
+#: ../src/plugins/textreport/DetDescendantReport.py:769
 msgid "Use full dates instead of only the year"
 msgstr "Koristi cijele datume, a ne samo godine"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:680
-#: ../src/plugins/textreport/DetDescendantReport.py:769
+#: ../src/plugins/textreport/DetAncestralReport.py:684
+#: ../src/plugins/textreport/DetDescendantReport.py:771
 msgid "Whether to use full dates instead of just year."
 msgstr "Koristiti cijele datume, a ne samo godine."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:683
-#: ../src/plugins/textreport/DetDescendantReport.py:772
+#: ../src/plugins/textreport/DetAncestralReport.py:687
+#: ../src/plugins/textreport/DetDescendantReport.py:774
 msgid "List children"
 msgstr "Popis djece"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:684
-#: ../src/plugins/textreport/DetDescendantReport.py:773
+#: ../src/plugins/textreport/DetAncestralReport.py:688
+#: ../src/plugins/textreport/DetDescendantReport.py:775
 msgid "Whether to list children."
 msgstr "Koristiti popis djece."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:687
-#: ../src/plugins/textreport/DetDescendantReport.py:776
+#: ../src/plugins/textreport/DetAncestralReport.py:691
+#: ../src/plugins/textreport/DetDescendantReport.py:778
 msgid "Compute death age"
 msgstr "Izračun starosti u trenutku smrti"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:688
-#: ../src/plugins/textreport/DetDescendantReport.py:777
+#: ../src/plugins/textreport/DetAncestralReport.py:692
+#: ../src/plugins/textreport/DetDescendantReport.py:779
 msgid "Whether to compute a person's age at death."
 msgstr "Koristiti izračun starosti u trenutku smrti."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:691
-#: ../src/plugins/textreport/DetDescendantReport.py:780
+#: ../src/plugins/textreport/DetAncestralReport.py:695
+#: ../src/plugins/textreport/DetDescendantReport.py:782
 msgid "Omit duplicate ancestors"
 msgstr "Preskoči ponavljanje predaka"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:692
-#: ../src/plugins/textreport/DetDescendantReport.py:781
+#: ../src/plugins/textreport/DetAncestralReport.py:696
+#: ../src/plugins/textreport/DetDescendantReport.py:783
 msgid "Whether to omit duplicate ancestors."
 msgstr "Preskočiti ponavljanje predaka."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:695
+#: ../src/plugins/textreport/DetAncestralReport.py:699
 msgid "Use Complete Sentences"
 msgstr "Koristi kompletne rečenice"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:697
-#: ../src/plugins/textreport/DetDescendantReport.py:786
+#: ../src/plugins/textreport/DetAncestralReport.py:701
+#: ../src/plugins/textreport/DetDescendantReport.py:788
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Koristiti proširene rečenice ili natuknice."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:700
-#: ../src/plugins/textreport/DetDescendantReport.py:789
+#: ../src/plugins/textreport/DetAncestralReport.py:704
+#: ../src/plugins/textreport/DetDescendantReport.py:791
 msgid "Add descendant reference in child list"
 msgstr "Dodaj reference potomaka u popis djece"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:702
-#: ../src/plugins/textreport/DetDescendantReport.py:792
+#: ../src/plugins/textreport/DetAncestralReport.py:706
+#: ../src/plugins/textreport/DetDescendantReport.py:794
 msgid "Whether to add descendant references in child list."
 msgstr "Dodati reference potomaka u popis djece"
 
 #. #########################
-#: ../src/plugins/textreport/DetAncestralReport.py:705
-#: ../src/plugins/textreport/DetDescendantReport.py:795
-#: ../src/plugins/textreport/FamilyGroup.py:615
-#: ../src/plugins/webreport/NarrativeWeb.py:5776
+#: ../src/plugins/textreport/DetAncestralReport.py:709
+#: ../src/plugins/textreport/DetDescendantReport.py:797
+#: ../src/plugins/textreport/FamilyGroup.py:617
+#: ../src/plugins/webreport/NarrativeWeb.py:5956
 msgid "Include"
 msgstr "Uključi"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:707
-#: ../src/plugins/textreport/DetDescendantReport.py:797
+#: ../src/plugins/textreport/DetAncestralReport.py:711
+#: ../src/plugins/textreport/DetDescendantReport.py:799
 msgid "Include notes"
 msgstr "Uključi zabilješke"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:708
-#: ../src/plugins/textreport/DetDescendantReport.py:798
+#: ../src/plugins/textreport/DetAncestralReport.py:712
+#: ../src/plugins/textreport/DetDescendantReport.py:800
 msgid "Whether to include notes."
 msgstr "Koristiti zabilješke."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:711
-#: ../src/plugins/textreport/DetDescendantReport.py:801
+#: ../src/plugins/textreport/DetAncestralReport.py:715
+#: ../src/plugins/textreport/DetDescendantReport.py:803
 msgid "Include attributes"
 msgstr "Uključi svojstva"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:712
-#: ../src/plugins/textreport/DetDescendantReport.py:802
-#: ../src/plugins/textreport/FamilyGroup.py:637
+#: ../src/plugins/textreport/DetAncestralReport.py:716
+#: ../src/plugins/textreport/DetDescendantReport.py:804
+#: ../src/plugins/textreport/FamilyGroup.py:639
 msgid "Whether to include attributes."
 msgstr "Koristiti svojstva."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:715
-#: ../src/plugins/textreport/DetDescendantReport.py:805
+#: ../src/plugins/textreport/DetAncestralReport.py:719
+#: ../src/plugins/textreport/DetDescendantReport.py:807
 msgid "Include Photo/Images from Gallery"
 msgstr "Uključi fotografije/slike iz galerije"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:716
-#: ../src/plugins/textreport/DetDescendantReport.py:806
+#: ../src/plugins/textreport/DetAncestralReport.py:720
+#: ../src/plugins/textreport/DetDescendantReport.py:808
 msgid "Whether to include images."
 msgstr "Koristiti slike."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:719
-#: ../src/plugins/textreport/DetDescendantReport.py:809
+#: ../src/plugins/textreport/DetAncestralReport.py:723
+#: ../src/plugins/textreport/DetDescendantReport.py:811
 msgid "Include alternative names"
 msgstr "Uključi alternativna imena"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:720
-#: ../src/plugins/textreport/DetDescendantReport.py:810
+#: ../src/plugins/textreport/DetAncestralReport.py:724
+#: ../src/plugins/textreport/DetDescendantReport.py:812
 msgid "Whether to include other names."
 msgstr "Koristiti druga imena."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:723
-#: ../src/plugins/textreport/DetDescendantReport.py:813
+#: ../src/plugins/textreport/DetAncestralReport.py:727
+#: ../src/plugins/textreport/DetDescendantReport.py:815
 msgid "Include events"
 msgstr "Uključi događaje"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:724
-#: ../src/plugins/textreport/DetDescendantReport.py:814
+#: ../src/plugins/textreport/DetAncestralReport.py:728
+#: ../src/plugins/textreport/DetDescendantReport.py:816
 msgid "Whether to include events."
 msgstr "Koristiti događaje."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:727
-#: ../src/plugins/textreport/DetDescendantReport.py:817
+#: ../src/plugins/textreport/DetAncestralReport.py:731
+#: ../src/plugins/textreport/DetDescendantReport.py:819
 msgid "Include addresses"
 msgstr "Uključi adrese"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:728
-#: ../src/plugins/textreport/DetDescendantReport.py:818
+#: ../src/plugins/textreport/DetAncestralReport.py:732
+#: ../src/plugins/textreport/DetDescendantReport.py:820
 msgid "Whether to include addresses."
 msgstr "Koristiti adrese."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:731
-#: ../src/plugins/textreport/DetDescendantReport.py:821
+#: ../src/plugins/textreport/DetAncestralReport.py:735
+#: ../src/plugins/textreport/DetDescendantReport.py:823
 msgid "Include sources"
 msgstr "Uključi izvore"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:732
-#: ../src/plugins/textreport/DetDescendantReport.py:822
+#: ../src/plugins/textreport/DetAncestralReport.py:736
+#: ../src/plugins/textreport/DetDescendantReport.py:824
 msgid "Whether to include source references."
 msgstr "Koristiti reference izvora."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:735
-#: ../src/plugins/textreport/DetDescendantReport.py:825
+#: ../src/plugins/textreport/DetAncestralReport.py:739
+#: ../src/plugins/textreport/DetDescendantReport.py:827
 msgid "Include sources notes"
 msgstr "Uključi zabilješke o izvorima"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:736
-#: ../src/plugins/textreport/DetDescendantReport.py:826
+#: ../src/plugins/textreport/DetAncestralReport.py:740
+#: ../src/plugins/textreport/DetDescendantReport.py:828
 msgid "Whether to include source notes in the Endnotes section. Only works if Include sources is selected."
 msgstr "Uključiti zabilješke izvora u napomenama. Vrijedi samo ako su izvori uključeni."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:740
-#: ../src/plugins/textreport/DetDescendantReport.py:846
+#: ../src/plugins/textreport/DetAncestralReport.py:744
+#: ../src/plugins/textreport/DetDescendantReport.py:848
 msgid "Missing information"
 msgstr "Nedostajući podaci"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:742
-#: ../src/plugins/textreport/DetDescendantReport.py:848
+#: ../src/plugins/textreport/DetAncestralReport.py:746
+#: ../src/plugins/textreport/DetDescendantReport.py:850
 msgid "Replace missing places with ______"
 msgstr "Zamijeni imena nedostajućih mjesta s ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:743
-#: ../src/plugins/textreport/DetDescendantReport.py:849
+#: ../src/plugins/textreport/DetAncestralReport.py:747
+#: ../src/plugins/textreport/DetDescendantReport.py:851
 msgid "Whether to replace missing Places with blanks."
 msgstr "Zamijeniti imena nedostajućih mjesta sa praznim linijama."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:746
-#: ../src/plugins/textreport/DetDescendantReport.py:852
+#: ../src/plugins/textreport/DetAncestralReport.py:750
+#: ../src/plugins/textreport/DetDescendantReport.py:854
 msgid "Replace missing dates with ______"
 msgstr "Zamijeni nedostajuće datume s ______ "
 
-#: ../src/plugins/textreport/DetAncestralReport.py:747
-#: ../src/plugins/textreport/DetDescendantReport.py:853
+#: ../src/plugins/textreport/DetAncestralReport.py:751
+#: ../src/plugins/textreport/DetDescendantReport.py:855
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Zamijeniti nedostajuće datume sa praznim linijama."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:780
-#: ../src/plugins/textreport/DetDescendantReport.py:886
+#: ../src/plugins/textreport/DetAncestralReport.py:784
+#: ../src/plugins/textreport/DetDescendantReport.py:888
 msgid "The style used for the children list title."
 msgstr "Stil korišten za naslov popisa djece."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:790
-#: ../src/plugins/textreport/DetDescendantReport.py:896
+#: ../src/plugins/textreport/DetAncestralReport.py:794
+#: ../src/plugins/textreport/DetDescendantReport.py:898
 msgid "The style used for the children list."
 msgstr "Stil korišten za popis djece."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:813
-#: ../src/plugins/textreport/DetDescendantReport.py:919
+#: ../src/plugins/textreport/DetAncestralReport.py:817
+#: ../src/plugins/textreport/DetDescendantReport.py:921
 msgid "The style used for the first personal entry."
 msgstr "Stil korišten za prvi osobni unos."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:823
-#: ../src/plugins/textreport/DetDescendantReport.py:929
+#: ../src/plugins/textreport/DetAncestralReport.py:827
+#: ../src/plugins/textreport/DetDescendantReport.py:931
 msgid "The style used for the More About header."
 msgstr "Stil korišten za zaglavlje: Više o osobi."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:833
-#: ../src/plugins/textreport/DetDescendantReport.py:939
+#: ../src/plugins/textreport/DetAncestralReport.py:837
+#: ../src/plugins/textreport/DetDescendantReport.py:941
 msgid "The style used for additional detail data."
 msgstr "Stil korišten za dodatne podatke."
 
@@ -15317,52 +15335,52 @@ msgstr "Stil korišten za dodatne podatke."
 msgid "Descendant Report for %(person_name)s"
 msgstr "Izvješće o potomcima - %(person_name)s"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:742
+#: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Numbering system"
 msgstr "Brojevni sustav"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:744
+#: ../src/plugins/textreport/DetDescendantReport.py:746
 msgid "Henry numbering"
 msgstr "Henryev brojevni sustav"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:745
+#: ../src/plugins/textreport/DetDescendantReport.py:747
 msgid "d'Aboville numbering"
 msgstr "d'Aboville brojevni sustav"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:747
+#: ../src/plugins/textreport/DetDescendantReport.py:749
 msgid "Record (Modified Register) numbering"
 msgstr "\"Modified Register\"  brojevni sustav"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:748
+#: ../src/plugins/textreport/DetDescendantReport.py:750
 msgid "The numbering system to be used"
 msgstr "Brojevni sustav koji će biti upotrijebljen"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:784
+#: ../src/plugins/textreport/DetDescendantReport.py:786
 msgid "Use complete sentences"
 msgstr "Koristi kompletne rečenice"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:830
+#: ../src/plugins/textreport/DetDescendantReport.py:832
 #: ../src/plugins/textreport/KinshipReport.py:337
 msgid "Include spouses"
 msgstr "Uključi supružnike"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:831
+#: ../src/plugins/textreport/DetDescendantReport.py:833
 msgid "Whether to include detailed spouse information."
 msgstr "Uključiti detaljne podatke o supružnicima."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:834
+#: ../src/plugins/textreport/DetDescendantReport.py:836
 msgid "Include sign of succession ('+') in child-list"
 msgstr "Uključiti znak ('+') za produženje loze u popisu djece"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:836
+#: ../src/plugins/textreport/DetDescendantReport.py:838
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
 msgstr "Uključuje znak ('+') prije broja potomka u popisu djece kao oznaku da dijete ima svoje potomke"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:841
+#: ../src/plugins/textreport/DetDescendantReport.py:843
 msgid "Include path to start-person"
 msgstr "Uključiti srodstvo sa početnom osobom"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:842
+#: ../src/plugins/textreport/DetDescendantReport.py:844
 msgid "Whether to include the path of descendancy from the start-person to each descendant."
 msgstr "Uključuje putanju srodstva sa početnom osobom za svakog potomka"
 
@@ -15383,7 +15401,7 @@ msgid " (%(birth_date)s - %(death_date)s)"
 msgstr " (%(birth_date)s - %(death_date)s)"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:265
-#: ../src/plugins/textreport/MarkerReport.py:477
+#: ../src/plugins/textreport/MarkerReport.py:479
 msgid "The style used for the section headers."
 msgstr "Stil korišten za zaglavlja odlomka."
 
@@ -15392,148 +15410,149 @@ msgid "The basic style used for generation headings."
 msgstr "Osnovni stil korišten za zaglavlje generacija."
 
 #: ../src/plugins/textreport/FamilyGroup.py:102
+#: ../src/plugins/webreport/NarrativeWeb.py:520
 #, python-format
 msgid "%(type)s: %(value)s"
 msgstr "%(type)s: %(value)s"
 
-#: ../src/plugins/textreport/FamilyGroup.py:352
+#: ../src/plugins/textreport/FamilyGroup.py:354
 msgid "Marriage:"
 msgstr "Vjenčanje:"
 
-#: ../src/plugins/textreport/FamilyGroup.py:433
+#: ../src/plugins/textreport/FamilyGroup.py:435
 msgid "acronym for male|M"
 msgstr "M"
 
-#: ../src/plugins/textreport/FamilyGroup.py:435
+#: ../src/plugins/textreport/FamilyGroup.py:437
 msgid "acronym for female|F"
 msgstr "Ž"
 
-#: ../src/plugins/textreport/FamilyGroup.py:437
+#: ../src/plugins/textreport/FamilyGroup.py:439
 #, python-format
 msgid "acronym for unknown|%dU"
 msgstr "%dN"
 
-#: ../src/plugins/textreport/FamilyGroup.py:531
+#: ../src/plugins/textreport/FamilyGroup.py:533
 #, python-format
 msgid "Family Group Report - Generation %d"
 msgstr "Obiteljsko izvješće - Generacija %d"
 
-#: ../src/plugins/textreport/FamilyGroup.py:533
-#: ../src/plugins/textreport/FamilyGroup.py:582
+#: ../src/plugins/textreport/FamilyGroup.py:535
+#: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
 msgstr "Izvješće o obitelji"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:605
+#: ../src/plugins/textreport/FamilyGroup.py:607
 msgid "Center Family"
 msgstr "Središnja Obitelj"
 
-#: ../src/plugins/textreport/FamilyGroup.py:606
+#: ../src/plugins/textreport/FamilyGroup.py:608
 msgid "The center family for the report"
 msgstr "Središnja obitelj ovog izvješća"
 
-#: ../src/plugins/textreport/FamilyGroup.py:609
+#: ../src/plugins/textreport/FamilyGroup.py:611
 msgid "Recursive"
 msgstr "Povratno"
 
-#: ../src/plugins/textreport/FamilyGroup.py:610
+#: ../src/plugins/textreport/FamilyGroup.py:612
 msgid "Create reports for all descendants of this family."
 msgstr "Izrađuje izvješće o potomcima ove obitelji."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:618
+#: ../src/plugins/textreport/FamilyGroup.py:620
 msgid "Generation numbers (recursive only)"
 msgstr "Broj generacija (rekurzivno)"
 
-#: ../src/plugins/textreport/FamilyGroup.py:620
+#: ../src/plugins/textreport/FamilyGroup.py:622
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr "Uključiti generacije u sva izvješća (rekurzivno)"
 
-#: ../src/plugins/textreport/FamilyGroup.py:624
+#: ../src/plugins/textreport/FamilyGroup.py:626
 msgid "Parent Events"
 msgstr "Događaji roditelja"
 
-#: ../src/plugins/textreport/FamilyGroup.py:625
+#: ../src/plugins/textreport/FamilyGroup.py:627
 msgid "Whether to include events for parents."
 msgstr "Uključiti podatke o događajima roditelja."
 
-#: ../src/plugins/textreport/FamilyGroup.py:628
+#: ../src/plugins/textreport/FamilyGroup.py:630
 msgid "Parent Addresses"
 msgstr "Adresa roditelja"
 
-#: ../src/plugins/textreport/FamilyGroup.py:629
+#: ../src/plugins/textreport/FamilyGroup.py:631
 msgid "Whether to include addresses for parents."
 msgstr "Uključiti podatke o adresama roditelja."
 
-#: ../src/plugins/textreport/FamilyGroup.py:632
+#: ../src/plugins/textreport/FamilyGroup.py:634
 msgid "Parent Notes"
 msgstr "Zabilješke o roditeljima"
 
-#: ../src/plugins/textreport/FamilyGroup.py:633
+#: ../src/plugins/textreport/FamilyGroup.py:635
 msgid "Whether to include notes for parents."
 msgstr "Uključiti podatke o zabilješkama roditelja."
 
-#: ../src/plugins/textreport/FamilyGroup.py:636
+#: ../src/plugins/textreport/FamilyGroup.py:638
 msgid "Parent Attributes"
 msgstr "Svojstva roditelja"
 
-#: ../src/plugins/textreport/FamilyGroup.py:640
+#: ../src/plugins/textreport/FamilyGroup.py:642
 msgid "Alternate Parent Names"
 msgstr "Uključi alternativna imena roditelja"
 
-#: ../src/plugins/textreport/FamilyGroup.py:641
+#: ../src/plugins/textreport/FamilyGroup.py:643
 msgid "Whether to include alternate names for parents."
 msgstr "Uključiti alternativna imena roditelja."
 
-#: ../src/plugins/textreport/FamilyGroup.py:645
+#: ../src/plugins/textreport/FamilyGroup.py:647
 msgid "Parent Marriage"
 msgstr "Vjenčanje roditelja"
 
-#: ../src/plugins/textreport/FamilyGroup.py:646
+#: ../src/plugins/textreport/FamilyGroup.py:648
 msgid "Whether to include marriage information for parents."
 msgstr "Uključiti podatke o vjenčanju roditelja."
 
-#: ../src/plugins/textreport/FamilyGroup.py:650
+#: ../src/plugins/textreport/FamilyGroup.py:652
 msgid "Dates of Relatives"
 msgstr "Datumi rodbine"
 
-#: ../src/plugins/textreport/FamilyGroup.py:651
+#: ../src/plugins/textreport/FamilyGroup.py:653
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr "Uključiti prikaz datuma za rodbinu (otac, majka, supružnik)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:655
+#: ../src/plugins/textreport/FamilyGroup.py:657
 msgid "Children Marriages"
 msgstr "Vjenčanja djece"
 
-#: ../src/plugins/textreport/FamilyGroup.py:656
+#: ../src/plugins/textreport/FamilyGroup.py:658
 msgid "Whether to include marriage information for children."
 msgstr "Uključiti podatke o vjenčanjima djece."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:661
+#: ../src/plugins/textreport/FamilyGroup.py:663
 msgid "Missing Information"
 msgstr "Nedostajući podaci"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:664
+#: ../src/plugins/textreport/FamilyGroup.py:666
 msgid "Print fields for missing information"
 msgstr "Ispiši prazno polje za nedostajuće podatke"
 
-#: ../src/plugins/textreport/FamilyGroup.py:666
+#: ../src/plugins/textreport/FamilyGroup.py:668
 msgid "Whether to include fields for missing information."
 msgstr "Uključiti polja za nedostajuće podatke."
 
-#: ../src/plugins/textreport/FamilyGroup.py:708
-#: ../src/plugins/textreport/MarkerReport.py:505
+#: ../src/plugins/textreport/FamilyGroup.py:710
+#: ../src/plugins/textreport/MarkerReport.py:507
 msgid "The basic style used for the note display."
 msgstr "Osnovni stil prikaza zabilješki."
 
-#: ../src/plugins/textreport/FamilyGroup.py:717
+#: ../src/plugins/textreport/FamilyGroup.py:719
 msgid "The style used for the text related to the children."
 msgstr "Stil teksta koji se odnosi na djecu."
 
-#: ../src/plugins/textreport/FamilyGroup.py:727
+#: ../src/plugins/textreport/FamilyGroup.py:729
 msgid "The style used for the parent's name"
 msgstr "Stil teksta za imena roditelja"
 
@@ -15556,72 +15575,72 @@ msgstr "Osobni detalji"
 msgid "%s in %s. "
 msgstr "%s u %s."
 
-#: ../src/plugins/textreport/IndivComplete.py:274
+#: ../src/plugins/textreport/IndivComplete.py:276
 msgid "Alternate Parents"
 msgstr "Zamijeniti roditelje"
 
-#: ../src/plugins/textreport/IndivComplete.py:386
+#: ../src/plugins/textreport/IndivComplete.py:388
 msgid "Marriages/Children"
 msgstr "Vjenčanja/Djeca"
 
-#: ../src/plugins/textreport/IndivComplete.py:526
+#: ../src/plugins/textreport/IndivComplete.py:528
 #, python-format
 msgid "Summary of %s"
 msgstr "Sažetak %s"
 
-#: ../src/plugins/textreport/IndivComplete.py:546
-#: ../src/plugins/webreport/NarrativeWeb.py:1145
-#: ../src/plugins/webreport/NarrativeWeb.py:1290
-#: ../src/plugins/webreport/NarrativeWeb.py:1367
-#: ../src/plugins/webreport/NarrativeWeb.py:1383
+#: ../src/plugins/textreport/IndivComplete.py:548
+#: ../src/plugins/webreport/NarrativeWeb.py:1201
+#: ../src/plugins/webreport/NarrativeWeb.py:1380
+#: ../src/plugins/webreport/NarrativeWeb.py:1469
+#: ../src/plugins/webreport/NarrativeWeb.py:1485
 #: ../src/ReportBase/_ReportUtils.py:141
 msgid "Could not add photo to page"
 msgstr "Nije moguće dodati sliku na stranicu"
 
-#: ../src/plugins/textreport/IndivComplete.py:565
+#: ../src/plugins/textreport/IndivComplete.py:567
 #: ../src/glade/editperson.glade.h:11
 msgid "Male"
 msgstr "Muško"
 
-#: ../src/plugins/textreport/IndivComplete.py:567
+#: ../src/plugins/textreport/IndivComplete.py:569
 #: ../src/glade/editperson.glade.h:8
 msgid "Female"
 msgstr "Žensko"
 
-#: ../src/plugins/textreport/IndivComplete.py:644
+#: ../src/plugins/textreport/IndivComplete.py:646
 msgid "Select the filter to be applied to the report."
 msgstr "Odabir filtra koji će biti primijenjen na izvješće."
 
-#: ../src/plugins/textreport/IndivComplete.py:655
+#: ../src/plugins/textreport/IndivComplete.py:657
 msgid "List events chronologically"
 msgstr "Poredaj događaje kronološki"
 
-#: ../src/plugins/textreport/IndivComplete.py:656
+#: ../src/plugins/textreport/IndivComplete.py:658
 msgid "Whether to sort events into chronological order."
 msgstr "Uključiti kronološki prikaz događaja."
 
-#: ../src/plugins/textreport/IndivComplete.py:659
+#: ../src/plugins/textreport/IndivComplete.py:661
 msgid "Include Source Information"
 msgstr "Uključi informacije o izvoru"
 
-#: ../src/plugins/textreport/IndivComplete.py:660
+#: ../src/plugins/textreport/IndivComplete.py:662
 msgid "Whether to cite sources."
 msgstr "Koristiti zapise izvora."
 
 #. ###############################
-#: ../src/plugins/textreport/IndivComplete.py:666
+#: ../src/plugins/textreport/IndivComplete.py:668
 msgid "Event groups"
 msgstr "Grupe događaja"
 
-#: ../src/plugins/textreport/IndivComplete.py:667
+#: ../src/plugins/textreport/IndivComplete.py:669
 msgid "Check if a separate section is required."
 msgstr "Odaberite ako želite odvojene odjeljke"
 
-#: ../src/plugins/textreport/IndivComplete.py:720
+#: ../src/plugins/textreport/IndivComplete.py:722
 msgid "The style used for category labels."
 msgstr "Stil korišten za oznake kategorija."
 
-#: ../src/plugins/textreport/IndivComplete.py:731
+#: ../src/plugins/textreport/IndivComplete.py:733
 msgid "The style used for the spouse's name."
 msgstr "Stil korišten za imena supružnika."
 
@@ -15681,11 +15700,11 @@ msgstr "Osobe"
 msgid "Id"
 msgstr "ID"
 
-#: ../src/plugins/textreport/MarkerReport.py:450
+#: ../src/plugins/textreport/MarkerReport.py:452
 msgid "The marker to use for the report"
 msgstr "Oznake korištene u izvješću"
 
-#: ../src/plugins/textreport/MarkerReport.py:498
+#: ../src/plugins/textreport/MarkerReport.py:500
 msgid "The basic style used for table headings."
 msgstr "Osnovni stil korišten za naslove tablica."
 
@@ -17848,7 +17867,7 @@ msgstr "Pronađena osoba je sama sebi predak."
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/plugins/view/pedigreeview.py:1225
 #: ../src/plugins/view/pedigreeview.py:1234
-#: ../src/plugins/webreport/NarrativeWeb.py:3059
+#: ../src/plugins/webreport/NarrativeWeb.py:3166
 msgid "Home"
 msgstr "Početak"
 
@@ -18265,637 +18284,659 @@ msgstr "Pogled Izvori"
 msgid "The view showing all the sources"
 msgstr "Pogled koji prikazuje sve izvore"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:121
+#: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Alternate Locations"
 msgstr "Alternativne lokacije"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:130
+#: ../src/plugins/webreport/NarrativeWeb.py:129
 msgid "Postal Code"
 msgstr "Poštanski broj"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:133
+#: ../src/plugins/webreport/NarrativeWeb.py:132
 msgid "State/ Province"
 msgstr "Država/Pokrajina"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:572
+#: ../src/plugins/webreport/NarrativeWeb.py:619
 msgid "Sealed to "
 msgstr "Pečačeno"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:879
-#, python-format
-msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> on %(date)s"
-msgstr "Izrađeno programom <a href = \"%(homepage)s\">GRAMPS</a>  %(date)s"
+#: ../src/plugins/webreport/NarrativeWeb.py:887
+#: ../src/plugins/webreport/NarrativeWeb.py:4583
+msgid "Attribute/ Type"
+msgstr "Svojstvo/ Vrsta"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:894
+#: ../src/plugins/webreport/NarrativeWeb.py:926
+#, python-format
+msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
+msgstr "Izrađeno programom <a href = \"%(homepage)s\">GRAMPS</a> %(version)s on %(date)s"
+
+#. carriage return was added by Stephane Charette to force it down one line
+#: ../src/plugins/webreport/NarrativeWeb.py:941
 #, python-format
 msgid " Created for <a href = \"%s\">%s</a>"
 msgstr " Izradio <a href = \"%s\">%s</a>"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1015
+#: ../src/plugins/webreport/NarrativeWeb.py:1069
 msgid "Html|Home"
 msgstr "Početna stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1016
-#: ../src/plugins/webreport/NarrativeWeb.py:3022
+#: ../src/plugins/webreport/NarrativeWeb.py:1070
+#: ../src/plugins/webreport/NarrativeWeb.py:3129
 msgid "Introduction"
 msgstr "Uvod"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1018
-#: ../src/plugins/webreport/NarrativeWeb.py:1049
-#: ../src/plugins/webreport/NarrativeWeb.py:1052
-#: ../src/plugins/webreport/NarrativeWeb.py:2894
+#: ../src/plugins/webreport/NarrativeWeb.py:1072
+#: ../src/plugins/webreport/NarrativeWeb.py:1103
+#: ../src/plugins/webreport/NarrativeWeb.py:1106
+#: ../src/plugins/webreport/NarrativeWeb.py:3001
 msgid "Surnames"
 msgstr "Prezimena"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1022
-#: ../src/plugins/webreport/NarrativeWeb.py:3353
-#: ../src/plugins/webreport/NarrativeWeb.py:5796
+#: ../src/plugins/webreport/NarrativeWeb.py:1076
+#: ../src/plugins/webreport/NarrativeWeb.py:3460
+#: ../src/plugins/webreport/NarrativeWeb.py:5976
 msgid "Download"
 msgstr "Preuzimanje"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1023
-#: ../src/plugins/webreport/NarrativeWeb.py:3460
+#: ../src/plugins/webreport/NarrativeWeb.py:1077
+#: ../src/plugins/webreport/NarrativeWeb.py:3567
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1026
-#: ../src/plugins/webreport/NarrativeWeb.py:1069
-#: ../src/plugins/webreport/NarrativeWeb.py:4740
-#: ../src/plugins/webreport/NarrativeWeb.py:4862
+#: ../src/plugins/webreport/NarrativeWeb.py:1080
+#: ../src/plugins/webreport/NarrativeWeb.py:1123
+#: ../src/plugins/webreport/NarrativeWeb.py:4911
+#: ../src/plugins/webreport/NarrativeWeb.py:5033
 msgid "Address Book"
 msgstr "Adresar"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1319
+#: ../src/plugins/webreport/NarrativeWeb.py:1421
 msgid "Gallery"
 msgstr "Galerija"
 
 #. add section title
-#: ../src/plugins/webreport/NarrativeWeb.py:1408
+#: ../src/plugins/webreport/NarrativeWeb.py:1510
 msgid "Narrative"
 msgstr "Narativni tekst"
 
 #. begin web title
-#: ../src/plugins/webreport/NarrativeWeb.py:1425
-#: ../src/plugins/webreport/NarrativeWeb.py:4767
+#: ../src/plugins/webreport/NarrativeWeb.py:1527
+#: ../src/plugins/webreport/NarrativeWeb.py:4938
 msgid "Web Links"
 msgstr "Web poveznice"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1512
+#: ../src/plugins/webreport/NarrativeWeb.py:1544
+msgid "Link/ Description"
+msgstr "Link/ Opis"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:1613
 msgid "Confidence"
 msgstr "Pouzdanost"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1517
+#: ../src/plugins/webreport/NarrativeWeb.py:1617
 msgid "Source References"
 msgstr "Reference izvora"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1591
+#: ../src/plugins/webreport/NarrativeWeb.py:1692
 msgid "References"
 msgstr "Reference"
 
 #. Individual List page message
-#: ../src/plugins/webreport/NarrativeWeb.py:1823
+#: ../src/plugins/webreport/NarrativeWeb.py:1926
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Ova stranica sadrži indeks svih osoba u bazi, poredanih prema prezimenima. Odabirom imena osobe otvoriti će se osobna stranica te osobe."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2009
+#: ../src/plugins/webreport/NarrativeWeb.py:2112
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Ova stranica sadrži indeks svih osoba u bazi sa prezimenom %s. Odabirom imena osobe otvoriti će se osobna stranica te osobe"
 
 #. place list page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2156
+#: ../src/plugins/webreport/NarrativeWeb.py:2259
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
 msgstr "Ova stranica sadrži indeks svih mjesta u bazi, poredanih prema nazivu. Odabirom naziva mjesta otvoriti će se stranica tog mjesta."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2179
-#: ../src/plugins/webreport/NarrativeWeb.py:2931
+#: ../src/plugins/webreport/NarrativeWeb.py:2282
+#: ../src/plugins/webreport/NarrativeWeb.py:3038
 msgid "Letter"
 msgstr "Pismo"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2180
+#: ../src/plugins/webreport/NarrativeWeb.py:2283
 msgid "Place Name | Name"
 msgstr "Naziv mjesta"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2183
+#: ../src/plugins/webreport/NarrativeWeb.py:2286
 msgid "Latitude/ Longitude"
 msgstr "Zemljopisna širina/visina"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2325
+#: ../src/plugins/webreport/NarrativeWeb.py:2431
 msgid "This page contains an index of all the events in the database, sorted by their type, date (if one is present), and gramps id, Clicking on an event&#8217;s Gramps ID will load a page for that event."
 msgstr "Ova stranica sadrži indeks svih mjesta u bazi, poredanih prema nazivu. Odabirom naziva mjesta otvoriti će se stranica tog mjesta."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2374
+#: ../src/plugins/webreport/NarrativeWeb.py:2480
 #, python-format
 msgid "Event types beginning with %(eventtype)s"
 msgstr "Događaji koji počinju sa: %(eventtype)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2638
+#: ../src/plugins/webreport/NarrativeWeb.py:2741
 msgid "Previous"
 msgstr "Prijašnje"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2639
+#: ../src/plugins/webreport/NarrativeWeb.py:2742
 #, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 msgstr "<strong id=\"GalleryCurrent\">%(page_number)d</strong> od <strong id=\"GalleryTotal\">%(total_pages)d</strong>"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2644
+#: ../src/plugins/webreport/NarrativeWeb.py:2747
 msgid "Next"
 msgstr "Dalje"
 
 #. missing media error message
-#: ../src/plugins/webreport/NarrativeWeb.py:2647
+#: ../src/plugins/webreport/NarrativeWeb.py:2750
 msgid "The file has been moved or deleted."
 msgstr "Ova datoteka je premještena ili obrisana"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2779
+#: ../src/plugins/webreport/NarrativeWeb.py:2886
 msgid "File Type"
 msgstr "Vrsta dokumenta"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2861
+#: ../src/plugins/webreport/NarrativeWeb.py:2968
 msgid "Missing media object:"
 msgstr "Nedostajući multimedijski objekt:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2897
+#: ../src/plugins/webreport/NarrativeWeb.py:3004
 msgid "Surnames by person count"
 msgstr "Broj osoba po prezimenu"
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2904
+#: ../src/plugins/webreport/NarrativeWeb.py:3011
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr "Ova stranica sadrži indeks svih prezimena u bazi. Odabir određenog prezimena otvara popis osoba u bazi sa tim prezimenom."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2944
+#: ../src/plugins/webreport/NarrativeWeb.py:3051
 msgid "Number of People"
 msgstr "Broj osoba"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3110
+#: ../src/plugins/webreport/NarrativeWeb.py:3217
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
 msgstr "Ova stranica sadrži indeks svih izvora u bazi, poredanih prema njihovom nazivu. Odabirom naziva izvora otvoriti će se stranica tog izvora."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3126
+#: ../src/plugins/webreport/NarrativeWeb.py:3233
 msgid "Source Name|Name"
 msgstr "Naziv"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3194
+#: ../src/plugins/webreport/NarrativeWeb.py:3302
 msgid "Publication information"
 msgstr "Informacije o publikaciji"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3241
+#: ../src/plugins/webreport/NarrativeWeb.py:3349
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
 msgstr "Ova stranica sadrži indeks svih multimedijskih zapisa u bazi, poredanih prema njihovom nazivu. Odabirom naziva medija otvoriti će se njegova stranica."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3260
+#: ../src/plugins/webreport/NarrativeWeb.py:3368
 msgid "Media | Name"
 msgstr "Naziv"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3262
+#: ../src/plugins/webreport/NarrativeWeb.py:3370
 msgid "Mime Type"
 msgstr "MIME tip"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3376
+#: ../src/plugins/webreport/NarrativeWeb.py:3466
+msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them."
+msgstr "Ova stranica služi korisniku/stvaraocu obiteljskog stabla/web sjedišta za dijeljenje datoteka. Ako postoji popis datoteka klik na nju omogućiti će njeno preuzimanje."
+
+#: ../src/plugins/webreport/NarrativeWeb.py:3486
 msgid "File Name"
 msgstr "Ime datoteke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3378
+#: ../src/plugins/webreport/NarrativeWeb.py:3488
 msgid "License"
 msgstr "Licenca"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3379
+#: ../src/plugins/webreport/NarrativeWeb.py:3489
 msgid "Last Modified"
 msgstr "Posljednja izmjena"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3732
+#: ../src/plugins/webreport/NarrativeWeb.py:3849
 msgid "Ancestors"
 msgstr "Preci"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3787
+#: ../src/plugins/webreport/NarrativeWeb.py:3904
 msgid "Associations"
 msgstr "Poveznice"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3969
+#: ../src/plugins/webreport/NarrativeWeb.py:4101
 msgid "Nick Name"
 msgstr "Nadimak"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4007
+#: ../src/plugins/webreport/NarrativeWeb.py:4139
 msgid "Age at Death"
 msgstr "Starost u trenutku smrti"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4070
+#: ../src/plugins/webreport/NarrativeWeb.py:4204
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Mormoni/Uredbe"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4607
+#: ../src/plugins/webreport/NarrativeWeb.py:4774
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
 msgstr "Ova stranica sadrži indeks svih spremišta u bazi, poredanih prema njihovom nazivu. Odabirom naziva spremišta otvoriti će se stranica tog spremišta."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4622
+#: ../src/plugins/webreport/NarrativeWeb.py:4789
 msgid "Repository |Name"
 msgstr "Naziv"
 
 #. Internet Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:4747
+#: ../src/plugins/webreport/NarrativeWeb.py:4918
 msgid "This page contains an index of all the individuals in the database, sorted by their surname. Selecting the person&#8217;s name will take you to their Address Book&#8217;s individual page."
 msgstr "Ova stranica sadrži indeks svih osoba u bazi, poredanih prema prezimenima. Odabirom imena osobe otvoriti će se osobna stranica te osobe."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5009
+#: ../src/plugins/webreport/NarrativeWeb.py:5180
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "%s i %s nisu direktoriji"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5016
-#: ../src/plugins/webreport/NarrativeWeb.py:5020
-#: ../src/plugins/webreport/NarrativeWeb.py:5033
-#: ../src/plugins/webreport/NarrativeWeb.py:5037
+#: ../src/plugins/webreport/NarrativeWeb.py:5187
+#: ../src/plugins/webreport/NarrativeWeb.py:5191
+#: ../src/plugins/webreport/NarrativeWeb.py:5204
+#: ../src/plugins/webreport/NarrativeWeb.py:5208
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Ne mogu kreirati direktorij: %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5042
+#: ../src/plugins/webreport/NarrativeWeb.py:5213
 msgid "Invalid file name"
 msgstr "Nepravilno ime datoteke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5043
+#: ../src/plugins/webreport/NarrativeWeb.py:5214
 msgid "The archive file must be a file, not a directory"
 msgstr "Zapis mora biti u obliku datoteke, a ne direktorija"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5052
+#: ../src/plugins/webreport/NarrativeWeb.py:5223
 msgid "Narrated Web Site Report"
 msgstr "Obiteljska web stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5105
+#: ../src/plugins/webreport/NarrativeWeb.py:5276
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, putanja=%(dir)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5110
+#: ../src/plugins/webreport/NarrativeWeb.py:5281
 msgid "Missing media objects:"
 msgstr "Nedostajući multimedijski objekti:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5198
+#: ../src/plugins/webreport/NarrativeWeb.py:5363
 msgid "Creating individual pages"
 msgstr "Kreiranje osobnih stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5215
+#: ../src/plugins/webreport/NarrativeWeb.py:5377
 msgid "Creating GENDEX file"
 msgstr "Stvaranje GENDEX datoteke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5255
+#: ../src/plugins/webreport/NarrativeWeb.py:5417
 msgid "Creating surname pages"
 msgstr "Kreiranje stranica s prezimenima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5269
+#: ../src/plugins/webreport/NarrativeWeb.py:5431
 msgid "Creating source pages"
 msgstr "Kreiranje stranica s izvorima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5279
+#: ../src/plugins/webreport/NarrativeWeb.py:5441
 msgid "Creating place pages"
 msgstr "Kreiranje stranica s mjestima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5296
+#: ../src/plugins/webreport/NarrativeWeb.py:5458
 msgid "Creating event pages"
 msgstr "Kreiranje stranica s događajima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5303
+#: ../src/plugins/webreport/NarrativeWeb.py:5465
 #, python-format
 msgid "Creating event page %02d of %02d"
 msgstr "Izrada %02d od %02d stranice sa događajima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5313
+#: ../src/plugins/webreport/NarrativeWeb.py:5475
 msgid "Creating media pages"
 msgstr "Kreiranje stranica s multimedijom"
 
 #. set progress bar pass for Repositories
-#: ../src/plugins/webreport/NarrativeWeb.py:5364
+#: ../src/plugins/webreport/NarrativeWeb.py:5526
 msgid "Creating repository pages"
 msgstr "Kreiranje stranica s spremištima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5420
+#: ../src/plugins/webreport/NarrativeWeb.py:5583
 msgid "Creating address book pages ..."
 msgstr "Kreiranje stranica s adresama ..."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5620
+#: ../src/plugins/webreport/NarrativeWeb.py:5781
 msgid "Store web pages in .tar.gz archive"
 msgstr "Spremi web-stranice u .tar.gz arhivu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5622
+#: ../src/plugins/webreport/NarrativeWeb.py:5783
 msgid "Whether to store the web pages in an archive file"
 msgstr "Spremiti web-stranice u arhivskom formatu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5627
+#: ../src/plugins/webreport/NarrativeWeb.py:5788
 #: ../src/plugins/webreport/WebCal.py:1340
 msgid "Destination"
 msgstr "Odredište"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5629
+#: ../src/plugins/webreport/NarrativeWeb.py:5790
 #: ../src/plugins/webreport/WebCal.py:1342
 msgid "The destination directory for the web files"
 msgstr "Mapa za spremanje web datoteka"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5635
+#: ../src/plugins/webreport/NarrativeWeb.py:5796
 msgid "Web site title"
 msgstr "Naziv web stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5635
+#: ../src/plugins/webreport/NarrativeWeb.py:5796
 msgid "My Family Tree"
 msgstr "Moje obiteljsko stablo"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5636
+#: ../src/plugins/webreport/NarrativeWeb.py:5797
 msgid "The title of the web site"
 msgstr "Naziv web stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5641
+#: ../src/plugins/webreport/NarrativeWeb.py:5802
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Odabir filtra za ograničavanje osoba koje će se pojaviti na web stranicama"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5661
+#: ../src/plugins/webreport/NarrativeWeb.py:5822
 #: ../src/plugins/webreport/WebCal.py:1372
 msgid "File extension"
 msgstr "Nastavak datoteke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5664
+#: ../src/plugins/webreport/NarrativeWeb.py:5825
 #: ../src/plugins/webreport/WebCal.py:1375
 msgid "The extension to be used for the web files"
 msgstr "Korišteni nastavak imena web datoteka"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5667
+#: ../src/plugins/webreport/NarrativeWeb.py:5828
 #: ../src/plugins/webreport/WebCal.py:1378
 msgid "Copyright"
 msgstr "Autorska prava"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5670
+#: ../src/plugins/webreport/NarrativeWeb.py:5831
 #: ../src/plugins/webreport/WebCal.py:1381
 msgid "The copyright to be used for the web files"
 msgstr "Oznaka copyrighta na web stranicama"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5673
+#: ../src/plugins/webreport/NarrativeWeb.py:5834
 #: ../src/plugins/webreport/WebCal.py:1384
 msgid "StyleSheet"
 msgstr "Stylesheet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5676
+#: ../src/plugins/webreport/NarrativeWeb.py:5837
 msgid "The stylesheet to be used for the web pages"
 msgstr "Stil korišten na web stranicama"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5679
+#: ../src/plugins/webreport/NarrativeWeb.py:5842
+msgid "Horizontal -- No Change"
+msgstr "Vodoravnol -- Bez promjena"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:5843
+msgid "Vertical"
+msgstr "Uspravno"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:5845
+msgid "Navigation Layout"
+msgstr "Smještaj izbornika"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:5848
+msgid "Choose which layout for the Navigation Menus."
+msgstr "Odaberite smještaj upravljačkih izbornika"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:5853
 msgid "Include ancestor graph"
 msgstr "Uključi dijagram predaka"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5680
+#: ../src/plugins/webreport/NarrativeWeb.py:5854
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Uključiti grafikon predaka na svakoj osobnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5685
+#: ../src/plugins/webreport/NarrativeWeb.py:5859
 msgid "Graph generations"
 msgstr "Broj generacija u grafikonu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5690
+#: ../src/plugins/webreport/NarrativeWeb.py:5864
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Broj generacija koje će biti uključene u izvješće o precima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5700
+#: ../src/plugins/webreport/NarrativeWeb.py:5874
 msgid "Page Generation"
 msgstr "Izrada stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5702
+#: ../src/plugins/webreport/NarrativeWeb.py:5876
 msgid "Home page note"
 msgstr "Bilješka početne stranice"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5703
+#: ../src/plugins/webreport/NarrativeWeb.py:5877
 msgid "A note to be used on the home page"
 msgstr "Zabilješka na početnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5706
+#: ../src/plugins/webreport/NarrativeWeb.py:5880
 msgid "Home page image"
 msgstr "Slika na početnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5707
+#: ../src/plugins/webreport/NarrativeWeb.py:5881
 msgid "An image to be used on the home page"
 msgstr "Slika korištena na početnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5710
+#: ../src/plugins/webreport/NarrativeWeb.py:5884
 msgid "Introduction note"
 msgstr "Bilješka uvoda"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5711
+#: ../src/plugins/webreport/NarrativeWeb.py:5885
 msgid "A note to be used as the introduction"
 msgstr "Zabilješka korištena kao uvodna stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5714
+#: ../src/plugins/webreport/NarrativeWeb.py:5888
 msgid "Introduction image"
 msgstr "Slika uvodne stranice"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5715
+#: ../src/plugins/webreport/NarrativeWeb.py:5889
 msgid "An image to be used as the introduction"
 msgstr "Slika korištena u uvodnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5718
+#: ../src/plugins/webreport/NarrativeWeb.py:5892
 msgid "Publisher contact note"
 msgstr "Kontakt podaci izdavača"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5719
-msgid "A note to be used as the publisher contact"
+#: ../src/plugins/webreport/NarrativeWeb.py:5893
+msgid "A note to be used as the publisher contact."
 msgstr "Zabilješka korištena kao kontakt izdavača"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5722
+#: ../src/plugins/webreport/NarrativeWeb.py:5899
 msgid "Publisher contact image"
 msgstr "Slika izdavača"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5723
-msgid "An image to be used as the publisher contact"
+#: ../src/plugins/webreport/NarrativeWeb.py:5900
+msgid "An image to be used as the publisher contact."
 msgstr "Slika korištena kao kontakt izdavača"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5726
+#: ../src/plugins/webreport/NarrativeWeb.py:5906
 msgid "HTML user header"
 msgstr "HTML korisničko zaglavlje"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5727
+#: ../src/plugins/webreport/NarrativeWeb.py:5907
 msgid "A note to be used as the page header"
 msgstr "Zabilješka u zaglavlju stranice"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5730
+#: ../src/plugins/webreport/NarrativeWeb.py:5910
 msgid "HTML user footer"
 msgstr "HTML korisničko podnožje"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5731
+#: ../src/plugins/webreport/NarrativeWeb.py:5911
 msgid "A note to be used as the page footer"
 msgstr "Zabilješka u podnožju stranice"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5734
+#: ../src/plugins/webreport/NarrativeWeb.py:5914
 msgid "Include images and media objects"
 msgstr "Uključi slike i medijske zapise"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5735
+#: ../src/plugins/webreport/NarrativeWeb.py:5915
 msgid "Whether to include a gallery of media objects"
 msgstr "Uključiti galeriju medijskih datoteka"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5739
+#: ../src/plugins/webreport/NarrativeWeb.py:5919
 msgid "Max width of initial image"
 msgstr "Najveća širina uvodne slike"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5741
+#: ../src/plugins/webreport/NarrativeWeb.py:5921
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Omogućava postavku najveće širine slike prikazane na stranicama sa slikama. Postavite na 0 ako ne želite ograničenje."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5745
+#: ../src/plugins/webreport/NarrativeWeb.py:5925
 msgid "Max height of initial image"
 msgstr "Najveća visina uvodne slike"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5747
+#: ../src/plugins/webreport/NarrativeWeb.py:5927
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Omogućava postavku najveće visine slike prikazane na stranicama sa slikama. Postavite na 0 ako ne želite ograničenje."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5753
+#: ../src/plugins/webreport/NarrativeWeb.py:5933
 msgid "Suppress Gramps ID"
 msgstr "Ne prikazuj GRAMPS ID"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5754
+#: ../src/plugins/webreport/NarrativeWeb.py:5934
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Uključiti GRAMPS ID oznake"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5761
+#: ../src/plugins/webreport/NarrativeWeb.py:5941
 msgid "Privacy"
 msgstr "Privatnost"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5763
+#: ../src/plugins/webreport/NarrativeWeb.py:5943
 msgid "Include records marked private"
 msgstr "Uključi zapise s oznakom privatnosti"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5764
+#: ../src/plugins/webreport/NarrativeWeb.py:5944
 msgid "Whether to include private objects"
 msgstr "Uključiti zapise s oznakom privatnosti"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5767
+#: ../src/plugins/webreport/NarrativeWeb.py:5947
 msgid "Living People"
 msgstr "Živuće osobe"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5770
+#: ../src/plugins/webreport/NarrativeWeb.py:5950
 msgid "Exclude"
 msgstr "Isključi"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5772
+#: ../src/plugins/webreport/NarrativeWeb.py:5952
 msgid "Include Last Name Only"
 msgstr "Uključi samo prezime"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5774
+#: ../src/plugins/webreport/NarrativeWeb.py:5954
 msgid "Include Full Name Only"
 msgstr "Uključi puno ime"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5777
+#: ../src/plugins/webreport/NarrativeWeb.py:5957
 msgid "How to handle living people"
 msgstr "Kako prikazati žive osobe"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5781
+#: ../src/plugins/webreport/NarrativeWeb.py:5961
 msgid "Years from death to consider living"
 msgstr "Osobe smatrane živima i nakon određenog borja godina."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5783
+#: ../src/plugins/webreport/NarrativeWeb.py:5963
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Ovo koristi za ograničavanje podataka o osobama koje nisu već duže vrijeme mrtve"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5798
+#: ../src/plugins/webreport/NarrativeWeb.py:5978
 msgid "Include download page"
 msgstr "Uključi stranicu za preuzimanje"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5799
+#: ../src/plugins/webreport/NarrativeWeb.py:5979
 msgid "Whether to include a database download option"
 msgstr "Uključiti opciju za preuzimanje baze podataka"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5803
-msgid "Download page note"
-msgstr "Zabilješka na stranici za preuzimanje"
-
-#: ../src/plugins/webreport/NarrativeWeb.py:5804
-msgid "A note to be used on the download page"
-msgstr "Zabilješka na stranici za preuzimaje"
-
-#: ../src/plugins/webreport/NarrativeWeb.py:5807
-#: ../src/plugins/webreport/NarrativeWeb.py:5816
+#: ../src/plugins/webreport/NarrativeWeb.py:5983
+#: ../src/plugins/webreport/NarrativeWeb.py:5992
 msgid "Download Filename"
 msgstr "Naziv preuzete datoteke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5809
-#: ../src/plugins/webreport/NarrativeWeb.py:5818
+#: ../src/plugins/webreport/NarrativeWeb.py:5985
+#: ../src/plugins/webreport/NarrativeWeb.py:5994
 msgid "File to be used for downloading of database"
 msgstr "Naziv datoteke za preuzimanje baze"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5812
-#: ../src/plugins/webreport/NarrativeWeb.py:5821
+#: ../src/plugins/webreport/NarrativeWeb.py:5988
+#: ../src/plugins/webreport/NarrativeWeb.py:5997
 msgid "Description for download"
 msgstr "Opis datoteke za preuzimanje"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5812
+#: ../src/plugins/webreport/NarrativeWeb.py:5988
 msgid "Smith Family Tree"
 msgstr "Obiteljsko stablo obitelji Smith"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5813
-#: ../src/plugins/webreport/NarrativeWeb.py:5822
+#: ../src/plugins/webreport/NarrativeWeb.py:5989
+#: ../src/plugins/webreport/NarrativeWeb.py:5998
 msgid "Give a description for this file."
 msgstr "Unesite opis datoteke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5821
+#: ../src/plugins/webreport/NarrativeWeb.py:5997
 msgid "Johnson Family Tree"
 msgstr "Obiteljsko stablo obitelji Johnson"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5825
+#: ../src/plugins/webreport/NarrativeWeb.py:6001
 msgid "Download Copyright License"
 msgstr "Preuzimanje licence o autorskim pravima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5828
+#: ../src/plugins/webreport/NarrativeWeb.py:6004
 msgid "The copyright to be used for this download file?"
 msgstr "Oznaka autorskih prava za ovu datoteku za preuzimanje"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5837
+#: ../src/plugins/webreport/NarrativeWeb.py:6013
 #: ../src/plugins/webreport/WebCal.py:1527
 msgid "Advanced Options"
 msgstr "Napredne postavke"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5839
+#: ../src/plugins/webreport/NarrativeWeb.py:6015
 #: ../src/plugins/webreport/WebCal.py:1529
 msgid "Character set encoding"
 msgstr "Kodiranje skupa znakova"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5842
+#: ../src/plugins/webreport/NarrativeWeb.py:6018
 #: ../src/plugins/webreport/WebCal.py:1532
 msgid "The encoding to be used for the web files"
 msgstr "Kodni skup znakova korišten u web datotekama"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5845
-msgid "Include link to home person on every page"
-msgstr "Uključi poveznicu na početnu osobu na svakoj stranici"
+#: ../src/plugins/webreport/NarrativeWeb.py:6021
+msgid "Include link to active person on every page"
+msgstr "Uključi poveznicu na aktivnu osobu na svakoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5846
-msgid "Whether to include a link to the home person"
-msgstr "Uključi poveznicu na početnu osobu"
+#: ../src/plugins/webreport/NarrativeWeb.py:6022
+msgid "Include a link to the active person (if they have a webpage)"
+msgstr "Uključi poveznicu na aktivnu osobu (ako ima web stranicu)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5849
+#: ../src/plugins/webreport/NarrativeWeb.py:6025
 msgid "Include a column for birth dates on the index pages"
 msgstr "Uključi stupac sa datumima rođenja na indeksnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5850
+#: ../src/plugins/webreport/NarrativeWeb.py:6026
 msgid "Whether to include a birth column"
 msgstr "Uključiti datume rođenja"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5853
+#: ../src/plugins/webreport/NarrativeWeb.py:6029
 msgid "Include a column for death dates on the index pages"
 msgstr "Uključi stupac sa datumima smrti na indeksnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5854
+#: ../src/plugins/webreport/NarrativeWeb.py:6030
 msgid "Whether to include a death column"
 msgstr "Uključiti datume smrti"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5857
+#: ../src/plugins/webreport/NarrativeWeb.py:6033
 msgid "Include a column for partners on the index pages"
 msgstr "Uključi stupac sa supružnicima na indeksnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5859
+#: ../src/plugins/webreport/NarrativeWeb.py:6035
 msgid "Whether to include a partners column"
 msgstr "Uključiti partnere"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5862
+#: ../src/plugins/webreport/NarrativeWeb.py:6038
 msgid "Include a column for parents on the index pages"
 msgstr "Uključi stupac sa roditeljima na indeksnoj stranici"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5864
+#: ../src/plugins/webreport/NarrativeWeb.py:6040
 msgid "Whether to include a parents column"
 msgstr "Uključiti roditelje"
 
@@ -18905,43 +18946,43 @@ msgstr "Uključiti roditelje"
 #. showallsiblings.set_help(_( "Whether to include half and/ or "
 #. "step-siblings with the parents and siblings"))
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-#: ../src/plugins/webreport/NarrativeWeb.py:5874
+#: ../src/plugins/webreport/NarrativeWeb.py:6050
 msgid "Sort all children in birth order"
 msgstr "Poredaj djecu po starosti"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5875
+#: ../src/plugins/webreport/NarrativeWeb.py:6051
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Prikazati djecu po starosti ili vremenu unosa"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5879
+#: ../src/plugins/webreport/NarrativeWeb.py:6055
 msgid "Include event pages"
 msgstr "Uključi stranice s događajima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5880
+#: ../src/plugins/webreport/NarrativeWeb.py:6056
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Dodati potpunu listu događaja i srodnih stranica"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5883
+#: ../src/plugins/webreport/NarrativeWeb.py:6059
 msgid "Include repository pages"
 msgstr "Uključi stranice sa spremištima"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5884
+#: ../src/plugins/webreport/NarrativeWeb.py:6060
 msgid "Whether to include the Repository Pages or not?"
 msgstr "Uključiti prikaz stranica sa spremištima podataka"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5887
+#: ../src/plugins/webreport/NarrativeWeb.py:6063
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Uključi GENDEX datoteku (/gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5888
+#: ../src/plugins/webreport/NarrativeWeb.py:6064
 msgid "Whether to include a GENDEX file or not"
 msgstr "Uključiti GENDEX datoteku"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5891
+#: ../src/plugins/webreport/NarrativeWeb.py:6067
 msgid "Include address book pages"
 msgstr "Uključiti  stranice s adresama"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5892
+#: ../src/plugins/webreport/NarrativeWeb.py:6068
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
 msgstr "Uključiti stranice sa adresarima koje mogu sadržavati adrese e-pošte, web stranica, stanovanja ili prebivanja."
 
@@ -19579,68 +19620,72 @@ msgstr "Proizvoljna veličina"
 msgid "Failed to write report. "
 msgstr "Greška zapisivanja izvješća"
 
-#: ../src/ReportBase/_Constants.py:43
+#: ../src/ReportBase/_Constants.py:44
 msgid "Text Reports"
 msgstr "Tekstualna izvješća"
 
-#: ../src/ReportBase/_Constants.py:44
+#: ../src/ReportBase/_Constants.py:45
 msgid "Graphical Reports"
 msgstr "Grafička izvješća"
 
-#: ../src/ReportBase/_Constants.py:45
+#: ../src/ReportBase/_Constants.py:46
 msgid "Code Generators"
 msgstr "Generatori koda"
 
-#: ../src/ReportBase/_Constants.py:46
+#: ../src/ReportBase/_Constants.py:47
 msgid "Web Pages"
 msgstr "Web stranice"
 
-#: ../src/ReportBase/_Constants.py:47
+#: ../src/ReportBase/_Constants.py:48
 msgid "Books"
 msgstr "Knjige"
 
-#: ../src/ReportBase/_Constants.py:48
+#: ../src/ReportBase/_Constants.py:49
 msgid "Graphs"
 msgstr "Grafikoni"
 
-#: ../src/ReportBase/_Constants.py:53
+#: ../src/ReportBase/_Constants.py:54
 msgid "Graphics"
 msgstr "Grafika"
 
 #. First is used as default selection.
-#: ../src/ReportBase/_Constants.py:64
+#: ../src/ReportBase/_Constants.py:65
 msgid "Basic-Ash"
 msgstr "Osnovno - Ash"
 
-#: ../src/ReportBase/_Constants.py:65
+#: ../src/ReportBase/_Constants.py:66
+msgid "Basic-Blue"
+msgstr "Osnovno-plavo"
+
+#: ../src/ReportBase/_Constants.py:67
 msgid "Basic-Cypress"
 msgstr "Osnovno - Cypress"
 
-#: ../src/ReportBase/_Constants.py:66
+#: ../src/ReportBase/_Constants.py:68
 msgid "Basic-Lilac"
 msgstr "Osnovno - Lilac"
 
-#: ../src/ReportBase/_Constants.py:67
+#: ../src/ReportBase/_Constants.py:69
 msgid "Basic-Peach"
 msgstr "Osnovno - Peach"
 
-#: ../src/ReportBase/_Constants.py:68
+#: ../src/ReportBase/_Constants.py:70
 msgid "Basic-Spruce"
 msgstr "Osnovno - Spruce"
 
-#: ../src/ReportBase/_Constants.py:69
+#: ../src/ReportBase/_Constants.py:71
 msgid "Mainz"
 msgstr "Mainz"
 
-#: ../src/ReportBase/_Constants.py:70
+#: ../src/ReportBase/_Constants.py:72
 msgid "Nebraska"
 msgstr "Nebraska"
 
-#: ../src/ReportBase/_Constants.py:71
+#: ../src/ReportBase/_Constants.py:73
 msgid "Visually Impaired"
 msgstr "Za slabovidne"
 
-#: ../src/ReportBase/_Constants.py:72
+#: ../src/ReportBase/_Constants.py:74
 msgid "No style sheet"
 msgstr "Nema određenog stila"
 
@@ -19667,23 +19712,23 @@ msgstr "Prikaz u zadanom pregledniku"
 msgid "CSS file"
 msgstr "CSS datoteka"
 
-#: ../src/ReportBase/_Endnotes.py:50
+#: ../src/ReportBase/_Endnotes.py:51
 msgid "The basic style used for the endnotes source display."
 msgstr "Osnovni stil prikaza izvora u zabilješkama."
 
-#: ../src/ReportBase/_Endnotes.py:58
+#: ../src/ReportBase/_Endnotes.py:59
 msgid "The basic style used for the endnotes reference display."
 msgstr "Osnovni stil prikaza referenci u zabilješkama."
 
-#: ../src/ReportBase/_Endnotes.py:65
+#: ../src/ReportBase/_Endnotes.py:66
 msgid "The basic style used for the endnotes notes display."
 msgstr "Osnovni stil prikaza izvora u zabilješkama."
 
-#: ../src/ReportBase/_Endnotes.py:109
+#: ../src/ReportBase/_Endnotes.py:110
 msgid "Endnotes"
 msgstr "Završne napomene"
 
-#: ../src/ReportBase/_Endnotes.py:145
+#: ../src/ReportBase/_Endnotes.py:146
 #, python-format
 msgid "Note %(ind)d - Type: %(type)s"
 msgstr "Zabilješka %(ind)d - Vrsta: %(type)s"
@@ -22607,9 +22652,8 @@ msgid "Invoke date editor"
 msgstr "Pozovi uređivač datuma"
 
 #: ../src/glade/editmediaref.glade.h:2
-#: ../src/glade/editeventref.glade.h:2
-msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
-msgstr "<b>Napomena:</b> Sve promjene u dijeljenom događaju biti će vidljive u samom događaju i za sve njegove sudionike."
+msgid "<b>Note:</b> Any changes in the shared media object information will be reflected in the media object itself."
+msgstr "<b>Napomena:</b> Sve promjene u dijeljenom mediju biti će primijenjene i u samom mediju."
 
 #: ../src/glade/editmediaref.glade.h:4
 msgid "<b>Referenced Region</b>"
@@ -22634,6 +22678,10 @@ msgstr "Ako je medij slika odaberite referencirano područje slike. Točka (0,0)
 #: ../src/glade/editmediaref.glade.h:13
 msgid "_Path:"
 msgstr "_Putanja:"
+
+#: ../src/glade/editeventref.glade.h:2
+msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
+msgstr "<b>Napomena:</b> Sve promjene u dijeljenom događaju biti će vidljive u samom događaju i za sve njegove sudionike."
 
 #: ../src/glade/editeventref.glade.h:5
 #: ../src/glade/editevent.glade.h:3
@@ -23623,6 +23671,15 @@ msgstr "<b>Tko je kad rođen</b><br/>Alat za usporedbu osobnih događaja omoguć
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Rad sa datumima</b><br/>Vremenski raspon može biti zadan fotmatom datuma &quot;između 4. siječnja 2000. i 20. ožujka 2003.&quot;. Također možete odrediti stupanj pouzdanosti kao i jedan od sedam dostupnih kalendara. Isprobajte mogućnosti koristeći gumb pokraj polja za unos datuma u uređivaču događaja,"
+
+#~ msgid "Download page note"
+#~ msgstr "Zabilješka na stranici za preuzimanje"
+
+#~ msgid "A note to be used on the download page"
+#~ msgstr "Zabilješka na stranici za preuzimaje"
+
+#~ msgid "Whether to include a link to the home person"
+#~ msgstr "Uključi poveznicu na početnu osobu"
 
 #~ msgid "Matches people with a number of sources connected to it"
 #~ msgstr "Pronalazi osobe sa određenim brojem poveznica"
