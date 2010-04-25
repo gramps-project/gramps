@@ -2877,7 +2877,7 @@ class MediaPage(BasePage):
                 mediadetail += notelist
 
             # get attribute list
-            attrlist = self.display_attr_list(media.get_attribute_list(), False)
+            attrlist = self.display_attr_list(media.get_attribute_list(), True)
             if attrlist is not None:
                 mediadetail += attrlist
 
