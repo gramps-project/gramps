@@ -306,7 +306,7 @@ class ProxyDbBase(DbReadBase):
         """
         Returns obj if predicate is True or not callable, else returns None
         """
-        if predicate is not None:
+        if predicate is not None and obj is not None:
             return obj if predicate(obj.handle) else None
         return obj
 

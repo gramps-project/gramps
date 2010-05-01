@@ -1286,6 +1286,8 @@ class GedcomWriter(UpdateCallback):
             return
 
         src = self.dbase.get_source_from_handle(src_handle)
+        if src is None:
+            return
 
         # Reference to the source
         self.__writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
