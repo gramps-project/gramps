@@ -287,7 +287,7 @@ class CLIManager(object):
         Register the plugins at initialization time.
         """
         self._pmgr.reg_plugins(const.PLUGINS_DIR)
-        self._pmgr.reg_plugins(const.USER_PLUGINS)
+        self._pmgr.reg_plugins(const.USER_PLUGINS, append=False)
 
 def startcli(errors, argparser):
     """

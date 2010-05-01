@@ -137,6 +137,22 @@ END   = 2
 # Functions and classes
 #
 #-------------------------------------------------------------------------
+def myint(s):
+    """
+    Protected version of int()
+    """
+    try:
+        v = int(s)
+    except:
+        v = s
+    return v
+
+def version(sversion):
+    """
+    Return the tuple version of a string version.
+    """
+    return tuple([myint(x or "0") for x in (sversion + "..").split(".")])
+
 def valid_plugin_version(plugin_version_string):
     """
     Checks to see if string is a valid version string for this version
@@ -1067,15 +1083,17 @@ class PluginRegister(object):
 
     def get_plugin(self, id):
         """Return the PluginData for the plugin with id"""
-        for x in self.__plugindata:
-            if x.id == id:
-                return x
+        matches = [x for x in self.__plugindata if x.id == id]
+        matches.sort(key=lambda x: version(x.version))
+        if len(matches) > 0:
+            return matches[-1]
         return None
 
     def type_plugins(self, ptype):
         """Return a list of PluginData that are of type ptype
         """
-        return [x for x in self.__plugindata if x.ptype == ptype]
+        return [self.get_plugin(id) for id in 
+                set([x.id for x in self.__plugindata if x.ptype == ptype])]
 
     def report_plugins(self, gui=True):
         """Return a list of gui or cli PluginData that are of type REPORT
@@ -1158,4 +1176,5 @@ class PluginRegister(object):
     def filter_load_on_reg(self):
         """Return a list of PluginData that have load_on_reg == True
         """
-        return [x for x in self.__plugindata if x.load_on_reg == True]
+        return [self.get_plugin(id) for id in 
+                set([x.id for x in self.__plugindata if x.load_on_reg == True])]

@@ -96,7 +96,7 @@ class BasePluginManager(object):
         self.__registereddir_set = set()
         self.__loaded_plugins = {}
 
-    def reg_plugins(self, direct):
+    def reg_plugins(self, direct, append=True):
         """
         Searches the specified directory, and registers python plugin that
         are being defined in gpr.py files. 
@@ -118,7 +118,8 @@ class BasePluginManager(object):
                 if dirname.startswith(".") or dirname in ["po", "locale"]:
                     dirnames.remove(dirname)
             # add the directory to the python search path
-            sys.path.append(dirpath)
+            if append:
+                sys.path.append(dirpath)
             # if the path has not already been loaded, save it in the 
             # registereddir_list list for use on reloading.
             self.__registereddir_set.add(dirpath)
@@ -165,14 +166,13 @@ class BasePluginManager(object):
                 del self.__failmsg_list[index]
         else:
             self.__attempt_list.append(filename)
-        plugin = pdata.mod_name
         try: 
-            _module = __import__(plugin)
+            _module = self.import_plugin(pdata)
             if need_reload:
                 # For some strange reason second importing of a failed plugin
                 # results in success. Then reload reveals the actual error.
                 # Looks like a bug in Python.
-                reload(_module)
+                _module = self.reload(_module, pdata)
             self.__success_list.append((filename, _module, pdata))
             self.__modules[filename] = _module
             self.__loaded_plugins[pdata.id] = _module
@@ -182,6 +182,23 @@ class BasePluginManager(object):
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
         return None
+
+    def import_plugin(self, pdata):
+        """
+        Rather than just __import__(id), this will add the pdata.fpath
+        to sys.path first (if needed), import, and then reset path.
+        """
+        if isinstance(pdata, basestring):
+            pdata = self.get_plugin(pdata)
+        if not pdata:
+            return None
+        if pdata.fpath not in sys.path:
+            sys.path.insert(0, pdata.fpath)
+            module = __import__(pdata.mod_name)
+            sys.path.pop(0)
+        else:
+            module = __import__(pdata.mod_name)
+        return module
 
     def empty_managed_plugins(self):
         """ For some plugins, managed Plugin are used. These are only 
@@ -216,7 +233,7 @@ class BasePluginManager(object):
                 #module already reloaded, a second plugin in same module
                 continue
             try: 
-                reload(plugin[1])
+                self.reload(plugin[1], pdata)
                 self.__modules[filename] = plugin[1]
                 self.__loaded_plugins[pdata.id] = plugin[1]
             except:
@@ -234,6 +251,15 @@ class BasePluginManager(object):
         # attempt to load the plugins that have failed in the past
         for (filename, message, pdata) in oldfailmsg:
             self.load_plugin(pdata)
+
+    def reload(self, module, pdata):
+        """
+        """
+        try:
+            reload(module)
+        except:
+            module = self.import_plugin(pdata)
+        return module
 
     def get_fail_list(self):
         """ Return the list of failed plugins. """
