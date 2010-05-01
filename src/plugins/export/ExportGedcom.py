@@ -186,15 +186,17 @@ def breakup(txt, limit):
 #
 #-------------------------------------------------------------------------
 def event_has_subordinate_data(event, event_ref):
-    gotany = event.get_description().strip() or\
-        not event.get_date_object().is_empty() or\
-        event.get_place_handle() or\
-        event.get_attribute_list() or\
-        event_ref.get_attribute_list() or\
-        event.get_note_list() or\
-        event.get_source_references() or\
-        event.get_media_list()
-    return gotany
+    if event and event_ref:
+        return (event.get_description().strip() or
+                not event.get_date_object().is_empty() or
+                event.get_place_handle() or
+                event.get_attribute_list() or
+                event_ref.get_attribute_list() or
+                event.get_note_list() or
+                event.get_source_references() or
+                event.get_media_list())
+    else:
+        return False
 
 
 #-------------------------------------------------------------------------
@@ -1286,6 +1288,8 @@ class GedcomWriter(UpdateCallback):
             return
 
         src = self.dbase.get_source_from_handle(src_handle)
+        if src is None:
+            return
 
         # Reference to the source
         self.__writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
