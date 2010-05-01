@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,9 @@ from gen.plug.menu import BooleanOption, NumberOption, PersonOption, \
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, INDEX_TYPE_TOC, 
                              PARA_ALIGN_CENTER)
-from ReportBase import Report, ReportUtils, MenuReportOptions
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 import TransUtils
 from libnarrate import Narrator
 from libtranslate import Translator, get_language_string

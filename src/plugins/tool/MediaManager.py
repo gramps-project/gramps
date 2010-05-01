@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       B. Malengier
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +54,7 @@ import Assistant
 import Errors
 from gen.lib import MediaObject
 from gen.updatecallback import UpdateCallback
-from PluginUtils import Tool
+from gui.plug import tool
 from Utils import media_path_full, relative_path, media_path
 from gen.ggettext import sgettext as _
 
@@ -70,11 +71,11 @@ WIKI_HELP_SEC = _('manual|Media_Manager...')
 # This is an Assistant implementation to guide the user
 #
 #-------------------------------------------------------------------------
-class MediaMan(Tool.Tool):
+class MediaMan(tool.Tool):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         self.uistate = uistate
         self.callback = uistate.pulse_progressbar
 
@@ -560,10 +561,10 @@ class Convert2Rel(BatchOp):
 # 
 #
 #------------------------------------------------------------------------
-class MediaManOptions(Tool.ToolOptions):
+class MediaManOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

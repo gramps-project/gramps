@@ -5,6 +5,7 @@
 
 SUBDIRS = \
 	editors \
+	plug \
 	selectors \
 	views \
 	widgets

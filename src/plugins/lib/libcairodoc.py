@@ -5,6 +5,7 @@
 # Copyright (C) 2009  Benny Malengier
 # Copyright (C) 2009  Brian Matherly
 # Copyright (C) 2010  Peter Landgren
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +43,7 @@ from math import radians
 from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
                         TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
-from ReportBase import ReportUtils
+from gen.plug.report import utils as ReportUtils
 from Errors import PluginError
 from gen.plug.docbackend import CairoBackend
 

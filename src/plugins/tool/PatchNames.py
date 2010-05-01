@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +46,7 @@ import gobject
 #-------------------------------------------------------------------------
 import const
 from gui.utils import ProgressMeter
-from PluginUtils import Tool
+from gui.plug import tool
 from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
@@ -99,14 +100,14 @@ _sn_prefix_re = re.compile("^\s*(%s)\s+(.+)" % '|'.join(prefix_list),
 #-------------------------------------------------------------------------
 
 
-class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
+class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Name and title extraction tool')
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(gtk.Window(), gtk.Label(), '')
 
-        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
 
@@ -351,10 +352,10 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.cb()
 
 
-class PatchNamesOptions(Tool.ToolOptions):
+class PatchNamesOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name, person_id=None):
-        Tool.ToolOptions.__init__(self, name, person_id)
+        tool.ToolOptions.__init__(self, name, person_id)

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009  Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2010  Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -376,7 +377,7 @@ class Gramplet(object):
         """
         Add an option to the GUI gramplet.
         """
-        from PluginUtils import make_gui_option
+        from gui.plug import make_gui_option
         widget, label = make_gui_option(
             option, self.dbstate, self.uistate, self.track)
         self.option_dict.update({option.get_label(): [widget, option]})

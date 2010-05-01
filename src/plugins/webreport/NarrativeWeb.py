@@ -11,6 +11,7 @@
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
 # Copyright (C) 2008-2010  Rob G. Healey <robhealey1@gmail.com>	
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -77,8 +78,10 @@ import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
                           NoteOption, MediaOption, DestinationOption
-from ReportBase import (Report, ReportUtils, MenuReportOptions,
-                        Bibliography, CSS_FILES )
+from gen.plug.report import ( Report, Bibliography, CSS_FILES )
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
+                        
 import Utils
 import constfunc
 from gui.utils import ProgressMeter

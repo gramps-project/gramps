@@ -4,6 +4,7 @@
 # Copyright (C) 2007-2008 Douglas S. Blank
 # Copyright (C) 2004-2007 Donald N. Allingham
 # Copyright (C) 2008      Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,6 @@ LOG = logging.getLogger(".ExportCSV")
 import gen.lib
 from Filters import GenericFilter, Rules, build_filter_model
 import Utils
-from QuestionDialog import ErrorDialog
 import gen.proxy
 import DateHandler
 from glade import Glade
@@ -60,8 +60,8 @@ from glade import Glade
 # The function that does the exporting
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, option_box=None, callback=None):
-    gw = CSVWriter(database, filename, option_box, callback)
+def exportData(database, filename, msg_callback, option_box=None, callback=None):
+    gw = CSVWriter(database, filename, msg_callback, option_box, callback)
     return gw.export_data()
 
 #-------------------------------------------------------------------------
@@ -219,11 +219,12 @@ class CSVWriterOptionBox(object):
 #
 #-------------------------------------------------------------------------
 class CSVWriter(object):
-    def __init__(self, database, filename, option_box=None, callback=None):
+    def __init__(self, database, filename, msg_callback, option_box=None, callback=None):
         self.db = database
         self.option_box = option_box
         self.filename = filename
         self.callback = callback
+        self.msg_callback = msg_callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
@@ -293,10 +294,10 @@ class CSVWriter(object):
             self.g = UnicodeWriter(self.fp)
         except IOError,msg:
             msg2 = _("Could not create %s") % self.filename
-            ErrorDialog(msg2,str(msg))
+            self.msg_callback(msg2,str(msg))
             return False
         except:
-            ErrorDialog(_("Could not create %s") % self.filename)
+            self.msg_callback(_("Could not create %s") % self.filename)
             return False
         ######################### initialize progress bar
         self.count = 0

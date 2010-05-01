@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2009  Craig J. Anderson
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +35,9 @@ from Errors import ReportError
 from gen.plug.docgen import (GraphicsStyle, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
-from ReportBase import Report, MenuReportOptions, ReportUtils
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 from SubstKeywords import SubstKeywords
 from gen.ggettext import sgettext as _
 

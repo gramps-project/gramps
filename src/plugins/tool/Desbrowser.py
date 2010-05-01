@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +38,7 @@ import gtk
 #------------------------------------------------------------------------
 import const
 from gen.display.name import displayer as name_displayer
-from PluginUtils import Tool
+from gui.plug import tool
 import GrampsDisplay
 import ManagedWindow
 from gen.ggettext import sgettext as _
@@ -52,11 +53,11 @@ from gui.editors import EditPerson
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
 
-class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
+class DesBrowse(tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
+        tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
                                        name)
         if self.fail:
             return
@@ -135,10 +136,10 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class DesBrowseOptions(Tool.ToolOptions):
+class DesBrowseOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

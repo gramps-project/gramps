@@ -4,6 +4,7 @@
 # Copyright (C) 2004-2007 Donald N. Allingham
 # Copyright (C) 2008      Brian G. Matherly
 # Contribution  2009 by   Brad Crittenden <brad [AT] bradcrittenden.net>
+# Copyright (C) 2010      Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,6 +57,7 @@ import config
 from gui.pluginmanager import GuiPluginManager
 import Utils
 import ManagedWindow
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -603,6 +605,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         export_function = self.map_exporters[ix].get_export_function()
         success = export_function(self.dbstate.db,
                                   filename,
+                                  ErrorDialog,
                                   self.option_box_instance,
                                   self.callback)
         return success

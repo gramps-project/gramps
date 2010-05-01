@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +35,7 @@ import GrampsDisplay
 import ManagedWindow
 import AutoComp
 from gen.ggettext import sgettext as _
-from PluginUtils import Tool
+from gui.plug import tool
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -51,11 +52,11 @@ WIKI_HELP_SEC = _('manual|Generate_SoundEx_codes')
 #
 #-------------------------------------------------------------------------
 
-class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
+class SoundGen(tool.Tool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('SoundEx code generator')
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.glade = Glade()
@@ -117,10 +118,10 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class SoundGenOptions(Tool.ToolOptions):
+class SoundGenOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

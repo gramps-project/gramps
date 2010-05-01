@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,7 @@ log = logging.getLogger(".RebuildRefMap")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool
+from gui.plug import tool
 from QuestionDialog import OkDialog
 from gen.updatecallback import UpdateCallback
 
@@ -60,11 +61,11 @@ from gen.updatecallback import UpdateCallback
 # runTool
 #
 #-------------------------------------------------------------------------
-class RebuildRefMap(Tool.Tool, UpdateCallback):
+class RebuildRefMap(tool.Tool, UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
 
         if self.db.readonly:
             return
@@ -99,10 +100,10 @@ class RebuildRefMap(Tool.Tool, UpdateCallback):
 # 
 #
 #------------------------------------------------------------------------
-class RebuildRefMapOptions(Tool.ToolOptions):
+class RebuildRefMapOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

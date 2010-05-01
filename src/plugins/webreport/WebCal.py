@@ -6,6 +6,7 @@
 # Copyright (C) 2007-2009 Brian G. Matherly
 # Copyright (C) 2008-2010 Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2008      Jason Simanek
+# Copyright (C) 2010      Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,9 @@ log = logging.getLogger(".WebPage")
 import gen.lib
 import const
 import constfunc
-from ReportBase import Report, ReportUtils, MenuReportOptions, CSS_FILES
+from gen.plug.report import Report, CSS_FILES
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption

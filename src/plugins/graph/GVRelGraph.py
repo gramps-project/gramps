@@ -11,6 +11,7 @@
 #    Copyright (C) 2008       Stephane Charette <stephanecharette@gmail.com>
 #    Copyright (C) 2009       Gary Burton
 #    Contribution 2009 by     Bob Ham <rah@bash.sh>
+#    Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +48,9 @@ from gen.ggettext import sgettext as _
 #------------------------------------------------------------------------
 from gen.plug.menu import BooleanOption, EnumeratedListOption, FilterOption, \
                           PersonOption, ColorOption
-from ReportBase import Report, ReportUtils, MenuReportOptions
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 from gen.display.name import displayer as name_displayer
 import DateHandler
 import gen.lib

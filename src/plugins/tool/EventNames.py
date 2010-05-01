@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +47,7 @@ import ManagedWindow
 import gen.lib
 import Utils
 
-from PluginUtils import Tool
+from gui.plug import tool
 from gen.display.name import displayer as name_displayer
 from QuestionDialog import OkDialog
 
@@ -55,7 +56,7 @@ from QuestionDialog import OkDialog
 # EventNames
 #
 #-------------------------------------------------------------------------
-class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
+class EventNames(tool.BatchTool, ManagedWindow.ManagedWindow):
     """
     Look for events that do not have a description, and build the description 
     from the item that contains it. 
@@ -66,7 +67,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     """
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, options_class, name)
 
         if not self.fail:
             uistate.set_busy_cursor(True)
@@ -152,10 +153,10 @@ def family_event_name(event, family, dbase):
 # 
 #
 #------------------------------------------------------------------------
-class EventNamesOptions(Tool.ToolOptions):
+class EventNamesOptions(tool.ToolOptions):
     """
     Define options and provides handling interface.
     """
 
     def __init__(self, name, person_id=None):
-        Tool.ToolOptions.__init__(self, name, person_id)
+        tool.ToolOptions.__init__(self, name, person_id)

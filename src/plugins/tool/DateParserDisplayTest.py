@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import Tool
+from gui.plug import tool
 from gui.utils import ProgressMeter
 from QuestionDialog import QuestionDialog
 from DateHandler import parser as _dp
@@ -54,11 +55,11 @@ from DateHandler import displayer as _dd
 #
 #
 #-------------------------------------------------------------------------
-class DateParserDisplayTest(Tool.Tool):
+class DateParserDisplayTest(tool.Tool):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         if uistate:
             # Running with gui -> Show message
             QuestionDialog(_("Start date test?"),_("This test will create many persons and events in the current database. Do you really want to run this test?"),_("Run test"),self.run_tool)
@@ -227,10 +228,10 @@ class DateParserDisplayTest(Tool.Tool):
 # DateParserDisplayTestOptions
 #
 #------------------------------------------------------------------------
-class DateParserDisplayTestOptions(Tool.ToolOptions):
+class DateParserDisplayTestOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
     def __init__(self, name, person_id=None):
         """ Initialize the options class """
-        Tool.ToolOptions.__init__(self, name, person_id)
+        tool.ToolOptions.__init__(self, name, person_id)

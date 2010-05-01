@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,7 +42,7 @@ from Utils import get_researcher
 import GrampsDisplay
 from gui.widgets import MonitoredEntry
 import ManagedWindow
-from PluginUtils import Tool
+from gui.plug import tool
 from gen.ggettext import sgettext as _
 from glade import Glade
 
@@ -74,7 +75,7 @@ config_keys = (
 # OwnerEditor
 #
 #-------------------------------------------------------------------------
-class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
+class OwnerEditor(tool.Tool, ManagedWindow.ManagedWindow):
     """
     Allow editing database owner information.
 
@@ -83,7 +84,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
     """
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
        
         self.display()
 
@@ -172,7 +173,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
 # OwnerEditorOptions (None at the moment)
 #
 #-------------------------------------------------------------------------
-class OwnerEditorOptions(Tool.ToolOptions):
+class OwnerEditorOptions(tool.ToolOptions):
     """Defines options and provides handling interface."""
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

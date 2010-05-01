@@ -5,6 +5,7 @@
 # Copyright (C) 2004-2005 Eero Tamminen
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +49,9 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                             PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
 from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
                          FilterOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 import DateHandler
 from gui.utils import ProgressMeter
 

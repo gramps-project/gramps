@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,13 +59,15 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from cli.grampscli import CLIManager
-from PluginUtils import Tool, PluginWindows, \
-    ReportPluginDialog, ToolPluginDialog, gui_tool
-from gen.plug import REPORT
-from gui.pluginmanager import GuiPluginManager
+from gui.plug import tool
 from gen.plug import (START, END)
+from gen.plug import REPORT
+from gen.plug.report._constants import standalone_categories
+from gui.plug import PluginWindows, \
+    ReportPluginDialog, ToolPluginDialog
+from gui.plug.report import report
+from gui.pluginmanager import GuiPluginManager
 import Relationship
-import ReportBase
 import DisplayState
 import const
 import config
@@ -1144,7 +1147,7 @@ class ViewManager(CLIManager):
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
         self.toolactions = gtk.ActionGroup('ToolWindow')
         (uidef, actions) = self.build_plugin_menu(
-            'ToolsMenu', tool_menu_list, Tool.tool_categories, 
+            'ToolsMenu', tool_menu_list, tool.tool_categories,
             make_plugin_callback)
         self.toolactions.add_actions(actions)
         self.tool_menu_ui_id = self.uistate.uimanager.add_ui_from_string(uidef)
@@ -1160,7 +1163,7 @@ class ViewManager(CLIManager):
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
         self.reportactions = gtk.ActionGroup('ReportWindow')
         (uidef, actions) = self.build_plugin_menu(
-            'ReportsMenu', report_menu_list, ReportBase.standalone_categories, 
+            'ReportsMenu', report_menu_list, standalone_categories, 
             make_plugin_callback)
         self.reportactions.add_actions(actions)
         self.report_menu_ui_id = self.uistate.uimanager.add_ui_from_string(uidef)
@@ -1302,17 +1305,17 @@ def run_plugin(pdata, dbstate, uistate):
             return 
 
         if pdata.ptype == REPORT:
-            ReportBase.report(dbstate, uistate, uistate.get_active('Person'),
+            report(dbstate, uistate, uistate.get_active('Person'),
                    getattr(mod, pdata.reportclass), 
                    getattr(mod, pdata.optionclass), 
                    pdata.name, pdata.id, 
                    pdata.category, pdata.require_active)
         else:
-            gui_tool(dbstate, uistate, 
-                           getattr(mod, pdata.toolclass), 
-                           getattr(mod, pdata.optionclass),
-                           pdata.name, pdata.id, pdata.category,
-                           dbstate.db.request_rebuild)
+            tool.gui_tool(dbstate, uistate,
+                          getattr(mod, pdata.toolclass),
+                          getattr(mod, pdata.optionclass),
+                          pdata.name, pdata.id, pdata.category,
+                          dbstate.db.request_rebuild)
 
 def make_plugin_callback(pdata, dbstate, uistate):
     """

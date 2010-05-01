@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program - Records plugin
 #
 # Copyright (C) 2008 Reinhard Müller
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +41,9 @@ from gen.display.name import displayer as name_displayer
 from gen.plug import Gramplet
 from gen.plug.menu import (BooleanOption, EnumeratedListOption, 
                            FilterOption, PersonOption)
-from ReportBase import Report, ReportUtils, MenuReportOptions
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 from Utils import probably_alive
 
 #------------------------------------------------------------------------

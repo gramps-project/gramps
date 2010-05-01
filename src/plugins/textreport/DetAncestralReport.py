@@ -6,6 +6,7 @@
 # Copyright (C) 2007-2009 Brian G. Matherly
 # Copyright (C) 2008      James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
+# Copyright (C) 2010      Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,8 +46,11 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
-from ReportBase import (Report, ReportUtils, MenuReportOptions,
-                        Bibliography, Endnotes)
+from gen.plug.report import ( Report, Bibliography )
+from gen.plug.report import endnotes
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
+                        
 import DateHandler
 
 from libnarrate import Narrator
@@ -200,7 +204,7 @@ class DetAncestorReport(Report):
                             if self.inc_events:
                                 self.write_family_events(family)
         if self.inc_sources:
-            Endnotes.write_endnotes(self.bibli, self.database, self.doc,
+            endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.inc_srcnotes)
 
     def write_person(self, key):
@@ -638,7 +642,7 @@ class DetAncestorReport(Report):
         if not obj or not self.inc_sources:
             return ""
         
-        txt = Endnotes.cite_source(self.bibli, obj)
+        txt = endnotes.cite_source(self.bibli, obj)
         if txt:
             txt = '<super>' + txt + '</super>'
         return txt
@@ -837,4 +841,4 @@ class DetAncestorOptions(MenuReportOptions):
         para.set_description(_('The style used for additional detail data.'))
         default_style.add_paragraph_style("DAR-MoreDetails",para)
 
-        Endnotes.add_endnote_styles(default_style)
+        endnotes.add_endnote_styles(default_style)

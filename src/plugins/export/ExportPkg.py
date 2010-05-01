@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,7 +70,7 @@ import constfunc
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database, filename, option_box=None, callback=None):
+def writeData(database, filename, msg_callback, option_box=None, callback=None):
 
 # Rename file, if it exists already, with <filename>.bak
 # as it it for normal XML export.
@@ -105,7 +106,7 @@ def writeData(database, filename, option_box=None, callback=None):
         if option_box.unlinked:
             database = gen.proxy.ReferencedProxyDb(database)
 
-    writer = PackageWriter(database, filename, callback)
+    writer = PackageWriter(database, filename, msg_callback, callback)
     return writer.export()
     
 #-------------------------------------------------------------------------
@@ -115,9 +116,10 @@ def writeData(database, filename, option_box=None, callback=None):
 #-------------------------------------------------------------------------
 class PackageWriter(object):
 
-    def __init__(self, database, filename, callback=None):
+    def __init__(self, database, filename, msg_callback, callback=None):
         self.db = database
         self.callback = callback
+        self.msg_callback = msg_callback
         self.filename = filename
             
     def export(self):
@@ -228,7 +230,7 @@ class PackageWriter(object):
         
         # Write XML now
         g = StringIO()
-        gfile = XmlWriter(self.db, self.callback, 2)
+        gfile = XmlWriter(self.db, msg_callback, self.callback, 2)
         gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())

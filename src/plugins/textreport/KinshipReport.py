@@ -4,6 +4,7 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2009      Gary Burton
 # Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at> 
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +43,9 @@ import Relationship
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 import DateHandler
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 

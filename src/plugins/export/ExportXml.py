@@ -6,6 +6,7 @@
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 # Copyright (C) 2009       Douglas S. Blank
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ from gen.updatecallback import UpdateCallback
 from gen.db.exceptions import DbWriteFailure
 import const
 import constfunc
-from QuestionDialog import ErrorDialog
+#from QuestionDialog import ErrorDialog
 from ExportOptions import WriterOptionBox
 import gen.proxy
 import libgrampsxml
@@ -93,7 +94,7 @@ class GrampsXmlWriter(UpdateCallback):
     Writes a database to the XML file.
     """
 
-    def __init__(self, db, strip_photos=0, compress=1, version="unknown", 
+    def __init__(self, db, strip_photos=0, compress=1, version="unknown",
                  callback=None):
         """
         Initialize, but does not write, an XML file.
@@ -1147,7 +1148,7 @@ def conf_priv(obj):
 # export_data
 #
 #-------------------------------------------------------------------------
-def export_data(database, filename, option_box=None, callback=None):
+def export_data(database, filename, msg_callback, option_box=None, callback=None):
     """
     Call the XML writer with the syntax expected by the export plugin.
     """
@@ -1184,7 +1185,7 @@ def export_data(database, filename, option_box=None, callback=None):
         if option_box.unlinked:
             database = gen.proxy.ReferencedProxyDb(database)
 
-    g = XmlWriter(database, callback, 0, compress)
+    g = XmlWriter(database, msg_callback, callback, 0, compress)
     return g.write(filename)
 
 #-------------------------------------------------------------------------
@@ -1197,9 +1198,10 @@ class XmlWriter(GrampsXmlWriter):
     Writes a database to the XML file.
     """
 
-    def __init__(self, dbase, callback, strip_photos, compress=1):
+    def __init__(self, dbase, msg_callback, callback, strip_photos, compress=1):
         GrampsXmlWriter.__init__(
             self, dbase, strip_photos, compress, const.VERSION, callback)
+        self.msg_callback = msg_callback
         
     def write(self, filename):
         """
@@ -1210,5 +1212,5 @@ class XmlWriter(GrampsXmlWriter):
             ret = GrampsXmlWriter.write(self, filename)
         except DbWriteFailure, msg:
             (m1,m2) = msg.messages()
-            ErrorDialog(m1, m2)
+            self.msg_callback(m1, m2)
         return ret

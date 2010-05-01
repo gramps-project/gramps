@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import Tool
+from gui.plug import tool
 import Utils
 import LdsUtils
 
@@ -54,7 +55,7 @@ import LdsUtils
 #
 #
 #-------------------------------------------------------------------------
-class TestcaseGenerator(Tool.BatchTool):
+class TestcaseGenerator(tool.BatchTool):
     NUMERIC = 0
     FIRSTNAME = 1
     FIRSTNAME_FEMALE = 2
@@ -68,7 +69,7 @@ class TestcaseGenerator(Tool.BatchTool):
         if dbstate.db.readonly:
             return
 
-        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, options_class, name)
 
         if self.fail:
             return
@@ -1333,13 +1334,13 @@ class TestcaseGenerator(Tool.BatchTool):
 # 
 #
 #------------------------------------------------------------------------
-class TestcaseGeneratorOptions(Tool.ToolOptions):
+class TestcaseGeneratorOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

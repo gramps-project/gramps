@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2009 Stephane Charette
 # Copyright (C) 2008 Brian Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,8 +39,8 @@ import gobject
 #------------------------------------------------------------------------
 import const
 from gen.ggettext import ngettext
-from PluginUtils import Tool
-from ReportBase import ReportUtils
+from gui.plug import tool
+from gen.plug.report import utils as ReportUtils
 from gui.editors import EditPerson, EditFamily
 import ManagedWindow
 from gui.utils import ProgressMeter
@@ -60,10 +61,10 @@ WIKI_HELP_SEC = _('manual|Not_Related...')
 # NotRelated class
 #
 #------------------------------------------------------------------------
-class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
+class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        Tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
+        tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
                                        name)
 
         if self.fail:   # bug #2709 -- fail if we have no active person
@@ -424,10 +425,10 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 # NotRelatedOptions
 #
 #------------------------------------------------------------------------
-class NotRelatedOptions(Tool.ToolOptions):
+class NotRelatedOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
     def __init__(self, name, person_id=None):
         """ Initialize the options class """
-        Tool.ToolOptions.__init__(self, name, person_id)
+        tool.ToolOptions.__init__(self, name, person_id)

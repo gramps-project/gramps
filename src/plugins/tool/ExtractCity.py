@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +49,7 @@ import gobject
 import ManagedWindow
 import GrampsDisplay
 
-from PluginUtils import Tool
+from gui.plug import tool
 from gui.utils import ProgressMeter
 from glade import Glade
 
@@ -392,7 +393,7 @@ COLS = [
 # ExtractCity
 #
 #-------------------------------------------------------------------------
-class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
+class ExtractCity(tool.BatchTool, ManagedWindow.ManagedWindow):
     """
     Extracts city, state, and zip code information from an place description
     if the title is empty and the description falls into the category of:
@@ -415,7 +416,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(gtk.Window(), gtk.Label(), '')
 
-        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, options_class, name)
 
         if not self.fail:
             uistate.set_busy_cursor(True)
@@ -620,9 +621,9 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class ExtractCityOptions(Tool.ToolOptions):
+class ExtractCityOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
     def __init__(self, name, person_id=None):
-        Tool.ToolOptions.__init__(self, name, person_id)
+        tool.ToolOptions.__init__(self, name, person_id)

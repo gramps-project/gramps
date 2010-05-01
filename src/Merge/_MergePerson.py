@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@ import pango
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import gen.lib
-from ReportBase import ReportUtils
+from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
 import const
 import DateHandler

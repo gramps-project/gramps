@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,7 +60,7 @@ import Utils
 import GrampsDisplay
 from ManagedWindow import ManagedWindow
 from gen.updatecallback import UpdateCallback
-from PluginUtils import Tool
+from gui.plug import tool
 from gen.ggettext import sgettext as _
 from glade import Glade
 
@@ -222,11 +223,11 @@ def get_marriage_date(db,family):
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
+class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Database Verify tool')
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.__init__(self, uistate,[], self.__class__)
         UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
 
@@ -659,13 +660,13 @@ class VerifyResults(ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class VerifyOptions(Tool.ToolOptions):
+class VerifyOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

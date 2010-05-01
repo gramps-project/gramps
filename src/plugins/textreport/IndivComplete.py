@@ -5,6 +5,7 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2009      Nick Hall
 # Copyright (C) 2009      Benny Malengier
+# Copyright (C) 2010      Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,8 +45,11 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
 import DateHandler
 from gen.plug.menu import BooleanOption, FilterOption, PersonOption, \
                           BooleanListOption
-from ReportBase import Report, ReportUtils, MenuReportOptions
-from ReportBase import Bibliography, Endnotes
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
+from gen.plug.report import Bibliography
+from gen.plug.report import endnotes as Endnotes
 from gen.display.name import displayer as _nd
 from Utils import media_path_full
 from QuestionDialog import WarningDialog

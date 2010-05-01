@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +43,7 @@ import ManagedWindow
 import AutoComp
 from gen.lib import EventType
 from QuestionDialog import OkDialog
-from PluginUtils import Tool
+from gui.plug import tool
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -50,11 +51,11 @@ from glade import Glade
 # ChangeTypes class
 #
 #-------------------------------------------------------------------------
-class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
+class ChangeTypes(tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
 
@@ -162,13 +163,13 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class ChangeTypesOptions(Tool.ToolOptions):
+class ChangeTypesOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

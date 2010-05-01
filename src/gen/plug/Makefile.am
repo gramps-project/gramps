@@ -6,7 +6,8 @@
 SUBDIRS = \
 	docbackend\
 	docgen\
-	menu
+	menu\
+	report
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen/plug
 
@@ -17,8 +18,10 @@ pkgdata_PYTHON = \
 	_gramplet.py \
 	_import.py \
 	_manager.py \
+        _options.py \
 	_plugin.py \
-    _pluginreg.py \
+        _pluginreg.py \
+        _tool.py \
 	utils.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug

@@ -6,6 +6,7 @@
 # Copyright (C) 2008 Lukasz Rymarczyk
 # Copyright (C) 2008 Raphael Ackermann
 # Copyright (C) 2008 Brian G. Matherly
+# Copyright (C) 2010 Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,9 +48,9 @@ import Utils
 import gen
 from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
-from PluginUtils import Tool
 from gen.plug import BasePluginManager
-from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, cl_report
+from gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE
+from cli.plug import cl_report
 
 #-------------------------------------------------------------------------
 # ArgHandler
@@ -87,14 +88,16 @@ class ArgHandler(object):
         self.open = self.__handle_open_option(parser.open)
         self.sanitize_args(parser.imports, parser.exports)
     
-    def __error(self, string):
+    def __error(self, msg1, msg2=None):
         """
         Output an error. Uses errorfunc if given, otherwise a simple print.
         """
         if self.errorfunc:
-            self.errorfunc(string)
+            self.errorfunc(msg1)
         else:
-            print string
+            print msg1
+            if msg2 is not None:
+                print msg2
 
     #-------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
@@ -429,7 +432,7 @@ class ArgHandler(object):
         for plugin in pmgr.get_export_plugins():
             if family_tree_format == plugin.get_extension():
                 export_function = plugin.get_export_function()
-                export_function(self.dbstate.db, filename)
+                export_function(self.dbstate.db, filename, self.__error)
 
     #-------------------------------------------------------------------------
     #
@@ -485,6 +488,7 @@ class ArgHandler(object):
                     print "   %s\t- %s" % (pdata.id, pdata.name)
 
         elif action == "tool":
+            from gui.plug import tool
             try:
                 options_str_dict = dict( [ tuple(chunk.split('=')) for
                                            chunk in options_str.split(',') ] )
@@ -504,7 +508,7 @@ class ArgHandler(object):
                         category = pdata.category
                         tool_class = eval('mod.' + pdata.toolclass)
                         options_class = eval('mod.' + pdata.optionclass)
-                        Tool.cli_tool(self.dbstate, name, category, tool_class, 
+                        tool.cli_tool(self.dbstate, name, category, tool_class,
                                       options_class, options_str_dict)
                         return
                 msg = "Unknown tool name."

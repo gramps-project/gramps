@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program - What Next Gramplet plugin
 #
 # Copyright (C) 2008 Reinhard Mueller
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +30,7 @@
 from gen.lib import EventType, FamilyRelType, MarkerType
 from gen.plug import Gramplet
 from gen.display.name import displayer as name_displayer
-from ReportBase import ReportUtils
+from gen.plug.report import utils as ReportUtils
 from gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------

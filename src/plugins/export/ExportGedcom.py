@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008-2009  Gary Burton
 # Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +47,6 @@ from ExportOptions import WriterOptionBox
 from gen.updatecallback import UpdateCallback
 from Utils import media_path_full, get_unicode_path
 import gen.proxy
-from QuestionDialog import ErrorDialog
 from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
@@ -1398,7 +1398,7 @@ class GedcomWriter(UpdateCallback):
 #
 #
 #-------------------------------------------------------------------------
-def export_data(database, filename, option_box=None, callback=None):
+def export_data(database, filename, msg_callback, option_box=None, callback=None):
     """
     External interface used to register with the plugin system.
     """
@@ -1408,7 +1408,7 @@ def export_data(database, filename, option_box=None, callback=None):
         ret = ged_write.write_gedcom_file(filename)
     except IOError, msg:
         msg2 = _("Could not create %s") % filename
-        ErrorDialog(msg2, str(msg))
+        msg_callback(msg2, str(msg))
     except Errors.DatabaseError, msg:
-        ErrorDialog(_("Export failed"), str(msg))
+        msg_callback(_("Export failed"), str(msg))
     return ret

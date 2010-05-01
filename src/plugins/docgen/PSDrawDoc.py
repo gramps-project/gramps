@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@ from gen.ggettext import gettext as _
 #Gramps modules
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-from ReportBase import ReportUtils
+from gen.plug.report import utils as ReportUtils
 from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
 from gen.plug.utils import gformat
 import Errors

@@ -15,9 +15,7 @@ SUBDIRS = \
 	images \
 	Merge \
 	mapstraction \
-	PluginUtils \
 	plugins \
-	ReportBase \
 	Simple
 
 gdirdir=$(prefix)/share/gramps

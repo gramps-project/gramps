@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006, 2008  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +48,6 @@ log = logging.getLogger(".WriteFtree")
 import Utils
 from Filters import GenericFilter, Rules, build_filter_model
 import Errors
-from QuestionDialog import ErrorDialog
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -55,8 +55,8 @@ from glade import Glade
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database, filename, option_box=None, callback=None):
-    writer = FtreeWriter(database, filename, option_box, callback)
+def writeData(database, filename, msg_callback, option_box=None, callback=None):
+    writer = FtreeWriter(database, msg_callback, filename, option_box, callback)
     return writer.export_data()
     
 class FtreeWriterOptionBox(object):
@@ -123,12 +123,13 @@ class FtreeWriterOptionBox(object):
 #-------------------------------------------------------------------------
 class FtreeWriter(object):
 
-    def __init__(self, database, filename="", option_box=None, 
+    def __init__(self, database, msg_callback, filename="", option_box=None,
                  callback = None):
         self.db = database
         self.option_box = option_box
         self.filename = filename
         self.callback = callback
+        self.msg_callback = msg_callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
@@ -154,7 +155,7 @@ class FtreeWriter(object):
 
                 except Errors.FilterError, msg:
                     (m1, m2) = msg.messages()
-                    ErrorDialog(m1, m2)
+                    self.msg_callback(m1, m2)
                     return
 
     def update_empty(self):

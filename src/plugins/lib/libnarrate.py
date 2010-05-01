@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009  Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@ from gen.lib.eventtype import EventType
 from gen.lib.familyreltype import FamilyRelType
 from gen.display.name import displayer as _nd
 import Utils
-from ReportBase import ReportUtils
+from gen.plug.report import utils as ReportUtils
 from libtranslate import Translator
 
 #-------------------------------------------------------------------------

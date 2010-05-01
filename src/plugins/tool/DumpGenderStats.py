@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +31,8 @@ import gtk
 import ListModel
 import ManagedWindow
 
-from PluginUtils import Tool
+from gui.plug import tool
+
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
@@ -38,11 +40,11 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 #
 #
 #-------------------------------------------------------------------------
-class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
+class DumpGenderStats(tool.Tool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _("Gender Statistics tool")
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         if uistate:
             ManagedWindow.ManagedWindow.__init__(self,uistate,[],
                                                  self.__class__)
@@ -92,10 +94,10 @@ class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class DumpGenderStatsOptions(Tool.ToolOptions):
+class DumpGenderStatsOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

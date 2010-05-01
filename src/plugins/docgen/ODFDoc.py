@@ -5,6 +5,7 @@
 # Copyright (C) 2005-2009  Serge Noiraud
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2010       Peter Landgren
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -85,7 +86,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc,
 from gen.plug.docgen.fontscale import string_width
 from libodfbackend import OdfBackend
 import const
-from ReportBase import ReportUtils
+from gen.plug.report import utils as ReportUtils
 import ImgManip
 import Errors
 

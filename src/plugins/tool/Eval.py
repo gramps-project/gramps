@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,7 +40,7 @@ import traceback
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Tool
+from gen.plug import tool
 import ManagedWindow
 from glade import Glade
 
@@ -48,11 +49,11 @@ from glade import Glade
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
+class Eval(tool.Tool,ManagedWindow.ManagedWindow):
     def __init__(self,dbstate, uistate, options_class, name, callback=None):
         self.title =  _("Python evaluation window")
 
-        Tool.Tool.__init__(self,dbstate, options_class, name)
+        tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.glade = Glade()
@@ -103,10 +104,10 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class EvalOptions(Tool.ToolOptions):
+class EvalOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

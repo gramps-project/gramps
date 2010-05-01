@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +48,7 @@ import gc
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Tool
+from gen.plug import Tool
 import ManagedWindow
 from QuestionDialog import InfoDialog
 from glade import Glade
@@ -57,11 +58,11 @@ from glade import Glade
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
+class Leak(tool.Tool,ManagedWindow.ManagedWindow):
     def __init__(self,dbstate, uistate, options_class, name, callback=None):
         self.title = _('Uncollected Objects Tool')
 
-        Tool.Tool.__init__(self,dbstate, options_class, name)
+        tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         self.glade = Glade()

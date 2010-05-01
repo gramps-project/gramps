@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007  Donald N. Allingham
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@ import gen.lib
 import DateHandler
 import Utils
 import gen.utils
+from gen.plug.report.utils import place_name
 
 from gen.display.name import displayer as name_displayer
 from gen.lib import EventType
@@ -38,15 +40,6 @@ import config
 # Local functions
 #
 #-------------------------------------------------------------------------
-# FIXME: this is copied from ReportBase._ReportUtils to avoid the gtk
-#        imports.
-def place_name(db, place_handle):
-    if place_handle:
-        place = db.get_place_from_handle(place_handle).get_title()
-    else:
-        place = ""
-    return unicode(place)
-
 class SimpleAccess(object):
     """
     Provide a simplified database access system. This system has been designed to

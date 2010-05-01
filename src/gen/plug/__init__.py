@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008  Brian G. Matherly
+# Copyright (C) 2010  Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,6 +39,7 @@ from _export import ExportPlugin
 from _docgenplugin import DocGenPlugin
 from _gramplet import Gramplet
 from utils import *
+from gen.plug._options import Options, OptionListCollection, OptionList, OptionHandler
 
 __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
             PluginRegister, BasePluginManager, 

@@ -4,6 +4,7 @@
 # Copyright (C) 2004  Martin Hawlisch
 # Copyright (C) 2005-2008  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +49,6 @@ log = logging.getLogger(".ExportVCard")
 from Filters import GenericFilter, Rules, build_filter_model
 from gen.lib import Date
 import Errors
-from QuestionDialog import ErrorDialog
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -115,13 +115,14 @@ class CardWriterOptionBox(object):
         self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
 class CardWriter(object):
-    def __init__(self, database, cl=0, filename="", option_box=None, 
+    def __init__(self, database, msg_callback, cl=0, filename="", option_box=None,
                  callback=None):
         self.db = database
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
         self.callback = callback
+        self.msg_callback = msg_callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
@@ -144,7 +145,7 @@ class CardWriter(object):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
                     (m1, m2) = msg.messages()
-                    ErrorDialog(m1, m2)
+                    self.msg_callback(m1, m2)
                     return
 
     def update_empty(self):
@@ -171,10 +172,10 @@ class CardWriter(object):
             self.g = open(filename,"w")
         except IOError,msg:
             msg2 = _("Could not create %s") % filename
-            ErrorDialog(msg2, str(msg))
+            self.msg_callback(msg2, str(msg))
             return False
         except:
-            ErrorDialog(_("Could not create %s") % filename)
+            self.msg_callback(_("Could not create %s") % filename)
             return False
 
         self.count = 0

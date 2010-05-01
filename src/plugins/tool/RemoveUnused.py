@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Stephane Charette
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,7 +58,7 @@ import Errors
 import ManagedWindow
 from DateHandler import displayer as _dd
 from gen.updatecallback import UpdateCallback
-from PluginUtils import Tool
+from gui.plug import tool
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -65,7 +66,7 @@ from glade import Glade
 # runTool
 #
 #-------------------------------------------------------------------------
-class RemoveUnused(Tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
+class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
     MARK_COL       = 0
     OBJ_ID_COL     = 1
     OBJ_NAME_COL   = 2
@@ -75,7 +76,7 @@ class RemoveUnused(Tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.title = _('Unused Objects')
 
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
 
         if self.db.readonly:
             return
@@ -436,13 +437,13 @@ class RemoveUnused(Tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
 # 
 #
 #------------------------------------------------------------------------
-class CheckOptions(Tool.ToolOptions):
+class CheckOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name, person_id=None):
-        Tool.ToolOptions.__init__(self, name, person_id)
+        tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,8 +31,6 @@
 #-------------------------------------------------------------------------
 import gobject
 import gtk
-import cPickle
-from bsddb.db import DB_CURRENT
 
 #-------------------------------------------------------------------------
 #
@@ -42,10 +41,9 @@ import const
 from gui.utils import ProgressMeter
 import GrampsDisplay
 import ManagedWindow
-from gen.lib import Person
 
 from QuestionDialog import OkDialog
-from PluginUtils import Tool
+from gui.plug import tool
 from gen.ggettext import sgettext as _
 from glade import Glade
 
@@ -70,7 +68,7 @@ WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names...')
 # ChangeNames
 #
 #-------------------------------------------------------------------------
-class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
+class ChangeNames(tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Capitalization changes')
@@ -79,7 +77,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.set_window(gtk.Window(),gtk.Label(),'')
 
-        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
 
@@ -268,10 +266,10 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class ChangeNamesOptions(Tool.ToolOptions):
+class ChangeNamesOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)

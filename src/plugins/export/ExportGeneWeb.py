@@ -5,6 +5,7 @@
 # Copyright (C) 2004-2006, 2008 Donald N. Allingham
 # Copyright (C) 2008  Brian G. Matherly
 # Copyright (C) 2009  Gary Burton
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,7 +50,6 @@ import gen.lib
 from Filters import GenericFilter, Rules, build_filter_model
 #import const
 import Utils
-from QuestionDialog import ErrorDialog
 from glade import Glade
 import config
 
@@ -139,12 +139,13 @@ class GeneWebWriterOptionBox(object):
             self.images_path = ""
 
 class GeneWebWriter(object):
-    def __init__(self, database, filename="", option_box=None, 
+    def __init__(self, database, msg_callback, filename="", option_box=None,
                  callback=None):
         self.db = database
         self.option_box = option_box
         self.filename = filename
         self.callback = callback
+        self.msg_callback = msg_callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
@@ -215,14 +216,14 @@ class GeneWebWriter(object):
             self.g = open(self.filename, "w")
         except IOError,msg:
             msg2 = _("Could not create %s") % self.filename
-            ErrorDialog(msg2, str(msg))
+            self.msg_callback(msg2, str(msg))
             return False
         except:
-            ErrorDialog(_("Could not create %s") % self.filename)
+            self.msg_callback(_("Could not create %s") % self.filename)
             return False
 
         if len(self.flist) < 1:
-            ErrorDialog(_("No families matched by selected filter"))
+            self.msg_callback(_("No families matched by selected filter"))
             return False
         
         self.count = 0
@@ -609,6 +610,6 @@ class GeneWebWriter(object):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, option_box=None, callback=None):
-    gw = GeneWebWriter(database, filename, option_box, callback)
+def exportData(database, filename, msg_callback, option_box=None, callback=None):
+    gw = GeneWebWriter(database, msg_callback, filename, option_box, callback)
     return gw.export_data()

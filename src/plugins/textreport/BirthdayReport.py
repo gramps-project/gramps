@@ -3,6 +3,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2009           Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +46,9 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 from gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
                          EnumeratedListOption, FilterOption, PersonOption)
 from gui.utils import ProgressMeter
-from ReportBase import Report, ReportUtils, MenuReportOptions
+from gen.plug.report import Report
+from gen.plug.report import utils as ReportUtils
+from gui.plug.report import MenuReportOptions
 from Utils import probably_alive
 import GrampsLocale
 from DateHandler import displayer as _dd

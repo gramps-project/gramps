@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,6 +39,7 @@ import gtk
 import const
 import gen.lib
 from gui.utils import ProgressMeter
+from gui.plug import tool
 import soundex
 from gen.display.name import displayer as name_displayer
 from QuestionDialog import OkDialog
@@ -46,7 +48,6 @@ import Errors
 from Merge import PersonCompare
 import GrampsDisplay
 import ManagedWindow
-from PluginUtils import Tool
 from QuestionDialog import RunDatabaseRepair
 from gen.ggettext import sgettext as _
 from glade import Glade
@@ -84,11 +85,11 @@ def is_initial(name):
 # The Actual tool.
 #
 #-------------------------------------------------------------------------
-class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
+class Merge(tool.Tool,ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, [],
                                              self.__class__)
         self.dbstate = dbstate
@@ -646,13 +647,13 @@ def by_id(p1,p2):
 # 
 #
 #------------------------------------------------------------------------
-class MergeOptions(Tool.ToolOptions):
+class MergeOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ import Utils
 from gui.utils import ProgressMeter
 import ManagedWindow
 
-from PluginUtils import Tool
+from gui.plug import tool
 from QuestionDialog import OkDialog, MissingMediaDialog
 from gen.display.name import displayer as _nd
 from glade import Glade
@@ -145,10 +146,10 @@ def _table_low_level(db,table):
 # runTool
 #
 #-------------------------------------------------------------------------
-class Check(Tool.BatchTool):
+class Check(tool.BatchTool):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        Tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
 
@@ -1653,10 +1654,10 @@ class Report(ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class CheckOptions(Tool.ToolOptions):
+class CheckOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name, person_id=None):
-        Tool.ToolOptions.__init__(self, name, person_id)
+        tool.ToolOptions.__init__(self, name, person_id)

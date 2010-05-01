@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,8 +53,8 @@ import const
 import Errors
 import DateHandler
 from QuestionDialog import WarningDialog
-from PluginUtils import Tool
-from ReportBase import ReportUtils
+from gui.plug import tool
+from gen.plug.report import utils as ReportUtils
 import GrampsDisplay 
 import ManagedWindow
 from gen.ggettext import sgettext as _
@@ -113,12 +114,12 @@ class TableReport(object):
 # 
 #
 #------------------------------------------------------------------------
-class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
+class EventComparison(tool.Tool,ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.dbstate = dbstate
         self.uistate = uistate
         
-        Tool.Tool.__init__(self,dbstate, options_class, name)
+        tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         self.qual = 0
         
@@ -426,13 +427,13 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class EventComparisonOptions(Tool.ToolOptions):
+class EventComparisonOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

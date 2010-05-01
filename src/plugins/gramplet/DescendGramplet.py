@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008       Douglas S. Blank
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +38,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.plug import Gramplet
-from ReportBase import ReportUtils
+from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
 import DateHandler
 from gen.utils import get_birth_or_fallback, get_death_or_fallback

@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Gary Burton
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,7 @@ from libpersonview import BasePersonView
 import Relationship
 
 from QuestionDialog import ErrorDialog
-from PluginUtils import Tool
+from gui.plug import tool
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -66,14 +67,14 @@ column_names = BasePersonView.COLUMN_NAMES
 #
 #
 #-------------------------------------------------------------------------
-class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
+class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         """
         Relationship calculator class.
         """
         
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         #set the columns to see
@@ -248,10 +249,10 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class RelCalcOptions(Tool.ToolOptions):
+class RelCalcOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)
