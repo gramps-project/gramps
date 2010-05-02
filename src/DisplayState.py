@@ -413,7 +413,7 @@ class DisplayState(gen.utils.Callback):
         navigation type and group.
         """
         history = self.get_history(nav_type, nav_group)
-        return history.present()
+        return history.present() if history else None
 
     def set_active(self, handle, nav_type, nav_group=0):
         """
@@ -421,7 +421,8 @@ class DisplayState(gen.utils.Callback):
         the given handle.
         """
         history = self.get_history(nav_type, nav_group)
-        history.push(handle)
+        if history:
+            history.push(handle)
 
     def set_sensitive(self, state):
         self.window.set_sensitive(state)
