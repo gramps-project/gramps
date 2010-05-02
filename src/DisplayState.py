@@ -421,7 +421,8 @@ class DisplayState(gen.utils.Callback):
         the given handle.
         """
         history = self.get_history(nav_type, nav_group)
-        history.push(handle)
+        if history:
+            history.push(handle)
 
     def set_sensitive(self, state):
         self.window.set_sensitive(state)
