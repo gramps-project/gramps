@@ -11,7 +11,8 @@ pkgdata_PYTHON = \
 	__init__.py\
 	_guioptions.py\
 	_windows.py\
-	_dialogs.py
+	_dialogs.py\
+	tool.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/plug
 pkgpythondir = @pkgpythondir@/gui/plug
