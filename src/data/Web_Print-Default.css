@@ -746,7 +746,7 @@ div.subsection table, div.subsection ol, div.subsection p {
     font-size:.9em;
 }
 div.subsection a {
-    text-decoration:none;
+    text-decoration:underline;
 }
 div.subsection table.infolist {
     width:100%;
