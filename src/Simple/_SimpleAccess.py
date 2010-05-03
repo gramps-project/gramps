@@ -173,7 +173,6 @@ class SimpleAccess(object):
         @return: Returns the GRAMPS Id value of the person or family
         @rtype: unicode
         """
-        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
         if obj:
             return obj.get_gramps_id()
         else:
@@ -866,6 +865,55 @@ class SimpleAccess(object):
     def family(self, handle):
         assert(type(handle) in [str, unicode])
         return self.dbase.get_family_from_handle(handle)
+
+    def display(self, object_class, prop, value):
+        """
+        Given a object_class, prop, and value return a display string
+        describing object.  
+        object_class is "Person", "Source", etc.
+        prop is "gramps_id", or "handle"
+        value is a gramps_id or handle.
+        """
+        if object_class in self.dbase.get_table_names():
+            obj = self.dbase.get_table_metadata(object_class)\
+                           [prop + "_func"](value)
+            if obj:
+                if isinstance(obj, gen.lib.Person):
+                    return "%s: %s [%s]" % (_(object_class), 
+                                            self.name(obj), 
+                                            self.gid(obj))
+                elif isinstance(obj, gen.lib.Event):
+                    return "%s: %s [%s]" % (_(object_class), 
+                                            self.event_type(obj),
+                                            self.gid(obj))
+                elif isinstance(obj, gen.lib.Family):
+                    return "%s: %s/%s [%s]" % (_(object_class), 
+                                            self.name(self.mother(obj)), 
+                                            self.name(self.father(obj)), 
+                                            self.gid(obj))
+                elif isinstance(obj, gen.lib.MediaObject):
+                    return "%s: %s [%s]" % (_(object_class), 
+                                            obj.desc, 
+                                            self.gid(obj))
+                elif isinstance(obj, gen.lib.Source):
+                    return "%s: %s [%s]" % (_(object_class), 
+                                            self.title(obj), 
+                                            self.gid(obj))
+                elif isinstance(obj, gen.lib.Place):
+                    return "%s: %s [%s]" % (_(object_class), 
+                                            place_name(self.dbase, 
+                                                       obj.handle), 
+                                            self.gid(obj))
+                elif isinstance(obj, gen.lib.Repository):
+                    return "%s: %s [%s]" % (_(object_class), 
+                                            obj.type, 
+                                            self.gid(obj))
+                elif isinstance(obj, gen.lib.Note):
+                    return "%s: %s [%s]" % (_(object_class), 
+                                            obj.type, 
+                                            self.gid(obj))
+                else:
+                    return "Error: invalid object class: '%s'" % object_class
 
 def by_date(event1, event2):
     """
