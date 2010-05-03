@@ -5,10 +5,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/plug/report
 pkgdata_PYTHON = \
 	__init__.py\
 	_bibliography.py\
-	_commandlinereport.py\
 	_constants.py\
-	_docreportdialog.py\
-	_drawreportdialog.py\
         _options.py\
 	_paper.py\
 	_reportbase.py\
