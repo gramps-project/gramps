@@ -393,11 +393,14 @@ class NameDisplay(object):
                         ]
             format_str = format_str[1:]
         else:
-            patterns = [",\W*\(%(" + ("|".join(codes)) + ")\)",  # ,\W*(%s)
-                        ",\W*%(" + ("|".join(codes)) + ")",      # ,\W*%s
-                        "\(%(" + ("|".join(codes)) + ")\)",      # (%s)
-                        "%(" + ("|".join(codes)) + ")",          # %s
-                        ]
+            patterns = [
+                ",\W*\"%(" + ("|".join(codes)) + ")\"",  # ,\W*"%s"
+                ",\W*\(%(" + ("|".join(codes)) + ")\)",  # ,\W*(%s)
+                ",\W*%(" + ("|".join(codes)) + ")",      # ,\W*%s
+                "\"%(" + ("|".join(codes)) + ")\"",      # "%s"
+                "\(%(" + ("|".join(codes)) + ")\)",      # (%s)
+                "%(" + ("|".join(codes)) + ")",          # %s
+                ]
         new_fmt = format_str
 
         # replace the specific format string flags with a 
