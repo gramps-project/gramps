@@ -174,12 +174,15 @@ div#header a {
 
 /* Footer
 ----------------------------------------------------- */
-
 div#footer {
-    width: 100%;
-    font-size: 12px;
-    height: 60px;
-    color: #E8E6E8;
+    clear:both;
+    overflow:hidden;
+    width:100%;
+    font-size:12px;
+    line-height:130%;
+    color:#E8E6E8;
+    margin:0;
+    padding:15px 0 0 0;
     border-top: solid 1px #454;
     background-color: #454;
 }

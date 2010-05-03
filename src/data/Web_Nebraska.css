@@ -1292,10 +1292,10 @@ div#pedigree {
 
 /* Footer
 ----------------------------------------------------- */
-#footer {
+div#footer {
     clear:both;
+    overflow:hidden;
     width:100%;
-    height: 60px;
     font-size:12px;
     line-height:130%;
     font-family:sans-serif;

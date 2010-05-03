@@ -1290,16 +1290,16 @@ table.weblinks tr td.ColumnDescription {
 /* Footer
 ----------------------------------------------------- */
 #footer {
-    clear: both;
-    width: 965px;
-    height: 80px;
-    font-size: 10px;
-    line-height: 130%;
-    font-family: sans-serif;
-    margin: 0 auto;
-    padding: 15px 0 0 0;
-    color: #000;
-    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 bottom left repeat;
+    clear:both;
+    width:965px;
+    overflow:hidden;
+    font-size:10px;
+    line-height:130%;
+    font-family:sans-serif;
+    color:#000;
+    margin:0 auto;
+    padding:15px 0 0 0;
+    background:url('../images/Web_Mainz_MidLight.png') #FFF2C6 bottom left repeat;
     border-top:dashed 1px #7D5925;
 }
 #footer a, #footer a:visited {
