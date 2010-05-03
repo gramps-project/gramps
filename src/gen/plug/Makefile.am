@@ -21,7 +21,6 @@ pkgdata_PYTHON = \
         _options.py \
 	_plugin.py \
         _pluginreg.py \
-        _tool.py \
 	utils.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug
