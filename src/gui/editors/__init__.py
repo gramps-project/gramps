@@ -38,3 +38,38 @@ from editreporef import EditRepoRef
 from editsource import EditSource, DeleteSrcQuery
 from editsourceref import EditSourceRef
 from editurl import EditUrl
+
+# Map from gen.obj name to Editor:
+EDITORS = {
+    'Person': EditPerson,
+    'Event': EditEvent,
+    'Family': EditFamily,
+    'Media': EditMedia,
+    'Source': EditSource,
+    'Place': EditPlace,
+    'Repository': EditRepository,
+    'Note': EditNote,
+    }
+
+def EditObject(dbstate, uistate, track, obj_class, prop, value):
+    """
+    Generic Object Editor. 
+    obj_class is Person, Source, Repository, etc.
+    prop is 'handle' or 'gramps_id'
+    value is string handle or string gramps_id
+    """
+    if obj_class in dbstate.db.get_table_names():
+        if prop in ("gramps_id", "handle"):
+            obj = dbstate.db.get_table_metadata(obj_class)[prop + "_func"](value)
+            if obj:
+                EDITORS[obj_class](dbstate, uistate, track, obj)
+            else:
+                raise AttributeError("gramps://%s/%s/%s not found" % 
+                                     (obj_class, prop, value))
+        else:
+            raise AttributeError("unknown property to edit '%s'; "
+                                 "should be 'gramps_id' or 'handle'" % prop)
+    else:
+        raise AttributeError("unknown object to edit '%s'; "
+                             "should be one of %s" % (obj_class, EDITORS.keys()))
+
