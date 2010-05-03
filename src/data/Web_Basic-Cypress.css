@@ -174,14 +174,17 @@ div#header a {
 
 /* Footer
 ----------------------------------------------------- */
-
 div#footer {
-    width: 100%;
-    font-size: 12px;
-    height: 60px;
-    color: #E8E6E8;
-    border-top: solid 1px #454;
-    background-color: #454;
+    clear:both;
+    overflow:hidden;
+    width:100%;
+    font-size:12px;
+    line-height:130%;
+    color:#E8E6E8;
+    margin:0;
+    padding:15px 0 0 0;
+    background-color:#454;
+    border-top:solid 1px #454;
 }
 #footer a, #footer a:visited {
     text-decoration:none;

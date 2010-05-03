@@ -1285,8 +1285,9 @@ div#pedigree {
 
 /* Footer
 ----------------------------------------------------- */
-#footer {
+div#footer {
     clear:both;
+    overflow:hidden;
     width:100%;
     font-size:12px;
     line-height:130%;
