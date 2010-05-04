@@ -37,7 +37,6 @@ from editrepository import EditRepository, DeleteRepositoryQuery
 from editreporef import EditRepoRef
 from editsource import EditSource, DeleteSrcQuery
 from editsourceref import EditSourceRef
-from editurl import EditUrl
 
 # Map from gen.obj name to Editor:
 EDITORS = {
