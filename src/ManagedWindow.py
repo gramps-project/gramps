@@ -433,7 +433,6 @@ class ManagedWindow(object):
 
     def get_widget(self, name):
         assert(self._gladeobj)
-        name = 'nisse'
         object = self._gladeobj.get_child_object(name)
         if object is not None:
             return object
