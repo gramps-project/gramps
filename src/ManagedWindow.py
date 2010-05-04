@@ -433,12 +433,13 @@ class ManagedWindow(object):
 
     def get_widget(self, name):
         assert(self._gladeobj)
+        name = 'nisse'
         object = self._gladeobj.get_child_object(name)
         if object is not None:
             return object
         raise ValueError, (
-            'ManagedWindow.get_widget: "%s" widget not found in "%s"' %
-            (name, self._gladeobj.get_name())
+            'ManagedWindow.get_widget: "%s" widget not found in "%s/%s"' %
+            (name, self._gladeobj.dirname, self._gladeobj.filename)
             )
         return object
 
