@@ -437,8 +437,8 @@ class ManagedWindow(object):
         if object is not None:
             return object
         raise ValueError, (
-            'ManagedWindow.get_widget: "%s" widget not found in "%s"' %
-            (name, self._gladeobj.get_name())
+            'ManagedWindow.get_widget: "%s" widget not found in "%s/%s"' %
+            (name, self._gladeobj.dirname, self._gladeobj.filename)
             )
         return object
 
