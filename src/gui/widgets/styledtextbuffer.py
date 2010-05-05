@@ -474,7 +474,9 @@ class StyledTextBuffer(gtk.TextBuffer):
         If TextTag does not exist yet, it is created.
         
         """
-        if StyledTextTagType.STYLE_TYPE[style] == bool:
+        if style not in StyledTextTagType.STYLE_TYPE:
+            return None
+        elif StyledTextTagType.STYLE_TYPE[style] == bool:
             tag_name = str(style)
         elif StyledTextTagType.STYLE_TYPE[style] == str:
             tag_name = "%d %s" % (style, value)
