@@ -54,7 +54,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
     IMAGE  =  2
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
-                 show_search_bar = True):
+                 show_search_bar = True, default=None):
         """Set up the dialog with the dbstate and uistate, track of parent
             windows for ManagedWindow, initial filter for the model, skip with
             set of handles to skip in the view, and search_bar to show the 
@@ -116,6 +116,38 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             self.showall.show()
         else:
             self.showall.hide()
+        if default:
+            self.goto_handle(default)
+
+    def goto_handle(self, handle):
+        """
+        Goto the correct row.
+        """
+        try: # tree:
+            path = None
+            node = self.model.get_node(handle)
+            if node:
+                parent_node = self.model.on_iter_parent(node)
+                if parent_node:
+                    parent_path = self.model.on_get_path(parent_node)
+                    if parent_path:
+                        for i in range(len(parent_path)):
+                            expand_path = tuple([x for x in parent_path[:i+1]])
+                            self.tree.expand_row(expand_path, False)
+                path = self.model.on_get_path(node)
+        except: # flat:
+            try:
+                path = self.model.on_get_path(handle)
+            except:
+                path = None
+
+        if path is not None:
+            self.selection.unselect_all()
+            self.selection.select_path(path)
+            self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
+        else:
+            # not in list
+            self.selection.unselect_all()
 
     def add_columns(self,tree):
         tree.set_fixed_height_mode(True)
