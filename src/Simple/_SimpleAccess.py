@@ -913,7 +913,11 @@ class SimpleAccess(object):
                                             obj.type, 
                                             self.gid(obj))
                 else:
-                    return "Error: invalid object class: '%s'" % object_class
+                    return "Error: incorrect object class: '%s'" % type(obj)
+            else:
+                return "Error: missing object"
+        else:
+            return "Error: invalid object class: '%s'" % object_class
 
 def by_date(event1, event2):
     """
