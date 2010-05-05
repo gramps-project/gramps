@@ -116,18 +116,17 @@ class DateDisplayCA(DateDisplay):
     """
     Catalan language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( u"", u"Gener", u"Febrer", u"Març", u"Abril", u"Maig", 
+                    u"Juny", u"Juliol", u"Agost", u"Setembre", u"Octubre", 
+                    u"Novembre", u"Desembre" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",  
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"Gen", u"Feb", u"Mar", u"Abr", u"Mai", u"Jun",  
+                     u"Jul", u"Ago", u"Set", u"Oct", u"Nov", u"Des" )
 
     calendar = (
         "", u"Julià", u"Hebreu", 
         u"Revolucionari", u"Persa", u"Islàmic", 
-        u"Swedish" 
+        u"Suec" 
         )
 
     _mod_str = ("", u"abans de ", u"després de ", u"cap a ", "", "", "")
