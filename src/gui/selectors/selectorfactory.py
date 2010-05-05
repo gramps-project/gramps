@@ -38,7 +38,7 @@ def SelectorFactory(classname):
     elif classname == 'Source':
         from selectsource import SelectSource
         cls = SelectSource
-    elif classname == 'MediaObject':
+    elif classname in ['MediaObject', 'Media']:
         from selectobject import SelectObject
         cls = SelectObject
     elif classname == 'Repository':
