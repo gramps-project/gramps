@@ -305,6 +305,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             hbutbox.add(self.__edit_btn)
             self.__edit_btn.connect('clicked', self.__edit, self.list, 4) # id_col
             self.__load_btn = gtk.Button(_("Load"))
+            self.__load_btn.set_sensitive(False)
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load, self.list, 4) # id_col
         vbox_loaded.pack_start(hbutbox, expand=False, padding=5)
