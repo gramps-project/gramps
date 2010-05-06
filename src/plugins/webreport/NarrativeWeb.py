@@ -1408,7 +1408,8 @@ class BasePage(object):
             if photoref.ref in photolist_handles:
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)
-                photolist.remove(photo)
+                if photo in photolist:
+                    photolist.remove(photo)
         # and add any that are left (should there be any?)
         photolist_ordered += photolist
 
