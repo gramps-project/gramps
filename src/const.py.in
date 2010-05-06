@@ -280,10 +280,9 @@ LONGOPTS = [
     "sm-config-prefix=", 
     "sm-disable",
     "sync", 
-    "usage",  
     "version", 
 ]
 
-SHORTOPTS = "O:i:e:f:a:p:d:lLhu?"
+SHORTOPTS = "O:i:e:f:a:p:d:lLhus?"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
