@@ -102,18 +102,17 @@ class DateDisplayCZ(DateDisplay):
     """
     Czech language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( u"", u"Leden", u"Únor", u"Březen", u"Duben", u"Květen", 
+                    u"Červen", u"červenec", u"Srpen", u"Září", u"Říjen", 
+                    u"Listopad", u"Prosinec" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"Led", u"Úno", u"Bře", u"Dub", u"Kvě", u"čer", 
+                     u"Čvc", u"Srp", u"Zář", u"Říj", u"Lis", u"Pro" )
 
     calendar = (
         "", u"juliánský", u"hebrejský", 
         u"republikánský", u"perský", u"islámský", 
-        u"swedish" 
+        u"švédský" 
         )
 
     _mod_str = ("", u"před ", u"po ", u"kolem ", "", "", "")
