@@ -53,7 +53,6 @@ Usage: gramps.py [OPTION...]
 
 Help options
   -?, --help                             Show this help message
-  --usage                                Display brief usage message
 
 Application options
   -O, --open=FAMILY_TREE                 Open family tree
