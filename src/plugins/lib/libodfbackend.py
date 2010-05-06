@@ -81,7 +81,9 @@ class OdfBackend(DocBackend):
             DocBackend.FONTSIZE,
             DocBackend.FONTCOLOR,
             DocBackend.HIGHLIGHT,
-            DocBackend.SUPERSCRIPT ]
+            DocBackend.SUPERSCRIPT,
+            DocBackend.LINK,
+            ]
 
     STYLETAG_MARKUP = {
         DocBackend.BOLD        : 
@@ -129,3 +131,14 @@ class OdfBackend(DocBackend):
             return ('<text:span text:style-name=\"FontHighlight__%s__\">' % 
                                 self.ESCAPE_FUNC()(value), 
                     '</text:span>')
+
+    def format_link(self, value):
+        """
+        Override of base method.
+        """
+        if value.startswith("gramps://"):
+            return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
+        else:
+            return ('<text:a xlink:href="%s">' % self.ESCAPE_FUNC()(value), 
+                    '</text:a>')
+

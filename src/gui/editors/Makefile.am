@@ -19,6 +19,7 @@ pkgdata_PYTHON = \
 	editfamily.py \
 	editldsord.py \
 	editlocation.py \
+	editlink.py \
 	editmedia.py \
 	editmediaref.py \
 	editname.py \

@@ -38,8 +38,9 @@ from editreporef import EditRepoRef
 from editsource import EditSource, DeleteSrcQuery
 from editsourceref import EditSourceRef
 from editurl import EditUrl
+from editlink import EditLink
 
-# Map from gen.obj name to Editor:
+# Map from gen.lib name to Editor:
 EDITORS = {
     'Person': EditPerson,
     'Event': EditEvent,
@@ -58,18 +59,23 @@ def EditObject(dbstate, uistate, track, obj_class, prop, value):
     prop is 'handle' or 'gramps_id'
     value is string handle or string gramps_id
     """
+    import logging
+    LOG = logging.getLogger(".Edit")
     if obj_class in dbstate.db.get_table_names():
         if prop in ("gramps_id", "handle"):
             obj = dbstate.db.get_table_metadata(obj_class)[prop + "_func"](value)
             if obj:
-                EDITORS[obj_class](dbstate, uistate, track, obj)
+                try:
+                    EDITORS[obj_class](dbstate, uistate, track, obj)
+                except Exception as msg:
+                    LOG.warn(str(msg)) 
             else:
-                raise AttributeError("gramps://%s/%s/%s not found" % 
-                                     (obj_class, prop, value))
+                LOG.warn("gramps://%s/%s/%s not found" % 
+                         (obj_class, prop, value))
         else:
-            raise AttributeError("unknown property to edit '%s'; "
-                                 "should be 'gramps_id' or 'handle'" % prop)
+            LOG.warn("unknown property to edit '%s'; "
+                     "should be 'gramps_id' or 'handle'" % prop)
     else:
-        raise AttributeError("unknown object to edit '%s'; "
-                             "should be one of %s" % (obj_class, EDITORS.keys()))
+        LOG.warn("unknown object to edit '%s'; "
+                 "should be one of %s" % (obj_class, EDITORS.keys()))
 

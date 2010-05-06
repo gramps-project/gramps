@@ -99,6 +99,7 @@ class DocBackend(object):
     FONTCOLOR = 5
     HIGHLIGHT = 6
     SUPERSCRIPT = 7
+    LINK = 8
     
     SUPPORTED_MARKUP = []
 
@@ -115,6 +116,7 @@ class DocBackend(object):
         ITALIC      : ("", ""),
         UNDERLINE   : ("", ""),
         SUPERSCRIPT : ("", ""),
+        LINK        : ("", ""),
         }
 
     def __init__(self, filename=None):
@@ -216,7 +218,7 @@ class DocBackend(object):
         if not self.STYLETYPE_MAP or \
         self.CLASSMAP != tagtype.__class__.__name__ :
             self.CLASSMAP == tagtype.__class__.__name__
-            self.STYLETYPE_MAP[tagtype.__class__.BOLD]        = self.BOLD
+            self.STYLETYPE_MAP[tagtype.BOLD]        = self.BOLD
             self.STYLETYPE_MAP[tagtype.ITALIC]      = self.ITALIC
             self.STYLETYPE_MAP[tagtype.UNDERLINE]   = self.UNDERLINE
             self.STYLETYPE_MAP[tagtype.FONTFACE]    = self.FONTFACE
@@ -224,7 +226,10 @@ class DocBackend(object):
             self.STYLETYPE_MAP[tagtype.FONTCOLOR]   = self.FONTCOLOR
             self.STYLETYPE_MAP[tagtype.HIGHLIGHT]   = self.HIGHLIGHT
             self.STYLETYPE_MAP[tagtype.SUPERSCRIPT] = self.SUPERSCRIPT
+            self.STYLETYPE_MAP[tagtype.LINK]        = self.LINK
 
+        if s_tag.name == 'link':
+            return self.format_link(s_tag.value)
         typeval = int(s_tag.name)
         s_tagvalue = s_tag.value
         tag_name = None
@@ -351,3 +356,13 @@ class DocBackend(object):
                 otext += opentag[1]
         
         return otext
+
+    def format_link(self, value):
+        """
+        Default format for links. Override for better support.
+
+        value is: "TYPE DATA" where TYPE is 'url' or 'ref'.
+
+        """
+        return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
+

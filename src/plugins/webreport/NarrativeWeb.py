@@ -304,6 +304,7 @@ class BasePage(object):
         self.up = False
         # class to do conversion of styled notes to html markup
         self._backend = HtmlBackend()
+        self._backend.build_link = report.build_link
 
         self.report = report
         self.title_str = title
@@ -5556,6 +5557,41 @@ class NavWebReport(Report):
 
     def build_url_fname_html(self, fname, subdir = None, up = False):
         return self.build_url_fname(fname, subdir, up) + self.ext
+
+    def build_link(self, prop, handle, obj_class, up = False):
+        """
+        Build a link to an item.
+        """
+        if prop == "gramps_id":
+            if obj_class in self.database.get_table_names():
+                obj = self.database.get_table_metadata(obj_class)["gramps_id_func"](handle)
+                if obj:
+                    handle = obj.handle
+                else:
+                    raise AttributeError("gramps_id '%s' not found in '%s'" % 
+                                         handle, obj_class)
+            else:
+                raise AttributeError("invalid gramps_id lookup " 
+                                     "in table name '%s'" % obj_class)
+        # handle, ppl
+        if obj_class == "Person":
+            if handle in self.person_handles:
+                return self.build_url_fname(handle, "ppl", up) + self.ext
+            else:
+                return None
+        elif obj_class == "Source":
+            subdir = "src"
+        elif obj_class == "Place":
+            subdir = "plc"
+        elif obj_class == "Event":
+            subdir = "evt"
+        elif obj_class == "Media":
+            subdir = "img"
+        elif obj_class == "Repository":
+            subdir = "repo"
+        else:
+            raise AttributeError("unknown object type '%s'" % obj_class)
+        return self.build_url_fname(handle, subdir, up) + self.ext
 
     def build_url_fname(self, fname, subdir = None, up = False):
         """

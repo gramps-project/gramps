@@ -75,7 +75,9 @@ class HtmlBackend(DocBackend):
             DocBackend.FONTSIZE,
             DocBackend.FONTCOLOR,
             DocBackend.HIGHLIGHT,
-            DocBackend.SUPERSCRIPT ]
+            DocBackend.SUPERSCRIPT, 
+            DocBackend.LINK,
+            ]
 
     STYLETAG_MARKUP = {
         DocBackend.BOLD        : ("<strong>", "</strong>"),
@@ -85,7 +87,7 @@ class HtmlBackend(DocBackend):
         DocBackend.SUPERSCRIPT : ("<sup>", "</sup>"),
     }
     
-    ESCAPE_FUNC = lambda x: escape
+    ESCAPE_FUNC = lambda self: escape
 
     def __init__(self, filename=None):
         """
@@ -97,6 +99,7 @@ class HtmlBackend(DocBackend):
         self.html_body = None
         self._subdir = None
         self.title = None
+        self.build_link = None
         
     def _create_xmltag(self, tagtype, value):
         """
@@ -111,7 +114,6 @@ class HtmlBackend(DocBackend):
         elif tagtype == DocBackend.FONTFACE:
             #fonts can have strange symbols in them, ' needs to be escaped
             value = value.replace("'", "\\'")
-        
         return ('<span style="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype] %
                                        (value)), 
                 '</span>')
@@ -172,3 +174,22 @@ class HtmlBackend(DocBackend):
         full path of the datadir directory
         """
         return os.path.join(os.path.dirname(self.getf()), self.datadir())
+
+    def format_link(self, value):
+        """
+        Override of base method.
+        """
+        if value.startswith("gramps://"):
+            if self.build_link:
+                obj_class, prop, handle = value[9:].split("/", 3)
+                if prop in ["handle", "gramps_id"]:
+                    value = self.build_link(prop, handle, obj_class, up=True)
+                    if not value:
+                        return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
+                else:
+                    return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
+            else:
+                return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
+        return ('<a href="%s">' % self.ESCAPE_FUNC()(value), 
+                '</a>')
+        

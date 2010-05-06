@@ -50,8 +50,9 @@ from pango import UNDERLINE_SINGLE
 #-------------------------------------------------------------------------
 from gen.lib import StyledTextTagType
 from gui.widgets.styledtextbuffer import (StyledTextBuffer, ALLOWED_STYLES,
-                                      MATCH_START, MATCH_END,
-                                      MATCH_FLAVOR, MATCH_STRING)
+                                          MATCH_START, MATCH_END,
+                                          MATCH_FLAVOR, MATCH_STRING,
+                                          LinkTag)
 from gui.widgets.valueaction import ValueAction
 from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
@@ -76,6 +77,7 @@ FORMAT_TOOLBAR = '''
   <toolitem action="%d"/>
   <toolitem action="%d"/>
   <toolitem action="%d"/>
+  <toolitem action="%d"/>
   <toolitem action="spring"/>
   <toolitem action="clear"/>
 </toolbar>
@@ -87,6 +89,7 @@ FORMAT_TOOLBAR = '''
        StyledTextTagType.FONTSIZE,
        StyledTextTagType.FONTCOLOR,
        StyledTextTagType.HIGHLIGHT,
+       StyledTextTagType.LINK,
    )
 
 FONT_SIZES = [8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22,
@@ -101,7 +104,18 @@ SCHEME = "(file:/|https?:|ftps?:|webcal:)"
 USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
 
-(GENURL, HTTP, MAIL) = range(3)
+(GENURL, HTTP, MAIL, LINK) = range(4)
+
+def find_parent_with_attr(self, attr="dbstate"):
+    """
+    """
+    # Find a parent with attr:
+    obj = self
+    while obj:
+        if hasattr(obj, attr):
+            break
+        obj = obj.get_parent()
+    return obj
 
 #-------------------------------------------------------------------------
 #
@@ -204,6 +218,9 @@ class StyledTextEditor(gtk.TextView):
             self.textbuffer.apply_tag_by_name('hyperlink', start, end)
             window.set_cursor(HAND_CURSOR)
             self.url_match = match
+        elif match and (match[MATCH_FLAVOR] in (LINK,)):
+            window.set_cursor(HAND_CURSOR)
+            self.url_match = match
         else:
             window.set_cursor(REGULAR_CURSOR)
             self.url_match = None
@@ -256,14 +273,36 @@ class StyledTextEditor(gtk.TextView):
                                             int(event.x), int(event.y))
         iter_at_location = self.get_iter_at_location(x, y)
         self.match = self.textbuffer.match_check(iter_at_location.get_offset())
+        tooltip = None
+        if not self.match:
+            for tag in (tag for tag in iter_at_location.get_tags()
+                        if tag.get_property('name').startswith("link")):
+                self.match = (x, y, LINK, tag.data, tag)
+                tooltip = self.make_tooltip_from_link(tag)
+                break
         
         if self.match != self.last_match:
             self.emit('match-changed', self.match)
 
         self.last_match = self.match
-        
         self.window.get_pointer()
+        self.set_tooltip_text(tooltip)
         return False
+
+    def make_tooltip_from_link(self, link_tag):
+        """
+        Return a string useful for a tooltip given a LinkTag object.
+        """
+        from Simple import SimpleAccess
+        win_obj = find_parent_with_attr(self, attr="dbstate")
+        display = link_tag.data
+        if win_obj:
+            simple_access = SimpleAccess(win_obj.dbstate.db)
+            url = link_tag.data
+            if url.startswith("gramps://"):
+                obj_class, prop, value = url[9:].split("/")
+                display = simple_access.display(obj_class, prop, value) or url
+        return display
 
     def on_button_release_event(self, widget, event):
         """
@@ -325,6 +364,14 @@ class StyledTextEditor(gtk.TextView):
                 open_menu = gtk.MenuItem(_('_Open Link'))
                 copy_menu = gtk.MenuItem(_('Copy _Link Address'))
 
+            if flavor == LINK:
+                edit_menu = gtk.MenuItem(_('_Edit Link'))
+                edit_menu.connect('activate', self._edit_url_cb, 
+                                  self.url_match[-1], # tag
+                                  )
+                edit_menu.show()
+                menu.prepend(edit_menu)
+
             copy_menu.connect('activate', self._copy_url_cb, url, flavor)
             copy_menu.show()
             menu.prepend(copy_menu)
@@ -373,6 +420,8 @@ class StyledTextEditor(gtk.TextView):
              _('Font Color'), self._on_action_activate),
             (str(StyledTextTagType.HIGHLIGHT), 'gramps-font-bgcolor', None, None,
              _('Background Color'), self._on_action_activate),
+            (str(StyledTextTagType.LINK), gtk.STOCK_JUMP_TO, None, None,
+             _('Link'), self._on_link_activate),
             ('clear', gtk.STOCK_CLEAR, None, None,
              _('Clear Markup'), self._format_clear_cb),
         ]
@@ -487,6 +536,34 @@ class StyledTextEditor(gtk.TextView):
         _LOG.debug("applying style '%d' with value '%s'" % (style, str(value)))
         self.textbuffer.apply_style(style, value)
 
+    def _on_link_activate(self, action):
+        """
+        Create a link of a selected region of text.
+        """
+        # Send in a default link. Could be based on active person.
+        selection_bounds = self.textbuffer.get_selection_bounds()
+        if selection_bounds:
+            uri_dialog(self, None, self.setlink_callback)
+
+    def setlink_callback(self, uri, tag=None):
+        """
+        Callback for setting or editing a link's object.
+        """
+        if uri:
+            _LOG.debug("applying style 'link' with value '%s'" % uri)
+            if not tag:
+                tag = LinkTag(self.textbuffer, 
+                              data=uri,
+                              underline=UNDERLINE_SINGLE, 
+                              foreground="blue")
+                selection_bounds = self.textbuffer.get_selection_bounds()
+                self.textbuffer.apply_tag(tag,
+                                          selection_bounds[0],
+                                          selection_bounds[1])
+            else:
+                tag.data = uri
+
+
     def _on_action_activate(self, action):
         """Apply a format set from a gtk.Action type of action."""
         style = int(action.get_name())
@@ -533,14 +610,27 @@ class StyledTextEditor(gtk.TextView):
                        (text, StyledTextTagType.STYLE_TYPE[style]))
 
     def _format_clear_cb(self, action):
-        """Remove all formats from the selection.
+        """
+        Remove all formats from the selection or from all.
         
         Remove only our own tags without touching other ones (e.g. gtk.Spell),
         thus remove_all_tags() can not be used.
         
         """
-        for style in ALLOWED_STYLES:
-            self.textbuffer.remove_style(style)
+        clear_anything = self.textbuffer.clear_selection()
+        if not clear_anything:
+            for style in ALLOWED_STYLES:
+                self.textbuffer.remove_style(style)
+
+            start, end = self.textbuffer.get_bounds()
+            tags = self.textbuffer._get_tag_from_range(start.get_offset(), 
+                                                       end.get_offset())
+            for tag_name, tag_data in tags.iteritems():
+                if tag_name.startswith("link"):
+                    for start, end in tag_data:
+                        self.textbuffer.remove_tag_by_name(tag_name,
+                                      self.textbuffer.get_iter_at_offset(start),
+                                      self.textbuffer.get_iter_at_offset(end+1))
 
     def _on_buffer_style_changed(self, buffer, changed_styles):
         """Synchronize actions as the format changes at the buffer's cursor."""
@@ -574,9 +664,23 @@ class StyledTextEditor(gtk.TextView):
                 url = 'mailto:' + url
         elif flavor == GENURL:
             pass
+        elif flavor == LINK:
+            # gramps://person/id/VALUE
+            # gramps://person/handle/VALUE
+            if url.startswith("gramps://"):
+                # if in a window:
+                win_obj = find_parent_with_attr(self, attr="dbstate")
+                if win_obj:
+                    obj_class, prop, value = url[9:].split("/")
+                    from gui.editors import EditObject
+                    EditObject(win_obj.dbstate, 
+                               win_obj.uistate, 
+                               win_obj.track, 
+                               obj_class, prop, value)
+                    return
         else:
             return
-        
+        # If ok, then let's open
         display_url(url)
     
     def _copy_url_cb(self, menuitem, url, flavor):
@@ -586,6 +690,14 @@ class StyledTextEditor(gtk.TextView):
         
         clipboard = gtk.Clipboard(selection="PRIMARY")
         clipboard.set_text(url)
+
+
+    def _edit_url_cb(self, menuitem, link_tag):
+        """
+        Edit the URI of the link.
+        """
+        uri_dialog(self, link_tag.data, 
+                   lambda uri: self.setlink_callback(uri, link_tag))
     
     # public methods
     
@@ -616,6 +728,24 @@ class StyledTextEditor(gtk.TextView):
         
         """
         return self.toolbar
+
+def uri_dialog(self, uri, callback):
+    """
+    Function to spawn the link editor.
+    """
+    from gui.editors.editlink import EditLink
+    obj = find_parent_with_attr(self, attr="dbstate")
+    if obj:
+        if uri is None:
+            # make a default link
+            uri = "http://"
+            # Check in order for an open page:
+            for object_class in ["Person", "Place", "Event", "Family", 
+                                 "Repository", "Source", "Media"]:
+                handle = obj.uistate.get_active(object_class)
+                if handle:
+                    uri = "gramps://%s/handle/%s" % (object_class, handle)
+        EditLink(obj.dbstate, obj.uistate, obj.track, uri, callback)
 
 #-------------------------------------------------------------------------
 #

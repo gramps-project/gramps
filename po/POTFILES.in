@@ -213,6 +213,7 @@ src/gui/editors/editeventref.py
 src/gui/editors/editfamily.py
 src/gui/editors/editldsord.py
 src/gui/editors/editlocation.py
+src/gui/editors/editlink.py
 src/gui/editors/editmedia.py
 src/gui/editors/editmediaref.py
 src/gui/editors/editname.py
@@ -839,6 +840,7 @@ src/glade/editrepository.glade
 src/glade/editreporef.glade
 src/glade/editpersonref.glade
 src/glade/editlocation.glade
+src/glade/editlink.glade
 src/glade/editfamily.glade
 src/glade/editchildref.glade
 src/glade/editattribute.glade

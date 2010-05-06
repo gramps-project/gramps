@@ -84,6 +84,25 @@ STYLE_TO_PROPERTY = {
 
 #-------------------------------------------------------------------------
 #
+# LinkTag class
+#
+#-------------------------------------------------------------------------
+class LinkTag(gtk.TextTag):
+    """
+    Class for keeping track of link data.
+    """
+    lid = 0
+    def __init__(self, buffer, data, **properties):
+        LinkTag.lid += 1
+        self.data = data
+        gtk.TextTag.__init__(self, "link-%d" % LinkTag.lid)
+        tag_table = buffer.get_tag_table()
+        for property in properties:
+            self.set_property(property, properties[property])
+        tag_table.add(self)
+
+#-------------------------------------------------------------------------
+#
 # GtkSpellState class
 #
 #-------------------------------------------------------------------------
@@ -432,6 +451,29 @@ class StyledTextBuffer(gtk.TextBuffer):
                     self.remove_tag_by_name(tag_name,
                                             self.get_iter_at_offset(start),
                                             self.get_iter_at_offset(end+1))
+
+    def clear_selection(self):
+        """
+        Clear tags from selection.
+        """
+        start, end = self._get_selection()
+        tags = self._get_tag_from_range(start.get_offset(), end.get_offset())
+        removed_something = False
+        for tag_name, tag_data in tags.iteritems():
+            if tag_name.startswith("link"):
+                for start_pos, end_pos in tag_data:
+                    self.remove_tag_by_name(tag_name,
+                                            self.get_iter_at_offset(start_pos),
+                                            self.get_iter_at_offset(end_pos+1))
+                    removed_something = True
+
+        for style in ALLOWED_STYLES:
+            value = self.style_state[style]
+            if value and (value != StyledTextTagType.STYLE_DEFAULT[style]):
+                self.remove_tag(self._find_tag_by_name(style, value),
+                                start, end)
+                removed_something = True
+        return removed_something
                     
     def _get_tag_from_range(self, start=None, end=None):
         """Extract gtk.TextTags from buffer.
@@ -474,7 +516,9 @@ class StyledTextBuffer(gtk.TextBuffer):
         If TextTag does not exist yet, it is created.
         
         """
-        if StyledTextTagType.STYLE_TYPE[style] == bool:
+        if style not in StyledTextTagType.STYLE_TYPE:
+            return None
+        elif StyledTextTagType.STYLE_TYPE[style] == bool:
             tag_name = str(style)
         elif StyledTextTagType.STYLE_TYPE[style] == str:
             tag_name = "%d %s" % (style, value)
@@ -507,7 +551,12 @@ class StyledTextBuffer(gtk.TextBuffer):
     
         s_tags = s_text.get_tags()
         for s_tag in s_tags:
-            g_tag = self._find_tag_by_name(int(s_tag.name), s_tag.value)
+            if s_tag.name == 'Link':
+                g_tag = LinkTag(self, s_tag.value, 
+                                foreground="blue",
+                                underline=UNDERLINE_SINGLE)
+            else:
+                g_tag = self._find_tag_by_name(int(s_tag.name), s_tag.value)
             if g_tag is not None:
                 for (start, end) in s_tag.ranges:
                     start_iter = self.get_iter_at_offset(start)
@@ -533,23 +582,30 @@ class StyledTextBuffer(gtk.TextBuffer):
         s_tags = []
         
         for g_tagname, g_ranges in g_tags.items():
-            style_and_value = g_tagname.split(' ', 1)
+            if g_tagname.startswith('link'):
+                tag = self.get_tag_table().lookup(g_tagname)
+                s_ranges = [(start, end+1) for (start, end) in g_ranges]
+                s_value = tag.data
+                s_tag = StyledTextTag('Link', s_value, s_ranges)
+                s_tags.append(s_tag)
+            else:
+                style_and_value = g_tagname.split(' ', 1)
 
-            try:
-                style = int(style_and_value[0])
-                if len(style_and_value) == 1:
-                    s_value = None
-                else:
-                    s_value = StyledTextTagType.STYLE_TYPE[style]\
-                            (style_and_value[1])
-    
-                if style in ALLOWED_STYLES:
-                    s_ranges = [(start, end+1) for (start, end) in g_ranges]
-                    s_tag = StyledTextTag(style, s_value, s_ranges)
-                                          
-                    s_tags.append(s_tag)
-            except ValueError:
-                _LOG.debug("silently skipping gtk.TextTag '%s'" % g_tagname)
+                try:
+                    style = int(style_and_value[0])
+                    if len(style_and_value) == 1:
+                        s_value = None
+                    else:
+                        s_value = StyledTextTagType.STYLE_TYPE[style]\
+                                (style_and_value[1])
+
+                    if style in ALLOWED_STYLES:
+                        s_ranges = [(start, end+1) for (start, end) in g_ranges]
+                        s_tag = StyledTextTag(style, s_value, s_ranges)
+
+                        s_tags.append(s_tag)
+                except ValueError:
+                    _LOG.debug("silently skipping gtk.TextTag '%s'" % g_tagname)
 
         return StyledText(txt, s_tags)
     

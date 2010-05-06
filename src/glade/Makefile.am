@@ -28,6 +28,7 @@ dist_pkgdata_DATA = \
 	editreporef.glade \
 	editpersonref.glade \
 	editlocation.glade \
+	editlink.glade \
 	editfamily.glade \
 	editchildref.glade \
 	editattribute.glade \
