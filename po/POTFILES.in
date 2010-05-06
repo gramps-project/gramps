@@ -46,6 +46,7 @@ src/cli/arghandler.py
 src/cli/argparser.py
 src/cli/clidbman.py
 src/cli/grampscli.py
+src/cli/plug/__init__.py
 
 # gen API
 src/gen/__init__.py
@@ -170,6 +171,12 @@ src/gen/plug/docbackend/__init__.py
 src/gen/plug/docbackend/cairobackend.py
 src/gen/plug/docbackend/docbackend.py
 
+# plugin report base API (was ReportBase)
+src/gen/plug/report/_constants.py
+src/gen/plug/report/_paper.py
+src/gen/plug/report/endnotes.py
+src/gen/plug/report/utils.py
+
 # gen proxy API
 src/gen/proxy/living.py
 src/gen/proxy/private.py
@@ -264,6 +271,18 @@ src/gui/editors/displaytabs/sourcerefmodel.py
 src/gui/editors/displaytabs/webembedlist.py
 src/gui/editors/displaytabs/webmodel.py
 src/gui/editors/displaytabs/__init__.py
+
+# gui plugin API (was PluginUtils and ReportBase)
+src/gui/plug/_dialogs.py
+src/gui/plug/_guioptions.py
+src/gui/plug/_windows.py
+src/gui/plug/report/_docreportdialog.py
+src/gui/plug/report/_graphvizreportdialog.py
+src/gui/plug/report/_papermenu.py
+src/gui/plug/report/_reportdialog.py
+src/gui/plug/report/_stylecombobox.py
+src/gui/plug/report/_styleeditor.py
+src/gui/plug/tool.py
 
 # gui/selectors - the GUI selectors package
 src/gui/selectors/baseselector.py
@@ -555,31 +574,6 @@ src/plugins/webreport/NarrativeWeb.py
 src/plugins/webreport/WebCal.py
 src/plugins/webreport/webplugins.gpr.py
 
-# PluginUtils package
-src/PluginUtils/_GuiOptions.py
-src/PluginUtils/_Options.py
-src/PluginUtils/_PluginDialogs.py
-src/PluginUtils/_PluginWindows.py
-src/PluginUtils/_Tool.py
-
-# ReportBase package
-src/ReportBase/_CommandLineReport.py
-src/ReportBase/_Constants.py
-src/ReportBase/_DocReportDialog.py
-src/ReportBase/_DrawReportDialog.py
-src/ReportBase/_Endnotes.py
-src/ReportBase/_GraphvizReportDialog.py
-src/ReportBase/_FileEntry.py
-src/ReportBase/__init__.py
-src/ReportBase/_PaperMenu.py
-src/ReportBase/_ReportDialog.py
-src/ReportBase/_ReportOptions.py
-src/ReportBase/_Report.py
-src/ReportBase/_ReportUtils.py
-src/ReportBase/_StyleComboBox.py
-src/ReportBase/_StyleEditor.py
-src/ReportBase/_TextReportDialog.py
-
 # Filters package
 src/Filters/_FilterComboBox.py
 src/Filters/_FilterList.py
@@ -634,7 +628,6 @@ src/Filters/Rules/Person/_HasMarkerOf.py
 src/Filters/Rules/Person/_HasNameOf.py
 src/Filters/Rules/Person/_HasNote.py
 src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py
-src/Filters/Rules/Person/_HasNote.py
 src/Filters/Rules/Person/_HasNoteRegexp.py
 src/Filters/Rules/Person/_HasRelationship.py
 src/Filters/Rules/Person/_HasSource.py
