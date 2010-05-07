@@ -268,6 +268,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.list.set_model(self.model)
         self.list.set_rules_hint(True)
         self.list.connect('button-press-event', self.button_press)
+        self.list.connect('cursor-changed', self.cursor_changed)
         col = gtk.TreeViewColumn(_('Loaded'), gtk.CellRendererText(),
                                  markup=0)
         col.set_sort_column_id(0)
@@ -712,6 +713,13 @@ class PluginStatus(ManagedWindow.ManagedWindow):
     def __rebuild_reg_list(self):
         self.model_reg.clear()
         self.__populate_reg_list()
+
+    def cursor_changed(self, obj):
+        selection = obj.get_selection()
+        model, node = selection.get_selected()
+        if node:
+            data = model.get_value(node, 3)
+            self.__load_btn.set_sensitive(data is not None)
 
     def button_press(self, obj, event):
         """ Callback function from the user clicking on a line """
