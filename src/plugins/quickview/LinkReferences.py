@@ -50,7 +50,7 @@ def run(database, document, obj):
         if int(styledtext_tag.name) == StyledTextTagType.LINK:
             if styledtext_tag.value.startswith("gramps://"):
                 object_class, prop, value = styledtext_tag.value[9:].split("/", 2)
-                tagtype = _("Gramps")
+                tagtype = _(object_class)
                 ref_obj = sdb.get_link(object_class, prop, value)
                 if ref_obj:
                     tagvalue = ref_obj

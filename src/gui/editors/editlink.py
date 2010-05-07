@@ -77,15 +77,15 @@ class EditLink(ManagedWindow.ManagedWindow):
                         _('Link Editor'))
         self.table = self.top.get_object('table27')
         self.uri_list = gtk.combo_box_new_text()
-        for text in [_("Web Address"),       # 0 this order range above
-                     _("Gramps Event"),      # 1 
-                     _("Gramps Family"),     # 2 
-                     _("Gramps Media"),      # 3
-                     _("Gramps Note"),       # 4
-                     _("Gramps Person"),     # 5
-                     _("Gramps Place"),      # 6
-                     _("Gramps Repository"), # 7
-                     _("Gramps Source"),     # 8
+        for text in [_("Internet Address"),       # 0 this order range above
+                     _("Event"),      # 1 
+                     _("Family"),     # 2 
+                     _("Media"),      # 3
+                     _("Note"),       # 4
+                     _("Person"),     # 5
+                     _("Place"),      # 6
+                     _("Repository"), # 7
+                     _("Source"),     # 8
                      ]:
             self.uri_list.append_text(text)
         self.table.attach(self.uri_list, 1, 2, 0, 1)
@@ -137,6 +137,7 @@ class EditLink(ManagedWindow.ManagedWindow):
         return self.simple_access.display(obj_class, prop, value)
 
     def _on_edit_one(self, widget):
+        # Not used due to modal dialog in StyledTextEditor
         from gui.editors import EditObject
         uri = self.url_link.get_text()
         if uri.startswith("gramps://"):
@@ -187,10 +188,6 @@ class EditLink(ManagedWindow.ManagedWindow):
         if self.uri_list.get_active() == WEB:
             return self.url_link.get_text()
         else:
-            #object_class = OBJECT_MAP[self.uri_list.get_active()]
-            #prop = "handle"
-            #value = ""
-            #return "gramps://%s/%s/%s" % (object_class, prop, value)
             return self.url_link.get_text()
             
     def _connect_signals(self):

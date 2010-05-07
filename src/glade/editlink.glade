@@ -42,7 +42,7 @@
                   <object class="GtkLabel" id="label220">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Web Address:</property>
+                    <property name="label" translatable="yes">Internet Address:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">entry1</property>
@@ -58,7 +58,7 @@
                   <object class="GtkLabel" id="label591">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Type:</property>
+                    <property name="label" translatable="yes">Link Type:</property>
                     <property name="use_underline">True</property>
                   </object>
                   <packing>
