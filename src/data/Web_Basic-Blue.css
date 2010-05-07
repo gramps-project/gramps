@@ -225,6 +225,7 @@ div#header  {
     border-bottom: solid 8px #13A926;
     height: 65px;
     width: 100%;
+    overflow: hidden;
 }
 #SiteTitle {
     margin:0;
