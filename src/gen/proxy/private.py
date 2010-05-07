@@ -478,7 +478,7 @@ def copy_associations(db, original_obj, clean_obj):
     """
     new_person_ref_list = []
     for person_ref in original_obj.get_person_ref_list():
-        if not person_ref.get_privacy():
+        if person_ref and not person_ref.get_privacy():
             associated_person = db.get_person_from_handle(person_ref.ref)
             if associated_person and not associated_person.get_privacy():
                 new_person_ref_list.append(person_ref)
@@ -750,7 +750,7 @@ def sanitize_person(db, person):
     
     # copy names if not private
     name = person.get_primary_name()
-    if name.get_privacy() or person.get_privacy():
+    if (name and name.get_privacy()) or (person and person.get_privacy()):
         # Do this so a person always has a primary name of some sort.
         name = Name()
         name.set_surname(_('Private'))
@@ -767,13 +767,13 @@ def sanitize_person(db, person):
     # copy Family reference list
     for handle in person.get_parent_family_handle_list():
         family = db.get_family_from_handle(handle)
-        if family.get_privacy():
+        if family and family.get_privacy():
             continue
         child_ref_list = family.get_child_ref_list()
         for child_ref in child_ref_list:
             if (child_ref and
               child_ref.get_reference_handle() == person.get_handle()):
-                if not child_ref.get_privacy():
+                if child_ref and not child_ref.get_privacy():
                     new_person.add_parent_family_handle(handle)
                 break
 
@@ -993,11 +993,11 @@ def sanitize_family(db, family):
         
     # Copy child references.
     for child_ref in family.get_child_ref_list():
-        if child_ref.get_privacy():
+        if child_ref and child_ref.get_privacy():
             continue
         child_handle = child_ref.get_reference_handle()
         child = db.get_person_from_handle(child_handle)
-        if child.get_privacy():
+        if child and child.get_privacy():
             continue
         # Copy this reference
         new_ref = ChildRef()
