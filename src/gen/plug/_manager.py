@@ -254,7 +254,10 @@ class BasePluginManager(object):
 
     def reload(self, module, pdata):
         """
+        Reloads modules that might not be in the path.
         """
+        if pdata.mod_name in sys.modules:
+            del sys.modules[pdata.mod_name]
         try:
             reload(module)
         except:
