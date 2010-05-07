@@ -478,6 +478,35 @@ class buildbase(gobject.GObject):
         log.debug( 'Version (%s)' % (vers) )
         return vers
         
+    def copyPatchTreeToDest(self, src, dst):
+        '''Patch a tarball build with alternate files as required.
+        At this stage do not allow new directories to be made or
+        new files to be added, just replace existing files.
+        '''
+        log.info('Patching: now in %s', src)
+        names = os.listdir(src)
+        #os.makedirs(dst) - not creating new dir
+        errors = []
+        for name in names:
+            srcname = os.path.join(src, name)
+            dstname = os.path.join(dst, name)
+            try:
+                if os.path.isfile(srcname) and os.path.isfile(dstname):
+                    log.info('Overwriting %s -> %s' % (srcname, dstname))
+                    shutil.copyfile(srcname, dstname)
+                elif os.path.isdir(srcname) and os.path.isdir(dstname):
+                    self.copyPatchTreeToDest(srcname, dstname)
+                else:
+                    log.error('UNDEFINED: %s -> %s' % (srcname, dstname))
+            except (IOError, os.error), why:
+                errors.append((srcname, dstname, str(why)))
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error, err:
+                errors.extend(err.args[0])
+        if errors:
+            raise Error(errors)
+                
 def buildGRAMPS( base, out_dir, bTarball):
     bo = buildbase()
 
@@ -509,6 +538,8 @@ def buildGRAMPS( base, out_dir, bTarball):
             bo.generateConstPy( ) 
             bo.copyExtraFilesToBuildDir(base)
         
+        if bPatchBuild:
+            bo.copyPatchTreeToDest( patch_dir, bo.build_root )
         if bBuildAll:
             bo.processPO( )
         if bo.bBuildInstaller:
@@ -536,6 +567,12 @@ Options:
             --nsis_only           Build NSIS only (does not Clean & Build All)
     -t      --tarball             Build release version from Tarball.
     -mDIR, --msgdir=DIR           Directory to msgfmt.exe
+    -pDIR, --patch=DIR            Specify a directory to patch files into the build.
+                                  only valid for a tarball build.
+                                  This directory will allow you to patch the release after expanding 
+                                  from tarball and before creating installer.
+                                  (n.b. each file to be replaced needs to be specified with full path 
+                                        to exactly mimic the paths in the expanded tarball)
     '''
 # TODO: nsis_dir option - a path to nsismake (for occasions script cannot work it out)
 # TODO: svn_dir  option - a path to svn (for occasions script cannot work it out)
@@ -547,10 +584,11 @@ Options:
     bBuildInstaller = True
     bTarball = False
     msg_dir = ""
-    
+    bPatchBuild = False
+    patch_dir = ""
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "ho:tm:",
-                                  ["help", "out=", "nsis_only", "tarball", "msgdir="])
+        opts, args = getopt.getopt(sys.argv[1:], "ho:tm:p:",
+                                  ["help", "out=", "nsis_only", "tarball", "msgdir=", "patch="])
 
         for o, a in opts:
             if o in ("-h", "--help"):
@@ -569,12 +607,21 @@ Options:
                     msg_dir =  a
                 else:
                     raise getopt.GetoptError, '\nERROR: msgfmt dir does not exist'
+            if o in ("-p", "--patch"):
+                if os.path.isdir( a ):
+                    patch_dir =  a
+                    bPatchBuild = True
+                else:
+                    raise getopt.GetoptError, '\nERROR: Patch directory does not exist'
                 
         if args: #got args use first one as base dir
             repository_path = path.normpath(args[0])
         else:   # no base dir passed in, work out one from current working dir
             repository_path = path.normpath("%s/../.." % os.getcwd() )
 
+        if bPatchBuild and not bTarball:
+            log.warning("Cannot specify patch for SVN build, resetting patch option")
+            patch_dir = None
     #        raise getopt.GetoptError, '\nERROR: No base directory specified'
 
         if len(args) > 1:

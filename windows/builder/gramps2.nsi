@@ -377,6 +377,16 @@ Function TestDependancies
 ;    MessageBox MB_OK "python: $PythonVerText $\ngtk++: $GTKVerText $\npygtk: $pyGTKVerText$\ngobject: $GObjectVerText$\ncario: $CairoVerText"
 FunctionEnd
 
+Function WriteGrampsLauncher
+    SetOutPath $TEMP
+    
+    File make_launcher.py
+    nsExec::ExecToStack   '"$PythonExe" $TEMP\make_launcher.py'
+    Pop $0 # return value/error/timeout
+    Pop $1 # printed text, up to ${NSIS_MAX_STRLEN}        
+FunctionEnd
+
+
 LangString PAGE_TITLE ${LANG_ENGLISH} "Summary of GRAMP's Dependencies"
 LangString PAGE_SUBTITLE ${LANG_ENGLISH} ""
 Var Dialog
@@ -405,9 +415,9 @@ Function DependenciesPageFunction
     !insertmacro MUI_HEADER_TEXT $(PAGE_TITLE) $(PAGE_SUBTITLE)
     nsDialogs::Create  /NOUNLOAD 1018 
     Pop $Dialog
-	${If} $Dialog == error
-		Abort
-	${EndIf}
+    ${If} $Dialog == error
+        Abort
+    ${EndIf}
     
     SetOutPath $TEMP
     
@@ -561,6 +571,7 @@ Section "MainSection" SEC01
     File /r ${GRAMPS_BUILD_PATH}\*.*
     WriteRegStr HKLM "SOFTWARE\${PRODUCT_NAME}" "" "$INSTDIR"
     WriteRegStr HKLM "SOFTWARE\${PRODUCT_NAME}" "version" ${PRODUCT_VERSION}
+    Call WriteGrampsLauncher
 SectionEnd
 
 
@@ -674,8 +685,12 @@ Section -AdditionalIcons
     SetOutPath $INSTDIR
     WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
     CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
+    
+    IfFileExists '$INSTDIR\gramps_locale.cmd' 0 NoLocaleFile
     # $3 should contain the path to python, .. then pass gramps.py as an argument
     #CreateShortCut link.lnk target.file [parameters [icon.file [icon_index_number [start_options[keyboard_shortcut [description]]]]]]    
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} (locale) ${PRODUCT_VERSION}.lnk" CMD "/C $\"$INSTDIR\gramps_locale.cmd$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
+    NoLocaleFile:
     CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} ${PRODUCT_VERSION}.lnk" "$3" "$\"$INSTDIR\gramps.py$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
     CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
     CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninstall.exe"
