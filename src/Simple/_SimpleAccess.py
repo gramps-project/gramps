@@ -919,6 +919,17 @@ class SimpleAccess(object):
         else:
             return "Error: invalid object class: '%s'" % object_class
 
+    def get_link(self, object_class, prop, value):
+        """
+        Given a object_class, prop, and value return the object.
+        object_class is "Person", "Source", etc.
+        prop is "gramps_id", or "handle"
+        value is a gramps_id or handle.
+        """
+        if object_class in self.dbase.get_table_names():
+            return self.dbase.get_table_metadata(object_class) \
+                [prop + "_func"](value)
+
 def by_date(event1, event2):
     """
     Sort function that will compare two events by their dates.

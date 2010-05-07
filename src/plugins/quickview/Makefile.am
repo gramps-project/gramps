@@ -15,6 +15,7 @@ pkgdata_PYTHON = \
 	OnThisDay.py \
 	quickview.gpr.py \
 	References.py \
+	LinkReferences.py \
 	Reporef.py \
 	SameSurnames.py\
 	siblings.py

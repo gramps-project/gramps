@@ -483,6 +483,7 @@ src/plugins/quickview/OnThisDay.py
 #src/plugins/quickview/Query.py
 src/plugins/quickview/quickview.gpr.py
 src/plugins/quickview/References.py
+src/plugins/quickview/LinkReferences.py
 src/plugins/quickview/Reporef.py
 src/plugins/quickview/SameSurnames.py
 src/plugins/quickview/siblings.py

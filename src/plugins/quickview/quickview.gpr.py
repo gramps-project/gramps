@@ -219,6 +219,20 @@ for (category, item, trans) in refitems:
         runfunc = 'run_%s' % item
         )
 
+register(QUICKREPORT, 
+  id    = 'link_references',
+  name  = _("Link References"),
+  description =  _("Display link references for a note"),
+  version = '1.0',
+  gramps_target_version = '3.3',
+  status = STABLE,
+  fname = 'LinkReferences.py',
+  authors = ["Douglas Blank"],
+  authors_email = ["doug.blank@gmail.com"],
+  category = CATEGORY_QR_NOTE,
+  runfunc = 'run'
+)
+
 #------------------------------------------------------------------------
 #
 # Show Repository Reference
