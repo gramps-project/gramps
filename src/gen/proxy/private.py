@@ -179,7 +179,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_gramps_id(val)
-        if not source.get_privacy():
+        if source and not source.get_privacy():
             return sanitize_source(self.db, source)
         return None
 
@@ -419,10 +419,10 @@ def copy_media_ref_list(db, original_obj, clean_obj):
     @returns: Nothing
     """
     for media_ref in original_obj.get_media_list():
-        if not media_ref.get_privacy():
+        if media_ref and not media_ref.get_privacy():
             handle = media_ref.get_reference_handle()
             media_object = db.get_object_from_handle(handle)
-            if not media_object.get_privacy():
+            if media_object and not media_object.get_privacy():
                 clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 
 def copy_source_ref_list(db, original_obj, clean_obj):
@@ -439,10 +439,10 @@ def copy_source_ref_list(db, original_obj, clean_obj):
     @returns: Nothing
     """
     for ref in original_obj.get_source_references():
-        if not ref.get_privacy():
+        if ref and not ref.get_privacy():
             handle = ref.get_reference_handle()
             source = db.get_source_from_handle(handle)
-            if not source.get_privacy():
+            if source and not source.get_privacy():
                 clean_obj.add_source_reference(sanitize_source_ref(db, ref))
                 
 def copy_notes(db, original_obj, clean_obj):
@@ -460,7 +460,7 @@ def copy_notes(db, original_obj, clean_obj):
     """     
     for note_handle in original_obj.get_note_list():
         note = db.get_note_from_handle(note_handle)
-        if not note.get_privacy():
+        if note and not note.get_privacy():
             clean_obj.add_note(note_handle)
 
 def copy_associations(db, original_obj, clean_obj):
@@ -478,7 +478,7 @@ def copy_associations(db, original_obj, clean_obj):
     """
     new_person_ref_list = []
     for person_ref in original_obj.get_person_ref_list():
-        if not person_ref.get_privacy():
+        if person_ref and not person_ref.get_privacy():
             associated_person = db.get_person_from_handle(person_ref.ref)
             if associated_person and not associated_person.get_privacy():
                 new_person_ref_list.append(person_ref)
@@ -498,7 +498,7 @@ def copy_attributes(db, original_obj, clean_obj):
     @returns: Nothing
     """   
     for attribute in original_obj.get_attribute_list():
-        if not attribute.get_privacy():
+        if attribute and not attribute.get_privacy():
             new_attribute = Attribute()
             new_attribute.set_type(attribute.get_type())
             new_attribute.set_value(attribute.get_value())
@@ -520,7 +520,7 @@ def copy_urls(db, original_obj, clean_obj):
     @returns: Nothing
     """         
     for url in original_obj.get_url_list():
-        if not url.get_privacy():
+        if url and not url.get_privacy():
             clean_obj.add_url(url)
             
 def copy_lds_ords(db, original_obj, clean_obj):
@@ -537,7 +537,7 @@ def copy_lds_ords(db, original_obj, clean_obj):
     @returns: Nothing
     """         
     for lds_ord in original_obj.get_lds_ord_list():
-        if not lds_ord.get_privacy():
+        if lds_ord and not lds_ord.get_privacy():
             clean_obj.add_lds_ord(sanitize_lds_ord(db, lds_ord))
            
 def copy_addresses(db, original_obj, clean_obj):
@@ -554,7 +554,7 @@ def copy_addresses(db, original_obj, clean_obj):
     @returns: Nothing
     """         
     for address in original_obj.get_address_list():
-        if not address.get_privacy():
+        if address and not address.get_privacy():
             clean_obj.add_address(sanitize_address(db, address))
 
 def sanitize_lds_ord(db, lds_ord):
@@ -750,7 +750,7 @@ def sanitize_person(db, person):
     
     # copy names if not private
     name = person.get_primary_name()
-    if name.get_privacy() or person.get_privacy():
+    if (name and name.get_privacy()) or (person and person.get_privacy()):
         # Do this so a person always has a primary name of some sort.
         name = Name()
         name.set_surname(_('Private'))
@@ -761,23 +761,23 @@ def sanitize_person(db, person):
     # copy Family reference list
     for handle in person.get_family_handle_list():
         family = db.get_family_from_handle(handle)
-        if not family.get_privacy():
+        if family and not family.get_privacy():
             new_person.add_family_handle(handle)
 
     # copy Family reference list
     for handle in person.get_parent_family_handle_list():
         family = db.get_family_from_handle(handle)
-        if family.get_privacy():
+        if family and family.get_privacy():
             continue
         child_ref_list = family.get_child_ref_list()
         for child_ref in child_ref_list:
             if child_ref.get_reference_handle() == person.get_handle():
-                if not child_ref.get_privacy():
+                if child_ref and not child_ref.get_privacy():
                     new_person.add_parent_family_handle(handle)
                 break
 
     for name in person.get_alternate_names():
-        if not name.get_privacy():
+        if name and not name.get_privacy():
             new_person.add_alternate_name(sanitize_name(db, name))
 
     # set complete flag
@@ -843,10 +843,10 @@ def sanitize_source(db, source):
     new_source.set_data_map(source.get_data_map())
     
     for repo_ref in source.get_reporef_list():
-        if not repo_ref.get_privacy():
+        if repo_ref and not repo_ref.get_privacy():
             handle = repo_ref.get_reference_handle()
             repo = db.get_repository_from_handle(handle)
-            if not repo.get_privacy():
+            if repo and not repo.get_privacy():
                 new_source.add_repo_reference(RepoRef(repo_ref))
 
     copy_media_ref_list(db, source, new_source)
@@ -980,7 +980,7 @@ def sanitize_family(db, family):
     father_handle = family.get_father_handle()
     if father_handle:
         father = db.get_person_from_handle(father_handle)
-        if not father.get_privacy():
+        if father and not father.get_privacy():
             new_family.set_father_handle(father_handle)
 
     # Copy the mother handle.
@@ -992,11 +992,11 @@ def sanitize_family(db, family):
         
     # Copy child references.
     for child_ref in family.get_child_ref_list():
-        if child_ref.get_privacy():
+        if child_ref and child_ref.get_privacy():
             continue
         child_handle = child_ref.get_reference_handle()
         child = db.get_person_from_handle(child_handle)
-        if child.get_privacy():
+        if child and child.get_privacy():
             continue
         # Copy this reference
         new_ref = ChildRef()
