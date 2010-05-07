@@ -47,13 +47,11 @@ div#alphabet ul {
     height: 24px;
     margin: 0;
     padding: 0px 0px 0px 16px;
-    border-width: 2px 0px 4px 0px;
+    border-width: 1px 0px 2px 0px;
     border-style: solid;
 }
-div#alphabet ul li:after {
-    content: "  |";
-}
 div#alphabet ul li {
+    border-right: solid 1px #000;
     margin: 0;
     float: left;
 }
@@ -61,9 +59,12 @@ div#alphabet ul li a {
     display: block;
     padding: 4px 8px 4px 8px;
     float: left;
-    font: bold 16px/100% sans;
+    font: normal 16px/100% sans;
     margin: 0;
     text-decoration: none;
+}
+div#alphabet ul li a:hover {
+    font-weight: bold;
 }
 
 /* Navigation
