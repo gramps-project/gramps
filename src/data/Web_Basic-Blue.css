@@ -51,16 +51,7 @@ body {
     background-color :#FFF;
     color: #000;
 }
-div#alphabet, div#navigation, div#subnavigation {
-    border-top: solid 2px #000;
-}
-div#alphabet ul li a {
-    color: #000;
-}
-div#navigation ul, div#subnavigation ul {
-    border-bottom: solid 2px #000;
-}
-div#navigation ul li a, div#subnavigation ul li a {
+div#alphabet ul li a, div#navigation ul li a, div#subnavigation ul li a {
     color: #000;
 }
 div#navigation ul li.CurrentSection a {
