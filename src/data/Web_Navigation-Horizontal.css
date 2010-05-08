@@ -47,7 +47,7 @@ div#alphabet ul {
     height: 24px;
     margin: 0;
     padding: 0px 0px 0px 16px;
-    border-width: 1px 0px 2px 0px;
+    border-width: 2px 0px 2px 0px;
     border-style: solid;
 }
 div#alphabet ul li {
@@ -80,6 +80,8 @@ div#navigation ul, div#subnavigation ul {
     height: 24px;
     margin: 0;
     padding: 0px 0px 0px 9px;
+    border-width: 2px 0px 2px 0px;
+    border-style: solid;
 }
 div#navigation ul li, div#subnavigation ul li {
     float: left;
