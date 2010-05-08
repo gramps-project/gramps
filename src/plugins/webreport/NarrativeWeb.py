@@ -388,11 +388,12 @@ class BasePage(object):
         # return citation list text to its callers
         return text
 
-    def get_note_format(self, note):
+    def get_note_format(self, note, link_prefix_up):
         """
         will get the note from the database, and will return either the 
         styled text or plain note 
         """
+        self.report.link_prefix_up = link_prefix_up
 
         # retrieve the body of the note
         note_text = note.get()
@@ -462,7 +463,8 @@ class BasePage(object):
                 Html("i", str(db.get_note_from_handle(notehandle).type))
                 )
             ul.extend(
-                self.get_note_format(db.get_note_from_handle(notehandle))
+                self.get_note_format(db.get_note_from_handle(notehandle), 
+                                     True)
                 )
 
         # return note list to its callers
@@ -939,7 +941,8 @@ class BasePage(object):
             footer_note = self.report.options['footernote']
             if footer_note:
                 note = self.get_note_format(
-                    db.get_note_from_gramps_id(footer_note)
+                    db.get_note_from_gramps_id(footer_note),
+                    False
                     )
                 user_footer = Html("div", id = 'user_footer')
                 footer += user_footer
@@ -1057,7 +1060,8 @@ class BasePage(object):
         header_note = self.report.options['headernote']
         if header_note:
             note = self.get_note_format(
-                self.report.database.get_note_from_gramps_id(header_note)
+                self.report.database.get_note_from_gramps_id(header_note),
+                False
                 )
             user_header = Html("div", id = 'user_header')
             headerdiv += user_header  
@@ -1477,7 +1481,7 @@ class BasePage(object):
                 note = db.get_note_from_handle(notehandle)
 
                 if note:
-                    note_text = self.get_note_format(note)
+                    note_text = self.get_note_format(note, True)
 
                     # add section title
                     section += Html("h4", _("Narrative"), inline=True)
@@ -1636,7 +1640,8 @@ class BasePage(object):
                     tmp.extend("%s: %s" %
                                 (db.get_note_from_handle(handle).type,
                                 self.get_note_format(
-                                    db.get_note_from_handle(handle)
+                                    db.get_note_from_handle(handle),
+                                    True
                                 )) for handle in sref.get_note_list())
 
                     if tmp:
@@ -3102,7 +3107,7 @@ class IntroductionPage(BasePage):
             note_id = report.options['intronote']
             if note_id:
                 note = db.get_note_from_gramps_id(note_id) 
-                note_text = self.get_note_format(note)
+                note_text = self.get_note_format(note, False)
  
                 # attach note
                 section += note_text
@@ -3139,7 +3144,7 @@ class HomePage(BasePage):
             note_id = report.options['homenote']
             if note_id:
                 note = db.get_note_from_gramps_id(note_id)
-                note_text = self.get_note_format(note)
+                note_text = self.get_note_format(note, False)
 
                 # attach note
                 section += note_text
@@ -3571,7 +3576,7 @@ class ContactPage(BasePage):
                     note_id = report.options['contactnote']
                     if note_id:
                         note = db.get_note_from_gramps_id(note_id)
-                        note_text = self.get_note_format(note)
+                        note_text = self.get_note_format(note, False)
  
                         # attach note
                         summaryarea += note_text
@@ -4040,7 +4045,7 @@ class IndividualPage(BasePage):
                         for notehandle in notelist:
                             note = db.get_note_from_handle(notehandle)
                             if note:
-                                note_text = self.get_note_format(note)
+                                note_text = self.get_note_format(note, True)
  
                                 # attach note
                                 unordered += note_text
@@ -4979,6 +4984,7 @@ class NavWebReport(Report):
         """
         Report.__init__(self, database, options)
         menu = options.menu
+        self.link_prefix_up = True
         self.options = {}
 
         for optname in menu.get_all_option_names():
@@ -5560,7 +5566,7 @@ class NavWebReport(Report):
     def build_url_fname_html(self, fname, subdir = None, up = False):
         return self.build_url_fname(fname, subdir, up) + self.ext
 
-    def build_link(self, prop, handle, obj_class, up = False):
+    def build_link(self, prop, handle, obj_class):
         """
         Build a link to an item.
         """
@@ -5575,6 +5581,7 @@ class NavWebReport(Report):
             else:
                 raise AttributeError("invalid gramps_id lookup " 
                                      "in table name '%s'" % obj_class)
+        up = self.link_prefix_up 
         # handle, ppl
         if obj_class == "Person":
             if handle in self.person_handles:
