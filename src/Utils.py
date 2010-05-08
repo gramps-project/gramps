@@ -1354,7 +1354,7 @@ def navigation_label(db, nav_type, handle):
             label = " ".join(label.split())
             # When strings are cut, make sure they are unicode
             #otherwise you may end of with cutting within an utf-8 sequence
-            label = get_unicode_path(label)
+            label = unicode(label)
             if len(label) > 40:
                 label = label[:40] + "..."
 
