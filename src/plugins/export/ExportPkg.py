@@ -230,7 +230,7 @@ class PackageWriter(object):
         
         # Write XML now
         g = StringIO()
-        gfile = XmlWriter(self.db, msg_callback, self.callback, 2)
+        gfile = XmlWriter(self.db, self.msg_callback, self.callback, 2)
         gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')
         tarinfo.size = len(g.getvalue())
