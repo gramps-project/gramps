@@ -228,7 +228,7 @@ class DocBackend(object):
             self.STYLETYPE_MAP[tagtype.SUPERSCRIPT] = self.SUPERSCRIPT
             self.STYLETYPE_MAP[tagtype.LINK]        = self.LINK
 
-        if s_tag.name == 'link':
+        if s_tag.name == 'Link':
             return self.format_link(s_tag.value)
         typeval = int(s_tag.name)
         s_tagvalue = s_tag.value
