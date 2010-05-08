@@ -108,7 +108,9 @@ class HtmlBackend(DocBackend):
         """
         if tagtype not in self.SUPPORTED_MARKUP:
             return None
-        if tagtype == DocBackend.FONTSIZE:
+        elif tagtype == DocBackend.LINK:
+            return self.format_link(value)
+        elif tagtype == DocBackend.FONTSIZE:
             #size is in points
             value = str(value)
         elif tagtype == DocBackend.FONTFACE:
