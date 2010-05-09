@@ -58,7 +58,9 @@ class HasDeath(Rule):
 
     def apply(self,db,person):
         for event_ref in person.get_event_ref_list():
-            if event_ref.role != EventRoleType.PRIMARY:
+            if not event_ref:
+                continue
+            elif event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
             event = db.get_event_from_handle(event_ref.ref)

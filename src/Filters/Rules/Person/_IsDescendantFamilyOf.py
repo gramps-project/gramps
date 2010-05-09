@@ -83,17 +83,18 @@ class IsDescendantFamilyOf(Rule):
 
         for family_handle in person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
+            if family:
+                # Add every child recursively
+                for child_ref in family.get_child_ref_list():
+                    if child_ref:
+                        self.add_matches(self.db.get_person_from_handle(child_ref.ref))
 
-            # Add every child recursively
-            for child_ref in family.get_child_ref_list():
-                self.add_matches(self.db.get_person_from_handle(child_ref.ref))
-
-            # Add spouse
-            if person.handle == family.get_father_handle():
-                spouse_handle = family.get_mother_handle()
-            else:
-                spouse_handle = family.get_father_handle()
-            self.matches.add(spouse_handle)
+                # Add spouse
+                if person.handle == family.get_father_handle():
+                    spouse_handle = family.get_mother_handle()
+                else:
+                    spouse_handle = family.get_father_handle()
+                self.matches.add(spouse_handle)
 
     def exclude(self):
         # This removes root person and his/her spouses from the matches set
@@ -101,8 +102,9 @@ class IsDescendantFamilyOf(Rule):
         self.matches.remove(self.root_person.handle)
         for family_handle in self.root_person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
-            if self.root_person.handle == family.get_father_handle():
-                spouse_handle = family.get_mother_handle()
-            else:
-                spouse_handle = family.get_father_handle()
-            self.matches.remove(spouse_handle)
+            if family:
+                if self.root_person.handle == family.get_father_handle():
+                    spouse_handle = family.get_mother_handle()
+                else:
+                    spouse_handle = family.get_father_handle()
+                self.matches.remove(spouse_handle)

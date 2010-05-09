@@ -64,6 +64,8 @@ class HasFamilyEvent(Rule):
     def apply(self,db,person):
         for f_id in person.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
+            if not f:
+                continue
             for event_ref in f.get_event_ref_list():
                 if not event_ref:
                     continue

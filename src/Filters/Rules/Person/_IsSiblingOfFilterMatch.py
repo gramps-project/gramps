@@ -71,4 +71,4 @@ class IsSiblingOfFilterMatch(MatchesFilter):
         if fam:
             self.map.update(child_ref.ref
                 for child_ref in fam.get_child_ref_list()
-                    if child_ref.ref != person.handle)
+                    if child_ref and child_ref.ref != person.handle)
