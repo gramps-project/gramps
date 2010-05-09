@@ -327,8 +327,6 @@ class GedcomWriter(UpdateCallback):
         """
         assert(token)
         if textlines:
-            if token == "FILE":
-                limit = 255
             # break the line into multiple lines if a newline is found
             textlist = textlines.split('\n')
             token_level = level
@@ -392,7 +390,7 @@ class GedcomWriter(UpdateCallback):
         self.__writeln(1, "DATE", date_str)
         self.__writeln(2, "TIME", time_str)
         self.__writeln(1, "SUBM", "@SUBM@")
-        self.__writeln(1, "FILE", filename)
+        self.__writeln(1, "FILE", filename, limit=255)
         self.__writeln(1, "COPR", 'Copyright (c) %d %s.' % (year, rname))
         self.__writeln(1, "GEDC")
         self.__writeln(2, "VERS", "5.5")
@@ -799,7 +797,7 @@ class GedcomWriter(UpdateCallback):
             if url.get_description():
                 self.__writeln(level+1, 'TITL', url.get_description())
             if url.get_path():
-                self.__writeln(level+1, 'FILE', url.get_path())
+                self.__writeln(level+1, 'FILE', url.get_path(), limit=255)
 
     def __families(self):
         """
@@ -1353,7 +1351,7 @@ class GedcomWriter(UpdateCallback):
             if form:
                 self.__writeln(level+1, 'FORM', form)
             self.__writeln(level+1, 'TITL', photo_obj.get_description())
-            self.__writeln(level+1, 'FILE', path)
+            self.__writeln(level+1, 'FILE', path, limit=255)
 
             self.__note_references(photo_obj.get_note_list(), level+1)
 
