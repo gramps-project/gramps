@@ -327,6 +327,8 @@ class GedcomWriter(UpdateCallback):
         """
         assert(token)
         if textlines:
+            if token == "FILE":
+                limit = 255
             # break the line into multiple lines if a newline is found
             textlist = textlines.split('\n')
             token_level = level
