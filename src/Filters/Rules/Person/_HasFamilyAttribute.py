@@ -53,10 +53,13 @@ class HasFamilyAttribute(Rule):
             return False
         for f_id in person.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
+            if not f:
+                continue
             for attr in f.get_attribute_list():
-                name_match = self.list[0] == attr.get_type()
-                value_match = \
-                        attr.get_value().upper().find(self.list[1].upper()) != -1
-                if name_match and value_match:
-                    return True
+                if attr:
+                    name_match = self.list[0] == attr.get_type()
+                    value_match = \
+                            attr.get_value().upper().find(self.list[1].upper()) != -1
+                    if name_match and value_match:
+                        return True
         return False

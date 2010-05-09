@@ -55,11 +55,13 @@ class IsSpouseOfFilterMatch(MatchesFilter):
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list ():
             family = db.get_family_from_handle(family_handle)
-            for spouse_id in [family.get_father_handle (), family.get_mother_handle ()]:
-                if not spouse_id:
-                    continue
-                if spouse_id == person.handle:
-                    continue
-                if self.filt.apply (db, db.get_person_from_handle( spouse_id)):
-                    return True
+            if family:
+                for spouse_id in [family.get_father_handle(), 
+                                  family.get_mother_handle()]:
+                    if not spouse_id:
+                        continue
+                    if spouse_id == person.handle:
+                        continue
+                    if self.filt.apply (db, db.get_person_from_handle( spouse_id)):
+                        return True
         return False

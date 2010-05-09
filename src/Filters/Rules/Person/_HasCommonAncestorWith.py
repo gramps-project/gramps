@@ -68,14 +68,15 @@ class HasCommonAncestorWith(Rule):
 
         for fam_handle in person.get_parent_family_handle_list():
             fam = db.get_family_from_handle(fam_handle)
-            for par_handle in (fam.get_father_handle(), fam.get_mother_handle()):
-                if par_handle:
-                    par = db.get_person_from_handle(par_handle)
-                    if par and par.handle not in self.ancestor_cache:
-                        self.add_ancs(db, par)
-                    if par:
-                        self.ancestor_cache[person.handle].add(par)
-                        self.ancestor_cache[person.handle] |= self.ancestor_cache[par.handle]
+            if fam:
+                for par_handle in (fam.get_father_handle(), fam.get_mother_handle()):
+                    if par_handle:
+                        par = db.get_person_from_handle(par_handle)
+                        if par and par.handle not in self.ancestor_cache:
+                            self.add_ancs(db, par)
+                        if par:
+                            self.ancestor_cache[person.handle].add(par)
+                            self.ancestor_cache[person.handle] |= self.ancestor_cache[par.handle]
 
     def reset(self):
         self.ancestor_cache = {}

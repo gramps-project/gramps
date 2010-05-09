@@ -171,7 +171,7 @@ class HasTextMatchingSubstringOf(Rule):
         self.repo_map.update(
 
             repo.handle for repo in self.db.iter_repositories()
-                if self.match_object(repo)
+                if repo and self.match_object(repo)
 
             )
     

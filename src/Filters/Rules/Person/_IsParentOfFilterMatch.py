@@ -67,6 +67,9 @@ class IsParentOfFilterMatch(MatchesFilter):
     def init_list(self,person):
         for fam_id in person.get_parent_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
-            self.map.update(parent_id
-                for parent_id in [fam.get_father_handle(), fam.get_mother_handle()]
-                    if parent_id)
+            if fam:
+                self.map.update(parent_id
+                                for parent_id in [fam.get_father_handle(), 
+                                                  fam.get_mother_handle()]
+                                if parent_id)
+                

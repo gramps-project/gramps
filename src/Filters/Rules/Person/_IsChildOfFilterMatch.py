@@ -69,5 +69,6 @@ class IsChildOfFilterMatch(MatchesFilter):
             return
         for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
-            self.map.update(child_ref.ref
-                for child_ref in fam.get_child_ref_list())
+            if fam:
+                self.map.update(child_ref.ref
+                   for child_ref in fam.get_child_ref_list())

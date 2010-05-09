@@ -48,9 +48,10 @@ class HaveAltFamilies(Rule):
     def apply(self,db,person):
         for fhandle in person.get_parent_family_handle_list():
             family = db.get_family_from_handle(fhandle)
-            ref = [ ref for ref in family.get_child_ref_list() \
-                    if ref.ref == person.handle]
-            if ref[0].get_father_relation() == ChildRefType.ADOPTED \
-                   or ref[0].get_mother_relation() == ChildRefType.ADOPTED:
-                return True
+            if family:
+                ref = [ ref for ref in family.get_child_ref_list() \
+                        if ref.ref == person.handle]
+                if ref[0].get_father_relation() == ChildRefType.ADOPTED \
+                       or ref[0].get_mother_relation() == ChildRefType.ADOPTED:
+                    return True
         return False

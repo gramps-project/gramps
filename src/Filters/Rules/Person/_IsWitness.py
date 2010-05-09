@@ -48,7 +48,7 @@ class IsWitness(Rule):
 
     def apply(self,db,person):
         for event_ref in person.event_ref_list:
-            if event_ref.role == EventRoleType.WITNESS:
+            if event_ref and event_ref.role == EventRoleType.WITNESS:
                 # This is the witness.
                 # If event type was given, then check it.
                 if self.list[0]:
