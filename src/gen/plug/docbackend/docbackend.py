@@ -228,7 +228,9 @@ class DocBackend(object):
         typeval = int(s_tag.name)
         s_tagvalue = s_tag.value
         tag_name = None
-        if tagtype.STYLE_TYPE[typeval] == bool:
+        if typeval not in tagtype.STYLE_TYPE:
+            return None
+        elif tagtype.STYLE_TYPE[typeval] == bool:
             return self.STYLETAG_MARKUP[self.STYLETYPE_MAP[typeval]]
         elif tagtype.STYLE_TYPE[typeval] == str:
             tag_name = "%d %s" % (typeval, s_tagvalue)
