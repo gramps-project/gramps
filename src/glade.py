@@ -212,7 +212,8 @@ class Glade(gtk.Builder):
         queue = [toplevel]
         while queue:
             obj = queue.pop(0)
-            if obj.get_name() == value:
+            obj_id = gtk.Buildable.get_name(obj)
+            if obj_id == value:
                 return obj
             if hasattr(obj, 'get_children'):
                 queue += obj.get_children()
