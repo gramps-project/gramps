@@ -22,27 +22,13 @@
 
 """ Unittest for testing POTFILES.in and Makefile contents """
 
+# PYTHONPATH=/../src python po_test.py
+
 import unittest
 import os
 import glob
 from test import test_util
 test_util.path_append_parent() 
-
-excluded_files = ["src/DataViews/_MapView.py", 
-                  "src/plugins/PHPGedViewConnector.py",
-                  "src/plugins/phpgedview.glade",
-                  "src/plugins/Ancestors.py",
-                  "src/plugins/DesGraph.py",
-                  "src/plugins/FtmStyleAncestors.py", 
-                  "src/plugins/FtmStyleDescendants.py",
-                  "src/plugins/IndivSummary.py",
-                  "src/date_test.py",
-                  "src/plugins/CmdRef.py",
-                  "src/plugins/DumpGenderStats.py",
-                  "src/plugins/Eval.py",
-                  "src/plugins/Leak.py",
-                  "src/plugins/TestcaseGenerator.py"
-                  ]
 
 def get_potfile(filename):
     fp = open(filename, "r")
@@ -52,6 +38,10 @@ def get_potfile(filename):
             retvals.append(line.strip())
     fp.close()
     return retvals
+
+# POTFILES.skip
+
+excluded_files = get_potfile("../POTFILES.skip")
 
 class TestPOT(unittest.TestCase):
     potfiles = get_potfile("../POTFILES.in")
