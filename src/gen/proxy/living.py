@@ -210,7 +210,7 @@ class LivingProxyDb(ProxyDbBase):
         father_handle = family.get_father_handle()
         if father_handle:
             father = self.db.get_person_from_handle(father_handle)
-            if  self.__is_living(father):
+            if father and self.__is_living(father):
                 parent_is_living = True
                 if self.mode == self.MODE_EXCLUDE_ALL:
                     family.set_father_handle(None)
@@ -218,7 +218,7 @@ class LivingProxyDb(ProxyDbBase):
         mother_handle = family.get_mother_handle()
         if mother_handle:
             mother = self.db.get_person_from_handle(mother_handle)
-            if self.__is_living(mother):
+            if mother and self.__is_living(mother):
                 parent_is_living = True
                 if self.mode == self.MODE_EXCLUDE_ALL:
                     family.set_mother_handle(None)
@@ -231,7 +231,7 @@ class LivingProxyDb(ProxyDbBase):
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
                 child = self.db.get_person_from_handle(child_handle)
-                if self.__is_living(child):
+                if child and self.__is_living(child):
                     family.remove_child_ref(child_ref)
         
         return family
