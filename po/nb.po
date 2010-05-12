@@ -23053,15 +23053,3 @@ msgstr "<b>Hvem ble født når?</b><br/>Under &quot;Verktøy &gt; Analysere og u
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Arbeide med datoer</b><br/>En serie med datoer can angis ved å bruke formatet &quot;mellom 4.januar 2000 og 20.mars 2003&quot;. Du kan også indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
-
-#~ msgid "Whether to include a link to the home person"
-#~ msgstr "Ta med lenke til startpersonen"
-
-#~ msgid "Download page note"
-#~ msgstr "Notat for nedlastingside"
-
-#~ msgid "A note to be used on the download page"
-#~ msgstr "Et notat som skal brukes på nedlastingstartsiden"
-
-#~ msgid "Matches people with a certain number of items in the source"
-#~ msgstr "Samsvarer med personer med et bestemt antall element i kilden"
