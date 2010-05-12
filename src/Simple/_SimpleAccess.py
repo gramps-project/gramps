@@ -509,7 +509,7 @@ class SimpleAccess(object):
         return self.__event_date_obj(person, gen.lib.Person.get_birth_ref)
 
 
-    def birth_or_fallback(self, person):
+    def birth_or_fallback(self, person, get_event=False):
         """
         Return the date of the person's birth or fallback event.
 
@@ -522,7 +522,9 @@ class SimpleAccess(object):
             person = self.dbase.get_person_from_handle(person)
         event = gen.utils.get_birth_or_fallback(self.dbase, 
                                                 person, "<i>%s</i>")
-        if event:
+        if get_event:
+            return event
+        elif event:
             return event.date
         else:
             return gen.lib.Date()
@@ -566,7 +568,7 @@ class SimpleAccess(object):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, gen.lib.Person.get_death_ref)
 
-    def death_or_fallback(self, person):
+    def death_or_fallback(self, person, get_event=False):
         """
         Return the date of the person's death or fallback event.
 
@@ -579,7 +581,9 @@ class SimpleAccess(object):
             person = self.dbase.get_person_from_handle(person)
         event = gen.utils.get_death_or_fallback(self.dbase, 
                                                 person, "<i>%s</i>")
-        if event:
+        if get_event:
+            return event
+        elif event:
             return event.date
         else:
             return gen.lib.Date()
@@ -654,7 +658,8 @@ class SimpleAccess(object):
         @rtype: unicode
         """
         assert(isinstance(event, (gen.lib.Event, NoneType)))
-        return event.get_date_object()
+        if event:
+            return event.get_date_object()
 
     def event_type(self, event):
         """
@@ -942,4 +947,11 @@ def by_date(event1, event2):
        1 if they are the same.
     @rtype: int
     """
-    return cmp(event1.get_date_object() , event2.get_date_object())
+    if event1 and event2:
+        return cmp(event1.get_date_object() , event2.get_date_object())
+    elif event1:
+        return -1
+    elif event2:
+        return 1
+    else:
+        return 0
