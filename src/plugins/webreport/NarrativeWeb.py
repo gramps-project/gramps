@@ -5816,11 +5816,7 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'graph', self.__graph)
         self.__graph.connect('value-changed', self.__graph_changed)
 
-        self.__graphgens = EnumeratedListOption(_('Graph generations'), 4)
-        self.__graphgens.add_item(2, "2")
-        self.__graphgens.add_item(3, "3")
-        self.__graphgens.add_item(4, "4")
-        self.__graphgens.add_item(5, "5")
+        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 5)
         self.__graphgens.set_help( _("The number of generations to include in "
                                      "the ancestor graph"))
         menu.add_option(category_name, "graphgens", self.__graphgens)
