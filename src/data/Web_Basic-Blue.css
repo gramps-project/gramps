@@ -530,19 +530,22 @@ div#events table.eventlist {
     margin-top: .3cm;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 20%;
+    width: 10%;
 }
 table.eventlist tbody tr td.ColumnDate {
-    width: 16%;
+    width: 12%;
 }
 table.eventlist tbody tr td.ColumnPlace {
-    width: 35%;
+    width: 25%;
 }
-table.eventlist tbody tr td.ColumnSources {
-    width: 12%;
+table.eventlist tbody tr td.ColumnDescription {
+    width: 15%;
 }
 table.eventlist tbody tr td.ColumnNotes {
     width: 25%;
+}
+table.eventlist tbody tr td.ColumnSources {
+    width: 12%;
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;

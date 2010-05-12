@@ -506,7 +506,7 @@ class BasePage(object):
         """
         for more information: see get_event_data()
         """
-        event_data = self.get_event_data(evt, evt_ref, True, False, subdirs)
+        event_data = self.get_event_data(evt, evt_ref, subdirs)
 
         trow.extend(
             Html("td", data or "&nbsp;", class_ = "Column" + colclass,
@@ -564,14 +564,12 @@ class BasePage(object):
         else:
             return eventtype
 
-    def get_event_data(self, evt, evt_ref, showplc, showdescr, up, gid = None):
+    def get_event_data(self, evt, evt_ref, up, gid = None):
         """
         retrieve event data from event and evt_ref
 
         @param: evt = event from database
         @param: evt_ref = eent reference
-        @param: showplc = show the event place or not?
-        @param: showdescr = to show the event description or not?
         @param: up = either True or False; add subdirs or not?
         """
         db = self.report.database
@@ -591,18 +589,11 @@ class BasePage(object):
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
         info = [
-               [DHEAD, "Date", _dd.display(evt.get_date_object() )]
+               (DHEAD, "Date", _dd.display(evt.get_date_object() ) ),
+               (PHEAD, "Place", place_hyper),
+               (DESCRHEAD, "Description", evt.get_description() )
                ]
-
-        if showplc:
-            info.append([PHEAD, "Place", place_hyper])
-
-        if showdescr:
-            descr = evt.get_description()
-            info.append([DESCRHEAD, "Description", descr])
-
-        # return event data information to its callers
-        return info                        
+        return info
 
     def dump_ordinance(self, db, ldsobj, LDSSealedType = "Person"):
         """
@@ -2586,7 +2577,7 @@ class EventPage(BasePage):
                 """
                 for more information: see get_event_data()
                 """ 
-                event_data = self.get_event_data(event, event_handle, True, True, subdirs, evt_gid)
+                event_data = self.get_event_data(event, event_handle, subdirs, evt_gid)
 
                 for (label, colclass, data) in event_data:
                     if data:
@@ -4642,17 +4633,17 @@ class IndividualPage(BasePage):
         """ 
 
         trow = Html("tr")
-        trow.extend(
-            Html("th", label, class_ = "Column" + colclass, inline = True)
-            for (label, colclass) in  [
-                (_EVENT, "Event"),
-                (DHEAD, "Date"),
-                (PHEAD, "Place"),
-                (NHEAD,  "Notes"),
-                (SHEAD, "Sources") ]
-            )
 
-        # return header row to its callers
+        trow.extend(
+                Html("th", label, class_ = "Column" + colclass, inline = True)
+                for (label, colclass) in  [
+                    (_EVENT,          "Event"),
+                    (DHEAD,           "Date"),
+                    (PHEAD,          "Place"),
+                    (DESCRHEAD, "Description"),
+                    (NHEAD,         "Notes"),
+                    (SHEAD,         "Sources") ]
+                )
         return trow
 
     def format_event(self, eventlist):
