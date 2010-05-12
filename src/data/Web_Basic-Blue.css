@@ -965,8 +965,15 @@ table.attrlist tbody tr td.ColumnAttrSources {
 
 /* Subsections : Parents
 ----------------------------------------------------- */
+div#parents {
+    margin: 0;
+    padding: 0;
+}
 div#parents table.infolist {
     margin-top:.5em;
+}
+div#parents table.infolist tbody tr td {
+    border: none;
 }
 div#parents table.infolist tbody tr td.ColumnAttribute {
     width:19%;
