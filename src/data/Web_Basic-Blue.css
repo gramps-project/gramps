@@ -1,8 +1,7 @@
-﻿/*
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright 2008-2010 Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2008-2010 Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -607,9 +606,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
 }
 div#EventDetail table.eventlist tbody tr td.ColumnDate {
     border-top: solid 1px #000;
-}
-div#EventDetail table.eventlist tbody tr td.ColumnPerson {
-    background-color: #000;
 }
     
 /* Gallery
