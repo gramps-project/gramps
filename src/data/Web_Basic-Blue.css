@@ -604,7 +604,6 @@ div#EventDetail table.eventlist tbody tr {
     border-top: dashed 1px #000;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
-    text-transform: uppercase;
     width: 20%;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnDate {
@@ -901,7 +900,6 @@ div#events h4 {
     font-weight:bold;
     font-size:10px;
     line-height:12px;
-    text-transform:uppercase;
     color: #000;
     padding:6px 0 4px 0;
     background-color: #70B1ED;
@@ -1381,7 +1379,6 @@ div#pedigree {
     width:100%;
     font-size:2em;
     line-height:100%;
-    text-transform:none;
     color: #542;
     padding:.3em 0 .2em 0;
     background-color: #FFF;
