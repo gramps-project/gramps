@@ -61,7 +61,7 @@ from gen.utils import get_birth_or_fallback, get_death_or_fallback
 #------------------------------------------------------------------------
 class PrintSimple():
     def number(self, level):
-        return "%d. " % level
+        return "%d." % level
     
     
 #------------------------------------------------------------------------
@@ -79,7 +79,7 @@ class PrintVilliers():
         to_return = self.pama[level-1]
         if level > 1:
             to_return += str(self.num[level-1])
-        to_return += ". "
+        to_return += "."
         
         self.num[level] = 1
         self.num[level-1] = self.num[level-1] + 1
@@ -106,7 +106,7 @@ class PrintMeurgey():
                 self.childnum.append(1)
         
         to_return = ReportUtils.roman(level) + dash + \
-                    str(self.childnum[level-1]) + ". "
+                    str(self.childnum[level-1]) + "."
 
         if level > 1:
             self.childnum[level-1] += 1

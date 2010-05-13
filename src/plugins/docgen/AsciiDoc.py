@@ -236,6 +236,7 @@ class AsciiDoc(BaseDoc,TextDoc):
             # Then add leader and eat up the beginning of the first line pad.
             # Do not reformat if preformatted notes
             if not self.__note_format:
+                self.leader += ' '
                 start_at = regular_indent + min(len(self.leader)+first_indent,0)
                 this_text = reformat_para(self.text,regular_indent,right,fmt,
                                           right_pad)
