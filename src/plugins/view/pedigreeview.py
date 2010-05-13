@@ -654,6 +654,15 @@ class PedigreeView(NavigationView):
     View for pedigree tree.
     Displays the ancestors of a selected individual.
     """
+    #settings in the config file
+    CONFIGSETTINGS = (
+        ('interface.pedview-tree-size', 5),
+        ('interface.pedview-layout', 0),
+        ('interface.pedview-show-images', True),
+        ('interface.pedview-show-marriage', True),
+        ('interface.pedview-tree-direction', 2),
+        ('interface.pedview-show-unknown-people', True),
+        )
 
     def __init__(self, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Pedigree'), dbstate, uistate, 
@@ -663,31 +672,12 @@ class PedigreeView(NavigationView):
 
         self.func_list = {
             'F2' : self.kb_goto_home,
-            'F3' : self.kb_change_style,
-            'F4' : self.kb_change_direction,
-            'F6' : self.kb_plus_generation,
-            'F5' : self.kb_minus_generation,
             '<CONTROL>J' : self.jump,
             }
 
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)
         uistate.connect('nameformat-changed', self.person_rebuild)
-        # Automatic resize
-        self.force_size = config.get('interface.pedview-tree-size') 
-        # Nice tree
-        self.tree_style = config.get('interface.pedview-layout')
-        # Show photos of persons
-        self.show_images = config.get('interface.pedview-show-images')
-        # Hide marriage data by default
-        self.show_marriage_data = config.get(
-                                'interface.pedview-show-marriage')
-        # Tree draw direction
-        self.tree_direction = config.get('interface.pedview-tree-direction')
-        # Show on not unknown people.
-        # Default - not show, for mo fast display hight tree
-        self.show_unknown_people = config.get(
-                                'interface.pedview-show-unknown-people')
         
         self.format_helper = FormattingHelper(self.dbstate)
         
@@ -697,9 +687,6 @@ class PedigreeView(NavigationView):
         self._last_x = 0
         self._last_y = 0
         self._in_move = False
-        # Change or nor mouse whell scroll direction
-        self.scroll_direction = config.get(
-                                'interface.pedview-scroll-direction')
         self.key_active_changed = None
         # GTK objects
         self.scrolledwindow = None
@@ -860,6 +847,41 @@ class PedigreeView(NavigationView):
         name of any of the primary objects.
         """
         return 'Person'
+
+    def can_configure(self):
+        """
+        See :class:`~gui.views.pageview.PageView 
+        :return: bool
+        """
+        return True
+
+    def on_delete(self):
+        self._config.save()
+        NavigationView.on_delete(self)
+
+    def set_ident(self, ident):
+        """
+        Set the id of the view. This is an unique ident
+        We use this to create immediately the config file with this ident.
+        """
+        NavigationView.set_ident(self, ident)
+        self.init_config()
+
+        # Automatic resize
+        self.force_size = self._config.get('interface.pedview-tree-size') 
+        # Nice tree
+        self.tree_style = self._config.get('interface.pedview-layout')
+        # Show photos of persons
+        self.show_images = self._config.get('interface.pedview-show-images')
+        # Hide marriage data by default
+        self.show_marriage_data = self._config.get(
+                                'interface.pedview-show-marriage')
+        # Tree draw direction
+        self.tree_direction = self._config.get('interface.pedview-tree-direction')
+        # Show on not unknown people.
+        # Default - not show, for mo fast display hight tree
+        self.show_unknown_people = self._config.get(
+                                'interface.pedview-show-unknown-people')
 
     def goto_handle(self, handle=None):
         """
@@ -1605,62 +1627,8 @@ class PedigreeView(NavigationView):
         self.change_active(person_handle)
         return True
 
-    def cb_change_force_size(self, menuitem, data):
-        """Change force_size option."""
-        if data in [2, 3, 4, 5, 6, 7, 8, 9, 10]:
-            config.set('interface.pedview-tree-size', data)
-            self.force_size = data
-            self.dirty = True
-            # switch to matching size
-            self.rebuild_trees(self.get_active())
-
-    def cb_change_tree_style(self, menuitem, data):
-        """Change tree_style option."""
-        if data in [0, 1, 2]:
-            config.set('interface.pedview-layout', data)
-            if self.tree_style != data:
-                if data == 1 and self.force_size > 5:
-                    self.force_size = 5
-                self.dirty = True
-                self.tree_style = data
-                self.rebuild_trees(self.get_active())
-
-    def cb_change_tree_direction(self, menuitem, data):
-        """Change tree_direction option."""
-        if data in [0, 1, 2, 3]:
-            config.set('interface.pedview-tree-direction', data)
-            if self.tree_direction != data:
-                self.dirty = True
-                self.tree_direction = data
-                self.rebuild_trees(self.get_active())
-
-    def cb_change_show_images(self, event):
-        """Change show_images option."""
-        self.show_images = not self.show_images
-        config.set('interface.pedview-show-images', self.show_images)
-        self.dirty = True
-        self.rebuild_trees(self.get_active())
-
-    def cb_change_show_marriage(self, event):
-        """Change show_marriage_data option."""
-        self.show_marriage_data = not self.show_marriage_data
-        config.set('interface.pedview-show-marriage', 
-                    self.show_marriage_data)
-        self.dirty = True
-        self.rebuild_trees(self.get_active())
-
-    def cb_change_show_unknown_people(self, event):
-        """Change show_unknown_people option."""
-        self.show_unknown_people = not self.show_unknown_people
-        config.set('interface.pedview-show-unknown-people', 
-                    self.show_unknown_people)
-        self.dirty = True
-        self.rebuild_trees(self.get_active())
-
     def cb_change_scroll_direction(self, menuitem, data):
         """Change scroll_direction option."""
-        config.set('interface.pedview-scroll-direction', 
-                    self.scroll_direction)
         if data:
             self.scroll_direction = True
         else:
@@ -1669,28 +1637,6 @@ class PedigreeView(NavigationView):
     def kb_goto_home(self):
         """Goto home person from keyboard."""
         self.cb_home(None)
-
-    def kb_plus_generation(self):
-        """Increment size of tree from keyboard."""
-        self.cb_change_force_size(None, self.force_size + 1)
-
-    def kb_minus_generation(self):
-        """Decrement size of tree from keyboard."""
-        self.cb_change_force_size(None, self.force_size - 1)
-
-    def kb_change_style(self):
-        """Change style of tree from keyboard."""
-        next_style = self.tree_style + 1
-        if next_style > 2:
-            next_style = 0
-        self.cb_change_tree_style(None, next_style)
-
-    def kb_change_direction(self):
-        """Change direction of tree from keyboard."""
-        next_direction = self.tree_direction + 1
-        if next_direction > 3:
-            next_direction = 0
-        self.cb_change_tree_direction(None, next_direction)
 
     def find_tree(self, person, index, depth, lst, val=0):
         """Recursively build a list of ancestors"""
@@ -1752,7 +1698,6 @@ class PedigreeView(NavigationView):
             (gtk.STOCK_GO_BACK, self.back_clicked, not hobj.at_front()),
             (gtk.STOCK_GO_FORWARD, self.fwd_clicked, not hobj.at_end()),
             (gtk.STOCK_HOME, self.cb_home, home_sensitivity),
-            (None, None, 0)
         ]
 
         for stock_id, callback, sensitivity in entries:
@@ -1765,40 +1710,15 @@ class PedigreeView(NavigationView):
 
     def add_settings_to_menu(self, menu):
         """
-        Add settings to menu (Show images, Show marriage data,
-        Show unknown people, Mouse scroll direction, Tree style,
-        Tree size, Tree direction), marked selected items.
-        Othet menu for othet styles.
+        Add frequently used settings to the menu.  Most settings will be set
+        from the configuration dialog.
         """
-        entry = gtk.ImageMenuItem(_("Show images"))
-        if self.show_images:
-            tick = gtk.image_new_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_MENU)
-            tick.show()
-            entry.set_image(tick)
-        entry.connect("activate", self.cb_change_show_images)
-        entry.show()
-        menu.append(entry)
+        # Separator. 
+        item = gtk.MenuItem()
+        item.show()
+        menu.append(item)
 
-        entry = gtk.ImageMenuItem(_("Show marriage data"))
-        if self.show_marriage_data:
-            tick = gtk.image_new_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_MENU)
-            tick.show()
-            entry.set_image(tick)
-        entry.connect("activate", self.cb_change_show_marriage)
-        entry.show()
-        menu.append(entry)
-
-        if self.tree_style in [0, 2]:
-            entry = gtk.ImageMenuItem(_("Show unknown people"))
-            if self.show_unknown_people:
-                tick = gtk.image_new_from_stock(gtk.STOCK_APPLY,
-                                                gtk.ICON_SIZE_MENU)
-                tick.show()
-                entry.set_image(tick)
-            entry.connect("activate", self.cb_change_show_unknown_people)
-            entry.show()
-            menu.append(entry)
-
+        # Mouse scroll direction setting. 
         item = gtk.MenuItem(_("Mouse scroll direction"))
         item.set_submenu(gtk.Menu())
         scroll_direction_menu = item.get_submenu()
@@ -1825,108 +1745,6 @@ class PedigreeView(NavigationView):
         item.show()
         menu.append(item)
 
-        item = gtk.MenuItem(_("Tree style"))
-        item.set_submenu(gtk.Menu())
-        style_menu = item.get_submenu()
-
-        tick = gtk.image_new_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_MENU)
-        tick.show()
-
-        entry = gtk.ImageMenuItem(_("Standard"))
-        entry.connect("activate", self.cb_change_tree_style, 0)
-        if self.tree_style == 0:
-            entry.set_image(tick)
-        entry.show()
-        style_menu.append(entry)
-
-        entry = gtk.ImageMenuItem(_("Compact"))
-        entry.connect("activate", self.cb_change_tree_style, 1)
-        if self.tree_style == 1:
-            entry.set_image(tick)
-        entry.show()
-        style_menu.append(entry)
-
-        entry = gtk.ImageMenuItem(_("Expanded"))
-        entry.connect("activate", self.cb_change_tree_style, 2)
-        if self.tree_style == 2:
-            entry.set_image(tick)
-        entry.show()
-        style_menu.append(entry)
-
-        style_menu.show()
-        item.show()
-        menu.append(item)
-
-        item = gtk.MenuItem(_("Tree size"))
-        item.set_submenu(gtk.Menu())
-        size_menu = item.get_submenu()
-
-        tick = gtk.image_new_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_MENU)
-        tick.show()
-
-        for num in range(2, 6):
-            entry = gtk.ImageMenuItem(
-                ngettext("%d generation", "%d generations", num) %num)
-            if self.force_size == num:
-                entry.set_image(tick)
-            entry.connect("activate", self.cb_change_force_size, num)
-            entry.show()
-            size_menu.append(entry)
-
-        if self.tree_style in [0, 2]:
-            # Note: 10 generations can cause problems
-            for num in range(6, 10):
-                entry = gtk.ImageMenuItem(
-                    ngettext("%d generation", "%d generations", num) %num)
-                if self.force_size == num:
-                    entry.set_image(tick)
-                entry.connect("activate", self.cb_change_force_size, num)
-                entry.show()
-                size_menu.append(entry)
-
-        item2 = gtk.MenuItem(_("Tree direction"))
-        item2.set_submenu(gtk.Menu())
-        direction_menu = item2.get_submenu()
-
-        tick = gtk.image_new_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_MENU)
-        tick.show()
-
-        entry = gtk.ImageMenuItem(_("Vertical (top to bottom)"))
-        entry.connect("activate", self.cb_change_tree_direction, 0)
-        if self.tree_direction == 0:
-            entry.set_image(tick)
-        entry.show()
-        direction_menu.append(entry)
-
-        entry = gtk.ImageMenuItem(_("Vertical (bottom to top)"))
-        entry.connect("activate", self.cb_change_tree_direction, 1)
-        if self.tree_direction == 1:
-            entry.set_image(tick)
-        entry.show()
-        direction_menu.append(entry)
-
-        entry = gtk.ImageMenuItem(_("Horizontal (left to right)"))
-        entry.connect("activate", self.cb_change_tree_direction, 2)
-        if self.tree_direction == 2:
-            entry.set_image(tick)
-        entry.show()
-        direction_menu.append(entry)
-
-        entry = gtk.ImageMenuItem(_("Horizontal (right to left)"))
-        entry.connect("activate", self.cb_change_tree_direction, 3)
-        if self.tree_direction == 3:
-            entry.set_image(tick)
-        entry.show()
-        direction_menu.append(entry)
-
-        direction_menu.show()
-        item2.show()
-        menu.append(item2)
-
-        size_menu.show()
-        item.show()
-        menu.append(item)
-
     def cb_build_missing_parent_nav_menu(self, obj, event,
                                          person_handle, family_handle):
         """Builds the menu for a missing parent."""
@@ -1936,6 +1754,11 @@ class PedigreeView(NavigationView):
         add_item = gtk.ImageMenuItem(gtk.STOCK_ADD)
         add_item.connect("activate", self.cb_add_parents, person_handle,
                          family_handle)
+        add_item.show()
+        menu.append(add_item)
+
+        # Add a separator line
+        add_item = gtk.MenuItem(None)
         add_item.show()
         menu.append(add_item)
 
@@ -2185,7 +2008,7 @@ class PedigreeView(NavigationView):
         item.show()
         menu.append(item)
 
-        # Add separator
+        # Add separator line
         item = gtk.MenuItem(None)
         item.show()
         menu.append(item)
@@ -2226,3 +2049,130 @@ class PedigreeView(NavigationView):
         self.add_settings_to_menu(menu)
         menu.popup(None, None, None, 0, event.time)
         return 1
+        
+    def cb_update_show_images(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the images setting. 
+        """
+        if entry == 'True':
+            self.show_images = True
+        else:
+            self.show_images = False
+        self.rebuild_trees(self.get_active())
+
+    def cb_update_show_marriage(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the marriage data setting. 
+        """
+        if entry == 'True':
+            self.show_marriage_data = True
+        else:
+            self.show_marriage_data = False
+        self.rebuild_trees(self.get_active())
+
+    def cb_update_show_unknown_people(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the unknown people setting. 
+        """
+        if entry == 'True':
+            self.show_unknown_people = True
+        else:
+            self.show_unknown_people = False
+        self.rebuild_trees(self.get_active())
+
+    def cb_update_layout(self, obj, constant):
+        """
+        Called when the configuration menu changes the layout. 
+        """
+        entry = obj.get_active()
+        self._config.set(constant, entry)
+        self.tree_style = int(entry)
+        adj = self.config_size_slider.get_adjustment()
+        if entry == 1: # Limit tree size to 5 for the compact style
+            adj.upper = 5
+            if self.force_size > 5:
+                self.force_size = 5
+                adj.value = 5
+        else:
+            adj.upper = 9
+        adj.emit("changed")
+        self.rebuild_trees(self.get_active())
+
+    def cb_update_tree_direction(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the tree direction. 
+        """
+        self.tree_direction = int(entry)
+        self.rebuild_trees(self.get_active())
+
+    def cb_update_tree_size(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the tree size. 
+        """
+        self.force_size = int(entry)
+        self.rebuild_trees(self.get_active())
+
+    def config_connect(self):
+        """
+        Overwriten from  :class:`~gui.views.pageview.PageView method
+        This method will be called after the ini file is initialized,
+        use it to monitor changes in the ini file
+        """
+        self._config.connect('interface.pedview-show-images',
+                          self.cb_update_show_images)
+        self._config.connect('interface.pedview-show-marriage',
+                          self.cb_update_show_marriage)
+        self._config.connect('interface.pedview-show-unknown-people',
+                          self.cb_update_show_unknown_people)
+        self._config.connect('interface.pedview-tree-direction',
+                          self.cb_update_tree_direction)
+        self._config.connect('interface.pedview-tree-size',
+                          self.cb_update_tree_size)
+
+    def _get_configure_page_funcs(self):
+        """
+        Return a list of functions that create gtk elements to use in the 
+        notebook pages of the Configure dialog
+        
+        :return: list of functions
+        """
+        return [self.config_panel]
+
+    def config_panel(self, configdialog):
+        """
+        Function that builds the widget in the configuration dialog
+        """
+        table = gtk.Table(7, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        configdialog.add_checkbox(table, 
+                _('Show images'), 
+                0, 'interface.pedview-show-images')
+        configdialog.add_checkbox(table, 
+                _('Show marriage data'), 
+                1, 'interface.pedview-show-marriage')
+        configdialog.add_checkbox(table, 
+                _('Show unknown people'), 
+                2, 'interface.pedview-show-unknown-people')
+        configdialog.add_combo(table, 
+                _('Tree style'), 
+                4, 'interface.pedview-layout',
+                ((0, _('Standard')),
+                (1, _('Compact')),
+                (2, _('Expanded'))),
+                callback=self.cb_update_layout)
+        configdialog.add_combo(table, 
+                _('Tree direction'), 
+                5, 'interface.pedview-tree-direction',
+                ((0, _('Vertical (top to bottom)')),
+                (1, _('Vertical (bottom to top)')),
+                (2, _('Horizontal (left to right)')),
+                (3, _('Horizontal (right to left)'))))
+        self.config_size_slider = configdialog.add_slider(table, 
+                _('Tree size'), 
+                6, 'interface.pedview-tree-size',
+                (2, 9))
+
+        return _('Layout'), table

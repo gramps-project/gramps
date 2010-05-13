@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Raphael Ackermann
 # Copyright (C) 2010       Benny Malengier
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -228,7 +229,22 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
     def update_radiobox(self, obj, constant):
         self.__config.set(constant, obj.get_active())
 
-    def add_checkbox(self, table, label, index, constant, start=1, stop=9, config=None):
+    def update_combo(self, obj, constant):
+        """
+        :param obj: the ComboBox object
+        :param constant: the config setting to which the value must be saved
+        """
+        self.__config.set(constant, obj.get_active())
+
+    def update_slider(self, obj, constant):
+        """
+        :param obj: the HScale object
+        :param constant: the config setting to which the value must be saved
+        """
+        self.__config.set(constant, int(obj.get_value()))
+
+    def add_checkbox(self, table, label, index, constant, start=1, stop=9,
+                     config=None):
         if not config:
             config = self.__config
         checkbox = gtk.CheckButton(label)
@@ -236,7 +252,8 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         checkbox.connect('toggled', self.update_checkbox, constant, config)
         table.attach(checkbox, start, stop, index, index+1, yoptions=0)
 
-    def add_radiobox(self, table, label, index, constant, group, column, config=None):
+    def add_radiobox(self, table, label, index, constant, group, column,
+                     config=None):
         if not config:
             config = self.__config
         radiobox = gtk.RadioButton(group,label)
@@ -281,7 +298,8 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
                      xoptions=gtk.FILL)
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
 
-    def add_entry(self, table, label, index, constant, callback=None, config=None):
+    def add_entry(self, table, label, index, constant, callback=None,
+                  config=None):
         if not config:
             config = self.__config
         if not callback:
@@ -294,7 +312,8 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
-    def add_pos_int_entry(self, table, label, index, constant, callback=None, config=None):
+    def add_pos_int_entry(self, table, label, index, constant, callback=None,
+                          config=None):
         """ entry field for positive integers
         """
         if not config:
@@ -322,6 +341,54 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
         table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
         return entry
+
+    def add_combo(self, table, label, index, constant, opts, callback=None,
+                  config=None):
+        """
+        A drop-down list allowing selection from a number of fixed options.
+        :param opts: A list of options.  Each option is a tuple containing an
+        integer code and a textual description.
+        """
+        if not config:
+            config = self.__config
+        if not callback:
+            callback = self.update_combo
+        lwidget = BasicLabel("%s: " % label)
+        store = gtk.ListStore(int, str)
+        for item in opts:
+            store.append(item)
+        combo = gtk.ComboBox(store)
+        cell = gtk.CellRendererText()
+        combo.pack_start(cell, True)
+        combo.add_attribute(cell, 'text', 1)  
+        combo.set_active(config.get(constant))
+        combo.connect('changed', callback, constant)
+        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(combo, 2, 3, index, index+1, yoptions=0)
+        return combo
+
+    def add_slider(self, table, label, index, constant, range, callback=None,
+                   config=None):
+        """
+        A slider allowing the selection of an integer within a specified range.
+        :param range: A tuple containing the minimum and maximum allowed values.
+        """
+        if not config:
+            config = self.__config
+        if not callback:
+            callback = self.update_slider
+        lwidget = BasicLabel("%s: " % label)
+        adj = gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
+        slider = gtk.HScale(adj)
+        slider.set_update_policy(gtk.UPDATE_DISCONTINUOUS)
+        slider.set_digits(0)
+        slider.set_value_pos(gtk.POS_BOTTOM)
+        slider.connect('value-changed', callback, constant)
+        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(slider, 2, 3, index, index+1, yoptions=0)
+        return slider
 
 #-------------------------------------------------------------------------
 #
