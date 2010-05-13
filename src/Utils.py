@@ -814,7 +814,14 @@ def probably_alive(person, db,
     :param max_age_prob_alive: maximum age of a person, in years
     :param avg_generation_gap: average generation gap, in years
     """
-    pb = ProbablyAlive(db, max_sib_age_diff, 
+    # First, find the real database to use all people
+    # for determining alive status:
+    from gen.proxy.proxybase import ProxyDbBase
+    basedb = db
+    while isinstance(basedb, ProxyDbBase):
+        basedb = basedb.db
+    # Now, we create a wrapper for doing work:
+    pb = ProbablyAlive(basedb, max_sib_age_diff, 
                        max_age_prob_alive, 
                        avg_generation_gap)
     birth, death, explain, relative = pb.probably_alive_range(person)
@@ -868,7 +875,14 @@ def probably_alive_range(person, db,
     Computes estimated birth and death dates.
     Returns: (birth_date, death_date, explain_text, related_person)
     """
-    pb = ProbablyAlive(db, max_sib_age_diff, 
+    # First, find the real database to use all people
+    # for determining alive status:
+    from gen.proxy.proxybase import ProxyDbBase
+    basedb = db
+    while isinstance(basedb, ProxyDbBase):
+        basedb = basedb.db
+    # Now, we create a wrapper for doing work:
+    pb = ProbablyAlive(basedb, max_sib_age_diff, 
                        max_age_prob_alive, avg_generation_gap)
     return pb.probably_alive_range(person)
 
