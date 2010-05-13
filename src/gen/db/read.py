@@ -411,71 +411,80 @@ class DbBsddbRead(DbReadBase, Callback):
             map_index += 1
             index = prefix % map_index
         map_index += 1
-        return index
+        return (map_index, index)
         
     def find_next_person_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Person object based off the 
         person ID prefix.
         """
-        return self.__find_next_gramps_id(self.person_prefix,
+        self.pmap_index, gid = self.__find_next_gramps_id(self.person_prefix,
                                           self.pmap_index, self.id_trans)
+        return gid
 
     def find_next_place_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Place object based off the 
         place ID prefix.
         """
-        return self.__find_next_gramps_id(self.place_prefix,
+        self.lmap_index, gid = self.__find_next_gramps_id(self.place_prefix,
                                           self.lmap_index, self.pid_trans)
+        return gid
 
     def find_next_event_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Event object based off the 
         event ID prefix.
         """
-        return self.__find_next_gramps_id(self.event_prefix,
+        self.emap_index, gid = self.__find_next_gramps_id(self.event_prefix,
                                           self.emap_index, self.eid_trans)
+        return gid
 
     def find_next_object_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a MediaObject object based
         off the media object ID prefix.
         """
-        return self.__find_next_gramps_id(self.mediaobject_prefix,
-                                          self.omap_index, self.oid_trans)        
+        self.omap_index, gid = self.__find_next_gramps_id(self.mediaobject_prefix,
+                                          self.omap_index, self.oid_trans)
+        return gid
 
     def find_next_source_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Source object based off the 
         source ID prefix.
         """
-        return self.__find_next_gramps_id(self.source_prefix,
+        self.smap_index, gid = self.__find_next_gramps_id(self.source_prefix,
                                           self.smap_index, self.sid_trans)
+        return gid
 
     def find_next_family_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Family object based off the 
         family ID prefix.
         """
-        return self.__find_next_gramps_id(self.family_prefix,
+        self.fmap_index, gid = self.__find_next_gramps_id(self.family_prefix,
                                           self.fmap_index, self.fid_trans)
+        return gid
 
     def find_next_repository_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Respository object based 
         off the repository ID prefix.
         """
-        return self.__find_next_gramps_id(self.repository_prefix,
-                                          self.rmap_index, self.rid_trans)        
+        self.rmap_index, gid = self.__find_next_gramps_id(self.repository_prefix,
+                                          self.rmap_index, self.rid_trans)
+        return gid
 
     def find_next_note_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Note object based off the 
         note ID prefix.
         """
-        return self.__find_next_gramps_id(self.note_prefix,
-                                          self.nmap_index, self.nid_trans)          
+        self.nmap_index, gid = self.__find_next_gramps_id(self.note_prefix,
+                                          self.nmap_index, self.nid_trans)
+        return gid
+
     def get_from_handle(self, handle, class_type, data_map):
         data = data_map.get(str(handle))
         if data:
