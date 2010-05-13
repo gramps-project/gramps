@@ -2538,6 +2538,7 @@ class EventListPage(BasePage):
         return Html("a", grampsid, href = url, alt = grampsid)
 
 class EventPage(BasePage):
+
     def __init__(self, report, title, event_handle):
         """
         Creates the individual event page
@@ -2573,6 +2574,13 @@ class EventPage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
+                if not self.noid and evt_gid:
+                    trow = Html("tr") + (
+                        Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
+                        Html("td", evt_gid, class_ = "ColumnGRAMPSID", inline = True)
+                        )
+                    tbody += trow
+  
                 # get event data
                 """
                 for more information: see get_event_data()
@@ -2588,37 +2596,23 @@ class EventPage(BasePage):
                             )
                         tbody += trow
 
-                # Person
-                if evt_type in ["Divorce", "Marriage"]:
-                    handle_list = db.find_backlink_handles(event_handle, 
-                        include_classes = ['Person', 'Family'])
-                else:
-                    handle_list = db.find_backlink_handles(event_handle, include_classes = ['Person'])
+                trow = Html("tr") + (
+                    Html("td", _("Person(s)"), class_ = "ColumnAttribute", inline = True)
+                    )
+                tbody += trow
 
-                if handle_list:
-                    first_person = True
+                tcell = Html("td", class_ = "ColumnPerson")
+                trow += tcell
 
-                    trow = Html("tr") + (
-                        Html("td", _PERSON, class_ = "ColumnAttribute", inline = True)
-                        )
-                    tbody += trow
+                # Person(s) field
+                if evt_type in ["Divorce", "Marriage", "Marriage filing", "Annulment"]:
 
-                    tcell = Html("td", class_ = "ColumnPerson")
-                    trow += tcell
+                    handle_list = db.find_backlink_handles(event_handle, include_classes = ['Family'])
+                    if handle_list:
 
-                     # clasname can be either Person or Family 
-                    for (classname, handle) in handle_list:
+                        # clasname can be either Person or Family 
+                        for (classname, handle) in handle_list:
 
-                        if classname == "Person":
-                            person = db.get_person_from_handle(handle)
-                            if person:
-                                person_name = self.get_name(person)
-
-                                if not first_person:
-                                    tcell += ", "
-
-                                tcell += person_name
-                        else:
                             family = db.get_family_from_handle(handle)
                             if family:
 
@@ -2639,19 +2633,30 @@ class EventPage(BasePage):
                                     tcell += Html("span", spouse_name, class_ = "mother")
                                 elif husband:
                                     tcell += Html("span", husband_name, class_ = "father")
-                        first_person = False
+                                first_person = False
+
+                else:
+                    first_person = True
+                    handle_list = db.find_backlink_handles(event_handle, include_classes = ['Person'])
+                    if handle_list:
+                        for (classname, handle) in handle_list:
+                            person = db.get_person_from_handle(handle)
+                            if person:
+                                person_name = self.get_name(person)
+                                tcell += person_name
+
+                                if not first_person:
+                                    tcell += ", "
+                                first_person = False 
 
             # Narrative subsection
-#           evt_ref = event.get_reference()
             notelist = event.get_note_list()
-#           notelist.extend(evt_ref.get_note_list() )
             notelist = self.display_note_list(notelist)
             if notelist is not None:
                 eventdetail += notelist
 
             # get attribute list
             attrlist = event.get_attribute_list()
-#           attrlist.extend(evt_ref.get_attribute_list() )
             attrlist = self.display_attr_list(attrlist, True)
             if attrlist is not None:
                 eventdetail += attrlist
