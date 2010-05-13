@@ -254,22 +254,6 @@ class GedcomWriter(UpdateCallback):
             self.set_total(self.progress_cnt)
             self.progress_cnt = 0
 
-            # If the private flag is set, apply the PrivateProxyDb
-            if option_box.private:
-                self.reset(_("Filtering private data"))
-                self.progress_cnt += 1
-                self.update(self.progress_cnt)
-                self.dbase = gen.proxy.PrivateProxyDb(self.dbase)
-
-            # If the restrict flag is set, apply the LivingProxyDb
-            if option_box.restrict:
-                self.reset(_("Filtering living persons"))
-                self.progress_cnt += 1
-                self.update(self.progress_cnt)
-                self.dbase = gen.proxy.LivingProxyDb(
-                            self.dbase, 
-                            gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
-
             # If the filter returned by cfilter is not empty, apply the 
             # FilterProxyDb (Person Filter)
             if not option_box.cfilter.is_empty():
@@ -286,6 +270,22 @@ class GedcomWriter(UpdateCallback):
                 self.update(self.progress_cnt)
                 self.dbase = gen.proxy.FilterProxyDb(
                     self.dbase, note_filter=option_box.nfilter)
+
+            # If the private flag is set, apply the PrivateProxyDb
+            if option_box.private:
+                self.reset(_("Filtering private data"))
+                self.progress_cnt += 1
+                self.update(self.progress_cnt)
+                self.dbase = gen.proxy.PrivateProxyDb(self.dbase)
+
+            # If the restrict flag is set, apply the LivingProxyDb
+            if option_box.restrict:
+                self.reset(_("Filtering living persons"))
+                self.progress_cnt += 1
+                self.update(self.progress_cnt)
+                self.dbase = gen.proxy.LivingProxyDb(
+                            self.dbase, 
+                            gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
 
             # Apply the ReferencedProxyDb to remove any objects not referenced
             # after any of the other proxies have been applied
