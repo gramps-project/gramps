@@ -26,7 +26,7 @@
 import const
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 INTERNAL_IPS = ('127.0.0.1',)
@@ -72,7 +72,7 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.auth",
-    "django.core.context_processors.debug",
+#    "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "web.grampsdb.views.context_processor",
