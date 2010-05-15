@@ -11747,7 +11747,7 @@ msgstr "Il est décédé en %(month_year)s."
 #: ../src/plugins/lib/libnarrate.py:443
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)d years."
-msgstr "Il est décédé en %(month_year)s à l'âge def %(age)d ans."
+msgstr "Il est décédé en %(month_year)s à l'âge de %(age)d ans."
 
 #: ../src/plugins/lib/libnarrate.py:444
 #, python-format
@@ -11787,7 +11787,7 @@ msgstr "Décédé(e) en %(month_year)s."
 #: ../src/plugins/lib/libnarrate.py:456
 #, python-format
 msgid "Died %(month_year)s (age %(age)d years)."
-msgstr "Décédé(e) en %(month_year)s à l'âge def %(age)d ans."
+msgstr "Décédé(e) en %(month_year)s à l'âge de %(age)d ans."
 
 #: ../src/plugins/lib/libnarrate.py:457
 #, python-format
