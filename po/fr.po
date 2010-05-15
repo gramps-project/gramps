@@ -19,7 +19,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.2.1\n"
+"Project-Id-Version: 3.2.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-20 09:27+0200\n"
 "PO-Revision-Date: 2010-04-20 09:27+0100\n"
@@ -11121,7 +11121,7 @@ msgstr "Décédé(e) le %(death_date)s %(death_place)s."
 #: ../src/plugins/lib/libnarrate.py:268
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s (age %(age)d years)."
-msgstr "Décédé(e) le %(death_date)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Décédé(e) le %(death_date)s à %(death_place)s (à %(age)d ans)."
 
 #: ../src/plugins/lib/libnarrate.py:222
 #: ../src/plugins/lib/libnarrate.py:269
@@ -11385,7 +11385,7 @@ msgstr "Décédé(e) le %(death_date)s."
 #: ../src/plugins/lib/libnarrate.py:362
 #, python-format
 msgid "Died %(death_date)s (age %(age)d years)."
-msgstr "Décédé(e) le %(death_date)s à l'âge de %(age)d ans."
+msgstr "Décédé(e) le %(death_date)s (à %(age)d ans)."
 
 #: ../src/plugins/lib/libnarrate.py:316
 #: ../src/plugins/lib/libnarrate.py:363
@@ -11647,7 +11647,7 @@ msgstr "Décédé(e) en %(month_year)s à %(death_place)s."
 #: ../src/plugins/lib/libnarrate.py:409
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d years)."
-msgstr "Décédé(e) en %(month_year)s à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Décédé(e) en %(month_year)s à %(death_place)s (à %(age)d ans)."
 
 #: ../src/plugins/lib/libnarrate.py:410
 #, python-format
@@ -11787,7 +11787,7 @@ msgstr "Décédé(e) en %(month_year)s."
 #: ../src/plugins/lib/libnarrate.py:456
 #, python-format
 msgid "Died %(month_year)s (age %(age)d years)."
-msgstr "Décédé(e) en %(month_year)s à l'âge de %(age)d ans."
+msgstr "Décédé(e) en %(month_year)s (à %(age)d ans)."
 
 #: ../src/plugins/lib/libnarrate.py:457
 #, python-format
@@ -11927,7 +11927,7 @@ msgstr "Décédé(e) à %(death_place)s."
 #: ../src/plugins/lib/libnarrate.py:504
 #, python-format
 msgid "Died in %(death_place)s (age %(age)d years)."
-msgstr "Décédé(e) à %(death_place)s à l'âge de %(age)d ans."
+msgstr "Décédé(e) à %(death_place)s (à %(age)d ans)."
 
 #: ../src/plugins/lib/libnarrate.py:505
 #, python-format
@@ -12033,7 +12033,7 @@ msgstr "Elle est décédée à l'âge de %(age)d jours."
 #: ../src/plugins/lib/libnarrate.py:551
 #, python-format
 msgid "Died (age %(age)d years)."
-msgstr "Décédé(e) (à l'âge de %(age)d ans)."
+msgstr "Décédé(e) (à %(age)d ans)."
 
 # curieux
 #: ../src/plugins/lib/libnarrate.py:552
