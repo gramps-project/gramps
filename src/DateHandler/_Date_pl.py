@@ -20,6 +20,7 @@
 #
 
 # Polish version 2007 by Piotr Czubaszek
+# Updated in 2010 by Łukasz Rymarczyk
 
 """
 Polish-specific classes for parsing and displaying dates.
@@ -85,7 +86,31 @@ class DateParserPL(DateParser):
     month_to_int[u"grudzień"]  = 12
     month_to_int[u"gru"]  = 12
     month_to_int[u"XII"]  = 12
-    
+    # Alternative forms: declined nouns
+    month_to_int[u"stycznia"] = 1
+    month_to_int[u"lutego"] = 2
+    month_to_int[u"marca"] = 3
+    month_to_int[u"kwietnia"] = 4
+    month_to_int[u"maja"] = 5
+    month_to_int[u"czerwca"] = 6
+    month_to_int[u"lipca"] = 7
+    month_to_int[u"sierpnia"] = 8
+    month_to_int[u"września"] = 9
+    month_to_int[u"października"] = 10
+    month_to_int[u"listopada"] = 11
+    month_to_int[u"grudnia"] = 12
+    # Alternative forms: nouns without polish accent letters
+    # (misspellings sometimes used in emails)
+    month_to_int[u"styczen"] = 1
+    month_to_int[u"kwiecien"] = 4
+    month_to_int[u"sierpien"] = 8
+    month_to_int[u"wrzesien"] = 9
+    month_to_int[u"pazdziernik"] = 10
+    month_to_int[u"grudzien"] = 12
+    month_to_int[u"wrzesnia"] = 9
+    month_to_int[u"pazdziernika"] = 10
+    month_to_int[u"paz"] = 10
+
     modifier_to_int = {
         u'przed'    : Date.MOD_BEFORE, 
         u'po'   : Date.MOD_AFTER,
@@ -93,26 +118,34 @@ class DateParserPL(DateParser):
         u'ok.'     : Date.MOD_ABOUT,
         u'circa'  : Date.MOD_ABOUT,
         u'ca.'  : Date.MOD_ABOUT,
+    	# Alternative forms: misspellings sometimes used in emails
+        u'okolo'  : Date.MOD_ABOUT,
+        u'ok'     : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'gregoriański'  : Date.CAL_GREGORIAN,
+        u'gregoriański'   : Date.CAL_GREGORIAN,
         u'greg.'          : Date.CAL_GREGORIAN,
-        u'juliański'     : Date.CAL_JULIAN,
+        u'juliański'      : Date.CAL_JULIAN,
         u'jul.'           : Date.CAL_JULIAN,
         u'hebrajski'      : Date.CAL_HEBREW,
         u'hebr.'          : Date.CAL_HEBREW,
-        u'islamski'      : Date.CAL_ISLAMIC,
+        u'islamski'       : Date.CAL_ISLAMIC,
         u'isl.'           : Date.CAL_ISLAMIC,
         u'francuski republikański': Date.CAL_FRENCH,
         u'franc.'         : Date.CAL_FRENCH,
-        u'perski'       : Date.CAL_PERSIAN,
-        u'swedish'      : Date.CAL_SWEDISH, 
-        u's'            : Date.CAL_SWEDISH, 
+        u'perski'         : Date.CAL_PERSIAN,
+        u'szwedzki'       : Date.CAL_SWEDISH, 
+        u's'              : Date.CAL_SWEDISH,
+    # Alternative forms: nouns without polish accent letters
+    # (misspellings sometimes used in emails)
+        u'gregorianski'   : Date.CAL_GREGORIAN,
+        u'julianski'      : Date.CAL_JULIAN,
+        u'francuski republikanski': Date.CAL_FRENCH,
         }
 
     quality_to_int = {
-        u'szacowany' : Date.QUAL_ESTIMATED,
+        u'szacowany'  : Date.QUAL_ESTIMATED,
         u'szac.'      : Date.QUAL_ESTIMATED,
         u'obliczony'  : Date.QUAL_CALCULATED,
         u'obl.'       : Date.QUAL_CALCULATED,
@@ -123,11 +156,12 @@ class DateParserPL(DateParser):
     
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span  = re.compile("(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)",re.IGNORECASE)
-        self._range = re.compile(u"(między)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", re.IGNORECASE)
+        self._span  = re.compile("(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)", re.IGNORECASE)
+        # Also handle a common mistakes
+        self._range = re.compile(u"((?:po)?mi(?:ę|e)dzy)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", re.IGNORECASE)
         self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
                                  re.IGNORECASE)
-        self._jtext2= re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
+        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -139,13 +173,13 @@ class DateDisplayPL(DateDisplay):
     """
     Polish language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+
+    long_months = ( u"", u"Styczeń", u"Luty", u"Marzec", u"Kwiecień", u"Maj", 
+                    u"Czerwiec", u"Lipiec", u"Sierpień", u"Wrzesień", u"Październik", 
+                    u"Listopad", u"Grudzień" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"Sty", u"Lut", u"Mar", u"Kwi", u"Maj", u"Cze", 
+                     u"Lip", u"Sie", u"Wrz", u"Paź", u"Lis", u"Gru" )
     
     calendar = (
         "", u"juliański", u"hebrajski", 
