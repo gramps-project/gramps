@@ -1,3 +1,13 @@
+Version 3.2.3 -- the "I used to eat there. Really good noodles." release.
+* Bug fixes:
+ -> several GLADE fixes
+ -> several GEDCOM fixes (both export and import)
+ -> several crash fixes
+ -> encoding fix (Windows only)
+ -> privacy/living fixes
+ -> updates to NarrativeWeb and the css stylsheets
+* Translation updates: bg, ca, de, es, fr, he, nb, nl, pl, sk, sv
+
 Version 3.2.2 -- the "Mea navis aëricumbens anguillis abundat" release.
 * This release is a quick fix to a problem introduced by NarrativeWeb in the previous release.
 * Also includes a few small fixes and translation updates to hr and it.
