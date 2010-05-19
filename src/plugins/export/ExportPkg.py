@@ -85,6 +85,13 @@ def writeData(database, filename, msg_callback, option_box=None, callback=None):
     if option_box:
         option_box.parse_options()
     
+        if option_box.private:
+            database = gen.proxy.PrivateProxyDb(database)
+    
+        if option_box.restrict:
+            database = gen.proxy.LivingProxyDb(
+                database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+    
         # Apply the Person Filter
         if not option_box.cfilter.is_empty():
             database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
@@ -94,13 +101,6 @@ def writeData(database, filename, msg_callback, option_box=None, callback=None):
             database = gen.proxy.FilterProxyDb(
                 database, note_filter=option_box.nfilter)
         
-        if option_box.private:
-            database = gen.proxy.PrivateProxyDb(database)
-    
-        if option_box.restrict:
-            database = gen.proxy.LivingProxyDb(
-                database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
-    
         # Apply the ReferencedProxyDb to remove any objects not referenced
         # after any of the other proxies have been applied
         if option_box.unlinked:
