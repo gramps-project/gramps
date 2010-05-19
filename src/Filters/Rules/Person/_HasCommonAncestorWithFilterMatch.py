@@ -51,8 +51,8 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
                     "with anybody matched by a filter")
     category    = _("Ancestral filters")
 
-    def __init__(self,list):
-        HasCommonAncestorWith.__init__(self,list)
+    def __init__(self, list):
+        HasCommonAncestorWith.__init__(self, list)
         self.ancestor_cache = {}
 
     def prepare(self, db):
@@ -67,7 +67,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
         filt.prepare(db)
         for handle in db.iter_person_handles():
             person = db.get_person_from_handle(handle)
-            if filt.apply (db, person):
+            if person and filt.apply(db, person):
                 #store all people in the filter so as to compare later
                 self.with_people.append(person.handle)
                 #fill list of ancestor of person if not present yet

@@ -57,11 +57,14 @@ class HasCommonAncestorWith(Rule):
         # Start with filling the cache for root person (gramps_id in self.list[0])
         self.ancestor_cache = {}
         root_person = db.get_person_from_gramps_id(self.list[0])
-        self.add_ancs(db, root_person)
-        self.with_people = [root_person.handle]
+        if root_person:
+            self.add_ancs(db, root_person)
+            self.with_people = [root_person.handle]
+        else:
+            self.with_people = []
 
     def add_ancs(self, db, person):
-        if person.handle not in self.ancestor_cache:
+        if person and person.handle not in self.ancestor_cache:
             self.ancestor_cache[person.handle] = set()
         else:
             return
@@ -85,13 +88,13 @@ class HasCommonAncestorWith(Rule):
         for handle in self.with_people:
             if ((handle in self.ancestor_cache and 
                  self.ancestor_cache[handle]) & 
-                (other.handle in self.ancestor_cache and 
+                (other and other.handle in self.ancestor_cache and 
                  self.ancestor_cache[other.handle])):
                 return True
         return False
 
     def apply(self, db, person):
-        if person.handle not in self.ancestor_cache:
+        if person and person.handle not in self.ancestor_cache:
             self.add_ancs(db, person)
 
         return self.has_common_ancestor(person)
