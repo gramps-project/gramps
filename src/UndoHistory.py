@@ -111,7 +111,6 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.show()
 
     def _selection_changed(self, obj):
-        assert self.undodb.undo_count == self.undodb.undoindex + 1
         (model, node) = self.selection.get_selected()
         if not node:
             return
@@ -119,18 +118,18 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         start = min(path[0], self.undodb.undo_count)
         end = max(path[0], self.undodb.undo_count)
 
-        self._paint_rows(0, len(self.model)-1, False)
+        self._paint_rows(0, len(self.model) - 1, False)
         self._paint_rows(start, end, True)
 
         if path[0] < self.undodb.undo_count:
             # This transaction is an undo candidate
             self.redo_button.set_sensitive(False)
-            self.undo_button.set_sensitive(self.undodb.undo_available())
+            self.undo_button.set_sensitive(self.undodb.undo_count)
 
         else: # path[0] >= self.undodb.undo_count:
             # This transaction is an redo candidate
             self.undo_button.set_sensitive(False)
-            self.redo_button.set_sensitive(self.undodb.redo_available())
+            self.redo_button.set_sensitive(self.undodb.redo_count)
 
     def _paint_rows(self, start, end, selected=False):
         if selected:
@@ -144,7 +143,6 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             self.model.set(the_iter, 3, bg)
             
     def _response(self, obj, response_id):
-        assert self.undodb.undo_count == self.undodb.undoindex + 1
         if response_id == gtk.RESPONSE_CLOSE:
             self.close(obj)
 
@@ -154,7 +152,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             if not node:
                 return
             path = self.model.get_path(node)
-            nsteps = path[0]-self.undodb.undo_count-1
+            nsteps = path[0] - self.undodb.undo_count - 1
             self._move(nsteps or -1)
 
         elif response_id == gtk.RESPONSE_ACCEPT:
@@ -163,7 +161,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             if not node:
                 return
             path = self.model.get_path(node)
-            nsteps = path[0]-self.undodb.undo_count
+            nsteps = path[0] - self.undodb.undo_count
             self._move(nsteps or 1)
 
         elif response_id == gtk.RESPONSE_APPLY:
@@ -191,7 +189,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             self.db.redo_callback(None)
 
     def _move(self, steps=-1):
-        if steps == 0 :
+        if steps == 0:
             return
         func = self.db.undo if steps < 0 else self.db.redo
 
@@ -201,14 +199,13 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
     def _update_ui(self):
         self._paint_rows(0, len(self.model)-1, False)
-        self.undo_button.set_sensitive(self.undodb.undo_available())
-        self.redo_button.set_sensitive(self.undodb.redo_available())
+        self.undo_button.set_sensitive(self.undodb.undo_count)
+        self.redo_button.set_sensitive(self.undodb.redo_count)
         self.clear_button.set_sensitive(
-            self.undodb.undo_available() or self.undodb.redo_available()
+            self.undodb.undo_count or self.undodb.redo_count
             )
 
     def _build_model(self):
-        assert self.undodb.undoindex+1 == len(self.undodb.undoq)
         self.model.clear()
         fg = bg = None
 
