@@ -228,9 +228,9 @@ class PersonCompare(ManagedWindow.ManagedWindow):
             date = DateHandler.get_date(event)
             place = self.place_name(event)
             if date:
-                return "%s, %s" % (date, place) if place else date
+                return ("%s, %s" % (date, place)) if place else date
             else:
-                return place if place else ""
+                return place or ""
         else:
             return ""
 
