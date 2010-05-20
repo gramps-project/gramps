@@ -24,7 +24,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import time
 import cgi
 import logging
 log = logging.getLogger(".")
@@ -42,7 +41,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import ToolTips
-import GrampsLocale
 import DateHandler
 import gen.lib
 import Utils
@@ -154,9 +152,7 @@ class EventModel(FlatBaseModel):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self,data):
-        return unicode(time.strftime('%x %X',
-                                     time.localtime(data[COLUMN_CHANGE])),
-                       GrampsLocale.codeset)
+        return Utils.format_time(data[COLUMN_CHANGE])
 
     def column_tooltip(self,data):
         try:

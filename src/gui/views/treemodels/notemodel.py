@@ -24,7 +24,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import time
 import logging
 _LOG = logging.getLogger(".gui.notemodel")
 
@@ -40,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsLocale
+import Utils
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gen.lib import (Note, NoteType, MarkerType, StyledText)
 
@@ -133,5 +132,4 @@ class NoteModel(FlatBaseModel):
         return "%012x" % data[Note.POS_CHANGE]
     
     def column_change(self,data):
-        return unicode(time.strftime('%x %X',time.localtime(
-                            data[Note.POS_CHANGE])), GrampsLocale.codeset)
+        return Utils.format_time(data[Note.POS_CHANGE])

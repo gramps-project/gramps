@@ -47,6 +47,8 @@ from gen.display.name import displayer as name_displayer
 import gen.lib
 import Errors
 from GrampsLocale import codeset
+from Date import Date
+import DateHandler
 
 from const import TEMP_DIR, USER_HOME, GRAMPS_UUID
 import constfunc
@@ -1376,3 +1378,17 @@ def navigation_label(db, nav_type, handle):
         label = '[%s] %s' % (obj.get_gramps_id(), label)
 
     return (label, obj)
+
+#-------------------------------------------------------------------------
+#
+# Format the date and time displayed in the Last Changed column in views.
+#
+#-------------------------------------------------------------------------
+def format_time(secs):
+    """
+    Format a time in seconds as a date in the preferred date format and a
+    24 hour time as hh:mm:ss.
+    """
+    t = time.localtime(secs)
+    d = Date(t.tm_year, t.tm_mon, t.tm_mday)
+    return DateHandler.displayer.display(d) + time.strftime(' %X', t)

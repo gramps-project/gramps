@@ -33,7 +33,6 @@ TreeModel for the GRAMPS Person tree.
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-import time
 import cgi
 
 #-------------------------------------------------------------------------
@@ -61,7 +60,7 @@ from gen.lib import Name, EventRef, EventType, EventRoleType, MarkerType
 from gen.display.name import displayer as name_displayer
 import DateHandler
 import ToolTips
-import GrampsLocale
+import Utils
 from Lru import LRU
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
@@ -223,10 +222,7 @@ class PeopleBaseModel(object):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self, data):
-        return unicode(
-            time.strftime('%x %X',
-                          time.localtime(data[COLUMN_CHANGE])),
-            GrampsLocale.codeset)
+        return Utils.format_time(data[COLUMN_CHANGE])
 
     def column_gender(self, data):
         return PeopleBaseModel._GENDER[data[COLUMN_GENDER]]

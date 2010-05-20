@@ -24,7 +24,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import time
 import logging
 log = logging.getLogger(".")
 
@@ -41,7 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import GrampsLocale
+import Utils
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -220,5 +219,4 @@ class RepositoryModel(FlatBaseModel):
         return "%012x" % data[7]
 
     def column_change(self,data):
-        return unicode(time.strftime('%x %X',time.localtime(data[7])),
-                            GrampsLocale.codeset)
+        return Utils.format_time(data[7])

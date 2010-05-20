@@ -30,7 +30,6 @@ Place Model.
 # python modules
 #
 #-------------------------------------------------------------------------
-import time
 import cgi
 import logging
 _LOG = logging.getLogger(".gui.views.treemodels.placemodel")
@@ -49,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import ToolTips
-import GrampsLocale
+import Utils
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
 
@@ -212,8 +211,7 @@ class PlaceBaseModel(object):
         return "%012x" % data[11]
     
     def column_change(self, data):
-        return unicode(time.strftime('%x %X',time.localtime(data[11])),
-                            GrampsLocale.codeset)
+        return Utils.format_time(data[11])
 
     def column_tooltip(self, data):
         if const.USE_TIPS:

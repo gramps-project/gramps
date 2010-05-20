@@ -24,7 +24,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import time
 import logging
 log = logging.getLogger(".")
 
@@ -42,7 +41,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import ToolTips
-import GrampsLocale
+import Utils
 import DateHandler
 from gen.display.name import displayer as name_displayer
 import gen.lib
@@ -153,8 +152,7 @@ class FamilyModel(FlatBaseModel):
         return "%012x" % data[12]
     
     def column_change(self, data):
-        return unicode(time.strftime('%x %X', time.localtime(data[12])), 
-                       GrampsLocale.codeset)
+        return Utils.format_time(data[12])
 
     def column_marker_text(self, data):
         try:
