@@ -256,7 +256,8 @@ class EditEvent(EditPrimary):
         if not self.obj.handle:
             trans = self.db.transaction_begin()
             self.db.add_event(self.obj, trans)
-            self.db.transaction_commit(trans, _("Add Event"))
+            self.db.transaction_commit(trans,
+                _("Add Event (%s)") % self.obj.get_gramps_id())
         else:
             orig = self.get_from_handle(self.obj.handle)
             if cmp(self.obj.serialize(), orig.serialize()):
@@ -264,7 +265,8 @@ class EditEvent(EditPrimary):
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
                 self.commit_event(self.obj, trans)
-                self.db.transaction_commit(trans, _("Edit Event"))
+                self.db.transaction_commit(trans,
+                    _("Edit Event (%s)") % self.obj.get_gramps_id())
 
         if self.callback:
             self.callback(self.obj)
@@ -347,5 +349,5 @@ class DeleteEventQuery(object):
 
         self.db.enable_signals()
         self.db.remove_event(self.event.get_handle(), trans)
-        self.db.transaction_commit(
-            trans,_("Delete Event (%s)") % self.event.get_gramps_id())
+        self.db.transaction_commit(trans,
+            _("Delete Event (%s)") % self.event.get_gramps_id())
