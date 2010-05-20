@@ -1527,12 +1527,16 @@ class GeoView(HtmlView):
         """
         Change the lock/unlock icon depending on the button state.
         """
+        child = self.savezoom.child
+        if child:
+            self.savezoom.remove(child)
         image = gtk.Image()
         if config.get('geoview.lock'):
             image.set_from_stock('geo-fixed-zoom', gtk.ICON_SIZE_MENU)
         else:
             image.set_from_stock('geo-free-zoom', gtk.ICON_SIZE_MENU)
-        self.savezoom.set_image(image)
+        image.show()
+        self.savezoom.add(image)
 
     def _save_zoom(self, button): # pylint: disable-msg=W0613
         """
@@ -1568,12 +1572,16 @@ class GeoView(HtmlView):
         """
         Change the provider icon depending on the button state.
         """
+        child = self.provider.child
+        if child:
+            self.provider.remove(child)
         image = gtk.Image()
         if self._config.get('preferences.alternate-provider'):
             image.set_from_stock('gramps-geo-altmap', gtk.ICON_SIZE_MENU)
         else:
             image.set_from_stock('gramps-geo-mainmap', gtk.ICON_SIZE_MENU)
-        self.provider.set_image(image)
+        image.show()
+        self.provider.add(image)
 
     def _createpageplaceswithoutcoord(self):
         """
