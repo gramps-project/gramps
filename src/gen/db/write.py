@@ -1332,7 +1332,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.readonly or not obj or not obj.handle:
             return 
 
-        obj.change = int(change_time if change_time else time.time())
+        obj.change = int(change_time or time.time())
         handle = str(obj.handle)
 
         self.update_reference_map(obj, transaction)
