@@ -27,6 +27,7 @@
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from xml.parsers import expat
+from gen.lib.calendar import (gregorian_ymd, hebrew_sdn)
 import datetime
 import math
 import const
@@ -69,6 +70,26 @@ def easter(year):
     month = 3 + (l + 40) / 44
     day = l + 28 - 31 * (month / 4)
     return "%d/%d/%d" % (year, month, day)
+
+def passover(year):
+    """
+    Returns the date of Passover in a given Gregorian year.
+    """
+    heb_year = year + 3760
+    heb = hebrew_sdn(heb_year, 8, 15) #Passover, 15 Nissan
+
+    return "%d/%d/%d" % gregorian_ymd(heb)
+
+def hanuka(year):
+    """
+    Returns the date of first day of Hanuka in a given Gregorian year.
+    We can't use passover as an offset, because the year length changes.
+    The hebrew year have 6 possible lengths.
+    """
+    heb_year = year + 3761  #Not 3760, because Hanuka is in Nov/Dec of the previous year
+    heb = hebrew_sdn(heb_year, 3, 25) #Hanuka, 25 Kislev
+
+    return "%d/%d/%d" % gregorian_ymd(heb)
 
 def dst(year, area="us"):
     """
@@ -149,7 +170,7 @@ class HolidayTable(object):
                 if country_element.get_name() == "country":
                     country_name = country_element.get_attribute("name")
                     if country_name not in HolidayTable.__countries:
-                        HolidayTable.__countries.append(country_name)
+                        HolidayTable.__countries.append(_(country_name))
                         
     def __init_table(self):
         """ Initialize the holiday table structure. """
@@ -188,7 +209,7 @@ class HolidayTable(object):
             while date.year == year:
                 holidays = calendar.check_date(date)
                 for text in holidays:
-                    self.__holidays[date.month][date.day].append(text)
+                    self.__holidays[date.month][date.day].append(_(text))
                 date = date.fromordinal(date.toordinal() + 1)
     
     def get_holidays(self, month, day):
@@ -308,7 +329,7 @@ class _Holidays:
         """ Parse the holiday date XML items """
         for country_set in self.elements.get_children():
             if country_set.get_name() == "country" and \
-               country_set.get_attribute("name") == self.country:
+               _(country_set.get_attribute("name")) == self.country:
                 for date in country_set.get_children():
                     if date.get_name() == "date":
                         data = {"value" : "", 
