@@ -329,6 +329,13 @@ class WebCalReport(Report):
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, _CALENDARSCREEN, "styles")
 
+        # add horizontal menus if using Web_Basic-Blue or Web_Visually style sheets
+        # menus were removed out of them so that the user can choose between horizontal 
+        # or vertical menus...
+        if self.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+            fname = os.path.join(const.DATA_DIR, "Web_Navigation-Horizontal.css")
+            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
+
         # copy print stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, _CALENDARPRINT, "styles")
@@ -422,11 +429,18 @@ class WebCalReport(Report):
             )
 
         # links for GRAMPS favicon and stylesheets
-        links = Html("link", rel='shortcut icon', href=fname1, 
-            type = "image/x-icon") + (
-            Html("link",rel="stylesheet", href=fname2, type="text/css", media= "screen",
-                indent = False)
+        links = Html("link", rel='shortcut icon', href=fname1, type = "image/x-icon") + (
+            Html("link",rel="stylesheet", href=fname2, type="text/css", media= "screen", indent = False)
             )
+
+        # add horizontal menus if using Web_Basic-Blue or Web_Visually style sheets
+        # menus were removed out of them so that the user can choose between horizontal 
+        # or vertical menus...
+        if self.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+            fname = os.path.join(subdirs, "styles", "Web_Navigation-Menus.css")
+            links.extend(
+                Html("link", rel = "stylesheet", href = fname, type = "text/css", media = "screen", indent = False)
+                )
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
