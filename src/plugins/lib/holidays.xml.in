@@ -519,34 +519,34 @@
     <date name="Възнесение господне" value="2011/6/2" type="religious" />
     <date name="Възнесение господне" value="2012/5/24" type="religious" />
   </country> 
-  <country name="Jewish Holidays">
-    <date name="Purim" value="> passover(y)" offset="-30"/>
-    <date name="Passover" value="> passover(y)" offset="0"/>
-    <date name="2 of Passover" value="> passover(y)" offset="1"/>
-    <date name="3 of Passover" value="> passover(y)" offset="2"/>
-    <date name="4 of Passover" value="> passover(y)" offset="3"/>
-    <date name="5 of Passover" value="> passover(y)" offset="4"/>
-    <date name="6 of Passover" value="> passover(y)" offset="5"/>
-    <date name="7 of Passover" value="> passover(y)" offset="6"/>
-    <date name="Shavuot" value="> passover(y)" offset="50"/>
-    <date name="Rosh Ha'Shana" value="> passover(y)" offset="163"/>
-    <date name="Rosh Ha'Shana 2" value="> passover(y)" offset="164"/>
-    <date name="Yom Kippur" value="> passover(y)" offset="172"/>
-    <date name="Sukot" value="> passover(y)" offset="177"/>
-    <date name="2 of Sukot" value="> passover(y)" offset="178"/>
-    <date name="3 of Sukot" value="> passover(y)" offset="179"/>
-    <date name="4 of Sukot" value="> passover(y)" offset="180"/>
-    <date name="5 of Sukot" value="> passover(y)" offset="181"/>
-    <date name="6 of Sukot" value="> passover(y)" offset="182"/>
-    <date name="7 of Sukot" value="> passover(y)" offset="183"/>
-    <date name="Simhat Tora" value="> passover(y)" offset="184"/>
-    <date name="Hanuka" value="> hanuka(y)" offset="0"/>
-    <date name="2 of Hanuka" value="> hanuka(y)" offset="1"/>
-    <date name="3 of Hanuka" value="> hanuka(y)" offset="2"/>
-    <date name="4 of Hanuka" value="> hanuka(y)" offset="3"/>
-    <date name="5 of Hanuka" value="> hanuka(y)" offset="4"/>
-    <date name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
-    <date name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
-    <date name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
+  <country _name="Jewish Holidays">
+    <date _name="Purim" value="> passover(y)" offset="-30"/>
+    <date _name="Passover" value="> passover(y)" offset="0"/>
+    <date _name="2 of Passover" value="> passover(y)" offset="1"/>
+    <date _name="3 of Passover" value="> passover(y)" offset="2"/>
+    <date _name="4 of Passover" value="> passover(y)" offset="3"/>
+    <date _name="5 of Passover" value="> passover(y)" offset="4"/>
+    <date _name="6 of Passover" value="> passover(y)" offset="5"/>
+    <date _name="7 of Passover" value="> passover(y)" offset="6"/>
+    <date _name="Shavuot" value="> passover(y)" offset="50"/>
+    <date _name="Rosh Ha'Shana" value="> passover(y)" offset="163"/>
+    <date _name="Rosh Ha'Shana 2" value="> passover(y)" offset="164"/>
+    <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
+    <date _name="Sukot" value="> passover(y)" offset="177"/>
+    <date _name="2 of Sukot" value="> passover(y)" offset="178"/>
+    <date _name="3 of Sukot" value="> passover(y)" offset="179"/>
+    <date _name="4 of Sukot" value="> passover(y)" offset="180"/>
+    <date _name="5 of Sukot" value="> passover(y)" offset="181"/>
+    <date _name="6 of Sukot" value="> passover(y)" offset="182"/>
+    <date _name="7 of Sukot" value="> passover(y)" offset="183"/>
+    <date _name="Simhat Tora" value="> passover(y)" offset="184"/>
+    <date _name="Hanuka" value="> hanuka(y)" offset="0"/>
+    <date _name="2 of Hanuka" value="> hanuka(y)" offset="1"/>
+    <date _name="3 of Hanuka" value="> hanuka(y)" offset="2"/>
+    <date _name="4 of Hanuka" value="> hanuka(y)" offset="3"/>
+    <date _name="5 of Hanuka" value="> hanuka(y)" offset="4"/>
+    <date _name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
+    <date _name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
+    <date _name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
   </country> 
 </calendar>
