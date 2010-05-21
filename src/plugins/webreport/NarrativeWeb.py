@@ -2458,8 +2458,7 @@ class EventListPage(BasePage):
                 table += tbody
 
                 # separate events by their type and then thier event handles
-                for (evt_type, datalist) in sort_event_types(db, event_types, 
-                        event_handle_list):
+                for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
                     first_event = True
 
                     for (date, gid, event_handle) in datalist:
@@ -2488,24 +2487,24 @@ class EventListPage(BasePage):
                             tcell += "&nbsp;"   
 
                         # GRAMPS ID
-                        trow += ( Html("td", class_ = "ColumnGRAMPSID") +
+                        trow += ( Html("td", class_ = "ColumnGRAMPSID", inline = True) +
                             self.event_grampsid_link(event_handle, gid, None)
                             )
 
-                        # Person
-                        if evt_type in ["Divorce", "Marriage"]:
-                            handle_list = db.find_backlink_handles(event_handle, 
-                                include_classes = ['Person', 'Family'])
-                        else:
-                            handle_list = db.find_backlink_handles(event_handle, include_classes=['Person'])
+                        # Person; see the end of the plugin to see these events...
+                        if event.type in _EVENTMAP:
 
-                        tcell = Html("td", class_ = "ColumnPerson")
-                        trow += tcell
+                            handle_list = db.find_backlink_handles(event_handle, include_classes = ['Family'])
+                        else:
+                            handle_list = db.find_backlink_handles(event_handle, include_classes = ['Person'])
 
                         if handle_list:
                             first_person = True
 
-                            # clasname can be either Person or Family 
+                            tcell = Html("td", class_ = "ColumnPerson")
+                            trow += tcell
+
+                             # clasname can be either Person or Family 
                             for (classname, handle) in handle_list:
 
                                 if classname == "Person":
@@ -2513,10 +2512,11 @@ class EventListPage(BasePage):
                                     if person:
                                         person_name = self.get_name(person)
 
+                                        tcell += person_name
+
                                         if not first_person:
                                             tcell += ", "
 
-                                        tcell += person_name
                                 else:
                                     family = db.get_family_from_handle(handle)
                                     if family:
@@ -2572,6 +2572,7 @@ class EventPage(BasePage):
         """
         db = report.database
         event = db.get_event_from_handle(event_handle)
+        evt_type = str(event.type)
         evt_gid = event.gramps_id
         BasePage.__init__(self, report, title, evt_gid)
 
@@ -2612,11 +2613,11 @@ class EventPage(BasePage):
                             Html('td', data, class_ = "Column" + colclass)
                             )
                         tbody += trow
+                                         
+                # Person; see the end of the plugin to see these events...
+                if event.type in _EVENTMAP:
 
-                # Person
-                if evt_type in ["Divorce", "Marriage"]:
-                    handle_list = db.find_backlink_handles(event_handle, 
-                        include_classes = ['Person', 'Family'])
+                    handle_list = db.find_backlink_handles(event_handle, include_classes = ['Family'])
                 else:
                     handle_list = db.find_backlink_handles(event_handle, include_classes = ['Person'])
 
@@ -2639,10 +2640,11 @@ class EventPage(BasePage):
                             if person:
                                 person_name = self.get_name(person)
 
+                                tcell += person_name
+
                                 if not first_person:
                                     tcell += ", "
 
-                                tcell += person_name
                         else:
                             family = db.get_family_from_handle(handle)
                             if family:
@@ -6414,3 +6416,10 @@ def build_event_data(db, ind_list):
             
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
+
+# Events that are typically a couple of people
+_EVENTMAP = [ gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_SETTL, 
+              gen.lib.EventType.MARR_LIC, gen.lib.EventType.MARR_CONTR, 
+              gen.lib.EventType.MARR_BANNS, gen.lib.EventType.ENGAGEMENT, 
+              gen.lib.EventType.MARR_ALT, gen.lib.EventType.DIVORCE,
+              gen.lib.EventType.ANNULMENT, gen.lib.EventType.DIV_FILING ]
