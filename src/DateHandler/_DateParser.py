@@ -374,6 +374,7 @@ class DateParser(object):
                                     re.IGNORECASE)
         self._numeric  = re.compile("((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso      = re.compile("(\d+)(/(\d+))?-(\d+)-(\d+)\s*$")
+        self._isotimestamp = re.compile("^\s*?(\d{4})([01]\d)([0123]\d)(?:(?:[012]\d[0-5]\d[0-5]\d)|(?:\s+[012]\d:[0-5]\d(?::[0-5]\d)?))?\s*?$")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
                                     % (self._rfc_day_str, self._rfc_mon_str))
 
@@ -504,6 +505,19 @@ class DateParser(object):
                 return (d, m, y + 1, True)
             else:
                 return (d, m, y, False)
+
+        # Database datetime format, used in ex. MSSQL
+        # YYYYMMDD HH:MM:SS or YYYYMMDD or YYYYMMDDHHMMSS
+        match = self._isotimestamp.match(text)
+        if match:
+            groups = match.groups()
+            y = self._get_int(groups[0])
+            m = self._get_int(groups[1])
+            d = self._get_int(groups[2])
+            value = (d, m, y, False)
+            if not check((d, m, y)):
+                value = Date.Empty
+            return value
 
         match = self._rfc.match(text)
         if match:
