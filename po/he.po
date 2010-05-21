@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 3.0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-11 13:43-0700\n"
-"PO-Revision-Date: 2010-04-23 12:59+0300\n"
+"PO-Revision-Date: 2010-05-21 14:44+0300\n"
 "Last-Translator: Igal Shapira <igal.shapira@gmail.com>\n"
 "Language-Team: he <igal.shapira@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -2172,7 +2172,7 @@ msgstr "ב_צע מחדש %s"
 
 #: ../src/gen/display/name.py:114
 msgid "Default format (defined by Gramps preferences)"
-msgstr ""
+msgstr "תבנית ברירת המחדל (מוגדרל על ידי העדפות התוכנה)"
 
 #: ../src/gen/display/name.py:115
 msgid "Surname, Given Patronymic"
@@ -2192,7 +2192,7 @@ msgstr ""
 #: ../src/gen/display/name.py:293 ../src/gen/display/name.py:332
 #: ../src/plugins/import/ImportCsv.py:238
 msgid "Person|title"
-msgstr ""
+msgstr "תואר"
 
 #: ../src/gen/display/name.py:294 ../src/gen/display/name.py:333
 #: ../src/plugins/import/ImportCsv.py:232
@@ -4473,7 +4473,7 @@ msgstr "_סימניות"
 
 #: ../src/gui/viewmanager.py:495
 msgid "_Configure View..."
-msgstr "ת_צוגת תצורה..."
+msgstr "ת_צורת תצוגה..."
 
 #: ../src/gui/viewmanager.py:496
 msgid "Configure the active view"
@@ -7254,12 +7254,12 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:477
 #: ../src/plugins/drawreport/DescendTree.py:504
 msgid "Sc_ale to fit on a single page"
-msgstr ""
+msgstr "ש_נה גודל להתאמה לעמוד אחד"
 
 #: ../src/plugins/drawreport/AncestorTree.py:478
 #: ../src/plugins/drawreport/DescendTree.py:505
 msgid "Whether to scale to fit on a single page."
-msgstr ""
+msgstr "האם לשנות את הגודל כך שיכנס בעמוד אחד."
 
 #: ../src/plugins/drawreport/AncestorTree.py:481
 #: ../src/plugins/drawreport/DescendTree.py:508
@@ -7269,15 +7269,15 @@ msgstr "כלול עמודים ריקים"
 #: ../src/plugins/drawreport/AncestorTree.py:482
 #: ../src/plugins/drawreport/DescendTree.py:509
 msgid "Whether to include pages that are blank."
-msgstr ""
+msgstr "האם לכלול עמודים שהם ריקים."
 
 #: ../src/plugins/drawreport/AncestorTree.py:485
 msgid "Co_mpress tree"
-msgstr ""
+msgstr "_כווץ עץ"
 
 #: ../src/plugins/drawreport/AncestorTree.py:486
 msgid "Whether to compress the tree."
-msgstr ""
+msgstr "האם לכווץ את העץ."
 
 #: ../src/plugins/drawreport/AncestorTree.py:507
 #: ../src/plugins/drawreport/DescendTree.py:533
@@ -7329,6 +7329,8 @@ msgid ""
 "%(spouse)s and\n"
 " %(person)s, wedding"
 msgstr ""
+"חתונת %(spouse)s\n"
+" ו%(person)s"
 
 #: ../src/plugins/drawreport/Calendar.py:359
 #: ../src/plugins/textreport/BirthdayReport.py:310
@@ -7340,7 +7342,11 @@ msgid_plural ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
 msgstr[0] ""
+"%(spouse)s\n"
+" ו%(person)s, %(nyears)d"
 msgstr[1] ""
+"%(spouse)s\n"
+" ו%(person)s, %(nyears)d"
 
 #: ../src/plugins/drawreport/Calendar.py:389
 #: ../src/plugins/drawreport/Calendar.py:391
@@ -7384,7 +7390,7 @@ msgstr "מדינה עבור החגים"
 #: ../src/plugins/drawreport/Calendar.py:426
 #: ../src/plugins/textreport/BirthdayReport.py:373
 msgid "Select the country to see associated holidays"
-msgstr ""
+msgstr "בחר את המדינה להצגת חגים קשורים"
 
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:429
@@ -7403,19 +7409,19 @@ msgstr "בחרי את היום הראשון בשבוע עבור לוח השנה"
 #: ../src/plugins/textreport/BirthdayReport.py:383
 #: ../src/plugins/webreport/WebCal.py:1433
 msgid "Birthday surname"
-msgstr ""
+msgstr "שם משפחה בימי ההולדת"
 
 #: ../src/plugins/drawreport/Calendar.py:437
 #: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/webreport/WebCal.py:1434
 msgid "Wives use husband's surname (from first family listed)"
-msgstr "נשים משתמשבות בשם המשפחה של הבעל (מהמשפחה הראשונה ברשימה)"
+msgstr "נשים משתמשות בשם המשפחה של הבעל (מהמשפחה הראשונה ברשימה)"
 
 #: ../src/plugins/drawreport/Calendar.py:438
 #: ../src/plugins/textreport/BirthdayReport.py:385
 #: ../src/plugins/webreport/WebCal.py:1436
 msgid "Wives use husband's surname (from last family listed)"
-msgstr "נשים משתמשבות בשם המשפחה של הבעל (מהמשפחה האחרונה ברשימה)"
+msgstr "נשים משתמשות בשם המשפחה של הבעל (מהמשפחה האחרונה ברשימה)"
 
 #: ../src/plugins/drawreport/Calendar.py:439
 #: ../src/plugins/textreport/BirthdayReport.py:386
@@ -7483,7 +7489,7 @@ msgstr "לוח השנה שלי"
 #: ../src/plugins/drawreport/Calendar.py:458
 #: ../src/plugins/textreport/BirthdayReport.py:415
 msgid "First line of text at bottom of calendar"
-msgstr ""
+msgstr "שורת טקסט ראשונה בתחתית לוח השנה"
 
 #: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:418
@@ -7498,7 +7504,7 @@ msgstr "יוצר עם Gramps"
 #: ../src/plugins/drawreport/Calendar.py:462
 #: ../src/plugins/textreport/BirthdayReport.py:419
 msgid "Second line of text at bottom of calendar"
-msgstr ""
+msgstr "שורת טקסט שניה בתחתית לוח השנה"
 
 #: ../src/plugins/drawreport/Calendar.py:465
 #: ../src/plugins/textreport/BirthdayReport.py:422
@@ -7508,7 +7514,7 @@ msgstr "אזור טקסט 3"
 #: ../src/plugins/drawreport/Calendar.py:466
 #: ../src/plugins/textreport/BirthdayReport.py:423
 msgid "Third line of text at bottom of calendar"
-msgstr ""
+msgstr "שורת טקסט שלישית בתחתית לוח השנה"
 
 #: ../src/plugins/drawreport/Calendar.py:520
 msgid "Title text and background color"
@@ -7529,25 +7535,25 @@ msgstr ""
 #: ../src/plugins/drawreport/Calendar.py:533
 #: ../src/plugins/textreport/BirthdayReport.py:487
 msgid "Text at bottom, line 1"
-msgstr ""
+msgstr "טקסט בתחתית, שורה 1"
 
 #: ../src/plugins/drawreport/Calendar.py:535
 #: ../src/plugins/textreport/BirthdayReport.py:489
 msgid "Text at bottom, line 2"
-msgstr ""
+msgstr "טקסט בתחתית, שורה 2"
 
 #: ../src/plugins/drawreport/Calendar.py:537
 #: ../src/plugins/textreport/BirthdayReport.py:491
 msgid "Text at bottom, line 3"
-msgstr ""
+msgstr "טקסט בתחתית, שורה 3"
 
 #: ../src/plugins/drawreport/Calendar.py:539
 msgid "Borders"
-msgstr ""
+msgstr "גבולות"
 
 #: ../src/plugins/drawreport/DescendTree.py:47
 msgid "short for married|m."
-msgstr ""
+msgstr "נ."
 
 #: ../src/plugins/drawreport/DescendTree.py:146
 #, python-format
@@ -7568,16 +7574,16 @@ msgstr "עץ קדמונים"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
 msgid "Produces a graphical ancestral tree"
-msgstr ""
+msgstr "מייצר גרף של עץ קדמונים"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:54
 #: ../src/plugins/gramplet/gramplet.gpr.py:81
 msgid "Calendar"
-msgstr ""
+msgstr "לוח שנה"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:55
 msgid "Produces a graphical calendar"
-msgstr ""
+msgstr "מייצר לוח שנה גרפי"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:76
 msgid "Descendant Tree"
@@ -7589,24 +7595,24 @@ msgstr "יוצר עץ צאצאים גרפי"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:99
 msgid "Produces fan charts"
-msgstr ""
+msgstr "מייצר תרשימי מניפה"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:120
 #: ../src/plugins/drawreport/StatisticsChart.py:724
 msgid "Statistics Charts"
-msgstr ""
+msgstr "תרשימי סטטיסטיקות"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:121
 msgid "Produces statistical bar and pie charts of the people in the database"
-msgstr ""
+msgstr "מייצר טבלאות עמוד ועוגה עם סטטיסטיקות על האנשים במסד הנתונים"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:144
 msgid "Timeline Chart"
-msgstr ""
+msgstr "תרשים קו זמן"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:145
 msgid "Produces a timeline chart."
-msgstr ""
+msgstr "מייצר תרשים קו זמן."
 
 #: ../src/plugins/drawreport/FanChart.py:255
 #, python-format
@@ -7651,35 +7657,35 @@ msgstr "לבן"
 
 #: ../src/plugins/drawreport/FanChart.py:425
 msgid "generation dependent"
-msgstr ""
+msgstr "תלוי בדור"
 
 #: ../src/plugins/drawreport/FanChart.py:426
 msgid "Background color is either white or generation dependent"
-msgstr ""
+msgstr "צבע הרקע הוא לבן הוא תלוי בדור"
 
 #: ../src/plugins/drawreport/FanChart.py:430
 msgid "Orientation of radial texts"
-msgstr ""
+msgstr "כיוון טקסט רדיאלי"
 
 #: ../src/plugins/drawreport/FanChart.py:432
 msgid "upright"
-msgstr ""
+msgstr "כלפי מעלה"
 
 #: ../src/plugins/drawreport/FanChart.py:433
 msgid "roundabout"
-msgstr ""
+msgstr "מעוגל"
 
 #: ../src/plugins/drawreport/FanChart.py:434
 msgid "Print radial texts upright or roundabout"
-msgstr ""
+msgstr "מדפיס טקסט רדיאלי כלפי מעלה או מעוגל"
 
 #: ../src/plugins/drawreport/FanChart.py:458
 msgid "The style used for the title."
-msgstr ""
+msgstr "הסגנון בשימוש עבור הכותרת."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:292
 msgid "Item count"
-msgstr ""
+msgstr "מספר פריטים"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:296
 msgid "Both"
@@ -7703,7 +7709,7 @@ msgstr "תואר"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:317
 msgid "Forename"
-msgstr ""
+msgstr "שם פרטי"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:321
 msgid "Birth year"
@@ -7767,19 +7773,19 @@ msgstr "סוג אירוע"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:363
 msgid "(Preferred) title missing"
-msgstr ""
+msgstr "(מועדף) חסר תואר"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:372
 msgid "(Preferred) forename missing"
-msgstr ""
+msgstr "(מועדף) חסר שם פרטי"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:381
 msgid "(Preferred) surname missing"
-msgstr ""
+msgstr "(מועדף) חסר שם משפחה"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:391
 msgid "Gender unknown"
-msgstr ""
+msgstr "מגדר לא ידוע"
 
 #. inadequate information
 #: ../src/plugins/drawreport/StatisticsChart.py:400
@@ -7795,38 +7801,38 @@ msgstr "חסר מיקום"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:440
 msgid "Already dead"
-msgstr ""
+msgstr "כבר נפטר"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:447
 msgid "Still alive"
-msgstr ""
+msgstr "עדיין בחיים"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:455
 #: ../src/plugins/drawreport/StatisticsChart.py:467
 msgid "Events missing"
-msgstr ""
+msgstr "חסר אירועים"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:475
 #: ../src/plugins/drawreport/StatisticsChart.py:483
 msgid "Children missing"
-msgstr ""
+msgstr "חסר ילדים"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:502
 msgid "Birth missing"
-msgstr ""
+msgstr "חסר לידה"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:603
 msgid "Personal information missing"
-msgstr ""
+msgstr "חסר מידע אישי"
 
 #. extract requested items from the database and count them
 #: ../src/plugins/drawreport/StatisticsChart.py:727
 msgid "Collecting data..."
-msgstr ""
+msgstr "אוסף מידע..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:733
 msgid "Sorting data..."
-msgstr ""
+msgstr "ממיין מידע..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:743
 #, python-format
@@ -7836,17 +7842,17 @@ msgstr ""
 #: ../src/plugins/drawreport/StatisticsChart.py:745
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
+msgstr "אנשים שנולדו %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:776
 msgid "Saving charts..."
-msgstr ""
+msgstr "שומר תרשימים..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:823
 #: ../src/plugins/drawreport/StatisticsChart.py:857
 #, python-format
 msgid "%s (persons):"
-msgstr ""
+msgstr "%s (אנשים):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:905
 #: ../src/plugins/textreport/IndivComplete.py:651
@@ -7855,35 +7861,35 @@ msgstr "האדם המרכזי לסינון."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 msgid "Sort chart items by"
-msgstr ""
+msgstr "מיין עצמים על ידי"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:916
 msgid "Select how the statistical data is sorted."
-msgstr ""
+msgstr "בחרי איך המידע הסטטיסטי ימוין."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:919
 msgid "Sort in reverse order"
-msgstr ""
+msgstr "מיין בסדר הפוך"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:920
 msgid "Check to reverse the sorting order."
-msgstr ""
+msgstr "סמני להפיכת סדר המיון."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:924
 msgid "People Born After"
-msgstr ""
+msgstr "אנשים שנולדו אחרי"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:926
 msgid "Birth year from which to include people."
-msgstr ""
+msgstr "שנת הלידה שממנה והלאה יכללו אנשים."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:929
 msgid "People Born Before"
-msgstr ""
+msgstr "אנשים שנולדו לפני"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:931
 msgid "Birth year until which to include people"
-msgstr ""
+msgstr "שנת הלידה שעד אליה יכללו אנשים"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:934
 msgid "Include people without known birth years"
@@ -7903,20 +7909,21 @@ msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:949
 msgid "Max. items for a pie"
-msgstr ""
+msgstr "מספר מקסימלי של עצמים בעוגה"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:950
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
+"עבור מספר פריטים נמוך יותר, יווצר תרשים עוגה עם מקרא במקום תרשים מלבנים."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:961
 msgid "Charts 1"
-msgstr ""
+msgstr "תרשימים 1"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:963
 msgid "Charts 2"
-msgstr ""
+msgstr "תרשימים 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:966
 msgid "Include charts with indicated data."
@@ -7946,34 +7953,34 @@ msgstr "הסגנון בשימוש להצגת כותרת העמוד."
 #: ../src/plugins/drawreport/TimeLine.py:100
 #, python-format
 msgid "Timeline Graph for %s"
-msgstr ""
+msgstr "גרף קווי זמן עבור %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:109
 msgid "Timeline"
-msgstr ""
+msgstr "קו זמן"
 
 #: ../src/plugins/drawreport/TimeLine.py:116
 #: ../src/ReportBase/_ReportDialog.py:621
 #: ../src/ReportBase/_ReportDialog.py:626
 msgid "Report could not be created"
-msgstr ""
+msgstr "לא ניתן ליצור את הדוח"
 
 #: ../src/plugins/drawreport/TimeLine.py:117
 msgid "The range of dates chosen was not valid"
-msgstr ""
+msgstr "טווח התאריכים הנבחר אינו תקין"
 
 #: ../src/plugins/drawreport/TimeLine.py:142
 msgid "Sorting dates..."
-msgstr ""
+msgstr "ממיין תאריכים..."
 
 #: ../src/plugins/drawreport/TimeLine.py:144
 msgid "Calculating timeline..."
-msgstr ""
+msgstr "מחשב קו זמן..."
 
 #: ../src/plugins/drawreport/TimeLine.py:225
 #, python-format
 msgid "Sorted by %s"
-msgstr "סנן על פי %s"
+msgstr "ממויין לפי %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:324
 msgid "Determines what people are included in the report"
@@ -7982,20 +7989,20 @@ msgstr "קובע אילו אנשים לכלול בדוח"
 #: ../src/plugins/drawreport/TimeLine.py:335
 #: ../src/plugins/tool/SortEvents.py:179
 msgid "Sort by"
-msgstr ""
+msgstr "מיין על פי"
 
 #: ../src/plugins/drawreport/TimeLine.py:340
 #: ../src/plugins/tool/SortEvents.py:184
 msgid "Sorting method to use"
-msgstr ""
+msgstr "שיטת המיון לשימוש"
 
 #: ../src/plugins/drawreport/TimeLine.py:373
 msgid "The style used for the person's name."
-msgstr ""
+msgstr "הסגנון בשימוש עבור שם האדם."
 
 #: ../src/plugins/drawreport/TimeLine.py:382
 msgid "The style used for the year labels."
-msgstr ""
+msgstr "הסגנון בשימוש עבור כותרות השנים."
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
@@ -9274,13 +9281,15 @@ msgstr "ילדים ילקחו בחשבון בקביעת \"קווי משפחה\".
 
 #: ../src/plugins/graph/GVFamilyLines.py:128
 msgid "Try to remove extra people and families"
-msgstr ""
+msgstr "נסה להסיר אנשים ומשפחות מיותרות"
 
 #: ../src/plugins/graph/GVFamilyLines.py:129
 msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
+"אנשים ומשפחות שלא קשורים ישירות לאנשים בעלי עניין יוסרו בזמן קביעת \"קווי "
+"משפחה\"."
 
 #. ----------------------------
 #: ../src/plugins/graph/GVFamilyLines.py:136
@@ -9556,17 +9565,17 @@ msgstr ""
 
 #: ../src/plugins/graph/GVRelGraph.py:494
 msgid "Use place when no date"
-msgstr ""
+msgstr "השתמש במקום כאשר אין תאריך"
 
 #: ../src/plugins/graph/GVRelGraph.py:495
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
-msgstr ""
+msgstr "כאשר לא קיימים תאריכי לידה, נישואים או פטירה, יהיה בשימוש שדה המקום."
 
 #: ../src/plugins/graph/GVRelGraph.py:500
 msgid "Include URLs"
-msgstr ""
+msgstr "כלול כתובות אינטרנט"
 
 #: ../src/plugins/graph/GVRelGraph.py:501
 msgid ""
@@ -9574,46 +9583,48 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
+"כלול כתובת אינטרנט בכל צומת בגרף, כך שהקבצים שייוצורו יכילו קישור לעמודים "
+"שנוצרו על ידי דוח אתר האינטרנט."
 
 #: ../src/plugins/graph/GVRelGraph.py:508
 msgid "Include IDs"
-msgstr ""
+msgstr "כלול מזהים"
 
 #: ../src/plugins/graph/GVRelGraph.py:509
 msgid "Include individual and family IDs."
-msgstr ""
+msgstr "כלול מזהים יחודיים עבור אנשים ומשפחות."
 
 #: ../src/plugins/graph/GVRelGraph.py:515
 msgid "Whether to include thumbnails of people."
-msgstr ""
+msgstr "האם לכלול צלמיות תמונה עבור אנשים."
 
 #: ../src/plugins/graph/GVRelGraph.py:519
 msgid "Thumbnail Location"
-msgstr ""
+msgstr "מיקום צלמית"
 
 #: ../src/plugins/graph/GVRelGraph.py:556
 msgid "Arrowhead direction"
-msgstr ""
+msgstr "כיוון ראש החץ"
 
 #: ../src/plugins/graph/GVRelGraph.py:559
 msgid "Choose the direction that the arrows point."
-msgstr ""
+msgstr "בחרי את הכיוון שבו יצביע החץ."
 
 #: ../src/plugins/graph/GVRelGraph.py:570
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr ""
+msgstr "סמן קשרי לא מלידה על ידי קו מקווקו"
 
 #: ../src/plugins/graph/GVRelGraph.py:571
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr ""
+msgstr "קשרים שלא מלידה יסומנו בגרף על ידי קו מקווקו."
 
 #: ../src/plugins/graph/GVRelGraph.py:575
 msgid "Show family nodes"
-msgstr ""
+msgstr "הראה צמתי משפחה"
 
 #: ../src/plugins/graph/GVRelGraph.py:576
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
+msgstr "משפחות יסומנו באליפסות, מקושרות להורים והילדים."
 
 #: ../src/plugins/import/import.gpr.py:34
 msgid "Import data from CSV files"
@@ -11377,42 +11388,42 @@ msgstr "הוא נפטר ב%(month_year)s."
 #: ../src/plugins/lib/libnarrate.py:443
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)d years."
-msgstr ""
+msgstr "הוא נפטר ב%(month_year)s בגיל %(age)d שנים."
 
 #: ../src/plugins/lib/libnarrate.py:444
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)d months."
-msgstr ""
+msgstr "הוא נפטר ב%(month_year)s בגיל %(age)d חודשים."
 
 #: ../src/plugins/lib/libnarrate.py:445
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)d days."
-msgstr ""
+msgstr "הוא נפטר ב%(month_year)s בגיל %(age)d ימים."
 
 #: ../src/plugins/lib/libnarrate.py:448
 #, python-format
 msgid "She died in %(month_year)s."
-msgstr ""
+msgstr "היא נפטרה ב%(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:449
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)d years."
-msgstr ""
+msgstr "היא נפטרה %(month_year)s בגיל %(age)d שנים."
 
 #: ../src/plugins/lib/libnarrate.py:450
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)d months."
-msgstr ""
+msgstr "היא נפטרה ב%(month_year)s בגיל %(age)d חודשים."
 
 #: ../src/plugins/lib/libnarrate.py:451
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)d days."
-msgstr ""
+msgstr "היא נפטרה ב%(month_year)s בגיל %(age)d ימים."
 
 #: ../src/plugins/lib/libnarrate.py:455
 #, python-format
 msgid "Died %(month_year)s."
-msgstr ""
+msgstr "נפטר ב%(month_year)s."
 
 #: ../src/plugins/lib/libnarrate.py:456
 #, python-format
@@ -12662,175 +12673,175 @@ msgstr "היא הייתה בתה של %(father)s ו%(mother)s."
 #: ../src/plugins/lib/libnarrate.py:993
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "הבת של %(father)s ו%(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1000
 #, python-format
 msgid "%(male_name)s is the child of %(father)s."
-msgstr ""
+msgstr "%(male_name)s הוא בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid "%(male_name)s was the child of %(father)s."
-msgstr ""
+msgstr "%(male_name)s היה בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1004
 #, python-format
 msgid "This person is the child of %(father)s."
-msgstr ""
+msgstr "האדם הוא בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1005
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr ""
+msgstr "האדם היא בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1007
 #, python-format
 msgid "Child of %(father)s."
-msgstr ""
+msgstr "ילדו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1011
 #, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr ""
+msgstr "%(male_name)s הוא בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1012
 #, python-format
 msgid "%(male_name)s was the son of %(father)s."
-msgstr ""
+msgstr "%(male_name)s הוא בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1015
 #, python-format
 msgid "He is the son of %(father)s."
-msgstr ""
+msgstr "הוא בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1016
 #, python-format
 msgid "He was the son of %(father)s."
-msgstr ""
+msgstr "היה בנו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1018
 #, python-format
 msgid "Son of %(father)s."
-msgstr ""
+msgstr "בן של  %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1022
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr ""
+msgstr "%(female_name)s היא בתו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1023
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr ""
+msgstr "%(female_name)s הייתה בתו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1026
 #, python-format
 msgid "She is the daughter of %(father)s."
-msgstr ""
+msgstr "היא בתו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1027
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr ""
+msgstr "היא הייתה בתו של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1029
 #, python-format
 msgid "Daughter of %(father)s."
-msgstr ""
+msgstr "הבת של %(father)s."
 
 #: ../src/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s הוא הילד של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1037
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s היה הילד של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1040
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr ""
+msgstr "איש זה הוא הילד של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1041
 #, python-format
 msgid "This person was the child of %(mother)s."
-msgstr ""
+msgstr "איש זה היה הילד של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "Child of %(mother)s."
-msgstr ""
+msgstr "ילד של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1047
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s הוא הבן של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s היה הבן של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1051
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr ""
+msgstr "הוא הבן של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1052
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr ""
+msgstr "הוא היה הבן של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1054
 #, python-format
 msgid "Son of %(mother)s."
-msgstr ""
+msgstr "בן של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1058
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s היא הבת של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1059
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s הייתה הבת של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1062
 #, python-format
 msgid "She is the daughter of %(mother)s."
-msgstr ""
+msgstr "היא הבת של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1063
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr ""
+msgstr "היא הייתה הבת של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1065
 #, python-format
 msgid "Daughter of %(mother)s."
-msgstr ""
+msgstr "בת של %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:1076
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "האדם נישא ל%(spouse)s ב %(partial_date)sב %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1077
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "האדם נישא ל%(spouse)s ב%(full_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1078
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "האדם נישא ל%(spouse)s %(modified_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1081
 #, python-format
@@ -14043,7 +14054,7 @@ msgstr "לא קיים שירות מפות."
 
 #: ../src/plugins/lib/libplaceview.py:259
 msgid "Check your installation."
-msgstr ""
+msgstr "בדקי את ההתקנה."
 
 #: ../src/plugins/lib/libplaceview.py:267
 msgid "No place selected."
@@ -14054,10 +14065,12 @@ msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
 msgstr ""
+"את צריכה לבחור מקום על מנת לראות אותו על המפה. חלק משירותי המיפוי תומכים "
+"בבחירה של מספר מקומות."
 
 #: ../src/plugins/lib/libplaceview.py:404
 msgid "Cannot merge places."
-msgstr ""
+msgstr "לא ניתן למזג מקומות."
 
 #: ../src/plugins/lib/libplaceview.py:405
 msgid ""
@@ -14065,6 +14078,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
+"לביצוע מיזוג יש לבחור שני מקומות בדיוק. ניתן לבחור את המקום השני על ידיד "
+"החזקת מקש הקונטרול והקלקה על המקום הרצוי."
 
 #: ../src/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
@@ -14168,12 +14183,12 @@ msgstr " מדינה"
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
 #, python-format
 msgid "Latitude not within %(lat1)s to %(lat2)s\n"
-msgstr ""
+msgstr "קו הרוחב לא בין %(lat1)s ל %(lat2)s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Longitude not within %(long1)s to %(long2)s"
-msgstr ""
+msgstr "קו האורך לא בין %(long1)s ל %(long2)s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
 #: ../src/plugins/mapservices/eniroswedenmap.py:166
@@ -14291,22 +14306,22 @@ msgstr "%(person)s ו%(active_person)s הם אותו אדם."
 #: ../src/plugins/tool/RelCalc.py:197
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr ""
+msgstr "%(person)s הוא %(relationship)s של %(active_person)s."
 
 #: ../src/plugins/quickview/all_relations.py:103
 #, python-format
 msgid "%(person)s and %(active_person)s are not directly related."
-msgstr ""
+msgstr "%(person)s ו%(active_person)s לא קשורים באופן ישיר."
 
 #: ../src/plugins/quickview/all_relations.py:152
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr ""
+msgstr "ל%(person)s ו%(active_person)s יש את הקשרים הבאים:"
 
 #: ../src/plugins/quickview/all_relations.py:206
 #, python-format
 msgid "Relationships of %(person)s to %(active_person)s"
-msgstr ""
+msgstr "הקשר של %(person)s ל%(active_person)s"
 
 #: ../src/plugins/quickview/all_relations.py:267
 #, python-format
@@ -14980,7 +14995,7 @@ msgstr "כלול מערכות יחסים לאדם המרכזי"
 
 #: ../src/plugins/textreport/BirthdayReport.py:404
 msgid "Include relationships to center person (slower)"
-msgstr ""
+msgstr "האם לכלול קשרים לאדם הראשי (איטי)"
 
 #: ../src/plugins/textreport/BirthdayReport.py:409
 msgid "Title text"
@@ -15008,54 +15023,54 @@ msgstr ""
 
 #: ../src/plugins/textreport/CustomBookText.py:117
 msgid "Initial Text"
-msgstr ""
+msgstr "טקסט ראשוני"
 
 #: ../src/plugins/textreport/CustomBookText.py:118
 msgid "Text to display at the top."
-msgstr ""
+msgstr "טקסט להצגה בראש."
 
 #: ../src/plugins/textreport/CustomBookText.py:121
 msgid "Middle Text"
-msgstr ""
+msgstr "טקסט אמצעי"
 
 #: ../src/plugins/textreport/CustomBookText.py:122
 msgid "Text to display in the middle"
-msgstr ""
+msgstr "טקסט להצגה באמצע"
 
 #: ../src/plugins/textreport/CustomBookText.py:125
 msgid "Final Text"
-msgstr ""
+msgstr "טקסט סופי"
 
 #: ../src/plugins/textreport/CustomBookText.py:126
 msgid "Text to display last."
-msgstr ""
+msgstr "טקסט להצגה בסוף."
 
 #: ../src/plugins/textreport/CustomBookText.py:137
 msgid "The style used for the first portion of the custom text."
-msgstr ""
+msgstr "הסגנון בשימוש להצגת החלק הראשון של הטקסט."
 
 #: ../src/plugins/textreport/CustomBookText.py:146
 msgid "The style used for the middle portion of the custom text."
-msgstr ""
+msgstr "הסגנון בשימוש להצגת החלק האמצעי של הטקסט."
 
 #: ../src/plugins/textreport/CustomBookText.py:155
 msgid "The style used for the last portion of the custom text."
-msgstr ""
+msgstr "הסגנון בשימוש להצגת החלק האחרון של הטקסט."
 
 #: ../src/plugins/textreport/DescendReport.py:157
 #, python-format
 msgid "sp. %(spouse)s"
-msgstr ""
+msgstr "ב\"ז %(spouse)s"
 
 #: ../src/plugins/textreport/DescendReport.py:219
 #, python-format
 msgid "The style used for the level %d display."
-msgstr ""
+msgstr "הסגנון בשימוש להצגת רמה %d."
 
 #: ../src/plugins/textreport/DescendReport.py:228
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr ""
+msgstr "הסגנון בשימוש להצגת בני זוג ברמה %d."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:162
 #, python-format
@@ -15216,7 +15231,7 @@ msgstr "השתמש במשפטים שלמים"
 #: ../src/plugins/textreport/DetAncestralReport.py:701
 #: ../src/plugins/textreport/DetDescendantReport.py:788
 msgid "Whether to use complete sentences or succinct language."
-msgstr "האם להשתמש במפשטים שלמים או בשפה מקוצרת."
+msgstr "האם להשתמש במשפטים שלמים או בשפה מקוצרת."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:704
 #: ../src/plugins/textreport/DetDescendantReport.py:791
@@ -15300,12 +15315,12 @@ msgstr "האם לכלול כתובות."
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:823
 msgid "Include sources"
-msgstr ""
+msgstr "כלול מקורות"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:736
 #: ../src/plugins/textreport/DetDescendantReport.py:824
 msgid "Whether to include source references."
-msgstr ""
+msgstr "נאם לכלול הפניות למקורות."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:739
 #: ../src/plugins/textreport/DetDescendantReport.py:827
@@ -15318,31 +15333,32 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
+"האם לכלול הערות מקור בחלק של הערות הקצה. עובד רק אם מסומן לכלול מקורות."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:744
 #: ../src/plugins/textreport/DetDescendantReport.py:848
 msgid "Missing information"
-msgstr ""
+msgstr "מידע חסר"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:746
 #: ../src/plugins/textreport/DetDescendantReport.py:850
 msgid "Replace missing places with ______"
-msgstr ""
+msgstr "החלף מקומות חסרים עם ______"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:747
 #: ../src/plugins/textreport/DetDescendantReport.py:851
 msgid "Whether to replace missing Places with blanks."
-msgstr ""
+msgstr "האם להחליף מקומות חסרים עם רווחים."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:750
 #: ../src/plugins/textreport/DetDescendantReport.py:854
 msgid "Replace missing dates with ______"
-msgstr ""
+msgstr "החלף תאריכים חסרים עם ______"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:751
 #: ../src/plugins/textreport/DetDescendantReport.py:855
 msgid "Whether to replace missing Dates with blanks."
-msgstr ""
+msgstr "האם להחליף תאריכים חסרים עם רווחים."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:784
 #: ../src/plugins/textreport/DetDescendantReport.py:888
@@ -15376,15 +15392,15 @@ msgstr ""
 
 #: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Numbering system"
-msgstr ""
+msgstr "שיטת מספור"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:746
 msgid "Henry numbering"
-msgstr ""
+msgstr "מספור הנרי"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:747
 msgid "d'Aboville numbering"
-msgstr ""
+msgstr "מספור ד'אבוויל"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:749
 msgid "Record (Modified Register) numbering"
@@ -15392,7 +15408,7 @@ msgstr ""
 
 #: ../src/plugins/textreport/DetDescendantReport.py:750
 msgid "The numbering system to be used"
-msgstr ""
+msgstr "שיטת המספור שתהיה בשימוש"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:786
 msgid "Use complete sentences"
@@ -15401,21 +15417,21 @@ msgstr "השתמש במשפטים שלמים"
 #: ../src/plugins/textreport/DetDescendantReport.py:832
 #: ../src/plugins/textreport/KinshipReport.py:337
 msgid "Include spouses"
-msgstr ""
+msgstr "כלול בני זוג"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:833
 msgid "Whether to include detailed spouse information."
-msgstr ""
+msgstr "האם כלול מידע מפורט על בני זוג."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:836
 msgid "Include sign of succession ('+') in child-list"
-msgstr ""
+msgstr "כלול סימון של המשכיות ('+') ברשימת הילדים"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:838
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
-msgstr ""
+msgstr "האם לכלול סימון ('+') לפני צאצא ברשימת הילדים לסמן שליד יש המשכיות."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:843
 msgid "Include path to start-person"
@@ -15425,12 +15441,12 @@ msgstr "כלול נתיב לאדם המרכזי"
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
-msgstr ""
+msgstr "האם לכלול נתיב של צאצאים מהדאם ההתחלתי לכל צאצא."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:137
 #, python-format
 msgid "End of Line Report for %s"
-msgstr ""
+msgstr "דוח סוף הקו עבור %s"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:143
 #, python-format
@@ -15441,7 +15457,7 @@ msgstr "כל הקדמונים של %s שחסר להם הורה"
 #: ../src/plugins/textreport/KinshipReport.py:296
 #, python-format
 msgid " (%(birth_date)s - %(death_date)s)"
-msgstr ""
+msgstr " (%(birth_date)s - %(death_date)s)"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:265
 #: ../src/plugins/textreport/MarkerReport.py:479
@@ -15456,135 +15472,135 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:518
 #, python-format
 msgid "%(type)s: %(value)s"
-msgstr ""
+msgstr "%(type)s: %(value)s"
 
 #: ../src/plugins/textreport/FamilyGroup.py:354
 msgid "Marriage:"
-msgstr ""
+msgstr "נישואים:"
 
 #: ../src/plugins/textreport/FamilyGroup.py:435
 msgid "acronym for male|M"
-msgstr ""
+msgstr "ז"
 
 #: ../src/plugins/textreport/FamilyGroup.py:437
 msgid "acronym for female|F"
-msgstr ""
+msgstr "נ"
 
 #: ../src/plugins/textreport/FamilyGroup.py:439
 #, python-format
 msgid "acronym for unknown|%dU"
-msgstr ""
+msgstr "%dU"
 
 #: ../src/plugins/textreport/FamilyGroup.py:533
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr ""
+msgstr "דוח קבוצת משפחה - דור %d"
 
 #: ../src/plugins/textreport/FamilyGroup.py:535
 #: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
-msgstr ""
+msgstr "דוח קבוצת משפחה"
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:607
 msgid "Center Family"
-msgstr ""
+msgstr "משפחה מרכזית"
 
 #: ../src/plugins/textreport/FamilyGroup.py:608
 msgid "The center family for the report"
-msgstr ""
+msgstr "המשפחה המרכזית עבור הדוח"
 
 #: ../src/plugins/textreport/FamilyGroup.py:611
 msgid "Recursive"
-msgstr ""
+msgstr "רקורסיבי"
 
 #: ../src/plugins/textreport/FamilyGroup.py:612
 msgid "Create reports for all descendants of this family."
-msgstr ""
+msgstr "יוצר דוחות עבור כל הצאצאים של המשפחה."
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:620
 msgid "Generation numbers (recursive only)"
-msgstr ""
+msgstr "מספר דורות (רקורסיבי בלבד)"
 
 #: ../src/plugins/textreport/FamilyGroup.py:622
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr ""
+msgstr "האם לכלול את הדורות בכל דוח (רקורסיבי בלבד)."
 
 #: ../src/plugins/textreport/FamilyGroup.py:626
 msgid "Parent Events"
-msgstr ""
+msgstr "אירועי הורים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:627
 msgid "Whether to include events for parents."
-msgstr ""
+msgstr "האם לכלול את האירועים עבור ההורים."
 
 #: ../src/plugins/textreport/FamilyGroup.py:630
 msgid "Parent Addresses"
-msgstr ""
+msgstr "כתובות הורים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:631
 msgid "Whether to include addresses for parents."
-msgstr ""
+msgstr "האם לכלול את הכתובות של ההורים."
 
 #: ../src/plugins/textreport/FamilyGroup.py:634
 msgid "Parent Notes"
-msgstr ""
+msgstr "הערות הורים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:635
 msgid "Whether to include notes for parents."
-msgstr ""
+msgstr "האם לכלול את ההערות עבור ההורים."
 
 #: ../src/plugins/textreport/FamilyGroup.py:638
 msgid "Parent Attributes"
-msgstr ""
+msgstr "מאפייני הורים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:642
 msgid "Alternate Parent Names"
-msgstr ""
+msgstr "שמות חלופיים להורים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:643
 msgid "Whether to include alternate names for parents."
-msgstr ""
+msgstr "האם לכלול שמות חלופיים להורים."
 
 #: ../src/plugins/textreport/FamilyGroup.py:647
 msgid "Parent Marriage"
-msgstr ""
+msgstr "נישואי הורים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:648
 msgid "Whether to include marriage information for parents."
-msgstr ""
+msgstr "האם לכלול מידע נישואים עבור ההורים."
 
 #: ../src/plugins/textreport/FamilyGroup.py:652
 msgid "Dates of Relatives"
-msgstr ""
+msgstr "תאריכי מקורבים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:653
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr ""
+msgstr "האם לכלול תאריכים עבור המקורבים (אב, אם, בן זוג)."
 
 #: ../src/plugins/textreport/FamilyGroup.py:657
 msgid "Children Marriages"
-msgstr ""
+msgstr "נישואי ילדים"
 
 #: ../src/plugins/textreport/FamilyGroup.py:658
 msgid "Whether to include marriage information for children."
-msgstr ""
+msgstr "האם לכלול מידע נישואים עבור הילדים."
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:663
 msgid "Missing Information"
-msgstr ""
+msgstr "מידע חסר"
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:666
 msgid "Print fields for missing information"
-msgstr ""
+msgstr "הדפס שדות עבור מידע חסר"
 
 #: ../src/plugins/textreport/FamilyGroup.py:668
 msgid "Whether to include fields for missing information."
-msgstr ""
+msgstr "האם לכלול שדות עבור מידע חסר."
 
 #: ../src/plugins/textreport/FamilyGroup.py:710
 #: ../src/plugins/textreport/MarkerReport.py:507
@@ -15593,11 +15609,11 @@ msgstr "הסגנון הבסיסי שישמש להצגת ההערה."
 
 #: ../src/plugins/textreport/FamilyGroup.py:719
 msgid "The style used for the text related to the children."
-msgstr ""
+msgstr "הסגנון בשימוש עבור הטקסט הקשור לילד."
 
 #: ../src/plugins/textreport/FamilyGroup.py:729
 msgid "The style used for the parent's name"
-msgstr ""
+msgstr "הסגנון בשימוש עבור שם ההורה"
 
 #. ------------------------------------------------------------------------
 #.
@@ -15664,11 +15680,11 @@ msgstr "האם למיין אירועים בסדר כרונולוגי."
 
 #: ../src/plugins/textreport/IndivComplete.py:661
 msgid "Include Source Information"
-msgstr ""
+msgstr "כלול מידע על מקור"
 
 #: ../src/plugins/textreport/IndivComplete.py:662
 msgid "Whether to cite sources."
-msgstr ""
+msgstr "האם לצטט מקורות."
 
 #. ###############################
 #: ../src/plugins/textreport/IndivComplete.py:668
@@ -15677,48 +15693,48 @@ msgstr "קבוצות אירועים"
 
 #: ../src/plugins/textreport/IndivComplete.py:669
 msgid "Check if a separate section is required."
-msgstr ""
+msgstr "בדוק אם נדרש מקטע נפרד."
 
 #: ../src/plugins/textreport/IndivComplete.py:722
 msgid "The style used for category labels."
-msgstr ""
+msgstr "הסגנון בשימוש עבור תוויות הקטגוריה."
 
 #: ../src/plugins/textreport/IndivComplete.py:733
 msgid "The style used for the spouse's name."
-msgstr ""
+msgstr "הסגנון בשימוש עבור שם בן הזוג."
 
 #: ../src/plugins/textreport/KinshipReport.py:102
 #, python-format
 msgid "Kinship Report for %s"
-msgstr ""
+msgstr "דוח קרבה עבור %s"
 
 #: ../src/plugins/textreport/KinshipReport.py:330
 msgid "The maximum number of descendant generations"
-msgstr ""
+msgstr "מספר מקסימלי של דורות צאצאים"
 
 #: ../src/plugins/textreport/KinshipReport.py:334
 msgid "The maximum number of ancestor generations"
-msgstr ""
+msgstr "מספר מקסימלי של דורות קדמונים"
 
 #: ../src/plugins/textreport/KinshipReport.py:338
 msgid "Whether to include spouses"
-msgstr ""
+msgstr "האם לכלול בני זוג"
 
 #: ../src/plugins/textreport/KinshipReport.py:341
 msgid "Include cousins"
-msgstr ""
+msgstr "כלול בני דודים"
 
 #: ../src/plugins/textreport/KinshipReport.py:342
 msgid "Whether to include cousins"
-msgstr ""
+msgstr "האם לכלול בני דודים"
 
 #: ../src/plugins/textreport/KinshipReport.py:345
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr ""
+msgstr "כלול דודים/דודות/אחיינים/אחייניות"
 
 #: ../src/plugins/textreport/KinshipReport.py:346
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr ""
+msgstr "האם לכלול דודים/דודות/אחיינים/אחייניות"
 
 #: ../src/plugins/textreport/KinshipReport.py:371
 #: ../src/plugins/textreport/Summary.py:273
@@ -15740,7 +15756,7 @@ msgstr "אנשים"
 #: ../src/plugins/textreport/MarkerReport.py:291
 #: ../src/plugins/textreport/MarkerReport.py:377
 msgid "Id"
-msgstr ""
+msgstr "מזהה"
 
 #: ../src/plugins/textreport/MarkerReport.py:452
 msgid "The marker to use for the report"
@@ -15748,19 +15764,19 @@ msgstr ""
 
 #: ../src/plugins/textreport/MarkerReport.py:500
 msgid "The basic style used for table headings."
-msgstr ""
+msgstr "הסגנון הבסיסי עבור טבלת הכותרות."
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:89
 #, python-format
 msgid "Number of Ancestors for %s"
-msgstr ""
+msgstr "מספר הקדמונים עבור %s"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:109
 #, python-format
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
 msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "בדור %(generation)d יש אדם %(count)d. %(percent)s"
+msgstr[1] "בדור %(generation)d יש %(count)d אנשים. %(percent)s"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
@@ -15770,13 +15786,15 @@ msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
 msgstr ""
+"סך הכל קדמונים בדורות %(second_generation)d עד %(last_generation)d הוא %"
+"(count)d. %(percent)s"
 
 #. Write the title line. Set in INDEX marker so that this section will be
 #. identified as a major category if this is included in a Book report.
 #: ../src/plugins/textreport/PlaceReport.py:94
 #: ../src/plugins/textreport/textplugins.gpr.py:297
 msgid "Place Report"
-msgstr "דומ מקומות"
+msgstr "דוח מקומות"
 
 #: ../src/plugins/textreport/PlaceReport.py:119
 #, python-format
@@ -15823,7 +15841,7 @@ msgstr "סוג האירוע"
 
 #: ../src/plugins/textreport/PlaceReport.py:210
 msgid "People associated with this place"
-msgstr "אנשים המשוכיים למקום זה"
+msgstr "אנשים המשוייכים למקום זה"
 
 #: ../src/plugins/textreport/PlaceReport.py:259
 msgid "Select using filter"
@@ -15879,28 +15897,28 @@ msgstr "מחרוזת כותרת עבור סהפר."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:124
 msgid "Subtitle"
-msgstr ""
+msgstr "תת כותרת"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:124
 msgid "Subtitle of the Book"
-msgstr ""
+msgstr "תת כותרת עבור הספר"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:125
 msgid "Subtitle string for the book."
-msgstr ""
+msgstr "מחרוזת עבור תת הכותרת של הספר."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
 #, python-format
 msgid "Copyright %(year)d %(name)s"
-msgstr ""
+msgstr "זכויות יוצרים %(year)d %(name)s"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer"
-msgstr ""
+msgstr "סיומת עמוד"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:133
 msgid "Footer string for the page."
-msgstr ""
+msgstr "מחרוזת שתצוג בתחתית העמוד."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Image"
@@ -15918,15 +15936,15 @@ msgstr "גודל תמונה"
 msgid ""
 "Size of the image in cm. A value of 0 indicates that the image should be fit "
 "to the page."
-msgstr ""
+msgstr "גודל התמונה בסנטימטרים. ערך של 0 מסמן שהתמונה צריכה להתאים לעמוד."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:164
 msgid "The style used for the subtitle."
-msgstr ""
+msgstr "הסגנון בשימוש עבור תת הכותרת."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:174
 msgid "The style used for the footer."
-msgstr ""
+msgstr "הסגנון בשימוש עבור סיומת העמוד."
 
 #: ../src/plugins/textreport/Summary.py:76
 #: ../src/plugins/textreport/textplugins.gpr.py:342
@@ -16003,11 +16021,11 @@ msgstr "מיצר דוח טקסטואלי של קדמונים"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:54
 msgid "Produces a report of birthdays and anniversaries"
-msgstr ""
+msgstr "מייצר דור של ימי הולדת וימי שנה"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:75
 msgid "Custom Text"
-msgstr ""
+msgstr "טקסט מותאים אישית"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:76
 msgid "Add custom text to the book report"
@@ -16035,15 +16053,15 @@ msgstr "דוח צאצאים מפורט"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:142
 msgid "Produces a detailed descendant report"
-msgstr ""
+msgstr "מייצר דוח צאצאים מפורט"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:163
 msgid "End of Line Report"
-msgstr ""
+msgstr "דוח סוף הקו"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:164
 msgid "Produces a textual end of line report"
-msgstr ""
+msgstr "מייצר דוח טקסטואלי של סוף הקו"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:186
 msgid ""
@@ -16053,11 +16071,11 @@ msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:208
 msgid "Complete Individual Report"
-msgstr ""
+msgstr "דוח אדם מלא"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:209
 msgid "Produces a complete report on the selected people"
-msgstr ""
+msgstr "מייצר דוח מלא על אדם נבחר"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:230
 msgid "Kinship Report"
@@ -16077,11 +16095,11 @@ msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:275
 msgid "Number of Ancestors Report"
-msgstr ""
+msgstr "דוח מספר קדמונים"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:276
 msgid "Counts number of ancestors of selected person"
-msgstr ""
+msgstr "סופר את מספר הקדמונים עבור אדם נבחר"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:298
 msgid "Produces a textual place report"
@@ -17739,8 +17757,7 @@ msgstr "תצוגה גיאוגרפית"
 msgid ""
 "The view showing events on an interactive internet map (internet connection "
 "needed)"
-msgstr ""
-"התצוגה מראה מקומות על מפת אינטרנט אינטראקטיבית (נדרש חיבור לאינטרנט)"
+msgstr "התצוגה מראה מקומות על מפת אינטרנט אינטראקטיבית (נדרש חיבור לאינטרנט)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
@@ -18023,7 +18040,7 @@ msgstr "הוסף את האדם כצאצא למשפחה קיימת"
 
 #: ../src/plugins/view/relview.py:414
 msgid "Add Existing Parents..."
-msgstr ""
+msgstr "הוסף הורים קיימים..."
 
 #: ../src/plugins/view/relview.py:654
 msgid "Alive"
@@ -18032,7 +18049,7 @@ msgstr "בחיים"
 #: ../src/plugins/view/relview.py:712 ../src/plugins/view/relview.py:739
 #, python-format
 msgid "%(date)s in %(place)s"
-msgstr ""
+msgstr "%(date)s ב%(place)s"
 
 #: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
@@ -19123,7 +19140,7 @@ msgid ""
 "shows all the events for that date, if there are any!\n"
 msgstr ""
 "מטרת לוח השנה היא לתת לך גישה לכל המידע מכווץ לעמוד אחד. לחיצה על תאריך תקח "
-"אותך לעמוד שיראה את כל האירועים הקושים לתאריך. אם קיימים\n"
+"אותך לעמוד שיראה את כל האירועים הקשורים לתאריך, אם הם קיימים!\n"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:978
@@ -19140,8 +19157,7 @@ msgstr "%(spouse)s ו%(person)s"
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
-msgstr ""
-"נוצר על ידי <a href=\"http://gramps-project.org\">Gramps</a> ב %(date)s"
+msgstr "נוצר על ידי <a href=\"http://gramps-project.org\">Gramps</a> ב%(date)s"
 
 #. Create progress meter bar
 #: ../src/plugins/webreport/WebCal.py:1257
@@ -19319,32 +19335,32 @@ msgstr "האם ליצור בעמוד אחד לוח שנה קטן אם תאריכ
 
 #: ../src/plugins/webreport/WebCal.py:1540
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr ""
+msgstr "צור עודי אירועים עבור כל יום בתצוגת שנה בהצצה"
 
 #: ../src/plugins/webreport/WebCal.py:1542
 msgid "Whether to create one day pages or not"
-msgstr ""
+msgstr "האם ליצור עמודי אירוע עבור כל יום"
 
 #: ../src/plugins/webreport/WebCal.py:1545
 msgid "Link to Narrated Web Report"
-msgstr ""
+msgstr "קישור לדוח אתר אינטרנט"
 
 #: ../src/plugins/webreport/WebCal.py:1546
 msgid "Whether to link data to web report or not"
-msgstr ""
+msgstr "האם לקשר מידע לדוח אתר אינטרנט"
 
 #: ../src/plugins/webreport/WebCal.py:1550
 msgid "Link prefix"
-msgstr ""
+msgstr "קידומת קישור"
 
 #: ../src/plugins/webreport/WebCal.py:1551
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
+msgstr "קידומת עבור הקישור שיקח אותך לדוח אתר אינטרנט"
 
 #: ../src/plugins/webreport/WebCal.py:1730
 #, python-format
 msgid "%s old"
-msgstr ""
+msgstr "בן %s"
 
 #: ../src/plugins/webreport/WebCal.py:1730
 msgid "birth"
@@ -19800,7 +19816,7 @@ msgstr "תבנית קובץ:"
 #: ../src/ReportBase/_DocReportDialog.py:164
 #: ../src/ReportBase/_GraphvizReportDialog.py:1094
 msgid "Open with default viewer"
-msgstr "בחר עם תוכנית ברירת המחדל"
+msgstr "פתח עם תוכנית ברירת המחדל"
 
 #: ../src/ReportBase/_DocReportDialog.py:198
 msgid "CSS file"
@@ -19834,15 +19850,15 @@ msgstr ""
 #. -------------------------------------------------------------------------------
 #: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "Default"
-msgstr ""
+msgstr "ברירת המחדל"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "PostScript / Helvetica"
-msgstr ""
+msgstr "פוסט סקריפט / הלבטיקה"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "TrueType / FreeSans"
-msgstr ""
+msgstr "גופן אמיתי / פריסנס"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Vertical (top to bottom)"
@@ -19951,7 +19967,7 @@ msgstr "קובץ Graphviz"
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:936
 msgid "GraphViz Layout"
-msgstr ""
+msgstr "פריסת GraphViz"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:943
 msgid ""
@@ -20008,16 +20024,16 @@ msgstr ""
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:1001
 msgid "GraphViz Options"
-msgstr ""
+msgstr "אפשרויות GraphViz"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:1004
 msgid "Aspect ratio"
-msgstr ""
+msgstr "יחס אורך רוחב"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1009
 msgid "Affects greatly how the graph is layed out on the page."
-msgstr ""
+msgstr "מאוד משפיע על איך הגרף ממוקם על העמוד."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1013
 msgid "DPI"
@@ -22262,7 +22278,7 @@ msgstr "גרור בשביל להזיז, הקלק בשביל לנתק"
 
 #: ../src/glade/baseselector.glade.h:1
 msgid "Show all"
-msgstr ""
+msgstr "הראה הכל"
 
 #: ../src/glade/reorder.glade.h:1
 msgid "<b>Family relationships</b>"
@@ -22937,7 +22953,7 @@ msgstr ""
 
 #: ../src/glade/editname.glade.h:15
 msgid "_Given:"
-msgstr ""
+msgstr "_ניתן:"
 
 #: ../src/glade/editname.glade.h:16
 msgid "_Prefix:"
@@ -22945,7 +22961,7 @@ msgstr "_קידומת:"
 
 #: ../src/glade/editname.glade.h:17
 msgid "_Sort as:"
-msgstr ""
+msgstr "_מיין כ:"
 
 #: ../src/glade/editevent.glade.h:2
 msgid "Close window without changes"
@@ -22953,19 +22969,19 @@ msgstr "סגור חלון בלי שינוים"
 
 #: ../src/glade/mergedata.glade.h:1
 msgid "<b>Source 1</b>"
-msgstr ""
+msgstr "<b>מקור 1</b>"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Source 2</b>"
-msgstr ""
+msgstr "<b>מקור 2</b>"
 
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Title selection</b>"
-msgstr ""
+msgstr "<b>בחירת כותרת</b>"
 
 #: ../src/glade/mergedata.glade.h:4
 msgid "Abbreviation:"
-msgstr ""
+msgstr "קיצור:"
 
 #: ../src/glade/mergedata.glade.h:6
 msgid "Gramps ID:"
@@ -22973,24 +22989,24 @@ msgstr "מזהה:"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "Merge and _edit"
-msgstr ""
+msgstr "מזג ו_ערוך"
 
 #: ../src/glade/mergedata.glade.h:8
 msgid "Other"
-msgstr ""
+msgstr "אחר"
 
 #: ../src/glade/mergedata.glade.h:9
 msgid "Place 1"
-msgstr ""
+msgstr "מקום 1"
 
 #: ../src/glade/mergedata.glade.h:10
 msgid "Place 2"
-msgstr ""
+msgstr "מקום 2"
 
 #: ../src/glade/mergedata.glade.h:13
 msgid ""
 "Select the person that will provide the primary data for the merged person."
-msgstr ""
+msgstr "בחר את האדם שישמש במקור המידע העיקרי לאדם המאוחד."
 
 #: ../src/glade/mergedata.glade.h:15
 msgid "_Merge and close"
@@ -23010,15 +23026,15 @@ msgstr "מצב:"
 
 #: ../src/glade/rule.glade.h:1
 msgid "<b>Definition</b>"
-msgstr ""
+msgstr "<b>הגדרה</b>"
 
 #: ../src/glade/rule.glade.h:4
 msgid "<b>Rule list</b>"
-msgstr ""
+msgstr "<b>רשימת כללים</b>"
 
 #: ../src/glade/rule.glade.h:5
 msgid "<b>Selected Rule</b>"
-msgstr ""
+msgstr "<b>כלל נבחר</b>"
 
 #: ../src/glade/rule.glade.h:6
 msgid "<b>Values</b>"
@@ -23026,27 +23042,27 @@ msgstr "<b>ערכים</b>"
 
 #: ../src/glade/rule.glade.h:7
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr ""
+msgstr "<i>הערה: השינויים ישתקפו רק לאחר שחלון זה ייסגר</i>"
 
 #: ../src/glade/rule.glade.h:8
 msgid "Add a new filter"
-msgstr ""
+msgstr "הוסף מסנן חדש"
 
 #: ../src/glade/rule.glade.h:9
 msgid "Add another rule to the filter"
-msgstr ""
+msgstr "הוסף כלל נוסף למסנן"
 
 #: ../src/glade/rule.glade.h:10
 msgid "All rules must apply"
-msgstr ""
+msgstr "כל הכללים חייבים לחול"
 
 #: ../src/glade/rule.glade.h:11
 msgid "At least one rule must apply"
-msgstr ""
+msgstr "לפחות כלל אחד צריך לחול"
 
 #: ../src/glade/rule.glade.h:12
 msgid "Clone the selected filter"
-msgstr ""
+msgstr "שבט את המסנן הנבחר"
 
 #: ../src/glade/rule.glade.h:13
 msgid "Co_mment:"
@@ -23078,11 +23094,11 @@ msgstr ""
 
 #: ../src/glade/rule.glade.h:22
 msgid "Test the selected filter"
-msgstr ""
+msgstr "בחן את המסנן הנבחר"
 
 #: ../src/glade/scratchpad.glade.h:1
 msgid "Clear _All"
-msgstr ""
+msgstr "נקה ה_כל"
 
 #: ../src/glade/papermenu.glade.h:1
 msgid "Bottom:"
