@@ -124,7 +124,7 @@ class GrampsAboutDialog(gtk.AboutDialog):
                  "Distribution: %s")
                 % (elipses(str(const.VERSION)),
                    elipses(str(sys.version).replace('\n','')),
-                   elipses(str(bsddb.__version__)),
+                   elipses(str(bsddb.__version__) + " " + str(bsddb.db.version())),
                    elipses(os.environ.get('LANG','')),
                    elipses(operatingsystem),
                    elipses(distribution)))
