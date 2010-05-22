@@ -996,7 +996,8 @@ class GeoView(HtmlView):
                 elif year != "no":
                     self.last_selected_year = year
                     self._call_js_selectmarkers(year)
-        self.renderer.execute_script("javascript:addcrosshair('%d','%s')" % 
+        if self.javascript_ready:
+            self.renderer.execute_script("javascript:addcrosshair('%d','%s')" %
                       (self._config.get("preferences.crosshair"),
                        self.crosspath))
 
