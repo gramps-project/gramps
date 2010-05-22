@@ -763,54 +763,40 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 
 /* Download 
 ----------------------------------------------------- */
-#Download { 
-    padding: 0;
-    width: 965;
-    height: 350px;
+div#Download {
+    margin: 0;
+    padding:0px 20px 0px 20px;
+    width: 965px;
 }
-table.download {
-    border:solid 2px #000;
+div#Download table.download {
+    border: solid 1px #000;
+    margin: .1cm 0px .5cm 0px;
+    width: 100%;
 }
-table.download img {
-    text-align: center;
+div#Download table.download tbody tr#Row02 {
+    border-bottom: solid 1px #000;
 }
-table.download thead tr th {
-    text-align:center;
-    border:solid 2px #000;
-    color: #000;
-    text-transform:uppercase;
+div#Download table.download tbody tr td { 
+    border: solid 1px #000;
+    text-align: left;
+    padding: 5px 0px 5px 0px;
 }
-table.download tbody tr#Row02 {
-    border-bottom:solid 2px #000;
+div#Download table.download td.ColumnFilename {
+    width: 30%;
 }
-table.download thead tr th, table.download tbody tr td { 
-    padding-left:10px;
-    padding-top:20px;
-    border-style:solid;
-    border-color:#000;
-    border-width:0 2px 2px 2px;
-    text-align:left;
-}
-table.download td.Description {
-    width: 50%;
-}
-table.download td.License {
-    width:8%;
-}
-table.download td.Filename {
-    width:30%;
-}
-table.download td.Filename a {
-    font-weight:bold;
+div#Download table.download td.ColumnFilename a {
+    font-weight: bold;
     font-style: italic;
-    text-decoration:none;
 }
-table.download td.Filename a:hover {
-    text-decoration:underline;
+div#Download table.download td.ColumnDescription {
+    width: 45%;
 }
-table.download td.Modified {
-    width:12%;
-    font-weight:bold;
+div#Download table.download td.ColumnModified {
+    width: 17%;
+}
+div#Download a.copyright a img {
+    float: center;
+    text-align: center;
 }
 
 /* Repositories

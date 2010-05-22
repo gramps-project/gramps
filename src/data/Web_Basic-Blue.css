@@ -747,19 +747,15 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 
 /* Download 
 ----------------------------------------------------- */
-
 div#Download { 
     margin: 0;
-    padding: 0px 0px .5em 0px;
+    width: 100%;
 }
 div#Download table.download {
     padding: 0;
     margin: .5em 0 .5em 0;
     border: solid 1px #000;
     width: 100%;
-}
-div#Download table.download img {
-    text-align: center;
 }
 div#Download table.download tbody tr#Row02 {
     border-bottom: solid 2px #000;
@@ -768,22 +764,21 @@ div#Download table.download tbody tr td {
     border: solid 1px #000;
     text-align: left;
 }
-div#Download table.download td.Filename {
+div#Download table.download td.ColumnFilename {
     width: 30%;
 }
-div#Download table.download td.Filename a {
+div#Download table.download td.ColumnFilename a {
     font-weight: bold;
     font-style: italic;
-    text-decoration: none;
 }
-div#Download table.download td.Description {
+div#Download table.download td.ColumnDescription {
     width: 45%;
 }
-div#Download table.download td.License {
-    width: 6%;
-}
-div#Download table.download td.Modified {
+div#Download table.download td.ColumnModified {
     width: 17%;
+}
+div#Download p#description a.copyright a img {
+    float: center;
 }
 
 /* Sources

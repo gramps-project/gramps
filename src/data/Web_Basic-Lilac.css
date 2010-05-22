@@ -696,55 +696,39 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 
 /* Download 
 ----------------------------------------------------- */
-#Download { 
-    padding: 1cm;
-    height:396px;
+div#Download { 
+    margin: 0;
+    width: 100%;
 }
-table.download {
-    padding-top: .5cm;
-    border:solid 1px #000;
-    width:100%;
+div#Download table.download {
+    border: solid 1px #000;
+    margin: .1cm 14px .5cm 14px;
+    width: 965px;
 }
-table.download img {
-    text-align:center;
+div#Download table.download tbody tr#Row02 {
+    border-bottom: solid 1px #000;
 }
-table.download thead tr th {
-    text-align:center;
-    border:solid 2px #000;
-    color: #000;
-    text-transform:uppercase;
+div#Download table.download tbody tr td { 
+    border: solid 1px #000;
+    text-align: left;
+    padding: 5px 0px 5px 0px;
 }
-table.download tbody tr#Row02 {
-    border-bottom:solid 2px #000;
+div#Download table.download td.ColumnFilename {
+    width: 30%;
 }
-table.download thead tr th, table.download tbody tr td { 
-    padding-left:10px;
-    padding-top:20px;
-    border-style:solid;
-    border-color:#000;
-    border-width:0 2px 2px 2px;
-    text-align:left;
-}
-table.download td.Description {
-    width: 50%;
-}
-table.download td.License {
-    width:8%;
-}
-table.download td.Filename {
-    width:30%;
-}
-table.download td.Filename a {
-    font-weight:bold;
+div#Download table.download td.ColumnFilename a {
+    font-weight: bold;
     font-style: italic;
-    text-decoration:none;
 }
-table.download td.Filename a:hover {
-    text-decoration:underline;
+div#Download table.download td.ColumnDescription {
+    width: 45%;
 }
-table.download td.Modified {
-    width:12%;
-    font-weight:bold;
+div#Download table.download td.ColumnModified {
+    width: 17%;
+}
+div#Download a.copyright a img {
+    float: center;
+    text-align: center;
 }
 
 /* Repositories
@@ -1247,11 +1231,11 @@ div#footer {
     clear:both;
     overflow:hidden;
     width:100%;
+    height: 60px;
     font-size:12px;
     line-height:130%;
     color:#2E2E61;
-    margin:0;
-    padding:15px 0 0 0;
+    margin-top: .5cm;
     background-color:#B4B4CB;
     border-top:solid 1px #2E2E61;
 }

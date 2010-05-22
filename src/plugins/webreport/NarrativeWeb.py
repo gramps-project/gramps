@@ -3417,23 +3417,21 @@ class DownloadPage(BasePage):
         dlcopy = self.report.dl_copy
 
         # if no filenames at all, return???
-        if not dlfname1 and not dlfname2:
-            return
+        if dlfname1 or dlfname2:
 
-        of = self.report.create_file("download")
-        downloadpage, body = self.write_header(_('Download'))
+            of = self.report.create_file("download")
+            downloadpage, body = self.write_header(_('Download'))
 
-        # begin download page and table
-        with Html("div", class_ = "content", id = "Download") as download:
-            body += download
+            # begin download page and table
+            with Html("div", class_ = "content", id = "Download") as download:
+                body += download
 
-            msg = _("This page is for the user/ creator of this Family Tree/ "
-                "Narrative website to share a couple of files with you "
-                "regarding their family.  If there are any files listed "
-                "below, clicking on them will allow you to download them.")
-            download += Html("p", msg, id = "description")
+                msg = _("This page is for the user/ creator of this Family Tree/ "
+                    "Narrative website to share a couple of files with you "
+                    "regarding their family.  If there are any files listed "
+                    "below, clicking on them will allow you to download them.")
+                download += Html("p", msg, id = "description")
 
-            if dlfname1 or dlfname2:   
                 # begin download table and table head
                 with Html("table", class_ = "infolist download") as table:
                     download += table
@@ -3445,37 +3443,32 @@ class DownloadPage(BasePage):
                     thead += trow
 
                     trow.extend(
-                        Html("th", label, class_ = colclass, inline = True)
+                        Html("th", label, class_ = "Column" + colclass, inline = True)
                         for (label, colclass) in [
                             (_("File Name"),     "Filename"),
                             (DESCRHEAD,          "Description"),
-                            (_("License"),       "License"),
                             (_("Last Modified"), "Modified") ]
                             ) 
+                    # table body
+                    tbody = Html("tbody")
+                    table += tbody
 
                     # if dlfname1 is not None, show it???
                     if dlfname1:
-
-                        # table body
-                        tbody = Html("tbody")
-                        table += tbody
 
                         trow = Html("tr", id = 'Row01')
                         tbody += trow
 
                         fname = os.path.basename(dlfname1)
-                        tcell = ( Html("td", class_ = "Filename") +
-                            Html("a", fname, href = dlfname1, alt = dldescr1)
+                        tcell = ( Html("td", class_ = "ColumnFilename") +
+                            Html("a", fname, href = dlfname1, title = dldescr1)
                             )
                         trow += tcell
 
                         dldescr1 = dldescr1 or "&nbsp;"
-                        trow += Html("td", dldescr1, class_ = "Description", inline = True)
+                        trow += Html("td", dldescr1, class_ = "ColumnDescription", inline = True)
 
-                        copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
-                        trow += Html("td", copyright, class_ = "License")
-
-                        tcell = Html("td", class_ = "Modified", inline = True)
+                        tcell = Html("td", class_ = "ColumnModified", inline = True)
                         trow += tcell 
                         if os.path.exists(dlfname1):
                             modified = os.stat(dlfname1).st_mtime
@@ -3492,18 +3485,15 @@ class DownloadPage(BasePage):
                         tbody += trow
 
                         fname = os.path.basename(dlfname2)
-                        tcell = ( Html("td", class_ = "Filename") +
+                        tcell = ( Html("td", class_ = "ColumnFilename") +
                             Html("a", fname, href = dlfname2, alt = dldescr2)
                             )  
                         trow += tcell
 
                         dldescr2 = dldescr2 or "&nbsp;"
-                        trow += Html("td", dldescr2, class_ = "Description", inline = True)
+                        trow += Html("td", dldescr2, class_ = "ColumnDescription", inline = True)
 
-                        copyright = self.get_copyright_license(dlcopy) or "&nbsp;"
-                        trow += Html("td", copyright, class_ = "License", inline = True)
-
-                        tcell = Html("td", id = 'Col04', class_ = "Modified",  inline = True)
+                        tcell = Html("td", id = 'Col04', class_ = "ColumnModified",  inline = True)
                         trow += tcell
                         if os.path.exists(dlfname2):
                             modified = os.stat(dlfname2).st_mtime
@@ -3511,6 +3501,13 @@ class DownloadPage(BasePage):
                             tcell += last_mod
                         else:
                             tcell += "&nbsp;"
+
+        # display Copyright license for these files
+        copyright = self.get_copyright_license(dlcopy)
+        if copyright: 
+            msg = _("The Copyright License for these files are: ")
+            download += Html("p", msg, id = "description") 
+            download += Html("a", copyright, class_ = "copyright")
 
         # clear line for proper styling
         # create footer section
