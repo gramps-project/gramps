@@ -818,10 +818,7 @@ def probably_alive(person, db,
     """
     # First, find the real database to use all people
     # for determining alive status:
-    from gen.proxy.proxybase import ProxyDbBase
-    basedb = db
-    while isinstance(basedb, ProxyDbBase):
-        basedb = basedb.db
+    basedb = db.get_base_db()
     # Now, we create a wrapper for doing work:
     pb = ProbablyAlive(basedb, max_sib_age_diff, 
                        max_age_prob_alive, 
