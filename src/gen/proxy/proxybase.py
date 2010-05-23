@@ -312,6 +312,8 @@ class ProxyDbBase(DbReadBase):
 
     def __getattr__(self, name):
         """ Handle unknown attribute lookups """
+        if name == "readonly":
+            return True
         sname = name.split('_')
         if sname[:2] == ['get', 'unfiltered']:
             """
