@@ -1466,3 +1466,8 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self._bm_changes > 0
 
+    def get_base_db(self):
+        """
+        Return the base database.
+        """
+        return self
