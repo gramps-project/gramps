@@ -1655,10 +1655,11 @@ def get_marriage_event(db, family):
     for event_ref in family.get_event_ref_list():
 
         event = db.get_event_from_handle(event_ref.ref)
-        if event.type.is_marriage:
+        if event.type in [EventType.MARRIAGE, EventType.MARR_ALT]:
             marriage_event = event
-        elif event.type.is_divorce:
-            continue
+
+        elif event.type in [EventType.DIVORCE, EventType.ANNULMENT, EventType.DIV_FILING]:
+            break
 
     # return the marriage event or False to it caller
     return marriage_event
