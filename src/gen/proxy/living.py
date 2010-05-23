@@ -119,26 +119,6 @@ class LivingProxyDb(ProxyDbBase):
             if person:
                 yield person
 
-    def iter_person_handles(self):
-        """
-        Protected version of iter_person_handles
-        """
-        for handle in self.db.iter_person_handles():
-            person = self.get_person_from_handle(handle)
-            if person:
-                yield handle
-
-    def get_person_handles(self):
-        """
-        Protected version of get_person_handles
-        """
-        handles = []
-        for handle in self.db.get_person_handles():
-            person = self.get_person_from_handle(handle)
-            if person:
-                handles.append(handle)
-        return handles
-
     def get_person_from_gramps_id(self, val):
         """
         Finds a Person in the database from the passed GRAMPS ID.
