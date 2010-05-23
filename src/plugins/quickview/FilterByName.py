@@ -66,6 +66,31 @@ def run(database, document, filter_name, *args, **kwargs):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb)
+    if (filter_name == 'all'):
+        sdoc.title(_("Summary counts of current selection"))
+        sdoc.paragraph("")
+        sdoc.paragraph("Double-click row to see selected items.")
+        sdoc.paragraph("")
+        stab.columns(_("Object"), _("Count"))
+        stab.row([_("People"), "Filter", "all people"], 
+                 len(database.get_person_handles()))
+        stab.row([_("Families"), "Filter", "all families"], 
+                 len(database.get_family_handles()))
+        stab.row([_("Events"), "Filter", "all events"], 
+                 len(database.get_event_handles()))
+        stab.row([_("Places"), "Filter", "all places"], 
+                 len(database.get_place_handles()))
+        stab.row([_("Sources"), "Filter", "all sources"], 
+                 len(database.get_source_handles()))
+        stab.row([_("Repositories"), "Filter", "all repositories"], 
+                 len(database.get_repository_handles()))
+        stab.row([_("Media"), "Filter", "all media"], 
+                 len(database.get_media_object_handles()))
+        stab.row([_("Notes"), "Filter", "all notes"], 
+                 len(database.get_note_handles()))
+        sdoc.paragraph("")
+        stab.write(sdoc)
+        return
     # display the title
     if filter_name in fname_map:
         sdoc.title(_("Filtering on %s") % fname_map[filter_name]) # listed above
@@ -78,6 +103,41 @@ def run(database, document, filter_name, *args, **kwargs):
         for person in database.iter_people():
             stab.row(person, sdb.birth_or_fallback(person),
                      str(person.get_primary_name().get_type()))
+            matches += 1
+    elif (filter_name == 'all families'):
+        stab.columns(_("Family"))
+        for family in database.iter_families():
+            stab.row(family)
+            matches += 1
+    elif (filter_name == 'all events'):
+        stab.columns(_("Event"))
+        for obj in database.iter_events():
+            stab.row(obj)
+            matches += 1
+    elif (filter_name == 'all places'):
+        stab.columns(_("Place"))
+        for obj in database.iter_places():
+            stab.row(obj)
+            matches += 1
+    elif (filter_name == 'all sources'):
+        stab.columns(_("Source"))
+        for obj in database.iter_sources():
+            stab.row(obj)
+            matches += 1
+    elif (filter_name == 'all repositories'):
+        stab.columns(_("Repository"))
+        for obj in database.iter_repositories():
+            stab.row(obj)
+            matches += 1
+    elif (filter_name == 'all media'):
+        stab.columns(_("Media"))
+        for obj in database.iter_media_objects():
+            stab.row(obj)
+            matches += 1
+    elif (filter_name == 'all notes'):
+        stab.columns(_("Note"))
+        for obj in database.iter_notes():
+            stab.row(obj)
             matches += 1
     elif (filter_name == 'males'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
@@ -128,11 +188,6 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
-    elif (filter_name == 'all families'):
-        stab.columns(_("Family"))
-        for family in database.iter_families():
-            stab.row(family)
-            matches += 1
     elif (filter_name == 'unique surnames'):
         namelist = defaultdict(int)
         for person in database.iter_people():
