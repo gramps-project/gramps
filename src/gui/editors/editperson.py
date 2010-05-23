@@ -304,7 +304,7 @@ class EditPerson(EditPrimary):
             self.pname.set_surname, 
             self.pname.get_surname, 
             self.db.readonly, 
-            autolist=self.db.get_surname_list())
+            autolist=self.db.get_surname_list() if not self.db.readonly else [])
 
         self.gid = widgets.MonitoredEntry(
             self.top.get_object("gid"), 
