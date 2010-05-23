@@ -64,21 +64,29 @@ class BackRefModel(gtk.ListStore):
             dtype = ref[0]
             if dtype == 'Person':
                 p = self.db.get_person_from_handle(ref[1])
+                if not p:
+                    continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = name_displayer.display(p)
             elif dtype == 'Family':
                 p = self.db.get_family_from_handle(ref[1])
+                if not p:
+                    continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = Utils.family_name(p, self.db)
             elif dtype == 'Source':
                 p = self.db.get_source_from_handle(ref[1])
+                if not p:
+                    continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = p.get_title()
             elif dtype == 'Event':
                 p = self.db.get_event_from_handle(ref[1])
+                if not p:
+                    continue
                 gid = p.gramps_id
                 handle = p.handle
                 name = p.get_description()
@@ -93,16 +101,22 @@ class BackRefModel(gtk.ListStore):
                                 'part2': part}
             elif dtype == 'Place':
                 p = self.db.get_place_from_handle(ref[1])
+                if not p:
+                    continue
                 name = p.get_title()
                 gid = p.gramps_id
                 handle = p.handle
             elif dtype == 'Repository':
                 p = self.db.get_repository_from_handle(ref[1])
+                if not p:
+                    continue
                 name = p.get_name()
                 gid = p.gramps_id
                 handle = p.handle
             else:
                 p = self.db.get_object_from_handle(ref[1])
+                if not p:
+                    continue
                 name = p.get_description()
                 gid = p.gramps_id
                 handle = p.handle
