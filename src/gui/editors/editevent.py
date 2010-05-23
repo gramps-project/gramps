@@ -77,7 +77,8 @@ class EditEvent(EditPrimary):
         self._init_event()
 
     def _init_event(self):
-        self.commit_event = self.db.commit_event
+        if not self.db.readonly:
+            self.commit_event = self.db.commit_event
 
     def empty_object(self):
         return gen.lib.Event()
@@ -302,7 +303,8 @@ class EditPersonEvent(EditEvent):
         EditEvent.__init__(self, dbstate, uistate, track, event, callback)
 
     def _init_event(self):
-        self.commit_event = self.db.commit_personal_event
+        if not self.db.readonly:
+            self.commit_event = self.db.commit_personal_event
 
     def get_custom_events(self):
         return self.dbstate.db.get_person_event_types()
@@ -313,7 +315,8 @@ class EditFamilyEvent(EditEvent):
         EditEvent.__init__(self, dbstate, uistate, track, event, callback)
 
     def _init_event(self):
-        self.commit_event = self.db.commit_family_event
+        if not self.db.readonly:
+            self.commit_event = self.db.commit_family_event
 
     def get_custom_events(self):
         return self.dbstate.db.get_family_event_types()
