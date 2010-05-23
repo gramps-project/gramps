@@ -108,7 +108,7 @@ class SimpleTable(object):
         Handle events on tables. obj is a treeview
         """
         from gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
-                                 EditPlace, EditRepository)
+                                 EditPlace, EditRepository, EditNote, EditMedia)
         selection = obj.get_selection()
         store, node = selection.get_selected()
         if not node:
@@ -167,6 +167,22 @@ class SimpleTable(object):
                     return True # handled event
                 except Errors.WindowActiveError:
                     pass
+            elif objclass == 'Note':
+                ref = self.access.dbase.get_note_from_handle(handle)
+                try:
+                    EditNote(self.simpledoc.doc.dbstate, 
+                             self.simpledoc.doc.uistate, [], ref)
+                    return True # handled event
+                except Errors.WindowActiveError:
+                    pass
+            elif objclass in ['Media', 'MediaObject']:
+                ref = self.access.dbase.get_object_from_handle(handle)
+                try:
+                    EditMedia(self.simpledoc.doc.dbstate, 
+                              self.simpledoc.doc.uistate, [], ref)
+                    return True # handled event
+                except Errors.WindowActiveError:
+                    pass
             elif objclass == 'PersonList':
                 from QuickReports import run_quick_report_by_name
                 run_quick_report_by_name(self.simpledoc.doc.dbstate,
@@ -174,6 +190,12 @@ class SimpleTable(object):
                                          'filterbyname', 
                                          'list of people',
                                          handles=handle)
+            elif objclass == 'Filter':
+                from QuickReports import run_quick_report_by_name
+                run_quick_report_by_name(self.simpledoc.doc.dbstate,
+                                         self.simpledoc.doc.uistate, 
+                                         'filterbyname', 
+                                         handle[0])
         return False # didn't handle event
 
     def on_table_click(self, obj):
