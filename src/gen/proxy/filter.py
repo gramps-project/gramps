@@ -311,10 +311,10 @@ class FilterProxyDb(ProxyDbBase):
 
     def iter_people(self):
         """
-        Return an iterator over handles and objects for Persons in the database
+        Return an iterator over objects for Persons in the database
         """
         for handle in self.plist:
-            yield handle, self.get_person_from_handle(handle)
+            yield self.get_person_from_handle(handle)
 
     def get_event_handles(self):
         """
