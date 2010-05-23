@@ -71,23 +71,31 @@ def run(database, document, filter_name, *args, **kwargs):
         sdoc.paragraph("")
         sdoc.paragraph("Double-click row to see selected items.")
         sdoc.paragraph("")
-        stab.columns(_("Object"), _("Count"))
+        stab.columns(_("Object"), _("Count/Total"))
         stab.row([_("People"), "Filter", "all people"], 
-                 len(database.get_person_handles()))
+                 "%d/%d" % (len(database.get_person_handles()),
+                            len(database.get_base_db().get_person_handles())))
         stab.row([_("Families"), "Filter", "all families"], 
-                 len(database.get_family_handles()))
+                 "%d/%d" % (len(database.get_family_handles()),
+                            len(database.get_base_db().get_family_handles())))
         stab.row([_("Events"), "Filter", "all events"], 
-                 len(database.get_event_handles()))
+                 "%d/%d" % (len(database.get_event_handles()),
+                            len(database.get_base_db().get_event_handles())))
         stab.row([_("Places"), "Filter", "all places"], 
-                 len(database.get_place_handles()))
+                 "%d/%d" % (len(database.get_place_handles()),
+                            len(database.get_base_db().get_place_handles())))
         stab.row([_("Sources"), "Filter", "all sources"], 
-                 len(database.get_source_handles()))
+                 "%d/%d" % (len(database.get_source_handles()),
+                            len(database.get_base_db().get_source_handles())))
         stab.row([_("Repositories"), "Filter", "all repositories"], 
-                 len(database.get_repository_handles()))
+                 "%d/%d" % (len(database.get_repository_handles()),
+                            len(database.get_base_db().get_repository_handles())))
         stab.row([_("Media"), "Filter", "all media"], 
-                 len(database.get_media_object_handles()))
+                 "%d/%d" % (len(database.get_media_object_handles()),
+                            len(database.get_base_db().get_media_object_handles())))
         stab.row([_("Notes"), "Filter", "all notes"], 
-                 len(database.get_note_handles()))
+                 "%d/%d" % (len(database.get_note_handles()),
+                            len(database.get_base_db().get_note_handles())))
         sdoc.paragraph("")
         stab.write(sdoc)
         return
