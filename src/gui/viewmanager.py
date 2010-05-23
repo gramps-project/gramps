@@ -257,7 +257,7 @@ class ViewManager(CLIManager):
         self.__build_main_window()
         self.__connect_signals()
         
-        self.do_reg_plugins()
+        self.do_reg_plugins(self.dbstate, self.uistate)
         #plugins loaded now set relationship class
         self.rel_class = Relationship.get_relationship_calculator()
         self.uistate.set_relationship_class()
@@ -646,14 +646,14 @@ class ViewManager(CLIManager):
 
         self.uistate.push_message(self.dbstate, _('Ready'))
     
-    def do_reg_plugins(self):
+    def do_reg_plugins(self, dbstate, uistate):
         """
         Register the plugins at initialization time. The plugin status window  
         is opened on an error if the user has requested.
         """
         # registering plugins
         self.uistate.status_text(_('Registering plugins...'))
-        error = CLIManager.do_reg_plugins(self)
+        error = CLIManager.do_reg_plugins(self, dbstate, uistate)
 
         #  get to see if we need to open the plugin status window
         if error and config.get('behavior.pop-plugin-status'):

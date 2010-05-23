@@ -96,7 +96,7 @@ class BasePluginManager(object):
         self.__registereddir_set = set()
         self.__loaded_plugins = {}
 
-    def reg_plugins(self, direct, append=True):
+    def reg_plugins(self, direct, dbstate=None, uistate=None, append=True):
         """
         Searches the specified directory, and registers python plugin that
         are being defined in gpr.py files. 
@@ -128,6 +128,8 @@ class BasePluginManager(object):
         # load plugins that request to be loaded on startup
         for plugin in self.__pgr.filter_load_on_reg():
             mod = self.load_plugin(plugin)
+            if hasattr(mod, "load_on_reg"):
+                mod.load_on_reg(dbstate, uistate)
 
     def is_loaded(self, pdata_id):
         """

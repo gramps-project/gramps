@@ -282,12 +282,13 @@ class CLIManager(object):
         RecentFiles.recent_files(filename, name)
         self.file_loaded = True
     
-    def do_reg_plugins(self):
+    def do_reg_plugins(self, dbstate, uistate):
         """
         Register the plugins at initialization time.
         """
-        self._pmgr.reg_plugins(const.PLUGINS_DIR)
-        self._pmgr.reg_plugins(const.USER_PLUGINS, append=False)
+        self._pmgr.reg_plugins(const.PLUGINS_DIR, dbstate, uistate)
+        self._pmgr.reg_plugins(const.USER_PLUGINS, dbstate, uistate,
+                               append=False)
 
 def startcli(errors, argparser):
     """
@@ -312,7 +313,7 @@ def startcli(errors, argparser):
     #we need a manager for the CLI session
     climanager = CLIManager(dbstate, True)
     #load the plugins
-    climanager.do_reg_plugins()
+    climanager.do_reg_plugins(dbstate, uistate=None)
     # handle the arguments
     from arghandler import ArgHandler
     handler = ArgHandler(dbstate, argparser, climanager)
