@@ -139,17 +139,6 @@ class ButtonTab(GrampsTab):
             self.up_btn = None
             self.down_btn = None
 
-        if self.dbstate.db.readonly:
-            self.add_btn.set_sensitive(False)
-            self.del_btn.set_sensitive(False)
-            if share_button:
-                self.share_btn.set_sensitive(False)
-            if jump_button:
-                self.jump_btn.set_sensitive(False)
-            if move_buttons:
-                self.up_btn.set_sensitive(False)
-                self.down_btn.set_sensitive(False)
-
         if jump_button:
             self.jump_btn = SimpleButton(gtk.STOCK_JUMP_TO, self.jump_button_clicked)
             self.track_ref_for_deletion("jump_btn")
@@ -167,10 +156,22 @@ class ButtonTab(GrampsTab):
         if move_buttons:
             hbox.pack_start(self.up_btn, False)
             hbox.pack_start(self.down_btn, False)
-        if jump_button:
+
+        if self.jump_btn:
             hbox.pack_start(self.jump_btn, False)
         hbox.show_all()
         self.pack_start(hbox, False)
+
+        if self.dbstate.db.readonly:
+            self.add_btn.set_sensitive(False)
+            self.del_btn.set_sensitive(False)
+            if share_button:
+                self.share_btn.set_sensitive(False)
+            if jump_button and self.jump_btn:
+                self.jump_btn.set_sensitive(False)
+            if move_buttons:
+                self.up_btn.set_sensitive(False)
+                self.down_btn.set_sensitive(False)
 
     def double_click(self, obj, event):
         """
