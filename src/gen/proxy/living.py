@@ -106,6 +106,39 @@ class LivingProxyDb(ProxyDbBase):
         family = self.__remove_living_from_family(family)
         return family
 
+    def iter_people(self):
+        """
+        Protected version of iter_people
+        """
+        for person in self.db.iter_people():
+            if person and self.__is_living(person):
+                if self.mode == self.MODE_EXCLUDE_ALL:
+                    person = None
+                else:
+                    person = self.__restrict_person(person)
+            if person:
+                yield person
+
+    def iter_person_handles(self):
+        """
+        Protected version of iter_person_handles
+        """
+        for handle in self.db.iter_person_handles():
+            person = self.get_person_from_handle(handle)
+            if person:
+                yield handle
+
+    def get_person_handles(self):
+        """
+        Protected version of get_person_handles
+        """
+        handles = []
+        for handle in self.db.get_person_handles():
+            person = self.get_person_from_handle(handle)
+            if person:
+                handles.append(handle)
+        return handles
+
     def get_person_from_gramps_id(self, val):
         """
         Finds a Person in the database from the passed GRAMPS ID.
