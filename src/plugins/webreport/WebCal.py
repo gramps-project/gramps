@@ -1155,9 +1155,9 @@ class WebCalReport(Report):
 
                     # add link to NarrativeWeb
                     if self.link_to_narweb:
-                        text = Html("a", short_name, 
+                        text = str(Html("a", short_name, 
                                     href = self.build_url_fname_html(person.handle, "ppl", 
-                                                                   prefix = self.narweb_prefix))
+                                                                   prefix = self.narweb_prefix)))
                     else:
                         text = short_name
                     self.add_day_item(text, year, month, day, 'Birthday')
@@ -1191,12 +1191,12 @@ class WebCalReport(Report):
                                 prob_alive_date = Date(this_year, month, day)
 
                                 if self.link_to_narweb:
-                                    spouse_name = Html("a", spouse_name,
+                                    spouse_name = str(Html("a", spouse_name,
                                                   href = self.build_url_fname_html(spouse_handle, 'ppl', 
-                                                  prefix = self.narweb_prefix))
-                                    short_name = Html("a", short_name,
+                                                  prefix = self.narweb_prefix)))
+                                    short_name = str(Html("a", short_name,
                                                       href = self.build_url_fname_html(person.handle, 'ppl', 
-                                                       prefix = self.narweb_prefix))
+                                                       prefix = self.narweb_prefix)))
                                 
                                 alive1 = probably_alive(person, db, prob_alive_date)
                                 alive2 = probably_alive(spouse, db, prob_alive_date)
