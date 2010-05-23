@@ -1221,6 +1221,8 @@ def get_participant_from_event(db, event_handle):
     families = set([x[1] for x in result_list if x[0] == 'Family'])
     for personhandle in people: 
         person = db.get_person_from_handle(personhandle)
+        if not person:
+            continue
         for event_ref in person.get_event_ref_list():
             if event_handle == event_ref.ref and \
                     event_ref.get_role().is_primary():
