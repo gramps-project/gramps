@@ -31,7 +31,7 @@ Style Name: Web_Navigation-Horizontal Stylesheet
 ----------------------------------------------------- */
 body {
     margin: 0 auto;
-    padding: 0 14px 0 14px;
+    padding: 0px 14px 0px 14px;
     width: 965px;
 }
 
@@ -51,53 +51,49 @@ div#alphabet ul {
     border-style: solid;
 }
 div#alphabet ul li {
-    border-right: solid 1px #000;
+    border-width: 0px 2px 0px 2px;
+    border-style: solid;
     margin: 0;
     float: left;
+}
+div#alphabet ul li:first-child {
+    margin-left: 4px;
+    border-left: none;
 }
 div#alphabet ul li a {
     display: block;
     padding: 4px 8px 4px 8px;
     float: left;
-    font: normal 16px/100% sans;
     margin: 0;
-    text-decoration: none;
-}
-div#alphabet ul li a:hover {
-    font-weight: bold;
 }
 
-/* Navigation
+/* Navigation/ Subnavigation
 ----------------------------------------------------- */
 div#navigation, div#subnavigation {
     width: 100%;
     margin: 0;
-    padding: 0;
 }
 div#navigation ul, div#subnavigation ul {
     list-style: none;
     min-width: 900px;
     height: 24px;
     margin: 0;
-    padding: 0px 0px 0px 9px;
+    padding: 0px 0px 0px 18px;
     border-width: 2px 0px 2px 0px;
     border-style: solid;
 }
 div#navigation ul li, div#subnavigation ul li {
+    border-width: 0px 2px 0px 2px;
+    border-style: solid;
     float: left;
 }
 div#navigation ul li:first-child, div#subnavigation ul li:first-child {
     margin-left: 4px;
-    content: "| ";
-}
-div#navigation ul li:after, div#subnavigation ul li:after {
-    content: "| ";
+    border-left: none;
 }
 div#navigation ul li a, div#subnavigation ul li a {
     display: block;
-    padding: 4px;
+    padding: 4px 6px 4px 6px;
     float: left;
-    font: .8em bold italic small-caps verdana, serif;
-    text-decoration: none;
     margin: 0;
 }
