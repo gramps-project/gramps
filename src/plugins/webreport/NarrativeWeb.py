@@ -2475,8 +2475,7 @@ class EventListPage(BasePage):
                         [THEAD,        "Type"],
                         [DHEAD,        "Date"],
                         [GRAMPSID,     "GRAMPSID"],
-                        [_PERSON,      "Person"],
-                        [_("Totals"),  "Totals"] ] 
+                        [_PERSON,      "Person"] ]
                     ) 
 
                 tbody = Html("tbody")
@@ -2489,7 +2488,6 @@ class EventListPage(BasePage):
 
                     # sort datalist by date of event
                     datalist = sorted(datalist, key = self._getEventDate)
-                    total = len(datalist)
                     first_event = True
 
                     while datalist:
@@ -2560,14 +2558,6 @@ class EventListPage(BasePage):
 
                                 # get person(s) for ColumnPerson
                                 self.complete_people(tcell, first_person, handle_list)
-
-                                # display total of the event if first_event is True
-                                tcell = Html("td", class_ = "ColumnTotals", inline = True)
-                                trow += tcell
-                                if first_event:
-                                    tcell += total
-                                else:
-                                    tcell += "&nbsp;"
 
                         _EVENT_DISPLAYED.append( gid )
                         first_event = False
