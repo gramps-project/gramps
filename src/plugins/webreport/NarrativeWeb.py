@@ -140,6 +140,13 @@ THEAD = _("Type")
 TMPL = _("Temple")
 VHEAD = _("Value")
 
+# Events that are usually a family event
+_EVENTMAP = [ gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_ALT,
+              gen.lib.EventType.MARR_SETTL, gen.lib.EventType.MARR_LIC,
+              gen.lib.EventType.MARR_CONTR, gen.lib.EventType.MARR_BANNS,
+              gen.lib.EventType.ENGAGEMENT, gen.lib.EventType.DIVORCE,
+              gen.lib.EventType.DIV_FILING ]
+  
 # define clear blank line for proper styling
 fullclear = Html("div", class_ = "fullclear", inline = True)
 
@@ -326,6 +333,56 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
+
+    def complete_people(self, tcell, first_person, handle_list):
+        """
+        completes the person column for classes EventListPage and EventPage
+
+        @param: db -- report database
+        @param: tcell -- table cell from its caller
+        @param: first_person -- variable from its callers
+        @param: handle_list -- handle list from the backlink of the event_handle
+        """
+        db = self.report.database
+        for (classname, handle) in handle_list:
+
+            # personal event
+            if classname == "Person":
+
+                _obj = db.get_person_from_handle(handle)
+                if _obj:
+                    _name = self.get_name(_obj)
+                    tcell += _name
+
+                    if not first_person:
+                        tcell += ", "
+                        first_person = False
+
+            # family event
+            else:
+                _obj = db.get_family_from_handle(handle)
+                if _obj:
+
+                    # husband and spouse in this example, are called father and mother
+                    husband_handle = _obj.get_father_handle() 
+                    spouse_handle = _obj.get_mother_handle()
+                    husband = db.get_person_from_handle(husband_handle)
+                    spouse = db.get_person_from_handle(spouse_handle)
+                    if husband:
+                        husband_name = self.get_name(husband)
+                    if spouse:
+                        spouse_name = self.get_name(spouse)
+                    if spouse and husband:
+                        tcell += ( Html("span", husband_name, class_ = "father fatherNmother") +
+                            Html("span", spouse_name, class_ = "mother")
+                            )
+                    elif spouse:
+                        tcell += Html("span", spouse_name, class_ = "mother")
+                    elif husband:
+                        tcell += Html("span", husband_name, class_ = "father")
+
+        # return tcell, and first_person back to its callers
+        return tcell, first_person
 
     def dump_attribute(self, attr, showsrc):
         """
@@ -2378,6 +2435,7 @@ class EventListPage(BasePage):
 
         @param: event_types: a list of the type in the events database for this class
         @param: event_handle_list -- a list of event handles
+        @param: progressmeter -- Progress Meter Bar
         """
         BasePage.__init__(self, report, title)
         db = report.database
@@ -2417,106 +2475,103 @@ class EventListPage(BasePage):
                         [THEAD,        "Type"],
                         [DHEAD,        "Date"],
                         [GRAMPSID,     "GRAMPSID"],
-                        [_PERSON,      "Person"] ]
+                        [_PERSON,      "Person"],
+                        [_("Totals"),  "Totals"] ] 
                     ) 
 
                 tbody = Html("tbody")
                 table += tbody
 
                 # separate events by their type and then thier event handles
-                displayed = []
                 for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
+                    first_letter = True
+                    _EVENT_DISPLAYED = []
+
+                    # sort datalist by date of event
+                    datalist = sorted(datalist, key = self._getEventDate)
+                    total = len(datalist)
                     first_event = True
 
-                    for (date, gid, event_handle) in datalist:
+                    while datalist:
+                        event_handle = datalist[0]
                         event = db.get_event_from_handle(event_handle)
+                        _type = event.type
+                        gid = event.gramps_id
 
-                        trow = Html("tr")
-                        tbody += trow
+                        # check to see if we have listed this gramps_id yet?
+                        if gid not in _EVENT_DISPLAYED:
 
-                        # set up hyperlinked letter for alphabet_navigation
-                        tcell = Html("td", class_ = "ColumnLetter", inline = True)
-                        trow += tcell
-                        ltr = evt_type[0].capitalize()
-                        if ltr in displayed:
-                            tcell += "&nbsp;"
-                        else:
-                            trow.attr = 'class = "BeginLetter"'
-                            tcell += Html("a", ltr, name = ltr, 
-                                title = _("Event types beginning with letter " + ltr), inline = True)
-  
-                        # display Event type if first in the list
-                        tcell = Html("td", class_ = "ColumnType", inline = True)
-                        trow += tcell
-                        if first_event:
-                            tcell += evt_type
-                        else:
-                            tcell += "&nbsp;" 
+                            # family event 
+                            if _type in _EVENTMAP:
+                                handle_list = db.find_backlink_handles(event_handle, include_classes = ['Family'])
 
-                        # event date
-                        tcell = Html("td", class_ = "ColumnDate", inline = True)
-                        trow += tcell
-                        if date and date is not gen.lib.Date.EMPTY:
-                            tcell += _dd.display(date)
-                        else:
-                            tcell += "&nbsp;"   
+                            # personal event
+                            else:
+                                handle_list = db.find_backlink_handles(event_handle, include_classes = ['Person'])
+                            if handle_list:
 
-                        # GRAMPS ID
-                        trow += ( Html("td", class_ = "ColumnGRAMPSID") +
-                            self.event_grampsid_link(event_handle, gid, None)
-                            )
+                                trow = Html("tr")
+                                tbody += trow
 
-                        # Person
-                        if evt_type in ["Divorce", "Marriage"]:
-                            handle_list = db.find_backlink_handles(event_handle, 
-                                include_classes = ['Person', 'Family'])
-                        else:
-                            handle_list = db.find_backlink_handles(event_handle, include_classes=['Person'])
+                                # set up hyperlinked letter for alphabet_navigation
+                                tcell = Html("td", class_ = "ColumnLetter", inline = True)
+                                trow += tcell
 
-                        tcell = Html("td", class_ = "ColumnPerson")
-                        trow += tcell
+                                ltr = evt_type[0].capitalize()
+                                if first_letter:
+                                    trow.attr = 'class = "BeginLetter"'
+                                    tcell += Html("a", ltr, name = ltr, 
+                                        title = _("Event types beginning with letter " + ltr), inline = True)
+                                    first_letter = False
 
-                        if handle_list:
-                            first_person = True
-
-                            # clasname can be either Person or Family 
-                            for (classname, handle) in handle_list:
-
-                                if classname == "Person":
-                                    person = db.get_person_from_handle(handle)
-                                    if person:
-                                        person_name = self.get_name(person)
-
-                                        if not first_person:
-                                            tcell += ", "
-
-                                        tcell += person_name
                                 else:
-                                    family = db.get_family_from_handle(handle)
-                                    if family:
+                                    tcell += "&nbsp;" 
+  
+                                # display Event type if first in the list
+                                tcell = Html("td", class_ = "ColumnType", inline = True)
+                                trow += tcell
+                                if first_event:
+                                    tcell += evt_type
+                                else:
+                                    tcell += "&nbsp;" 
 
-                                        # husband and spouse in this example, are called father and mother
-                                        husband_handle = family.get_father_handle() 
-                                        spouse_handle = family.get_mother_handle()
-                                        husband = db.get_person_from_handle(husband_handle)
-                                        spouse = db.get_person_from_handle(spouse_handle)
-                                        if husband:
-                                            husband_name = self.get_name(husband)
-                                        if spouse:
-                                            spouse_name = self.get_name(spouse)
-                                        if spouse and husband:
-                                            tcell += ( Html("span", husband_name, class_ = "father fatherNmother") +
-                                                Html("span", spouse_name, class_ = "mother")
-                                                )
-                                        elif spouse:
-                                            tcell += Html("span", spouse_name, class_ = "mother")
-                                        elif husband:
-                                            tcell += Html("span", husband_name, class_ = "father")
-                                first_person = False
-                        else:
-                            tcell += "&nbsp;" 
+                                # event date
+                                tcell = Html("td", class_ = "ColumnDate", inline = True)
+                                trow += tcell
+                                date = gen.lib.Date.EMPTY
+                                if event:
+                                    date = event.get_date_object()
+                                    if date and date is not gen.lib.Date.EMPTY:
+                                        tcell += _dd.display(date)
+                                else:
+                                    tcell += "&nbsp;"   
+
+                                # GRAMPS ID
+                                trow += ( Html("td", class_ = "ColumnGRAMPSID") +
+                                    self.event_grampsid_link(event_handle, gid, None)
+                                    )
+
+                                # Person(s) column
+                                tcell = Html("td", class_ = "ColumnPerson")
+                                trow += tcell
+
+                                # classname can either be a person or a family
+                                first_person = True
+
+                                # get person(s) for ColumnPerson
+                                self.complete_people(tcell, first_person, handle_list)
+
+                                # display total of the event if first_event is True
+                                tcell = Html("td", class_ = "ColumnTotals", inline = True)
+                                trow += tcell
+                                if first_event:
+                                    tcell += total
+                                else:
+                                    tcell += "&nbsp;"
+
+                        _EVENT_DISPLAYED.append( gid )
                         first_event = False
-                        displayed.append(ltr)   
+                        datalist.remove("%s" % event_handle)
 
         # add clearline for proper styling
         # add footer section
@@ -2526,6 +2581,19 @@ class EventListPage(BasePage):
         # send page ut for processing
         # and close the file
         self.XHTMLWriter(eventslistpage, of)
+
+    def _getEventDate(self, event_handle):
+        event_date = gen.lib.Date.EMPTY
+        event = self.report.database.get_event_from_handle(event_handle)
+        if event:
+            date = event.get_date_object()
+            if date:
+
+                # returns the date in YYYY-MM-DD format
+                return gen.lib.Date(date.get_year(), date.get_month(), date.get_day())
+
+        # return empty date string
+        return event_date
 
     def event_grampsid_link(self, handle, grampsid, up):
         """
@@ -2538,15 +2606,16 @@ class EventListPage(BasePage):
         return Html("a", grampsid, href = url, alt = grampsid)
 
 class EventPage(BasePage):
-
     def __init__(self, report, title, event_handle):
         """
         Creates the individual event page
 
         @param: title -- is the title of the web pages
         @param: event_handle -- the event handle for the database
+        @param: progressmeter -- progress meter bar
         """
         db = report.database
+
         event = db.get_event_from_handle(event_handle)
         evt_gid = event.gramps_id
         BasePage.__init__(self, report, title, evt_gid)
@@ -2605,49 +2674,16 @@ class EventPage(BasePage):
                 trow += tcell
 
                 # Person(s) field
-                if evt_type in ["Divorce", "Marriage", "Marriage filing", "Annulment"]:
-
+                if event.type in _EVENTMAP:
                     handle_list = db.find_backlink_handles(event_handle, include_classes = ['Family'])
-                    if handle_list:
-
-                        # clasname can be either Person or Family 
-                        for (classname, handle) in handle_list:
-
-                            family = db.get_family_from_handle(handle)
-                            if family:
-
-                                # husband and spouse in this example, are called father and mother
-                                husband_handle = family.get_father_handle() 
-                                spouse_handle = family.get_mother_handle()
-                                husband = db.get_person_from_handle(husband_handle)
-                                spouse = db.get_person_from_handle(spouse_handle)
-                                if husband:
-                                    husband_name = self.get_name(husband)
-                                if spouse:
-                                    spouse_name = self.get_name(spouse)
-                                if spouse and husband:
-                                    tcell += ( Html("span", husband_name, class_ = "father fatherNmother") +
-                                        Html("span", spouse_name, class_ = "mother")
-                                        )
-                                elif spouse:
-                                    tcell += Html("span", spouse_name, class_ = "mother")
-                                elif husband:
-                                    tcell += Html("span", husband_name, class_ = "father")
-                                first_person = False
-
                 else:
-                    first_person = True
-                    handle_list = db.find_backlink_handles(event_handle, include_classes = ['Person'])
-                    if handle_list:
-                        for (classname, handle) in handle_list:
-                            person = db.get_person_from_handle(handle)
-                            if person:
-                                person_name = self.get_name(person)
-                                tcell += person_name
+                    handle_list = db.find_backlink_handles(event_handle, include_classes = ["Person"]) 
 
-                                if not first_person:
-                                    tcell += ", "
-                                first_person = False 
+                if handle_list:
+                    first_person = True
+
+                    # get person(s) for ColumnPerson
+                    self.complete_people(tcell, first_person, handle_list)
 
             # Narrative subsection
             notelist = event.get_note_list()
@@ -2673,7 +2709,7 @@ class EventPage(BasePage):
 
         # send page out for processing
         # and close the page
-        self.XHTMLWriter(eventpage, of) 
+        self.XHTMLWriter(eventpage, of)
 
 class MediaPage(BasePage):
 
@@ -6159,9 +6195,7 @@ def sort_event_types(db, event_types, event_handle_list):
 
         # add (gramps_id, date, handle) from this event
         if etype in event_dict:
-            event_dict[etype].append(
-                (event.get_date_object(), event.gramps_id, handle)
-                )
+            event_dict[etype].append( handle )
 
     for tup_list in event_dict.values():
         tup_list.sort()
