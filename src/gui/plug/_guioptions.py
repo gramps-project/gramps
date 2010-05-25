@@ -1378,8 +1378,9 @@ class GuiBooleanListOption(gtk.HBox):
         for description in option.get_descriptions():
             button = gtk.CheckButton(description)
             self.__cbutton.append(button)
-            if default[counter] == 'True':
-                button.set_active(True)
+            if counter < len(default):
+                if default[counter] == 'True':
+                    button.set_active(True)
             button.connect("toggled", self.__value_changed)
             column[counter % COLUMNS].pack_start(button, True, True)
             button.show()
