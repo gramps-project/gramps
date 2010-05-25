@@ -51,10 +51,6 @@ class WhatNextGramplet(Gramplet):
     # descendants of this ancestor are processed.
     ANCESTOR_DELAY = 1
 
-    # After a spouse was processed, how many extra rounds to delay until the
-    # ancestors of this spouse are processed.
-    SPOUSE_DELAY = 1
-
     # Use COMPLETE marker on a person to indicate that this person has no
     # further marriages, if COMPLETE marker is not set, warn about this at the
     # time the marriages for the person are processed.
@@ -97,7 +93,6 @@ class WhatNextGramplet(Gramplet):
 
         self.set_text("")
 
-
         # List of already processed persons and families, to avoid recursing
         # back down to ourselves or meeting the same person through different
         # paths.
@@ -111,7 +106,8 @@ class WhatNextGramplet(Gramplet):
         # parent's other spouses, the ancestors of my grandchildren's spouses,
         # the ancestors of my sibling's spouses etc.
         ancestors = [[default_person]]
-        ancestors_queue = [[[default_person]]] + [[] for i in range(self.ANCESTOR_DELAY)]
+        ancestors_queue = ([[[default_person]]] +
+                           [[] for in in range(self.ANCESTOR_DELAY)])
 
         # List of lists of families of relatives in currently processed
         # distance. We go up one level of distance in each round.
@@ -136,7 +132,7 @@ class WhatNextGramplet(Gramplet):
         # List of spouses to add to ancestors list so we track ancestors of
         # spouses, too, but delayed as defined by the parameter.
         spouses = []
-        spouses_queue = [[] for i in range(self.SPOUSE_DELAY)]
+        spouses_queue = []
 
         while (ancestors or families):
             # (Other) families of parents
@@ -159,12 +155,7 @@ class WhatNextGramplet(Gramplet):
             if self.__counter >= self.TODOS_WANTED:
                 break
 
-            # Now add the spouses of last round to the list
-            spouses_queue.append(spouses)
-            ancestors += spouses_queue.pop(0)
-
             # Next generation of children
-            spouses = []
             for down in range(self.DOWNS_PER_UP):
                 new_families = []
                 for family_group in families:
@@ -195,6 +186,8 @@ class WhatNextGramplet(Gramplet):
                     if self.__counter >= self.TODOS_WANTED:
                         break
                 families = new_families
+                spouses_queue.append(spouses)
+                spouses = []
                 if self.__counter >= self.TODOS_WANTED:
                     break
             if self.__counter >= self.TODOS_WANTED:
@@ -230,7 +223,7 @@ class WhatNextGramplet(Gramplet):
                     new_families.append(new_family_group)
                 if self.__counter >= self.TODOS_WANTED:
                     break
-            ancestors = new_ancestors
+            ancestors = new_ancestors + spouses_queue.pop(0)
             ancestors_queue.append(ancestors)
             families_queue.append(new_families)
             families += families_queue.pop(0)
