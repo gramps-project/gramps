@@ -80,6 +80,7 @@ class DetAncestorReport(Report):
         
         gen           - Maximum number of generations to include.
         pagebgg       - Whether to include page breaks between generations.
+        pageben       - Whether to include page break before End Notes.
         firstName     - Whether to use first names instead of pronouns.
         fulldate      - Whether to use full dates instead of just year.
         listchildren  - Whether to list children.
@@ -101,6 +102,7 @@ class DetAncestorReport(Report):
         menu = options_class.menu
         self.max_generations = menu.get_option_by_name('gen').get_value()
         self.pgbrk         = menu.get_option_by_name('pagebbg').get_value()
+        self.pgbrkenotes   = menu.get_option_by_name('pageben').get_value()
         self.fulldate      = menu.get_option_by_name('fulldates').get_value()
         self.listchildren  = menu.get_option_by_name('listc').get_value()
         self.includenotes  = menu.get_option_by_name('incnotes').get_value()
@@ -200,6 +202,8 @@ class DetAncestorReport(Report):
                             if self.inc_events:
                                 self.write_family_events(family)
         if self.inc_sources:
+            if self.pgbrkenotes:
+                self.doc.page_break()
             Endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.inc_srcnotes)
 
@@ -672,6 +676,11 @@ class DetAncestorOptions(MenuReportOptions):
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
         menu.add_option(category_name,"pagebbg",pagebbg)
+
+        pageben = BooleanOption(_("Page break before end notes"),False)
+        pageben.set_help(
+                     _("Whether to start a new page before the end notes."))
+        menu.add_option(category_name,"pageben",pageben)
         
         category_name = _("Content")
 
