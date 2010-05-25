@@ -61,6 +61,7 @@ div#alphabet ul li:first-child {
     border-left: none;
 }
 div#alphabet ul li a {
+    font: normal 16px sans;
     display: block;
     padding: 4px 8px 4px 8px;
     float: left;
@@ -78,7 +79,7 @@ div#navigation ul, div#subnavigation ul {
     min-width: 900px;
     height: 24px;
     margin: 0;
-    padding: 0px 0px 0px 18px;
+    padding: 4px 0px 0px 14px;
     border-width: 2px 0px 2px 0px;
     border-style: solid;
 }
@@ -86,14 +87,14 @@ div#navigation ul li, div#subnavigation ul li {
     border-width: 0px 2px 0px 2px;
     border-style: solid;
     float: left;
+    padding: 2px 6px 4px 6px;
+    margin: 0;
 }
 div#navigation ul li:first-child, div#subnavigation ul li:first-child {
-    margin-left: 4px;
     border-left: none;
 }
 div#navigation ul li a, div#subnavigation ul li a {
     display: block;
-    padding: 4px 6px 4px 6px;
-    float: left;
-    margin: 0;
+    font: normal 12px serif;
+    text-decoration: none;
 }

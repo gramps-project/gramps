@@ -62,11 +62,11 @@ div#alphabet ul li, div#navigation ul li, div#subnavigation ul li {
 }
 div#alphabet ul li a {
     color: #FFF;
-    font: normal 16px/100% sans;
+    font: normal 16px sans;
 }
 div#navigation ul li a, div#subnavigation ul li a {
     color: #FFF;
-    font: normal 12px serif;
+    font: normal 14px serif;
 }
 div#navigation ul li.CurrentSection a {
     background-color: #13A926;
