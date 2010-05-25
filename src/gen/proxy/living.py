@@ -29,6 +29,7 @@ Proxy class for the GRAMPS databases. Filter out all living people.
 # Python libraries
 #
 #-------------------------------------------------------------------------
+from itertools import ifilter
 
 #-------------------------------------------------------------------------
 #
@@ -110,13 +111,12 @@ class LivingProxyDb(ProxyDbBase):
         """
         Protected version of iter_people
         """
-        for person in self.db.iter_people():
-            if person and self.__is_living(person):
-                if self.mode == self.MODE_EXCLUDE_ALL:
-                    person = None
-                else:
-                    person = self.__restrict_person(person)
-            if person:
+        for person in ifilter(None, self.db.iter_people()):
+            if not(self.__is_living(person) and
+                   self.mode == self.MODE_EXCLUDE_ALL):
+
+                yield self.__restrict_person(person)
+            else:
                 yield person
 
     def get_person_from_gramps_id(self, val):

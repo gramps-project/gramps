@@ -25,6 +25,14 @@
 """
 Proxy class for the GRAMPS databases. Apply filter
 """
+
+#-------------------------------------------------------------------------
+#
+# Python libraries
+#
+#-------------------------------------------------------------------------
+from itertools import imap
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
@@ -313,8 +321,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Persons in the database
         """
-        for handle in self.plist:
-            yield self.get_person_from_handle(handle)
+        return imap(self.get_person_from_handle, self.plist)
 
     def get_event_handles(self):
         """
@@ -325,10 +332,16 @@ class FilterProxyDb(ProxyDbBase):
         
     def iter_event_handles(self):
         """
-        Return an iterator over database handles, one handle for each Person in
+        Return an iterator over database handles, one handle for each Event in
         the database. 
         """
-        return self.elist        
+        return self.elist
+
+    def iter_events(self):
+        """
+        Return an iterator over objects for Events in the database
+        """
+        return imap(self.get_event_from_handle, self.elist)
 
     def get_family_handles(self):
         """
@@ -339,10 +352,16 @@ class FilterProxyDb(ProxyDbBase):
         
     def iter_family_handles(self):
         """
-        Return an iterator over database handles, one handle for each Person in
+        Return an iterator over database handles, one handle for each Family in
         the database. 
         """
         return self.flist
+
+    def iter_families(self):
+        """
+        Return an iterator over objects for Families in the database
+        """
+        return imap(self.get_family_from_handle, self.flist)        
 
     def get_note_handles(self):
         """
@@ -353,10 +372,16 @@ class FilterProxyDb(ProxyDbBase):
 
     def iter_note_handles(self):
         """
-        Return an iterator over database handles, one handle for each Person in
+        Return an iterator over database handles, one handle for each Note in
         the database. 
         """
         return self.nlist
+
+    def iter_notes(self):
+        """
+        Return an iterator over objects for Notes in the database
+        """
+        return imap(self.get_note_from_handle, self.nlist)        
 
     def get_default_person(self):
         """returns the default Person of the database"""
