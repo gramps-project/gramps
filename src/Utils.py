@@ -816,9 +816,9 @@ def probably_alive(person, db,
     :param max_age_prob_alive: maximum age of a person, in years
     :param avg_generation_gap: average generation gap, in years
     """
-    # First, find the real database to use all people
+    # First, get the real database to use all people
     # for determining alive status:
-    basedb = db.get_base_db()
+    basedb = db.basedb
     # Now, we create a wrapper for doing work:
     pb = ProbablyAlive(basedb, max_sib_age_diff, 
                        max_age_prob_alive, 

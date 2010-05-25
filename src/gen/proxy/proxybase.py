@@ -723,11 +723,3 @@ class ProxyDbBase(DbReadBase):
         """returns the list of Note handles in the bookmarks"""
         return self.note_bookmarks
 
-    def get_base_db(self):
-        """
-        Return the base database.
-        """
-        basedb = self
-        while isinstance(basedb, ProxyDbBase):
-            basedb = basedb.db
-        return basedb

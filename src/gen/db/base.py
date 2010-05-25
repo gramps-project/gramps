@@ -53,6 +53,7 @@ class DbReadBase(object):
         A new DbReadBase class should never be directly created. Only classes 
         derived from this class should be created.
         """
+        self.basedb = self
 
     def all_handles(self, table):
         """
