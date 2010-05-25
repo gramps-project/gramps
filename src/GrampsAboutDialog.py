@@ -122,14 +122,14 @@ class GrampsAboutDialog(gtk.AboutDialog):
                  "LANG: %s\n" +
                  "OS: %s\n" +
                  "Distribution: %s")
-                % (elipses(str(const.VERSION)),
-                   elipses(str(sys.version).replace('\n','')),
-                   elipses(str(bsddb.__version__) + " " + str(bsddb.db.version())),
-                   elipses(os.environ.get('LANG','')),
-                   elipses(operatingsystem),
-                   elipses(distribution)))
+                % (ellipses(str(const.VERSION)),
+                   ellipses(str(sys.version).replace('\n','')),
+                   ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version())),
+                   ellipses(os.environ.get('LANG','')),
+                   ellipses(operatingsystem),
+                   ellipses(distribution)))
 
-def elipses(text):
+def ellipses(text):
     if len(text) > 40:
         return text[:40] + "..."
     return text
