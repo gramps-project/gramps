@@ -107,7 +107,7 @@ class WhatNextGramplet(Gramplet):
         # the ancestors of my sibling's spouses etc.
         ancestors = [[default_person]]
         ancestors_queue = ([[[default_person]]] +
-                           [[] for in in range(self.ANCESTOR_DELAY)])
+                           [[] for i in range(self.ANCESTOR_DELAY)])
 
         # List of lists of families of relatives in currently processed
         # distance. We go up one level of distance in each round.
