@@ -356,15 +356,21 @@ class DetDescendantReport(Report):
        
         self.write_person_info(person)
 
-        if self.listchildren or self.inc_events or self.inc_mates:
+        if self.inc_mates or self.listchildren or self.inc_notes \
+                or self.inc_events or self.inc_attrs:
             for family_handle in person.get_family_handle_list():
                 family = self.database.get_family_from_handle(family_handle)
                 if self.inc_mates:
                     self.__write_mate(person, family)
                 if self.listchildren:
                     self.__write_children(family)
+                if self.inc_notes:
+                    self.__write_family_notes(family)
+                first = True
                 if self.inc_events:
-                    self.__write_family_events(family)
+                    first = self.__write_family_events(family)
+                if self.inc_attrs:
+                    self.__write_family_attrs(family, first)
 
     def write_event(self, event_ref):
         text = ""
@@ -501,13 +507,7 @@ class DetDescendantReport(Report):
 
             self.write_person_info(mate)
 
-    def __write_children(self, family):
-        """ 
-        List the children for the given family.
-        """
-        if not family.get_child_ref_list():
-            return
-
+    def __get_mate_names(self, family):
         mother_handle = family.get_mother_handle()
         if mother_handle:
             mother = self.database.get_person_from_handle(mother_handle)
@@ -521,6 +521,17 @@ class DetDescendantReport(Report):
             father_name = _nd.display(father)
         else:
             father_name = _("unknown")
+
+        return mother_name, father_name
+
+    def __write_children(self, family):
+        """ 
+        List the children for the given family.
+        """
+        if not family.get_child_ref_list():
+            return
+
+        mother_name, father_name = self.__get_mate_names(family)
 
         self.doc.start_paragraph("DDR-ChildTitle")
         self.doc.write_text(
@@ -572,6 +583,25 @@ class DetDescendantReport(Report):
                                          self.__narrator.get_buried_string())
             self.doc.end_paragraph()
 
+    def __write_family_notes(self, family):
+        """ 
+        Write the notes for the given family.
+        """
+        notelist = family.get_note_list()
+        if len(notelist) > 0:
+            mother_name, father_name = self.__get_mate_names(family)
+
+            self.doc.start_paragraph("DDR-NoteHeader")
+            self.doc.write_text(
+                _('Notes for %(mother_name)s and %(father_name)s:') % { 
+                'mother_name' : mother_name,
+                'father_name' : father_name })
+            self.doc.end_paragraph()
+            for notehandle in notelist:
+                note = self.database.get_note_from_handle(notehandle)
+                self.doc.write_styled_note(note.get_styledtext(), 
+                                           note.get_format(),"DDR-Entry")
+
     def __write_family_events(self, family):
         """ 
         List the events for the given family.
@@ -579,19 +609,7 @@ class DetDescendantReport(Report):
         if not family.get_event_ref_list():
             return
 
-        mother_handle = family.get_mother_handle()
-        if mother_handle:
-            mother = self.database.get_person_from_handle(mother_handle)
-            mother_name = _nd.display(mother)
-        else:
-            mother_name = _("unknown")
-
-        father_handle = family.get_father_handle()
-        if father_handle:
-            father = self.database.get_person_from_handle(father_handle)
-            father_name = _nd.display(father)
-        else:
-            father_name = _("unknown")
+        mother_name, father_name = self.__get_mate_names(family)
 
         first = 1
         for event_ref in family.get_event_ref_list():
@@ -604,6 +622,42 @@ class DetDescendantReport(Report):
                 self.doc.end_paragraph()
                 first = 0
             self.write_event(event_ref)
+            return first
+
+    def __write_family_attrs(self, family, first):
+        """ 
+        List the attributes for the given family.
+        """
+        attrs = family.get_attribute_list()
+
+        if first and attrs:
+            mother_name, father_name = self.__get_mate_names(family)
+
+            self.doc.start_paragraph('DDR-MoreHeader')
+            self.doc.write_text(
+                _('More about %(mother_name)s and %(father_name)s:') % { 
+                'mother_name' : mother_name,
+                'father_name' : father_name })
+            self.doc.end_paragraph()
+
+        for attr in attrs:
+            self.doc.start_paragraph('DDR-MoreDetails')
+            text = _("%(type)s: %(value)s%(endnotes)s") % {
+                'type'     : attr.get_type(),
+                'value'    : attr.get_value(),
+                'endnotes' : self.endnotes(attr) }
+            self.doc.write_text_citation( text )
+            self.doc.end_paragraph()
+
+            if self.inc_notes:
+                # if the attr or attr reference has a note attached to it,
+                # get the text and format it correctly
+                notelist = attr.get_note_list()
+                for notehandle in notelist:
+                    note = self.database.get_note_from_handle(notehandle)
+                    self.doc.write_styled_note(note.get_styledtext(), 
+                                               note.get_format(),"DDR-MoreDetails")
+
 
     def write_person_info(self, person):
         name = _nd.display_formal(person)
@@ -947,7 +1001,8 @@ class DetDescendantOptions(MenuReportOptions):
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the More About header.'))
+        para.set_description(_('The style used for the More About header and '
+            'for headers of mates.'))
         default_style.add_paragraph_style("DDR-MoreHeader", para)
 
         font = FontStyle()
