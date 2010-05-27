@@ -119,7 +119,7 @@ class ErrorReportAssistant(object):
                "gobject version: %s\n"\
                "cairo version  : %s"\
                % (str(sys.version).replace('\n',''),
-                  str(bsddb.__version__),
+                  str(bsddb.__version__) + " " + str(bsddb.db.version()),
                   str(const.VERSION),
                   os.environ.get('LANG',''),
                   operatingsystem,
