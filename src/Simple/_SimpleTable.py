@@ -32,28 +32,6 @@ import Errors
 import config
 import DateHandler
 
-def on_table_click(obj, table):
-    """
-    This is a workaround for a weird issue in Python. It occurs when a
-    click occurs faster than gramps can respond, and the
-    gobject.timeout_add ends up being called recursively. For some
-    reason some of the methods are removed from the Table object
-    making future calls invalid.
-    """
-    if hasattr(table, "_callback_leftclick"):
-        return table.on_table_click(obj)
-
-def on_table_doubleclick(obj, path, view_column, table):
-    """
-    This is a workaround for a weird issue in Python. It occurs when a
-    double-click occurs faster than gramps can respond, and the
-    gobject.timeout_add ends up being called recursively. For some
-    reason some of the methods are removed from the Table object
-    making future calls invalid.
-    """
-    if hasattr(table, "_callback_leftdouble"):
-        return table.on_table_doubleclick(obj, path, view_column)
-
 class SimpleTable(object):
     """
     Provide a simplified table creation interface.
@@ -102,6 +80,46 @@ class SimpleTable(object):
             self._callback_leftclick = callback
         elif which == "leftdouble":
             self._callback_leftdouble = callback
+
+    def button_press_event(self, treeview, event):
+        import gtk
+        if event.button == 3:
+                x = int(event.x)
+                y = int(event.y)
+                path_info = treeview.get_path_at_pos(x, y)
+                if path_info is not None:
+                    path, col, cellx, celly = path_info
+                    treeview.grab_focus()
+                    treeview.set_cursor(path, col, 0)
+                    selection = treeview.get_selection()
+                    store, node = selection.get_selected()
+                    index = None
+                    if node:
+                        index = store.get_value(node, 0) # index
+                    popup = gtk.Menu()
+                    if (index is not None and self.__link[index]):
+                    # See details (edit, etc):
+                        objclass, handle = self.__link[index]
+                        menu_item = gtk.MenuItem(_("See %s details") % objclass)
+                        menu_item.connect("activate", 
+                          lambda widget: self.on_table_doubleclick(treeview, 
+                                                                 path, 0))
+                        popup.append(menu_item)
+                        menu_item.show()
+                    # Add other items to menu:
+                    if (self._callback_leftclick or 
+                        (index is not None and self.__link[index])):
+                        objclass, handle = self.__link[index]
+                        if objclass == 'Person':
+                            menu_item = gtk.MenuItem(_("Make Active Person"))
+                            menu_item.connect("activate", 
+                              lambda widget: self.on_table_click(treeview))
+                            popup.append(menu_item)
+                            menu_item.show()
+                    # Show the popup menu:
+                    popup.popup(None, None, None, event.button, event.time)
+                    return True        
+        return False
 
     def on_table_doubleclick(self, obj, path, view_column):
         """
@@ -415,8 +433,9 @@ class SimpleTable(object):
                 sort_index = 0
             treeview = gtk.TreeView()
             treeview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-            treeview.connect('row-activated', on_table_doubleclick, self)
-            treeview.connect('cursor-changed', on_table_click, self)
+            #treeview.connect('row-activated', on_table_doubleclick, self)
+            #treeview.connect('cursor-changed', on_table_click, self)
+            treeview.connect('button-press-event', self.button_press_event)
             renderer = gtk.CellRendererText()
             types = [int] # index
             cnt = 0
