@@ -1366,10 +1366,10 @@ def navigation_label(db, nav_type, handle):
         obj = db.get_note_from_handle(handle)
         if obj:
             label = obj.get()
-            label = " ".join(label.split())
             # When strings are cut, make sure they are unicode
             #otherwise you may end of with cutting within an utf-8 sequence
             label = unicode(label)
+            label = " ".join(label.split())
             if len(label) > 40:
                 label = label[:40] + "..."
 
