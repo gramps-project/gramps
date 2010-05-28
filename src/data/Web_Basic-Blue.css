@@ -67,7 +67,8 @@ div#alphabet ul li a {
 div#navigation ul li a, div#subnavigation ul li a {
     color: #FFF;
 }
-div#navigation ul li a:hover, div#subnavigation ul li a:hover {
+div#alphabet ul li a:hover, div#navigation ul li a:hover, 
+div#subnavigation ul li a:hover {
     color: #000;
 }
 div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
