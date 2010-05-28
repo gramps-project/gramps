@@ -66,23 +66,19 @@ div#alphabet ul li a {
 }
 div#navigation ul li a, div#subnavigation ul li a {
     color: #FFF;
-    font: normal 14px serif;
 }
-div#navigation ul li.CurrentSection a {
+div#navigation ul li a:hover, div#subnavigation ul li a:hover {
+    color: #000;
+}
+div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
     background-color: #13A926;
+    font: bold 16px sans;
     color: #FFF;
     font-weight: bold;
-    font-style: italic;
 }
 div#navigation ul li.CurrentSection a:hover {
     background-color: #BCEAF6;
     color: #000;
-}
-div#subnavigation ul li.CurrentSection a {
-    background-color: #BCEAF6;
-    color: #000;
-    font-weight: bold;
-    font-style: italic;
 }
 div#subnavigation ul li.CurrentSection a:hover {
     background-color: #000;
@@ -549,7 +545,7 @@ div#events table.eventlist {
     margin-top: .3cm;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 10%;
+    width: 20%;
 }
 table.eventlist tbody tr td.ColumnDate {
     width: 12%;
@@ -1008,6 +1004,12 @@ div#families {
 div#families table.infolist {
     margin: .3cm 0 .3cm 0;
 }
+div#families table.infolist tbody tr td {
+    border: none;
+}
+div#families table.infolist tbody tr.BeginFamily {
+    border-top: solid 1px #000;
+}
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top:0;
 }
@@ -1166,8 +1168,7 @@ div#summaryarea {
 div#summaryarea table.infolist {
     margin:0;
     padding:0;
-    background:#FFF;
-    border-bottom: solid .7em #000;
+    background-color:#FFF;
 }
 div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
     font:normal .9em/1.2em sans-serif;
