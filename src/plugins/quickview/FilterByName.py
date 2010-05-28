@@ -106,7 +106,15 @@ def run(database, document, filter_name, *args, **kwargs):
         sdoc.title(_("Filtering on %s") % _(filter_name))
     sdoc.paragraph("")
     matches = 0
-    if (filter_name == 'all people'):
+    if (filter_name == 'people not in filter'):
+        stab.columns(_("Person"), _("Birth Date"), _("Name type"))
+        proxy_handles = dict([(handle,1) for handle in database.iter_person_handles()])
+        for person in database.basedb.iter_people():
+            if person.handle not in proxy_handles:
+                stab.row(person, sdb.birth_or_fallback(person),
+                         str(person.get_primary_name().get_type()))
+            matches += 1
+    elif (filter_name == 'all people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
             stab.row(person, sdb.birth_or_fallback(person),
