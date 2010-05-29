@@ -82,8 +82,9 @@ class EditEventRef(EditReference):
                               _('_General'), tblref)
 
     def _init_event(self):
-        self.commit_event = self.db.commit_personal_event
-        self.add_event = self.db.add_person_event
+        if not self.db.readonly:
+            self.commit_event = self.db.commit_personal_event
+            self.add_event = self.db.add_person_event
 
     def get_custom_events(self):
         return self.db.get_person_event_types()
@@ -257,8 +258,9 @@ class EditFamilyEventRef(EditEventRef):
                               event_ref, update)
         
     def _init_event(self):
-        self.commit_event = self.db.commit_family_event
-        self.add_event = self.db.add_family_event
+        if not self.db.readonly:
+            self.commit_event = self.db.commit_family_event
+            self.add_event = self.db.add_family_event
 
     def get_custom_events(self):
         return [ gen.lib.EventType((gen.lib.EventType.CUSTOM,val)) \

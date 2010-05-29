@@ -214,7 +214,7 @@ class EditName(EditSecondary):
             self.obj.set_surname,
             self.obj.get_surname,
             self.db.readonly,
-            autolist=self.db.get_surname_list(),
+            autolist=self.db.get_surname_list() if not self.db.readonly else [],
             changed=self.update_group_as)
 
         self.prefix_field = MonitoredEntry(
