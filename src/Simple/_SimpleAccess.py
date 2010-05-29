@@ -924,6 +924,41 @@ class SimpleAccess(object):
         else:
             return "Error: invalid object class: '%s'" % object_class
 
+    def describe(self, obj):
+        """
+        Given a object, return a string describing the object.  
+        """
+        if isinstance(obj, gen.lib.Person):
+            return self.name(obj)
+        elif isinstance(obj, gen.lib.Event):
+            return self.event_type(obj)
+        elif isinstance(obj, gen.lib.Family):
+            father = self.father(obj)
+            mother = self.mother(obj)
+            if father:
+                father_text = self.name(father)
+            else:
+                father_text = _("Unknown father")
+            if mother:
+                mother_text = self.name(mother)
+            else:
+                mother_text = _("Unknown mother")
+            return "%s and %s" % (mother_text, father_text)
+        elif isinstance(obj, gen.lib.MediaObject):
+            return obj.desc
+        elif isinstance(obj, gen.lib.Source):
+            return self.title(obj)
+        elif isinstance(obj, gen.lib.Place):
+            return place_name(self.dbase, obj.handle)
+        elif isinstance(obj, gen.lib.Repository):
+            return obj.type
+        elif isinstance(obj, gen.lib.Note):
+            return obj.type
+        elif obj is None:
+            return ""
+        else:
+            return "Error: incorrect object class: '%s'" % type(obj)
+
     def get_link(self, object_class, prop, value):
         """
         Given a object_class, prop, and value return the object.

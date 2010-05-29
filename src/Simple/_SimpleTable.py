@@ -83,45 +83,87 @@ class SimpleTable(object):
 
     def button_press_event(self, treeview, event):
         import gtk
-        if event.button == 3:
-                x = int(event.x)
-                y = int(event.y)
-                path_info = treeview.get_path_at_pos(x, y)
-                if path_info is not None:
-                    path, col, cellx, celly = path_info
+        index = None
+        button_code = None
+        event_time = None
+        func = None
+        if type(event) == bool: # enter
+            button_code = 3
+            event_time = 0
+            selection = treeview.get_selection()
+            store, node = selection.get_selected()
+            if node:
+                treeview.grab_focus()
+                index = store.get_value(node, 0) 
+                # FIXME: make popup come where cursor is
+                #rectangle = treeview.get_visible_rect()
+                #column = treeview.get_column(0)
+                #rectangle = treeview.get_cell_area("0:0", 
+                #x, y = rectangle.x, rectangle.y
+                #func = lambda menu: (x, y, True)
+        elif event.button == 3:
+            button_code = 3
+            event_time = event.time
+            x = int(event.x)
+            y = int(event.y)
+            path_info = treeview.get_path_at_pos(x, y)
+            func = None
+            if path_info is not None:
+                path, col, cellx, celly = path_info
+                selection = treeview.get_selection()
+                store, node = selection.get_selected()
+                if path:
                     treeview.grab_focus()
                     treeview.set_cursor(path, col, 0)
-                    selection = treeview.get_selection()
-                    store, node = selection.get_selected()
-                    index = None
-                    if node:
-                        index = store.get_value(node, 0) # index
-                    popup = gtk.Menu()
-                    if (index is not None and self.__link[index]):
-                    # See details (edit, etc):
-                        objclass, handle = self.__link[index]
-                        menu_item = gtk.MenuItem(_("See %s details") % objclass)
-                        menu_item.connect("activate", 
-                          lambda widget: self.on_table_doubleclick(treeview, 
-                                                                 path, 0))
-                        popup.append(menu_item)
-                        menu_item.show()
-                    # Add other items to menu:
-                    if (self._callback_leftclick or 
-                        (index is not None and self.__link[index])):
-                        objclass, handle = self.__link[index]
-                        if objclass == 'Person':
-                            menu_item = gtk.MenuItem(_("Make Active Person"))
-                            menu_item.connect("activate", 
-                              lambda widget: self.on_table_click(treeview))
-                            popup.append(menu_item)
-                            menu_item.show()
-                    # Show the popup menu:
-                    popup.popup(None, None, None, event.button, event.time)
-                    return True        
+                    index = store.get_value(node, 0) # index Below,
+        # you need index, treeview, path, button_code,
+        # func, and event_time
+        if index is not None:
+            popup = gtk.Menu()
+            if (index is not None and self.__link[index]):
+            # See details (edit, etc):
+                objclass, handle = self.__link[index]
+                menu_item = gtk.MenuItem(_("See %s details") % objclass)
+                menu_item.connect("activate", 
+                  lambda widget: self.on_table_doubleclick(treeview))
+                popup.append(menu_item)
+                menu_item.show()
+            # Add other items to menu:
+            if (self._callback_leftclick or 
+                (index is not None and self.__link[index])):
+                objclass, handle = self.__link[index]
+                if objclass == 'Person':
+                    menu_item = gtk.MenuItem(_("Make Active Person"))
+                    menu_item.connect("activate", 
+                      lambda widget: self.on_table_click(treeview))
+                    popup.append(menu_item)
+                    menu_item.show()
+            if (self.simpledoc.doc.dbstate.db != 
+                self.simpledoc.doc.dbstate.db.basedb and
+                (index is not None and self.__link[index])):
+                objclass, handle = self.__link[index]
+                if (objclass == 'Filter' and 
+                    handle[0] in ['Person', 'Family', 'Place', 'Event',
+                                  'Repository', 'Note', 'MediaObject',
+                                  'Source']):
+                    menu_item = gtk.MenuItem(_("See data not in Filter"))
+                    menu_item.connect("activate", 
+                      lambda widget: self.show_not_in_filter(handle[0]))
+                    popup.append(menu_item)
+                    menu_item.show()
+            # Show the popup menu:
+            popup.popup(None, None, func, button_code, event_time)
+            return True        
         return False
 
-    def on_table_doubleclick(self, obj, path, view_column):
+    def show_not_in_filter(self, obj_class):
+        from QuickReports import run_quick_report_by_name
+        run_quick_report_by_name(self.simpledoc.doc.dbstate,
+                                 self.simpledoc.doc.uistate, 
+                                 'filterbyname', 
+                                 'Inverse %s' % obj_class)
+
+    def on_table_doubleclick(self, obj):
         """
         Handle events on tables. obj is a treeview
         """
@@ -139,68 +181,76 @@ class SimpleTable(object):
             objclass, handle = self.__link[index]
             if objclass == 'Person':
                 person = self.access.dbase.get_person_from_handle(handle)
-                try:
-                    EditPerson(self.simpledoc.doc.dbstate, 
-                               self.simpledoc.doc.uistate, [], person)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if person:
+                    try:
+                        EditPerson(self.simpledoc.doc.dbstate, 
+                                   self.simpledoc.doc.uistate, [], person)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass == 'Event':
                 event = self.access.dbase.get_event_from_handle(handle)
-                try:
-                    EditEvent(self.simpledoc.doc.dbstate, 
-                              self.simpledoc.doc.uistate, [], event)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if event:
+                    try:
+                        EditEvent(self.simpledoc.doc.dbstate, 
+                                  self.simpledoc.doc.uistate, [], event)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass == 'Family':
                 ref = self.access.dbase.get_family_from_handle(handle)
-                try:
-                    EditFamily(self.simpledoc.doc.dbstate, 
-                               self.simpledoc.doc.uistate, [], ref)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if ref:
+                    try:
+                        EditFamily(self.simpledoc.doc.dbstate, 
+                                   self.simpledoc.doc.uistate, [], ref)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass == 'Source':
                 ref = self.access.dbase.get_source_from_handle(handle)
-                try:
-                    EditSource(self.simpledoc.doc.dbstate, 
-                               self.simpledoc.doc.uistate, [], ref)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if ref:
+                    try:
+                        EditSource(self.simpledoc.doc.dbstate, 
+                                   self.simpledoc.doc.uistate, [], ref)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass == 'Place':
                 ref = self.access.dbase.get_place_from_handle(handle)
-                try:
-                    EditPlace(self.simpledoc.doc.dbstate, 
-                               self.simpledoc.doc.uistate, [], ref)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if ref:
+                    try:
+                        EditPlace(self.simpledoc.doc.dbstate, 
+                                   self.simpledoc.doc.uistate, [], ref)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass == 'Repository':
                 ref = self.access.dbase.get_repository_from_handle(handle)
-                try:
-                    EditRepository(self.simpledoc.doc.dbstate, 
-                               self.simpledoc.doc.uistate, [], ref)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if ref:
+                    try:
+                        EditRepository(self.simpledoc.doc.dbstate, 
+                                   self.simpledoc.doc.uistate, [], ref)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass == 'Note':
                 ref = self.access.dbase.get_note_from_handle(handle)
-                try:
-                    EditNote(self.simpledoc.doc.dbstate, 
-                             self.simpledoc.doc.uistate, [], ref)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if ref:
+                    try:
+                        EditNote(self.simpledoc.doc.dbstate, 
+                                 self.simpledoc.doc.uistate, [], ref)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass in ['Media', 'MediaObject']:
                 ref = self.access.dbase.get_object_from_handle(handle)
-                try:
-                    EditMedia(self.simpledoc.doc.dbstate, 
-                              self.simpledoc.doc.uistate, [], ref)
-                    return True # handled event
-                except Errors.WindowActiveError:
-                    pass
+                if ref:
+                    try:
+                        EditMedia(self.simpledoc.doc.dbstate, 
+                                  self.simpledoc.doc.uistate, [], ref)
+                        return True # handled event
+                    except Errors.WindowActiveError:
+                        pass
             elif objclass == 'PersonList':
                 from QuickReports import run_quick_report_by_name
                 run_quick_report_by_name(self.simpledoc.doc.dbstate,
@@ -277,48 +327,35 @@ class SimpleTable(object):
                 retval.append(item)
                 self.row_sort_val(col, item)
             elif isinstance(item, gen.lib.Person):
-                name = self.access.name(item)
-                retval.append(name)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Person', item.handle)
             elif isinstance(item, gen.lib.Family): 
-                father = self.access.father(item)
-                mother = self.access.mother(item)
-                if father:
-                    text = self.access.name(father)
-                else:
-                    text = _("Unknown father")
-                text += " " + _("and")
-                if mother:
-                    text += " " + self.access.name(mother)
-                else:
-                    text += " " + _("Unknown mother")
-                retval.append(text)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Family', item.handle)
             elif isinstance(item, gen.lib.Source): 
-                retval.append(item.gramps_id)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Source', item.handle)
             elif isinstance(item, gen.lib.Event):
-                name = self.access.event_type(item)
-                retval.append(name)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Event', item.handle)
             elif isinstance(item, gen.lib.MediaObject):
-                retval.append(item.gramps_id)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Media', item.handle)
             elif isinstance(item, gen.lib.Place):
-                retval.append(item.gramps_id)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Place', item.handle)
             elif isinstance(item, gen.lib.Repository):
-                retval.append(item.gramps_id)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Repository', item.handle)
             elif isinstance(item, gen.lib.Note):
-                retval.append(item.gramps_id)
+                retval.append(self.access.describe(item))
                 if (self.__link_col == col or link is None):
                     link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
@@ -436,6 +473,7 @@ class SimpleTable(object):
             #treeview.connect('row-activated', on_table_doubleclick, self)
             #treeview.connect('cursor-changed', on_table_click, self)
             treeview.connect('button-press-event', self.button_press_event)
+            treeview.connect('select-cursor-row', self.button_press_event)
             renderer = gtk.CellRendererText()
             types = [int] # index
             cnt = 0

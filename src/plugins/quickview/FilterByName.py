@@ -72,28 +72,28 @@ def run(database, document, filter_name, *args, **kwargs):
         sdoc.paragraph("Double-click row to see selected items.")
         sdoc.paragraph("")
         stab.columns(_("Object"), _("Count/Total"))
-        stab.row([_("People"), "Filter", "all people"], 
+        stab.row([_("People"), "Filter", "Person"], 
                  "%d/%d" % (len(database.get_person_handles()),
                             len(database.basedb.get_person_handles())))
-        stab.row([_("Families"), "Filter", "all families"], 
+        stab.row([_("Families"), "Filter", "Family"], 
                  "%d/%d" % (len(database.get_family_handles()),
                             len(database.basedb.get_family_handles())))
-        stab.row([_("Events"), "Filter", "all events"], 
+        stab.row([_("Events"), "Filter", "Event"], 
                  "%d/%d" % (len(database.get_event_handles()),
                             len(database.basedb.get_event_handles())))
-        stab.row([_("Places"), "Filter", "all places"], 
+        stab.row([_("Places"), "Filter", "Place"], 
                  "%d/%d" % (len(database.get_place_handles()),
                             len(database.basedb.get_place_handles())))
-        stab.row([_("Sources"), "Filter", "all sources"], 
+        stab.row([_("Sources"), "Filter", "Source"], 
                  "%d/%d" % (len(database.get_source_handles()),
                             len(database.basedb.get_source_handles())))
-        stab.row([_("Repositories"), "Filter", "all repositories"], 
+        stab.row([_("Repositories"), "Filter", "Repository"], 
                  "%d/%d" % (len(database.get_repository_handles()),
                             len(database.basedb.get_repository_handles())))
-        stab.row([_("Media"), "Filter", "all media"], 
+        stab.row([_("Media"), "Filter", "MediaObject"], 
                  "%d/%d" % (len(database.get_media_object_handles()),
                             len(database.basedb.get_media_object_handles())))
-        stab.row([_("Notes"), "Filter", "all notes"], 
+        stab.row([_("Notes"), "Filter", "Note"], 
                  "%d/%d" % (len(database.get_note_handles()),
                             len(database.basedb.get_note_handles())))
         sdoc.paragraph("")
@@ -106,54 +106,118 @@ def run(database, document, filter_name, *args, **kwargs):
         sdoc.title(_("Filtering on %s") % _(filter_name))
     sdoc.paragraph("")
     matches = 0
-    if (filter_name == 'people not in filter'):
-        stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        proxy_handles = dict([(handle,1) for handle in database.iter_person_handles()])
+    if (filter_name == 'Inverse Person'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Person"), _("Gramps ID"), _("Birth Date"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_person_handles()])
         for person in database.basedb.iter_people():
             if person.handle not in proxy_handles:
-                stab.row(person, sdb.birth_or_fallback(person),
-                         str(person.get_primary_name().get_type()))
-            matches += 1
-    elif (filter_name == 'all people'):
-        stab.columns(_("Person"), _("Birth Date"), _("Name type"))
+                stab.row(person, person.gramps_id, 
+                         sdb.birth_or_fallback(person))
+                matches += 1
+    elif (filter_name == 'Inverse Family'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Family"), _("Gramps ID"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_family_handles()])
+        for family in database.basedb.iter_families():
+            if family.handle not in proxy_handles:
+                stab.row(family, family.gramps_id)
+                matches += 1
+    elif (filter_name == 'Inverse Event'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Event"), _("Gramps ID"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_event_handles()])
+        for event in database.basedb.iter_events():
+            if event.handle not in proxy_handles:
+                stab.row(event, event.gramps_id)
+                matches += 1
+    elif (filter_name == 'Inverse Place'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Place"), _("Gramps ID"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_place_handles()])
+        for place in database.basedb.iter_places():
+            if place.handle not in proxy_handles:
+                stab.row(place, place.gramps_id)
+                matches += 1
+    elif (filter_name == 'Inverse Source'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Source"), _("Gramps ID"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_source_handles()])
+        for source in database.basedb.iter_sources():
+            if source.handle not in proxy_handles:
+                stab.row(source, source.gramps_id)
+                matches += 1
+    elif (filter_name == 'Inverse Repository'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Repository"), _("Gramps ID"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_repository_handles()])
+        for repository in database.basedb.iter_repositories():
+            if repository.handle not in proxy_handles:
+                stab.row(repository, repository.gramps_id)
+                matches += 1
+    elif (filter_name == 'Inverse MediaObject'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Media"), _("Gramps ID"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_media_object_handles()])
+        for media in database.basedb.iter_media_objects():
+            if media.handle not in proxy_handles:
+                stab.row(media, media.gramps_id)
+                matches += 1
+    elif (filter_name == 'Inverse Note'):
+        sdb.dbase = database.basedb
+        stab.columns(_("Note"), _("Gramps ID"))
+        proxy_handles = dict([(handle,1) for handle in 
+                              database.iter_note_handles()])
+        for note in database.basedb.iter_notes():
+            if note.handle not in proxy_handles:
+                stab.row(note, note.gramps_id)
+                matches += 1
+    elif (filter_name in ['all people', 'Person']):
+        stab.columns(_("Person"), _("Gramps ID"), _("Birth Date"))
         for person in database.iter_people():
-            stab.row(person, sdb.birth_or_fallback(person),
-                     str(person.get_primary_name().get_type()))
+            stab.row(person, person.gramps_id, sdb.birth_or_fallback(person))
             matches += 1
-    elif (filter_name == 'all families'):
-        stab.columns(_("Family"))
+    elif (filter_name in ['all families', 'Family']):
+        stab.columns(_("Family"), _("Gramps ID"))
         for family in database.iter_families():
-            stab.row(family)
+            stab.row(family, family.gramps_id)
             matches += 1
-    elif (filter_name == 'all events'):
-        stab.columns(_("Event"))
+    elif (filter_name in ['all events', 'Event']):
+        stab.columns(_("Event"), _("Gramps ID"))
         for obj in database.iter_events():
-            stab.row(obj)
+            stab.row(obj, obj.gramps_id)
             matches += 1
-    elif (filter_name == 'all places'):
-        stab.columns(_("Place"))
+    elif (filter_name in ['all places', 'Place']):
+        stab.columns(_("Place"), _("Gramps ID"))
         for obj in database.iter_places():
-            stab.row(obj)
+            stab.row(obj, obj.gramps_id)
             matches += 1
-    elif (filter_name == 'all sources'):
-        stab.columns(_("Source"))
+    elif (filter_name in ['all sources', 'Source']):
+        stab.columns(_("Source"), _("Gramps ID"))
         for obj in database.iter_sources():
-            stab.row(obj)
+            stab.row(obj, obj.gramps_id)
             matches += 1
-    elif (filter_name == 'all repositories'):
-        stab.columns(_("Repository"))
+    elif (filter_name in ['all repositories', 'Repository']):
+        stab.columns(_("Repository"), _("Gramps ID"))
         for obj in database.iter_repositories():
-            stab.row(obj)
+            stab.row(obj, obj.gramps_id)
             matches += 1
-    elif (filter_name == 'all media'):
-        stab.columns(_("Media"))
+    elif (filter_name in ['all media', 'MediaObject']):
+        stab.columns(_("Media"), _("Gramps ID"))
         for obj in database.iter_media_objects():
-            stab.row(obj)
+            stab.row(obj, obj.gramps_id)
             matches += 1
-    elif (filter_name == 'all notes'):
-        stab.columns(_("Note"))
+    elif (filter_name in ['all notes', 'Note']):
+        stab.columns(_("Note"), _("Gramps ID"))
         for obj in database.iter_notes():
-            stab.row(obj)
+            stab.row(obj, obj.gramps_id)
             matches += 1
     elif (filter_name == 'males'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
