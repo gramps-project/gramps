@@ -25,3 +25,4 @@ from filter import FilterProxyDb
 from living import LivingProxyDb
 from private import PrivateProxyDb
 from referenced import ReferencedProxyDb
+from referencedbyselection import ReferencedBySelectionProxyDb
