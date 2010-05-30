@@ -177,7 +177,7 @@ class WriterOptionBox(object):
         self.preview_button = gtk.Button(_("Calculate Previews"))
         self.preview_button.connect("clicked", self.preview)
         hbox.pack_end(self.preview_button, False)
-        widget.pack_end(hbox, False)
+        widget.pack_start(hbox, False)
 
         # Populate the Person Filter
         entire_db = GenericFilter()
