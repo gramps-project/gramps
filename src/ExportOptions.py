@@ -223,7 +223,8 @@ class WriterOptionBox(object):
         row = 0
         for item in [
             _('Include all objects'),
-            _('Include only items connected to selected people'),
+            _('Include only items connected to another item'),
+            _('Include only items connected to all people'),
             _('Include items that are not orphans')]:
             model.append(row=[item, row])
             row += 1
@@ -615,6 +616,9 @@ class WriterOptionBox(object):
             elif self.reference_num == 1:
                 dbase = gen.proxy.ReferencedBySelectionProxyDb(dbase)
             elif self.reference_num == 2:
+                dbase = gen.proxy.ReferencedBySelectionProxyDb(dbase, 
+                                                               all_people=True)
+            elif self.reference_num == 3:
                 dbase = gen.proxy.ReferencedProxyDb(dbase)
         else:
             raise AttributeError("no such proxy '%s'" % proxy_name)
