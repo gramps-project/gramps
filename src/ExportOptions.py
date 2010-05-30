@@ -30,6 +30,7 @@
 import gtk
 import pango
 from gen.ggettext import gettext as _
+from gen.ggettext import ngettext
 import gobject
 
 #-------------------------------------------------------------------------
@@ -141,7 +142,9 @@ class WriterOptionBox(object):
         
         full_database_row = gtk.HBox()
         full_database_row.pack_start(gtk.Label("Unfiltered Family Tree:"), False)
-        button = gtk.Button("%d People" % len(self.dbstate.db.get_person_handles()))
+        button = gtk.Button(
+            ngettext("%d Person", "%d People", 
+                     len(self.dbstate.db.get_person_handles())))
         button.set_tooltip_text(_("Click to see preview of unfiltered data"))
         button.set_size_request(100, -1)
         button.connect("clicked", self.show_preview_data)
@@ -280,7 +283,9 @@ class WriterOptionBox(object):
         Build a frame for a proxy option. proxy_name is a string.
         """
         # Make a box and put the option in it:
-        button = gtk.Button("%d People" % 0)
+        button = gtk.Button(
+            ngettext("%d Person", "%d People", 
+                     0))
         button.set_size_request(100, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
@@ -543,7 +548,9 @@ class WriterOptionBox(object):
             if preview:
                 self.proxy_dbase[proxy_name] = dbase
                 self.preview_proxy_button[proxy_name].set_sensitive(1)
-                self.preview_proxy_button[proxy_name].set_label(_("%d People" % len(dbase.get_person_handles())))
+                self.preview_proxy_button[proxy_name].set_label(
+                    ngettext("%d Person", "%d People", 
+                             len(dbase.get_person_handles())))
         return dbase
 
     def apply_proxy(self, proxy_name, dbase, progress=None):
