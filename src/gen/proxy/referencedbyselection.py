@@ -126,8 +126,13 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the person object and find all of the primary objects
         that it references.
         """
+        # A non-person:
+        if person is None:
+            return
+        # A person we have seen before:
         if person.handle in self.referenced["Person"]:
             return
+        # A person that we should not add:
         if (self.restricted_to["Person"] and 
             person.handle not in self.restricted_to["Person"]):
             return
@@ -177,7 +182,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the family object and find all of the primary objects
         that it references.
         """
-        if family.handle in self.referenced["Family"]:
+        if family is None or family.handle in self.referenced["Family"]:
             return
         self.referenced["Family"].add(family.handle)
 
@@ -207,7 +212,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the event object and find all of the primary objects
         that it references.
         """
-        if event.handle in self.referenced["Event"]:
+        if event is None or event.handle in self.referenced["Event"]:
             return
         self.referenced["Event"].add(event.handle)
         self.process_source_ref_list(event)
@@ -225,7 +230,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the place object and find all of the primary objects
         that it references.
         """
-        if place.handle in self.referenced["Place"]:
+        if place is None or place.handle in self.referenced["Place"]:
             return
         self.referenced["Place"].add(place.handle)
         self.process_source_ref_list(place)
@@ -238,7 +243,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the source object and find all of the primary objects
         that it references.
         """
-        if source.handle in self.referenced["Source"]:
+        if source is None or source.handle in self.referenced["Source"]:
             return
         self.referenced["Source"].add(source.handle)
         for repo_ref in source.get_reporef_list():
@@ -256,7 +261,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the repository object and find all of the primary objects
         that it references.
         """
-        if repository.handle in self.referenced["Repository"]:
+        if repository is None or repository.handle in self.referenced["Repository"]:
             return
         self.referenced["Repository"].add(repository.handle)
         self.process_notes(repository)
@@ -268,7 +273,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the media object and find all of the primary objects
         that it references.
         """
-        if media.handle in self.referenced["MediaObject"]:
+        if media is None or media.handle in self.referenced["MediaObject"]:
             return
         self.referenced["MediaObject"].add(media.handle)
         self.process_source_ref_list(media)
