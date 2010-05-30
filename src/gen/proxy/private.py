@@ -767,7 +767,9 @@ def sanitize_person(db, person):
     # copy Family reference list
     for handle in person.get_parent_family_handle_list():
         family = db.get_family_from_handle(handle)
-        if family and family.get_privacy():
+        if not family:
+            continue
+        elif family.get_privacy():
             continue
         child_ref_list = family.get_child_ref_list()
         for child_ref in child_ref_list:
