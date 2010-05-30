@@ -50,6 +50,7 @@ LOG = logging.getLogger(".ExportCSV")
 #-------------------------------------------------------------------------
 import gen.lib
 from Filters import GenericFilter, Rules, build_filter_model
+from ExportOptions import WriterOptionBox
 import Utils
 import gen.proxy
 import DateHandler
@@ -150,68 +151,52 @@ class UnicodeWriter(object):
 # CSVWriter Options
 #
 #-------------------------------------------------------------------------
-class CSVWriterOptionBox(object):
+class CSVWriterOptionBox(WriterOptionBox):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
     
     """
     def __init__(self, person, dbstate, uistate):
-        self.person = person
+        WriterOptionBox.__init__(self, person, dbstate, uistate)
         self.include_individuals = 1
         self.include_marriages = 1
         self.include_children = 1
         self.translate_headers = 1
+        self.include_individuals_check = None
+        self.include_marriages_check = None
+        self.include_children_check = None
+        self.translate_headers_check = None
 
     def get_option_box(self):
-        self.topDialog = Glade()
-        self.filters = self.topDialog.get_object("filter")
+        import gtk
+        option_box = WriterOptionBox.get_option_box(self)
 
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
+        self.include_individuals_check = gtk.CheckButton(_("Include people"))
+        self.include_marriages_check = gtk.CheckButton(_("Include marraiges"))
+        self.include_children_check = gtk.CheckButton(_("Include children"))
+        self.translate_headers_check = gtk.CheckButton(_("Translate headers"))
 
-        the_filters = [all]
+        self.include_individuals_check.set_active(1) 
+        self.include_marriages_check.set_active(1) 
+        self.include_children_check.set_active(1) 
+        self.translate_headers_check.set_active(1) 
 
-        if self.person:
-            des = GenericFilter()
-            des.set_name(_("Descendants of %s") %
-                         self.person.get_primary_name().get_name())
-            des.add_rule(Rules.Person.IsDescendantOf(
-                [self.person.get_gramps_id(),1]))
+        option_box.pack_start(self.include_individuals_check, False)
+        option_box.pack_start(self.include_marriages_check, False)
+        option_box.pack_start(self.include_children_check, False)
+        option_box.pack_start(self.translate_headers_check, False)
 
-            ans = GenericFilter()
-            ans.set_name(_("Ancestors of %s") %
-                         self.person.get_primary_name().get_name())
-            ans.add_rule(Rules.Person.IsAncestorOf(
-                [self.person.get_gramps_id(),1]))
+        return option_box
 
-            com = GenericFilter()
-            com.set_name(_("People with common ancestor with %s") %
-                         self.person.get_primary_name().get_name())
-            com.add_rule(Rules.Person.HasCommonAncestorWith(
-                [self.person.get_gramps_id()]))
-
-            the_filters += [des,ans,com]
-
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_model(the_filters)
-        self.filters.set_model(self.filter_menu)
-        self.filters.set_active(0)
-
-        the_box = self.topDialog.get_object('vbox1')
-        the_parent = self.topDialog.get_object('dialog-vbox1')
-        the_parent.remove(the_box)
-        self.topDialog.toplevel.destroy()
-        return the_box
 
     def parse_options(self):
-        self.include_individuals = self.topDialog.get_object("individuals").get_active()
-        self.include_marriages = self.topDialog.get_object("marriages").get_active()
-        self.include_children = self.topDialog.get_object("children").get_active()
-        self.translate_headers = self.topDialog.get_object("translate_headers").get_active()
-        self.cfilter = self.filter_menu[self.filters.get_active()][1]
+        WriterOptionBox.parse_options(self)
+        if self.include_individuals_check:
+            self.include_individuals = self.include_individuals_check.get_active()
+            self.include_marriages = self.include_marriages_check.get_active()
+            self.include_children = self.include_children_check.get_active()
+            self.translate_headers = self.translate_headers_check.get_active()
 
 #-------------------------------------------------------------------------
 #
@@ -244,31 +229,30 @@ class CSVWriter(object):
             self.translate_headers = 1
         else:
             self.option_box.parse_options()
+            self.db = option_box.get_filtered_database(self.db)
 
             self.include_individuals = self.option_box.include_individuals
             self.include_marriages = self.option_box.include_marriages
             self.include_children = self.option_box.include_children
             self.translate_headers = self.option_box.translate_headers
             
-            if not option_box.cfilter.is_empty():
-                self.db = gen.proxy.FilterProxyDb(self.db, option_box.cfilter)
-
-        self.plist.update([p, 1] for p in self.db.iter_person_handles())
-
+        self.plist = [x for x in self.db.iter_person_handles()]
         # get the families for which these people are spouses:
         self.flist = {}
         for key in self.plist:
             p = self.db.get_person_from_handle(key)
-            for family_handle in p.get_family_handle_list():
-                self.flist[family_handle] = 1
-        # now add the families for which these people are a child:
-        family_handles = self.db.iter_family_handles()
-        for family_handle in family_handles:
-            family = self.db.get_family_from_handle(family_handle)
-            for child_ref in family.get_child_ref_list():
-                child_handle = child_ref.ref
-                if child_handle in self.plist:
+            if p:
+                for family_handle in p.get_family_handle_list():
                     self.flist[family_handle] = 1
+        # now add the families for which these people are a child:
+        for family_handle in self.db.iter_family_handles():
+            family = self.db.get_family_from_handle(family_handle)
+            if family:
+                for child_ref in family.get_child_ref_list():
+                    if child_ref:
+                        child_handle = child_ref.ref
+                        if child_handle in self.plist:
+                            self.flist[family_handle] = 1
                         
     def update_empty(self):
         pass
