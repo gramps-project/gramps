@@ -115,6 +115,7 @@ class SimpleTable(object):
                 if path:
                     treeview.grab_focus()
                     treeview.set_cursor(path, col, 0)
+                if store and node:
                     index = store.get_value(node, 0) # index Below,
         # you need index, treeview, path, button_code,
         # func, and event_time
