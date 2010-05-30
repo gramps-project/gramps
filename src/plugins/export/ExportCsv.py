@@ -156,7 +156,7 @@ class CSVWriterOptionBox(object):
     the options. 
     
     """
-    def __init__(self,person):
+    def __init__(self, person, dbstate, uistate):
         self.person = person
         self.include_individuals = 1
         self.include_marriages = 1

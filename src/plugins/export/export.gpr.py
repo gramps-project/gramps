@@ -58,7 +58,7 @@ plg.status = STABLE
 plg.fname = 'ExportFtree.py'
 plg.ptype = EXPORT
 plg.export_function = 'writeData'
-plg.export_options = 'FtreeWriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('Web Family Tree export options')
 plg.extension = "wft"
 
@@ -101,7 +101,7 @@ plg.status = STABLE
 plg.fname = 'ExportGeneWeb.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
-plg.export_options = 'GeneWebWriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('GeneWeb export options')
 plg.extension = "gw"
 
@@ -167,7 +167,7 @@ plg.status = STABLE
 plg.fname = 'ExportVCalendar.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
-plg.export_options = 'CalendarWriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('vCalendar export options')
 plg.extension = "vcs"
 
@@ -188,6 +188,6 @@ plg.status = STABLE
 plg.fname = 'ExportVCard.py'
 plg.ptype = EXPORT
 plg.export_function = 'exportData'
-plg.export_options = 'CardWriterOptionBox'
+plg.export_options = 'WriterOptionBox'
 plg.export_options_title = ('vCard export options')
 plg.extension = "vcf"

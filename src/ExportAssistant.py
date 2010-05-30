@@ -280,7 +280,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         vbox.foreach(vbox.remove)
         # add new content
         if config_box_class:
-            self.option_box_instance = config_box_class(self.person)
+            self.option_box_instance = config_box_class(self.person, self.dbstate, self.uistate)
             box = self.option_box_instance.get_option_box()
             vbox.add(box)
         else: 

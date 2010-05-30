@@ -47,83 +47,21 @@ log = logging.getLogger(".ExportVCal")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ExportOptions import WriterOptionBox
 from Filters import GenericFilter, Rules, build_filter_model
 import Utils
 from gen.lib import Date, EventType
 import Errors
 from glade import Glade
 
-#-------------------------------------------------------------------------
-#
-# CalendarWriterOptionBox class
-#
-#-------------------------------------------------------------------------
-class CalendarWriterOptionBox(object):
-    """
-    Create a VBox with the option widgets and define methods to retrieve
-    the options.
-     
-    """
-    def __init__(self, person):
-        self.person = person
-
-        self.topDialog = Glade()
-        self.copy = 0
-        
-    def get_option_box(self):
-        self.filters = self.topDialog.get_object("filter")
-
-        everyone_filter = GenericFilter()
-        everyone_filter.set_name(_("Entire Database"))
-        everyone_filter.add_rule(Rules.Person.Everyone([]))
-
-        the_filters = [everyone_filter]
-
-        if self.person:
-            des = GenericFilter()
-            des.set_name(_("Descendants of %s") %
-                         self.person.get_primary_name().get_name())
-            des.add_rule(Rules.Person.IsDescendantOf(
-                [self.person.get_gramps_id(),1]))
-
-            ans = GenericFilter()
-            ans.set_name(_("Ancestors of %s") %
-                         self.person.get_primary_name().get_name())
-            ans.add_rule(Rules.Person.IsAncestorOf(
-                [self.person.get_gramps_id(),1]))
-            
-            com = GenericFilter()
-            com.set_name(_("People with common ancestor with %s") %
-                         self.person.get_primary_name().get_name())
-            com.add_rule(Rules.Person.HasCommonAncestorWith(
-                [self.person.get_gramps_id()]))
-            
-            the_filters += [des, ans, com]
-
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_model(the_filters)
-        self.filters.set_model(self.filter_menu)
-        self.filters.set_active(0)
-
-        the_box = self.topDialog.get_object('vbox1')
-        the_parent = self.topDialog.get_object('dialog-vbox1')
-        the_parent.remove(the_box)
-        self.topDialog.toplevel.destroy()
-        return the_box
-
-    def parse_options(self):
-        self.cfilter = self.filter_menu[self.filters.get_active()][1]
-
 class CalendarWriter(object):
-    def __init__(self, database, msg_callback, cl=0, filename="", option_box=None,
+    def __init__(self, database, filename, msg_callback, option_box=None,
                  callback=None):
         self.db = database
-        self.option_box = option_box
-        self.cl = cl
         self.filename = filename
-        self.callback = callback
         self.msg_callback = msg_callback
+        self.option_box = option_box
+        self.callback = callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
@@ -139,29 +77,9 @@ class CalendarWriter(object):
         self.persons_notes_done = []
         self.person_ids = {}
         
-        if not option_box:
-            self.cl_setup()
-        else:
+        if option_box:
             self.option_box.parse_options()
-
-            if self.option_box.cfilter is None:
-                self.plist.udpate([p, 1]
-                    for p in self.db.iter_person_handles())
-            else:
-                try:
-                    self.plist.update([p, 1] 
-                        for p in self.option_box.cfilter.apply(
-                            self.db, self.db.iter_person_handles()))
-                except Errors.FilterError, msg:
-                    (m1, m2) = msg.messages()
-                    self.msg_callback(m1, m2)
-                    return
-
-            self.flist = {}
-            for key in self.plist:
-                p = self.db.get_person_from_handle(key)
-                for family_handle in p.get_family_handle_list():
-                    self.flist[family_handle] = 1
+            self.db = option_box.get_filtered_database(self.db)
  
     def update_empty(self):
         pass
@@ -172,17 +90,6 @@ class CalendarWriter(object):
         if newval != self.oldval:
             self.callback(newval)
             self.oldval = newval
-
-    def cl_setup(self):
-        for p in self.db.iter_person_handles():
-            self.plist[p] = 1
-
-        self.flist = {}
-
-        for key in self.plist:
-            p = self.db.get_person_from_handle(key)
-            for family_handle in p.get_family_handle_list():
-                self.flist[family_handle] = 1
 
     def writeln(self, text):
         #self.g.write('%s\n' % (text.encode('iso-8859-1')))
@@ -205,12 +112,13 @@ class CalendarWriter(object):
         self.writeln("PRODID:-//GNU//Gramps//EN")
         self.writeln("VERSION:1.0")
 
-        self.total = len(self.plist) + len(self.flist)
-        for key in self.plist:
+        self.total = (len([x for x in self.db.iter_person_handles()]) + 
+                      len([x for x in self.db.iter_family_handles()]))
+        for key in self.db.iter_person_handles():
             self.write_person(key)
             self.update()
 
-        for key in self.flist:
+        for key in self.db.iter_family_handles():
             self.write_family(key)
             self.update()
 
@@ -339,6 +247,6 @@ class CalendarWriter(object):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, option_box=None, callback=None):
+def exportData(database, filename, msg_callback, option_box=None, callback=None):
     cw = CalendarWriter(database, 0, filename, option_box, callback)
     return cw.export_data(filename)

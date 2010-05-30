@@ -47,6 +47,7 @@ log = logging.getLogger(".WriteFtree")
 #-------------------------------------------------------------------------
 import Utils
 from Filters import GenericFilter, Rules, build_filter_model
+from ExportOptions import WriterOptionBox
 import Errors
 from glade import Glade
 
@@ -56,66 +57,9 @@ from glade import Glade
 #
 #-------------------------------------------------------------------------
 def writeData(database, filename, msg_callback, option_box=None, callback=None):
-    writer = FtreeWriter(database, msg_callback, filename, option_box, callback)
+    writer = FtreeWriter(database, filename, msg_callback, option_box, callback)
     return writer.export_data()
     
-class FtreeWriterOptionBox(object):
-    """
-    Create a VBox with the option widgets and define methods to retrieve
-    the options. 
-    """
-    def __init__(self, person):
-        self.person = person
-        self.restrict = True
-
-    def get_option_box(self):
-        self.top = Glade()
-
-        self.filters = self.top.get_object("filter")
-
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        the_filters = [all]
-        
-        if self.person:
-            des = GenericFilter()
-            des.set_name(_("Descendants of %s") %
-                         self.person.get_primary_name().get_name())
-            des.add_rule(Rules.Person.IsDescendantOf(
-                [self.person.get_gramps_id(),1]))
-        
-            ans = GenericFilter()
-            ans.set_name(_("Ancestors of %s")
-                         % self.person.get_primary_name().get_name())
-            ans.add_rule(Rules.Person.IsAncestorOf(
-                [self.person.get_gramps_id(),1]))
-        
-            com = GenericFilter()
-            com.set_name(_("People with common ancestor with %s") %
-                         self.person.get_primary_name().get_name())
-            com.add_rule(Rules.Person.HasCommonAncestorWith(
-                [self.person.get_gramps_id()]))
-        
-            the_filters += [des, ans, com]
-
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_model(the_filters)
-        self.filters.set_model(self.filter_menu)
-        self.filters.set_active(0)
-
-        the_box = self.top.get_object("vbox1")
-        the_parent = self.top.get_object('dialog-vbox1')
-        the_parent.remove(the_box)
-        self.top.toplevel.destroy()
-        return the_box
-
-    def parse_options(self):
-        self.restrict = self.top.get_object("restrict").get_active()
-        self.cfilter = self.filter_menu[self.filters.get_active()][1]
-
 #-------------------------------------------------------------------------
 #
 # FtreeWriter
@@ -123,40 +67,23 @@ class FtreeWriterOptionBox(object):
 #-------------------------------------------------------------------------
 class FtreeWriter(object):
 
-    def __init__(self, database, msg_callback, filename="", option_box=None,
+    def __init__(self, database, filename, msg_callback, option_box=None,
                  callback = None):
         self.db = database
-        self.option_box = option_box
         self.filename = filename
-        self.callback = callback
         self.msg_callback = msg_callback
+        self.option_box = option_box
+        self.callback = callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
 
-        self.plist = {}
-
-        if not option_box:
-            self.cl_setup()
-        else:
+        if option_box:
             self.option_box.parse_options()
+            self.db = option_box.get_filtered_database(self.db)
 
-            self.restrict = self.option_box.restrict
-            if self.option_box.cfilter is None:
-                self.plist.update((p,1) 
-                    for p in self.db.iter_person_handles())
-
-            else:
-                try:
-                    self.plist.update((p,1) 
-                        for p in self.option_box.cfilter.apply(
-                            self.db, self.db.iter_person_handles()))
-
-                except Errors.FilterError, msg:
-                    (m1, m2) = msg.messages()
-                    self.msg_callback(m1, m2)
-                    return
+        self.plist = [x for x in self.db.iter_person_handles()]
 
     def update_empty(self):
         pass
@@ -167,11 +94,6 @@ class FtreeWriter(object):
         if newval != self.oldval:
             self.callback(newval)
             self.oldval = newval
-
-    def cl_setup(self):
-        self.restrict = True
-        self.plist.update((p,1) 
-            for p in self.db.iter_person_handles())        
 
     def export_data(self):
         name_map = {}
@@ -237,18 +159,18 @@ class FtreeWriter(object):
             else:
                 death = None
 
-            if self.restrict:
-                alive = Utils.probably_alive(p, self.db)
-            else:
-                alive = 0
+            #if self.restrict:
+            #    alive = Utils.probably_alive(p, self.db)
+            #else:
+            #    alive = 0
                 
-            if birth and not alive:
-                if death and not alive :
+            if birth:
+                if death:
                     dates = "%s-%s" % (fdate(birth), fdate(death))
                 else:
                     dates = fdate(birth)
             else:
-                if death and not alive:
+                if death:
                     dates = fdate(death)
                 else:
                     dates = ""

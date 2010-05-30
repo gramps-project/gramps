@@ -46,7 +46,6 @@ import Errors
 from ExportOptions import WriterOptionBox
 from gen.updatecallback import UpdateCallback
 from Utils import media_path_full, get_unicode_path
-import gen.proxy
 from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
@@ -234,66 +233,7 @@ class GedcomWriter(UpdateCallback):
         """
         if option_box:
             option_box.parse_options()
-
-            # Increment the progress count for each filter type chosen
-            if option_box.private:
-                self.progress_cnt += 1
-
-            if option_box.restrict:
-                self.progress_cnt += 1
-
-            if not option_box.cfilter.is_empty():
-                self.progress_cnt += 1
-
-            if not option_box.nfilter.is_empty():
-                self.progress_cnt += 1
-
-            if option_box.unlinked:
-                self.progress_cnt += 1
-
-            self.set_total(self.progress_cnt)
-            self.progress_cnt = 0
-
-            # If the private flag is set, apply the PrivateProxyDb
-            if option_box.private:
-                self.reset(_("Filtering private data"))
-                self.progress_cnt += 1
-                self.update(self.progress_cnt)
-                self.dbase = gen.proxy.PrivateProxyDb(self.dbase)
-
-            # If the restrict flag is set, apply the LivingProxyDb
-            if option_box.restrict:
-                self.reset(_("Filtering living persons"))
-                self.progress_cnt += 1
-                self.update(self.progress_cnt)
-                self.dbase = gen.proxy.LivingProxyDb(
-                            self.dbase, 
-                            gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
-
-            # If the filter returned by cfilter is not empty, apply the 
-            # FilterProxyDb (Person Filter)
-            if not option_box.cfilter.is_empty():
-                self.reset(_("Applying selected person filter"))
-                self.progress_cnt += 1
-                self.update(self.progress_cnt)
-                self.dbase = gen.proxy.FilterProxyDb(
-                    self.dbase, option_box.cfilter)
-            
-            # Apply the Note Filter
-            if not option_box.nfilter.is_empty():
-                self.reset(_("Applying selected note filter"))
-                self.progress_cnt += 1
-                self.update(self.progress_cnt)
-                self.dbase = gen.proxy.FilterProxyDb(
-                    self.dbase, note_filter=option_box.nfilter)
-
-            # Apply the ReferencedProxyDb to remove any objects not referenced
-            # after any of the other proxies have been applied
-            if option_box.unlinked:
-                self.reset(_("Filtering unlinked records"))
-                self.progress_cnt += 1
-                self.update(self.progress_cnt)
-                self.dbase = gen.proxy.ReferencedProxyDb(self.dbase)
+            self.dbase = option_box.get_filtered_database(self.dbase, self)
 
     def write_gedcom_file(self, filename):
         """

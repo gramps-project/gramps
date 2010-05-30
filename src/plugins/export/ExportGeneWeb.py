@@ -48,153 +48,32 @@ log = logging.getLogger(".WriteGeneWeb")
 #-------------------------------------------------------------------------
 import gen.lib
 from Filters import GenericFilter, Rules, build_filter_model
+from ExportOptions import WriterOptionBox
 #import const
 import Utils
 from glade import Glade
 import config
 
-#-------------------------------------------------------------------------
-#
-# GeneWebWriterOptionBox class
-#
-#-------------------------------------------------------------------------
-class GeneWebWriterOptionBox(object):
-    """
-    Create a VBox with the option widgets and define methods to retrieve
-    the options.
-     
-    """
-    def __init__(self, person):
-        self.person = person
-
-    def get_option_box(self):
-        self.restrict = 1
-
-        self.topDialog = Glade()
-        self.topDialog.connect_signals({
-                "on_restrict_toggled": self.on_restrict_toggled
-                })
-
-        self.filters = self.topDialog.get_object("filter")
-        self.copy = 0
-
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        the_filters = [all]
-
-        if self.person:
-            des = GenericFilter()
-            des.set_name(_("Descendants of %s") %
-                         self.person.get_primary_name().get_name())
-            des.add_rule(Rules.Person.IsDescendantOf(
-                [self.person.get_gramps_id(),1]))
-
-            ans = GenericFilter()
-            ans.set_name(_("Ancestors of %s") %
-                         self.person.get_primary_name().get_name())
-            ans.add_rule(Rules.Person.IsAncestorOf(
-                [self.person.get_gramps_id(),1]))
-
-            com = GenericFilter()
-            com.set_name(_("People with common ancestor with %s") %
-                         self.person.get_primary_name().get_name())
-            com.add_rule(Rules.Person.HasCommonAncestorWith(
-                [self.person.get_gramps_id()]))
-
-            the_filters += [des, ans, com]
-
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_model(the_filters)
-        self.filters.set_model(self.filter_menu)
-        self.filters.set_active(0)
-
-        the_box = self.topDialog.get_object('vbox1')
-        the_parent = self.topDialog.get_object('dialog-vbox1')
-        the_parent.remove(the_box)
-        self.topDialog.toplevel.destroy()
-        return the_box
-
-    def on_restrict_toggled(self, restrict):
-        active = restrict.get_active ()
-        for x in [self.topDialog.get_object("living"),
-                  self.topDialog.get_object("notes")]:
-            x.set_sensitive(active)
-
-    def parse_options(self):
-        self.restrict = self.topDialog.get_object("restrict").get_active()
-        self.living = (self.restrict and
-                       self.topDialog.get_object("living").get_active())
-        self.exclnotes = (self.restrict and
-                          self.topDialog.get_object("notes").get_active())
-        self.cfilter = self.filter_menu[self.filters.get_active()][1]
-
-        self.images = self.topDialog.get_object ("images").get_active ()
-        if self.images:
-            images_path = self.topDialog.get_object ("images_path")
-            self.images_path = unicode(images_path.get_text ())
-        else:
-            self.images_path = ""
-
 class GeneWebWriter(object):
-    def __init__(self, database, msg_callback, filename="", option_box=None,
+    def __init__(self, database, filename, msg_callback, option_box=None,
                  callback=None):
         self.db = database
-        self.option_box = option_box
         self.filename = filename
-        self.callback = callback
         self.msg_callback = msg_callback
+        self.option_box = option_box
+        self.callback = callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
 
-        self.plist = {}
-        self.flist = {}
-        
         self.persons_details_done = []
         self.persons_notes_done = []
         self.person_ids = {}
         
-        if not option_box:
-            self.restrict = 0
-            self.copy = 0
-            self.images = 0
-        else:
+        if option_box:
             self.option_box.parse_options()
-
-            self.restrict = self.option_box.restrict
-            self.living = self.option_box.living
-            self.exclnotes = self.option_box.exclnotes
-            self.copy = self.option_box.copy
-            self.images = self.option_box.images
-            self.images_path = self.option_box.images_path
-            
-            if not option_box.cfilter.is_empty():
-                self.db = gen.proxy.FilterProxyDb(self.db, option_box.cfilter)
-
-        self.plist.update([p, 1] for p in self.db.iter_person_handles())
-            
-        self.flist = {}
-        for key in self.plist:
-            p = self.db.get_person_from_handle(key)
-            for family_handle in p.get_family_handle_list():
-                self.flist[family_handle] = 1
-
-        # remove families that dont contain father AND mother
-        # because GeneWeb requires both to be present
-        templist = self.flist
-        self.flist = {}
-        for family_handle in templist:
-            family = self.db.get_family_from_handle(family_handle)
-            if family:
-                father_handle = family.get_father_handle()
-                mother_handle = family.get_mother_handle()
-                if father_handle and mother_handle:
-                    self.flist[family_handle] = 1
-
+            self.db = option_box.get_filtered_database(self.db)
 
     def update_empty(self):
         pass
@@ -222,6 +101,7 @@ class GeneWebWriter(object):
             self.msg_callback(_("Could not create %s") % self.filename)
             return False
 
+        self.flist = [x for x in self.db.iter_family_handles()]
         if len(self.flist) < 1:
             self.msg_callback(_("No families matched by selected filter"))
             return False
@@ -258,7 +138,7 @@ class GeneWebWriter(object):
                     self.write_sources( family.get_source_references())
                     self.write_children( family, father)
                     self.write_notes( family, father, mother)
-                    if not (self.restrict and self.exclnotes):
+                    if True: # FIXME: not (self.restrict and self.exclnotes):
                         notelist = family.get_note_list()
                         note = ""
                         for notehandle in notelist:
@@ -274,7 +154,7 @@ class GeneWebWriter(object):
     def write_witness(self, family):
         # FIXME: witnesses are not in events anymore
         return
-        
+    
         if self.restrict:
             return
         event_ref_list = family.get_event_ref_list()
@@ -301,8 +181,9 @@ class GeneWebWriter(object):
                                     )
 
     def write_sources(self,reflist):
-        if self.restrict and self.exclnotes:
-            return
+        # FIXME
+        #if self.restrict and self.exclnotes:
+        #    return
             
         if reflist:
             for sr in reflist:
@@ -336,8 +217,9 @@ class GeneWebWriter(object):
             self.writeln("end")
 
     def write_notes(self,family, father, mother):
-        if self.restrict and self.exclnotes:
-            return
+        # FIXME:
+        #if self.restrict and self.exclnotes:
+        #    return
             
         self.write_note_of_person(father)
         self.write_note_of_person(mother)
@@ -379,8 +261,9 @@ class GeneWebWriter(object):
                 self.writeln("end notes")
     
     def get_full_person_info(self, person):
-        if self.restrict:
-            return "0 "
+        # FIXME:
+        #if self.restrict:
+        #    return "0 "
             
         retval = ""
 
@@ -451,27 +334,27 @@ class GeneWebWriter(object):
         return str.replace(' ','_')
     
     def get_ref_name(self,person):
-        missing_surname = config.get("preferences.no-surname-text")
+        #missing_surname = config.get("preferences.no-surname-text")
         surname = self.rem_spaces( person.get_primary_name().get_surname())
-        firstname = config.get('preferences.private-given-text') 
-        if not (Utils.probably_alive(person,self.db) and \
-          self.restrict and self.living):
-            firstname = self.rem_spaces( person.get_primary_name().get_first_name())
+        #firstname = config.get('preferences.private-given-text') 
+        #if not (Utils.probably_alive(person,self.db) and \
+        #  self.restrict and self.living):
+        firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
-        return "%s %s.%d" % (surname or missing_surname, firstname, 
+        return "%s %s.%d" % (surname, firstname, 
                              self.person_ids[person.get_handle()])
 
     def get_child_ref_name(self,person,father_lastname):
-        missing_first_name = config.get("preferences.no-given-text")
+        #missing_first_name = config.get("preferences.no-given-text")
         surname = self.rem_spaces( person.get_primary_name().get_surname())
-        firstname = config.get('preferences.private-given-text')
-        if not (Utils.probably_alive(person,self.db) and \
-          self.restrict and self.living):
-            firstname = self.rem_spaces( person.get_primary_name().get_first_name())
+        #firstname = config.get('preferences.private-given-text')
+        #if not (Utils.probably_alive(person,self.db) and \
+        #  self.restrict and self.living):
+        firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
-        ret = "%s.%d" % (firstname or missing_first_name, self.person_ids[person.get_handle()])
+        ret = "%s.%d" % (firstname, self.person_ids[person.get_handle()])
         if surname != father_lastname: ret += " " + surname
         return ret
 
@@ -611,5 +494,5 @@ class GeneWebWriter(object):
 #
 #-------------------------------------------------------------------------
 def exportData(database, filename, msg_callback, option_box=None, callback=None):
-    gw = GeneWebWriter(database, msg_callback, filename, option_box, callback)
+    gw = GeneWebWriter(database, filename, msg_callback, option_box, callback)
     return gw.export_data()

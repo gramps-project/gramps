@@ -144,9 +144,13 @@ register('behavior.surname-guessing', 0)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 
-register('export.no-private', True)
-register('export.no-unlinked', True)
-register('export.restrict-living', True)
+register('export.proxy-order', [
+        ["privacy", 0], 
+        ["living", 0], 
+        ["person", 0], 
+        ["note", 0], 
+        ["reference", 0],
+        ])
 
 register('geoview.latitude', "0.0")
 register('geoview.lock', False)

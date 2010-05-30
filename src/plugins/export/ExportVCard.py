@@ -46,107 +46,27 @@ log = logging.getLogger(".ExportVCard")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ExportOptions import WriterOptionBox
 from Filters import GenericFilter, Rules, build_filter_model
 from gen.lib import Date
 import Errors
 from glade import Glade
 
-#-------------------------------------------------------------------------
-#
-# CardWriterOptionBox class
-#
-#-------------------------------------------------------------------------
-class CardWriterOptionBox(object):
-    """
-    Create a VBox with the option widgets and define methods to retrieve
-    the options.
-     
-    """
-    def __init__(self, person):
-        self.person = person
-
-    def get_option_box(self):
-
-        self.topDialog = Glade()
-
-        self.filters = self.topDialog.get_object("filter")
-        self.copy = 0
-
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        the_filters = [all]
-
-        if self.person:
-            des = GenericFilter()
-            des.set_name(_("Descendants of %s") %
-                         self.person.get_primary_name().get_name())
-            des.add_rule(Rules.Person.IsDescendantOf(
-                [self.person.get_gramps_id(),1]))
-
-            ans = GenericFilter()
-            ans.set_name(_("Ancestors of %s") %
-                         self.person.get_primary_name().get_name())
-            ans.add_rule(Rules.Person.IsAncestorOf(
-                [self.person.get_gramps_id(),1]))
-
-            com = GenericFilter()
-            com.set_name(_("People with common ancestor with %s") %
-                         self.person.get_primary_name().get_name())
-            com.add_rule(Rules.Person.HasCommonAncestorWith(
-                [self.person.get_gramps_id()]))
-
-            the_filters += [des, ans, com]
-
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_model(the_filters)
-        self.filters.set_model(self.filter_menu)
-        self.filters.set_active(0)
-
-        the_box = self.topDialog.get_object('vbox1')
-        the_parent = self.topDialog.get_object('dialog-vbox1')
-        the_parent.remove(the_box)
-        self.topDialog.toplevel.destroy()
-        return the_box
-
-    def parse_options(self):
-        self.cfilter = self.filter_menu[self.filters.get_active()][1]
-
 class CardWriter(object):
-    def __init__(self, database, msg_callback, cl=0, filename="", option_box=None,
-                 callback=None):
+    def __init__(self, database, filename, msg_callback, option_box=None, callback=None):
         self.db = database
-        self.option_box = option_box
-        self.cl = cl
         self.filename = filename
-        self.callback = callback
         self.msg_callback = msg_callback
+        self.option_box = option_box
+        self.callback = callback
         if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
 
-        self.plist = {}
-        
-        if not option_box:
-            self.cl_setup()
-        else:
+        if option_box:
             self.option_box.parse_options()
-
-            if self.option_box.cfilter is None:
-                for p in self.db.iter_person_handles():
-                    self.plist[p] = 1
-            else:
-                try:
-                    for p in self.option_box.cfilter.apply(self.db, 
-                               self.db.iter_person_handles()):
-                        self.plist[p] = 1
-                except Errors.FilterError, msg:
-                    (m1, m2) = msg.messages()
-                    self.msg_callback(m1, m2)
-                    return
+            self.db = option_box.get_filtered_database(self.db)
 
     def update_empty(self):
         pass
@@ -157,9 +77,6 @@ class CardWriter(object):
         if newval != self.oldval:
             self.callback(newval)
             self.oldval = newval
-
-    def cl_setup(self):
-        self.plist.update([p, 1] for p in self.db.iter_person_handles())
 
     def writeln(self, text):
         #self.g.write('%s\n' % (text.encode('iso-8859-1')))
@@ -180,8 +97,8 @@ class CardWriter(object):
 
         self.count = 0
         self.oldval = 0
-        self.total = len(self.plist)
-        for key in self.plist:
+        self.total = len([x for x in self.db.iter_person_handles()])
+        for key in self.db.iter_person_handles():
             self.write_person(key)
             self.update()
 
@@ -252,6 +169,6 @@ class CardWriter(object):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, option_box=None, callback=None):
-    cw = CardWriter(database, 0, filename, option_box, callback)
+def exportData(database, filename, msg_callback, option_box=None, callback=None):
+    cw = CardWriter(database, filename, msg_callback, option_box, callback)
     return cw.export_data(filename)
