@@ -107,75 +107,75 @@ def run(database, document, filter_name, *args, **kwargs):
     sdoc.paragraph("")
     matches = 0
     if (filter_name == 'Inverse Person'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Person"), _("Gramps ID"), _("Birth Date"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_person_handles()])
-        for person in database.basedb.iter_people():
+        for person in database.db.iter_people():
             if person.handle not in proxy_handles:
                 stab.row(person, person.gramps_id, 
                          sdb.birth_or_fallback(person))
                 matches += 1
     elif (filter_name == 'Inverse Family'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Family"), _("Gramps ID"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_family_handles()])
-        for family in database.basedb.iter_families():
+        for family in database.db.iter_families():
             if family.handle not in proxy_handles:
                 stab.row(family, family.gramps_id)
                 matches += 1
     elif (filter_name == 'Inverse Event'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Event"), _("Gramps ID"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_event_handles()])
-        for event in database.basedb.iter_events():
+        for event in database.db.iter_events():
             if event.handle not in proxy_handles:
                 stab.row(event, event.gramps_id)
                 matches += 1
     elif (filter_name == 'Inverse Place'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Place"), _("Gramps ID"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_place_handles()])
-        for place in database.basedb.iter_places():
+        for place in database.db.iter_places():
             if place.handle not in proxy_handles:
                 stab.row(place, place.gramps_id)
                 matches += 1
     elif (filter_name == 'Inverse Source'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Source"), _("Gramps ID"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_source_handles()])
-        for source in database.basedb.iter_sources():
+        for source in database.db.iter_sources():
             if source.handle not in proxy_handles:
                 stab.row(source, source.gramps_id)
                 matches += 1
     elif (filter_name == 'Inverse Repository'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Repository"), _("Gramps ID"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_repository_handles()])
-        for repository in database.basedb.iter_repositories():
+        for repository in database.db.iter_repositories():
             if repository.handle not in proxy_handles:
                 stab.row(repository, repository.gramps_id)
                 matches += 1
     elif (filter_name == 'Inverse MediaObject'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Media"), _("Gramps ID"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_media_object_handles()])
-        for media in database.basedb.iter_media_objects():
+        for media in database.db.iter_media_objects():
             if media.handle not in proxy_handles:
                 stab.row(media, media.gramps_id)
                 matches += 1
     elif (filter_name == 'Inverse Note'):
-        sdb.dbase = database.basedb
+        sdb.dbase = database.db
         stab.columns(_("Note"), _("Gramps ID"))
         proxy_handles = dict([(handle,1) for handle in 
                               database.iter_note_handles()])
-        for note in database.basedb.iter_notes():
+        for note in database.db.iter_notes():
             if note.handle not in proxy_handles:
                 stab.row(note, note.gramps_id)
                 matches += 1
