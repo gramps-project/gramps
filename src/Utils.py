@@ -513,9 +513,13 @@ class ProbablyAlive(object):
         family_list = person.get_parent_family_handle_list()
         for family_handle in family_list:
             family = self.db.get_family_from_handle(family_handle)
+            if family is None:
+                continue
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
                 child = self.db.get_person_from_handle(child_handle)
+                if child is None:
+                    continue
                 # Go through once looking for direct evidence:
                 for ev_ref in child.get_primary_event_ref_list():
                     ev = self.db.get_event_from_handle(ev_ref.ref)
@@ -1328,6 +1332,7 @@ def find_witnessed_people(db,p):
 def navigation_label(db, nav_type, handle):
 
     label = None
+    obj = None
     if nav_type == 'Person':
         obj = db.get_person_from_handle(handle)
         if obj:
@@ -1373,7 +1378,7 @@ def navigation_label(db, nav_type, handle):
             if len(label) > 40:
                 label = label[:40] + "..."
 
-    if label:
+    if label and obj:
         label = '[%s] %s' % (obj.get_gramps_id(), label)
 
     return (label, obj)
