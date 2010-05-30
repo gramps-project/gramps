@@ -69,7 +69,7 @@ def run(database, document, filter_name, *args, **kwargs):
     if (filter_name == 'all'):
         sdoc.title(_("Summary counts of current selection"))
         sdoc.paragraph("")
-        sdoc.paragraph("Double-click row to see selected items.")
+        sdoc.paragraph(_("Right-click row (or press ENTER) to see selected items."))
         sdoc.paragraph("")
         stab.columns(_("Object"), _("Count/Total"))
         stab.row([_("People"), "Filter", "Person"], 
