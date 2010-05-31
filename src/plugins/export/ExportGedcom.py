@@ -600,6 +600,8 @@ class GedcomWriter(UpdateCallback):
 
         for family in [ self.dbase.get_family_from_handle(fh) 
                         for fh in person.get_parent_family_handle_list() ]:
+            if family is None:
+                continue
             for child_ref in [ ref for ref in family.get_child_ref_list()
                                if ref.ref == person.handle ]:
                 if child_ref.mrel == gen.lib.ChildRefType.ADOPTED \
