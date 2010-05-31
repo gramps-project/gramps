@@ -58,9 +58,12 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         # iter through whatever object(s) you want to start
         # the trace.
         if all_people:
-            # Spread activation to all:
-            for person in self.db.iter_people():
-                self.process_person(person)
+            # Do not add references to those note already included
+            self.restricted_to["Person"] = [x for x in 
+                                            self.db.iter_person_handles()]
+            # Spread activation to all other items:
+            for handle in self.restricted_to["Person"]:
+                self.process_object("Person", handle)
         else:
             # get rid of orphaned people:
             # first, get all of the links from people:

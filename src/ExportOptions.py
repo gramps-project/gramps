@@ -29,8 +29,6 @@
 #-------------------------------------------------------------------------
 import gtk
 import pango
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
 import gobject
 
 #-------------------------------------------------------------------------
@@ -38,7 +36,10 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+from gen.ggettext import ngettext
 import config
+import gui.widgets
 from gen.display.name import displayer as name_displayer
 from Filters import GenericFilter, Rules
 from gui.utils import ProgressMeter
@@ -127,7 +128,7 @@ class WriterOptionBox(object):
         #self.no_fileselect = True
         #self.confirm_text = "You made it, kid!"
 
-    def mark_dirty(self, widget):
+    def mark_dirty(self, widget=None):
         self.preview_dbase = None
         if self.preview_button:
             self.preview_button.set_sensitive(1)
@@ -182,71 +183,32 @@ class WriterOptionBox(object):
         hbox.pack_end(self.preview_button, False)
         widget.pack_start(hbox, False)
 
-        # Populate the Person Filter
-        entire_db = GenericFilter()
-        entire_db.set_name(_("Entire Database"))
-        the_filters = [entire_db]
-
-        if self.person:
-            the_filters += self.__define_person_filters()
-
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-
-        model = gtk.ListStore(gobject.TYPE_STRING, object)
-        for item in the_filters:
-            model.append(row=[item.get_name(), item])
-
         cell = gtk.CellRendererText()
         cell.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.filter_obj.pack_start(cell, True)
         self.filter_obj.add_attribute(cell, 'text', 0)
-        self.filter_obj.set_model(model)
+        self.filter_obj.set_model(self.build_model("person"))
         self.filter_obj.set_active(get_proxy_value("person"))
 
-        model = gtk.ListStore(gobject.TYPE_STRING, int)
-        row = 0
-        for item in [
-            _('Include living people'),
-            _('Restrict given names on living people'),
-            _('Remove living people')]:
-            model.append(row=[item, row])
-            row += 1
         cell = gtk.CellRendererText()
         cell.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.restrict_option.pack_start(cell, True)
         self.restrict_option.add_attribute(cell, 'text', 0)
-        self.restrict_option.set_model(model)
+        self.restrict_option.set_model(self.build_model("living"))
         self.restrict_option.set_active(get_proxy_value("living"))
 
-        model = gtk.ListStore(gobject.TYPE_STRING, int)
-        row = 0
-        for item in [
-            _('Include all objects'),
-            _('Include only items connected to another item'),
-            _('Include only items connected to all people'),
-            _('Include items that are not orphans')]:
-            model.append(row=[item, row])
-            row += 1
         cell = gtk.CellRendererText()
         cell.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.reference_filter.pack_start(cell, True)
         self.reference_filter.add_attribute(cell, 'text', 0)
-        self.reference_filter.set_model(model)
+        self.reference_filter.set_model(self.build_model("reference"))
         self.reference_filter.set_active(get_proxy_value("reference"))
 
-        # Populate the Notes Filter
-        notes_filters = [entire_db]
-        
-        notes_filters.extend(CustomFilters.get_filters('Note'))
-        notes_model = gtk.ListStore(gobject.TYPE_STRING, object)
-        for item in notes_filters:
-            notes_model.append(row=[item.get_name(), item])
         notes_cell = gtk.CellRendererText()
         notes_cell.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.filter_note.pack_start(notes_cell, True)
         self.filter_note.add_attribute(notes_cell, 'text', 0)
-        self.filter_note.set_model(notes_model)
+        self.filter_note.set_model(self.build_model("note"))
         self.filter_note.set_active(get_proxy_value("note"))
 
         self.filter_note.connect("changed", self.mark_dirty)
@@ -299,6 +261,10 @@ class WriterOptionBox(object):
             box = gtk.HBox()
             box.pack_start(label, False)
             box.pack_start(self.filter_obj)
+            box.pack_start(
+                gui.widgets.SimpleButton(gtk.STOCK_EDIT, 
+                   lambda obj: self.edit_filter('Person', self.filter_obj)),
+                False)
             button.set_tooltip_text(_("Click to see preview after person filter"))
         elif proxy_name == "note":
             # Frame Note:
@@ -312,6 +278,10 @@ class WriterOptionBox(object):
             box = gtk.HBox()
             box.pack_start(label_note, False)
             box.pack_start(self.filter_note)
+            box.pack_start(
+                gui.widgets.SimpleButton(gtk.STOCK_EDIT, 
+                   lambda obj: self.edit_filter('Note', self.filter_note)),
+                False)
             button.set_tooltip_text(_("Click to see preview after note filter"))
         elif proxy_name == "privacy":
             # Frame 3:
@@ -486,25 +456,29 @@ class WriterOptionBox(object):
         if self.filter_obj:
             model = self.filter_obj.get_model()
             node = self.filter_obj.get_active_iter()
-            self.cfilter = model[node][1]
+            if node:
+                self.cfilter = model[node][1]
             set_proxy_value("person", self.filter_obj.get_active())
 
         if self.restrict_option:
             model = self.restrict_option.get_model()
             node = self.restrict_option.get_active_iter()
-            self.restrict_num = model[node][1]
+            if node:
+                self.restrict_num = model[node][1]
             set_proxy_value("living", self.restrict_option.get_active())
         
         if self.filter_note:
             model = self.filter_note.get_model()
             node = self.filter_note.get_active_iter()
-            self.nfilter = model[node][1]
+            if node:
+                self.nfilter = model[node][1]
             set_proxy_value("note", self.filter_note.get_active())
 
         if self.reference_filter:
             model = self.reference_filter.get_model()
             node = self.reference_filter.get_active_iter()
-            self.reference_num = model[node][1]
+            if node:
+                self.reference_num = model[node][1]
             set_proxy_value("reference", self.reference_filter.get_active())
 
     def get_filtered_database(self, dbase, progress=None, preview=False):
@@ -614,13 +588,107 @@ class WriterOptionBox(object):
             if self.reference_num == 0:
                 pass
             elif self.reference_num == 1:
-                dbase = gen.proxy.ReferencedBySelectionProxyDb(dbase)
-            elif self.reference_num == 2:
                 dbase = gen.proxy.ReferencedBySelectionProxyDb(dbase, 
                                                                all_people=True)
-            elif self.reference_num == 3:
-                dbase = gen.proxy.ReferencedProxyDb(dbase)
         else:
             raise AttributeError("no such proxy '%s'" % proxy_name)
 
         return dbase
+
+    def edit_filter(self, namespace, filter_obj):
+        """
+        Callback which invokes the EditFilter dialog. Will create new
+        filter if called if none is selected.
+        """
+        from gui.filtereditor import EditFilter
+        from Filters import FilterList, GenericFilterFactory
+        import const
+        the_filter = None
+        filterdb = FilterList(const.CUSTOM_FILTERS)
+        filterdb.load()
+        if filter_obj.get_active() != 0:
+            model = filter_obj.get_model()
+            node = filter_obj.get_active_iter()
+            if node:
+                sel_filter = model.get_value(node, 1)
+                # the_filter needs to be a particular object for editor
+                for filt in filterdb.get_filters(namespace):
+                    if filt.get_name() == sel_filter.get_name():
+                        the_filter = filt
+        else:
+            the_filter = GenericFilterFactory(namespace)()
+        if the_filter:
+            EditFilter(namespace, self.dbstate, self.uistate, [],
+                       the_filter, filterdb,
+                       lambda : self.edit_filter_save(filterdb, namespace))
+        else: # can't edit this filter
+            from QuestionDialog import ErrorDialog
+            ErrorDialog(_("Cannot edit a system filter"), 
+                        _("Please select a different filter to edit"))
+
+    def edit_filter_save(self, filterdb, namespace):
+        """
+        If a filter changed, save them all. Reloads, and also calls callback.
+        """
+        from Filters import CustomFilters
+        from Filters import reload_custom_filters
+        filterdb.save()
+        reload_custom_filters()
+        if namespace == "Person":
+            model = self.build_model("person")
+            widget = self.filter_obj
+        elif namespace == "Note":
+            model = self.build_model("note")
+            widget = self.filter_note
+        widget.set_model(model)
+        widget.set_active(0)
+
+    def build_model(self, namespace):
+        """
+        Build a model for the combo box selector.
+        """
+        from Filters import CustomFilters
+        if namespace == "person":
+            # Populate the Person Filter
+            entire_db = GenericFilter()
+            entire_db.set_name(_("Include all selected people"))
+            the_filters = [entire_db]
+
+            if self.person:
+                the_filters += self.__define_person_filters()
+
+            the_filters.extend(CustomFilters.get_filters('Person'))
+
+            model = gtk.ListStore(gobject.TYPE_STRING, object)
+            for item in the_filters:
+                model.append(row=[item.get_name(), item])
+        elif namespace == "note":
+            # Populate the Notes Filter
+            entire_db = GenericFilter()
+            entire_db.set_name(_("Include all selected notes"))
+            notes_filters = [entire_db]
+            notes_filters.extend(CustomFilters.get_filters('Note'))
+            model = gtk.ListStore(gobject.TYPE_STRING, object)
+            for item in notes_filters:
+                model.append(row=[item.get_name(), item])
+
+        elif namespace == "living":
+            model = gtk.ListStore(gobject.TYPE_STRING, int)
+            row = 0
+            for item in [
+                _('Include all selected people'),
+                _('Replace given names of living people'),
+                _('Do not include living people')]:
+                model.append(row=[item, row])
+                row += 1
+
+        elif namespace == "reference":
+            model = gtk.ListStore(gobject.TYPE_STRING, int)
+            row = 0
+            for item in [
+                _('Include all selected records'),
+                _('Do not include records not linked to a selected person'),]:
+                model.append(row=[item, row])
+                row += 1
+
+        return model
