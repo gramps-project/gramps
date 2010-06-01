@@ -293,6 +293,12 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 note = self.db.get_note_from_handle(note_handle)
                 if note:
                     self.referenced["Note"].add(note_handle)
+                    for tag in note.text.get_tags():
+                        if tag.name == 'Link':
+                            if tag.value.startswith("gramps://"):
+                                obj_class, prop, value = tag.value[9:].split("/")
+                                if prop == "handle":
+                                    self.process_object(obj_class, value)
 
     # --------------------------------------------
 
