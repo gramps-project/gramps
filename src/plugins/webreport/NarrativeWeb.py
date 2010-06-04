@@ -333,6 +333,11 @@ class BasePage(object):
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
 
+        # options for PlaceMaps for PlacePages
+        self.placemaps = report.options["placepagemaps"]
+        self.mapservices = report.options["mapservices"]
+        self.googlekey = report.options["googlekey"]
+
     def complete_people(self, tcell, first_person, handle_list):
         """
         completes the person column for classes EventListPage and EventPage
@@ -1099,7 +1104,7 @@ class BasePage(object):
         body += self.display_nav_links(title)
 
         # return to its caller, page and body
-        return page, body
+        return page, head, body
 
     def display_nav_links(self, currentsection):
         """
@@ -1817,24 +1822,34 @@ class BasePage(object):
         # return hyperlink to its callers
         return hyper
 
-    def dump_place(self, place, table, gid):
+    def dump_place(self, place, table):
         """
         dump a place's information from within the database
+
+        @param: place -- place object from the database
+        @param: table -- table from Placedetail
+        @param: gid -- place gramps id
         """
 
+        if not place:
+            return table
+ 
+        # add table body
+        tbody = Html("tbody")
+        table += tbody
+
+        gid = place.gramps_id
         if not self.noid and gid:
             trow = Html("tr") + (
                 Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
                 Html("td", gid, class_ = "ColumnValue", inline = True)
                 )
-            table += trow
+            tbody += trow
 
         if place.main_loc:
             ml = place.get_main_location()
             if ml and not ml.is_empty():
-                for val in [
-                    (LATITUDE,  place.lat),
-                    (LONGITUDE, place.long), 
+                for (label, data) in [
                     (STREET,    ml.street),
                     (CITY,      ml.city),
                     (PARISH,    ml.parish),
@@ -1842,14 +1857,18 @@ class BasePage(object):
                     (STATE,     ml.state),
                     (POSTAL,    ml.postal),
                     (COUNTRY,   ml.country),
-                    (LOCATIONS, place.get_alternate_locations() ) ]:
+                    (LOCATIONS, place.get_alternate_locations() ),
+                    (LATITUDE,  place.lat),
+                    (LONGITUDE, place.long) ]:
 
-                    if val[1]:
-                        trow = Html("tr") + (
-                            Html("td", val[0], class_ = "ColumnAttribute", inline = True),
-                            Html("td", val[1], class_ = "ColumnValue", inline = True)
-                            )
-                        table += trow
+                    trow = Html("tr")
+                    tbody += trow
+
+                    trow.extend(  
+                        (Html("td", label, class_ = "ColumnAttribute", inline = True) +
+                        Html("td", data or "&nbsp;", class_ = "ColumnValue", inline = True)
+                        )
+                    ) 
 
         # return place table to its callers
         return table
@@ -1872,7 +1891,7 @@ class BasePage(object):
                 if place_handle:
                     place = db.get_place_from_handle(place_handle)
                     if place:
-                        self.dump_place(place, table, place.gramps_id)
+                        self.dump_place(place, table)
 
             descr = has_res.get_description()
             if descr:
@@ -1921,7 +1940,7 @@ class IndividualListPage(BasePage):
         showparents = report.options['showparents']
 
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_("Individuals"))
+        indlistpage, head, body = self.write_header(_("Individuals"))
 
         # begin Individuals division
         with Html("div", class_ = "content", id = "Individuals") as individuallist:
@@ -2099,7 +2118,7 @@ class SurnamePage(BasePage):
 
         of = self.report.create_file(name_to_md5(surname), "srn")
         self.up = True
-        surnamepage, body = self.write_header("%s - %s" % (_("Surname"), surname))
+        surnamepage, head, body = self.write_header("%s - %s" % (_("Surname"), surname))
 
         # begin SurnameDetail division
         with Html("div", class_ = "content", id = "SurnameDetail") as surnamedetail:
@@ -2243,7 +2262,7 @@ class PlaceListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_("Places"))
+        placelistpage, head, body = self.write_header(_("Places"))
 
         # begin places division
         with Html("div", class_ = "content", id = "Places") as placelist:
@@ -2332,7 +2351,10 @@ class PlaceListPage(BasePage):
 class PlacePage(BasePage):
 
     def __init__(self, report, title, place_handle, src_list, place_list):
-        """ creates the individual place pages """
+        """
+        creates the individual place pages
+        """
+
         self.bibli = Bibliography()
         db = report.database
 
@@ -2342,7 +2364,7 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), "plc")
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        placepage, body = self.write_header(_("Places"))
+        placepage, head, body = self.write_header(_("Places"))
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2354,7 +2376,7 @@ class PlacePage(BasePage):
                 placedetail += thumbnail
 
             # add section title
-            placedetail += Html("h3", html_escape(self.page_title.strip()))
+            placedetail += Html("h5", html_escape(self.page_title))
 
             # begin summaryarea division and places table
             with Html("div", id = 'summaryarea') as summaryarea:
@@ -2363,8 +2385,8 @@ class PlacePage(BasePage):
                 with Html("table", class_ = "infolist place") as table:
                     summaryarea += table
 
-                    # list the place
-                    self.dump_place(place, table, place.gramps_id)
+                    # list the place fields
+                    self.dump_place(place, table)
 
             # place gallery
             if self.create_media:
@@ -2413,7 +2435,7 @@ class EventListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("events")
-        eventslistpage, body = self.write_header(_("Events"))
+        eventslistpage, head, body = self.write_header(_("Events"))
 
         # begin events list  division
         with Html("div", class_ = "content", id = "EventList") as eventlist:
@@ -2588,7 +2610,7 @@ class EventPage(BasePage):
         self.bibli = Bibliography()
 
         of = self.report.create_file(event_handle, "evt")
-        eventpage, body = self.write_header(_("Events"))
+        eventpage, head, body = self.write_header(_("Events"))
 
         # start event detail division
         with Html("div", class_ = "content", id = "EventDetail") as eventdetail:
@@ -2707,7 +2729,7 @@ class MediaPage(BasePage):
 
         copy_thumbnail(self.report, handle, media)
         self.page_title = media.get_description()
-        mediapage, body = self.write_header("%s - %s" % (_("Media"), self.page_title))
+        mediapage, head, body = self.write_header("%s - %s" % (_("Media"), self.page_title))
 
         # begin MediaDetail division
         with Html("div", class_ = "content", id = "GalleryDetail") as mediadetail:
@@ -2961,10 +2983,10 @@ class SurnameListPage(BasePage):
 
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelistpage, body = self.write_header(_('Surnames'))
+            surnamelistpage, head, body = self.write_header(_('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
-            surnamelistpage, body = self.write_header(_('Surnames by person count'))
+            surnamelistpage, head, body = self.write_header(_('Surnames by person count'))
 
         # begin surnames division
         with Html("div", class_ = "content", id = "surnames") as surnamelist:
@@ -3089,7 +3111,7 @@ class IntroductionPage(BasePage):
         db = report.database
 
         of = self.report.create_file(report.intro_fname)
-        intropage, body = self.write_header(_('Introduction'))
+        intropage, head, body = self.write_header(_('Introduction'))
 
         # begin Introduction division
         with Html("div", class_ = "content", id = "Introduction") as section:
@@ -3126,7 +3148,7 @@ class HomePage(BasePage):
         db = report.database
 
         of = self.report.create_file("index")
-        homepage, body = self.write_header(_('Home'))
+        homepage, head, body = self.write_header(_('Home'))
 
         # begin home division
         with Html("div", class_ = "content", id = "Home") as section:
@@ -3163,7 +3185,7 @@ class SourceListPage(BasePage):
         source_dict = {}
 
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_("Sources"))
+        sourcelistpage, head, body = self.write_header(_("Sources"))
 
         # begin source list division
         with Html("div", class_ = "content", id = "Sources") as sourceslist:
@@ -3234,7 +3256,7 @@ class SourcePage(BasePage):
 
         of = self.report.create_file(source.get_handle(), "src")
         self.up = True
-        sourcepage, body = self.write_header(_('Sources'))
+        sourcepage, head, body = self.write_header(_('Sources'))
 
         # begin source detail division
         with Html("div", class_ = "content", id = "SourceDetail") as section:
@@ -3303,7 +3325,7 @@ class MediaListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("media")
-        medialistpage, body = self.write_header(_('Media'))
+        medialistpage, head, body = self.write_header(_('Media'))
 
         # begin gallery division
         with Html("div", class_ = "content", id = "Gallery") as medialist:
@@ -3419,7 +3441,7 @@ class DownloadPage(BasePage):
         if dlfname1 or dlfname2:
 
             of = self.report.create_file("download")
-            downloadpage, body = self.write_header(_('Download'))
+            downloadpage, head, body = self.write_header(_('Download'))
 
             # begin download page and table
             with Html("div", class_ = "content", id = "Download") as download:
@@ -3524,7 +3546,7 @@ class ContactPage(BasePage):
         db = report.database
 
         of = self.report.create_file("contact")
-        contactpage, body = self.write_header(_('Contact'))
+        contactpage, head, body = self.write_header(_('Contact'))
 
         # begin contact division
         with Html("div", class_ = "content", id = "Contact") as section:
@@ -3605,7 +3627,7 @@ class IndividualPage(BasePage):
 
         of = self.report.create_file(person.handle, "ppl")
         self.up = True
-        indivdetpage, body = self.write_header(self.sort_name)
+        indivdetpage, head, body = self.write_header(self.sort_name)
 
         # begin individualdetail division
         with Html("div", class_ = "content", id = 'IndividualDetail') as individualdetail:
@@ -4692,7 +4714,7 @@ class RepositoryListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("repositories")
-        repolistpage, body = self.write_header(_("Repositories"))
+        repolistpage, head, body = self.write_header(_("Repositories"))
 
         # begin RepositoryList division
         with Html("div", class_ = "content", id = "RepositoryList") as repositorylist:
@@ -4761,7 +4783,7 @@ class RepositoryPage(BasePage):
 
         of = self.report.create_file(handle, 'repo')
         self.up = True
-        repositorypage, body = self.write_header(_('Repositories'))
+        repositorypage, head, body = self.write_header(_('Repositories'))
 
         # begin RepositoryDetail division and page title
         with Html("div", class_ = "content", id = "RepositoryDetail") as repositorydetail:
@@ -4833,7 +4855,7 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, body = self.write_header("%s - %s" % (title, _("Address Book")))
+        addressbooklistpage, head, body = self.write_header("%s - %s" % (title, _("Address Book")))
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
@@ -4935,7 +4957,7 @@ class AddressBookPage(BasePage):
 
         # set the file name and open file
         of = self.report.create_file(person_handle, "addr")
-        addressbookpage, body = self.write_header("%s - %s" % (title, _("Address Book")))
+        addressbookpage, head, body = self.write_header("%s - %s" % (title, _("Address Book")))
 
         # begin address book page division and section title
         with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
@@ -5778,6 +5800,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_privacy_options(menu)
         self.__add_download_options(menu) 
         self.__add_advanced_options(menu)
+        self.__add_placepage_map_options(menu)
 
     def __add_report_options(self, menu):
         """
@@ -6067,9 +6090,55 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'inc_gendex', inc_gendex)
 
         inc_addressbook = BooleanOption(_("Include address book pages"), False)
-        inc_addressbook.set_help(_("Whether to add Address Book pages or not which can include"
-                                    " e-mail and website addresses and personal address/ residence events?"))
+        inc_addressbook.set_help(_("Whether to add Address Book pages or not "
+                                   "which can include e-mail and website "
+                                   "addresses and personal address/ residence "
+                                   "events?"))
         menu.add_option(category_name, "inc_addressbook", inc_addressbook)
+
+    def __add_placepage_map_options(self, menu):
+        """
+        Adds the ability and options to include PlacePage Maps
+        """
+
+        category_name = _("PlacePage Maps")
+
+        self.__placepagemaps = BooleanOption(_("Include Place map on Place Pages"), False)
+        self.__placepagemaps.set_help(_("Whether to include a place map on the Place Pages, "
+                                        "where Latitude/ Longitude are available."))
+        menu.add_option(category_name, "placepagemaps", self.__placepagemaps)
+        self.__placepagemaps.connect("value-changed", self.__placemap_changed)
+
+        _mapservers = [
+                       ["",                ""],
+                       [_("Google Maps"),     "Google"],
+                       [_("OpenStreet Maps"), "OpenStreet"]
+                       ] 
+        self.__mapservices = EnumeratedListOption(_("Map Service"), _mapservers[0][1])
+        for server in _mapservers:
+            self.__mapservices.add_item(server[1], server[0])
+        self.__mapservices.set_help(_("Either use Google Maps, which requires "
+                                     "a Google Maps API key, or use OpenStreetMaps."))
+        menu.add_option(category_name, "mapservices", self.__mapservices)
+        self.__mapservices.connect("value-changed", self.__mapservice_changed)
+
+        self.__googlekey = StringOption(_("Google Map API Key"), "")
+        self.__googlekey.set_help(_("Please enter your Google Maps API Key.  "
+                                    "If you do not have one yet, please "
+                                    "connect to this site to get one first, "
+                                    "then come back and enter it here."))
+        menu.add_option(category_name, "googlekey", self.__googlekey)
+
+        self.__htmlpage = StringOption(_("Google API Key Registration"),
+                                         "http://code.google.com/apis/maps/signup.html")
+        self.__htmlpage.set_help(_("Copy and paste url into your browser if you need to register"))
+        menu.add_option(category_name, "htmlpage", self.__htmlpage)
+
+        # map services change
+        self.__mapservice_changed()
+
+        # place maps change
+        self.__placemap_changed()
 
     def __archive_changed(self):
         """
@@ -6158,6 +6227,30 @@ class NavWebOptions(MenuReportOptions):
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
             self.__dl_cright.set_available(False)
+
+    def __placemap_changed(self):
+        """
+        handles the changing nature of place maps
+        """
+
+        if self.__placepagemaps.get_value():
+            self.__mapservices.set_available(True)
+        else:
+            self.__mapservices.set_available(False)
+            self.__googlekey.set_available(False)
+            self.__htmlpage.set_available(False)  
+
+    def __mapservice_changed(self):
+        """
+        handles the changing nature of map services
+        """
+
+        if self.__mapservices.get_value() == "Google":
+            self.__googlekey.set_available(True)
+            self.__htmlpage.set_available(True)
+        else:
+            self.__googlekey.set_available(False)
+            self.__htmlpage.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
