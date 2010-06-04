@@ -1547,15 +1547,14 @@ class BasePage(object):
                 trow.extend(
                     Html('th', label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
-                        ("&nbsp;",                "RowLabel"), 
-                        (THEAD,                   "Type"),
-                         (_("Link/ Description"), "Description") ]
+                        (THEAD,          "Type"),
+                        (_("Web Path"), "Path"),
+                        (DESCRHEAD,     "Description") ]
                     )
 
                 tbody = Html("tbody")
                 table += tbody
 
-                index = 0
                 for url in urllist:
 
                     trow = Html("tr")
@@ -1565,13 +1564,6 @@ class BasePage(object):
                     uri = url.get_path()
                     descr = url.get_description()
 
-                    if not descr:
-                        descr = uri
-
-                    trow.extend(
-                        Html("td", index + 1, class_ = "ColumnRowLabel", inline = True)
-                        )
- 
                     # Email address
                     if _type == UrlType.EMAIL:
                         if not uri.startswith("mailto:"):
@@ -1588,16 +1580,16 @@ class BasePage(object):
                         if not uri.startswith("ftp://"):
                             uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
 
-                    descr = Html("a", descr, href = uri, title = html_escape(descr))
+                    uri = Html("a", uri, href = uri, title = html_escape(uri))
                     trow.extend(
-                        Html("td", data, class_ = "Column" + colclass)
+                        Html("td", data, class_ = "Column" + colclass, inline = True)
                         for (data, colclass) in [
                             (str(_type), "Type"),
+                            (uri,        "Path"),
                             (descr,      "Description") ]
-                        )  
-                    index += 1
+                        ) 
                 
-        # return web links to its caller
+        # return weblinks to its caller
         return section
 
     def display_ind_sources(self, srcobj):
