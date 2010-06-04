@@ -1878,7 +1878,6 @@ class BasePage(object):
 
         if not has_res:
             return None
-        db = self.report.database
 
         # begin residence division
         with Html("div", id = "Residence", class_ = "content") as residence:
@@ -1889,20 +1888,20 @@ class BasePage(object):
 
                 place_handle = has_res.get_place_handle()
                 if place_handle:
-                    place = db.get_place_from_handle(place_handle)
+                    place = self.report.database.get_place_from_handle(place_handle)
                     if place:
                         self.dump_place(place, table)
 
             descr = has_res.get_description()
             if descr:
-                with Html("table", class_ = "infolist") as table:
-                    residence += table
 
-                    trow = Html("tr") + (
-                        Html("td", DESCRHEAD, class_ = "ColumnAttribute", inline = True),
-                        Html("td", descr, class_ = "ColumnValue")
-                        )
-                    table += trow
+                trow = Html("tr")
+                table += trow
+
+                trow.extend(
+                    ( Html("td", DESCRHEAD, class_ = "ColumnAttribute", inline = True) +
+                    Html("td", descr, class_ = "ColumnValue") )
+                )
 
         # return information to its callers
         return residence
