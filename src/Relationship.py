@@ -1330,6 +1330,7 @@ class RelationshipCalculator(object):
                                 all_dist=True,
                                 all_families=True, only_birth=False)
         if not data[0][0] == -1:
+            data = self.collapse_relations(data)
             for rel in data :
                 rel2 = rel[2]
                 rel4 = rel[4]
@@ -1360,13 +1361,13 @@ class RelationshipCalculator(object):
                 if not rel_str in relstrings:
                     relstrings.append(rel_str)
                     if rel1:
-                        commons[rel_str] = [rel1]
+                        commons[rel_str] = rel1
                     else:
                         #unknown parent eg
                         commons[rel_str] = []
                 else:
                     if rel1:
-                        commons[rel_str].append(rel1)
+                        commons[rel_str].extend(rel1)
         #construct the return tupply, relstrings is ordered on rank automatic
         common_list = []
         for rel_str in relstrings:
