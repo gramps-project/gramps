@@ -66,7 +66,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         pass
 
     def start_page(self):
-        self.page = self.page + 1
+        self.page += 1
         if self.page != 1:
             name = "%s-%d.svg" % (self.root, self.page)
         else:
@@ -81,11 +81,15 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         
         self.t = StringIO.StringIO()
             
-        self.f.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
-        self.f.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ')
-        self.f.write('"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
-        self.f.write('<svg width="%5.2fcm" height="%5.2fcm" ' % (self.paper.get_size().get_width(), self.paper.get_size().get_height()))
-        self.f.write('xmlns="http://www.w3.org/2000/svg">\n')
+        self.f.write(
+            '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' +
+            '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ' +
+            '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n' +
+            '<svg width="%5.2fcm" height="%5.2fcm" '
+                % (self.paper.get_size().get_width(),
+                        self.paper.get_size().get_height()) +
+            'xmlns="http://www.w3.org/2000/svg">\n'
+            )
 
     def rotate_text(self, style, text, x, y, angle):
         style_sheet = self.get_style_sheet()
@@ -95,8 +99,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         font = p.get_font()
         size = font.get_size()
 
-        width = 0
-        height = 0
+        width = height = 0
         for line in text:
             width = max(width, self.string_width(font, line))
             height += size
@@ -106,10 +109,12 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         xpos = (centerx - (width/2.0)) 
         ypos = (centery - (height/2.0)) 
 
-        self.t.write('<text ')
-        self.t.write('x="%4.2f" y="%4.2f" ' % (xpos, ypos))
-        self.t.write('transform="rotate(%d %4.2f %4.2f)" ' % (angle, centerx, centery))
-        self.t.write('style="fill:#%02x%02x%02x; '% font.get_color())
+        self.t.write(
+            '<text ' +
+            'x="%4.2f" y="%4.2f" ' % (xpos, ypos) +
+            'transform="rotate(%d %4.2f %4.2f)" ' % (angle, centerx, centery) +
+            'style="fill:#%02x%02x%02x; '% font.get_color()
+            )
         if font.get_bold():
             self.t.write('font-weight:bold;')
         if font.get_italic():
@@ -124,9 +129,11 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         for line in text:
             # Center this line relative to the rest of the text
             linex = xpos + (width - self.string_width(font, line) ) / 2
-            self.t.write('<tspan x="%4.2f" dy="%d">' % (linex, size))
-            self.t.write(line)
-            self.t.write('</tspan>')
+            self.t.write(
+                '<tspan x="%4.2f" dy="%d">' % (linex, size) +
+                line +
+                '</tspan>'
+                )
         self.t.write('</text>\n')
                            
     def end_page(self):
@@ -138,72 +145,89 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         self.f.close()
     
     def draw_line(self, style, x1, y1, x2, y2):
-        x1 = x1 + self.paper.get_left_margin()
-        x2 = x2 + self.paper.get_left_margin()
-        y1 = y1 + self.paper.get_top_margin()
-        y2 = y2 + self.paper.get_top_margin()
+        x1 += self.paper.get_left_margin()
+        x2 += self.paper.get_left_margin()
+        y1 += self.paper.get_top_margin()
+        y2 += self.paper.get_top_margin()
 
         style_sheet = self.get_style_sheet()
         s = style_sheet.get_draw_style(style)
 
-        self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1, y1))
-        self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2, y2))
-        self.f.write('style="stroke:#%02x%02x%02x; ' % s.get_color())
-        self.f.write('stroke-width:%.2fpt;"/>\n' % s.get_line_width())
+        self.f.write(
+            '<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1, y1) +
+            'x2="%4.2fcm" y2="%4.2fcm" ' % (x2, y2) +
+            'style="stroke:#%02x%02x%02x; ' % s.get_color() +
+            'stroke-width:%.2fpt;"/>\n' % s.get_line_width()
+            )
 
     def draw_path(self, style, path):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
 
         point = path[0]
-        self.f.write('<polygon fill="#%02x%02x%02x"' % stype.get_fill_color())
-        self.f.write(' style="stroke:#%02x%02x%02x; ' % stype.get_color())
-        self.f.write(' stroke-width:%.2fpt;"' % stype.get_line_width())
-        self.f.write(' points="%.2f,%.2f' % units((point[0]+self.paper.get_left_margin(), point[1]+self.paper.get_top_margin())))
+        self.f.write(
+            '<polygon fill="#%02x%02x%02x"' % stype.get_fill_color() +
+            ' style="stroke:#%02x%02x%02x; ' % stype.get_color() +
+            ' stroke-width:%.2fpt;"' % stype.get_line_width() +
+            ' points="%.2f,%.2f'
+                % units((point[0]+self.paper.get_left_margin(),
+                         point[1]+self.paper.get_top_margin()))
+            )
         for point in path[1:]:
-            self.f.write(' %.2f,%.2f' % units((point[0]+self.paper.get_left_margin(), point[1]+self.paper.get_top_margin())))
+            self.f.write(
+                ' %.2f,%.2f'
+                    % units((point[0]+self.paper.get_left_margin(),
+                             point[1]+self.paper.get_top_margin()))
+                )
         self.f.write('"/>\n')
 
     def draw_box(self, style, text, x, y, w, h):
-        x = x + self.paper.get_left_margin()
-        y = y + self.paper.get_top_margin()
+        x += self.paper.get_left_margin()
+        y += self.paper.get_top_margin()
 
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
 
         if box_style.get_shadow():
-            self.f.write('<rect ')
-            self.f.write('x="%4.2fcm" ' % (x+0.15))
-            self.f.write('y="%4.2fcm" ' % (y+0.15))
-            self.f.write('width="%4.2fcm" ' % w)
-            self.f.write('height="%4.2fcm" ' % h)
-            self.f.write('style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n')
-        self.f.write('<rect ')
-        self.f.write('x="%4.2fcm" ' % x)
-        self.f.write('y="%4.2fcm" ' % y)
-        self.f.write('width="%4.2fcm" ' % w)
-        self.f.write('height="%4.2fcm" ' % h)
-        self.f.write('style="fill:#%02x%02x%02x; ' % box_style.get_fill_color())
-        self.f.write('stroke:#%02x%02x%02x; ' % box_style.get_color())
-        self.f.write('stroke-width:%f;"/>\n' % box_style.get_line_width())
-        if text != "":
+            self.f.write(
+                '<rect ' +
+                'x="%4.2fcm" ' % (x+0.15) +
+                'y="%4.2fcm" ' % (y+0.15) +
+                'width="%4.2fcm" ' % w +
+                'height="%4.2fcm" ' % h +
+                'style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n'
+                )
+
+        self.f.write(
+            '<rect '
+            'x="%4.2fcm" ' % x +
+            'y="%4.2fcm" ' % y +
+            'width="%4.2fcm" ' % w +
+            'height="%4.2fcm" ' % h +
+            'style="fill:#%02x%02x%02x; ' % box_style.get_fill_color() +
+            'stroke:#%02x%02x%02x; ' % box_style.get_color() +
+            'stroke-width:%f;"/>\n' % box_style.get_line_width()
+            )
+
+        if text:
             para_name = box_style.get_paragraph_style()
             assert( para_name != '' )
             p = style_sheet.get_paragraph_style(para_name)
             font = p.get_font()
             font_size = font.get_size()
             lines = text.split('\n')
-            nlines = len(lines)
             mar = 10/28.35
             fs = (font_size/28.35) * 1.2
             center = y + (h + fs)/2.0 + (fs*0.2)
-            ystart = center - (fs/2.0) * nlines
-            for i in range(nlines):
+            ystart = center - (fs/2.0) * len(lines)
+            for i, line in enumerate(lines):
                 ypos = ystart + (i * fs)
-                self.t.write('<text ')
-                self.t.write('x="%4.2fcm" ' % (x+mar))
-                self.t.write('y="%4.2fcm" ' % ypos)
-                self.t.write('style="fill:#%02x%02x%02x; '% font.get_color())
+                self.t.write(
+                    '<text ' +
+                    'x="%4.2fcm" ' % (x+mar) +
+                    'y="%4.2fcm" ' % ypos +
+                    'style="fill:#%02x%02x%02x; '% font.get_color()
+                    )
                 if font.get_bold():
                     self.t.write(' font-weight:bold;')
                 if font.get_italic():
@@ -213,13 +237,15 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     self.t.write(' font-family:sans-serif;')
                 else:
                     self.t.write(' font-family:serif;')
-                self.t.write('">')
-                self.t.write(lines[i])
-                self.t.write('</text>\n')
+                self.t.write(
+                    '">' +
+                    line +
+                    '</text>\n'
+                    )
 
     def draw_text(self, style, text, x, y):
-        x = x + self.paper.get_left_margin()
-        y = y + self.paper.get_top_margin()
+        x += self.paper.get_left_margin()
+        y += self.paper.get_top_margin()
         
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
@@ -229,10 +255,12 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         font = p.get_font()
         font_size = font.get_size()
         fs = (font_size/28.35) * 1.2
-        self.t.write('<text ')
-        self.t.write('x="%4.2fcm" ' % x)
-        self.t.write('y="%4.2fcm" ' % (y+fs))
-        self.t.write('style="fill:#%02x%02x%02x;'% font.get_color())
+        self.t.write(
+            '<text ' +
+            'x="%4.2fcm" ' % x +
+            'y="%4.2fcm" ' % (y+fs) +
+            'style="fill:#%02x%02x%02x;'% font.get_color()
+            )
         if font.get_bold():
             self.t.write('font-weight:bold;')
         if font.get_italic():
@@ -242,9 +270,11 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             self.t.write('font-family:sans-serif;')
         else:
             self.t.write('font-family:serif;')
-        self.t.write('">')
-        self.t.write(text)
-        self.t.write('</text>\n')
+        self.t.write(
+            '">' +
+            text +
+            '</text>\n'
+            )
 
     def center_text(self, style, text, x, y):
         style_sheet = self.get_style_sheet()

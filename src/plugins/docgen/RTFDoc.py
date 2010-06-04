@@ -87,11 +87,14 @@ class RTFDoc(BaseDoc,TextDoc):
         
         style_sheet = self.get_style_sheet()
 
-        self.f.write('{\\rtf1\\ansi\\ansicpg1252\\deff0\n')
-        self.f.write('{\\fonttbl\n')
-        self.f.write('{\\f0\\froman\\fcharset0\\fprq0 Times New Roman;}\n')
-        self.f.write('{\\f1\\fswiss\\fcharset0\\fprq0 Arial;}}\n')
-        self.f.write('{\colortbl\n')
+        self.f.write(
+            '{\\rtf1\\ansi\\ansicpg1252\\deff0\n'
+            '{\\fonttbl\n'
+            '{\\f0\\froman\\fcharset0\\fprq0 Times New Roman;}\n'
+            '{\\f1\\fswiss\\fcharset0\\fprq0 Arial;}}\n'
+            '{\colortbl\n'
+            )
+
         self.color_map = {}
         index = 1
         self.color_map[(0,0,0)] = 0
@@ -109,14 +112,16 @@ class RTFDoc(BaseDoc,TextDoc):
                 self.color_map[bgcolor] = index
                 index += 1
         self.f.write('}\n')
-        self.f.write('\\kerning0\\cf0\\viewkind1')
-        self.f.write('\\paperw%d' % twips(self.paper.get_size().get_width()))
-        self.f.write('\\paperh%d' % twips(self.paper.get_size().get_height()))
-        self.f.write('\\margl%d' % twips(self.paper.get_left_margin()))
-        self.f.write('\\margr%d' % twips(self.paper.get_right_margin()))
-        self.f.write('\\margt%d' % twips(self.paper.get_top_margin()))
-        self.f.write('\\margb%d' % twips(self.paper.get_bottom_margin()))
-        self.f.write('\\widowctl\n')
+        self.f.write(
+            '\\kerning0\\cf0\\viewkind1' +
+            '\\paperw%d' % twips(self.paper.get_size().get_width()) +
+            '\\paperh%d' % twips(self.paper.get_size().get_height()) +
+            '\\margl%d' % twips(self.paper.get_left_margin()) +
+            '\\margr%d' % twips(self.paper.get_right_margin()) +
+            '\\margt%d' % twips(self.paper.get_top_margin()) +
+            '\\margb%d' % twips(self.paper.get_bottom_margin()) +
+            '\\widowctl\n'
+            )
         self.in_table = 0
         self.text = ""
 
@@ -159,9 +164,11 @@ class RTFDoc(BaseDoc,TextDoc):
         bgindex = self.color_map[p.get_background_color()]
         fgindex = self.color_map[f.get_color()]
         if f.get_type_face() == FONT_SERIF:
-            self.font_type = '\\f0\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
+            self.font_type = '\\f0'
         else:
-            self.font_type = '\\f1\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
+            self.font_type = '\\f1'
+        self.font_type += '\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
+
         if f.get_bold():
             self.font_type += "\\b"
         if f.get_underline():
@@ -177,9 +184,11 @@ class RTFDoc(BaseDoc,TextDoc):
             self.f.write('\\qr')
         elif p.get_alignment() == PARA_ALIGN_CENTER:
             self.f.write('\\qc')
-        self.f.write('\\ri%d' % twips(p.get_right_margin()))
-        self.f.write('\\li%d' % twips(p.get_left_margin()))
-        self.f.write('\\fi%d' % twips(p.get_first_indent()))
+        self.f.write(
+            '\\ri%d' % twips(p.get_right_margin()) +
+            '\\li%d' % twips(p.get_left_margin()) +
+            '\\fi%d' % twips(p.get_first_indent())
+            )
         if p.get_alignment() == PARA_ALIGN_JUSTIFY:
             self.f.write('\\qj')
         if p.get_padding():
