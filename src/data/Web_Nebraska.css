@@ -1084,18 +1084,20 @@ div#WebLinks {
     margin : 0 auto;
     padding: 0;
 }
-
-table.weblinks tr td {
+table.WebLinks {
+    width: 100%;
+}
+table.weblinks tbody tr td {
     background-color: #F6F2EE;
     border-bottom: dashed 1px #000;
 }
-table.weblinks tr td.ColumnRowLabel {
-    width: 5%;
+table.weblinks tbody tr td.ColumnType {
+    width: 20%;
 }
-table.weblinks tr td.ColumnType {
-    width: 30%;
+table.WebLinks tbody tr td.ColumnPath {
+    width: 50%;
 }
-table.weblinks tr td.ColumnDescription {
+table.weblinks tbody tr td.ColumnDescription {
     width: 30%;
 }
 
