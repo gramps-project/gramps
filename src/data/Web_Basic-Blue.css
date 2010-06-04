@@ -535,6 +535,27 @@ div#Places table.infolist tbody tr td.ColumnCountry {
 div#Places table.infolist tbody tr td.ColumnCoordinates {
     width: 25%;
 }
+div#PlaceDetail {
+    margin: 0;
+    padding: 0;
+}
+div#PlaceDetail h5 {
+    font: normal .9em serif;
+    color: #FFF;
+    margin-top: .3cm;
+    background-color: #00029D;
+    border-width: 2px 0px 2px 0px;
+    border-style: solid;
+    border-color: #13A926;
+    text-align: center;
+    float: center;
+    vertical-align: middle;
+}
+div#PlaceDetail table.infolist tbody tr td.ColumnRowLabel,
+div#PlaceDetail table.infolist tbody tr td.ColumnType,
+div#PlaceDetail table.infolist tbody tr td.ColumnValue {
+    color: Navy;
+}
 
 /* EventList and EventDetail
 ----------------------------------------------------- */
@@ -975,6 +996,7 @@ table.attrlist tbody tr td.ColumnAttrSources {
 /* Subsections : Parents
 ----------------------------------------------------- */
 div#parents {
+    background-color: #FFF;
     margin: 0;
     padding: 0;
 }
