@@ -400,9 +400,16 @@ div#IndividualDetail div.subsection table tr td:first-child {
 
 /* Places
 ----------------------------------------------------- */
-div#Places {
-    margin: 0;
-    padding: 0;
+
+div#Places table.infolist tbody tr td.ColumnLetter {
+    width: 3%;
+}
+#Places table.infolist tbody tr td.ColumnName {
+    padding:0;
+}
+div#Places table.infolist tbody tr td.ColumnLatitude,
+div#Places table.infolist tbody tr td.ColumnLongitude {
+    width: 11%;
 }
 
 /* EventList and EventDetail

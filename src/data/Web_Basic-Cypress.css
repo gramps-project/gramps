@@ -532,11 +532,19 @@ table.individuallist tbody tr td.ColumnName a:hover {
 
 /* Places
 ----------------------------------------------------- */
+
+div#Places table.infolist tbody tr td.ColumnLetter {
+    width: 3%;
+}
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
+}
+div#Places table.infolist tbody tr td.ColumnLatitude,
+div#Places table.infolist tbody tr td.ColumnLongitude {
+    width: 11%;
 }
 
 /* EventList and EventDetail

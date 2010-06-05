@@ -517,9 +517,6 @@ div#Places {
     margin: 0;
     padding: 0;
 }
-div#Places table.infolist tbody tr td.ColumnLetter {
-    width: 6%;
-}
 div#Places table.infolist tbody tr td.ColumnLetter a:hover {
     background: none;
 }
@@ -532,9 +529,13 @@ div#Places table.infolist tbody tr td.ColumnState {
 div#Places table.infolist tbody tr td.ColumnCountry {
     width: 8%;
 }
-div#Places table.infolist tbody tr td.ColumnCoordinates {
-    width: 25%;
+div#Places table.infolist tbody tr td.ColumnLatitude {
+    width: 11%;
 }
+div#Places table.infolist tbody tr td.ColumnLongitude {
+    width: 11%;
+}
+
 div#PlaceDetail {
     margin: 0;
     padding: 0;
@@ -551,8 +552,8 @@ div#PlaceDetail h5 {
     float: center;
     vertical-align: middle;
 }
-div#PlaceDetail table.infolist tbody tr td.ColumnRowLabel,
 div#PlaceDetail table.infolist tbody tr td.ColumnType,
+div#PlaceDetail table.infolist tbody tr td.ColumnPath,
 div#PlaceDetail table.infolist tbody tr td.ColumnValue {
     color: Navy;
 }
@@ -563,6 +564,7 @@ div#EventList, div#EventDetail {
     margin: 0;
     padding: 0;
 }
+div#PlaceList table.Places tbody tr td.ColumnLatitude {
 div#events table.eventlist {
     margin-top: .3cm;
 }

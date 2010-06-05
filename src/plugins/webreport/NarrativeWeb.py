@@ -1856,11 +1856,12 @@ class BasePage(object):
                     trow = Html("tr")
                     tbody += trow
 
-                    trow.extend(  
-                        (Html("td", label, class_ = "ColumnAttribute", inline = True) +
-                        Html("td", data or "&nbsp;", class_ = "ColumnValue", inline = True)
-                        )
-                    ) 
+                    if data:
+                        trow.extend( 
+                            (Html("td", label, class_ = "ColumnAttribute", inline = True) +
+                            Html("td", data or "&nbsp;", class_ = "ColumnValue", inline = True)
+                            )
+                        ) 
 
         # return place table to its callers
         return table
@@ -2281,13 +2282,16 @@ class PlaceListPage(BasePage):
 
                 trow =  Html("tr")
                 thead += trow
-                trow.extend( Html("th", label, class_ = "Column" + colclass, inline = True)
-                    for label, colclass in [
-                        [_("Letter"),              "Letter"],
-                        [_("Place Name | Name"),   "Name"],
-                        [_("State"),               "State"],
-                        [_("Country"),             "Country"], 
-                        [_("Latitude/ Longitude"), "Coordinates"] ]
+
+                trow.extend(
+                    Html("th", label, class_ = "Column" + colclass, inline = True)
+                    for (label, colclass) in [
+                        ["&nbsp;",               "Letter"],
+                        [_("Place Name | Name"), "Name"],
+                        [_("State"),             "State"],
+                        [_("Country"),           "Country"],
+                        [_("Lat."),              "Latitude"],
+                        [_("Long."),             "Longitude"] ]
                     )
 
                 sort = Sort.Sort(db)
@@ -2307,27 +2311,28 @@ class PlaceListPage(BasePage):
 
                     trow = Html("tr")
                     tbody += trow
+
+                    tcell = Html("td", class_ = "ColumnLetter", inline = True)
+                    trow += tcell
                     if letter != last_letter:
                         last_letter = letter
                         trow.attr = 'class = "BeginLetter"'
 
-                        tcell = ( Html("td", class_ = "ColumnLetter", inline = True) +
-                            Html("a", last_letter, name=last_letter, 
-                                title = "Places with letter %s" % last_letter)
-                            )
+                        tcell += Html("a", last_letter, name = last_letter, 
+                                title = _("Places with letter %s" % last_letter))
                     else:
-                        tcell = Html("td", "&nbsp;", class_ = "ColumnLetter", inline = True)
-                    trow += tcell
+                        tcell += "&nbsp;"
 
                     trow += Html("td", self.place_link(place.handle, place_title, place.gramps_id), 
                         class_ = "ColumnName")
 
-                    trow.extend( Html("td", data, class_ = "Column" + colclass, inline = True)
-                        for colclass, data in [
-                            ["State",       ml.state],
-                            ["Country",     ml.country],
-                            ["Coordinates", (place.lat + ", " + place.long) if place.lat and place.long else "&nbsp;"] ]
-                            if data or "&nbsp;"
+                    trow.extend(
+                        Html("td", data or "&nbsp;", class_ = "Column" + colclass, inline = True)
+                        for (colclass, data) in [
+                            ["State",     ml.state],
+                            ["Country",   ml.country],
+                            ["Latitude",  place.lat],
+                            ["Longitude", place.long] ]
                         )
 
         # add clearline for proper styling
@@ -2340,7 +2345,6 @@ class PlaceListPage(BasePage):
         self.XHTMLWriter(placelistpage, of)
 
 class PlacePage(BasePage):
-
     def __init__(self, report, title, place_handle, src_list, place_list):
         """
         creates the individual place pages

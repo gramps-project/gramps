@@ -512,21 +512,19 @@ div#IndividualDetail div.subsection table tr td:first-child {
 
 /* Places
 ----------------------------------------------------- */
-#Places {
-    margin: 0;
-    padding: 0;
-}
-#Places table.infolist tbody tr td.ColumnLetter {
-    background-color: #D8F3D6;
-}
-#Places table.infolist tbody tr td.ColumnLetter a:hover {
-    background: none;
+
+div#Places table.infolist tbody tr td.ColumnLetter {
+    width: 3%;
 }
 #Places table.infolist tbody tr td.ColumnName {
-    background-color: #FFF;
+    padding:0;
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
+}
+div#Places table.infolist tbody tr td.ColumnLatitude,
+div#Places table.infolist tbody tr td.ColumnLongitude {
+    width: 11%;
 }
 
 /* EventList and EventDetail
