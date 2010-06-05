@@ -535,7 +535,7 @@ class EditFamily(EditPrimary):
         self.child_tab.rebuild()
 
     def get_menu_title(self):
-        if self.obj.get_handle():
+        if self.obj and self.obj.get_handle():
             dialog_title = Utils.family_name(self.obj, self.db, _("New Family"))
             dialog_title = _("Family") + ': ' + dialog_title
         else:
