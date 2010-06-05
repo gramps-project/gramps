@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 3.0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-11 13:43-0700\n"
-"PO-Revision-Date: 2010-05-21 14:44+0300\n"
+"PO-Revision-Date: 2010-05-29 22:11+0300\n"
 "Last-Translator: Igal Shapira <igal.shapira@gmail.com>\n"
 "Language-Team: he <igal.shapira@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +169,7 @@ msgstr "אחרי"
 
 #: ../src/DateEdit.py:82
 msgid "About"
-msgstr "אודות"
+msgstr "בערך"
 
 #: ../src/DateEdit.py:83
 msgid "Range"
@@ -177,7 +177,7 @@ msgstr "טווח"
 
 #: ../src/DateEdit.py:84
 msgid "Span"
-msgstr "מרוח"
+msgstr "נמשך"
 
 #: ../src/DateEdit.py:85
 msgid "Text only"
@@ -537,6 +537,11 @@ msgid ""
 "bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
+"התוכנה גילתה שגיאה במסד הנתונים. בדרך כלל ניתן לפתור בעיה זו על ידי הרצת "
+"כלי \"בדוק ותקן מסד נתונים\"\n"
+"\n"
+"אם הבעיה ממשיכה גם אחרי הרצת הכלי אנא מלאי דוח באג ב http://bugs.gramps-project.org\n"
+"\n"
 
 #: ../src/QuestionDialog.py:205 ../src/cli/grampscli.py:93
 msgid "Low level database corruption detected"
@@ -582,6 +587,8 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
+"בעץ יש יותר דורות מהמקסימום של %d דורות שנסרקו.\n"
+"ישנה אפשרות שהתפספסו קשרים"
 
 #: ../src/Relationship.py:926
 msgid "Relationship loop detected:"
@@ -1026,7 +1033,7 @@ msgstr "הפניה לאירוע"
 
 #: ../src/ScratchPad.py:578 ../src/plugins/webreport/NarrativeWeb.py:4089
 msgid "Call Name"
-msgstr ""
+msgstr "כינוי"
 
 #: ../src/ScratchPad.py:579 ../src/Utils.py:1106
 #: ../src/gen/display/name.py:118 ../src/gui/configure.py:471
@@ -1039,7 +1046,7 @@ msgstr ""
 #: ../src/gui/configure.py:488 ../src/plugins/export/ExportCsv.py:328
 #: ../src/plugins/import/ImportCsv.py:160
 msgid "Given"
-msgstr ""
+msgstr "ניתן"
 
 #. get the family events
 #. show "> Family: ..." and nothing else
@@ -1068,7 +1075,7 @@ msgstr "משפחה"
 #: ../src/ScratchPad.py:581 ../src/Utils.py:1110 ../src/gui/configure.py:481
 #: ../src/gui/editors/editperson.py:284
 msgid "Patronymic"
-msgstr ""
+msgstr "משפחת האב"
 
 #: ../src/ScratchPad.py:582 ../src/Utils.py:1107
 #: ../src/gui/editors/editperson.py:275 ../src/plugins/export/ExportCsv.py:329
@@ -1346,11 +1353,11 @@ msgstr "לטינית"
 
 #: ../src/Spell.py:127 ../src/plugins/lib/libtranslate.py:63
 msgid "Lithuanian"
-msgstr ""
+msgstr "ליטאית"
 
 #: ../src/Spell.py:128
 msgid "Latvian"
-msgstr ""
+msgstr "לטבית"
 
 #: ../src/Spell.py:129
 msgid "Malagasy"
@@ -1382,7 +1389,7 @@ msgstr ""
 
 #: ../src/Spell.py:136 ../src/plugins/lib/libtranslate.py:65
 msgid "Norwegian Bokmal"
-msgstr ""
+msgstr "נורבגית סלובנית"
 
 #: ../src/Spell.py:137
 msgid "Low Saxon"
@@ -1394,7 +1401,7 @@ msgstr "הולנדית"
 
 #: ../src/Spell.py:139 ../src/plugins/lib/libtranslate.py:67
 msgid "Norwegian Nynorsk"
-msgstr ""
+msgstr "נורבגית חדשה"
 
 #: ../src/Spell.py:140
 msgid "Chichewa"
@@ -1679,29 +1686,31 @@ msgstr "נמוך מאוד"
 
 #: ../src/Utils.py:95
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr ""
+msgstr "קשר חוקי בין בעל ואישה"
 
 #: ../src/Utils.py:97
 msgid "No legal or common-law relationship between man and woman"
-msgstr ""
+msgstr "אין קשר חוקי בין בעל ואישה"
 
 #: ../src/Utils.py:99
 msgid "An established relationship between members of the same sex"
-msgstr ""
+msgstr "הקשר שנוצר בין אנשים מאותו מגדר"
 
 #: ../src/Utils.py:101
 msgid "Unknown relationship between a man and woman"
-msgstr ""
+msgstr "קשר לא ידוע בין גבר לאישה"
 
 #: ../src/Utils.py:103
 msgid "An unspecified relationship between a man and woman"
-msgstr ""
+msgstr "קשר לא מצויין בין גבר לאישה"
 
 #: ../src/Utils.py:119
 msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
+"ניתן יהיה לשחזר את המידע על ידי פעולת ביטול או על ידי יציאה ללא שמירת "
+"שינויים."
 
 #. -------------------------------------------------------------------------
 #.
@@ -1788,16 +1797,16 @@ msgstr "תאריך פטירה של צאצא"
 
 #: ../src/Utils.py:651
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "תאריך קשור לידה של צאצא"
 
 #: ../src/Utils.py:659
 msgid "descendent death-related date"
-msgstr ""
+msgstr "תאריך קשור פטירה של צאצא"
 
 #: ../src/Utils.py:672
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
-msgstr ""
+msgstr "שגיאת מסד נתונים: %s מוגדר כקדמון של עצמו"
 
 #: ../src/Utils.py:696 ../src/Utils.py:742
 msgid "ancestor birth date"
@@ -1809,11 +1818,11 @@ msgstr "תאריך פטירה של אב קדמון"
 
 #: ../src/Utils.py:717 ../src/Utils.py:763
 msgid "ancestor birth-related date"
-msgstr ""
+msgstr "תאריך קשור לידה של קדמון"
 
 #: ../src/Utils.py:725 ../src/Utils.py:771
 msgid "ancestor death-related date"
-msgstr ""
+msgstr "תאריך קשור פטירה של קדמון"
 
 #. no evidence, must consider alive
 #: ../src/Utils.py:825
@@ -1861,7 +1870,7 @@ msgstr "סיומות"
 
 #: ../src/Utils.py:1110
 msgid "PATRONYMIC"
-msgstr ""
+msgstr "משפחת האב"
 
 #: ../src/Utils.py:1111 ../src/gui/configure.py:474
 #: ../src/gui/configure.py:476 ../src/gui/configure.py:478
@@ -1956,6 +1965,9 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %(name)s"
 msgstr ""
+"אזהרה: הקובץ כבר קיים.\n"
+"אזהרה: הוא יכתב מחדש\n"
+"   %(name)s"
 
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
@@ -3352,11 +3364,11 @@ msgstr "ניחוש שם משפחה"
 
 #: ../src/gui/configure.py:852
 msgid "Active person's name and ID"
-msgstr ""
+msgstr "שם ומזהה של האדם הפעיל"
 
 #: ../src/gui/configure.py:853
 msgid "Relationship to home person"
-msgstr ""
+msgstr "קשר לאדם הראשי"
 
 #: ../src/gui/configure.py:862
 msgid "Status bar"
@@ -3364,7 +3376,7 @@ msgstr "שורת מצב"
 
 #: ../src/gui/configure.py:869
 msgid "Show text in sidebar buttons (requires restart)"
-msgstr "הראה טקסט בכפתורי סרגל בצד (דורש הפעלה מחשד)"
+msgstr "הראה טקסט בכפתורי סרגל בצד (דורש הפעלה מחדש)"
 
 #: ../src/gui/configure.py:880
 msgid "Missing surname"
@@ -3438,7 +3450,7 @@ msgstr "תאריכים"
 
 #: ../src/gui/configure.py:957
 msgid "Add default source on import"
-msgstr ""
+msgstr "הוסף את מקור ברירת המחדל בייבוא"
 
 #: ../src/gui/configure.py:960
 msgid "Enable spelling checker"
@@ -3458,7 +3470,7 @@ msgstr "מקסימום דורות לקשרים"
 
 #: ../src/gui/configure.py:973
 msgid "Base path for relative media paths"
-msgstr ""
+msgstr "נתיב בסיסי עבור נתיבים יחסיים למדיה"
 
 #: ../src/gui/configure.py:986
 msgid "Database path"
@@ -3474,7 +3486,7 @@ msgstr "מסד נתונים"
 
 #: ../src/gui/configure.py:1002
 msgid "Select media directory"
-msgstr ""
+msgstr "בחר ספרית מדיה"
 
 #: ../src/gui/configure.py:1076
 msgid "Name Format Editor"
@@ -5605,23 +5617,23 @@ msgstr "העבר למטה"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
-msgstr ""
+msgstr "צור והוסיף פריט מידע חדש"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:50
 msgid "Remove the existing data entry"
-msgstr ""
+msgstr "הסר פריט מידע קיים"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:51
 msgid "Edit the selected data entry"
-msgstr ""
+msgstr "ערוך את פריט המידע הקיים"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:52
 msgid "Move the selected data entry upwards"
-msgstr ""
+msgstr "הזז את פריט המידע הנבחר למעלה"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:53
 msgid "Move the selected data entry downwards"
-msgstr ""
+msgstr "הזה את פריט המידע הנחבר למטה"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 msgid "Key"
@@ -5629,7 +5641,7 @@ msgstr "מפתח"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:66
 msgid "_Data"
-msgstr ""
+msgstr "_מדיע"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:57
 msgid "Family Events"
@@ -11428,80 +11440,80 @@ msgstr "נפטר ב%(month_year)s."
 #: ../src/plugins/lib/libnarrate.py:456
 #, python-format
 msgid "Died %(month_year)s (age %(age)d years)."
-msgstr ""
+msgstr "נפטר %(month_year)s (בגיל %(age)d שנים)."
 
 #: ../src/plugins/lib/libnarrate.py:457
 #, python-format
 msgid "Died %(month_year)s (age %(age)d months)."
-msgstr ""
+msgstr "נפטר %(month_year)s (בגיל %(age)d חודשים)."
 
 #: ../src/plugins/lib/libnarrate.py:458
 #, python-format
 msgid "Died %(month_year)s (age %(age)d days)."
-msgstr ""
+msgstr "נפטר %(month_year)s (בגיל %(age)d ימים)."
 
 #: ../src/plugins/lib/libnarrate.py:464
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s נפטר ב%(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:465
 #, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
+msgstr "%(unknown_gender_name)s נפטר ב%(death_place)s בגיל %(age)d שנים."
 
 #: ../src/plugins/lib/libnarrate.py:466
 #, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "%(unknown_gender_name)s נפטר ב%(death_place)s בגיל %(age)d חודשים."
 
 #: ../src/plugins/lib/libnarrate.py:467
 #, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "%(unknown_gender_name)s נפטר ב%(death_place)s בגיל %(age)d ימים."
 
 #: ../src/plugins/lib/libnarrate.py:470
 #, python-format
 msgid "%(male_name)s died in %(death_place)s."
-msgstr ""
+msgstr "%(male_name)s נפטר ב%(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:471
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
+msgstr "%(male_name)s נפטר ב%(death_place)s בגיל %(age)d שנים."
 
 #: ../src/plugins/lib/libnarrate.py:472
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "%(male_name)s נפטר ב%(death_place)s בגיל %(age)d חודשים."
 
 #: ../src/plugins/lib/libnarrate.py:473
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "%(male_name)s נפטר ב%(death_place)s בגיל %(age)d ימים."
 
 #: ../src/plugins/lib/libnarrate.py:476
 #, python-format
 msgid "%(female_name)s died in %(death_place)s."
-msgstr ""
+msgstr "%(female_name)s נפטרה ב %(death_place)s."
 
 #: ../src/plugins/lib/libnarrate.py:477
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
+msgstr "%(female_name)s נפטרה ב%(death_place)s בגיל %(age)d שנים."
 
 #: ../src/plugins/lib/libnarrate.py:478
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "%(female_name)s נפטרה ב%(death_place)s בגיל %(age)d חודשים."
 
 #: ../src/plugins/lib/libnarrate.py:479
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "%(female_name)s נפטרה ב%(death_place)s בגיל %(age)d ימים."
 
 #: ../src/plugins/lib/libnarrate.py:484
 #, python-format
@@ -12846,47 +12858,47 @@ msgstr "האדם נישא ל%(spouse)s %(modified_date)s ב%(place)s%(endnotes)s
 #: ../src/plugins/lib/libnarrate.py:1081
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "הוא התחתן עם %(spouse)s ב%(partial_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1082
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "הוא התחתן עם %(spouse)s ב%(full_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1083
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "הוא התחתן עם %(spouse)s %(modified_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1086
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "היא התחתנה עם %(spouse)s ב%(partial_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1087
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "היא התחתנה עם %(spouse)s ב%(full_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1088
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "היא התחתנה עם %(spouse)s %(modified_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1091
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "התחתן עם %(spouse)s %(partial_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1092
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "התחתן עם %(spouse)s %(full_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1093
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "התחתן עם %(spouse)s %(modified_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1099
 #, python-format
@@ -12894,13 +12906,14 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
 msgstr ""
+"אדם זה התחתן גם עם %(spouse)s ב%(partial_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1100
 #, python-format
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
+msgstr "אדם זה התחתן גם עם %(spouse)s ב%(full_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1101
 #, python-format
@@ -12908,38 +12921,41 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
 "s."
 msgstr ""
+"אדם זה התחתן גם עם %(spouse)s %(modified_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"הוא גם עם התחתן עם %(spouse)s ב%(partial_date)sב %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "הוא גם התחתן עם %(spouse)s ב%(full_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1106
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "הוא גם התחתן עם %(spouse)s %(modified_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1109
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"היא גם עם התחתנה עם %(spouse)s ב%(partial_date)sב %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1110
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "היא גם התחתנה עם %(spouse)s ב%(full_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1111
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "היא גם התחתנה עם %(spouse)s %(modified_date)s ב%(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1114
 #, python-format
@@ -15869,19 +15885,19 @@ msgstr "הסגנון שישמש עבור שם המקום."
 
 #: ../src/plugins/textreport/PlaceReport.py:324
 msgid "The style used for place details."
-msgstr ""
+msgstr "הסגנון שישמש עבור פרטי המקום."
 
 #: ../src/plugins/textreport/PlaceReport.py:336
 msgid "The style used for a column title."
-msgstr ""
+msgstr "הסגנון שישמש עבור כותרת העמודה."
 
 #: ../src/plugins/textreport/PlaceReport.py:350
 msgid "The style used for each section."
-msgstr ""
+msgstr "הסגנון שישמש עבור כל חלק."
 
 #: ../src/plugins/textreport/PlaceReport.py:373
 msgid "The style used for event and person details."
-msgstr ""
+msgstr "הסגנון שישמש עבור פרטי אנשים ואירועים."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 msgid "book|Title"
@@ -16157,7 +16173,7 @@ msgstr ""
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
-msgstr ""
+msgstr "בונה תצוגה"
 
 #: ../src/plugins/tool/ChangeTypes.py:62
 msgid "Change Event Types"
@@ -16185,35 +16201,35 @@ msgstr[1] ""
 
 #: ../src/plugins/tool/Check.py:198
 msgid "Check Integrity"
-msgstr ""
+msgstr "בודק שלמות"
 
 #: ../src/plugins/tool/Check.py:244
 msgid "Checking Database"
-msgstr ""
+msgstr "בודק מסד נתונים"
 
 #: ../src/plugins/tool/Check.py:261
 msgid "Looking for invalid name format references"
-msgstr ""
+msgstr "מחפש שמות לא תקינים"
 
 #: ../src/plugins/tool/Check.py:309
 msgid "Looking for duplicate spouses"
-msgstr ""
+msgstr "מחפש אחים כפולים"
 
 #: ../src/plugins/tool/Check.py:327
 msgid "Looking for character encoding errors"
-msgstr ""
+msgstr "מחפש שגיאות קידוד תווים"
 
 #: ../src/plugins/tool/Check.py:353
 msgid "Looking for broken family links"
-msgstr ""
+msgstr "מחפש קישורים משפחה שבורים"
 
 #: ../src/plugins/tool/Check.py:478
 msgid "Looking for unused objects"
-msgstr ""
+msgstr "מחפש עצמים שלא בשימוש"
 
 #: ../src/plugins/tool/Check.py:560
 msgid "Media object could not be found"
-msgstr ""
+msgstr "לא ניתן למצוא אובייקט מדיה"
 
 #: ../src/plugins/tool/Check.py:561
 #, python-format
@@ -16225,251 +16241,256 @@ msgid ""
 "the reference from the database, keep the reference to the missing file, or "
 "select a new file."
 msgstr ""
+"הקובץ:\n"
+" %(file_name)s \n"
+"נמצא בשימוש במסד הנתונים, אך כבר לא קיים. ייתכן שהקובץ נמחק או הוזז למיקום אחר. "
+"את יכולה לבחור להסיר את הקישור ממסד הנתונים, לשמור את הקישור לקובץ החסר, או לבחור "
+"קובץ חדש."
 
 #: ../src/plugins/tool/Check.py:600
 msgid "Looking for empty people records"
-msgstr ""
+msgstr "מחפש רשומות אנשים ריקים"
 
 #: ../src/plugins/tool/Check.py:608
 msgid "Looking for empty family records"
-msgstr ""
+msgstr "מחפש רשומות משפחה ריקות"
 
 #: ../src/plugins/tool/Check.py:616
 msgid "Looking for empty event records"
-msgstr ""
+msgstr "מחפש רשומות אירוע ריקות"
 
 #: ../src/plugins/tool/Check.py:624
 msgid "Looking for empty source records"
-msgstr ""
+msgstr "מחפש רשומות מקורות ריקים"
 
 #: ../src/plugins/tool/Check.py:632
 msgid "Looking for empty place records"
-msgstr ""
+msgstr "מחפש רשומות מקום ריקות"
 
 #: ../src/plugins/tool/Check.py:639
 msgid "Looking for empty media records"
-msgstr ""
+msgstr "מחפש רשומות מדיה ריקות"
 
 #: ../src/plugins/tool/Check.py:648
 msgid "Looking for empty repository records"
-msgstr ""
+msgstr "מחפש רשומות מאגרים ריקים"
 
 #: ../src/plugins/tool/Check.py:656
 msgid "Looking for empty note records"
-msgstr ""
+msgstr "מחפש רשומות הערות ריקות"
 
 #: ../src/plugins/tool/Check.py:693
 msgid "Looking for empty families"
-msgstr ""
+msgstr "מחפש משפחות ריקות"
 
 #: ../src/plugins/tool/Check.py:720
 msgid "Looking for broken parent relationships"
-msgstr ""
+msgstr "מחפש רשומות יחסי הורים שבורות"
 
 #: ../src/plugins/tool/Check.py:751
 msgid "Looking for event problems"
-msgstr ""
+msgstr "מחפש בעיות באירועים"
 
 #: ../src/plugins/tool/Check.py:834
 msgid "Looking for person reference problems"
-msgstr ""
+msgstr "מחפש בעיות בקישורים לאנשים"
 
 #: ../src/plugins/tool/Check.py:853
 msgid "Checking people for proper date formats"
-msgstr ""
+msgstr "בודק אנשים עבור תאריכים תקינים"
 
 #: ../src/plugins/tool/Check.py:944
 msgid "Checking families for proper date formats"
-msgstr ""
+msgstr "בודק משפחות עבור תאריכים תקינים"
 
 #: ../src/plugins/tool/Check.py:1001
 msgid "Looking for repository reference problems"
-msgstr ""
+msgstr "מחפש בעיות בקישורים למאגרים"
 
 #: ../src/plugins/tool/Check.py:1018
 msgid "Looking for place reference problems"
-msgstr ""
+msgstr "מחפש בעיות קישורים למקומות"
 
 #: ../src/plugins/tool/Check.py:1069
 msgid "Looking for source reference problems"
-msgstr ""
+msgstr "מחפש בעיות בקישורים למקורות"
 
 #: ../src/plugins/tool/Check.py:1196
 msgid "Looking for media object reference problems"
-msgstr ""
+msgstr "מחפש בעיות ביקשורים למדיה"
 
 #: ../src/plugins/tool/Check.py:1292
 msgid "Looking for note reference problems"
-msgstr ""
+msgstr "מחפש בעיות בקישורים להערות"
 
 #: ../src/plugins/tool/Check.py:1452
 msgid "No errors were found"
-msgstr ""
+msgstr "לא נמצאו שגיאות"
 
 #: ../src/plugins/tool/Check.py:1453
 msgid "The database has passed internal checks"
-msgstr ""
+msgstr "מסד הנתונים עבר את הבדיקות"
 
 #: ../src/plugins/tool/Check.py:1461
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוקן קישור %(quantity)d של ילד/משפחה\n"
+msgstr[1] "תוקנו %(quantity)d קישורים של ילד/משפחה\n"
 
 #: ../src/plugins/tool/Check.py:1468
 msgid "Non existing child"
-msgstr ""
+msgstr "ילד לא קיים"
 
 #: ../src/plugins/tool/Check.py:1475
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
-msgstr ""
+msgstr "%(person)s הוסר ממשפחת %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1479
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוקן קישור %(quantity)d של בן זוג/משפחה\n"
+msgstr[1] "תוקנו %(quantity)d קישורים של בן זוג/משפחה\n"
 
 #: ../src/plugins/tool/Check.py:1487 ../src/plugins/tool/Check.py:1505
 msgid "Non existing person"
-msgstr ""
+msgstr "אדם לא קיים"
 
 #: ../src/plugins/tool/Check.py:1494 ../src/plugins/tool/Check.py:1512
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
-msgstr ""
+msgstr "%(person)s שוחזר למשפחת %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1498
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "נמצא קישור כפול %(quantity)d של בן זוג/משפחה\n"
+msgstr[1] "נמצאו %(quantity)d קישורים כפולים של בן זוג/משפחה\n"
 
 #: ../src/plugins/tool/Check.py:1516
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
-msgstr ""
+msgstr "נמצאו והוסרו %d משפחות ללא הורים או ילדים.\n"
 
 #: ../src/plugins/tool/Check.py:1519
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
-msgstr ""
+msgstr "%(quantity)d משפחות ללא הורים או ילדים - הוסרו.\n"
 
 #: ../src/plugins/tool/Check.py:1523
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "יחס משפחה לא תקין %d תוקן\n"
+msgstr[1] "%d יחסי משפחה לא תקינים תוקנות\n"
 
 #: ../src/plugins/tool/Check.py:1527
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "אדם %d קושר אך לא נמצא\n"
+msgstr[1] "%d אנשים מקושרים אך לא נמצאים\n"
 
 #: ../src/plugins/tool/Check.py:1532
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוקן תארים %d\n"
+msgstr[1] "תוקנו %d תאריכים\n"
 
 #: ../src/plugins/tool/Check.py:1537
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מאגר %(quantity)d קושר אך לא נמצא\n"
+msgstr[1] "%(quantity)d מאגרים מקושרים אך לא נמצאים\n"
 
 #: ../src/plugins/tool/Check.py:1542
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "עצם מדיה %(quantity)d קושר אך לא נמצא\n"
+msgstr[1] "%(quantity)d עצמי מדיה מקושרים אך לא נמצאים\n"
 
 #: ../src/plugins/tool/Check.py:1546
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "נשמר קישור לעצם מדיה %(quantity)d חסר\n"
+msgstr[1] "נשמר קישור ל-%(quantity)d עצמי מדיה חסרים\n"
 
 #: ../src/plugins/tool/Check.py:1551
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "עצם מדיה חסר %(quantity)d הוחלף\n"
+msgstr[1] "%(quantity)d עצמי מדיה חסרים הוחלפו\n"
 
 #: ../src/plugins/tool/Check.py:1556
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "עצם מדיה חסר %(quantity)d הוסר\n"
+msgstr[1] "%(quantity)d עצמי מדיה חסרים הוסרו\n"
 
 #: ../src/plugins/tool/Check.py:1561
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "קישור %(quantity)d לא תקין לאירוע הוסר\n"
+msgstr[1] "%(quantity)d קישורים לא תקינים לאירועים הוסרו\n"
 
 #: ../src/plugins/tool/Check.py:1566
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(quantity)d אירוע לידה תקין תוקן\n"
+msgstr[1] "%(quantity)d אירועי לידה תקינים תוקנו\n"
 
 #: ../src/plugins/tool/Check.py:1571
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(quantity)d אירוע פטירה תקין תוקן\n"
+msgstr[1] "%(quantity)d אירועי פטירה תקינים תוקנו\n"
 
 #: ../src/plugins/tool/Check.py:1576
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מקום %(quantity)d קושר אך לא נמצא\n"
+msgstr[1] "%(quantity)d מקומות מקושרים אך לא נמצאים\n"
 
 #: ../src/plugins/tool/Check.py:1581
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מקור %(quantity)d קושר אך לא נמצא\n"
+msgstr[1] "%(quantity)d מקורות מקושרים אך לא נמצאים\n"
 
 #: ../src/plugins/tool/Check.py:1586
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "עצם מדיה %d קושר אך לא נמצא\n"
+msgstr[1] "%d עצמי מדיה מקושרים אך לא נמצאים\n"
 
 #: ../src/plugins/tool/Check.py:1590
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "הערה %(quantity)d קושרה אך לא נמצאה\n"
+msgstr[1] "%(quantity)d הערות מקושרות אך לא נמצאות\n"
 
 #: ../src/plugins/tool/Check.py:1595
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מבנה שם %(quantity)d לא תקין הוסר\n"
+msgstr[1] "%(quantity)d מבני שמות לא תקינים הוסרו\n"
 
 #: ../src/plugins/tool/Check.py:1600
 #, python-format
@@ -16484,14 +16505,23 @@ msgid ""
 "   %(repo)d repository objects\n"
 "   %(note)d note objects\n"
 msgstr ""
+"%(empty_obj)d עצמים ריקים - הוסרו:\n"
+"   %(person)d עצמי אנשים\n"
+"   %(family)d עצמי משפחות\n"
+"   %(event)d עצמי אירועים\n"
+"   %(source)d עצמי מקורות\n"
+"   %(media)d עצמי מדיה\n"
+"   %(place)d עצמי מקומות\n"
+"   %(repo)d עצמי מאגרים\n"
+"   %(note)d עצמי הערות\n"
 
 #: ../src/plugins/tool/Check.py:1644
 msgid "Integrity Check Results"
-msgstr ""
+msgstr "תוצאות בדיקת שלמות"
 
 #: ../src/plugins/tool/Check.py:1649
 msgid "Check and Repair"
-msgstr ""
+msgstr "בדוק ותקן"
 
 #: ../src/plugins/tool/Desbrowser.py:53
 msgid "manual|Interactive_Descendant_Browser..."
@@ -16500,11 +16530,11 @@ msgstr ""
 #: ../src/plugins/tool/Desbrowser.py:68
 #, python-format
 msgid "Descendant Browser: %s"
-msgstr ""
+msgstr "דפדפן צאצאים: %s"
 
 #: ../src/plugins/tool/Desbrowser.py:95
 msgid "Descendant Browser tool"
-msgstr ""
+msgstr "כלי דפדפן צאצאים"
 
 #: ../src/plugins/tool/Eval.py:53
 msgid "Python evaluation window"
@@ -16516,52 +16546,54 @@ msgstr ""
 
 #: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
-msgstr ""
+msgstr "בחירת מסנן השוואת אירועים"
 
 #: ../src/plugins/tool/EventCmp.py:166
 msgid "Filter selection"
-msgstr ""
+msgstr "בחירת מסנן"
 
 #: ../src/plugins/tool/EventCmp.py:166
 msgid "Event Comparison tool"
-msgstr ""
+msgstr "כלי השוואת אירועים"
 
 #: ../src/plugins/tool/EventCmp.py:178
 msgid "Comparing events"
-msgstr ""
+msgstr "משווה אירועים"
 
 #: ../src/plugins/tool/EventCmp.py:179
 msgid "Selecting people"
-msgstr ""
+msgstr "בוחר אנשים"
 
 #: ../src/plugins/tool/EventCmp.py:191
 msgid "No matches were found"
-msgstr ""
+msgstr "לא נמצאו תוצאות"
 
 #: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:270
 msgid "Event Comparison Results"
-msgstr ""
+msgstr "תוצאות השוואת אירועים"
 
 #: ../src/plugins/tool/EventCmp.py:251
-msgid " Date"
-msgstr ""
+#, python-format
+msgid "%(event_name)s Date"
+msgstr "תאריך %(event_name)s"
 
 #. This won't be shown in a tree
 #: ../src/plugins/tool/EventCmp.py:253
-msgid " Place"
-msgstr ""
+#, python-format
+msgid "%(event_name)s Place"
+msgstr "מקום %(event_name)s"
 
 #: ../src/plugins/tool/EventCmp.py:303
 msgid "Comparing Events"
-msgstr ""
+msgstr "משווה אירועים"
 
 #: ../src/plugins/tool/EventCmp.py:304
 msgid "Building data"
-msgstr ""
+msgstr "בונה מידע"
 
 #: ../src/plugins/tool/EventCmp.py:384
 msgid "Select filename"
-msgstr ""
+msgstr "בחרי שם קובץ"
 
 #: ../src/plugins/tool/EventNames.py:107
 msgid "Event name changes"
@@ -16635,7 +16667,7 @@ msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:139 ../src/plugins/tool/Verify.py:276
 msgid "Tool settings"
-msgstr ""
+msgstr "הגדרות כלי"
 
 #: ../src/plugins/tool/FindDupes.py:139
 msgid "Find Duplicates tool"
@@ -16651,11 +16683,11 @@ msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:184
 msgid "Find Duplicates"
-msgstr ""
+msgstr "מצא כפולים"
 
 #: ../src/plugins/tool/FindDupes.py:185
 msgid "Looking for duplicate people"
-msgstr ""
+msgstr "מחפש אנשים כפולים"
 
 #: ../src/plugins/tool/FindDupes.py:193
 msgid "Pass 1: Building preliminary lists"
@@ -16667,11 +16699,11 @@ msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:544
 msgid "Potential Merges"
-msgstr ""
+msgstr "מיזוגים אפשריים"
 
 #: ../src/plugins/tool/FindDupes.py:555
 msgid "Rating"
-msgstr ""
+msgstr "דירוג"
 
 #: ../src/plugins/tool/FindDupes.py:556
 msgid "First Person"
@@ -16683,7 +16715,7 @@ msgstr "אדם שני"
 
 #: ../src/plugins/tool/FindDupes.py:567
 msgid "Merge candidates"
-msgstr ""
+msgstr "מזג מועמדים"
 
 #: ../src/plugins/tool/Leak.py:62
 msgid "Uncollected Objects Tool"
@@ -16713,11 +16745,11 @@ msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:87 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
-msgstr ""
+msgstr "מנהל מדיה"
 
 #: ../src/plugins/tool/MediaManager.py:91
 msgid "Gramps Media Manager"
-msgstr ""
+msgstr "מנהל המידע של Gramps"
 
 #: ../src/plugins/tool/MediaManager.py:93
 msgid "Selecting operation"
@@ -16842,43 +16874,43 @@ msgstr ""
 #: ../src/plugins/tool/NotRelated.py:75
 #, python-format
 msgid "Not related to \"%s\""
-msgstr ""
+msgstr "לא קשורים ל-\"%s\""
 
 #: ../src/plugins/tool/NotRelated.py:160
 #, python-format
 msgid "Everyone in the database is related to %s"
-msgstr ""
+msgstr "כל האנשים במסד הנתונים קשורים ל%s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:233
 #, python-format
 msgid "Setting marker for %d person"
 msgid_plural "Setting marker for %d people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "שם סמן עבור אדם %d"
+msgstr[1] "שם סמן עבור %d אנשים"
 
 #. TRANS: No singular form is needed.
 #: ../src/plugins/tool/NotRelated.py:267
 #, python-format
 msgid "Finding relationships between %d person"
 msgid_plural "Finding relationships between %d people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מוצא יחסים בין אדם %d"
+msgstr[1] "מוצא יחסים בין %d אנשים"
 
 #. we have at least 1 "unrelated" person to find
 #: ../src/plugins/tool/NotRelated.py:336
 #, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מחפש אדם %d"
+msgstr[1] "מחפש %d אנשים"
 
 #: ../src/plugins/tool/NotRelated.py:361
 #, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "מחפש את השם של אדם %d"
+msgstr[1] "מחפש את השמות של %d אנשים"
 
 #: ../src/plugins/tool/OwnerEditor.py:54
 msgid "manual|Edit_Database_Owner_Information..."
@@ -16953,25 +16985,25 @@ msgstr ""
 #: ../src/plugins/tool/RelCalc.py:109
 #, python-format
 msgid "Relationship to %(person_name)s"
-msgstr ""
+msgstr "קשר ל%(person_name)s"
 
 #: ../src/plugins/tool/RelCalc.py:147 ../src/PluginUtils/_Tool.py:132
 #: ../src/ReportBase/_ReportDialog.py:579
 msgid "Active person has not been set"
-msgstr ""
+msgstr "לא נבחר אדם פעיל"
 
 #: ../src/plugins/tool/RelCalc.py:148 ../src/PluginUtils/_Tool.py:133
 msgid "You must select an active person for this tool to work properly."
-msgstr ""
+msgstr "את חייבת לבחור אדם פעיל על מנת שהכלי יעבור בצורה תקינה."
 
 #: ../src/plugins/tool/RelCalc.py:164
 msgid "Relationship Calculator tool"
-msgstr ""
+msgstr "כלי חישוב קשרים"
 
 #: ../src/plugins/tool/RelCalc.py:192
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
-msgstr ""
+msgstr "%(person)s ו%(active_person)s לא קשורים."
 
 #: ../src/plugins/tool/RelCalc.py:207
 #, python-format
@@ -16995,7 +17027,7 @@ msgstr ""
 #. Add ignore column
 #: ../src/plugins/tool/RemoveUnused.py:181 ../src/plugins/tool/Verify.py:463
 msgid "Mark"
-msgstr ""
+msgstr "סמן"
 
 #: ../src/plugins/tool/RemoveUnused.py:307
 msgid "Remove unused objects"
@@ -17112,24 +17144,25 @@ msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:81
 msgid "Check and Repair Database"
-msgstr ""
+msgstr "בדוק ותקן מסד נתונים"
 
 #: ../src/plugins/tool/tools.gpr.py:82
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
+"בודק את מסד הנתונים לבעיות, ומתקן אותם אם ניתן"
 
 #: ../src/plugins/tool/tools.gpr.py:104
 msgid "Interactive Descendant Browser"
-msgstr ""
+msgstr "דפדפן צאצאים"
 
 #: ../src/plugins/tool/tools.gpr.py:105
 msgid "Provides a browsable hierarchy based on the active person"
-msgstr ""
+msgstr "מספק היררכיה ניתנת לדפדוף מבוססת על האדם הפעיל"
 
 #: ../src/plugins/tool/tools.gpr.py:149
 msgid "Compare Individual Events"
-msgstr ""
+msgstr "השווה אירועי אנשים"
 
 #: ../src/plugins/tool/tools.gpr.py:150
 msgid ""
@@ -17237,7 +17270,7 @@ msgstr "וודאי את התאריך"
 
 #: ../src/plugins/tool/tools.gpr.py:508
 msgid "Verifies the data against user-defined tests"
-msgstr ""
+msgstr "מאמת את התאריך באמצעות בדיקות מותאמות אישית"
 
 #: ../src/plugins/tool/Verify.py:72
 msgid "manual|Verify_the_Data..."
@@ -17245,11 +17278,11 @@ msgstr ""
 
 #: ../src/plugins/tool/Verify.py:228
 msgid "Database Verify tool"
-msgstr ""
+msgstr "כלי לאימות מסד הנתונים"
 
 #: ../src/plugins/tool/Verify.py:411
 msgid "Database Verification Results"
-msgstr ""
+msgstr "תוצאות אימות מסד הנתונים"
 
 #. Add column with the warning text
 #: ../src/plugins/tool/Verify.py:474
@@ -17378,7 +17411,7 @@ msgstr "אם מתה"
 
 #: ../src/plugins/tool/Verify.py:1431
 msgid "Large year span for all children"
-msgstr ""
+msgstr "טווח שנים גדול עבור כל הילדים"
 
 #: ../src/plugins/tool/Verify.py:1453
 msgid "Large age differences between children"
@@ -17447,7 +17480,7 @@ msgstr "שושלת"
 
 #: ../src/plugins/view/fanchartview.gpr.py:5
 msgid "The view showing relations through a fanchart"
-msgstr ""
+msgstr "תצוגה זו מראה קשרים דרך תרשים מניפה"
 
 #: ../src/plugins/view/geoview.py:346
 msgid "Clear the entry field in the places selection box."
@@ -18236,7 +18269,7 @@ msgstr "תצוגת אירוע"
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
-msgstr ""
+msgstr "תצוגה זו מראה את כל האירועים"
 
 #: ../src/plugins/view/view.gpr.py:47
 msgid "Family View"
@@ -18244,7 +18277,7 @@ msgstr "תצוגת משפחה"
 
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
-msgstr ""
+msgstr "תצוגה זו מראה את כל המשפחות"
 
 #: ../src/plugins/view/view.gpr.py:62
 msgid "Gramplet View"
@@ -18268,7 +18301,7 @@ msgstr "תצוגת הערה"
 
 #: ../src/plugins/view/view.gpr.py:93
 msgid "The view showing all the notes"
-msgstr ""
+msgstr "תצוגה זו מראה את כל ההערות"
 
 #: ../src/plugins/view/view.gpr.py:107
 msgid "Relationship View"
@@ -18284,23 +18317,23 @@ msgstr "תצוגת שושלת יוחסין"
 
 #: ../src/plugins/view/view.gpr.py:123
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr ""
+msgstr "תצוגה זו מראה את שושלת הקדמונים של אדם נבחר"
 
 #: ../src/plugins/view/view.gpr.py:137
 msgid "Person Tree View"
-msgstr ""
+msgstr "תצוגת עץ אשנים"
 
 #: ../src/plugins/view/view.gpr.py:138
 msgid "The view showing all people in the family tree"
-msgstr ""
+msgstr "תצוגה זו מציגה את כל האנשים בעץ משפחה"
 
 #: ../src/plugins/view/view.gpr.py:153
 msgid "The view showing all people in the family tree in a flat list"
-msgstr ""
+msgstr "תצוגה זו מראה את כל האנשים ברשימה"
 
 #: ../src/plugins/view/view.gpr.py:168
 msgid "The view showing all the places of the family tree"
-msgstr ""
+msgstr "תצוגה זו מראה את כל המקומות בעץ המשפחה"
 
 #: ../src/plugins/view/view.gpr.py:182
 msgid "Repository View"
@@ -18308,7 +18341,7 @@ msgstr "תצוגת מאגרים"
 
 #: ../src/plugins/view/view.gpr.py:183
 msgid "The view showing all the repositories"
-msgstr ""
+msgstr "תצוגה זו מראה את כל המאגרים"
 
 #: ../src/plugins/view/view.gpr.py:197
 msgid "Source View"
@@ -18316,7 +18349,7 @@ msgstr "תצוגת מקור"
 
 #: ../src/plugins/view/view.gpr.py:198
 msgid "The view showing all the sources"
-msgstr ""
+msgstr "תצוגה זו מראה את כל המקורות"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Alternate Locations"
@@ -18402,7 +18435,7 @@ msgstr "קישורי רשת"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1541
 msgid "Link/ Description"
-msgstr "Link/ תיאור"
+msgstr "קישור / תיאור"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1610
 msgid "Confidence"
@@ -18433,7 +18466,7 @@ msgid ""
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"העמוד מכיל אינקדס של כל האנשים במבד הנתונים עם שם המשפחה %s.בחירת שם האדם "
+"העמוד מכיל אינקדס של כל האנשים במסד הנתונים עם שם המשפחה %s.בחירת שם האדם "
 "תקח אותך לעמוד עם הפרטים על אותו אדם."
 
 #. place list page message
@@ -18697,11 +18730,11 @@ msgstr "יוצר עמודי ספר כתובות..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5782
 msgid "Store web pages in .tar.gz archive"
-msgstr ""
+msgstr "אחסן את דפי האינטרנט בארכיון .tar.gz"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5784
 msgid "Whether to store the web pages in an archive file"
-msgstr ""
+msgstr "האם לאשמור את דפי האינטרנט בקובץ מכווץ"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5789
 #: ../src/plugins/webreport/WebCal.py:1340
@@ -19682,7 +19715,7 @@ msgstr ""
 
 #: ../src/PluginUtils/_Tool.py:57
 msgid "Analysis and Exploration"
-msgstr ""
+msgstr "ניתוח וחקירה"
 
 #: ../src/PluginUtils/_Tool.py:58
 msgid "Database Processing"
@@ -20105,11 +20138,11 @@ msgstr "גודל ההערה בנקודות."
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
-msgstr ""
+msgstr "אנכי"
 
 #: ../src/ReportBase/_PaperMenu.py:119
 msgid "Landscape"
-msgstr ""
+msgstr "אופקי"
 
 #: ../src/ReportBase/_PaperMenu.py:222 ../src/glade/styleeditor.glade.h:33
 #: ../src/glade/papermenu.glade.h:13
@@ -20202,7 +20235,7 @@ msgstr "עורך סגנון"
 
 #: ../src/ReportBase/_StyleEditor.py:216 ../src/glade/styleeditor.glade.h:34
 msgid "point size|pt"
-msgstr ""
+msgstr "נקודות"
 
 #: ../src/ReportBase/_StyleEditor.py:218
 msgid "Paragraph"
@@ -20318,7 +20351,7 @@ msgstr "מתאים אובייקטים עם הערך הנתון של המאפיי
 #: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
 msgid "Date:"
-msgstr ""
+msgstr "תאריך:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:51
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -22523,7 +22556,7 @@ msgstr "<b>גודל</b>"
 
 #: ../src/glade/styleeditor.glade.h:11
 msgid "<b>Spacing</b>"
-msgstr "<b>ריווח<b>"
+msgstr "<b>ריווח</b>"
 
 #: ../src/glade/styleeditor.glade.h:12
 msgid "<b>Type face</b>"
@@ -22607,7 +22640,7 @@ msgstr "למ_עלה"
 
 #: ../src/glade/styleeditor.glade.h:32
 msgid "_Underline"
-msgstr "_קו תחתי:"
+msgstr "_קו תחתי"
 
 #: ../src/glade/dbman.glade.h:1
 msgid "<b>Version description</b>"
@@ -22846,7 +22879,7 @@ msgstr "_מקום:"
 
 #: ../src/glade/editeventref.glade.h:10
 msgid "_Role:"
-msgstr ""
+msgstr "_תפקיד:"
 
 #: ../src/glade/editldsord.glade.h:2
 msgid "Family:"
@@ -23223,11 +23256,11 @@ msgstr "סוג אירוע _מקורי:"
 
 #: ../src/plugins/tool/desbrowser.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr ""
+msgstr "<i>הקליקי פעמיים על שורה בשביל לערוך פרטים אישיים</i>"
 
 #: ../src/plugins/tool/eval.glade.h:1
 msgid "<b>Error Window</b>"
-msgstr ""
+msgstr "<b>חלון שגיאה</b>"
 
 #: ../src/plugins/tool/eval.glade.h:2
 msgid "<b>Evaluation Window</b>"
@@ -23235,29 +23268,29 @@ msgstr ""
 
 #: ../src/plugins/tool/eval.glade.h:3
 msgid "<b>Output Window</b>"
-msgstr ""
+msgstr "<b>חלון פלט</b>"
 
 #: ../src/plugins/tool/eventcmp.glade.h:1
 msgid "Custom filter _editor"
-msgstr ""
+msgstr "_עורך מסנן מותאם אישית"
 
 #: ../src/plugins/tool/eventcmp.glade.h:2
 msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
-msgstr ""
+msgstr "כלי השוואת התאריכים משתמש במסננים המוגדרים בעורך המסננים."
 
 #: ../src/plugins/tool/eventcmp.glade.h:3
 msgid "_Filter:"
-msgstr ""
+msgstr "_מסנן:"
 
 #: ../src/plugins/import/importgedcom.glade.h:1
 msgid "<b>Status</b>"
-msgstr ""
+msgstr "<b>מצב</b>"
 
 #: ../src/plugins/import/importgedcom.glade.h:2
 msgid "<b>Warning messages</b>"
-msgstr ""
+msgstr "<b>הודעות אזהרה</b>"
 
 #: ../src/plugins/import/importgedcom.glade.h:3
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
@@ -23391,12 +23424,12 @@ msgstr ""
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr ""
+msgstr "<b>הקליקי פעמיים על שורה בשביל לראות/לערוך מידע</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
 msgid "In_vert marks"
-msgstr ""
+msgstr "ה_פוך סמנים"
 
 #: ../src/plugins/tool/removeunused.glade.h:3
 msgid "Search for events"
