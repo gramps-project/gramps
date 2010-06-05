@@ -1450,3 +1450,22 @@ table.oneday tbody tr td.ColumnText {
 table.oneday tbody tr td.ColumnEvent {
     width: 10%;
 }
+
+/* PlaceMaps
+-------------------------------------------------------------------------------- */
+div#mapdiv {
+  height: 400px;
+}
+table#mapdiv {
+    border: none;
+    width: 50%;
+    float: center;
+}
+table#mapdiv tr td div#googlev3 {
+    height: 400px;
+    width: 600px;
+}
+table#mapdiv tr td div#openlayers {
+    height: 400px;
+    width: 600px;
+}

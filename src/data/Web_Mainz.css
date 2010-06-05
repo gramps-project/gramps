@@ -1483,3 +1483,22 @@ body#fullyearlinked table.calendar tbody tr td {
 body#OneDay {
     background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
+
+/* PlaceMaps
+-------------------------------------------------------------------------------- */
+div#mapdiv {
+  height: 400px;
+}
+table#mapdiv {
+    border: none;
+    width: 50%;
+    float: center;
+}
+table#mapdiv tr td div#googlev3 {
+    height: 400px;
+    width: 600px;
+}
+table#mapdiv tr td div#openlayers {
+    height: 400px;
+    width: 600px;
+}
