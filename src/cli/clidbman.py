@@ -331,7 +331,8 @@ def make_dbdir(dbdir):
         if not os.path.isdir(dbdir):
             os.makedirs(dbdir)
     except (IOError, OSError), msg:
-        LOG.error(_("Could not make database directory: ") + str(msg))
+        msg = unicode(str(msg), sys.getfilesystemencoding())
+        LOG.error(_("Could not make database directory: ") + msg)
 
 def find_next_db_name(name_list):
     """
