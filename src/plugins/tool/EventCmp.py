@@ -249,9 +249,11 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         
         self.table_titles = [_("Person"),_("ID")]
         for event_name in self.event_titles:
-            self.table_titles.append(event_name + _(" Date"))
+	    self.table_titles.append(_("%(event_name)s Date") %
+                {'event_name' :event_name })
             self.table_titles.append('sort') # This won't be shown in a tree
-            self.table_titles.append(event_name + _(" Place"))
+	    self.table_titles.append(_("%(event_name)s Place") %
+                {'event_name' :event_name })
             
         self.build_row_data()
         self.draw_display()
