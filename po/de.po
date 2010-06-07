@@ -7,13 +7,14 @@
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010.
+# Mirko Leonhaeuser <mirko@leonhaeuser.de>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-27 18:59+0200\n"
-"PO-Revision-Date: 2010-05-27 19:14+0200\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"POT-Creation-Date: 2010-06-07 01:37+0200\n"
+"PO-Revision-Date: 2010-06-07 01:59+0200\n"
+"Last-Translator: Mirko Leonhaeuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -630,99 +631,99 @@ msgstr "Person %(person)s hat eine Verbindung zu sich selbst über %(relation)s"
 msgid "undefined"
 msgstr "undefiniert"
 
-#: ../src/Relationship.py:1669 ../src/plugins/import/ImportCsv.py:289
+#: ../src/Relationship.py:1670 ../src/plugins/import/ImportCsv.py:289
 msgid "husband"
 msgstr "Ehemann"
 
-#: ../src/Relationship.py:1671 ../src/plugins/import/ImportCsv.py:285
+#: ../src/Relationship.py:1672 ../src/plugins/import/ImportCsv.py:285
 msgid "wife"
 msgstr "Ehefrau"
 
-#: ../src/Relationship.py:1673
+#: ../src/Relationship.py:1674
 msgid "gender unknown|spouse"
 msgstr "Partner(in)"
 
-#: ../src/Relationship.py:1676
+#: ../src/Relationship.py:1677
 msgid "ex-husband"
 msgstr "Ex-Ehemann"
 
-#: ../src/Relationship.py:1678
+#: ../src/Relationship.py:1679
 msgid "ex-wife"
 msgstr "Ex-Ehefrau"
 
-#: ../src/Relationship.py:1680
+#: ../src/Relationship.py:1681
 msgid "gender unknown|ex-spouse"
 msgstr "Ex-Partner(in)"
 
-#: ../src/Relationship.py:1683
+#: ../src/Relationship.py:1684
 msgid "unmarried|husband"
 msgstr "Lebensgefährte"
 
-#: ../src/Relationship.py:1685
+#: ../src/Relationship.py:1686
 msgid "unmarried|wife"
 msgstr "Lebensgefährtin"
 
-#: ../src/Relationship.py:1687
+#: ../src/Relationship.py:1688
 msgid "gender unknown,unmarried|spouse"
 msgstr "Partner(in)"
 
-#: ../src/Relationship.py:1690
+#: ../src/Relationship.py:1691
 msgid "unmarried|ex-husband"
 msgstr "Ex-Lebensgefährte"
 
-#: ../src/Relationship.py:1692
+#: ../src/Relationship.py:1693
 msgid "unmarried|ex-wife"
 msgstr "Ex-Lebensgefährtin"
 
-#: ../src/Relationship.py:1694
+#: ../src/Relationship.py:1695
 msgid "gender unknown,unmarried|ex-spouse"
 msgstr "Ex-Lebensgefährt(e/in)"
 
-#: ../src/Relationship.py:1697
+#: ../src/Relationship.py:1698
 msgid "male,civil union|partner"
 msgstr "eingetragener Lebenspartner"
 
-#: ../src/Relationship.py:1699
+#: ../src/Relationship.py:1700
 msgid "female,civil union|partner"
 msgstr "eingetragene Lebenspartnerin"
 
-#: ../src/Relationship.py:1701
+#: ../src/Relationship.py:1702
 msgid "gender unknown,civil union|partner"
 msgstr "eingetragene(r) Lebenspartner(in)"
 
-#: ../src/Relationship.py:1704
+#: ../src/Relationship.py:1705
 msgid "male,civil union|former partner"
 msgstr "früherer eingetragener Lebenspartner"
 
-#: ../src/Relationship.py:1706
+#: ../src/Relationship.py:1707
 msgid "female,civil union|former partner"
 msgstr "frühere eingetragene Lebenspartnerin"
 
-#: ../src/Relationship.py:1708
+#: ../src/Relationship.py:1709
 msgid "gender unknown,civil union|former partner"
 msgstr "frühere(r) eingetragene(r) Lebenspartner(in)"
 
-#: ../src/Relationship.py:1711
+#: ../src/Relationship.py:1712
 msgid "male,unknown relation|partner"
 msgstr "Partner"
 
-#: ../src/Relationship.py:1713
+#: ../src/Relationship.py:1714
 msgid "female,unknown relation|partner"
 msgstr "Partnerin"
 
-#: ../src/Relationship.py:1715
+#: ../src/Relationship.py:1716
 msgid "gender unknown,unknown relation|partner"
 msgstr "Partner(in)"
 
-#: ../src/Relationship.py:1720
+#: ../src/Relationship.py:1721
 msgid "male,unknown relation|former partner"
 msgstr "früherer Partner"
 
-#: ../src/Relationship.py:1722
+#: ../src/Relationship.py:1723
 msgid "female,unknown relation|former partner"
 msgstr "frühere Partnerin"
 
-#: ../src/Relationship.py:1724
+#: ../src/Relationship.py:1725
 msgid "gender unknown,unknown relation|former partner"
 msgstr "frühere(r) Partner(in)"
 
@@ -788,7 +789,7 @@ msgstr "Beziehungen neu ordnen: %s"
 msgid "manual|Using_the_Clipboard"
 msgstr "Benutzen_der_Zwischenablage"
 
-#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:403
+#: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:404
 #: ../src/gen/lib/urltype.py:54 ../src/gen/lib/notetype.py:78
 #: ../src/gen/lib/repotype.py:59 ../src/gen/lib/attrtype.py:62
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/srcmediatype.py:62
@@ -2128,15 +2129,15 @@ msgstr "Import abgeschlossen..."
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
-#: ../src/cli/clidbman.py:334
+#: ../src/cli/clidbman.py:335
 msgid "Could not make database directory: "
 msgstr "Konnte Datenbankverzeichnis nicht erstellen: "
 
-#: ../src/cli/clidbman.py:381
+#: ../src/cli/clidbman.py:382
 msgid "Never"
 msgstr "Nie"
 
-#: ../src/cli/clidbman.py:400
+#: ../src/cli/clidbman.py:401
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
@@ -3804,8 +3805,7 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
 #: ../src/gui/dbman.py:547
-msgid ""
-"Removing this version will prevent you from extracting it in the future."
+msgid "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
@@ -6434,8 +6434,7 @@ msgstr "Lesezeichen für %s gesetzt"
 #: ../src/gui/views/navigationview.py:244
 #: ../src/plugins/view/familyview.py:207
 msgid "A bookmark could not be set because no one was selected."
-msgstr ""
-"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+msgstr "Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
 
 #: ../src/gui/views/navigationview.py:259
 msgid "_Add Bookmark"
@@ -10694,8 +10693,7 @@ msgstr "Creative Commons - Namensnennung, Keine Bearbeitung"
 
 #: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr ""
-"Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
+msgstr "Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
 
 #: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Non-commercial"
@@ -11112,8 +11110,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:210
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -11327,8 +11324,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:262
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
@@ -11491,8 +11487,7 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:324
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
@@ -11758,8 +11753,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -12477,8 +12471,7 @@ msgstr "Sie wurde in %(burial_place)s%(endnotes)s begraben."
 #: ../src/plugins/lib/libnarrate.py:668
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
+msgstr "%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:669
 #, python-format
@@ -12551,8 +12544,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:702
 #, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:705
 #, python-format
@@ -12804,8 +12796,7 @@ msgstr "Sie wurde in %(baptism_place)s getauft%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:801
 #, python-format
 msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:802
 #, python-format
@@ -13521,16 +13512,14 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1106
 #, python-format
@@ -13560,8 +13549,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1114
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1115
 #, python-format
@@ -13636,8 +13624,7 @@ msgstr "Heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -14346,8 +14333,7 @@ msgstr "Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1344
 #, python-format
-msgid ""
-"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Beziehung mit %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1350
@@ -14482,8 +14468,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1378
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1379
 #, python-format
@@ -14562,8 +14547,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1402
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Er hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
@@ -14612,8 +14596,7 @@ msgstr "Auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1418
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Diese Person hatte eine Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
@@ -15615,8 +15598,7 @@ msgstr "Personen mit dem Familiennamen '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] ""
-"Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
+msgstr[0] "Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
 msgstr[1] ""
 "Es gibt %d Personen mit einem Passenden Namen oder alternativ Namen.\n"
 
@@ -16966,7 +16948,7 @@ msgstr "Ursprünglicher Name"
 msgid "Capitalization Change"
 msgstr "Änderungen der Großschreibung"
 
-#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:296
+#: ../src/plugins/tool/ChangeNames.py:209 ../src/plugins/tool/EventCmp.py:298
 #: ../src/plugins/tool/ExtractCity.py:552
 #: ../src/plugins/tool/PatchNames.py:240
 msgid "Building display"
@@ -17284,8 +17266,7 @@ msgstr[1] "%d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] ""
-"%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[1] "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1595
 #, python-format
@@ -17370,28 +17351,30 @@ msgstr "Wählen von Personen"
 msgid "No matches were found"
 msgstr "Keine Treffer gefunden"
 
-#: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:270
+#: ../src/plugins/tool/EventCmp.py:241 ../src/plugins/tool/EventCmp.py:272
 msgid "Event Comparison Results"
 msgstr "Ereignisvergleichs-Resultate"
 
 #: ../src/plugins/tool/EventCmp.py:251
-msgid " Date"
-msgstr " Datum"
+#, python-format
+msgid "%(event_name)s Date"
+msgstr "%(event_name)s Datum"
 
 #. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:253
-msgid " Place"
-msgstr " Ort"
+#: ../src/plugins/tool/EventCmp.py:254
+#, python-format
+msgid "%(event_name)s Place"
+msgstr "%(event_name)s Ort"
 
-#: ../src/plugins/tool/EventCmp.py:303
+#: ../src/plugins/tool/EventCmp.py:305
 msgid "Comparing Events"
 msgstr "Ereignisse Vergleichen"
 
-#: ../src/plugins/tool/EventCmp.py:304
+#: ../src/plugins/tool/EventCmp.py:306
 msgid "Building data"
 msgstr "Daten erstellen"
 
-#: ../src/plugins/tool/EventCmp.py:384
+#: ../src/plugins/tool/EventCmp.py:386
 msgid "Select filename"
 msgstr "Dateinamen wählen"
 
@@ -18600,8 +18583,7 @@ msgstr "ID : Person : %(id)s %(name)s hat keine Familie."
 
 #: ../src/plugins/view/geoview.py:2072
 #, python-format
-msgid ""
-"All %(name)s people's family places in the family tree with coordinates."
+msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaum mit Koordinaten."
 
 #: ../src/plugins/view/geoview.py:2109
@@ -19251,8 +19233,7 @@ msgstr "Attribute/ Art"
 #, python-format
 msgid ""
 "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
-msgstr ""
-"Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
+msgstr "Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
 
 #. carriage return was added by Stephane Charette to force it down one line
 #: ../src/plugins/webreport/NarrativeWeb.py:987
@@ -20021,8 +20002,7 @@ msgstr "Berechne Feiertage für das Jahr %04d"
 #: ../src/plugins/webreport/WebCal.py:468
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr ""
-"Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
+msgstr "Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
 #: ../src/plugins/webreport/WebCal.py:472
 #, python-format
@@ -21877,8 +21857,7 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
 "Generationen entfernt"
@@ -22372,8 +22351,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr ""
-"Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
+msgstr "Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
@@ -24551,8 +24529,7 @@ msgstr "SoundEx-Code:"
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr ""
-"<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
+msgstr "<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
@@ -25573,6 +25550,12 @@ msgstr ""
 "werden. Du kannst auch das Level der Qualität eines Datums und sogar "
 "zwischen sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche "
 "neben dem Datumsfeld im Ereigniseditor."
+
+#~ msgid " Date"
+#~ msgstr " Datum"
+
+#~ msgid " Place"
+#~ msgstr " Ort"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
