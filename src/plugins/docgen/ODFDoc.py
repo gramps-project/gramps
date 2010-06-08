@@ -345,7 +345,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             if style.get_padding() != 0.0:
                 self.cntnt.write('fo:padding="%.2fcm" ' % style.get_padding())
             if style.get_header_level() > 0:
-                self.cntnt.write('fo:keep-with-next="true" ')
+                self.cntnt.write('fo:keep-with-next="auto" ')
 
             align = style.get_alignment()
             if align == PARA_ALIGN_LEFT:
@@ -381,8 +381,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                              style.get_right_margin())
             self.cntnt.write('fo:margin-left="%.2fcm"\n' %
                              style.get_left_margin())
-            self.cntnt.write('fo:margin-top="0.00cm"\n')
-            self.cntnt.write('fo:margin-bottom="0.212cm" ')
+            self.cntnt.write('fo:margin-top="%.2fcm"\n' %
+                             style.get_top_margin())
+            self.cntnt.write('fo:margin-bottom="%.2fcm"\n' %
+                             style.get_bottom_margin())
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
 
@@ -966,13 +968,15 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                              style.get_left_margin())
             self.sfile.write('fo:margin-right="%.2fcm"\n' %
                              style.get_right_margin())
-            self.sfile.write('fo:margin-top="0.00cm"\n')
-            self.sfile.write('fo:margin-bottom="0.212cm"\n')
+            self.sfile.write('fo:margin-top="%.2fcm"\n' %
+                             style.get_top_margin())
+            self.sfile.write('fo:margin-bottom="%.2fcm"\n' %
+                             style.get_bottom_margin())
 
             if style.get_padding() != 0.0:
                 self.sfile.write('fo:padding="%.2fcm" ' % style.get_padding())
             if style.get_header_level() > 0:
-                self.sfile.write('fo:keep-with-next="always" ')
+                self.sfile.write('fo:keep-with-next="auto" ')
 
             align = style.get_alignment()
             if align == PARA_ALIGN_LEFT:
@@ -1011,8 +1015,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                                  style.get_right_margin())
                 self.sfile.write('fo:margin-left="%.2fcm" ' %
                                  style.get_left_margin())
-                self.sfile.write('fo:margin-top="0cm" ')
-                self.sfile.write('fo:margin-bottom="0.212cm"')
+                self.sfile.write('fo:margin-top="%.2fcm"\n' %
+                                 style.get_top_margin())
+                self.sfile.write('fo:margin-bottom="%.2fcm"\n' %
+                                 style.get_bottom_margin())
             self.sfile.write('/>\n')
             self.sfile.write('</style:style>\n')
 
