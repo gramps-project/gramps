@@ -6,8 +6,12 @@ pkgdatadir = $(datadir)/@PACKAGE@/mapstraction
 
 dist_pkgdata_DATA = \
 	mapstraction.js \
-	crosshairs.png
-
-
-
-
+	crosshairs.png \
+        mxn.core.js \
+        mxn.geocommons.core.js \
+        mxn.google.core.js \
+        mxn.google.geocoder.js \
+        mxn.googlev3.core.js \
+        mxn.js \
+        mxn.openlayers.core.js \
+        README
