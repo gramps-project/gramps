@@ -963,32 +963,16 @@ div#attributes {
 table.attrlist {
     width: 100%;
 }
-table.attrlist thead tr th.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist thead tr th.ColumnAttribute {
-    border: none;
-    background: none;
-}
 table.attrlist tbody tr td.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttribute {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttrType {
     width: 15%;
 }
-table.attrlist tbody tr td.ColumnAttrValue {
+table.attrlist tbody tr td.ColumnValue {
     width: 15%;
 }
-table.attrlist tbody tr td.ColumnAttrNotes {
+table.attrlist tbody tr td.ColumnNotes {
     width: 45%;
 }
-table.attrlist tbody tr td.ColumnAttrSources {
+table.attrlist tbody tr td.ColumnSources {
     width: 15%;
 }
 

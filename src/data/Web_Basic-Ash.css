@@ -105,9 +105,12 @@ h3 {
     padding:.5em 20px .2em 20px;
 }
 h4 {
-    font-size:.8em;
+    border-width: 2px 0 2px 0;
+    border-style: solid;
+    border-color: #000;
+    font-size: 1em;
     color:#333;
-    margin:0;
+    margin: .3cm 0 .3cm 0;;
     padding:.2em 0 .2em 20px;
     background-color:#EEE;
     border-bottom:solid 1px #999;
@@ -976,37 +979,20 @@ div#attributes {
 table.attrlist {
     width: 100%;
 }
-table.attrlist thead tr th.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist thead tr th.ColumnAttribute {
-    border: none;
-    background: none;
-}
 table.attrlist tbody tr td {
     background-color: #EEE;
     border-bottom: dashed 1px #000;
 }
 table.attrlist tbody tr td.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttribute {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttrType {
     width: 15%;
 }
-table.attrlist tbody tr td.ColumnAttrValue {
+table.attrlist tbody tr td.ColumnValue {
     width: 15%;
 }
-table.attrlist tbody tr td.ColumnAttrNotes {
+table.attrlist tbody tr td.ColumnNotes {
     width: 45%;
 }
-table.attrlist tbody tr td.ColumnAttrSources {
-    background-color: #FFF;
+table.attrlist tbody tr td.ColumnSources {
     width: 15%;
 }
 
