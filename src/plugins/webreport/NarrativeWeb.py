@@ -954,7 +954,7 @@ class BasePage(object):
 
                 tbody.extend(
                     self.dump_attribute(attr)
-                    for attr in attrlist)
+                    for attr in attrlist) 
 
         # return section to its caller
         return section
@@ -1354,51 +1354,39 @@ class BasePage(object):
 
             if mime_type:
 
+                # add link reference to media
+                lnkref = (self.report.cur_fname, self.page_title, self.gid)
+                self.report.add_lnkref_to_photo(photo, lnkref)
+
                 region = self.media_ref_region_to_object(photo_handle, object)
                 if region:
-                    lnkref = (self.report.cur_fname, self.page_title, self.gid)
-                    self.report.add_lnkref_to_photo(photo, lnkref)
 
                     # make a thumbnail of this region
                     newpath = copy_thumbnail(self.report, photo_handle, photo, region)
-                    # TODO. Check if build_url_fname can be used.
-                    newpath = "/".join(['..']*3 + [newpath])
-                    if constfunc.win():
-                        newpath = newpath.replace('\\',"/")
+                    newpath = self.report.build_url_fname(newpath, up = True)
 
                     snapshot += self.media_link(photo_handle, newpath, '', up = True)
                 else:
+
+                    real_path, newpath = self.report.prepare_copy_media(photo)
+                    newpath = self.report.build_url_fname(newpath, up = True)
+  
                     _region_items = self.media_ref_rect_regions(photo_handle)
                     if len(_region_items):
-                        with Html("div", id="GalleryDisplay") as mediadisplay:
-                            ordered = Html("ol", class_ = "RegionBox")
+                        with Html("div", id = "GalleryDisplay") as mediadisplay:
                             snapshot += mediadisplay
+
+                            ordered = Html("ol", class_ = "RegionBox")
                             mediadisplay += ordered
                             while len(_region_items):
                                 (name, x, y, w, h, linkurl) = _region_items.pop()
                                 ordered += Html("li", 
                                                 style="left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
                                                 % (x, y, w, h)) + Html("a", name, href = linkurl)
-                            lnkref = (self.report.cur_fname, self.page_title, self.gid)
-                            self.report.add_lnkref_to_photo(photo, lnkref)
-                            real_path, newpath = self.report.prepare_copy_media(photo)
-  
-                            # TODO. Check if build_url_fname can be used.
-                            newpath = "/".join(['..']*3 + [newpath])
-                            if constfunc.win():
-                                newpath = newpath.replace('\\',"/")
                             # Need to add link to mediadisplay to get the links:
                             mediadisplay += self.media_link(photo_handle, newpath, '', up = True)
                     else:
                         try:
-                            lnkref = (self.report.cur_fname, self.page_title, self.gid)
-                            self.report.add_lnkref_to_photo(photo, lnkref)
-                            real_path, newpath = self.report.prepare_copy_media(photo)
-
-                            # TODO. Check if build_url_fname can be used.
-                            newpath = "/".join(['..']*3 + [newpath])
-                            if constfunc.win():
-                                newpath = newpath.replace('\\',"/")
 
                             # begin hyperlink
                             # description is given only for the purpose of the alt tag in img element
@@ -2361,6 +2349,70 @@ class PlacePage(BasePage):
         self.page_title = ReportUtils.place_name(db, place_handle)
         placepage, head, body = self.write_header(_("Places"))
 
+        # determine if we will be creating Place Maps or not?
+        if self.placemaps:
+            if place.lat and place.long:
+
+                head += Html("script", type = "text/javascript", 
+                    src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+
+                head += Html("script", type = "text/javascript", 
+                        src = "http://openlayers.org/api/OpenLayers.js", inline = True)
+
+                head += Html("script", type = "text/javascript", 
+                        src = "../../../mapstraction/mxn.js?(googlev3,openlayers)", inline = True)
+
+                inline_script = """ 
+                    <script type="text/javascript">
+                    //<![CDATA[
+
+                      var m;
+                      var h = 'y';
+                      var p = 'googlev3';
+                      function initialize() {
+                          // create mxn object
+                          m = new mxn.Mapstraction('googlev3','googlev3');
+                          m.addControls({zoom:'small'});
+
+                          var latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
+
+                inline_script += """ 
+                          // put map on page
+                          m.setCenterAndZoom(latlon, 7);
+
+                          //add a marker
+                          var marker = new mxn.Marker(latlon);
+                          m.addMarker(marker,true); 
+
+                      }
+
+                      function changetohybrid() {
+                         if ( h == 'y' ) { 
+                             h = 'n'
+                             m.setMapType(mxn.Mapstraction.HYBRID);  
+                         } else {
+                             h = 'y'
+                             m.setMapType(mxn.Mapstraction.ROAD);  
+                         };
+                      }
+
+                      function changeprovider(){
+                         if ( p == 'googlev3') {
+                             p = 'openlayers';
+                         } else {
+                             p = 'googlev3';
+                         };
+                         m.swap(p,p);  
+                      }
+
+                    //]]>
+                    </script> 
+                    """
+                head += inline_script
+
+                # add javascript function to body element
+                body.attr = 'onload="initialize();"'
+
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
             body += placedetail
@@ -2398,6 +2450,9 @@ class PlacePage(BasePage):
             urllinks = self.display_url_list(place.get_url_list())
             if urllinks is not None:
                 placedetail += urllinks
+
+            # add place map here
+            _create_map(placedetail, place.lat, place.long)
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -5067,6 +5122,11 @@ class NavWebReport(Report):
         # get option for Internet Address Book
         self.inc_addressbook = self.options["inc_addressbook"]
 
+        # Place Map tab options
+        self.placemaps = self.options["placepagemaps"]
+        self.mapservices = self.options["mapservices"]
+        self.googlekey = self.options["googlekey"]
+
         if self.use_home:
             self.index_fname = "index"
             self.surname_fname = "surnames"
@@ -5246,6 +5306,11 @@ class NavWebReport(Report):
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
+        # copy mapstraction/mxn.js to mapstraction directory
+        if self.placemaps:
+            fname = os.path.join(const.MAPSTRACTION_DIR, "mxn.js")
+            self.copy_file(fname, "mxn.js", "mapstraction")
+ 
         imgs = []
 
         # Mainz stylesheet graphics
@@ -5795,7 +5860,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_privacy_options(menu)
         self.__add_download_options(menu) 
         self.__add_advanced_options(menu)
-        self.__add_placepage_map_options(menu)
+        self.__add_place_map_options(menu)
 
     def __add_report_options(self, menu):
         """
@@ -6091,49 +6156,22 @@ class NavWebOptions(MenuReportOptions):
                                    "events?"))
         menu.add_option(category_name, "inc_addressbook", inc_addressbook)
 
-    def __add_placepage_map_options(self, menu):
+    def __add_place_map_options(self, menu):
         """
         Adds the ability and options to include PlacePage Maps
         """
 
-        category_name = _("PlacePage Maps")
+        category_name = _("Place Maps")
 
-        self.__placepagemaps = BooleanOption(_("Include Place map on Place Pages"), False)
-        self.__placepagemaps.set_help(_("Whether to include a place map on the Place Pages, "
+        self.__placemaps = BooleanOption(_("Include Place map on Place Pages"), False)
+        self.__placemaps.set_help(_("Whether to include a place map on the Place Pages, "
                                         "where Latitude/ Longitude are available."))
-        menu.add_option(category_name, "placepagemaps", self.__placepagemaps)
-        self.__placepagemaps.connect("value-changed", self.__placemap_changed)
+        menu.add_option(category_name, "placemaps", self.__placemaps)
 
-        _mapservers = [
-                       ["",                ""],
-                       [_("Google Maps"),     "Google"],
-                       [_("OpenStreet Maps"), "OpenStreet"]
-                       ] 
-        self.__mapservices = EnumeratedListOption(_("Map Service"), _mapservers[0][1])
-        for server in _mapservers:
-            self.__mapservices.add_item(server[1], server[0])
-        self.__mapservices.set_help(_("Either use Google Maps, which requires "
-                                     "a Google Maps API key, or use OpenStreetMaps."))
-        menu.add_option(category_name, "mapservices", self.__mapservices)
-        self.__mapservices.connect("value-changed", self.__mapservice_changed)
-
-        self.__googlekey = StringOption(_("Google Map API Key"), "")
-        self.__googlekey.set_help(_("Please enter your Google Maps API Key.  "
-                                    "If you do not have one yet, please "
-                                    "connect to this site to get one first, "
-                                    "then come back and enter it here."))
-        menu.add_option(category_name, "googlekey", self.__googlekey)
-
-        self.__htmlpage = StringOption(_("Google API Key Registration"),
-                                         "http://code.google.com/apis/maps/signup.html")
-        self.__htmlpage.set_help(_("Copy and paste url into your browser if you need to register"))
-        menu.add_option(category_name, "htmlpage", self.__htmlpage)
-
-        # map services change
-        self.__mapservice_changed()
-
-        # place maps change
-        self.__placemap_changed()
+        self.__ind_maps = BooleanOption(_("Include Place map on Individual Pages"), False)
+        self.__ind_maps.set_help(_("Whether to include place map on individual pages for all "
+                                   "places on that page"))
+        menu.add_option(category_name, "ind_maps", self.__ind_maps)
 
     def __archive_changed(self):
         """
@@ -6222,30 +6260,6 @@ class NavWebOptions(MenuReportOptions):
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
             self.__dl_cright.set_available(False)
-
-    def __placemap_changed(self):
-        """
-        handles the changing nature of place maps
-        """
-
-        if self.__placepagemaps.get_value():
-            self.__mapservices.set_available(True)
-        else:
-            self.__mapservices.set_available(False)
-            self.__googlekey.set_available(False)
-            self.__htmlpage.set_available(False)  
-
-    def __mapservice_changed(self):
-        """
-        handles the changing nature of map services
-        """
-
-        if self.__mapservices.get_value() == "Google":
-            self.__googlekey.set_available(True)
-            self.__htmlpage.set_available(True)
-        else:
-            self.__googlekey.set_available(False)
-            self.__htmlpage.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
@@ -6535,3 +6549,41 @@ def build_event_data(db, ind_list):
             
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
+
+def _create_map(placedetail, latitude, longitude):
+    """
+    will create the place map
+
+    @param: placedetail -- Html instance page
+    @param: latitude -- GPS Latitude from place
+    @param: Longitude -- GPS Longitude from place
+    """
+
+    # if there is no latitude and longitude, return placedetail
+    if not latitude and not longitude:
+        return placedetail
+
+    # Section division title
+    placedetail += Html("h4", _("Place Map"), inline = True)
+
+    with Html("table", id = "mapsdiv") as table:
+        placedetail += table
+
+        trow = Html("tr")
+        table += trow
+
+        tcell = Html("td")
+        trow += tcell
+
+        tcell += Html("div", id = "googlev3") + (
+            Html("div", id = "openlayers")
+        )
+
+    onclick1 = 'onclick = "changeprovider();"'
+    onclick2 = 'onclick = "changetohybrid();"'
+    placedetail += Html("a", _("Change provider"), href = "#", attr = onclick1) + (
+        Html("a", _("Change to hybrid"), href = "#", attr = onclick2)
+    )
+
+    # return Html instance back to its callers
+    return placedetail
