@@ -334,9 +334,8 @@ class BasePage(object):
         self.inc_events = report.options['inc_events']
 
         # options for PlaceMaps for PlacePages
-        self.placemaps = report.options["placepagemaps"]
-        self.mapservices = report.options["mapservices"]
-        self.googlekey = report.options["googlekey"]
+        self.placemaps = report.options["placemaps"]
+        self.ind_map = report.options["ind_maps"]
 
     def complete_people(self, tcell, first_person, handle_list):
         """
@@ -5123,9 +5122,8 @@ class NavWebReport(Report):
         self.inc_addressbook = self.options["inc_addressbook"]
 
         # Place Map tab options
-        self.placemaps = self.options["placepagemaps"]
-        self.mapservices = self.options["mapservices"]
-        self.googlekey = self.options["googlekey"]
+        self.placemaps = self.options["placemaps"]
+        self.ind_map = self.options["ind_maps"]
 
         if self.use_home:
             self.index_fname = "index"
