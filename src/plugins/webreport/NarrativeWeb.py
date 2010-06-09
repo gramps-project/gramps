@@ -2543,8 +2543,7 @@ class EventListPage(BasePage):
                                 # set up hyperlinked letter for alphabet_navigation
                                 tcell = Html("td", class_ = "ColumnLetter", inline = True)
                                 trow += tcell
-
-                                ltr = evt_type[0].capitalize()
+                                ltr = unicode(evt_type)[0].capitalize()
                                 if first_letter:
                                     trow.attr = 'class = "BeginLetter"'
                                     tcell += Html("a", ltr, name = ltr, 
