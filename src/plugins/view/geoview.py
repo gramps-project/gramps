@@ -132,20 +132,60 @@ MRU_BTM = [
 
 #-------------------------------------------------------------------------
 #
-# Javascript template
+# Constants
 #
 #-------------------------------------------------------------------------
 
-_HTMLHEADER = '''<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" 
-    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\" %(xmllang)s >
-<html xmlns=\"http://www.w3.org/1999/xhtml\" >
-<head>
- <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>
- <title>This is used to pass messages between javascript and python</title>
- <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">
- %(css)s<script type=\"text/javascript\"'''
+_UI_DEF = '''\
+<ui>
+<menubar name="MenuBar">
+<menu action="GoMenu">
+  <placeholder name="CommonGo">
+    <menuitem action="PersonMapsMenu"/>
+    <menuitem action="FamilyMapsMenu"/>
+    <menuitem action="EventMapsMenu"/>
+    <menuitem action="AllPlacesMapsMenu"/>
+  </placeholder>
+</menu>
+<menu action="EditMenu">
+  <separator/>
+  <menuitem action="AddPlaceMenu"/>
+  <menuitem action="LinkPlaceMenu"/>
+  <menuitem action="FilterEdit"/>
+</menu>
+</menubar>
+<toolbar name="ToolBar">
+<placeholder name="CommonEdit">
+  <toolitem action="AddPlace"/>
+  <toolitem action="LinkPlace"/>
+  <separator/>
+  <toolitem action="PersonMaps"/>
+  <toolitem action="FamilyMaps"/>
+  <toolitem action="EventMaps"/>
+  <toolitem action="AllPlacesMaps"/>
+</placeholder>
+<placeholder name="CommonNavigation">
+  <toolitem action="Back"/>  
+  <toolitem action="Forward"/>  
+  <toolitem action="HomePerson"/>
+</placeholder>
+</toolbar>
+</ui>
+'''
 
-_JAVASCRIPT = '''<script>
+_HTMLHEADER = '''\
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="%(lang)s">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>%(title)s</title>
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    %(css)s
+'''
+
+_JAVASCRIPT = '''\
+<script>
  var gmarkers = []; var min = 0; var zoom = 0; var uzoom = 0;
  var pos = 0; var mapstraction;
  var regrep = new RegExp(\"default\",\"g\");
@@ -236,7 +276,7 @@ _JAVASCRIPT = '''<script>
  }
 '''
 
-_HTMLTRAILER = '''
+_HTMLTRAILER = '''\
  setmarkers(mapstraction);
  setcenterandzoom(mapstraction,uzoom,ulat,ulon);
  savezoomandposition(mapstraction);
@@ -376,18 +416,20 @@ class GeoView(HtmlView):
         self.psort = []
         self.clear = gtk.Button("")
         self.clear.set_tooltip_text(
-                              _("Clear the entry field in the places selection"
-                                " box."))
+            _("Clear the entry field in the places selection box.")
+            )
         self.savezoom = gtk.Button("")
         self.savezoom.connect("clicked", self._save_zoom)
         self.savezoom.set_tooltip_text(
-                              _("Save the zoom and coordinates between places "
-                                "map, person map, family map and event map."))
+            _("Save the zoom and coordinates between places "
+              "map, person map, family map and event map.")
+            )
         self.provider = gtk.Button("")
         self.provider.connect("clicked", self._change_provider)
         self.provider.set_tooltip_text(
-                              _("Select the maps provider. You can choose "
-                                "between OpenStreetMap and Google maps."))
+            _("Select the maps provider. You can choose "
+              "between OpenStreetMap and Google maps.")
+            )
         self.buttons = gtk.ListStore(gobject.TYPE_STRING, # The year
                                   )
         self.plist = gtk.ListStore(gobject.TYPE_STRING, # The name
@@ -415,24 +457,21 @@ class GeoView(HtmlView):
         self.yearsbox.add_attribute(self.yearsbox.get_cells()[0], 'text', 0)
         self.yearsbox.connect('changed', self._ask_year_selection)
         self.yearsbox.set_tooltip_text(
-                              _("Select the period for which you want to"
-                                " see the places."))
+            _("Select the period for which you want to see the places.")
+            )
         self.years.pack_start(self.ylabel, True, True, padding=2)
         self.years.pack_start(self.yearsbox, True, True, padding=2)
         self.pages_selection = gtk.HBox()
         self.pages = []
         self.last_page = 1
         bef = gtk.Button("<<")
-        bef.set_tooltip_text(
-                              _("Prior page."))
+        bef.set_tooltip_text(_("Prior page."))
         self.pages.append(bef)
         cur = gtk.Button("1")
-        cur.set_tooltip_text(
-                              _("The current page/the last page."))
+        cur.set_tooltip_text(_("The current page/the last page."))
         self.pages.append(cur)
         aft = gtk.Button(">>")
-        aft.set_tooltip_text(
-                              _("Next page."))
+        aft.set_tooltip_text(_("Next page."))
         self.pages.append(aft)
         for page in self.pages:
             page.connect("clicked", self._ask_new_page)
@@ -440,7 +479,7 @@ class GeoView(HtmlView):
         self.nocoord = gtk.Button("Unref") # don't translate
         self.nocoord.connect("clicked", self._show_places_without_coord)
         self.nocoord.set_tooltip_text(
-                     _("The number of places which have no coordinates."))
+            _("The number of places which have no coordinates."))
         self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
                                                "without_coord.html")
         self.endinit = False
@@ -454,15 +493,12 @@ class GeoView(HtmlView):
         self.active = False
         self.already_testing = False
         self.alt_provider = self._config.get('preferences.alternate-provider')
-        if self.alt_provider:
-            self.usedmap = "google"
-        else:
-            self.usedmap = "openstreetmap"
+        self.usedmap = "google" if self.alt_provider else "openstreetmap"
         fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
                                              'crosshairs.png')
-        self.crosspath = urlparse.urlunsplit(('file', '',
-                                              URL_SEP.join(fpath.split(os.sep)),
-                                              '', ''))
+        self.crosspath = urlparse.urlunsplit(
+            ('file', '', URL_SEP.join(fpath.split(os.sep)), '', '')
+            )
         return HtmlView.build_widget(self)
 
     def can_configure(self):
@@ -518,9 +554,9 @@ class GeoView(HtmlView):
         Do we have a crosshair ?
         """
         if self.javascript_ready:
-            self.renderer.execute_script("javascript:addcrosshair('%d','%s')" % 
-                          (self._config.get("preferences.crosshair"),
-                           self.crosspath))
+            self.renderer.execute_script("javascript:addcrosshair('%d','%s')"
+                % (self._config.get("preferences.crosshair"), self.crosspath)
+                )
 
     def geoview_options(self, configdialog):
         """
@@ -532,7 +568,9 @@ class GeoView(HtmlView):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         configdialog.add_text(table, 
-          _("You can adjust the time period with the two following values."), 1)
+                _("You can adjust the time period "
+                  "with the two following values."),
+                1)
         configdialog.add_pos_int_entry(table, 
                 _('The number of years before the first event date'),
                 2, 'preferences.timeperiod-before-range',
@@ -557,8 +595,8 @@ class GeoView(HtmlView):
                 _('Crosshair on the map.'),
                 1, 'preferences.crosshair')
         configdialog.add_checkbox(table,
-                _('Show the coordinates in the statusbar either in degrees'
-                  '\nor in internal gramps format ( D.D8 )'),
+                _('Show the coordinates in the statusbar either in degrees\n'
+                  'or in internal gramps format ( D.D8 )'),
                 2, 'preferences.coordinates-in-degree')
         return _('The map'), table
 
@@ -587,13 +625,14 @@ class GeoView(HtmlView):
                 2, 'preferences.network-timeout',
                 self.config_update_int)
         configdialog.add_pos_int_entry(table, 
-                _('Time in seconds between two network tests.'
-                  '\nMust be greater or equal to 10 seconds'),
+                _('Time in seconds between two network tests.\n'
+                  'Must be greater or equal to 10 seconds'),
                 3, 'preferences.network-periodicity',
                 self.config_update_int)
         configdialog.add_text(table,
                 _('Host to test for http. Please, change this '
-                  'and select one of your choice.'), 4)
+                  'and select one of your choice.'),
+                4)
         configdialog.add_entry(table, '',
                 5, 'preferences.network-site')
         return _('The network'), table
@@ -624,8 +663,7 @@ class GeoView(HtmlView):
         self.placebox.pack_start(cell)
         self.placebox.add_attribute(self.placebox.get_cells()[0], 'text', 0)
         self.placebox.set_tooltip_text(
-                              _("Select the place for which you want to"
-                                " see the info bubble."))
+            _("Select the place for which you want to see the info bubble."))
         completion = gtk.EntryCompletion()
         completion.set_model(self.plist)
         completion.set_minimum_key_length(1)
@@ -728,9 +766,7 @@ class GeoView(HtmlView):
         """
         Ask to the renderer to apply the selected year
         """
-        if widget == None:
-            return
-        if widget.get_active():
+        if widget and widget.get_active():
             self.last_year = widget
             self._set_markers_and_crosshair_on_page(widget)
 
@@ -738,7 +774,7 @@ class GeoView(HtmlView):
         """
         Ask to select a new page when we are in a multi-pages map.
         """
-        if widget == None:
+        if widget is None:
             return
         page = widget.get_label()
         (current, maxp ) = self.pages[1].get_label().split('/', 1)
@@ -773,20 +809,19 @@ class GeoView(HtmlView):
         except when we are in the places view.
         """
         if self.displaytype != "places":
-            index = 0
-            for r_year in self.buttons:
+            for index, r_year in enumerate(self.buttons):
                 if self.last_selected_year == r_year[0]:
                     self.yearsbox.set_active(index)
                     self._call_js_selectmarkers(r_year[0])
-                index += 1
 
     def _show_places_without_coord(self, widget): # pylint: disable-msg=W0613
         """
         Show the page which contains the list of all places without coordinates.
         """
-        url = urlparse.urlunsplit( ('file', '',
-                    URL_SEP.join(self.without_coord_file.split(os.sep)),
-                    '', ''))
+        url = urlparse.urlunsplit(
+            ('file', '', URL_SEP.join(self.without_coord_file.split(os.sep)),
+             '', '')
+            )
         self._openurl(url)
 
     def _entry_selected_place(self, combobox): # pylint: disable-msg=W0612
@@ -804,15 +839,16 @@ class GeoView(HtmlView):
                 else:
                     # No, we need to load the correct page
                     self.last_page = int(entry[2])
-                    ftype = { "places":'P',
-                              "event":'E',
-                              "family":'F',
-                              "person":'I'}.get( self.displaytype, 'X')
-                    url = os.path.join(GEOVIEW_SUBPATH, "GeoV-%c-%05d.html" %
-                                       (ftype, entry[2]))
-                    url = urlparse.urlunsplit( ('file', '',
-                                                URL_SEP.join(url.split(os.sep)),
-                                               '', ''))
+                    ftype = {"places":'P',
+                             "event":'E',
+                             "family":'F',
+                             "person":'I'}.get( self.displaytype, 'X')
+                    url = os.path.join(GEOVIEW_SUBPATH,
+                        "GeoV-%c-%05d.html" % (ftype, entry[2])
+                        )
+                    url = urlparse.urlunsplit(
+                        ('file', '', URL_SEP.join(url.split(os.sep)), '', '')
+                        )
                     url += '?map=%s' % self.usedmap
                     url += '&zoom=%d' % int(self.realzoom)
                     url += '&lat=%s' % str(self.reallatitude)
@@ -892,10 +928,11 @@ class GeoView(HtmlView):
         """
         Set view active when we enter into this view.
         """
-        self.key_active_changed = self.dbstate.connect('active-changed',
-                                                       self._goto_active_person)
+        self.key_active_changed = self.dbstate.connect(
+            'active-changed', self._goto_active_person)
         hobj = self.get_history()
-        self.active_signal = hobj.connect('active-changed', self._goto_active_person)
+        self.active_signal = hobj.connect(
+            'active-changed', self._goto_active_person)
         self.mru_signal = hobj.connect('mru-changed', self.update_mru_menu)
         self.update_mru_menu(hobj.mru)
         self._goto_active_person()
@@ -948,22 +985,19 @@ class GeoView(HtmlView):
                 pass # pylint: disable-msg=W0702
         if timeloop:
             if self.active:
-                if title != None:
+                if title is not None:
                     self.uistate.status.pop(self.context_id)
                     if self._config.get('preferences.coordinates-in-degree'):
-                        latitude, longitude = conv_lat_lon(self.reallatitude,
-                                                           self.reallongitude,
-                                                           "DEG")
+                        latitude, longitude = conv_lat_lon(
+                            self.reallatitude, self.reallongitude, "DEG")
                     else:
-                        latitude, longitude = conv_lat_lon(self.reallatitude,
-                                                           self.reallongitude,
-                                                           "D.D8")
-                    mess = "%s= %s\t%s= %s\t%s= %s" % ( _("Latitude"),
-                                                        latitude,
-                                                        _("Longitude"),
-                                                        longitude,
-                                                        _("Zoom"),
-                                                        self.realzoom)
+                        latitude, longitude = conv_lat_lon(
+                            self.reallatitude, self.reallongitude, "D.D8")
+                    mess = "%s= %s\t%s= %s\t%s= %s" % (
+                        _("Latitude"), latitude,
+                        _("Longitude"), longitude,
+                        _("Zoom"), self.realzoom
+                        )
                     self.context_id = self.uistate.status.push(1, mess)
                 gobject.timeout_add(timeloop,
                                     self._savezoomandposition, timeloop)
@@ -973,9 +1007,9 @@ class GeoView(HtmlView):
         Look if we need to use the lasts zoom, latitude and longitude retrieved
         from the renderer, or if we must use the last ones we just created.
         """
-        if self.reallatitude == None:
+        if self.reallatitude is None:
             self.reallatitude = 0.0
-        if self.reallongitude == None:
+        if self.reallongitude is None:
             self.reallongitude = 0.0
         if not config.get('geoview.lock'):
             self.reallatitude = self.latit
@@ -999,7 +1033,7 @@ class GeoView(HtmlView):
                                         URL_SEP.join(url.split(os.sep)),
                                         '', ''))
         else:
-            if self.htmlfile == "":
+            if not self.htmlfile:
                 self.htmlfile = os.path.join(GEOVIEW_SUBPATH, "geography.html")
             url = urlparse.urlunsplit( ('file', '',
                                 URL_SEP.join(self.htmlfile.split(os.sep)),
@@ -1012,7 +1046,8 @@ class GeoView(HtmlView):
         self._savezoomandposition()
         if self.displaytype != "places":
             # Need to wait the page is loaded to set the markers.
-            gobject.timeout_add(1500, self._set_markers_and_crosshair_on_page, self.last_year)
+            gobject.timeout_add(1500, self._set_markers_and_crosshair_on_page,
+                self.last_year)
 
     def _set_markers_and_crosshair_on_page(self, widget):
         """
@@ -1055,40 +1090,7 @@ class GeoView(HtmlView):
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
         """
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="PersonMapsMenu"/>
-                <menuitem action="FamilyMapsMenu"/>
-                <menuitem action="EventMapsMenu"/>
-                <menuitem action="AllPlacesMapsMenu"/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <separator/>
-              <menuitem action="AddPlaceMenu"/>
-              <menuitem action="LinkPlaceMenu"/>
-              <menuitem action="FilterEdit"/>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonEdit">
-              <toolitem action="AddPlace"/>
-              <toolitem action="LinkPlace"/>
-              <separator/>
-              <toolitem action="PersonMaps"/>
-              <toolitem action="FamilyMaps"/>
-              <toolitem action="EventMaps"/>
-              <toolitem action="AllPlacesMaps"/>
-            </placeholder>
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
-              <toolitem action="HomePerson"/>
-            </placeholder>
-          </toolbar>
-        </ui>'''
+        return _UI_DEF
 
     def define_actions(self):
         """
@@ -1589,40 +1591,42 @@ class GeoView(HtmlView):
         Create a page with the list of all places without coordinates
         page.
         """
-        data = """
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
-                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml"  >
-         <head>
-          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-          <title>%(title)s</title>
-          %(css)s
-         </head>
-         <body >
-           <H4>%(content)s<a href="javascript:history.go(-1)">%(back)s</a></H4>
-        """ % { 'title'  : _('List of places without coordinates'),
-                'content': _('Here is the list of all places in the family tree'
-                             ' for which we have no coordinates.<br>'
-                             ' This means no longitude or latitude.<p>'),
-                'back'   : _('Back to prior page'),
-                'css'    : self._add_stylesheet()
-        }
-        end = """
-          </table>
-         </body>
-        </html>
-        """
         ufd = open(self.without_coord_file, "w+")
-        ufd.write(data)
+        ufd.write(
+            _HTMLHEADER %
+                { 'title'  : _('List of places without coordinates'),
+                  'lang'   : 'en',
+                  'css'    : self._add_stylesheet(),
+                }
+            + '  </head>\n'
+            )
+        ufd.write(
+            '  <body>\n' +
+            '    <H4>%s<a href="javascript:history.go(-1)">%s</a></H4>'
+                % (_('Here is the list of all places in the family tree'
+                     ' for which we have no coordinates.<br>'
+                     ' This means no longitude or latitude.<p>'),
+                   _('Back to prior page')
+                  )
+            )
         self.places = sorted(self.place_without_coordinates)
-        i = 1
-        ufd.write("<table border=1 ><th width=10%>NB</th>")
-        ufd.write("<th width=20%>Gramps ID</th><th>Place</th>")
-        for place in self.places:
-            ufd.write("<tr><td>%d</td><td>%s</td><td>%s</td></tr>\n"
-                     % ( i, place[0], place[1] ))
-            i += 1
-        ufd.write(end)
+        ufd.write(
+            "    <table border=1 ><th width=10%>NB</th>" +
+                    "<th width=20%>Gramps ID</th><th>Place</th>"
+            )
+        #for p, place in enumerate(self.places):
+        #    ufd.write("    <tr><td>%d</td><td>%s</td><td>%s</td></tr>\n"
+        #             % (p + 1, place[0], place[1]))
+
+        ufd.writelines(
+            "    <tr><td>%d</td><td>%s</td><td>%s</td></tr>\n"
+                % (p + 1, gid, place)
+            for p, (gid, place) in enumerate(self.places)
+            )
+        ufd.write("    </table>\n"
+                  "  </body>\n"
+                  "</html>\n"
+            )
         ufd.close()
 
     def _create_pages_without(self):
@@ -1666,11 +1670,13 @@ class GeoView(HtmlView):
         self.yearint -= self.yearint % 10
         if self.yearint == 0:
             self.yearint = 10
-        self.mapview.write("<script>\n")
-        self.mapview.write(" var step = %s;\n" % self.yearint)
-        self.mapview.write("</script>\n")
-        self.mapview.write("</head>\n")
-        self.mapview.write("<body>\n")
+        self.mapview.write(
+            "<script>\n" +
+            " var step = %s;\n" % self.yearint +
+            "</script>\n" +
+            "</head>\n"+
+            "<body>\n"
+            )
         self.years.hide()
         if h4mess:
             self.mapview.write("<h4>%s</h4>\n" % h4mess)
@@ -1680,47 +1686,45 @@ class GeoView(HtmlView):
                                           self.yearint,
                                           self.maxyear)
                 self.years.show()
-        self.mapview.write("<div id=\"GOverviewMapControl_Helper\"")
-        self.mapview.write(" style=\"height: %dpx; " %
-                           (self.height - self.header_size ))
-        self.mapview.write(" width: %dpx; display:none;\"\n" % self.width)
-        self.mapview.write(" comment=\"just a work around a GOverview"
-                           "MapControl() behaviour:\n")
-        self.mapview.write("         some time the first non-class object will "
-                           "be used to find the width\n")
-        self.mapview.write("         because GOverviewMapControl() wants to be "
-                           "most rigth the map jumps\n")
-        self.mapview.write("         to the left (outside)\"")
-        self.mapview.write("></div>\n")
-        self.mapview.write("<div id='geo-map' class='Mapstraction' style=\"")
-        if h4mess:
-            self.mapview.write("display: none; ")
-        self.mapview.write("height: %dpx\"></div>\n" % 
-                           (self.height - self.header_size ))
-        self.mapview.write("<script type=\"text/javascript\">\n")
-        self.mapview.write(" args=getArgs();")
-        self.mapview.write(" if (args.map) current_map=args.map;")
-        self.mapview.write(" if (args.lat) ulat=args.lat;")
-        self.mapview.write(" if (args.lon) ulon=args.lon;")
-        self.mapview.write(" if (args.zoom) uzoom=parseInt(args.zoom);")
-        self.mapview.write(" mapstraction = new Mapstraction")
-        self.mapview.write("('geo-map',args.map);\n")
-        self.mapview.write(" mapstraction.addControls(")
-        self.mapview.write("{ pan: true, zoom: 'large', ")
-        self.mapview.write("scale: true, map_type: true });\n")
-        self.mapview.write("addcross();")
-        self.mapview.write("addcrosshair('%d', '%s');" % (
-                            self._config.get("preferences.crosshair"),
-                            self.crosspath))
+        self.mapview.write(
+            '<div id="GOverviewMapControl_Helper' +
+            ' style="height: %dpx; ' % (self.height - self.header_size) +
+            ' width: %dpx; display:none;"\n' % self.width +
+            ' comment="just a work around a GOverview '
+                          'MapControl() behaviour:\n' +
+            '         some time the first non-class object will '
+                          'be used to find the width\n' +
+            '         because GOverviewMapControl() wants to be '
+                          'most right the map jumps\n' +
+            '         to the left (outside)"'
+            '></div>\n'
+            '<div id="geo-map" class="Mapstraction" style="' +
+                ('display: none; ' if h4mess else '') +
+            'height: %dpx"></div>\n'
+                % (self.height - self.header_size ) +
+            '<script type="text/javascript">\n' +
+            ' args=getArgs();' +
+            ' if (args.map) current_map=args.map;' +
+            ' if (args.lat) ulat=args.lat;' +
+            ' if (args.lon) ulon=args.lon;' +
+            ' if (args.zoom) uzoom=parseInt(args.zoom);' +
+            ' mapstraction = new Mapstraction' +
+            "('geo-map',args.map);\n" +
+            ' mapstraction.addControls(' +
+            "{ pan: true, zoom: 'large', " +
+            'scale: true, map_type: true });\n' +
+            'addcross();' +
+            "addcrosshair('%d', '%s');"
+                % (self._config.get("preferences.crosshair"),
+                    self.crosspath)
+
+            )
 
     def _create_needed_javascript(self):
         """
         Create the needed javascript functions.
         """
         self.mapview.write(_JAVASCRIPT)
-        #    _JAVASCRIPT.format(
-        #        )
-        #    )
         return
 
     def _createmapstractionheader(self, filename):
@@ -1731,25 +1735,28 @@ class GeoView(HtmlView):
         # pylint: disable-msg=W0612
         self.mapview = open(filename, "w+")
         (lang_country, modifier ) = locale.getlocale()
-        if lang_country == None:
-            lang = "en"
-        else:
-            lang = lang_country.split('_')[0]
+        lang = lang_country.split('_')[0] if lang_country else 'en'
         self.mapview.write(
             _HTMLHEADER % {
-                "xmllang" : "xml:lang=\"%s\"" % lang,
-                "css": self._add_stylesheet()
+                "title": "This is used to pass messages between "
+                         "Javascript and Python",
+                "lang" : lang,
+                "css"  : self._add_stylesheet()
                 }
             )
         fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
                                              'mapstraction.js')
-        upath = urlparse.urlunsplit(('file', '',
-                                     URL_SEP.join(fpath.split(os.sep)),
-                                     '', ''))
-        self.mapview.write(" src=\"%s\"></script>\n" % upath)
-        self.mapview.write("<script type=\"text/javascript\"")
-        self.mapview.write(" src=\"http://maps.google.com/")
-        self.mapview.write("maps?file=api&v=2&hl=%s\"></script>\n" % lang ) 
+        upath = urlparse.urlunsplit(
+            ('file', '', URL_SEP.join(fpath.split(os.sep)), '', '')
+            )
+        self.mapview.write(
+            '<script type="text/javascript"' +
+            ' src="%s"></script>\n' % upath +
+            '<script type="text/javascript"' +
+            ' src="http://maps.google.com/maps?file=api&v=2&hl=%s">'
+                % lang +
+            '</script>\n'
+            )
 
     def _createmapstractiontrailer(self):
         """
@@ -1757,9 +1764,6 @@ class GeoView(HtmlView):
         """
 
         self.mapview.write(_HTMLTRAILER)
-        #    _HTMLTRAILER.format(
-        #        )
-        #    )
         self.mapview.close()
 
     def _set_center_and_zoom(self, ptype):
@@ -1783,13 +1787,13 @@ class GeoView(HtmlView):
         signmaxlon = _get_sign(self.maxlon)
         signmaxlat = _get_sign(self.maxlat)
         if signminlon == signmaxlon: 
-            maxlong = abs(abs(self.minlon)-abs(self.maxlon))
+            maxlong = abs(abs(self.minlon) - abs(self.maxlon))
         else:
-            maxlong = abs(abs(self.minlon)+abs(self.maxlon))
+            maxlong = abs(abs(self.minlon) + abs(self.maxlon))
         if signminlat == signmaxlat:
-            maxlat = abs(abs(self.minlat)-abs(self.maxlat))
+            maxlat = abs(abs(self.minlat) - abs(self.maxlat))
         else:
-            maxlat = abs(abs(self.minlat)+abs(self.maxlat))
+            maxlat = abs(abs(self.minlat) + abs(self.maxlat))
         # Calculate the zoom. all places must be displayed on the map.
         zoomlat = _get_zoom_lat(maxlat)
         zoomlong = _get_zoom_long(maxlong)
@@ -1865,9 +1869,8 @@ class GeoView(HtmlView):
         for page in range(0, pages, 1):
             self.nbpages += 1
             ftype = {1:'P', 2:'E', 3:'F', 4:'I'}.get(ptype, 'X')
-            filename = os.path.join(GEOVIEW_SUBPATH,
-                                    "GeoV-%c-%05d.html" % 
-                                              (ftype, self.nbpages))
+            filename = os.path.join(
+                GEOVIEW_SUBPATH, "GeoV-%c-%05d.html" %  (ftype, self.nbpages))
             if self.nbpages == 1:
                 self.htmlfile = filename
             self._createmapstractionheader(filename)
@@ -1905,8 +1908,8 @@ class GeoView(HtmlView):
         elif displaytype == "event":
             self._createmapstractionevents(self.dbstate)
         else:
-            self._createmapstractionheader(os.path.join(GEOVIEW_SUBPATH,
-                                                       "error.html"))
+            self._createmapstractionheader(
+                os.path.join(GEOVIEW_SUBPATH, "error.html"))
             self._createmapnotimplemented()
             self._createmapstractiontrailer()
 
@@ -1923,11 +1926,7 @@ class GeoView(HtmlView):
         """
         Create a list of places with coordinates.
         """
-        found = 0
-        for place_info in self.place_list:
-            if place_info[0] == place:
-                found = 1
-                break
+        found = any(p[0] == place for p in self.place_list)
         if not found:
             self.nbplaces += 1
         self.place_list.append([place, name, evttype, lat,
@@ -1965,12 +1964,14 @@ class GeoView(HtmlView):
         if differtype:                   # in case multiple evts
             value = 'gramps-geo-default' # we use default icon.
         if ( value == "gramps-geo-default" ):
-            value = value.replace("default","\" + default_icon + \"")
+            value = value.replace("default",'" + default_icon + "')
         ipath = os.path.join(const.ROOT_DIR, 'images/22x22/', '%s.png' % value )
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(ipath.split(os.sep)), '', ''))
-        self.mapview.write("my_marker.setIcon(\"%s\",[22,22],[0,22]);" % upath)
-        self.mapview.write("my_marker.setShadowIcon(\"%s\",[0,0]);" % upath)
+        self.mapview.write(
+            'my_marker.setIcon("%s",[22,22],[0,22]);' % upath +
+            'my_marker.setShadowIcon("%s",[0,0]);' % upath
+            )
 
     def _show_title(self, title):
         """
@@ -1993,17 +1994,21 @@ class GeoView(HtmlView):
         self.mapview.write(" function setcenterandzoom(map,uzoom,ulat,ulon){\n")
         if self.mustcenter:
             self.centered = True
-            self.mapview.write("  var point = new LatLonPoint")
-            self.mapview.write("(ulat,ulon);")
-            self.mapview.write("map.setCenterAndZoom")
-            self.mapview.write("(point, uzoom);\n")
+            self.mapview.write(
+                "  var point = new LatLonPoint" 
+                "(ulat,ulon);" 
+                "map.setCenterAndZoom" 
+                "(point, uzoom);\n"
+                )
             self.setattr = False
-        self.mapview.write("}\n")
-        self.mapview.write(" function setmarkers(map) {\n")
-        self.mapview.write("  if ( args.map != \"openstreetmap\" ) {")
-        self.mapview.write(" default_icon = \"altmap\";")
-        self.mapview.write(" } else { ")
-        self.mapview.write(" default_icon = \"mainmap\"; }\n")
+        self.mapview.write(
+            '}\n'
+            ' function setmarkers(map) {\n'
+            '  if ( args.map != "openstreetmap" ) {'
+            ' default_icon = "altmap";'
+            ' } else { '
+            ' default_icon = "mainmap"; }\n'
+            )
         differtype = False
         savetype = None
         index_mark = 0
@@ -2012,24 +2017,25 @@ class GeoView(HtmlView):
             index_mark += 1
             if index_mark < self.last_index:
                 continue
-            if ( indm >= firstm ) and ( indm <= lastm ):
+            if lastm >= indm >= firstm:
                 ininterval = True
             if ininterval:
-                current = {
-                            2 : [mark[3], mark[4]],
+                current = {2 : [mark[3], mark[4]],
                           }.get(formatype, mark[0])
                 if last != current:
                     if not divclose:
                         if ininterval:
-                            self.mapview.write("</div>\");")
+                            self.mapview.write('</div>");')
                             divclose = True
                         years = ""
                         if mark[2]:
                             for year in self.yearinmarker:
                                 years += "%d " % year
                         years += "end"
-                        self.mapview.write("my_marker.setAttribute")
-                        self.mapview.write("('year','%s');" % years)
+                        self.mapview.write(
+                            "my_marker.setAttribute" +
+                            "('year','%s');" % years
+                            )
                         self.yearinmarker = []
                         self._set_icon(savetype, differtype, formatype)
                         differtype = False
@@ -2038,28 +2044,31 @@ class GeoView(HtmlView):
                         if (indm % NB_MARKERS_PER_PAGE) == 0:
                             self.last_index = index_mark
                             ininterval = False
-                    last = {
-                             2 : [mark[3], mark[4]],
+                    last = {2 : [mark[3], mark[4]],
                            }.get(formatype, mark[0])
-                    if ( indm >= firstm ) and ( indm <= lastm ):
+                    if lastm >= indm >= firstm:
                         ind = indm % NB_MARKERS_PER_PAGE
                         self.plist.append([ mark[0], ind, self.nbpages] )
                         indm += 1
-                        self.mapview.write("\n  var point = new LatLonPoint")
+                        self.mapview.write(
+                            "\n  var point = new LatLonPoint" +
 
-                        self.mapview.write("(%s,%s);" % (mark[3], mark[4]))
-                        self.mapview.write("my_marker = new Marker(point);")
-                        self.mapview.write("gmarkers[%d]=my_marker;" % ind )
-                        self.mapview.write("my_marker.setLabel")
-                        self.mapview.write("(\"%s\");" % _escape(mark[0]))
+                            "(%s,%s);" % (mark[3], mark[4]) +
+                            "my_marker = new Marker(point);" +
+                            "gmarkers[%d]=my_marker;" % ind +
+                            "my_marker.setLabel" +
+                            '("%s");' % _escape(mark[0])
+                            )
                         self.yearinmarker.append(mark[7])
                         divclose = False
                         differtype = False
                         if mark[8] and not differtype:
                             savetype = mark[8]
-                        self.mapview.write("my_marker.setInfoBubble(\"<div ")
-                        self.mapview.write("id='geo-info' >")
-                        self.mapview.write("%s<br>" % _escape(mark[0]))
+                        self.mapview.write(
+                            'my_marker.setInfoBubble("<div ' +
+                            "id='geo-info' >" +
+                            "%s<br>" % _escape(mark[0])
+                            )
                         if formatype == 1:
                             self.mapview.write("<br>%s" % _escape(mark[5]))
                         else:
@@ -2073,11 +2082,7 @@ class GeoView(HtmlView):
                     else:
                         self.mapview.write("<br>%s - %s" % (mark[7],
                                                             _escape(mark[5])))
-                    ret = 1
-                    for year in self.yearinmarker:
-                        if year == mark[7]:
-                            ret = 0
-                    if (ret):
+                    if not any(y == mark[7] for y in self.yearinmarker):
                         self.yearinmarker.append(mark[7])
             else:
                 indm += 1
@@ -2087,39 +2092,44 @@ class GeoView(HtmlView):
                 for year in self.yearinmarker:
                     years += "%d " % year
             years += "end"
-            self.mapview.write("</div>\");")
-            self.mapview.write("my_marker.setAttribute('year','%s');" % years)
+            self.mapview.write(
+                '</div>");' +
+                "my_marker.setAttribute('year','%s');" % years
+                )
             self._set_icon(savetype, differtype, formatype)
             self.mapview.write("map.addMarker(my_marker);")
         if self.nbmarkers == 0:
             # We have no valid geographic point to center the map.
             longitude = 0.0
             latitude = 0.0
-            self.mapview.write("\nvar point = new LatLonPoint")
-            self.mapview.write("(%s,%s);\n" % (latitude, longitude))
-            self.mapview.write("   map.setCenterAndZoom")
-            self.mapview.write("(point, %d);\n" % 2)
-            self.mapview.write("   my_marker = new Marker(point);\n")
-            self.mapview.write("   my_marker.setLabel")
-            self.mapview.write("(\"%s\");\n" % _("No location."))
-            self.mapview.write("   my_marker.setInfoBubble(\"<div ")
-            self.mapview.write("style='white-space:nowrap;' >")
-            self.mapview.write(_("You have no places in your family tree "
-                                 " with coordinates."))
-            self.mapview.write("<br>")
-            self.mapview.write(_("You are looking at the default map."))
-            self.mapview.write("</div>\");\n")
+            self.mapview.write(
+                "\nvar point = new LatLonPoint" +
+                "(%s,%s);\n" % (latitude, longitude) +
+                "   map.setCenterAndZoom" +
+                "(point, %d);\n" % 2 +
+                "   my_marker = new Marker(point);\n" +
+                "   my_marker.setLabel" +
+                '("%s");\n' % _("No location.") +
+                '   my_marker.setInfoBubble("<div ' +
+                "style='white-space:nowrap;' >" +
+                _("You have no places in your family tree "
+                                     " with coordinates.") +
+                "<br>" +
+                _("You are looking at the default map.") +
+                '</div>");\n'
+                )
             self._set_icon(None, True, 1)
             self.mapview.write("   map.addMarker(my_marker);")
-        self.mapview.write("\n}")
-        self.mapview.write("\n</script>\n")
+        self.mapview.write(
+            "\n}"
+            "\n</script>\n"
+            )
 
     def _createpersonmarkers(self, dbstate, person, comment):
         """
         Create all markers for the specified person.
         """
-        latitude = ""
-        longitude = ""
+        latitude = longitude = ""
         if person:
             event_ref = person.get_birth_ref()
             if event_ref:
@@ -2134,8 +2144,7 @@ class GeoView(HtmlView):
                         latitude, longitude = conv_lat_lon(latitude,
                                                            longitude, "D.D8")
                         if comment:
-                            descr1 = _("%(comment)s : birth place.") % {
-                                                'comment': comment}
+                            descr1 = _("%s : birth place.") % comment
                         else:
                             descr1 = _("birth place.")
                         descr = place.get_title()
@@ -2156,8 +2165,7 @@ class GeoView(HtmlView):
                         else:
                             self._append_to_places_without_coord(
                                  place.gramps_id, descr)
-            latitude = ""
-            longitude = ""
+            latitude = longitude = ""
             event_ref = person.get_death_ref()
             if event_ref:
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
@@ -2172,8 +2180,7 @@ class GeoView(HtmlView):
                                                            longitude, "D.D8")
                         descr = place.get_title()
                         if comment:
-                            descr1 = _("%(comment)s : death place.") % {
-                                                'comment': comment} 
+                            descr1 = _("%s : death place.") % comment
                         else:
                             descr1 = _("death place.")
                         # place.get_longitude and place.get_latitude return
@@ -2210,11 +2217,11 @@ class GeoView(HtmlView):
         longitude = ""
         self.center = True
 
-        if self.generic_filter == None or not config.get('interface.filter'):
+        if self.generic_filter is None or not config.get('interface.filter'):
             places_handle = dbstate.db.iter_place_handles()
         else:
-            places_handle = self.generic_filter.apply(dbstate.db,
-                                                dbstate.db.iter_place_handles())
+            places_handle = self.generic_filter.apply(
+                dbstate.db, dbstate.db.iter_place_handles())
         for place_hdl in places_handle:
             place = dbstate.db.get_place_from_handle(place_hdl)
             descr = place.get_title()
@@ -2253,11 +2260,11 @@ class GeoView(HtmlView):
         longitude = ""
         self.center = True
 
-        if self.generic_filter == None or not config.get('interface.filter'):
+        if self.generic_filter is None or not config.get('interface.filter'):
             events_handle = dbstate.db.iter_event_handles()
         else:
-            events_handle = self.generic_filter.apply(dbstate.db,
-                                                dbstate.db.iter_event_handles())
+            events_handle = self.generic_filter.apply(
+                dbstate.db, dbstate.db.iter_event_handles())
         for event_hdl in events_handle:
             event = dbstate.db.get_event_from_handle(event_hdl)
             place_handle = event.get_place_handle()
@@ -2458,8 +2465,8 @@ class GeoView(HtmlView):
         """
         Return the css style sheet needed for GeoView.
         """
-        dblp = "<link media=\"screen\" "
-        delp = "type=\"text/css\" rel=\"stylesheet\" />\n"
+        dblp = '<link media="screen" '
+        delp = 'type="text/css" rel="stylesheet" />\n'
         # Get the GeoView stylesheet.
         cpath = os.path.join(const.ROOT_DIR,
                              'data',
@@ -2468,7 +2475,7 @@ class GeoView(HtmlView):
         gpath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(cpath.split(os.sep)),
                                      '', ''))
-        gcp = "href=\"%s\" " % gpath
+        gcp = 'href="%s" ' % gpath
         return u'%s%s%s' % (dblp, gcp, delp)
     
     def _openurl(self, url):
@@ -2587,68 +2594,68 @@ class GeoView(HtmlView):
         this page.
         """
         tmpdir = GEOVIEW_SUBPATH
-        data = """
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
-                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml"  >
-         <head>
-          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-          <title>%(title)s</title>
-         </head>
-         <body >
-           <H1>%(title)s</H1>
-           <H4>%(content)s</H4>
-         </body>
-        </html>
-        """ % { 'height' : 600,
-                'title'  : _('Start page for the Geography View'),
-                'content': _('You don\'t see a map here for one of the following '
-                             'reasons :<br><ol>'
-                             '<li>Your database is empty or not yet selected.'
-                             '</li><li>You have not selected a person yet.</li>'
-                             '<li>You have no places in your database.</li>'
-                             '<li>The selected places have no coordinates.</li>'
-                             '</ol>')
-        }
+        content = _('You don\'t see a map here for one of the following '
+                    'reasons :<br><ol>'
+                    '<li>Your database is empty or not yet selected.</li>'
+                    '<li>You have not selected a person yet.</li>'
+                    '<li>You have no places in your database.</li>'
+                    '<li>The selected places have no coordinates.</li>'
+                     '</ol>')
+        
         filename = os.path.join(tmpdir, 'geography.html')
         # Now we have two views : Web and Geography, we need to create the
         # startpage only once.
         if not os.path.exists(filename):
             ufd = file(filename, "w+")
-            ufd.write(data)
+            ufd.write(
+                _HTMLHEADER % {
+                    'title': _('Start page for the Geography View'),
+                    'lang' : 'en',
+                    'css'  : '',
+                    }
+                + '  </head>\n'
+                )
+            ufd.write('''\
+                 <body>
+                   <H1>%(title)s</H1>
+                   <H4>%(content)s</H4>
+                 </body>
+                </html>
+                ''' % {
+                        'title'  : _('Start page for the Geography View'),
+                        'content': content,
+                      }
+                )
             ufd.close()
-        return urlparse.urlunsplit(('file', '',
-                                    URL_SEP.join(filename.split(os.sep)),
-                                    '', ''))
+        return urlparse.urlunsplit(
+            ('file', '', URL_SEP.join(filename.split(os.sep)), '', '')
+            )
 
     def _create_message_page(self, message):
         """
         This function creates a page which contains a message.
         """
         tmpdir = GEOVIEW_SUBPATH
-        data = """
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
-                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml"  >
-         <head>
-          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-          <title>Message</title>
-         </head>
-         <body >
-           <H4>%(content)s</H4>
-         </body>
-        </html>
-        """ % {
-                'content': message
-        }
-
         filename = os.path.join(tmpdir, 'message.html')
         ufd = file(filename, "w+")
-        ufd.write(data)
+        ufd.write(
+            _HTMLHEADER % {
+                'title' : 'Message',
+                'lang'  : 'en',
+                'css'   : '',
+                }
+            + '  </head>\n'
+            )
+        ufd.write(
+            '<body>\n'
+            '  <h4>%s</h4>\n' % message +
+            '<body>\n'
+            '</html>'
+            )
         ufd.close()
-        return urlparse.urlunsplit(('file', '',
-                                    URL_SEP.join(filename.split(os.sep)),
-                                    '', ''))
+        return urlparse.urlunsplit(
+            ('file', '', URL_SEP.join(filename.split(os.sep)), '', '')
+            )
 
     def __test_network(self):
         """
@@ -2658,7 +2665,7 @@ class GeoView(HtmlView):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.settimeout(self._config.get('preferences.network-timeout'))
             sock.connect((self._config.get('preferences.network-site'), 80))
-            if sock != None:
+            if sock is not None:
                 if self.no_network == True:
                     self.no_network = False
                     self._change_map(self.usedmap)
