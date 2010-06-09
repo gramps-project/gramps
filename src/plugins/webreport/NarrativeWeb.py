@@ -1714,7 +1714,7 @@ class BasePage(object):
                 person_name = self.get_name(person) 
             elif name_style == False:
                 person_name = _get_short_name(person.gender, person.primary_name)
-            elif name_style == None:    # abnormal specialty situation
+            elif name_style is None:    # abnormal specialty situation
                 person_name = person
 
             # 1. start building link to image or person
@@ -5630,7 +5630,7 @@ class NavWebReport(Report):
             subdirs = ['..']*3 + subdirs
 
         # added for use in EventListPage
-        elif up == None:
+        elif up is None:
             subdirs = ['.'] + subdirs
         return subdirs
 
