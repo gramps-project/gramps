@@ -865,7 +865,7 @@ class BasePage(object):
                 text = '&copy; %(year)d %(person)s' % {
                     'person' : self.author,
                     'year' : year}
-        elif 0 < copyright <= len(_CC):
+        elif 0 < copyright < len(_CC):
             # Note. This is a URL
             fname = "/".join(["images", "somerights20.gif"])
             url = self.report.build_url_fname(fname, None, up = False)
@@ -5374,7 +5374,7 @@ class NavWebReport(Report):
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested???
-        if 0 < self.copyright <= len(_CC):
+        if 0 < self.copyright < len(_CC):
             imgs += ["somerights20.gif"]
 
         # include GRAMPS favicon
