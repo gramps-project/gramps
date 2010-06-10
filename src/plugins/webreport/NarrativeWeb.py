@@ -1811,7 +1811,7 @@ class BasePage(object):
         """
 
         if not place:
-            return table
+            return
  
         # add table body
         tbody = Html("tbody")
@@ -1840,15 +1840,12 @@ class BasePage(object):
                     (LATITUDE,  place.lat),
                     (LONGITUDE, place.long) ]:
 
-                    trow = Html("tr")
-                    tbody += trow
-
                     if data:
-                        trow.extend( 
-                            (Html("td", label, class_ = "ColumnAttribute", inline = True) +
-                            Html("td", data or "&nbsp;", class_ = "ColumnValue", inline = True)
-                            )
-                        ) 
+                        trow = Html("tr") + (
+                            Html("td", label, class_ = "ColumnAttribute", inline = True),
+                            Html("td", data, class_ = "ColumnValue", inline = True)
+                        )
+                        tbody += trow 
 
         # return place table to its callers
         return table
@@ -2355,13 +2352,19 @@ class PlacePage(BasePage):
                 head += Html("script", type = "text/javascript", 
                     src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
 
-                head += Html("script", type = "text/javascript", 
-                        src = "http://openlayers.org/api/OpenLayers.js", inline = True)
+                head += Html("script", src = "http://openlayers.org/api/OpenLayers.js",
+                    inline = True)
 
-                head += Html("script", type = "text/javascript", 
-                        src = "../../../mapstraction/mxn.js?(googlev3,openlayers)", inline = True)
+                head += Html("script", src = "../../../mapstraction/mxn.js?(googlev3,openlayers)",
+                    inline = True)
 
-                inline_script = """ 
+                inline_script = """
+                    <style type = "text/css">
+                        div#maps {
+                            height: 500px;
+                        }
+                    </style>
+
                     <script type="text/javascript">
                     //<![CDATA[
 
@@ -2375,16 +2378,14 @@ class PlacePage(BasePage):
 
                           var latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
 
-                inline_script += """ 
+                inline_script += """  
                           // put map on page
                           m.setCenterAndZoom(latlon, 7);
 
                           //add a marker
                           var marker = new mxn.Marker(latlon);
-                          m.addMarker(marker,true); 
-
+                          m.addMarker(marker,true);
                       }
-
                       function changetohybrid() {
                          if ( h == 'y' ) { 
                              h = 'n'
@@ -2403,14 +2404,12 @@ class PlacePage(BasePage):
                          };
                          m.swap(p,p);  
                       }
-
                     //]]>
-                    </script> 
-                    """
+                    </script>"""
                 head += inline_script
 
                 # add javascript function to body element
-                body.attr = 'onload="initialize();"'
+                body.attr = 'onload = "initialize();"'
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2422,7 +2421,7 @@ class PlacePage(BasePage):
                 placedetail += thumbnail
 
             # add section title
-            placedetail += Html("h5", html_escape(self.page_title))
+            placedetail += Html("h5", html_escape(self.page_title), inline = True)
 
             # begin summaryarea division and places table
             with Html("div", id = 'summaryarea') as summaryarea:
@@ -2451,7 +2450,7 @@ class PlacePage(BasePage):
                 placedetail += urllinks
 
             # add place map here
-            _create_map(placedetail, place.lat, place.long)
+            _create_place_map(placedetail, place.lat, place.long)
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -5304,25 +5303,29 @@ class NavWebReport(Report):
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
-        # copy mapstraction/mxn.js to mapstraction directory
-        if self.placemaps:
-            fname = os.path.join(const.MAPSTRACTION_DIR, "mxn.js")
-            self.copy_file(fname, "mxn.js", "mapstraction")
+        # copy mapstraction files to mapstraction directory
+        # if PlacePage or IndividualPage maps will be used
+        if self.placemaps or self.ind_maps:
+            js_files = [ "mxn.core.js", "mxn.geocommons.core.js", "mxn.google.core.js",
+                         "mxn.google.geocoder.js", "mxn.googlev3.core.js",
+                         "mxn.js", "mxn.openlayers.core.js" ] 
+            for fname in js_files:
+                from_path = os.path.join(const.MAPSTRACTION_DIR, fname)
+                self.copy_file(from_path, fname, "mapstraction")
+            fname = os.path.join(const.MAPSTRACTION_DIR, "crosshairs.png")
+            self.copy_file(fname, "crosshairs.png", "mapstraction") 
  
         imgs = []
 
         # Mainz stylesheet graphics
         # will only be used if Mainz is slected as the stylesheet
-        Mainz_images = ["Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
-                        "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
-
-        # Copy Mainz Style Images
         if self.css == "Web_Mainz.css":
-            imgs += Mainz_images
+            imgs += [ "Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
+                      "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png" ]
 
         # Copy the Creative Commons icon if the Creative Commons
-        # license is requested???
-        if 0 < self.copyright < len(_CC):
+        # license is requested
+        if 0 < self.copyright <= len(_CC):
             imgs += ["somerights20.gif"]
 
         # include GRAMPS favicon
@@ -6548,7 +6551,7 @@ def build_event_data(db, ind_list):
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
 
-def _create_map(placedetail, latitude, longitude):
+def _create_place_map(placedetail, latitude, longitude):
     """
     will create the place map
 
@@ -6559,29 +6562,35 @@ def _create_map(placedetail, latitude, longitude):
 
     # if there is no latitude and longitude, return placedetail
     if not latitude and not longitude:
-        return placedetail
+        return
 
-    # Section division title
-    placedetail += Html("h4", _("Place Map"), inline = True)
+    # Place Map division
+    with Html("div", id = "maps") as placemap:
+        placedetail += placemap
 
-    with Html("table", id = "mapsdiv") as table:
-        placedetail += table
+        # section title
+        placemap += Html("h4", _("Place Map"), inline = True)
 
-        trow = Html("tr")
-        table += trow
+        # begin place map table
+        with Html("table", attr = 'border = "0" width = "50%"') as table:
+            placemap += table
 
-        tcell = Html("td")
-        trow += tcell
+            trow = Html("tr")
+            table += trow
 
-        tcell += Html("div", id = "googlev3") + (
-            Html("div", id = "openlayers")
-        )
+            trow += Html("td", inline = True) + (
+                Html("div", id = "googlev3", attr = 'style = "height: 400px; width: 500px;"')
+                )
 
-    onclick1 = 'onclick = "changeprovider();"'
-    onclick2 = 'onclick = "changetohybrid();"'
-    placedetail += Html("a", _("Change provider"), href = "#", attr = onclick1) + (
-        Html("a", _("Change to hybrid"), href = "#", attr = onclick2)
-    )
+            trow += Html("td", inline = True) + (
+                Html("div", id = "openlayers", attr = 'style = "height: 400px; width: 500px;"')
+                )
 
-    # return Html instance back to its callers
+        placemap += Html("a", _("change provider"), attr = 'onclick = "changeprovider();"',
+            href = "#", inline = True)
+
+        placemap += Html("a", _("change to hybrid"), attr = 'onclick = "changetohybrid();"',
+            href = "#", inline = True)      
+
+    # return placedetail division back to its callers
     return placedetail
