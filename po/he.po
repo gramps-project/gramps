@@ -17514,12 +17514,6 @@ msgstr "תוצאות השוואת אירועים"
 msgid "%(event_name)s Date"
 msgstr "תאריך %(event_name)s"
 
-#. This won't be shown in a tree
-#: ../src/plugins/tool/EventCmp.py:255
-#, python-format
-msgid "%(event_name)s Place"
-msgstr "מקום %(event_name)s"
-
 #: ../src/plugins/tool/EventCmp.py:304
 msgid "Comparing Events"
 msgstr "משווה אירועים"
@@ -24295,9 +24289,6 @@ msgstr ""
 
 #~ msgid "No views loaded"
 #~ msgstr "אין תצוגות טעונות"
-
-#~ msgid "%(event_name)s Date"
-#~ msgstr "תאריך %(event_name)s"
 
 #~ msgid "%(event_name)s Place"
 #~ msgstr "מקום %(event_name)s"
