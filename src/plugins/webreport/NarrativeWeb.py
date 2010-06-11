@@ -2359,53 +2359,55 @@ class PlacePage(BasePage):
                     inline = True)
 
                 inline_script = """
-                    <style type = "text/css">
-                        div#maps {
-                            height: 500px;
-                        }
-                    </style>
+        <style type = "text/css">
+            div#maps {
+                height: 500px;
+            }
+        </style>
 
-                    <script type="text/javascript">
-                    //<![CDATA[
+        <script type="text/javascript">
+        //<![CDATA[
 
-                      var m;
-                      var h = 'y';
-                      var p = 'googlev3';
-                      function initialize() {
-                          // create mxn object
-                          m = new mxn.Mapstraction('googlev3','googlev3');
-                          m.addControls({zoom:'small'});
+            var m;
+            var h = 'y';
+            var p = 'googlev3';
 
-                          var latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
+            function initialize() {
+                // create mxn object
+                m = new mxn.Mapstraction('googlev3','googlev3');
+                m.addControls({zoom:'small'});
+
+                var latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
 
                 inline_script += """  
-                          // put map on page
-                          m.setCenterAndZoom(latlon, 7);
+                // put map on page
+                m.setCenterAndZoom(latlon, 7);
 
-                          //add a marker
-                          var marker = new mxn.Marker(latlon);
-                          m.addMarker(marker,true);
-                      }
-                      function changetohybrid() {
-                         if ( h == 'y' ) { 
-                             h = 'n'
-                             m.setMapType(mxn.Mapstraction.HYBRID);  
-                         } else {
-                             h = 'y'
-                             m.setMapType(mxn.Mapstraction.ROAD);  
-                         };
-                      }
+                //add a marker
+                var marker = new mxn.Marker(latlon);
+                m.addMarker(marker,true);
+            }
 
-                      function changeprovider(){
-                         if ( p == 'googlev3') {
-                             p = 'openlayers';
-                         } else {
-                             p = 'googlev3';
-                         };
-                         m.swap(p,p);  
-                      }
-                    //]]>
-                    </script>"""
+            function changetohybrid() {
+                if ( h == 'y' ) { 
+                    h = 'n'
+                    m.setMapType(mxn.Mapstraction.HYBRID);  
+                } else {
+                    h = 'y'
+                    m.setMapType(mxn.Mapstraction.ROAD);  
+                };
+            }
+
+            function changeprovider(){
+                if ( p == 'googlev3') {
+                    p = 'openlayers';
+                } else {
+                    p = 'googlev3';
+                };
+                m.swap(p,p);  
+            }
+        //]]>
+        </script> """
                 head += inline_script
 
                 # add javascript function to body element

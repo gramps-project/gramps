@@ -25,7 +25,6 @@ GRAMPS Cascading Style Sheet
 Style Name: Basic Blue Stylesheet
 Original Style Author: Jason M. Simanek (2008)
 ***************************************************************************************************
-
 --------------------------------------------------------------------------------------------------
 Color Palette
 --------------------------------------------------------------------------------------------------
@@ -43,20 +42,22 @@ Unknown     #000
 ===== Web Graphics =====
 Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
+*/
 
- NarrativeWeb Styles
--------------------------------------------------------------------------------------------- */
+/* NarrativeWeb Styles
+================================================= */
 body {
     background-color: #000;
     color: #FFF;
 }
 
 /* Menu Elements
--------------------------------------------------------------------------------------------- */
+================================================= */
 div#alphabet ul, div#navigation ul, div#subnavigation ul {
     background-color: #000;
 }
-div#alphabet ul li, div#navigation ul li, div#subnavigation ul li {
+div#alphabet ul li, div#navigation ul li, 
+div#subnavigation ul li {
     border-color: #13A926;
 }
 div#alphabet ul li a {
@@ -66,15 +67,15 @@ div#alphabet ul li a {
 div#navigation ul li a, div#subnavigation ul li a {
     color: #FFF;
 }
-div#alphabet ul li a:hover, div#navigation ul li a:hover, 
+div#alphabet ul li a:hover, div#navigation ul li a:hover,
 div#subnavigation ul li a:hover {
     color: #000;
 }
-div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
+div#navigation ul li.CurrentSection a,
+div#subnavigation ul li.CurrentSection a {
     background-color: #13A926;
     font: bold 16px sans;
     color: #FFF;
-    font-weight: bold;
 }
 div#navigation ul li.CurrentSection a:hover {
     background-color: #BCEAF6;
@@ -86,37 +87,37 @@ div#subnavigation ul li.CurrentSection a:hover {
 }
 
 /* General Elements
------------------------------------------------------ */
+================================================= */
 div {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 table {
-    border:none;
-    border-collapse:collapse;
+    border: none;
+    border-collapse: collapse;
 }
 th {
-    font-weight:bold;
-    text-align:left;
-    padding:1px 3em 1px 0.5em;
+    font-weight: bold;
+    text-align: left;
+    padding: 1px 3em 1px 0.5em;
 }
 td {
-    vertical-align:top;
-    padding:0;
+    vertical-align: top;
+    padding: 0;
 }
 img {
-    border:none;
-    margin:0;
+    border: none;
+    margin: 0;
 }
 .thumbnail a:hover {
-    background:none;
+    background: none;
 }
 .content {
     background-color: #FFF;
     color: #000;
     overflow: auto;
-    width:965px;
-    margin:0 auto;
+    width: 965px;
+    margin: 0 auto;
     padding-bottom: .2em;
 }
 .content div.snapshot {
@@ -135,11 +136,11 @@ img {
     margin: 0 auto;
 }
 .fullclear {
-    width:100%;
-    height:1px;
-    margin:0;
-    padding:0;
-    clear:both;
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    clear: both;
 }
 
 /* Gramps Styled Notes
@@ -461,7 +462,7 @@ table.surname tbody tr td.ColumnParents {
 }
 
 /* Individuals
------------------------------------------------------ */
+================================================= */
 div#Individuals {
     margin: 0;
     padding: 0;
@@ -473,7 +474,7 @@ div#Individuals table.individuallist tbody tr td a {
     display: block;
     padding: .6em 10px;
 }
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover, 
+div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover,
 div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
     cursor: default;
     color: #000;
@@ -511,50 +512,44 @@ div#IndividualDetail div.subsection table tr td:first-child {
 }
 
 /* Places
------------------------------------------------------ */
-div#Places {
+================================================= */
+div#Places, div#PlaceDetail {
+    font: normal 1em sans;
     margin: 0;
     padding: 0;
 }
 div#Places table.infolist tbody tr td.ColumnLetter {
-    width: 6%;
+    width: 3%;
 }
 div#Places table.infolist tbody tr td.ColumnLetter a:hover {
     background: none;
 }
 div#Places table.infolist tbody tr td.ColumnName {
-    width: 45%;
+    width: 50%;
 }
 div#Places table.infolist tbody tr td.ColumnState {
-    width: 8%;
+    width: 7%;
 }
 div#Places table.infolist tbody tr td.ColumnCountry {
-    width: 8%;
+    width: 10%;
 }
-div#Places table.infolist tbody tr td.ColumnCoordinates {
-    width: 25%;
+div#Places table.infolist tbody tr td.ColumnLatitude {
+    width: 10%;
 }
-div#PlaceDetail {
-    margin: 0;
-    padding: 0;
+div#Places table.infolist tbody tr td.ColumnLongitude {
+    width: 10%;
+}
+#div#PlaceDetail table.infolist tbody tr td.ColumnAttribute,
+div#PlaceDetail table.infolist tbody tr td.ColumnValue {
+    color: #000;
 }
 div#PlaceDetail h5 {
-    font: normal .9em serif;
-    color: #FFF;
-    margin-top: .3cm;
-    background-color: #00029D;
-    border-width: 2px 0px 2px 0px;
-    border-style: solid;
-    border-color: #13A926;
-    text-align: center;
+    font: bold .7cm serif;
     float: center;
-    vertical-align: middle;
+    text-align: center;
+    border-bottom: double 4px #13A926;
 }
-div#PlaceDetail table.infolist tbody tr td.ColumnRowLabel,
-div#PlaceDetail table.infolist tbody tr td.ColumnType,
-div#PlaceDetail table.infolist tbody tr td.ColumnValue {
-    color: Navy;
-}
+    
 
 /* EventList and EventDetail
 ----------------------------------------------------- */
@@ -983,9 +978,6 @@ div#parents {
     margin: 0;
     padding: 0;
 }
-div#parents table.infolist {
-    margin-top:.5em;
-}
 div#parents table.infolist tbody tr td {
     border: none;
 }
@@ -1006,9 +998,6 @@ div#families {
     background-color: #FFF;
     margin: 0;
     padding: 0;
-}
-div#families table.infolist {
-    margin: .3cm 0 .3cm 0;
 }
 div#families table.infolist tbody tr td {
     border: none;
