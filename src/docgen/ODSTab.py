@@ -43,6 +43,277 @@ import Errors
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+
+_XMLNS = '''\
+xmlns:office="%(urn)soffice:1.0"
+xmlns:style="%(urn)sstyle:1.0"
+xmlns:text="%(urn)stext:1.0"
+xmlns:table="%(urn)stable:1.0"
+xmlns:draw="%(urn)sdrawing:1.0"
+xmlns:fo="%(urn)sxsl-fo-compatible:1.0"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:meta="%(urn)smeta:1.0"
+xmlns:number="%(urn)sdatastyle:1.0"
+xmlns:svg="%(urn)ssvg-compatible:1.0"
+xmlns:chart="%(urn)schart:1.0"
+xmlns:dr3d="%(urn)sdr3d:1.0"
+xmlns:math="http://www.w3.org/1998/Math/MathML"
+xmlns:form="%(urn)sform:1.0"
+xmlns:script="%(urn)sscript:1.0"
+xmlns:dom="http://www.w3.org/2001/xml-events"
+xmlns:xforms="http://www.w3.org/2002/xforms"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+''' % {'urn': 'urn:oasis:names:tc:opendocument:xmlns:'}
+
+_DOC_FONTS = '''\
+<office:font-face-decls>
+    <style:font-face style:name="Nimbus Sans L" 
+        svg:font-family="'Nimbus Sans L'" 
+        style:font-family-generic="swiss" 
+        style:font-pitch="variable"/>
+    <style:font-face style:name="DejaVu Sans" 
+        svg:font-family="'DejaVu San'" 
+        style:font-family-generic="system" 
+        style:font-pitch="variable"/>
+</office:font-face-decls>
+'''
+
+_DOC_STYLES = '''\
+<office:automatic-styles>
+    <style:style style:name="co1" 
+        style:family="table-column">
+        <style:table-column-properties
+            fo:break-before="auto" 
+            style:column-width="3cm"/>
+    </style:style>
+    <style:style style:name="ro1" 
+        style:family="table-row">
+        <style:table-row-properties 
+            style:row-height="0.189in" 
+            fo:break-before="auto" 
+            style:use-optimal-row-height="true"/>
+    </style:style>
+    <style:style style:name="ta1" 
+        style:family="table" 
+        style:master-page-name="Default">
+        <style:table-properties 
+            table:display="true" 
+            style:writing-mode="lr-tb"/>
+    </style:style>
+</office:automatic-styles>
+'''
+
+_STYLES_FONTS = '''\
+<office:font-face-decls>
+    <style:font-face style:name="Times New Roman"
+        svg:font-family="'Times New Roman'"
+        style:font-family-generic="roman"
+        style:font-pitch="variable"/>
+    <style:font-face style:name="Arial"
+        svg:font-family="Arial"
+        style:font-family-generic="swiss"
+        style:font-pitch="variable"/>
+</office:font-face-decls>
+'''
+
+_STYLES_STYLES = '''\
+<office:styles>
+    <style:default-style style:family="table-cell">
+        <style:table-cell-properties 
+            style:decimal-places="2"/>
+        <style:paragraph-properties 
+            style:tab-stop-distance="0.2835inch"/>
+        <style:text-properties 
+            style:font-name="Arial"/>
+    </style:default-style>
+    
+    <style:style style:name="Default" 
+        style:family="table-cell" 
+        style:data-style-name="N0"/>
+        
+    <style:default-style style:family="graphic">
+        <style:text-properties fo:color="#000000" 
+            fo:font-family="'Times New Roman'" 
+            style:font-style-name="" 
+            style:font-family-generic="roman" 
+            style:font-pitch="variable" 
+            fo:font-size="12pt" 
+            fo:language="none" 
+            fo:country="none" 
+            style:text-autospace="ideograph-alpha" 
+            style:punctuation-wrap="simple" 
+            style:line-break="strict"/>
+    </style:default-style>       
+</office:styles>
+'''
+_STYLES_AUTOMATIC = '''\
+<office:automatic-styles>
+    <style:page-layout style:name="pm1">
+        <style:header-style>
+            <style:header-footer-properties 
+                fo:min-height="0.2957inch" 
+                fo:margin-left="0inch" 
+                fo:margin-right="0inch" 
+                fo:margin-bottom="0.0984inch"/>
+        </style:header-style>
+        <style:footer-style>
+            <style:header-footer-properties 
+                fo:min-height="0.2957inch" 
+                fo:margin-left="0inch" 
+                fo:margin-right="0inch" 
+                fo:margin-top="0.0984inch"/>
+        </style:footer-style>
+    </style:page-layout>
+    <style:page-layout style:name="pm2">
+        <style:header-style>
+            <style:header-footer-properties 
+                fo:min-height="0.2957inch" 
+                fo:margin-left="0inch" 
+                fo:margin-right="0inch" 
+                fo:margin-bottom="0.0984inch" 
+                fo:border="0.0346inch solid #000000" 
+                fo:border-top="0.0346inch solid #000000" 
+                fo:border-bottom="0.0346inch solid #000000" 
+                fo:border-left="0.0346inch solid #000000" 
+                fo:border-right="0.0346inch solid #000000" 
+                fo:padding="0.0071inch" 
+                fo:padding-top="0.0071inch" 
+                fo:padding-bottom="0.0071inch" 
+                fo:padding-left="0.0071inch" 
+                fo:padding-right="0.0071inch" 
+                fo:background-color="#c0c0c0"/>
+        </style:header-style>
+        <style:footer-style>
+            <style:header-footer-properties 
+                fo:min-height="0.2957inch" 
+                fo:margin-left="0inch" 
+                fo:margin-right="0inch" 
+                fo:margin-top="0.0984inch" 
+                fo:border="0.0346inch solid #000000" 
+                fo:border-top="0.0346inch solid #000000" 
+                fo:border-bottom="0.0346inch solid #000000" 
+                fo:border-left="0.0346inch solid #000000" 
+                fo:border-right="0.0346inch solid #000000" 
+                fo:padding="0.0071inch" 
+                fo:padding-top="0.0071inch" 
+                fo:padding-bottom="0.0071inch" 
+                fo:padding-left="0.0071inch" 
+                fo:padding-right="0.0071inch" 
+                fo:background-color="#c0c0c0"/>
+        </style:footer-style>
+    </style:page-layout>
+</office:automatic-styles>
+'''
+
+_STYLES_MASTER = '''\
+<office:master-styles>
+    <style:master-page style:name="Default" 
+        style:page-layout-name="pm1">
+        <style:header>
+            <text:p>
+                <text:sheet-name>???</text:sheet-name>
+            </text:p>
+        </style:header>
+        <style:footer>
+            <text:p>Page
+                <text:page-number>1</text:page-number>
+            </text:p>
+        </style:footer>
+    </style:master-page>
+    <style:master-page style:name="Report" 
+        style:page-layout-name="pm2">
+        <style:header>
+            <style:region-left>
+                <text:p>
+                    <text:sheet-name>???</text:sheet-name> 
+                    (<text:file-name>???</text:file-name>)
+                </text:p>
+            </style:region-left>
+            <style:region-right>
+                <text:p>
+                    <text:date style:data-style-name="N2" 
+                        text:date-value="2001-05-16">05/16/2001
+                    </text:date>, 
+                        <text:time>10:53:17</text:time>
+                </text:p>
+            </style:region-right>
+        </style:header>
+        <style:footer>
+            <text:p>Page 
+                <text:page-number>1</text:page-number> / 
+                <text:page-count>99</text:page-count>
+            </text:p>
+        </style:footer>
+    </style:master-page>
+</office:master-styles>
+'''
+
+_MANIFEST = '''\
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest 
+    xmlns:manifest=
+        "urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">
+    <manifest:file-entry 
+        manifest:media-type=
+            "application/vnd.oasis.opendocument.spreadsheet" 
+        manifest:full-path="/"/>
+    <manifest:file-entry manifest:media-type="" 
+        manifest:full-path="Pictures/"/>
+    <manifest:file-entry manifest:media-type="text/xml" 
+        manifest:full-path="content.xml"/>
+    <manifest:file-entry manifest:media-type="text/xml" 
+        manifest:full-path="styles.xml"/>
+    <manifest:file-entry manifest:media-type="text/xml" 
+        manifest:full-path="meta.xml"/>
+</manifest:manifest>
+'''
+
+_META = '''\
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document-meta 
+    xmlns:office=
+        "urn:oasis:names:tc:opendocument:xmlns:office:1.0" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns:dc="http://purl.org/dc/elements/1.1/" 
+    xmlns:meta=
+        "urn:oasis:names:tc:opendocument:xmlns:meta:1.0" 
+    office:class="text" office:version="1.0">
+    <office:meta>
+        <meta:generator>
+            %(program)s %(version)s
+        </meta:generator>
+        <meta:initial-creator>
+            %(name)s
+        </meta:initial-creator>
+        <meta:creation-date>
+            %(time)s
+        </meta:creation-date>
+        <dc:creator>
+            %(name)s
+        </dc:creator>
+        <dc:date>
+            %(time)s
+        </dc:date>
+        <meta:print-date>
+            0-00-00T00:00:00
+        </meta:print-date>
+        <dc:language>en-US</dc:language>
+        <meta:editing-cycles>1</meta:editing-cycles>
+        <meta:editing-duration>PT0S</meta:editing-duration>
+        <meta:user-defined meta:name="Info 0"/>
+        <meta:user-defined meta:name="Info 1"/>
+        <meta:user-defined meta:name="Info 2"/>
+        <meta:user-defined meta:name="Info 3"/>
+    </office:meta>
+</office:document-meta>
+'''
+#-------------------------------------------------------------------------
+#
 # ODSTab
 #
 #-------------------------------------------------------------------------
@@ -61,10 +332,9 @@ class ODSTab(TabbedDoc):
         t = time.localtime(time.time())
         self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % t[:6]
 
-        if filename[-4:] != ".ods":
-            self.filename = filename + ".ods"
-        else:
-            self.filename = filename
+        self.filename = filename
+        if not filename.endswith('.ods'):
+            self.filename += '.ods'
 
         try:
             self.content_xml = tempfile.mktemp()
@@ -75,59 +345,26 @@ class ODSTab(TabbedDoc):
             raise Errors.ReportError(_("Could not create %s") % self.content_xml)
 
         self.f = open(self.content_xml,"w")
-        self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.f.write('<office:document-content ')
-        self.f.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"  ')
-        self.f.write('xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" ')
-        self.f.write('xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" ')
-        self.f.write('xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" ')
-        self.f.write('xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" ')
-        self.f.write('xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" ')
-        self.f.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
-        self.f.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
-        self.f.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
-        self.f.write('xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0"  ')
-        self.f.write('xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" ')
-        self.f.write('xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" ')
-        self.f.write('xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" ')
-        self.f.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
-        self.f.write('xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" ')
-        self.f.write('xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" ')
-        self.f.write('xmlns:dom="http://www.w3.org/2001/xml-events" ')
-        self.f.write('xmlns:xforms="http://www.w3.org/2002/xforms" ')
-        self.f.write('xmlns:xsd="http://www.w3.org/2001/XMLSchema" ')
-        self.f.write('xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ')
-        self.f.write('office:version="1.0"> ')
-        self.f.write('<office:script/>\n')
-        self.f.write('<office:font-face-decls>\n')
-        self.f.write('<style:font-face style:name="Nimbus Sans L" ')
-        self.f.write('svg:font-family="\'Nimbus Sans L\'" style:font-family-generic="swiss" ')
-        self.f.write('style:font-pitch="variable"/>\n')
-        self.f.write('<style:font-face style:name="DejaVu Sans" ')
-        self.f.write('svg:font-family="\'DejaVu Sans\'" style:font-family-generic="system" ')
-        self.f.write('style:font-pitch="variable"/>\n')
-        self.f.write('</office:font-face-decls>\n')
+        self.f.write(
+            '<?xml version="1.0" encoding="UTF-8"?>\n' +
+            '<office:document-content ' +
+                _XMLNS +
+                'office:version="1.0"> ' +
+            '<office:script/>\n'
+            )
 
-        self.f.write('<office:automatic-styles>\n')
-        self.f.write('<style:style style:name="co1" style:family="table-column">\n')
-        self.f.write('<style:table-column-properties fo:break-before="auto" style:column-width="3cm"/>\n')
-        self.f.write('</style:style>\n')
-        self.f.write('<style:style style:name="ro1" style:family="table-row">\n')
-        self.f.write('<style:table-row-properties style:row-height="0.189in" ')
-        self.f.write('fo:break-before="auto" style:use-optimal-row-height="true"/>\n')
-        self.f.write('</style:style>\n')
-        self.f.write('<style:style style:name="ta1" style:family="table" ')
-        self.f.write('style:master-page-name="Default">\n')
-        self.f.write('<style:table-properties table:display="true" style:writing-mode="lr-tb"/>\n')
-        self.f.write('</style:style>\n')
-        self.f.write('</office:automatic-styles>\n')
-        self.f.write('<office:body>\n')
-        self.f.write('<office:spreadsheet>\n')
+        self.f.write(_DOC_FONTS)
+        self.f.write(_DOC_STYLES)
+        self.f.write(
+            '<office:body>\n'
+            '<office:spreadsheet>\n')
 
     def close(self):
-        self.f.write('</office:spreadsheet>\n')
-        self.f.write('</office:body>\n')
-        self.f.write('</office:document-content>\n')
+        self.f.write(
+            '</office:spreadsheet>\n'
+            '</office:body>\n'
+            '</office:document-content>\n'
+            )
         self.f.close()
         self._write_styles_file()
         self._write_manifest()
@@ -195,146 +432,15 @@ class ODSTab(TabbedDoc):
 
         self.f = open(self.styles_xml,"w")
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.f.write('<office:document-styles ')
-        self.f.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" ')
-        self.f.write('xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" ')
-        self.f.write('xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" ')
-        self.f.write('xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" ')
-        self.f.write('xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" ')
-        self.f.write('xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" ')
-        self.f.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
-        self.f.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
-        self.f.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
-        self.f.write('xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" ')
-        self.f.write('xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" ')
-        self.f.write('xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" ')
-        self.f.write('xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" ')
-        self.f.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
-        self.f.write('xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" ')
-        self.f.write('xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" ')
-        self.f.write('xmlns:dom="http://www.w3.org/2001/xml-events" ')
-        self.f.write('office:version="1.0">')
-
-        self.f.write('<office:font-face-decls>\n')
-        self.f.write('<style:font-face style:name="Times New Roman" ')
-        self.f.write('svg:font-family="&apos;Times New Roman&apos;" ')
-        self.f.write('style:font-family-generic="roman" ')
-        self.f.write('style:font-pitch="variable"/>\n')
-        self.f.write('<style:font-face style:name="Arial" ')
-        self.f.write('svg:font-family="Arial" ')
-        self.f.write('style:font-family-generic="swiss" ')
-        self.f.write('style:font-pitch="variable"/>\n')
-        self.f.write('</office:font-face-decls>\n')
-    
-        self.f.write('<office:styles>\n')
-   
-        self.f.write('<style:default-style style:family="table-cell">\n')
-        self.f.write('<style:table-cell-properties style:decimal-places="2" />\n')
-        self.f.write('<style:paragraph-properties style:tab-stop-distance="0.2835inch"/>\n')
-        self.f.write('<style:text-properties style:font-name="Arial" />\n')
-        self.f.write('</style:default-style>\n')
-
-        self.f.write('<style:style style:name="Default" ')
-        self.f.write('style:family="table-cell" ')
-        self.f.write('style:data-style-name="N0"/>\n')
-        
-        self.f.write('<style:default-style style:family="graphic">\n')
-        self.f.write('<style:text-properties fo:color="#000000" ')
-        self.f.write('fo:font-family="&apos;Times New Roman&apos;" ')
-        self.f.write('style:font-style-name="" ')
-        self.f.write('style:font-family-generic="roman" ')
-        self.f.write('style:font-pitch="variable" ')
-        self.f.write('fo:font-size="12pt" ')
-        self.f.write('fo:language="none" ')
-        self.f.write('fo:country="none" ')
-        self.f.write('style:text-autospace="ideograph-alpha" ')
-        self.f.write('style:punctuation-wrap="simple" ')
-        self.f.write('style:line-break="strict"/>\n')
-        self.f.write('</style:default-style>\n')        
-        self.f.write('</office:styles>\n')
-        
-        self.f.write('<office:automatic-styles>\n')
-        self.f.write('<style:page-layout style:name="pm1">\n')
-        self.f.write('<style:header-style>\n')
-        self.f.write('<style:header-footer-properties fo:min-height="0.2957inch" ')
-        self.f.write('fo:margin-left="0inch" ')
-        self.f.write('fo:margin-right="0inch" ')
-        self.f.write('fo:margin-bottom="0.0984inch"/>\n')
-        self.f.write('</style:header-style>\n')
-        self.f.write('<style:footer-style>\n')
-        self.f.write('<style:header-footer-properties fo:min-height="0.2957inch" ')
-        self.f.write('fo:margin-left="0inch" ')
-        self.f.write('fo:margin-right="0inch" ')
-        self.f.write('fo:margin-top="0.0984inch"/>\n')
-        self.f.write('</style:footer-style>\n')
-        self.f.write('</style:page-layout>\n')
-        self.f.write('<style:page-layout style:name="pm2">\n')
-        self.f.write('<style:header-style>\n')
-        self.f.write('<style:header-footer-properties fo:min-height="0.2957inch" ')
-        self.f.write('fo:margin-left="0inch" ')
-        self.f.write('fo:margin-right="0inch" ')
-        self.f.write('fo:margin-bottom="0.0984inch" ')
-        self.f.write('fo:border="0.0346inch solid #000000" ')
-        self.f.write('fo:border-top="0.0346inch solid #000000" ')
-        self.f.write('fo:border-bottom="0.0346inch solid #000000" ')
-        self.f.write('fo:border-left="0.0346inch solid #000000" ')
-        self.f.write('fo:border-right="0.0346inch solid #000000" ')
-        self.f.write('fo:padding="0.0071inch" ')
-        self.f.write('fo:padding-top="0.0071inch" ')
-        self.f.write('fo:padding-bottom="0.0071inch" ')
-        self.f.write('fo:padding-left="0.0071inch" ')
-        self.f.write('fo:padding-right="0.0071inch" ')
-        self.f.write('fo:background-color="#c0c0c0"/>\n')
-        self.f.write('</style:header-style>\n')
-        self.f.write('<style:footer-style>\n')
-        self.f.write('<style:header-footer-properties fo:min-height="0.2957inch" ')
-        self.f.write('fo:margin-left="0inch" ')
-        self.f.write('fo:margin-right="0inch" ')
-        self.f.write('fo:margin-top="0.0984inch" ')
-        self.f.write('fo:border="0.0346inch solid #000000" ')
-        self.f.write('fo:border-top="0.0346inch solid #000000" ')
-        self.f.write('fo:border-bottom="0.0346inch solid #000000" ')
-        self.f.write('fo:border-left="0.0346inch solid #000000" ')
-        self.f.write('fo:border-right="0.0346inch solid #000000" ')
-        self.f.write('fo:padding="0.0071inch" ')
-        self.f.write('fo:padding-top="0.0071inch" ')
-        self.f.write('fo:padding-bottom="0.0071inch" ')
-        self.f.write('fo:padding-left="0.0071inch" ')
-        self.f.write('fo:padding-right="0.0071inch" ')
-        self.f.write('fo:background-color="#c0c0c0"/>\n')
-        self.f.write('</style:footer-style>\n')
-        self.f.write('</style:page-layout>\n')
-        self.f.write('</office:automatic-styles>\n')
-        
-        self.f.write('<office:master-styles>\n')
-        self.f.write('<style:master-page style:name="Default" ')
-        self.f.write('style:page-layout-name="pm1" >\n')
-        self.f.write('<style:header>\n')
-        self.f.write('<text:p><text:sheet-name>???</text:sheet-name></text:p>\n')
-        self.f.write('</style:header>\n')
-        self.f.write('<style:footer>\n')
-        self.f.write('<text:p>Page <text:page-number>1</text:page-number></text:p>\n')
-        self.f.write('</style:footer>\n')
-        self.f.write('</style:master-page>\n')
-        self.f.write('<style:master-page style:name="Report" ')
-        self.f.write('style:page-layout-name="pm2" >\n')
-        self.f.write('<style:header>\n')
-        self.f.write('<style:region-left>\n')
-        self.f.write('<text:p><text:sheet-name>???</text:sheet-name> ')
-        self.f.write('(<text:file-name>???</text:file-name>)</text:p>\n')
-        self.f.write('</style:region-left>\n')
-        self.f.write('<style:region-right>\n')
-        self.f.write('<text:p><text:date style:data-style-name="N2" ')
-        self.f.write('text:date-value="2001-05-16">05/16/2001</text:date>, ')
-        self.f.write('<text:time>10:53:17</text:time></text:p>\n')
-        self.f.write('</style:region-right>\n')
-        self.f.write('</style:header>\n')
-        self.f.write('<style:footer>\n')
-        self.f.write('<text:p>Page <text:page-number>1</text:page-number> / ')
-        self.f.write('<text:page-count>99</text:page-count></text:p>\n')
-        self.f.write('</style:footer>\n')
-        self.f.write('</style:master-page>\n')
-        self.f.write('</office:master-styles>\n')
+        self.f.write(
+            '<office:document-styles ' +
+                _XMLNS +
+                'office:version="1.0"> '
+            )
+        self.f.write(_STYLES_FONTS)
+        self.f.write(_STYLES_STYLES)
+        self.f.write(_STYLES_AUTOMATIC)
+        self.f.write(_STYLES_MASTER)
         
         self.f.write('</office:document-styles>\n')
         self.f.close()
@@ -360,23 +466,7 @@ class ODSTab(TabbedDoc):
             raise Errors.ReportError(_("Could not create %s") % self.manifest_xml)
 
         self.f = open(self.manifest_xml,"w")
-        self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.f.write('<manifest:manifest ')
-        self.f.write('xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">')
-        self.f.write('<manifest:file-entry ')
-        self.f.write('manifest:media-type="application/vnd.oasis.opendocument.spreadsheet" ')
-        self.f.write('manifest:full-path="/"/>')
-        self.f.write('<manifest:file-entry manifest:media-type="" ')
-        self.f.write('manifest:full-path="Pictures/"/>')
-        self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
-        self.f.write('manifest:full-path="content.xml"/>')
-        self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
-        self.f.write('manifest:full-path="styles.xml"/>')
-        self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
-        self.f.write('manifest:full-path="meta.xml"/>')
-        #self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
-        #self.f.write('manifest:full-path="settings.xml"/>')
-        self.f.write('</manifest:manifest>\n')
+        self.f.write(_MANIFEST)
         self.f.close()
 
     def _write_meta_file(self):
@@ -393,39 +483,13 @@ class ODSTab(TabbedDoc):
 
         self.f = open(self.meta_xml,"w")
         
-        self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.f.write('<office:document-meta ')
-        self.f.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" ')
-        self.f.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
-        self.f.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
-        self.f.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
-        self.f.write('office:class="text" office:version="1.0">\n');
-        self.f.write('<office:meta>\n')
-        self.f.write('<meta:generator>')
-        self.f.write(const.PROGRAM_NAME + ' ' + const.VERSION)
-        self.f.write('</meta:generator>\n')
-        self.f.write('<meta:initial-creator>')
-        self.f.write(self.name)
-        self.f.write('</meta:initial-creator>\n')
-        self.f.write('<meta:creation-date>')
-        self.f.write(self.time)
-        self.f.write('</meta:creation-date>\n')
-        self.f.write('<dc:creator>')
-        self.f.write(self.name)
-        self.f.write('</dc:creator>\n')
-        self.f.write('<dc:date>')
-        self.f.write(self.time)
-        self.f.write('</dc:date>\n')
-        self.f.write('<meta:print-date>0-00-00T00:00:00</meta:print-date>\n')
-        self.f.write('<dc:language>en-US</dc:language>\n')
-        self.f.write('<meta:editing-cycles>1</meta:editing-cycles>\n')
-        self.f.write('<meta:editing-duration>PT0S</meta:editing-duration>\n')
-        self.f.write('<meta:user-defined meta:name="Info 0"/>\n')
-        self.f.write('<meta:user-defined meta:name="Info 1"/>\n')
-        self.f.write('<meta:user-defined meta:name="Info 2"/>\n')
-        self.f.write('<meta:user-defined meta:name="Info 3"/>\n')
-        self.f.write('</office:meta>\n')
-        self.f.write('</office:document-meta>\n')
+        self.f.write(_META %
+                {'program': const.PROGRAM_NAME,
+                 'version': const.VERSION,
+                 'name'   : self.name,
+                 'time'   : self.time,
+                 }
+             )
         self.f.close()
 
     def _write_mimetype_file(self):
@@ -445,7 +509,6 @@ class ODSTab(TabbedDoc):
         self.f.close()
 
 if __name__ == "__main__":
-
 
     file = ODSTab(3)
     file.open("test")

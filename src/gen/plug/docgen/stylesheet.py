@@ -148,7 +148,7 @@ class StyleSheetList(object):
         """
         Saves the current StyleSheet definitions to the associated file.
         """
-        xml_file = open(self.__file,"w")
+        xml_file = open(self.__file, "w")
         xml_file.write("<?xml version=\"1.0\"?>\n")
         xml_file.write('<stylelist>\n')
         
@@ -157,39 +157,47 @@ class StyleSheetList(object):
                 continue
             xml_file.write('<sheet name="%s">\n' % escxml(name))
             for p_name in sheet.get_paragraph_style_names():
+                # Get variables for substitutions
                 para = sheet.get_paragraph_style(p_name)
-                xml_file.write('<style name="%s">\n' % escxml(p_name))
                 font = para.get_font()
-                xml_file.write('<font face="%d" ' % font.get_type_face())
-                xml_file.write('size="%d" ' % font.get_size())
-                xml_file.write('italic="%d" ' % font.get_italic())
-                xml_file.write('bold="%d" ' % font.get_bold())
-                xml_file.write('underline="%d" ' % font.get_underline())
-                xml_file.write('color="#%02x%02x%02x"/>\n' % font.get_color())
-                xml_file.write('<para ')
                 rmargin = float(para.get_right_margin())
                 lmargin = float(para.get_left_margin())
                 findent = float(para.get_first_indent())
                 tmargin = float(para.get_top_margin())
                 bmargin = float(para.get_bottom_margin())
                 padding = float(para.get_padding())
-                xml_file.write('description="%s" ' % 
-                               escxml(para.get_description()))
-                xml_file.write('rmargin="%s" ' % gformat(rmargin))
-                xml_file.write('lmargin="%s" ' % gformat(lmargin))
-                xml_file.write('first="%s" ' % gformat(findent))
-                xml_file.write('tmargin="%s" ' % gformat(tmargin))
-                xml_file.write('bmargin="%s" ' % gformat(bmargin))
-                xml_file.write('pad="%s" ' % gformat(padding))
                 bg_color = para.get_background_color()
-                xml_file.write('bgcolor="#%02x%02x%02x" ' % bg_color)
-                xml_file.write('level="%d" ' % para.get_header_level())
-                xml_file.write('align="%d" ' % para.get_alignment())
-                xml_file.write('tborder="%d" ' % para.get_top_border())
-                xml_file.write('lborder="%d" ' % para.get_left_border())
-                xml_file.write('rborder="%d" ' % para.get_right_border())
-                xml_file.write('bborder="%d"/>\n' % para.get_bottom_border())
-                xml_file.write('</style>\n')
+
+                # Write out style definition
+                xml_file.write(
+                    '<style name="%s">\n' % escxml(p_name) +
+                        '<font face="%d" ' % font.get_type_face() +
+                            'size="%d" ' % font.get_size() +
+                            'italic="%d" ' % font.get_italic() +
+                            'bold="%d" ' % font.get_bold() +
+                            'underline="%d" ' % font.get_underline() +
+                            'color="#%02x%02x%02x" ' % font.get_color() +
+                            '/>\n' +
+                        '<para ' +
+                            'description="%s" ' % 
+                                           escxml(para.get_description()) +
+                            'rmargin="%s" ' % gformat(rmargin) +
+                            'lmargin="%s" ' % gformat(lmargin) +
+                            'first="%s" ' % gformat(findent) +
+                            'tmargin="%s" ' % gformat(tmargin) +
+                            'bmargin="%s" ' % gformat(bmargin) +
+                            'pad="%s" ' % gformat(padding) +
+            
+                            'bgcolor="#%02x%02x%02x" ' % bg_color +
+                            'level="%d" ' % para.get_header_level() +
+                            'align="%d" ' % para.get_alignment() +
+                            'tborder="%d" ' % para.get_top_border() +
+                            'lborder="%d" ' % para.get_left_border() +
+                            'rborder="%d" ' % para.get_right_border() +
+                            'bborder="%d" ' % para.get_bottom_border() +
+                            '/>\n' +
+                    '</style>\n'
+                )
             xml_file.write('</sheet>\n')
         xml_file.write('</stylelist>\n')
         xml_file.close()
