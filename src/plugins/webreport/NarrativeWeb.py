@@ -335,7 +335,6 @@ class BasePage(object):
 
         # options for PlaceMaps for PlacePages
         self.placemaps = report.options["placemaps"]
-        self.ind_map = report.options["ind_maps"]
 
     def complete_people(self, tcell, first_person, handle_list):
         """
@@ -2374,27 +2373,28 @@ class PlacePage(BasePage):
 
             function initialize() {
                 // create mxn object
-                m = new mxn.Mapstraction('googlev3','googlev3');
-                m.addControls({zoom:'small'});
+                map = new mxn.Mapstraction('googlev3','googlev3');
+                map.addControls({zoom:'small'});
+                map.enableScrollWheelZoom();
 
                 var latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
 
                 inline_script += """  
                 // put map on page
-                m.setCenterAndZoom(latlon, 7);
+                map.setCenterAndZoom(latlon, 7);
 
                 //add a marker
                 var marker = new mxn.Marker(latlon);
-                m.addMarker(marker,true);
+                map.addMarker(marker,true);
             }
 
             function changetohybrid() {
                 if ( h == 'y' ) { 
                     h = 'n'
-                    m.setMapType(mxn.Mapstraction.HYBRID);  
+                    map.setMapType(mxn.Mapstraction.HYBRID);  
                 } else {
                     h = 'y'
-                    m.setMapType(mxn.Mapstraction.ROAD);  
+                    map.setMapType(mxn.Mapstraction.ROAD);  
                 };
             }
 
@@ -2404,7 +2404,7 @@ class PlacePage(BasePage):
                 } else {
                     p = 'googlev3';
                 };
-                m.swap(p,p);  
+                map.swap(p,p);  
             }
         //]]>
         </script> """
@@ -5124,7 +5124,6 @@ class NavWebReport(Report):
 
         # Place Map tab options
         self.placemaps = self.options["placemaps"]
-        self.ind_map = self.options["ind_maps"]
 
         if self.use_home:
             self.index_fname = "index"
@@ -5307,7 +5306,7 @@ class NavWebReport(Report):
 
         # copy mapstraction files to mapstraction directory
         # if PlacePage or IndividualPage maps will be used
-        if self.placemaps or self.ind_maps:
+        if self.placemaps:
             js_files = [ "mxn.core.js", "mxn.geocommons.core.js", "mxn.google.core.js",
                          "mxn.google.geocoder.js", "mxn.googlev3.core.js",
                          "mxn.js", "mxn.openlayers.core.js" ] 
@@ -5863,7 +5862,6 @@ class NavWebOptions(MenuReportOptions):
         self.__add_privacy_options(menu)
         self.__add_download_options(menu) 
         self.__add_advanced_options(menu)
-        self.__add_place_map_options(menu)
 
     def __add_report_options(self, menu):
         """
@@ -6159,22 +6157,10 @@ class NavWebOptions(MenuReportOptions):
                                    "events?"))
         menu.add_option(category_name, "inc_addressbook", inc_addressbook)
 
-    def __add_place_map_options(self, menu):
-        """
-        Adds the ability and options to include PlacePage Maps
-        """
-
-        category_name = _("Place Maps")
-
-        self.__placemaps = BooleanOption(_("Include Place map on Place Pages"), False)
-        self.__placemaps.set_help(_("Whether to include a place map on the Place Pages, "
-                                        "where Latitude/ Longitude are available."))
-        menu.add_option(category_name, "placemaps", self.__placemaps)
-
-        self.__ind_maps = BooleanOption(_("Include Place map on Individual Pages"), False)
-        self.__ind_maps.set_help(_("Whether to include place map on individual pages for all "
-                                   "places on that page"))
-        menu.add_option(category_name, "ind_maps", self.__ind_maps)
+        placemaps = BooleanOption(_("Include Place map on Place Pages"), False)
+        placemaps.set_help(_("Whether to include a place map on the Place Pages, "
+                             "where Latitude/ Longitude are available."))
+        menu.add_option(category_name, "placemaps", placemaps)
 
     def __archive_changed(self):
         """
