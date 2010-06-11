@@ -36,7 +36,8 @@ Proxy class for the GRAMPS databases. Filter out all living people.
 #
 #-------------------------------------------------------------------------
 from proxybase import ProxyDbBase
-from gen.lib import Date, Person, Name
+from gen.lib import Person, Name
+from gen.lib.date import Today
 from Utils import probably_alive
 import config
 
@@ -78,8 +79,7 @@ class LivingProxyDb(ProxyDbBase):
         ProxyDbBase.__init__(self, dbase)
         self.mode = mode
         if current_year is not None:
-            self.current_date = Date()
-            self.current_date.set_year(current_year)
+            self.current_date = Today()
         else:
             self.current_date = None
         self.years_after_death = years_after_death
@@ -192,7 +192,7 @@ class LivingProxyDb(ProxyDbBase):
         Returns False if the person is not considered living.
         """
         return probably_alive( person,
-                               self.db,
+                               self.basedb,
                                self.current_date,
                                self.years_after_death )
     
