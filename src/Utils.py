@@ -833,35 +833,9 @@ def probably_alive(person, db,
     if not birth or not death:
         # no evidence, must consider alive
         return (True, None, None, _("no evidence"), None)
-    # must have est dates from here:
-    # SPECIAL CASE: Today and Future:
-    if current_date.match(gen.lib.date.Today(), ">="):
-        if person.get_death_ref():
-            # if death in the future: (impossible, unless guess)
-            # if return_range:
-            # return (True, birth, death, ("future death, ") + explain, relative)
-            # else:
-            # return True
-            if return_range:
-                return (False, birth, death, explain, relative)
-            else:
-                return False
+    # must have dates from here:
     if limit:
         death += limit # add these years to death
-    # if the current - birth is too big, not alive:
-    # FIXME: use match here:
-    if (current_date - birth)[0] > pb.MAX_AGE_PROB_ALIVE:
-        if return_range:
-            return (False, birth, death, explain, relative)
-        else:
-            return False
-    # FIXME: use match here:
-    # if the current_date is before birth, not alive:
-    if (birth - current_date)[0] > 0:
-        if return_range:
-            return (False, birth, death, explain, relative)
-        else:
-            return False
     # Finally, check to see if current_date is between dates
     result = (current_date.match(birth, ">=") and 
               current_date.match(death, "<="))
