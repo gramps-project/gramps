@@ -12,6 +12,7 @@
 # Copyright (C) 2008-2010  Rob G. Healey <robhealey1@gmail.com>	
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2367,44 +2368,64 @@ class PlacePage(BasePage):
         <script type="text/javascript">
         //<![CDATA[
 
-            var m;
-            var h = 'y';
-            var p = 'googlev3';
+            var map;
+            var hybrid = 'y';
+            var provider = 'openlayers';
+            var latlon;
+            var marker;
+            var icon = 'mainmap';
 
             function initialize() {
                 // create mxn object
-                map = new mxn.Mapstraction('googlev3','googlev3');
-                map.addControls({zoom:'small'});
-                map.enableScrollWheelZoom();
+                map = new mxn.Mapstraction('openlayers','openlayers');
+                map.addControls({pan: true, zoom: 'large', scale: true});
 
-                var latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
+                latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
 
                 inline_script += """  
                 // put map on page
-                map.setCenterAndZoom(latlon, 7);
+                map.setCenterAndZoom(latlon, 9);
 
                 //add a marker
-                var marker = new mxn.Marker(latlon);
+                add_marker();
+            }
+
+            function add_marker() {
+                marker = new mxn.Marker(latlon);
+                marker.setLabel('The label');
+                marker.setInfoBubble('<div id="geo-info" >Info bubble</div>');
+                // openlayers mapstraction problem here : drift if anchor.
+                if ( provider == 'googlev3' ) {
+                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
+                               [22,22],
+                               [0,22]);
+                } else {
+                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
+                               [22,22]);
+                };
                 map.addMarker(marker,true);
             }
 
             function changetohybrid() {
-                if ( h == 'y' ) { 
-                    h = 'n'
+                if ( hybrid == 'y' ) { 
+                    hybrid = 'n'
                     map.setMapType(mxn.Mapstraction.HYBRID);  
                 } else {
-                    h = 'y'
+                    hybrid = 'y'
                     map.setMapType(mxn.Mapstraction.ROAD);  
                 };
             }
 
             function changeprovider(){
-                if ( p == 'googlev3') {
-                    p = 'openlayers';
+                if ( provider == 'googlev3') {
+                    provider = 'openlayers';
+                    icon = 'mainmap';
                 } else {
-                    p = 'googlev3';
+                    provider = 'googlev3';
+                    icon = 'altmap';
                 };
-                map.swap(p,p);  
+                map.swap(provider,provider);  
+                add_marker();
             }
         //]]>
         </script> """
@@ -5313,8 +5334,12 @@ class NavWebReport(Report):
             for fname in js_files:
                 from_path = os.path.join(const.MAPSTRACTION_DIR, fname)
                 self.copy_file(from_path, fname, "mapstraction")
-            fname = os.path.join(const.MAPSTRACTION_DIR, "crosshairs.png")
-            self.copy_file(fname, "crosshairs.png", "mapstraction") 
+            image_names = [ "gramps-geo-mainmap.png", "gramps-geo-altmap.png" ] 
+            for image_name in image_names:
+                fname = os.path.join(const.ROOT_DIR,
+                                     'images', '22x22',
+                                     '%s' % image_name )
+                self.copy_file(fname, image_name, "images") 
  
         imgs = []
 
@@ -6567,7 +6592,7 @@ def _create_place_map(placedetail, latitude, longitude):
             table += trow
 
             trow += Html("td", inline = True) + (
-                Html("div", id = "googlev3", attr = 'style = "height: 400px; width: 500px;"')
+                Html("div", id = "googlev3", attr = 'style = "height: 400px; width: 500px; display: none"')
                 )
 
             trow += Html("td", inline = True) + (
