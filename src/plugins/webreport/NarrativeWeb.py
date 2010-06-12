@@ -2363,6 +2363,17 @@ class PlacePage(BasePage):
             div#maps {
                 height: 500px;
             }
+            div#googlev3 {
+                height: 400px;
+                width: 500px;
+                display: none;
+                border: solid 1px #000;
+            }
+            div#openlayers {
+                height: 400px;
+                width: 500px;
+                border: solid 1px #000;
+            }
         </style>
 
         <script type="text/javascript">
@@ -6584,20 +6595,9 @@ def _create_place_map(placedetail, latitude, longitude):
         # section title
         placemap += Html("h4", _("Place Map"), inline = True)
 
-        # begin place map table
-        with Html("table", attr = 'border = "0" width = "50%"') as table:
-            placemap += table
+        placemap += Html("div", id = "googlev3", inline = True)
 
-            trow = Html("tr")
-            table += trow
-
-            trow += Html("td", inline = True) + (
-                Html("div", id = "googlev3", attr = 'style = "height: 400px; width: 500px; display: none"')
-                )
-
-            trow += Html("td", inline = True) + (
-                Html("div", id = "openlayers", attr = 'style = "height: 400px; width: 500px;"')
-                )
+        placemap += Html("div", id = "openlayers", inline = True)
 
         placemap += Html("a", _("change provider"), attr = 'onclick = "changeprovider();"',
             href = "#", inline = True)
