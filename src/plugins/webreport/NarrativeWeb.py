@@ -2333,11 +2333,13 @@ class PlacePage(BasePage):
         """
         creates the individual place pages
         """
-
         self.bibli = Bibliography()
         db = report.database
-
         place = db.get_place_from_handle(place_handle)
+
+        # if place exists, but has nothing, return
+        if not place:
+            return None
         BasePage.__init__(self, report, title, place.gramps_id)
 
         of = self.report.create_file(place.get_handle(), "plc")
@@ -2348,6 +2350,7 @@ class PlacePage(BasePage):
         # determine if we will be creating Place Maps or not?
         if self.placemaps:
             if place.lat and place.long:
+                place_title = ReportUtils.place_name(db, place_handle)
 
                 head += Html("script", type = "text/javascript", 
                     src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
@@ -2363,16 +2366,21 @@ class PlacePage(BasePage):
             div#maps {
                 height: 500px;
             }
+
             div#googlev3 {
                 height: 400px;
                 width: 500px;
                 display: none;
-                border: solid 1px #000;
+                border: solid 2px #000;
             }
+
             div#openlayers {
                 height: 400px;
                 width: 500px;
-                border: solid 1px #000;
+                border: solid 2px #000;
+            }
+            div#geo-info {
+                font: normal .6em sans;
             }
         </style>
 
@@ -2403,8 +2411,11 @@ class PlacePage(BasePage):
 
             function add_marker() {
                 marker = new mxn.Marker(latlon);
-                marker.setLabel('The label');
-                marker.setInfoBubble('<div id="geo-info" >Info bubble</div>');
+                marker.setLabel('The Label'); 
+
+                marker.setInfoBubble('<div id="geo-info" >%s</div>'); """ % place_title
+
+                inline_script += """
                 // openlayers mapstraction problem here : drift if anchor.
                 if ( provider == 'googlev3' ) {
                     marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
