@@ -238,6 +238,10 @@ _JAVASCRIPT = '''\
  function placeclick(i) {
   gmarkers[i].openBubble();
  }
+ function swapmap(newmap) {
+  current_map=newmap;
+  mapstraction.swap(current_map,current_map);
+ }
  var crosshairsSize=34;
  var crossh=null;
  function addcrosshair(state,Cross) {
@@ -248,13 +252,13 @@ _JAVASCRIPT = '''\
   };
  }
  function addcross() {
- Mapstraction.prototype.removeCrosshairs=function(cross)
+ mxn.Mapstraction.prototype.removeCrosshairs=function(cross)
  {
   var map=this.maps[this.api];
   var container=map.getContainer();
   container.removeChild(crossh);
  };
- Mapstraction.prototype.addCrosshairs=function(Cross)
+ mxn.Mapstraction.prototype.addCrosshairs=function(Cross)
  {
   var map=this.maps[this.api];
   var container=map.getContainer();
@@ -493,7 +497,7 @@ class GeoView(HtmlView):
         self.active = False
         self.already_testing = False
         self.alt_provider = self._config.get('preferences.alternate-provider')
-        self.usedmap = "google" if self.alt_provider else "openstreetmap"
+        self.usedmap = "googlev3" if self.alt_provider else "openlayers"
         fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
                                              'crosshairs.png')
         self.crosspath = urlparse.urlunsplit(
@@ -553,10 +557,11 @@ class GeoView(HtmlView):
         """
         Do we have a crosshair ?
         """
-        if self.javascript_ready:
-            self.renderer.execute_script("javascript:addcrosshair('%d','%s')"
-                % (self._config.get("preferences.crosshair"), self.crosspath)
-                )
+        #if self.javascript_ready:
+        #    self.renderer.execute_script("javascript:addcrosshair('%d','%s')"
+        #        % (self._config.get("preferences.crosshair"), self.crosspath)
+        #        )
+        pass
 
     def geoview_options(self, configdialog):
         """
@@ -917,7 +922,7 @@ class GeoView(HtmlView):
         We need to resize the map
         """
         gws = widget.get_allocation()
-        self.width = gws.width
+        self.width = gws.width - 40
         self.height = gws.height
         self.header_size = self.box1.get_allocation().height + 20
         if not self.uistate.get_active('Person'):
@@ -1042,6 +1047,8 @@ class GeoView(HtmlView):
         url += '&zoom=%d' % int(self.realzoom)
         url += '&lat=%s' % str(self.reallatitude)
         url += '&lon=%s' % str(self.reallongitude)
+        #self.renderer.execute_script(
+        #     "javascript:swapmap('%s')" % usedmap )
         self._openurl(url)
         self._savezoomandposition()
         if self.displaytype != "places":
@@ -1068,10 +1075,10 @@ class GeoView(HtmlView):
                 elif year != "no":
                     self.last_selected_year = year
                     self._call_js_selectmarkers(year)
-        if self.javascript_ready:
-            self.renderer.execute_script("javascript:addcrosshair('%d','%s')" %
-                      (self._config.get("preferences.crosshair"),
-                       self.crosspath))
+        #if self.javascript_ready:
+        #    self.renderer.execute_script("javascript:addcrosshair('%d','%s')" %
+        #              (self._config.get("preferences.crosshair"),
+        #               self.crosspath))
 
     def _call_js_selectmarkers(self, year):
         """
@@ -1559,13 +1566,14 @@ class GeoView(HtmlView):
         """
         Toogle between the two maps providers.
         Inactive ( the default ) is openstreetmap.
+        As openstreetmap has no api, we now use openlayers.
         Active means Google maps.
         """
         if self._config.get('preferences.alternate-provider'):
-            self.usedmap = "openstreetmap"
+            self.usedmap = "openlayers"
             self._config.set('preferences.alternate-provider', False)
         else:
-            self.usedmap = "google"
+            self.usedmap = "googlev3"
             self._config.set('preferences.alternate-provider', True)
         self._set_provider_icon()
         self._change_map(self.usedmap)
@@ -1687,36 +1695,25 @@ class GeoView(HtmlView):
                                           self.maxyear)
                 self.years.show()
         self.mapview.write(
-            '<div id="GOverviewMapControl_Helper' +
-            ' style="height: %dpx; ' % (self.height - self.header_size) +
-            ' width: %dpx; display:none;"\n' % self.width +
-            ' comment="just a work around a GOverview '
-                          'MapControl() behaviour:\n' +
-            '         some time the first non-class object will '
-                          'be used to find the width\n' +
-            '         because GOverviewMapControl() wants to be '
-                          'most right the map jumps\n' +
-            '         to the left (outside)"'
-            '></div>\n'
-            '<div id="geo-map" class="Mapstraction" style="' +
-                ('display: none; ' if h4mess else '') +
-            'height: %dpx"></div>\n'
-                % (self.height - self.header_size ) +
+            '<div id="geo-map" style="' +
+            #    ('display: none; ' if (self.usedmap == 'openlayers') else '') +
+            'height: %dpx; width: %dpx;" ></div>\n'
+                % ((self.height - self.header_size), self.width ) +
             '<script type="text/javascript">\n' +
-            ' args=getArgs();' +
-            ' if (args.map) current_map=args.map;' +
-            ' if (args.lat) ulat=args.lat;' +
-            ' if (args.lon) ulon=args.lon;' +
-            ' if (args.zoom) uzoom=parseInt(args.zoom);' +
-            ' mapstraction = new Mapstraction' +
-            "('geo-map',args.map);\n" +
+            ' args=getArgs();\n' +
+            ' if (args.map) current_map=args.map;\n' +
+            ' if (args.lat) ulat=parseFloat(args.lat);\n' +
+            ' if (args.lon) ulon=parseFloat(args.lon);\n' +
+            ' if (args.zoom) uzoom=parseInt(args.zoom);\n' +
+            ' mapstraction = new mxn.Mapstraction' +
+            "('geo-map',current_map);\n" +
             ' mapstraction.addControls(' +
-            "{ pan: true, zoom: 'large', " +
-            'scale: true, map_type: true });\n' +
-            'addcross();' +
-            "addcrosshair('%d', '%s');"
-                % (self._config.get("preferences.crosshair"),
-                    self.crosspath)
+            "{ pan: true, zoom: 'small', " +
+            'scale: true, map_type: true });\n'
+            #'addcross();' +
+            #"addcrosshair('%d', '%s');"
+            #    % (self._config.get("preferences.crosshair"),
+            #        self.crosspath)
 
             )
 
@@ -1745,17 +1742,19 @@ class GeoView(HtmlView):
                 }
             )
         fpath = os.path.join(const.ROOT_DIR, 'mapstraction',
-                                             'mapstraction.js')
+                                             "mxn.js?(googlev3,openlayers)")
         upath = urlparse.urlunsplit(
             ('file', '', URL_SEP.join(fpath.split(os.sep)), '', '')
             )
         self.mapview.write(
             '<script type="text/javascript"' +
-            ' src="%s"></script>\n' % upath +
+            ' src="http://maps.google.com/maps/api/js?sensor=false">' +
+            '</script>\n' +
             '<script type="text/javascript"' +
-            ' src="http://maps.google.com/maps?file=api&v=2&hl=%s">'
-                % lang +
-            '</script>\n'
+            ' src="http://openlayers.org/api/OpenLayers.js">' +
+            '</script>\n' +
+            '<script type="text/javascript"' +
+            ' src="%s"></script>\n' % upath
             )
 
     def _createmapstractiontrailer(self):
@@ -1968,10 +1967,16 @@ class GeoView(HtmlView):
         ipath = os.path.join(const.ROOT_DIR, 'images/22x22/', '%s.png' % value )
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(ipath.split(os.sep)), '', ''))
+        # Workaround to avoid a drift problem with openlayers.
         self.mapview.write(
-            'my_marker.setIcon("%s",[22,22],[0,22]);' % upath +
-            'my_marker.setShadowIcon("%s",[0,0]);' % upath
+            #'\n  // workaround to avoid openlayers drift.\n' +
+            '\n  if ( current_map != "openlayers" ) {' +
+            '   my_marker.setIcon("%s",[22,22],[0,22]);' % upath +
+            '   } else { ' +
+            '   my_marker.setIcon("%s",[22,22]);' % upath +
+            '   }\n'
             )
+        #'my_marker.setShadowIcon("%s",[0,0]);' % upath
 
     def _show_title(self, title):
         """
@@ -1995,7 +2000,7 @@ class GeoView(HtmlView):
         if self.mustcenter:
             self.centered = True
             self.mapview.write(
-                "  var point = new LatLonPoint" 
+                "  var point = new mxn.LatLonPoint" 
                 "(ulat,ulon);" 
                 "map.setCenterAndZoom" 
                 "(point, uzoom);\n"
@@ -2004,7 +2009,7 @@ class GeoView(HtmlView):
         self.mapview.write(
             '}\n'
             ' function setmarkers(map) {\n'
-            '  if ( args.map != "openstreetmap" ) {'
+            '  if ( current_map != "openlayers" ) {'
             ' default_icon = "altmap";'
             ' } else { '
             ' default_icon = "mainmap"; }\n'
@@ -2039,7 +2044,7 @@ class GeoView(HtmlView):
                         self.yearinmarker = []
                         self._set_icon(savetype, differtype, formatype)
                         differtype = False
-                        self.mapview.write("map.addMarker(my_marker);")
+                        self.mapview.write("  map.addMarker(my_marker);")
                     if ( indm > lastm ):
                         if (indm % NB_MARKERS_PER_PAGE) == 0:
                             self.last_index = index_mark
@@ -2051,10 +2056,10 @@ class GeoView(HtmlView):
                         self.plist.append([ mark[0], ind, self.nbpages] )
                         indm += 1
                         self.mapview.write(
-                            "\n  var point = new LatLonPoint" +
+                            "\n  var point = new mxn.LatLonPoint" +
 
                             "(%s,%s);" % (mark[3], mark[4]) +
-                            "my_marker = new Marker(point);" +
+                            "my_marker = new mxn.Marker(point);" +
                             "gmarkers[%d]=my_marker;" % ind +
                             "my_marker.setLabel" +
                             '("%s");' % _escape(mark[0])
@@ -2097,17 +2102,17 @@ class GeoView(HtmlView):
                 "my_marker.setAttribute('year','%s');" % years
                 )
             self._set_icon(savetype, differtype, formatype)
-            self.mapview.write("map.addMarker(my_marker);")
+            self.mapview.write("  map.addMarker(my_marker);")
         if self.nbmarkers == 0:
             # We have no valid geographic point to center the map.
             longitude = 0.0
             latitude = 0.0
             self.mapview.write(
-                "\nvar point = new LatLonPoint" +
+                "\nvar point = new mxn.LatLonPoint" +
                 "(%s,%s);\n" % (latitude, longitude) +
                 "   map.setCenterAndZoom" +
                 "(point, %d);\n" % 2 +
-                "   my_marker = new Marker(point);\n" +
+                "   my_marker = new mxn.Marker(point);\n" +
                 "   my_marker.setLabel" +
                 '("%s");\n' % _("No location.") +
                 '   my_marker.setInfoBubble("<div ' +
