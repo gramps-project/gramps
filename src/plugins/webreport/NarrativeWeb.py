@@ -337,6 +337,122 @@ class BasePage(object):
         # options for PlaceMaps for PlacePages
         self.placemaps = report.options["placemaps"]
 
+    def _create_place_map(self, placedetail, head, latitude, longitude, place_title):
+        """
+        will create the place map
+
+        @param: placedetail -- Html instance page
+        @param: latitude -- GPS Latitude from place
+        @param: Longitude -- GPS Longitude from place
+        """
+
+        # add Mapstraction CSS
+        fname = "/".join(["styles", "mapstraction.css"])
+        url = self.report.build_url_fname(fname, None, self.up)
+        head += Html("link", href = url, type = "text/css", media = "screen", 
+            rel = "stylesheet", indent = False)
+
+        # add googlev3 specific javascript code
+        head += Html("script", type = "text/javascript", 
+            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+
+        # add openlayers specific javascript code
+        head += Html("script", src = "http://openlayers.org/api/OpenLayers.js", inline = True)
+
+        # add mapstraction javascript code
+        fname = "/".join(["mapstraction", "mxn.js"])
+        url = self.report.build_url_fname(fname, None, self.up)
+        url += "?(googlev3,openlayers)"
+        head += Html("script", src = url, inline = True)
+
+        # Place Map division
+        with Html("div", id = "mapstraction") as mapstraction:
+            placedetail += mapstraction
+
+            # section title
+            mapstraction += Html("h4", _("Place Map"), inline = True)
+
+            # begin middle division
+            with Html("div", id = "middle") as middle:
+                mapstraction += middle
+
+                # begin inline javascript code
+                # because jsc is a string, it does NOT have to properly indented
+                with Html("script", type = "text/javascript") as jsc:
+                    middle += jsc
+
+                    jsc += """
+                            //<![CDATA[
+
+                            var map;
+                            var pprovider = 'googlev3';
+                            var latlon;
+                            var icon = 'mainmap';
+
+                            function initialize() {
+
+                                // create mxn object
+                                map = new mxn.Mapstraction('googlev3','googlev3');
+
+                                // add map controls to image
+                                map.addControls({
+                                    pan: true,
+                                    zoom: 'large',
+                                    scale: true,
+                                    map_type: true
+                                });
+
+                                latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+
+                    jsc += """
+                                // put map on page
+                                map.setCenterAndZoom(latlon, 9);
+  
+                                //add a marker
+                                add_marker();
+                            }
+
+                            function add_marker() {
+                                var marker;
+                                marker = new mxn.Marker(latlon);
+
+                                // openlayers mapstraction problem here : drift if anchor.
+                                if ( provider == 'googlev3' ) {
+                                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
+                                        [22,22],
+                                        [0,22]);
+                                } else {
+                                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
+                                        [22,22]);
+                                };
+                                map.addMarker(marker,true);
+                            }
+
+                            function changeprovider() {
+                                if ( pprovider == 'googlev3') {
+                                    provider = 'openlayers';
+                                    icon = 'mainmap';
+                                } else {
+                                    provider = 'googlev3';
+                                    icon = 'altmap';
+                                };
+                                mao.swap(provider, provider);  
+                                add_marker();
+                            }
+
+                            //]]>"""
+                                 
+# there is no need to add an ending "</script>" as it will be added automatically!
+
+                middle += Html("div", id = "googlev3", inline = True)
+                middle += Html("div", id = "openlayers", inline = True)
+
+                middle += Html("a", _("change provider"), attr = 'onclick = "changeprovider();"',
+                    href = "#", inline = True)
+
+        # return placedetail division back to its callers
+        return placedetail, head
+
     def complete_people(self, tcell, first_person, handle_list):
         """
         completes the person column for classes EventListPage and EventPage
@@ -2347,115 +2463,6 @@ class PlacePage(BasePage):
         self.page_title = ReportUtils.place_name(db, place_handle)
         placepage, head, body = self.write_header(_("Places"))
 
-        # determine if we will be creating Place Maps or not?
-        if self.placemaps:
-            if place.lat and place.long:
-                place_title = ReportUtils.place_name(db, place_handle)
-
-                head += Html("script", type = "text/javascript", 
-                    src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
-
-                head += Html("script", src = "http://openlayers.org/api/OpenLayers.js",
-                    inline = True)
-
-                head += Html("script", src = "../../../mapstraction/mxn.js?(googlev3,openlayers)",
-                    inline = True)
-
-                inline_script = """
-        <style type = "text/css">
-            div#maps {
-                height: 500px;
-            }
-
-            div#googlev3 {
-                height: 400px;
-                width: 500px;
-                display: none;
-                border: solid 2px #000;
-            }
-
-            div#openlayers {
-                height: 400px;
-                width: 500px;
-                border: solid 2px #000;
-            }
-            div#geo-info {
-                font: normal .6em sans;
-            }
-        </style>
-
-        <script type="text/javascript">
-        //<![CDATA[
-
-            var map;
-            var hybrid = 'y';
-            var provider = 'openlayers';
-            var latlon;
-            var marker;
-            var icon = 'mainmap';
-
-            function initialize() {
-                // create mxn object
-                map = new mxn.Mapstraction('openlayers','openlayers');
-                map.addControls({pan: true, zoom: 'large', scale: true});
-
-                latlon = new mxn.LatLonPoint(%s, %s); """ % (place.lat, place.long)
-
-                inline_script += """  
-                // put map on page
-                map.setCenterAndZoom(latlon, 9);
-
-                //add a marker
-                add_marker();
-            }
-
-            function add_marker() {
-                marker = new mxn.Marker(latlon);
-                marker.setLabel('The Label'); 
-
-                marker.setInfoBubble('<div id="geo-info" >%s</div>'); """ % place_title
-
-                inline_script += """
-                // openlayers mapstraction problem here : drift if anchor.
-                if ( provider == 'googlev3' ) {
-                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
-                               [22,22],
-                               [0,22]);
-                } else {
-                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
-                               [22,22]);
-                };
-                map.addMarker(marker,true);
-            }
-
-            function changetohybrid() {
-                if ( hybrid == 'y' ) { 
-                    hybrid = 'n'
-                    map.setMapType(mxn.Mapstraction.HYBRID);  
-                } else {
-                    hybrid = 'y'
-                    map.setMapType(mxn.Mapstraction.ROAD);  
-                };
-            }
-
-            function changeprovider(){
-                if ( provider == 'googlev3') {
-                    provider = 'openlayers';
-                    icon = 'mainmap';
-                } else {
-                    provider = 'googlev3';
-                    icon = 'altmap';
-                };
-                map.swap(provider,provider);  
-                add_marker();
-            }
-        //]]>
-        </script> """
-                head += inline_script
-
-                # add javascript function to body element
-                body.attr = 'onload = "initialize();"'
-
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
             body += placedetail
@@ -2495,7 +2502,13 @@ class PlacePage(BasePage):
                 placedetail += urllinks
 
             # add place map here
-            _create_place_map(placedetail, place.lat, place.long)
+            if self.placemaps:
+                if place.lat and place.long:
+
+                    self._create_place_map(placedetail, head, place.lat, place.long, self.page_title)
+
+                    # add javascript function call to body element
+                    body.attr = 'onload = "initialize();"'
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -5323,19 +5336,19 @@ class NavWebReport(Report):
 
     def copy_narrated_files(self):
         """
-        Copy all of the CSS and image files for Narrated Web
+        Copy all of the CSS, image, and javascript files for Narrated Web
         """
 
-        # copy behaviour stylesheet
+        # copy behaviour style sheet
         fname = os.path.join(const.DATA_DIR, "behaviour.css")
         self.copy_file(fname, "behaviour.css", "styles")
 
-        # copy screen stylesheet
+        # copy screen style sheet
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
 
-        # copy Navigation Menu Layout if Blue or Visually is being used
+        # copy Navigation Menu Layout style sheet if Blue or Visually is being used
         if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
             if self.navigation == "Horizontal":
                 fname = os.path.join(const.DATA_DIR, "Web_Navigation-Horizontal.css")
@@ -5343,7 +5356,12 @@ class NavWebReport(Report):
                 fname = os.path.join(const.DATA_DIR, "Web_Navigation-Vertical.css")
             self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
-        # copy printer stylesheet
+        # copy Mapstraction style sheet if using Place Maps
+        if self.placemaps:
+            fname = os.path.join(const.DATA_DIR, "Mapstraction.css")
+            self.copy_file(fname, "mapstraction.css", "styles")
+ 
+        # copy printer style sheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
@@ -6585,36 +6603,3 @@ def build_event_data(db, ind_list):
             
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
-
-def _create_place_map(placedetail, latitude, longitude):
-    """
-    will create the place map
-
-    @param: placedetail -- Html instance page
-    @param: latitude -- GPS Latitude from place
-    @param: Longitude -- GPS Longitude from place
-    """
-
-    # if there is no latitude and longitude, return placedetail
-    if not latitude and not longitude:
-        return
-
-    # Place Map division
-    with Html("div", id = "maps") as placemap:
-        placedetail += placemap
-
-        # section title
-        placemap += Html("h4", _("Place Map"), inline = True)
-
-        placemap += Html("div", id = "googlev3", inline = True)
-
-        placemap += Html("div", id = "openlayers", inline = True)
-
-        placemap += Html("a", _("change provider"), attr = 'onclick = "changeprovider();"',
-            href = "#", inline = True)
-
-        placemap += Html("a", _("change to hybrid"), attr = 'onclick = "changetohybrid();"',
-            href = "#", inline = True)      
-
-    # return placedetail division back to its callers
-    return placedetail

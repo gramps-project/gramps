@@ -21,48 +21,41 @@
 #
 # $Id: Mapstraction.css 15566 2010-06-13 15:10:00Z robhealey1 $
 #
+#
+    Mapstraction
 ------------------------------------------------- */
-.middle {
-    float: left;
-    width: 60%;
-    margin: 0 10px;
-    padding: 1% 1%;
-    text-align: justify;
-}
-.middle ul {
-    margin-left: 25px;
-}
-.middle h2 {
-    color: #3B6EBF;
-    font-size: 16px;
-    margin: 10px 0px 10px 0px;
-}
 div#mapstraction {
-    height: 600px;
-    width: 500px;
+    height: 500px;
+    width: 100%;
 }
-.mapstraction ul, #mapstraction ul {
-    margin-left: 0px;
+
+/*    Middle
+------------------------------------------------- */
+
+div#middle {
+    float: center;
+    height: 400px;
+    width: 60%;
+    margin: 10px 0px 10px 0px;
+    padding: 0% 20% 0% 20%;
+    text-align: center;
 }
-div#googlev3, div#openlayers, div#freeeath, div#yahoo, div#mapquest, div#microsoft {
+div#middle div#geo-info {
+    font: bold 6px serif;
+}
+div#middle a {
+    color: #000;
+    background: none;
+    text-decoration: none;
+}
+div#middle a:hover {
+    text-decoration: underline;
+}
+
+/*    GoogleV3
+------------------------------------------------- */
+div#googlev3 {
     height: 400px;
     width: 500px;
-}
-div#clear {
-    display: block;
-    clear: both;
-    width: 100%;
-    height: 1px;
-    overflow: hidden;
-}
-.js_map_provider {
-    color: #FF4400;
-    font-weight: bold;
-}
-#js_code {
-    height: 300px; 
-    overflow: auto; 
-    border: 1px solid black; 
-    margin-top: 10px; 
-    padding-top: 10px;
+    margin-bottom: 6px;
 }
