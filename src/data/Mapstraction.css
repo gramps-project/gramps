@@ -31,25 +31,15 @@ div#mapstraction {
 
 /*    Middle
 ------------------------------------------------- */
-
 div#middle {
     float: center;
     height: 400px;
     width: 60%;
     margin: 10px 0px 10px 0px;
     padding: 0% 20% 0% 20%;
-    text-align: center;
 }
 div#middle div#geo-info {
-    font: bold 6px serif;
-}
-div#middle a {
-    color: #000;
-    background: none;
-    text-decoration: none;
-}
-div#middle a:hover {
-    text-decoration: underline;
+    font: bold 6px sans-serif;
 }
 
 /*    GoogleV3
@@ -57,5 +47,4 @@ div#middle a:hover {
 div#googlev3 {
     height: 400px;
     width: 500px;
-    margin-bottom: 6px;
 }

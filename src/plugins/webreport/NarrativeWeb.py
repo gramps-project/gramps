@@ -356,13 +356,9 @@ class BasePage(object):
         head += Html("script", type = "text/javascript", 
             src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
 
-        # add openlayers specific javascript code
-        head += Html("script", src = "http://openlayers.org/api/OpenLayers.js", inline = True)
-
         # add mapstraction javascript code
-        fname = "/".join(["mapstraction", "mxn.js"])
+        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
         url = self.report.build_url_fname(fname, None, self.up)
-        url += "?(googlev3,openlayers)"
         head += Html("script", src = url, inline = True)
 
         # Place Map division
@@ -410,34 +406,11 @@ class BasePage(object):
   
                                 //add a marker
                                 add_marker();
-                            }
 
-                            function add_marker() {
+                                // add marker  
                                 var marker;
                                 marker = new mxn.Marker(latlon);
-
-                                // openlayers mapstraction problem here : drift if anchor.
-                                if ( provider == 'googlev3' ) {
-                                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
-                                        [22,22],
-                                        [0,22]);
-                                } else {
-                                    marker.setIcon('../../../images/gramps-geo-' +icon+ '.png',
-                                        [22,22]);
-                                };
                                 map.addMarker(marker,true);
-                            }
-
-                            function changeprovider() {
-                                if ( pprovider == 'googlev3') {
-                                    provider = 'openlayers';
-                                    icon = 'mainmap';
-                                } else {
-                                    provider = 'googlev3';
-                                    icon = 'altmap';
-                                };
-                                mao.swap(provider, provider);  
-                                add_marker();
                             }
 
                             //]]>"""
@@ -445,11 +418,6 @@ class BasePage(object):
 # there is no need to add an ending "</script>" as it will be added automatically!
 
                 middle += Html("div", id = "googlev3", inline = True)
-                middle += Html("div", id = "openlayers", inline = True)
-
-                middle += Html("a", _("change provider"), attr = 'onclick = "changeprovider();"',
-                    href = "#", inline = True)
-
         # return placedetail division back to its callers
         return placedetail, head
 
