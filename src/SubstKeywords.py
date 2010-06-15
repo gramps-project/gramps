@@ -71,7 +71,8 @@ class SubstKeywords(object):
         person = database.get_person_from_handle(person_handle)
         self.n = person.get_primary_name().get_first_name() + " " + \
         	person.get_primary_name().get_surname() #Issue ID:  2878
-        self.N = name_displayer.sorted(person)
+        self.N = person.get_primary_name().get_surname() + ", " + \
+            person.get_primary_name().get_first_name()
         self.b = ""
         self.B = ""
         self.d = ""
@@ -103,13 +104,17 @@ class SubstKeywords(object):
             if father_handle == person_handle:
                 if mother_handle:
                     mother = database.get_person_from_handle(mother_handle)
-                    self.s = name_displayer.display(mother)
-                    self.S = name_displayer.sorted(mother)
+                    self.s = mother.get_primary_name().get_first_name() + " " + \
+                        mother.get_primary_name().get_surname() #Issue ID:  2878
+                    self.S = mother.get_primary_name().get_surname() + ", " + \
+                        mother.get_primary_name().get_first_name()
             else:
                 if father_handle:
                     father = database.get_person_from_handle(father_handle)
-                    self.s = name_displayer.display(father)
-                    self.S = name_displayer.sorted(father)
+                    self.s = father.get_primary_name().get_first_name() + " " + \
+                        father.get_primary_name().get_surname() #Issue ID:  2878
+                    self.S = father.get_primary_name().get_surname() + ", " + \
+                        father.get_primary_name().get_first_name()
             for e_ref in f.get_event_ref_list():
                 if not e_ref:
                     continue
