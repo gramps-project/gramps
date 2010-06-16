@@ -359,7 +359,7 @@ class BasePage(object):
         # add mapstraction javascript code
         fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
         url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("script", src = url, inline = True)
+        head += Html("script", type = "text/javascript", src = url, inline = True)
 
         # Place Map division
         with Html("div", id = "mapstraction") as mapstraction:
@@ -383,7 +383,6 @@ class BasePage(object):
                             var map;
                             var pprovider = 'googlev3';
                             var latlon;
-                            var icon = 'mainmap';
 
                             function initialize() {
 
@@ -393,7 +392,7 @@ class BasePage(object):
                                 // add map controls to image
                                 map.addControls({
                                     pan: true,
-                                    zoom: 'large',
+                                    zoom: 'medium',
                                     scale: true,
                                     map_type: true
                                 });
@@ -403,14 +402,19 @@ class BasePage(object):
                     jsc += """
                                 // put map on page
                                 map.setCenterAndZoom(latlon, 9);
-  
-                                //add a marker
-                                add_marker();
+
+                                  var point;
+                                var points = []
+
+                                point = new mxn.LatLonPoint(latlon);
+                                points.push(point);
 
                                 // add marker  
                                 var marker;
                                 marker = new mxn.Marker(latlon);
-                                map.addMarker(marker,true);
+
+                                // add marker to map
+                                map.addMarker(marker, true);
                             }
 
                             //]]>"""
