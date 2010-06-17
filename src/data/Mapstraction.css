@@ -38,8 +38,11 @@ div#middle {
     margin: 10px 0px 10px 0px;
     padding: 0% 20% 0% 20%;
 }
-div#middle div#geo-info {
-    font: bold 6px sans-serif;
+
+/*    geo-info bubble
+------------------------------------------------- */
+div#geo-info {
+    font: bold 11px sans-serif;
 }
 
 /*    GoogleV3

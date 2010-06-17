@@ -403,16 +403,12 @@ class BasePage(object):
                                 // put map on page
                                 map.setCenterAndZoom(latlon, 9);
 
-                                  var point;
-                                var points = []
-
-                                point = new mxn.LatLonPoint(latlon);
-                                points.push(point);
-
                                 // add marker  
                                 var marker;
                                 marker = new mxn.Marker(latlon);
+                                marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % place_title
 
+                    jsc += """
                                 // add marker to map
                                 map.addMarker(marker, true);
                             }
