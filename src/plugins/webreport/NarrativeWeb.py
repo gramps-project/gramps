@@ -1622,9 +1622,9 @@ class BasePage(object):
                 trow.extend(
                     Html('th', label, class_ = "Column" + colclass, inline = True)
                     for (label, colclass) in [
-                        (THEAD,          "Type"),
-                        (_("Web Path"), "Path"),
-                        (DESCRHEAD,     "Description") ]
+                        (THEAD,      "Type"),
+                        (_("Url"),   "Path"),
+                        (DESCRHEAD,  "Description") ]
                     )
 
                 tbody = Html("tbody")
@@ -1652,7 +1652,8 @@ class BasePage(object):
 
                     # FTP server address
                     elif _type == UrlType.WEB_FTP:
-                        if not uri.startswith("ftp://"):
+                        if not (uri.startswith("ftp://") or
+                                uri.startswith("ftps://")):
                             uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
 
                     uri = Html("a", uri, href = uri, title = html_escape(uri))

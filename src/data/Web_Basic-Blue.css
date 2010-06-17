@@ -1161,21 +1161,21 @@ div#summaryarea {
     background-color: #FFF;
 }
 div#summaryarea table.infolist {
-    margin:0;
-    padding:0;
-    background-color:#FFF;
+    margin: 0;
+    padding: 0;
+    background-color: #FFF;
 }
 div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
-    font:normal .9em/1.2em sans-serif;
-    vertical-align:top;
+    font: normal .9em/1.2em sans-serif;
+    vertical-align: top;
 }
 div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
     display:inline;
 }
 div#summaryarea table.infolist tbody tr td.ColumnAttribute {
-    width:14%;
+    width: 14%;
     color: #696969;
-    padding-left:20px;
+    padding-left: 20px;
 }
 
 /* Subsections : Weblinks
@@ -1186,6 +1186,9 @@ div#WebLinks {
 }
 table.WebLinks {
    width: 100%;
+}
+table.WebLinks tbody tr td {
+    color: #000;
 }
 table.weblinks tbody tr td.ColumnType {
     width: 15%;
