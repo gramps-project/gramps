@@ -4916,12 +4916,12 @@ class RepositoryPage(BasePage):
 
 class AddressBookListPage(BasePage):
 
-    def __init__(self, report, title, has_url_address):
+    def __init__(self, report, title, has_url_addr_res):
         """
         Create a list of individual's that have either internet addresses or 
         address/ Residence events
 
-        @param: has_url_address -- a list of (sort_name, person_handle, has_add, has_rtes, and has_url
+        @param: has_url_addr_res -- a list of (sort_name, person_handle, has_add, has_rtes, and has_url
         """
         BasePage.__init__(self, report, title)
         db = report.database
@@ -4930,18 +4930,18 @@ class AddressBookListPage(BasePage):
         of = self.report.create_file("addressbook")
 
         # Add xml, doctype, meta and stylesheets
-        addressbooklistpage, head, body = self.write_header("%s - %s" % (title, _("Address Book")))
+        addressbooklistpage, head, body = self.write_header(_("Address Book"))
 
         # begin AddressBookList division
         with Html("div", class_ = "content", id = "AddressBookList") as addressbooklist:
             body += addressbooklist
 
-            # Internet Address Book Page message
+            # Address Book Page message
             msg = _("This page contains an index of all the individuals in the "
                 "database, sorted by their surname, with one of the "
                 "following: Address, Residence, or Web Links. Selecting the "
-                "person&#8217;s name will take you to their Address "
-                "Book&#8217;s individual page.")
+                "person&#8217;s name will take you to their individual Address "
+                "Book page.")
             addressbooklist += Html("p", msg, id = "description")
 
             # begin Address Book table
@@ -4968,7 +4968,7 @@ class AddressBookListPage(BasePage):
                 table += tbody
 
                 index = 1
-                for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
+                for (sort_name, person_handle, has_add, has_res, has_url) in has_url_addr_res:
 
                     address = None
                     residence = None
@@ -5025,6 +5025,7 @@ class AddressBookPage(BasePage):
         @param: has_url -- list of url handles or None
         """
         db = report.database
+        self.bibli = Bibliography()
 
         person = db.get_person_from_handle(person_handle)
         BasePage.__init__(self, report, title, person.gramps_id)
@@ -5032,20 +5033,25 @@ class AddressBookPage(BasePage):
 
         # set the file name and open file
         of = self.report.create_file(person_handle, "addr")
-        addressbookpage, head, body = self.write_header("%s - %s" % (title, _("Address Book")))
+        addressbookpage, head, body = self.write_header(_("Address Book"))
 
         # begin address book page division and section title
         with Html("div", class_ = "content", id = "AddressBookDetail") as addressbookdetail:
             body += addressbookdetail
-            addressbookdetail += Html("h3", self.get_name(person), inline = True)
+
+            url = self.report.build_url_fname_html(person.handle, "ppl", True)
+            addressbookdetail += Html("h3", self.person_link(url, person, True))
 
             # individual has an address
             if has_add:
-                addressbookdetail += self.display_addr_list(has_add, None)
+                addressbookdetail += self.display_addr_list(has_add, True)
 
             # individual has a residence
             if has_res:
-                addressbookdetail += self.dump_residence(has_res)
+                addressbookdetail.extend(
+                    self.dump_residence(res)
+                    for res in has_res
+                )
 
             # individual has a url
             if has_url:
@@ -5598,7 +5604,7 @@ class NavWebReport(Report):
         Creates classes AddressBookListPage and AddressBookPage
         """
 
-        has_url_address = []
+        has_url_addr_res = []
 
         for person_handle in ind_list:
 
@@ -5609,7 +5615,7 @@ class NavWebReport(Report):
 
             has_add = None
             has_url = None
-            has_res = None
+            has_res = []
 
             if addrlist:
                 has_add = addrlist
@@ -5620,28 +5626,27 @@ class NavWebReport(Report):
                 event = self.database.get_event_from_handle(event_ref.ref)
 
                 # get event type
-                evt_type = str(event.get_type() )
-                if evt_type == "Residence":
-                    has_res = event
-                    break
+                if event.get_type() == gen.lib.EventType.RESIDENCE:
+                    has_res.append(event)
 
             if has_add or has_res or has_url:
                 primary_name = person.get_primary_name()
-                sort_name = ''.join([primary_name.get_surname(), ", ", primary_name.get_first_name()])
+                sort_name = ''.join([primary_name.get_surname(), ", ", 
+                    primary_name.get_first_name()])
 
-                data = (sort_name, person_handle, has_add, has_res, has_url)
-                has_url_address.append(data)
+                has_url_addr_res.append( (sort_name, person_handle, has_add, has_res, has_url) )
 
-        AddressBookListPage(self, self.title, has_url_address)
-        # Determine if we build Address Book
-        if has_url_address:
-            has_url_address.sort()
+        # determine if there are a list and pages to be created
+        if has_url_addr_res:
+            has_url_addr_res.sort()
 
-            addr_size = len(has_url_address) 
+            AddressBookListPage(self, self.title, has_url_addr_res)
+
+            addr_size = len(has_url_addr_res) 
             # begin Address Book pages 
             self.progress.set_pass(_("Creating address book pages ..."), addr_size)
 
-            for (sort_name, person_handle, has_add, has_res, has_url) in has_url_address:
+            for (sort_name, person_handle, has_add, has_res, has_url) in has_url_addr_res:
 
                 AddressBookPage(self, self.title, person_handle, has_add, has_res, has_url)
 

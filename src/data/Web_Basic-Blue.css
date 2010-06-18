@@ -337,7 +337,6 @@ table.infolist thead tr th a:hover {
 table.infolist tr td {
     font: normal 1.1em/1.4em serif;
     vertical-align: middle;
-    border-bottom: dashed 1px #000;
     background-color: #BCEAF6;
     padding: 6px 0 6px 10px;
 }
@@ -559,6 +558,9 @@ div#EventList, div#EventDetail {
 }
 div#events table.eventlist {
     margin-top: .3cm;
+}
+table.eventlist tbody tr td {
+    border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
     width: 20%;
@@ -1178,7 +1180,7 @@ div#summaryarea table.infolist tbody tr td.ColumnAttribute {
     padding-left: 20px;
 }
 
-/* Subsections : Weblinks
+/* Subsections : We Llinks
 ----------------------------------------------------- */
 div#WebLinks {
     margin : 0 auto;
@@ -1189,6 +1191,7 @@ table.WebLinks {
 }
 table.WebLinks tbody tr td {
     color: #000;
+    border-bottom: dashed 1px #000;
 }
 table.weblinks tbody tr td.ColumnType {
     width: 15%;
