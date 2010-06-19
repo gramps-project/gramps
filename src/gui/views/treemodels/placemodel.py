@@ -49,6 +49,7 @@ import gtk
 import const
 import ToolTips
 import Utils
+from PlaceUtils import conv_lat_lon
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
 
@@ -124,43 +125,17 @@ class PlaceBaseModel(object):
     def column_place_name(self, data):
         return unicode(data[2])
 
-    def __format_degrees(self, angle, sign_str):
-        """
-        Format a decimal as degrees, minutes and seconds.
-        If the value is not a decimal leave it unformatted.
-        """
-        try:
-            angle = float(angle)
-        except ValueError:
-            return angle
-
-        if angle >= 0:
-            sign = sign_str[0]
-        else:
-            sign = sign_str[1]
-        seconds = abs(int(angle * 60 * 60))
-        minutes = seconds / 60
-        seconds %= 60
-        degrees = minutes / 60
-        minutes %= 60
-
-        string = unicode(degrees) + u'\u00b0 ' + \
-                 unicode(minutes) + u'\u2032 ' + \
-                 unicode(seconds) + u'\u2033 ' + unicode(sign)
-
-        return string
-        
     def column_longitude(self, data):
-        return self.__format_degrees(data[3], _('EW'))
+        return conv_lat_lon('0', data[3], format='DEG')[1]
 
     def column_latitude(self, data):
-        return self.__format_degrees(data[4], _('NS'))
+        return conv_lat_lon(data[4], '0', format='DEG')[0]
 
     def sort_longitude(self, data):
-        return unicode(data[3])
+        return conv_lat_lon('0', data[3], format='D.D8')[1] if data[3] else u''
 
     def sort_latitude(self, data):
-        return unicode(data[4])
+        return conv_lat_lon(data[4], '0', format='D.D8')[0] if data[4] else u''
 
     def column_id(self, data):
         return unicode(data[1])
