@@ -1120,32 +1120,32 @@ div#Residence table.infolist tr td {
 /* Subsections : Gallery
 ----------------------------------------------------- */
 #indivgallery h4 {
-    margin-bottom:1em;
+    margin-bottom: 1em;
 }
 #indivgallery .thumbnail {
-    margin:0;
-    float:left;
-    width:130px;
-    height:150px;
-    text-align:center;
+    margin: 0;
+    float: left;
+    width: 130px;
+    height: 150px;
+    text-align: center;
 }
 #indivgallery div.thumbnail a {
-    display:block;
-    margin:0;
-    padding:0;
-    background:none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
 }
 #indivgallery div.thumbnail a img {
-    margin-bottom:.5cm;
-    padding:0;
+    padding: 0;
     border: solid 1px #000;
 }
 #indivgallery div.thumbnail p {
-    font:normal .7em/1.4em sans-serif;
-    text-align:center;
-    width:80%;
-    margin:0 auto;
-    padding:0;
+    font: normal .7em/1.4em sans-serif;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
 }
 
 /* Subsections : Narrative

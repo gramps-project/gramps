@@ -1516,7 +1516,7 @@ class BasePage(object):
 
         # begin individualgallery division and section title
         with Html("div", class_ = "subsection", id = "indivgallery") as section: 
-            section += Html("h4", _("Gallery"), inline = True)
+            section += Html("h4", _("Media"), inline = True)
 
             displayed = []
             for mediaref in photolist_ordered:
@@ -1537,13 +1537,13 @@ class BasePage(object):
                         lnkref = (self.report.cur_fname, self.page_title, self.gid)
                         self.report.add_lnkref_to_photo(photo, lnkref)
                         real_path, newpath = self.report.prepare_copy_media(photo)
-                        # TODO. Check if build_url_fname can be used.
-                        newpath = "/".join(['..']*3 + [newpath])
-                        if constfunc.win():
-                            newpath = newpath.replace('\\',"/")
+
+                        # create thumbnail url
+                        # extension needs to be added as it is not already there
+                        url = self.report.build_url_fname(photo_handle, "thumb", True) + ".png"
  
                         # begin hyperlink
-                        section += self.media_link(photo_handle, newpath, descr, True, False)
+                        section += self.media_link(photo_handle, url, descr, True)
 
                     except (IOError, OSError), msg:
                         WarningDialog(_("Could not add photo to page"), str(msg))
@@ -1565,7 +1565,7 @@ class BasePage(object):
                         WarningDialog(_("Could not add photo to page"), str(msg))
                 displayed.append(photo_handle)
 
-        # add clearline for proper styling
+        # add fullclear for proper styling
         section += fullclear
 
         # return indivgallery division to its caller
@@ -1827,16 +1827,25 @@ class BasePage(object):
         # return hyperlink to its caller
         return hyper
 
-    # TODO. Check img_url of callers
     def media_link(self, handle, img_url, name, up, usedescr = True):
+        """
+        creates and returns a hyperlink to the thumbnail image
+
+        @param: handle - photo handle
+        @param: img_url - thumbnail url
+        @param: name - photo description
+        @param: up - whether to add "../../.." to url
+        @param: usedescr - add media description
+        """
         url = self.report.build_url_fname_html(handle, "img", up)
 
         # begin thumbnail division
         with Html("div", class_ = "thumbnail") as thumbnail:
 
             # begin hyperlink
-            hyper = (Html("a", href = url, title = name) +
-                     Html("img", src = img_url, alt = name) )
+            hyper = Html("a", href = url, title = name) + (
+                Html("img", src = img_url, alt = name)
+            )
             thumbnail += hyper
 
             if usedescr:
@@ -1846,21 +1855,28 @@ class BasePage(object):
         return thumbnail
 
     def doc_link(self, handle, name, up, usedescr = True):
-        # TODO. Check extension of handle
+        """
+        create a hyperlink for the media object and returns it
+  
+        @param: handle - document handle
+        @param: name - document name
+        @param: up - whether to add "../../.." or not
+        @param: usedescr - add description to hyperlink
+        """
         url = self.report.build_url_fname(handle, "img", up)
 
         # begin thumbnail division
-        thumbnail = Html("div", class_ = "thumbnail")
+        with Html("div", class_ = "thumbnail") as thumbnail:
 
-        # begin hyperlink
-        hyper = Html("a", href = url, title = name)
-        thumbnail += hyper
+            # begin hyperlink
+            hyper = Html("a", href = url, title = name)
+            thumbnail += hyper
 
-        url = self.report.build_url_image("document.png", "images", up)
-        hyper += Html("img", src = url, alt = html_escape(name), title = html_escape(name))
+            url = self.report.build_url_image("document.png", "images", up)
+            hyper += Html("img", src = url, alt = html_escape(name), title = html_escape(name))
 
-        if usedescr:
-            hyper += Html("p", html_escape(name), inline = True)
+            if usedescr:
+                hyper += Html("p", html_escape(name), inline = True)
 
         # return thumbnail division to its callers
         return thumbnail
