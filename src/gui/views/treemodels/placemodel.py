@@ -133,10 +133,10 @@ class PlaceBaseModel(object):
         return conv_lat_lon(data[4], '0', format='DEG')[0]
 
     def sort_longitude(self, data):
-        return conv_lat_lon('0', data[3], format='D.D8')[1] if data[3] else u''
+        return conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else u''
 
     def sort_latitude(self, data):
-        return conv_lat_lon(data[4], '0', format='D.D8')[0] if data[4] else u''
+        return conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else u''
 
     def column_id(self, data):
         return unicode(data[1])
