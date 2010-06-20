@@ -104,7 +104,7 @@ from libhtml import Html
 from libhtmlbackend import HtmlBackend
 
 from libgedcom import make_gedcom_date
-
+from PlaceUtils import conv_lat_lon
 #------------------------------------------------------------------------
 #
 # constants
@@ -342,8 +342,10 @@ class BasePage(object):
         will create the place map
 
         @param: placedetail -- Html instance page
+        @param: head -- the <head> </head> section of the web page
         @param: latitude -- GPS Latitude from place
         @param: Longitude -- GPS Longitude from place
+        @param: place_title - place description for InfoBubble
         """
 
         # add Mapstraction CSS
@@ -381,7 +383,6 @@ class BasePage(object):
                             //<![CDATA[
 
                             var map;
-                            var pprovider = 'googlev3';
                             var latlon;
 
                             function initialize() {
@@ -403,21 +404,31 @@ class BasePage(object):
                                 // put map on page
                                 map.setCenterAndZoom(latlon, 9);
 
-                                // add marker  
                                 var marker;
+  
+                                // set marker at latitude/ longitude
                                 marker = new mxn.Marker(latlon);
+
+                                // add marker InfoBubble() using place description
                                 marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % place_title
 
                     jsc += """
+
                                 // add marker to map
                                 map.addMarker(marker, true);
                             }
 
                             //]]>"""
                                  
-# there is no need to add an ending "</script>" as it will be added automatically!
+                            # there is no need to add an ending "</script>",
+                             # as it will be added automatically!
 
+                # googlev3 division 
                 middle += Html("div", id = "googlev3", inline = True)
+
+                # add place title to middle section
+                middle += Html("div", place_title, id = "location", inline = True) 
+
         # return placedetail division back to its callers
         return placedetail, head
 
@@ -1908,7 +1919,6 @@ class BasePage(object):
 
         @param: place -- place object from the database
         @param: table -- table from Placedetail
-        @param: gid -- place gramps id
         """
 
         if not place:
@@ -2488,12 +2498,22 @@ class PlacePage(BasePage):
 
             # add place map here
             if self.placemaps:
-                if place.lat and place.long:
+                if place:
+                    if place.lat and place.long:
+                        realatitude, realongitude = conv_lat_lon(
+                                                                 place.lat,
+                                                                 place.long,
+                                                                 "D.D8")
 
-                    self._create_place_map(placedetail, head, place.lat, place.long, self.page_title)
+                        # create place map using realatitude and realongitude
+                        self._create_place_map(
+                                               placedetail,
+                                               head,
+                                               realatitude, realongitude,
+                                               self.page_title) 
 
-                    # add javascript function call to body element
-                    body.attr = 'onload = "initialize();"'
+                        # add javascript function call to body element
+                        body.attr = 'onload = "initialize();"'
 
             # source references
             srcrefs = self.display_ind_sources(place) 

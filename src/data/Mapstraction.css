@@ -35,8 +35,14 @@ div#middle {
     float: center;
     height: 400px;
     width: 60%;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 6px 0px;
     padding: 0% 20% 0% 20%;
+}
+div#middle div#location {
+    margin-top: 6px;
+    font: normal 12px sans-serif;
+    text-align: center;
+    width: 80%;
 }
 
 /*    geo-info bubble
