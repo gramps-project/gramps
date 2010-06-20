@@ -979,6 +979,9 @@ div#attributes {
 table.attrlist {
     width: 100%;
 }
+table.attrlist tbody tr td {
+    border: dashed 1px #000;
+}
 table.attrlist tbody tr td.ColumnType {
     width: 15%;
 }
@@ -995,22 +998,18 @@ table.attrlist tbody tr td.ColumnSources {
 /* Subsections : Parents
 ----------------------------------------------------- */
 div#parents {
-    background-color: #FFF;
     margin: 0;
     padding: 0;
 }
-div#parents table.infolist tbody tr td {
-    border: none;
-}
 div#parents table.infolist tbody tr td.ColumnAttribute {
-    width:19%;
+    width: 19%;
 }
 div#parents table.infolist tbody tr td.ColumnValue ol {
-    margin:0;
-    padding-top:0;
+    margin: 0;
+    padding-top: 0;
 }
 div#parents table.infolist tbody tr td.ColumnValue ol li {
-    padding-bottom:.2em;
+    padding-bottom: .2em;
 }
 
 /* Subsections : Families
