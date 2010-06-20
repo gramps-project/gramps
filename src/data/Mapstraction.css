@@ -56,4 +56,5 @@ div#geo-info {
 div#googlev3 {
     height: 400px;
     width: 500px;
+    border: solid 1px #000;
 }

@@ -336,101 +336,8 @@ class BasePage(object):
 
         # options for PlaceMaps for PlacePages
         self.placemaps = report.options["placemaps"]
-
-    def _create_place_map(self, placedetail, head, latitude, longitude, place_title):
-        """
-        will create the place map
-
-        @param: placedetail -- Html instance page
-        @param: head -- the <head> </head> section of the web page
-        @param: latitude -- GPS Latitude from place
-        @param: Longitude -- GPS Longitude from place
-        @param: place_title - place description for InfoBubble
-        """
-
-        # add Mapstraction CSS
-        fname = "/".join(["styles", "mapstraction.css"])
-        url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("link", href = url, type = "text/css", media = "screen", 
-            rel = "stylesheet", indent = False)
-
-        # add googlev3 specific javascript code
-        head += Html("script", type = "text/javascript", 
-            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
-
-        # add mapstraction javascript code
-        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-        url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("script", type = "text/javascript", src = url, inline = True)
-
-        # Place Map division
-        with Html("div", id = "mapstraction") as mapstraction:
-            placedetail += mapstraction
-
-            # section title
-            mapstraction += Html("h4", _("Place Map"), inline = True)
-
-            # begin middle division
-            with Html("div", id = "middle") as middle:
-                mapstraction += middle
-
-                # begin inline javascript code
-                # because jsc is a string, it does NOT have to properly indented
-                with Html("script", type = "text/javascript") as jsc:
-                    middle += jsc
-
-                    jsc += """
-                            //<![CDATA[
-
-                            var map;
-                            var latlon;
-
-                            function initialize() {
-
-                                // create mxn object
-                                map = new mxn.Mapstraction('googlev3','googlev3');
-
-                                // add map controls to image
-                                map.addControls({
-                                    pan: true,
-                                    zoom: 'medium',
-                                    scale: true,
-                                    map_type: true
-                                });
-
-                                latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
-
-                    jsc += """
-                                // put map on page
-                                map.setCenterAndZoom(latlon, 9);
-
-                                var marker;
-  
-                                // set marker at latitude/ longitude
-                                marker = new mxn.Marker(latlon);
-
-                                // add marker InfoBubble() using place description
-                                marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % place_title
-
-                    jsc += """
-
-                                // add marker to map
-                                map.addMarker(marker, true);
-                            }
-
-                            //]]>"""
-                                 
-                            # there is no need to add an ending "</script>",
-                             # as it will be added automatically!
-
-                # googlev3 division 
-                middle += Html("div", id = "googlev3", inline = True)
-
-                # add place title to middle section
-                middle += Html("div", place_title, id = "location", inline = True) 
-
-        # return placedetail division back to its callers
-        return placedetail, head
+        self.place_page = report.options["place_page"]
+        self.family_map = report.options["family_map"]
 
     def complete_people(self, tcell, first_person, handle_list):
         """
@@ -2498,19 +2405,95 @@ class PlacePage(BasePage):
 
             # add place map here
             if self.placemaps:
-                if place:
-                    if place.lat and place.long:
-                        realatitude, realongitude = conv_lat_lon(
-                                                                 place.lat,
-                                                                 place.long,
-                                                                 "D.D8")
+                if self.place_page:
 
-                        # create place map using realatitude and realongitude
-                        self._create_place_map(
-                                               placedetail,
-                                               head,
-                                               realatitude, realongitude,
-                                               self.page_title) 
+                    if place and (place.lat and place.long):
+
+                        # get reallatitude and reallongitude from place
+                        latitude, longitude = conv_lat_lon( place.lat,
+                                                            place.long,
+                                                            "D.D8")
+
+                        # add Mapstraction CSS
+                        fname = "/".join(["styles", "mapstraction.css"])
+                        url = self.report.build_url_fname(fname, None, self.up)
+                        head += Html("link", href = url, type = "text/css", media = "screen", 
+                            rel = "stylesheet", indent = False)
+
+                        # add googlev3 specific javascript code
+                        head += Html("script", type = "text/javascript", 
+                            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+
+                        # add mapstraction javascript code
+                        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
+                        url = self.report.build_url_fname(fname, None, self.up)
+                        head += Html("script", type = "text/javascript", src = url, inline = True)
+
+                        # Place Map division
+                        with Html("div", id = "mapstraction") as mapstraction:
+                            placedetail += mapstraction
+
+                            # section title
+                            mapstraction += Html("h4", _("Place Map"), inline = True)
+
+                            # begin middle division
+                            with Html("div", id = "middle") as middle:
+                                mapstraction += middle
+
+                                # begin inline javascript code
+                                # because jsc is a string, it does NOT have to properly indented
+                                with Html("script", type = "text/javascript") as jsc:
+                                    middle += jsc
+
+                                    jsc += """
+                            //<![CDATA[
+
+                            var map;
+                            var latlon;
+
+                            function initialize() {
+
+                                // create mxn object
+                                map = new mxn.Mapstraction('googlev3','googlev3');
+
+                                // add map controls to image
+                                map.addControls({
+                                    pan: true,
+                                    zoom: 'small',
+                                    scale: true,
+                                    map_type: true
+                                });
+
+                                latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+
+                                    jsc += """
+                                // put map on page
+                                map.setCenterAndZoom(latlon, 7);
+
+                                var marker;
+  
+                                // set marker at latitude/ longitude
+                                marker = new mxn.Marker(latlon);
+
+                                // add marker InfoBubble() using place description
+                                marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
+
+                                    jsc += """
+
+                                // add marker to map
+                                map.addMarker(marker, true);
+                            }
+
+                            //]]>"""
+                                 
+                            # there is no need to add an ending "</script>",
+                            # as it will be added automatically!
+
+                            # googlev3 division 
+                            middle += Html("div", id = "googlev3", inline = True)
+
+                            # add place title to middle section
+                            middle += Html("div", self.page_title, id = "location", inline = True) 
 
                         # add javascript function call to body element
                         body.attr = 'onload = "initialize();"'
@@ -5937,6 +5920,8 @@ class NavWebOptions(MenuReportOptions):
         self.__add_privacy_options(menu)
         self.__add_download_options(menu) 
         self.__add_advanced_options(menu)
+        self.__add_place_map_options(menu)
+
 
     def __add_report_options(self, menu):
         """
@@ -6232,10 +6217,29 @@ class NavWebOptions(MenuReportOptions):
                                    "events?"))
         menu.add_option(category_name, "inc_addressbook", inc_addressbook)
 
-        placemaps = BooleanOption(_("Include Place map on Place Pages"), False)
-        placemaps.set_help(_("Whether to include a place map on the Place Pages, "
-                             "where Latitude/ Longitude are available."))
-        menu.add_option(category_name, "placemaps", placemaps)
+    def __add_place_map_options(self, menu):
+
+        category_name = _("Place Map Options")
+
+        self.__placemaps = BooleanOption(_("Add Place Maps to Report"), False)
+        self.__placemaps.set_help(_("Whether to add place maps to this report"))
+        menu.add_option(category_name, "placemaps", self.__placemaps)
+        self.__placemaps.connect("value-changed", self._place_maps_changed)
+
+        self.__place_page = BooleanOption(_("Include Place map on Place Pages"), False)
+        self.__place_page.set_help(_("Whether to include a place map on the Place Pages, "
+                                     "where Latitude/ Longitude are available."))
+        menu.add_option(category_name, "place_page", self.__place_page)
+
+        self.__family_map = BooleanOption(_("Include Individual Page Map with "
+                                            "all places shown on map"), False)
+        self.__family_map.set_help(_("Whether to add an individual page map with "
+                                     "all the places on this page shown or not?  "
+                                     "This will allow you to see how your family "
+                                     "travelled around the country."))
+        menu.add_option(category_name, "family_map", self.__family_map)
+
+        self._place_maps_changed()
 
     def __archive_changed(self):
         """
@@ -6324,6 +6328,16 @@ class NavWebOptions(MenuReportOptions):
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
             self.__dl_cright.set_available(False)
+
+    def _place_maps_changed(self):
+        """ handles the changing nature of place maps """
+
+        if self.__placemaps.get_value():
+            self.__place_page.set_available(True)
+            self.__family_map.set_available(False)
+        else:
+            self.__place_page.set_available(False)
+            self.__family_map.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
