@@ -543,6 +543,9 @@ div#Places table.infolist tbody tr td.ColumnLatitude {
 div#Places table.infolist tbody tr td.ColumnLongitude {
     width: 10%;
 }
+div#PlaceDetail table.infolist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
 #div#PlaceDetail table.infolist tbody tr td.ColumnAttribute,
 div#PlaceDetail table.infolist tbody tr td.ColumnValue {
     color: #000;
