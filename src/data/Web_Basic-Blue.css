@@ -564,14 +564,11 @@ div#EventList, div#EventDetail {
     margin: 0;
     padding: 0;
 }
-div#events table.eventlist {
-    margin-top: .3cm;
-}
 table.eventlist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 20%;
+    width: 14%;
 }
 table.eventlist tbody tr td.ColumnDate {
     width: 12%;
@@ -580,13 +577,13 @@ table.eventlist tbody tr td.ColumnPlace {
     width: 25%;
 }
 table.eventlist tbody tr td.ColumnDescription {
-    width: 15%;
+    width: 20%;
 }
 table.eventlist tbody tr td.ColumnNotes {
-    width: 25%;
+    width: 20%;
 }
 table.eventlist tbody tr td.ColumnSources {
-    width: 12%;
+    width: 10%;
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;
@@ -939,12 +936,14 @@ div#events h4 {
     margin-bottom:0;
     border:none;
 }
+div#events table.eventlist {
+    margin-top: .3em;
+}
 #IndividualDetail {
     background-color: #FFF;
 }
 #IndividualDetail div#events table.eventtable {
-    width:100%;
-    padding-top:15px;
+    width: 100%;
 }
 #IndividualDetail div#events table.infolist thead tr th {
     font-weight:bold;
@@ -1011,19 +1010,12 @@ div#parents table.infolist tbody tr td.ColumnValue ol {
     margin: 0;
     padding-top: 0;
 }
-div#parents table.infolist tbody tr td.ColumnValue ol li {
-    padding-bottom: .2em;
-}
 
 /* Subsections : Families
 ----------------------------------------------------- */
 div#families {
-    background-color: #FFF;
     margin: 0;
     padding: 0;
-}
-div#families table.infolist tbody tr td {
-    border: none;
 }
 div#families table.infolist tbody tr.BeginFamily {
     border-top: solid 1px #000;
@@ -1170,6 +1162,7 @@ div#narrative {
 div#sourcerefs {
     padding: 0;
     margin: 0 auto;
+    background-color: #BCEAF6;
 }
 div#sourcerefs ol {
     list-style-type:decimal;
@@ -1227,7 +1220,9 @@ table.weblinks tbody tr td.ColumnDescription {
 /* Subsections : Pedigree
 ----------------------------------------------------- */
 div#pedigree {
-    padding-bottom:1.2em;
+    margin: 0;
+    padding: 0;
+    background-color: #BCEAF6;
 }
 #pedigree a {
     text-decoration:none;
