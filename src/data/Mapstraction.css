@@ -25,8 +25,18 @@
     Mapstraction
 ------------------------------------------------- */
 div#mapstraction {
+    background-color: #FFF;
     height: 500px;
     width: 100%;
+}
+
+/*    Family Map
+------------------------------------------------- */
+div#familymap {
+    background-color: #FFF;
+    height: 800px;
+    width: 965px;
+    padding: 0px 14% 0px 14%;
 }
 
 /*    Middle
@@ -45,6 +55,20 @@ div#middle div#location {
     width: 80%;
 }
 
+/*    Middle Section
+------------------------------------------------- */
+div#middlesection {
+    float: center;
+    width: 90%;
+    height: 100%;
+    margin: 10px 0px 6px 6px;
+    padding: 0% 5% 0% 5%;
+}
+div#middlesection a {
+    text-align: center;
+    float: center;
+} 
+
 /*    geo-info bubble
 ------------------------------------------------- */
 div#geo-info {
@@ -56,5 +80,13 @@ div#geo-info {
 div#googlev3 {
     height: 400px;
     width: 500px;
+    border: solid 1px #000;
+}
+
+/*    Family GoogleV3
+------------------------------------------------- */
+div#familygooglev3 {
+    height: 100%;
+    width: 100%;
     border: solid 1px #000;
 }
