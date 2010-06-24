@@ -1012,7 +1012,14 @@ class GedcomWriter(UpdateCallback):
         +1 <<CHANGE_DATE>> {0:1} 
         """
 
-        self.__writeln(0, '@%s@' % note.get_gramps_id(),  'NOTE ' + note.get())
+        # The note must be converted to unicode 
+        # Method stolen from ExportXml.py
+        line = note.get()
+        try:
+            line = unicode(line)
+        except:
+            line = unicode(str(line),errors='replace')
+        self.__writeln(0, '@%s@' % note.get_gramps_id(),  'NOTE ' + line)
 
     def __repos(self):
         """
