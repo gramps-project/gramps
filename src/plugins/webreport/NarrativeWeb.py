@@ -2027,7 +2027,7 @@ class IndividualListPage(BasePage):
 
                 # show surname and first name
                 trow += ( Html("th", _("Surname"), class_ = "ColumnSurname", inline = True) +
-                    Html("th", _("Name"), class_ = "ColumnName", inline = True)
+                    Html("th", _("First Name|Name"), class_ = "ColumnName", inline = True)
                     )
 
                 if showbirth:
@@ -2200,7 +2200,7 @@ class SurnamePage(BasePage):
                 thead += trow
 
                 # Name Column
-                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True) 
+                trow += Html("th", _("First Name|Name"), class_ = "ColumnName", inline = True) 
 
                 if showbirth:
                     trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
@@ -5039,7 +5039,7 @@ class RepositoryListPage(BasePage):
                 trow = Html("tr") + (
                     Html("th", "&nbsp;", class_ = "ColumnRowLabel", inline = True),
                     Html("th", THEAD, class_ = "ColumnType", inline = True),
-                    Html("th", _("Repository |Name"), class_ = "ColumnName", inline = True)
+                    Html("th", _("Repository|Name"), class_ = "ColumnName", inline = True)
                     )
                 thead += trow
 
@@ -5187,7 +5187,7 @@ class AddressBookListPage(BasePage):
                     Html("th", label, class_="Column" + colclass, inline=True)
                     for (label, colclass) in [
                         ["&nbsp;",       "RowLabel"],
-                        [_("Name"),      "Name"],
+                        [_("First and Last Name|Name"),      "Name"],
                         [_("Address"),   "Address"],
                         [_("Residence"), "Residence"],
                         [_("Web Links"), "WebLinks"] ]
