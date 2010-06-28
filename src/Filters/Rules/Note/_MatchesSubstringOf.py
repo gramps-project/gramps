@@ -49,7 +49,7 @@ class MatchesSubstringOf(Rule):
 
     def apply(self, db, note):
         """ Apply the filter """
-        text = unicode(note.get())
+        text = note.get()
         if text.upper().find(self.list[0].upper()) != -1:
             return True
         return False
