@@ -60,6 +60,7 @@ from textwrap import TextWrapper
 from unicodedata import normalize
 from collections import defaultdict
 
+import operator
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -556,11 +557,7 @@ class BasePage(object):
                 latitude, longitude = conv_lat_lon( place.lat,
                                                     place.long,
                                                     "D.D8")
-
-                # add latitude, longitude, and place name
-                data = [latitude, longitude, place_title]
-                if data not in place_lat_long:
-                    place_lat_long.append(data)
+                place_exists(latitude, longitude, place_title)
 
         # begin event table row
         trow = Html("tr")
@@ -616,41 +613,34 @@ class BasePage(object):
         # return events table row to its callers
         return trow
 
-    def _get_event_places(self, db, handlelist):
+    def _get_event_places(self, db, person_ref_list):
         """
         retrieve from a list of people their events, and places of event
 
         @param:db -- report database
-        @param: person handle list
+        @param: person_reference list
         """
-        if not handlelist:
-            return
-
         global place_lat_long
 
-        for handle in handlelist:
-            person = db.get_person_from_handle(handle)
-            if person:
+        for person_ref in person_ref_list:
+            person = db.get_person_from_handle(person_ref.ref)
 
-                event_ref_list = person.get_event_ref_list()
-                for event_ref in event_ref_list:
-                    event = db.get_event_from_handle(event_ref.ref)
-                    if event:
-                        place_handle = event.get_place_handle()
+            event_ref_list = person.get_event_ref_list()
+            for event_ref in event_ref_list:
+                event = db.get_event_from_handle(event_ref.ref)
+                place_handle = event.get_place_handle()
 
-                        place = db.get_place_from_handle(place_handle)
-                        if (place and (place.lat and place.long)):
-                            place_title = ReportUtils.place_name(db, place_handle)
+                place = db.get_place_from_handle(place_handle)
+                if (place and (place.lat and place.long)):
+                    place_title = ReportUtils.place_name(db, place_handle)
 
-                            # get rellatitude and reallongitude from place object
-                            latitude, longitude = conv_lat_lon( place.lat,
-                                                                place.long,
-                                                                "D.D8")
+                    # get reallatitude and reallongitude from place
+                    latitude, longitude = conv_lat_lon( place.lat,
+                                                        place.long,
+                                                        "D.D8")
 
-                            # add latitude, longitude, and place name
-                            data = [latitude, longitude, place_title]
-                            if data not in place_lat_long:
-                                place_lat_long.append(data)
+                    # latitude, longitude, place name
+                    place_exists(latitude, longitude, place_title)
                    
     def event_link(self, eventtype, handle, gid = None, up = False):
         """ creates a hyperlink for an event based on its type """
@@ -2027,7 +2017,7 @@ class IndividualListPage(BasePage):
 
                 # show surname and first name
                 trow += ( Html("th", _("Surname"), class_ = "ColumnSurname", inline = True) +
-                    Html("th", _("First Name|Name"), class_ = "ColumnName", inline = True)
+                    Html("th", _("Name"), class_ = "ColumnName", inline = True)
                     )
 
                 if showbirth:
@@ -2200,7 +2190,7 @@ class SurnamePage(BasePage):
                 thead += trow
 
                 # Name Column
-                trow += Html("th", _("First Name|Name"), class_ = "ColumnName", inline = True) 
+                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True) 
 
                 if showbirth:
                     trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
@@ -3905,10 +3895,12 @@ class IndividualPage(BasePage):
         @param: person_handle -- used for naming the map file as self.html_dir/maps/ ...
         """
         global place_lat_long
-
         # if there is no latitude/ longitude data, then return
         if not place_lat_long:
             return
+
+        # sort place_lat_long by its coordinates and not place name
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1))
 
         of = self.report.create_file(person_handle, "maps")
         self.up = True
@@ -3928,60 +3920,84 @@ class IndividualPage(BasePage):
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("script", src = url, inline = True)
 
-        # begin familymap division
-        with Html("div", id = "familymap") as familymap:
-            body += familymap
+        # begin maps division
+        with Html("div", class_ = "content", id = "maps") as maps:
+            body += maps
 
-            # begin middle division
-            with Html("div", id = "middlesection") as middlesection:
-                familymap += middlesection
+            # begin familymap division
+            with Html("div", id = "familymap") as familymap:
+                maps += familymap
 
-                # begin inline javascript code
-                # because jsc is a string, it does NOT have to properly indented
-                with Html("script", type = "text/javascript") as jsc:
-                    middlesection += jsc
+                # begin middle division
+                with Html("div", id = "middlesection") as middlesection:
+                    familymap += middlesection
 
-                    jsc += """
-                        var map;
-                        var latlon;
+                    # begin inline javascript code
+                    # because jsc is a string, it does NOT have to properly indented
+                    with Html("script", type = "text/javascript") as jsc:
+                        middlesection += jsc
 
-                        function initialize() {
+                        jsc += """
+                                var map;
+                                var latlon;
+                                var latitude;
+                                var longitude;
+                                var place_name;
+                                var index;
+
+                                function initialize() {
 			
-                            // create map object
-                            map = new mxn.Mapstraction('familygooglev3', 'googlev3');
+                                    // create map object
+                                    map = new mxn.Mapstraction('familygooglev3', 'googlev3');
 			    
-                            // add map controls to image
-                            map.addControls({
-                                pan: true,
-                                zoom: 'large',
-                                scale: true,
-                                map_type: true
-                            });
+                                    // add map controls to image
+                                    map.addControls({
+                                        pan: true,
+                                        zoom: 'large',
+                                        scale: true,
+                                        map_type: true
+                                    });
 
-                            latlon = new mxn.LatLonPoint(%s, %s);""" % (
-                        place_lat_long[0][0], place_lat_long[0][1])
-
-                    jsc += """
-                            // center map and set zoom
-                            map.setCenterAndZoom(latlon, 7);
-
-                            var marker;"""
-
-                    for (latitude, longitude, place_name) in place_lat_long:
-                        jsc += """
-                            latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+                                    latlon = new mxn.LatLonPoint(%s, %s);""" % (
+                            place_lat_long[0][0], place_lat_long[0][1])
 
                         jsc += """
-                            marker = new mxn.Marker(latlon);
-                            map.addMarker(marker, true);"""
+                                    // center map and set zoom
+                                    map.setCenterAndZoom(latlon, 7);"""
+                        index = 0
+                        for (latitude, longitude, place_name) in place_lat_long:
+                            j = index + 1
+                            jsc += """
+                                    add_marker(%d, %s, %s, "%s");""" % (j, latitude, longitude, place_name)
+                            index += 1
+                        jsc += """ 
+                                }
 
-                    jsc += """
-                        }"""
-                    # there is no need to add an ending "</script>",
-                    # as it will be added automatically!
+                                function add_marker(num, latitude, longitude, place_name) {
+                                    var marker;
+                                    marker = new mxn.Marker(latlon);
+                                    marker.setTitle(num.toString());
+                                    marker.setInfoBubble('div id = "geo-info">' + place_name + '</div>');
 
-                    # familygooglev3 division 
-                    middlesection += Html("div", id = "familygooglev3", inline = True)
+                                    map.addMarker(marker, true);
+                                }"""
+                        # there is no need to add an ending "</script>",
+                        # as it will be added automatically!
+
+                        # familygooglev3 division 
+                        middlesection += Html("div", id = "familygooglev3", inline = True)
+
+            # add references division and title
+            with Html("div", class_ = "subsection", id = "References") as section:
+                maps += section
+                section += Html("h4", _("References"), inline = True) 
+
+                # begin ordered list
+                ordered = Html("ol")
+                section += ordered
+
+                for (latitude, longitude, place_name) in place_lat_long:
+                    ordered += Html("li", place_name, inline = True) 
 
         # add body onload to initialize map 
         body.attr = 'onload = "initialize();"'
@@ -4506,10 +4522,6 @@ class IndividualPage(BasePage):
         tcell1 = Html("td", title, class_ = "ColumnAttribute", inline = True)
         tcell2 = Html("td", class_ = "ColumnValue")
 
-        # get events and place of event if possible
-        # add to global variable if any
-        self._get_event_places(db, person.handle)
-
         gid = person.gramps_id
         if handle in self.ind_list:
             url = self.report.build_url_fname_html(handle, "ppl", True)
@@ -4571,6 +4583,10 @@ class IndividualPage(BasePage):
                         else:
                             first = False
 
+                        # get child events and places of event if possible
+                        # add to global variable if any
+                        self._get_event_places(db, child_ref_list)
+
                         father_handle = family.get_father_handle()
                         if father_handle:
                             trow = Html("tr")
@@ -4590,10 +4606,6 @@ class IndividualPage(BasePage):
                         if len(child_ref_list) > 1:
                             childlist = [child_ref.ref for child_ref in child_ref_list]
                             sibling.update(childlist)
-
-                            # get child events and places of event if possible
-                            # add to global variable if any
-                            self._get_event_places(db, childlist)
 
                     # now that we have all siblings in families of the person,
                     # display them...    
@@ -5039,7 +5051,7 @@ class RepositoryListPage(BasePage):
                 trow = Html("tr") + (
                     Html("th", "&nbsp;", class_ = "ColumnRowLabel", inline = True),
                     Html("th", THEAD, class_ = "ColumnType", inline = True),
-                    Html("th", _("Repository|Name"), class_ = "ColumnName", inline = True)
+                    Html("th", _("Repository |Name"), class_ = "ColumnName", inline = True)
                     )
                 thead += trow
 
@@ -5187,7 +5199,7 @@ class AddressBookListPage(BasePage):
                     Html("th", label, class_="Column" + colclass, inline=True)
                     for (label, colclass) in [
                         ["&nbsp;",       "RowLabel"],
-                        [_("First and Last Name|Name"),      "Name"],
+                        [_("Name"),      "Name"],
                         [_("Address"),   "Address"],
                         [_("Residence"), "Residence"],
                         [_("Web Links"), "WebLinks"] ]
@@ -6837,3 +6849,12 @@ def build_event_data(db, ind_list):
             
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
+
+def place_exists(lat, lon, place_name):
+    """ will determine if place already exists in list or not """
+
+    global place_lat_long
+
+    found = any(p[2] == place_name for p in place_lat_long)
+    if not found:
+        place_lat_long.append([lat, lon, place_name])

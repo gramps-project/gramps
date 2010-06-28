@@ -22,7 +22,14 @@
 # $Id: $
 #
 #
-    Mapstraction
+        Maps Division section
+------------------------------------------------- */
+div#maps {
+    margin: 0 auto;
+    padding: 0;
+}
+
+/*    Mapstraction
 ------------------------------------------------- */
 div#mapstraction {
     height: 580px;
@@ -64,24 +71,18 @@ div#googlev3 {
 ------------------------------------------------- */
 div#familymap {
     background-color: #FFF;
-    height: 800px;
+    height: 1000px;
     width: 965px;
-    padding: 1% 14px 1% 14px;
+    padding: 0% 14px 0% 14px;
 }
 
 /*    MiddleSection
 ------------------------------------------------- */
 div#middlesection {
     float: center;
-    width: 80%;
-    margin: 10px 0px 6px 0px;
-    padding: 0% 10% 0% 10%;
+    width: 90%;
+    margin: 1% 5% 1% 5%;
 }
-div#middlesection a {
-    text-align: center;
-    float: center;
-    nargin: 60px;
-} 
 
 /*    Family GoogleV3
 ------------------------------------------------- */
