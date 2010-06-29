@@ -182,6 +182,8 @@ wrapper = TextWrapper()
 wrapper.break_log_words = True
 wrapper.width = 20
 
+_individuallist = []
+
 _html_dbl_quotes = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _html_sng_quotes = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
 _html_replacement = {
@@ -535,7 +537,7 @@ class BasePage(object):
         @param: hyp = add a hyperlink or not
         @params: omit = role to be omitted in output
         """
-        global place_lat_long
+        db = self.report.database
 
         # check to see if place is already in self.place_list?
         lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -547,17 +549,8 @@ class BasePage(object):
             else:
                 self.place_list[place_handle] = [lnk]
 
-            place = self.report.database.get_place_from_handle(place_handle)
-            if (place and (place.lat and place.long)):
-
-                # get place name from database
-                place_title = ReportUtils.place_name(self.report.database, place_handle)
-
-                # get reallatitude and reallongitude from place object
-                latitude, longitude = conv_lat_lon( place.lat,
-                                                    place.long,
-                                                    "D.D8")
-                place_exists(latitude, longitude, place_title)
+            place = db.get_place_from_handle(place_handle)
+            place_exists(db, place)
 
         # begin event table row
         trow = Html("tr")
@@ -613,35 +606,6 @@ class BasePage(object):
         # return events table row to its callers
         return trow
 
-    def _get_event_places(self, db, person_ref_list):
-        """
-        retrieve from a list of people their events, and places of event
-
-        @param:db -- report database
-        @param: person_reference list
-        """
-        global place_lat_long
-
-        for person_ref in person_ref_list:
-            person = db.get_person_from_handle(person_ref.ref)
-
-            event_ref_list = person.get_event_ref_list()
-            for event_ref in event_ref_list:
-                event = db.get_event_from_handle(event_ref.ref)
-                place_handle = event.get_place_handle()
-
-                place = db.get_place_from_handle(place_handle)
-                if (place and (place.lat and place.long)):
-                    place_title = ReportUtils.place_name(db, place_handle)
-
-                    # get reallatitude and reallongitude from place
-                    latitude, longitude = conv_lat_lon( place.lat,
-                                                        place.long,
-                                                        "D.D8")
-
-                    # latitude, longitude, place name
-                    place_exists(latitude, longitude, place_title)
-                   
     def event_link(self, eventtype, handle, gid = None, up = False):
         """ creates a hyperlink for an event based on its type """
 
@@ -3895,6 +3859,7 @@ class IndividualPage(BasePage):
         @param: person_handle -- used for naming the map file as self.html_dir/maps/ ...
         """
         global place_lat_long
+
         # if there is no latitude/ longitude data, then return
         if not place_lat_long:
             return
@@ -3943,7 +3908,7 @@ class IndividualPage(BasePage):
                                 var latitude;
                                 var longitude;
                                 var place_name;
-                                var index;
+                                var num;
 
                                 function initialize() {
 			
@@ -3960,29 +3925,35 @@ class IndividualPage(BasePage):
 
                                     latlon = new mxn.LatLonPoint(%s, %s);""" % (
                             place_lat_long[0][0], place_lat_long[0][1])
-
                         jsc += """
                                     // center map and set zoom
-                                    map.setCenterAndZoom(latlon, 7);"""
+                                    map.setCenterAndZoom(latlon, 4);"""
                         index = 0
                         for (latitude, longitude, place_name) in place_lat_long:
                             j = index + 1
                             jsc += """
-                                    add_marker(%d, %s, %s, "%s");""" % (j, latitude, longitude, place_name)
+                                    // %s""" % place_name
+                            jsc += """
+                                    add_marker(%d, %s, %s);""" % (j, latitude, longitude)
                             index += 1
                         jsc += """ 
                                 }
 
-                                function add_marker(num, latitude, longitude, place_name) {
-                                    var marker;
-                                    marker = new mxn.Marker(latlon);
-                                    marker.setTitle(num.toString());
-                                    marker.setInfoBubble('div id = "geo-info">' + place_name + '</div>');
+                                function add_marker(num, latitude, longitude) {
 
+                                    var marker;
+
+                                    // create marker
+                                    marker = new mxn.Marker(latlon);
+
+                                    // add title to marker
+                                    marker.setTitle(num.toString());
+
+                                    // add marker to map
                                     map.addMarker(marker, true);
                                 }"""
-                        # there is no need to add an ending "</script>",
-                        # as it will be added automatically!
+                                # there is no need to add an ending "</script>",
+                                # as it will be added automatically!
 
                         # familygooglev3 division 
                         middlesection += Html("div", id = "familygooglev3", inline = True)
@@ -4547,7 +4518,6 @@ class IndividualPage(BasePage):
             return None
 
         db = self.report.database
-        global place_lat_long
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
@@ -4583,9 +4553,19 @@ class IndividualPage(BasePage):
                         else:
                             first = False
 
+                        # get father events and places if any?
+                        father_handle = family.get_father_handle()
+                        if father_handle:
+                            _get_event_places(db, father_handle) 
+
+                        # get mother events and places if any?
+                        mother_handle = family.get_mother_handle()
+                        if mother_handle:
+                            _get_event_places(db, mother_handle) 
+
                         # get child events and places of event if possible
                         # add to global variable if any
-                        self._get_event_places(db, child_ref_list)
+                        _get_event_places(db, child_ref_list)
 
                         father_handle = family.get_father_handle()
                         if father_handle:
@@ -4830,7 +4810,7 @@ class IndividualPage(BasePage):
 
                         # get child events and places of event if possible
                         # add to global variable if any
-                        self._get_event_places(db, childlist)
+                        _get_event_places(db, childlist)
 
                         tcell = Html("td", class_ = "ColumnValue")
                         trow += tcell
@@ -4883,6 +4863,10 @@ class IndividualPage(BasePage):
 
         partner_handle = ReportUtils.find_spouse(self.person, family)
         if partner_handle:
+
+            # get partner events and places if any?
+            _get_event_places(db, partner_handle)
+
             partner = db.get_person_from_handle(partner_handle)
             partner_name = self.get_name(partner)
         else:
@@ -5422,6 +5406,7 @@ class NavWebReport(Report):
         self.photo_list = {}
 
     def write_report(self):
+        global _individuallist
         _WRONGMEDIAPATH = []
         if not self.use_archive:
             dir_name = self.target_path
@@ -5477,6 +5462,7 @@ class NavWebReport(Report):
 
         # Build the person list
         ind_list = self.build_person_list()
+        _individuallist = ind_list
 
         # copy all of the neccessary files
         self.copy_narrated_files()
@@ -6850,11 +6836,44 @@ def build_event_data(db, ind_list):
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
 
-def place_exists(lat, lon, place_name):
-    """ will determine if place already exists in list or not """
+def _get_event_places(db, person_list):
+    """
+    retrieve from a list of people their events, and places of event
 
+    @param:db -- report database
+    @param: person_list - list of handles
+    """
+
+    for person_handle in person_list:
+        person = db.get_person_from_handle(person_handle)
+        if person:
+
+            event_ref_list = person.get_event_ref_list()
+            for event_ref in event_ref_list:
+                event = db.get_event_from_handle(event_ref.ref)
+                if event:
+                    place_handle = event.get_place_handle()
+
+                    place = db.get_place_from_handle(place_handle)
+                    place_exists(db, place)
+
+def place_exists(db, place):
+    """ will determine if place already exists in list or not """
     global place_lat_long
 
-    found = any(p[2] == place_name for p in place_lat_long)
+    place_title = ReportUtils.place_name(db, place.handle)
+
+    # if place is not already in the list, add it?
+    found = any(p[2] == place_title for p in place_lat_long)
     if not found:
-        place_lat_long.append([lat, lon, place_name])
+
+        # if place has latitude and longitude, continue?
+        if (place and (place.lat and place.long)):
+
+            # get reallatitude and reallongitude from place object
+            latitude, longitude = conv_lat_lon( place.lat,
+                                                place.long,
+                                                "D.D8")
+
+            # add it to the list 
+            place_lat_long.append([latitude, longitude, place_title])
