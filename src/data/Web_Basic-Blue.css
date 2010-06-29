@@ -982,7 +982,7 @@ table.attrlist {
     width: 100%;
 }
 table.attrlist tbody tr td {
-    border: dashed 1px #000;
+    border-bottom: dashed 1px #000;
 }
 table.attrlist tbody tr td.ColumnType {
     width: 15%;
