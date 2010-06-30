@@ -894,9 +894,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
             gid = repo.get_gramps_id()
         elif self.namespace == 'Note':
             note = self.db.get_note_from_handle(handle)
-            name = note.get().replace('\n', ' ')
-            #String must be unicode for truncation to work for non ascii characters
-            name = unicode(name)
+            name = note.get().replace(u'\n', u' ')
             if len(name) > 80:
                 name = name[:80]+"..."
             gid = note.get_gramps_id()
