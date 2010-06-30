@@ -39,7 +39,7 @@ class NoteModel(gtk.ListStore):
         self.db = db
         for handle in note_list:
             note = self.db.get_note_from_handle(handle)
-            text = note.get().replace('\n', ' ')
+            text = note.get().replace(u'\n', u' ')
             if len(text) > 80:
                 text = text[:80]+"..."
             self.append(row=[

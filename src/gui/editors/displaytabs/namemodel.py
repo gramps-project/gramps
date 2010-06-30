@@ -137,7 +137,7 @@ class NameModel(gtk.TreeStore):
         nlist = name.get_note_list()
         if nlist:
             note = self.db.get_note_from_handle(nlist[0])
-            text = note.get().replace('\n', ' ')
+            text = note.get().replace(u'\n', u' ')
             if len(text) > 80:
                 text = text[:80]+"..."
             return text
