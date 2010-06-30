@@ -385,9 +385,7 @@ class NoteEntry(ObjEntry):
         return self.db.get_note_from_handle(handle)
 
     def get_label(self, note):
-        txt = " ".join(note.get().split())
-        #String must be unicode for truncation to work for non ascii characters
-        txt = unicode(txt)
+        txt = u" ".join(note.get().split())
         if len(txt) > 35:
             txt = txt[:35] + "..."
         return "%s [%s]" % (txt, note.gramps_id)
