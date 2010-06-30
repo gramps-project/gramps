@@ -422,11 +422,9 @@ class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
         text = note.get()
 
         # convert whitespace to a single space
-        text = " ".join(text.split())
+        text = u" ".join(text.split())
 
         # if the note is too long, truncate it
-        # but first set type of text to unicode, otherwise the sliceing might go wrong.
-        text = unicode(text)
         if len(text) > 80:
             text = text[:80] + "..."
 
