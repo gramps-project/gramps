@@ -187,13 +187,13 @@ class DateDisplayRU(DateDisplay):
     """
     Russian language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = (u"", u"январь", u"февраль", u"март", u"апрель", u"май",
-                    u"июнь", u"июль", u"август", u"сентябрь", u"октябрь",
-                    u"ноябрь", u"декабрь")
+    long_months = (u"", u"Январь", u"Февраль", u"Март", u"Апрель", u"Май",
+                    u"Июнь", u"Июль", u"Август", u"Сентябрь", u"Октябрь",
+                    u"Ноябрь", u"Декабрь")
     
-    short_months = (u"", u"Ianv", u"Fevr", u"Mart", u"Apr", u"Mai", u"Iiun’",
-                     u"Iiul’", u"Avg", u"Sent", u"Okt", u"Noiabr’", u"Dek")
+    short_months = (u"", u"Янва", u"Февр", u"Март", u"Апре", u"Май",
+                    u"Июн", u"Июл", u"Авгу", u"Сент", u"Октя",
+                    u"Нояб", u"Дека")
     
     calendar = (
         u"", 
