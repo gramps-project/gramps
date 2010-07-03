@@ -87,9 +87,14 @@ class FamilyModel(FlatBaseModel):
             self.column_marker_text, 
             self.column_marker_color, 
             ]
-        self.marker_color_column = 9
         FlatBaseModel.__init__(self, db, scol, order, tooltip_column=6, 
                            search=search, skip=skip, sort_map=sort_map)
+
+    def marker_column(self):
+        """
+        Return the column for marker colour.
+        """
+        return 9
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

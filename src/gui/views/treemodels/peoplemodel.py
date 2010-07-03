@@ -146,6 +146,12 @@ class PeopleBaseModel(object):
         self.lru_bdate = LRU(PeopleBaseModel._CACHE_SIZE)
         self.lru_ddate = LRU(PeopleBaseModel._CACHE_SIZE)
 
+    def marker_column(self):
+        """
+        Return the column for marker colour.
+        """
+        return 11
+
     def clear_local_cache(self, handle=None):
         """ Clear the LRU cache """
         if handle:
@@ -458,12 +464,6 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
         """ Clear the LRU cache """
         PeopleBaseModel.clear_local_cache(self, handle)
 
-    def marker_column(self):
-        """
-        Return the column for marker colour.
-        """
-        return 11
-
 class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
     """
     Hierarchical people model.
@@ -473,7 +473,6 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
 
         PeopleBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, 12, search=search, skip=skip,
-                                marker_column=11,
                                 scol=scol, order=order, sort_map=sort_map)
 
     def _set_base_data(self):
