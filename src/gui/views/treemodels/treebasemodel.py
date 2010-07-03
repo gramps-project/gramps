@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
-# Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
@@ -238,7 +238,6 @@ class TreeBaseModel(gtk.GenericTreeModel):
     Creation:
     db      :   the database
     tooltip_column :  column number of tooltip
-    marker_column  :  column number of marker
     search         :  the search that must be shown
     skip           :  values not to show
     scol           :  column on which to sort
@@ -258,7 +257,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
     # LRU cache size
     _CACHE_SIZE = 250
    
-    def __init__(self, db, tooltip_column, marker_column=None,
+    def __init__(self, db, tooltip_column,
                     search=None, skip=set(),
                     scol=0, order=gtk.SORT_ASCENDING, sort_map=None,
                     nrgroups = 1,
@@ -312,7 +311,6 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.custom_color = config.get('preferences.custom-marker-color')
 
         self._tooltip_column = tooltip_column
-        self._marker_column = marker_column
 
         self.__total = 0
         self.__displayed = 0
@@ -384,7 +382,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Return the marker color column.
         """
-        return self._marker_column
+        return None
 
     def clear_cache(self, handle=None):
         """
@@ -772,7 +770,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         node = self.nodemap.node(nodeid)
         if node.handle is None:
             # Header rows dont get the foreground color set
-            if col == self._marker_column:
+            if col == self.marker_column():
                 return None
 
             # Look for header fuction for column and call it

@@ -74,9 +74,14 @@ class NoteModel(FlatBaseModel):
             self.column_handle,
             self.column_marker_color
         ]
-        self.marker_color_column = 6
         FlatBaseModel.__init__(self, db, scol, order, search=search,
                            skip=skip, sort_map=sort_map)
+
+    def marker_column(self):
+        """
+        Return the column for marker colour.
+        """
+        return 6
 
     def on_get_n_columns(self):
         """Return the column number of the Note tab."""
