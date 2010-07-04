@@ -124,31 +124,33 @@ class RepositoryTip(object):
 
     def get_tip(self):
         global escape
-        s = "<big><b>%s:</b>\t%s</big>\n\n"\
-            "\t<b>%s:</b>\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            % (
-            _("Repository"),escape(self._obj.get_name()),
-            _("Location"),
-            escape(self._obj.address.get_parish()),
-            escape(self._obj.address.get_city()),
-            escape(self._obj.address.get_county()),
-            escape(self._obj.address.get_state()),
-            escape(self._obj.address.get_postal_code()),
-            escape(self._obj.address.get_country()),
-            _("Telephone"), escape(self._obj.address.get_phone()),
-            _("Email"), escape(self._obj.get_email()),
-            _("Search Url"), escape(self._obj.get_search_url()),
-            _("Home Url"), escape(self._obj.get_home_url()))    
+        s = "<big><b>%s:</b>\t%s</big>\n\n" % (
+            _("Repository"),escape(self._obj.get_name()))
+        
+        addresses = self._obj.get_address_list()
+        if addresses:
+            address = addresses[0]
+            s += "\t<b>%s:</b>\n"\
+                "\t\t%s\n"\
+                "\t\t%s\n"\
+                "\t\t%s\n"\
+                "\t\t%s\n"\
+                "\t\t%s\n"\
+                "\t\t%s\n"\
+                "\t<b>%s:</b>\t%s\n"\
+                % (
+                _("Location"),
+                escape(address.get_street()),
+                escape(address.get_city()),
+                escape(address.get_county()),
+                escape(address.get_state()),
+                escape(address.get_postal_code()),
+                escape(address.get_country()),
+                _("Telephone"), escape(address.get_phone()))
+
+        # Get the Urls
+        for url in self._obj.get_url_list():
+            s += "\t<b>%s:</b>\t%s\n" % (url.get_type(), escape(url.get_path()))
 
         # Get the notes
         notelist = self._obj.get_note_list()

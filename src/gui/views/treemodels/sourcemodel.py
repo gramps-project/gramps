@@ -110,6 +110,6 @@ class SourceModel(FlatBaseModel):
                                              self.db.get_source_from_handle(data[0]))
             except:
                 log.error("Failed to create tooltip.",exc_info=True)
-                return t
+            return t
         else:
             return u''

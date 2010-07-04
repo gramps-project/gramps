@@ -276,9 +276,9 @@ class ListView(NavigationView):
             self.__display_column_sort()
             self.goto_active(None)
 
-            if const.USE_TIPS and self.model.tooltip_column is not None:
+            if const.USE_TIPS and self.model.tooltip_column() is not None:
                 self.tooltips = TreeTips.TreeTips(
-                    self.list, self.model.tooltip_column, True)
+                    self.list, self.model.tooltip_column(), True)
             self.dirty = False
             cput4 = time.clock()
             self.uistate.show_filter_results(self.dbstate, 

@@ -86,7 +86,7 @@ class FamilyModel(FlatBaseModel):
             self.column_marker_text, 
             self.column_marker_color, 
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=6, 
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=7, 
                            search=search, skip=skip, sort_map=sort_map)
 
     def marker_column(self):

@@ -96,7 +96,7 @@ class EventModel(FlatBaseModel):
             self.column_handle,
             self.column_tooltip,
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=9,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=8,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
