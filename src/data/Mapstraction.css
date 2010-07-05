@@ -22,11 +22,18 @@
 # $Id: $
 #
 #
-        Maps Division section
+        Body element
 ------------------------------------------------- */
-div#maps {
+body#FamilyMap {
+    background-color: #FFF;
+    color: #000;
     margin: 0 auto;
-    padding: 0;
+    width: 965px;
+    padding: 0px 14px 0px 14px;
+}
+body#FamilyMap a {
+    text-decoration: none;
+    color: #000;
 }
 
 /*    Mapstraction
@@ -70,24 +77,21 @@ div#googlev3 {
     Individual Family Map
 ------------------------------------------------- */
 div#familymap {
-    background-color: #FFF;
     height: 1000px;
-    width: 965px;
-    padding: 0% 14px 0% 14px;
+    width: 90%;
+    margin: 2% 5% 2% 5%;
 }
 
 /*    MiddleSection
 ------------------------------------------------- */
 div#middlesection {
     float: center;
-    width: 90%;
-    margin: 1% 5% 1% 5%;
 }
 
 /*    Family GoogleV3
 ------------------------------------------------- */
 div#familygooglev3 {
-    height: 95%;
-    width: 95%;
-    border: solid 1px #000;
+    height: 100%;
+    width: 100%;
+    border: double 2px #000;
 }

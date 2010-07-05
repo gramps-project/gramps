@@ -182,7 +182,7 @@ wrapper = TextWrapper()
 wrapper.break_log_words = True
 wrapper.width = 20
 
-_individuallist = []
+_individuallist = set()
 
 _html_dbl_quotes = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _html_sng_quotes = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -2350,11 +2350,17 @@ class PlaceListPage(BasePage):
                         Html("td", data or "&nbsp;", class_ = "Column" + colclass, inline = True)
                         for (colclass, data) in [
                             ["State",     ml.state],
-                            ["Country",   ml.country],
-                            ["Latitude",  place.lat],
-                            ["Longitude", place.long] ]
-                        )
-
+                            ["Country",   ml.country] ]
+                    )
+                    if (place and (place.lat and place.long)):
+                        latitude, longitude = conv_lat_lon( place.lat,
+                                                            place.long,
+                                                            "DEG")
+                    else:
+                        latitude, longitude = False, False
+                    trow += Html("td", latitude  or "&nbsp;", class_ = "ColumnLatitude",  inline = True)
+                    trow += Html("td", longitude or "&nbsp;", class_ = "ColumnLongitude", inline = True)
+ 
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer()
@@ -2464,56 +2470,52 @@ class PlacePage(BasePage):
                                     middle += jsc
 
                                     jsc += """
-                            //<![CDATA[
+                                    //<![CDATA[
 
-                            var map;
-                            var latlon;
+                                    var map;
+                                    var latlon;
 
-                            function initialize() {
+                                    function initialize() {
 
-                                // create mxn object
-                                map = new mxn.Mapstraction('googlev3','googlev3');
+                                        // create mxn object
+                                        map = new mxn.Mapstraction('googlev3','googlev3');
 
-                                // add map controls to image
-                                map.addControls({
-                                    pan: true,
-                                    zoom: 'small',
-                                    scale: true,
-                                    map_type: true
-                                });
+                                        // add map controls to image
+                                        map.addControls({
+                                            pan:                    true,
+                                            zoom:                   'large',
+                                            scale:                  true,
+                                            disableDoubleClickZoom: true,
+                                            keyboardShortcuts:      true,
+                                            scrollwheel:            false,
+                                            map_type:               true
+                                        });
 
-                                latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+                                        latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
 
                                     jsc += """
-                                // put map on page
-                                map.setCenterAndZoom(latlon, 7);
+                                        // put map on page
+                                        map.setCenterAndZoom(latlon, 10);
 
-                                var marker;
+                                        var marker;
   
-                                // set marker at latitude/ longitude
-                                marker = new mxn.Marker(latlon);
+                                        // set marker at latitude/ longitude
+                                        marker = new mxn.Marker(latlon);
 
-                                // add marker InfoBubble() using place description
-                                marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
+                                        // add marker InfoBubble() using place name
+                                        marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
 
                                     jsc += """
 
-                                // add marker to map
-                                map.addMarker(marker, true);
-
-                                map.addEventListener('click', 
-                                    function(p) { alert('Mapstraction Event Handling - Mouse clicked at ' + p)  });
-                            }
-
-                            //]]>"""
-                            # there is no need to add an ending "</script>",
-                            # as it will be added automatically!
+                                        // add marker to map
+                                        map.addMarker(marker, true);
+                                    }
+                                    //]]>"""
+                                    # there is no need to add an ending "</script>",
+                                    # as it will be added automatically!
 
                             # googlev3 division 
                             middle += Html("div", id = "googlev3", inline = True)
-
-                            # add place title to middle section
-                            middle += Html("div", self.page_title, id = "location", inline = True) 
 
                         # add javascript function call to body element
                         body.attr = 'onload = "initialize();"'
@@ -3858,14 +3860,33 @@ class IndividualPage(BasePage):
 
         @param: person_handle -- used for naming the map file as self.html_dir/maps/ ...
         """
+
+        # fields in place_lat_long = latitude, longitude, place name, and handle
         global place_lat_long
 
         # if there is no latitude/ longitude data, then return
         if not place_lat_long:
             return
+        db = self.report.database
 
-        # sort place_lat_long by its coordinates and not place name
+        # sort on X coordinates to get min and max X GPS Coordinates
         place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1))
+        BoundMinX = place_lat_long[0][0]
+        BoundMaxX = place_lat_long[-1][0]
+
+        # sort on Y coordinates to get min and max Y GPS Coordinates
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0))
+        BoundMinY = place_lat_long[0][1]
+        BoundMaxY = place_lat_long[-1][1]
+
+        # sort place_lat_long based on place_title for placement on map and references
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(2, 0, 1, 3))
+
+        # set map center based on how many markers there will be created
+        if len(place_lat_long) <= 4:
+            x, y = place_lat_long[0][0], place_lat_long[0][1]
+        else:
+            x, y = place_lat_long[4][0], place_lat_long[4][1]
 
         of = self.report.create_file(person_handle, "maps")
         self.up = True
@@ -3885,93 +3906,121 @@ class IndividualPage(BasePage):
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("script", src = url, inline = True)
 
-        # begin maps division
-        with Html("div", class_ = "content", id = "maps") as maps:
-            body += maps
+        # begin familymap division
+        with Html("div", id = "familymap") as familymap:
+            body += familymap
 
-            # begin familymap division
-            with Html("div", id = "familymap") as familymap:
-                maps += familymap
+            # begin middle section division
+            with Html("div", id = "middlesection") as middlesection:
+                familymap += middlesection
+ 
+                # begin inline javascript code
+                # because jsc is a string, it does NOT have to properly indented
+                with Html("script", type = "text/javascript") as jsc:
+                    middlesection += jsc
 
-                # begin middle division
-                with Html("div", id = "middlesection") as middlesection:
-                    familymap += middlesection
+                    jsc += """
+                            var map;
+                            var latlon;
+                            var latitude;
+                            var longitude;
+                            var num;
 
-                    # begin inline javascript code
-                    # because jsc is a string, it does NOT have to properly indented
-                    with Html("script", type = "text/javascript") as jsc:
-                        middlesection += jsc
-
-                        jsc += """
-                                var map;
-                                var latlon;
-                                var latitude;
-                                var longitude;
-                                var place_name;
-                                var num;
-
-                                function initialize() {
+                            function initialize() {
 			
-                                    // create map object
-                                    map = new mxn.Mapstraction('familygooglev3', 'googlev3');
+                                // create map object
+                                map = new mxn.Mapstraction('familygooglev3', 'googlev3');
 			    
-                                    // add map controls to image
-                                    map.addControls({
-                                        pan: true,
-                                        zoom: 'large',
-                                        scale: true,
-                                        map_type: true
-                                    });
+                                // add map controls to image
+                                map.addControls({
+                                    pan:                    true,
+                                    zoom:                   'large',
+                                    scale:                  true,
+                                    disableDoubleClickZoom: true,
+                                    keyboardShortcuts:      true,
+                                    scrollwheel:            false,
+                                    map_type:               true
+                                });
 
-                                    latlon = new mxn.LatLonPoint(%s, %s);""" % (
-                            place_lat_long[0][0], place_lat_long[0][1])
+                                // set center of map based on how many markers there are being created
+                                latlon = new mxn.LatLonPoint(%s, %s);""" % (x, y)
+
+                    # set Zoom level based on number of markers
+                    if len(place_lat_long) > 10:
                         jsc += """
-                                    // center map and set zoom
-                                    map.setCenterAndZoom(latlon, 4);"""
-                        index = 0
-                        for (latitude, longitude, place_name) in place_lat_long:
-                            j = index + 1
-                            jsc += """
-                                    // %s""" % place_name
-                            jsc += """
-                                    add_marker(%d, %s, %s);""" % (j, latitude, longitude)
-                            index += 1
-                        jsc += """ 
-                                }
+                                // center map and set zoom
+                                map.setCenterAndZoom(latlon, 6);"""
 
-                                function add_marker(num, latitude, longitude) {
+                    else:
+                        jsc += """
+                                // center map and set zoom
+                                map.setCenterAndZoom(latlon, 7);"""
 
-                                    var marker;
+                    index = 0
+                    for (lat, long, place_name, handle) in place_lat_long:
+                        j = index + 1
+                        jsc += """
+                                // %s
+                                add_marker(%d, %s, %s);""" % (place_name, j, lat, long)
+                        index += 1
+                    jsc += """ 
+                            }"""
 
-                                    // create marker
-                                    marker = new mxn.Marker(latlon);
+                    if len(place_lat_long) > 4:
+                        jsc += """
+                            // boundary southWest equals bottom left GPS Coordinates
+                            var southWest = new mxn.LatLonPoint(%s, %s);""" % (BoundMaxX, BoundMaxY)
+                        jsc += """
+                            // boundary northEast equals top right GPS Coordinates
+                            var northEast = new mxn.LatLonPoint(%s, %s);""" % (BoundMinX, BoundMinY)
 
-                                    // add title to marker
-                                    marker.setTitle(num.toString());
+                        jsc += """
+                            var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                            map.fitBounds(bounds);"""
 
-                                    // add marker to map
-                                    map.addMarker(marker, true);
-                                }"""
-                                # there is no need to add an ending "</script>",
-                                # as it will be added automatically!
+                    jsc += """
+                            function add_marker(num, latitude, longitude) {
 
-                        # familygooglev3 division 
-                        middlesection += Html("div", id = "familygooglev3", inline = True)
+                                var marker;
 
-            # add references division and title
-            with Html("div", class_ = "subsection", id = "References") as section:
-                maps += section
-                section += Html("h4", _("References"), inline = True) 
+                                // create latitude/ longitude point for marker
+                                latlon = new mxn.LatLonPoint(latitude, longitude); 
 
-                # begin ordered list
-                ordered = Html("ol")
-                section += ordered
+                                // create marker
+                                marker = new mxn.Marker(latlon);
 
-                for (latitude, longitude, place_name) in place_lat_long:
-                    ordered += Html("li", place_name, inline = True) 
+                                // add number to individual markers
+                                marker.setLabel(num.toString());
+
+                                // add marker to map
+                                map.addMarker(marker, true);
+                            }"""
+                    # there is no need to add an ending "</script>",
+                    # as it will be added automatically!
+
+                    # familygooglev3 division 
+                    middlesection += Html("div", id = "familygooglev3", inline = True)
+
+                    # add fullclear for proper styling
+                    middlesection += fullclear
+
+        # add references division and title
+        with Html("div", class_ = "subsection", id = "References") as section:
+            body += section
+            section += Html("h4", _("References"), inline = True) 
+
+            # begin ordered list
+            ordered = Html("ol")
+            section += ordered
+
+            for (lat, long, name, handle) in place_lat_long:
+
+                ordered.extend(
+                    Html("li", self.place_link(handle, name, up = True))
+                )
 
         # add body onload to initialize map 
-        body.attr = 'onload = "initialize();"'
+        body.attr = 'onload = "initialize();" id = "FamilyMap"'
 
         # add clearline for proper styling
         # add footer section
@@ -3986,7 +4035,6 @@ class IndividualPage(BasePage):
         """
         create the family map link
         """
-        global place_lat_long
 
         # create family map page
         self._create_family_map(person.handle)
@@ -4553,29 +4601,30 @@ class IndividualPage(BasePage):
                         else:
                             first = False
 
-                        # get father events and places if any?
+                        # get the father
                         father_handle = family.get_father_handle()
                         if father_handle:
-                            _get_event_places(db, father_handle) 
 
-                        # get mother events and places if any?
-                        mother_handle = family.get_mother_handle()
-                        if mother_handle:
-                            _get_event_places(db, mother_handle) 
+                            # get the father's event's places for family map
+                            if self.family_map:
+                               father = db.get_person_from_handle(father_handle)
+                               _get_event_place(db, father) 
 
-                        # get child events and places of event if possible
-                        # add to global variable if any
-                        _get_event_places(db, child_ref_list)
-
-                        father_handle = family.get_father_handle()
-                        if father_handle:
                             trow = Html("tr")
                             table += trow
 
                             tcell1, tcell2 = self.display_parent(father_handle, _("Father"), frel)
                             trow += (tcell1, tcell2)
+
+                        # get the mother
                         mother_handle = family.get_mother_handle()
                         if mother_handle:
+
+                            # get the mother's event's places for family map
+                            if self.family_map:
+                               mother = db.get_person_from_handle(mother_handle)
+                               _get_event_place(db, mother)
+
                             trow = Html("tr")
                             table += trow
 
@@ -4590,6 +4639,13 @@ class IndividualPage(BasePage):
                     # now that we have all siblings in families of the person,
                     # display them...    
                     if sibling:
+
+                        # get the siblings event's places for family map
+                        if self.family_map:
+                           for handle in sibling:
+                               child = db.get_person_from_handle(handle)
+                               _get_event_place(db, child)
+
                         trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
                             )
@@ -4603,17 +4659,28 @@ class IndividualPage(BasePage):
 
                         if birthorder:
                             kids = sorted(add_birthdate(db, sibling))
-                            ordered.extend(
-                                self.display_child_link(child_handle)
-                                    for birth_date, child_handle in kids
-                                        if child_handle != self.person.handle)
-
+                            for birth_date, child_handle in kids:
+                                if child_handle != self.person.handle:
+                                    ordered.extend(
+                                        self.display_child_link(child_handle)  
+                                    )
+                                else:
+                                    child = db.get_person_from_handle(child_handle)
+                                    ordered.extend(
+                                        self.get_name(child)
+                                    )
                         else:
-                            ordered.extend(
-                                self.display_child_link(child_handle)
-                                    for child_handle in sibling
-                                        if child_handle != self.person.handle)
-
+                            for child_handle in sibling:
+                                if child_handle != self.perso.handle:
+                                    ordered.extend(
+                                        self.display_child_link(child_handle)
+                                    )
+                                else:
+                                    child = db.get_person_from_handle(child_handle)
+                                    ordered.extend(
+                                        self.get_name(child)
+                                    )
+   
                     # Also try to identify half-siblings
                     half_siblings = set()
 
@@ -4778,14 +4845,12 @@ class IndividualPage(BasePage):
         """
         Displays a person's relationships ...
         """
-        global place_lat_long
 
         family_list = self.person.get_family_handle_list()
         if not family_list:
             return None
 
         db = self.report.database
-        global place_lat_long
 
         # begin families division and section title
         with Html("div", class_ = "subsection", id = "families") as section:
@@ -4808,10 +4873,6 @@ class IndividualPage(BasePage):
                             )
                         table += trow
 
-                        # get child events and places of event if possible
-                        # add to global variable if any
-                        _get_event_places(db, childlist)
-
                         tcell = Html("td", class_ = "ColumnValue")
                         trow += tcell
 
@@ -4819,6 +4880,12 @@ class IndividualPage(BasePage):
                         tcell += ordered
 
                         childlist = [child_ref.ref for child_ref in childlist]
+
+                        # add individual's children events and places to family map
+                        if self.family_map:
+                            for child_handle in childlist:
+                                child = db.get_person_from_handle(child_handle)
+                                _get_event_place(db, child)  
 
                         if self.report.options['birthorder']:
                             kids = sorted(add_birthdate(db, childlist))
@@ -4863,9 +4930,6 @@ class IndividualPage(BasePage):
 
         partner_handle = ReportUtils.find_spouse(self.person, family)
         if partner_handle:
-
-            # get partner events and places if any?
-            _get_event_places(db, partner_handle)
 
             partner = db.get_person_from_handle(partner_handle)
             partner_name = self.get_name(partner)
@@ -5462,7 +5526,8 @@ class NavWebReport(Report):
 
         # Build the person list
         ind_list = self.build_person_list()
-        _individuallist = ind_list
+        for handle in ind_list:
+            _individuallist.add(handle)
 
         # copy all of the neccessary files
         self.copy_narrated_files()
@@ -6836,23 +6901,27 @@ def build_event_data(db, ind_list):
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
 
-def _get_event_places(db, person_list):
+def _get_event_place(db, person):
     """
-    retrieve from a list of people their events, and places of event
+    retrieve from a a person their events, and places for family map
 
-    @param:db -- report database
-    @param: person_list - list of handles
+    @param: db -- report database
+    @param: person - person object from the database
     """
+    if not person:
+        return
 
-    for person_handle in person_list:
-        person = db.get_person_from_handle(person_handle)
-        if person:
+    global _individuallist
+    # find individual from within the report database
+    found = any(handle == person.handle for handle in _individuallist)
+    if found:
 
-            event_ref_list = person.get_event_ref_list()
-            for event_ref in event_ref_list:
-                event = db.get_event_from_handle(event_ref.ref)
-                if event:
-                    place_handle = event.get_place_handle()
+        event_ref_list = person.get_event_ref_list()
+        for event_ref in event_ref_list:
+            event = db.get_event_from_handle(event_ref.ref)
+            if event:
+                place_handle = event.get_place_handle()
+                if place_handle:
 
                     place = db.get_place_from_handle(place_handle)
                     place_exists(db, place)
@@ -6863,17 +6932,14 @@ def place_exists(db, place):
 
     place_title = ReportUtils.place_name(db, place.handle)
 
-    # if place is not already in the list, add it?
     found = any(p[2] == place_title for p in place_lat_long)
     if not found:
 
-        # if place has latitude and longitude, continue?
+        # if place and it has latitude and longitude, continue?
         if (place and (place.lat and place.long)):
 
-            # get reallatitude and reallongitude from place object
             latitude, longitude = conv_lat_lon( place.lat,
                                                 place.long,
                                                 "D.D8")
 
-            # add it to the list 
-            place_lat_long.append([latitude, longitude, place_title])
+            place_lat_long.append([latitude, longitude, place_title, place.handle])
