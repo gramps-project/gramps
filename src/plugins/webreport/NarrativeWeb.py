@@ -409,9 +409,9 @@ class BasePage(object):
             for (colclass, data) in [
                 ["Type",    str(attr.get_type()) ],
                 ["Value",   attr.get_value() ],
-                ["Sources", self.get_citation_links(attr.get_source_references()) ],
-                ["Notes",  self.dump_notes(attr.get_note_list()) ] ]
-                )
+                ["Notes",   self.dump_notes(attr.get_note_list()) ],
+                ["Sources", self.get_citation_links(attr.get_source_references()) ] ]
+        )
 
         # return table row to its caller
         return trow
@@ -954,8 +954,8 @@ class BasePage(object):
                     for (label, colclass) in [
                         (THEAD,    "Type"),
                         (VHEAD,    "Value"),
-                        (SHEAD,    "Sources"),
-                        (NHEAD,    "Notes") ]
+                        (NHEAD,    "Notes"),
+                        (SHEAD,    "Sources") ]
                         )
                                      
                 # begin table body
@@ -964,7 +964,8 @@ class BasePage(object):
 
                 tbody.extend(
                     self.dump_attribute(attr)
-                    for attr in attrlist) 
+                    for attr in attrlist
+                )
 
         # return section to its caller
         return section
