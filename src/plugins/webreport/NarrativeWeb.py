@@ -405,7 +405,7 @@ class BasePage(object):
         # display attribute list
         trow.extend(
             Html("td", data or "&nbsp;", class_ = "Column" + colclass,
-                inline = (colclass == "Type" or "Sources"))
+                inline = True if (colclass == "Type" or "Sources") else False)
             for (colclass, data) in [
                 ["Type",    str(attr.get_type()) ],
                 ["Value",   attr.get_value() ],
