@@ -1010,6 +1010,9 @@ div#parents table.infolist tbody tr td.ColumnValue ol {
     margin: 0;
     padding-top: 0;
 }
+div#parents table.infolist tbody tr td.ColumnValue ol li a {
+    text-decoration: underline;
+}
 
 /* Subsections : Families
 ----------------------------------------------------- */
@@ -1029,6 +1032,9 @@ div#families table.infolist tbody tr td.ColumnValue ol {
 }
 div#families table.infolist tbody tr td.ColumnValue ol li {
     padding-bottom:.2em;
+}
+div#families table.infolist tbody tr td.ColumnValue ol li a {
+    text-decoration: underline;
 }
 
 /* Subsection: LDS Ordinance
@@ -1145,17 +1151,22 @@ div#Residence table.infolist tr td {
 /* Subsections : Narrative
 ----------------------------------------------------- */
 div#narrative {
-    padding-bottom:0;
+    padding-bottom: 0;
 }
 #narrative p {
-    font:normal .9em/1.4em sans-serif;
-    margin-top:.5em;
-    margin-bottom:0;
-    padding:0 20px 1em 20px;
+    font: normal .9em/1.4em sans-serif;
+    margin-top: .5em;
+    margin-bottom: 0;
+    padding: 0 20px 1em 20px;
 }
 
 /* Subsections : References
 ----------------------------------------------------- */
+div#References {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
 
 /* Subsections : Source References
 ----------------------------------------------------- */
