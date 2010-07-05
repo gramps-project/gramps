@@ -1176,10 +1176,13 @@ div#sourcerefs {
     background-color: #BCEAF6;
 }
 div#sourcerefs ol {
-    list-style-type:decimal;
+    list-style-type: decimal;
 }
 div#sourcerefs ol li ol {
-    list-style-type:lower-alpha;
+    list-style-type: lower-alpha;
+}
+div#sourcerefs ol li a {
+    text-decoration: none;
 }
 
 /* Subsections : Summary Area
