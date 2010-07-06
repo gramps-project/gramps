@@ -356,7 +356,7 @@ class BasePersonView(ListView):
     def enable_action_group(self, obj):
         ListView.enable_action_group(self, obj)
         self.all_action.set_visible(True)
-        self.edit_action.set_visible(False)
+        self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
         
     def disable_action_group(self):
