@@ -32,6 +32,13 @@ import gtk
 
 #-------------------------------------------------------------------------
 #
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from gen.plug import (START, END)
+
+#-------------------------------------------------------------------------
+#
 # Sidebar class
 #
 #-------------------------------------------------------------------------
@@ -87,7 +94,7 @@ class Sidebar(object):
         """
         return self.top
         
-    def add(self, title, sidebar):
+    def add(self, title, sidebar, order):
         """
         Add a page to the sidebar for a plugin.
         """
@@ -95,31 +102,28 @@ class Sidebar(object):
         index = self.notebook.append_page(sidebar.get_top(), gtk.Label(title))
 
         menu_item = gtk.MenuItem(title)
+        if order == START:
+            self.menu.prepend(menu_item)
+            self.notebook.set_current_page(index)
+        else:
+            self.menu.append(menu_item)
         menu_item.connect('activate', self.cb_menu_activate, index)
         menu_item.show()
-        self.menu.append(menu_item)
 
+    def loaded(self):
+        """
+        Called after all the sidebar plugins have been loaded.
+        """
+        for page in self.pages:
+            page[1].loaded()
+            
     def view_changed(self, page_num):
         """
         Called when a Gramps view is changed.
         """
         for page in self.pages:
             page[1].view_changed(page_num)
-        
-    def handlers_block(self):
-        """
-        Block signals to the buttons to prevent spurious events.
-        """
-        for page in self.pages:
-            page[1].handlers_block()
-        
-    def handlers_unblock(self):
-        """
-        Unblock signals to the buttons.
-        """
-        for page in self.pages:
-            page[1].handlers_unblock()
-        
+
     def __menu_button_pressed(self, button, event):
         """
         Called when the button to select a sidebar page is pressed.

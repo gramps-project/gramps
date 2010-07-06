@@ -37,20 +37,14 @@ class BaseSidebar(object):
         """
         raise NotImplementedError
 
+    def loaded(self):
+        """
+        Called after all the sidebar plugins have been loaded.
+        """
+        raise NotImplementedError
+
     def view_changed(self, page_num):
         """
         Called when the active view is changed.
-        """
-        raise NotImplementedError
-
-    def handlers_block(self):
-        """
-        Block signals to the buttons to prevent spurious events.
-        """
-        raise NotImplementedError
-
-    def handlers_unblock(self):
-        """
-        Unblock signals to the buttons.
         """
         raise NotImplementedError

@@ -153,14 +153,20 @@ class CategorySidebar(BaseSidebar):
                 #allow for switching views in a category
                 self.ui_category[cat_num] = UICATEGORY % (uimenuitems,
                                                         uitoolitems)
-        # Open the default view
-        self.__category_clicked(self.buttons[defaults[0]], defaults[0])
 
     def get_top(self):
         """
         Return the top container widget for the GUI.
         """
         return self.window
+
+    def loaded(self):
+        """
+        Open the default view after all the sidebar plugins have been loaded.
+        """
+        defaults = views_to_show(self.views,
+                                 config.get('preferences.use-last-view'))
+        self.__category_clicked(self.buttons[defaults[0]], defaults[0])
 
     def view_changed(self, page_num):
         """
@@ -202,22 +208,22 @@ class CategorySidebar(BaseSidebar):
             self.merge_ids.append(mergeid)
 
         # Set new button as selected
-        self.handlers_block()
+        self.__handlers_block()
         for index, button in enumerate(self.buttons):
             if index == cat_num:
                 button.set_active(True)
             else:
                 button.set_active(False)
-        self.handlers_unblock()
-
-    def handlers_block(self):
+        self.__handlers_unblock()
+        
+    def __handlers_block(self):
         """
         Block signals to the buttons to prevent spurious events.
         """
         for idx in range(len(self.buttons)):
             self.buttons[idx].handler_block(self.button_handlers[idx])
         
-    def handlers_unblock(self):
+    def __handlers_unblock(self):
         """
         Unblock signals to the buttons.
         """
@@ -252,11 +258,10 @@ class CategorySidebar(BaseSidebar):
         page_num = self.pages.get((cat_num, view_num))
         if page_num is None:
             page = self.page_defs[(cat_num, view_num)]
-            page_num = self.viewmanager.create_page(page[0], page[1])
-            self.pages[(cat_num, view_num)] = page_num
-            
-        self.current_views[cat_num] = view_num    
-        self.viewmanager.goto_page(page_num)
+            self.pages[(cat_num, view_num)] = self.viewmanager.get_n_pages()
+            self.viewmanager.create_page(page[0], page[1])
+        else:
+            self.viewmanager.goto_page(page_num)
         
     def __make_sidebar_button(self, use_text, index, page_title, page_stock):
         """

@@ -314,11 +314,6 @@ class PluginData(object):
     .. attribute:: viewclass
        A class of type ViewCreator that holds the needed info of the
        view to be created: icon, viewclass that derives from pageview, ...
-    .. attribute:: order
-       order can be START or END. Default is END. For END, on registering, 
-       the view is appended to the list of views. If START, then the view is
-       prepended. Only set START if you want a view to be the first in the
-       order of views
     .. attribute:: stock_icon
        The icon in the toolbar or sidebar used to select the view
 
@@ -327,6 +322,13 @@ class PluginData(object):
        The class that defines the sidebar.
     .. attribute:: menu_label
        A label to use on the seltion menu.
+       
+    Attributes for VIEW and SIDEBAR plugins
+    .. attribute:: order
+       order can be START or END. Default is END. For END, on registering, 
+       the plugin is appended to the list of plugins. If START, then the
+       plugin is prepended. Only set START if you want a plugin to be the
+       first in the order of plugins
     """
 
     def __init__(self):
@@ -389,11 +391,12 @@ class PluginData(object):
         self._help_url = None
         #VIEW attr
         self._viewclass = None
-        self._order = END
         self._stock_icon = None
         #SIDEBAR attr
         self._sidebarclass = None
         self._menu_label = ''
+        #VIEW and SIDEBAR attr
+        self._order = END
     
     def _set_id(self, id):
        self._id = id
@@ -833,14 +836,6 @@ class PluginData(object):
     def _get_viewclass(self):
         return self._viewclass
   
-    def _set_order(self, order):
-        if not self._ptype == VIEW:
-            raise ValueError, 'order may only be set for VIEW plugins'
-        self._order = order
-
-    def _get_order(self):
-        return self._order
-
     def _set_stock_icon(self, stock_icon):
         if not self._ptype == VIEW:
             raise ValueError, 'stock_icon may only be set for VIEW plugins'
@@ -850,7 +845,6 @@ class PluginData(object):
         return self._stock_icon
        
     viewclass = property(_get_viewclass, _set_viewclass)
-    order = property(_get_order, _set_order)
     stock_icon = property(_get_stock_icon, _set_stock_icon)
 
     #SIDEBAR attributes
@@ -872,6 +866,17 @@ class PluginData(object):
 
     sidebarclass = property(_get_sidebarclass, _set_sidebarclass)
     menu_label   = property(_get_menu_label, _set_menu_label)
+
+    #VIEW and SIDEBAR attributes
+    def _set_order(self, order):
+        if not self._ptype in (VIEW, SIDEBAR):
+            raise ValueError, 'order may only be set for VIEW and SIDEBAR plugins'
+        self._order = order
+
+    def _get_order(self):
+        return self._order
+
+    order = property(_get_order, _set_order)
   
 def newplugin():
     """

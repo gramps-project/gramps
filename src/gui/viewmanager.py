@@ -295,7 +295,6 @@ class ViewManager(CLIManager):
         self.notebook.set_scrollable(True)
         self.notebook.set_show_tabs(False)
         self.notebook.show()
-        self.notebook_cat = []
         self.__init_lists()
         self.__build_ui_manager()
 
@@ -361,7 +360,7 @@ class ViewManager(CLIManager):
                 
             sidebar_class = getattr(module, pdata.sidebarclass)
             sidebar_page = sidebar_class(self.dbstate, self.uistate)
-            self.sidebar.add(pdata.menu_label, sidebar_page)
+            self.sidebar.add(pdata.menu_label, sidebar_page, pdata.order)
 
     def __setup_statusbar(self):
         """
@@ -557,9 +556,7 @@ class ViewManager(CLIManager):
             new_page = 0
         else:
             new_page = current_page + 1
-        self.sidebar.handlers_block()
         self.notebook.set_current_page(new_page)
-        self.sidebar.handlers_unblock()
 
     def __prev_view(self, action):
         """
@@ -572,15 +569,12 @@ class ViewManager(CLIManager):
             new_page = len(self.pages)-1
         else:
             new_page = current_page - 1
-        self.sidebar.handlers_block()
         self.notebook.set_current_page(new_page)
-        self.sidebar.handlers_unblock()
 
     def init_interface(self):
         """
         Initialize the interface, creating the pages as given in vieworder
         """
-        self.__init_lists()
         self.__load_sidebar_plugins()
 
         if not self.file_loaded:
@@ -616,6 +610,7 @@ class ViewManager(CLIManager):
         Showing the main window is deferred so that
         ArgHandler can work without it always shown
         """
+        self.sidebar.loaded()
         self.window.show()
         if not self.dbstate.db.is_open() and show_manager:
             self.__open_activate(None)
@@ -827,6 +822,9 @@ class ViewManager(CLIManager):
         config.save()
     
     def create_page(self, pdata, page_def):
+        """
+        Create a new page and set it as the current page.
+        """
         try:
             page = page_def(self.dbstate, self.uistate)
         except:
@@ -863,16 +861,18 @@ class ViewManager(CLIManager):
         hbox.show_all()
 
         page_num = self.notebook.append_page(page_display, hbox)
-        return page_num
+        self.notebook.set_current_page(page_num)
         
     def goto_page(self, page_num):
-        self.sidebar.handlers_block()
+        """
+        Change the current page.
+        """
         self.notebook.set_current_page(page_num)
-        self.sidebar.handlers_unblock()
-        
-        self.__change_page(page_num)
 
     def __change_page(self, page_num):
+        """
+        Perform necessary actions when a page is changed.
+        """
         self.__disconnect_previous_page()
         
         self.active_page = self.pages[page_num]
@@ -884,6 +884,12 @@ class ViewManager(CLIManager):
             gtk.main_iteration()
 
         self.active_page.change_page()
+
+    def get_n_pages(self):
+        """
+        Return the total number of pages.
+        """
+        return self.notebook.get_n_pages()
 
     def __delete_pages(self):
         """
