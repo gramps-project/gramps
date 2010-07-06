@@ -39,3 +39,17 @@ sidebarclass = 'CategorySidebar',
 menu_label = _('Category'),
 order = START
 )
+
+register(SIDEBAR, 
+id    = 'historysidebar',
+name  = _("History Sidebar"),
+description =  _("A sidebar to display the history"),
+version = '1.0',
+gramps_target_version = '3.3',
+status = STABLE,
+fname = 'historysidebar.py',
+authors = [u"Nick Hall"],
+authors_email = ["nick__hall@hotmail.com"],
+sidebarclass = 'HistorySidebar',
+menu_label = _('History')
+)
