@@ -4873,16 +4873,18 @@ class IndividualPage(BasePage):
 
                         # add individual's children events and places to family map
                         if self.family_map:
-                            for child_handle in childlist:
-                                child = db.get_person_from_handle(child_handle)
-                                _get_event_place(db, child)  
+                            for handle in childlist:
+                                individual = db.get_person_from_handle(handle)
+                                _get_event_place(db, individual)
 
-                        if self.report.options['birthorder']:
+                        if self.report.options["birthorder"]:
                             kids = sorted(add_birthdate(db, childlist))
 
                             ordered.extend(
                                 self.display_child_link(child_handle)
-                                    for birth_date, child_handle in kids)
+                                    for birth_date, child_handle in kids
+                                        if child_handle != self.person.handle
+                            )
                         else:
                             ordered += map(self.display_child_link, childlist)
 
