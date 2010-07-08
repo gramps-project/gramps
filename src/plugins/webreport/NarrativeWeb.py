@@ -4641,11 +4641,11 @@ class IndividualPage(BasePage):
                     # display them...    
                     if sibling:
 
-                        # get the siblings event's places for family map
+                        # add the sibling's event's place for family map
                         if self.family_map:
                            for handle in sibling:
-                               child = db.get_person_from_handle(handle)
-                               _get_event_place(db, child)
+                               individual = db.get_person_from_handle(handle)
+                               _get_event_place(db, individual)
 
                         trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
@@ -4660,28 +4660,17 @@ class IndividualPage(BasePage):
 
                         if birthorder:
                             kids = sorted(add_birthdate(db, sibling))
-                            for birth_date, child_handle in kids:
-                                if child_handle != self.person.handle:
-                                    ordered.extend(
-                                        self.display_child_link(child_handle)  
-                                    )
-                                else:
-                                    child = db.get_person_from_handle(child_handle)
-                                    ordered.extend(
-                                        self.get_name(child)
-                                    )
+                            ordered.extend(
+                                self.display_child_link(child_handle)
+                                    for birth_date, child_handle in kids
+                                        if child_handle != self.person.handle)
+
                         else:
-                            for child_handle in sibling:
-                                if child_handle != self.perso.handle:
-                                    ordered.extend(
-                                        self.display_child_link(child_handle)
-                                    )
-                                else:
-                                    child = db.get_person_from_handle(child_handle)
-                                    ordered.extend(
-                                        self.get_name(child)
-                                    )
-   
+                            ordered.extend(
+                                self.display_child_link(child_handle)
+                                    for child_handle in sibling
+                                        if child_handle != self.person.handle)
+
                     # Also try to identify half-siblings
                     half_siblings = set()
 
