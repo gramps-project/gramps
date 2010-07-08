@@ -3868,15 +3868,14 @@ class IndividualPage(BasePage):
         # if there is no latitude/ longitude data, then return
         if not place_lat_long:
             return
-        db = self.report.database
 
         # sort on X coordinates to get min and max X GPS Coordinates
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1))
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1, 2, 3))
         BoundMinX = place_lat_long[0][0]
         BoundMaxX = place_lat_long[-1][0]
 
         # sort on Y coordinates to get min and max Y GPS Coordinates
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0))
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0, 2, 3))
         BoundMinY = place_lat_long[0][1]
         BoundMaxY = place_lat_long[-1][1]
 
@@ -3884,10 +3883,12 @@ class IndividualPage(BasePage):
         place_lat_long = sorted(place_lat_long, key = operator.itemgetter(2, 0, 1, 3))
 
         # set map center based on how many markers there will be created
-        if len(place_lat_long) <= 4:
-            x, y = place_lat_long[0][0], place_lat_long[0][1]
+        if len(place_lat_long) > 5:
+            center = int(len(place_lat_long) / 3)
         else:
-            x, y = place_lat_long[4][0], place_lat_long[4][1]
+            center = 0
+        centerX, centerY = place_lat_long[center][0], place_lat_long[center][1]
+        center_place_name = place_lat_long[center][2]
 
         of = self.report.create_file(person_handle, "maps")
         self.up = True
@@ -3921,81 +3922,80 @@ class IndividualPage(BasePage):
                     middlesection += jsc
 
                     jsc += """
-                            var map;
-                            var latlon;
-                            var latitude;
-                            var longitude;
-                            var num;
+    var map;
+    var latlon;
 
-                            function initialize() {
+    function initialize() {
 			
-                                // create map object
-                                map = new mxn.Mapstraction('familygooglev3', 'googlev3');
+        // create map object
+        map = new mxn.Mapstraction('familygooglev3', 'googlev3');
 			    
-                                // add map controls to image
-                                map.addControls({
-                                    pan:                    true,
-                                    zoom:                   'large',
-                                    scale:                  true,
-                                    disableDoubleClickZoom: true,
-                                    keyboardShortcuts:      true,
-                                    scrollwheel:            false,
-                                    map_type:               true
-                                });
+        // add map controls to image
+        map.addControls({
+            pan:                    true,
+            zoom:                   'large',
+            scale:                  true,
+            disableDoubleClickZoom: true,
+            keyboardShortcuts:      true,
+            scrollwheel:            false,
+            map_type:               true
+        });
 
-                                // set center of map based on how many markers there are being created
-                                latlon = new mxn.LatLonPoint(%s, %s);""" % (x, y)
+        // set center of map based on how many markers there are being created
+        // Center place name: %s
+        latlon = new mxn.LatLonPoint(%s, %s);""" % ( center_place_name,
+                                                     centerX, centerY )
 
                     # set Zoom level based on number of markers
                     if len(place_lat_long) > 10:
                         jsc += """
-                                // center map and set zoom
-                                map.setCenterAndZoom(latlon, 6);"""
-
+        // center map and set zoom
+        map.setCenterAndZoom(latlon, 7);"""
                     else:
                         jsc += """
-                                // center map and set zoom
-                                map.setCenterAndZoom(latlon, 7);"""
+        // center map and set zoom
+        map.setCenterAndZoom(latlon, 9);"""
 
                     index = 0
-                    for (lat, long, place_name, handle) in place_lat_long:
+                    for (lat, long, placename, handle) in place_lat_long:
                         j = index + 1
+
                         jsc += """
-                                // %s
-                                add_marker(%d, %s, %s);""" % (place_name, j, lat, long)
+        // Place name: %s
+        add_marker(%d, %s, %s);""" % ( placename,
+                                       j, lat, long )
                         index += 1
                     jsc += """ 
-                            }"""
-
-                    if len(place_lat_long) > 4:
+    }"""
+                    if len(place_lat_long) > 6:
                         jsc += """
-                            // boundary southWest equals bottom left GPS Coordinates
-                            var southWest = new mxn.LatLonPoint(%s, %s);""" % (BoundMaxX, BoundMaxY)
+    // boundary southWest equals bottom left GPS Coordinates
+    var southWest = new mxn.LatLonPoint(%s, %s);""" % (BoundMaxX, BoundMaxY)
                         jsc += """
-                            // boundary northEast equals top right GPS Coordinates
-                            var northEast = new mxn.LatLonPoint(%s, %s);""" % (BoundMinX, BoundMinY)
-
+    // boundary northEast equals top right GPS Coordinates
+    var northEast = new mxn.LatLonPoint(%s, %s);""" % (BoundMinX, BoundMinY)
                         jsc += """
-                            var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                            map.fitBounds(bounds);"""
+    var bounds = new google.maps.LatLngBounds(southWest, northEast);
+    map.fitBounds(bounds);"""
 
                     jsc += """
-                            function add_marker(num, latitude, longitude) {
+    function add_marker(num, latitude, longitude) {
 
-                                var marker;
+        var marker;
 
-                                // create latitude/ longitude point for marker
-                                latlon = new mxn.LatLonPoint(latitude, longitude); 
+        // create latitude/ longitude point for marker
+        latlon = new mxn.LatLonPoint(latitude, longitude); 
 
-                                // create marker
-                                marker = new mxn.Marker(latlon);
+        // create marker
+        marker = new mxn.Marker(latlon);
 
-                                // add number to individual markers
-                                marker.setLabel(num.toString());
+        // add number to individual markers
+        marker.setLabel(num.toString());
 
-                                // add marker to map
-                                map.addMarker(marker, true);
-                            }"""
+        // add marker to map
+        map.addMarker(marker, true);
+
+    }"""
                     # there is no need to add an ending "</script>",
                     # as it will be added automatically!
 
