@@ -6273,7 +6273,11 @@ def __get_place_keyname(db, handle):
 
     place = db.get_place_from_handle(handle)
     if place:
-        return ReportUtils.place_name(db, handle)
+        place_name = ReportUtils.place_name(db, handle)
+        if place_name:
+            return place_name
+        else:
+            return ""
     else:
         return ""
 
