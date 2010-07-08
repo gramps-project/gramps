@@ -340,11 +340,6 @@ class BasePage(object):
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
 
-        # options for PlaceMaps for PlacePages
-        self.placemaps = report.options["placemaps"]
-        self.place_page = report.options["place_page"]
-        self.family_map = report.options["family_map"]
-
     def complete_people(self, tcell, first_person, handle_list):
         """
         completes the person column for classes EventListPage and EventPage
@@ -2390,6 +2385,7 @@ class PlacePage(BasePage):
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
         placepage, head, body = self.write_header(_("Places"))
+        self.placemappages = self.report.options['placemappages']
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2430,97 +2426,92 @@ class PlacePage(BasePage):
                 placedetail += urllinks
 
             # add place map here
-            if self.placemaps:
-                if self.place_page:
+            if self.placemappages:
+                if (place and (place.lat and place.long)):
 
-                    if (place and (place.lat and place.long)):
+                    # get reallatitude and reallongitude from place
+                    latitude, longitude = conv_lat_lon( place.lat,
+                                                        place.long,
+                                                        "D.D8")
 
-                        # get reallatitude and reallongitude from place
-                        latitude, longitude = conv_lat_lon( place.lat,
-                                                            place.long,
-                                                            "D.D8")
+                    # add Mapstraction CSS
+                    fname = "/".join(["styles", "mapstraction.css"])
+                    url = self.report.build_url_fname(fname, None, self.up)
+                    head += Html("link", href = url, type = "text/css", media = "screen", 
+                        rel = "stylesheet", indent = False)
 
-                        # add Mapstraction CSS
-                        fname = "/".join(["styles", "mapstraction.css"])
-                        url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("link", href = url, type = "text/css", media = "screen", 
-                            rel = "stylesheet", indent = False)
+                    # add googlev3 specific javascript code
+                    head += Html("script", type = "text/javascript", 
+                        src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
 
-                        # add googlev3 specific javascript code
-                        head += Html("script", type = "text/javascript", 
-                            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+                    # add mapstraction javascript code
+                    fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
+                    url = self.report.build_url_fname(fname, None, self.up)
+                    head += Html("script", type = "text/javascript", src = url, inline = True)
 
-                        # add mapstraction javascript code
-                        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-                        url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("script", type = "text/javascript", src = url, inline = True)
+                    # Place Map division
+                    with Html("div", id = "mapstraction") as mapstraction:
+                        placedetail += mapstraction
 
-                        # Place Map division
-                        with Html("div", id = "mapstraction") as mapstraction:
-                            placedetail += mapstraction
+                        # section title
+                        mapstraction += Html("h4", _("Place Map"), inline = True)
 
-                            # section title
-                            mapstraction += Html("h4", _("Place Map"), inline = True)
+                        # begin middle division
+                        with Html("div", id = "middle") as middle:
+                            mapstraction += middle
 
-                            # begin middle division
-                            with Html("div", id = "middle") as middle:
-                                mapstraction += middle
+                            # begin inline javascript code
+                            # because jsc is a string, it does NOT have to properly indented
+                            with Html("script", type = "text/javascript") as jsc:
+                                middle += jsc
 
-                                # begin inline javascript code
-                                # because jsc is a string, it does NOT have to properly indented
-                                with Html("script", type = "text/javascript") as jsc:
-                                    middle += jsc
+                                jsc += """
+    var map;
+    var latlon;
 
-                                    jsc += """
-                                    //<![CDATA[
+    function initialize() {
 
-                                    var map;
-                                    var latlon;
+        // create mxn object
+        map = new mxn.Mapstraction('googlev3','googlev3');
 
-                                    function initialize() {
+        // add map controls to image
+        map.addControls({
+            pan:                    true,
+            zoom:                   'large',
+            scale:                  true,
+            disableDoubleClickZoom: true,
+            keyboardShortcuts:      true,
+            scrollwheel:            false,
+            map_type:               true
+        });
 
-                                        // create mxn object
-                                        map = new mxn.Mapstraction('googlev3','googlev3');
+        latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
 
-                                        // add map controls to image
-                                        map.addControls({
-                                            pan:                    true,
-                                            zoom:                   'large',
-                                            scale:                  true,
-                                            disableDoubleClickZoom: true,
-                                            keyboardShortcuts:      true,
-                                            scrollwheel:            false,
-                                            map_type:               true
-                                        });
+                                jsc += """
+        // put map on page
+        map.setCenterAndZoom(latlon, 10);
 
-                                        latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
-
-                                    jsc += """
-                                        // put map on page
-                                        map.setCenterAndZoom(latlon, 10);
-
-                                        var marker;
+        var marker;
   
-                                        // set marker at latitude/ longitude
-                                        marker = new mxn.Marker(latlon);
+        // set marker at latitude/ longitude
+        marker = new mxn.Marker(latlon);
 
-                                        // add marker InfoBubble() using place name
-                                        marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
+        // add marker InfoBubble() using place name
+        marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
 
-                                    jsc += """
+                                jsc += """
 
-                                        // add marker to map
-                                        map.addMarker(marker, true);
-                                    }
-                                    //]]>"""
-                                    # there is no need to add an ending "</script>",
-                                    # as it will be added automatically!
+        // add marker to map
+        map.addMarker(marker, true);
+    }"""
+                                # there is no need to add an ending "</script>",
+                                # as it will be added automatically!
 
-                            # googlev3 division 
-                            middle += Html("div", id = "googlev3", inline = True)
+                        # googlev3 division 
+                        middle += Html("div", id = "googlev3", inline = True)
 
-                        # add javascript function call to body element
-                        body.attr = 'onload = "initialize();"'
+                    # add javascript function call to body element
+                    body.attr = 'onload = "initialize();"'
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -3748,6 +3739,7 @@ class IndividualPage(BasePage):
         of = self.report.create_file(person.handle, "ppl")
         self.up = True
         indivdetpage, head, body = self.write_header(self.sort_name)
+        self.familymappages = self.report.options['familymappages']
 
         # begin individualdetail division
         with Html("div", class_ = "content", id = 'IndividualDetail') as individualdetail:
@@ -3831,7 +3823,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect11
 
             # create family map link
-            if self.family_map:
+            if self.familymappages:
                 if len(place_lat_long):
                     individualdetail += self.display_ind_family_map(person)
 
@@ -4567,6 +4559,7 @@ class IndividualPage(BasePage):
             return None
 
         db = self.report.database
+        self.familymappages = self.report.options['familymappages']
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
@@ -4606,8 +4599,8 @@ class IndividualPage(BasePage):
                         father_handle = family.get_father_handle()
                         if father_handle:
 
-                            # get the father's event's places for family map
-                            if self.family_map:
+                            # get the father's event's place for family map
+                            if self.familymappages:
                                father = db.get_person_from_handle(father_handle)
                                _get_event_place(db, father) 
 
@@ -4622,7 +4615,7 @@ class IndividualPage(BasePage):
                         if mother_handle:
 
                             # get the mother's event's places for family map
-                            if self.family_map:
+                            if self.familymappages:
                                mother = db.get_person_from_handle(mother_handle)
                                _get_event_place(db, mother)
 
@@ -4642,7 +4635,7 @@ class IndividualPage(BasePage):
                     if sibling:
 
                         # add the sibling's event's place for family map
-                        if self.family_map:
+                        if self.familymappages:
                            for handle in sibling:
                                individual = db.get_person_from_handle(handle)
                                _get_event_place(db, individual)
@@ -4841,6 +4834,8 @@ class IndividualPage(BasePage):
             return None
 
         db = self.report.database
+        birthorder = self.report.options['birthorder']
+        self.familymappages = self.report.options['familymappages']
 
         # begin families division and section title
         with Html("div", class_ = "subsection", id = "families") as section:
@@ -4871,13 +4866,13 @@ class IndividualPage(BasePage):
 
                         childlist = [child_ref.ref for child_ref in childlist]
 
-                        # add individual's children events and places to family map
-                        if self.family_map:
+                        # add individual's children event's place to family map
+                        if self.familymappages:
                             for handle in childlist:
                                 individual = db.get_person_from_handle(handle)
                                 _get_event_place(db, individual)
 
-                        if self.report.options["birthorder"]:
+                        if birthorder:
                             kids = sorted(add_birthdate(db, childlist))
 
                             ordered.extend(
@@ -5435,7 +5430,8 @@ class NavWebReport(Report):
         self.inc_addressbook = self.options["inc_addressbook"]
 
         # Place Map tab options
-        self.placemaps = self.options["placemaps"]
+        self.placemappages = self.options['placemappages']
+        self.familymappages = self.options['familymappages']
 
         if self.use_home:
             self.index_fname = "index"
@@ -5616,7 +5612,7 @@ class NavWebReport(Report):
             self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy Mapstraction style sheet if using Place Maps
-        if self.placemaps or self.family_map:
+        if self.placemappages or self.familymappages:
             fname = os.path.join(const.DATA_DIR, "Mapstraction.css")
             self.copy_file(fname, "mapstraction.css", "styles")
  
@@ -5626,7 +5622,7 @@ class NavWebReport(Report):
 
         # copy mapstraction files to mapstraction directory
         # if PlacePage or IndividualPage maps will be used
-        if self.placemaps:
+        if self.placemappages or self.familymappages:
             js_files = [ "mxn.core.js", "mxn.geocommons.core.js", "mxn.google.core.js",
                          "mxn.google.geocoder.js", "mxn.googlev3.core.js",
                          "mxn.js", "mxn.openlayers.core.js" ] 
@@ -6486,25 +6482,18 @@ class NavWebOptions(MenuReportOptions):
 
         category_name = _("Place Map Options")
 
-        self.__placemaps = BooleanOption(_("Add Place Maps to Report"), False)
-        self.__placemaps.set_help(_("Whether to add place maps to this report"))
-        menu.add_option(category_name, "placemaps", self.__placemaps)
-        self.__placemaps.connect("value-changed", self._place_maps_changed)
+        placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
+        placemappages.set_help(_("Whether to include a place map on the Place Pages, "
+                                  "where Latitude/ Longitude are available."))
+        menu.add_option(category_name, "placemappages", placemappages)
 
-        self.__place_page = BooleanOption(_("Include Place map on Place Pages"), False)
-        self.__place_page.set_help(_("Whether to include a place map on the Place Pages, "
-                                     "where Latitude/ Longitude are available."))
-        menu.add_option(category_name, "place_page", self.__place_page)
-
-        self.__family_map = BooleanOption(_("Include Individual Page Map with "
-                                            "all places shown on map"), False)
-        self.__family_map.set_help(_("Whether to add an individual page map with "
+        familymappages = BooleanOption(_("Include Individual Page Map with "
+                                          "all places shown on map"), False)
+        familymappages.set_help(_("Whether to add an individual page map with "
                                      "all the places on this page shown or not?  "
                                      "This will allow you to see how your family "
                                      "travelled around the country."))
-        menu.add_option(category_name, "family_map", self.__family_map)
-
-        self._place_maps_changed()
+        menu.add_option(category_name, "familymappages", familymappages)
 
     def __archive_changed(self):
         """
@@ -6593,16 +6582,6 @@ class NavWebOptions(MenuReportOptions):
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
             self.__dl_cright.set_available(False)
-
-    def _place_maps_changed(self):
-        """ handles the changing nature of place maps """
-
-        if self.__placemaps.get_value():
-            self.__place_page.set_available(True)
-            self.__family_map.set_available(True)
-        else:
-            self.__place_page.set_available(False)
-            self.__family_map.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
