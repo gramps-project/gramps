@@ -6492,7 +6492,7 @@ class NavWebOptions(MenuReportOptions):
         familymappages.set_help(_("Whether to add an individual page map with "
                                      "all the places on this page shown or not?  "
                                      "This will allow you to see how your family "
-                                     "travelled around the country."))
+                                     "traveled around the country."))
         menu.add_option(category_name, "familymappages", familymappages)
 
     def __archive_changed(self):
