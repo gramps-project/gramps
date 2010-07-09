@@ -173,7 +173,7 @@ class CSVWriterOptionBox(WriterOptionBox):
         option_box = WriterOptionBox.get_option_box(self)
 
         self.include_individuals_check = gtk.CheckButton(_("Include people"))
-        self.include_marriages_check = gtk.CheckButton(_("Include marraiges"))
+        self.include_marriages_check = gtk.CheckButton(_("Include marriages"))
         self.include_children_check = gtk.CheckButton(_("Include children"))
         self.translate_headers_check = gtk.CheckButton(_("Translate headers"))
 
