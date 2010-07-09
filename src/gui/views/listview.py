@@ -116,6 +116,7 @@ class ListView(NavigationView):
         else:
             self.markup_columns = []
         dbstate.connect('database-changed', self.change_db)
+        self.connect_signals()
 
     def type_list(self):
         """
@@ -617,13 +618,19 @@ class ListView(NavigationView):
             self.columns[i].set_sort_indicator(enable_sort_flag)
         self.columns[self.sort_col].set_sort_order(self.sort_order)
 
+    def connect_signals(self):
+        """
+        Connect database signals defined in the signal map.
+        """
+        for sig in self.signal_map:
+            self.callman.add_db_signal(sig, self.signal_map[sig])
+        
     def change_db(self, db):
         """
         Called when the database is changed.
         """
         self._change_db(db)
-        for sig in self.signal_map:
-            self.callman.add_db_signal(sig, self.signal_map[sig])
+        self.connect_signals()
 
         self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:
