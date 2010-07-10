@@ -389,23 +389,23 @@ table.infolist tbody tr td.ColumnParents span.mother:before {
     padding: 0;
 }
 #SurnameDetail p#description {
-    padding-top:0;
+    padding-top: 0;
 }
 table.surnamelist thead tr th.ColumnSurname, 
 #Surnames table.surnamelist tbody tr td.ColumnSurname {
-    width:50%;
+    width: 50%;
 }
 table.surnamelist thead tr th.ColumnSurname a {
     color: #FFF;
 }
 table.surnamelist thead tr th {
-    padding:0;
+    padding: 0;
 }
 table.surnamelist thead tr th a, table.surnamelist thead tr th a:visited {
-    display:block;
-    text-align:left;
-    text-decoration:none;
-    padding:.2em 10px;
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    padding: .2em 10px;
 }
 table.surnamelist thead tr th.ColumnLetter {
     padding: 0px 10px 0px 20px;
@@ -423,14 +423,10 @@ table#SortByCount thead tr th.ColumnQuantity {
 }
 table#SortByName thead tr th.ColumnSurname a:after, 
 table#SortByCount thead tr th.ColumnQuantity a:after {
-    content:" ↓";
+    content: " ↓";
 }
 table#SortByName tbody tr td.ColumnSurname {
-    padding:0;
-}
-table#SortByName tbody tr td.ColumnSurname a {
-    display:block;
-    padding:.1em 10px .3em 10px;
+    padding: 0;
 }
 table.surnamelist tbody tr td.ColumnSurname:hover,
  table#SortByName tbody tr td.ColumnSurname:hover {
@@ -440,16 +436,18 @@ table.surname {
     border-bottom: solid 1px #000;
 }
 table.surname thead tr th.ColumnName {
-    width:20%;
-    padding-left:20px;
+    width: 20%;
+    padding-left: 20px;
+}
+table.surname tbody tr td {
+    border-bottom: dashed 1px #000;
 }
 table.surname tbody tr td.ColumnName {
-    width:20%;
-    padding:0;
+    width: 20%;
+    padding: 0;
 }
 table.surname tbody tr td.ColumnName a {
-    display:block;
-    padding:.6em 10px .6em 20px;
+    color: #000;
 }
 table.surname tbody tr td.ColumnName a span.grampsid {
     color: #000;
@@ -460,7 +458,7 @@ table.surname tbody tr td.ColumnName:hover {
 }
 table.surname thead tr th.ColumnParents, 
 table.surname tbody tr td.ColumnParents {
-    width:25%;
+    width: 25%;
 }
 
 /* Individuals
