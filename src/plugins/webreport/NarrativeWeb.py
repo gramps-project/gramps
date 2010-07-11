@@ -545,7 +545,7 @@ class BasePage(object):
                 self.place_list[place_handle] = [lnk]
 
             place = db.get_place_from_handle(place_handle)
-            place_exists(db, place)
+            self._append_to_place_lat_long(place)
 
         # begin event table row
         trow = Html("tr")
@@ -600,6 +600,57 @@ class BasePage(object):
 
         # return events table row to its callers
         return trow
+
+    def _append_to_place_lat_long(self, place):
+        """
+        Create a list of places with coordinates.
+        """
+        if not place:
+            return
+
+        global place_lat_long
+
+        placetitle = place.get_title()
+        latitude = longitude = ""
+
+        found = any(p[2] == placetitle for p in place_lat_long)
+        if not found:
+
+            latitude = place.get_latitude()
+            longitude = place.get_longitude()
+            if ( latitude and longitude ):
+
+                latitude, longitude = conv_lat_lon( latitude,
+                                                    longitude,
+                                                    "D.D8")
+
+                place_lat_long.append([ latitude, longitude,
+                                        placetitle, place.get_handle() ])
+
+    def _get_event_place(self, person):
+        """
+        retrieve from a a person their events, and places for family map
+
+        @param: person - person object from the database
+        """
+        if not person:
+            return
+        db = self.report.database
+
+        global _individuallist
+        # find individual from within the report database
+        found = any(handle == person.handle for handle in _individuallist)
+        if found:
+
+            event_ref_list = person.get_event_ref_list()
+            for event_ref in event_ref_list:
+                event = db.get_event_from_handle(event_ref.ref)
+                if event:
+                    place_handle = event.get_place_handle()
+                    if place_handle:
+
+                        place = db.get_place_from_handle(place_handle)
+                        self._append_to_place_lat_long(place)
 
     def event_link(self, eventtype, handle, gid = None, up = False):
         """ creates a hyperlink for an event based on its type """
@@ -3874,14 +3925,6 @@ class IndividualPage(BasePage):
         # sort place_lat_long based on place_title for placement on map and references
         place_lat_long = sorted(place_lat_long, key = operator.itemgetter(2, 0, 1, 3))
 
-        # set map center based on how many markers there will be created
-        if len(place_lat_long) > 5:
-            center = int(len(place_lat_long) / 3)
-        else:
-            center = 0
-        centerX, centerY = place_lat_long[center][0], place_lat_long[center][1]
-        center_place_name = place_lat_long[center][2]
-
         of = self.report.create_file(person_handle, "maps")
         self.up = True
         familymappage, head, body = self.write_header(_("Family Map"))
@@ -3931,22 +3974,7 @@ class IndividualPage(BasePage):
             keyboardShortcuts:      true,
             scrollwheel:            false,
             map_type:               true
-        });
-
-        // set center of map based on how many markers there are being created
-        // Center place name: %s
-        latlon = new mxn.LatLonPoint(%s, %s);""" % ( center_place_name,
-                                                     centerX, centerY )
-
-                    # set Zoom level based on number of markers
-                    if len(place_lat_long) > 10:
-                        jsc += """
-        // center map and set zoom
-        map.setCenterAndZoom(latlon, 7);"""
-                    else:
-                        jsc += """
-        // center map and set zoom
-        map.setCenterAndZoom(latlon, 9);"""
+        });"""
 
                     index = 0
                     for (lat, long, placename, handle) in place_lat_long:
@@ -3983,6 +4011,9 @@ class IndividualPage(BasePage):
 
         // add number to individual markers
         marker.setLabel(num.toString());
+
+        // set map center and zoom to each marker
+        map.setCenterAndZoom(latlon, 7);
 
         // add marker to map
         map.addMarker(marker, true);
@@ -4602,7 +4633,7 @@ class IndividualPage(BasePage):
                             # get the father's event's place for family map
                             if self.familymappages:
                                father = db.get_person_from_handle(father_handle)
-                               _get_event_place(db, father) 
+                               self._get_event_place(father) 
 
                             trow = Html("tr")
                             table += trow
@@ -4617,7 +4648,7 @@ class IndividualPage(BasePage):
                             # get the mother's event's places for family map
                             if self.familymappages:
                                mother = db.get_person_from_handle(mother_handle)
-                               _get_event_place(db, mother)
+                               self._get_event_place(mother)
 
                             trow = Html("tr")
                             table += trow
@@ -4638,7 +4669,7 @@ class IndividualPage(BasePage):
                         if self.familymappages:
                            for handle in sibling:
                                individual = db.get_person_from_handle(handle)
-                               _get_event_place(db, individual)
+                               self._get_event_place(individual)
 
                         trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
@@ -4870,7 +4901,7 @@ class IndividualPage(BasePage):
                         if self.familymappages:
                             for handle in childlist:
                                 individual = db.get_person_from_handle(handle)
-                                _get_event_place(db, individual)
+                                self._get_event_place(individual)
 
                         if birthorder:
                             kids = sorted(add_birthdate(db, childlist))
@@ -6871,46 +6902,3 @@ def build_event_data(db, ind_list):
             
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
-
-def _get_event_place(db, person):
-    """
-    retrieve from a a person their events, and places for family map
-
-    @param: db -- report database
-    @param: person - person object from the database
-    """
-    if not person:
-        return
-
-    global _individuallist
-    # find individual from within the report database
-    found = any(handle == person.handle for handle in _individuallist)
-    if found:
-
-        event_ref_list = person.get_event_ref_list()
-        for event_ref in event_ref_list:
-            event = db.get_event_from_handle(event_ref.ref)
-            if event:
-                place_handle = event.get_place_handle()
-                if place_handle:
-
-                    place = db.get_place_from_handle(place_handle)
-                    place_exists(db, place)
-
-def place_exists(db, place):
-    """ will determine if place already exists in list or not """
-    global place_lat_long
-
-    place_title = ReportUtils.place_name(db, place.handle)
-
-    found = any(p[2] == place_title for p in place_lat_long)
-    if not found:
-
-        # if place and it has latitude and longitude, continue?
-        if (place and (place.lat and place.long)):
-
-            latitude, longitude = conv_lat_lon( place.lat,
-                                                place.long,
-                                                "D.D8")
-
-            place_lat_long.append([latitude, longitude, place_title, place.handle])
