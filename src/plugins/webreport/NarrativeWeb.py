@@ -616,16 +616,14 @@ class BasePage(object):
         found = any(p[2] == placetitle for p in place_lat_long)
         if not found:
 
-            latitude = place.get_latitude()
-            longitude = place.get_longitude()
-            if ( latitude and longitude ):
+            if ( place.lat and place.long ):
 
-                latitude, longitude = conv_lat_lon( latitude,
-                                                    longitude,
+                latitude, longitude = conv_lat_lon( place.lat,
+                                                    place.long,
                                                     "D.D8")
 
                 place_lat_long.append([ latitude, longitude,
-                                        placetitle, place.get_handle() ])
+                                        placetitle, place.handle ])
 
     def _get_event_place(self, person):
         """
@@ -637,11 +635,7 @@ class BasePage(object):
             return
         db = self.report.database
 
-        global _individuallist
-        # find individual from within the report database
-        found = any(handle == person.handle for handle in _individuallist)
-        if found:
-
+        if check_person_database(person):
             event_ref_list = person.get_event_ref_list()
             for event_ref in event_ref_list:
                 event = db.get_event_from_handle(event_ref.ref)
@@ -1893,7 +1887,6 @@ class BasePage(object):
         @param: place -- place object from the database
         @param: table -- table from Placedetail
         """
-
         if not place:
             return
  
@@ -1989,9 +1982,6 @@ class IndividualListPage(BasePage):
     def __init__(self, report, title, person_handle_list):
         BasePage.__init__(self, report, title)
         db = report.database
-
-        # handles for this module for use in partner column
-        report_handle_list = person_handle_list
 
         # plugin variables for this module
         showbirth = report.options['showbirth']
@@ -2114,7 +2104,7 @@ class IndividualListPage(BasePage):
                                     partner_name = self.get_name(partner)
                                     if not first_family:
                                         tcell += ", "  
-                                    if partner_handle in report_handle_list:
+                                    if check_person_database(partner):
                                         url = self.report.build_url_fname_html(partner_handle, "ppl")
                                         tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
                                     else:
@@ -2166,7 +2156,7 @@ class SurnamePage(BasePage):
     This will create a list of individuals with the same surname
     """
 
-    def __init__(self, report, title, surname, person_handle_list, report_handle_list):
+    def __init__(self, report, title, surname, person_handle_list):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -2268,7 +2258,7 @@ class SurnamePage(BasePage):
                                     partner_name = self.get_name(partner)
                                     if not first_family:
                                         tcell += ','
-                                    if partner_handle in report_handle_list:
+                                    if check_person_database(partner):
                                         url = self.report.build_url_fname_html(partner_handle, "ppl", True) 
                                         tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
                                     else:
@@ -4989,7 +4979,7 @@ class IndividualPage(BasePage):
         """
 
         person_name = self.get_name(person)
-        if person.handle in self.ind_list:
+        if check_person_database(person):
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             hyper = self.person_link(url, person, name_style = True)
         else:
@@ -5786,7 +5776,7 @@ class NavWebReport(Report):
             "surnames_count")
 
         for (surname, handle_list) in local_list:
-            SurnamePage(self, self.title, surname, handle_list, ind_list)
+            SurnamePage(self, self.title, surname, handle_list)
             self.progress.step()
 
     def source_pages(self, source_list):
@@ -6902,3 +6892,14 @@ def build_event_data(db, ind_list):
             
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
+
+def check_person_database(person):
+    """
+    check to see if a person is in the report database
+
+    @param: person -- person object from the database presumably
+    """
+    global _individuallist
+
+    # returns True if person is found, and False if not
+    return any(handle == person.handle for handle in _individuallist)
